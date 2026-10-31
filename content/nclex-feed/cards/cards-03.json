@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-104.svg",
-      "alt": "chips diagram for nclex-104"
+      "alt": "anatomy diagram for nclex-104"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -124,7 +124,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-105.svg",
-      "alt": "Do and do not. Fluids, fiber, activity and a regular toileting routine."
+      "alt": "contrast diagram for nclex-105"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -151,7 +151,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-106.svg",
-      "alt": "chips diagram for nclex-106"
+      "alt": "branch diagram for nclex-106"
     },
     "source": {
       "guideline": "CDC/HICPAC CAUTI 2009 (updated 2019)",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-109.svg",
-      "alt": "flow diagram for nclex-109"
+      "alt": "ladder diagram for nclex-109"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": "Up with the good, down with the bad",
     "diagram": {
       "file": "svg/nclex-110.svg",
-      "alt": "Steps. Hold the cane on the strong side; move it with the weak leg."
+      "alt": "anatomy diagram for nclex-110"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -313,7 +313,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-112.svg",
-      "alt": "chips diagram for nclex-112"
+      "alt": "contrast diagram for nclex-112"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -340,7 +340,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-113.svg",
-      "alt": "chips diagram for nclex-113"
+      "alt": "ladder diagram for nclex-113"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -367,7 +367,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-114.svg",
-      "alt": "chips diagram for nclex-114"
+      "alt": "branch diagram for nclex-114"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -394,7 +394,7 @@
     "mnemonic": "6 Ps: Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia",
     "diagram": {
       "file": "svg/nclex-115.svg",
-      "alt": "Steps. Compartment syndrome: notify the provider immediately; keep the arm at heart level."
+      "alt": "anatomy diagram for nclex-115"
     },
     "source": {
       "guideline": "StatPearls Acute Compartment Syndrome 2023 and BOAST 10",
@@ -421,7 +421,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-116.svg",
-      "alt": "chips diagram for nclex-116"
+      "alt": "branch diagram for nclex-116"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-117.svg",
-      "alt": "flow diagram for nclex-117"
+      "alt": "ladder diagram for nclex-117"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -475,7 +475,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-118.svg",
-      "alt": "table diagram for nclex-118"
+      "alt": "contrast diagram for nclex-118"
     },
     "source": {
       "guideline": "ISMP High-Alert Medications 2024",
@@ -556,7 +556,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-121.svg",
-      "alt": "Steps. Heparin-induced thrombocytopenia; stop heparin and notify the provider."
+      "alt": "ladder diagram for nclex-121"
     },
     "source": {
       "guideline": "ASH VTE Guidelines: Heparin-Induced Thrombocytopenia 2018",
@@ -583,7 +583,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-122.svg",
-      "alt": "Do and do not. Hold warfarin per order, notify the provider, and monitor for bleeding; vitamin K only if ordered."
+      "alt": "branch diagram for nclex-122"
     },
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
@@ -610,7 +610,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-123.svg",
-      "alt": "flow diagram for nclex-123"
+      "alt": "anatomy diagram for nclex-123"
     },
     "source": {
       "guideline": "ACC ECDP Bleeding on Oral Anticoagulants 2020; FDA Andexxa safety update 2025",
@@ -664,7 +664,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-125.svg",
-      "alt": "Steps. Always diluted, given by infusion pump, never IV push."
+      "alt": "anatomy diagram for nclex-125"
     },
     "source": {
       "guideline": "ISMP 2024",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-126.svg",
-      "alt": "Steps. Stop the transfusion; keep the IV open with new tubing and saline."
+      "alt": "contrast diagram for nclex-126"
     },
     "source": {
       "guideline": "AABB Standards 35th ed 2026",
@@ -772,7 +772,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-129.svg",
-      "alt": "flow diagram for nclex-129"
+      "alt": "branch diagram for nclex-129"
     },
     "source": {
       "guideline": "INS 2024; CDC Intravascular Catheter Infection 2011 (2017 update)",
@@ -799,7 +799,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-130.svg",
-      "alt": "Steps. Hang 10% dextrose as ordered to prevent rebound hypoglycemia."
+      "alt": "contrast diagram for nclex-130"
     },
     "source": {
       "guideline": "ASPEN PN Safety Summit consensus 2024",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-131.svg",
-      "alt": "Threshold. 1,440 units/hour."
+      "alt": "threshold diagram for nclex-131"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -853,7 +853,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-132.svg",
-      "alt": "table diagram for nclex-132"
+      "alt": "ladder diagram for nclex-132"
     },
     "source": {
       "guideline": "CDC Opioid Prescribing 2022",
@@ -880,7 +880,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-133.svg",
-      "alt": "Steps. Only the client presses the PCA button."
+      "alt": "contrast diagram for nclex-133"
     },
     "source": {
       "guideline": "ISMP 2024",
@@ -907,7 +907,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-134.svg",
-      "alt": "table diagram for nclex-134"
+      "alt": "ladder diagram for nclex-134"
     },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-135.svg",
-      "alt": "Steps. Hold the dose and notify the provider if heart rate or BP is low."
+      "alt": "anatomy diagram for nclex-135"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -961,7 +961,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-136.svg",
-      "alt": "Steps. Low potassium and ototoxicity are risks with loop diuretics."
+      "alt": "branch diagram for nclex-136"
     },
     "source": {
       "guideline": "AHA/ACC/HFSA Heart Failure 2022",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-137.svg",
-      "alt": "Threshold. Lithium toxicity; the usual maintenance range is about 0.6 to 1.2 mEq/L."
+      "alt": "ladder diagram for nclex-137"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-138.svg",
-      "alt": "Steps. Neuroleptic malignant syndrome; hold further doses and notify the provider at once."
+      "alt": "anatomy diagram for nclex-138"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-139.svg",
-      "alt": "flow diagram for nclex-139"
+      "alt": "anatomy diagram for nclex-139"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1069,7 +1069,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-140.svg",
-      "alt": "Steps. Serotonin syndrome; hold further serotonergic doses and notify the provider."
+      "alt": "contrast diagram for nclex-140"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1096,7 +1096,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-141.svg",
-      "alt": "Steps. Monitor drug levels and kidney function as ordered."
+      "alt": "anatomy diagram for nclex-141"
     },
     "source": {
       "guideline": "ASHP/IDSA vancomycin 2020",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-142.svg",
-      "alt": "Threshold. Stop the infusion and give IM epinephrine per order or protocol, 0.01 mg/kg, max 0.5 mg."
+      "alt": "trend diagram for nclex-142"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-143.svg",
-      "alt": "flow diagram for nclex-143"
+      "alt": "branch diagram for nclex-143"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-144.svg",
-      "alt": "Steps. Take it on an empty stomach, 30 to 60 minutes before breakfast."
+      "alt": "anatomy diagram for nclex-144"
     },
     "source": {
       "guideline": "ATA Hypothyroidism 2014",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-145.svg",
-      "alt": "flow diagram for nclex-145"
+      "alt": "anatomy diagram for nclex-145"
     },
     "source": {
       "guideline": "GINA 2026",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-146.svg",
-      "alt": "Threshold. Phenytoin toxicity; the usual total level is about 10 to 20 mcg/mL."
+      "alt": "contrast diagram for nclex-146"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-147.svg",
-      "alt": "flow diagram for nclex-147"
+      "alt": "branch diagram for nclex-147"
     },
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, updated 2024)",

@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-051.svg",
-      "alt": "chips diagram for nclex-051"
+      "alt": "branch diagram for nclex-051"
     },
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-052.svg",
-      "alt": "table diagram for nclex-052"
+      "alt": "contrast diagram for nclex-052"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-053.svg",
-      "alt": "chips diagram for nclex-053"
+      "alt": "branch diagram for nclex-053"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-054.svg",
-      "alt": "Steps. Protect the client from infection sources."
+      "alt": "ladder diagram for nclex-054"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -124,7 +124,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-055.svg",
-      "alt": "Steps. Use chemo-rated gloves, gowns and a spill kit."
+      "alt": "branch diagram for nclex-055"
     },
     "source": {
       "guideline": "USP <800> (official 2020)",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-057.svg",
-      "alt": "chips diagram for nclex-057"
+      "alt": "ladder diagram for nclex-057"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -205,7 +205,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-058.svg",
-      "alt": "Steps. Smallpox spreads between people; inhalation anthrax does not."
+      "alt": "contrast diagram for nclex-058"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-059.svg",
-      "alt": "chips diagram for nclex-059"
+      "alt": "branch diagram for nclex-059"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-060.svg",
-      "alt": "table diagram for nclex-060"
+      "alt": "ladder diagram for nclex-060"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -286,7 +286,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-061.svg",
-      "alt": "chips diagram for nclex-061"
+      "alt": "contrast diagram for nclex-061"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -340,7 +340,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-063.svg",
-      "alt": "Steps. At 18 months: says 3 or more words, points, walks alone; two-word phrases by 24 months."
+      "alt": "timeline diagram for nclex-063"
     },
     "source": {
       "guideline": "CDC/AAP Learn the Signs. Act Early. milestones 2022",
@@ -367,7 +367,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-064.svg",
-      "alt": "Contrast. Toddler: autonomy versus shame and doubt. Teen: identity versus role confusion."
+      "alt": "branch diagram for nclex-064"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -394,7 +394,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-065.svg",
-      "alt": "Steps. A prior severe allergic reaction to that vaccine or component."
+      "alt": "ladder diagram for nclex-065"
     },
     "source": {
       "guideline": "CDC child/adolescent schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
@@ -421,7 +421,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-066.svg",
-      "alt": "Steps. Recombinant zoster, Tdap or Td, and yearly flu."
+      "alt": "contrast diagram for nclex-066"
     },
     "source": {
       "guideline": "CDC adult schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-067.svg",
-      "alt": "chips diagram for nclex-067"
+      "alt": "anatomy diagram for nclex-067"
     },
     "source": {
       "guideline": "ACOG Clinical Consensus: Tailored Prenatal Care Delivery 2025",
@@ -475,7 +475,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-068.svg",
-      "alt": "Threshold. First day of LMP, minus 3 months, plus 7 days."
+      "alt": "timeline diagram for nclex-068"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -502,7 +502,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-069.svg",
-      "alt": "flow diagram for nclex-069"
+      "alt": "anatomy diagram for nclex-069"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -529,7 +529,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-070.svg",
-      "alt": "Steps. Dilation, birth of the baby, placenta, then recovery."
+      "alt": "anatomy diagram for nclex-070"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -556,7 +556,7 @@
     "mnemonic": "BUBBLE-HE: Breasts, Uterus, Bladder, Bowel, Lochia, Episiotomy, Hemorrhage, Emotions",
     "diagram": {
       "file": "svg/nclex-071.svg",
-      "alt": "chips diagram for nclex-071"
+      "alt": "contrast diagram for nclex-071"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -583,7 +583,7 @@
     "mnemonic": "APGAR: Appearance, Pulse, Grimace, Activity, Respiration",
     "diagram": {
       "file": "svg/nclex-072.svg",
-      "alt": "Steps. Heart rate, respiratory effort, tone, reflex and color."
+      "alt": "cycle diagram for nclex-072"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -610,7 +610,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-073.svg",
-      "alt": "Steps. Feed on demand, about 8 to 12 times a day."
+      "alt": "branch diagram for nclex-073"
     },
     "source": {
       "guideline": "AAP Breastfeeding policy 2022",
@@ -637,7 +637,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-074.svg",
-      "alt": "chips diagram for nclex-074"
+      "alt": "anatomy diagram for nclex-074"
     },
     "source": {
       "guideline": "CDC US MEC 2024",
@@ -664,7 +664,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-075.svg",
-      "alt": "Steps. Mammograms begin at 40; colorectal screening begins at 45."
+      "alt": "cycle diagram for nclex-075"
     },
     "source": {
       "guideline": "USPSTF breast 2024; colorectal 2021",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-076.svg",
-      "alt": "table diagram for nclex-076"
+      "alt": "ladder diagram for nclex-076"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -718,7 +718,7 @@
     "mnemonic": "ABCs of safe sleep: Alone, Back, Crib",
     "diagram": {
       "file": "svg/nclex-077.svg",
-      "alt": "flow diagram for nclex-077"
+      "alt": "ladder diagram for nclex-077"
     },
     "source": {
       "guideline": "AAP Safe Sleep 2022",
@@ -745,7 +745,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-078.svg",
-      "alt": "Steps. Stay rear-facing as long as the seat allows."
+      "alt": "contrast diagram for nclex-078"
     },
     "source": {
       "guideline": "AAP Child Passenger Safety (reaffirmed 2025)",
@@ -772,7 +772,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-079.svg",
-      "alt": "chips diagram for nclex-079"
+      "alt": "cycle diagram for nclex-079"
     },
     "source": {
       "guideline": "USPSTF tobacco cessation 2021",
@@ -799,7 +799,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-080.svg",
-      "alt": "Steps. Condoms, routine testing and partner treatment."
+      "alt": "branch diagram for nclex-080"
     },
     "source": {
       "guideline": "CDC STI Treatment Guidelines 2021",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-081.svg",
-      "alt": "chips diagram for nclex-081"
+      "alt": "ladder diagram for nclex-081"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -853,7 +853,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-082.svg",
-      "alt": "Do and do not. False reassurance, advice and changing the subject block communication."
+      "alt": "branch diagram for nclex-082"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -880,7 +880,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-083.svg",
-      "alt": "chips diagram for nclex-083"
+      "alt": "contrast diagram for nclex-083"
     },
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
@@ -907,7 +907,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-084.svg",
-      "alt": "chips diagram for nclex-084"
+      "alt": "ladder diagram for nclex-084"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-085.svg",
-      "alt": "flow diagram for nclex-085"
+      "alt": "branch diagram for nclex-085"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -961,7 +961,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-086.svg",
-      "alt": "Steps. Safety and nutrition come first."
+      "alt": "contrast diagram for nclex-086"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-087.svg",
-      "alt": "flow diagram for nclex-087"
+      "alt": "ladder diagram for nclex-087"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-088.svg",
-      "alt": "chips diagram for nclex-088"
+      "alt": "anatomy diagram for nclex-088"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-089.svg",
-      "alt": "chips diagram for nclex-089"
+      "alt": "contrast diagram for nclex-089"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1069,7 +1069,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-090.svg",
-      "alt": "Threshold. Delirium tremens peaks at 48 to 72 hours, so this client at 30 hours is high risk."
+      "alt": "timeline diagram for nclex-090"
     },
     "source": {
       "guideline": "ASAM Alcohol Withdrawal Management 2020",
@@ -1096,7 +1096,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-091.svg",
-      "alt": "Steps. Airway and breathing first: stimulate, open the airway, and bag-mask ventilate."
+      "alt": "branch diagram for nclex-091"
     },
     "source": {
       "guideline": "AHA 2025 CPR and ECC Guidelines, Part 10 Special Circumstances (opioids)",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-092.svg",
-      "alt": "chips diagram for nclex-092"
+      "alt": "anatomy diagram for nclex-092"
     },
     "source": {
       "guideline": "APA Eating Disorders 2023",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-093.svg",
-      "alt": "flow diagram for nclex-093"
+      "alt": "ladder diagram for nclex-093"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-094.svg",
-      "alt": "chips diagram for nclex-094"
+      "alt": "contrast diagram for nclex-094"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-095.svg",
-      "alt": "flow diagram for nclex-095"
+      "alt": "branch diagram for nclex-095"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-096.svg",
-      "alt": "table diagram for nclex-096"
+      "alt": "contrast diagram for nclex-096"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-097.svg",
-      "alt": "flow diagram for nclex-097"
+      "alt": "branch diagram for nclex-097"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1285,7 +1285,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-098.svg",
-      "alt": "table diagram for nclex-098"
+      "alt": "ladder diagram for nclex-098"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1312,7 +1312,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-099.svg",
-      "alt": "chips diagram for nclex-099"
+      "alt": "anatomy diagram for nclex-099"
     },
     "source": {
       "guideline": "International Pressure Ulcer/Injury Guideline 4th ed 2025 (NPIAP/EPUAP/PPPIA)",
@@ -1339,7 +1339,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-100.svg",
-      "alt": "table diagram for nclex-100"
+      "alt": "anatomy diagram for nclex-100"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",

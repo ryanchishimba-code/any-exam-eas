@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-001.svg",
-      "alt": "Steps. Airway first, then breathing, then circulation."
+      "alt": "contrast diagram for nclex-001"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-002.svg",
-      "alt": "chips diagram for nclex-002"
+      "alt": "branch diagram for nclex-002"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-003.svg",
-      "alt": "Steps. Routine tasks for stable clients with predictable outcomes."
+      "alt": "ladder diagram for nclex-003"
     },
     "source": {
       "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-004.svg",
-      "alt": "Do and do not. LPN/PN cares for stable clients with predictable care needs."
+      "alt": "branch diagram for nclex-004"
     },
     "source": {
       "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
@@ -124,7 +124,7 @@
     "mnemonic": "Task, Circumstance, Person, Direction, Supervision",
     "diagram": {
       "file": "svg/nclex-005.svg",
-      "alt": "Steps. Right task, circumstance, person, direction and supervision."
+      "alt": "cycle diagram for nclex-005"
     },
     "source": {
       "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
@@ -151,7 +151,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-006.svg",
-      "alt": "Steps. The provider explains; the nurse verifies understanding and witnesses."
+      "alt": "ladder diagram for nclex-006"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-007.svg",
-      "alt": "chips diagram for nclex-007"
+      "alt": "contrast diagram for nclex-007"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -205,7 +205,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-008.svg",
-      "alt": "Steps. A directive states wishes, a proxy decides, POLST is an order."
+      "alt": "branch diagram for nclex-008"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-009.svg",
-      "alt": "Steps. Only people involved in care, on a need-to-know basis."
+      "alt": "contrast diagram for nclex-009"
     },
     "source": {
       "guideline": "HHS HIPAA Privacy Rule, minimum necessary standard (45 CFR 164.502(b), current 2026)",
@@ -283,7 +283,7 @@
     "mnemonic": "SBAR: Situation, Background, Assessment, Recommendation",
     "diagram": {
       "file": "svg/nclex-011.svg",
-      "alt": "Steps. Situation, background, assessment, then a clear recommendation."
+      "alt": "ladder diagram for nclex-011"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -337,7 +337,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-013.svg",
-      "alt": "flow diagram for nclex-013"
+      "alt": "ladder diagram for nclex-013"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -364,7 +364,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-014.svg",
-      "alt": "chips diagram for nclex-014"
+      "alt": "branch diagram for nclex-014"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -391,7 +391,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-015.svg",
-      "alt": "flow diagram for nclex-015"
+      "alt": "contrast diagram for nclex-015"
     },
     "source": {
       "guideline": "CAPTA, as amended through P.L. 118-193 (2024)",
@@ -418,7 +418,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-016.svg",
-      "alt": "chips diagram for nclex-016"
+      "alt": "branch diagram for nclex-016"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -445,7 +445,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-017.svg",
-      "alt": "Steps. A provider order, least restrictive method, and frequent monitoring."
+      "alt": "contrast diagram for nclex-017"
     },
     "source": {
       "guideline": "CMS CoP 42 CFR 482.13(e) (current eCFR)",
@@ -472,7 +472,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-018.svg",
-      "alt": "Steps. Discharge planning begins at admission."
+      "alt": "anatomy diagram for nclex-018"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -499,7 +499,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-019.svg",
-      "alt": "flow diagram for nclex-019"
+      "alt": "ladder diagram for nclex-019"
     },
     "source": {
       "guideline": "ANA Code of Ethics 2025",
@@ -553,7 +553,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-021.svg",
-      "alt": "flow diagram for nclex-021"
+      "alt": "branch diagram for nclex-021"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -580,7 +580,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-022.svg",
-      "alt": "Steps. Stable clients with support at home."
+      "alt": "contrast diagram for nclex-022"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -607,7 +607,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-023.svg",
-      "alt": "flow diagram for nclex-023"
+      "alt": "ladder diagram for nclex-023"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -634,7 +634,7 @@
     "mnemonic": "PDSA: Plan, Do, Study, Act",
     "diagram": {
       "file": "svg/nclex-024.svg",
-      "alt": "Steps. Plan, Do, Study, Act in small, measured tests."
+      "alt": "ladder diagram for nclex-024"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -688,7 +688,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-026.svg",
-      "alt": "Do and do not. Match each client need to the right discipline."
+      "alt": "contrast diagram for nclex-026"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -742,7 +742,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-028.svg",
-      "alt": "table diagram for nclex-028"
+      "alt": "cycle diagram for nclex-028"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -769,7 +769,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-029.svg",
-      "alt": "chips diagram for nclex-029"
+      "alt": "branch diagram for nclex-029"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -796,7 +796,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-030.svg",
-      "alt": "table diagram for nclex-030"
+      "alt": "cycle diagram for nclex-030"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -823,7 +823,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-031.svg",
-      "alt": "Steps. Talk privately and directly with the people involved."
+      "alt": "branch diagram for nclex-031"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -850,7 +850,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-032.svg",
-      "alt": "Steps. Assign a stable client with routine care needs."
+      "alt": "contrast diagram for nclex-032"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -877,7 +877,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-033.svg",
-      "alt": "flow diagram for nclex-033"
+      "alt": "ladder diagram for nclex-033"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -904,7 +904,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-034.svg",
-      "alt": "table diagram for nclex-034"
+      "alt": "branch diagram for nclex-034"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -931,7 +931,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-035.svg",
-      "alt": "flow diagram for nclex-035"
+      "alt": "ladder diagram for nclex-035"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -958,7 +958,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-036.svg",
-      "alt": "table diagram for nclex-036"
+      "alt": "contrast diagram for nclex-036"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -985,7 +985,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-037.svg",
-      "alt": "Steps. Hand hygiene and PPE based on expected exposure."
+      "alt": "cycle diagram for nclex-037"
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1012,7 +1012,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-038.svg",
-      "alt": "chips diagram for nclex-038"
+      "alt": "branch diagram for nclex-038"
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1039,7 +1039,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-039.svg",
-      "alt": "flow diagram for nclex-039"
+      "alt": "contrast diagram for nclex-039"
     },
     "source": {
       "guideline": "IDSA/SHEA C. difficile focused update 2021",
@@ -1066,7 +1066,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-040.svg",
-      "alt": "Steps. Droplet precautions for influenza, pertussis, meningococcus and mumps."
+      "alt": "ladder diagram for nclex-040"
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1093,7 +1093,7 @@
     "mnemonic": "My Chicken Has TB: Measles, Chickenpox, Herpes zoster (disseminated), TB",
     "diagram": {
       "file": "svg/nclex-041.svg",
-      "alt": "Steps. Airborne precautions for TB, measles and varicella."
+      "alt": "branch diagram for nclex-041"
     },
     "source": {
       "guideline": "CDC TB Infection Control in Health-Care Settings 2005",
@@ -1120,7 +1120,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-042.svg",
-      "alt": "Steps. On: gown, mask, goggles, gloves. Off: gloves first."
+      "alt": "contrast diagram for nclex-042"
     },
     "source": {
       "guideline": "CDC Sequence for Donning and Doffing PPE (CDC Stacks record, 2014)",
@@ -1147,7 +1147,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-043.svg",
-      "alt": "Steps. Clients with the same organism, or uninfected low-risk clients."
+      "alt": "ladder diagram for nclex-043"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1201,7 +1201,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-045.svg",
-      "alt": "chips diagram for nclex-045"
+      "alt": "ladder diagram for nclex-045"
     },
     "source": {
       "guideline": "USPHS/CDC Occupational HIV PEP Guidelines 2025",
@@ -1228,7 +1228,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-046.svg",
-      "alt": "chips diagram for nclex-046"
+      "alt": "branch diagram for nclex-046"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -1255,7 +1255,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-047.svg",
-      "alt": "flow diagram for nclex-047"
+      "alt": "contrast diagram for nclex-047"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -1282,7 +1282,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-048.svg",
-      "alt": "table diagram for nclex-048"
+      "alt": "ladder diagram for nclex-048"
     },
     "source": {
       "guideline": "Joint Commission NPG.01.06.01-.03 (former Universal Protocol) 2026",
@@ -1309,7 +1309,7 @@
     "mnemonic": "RACE: Rescue, Alarm, Contain, Extinguish; PASS: Pull, Aim, Squeeze, Sweep",
     "diagram": {
       "file": "svg/nclex-049.svg",
-      "alt": "Steps. Rescue the client in danger first, then follow RACE."
+      "alt": "contrast diagram for nclex-049"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1336,7 +1336,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-050.svg",
-      "alt": "chips diagram for nclex-050"
+      "alt": "anatomy diagram for nclex-050"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",

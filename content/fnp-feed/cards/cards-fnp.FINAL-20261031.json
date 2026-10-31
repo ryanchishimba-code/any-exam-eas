@@ -4,7 +4,7 @@
   "system": "Cardiovascular",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Adult with one high office BP: how do you measure it correctly, and how do you confirm hypertension?",
+  "front": "A 42-year-old is in clinic. Adult with one high office BP: how do you measure it correctly, and how do you confirm hypertension?",
   "bottom": "Average ≥2 readings on ≥2 visits; confirm out of office.",
   "bullets": {
    "clue": "Seated 5 minutes, back supported, arm at heart level, right cuff.",
@@ -16,7 +16,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-001.svg",
-   "alt": "Threshold. Average ≥2 readings on ≥2 visits; confirm out of office."
+   "alt": "trend diagram for fnp-001"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -24,14 +24,15 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Average ≥2 readings on ≥2 visits; confirm out of office. Home BP or ambulatory monitoring confirms; stage 1 is 130–139/80–89."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-002",
   "system": "Cardiovascular",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Child at a well visit: when does BP screening start, and how is pediatric hypertension defined?",
+  "front": "A 4-year-old is in clinic. Child at a well visit: when does BP screening start, and how is pediatric hypertension defined?",
   "bottom": "Screen yearly from age 3.",
   "bullets": {
    "clue": "Under 13: BP ≥95th percentile for age, sex and height on 3 visits.",
@@ -43,7 +44,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-002.svg",
-   "alt": "table diagram for fnp-002"
+   "alt": "anatomy diagram for fnp-002"
   },
   "source": {
    "guideline": "AAP 2017 pediatric HTN CPG (still current)",
@@ -59,7 +60,7 @@
   "system": "Cardiovascular",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Adult 30–79 without ASCVD, LDL 70–189: how does PREVENT risk decide on a statin?",
+  "front": "A 48-year-old is in clinic. Adult 30–79 without ASCVD, LDL 70–189: how does PREVENT risk decide on a statin?",
   "bottom": "Statin at intermediate or high PREVENT risk.",
   "bullets": {
    "clue": "10-year risk: <3% low, 3–<5% borderline, 5–<10% intermediate, ≥10% high.",
@@ -71,7 +72,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-003.svg",
-   "alt": "axis diagram for fnp-003"
+   "alt": "threshold diagram for fnp-003"
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia; USPSTF statin 2022",
@@ -79,14 +80,15 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": "https://doi.org/10.1016/j.jacc.2025.11.016",
    "recommendation": "Statin at intermediate or high PREVENT risk. Moderate-intensity statin at intermediate risk; high-intensity at high risk; borderline: weigh risk enhancers."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-004",
   "system": "Cardiovascular",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Healthy child: when is universal lipid screening done?",
+  "front": "A 6-year-old is in clinic. Healthy child: when is universal lipid screening done?",
   "bottom": "Once at 9–11 years and again at 17–21.",
   "bullets": {
    "clue": "Nonfasting non-HDL cholesterol is acceptable for universal screening.",
@@ -98,7 +100,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-004.svg",
-   "alt": "table diagram for fnp-004"
+   "alt": "contrast diagram for fnp-004"
   },
   "source": {
    "guideline": "AAP Bright Futures periodicity 2025; NHLBI 2011",
@@ -114,7 +116,7 @@
   "system": "Cardiovascular",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets a one-time abdominal aortic aneurysm ultrasound?",
+  "front": "A 68-year-old man is in clinic. Who gets a one-time abdominal aortic aneurysm ultrasound?",
   "bottom": "Men 65–75 who have ever smoked (B).",
   "bullets": {
    "clue": "Ever smoked means at least 100 lifetime cigarettes.",
@@ -126,7 +128,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-005.svg",
-   "alt": "Do and do not. Men 65–75 who have ever smoked (B)."
+   "alt": "branch diagram for fnp-005"
   },
   "source": {
    "guideline": "USPSTF AAA 2019",
@@ -134,14 +136,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening",
    "alt_url": null,
    "recommendation": "Men 65–75 who have ever smoked (B). One-time abdominal ultrasound; men who never smoked: selective (C)."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-006",
   "system": "Endocrine",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Asymptomatic adult with overweight: when do you screen for prediabetes and type 2 diabetes?",
+  "front": "A 52-year-old is in clinic. Asymptomatic adult with overweight: when do you screen for prediabetes and type 2 diabetes?",
   "bottom": "USPSTF: ages 35–70 with overweight or obesity.",
   "bullets": {
    "clue": "ADA screens all adults from 35, earlier with BMI ≥25 (≥23 Asian American) plus a risk factor.",
@@ -153,7 +156,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-006.svg",
-   "alt": "table diagram for fnp-006"
+   "alt": "ladder diagram for fnp-006"
   },
   "source": {
    "guideline": "USPSTF prediabetes/T2D 2021; ADA Standards of Care 2026",
@@ -161,14 +164,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes",
    "alt_url": null,
    "recommendation": "USPSTF: ages 35–70 with overweight or obesity. Normal result: rescreen at least every 3 years."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-007",
   "system": "Endocrine",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "What lab values diagnose diabetes and prediabetes?",
+  "front": "A 56-year-old is in clinic. What lab values diagnose diabetes and prediabetes?",
   "bottom": "A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200.",
   "bullets": {
    "clue": "Prediabetes: A1C 5.7–6.4%, fasting 100–125, 2-hour 140–199 mg/dL.",
@@ -180,7 +184,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-007.svg",
-   "alt": "Threshold. A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200."
+   "alt": "threshold diagram for fnp-007"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -188,14 +192,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200. Confirm with a second abnormal test unless hyperglycemic crisis or classic symptoms with glucose ≥200."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-008",
   "system": "Endocrine",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Patient with diabetes: what does the annual foot exam include?",
+  "front": "A 68-year-old is in clinic. Patient with diabetes: what does the annual foot exam include?",
   "bottom": "Inspection, pulses and monofilament plus one more sensory test.",
   "bullets": {
    "clue": "Second test: pinprick, temperature, 128-Hz vibration or ankle reflexes.",
@@ -207,7 +212,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-008.svg",
-   "alt": "chips diagram for fnp-008"
+   "alt": "cycle diagram for fnp-008"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -215,14 +220,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "Inspection, pulses and monofilament plus one more sensory test. Loss of protective sensation: daily self-inspection, therapeutic footwear, podiatry."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-009",
   "system": "Endocrine",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "When does a patient with diabetes need a dilated eye exam?",
+  "front": "A 72-year-old is in clinic. When does a patient with diabetes need a dilated eye exam?",
   "bottom": "Type 2 at diagnosis; type 1 within 5 years.",
   "bullets": {
    "clue": "No retinopathy and good glucose control: every 1–2 years.",
@@ -234,7 +240,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-009.svg",
-   "alt": "flow diagram for fnp-009"
+   "alt": "timeline diagram for fnp-009"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -242,14 +248,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S261/163919/12-Retinopathy-Neuropathy-and-Foot-Care-Standards",
    "recommendation": "Type 2 at diagnosis; type 1 within 5 years. Any retinopathy: at least yearly; refer macular edema to ophthalmology."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-010",
   "system": "Renal",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "How is CKD staged with eGFR and urine albumin-to-creatinine ratio?",
+  "front": "A 76-year-old is in clinic. How is CKD staged with eGFR and urine albumin-to-creatinine ratio?",
   "bottom": "Stage by GFR (G1–G5) and albuminuria (A1–A3).",
   "bullets": {
    "clue": "A1 <30, A2 30–300, A3 >300 mg/g; CKD needs >3 months of abnormality.",
@@ -261,7 +268,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-010.svg",
-   "alt": "axis diagram for fnp-010"
+   "alt": "contrast diagram for fnp-010"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -269,14 +276,15 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "Stage by GFR (G1–G5) and albuminuria (A1–A3). Annual eGFR and UACR in diabetes and hypertension."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-011",
   "system": "Endocrine",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Fatigue, weight gain and cold intolerance: first test, and how do you read it?",
+  "front": "A 61-year-old is in clinic. Fatigue, weight gain and cold intolerance: first test, and how do you read it?",
   "bottom": "TSH first; add free T4 if abnormal.",
   "bullets": {
    "clue": "High TSH, low free T4: primary hypothyroidism; Hashimoto is most common.",
@@ -288,7 +296,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-011.svg",
-   "alt": "flow diagram for fnp-011"
+   "alt": "cycle diagram for fnp-011"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -296,14 +304,15 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "TSH first; add free T4 if abnormal. High TSH with normal free T4 is subclinical; repeat in 2–3 months."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-012",
   "system": "Endocrine",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Palpable thyroid nodule: what is the first test, and when is FNA done?",
+  "front": "A 42-year-old is in clinic. Palpable thyroid nodule: what is the first test, and when is FNA done?",
   "bottom": "TSH first, then ultrasound.",
   "bullets": {
    "clue": "Low TSH: radionuclide scan; a hot nodule rarely needs FNA.",
@@ -315,7 +324,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-012.svg",
-   "alt": "table diagram for fnp-012"
+   "alt": "ladder diagram for fnp-012"
   },
   "source": {
    "guideline": "ATA 2015 nodules/DTC (current for nodules)",
@@ -323,14 +332,15 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/631761-dtc-thyroid-nodules/2",
    "recommendation": "TSH first, then ultrasound. Normal or high TSH: ultrasound; FNA by sonographic pattern and size."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-013",
   "system": "GI",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Average-risk adult: when does colorectal cancer screening start, and what are the options?",
+  "front": "A 48-year-old is in clinic. Average-risk adult: when does colorectal cancer screening start, and what are the options?",
   "bottom": "Ages 45–75; selective at 76–85.",
   "bullets": {
    "clue": "Options: yearly FIT, stool DNA-FIT every 1–3 years, colonoscopy every 10 years.",
@@ -342,7 +352,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-013.svg",
-   "alt": "axis diagram for fnp-013"
+   "alt": "timeline diagram for fnp-013"
   },
   "source": {
    "guideline": "USPSTF CRC 2021",
@@ -350,7 +360,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
    "alt_url": null,
    "recommendation": "Ages 45–75; selective at 76–85. CT colonography or flexible sigmoidoscopy every 5 years are alternatives."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-014",
@@ -369,7 +380,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-014.svg",
-   "alt": "axis diagram for fnp-014"
+   "alt": "trend diagram for fnp-014"
   },
   "source": {
    "guideline": "USPSTF cervical 2018 final (2024 draft); HRSA WPSI 2026; ACOG 2026",
@@ -377,14 +388,15 @@
    "url": "https://www.hrsa.gov/womens-guidelines",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
    "recommendation": "Primary hrHPV every 5 years preferred. Alternatives: cotesting every 5 years or cytology every 3; self-collected HPV now an option."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-015",
   "system": "Reproductive",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Average-risk woman: when does screening mammography start, and how often?",
+  "front": "A 56-year-old woman is in clinic. Average-risk woman: when does screening mammography start, and how often?",
   "bottom": "Every 2 years, ages 40–74 (B).",
   "bullets": {
    "clue": "Age 75 and older: insufficient evidence (I).",
@@ -396,7 +408,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-015.svg",
-   "alt": "flow diagram for fnp-015"
+   "alt": "branch diagram for fnp-015"
   },
   "source": {
    "guideline": "USPSTF breast 2024",
@@ -404,14 +416,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
    "alt_url": null,
    "recommendation": "Every 2 years, ages 40–74 (B). Palpable mass at any age: diagnostic imaging, not screening."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-016",
   "system": "Pulmonary",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets annual low-dose CT for lung cancer screening?",
+  "front": "A 68-year-old is in clinic. Who gets annual low-dose CT for lung cancer screening?",
   "bottom": "Ages 50–80 with ≥20 pack-years.",
   "bullets": {
    "clue": "Current smoker, or quit within the past 15 years.",
@@ -423,7 +436,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-016.svg",
-   "alt": "Threshold. Ages 50–80 with ≥20 pack-years."
+   "alt": "anatomy diagram for fnp-016"
   },
   "source": {
    "guideline": "USPSTF lung 2021",
@@ -431,7 +444,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
    "alt_url": null,
    "recommendation": "Ages 50–80 with ≥20 pack-years. Annual low-dose CT; offer cessation treatment to current smokers."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-017",
@@ -450,7 +464,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-017.svg",
-   "alt": "axis diagram for fnp-017"
+   "alt": "trend diagram for fnp-017"
   },
   "source": {
    "guideline": "USPSTF prostate 2018 (update in progress); AUA/SUO 2023, amended 2026",
@@ -458,14 +472,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/prostate-cancer-screening",
    "alt_url": "https://www.auanet.org/documents/Guidelines/PDF/2026%20Guidelines/EDPC%202026%20Unabridged%20FINAL.pdf",
    "recommendation": "Individual decision after discussion (C). AUA: baseline PSA may start at 45–50; offer from 40–45 if Black, germline mutation or strong family history."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-018",
   "system": "Reproductive",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who should be offered BRCA1/2 risk assessment and genetic counseling?",
+  "front": "A 42-year-old is in clinic. Who should be offered BRCA1/2 risk assessment and genetic counseling?",
   "bottom": "Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk.",
   "bullets": {
    "clue": "Use a brief familial risk tool first, such as a pedigree assessment tool.",
@@ -477,7 +492,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-018.svg",
-   "alt": "Steps. Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk."
+   "alt": "contrast diagram for fnp-018"
   },
   "source": {
    "guideline": "USPSTF BRCA 2019",
@@ -485,14 +500,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/brca-related-cancer-risk-assessment-genetic-counseling-and-genetic-testing",
    "alt_url": null,
    "recommendation": "Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk. Positive tool: genetic counseling, then testing if indicated."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-019",
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets osteoporosis screening with DXA?",
+  "front": "A 66-year-old is in clinic. Who gets osteoporosis screening with DXA?",
   "bottom": "Women 65+ and younger postmenopausal women at increased risk.",
   "bullets": {
    "clue": "Use a risk tool, such as FRAX, under 65.",
@@ -504,7 +520,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-019.svg",
-   "alt": "chips diagram for fnp-019"
+   "alt": "branch diagram for fnp-019"
   },
   "source": {
    "guideline": "USPSTF osteoporosis 2025",
@@ -532,7 +548,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-020.svg",
-   "alt": "table diagram for fnp-020"
+   "alt": "ladder diagram for fnp-020"
   },
   "source": {
    "guideline": "USPSTF HCV 2020",
@@ -548,7 +564,7 @@
   "system": "GI",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Adult hepatitis B screening: who gets it, and what does each serology mean?",
+  "front": "A 52-year-old is in clinic. Adult hepatitis B screening: who gets it, and what does each serology mean?",
   "bottom": "Screen once with HBsAg, anti-HBs and total anti-HBc.",
   "bullets": {
    "clue": "HBsAg positive: infection; anti-HBc IgM: acute infection.",
@@ -560,7 +576,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-021.svg",
-   "alt": "flow diagram for fnp-021"
+   "alt": "cycle diagram for fnp-021"
   },
   "source": {
    "guideline": "CDC 2023 adult HBV screening (MMWR); USPSTF HBV 2020 (risk-based)",
@@ -568,14 +584,15 @@
    "url": "https://www.cdc.gov/mmwr/volumes/72/rr/rr7201a1.htm",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hepatitis-b-virus-infection-screening",
    "recommendation": "Screen once with HBsAg, anti-HBs and total anti-HBc. Anti-HBs alone: vaccinated; anti-HBs plus anti-HBc: resolved infection."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-022",
   "system": "ID",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who should be screened for HIV, and which test is used?",
+  "front": "A 22-year-old is in clinic. Who should be screened for HIV, and which test is used?",
   "bottom": "Everyone 15–65, younger and older at risk, and every pregnancy.",
   "bullets": {
    "clue": "Fourth-generation antigen/antibody test; positive goes to differentiation assay.",
@@ -587,7 +604,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-022.svg",
-   "alt": "table diagram for fnp-022"
+   "alt": "branch diagram for fnp-022"
   },
   "source": {
    "guideline": "USPSTF HIV 2019",
@@ -603,7 +620,7 @@
   "system": "ID",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets chlamydia and gonorrhea screening?",
+  "front": "A 26-year-old is in clinic. Who gets chlamydia and gonorrhea screening?",
   "bottom": "Sexually active women 24 and younger, and older women at risk.",
   "bullets": {
    "clue": "NAAT; vaginal swab preferred in women, first-catch urine in men.",
@@ -615,7 +632,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-023.svg",
-   "alt": "flow diagram for fnp-023"
+   "alt": "ladder diagram for fnp-023"
   },
   "source": {
    "guideline": "USPSTF CT/GC 2021; CDC STI 2021",
@@ -623,7 +640,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/chlamydia-and-gonorrhea-screening",
    "alt_url": null,
    "recommendation": "Sexually active women 24 and younger, and older women at risk. Treat positives; retest about 3 months later."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-024",
@@ -642,7 +660,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-024.svg",
-   "alt": "table diagram for fnp-024"
+   "alt": "contrast diagram for fnp-024"
   },
   "source": {
    "guideline": "USPSTF syphilis 2022; CDC STI 2021",
@@ -651,14 +669,14 @@
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-in-pregnancy-screening",
    "recommendation": "All pregnant patients at the first visit; adults at increased risk. High risk: repeat at 28 weeks and at delivery."
   },
-  "age_band": "Adolescent"
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-025",
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Which adults and adolescents are screened for depression, and which tool do you start with?",
+  "front": "A 13-year-old is in clinic. Which adults and adolescents are screened for depression, and which tool do you start with?",
   "bottom": "All adults, including pregnant and postpartum, and teens 12–18.",
   "bullets": {
    "clue": "PHQ-2 first, then PHQ-9; PHQ-A in adolescents.",
@@ -670,7 +688,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-025.svg",
-   "alt": "flow diagram for fnp-025"
+   "alt": "contrast diagram for fnp-025"
   },
   "source": {
    "guideline": "USPSTF depression 2023 (adult), 2022 (child/adol)",
@@ -686,7 +704,7 @@
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Which adults are screened for anxiety, which tool is used, and why does the plan change after 64?",
+  "front": "A 52-year-old is in clinic. Which adults are screened for anxiety, which tool is used, and why does the plan change after 64?",
   "bottom": "Adults 64 and younger, including pregnant patients (B).",
   "bullets": {
    "clue": "GAD-7; children 8–18 are also screened.",
@@ -698,7 +716,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-026.svg",
-   "alt": "table diagram for fnp-026"
+   "alt": "ladder diagram for fnp-026"
   },
   "source": {
    "guideline": "USPSTF anxiety 2023",
@@ -707,14 +725,14 @@
    "alt_url": null,
    "recommendation": "Adults 64 and younger, including pregnant patients (B). Positive screen: confirm diagnosis and assess function."
   },
-  "age_band": "Child"
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-027",
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "How do you screen adults for unhealthy alcohol use?",
+  "front": "A 32-year-old is in clinic. How do you screen adults for unhealthy alcohol use?",
   "bottom": "Screen all adults 18+, including pregnant patients.",
   "bullets": {
    "clue": "AUDIT-C or single question about heavy-drinking days.",
@@ -726,7 +744,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-027.svg",
-   "alt": "flow diagram for fnp-027"
+   "alt": "branch diagram for fnp-027"
   },
   "source": {
    "guideline": "USPSTF alcohol 2018 final (2025 draft pending)",
@@ -742,7 +760,7 @@
   "system": "Pulmonary",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Adult who smokes: what do you ask and offer at every visit?",
+  "front": "A 61-year-old is in clinic. Adult who smokes: what do you ask and offer at every visit?",
   "bottom": "Ask, advise, then offer behavioral help and medication.",
   "bullets": {
    "clue": "5 A's: Ask, Advise, Assess, Assist, Arrange follow-up.",
@@ -754,7 +772,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-028.svg",
-   "alt": "chips diagram for fnp-028"
+   "alt": "cycle diagram for fnp-028"
   },
   "source": {
    "guideline": "USPSTF tobacco 2021",
@@ -762,14 +780,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/tobacco-use-in-adults-and-pregnant-women-counseling-and-interventions",
    "alt_url": null,
    "recommendation": "Ask, advise, then offer behavioral help and medication. Nonpregnant adults: counseling plus FDA-approved medication (A)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-029",
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets intimate partner violence screening?",
+  "front": "A 36-year-old is in clinic. Who gets intimate partner violence screening?",
   "bottom": "Women of reproductive age, including pregnant and postpartum (B).",
   "bullets": {
    "clue": "Ask privately, without a partner present, using a brief validated tool.",
@@ -781,7 +800,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-029.svg",
-   "alt": "chips diagram for fnp-029"
+   "alt": "branch diagram for fnp-029"
   },
   "source": {
    "guideline": "USPSTF IPV 2025",
@@ -797,7 +816,7 @@
   "system": "Neuro",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Adult 65+: how do you screen for fall risk, and what helps?",
+  "front": "A 68-year-old is in clinic. Adult 65+: how do you screen for fall risk, and what helps?",
   "bottom": "Ask about falls, unsteadiness and fear of falling.",
   "bullets": {
    "clue": "Timed Up and Go ≥12 seconds suggests risk.",
@@ -809,7 +828,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-030.svg",
-   "alt": "table diagram for fnp-030"
+   "alt": "contrast diagram for fnp-030"
   },
   "source": {
    "guideline": "USPSTF falls 2024; CDC STEADI",
@@ -837,7 +856,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-031.svg",
-   "alt": "chips diagram for fnp-031"
+   "alt": "anatomy diagram for fnp-031"
   },
   "source": {
    "guideline": "USPSTF cognitive impairment 2020 (I); AAN 2017 MCI retired",
@@ -853,7 +872,7 @@
   "system": "Derm",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Should primary care do routine whole-body skin exams for cancer?",
+  "front": "A 42-year-old is in clinic. Should primary care do routine whole-body skin exams for cancer?",
   "bottom": "Insufficient evidence in asymptomatic adults (I).",
   "bullets": {
    "clue": "Fair skin, many moles or prior skin cancer raise risk.",
@@ -865,7 +884,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-032.svg",
-   "alt": "table diagram for fnp-032"
+   "alt": "timeline diagram for fnp-032"
   },
   "source": {
    "guideline": "USPSTF skin cancer 2023 (I)",
@@ -873,14 +892,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/skin-cancer-screening",
    "alt_url": null,
    "recommendation": "Insufficient evidence in asymptomatic adults (I). Counsel fair-skinned people aged 6 months to 24 years on UV avoidance (B)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-033",
   "system": "EENT",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Unilateral hearing loss: how do Weber and Rinne separate conductive from sensorineural?",
+  "front": "A 76-year-old is in clinic. Unilateral hearing loss: how do Weber and Rinne separate conductive from sensorineural?",
   "bottom": "Conductive: Weber to affected ear, bone > air.",
   "bullets": {
    "clue": "Sensorineural: Weber to good ear, air > bone.",
@@ -892,7 +912,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-033.svg",
-   "alt": "Threshold. Conductive: Weber to affected ear, bone > air."
+   "alt": "anatomy diagram for fnp-033"
   },
   "source": {
    "guideline": "USPSTF hearing 2021",
@@ -900,14 +920,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hearing-loss-in-older-adults-screening",
    "alt_url": "https://doi.org/10.1177/0194599819859885",
    "recommendation": "Conductive: Weber to affected ear, bone > air. Sudden sensorineural loss: audiogram within 14 days; offer steroids within 2 weeks."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-034",
   "system": "EENT",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "When should children be screened for amblyopia and vision problems?",
+  "front": "An 8-year-old is in clinic. When should children be screened for amblyopia and vision problems?",
   "bottom": "At least once at ages 3–5 (B).",
   "bullets": {
    "clue": "Visual acuity charts, stereoacuity or instrument-based photoscreening.",
@@ -919,7 +940,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-034.svg",
-   "alt": "table diagram for fnp-034"
+   "alt": "anatomy diagram for fnp-034"
   },
   "source": {
    "guideline": "USPSTF vision 2017",
@@ -947,7 +968,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-035.svg",
-   "alt": "flow diagram for fnp-035"
+   "alt": "threshold diagram for fnp-035"
   },
   "source": {
    "guideline": "AAP 2016 DDH; AAP 2025 CCHD pulse-ox algorithm",
@@ -963,7 +984,7 @@
   "system": "Peds",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Which motor and social milestones are expected by 2, 6, 12 and 18 months?",
+  "front": "A 4-month-old is in clinic. Which motor and social milestones are expected by 2, 6, 12 and 18 months?",
   "bottom": "Smile, roll, walk holding on, walk alone.",
   "bullets": {
    "clue": "9 months: sits without support; 12 months: pulls to stand, waves.",
@@ -975,7 +996,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-036.svg",
-   "alt": "chips diagram for fnp-036"
+   "alt": "timeline diagram for fnp-036"
   },
   "source": {
    "guideline": "CDC/AAP 2022 milestones",
@@ -983,14 +1004,15 @@
    "url": "https://doi.org/10.1542/peds.2021-052138",
    "alt_url": null,
    "recommendation": "Smile, roll, walk holding on, walk alone. 18 months: walks alone, says 3+ words, points to show."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-037",
   "system": "Peds",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "When is autism screening done, and what follows a positive?",
+  "front": "A 48-year-old is in clinic. When is autism screening done, and what follows a positive?",
   "bottom": "M-CHAT-R/F at 18 and 24 months.",
   "bullets": {
    "clue": "Poor eye contact, no pointing, repetitive behaviors.",
@@ -1002,7 +1024,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-037.svg",
-   "alt": "Do and do not. M-CHAT-R/F at 18 and 24 months."
+   "alt": "anatomy diagram for fnp-037"
   },
   "source": {
    "guideline": "AAP 2020 ASD report (reaffirmed 2025)",
@@ -1010,14 +1032,15 @@
    "url": "https://publications.aap.org/pediatrics/article/145/1/e20193447/36917",
    "alt_url": "https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/",
    "recommendation": "M-CHAT-R/F at 18 and 24 months. Positive: refer for diagnosis, early intervention and hearing test at once."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-038",
   "system": "Peds",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Which children get blood lead testing, and what level is elevated?",
+  "front": "An 18-month-old is in clinic. Which children get blood lead testing, and what level is elevated?",
   "bottom": "Medicaid and high-risk children at 12 and 24 months.",
   "bullets": {
    "clue": "CDC reference value: 3.5 µg/dL.",
@@ -1029,7 +1052,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-038.svg",
-   "alt": "table diagram for fnp-038"
+   "alt": "ladder diagram for fnp-038"
   },
   "source": {
    "guideline": "CDC lead 2021 reference value",
@@ -1038,7 +1061,7 @@
    "alt_url": null,
    "recommendation": "Medicaid and high-risk children at 12 and 24 months. Elevated capillary sample: confirm with venous test."
   },
-  "age_band": "Child"
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-039",
@@ -1057,7 +1080,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-039.svg",
-   "alt": "flow diagram for fnp-039"
+   "alt": "threshold diagram for fnp-039"
   },
   "source": {
    "guideline": "AAP 2026 iron deficiency clinical report",
@@ -1073,7 +1096,7 @@
   "system": "Peds",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "What is normal puberty timing, and when is it early or delayed?",
+  "front": "A 15-year-old is in clinic. What is normal puberty timing, and when is it early or delayed?",
   "bottom": "Girls: breast budding first; boys: testicular enlargement.",
   "bullets": {
    "clue": "Precocious: before 8 in girls, before 9 in boys.",
@@ -1085,7 +1108,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-040.svg",
-   "alt": "table diagram for fnp-040"
+   "alt": "contrast diagram for fnp-040"
   },
   "source": {
    "guideline": "AAFP 2017 disorders of puberty",
@@ -1093,14 +1116,15 @@
    "url": "https://www.aafp.org/pubs/afp/issues/2017/1101/p590.html",
    "alt_url": null,
    "recommendation": "Girls: breast budding first; boys: testicular enlargement. Delayed: no breast by 13 or testicular enlargement by 14."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-041",
   "system": "Peds",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Adolescent preventive visit: how do you run the psychosocial interview?",
+  "front": "A 16-year-old is in clinic. Adolescent preventive visit: how do you run the psychosocial interview?",
   "bottom": "Offer confidential time alone with the teen.",
   "bullets": {
    "clue": "SSHADESS: strengths, school, home, activities, drugs, emotions, sexuality, safety.",
@@ -1112,7 +1136,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-041.svg",
-   "alt": "chips diagram for fnp-041"
+   "alt": "cycle diagram for fnp-041"
   },
   "source": {
    "guideline": "AAFP 2020 adolescent screening and counseling; AAP/Bright Futures 2025 periodicity schedule; AAFP 2012 confidential care",
@@ -1128,7 +1152,7 @@
   "system": "Cardiovascular",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Sports physical: which red flags suggest hypertrophic cardiomyopathy?",
+  "front": "A 17-year-old is in clinic. Sports physical: which red flags suggest hypertrophic cardiomyopathy?",
   "bottom": "Exertional syncope, chest pain or early family sudden death.",
   "bullets": {
    "clue": "Murmur louder with Valsalva or standing, softer with squatting.",
@@ -1140,7 +1164,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-042.svg",
-   "alt": "table diagram for fnp-042"
+   "alt": "anatomy diagram for fnp-042"
   },
   "source": {
    "guideline": "AAP PPE 5th ed 2019",
@@ -1148,7 +1172,8 @@
    "url": "https://www.aap.org/en/patient-care/preparticipation-physical-evaluation/",
    "alt_url": "https://doi.org/10.1161/cir.0000000000001250",
    "recommendation": "Exertional syncope, chest pain or early family sudden death. Refer for ECG, echocardiogram and cardiology evaluation."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-043",
@@ -1167,7 +1192,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-043.svg",
-   "alt": "flow diagram for fnp-043"
+   "alt": "ladder diagram for fnp-043"
   },
   "source": {
    "guideline": "AAP/ACOG Guidelines for Perinatal Care 8th ed 2017; ACOG CC 8 2025",
@@ -1195,7 +1220,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-044.svg",
-   "alt": "Threshold. At 24–28 weeks (B)."
+   "alt": "timeline diagram for fnp-044"
   },
   "source": {
    "guideline": "ACOG Clinical Practice Update 2024; USPSTF GDM 2021",
@@ -1203,14 +1228,15 @@
    "url": "https://doi.org/10.1097/aog.0000000000005612",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/gestational-diabetes-screening",
    "recommendation": "At 24–28 weeks (B). Early testing if risk factors, such as prior GDM or obesity."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-045",
   "system": "Reproductive",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "How do you screen for preeclampsia during pregnancy?",
+  "front": "A 28-year-old is in clinic. How do you screen for preeclampsia during pregnancy?",
   "bottom": "Measure BP at every prenatal visit (B).",
   "bullets": {
    "clue": "Gestational hypertension: ≥140/90 twice, 4 hours apart, after 20 weeks.",
@@ -1222,7 +1248,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-045.svg",
-   "alt": "chips diagram for fnp-045"
+   "alt": "cycle diagram for fnp-045"
   },
   "source": {
    "guideline": "USPSTF preeclampsia screening 2023",
@@ -1238,7 +1264,7 @@
   "system": "Reproductive",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "When is GBS culture done, and who gets intrapartum antibiotics?",
+  "front": "A 32-year-old is in clinic. When is GBS culture done, and who gets intrapartum antibiotics?",
   "bottom": "Rectovaginal culture at 36 0/7–37 6/7 weeks.",
   "bullets": {
    "clue": "Positive culture, GBS bacteriuria or prior infant with GBS disease.",
@@ -1250,7 +1276,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-046.svg",
-   "alt": "Threshold. Rectovaginal culture at 36 0/7–37 6/7 weeks."
+   "alt": "timeline diagram for fnp-046"
   },
   "source": {
    "guideline": "ACOG CO 797 2020",
@@ -1259,7 +1285,7 @@
    "alt_url": null,
    "recommendation": "Rectovaginal culture at 36 0/7–37 6/7 weeks. Intrapartum penicillin; low-risk penicillin allergy: cefazolin."
   },
-  "age_band": "Infant"
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-047",
@@ -1278,7 +1304,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-047.svg",
-   "alt": "Threshold. From 24 weeks, centimeters roughly equal gestational weeks."
+   "alt": "branch diagram for fnp-047"
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -1294,7 +1320,7 @@
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "A patient is 12 weeks pregnant and returns 6 weeks after delivery. When is mood screened, and with which scale?",
+  "front": "A 22-year-old is in clinic. A patient is 12 weeks pregnant and returns 6 weeks after delivery. When is mood screened, and with which scale?",
   "bottom": "Early pregnancy, later pregnancy and postpartum visits.",
   "bullets": {
    "clue": "Edinburgh Postnatal Depression Scale or PHQ-9; screen anxiety too.",
@@ -1306,7 +1332,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-048.svg",
-   "alt": "table diagram for fnp-048"
+   "alt": "timeline diagram for fnp-048"
   },
   "source": {
    "guideline": "ACOG CPG No. 4 2023; USPSTF perinatal depression 2019",
@@ -1322,7 +1348,7 @@
   "system": "Pulmonary",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Suspected asthma: how is variable airflow confirmed?",
+  "front": "A 52-year-old is in clinic. Suspected asthma: how is variable airflow confirmed?",
   "bottom": "Spirometry with bronchodilator reversibility.",
   "bullets": {
    "clue": "Adults: FEV1 rises >12% and >200 mL after bronchodilator.",
@@ -1334,7 +1360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-049.svg",
-   "alt": "axis diagram for fnp-049"
+   "alt": "trend diagram for fnp-049"
   },
   "source": {
    "guideline": "GINA 2025",
@@ -1342,14 +1368,15 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "Spirometry with bronchodilator reversibility. Peak flow variability or bronchoprovocation if spirometry is normal."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-050",
   "system": "Pulmonary",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Chronic cough and dyspnea in a smoker: what confirms COPD?",
+  "front": "An 80-year-old is in clinic. Chronic cough and dyspnea in a smoker: what confirms COPD?",
   "bottom": "Post-bronchodilator FEV1/FVC <0.70.",
   "bullets": {
    "clue": "Symptoms plus exposure history, such as tobacco or biomass smoke.",
@@ -1361,7 +1388,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-050.svg",
-   "alt": "Threshold. Post-bronchodilator FEV1/FVC <0.70."
+   "alt": "trend diagram for fnp-050"
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -1369,14 +1396,15 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "Post-bronchodilator FEV1/FVC <0.70. FEV1 grades severity: ≥80%, 50–79%, 30–49%, <30%."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-051",
   "system": "Pulmonary",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Snoring, sleepiness and hypertension: how is OSA confirmed?",
+  "front": "A 66-year-old is in clinic. Snoring, sleepiness and hypertension: how is OSA confirmed?",
   "bottom": "Sleep study, not a questionnaire alone.",
   "bullets": {
    "clue": "STOP-BANG flags risk: snoring, tiredness, observed apnea, BP, BMI, age, neck, sex.",
@@ -1388,7 +1416,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-051.svg",
-   "alt": "chips diagram for fnp-051"
+   "alt": "branch diagram for fnp-051"
   },
   "source": {
    "guideline": "AASM 2017 OSA testing",
@@ -1396,14 +1424,15 @@
    "url": "https://doi.org/10.5664/jcsm.6506",
    "alt_url": null,
    "recommendation": "Sleep study, not a questionnaire alone. Diagnosis: AHI ≥5 with symptoms or ≥15; CPAP is first-line treatment."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-052",
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Ankle or knee injury: when does it need an X-ray by Ottawa rules?",
+  "front": "A 26-year-old is in clinic. Ankle or knee injury: when does it need an X-ray by Ottawa rules?",
   "bottom": "Bone tenderness or inability to bear weight 4 steps.",
   "bullets": {
    "clue": "Ankle: malleolus edge or tip; foot: navicular or 5th metatarsal base.",
@@ -1415,7 +1444,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-052.svg",
-   "alt": "table diagram for fnp-052"
+   "alt": "ladder diagram for fnp-052"
   },
   "source": {
    "guideline": "Ottawa ankle rule (Stiell 1992/1993), knee rule (1996)",
@@ -1423,14 +1452,15 @@
    "url": "https://pubmed.ncbi.nlm.nih.gov/8433468/",
    "alt_url": null,
    "recommendation": "Bone tenderness or inability to bear weight 4 steps. Knee: age ≥55, fibular head or isolated patellar tenderness, no 90° flexion."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-053",
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Twisting knee injury with rapid swelling: which exam tests ACL and meniscus?",
+  "front": "A 28-year-old is in clinic. Twisting knee injury with rapid swelling: which exam tests ACL and meniscus?",
   "bottom": "Lachman is most sensitive for ACL tear.",
   "bullets": {
    "clue": "Anterior drawer for ACL; McMurray or joint-line tenderness for meniscus.",
@@ -1442,7 +1472,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-053.svg",
-   "alt": "flow diagram for fnp-053"
+   "alt": "contrast diagram for fnp-053"
   },
   "source": {
    "guideline": "AAOS ACL CPG 2022",
@@ -1450,14 +1480,15 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/anterior-cruciate-ligament-injuries/aclcpg.pdf",
    "alt_url": null,
    "recommendation": "Lachman is most sensitive for ACL tear. MRI confirms; refer active patients to orthopedics."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-054",
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Shoulder pain: which tests suggest impingement versus full-thickness rotator cuff tear?",
+  "front": "A 32-year-old is in clinic. Shoulder pain: which tests suggest impingement versus full-thickness rotator cuff tear?",
   "bottom": "Neer and Hawkins: impingement.",
   "bullets": {
    "clue": "Drop-arm sign or weak external rotation: full-thickness tear.",
@@ -1469,7 +1500,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-054.svg",
-   "alt": "table diagram for fnp-054"
+   "alt": "contrast diagram for fnp-054"
   },
   "source": {
    "guideline": "AAOS rotator cuff CPG 2025",
@@ -1477,14 +1508,15 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/rotator-cuff/rotator-cuff-2025/rotator-cuff-cpg.pdf",
    "alt_url": "https://www.aaos.org/rccpg2025",
    "recommendation": "Neer and Hawkins: impingement. Atraumatic tear: physical therapy first."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-055",
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Low back pain: which red flags need urgent imaging?",
+  "front": "A 56-year-old is in clinic. Low back pain: which red flags need urgent imaging?",
   "bottom": "Saddle anesthesia, urinary retention, progressive weakness.",
   "bullets": {
    "clue": "Cancer history, weight loss, fever, injection drug use.",
@@ -1496,7 +1528,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-055.svg",
-   "alt": "chips diagram for fnp-055"
+   "alt": "ladder diagram for fnp-055"
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -1504,14 +1536,15 @@
    "url": "https://doi.org/10.7326/M16-2367",
    "alt_url": null,
    "recommendation": "Saddle anesthesia, urinary retention, progressive weakness. No red flags: no imaging; stay active, heat, NSAIDs."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-056",
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Hand numbness at night: how is carpal tunnel syndrome assessed?",
+  "front": "A 36-year-old is in clinic. Hand numbness at night: how is carpal tunnel syndrome assessed?",
   "bottom": "Phalen and Tinel tests, plus symptom distribution.",
   "bullets": {
    "clue": "Thumb, index, middle and radial half of ring finger.",
@@ -1523,7 +1556,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-056.svg",
-   "alt": "table diagram for fnp-056"
+   "alt": "branch diagram for fnp-056"
   },
   "source": {
    "guideline": "AAOS CTS CPG 2024",
@@ -1531,14 +1564,15 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/carpal-tunnel/carpal-tunnel-2024/cts-cpg.pdf",
    "alt_url": null,
    "recommendation": "Phalen and Tinel tests, plus symptom distribution. Splinting or steroid injection; surgery if severe."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-057",
   "system": "EENT",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Child with ear pain: which otoscopy findings diagnose acute otitis media?",
+  "front": "A 2-year-old with ear pain: which otoscopy findings diagnose acute otitis media?",
   "bottom": "Moderate-severe bulging or new otorrhea.",
   "bullets": {
    "clue": "Mild bulging plus ear pain under 48 hours, or intense TM redness.",
@@ -1550,7 +1584,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-057.svg",
-   "alt": "Do and do not. Moderate-severe bulging or new otorrhea."
+   "alt": "anatomy diagram for fnp-057"
   },
   "source": {
    "guideline": "AAP AOM 2013 (still current)",
@@ -1559,14 +1593,14 @@
    "alt_url": null,
    "recommendation": "Moderate-severe bulging or new otorrhea. Pneumatic otoscopy confirms middle ear effusion."
   },
-  "age_band": "Child"
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-058",
   "system": "EENT",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Sore throat: who gets tested for group A strep?",
+  "front": "A 13-year-old is in clinic. Sore throat: who gets tested for group A strep?",
   "bottom": "Use a clinical score, such as Centor or McIsaac.",
   "bullets": {
    "clue": "Fever, tonsillar exudate, tender anterior nodes, no cough.",
@@ -1578,7 +1612,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-058.svg",
-   "alt": "Do and do not. Use a clinical score, such as Centor or McIsaac."
+   "alt": "contrast diagram for fnp-058"
   },
   "source": {
    "guideline": "IDSA GAS pharyngitis 2025 update (scoring); IDSA 2012",
@@ -1586,14 +1620,15 @@
    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis2/",
    "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
    "recommendation": "Use a clinical score, such as Centor or McIsaac. Low score: no test; higher score: rapid antigen test."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-059",
   "system": "Derm",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Suspicious mole: which features suggest melanoma, and how is it biopsied?",
+  "front": "A 61-year-old is in clinic. Suspicious mole: which features suggest melanoma, and how is it biopsied?",
   "bottom": "ABCDE: asymmetry, border, color, diameter >6 mm, evolving.",
   "bullets": {
    "clue": "An \"ugly duckling\" lesion looks different from others.",
@@ -1605,7 +1640,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-059.svg",
-   "alt": "Threshold. ABCDE: asymmetry, border, color, diameter >6 mm, evolving."
+   "alt": "ladder diagram for fnp-059"
   },
   "source": {
    "guideline": "AAD 2019 melanoma",
@@ -1613,14 +1648,15 @@
    "url": "https://doi.org/10.1016/j.jaad.2018.08.055",
    "alt_url": null,
    "recommendation": "ABCDE: asymmetry, border, color, diameter >6 mm, evolving. Excisional biopsy with 1–3 mm margins."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-060",
   "system": "Heme",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Microcytic anemia: which test comes first, and what follows?",
+  "front": "A 42-year-old is in clinic. Microcytic anemia: which test comes first, and what follows?",
   "bottom": "Ferritin; <45 ng/mL supports iron deficiency.",
   "bullets": {
    "clue": "Normal ferritin with Mentzer index <13: consider thalassemia trait.",
@@ -1632,7 +1668,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-060.svg",
-   "alt": "Threshold. Ferritin; <45 ng/mL supports iron deficiency."
+   "alt": "branch diagram for fnp-060"
   },
   "source": {
    "guideline": "AGA 2020 IDA",
@@ -1640,14 +1676,15 @@
    "url": "https://doi.org/10.1053/j.gastro.2020.06.046",
    "alt_url": null,
    "recommendation": "Ferritin; <45 ng/mL supports iron deficiency. Men and postmenopausal women: bidirectional endoscopy."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-061",
   "system": "Heme",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Macrocytic anemia: which labs, and why ask about metformin?",
+  "front": "A 68-year-old is in clinic. Macrocytic anemia: which labs, and why ask about metformin?",
   "bottom": "B12 and folate first.",
   "bullets": {
    "clue": "Methylmalonic acid high: B12 deficiency; normal: folate deficiency.",
@@ -1659,7 +1696,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-061.svg",
-   "alt": "flow diagram for fnp-061"
+   "alt": "anatomy diagram for fnp-061"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026 (B12 on metformin)",
@@ -1667,14 +1704,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://doi.org/10.1111/bjh.12959",
    "recommendation": "B12 and folate first. Long-term metformin: check B12 periodically."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-062",
   "system": "GI",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Elevated ALT with obesity: how is MASLD assessed for fibrosis?",
+  "front": "A 48-year-old is in clinic. Elevated ALT with obesity: how is MASLD assessed for fibrosis?",
   "bottom": "FIB-4 first.",
   "bullets": {
    "clue": "FIB-4 <1.3: low risk; ≥1.3: elastography or ELF test.",
@@ -1686,7 +1724,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-062.svg",
-   "alt": "table diagram for fnp-062"
+   "alt": "branch diagram for fnp-062"
   },
   "source": {
    "guideline": "AASLD 2023 MASLD",
@@ -1694,7 +1732,8 @@
    "url": "https://doi.org/10.1097/HEP.0000000000000323",
    "alt_url": null,
    "recommendation": "FIB-4 first. Weight loss of 7–10% improves steatosis and fibrosis."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-063",
@@ -1713,7 +1752,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-063.svg",
-   "alt": "axis diagram for fnp-063"
+   "alt": "threshold diagram for fnp-063"
   },
   "source": {
    "guideline": "AAP 2021 febrile infant",
@@ -1729,7 +1768,7 @@
   "system": "Renal",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Suspected kidney stone: which imaging first?",
+  "front": "A 10-year-old is in clinic. Suspected kidney stone: which imaging first?",
   "bottom": "Noncontrast CT in most adults.",
   "bullets": {
    "clue": "Colicky flank pain and hematuria.",
@@ -1741,7 +1780,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-064.svg",
-   "alt": "table diagram for fnp-064"
+   "alt": "anatomy diagram for fnp-064"
   },
   "source": {
    "guideline": "AUA kidney stones 2026; ACR AC flank pain 2023",
@@ -1757,7 +1796,7 @@
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Adult with hypertension: who gets screened for primary aldosteronism, and how?",
+  "front": "A 52-year-old is in clinic. Adult with hypertension: who gets screened for primary aldosteronism, and how?",
   "bottom": "All adults with hypertension.",
   "bullets": {
    "clue": "Aldosterone-renin ratio; check potassium too.",
@@ -1769,7 +1808,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-065.svg",
-   "alt": "flow diagram for fnp-065"
+   "alt": "contrast diagram for fnp-065"
   },
   "source": {
    "guideline": "Endocrine Society PA 2025",
@@ -1777,14 +1816,15 @@
    "url": "https://www.endocrine.org/clinical-practice-guidelines/primary-aldosteronism-2",
    "alt_url": null,
    "recommendation": "All adults with hypertension. Positive: confirm with specialist; unilateral disease may be surgical, bilateral gets an MRA."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-066",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Chest pain: what separates stable angina from acute coronary syndrome?",
+  "front": "A 56-year-old is in clinic. Chest pain: what separates stable angina from acute coronary syndrome?",
   "bottom": "Stable: predictable exertional pain relieved by rest.",
   "bullets": {
    "clue": "ACS: new, rest or crescendo pain.",
@@ -1796,7 +1836,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-066.svg",
-   "alt": "chips diagram for fnp-066"
+   "alt": "ladder diagram for fnp-066"
   },
   "source": {
    "guideline": "ACC/AHA 2023 chronic coronary disease; ACC/AHA 2025 ACS",
@@ -1804,14 +1844,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001168",
    "alt_url": "https://doi.org/10.1016/j.jacc.2024.11.009",
    "recommendation": "Stable: predictable exertional pain relieved by rest. Suspected ACS: call EMS, chewed aspirin, ECG within 10 minutes."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-067",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Dyspnea and edema: how do BNP and echo classify heart failure?",
+  "front": "A 72-year-old is in clinic. Dyspnea and edema: how do BNP and echo classify heart failure?",
   "bottom": "Natriuretic peptide supports HF; echo sets the type.",
   "bullets": {
    "clue": "HFrEF ≤40%, HFmrEF 41–49%, HFpEF ≥50%.",
@@ -1823,7 +1864,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-067.svg",
-   "alt": "Steps. Natriuretic peptide supports HF; echo sets the type."
+   "alt": "threshold diagram for fnp-067"
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -1831,14 +1872,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "Natriuretic peptide supports HF; echo sets the type. Elevated BNP or NT-proBNP, then echocardiogram."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-068",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Irregularly irregular pulse: how is AF confirmed, and who needs anticoagulation?",
+  "front": "A 76-year-old is in clinic. Irregularly irregular pulse: how is AF confirmed, and who needs anticoagulation?",
   "bottom": "ECG: no P waves, irregular RR.",
   "bullets": {
    "clue": "CHA2DS2-VASc ≥2 in men or ≥3 in women.",
@@ -1850,7 +1892,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-068.svg",
-   "alt": "table diagram for fnp-068"
+   "alt": "anatomy diagram for fnp-068"
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -1858,14 +1900,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "ECG: no P waves, irregular RR. Anticoagulate; check TSH and echocardiogram."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-069",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Systolic murmur: how do you tell aortic stenosis from HCM?",
+  "front": "An 80-year-old is in clinic. Systolic murmur: how do you tell aortic stenosis from HCM?",
   "bottom": "AS: crescendo-decrescendo at right upper sternal border.",
   "bullets": {
    "clue": "AS radiates to carotids; HCM gets louder with Valsalva or standing.",
@@ -1877,7 +1920,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-069.svg",
-   "alt": "Do and do not. AS: crescendo-decrescendo at right upper sternal border."
+   "alt": "branch diagram for fnp-069"
   },
   "source": {
    "guideline": "ACC/AHA 2020 valvular disease",
@@ -1885,14 +1928,15 @@
    "url": "https://doi.org/10.1016/j.jacc.2020.11.018",
    "alt_url": null,
    "recommendation": "AS: crescendo-decrescendo at right upper sternal border. Echocardiogram for both."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-070",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Leg pain with walking: what confirms peripheral artery disease?",
+  "front": "A 66-year-old is in clinic. Leg pain with walking: what confirms peripheral artery disease?",
   "bottom": "Resting ABI ≤0.90.",
   "bullets": {
    "clue": "0.91–0.99 is borderline; >1.40 is noncompressible.",
@@ -1904,7 +1948,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-070.svg",
-   "alt": "Threshold. Resting ABI ≤0.90."
+   "alt": "contrast diagram for fnp-070"
   },
   "source": {
    "guideline": "ACC/AHA 2024 PAD",
@@ -1912,14 +1956,15 @@
    "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.02.013",
    "alt_url": null,
    "recommendation": "Resting ABI ≤0.90. Supervised exercise, high-intensity statin, antiplatelet; noncompressible: toe-brachial index."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-071",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Unilateral leg swelling: how do you work up DVT?",
+  "front": "A 22-year-old is in clinic. Unilateral leg swelling: how do you work up DVT?",
   "bottom": "Wells score first.",
   "bullets": {
    "clue": "Wells unlikely: D-dimer; negative excludes DVT.",
@@ -1931,7 +1976,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-071.svg",
-   "alt": "Do and do not. Wells score first."
+   "alt": "ladder diagram for fnp-071"
   },
   "source": {
    "guideline": "ASH 2018 VTE diagnosis",
@@ -1939,14 +1984,15 @@
    "url": "https://doi.org/10.1182/bloodadvances.2018024828",
    "alt_url": "https://ashpublications.org/bloodadvances/article/4/19/4693/463998/",
    "recommendation": "Wells score first. Wells likely: proximal or whole-leg ultrasound."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-072",
   "system": "Pulmonary",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Adult cough with fever: when is it pneumonia instead of acute bronchitis?",
+  "front": "A 68-year-old is in clinic. Adult cough with fever: when is it pneumonia instead of acute bronchitis?",
   "bottom": "Abnormal vitals or focal exam suggest pneumonia.",
   "bullets": {
    "clue": "Heart rate >100, respiratory rate >24, temperature >38 °C.",
@@ -1958,7 +2004,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-072.svg",
-   "alt": "chips diagram for fnp-072"
+   "alt": "anatomy diagram for fnp-072"
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP; ACP/CDC 2016 acute respiratory tract infection advice",
@@ -1966,14 +2012,15 @@
    "url": "https://doi.org/10.1164/rccm.201908-1581ST",
    "alt_url": "https://doi.org/10.7326/M15-1840",
    "recommendation": "Abnormal vitals or focal exam suggest pneumonia. Suspected pneumonia: chest X-ray; bronchitis: symptom care."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-073",
   "system": "Pulmonary",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Child with respiratory distress: bronchiolitis, croup or epiglottitis?",
+  "front": "An 18-month-old is in clinic. Child with respiratory distress: bronchiolitis, croup or epiglottitis?",
   "bottom": "Wheeze and crackles, barking cough, or drooling and tripod.",
   "bullets": {
    "clue": "Bronchiolitis: under 2 with RSV; croup: steeple sign.",
@@ -1985,7 +2032,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-073.svg",
-   "alt": "flow diagram for fnp-073"
+   "alt": "anatomy diagram for fnp-073"
   },
   "source": {
    "guideline": "AAP bronchiolitis 2014 (still current)",
@@ -1994,7 +2041,7 @@
    "alt_url": "https://doi.org/10.1542/peds.2014-2742",
    "recommendation": "Wheeze and crackles, barking cough, or drooling and tripod. Croup: single-dose dexamethasone; epiglottitis: secure the airway."
   },
-  "age_band": "Child"
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-074",
@@ -2013,7 +2060,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-074.svg",
-   "alt": "Do and do not. Pertussis; give azithromycin."
+   "alt": "timeline diagram for fnp-074"
   },
   "source": {
    "guideline": "CDC pertussis clinical care (current web guidance)",
@@ -2029,7 +2076,7 @@
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Sinusitis: when is it bacterial instead of viral?",
+  "front": "A 61-year-old is in clinic. Sinusitis: when is it bacterial instead of viral?",
   "bottom": "Persistent, severe or double-worsening symptoms.",
   "bullets": {
    "clue": "Persistent: ≥10 days without improvement; severe: fever ≥39 °C with purulence.",
@@ -2041,7 +2088,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-075.svg",
-   "alt": "flow diagram for fnp-075"
+   "alt": "branch diagram for fnp-075"
   },
   "source": {
    "guideline": "IDSA rhinosinusitis 2012; AAO-HNS 2015",
@@ -2049,14 +2096,15 @@
    "url": "https://doi.org/10.1093/cid/cir1043",
    "alt_url": "https://doi.org/10.1177/0194599815572097",
    "recommendation": "Persistent, severe or double-worsening symptoms. Amoxicillin with or without clavulanate, or watchful waiting."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-076",
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Red eye with discharge: how do you separate viral, bacterial and allergic conjunctivitis?",
+  "front": "A 26-year-old is in clinic. Red eye with discharge: how do you separate viral, bacterial and allergic conjunctivitis?",
   "bottom": "Watery, mucopurulent, or itchy and bilateral.",
   "bullets": {
    "clue": "Viral: preauricular node, recent URI.",
@@ -2068,7 +2116,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-076.svg",
-   "alt": "table diagram for fnp-076"
+   "alt": "contrast diagram for fnp-076"
   },
   "source": {
    "guideline": "AAO Conjunctivitis PPP 2024",
@@ -2076,14 +2124,15 @@
    "url": "https://www.aaojournal.org/article/S0161-6420(24)00009-5/fulltext",
    "alt_url": null,
    "recommendation": "Watery, mucopurulent, or itchy and bilateral. Bacterial: topical antibiotic; allergic: antihistamine/mast-cell stabilizer drops."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-077",
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Painful red eye with halos and headache: what is the emergency?",
+  "front": "A 72-year-old is in clinic. Painful red eye with halos and headache: what is the emergency?",
   "bottom": "Acute angle-closure glaucoma.",
   "bullets": {
    "clue": "Mid-dilated, fixed pupil; hard eye; nausea.",
@@ -2095,7 +2144,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-077.svg",
-   "alt": "Steps. Acute angle-closure glaucoma."
+   "alt": "ladder diagram for fnp-077"
   },
   "source": {
    "guideline": "AAO Primary Angle-Closure Disease PPP 2026",
@@ -2103,14 +2152,15 @@
    "url": "https://www.aaojournal.org/article/S0161-6420(25)00816-4/fulltext",
    "alt_url": "https://www.aoa.org/AOA/Documents/Practice%20Management/Clinical%20Guidelines/EBO%20Guidelines/2024_FINAL%20EBO_Glaucoma_Guideline_digital_10_28_24.pdf",
    "recommendation": "Acute angle-closure glaucoma. Emergency ophthalmology; lower pressure, then laser iridotomy."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-078",
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Ear pain: how do you tell otitis externa from otitis media?",
+  "front": "A 42-year-old is in clinic. Ear pain: how do you tell otitis externa from otitis media?",
   "bottom": "Tragal or pinna pain means otitis externa.",
   "bullets": {
    "clue": "Canal edema and debris; TM may be normal.",
@@ -2122,7 +2172,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-078.svg",
-   "alt": "table diagram for fnp-078"
+   "alt": "contrast diagram for fnp-078"
   },
   "source": {
    "guideline": "AAO-HNS 2014 AOE",
@@ -2130,7 +2180,8 @@
    "url": "https://doi.org/10.1177/0194599813517083",
    "alt_url": null,
    "recommendation": "Tragal or pinna pain means otitis externa. Topical antibiotic drops; nonototoxic drops if TM perforation."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-079",
@@ -2149,7 +2200,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-079.svg",
-   "alt": "chips diagram for fnp-079"
+   "alt": "ladder diagram for fnp-079"
   },
   "source": {
    "guideline": "CDC EBV/mono clinical overview (current web guidance)",
@@ -2177,7 +2228,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-080.svg",
-   "alt": "table diagram for fnp-080"
+   "alt": "branch diagram for fnp-080"
   },
   "source": {
    "guideline": "ACG GERD 2022; ACG/CAG dyspepsia 2017; ACG H. pylori 2024",
@@ -2193,7 +2244,7 @@
   "system": "GI",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Chronic abdominal pain with altered stool: how is IBS diagnosed?",
+  "front": "A 52-year-old is in clinic. Chronic abdominal pain with altered stool: how is IBS diagnosed?",
   "bottom": "Rome IV positive diagnosis.",
   "bullets": {
    "clue": "Pain ≥1 day/week for 3 months, with stool frequency or form change.",
@@ -2205,7 +2256,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-081.svg",
-   "alt": "flow diagram for fnp-081"
+   "alt": "timeline diagram for fnp-081"
   },
   "source": {
    "guideline": "ACG IBS 2021",
@@ -2213,14 +2264,15 @@
    "url": "https://doi.org/10.14309/ajg.0000000000001036",
    "alt_url": "https://journals.lww.com/ajg/pages/articleviewer.aspx?article=00013&issue=06000&type=Fulltext&year=2025",
    "recommendation": "Rome IV positive diagnosis. CBC, CRP or calprotectin, and celiac serology in diarrhea."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-082",
   "system": "GI",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Suspected celiac disease: which test, and what must the patient keep doing?",
+  "front": "A 56-year-old is in clinic. Suspected celiac disease: which test, and what must the patient keep doing?",
   "bottom": "tTG-IgA with total IgA.",
   "bullets": {
    "clue": "Iron deficiency, diarrhea, dermatitis herpetiformis, type 1 diabetes.",
@@ -2232,7 +2284,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-082.svg",
-   "alt": "chips diagram for fnp-082"
+   "alt": "ladder diagram for fnp-082"
   },
   "source": {
    "guideline": "ACG celiac 2023",
@@ -2240,14 +2292,15 @@
    "url": "https://doi.org/10.14309/ajg.0000000000002075",
    "alt_url": null,
    "recommendation": "tTG-IgA with total IgA. Positive: duodenal biopsy to confirm."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-083",
   "system": "GI",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Abdominal pain that migrates to the right lower quadrant: imaging and next step?",
+  "front": "A 4-year-old is in clinic. Abdominal pain that migrates to the right lower quadrant: imaging and next step?",
   "bottom": "Suspected appendicitis: surgical evaluation.",
   "bullets": {
    "clue": "Periumbilical pain shifting to RLQ, anorexia, fever.",
@@ -2259,7 +2312,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-083.svg",
-   "alt": "flow diagram for fnp-083"
+   "alt": "branch diagram for fnp-083"
   },
   "source": {
    "guideline": "WSES Jerusalem 2020 update",
@@ -2287,7 +2340,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-084.svg",
-   "alt": "table diagram for fnp-084"
+   "alt": "contrast diagram for fnp-084"
   },
   "source": {
    "guideline": "AGA 2021 diverticulitis",
@@ -2315,7 +2368,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-085.svg",
-   "alt": "chips diagram for fnp-085"
+   "alt": "branch diagram for fnp-085"
   },
   "source": {
    "guideline": "ACR AC Vomiting in Infants 2020; ACR AC Abdominal Pain-Child 2026",
@@ -2343,7 +2396,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-086.svg",
-   "alt": "table diagram for fnp-086"
+   "alt": "cycle diagram for fnp-086"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -2359,7 +2412,7 @@
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Low TSH, high free T4: how do you find the cause?",
+  "front": "A 61-year-old is in clinic. Low TSH, high free T4: how do you find the cause?",
   "bottom": "Graves, toxic nodule or thyroiditis.",
   "bullets": {
    "clue": "TSH receptor antibodies, eye findings, or radioactive iodine uptake.",
@@ -2371,7 +2424,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-087.svg",
-   "alt": "Do and do not. Graves, toxic nodule or thyroiditis."
+   "alt": "anatomy diagram for fnp-087"
   },
   "source": {
    "guideline": "ATA 2016 hyperthyroidism",
@@ -2379,14 +2432,15 @@
    "url": "https://doi.org/10.1089/thy.2016.0229",
    "alt_url": null,
    "recommendation": "Graves, toxic nodule or thyroiditis. Beta-blocker for symptoms; antithyroid drug for Graves."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-088",
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "High TSH, normal free T4: how is subclinical hypothyroidism managed?",
+  "front": "An 80-year-old is in clinic. High TSH, normal free T4: how is subclinical hypothyroidism managed?",
   "bottom": "Repeat TSH with free T4 in 2–3 months.",
   "bullets": {
    "clue": "Positive TPO antibodies raise progression risk.",
@@ -2398,7 +2452,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-088.svg",
-   "alt": "table diagram for fnp-088"
+   "alt": "trend diagram for fnp-088"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -2406,14 +2460,15 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "Repeat TSH with free T4 in 2–3 months. Treat TSH >10; individualize 4.5–10."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-089",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Dysuria: how do you separate cystitis from pyelonephritis?",
+  "front": "A 28-year-old is in clinic. Dysuria: how do you separate cystitis from pyelonephritis?",
   "bottom": "Fever or flank pain means pyelonephritis.",
   "bullets": {
    "clue": "Cystitis: dysuria, frequency, urgency, no fever.",
@@ -2425,7 +2480,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-089.svg",
-   "alt": "Do and do not. Fever or flank pain means pyelonephritis."
+   "alt": "anatomy diagram for fnp-089"
   },
   "source": {
    "guideline": "IDSA 2010 uncomplicated cystitis/pyelo (still current; update in development)",
@@ -2433,14 +2488,15 @@
    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
    "alt_url": "https://doi.org/10.1093/cid/ciaf460",
    "recommendation": "Fever or flank pain means pyelonephritis. Pyelonephritis: urine culture; oral fluoroquinolone if local resistance ≤10%."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-090",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Vaginal discharge: how does a wet mount separate BV, trichomonas and candida?",
+  "front": "A 32-year-old is in clinic. Vaginal discharge: how does a wet mount separate BV, trichomonas and candida?",
   "bottom": "BV: clue cells, pH >4.5, amine odor.",
   "bullets": {
    "clue": "Trichomonas: motile organisms; candida: hyphae, normal pH.",
@@ -2452,7 +2508,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-090.svg",
-   "alt": "Threshold. BV: clue cells, pH >4.5, amine odor."
+   "alt": "contrast diagram for fnp-090"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -2460,14 +2516,15 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
    "alt_url": null,
    "recommendation": "BV: clue cells, pH >4.5, amine odor. BV and trichomonas: metronidazole 7 days; candida: fluconazole 150 mg once."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-091",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Pelvic pain in a sexually active woman: when do you diagnose PID?",
+  "front": "A 13-year-old is in clinic. Pelvic pain in a sexually active woman: when do you diagnose PID?",
   "bottom": "Cervical motion, uterine or adnexal tenderness.",
   "bullets": {
    "clue": "Minimum criteria are enough; do not wait for cultures.",
@@ -2479,7 +2536,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-091.svg",
-   "alt": "axis diagram for fnp-091"
+   "alt": "ladder diagram for fnp-091"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -2487,14 +2544,15 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/pid.htm",
    "alt_url": null,
    "recommendation": "Cervical motion, uterine or adnexal tenderness. Ceftriaxone 500 mg IM plus doxycycline and metronidazole for 14 days."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-092",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Positive hCG with pelvic pain and bleeding: how do you rule out ectopic pregnancy?",
+  "front": "A 36-year-old is in clinic. Positive hCG with pelvic pain and bleeding: how do you rule out ectopic pregnancy?",
   "bottom": "Transvaginal ultrasound plus serial hCG.",
   "bullets": {
    "clue": "hCG above discriminatory zone with empty uterus.",
@@ -2506,7 +2564,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-092.svg",
-   "alt": "table diagram for fnp-092"
+   "alt": "ladder diagram for fnp-092"
   },
   "source": {
    "guideline": "ACOG PB 193 2018 (still current)",
@@ -2522,7 +2580,7 @@
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Irregular cycles and hirsutism: how is PCOS diagnosed?",
+  "front": "A 22-year-old is in clinic. Irregular cycles and hirsutism: how is PCOS diagnosed?",
   "bottom": "Rotterdam: 2 of 3 features.",
   "bullets": {
    "clue": "Ovulatory dysfunction, hyperandrogenism, polycystic ovaries or high AMH.",
@@ -2534,7 +2592,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-093.svg",
-   "alt": "Do and do not. Rotterdam: 2 of 3 features."
+   "alt": "anatomy diagram for fnp-093"
   },
   "source": {
    "guideline": "International PCOS guideline 2023",
@@ -2542,14 +2600,15 @@
    "url": "https://doi.org/10.1093/ejendo/lvad096",
    "alt_url": null,
    "recommendation": "Rotterdam: 2 of 3 features. Exclude thyroid disease, high prolactin and nonclassic CAH."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-094",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Abnormal uterine bleeding: how do you classify it and who needs biopsy?",
+  "front": "A 26-year-old is in clinic. Abnormal uterine bleeding: how do you classify it and who needs biopsy?",
   "bottom": "PALM-COEIN classifies structural and nonstructural causes.",
   "bullets": {
    "clue": "Pregnancy test first, then CBC, TSH and pelvic ultrasound.",
@@ -2561,7 +2620,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-094.svg",
-   "alt": "chips diagram for fnp-094"
+   "alt": "branch diagram for fnp-094"
   },
   "source": {
    "guideline": "ACOG/FIGO PALM-COEIN 2018",
@@ -2589,7 +2648,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-095.svg",
-   "alt": "flow diagram for fnp-095"
+   "alt": "contrast diagram for fnp-095"
   },
   "source": {
    "guideline": "NICE NG23 menopause (updated 2024); AAFP 2019 amenorrhea",
@@ -2598,14 +2657,14 @@
    "alt_url": "https://www.aafp.org/pubs/afp/issues/2019/0701/p39.html",
    "recommendation": "Pregnancy test first. Amenorrhea workup adds FSH, LH, prolactin and TSH."
   },
-  "age_band": "Young adult"
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-096",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Child 2 months to 5 years with suspected UTI: how is it diagnosed?",
+  "front": "A 2-year-old with suspected UTI: how is it diagnosed?",
   "bottom": "Abnormal urinalysis plus a positive culture from a catheter specimen.",
   "bullets": {
    "clue": "Culture pending: ≥10 WBC/hpf or ≥+2 leukocyte esterase.",
@@ -2617,7 +2676,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-096.svg",
-   "alt": "table diagram for fnp-096"
+   "alt": "timeline diagram for fnp-096"
   },
   "source": {
    "guideline": "AAP UTI CPG 2026 (8 days-5 years)",
@@ -2626,14 +2685,14 @@
    "alt_url": null,
    "recommendation": "Abnormal urinalysis plus a positive culture from a catheter specimen. Culture: catheter ≥10,000 CFU/mL single uropathogen; clean catch ≥100,000."
   },
-  "age_band": "Child"
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-097",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Older man with urinary symptoms: BPH, prostate cancer or prostatitis?",
+  "front": "A 66-year-old man is in clinic. Older man with urinary symptoms: BPH, prostate cancer or prostatitis?",
   "bottom": "Exam and symptoms point the way.",
   "bullets": {
    "clue": "Smooth enlarged prostate: BPH; hard nodule: cancer.",
@@ -2645,7 +2704,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-097.svg",
-   "alt": "Do and do not. Exam and symptoms point the way."
+   "alt": "ladder diagram for fnp-097"
   },
   "source": {
    "guideline": "AUA BPH 2023",
@@ -2653,14 +2712,15 @@
    "url": "https://www.auanet.org/guidelines-and-quality/guidelines/benign-prostatic-hyperplasia-(bph)-guideline",
    "alt_url": "https://doi.org/10.1097/ju.0000000000003698",
    "recommendation": "Exam and symptoms point the way. Tender, boggy prostate with fever: acute bacterial prostatitis; antibiotics."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-098",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Urinary incontinence: stress, urge or overflow?",
+  "front": "A 68-year-old is in clinic. Urinary incontinence: stress, urge or overflow?",
   "bottom": "Leak with cough, urgency, or constant dribbling.",
   "bullets": {
    "clue": "Overflow: high post-void residual.",
@@ -2672,7 +2732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-098.svg",
-   "alt": "table diagram for fnp-098"
+   "alt": "branch diagram for fnp-098"
   },
   "source": {
    "guideline": "AUA/SUFU OAB 2024",
@@ -2680,14 +2740,15 @@
    "url": "https://www.auanet.org/guidelines-and-quality/guidelines/idiopathic-overactive-bladder",
    "alt_url": "https://doi.org/10.1097/ju.0000000000003985",
    "recommendation": "Leak with cough, urgency, or constant dribbling. Stress: pelvic floor training; urge: behavioral therapy first."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-099",
   "system": "MSK",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Joint pain: how do you tell osteoarthritis from rheumatoid arthritis?",
+  "front": "A 72-year-old is in clinic. Joint pain: how do you tell osteoarthritis from rheumatoid arthritis?",
   "bottom": "OA: DIP and PIP, stiffness <30 minutes.",
   "bullets": {
    "clue": "RA: MCP, PIP and wrists, symmetric, stiffness >1 hour.",
@@ -2699,7 +2760,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-099.svg",
-   "alt": "Threshold. OA: DIP and PIP, stiffness <30 minutes."
+   "alt": "timeline diagram for fnp-099"
   },
   "source": {
    "guideline": "ACR 2019 OA; ACR 2021 RA",
@@ -2707,14 +2768,15 @@
    "url": "https://doi.org/10.1002/art.41752",
    "alt_url": "https://doi.org/10.1002/art.41142",
    "recommendation": "OA: DIP and PIP, stiffness <30 minutes. RA: RF, anti-CCP, ESR and CRP; start methotrexate early."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-100",
   "system": "MSK",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Acute hot, swollen joint: gout or septic arthritis?",
+  "front": "A 76-year-old is in clinic. Acute hot, swollen joint: gout or septic arthritis?",
   "bottom": "Arthrocentesis decides.",
   "bullets": {
    "clue": "Gout: negatively birefringent needle-shaped crystals.",
@@ -2726,7 +2788,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-100.svg",
-   "alt": "table diagram for fnp-100"
+   "alt": "contrast diagram for fnp-100"
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -2734,7 +2796,8 @@
    "url": "https://doi.org/10.1002/art.41247",
    "alt_url": null,
    "recommendation": "Arthrocentesis decides. Septic: Gram stain and culture, very high synovial WBC; both can coexist."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-101",
@@ -2753,7 +2816,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-101.svg",
-   "alt": "Do and do not. Polymyalgia rheumatica; ask about GCA symptoms."
+   "alt": "anatomy diagram for fnp-101"
   },
   "source": {
    "guideline": "ACR/EULAR 2015 PMR; ACR 2021 GCA",
@@ -2769,7 +2832,7 @@
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Pregnant patient after 20 weeks with BP ≥140/90: when is it preeclampsia, and what are severe features?",
+  "front": "A 28-year-old is in clinic. Pregnant patient after 20 weeks with BP ≥140/90: when is it preeclampsia, and what are severe features?",
   "bottom": "Hypertension plus proteinuria or end-organ signs.",
   "bullets": {
    "clue": "Proteinuria: ≥300 mg/24 h or protein/creatinine ≥0.3.",
@@ -2781,7 +2844,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-102.svg",
-   "alt": "chips diagram for fnp-102"
+   "alt": "anatomy diagram for fnp-102"
   },
   "source": {
    "guideline": "ACOG PB 222 2020 (reaffirmed 2026)",
@@ -2797,7 +2860,7 @@
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Headache: how do you tell migraine, tension-type and cluster apart?",
+  "front": "A 15-year-old is in clinic. Headache: how do you tell migraine, tension-type and cluster apart?",
   "bottom": "Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital.",
   "bullets": {
    "clue": "Cluster: severe unilateral orbital pain, 15–180 minutes, tearing, restlessness.",
@@ -2809,7 +2872,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-103.svg",
-   "alt": "axis diagram for fnp-103"
+   "alt": "trend diagram for fnp-103"
   },
   "source": {
    "guideline": "ICHD-3 (2018)",
@@ -2817,14 +2880,15 @@
    "url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
    "alt_url": "https://doi.org/10.1177/0333102417738202",
    "recommendation": "Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital. Migraine: 4–72 hours with nausea or light and sound sensitivity; tension: 30 minutes to 7 days, no nausea."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-104",
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Facial weakness: how do you tell Bell palsy from stroke?",
+  "front": "A 32-year-old is in clinic. Facial weakness: how do you tell Bell palsy from stroke?",
   "bottom": "Bell palsy affects the forehead.",
   "bullets": {
    "clue": "Forehead sparing suggests central lesion.",
@@ -2836,7 +2900,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-104.svg",
-   "alt": "table diagram for fnp-104"
+   "alt": "contrast diagram for fnp-104"
   },
   "source": {
    "guideline": "AAO-HNS 2013 Bell palsy",
@@ -2844,14 +2908,15 @@
    "url": "https://doi.org/10.1177/0194599813505967",
    "alt_url": null,
    "recommendation": "Bell palsy affects the forehead. Bell palsy: oral steroids within 72 hours; eye protection."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-105",
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Positional vertigo: how is BPPV diagnosed, and when is it central?",
+  "front": "A 66-year-old is in clinic. Positional vertigo: how is BPPV diagnosed, and when is it central?",
   "bottom": "Dix-Hallpike provokes torsional nystagmus.",
   "bullets": {
    "clue": "Brief vertigo triggered by head position changes, lasting under a minute.",
@@ -2863,7 +2928,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-105.svg",
-   "alt": "flow diagram for fnp-105"
+   "alt": "branch diagram for fnp-105"
   },
   "source": {
    "guideline": "AAO-HNS 2017 BPPV",
@@ -2871,14 +2936,15 @@
    "url": "https://doi.org/10.1177/0194599816689667",
    "alt_url": null,
    "recommendation": "Dix-Hallpike provokes torsional nystagmus. Epley maneuver; no routine imaging or vestibular suppressants."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-106",
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Tremor: Parkinson disease or essential tremor?",
+  "front": "A 68-year-old is in clinic. Tremor: Parkinson disease or essential tremor?",
   "bottom": "Rest tremor versus action tremor.",
   "bullets": {
    "clue": "PD: bradykinesia with rest tremor or rigidity.",
@@ -2890,7 +2956,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-106.svg",
-   "alt": "Contrast. Rest tremor versus action tremor."
+   "alt": "ladder diagram for fnp-106"
   },
   "source": {
    "guideline": "MDS PD criteria 2015",
@@ -2898,14 +2964,15 @@
    "url": "https://doi.org/10.1002/mds.26424",
    "alt_url": "https://www.neurology.org/doi/10.1212/WNL.0000000000012868",
    "recommendation": "Rest tremor versus action tremor. Essential tremor: bilateral action tremor, often familial; propranolol or primidone."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-107",
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Memory loss: Alzheimer, vascular or Lewy body dementia?",
+  "front": "A 72-year-old is in clinic. Memory loss: Alzheimer, vascular or Lewy body dementia?",
   "bottom": "Gradual, stepwise or fluctuating.",
   "bullets": {
    "clue": "Lewy body: visual hallucinations, parkinsonism, REM sleep behavior disorder.",
@@ -2917,7 +2984,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-107.svg",
-   "alt": "flow diagram for fnp-107"
+   "alt": "contrast diagram for fnp-107"
   },
   "source": {
    "guideline": "Alzheimer's Assoc. revised AD criteria 2024; DLB Consortium 2017",
@@ -2925,14 +2992,15 @@
    "url": "https://doi.org/10.1002/alz.13859",
    "alt_url": null,
    "recommendation": "Gradual, stepwise or fluctuating. Labs for reversible causes; brain imaging."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-108",
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "How is ADHD diagnosed in children?",
+  "front": "A 6-year-old is in clinic. How is ADHD diagnosed in children?",
   "bottom": "DSM-5 criteria in ≥2 settings.",
   "bullets": {
    "clue": "Symptoms ≥6 months, several before age 12.",
@@ -2944,7 +3012,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-108.svg",
-   "alt": "Threshold. DSM-5 criteria in ≥2 settings."
+   "alt": "ladder diagram for fnp-108"
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -2960,7 +3028,7 @@
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Adolescent with weight loss: what red flags suggest an eating disorder needing admission?",
+  "front": "A 16-year-old is in clinic. Adolescent with weight loss: what red flags suggest an eating disorder needing admission?",
   "bottom": "HR <50 by day or <45 at night, BP <90/45, or temperature <35.6 °C.",
   "bullets": {
    "clue": "Orthostatic pulse rise >20, or BP drop >20 systolic or >10 diastolic.",
@@ -2972,7 +3040,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-109.svg",
-   "alt": "Threshold. HR <50 by day or <45 at night, BP <90/45, or temperature <35.6 °C."
+   "alt": "branch diagram for fnp-109"
   },
   "source": {
    "guideline": "AAP eating disorders clinical report 2021 (still current)",
@@ -3000,7 +3068,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-110.svg",
-   "alt": "table diagram for fnp-110"
+   "alt": "ladder diagram for fnp-110"
   },
   "source": {
    "guideline": "AAD 2014 atopic dermatitis diagnosis; AAFP 2020 atopic dermatitis",
@@ -3016,7 +3084,7 @@
   "system": "Derm",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Scaly plaque: tinea, psoriasis or nummular eczema?",
+  "front": "A 48-year-old is in clinic. Scaly plaque: tinea, psoriasis or nummular eczema?",
   "bottom": "KOH preparation helps identify tinea.",
   "bullets": {
    "clue": "Tinea: annular with central clearing; psoriasis: silvery scale.",
@@ -3028,7 +3096,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-111.svg",
-   "alt": "flow diagram for fnp-111"
+   "alt": "contrast diagram for fnp-111"
   },
   "source": {
    "guideline": "AAFP 2014 tinea infections; AAD nummular eczema treatment page; AAP atopic dermatitis differential page",
@@ -3036,14 +3104,15 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12707599/",
    "alt_url": "https://www.aad.org/public/diseases/eczema/types/nummular-dermatitis/treatment",
    "recommendation": "KOH preparation helps identify tinea. Nummular eczema: itchy round to oval spots; topical steroid and moisturizer."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-112",
   "system": "Derm",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Itchy rash: scabies or contact dermatitis?",
+  "front": "A 52-year-old is in clinic. Itchy rash: scabies or contact dermatitis?",
   "bottom": "Burrows in web spaces, wrists and waist.",
   "bullets": {
    "clue": "Night itch; household members affected.",
@@ -3055,7 +3124,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-112.svg",
-   "alt": "axis diagram for fnp-112"
+   "alt": "threshold diagram for fnp-112"
   },
   "source": {
    "guideline": "CDC scabies clinical care (current web guidance)",
@@ -3063,14 +3132,15 @@
    "url": "https://www.cdc.gov/scabies/hcp/clinical-care/index.html",
    "alt_url": null,
    "recommendation": "Burrows in web spaces, wrists and waist. Permethrin 5% neck down; repeat in 1–2 weeks; treat contacts."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-113",
   "system": "Peds",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Child with fever and rash: which viral exanthem is it?",
+  "front": "An 18-month-old is in clinic. Child with fever and rash: which viral exanthem is it?",
   "bottom": "Pattern and timing name the virus.",
   "bullets": {
    "clue": "Measles: cough, coryza, conjunctivitis, Koplik spots.",
@@ -3082,7 +3152,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-113.svg",
-   "alt": "chips diagram for fnp-113"
+   "alt": "anatomy diagram for fnp-113"
   },
   "source": {
    "guideline": "CDC; AAP Red Book 2024",
@@ -3091,14 +3161,14 @@
    "alt_url": null,
    "recommendation": "Pattern and timing name the virus. Roseola: rash after fever; fifth disease: slapped cheek."
   },
-  "age_band": "Child"
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-114",
   "system": "Peds",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Fever for 5 days: when is it Kawasaki disease?",
+  "front": "A 2-year-old is in clinic. Fever for 5 days: when is it Kawasaki disease?",
   "bottom": "Fever ≥5 days plus ≥4 of 5 criteria.",
   "bullets": {
    "clue": "Conjunctivitis, oral changes, rash, extremity changes, cervical node.",
@@ -3110,7 +3180,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-114.svg",
-   "alt": "Threshold. Fever ≥5 days plus ≥4 of 5 criteria."
+   "alt": "anatomy diagram for fnp-114"
   },
   "source": {
    "guideline": "AHA Kawasaki scientific statement 2024",
@@ -3118,7 +3188,8 @@
    "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001295",
    "alt_url": null,
    "recommendation": "Fever ≥5 days plus ≥4 of 5 criteria. IVIG and aspirin; echocardiogram."
-  }
+  },
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-115",
@@ -3137,7 +3208,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-115.svg",
-   "alt": "Threshold. Jaundice in the first 24 hours."
+   "alt": "branch diagram for fnp-115"
   },
   "source": {
    "guideline": "AAP 2022 hyperbilirubinemia",
@@ -3165,7 +3236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-116.svg",
-   "alt": "table diagram for fnp-116"
+   "alt": "branch diagram for fnp-116"
   },
   "source": {
    "guideline": "AAP 2015 suspected physical abuse (reaffirmed 2026)",
@@ -3193,7 +3264,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-117.svg",
-   "alt": "chips diagram for fnp-117"
+   "alt": "ladder diagram for fnp-117"
   },
   "source": {
    "guideline": "USPSTF IPV/caregiver abuse 2025 (I for older adults)",
@@ -3209,7 +3280,7 @@
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Adult with depression before starting an SSRI: what must you screen for?",
+  "front": "A 36-year-old is in clinic. Adult with depression before starting an SSRI: what must you screen for?",
   "bottom": "Personal or family history of bipolar disorder, mania or hypomania.",
   "bullets": {
    "clue": "Manic signs: greatly increased energy, severe trouble sleeping, racing thoughts.",
@@ -3221,7 +3292,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-118.svg",
-   "alt": "table diagram for fnp-118"
+   "alt": "contrast diagram for fnp-118"
   },
   "source": {
    "guideline": "FDA sertraline label, warning 5.4 (2023)",
@@ -3229,14 +3300,15 @@
    "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019839s108,20990s062lbl.pdf",
    "alt_url": null,
    "recommendation": "Personal or family history of bipolar disorder, mania or hypomania. Positive history: involve psychiatry before prescribing."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-119",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Hypertension: which drugs are first-line, when start two, and does race matter?",
+  "front": "An 80-year-old is in clinic. Hypertension: which drugs are first-line, when start two, and does race matter?",
   "bottom": "Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug.",
   "bullets": {
    "clue": "Stage 2 (≥140/90): start two drugs, ideally one pill.",
@@ -3248,7 +3320,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-119.svg",
-   "alt": "Do and do not. Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug."
+   "alt": "contrast diagram for fnp-119"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN (race no longer guides initial drug choice)",
@@ -3256,14 +3328,15 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug. Goal <130/80 for most adults."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-120",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "CKD with albuminuria: which antihypertensive is preferred?",
+  "front": "A 66-year-old is in clinic. CKD with albuminuria: which antihypertensive is preferred?",
   "bottom": "ACEi or ARB, titrated to maximum tolerated.",
   "bullets": {
    "clue": "Albuminuria A3, or A2 with diabetes.",
@@ -3275,7 +3348,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-120.svg",
-   "alt": "Do and do not. ACEi or ARB, titrated to maximum tolerated."
+   "alt": "trend diagram for fnp-120"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD; ADA Standards of Care 2026",
@@ -3283,14 +3356,15 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "ACEi or ARB, titrated to maximum tolerated. Recheck creatinine and potassium in 2–4 weeks."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-121",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "CKD, with or without diabetes: when do you add an SGLT2 inhibitor?",
+  "front": "A 68-year-old is in clinic. CKD, with or without diabetes: when do you add an SGLT2 inhibitor?",
   "bottom": "eGFR ≥20 with diabetes, albuminuria or HF.",
   "bullets": {
    "clue": "Without diabetes: UACR ≥200 mg/g or heart failure.",
@@ -3302,7 +3376,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-121.svg",
-   "alt": "Threshold. eGFR ≥20 with diabetes, albuminuria or HF."
+   "alt": "anatomy diagram for fnp-121"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -3310,14 +3384,15 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "eGFR ≥20 with diabetes, albuminuria or HF. Continue until dialysis or transplant."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-122",
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Overt hypothyroidism: what is the starting levothyroxine dose and how is it taken?",
+  "front": "A 56-year-old is in clinic. Overt hypothyroidism: what is the starting levothyroxine dose and how is it taken?",
   "bottom": "Levothyroxine alone; full replacement is about 1.6 mcg/kg daily.",
   "bullets": {
    "clue": "Start low, 12.5–25 mcg daily, with known CAD; also lower doses for mild disease.",
@@ -3329,7 +3404,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-122.svg",
-   "alt": "Threshold. Levothyroxine alone; full replacement is about 1.6 mcg/kg daily."
+   "alt": "threshold diagram for fnp-122"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism",
@@ -3337,14 +3412,15 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267409/",
    "alt_url": "https://doi.org/10.1089/thy.2014.0028",
    "recommendation": "Levothyroxine alone; full replacement is about 1.6 mcg/kg daily. Take it 60 minutes before breakfast or at bedtime, 3 or more hours after dinner."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-123",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Chronic hypertension in pregnancy: when do you treat, and with what?",
+  "front": "A 22-year-old is in clinic. Chronic hypertension in pregnancy: when do you treat, and with what?",
   "bottom": "Start treatment at ≥140/90; CHAP set no blood pressure goal.",
   "bullets": {
    "clue": "Labetalol or nifedipine.",
@@ -3356,7 +3432,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-123.svg",
-   "alt": "Threshold. Start treatment at ≥140/90; CHAP set no blood pressure goal."
+   "alt": "threshold diagram for fnp-123"
   },
   "source": {
    "guideline": "ACOG PB 203 (2019); ACOG CHAP practice advisory (2022)",
@@ -3372,7 +3448,7 @@
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "New type 2 diabetes without heart or kidney disease: first-line drug?",
+  "front": "A 61-year-old is in clinic. New type 2 diabetes without heart or kidney disease: first-line drug?",
   "bottom": "Metformin plus lifestyle change.",
   "bullets": {
    "clue": "A1C goal often <7%.",
@@ -3384,7 +3460,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-124.svg",
-   "alt": "table diagram for fnp-124"
+   "alt": "anatomy diagram for fnp-124"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3392,14 +3468,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "Metformin plus lifestyle change. Start low and titrate to limit GI effects; extended release helps."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-125",
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Type 2 diabetes with ASCVD, HF or CKD: what do you add?",
+  "front": "A 72-year-old is in clinic. Type 2 diabetes with ASCVD, HF or CKD: what do you add?",
   "bottom": "GLP-1 RA or SGLT2 inhibitor, regardless of A1C.",
   "bullets": {
    "clue": "ASCVD: GLP-1 RA or SGLT2i; HF: SGLT2i.",
@@ -3411,7 +3488,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-125.svg",
-   "alt": "Do and do not. GLP-1 RA or SGLT2 inhibitor, regardless of A1C."
+   "alt": "anatomy diagram for fnp-125"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3419,14 +3496,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "GLP-1 RA or SGLT2 inhibitor, regardless of A1C. CKD: SGLT2i, or GLP-1 RA."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-126",
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Starting basal insulin in type 2 diabetes: dose and titration?",
+  "front": "A 76-year-old is in clinic. Starting basal insulin in type 2 diabetes: dose and titration?",
   "bottom": "10 units or 0.1–0.2 units/kg daily.",
   "bullets": {
    "clue": "Titrate by fasting glucose, such as 2 units every 3 days.",
@@ -3438,7 +3516,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-126.svg",
-   "alt": "Threshold. 10 units or 0.1–0.2 units/kg daily."
+   "alt": "cycle diagram for fnp-126"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3446,14 +3524,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "10 units or 0.1–0.2 units/kg daily. Fasting goal 80–130 mg/dL without hypoglycemia."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-127",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Patient with ASCVD: which statin, and what LDL goal?",
+  "front": "An 80-year-old is in clinic. Patient with ASCVD: which statin, and what LDL goal?",
   "bottom": "High-intensity statin.",
   "bullets": {
    "clue": "Atorvastatin 40–80 mg or rosuvastatin 20–40 mg.",
@@ -3465,7 +3544,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-127.svg",
-   "alt": "Steps. High-intensity statin."
+   "alt": "trend diagram for fnp-127"
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -3473,14 +3552,15 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": "https://doi.org/10.1016/j.jacc.2025.11.016",
    "recommendation": "High-intensity statin. Very high risk: LDL <55; add ezetimibe, then PCSK9 inhibitor."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-128",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "AF with CHA2DS2-VASc ≥2 in men or ≥3 in women: which anticoagulant?",
+  "front": "A 66-year-old woman is in clinic. AF with CHA2DS2-VASc ≥2 in men or ≥3 in women: which anticoagulant?",
   "bottom": "DOAC over warfarin.",
   "bullets": {
    "clue": "Apixaban, rivaroxaban, edoxaban or dabigatran.",
@@ -3492,7 +3572,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-128.svg",
-   "alt": "chips diagram for fnp-128"
+   "alt": "branch diagram for fnp-128"
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -3500,14 +3580,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "DOAC over warfarin. Warfarin only for mechanical valves or moderate-severe mitral stenosis."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-129",
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "HFrEF: what are the four drug pillars?",
+  "front": "A 68-year-old is in clinic. HFrEF: what are the four drug pillars?",
   "bottom": "ARNI, beta-blocker, MRA and SGLT2 inhibitor.",
   "bullets": {
    "clue": "Beta-blockers: carvedilol, metoprolol succinate or bisoprolol.",
@@ -3519,7 +3600,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-129.svg",
-   "alt": "flow diagram for fnp-129"
+   "alt": "ladder diagram for fnp-129"
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -3527,14 +3608,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "ARNI, beta-blocker, MRA and SGLT2 inhibitor. Loop diuretic for congestion."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-130",
   "system": "Pulmonary",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Asthma: what is the preferred reliever, and how does step therapy work?",
+  "front": "A 42-year-old is in clinic. Asthma: what is the preferred reliever, and how does step therapy work?",
   "bottom": "As-needed low-dose ICS-formoterol.",
   "bullets": {
    "clue": "Steps 1–2: as-needed ICS-formoterol, no daily controller needed.",
@@ -3546,7 +3628,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-130.svg",
-   "alt": "axis diagram for fnp-130"
+   "alt": "trend diagram for fnp-130"
   },
   "source": {
    "guideline": "GINA 2025",
@@ -3554,14 +3636,15 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "As-needed low-dose ICS-formoterol. Steps 3–4: daily maintenance plus the same inhaler as reliever (MART)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-131",
   "system": "Pulmonary",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "COPD maintenance: when to use LAMA/LABA, and when to add ICS?",
+  "front": "A 72-year-old is in clinic. COPD maintenance: when to use LAMA/LABA, and when to add ICS?",
   "bottom": "LAMA plus LABA for most symptomatic patients.",
   "bullets": {
    "clue": "Add ICS if eosinophils ≥300, or ≥100 with exacerbations.",
@@ -3573,7 +3656,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-131.svg",
-   "alt": "flow diagram for fnp-131"
+   "alt": "anatomy diagram for fnp-131"
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -3581,14 +3664,15 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "LAMA plus LABA for most symptomatic patients. Single-inhaler triple therapy; pulmonary rehab."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-132",
   "system": "Pulmonary",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Outpatient community-acquired pneumonia: which antibiotic?",
+  "front": "A 76-year-old is in clinic. Outpatient community-acquired pneumonia: which antibiotic?",
   "bottom": "Healthy adult: amoxicillin.",
   "bullets": {
    "clue": "Alternatives: doxycycline, or a macrolide only if local resistance is <25%.",
@@ -3600,7 +3684,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-132.svg",
-   "alt": "table diagram for fnp-132"
+   "alt": "ladder diagram for fnp-132"
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP (antibiotic choice); ATS 2025 CAP update (duration, steroids)",
@@ -3608,14 +3692,15 @@
    "url": "https://doi.org/10.1164/rccm.201908-1581ST",
    "alt_url": "https://doi.org/10.1164/rccm.202507-1692ST",
    "recommendation": "Healthy adult: amoxicillin. Comorbidities: amox-clav or cephalosporin plus macrolide or doxycycline, or a respiratory fluoroquinolone."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-133",
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Child with acute otitis media: antibiotic or watchful waiting?",
+  "front": "An 18-month-old is in clinic. Child with acute otitis media: antibiotic or watchful waiting?",
   "bottom": "High-dose amoxicillin 80–90 mg/kg/day.",
   "bullets": {
    "clue": "Observation option: nonsevere, 6–23 months unilateral, or ≥24 months.",
@@ -3627,7 +3712,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-133.svg",
-   "alt": "Threshold. High-dose amoxicillin 80–90 mg/kg/day."
+   "alt": "cycle diagram for fnp-133"
   },
   "source": {
    "guideline": "AAP AOM 2013 (still current)",
@@ -3636,14 +3721,14 @@
    "alt_url": null,
    "recommendation": "High-dose amoxicillin 80–90 mg/kg/day. Amoxicillin in past 30 days: amoxicillin-clavulanate."
   },
-  "age_band": "Child"
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-134",
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Strep throat: first-line antibiotic, and what if allergic?",
+  "front": "A 17-year-old is in clinic. Strep throat: first-line antibiotic, and what if allergic?",
   "bottom": "Penicillin V or amoxicillin for 10 days.",
   "bullets": {
    "clue": "Single IM benzathine penicillin is an alternative.",
@@ -3655,7 +3740,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-134.svg",
-   "alt": "Threshold. Penicillin V or amoxicillin for 10 days."
+   "alt": "branch diagram for fnp-134"
   },
   "source": {
    "guideline": "IDSA GAS 2012 (treatment section not yet replaced)",
@@ -3663,14 +3748,15 @@
    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis2/",
    "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
    "recommendation": "Penicillin V or amoxicillin for 10 days. Non-anaphylactic allergy: cephalexin; anaphylaxis: clindamycin or azithromycin."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-135",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Uncomplicated cystitis in a woman: first-line antibiotics?",
+  "front": "A 26-year-old woman is in clinic. Uncomplicated cystitis in a woman: first-line antibiotics?",
   "bottom": "Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin.",
   "bullets": {
    "clue": "TMP-SMX if local resistance <20%.",
@@ -3682,7 +3768,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-135.svg",
-   "alt": "Threshold. Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin."
+   "alt": "timeline diagram for fnp-135"
   },
   "source": {
    "guideline": "IDSA 2010 uncomplicated cystitis (still current); nitrofurantoin FDA label (2024)",
@@ -3690,14 +3776,15 @@
    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
    "alt_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/009175s050lbl.pdf",
    "recommendation": "Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin. Fosfomycin 3 g single dose."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-136",
   "system": "Renal",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Bacteria in urine without symptoms: when do you treat?",
+  "front": "An 80-year-old is in clinic. Bacteria in urine without symptoms: when do you treat?",
   "bottom": "Only in pregnancy or before urologic procedures.",
   "bullets": {
    "clue": "Pregnancy: screen early and treat.",
@@ -3709,7 +3796,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-136.svg",
-   "alt": "table diagram for fnp-136"
+   "alt": "contrast diagram for fnp-136"
   },
   "source": {
    "guideline": "IDSA 2019 ASB",
@@ -3725,7 +3812,7 @@
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Gonorrhea and chlamydia: what are the CDC regimens?",
+  "front": "A 28-year-old is in clinic. Gonorrhea and chlamydia: what are the CDC regimens?",
   "bottom": "Ceftriaxone 500 mg IM; doxycycline 7 days.",
   "bullets": {
    "clue": "Ceftriaxone 1 g if ≥150 kg; pharyngeal gonorrhea needs test of cure.",
@@ -3737,7 +3824,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-137.svg",
-   "alt": "Threshold. Ceftriaxone 500 mg IM; doxycycline 7 days."
+   "alt": "timeline diagram for fnp-137"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3753,7 +3840,7 @@
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Syphilis: which penicillin regimen for each stage?",
+  "front": "A 48-year-old is in clinic. Syphilis: which penicillin regimen for each stage?",
   "bottom": "Benzathine penicillin G.",
   "bullets": {
    "clue": "Primary, secondary or early latent: 2.4 million units IM once.",
@@ -3765,7 +3852,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-138.svg",
-   "alt": "table diagram for fnp-138"
+   "alt": "contrast diagram for fnp-138"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3773,14 +3860,15 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
    "alt_url": null,
    "recommendation": "Benzathine penicillin G. Late latent or unknown duration: weekly for 3 weeks."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-139",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "BV and trichomonas: which treatment, and who else is treated?",
+  "front": "A 32-year-old is in clinic. BV and trichomonas: which treatment, and who else is treated?",
   "bottom": "Metronidazole 500 mg twice daily for 7 days.",
   "bullets": {
    "clue": "Trichomonas in men: metronidazole 2 g once; women: 7 days.",
@@ -3792,7 +3880,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-139.svg",
-   "alt": "Threshold. Metronidazole 500 mg twice daily for 7 days."
+   "alt": "ladder diagram for fnp-139"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3800,14 +3888,15 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
    "alt_url": null,
    "recommendation": "Metronidazole 500 mg twice daily for 7 days. Treat trichomonas partners."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-140",
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Erythema migrans: how is early Lyme disease treated?",
+  "front": "A 36-year-old is in clinic. Erythema migrans: how is early Lyme disease treated?",
   "bottom": "Doxycycline for 10 days.",
   "bullets": {
    "clue": "Diagnose clinically; no serology needed.",
@@ -3819,7 +3908,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-140.svg",
-   "alt": "Threshold. Doxycycline for 10 days."
+   "alt": "timeline diagram for fnp-140"
   },
   "source": {
    "guideline": "IDSA/AAN/ACR 2020 Lyme",
@@ -3827,14 +3916,15 @@
    "url": "https://doi.org/10.1093/cid/ciaa1215",
    "alt_url": "https://doi.org/10.1002/art.41562",
    "recommendation": "Doxycycline for 10 days. Alternatives: amoxicillin or cefuroxime 14 days."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-141",
   "system": "Derm",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Skin infection: cellulitis or abscess, and when to cover MRSA?",
+  "front": "A 22-year-old is in clinic. Skin infection: cellulitis or abscess, and when to cover MRSA?",
   "bottom": "Abscess: incision and drainage.",
   "bullets": {
    "clue": "Purulent: TMP-SMX or doxycycline if antibiotics needed.",
@@ -3846,7 +3936,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-141.svg",
-   "alt": "flow diagram for fnp-141"
+   "alt": "branch diagram for fnp-141"
   },
   "source": {
    "guideline": "IDSA SSTI 2014",
@@ -3854,14 +3944,15 @@
    "url": "https://doi.org/10.1093/cid/ciu296",
    "alt_url": null,
    "recommendation": "Abscess: incision and drainage. Nonpurulent cellulitis: cephalexin for streptococci."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-142",
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "HIV PrEP: what are the options, and how is it monitored?",
+  "front": "A 26-year-old is in clinic. HIV PrEP: what are the options, and how is it monitored?",
   "bottom": "Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir.",
   "bullets": {
    "clue": "F/TAF is not for receptive vaginal sex.",
@@ -3873,7 +3964,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-142.svg",
-   "alt": "table diagram for fnp-142"
+   "alt": "cycle diagram for fnp-142"
   },
   "source": {
    "guideline": "CDC PrEP 2021; CDC lenacapavir PrEP MMWR 2025; USPSTF PrEP 2023",
@@ -3881,14 +3972,15 @@
    "url": "https://www.cdc.gov/mmwr/volumes/74/wr/mm7435a1.htm",
    "alt_url": null,
    "recommendation": "Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir. HIV test every 3 months on oral PrEP; check creatinine and STIs."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-143",
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Latent TB infection: preferred regimens?",
+  "front": "A 52-year-old is in clinic. Latent TB infection: preferred regimens?",
   "bottom": "Rifamycin-based short courses.",
   "bullets": {
    "clue": "3HP weekly for 12 weeks, 4 months rifampin, or 3 months rifampin-isoniazid.",
@@ -3900,7 +3992,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-143.svg",
-   "alt": "flow diagram for fnp-143"
+   "alt": "timeline diagram for fnp-143"
   },
   "source": {
    "guideline": "CDC/NTCA 2020 LTBI",
@@ -3908,14 +4000,15 @@
    "url": "https://www.cdc.gov/mmwr/volumes/69/rr/rr6901a1.htm",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/latent-tuberculosis-infection-screening",
    "recommendation": "Rifamycin-based short courses. Exclude active TB with chest X-ray first."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-144",
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Adult vaccines: Tdap, zoster, pneumococcal and RSV schedule?",
+  "front": "A 66-year-old is in clinic. Adult vaccines: Tdap, zoster, pneumococcal and RSV schedule?",
   "bottom": "Tdap once, then Td or Tdap every 10 years.",
   "bullets": {
    "clue": "Recombinant zoster 2 doses from 50.",
@@ -3927,7 +4020,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-144.svg",
-   "alt": "table diagram for fnp-144"
+   "alt": "cycle diagram for fnp-144"
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025); no 2026 CDC adult schedule",
@@ -3935,7 +4028,8 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
    "alt_url": null,
    "recommendation": "Tdap once, then Td or Tdap every 10 years. Pneumococcal from 50; RSV once at 75 or 50–74 at risk."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-145",
@@ -3954,7 +4048,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-145.svg",
-   "alt": "axis diagram for fnp-145"
+   "alt": "timeline diagram for fnp-145"
   },
   "source": {
    "guideline": "CDC child and adolescent schedule notes (July 2, 2025 schedule in effect)",
@@ -3970,7 +4064,7 @@
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "HPV vaccine: what is the current CDC childhood schedule?",
+  "front": "A 13-year-old is in clinic. HPV vaccine: what is the current CDC childhood schedule?",
   "bottom": "Routine at 11–12 (can start at 9): two doses if started at 9–14.",
   "bullets": {
    "clue": "Two doses 6–12 months apart; minimum interval 5 months.",
@@ -3982,7 +4076,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-146.svg",
-   "alt": "axis diagram for fnp-146"
+   "alt": "threshold diagram for fnp-146"
   },
   "source": {
    "guideline": "CDC child and adolescent schedule notes (July 2, 2025 schedule in effect)",
@@ -3990,14 +4084,15 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-notes.html",
    "alt_url": null,
    "recommendation": "Routine at 11–12 (can start at 9): two doses if started at 9–14. Started at 15 or older: three doses at 0, 1–2 and 6 months."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-147",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Vaccines in pregnancy: which ones, and when?",
+  "front": "A 28-year-old is in clinic. Vaccines in pregnancy: which ones, and when?",
   "bottom": "Tdap at 27–36 weeks every pregnancy.",
   "bullets": {
    "clue": "Inactivated influenza in any trimester.",
@@ -4009,7 +4104,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-147.svg",
-   "alt": "Threshold. Tdap at 27–36 weeks every pregnancy."
+   "alt": "trend diagram for fnp-147"
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025)",
@@ -4025,7 +4120,7 @@
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Contraception: who cannot use combined hormonal methods?",
+  "front": "A 32-year-old is in clinic. Contraception: who cannot use combined hormonal methods?",
   "bottom": "Category 4 contraindications.",
   "bullets": {
    "clue": "Age ≥35 and ≥15 cigarettes daily; migraine with aura.",
@@ -4037,7 +4132,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-148.svg",
-   "alt": "table diagram for fnp-148"
+   "alt": "anatomy diagram for fnp-148"
   },
   "source": {
    "guideline": "CDC US MEC 2024",
@@ -4045,14 +4140,15 @@
    "url": "https://www.cdc.gov/contraception/hcp/usmec/index.html",
    "alt_url": "https://www.cdc.gov/contraception/hcp/usmec/summary-contraceptive.html",
    "recommendation": "Category 4 contraindications. IUD, implant, DMPA or progestin pill instead."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-149",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Emergency contraception: options and timing?",
+  "front": "A 36-year-old is in clinic. Emergency contraception: options and timing?",
   "bottom": "Copper IUD within 5 days, most effective.",
   "bullets": {
    "clue": "Ulipristal up to 120 hours; levonorgestrel ideally within 72 hours.",
@@ -4064,7 +4160,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-149.svg",
-   "alt": "Threshold. Copper IUD within 5 days, most effective."
+   "alt": "timeline diagram for fnp-149"
   },
   "source": {
    "guideline": "CDC US SPR 2024",
@@ -4072,14 +4168,15 @@
    "url": "https://www.cdc.gov/contraception/hcp/usspr/index.html",
    "alt_url": null,
    "recommendation": "Copper IUD within 5 days, most effective. Obesity lowers oral effectiveness; IUD preferred."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-150",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Folic acid before pregnancy: dose and timing?",
+  "front": "A 22-year-old is in clinic. Folic acid before pregnancy: dose and timing?",
   "bottom": "0.4–0.8 mg daily (A).",
   "bullets": {
    "clue": "Start at least 1 month before conception.",
@@ -4091,7 +4188,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-150.svg",
-   "alt": "Threshold. 0.4–0.8 mg daily (A)."
+   "alt": "threshold diagram for fnp-150"
   },
   "source": {
    "guideline": "USPSTF folic acid 2023; CDC folic acid clinician overview (July 15, 2026)",
@@ -4107,7 +4204,7 @@
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Who gets low-dose aspirin to prevent preeclampsia?",
+  "front": "A 26-year-old is in clinic. Who gets low-dose aspirin to prevent preeclampsia?",
   "bottom": "High risk: 81 mg daily after 12 weeks.",
   "bullets": {
    "clue": "Prior preeclampsia, multifetal, chronic HTN, diabetes, kidney or autoimmune disease.",
@@ -4119,7 +4216,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-151.svg",
-   "alt": "Threshold. High risk: 81 mg daily after 12 weeks."
+   "alt": "timeline diagram for fnp-151"
   },
   "source": {
    "guideline": "USPSTF aspirin preeclampsia 2021",
@@ -4127,14 +4224,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
    "alt_url": null,
    "recommendation": "High risk: 81 mg daily after 12 weeks. Also ≥2 moderate risk factors."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-152",
   "system": "Reproductive",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Menopausal hormone therapy: who is a good candidate?",
+  "front": "A 56-year-old is in clinic. Menopausal hormone therapy: who is a good candidate?",
   "bottom": "Under 60 or within 10 years of menopause.",
   "bullets": {
    "clue": "Bothersome vasomotor symptoms.",
@@ -4146,7 +4244,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-152.svg",
-   "alt": "Do and do not. Under 60 or within 10 years of menopause."
+   "alt": "contrast diagram for fnp-152"
   },
   "source": {
    "guideline": "Menopause Society 2022 HT position",
@@ -4154,14 +4252,15 @@
    "url": "https://doi.org/10.1097/GME.0000000000002028",
    "alt_url": null,
    "recommendation": "Under 60 or within 10 years of menopause. Uterus present: add progestogen; transdermal lowers VTE risk."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-153",
   "system": "MSK",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Osteoporosis: first-line drug, and how is it taken?",
+  "front": "A 68-year-old is in clinic. Osteoporosis: first-line drug, and how is it taken?",
   "bottom": "Bisphosphonate.",
   "bullets": {
    "clue": "Alendronate, risedronate or zoledronic acid.",
@@ -4173,7 +4272,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-153.svg",
-   "alt": "Steps. Bisphosphonate."
+   "alt": "ladder diagram for fnp-153"
   },
   "source": {
    "guideline": "ACP 2023 osteoporosis; Endocrine Society 2020",
@@ -4181,14 +4280,15 @@
    "url": "https://doi.org/10.7326/M22-1034",
    "alt_url": null,
    "recommendation": "Bisphosphonate. Very high risk: anabolic agent first, then antiresorptive; ensure calcium and vitamin D."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-154",
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Adult major depression: what is first-line treatment?",
+  "front": "A 61-year-old is in clinic. Adult major depression: what is first-line treatment?",
   "bottom": "Moderate to severe: CBT or a second-generation antidepressant alone.",
   "bullets": {
    "clue": "Combining CBT with an antidepressant is also suggested; mild disease: CBT alone.",
@@ -4200,7 +4300,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-154.svg",
-   "alt": "table diagram for fnp-154"
+   "alt": "branch diagram for fnp-154"
   },
   "source": {
    "guideline": "ACP 2023 major depressive disorder; FDA sertraline label boxed warning (2023)",
@@ -4208,14 +4308,15 @@
    "url": "https://doi.org/10.7326/M22-2056",
    "alt_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019839s108,20990s062lbl.pdf",
    "recommendation": "Moderate to severe: CBT or a second-generation antidepressant alone. No response to an adequate dose: switch, augment, or add CBT."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-155",
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "ADHD treatment by age?",
+  "front": "A 15-year-old is in clinic. ADHD treatment by age?",
   "bottom": "Ages 4–5: parent behavior training first.",
   "bullets": {
    "clue": "Ages 6–11: medication plus behavioral therapy.",
@@ -4227,7 +4328,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-155.svg",
-   "alt": "axis diagram for fnp-155"
+   "alt": "threshold diagram for fnp-155"
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -4243,7 +4344,7 @@
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Opioid use disorder: how do you start buprenorphine in primary care?",
+  "front": "A 28-year-old is in clinic. Opioid use disorder: how do you start buprenorphine in primary care?",
   "bottom": "Start at mild to moderate withdrawal.",
   "bullets": {
    "clue": "No X-waiver needed since 2023.",
@@ -4255,7 +4356,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-156.svg",
-   "alt": "Do and do not. Start at mild to moderate withdrawal."
+   "alt": "cycle diagram for fnp-156"
   },
   "source": {
    "guideline": "ASAM NPG 2020 focused update; ASAM 2024 clinical considerations",
@@ -4263,14 +4364,15 @@
    "url": "https://doi.org/10.1097/adm.0000000000000633",
    "alt_url": "https://downloads.asam.org/sitefinity-production-blobs/docs/default-source/guidelines/npg_2020_focus_update-final.pdf",
    "recommendation": "Start at mild to moderate withdrawal. Prescribe naloxone to every patient."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-157",
   "system": "Pulmonary",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Smoking cessation: most effective medication approach?",
+  "front": "A 42-year-old is in clinic. Smoking cessation: most effective medication approach?",
   "bottom": "Varenicline first-line.",
   "bullets": {
    "clue": "Start varenicline 1 week before quit date; treat at least 12 weeks.",
@@ -4282,7 +4384,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-157.svg",
-   "alt": "flow diagram for fnp-157"
+   "alt": "timeline diagram for fnp-157"
   },
   "source": {
    "guideline": "USPSTF tobacco 2021; ACC ECDP 2018 (still current)",
@@ -4290,7 +4392,8 @@
    "url": "https://www.acc.org/guidelines/guidelines/2018/12/05/07/44/tobacco-cessation-treatment",
    "alt_url": null,
    "recommendation": "Varenicline first-line. Or combination NRT: patch plus gum or lozenge."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-158",
@@ -4309,7 +4412,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-158.svg",
-   "alt": "table diagram for fnp-158"
+   "alt": "contrast diagram for fnp-158"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -4325,7 +4428,7 @@
   "system": "MSK",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Gout: acute flare treatment, and when to start urate-lowering therapy?",
+  "front": "A 76-year-old is in clinic. Gout: acute flare treatment, and when to start urate-lowering therapy?",
   "bottom": "Colchicine, NSAID or steroid for flares.",
   "bullets": {
    "clue": "ULT: ≥2 flares a year, tophi or joint damage.",
@@ -4337,7 +4440,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-159.svg",
-   "alt": "flow diagram for fnp-159"
+   "alt": "trend diagram for fnp-159"
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -4345,14 +4448,15 @@
    "url": "https://doi.org/10.1002/art.41247",
    "alt_url": null,
    "recommendation": "Colchicine, NSAID or steroid for flares. Allopurinol ≤100 mg/day; target urate <6."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-160",
   "system": "MSK",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Knee osteoarthritis: what is first-line therapy?",
+  "front": "An 80-year-old is in clinic. Knee osteoarthritis: what is first-line therapy?",
   "bottom": "Exercise, weight loss, topical NSAID.",
   "bullets": {
    "clue": "Tai chi, oral NSAIDs, intra-articular steroids.",
@@ -4364,7 +4468,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-160.svg",
-   "alt": "chips diagram for fnp-160"
+   "alt": "branch diagram for fnp-160"
   },
   "source": {
    "guideline": "ACR 2019 OA",
@@ -4372,14 +4476,15 @@
    "url": "https://doi.org/10.1002/art.41142",
    "alt_url": null,
    "recommendation": "Exercise, weight loss, topical NSAID. Avoid glucosamine, hyaluronic acid and PRP."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-161",
   "system": "MSK",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Acute low back pain without red flags: first steps?",
+  "front": "A 32-year-old is in clinic. Acute low back pain without red flags: first steps?",
   "bottom": "Stay active; heat, massage or manipulation.",
   "bullets": {
    "clue": "Drug: NSAID or skeletal muscle relaxant.",
@@ -4391,7 +4496,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-161.svg",
-   "alt": "flow diagram for fnp-161"
+   "alt": "ladder diagram for fnp-161"
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -4399,14 +4504,15 @@
    "url": "https://doi.org/10.7326/M16-2367",
    "alt_url": null,
    "recommendation": "Stay active; heat, massage or manipulation. No imaging without red flags."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-162",
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Migraine: when are triptans contraindicated, and what prevents attacks?",
+  "front": "A 16-year-old is in clinic. Migraine: when are triptans contraindicated, and what prevents attacks?",
   "bottom": "Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine.",
   "bullets": {
    "clue": "With vascular disease, gepants, ditans or devices may be useful.",
@@ -4418,7 +4524,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-162.svg",
-   "alt": "table diagram for fnp-162"
+   "alt": "anatomy diagram for fnp-162"
   },
   "source": {
    "guideline": "FDA triptan labeling; AHS consensus 2021; AHS CGRP position 2024; ICHD-3 (2018)",
@@ -4426,14 +4532,15 @@
    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d2cd01c-05e7-44cf-a71d-0f474e826b7e",
    "alt_url": "https://doi.org/10.1111/head.14692",
    "recommendation": "Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine. CGRP-targeting agents are a first-line prevention option."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-163",
   "system": "Derm",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Acne: what is first-line, and what precautions come with isotretinoin?",
+  "front": "A 17-year-old is in clinic. Acne: what is first-line, and what precautions come with isotretinoin?",
   "bottom": "Topical retinoid plus benzoyl peroxide.",
   "bullets": {
    "clue": "Inflammatory acne: add oral doxycycline, with topical therapy.",
@@ -4445,7 +4552,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-163.svg",
-   "alt": "Do and do not. Topical retinoid plus benzoyl peroxide."
+   "alt": "ladder diagram for fnp-163"
   },
   "source": {
    "guideline": "AAD 2024 acne",
@@ -4453,14 +4560,15 @@
    "url": "https://doi.org/10.1016/j.jaad.2023.12.017",
    "alt_url": null,
    "recommendation": "Topical retinoid plus benzoyl peroxide. Severe, nodular or scarring acne: isotretinoin."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-164",
   "system": "Derm",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Adult atopic dermatitis: which topical therapies are recommended?",
+  "front": "A 48-year-old is in clinic. Adult atopic dermatitis: which topical therapies are recommended?",
   "bottom": "Moisturizers plus a topical corticosteroid.",
   "bullets": {
    "clue": "Alternatives: tacrolimus, pimecrolimus, crisaborole or ruxolitinib cream.",
@@ -4472,7 +4580,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-164.svg",
-   "alt": "table diagram for fnp-164"
+   "alt": "branch diagram for fnp-164"
   },
   "source": {
    "guideline": "AAD 2023 atopic dermatitis (adult, topical therapy)",
@@ -4480,14 +4588,15 @@
    "url": "https://doi.org/10.1016/j.jaad.2022.12.029",
    "alt_url": null,
    "recommendation": "Moisturizers plus a topical corticosteroid. Maintenance: a medium-potency steroid twice weekly reduces relapse."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-165",
   "system": "Peds",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Head lice: first-line treatment and school return?",
+  "front": "A 2-year-old is in clinic. Head lice: first-line treatment and school return?",
   "bottom": "Permethrin 1% or pyrethrins.",
   "bullets": {
    "clue": "Repeat on day 9 to kill newly hatched lice.",
@@ -4499,7 +4608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-165.svg",
-   "alt": "flow diagram for fnp-165"
+   "alt": "cycle diagram for fnp-165"
   },
   "source": {
    "guideline": "AAP 2022 head lice",
@@ -4507,14 +4616,15 @@
    "url": "https://doi.org/10.1542/peds.2022-059282",
    "alt_url": null,
    "recommendation": "Permethrin 1% or pyrethrins. Resistance or failure: ivermectin lotion or spinosad."
-  }
+  },
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-166",
   "system": "GI",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "H. pylori: first-line regimen and test of cure?",
+  "front": "A 52-year-old is in clinic. H. pylori: first-line regimen and test of cure?",
   "bottom": "Bismuth quadruple therapy for 14 days.",
   "bullets": {
    "clue": "PPI, bismuth, tetracycline and metronidazole.",
@@ -4526,7 +4636,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-166.svg",
-   "alt": "Threshold. Bismuth quadruple therapy for 14 days."
+   "alt": "timeline diagram for fnp-166"
   },
   "source": {
    "guideline": "ACG H. pylori 2024",
@@ -4534,14 +4644,15 @@
    "url": "https://doi.org/10.14309/ajg.0000000000002968",
    "alt_url": null,
    "recommendation": "Bismuth quadruple therapy for 14 days. Test of cure at least 4 weeks after treatment."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-167",
   "system": "GI",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "C. difficile infection: first-line treatment?",
+  "front": "A 66-year-old is in clinic. C. difficile infection: first-line treatment?",
   "bottom": "Fidaxomicin preferred.",
   "bullets": {
    "clue": "Oral vancomycin 125 mg four times daily 10 days.",
@@ -4553,7 +4664,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-167.svg",
-   "alt": "Do and do not. Fidaxomicin preferred."
+   "alt": "contrast diagram for fnp-167"
   },
   "source": {
    "guideline": "IDSA/SHEA 2021 C. difficile",
@@ -4561,14 +4672,15 @@
    "url": "https://doi.org/10.1093/cid/ciab549",
    "alt_url": null,
    "recommendation": "Fidaxomicin preferred. Recurrent: fidaxomicin or FMT after multiple recurrences."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-168",
   "system": "Endocrine",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Pregnant patient on levothyroxine: how do you adjust the dose?",
+  "front": "A 36-year-old is in clinic. Pregnant patient on levothyroxine: how do you adjust the dose?",
   "bottom": "Increase 20–30% at pregnancy confirmation.",
   "bullets": {
    "clue": "Two extra doses per week is a simple approach.",
@@ -4580,7 +4692,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-168.svg",
-   "alt": "table diagram for fnp-168"
+   "alt": "cycle diagram for fnp-168"
   },
   "source": {
    "guideline": "ATA 2026 thyroid in pregnancy",
@@ -4596,7 +4708,7 @@
   "system": "Peds",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Child with BMI ≥95th percentile: what treatment?",
+  "front": "An 8-year-old is in clinic. Child with BMI ≥95th percentile: what treatment?",
   "bottom": "Intensive behavioral treatment.",
   "bullets": {
    "clue": "At least 26 contact hours over 3–12 months, family-based.",
@@ -4608,7 +4720,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-169.svg",
-   "alt": "flow diagram for fnp-169"
+   "alt": "ladder diagram for fnp-169"
   },
   "source": {
    "guideline": "AAP 2023 pediatric obesity",
@@ -4624,7 +4736,7 @@
   "system": "EENT",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "Allergic rhinitis: first-line therapy?",
+  "front": "A 13-year-old is in clinic. Allergic rhinitis: first-line therapy?",
   "bottom": "Intranasal corticosteroid.",
   "bullets": {
    "clue": "Oral antihistamine: second-generation preferred over first-generation.",
@@ -4636,7 +4748,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-170.svg",
-   "alt": "table diagram for fnp-170"
+   "alt": "contrast diagram for fnp-170"
   },
   "source": {
    "guideline": "AAAAI/ACAAI rhinitis 2020 practice parameter; CSACI 2019 antihistamine position",
@@ -4644,14 +4756,15 @@
    "url": "https://doi.org/10.1016/j.jaci.2020.07.007",
    "alt_url": "https://doi.org/10.1186/s13223-019-0375-9",
    "recommendation": "Intranasal corticosteroid. Adding an intranasal antihistamine to the steroid spray gives additive benefit."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-171",
   "system": "Cardiovascular",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "After starting antihypertensives: how do you follow BP?",
+  "front": "A 68-year-old is in clinic. After starting antihypertensives: how do you follow BP?",
   "bottom": "Monthly visits until goal, then every 3–6 months.",
   "bullets": {
    "clue": "Home BP: two readings morning and evening.",
@@ -4663,7 +4776,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-171.svg",
-   "alt": "flow diagram for fnp-171"
+   "alt": "cycle diagram for fnp-171"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -4671,7 +4784,8 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Monthly visits until goal, then every 3–6 months. Titrate to <130/80."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-172",
@@ -4690,7 +4804,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-172.svg",
-   "alt": "Threshold. Less stringent, often <8.0%."
+   "alt": "threshold diagram for fnp-172"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -4706,7 +4820,7 @@
   "system": "Endocrine",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Patient on insulin with glucose 52 mg/dL: how do you treat?",
+  "front": "A 56-year-old is in clinic. Patient on insulin with glucose 52 mg/dL: how do you treat?",
   "bottom": "Level 2 hypoglycemia; 15–20 g glucose.",
   "bullets": {
    "clue": "Recheck in 15 minutes; repeat if still low.",
@@ -4718,7 +4832,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-173.svg",
-   "alt": "Threshold. Level 2 hypoglycemia; 15–20 g glucose."
+   "alt": "trend diagram for fnp-173"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -4726,7 +4840,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://doi.org/10.2337/dc26-s006",
    "recommendation": "Level 2 hypoglycemia; 15–20 g glucose. Unable to swallow: glucagon."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-174",
@@ -4745,7 +4860,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-174.svg",
-   "alt": "Threshold. 75-g OGTT at 4–12 weeks."
+   "alt": "threshold diagram for fnp-174"
   },
   "source": {
    "guideline": "ACOG Clinical Practice Update 2024",
@@ -4761,7 +4876,7 @@
   "system": "Cardiovascular",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Muscle aches on a statin: how do you evaluate?",
+  "front": "A 61-year-old is in clinic. Muscle aches on a statin: how do you evaluate?",
   "bottom": "Check CK and TSH.",
   "bullets": {
    "clue": "Symptoms in large muscles, often bilateral.",
@@ -4773,7 +4888,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-175.svg",
-   "alt": "flow diagram for fnp-175"
+   "alt": "anatomy diagram for fnp-175"
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -4781,14 +4896,15 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": null,
    "recommendation": "Check CK and TSH. Stop if severe or CK >10× ULN; rechallenge lower dose or another statin."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-176",
   "system": "Renal",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "After starting an ACEi or ARB: what labs, and when?",
+  "front": "A 76-year-old is in clinic. After starting an ACEi or ARB: what labs, and when?",
   "bottom": "Creatinine and potassium at 2–4 weeks.",
   "bullets": {
    "clue": "Up to 30% creatinine rise is acceptable.",
@@ -4800,7 +4916,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-176.svg",
-   "alt": "Threshold. Creatinine and potassium at 2–4 weeks."
+   "alt": "trend diagram for fnp-176"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -4808,14 +4924,15 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "Creatinine and potassium at 2–4 weeks. Manage high potassium rather than stop RAAS blockade."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-177",
   "system": "Cardiovascular",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "ACEi plus spironolactone: what is the main risk, and how do you monitor?",
+  "front": "An 80-year-old is in clinic. ACEi plus spironolactone: what is the main risk, and how do you monitor?",
   "bottom": "Hyperkalemia.",
   "bullets": {
    "clue": "Start MRA only if eGFR >30 and K <5.0.",
@@ -4827,7 +4944,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-177.svg",
-   "alt": "Steps. Hyperkalemia."
+   "alt": "anatomy diagram for fnp-177"
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -4835,14 +4952,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": null,
    "recommendation": "Hyperkalemia. Check K and creatinine within 1 week, then periodically."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-178",
   "system": "GI",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "After hepatitis C treatment: how is cure confirmed?",
+  "front": "A 42-year-old is in clinic. After hepatitis C treatment: how is cure confirmed?",
   "bottom": "HCV RNA ≥12 weeks after therapy (SVR12).",
   "bullets": {
    "clue": "Antibody stays positive after cure.",
@@ -4854,7 +4972,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-178.svg",
-   "alt": "Threshold. HCV RNA ≥12 weeks after therapy (SVR12)."
+   "alt": "cycle diagram for fnp-178"
   },
   "source": {
    "guideline": "AASLD/IDSA HCV Guidance (living, reviewed 2025)",
@@ -4862,14 +4980,15 @@
    "url": "https://www.hcvguidelines.org/guidance/simplified-hcv-treatment-for-treatment-naive-adults-without-cirrhosis/",
    "alt_url": null,
    "recommendation": "HCV RNA ≥12 weeks after therapy (SVR12). No cirrhosis: no liver follow-up after cure."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-179",
   "system": "Heme",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Warfarin: INR targets and key interactions?",
+  "front": "A 66-year-old is in clinic. Warfarin: INR targets and key interactions?",
   "bottom": "INR 2–3 for AF and VTE.",
   "bullets": {
    "clue": "Mechanical mitral valve: 2.5–3.5.",
@@ -4881,7 +5000,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-179.svg",
-   "alt": "flow diagram for fnp-179"
+   "alt": "trend diagram for fnp-179"
   },
   "source": {
    "guideline": "CHEST VTE antithrombotic 2021",
@@ -4889,14 +5008,15 @@
    "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
    "alt_url": null,
    "recommendation": "INR 2–3 for AF and VTE. TMP-SMX, metronidazole, fluconazole and amiodarone raise INR."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-180",
   "system": "Heme",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "DOAC therapy: how is dose adjusted for kidney function?",
+  "front": "A 68-year-old is in clinic. DOAC therapy: how is dose adjusted for kidney function?",
   "bottom": "Use Cockcroft-Gault creatinine clearance.",
   "bullets": {
    "clue": "Apixaban 2.5 mg: ≥2 of age ≥80, weight ≤60 kg, creatinine ≥1.5.",
@@ -4908,7 +5028,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-180.svg",
-   "alt": "table diagram for fnp-180"
+   "alt": "threshold diagram for fnp-180"
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -4916,14 +5036,15 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "Use Cockcroft-Gault creatinine clearance. Check renal function at least yearly."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-181",
   "system": "Endocrine",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "After a levothyroxine dose change: when do you recheck TSH?",
+  "front": "A 48-year-old is in clinic. After a levothyroxine dose change: when do you recheck TSH?",
   "bottom": "In 4–6 weeks.",
   "bullets": {
    "clue": "Steady state takes about 6 weeks after any dose change.",
@@ -4935,7 +5056,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-181.svg",
-   "alt": "Threshold. In 4–6 weeks."
+   "alt": "timeline diagram for fnp-181"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -4943,14 +5064,15 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267409/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "In 4–6 weeks. At target: recheck in 4–6 months, then yearly."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-182",
   "system": "Pulmonary",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Asthma follow-up: how do you assess control and step down?",
+  "front": "A 52-year-old is in clinic. Asthma follow-up: how do you assess control and step down?",
   "bottom": "Symptoms over the past 4 weeks.",
   "bullets": {
    "clue": "Daytime symptoms or reliever use >2/week, night waking, activity limit.",
@@ -4962,7 +5084,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-182.svg",
-   "alt": "Threshold. Symptoms over the past 4 weeks."
+   "alt": "cycle diagram for fnp-182"
   },
   "source": {
    "guideline": "GINA 2025",
@@ -4970,14 +5092,15 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "Symptoms over the past 4 weeks. Step down after 3 months of good control."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-183",
   "system": "Pulmonary",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "After a COPD exacerbation: what follow-up?",
+  "front": "A 72-year-old is in clinic. After a COPD exacerbation: what follow-up?",
   "bottom": "Visit within 1–4 weeks.",
   "bullets": {
    "clue": "Review inhaler technique, adherence and blood eosinophils.",
@@ -4989,7 +5112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-183.svg",
-   "alt": "Threshold. Visit within 1–4 weeks."
+   "alt": "cycle diagram for fnp-183"
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -4997,14 +5120,15 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "Visit within 1–4 weeks. Start pulmonary rehab within 4 weeks of discharge."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-184",
   "system": "Cardiovascular",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Heart failure follow-up: what is tracked at home?",
+  "front": "A 76-year-old is in clinic. Heart failure follow-up: what is tracked at home?",
   "bottom": "Daily weights and symptoms.",
   "bullets": {
    "clue": "Weigh each morning after voiding, same scale and clothing.",
@@ -5016,7 +5140,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-184.svg",
-   "alt": "Do and do not. Daily weights and symptoms."
+   "alt": "cycle diagram for fnp-184"
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -5024,7 +5148,8 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "Daily weights and symptoms. Rapid weight gain or worse dyspnea: adjust diuretic."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-185",
@@ -5043,7 +5168,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-185.svg",
-   "alt": "flow diagram for fnp-185"
+   "alt": "cycle diagram for fnp-185"
   },
   "source": {
    "guideline": "FDA antidepressant boxed warning (2004, extended to under 25 in 2007)",
@@ -5059,7 +5184,7 @@
   "system": "Psych",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Child on stimulants: what do you monitor?",
+  "front": "A 10-year-old is in clinic. Child on stimulants: what do you monitor?",
   "bottom": "Height, weight, BP and heart rate.",
   "bullets": {
    "clue": "Appetite and sleep changes are common.",
@@ -5071,7 +5196,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-186.svg",
-   "alt": "table diagram for fnp-186"
+   "alt": "branch diagram for fnp-186"
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -5087,7 +5212,7 @@
   "system": "Endocrine",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Metformin and kidney function: what eGFR thresholds matter?",
+  "front": "An 80-year-old is in clinic. Metformin and kidney function: what eGFR thresholds matter?",
   "bottom": "Contraindicated below eGFR 30.",
   "bullets": {
    "clue": "Don't start at eGFR 30–45.",
@@ -5099,7 +5224,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-187.svg",
-   "alt": "flow diagram for fnp-187"
+   "alt": "threshold diagram for fnp-187"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -5107,14 +5232,15 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "Contraindicated below eGFR 30. Reassess benefit if eGFR falls below 45."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-188",
   "system": "MSK",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Bisphosphonate after 5 years: when is a drug holiday reasonable?",
+  "front": "A 66-year-old is in clinic. Bisphosphonate after 5 years: when is a drug holiday reasonable?",
   "bottom": "Low to moderate fracture risk.",
   "bullets": {
    "clue": "Reassess after 5 years oral or 3 years IV.",
@@ -5126,7 +5252,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-188.svg",
-   "alt": "axis diagram for fnp-188"
+   "alt": "timeline diagram for fnp-188"
   },
   "source": {
    "guideline": "ACP 2023 osteoporosis; ASBMR 2016 drug-holiday task force",
@@ -5134,14 +5260,15 @@
    "url": "https://doi.org/10.7326/M22-1034",
    "alt_url": "https://doi.org/10.1002/jbmr.2708",
    "recommendation": "Low to moderate fracture risk. High risk: continue treatment."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-189",
   "system": "Reproductive",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Chlamydia in pregnancy: what follow-up testing is required?",
+  "front": "A 26-year-old is in clinic. Chlamydia in pregnancy: what follow-up testing is required?",
   "bottom": "Test of cure 4 weeks after treatment.",
   "bullets": {
    "clue": "Retest again in 3 months.",
@@ -5153,7 +5280,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-189.svg",
-   "alt": "Threshold. Test of cure 4 weeks after treatment."
+   "alt": "cycle diagram for fnp-189"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5169,7 +5296,7 @@
   "system": "ID",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Treated syphilis: how is response monitored?",
+  "front": "A 56-year-old is in clinic. Treated syphilis: how is response monitored?",
   "bottom": "Fourfold RPR decline within 6–12 months.",
   "bullets": {
    "clue": "Same nontreponemal test each time.",
@@ -5181,7 +5308,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-190.svg",
-   "alt": "table diagram for fnp-190"
+   "alt": "trend diagram for fnp-190"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5189,14 +5316,15 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
    "alt_url": null,
    "recommendation": "Fourfold RPR decline within 6–12 months. Latent syphilis: follow 12–24 months."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-191",
   "system": "ID",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Patient on ART: how is viral load monitored?",
+  "front": "A 61-year-old is in clinic. Patient on ART: how is viral load monitored?",
   "bottom": "Viral load 4–8 weeks after start.",
   "bullets": {
    "clue": "Then every 4–8 weeks until suppressed.",
@@ -5208,7 +5336,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-191.svg",
-   "alt": "Threshold. Viral load 4–8 weeks after start."
+   "alt": "threshold diagram for fnp-191"
   },
   "source": {
    "guideline": "DHHS adult/adolescent ARV guidelines (updated Sep 2026)",
@@ -5216,7 +5344,8 @@
    "url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/plasma-hiv-1-rna-cd4-monitoring",
    "alt_url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/initiation-antiretroviral-therapy",
    "recommendation": "Viral load 4–8 weeks after start. Then every 3–4 months; 6 months if stable."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-192",
@@ -5235,7 +5364,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-192.svg",
-   "alt": "table diagram for fnp-192"
+   "alt": "anatomy diagram for fnp-192"
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -5263,7 +5392,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-193.svg",
-   "alt": "Threshold. Contact within 3 weeks; full visit by 12 weeks."
+   "alt": "timeline diagram for fnp-193"
   },
   "source": {
    "guideline": "ACOG CO 736 2018",
@@ -5291,7 +5420,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-194.svg",
-   "alt": "Threshold. Regain birth weight by 10–14 days."
+   "alt": "trend diagram for fnp-194"
   },
   "source": {
    "guideline": "AAP 2022 breastfeeding policy",
@@ -5319,7 +5448,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-195.svg",
-   "alt": "flow diagram for fnp-195"
+   "alt": "branch diagram for fnp-195"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -5335,7 +5464,7 @@
   "system": "Endocrine",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Diabetic foot ulcer: what is first-line management?",
+  "front": "A 72-year-old is in clinic. Diabetic foot ulcer: what is first-line management?",
   "bottom": "Offload pressure; check perfusion.",
   "bullets": {
    "clue": "Nonremovable knee-high device for plantar ulcer.",
@@ -5347,7 +5476,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-196.svg",
-   "alt": "table diagram for fnp-196"
+   "alt": "ladder diagram for fnp-196"
   },
   "source": {
    "guideline": "IWGDF 2023",
@@ -5355,14 +5484,15 @@
    "url": "https://iwgdfguidelines.org/guidelines-2023/",
    "alt_url": null,
    "recommendation": "Offload pressure; check perfusion. Probe-to-bone and X-ray for osteomyelitis."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-197",
   "system": "Derm",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Pressure injury: how is it staged and managed?",
+  "front": "A 76-year-old is in clinic. Pressure injury: how is it staged and managed?",
   "bottom": "Depth sets the stage.",
   "bullets": {
    "clue": "Stage 1: intact skin, non-blanchable redness.",
@@ -5374,7 +5504,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-197.svg",
-   "alt": "chips diagram for fnp-197"
+   "alt": "contrast diagram for fnp-197"
   },
   "source": {
    "guideline": "NPIAP 2019 international guideline",
@@ -5382,14 +5512,15 @@
    "url": "https://npiap.com/page/2019Guideline",
    "alt_url": "https://doi.org/10.1097/WON.0000000000000281",
    "recommendation": "Depth sets the stage. Offload pressure: reposition, support surface; Braden scale for risk."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-198",
   "system": "Professional",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Screening test results: how do sensitivity, specificity and predictive values differ?",
+  "front": "A 42-year-old is in clinic. Screening test results: how do sensitivity, specificity and predictive values differ?",
   "bottom": "High sensitivity: a negative result rules out. High specificity: a positive rules in.",
   "bullets": {
    "clue": "Sensitivity = TP/(TP+FN); specificity = TN/(TN+FP).",
@@ -5401,7 +5532,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-198.svg",
-   "alt": "table diagram for fnp-198"
+   "alt": "ladder diagram for fnp-198"
   },
   "source": {
    "guideline": "Parikh 2008 sensitivity, specificity and predictive values",
@@ -5409,14 +5540,15 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2636062/",
    "alt_url": "https://doi.org/10.4103/0301-4738.37595",
    "recommendation": "High sensitivity: a negative result rules out. High specificity: a positive rules in. Higher prevalence raises PPV and lowers NPV."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-199",
   "system": "Professional",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "After hospital discharge: what does transitional care include?",
+  "front": "An 80-year-old is in clinic. After hospital discharge: what does transitional care include?",
   "bottom": "Contact within 2 business days.",
   "bullets": {
    "clue": "Face-to-face visit within 7 or 14 days.",
@@ -5428,7 +5560,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-199.svg",
-   "alt": "flow diagram for fnp-199"
+   "alt": "cycle diagram for fnp-199"
   },
   "source": {
    "guideline": "CMS Transitional Care Management services (MLN908628)",
@@ -5436,14 +5568,15 @@
    "url": "https://www.cms.gov/files/document/mln908628-transitional-care-management-services.pdf",
    "alt_url": null,
    "recommendation": "Contact within 2 business days. Medication reconciliation at the visit."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-200",
   "system": "Endocrine",
   "blueprint_weight": "15%",
   "task_area": "Evaluate",
-  "front": "Weight-loss medication: when do you judge response?",
+  "front": "A 48-year-old is in clinic. Weight-loss medication: when do you judge response?",
   "bottom": "At 12 weeks on maintenance dose.",
   "bullets": {
    "clue": "Goal: at least 5% weight loss.",
@@ -5455,7 +5588,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-200.svg",
-   "alt": "Threshold. At 12 weeks on maintenance dose."
+   "alt": "contrast diagram for fnp-200"
   },
   "source": {
    "guideline": "AGA 2022 obesity pharmacotherapy",
@@ -5463,6 +5596,7 @@
    "url": "https://doi.org/10.1053/j.gastro.2022.08.045",
    "alt_url": null,
    "recommendation": "At 12 weeks on maintenance dose. Below 5%: stop or switch."
-  }
+  },
+  "age_band": "Middle adult"
  }
 ]

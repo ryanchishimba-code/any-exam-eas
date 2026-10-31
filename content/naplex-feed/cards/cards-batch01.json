@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-001.svg",
-   "alt": "Do and do not. Metoprolol, atenolol, bisoprolol, nebivolol: beta-1 selective."
+   "alt": "branch diagram for naplex-001"
   },
   "source": {
    "guideline": "FDA labeling; 2022 AHA/ACC/HFSA HF",
@@ -50,7 +50,7 @@
   "mnemonic": "Can't see, can't pee, can't spit, can't poop.",
   "diagram": {
    "file": "svg/naplex-002.svg",
-   "alt": "chips diagram for naplex-002"
+   "alt": "anatomy diagram for naplex-002"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-003.svg",
-   "alt": "Steps. Serotonin syndrome: fast onset, clonus."
+   "alt": "contrast diagram for naplex-003"
   },
   "source": {
    "guideline": "FDA labeling; Hunter criteria",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-004.svg",
-   "alt": "Steps. Additive QT drugs raise torsades risk."
+   "alt": "ladder diagram for naplex-004"
   },
   "source": {
    "guideline": "CredibleMeds/FDA labeling 2026",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-005.svg",
-   "alt": "Steps. Strong CYP3A4 inhibitor: statin levels spike."
+   "alt": "contrast diagram for naplex-005"
   },
   "source": {
    "guideline": "ICH M12 Drug Interaction guidance 2024 (supersedes FDA 2020 DDI guidances); FDA labeling",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-006.svg",
-   "alt": "Steps. CYP2C9 and VKORC1 variants lower dose needs."
+   "alt": "ladder diagram for naplex-006"
   },
   "source": {
    "guideline": "CPIC warfarin 2017",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-007.svg",
-   "alt": "flow diagram for naplex-007"
+   "alt": "branch diagram for naplex-007"
   },
   "source": {
    "guideline": "CPIC clopidogrel 2022; FDA BBW",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-008.svg",
-   "alt": "table diagram for naplex-008"
+   "alt": "ladder diagram for naplex-008"
   },
   "source": {
    "guideline": "CPIC 2017 (CBZ), 2015 (allopurinol); ACR 2020 gout",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-009.svg",
-   "alt": "flow diagram for naplex-009"
+   "alt": "contrast diagram for naplex-009"
   },
   "source": {
    "guideline": "CPIC TPMT/NUDT15 2025 update; CPIC DPYD 2024",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-011.svg",
-   "alt": "Do and do not. AB = therapeutically equivalent; substitutable."
+   "alt": "trend diagram for naplex-011"
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-012.svg",
-   "alt": "Steps. Three-plus group means: ANOVA."
+   "alt": "branch diagram for naplex-012"
   },
   "source": {
    "guideline": "CONSORT 2025; standard biostatistics",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-013.svg",
-   "alt": "Steps. Store each one exactly as labeled."
+   "alt": "timeline diagram for naplex-013"
   },
   "source": {
    "guideline": "USP <659>; FDA labeling; CDC Vaccine Storage & Handling Toolkit (updated Jul 2026)",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-014.svg",
-   "alt": "Steps. Water drives the BUD."
+   "alt": "timeline diagram for naplex-014"
   },
   "source": {
    "guideline": "USP <795> (2023 revision)",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-015.svg",
-   "alt": "Steps. Category drives BUD and room requirements."
+   "alt": "timeline diagram for naplex-015"
   },
   "source": {
    "guideline": "USP <797> (2023 revision)",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-016.svg",
-   "alt": "Do and do not. C-PEC inside a negative-pressure C-SEC."
+   "alt": "branch diagram for naplex-016"
   },
   "source": {
    "guideline": "USP <800>; NIOSH HD List 2024",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-017.svg",
-   "alt": "flow diagram for naplex-017"
+   "alt": "contrast diagram for naplex-017"
   },
   "source": {
    "guideline": "USP <795>; Remington",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-018.svg",
-   "alt": "Threshold. CrCl ≈ 59 mL/min."
+   "alt": "threshold diagram for naplex-018"
   },
   "source": {
    "guideline": "Cockcroft-Gault 1976; FDA renal guidance 2024",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-019.svg",
-   "alt": "flow diagram for naplex-019"
+   "alt": "ladder diagram for naplex-019"
   },
   "source": {
    "guideline": "Devine 1974 formula",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-020.svg",
-   "alt": "Threshold. BSA 1.82 m²; dose 136 mg."
+   "alt": "trend diagram for naplex-020"
   },
   "source": {
    "guideline": "Mosteller 1987",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-021.svg",
-   "alt": "Threshold. Corrected Ca = 9.2 mg/dL: normal."
+   "alt": "threshold diagram for naplex-021"
   },
   "source": {
    "guideline": "Payne formula (Ca + 0.8×(4−alb))",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-022.svg",
-   "alt": "Steps. AG 28; osmolal gap 30: think toxic alcohol."
+   "alt": "ladder diagram for naplex-022"
   },
   "source": {
    "guideline": "Standard AG formula",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-023.svg",
-   "alt": "Threshold. Corrected phenytoin = 16 mcg/mL."
+   "alt": "trend diagram for naplex-023"
   },
   "source": {
    "guideline": "Sheiner-Tozer equation (Sheiner & Tozer 1978; review Ann Pharmacother 2016)",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-024.svg",
-   "alt": "table diagram for naplex-024"
+   "alt": "contrast diagram for naplex-024"
   },
   "source": {
    "guideline": "Friedewald 1972 / Martin-Hopkins; 2026 ACC/AHA Dyslipidemia",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-025.svg",
-   "alt": "Steps. ANC 1,350: mild neutropenia; continue clozapine."
+   "alt": "threshold diagram for naplex-025"
   },
   "source": {
    "guideline": "Standard ANC formula; clozapine labeling 2025",
