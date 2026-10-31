@@ -1,0 +1,245 @@
+[
+  {
+    "id": "pance-178",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Creatinine doubles after a week of vomiting and NSAIDs: how do you define AKI, tell prerenal from ATN from postrenal, and what is the first imaging?",
+    "bottom": "KDIGO: rise ≥0.3 mg/dL in 48 h, or ≥1.5× baseline.",
+    "bullets": {
+      "clue": "Prerenal: FENa <1%. ATN: muddy brown casts. Postrenal: hydronephrosis.",
+      "treat": "Bladder scan or renal ultrasound; stop nephrotoxins; fluids if hypovolemic.",
+      "trap": "Diuretics invalidate FENa: use fractional urea excretion."
+    },
+    "back": "KDIGO: rise ≥0.3 mg/dL in 48 h, or ≥1.5× baseline. Key clue: Prerenal: FENa <1%. ATN: muddy brown casts. Postrenal: hydronephrosis. First-line: Bladder scan or renal ultrasound; stop nephrotoxins; fluids if hypovolemic. Exam trap: Diuretics invalidate FENa: use fractional urea excretion.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-178.svg",
+      "alt": "Acute kidney injury: creatinine rise of 0.3 in 48 hours or 1.5 times baseline; prerenal has FENa under 1 percent, ATN has muddy brown casts, postrenal shows hydronephrosis."
+    },
+    "source": {
+      "guideline": "KDIGO Clinical Practice Guideline for Acute Kidney Injury",
+      "year": "2012",
+      "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+      "alt_url": "https://kdigo.org/guidelines/acute-kidney-injury/",
+      "recommendation": "KDIGO 2012: AKI = serum creatinine rise ≥0.3 mg/dL within 48 h, or ≥1.5× baseline within 7 days, or urine output <0.5 mL/kg/h for 6 h; stop nephrotoxic agents when possible; evaluate for obstruction (ultrasound) when cause unclear."
+    }
+  },
+  {
+    "id": "pance-179",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "How is CKD staged, and which drugs slow progression in diabetic or proteinuric CKD?",
+    "bottom": "Stage by GFR (G1–G5) and albuminuria (A1–A3).",
+    "bullets": {
+      "clue": "G3a 45–59, G3b 30–44, G4 15–29, G5 <15; A3 = ACR >300 mg/g.",
+      "treat": "ACEi or ARB for albuminuria; add SGLT2 inhibitor if eGFR ≥20.",
+      "trap": "Recheck creatinine, potassium in 2–4 weeks."
+    },
+    "back": "Stage by GFR (G1–G5) and albuminuria (A1–A3). Key clue: G3a 45–59, G3b 30–44, G4 15–29, G5 <15; A3 = ACR >300 mg/g. First-line: ACEi or ARB for albuminuria; add SGLT2 inhibitor if eGFR ≥20. Exam trap: Recheck creatinine, potassium in 2–4 weeks.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-179.svg",
+      "alt": "Chronic kidney disease staging by GFR categories G1 to G5 and albuminuria categories A1 to A3; ACE inhibitor or ARB and SGLT2 inhibitor slow progression."
+    },
+    "source": {
+      "guideline": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease",
+      "year": "2024",
+      "url": "https://doi.org/10.1016/j.kint.2023.10.018",
+      "alt_url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "recommendation": "KDIGO 2024: CKD = abnormalities of kidney structure or function >3 months, classified by cause, GFR (G1–G5) and albuminuria (A1–A3); RAS inhibitor for CKD with severely increased albuminuria and for diabetes with moderately increased albuminuria; SGLT2 inhibitor for eligible CKD (eGFR ≥20); monitor potassium and creatinine after starting RAS inhibitor."
+    }
+  },
+  {
+    "id": "pance-180",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Clinical Intervention",
+    "front": "Sodium 116 mEq/L with a seizure: first treatment, and how fast can sodium be corrected?",
+    "bottom": "Severe symptoms: 3% hypertonic saline bolus.",
+    "bullets": {
+      "clue": "Seizure, coma or vomiting = severe symptoms.",
+      "treat": "150 mL 3% saline over 20 min; limit rise to 10 mEq/L in 24 h.",
+      "trap": "Overcorrection causes osmotic demyelination (dysarthria, quadriparesis)."
+    },
+    "back": "Severe symptoms: 3% hypertonic saline bolus. Key clue: Seizure, coma or vomiting = severe symptoms. First-line: 150 mL 3% saline over 20 min; limit rise to 10 mEq/L in 24 h. Exam trap: Overcorrection causes osmotic demyelination (dysarthria, quadriparesis).",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-180.svg",
+      "alt": "Severe symptomatic hyponatremia: 150 milliliters of 3 percent saline over 20 minutes, and limit the rise to 10 mEq/L in 24 hours to avoid osmotic demyelination."
+    },
+    "source": {
+      "guideline": "Clinical practice guideline on diagnosis and treatment of hyponatraemia (ESE, ESICM, ERA-EDTA)",
+      "year": "2014",
+      "url": "https://doi.org/10.1530/eje-13-1020",
+      "alt_url": "https://doi.org/10.1093/ndt/gfu040",
+      "recommendation": "ESE/ERA-EDTA 2014: severe symptoms: 150 mL 3% hypertonic saline IV over 20 min, repeat to a 5 mmol/L rise; limit rise to 10 mmol/L in first 24 h and 8 mmol/L each following 24 h; SIADH: fluid restriction."
+    }
+  },
+  {
+    "id": "pance-181",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Metabolic acidosis with an anion gap of 24: what are the causes, and what does a high osmolar gap suggest?",
+    "bottom": "High gap: think GOLDMARK; high osmolar gap: toxic alcohols.",
+    "bullets": {
+      "clue": "Gap = Na − (Cl + HCO3); normal ≈ 8–12.",
+      "treat": "Ethylene glycol or methanol: fomepizole plus dialysis.",
+      "trap": "Normal-gap acidosis: diarrhea, renal tubular acidosis."
+    },
+    "back": "High gap: think GOLDMARK; high osmolar gap: toxic alcohols. Key clue: Gap = Na − (Cl + HCO3); normal ≈ 8–12. First-line: Ethylene glycol or methanol: fomepizole plus dialysis. Exam trap: Normal-gap acidosis: diarrhea, renal tubular acidosis.",
+    "word_count": 37,
+    "mnemonic": "GOLDMARK: Glycols, Oxoproline, L- and D-lactate, Methanol, Aspirin, Renal failure, Ketones",
+    "diagram": {
+      "file": "svg/pance-181.svg",
+      "alt": "Anion gap metabolic acidosis: sodium minus chloride plus bicarbonate; GOLDMARK causes; ethylene glycol and methanol are treated with fomepizole and dialysis."
+    },
+    "source": {
+      "guideline": "AACT Practice Guidelines on the Treatment of Ethylene Glycol Poisoning",
+      "year": "1999",
+      "url": "https://doi.org/10.1081/clt-100102445",
+      "alt_url": "https://doi.org/10.1081/clt-120006745",
+      "recommendation": "AACT 1999: fomepizole (or ethanol) and hemodialysis for ethylene glycol poisoning with acidosis, renal failure or high levels; alternate link: AACT 2002 methanol practice guideline."
+    }
+  },
+  {
+    "id": "pance-182",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Proteinuria >3.5 g/day with edema and low albumin versus hematuria with RBC casts and hypertension: which syndrome, and what are the common causes?",
+    "bottom": "Nephrotic = heavy protein loss; nephritic = RBC casts.",
+    "bullets": {
+      "clue": "Nephrotic: minimal change (child), membranous or FSGS (adult). Nephritic: IgA, post-strep.",
+      "treat": "Minimal change: steroids. IgA with proteinuria: ACEi/ARB.",
+      "trap": "Nephrotic patients clot: renal vein thrombosis."
+    },
+    "back": "Nephrotic = heavy protein loss; nephritic = RBC casts. Key clue: Nephrotic: minimal change (child), membranous or FSGS (adult). Nephritic: IgA, post-strep. First-line: Minimal change: steroids. IgA with proteinuria: ACEi/ARB. Exam trap: Nephrotic patients clot: renal vein thrombosis.",
+    "word_count": 38,
+    "mnemonic": "Nephrotic: tons of protein. Nephritic: bloody",
+    "diagram": {
+      "file": "svg/pance-182.svg",
+      "alt": "Nephrotic syndrome has heavy proteinuria, edema and high lipids; nephritic syndrome has hematuria, red cell casts and hypertension; minimal change responds to steroids."
+    },
+    "source": {
+      "guideline": "KDIGO 2021 Clinical Practice Guideline for the Management of Glomerular Diseases",
+      "year": "2021",
+      "url": "https://doi.org/10.1016/j.kint.2021.05.015",
+      "alt_url": "https://kdigo.org/guidelines/gd/",
+      "recommendation": "KDIGO 2021: kidney biopsy for most adults with nephrotic syndrome; corticosteroids for minimal change disease; supportive care with RAS blockade for IgA nephropathy with proteinuria."
+    }
+  },
+  {
+    "id": "pance-183",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Sudden colicky flank pain radiating to the groin with hematuria: best initial test, and when is a stone an emergency?",
+    "bottom": "Renal colic: noncontrast CT; infection with obstruction is an emergency.",
+    "bullets": {
+      "clue": "Colic, hematuria; fever plus obstruction = urgent decompression.",
+      "treat": "Stone ≤10 mm: NSAIDs, fluids, tamsulosin. Obstructed and infected: stent or nephrostomy.",
+      "trap": "Pregnancy: ultrasound first, not CT."
+    },
+    "back": "Renal colic: noncontrast CT; infection with obstruction is an emergency. Key clue: Colic, hematuria; fever plus obstruction = urgent decompression. First-line: Stone ≤10 mm: NSAIDs, fluids, tamsulosin. Obstructed and infected: stent or nephrostomy. Exam trap: Pregnancy: ultrasound first, not CT.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-183.svg",
+      "alt": "Renal colic: noncontrast CT is the usual first imaging test; an obstructed infected stone needs urgent drainage; use ultrasound in pregnancy."
+    },
+    "source": {
+      "guideline": "ACR Appropriateness Criteria: Acute Onset Flank Pain, Suspicion of Stone Disease (Urolithiasis)",
+      "year": "2023",
+      "url": "https://www.jacr.org/article/S1546-1440(23)00619-1/fulltext",
+      "alt_url": "https://www.radiologyinfo.org/en/info/acs-acute-onset-flank-pain-suspicion-stone-disease",
+      "recommendation": "ACR 2023: noncontrast CT usually appropriate for initial imaging in nonpregnant adults; ultrasound may be appropriate but less sensitive; in pregnancy, retroperitoneal ultrasound is usually appropriate and contrast CT is not."
+    }
+  },
+  {
+    "id": "pance-184",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Hypertension with bilateral flank masses and a family history of kidney failure: diagnosis and disease-slowing drug? How does renal artery stenosis present?",
+    "bottom": "ADPKD: ultrasound diagnosis; tolvaptan for rapid progressors.",
+    "bullets": {
+      "clue": "Large cystic kidneys, HTN, hematuria, liver cysts, berry aneurysm risk.",
+      "treat": "BP control with ACEi/ARB; tolvaptan if rapidly progressing.",
+      "trap": "Renal artery stenosis: abdominal bruit, flash edema; ACEi can cause AKI."
+    },
+    "back": "ADPKD: ultrasound diagnosis; tolvaptan for rapid progressors. Key clue: Large cystic kidneys, HTN, hematuria, liver cysts, berry aneurysm risk. First-line: BP control with ACEi/ARB; tolvaptan if rapidly progressing. Exam trap: Renal artery stenosis: abdominal bruit, flash edema; ACEi can cause AKI.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-184.svg",
+      "alt": "Autosomal dominant polycystic kidney disease: large cystic kidneys with hypertension, diagnosed by ultrasound; tolvaptan slows progression. Renal artery stenosis causes resistant hypertension."
+    },
+    "source": {
+      "guideline": "KDIGO 2025 Clinical Practice Guideline for ADPKD; ERBP Atherosclerotic renovascular disease clinical practice document (2023)",
+      "year": "2025 / 2023",
+      "url": "https://doi.org/10.1016/j.kint.2024.07.009",
+      "alt_url": "https://doi.org/10.1093/ndt/gfad095",
+      "recommendation": "KDIGO ADPKD guideline: imaging (ultrasound) for diagnosis with family history; blood pressure control with RAS blockade; tolvaptan for adults at risk of rapid progression. ERBP 2023: atherosclerotic renovascular disease managed medically first."
+    }
+  },
+  {
+    "id": "pance-185",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Which drugs injure the kidney, and which patients need fluids before IV contrast?",
+    "bottom": "Prophylaxis if eGFR <30 or AKI; stop NSAIDs.",
+    "bullets": {
+      "clue": "Interstitial nephritis: fever, rash, eosinophilia, WBC casts after PPI, penicillin, NSAID.",
+      "treat": "Isotonic saline around contrast if eGFR <30; stop the drug.",
+      "trap": "Aminoglycosides: ATN. NSAIDs: prerenal AKI."
+    },
+    "back": "Prophylaxis if eGFR <30 or AKI; stop NSAIDs. Key clue: Interstitial nephritis: fever, rash, eosinophilia, WBC casts after PPI, penicillin, NSAID. First-line: Isotonic saline around contrast if eGFR <30; stop the drug. Exam trap: Aminoglycosides: ATN. NSAIDs: prerenal AKI.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-185.svg",
+      "alt": "Nephrotoxic drugs: NSAIDs cause prerenal injury, aminoglycosides cause acute tubular necrosis, penicillins and PPIs cause interstitial nephritis; give saline before contrast if eGFR is below 30."
+    },
+    "source": {
+      "guideline": "ACR–NKF Consensus Statements on Use of Intravenous Iodinated Contrast Media in Patients with Kidney Disease",
+      "year": "2020",
+      "url": "https://doi.org/10.1148/radiol.2019192094",
+      "alt_url": "https://doi.org/10.1016/j.xkme.2020.01.001",
+      "recommendation": "ACR–NKF 2020: prophylaxis with IV isotonic volume expansion indicated for eGFR <30 (not on dialysis) or AKI; not routinely indicated for eGFR ≥45; individualize for eGFR 30–44; do not withhold medically necessary contrast."
+    }
+  },
+  {
+    "id": "pance-186",
+    "system": "Renal",
+    "blueprint_weight": "5%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Perioral tingling, carpopedal spasm and a long QT: which bedside signs confirm hypocalcemia, and how is it treated?",
+    "bottom": "Hypocalcemia: Chvostek and Trousseau signs.",
+    "bullets": {
+      "clue": "Tap facial nerve: twitch. Cuff above systolic 3 min: carpal spasm.",
+      "treat": "Symptomatic or long QT: IV calcium gluconate, ECG monitoring.",
+      "trap": "Replace magnesium: low Mg keeps calcium low."
+    },
+    "back": "Hypocalcemia: Chvostek and Trousseau signs. Key clue: Tap facial nerve: twitch. Cuff above systolic 3 min: carpal spasm. First-line: Symptomatic or long QT: IV calcium gluconate, ECG monitoring. Exam trap: Replace magnesium: low Mg keeps calcium low.",
+    "word_count": 37,
+    "mnemonic": "CATS go numb: Convulsions, Arrhythmias, Tetany, Spasm",
+    "diagram": {
+      "file": "svg/pance-186.svg",
+      "alt": "Hypocalcemia: Chvostek sign, Trousseau sign, long QT; treat symptomatic patients with IV calcium gluconate and correct magnesium."
+    },
+    "source": {
+      "guideline": "Society for Endocrinology Emergency Guidance: Emergency management of acute hypocalcaemia in adult patients",
+      "year": "2016 (updated 2019)",
+      "url": "https://doi.org/10.1530/ec-16-0056a",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5314808/",
+      "recommendation": "Society for Endocrinology: symptomatic or QT-prolonged hypocalcemia: IV calcium gluconate 10–20 mL of 10% over 10 min with ECG monitoring, then infusion; correct hypomagnesemia."
+    }
+  }
+]

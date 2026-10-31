@@ -74,6 +74,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
+    "/api/pance-feed/cards": ["./content/pance-feed/**/*"],
+    "/api/pance-feed/cards/[id]": ["./content/pance-feed/**/*"],
   },
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.

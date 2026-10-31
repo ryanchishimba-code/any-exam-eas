@@ -1,0 +1,380 @@
+[
+  {
+    "id": "pance-056",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Typical heartburn and regurgitation, no alarm features: first step, and when is endoscopy needed?",
+    "bottom": "8-week once-daily PPI trial first.",
+    "bullets": {
+      "clue": "Heartburn after meals or lying down; regurgitation.",
+      "treat": "PPI 30–60 min before breakfast for 8 weeks; then try stopping.",
+      "trap": "Dysphagia, weight loss, bleeding or anemia: endoscopy first."
+    },
+    "back": "8-week once-daily PPI trial first. Key clue: Heartburn after meals or lying down; regurgitation. First-line: PPI 30–60 min before breakfast for 8 weeks; then try stopping. Exam trap: Dysphagia, weight loss, bleeding or anemia: endoscopy first.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-056.svg",
+      "alt": "Gastroesophageal reflux across a weak lower esophageal sphincter. An 8-week once-daily PPI trial for typical symptoms without alarm features; endoscopy for alarm features or no response; one-time Barrett screening with three or more risk factors."
+    },
+    "source": {
+      "guideline": "ACG Clinical Guideline for the Diagnosis and Management of GERD (2022); ACG Barrett's Esophagus Guideline (2022)",
+      "year": "2022",
+      "url": "https://doi.org/10.14309/ajg.0000000000001538",
+      "alt_url": "https://journals.lww.com/ajg/Fulltext/2022/04000/Diagnosis_and_Management_of_Barrett_s_Esophagus_.17.aspx",
+      "recommendation": "Classic heartburn/regurgitation without alarm symptoms: 8-week empiric once-daily PPI before a meal; if response, attempt discontinuation. If no response or symptoms recur after stopping: diagnostic endoscopy, ideally off PPI 2–4 weeks. Alarm symptoms (dysphagia, weight loss, bleeding, vomiting, anemia) warrant prompt endoscopy. Barrett: single screening endoscopy for chronic GERD plus ≥3 risk factors (male, age >50, White race, tobacco, obesity, family history of BE/EAC)."
+    }
+  },
+  {
+    "id": "pance-057",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Melena and hematemesis: risk stratify, transfuse when, and when is endoscopy done?",
+    "bottom": "Resuscitate; endoscopy within 24 hours.",
+    "bullets": {
+      "clue": "Melena, coffee-ground emesis, BUN rise, NSAID use.",
+      "treat": "Transfuse at Hb <7 (8 with heart disease); endoscopic therapy; high-dose PPI after hemostasis.",
+      "trap": "Glasgow-Blatchford 0–1: outpatient care is safe."
+    },
+    "back": "Resuscitate; endoscopy within 24 hours. Key clue: Melena, coffee-ground emesis, BUN rise, NSAID use. First-line: Transfuse at Hb <7 (8 with heart disease); endoscopic therapy; high-dose PPI after hemostasis. Exam trap: Glasgow-Blatchford 0–1: outpatient care is safe.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-057.svg",
+      "alt": "Bleeding duodenal ulcer. Restrictive transfusion below hemoglobin 7, endoscopy within 24 hours, high-dose PPI after endoscopic hemostasis, and outpatient care for Glasgow-Blatchford score 0 to 1."
+    },
+    "source": {
+      "guideline": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding (2021)",
+      "year": "2021",
+      "url": "https://doi.org/10.14309/ajg.0000000000001245",
+      "alt_url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
+      "recommendation": "Very low risk (e.g., Glasgow-Blatchford 0–1): discharge with outpatient follow-up. Restrictive RBC transfusion at Hb 7 g/dL (8 reasonable with cardiovascular disease). Erythromycin infusion before endoscopy. No recommendation for or against pre-endoscopic PPI. Endoscopy within 24 h of presentation. After endoscopic hemostasis of high-risk ulcers: high-dose PPI continuously or intermittently for 3 days, then twice-daily oral PPI through 2 weeks."
+    }
+  },
+  {
+    "id": "pance-058",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Epigastric pain to the back with lipase 4× normal: diagnosis criteria, fluids, and feeding?",
+    "bottom": "Acute pancreatitis: 2 of 3 criteria.",
+    "bullets": {
+      "clue": "Typical pain, lipase >3× normal, or imaging.",
+      "treat": "Moderate lactated Ringer's, reassess often; oral low-fat diet within 24–48 h.",
+      "trap": "No prophylactic antibiotics; no early ERCP without cholangitis."
+    },
+    "back": "Acute pancreatitis: 2 of 3 criteria. Key clue: Typical pain, lipase >3× normal, or imaging. First-line: Moderate lactated Ringer's, reassess often; oral low-fat diet within 24–48 h. Exam trap: No prophylactic antibiotics; no early ERCP without cholangitis.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-058.svg",
+      "alt": "Acute pancreatitis diagnosed by two of three: typical pain, lipase above three times normal, or imaging. Moderate lactated Ringer's with frequent reassessment, early low-fat oral feeding, no prophylactic antibiotics."
+    },
+    "source": {
+      "guideline": "ACG Guidelines: Management of Acute Pancreatitis (2024)",
+      "year": "2024",
+      "url": "https://doi.org/10.14309/ajg.0000000000002645",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13221274/",
+      "recommendation": "Diagnosis: 2 of 3 (characteristic abdominal pain, lipase/amylase >3× ULN, characteristic imaging). Transabdominal ultrasound for biliary cause. Moderately aggressive fluid resuscitation; lactated Ringer over normal saline; reassess within 6 h and over 24–48 h. Medical therapy over early (<72 h) ERCP in biliary AP without cholangitis. Against prophylactic antibiotics in severe AP. Mild AP: early oral feeding within 24–48 h with low-fat solid diet. Cholecystectomy during the index admission for mild gallstone AP."
+    }
+  },
+  {
+    "id": "pance-059",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Periumbilical pain migrating to the right lower quadrant with anorexia: diagnosis, imaging, treatment?",
+    "bottom": "Acute appendicitis: imaging, then appendectomy.",
+    "bullets": {
+      "clue": "Pain migrates to McBurney point; anorexia, fever.",
+      "treat": "CT in adults; ultrasound first in children and pregnancy. Appendectomy plus antibiotics.",
+      "trap": "Antibiotics alone are an option, not standard, for uncomplicated cases."
+    },
+    "back": "Acute appendicitis: imaging, then appendectomy. Key clue: Pain migrates to McBurney point; anorexia, fever. First-line: CT in adults; ultrasound first in children and pregnancy. Appendectomy plus antibiotics. Exam trap: Antibiotics alone are an option, not standard, for uncomplicated cases.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-059.svg",
+      "alt": "Acute appendicitis with an inflamed appendix in the right lower quadrant. CT in adults, ultrasound first in children and pregnancy, then laparoscopic appendectomy; antibiotics alone are an option for selected uncomplicated cases."
+    },
+    "source": {
+      "guideline": "WSES Jerusalem Guidelines on Diagnosis and Treatment of Acute Appendicitis (2020 update); ACR Appropriateness Criteria",
+      "year": "2020",
+      "url": "https://doi.org/10.1186/s13017-020-00306-3",
+      "alt_url": "https://acsearch.acr.org/list",
+      "recommendation": "Laparoscopic appendectomy is the treatment of choice; non-operative antibiotic management is a safe alternative in selected uncomplicated appendicitis without appendicolith, with recurrence risk discussed. Ultrasound first-line in children and pregnancy (MRI if inconclusive in pregnancy); CT for adults. Clinical scores (Alvarado, AIR) support risk stratification."
+    }
+  },
+  {
+    "id": "pance-060",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "RUQ pain after a fatty meal with fever and a positive Murphy sign: diagnosis and first test?",
+    "bottom": "Acute cholecystitis: ultrasound first.",
+    "bullets": {
+      "clue": "RUQ pain over 6 hours, Murphy sign, fever, leukocytosis.",
+      "treat": "Ultrasound; antibiotics; early laparoscopic cholecystectomy.",
+      "trap": "Jaundice or high bilirubin: think choledocholithiasis, cholangitis."
+    },
+    "back": "Acute cholecystitis: ultrasound first. Key clue: RUQ pain over 6 hours, Murphy sign, fever, leukocytosis. First-line: Ultrasound; antibiotics; early laparoscopic cholecystectomy. Exam trap: Jaundice or high bilirubin: think choledocholithiasis, cholangitis.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-060.svg",
+      "alt": "Acute cholecystitis with a thick-walled gallbladder and stone. Ultrasound first, HIDA if unclear, then early laparoscopic cholecystectomy; jaundice points to a common bile duct stone."
+    },
+    "source": {
+      "guideline": "Tokyo Guidelines 2018 (TG18) for acute cholecystitis",
+      "year": "2018",
+      "url": "https://doi.org/10.1002/jhbp.515",
+      "alt_url": "https://doi.org/10.1002/jhbp.516",
+      "recommendation": "TG18 diagnosis: local signs (Murphy sign, RUQ mass/pain/tenderness) + systemic signs (fever, elevated CRP or WBC) + imaging findings. Ultrasound first-line; HIDA cholescintigraphy has the highest diagnostic accuracy when ultrasound is equivocal. Early laparoscopic cholecystectomy for grade I and most grade II in fit patients; antibiotics. Choledocholithiasis/cholangitis managed with biliary drainage (ERCP)."
+    }
+  },
+  {
+    "id": "pance-061",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Prior surgery, crampy pain, vomiting and no flatus: diagnosis, imaging, and first management?",
+    "bottom": "Small-bowel obstruction from adhesions.",
+    "bullets": {
+      "clue": "Distension, high-pitched bowel sounds, air-fluid levels.",
+      "treat": "NPO, IV fluids, NG decompression; water-soluble contrast challenge.",
+      "trap": "Fever, tachycardia, peritonitis or acidosis: urgent surgery."
+    },
+    "back": "Small-bowel obstruction from adhesions. Key clue: Distension, high-pitched bowel sounds, air-fluid levels. First-line: NPO, IV fluids, NG decompression; water-soluble contrast challenge. Exam trap: Fever, tachycardia, peritonitis or acidosis: urgent surgery.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-061.svg",
+      "alt": "Small-bowel obstruction with dilated loops. CT finds the transition point; nil by mouth, IV fluids and nasogastric decompression with a water-soluble contrast challenge; strangulation signs mean urgent surgery."
+    },
+    "source": {
+      "guideline": "WSES Bologna Guidelines for Adhesive Small Bowel Obstruction (2017 update)",
+      "year": "2017",
+      "url": "https://doi.org/10.1186/s13017-018-0185-2",
+      "alt_url": "https://wjes.biomedcentral.com/",
+      "recommendation": "Adhesive SBO without signs of strangulation or peritonitis: non-operative management (NPO, NG decompression, IV fluids, electrolyte correction). CT is the imaging of choice. Water-soluble contrast has diagnostic and therapeutic value; contrast in the colon within 24 h predicts non-operative resolution. Signs of strangulation, peritonitis or failed conservative management (typically >72 h) warrant surgery."
+    }
+  },
+  {
+    "id": "pance-062",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Older adult with left lower quadrant pain, fever and tenderness: diagnosis, and are antibiotics required?",
+    "bottom": "Diverticulitis: antibiotics are selective.",
+    "bullets": {
+      "clue": "LLQ pain, fever, leukocytosis; CT confirms.",
+      "treat": "Mild, immunocompetent: observe without antibiotics; abscess: drain.",
+      "trap": "Colonoscopy after recovery if none recently."
+    },
+    "back": "Diverticulitis: antibiotics are selective. Key clue: LLQ pain, fever, leukocytosis; CT confirms. First-line: Mild, immunocompetent: observe without antibiotics; abscess: drain. Exam trap: Colonoscopy after recovery if none recently.",
+    "word_count": 28,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-062.svg",
+      "alt": "Acute sigmoid diverticulitis. Antibiotics are used selectively in mild uncomplicated disease; an abscess is drained; colonoscopy after recovery if none was done within a year."
+    },
+    "source": {
+      "guideline": "AGA Clinical Practice Update on Medical Management of Colonic Diverticulitis (2021); ACP 2022 Diverticulitis guideline",
+      "year": "2021 / 2022",
+      "url": "https://doi.org/10.1053/j.gastro.2020.09.059",
+      "alt_url": "https://www.acpjournals.org/doi/10.7326/M21-2710",
+      "recommendation": "AGA: antibiotics used selectively, not routinely, in immunocompetent patients with mild acute uncomplicated diverticulitis; use them with comorbidities/frailty, refractory symptoms or vomiting, CRP >140 mg/L, WBC >15, or CT showing fluid collection or longer inflamed segment. CT when diagnosis uncertain or complications suspected. Colonoscopy 6–8 weeks after complicated diverticulitis or a first uncomplicated episode unless high-quality colonoscopy within the past year. ACP 2022: outpatient management for most uncomplicated cases; initial management without antibiotics in select patients."
+    }
+  },
+  {
+    "id": "pance-063",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Bloody diarrhea with continuous rectal inflammation vs skip lesions with fistulas: UC or Crohn, and first therapy?",
+    "bottom": "UC is continuous from rectum; Crohn skips.",
+    "bullets": {
+      "clue": "UC: bloody diarrhea, tenesmus. Crohn: transmural, fistulas, ileal pain.",
+      "treat": "Mild UC: 5-ASA. Moderate-severe: steroids for induction, then advanced therapy.",
+      "trap": "Oral mesalamine does not work for Crohn."
+    },
+    "back": "UC is continuous from rectum; Crohn skips. Key clue: UC: bloody diarrhea, tenesmus. Crohn: transmural, fistulas, ileal pain. First-line: Mild UC: 5-ASA. Moderate-severe: steroids for induction, then advanced therapy. Exam trap: Oral mesalamine does not work for Crohn.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-063.svg",
+      "alt": "Ulcerative colitis with continuous inflammation from the rectum, compared with Crohn disease skip lesions. Mild UC uses 5-ASA; moderate to severe disease uses steroids to induce and then advanced therapy; mesalamine is not used for Crohn."
+    },
+    "source": {
+      "guideline": "ACG Clinical Guideline Update: Ulcerative Colitis in Adults (2025); ACG Clinical Guideline: Management of Crohn's Disease in Adults (2025)",
+      "year": "2025",
+      "url": "https://journals.lww.com/ajg/pages/articleviewer.aspx?article=00013&issue=06000&type=Fulltext&year=2025",
+      "alt_url": "https://gi.org/journals-publications/ebgi/zhai_dalal_sep2025/",
+      "recommendation": "UC: mild-moderate proctitis/left-sided: rectal 5-ASA ≥1 g/day (± oral 5-ASA); extensive: oral 5-ASA ≥2 g/day; nonresponse: budesonide MMX or oral systemic steroids; against steroids for maintenance; moderate-severe: steroids for induction, then anti-TNF, vedolizumab, ustekinumab, IL-23 inhibitors, S1P modulators or JAK inhibitors. Crohn 2025: mesalamine discouraged for induction and maintenance; budesonide 9 mg for mild-moderate ileocecal induction only; moderate-severe: advanced therapy without requiring prior thiopurine/methotrexate failure; steroids induction-only (<3 months)."
+    }
+  },
+  {
+    "id": "pance-064",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Average-risk adult: when does colorectal cancer screening start, and what are the options?",
+    "bottom": "Screen ages 45–75.",
+    "bullets": {
+      "clue": "Average risk: no personal or strong family history.",
+      "treat": "Colonoscopy every 10 years, FIT yearly, stool DNA-FIT 1–3 years, or CT colonography 5 years.",
+      "trap": "Positive stool test needs follow-up colonoscopy."
+    },
+    "back": "Screen ages 45–75. Key clue: Average risk: no personal or strong family history. First-line: Colonoscopy every 10 years, FIT yearly, stool DNA-FIT 1–3 years, or CT colonography 5 years. Exam trap: Positive stool test needs follow-up colonoscopy.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-064.svg",
+      "alt": "Colorectal cancer screening from age 45 to 75 with colonoscopy every 10 years, FIT every year, stool DNA-FIT every 1 to 3 years, or CT colonography every 5 years; a positive stool test needs colonoscopy."
+    },
+    "source": {
+      "guideline": "USPSTF Colorectal Cancer Screening Recommendation (2021)",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+      "alt_url": "https://doi.org/10.1001/jama.2021.6238",
+      "recommendation": "Screen adults 50–75 (A) and 45–49 (B); 76–85 selectively (C). Options: colonoscopy every 10 years; FIT annually; high-sensitivity gFOBT annually; stool DNA-FIT every 1–3 years; CT colonography every 5 years; flexible sigmoidoscopy every 5 years (or every 10 years with annual FIT). Positive non-colonoscopy tests require follow-up colonoscopy."
+    }
+  },
+  {
+    "id": "pance-065",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Hepatitis B serology: who gets screened, and what do HBsAg, anti-HBc and anti-HBs mean?",
+    "bottom": "Screen every adult once for HBV and HCV.",
+    "bullets": {
+      "clue": "HBsAg = infection; anti-HBs alone = vaccinated.",
+      "treat": "HBV triple panel: HBsAg, anti-HBs, anti-HBc. HCV antibody, then RNA.",
+      "trap": "Anti-HBc IgM = acute infection, even if HBsAg is negative."
+    },
+    "back": "Screen every adult once for HBV and HCV. Key clue: HBsAg = infection; anti-HBs alone = vaccinated. First-line: HBV triple panel: HBsAg, anti-HBs, anti-HBc. HCV antibody, then RNA. Exam trap: Anti-HBc IgM = acute infection, even if HBsAg is negative.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-065.svg",
+      "alt": "Hepatitis B serology: HBsAg means infection, anti-HBs alone means vaccination, anti-HBc with anti-HBs means resolved infection, and IgM anti-HBc marks acute infection in the window period. All adults are screened once for hepatitis B and C."
+    },
+    "source": {
+      "guideline": "CDC Screening and Testing for Hepatitis B Virus Infection (MMWR 2023); CDC Hepatitis C Screening Among Adults (MMWR 2020)",
+      "year": "2023 / 2020",
+      "url": "https://www.cdc.gov/mmwr/volumes/72/rr/rr7201a1.htm",
+      "alt_url": "https://www.cdc.gov/mmwr/volumes/69/rr/rr6902a1.htm",
+      "recommendation": "HBV: screen all adults ≥18 at least once with the triple panel (HBsAg, anti-HBs, total anti-HBc); every pregnancy (HBsAg). HCV: screen all adults ≥18 at least once and every pregnancy (except settings with HCV RNA prevalence <0.1%); test with HCV antibody and reflex HCV RNA. Periodic testing with ongoing risk."
+    }
+  },
+  {
+    "id": "pance-066",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Cirrhosis with ascites, fever and abdominal tenderness: diagnostic test, treatment, and prophylaxis?",
+    "bottom": "SBP: paracentesis PMN ≥250.",
+    "bullets": {
+      "clue": "Fever, abdominal pain, confusion in ascites.",
+      "treat": "IV ceftriaxone plus albumin; carvedilol for portal hypertension; lactulose for encephalopathy.",
+      "trap": "Variceal bleed: octreotide, antibiotics, banding within 12 hours."
+    },
+    "back": "SBP: paracentesis PMN ≥250. Key clue: Fever, abdominal pain, confusion in ascites. First-line: IV ceftriaxone plus albumin; carvedilol for portal hypertension; lactulose for encephalopathy. Exam trap: Variceal bleed: octreotide, antibiotics, banding within 12 hours.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-066.svg",
+      "alt": "Cirrhosis complications: spontaneous bacterial peritonitis diagnosed by ascitic neutrophils of 250 or more and treated with ceftriaxone and albumin, carvedilol for portal hypertension, octreotide, antibiotics and banding for variceal bleeding, and lactulose for encephalopathy."
+    },
+    "source": {
+      "guideline": "AASLD Practice Guidance: Ascites, SBP, Hyponatremia and HRS (2021); AASLD Portal Hypertension and Varices (2024); AASLD/EASL Hepatic Encephalopathy (2014)",
+      "year": "2021 / 2024",
+      "url": "https://doi.org/10.1002/hep.31884",
+      "alt_url": "https://doi.org/10.1097/hep.0000000000000647",
+      "recommendation": "Diagnostic paracentesis in hospitalized patients with ascites; SBP = ascitic PMN ≥250/mm³; treat with IV third-generation cephalosporin plus albumin (1.5 g/kg day 1, 1 g/kg day 3). SAAG ≥1.1 indicates portal hypertension. 2024: carvedilol preferred NSBB (6.25 → 12.5 mg/day; keep SBP ≥90). AVH: vasoactive drug (octreotide), antibiotic prophylaxis (ceftriaxone), endoscopy with band ligation within 12 h, restrictive transfusion (Hb 7). HE: lactulose; add rifaximin for recurrence prevention."
+    }
+  },
+  {
+    "id": "pance-067",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Iron-deficiency anemia, diarrhea and an itchy vesicular rash: likely diagnosis, and how is it tested?",
+    "bottom": "Celiac disease: tTG-IgA on a gluten diet.",
+    "bullets": {
+      "clue": "Dermatitis herpetiformis, iron deficiency, bloating, osteoporosis.",
+      "treat": "tTG-IgA plus total IgA; confirm with duodenal biopsy; lifelong gluten-free diet.",
+      "trap": "Testing after stopping gluten gives false negatives."
+    },
+    "back": "Celiac disease: tTG-IgA on a gluten diet. Key clue: Dermatitis herpetiformis, iron deficiency, bloating, osteoporosis. First-line: tTG-IgA plus total IgA; confirm with duodenal biopsy; lifelong gluten-free diet. Exam trap: Testing after stopping gluten gives false negatives.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-067.svg",
+      "alt": "Celiac disease with villous atrophy. Test tTG-IgA and total IgA while eating gluten, use IgG-based tests in IgA deficiency, confirm with duodenal biopsies, then a lifelong gluten-free diet."
+    },
+    "source": {
+      "guideline": "ACG Guidelines Update: Diagnosis and Management of Celiac Disease (2023)",
+      "year": "2023",
+      "url": "https://doi.org/10.14309/ajg.0000000000002075",
+      "alt_url": "https://journals.lww.com/ajg/pages/articleviewer.aspx?article=00017&issue=01000&type=Fulltext&year=2023",
+      "recommendation": "tTG-IgA while on a gluten-containing diet, with total IgA unless IgA deficiency excluded; IgA deficiency: IgG-based testing. Positive serology: upper endoscopy with 1–2 bulb and ≥4 postbulbar duodenal biopsies; biopsy considered with high suspicion despite negative serology. Treatment: gluten-free diet with dietitian referral."
+    }
+  },
+  {
+    "id": "pance-068",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Pediatric GI emergencies: projectile vomiting, currant-jelly stool, or delayed meconium. Which is which?",
+    "bottom": "Pyloric stenosis, intussusception, Hirschsprung.",
+    "bullets": {
+      "clue": "Olive mass; sausage mass; no meconium in 48 hours.",
+      "treat": "Pyloric: fluids, then pyloromyotomy. Intussusception: enema reduction. Hirschsprung: rectal biopsy.",
+      "trap": "Pyloric stenosis: fix hypokalemic alkalosis before surgery."
+    },
+    "back": "Pyloric stenosis, intussusception, Hirschsprung. Key clue: Olive mass; sausage mass; no meconium in 48 hours. First-line: Pyloric: fluids, then pyloromyotomy. Intussusception: enema reduction. Hirschsprung: rectal biopsy. Exam trap: Pyloric stenosis: fix hypokalemic alkalosis before surgery.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-068.svg",
+      "alt": "Three pediatric GI emergencies: pyloric stenosis with projectile nonbilious vomiting and an olive mass, intussusception with currant-jelly stool and a target sign, and Hirschsprung disease with delayed meconium confirmed by rectal biopsy."
+    },
+    "source": {
+      "guideline": "Standard pediatric surgery teaching; ACR Appropriateness Criteria: Vomiting in Infants; ACR intussusception guidance",
+      "year": "—",
+      "url": "https://acsearch.acr.org/docs/69445/Narrative/",
+      "alt_url": "https://acsearch.acr.org/list",
+      "recommendation": "Pyloric stenosis: ultrasound is the imaging of choice; correct dehydration and hypochloremic hypokalemic metabolic alkalosis before pyloromyotomy. Intussusception: ultrasound (target sign) is first-line; image-guided air or hydrostatic enema reduction unless peritonitis, perforation or shock. Hirschsprung: suction rectal biopsy showing absent ganglion cells is diagnostic."
+    }
+  },
+  {
+    "id": "pance-069",
+    "system": "Gastrointestinal/Nutrition",
+    "blueprint_weight": "8%",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Nutrition: which vitamin deficiency causes Wernicke encephalopathy, and which cause pellagra and scurvy?",
+    "bottom": "Thiamine (B1) deficiency causes Wernicke.",
+    "bullets": {
+      "clue": "Confusion, ataxia, ophthalmoplegia in alcohol use.",
+      "treat": "IV thiamine before glucose. Niacin for pellagra; vitamin C for scurvy.",
+      "trap": "Glucose before thiamine can worsen Wernicke."
+    },
+    "back": "Thiamine (B1) deficiency causes Wernicke. Key clue: Confusion, ataxia, ophthalmoplegia in alcohol use. First-line: IV thiamine before glucose. Niacin for pellagra; vitamin C for scurvy. Exam trap: Glucose before thiamine can worsen Wernicke.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-069.svg",
+      "alt": "Vitamin deficiencies: thiamine with Wernicke encephalopathy and beriberi, niacin with pellagra, vitamin C with scurvy, and B12 with megaloblastic anemia and neuropathy; give IV thiamine before glucose."
+    },
+    "source": {
+      "guideline": "Standard nutrition teaching; EFNS Guidelines for Diagnosis, Therapy and Prevention of Wernicke Encephalopathy (2010)",
+      "year": "2010",
+      "url": "https://doi.org/10.1111/j.1468-1331.2010.03153.x",
+      "alt_url": "https://ods.od.nih.gov/factsheets/list-all/",
+      "recommendation": "EFNS 2010: Wernicke diagnosis is clinical (2 of 4: dietary deficiency, eye signs, cerebellar dysfunction, altered mental state or memory impairment); thiamine 200 mg three times daily IV before any carbohydrate, continued until no further improvement. Pellagra (niacin), scurvy (vitamin C) and B12 features are standard teaching (NIH ODS fact sheets)."
+    }
+  }
+]

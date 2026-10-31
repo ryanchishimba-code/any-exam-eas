@@ -44,6 +44,8 @@ describe("app-shell routes", () => {
     // Either path hides marketing chrome; the shell must not double up.
     expect(hideMarketingChrome("/nclex/study-guide/cardiac")).toBe(true);
     expect(isAppShellRoute("/nclex")).toBe(false);
+    expect(isMinimalChromeRoute("/study-tools/pance/feed")).toBe(true);
+    expect(hideMarketingChrome("/study-tools/pance/feed")).toBe(true);
   });
 
   it("treats every exam's reader the same, not just NCLEX", () => {

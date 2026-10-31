@@ -1,0 +1,380 @@
+[
+  {
+    "id": "pance-070",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Older adult with knee pain worse with use, brief morning stiffness and crepitus: diagnosis and first-line care?",
+    "bottom": "Osteoarthritis: exercise and weight loss first.",
+    "bullets": {
+      "clue": "Stiffness under 30 minutes, bony enlargement, crepitus.",
+      "treat": "Exercise, weight loss; topical NSAID for knee or hand, then oral NSAID.",
+      "trap": "Glucosamine and chondroitin are not recommended."
+    },
+    "back": "Osteoarthritis: exercise and weight loss first. Key clue: Stiffness under 30 minutes, bony enlargement, crepitus. First-line: Exercise, weight loss; topical NSAID for knee or hand, then oral NSAID. Exam trap: Glucosamine and chondroitin are not recommended.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-070.svg",
+      "alt": "Knee osteoarthritis with joint-space narrowing and an osteophyte. Exercise and weight loss first, topical then oral NSAIDs, steroid injection for flares, and joint replacement at end stage."
+    },
+    "source": {
+      "guideline": "2019 ACR/Arthritis Foundation Guideline for the Management of Osteoarthritis of the Hand, Hip, and Knee",
+      "year": "2019",
+      "url": "https://doi.org/10.1002/art.41142",
+      "alt_url": "https://rheumatology.org/osteoarthritis-guideline",
+      "recommendation": "Strongly recommended: exercise, weight loss (knee/hip, overweight), self-efficacy programs, oral NSAIDs, topical NSAIDs (knee), intra-articular glucocorticoids (knee/hip). Conditionally recommended: topical NSAIDs (hand), intra-articular steroid (hand), tramadol (when NSAIDs contraindicated or ineffective; preferred over non-tramadol opioids). Strongly against glucosamine (all sites) and chondroitin (knee/hip). Topical NSAIDs should be considered before oral NSAIDs."
+    }
+  },
+  {
+    "id": "pance-071",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Symmetric small-joint hand swelling with an hour of morning stiffness: diagnosis, tests, and first DMARD?",
+    "bottom": "Rheumatoid arthritis: methotrexate first.",
+    "bullets": {
+      "clue": "MCP and PIP swelling, stiffness over 1 hour, anti-CCP.",
+      "treat": "Methotrexate monotherapy; short low-dose steroid bridge only.",
+      "trap": "DIP spared; DIP involvement suggests OA or psoriatic arthritis."
+    },
+    "back": "Rheumatoid arthritis: methotrexate first. Key clue: MCP and PIP swelling, stiffness over 1 hour, anti-CCP. First-line: Methotrexate monotherapy; short low-dose steroid bridge only. Exam trap: DIP spared; DIP involvement suggests OA or psoriatic arthritis.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-071.svg",
+      "alt": "Rheumatoid arthritis with symmetric swelling of the knuckle joints. Methotrexate monotherapy first with only a short steroid bridge, then add a biologic or JAK inhibitor if not at target."
+    },
+    "source": {
+      "guideline": "2021 American College of Rheumatology Guideline for the Treatment of Rheumatoid Arthritis",
+      "year": "2021",
+      "url": "https://doi.org/10.1002/acr.24596",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9273041/",
+      "recommendation": "DMARD-naive, moderate-to-high activity: methotrexate monotherapy strongly recommended over hydroxychloroquine, sulfasalazine, bDMARD or tsDMARD monotherapy, and over methotrexate plus non-TNF biologic. Short-term (<3 months) glucocorticoids only when needed at the lowest dose; against long-term (≥3 months) glucocorticoids. Treat-to-target; add bDMARD or tsDMARD when not at target on methotrexate."
+    }
+  },
+  {
+    "id": "pance-072",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Acutely hot, swollen knee with fever and pain on any movement: first test and immediate management?",
+    "bottom": "Septic arthritis until proven otherwise.",
+    "bullets": {
+      "clue": "Monoarthritis, fever, painful passive motion.",
+      "treat": "Arthrocentesis before antibiotics; empiric IV vancomycin ± ceftriaxone; drainage.",
+      "trap": "Crystals do not exclude infection; WBC >50,000 suggests sepsis."
+    },
+    "back": "Septic arthritis until proven otherwise. Key clue: Monoarthritis, fever, painful passive motion. First-line: Arthrocentesis before antibiotics; empiric IV vancomycin ± ceftriaxone; drainage. Exam trap: Crystals do not exclude infection; WBC >50,000 suggests sepsis.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-072.svg",
+      "alt": "Septic arthritis with a knee effusion. Aspirate the joint for cell count, Gram stain, culture and crystals before IV antibiotics, then drain; crystals do not exclude infection."
+    },
+    "source": {
+      "guideline": "Standard teaching; BSR/BHPR Guideline for Management of the Hot Swollen Joint in Adults; EULAR-endorsed",
+      "year": "2006 (BSR)",
+      "url": "https://doi.org/10.1093/rheumatology/kel215a",
+      "alt_url": "https://www.idsociety.org/practice-guideline/practice-guidelines/",
+      "recommendation": "Hot swollen joint: aspirate before antibiotics; send synovial fluid for Gram stain, culture, cell count and crystals; blood cultures; empiric IV antibiotics guided by risk (vancomycin for MRSA risk, add a third-generation cephalosporin for gram-negative/gonococcal risk); joint drainage. Crystals do not exclude infection."
+    }
+  },
+  {
+    "id": "pance-073",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Acute low back pain without red flags: imaging needed, and first treatment? Which signs mean emergency?",
+    "bottom": "No imaging without red flags.",
+    "bullets": {
+      "clue": "Saddle anesthesia, retention, bilateral weakness: cauda equina.",
+      "treat": "Stay active; heat, NSAIDs or muscle relaxants. Cauda equina: emergency MRI and surgery.",
+      "trap": "Early imaging without red flags does not help."
+    },
+    "back": "No imaging without red flags. Key clue: Saddle anesthesia, retention, bilateral weakness: cauda equina. First-line: Stay active; heat, NSAIDs or muscle relaxants. Cauda equina: emergency MRI and surgery. Exam trap: Early imaging without red flags does not help.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-073.svg",
+      "alt": "Low back pain with a disc compressing nerve roots. No imaging without red flags; heat, NSAIDs and staying active first; urgent MRI and decompression for cauda equina signs."
+    },
+    "source": {
+      "guideline": "ACP Clinical Practice Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (2017); ACR Appropriateness Criteria Low Back Pain (2021)",
+      "year": "2017 / 2021",
+      "url": "https://doi.org/10.7326/M16-2367",
+      "alt_url": "https://acsearch.acr.org/docs/69483/Narrative/",
+      "recommendation": "ACP 2017: acute/subacute LBP: nonpharmacologic first (superficial heat, massage, acupuncture, spinal manipulation); if drugs desired, NSAIDs or skeletal muscle relaxants. Chronic: exercise, multidisciplinary rehabilitation, CBT and others; then NSAIDs, then tramadol or duloxetine. ACR 2021 update: imaging usually not appropriate for acute LBP without red flags; MRI appropriate for suspected cauda equina, cancer, infection or immunosuppression."
+    }
+  },
+  {
+    "id": "pance-074",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Postmenopausal woman: who gets osteoporosis screening, what T-score is diagnostic, and first-line drug?",
+    "bottom": "DXA at 65, or younger with risk.",
+    "bullets": {
+      "clue": "T-score ≤ −2.5 or a fragility fracture.",
+      "treat": "Bisphosphonate (alendronate) first; calcium, vitamin D, weight-bearing exercise.",
+      "trap": "Bisphosphonates need upright posture 30 minutes; check renal function."
+    },
+    "back": "DXA at 65, or younger with risk. Key clue: T-score ≤ −2.5 or a fragility fracture. First-line: Bisphosphonate (alendronate) first; calcium, vitamin D, weight-bearing exercise. Exam trap: Bisphosphonates need upright posture 30 minutes; check renal function.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-074.svg",
+      "alt": "Osteoporosis screening with DXA in women 65 and older and younger postmenopausal women at increased risk; T-score of minus 2.5 or lower or a fragility fracture is osteoporosis, and bisphosphonates are first-line."
+    },
+    "source": {
+      "guideline": "USPSTF Osteoporosis to Prevent Fractures: Screening (2025); ACP Pharmacologic Treatment of Primary Osteoporosis (2023)",
+      "year": "2025 / 2023",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/osteoporosis-screening",
+      "alt_url": "https://doi.org/10.7326/M22-1034",
+      "recommendation": "USPSTF Jan 2025: screen women ≥65 (B) and postmenopausal women <65 at increased risk by clinical risk assessment (B) with DXA BMD ± fracture risk assessment; men: I statement. ACP 2023: bisphosphonates first-line for primary osteoporosis; denosumab second-line; romosozumab or teriparatide, followed by a bisphosphonate, for women with very high fracture risk."
+    }
+  },
+  {
+    "id": "pance-075",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Older adult falls, then has a shortened, externally rotated leg: diagnosis, imaging, and timing of surgery?",
+    "bottom": "Hip fracture: surgery within 24–48 hours.",
+    "bullets": {
+      "clue": "Shortened, externally rotated leg after a fall.",
+      "treat": "X-ray (MRI if negative); surgery within 24–48 h; VTE prophylaxis.",
+      "trap": "Displaced femoral neck fracture risks avascular necrosis: arthroplasty."
+    },
+    "back": "Hip fracture: surgery within 24–48 hours. Key clue: Shortened, externally rotated leg after a fall. First-line: X-ray (MRI if negative); surgery within 24–48 h; VTE prophylaxis. Exam trap: Displaced femoral neck fracture risks avascular necrosis: arthroplasty.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-075.svg",
+      "alt": "Hip fracture through the femoral neck. X-ray, then MRI if occult; surgery within 24 to 48 hours; arthroplasty for displaced femoral neck fractures; VTE prophylaxis afterwards."
+    },
+    "source": {
+      "guideline": "AAOS Clinical Practice Guideline: Management of Hip Fractures in Older Adults (2021)",
+      "year": "2021",
+      "url": "https://new.aaos.org/globalassets/quality-and-practice-resources/hip-fractures-in-the-elderly/hipfxcpg.pdf",
+      "alt_url": "https://www.aaos.org/quality/quality-programs/lower-extremity-programs/hip-fractures-in-the-elderly/",
+      "recommendation": "Surgery within 24–48 h of admission may be associated with better outcomes (moderate, upgraded). VTE prophylaxis should be used (strong). No routine preoperative traction. MRI for suspected occult fracture; arthroplasty for unstable (displaced) femoral neck fractures."
+    }
+  },
+  {
+    "id": "pance-076",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Ankle sprain or knee injury: when is an X-ray needed, and which tests check the ACL and meniscus?",
+    "bottom": "Ottawa rules decide who needs an X-ray.",
+    "bullets": {
+      "clue": "Bone tenderness at malleolus tip, or cannot bear weight.",
+      "treat": "Ankle sprain: early functional support and exercise. ACL: Lachman; meniscus: McMurray; MRI confirms.",
+      "trap": "Lachman is the most sensitive ACL test."
+    },
+    "back": "Ottawa rules decide who needs an X-ray. Key clue: Bone tenderness at malleolus tip, or cannot bear weight. First-line: Ankle sprain: early functional support and exercise. ACL: Lachman; meniscus: McMurray; MRI confirms. Exam trap: Lachman is the most sensitive ACL test.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-076.svg",
+      "alt": "Ottawa ankle rules: X-ray for bone tenderness at the posterior malleolus, navicular or fifth metatarsal, or inability to bear weight for four steps. Lachman tests the ACL, McMurray the meniscus, and MRI confirms."
+    },
+    "source": {
+      "guideline": "Ottawa Ankle Rules (Stiell, JAMA 1993); ACR Appropriateness Criteria: Acute Trauma to the Ankle and Knee",
+      "year": "1993 / ACR current",
+      "url": "https://doi.org/10.1001/jama.1993.03500160077034",
+      "alt_url": "https://acsearch.acr.org/list",
+      "recommendation": "Ottawa ankle rules: ankle radiographs if malleolar-zone pain plus bone tenderness at the posterior edge or tip of either malleolus, or inability to bear weight both immediately and in the ED (4 steps); foot series for navicular or fifth metatarsal base tenderness. ACR: Ottawa/Pittsburgh rules guide radiography; MRI for suspected internal derangement."
+    }
+  },
+  {
+    "id": "pance-077",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Shoulder pain with overhead activity and night pain: impingement or rotator cuff tear? How to tell?",
+    "bottom": "Rotator cuff: weakness suggests a tear.",
+    "bullets": {
+      "clue": "Painful arc, positive Neer and Hawkins; drop-arm sign.",
+      "treat": "Physical therapy; single steroid injection short term; MRI or ultrasound; repair if needed.",
+      "trap": "Frozen shoulder loses passive motion; cuff problems keep it."
+    },
+    "back": "Rotator cuff: weakness suggests a tear. Key clue: Painful arc, positive Neer and Hawkins; drop-arm sign. First-line: Physical therapy; single steroid injection short term; MRI or ultrasound; repair if needed. Exam trap: Frozen shoulder loses passive motion; cuff problems keep it.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-077.svg",
+      "alt": "Rotator cuff disease involving the supraspinatus tendon. Physical therapy and a single steroid injection first, MRI or ultrasound if weakness suggests a tear, and surgical repair when needed; frozen shoulder loses passive motion too."
+    },
+    "source": {
+      "guideline": "AAOS Clinical Practice Guideline: Management of Rotator Cuff Injuries (2025)",
+      "year": "2025",
+      "url": "https://www.aaos.org/rccpg2025",
+      "alt_url": "https://www.aaos.org/globalassets/quality-and-practice-resources/rotator-cuff/rotator-cuff-2025/rotator-cuff-cpg.pdf",
+      "recommendation": "AAOS Aug 2025: physical therapy improves outcomes in symptomatic full-thickness tears (tear may progress over 5–10 years); combine clinical tests rather than rely on one; MRI, MRA, CT and ultrasound are useful adjuncts (strong); a single corticosteroid injection with local anesthetic may improve short-term pain and function; surgical repair yields better outcomes than nonoperative care in healed repairs; routine acromioplasty not suggested."
+    }
+  },
+  {
+    "id": "pance-078",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Young woman with malar rash, arthritis and a positive ANA: likely diagnosis, specific tests, and drug for everyone?",
+    "bottom": "SLE: hydroxychloroquine for all.",
+    "bullets": {
+      "clue": "Malar rash, arthritis, serositis, cytopenias, proteinuria.",
+      "treat": "ANA screen; anti-dsDNA, anti-Smith specific. Hydroxychloroquine; steroids as bridge.",
+      "trap": "Hydroxychloroquine needs retinal screening."
+    },
+    "back": "SLE: hydroxychloroquine for all. Key clue: Malar rash, arthritis, serositis, cytopenias, proteinuria. First-line: ANA screen; anti-dsDNA, anti-Smith specific. Hydroxychloroquine; steroids as bridge. Exam trap: Hydroxychloroquine needs retinal screening.",
+    "word_count": 28,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-078.svg",
+      "alt": "Systemic lupus erythematosus: ANA is sensitive and anti-dsDNA and anti-Smith are specific. Hydroxychloroquine for all patients, steroids as a bridge kept at 5 mg or less, and steroid-sparing drugs or nephritis therapy as needed."
+    },
+    "source": {
+      "guideline": "EULAR Recommendations for the Management of SLE: 2023 Update; 2019 EULAR/ACR SLE Classification Criteria",
+      "year": "2023 / 2019",
+      "url": "https://doi.org/10.1136/ard-2023-224762",
+      "alt_url": "https://ard.eular.org/article/S0003-4967(24)00386-8/fulltext",
+      "recommendation": "HCQ for all patients unless contraindicated, target 5 mg/kg real body weight/day, individualized for flare and retinal toxicity risk. Glucocorticoids as bridging therapy, reduced to ≤5 mg/day prednisone maintenance and withdrawn when possible. Prompt immunosuppressants (methotrexate, azathioprine, mycophenolate) and/or biologics (anifrolumab, belimumab). Lupus nephritis: glucocorticoids plus mycophenolate or low-dose IV cyclophosphamide as anchor drugs. 2019 classification requires ANA ≥1:80 as entry criterion."
+    }
+  },
+  {
+    "id": "pance-079",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "Over 50 with shoulder and hip girdle stiffness, or a new headache with jaw claudication: diagnosis and treatment?",
+    "bottom": "PMR or giant cell arteritis.",
+    "bullets": {
+      "clue": "Girdle stiffness, high ESR; GCA: headache, jaw claudication, vision loss.",
+      "treat": "PMR: prednisone 12.5–25 mg. GCA: high-dose steroids now, biopsy within 2 weeks.",
+      "trap": "Suspected GCA: do not wait for biopsy before steroids."
+    },
+    "back": "PMR or giant cell arteritis. Key clue: Girdle stiffness, high ESR; GCA: headache, jaw claudication, vision loss. First-line: PMR: prednisone 12.5–25 mg. GCA: high-dose steroids now, biopsy within 2 weeks. Exam trap: Suspected GCA: do not wait for biopsy before steroids.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-079.svg",
+      "alt": "Polymyalgia rheumatica and giant cell arteritis in adults over 50 with high ESR. PMR uses prednisone 12.5 to 25 mg; GCA needs high-dose steroids immediately, temporal artery biopsy within 2 weeks, and tocilizumab as a steroid-sparing option."
+    },
+    "source": {
+      "guideline": "2021 ACR/Vasculitis Foundation Guideline for GCA and Takayasu Arteritis; 2015 EULAR/ACR Recommendations for Polymyalgia Rheumatica",
+      "year": "2021 / 2015",
+      "url": "https://doi.org/10.1002/art.41774",
+      "alt_url": "https://doi.org/10.1002/art.39295",
+      "recommendation": "GCA 2021: temporal artery biopsy within 2 weeks of starting oral glucocorticoids; unilateral, >1 cm; biopsy over ultrasound or MRI in the US; oral glucocorticoids with tocilizumab conditionally over glucocorticoids alone (methotrexate or steroids alone acceptable). PMR 2015: initial prednisone 12.5–25 mg/day, individualized taper."
+    }
+  },
+  {
+    "id": "pance-080",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Pediatric hip: obese teen with knee pain and limp, active boy age 4–8, or a newborn with a hip clunk?",
+    "bottom": "SCFE, Legg-Calvé-Perthes, DDH.",
+    "bullets": {
+      "clue": "Teen obese: SCFE. Age 4–8: Perthes. Newborn: Ortolani, Barlow.",
+      "treat": "SCFE: no weight bearing, surgical pinning. DDH: imaging, brace if unstable. Perthes: observe, brace.",
+      "trap": "Knee pain in a child can come from the hip."
+    },
+    "back": "SCFE, Legg-Calvé-Perthes, DDH. Key clue: Teen obese: SCFE. Age 4–8: Perthes. Newborn: Ortolani, Barlow. First-line: SCFE: no weight bearing, surgical pinning. DDH: imaging, brace if unstable. Perthes: observe, brace. Exam trap: Knee pain in a child can come from the hip.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-080.svg",
+      "alt": "Three pediatric hip disorders: slipped capital femoral epiphysis in obese teens treated with surgical pinning, Legg-Calvé-Perthes avascular necrosis at age 4 to 8, and developmental hip dysplasia in newborns found by Ortolani and Barlow and treated with a Pavlik harness."
+    },
+    "source": {
+      "guideline": "AAOS Clinical Practice Guideline: Management of Developmental Dysplasia of the Hip in Infants up to Six Months (2022); standard teaching for SCFE and Perthes",
+      "year": "2022",
+      "url": "https://www.aaos.org/ddhcpg",
+      "alt_url": "https://publications.aap.org/pediatrics/article/138/6/e20163107/52828",
+      "recommendation": "AAOS DDH: imaging (ultrasound) before 6 months for infants with risk factors (breech, family history) or an abnormal exam; no universal ultrasound screening; ultrasound <6 weeks may guide bracing of an unstable hip; AP pelvis X-ray instead of ultrasound from 4 months; re-examine at visits before 6 months; bracing for unstable hips (the CPG does not name Pavlik as preferred). AAP 2016 clinical report on DDH evaluation. SCFE and Perthes management is standard teaching."
+    }
+  },
+  {
+    "id": "pance-081",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Clinical Intervention",
+    "front": "After a tibial fracture or crush injury, pain is out of proportion and worse with passive stretch: diagnosis and action?",
+    "bottom": "Compartment syndrome: emergency fasciotomy.",
+    "bullets": {
+      "clue": "Pain out of proportion, pain on passive stretch, tense compartment.",
+      "treat": "Remove cast or dressing, limb at heart level; urgent fasciotomy.",
+      "trap": "Pulses often stay present; pulselessness is late."
+    },
+    "back": "Compartment syndrome: emergency fasciotomy. Key clue: Pain out of proportion, pain on passive stretch, tense compartment. First-line: Remove cast or dressing, limb at heart level; urgent fasciotomy. Exam trap: Pulses often stay present; pulselessness is late.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-081.svg",
+      "alt": "Acute compartment syndrome with swollen lower-leg compartments after a fracture or crush injury. Split the cast, keep the limb at heart level, measure pressure if unclear, and perform emergency fasciotomy; pulses are often preserved."
+    },
+    "source": {
+      "guideline": "AAOS Clinical Practice Guideline: Management of Acute Compartment Syndrome (2025 rapid update)",
+      "year": "2025",
+      "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/acute-compartment-syndrome/2025-acs-rapid-update/acs-cpg-2025.pdf",
+      "alt_url": "https://doi.org/10.5435/jaaos-d-19-00270",
+      "recommendation": "AAOS 2025: intracompartmental pressure monitoring assists diagnosis (moderate); repeated/continuous monitoring with diastolic BP minus compartment pressure >30 mmHg helps rule out ACS (moderate); no single absolute pressure cutoff; serial clinical exam helps rule in (limited); obtunded patients: repeated or continuous pressure measurement until diagnosed or excluded (consensus)."
+    }
+  },
+  {
+    "id": "pance-082",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Diabetic foot ulcer that probes to bone, or bone pain with fever: diagnosis, best imaging, and confirmation?",
+    "bottom": "Osteomyelitis: MRI, then bone biopsy.",
+    "bullets": {
+      "clue": "Probe-to-bone positive, high ESR, ulcer over 2 cm.",
+      "treat": "X-ray first, MRI if unclear; bone culture guides 6 weeks of antibiotics.",
+      "trap": "Early X-ray can be normal for 2 weeks."
+    },
+    "back": "Osteomyelitis: MRI, then bone biopsy. Key clue: Probe-to-bone positive, high ESR, ulcer over 2 cm. First-line: X-ray first, MRI if unclear; bone culture guides 6 weeks of antibiotics. Exam trap: Early X-ray can be normal for 2 weeks.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-082.svg",
+      "alt": "Osteomyelitis with a lytic bone focus. Plain X-ray first, MRI if unclear, bone biopsy and culture to guide about 6 weeks of antibiotics; early X-ray can be normal."
+    },
+    "source": {
+      "guideline": "IWGDF/IDSA Guidelines on the Diagnosis and Treatment of Diabetes-related Foot Infections (2023)",
+      "year": "2023",
+      "url": "https://doi.org/10.1093/cid/ciad527",
+      "alt_url": "https://iwgdfguidelines.org/infection-guideline-2023/",
+      "recommendation": "Suspected diabetic foot osteomyelitis: combine probe-to-bone, ESR/CRP and plain X-ray; MRI when diagnosis remains uncertain; bone culture (percutaneous or surgical) for diagnosis and to guide therapy; ~6 weeks antibiotics without resection (up to 3 weeks after minor amputation with positive bone margin)."
+    }
+  },
+  {
+    "id": "pance-083",
+    "system": "Musculoskeletal",
+    "blueprint_weight": "8%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Teen with night bone pain relieved by NSAIDs, vs widespread pain with fatigue and normal labs: diagnoses?",
+    "bottom": "Osteoid osteoma vs fibromyalgia.",
+    "bullets": {
+      "clue": "Night pain relieved by NSAIDs; widespread pain with normal labs.",
+      "treat": "Bone pain: X-ray; sunburst or onion-skin needs referral. Fibromyalgia: exercise, then duloxetine or pregabalin.",
+      "trap": "Fibromyalgia has normal ESR, CRP and exam strength."
+    },
+    "back": "Osteoid osteoma vs fibromyalgia. Key clue: Night pain relieved by NSAIDs; widespread pain with normal labs. First-line: Bone pain: X-ray; sunburst or onion-skin needs referral. Fibromyalgia: exercise, then duloxetine or pregabalin. Exam trap: Fibromyalgia has normal ESR, CRP and exam strength.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-083.svg",
+      "alt": "Bone tumors versus fibromyalgia: osteosarcoma has a sunburst pattern, Ewing sarcoma onion skinning, and osteoid osteoma a nidus with night pain relieved by NSAIDs; fibromyalgia has widespread pain with normal labs and is treated with exercise first."
+    },
+    "source": {
+      "guideline": "2016 ACR Fibromyalgia Diagnostic Criteria (Wolfe et al.); EULAR Revised Recommendations for Fibromyalgia Management (2017); standard teaching for bone tumors",
+      "year": "2016 / 2017",
+      "url": "https://doi.org/10.1016/j.semarthrit.2016.08.012",
+      "alt_url": "https://doi.org/10.1136/annrheumdis-2016-209724",
+      "recommendation": "EULAR 2017: exercise is the only strong recommendation; then psychological therapies; drugs (low-dose amitriptyline, duloxetine or milnacipran, pregabalin, tramadol) for severe pain or sleep disturbance; against NSAIDs (as monotherapy), strong opioids and corticosteroids. ACR 2016: widespread pain index and symptom severity, symptoms ≥3 months. Bone tumor imaging patterns are standard teaching."
+    }
+  }
+]

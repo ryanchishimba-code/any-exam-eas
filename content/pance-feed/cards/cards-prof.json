@@ -1,0 +1,326 @@
+[
+  {
+    "id": "pance-157",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "Before a procedure, what must informed consent include, and how is decision-making capacity judged?",
+    "bottom": "Disclose diagnosis, purpose, risks, benefits and alternatives, including no treatment.",
+    "bullets": {
+      "clue": "Capacity: communicate, understand, appreciate, reason.",
+      "treat": "Lacks capacity: surrogate decides.",
+      "trap": "Capacity is a clinical judgment for this decision, not a court ruling."
+    },
+    "back": "Disclose diagnosis, purpose, risks, benefits and alternatives, including no treatment. Key clue: Capacity: communicate, understand, appreciate, reason. First-line: Lacks capacity: surrogate decides. Exam trap: Capacity is a clinical judgment for this decision, not a court ruling.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-157.svg",
+      "alt": "Informed consent: disclose risks, benefits and alternatives; capacity means communicating a choice, understanding, appreciating and reasoning."
+    },
+    "source": {
+      "guideline": "AMA Code of Medical Ethics Opinion 2.1.1; AAPA Guidelines for Ethical Conduct (2018); Appelbaum, NEJM (2007)",
+      "year": "2007–2018",
+      "url": "https://code-medical-ethics.ama-assn.org/chapters/consent-communication-decision-making",
+      "alt_url": "https://www.aapa.org/wp-content/uploads/2021/11/Guidelines-for-Ethical-Conduct-for-the-PA-Profession-7-1-21.pdf",
+      "recommendation": "AMA 2.1.1: disclose diagnosis, nature/purpose of intervention, burdens, risks and benefits of all options including forgoing treatment. AAPA: condition, objectives, options, outcomes, risks. Appelbaum: communicate a choice, understand, appreciate, reason."
+    }
+  },
+  {
+    "id": "pance-158",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "May a PA share a patient's records with a consulting specialist without written authorization?",
+    "bottom": "Yes: HIPAA permits disclosure for treatment without authorization.",
+    "bullets": {
+      "clue": "Treatment, payment and operations (TPO).",
+      "treat": "Minimum necessary applies to payment and operations, not treatment.",
+      "trap": "Patient consent forms can't replace a required authorization."
+    },
+    "back": "Yes: HIPAA permits disclosure for treatment without authorization. Key clue: Treatment, payment and operations (TPO). First-line: Minimum necessary applies to payment and operations, not treatment. Exam trap: Patient consent forms can't replace a required authorization.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-158.svg",
+      "alt": "HIPAA allows disclosure for treatment, payment and operations without authorization; minimum necessary does not apply to treatment."
+    },
+    "source": {
+      "guideline": "HHS HIPAA Privacy Rule guidance: TPO disclosures; Minimum Necessary; 45 CFR 164.506",
+      "year": "current",
+      "url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/disclosures-treatment-payment-health-care-operations/index.html",
+      "alt_url": "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/minimum-necessary-requirement/index.html",
+      "recommendation": "HHS: covered entity may use/disclose PHI for TPO without authorization; minimum necessary applies to payment/operations and workforce access, not treatment disclosures; consent optional and cannot substitute for required authorization (164.506(b))."
+    }
+  },
+  {
+    "id": "pance-159",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A medication error harmed a patient but changes nothing in treatment. Disclose?",
+    "bottom": "Yes: disclose, explain harm, acknowledge and apologize.",
+    "bullets": {
+      "clue": "Even when treatment won't change.",
+      "treat": "Explain prevention steps; ensure continuity of care.",
+      "trap": "Liability fear doesn't justify withholding."
+    },
+    "back": "Yes: disclose, explain harm, acknowledge and apologize. Key clue: Even when treatment won't change. First-line: Explain prevention steps; ensure continuity of care. Exam trap: Liability fear doesn't justify withholding.",
+    "word_count": 29,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-159.svg",
+      "alt": "Medical error: disclose to the patient, acknowledge it, explain prevention, and report through safety systems."
+    },
+    "source": {
+      "guideline": "AMA Code of Medical Ethics Opinion 8.6 Promoting Patient Safety",
+      "year": "current",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/promoting-patient-safety",
+      "alt_url": "https://www.aapa.org/wp-content/uploads/2021/11/Guidelines-for-Ethical-Conduct-for-the-PA-Profession-7-1-21.pdf",
+      "recommendation": "AMA 8.6 (a)–(d): disclose the error and potential harm, acknowledge with compassionate concern, explain prevention efforts, provide continuity of care; legal-liability concern should not affect honesty; (i) participate in error-reporting mechanisms."
+    }
+  },
+  {
+    "id": "pance-160",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A PA suspects but can't prove child abuse. What is required?",
+    "bottom": "Report to child protective services: suspicion is enough.",
+    "bullets": {
+      "clue": "Mandated reporter; proof not needed.",
+      "treat": "Report per state law; share minimum necessary information.",
+      "trap": "Waiting for certainty delays protection."
+    },
+    "back": "Report to child protective services: suspicion is enough. Key clue: Mandated reporter; proof not needed. First-line: Report per state law; share minimum necessary information. Exam trap: Waiting for certainty delays protection.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-160.svg",
+      "alt": "Suspected child abuse: mandated reporters report on suspicion, per state law, without needing proof."
+    },
+    "source": {
+      "guideline": "CAPTA via AMA Journal of Ethics (2023); AMA Code Opinion 8.10",
+      "year": "2023",
+      "url": "https://journalofethics.ama-assn.org/article/how-should-clinicians-minimize-bias-when-responding-suspicions-about-child-abuse/2023-02",
+      "alt_url": "https://www.famjustice.org/toolkit/medical-ethics-considerations",
+      "recommendation": "CAPTA requires states to implement reporting procedures; mandated reporters who suspect abuse must report and need not prove it. AMA: disclose only minimum necessary when reporting."
+    }
+  },
+  {
+    "id": "pance-161",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "An unconscious patient has an advance directive; the family wants otherwise. Who decides, and by what standard?",
+    "bottom": "Follow the directive; surrogates use substituted judgment.",
+    "bullets": {
+      "clue": "What the patient would want.",
+      "treat": "Unknown wishes: best-interest standard; ethics consult if unresolved.",
+      "trap": "Withholding and withdrawing treatment are ethically equivalent."
+    },
+    "back": "Follow the directive; surrogates use substituted judgment. Key clue: What the patient would want. First-line: Unknown wishes: best-interest standard; ethics consult if unresolved. Exam trap: Withholding and withdrawing treatment are ethically equivalent.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-161.svg",
+      "alt": "Advance directive guides care when capacity is lost; surrogate uses substituted judgment, else best interest."
+    },
+    "source": {
+      "guideline": "AMA Code of Medical Ethics Opinions 5.2, 5.3, 2.1.2",
+      "year": "current",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/withholding-or-withdrawing-life-sustaining-treatment",
+      "alt_url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
+      "recommendation": "AMA 5.2: directives apply when capacity is lost, never over current capacitated wishes. 5.3: withholding and withdrawing equivalent; ethics consult for unresolved surrogate conflict. 2.1.2: substituted judgment, else best interest."
+    }
+  },
+  {
+    "id": "pance-162",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "What is AAPA's Optimal Team Practice, and how do PAs bill Medicare?",
+    "bottom": "Collaboration decided at practice level, not mandated supervision agreements.",
+    "bullets": {
+      "clue": "Team-based PA practice.",
+      "treat": "Medicare pays PA services at 85% of physician fee schedule.",
+      "trap": "Scope and supervision rules vary by state."
+    },
+    "back": "Collaboration decided at practice level, not mandated supervision agreements. Key clue: Team-based PA practice. First-line: Medicare pays PA services at 85% of physician fee schedule. Exam trap: Scope and supervision rules vary by state.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-162.svg",
+      "alt": "Optimal Team Practice: collaboration decided at the practice level; Medicare pays PAs 85% of the physician fee schedule."
+    },
+    "source": {
+      "guideline": "AAPA Optimal Team Practice FAQ (2017); CMS Physician Assistants payment page",
+      "year": "2017 / current",
+      "url": "https://www.aapa.org/wp-content/uploads/2017/11/110917-Core-FAQ-Revised-FINAL.pdf",
+      "alt_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/advanced-practice-non-physician-practitioners/physician-assistants-pas",
+      "recommendation": "AAPA OTP: collaboration determined at practice level, removing requirement for a specific supervisory relationship. CMS: PA services paid at 80% of the lesser of actual charge or 85% of the physician PFS outside hospital/SNF."
+    }
+  },
+  {
+    "id": "pance-163",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A patient with limited English proficiency: who should interpret?",
+    "bottom": "A qualified medical interpreter, offered at no cost.",
+    "bullets": {
+      "clue": "Patient's preferred language.",
+      "treat": "Document interpreter use; provide translated materials.",
+      "trap": "Avoid family or minors as interpreters except emergencies."
+    },
+    "back": "A qualified medical interpreter, offered at no cost. Key clue: Patient's preferred language. First-line: Document interpreter use; provide translated materials. Exam trap: Avoid family or minors as interpreters except emergencies.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-163.svg",
+      "alt": "Limited English proficiency: use a qualified interpreter at no cost; avoid family members and minors."
+    },
+    "source": {
+      "guideline": "HHS National CLAS Standards (Standards 5–8)",
+      "year": "2013",
+      "url": "https://thinkculturalhealth.hhs.gov/assets/pdfs/EnhancedNationalCLASStandards.pdf",
+      "alt_url": "https://www.ahrq.gov/sites/default/files/wysiwyg/professionals/systems/hospital/lepguide/lepguide.pdf",
+      "recommendation": "CLAS 5: offer language assistance at no cost; 7: ensure competence of interpreters, avoid untrained individuals and/or minors as interpreters; 8: easy-to-understand materials."
+    }
+  },
+  {
+    "id": "pance-164",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A test has 90% sensitivity and 80% specificity. Which rules disease out? And how is NNT calculated?",
+    "bottom": "High sensitivity rules out (SnNout); high specificity rules in (SpPin).",
+    "bullets": {
+      "clue": "Sens = TP/(TP+FN); spec = TN/(TN+FP).",
+      "treat": "NNT = 1 / absolute risk reduction.",
+      "trap": "Predictive values change with prevalence; sensitivity doesn't."
+    },
+    "back": "High sensitivity rules out (SnNout); high specificity rules in (SpPin). Key clue: Sens = TP/(TP+FN); spec = TN/(TN+FP). First-line: NNT = 1 / absolute risk reduction. Exam trap: Predictive values change with prevalence; sensitivity doesn't.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-164.svg",
+      "alt": "Sensitivity rules out, specificity rules in; NNT equals one over absolute risk reduction."
+    },
+    "source": {
+      "guideline": "Standard biostatistics formulas",
+      "year": "standard",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+      "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/sites/default/files/2025-01/understanding-how-uspstf-works-tf101-2025.pdf",
+      "recommendation": "Standard definitions: sensitivity TP/(TP+FN), specificity TN/(TN+FP), NNT = 1/ARR; PPV/NPV depend on prevalence."
+    }
+  },
+  {
+    "id": "pance-165",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "When did the PA profession start, and how do PAs keep NCCPA certification?",
+    "bottom": "Duke, 1965: Eugene Stead trained former Navy corpsmen.",
+    "bullets": {
+      "clue": "NCCPA founded 1975.",
+      "treat": "100 CME every 2 years (50 Category 1); recertification exam every 10 years.",
+      "trap": "AAPA is the professional society; NCCPA certifies."
+    },
+    "back": "Duke, 1965: Eugene Stead trained former Navy corpsmen. Key clue: NCCPA founded 1975. First-line: 100 CME every 2 years (50 Category 1); recertification exam every 10 years. Exam trap: AAPA is the professional society; NCCPA certifies.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-165.svg",
+      "alt": "PA profession began at Duke in 1965; NCCPA, founded 1975, requires 100 CME every 2 years and an exam every 10 years."
+    },
+    "source": {
+      "guideline": "AAPA History; NCCPA History; NCCPA Maintain Certification",
+      "year": "current",
+      "url": "https://www.aapa.org/about/history/",
+      "alt_url": "https://www.nccpa.net/maintain-certification/",
+      "recommendation": "AAPA: Duke program founded 1965 by Eugene Stead with four former Navy corpsmen. NCCPA established 1975. Maintenance: 100 CME every 2 years including 50 Category 1, plus recertification exam every 10 years."
+    }
+  },
+  {
+    "id": "pance-166",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A capacitated patient refuses a recommended treatment. What do you do? And what does a USPSTF grade C mean?",
+    "bottom": "Respect it; document informed refusal, including risks of declining.",
+    "bullets": {
+      "clue": "Shared decision-making.",
+      "treat": "Grade C: offer selectively by judgment and patient preference.",
+      "trap": "Grade D: recommend against; I: insufficient evidence."
+    },
+    "back": "Respect it; document informed refusal, including risks of declining. Key clue: Shared decision-making. First-line: Grade C: offer selectively by judgment and patient preference. Exam trap: Grade D: recommend against; I: insufficient evidence.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-166.svg",
+      "alt": "Informed refusal: respect and document; USPSTF grade C means offering selectively using shared decision-making."
+    },
+    "source": {
+      "guideline": "USPSTF Grade Definitions (Understanding How the USPSTF Works, 2025); AMA Opinion 2.1.1",
+      "year": "2025",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/sites/default/files/2025-01/understanding-how-uspstf-works-tf101-2025.pdf",
+      "alt_url": "https://code-medical-ethics.ama-assn.org/chapters/consent-communication-decision-making",
+      "recommendation": "USPSTF: A/B recommend; C selectively offer based on professional judgment and patient preferences; D recommend against; I insufficient evidence. AMA 2.1.1: patient may decline; document."
+    }
+  },
+  {
+    "id": "pance-167",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A colleague smells of alcohol on shift. What is the PA's obligation? And romantic involvement with a patient?",
+    "bottom": "Protect patients: identify and assist the impaired colleague.",
+    "bullets": {
+      "clue": "Report per institutional policy.",
+      "treat": "Refer for evaluation and treatment.",
+      "trap": "Sexual relationships with patients are generally unethical."
+    },
+    "back": "Protect patients: identify and assist the impaired colleague. Key clue: Report per institutional policy. First-line: Refer for evaluation and treatment. Exam trap: Sexual relationships with patients are generally unethical.",
+    "word_count": 29,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-167.svg",
+      "alt": "Impaired colleague: protect patients, refer and report; sexual relationships with patients are generally unethical."
+    },
+    "source": {
+      "guideline": "AAPA Guidelines for Ethical Conduct for the PA Profession (2018)",
+      "year": "2018",
+      "url": "https://www.aapa.org/wp-content/uploads/2021/11/Guidelines-for-Ethical-Conduct-for-the-PA-Profession-7-1-21.pdf",
+      "alt_url": "https://www.nccpa.net/resources/code-of-conduct/",
+      "recommendation": "AAPA: PAs have an ethical responsibility to protect patients by identifying and assisting impaired colleagues; report illegal/unethical conduct; sexual relationships with current or former patients generally unethical."
+    }
+  },
+  {
+    "id": "pance-168",
+    "system": "Professional Practice",
+    "blueprint_weight": "6%",
+    "task_area": "Professional Practice",
+    "front": "A clinic wants to improve diabetic eye exam rates by testing small changes. Which model? And what must a billed note show?",
+    "bottom": "Model for Improvement with Plan-Do-Study-Act cycles.",
+    "bullets": {
+      "clue": "Aim, measures, changes.",
+      "treat": "Document signs and symptoms showing each service is medically necessary.",
+      "trap": "Test small changes before spreading them."
+    },
+    "back": "Model for Improvement with Plan-Do-Study-Act cycles. Key clue: Aim, measures, changes. First-line: Document signs and symptoms showing each service is medically necessary. Exam trap: Test small changes before spreading them.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-168.svg",
+      "alt": "Quality improvement uses PDSA cycles; billed notes must document medical necessity."
+    },
+    "source": {
+      "guideline": "AHRQ Model for Improvement and PDSA job aid; CMS PA payment guidance",
+      "year": "current",
+      "url": "https://www.ahrq.gov/sites/default/files/wysiwyg/ncepcr/resources/job-aid-model-pdsa.pdf",
+      "alt_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/advanced-practice-non-physician-practitioners/physician-assistants-pas",
+      "recommendation": "AHRQ: aim, measures, changes; test via PDSA cycles and spread successful ones. CMS: for each billed service, note signs, symptoms or complaints that make it reasonable and necessary."
+    }
+  }
+]

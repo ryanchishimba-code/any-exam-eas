@@ -1,0 +1,299 @@
+[
+  {
+    "id": "pance-146",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Toddler with ear pain and a bulging tympanic membrane: diagnosis and first-line antibiotic? And for swimmer's ear?",
+    "bottom": "Acute otitis media: high-dose amoxicillin.",
+    "bullets": {
+      "clue": "Moderate-severe TM bulging or new otorrhea.",
+      "treat": "Amoxicillin 80–90 mg/kg/day divided BID; amox-clav if amoxicillin within 30 days.",
+      "trap": "Otitis externa: topical drops, not oral antibiotics."
+    },
+    "back": "Acute otitis media: high-dose amoxicillin. Key clue: Moderate-severe TM bulging or new otorrhea. First-line: Amoxicillin 80–90 mg/kg/day divided BID; amox-clav if amoxicillin within 30 days. Exam trap: Otitis externa: topical drops, not oral antibiotics.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-146.svg",
+      "alt": "Acute otitis media: bulging tympanic membrane, high-dose amoxicillin; otitis externa treated with topical drops."
+    },
+    "source": {
+      "guideline": "AAP Acute Otitis Media Guideline (2013); AAO-HNSF Acute Otitis Externa Guideline (2014)",
+      "year": "2013 / 2014",
+      "url": "https://publications.aap.org/pediatrics/article/131/3/e964/30912",
+      "alt_url": "https://aao-hnsfjournals.onlinelibrary.wiley.com/doi/10.1177/0194599813517083",
+      "recommendation": "AAP 2013 KAS 1A/1B diagnosis by bulging TM or new otorrhea; KAS 4A amoxicillin, 4B β-lactamase coverage if amoxicillin in 30 days, purulent conjunctivitis or recurrent AOM; AAP dosing table 80–90 mg/kg/day BID; observation option for nonsevere ≥24 months. AAO-HNSF 2014: no systemic antimicrobials initially for uncomplicated AOE."
+    }
+  },
+  {
+    "id": "pance-147",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Sore throat, fever, no cough, tonsillar exudate: how to test and treat? And when do adults with sinusitis get antibiotics?",
+    "bottom": "Test for strep; treat positives with penicillin or amoxicillin.",
+    "bullets": {
+      "clue": "Child with negative rapid test: back-up culture.",
+      "treat": "Penicillin or amoxicillin 10 days; sinusitis: amoxicillin ± clavulanate 5–10 days.",
+      "trap": "Adults don't need back-up culture; sinusitis may get watchful waiting."
+    },
+    "back": "Test for strep; treat positives with penicillin or amoxicillin. Key clue: Child with negative rapid test: back-up culture. First-line: Penicillin or amoxicillin 10 days; sinusitis: amoxicillin ± clavulanate 5–10 days. Exam trap: Adults don't need back-up culture; sinusitis may get watchful waiting.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-147.svg",
+      "alt": "Strep pharyngitis: rapid test with culture back-up in children, penicillin or amoxicillin 10 days; adult sinusitis watchful waiting or amoxicillin."
+    },
+    "source": {
+      "guideline": "IDSA Group A Streptococcal Pharyngitis (2012); AAO-HNSF Adult Sinusitis Update (2015)",
+      "year": "2012 / 2015",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
+      "alt_url": "https://www.entnet.org/resource/aao-hnsf-updated-cpg-adult-sinusitis-press-release-fact-sheet/",
+      "recommendation": "IDSA: back up negative RADT with culture in children/adolescents, not routinely in adults; no testing with clear viral features; penicillin or amoxicillin usually 10 days. AAO-HNSF: watchful waiting or antibiotics for uncomplicated ABRS; amoxicillin ± clavulanate 5–10 days."
+    }
+  },
+  {
+    "id": "pance-148",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Active anterior nosebleed: first step, and when is packing used?",
+    "bottom": "Firm sustained compression of the lower nose ≥5 minutes.",
+    "bullets": {
+      "clue": "Most bleeding is anterior.",
+      "treat": "Compression; then packing if bleeding persists.",
+      "trap": "Anticoagulated or bleeding disorder: resorbable packing."
+    },
+    "back": "Firm sustained compression of the lower nose ≥5 minutes. Key clue: Most bleeding is anterior. First-line: Compression; then packing if bleeding persists. Exam trap: Anticoagulated or bleeding disorder: resorbable packing.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-148.svg",
+      "alt": "Epistaxis: firm compression of the lower nose for at least 5 minutes, then packing, resorbable if on anticoagulants."
+    },
+    "source": {
+      "guideline": "AAO-HNSF Clinical Practice Guideline: Nosebleed (Epistaxis) (2020)",
+      "year": "2020",
+      "url": "https://doi.org/10.1177/0194599819890327",
+      "alt_url": "https://bulletin.entnet.org/home/article/21247790/clinical-practice-guideline-nosebleed-epistaxis",
+      "recommendation": "AAO-HNSF 2020: firm sustained compression to the lower third of the nose ≥5 minutes; nasal packing if bleeding persists; resorbable packing with increased bleeding risk (anticoagulants/antiplatelets, bleeding disorders)."
+    }
+  },
+  {
+    "id": "pance-149",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Sudden painless monocular vision loss with a cherry-red spot: diagnosis and next step?",
+    "bottom": "Central retinal artery occlusion: a stroke equivalent.",
+    "bullets": {
+      "clue": "Pale retina, cherry-red macula.",
+      "treat": "Immediate referral to stroke center or ED.",
+      "trap": "Flashes, floaters or curtain: urgent dilated retinal exam for detachment."
+    },
+    "back": "Central retinal artery occlusion: a stroke equivalent. Key clue: Pale retina, cherry-red macula. First-line: Immediate referral to stroke center or ED. Exam trap: Flashes, floaters or curtain: urgent dilated retinal exam for detachment.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-149.svg",
+      "alt": "Central retinal artery occlusion: cherry-red spot, immediate stroke-center referral, giant cell arteritis workup over 50."
+    },
+    "source": {
+      "guideline": "AAO PPPs: Retinal and Ophthalmic Artery Occlusions; Posterior Vitreous Detachment, Retinal Breaks and Lattice Degeneration",
+      "year": "2024–2025",
+      "url": "https://www.aao.org/Assets/9ed4d7e9-3652-45bc-9e08-be1fa61ecc68/638748048296800000/retinal-and-ophthalmic-artery-occlus",
+      "alt_url": "https://www.aaojournal.org/article/S0161-6420(24)00787-5/fulltext",
+      "recommendation": "AAO PPP: acute symptomatic CRAO/BRAO/OAO is an emergency; immediate referral to nearest stroke center/ED; systemic stroke evaluation; suspect GCA over 50 with urgent corticosteroids. AAO PVD/retinal breaks PPP: symptoms cannot distinguish PVD with or without a break, so a peripheral retinal exam (indirect ophthalmoscopy, scleral depression) is required; symptomatic patients need urgent ophthalmology evaluation."
+    }
+  },
+  {
+    "id": "pance-150",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Red eye with watery discharge after a cold: treatment, and what to avoid?",
+    "bottom": "Viral (adenoviral) conjunctivitis: supportive care.",
+    "bullets": {
+      "clue": "Watery discharge, preauricular node, recent URI.",
+      "treat": "Cool compresses, artificial tears, hygiene.",
+      "trap": "Avoid indiscriminate topical antibiotics and steroids."
+    },
+    "back": "Viral (adenoviral) conjunctivitis: supportive care. Key clue: Watery discharge, preauricular node, recent URI. First-line: Cool compresses, artificial tears, hygiene. Exam trap: Avoid indiscriminate topical antibiotics and steroids.",
+    "word_count": 27,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-150.svg",
+      "alt": "Viral conjunctivitis: supportive care; avoid routine antibiotic or steroid drops."
+    },
+    "source": {
+      "guideline": "AAO Preferred Practice Pattern: Conjunctivitis (2023)",
+      "year": "2023",
+      "url": "https://www.aaojournal.org/article/S0161-6420(24)00009-5/fulltext",
+      "alt_url": "https://www.aao.org/preferred-practice-pattern",
+      "recommendation": "AAO PPP: avoid indiscriminate topical antibiotics or corticosteroids; viral conjunctivitis does not respond to antibacterials; mild bacterial conjunctivitis likely self-limited; no topical antibiotic superior."
+    }
+  },
+  {
+    "id": "pance-151",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Diagnostic Studies",
+    "front": "Sudden one-sided hearing loss over 2 days, Weber lateralizes to the good ear: next steps?",
+    "bottom": "Sudden sensorineural hearing loss: urgent audiometry.",
+    "bullets": {
+      "clue": "Weber lateralizes away from the affected ear.",
+      "treat": "Audiogram within 14 days; offer corticosteroids within 2 weeks.",
+      "trap": "No routine head CT; MRI or ABR for retrocochlear lesion."
+    },
+    "back": "Sudden sensorineural hearing loss: urgent audiometry. Key clue: Weber lateralizes away from the affected ear. First-line: Audiogram within 14 days; offer corticosteroids within 2 weeks. Exam trap: No routine head CT; MRI or ABR for retrocochlear lesion.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-151.svg",
+      "alt": "Sudden sensorineural hearing loss: audiometry within 14 days, corticosteroids within 2 weeks, MRI for retrocochlear lesion."
+    },
+    "source": {
+      "guideline": "AAO-HNSF Clinical Practice Guideline: Sudden Hearing Loss (Update 2019)",
+      "year": "2019",
+      "url": "https://doi.org/10.1177/0194599819859885",
+      "alt_url": "https://doi.org/10.1177/0194599819859883",
+      "recommendation": "AAO-HNSF 2019: audiometry as soon as possible (≤14 days); no routine CT; MRI or ABR for retrocochlear pathology; may offer corticosteroids within 2 weeks; intratympanic steroid salvage 2–6 weeks. Vertigo/BPPV: see pance-105 (neuro)."
+    }
+  },
+  {
+    "id": "pance-152",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "When do people with diabetes need retinal screening, and what treats center-involved macular edema?",
+    "bottom": "Dilated eye exam: type 2 at diagnosis, type 1 within 5 years.",
+    "bullets": {
+      "clue": "Normal exams and controlled glucose: every 1–2 years.",
+      "treat": "Center-involved DME with vision loss: intravitreal anti-VEGF.",
+      "trap": "Any retinopathy: at least yearly exams."
+    },
+    "back": "Dilated eye exam: type 2 at diagnosis, type 1 within 5 years. Key clue: Normal exams and controlled glucose: every 1–2 years. First-line: Center-involved DME with vision loss: intravitreal anti-VEGF. Exam trap: Any retinopathy: at least yearly exams.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-152.svg",
+      "alt": "Diabetic retinopathy screening at diagnosis for type 2 and within 5 years for type 1; anti-VEGF for center-involved macular edema."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care 2026 section 12; AAO Diabetic Retinopathy PPP (2024)",
+      "year": "2026 / 2024",
+      "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S261/163919/12-Retinopathy-Neuropathy-and-Foot-Care-Standards",
+      "alt_url": "https://www.aaojournal.org/article/S0161-6420(24)00784-X/fulltext",
+      "recommendation": "ADA 2026: dilated exam at T2 diagnosis and within 5 years of T1 onset; every 1–2 years if normal and glycemia at goal; at least annually with retinopathy. AAO PPP: anti-VEGF effective for center-involved DME with vision loss."
+    }
+  },
+  {
+    "id": "pance-153",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Elevated eye pressure with optic disc cupping: first-line drug? And first-line for wet macular degeneration?",
+    "bottom": "Open-angle glaucoma: prostaglandin analog first.",
+    "bullets": {
+      "clue": "Painless peripheral vision loss, cupping.",
+      "treat": "Prostaglandin analog drops; wet AMD: intravitreal anti-VEGF.",
+      "trap": "AREDS2 vitamins only for intermediate or one-eye advanced AMD."
+    },
+    "back": "Open-angle glaucoma: prostaglandin analog first. Key clue: Painless peripheral vision loss, cupping. First-line: Prostaglandin analog drops; wet AMD: intravitreal anti-VEGF. Exam trap: AREDS2 vitamins only for intermediate or one-eye advanced AMD.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-153.svg",
+      "alt": "Open-angle glaucoma treated first with prostaglandin analog drops; wet macular degeneration with anti-VEGF injections."
+    },
+    "source": {
+      "guideline": "AOA Evidence-Based Guideline: Primary Open-Angle Glaucoma (2024); AAO Age-Related Macular Degeneration PPP (2024)",
+      "year": "2024",
+      "url": "https://www.aoa.org/AOA/Documents/Practice%20Management/Clinical%20Guidelines/EBO%20Guidelines/2024_FINAL%20EBO_Glaucoma_Guideline_digital_10_28_24.pdf",
+      "alt_url": "https://www.aaojournal.org/article/S0161-6420(24)00782-6/fulltext",
+      "recommendation": "AOA 2024: prostaglandin analogs strong initial option unless contraindicated. AAO 2024 AMD PPP: intravitreal anti-VEGF first-line for neovascular AMD; AREDS2 for intermediate AMD or advanced AMD in one eye."
+    }
+  },
+  {
+    "id": "pance-154",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Child with recurrent sore throats: when is tonsillectomy indicated?",
+    "bottom": "Paradise criteria: 7 in 1 year, 5/year for 2, or 3/year for 3.",
+    "bullets": {
+      "clue": "Each episode documented with qualifying findings.",
+      "treat": "Below threshold: watchful waiting.",
+      "trap": "Peritonsillar abscess: drain plus antibiotics; epiglottitis: secure airway first."
+    },
+    "back": "Paradise criteria: 7 in 1 year, 5/year for 2, or 3/year for 3. Key clue: Each episode documented with qualifying findings. First-line: Below threshold: watchful waiting. Exam trap: Peritonsillar abscess: drain plus antibiotics; epiglottitis: secure airway first.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-154.svg",
+      "alt": "Tonsillectomy for recurrent throat infection: 7 episodes in 1 year, 5 per year for 2 years, or 3 per year for 3 years."
+    },
+    "source": {
+      "guideline": "AAO-HNSF Tonsillectomy in Children (Update 2019); AAFP Peritonsillar Abscess review (2017); Acute epiglottitis review, PMC (2012)",
+      "year": "2019 / 2017 / 2012",
+      "url": "https://doi.org/10.1177/0194599818801757",
+      "alt_url": "https://www.aafp.org/afp/2017/0415/p501",
+      "recommendation": "AAO-HNSF 2019: watchful waiting for recurrent throat infection unless ≥7 episodes in past year, ≥5/year for 2 years or ≥3/year for 3 years with documented qualifying findings. AAFP 2017: drain peritonsillar abscess by needle aspiration or incision and drainage plus antibiotics. Epiglottitis review (PMC3498669): airway emergency; no imaging in respiratory distress; intubate in OR with spontaneous ventilation and tracheotomy backup."
+    }
+  },
+  {
+    "id": "pance-155",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Toothache from irreversible pulpitis without fever: are antibiotics needed? And a persistent white oral patch?",
+    "bottom": "No antibiotics; definitive dental treatment.",
+    "bullets": {
+      "clue": "No fever, malaise or spreading swelling.",
+      "treat": "Dental referral and analgesics.",
+      "trap": "White or red lesion >2 weeks: reevaluate and consider biopsy."
+    },
+    "back": "No antibiotics; definitive dental treatment. Key clue: No fever, malaise or spreading swelling. First-line: Dental referral and analgesics. Exam trap: White or red lesion >2 weeks: reevaluate and consider biopsy.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-155.svg",
+      "alt": "Dental pain without systemic signs needs dental treatment, not antibiotics; persistent oral white patch needs biopsy consideration."
+    },
+    "source": {
+      "guideline": "ADA (American Dental Association) Antibiotics for Dental Pain and Swelling Guideline (2019); ADA head and neck cancer topic",
+      "year": "2019",
+      "url": "https://www.ada.org/resources/research/science/evidence-based-dental-research/antibiotics-for-dental-pain-and-swelling",
+      "alt_url": "https://www.ada.org/resources/ada-library/oral-health-topics/cancer-head-and-neck",
+      "recommendation": "ADA 2019: antibiotics not recommended for most pulpal/periapical pain and localized swelling; definitive dental treatment; antibiotics with systemic signs (fever, malaise). ADA: white/red lesions persisting >2 weeks warrant reevaluation and biopsy consideration."
+    }
+  },
+  {
+    "id": "pance-156",
+    "system": "EENT",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Penetrating eye injury with a peaked pupil: first steps?",
+    "bottom": "Suspected open globe: rigid shield, no pressure.",
+    "bullets": {
+      "clue": "Peaked pupil, extruded contents, low pressure.",
+      "treat": "Shield, NPO, antiemetics, IV antibiotics, tetanus, urgent ophthalmology.",
+      "trap": "No pressure or IOP check; CT, not MRI, for metal."
+    },
+    "back": "Suspected open globe: rigid shield, no pressure. Key clue: Peaked pupil, extruded contents, low pressure. First-line: Shield, NPO, antiemetics, IV antibiotics, tetanus, urgent ophthalmology. Exam trap: No pressure or IOP check; CT, not MRI, for metal.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-156.svg",
+      "alt": "Open globe: rigid shield without pressure, antiemetics, antibiotics, CT orbits, urgent ophthalmology."
+    },
+    "source": {
+      "guideline": "AAO EyeWiki: Pre-Ophthalmologist Management of Eye Trauma; Ruptured Globe; Hyphema",
+      "year": "current",
+      "url": "https://eyewiki.aao.org/Pre-Ophthalmologist_Management_of_Eye_Trauma",
+      "alt_url": "https://eyewiki.aao.org/Ruptured_Globe",
+      "recommendation": "AAO EyeWiki: rigid shield on orbital bone, no pressure or manipulation; NPO, analgesia, antiemetics, antibiotics, tetanus; noncontrast thin-slice CT, avoid MRI if metal possible; urgent repair. Hyphema: shield, head elevation, screen sickle status."
+    }
+  }
+]

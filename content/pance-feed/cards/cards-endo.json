@@ -1,0 +1,299 @@
+[
+  {
+    "id": "pance-135",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Type 2 diabetes with established ASCVD, heart failure or CKD: which drug classes regardless of A1C, and the usual A1C goal?",
+    "bottom": "Add organ-protective agents irrespective of A1C.",
+    "bullets": {
+      "clue": "ASCVD: GLP-1 RA and/or SGLT2i; HF: SGLT2i; CKD: SGLT2i or GLP-1 RA.",
+      "treat": "Lifestyle plus drug therapy; A1C goal often <7%.",
+      "trap": "Don't wait for A1C to rise first."
+    },
+    "back": "Add organ-protective agents irrespective of A1C. Key clue: ASCVD: GLP-1 RA and/or SGLT2i; HF: SGLT2i; CKD: SGLT2i or GLP-1 RA. First-line: Lifestyle plus drug therapy; A1C goal often <7%. Exam trap: Don't wait for A1C to rise first.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-135.svg",
+      "alt": "Type 2 diabetes: GLP-1 RA or SGLT2 inhibitor for ASCVD, SGLT2 inhibitor for heart failure, either for CKD, regardless of A1C."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes—2026, sections 6 and 9",
+      "year": "2026",
+      "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
+      "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S132/163927/6-Glycemic-Goals-Hypoglycemia-and-Hyperglycemic",
+      "recommendation": "ADA 2026 9.7: ASCVD/high risk include GLP-1 RA and/or SGLT2i irrespective of A1C (A). 9.8: HF SGLT2i (A). 9.10: CKD eGFR 20–60 and/or albuminuria SGLT2i or GLP-1 RA (A). 9.6 consider initial combination. Section 6: A1C <7% appropriate for many, individualized."
+    }
+  },
+  {
+    "id": "pance-136",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Insulin-treated patient found confused with glucose 45 mg/dL: hypoglycemia level, treatment, and what to prescribe?",
+    "bottom": "Level 2 hypoglycemia (<54 mg/dL).",
+    "bullets": {
+      "clue": "Level 3: altered status needing assistance.",
+      "treat": "Alert: 15–20 g glucose, recheck in 15 min; unable to swallow: glucagon.",
+      "trap": "Everyone on insulin needs glucagon prescribed."
+    },
+    "back": "Level 2 hypoglycemia (<54 mg/dL). Key clue: Level 3: altered status needing assistance. First-line: Alert: 15–20 g glucose, recheck in 15 min; unable to swallow: glucagon. Exam trap: Everyone on insulin needs glucagon prescribed.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-136.svg",
+      "alt": "Hypoglycemia levels: level 1 below 70, level 2 below 54, level 3 severe needing assistance; glucose 15 to 20 grams or glucagon."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes—2026, section 6",
+      "year": "2026",
+      "url": "https://doi.org/10.2337/dc26-s006",
+      "alt_url": "https://diabetesjournals.org/compendia/article/2026/1/29/172316/Chapter-5-A-Practical-Approach-to-Hypoglycemia",
+      "recommendation": "ADA 2026: level 2 <54 mg/dL; level 3 severe event with altered status requiring assistance; glucose 15–20 g preferred for conscious patient, recheck 15 min; glucagon prescribed for those on insulin or at high risk."
+    }
+  },
+  {
+    "id": "pance-137",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Fatigue, weight gain, high TSH with low free T4: treatment and monitoring?",
+    "bottom": "Primary hypothyroidism: levothyroxine.",
+    "bullets": {
+      "clue": "High TSH, low free T4; Hashimoto most common.",
+      "treat": "Levothyroxine on empty stomach; recheck TSH 4–6 weeks after change.",
+      "trap": "Elderly or CAD: start low dose; avoid TSH suppression."
+    },
+    "back": "Primary hypothyroidism: levothyroxine. Key clue: High TSH, low free T4; Hashimoto most common. First-line: Levothyroxine on empty stomach; recheck TSH 4–6 weeks after change. Exam trap: Elderly or CAD: start low dose; avoid TSH suppression.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-137.svg",
+      "alt": "Primary hypothyroidism: high TSH, low free T4; levothyroxine titrated to TSH checked 4 to 6 weeks after changes."
+    },
+    "source": {
+      "guideline": "ATA Guidelines for the Treatment of Hypothyroidism (2014) – ATA pocket card",
+      "year": "2014",
+      "url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
+      "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/4",
+      "recommendation": "ATA: levothyroxine; titrate to normal TSH; recheck TSH 4–6 weeks after dose change; take 60 min before breakfast or at bedtime, separate from calcium/iron; avoid TSH <0.1 especially older/postmenopausal."
+    }
+  },
+  {
+    "id": "pance-138",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Fever, tachycardia, agitation and known Graves disease: diagnosis and treatment sequence?",
+    "bottom": "Thyroid storm: multimodal therapy in ICU.",
+    "bullets": {
+      "clue": "Burch-Wartofsky score ≥45 supports storm.",
+      "treat": "Beta-blocker, PTU, then iodine, plus steroids.",
+      "trap": "Give thionamide before iodine."
+    },
+    "back": "Thyroid storm: multimodal therapy in ICU. Key clue: Burch-Wartofsky score ≥45 supports storm. First-line: Beta-blocker, PTU, then iodine, plus steroids. Exam trap: Give thionamide before iodine.",
+    "word_count": 26,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-138.svg",
+      "alt": "Thyroid storm: beta-blocker, propylthiouracil, then iodine, steroids and ICU care."
+    },
+    "source": {
+      "guideline": "ATA Guidelines for Hyperthyroidism and Other Causes of Thyrotoxicosis (2016)",
+      "year": "2016",
+      "url": "https://doi.org/10.1089/thy.2016.0229",
+      "alt_url": "https://journals.sagepub.com/doi/10.1089/thy.2016.0229",
+      "recommendation": "ATA 2016: TSH initial test; beta-blockade for symptomatic thyrotoxicosis; BWPS ≥45 with systemic decompensation warrants aggressive multimodal therapy: beta-blocker, antithyroid drug, inorganic iodide, corticosteroid, supportive ICU care."
+    }
+  },
+  {
+    "id": "pance-139",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Diagnostic Studies",
+    "front": "Thyroid nodule found on exam: first test and when to scan versus biopsy?",
+    "bottom": "Check TSH first.",
+    "bullets": {
+      "clue": "Low TSH: radionuclide scan; hot nodule rarely malignant.",
+      "treat": "Normal or high TSH: ultrasound, FNA by size and sonographic pattern.",
+      "trap": "Don't biopsy a hyperfunctioning (hot) nodule."
+    },
+    "back": "Check TSH first. Key clue: Low TSH: radionuclide scan; hot nodule rarely malignant. First-line: Normal or high TSH: ultrasound, FNA by size and sonographic pattern. Exam trap: Don't biopsy a hyperfunctioning (hot) nodule.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-139.svg",
+      "alt": "Thyroid nodule: TSH first; low TSH leads to scan, normal TSH to ultrasound and FNA by pattern."
+    },
+    "source": {
+      "guideline": "ATA Management Guidelines for Adult Patients with Thyroid Nodules (2025; split from DTC guideline)",
+      "year": "2025",
+      "url": "https://eguideline.guidelinecentral.com/i/631761-dtc-thyroid-nodules/2",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4739132/",
+      "recommendation": "ATA nodule recs 2A–C: measure TSH; if subnormal, radionuclide (preferably 123I) scan; if normal or high, no scan as initial imaging. Rec 6: ultrasound with neck node survey for all; rec 7: FNA procedure of choice, by size and sonographic pattern; purely cystic nodules need no FNA."
+    }
+  },
+  {
+    "id": "pance-140",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Diagnostic Studies",
+    "front": "Hypotension, hyperkalemia, hyperpigmentation: diagnosis and treatment; and first screening tests for Cushing?",
+    "bottom": "Primary adrenal insufficiency: glucocorticoid plus mineralocorticoid.",
+    "bullets": {
+      "clue": "Low morning cortisol, high ACTH; confirm with cosyntropin.",
+      "treat": "Hydrocortisone 15–25 mg/day in 2–3 doses; fludrocortisone 50–100 µg.",
+      "trap": "Cushing screen: UFC, late-night salivary cortisol or 1 mg DST."
+    },
+    "back": "Primary adrenal insufficiency: glucocorticoid plus mineralocorticoid. Key clue: Low morning cortisol, high ACTH; confirm with cosyntropin. First-line: Hydrocortisone 15–25 mg/day in 2–3 doses; fludrocortisone 50–100 µg. Exam trap: Cushing screen: UFC, late-night salivary cortisol or 1 mg DST.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-140.svg",
+      "alt": "Adrenal insufficiency: high ACTH, low cortisol; hydrocortisone and fludrocortisone. Cushing screening uses urine free cortisol, late-night salivary cortisol or dexamethasone suppression."
+    },
+    "source": {
+      "guideline": "Endocrine Society: Primary Adrenal Insufficiency (2016); Diagnosis of Cushing Syndrome (2008)",
+      "year": "2016 / 2008",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2386281/",
+      "alt_url": "https://www.endocrine.org/clinical-practice-guidelines/primary-adrenal-insufficiency",
+      "recommendation": "ES 2008: screen Cushing with one high-accuracy test (24-h UFC, late-night salivary cortisol, 1 mg overnight DST); abnormal → second test. ES 2016 3.2: hydrocortisone 15–25 mg (or cortisone acetate 20–35 mg) in 2–3 divided doses, highest at awakening; 3.7: fludrocortisone 50–100 µg start, no salt restriction."
+    }
+  },
+  {
+    "id": "pance-141",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Diagnostic Studies",
+    "front": "Hypertension: who gets screened for primary aldosteronism, and how is pheochromocytoma tested?",
+    "bottom": "Screen all with hypertension for primary aldosteronism.",
+    "bullets": {
+      "clue": "Aldosterone-to-renin ratio with potassium.",
+      "treat": "Positive ARR: confirm, then imaging and adrenal vein sampling.",
+      "trap": "Pheo: plasma free or urine fractionated metanephrines first."
+    },
+    "back": "Screen all with hypertension for primary aldosteronism. Key clue: Aldosterone-to-renin ratio with potassium. First-line: Positive ARR: confirm, then imaging and adrenal vein sampling. Exam trap: Pheo: plasma free or urine fractionated metanephrines first.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-141.svg",
+      "alt": "Primary aldosteronism screening with aldosterone and renin in hypertension; pheochromocytoma tested with metanephrines."
+    },
+    "source": {
+      "guideline": "Endocrine Society: Primary Aldosteronism (2025); Pheochromocytoma and Paraganglioma (2014)",
+      "year": "2025 / 2014",
+      "url": "https://www.endocrine.org/clinical-practice-guidelines/primary-aldosteronism-2",
+      "alt_url": "https://doi.org/10.1210/jc.2014-1498",
+      "recommendation": "ES 2025: suggest screening all hypertensive patients with aldosterone and renin (ARR) plus potassium; positive → confirmation/further evaluation. ES 2014: initial testing plasma free or urine fractionated metanephrines; supine sampling for plasma."
+    }
+  },
+  {
+    "id": "pance-142",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Incidental calcium 11.8 with high PTH in a 45-year-old: diagnosis and who needs surgery?",
+    "bottom": "Primary hyperparathyroidism; surgery if any criterion met.",
+    "bullets": {
+      "clue": "Calcium >1 above normal, age <50, eGFR <60, T-score ≤−2.5, stones.",
+      "treat": "Parathyroidectomy is definitive.",
+      "trap": "Age under 50 alone qualifies for surgery."
+    },
+    "back": "Primary hyperparathyroidism; surgery if any criterion met. Key clue: Calcium >1 above normal, age <50, eGFR <60, T-score ≤−2.5, stones. First-line: Parathyroidectomy is definitive. Exam trap: Age under 50 alone qualifies for surgery.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-142.svg",
+      "alt": "Primary hyperparathyroidism: high calcium and PTH; surgery for calcium more than 1 above normal, age under 50, kidney or bone criteria."
+    },
+    "source": {
+      "guideline": "Fifth International Workshop on Primary Hyperparathyroidism (2022)",
+      "year": "2022",
+      "url": "https://doi.org/10.1002/jbmr.4677",
+      "alt_url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK441895/",
+      "recommendation": "2022 workshop: surgery if calcium >1 mg/dL above ULN, age <50, eGFR <60, T-score ≤−2.5 or vertebral fracture, nephrolithiasis/nephrocalcinosis, or hypercalciuria."
+    }
+  },
+  {
+    "id": "pance-143",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Amenorrhea, galactorrhea and high prolactin: treatment? And first-line for chronic SIADH?",
+    "bottom": "Prolactinoma: cabergoline first.",
+    "bullets": {
+      "clue": "Exclude pregnancy, hypothyroidism, drugs.",
+      "treat": "Cabergoline over bromocriptine; SIADH: fluid restriction.",
+      "trap": "Correct chronic hyponatremia slowly to avoid demyelination."
+    },
+    "back": "Prolactinoma: cabergoline first. Key clue: Exclude pregnancy, hypothyroidism, drugs. First-line: Cabergoline over bromocriptine; SIADH: fluid restriction. Exam trap: Correct chronic hyponatremia slowly to avoid demyelination.",
+    "word_count": 25,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-143.svg",
+      "alt": "Prolactinoma treated with cabergoline; chronic SIADH first-line fluid restriction with slow sodium correction."
+    },
+    "source": {
+      "guideline": "Endocrine Society: Hyperprolactinemia (2011); hyponatremia management review (2015)",
+      "year": "2011 / 2015",
+      "url": "https://academic.oup.com/jcem/article/96/2/273/2720744",
+      "alt_url": "https://pubmed.ncbi.nlm.nih.gov/26173050/",
+      "recommendation": "ES 2011: cabergoline preferred dopamine agonist for symptomatic micro/macroprolactinoma. Review: fluid restriction first-line for chronic SIADH; avoid overcorrection."
+    }
+  },
+  {
+    "id": "pance-144",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Clinical Intervention",
+    "front": "Glucose 900, osmolality 350, no significant ketosis, pH 7.35: diagnosis and first step?",
+    "bottom": "Hyperosmolar hyperglycemic state.",
+    "bullets": {
+      "clue": "Glucose ≥600, effective osmolality >300, BHB <3.0, pH ≥7.3.",
+      "treat": "Aggressive IV fluids first, then insulin.",
+      "trap": "Potassium <3.5: replace and hold insulin."
+    },
+    "back": "Hyperosmolar hyperglycemic state. Key clue: Glucose ≥600, effective osmolality >300, BHB <3.0, pH ≥7.3. First-line: Aggressive IV fluids first, then insulin. Exam trap: Potassium <3.5: replace and hold insulin.",
+    "word_count": 29,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-144.svg",
+      "alt": "HHS: glucose 600 or higher, effective osmolality above 300, minimal ketosis; fluids first, hold insulin if potassium below 3.5."
+    },
+    "source": {
+      "guideline": "ADA/EASD/JBDS/AACE/DTS Hyperglycemic Crises in Adults Consensus Report (2024)",
+      "year": "2024",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11272983/",
+      "alt_url": "https://doi.org/10.2337/dci24-0032",
+      "recommendation": "2024 consensus: HHS glucose ≥600, effective osmolality >300 (or total >320), BHB <3.0, pH ≥7.3 and HCO3 ≥15. K+ <3.5: replace and delay insulin. Fluids are initial therapy."
+    }
+  },
+  {
+    "id": "pance-145",
+    "system": "Endocrine",
+    "blueprint_weight": "6%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Adult 40, BMI 31: diabetes screening and pharmacotherapy options for obesity?",
+    "bottom": "Screen for prediabetes/T2D ages 35–70 with overweight.",
+    "bullets": {
+      "clue": "BMI ≥25 (≥23 in Asian Americans).",
+      "treat": "Lifestyle; semaglutide or tirzepatide preferred obesity medications.",
+      "trap": "Prediabetes on screening: refer to prevention programs."
+    },
+    "back": "Screen for prediabetes/T2D ages 35–70 with overweight. Key clue: BMI ≥25 (≥23 in Asian Americans). First-line: Lifestyle; semaglutide or tirzepatide preferred obesity medications. Exam trap: Prediabetes on screening: refer to prevention programs.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-145.svg",
+      "alt": "Screen adults 35 to 70 with overweight for diabetes; semaglutide or tirzepatide preferred for obesity."
+    },
+    "source": {
+      "guideline": "USPSTF Prediabetes and T2D Screening (2021); ADA Standards of Care in Overweight and Obesity (2026); AACE Obesity Algorithm (2025)",
+      "year": "2021 / 2026 / 2025",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes",
+      "alt_url": "https://www.endocrinepractice.org/article/S1530-891X(25)00977-2/fulltext",
+      "recommendation": "USPSTF 2021: screen 35–70 with overweight/obesity (B), refer prediabetes to preventive interventions; consider BMI ≥23 Asian Americans. ADA 2026 / AACE 2025: semaglutide and tirzepatide preferred."
+    }
+  }
+]
