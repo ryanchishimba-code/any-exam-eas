@@ -15,6 +15,7 @@ import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import {
   analyticsHref,
   anatomyHref,
@@ -48,13 +49,14 @@ export function StudyHubDashboard({
   const theme = EXAM_SELECTION_THEMES[examSlug];
   const ExamIcon = theme.icon;
 
+  const feed = studyFeedForExam(examSlug);
   const cards: HubCard[] = [
-    ...(examSlug === "pance"
+    ...(feed
       ? [
           {
-            title: "PANCE Feed",
-            description: "Flashcards for paid PANCE plans.",
-            href: ROUTES.panceFeed,
+            title: feed.label,
+            description: `Flashcards for paid ${feed.label.replace(" Feed", "")} plans.`,
+            href: feed.href,
             cta: "Open feed",
             icon: Layers,
             badge: "Paid",

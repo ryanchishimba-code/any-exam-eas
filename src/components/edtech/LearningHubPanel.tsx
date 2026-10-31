@@ -10,7 +10,7 @@ import {
   modulesForStage,
 } from "@/lib/edtech/learning-hub";
 import { studyHubHref } from "@/lib/learning/roadmap-links";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -52,12 +52,12 @@ export function LearningHubPanel({ examSlug }: { examSlug: ExamSlug }) {
             preparing for boards.
           </p>
         </div>
-        {examSlug === "pance" ? (
+        {studyFeedForExam(examSlug) ? (
           <Link
-            href={ROUTES.panceFeed}
+            href={studyFeedForExam(examSlug)!.href}
             className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
           >
-            PANCE Feed →
+            {studyFeedForExam(examSlug)!.label} →
           </Link>
         ) : null}
       </div>

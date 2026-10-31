@@ -32,6 +32,9 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/dev/readiness-preview",
   "/dev/home-frames",
   "/study-tools/pance/feed",
+  "/study-tools/nclex/feed",
+  "/study-tools/naplex/feed",
+  "/study-tools/aanp-fnp/feed",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {

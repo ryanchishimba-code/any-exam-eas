@@ -23,6 +23,7 @@ import {
   panceTaskPracticeHref,
 } from "@/lib/exam-prep/pance/practice-focus";
 import { practiceHref, ROUTES, type ExamRouteSlug } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { cn } from "@/lib/utils";
 
 const ICONS = {
@@ -55,6 +56,7 @@ export function ExamLanding({ slug }: Props) {
 
   if (!hub) return null;
 
+  const feed = studyFeedForExam(slug);
   const Icon = ICONS[slug];
 
   return (
@@ -168,7 +170,7 @@ export function ExamLanding({ slug }: Props) {
         <h2 id="practice-modes" className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Start practicing
         </h2>
-        <div className={cn("mt-4 grid gap-4 sm:grid-cols-2", slug === "pance" && "lg:grid-cols-3")}>
+        <div className={cn("mt-4 grid gap-4 sm:grid-cols-2", feed && "lg:grid-cols-3")}>
           <ModeTile
             icon={Zap}
             title="Adaptive practice"
@@ -181,12 +183,12 @@ export function ExamLanding({ slug }: Props) {
             description="Board-length session with per-question timer."
             href={practiceHref(slug, { mode: "timed" })}
           />
-          {slug === "pance" ? (
+          {feed ? (
             <ModeTile
               icon={Layers}
-              title="PANCE Feed"
-              description="Flashcards for paid PANCE plans."
-              href={ROUTES.panceFeed}
+              title={feed.label}
+              description={`Flashcards for paid ${feed.label.replace(" Feed", "")} plans.`}
+              href={feed.href}
             />
           ) : null}
         </div>

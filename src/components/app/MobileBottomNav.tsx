@@ -18,6 +18,7 @@ import { useUserAccess } from "@/lib/client/use-user-access";
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { STUDY_NAV_COLOR } from "@/lib/layout/nav-motion";
 import { ROUTES, fullExamHref } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
@@ -46,13 +47,14 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
     const navItems: NavItem[] = [
       { id: "home", href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
     ];
-    if (examSlug === "pance") {
+    const feed = studyFeedForExam(examSlug);
+    if (feed) {
       navItems.push({
-        id: "pance-feed",
-        href: ROUTES.panceFeed,
+        id: `${feed.exam}-feed`,
+        href: feed.href,
         label: "Feed",
         icon: Layers,
-        ariaLabel: "PANCE Feed",
+        ariaLabel: feed.label,
       });
     }
     navItems.push(

@@ -5,7 +5,7 @@ import { Brain, Layers, Stethoscope, X, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import { anatomyPracticeHref, structurePracticeHref } from "@/lib/edtech/practice-links";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import type { AnatomyStructure, AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { MemoryCard } from "@/lib/library/types";
@@ -167,14 +167,14 @@ export function StructureDetailPanel({
         >
           All anatomy practice
         </Button>
-        {examSlug === "pance" && structure.highYieldTopicSlug ? (
+        {studyFeedForExam(examSlug) && structure.highYieldTopicSlug ? (
           <Button
-            href={ROUTES.panceFeed}
+            href={studyFeedForExam(examSlug)!.href}
             variant="secondary"
             className="h-11 w-full justify-center rounded-full text-[14px]"
           >
             <Layers className="mr-2 h-4 w-4" aria-hidden />
-            PANCE Feed
+            {studyFeedForExam(examSlug)!.label}
           </Button>
         ) : null}
       </div>

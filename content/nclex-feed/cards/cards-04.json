@@ -1,0 +1,1406 @@
+[
+  {
+    "id": "nclex-149",
+    "system": "Vitals",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A post-op client's heart rate climbs from 82 to 118 over four hours: what does the nurse do?",
+    "bottom": "Trends matter; rising HR or RR often comes before a falling BP.",
+    "bullets": {
+      "clue": "Rising heart rate, fast breathing, new confusion or low urine output.",
+      "treat": "Reassess, compare with baseline, and escalate early with the rapid response team.",
+      "trap": "Waiting for hypotension before escalating care."
+    },
+    "back": "Trends matter; rising HR or RR often comes before a falling BP. Key clue: Rising heart rate, fast breathing, new confusion or low urine output. First-line: Reassess, compare with baseline, and escalate early with the rapid response team. Exam trap: Waiting for hypotension before escalating care.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-149.svg",
+      "alt": "Vital sign trend graph over a shift."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places changes in vital signs in Reduction of Risk Potential. Rising heart rate and respiratory rate, new confusion and falling urine output often appear before blood pressure drops. Nurses compare trends with baseline, reassess promptly, and escalate early, using the rapid response team when criteria are met."
+    }
+  },
+  {
+    "id": "nclex-150",
+    "system": "Labs",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client has a potassium of 5.9 and a sodium of 128: which lab ranges should the nurse know?",
+    "bottom": "Potassium 3.5 to 5.0; sodium 135 to 145; calcium about 8.5 to 10.5.",
+    "bullets": {
+      "clue": "Results outside the range with symptoms or ECG changes.",
+      "treat": "Recheck to rule out a hemolyzed sample; report critical values promptly.",
+      "trap": "Ignoring a critical value because the client looks stable."
+    },
+    "back": "Potassium 3.5 to 5.0; sodium 135 to 145; calcium about 8.5 to 10.5. Key clue: Results outside the range with symptoms or ECG changes. First-line: Recheck to rule out a hemolyzed sample; report critical values promptly. Exam trap: Ignoring a critical value because the client looks stable.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-150.svg",
+      "alt": "Electrolyte normal range table."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places lab values in Reduction of Risk Potential. Typical ranges are potassium 3.5 to 5.0 mEq/L, sodium 135 to 145 mEq/L and calcium about 8.5 to 10.5 mg/dL, though labs vary. Nurses recheck possible hemolyzed samples and report critical values promptly."
+    }
+  },
+  {
+    "id": "nclex-151",
+    "system": "Labs",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "An ABG shows pH 7.30, PaCO2 52, HCO3 24: how does the nurse interpret it?",
+    "bottom": "Low pH with high PaCO2 is uncompensated respiratory acidosis.",
+    "bullets": {
+      "clue": "pH below 7.35 is acidosis; above 7.45 is alkalosis.",
+      "treat": "Check pH first, then PaCO2 for respiratory, then HCO3 for metabolic.",
+      "trap": "Reading PaCO2 or HCO3 before the pH."
+    },
+    "back": "Low pH with high PaCO2 is uncompensated respiratory acidosis. Key clue: pH below 7.35 is acidosis; above 7.45 is alkalosis. First-line: Check pH first, then PaCO2 for respiratory, then HCO3 for metabolic. Exam trap: Reading PaCO2 or HCO3 before the pH.",
+    "word_count": 41,
+    "mnemonic": "ROME: Respiratory Opposite, Metabolic Equal",
+    "diagram": {
+      "file": "svg/nclex-151.svg",
+      "alt": "ROME ABG interpretation arrows."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places ABG interpretation in Reduction of Risk Potential. Normal values are pH 7.35 to 7.45, PaCO2 35 to 45 mmHg and HCO3 22 to 26 mEq/L. Read the pH first, then match PaCO2 or HCO3 to the change, then check whether the other value is compensating."
+    }
+  },
+  {
+    "id": "nclex-152",
+    "system": "Electrolytes",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client with kidney failure has potassium 6.8 and peaked T waves: what is the priority?",
+    "bottom": "Cardiac monitoring; IV calcium stabilizes the heart membrane first.",
+    "bullets": {
+      "clue": "Peaked T waves, wide QRS or muscle weakness.",
+      "treat": "Then insulin with glucose and other ordered potassium-lowering treatment.",
+      "trap": "Giving potassium-sparing drugs or potassium supplements."
+    },
+    "back": "Cardiac monitoring; IV calcium stabilizes the heart membrane first. Key clue: Peaked T waves, wide QRS or muscle weakness. First-line: Then insulin with glucose and other ordered potassium-lowering treatment. Exam trap: Giving potassium-sparing drugs or potassium supplements.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-152.svg",
+      "alt": "ECG strip showing peaked T waves."
+    },
+    "source": {
+      "guideline": "AHA ACLS 2025",
+      "year": "2025",
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "AHA 2025 adult advanced life support guidance lists IV calcium to stabilize the cardiac membrane in hyperkalemia with ECG changes such as peaked T waves or a wide QRS. Insulin with glucose and other therapies then shift or remove potassium. Nurses keep the client on a cardiac monitor throughout treatment."
+    }
+  },
+  {
+    "id": "nclex-153",
+    "system": "Electrolytes",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client's sodium is 120 and the client is newly confused: what does the nurse do?",
+    "bottom": "Start seizure precautions and correct sodium slowly as ordered.",
+    "bullets": {
+      "clue": "Confusion, headache or seizures with a low sodium level.",
+      "treat": "Restrict fluids or give ordered saline; monitor sodium often.",
+      "trap": "Correcting chronic low sodium too fast, which can damage the brain."
+    },
+    "back": "Start seizure precautions and correct sodium slowly as ordered. Key clue: Confusion, headache or seizures with a low sodium level. First-line: Restrict fluids or give ordered saline; monitor sodium often. Exam trap: Correcting chronic low sodium too fast, which can damage the brain.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-153.svg",
+      "alt": "Sodium correction timeline."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places electrolyte imbalances in Reduction of Risk Potential. Low sodium can cause confusion, headache and seizures, so nurses start seizure precautions. Chronic hyponatremia must be corrected slowly as ordered, because overly rapid correction can cause osmotic demyelination, so sodium is checked frequently."
+    }
+  },
+  {
+    "id": "nclex-154",
+    "system": "Electrolytes",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "After thyroid surgery, the client has a twitching cheek when tapped: what does this show?",
+    "bottom": "Chvostek sign suggests low calcium; Trousseau sign uses a BP cuff.",
+    "bullets": {
+      "clue": "Tingling around the mouth, muscle cramps or tetany.",
+      "treat": "Seizure precautions; give IV calcium as ordered.",
+      "trap": "Missing low calcium after thyroid or parathyroid surgery."
+    },
+    "back": "Chvostek sign suggests low calcium; Trousseau sign uses a BP cuff. Key clue: Tingling around the mouth, muscle cramps or tetany. First-line: Seizure precautions; give IV calcium as ordered. Exam trap: Missing low calcium after thyroid or parathyroid surgery.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-154.svg",
+      "alt": "Chvostek and Trousseau sign drawings."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places electrolyte imbalances in Reduction of Risk Potential. After thyroid or parathyroid surgery, low calcium can cause perioral tingling, muscle cramps, tetany, laryngospasm and seizures. Chvostek and Trousseau signs help detect it, and nurses keep IV calcium and airway equipment available."
+    }
+  },
+  {
+    "id": "nclex-155",
+    "system": "Peri-op",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client scheduled for morning surgery had toast two hours ago: what does the nurse do?",
+    "bottom": "Report it; ASA fasting is about 6 hours after a light meal.",
+    "bullets": {
+      "clue": "Recent food intake, missing consent or unremoved jewelry.",
+      "treat": "Complete the checklist: ID, consent, allergies, NPO status, labs.",
+      "trap": "Assuming clear liquids follow the same timing as solid food."
+    },
+    "back": "Report it; ASA fasting is about 6 hours after a light meal. Key clue: Recent food intake, missing consent or unremoved jewelry. First-line: Complete the checklist: ID, consent, allergies, NPO status, labs. Exam trap: Assuming clear liquids follow the same timing as solid food.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-155.svg",
+      "alt": "Pre-op checklist."
+    },
+    "source": {
+      "guideline": "ASA Fasting 2023",
+      "year": "2023",
+      "url": "https://doi.org/10.1097/ALN.0000000000004381",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ASA 2023 practice guideline on preoperative fasting supports clear liquids up to 2 hours before anesthesia and a light meal up to 6 hours before for healthy clients having elective procedures. Fried or fatty foods may need longer. Nurses report recent intake, which may delay surgery, and complete the preoperative checklist."
+    }
+  },
+  {
+    "id": "nclex-156",
+    "system": "Post-op",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "On post-op day two, the client has fever, crackles and a distended abdomen: what is likely?",
+    "bottom": "Atelectasis or pneumonia, and possibly ileus.",
+    "bullets": {
+      "clue": "Low SpO2, crackles, absent bowel sounds or bloating.",
+      "treat": "Incentive spirometer 10 times an hour while awake; early walking.",
+      "trap": "Feeding a client with an ileus before bowel function returns."
+    },
+    "back": "Atelectasis or pneumonia, and possibly ileus. Key clue: Low SpO2, crackles, absent bowel sounds or bloating. First-line: Incentive spirometer 10 times an hour while awake; early walking. Exam trap: Feeding a client with an ileus before bowel function returns.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-156.svg",
+      "alt": "Post-op complications timeline."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places postoperative complications in Reduction of Risk Potential. Atelectasis and pneumonia cause fever, crackles and low oxygen saturation, while ileus causes distension and absent bowel sounds. Incentive spirometry, coughing, early ambulation and advancing diet only after bowel function returns help prevent them."
+    }
+  },
+  {
+    "id": "nclex-157",
+    "system": "Post-op",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A post-op client is pale and anxious with HR 124 and BP 92/60: what does the nurse suspect?",
+    "bottom": "Hemorrhage; rising HR and anxiety are early signs of shock.",
+    "bullets": {
+      "clue": "Restlessness, fast pulse, pale skin, low urine output.",
+      "treat": "Check the dressing and drains, apply pressure, call the provider.",
+      "trap": "Waiting for a large BP drop before acting."
+    },
+    "back": "Hemorrhage; rising HR and anxiety are early signs of shock. Key clue: Restlessness, fast pulse, pale skin, low urine output. First-line: Check the dressing and drains, apply pressure, call the provider. Exam trap: Waiting for a large BP drop before acting.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-157.svg",
+      "alt": "Hemorrhagic shock signs chart."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places postoperative care in Reduction of Risk Potential. Early hemorrhage signs include restlessness, anxiety, a rising heart rate, pale cool skin and falling urine output, often before BP drops. Nurses check dressings and drains, apply pressure to visible bleeding, and notify the provider right away."
+    }
+  },
+  {
+    "id": "nclex-158",
+    "system": "Hematology",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A post-op client has calf swelling and warmth in one leg: what does the nurse do?",
+    "bottom": "Suspect DVT; notify the provider and do not massage the leg.",
+    "bullets": {
+      "clue": "One-sided leg swelling, warmth or pain.",
+      "treat": "Prevent with early walking, SCDs and anticoagulants as ordered.",
+      "trap": "Massaging the leg, which may dislodge a clot."
+    },
+    "back": "Suspect DVT; notify the provider and do not massage the leg. Key clue: One-sided leg swelling, warmth or pain. First-line: Prevent with early walking, SCDs and anticoagulants as ordered. Exam trap: Massaging the leg, which may dislodge a clot.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-158.svg",
+      "alt": "Leg showing DVT signs."
+    },
+    "source": {
+      "guideline": "CHEST VTE guideline 2021 update",
+      "year": "2021",
+      "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The CHEST 2021 VTE guideline supports prophylaxis based on each client's risk of clotting and bleeding. Nurses promote early ambulation, apply mechanical devices such as SCDs, and give anticoagulants as ordered. One-sided leg swelling, warmth or pain is reported promptly, and the affected leg is not massaged."
+    }
+  },
+  {
+    "id": "nclex-159",
+    "system": "Respiratory",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client on bed rest suddenly has chest pain, dyspnea and tachycardia: what first?",
+    "bottom": "Suspected PE: call rapid response while giving oxygen per protocol.",
+    "bullets": {
+      "clue": "Sudden dyspnea, chest pain and fast heart rate.",
+      "treat": "Prepare for CT angiography and anticoagulation as ordered.",
+      "trap": "Dismissing sudden dyspnea as anxiety."
+    },
+    "back": "Suspected PE: call rapid response while giving oxygen per protocol. Key clue: Sudden dyspnea, chest pain and fast heart rate. First-line: Prepare for CT angiography and anticoagulation as ordered. Exam trap: Dismissing sudden dyspnea as anxiety.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-159.svg",
+      "alt": "Lung diagram showing pulmonary embolism."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places potential respiratory complications in Reduction of Risk Potential. Sudden dyspnea, pleuritic chest pain and tachycardia in a client at risk for VTE suggest pulmonary embolism. Nurses raise the head of the bed, give oxygen, call for help, and prepare for CT angiography and anticoagulation."
+    }
+  },
+  {
+    "id": "nclex-160",
+    "system": "Diagnostics",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client on metformin is scheduled for a CT with IV contrast: which checks matter?",
+    "bottom": "Ask about prior contrast reactions and check kidney function first.",
+    "bullets": {
+      "clue": "Previous contrast reaction, low eGFR, or current metformin use.",
+      "treat": "Hold metformin as ordered based on eGFR; encourage hydration.",
+      "trap": "Assuming a shellfish allergy is a contrast allergy."
+    },
+    "back": "Ask about prior contrast reactions and check kidney function first. Key clue: Previous contrast reaction, low eGFR, or current metformin use. First-line: Hold metformin as ordered based on eGFR; encourage hydration. Exam trap: Assuming a shellfish allergy is a contrast allergy.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-160.svg",
+      "alt": "Contrast safety checklist."
+    },
+    "source": {
+      "guideline": "ACR Manual on Contrast Media 2026",
+      "year": "2026",
+      "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ACR Manual on Contrast Media 2026 guides screening for prior contrast reactions and kidney risk before iodinated contrast. Shellfish allergy does not predict a contrast reaction. Metformin may be held depending on kidney function and contrast route, as ordered. Nurses encourage hydration and report a low eGFR to the provider."
+    }
+  },
+  {
+    "id": "nclex-161",
+    "system": "Procedures",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "After a cardiac catheterization through the femoral artery, what does the nurse check?",
+    "bottom": "Monitor the insertion site and pulses distal to it.",
+    "bullets": {
+      "clue": "Bleeding, hematoma, back pain, or a cool limb.",
+      "treat": "Keep the leg straight as ordered; check pulses and the site often.",
+      "trap": "Raising the head of the bed too early after femoral access."
+    },
+    "back": "Monitor the insertion site and pulses distal to it. Key clue: Bleeding, hematoma, back pain, or a cool limb. First-line: Keep the leg straight as ordered; check pulses and the site often. Exam trap: Raising the head of the bed too early after femoral access.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-161.svg",
+      "alt": "Femoral access site and distal pulse points."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places post-procedure care in Reduction of Risk Potential. After femoral cardiac catheterization, nurses keep the leg straight as ordered, check the site for bleeding or hematoma, and compare distal pulses, color and temperature. Back or flank pain may signal retroperitoneal bleeding."
+    }
+  },
+  {
+    "id": "nclex-162",
+    "system": "Procedures",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client returns from a thoracentesis and becomes short of breath: what is the concern?",
+    "bottom": "Pneumothorax; check breath sounds and SpO2 and notify the provider.",
+    "bullets": {
+      "clue": "Dyspnea, chest pain or low SpO2 after the procedure.",
+      "treat": "Sit the client upright, check breath sounds and SpO2, and get a chest x-ray as ordered.",
+      "trap": "Missing a pneumothorax after a thoracentesis."
+    },
+    "back": "Pneumothorax; check breath sounds and SpO2 and notify the provider. Key clue: Dyspnea, chest pain or low SpO2 after the procedure. First-line: Sit the client upright, check breath sounds and SpO2, and get a chest x-ray as ordered. Exam trap: Missing a pneumothorax after a thoracentesis.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-162.svg",
+      "alt": "Thoracentesis and paracentesis positioning."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places procedure care in Reduction of Risk Potential. After thoracentesis, nurses watch for pneumothorax, such as new dyspnea, chest pain, diminished breath sounds and low SpO2. They sit the client upright, check SpO2, obtain a chest x-ray as ordered, and notify the provider of any respiratory change."
+    }
+  },
+  {
+    "id": "nclex-163",
+    "system": "Procedures",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "After a lumbar puncture, the client reports a headache when sitting up: what is the cause?",
+    "bottom": "A post-dural puncture headache is worse when upright.",
+    "bullets": {
+      "clue": "Headache that improves when the client lies flat.",
+      "treat": "Keep the client flat, push fluids as allowed, and report a persistent headache or leak.",
+      "trap": "Missing clear fluid leaking from the puncture site."
+    },
+    "back": "A post-dural puncture headache is worse when upright. Key clue: Headache that improves when the client lies flat. First-line: Keep the client flat, push fluids as allowed, and report a persistent headache or leak. Exam trap: Missing clear fluid leaking from the puncture site.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-163.svg",
+      "alt": "Lumbar puncture positioning."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places procedure care in Reduction of Risk Potential. A headache that worsens when upright after lumbar puncture suggests CSF leakage. Nurses keep the client flat as ordered, encourage fluids if allowed, check the puncture site, and notify the provider if the headache persists or clear fluid leaks from the site."
+    }
+  },
+  {
+    "id": "nclex-164",
+    "system": "Respiratory",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client's chest tube becomes disconnected from the drainage system: what first?",
+    "bottom": "Place the tube end in sterile water and get help.",
+    "bullets": {
+      "clue": "Disconnection, sudden dyspnea or new subcutaneous air.",
+      "treat": "Keep the drainage system below the chest; watch the water seal.",
+      "trap": "Clamping the tube without an order."
+    },
+    "back": "Place the tube end in sterile water and get help. Key clue: Disconnection, sudden dyspnea or new subcutaneous air. First-line: Keep the drainage system below the chest; watch the water seal. Exam trap: Clamping the tube without an order.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-164.svg",
+      "alt": "Chest tube drainage system diagram."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places chest tube care in Reduction of Risk Potential. Nurses keep the drainage system below the chest, check for tidaling in the water seal, and report continuous bubbling, which may mean an air leak. If the tube disconnects, the end is placed in sterile water and help is called."
+    }
+  },
+  {
+    "id": "nclex-165",
+    "system": "Airway",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client with a tracheostomy has gurgling breaths and falling SpO2: how is suctioning done?",
+    "bottom": "Pre-oxygenate, use sterile technique and suction 10 seconds or less.",
+    "bullets": {
+      "clue": "Gurgling, falling SpO2 or visible secretions.",
+      "treat": "Apply suction only while withdrawing the catheter.",
+      "trap": "Suctioning for too long, which can cause hypoxia."
+    },
+    "back": "Pre-oxygenate, use sterile technique and suction 10 seconds or less. Key clue: Gurgling, falling SpO2 or visible secretions. First-line: Apply suction only while withdrawing the catheter. Exam trap: Suctioning for too long, which can cause hypoxia.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-165.svg",
+      "alt": "Trach suctioning steps."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places airway management in Reduction of Risk Potential. Tracheostomy suctioning is done only when needed, using sterile technique, pre-oxygenation, and suction applied only while withdrawing the catheter. Each pass lasts 10 seconds or less, and nurses monitor oxygen saturation and heart rate throughout."
+    }
+  },
+  {
+    "id": "nclex-166",
+    "system": "Cardiac",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "The monitor shows ventricular fibrillation and the client is unresponsive: what first?",
+    "bottom": "Start CPR and defibrillate as soon as possible.",
+    "bullets": {
+      "clue": "Unresponsive, no pulse, chaotic waveform.",
+      "treat": "High-quality CPR and early defibrillation; asystole is not shockable.",
+      "trap": "Defibrillating asystole."
+    },
+    "back": "Start CPR and defibrillate as soon as possible. Key clue: Unresponsive, no pulse, chaotic waveform. First-line: High-quality CPR and early defibrillation; asystole is not shockable. Exam trap: Defibrillating asystole.",
+    "word_count": 29,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-166.svg",
+      "alt": "Rhythm strips for VF, VT and asystole."
+    },
+    "source": {
+      "guideline": "AHA ACLS 2025",
+      "year": "2025",
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "AHA 2025 adult advanced life support guidance supports immediate high-quality CPR and early defibrillation for ventricular fibrillation and pulseless ventricular tachycardia. Asystole and pulseless electrical activity are not shockable rhythms; they are treated with CPR, epinephrine and a search for reversible causes."
+    }
+  },
+  {
+    "id": "nclex-167",
+    "system": "Endocrine",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client with diabetes has glucose 420, deep rapid breathing and fruity breath: what is likely?",
+    "bottom": "DKA; give IV fluids first, then insulin as ordered.",
+    "bullets": {
+      "clue": "High glucose, ketones, acidosis and a large anion gap.",
+      "treat": "Check potassium before starting insulin and monitor it closely.",
+      "trap": "Starting insulin before potassium is known."
+    },
+    "back": "DKA; give IV fluids first, then insulin as ordered. Key clue: High glucose, ketones, acidosis and a large anion gap. First-line: Check potassium before starting insulin and monitor it closely. Exam trap: Starting insulin before potassium is known.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-167.svg",
+      "alt": "DKA lab panel."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care 2026",
+      "year": "2026",
+      "url": "https://diabetes.org/newsroom/press-releases/american-diabetes-association-releases-standards-care-diabetes-2026",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ADA Standards of Care in Diabetes 2026 address diabetic ketoacidosis, which involves hyperglycemia, ketones and metabolic acidosis with a high anion gap. Treatment starts with IV fluids, then IV insulin, with potassium checked before insulin and replaced as needed. Nurses monitor glucose, electrolytes and mental status closely."
+    }
+  },
+  {
+    "id": "nclex-168",
+    "system": "Renal",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A post-op client's urine output is 20 mL/hour for six hours: what does this suggest?",
+    "bottom": "AKI risk; creatinine up 0.3 in 48 hours or low urine output defines AKI.",
+    "bullets": {
+      "clue": "Output under 0.5 mL/kg/hour for 6 hours.",
+      "treat": "Monitor output hourly, avoid nephrotoxins, notify the provider.",
+      "trap": "Waiting for creatinine to rise before reporting low urine output."
+    },
+    "back": "AKI risk; creatinine up 0.3 in 48 hours or low urine output defines AKI. Key clue: Output under 0.5 mL/kg/hour for 6 hours. First-line: Monitor output hourly, avoid nephrotoxins, notify the provider. Exam trap: Waiting for creatinine to rise before reporting low urine output.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-168.svg",
+      "alt": "Kidney function lab chart."
+    },
+    "source": {
+      "guideline": "KDIGO AKI 2012 (current; 2026 update not yet final)",
+      "year": "2026",
+      "url": "https://kdigo.org/guidelines/acute-kidney-injury/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The KDIGO 2012 AKI guideline, still current while the 2026 update awaits publication, defines AKI by a creatinine rise of 0.3 mg/dL within 48 hours, a rise to 1.5 times baseline, or urine output below 0.5 mL/kg/hour for 6 hours. Nurses track output closely and avoid nephrotoxins."
+    }
+  },
+  {
+    "id": "nclex-169",
+    "system": "Hepatic",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client with cirrhosis has an elevated INR and bruises easily: what is the nursing focus?",
+    "bottom": "The liver makes clotting factors, so bleeding risk rises.",
+    "bullets": {
+      "clue": "Easy bruising, bleeding gums or a high INR.",
+      "treat": "Bleeding precautions, soft toothbrush, and electric razor.",
+      "trap": "Giving IM injections without considering bleeding risk."
+    },
+    "back": "The liver makes clotting factors, so bleeding risk rises. Key clue: Easy bruising, bleeding gums or a high INR. First-line: Bleeding precautions, soft toothbrush, and electric razor. Exam trap: Giving IM injections without considering bleeding risk.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-169.svg",
+      "alt": "Liver function lab chart."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places liver function monitoring in Reduction of Risk Potential. The liver makes clotting factors, so cirrhosis raises INR and bleeding risk, often with low platelets. Nurses use bleeding precautions, such as soft toothbrushes and electric razors, avoid unnecessary injections, and monitor INR and platelets."
+    }
+  },
+  {
+    "id": "nclex-170",
+    "system": "Pharm",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client on several narrow-range drugs needs labs: which therapeutic levels should the nurse know?",
+    "bottom": "Digoxin, lithium, phenytoin and vancomycin need level monitoring.",
+    "bullets": {
+      "clue": "Toxicity signs or a dose change.",
+      "treat": "Time draws correctly and report abnormal results.",
+      "trap": "Drawing a level at the wrong time."
+    },
+    "back": "Digoxin, lithium, phenytoin and vancomycin need level monitoring. Key clue: Toxicity signs or a dose change. First-line: Time draws correctly and report abnormal results. Exam trap: Drawing a level at the wrong time.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-170.svg",
+      "alt": "Therapeutic drug levels table."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places therapeutic drug levels in Reduction of Risk Potential. Drugs with narrow ranges, such as digoxin, lithium, phenytoin and vancomycin, need level monitoring. Nurses time blood draws correctly in relation to doses, watch for toxicity signs, and report abnormal results before giving the next dose."
+    }
+  },
+  {
+    "id": "nclex-171",
+    "system": "OB",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "The fetal monitor shows late decelerations during labor: what does the nurse do first?",
+    "bottom": "Turn the client to the side first, then stop oxytocin, bolus IV fluid, and notify the provider.",
+    "bullets": {
+      "clue": "Deceleration begins after the peak of the contraction.",
+      "treat": "Continue monitoring; give oxygen only for maternal hypoxia, per ACOG CPG 10.",
+      "trap": "Missing late decelerations or continuing oxytocin."
+    },
+    "back": "Turn the client to the side first, then stop oxytocin, bolus IV fluid, and notify the provider. Key clue: Deceleration begins after the peak of the contraction. First-line: Continue monitoring; give oxygen only for maternal hypoxia, per ACOG CPG 10. Exam trap: Missing late decelerations or continuing oxytocin.",
+    "word_count": 48,
+    "mnemonic": "VEAL CHOP: Variable-Cord, Early-Head, Accel-OK, Late-Placenta",
+    "diagram": {
+      "file": "svg/nclex-171.svg",
+      "alt": "VEAL CHOP chart."
+    },
+    "source": {
+      "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
+      "year": "2025",
+      "url": "https://www.acog.org/clinical/guidance/clinical-practice-guideline/2025/10/intrapartum-fetal-heart-rate-monitoring-interpretation-and-management/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ACOG Clinical Practice Guideline No. 10 (2025) addresses intrapartum fetal heart rate interpretation and management. Late decelerations begin after the contraction peak and suggest uteroplacental insufficiency. Nurses start intrauterine resuscitation by lateral repositioning, stopping oxytocin, and giving an IV fluid bolus, then notify the provider. Routine maternal oxygen is not advised without maternal hypoxia."
+    }
+  },
+  {
+    "id": "nclex-172",
+    "system": "Fluids",
+    "blueprint_weight": "12%",
+    "task_area": "Reduction of Risk Potential",
+    "front": "A client on IV fluids gains 2 kg overnight and has crackles: what does this show?",
+    "bottom": "Fluid overload; hypovolemia instead shows fast pulse and low BP.",
+    "bullets": {
+      "clue": "Weight gain, crackles and edema suggest overload.",
+      "treat": "Daily weights and intake and output; slow the IV and notify provider.",
+      "trap": "Missing overload in clients with heart or kidney disease."
+    },
+    "back": "Fluid overload; hypovolemia instead shows fast pulse and low BP. Key clue: Weight gain, crackles and edema suggest overload. First-line: Daily weights and intake and output; slow the IV and notify provider. Exam trap: Missing overload in clients with heart or kidney disease.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-172.svg",
+      "alt": "Signs of fluid volume deficit versus excess."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places fluid balance in Reduction of Risk Potential. Fluid overload causes weight gain, crackles, edema and distended neck veins, while hypovolemia causes tachycardia, low BP and low urine output. Daily weight is the best single indicator of fluid change, along with intake and output."
+    }
+  },
+  {
+    "id": "nclex-173",
+    "system": "Shock",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client after major bleeding is hypotensive with cool, clammy skin and flat neck veins: which shock type is it, and what first?",
+    "bottom": "Hypovolemic shock; lay the client flat, apply pressure to bleeding, and call rapid response.",
+    "bullets": {
+      "clue": "Flat neck veins and blood loss suggest hypovolemia; crackles and JVD suggest cardiogenic.",
+      "treat": "Place two large-bore IVs and give fluids or blood as ordered; reassess often.",
+      "trap": "Giving large fluid boluses in cardiogenic shock."
+    },
+    "back": "Hypovolemic shock; lay the client flat, apply pressure to bleeding, and call rapid response. Key clue: Flat neck veins and blood loss suggest hypovolemia; crackles and JVD suggest cardiogenic. First-line: Place two large-bore IVs and give fluids or blood as ordered; reassess often. Exam trap: Giving large fluid boluses in cardiogenic shock.",
+    "word_count": 52,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-173.svg",
+      "alt": "Shock types table."
+    },
+    "source": {
+      "guideline": "AHA Scientific Statement: Contemporary Management of Cardiogenic Shock 2017",
+      "year": "2017",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000525",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2017 AHA scientific statement on cardiogenic shock describes it as low cardiac output with congestion, such as crackles and raised neck veins. Flat neck veins after blood loss point instead to hypovolemic shock, which is treated with volume. Nurses control bleeding, call rapid response, and give fluids or blood as ordered, avoiding large boluses in cardiogenic shock."
+    }
+  },
+  {
+    "id": "nclex-174",
+    "system": "Sepsis",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with pneumonia has fever, RR 24 and new confusion: what does the nurse suspect?",
+    "bottom": "Sepsis; escalate early with the sepsis protocol.",
+    "bullets": {
+      "clue": "Fever, fast heart rate, fast breathing, confusion and high lactate.",
+      "treat": "Cultures before antibiotics as ordered, then antibiotics and fluids quickly.",
+      "trap": "Delaying antibiotics while waiting for culture results."
+    },
+    "back": "Sepsis; escalate early with the sepsis protocol. Key clue: Fever, fast heart rate, fast breathing, confusion and high lactate. First-line: Cultures before antibiotics as ordered, then antibiotics and fluids quickly. Exam trap: Delaying antibiotics while waiting for culture results.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-174.svg",
+      "alt": "Sepsis early recognition flowchart."
+    },
+    "source": {
+      "guideline": "Surviving Sepsis Campaign 2026",
+      "year": "2026",
+      "url": "https://www.sccm.org/survivingsepsiscampaign/guidelines-and-resources/surviving-sepsis-campaign-adult-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The Surviving Sepsis Campaign 2026 guidelines support early sepsis recognition, blood cultures before antibiotics when this does not cause delay, prompt antibiotics ideally within an hour for likely septic shock, lactate measurement, and fluid resuscitation for hypotension or high lactate. Nurses escalate early using the facility sepsis protocol."
+    }
+  },
+  {
+    "id": "nclex-175",
+    "system": "Cardiac",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "An adult collapses and has no pulse: what makes CPR high quality?",
+    "bottom": "Compress 100 to 120 per minute and at least 2 inches deep.",
+    "bullets": {
+      "clue": "Unresponsive with no normal breathing or pulse.",
+      "treat": "Allow full recoil, minimize pauses, and use the AED as soon as possible.",
+      "trap": "Long pauses in compressions."
+    },
+    "back": "Compress 100 to 120 per minute and at least 2 inches deep. Key clue: Unresponsive with no normal breathing or pulse. First-line: Allow full recoil, minimize pauses, and use the AED as soon as possible. Exam trap: Long pauses in compressions.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-175.svg",
+      "alt": "CPR quality and AED steps."
+    },
+    "source": {
+      "guideline": "AHA BLS/ACLS 2025",
+      "year": "2025",
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "AHA 2025 adult basic life support guidance supports compressions at 100 to 120 per minute, at a depth of at least 2 inches, with full chest recoil and minimal interruptions. An AED is used as soon as it is available. Rescuers switch compressors about every 2 minutes to limit fatigue."
+    }
+  },
+  {
+    "id": "nclex-176",
+    "system": "Cardiac",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client has crushing chest pain and ST elevation on the ECG: what are the priorities?",
+    "bottom": "Get a 12-lead ECG quickly and prepare for reperfusion.",
+    "bullets": {
+      "clue": "Chest pain, ST elevation, sweating or nausea.",
+      "treat": "Aspirin as ordered; oxygen only when SpO2 is low.",
+      "trap": "Giving oxygen to every client by routine."
+    },
+    "back": "Get a 12-lead ECG quickly and prepare for reperfusion. Key clue: Chest pain, ST elevation, sweating or nausea. First-line: Aspirin as ordered; oxygen only when SpO2 is low. Exam trap: Giving oxygen to every client by routine.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-176.svg",
+      "alt": "STEMI care timeline."
+    },
+    "source": {
+      "guideline": "ACC/AHA ACS 2025",
+      "year": "2025",
+      "url": "https://doi.org/10.1016/j.jacc.2024.11.009",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2025 ACC/AHA acute coronary syndromes guideline supports a 12-lead ECG within about 10 minutes of arrival, aspirin, and rapid reperfusion for STEMI. Supplemental oxygen is given when oxygen saturation is low rather than to every client. Nurses monitor rhythm, pain and vital signs while preparing for reperfusion."
+    }
+  },
+  {
+    "id": "nclex-177",
+    "system": "Cardiac",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with heart failure has crackles; another has leg edema and JVD: which side is failing?",
+    "bottom": "Left-sided: lungs, crackles and dyspnea. Right-sided: edema and JVD.",
+    "bullets": {
+      "clue": "Lung congestion versus swelling of the body.",
+      "treat": "Daily weights, low sodium diet, and ordered diuretics.",
+      "trap": "Mixing up left-sided and right-sided signs."
+    },
+    "back": "Left-sided: lungs, crackles and dyspnea. Right-sided: edema and JVD. Key clue: Lung congestion versus swelling of the body. First-line: Daily weights, low sodium diet, and ordered diuretics. Exam trap: Mixing up left-sided and right-sided signs.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-177.svg",
+      "alt": "Diagram of left versus right heart failure."
+    },
+    "source": {
+      "guideline": "AHA/ACC/HFSA Heart Failure 2022",
+      "year": "2022",
+      "url": "https://hfsa.org/heart-failure-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2022 AHA/ACC/HFSA heart failure guideline supports daily weights, sodium awareness, diuretics for congestion and guideline-directed medical therapy. Left-sided failure causes pulmonary congestion with crackles and dyspnea, while right-sided failure causes systemic congestion with edema, JVD and liver enlargement. Nurses teach clients to report weight gain."
+    }
+  },
+  {
+    "id": "nclex-178",
+    "system": "Cardiac",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client newly diagnosed with atrial fibrillation asks about blood thinners: what does the nurse teach?",
+    "bottom": "AF raises stroke risk, so anticoagulation is often prescribed.",
+    "bullets": {
+      "clue": "Irregularly irregular pulse.",
+      "treat": "Check the apical pulse and teach bleeding precautions.",
+      "trap": "Forgetting to check stroke risk in AF."
+    },
+    "back": "AF raises stroke risk, so anticoagulation is often prescribed. Key clue: Irregularly irregular pulse. First-line: Check the apical pulse and teach bleeding precautions. Exam trap: Forgetting to check stroke risk in AF.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-178.svg",
+      "alt": "AF ECG strip and stroke risk."
+    },
+    "source": {
+      "guideline": "ACC/AHA AF 2023",
+      "year": "2023",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline uses stroke risk scoring, such as CHA2DS2-VASc, to guide anticoagulation, often preferring a DOAC over warfarin when appropriate. Nurses check the apical pulse for irregular rhythm, teach bleeding precautions, and stress taking anticoagulants exactly as prescribed."
+    }
+  },
+  {
+    "id": "nclex-179",
+    "system": "Cardiac",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client's BP is 220/130 with headache and blurred vision: what does the nurse do?",
+    "bottom": "Hypertensive emergency; lower BP gradually as ordered.",
+    "bullets": {
+      "clue": "Very high BP with signs of organ damage.",
+      "treat": "Give IV medicine as ordered with close BP monitoring.",
+      "trap": "Dropping BP too quickly, which can harm organs."
+    },
+    "back": "Hypertensive emergency; lower BP gradually as ordered. Key clue: Very high BP with signs of organ damage. First-line: Give IV medicine as ordered with close BP monitoring. Exam trap: Dropping BP too quickly, which can harm organs.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-179.svg",
+      "alt": "BP reduction timeline."
+    },
+    "source": {
+      "guideline": "ACC/AHA Hypertension 2025",
+      "year": "2025",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2025 AHA/ACC high blood pressure guideline supports controlled lowering of BP in hypertensive emergency with organ damage, generally by no more than 25% in the first hour, using IV medication in an intensive care setting. Nurses monitor BP frequently and watch for neurologic, cardiac and kidney changes."
+    }
+  },
+  {
+    "id": "nclex-180",
+    "system": "Neuro",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client's face droops and speech is slurred: what does the nurse do first?",
+    "bottom": "Note the last known well time and call a stroke alert.",
+    "bullets": {
+      "clue": "Face droop, arm weakness or speech change.",
+      "treat": "Get a CT quickly; thrombolysis may be given within 4.5 hours if eligible.",
+      "trap": "Giving anything by mouth before a swallow screen."
+    },
+    "back": "Note the last known well time and call a stroke alert. Key clue: Face droop, arm weakness or speech change. First-line: Get a CT quickly; thrombolysis may be given within 4.5 hours if eligible. Exam trap: Giving anything by mouth before a swallow screen.",
+    "word_count": 44,
+    "mnemonic": "FAST: Face, Arm, Speech, Time",
+    "diagram": {
+      "file": "svg/nclex-180.svg",
+      "alt": "FAST stroke signs."
+    },
+    "source": {
+      "guideline": "AHA/ASA Acute Ischemic Stroke 2026",
+      "year": "2026",
+      "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2026 AHA/ASA acute ischemic stroke guideline supports rapid brain imaging and IV thrombolysis for eligible clients within 4.5 hours of last known well, with thrombectomy for selected large-vessel strokes. Nurses identify the last known well time, call a stroke alert, and keep the client NPO until a swallow screen."
+    }
+  },
+  {
+    "id": "nclex-181",
+    "system": "Neuro",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with a head injury has rising BP, slow pulse and irregular breathing: what does this mean?",
+    "bottom": "Cushing triad is a late sign of rising ICP.",
+    "bullets": {
+      "clue": "Change in level of consciousness is the earliest sign.",
+      "treat": "Raise the head of the bed 30 degrees, keep the head midline, and avoid hypoxia.",
+      "trap": "Missing an early change in consciousness."
+    },
+    "back": "Cushing triad is a late sign of rising ICP. Key clue: Change in level of consciousness is the earliest sign. First-line: Raise the head of the bed 30 degrees, keep the head midline, and avoid hypoxia. Exam trap: Missing an early change in consciousness.",
+    "word_count": 44,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-181.svg",
+      "alt": "Cushing triad diagram."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places increased intracranial pressure in Physiological Adaptation. A change in level of consciousness is the earliest sign. Cushing triad, with rising systolic BP, bradycardia and irregular respirations, is late. Nurses elevate the head of bed 30 degrees, keep the head midline, and prevent hypoxia."
+    }
+  },
+  {
+    "id": "nclex-182",
+    "system": "Neuro",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "After a head injury, the client was awake but is now unresponsive: what does this suggest?",
+    "bottom": "Suspect an epidural hematoma; report the decline at once for an urgent CT.",
+    "bullets": {
+      "clue": "Brief loss of consciousness, then awake, then rapid decline.",
+      "treat": "Do frequent neuro and pupil checks; prepare for urgent surgical evacuation as ordered.",
+      "trap": "Discharging a client after a lucid interval."
+    },
+    "back": "Suspect an epidural hematoma; report the decline at once for an urgent CT. Key clue: Brief loss of consciousness, then awake, then rapid decline. First-line: Do frequent neuro and pupil checks; prepare for urgent surgical evacuation as ordered. Exam trap: Discharging a client after a lucid interval.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-182.svg",
+      "alt": "Epidural hematoma diagram."
+    },
+    "source": {
+      "guideline": "BTF Surgical Management of Acute Epidural Hematomas (Bullock) 2006; StatPearls Epidural Hematoma",
+      "year": "2006",
+      "url": "https://braintrauma.org/coma/guidelines/surgical",
+      "alt_url": "https://www.ncbi.nlm.nih.gov/books/NBK518982/",
+      "recommendation": "Epidural hematoma is usually arterial bleeding from the middle meningeal artery. The classic course of brief unconsciousness, a lucid interval, then rapid decline occurs in only about 14 to 21% of cases. Brain Trauma Foundation surgical guidelines advise evacuation as soon as possible for coma with unequal pupils. Nurses do frequent neuro checks and report decline at once."
+    }
+  },
+  {
+    "id": "nclex-183",
+    "system": "Neuro",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client has seized for 6 minutes without stopping: what does the nurse do?",
+    "bottom": "Status epilepticus; protect the airway and give a benzodiazepine per order or protocol.",
+    "bullets": {
+      "clue": "A seizure of 5 minutes or more, or repeated seizures without recovery.",
+      "treat": "Protect the airway, give oxygen, time the seizure.",
+      "trap": "Restraining the client or putting objects in the mouth."
+    },
+    "back": "Status epilepticus; protect the airway and give a benzodiazepine per order or protocol. Key clue: A seizure of 5 minutes or more, or repeated seizures without recovery. First-line: Protect the airway, give oxygen, time the seizure. Exam trap: Restraining the client or putting objects in the mouth.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-183.svg",
+      "alt": "Status epilepticus timeline."
+    },
+    "source": {
+      "guideline": "AES Convulsive Status Epilepticus 2016",
+      "year": "2016",
+      "url": "https://aesnet.org/clinical-care/clinical-guidance/guideline-prolonged-seizures",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The AES 2016 guideline for convulsive status epilepticus recommends a benzodiazepine as first-line therapy once a seizure lasts 5 minutes, followed by a second-line agent such as fosphenytoin, valproate or levetiracetam if seizures continue. Nurses protect the airway, give oxygen, time the seizure, and avoid restraining the client."
+    }
+  },
+  {
+    "id": "nclex-184",
+    "system": "Neuro",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with a T4 spinal injury has a pounding headache and BP 200/110: what first?",
+    "bottom": "Sit the client upright first, then find and remove the trigger.",
+    "bullets": {
+      "clue": "Injury at T6 or above with headache, high BP and flushing.",
+      "treat": "Check for bladder distention first, then bowel and skin.",
+      "trap": "Laying the client flat."
+    },
+    "back": "Sit the client upright first, then find and remove the trigger. Key clue: Injury at T6 or above with headache, high BP and flushing. First-line: Check for bladder distention first, then bowel and skin. Exam trap: Laying the client flat.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-184.svg",
+      "alt": "Autonomic dysreflexia triggers."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places spinal cord injury care in Physiological Adaptation. Autonomic dysreflexia occurs with injuries at T6 or above, causing severe hypertension, headache and flushing. Nurses sit the client upright, loosen clothing, and look for triggers, starting with the bladder, then the bowel and skin."
+    }
+  },
+  {
+    "id": "nclex-185",
+    "system": "Neuro",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "Which is it: ascending weakness after an infection, or weakness that worsens with activity?",
+    "bottom": "Guillain-Barre ascends; myasthenia worsens with use.",
+    "bullets": {
+      "clue": "Both can cause respiratory failure.",
+      "treat": "Monitor vital capacity and swallowing; prepare for ventilation.",
+      "trap": "Missing a falling vital capacity."
+    },
+    "back": "Guillain-Barre ascends; myasthenia worsens with use. Key clue: Both can cause respiratory failure. First-line: Monitor vital capacity and swallowing; prepare for ventilation. Exam trap: Missing a falling vital capacity.",
+    "word_count": 29,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-185.svg",
+      "alt": "Comparison of Guillain-Barre and myasthenia."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan places neuromuscular disorders in Physiological Adaptation. Guillain-Barre syndrome causes ascending weakness, often after an infection, while myasthenia gravis causes weakness that worsens with activity. Both can cause respiratory failure, so nurses monitor vital capacity, swallowing and breathing, and prepare for ventilation."
+    }
+  },
+  {
+    "id": "nclex-186",
+    "system": "Respiratory",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with COPD and chronic CO2 retention is short of breath on 4 L oxygen: how is oxygen managed?",
+    "bottom": "Titrate oxygen to the ordered target, often 88 to 92%.",
+    "bullets": {
+      "clue": "Chronic CO2 retention can worsen with excess oxygen.",
+      "treat": "Teach pursed-lip breathing and the tripod position; check ABGs as ordered.",
+      "trap": "Withholding oxygen from a hypoxic client because of CO2 retention fears."
+    },
+    "back": "Titrate oxygen to the ordered target, often 88 to 92%. Key clue: Chronic CO2 retention can worsen with excess oxygen. First-line: Teach pursed-lip breathing and the tripod position; check ABGs as ordered. Exam trap: Withholding oxygen from a hypoxic client because of CO2 retention fears.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-186.svg",
+      "alt": "Pursed-lip breathing steps."
+    },
+    "source": {
+      "guideline": "GOLD 2026",
+      "year": "2026",
+      "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The GOLD 2026 report supports controlled oxygen during exacerbations, titrated to a target saturation of about 88 to 92%, with blood gases checked to watch for rising CO2. Nurses teach pursed-lip breathing and positioning, and never withhold oxygen from a hypoxic client."
+    }
+  },
+  {
+    "id": "nclex-187",
+    "system": "Respiratory",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with asthma was wheezing loudly, and now the chest is quiet but breathing is still labored: what does this mean?",
+    "bottom": "A silent chest is a life-threatening emergency.",
+    "bullets": {
+      "clue": "A silent chest, inability to speak in full sentences, or new confusion.",
+      "treat": "Give a SABA, oxygen and systemic corticosteroids as ordered, and call for help.",
+      "trap": "Assuming that less wheezing means the client is improving."
+    },
+    "back": "A silent chest is a life-threatening emergency. Key clue: A silent chest, inability to speak in full sentences, or new confusion. First-line: Give a SABA, oxygen and systemic corticosteroids as ordered, and call for help. Exam trap: Assuming that less wheezing means the client is improving.",
+    "word_count": 46,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-187.svg",
+      "alt": "Asthma severity chart."
+    },
+    "source": {
+      "guideline": "GINA 2026",
+      "year": "2026",
+      "url": "https://ginasthma.org/2026-gina-strategy-report/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "GINA 2026 describes managing severe exacerbations with repeated short-acting bronchodilators, controlled oxygen and systemic corticosteroids. A silent chest, drowsiness, or inability to speak signals life-threatening asthma that needs urgent escalation and close monitoring of breathing and oxygenation. Peak flow and oxygen saturation are monitored to judge response."
+    }
+  },
+  {
+    "id": "nclex-188",
+    "system": "Respiratory",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "After a fall, a client has sudden sharp chest pain and absent breath sounds on one side: what is the concern?",
+    "bottom": "Pneumothorax; a tension pneumothorax is an emergency.",
+    "bullets": {
+      "clue": "Tracheal shift, low BP, distended neck veins and absent breath sounds.",
+      "treat": "Give oxygen, call for help, and prepare for needle decompression or a chest tube.",
+      "trap": "Delaying treatment of a tension pneumothorax to wait for imaging."
+    },
+    "back": "Pneumothorax; a tension pneumothorax is an emergency. Key clue: Tracheal shift, low BP, distended neck veins and absent breath sounds. First-line: Give oxygen, call for help, and prepare for needle decompression or a chest tube. Exam trap: Delaying treatment of a tension pneumothorax to wait for imaging.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-188.svg",
+      "alt": "Pneumothorax diagram."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes respiratory emergencies in Physiological Adaptation. Pneumothorax causes sudden pain and diminished breath sounds on one side. Tension pneumothorax adds hypotension, tracheal shift and distended neck veins, and needs immediate decompression without waiting for imaging."
+    }
+  },
+  {
+    "id": "nclex-189",
+    "system": "Respiratory",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with sepsis has worsening hypoxemia despite high-flow oxygen and bilateral infiltrates: what is likely?",
+    "bottom": "ARDS; hypoxemia does not respond to added oxygen.",
+    "bullets": {
+      "clue": "Bilateral infiltrates and a low PaO2 to FiO2 ratio.",
+      "treat": "Expect low tidal volume ventilation and prone positioning as ordered.",
+      "trap": "Assuming that raising oxygen alone will correct the hypoxemia."
+    },
+    "back": "ARDS; hypoxemia does not respond to added oxygen. Key clue: Bilateral infiltrates and a low PaO2 to FiO2 ratio. First-line: Expect low tidal volume ventilation and prone positioning as ordered. Exam trap: Assuming that raising oxygen alone will correct the hypoxemia.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-189.svg",
+      "alt": "ARDS lung diagram."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes respiratory failure in Physiological Adaptation. ARDS causes refractory hypoxemia with bilateral infiltrates, often after sepsis, pneumonia or trauma. Management uses lung-protective ventilation with low tidal volumes and, in severe cases, prone positioning, with close respiratory monitoring."
+    }
+  },
+  {
+    "id": "nclex-190",
+    "system": "Endocrine",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "Two clients have high glucose: one has ketones and acidosis, the other has glucose over 600 without ketones: which is which?",
+    "bottom": "DKA has ketones and acidosis; HHS has extreme glucose without ketones.",
+    "bullets": {
+      "clue": "HHS often affects older adults with type 2 diabetes and severe dehydration.",
+      "treat": "Give IV fluids first, then insulin, with close potassium monitoring.",
+      "trap": "Confusing DKA with HHS, or starting insulin before checking potassium."
+    },
+    "back": "DKA has ketones and acidosis; HHS has extreme glucose without ketones. Key clue: HHS often affects older adults with type 2 diabetes and severe dehydration. First-line: Give IV fluids first, then insulin, with close potassium monitoring. Exam trap: Confusing DKA with HHS, or starting insulin before checking potassium.",
+    "word_count": 48,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-190.svg",
+      "alt": "DKA versus HHS table."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care 2026",
+      "year": "2026",
+      "url": "https://diabetes.org/newsroom/press-releases/american-diabetes-association-releases-standards-care-diabetes-2026",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ADA Standards of Care in Diabetes 2026 address hyperglycemic crises. DKA involves ketones and acidosis, while HHS involves very high glucose and dehydration with few or no ketones. Both need IV fluids, insulin and close monitoring of potassium, glucose and neurologic status."
+    }
+  },
+  {
+    "id": "nclex-191",
+    "system": "Endocrine",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with Graves disease has a fever of 104 F, heart rate 150 and agitation: what is the concern?",
+    "bottom": "Thyroid storm; myxedema coma is the opposite, with low temperature and slow pulse.",
+    "bullets": {
+      "clue": "High fever, fast heart rate, agitation or delirium.",
+      "treat": "Cool the client and give a beta blocker and antithyroid drugs as ordered.",
+      "trap": "Warming the client or missing the dysrhythmia risk."
+    },
+    "back": "Thyroid storm; myxedema coma is the opposite, with low temperature and slow pulse. Key clue: High fever, fast heart rate, agitation or delirium. First-line: Cool the client and give a beta blocker and antithyroid drugs as ordered. Exam trap: Warming the client or missing the dysrhythmia risk.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-191.svg",
+      "alt": "Thyroid storm versus myxedema."
+    },
+    "source": {
+      "guideline": "ATA Hyperthyroidism 2016",
+      "year": "2016",
+      "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The 2016 ATA hyperthyroidism guideline supports beta blockers, antithyroid drugs, iodine after antithyroid drugs, corticosteroids and supportive care for thyroid storm. Nurses provide cooling and monitor heart rhythm. Myxedema coma, the opposite emergency, causes hypothermia, bradycardia and decreased consciousness. Clients are taught to take antithyroid drugs exactly as prescribed."
+    }
+  },
+  {
+    "id": "nclex-192",
+    "system": "Endocrine",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with adrenal insufficiency has severe weakness, low BP and vomiting during an illness: what first?",
+    "bottom": "Adrenal crisis; call the provider at once and give IV hydrocortisone per order.",
+    "bullets": {
+      "clue": "Low BP, low sodium, high potassium and low glucose.",
+      "treat": "Give IV saline as ordered; monitor glucose and electrolytes.",
+      "trap": "Delaying steroids while waiting for test results."
+    },
+    "back": "Adrenal crisis; call the provider at once and give IV hydrocortisone per order. Key clue: Low BP, low sodium, high potassium and low glucose. First-line: Give IV saline as ordered; monitor glucose and electrolytes. Exam trap: Delaying steroids while waiting for test results.",
+    "word_count": 43,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-192.svg",
+      "alt": "Adrenal crisis signs."
+    },
+    "source": {
+      "guideline": "Endocrine Society Primary Adrenal Insufficiency 2016",
+      "year": "2016",
+      "url": "https://www.endocrine.org/clinical-practice-guidelines/primary-adrenal-insufficiency",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The Endocrine Society 2016 primary adrenal insufficiency guideline recommends immediate parenteral hydrocortisone and fluid resuscitation for suspected adrenal crisis, without waiting for test results. Clients are taught to increase steroid doses during illness and to carry emergency injectable hydrocortisone. Medical alert identification is also encouraged."
+    }
+  },
+  {
+    "id": "nclex-193",
+    "system": "Endocrine",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "After a head injury, one client has low sodium and concentrated urine; another has dilute urine and high sodium: which is which?",
+    "bottom": "SIADH retains water; diabetes insipidus loses water.",
+    "bullets": {
+      "clue": "SIADH: low sodium. DI: high sodium with large amounts of dilute urine.",
+      "treat": "Fluid restriction for SIADH; replace fluids and give desmopressin for DI.",
+      "trap": "Mixing up the two conditions or their opposite fluid plans."
+    },
+    "back": "SIADH retains water; diabetes insipidus loses water. Key clue: SIADH: low sodium. DI: high sodium with large amounts of dilute urine. First-line: Fluid restriction for SIADH; replace fluids and give desmopressin for DI. Exam trap: Mixing up the two conditions or their opposite fluid plans.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-193.svg",
+      "alt": "SIADH versus DI table."
+    },
+    "source": {
+      "guideline": "NCSBN 2026 test plan",
+      "year": "2026",
+      "url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "alt_url": "https://www.ncsbn.org/exams/testplans.page",
+      "recommendation": "The NCSBN 2026 RN test plan includes endocrine disorders in Physiological Adaptation. SIADH causes water retention and low sodium, treated with fluid restriction. DI causes large volumes of dilute urine and high sodium, treated with fluids and desmopressin, with daily weights and intake and output."
+    }
+  },
+  {
+    "id": "nclex-194",
+    "system": "Renal",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with stage 4 chronic kidney disease has rising potassium and new edema: what is the nursing focus?",
+    "bottom": "Monitor potassium, fluid status and medications.",
+    "bullets": {
+      "clue": "Edema, high potassium or falling urine output.",
+      "treat": "Daily weights, limit sodium, and dose medicines for kidney function.",
+      "trap": "Giving nephrotoxic drugs, such as NSAIDs, without review."
+    },
+    "back": "Monitor potassium, fluid status and medications. Key clue: Edema, high potassium or falling urine output. First-line: Daily weights, limit sodium, and dose medicines for kidney function. Exam trap: Giving nephrotoxic drugs, such as NSAIDs, without review.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-194.svg",
+      "alt": "CKD stages chart."
+    },
+    "source": {
+      "guideline": "KDIGO CKD 2024",
+      "year": "2024",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The KDIGO 2024 CKD guideline supports regular monitoring of eGFR and albuminuria, adjusting drug doses for kidney function, avoiding nephrotoxins such as NSAIDs, and managing potassium and fluid balance. Nurses track weights, edema and labs, and teach clients about diet and medicines."
+    }
+  },
+  {
+    "id": "nclex-195",
+    "system": "GI",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with a peptic ulcer vomits blood and has a heart rate of 122: what does the nurse do first?",
+    "bottom": "Protect the airway first: position on the side, have suction ready, then start two large-bore IVs.",
+    "bullets": {
+      "clue": "Hematemesis, black stools, fast heart rate or low BP.",
+      "treat": "Then send labs and type and crossmatch; transfuse as ordered.",
+      "trap": "Missing early signs of shock, such as a rising heart rate."
+    },
+    "back": "Protect the airway first: position on the side, have suction ready, then start two large-bore IVs. Key clue: Hematemesis, black stools, fast heart rate or low BP. First-line: Then send labs and type and crossmatch; transfuse as ordered. Exam trap: Missing early signs of shock, such as a rising heart rate.",
+    "word_count": 51,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-195.svg",
+      "alt": "GI bleed management."
+    },
+    "source": {
+      "guideline": "ACG Upper GI and Ulcer Bleeding 2021",
+      "year": "2021",
+      "url": "https://journals.lww.com/ajg/Fulltext/2021/05000/ACG_Clinical_Guideline__Upper_Gastrointestinal_and.14.aspx",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ACG 2021 upper GI and ulcer bleeding guideline supports hemodynamic resuscitation, restrictive red cell transfusion in most clients, and endoscopy within about 24 hours. Nurses establish large-bore IV access, monitor for shock, and prepare the client for endoscopy. Nurses also monitor hemoglobin and stool color."
+    }
+  },
+  {
+    "id": "nclex-196",
+    "system": "GI",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client has severe epigastric pain radiating to the back and a lipase three times normal: what is the care?",
+    "bottom": "Acute pancreatitis; give IV fluids and pain control.",
+    "bullets": {
+      "clue": "Severe epigastric pain radiating to the back, with high lipase.",
+      "treat": "Give moderate IV fluids, pain control, and early oral feeding when tolerated.",
+      "trap": "Keeping the client NPO longer than needed."
+    },
+    "back": "Acute pancreatitis; give IV fluids and pain control. Key clue: Severe epigastric pain radiating to the back, with high lipase. First-line: Give moderate IV fluids, pain control, and early oral feeding when tolerated. Exam trap: Keeping the client NPO longer than needed.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-196.svg",
+      "alt": "Pancreas inflammation diagram."
+    },
+    "source": {
+      "guideline": "ACG Acute Pancreatitis 2024",
+      "year": "2024",
+      "url": "https://doi.org/10.14309/ajg.0000000000002645",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ACG 2024 acute pancreatitis guideline supports moderate, goal-directed fluid resuscitation rather than aggressive fluids, early oral feeding as tolerated, and pain control. Nurses monitor fluid status, breathing, glucose and calcium, and watch for signs of worsening organ function. Pain and nausea are reassessed often."
+    }
+  },
+  {
+    "id": "nclex-197",
+    "system": "Burns",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "An adult has partial and full-thickness burns on 40% of the body: how are starting fluids estimated?",
+    "bottom": "Airway first; then fluid = 2 mL x kg x %TBSA of lactated Ringer, half in the first 8 hours from burn.",
+    "bullets": {
+      "clue": "Large burns over about 20% of body surface area in adults.",
+      "treat": "Titrate to urine output of about 0.5 mL/kg/hour; Parkland (4 mL) is the older formula.",
+      "trap": "Giving too much fluid, which causes edema and compartment problems."
+    },
+    "back": "Airway first; then fluid = 2 mL x kg x %TBSA of lactated Ringer, half in the first 8 hours from burn. Key clue: Large burns over about 20% of body surface area in adults. First-line: Titrate to urine output of about 0.5 mL/kg/hour; Parkland (4 mL) is the older formula. Exam trap: Giving too much fluid, which causes edema and compartment problems.",
+    "word_count": 63,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-197.svg",
+      "alt": "Burn surface area chart."
+    },
+    "source": {
+      "guideline": "ABA Burn Shock Resuscitation 2023",
+      "year": "2023",
+      "url": "https://www.ameriburn.org/quality-care/clinical-practice-guidelines",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ABA 2023 burn shock resuscitation guideline supports starting adult resuscitation at 2 mL/kg/%TBSA of lactated Ringer, with half planned for the first 8 hours from the time of burn, instead of the older Parkland 4 mL. Airway and inhalation injury are assessed first. Nurses titrate fluids to urine output of about 0.5 mL/kg/hour and watch for over-resuscitation."
+    }
+  },
+  {
+    "id": "nclex-198",
+    "system": "Allergy",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client stung by a bee has throat tightness, hives and a BP of 80/50: what does the nurse do first?",
+    "bottom": "Give IM epinephrine right away per order or anaphylaxis protocol.",
+    "bullets": {
+      "clue": "Hives, wheezing, throat tightness, vomiting or low BP after exposure.",
+      "treat": "Call for help, position the client, and repeat epinephrine in 5 to 15 minutes if needed.",
+      "trap": "Giving antihistamines first instead of epinephrine."
+    },
+    "back": "Give IM epinephrine right away per order or anaphylaxis protocol. Key clue: Hives, wheezing, throat tightness, vomiting or low BP after exposure. First-line: Call for help, position the client, and repeat epinephrine in 5 to 15 minutes if needed. Exam trap: Giving antihistamines first instead of epinephrine.",
+    "word_count": 47,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-198.svg",
+      "alt": "Anaphylaxis response steps."
+    },
+    "source": {
+      "guideline": "AAAAI/ACAAI Anaphylaxis 2023",
+      "year": "2023",
+      "url": "https://doi.org/10.1016/j.anai.2023.09.015",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The AAAAI/ACAAI 2023 anaphylaxis practice parameter recommends prompt IM epinephrine in the anterolateral thigh as first-line treatment, repeated every 5 to 15 minutes as needed. Antihistamines and steroids are adjuncts, and clients are observed and taught about epinephrine auto-injectors. Clients are observed for biphasic reactions."
+    }
+  },
+  {
+    "id": "nclex-199",
+    "system": "Hematology",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client with sickle cell disease arrives with severe pain in the back and legs: what is the nursing care?",
+    "bottom": "Give analgesia rapidly, within about an hour of arrival, as ordered.",
+    "bullets": {
+      "clue": "Severe pain, fever, chest pain or new breathing problems.",
+      "treat": "Oxygen only if hypoxic; fluids only if dehydrated; watch for acute chest syndrome.",
+      "trap": "Undertreating pain or delaying the first dose."
+    },
+    "back": "Give analgesia rapidly, within about an hour of arrival, as ordered. Key clue: Severe pain, fever, chest pain or new breathing problems. First-line: Oxygen only if hypoxic; fluids only if dehydrated; watch for acute chest syndrome. Exam trap: Undertreating pain or delaying the first dose.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-199.svg",
+      "alt": "Sickle cell crisis care."
+    },
+    "source": {
+      "guideline": "ASH SCD Pain 2020",
+      "year": "2020",
+      "url": "https://www.hematology.org/education/clinicians/guidelines-and-quality-care/clinical-practice-guidelines/sickle-cell-disease-guidelines/scd-guidelines-management-of-acute-and-chronic-pain",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "The ASH 2020 sickle cell disease pain guideline recommends assessing and treating acute pain within about one hour of arrival and reassessing every 30 to 60 minutes. It makes no recommendation for routine IV fluids, so fluids are given when the client is dehydrated. Nurses give oxygen only for hypoxemia and watch for acute chest syndrome and infection."
+    }
+  },
+  {
+    "id": "nclex-200",
+    "system": "OB",
+    "blueprint_weight": "14%",
+    "task_area": "Physiological Adaptation",
+    "front": "A client at 34 weeks has a BP of 162/110, severe headache and right upper quadrant pain: what is suspected?",
+    "bottom": "Preeclampsia with severe features or HELLP syndrome.",
+    "bullets": {
+      "clue": "High BP, headache, vision changes or right upper quadrant pain.",
+      "treat": "Give magnesium sulfate and BP medicines as ordered; monitor labs and reflexes.",
+      "trap": "Missing HELLP signs, such as low platelets and high liver enzymes."
+    },
+    "back": "Preeclampsia with severe features or HELLP syndrome. Key clue: High BP, headache, vision changes or right upper quadrant pain. First-line: Give magnesium sulfate and BP medicines as ordered; monitor labs and reflexes. Exam trap: Missing HELLP signs, such as low platelets and high liver enzymes.",
+    "word_count": 45,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/nclex-200.svg",
+      "alt": "Preeclampsia and HELLP signs."
+    },
+    "source": {
+      "guideline": "ACOG Practice Bulletin 222 (2020, reaffirmed 2023; Clinical Practice Update 2024)",
+      "year": "2024",
+      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia/",
+      "alt_url": "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+      "recommendation": "ACOG Practice Bulletin 222 supports magnesium sulfate for seizure prophylaxis and prompt treatment of severe-range BP in preeclampsia with severe features. HELLP syndrome involves hemolysis, high liver enzymes and low platelets, so nurses watch labs, reflexes and symptoms closely. Clients are taught warning signs to report after discharge."
+    }
+  }
+]

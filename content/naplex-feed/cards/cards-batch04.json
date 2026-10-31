@@ -1,0 +1,705 @@
+[
+ {
+  "id": "naplex-076",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2D",
+  "topic": "REMS programs: iPLEDGE, TIRF; REMS eliminated (clozapine 2025, mycophenolate 2026)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Which REMS programs still restrict dispensing in 2026, and which recently ended?",
+  "bottom": "Active, e.g., iPLEDGE. Ended: clozapine (2025), mycophenolate (2026).",
+  "bullets": {
+   "clue": "iPLEDGE: isotretinoin pregnancy testing and contraception. TIRF REMS: products discontinued 2024, no new enrollments.",
+   "treat": "Check the FDA REMS database for the current list before dispensing.",
+   "trap": "Mycophenolate is still teratogenic: label counseling continues without the REMS."
+  },
+  "back": "Active, e.g., iPLEDGE. Ended: clozapine (2025), mycophenolate (2026). Key clue: iPLEDGE: isotretinoin pregnancy testing and contraception. TIRF REMS: products discontinued 2024, no new enrollments. Pharmacist move: Check the FDA REMS database for the current list before dispensing. Exam trap: Mycophenolate is still teratogenic: label counseling continues without the REMS.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA REMS database 2026; FDA TIRF discontinuation notice 2024",
+   "year": "2024 / 2026",
+   "url": "https://www.accessdata.fda.gov/scripts/cder/rems/index.cfm",
+   "alt_url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/ipledge-risk-evaluation-and-mitigation-strategy-rems",
+   "recommendation": "FDA REMS database (2026): iPLEDGE REMS (isotretinoin) remains active; all TIRF medicines discontinued Sept 30, 2024 and the TIRF REMS accepts no new enrollments (REMS formally remains while applications are approved); clozapine REMS eliminated 2025; mycophenolate REMS eliminated effective July 29, 2026, with embryofetal toxicity warnings remaining in labeling."
+  },
+  "verified": "Y – fda.gov"
+ },
+ {
+  "id": "naplex-077",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Warfarin interactions (azoles, TMP-SMX, metronidazole, rifampin)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient stable on warfarin gets TMP-SMX. What happens, and which drugs do the opposite?",
+  "bottom": "INR rises: bleeding risk.",
+  "bullets": {
+   "clue": "Raise INR: TMP-SMX, metronidazole, fluconazole, amiodarone. Lower INR: rifampin, carbamazepine.",
+   "treat": "Pick a non-interacting drug, or check INR in 3–5 days and adjust.",
+   "trap": "Vitamin K: keep intake consistent, don't eliminate it."
+  },
+  "back": "INR rises: bleeding risk. Key clue: Raise INR: TMP-SMX, metronidazole, fluconazole, amiodarone. Lower INR: rifampin, carbamazepine. Pharmacist move: Pick a non-interacting drug, or check INR in 3–5 days and adjust. Exam trap: Vitamin K: keep intake consistent, don't eliminate it.",
+  "word_count": 40,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "CHEST 2021; labeling",
+   "year": "2021",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=19a69a72-ac5d-45d5-a94d-a5aaecbe4730",
+   "alt_url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+   "recommendation": "Warfarin labeling: CYP2C9/1A2/3A4 inhibitors (fluconazole, metronidazole, sulfamethoxazole, amiodarone) increase INR; inducers (rifampin, carbamazepine) decrease INR; monitor INR more frequently when interacting drugs start or stop; maintain consistent vitamin K intake. CHEST 2021 VTE guideline for anticoagulant management."
+  },
+  "verified": "Y – journal.chestnet.org"
+ },
+ {
+  "id": "naplex-078",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "DOAC interactions (P-gp/3A4 strong inducers & inhibitors)",
+  "calculation": false,
+  "reused_from": "pance-002",
+  "front": "Apixaban plus rifampin, or plus a strong CYP3A4/P-gp inhibitor. What's the rule?",
+  "bottom": "Avoid strong dual inducers; halve apixaban with strong dual inhibitors.",
+  "bullets": {
+   "clue": "Inducers: rifampin, carbamazepine, phenytoin, St. John's wort.",
+   "treat": "Apixaban 5 mg BID drops to 2.5 mg BID with combined strong 3A4 + P-gp inhibitors; avoid if already 2.5.",
+   "trap": "AF dose 2.5 mg BID needs 2 of 3: age ≥80, weight ≤60 kg, SCr ≥1.5."
+  },
+  "back": "Avoid strong dual inducers; halve apixaban with strong dual inhibitors. Key clue: Inducers: rifampin, carbamazepine, phenytoin, St. John's wort. Pharmacist move: Apixaban 5 mg BID drops to 2.5 mg BID with combined strong 3A4 + P-gp inhibitors; avoid if already 2.5. Exam trap: AF dose 2.5 mg BID needs 2 of 3: age ≥80, weight ≤60 kg, SCr ≥1.5.",
+  "word_count": 59,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2023 ACC/AHA AF; labeling",
+   "year": "2023",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e9481622-7cc6-418a-acb6-c5450daae9b0",
+   "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+   "recommendation": "Apixaban labeling: avoid with combined strong CYP3A4 and P-gp inducers; with combined strong inhibitors reduce dose by 50% (avoid if already 2.5 mg BID); AF dose 2.5 mg BID if ≥2 of age ≥80, weight ≤60 kg, SCr ≥1.5 mg/dL. 2023 ACC/AHA/ACCP/HRS AF guideline: dose DOACs per label criteria and drug interactions."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-079",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Statin interactions (simvastatin max doses with amlodipine/diltiazem)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Simvastatin 40 mg plus amlodipine. Allowed? What are the dose caps?",
+  "bottom": "Max simvastatin 20 mg with amlodipine.",
+  "bullets": {
+   "clue": "Also 20 mg with amiodarone or ranolazine; 10 mg with diltiazem or verapamil.",
+   "treat": "Lower the dose or switch to rosuvastatin or pravastatin.",
+   "trap": "Simvastatin 80 mg: only if already on it 12 months without myopathy."
+  },
+  "back": "Max simvastatin 20 mg with amlodipine. Key clue: Also 20 mg with amiodarone or ranolazine; 10 mg with diltiazem or verapamil. Pharmacist move: Lower the dose or switch to rosuvastatin or pravastatin. Exam trap: Simvastatin 80 mg: only if already on it 12 months without myopathy.",
+  "word_count": 46,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling 2011 simvastatin",
+   "year": "2011",
+   "url": "https://www.fda.gov/drugs/drug-safety-and-availability/drug-safety-communications",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8f55d5de-5a4f-4a39-8c84-c53976dd6af9",
+   "recommendation": "FDA 2011 simvastatin labeling: do not exceed 10 mg with verapamil or diltiazem; 20 mg with amiodarone, amlodipine or ranolazine; contraindicated with strong CYP3A4 inhibitors, gemfibrozil, cyclosporine, danazol; 80 mg restricted to patients taking it ≥12 months without myopathy."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-080",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Nitrates + PDE5 inhibitors; riociguat",
+  "calculation": false,
+  "reused_from": "pance-199",
+  "front": "Patient on isosorbide mononitrate asks for sildenafil. Safe?",
+  "bottom": "No: nitrates plus PDE5 inhibitors are contraindicated.",
+  "bullets": {
+   "clue": "Additive vasodilation causes severe hypotension.",
+   "treat": "If chest pain after a PDE5 inhibitor, no nitrate for 24 h (sildenafil) or 48 h (tadalafil).",
+   "trap": "Riociguat is also contraindicated with nitrates and PDE5 inhibitors."
+  },
+  "back": "No: nitrates plus PDE5 inhibitors are contraindicated. Key clue: Additive vasodilation causes severe hypotension. Pharmacist move: If chest pain after a PDE5 inhibitor, no nitrate for 24 h (sildenafil) or 48 h (tadalafil). Exam trap: Riociguat is also contraindicated with nitrates and PDE5 inhibitors.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3bb9363e-b28d-4019-8aae-539233dca214",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7b57509a-3d5d-41d4-8fed-1471e26372a3",
+   "recommendation": "PDE5 inhibitor labeling: contraindicated with organic nitrates or nitric oxide donors in any form and with guanylate cyclase stimulators (riociguat); riociguat labeling contraindicates nitrates and PDE5 inhibitors. Nitrate avoidance windows (24 h sildenafil/vardenafil, 48 h tadalafil) per labeling and ACC/AHA guidance."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-081",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Linezolid/MAOI + serotonergic drugs",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient on sertraline needs linezolid for VRE. What's the risk, and how do you handle it?",
+  "bottom": "Serotonin syndrome: linezolid is an MAO inhibitor.",
+  "bullets": {
+   "clue": "Riskiest with SSRIs and SNRIs.",
+   "treat": "Non-urgent: stop the serotonergic drug first (2 weeks; fluoxetine 5). Urgent: give with close monitoring.",
+   "trap": "Linezolid also interacts with high-tyramine foods."
+  },
+  "back": "Serotonin syndrome: linezolid is an MAO inhibitor. Key clue: Riskiest with SSRIs and SNRIs. Pharmacist move: Non-urgent: stop the serotonergic drug first (2 weeks; fluoxetine 5). Urgent: give with close monitoring. Exam trap: Linezolid also interacts with high-tyramine foods.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6e70e63b-bfd5-478d-a8ee-8ba22c9efabd",
+   "alt_url": null,
+   "recommendation": "FDA 2011 drug safety communication and linezolid labeling: serious CNS reactions (serotonin syndrome) with serotonergic psychiatric drugs; in non-emergencies stop the serotonergic drug (≈2 weeks; 5 weeks for fluoxetine) before linezolid; in emergencies, if benefits outweigh risk, stop the serotonergic drug and monitor. Avoid large amounts of tyramine-rich foods."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-082",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Fluoroquinolone/tetracycline chelation with Ca/Mg/Fe",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Ciprofloxacin and a calcium supplement together. What's the counseling?",
+  "bottom": "Chelation: absorption drops.",
+  "bullets": {
+   "clue": "Ca, Mg, Al, Fe, Zn bind fluoroquinolones and tetracyclines.",
+   "treat": "Take ciprofloxacin 2 hours before or 6 hours after cations.",
+   "trap": "Dairy alone also blocks ciprofloxacin; levothyroxine needs 4 hours from Ca or Fe."
+  },
+  "back": "Chelation: absorption drops. Key clue: Ca, Mg, Al, Fe, Zn bind fluoroquinolones and tetracyclines. Pharmacist move: Take ciprofloxacin 2 hours before or 6 hours after cations. Exam trap: Dairy alone also blocks ciprofloxacin; levothyroxine needs 4 hours from Ca or Fe.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=888dc7f9-ad9c-4c00-8d50-8ddfd9bd27c0",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1e11ad30-1041-4520-10b0-8f9d30d30fcc",
+   "recommendation": "Ciprofloxacin labeling: administer at least 2 hours before or 6 hours after magnesium/aluminum antacids, sucralfate, or products containing calcium, iron or zinc; avoid with dairy products or calcium-fortified juices alone. Levothyroxine labeling: separate from calcium carbonate and ferrous sulfate by at least 4 hours. Tetracycline labeling: avoid concomitant polyvalent cations."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-083",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Lithium interactions (ACEi/ARB, NSAIDs, thiazides)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient on lithium starts lisinopril and ibuprofen. What happens to the level?",
+  "bottom": "Lithium level rises: toxicity risk.",
+  "bullets": {
+   "clue": "Raisers: ACEi, ARBs, thiazides, NSAIDs, dehydration, low sodium intake.",
+   "treat": "Avoid the combo or check a level within about 5 days and adjust.",
+   "trap": "Toxicity: coarse tremor, confusion, ataxia, vomiting."
+  },
+  "back": "Lithium level rises: toxicity risk. Key clue: Raisers: ACEi, ARBs, thiazides, NSAIDs, dehydration, low sodium intake. Pharmacist move: Avoid the combo or check a level within about 5 days and adjust. Exam trap: Toxicity: coarse tremor, confusion, ataxia, vomiting.",
+  "word_count": 39,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "VA/DoD Bipolar 2023; FDA labeling",
+   "year": "2023",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f7f5b69a-c2a1-4586-a189-1475d41387c0",
+   "alt_url": "https://www.healthquality.va.gov/guidelines/MH/bd/",
+   "recommendation": "Lithium labeling: ACE inhibitors, ARBs, thiazide diuretics, NSAIDs, and sodium depletion can increase lithium concentrations; monitor levels closely when starting/stopping these drugs. VA/DoD Bipolar 2023 supports lithium with level monitoring."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov, healthquality.va.gov"
+ },
+ {
+  "id": "naplex-084",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Hyperkalemia combos: ACEi/ARB + spironolactone + TMP-SMX",
+  "calculation": false,
+  "reused_from": "pance-015",
+  "front": "CKD patient on lisinopril and spironolactone gets TMP-SMX. What's the danger?",
+  "bottom": "Hyperkalemia.",
+  "bullets": {
+   "clue": "ACEi/ARB, MRA, TMP-SMX, NSAIDs, potassium supplements all raise K.",
+   "treat": "Check potassium and creatinine; manage high K with diet, diuretics or binders.",
+   "trap": "KDIGO: treat the potassium first instead of reflexively stopping the RAS inhibitor."
+  },
+  "back": "Hyperkalemia. Key clue: ACEi/ARB, MRA, TMP-SMX, NSAIDs, potassium supplements all raise K. Pharmacist move: Check potassium and creatinine; manage high K with diet, diuretics or binders. Exam trap: KDIGO: treat the potassium first instead of reflexively stopping the RAS inhibitor.",
+  "word_count": 40,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "KDIGO 2024 CKD",
+   "year": "2024",
+   "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f59d0c04-9c66-4d53-a0e1-cb55570deb62",
+   "recommendation": "KDIGO 2024 CKD: hyperkalemia associated with RASi can often be managed by measures to reduce potassium rather than decreasing or stopping RASi; monitor potassium and creatinine after RASi initiation or dose change. Trimethoprim labeling: hyperkalemia (amiloride-like effect)."
+  },
+  "verified": "Y – kdigo.org"
+ },
+ {
+  "id": "naplex-085",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2E",
+  "topic": "Drug-food: grapefruit, tyramine/MAOI, vitamin K",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient on phenelzine asks about aged cheese and tap beer. Why does it matter?",
+  "bottom": "Tyramine plus MAOI: hypertensive crisis.",
+  "bullets": {
+   "clue": "High tyramine: aged cheese, cured meats, soy sauce, tap beer.",
+   "treat": "Counsel a tyramine-restricted diet during and 2 weeks after MAOI therapy.",
+   "trap": "Grapefruit raises simvastatin and lovastatin levels; vitamin K just needs consistency with warfarin."
+  },
+  "back": "Tyramine plus MAOI: hypertensive crisis. Key clue: High tyramine: aged cheese, cured meats, soy sauce, tap beer. Pharmacist move: Counsel a tyramine-restricted diet during and 2 weeks after MAOI therapy. Exam trap: Grapefruit raises simvastatin and lovastatin levels; vitamin K just needs consistency with warfarin.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=513a41d0-37d4-4355-8a6d-a2c643bce6fa",
+   "alt_url": null,
+   "recommendation": "MAOI labeling (phenelzine): hypertensive crisis with tyramine-rich foods; maintain dietary restrictions during and for 2 weeks after therapy. Simvastatin/lovastatin labeling: avoid large quantities of grapefruit juice. Warfarin labeling: consistent vitamin K intake."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-086",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Warfarin INR monitoring and dose adjustment",
+  "calculation": false,
+  "reused_from": null,
+  "front": "INR is 1.6 on warfarin for DVT (goal 2–3). Double today's dose?",
+  "bottom": "No: adjust the weekly dose 5–20%.",
+  "bullets": {
+   "clue": "INR reflects doses from days ago; steady state takes 5–7 days.",
+   "treat": "Check adherence, diet and new drugs; recheck in about a week.",
+   "trap": "INR >10 without bleeding: hold warfarin and give oral vitamin K."
+  },
+  "back": "No: adjust the weekly dose 5–20%. Key clue: INR reflects doses from days ago; steady state takes 5–7 days. Pharmacist move: Check adherence, diet and new drugs; recheck in about a week. Exam trap: INR >10 without bleeding: hold warfarin and give oral vitamin K.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Warfarin labeling; CHEST 2012 (9th ed.) antithrombotic guidelines",
+   "year": "2012",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=19a69a72-ac5d-45d5-a94d-a5aaecbe4730",
+   "alt_url": "https://pubmed.ncbi.nlm.nih.gov/22315259/",
+   "recommendation": "Warfarin labeling: target INR 2.0–3.0 for VTE treatment; dose adjustments based on INR. CHEST 2012 (9th ed.) antithrombotic guidelines and standard practice: change total weekly dose by 5–20%; for INR >10 without bleeding, hold warfarin and give oral vitamin K."
+  },
+  "verified": "Y – journal.chestnet.org"
+ },
+ {
+  "id": "naplex-087",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Digoxin levels, toxicity signs, DigiFab",
+  "calculation": false,
+  "reused_from": null,
+  "front": "HF patient on digoxin has nausea and yellow-green vision. What do you check and treat?",
+  "bottom": "Digoxin toxicity: level, potassium, renal function.",
+  "bullets": {
+   "clue": "Hypokalemia, renal decline, amiodarone or verapamil raise toxicity.",
+   "treat": "Hold digoxin; DigiFab for life-threatening arrhythmias or severe toxicity.",
+   "trap": "Draw levels at least 6 hours after a dose; aim low (~0.5–0.9 ng/mL) in HF."
+  },
+  "back": "Digoxin toxicity: level, potassium, renal function. Key clue: Hypokalemia, renal decline, amiodarone or verapamil raise toxicity. Pharmacist move: Hold digoxin; DigiFab for life-threatening arrhythmias or severe toxicity. Exam trap: Draw levels at least 6 hours after a dose; aim low (~0.5–0.9 ng/mL) in HF.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2022 AHA/ACC/HFSA HF",
+   "year": "2022",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d91e3646-4c63-4512-ab22-db39c085c4dc",
+   "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+   "recommendation": "Digoxin labeling: toxicity signs include nausea, visual disturbances, arrhythmias; draw serum levels ≥6 h post-dose; hypokalemia, renal impairment and P-gp inhibitors (amiodarone, verapamil) increase toxicity; digoxin immune fab for life-threatening toxicity. 2022 AHA/ACC/HFSA HF: digoxin may be considered in HFrEF (2b); serum concentrations 0.5–0.9 ng/mL associated with benefit in post hoc analyses."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-088",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Lithium levels & renal/thyroid monitoring",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Lithium maintenance: target level, timing, and the labs you track?",
+  "bottom": "About 0.6–1.0 mEq/L (up to 1.2), drawn 12 hours post-dose.",
+  "bullets": {
+   "clue": "Check 5 days after starting or changing dose.",
+   "treat": "Track renal function, TSH, calcium periodically.",
+   "trap": "Long-term effects: hypothyroidism and nephrogenic diabetes insipidus."
+  },
+  "back": "About 0.6–1.0 mEq/L (up to 1.2), drawn 12 hours post-dose. Key clue: Check 5 days after starting or changing dose. Pharmacist move: Track renal function, TSH, calcium periodically. Exam trap: Long-term effects: hypothyroidism and nephrogenic diabetes insipidus.",
+  "word_count": 37,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "VA/DoD Bipolar 2023",
+   "year": "2023",
+   "url": "https://www.healthquality.va.gov/guidelines/MH/bd/",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f7f5b69a-c2a1-4586-a189-1475d41387c0",
+   "recommendation": "Lithium labeling and VA/DoD Bipolar 2023: maintenance serum lithium typically 0.6–1.0 mEq/L (up to 1.2 per labeling), trough drawn ~12 h after last dose, steady state ~5 days after dose change; monitor renal function, thyroid function and calcium; risks include hypothyroidism and nephrogenic diabetes insipidus."
+  },
+  "verified": "Y – healthquality.va.gov"
+ },
+ {
+  "id": "naplex-089",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Aminoglycoside extended-interval dosing & levels",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Extended-interval gentamicin: starting dose, and how is the interval set?",
+  "bottom": "7 mg/kg; interval from one random level.",
+  "bullets": {
+   "clue": "Hartford: one level 6–14 hours after the dose, plotted on the nomogram.",
+   "treat": "Level region sets every 24, 36 or 48 hours.",
+   "trap": "Exclude burns, ascites, pregnancy, endocarditis, CrCl <20."
+  },
+  "back": "7 mg/kg; interval from one random level. Key clue: Hartford: one level 6–14 hours after the dose, plotted on the nomogram. Pharmacist move: Level region sets every 24, 36 or 48 hours. Exam trap: Exclude burns, ascites, pregnancy, endocarditis, CrCl <20.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "Hartford nomogram; IDSA",
+   "year": "current edition",
+   "url": "https://journals.asm.org/doi/10.1128/aac.39.3.650",
+   "alt_url": null,
+   "recommendation": "Nicolau DP et al. (Hartford Hospital) AAC 1995: once-daily aminoglycoside 7 mg/kg gentamicin/tobramycin, single random concentration 6–14 h after start of infusion plotted on nomogram to select q24h, q36h or q48h; excluded populations include burns >20% BSA, ascites, pregnancy, endocarditis, CrCl <20 mL/min."
+  },
+  "verified": "Y – journals.asm.org, idsociety.org"
+ },
+ {
+  "id": "naplex-090",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Antiepileptic levels (phenytoin, carbamazepine autoinduction)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Carbamazepine level dropped three weeks after starting with no dose change. Why?",
+  "bottom": "Autoinduction.",
+  "bullets": {
+   "clue": "Carbamazepine induces its own metabolism over 3–5 weeks.",
+   "treat": "Recheck the level and titrate; target 4–12 mcg/mL.",
+   "trap": "It also induces CYP3A4: hormonal contraceptives can fail."
+  },
+  "back": "Autoinduction. Key clue: Carbamazepine induces its own metabolism over 3–5 weeks. Pharmacist move: Recheck the level and titrate; target 4–12 mcg/mL. Exam trap: It also induces CYP3A4: hormonal contraceptives can fail.",
+  "word_count": 31,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling",
+   "year": "current edition",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8d409411-aa9f-4f3a-a52c-fbcb0c3ec053",
+   "alt_url": null,
+   "recommendation": "Carbamazepine labeling: autoinduction; half-life decreases with repeated dosing (autoinduction complete within 3–5 weeks); therapeutic range 4–12 mcg/mL; CYP3A4 induction reduces efficacy of hormonal contraceptives."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-091",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Statin monitoring (LFT baseline, CK if symptoms)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Starting atorvastatin: which labs are needed, and when do you check CK?",
+  "bottom": "Baseline lipids and ALT; CK only with muscle symptoms.",
+  "bullets": {
+   "clue": "No routine liver or CK monitoring once started.",
+   "treat": "Recheck lipids after starting to confirm response and adherence.",
+   "trap": "Muscle aches: check CK, thyroid and vitamin D; don't stop all statins forever."
+  },
+  "back": "Baseline lipids and ALT; CK only with muscle symptoms. Key clue: No routine liver or CK monitoring once started. Pharmacist move: Recheck lipids after starting to confirm response and adherence. Exam trap: Muscle aches: check CK, thyroid and vitamin D; don't stop all statins forever.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline",
+   "year": "2026",
+   "url": "https://www.jacc.org/guidelines/dyslipidemia",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a60cc18b-0631-4cf0-b021-9f52224ece65",
+   "recommendation": "Statin labeling: obtain liver enzymes before starting and as clinically indicated; measure CK in patients with muscle symptoms. 2026 ACC/AHA multisociety Dyslipidemia guideline: follow-up lipid testing to assess response and adherence."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-092",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Amiodarone monitoring (TFT, LFT, PFT, eye)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient on amiodarone for a year has a new cough, fatigue and blue-gray skin. What are you seeing?",
+  "bottom": "Classic amiodarone toxicity.",
+  "bullets": {
+   "clue": "Pulmonary fibrosis, hypo- or hyperthyroidism, hepatotoxicity, corneal deposits, photosensitivity.",
+   "treat": "Report symptoms; check TFTs, LFTs, chest imaging and PFTs.",
+   "trap": "Very long half-life: toxicity persists after stopping."
+  },
+  "back": "Classic amiodarone toxicity. Key clue: Pulmonary fibrosis, hypo- or hyperthyroidism, hepatotoxicity, corneal deposits, photosensitivity. Pharmacist move: Report symptoms; check TFTs, LFTs, chest imaging and PFTs. Exam trap: Very long half-life: toxicity persists after stopping.",
+  "word_count": 34,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "2023 ACC/AHA AF",
+   "year": "2023",
+   "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4c4ec9b0-13a5-49a8-b57b-b3f64e4316a7",
+   "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+   "recommendation": "Amiodarone labeling: pulmonary toxicity, hepatic injury, thyroid dysfunction (hypo and hyper), corneal microdeposits, optic neuropathy, photosensitivity and blue-gray skin discoloration; elimination half-life ~58 days. 2023 AF guideline: monitor thyroid, hepatic and pulmonary function."
+  },
+  "verified": "Y – jacc.org"
+ },
+ {
+  "id": "naplex-093",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2F",
+  "topic": "Antipsychotic metabolic monitoring",
+  "calculation": false,
+  "reused_from": "pance-112",
+  "front": "Starting olanzapine: what metabolic monitoring, and when?",
+  "bottom": "Baseline weight, waist, BP, glucose, lipids.",
+  "bullets": {
+   "clue": "Weight at 4, 8, 12 weeks, then quarterly.",
+   "treat": "Glucose and BP at 12 weeks, then yearly; lipids at 12 weeks.",
+   "trap": "Highest metabolic risk: clozapine and olanzapine."
+  },
+  "back": "Baseline weight, waist, BP, glucose, lipids. Key clue: Weight at 4, 8, 12 weeks, then quarterly. Pharmacist move: Glucose and BP at 12 weeks, then yearly; lipids at 12 weeks. Exam trap: Highest metabolic risk: clozapine and olanzapine.",
+  "word_count": 38,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA/APA 2004 consensus; APA 2020 schizophrenia",
+   "year": "2004 / 2020",
+   "url": "https://diabetesjournals.org/care/article/27/2/596/28450/",
+   "alt_url": "https://psychiatryonline.org/doi/book/10.1176/appi.books.9780890424841",
+   "recommendation": "ADA/APA 2004 consensus: baseline personal/family history, weight/BMI, waist circumference, BP, fasting glucose, fasting lipids; weight at 4, 8, 12 weeks then quarterly; BP and glucose at 12 weeks then annually; lipids at 12 weeks then every 5 years if normal; clozapine and olanzapine carry the greatest risk. APA 2020 schizophrenia guideline endorses metabolic monitoring."
+  },
+  "verified": "Y – psychiatry.org, diabetesjournals.org"
+ },
+ {
+  "id": "naplex-094",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2G",
+  "topic": "Antidotes: acetylcysteine, naloxone, flumazenil, vitamin K, idarucizumab, andexanet",
+  "calculation": false,
+  "reused_from": "pance-175",
+  "front": "Match the antidote: acetaminophen, dabigatran, apixaban, methanol, benzodiazepine.",
+  "bottom": "NAC, idarucizumab, 4F-PCC, fomepizole, flumazenil.",
+  "bullets": {
+   "clue": "Also: opioids naloxone; digoxin DigiFab; warfarin vitamin K plus 4F-PCC. Andexanet left the US market in Dec 2025.",
+   "treat": "Know which antidotes must be stocked for immediate use in the ED.",
+   "trap": "Flumazenil can trigger seizures in chronic benzodiazepine users."
+  },
+  "back": "NAC, idarucizumab, 4F-PCC, fomepizole, flumazenil. Key clue: Also: opioids naloxone; digoxin DigiFab; warfarin vitamin K plus 4F-PCC. Andexanet left the US market in Dec 2025. Pharmacist move: Know which antidotes must be stocked for immediate use in the ED. Exam trap: Flumazenil can trigger seizures in chronic benzodiazepine users.",
+  "word_count": 49,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ACMT/AACT antidote stocking 2017; FDA Andexxa safety communication Dec 2025",
+   "year": "2017 / 2025",
+   "url": "https://doi.org/10.1016/j.annemergmed.2017.05.021",
+   "alt_url": "https://www.fda.gov/safety/medical-product-safety-information/update-safety-andexxa-astrazeneca-fda-safety-communication",
+   "recommendation": "ACMT/AACT expert consensus guidelines for stocking of antidotes (2017): acetylcysteine, naloxone, flumazenil, fomepizole, digoxin immune fab, idarucizumab, prothrombin complex concentrate, vitamin K. FDA Dec 22, 2025: Andexxa (andexanet alfa) no longer manufactured or sold in the US; 4-factor PCC (Kcentra/Balfaxar) used for life-threatening apixaban/rivaroxaban bleeding. Flumazenil labeling: seizures in benzodiazepine-dependent patients."
+  },
+  "verified": "Y – annemergmed.com"
+ },
+ {
+  "id": "naplex-095",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2G",
+  "topic": "Acetaminophen overdose: Rumack-Matthew & NAC dosing",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Single acute acetaminophen ingestion; 4-hour level is 180 mcg/mL. Treat?",
+  "bottom": "Yes: above the treatment line (150 at 4 h).",
+  "bullets": {
+   "clue": "Rumack-Matthew nomogram: single ingestion with a known time, level at ≥4 hours.",
+   "treat": "Start acetylcysteine; best within 8 hours of ingestion.",
+   "trap": "Unknown time or repeated ingestions: the nomogram doesn't apply; treat."
+  },
+  "back": "Yes: above the treatment line (150 at 4 h). Key clue: Rumack-Matthew nomogram: single ingestion with a known time, level at ≥4 hours. Pharmacist move: Start acetylcysteine; best within 8 hours of ingestion. Exam trap: Unknown time or repeated ingestions: the nomogram doesn't apply; treat.",
+  "word_count": 45,
+  "mnemonic": null,
+  "diagram": {
+   "file": "svg/naplex-095.svg",
+   "alt": "Rumack-Matthew nomogram treatment line on a log scale: 150 mcg/mL at 4 hours, halving every 4 hours to about 4.7 at 24 hours. A 4-hour level of 180 is above the line, so start acetylcysteine."
+  },
+  "source": {
+   "guideline": "2023 US/Canada APAP poisoning consensus",
+   "year": "2023",
+   "url": "https://jamanetwork.com/journals/jamanetworkopen",
+   "alt_url": null,
+   "recommendation": "2023 US/Canada consensus on acetaminophen poisoning: use the Rumack-Matthew nomogram treatment line (150 mcg/mL at 4 h) for acute single ingestions with known time; start acetylcysteine for concentrations at or above the line; NAC is most effective within 8 h; use alternative criteria for unknown-time or repeated supratherapeutic ingestions."
+  },
+  "verified": "Y – jamanetwork.com"
+ },
+ {
+  "id": "naplex-096",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2H",
+  "topic": "Inhaler technique: MDI vs DPI vs soft-mist",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Patient switches from an MDI to a dry powder inhaler. What changes in technique?",
+  "bottom": "MDI: slow, deep breath. DPI: fast, forceful breath.",
+  "bullets": {
+   "clue": "MDI: shake, exhale, press and inhale slowly, hold 10 seconds; spacer helps.",
+   "treat": "DPI: don't shake, don't exhale into it, no spacer.",
+   "trap": "Rinse and spit after inhaled corticosteroids."
+  },
+  "back": "MDI: slow, deep breath. DPI: fast, forceful breath. Key clue: MDI: shake, exhale, press and inhale slowly, hold 10 seconds; spacer helps. Pharmacist move: DPI: don't shake, don't exhale into it, no spacer. Exam trap: Rinse and spit after inhaled corticosteroids.",
+  "word_count": 41,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "GINA 2026; GOLD 2026",
+   "year": "2026",
+   "url": "https://ginasthma.org/2026-gina-strategy-report/",
+   "alt_url": "https://goldcopd.org/",
+   "recommendation": "GINA 2026 and GOLD 2026: check inhaler technique at every visit; device-specific technique per manufacturer (pMDI slow deep inhalation with breath-hold, optional spacer; DPI rapid forceful inhalation); rinse mouth after ICS."
+  },
+  "verified": "Y – goldcopd.org, ginasthma.org"
+ },
+ {
+  "id": "naplex-097",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2H",
+  "topic": "Medication administration: ophthalmic, otic, transdermal patch disposal",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Counseling: two different eye drops, ear drops in a toddler, and a used fentanyl patch.",
+  "bottom": "Wait 5 minutes; pull ear down and back; fold and flush.",
+  "bullets": {
+   "clue": "Eye drops: 5 minutes apart; suspensions shake first.",
+   "treat": "Otic under age 3: pinna down and back; adults: up and back.",
+   "trap": "Fentanyl patch is on the FDA flush list; avoid heat on the patch."
+  },
+  "back": "Wait 5 minutes; pull ear down and back; fold and flush. Key clue: Eye drops: 5 minutes apart; suspensions shake first. Pharmacist move: Otic under age 3: pinna down and back; adults: up and back. Exam trap: Fentanyl patch is on the FDA flush list; avoid heat on the patch.",
+  "word_count": 50,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA labeling; FDA flush list",
+   "year": "current edition",
+   "url": "https://www.fda.gov/drugs/disposal-unused-medicines-what-you-should-know/drug-disposal-fdas-flush-list-certain-medicines",
+   "alt_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e15a7e9b-8025-49dd-9a6d-bafcccf1959f",
+   "recommendation": "FDA flush list includes fentanyl transdermal systems: fold sticky sides together and flush if no take-back option. Fentanyl patch labeling: avoid external heat (increased absorption). Ophthalmic labeling: separate different drops by at least 5 minutes. Otic administration per labeling/pharmacy practice."
+  },
+  "verified": "Y – dailymed.nlm.nih.gov"
+ },
+ {
+  "id": "naplex-098",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2H",
+  "topic": "Insulin pen/needle counseling and storage",
+  "calculation": false,
+  "reused_from": null,
+  "front": "New insulin pen user: priming, injection, and storage?",
+  "bottom": "Prime 2 units; hold 10 seconds; new needle each time.",
+  "bullets": {
+   "clue": "Unopened pens in the fridge; in-use pens at room temperature.",
+   "treat": "Rotate sites within the same region to avoid lipohypertrophy.",
+   "trap": "Never share a pen, even with a new needle."
+  },
+  "back": "Prime 2 units; hold 10 seconds; new needle each time. Key clue: Unopened pens in the fridge; in-use pens at room temperature. Pharmacist move: Rotate sites within the same region to avoid lipohypertrophy. Exam trap: Never share a pen, even with a new needle.",
+  "word_count": 44,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "ADA Standards of Care 2026",
+   "year": "2026",
+   "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
+   "alt_url": "https://www.fda.gov/drugs/drug-safety-and-availability/drug-safety-communications",
+   "recommendation": "ADA Standards of Care 2026: proper insulin injection technique, site rotation to avoid lipohypertrophy. Insulin pen labeling: perform a 2-unit safety test before each injection, hold needle in skin ~10 seconds, store unopened pens refrigerated and in-use pens at room temperature. FDA: insulin pens must never be shared between patients, even if the needle is changed."
+  },
+  "verified": "Y – diabetesjournals.org"
+ },
+ {
+  "id": "naplex-099",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2I",
+  "topic": "Pregnancy/lactation labeling (PLLR) and teratogens (ACEi, warfarin, isotretinoin, VPA)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Pregnancy letter categories are gone. What replaced them, and which teratogens matter most?",
+  "bottom": "PLLR narrative sections 8.1, 8.2, 8.3.",
+  "bullets": {
+   "clue": "8.1 pregnancy, 8.2 lactation, 8.3 reproductive potential.",
+   "treat": "Avoid ACEi/ARB, warfarin, isotretinoin, valproate in pregnancy; use labetalol or nifedipine for BP.",
+   "trap": "'Category X' language is outdated on current labels."
+  },
+  "back": "PLLR narrative sections 8.1, 8.2, 8.3. Key clue: 8.1 pregnancy, 8.2 lactation, 8.3 reproductive potential. Pharmacist move: Avoid ACEi/ARB, warfarin, isotretinoin, valproate in pregnancy; use labetalol or nifedipine for BP. Exam trap: 'Category X' language is outdated on current labels.",
+  "word_count": 40,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "FDA PLLR 2015; ACOG",
+   "year": "2015",
+   "url": "https://www.federalregister.gov/documents/2014/12/04/2014-28241/content-and-format-of-labeling-for-human-prescription-drug-and-biological-products-requirements-for-pregnancy-and-lactation-labeling",
+   "alt_url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia",
+   "recommendation": "FDA Pregnancy and Lactation Labeling Rule (effective June 30, 2015): removed A, B, C, D, X categories; subsections 8.1 Pregnancy, 8.2 Lactation, 8.3 Females and Males of Reproductive Potential. Labeling for ACEi/ARB (fetal toxicity), warfarin, isotretinoin and valproate; ACOG recommends labetalol and nifedipine for hypertension in pregnancy."
+  },
+  "verified": "Y – federalregister.gov, acog.org"
+ },
+ {
+  "id": "naplex-100",
+  "system": "Medication Use Process",
+  "blueprint_weight": "25%",
+  "task_area": "NAPLEX 2I",
+  "topic": "Geriatric Beers list highlights (sedative-hypnotics, sulfonylureas, PPIs)",
+  "calculation": false,
+  "reused_from": null,
+  "front": "Beers 2023: which sleep aid, diabetes drug and anticoagulant choices are flagged in older adults?",
+  "bottom": "Avoid benzos and Z-drugs; avoid sulfonylureas first-line.",
+  "bullets": {
+   "clue": "Also avoid PPIs beyond 8 weeks without a clear reason; avoid aspirin for primary prevention.",
+   "treat": "Prefer apixaban; avoid starting warfarin and long-term rivaroxaban for AF/VTE.",
+   "trap": "If a sulfonylurea is used, choose short-acting (glipizide), not glyburide."
+  },
+  "back": "Avoid benzos and Z-drugs; avoid sulfonylureas first-line. Key clue: Also avoid PPIs beyond 8 weeks without a clear reason; avoid aspirin for primary prevention. Pharmacist move: Prefer apixaban; avoid starting warfarin and long-term rivaroxaban for AF/VTE. Exam trap: If a sulfonylurea is used, choose short-acting (glipizide), not glyburide.",
+  "word_count": 48,
+  "mnemonic": null,
+  "diagram": null,
+  "source": {
+   "guideline": "AGS Beers Criteria 2023",
+   "year": "2023",
+   "url": "https://doi.org/10.1111/jgs.18372",
+   "alt_url": null,
+   "recommendation": "AGS Beers Criteria 2023: avoid benzodiazepines and Z-drugs; avoid sulfonylureas as first- or second-line therapy (if used, short-acting preferred); avoid scheduled PPIs >8 weeks unless high-risk; avoid aspirin for primary prevention; avoid warfarin as initial therapy for VTE/AF unless DOACs contraindicated; avoid rivaroxaban for long-term AF/VTE in favor of safer alternatives such as apixaban."
+  },
+  "verified": "Y – americangeriatrics.org"
+ }
+]

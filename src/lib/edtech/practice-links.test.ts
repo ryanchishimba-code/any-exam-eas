@@ -75,8 +75,8 @@ describe("parseTopicPracticeReturn", () => {
     });
     const parsed = parseTopicPracticeReturn(params);
     expect(parsed).toEqual({
-      href: "/dashboard?exam=nclex",
-      label: "study tools",
+      href: "/study-tools/nclex/feed",
+      label: "NCLEX Feed",
     });
   });
 
@@ -123,8 +123,8 @@ describe("parsePracticeReturn", () => {
       returnStructure: "heart",
       returnStructureName: "Heart",
     });
-    expect(parsePracticeReturn(params)?.label).toBe("study tools");
-    expect(parsePracticeReturn(params)?.href).toBe("/dashboard?exam=nclex");
+    expect(parsePracticeReturn(params)?.label).toBe("NCLEX Feed");
+    expect(parsePracticeReturn(params)?.href).toBe("/study-tools/nclex/feed");
   });
 
   it("falls back to anatomy return when no topic return", () => {

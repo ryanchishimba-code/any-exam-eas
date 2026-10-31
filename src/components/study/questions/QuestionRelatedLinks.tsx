@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Bone, BookOpen, Layers, Pill } from "lucide-react";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { matchCatalogDrug } from "@/lib/learning/remediation-loop";
@@ -67,9 +67,10 @@ export function QuestionRelatedLinks({
       ? (links.relatedDrug?.safetyPathHref ?? drugSafetyPathHref(examSlug))
       : null;
 
-  const showPanceFeed =
-    examSlug === "pance" &&
-    (links.relatedDeepDives.length > 0 || (links.memoryCards?.length ?? 0) > 0);
+  const feed = studyFeedForExam(examSlug);
+  const showPanceFeed = Boolean(
+    feed && (links.relatedDeepDives.length > 0 || (links.memoryCards?.length ?? 0) > 0)
+  );
   const hasAnatomy = clinical && links.anatomyStructures.length > 0;
   const hasGuide = Boolean(links.studyGuide);
   const hasDrugs = uniqueDrugLinks.length > 0;
@@ -126,9 +127,9 @@ export function QuestionRelatedLinks({
 
       {showNonAnatomy && showPanceFeed ? (
         <div className="mt-3 flex flex-wrap gap-2">
-          <Link href={ROUTES.panceFeed} className={chipClass}>
+          <Link href={feed?.href ?? "/dashboard"} className={chipClass}>
             <Layers className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
-            PANCE Feed
+            {feed?.label}
           </Link>
         </div>
       ) : null}

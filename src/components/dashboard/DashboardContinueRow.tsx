@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, BookOpen, Clock, Layers } from "lucide-react";
 import { FullExamModeButtons } from "@/components/exam/FullExamModeButtons";
 import { analyticsHref, questionBankHref } from "@/lib/edtech/practice-links-core";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -18,6 +18,7 @@ type ActionItem = {
 };
 
 export function DashboardContinueRow({ examSlug }: { examSlug: ExamSlug }) {
+  const feed = studyFeedForExam(examSlug);
   const actions: ActionItem[] = [
     {
       title: "Question Bank",
@@ -25,12 +26,12 @@ export function DashboardContinueRow({ examSlug }: { examSlug: ExamSlug }) {
       href: questionBankHref(examSlug),
       icon: BookOpen,
     },
-    ...(examSlug === "pance"
+    ...(feed
       ? [
           {
-            title: "PANCE Feed",
+            title: feed.label,
             description: "Flashcards for paid plans",
-            href: ROUTES.panceFeed,
+            href: feed.href,
             icon: Layers,
           },
         ]

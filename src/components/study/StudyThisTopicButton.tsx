@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { BookOpen, Bone, Layers, Pill, RotateCcw } from "lucide-react";
 import { anatomyHref, topicRetestHref } from "@/lib/edtech/practice-links";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { REMEDIATION_MASTERY_RULE, reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { MarkItemMastered } from "./MarkItemMastered";
 import type { ResolvedQuestionStudyLinks } from "@/lib/library/question-study-links";
@@ -47,8 +47,8 @@ export function StudyThisTopicButton({
 }: Props) {
   const guide = links.studyGuide;
   const drug = links.relatedDrug;
-  const showPanceFeed =
-    examSlug === "pance" && Boolean(links.primaryDeepDive || links.relatedCards);
+  const feed = studyFeedForExam(examSlug);
+  const showPanceFeed = Boolean(feed && (links.primaryDeepDive || links.relatedCards));
   const primaryStructure = links.anatomyStructures[0];
   const showContent = Boolean(missed || flagged);
   const topicKey = links.topicLinks.topicKey;
@@ -136,9 +136,9 @@ export function StudyThisTopicButton({
         ) : null}
 
         {showFeed ? (
-          <Link href={ROUTES.panceFeed} className={ghostLink}>
+          <Link href={feed?.href ?? "/dashboard"} className={ghostLink}>
             <Layers className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
-            <span className="min-w-0 truncate">PANCE Feed</span>
+            <span className="min-w-0 truncate">{feed?.label}</span>
           </Link>
         ) : null}
 

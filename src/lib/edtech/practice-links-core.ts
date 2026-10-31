@@ -4,6 +4,7 @@
  * Use `@/lib/edtech/practice-links` when you need `highYieldTopicPracticeHref`.
  */
 import { boardStudyToolsPath } from "@/lib/navigation/retired-study-redirects";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
@@ -108,8 +109,9 @@ export function parseTopicPracticeReturn(
   const returnTopic = params.get("returnTopic");
   const returnTitle = params.get("returnTitle");
   if (!returnExam || !returnTopic || !returnTitle?.trim() || !isExamSlug(returnExam)) return null;
-  if (returnExam === "pance") {
-    return { href: ROUTES.panceFeed, label: "PANCE Feed" };
+  const feed = studyFeedForExam(returnExam);
+  if (feed) {
+    return { href: feed.href, label: feed.label };
   }
   return { href: boardStudyToolsPath(returnExam), label: "study tools" };
 }

@@ -1,6 +1,7 @@
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
+import { isStudyFeedPath } from "@/lib/study-feed/catalog";
 
 export type PostLoginSubscriptionStatus = {
   hasAccess?: boolean;
@@ -27,7 +28,7 @@ export function resolvePostLoginDestination(
 
   // The feed page owns its own paid-plan gate. Send the learner back there
   // instead of the dashboard or the reactivate screen.
-  if (safe === ROUTES.panceFeed || safe.startsWith(`${ROUTES.panceFeed}?`)) {
+  if (isStudyFeedPath(safe)) {
     return safe;
   }
 

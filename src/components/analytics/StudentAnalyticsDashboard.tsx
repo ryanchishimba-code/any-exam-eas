@@ -12,7 +12,7 @@ import { recentTestHref } from "@/lib/edtech/recent-test-links";
 import { spacedReviewHref, topicRetestHref } from "@/lib/edtech/practice-links";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
-import { ROUTES } from "@/lib/routes";
+import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { studyUi } from "@/lib/study/study-ui";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
@@ -295,13 +295,13 @@ export function StudentAnalyticsDashboard({
         <section className={studyUi.chartPanel}>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className={studyUi.sectionTitle}>Weak areas — remediation</h3>
-            {examSlug === "pance" ? (
+            {studyFeedForExam(examSlug) ? (
               <Link
-                href={ROUTES.panceFeed}
+                href={studyFeedForExam(examSlug)!.href}
                 className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
               >
                 <Layers className="h-3.5 w-3.5" aria-hidden />
-                PANCE Feed
+                {studyFeedForExam(examSlug)!.label}
               </Link>
             ) : null}
           </div>
