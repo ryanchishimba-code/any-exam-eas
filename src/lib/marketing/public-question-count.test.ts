@@ -2,7 +2,10 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { formatExactQuestionCount, formatRoundedDownQuestionCount } from "@/lib/counts";
-import { staticQuestionCountLabel } from "@/lib/marketing/public-question-count";
+import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
+import { buildLandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
+import { bundleFromServedCounts, staticQuestionCountLabel } from "@/lib/marketing/public-question-count";
+import { inventoryFromLiveFieldCounts } from "@/lib/marketing/served-question-counts";
 
 describe("staticQuestionCountLabel", () => {
   it("floors the live total and never claims more than that total", () => {
@@ -68,6 +71,43 @@ const ISR_PAGE_FILES = [
   "src/app/nclex/page.tsx",
 ];
 
+describe("homepage counts use the served gate", () => {
+  it("floors the bank total and leaves catalog NGN out of the hero", () => {
+    const bundle = bundleFromServedCounts({
+      inventory: inventoryFromLiveFieldCounts({
+        byField: {
+          nursing: 3947,
+          pharmacy: 4411,
+          "usmle-step-1": 3170,
+          "usmle-step-2": 5165,
+          "usmle-step-3": 8407,
+          pance: 2559,
+          "aanp-fnp": 5136,
+          "npte-pt": 1748,
+        },
+        itemTypesByField: {},
+      }),
+      live: null,
+      clinical: {
+        nclex: { standaloneNgn: 66, caseStudies: 39, caseItems: 234 },
+      },
+    });
+    expect(bundle).not.toBeNull();
+    const display = buildLandingBankCountsDisplay(bundle!.snapshot);
+    const proof = buildHomeProofFacts(siteCountsFromSnapshot(bundle!.snapshot));
+
+    expect(display.totalServed).toBe(34_543);
+    expect(display.totalLabel).toBe("34,543");
+    expect(staticQuestionCountLabel(display.totalServed)).toBe("34,500+");
+    expect(display.roundedDown).toBe("34,500+");
+    expect(proof[0]?.text).toBe("34,543 practice questions");
+    expect(display.exams.find((exam) => exam.slug === "nclex")?.served).toBe(3947);
+    expect(display.exams.find((exam) => exam.slug === "nclex")?.countLabel).toBe("3,947");
+    expect(bundle!.snapshot.boards?.nclex?.caseItems).toBe(234);
+    expect(display.totalServed).not.toBe(34_543 + 300);
+  });
+});
+
 describe("marketing pages keep the question count on the ISR path", () => {
   it("does not call the Upstash bank-counts cache from a page module", () => {
     const loader = readFileSync(
@@ -75,7 +115,10 @@ describe("marketing pages keep the question count on the ISR path", () => {
       "utf8"
     );
     expect(loader).toContain("unstable_cache");
-    expect(loader).toContain("getCachedBankStatsBundle({ dynamic: false })");
+    expect(loader).toContain("loadServedQuestionCounts");
+    expect(loader).toContain("public-served-bank-stats-v1");
+    expect(loader).not.toContain("getCachedBankStatsBundle");
+    expect(loader).not.toContain("fetchActiveInventoryFromDb");
     expect(loader).not.toMatch(/cacheGetOrSetDeduped|getPublicBankStatsBundle|upstash|redisCache/);
 
     for (const file of ISR_PAGE_FILES) {

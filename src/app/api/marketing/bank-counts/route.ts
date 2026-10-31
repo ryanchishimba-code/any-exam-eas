@@ -13,8 +13,9 @@ import { getPublicBankStatsBundle } from "@/lib/marketing/public-bank-stats";
 
 /**
  * Dynamic so a purge can still rebuild on the origin. The body is the same
- * data-cache snapshot the marketing pages render. The CDN caches the
- * logged-out JSON for 10 minutes (`s-maxage=600`, stale-while-revalidate).
+ * served-gate read the homepage renders (`loadServedQuestionCounts`), not the
+ * cron snapshot. The CDN caches the logged-out JSON for 10 minutes
+ * (`s-maxage=600`, stale-while-revalidate).
  */
 export const dynamic = "force-dynamic";
 

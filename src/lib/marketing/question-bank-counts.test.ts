@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { boardQuestionUnits } from "@/lib/counts";
 import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
 import {
   buildLandingBankCountsDisplay,
@@ -104,6 +105,36 @@ describe("question-bank-counts display", () => {
     expect(display.totalLabel).toBe("46,700");
     expect(display.totalQuestionsLabel).toBe("46,700 active questions");
     expect(displayTotalQuestionCount(snapshot)).toBe("46,700");
+  });
+
+  it("floors and labels the bank total when field.served still includes catalog NGN", () => {
+    const snapshot = snapshotWithServed({
+      nursing: 4247,
+      pharmacy: 4411,
+      "usmle-step-2": 16742,
+      pance: 2559,
+      "aanp-fnp": 5136,
+      "npte-pt": 1748,
+    });
+    snapshot.boards = {
+      nclex: boardQuestionUnits({
+        slug: "nclex",
+        bankItems: 3947,
+        clinical: { standaloneNgn: 66, caseStudies: 39, caseItems: 234 },
+      }),
+      usmle: boardQuestionUnits({ slug: "usmle", bankItems: 16742 }),
+      naplex: boardQuestionUnits({ slug: "naplex", bankItems: 4411 }),
+      pance: boardQuestionUnits({ slug: "pance", bankItems: 2559 }),
+      "aanp-fnp": boardQuestionUnits({ slug: "aanp-fnp", bankItems: 5136 }),
+      "npte-pt": boardQuestionUnits({ slug: "npte-pt", bankItems: 1748 }),
+    };
+    const display = buildLandingBankCountsDisplay(snapshot);
+    expect(landingServedTotal(snapshot)).toBe(34_843);
+    expect(display.totalServed).toBe(34_543);
+    expect(display.totalLabel).toBe("34,543");
+    expect(display.roundedDown).toBe("34,500+");
+    expect(display.exams.find((exam) => exam.slug === "nclex")?.countLabel).toBe("3,947");
+    expect(displayTotalQuestionCount(snapshot)).toBe("34,543");
   });
 
   it("omits the number when the snapshot is degraded", () => {

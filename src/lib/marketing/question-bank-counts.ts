@@ -78,7 +78,7 @@ export type LandingBankCountsDisplay = {
   sentence: string;
   /** Floored site total. Empty when the live lookup failed. */
   roundedDown: string;
-  /** Sum of scored items across the six board exams. */
+  /** Sum of bank rows across the six board exams. Catalog NGN is not included. */
   totalServed: number;
   exams: LandingExamCountDisplay[];
   degraded: boolean;
@@ -397,13 +397,19 @@ export function displayQuestionCountForField(
   return "";
 }
 
+/** Bank rows only. Published NGN catalog items are not part of this total. */
+export function bankQuestionTotal(snapshot?: QuestionBankCountsSnapshot): number {
+  if (!snapshot || snapshot.degraded) return 0;
+  const boards = completeBoardUnits(snapshot);
+  if (!boards) return landingServedTotal(snapshot);
+  return siteQuestionCounts(boards).totalQuestions;
+}
+
 export function displayTotalQuestionCount(
   snapshot?: QuestionBankCountsSnapshot
 ): string {
-  if (snapshot && !snapshot.degraded) {
-    const total = landingServedTotal(snapshot);
-    if (total > 0) return formatExactQuestionCount(total);
-  }
+  const total = bankQuestionTotal(snapshot);
+  if (total > 0) return formatExactQuestionCount(total);
   return "";
 }
 
@@ -476,28 +482,27 @@ export function buildLandingSocialProofStats(
 export function buildLandingBankCountsDisplay(
   snapshot: QuestionBankCountsSnapshot
 ): LandingBankCountsDisplay {
-  const totalServed =
-    snapshot.degraded ? 0 : landingServedTotal(snapshot);
-
   const boards = completeBoardUnits(snapshot);
   const site = boards && !snapshot.degraded ? siteQuestionCounts(boards) : null;
+  const totalServed = site ? site.totalQuestions : snapshot.degraded ? 0 : landingServedTotal(snapshot);
 
   return {
     totalLabel: displayTotalQuestionCount(snapshot),
     totalQuestionsLabel: displayTotalQuestionsDetail(snapshot),
     sentence: site?.sentence ?? displayTotalQuestionsDetail(snapshot),
-    roundedDown: site ? site.roundedDown : "",
+    roundedDown: site ? site.roundedDown : totalServed > 0 ? formatRoundedDownQuestionCount(totalServed) : "",
     totalServed,
     exams: LANDING_EXAM_COUNT_FIELDS.map(({ slug, fieldId, label, color }) => {
       const units = snapshot.boards?.[slug as CountBoardSlug];
-      const served = servedCountForField(fieldId, snapshot);
+      const served =
+        units && !snapshot.degraded ? Math.max(0, units.bankItems) : servedCountForField(fieldId, snapshot);
       const sentence = units && served > 0 ? formatBoardQuestionSentence(units) : "";
       return {
         slug,
         label,
         color,
         served,
-        countLabel: displayQuestionCountForField(fieldId, snapshot),
+        countLabel: served > 0 ? formatExactQuestionCount(served) : "",
         questionsLabel: sentence || displayQuestionCountDetailForField(fieldId, snapshot),
         sentence,
         roundedDown: served > 0 ? formatRoundedDownQuestionCount(served) : "",

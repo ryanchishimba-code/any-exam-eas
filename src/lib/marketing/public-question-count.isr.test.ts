@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { aggregateActiveInventory } from "@/lib/inventory/active-questions";
-import type { BankStatsBundle } from "@/lib/marketing/question-bank-counts";
+import type { ServedQuestionCounts } from "@/lib/marketing/served-question-counts";
 
 const harness = vi.hoisted(() => ({
   redisGet: vi.fn(async () => {
     throw new Error("Upstash REST ran on a path that should stay static");
   }),
-  getCachedBankStatsBundle: vi.fn(),
+  loadServedQuestionCounts: vi.fn(),
 }));
 
 vi.mock("next/cache", () => ({
@@ -22,13 +22,13 @@ vi.mock("@/lib/upstash-redis", () => ({
   getUpstashRedis: () => ({}),
 }));
 
-vi.mock("@/lib/marketing/question-bank-counts", async () => {
-  const actual = await vi.importActual<typeof import("@/lib/marketing/question-bank-counts")>(
-    "@/lib/marketing/question-bank-counts"
+vi.mock("@/lib/marketing/served-question-counts", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/marketing/served-question-counts")>(
+    "@/lib/marketing/served-question-counts"
   );
   return {
     ...actual,
-    getCachedBankStatsBundle: (...args: unknown[]) => harness.getCachedBankStatsBundle(...args),
+    loadServedQuestionCounts: (...args: unknown[]) => harness.loadServedQuestionCounts(...args),
   };
 });
 
@@ -39,7 +39,7 @@ import {
   resetPublicBankStatsCache,
 } from "@/lib/marketing/public-bank-stats";
 
-function bundle(degraded = false): BankStatsBundle {
+function served(degraded = false): ServedQuestionCounts {
   const inventory = aggregateActiveInventory([
     {
       fieldId: "nursing",
@@ -51,15 +51,7 @@ function bundle(degraded = false): BankStatsBundle {
     },
   ]);
   inventory.degraded = degraded;
-  return {
-    inventory,
-    snapshot: {
-      fields: {} as BankStatsBundle["snapshot"]["fields"],
-      totals: { total: 1200, active: 1200, served: 1200 },
-      updatedAt: "2026-10-09T00:00:00.000Z",
-      degraded,
-    },
-  };
+  return { inventory: degraded ? null : inventory, live: null, clinical: {} };
 }
 
 describe("ISR question counts skip Upstash", () => {
@@ -67,32 +59,35 @@ describe("ISR question counts skip Upstash", () => {
     resetPublicBankStatsCache();
     resetLastGoodBankStats();
     harness.redisGet.mockClear();
-    harness.getCachedBankStatsBundle.mockReset();
+    harness.loadServedQuestionCounts.mockReset();
   });
 
-  it("reads the shared snapshot through the Next data cache", async () => {
-    harness.getCachedBankStatsBundle.mockResolvedValue(bundle(false));
+  it("reads the served gate through the Next data cache", async () => {
+    harness.loadServedQuestionCounts.mockResolvedValue(served(false));
     const counts = await loadPublicQuestionCounts({ dynamic: false });
     expect(harness.redisGet).not.toHaveBeenCalled();
-    expect(harness.getCachedBankStatsBundle).toHaveBeenCalledWith({ dynamic: false });
+    expect(harness.loadServedQuestionCounts).toHaveBeenCalled();
     expect(counts.bundle.inventory.degraded).toBe(false);
+    expect(counts.exactLabel).toBe("1,200");
+    expect(counts.staticLabel).toBe("1,200+");
   });
 
   it("returns a degraded snapshot without calling Redis", async () => {
-    harness.getCachedBankStatsBundle.mockResolvedValue(bundle(true));
+    harness.loadServedQuestionCounts.mockResolvedValue(served(true));
     const counts = await loadPublicQuestionCounts({ dynamic: false });
     expect(counts.bundle.snapshot.degraded).toBe(true);
     expect(counts.exactLabel).toBe("");
+    expect(counts.staticLabel).toBe("");
     expect(harness.redisGet).not.toHaveBeenCalled();
   });
 
   it("serves the last good counts when a later lookup fails", async () => {
-    harness.getCachedBankStatsBundle.mockResolvedValueOnce(bundle(false));
+    harness.loadServedQuestionCounts.mockResolvedValueOnce(served(false));
     const first = await loadPublicQuestionCounts({ dynamic: false });
     expect(first.bundle.inventory.boards.nclex.active).toBe(1200);
     expect(first.bundle.inventory.degraded).toBe(false);
 
-    harness.getCachedBankStatsBundle.mockResolvedValueOnce(bundle(true));
+    harness.loadServedQuestionCounts.mockResolvedValueOnce(served(true));
     const again = await loadPublicQuestionCounts({ dynamic: false });
     expect(again.bundle.inventory.degraded).toBe(false);
     expect(again.bundle.inventory.boards.nclex.active).toBe(1200);
@@ -100,11 +95,12 @@ describe("ISR question counts skip Upstash", () => {
     expect(harness.redisGet).not.toHaveBeenCalled();
   });
 
-  it("serves the bank-counts API from the same snapshot without reading Upstash", async () => {
-    harness.getCachedBankStatsBundle.mockResolvedValue(bundle(false));
+  it("serves the bank-counts API from the same served-gate read without reading Upstash", async () => {
+    harness.loadServedQuestionCounts.mockResolvedValue(served(false));
     const value = await getPublicBankStatsBundle();
     expect(harness.redisGet).not.toHaveBeenCalled();
-    expect(harness.getCachedBankStatsBundle).toHaveBeenCalledWith({ dynamic: false });
+    expect(harness.loadServedQuestionCounts).toHaveBeenCalled();
     expect(value.snapshot.degraded).toBe(false);
+    expect(value.snapshot.boards?.nclex?.bankItems).toBe(1200);
   });
 });
