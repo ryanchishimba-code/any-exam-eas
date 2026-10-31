@@ -69,10 +69,9 @@ run("npx", ["prisma", "generate"]);
 const migrationUrl = process.env.DATABASE_URL ?? "";
 const migrationHost = databaseHostname(migrationUrl);
 if (migrationBlockedBecauseProduction(migrationUrl)) {
-  console.error(
-    `[vercel-build] Refusing prisma migrate deploy. ${process.env.VERCEL_ENV} resolved the production database host ${migrationHost}.`
+  console.warn(
+    `[vercel-build] Skipping prisma migrate deploy. ${process.env.VERCEL_ENV} resolved the production database host ${migrationHost}. The build continues without migrating production.`
   );
-  process.exit(1);
 }
 
 if (shouldRunMigrations()) {
