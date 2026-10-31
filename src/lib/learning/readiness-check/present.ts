@@ -30,7 +30,8 @@ export function toPlayableQuestion(fieldId: string, item: BankItem): StudyQuesti
         subjectId: item.subjectId,
       },
       0,
-      { shuffleOptions: false }
+      // Fixed seed: multiple-choice shuffle uses Math.random when no seed is passed.
+      { shuffleOptions: true, shuffleSeed: 0x161 }
     );
     if (!PLAYABLE.has(study.type)) return null;
     if (!study.stem.trim() || study.options.length < 2) return null;

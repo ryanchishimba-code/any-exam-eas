@@ -95,7 +95,8 @@ export async function POST(req: Request) {
           index
         ),
         index,
-        { shuffleOptions: false }
+        // Fixed seed: multiple-choice shuffle uses Math.random when no seed is passed.
+        { shuffleOptions: true, shuffleSeed: 0x161 }
       );
       return withholdPreSubmitExamQuestion({
         ...study,
