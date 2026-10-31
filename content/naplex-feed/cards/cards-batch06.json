@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-126.svg",
-   "alt": "Do and do not. Empty stomach, plain water, upright 30 minutes."
+   "alt": "timeline diagram for naplex-126"
   },
   "source": {
    "guideline": "Endocrine Society 2020; AACE 2020; BHOF 2022",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-127.svg",
-   "alt": "axis diagram for naplex-127"
+   "alt": "trend diagram for naplex-127"
   },
   "source": {
    "guideline": "Endocrine Society 2016 PAI",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-128.svg",
-   "alt": "chips diagram for naplex-128"
+   "alt": "branch diagram for naplex-128"
   },
   "source": {
    "guideline": "CDC US MEC/SPR 2024",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-129.svg",
-   "alt": "Steps. Copper IUD, or ulipristal if an IUD isn't an option."
+   "alt": "timeline diagram for naplex-129"
   },
   "source": {
    "guideline": "CDC US SPR 2024; ACOG",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-130.svg",
-   "alt": "Do and do not. As-needed low-dose ICS-formoterol (Track 1)."
+   "alt": "ladder diagram for naplex-130"
   },
   "source": {
    "guideline": "GINA 2026",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-131.svg",
-   "alt": "axis diagram for naplex-131"
+   "alt": "threshold diagram for naplex-131"
   },
   "source": {
    "guideline": "GINA 2026",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-132.svg",
-   "alt": "Steps. LAMA/LABA plus ICS (triple)."
+   "alt": "anatomy diagram for naplex-132"
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-133.svg",
-   "alt": "Threshold. Prednisone 40 mg daily for 5 days."
+   "alt": "timeline diagram for naplex-133"
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-134.svg",
-   "alt": "Threshold. Amoxicillin 1 g three times daily."
+   "alt": "branch diagram for naplex-134"
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-135.svg",
-   "alt": "chips diagram for naplex-135"
+   "alt": "timeline diagram for naplex-135"
   },
   "source": {
    "guideline": "IDSA/ATS 2016 HAP/VAP (still current, latest = 2016)",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-136.svg",
-   "alt": "Threshold. Nitrofurantoin 100 mg BID for 5 days."
+   "alt": "timeline diagram for naplex-136"
   },
   "source": {
    "guideline": "IDSA 2011 uncomplicated cystitis/pyelo (still current; IDSA 2025 covers cUTI only)",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-137.svg",
-   "alt": "Threshold. Fidaxomicin 200 mg BID for 10 days."
+   "alt": "threshold diagram for naplex-137"
   },
   "source": {
    "guideline": "IDSA/SHEA 2021 CDI focused update",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-138.svg",
-   "alt": "Do and do not. Purulent: TMP-SMX or doxycycline."
+   "alt": "contrast diagram for naplex-138"
   },
   "source": {
    "guideline": "IDSA 2014 SSTI (still current, latest = 2014)",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-139.svg",
-   "alt": "Do and do not. Vancomycin + ceftriaxone + ampicillin + dexamethasone."
+   "alt": "trend diagram for naplex-139"
   },
   "source": {
    "guideline": "IDSA 2004 meningitis (still current, latest = 2004)",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-140.svg",
-   "alt": "Threshold. Ceftriaxone 500 mg IM once + doxycycline 100 mg BID ×7 days."
+   "alt": "trend diagram for naplex-140"
   },
   "source": {
    "guideline": "CDC STI Treatment Guidelines 2021",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-141.svg",
-   "alt": "flow diagram for naplex-141"
+   "alt": "cycle diagram for naplex-141"
   },
   "source": {
    "guideline": "HHS Adult/Adolescent ARV Guidelines (updated Oct 27, 2026); CDC PrEP 2021 + CDC lenacapavir PrEP MMWR 2025",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-142.svg",
-   "alt": "Threshold. PJP: TMP-SMX DS daily (CD4 <200)."
+   "alt": "ladder diagram for naplex-142"
   },
   "source": {
    "guideline": "NIH/CDC/IDSA OI guidelines 2025",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-143.svg",
-   "alt": "Steps. Rifamycin regimens: 3HP and 4R induce CYP3A4."
+   "alt": "timeline diagram for naplex-143"
   },
   "source": {
    "guideline": "CDC/NTA latent TB 2020; ATS/CDC/ERS/IDSA 2025 TB treatment update (4-mo HPZM option)",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-144.svg",
-   "alt": "Threshold. Bismuth quadruple for 14 days."
+   "alt": "contrast diagram for naplex-144"
   },
   "source": {
    "guideline": "ACG 2024 H. pylori",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-145.svg",
-   "alt": "Threshold. Antibiotics within 1 hour; norepinephrine first."
+   "alt": "timeline diagram for naplex-145"
   },
   "source": {
    "guideline": "Surviving Sepsis Campaign 2026 (replaces 2021)",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-146.svg",
-   "alt": "chips diagram for naplex-146"
+   "alt": "anatomy diagram for naplex-146"
   },
   "source": {
    "guideline": "IDSA; Sanford Guide 2026",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-147.svg",
-   "alt": "flow diagram for naplex-147"
+   "alt": "ladder diagram for naplex-147"
   },
   "source": {
    "guideline": "AAAAI/ACAAI Drug Allergy Practice Parameter 2022",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-148.svg",
-   "alt": "Do and do not. 30–60 minutes before the first meal; 8-week trial."
+   "alt": "anatomy diagram for naplex-148"
   },
   "source": {
    "guideline": "ACG 2022 GERD",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-149.svg",
-   "alt": "Steps. UC yes; Crohn's no."
+   "alt": "branch diagram for naplex-149"
   },
   "source": {
    "guideline": "ACG 2025 UC; ACG 2025 Crohn's (verified)",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-150.svg",
-   "alt": "Steps. SBP prophylaxis plus lactulose ± rifaximin."
+   "alt": "threshold diagram for naplex-150"
   },
   "source": {
    "guideline": "AASLD 2021 ascites/SBP/HRS; AASLD/EASL 2014 HE; ACG 2026 HE",

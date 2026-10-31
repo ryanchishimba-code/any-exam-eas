@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-151.svg",
-   "alt": "Threshold. Glecaprevir/pibrentasvir 8 weeks or sofosbuvir/velpatasvir 12 weeks."
+   "alt": "timeline diagram for naplex-151"
   },
   "source": {
    "guideline": "AASLD/IDSA HCV Guidance (living; updated 2026)",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-152.svg",
-   "alt": "Threshold. SGLT2i (eGFR ≥20) and RASi; consider finerenone."
+   "alt": "ladder diagram for naplex-152"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD; KDIGO 2022 Diabetes in CKD",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-153.svg",
-   "alt": "Steps. Stop nephrotoxins and re-dose by current kidney function."
+   "alt": "anatomy diagram for naplex-153"
   },
   "source": {
    "guideline": "KDIGO 2012 AKI (2026 AKI/AKD guideline in final prep; public draft Mar 2026)",
@@ -145,7 +145,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-155.svg",
-   "alt": "Threshold. Start ≤100 mg daily; titrate to urate <6 mg/dL."
+   "alt": "threshold diagram for naplex-155"
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -176,7 +176,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-156.svg",
-   "alt": "table diagram for naplex-156"
+   "alt": "branch diagram for naplex-156"
   },
   "source": {
    "guideline": "ACR 2021 RA",
@@ -207,7 +207,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-157.svg",
-   "alt": "Steps. Topical NSAID first."
+   "alt": "contrast diagram for naplex-157"
   },
   "source": {
    "guideline": "ACR/AF 2019 OA",
@@ -238,7 +238,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-158.svg",
-   "alt": "Threshold. Full effect takes 4–8 weeks: keep taking it."
+   "alt": "timeline diagram for naplex-158"
   },
   "source": {
    "guideline": "APA 2019 depression; VA/DoD MDD 2022",
@@ -269,7 +269,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-159.svg",
-   "alt": "Steps. Halve the usual titration: valproate doubles lamotrigine levels."
+   "alt": "trend diagram for naplex-159"
   },
   "source": {
    "guideline": "VA/DoD Bipolar 2023; CANMAT/ISBD 2018",
@@ -300,7 +300,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-160.svg",
-   "alt": "Steps. Clozapine for treatment-resistant schizophrenia."
+   "alt": "ladder diagram for naplex-160"
   },
   "source": {
    "guideline": "APA 2020 schizophrenia",
@@ -331,7 +331,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-161.svg",
-   "alt": "Steps. Avoid: CBT-I first."
+   "alt": "contrast diagram for naplex-161"
   },
   "source": {
    "guideline": "AASM 2017 insomnia (+AASM 2026 CBT-I + medication); AGS Beers 2023",
@@ -362,7 +362,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-162.svg",
-   "alt": "chips diagram for naplex-162"
+   "alt": "branch diagram for naplex-162"
   },
   "source": {
    "guideline": "AAP 2019 ADHD",
@@ -393,7 +393,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-163.svg",
-   "alt": "Steps. Any DEA practitioner with Schedule III authority: no X-waiver."
+   "alt": "trend diagram for naplex-163"
   },
   "source": {
    "guideline": "ASAM NPG 2020 focused update (latest); MAT Act 2023",
@@ -424,7 +424,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-164.svg",
-   "alt": "Steps. One spray in a nostril, call 911, repeat every 2–3 min if needed."
+   "alt": "cycle diagram for naplex-164"
   },
   "source": {
    "guideline": "FDA 2023 OTC naloxone; CDC 2022",
@@ -455,7 +455,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-165.svg",
-   "alt": "Steps. Withdrawal: benzodiazepine. AUD: naltrexone or acamprosate."
+   "alt": "contrast diagram for naplex-165"
   },
   "source": {
    "guideline": "ASAM 2020 alcohol withdrawal; APA 2018 AUD",
@@ -486,7 +486,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-166.svg",
-   "alt": "axis diagram for naplex-166"
+   "alt": "threshold diagram for naplex-166"
   },
   "source": {
    "guideline": "ACC 2018 ECDP tobacco; USPSTF 2021",
@@ -548,7 +548,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-168.svg",
-   "alt": "Steps. Valproate: highest risk of malformations and lower IQ."
+   "alt": "anatomy diagram for naplex-168"
   },
   "source": {
    "guideline": "AAN/AES 2024 WWE practice guideline",
@@ -579,7 +579,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-169.svg",
-   "alt": "chips diagram for naplex-169"
+   "alt": "timeline diagram for naplex-169"
   },
   "source": {
    "guideline": "AHS 2021 consensus statement",
@@ -610,7 +610,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-170.svg",
-   "alt": "Steps. Yes: it blocks dopamine. Use a non-dopamine antiemetic, e.g., ondansetron."
+   "alt": "ladder diagram for naplex-170"
   },
   "source": {
    "guideline": "AAN 2021 early PD",
@@ -641,7 +641,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-171.svg",
-   "alt": "Threshold. Lower BP to <185/110 first, then lyse."
+   "alt": "threshold diagram for naplex-171"
   },
   "source": {
    "guideline": "AHA/ASA 2026 AIS guideline (replaces 2018/2019)",
@@ -672,7 +672,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-172.svg",
-   "alt": "Threshold. Aspirin + clopidogrel for 21 days, then one agent."
+   "alt": "timeline diagram for naplex-172"
   },
   "source": {
    "guideline": "AHA/ASA 2021 secondary prevention",
@@ -703,7 +703,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-173.svg",
-   "alt": "Steps. ARIA: MRI at baseline and during titration."
+   "alt": "branch diagram for naplex-173"
   },
   "source": {
    "guideline": "AAN; lecanemab/donanemab labeling 2023–24",
@@ -734,7 +734,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-174.svg",
-   "alt": "Steps. Four drugs: NK1 antagonist + 5-HT3 antagonist + dexamethasone + olanzapine."
+   "alt": "branch diagram for naplex-174"
   },
   "source": {
    "guideline": "ASCO Antiemetics 2020 (+2022 focused update)",
@@ -765,7 +765,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-175.svg",
-   "alt": "Steps. Dexrazoxane; hydration/magnesium; leucovorin."
+   "alt": "ladder diagram for naplex-175"
   },
   "source": {
    "guideline": "FDA labeling; NCCN 2026",

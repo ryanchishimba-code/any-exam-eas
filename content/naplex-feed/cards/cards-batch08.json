@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-176.svg",
-   "alt": "Threshold. High-dose amoxicillin 80–90 mg/kg/day divided BID."
+   "alt": "trend diagram for naplex-176"
   },
   "source": {
    "guideline": "AAP 2013 AOM (latest AAP AOM guideline; due for AAP review)",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-177.svg",
-   "alt": "Threshold. Labetalol or nifedipine ER, plus aspirin 81 mg."
+   "alt": "contrast diagram for naplex-177"
   },
   "source": {
    "guideline": "ACOG CPU 2024 GDM screening + PB 190 (reaffirmed); ACOG PB 222 2020 + 2022 CHAP advisory; USPSTF 2021 aspirin",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-178.svg",
-   "alt": "Steps. Avoid NSAIDs: high GI and high CV risk."
+   "alt": "ladder diagram for naplex-178"
   },
   "source": {
    "guideline": "Acetaminophen labeling; ACG 2009 NSAID-ulcer prevention (latest)",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-179.svg",
-   "alt": "Steps. No OTC cough/cold under 4 (label); pseudoephedrine behind the counter."
+   "alt": "branch diagram for naplex-179"
   },
   "source": {
    "guideline": "FDA 2008 OTC pediatric; CMEA 2005",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-180.svg",
-   "alt": "table diagram for naplex-180"
+   "alt": "contrast diagram for naplex-180"
   },
   "source": {
    "guideline": "AAD 2024 acne",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-181.svg",
-   "alt": "flow diagram for naplex-181"
+   "alt": "cycle diagram for naplex-181"
   },
   "source": {
    "guideline": "CDC 2022; USPSTF current recommendations; state protocols",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-182.svg",
-   "alt": "Steps. Only into an authorized collection receptacle."
+   "alt": "branch diagram for naplex-182"
   },
   "source": {
    "guideline": "DEA Disposal Rule 21 CFR 1317; FDA flush list",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-183.svg",
-   "alt": "flow diagram for naplex-183"
+   "alt": "contrast diagram for naplex-183"
   },
   "source": {
    "guideline": "HIPAA Privacy Rule 45 CFR 164 (2024 reproductive-health rule vacated Jun 2025)",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-184.svg",
-   "alt": "table diagram for naplex-184"
+   "alt": "ladder diagram for naplex-184"
   },
   "source": {
    "guideline": "APhA Code of Ethics",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-185.svg",
-   "alt": "Do and do not. Step away, but ensure the patient still gets it."
+   "alt": "branch diagram for naplex-185"
   },
   "source": {
    "guideline": "APhA Code of Ethics; APhA conscience policy (1998)",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-186.svg",
-   "alt": "table diagram for naplex-186"
+   "alt": "ladder diagram for naplex-186"
   },
   "source": {
    "guideline": "FDA MedWatch; ISMP MERP; VAERS 2026",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-187.svg",
-   "alt": "flow diagram for naplex-187"
+   "alt": "contrast diagram for naplex-187"
   },
   "source": {
    "guideline": "APhA Code of Ethics; state PRN programs",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-188.svg",
-   "alt": "Do and do not. Qualified interpreter plus teach-back."
+   "alt": "branch diagram for naplex-188"
   },
   "source": {
    "guideline": "AHRQ Health Literacy Toolkit 2024; Title VI",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-189.svg",
-   "alt": "chips diagram for naplex-189"
+   "alt": "cycle diagram for naplex-189"
   },
   "source": {
    "guideline": "JCPP Pharmacists' Patient Care Process",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-190.svg",
-   "alt": "table diagram for naplex-190"
+   "alt": "ladder diagram for naplex-190"
   },
   "source": {
    "guideline": "JCPP PPCP; state CPA laws (varies)",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-191.svg",
-   "alt": "Threshold. 12 turns/year; ~30 days of inventory."
+   "alt": "cycle diagram for naplex-191"
   },
   "source": {
    "guideline": "Standard pharmacy management formulas",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-192.svg",
-   "alt": "Steps. Assess supply and find alternatives."
+   "alt": "contrast diagram for naplex-192"
   },
   "source": {
    "guideline": "ASHP Drug Shortages Guidelines 2018 (still current, latest = 2018)",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-193.svg",
-   "alt": "flow diagram for naplex-193"
+   "alt": "branch diagram for naplex-193"
   },
   "source": {
    "guideline": "FDA DSCSA; small-dispenser exemption to Nov 27, 2027",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-194.svg",
-   "alt": "Steps. Class I."
+   "alt": "contrast diagram for naplex-194"
   },
   "source": {
    "guideline": "FDA 21 CFR 7",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-195.svg",
-   "alt": "Steps. DEA Form 222 or CSOS; theft: Form 106."
+   "alt": "ladder diagram for naplex-195"
   },
   "source": {
    "guideline": "21 CFR 1304–1305; DEA",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-196.svg",
-   "alt": "chips diagram for naplex-196"
+   "alt": "ladder diagram for naplex-196"
   },
   "source": {
    "guideline": "ISPOR guidance",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-197.svg",
-   "alt": "flow diagram for naplex-197"
+   "alt": "contrast diagram for naplex-197"
   },
   "source": {
    "guideline": "IHI Model for Improvement; TJC Sentinel Event Policy 2025",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-198.svg",
-   "alt": "table diagram for naplex-198"
+   "alt": "cycle diagram for naplex-198"
   },
   "source": {
    "guideline": "Joint Commission National Performance Goals 2026 (NPG 14, replaces NPSG.03.06.01)",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-199.svg",
-   "alt": "Threshold. Adherent = PDC ≥80%."
+   "alt": "trend diagram for naplex-199"
   },
   "source": {
    "guideline": "PQA measures 2026; CMS Star Ratings 2026",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-200.svg",
-   "alt": "Steps. Flu: Part B. Shingrix: Part D. Transplant drugs: Part B if Medicare paid for the transplant."
+   "alt": "branch diagram for naplex-200"
   },
   "source": {
    "guideline": "CMS 2026; HRSA 340B",

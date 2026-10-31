@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-101.svg",
-   "alt": "Threshold. Yes: two first-line drugs, ideally one pill; goal <130/80."
+   "alt": "anatomy diagram for naplex-101"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-102.svg",
-   "alt": "Steps. Hypertensive emergency: IV titratable agent."
+   "alt": "anatomy diagram for naplex-102"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-103.svg",
-   "alt": "chips diagram for naplex-103"
+   "alt": "branch diagram for naplex-103"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN; KDIGO 2024",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-105.svg",
-   "alt": "chips diagram for naplex-105"
+   "alt": "branch diagram for naplex-105"
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-106.svg",
-   "alt": "Steps. IV dose equal to or above the home oral dose."
+   "alt": "contrast diagram for naplex-106"
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-107.svg",
-   "alt": "Threshold. Very high risk: LDL-C <55 mg/dL."
+   "alt": "cycle diagram for naplex-107"
   },
   "source": {
    "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline (replaces 2018 cholesterol)",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-108.svg",
-   "alt": "Threshold. Ticagrelor or prasugrel over clopidogrel; aspirin 81 mg."
+   "alt": "timeline diagram for naplex-108"
   },
   "source": {
    "guideline": "ACC/AHA/ACEP 2025 ACS",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-109.svg",
-   "alt": "flow diagram for naplex-109"
+   "alt": "timeline diagram for naplex-109"
   },
   "source": {
    "guideline": "ACC/AHA/ACEP 2025 ACS",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-110.svg",
-   "alt": "Threshold. 0.4 mg every 5 minutes, up to 3 doses."
+   "alt": "cycle diagram for naplex-110"
   },
   "source": {
    "guideline": "AHA/ACC 2023 Chronic Coronary Disease",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-111.svg",
-   "alt": "Steps. Yes: CHA2DS2-VASc 3. DOAC over warfarin."
+   "alt": "ladder diagram for naplex-111"
   },
   "source": {
    "guideline": "2023 ACC/AHA/ACCP/HRS AF",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-112.svg",
-   "alt": "Steps. Rate: beta-blocker or diltiazem/verapamil."
+   "alt": "anatomy diagram for naplex-112"
   },
   "source": {
    "guideline": "2023 ACC/AHA/ACCP/HRS AF",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-113.svg",
-   "alt": "Threshold. 10 mg BID for 7 days, then 5 mg BID; 3 months."
+   "alt": "timeline diagram for naplex-113"
   },
   "source": {
    "guideline": "CHEST 2021 VTE (2024 compendium); 2026 AHA/ACC multisociety acute PE guideline",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-114.svg",
-   "alt": "Threshold. LMWH (e.g., enoxaparin 40 mg daily) over UFH."
+   "alt": "contrast diagram for naplex-114"
   },
   "source": {
    "guideline": "ASH 2018 VTE prophylaxis; CHEST",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-117.svg",
-   "alt": "Steps. No cilostazol: contraindicated in heart failure."
+   "alt": "anatomy diagram for naplex-117"
   },
   "source": {
    "guideline": "ACC/AHA 2024 PAD",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-118.svg",
-   "alt": "Steps. SGLT2 inhibitor, regardless of A1c."
+   "alt": "ladder diagram for naplex-118"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-119.svg",
-   "alt": "Threshold. Most adults <7%; frail older adults <8% or looser."
+   "alt": "threshold diagram for naplex-119"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-120.svg",
-   "alt": "Threshold. 10 units or 0.1–0.2 units/kg daily."
+   "alt": "trend diagram for naplex-120"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-121.svg",
-   "alt": "Threshold. 15 g fast carbs, recheck in 15 minutes."
+   "alt": "threshold diagram for naplex-121"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-123.svg",
-   "alt": "Steps. Slow titration limits GI effects."
+   "alt": "branch diagram for naplex-123"
   },
   "source": {
    "guideline": "ADA Standards 2026; FDA labeling",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-124.svg",
-   "alt": "Threshold. Start low: 12.5–50 mcg daily."
+   "alt": "cycle diagram for naplex-124"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current, latest = 2014); ATA 2026 pregnancy guideline",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-125.svg",
-   "alt": "Threshold. Methimazole usually; PTU until 16 weeks of pregnancy."
+   "alt": "contrast diagram for naplex-125"
   },
   "source": {
    "guideline": "ATA 2016 hyperthyroidism; ATA 2026 pregnancy/postpartum thyroid guideline",

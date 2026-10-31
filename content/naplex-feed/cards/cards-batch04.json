@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-076.svg",
-   "alt": "table diagram for naplex-076"
+   "alt": "branch diagram for naplex-076"
   },
   "source": {
    "guideline": "FDA REMS database 2026; FDA TIRF discontinuation notice 2024",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-077.svg",
-   "alt": "Do and do not. INR rises: bleeding risk."
+   "alt": "ladder diagram for naplex-077"
   },
   "source": {
    "guideline": "CHEST 2021; labeling",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-078.svg",
-   "alt": "Steps. Avoid strong dual inducers; halve apixaban with strong dual inhibitors."
+   "alt": "threshold diagram for naplex-078"
   },
   "source": {
    "guideline": "2023 ACC/AHA AF; labeling",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-079.svg",
-   "alt": "Threshold. Max simvastatin 20 mg with amlodipine."
+   "alt": "threshold diagram for naplex-079"
   },
   "source": {
    "guideline": "FDA labeling 2011 simvastatin",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-080.svg",
-   "alt": "table diagram for naplex-080"
+   "alt": "anatomy diagram for naplex-080"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-081.svg",
-   "alt": "Steps. Serotonin syndrome: linezolid is an MAO inhibitor."
+   "alt": "branch diagram for naplex-081"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-082.svg",
-   "alt": "axis diagram for naplex-082"
+   "alt": "timeline diagram for naplex-082"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-083.svg",
-   "alt": "chips diagram for naplex-083"
+   "alt": "ladder diagram for naplex-083"
   },
   "source": {
    "guideline": "VA/DoD Bipolar 2023; FDA labeling",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-084.svg",
-   "alt": "Steps. Hyperkalemia."
+   "alt": "anatomy diagram for naplex-084"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-085.svg",
-   "alt": "chips diagram for naplex-085"
+   "alt": "contrast diagram for naplex-085"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-086.svg",
-   "alt": "Steps. No: adjust the weekly dose 5–20%."
+   "alt": "trend diagram for naplex-086"
   },
   "source": {
    "guideline": "Warfarin labeling; CHEST 2012 (9th ed.) antithrombotic guidelines",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-087.svg",
-   "alt": "Steps. Digoxin toxicity: level, potassium, renal function."
+   "alt": "anatomy diagram for naplex-087"
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-088.svg",
-   "alt": "Threshold. About 0.6–1.0 mEq/L (up to 1.2), drawn 12 hours post-dose."
+   "alt": "timeline diagram for naplex-088"
   },
   "source": {
    "guideline": "VA/DoD Bipolar 2023",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-089.svg",
-   "alt": "Threshold. 7 mg/kg; interval from one random level."
+   "alt": "cycle diagram for naplex-089"
   },
   "source": {
    "guideline": "Hartford nomogram; IDSA",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-090.svg",
-   "alt": "Steps. Autoinduction."
+   "alt": "trend diagram for naplex-090"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-091.svg",
-   "alt": "Do and do not. Baseline lipids and ALT; CK only with muscle symptoms."
+   "alt": "anatomy diagram for naplex-091"
   },
   "source": {
    "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-092.svg",
-   "alt": "Steps. Classic amiodarone toxicity."
+   "alt": "ladder diagram for naplex-092"
   },
   "source": {
    "guideline": "2023 ACC/AHA AF",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-093.svg",
-   "alt": "Steps. Baseline weight, waist, BP, glucose, lipids."
+   "alt": "branch diagram for naplex-093"
   },
   "source": {
    "guideline": "ADA/APA 2004 consensus; APA 2020 schizophrenia",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-094.svg",
-   "alt": "table diagram for naplex-094"
+   "alt": "contrast diagram for naplex-094"
   },
   "source": {
    "guideline": "ACMT/AACT antidote stocking 2017; FDA Andexxa safety communication Dec 2025",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-096.svg",
-   "alt": "chips diagram for naplex-096"
+   "alt": "ladder diagram for naplex-096"
   },
   "source": {
    "guideline": "GINA 2026; GOLD 2026",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-097.svg",
-   "alt": "Steps. Wait 5 minutes; pull ear down and back; fold and flush."
+   "alt": "branch diagram for naplex-097"
   },
   "source": {
    "guideline": "FDA labeling; FDA flush list",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-098.svg",
-   "alt": "Threshold. Prime 2 units; hold 10 seconds; new needle each time."
+   "alt": "contrast diagram for naplex-098"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-099.svg",
-   "alt": "Steps. PLLR narrative sections 8.1, 8.2, 8.3."
+   "alt": "contrast diagram for naplex-099"
   },
   "source": {
    "guideline": "FDA PLLR 2015; ACOG",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-100.svg",
-   "alt": "Steps. Avoid benzos and Z-drugs; avoid sulfonylureas first-line."
+   "alt": "ladder diagram for naplex-100"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",

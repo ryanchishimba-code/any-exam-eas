@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-149.svg",
-      "alt": "chips diagram for nclex-149"
+      "alt": "anatomy diagram for nclex-149"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-150.svg",
-      "alt": "Steps. Potassium 3.5 to 5.0; sodium 135 to 145; calcium about 8.5 to 10.5."
+      "alt": "ladder diagram for nclex-150"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": "ROME: Respiratory Opposite, Metabolic Equal",
     "diagram": {
       "file": "svg/nclex-151.svg",
-      "alt": "Steps. Low pH with high PaCO2 is uncompensated respiratory acidosis."
+      "alt": "contrast diagram for nclex-151"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -124,7 +124,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-153.svg",
-      "alt": "Steps. Start seizure precautions and correct sodium slowly as ordered."
+      "alt": "anatomy diagram for nclex-153"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-155.svg",
-      "alt": "Threshold. Report it; ASA fasting is about 6 hours after a light meal."
+      "alt": "ladder diagram for nclex-155"
     },
     "source": {
       "guideline": "ASA Fasting 2023",
@@ -205,7 +205,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-156.svg",
-      "alt": "Steps. Atelectasis or pneumonia, and possibly ileus."
+      "alt": "anatomy diagram for nclex-156"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-157.svg",
-      "alt": "chips diagram for nclex-157"
+      "alt": "branch diagram for nclex-157"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-158.svg",
-      "alt": "chips diagram for nclex-158"
+      "alt": "contrast diagram for nclex-158"
     },
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
@@ -313,7 +313,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-160.svg",
-      "alt": "Steps. Ask about prior contrast reactions and check kidney function first."
+      "alt": "anatomy diagram for nclex-160"
     },
     "source": {
       "guideline": "ACR Manual on Contrast Media 2026",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-165.svg",
-      "alt": "flow diagram for nclex-165"
+      "alt": "anatomy diagram for nclex-165"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -502,7 +502,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-167.svg",
-      "alt": "flow diagram for nclex-167"
+      "alt": "branch diagram for nclex-167"
     },
     "source": {
       "guideline": "ADA Standards of Care 2026",
@@ -529,7 +529,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-168.svg",
-      "alt": "Threshold. AKI risk; creatinine up 0.3 in 48 hours or low urine output defines AKI."
+      "alt": "threshold diagram for nclex-168"
     },
     "source": {
       "guideline": "KDIGO AKI 2012 (current; 2026 update not yet final)",
@@ -556,7 +556,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-169.svg",
-      "alt": "chips diagram for nclex-169"
+      "alt": "ladder diagram for nclex-169"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -583,7 +583,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-170.svg",
-      "alt": "table diagram for nclex-170"
+      "alt": "contrast diagram for nclex-170"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -610,7 +610,7 @@
     "mnemonic": "VEAL CHOP: Variable-Cord, Early-Head, Accel-OK, Late-Placenta",
     "diagram": {
       "file": "svg/nclex-171.svg",
-      "alt": "Steps. Turn the client to the side first, then stop oxytocin, bolus IV fluid, and notify the provider."
+      "alt": "anatomy diagram for nclex-171"
     },
     "source": {
       "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
@@ -637,7 +637,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-172.svg",
-      "alt": "Steps. Fluid overload; hypovolemia instead shows fast pulse and low BP."
+      "alt": "anatomy diagram for nclex-172"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -664,7 +664,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-173.svg",
-      "alt": "Steps. Hypovolemic shock; lay the client flat, apply pressure to bleeding, and call rapid response."
+      "alt": "ladder diagram for nclex-173"
     },
     "source": {
       "guideline": "AHA Scientific Statement: Contemporary Management of Cardiogenic Shock 2017",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-174.svg",
-      "alt": "Steps. Sepsis; escalate early with the sepsis protocol."
+      "alt": "anatomy diagram for nclex-174"
     },
     "source": {
       "guideline": "Surviving Sepsis Campaign 2026",
@@ -718,7 +718,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-175.svg",
-      "alt": "flow diagram for nclex-175"
+      "alt": "branch diagram for nclex-175"
     },
     "source": {
       "guideline": "AHA BLS/ACLS 2025",
@@ -745,7 +745,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-176.svg",
-      "alt": "Steps. Get a 12-lead ECG quickly and prepare for reperfusion."
+      "alt": "cycle diagram for nclex-176"
     },
     "source": {
       "guideline": "ACC/AHA ACS 2025",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-179.svg",
-      "alt": "flow diagram for nclex-179"
+      "alt": "anatomy diagram for nclex-179"
     },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
@@ -853,7 +853,7 @@
     "mnemonic": "FAST: Face, Arm, Speech, Time",
     "diagram": {
       "file": "svg/nclex-180.svg",
-      "alt": "Steps. Note the last known well time and call a stroke alert."
+      "alt": "anatomy diagram for nclex-180"
     },
     "source": {
       "guideline": "AHA/ASA Acute Ischemic Stroke 2026",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-183.svg",
-      "alt": "flow diagram for nclex-183"
+      "alt": "timeline diagram for nclex-183"
     },
     "source": {
       "guideline": "AES Convulsive Status Epilepticus 2016",
@@ -961,7 +961,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-184.svg",
-      "alt": "Steps. Sit the client upright first, then find and remove the trigger."
+      "alt": "anatomy diagram for nclex-184"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-185.svg",
-      "alt": "Steps. Guillain-Barre ascends; myasthenia worsens with use."
+      "alt": "branch diagram for nclex-185"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-186.svg",
-      "alt": "Steps. Titrate oxygen to the ordered target, often 88 to 92%."
+      "alt": "anatomy diagram for nclex-186"
     },
     "source": {
       "guideline": "GOLD 2026",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-187.svg",
-      "alt": "chips diagram for nclex-187"
+      "alt": "anatomy diagram for nclex-187"
     },
     "source": {
       "guideline": "GINA 2026",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-190.svg",
-      "alt": "Steps. DKA has ketones and acidosis; HHS has extreme glucose without ketones."
+      "alt": "contrast diagram for nclex-190"
     },
     "source": {
       "guideline": "ADA Standards of Care 2026",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-191.svg",
-      "alt": "chips diagram for nclex-191"
+      "alt": "anatomy diagram for nclex-191"
     },
     "source": {
       "guideline": "ATA Hyperthyroidism 2016",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-192.svg",
-      "alt": "Steps. Adrenal crisis; call the provider at once and give IV hydrocortisone per order."
+      "alt": "ladder diagram for nclex-192"
     },
     "source": {
       "guideline": "Endocrine Society Primary Adrenal Insufficiency 2016",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-193.svg",
-      "alt": "Steps. SIADH retains water; diabetes insipidus loses water."
+      "alt": "ladder diagram for nclex-193"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-194.svg",
-      "alt": "chips diagram for nclex-194"
+      "alt": "anatomy diagram for nclex-194"
     },
     "source": {
       "guideline": "KDIGO CKD 2024",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-195.svg",
-      "alt": "Steps. Protect the airway first: position on the side, have suction ready, then start two large-bore IVs."
+      "alt": "anatomy diagram for nclex-195"
     },
     "source": {
       "guideline": "ACG Upper GI and Ulcer Bleeding 2021",
@@ -1312,7 +1312,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-197.svg",
-      "alt": "Threshold. Airway first; then fluid = 2 mL x kg x %TBSA of lactated Ringer, half in the first 8 hours from burn."
+      "alt": "trend diagram for nclex-197"
     },
     "source": {
       "guideline": "ABA Burn Shock Resuscitation 2023",
@@ -1339,7 +1339,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-198.svg",
-      "alt": "Do and do not. Give IM epinephrine right away per order or anaphylaxis protocol."
+      "alt": "cycle diagram for nclex-198"
     },
     "source": {
       "guideline": "AAAAI/ACAAI Anaphylaxis 2023",
@@ -1366,7 +1366,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-199.svg",
-      "alt": "Steps. Give analgesia rapidly, within about an hour of arrival, as ordered."
+      "alt": "contrast diagram for nclex-199"
     },
     "source": {
       "guideline": "ASH SCD Pain 2020",
@@ -1393,7 +1393,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-200.svg",
-      "alt": "Steps. Preeclampsia with severe features or HELLP syndrome."
+      "alt": "branch diagram for nclex-200"
     },
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, reaffirmed 2023; Clinical Practice Update 2024)",

@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-026.svg",
-   "alt": "Threshold. 46 days."
+   "alt": "trend diagram for naplex-026"
   },
   "source": {
    "guideline": "USP/ PBM days-supply conventions",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-027.svg",
-   "alt": "Threshold. 11.25 mL twice daily."
+   "alt": "threshold diagram for naplex-027"
   },
   "source": {
    "guideline": "Lexicomp/peds labeling",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-028.svg",
-   "alt": "Threshold. 100 mg SC once daily."
+   "alt": "cycle diagram for naplex-028"
   },
   "source": {
    "guideline": "CHEST 2021 VTE; labeling",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-029.svg",
-   "alt": "Threshold. 125 mL/h; 31 gtt/min."
+   "alt": "threshold diagram for naplex-029"
   },
   "source": {
    "guideline": "Standard flow-rate method",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-031.svg",
-   "alt": "Threshold. Bolus 7,200 units; 1,620 units/h = 32.4 mL/h."
+   "alt": "branch diagram for naplex-031"
   },
   "source": {
    "guideline": "CHEST 2021; institutional nomogram (Raschke)",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-032.svg",
-   "alt": "axis diagram for naplex-032"
+   "alt": "cycle diagram for naplex-032"
   },
   "source": {
    "guideline": "CDC Opioid Prescribing Guideline 2022",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-033.svg",
-   "alt": "Threshold. Dexamethasone 6 mg."
+   "alt": "trend diagram for naplex-033"
   },
   "source": {
    "guideline": "Standard glucocorticoid equivalence tables",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-034.svg",
-   "alt": "Threshold. Furosemide 20 mg IV BID; levofloxacin 750 mg PO daily."
+   "alt": "trend diagram for naplex-034"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-035.svg",
-   "alt": "Threshold. Glargine 32 units once daily."
+   "alt": "threshold diagram for naplex-035"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026 (Sec 16)",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-036.svg",
-   "alt": "Threshold. 0.1% w/v = 1 mg/mL."
+   "alt": "branch diagram for naplex-036"
   },
   "source": {
    "guideline": "USP <1160>",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-037.svg",
-   "alt": "Threshold. 20 mL stock + 80 mL diluent."
+   "alt": "contrast diagram for naplex-037"
   },
   "source": {
    "guideline": "USP <1160>",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-038.svg",
-   "alt": "Threshold. 25 g of 70% + 75 g of 30%."
+   "alt": "ladder diagram for naplex-038"
   },
   "source": {
    "guideline": "USP <1160>",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-039.svg",
-   "alt": "Threshold. 1.49 g KCl."
+   "alt": "branch diagram for naplex-039"
   },
   "source": {
    "guideline": "USP <1160>",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-040.svg",
-   "alt": "axis diagram for naplex-040"
+   "alt": "contrast diagram for naplex-040"
   },
   "source": {
    "guideline": "USP <1160>; ASPEN",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-041.svg",
-   "alt": "Threshold. Add 0.216 g NaCl."
+   "alt": "ladder diagram for naplex-041"
   },
   "source": {
    "guideline": "USP <1160>",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-042.svg",
-   "alt": "Threshold. 40 mL."
+   "alt": "contrast diagram for naplex-042"
   },
   "source": {
    "guideline": "USP <1160>",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-043.svg",
-   "alt": "Steps. No: EUA is not approval."
+   "alt": "branch diagram for naplex-043"
   },
   "source": {
    "guideline": "FDA 21 CFR 312; FDA EUA guidance",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-044.svg",
-   "alt": "table diagram for naplex-044"
+   "alt": "threshold diagram for naplex-044"
   },
   "source": {
    "guideline": "ASPEN PN Safety Consensus 2014 + ASPEN Safe PN Care Transitions 2022",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-045.svg",
-   "alt": "Steps. Balance = 0 (neutral)."
+   "alt": "ladder diagram for naplex-045"
   },
   "source": {
    "guideline": "ASPEN/SCCM Critical Care Nutrition 2022",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-046.svg",
-   "alt": "Threshold. 1,600 mL/day; 65 mL/h."
+   "alt": "trend diagram for naplex-046"
   },
   "source": {
    "guideline": "Holliday-Segar method",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-050.svg",
-   "alt": "Threshold. 2,000 mg/day."
+   "alt": "trend diagram for naplex-050"
   },
   "source": {
    "guideline": "ASHP/IDSA/PIDS/SIDP vancomycin 2020",
