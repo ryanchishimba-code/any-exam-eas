@@ -50,7 +50,7 @@
   "mnemonic": "Can't see, can't pee, can't spit, can't poop.",
   "diagram": {
    "file": "svg/naplex-002.svg",
-   "alt": "Text card. Anticholinergic burden: avoid in older adults."
+   "alt": "chips diagram for naplex-002"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-007.svg",
-   "alt": "Text card. No: clopidogrel won't activate. Use prasugrel or ticagrelor."
+   "alt": "flow diagram for naplex-007"
   },
   "source": {
    "guideline": "CPIC clopidogrel 2022; FDA BBW",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-008.svg",
-   "alt": "Text card. HLA-B*15:02 for carbamazepine; HLA-B*58:01 for allopurinol."
+   "alt": "table diagram for naplex-008"
   },
   "source": {
    "guideline": "CPIC 2017 (CBZ), 2015 (allopurinol); ACR 2020 gout",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-009.svg",
-   "alt": "Text card. TPMT/NUDT15 for thiopurines; DPYD for fluoropyrimidines."
+   "alt": "flow diagram for naplex-009"
   },
   "source": {
    "guideline": "CPIC TPMT/NUDT15 2025 update; CPIC DPYD 2024",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-017.svg",
-   "alt": "Text card. Geometric dilution; levigation; displacement factor."
+   "alt": "flow diagram for naplex-017"
   },
   "source": {
    "guideline": "USP <795>; Remington",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-019.svg",
-   "alt": "Text card. IBW 54.7 kg; AdjBW 68.8 kg."
+   "alt": "flow diagram for naplex-019"
   },
   "source": {
    "guideline": "Devine 1974 formula",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-024.svg",
-   "alt": "Text card. LDL-C 120; non-HDL-C 150."
+   "alt": "table diagram for naplex-024"
   },
   "source": {
    "guideline": "Friedewald 1972 / Martin-Hopkins; 2026 ACC/AHA Dyslipidemia",

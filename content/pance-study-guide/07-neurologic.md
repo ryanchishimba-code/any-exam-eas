@@ -50,6 +50,14 @@ Guillain-Barré syndrome is ascending weakness and lost reflexes after an infect
 
 Vertigo that starts on rolling over in bed, lasts under a minute, and has no other neurologic sign is benign paroxysmal positional vertigo. The Dix-Hallpike maneuver and a canalith repositioning maneuver are the treatment. The BPPV clinical practice guideline (2017) remains the cited standard. Continuous vertigo with a skew deviation, a direction-changing nystagmus, or a new severe headache is central until imaging excludes a stroke. A lucid interval after head trauma is an epidural hematoma from the middle meningeal artery. That patient goes to neurosurgery. A subdural hematoma is slower and is more common in older adults and in patients on anticoagulation. Facial weakness that includes the forehead is peripheral (Bell palsy) when the rest of the exam is normal. Forehead sparing is a central lesion. Steroids are started early for Bell palsy. Eye care prevents corneal injury.
 
+## Transient ischemia, tremor, and Parkinson disease
+
+A transient ischemic attack is a focal deficit that resolves. The short-term risk is a completed stroke. After a minor stroke or a high-risk TIA, and after imaging has excluded a bleed, short-term dual antiplatelet therapy (aspirin plus clopidogrel) is used for about 21 days, then a single agent (AHA/ASA 2021 secondary-prevention guidance). Do not continue two antiplatelet drugs for a year after a TIA and call it the same plan as a coronary stent. Do not give a fibrinolytic for a deficit that has already resolved.
+
+Parkinson disease is rest tremor, rigidity, and bradykinesia. Levodopa is the most effective drug for motor symptoms. A dopamine agonist is sometimes chosen in a younger patient to delay levodopa, at the cost of impulse-control symptoms. Do not use an antipsychotic that blocks dopamine, such as haloperidol, for the hallucinations of Parkinson disease. Quetiapine or clozapine is the usual discussion when a drug is required. Essential tremor is a bilateral action tremor. It improves with alcohol in the classic story and is treated with propranolol or primidone when a drug is needed. It is not a rest tremor.
+
+A sudden severe headache that reaches maximum in seconds is a subarachnoid hemorrhage until a CT, and a lumbar puncture when the CT is negative and the suspicion remains, say otherwise. Do not reassure a thunderclap headache because the exam is normal in the first hour.
+
 > **Important to remember**
 > - Disabling deficit within 4.5 hours: tenecteplase or alteplase, after CT, with blood pressure under 185/110 (AHA/ASA 2026).
 > - Non-disabling deficit: dual antiplatelet therapy, not a fibrinolytic.

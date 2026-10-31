@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-149.svg",
-      "alt": "Text card. Trends matter; rising HR or RR often comes before a falling BP."
+      "alt": "chips diagram for nclex-149"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-157.svg",
-      "alt": "Text card. Hemorrhage; rising HR and anxiety are early signs of shock."
+      "alt": "chips diagram for nclex-157"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-158.svg",
-      "alt": "Text card. Suspect DVT; notify the provider and do not massage the leg."
+      "alt": "chips diagram for nclex-158"
     },
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-165.svg",
-      "alt": "Text card. Pre-oxygenate, use sterile technique and suction 10 seconds or less."
+      "alt": "flow diagram for nclex-165"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -502,7 +502,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-167.svg",
-      "alt": "Text card. DKA; give IV fluids first, then insulin as ordered."
+      "alt": "flow diagram for nclex-167"
     },
     "source": {
       "guideline": "ADA Standards of Care 2026",
@@ -556,7 +556,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-169.svg",
-      "alt": "Text card. The liver makes clotting factors, so bleeding risk rises."
+      "alt": "chips diagram for nclex-169"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -583,7 +583,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-170.svg",
-      "alt": "Text card. Digoxin, lithium, phenytoin and vancomycin need level monitoring."
+      "alt": "table diagram for nclex-170"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -718,7 +718,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-175.svg",
-      "alt": "Text card. Compress 100 to 120 per minute and at least 2 inches deep."
+      "alt": "flow diagram for nclex-175"
     },
     "source": {
       "guideline": "AHA BLS/ACLS 2025",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-179.svg",
-      "alt": "Text card. Hypertensive emergency; lower BP gradually as ordered."
+      "alt": "flow diagram for nclex-179"
     },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-183.svg",
-      "alt": "Text card. Status epilepticus; protect the airway and give a benzodiazepine per order or protocol."
+      "alt": "flow diagram for nclex-183"
     },
     "source": {
       "guideline": "AES Convulsive Status Epilepticus 2016",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-187.svg",
-      "alt": "Text card. A silent chest is a life-threatening emergency."
+      "alt": "chips diagram for nclex-187"
     },
     "source": {
       "guideline": "GINA 2026",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-191.svg",
-      "alt": "Text card. Thyroid storm; myxedema coma is the opposite, with low temperature and slow pulse."
+      "alt": "chips diagram for nclex-191"
     },
     "source": {
       "guideline": "ATA Hyperthyroidism 2016",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-194.svg",
-      "alt": "Text card. Monitor potassium, fluid status and medications."
+      "alt": "chips diagram for nclex-194"
     },
     "source": {
       "guideline": "KDIGO CKD 2024",

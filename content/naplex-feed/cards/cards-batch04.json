@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-076.svg",
-   "alt": "Text card. Active, e.g., iPLEDGE. Ended: clozapine (2025), mycophenolate (2026)."
+   "alt": "table diagram for naplex-076"
   },
   "source": {
    "guideline": "FDA REMS database 2026; FDA TIRF discontinuation notice 2024",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-080.svg",
-   "alt": "Text card. No: nitrates plus PDE5 inhibitors are contraindicated."
+   "alt": "table diagram for naplex-080"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-082.svg",
-   "alt": "Text card. Chelation: absorption drops."
+   "alt": "axis diagram for naplex-082"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-083.svg",
-   "alt": "Text card. Lithium level rises: toxicity risk."
+   "alt": "chips diagram for naplex-083"
   },
   "source": {
    "guideline": "VA/DoD Bipolar 2023; FDA labeling",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-085.svg",
-   "alt": "Text card. Tyramine plus MAOI: hypertensive crisis."
+   "alt": "chips diagram for naplex-085"
   },
   "source": {
    "guideline": "FDA labeling",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-094.svg",
-   "alt": "Text card. NAC, idarucizumab, 4F-PCC, fomepizole, flumazenil."
+   "alt": "table diagram for naplex-094"
   },
   "source": {
    "guideline": "ACMT/AACT antidote stocking 2017; FDA Andexxa safety communication Dec 2025",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-096.svg",
-   "alt": "Text card. MDI: slow, deep breath. DPI: fast, forceful breath."
+   "alt": "chips diagram for naplex-096"
   },
   "source": {
    "guideline": "GINA 2026; GOLD 2026",

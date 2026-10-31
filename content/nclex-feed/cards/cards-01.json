@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-002.svg",
-      "alt": "Text card. See the unstable client or unexpected finding first."
+      "alt": "chips diagram for nclex-002"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-007.svg",
-      "alt": "Text card. Respect the refusal; educate, document and notify the provider."
+      "alt": "chips diagram for nclex-007"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -257,10 +257,7 @@
     "back": "Use a trained medical interpreter. Key clue: A family member or child offers to translate health information. First-line: Request an in-person, video or phone interpreter, and speak directly to the client. Exam trap: Using family members or minors as interpreters, which risks errors and privacy breaches.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-010.svg",
-      "alt": "Text card. Use a trained medical interpreter."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -340,7 +337,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-013.svg",
-      "alt": "Text card. Assess the client, chart facts, and file an incident report."
+      "alt": "flow diagram for nclex-013"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -367,7 +364,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-014.svg",
-      "alt": "Text card. Report to the charge nurse or supervisor right away."
+      "alt": "chips diagram for nclex-014"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -394,7 +391,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-015.svg",
-      "alt": "Text card. Report reasonable suspicion; proof is not required."
+      "alt": "flow diagram for nclex-015"
     },
     "source": {
       "guideline": "CAPTA, as amended through P.L. 118-193 (2024)",
@@ -421,7 +418,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-016.svg",
-      "alt": "Text card. Safety first; screen privately and document objectively."
+      "alt": "chips diagram for nclex-016"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -502,7 +499,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-019.svg",
-      "alt": "Text card. Autonomy, beneficence, nonmaleficence and justice: choice, good, no harm, fairness."
+      "alt": "flow diagram for nclex-019"
     },
     "source": {
       "guideline": "ANA Code of Ethics 2025",
@@ -556,7 +553,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-021.svg",
-      "alt": "Text card. Red immediate, yellow delayed, green minor, black expectant."
+      "alt": "flow diagram for nclex-021"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -610,7 +607,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-023.svg",
-      "alt": "Text card. Current status, recent changes, pending tests and risks."
+      "alt": "flow diagram for nclex-023"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -745,7 +742,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-028.svg",
-      "alt": "Text card. Ask about advance directives and give information at admission."
+      "alt": "table diagram for nclex-028"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -772,7 +769,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-029.svg",
-      "alt": "Text card. Write the order down, then read it back."
+      "alt": "chips diagram for nclex-029"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -799,7 +796,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-030.svg",
-      "alt": "Text card. Supervise, follow up and evaluate the delegated task."
+      "alt": "table diagram for nclex-030"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -880,7 +877,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-033.svg",
-      "alt": "Text card. Log out, lock screens and never share passwords."
+      "alt": "flow diagram for nclex-033"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -907,7 +904,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-034.svg",
-      "alt": "Text card. Notify the provider and inform the client of the risks."
+      "alt": "table diagram for nclex-034"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -934,7 +931,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-035.svg",
-      "alt": "Text card. Duty, breach of duty, causation and harm."
+      "alt": "flow diagram for nclex-035"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -961,7 +958,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-036.svg",
-      "alt": "Text card. Good Samaritan laws, when acting within training."
+      "alt": "table diagram for nclex-036"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1012,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-038.svg",
-      "alt": "Text card. Gown and gloves, plus dedicated equipment."
+      "alt": "chips diagram for nclex-038"
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1042,7 +1039,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-039.svg",
-      "alt": "Text card. Wash with soap and water; alcohol does not kill spores."
+      "alt": "flow diagram for nclex-039"
     },
     "source": {
       "guideline": "IDSA/SHEA C. difficile focused update 2021",
@@ -1204,7 +1201,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-045.svg",
-      "alt": "Text card. Wash with soap and water, then report right away."
+      "alt": "chips diagram for nclex-045"
     },
     "source": {
       "guideline": "USPHS/CDC Occupational HIV PEP Guidelines 2025",
@@ -1231,7 +1228,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-046.svg",
-      "alt": "Text card. Assess fall risk, then reduce hazards."
+      "alt": "chips diagram for nclex-046"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -1258,7 +1255,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-047.svg",
-      "alt": "Text card. Use two identifiers, such as name and birth date."
+      "alt": "flow diagram for nclex-047"
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -1285,7 +1282,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-048.svg",
-      "alt": "Text card. Verify, mark the site, then take a time-out."
+      "alt": "table diagram for nclex-048"
     },
     "source": {
       "guideline": "Joint Commission NPG.01.06.01-.03 (former Universal Protocol) 2026",
@@ -1339,7 +1336,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-050.svg",
-      "alt": "Text card. Suction and oxygen at the bedside, with the bed low."
+      "alt": "chips diagram for nclex-050"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",

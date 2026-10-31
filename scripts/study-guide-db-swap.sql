@@ -19,6 +19,15 @@
 --    npm run ingest:naplex-guide
 --    npm run ingest:aanp-fnp-guide
 --
+-- Diagram round (prepared, not applied):
+--   CREATE TABLE sg_guides_backup_diagrams AS TABLE sg_guides;
+--   CREATE TABLE sg_chapters_backup_diagrams AS TABLE sg_chapters;
+-- Dry run for this manuscript: pance 23 files / 23564 words,
+-- nclex 17 / 40141, naplex 17 / 29628, aanp-fnp 17 / 52154.
+-- Apply only if those file counts match. Restore the backup tables
+-- to undo. Do not delete highlights, bookmarks, notes, or progress.
+-- Do not run this against production.
+--
 -- Feed-visuals / guide-depth round (prepared, not applied to production):
 -- Backup first:
 --   CREATE TABLE sg_guides_backup_feed_depth AS TABLE sg_guides;

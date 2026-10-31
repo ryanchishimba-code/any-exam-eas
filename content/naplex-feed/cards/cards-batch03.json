@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-051.svg",
-   "alt": "Text card. Apixaban, rivaroxaban, sacubitril/valsartan, ticagrelor, metoprolol succinate."
+   "alt": "chips diagram for naplex-051"
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-052.svg",
-   "alt": "Text card. Escitalopram, bupropion, aripiprazole, quetiapine, lamotrigine, lisdexamfetamine."
+   "alt": "table diagram for naplex-052"
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-055.svg",
-   "alt": "Text card. Look-alike/sound-alike: use tall-man letters plus checks."
+   "alt": "chips diagram for naplex-055"
   },
   "source": {
    "guideline": "ISMP LASA list 2023",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-058.svg",
-   "alt": "Text card. C-II: no refills. C-III/IV: up to 5 refills in 6 months."
+   "alt": "axis diagram for naplex-058"
   },
   "source": {
    "guideline": "21 CFR 1306; DEA",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-059.svg",
-   "alt": "Text card. RZV 2 doses; one pneumococcal conjugate; Td/Tdap every 10 years."
+   "alt": "axis diagram for naplex-059"
   },
   "source": {
    "guideline": "CDC/ACIP Adult Schedule 2025 (amended Apr 27, 2026 for RSV)",
@@ -333,7 +333,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-061.svg",
-   "alt": "Text card. Older adults: one dose. Infants: maternal vaccine or infant antibody."
+   "alt": "axis diagram for naplex-061"
   },
   "source": {
    "guideline": "CDC/ACIP RSV 2024–2025 (+clesrovimab MMWR 2025)",
@@ -432,7 +432,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-064.svg",
-   "alt": "Text card. Disabling tendon, nerve and CNS effects."
+   "alt": "chips diagram for naplex-064"
   },
   "source": {
    "guideline": "FDA labeling 2016/2018",
@@ -556,7 +556,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-068.svg",
-   "alt": "Text card. Boxed warning: life-threatening toxicity; reserve for serious arrhythmias."
+   "alt": "table diagram for naplex-068"
   },
   "source": {
    "guideline": "FDA labeling; 2023 ACC/AHA AF",
@@ -587,7 +587,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-069.svg",
-   "alt": "Text card. Embryo-fetal toxicity and hepatotoxicity."
+   "alt": "chips diagram for naplex-069"
   },
   "source": {
    "guideline": "FDA labeling; ACR 2021 RA",
@@ -680,7 +680,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-072.svg",
-   "alt": "Text card. Hepatotoxicity, pancreatitis, teratogenicity."
+   "alt": "table diagram for naplex-072"
   },
   "source": {
    "guideline": "FDA labeling; AAN/AES 2024 WWE",
@@ -711,7 +711,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-073.svg",
-   "alt": "Text card. Serious neuropsychiatric events, including suicidality."
+   "alt": "chips diagram for naplex-073"
   },
   "source": {
    "guideline": "FDA 2020 labeling",
@@ -773,7 +773,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-075.svg",
-   "alt": "Text card. Endometrial cancer for estrogen-alone therapy."
+   "alt": "flow diagram for naplex-075"
   },
   "source": {
    "guideline": "FDA HT labeling change Nov 2025 (first approvals Feb 2026); Menopause Society 2022",

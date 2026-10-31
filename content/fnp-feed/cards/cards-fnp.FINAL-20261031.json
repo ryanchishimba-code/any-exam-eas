@@ -43,7 +43,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-002.svg",
-   "alt": "Text card. Screen yearly from age 3."
+   "alt": "table diagram for fnp-002"
   },
   "source": {
    "guideline": "AAP 2017 pediatric HTN CPG (still current)",
@@ -71,7 +71,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-003.svg",
-   "alt": "Text card. Statin at intermediate or high PREVENT risk."
+   "alt": "axis diagram for fnp-003"
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia; USPSTF statin 2022",
@@ -98,7 +98,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-004.svg",
-   "alt": "Text card. Once at 9–11 years and again at 17–21."
+   "alt": "table diagram for fnp-004"
   },
   "source": {
    "guideline": "AAP Bright Futures periodicity 2025; NHLBI 2011",
@@ -134,8 +134,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening",
    "alt_url": null,
    "recommendation": "Men 65–75 who have ever smoked (B). One-time abdominal ultrasound; men who never smoked: selective (C)."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-006",
@@ -154,7 +153,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-006.svg",
-   "alt": "Text card. USPSTF: ages 35–70 with overweight or obesity."
+   "alt": "table diagram for fnp-006"
   },
   "source": {
    "guideline": "USPSTF prediabetes/T2D 2021; ADA Standards of Care 2026",
@@ -208,7 +207,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-008.svg",
-   "alt": "Text card. Inspection, pulses and monofilament plus one more sensory test."
+   "alt": "chips diagram for fnp-008"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -235,7 +234,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-009.svg",
-   "alt": "Text card. Type 2 at diagnosis; type 1 within 5 years."
+   "alt": "flow diagram for fnp-009"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -262,7 +261,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-010.svg",
-   "alt": "Text card. Stage by GFR (G1–G5) and albuminuria (A1–A3)."
+   "alt": "axis diagram for fnp-010"
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -289,7 +288,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-011.svg",
-   "alt": "Text card. TSH first; add free T4 if abnormal."
+   "alt": "flow diagram for fnp-011"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -316,7 +315,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-012.svg",
-   "alt": "Text card. TSH first, then ultrasound."
+   "alt": "table diagram for fnp-012"
   },
   "source": {
    "guideline": "ATA 2015 nodules/DTC (current for nodules)",
@@ -343,7 +342,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-013.svg",
-   "alt": "Text card. Ages 45–75; selective at 76–85."
+   "alt": "axis diagram for fnp-013"
   },
   "source": {
    "guideline": "USPSTF CRC 2021",
@@ -370,7 +369,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-014.svg",
-   "alt": "Text card. Primary hrHPV every 5 years preferred."
+   "alt": "axis diagram for fnp-014"
   },
   "source": {
    "guideline": "USPSTF cervical 2018 final (2024 draft); HRSA WPSI 2026; ACOG 2026",
@@ -378,8 +377,7 @@
    "url": "https://www.hrsa.gov/womens-guidelines",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
    "recommendation": "Primary hrHPV every 5 years preferred. Alternatives: cotesting every 5 years or cytology every 3; self-collected HPV now an option."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-015",
@@ -398,7 +396,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-015.svg",
-   "alt": "Text card. Every 2 years, ages 40–74 (B)."
+   "alt": "flow diagram for fnp-015"
   },
   "source": {
    "guideline": "USPSTF breast 2024",
@@ -452,7 +450,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-017.svg",
-   "alt": "Text card. Individual decision after discussion (C)."
+   "alt": "axis diagram for fnp-017"
   },
   "source": {
    "guideline": "USPSTF prostate 2018 (update in progress); AUA/SUO 2023, amended 2026",
@@ -506,7 +504,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-019.svg",
-   "alt": "Text card. Women 65+ and younger postmenopausal women at increased risk."
+   "alt": "chips diagram for fnp-019"
   },
   "source": {
    "guideline": "USPSTF osteoporosis 2025",
@@ -534,7 +532,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-020.svg",
-   "alt": "Text card. All adults 18–79, at least once."
+   "alt": "table diagram for fnp-020"
   },
   "source": {
    "guideline": "USPSTF HCV 2020",
@@ -562,7 +560,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-021.svg",
-   "alt": "Text card. Screen once with HBsAg, anti-HBs and total anti-HBc."
+   "alt": "flow diagram for fnp-021"
   },
   "source": {
    "guideline": "CDC 2023 adult HBV screening (MMWR); USPSTF HBV 2020 (risk-based)",
@@ -589,7 +587,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-022.svg",
-   "alt": "Text card. Everyone 15–65, younger and older at risk, and every pregnancy."
+   "alt": "table diagram for fnp-022"
   },
   "source": {
    "guideline": "USPSTF HIV 2019",
@@ -598,7 +596,7 @@
    "alt_url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/initiation-antiretroviral-therapy",
    "recommendation": "Everyone 15–65, younger and older at risk, and every pregnancy. Suspected acute HIV: add HIV RNA."
   },
-  "age_band": "Older adult"
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-023",
@@ -617,7 +615,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-023.svg",
-   "alt": "Text card. Sexually active women 24 and younger, and older women at risk."
+   "alt": "flow diagram for fnp-023"
   },
   "source": {
    "guideline": "USPSTF CT/GC 2021; CDC STI 2021",
@@ -644,7 +642,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-024.svg",
-   "alt": "Text card. Adults and adolescents at increased risk."
+   "alt": "table diagram for fnp-024"
   },
   "source": {
    "guideline": "USPSTF syphilis 2022; CDC STI 2021",
@@ -652,7 +650,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-nonpregnant-adults-adolescents-screening",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-in-pregnancy-screening",
    "recommendation": "All pregnant patients at the first visit; adults at increased risk. High risk: repeat at 28 weeks and at delivery."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-025",
@@ -671,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-025.svg",
-   "alt": "Text card. All adults, including pregnant and postpartum, and teens 12–18."
+   "alt": "flow diagram for fnp-025"
   },
   "source": {
    "guideline": "USPSTF depression 2023 (adult), 2022 (child/adol)",
@@ -699,7 +698,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-026.svg",
-   "alt": "Text card. Adults 64 and younger, including pregnant patients (B)."
+   "alt": "table diagram for fnp-026"
   },
   "source": {
    "guideline": "USPSTF anxiety 2023",
@@ -727,7 +726,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-027.svg",
-   "alt": "Text card. Screen all adults 18+, including pregnant patients."
+   "alt": "flow diagram for fnp-027"
   },
   "source": {
    "guideline": "USPSTF alcohol 2018 final (2025 draft pending)",
@@ -735,7 +734,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/draft-recommendation/unhealthy-alcohol-use-adolescents-adults-behavioral-counseling-interventions",
    "alt_url": null,
    "recommendation": "Screen all adults 18+, including pregnant patients. Positive screen: brief behavioral counseling."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-028",
@@ -754,7 +754,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-028.svg",
-   "alt": "Text card. Ask, advise, then offer behavioral help and medication."
+   "alt": "chips diagram for fnp-028"
   },
   "source": {
    "guideline": "USPSTF tobacco 2021",
@@ -781,7 +781,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-029.svg",
-   "alt": "Text card. Women of reproductive age, including pregnant and postpartum (B)."
+   "alt": "chips diagram for fnp-029"
   },
   "source": {
    "guideline": "USPSTF IPV 2025",
@@ -789,7 +789,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/intimate-partner-violence-and-abuse-of-elderly-and-vulnerable-adults-screening/",
    "alt_url": null,
    "recommendation": "Women of reproductive age, including pregnant and postpartum (B). Positive screen: refer to ongoing support services."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-030",
@@ -808,7 +809,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-030.svg",
-   "alt": "Text card. Ask about falls, unsteadiness and fear of falling."
+   "alt": "table diagram for fnp-030"
   },
   "source": {
    "guideline": "USPSTF falls 2024; CDC STEADI",
@@ -836,7 +837,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-031.svg",
-   "alt": "Text card. No; evidence is insufficient (I)."
+   "alt": "chips diagram for fnp-031"
   },
   "source": {
    "guideline": "USPSTF cognitive impairment 2020 (I); AAN 2017 MCI retired",
@@ -864,7 +865,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-032.svg",
-   "alt": "Text card. Insufficient evidence in asymptomatic adults (I)."
+   "alt": "table diagram for fnp-032"
   },
   "source": {
    "guideline": "USPSTF skin cancer 2023 (I)",
@@ -918,7 +919,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-034.svg",
-   "alt": "Text card. At least once at ages 3–5 (B)."
+   "alt": "table diagram for fnp-034"
   },
   "source": {
    "guideline": "USPSTF vision 2017",
@@ -946,7 +947,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-035.svg",
-   "alt": "Text card. Eye disease, hip dysplasia and critical heart disease."
+   "alt": "flow diagram for fnp-035"
   },
   "source": {
    "guideline": "AAP 2016 DDH; AAP 2025 CCHD pulse-ox algorithm",
@@ -974,7 +975,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-036.svg",
-   "alt": "Text card. Smile, roll, walk holding on, walk alone."
+   "alt": "chips diagram for fnp-036"
   },
   "source": {
    "guideline": "CDC/AAP 2022 milestones",
@@ -1028,7 +1029,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-038.svg",
-   "alt": "Text card. Medicaid and high-risk children at 12 and 24 months."
+   "alt": "table diagram for fnp-038"
   },
   "source": {
    "guideline": "CDC lead 2021 reference value",
@@ -1056,7 +1057,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-039.svg",
-   "alt": "Text card. CBC plus ferritin at 9–12 months if breastfed."
+   "alt": "flow diagram for fnp-039"
   },
   "source": {
    "guideline": "AAP 2026 iron deficiency clinical report",
@@ -1084,7 +1085,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-040.svg",
-   "alt": "Text card. Girls: breast budding first; boys: testicular enlargement."
+   "alt": "table diagram for fnp-040"
   },
   "source": {
    "guideline": "AAFP 2017 disorders of puberty",
@@ -1111,7 +1112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-041.svg",
-   "alt": "Text card. Offer confidential time alone with the teen."
+   "alt": "chips diagram for fnp-041"
   },
   "source": {
    "guideline": "AAFP 2020 adolescent screening and counseling; AAP/Bright Futures 2025 periodicity schedule; AAFP 2012 confidential care",
@@ -1139,7 +1140,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-042.svg",
-   "alt": "Text card. Exertional syncope, chest pain or early family sudden death."
+   "alt": "table diagram for fnp-042"
   },
   "source": {
    "guideline": "AAP PPE 5th ed 2019",
@@ -1166,7 +1167,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-043.svg",
-   "alt": "Text card. CBC, type/Rh, antibody screen, HIV, syphilis, HBV, HCV, rubella."
+   "alt": "flow diagram for fnp-043"
   },
   "source": {
    "guideline": "AAP/ACOG Guidelines for Perinatal Care 8th ed 2017; ACOG CC 8 2025",
@@ -1174,7 +1175,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/02/prevention-of-group-b-streptococcal-early-onset-disease-in-newborns",
    "recommendation": "CBC, type/Rh, antibody screen, HIV, syphilis, HBV, HCV, rubella. Rh-negative and unsensitized: anti-D at 28 weeks."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-044",
@@ -1220,7 +1222,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-045.svg",
-   "alt": "Text card. Measure BP at every prenatal visit (B)."
+   "alt": "chips diagram for fnp-045"
   },
   "source": {
    "guideline": "USPSTF preeclampsia screening 2023",
@@ -1228,7 +1230,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertensive-disorders-pregnancy-screening",
    "alt_url": null,
    "recommendation": "Measure BP at every prenatal visit (B). Elevated BP: check proteinuria, platelets, creatinine and liver enzymes."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-046",
@@ -1283,7 +1286,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": null,
    "recommendation": "From 24 weeks, centimeters roughly equal gestational weeks. Size–date discrepancy: ultrasound for growth and amniotic fluid."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-048",
@@ -1302,7 +1306,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-048.svg",
-   "alt": "Text card. Early pregnancy, later pregnancy and postpartum visits."
+   "alt": "table diagram for fnp-048"
   },
   "source": {
    "guideline": "ACOG CPG No. 4 2023; USPSTF perinatal depression 2019",
@@ -1310,7 +1314,8 @@
    "url": "https://www.acog.org/clinical/guidance/clinical-practice-guideline/2023/06/screening-and-diagnosis-of-mental-health-conditions-during-pregnancy-and-postpartum/",
    "alt_url": null,
    "recommendation": "Early pregnancy, later pregnancy and postpartum visits. Assess for bipolar disorder before starting medication."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-049",
@@ -1329,7 +1334,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-049.svg",
-   "alt": "Text card. Spirometry with bronchodilator reversibility."
+   "alt": "axis diagram for fnp-049"
   },
   "source": {
    "guideline": "GINA 2025",
@@ -1383,7 +1388,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-051.svg",
-   "alt": "Text card. Sleep study, not a questionnaire alone."
+   "alt": "chips diagram for fnp-051"
   },
   "source": {
    "guideline": "AASM 2017 OSA testing",
@@ -1410,7 +1415,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-052.svg",
-   "alt": "Text card. Bone tenderness or inability to bear weight 4 steps."
+   "alt": "table diagram for fnp-052"
   },
   "source": {
    "guideline": "Ottawa ankle rule (Stiell 1992/1993), knee rule (1996)",
@@ -1437,7 +1442,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-053.svg",
-   "alt": "Text card. Lachman is most sensitive for ACL tear."
+   "alt": "flow diagram for fnp-053"
   },
   "source": {
    "guideline": "AAOS ACL CPG 2022",
@@ -1464,7 +1469,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-054.svg",
-   "alt": "Text card. Neer and Hawkins: impingement."
+   "alt": "table diagram for fnp-054"
   },
   "source": {
    "guideline": "AAOS rotator cuff CPG 2025",
@@ -1491,7 +1496,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-055.svg",
-   "alt": "Text card. Saddle anesthesia, urinary retention, progressive weakness."
+   "alt": "chips diagram for fnp-055"
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -1518,7 +1523,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-056.svg",
-   "alt": "Text card. Phalen and Tinel tests, plus symptom distribution."
+   "alt": "table diagram for fnp-056"
   },
   "source": {
    "guideline": "AAOS CTS CPG 2024",
@@ -1654,7 +1659,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-061.svg",
-   "alt": "Text card. B12 and folate first."
+   "alt": "flow diagram for fnp-061"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026 (B12 on metformin)",
@@ -1681,7 +1686,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-062.svg",
-   "alt": "Text card. FIB-4 first."
+   "alt": "table diagram for fnp-062"
   },
   "source": {
    "guideline": "AASLD 2023 MASLD",
@@ -1708,7 +1713,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-063.svg",
-   "alt": "Text card. Urinalysis, blood culture and inflammatory markers."
+   "alt": "axis diagram for fnp-063"
   },
   "source": {
    "guideline": "AAP 2021 febrile infant",
@@ -1736,7 +1741,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-064.svg",
-   "alt": "Text card. Noncontrast CT in most adults."
+   "alt": "table diagram for fnp-064"
   },
   "source": {
    "guideline": "AUA kidney stones 2026; ACR AC flank pain 2023",
@@ -1764,7 +1769,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-065.svg",
-   "alt": "Text card. All adults with hypertension."
+   "alt": "flow diagram for fnp-065"
   },
   "source": {
    "guideline": "Endocrine Society PA 2025",
@@ -1791,7 +1796,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-066.svg",
-   "alt": "Text card. Stable: predictable exertional pain relieved by rest."
+   "alt": "chips diagram for fnp-066"
   },
   "source": {
    "guideline": "ACC/AHA 2023 chronic coronary disease; ACC/AHA 2025 ACS",
@@ -1845,7 +1850,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-068.svg",
-   "alt": "Text card. ECG: no P waves, irregular RR."
+   "alt": "table diagram for fnp-068"
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -1953,7 +1958,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-072.svg",
-   "alt": "Text card. Abnormal vitals or focal exam suggest pneumonia."
+   "alt": "chips diagram for fnp-072"
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP; ACP/CDC 2016 acute respiratory tract infection advice",
@@ -1980,7 +1985,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-073.svg",
-   "alt": "Text card. Wheeze and crackles, barking cough, or drooling and tripod."
+   "alt": "flow diagram for fnp-073"
   },
   "source": {
    "guideline": "AAP bronchiolitis 2014 (still current)",
@@ -2036,7 +2041,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-075.svg",
-   "alt": "Text card. Persistent, severe or double-worsening symptoms."
+   "alt": "flow diagram for fnp-075"
   },
   "source": {
    "guideline": "IDSA rhinosinusitis 2012; AAO-HNS 2015",
@@ -2063,7 +2068,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-076.svg",
-   "alt": "Text card. Watery, mucopurulent, or itchy and bilateral."
+   "alt": "table diagram for fnp-076"
   },
   "source": {
    "guideline": "AAO Conjunctivitis PPP 2024",
@@ -2117,7 +2122,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-078.svg",
-   "alt": "Text card. Tragal or pinna pain means otitis externa."
+   "alt": "table diagram for fnp-078"
   },
   "source": {
    "guideline": "AAO-HNS 2014 AOE",
@@ -2144,7 +2149,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-079.svg",
-   "alt": "Text card. Infectious mononucleosis; heterophile antibody test."
+   "alt": "chips diagram for fnp-079"
   },
   "source": {
    "guideline": "CDC EBV/mono clinical overview (current web guidance)",
@@ -2172,7 +2177,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-080.svg",
-   "alt": "Text card. Dyspepsia under 60: test for H. pylori and treat if positive."
+   "alt": "table diagram for fnp-080"
   },
   "source": {
    "guideline": "ACG GERD 2022; ACG/CAG dyspepsia 2017; ACG H. pylori 2024",
@@ -2200,7 +2205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-081.svg",
-   "alt": "Text card. Rome IV positive diagnosis."
+   "alt": "flow diagram for fnp-081"
   },
   "source": {
    "guideline": "ACG IBS 2021",
@@ -2227,7 +2232,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-082.svg",
-   "alt": "Text card. tTG-IgA with total IgA."
+   "alt": "chips diagram for fnp-082"
   },
   "source": {
    "guideline": "ACG celiac 2023",
@@ -2254,7 +2259,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-083.svg",
-   "alt": "Text card. Suspected appendicitis: surgical evaluation."
+   "alt": "flow diagram for fnp-083"
   },
   "source": {
    "guideline": "WSES Jerusalem 2020 update",
@@ -2282,7 +2287,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-084.svg",
-   "alt": "Text card. Acute diverticulitis; CT if diagnosis uncertain."
+   "alt": "table diagram for fnp-084"
   },
   "source": {
    "guideline": "AGA 2021 diverticulitis",
@@ -2310,7 +2315,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-085.svg",
-   "alt": "Text card. Projectile nonbilious vomiting or intermittent colicky pain."
+   "alt": "chips diagram for fnp-085"
   },
   "source": {
    "guideline": "ACR AC Vomiting in Infants 2020; ACR AC Abdominal Pain-Child 2026",
@@ -2338,7 +2343,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-086.svg",
-   "alt": "Text card. Islet autoantibodies."
+   "alt": "table diagram for fnp-086"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -2393,7 +2398,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-088.svg",
-   "alt": "Text card. Repeat TSH with free T4 in 2–3 months."
+   "alt": "table diagram for fnp-088"
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -2474,7 +2479,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-091.svg",
-   "alt": "Text card. Cervical motion, uterine or adnexal tenderness."
+   "alt": "axis diagram for fnp-091"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -2501,7 +2506,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-092.svg",
-   "alt": "Text card. Transvaginal ultrasound plus serial hCG."
+   "alt": "table diagram for fnp-092"
   },
   "source": {
    "guideline": "ACOG PB 193 2018 (still current)",
@@ -2509,7 +2514,8 @@
    "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy/",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/03/tubal-ectopic-pregnancy",
    "recommendation": "Transvaginal ultrasound plus serial hCG. Stable and unruptured: methotrexate; unstable: surgery."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-093",
@@ -2555,7 +2561,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-094.svg",
-   "alt": "Text card. PALM-COEIN classifies structural and nonstructural causes."
+   "alt": "chips diagram for fnp-094"
   },
   "source": {
    "guideline": "ACOG/FIGO PALM-COEIN 2018",
@@ -2563,7 +2569,8 @@
    "url": "https://doi.org/10.1002/ijgo.12666",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2012/07/diagnosis-of-abnormal-uterine-bleeding-in-reproductive-aged-women",
    "recommendation": "PALM-COEIN classifies structural and nonstructural causes. Endometrial sampling at 45 and older."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-095",
@@ -2582,7 +2589,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-095.svg",
-   "alt": "Text card. Pregnancy test first."
+   "alt": "flow diagram for fnp-095"
   },
   "source": {
    "guideline": "NICE NG23 menopause (updated 2024); AAFP 2019 amenorrhea",
@@ -2590,7 +2597,8 @@
    "url": "https://www.nice.org.uk/guidance/ng23/chapter/Recommendations",
    "alt_url": "https://www.aafp.org/pubs/afp/issues/2019/0701/p39.html",
    "recommendation": "Pregnancy test first. Amenorrhea workup adds FSH, LH, prolactin and TSH."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-096",
@@ -2609,7 +2617,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-096.svg",
-   "alt": "Text card. Abnormal urinalysis plus a positive culture from a catheter specimen."
+   "alt": "table diagram for fnp-096"
   },
   "source": {
    "guideline": "AAP UTI CPG 2026 (8 days-5 years)",
@@ -2664,7 +2672,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-098.svg",
-   "alt": "Text card. Leak with cough, urgency, or constant dribbling."
+   "alt": "table diagram for fnp-098"
   },
   "source": {
    "guideline": "AUA/SUFU OAB 2024",
@@ -2718,7 +2726,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-100.svg",
-   "alt": "Text card. Arthrocentesis decides."
+   "alt": "table diagram for fnp-100"
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -2773,7 +2781,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-102.svg",
-   "alt": "Text card. Hypertension plus proteinuria or end-organ signs."
+   "alt": "chips diagram for fnp-102"
   },
   "source": {
    "guideline": "ACOG PB 222 2020 (reaffirmed 2026)",
@@ -2781,7 +2789,8 @@
    "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia/",
    "alt_url": null,
    "recommendation": "Hypertension plus proteinuria or end-organ signs. Severe: BP ≥160/110, platelets <100,000, creatinine >1.1, pulmonary edema."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-103",
@@ -2800,7 +2809,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-103.svg",
-   "alt": "Text card. Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital."
+   "alt": "axis diagram for fnp-103"
   },
   "source": {
    "guideline": "ICHD-3 (2018)",
@@ -2827,7 +2836,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-104.svg",
-   "alt": "Text card. Bell palsy affects the forehead."
+   "alt": "table diagram for fnp-104"
   },
   "source": {
    "guideline": "AAO-HNS 2013 Bell palsy",
@@ -2854,7 +2863,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-105.svg",
-   "alt": "Text card. Dix-Hallpike provokes torsional nystagmus."
+   "alt": "flow diagram for fnp-105"
   },
   "source": {
    "guideline": "AAO-HNS 2017 BPPV",
@@ -2908,7 +2917,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-107.svg",
-   "alt": "Text card. Gradual, stepwise or fluctuating."
+   "alt": "flow diagram for fnp-107"
   },
   "source": {
    "guideline": "Alzheimer's Assoc. revised AD criteria 2024; DLB Consortium 2017",
@@ -2991,7 +3000,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-110.svg",
-   "alt": "Text card. Atopic: itchy, cheeks and extensors; seborrheic: greasy scale, little itch."
+   "alt": "table diagram for fnp-110"
   },
   "source": {
    "guideline": "AAD 2014 atopic dermatitis diagnosis; AAFP 2020 atopic dermatitis",
@@ -3019,7 +3028,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-111.svg",
-   "alt": "Text card. KOH preparation helps identify tinea."
+   "alt": "flow diagram for fnp-111"
   },
   "source": {
    "guideline": "AAFP 2014 tinea infections; AAD nummular eczema treatment page; AAP atopic dermatitis differential page",
@@ -3046,7 +3055,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-112.svg",
-   "alt": "Text card. Burrows in web spaces, wrists and waist."
+   "alt": "axis diagram for fnp-112"
   },
   "source": {
    "guideline": "CDC scabies clinical care (current web guidance)",
@@ -3073,7 +3082,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-113.svg",
-   "alt": "Text card. Pattern and timing name the virus."
+   "alt": "chips diagram for fnp-113"
   },
   "source": {
    "guideline": "CDC; AAP Red Book 2024",
@@ -3156,7 +3165,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-116.svg",
-   "alt": "Text card. Possible physical abuse; sentinel injury."
+   "alt": "table diagram for fnp-116"
   },
   "source": {
    "guideline": "AAP 2015 suspected physical abuse (reaffirmed 2026)",
@@ -3184,7 +3193,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-117.svg",
-   "alt": "Text card. Assess when suspected, interview alone."
+   "alt": "chips diagram for fnp-117"
   },
   "source": {
    "guideline": "USPSTF IPV/caregiver abuse 2025 (I for older adults)",
@@ -3212,7 +3221,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-118.svg",
-   "alt": "Text card. Personal or family history of bipolar disorder, mania or hypomania."
+   "alt": "table diagram for fnp-118"
   },
   "source": {
    "guideline": "FDA sertraline label, warning 5.4 (2023)",
@@ -3355,7 +3364,8 @@
    "url": "https://www.acog.org/clinical/guidance/practice-advisory/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study/",
    "alt_url": "https://doi.org/10.1097/AOG.0000000000003020",
    "recommendation": "Start treatment at ≥140/90; CHAP set no blood pressure goal. Aspirin 81 mg daily from 12 to 28 weeks, ideally before 16."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-124",
@@ -3374,7 +3384,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-124.svg",
-   "alt": "Text card. Metformin plus lifestyle change."
+   "alt": "table diagram for fnp-124"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3482,7 +3492,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-128.svg",
-   "alt": "Text card. DOAC over warfarin."
+   "alt": "chips diagram for fnp-128"
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -3509,7 +3519,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-129.svg",
-   "alt": "Text card. ARNI, beta-blocker, MRA and SGLT2 inhibitor."
+   "alt": "flow diagram for fnp-129"
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -3536,7 +3546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-130.svg",
-   "alt": "Text card. As-needed low-dose ICS-formoterol."
+   "alt": "axis diagram for fnp-130"
   },
   "source": {
    "guideline": "GINA 2025",
@@ -3563,7 +3573,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-131.svg",
-   "alt": "Text card. LAMA plus LABA for most symptomatic patients."
+   "alt": "flow diagram for fnp-131"
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -3590,7 +3600,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-132.svg",
-   "alt": "Text card. Healthy adult: amoxicillin."
+   "alt": "table diagram for fnp-132"
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP (antibiotic choice); ATS 2025 CAP update (duration, steroids)",
@@ -3699,7 +3709,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-136.svg",
-   "alt": "Text card. Only in pregnancy or before urologic procedures."
+   "alt": "table diagram for fnp-136"
   },
   "source": {
    "guideline": "IDSA 2019 ASB",
@@ -3735,7 +3745,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/gonorrhea-adults.htm",
    "alt_url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
    "recommendation": "Ceftriaxone 500 mg IM; doxycycline 7 days. Pregnancy: azithromycin for chlamydia."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-138",
@@ -3754,7 +3765,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-138.svg",
-   "alt": "Text card. Benzathine penicillin G."
+   "alt": "table diagram for fnp-138"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3835,7 +3846,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-141.svg",
-   "alt": "Text card. Abscess: incision and drainage."
+   "alt": "flow diagram for fnp-141"
   },
   "source": {
    "guideline": "IDSA SSTI 2014",
@@ -3862,7 +3873,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-142.svg",
-   "alt": "Text card. Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir."
+   "alt": "table diagram for fnp-142"
   },
   "source": {
    "guideline": "CDC PrEP 2021; CDC lenacapavir PrEP MMWR 2025; USPSTF PrEP 2023",
@@ -3889,7 +3900,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-143.svg",
-   "alt": "Text card. Rifamycin-based short courses."
+   "alt": "flow diagram for fnp-143"
   },
   "source": {
    "guideline": "CDC/NTCA 2020 LTBI",
@@ -3916,7 +3927,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-144.svg",
-   "alt": "Text card. Tdap once, then Td or Tdap every 10 years."
+   "alt": "table diagram for fnp-144"
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025); no 2026 CDC adult schedule",
@@ -3943,7 +3954,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-145.svg",
-   "alt": "Text card. Hep B vaccine at birth; HBIG if the mother is HBsAg-positive."
+   "alt": "axis diagram for fnp-145"
   },
   "source": {
    "guideline": "CDC child and adolescent schedule notes (July 2, 2025 schedule in effect)",
@@ -3971,7 +3982,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-146.svg",
-   "alt": "Text card. Routine at 11–12 (can start at 9): two doses if started at 9–14."
+   "alt": "axis diagram for fnp-146"
   },
   "source": {
    "guideline": "CDC child and adolescent schedule notes (July 2, 2025 schedule in effect)",
@@ -4006,7 +4017,8 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
    "alt_url": null,
    "recommendation": "Tdap at 27–36 weeks every pregnancy. RSV vaccine at 32–36 weeks in season."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-148",
@@ -4025,7 +4037,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-148.svg",
-   "alt": "Text card. Category 4 contraindications."
+   "alt": "table diagram for fnp-148"
   },
   "source": {
    "guideline": "CDC US MEC 2024",
@@ -4087,7 +4099,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/folic-acid-for-the-prevention-of-neural-tube-defects-preventive-medication",
    "alt_url": "https://www.cdc.gov/folic-acid/hcp/clinical-overview/index.html",
    "recommendation": "0.4–0.8 mg daily (A). Prior neural tube defect pregnancy: 4 mg daily, from 1 month before conception through the first 3 months."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-151",
@@ -4187,7 +4200,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-154.svg",
-   "alt": "Text card. Moderate to severe: CBT or a second-generation antidepressant alone."
+   "alt": "table diagram for fnp-154"
   },
   "source": {
    "guideline": "ACP 2023 major depressive disorder; FDA sertraline label boxed warning (2023)",
@@ -4214,7 +4227,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-155.svg",
-   "alt": "Text card. Ages 4–5: parent behavior training first."
+   "alt": "axis diagram for fnp-155"
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -4269,7 +4282,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-157.svg",
-   "alt": "Text card. Varenicline first-line."
+   "alt": "flow diagram for fnp-157"
   },
   "source": {
    "guideline": "USPSTF tobacco 2021; ACC ECDP 2018 (still current)",
@@ -4296,7 +4309,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-158.svg",
-   "alt": "Text card. Anticholinergics, benzodiazepines, Z-drugs."
+   "alt": "table diagram for fnp-158"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -4324,7 +4337,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-159.svg",
-   "alt": "Text card. Colchicine, NSAID or steroid for flares."
+   "alt": "flow diagram for fnp-159"
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -4351,7 +4364,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-160.svg",
-   "alt": "Text card. Exercise, weight loss, topical NSAID."
+   "alt": "chips diagram for fnp-160"
   },
   "source": {
    "guideline": "ACR 2019 OA",
@@ -4378,7 +4391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-161.svg",
-   "alt": "Text card. Stay active; heat, massage or manipulation."
+   "alt": "flow diagram for fnp-161"
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -4405,7 +4418,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-162.svg",
-   "alt": "Text card. Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine."
+   "alt": "table diagram for fnp-162"
   },
   "source": {
    "guideline": "FDA triptan labeling; AHS consensus 2021; AHS CGRP position 2024; ICHD-3 (2018)",
@@ -4459,7 +4472,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-164.svg",
-   "alt": "Text card. Moisturizers plus a topical corticosteroid."
+   "alt": "table diagram for fnp-164"
   },
   "source": {
    "guideline": "AAD 2023 atopic dermatitis (adult, topical therapy)",
@@ -4486,7 +4499,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-165.svg",
-   "alt": "Text card. Permethrin 1% or pyrethrins."
+   "alt": "flow diagram for fnp-165"
   },
   "source": {
    "guideline": "AAP 2022 head lice",
@@ -4567,7 +4580,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-168.svg",
-   "alt": "Text card. Increase 20–30% at pregnancy confirmation."
+   "alt": "table diagram for fnp-168"
   },
   "source": {
    "guideline": "ATA 2026 thyroid in pregnancy",
@@ -4575,7 +4588,8 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": null,
    "recommendation": "Increase 20–30% at pregnancy confirmation. Check TSH every 4 weeks until midgestation."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-169",
@@ -4594,7 +4608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-169.svg",
-   "alt": "Text card. Intensive behavioral treatment."
+   "alt": "flow diagram for fnp-169"
   },
   "source": {
    "guideline": "AAP 2023 pediatric obesity",
@@ -4622,7 +4636,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-170.svg",
-   "alt": "Text card. Intranasal corticosteroid."
+   "alt": "table diagram for fnp-170"
   },
   "source": {
    "guideline": "AAAAI/ACAAI rhinitis 2020 practice parameter; CSACI 2019 antihistamine position",
@@ -4649,7 +4663,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-171.svg",
-   "alt": "Text card. Monthly visits until goal, then every 3–6 months."
+   "alt": "flow diagram for fnp-171"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -4739,7 +4753,8 @@
    "url": "https://doi.org/10.1097/aog.0000000000005612",
    "alt_url": null,
    "recommendation": "75-g OGTT at 4–12 weeks. Then screen every 1–3 years for life."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-175",
@@ -4758,7 +4773,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-175.svg",
-   "alt": "Text card. Check CK and TSH."
+   "alt": "flow diagram for fnp-175"
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -4866,7 +4881,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-179.svg",
-   "alt": "Text card. INR 2–3 for AF and VTE."
+   "alt": "flow diagram for fnp-179"
   },
   "source": {
    "guideline": "CHEST VTE antithrombotic 2021",
@@ -4893,7 +4908,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-180.svg",
-   "alt": "Text card. Use Cockcroft-Gault creatinine clearance."
+   "alt": "table diagram for fnp-180"
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -5028,7 +5043,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-185.svg",
-   "alt": "Text card. Watch for suicidality, especially early."
+   "alt": "flow diagram for fnp-185"
   },
   "source": {
    "guideline": "FDA antidepressant boxed warning (2004, extended to under 25 in 2007)",
@@ -5056,7 +5071,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-186.svg",
-   "alt": "Text card. Height, weight, BP and heart rate."
+   "alt": "table diagram for fnp-186"
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -5084,7 +5099,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-187.svg",
-   "alt": "Text card. Contraindicated below eGFR 30."
+   "alt": "flow diagram for fnp-187"
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -5111,7 +5126,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-188.svg",
-   "alt": "Text card. Low to moderate fracture risk."
+   "alt": "axis diagram for fnp-188"
   },
   "source": {
    "guideline": "ACP 2023 osteoporosis; ASBMR 2016 drug-holiday task force",
@@ -5146,7 +5161,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm",
    "alt_url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
    "recommendation": "Test of cure 4 weeks after treatment. Azithromycin 1 g once in pregnancy."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-190",
@@ -5165,7 +5181,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-190.svg",
-   "alt": "Text card. Fourfold RPR decline within 6–12 months."
+   "alt": "table diagram for fnp-190"
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5219,7 +5235,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-192.svg",
-   "alt": "Text card. Tailored schedule, often 6–10 visits."
+   "alt": "table diagram for fnp-192"
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -5227,7 +5243,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": null,
    "recommendation": "Tailored schedule, often 6–10 visits. Fundal height from 24 weeks."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-193",
@@ -5254,7 +5271,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2018/05/optimizing-postpartum-care",
    "alt_url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia",
    "recommendation": "Contact within 3 weeks; full visit by 12 weeks. Screen mood, contraception, feeding and chronic disease."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-194",
@@ -5301,7 +5319,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-195.svg",
-   "alt": "Text card. Review all meds, including OTC."
+   "alt": "flow diagram for fnp-195"
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -5329,7 +5347,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-196.svg",
-   "alt": "Text card. Offload pressure; check perfusion."
+   "alt": "table diagram for fnp-196"
   },
   "source": {
    "guideline": "IWGDF 2023",
@@ -5356,7 +5374,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-197.svg",
-   "alt": "Text card. Depth sets the stage."
+   "alt": "chips diagram for fnp-197"
   },
   "source": {
    "guideline": "NPIAP 2019 international guideline",
@@ -5383,7 +5401,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-198.svg",
-   "alt": "Text card. High sensitivity: a negative result rules out. High specificity: a positive rules in."
+   "alt": "table diagram for fnp-198"
   },
   "source": {
    "guideline": "Parikh 2008 sensitivity, specificity and predictive values",
@@ -5410,7 +5428,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-199.svg",
-   "alt": "Text card. Contact within 2 business days."
+   "alt": "flow diagram for fnp-199"
   },
   "source": {
    "guideline": "CMS Transitional Care Management services (MLN908628)",
