@@ -1,0 +1,122 @@
+[
+  {
+    "id": "cmr85zl1f008p1yz6isj7fca1",
+    "reason": "Key sends a febrile, confused toddler with a rash home on an antipyretic; this is a meningitis/meningococcal red-flag presentation needing emergent evaluation.",
+    "citation": "NICE NG143 fever in under 5s (traffic-light: altered mental state = red) †; NICE NG240 (2024) bacterial meningitis and meningococcal disease †; Surviving Sepsis Campaign pediatric guidelines 2020 †"
+  },
+  {
+    "id": "cmr83pfrr00831yq5uhgdm098",
+    "reason": "Key \"continue and monitor\" for worsening depression on sertraline 50 mg in an 80-year-old with no suicide-risk assessment; dose optimisation is the guideline answer.",
+    "citation": "VA/DoD MDD CPG 2022 †; APA Clinical Practice Guideline for Treatment of Depression Across Three Age Cohorts 2019 †; USPSTF depression screening 2023 †"
+  },
+  {
+    "id": "cmr85919j003i1y9i2h2sbn5c",
+    "reason": "Explanation teaches recurrent morning headache in a 4-year-old as characteristic of migraine; morning headache is a raised-ICP red flag (unsafe rationale).",
+    "citation": "HeadSmart / RCPCH brain tumour in children guideline (2nd ed. 2018) †; AAN practice parameter, evaluation of children with recurrent headache (Lewis 2002) †"
+  },
+  {
+    "id": "cmr8592q600401y9i33n9n2yp",
+    "reason": "Neonate with warm swollen joint but \"no signs of infection\": self-contradictory stem, and ultrasound, CBC/CRP and aspiration are all defensible for a neonatal emergency.",
+    "citation": "PIDS/IDSA 2023 acute bacterial arthritis guideline (excludes neonates) ✓; AAP Red Book 2024-2027, bone and joint infections in neonates †"
+  },
+  {
+    "id": "cmqgsxbgg00551ydhd8uoavmk",
+    "reason": "Key \"croup\" for an afebrile wheeze with no barking cough or stridor; asthma/viral wheeze or bronchiolitis fit better.",
+    "citation": "Croup: diagnosis and management, AFP 2018 (Smith) †; GINA 2025 section 10, wheeze in children 5 and under ✓"
+  },
+  {
+    "id": "cmr82p33h007p1yfv50wmzyve",
+    "reason": "Key \"lead level\" for a child with jaundice; lead does not cause jaundice, so hepatobiliary work-up (LFTs/fractionated bilirubin) is the answer.",
+    "citation": "CDC childhood lead poisoning (BLRV 3.5 ug/dL) †; standard pediatric cholestasis/hepatitis evaluation (NASPGHAN/ESPGHAN) †"
+  },
+  {
+    "id": "cmr83w7gc00b41yq5xlzqp3ge",
+    "reason": "Key \"spirometry\" in a 3-year-old; spirometry is unreliable at 5 and under and asthma is diagnosed clinically with a treatment trial.",
+    "citation": "GINA 2025 section 10 (spirometry generally unreliable at 5 and under) ✓; NAEPP EPR-3 †"
+  },
+  {
+    "id": "cmr84mw8g001y1y5truqimadu",
+    "reason": "Key \"DaTscan\" as initial study; Parkinson disease is clinical and suspected early-onset PD needs brain MRI plus Wilson labs first.",
+    "citation": "MDS clinical diagnostic criteria for PD 2015 ✓; MDS EOPD Study Group diagnostic work-up recommendations, Parkinsonism Relat Disord 2025 ✓"
+  },
+  {
+    "id": "cmr85hxgf00af1y9ibg4i0jnl",
+    "reason": "Key \"upper endoscopy\" with no serology option; celiac work-up starts with tTG-IgA plus total IgA and the stem ignores dehydration (no correct option).",
+    "citation": "ESPGHAN 2020 guidelines for diagnosing coeliac disease ✓; ACG celiac disease guideline 2023 †"
+  },
+  {
+    "id": "cmtwf06th00441y2n4lwkhlfo",
+    "reason": "Key \"BPH\" in a 30-year-old man; age-implausible, prostatitis/urethral stricture/infection fit better.",
+    "citation": "AUA Guideline on Management of BPH/LUTS 2021 (amended 2023) †; EAU Urological Infections 2024 †"
+  },
+  {
+    "id": "cmtwfcdse003x1ysoaaf5lg6t",
+    "reason": "Key \"check fasting glucose\" in a child with classic diabetes symptoms; random plasma glucose is diagnostic and fasting delays care and risks DKA.",
+    "citation": "ADA Standards of Care 2026 sec. 2 (random PG >=200 with classic symptoms) ✓; ADA Standards of Care 2026 sec. 14 †"
+  },
+  {
+    "id": "cmtwfmhig008a1y1ouy39s0jb",
+    "reason": "Key \"lifestyle modifications\" for irregular cycles plus hot flashes at 35; premature ovarian insufficiency needs hCG/FSH/TSH/prolactin and no option offers it.",
+    "citation": "ESHRE POI guideline 2024 †; ACOG Committee Opinion 605 (primary ovarian insufficiency) †"
+  },
+  {
+    "id": "cmtwfmhf300891y1owxq55rm2",
+    "reason": "Select-all key includes psychiatrist referral and omits social engagement/behavioral activation, with no suicide-risk assessment in a 72-year-old.",
+    "citation": "APA depression guideline across age cohorts 2019 †; VA/DoD MDD CPG 2022 †; USPSTF depression screening 2023 †"
+  },
+  {
+    "id": "cmr85cdjg006r1y9ifmswzdbh",
+    "reason": "Key \"seizure-precaution education\" after a first unprovoked seizure; EEG plus neuroimaging is part of the evaluation and the rationale says otherwise.",
+    "citation": "AAN/AES practice parameter, evaluating a first unprovoked seizure, Krumholz 2007 ✓; AAN/AES guideline, management of first unprovoked seizure, Krumholz 2015 ✓"
+  },
+  {
+    "id": "cmr85g0uq008v1y9i3w23sirn",
+    "reason": "Key \"low-dose antidepressant\" for adolescent fibromyalgia-like pain; non-drug therapy is first line, and the other options leave several defensible answers.",
+    "citation": "EULAR revised recommendations for fibromyalgia 2016 ✓; ACR 2016 fibromyalgia criteria †"
+  },
+  {
+    "id": "cmqgv3ic2000p1ycck36vbjc7",
+    "reason": "Key \"bilirubin level\" is circular (value is in the stem) and no option cleanly tests fractionated bilirubin; several answers are defensible.",
+    "citation": "AAP hyperbilirubinemia guideline 2022 (KAS 9) ✓"
+  },
+  {
+    "id": "cmr85myyb001d1yz6dfiayest",
+    "reason": "\"Viral gastroenteritis\" and \"dehydration\" both explain the findings; lead-in does not select one and no management is tested.",
+    "citation": "ESPGHAN/ESPID acute gastroenteritis guideline 2014 †; WHO dehydration assessment †"
+  },
+  {
+    "id": "cmtwf1kdj006a1y2n672ib7lr",
+    "reason": "Key \"add a second antihypertensive\" in a patient who is not taking her medicines; current regimen and eGFR missing, so the item cannot be solved safely.",
+    "citation": "ADA Standards of Care 2026 sec. 13 older adults †; 2025 AHA/ACC high blood pressure guideline (assess adherence before intensification) ✓"
+  },
+  {
+    "id": "cmtwfjgz1003q1y1on88ywq01",
+    "reason": "Key \"increase lisinopril\" after a single 150/95; out-of-office BP monitoring is at least as defensible per the 2025 guideline (two defensible answers).",
+    "citation": "2025 AHA/ACC high blood pressure guideline, section 3.1.4 ✓"
+  },
+  {
+    "id": "cmr82gqxk002u1yfvu5bjsavt",
+    "reason": "HIV test and Pap smear are both USPSTF-recommended for this patient, chlamydia/gonorrhea screening is absent, and the stem asks about vaccines (two defensible answers, wrong lead-in).",
+    "citation": "USPSTF HIV screening ✓; USPSTF cervical cancer screening ✓; USPSTF chlamydia/gonorrhea screening ✓"
+  },
+  {
+    "id": "cmr8592ey003w1y9itrnc7o2c",
+    "reason": "Lead-in asks for a \"physical exam finding\" but key is MMSE; gait assessment and cognitive screening are both defensible for falls plus confusion.",
+    "citation": "World Guidelines for Falls Prevention 2022 †; CDC STEADI 2019 †; AAN MCI guideline 2018 †"
+  },
+  {
+    "id": "cmr85zmfy00931yz66gz1vb9t",
+    "reason": "Asks for pharmacotherapy for stress-related sleep difficulty in an 8-year-old; behavioral therapy is first line and no drug is appropriate.",
+    "citation": "AACAP practice parameter for anxiety disorders 2020 †; AASM behavioral treatment practice parameters for bedtime problems 2006 †"
+  },
+  {
+    "id": "cmtwffkie008d1yso2bngnjn3",
+    "reason": "Key \"start levothyroxine\" without free T4/TPO antibodies and with TSH 8.5; referral or recheck is also defensible and data are missing.",
+    "citation": "ATA/AACE hypothyroidism guideline 2012 †; ATA hypothyroidism treatment guideline 2014 †"
+  },
+  {
+    "id": "cmtwf4n29001r1yfsdk20ac4w",
+    "reason": "Key \"lifestyle choices\" for BMI 32: obesity is multifactorial, no stem data supports it, and wording is stigmatizing.",
+    "citation": "ADA Standards of Care 2026 sec. 8 †; Joint consensus to end weight stigma, Rubino, Nat Med 2020 †"
+  }
+]
