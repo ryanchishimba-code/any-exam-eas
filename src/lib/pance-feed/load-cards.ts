@@ -3,12 +3,12 @@ import path from "node:path";
 import { isPanceFeedCardId, shortSystemName } from "@/lib/pance-feed/format";
 
 /**
- * Server-only catalog. Reads every cards-*.json under content/pance-feed/cards
- * so a later batch is picked up by dropping files in, with no code change.
- * Do not import this module from a client component.
+ * Server-only catalog. Reads cards.json and every cards-*.json under
+ * content/pance-feed/cards, so a later batch is picked up by dropping files
+ * in, with no code change. Do not import this module from a client component.
  */
 
-const CARD_FILE = /^cards-.+\.json$/;
+const CARD_FILE = /^cards(?:-.+)?\.json$/;
 const DEFAULT_ROOT = path.join(process.cwd(), "content", "pance-feed");
 
 export type PanceFeedCard = {

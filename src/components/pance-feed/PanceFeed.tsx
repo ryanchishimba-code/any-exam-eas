@@ -25,7 +25,7 @@ const TINT: Record<string, string> = {
   Dermatologic: "#c2410c",
   "Infectious Diseases": "#047857",
   Hematologic: "#b91c1c",
-  "Professional Practice": "#0f766e",
+  "Professional Practice": "#475569",
 };
 
 type Slide = { key: string; id: string; again: boolean };

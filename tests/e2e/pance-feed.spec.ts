@@ -181,7 +181,7 @@ test("paid feed at 390x844 and 375x812, contrast, and cross-session sync", async
   const pageB = await contextB.newPage();
   await signIn(pageB, PAID_EMAIL);
   await pageB.goto(FEED);
-  await expect(pageB.locator(".pf-ttl small")).toHaveText("1 of 148 mastered", { timeout: 60_000 });
+  await expect(pageB.locator(".pf-ttl small")).toHaveText("1 of 200 mastered", { timeout: 60_000 });
   await hideDevIndicator(pageB);
   await expect(pageB.locator(`[data-id="${firstId}"]`).first()).toHaveClass(/done/);
   await pageB.locator(".pf-feed").evaluate((el) => {

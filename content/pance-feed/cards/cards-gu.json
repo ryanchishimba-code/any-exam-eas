@@ -1,0 +1,191 @@
+[
+  {
+    "id": "pance-194",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Older man with nocturia, weak stream and a smooth enlarged prostate: first-line drug, when to add a 5-alpha reductase inhibitor, and PSA screening ages?",
+    "bottom": "Alpha-blocker first; add 5-ARI if the prostate is enlarged.",
+    "bullets": {
+      "clue": "Smooth, symmetric, enlarged prostate; nocturia, hesitancy, weak stream.",
+      "treat": "Tamsulosin works in days; finasteride shrinks the gland over months.",
+      "trap": "PSA screening: shared decision at ages 55–69."
+    },
+    "back": "Alpha-blocker first; add 5-ARI if the prostate is enlarged. Key clue: Smooth, symmetric, enlarged prostate; nocturia, hesitancy, weak stream. First-line: Tamsulosin works in days; finasteride shrinks the gland over months. Exam trap: PSA screening: shared decision at ages 55–69.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-194.svg",
+      "alt": "Benign prostatic hyperplasia: smooth enlarged prostate with obstructive symptoms; alpha-blocker first, add a 5-alpha reductase inhibitor for large glands."
+    },
+    "source": {
+      "guideline": "AUA Guideline: Management of Lower Urinary Tract Symptoms Attributed to BPH (2023 amendment); USPSTF Prostate Cancer Screening",
+      "year": "2023 / 2018",
+      "url": "https://doi.org/10.1097/ju.0000000000003698",
+      "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/prostate-cancer-screening",
+      "recommendation": "AUA 2023: alpha-blockers (e.g., tamsulosin) and 5-ARIs for LUTS/BPH; 5-ARIs are for enlarged prostate. USPSTF 2018 (grade C): men 55–69 individual decision after discussion; grade D at 70+."
+    }
+  },
+  {
+    "id": "pance-195",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Leaks with cough or sneeze, versus sudden urgency, versus constant dribbling with a distended bladder: which type, and first-line management?",
+    "bottom": "Stress, urgency (OAB) and overflow incontinence: treat each differently.",
+    "bullets": {
+      "clue": "Stress: leak with cough. Urge: can't make it. Overflow: dribble, residual urine.",
+      "treat": "Stress: pelvic floor training. Urge: bladder training, then drug.",
+      "trap": "Check post-void residual: antimuscarinics worsen retention."
+    },
+    "back": "Stress, urgency (OAB) and overflow incontinence: treat each differently. Key clue: Stress: leak with cough. Urge: can't make it. Overflow: dribble, residual urine. First-line: Stress: pelvic floor training. Urge: bladder training, then drug. Exam trap: Check post-void residual: antimuscarinics worsen retention.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-195.svg",
+      "alt": "Incontinence types: stress leaks with cough, urge has sudden urgency and is treated with bladder training and drugs, overflow dribbles with a high post-void residual."
+    },
+    "source": {
+      "guideline": "AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder",
+      "year": "2024",
+      "url": "https://doi.org/10.1097/ju.0000000000003985",
+      "alt_url": "https://www.auanet.org/documents/Guidelines/PDF/2023%20Guidelines/SUI%20Unabridged%20FINAL%20080223.pdf",
+      "recommendation": "AUA/SUFU 2024 OAB: behavioral therapies, antimuscarinics or β3-agonists as non-surgical options (no longer labeled 'first-line'); AUA/SUFU SUI 2017, amended 2023: counsel on observation, PFMT ± biofeedback, other options and surgery."
+    }
+  },
+  {
+    "id": "pance-196",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Acute scrotum exam: what do the cremasteric reflex, Prehn sign, transillumination and a 'bag of worms' tell you?",
+    "bottom": "Absent cremasteric reflex suggests torsion; light shines through a hydrocele.",
+    "bullets": {
+      "clue": "Torsion: high-riding, horizontal testis. Varicocele: bag of worms.",
+      "treat": "Epididymitis: ceftriaxone plus doxycycline. Torsion: urgent surgery.",
+      "trap": "Prehn sign is unreliable: don't use it to exclude torsion."
+    },
+    "back": "Absent cremasteric reflex suggests torsion; light shines through a hydrocele. Key clue: Torsion: high-riding, horizontal testis. Varicocele: bag of worms. First-line: Epididymitis: ceftriaxone plus doxycycline. Torsion: urgent surgery. Exam trap: Prehn sign is unreliable: don't use it to exclude torsion.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-196.svg",
+      "alt": "Scrotal exam: absent cremasteric reflex suggests torsion, hydrocele transilluminates, varicocele feels like a bag of worms; epididymitis is treated with ceftriaxone and doxycycline."
+    },
+    "source": {
+      "guideline": "CDC Sexually Transmitted Infections Treatment Guidelines: Epididymitis; AUA Acute Scrotum curriculum",
+      "year": "2021",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm",
+      "alt_url": "https://www.auanet.org/meetings-and-education/for-medical-students/medical-students-curriculum/acute-scrotum",
+      "recommendation": "CDC 2021: epididymitis, likely chlamydia/gonorrhea: ceftriaxone 500 mg IM once plus doxycycline 100 mg twice daily for 10 days; enteric organisms in insertive anal sex or older men: add levofloxacin-based regimen. Torsion: urgent surgery (see pance-016)."
+    }
+  },
+  {
+    "id": "pance-197",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Painless firm testicular mass in a 25-year-old with a history of cryptorchidism: first test, tumor markers, and surgery? Why not biopsy?",
+    "bottom": "Testicular cancer until proven otherwise.",
+    "bullets": {
+      "clue": "Painless solid intratesticular mass; ↑AFP, hCG or LDH.",
+      "treat": "Scrotal ultrasound, markers, then radical inguinal orchiectomy.",
+      "trap": "No transscrotal biopsy: it alters lymphatic spread."
+    },
+    "back": "Testicular cancer until proven otherwise. Key clue: Painless solid intratesticular mass; ↑AFP, hCG or LDH. First-line: Scrotal ultrasound, markers, then radical inguinal orchiectomy. Exam trap: No transscrotal biopsy: it alters lymphatic spread.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-197.svg",
+      "alt": "Testicular cancer: painless solid testicular mass; scrotal ultrasound and tumor markers AFP, hCG and LDH, then radical inguinal orchiectomy; avoid scrotal biopsy."
+    },
+    "source": {
+      "guideline": "AUA Guideline: Diagnosis and Treatment of Early-Stage Testicular Cancer (2023 amendment)",
+      "year": "2023",
+      "url": "https://doi.org/10.1097/ju.0000000000003694",
+      "alt_url": "https://www.auanet.org/guidelines-and-quality/guidelines/testicular-cancer-guideline",
+      "recommendation": "AUA 2019/2023: scrotal ultrasound for suspected mass; serum AFP, hCG and LDH; radical inguinal orchiectomy for suspected testicular cancer; avoid transscrotal procedures."
+    }
+  },
+  {
+    "id": "pance-198",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Painless gross hematuria in a 65-year-old smoker: what is the likely diagnosis and work-up? What is the classic renal cell carcinoma presentation?",
+    "bottom": "Bladder (urothelial) cancer until proven otherwise.",
+    "bullets": {
+      "clue": "Painless gross hematuria; smoking is the main risk. RCC: hematuria, flank pain, flank mass.",
+      "treat": "Cystoscopy plus upper-tract imaging (CT urography).",
+      "trap": "Anticoagulants don't explain hematuria: still evaluate."
+    },
+    "back": "Bladder (urothelial) cancer until proven otherwise. Key clue: Painless gross hematuria; smoking is the main risk. RCC: hematuria, flank pain, flank mass. First-line: Cystoscopy plus upper-tract imaging (CT urography). Exam trap: Anticoagulants don't explain hematuria: still evaluate.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-198.svg",
+      "alt": "Painless gross hematuria in an older smoker suggests bladder cancer; evaluate with cystoscopy and CT urography; renal cell carcinoma classically presents with hematuria, flank pain and a flank mass (triad, uncommon)."
+    },
+    "source": {
+      "guideline": "AUA/SUFU Updates to Microhematuria Guideline (2025)",
+      "year": "2025",
+      "url": "https://doi.org/10.1097/JU.0000000000004490",
+      "alt_url": "https://www.auanet.org/guidelines-and-quality/guidelines/microhematuria",
+      "recommendation": "AUA/SUFU 2025: hematuria risk stratification; cystoscopy and upper-tract imaging for high-risk patients; gross hematuria warrants evaluation."
+    }
+  },
+  {
+    "id": "pance-199",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Man with erectile dysfunction: first-line drug, a key contraindication, and what else does ED signal?",
+    "bottom": "PDE-5 inhibitor first; nitrates are contraindicated.",
+    "bullets": {
+      "clue": "ED can precede coronary disease: assess cardiovascular risk.",
+      "treat": "Sildenafil, tadalafil, vardenafil; testosterone only if deficient.",
+      "trap": "No nitrates within 24 h (48 h for tadalafil)."
+    },
+    "back": "PDE-5 inhibitor first; nitrates are contraindicated. Key clue: ED can precede coronary disease: assess cardiovascular risk. First-line: Sildenafil, tadalafil, vardenafil; testosterone only if deficient. Exam trap: No nitrates within 24 h (48 h for tadalafil).",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-199.svg",
+      "alt": "Erectile dysfunction: PDE-5 inhibitors first-line; contraindicated with nitrates; erectile dysfunction can signal cardiovascular disease."
+    },
+    "source": {
+      "guideline": "The Princeton IV Consensus Recommendations for the Management of Erectile Dysfunction and Cardiovascular Disease",
+      "year": "2024",
+      "url": "https://doi.org/10.1016/j.mayocp.2024.06.002",
+      "alt_url": "https://www.auanet.org/guidelines-and-quality/guidelines/erectile-dysfunction-(ed)-guideline",
+      "recommendation": "Princeton IV 2024: ED is a marker of cardiovascular risk; PDE-5 inhibitors appropriate with CV stability; nitrates contraindicated (24 h sildenafil/vardenafil, 48 h tadalafil)."
+    }
+  },
+  {
+    "id": "pance-200",
+    "system": "Genitourinary",
+    "blueprint_weight": "4%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Fever, dysuria and perineal pain with a tender, boggy prostate: diagnosis, what exam step to avoid, and treatment length?",
+    "bottom": "Acute bacterial prostatitis: culture, then weeks of antibiotics.",
+    "bullets": {
+      "clue": "Fever, irritative voiding, tender, swollen, boggy prostate.",
+      "treat": "Urine culture first; IV broad-spectrum if ill, then oral for 2–4 weeks.",
+      "trap": "No prostatic massage: it can cause bacteremia."
+    },
+    "back": "Acute bacterial prostatitis: culture, then weeks of antibiotics. Key clue: Fever, irritative voiding, tender, swollen, boggy prostate. First-line: Urine culture first; IV broad-spectrum if ill, then oral for 2–4 weeks. Exam trap: No prostatic massage: it can cause bacteremia.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-200.svg",
+      "alt": "Acute bacterial prostatitis: fever and a tender boggy prostate; do not massage; urine culture then antibiotics for two to four weeks."
+    },
+    "source": {
+      "guideline": "EAU Guidelines on Urological Infections",
+      "year": "2025",
+      "url": "https://uroweb.org/guidelines/urological-infections",
+      "alt_url": "https://www.aafp.org/pubs/afp/issues/2024/0700/prostatitis.html",
+      "recommendation": "EAU: acute bacterial prostatitis: urine culture, broad-spectrum parenteral antibiotics if severe, oral therapy; total duration 2–4 weeks; AAFP review cross-check."
+    }
+  }
+]

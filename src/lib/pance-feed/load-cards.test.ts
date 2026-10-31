@@ -18,44 +18,35 @@ afterEach(() => {
 });
 
 describe("loadPanceFeedCards", () => {
-  it("loads every cards-*.json file and ignores a plain cards.json", () => {
+  it("loads cards.json and every cards-*.json file", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "pance-feed-"));
     tempRoots.push(root);
-    writeCard(root, "cards-beta.json", [
-      {
-        id: "pance-200",
-        system: "Psychiatry/Behavioral",
-        front: "Later card",
-        bottom: "Bottom",
-        bullets: { clue: "c", treat: "t", trap: "x" },
-        source: { guideline: "Guide", year: "2026" },
-      },
-    ]);
-    writeCard(root, "cards-alpha.json", [
-      {
-        id: "pance-050",
-        system: "Pulmonary",
-        front: "Earlier card",
-        bottom: "Bottom",
-        bullets: { clue: "c", treat: "t", trap: "x" },
-        source: { guideline: "Guide", year: "2026" },
-      },
-    ]);
-    fs.writeFileSync(path.join(root, "cards", "cards.json"), JSON.stringify([{ id: "pance-001" }]));
+    const card = (id: string, system: string, front: string) => ({
+      id,
+      system,
+      front,
+      bottom: "Bottom",
+      bullets: { clue: "c", treat: "t", trap: "x" },
+      source: { guideline: "Guide", year: "2026" },
+    });
+    writeCard(root, "cards-beta.json", [card("pance-200", "Psychiatry/Behavioral", "Later card")]);
+    writeCard(root, "cards-alpha.json", [card("pance-050", "Pulmonary", "Earlier card")]);
+    writeCard(root, "cards.json", [card("pance-001", "Cardiovascular", "Pilot card")]);
     fs.writeFileSync(path.join(root, "cards", "notes.json"), "{}");
 
     const cards = loadPanceFeedCards(root);
-    expect(cards.map((card) => card.id)).toEqual(["pance-050", "pance-200"]);
-    expect(cards[1]?.system).toBe("Psychiatry");
+    expect(cards.map((item) => item.id)).toEqual(["pance-001", "pance-050", "pance-200"]);
+    expect(cards[2]?.system).toBe("Psychiatry");
   });
 
-  it("reads the shipped catalog from cards-*.json only", () => {
+  it("reads the shipped 200-card catalog", () => {
     const cards = loadPanceFeedCards();
-    expect(cards).toHaveLength(148);
-    expect(cards.some((card) => card.id === "pance-001")).toBe(false);
-    expect(new Set(cards.map((card) => card.id)).size).toBe(148);
-    expect(loadPanceFeedSvg(cards[0]!.id)).toContain("<svg");
-    expect(loadPanceFeedSvg("../cards/cards-cardio")).toBeNull();
-    expect(loadPanceFeedSvg("pance-001")).toBeNull();
+    expect(cards).toHaveLength(200);
+    expect(cards[0]?.id).toBe("pance-001");
+    expect(cards.at(-1)?.id).toBe("pance-200");
+    expect(new Set(cards.map((card) => card.id)).size).toBe(200);
+    expect(loadPanceFeedSvg("pance-001")).toContain("<svg");
+    expect(loadPanceFeedSvg("pance-200")).toContain("<svg");
+    expect(loadPanceFeedSvg("../cards/cards.json")).toBeNull();
   });
 });

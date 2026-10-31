@@ -1,0 +1,245 @@
+[
+  {
+    "id": "pance-169",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Microcytic anemia in a 62-year-old man: how do you tell iron deficiency from thalassemia trait and anemia of chronic disease, and what must you look for?",
+    "bottom": "Ferritin sorts them; find the source of iron loss.",
+    "bullets": {
+      "clue": "Low ferritin = iron deficiency; thalassemia trait: Mentzer index <13.",
+      "treat": "Oral iron; EGD and colonoscopy in men and postmenopausal women.",
+      "trap": "Inflammation raises ferritin: add transferrin saturation."
+    },
+    "back": "Ferritin sorts them; find the source of iron loss. Key clue: Low ferritin = iron deficiency; thalassemia trait: Mentzer index <13. First-line: Oral iron; EGD and colonoscopy in men and postmenopausal women. Exam trap: Inflammation raises ferritin: add transferrin saturation.",
+    "word_count": 40,
+    "mnemonic": "TICS: Thal, Iron, Chronic disease, Sideroblastic",
+    "diagram": {
+      "file": "svg/pance-169.svg",
+      "alt": "Microcytic anemia: ferritin below 45 means iron deficiency, so look for GI blood loss; thalassemia trait has a Mentzer index below 13; chronic disease has normal or high ferritin."
+    },
+    "source": {
+      "guideline": "AGA Clinical Practice Guidelines on the Gastrointestinal Evaluation of Iron Deficiency Anemia",
+      "year": "2020",
+      "url": "https://doi.org/10.1053/j.gastro.2020.06.046",
+      "alt_url": "https://gastro.org/clinical-guidance/gastrointestinal-evaluation-of-iron-deficiency-anemia/",
+      "recommendation": "AGA 2020: ferritin <45 ng/mL is the preferred diagnostic cutoff; bidirectional endoscopy for asymptomatic postmenopausal women and men with iron deficiency anemia; oral iron first; transferrin saturation helps when inflammation raises ferritin."
+    }
+  },
+  {
+    "id": "pance-170",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Macrocytic anemia with paresthesias, ataxia and hypersegmented neutrophils: what is the diagnosis, the confirmatory test, and what must you not give alone?",
+    "bottom": "B12 deficiency: treat with B12, never folate alone.",
+    "bullets": {
+      "clue": "Neuro signs; high methylmalonic acid (MMA) points to B12.",
+      "treat": "IM B12 if neuro signs or pernicious anemia.",
+      "trap": "Folate alone fixes anemia; nerve damage progresses."
+    },
+    "back": "B12 deficiency: treat with B12, never folate alone. Key clue: Neuro signs; high methylmalonic acid (MMA) points to B12. First-line: IM B12 if neuro signs or pernicious anemia. Exam trap: Folate alone fixes anemia; nerve damage progresses.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-170.svg",
+      "alt": "Macrocytic anemia with neurologic signs: check B12 and methylmalonic acid, treat with B12 first; folate alone worsens nerve damage."
+    },
+    "source": {
+      "guideline": "BSH Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
+      "year": "2014",
+      "url": "https://doi.org/10.1111/bjh.12959",
+      "alt_url": "https://www.nice.org.uk/guidance/ng239",
+      "recommendation": "BSH 2014: serum B12 first-line with MMA/homocysteine to clarify borderline results; anti-intrinsic factor antibody for pernicious anemia; hydroxocobalamin IM for neurologic involvement; folic acid should not be given alone in suspected B12 deficiency."
+    }
+  },
+  {
+    "id": "pance-171",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Clinical Intervention",
+    "front": "Child with sickle cell disease has a temperature of 38.8 °C: what is the immediate plan, and what prevents infection and crises long term?",
+    "bottom": "Fever ≥38.5 °C in sickle cell disease is an emergency.",
+    "bullets": {
+      "clue": "Functional asplenia: pneumococcus, encapsulated bacteria.",
+      "treat": "CBC, culture, prompt parenteral antibiotics; hydroxyurea from 9 months.",
+      "trap": "Cough or chest pain: chest X-ray for acute chest syndrome."
+    },
+    "back": "Fever ≥38.5 °C in sickle cell disease is an emergency. Key clue: Functional asplenia: pneumococcus, encapsulated bacteria. First-line: CBC, culture, prompt parenteral antibiotics; hydroxyurea from 9 months. Exam trap: Cough or chest pain: chest X-ray for acute chest syndrome.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-171.svg",
+      "alt": "Sickle cell disease with fever of 38.5 or higher: urgent evaluation, cultures and prompt parenteral antibiotics; penicillin prophylaxis and hydroxyurea prevent complications."
+    },
+    "source": {
+      "guideline": "NHLBI Evidence-Based Management of Sickle Cell Disease: Expert Panel Report",
+      "year": "2014",
+      "url": "https://www.nhlbi.nih.gov/health-topics/evidence-based-management-sickle-cell-disease",
+      "alt_url": "https://www.nhlbi.nih.gov/sites/default/files/publications/56-364NFULL.pdf",
+      "recommendation": "NHLBI 2014: temperature ≥101.3 °F (38.5 °C) requires immediate evaluation with CBC, reticulocyte count and blood culture, and prompt parenteral antibiotics covering S. pneumoniae and gram-negative enteric organisms; hydroxyurea offered to infants ≥9 months with HbSS/HbSβ0; penicillin prophylaxis in young children."
+    }
+  },
+  {
+    "id": "pance-172",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Platelets fall 60% five days after starting heparin: what is the diagnosis, how do you estimate probability, and what do you give?",
+    "bottom": "Suspected HIT: stop all heparin, start a non-heparin anticoagulant.",
+    "bullets": {
+      "clue": "Score with the 4Ts; confirm with PF4 immunoassay.",
+      "treat": "Argatroban, bivalirudin, fondaparinux or a DOAC.",
+      "trap": "Low 4Ts score: don't test or treat empirically."
+    },
+    "back": "Suspected HIT: stop all heparin, start a non-heparin anticoagulant. Key clue: Score with the 4Ts; confirm with PF4 immunoassay. First-line: Argatroban, bivalirudin, fondaparinux or a DOAC. Exam trap: Low 4Ts score: don't test or treat empirically.",
+    "word_count": 36,
+    "mnemonic": "4Ts: Thrombocytopenia, Timing, Thrombosis, oTher cause",
+    "diagram": {
+      "file": "svg/pance-172.svg",
+      "alt": "Heparin-induced thrombocytopenia: platelet fall of more than 50 percent at days 5 to 10; use the 4Ts score, stop heparin, give a non-heparin anticoagulant."
+    },
+    "source": {
+      "guideline": "ASH 2018 guidelines for management of venous thromboembolism: heparin-induced thrombocytopenia",
+      "year": "2018",
+      "url": "https://doi.org/10.1182/bloodadvances.2018024489",
+      "alt_url": "https://doi.org/10.1016/j.jtha.2025.03.038",
+      "recommendation": "ASH 2018 (strong): use the 4Ts score rather than gestalt; avoid HIT lab testing and empiric treatment with a low-probability 4Ts score. Conditional: choose among argatroban, bivalirudin, danaparoid, fondaparinux, DOACs for acute HIT. ISTH 2025 DIC scoring communication (alt link) supports platelets, PT, fibrinogen and D-dimer scoring."
+    }
+  },
+  {
+    "id": "pance-173",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Smear shows Auer rods, smudge cells, Reed-Sternberg cells or a Philadelphia chromosome: which disease, and what must not wait for confirmation?",
+    "bottom": "Match: AML, CLL, Hodgkin lymphoma, CML.",
+    "bullets": {
+      "clue": "Auer rods = AML (APL if t(15;17)); smudge cells = CLL.",
+      "treat": "Suspected APL: start ATRA now. CML: imatinib.",
+      "trap": "APL bleeds from DIC: don't wait for genetics."
+    },
+    "back": "Match: AML, CLL, Hodgkin lymphoma, CML. Key clue: Auer rods = AML (APL if t(15;17)); smudge cells = CLL. First-line: Suspected APL: start ATRA now. CML: imatinib. Exam trap: APL bleeds from DIC: don't wait for genetics.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-173.svg",
+      "alt": "Auer rods point to acute myeloid leukemia and acute promyelocytic leukemia; smudge cells to CLL; Reed-Sternberg cells to Hodgkin lymphoma; Philadelphia chromosome to CML."
+    },
+    "source": {
+      "guideline": "ELN recommendations for the management of acute promyelocytic leukemia (2019); ELN 2020 recommendations for CML",
+      "year": "2019 / 2020",
+      "url": "https://doi.org/10.1182/blood-2019-01-894980",
+      "alt_url": "https://doi.org/10.1038/s41375-020-0776-2",
+      "recommendation": "ELN APL 2019: start ATRA immediately at first suspicion of APL, without waiting for genetic confirmation, because of the bleeding/DIC risk. ELN CML 2020: tyrosine kinase inhibitor therapy for chronic phase. iwCLL 2018 (doi 10.1182/blood-2017-09-806398) is the CLL reference."
+    }
+  },
+  {
+    "id": "pance-174",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Which bleeding history points to von Willebrand disease or a platelet problem versus hemophilia, and which screening tests and levels confirm VWD?",
+    "bottom": "Mucosal bleeding: VWD; joint bleeds: hemophilia.",
+    "bullets": {
+      "clue": "Male, hemarthrosis, prolonged aPTT, normal PT = hemophilia A or B.",
+      "treat": "VWD: VWF antigen, activity, factor VIII. Hemophilia: factor assay.",
+      "trap": "VWF rises with stress or pregnancy: test when well."
+    },
+    "back": "Mucosal bleeding: VWD; joint bleeds: hemophilia. Key clue: Male, hemarthrosis, prolonged aPTT, normal PT = hemophilia A or B. First-line: VWD: VWF antigen, activity, factor VIII. Hemophilia: factor assay. Exam trap: VWF rises with stress or pregnancy: test when well.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-174.svg",
+      "alt": "Mucosal bleeding such as nosebleeds and heavy periods suggests von Willebrand disease; joint bleeds in a male suggest hemophilia; check VWF antigen and activity."
+    },
+    "source": {
+      "guideline": "ASH/ISTH/NHF/WFH 2021 guidelines on the diagnosis of von Willebrand disease",
+      "year": "2021",
+      "url": "https://doi.org/10.1182/bloodadvances.2020003265",
+      "alt_url": "https://doi.org/10.1111/hae.14046",
+      "recommendation": "ASH/ISTH/NHF/WFH 2021: use a structured bleeding assessment tool; VWD diagnosed on low VWF activity (<0.30 IU/mL diagnostic with or without bleeding; 0.30–0.50 with bleeding is called “low VWF”); WFH 2020 (alt link) covers hemophilia A/B diagnosis and factor replacement/emicizumab prophylaxis."
+    }
+  },
+  {
+    "id": "pance-175",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Life-threatening bleed on warfarin, dabigatran or apixaban: which reversal agent for each?",
+    "bottom": "Match the agent to the drug.",
+    "bullets": {
+      "clue": "Warfarin: vitamin K + 4F-PCC. Dabigatran: idarucizumab. Heparin: protamine.",
+      "treat": "Xa inhibitors: 4F-PCC; andexanet no longer sold in the U.S.",
+      "trap": "Reverse major bleeds only; FFP is second-line."
+    },
+    "back": "Match the agent to the drug. Key clue: Warfarin: vitamin K + 4F-PCC. Dabigatran: idarucizumab. Heparin: protamine. First-line: Xa inhibitors: 4F-PCC; andexanet no longer sold in the U.S. Exam trap: Reverse major bleeds only; FFP is second-line.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-175.svg",
+      "alt": "Warfarin is reversed with vitamin K and four-factor prothrombin complex concentrate, dabigatran with idarucizumab, factor Xa inhibitors with prothrombin complex concentrate."
+    },
+    "source": {
+      "guideline": "2020 ACC Expert Consensus Decision Pathway on Management of Bleeding in Patients on Oral Anticoagulants",
+      "year": "2020",
+      "url": "https://doi.org/10.1016/j.jacc.2020.04.053",
+      "alt_url": "https://www.fda.gov/vaccines-blood-biologics/safety-availability-biologics/cber-regulated-products-permanent-discontinuations",
+      "recommendation": "ACC 2020 pathway: for major bleeding on warfarin give vitamin K and 4F-PCC (plasma if PCC unavailable); idarucizumab for dabigatran; andexanet alfa or 4F-PCC for factor Xa inhibitors. FDA CBER list: andexanet alfa (Andexxa) permanently discontinued December 2025, so 4F-PCC is the remaining option."
+    }
+  },
+  {
+    "id": "pance-176",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Clinical Intervention",
+    "front": "Fever, flank pain and red urine minutes into a transfusion: what is the diagnosis and the first action? How do TRALI and TACO differ?",
+    "bottom": "Acute hemolytic reaction: stop the transfusion now.",
+    "bullets": {
+      "clue": "ABO mismatch: fever, hypotension, hemoglobinuria.",
+      "treat": "Stop, keep IV open, recheck labels, send DAT.",
+      "trap": "TACO: high BNP, diuretics help. TRALI: normal BNP, support only."
+    },
+    "back": "Acute hemolytic reaction: stop the transfusion now. Key clue: ABO mismatch: fever, hypotension, hemoglobinuria. First-line: Stop, keep IV open, recheck labels, send DAT. Exam trap: TACO: high BNP, diuretics help. TRALI: normal BNP, support only.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-176.svg",
+      "alt": "Transfusion reaction with fever, flank pain and dark urine: stop the transfusion, recheck labels, send direct antiglobulin test; TRALI and TACO cause pulmonary edema."
+    },
+    "source": {
+      "guideline": "CDC NHSN Hemovigilance Module Protocol (transfusion reaction definitions)",
+      "year": "2025",
+      "url": "https://www.cdc.gov/nhsn/pdfs/biovigilance/BV-HV-protocol-current.pdf",
+      "alt_url": "https://www.cdc.gov/nhsn/hemovigilance/index.html",
+      "recommendation": "CDC NHSN hemovigilance definitions: acute hemolytic reaction, TRALI (acute hypoxemia/bilateral infiltrates within 6 h, no left-atrial hypertension) and TACO (circulatory overload within 12 h, elevated BNP). Management steps (stop, recheck, DAT) are standard transfusion-medicine teaching."
+    }
+  },
+  {
+    "id": "pance-177",
+    "system": "Hematologic",
+    "blueprint_weight": "5%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Older adult with back pain, anemia, rising creatinine and calcium 12 mg/dL: what is the diagnosis and the first tests?",
+    "bottom": "Multiple myeloma until proven otherwise.",
+    "bullets": {
+      "clue": "CRAB: Calcium, Renal failure, Anemia, Bone lesions; rouleaux.",
+      "treat": "Serum protein electrophoresis, immunofixation, free light chains, marrow biopsy.",
+      "trap": "Dipstick misses light chains: send urine electrophoresis."
+    },
+    "back": "Multiple myeloma until proven otherwise. Key clue: CRAB: Calcium, Renal failure, Anemia, Bone lesions; rouleaux. First-line: Serum protein electrophoresis, immunofixation, free light chains, marrow biopsy. Exam trap: Dipstick misses light chains: send urine electrophoresis.",
+    "word_count": 34,
+    "mnemonic": "CRAB: Calcium, Renal, Anemia, Bone",
+    "diagram": {
+      "file": "svg/pance-177.svg",
+      "alt": "Multiple myeloma: back pain, anemia, kidney injury and high calcium; CRAB features; check serum protein electrophoresis, free light chains and bone marrow."
+    },
+    "source": {
+      "guideline": "IMWG updated criteria for the diagnosis of multiple myeloma",
+      "year": "2014",
+      "url": "https://doi.org/10.1016/S1470-2045(14)70442-5",
+      "alt_url": "https://www.myeloma.org/resource-library/international-myeloma-working-group-imwg-criteria-diagnosis-multiple-myeloma",
+      "recommendation": "IMWG 2014: clonal marrow plasma cells ≥10% (or biopsy-proven plasmacytoma) plus a myeloma-defining event: CRAB features, or ≥60% marrow plasma cells, serum FLC ratio ≥100 (involved ≥100 mg/L), or >1 focal MRI lesion."
+    }
+  }
+]

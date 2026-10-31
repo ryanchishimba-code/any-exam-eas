@@ -1,0 +1,191 @@
+[
+  {
+    "id": "pance-187",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Pearly papule with telangiectasia and a rolled border on the nose versus a scaly, ulcerated lesion on a sun-damaged ear: which cancers, and who needs Mohs?",
+    "bottom": "BCC and SCC: biopsy, then excise.",
+    "bullets": {
+      "clue": "BCC: pearly, rolled border. SCC: scaly, crusted; can metastasize.",
+      "treat": "Low-risk: excise (BCC 4 mm, SCC 4–6 mm margins). High-risk: Mohs.",
+      "trap": "Ear, lip, recurrent or perineural lesions are high risk."
+    },
+    "back": "BCC and SCC: biopsy, then excise. Key clue: BCC: pearly, rolled border. SCC: scaly, crusted; can metastasize. First-line: Low-risk: excise (BCC 4 mm, SCC 4–6 mm margins). High-risk: Mohs. Exam trap: Ear, lip, recurrent or perineural lesions are high risk.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-187.svg",
+      "alt": "Basal cell carcinoma is pearly with a rolled border; squamous cell carcinoma is scaly and ulcerated; excise low-risk lesions and use Mohs surgery for high-risk sites."
+    },
+    "source": {
+      "guideline": "AAD Guidelines of care for the management of basal cell carcinoma; and for cutaneous squamous cell carcinoma",
+      "year": "2018",
+      "url": "https://doi.org/10.1016/j.jaad.2017.10.006",
+      "alt_url": "https://doi.org/10.1016/j.jaad.2017.10.007",
+      "recommendation": "AAD 2018: surgical excision with 4 mm clinical margins for low-risk BCC; Mohs for high-risk BCC; for low-risk cutaneous SCC, standard excision with 4–6 mm margins; Mohs for high-risk SCC."
+    }
+  },
+  {
+    "id": "pance-188",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Itchy, relapsing rash on an infant's cheeks and extensors, and in an adult's flexures: diagnosis and treatment ladder?",
+    "bottom": "Atopic dermatitis: moisturize plus topical anti-inflammatories.",
+    "bullets": {
+      "clue": "Chronic itch, flexural in older patients, personal or family atopy.",
+      "treat": "Emollients plus topical steroid or calcineurin inhibitor; dupilumab if severe.",
+      "trap": "Routine antibiotics don't help; vesicles with fever: eczema herpeticum."
+    },
+    "back": "Atopic dermatitis: moisturize plus topical anti-inflammatories. Key clue: Chronic itch, flexural in older patients, personal or family atopy. First-line: Emollients plus topical steroid or calcineurin inhibitor; dupilumab if severe. Exam trap: Routine antibiotics don't help; vesicles with fever: eczema herpeticum.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-188.svg",
+      "alt": "Atopic dermatitis: itchy relapsing rash on cheeks in infants and flexures in adults; treat with emollients and topical steroids; dupilumab for severe disease."
+    },
+    "source": {
+      "guideline": "AAD Guidelines of care for the management of atopic dermatitis in adults with topical therapies; with phototherapy and systemic therapies",
+      "year": "2023 / 2024",
+      "url": "https://doi.org/10.1016/j.jaad.2022.12.029",
+      "alt_url": "https://doi.org/10.1016/j.jaad.2023.08.102",
+      "recommendation": "AAD 2023 topical therapies: emollients/moisturizers; topical corticosteroids, calcineurin inhibitors; routine use of topical antimicrobials not recommended. AAD 2024: systemic options including dupilumab for moderate-to-severe disease."
+    }
+  },
+  {
+    "id": "pance-189",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Silvery plaques on the elbows and knees, nail pitting, pinpoint bleeding when scale is lifted: diagnosis, treatment, and what to screen for?",
+    "bottom": "Plaque psoriasis: topicals if mild, biologics if moderate–severe.",
+    "bullets": {
+      "clue": "Silver scale, Auspitz sign, nail pitting, Koebner phenomenon.",
+      "treat": "Topical steroid plus vitamin D analog; biologic for moderate–severe.",
+      "trap": "Screen for psoriatic arthritis; systemic steroids can rebound."
+    },
+    "back": "Plaque psoriasis: topicals if mild, biologics if moderate–severe. Key clue: Silver scale, Auspitz sign, nail pitting, Koebner phenomenon. First-line: Topical steroid plus vitamin D analog; biologic for moderate–severe. Exam trap: Screen for psoriatic arthritis; systemic steroids can rebound.",
+    "word_count": 38,
+    "mnemonic": "Auspitz bleeding, pitting nails, Koebner at scars",
+    "diagram": {
+      "file": "svg/pance-189.svg",
+      "alt": "Plaque psoriasis: silvery scale on extensor surfaces, Auspitz sign, nail pitting and Koebner phenomenon; treat mild disease topically and moderate to severe disease with biologics."
+    },
+    "source": {
+      "guideline": "Joint AAD-NPF guidelines of care for the management and treatment of psoriasis with biologics",
+      "year": "2019",
+      "url": "https://doi.org/10.1016/j.jaad.2018.11.057",
+      "alt_url": "https://pubmed.ncbi.nlm.nih.gov/30772097/",
+      "recommendation": "AAD-NPF 2019: biologics (TNF, IL-12/23, IL-17, IL-23 inhibitors) are monotherapy options for moderate-to-severe plaque psoriasis; comorbidity guideline (alt link) recommends screening for psoriatic arthritis."
+    }
+  },
+  {
+    "id": "pance-190",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Teen with comedones and inflammatory papules: first-line therapy, when to add doxycycline, and when to use isotretinoin? How is rosacea different?",
+    "bottom": "Topical retinoid plus benzoyl peroxide; escalate by severity.",
+    "bullets": {
+      "clue": "Acne has comedones; rosacea has flushing, papules and no comedones.",
+      "treat": "Add doxycycline for inflammatory acne; isotretinoin for severe or scarring.",
+      "trap": "Never use antibiotics alone; isotretinoin needs pregnancy prevention."
+    },
+    "back": "Topical retinoid plus benzoyl peroxide; escalate by severity. Key clue: Acne has comedones; rosacea has flushing, papules and no comedones. First-line: Add doxycycline for inflammatory acne; isotretinoin for severe or scarring. Exam trap: Never use antibiotics alone; isotretinoin needs pregnancy prevention.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-190.svg",
+      "alt": "Acne vulgaris: topical retinoid plus benzoyl peroxide first, add doxycycline for inflammatory acne, isotretinoin for severe disease; rosacea has no comedones."
+    },
+    "source": {
+      "guideline": "AAD Guidelines of care for the management of acne vulgaris",
+      "year": "2024",
+      "url": "https://doi.org/10.1016/j.jaad.2023.12.017",
+      "alt_url": "https://www.rosacea.org/patients/treatment-algorithms",
+      "recommendation": "AAD 2024: topical benzoyl peroxide, retinoids, antibiotics (combine with BPO), oral doxycycline for moderate–severe inflammatory acne, isotretinoin for severe or scarring/refractory acne; avoid antibiotic monotherapy."
+    }
+  },
+  {
+    "id": "pance-191",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Painful rash with mucosal erosions and skin sloughing two weeks after a new drug, versus a rash with eosinophilia and hepatitis three weeks in: diagnoses and first step?",
+    "bottom": "SJS/TEN versus DRESS: stop the culprit drug now.",
+    "bullets": {
+      "clue": "SJS/TEN: Nikolsky sign, mucosal erosions. DRESS: eosinophilia, organ injury.",
+      "treat": "TEN: burn unit or ICU supportive care. DRESS: steroids if organs involved.",
+      "trap": "Culprits: allopurinol, anticonvulsants, sulfonamides; never rechallenge."
+    },
+    "back": "SJS/TEN versus DRESS: stop the culprit drug now. Key clue: SJS/TEN: Nikolsky sign, mucosal erosions. DRESS: eosinophilia, organ injury. First-line: TEN: burn unit or ICU supportive care. DRESS: steroids if organs involved. Exam trap: Culprits: allopurinol, anticonvulsants, sulfonamides; never rechallenge.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-191.svg",
+      "alt": "Stevens-Johnson syndrome and toxic epidermal necrolysis cause mucosal erosions and skin sloughing; DRESS causes rash with eosinophilia and organ injury; stop the culprit drug."
+    },
+    "source": {
+      "guideline": "Society of Dermatology Hospitalists supportive care guidelines for the management of Stevens-Johnson syndrome/toxic epidermal necrolysis in adults",
+      "year": "2020",
+      "url": "https://doi.org/10.1016/j.jaad.2020.02.066",
+      "alt_url": "https://pubmed.ncbi.nlm.nih.gov/32151629/",
+      "recommendation": "SDH 2020 supportive care guideline for SJS/TEN in adults (title/abstract level only); stopping the culprit drug and ICU/burn-unit supportive care are standard first steps."
+    }
+  },
+  {
+    "id": "pance-192",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Annular plaque with central clearing, itch worse at night with burrows in finger webs, or a herald patch then a 'Christmas tree' rash: diagnoses and first-line treatment?",
+    "bottom": "Tinea, scabies, pityriasis rosea.",
+    "bullets": {
+      "clue": "Tinea: KOH hyphae. Scabies: burrows. Pityriasis rosea: herald patch.",
+      "treat": "Topical antifungal; permethrin 5% neck down, repeat in a week, treat contacts.",
+      "trap": "Tinea capitis needs oral terbinafine; topicals fail."
+    },
+    "back": "Tinea, scabies, pityriasis rosea. Key clue: Tinea: KOH hyphae. Scabies: burrows. Pityriasis rosea: herald patch. First-line: Topical antifungal; permethrin 5% neck down, repeat in a week, treat contacts. Exam trap: Tinea capitis needs oral terbinafine; topicals fail.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-192.svg",
+      "alt": "Tinea has annular scaling plaques with central clearing and hyphae on KOH; scabies has burrows and nocturnal itch treated with permethrin; pityriasis rosea starts with a herald patch."
+    },
+    "source": {
+      "guideline": "AAFP American Family Physician: Diagnosis and Management of Tinea Infections; CDC Clinical Care of Scabies",
+      "year": "2025",
+      "url": "https://www.aafp.org/afp/2025/1000/tinea-infections",
+      "alt_url": "https://www.cdc.gov/scabies/hcp/clinical-care/",
+      "recommendation": "AFP 2025: confirm tinea with KOH; topical antifungals for corporis/cruris/pedis; oral terbinafine first-line for tinea capitis. CDC: permethrin 5% cream from the neck down for 8–14 h, repeat in about one week if needed."
+    }
+  },
+  {
+    "id": "pance-193",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "Clinical Intervention",
+    "front": "Adult with partial-thickness burns over 30% of body surface: how is fluid resuscitation started, and which burns go to a burn center?",
+    "bottom": "Start lactated Ringer's by %TBSA; titrate to urine output.",
+    "bullets": {
+      "clue": "Rule of nines; partial-thickness: blisters, painful. Full-thickness: leathery, painless.",
+      "treat": "ABA 2023: start 2 mL/kg per %TBSA over 24 h.",
+      "trap": "Classic Parkland uses 4 mL/kg; over-resuscitation harms."
+    },
+    "back": "Start lactated Ringer's by %TBSA; titrate to urine output. Key clue: Rule of nines; partial-thickness: blisters, painful. Full-thickness: leathery, painless. First-line: ABA 2023: start 2 mL/kg per %TBSA over 24 h. Exam trap: Classic Parkland uses 4 mL/kg; over-resuscitation harms.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-193.svg",
+      "alt": "Burn resuscitation: start lactated Ringer's at 2 milliliters per kilogram per percent body surface area over 24 hours and titrate to urine output; refer major burns to a burn center."
+    },
+    "source": {
+      "guideline": "American Burn Association Clinical Practice Guidelines on Burn Shock Resuscitation; ABA Guidelines for Burn Patient Referral",
+      "year": "2023",
+      "url": "https://doi.org/10.1093/jbcr/irad125",
+      "alt_url": "https://www.ameriburn.org/burn-care-team/resources/guidelines-for-burn-patient-referral",
+      "recommendation": "ABA 2023 burn shock CPG: adults with ≥20% TBSA burns: initiate resuscitation at about 2 mL/kg/%TBSA, titrated to urine output; ABA referral guidelines: full-thickness, partial-thickness ≥10% TBSA, face/hands/feet/genitalia/joints, inhalation, chemical and high-voltage injuries."
+    }
+  }
+]
