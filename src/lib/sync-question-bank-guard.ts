@@ -31,6 +31,9 @@ export const KEYFIX_BACKUP_TABLES = [
   // nightly seed sync cannot overwrite those rows or insert the old stem.
   "qbi_nclex_fix_20261025_backup",
   "qbi_nclex_loose_20261025_backup",
+  // 2026-10-30 NCLEX rewrites. Pre-change hashes stay protected so the nightly
+  // seed sync cannot insert the old stem after contentHash moves.
+  "qbi_nclex_fixes13_20261030_backup",
 ] as const;
 
 export type SeedExistingRow = {
