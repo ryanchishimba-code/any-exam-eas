@@ -536,7 +536,7 @@
   "system": "GI",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "An asymptomatic 45-year-old has never been tested for hepatitis C. Who is screened, and which result means active infection?",
+  "front": "A healthy 45-year-old has never had a hepatitis C test. Is 45 the cutoff, and what proves active infection?",
   "bottom": "All adults 18–79 at least once.",
   "bullets": {
    "clue": "Anti-HCV antibody with reflex HCV RNA.",
@@ -648,7 +648,7 @@
   "system": "ID",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "A patient is at the first prenatal visit. Who else needs syphilis testing, and which tests confirm it?",
+  "front": "The first prenatal panel includes syphilis testing. Which other adults are tested, and which result stays positive for life?",
   "bottom": "All pregnant patients at the first visit; adults at increased risk.",
   "bullets": {
    "clue": "Nontreponemal test (RPR) plus treponemal confirmation.",

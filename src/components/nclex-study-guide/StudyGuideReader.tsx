@@ -33,6 +33,7 @@ import {
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
 import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
 import { presentChapterCitations } from "@/lib/nclex-study-guide/chapter-citations";
+import { stripRenderedPremiumMarkers } from "@/lib/nclex-study-guide/markdown";
 import {
   presentFrontMatter,
   suppressEntitledTrialOffers,
@@ -609,6 +610,7 @@ export function StudyGuideReader({
         ? presentFrontMatter(chapter.bodyHtml, { hideTrialOffer: true })
         : chapter.bodyHtml
     );
+    html = stripRenderedPremiumMarkers(html);
     html = presentChapterCitations(html);
     if (!search.trim()) return html;
     const q = search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -1309,8 +1311,8 @@ export function StudyGuideReader({
               study-aid disclaimer and legal links live here instead. */}
           <div className="shrink-0 border-t border-white/10 px-3 py-3 sm:px-4">
             <p className="sg-ai-disclosure" role="note">
-              <strong>AI disclosure.</strong> Portions are AI-generated; verify against
-              authoritative sources. Where this chapter names a source, it is marked Source.
+              <strong>AI disclosure.</strong> Portions are AI-generated. Where this chapter
+              names a guideline and year, that citation is the source for the point.
             </p>
             <p className="mt-2 text-[11px] leading-relaxed text-white/45">
               Study aid only — not medical advice or a substitute for your{" "}

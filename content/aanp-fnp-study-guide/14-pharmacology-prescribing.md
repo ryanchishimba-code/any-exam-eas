@@ -1,6 +1,6 @@
 # Chapter 14 — Pharmacology & Prescribing
 
-> **Study aid only.** Prescribing principles for exam judgment — not individualized therapy, not legal advice, not a protocol. Verify DEA/state rules, Beers Criteria updates, pregnancy/lactation resources (PLLR labeling), FDA labeling, renal/hepatic dosing references, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
+> **Study aid only.** Prescribing principles for exam judgment — not individualized therapy, not legal advice, not a protocol. Confirm DEA/state rules, Beers Criteria updates, pregnancy/lactation resources (PLLR labeling), FDA labeling, renal/hepatic dosing references, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
 ![Beers prescribing card](visuals/beers-prescribing-card.svg)
 
@@ -29,11 +29,9 @@
 
 ## Why this chapter matters
 
-Therapeutics is not a siloed “pharm chapter” on the NPCB exam — it is woven through **Plan (27%)** and **Evaluate (15%)** on nearly every adult stem, and Domain II makes **Older Adult 30%** a Beers/polypharmacy reality check. Prenatal content inside **Young Adult\* 22%** means ACEI/ARB, isotretinoin systems, valproate, warfarin, methotrexate, and tetracycline/fluoroquinolone themes are high-stakes filters, not trivia.
+Therapeutics is not a siloed “pharm chapter” on the NPCB exam — it is woven through **Plan (27%)** and **Evaluate (15%)** on nearly every adult stem, and Domain II makes **Older Adult 30%** a Beers/polypharmacy reality check. Prenatal content inside **Young Adult\* 22%** means ACEI/ARB, isotretinoin systems, valproate, warfarin, methotrexate, and tetracycline/fluoroquinolone are high-stakes filters, not trivia.
 
 Expect stems on prescribing principles, geriatric potentially inappropriate meds, pregnancy/lactation teratogen awareness, CYP/QT/bleed interactions, controlled-substance judgment (PDMP, naloxone, opioid+benzo risk), antibiotic stewardship, systemic steroid counseling, insulin safety, and adherence/cost/SDoH barriers. Candidates who recall a drug name but skip monitoring lose Evaluate points; candidates who prescribe ACEI to a pregnant patient lose dangerous ones.
-
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage.
 
 ---
 
@@ -46,7 +44,7 @@ Expect stems on prescribing principles, geriatric potentially inappropriate meds
 | **Plan (27%)** | Right drug/dose/duration; safer alternative on Beers; teratogen avoidance; interaction check; teach-back; naloxone when opioid risk; stewardship duration |
 | **Evaluate (15%)** | Labs (K/Cr, INR, A1c, LFTs, drug levels when used), refill gaps, adverse effects, deprescribing opportunities, revise regimen |
 
-**Red-flag filter first:** anaphylaxis, Stevens–Johnson cues, serotonin syndrome/NMS themes, hypoglycemia unresponsiveness, major bleed on anticoag, overdose — ED before clever outpatient titration.
+**Red-flag filter first:** anaphylaxis, Stevens–Johnson cues, serotonin syndrome/NMS, hypoglycemia unresponsiveness, major bleed on anticoag, overdose — ED before clever outpatient titration.
 
 ---
 
@@ -54,9 +52,11 @@ Expect stems on prescribing principles, geriatric potentially inappropriate meds
 
 ### The “every Rx” checklist
 
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
 | Filter | Ask |
 | --- | --- |
-| Indication | Does evidence/guideline theme support this drug for this problem? |
+| Indication | Does evidence/guideline support this drug for this problem? |
 | Allergy | IgE/anaphylaxis vs GI upset vs delayed rash — documentation quality matters |
 | Pregnancy / lactation / pregnancy potential | Teratogen check before writing |
 | Renal / hepatic | Adjust or avoid |
@@ -73,6 +73,8 @@ Expect stems on prescribing principles, geriatric potentially inappropriate meds
 
 ### Teach-back is Plan
 
+Source: AGS Beers Criteria, 2023.
+
 Name, purpose, how to take, what to expect, red-flag stop symptoms, follow-up labs. Literacy-plain language. Interpreter when needed.
 
 > **MUST KNOW** — A complete prescription includes a monitoring and follow-up plan — Evaluate is scored.
@@ -87,9 +89,9 @@ Name, purpose, how to take, what to expect, red-flag stop symptoms, follow-up la
 
 Beers Criteria flag **potentially inappropriate medications** in older adults when safer alternatives exist — not absolute bans, but exam loves “pick the safer plan.”
 
-### High-yield classes (themes
+### High-yield classes (
 
-| Class / example themes | Why risky in many older adults | Safer thinking |
+| Class / example | Why risky in many older adults | Safer thinking |
 | --- | --- | --- |
 | First-gen antihistamines (diphenhydramine, etc.) | Anticholinergic: delirium, constipation, retention, falls | Non-sedating options / sleep hygiene |
 | Benzodiazepines / Z-drugs | Falls, confusion, dependence | Treat cause of insomnia/anxiety; nonpharm first |
@@ -97,7 +99,7 @@ Beers Criteria flag **potentially inappropriate medications** in older adults wh
 | Chronic systemic NSAIDs | GI bleed, AKI, HF exacerbation | Topical NSAID, acetaminophen, treat disease |
 | Sliding-scale insulin alone | Hypoglycemia without basal plan | Physiologic regimens; simplify |
 | Muscle relaxants (many) | Sedation/falls | PT, treat cause |
-| PPIs beyond indicated duration | Infection/fracture themes with prolonged use | Deprescribe when indication gone |
+| PPIs beyond indicated duration | Infection/fracture with prolonged use | Deprescribe when indication gone |
 | Sulfonylureas (esp. long-acting) in frail | Hypoglycemia/falls | Prefer agents with lower hypo risk when appropriate |
 
 ### Start low, go slow — then still get to goal when benefit clear
@@ -105,6 +107,8 @@ Beers Criteria flag **potentially inappropriate medications** in older adults wh
 Underdosing forever isn’t “safe” if HTN/HF/diabetes need evidence-based therapy — balance frailty against disease risk.
 
 ### Deprescribing is Plan
+
+Source: AGS Beers Criteria, 2023.
 
 Each visit: what can stop? Cascade (drug A causes symptom → drug B) is classic Older Adult trap.
 
@@ -118,31 +122,33 @@ Each visit: what can stop? Cascade (drug A causes symptom → drug B) is classic
 
 ### Mindset
 
-Pregnancy labeling moved from letter categories to **PLLR** narratives — exams still expect recognition of **classic teratogens / fetal toxicity themes**. When pregnancy possible: test before starting high-risk drugs; switch known teratogens immediately with Ob collaboration.
+Pregnancy labeling moved from letter categories to **PLLR** narratives — exams still expect recognition of **classic teratogens / fetal toxicity **. When pregnancy possible: test before starting high-risk drugs; switch known teratogens immediately with Ob collaboration.
 
-### High-yield “hard no / urgent switch” themes (verify labels)
+### High-yield “hard no / urgent switch”
 
-| Theme | Why it matters |
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+| | Why it matters |
 | --- | --- |
-| ACEI / ARB | Fetal renal toxicity / teratogenicity themes — switch per Ob guidance |
+| ACEI / ARB | Fetal renal toxicity / teratogenicity — switch per Ob guidance |
 | Isotretinoin / iPLEDGE-type systems | Severe teratogen — REMS awareness |
 | Valproate | Neural tube / neurodevelopmental risk — avoid in pregnancy potential when alternatives exist |
 | Warfarin | Teratogenicity — anticoagulation plans change in pregnancy (specialty) |
 | Methotrexate | Abortifacient/teratogen — contraception counseling when used |
-| Tetracyclines / fluoroquinolones | Teeth/bone and pregnancy caution themes |
-| NSAIDs (later pregnancy) | Fetal renal / ductus themes — timing matters; verify Ob guidance |
+| Tetracyclines / fluoroquinolones | Teeth/bone and pregnancy caution |
+| NSAIDs (later pregnancy) | Fetal renal / ductus — timing matters; Confirm Ob guidance |
 | Live vaccines | Pregnancy caution (ACIP) |
 | Statins | Labeling evolved — many stems still treat as avoid unless told otherwise; **follow** |
 
 ### Lactation
 
-Most antibiotics used in primary care have lactation data — still check a reliable resource. Avoid assuming “natural = safe” herbals. Radioactive iodine and select cytotoxics are incompatible themes.
+Most antibiotics used in primary care have lactation data — still check a reliable resource. Avoid assuming “natural = safe” herbals. Radioactive iodine and select cytotoxics are incompatible.
 
 ### Contraception when on teratogens
 
 Shared responsibility: effective contraception + documented counseling when prescribing known teratogens to people with pregnancy potential.
 
-> **MUST KNOW** — ACEI/ARB hard stop/switch in pregnancy; isotretinoin/methotrexate/valproate/warfarin = high-alert teratogen themes.
+> **MUST KNOW** — ACEI/ARB hard stop/switch in pregnancy; isotretinoin/methotrexate/valproate/warfarin = high-alert teratogen.
 
 ---
 
@@ -150,16 +156,18 @@ Shared responsibility: effective contraception + documented counseling when pres
 
 ### CYP / transporter classics
 
-| Pair theme | Risk |
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+| Pair | Risk |
 | --- | --- |
 | Simvastatin/lovastatin + strong CYP3A4 inhibitors (e.g., clarithromycin, certain azoles, some HIV meds) | Myopathy/rhabdo risk ↑ |
 | Many psychotropics / macrolides / azoles / antiarrhythmics | Check before stacking |
-| Rifampin inducer themes | Failures of OCPs, DOACs, etc. |
-| Grapefruit (selected drugs) | ↑ levels themes |
+| Rifampin inducer | Failures of OCPs, DOACs, etc. |
+| Grapefruit (selected drugs) | ↑ levels |
 
 ### QT stacking
 
-Additive QT risk: certain psychotropics, macrolides, fluoroquinolones, antiemetics, methadone themes — especially with hypokalemia/hypomagnesemia, female sex, structural heart disease, congenital long QT. Know the **concept**: don’t stack casually; check ECG when risk high.
+Additive QT risk: certain psychotropics, macrolides, fluoroquinolones, antiemetics, methadone — especially with hypokalemia/hypomagnesemia, female sex, structural heart disease, congenital long QT. Know the **concept**: don’t stack casually; check ECG when risk high.
 
 ### Bleed risk stacks
 
@@ -170,13 +178,15 @@ Additive QT risk: certain psychotropics, macrolides, fluoroquinolones, antiemeti
 | Dual antiplatelet + anticoagulant | “Triple therapy” specialty territory |
 | DOAC + strong interactors / acute kidney injury | Dose/accumulation |
 
-### Serotonin syndrome themes
+### Serotonin syndrome
 
 MAOI + SSRI/SNRI/tramadol/linezolid/triptan stacks (variable risk) — agitation, hyperreflexia, clonus, hyperthermia → ED. Don’t memorize every pairwise table; recognize **poly-serotonergic** danger.
 
 ### Hard contraindication still tested
 
-**PDE-5 inhibitors + nitrates** → profound hypotension — absolute avoidance theme.
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+**PDE-5 inhibitors + nitrates** → profound hypotension — absolute avoidance.
 
 > **MUST KNOW** — PDE-5 + nitrate = hard no. Warfarin + new antibiotic → INR plan, not patterns.
 
@@ -188,7 +198,9 @@ MAOI + SSRI/SNRI/tramadol/linezolid/triptan stacks (variable risk) — agitation
 
 ### Judgment the exam wants
 
-You are not being asked to recite every CFR clause. You **are** expected to: verify indication, check **PDMP** themes when prescribing controlled substances, assess risk (prior OD, benzo+opioid, SUD, sleep apnea), offer **naloxone** when opioid risk, use lowest effective dose/shortest duration for acute pain, prefer non-opioid pathways for many MSK pains, and know **stimulant diversion** / benzodiazepine dependence risks.
+Source: CDC opioid prescribing guideline, 2022.
+
+You are not being asked to recite every CFR clause. You **are** expected to: Confirm indication, check **PDMP** when prescribing controlled substances, assess risk (prior OD, benzo+opioid, SUD, sleep apnea), offer **naloxone** when opioid risk, use lowest effective dose/shortest duration for acute pain, prefer non-opioid pathways for many MSK pains, and know **stimulant diversion** / benzodiazepine dependence risks.
 
 ### Opioid + benzodiazepine
 
@@ -200,7 +212,7 @@ DEA registration, state controlled-substance rules, e-prescribing mandates, and 
 
 ### Stimulants / benzos / sleepers
 
-Document diagnosis (ADHD criteria themes), cardiac history when relevant, diversion screening, follow-up. Benzodiazepines: short-term situational use preferred over indefinite primary-care cascades; taper caution (withdrawal/seizure risk) — don’t abrupt-stop high-dose long-term users without a plan.
+Document diagnosis (ADHD criteria), cardiac history when relevant, diversion screening, follow-up. Benzodiazepines: short-term situational use preferred over indefinite primary-care cascades; taper caution (withdrawal/seizure risk) — don’t abrupt-stop high-dose long-term users without a plan.
 
 > **MUST KNOW** — Opioid + benzo stack raises overdose risk — avoid when possible; naloxone offer is Plan language.
 
@@ -214,7 +226,7 @@ Document diagnosis (ADHD criteria themes), cardiac history when relevant, divers
 - Don’t treat viral URI/bronchitis/sinus day 2 with azithromycin by default.
 - Prefer narrow spectrum when appropriate; use local resistance patterns conceptually.
 - Duration: shorter evidence-based courses when guidelines support — don’t invent “14 days because tradition.”
-- Penicillin allergy delabeling themes reduce vancomycin/fluoroquinolone overuse.
+- Penicillin allergy delabeling reduce vancomycin/fluoroquinolone overuse.
 
 ### High-misuse scenarios on exams
 
@@ -236,10 +248,12 @@ Bursts help asthma/COPD/gout/allergic contact flares when indicated — but hype
 
 ### Counseling that maps to items
 
-- Take with food in morning themes when appropriate.
+Source: GINA strategy report, 2025.
+
+- Take with food in morning when appropriate.
 - Don’t abrupt-stop prolonged courses — taper per indication (adrenal crisis risk).
 - Diabetics: expect glucose rises; monitoring plan.
-- Live vaccine timing issues with high-dose steroids — verify.
+- Live vaccine timing issues with high-dose steroids.
 - Recurrent bursts → revisit controller therapy (asthma) or gout prevention — don’t normalize endless packs.
 
 ### Topical vs systemic
@@ -250,22 +264,26 @@ Potency, site, duration for topicals (see derm chapter) — facial atrophy from 
 
 ---
 
-## Topic H — Insulin safety & diabetes med themes (primary-care)
+## Topic H — Insulin safety & diabetes med (primary-care)
 
 ### Insulin safety
 
-| Theme | Action |
+Source: ADA Standards of Care in Diabetes, 2026.
+
+| | Action |
 | --- | --- |
-| Hypoglycemia | Teach recognition, glucagon access themes, driving safety |
+| Hypoglycemia | Teach recognition, glucagon access, driving safety |
 | Sliding-scale alone in elders | Avoid as sole regimen (Beers) |
 | Technique | Pen primes, site rotation, needle length, never share pens |
 | Concentration traps | U-100 vs U-500 mix-ups — specialty caution |
-| Steroid bursts | Anticipatory insulin adjustment themes with diabetes team when needed |
+| Steroid bursts | Anticipatory insulin adjustment with diabetes team when needed |
 | Sick-day | When to call; never stop all insulin in T1D (DKA risk) |
 
 ### Non-insulin high-yield safety
 
-SGLT2: genital infection, rare DKA (including euglycemic), volume depletion — hold themes perioperatively/illness (verify). GLP-1 RAs: GI effects, rare gallbladder/pancreatitis counseling themes. Sulfonylureas: hypo/falls in frail. Metformin: GI titration; hold in significant AKI; B12 long-term awareness.
+Source: ADA Standards of Care in Diabetes, 2026.
+
+SGLT2: genital infection, rare DKA (including euglycemic), volume depletion — hold perioperatively/illness. GLP-1 RAs: GI effects, rare gallbladder/pancreatitis counseling. Sulfonylureas: hypo/falls in frail. Metformin: GI titration; hold in significant AKI; B12 long-term awareness.
 
 > **MUST KNOW** — Type 1 / insulin-deficient patients need basal insulin even when “not eating” — sick-day rules prevent DKA.
 
@@ -278,6 +296,8 @@ SGLT2: genital infection, rare DKA (including euglycemic), volume depletion — 
 Perfect guideline drug that the patient never obtains = failed Plan. Assess pharmacy deserts, insurance tiers, health literacy, food insecurity (with GLP-1 nausea), transportation to labs, caregiver med admin in assisted living.
 
 ### Practical Plan moves
+
+Source: AGS Beers Criteria, 2023.
 
 - Prefer generics / first-line affordable classes when efficacy similar.
 - Single-pill combinations when helpful.
@@ -295,12 +315,14 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 **Stem:** 78-year-old with insomnia after starting diphenhydramine for sleep, now confused at night. Also on oxybutynin for urge incontinence, amitriptyline for “neuropathy,” naproxen for knees, and lorazepam prn from a prior clinician. Daughter asks for “something stronger for sleep.”
 
 ### Assess
-- Older Adult 30%. Anticholinergic + sedative load + NSAID. Confusion may be drug-induced delirium themes. Fall risk.
+- Older Adult 30%. Anticholinergic + sedative load + NSAID. Confusion may be drug-induced delirium. Fall risk.
 
 ### Diagnose
 - Adverse drug cascade / Beers-laden regimen — not automatic “new dementia diagnosis tonight” without med review.
 
 ### Plan
+
+Source: AGS Beers Criteria, 2023.
 - Deprescribe stepwise: stop diphenhydramine; revisit amitriptyline/oxybutynin; sleep hygiene; treat incontinence with safer approaches; replace naproxen; avoid adding another sedative; consider PT/pain alternatives.
 
 ### Evaluate
@@ -324,7 +346,9 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 - ACEI exposure in early pregnancy — needs regimen change and Ob coordination; NSAID counseling for later pregnancy timing.
 
 ### Plan
-- Stop ACEI; switch to obstetric-preferred antihypertensive themes. Urgent prenatal entry. Avoid starting new teratogens. Document counseling.
+
+Source: 2025 AHA/ACC high blood pressure guideline.
+- Stop ACEI; switch to obstetric-preferred antihypertensive. Urgent prenatal entry. Avoid starting new teratogens. Document counseling.
 
 ### Evaluate
 - Confirm Ob linkage; BP control on new agent; emotional support.
@@ -341,12 +365,14 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 **Stem:** 68-year-old with AF on warfarin (INR usually 2.3). URI day 2, wants azithromycin. Also on simvastatin. No pneumonia findings; SpO₂ 98%.
 
 ### Assess
-- Viral URI likely. Interaction: macrolide–warfarin INR shift themes; macrolide–simvastatin myopathy themes; stewardship.
+- Viral URI likely. Interaction: macrolide–warfarin INR shift; macrolide–simvastatin myopathy; stewardship.
 
 ### Diagnose
 - Viral bronchitis/URI — antibiotic not indicated; interaction risk if prescribed anyway.
 
 ### Plan
+
+Source: 2026 ACC/AHA dyslipidemia guideline.
 - Supportive care; no azithromycin; counsel INR if any antibiotic later needed; review statin choice if macrolide ever truly required; return precautions for dyspnea/hypoxia.
 
 ### Evaluate
@@ -400,13 +426,13 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 - Prenatal-in-YA* makes teratogen filters non-optional.
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill Beers, teratogens, interactions, stewardship, steroid/insulin safety, and controlled-substance judgment items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
-
 ---
 
 ## Topic J — High-alert outpatient drugs (primary-care ownership)
 
-| Drug theme | Ownership hooks |
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+| Drug | Ownership hooks |
 | --- | --- |
 | Anticoagulants | Indication still valid? CrCl? Bleed? Peri-procedure holds with specialty |
 | Insulin / SU | Hypo prevention; frailty |
@@ -421,6 +447,8 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 ---
 
 ## Topic K — Counseling scripts that map to Plan items
+
+Source: 2025 AHA/ACC high blood pressure guideline.
 
 - “This blood pressure medicine is unsafe in pregnancy — we change it the day we know.”
 - “Benadryl every night can confuse older brains — let’s fix sleep another way.”
@@ -437,31 +465,31 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 
 **Practice stem:** 83-year-old with CKD-3, AF on apixaban, T2D on glyburide, chronic lorazepam, knee OA on naproxen, new “Z-pak” from urgent care for viral cough, daughter reports daytime sleepiness and a near-fall.
 
-**ADPE compressed:** Assess CrCl trend, hypo risk (SU), bleed risk (NSAID+DOAC), sedation (benzo), stewardship fail (macrolide). Diagnose: iatrogenic risk stack > undertreated cough. Plan: stop NSAID; safer analgesia; deprescribe/taper benzo with support; replace glyburide with lower-hypo agent themes if appropriate; stop unnecessary antibiotic; pharmacy med sync; PT/fall review. Evaluate: BMP/glucose, fall calendar, adherence, bleeding.
+**ADPE compressed:** Assess CrCl trend, hypo risk (SU), bleed risk (NSAID+DOAC), sedation (benzo), stewardship fail (macrolide). Diagnose: iatrogenic risk stack > undertreated cough. Plan: stop NSAID; safer analgesia; deprescribe/taper benzo with support; replace glyburide with lower-hypo agent if appropriate; stop unnecessary antibiotic; pharmacy med sync; PT/fall review. Evaluate: BMP/glucose, fall calendar, adherence, bleeding.
 
 ---
 
 ## Concept checks
 
-**1.** Pregnant patient on lisinopril — best Plan?  
-A. Continue until third trimester  B. Stop/switch per Ob-aligned agents and enter prenatal care  C. Add ARB  D. Double the dose  
+**1.** Pregnant patient on lisinopril — best Plan?
+A. Continue until third trimester B. Stop/switch per Ob-aligned agents and enter prenatal care C. Add ARB D. Double the dose
 **Answer:** B.
 
-**2.** PDE-5 inhibitor last night, now chest pain needing nitrate consideration?  
-A. Give nitrate freely  B. Respect absolute contraindication timing themes — ED pathway without nitrate  
-C. Double nitrate  D. Add another PDE-5  
+**2.** PDE-5 inhibitor last night, now chest pain needing nitrate consideration?
+A. Give nitrate freely B. Respect absolute contraindication timing — ED pathway without nitrate
+C. Double nitrate D. Add another PDE-5
 **Answer:** B.
 
-**3.** Older adult insomnia — least appropriate long-term Plan?  
-A. Sleep hygiene  B. Chronic diphenhydramine  C. Review caffeine/naps  D. Treat depression if present  
+**3.** Older adult insomnia — least appropriate long-term Plan?
+A. Sleep hygiene B. Chronic diphenhydramine C. Review caffeine/naps D. Treat depression if present
 **Answer:** B.
 
-**4.** Warfarin patient starts TMP-SMX for true bacterial infection — Evaluate priority?  
-A. Ignore INR  B. INR monitoring plan  C. Stop warfarin permanently always  D. Add aspirin automatically  
+**4.** Warfarin patient starts TMP-SMX for true bacterial infection — Evaluate priority?
+A. Ignore INR B. INR monitoring plan C. Stop warfarin permanently always D. Add aspirin automatically
 **Answer:** B.
 
-**5.** Best stewardship response to viral URI day 2?  
-A. Azithromycin “just in case”  B. Supportive care + return precautions  C. IV vancomycin  D. Lifelong prophylaxis  
+**5.** Best stewardship response to viral URI day 2?
+A. Azithromycin “just in case” B. Supportive care + return precautions C. IV vancomycin D. Lifelong prophylaxis
 **Answer:** B.
 
 ---
@@ -474,7 +502,7 @@ A. Azithromycin “just in case”  B. Supportive care + return precautions  C. 
 
 ## Deep dive — Renal dosing mindset (Older Adult gold)
 
-CrCl declines with age even when serum Cr “looks fine.” Before DOAC dosing themes, gabapentinoid titration, nitrofurantoin in low CrCl, metformin in significant AKI, and many antivirals — **think kidney**. Hold nephrotoxins in acute illness (NSAIDs, some ACEi combinations with diuretic/NSAID “triple whammy”).
+CrCl declines with age even when serum Cr “looks fine.” Before DOAC dosing, gabapentinoid titration, nitrofurantoin in low CrCl, metformin in significant AKI, and many antivirals — **think kidney**. Hold nephrotoxins in acute illness (NSAIDs, some ACEi combinations with diuretic/NSAID “triple whammy”).
 
 ## Deep dive — The prescribing timeout (30 seconds)
 
@@ -482,10 +510,12 @@ Before send: (1) indication, (2) pregnancy, (3) CrCl, (4) top 3 interactors on t
 
 ## Deep dive — Documentation phrases that mirror scored Plan
 
-- “PDMP reviewed; naloxone offered; lowest dose/shortest course; non-opioid alternatives discussed.”  
-- “Pregnancy test negative prior to teratogen; contraception counseling documented.”  
-- “Beers-aware: avoided diphenhydramine; chose topical NSAID.”  
-- “Antibiotic not indicated for viral URI; return precautions given.”  
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
+
+- “PDMP reviewed; naloxone offered; lowest dose/shortest course; non-opioid alternatives discussed.”
+- “Pregnancy test negative prior to teratogen; contraception counseling documented.”
+- “Beers-aware: avoided diphenhydramine; chose topical NSAID.”
+- “Antibiotic not indicated for viral URI; return precautions given.”
 - “INR check arranged 3–5 days after antibiotic start.”
 
 ## Final pharmacology sprint table

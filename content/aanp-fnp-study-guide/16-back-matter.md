@@ -48,19 +48,15 @@ Depends on baseline, work hours, and how recently you finished clinical rotation
 
 ### How do I use this book with a Qbank (step-by-step)?
 
-1. Read one clinical chapter (or one topic block).  
-2. Immediately do a focused Qbank block on that system (mixed age bands).  
-3. Review **every** miss and every lucky guess — read full rationales.  
-4. Tag the error log: **A/D/P/E** + age band (+ PREN / DISP / STEW when relevant).  
-5. Skim the chapter’s MUST KNOW / TRAP boxes again.  
-6. Weekly: one mixed timed set; rewrite your top 10 recurring traps.  
+1. Read one clinical chapter (or one topic block).
+2. Immediately do a focused Qbank block on that system (mixed age bands).
+3. Review **every** miss and every lucky guess — read full rationales.
+4. Tag the error log: **A/D/P/E** + age band (+ PREN / DISP / STEW when relevant).
+5. Skim the chapter’s MUST KNOW / TRAP boxes again.
+6. Weekly: one mixed timed set; rewrite your top 10 recurring traps.
 7. Final 7 days: follow Chapter 15’s sprint — light on −1.
 
 If your Qbank shows a weak Domain I process (e.g., Evaluate), deliberately hunt items that ask about monitoring, follow-up, or revising the plan — don’t only drill diagnosis facts.
-
-### Can AnyExamEasy help?
-
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Roadmap, and mocks.
 
 ### What if I fail or feel far from ready?
 
@@ -68,7 +64,7 @@ Use your score report (when available) to map weak domains/age bands, then rebui
 
 ### Should I memorize drug doses?
 
-Prefer **class + indication + safety filters + monitoring**. When a stem needs a dose, verify against current labeling/guidelines in real practice. This study aid uses key points, not standing orders. Inventing precise mg values that aren’t in official materials is a waste of scarce memory.
+Prefer **class + indication + safety filters + monitoring**. When a stem needs a dose, Confirm against current labeling/guidelines in real practice. This study aid uses key points, not standing orders. Inventing precise mg values that aren’t in official materials is a waste of scarce memory.
 
 ---
 
@@ -87,40 +83,29 @@ Prefer **class + indication + safety filters + monitoring**. When a stem needs a
 
 ---
 
-## You’ve got this
+## Before test day
 
 You already trained to think across the lifespan. On exam day:
 
-- Stabilize first.  
-- Name the ADPE verb.  
-- Keep can’t-miss diagnoses on the board.  
-- Apply Older Adult and prenatal lenses without being asked.  
-- Choose Plans that include teaching and follow-up.  
+- Stabilize first.
+- Name the ADPE verb.
+- Keep can’t-miss diagnoses on the board.
+- Apply Older Adult and prenatal lenses without being asked.
+- Choose Plans that include teaching and follow-up.
 - Don’t let one hard item steal the next ten.
 
-Confidence is not swagger — it’s pattern recognition you earned with deliberate practice.
-
----
-
-## Ready for AANP FNP practice?
-
-**AnyExamEasy** pairs this AANP FNP reference book with exam-style practice, rationales, Roadmap, and mocks.
-
-com)** — no payment method. Use it to drill weak systems, timed mocks, and rationale review that mirrors the ADPE habits in this book.
-
-*AANP FNP practice that matches the ADPE judgment this book trains.*
+Confidence on test day is pattern recognition earned with deliberate practice.
 
 ---
 
 ## Soft handoff checklist before you close the book
 
-- [ ] Official NPCB Candidate Handbook downloaded / skimmed  
-- [ ] Domain I and II tables recited from memory  
-- [ ] Error log has at least one week of tagged misses  
-- [ ] Chapter 15 sprint calendar on your phone  
-- [ ] Logistics (ID, appointment, travel) set  
-- [ ] Sleep plan for −2 and −1  
-- [ ] Qbank access confirmed (AnyExamEasy or other strong bank)
+- [ ] Official NPCB Candidate Handbook downloaded / skimmed
+- [ ] Domain I and II tables recited from memory
+- [ ] Error log has at least one week of tagged misses
+- [ ] Chapter 15 sprint calendar on your phone
+- [ ] Logistics (ID, appointment, travel) set
+- [ ] Sleep plan for −2 and −1
 
 ---
 
@@ -130,8 +115,8 @@ com)** — no payment method. Use it to drill weak systems, timed mocks, and rat
 
 *This book is a **study aid** for educational purposes only. It is **not** clinical advice, not a protocol, not legal advice, and not a substitute for professional judgment, preceptorship, institutional policy, or current primary sources (guidelines, FDA labeling, state/DEA rules, and the official candidate handbook).*
 
-*We do **not** guarantee exam results, certification, licensure, employment, or board outcomes. Drug names, intervals, and decision themes are teaching devices — **verify** against current guidance before any clinical use.*
+*We do **not** guarantee exam results, certification, licensure, employment, or board outcomes. Drug names, intervals, and decision steps are teaching devices — **Confirm** against current guidance before any clinical use.*
 
 *Always confirm current eligibility, blueprint weights, exam policies, and scheduling rules in the official NPCB Candidate Handbook and FNP materials at [aanpcert.org](https://www.aanpcert.org).*
 
-*© AnyExamEasy. All rights reserved.com](https://anyexameasy.com).*
+*© 2026 AnyExamEasy. All rights reserved.*

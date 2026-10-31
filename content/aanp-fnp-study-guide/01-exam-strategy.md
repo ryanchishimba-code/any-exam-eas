@@ -4,7 +4,7 @@
 
 ![NPCB Domain I Practice weights: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%](visuals/fnp-domain-i-weights.svg)
 
-![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal themes](visuals/fnp-domain-ii-age-mix.svg)
+![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal ](visuals/fnp-domain-ii-age-mix.svg)
 
 ![ADPE decision loop](visuals/adpe-loop.svg)
 
@@ -31,8 +31,6 @@ The AANP FNP exam is not a trivia bee. It asks whether you can practice as an **
 
 This chapter locks the official numbers, teaches the ADPE habit, gives study plans that respect those weights, and names the traps that quietly sink strong clinicians.
 
-**Pair with practice:** Strategy without questions is sightseeing. After you finish this chapter, start mixed sets and tag every miss with Domain I process + Domain II age band.
-
 ---
 
 > **MUST KNOW** — Domain I: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15% (handbook table; 36/135 scored items each for Diagnose and Plan). Exam length 150 (135+15) in a **3-hour** appointment.
@@ -53,7 +51,7 @@ This chapter locks the official numbers, teaches the ADPE habit, gives study pla
 
 ### The big picture
 
-| Fact | Detail (verify in current NPCB Candidate Handbook) |
+| Fact | Detail (Confirm in current NPCB Candidate Handbook) |
 | --- | --- |
 | Credential path | NPCB **FNP-C** (this book’s primary focus) |
 | Delivery | Computer-based testing (commonly Pearson VUE — confirm handbook) |
@@ -80,13 +78,13 @@ This chapter locks the official numbers, teaches the ADPE habit, gives study pla
 | Age category | Weight | What “ignore me” costs you |
 | --- | ---: | --- |
 | Newborn | **2%** | Tiny %, brutal misses (fever, jaundice, feeding, congenital screens) |
-| Infant | **3%** | Well child, fever, bronchiolitis themes |
-| Toddler | **4%** | Development, AOM, safety, foreign body themes |
+| Infant | **3%** | Well child, fever, bronchiolitis |
+| Toddler | **4%** | Development, AOM, safety, foreign body |
 | Child | **4%** | School-age asthma/ADHD/well care |
 | Adolescent\* | **9%** | Risk behavior, confidential care, sports, mental health |
 | Young Adult\* | **22%** | Reproductive health; **prenatal included** |
 | Middle Adult | **26%** | Prevention + chronic disease peak |
-| Older Adult | **30%** | Largest band — multimorbidity, Beers themes, falls, cognition, atypical presentations |
+| Older Adult | **30%** | Largest band — multimorbidity, Beers, falls, cognition, atypical presentations |
 
 \*Includes prenatal. Age parameters are not fixed by NPCB.
 
@@ -105,37 +103,37 @@ ANCC’s **FNP-BC** uses a **different** test content outline. Clinical judgment
 ### 1) Assess (32%) — the biggest slice
 
 Habits:
-- Name stability first (ABCs, severe pain, SI, hypoxia).  
-- Build HPI with a structure (OPQRST / OLD CARTS).  
-- Targeted ROS/exam — depth matches danger.  
-- Meds, allergies, substances, OTCs, contraceptives.  
-- Social history + **SDoH** (food, housing, transport, safety, literacy, pharmacy access).  
-- Age-band modifiers (developmental stage, pregnancy potential, frailty).  
+- Name stability first (ABCs, severe pain, SI, hypoxia).
+- Build HPI with a structure (OPQRST / OLD CARTS).
+- Targeted ROS/exam — depth matches danger.
+- Meds, allergies, substances, OTCs, contraceptives.
+- Social history + **SDoH** (food, housing, transport, safety, literacy, pharmacy access).
+- Age-band modifiers (developmental stage, pregnancy potential, frailty).
 - Ask: what information is missing before I act?
 
 ### 2) Diagnose (27%)
 
 Habits:
-- Hold three lanes: most likely · most dangerous · common mimics.  
-- Choose tests that **change management**.  
-- Know when clinical diagnosis is enough (many viral URIs, uncomplicated MSK).  
+- Hold three lanes: most likely · most dangerous · common mimics.
+- Choose tests that **change management**.
+- Know when clinical diagnosis is enough (many viral URIs, uncomplicated MSK).
 - Separate screening from diagnostic testing for symptomatic patients.
 
 ### 3) Plan (27%)
 
 Habits:
-- Nonpharm + pharm themes; follow the guideline and year named in this chapter.  
-- Patient education with teach-back and return precautions.  
-- Referral timing (emergent / urgent / routine).  
-- Opportunistic prevention in the same visit when safe.  
-- Shared decisions when evidence is preference-sensitive (PSA themes, some mammography ages — verify USPSTF).
+- Nonpharm + pharm; follow the guideline and year named in this chapter.
+- Patient education with teach-back and return precautions.
+- Referral timing (emergent / urgent / routine).
+- Opportunistic prevention in the same visit when safe.
+- Shared decisions when evidence is preference-sensitive.
 
 ### 4) Evaluate (15%)
 
 Habits:
-- Define success metrics (BP log, A1c timing, PHQ-9, weight, peak flows).  
-- Adverse effects and adherence barriers (including cost).  
-- Know when to escalate, de-escalate, or **rethink the diagnosis**.  
+- Define success metrics (BP log, A1c timing, PHQ-9, weight, peak flows).
+- Adverse effects and adherence barriers (including cost).
+- Know when to escalate, de-escalate, or **rethink the diagnosis**.
 - Transitions of care after ED/hospital.
 
 > **HIGHLIGHT** — A gorgeous prescription fails Domain I if you skipped assessment cues or ordered the wrong first test.
@@ -146,7 +144,7 @@ Habits:
 
 ### Red-flag filter
 
-Before “routine primary care,” classify **emergent / urgent / routine**. Missing ectopic, ACS, PE, cauda equina, septic joint, meningitis themes, or suicidal crisis is how strong students fail soft stems.
+Before “routine primary care,” classify **emergent / urgent / routine**. Missing ectopic, ACS, PE, cauda equina, septic joint, meningitis, or suicidal crisis is how strong students fail soft stems.
 
 ### Patient-factor filter
 
@@ -154,7 +152,7 @@ Allergies · pregnancy/lactation · renal/hepatic function · age extremes · in
 
 ### Lifespan lens (Domain II)
 
-After “what disease?,” ask “what changes because of age/stage?” Vaccines, milestones, Beers criteria themes, prenatal labs, adolescent confidentiality, atypical ACS in elders.
+After “what disease?,” ask “what changes because of age/stage?” Vaccines, milestones, Beers criteria, prenatal labs, adolescent confidentiality, atypical ACS in elders.
 
 ### Evidence-informed practice
 
@@ -162,9 +160,9 @@ Screening grades logic (offer / selective / discourage), overdiagnosis awareness
 
 ### Elimination / keyword strategy
 
-1. Find the real ask (which ADPE verb?).  
-2. Predict answer category.  
-3. Kill unsafe, age-blind, out-of-scope options.  
+1. Find the real ask (which ADPE verb?).
+2. Predict answer category.
+3. Kill unsafe, age-blind, out-of-scope options.
 4. Choose the most patient-specific immediate action.
 
 | Keyword | Often means |
@@ -224,7 +222,7 @@ Aim for **consistency over hero days**. A smaller set with full rationale review
 
 ### 4-week balanced
 
-| Week | Theme | Daily rhythm |
+| Week | | Daily rhythm |
 | --- | --- | --- |
 | 1 | Strategy + reasoning + prevention + cardio/pulm | AM content 45–60 · PM 50–75 Qs · Eve rationales |
 | 2 | Endocrine, GI, renal/GU, women’s health | 60–90 Qs · prenatal included |
@@ -244,8 +242,6 @@ Aim for **consistency over hero days**. A smaller set with full rationale review
 
 **Working full-time:** Non-negotiable daily block; weekends for long sets.
 
-> **Ready to practice what you planned?** Explore AANP FNP questions on [AnyExamEasy](https://anyexameasy.
-
 ---
 
 ## Common traps
@@ -259,7 +255,7 @@ Aim for **consistency over hero days**. A smaller set with full rationale review
 | Skipping peds because “small %” | Spaced pediatrics — high regret misses |
 | Resource overload | One primary bank + handbook + this book |
 | No timed practice | Build endurance |
-| Inventing exact doses under stress | Know class/safety; verify teaching doses |
+| Inventing exact doses under stress | Know class/safety; Confirm teaching doses |
 | Changing answers from anxiety | Change only for misread stems |
 | Studying only strengths | Error log drives tomorrow’s set |
 
@@ -281,11 +277,11 @@ Aim for **consistency over hero days**. A smaller set with full rationale review
 
 ### 5-box error log (FNP-adapted)
 
-1. Topic  
-2. Age band (Domain II)  
-3. Miss type (cue / priority / content / misread / ADPE stage / strategy)  
-4. Correct rule (one sentence)  
-5. Next drill  
+1. Topic
+2. Age band (Domain II)
+3. Miss type (cue / priority / content / misread / ADPE stage / strategy)
+4. Correct rule (one sentence)
+5. Next drill
 
 ### Practice % interpretation
 
@@ -296,34 +292,34 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 ## Exam-day checklist
 
 ### Week before
-- [ ] Eligibility, appointment, ID (handbook)  
-- [ ] Full timed quiet practice  
-- [ ] Route/logistics  
-- [ ] Taper new content  
-- [ ] Skim Domain I/II tables + red-flag list  
+- [ ] Eligibility, appointment, ID (handbook)
+- [ ] Full timed quiet practice
+- [ ] Route/logistics
+- [ ] Taper new content
+- [ ] Skim Domain I/II tables + red-flag list
 
 ### Night before
-- [ ] Light ADPE + quick refs only  
-- [ ] IDs laid out  
-- [ ] Two alarms  
-- [ ] No late cram  
-- [ ] Hydrate; breakfast plan  
+- [ ] Light ADPE + quick refs only
+- [ ] IDs laid out
+- [ ] Two alarms
+- [ ] No late cram
+- [ ] Hydrate; breakfast plan
 
 ### Morning
-- [ ] Sustaining food  
-- [ ] Arrive early  
-- [ ] Phone stored per rules  
-- [ ] Judgment > perfection self-talk  
+- [ ] Sustaining food
+- [ ] Arrive early
+- [ ] Phone stored per rules
+- [ ] Judgment > perfection self-talk
 
 ### During
-- [ ] Find the ADPE ask  
-- [ ] Red-flag filter early  
-- [ ] Notice age/pregnancy cues before therapy  
-- [ ] Keep moving  
+- [ ] Find the ADPE ask
+- [ ] Red-flag filter early
+- [ ] Notice age/pregnancy cues before therapy
+- [ ] Keep moving
 
 ### After
-- [ ] Don’t reconstruct every item  
-- [ ] Follow NPCB results process per handbook  
+- [ ] Don’t reconstruct every item
+- [ ] Follow NPCB results process per handbook
 
 ---
 
@@ -344,26 +340,26 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 
 ## Remember this
 
-- 150 questions = 135 scored + 15 pretest — take all seriously.  
-- Domain I: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%.  
-- Domain II: Older Adult 30% largest; prenatal lives in Young Adult\*.  
-- AANP/NPCB-first; ANCC is a separate outline.  
+- 150 questions = 135 scored + 15 pretest — take all seriously.
+- Domain I: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%.
+- Domain II: Older Adult 30% largest; prenatal lives in Young Adult\*.
+- AANP/NPCB-first; ANCC is a separate outline.
 - Application loop: topic → questions → error log → weak area.
 
 ---
 
 ## Concept checks
 
-**1.** Largest Domain I weight?  
-A. Evaluate  B. Assess  C. Plan 40%  D. Diagnose 40%  
+**1.** Largest Domain I weight?
+A. Evaluate B. Assess C. Plan 40% D. Diagnose 40%
 **Answer:** B (32%).
 
-**2.** Prenatal maps primarily to which Domain II category?  
-A. Newborn  B. Older Adult  C. Young Adult\*  D. Toddler  
+**2.** Prenatal maps primarily to which Domain II category?
+A. Newborn B. Older Adult C. Young Adult\* D. Toddler
 **Answer:** C.
 
-**3.** Best first habit on a clinical stem?  
-A. Pick a drug  B. Identify ADPE stage + red flags + age factors  C. Ignore SDoH  D. Assume ANCC weights  
+**3.** Best first habit on a clinical stem?
+A. Pick a drug B. Identify ADPE stage + red flags + age factors C. Ignore SDoH D. Assume ANCC weights
 **Answer:** B.
 
 ---
@@ -383,7 +379,7 @@ Inside each item, silently label Assess/Diagnose/Plan/Evaluate. If your misses c
 
 ### Legal/ethical & procedures awareness (knowledge area — light but real)
 
-Expect occasional stems on consent/assent themes, confidentiality (especially adolescent\*), mandatory reporting cues, scope/collaborative agreement awareness (state-specific — don’t invent law), and “which procedure is appropriate in primary care vs refer.” Stay high-level: protect safety, stay in scope, document, escalate.
+Expect occasional stems on consent/assent, confidentiality (especially adolescent\*), mandatory reporting cues, scope/collaborative agreement awareness (state-specific — don’t invent law), and “which procedure is appropriate in primary care vs refer.” Stay high-level: protect safety, stay in scope, document, escalate.
 
 ### Transitions of care as Evaluate gold
 

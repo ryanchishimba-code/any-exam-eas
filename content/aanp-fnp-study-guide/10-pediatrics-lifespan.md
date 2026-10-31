@@ -1,6 +1,6 @@
 # Chapter 10 — Pediatrics & Lifespan
 
-> **Study aid only.** Pediatric and adolescent primary-care themes for FNP exam judgment — not a protocol. Follow AAP Bright Futures–aligned well-child themes, ACIP vaccine schedules, otitis/asthma guidance, and drug labels. Thresholds below name the guideline and year. Independent of NPCB/AANP.
+> **Study aid only.** Pediatric and adolescent primary-care for FNP exam judgment — not a protocol. Follow AAP Bright Futures–aligned well-child visits, ACIP vaccine schedules, otitis/asthma guidance, and drug labels. Thresholds below name the guideline and year. Independent of NPCB/AANP.
 
 ![Well-child visit grid](visuals/well-child-visit-grid.svg)
 
@@ -33,8 +33,6 @@
 
 Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. NPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 27% / 27% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
 
-**Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage.
-
 ---
 
 ## ADPE lens for pediatrics
@@ -42,7 +40,7 @@ Newborn through adolescent care is a smaller Domain II slice than middle/older a
 | Domain I process | What it looks like in peds stems |
 | --- | --- |
 | **Assess (32%)** | Appearance (toxic vs well), hydration (tears, urine, fontanelle, CRT), work of breathing, growth chart trajectory, development surveillance, caregiver reliability, vaccine record, HEADDSS privately in teens, cardiac red flags for sports |
-| **Diagnose (27%)** | Serious bacterial infection risk by age; AOM vs OME; bronchiolitis vs asthma; ADHD vs sleep/anxiety mimics; concussion themes; appendicitis atypical in young |
+| **Diagnose (27%)** | Serious bacterial infection risk by age; AOM vs OME; bronchiolitis vs asthma; ADHD vs sleep/anxiety mimics; concussion; appendicitis atypical in young |
 | **Plan (27%)** | Watchful waiting vs abx; supportive RSV care; asthma action plan + spacer; stimulant teaching; hold sports clearance; vaccine catch-up; safety/anticipatory guidance |
 | **Evaluate (15%)** | Weight regain after illness; asthma control; ADHD rating scales; vaccine adverse event teaching; return precautions timed to age |
 
@@ -60,9 +58,9 @@ Newborn through adolescent care is a smaller Domain II slice than middle/older a
 
 | Age band | High-yield focus |
 | --- | --- |
-| Newborn | Feeding (breast/formula intake), jaundice, weight regain, safe sleep (ABC: alone, back, crib), umbilical, red-flag fever, maternal depression screen themes |
-| Infant | Milestones, vaccines, reflux vs red flags (bilious emesis, FTT, projectile pyloric themes), iron/fluoride timing themes |
-| Toddler/preschool | Language explosion surveillance, autism screen themes, car seats, accidental ingestion, toilet learning without shaming |
+| Newborn | Feeding (breast/formula intake), jaundice, weight regain, safe sleep (ABC: alone, back, crib), umbilical, red-flag fever, maternal depression screen |
+| Infant | Milestones, vaccines, reflux vs red flags (bilious emesis, FTT, projectile pyloric), iron/fluoride timing |
+| Toddler/preschool | Language explosion surveillance, autism screen, car seats, accidental ingestion, toilet learning without shaming |
 | School-age | Vision/hearing, school function, asthma/ADHD screens, bullying, dental |
 | Adolescent* | Confidential HEADDSS-style interview, sexual health, substances, mood/SI, sports, driving/safety |
 
@@ -74,7 +72,7 @@ Plot length/height, weight, head circumference (infants). Falling off curve → 
 
 > **TRAP** — Skipping development surveillance because “they look fine chatting with mom.”
 
-### Anticipatory guidance themes
+### Anticipatory guidance
 
 Safe sleep, choking hazards, water safety, firearm storage, sunscreen, media limits, transition to solid foods, poison control number. Document teaching — Evaluate loves return precautions.
 
@@ -88,8 +86,8 @@ Safe sleep, choking hazards, water safety, firearm storage, sunscreen, media lim
 
 | Age pattern | Disposition thinking |
 | --- | --- |
-| Neonate (≤28 days themes) febrile | **ED / protocolized full evaluation** — not “viral and home” |
-| Young infant (~1–2–3 months themes) | Low threshold acute eval; follow current febrile infant pathways |
+| Neonate (≤28 days) febrile | **ED / protocolized full evaluation** — not “viral and home” |
+| Young infant (~1–2–3 months) | Low threshold acute eval; follow current febrile infant pathways |
 | Older infant/toddler well-appearing | Targeted assessment; viral common; still hydrate and return precautions |
 | Any age toxic / petechiae / nuchal / AMS | ED |
 | Fever without source + limp / bone pain | Osteo/septic joint on board |
@@ -103,7 +101,9 @@ Safe sleep, choking hazards, water safety, firearm storage, sunscreen, media lim
 
 ### Home teaching (Plan)
 
-Antipyretics for comfort (correct weight-based dosing — verify; never aspirin in viral kids — Reye themes). Hydration. Return for lethargy, poor perfusion, respiratory distress, seizure, fever thresholds per your pathway teaching.
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
+
+Antipyretics for comfort. Hydration. Return for lethargy, poor perfusion, respiratory distress, seizure, fever thresholds per your pathway teaching.
 
 ---
 
@@ -113,20 +113,22 @@ Antipyretics for comfort (correct weight-based dosing — verify; never aspirin 
 
 **Many red ears and sore throats do not need antibiotics — age, severity, laterality, and testing drive Plan.**
 
-### AOM themes
+### AOM
+
+Source: AAP acute otitis media guideline, 2013.
 
 | Factor | Thinking |
 | --- | --- |
 | Accurate diagnosis | Bulging TM, impaired mobility — not just pink TM with crying |
-| Treat vs watch | Age + severity + bilateral vs unilateral influence immediate abx vs observation with follow-up — verify |
-| First-line abx when treating | Amoxicillin themes when indicated; resistance/recent exposure changes choice — verify |
+| Treat vs watch | Age + severity + bilateral vs unilateral influence immediate abx vs observation with follow-up |
+| First-line abx when treating | Amoxicillin when indicated; resistance/recent exposure changes choice |
 | OME (effusion without acute infection) | Usually observe; hearing/speech follow-up |
 
 Pain control matters whether or not you prescribe abx.
 
 ### Pharyngitis
 
-Viral majority. Centor/McIsaac-style pretest → test when bacterial likely; **avoid abx without support**. Scarlet fever / rheumatic fever prevention themes drive strep treatment when confirmed. Mono awareness if amoxicillin rash risk.
+Viral majority. Centor/McIsaac-style pretest → test when bacterial likely; **avoid abx without support**. Scarlet fever / rheumatic fever prevention drive strep treatment when confirmed. Mono awareness if amoxicillin rash risk.
 
 > **TRAP** — Automatic abx for every red ear or every sore throat “because school wants a note.”
 
@@ -144,7 +146,9 @@ Viral majority. Centor/McIsaac-style pretest → test when bacterial likely; **a
 
 Work of breathing (retractions, grunting, nasal flaring), SpO₂, feeding ability, apnea history in young infants, hydration.
 
-### Plan themes
+### Plan
+
+Source: GINA strategy report, 2025.
 
 Suction gently, hydrate, oxygen when indicated, ED if hypoxic/distressed/poor feeding/apnea. Bronchodilators/steroids generally not routine for typical bronchiolitis. Isolate teaching for caregivers.
 
@@ -160,9 +164,11 @@ Differential: foreign body, pertussis, cardiac, bacterial pneumonia, asthma in o
 
 **Control = daytime/night symptoms, activity limits, rescue frequency, exacerbations — daily albuterol means step-up, not endless refill.**
 
-### Plan themes
+### Plan
 
-Spacer/mask teaching, inhaled corticosteroid-containing controller for persistent disease (verify GINA/NAEPP-aligned), written action plan, trigger counseling, flu vaccine, ED precautions (speaks in words, blue lips, silent chest themes).
+Source: GINA strategy report, 2025.
+
+Spacer/mask teaching, inhaled corticosteroid-containing controller for persistent disease, written action plan, trigger counseling, flu vaccine, ED precautions (speaks in words, blue lips, silent chest).
 
 > **TRAP** — Refilling albuterol monthly without adding controller thinking.
 
@@ -180,9 +186,11 @@ Spacer/mask teaching, inhaled corticosteroid-containing controller for persisten
 
 Home and school input, onset, cardiac history/family sudden death before stimulants, growth, substance risk in adolescents, sleep.
 
-### Plan themes
+### Plan
 
-Behavioral interventions; stimulant/nonstimulant themes with monitoring (appetite, sleep, BP/HR, growth). School accommodations. Reassess diagnosis if “ADHD” appears first time at 17 without history.
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
+
+Behavioral interventions; stimulant/nonstimulant with monitoring (appetite, sleep, BP/HR, growth). School accommodations. Reassess diagnosis if “ADHD” appears first time at 17 without history.
 
 > **MUST KNOW** — Cardiac red-flag history before stimulant start — refer when indicated.
 
@@ -198,7 +206,7 @@ Behavioral interventions; stimulant/nonstimulant themes with monitoring (appetit
 
 ### Hold clearance / work up
 
-Exertional chest pain, exertional syncope/near-syncope, unexplained dyspnea out of proportion, family sudden cardiac death / cardiomyopathy / long QT themes, abnormal exam (marfanoid, murmur suggestive of obstruction).
+Exertional chest pain, exertional syncope/near-syncope, unexplained dyspnea out of proportion, family sudden cardiac death / cardiomyopathy / long QT, abnormal exam (marfanoid, murmur suggestive of obstruction).
 
 Concussion: return-to-play stepwise — no same-day return with suspected concussion.
 
@@ -224,15 +232,17 @@ Assess SI every mood stem. Offer contraception/STI care with confidentiality lim
 
 ### Takeaway
 
+Source: CDC adult hepatitis B screening, 2023.
+
 **Use current ACIP schedules — do not memorize a frozen year from an old PDF without checking.**
 
-FNP exam loves: true contraindications vs myths (mild illness is usually OK to vaccinate), live vaccine timing themes, Tdap in pregnancy (prenatal bridge), influenza yearly, HPV catch-up, meningococcal age themes, hepatitis B birth dose importance, RSV prevention products as current.
+FNP exam loves: true contraindications vs myths (mild illness is usually OK to vaccinate), live vaccine timing, Tdap in pregnancy (prenatal bridge), influenza yearly, HPV catch-up, meningococcal age, hepatitis B birth dose importance, RSV prevention products as current.
 
 Document refusal with education; revisit. Anaphylaxis preparedness.
 
 > **TRAP** — Delaying all vaccines for mild URI without indication; inventing permanent contraindications from family lore.
 
-> **HIGHLIGHT** — Verify schedules — key points only in this book.
+> **HIGHLIGHT**.
 
 ---
 
@@ -240,13 +250,15 @@ Document refusal with education; revisit. Anaphylaxis preparedness.
 
 ### Takeaway
 
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
+
 **Oral rehydration for mild–moderate; IV/ED for severe, shock, bilious vomiting, surgical abdomen, or failed ORT.**
 
 | Mild | Moderate | Severe |
 | --- | --- | --- |
 | Slightly dry MM, ↓ urine | Sunken eyes, lethargy, ↑ HR | Shock, AMS, poor perfusion |
 
-ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable ORT (verify). Diaper counts matter.
+ORS teaching beats juice/soda. Ondansetron in selected vomiting to enable ORT. Diaper counts matter.
 
 > **MUST KNOW** — Bilious emesis in neonate/infant → ED/surgical evaluation — not ORT and home.
 
@@ -263,15 +275,17 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 - Serious bacterial infection / invasive disease risk until evaluated — viral possible but **not a clinic observe lane**.
 
 ### Plan
+
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
 - **ED / hospital protocol pathway now** — do not outpatient “viral and follow up tomorrow.” Later parental teaching on fever and when to return.
 
 ### Evaluate
 - Ensure ED arrival; post-discharge follow-up; vaccine schedule continuation when appropriate.
 
 ### Why distractors fail
-- “Acetaminophen and recheck in clinic tomorrow.”  
-- “Treat empirically with oral amoxicillin and home.”  
-- “It’s only 100.8 — toddlers go higher.”  
+- “Acetaminophen and recheck in clinic tomorrow.”
+- “Treat empirically with oral amoxicillin and home.”
+- “It’s only 100.8 — toddlers go higher.”
 - “Blood work in clinic and send home pending cultures.”
 
 ---
@@ -287,22 +301,24 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 - Persistent asthma undertreated — not intermittent.
 
 ### Plan
-- Start ICS-containing controller themes (verify); spacer teaching with teach-back; written action plan; trigger counseling; follow-up; flu vaccine; ED precautions.
+
+Source: ACIP immunization schedule, 2026.
+- Start ICS-containing controller; spacer teaching with teach-back; written action plan; trigger counseling; follow-up; flu vaccine; ED precautions.
 
 ### Evaluate
 - Symptom diary / ACT-style check; refill pattern; technique recheck; step-down only when controlled sustained.
 
 ### Why distractors fail
-- “Refill albuterol only — he’s fine between attacks.”  
-- “Oral steroids monthly as controller.”  
-- “No action plan needed.”  
+- “Refill albuterol only — he’s fine between attacks.”
+- “Oral steroids monthly as controller.”
+- “No action plan needed.”
 - “Stop gym permanently instead of controlling asthma.”
 
 ---
 
 ## Clinical vignette 3 — 16-year-old sports physical with exertional chest pain
 
-**Stem:** Clearing for soccer. Reports chest pain and near-syncope on sprints. Uncle died suddenly at 34. Exam: II/VI systolic murmur increases with Valsalva (themes). BP normal; resting HR 64.
+**Stem:** Clearing for soccer. Reports chest pain and near-syncope on sprints. Uncle died suddenly at 34. Exam: II/VI systolic murmur increases with Valsalva. BP normal; resting HR 64.
 
 ### Assess
 - Cardiac red flags + family SCD. Adolescent* confidential review still for SI/substances separately, but **this visit’s stopper is cardiac**.
@@ -311,15 +327,17 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 - Not routine clearance — HOCM/arrhythmia lanes on the board until evaluated.
 
 ### Plan
+
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
 - **Hold sports**; ECG + cardiology pathway urgently; do not clear “pending.” Counsel against exertion until cleared.
 
 ### Evaluate
 - Specialty results before any clearance letter; document hold clearly for school.
 
 ### Why distractors fail
-- “Clear now, cardiology when convenient in 3 months.”  
-- “Anxiety — give note for full play.”  
-- “Trial of albuterol before practice.”  
+- “Clear now, cardiology when convenient in 3 months.”
+- “Anxiety — give note for full play.”
+- “Trial of albuterol before practice.”
 - “Normal resting HR means heart is fine.”
 
 ---
@@ -330,7 +348,7 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 | --- | --- |
 | Toddler fever logic in neonate | ED/protocol |
 | Abx for every AOM without criteria | Age/severity/laterality + pain control |
-| Albuterol-only persistent asthma | Add controller themes + action plan |
+| Albuterol-only persistent asthma | Add controller + action plan |
 | Clear exertional syncope athlete | Hold + cardiac workup |
 | Skip private teen interview | HEADSS-style + SI |
 | Invent vaccine contraindications | Use ACIP true contraindications |
@@ -343,45 +361,49 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 
 ## Quick checklist — pediatrics
 
-- [ ] Appearance + hydration + work of breathing assessed  
-- [ ] Fever disposition matched to age  
-- [ ] Growth plotted and interpreted  
-- [ ] AOM/pharyngitis stewardship applied  
-- [ ] Bronchiolitis = supportive; distress → ED  
-- [ ] Asthma control stepped appropriately  
-- [ ] ADHD multi-setting + cardiac pretest  
-- [ ] Sports red flags hold clearance  
-- [ ] Adolescent confidential risk + SI  
-- [ ] Vaccines verified to current ACIP  
-- [ ] Dehydration staged; bilious emesis escalated  
-- [ ] Caregiver teach-back + return precautions  
+- [ ] Appearance + hydration + work of breathing assessed
+- [ ] Fever disposition matched to age
+- [ ] Growth plotted and interpreted
+- [ ] AOM/pharyngitis stewardship applied
+- [ ] Bronchiolitis = supportive; distress → ED
+- [ ] Asthma control stepped appropriately
+- [ ] ADHD multi-setting + cardiac pretest
+- [ ] Sports red flags hold clearance
+- [ ] Adolescent confidential risk + SI
+- [ ] Vaccines verified to current ACIP
+- [ ] Dehydration staged; bilious emesis escalated
+- [ ] Caregiver teach-back + return precautions
 
 ---
 
 ## Remember this
 
-- Smaller Domain II % ≠ skippable — high-regret items cluster here.  
-- ADPE: toxic appearance and age-based fever rules beat recipe memorization.  
-- Verify vaccine schedules and abx durations — they update.  
-- Independent study aid — not NPCB/AANP; no pass guarantee.
+Source: ACIP immunization schedule, 2026.
 
-**Next practice move:** Drill neonatal fever, AOM stewardship, asthma, sports cardiac screens, and adolescent safety items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
+- Smaller Domain II % ≠ skippable — high-regret items cluster here.
+- ADPE: toxic appearance and age-based fever rules beat recipe memorization.
+.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 ---
 
 ## Anticipatory guidance rapid board (Plan language)
 
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
+
 | Age | Say this |
 | --- | --- |
 | Newborn | Back to sleep; no loose bedding; feed cues; jaundice follow-up |
 | 6 months | Starts solids readiness; poison control; baby-proof |
-| 1 year | Whole milk themes per guidance; mobility dangers; dental |
+| 1 year | Whole milk per guidance; mobility dangers; dental |
 | 5 years | School readiness; stranger/fire safety; vision |
 | Teen | Seat belts; substance honesty; consent; mood check |
 
 ---
 
 ## Critical callouts — pediatrics (scan tonight)
+
+Source: 2017 ACC/AHA syncope guideline.
 
 > **MUST KNOW** — Neonate fever → ED/protocol. Exertional syncope → hold sports.
 
@@ -394,10 +416,10 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 > **LIFESPAN** — Adolescent* SI and confidential sexual health are exam content.
 
 #### Critical checklist — pediatrics tonight
-- [ ] Fever by age  
-- [ ] Stewardship ears/throats  
-- [ ] Asthma / bronchiolitis lanes  
-- [ ] Sports + HEADSS + vaccines verify  
+- [ ] Fever by age
+- [ ] Stewardship ears/throats
+- [ ] Asthma / bronchiolitis lanes
+- [ ] Sports + HEADSS + vaccines Confirm
 
 ---
 
@@ -405,7 +427,7 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 
 **Takeaway: Prolonged fever plus mucocutaneous changes is not “viral until Monday.”**
 
-Kawasaki disease themes: ≥5 days fever with conjunctival injection, oral changes, extremity edema/erythema, polymorphous rash, cervical nodes — incomplete forms exist (especially infants). Early specialty/ED recognition matters for coronary complications.
+Kawasaki disease: ≥5 days fever with conjunctival injection, oral changes, extremity edema/erythema, polymorphous rash, cervical nodes — incomplete forms exist (especially infants). Early specialty/ED recognition matters for coronary complications.
 
 Petechiae/purpura with illness → meningococcemia/ITP/other — unstable → ED. Measles/varicella in under-vaccinated communities — isolation + public health thinking.
 
@@ -421,13 +443,13 @@ Febrile infants/young children may have UTI as occult source — culture when in
 
 ## Topic M — Developmental red flags & autism surveillance
 
-No babbling/gestures by expected ages, loss of skills, no pointing/joint attention themes — act early: hearing test + developmental referral, don’t “wait and see” forever. Early intervention is Plan gold.
+No babbling/gestures by expected ages, loss of skills, no pointing/joint attention — act early: hearing test + developmental referral, don’t “wait and see” forever. Early intervention is Plan gold.
 
 ---
 
 ## Topic N — Child abuse / neglect recognition (Assess duty)
 
-Inconsistent injury history, patterned bruises, spiral fracture themes in nonambulatory infants, delay in seeking care, failure to thrive with neglected hygiene — report per law; safety first. Medical mimics exist (osteogenesis imperfecta, bleeding disorders) — still protect the child while evaluating.
+Inconsistent injury history, patterned bruises, spiral fracture in nonambulatory infants, delay in seeking care, failure to thrive with neglected hygiene — report per law; safety first. Medical mimics exist (osteogenesis imperfecta, bleeding disorders) — still protect the child while evaluating.
 
 > **TRAP** — Accepting a changing story for a femoral fracture in a 3-month-old without protective action.
 
@@ -465,33 +487,37 @@ Inconsistent injury history, patterned bruises, spiral fracture themes in nonamb
 
 ## Counseling scripts (Plan)
 
-- “Any fever in the first month of life means we go to the emergency department — even if the baby looks okay to you.”  
-- “Pink ear drums with a cold are not always an infection needing antibiotics — we treat pain and decide based on exam.”  
-- “Daily rescue inhaler use means we need a daily controller — refills of albuterol alone are not the plan.”  
-- “Chest pain or fainting during sprints means no sports until a heart workup says it’s safe.”  
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
+- “Any fever in the first month of life means we go to the emergency department — even if the baby looks okay to you.”
+- “Pink ear drums with a cold are not always an infection needing antibiotics — we treat pain and decide based on exam.”
+- “Daily rescue inhaler use means we need a daily controller — refills of albuterol alone are not the plan.”
+- “Chest pain or fainting during sprints means no sports until a heart workup says it’s safe.”
 - “What we talk about stays between us unless someone is being hurt or you might be unsafe.”
 
 ---
 
 ## Concept checks
 
-**1.** Febrile 2-week-old — best Plan?  
-A. Home antipyretic and f/u 48h  B. ED/protocol evaluation  C. Oral cefdinir  D. Reassure vaccine fever only without eval  
+**1.** Febrile 2-week-old — best Plan?
+A. Home antipyretic and f/u 48h B. ED/protocol evaluation C. Oral cefdinir D. Reassure vaccine fever only without eval
 **Answer:** B.
 
-**2.** Athlete with exertional syncope — next?  
-A. Clear for championship  B. Hold sports + cardiac pathway  C. Increase caffeine  D. Iron only and clear  
+**2.** Athlete with exertional syncope — next?
+A. Clear for championship B. Hold sports + cardiac pathway C. Increase caffeine D. Iron only and clear
 **Answer:** B.
 
-**3.** Domain I weight for Assess on NPCB?  
-A. 15%  B. 27%  C. 32%  D. 30%  
+**3.** Domain I weight for Assess on NPCB?
+A. 15% B. 27% C. 32% D. 30%
 **Answer:** C (Assess 32%; Older Adult is Domain II 30%).
 
 ---
 
 ## Topic O — Orthopedics lite: limp, nursemaid’s elbow, scoliosis screen
 
-**Limp + fever** → osteomyelitis/septic arthritis until cleared — ED/urgent imaging/ortho. Transient synovitis is a diagnosis of exclusion after serious infection considered. Nursemaid’s elbow (radial head subluxation) after pull injury: classic hold posture; reduction themes when diagnosis clear — verify technique comfort/refer. Scoliosis screening in school-age/adolescents — refer significant curves.
+Source: AAP Bright Futures and the ACIP immunization schedule, 2026.
+
+**Limp + fever** → osteomyelitis/septic arthritis until cleared — ED/urgent imaging/ortho. Transient synovitis is a diagnosis of exclusion after serious infection considered. Nursemaid’s elbow (radial head subluxation) after pull injury: classic hold posture; reduction when diagnosis clear. Scoliosis screening in school-age/adolescents — refer significant curves.
 
 ---
 

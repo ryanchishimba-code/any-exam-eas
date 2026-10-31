@@ -2,9 +2,9 @@
 
 **Subtitle:** Primary Care Companion for the NPCB Family Nurse Practitioner (FNP-C) Exam
 
-**For:** FNP candidates preparing for NPCB FNP-C certification  
-**From:** [AnyExamEasy](https://anyexameasy.com)  
-**Edition framing:** NPCB Domain I (Practice) + Domain II (Patient Age) blueprint — verify current Candidate Handbook at [aanpcert.org](https://www.aanpcert.org)
+**For:** FNP candidates preparing for NPCB FNP-C certification
+**From:** [AnyExamEasy](https://anyexameasy.com)
+**Edition framing:** NPCB Domain I (Practice) + Domain II (Patient Age) blueprint — Confirm current Candidate Handbook at [aanpcert.org](https://www.aanpcert.org)
 
 ![AnyExamEasy AANP FNP Reference Book cover](visuals/fnp-book-cover.jpg)
 
@@ -24,11 +24,11 @@
 
 This book is a **study aid for exam preparation**. It is **not**:
 
-- Clinical advice, a treatment protocol, or a substitute for individualized patient care  
-- A substitute for your NP program, clinical preceptors, collaborating/supervising agreements, or employer policy  
-- An official **NPCB** or **AANP** publication or replacement for the Candidate Handbook / FNP exam blueprint  
+- Clinical advice, a treatment protocol, or a substitute for individualized patient care
+- A substitute for your NP program, clinical preceptors, collaborating/supervising agreements, or employer policy
+- An official **NPCB** or **AANP** publication or replacement for the Candidate Handbook / FNP exam blueprint
 
-**Always verify** guidelines, dosing, immunization schedules, screening recommendations, controlled-substance rules, and state scope-of-practice requirements with current official sources (NPCB, USPSTF, ACIP/CDC, major specialty guidelines, FDA labeling, DEA/state boards). When dosing or guidelines are mentioned, treat them as **the named thresholds in this chapter** — not standing orders.
+**Always Confirm** guidelines, dosing, immunization schedules, screening recommendations, controlled-substance rules, and state scope-of-practice requirements with current official sources (NPCB, USPSTF, ACIP/CDC, major specialty guidelines, FDA labeling, DEA/state boards). When dosing or guidelines are mentioned, treat them as **the named thresholds in this chapter** — not standing orders.
 
 AnyExamEasy does **not** guarantee exam results, certification, licensure, or employment. We are **independent** and not affiliated with NPCB, AANP, ANCC, or Pearson VUE. Exam names and trademarks belong to their owners.
 
@@ -36,10 +36,10 @@ AnyExamEasy does **not** guarantee exam results, certification, licensure, or em
 
 ## How to use this book
 
-1. **Start with Part I (Exam Strategy)** once — format, Domain I/II weights, ADPE framework, study plans, traps, exam day.  
-2. **Use Part II (Content chapters)** as a deep reference — read a topic, then immediately practice related questions.  
-3. **Keep Part III (Quick Reference)** open in your final week — red flags, screening strip, sprint plan.  
-4. **Run the learning loop:** topic → 20–40 Qbank items → full rationale review → 3 “remember this” lines in your error log (include age band).  
+1. **Start with Part I (Exam Strategy)** once — format, Domain I/II weights, ADPE framework, study plans, traps, exam day.
+2. **Use Part II (Content chapters)** as a deep reference — read a topic, then immediately practice related questions.
+3. **Keep Part III (Quick Reference)** open in your final week — red flags, screening strip, sprint plan.
+4. **Run the learning loop:** topic → 20–40 Qbank items → full rationale review → 3 “remember this” lines in your error log (include age band).
 5. **Do not** use this book as your only content source or as a practice protocol.
 
 **Pro tip:** Application beats rereading. A tired 40-question day with honest rationale review beats 150 rushed guesses.
@@ -63,8 +63,8 @@ Both exams test entry-level FNP competence; blueprints, emphasis, and item style
 
 ## Official source of truth
 
-- **NPCB FNP exam blueprint** — Domain I Practice + Domain II Patient Age weights  
-- **NPCB Candidate Handbook** — eligibility, format, test-day rules, attempts  
+- **NPCB FNP exam blueprint** — Domain I Practice + Domain II Patient Age weights
+- **NPCB Candidate Handbook** — eligibility, format, test-day rules, attempts
 - Primary site: [aanpcert.org](https://www.aanpcert.org)
 
 Third-party guides (including this one) prepare you — they do **not** replace NPCB documents.
@@ -97,26 +97,26 @@ Third-party guides (including this one) prepare you — they do **not** replace 
 
 ## Table of contents
 
-**Part I — Exam Strategy**  
+**Part I — Exam Strategy**
 1. Exam Strategy (format, Domain I/II, ADPE, plans)
 
-**Part II — Content Reference**  
-2. Clinical Reasoning  
-3. Health Promotion & Screening  
-4. Cardiology  
-5. Pulmonary  
-6. Endocrine  
-7. GI / Hepatic  
-8. Renal / GU  
-9. Women’s Health  
-10. Pediatrics & Lifespan  
-11. Psych / Neuro  
-12. MSK / Derm  
-13. ENT / Eyes / Heme / ID  
+**Part II — Content Reference**
+2. Clinical Reasoning
+3. Health Promotion & Screening
+4. Cardiology
+5. Pulmonary
+6. Endocrine
+7. GI / Hepatic
+8. Renal / GU
+9. Women’s Health
+10. Pediatrics & Lifespan
+11. Psych / Neuro
+12. MSK / Derm
+13. ENT / Eyes / Heme / ID
 14. Pharmacology & Prescribing
 
-**Part III — Quick Reference & Close**  
-15. Quick Reference  
+**Part III — Quick Reference & Close**
+15. Quick Reference
 16. Back Matter (FAQ, CTA, legal)
 
 ---
@@ -135,8 +135,8 @@ Third-party guides (including this one) prepare you — they do **not** replace 
 
 ## Critical checklist — before you dig into chapters
 
-- [ ] I know Domain I process weights  
-- [ ] I know Domain II age weights (Older Adult 30%)  
-- [ ] I know this book is AANP-first; ANCC is separate  
-- [ ] I will verify guidelines/doses clinically  
-- [ ] I will pair reading with Qbank practice  
+- [ ] I know Domain I process weights
+- [ ] I know Domain II age weights (Older Adult 30%)
+- [ ] I know this book is AANP-first; ANCC is separate
+- [ ] I will Confirm guidelines/doses clinically
+- [ ] I will pair reading with Qbank practice

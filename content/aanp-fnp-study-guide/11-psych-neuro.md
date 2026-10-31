@@ -1,6 +1,6 @@
 # Chapter 11 — Psych / Neuro
 
-> **Study aid only.** Mental health and neurologic themes for FNP exam judgment — not psychotherapy protocol or stroke-center standing orders. Follow guidelines, FDA labeling (including boxed warnings), and local crisis pathways. Independent of NPCB/AANP.
+> **Study aid only.** Mental health and neurologic for FNP exam judgment — not psychotherapy protocol or stroke-center standing orders. Follow guidelines, FDA labeling (including boxed warnings), and local crisis pathways. Independent of NPCB/AANP.
 
 ![Psych safety screen](visuals/psych-safety-screen.svg)
 
@@ -35,20 +35,18 @@ Depression, anxiety, bipolar cues, migraine, TIA/stroke, and dementia/delirium s
 
 Candidates who prescribe sertraline without asking about mania or suicide lose points. Candidates who send thunderclap headache home with sumatriptan lose dangerous ones.
 
-**Pair with practice:** Tag misses with age band + ADPE.
-
 ---
 
 ## ADPE lens for psych / neuro
 
 | Domain I process | What it looks like in stems |
 | --- | --- |
-| **Assess (32%)** | PHQ/GAD themes, SI/HI/means/access, mania cues, substance, sleep, trauma, neuro exam (focal deficits, mentation), meds (anticholinergics, benzos, opioids), fall risk, SDoH, pregnancy |
-| **Diagnose (27%)** | MDD vs bipolar vs adjustment; GAD/panic vs medical mimics; migraine vs secondary HA; TIA vs migraine aura vs seizure; delirium vs dementia vs depression (pseudo-dementia themes) |
-| **Plan (27%)** | Safety planning / ED; psychotherapy referral; SSRI/SNRI themes; avoid benzo-first chronic anxiety; EMS for stroke; treat reversible delirium causes |
+| **Assess (32%)** | PHQ/GAD, SI/HI/means/access, mania cues, substance, sleep, trauma, neuro exam (focal deficits, mentation), meds (anticholinergics, benzos, opioids), fall risk, SDoH, pregnancy |
+| **Diagnose (27%)** | MDD vs bipolar vs adjustment; GAD/panic vs medical mimics; migraine vs secondary HA; TIA vs migraine aura vs seizure; delirium vs dementia vs depression (pseudo-dementia) |
+| **Plan (27%)** | Safety planning / ED; psychotherapy referral; SSRI/SNRI; avoid benzo-first chronic anxiety; EMS for stroke; treat reversible delirium causes |
 | **Evaluate (15%)** | Early follow-up after antidepressant start/escalation; Na in older adults; cognition trend; migraine days / med overuse; secondary prevention after TIA |
 
-**Red-flag filter first:** SI with plan/intent, psychosis with danger, thunderclap HA, acute focal neuro deficit, meningismus with fever, status seizure themes, sudden AMS → emergency pathway before clever outpatient titration.
+**Red-flag filter first:** SI with plan/intent, psychosis with danger, thunderclap HA, acute focal neuro deficit, meningismus with fever, status seizure, sudden AMS → emergency pathway before clever outpatient titration.
 
 ---
 
@@ -60,28 +58,30 @@ Candidates who prescribe sertraline without asking about mania or suicide lose p
 
 ### Assess
 
-PHQ-2/9, GAD-7 themes. **Ask SI out loud** — ideation, plan, intent, means, protective factors, prior attempts. Mania history before antidepressant. Substance use. Medical mimics: TSH, anemia, B12, sleep apnea, meds, grief. Trauma screen when fitting.
+PHQ-2/9, GAD-7. **Ask SI out loud** — ideation, plan, intent, means, protective factors, prior attempts. Mania history before antidepressant. Substance use. Medical mimics: TSH, anemia, B12, sleep apnea, meds, grief. Trauma screen when fitting.
 
 ### Diagnose lanes
 
-MDD · persistent depressive · adjustment · bipolar depression · seasonal themes · PMDD · medical/substance-induced.
+MDD · persistent depressive · adjustment · bipolar depression · seasonal · PMDD · medical/substance-induced.
 
-### Plan themes (verify labels/guidelines)
+### Plan
+
+Source: USPSTF depression screening recommendation, 2023.
 
 | Tool | Pearl |
 | --- | --- |
-| Psychotherapy | First-line alone or with meds — CBT/IPT themes; don’t medicate-only forever |
+| Psychotherapy | First-line alone or with meds — CBT/IPT; don’t medicate-only forever |
 | SSRI/SNRI | Common primary-care starts; start low in older adults; counsel activation/SI monitoring |
-| Bupropion | Seizure/eating disorder cautions; less sexual SE themes |
-| Mirtazapine | Appetite/sleep themes — useful selected elders; sedation |
+| Bupropion | Seizure/eating disorder cautions; less sexual SE |
+| Mirtazapine | Appetite/sleep — useful selected elders; sedation |
 | Benzodiazepines | Short acute bridge sometimes — **not chronic anxiety first-line**; fall/dependence risk in elders |
-| Buspirone / hydroxyzine | Selected adjuncts — verify |
+| Buspirone / hydroxyzine | Selected adjuncts |
 
 Pregnancy / lactation: specialty-aware choices — untreated depression also harms; don’t abruptly stop without plan.
 
 ### Evaluate
 
-Follow up within **1–2 weeks** themes after start/escalation (especially youth). Watch worsening SI, agitation, serotonin risk stacks, hyponatremia in elders (SSRIs), sexual SE adherence, therapeutic trial length before declaring failure.
+Follow up within **1–2 weeks** after start/escalation (especially youth). Watch worsening SI, agitation, serotonin risk stacks, hyponatremia in elders (SSRIs), sexual SE adherence, therapeutic trial length before declaring failure.
 
 > **MUST KNOW** — Ask SI; document; escalate when unsafe.
 
@@ -90,12 +90,12 @@ Follow up within **1–2 weeks** themes after start/escalation (especially youth
 > **LIFESPAN** — Adolescent*: boxed warning awareness + close follow-up — still treat; untreated depression is dangerous. Older Adult: hypoNa, falls, interactions; start low/go slow.
 
 #### Critical checklist — depression/anxiety
-- [ ] SI assessed with means/access  
-- [ ] Mania cues asked  
-- [ ] Therapy offered  
-- [ ] Follow-up timed early after start  
-- [ ] Substance + medical mimics considered  
-- [ ] Older adult Na/fall risk considered  
+- [ ] SI assessed with means/access
+- [ ] Mania cues asked
+- [ ] Therapy offered
+- [ ] Follow-up timed early after start
+- [ ] Substance + medical mimics considered
+- [ ] Older adult Na/fall risk considered
 
 ---
 
@@ -107,9 +107,11 @@ Follow up within **1–2 weeks** themes after start/escalation (especially youth
 
 ### Assess
 
-Family bipolar history, prior antidepressant-induced mania, substance (stimulants, cocaine), postpartum psychosis risk themes (YA*).
+Family bipolar history, prior antidepressant-induced mania, substance (stimulants, cocaine), postpartum psychosis risk (YA*).
 
 ### Plan
+
+Source: USPSTF depression screening recommendation, 2023.
 
 Acute mania/psychosis with danger → **ED**. Mood stabilizer/antipsychotic management often specialty — know your scope and refer early. Sleep restoration and substance cessation matter.
 
@@ -123,7 +125,7 @@ Acute mania/psychosis with danger → **ED**. Mood stabilizer/antipsychotic mana
 
 ### Takeaway
 
-**Childhood-onset themes help; adults present with organization/work failure; rule out sleep apnea, anxiety, depression, substance, thyroid mimics.**
+**Childhood-onset help; adults present with organization/work failure; rule out sleep apnea, anxiety, depression, substance, thyroid mimics.**
 
 ### Assess
 
@@ -131,7 +133,9 @@ Multi-setting impairment, childhood history, cardiac symptoms/family SCD before 
 
 ### Plan
 
-Behavioral strategies; stimulant/nonstimulant themes with BP/HR monitoring; prefer long-acting when diversion risk; treat sleep apnea first if suspected. Document DSM-style criteria thoughtfully — don’t diagnose from one self-report checklist alone.
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+Behavioral strategies; stimulant/nonstimulant with BP/HR monitoring; prefer long-acting when diversion risk; treat sleep apnea first if suspected. Document DSM-style criteria thoughtfully — don’t diagnose from one self-report checklist alone.
 
 > **HIGHLIGHT** — Stimulant + uncontrolled HTN/active cardiac symptoms → fix cardiovascular picture / refer first.
 
@@ -143,7 +147,7 @@ Behavioral strategies; stimulant/nonstimulant themes with BP/HR monitoring; pref
 
 **Recurrent migraine pattern is outpatient treatable; SNOOP red flags are not “just migraine.”**
 
-| Primary migraine patterns | Secondary worry (SNOOP themes) |
+| Primary migraine patterns | Secondary worry (SNOOP) |
 | --- | --- |
 | Recurrent, photophobia, nausea, ± aura, disability | Systemic disease (fever, cancer, HIV) |
 | Builds over hours; triggers | Neurologic deficits (weakness, vision loss, confusion) |
@@ -151,9 +155,11 @@ Behavioral strategies; stimulant/nonstimulant themes with BP/HR monitoring; pref
 | Improves in dark/quiet | Older patient **new** headache / pattern change |
 | | Precipitated by Valsalva; postural; pregnancy (preeclampsia) |
 
-### Plan themes
+### Plan
 
-Acute: NSAID/triptan themes when eligible (verify CVD contraindications for triptans); antiemetic; avoid opioid-first. Preventive when frequent/disabling (beta blocker, topiramate, CGRP themes awareness — verify). Counsel medication-overuse headache. **Thunderclap / neuro deficit / meningismus → ED**.
+Source: ACOG Practice Bulletin 222, 2020.
+
+Acute: NSAID/triptan when eligible; antiemetic; avoid opioid-first. Preventive when frequent/disabling. Counsel medication-overuse headache. **Thunderclap / neuro deficit / meningismus → ED**.
 
 > **MUST KNOW** — Thunderclap headache → ED / SAH workup mindset — not outpatient sumatriptan.
 
@@ -173,7 +179,9 @@ Face droop, Arm weakness, Speech change, Time. BP, glucose (hypoglycemia mimic),
 
 ### Plan
 
-Acute deficit → **EMS/stroke pathway**. After confirmed TIA/stroke (post-hospital): antithrombotic themes, high-intensity statin themes, BP control, AF search, smoking cessation, diabetes control, driving/safety counseling — verify secondary prevention guidance. Carotid imaging pathways when indicated.
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+Acute deficit → **EMS/stroke pathway**. After confirmed TIA/stroke (post-hospital): antithrombotic, high-intensity statin, BP control, AF search, smoking cessation, diabetes control, driving/safety counseling. Carotid imaging pathways when indicated.
 
 > **MUST KNOW** — Acute focal neuro deficit → stroke pathway / EMS.
 
@@ -201,11 +209,13 @@ Meds (anticholinergics, benzos, opioids), infection (UTI/pneumonia — but don�
 
 ### Plan
 
-Treat cause; reorient; mobilize; avoid restraints/psychoactive stacks when possible; ED if unstable/unclear. Dementia: cognitive screen, B12/TSH, med review, safety (driving, meds, finances), caregiver support, cholinesterase inhibitor/memantine awareness with specialty — verify. Depression can mimic — treat mood when present.
+Source: ATA hypothyroidism guideline, 2014.
+
+Treat cause; reorient; mobilize; avoid restraints/psychoactive stacks when possible; ED if unstable/unclear. Dementia: cognitive screen, B12/TSH, med review, safety (driving, meds, finances), caregiver support, cholinesterase inhibitor/memantine awareness with specialty. Depression can mimic — treat mood when present.
 
 > **MUST KNOW** — Acute confusion in older adult = delirium workup first — not “new dementia diagnosis” in one visit.
 
-> **TRAP** — Starting donepezil for untreated UTI delirium; quetiapine-first without cause search (black box mortality themes in dementia-related psychosis — verify).
+> **TRAP** — Starting donepezil for untreated UTI delirium; quetiapine-first without cause search.
 
 ---
 
@@ -226,15 +236,17 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 - Depression with escalating SI ± antidepressant activation — acute safety risk. Bipolar unmask still on board.
 
 ### Plan
+
+Source: CDC opioid prescribing guideline, 2022.
 - **Urgent safety pathway / ED or crisis service** — means restriction (remove opioids), do not increase dose and wait 2 months. Involve caregivers for safety. Psychiatry collaboration. Hold/adjust med only with close supervision plan.
 
 ### Evaluate
-- Post-crisis follow-up intensity; weekly contact themes early; school safety plan; reassess diagnosis.
+- Post-crisis follow-up intensity; weekly contact early; school safety plan; reassess diagnosis.
 
 ### Why distractors fail
-- “Increase fluoxetine and see in 8 weeks.”  
-- “Sign a no-suicide contract and send home with opioids still in the house.”  
-- “It’s just teen moodiness.”  
+- “Increase fluoxetine and see in 8 weeks.”
+- “Sign a no-suicide contract and send home with opioids still in the house.”
+- “It’s just teen moodiness.”
 - “Stop all care because of boxed warning — never treat.”
 
 ---
@@ -250,15 +262,17 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 - SAH / secondary headache lane — not typical migraine pattern.
 
 ### Plan
+
+Source: USPSTF depression screening recommendation, 2023.
 - **ED immediately** for imaging/LP pathway per emergency protocol — do not give outpatient triptan and follow up.
 
 ### Evaluate
 - If negative workup later, migraine Plan can resume with specialty input; teach return precautions.
 
 ### Why distractors fail
-- “Sumatriptan IM in clinic and home.”  
-- “Migraine because she has a migraine history.”  
-- “CT next week if not better.”  
+- “Sumatriptan IM in clinic and home.”
+- “Migraine because she has a migraine history.”
+- “CT next week if not better.”
 - “Start topiramate today as sole action.”
 
 ---
@@ -274,15 +288,17 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 - Delirium superimposed on dementia — cause search mandatory. Do not label “worsening Alzheimer’s” alone.
 
 ### Plan
-- Stop offending anticholinergics when possible; evaluate infection **with clinical context** (not treat ASB blindly); bladder scan; BMP; consider ED if unstable; nonpharm calm first; antipsychotic only if severe danger and after cause-directed care — verify.
+
+Source: USPSTF depression screening recommendation, 2023.
+- Stop offending anticholinergics when possible; evaluate infection **with clinical context** (not treat ASB blindly); bladder scan; BMP; consider ED if unstable; nonpharm calm first; antipsychotic only if severe danger and after cause-directed care.
 
 ### Evaluate
 - Cognition toward baseline; med regeneration; fall prevention; caregiver teaching on delirium triggers.
 
 ### Why distractors fail
-- “Quetiapine standing order without workup.”  
-- “New dementia meds today as first move.”  
-- “Ignore med list.”  
+- “Quetiapine standing order without workup.”
+- “New dementia meds today as first move.”
+- “Ignore med list.”
 - “Treat every positive UA automatically without symptoms/assessment.”
 
 ---
@@ -295,7 +311,7 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 | Thunderclap = migraine | ED / SAH mindset |
 | Acute deficit = “follow neurology outpatient” | EMS/stroke pathway |
 | Delirium = new dementia | Medical workup first |
-| Benzo-first chronic anxiety | Therapy + SSRI/SNRI themes |
+| Benzo-first chronic anxiety | Therapy + SSRI/SNRI |
 | Ignore hypoNa on SSRI in elder | Check Na if AMS/falls |
 | Triptan in pregnancy/CVD blindly | Eligibility screen |
 | Adult ADHD from one checklist | Multi-source + mimic search |
@@ -306,29 +322,29 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 
 ## Quick checklist — psych / neuro
 
-- [ ] SI/HI assessed with means/access  
-- [ ] Mania cues before antidepressant monotherapy  
-- [ ] Early Evaluate after med start (esp. youth/elders)  
-- [ ] SNOOP applied to every “migraine” stem  
-- [ ] Thunderclap / focal deficit → ED/EMS  
-- [ ] TIA secondary prevention themes after acute phase  
-- [ ] Delirium workup before dementia labeling  
-- [ ] Anticholinergic/benzo load deprescribed in elders  
-- [ ] Adult ADHD mimics considered  
-- [ ] Pregnancy filter on psychotropics/triptans  
-- [ ] SDoH: access to therapy, meds, safe housing  
-- [ ] Teach-back crisis numbers / return precautions  
+- [ ] SI/HI assessed with means/access
+- [ ] Mania cues before antidepressant monotherapy
+- [ ] Early Evaluate after med start (esp. youth/elders)
+- [ ] SNOOP applied to every “migraine” stem
+- [ ] Thunderclap / focal deficit → ED/EMS
+- [ ] TIA secondary prevention after acute phase
+- [ ] Delirium workup before dementia labeling
+- [ ] Anticholinergic/benzo load deprescribed in elders
+- [ ] Adult ADHD mimics considered
+- [ ] Pregnancy filter on psychotropics/triptans
+- [ ] SDoH: access to therapy, meds, safe housing
+- [ ] Teach-back crisis numbers / return precautions
 
 ---
 
 ## Remember this
 
-- Older Adult **30%** loves delirium, stroke, and drug-sensitive depression care.  
-- Safety disposition is Domain I Assess/Plan — not optional soft skills.  
-- Verify psychopharmacology labels and stroke guidance — they evolve.  
-- Independent study aid — not NPCB/AANP; no pass guarantee.
+Source: USPSTF depression screening recommendation, 2023.
 
-**Next practice move:** Drill SI safety, antidepressant starts, migraine vs secondary HA, stroke/TIA, and delirium items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
+- Older Adult **30%** loves delirium, stroke, and drug-sensitive depression care.
+- Safety disposition is Domain I Assess/Plan — not optional soft skills.
+.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 ---
 
@@ -342,32 +358,34 @@ Alcohol withdrawal can look like anxiety or delirium — CIWA-aware disposition 
 
 ## Topic I — Parkinsonism & tremor triage (Older Adult)
 
-Rest tremor, bradykinesia, rigidity → neurology; watch meds that worsen parkinsonism (metoclopramide, many antipsychotics). Essential tremor: action tremor, alcohol response themes historically — treat when impairing; fall risk with sedating options in elders.
+Rest tremor, bradykinesia, rigidity → neurology; watch meds that worsen parkinsonism (metoclopramide, many antipsychotics). Essential tremor: action tremor, alcohol response historically — treat when impairing; fall risk with sedating options in elders.
 
 ---
 
 ## Counseling scripts (Plan)
 
-- “I ask every patient about thoughts of wanting to die — are you having any?”  
-- “A headache that hits maximum intensity in seconds is an emergency until proven otherwise.”  
-- “Confusion that started yesterday is a medical workup — not just aging.”  
-- “Face droop or arm weakness means call EMS now — don’t drive yourself.”  
+Source: USPSTF depression screening recommendation, 2023.
+
+- “I ask every patient about thoughts of wanting to die — are you having any?”
+- “A headache that hits maximum intensity in seconds is an emergency until proven otherwise.”
+- “Confusion that started yesterday is a medical workup — not just aging.”
+- “Face droop or arm weakness means call EMS now — don’t drive yourself.”
 - “We’ll check in within two weeks of starting this antidepressant — sooner if thoughts of self-harm increase.”
 
 ---
 
 ## Concept checks
 
-**1.** Domain II Older Adult approximate weight?  
-A. 9%  B. 15%  C. 30%  D. 50%  
+**1.** Domain II Older Adult approximate weight?
+A. 9% B. 15% C. 30% D. 50%
 **Answer:** C.
 
-**2.** Thunderclap HA best first Plan?  
-A. Oral sumatriptan and home  B. ED pathway  C. Start amitriptyline only  D. Reassurance migraine  
+**2.** Thunderclap HA best first Plan?
+A. Oral sumatriptan and home B. ED pathway C. Start amitriptyline only D. Reassurance migraine
 **Answer:** B.
 
-**3.** Acute confusion fluctuating attention in elder — first frame?  
-A. New Alzheimer’s diagnosis visit  B. Delirium workup  C. Donepezil start only  D. Ignore if afebrile  
+**3.** Acute confusion fluctuating attention in elder — first frame?
+A. New Alzheimer’s diagnosis visit B. Delirium workup C. Donepezil start only D. Ignore if afebrile
 **Answer:** B.
 
 ---
@@ -385,10 +403,10 @@ A. New Alzheimer’s diagnosis visit  B. Delirium workup  C. Donepezil start onl
 > **LIFESPAN** — Older Adult 30%: hypoNa on SSRI, delirium, stroke. Adolescent*: safety intensity.
 
 #### Critical checklist — psych/neuro tonight
-- [ ] SI script fluent  
-- [ ] SNOOP + FAST  
-- [ ] Delirium vs dementia table memorized  
-- [ ] Mania screen habit  
+- [ ] SI script fluent
+- [ ] SNOOP + FAST
+- [ ] Delirium vs dementia table memorized
+- [ ] Mania screen habit
 
 ---
 
@@ -400,7 +418,7 @@ Sudden surge with autonomic symptoms; fear of dying/losing control; rule out ACS
 
 ### GAD
 
-Excessive worry days more than not, muscle tension, sleep break — therapy + SSRI/SNRI themes. Avoid escalating alprazolam PRN culture.
+Excessive worry days more than not, muscle tension, sleep break — therapy + SSRI/SNRI. Avoid escalating alprazolam PRN culture.
 
 ### OCD / PTSD cues
 
@@ -415,7 +433,7 @@ Intrusions, compulsions, trauma re-experiencing, avoidance, hyperarousal — tra
 | Issue | Move |
 | --- | --- |
 | No benefit 4–6 weeks at adequate dose | Confirm adherence; optimize; switch/augment thoughtfully |
-| Sexual SE | Timing, switch, bupropion adjunct themes — shared decision |
+| Sexual SE | Timing, switch, bupropion adjunct — shared decision |
 | GI start-up | Take with food; slower titration |
 | Elder falls / Na 128 | Stop/hold SSRI; ED if severe AMS/seizure risk |
 | Pregnancy discovered on med | Do not abrupt-stop without Ob/psych plan |
@@ -424,7 +442,7 @@ Intrusions, compulsions, trauma re-experiencing, avoidance, hyperarousal — tra
 
 ## Topic L — Secondary stroke prevention ownership (post-acute)
 
-After ED/hospital owns hyperacute care, FNP owns: BP meds adherence, statin intensity themes, antithrombotic choice continuity (antiplatelet vs anticoag if AF), smoking cessation, diabetes, driving clearance timing per local rules, depression screen post-stroke, rehab follow-through.
+After ED/hospital owns hyperacute care, FNP owns: BP meds adherence, statin intensity, antithrombotic choice continuity (antiplatelet vs anticoag if AF), smoking cessation, diabetes, driving clearance timing per local rules, depression screen post-stroke, rehab follow-through.
 
 > **HIGHLIGHT** — Stopping anticoagulation because “rate is controlled” is a cardiology trap that also kills stroke prevention — AF stroke risk is separate.
 
@@ -432,7 +450,7 @@ After ED/hospital owns hyperacute care, FNP owns: BP meds adherence, statin inte
 
 ## Topic M — Vertigo vs central causes
 
-Peripheral BPPV: brief positional spinning, Dix-Hallpike themes, Epley treatment. Central: persistent ataxia, focal neuro signs, acute severe imbalance — stroke/TIA/posterior circulation → ED. Don’t label every vertigo “sinus.”
+Peripheral BPPV: brief positional spinning, Dix-Hallpike, Epley treatment. Central: persistent ataxia, focal neuro signs, acute severe imbalance — stroke/TIA/posterior circulation → ED. Don’t label every vertigo “sinus.”
 
 ---
 
@@ -478,13 +496,17 @@ This is the exam’s love language: safety + cause, not another sedative.
 
 ## Topic N — Neurocognitive staging & caregiver Plan
 
+Source: USPSTF depression screening recommendation, 2023.
+
 Mild cognitive impairment vs dementia functional loss (IADLs/ADLs). Safety: stove, driving, finances, meds, wandering. Caregiver burnout is a clinical outcome — respite, adult day, home health. Advance directives early. Avoid anticholinergic cognitive burden (oxybutynin, diphenhydramine, TCAs). Hearing/vision optimization is cognitive first aid.
 
 ---
 
 ## Topic O — Primary care lithium / antipsychotic awareness (collab)
 
-If patient already on lithium: Na/volume changes, NSAID interactions, levels, thyroid/renal monitoring themes with psychiatry. Antipsychotics: metabolic monitoring (weight, A1c, lipids), QT themes, elder dementia psychosis mortality boxed warning awareness — verify. Don’t abruptly stop without specialty plan when possible.
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+If patient already on lithium: Na/volume changes, NSAID interactions, levels, thyroid/renal monitoring with psychiatry. Antipsychotics: metabolic monitoring (weight, A1c, lipids), QT, elder dementia psychosis mortality boxed warning awareness. Don’t abruptly stop without specialty plan when possible.
 
 ---
 

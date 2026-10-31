@@ -1,10 +1,10 @@
 # Chapter 13 — ENT / Eyes / Heme / ID
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Pharyngitis follows the IDSA guideline. Otitis media follows the AAP guideline. Immunizations follow ACIP. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
+> **Study aid only.** Recommendations for primary-care FNP exam judgment — not individualized prescribing or a protocol. Pharyngitis follows the IDSA guideline. Otitis media follows the AAP guideline. Immunizations follow ACIP. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
 ![Anemia workup tree](visuals/anemia-workup-tree.svg)
 
-![Sinusitis / pharyngitis decision themes](visuals/sinusitis-pharyngitis-themes.svg)
+![Sinusitis / pharyngitis decision steps](visuals/sinusitis-pharyngitis-.svg)
 
 ![Otitis decision](visuals/otitis-decision.svg)
 
@@ -31,9 +31,7 @@
 
 ENT, eyes, anemia, and everyday infections are the “between cardiology chapters” content that still scores heavy points — especially where Domain II weights land: **Young Adult\* 22%** (STIs, mono vs strep, prenatal infection counseling), **Middle Adult 26%**, and **Older Adult 30%** (anemia of chronic disease, atypical UTI/pneumonia presentations, vision emergencies). Domain I grades process: Did you **Assess** duration, unilateral vision change, and hemodynamic stability? **Diagnose** viral vs bacterial vs can’t-miss mimics? **Plan** stewardship antibiotics, Centor-guided testing, and urgent ophthalmology when needed? **Evaluate** culture results, hemoglobin response, and screening follow-through?
 
-Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing (Centor-style themes), AOM watchful waiting, conjunctivitis vs keratitis/acute angle-closure, iron-deficiency anemia source-finding, UTI basics, HIV/hepatitis/TB screening cues, influenza/COVID primary-care decisions, and mono vs strep. Candidates who auto-antibiotic every red throat lose stewardship points; candidates who send acute angle-closure home with artificial tears lose sight.
-
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage.
+Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing (Centor-style), AOM watchful waiting, conjunctivitis vs keratitis/acute angle-closure, iron-deficiency anemia source-finding, UTI basics, HIV/hepatitis/TB screening cues, influenza/COVID primary-care decisions, and mono vs strep. Candidates who auto-antibiotic every red throat lose stewardship points; candidates who send acute angle-closure home with artificial tears lose sight.
 
 ---
 
@@ -64,17 +62,19 @@ Duration, fever, facial pain, unilateral predominance, dental pain, immunocompro
 
 | Finding | Meaning |
 | --- | --- |
-| Orbital swelling, vision change, ophthalmoplegia | Orbital complication / cavernous sinus themes |
-| Severe headache, photophobia, neuro deficits | Intracranial extension themes |
+| Orbital swelling, vision change, ophthalmoplegia | Orbital complication / cavernous sinus |
+| Severe headache, photophobia, neuro deficits | Intracranial extension |
 | Immunocompromised + invasive fungal cues | Emergency specialty pathway |
 
 ### Differentials
 
 Viral URI · allergic rhinitis · bacterial ABRS · migraine · dental infection · foreign body (peds) · COVID/flu overlap.
 
-### Plan themes
+### Plan
 
-- Supportive care first for likely viral disease: saline, analgesia, intranasal steroid themes when appropriate.
+Source: IDSA streptococcal pharyngitis guideline, 2012.
+
+- Supportive care first for likely viral disease: saline, analgesia, intranasal steroid when appropriate.
 - Antibiotics when bacterial criteria met — choose first-line agents per current guidance; avoid “Z-pak for everything.”
 - Intranasal decongestant sprays: short courses only (rebound rhinitis).
 
@@ -92,15 +92,19 @@ If not improving on appropriate therapy, reconsider diagnosis (dental, migraine,
 
 ### Presentation
 
-Sore throat ± fever, exudate, tender anterior cervical nodes, cough absence ( Centor-style features). Viral cues: cough, rhinorrhea, conjunctivitis, ulcers. EBV mono: fatigue, splenomegaly risk, posterior cervical nodes, atypical lymphs — often adolescents/young adults*.
+Sore throat ± fever, exudate, tender anterior cervical nodes, cough absence (Centor-style features). Viral cues: cough, rhinorrhea, conjunctivitis, ulcers. EBV mono: fatigue, splenomegaly risk, posterior cervical nodes, atypical lymphs — often adolescents/young adults*.
 
-### Assess / testing themes
+### Assess / testing
 
-- Use a validated clinical score **theme** (Centor/McIsaac-style) to decide who needs RADT/throat culture — don’t swab everyone and don’t treat everyone.
-- Negative RADT in kids often needs culture confirmation themes; adult algorithms differ.
+Source: IDSA streptococcal pharyngitis guideline, 2012.
+
+- Use a validated clinical score **** (Centor/McIsaac-style) to decide who needs RADT/throat culture — don’t swab everyone and don’t treat everyone.
+- Negative RADT in kids often needs culture confirmation; adult algorithms differ.
 - Consider gonococcal pharyngitis in sexual-risk stems; Fusobacterium/Lemierre rare but toxic young adult with septic emboli cues.
 
 ### Mono vs strep — exam favorite
+
+Source: USPSTF cervical cancer screening, 2018.
 
 | Feature | Favors GAS | Favors mono (EBV) |
 | --- | --- | --- |
@@ -108,14 +112,16 @@ Sore throat ± fever, exudate, tender anterior cervical nodes, cough absence ( C
 | Nodes | Anterior cervical | Posterior cervical, diffuse |
 | Exudate | Possible | Possible — overlap! |
 | Fatigue / splenomegaly | Less | More |
-| Testing | RADT/culture | Heterophile/EBV serology themes |
+| Testing | RADT/culture | Heterophile/EBV serology |
 | Key Plan trap | — | Aminopenicillin rash if mono treated as strep |
 
-**Splenic rupture risk counseling** if mono: activity/contact sport restrictions until cleared (verify timing themes).
+**Splenic rupture risk counseling** if mono: activity/contact sport restrictions until cleared.
 
-### Plan themes
+### Plan
 
-- Confirmed GAS: penicillin/amoxicillin first-line themes if non-allergic; macrolides only with true indication (resistance issues).
+Source: IDSA streptococcal pharyngitis guideline, 2012.
+
+- Confirmed GAS: penicillin/amoxicillin first-line if non-allergic; macrolides only with true indication (resistance issues).
 - Symptom care for viral pharyngitis.
 - Airway emergency (epiglottitis/abscess): drooling, stridor, tripoding → ED — don’t force oropharyngeal exam that worsens obstruction.
 
@@ -133,7 +139,9 @@ Return if unable to swallow secretions, worsening neck swelling, rash after amin
 
 ### Acute otitis media (AOM)
 
-Bulging TM, impaired mobility, acute signs of middle-ear inflammation + effusion. Pain first. **Watchful waiting** themes for selected non-severe older children; treat younger infants/severe disease sooner — verify AAP-style age/severity rules. First-line antibiotic themes (amoxicillin when appropriate); address penicillin allergy carefully (true vs delayed).
+Source: AAP acute otitis media guideline, 2013.
+
+Bulging TM, impaired mobility, acute signs of middle-ear inflammation + effusion. Pain first. **Watchful waiting** for selected non-severe older children; treat younger infants/severe disease sooner. First-line antibiotic (amoxicillin when appropriate); address penicillin allergy carefully (true vs delayed).
 
 ### Otitis media with effusion (OME)
 
@@ -141,7 +149,7 @@ Fluid without acute infection — hearing/speech implications; avoid antibiotics
 
 ### Otitis externa (OE)
 
-Canal edema/pain with tragal tenderness — topical therapy themes; wick if swollen shut. **Malignant OE** in diabetics/immunocompromised with severe pain → urgent specialty (Pseudomonas invasive disease).
+Canal edema/pain with tragal tenderness — topical therapy; wick if swollen shut. **Malignant OE** in diabetics/immunocompromised with severe pain → urgent specialty (Pseudomonas invasive disease).
 
 ### Red flags
 
@@ -169,11 +177,11 @@ Viral conjunctivitis (watery, often bilateral sequential), allergic (itchy), bac
 | Acute angle-closure glaucoma | Severe pain, halos, mid-dilated rock-hard eye, vomiting, vision drop | **ED / emergent ophtho** |
 | Chemical burn | Alkali/acid exposure | Immediate irrigation + ED |
 | Sudden vision loss | Vascular, retinal, neurologic | Emergent |
-| Keratitis (contact lens) | Pain, photophobia, fluorescein defect themes | Urgent ophtho |
+| Keratitis (contact lens) | Pain, photophobia, fluorescein defect | Urgent ophtho |
 | Anterior uveitis | Pain, photophobia, ciliary flush | Urgent ophtho |
 | Orbital cellulitis | Pain with EOM, proptosis, vision change, fever | ED |
 | Preseptal cellulitis | Eyelid erythema without orbital signs | Careful exam; still close follow-up |
-| Herpes zoster ophthalmicus | V1 distribution + eye symptoms | Urgent ophtho; antiviral themes |
+| Herpes zoster ophthalmicus | V1 distribution + eye symptoms | Urgent ophtho; antiviral |
 
 ### Assess always
 
@@ -181,13 +189,15 @@ Viral conjunctivitis (watery, often bilateral sequential), allergic (itchy), bac
 
 ### Plan
 
+Source: IDSA streptococcal pharyngitis guideline, 2012.
+
 Don’t give topical steroids for undiagnosed red eye in primary care. Don’t patch a possible infection carelessly. Pregnancy: avoid unnecessary agents; coordinate when needed.
 
 > **MUST KNOW** — Acute angle-closure / chemical burn / sudden vision loss / contact-lens keratitis suspicion → emergent/urgent eye care — not artificial tears and “return prn.”
 
 ---
 
-## Topic E — Anemia workup themes
+## Topic E — Anemia workup
 
 ### Presentation
 
@@ -199,16 +209,18 @@ Fatigue, dyspnea, pallor, tachycardia — or incidental CBC. Bleeding (GI, menst
 | --- | --- |
 | **Microcytic** | Iron deficiency, thalassemia trait, anemia of chronic disease sometimes micro; **find the bleed** in adult iron deficiency |
 | **Normocytic** | Acute blood loss, CKD, anemia of inflammation, hemolysis/mixed |
-| **Macrocytic** | B12/folate deficiency, alcohol, meds (hydroxyurea, etc.), marrow disorders, hypothyroidism themes |
+| **Macrocytic** | B12/folate deficiency, alcohol, meds (hydroxyurea, etc.), marrow disorders, hypothyroidism |
 
 ### Assess
 
 Medications (NSAIDs, anticoag), diet, alcohol, menstrual history, melena/BRBPR, family thalassemia/hemoglobinopathy, CKD, autoimmune disease, pregnancy.
 
-### Plan themes
+### Plan
 
-- Confirm with indices + reticulocyte count themes; ferritin/iron studies, B12/folate as pattern suggests.
-- **Postmenopausal / male iron deficiency → GI evaluation themes** (don’t stop at oral iron forever without source search).
+Source: IDSA streptococcal pharyngitis guideline, 2012.
+
+- Confirm with indices + reticulocyte count; ferritin/iron studies, B12/folate as pattern suggests.
+- **Postmenopausal / male iron deficiency → GI evaluation ** (don’t stop at oral iron forever without source search).
 - Premenopausal heavy menses: treat iron + address gyn source.
 - Hemolytic/unstable anemia → ED/heme.
 - Thalassemia trait: avoid iron overload from blind supplementation without confirming deficiency.
@@ -225,15 +237,19 @@ Hb response to iron (expect rise over weeks if absorbing); intolerance → IV ir
 
 ## Topic F — UTI (brief primary-care high-yield)
 
-### Themes
+###
 
-Dysuria, frequency, urgency without vaginal symptoms → uncomplicated cystitis in nonpregnant women often treatable with first-line short-course agents (nitrofurantoin / TMP-SMX / fosfomycin themes — **verify resistance and labeling**). Pyelo: fever, flank pain, nausea — broader therapy and closer disposition judgment.
+Source: IDSA uncomplicated cystitis and pyelonephritis guideline, 2011.
+
+Dysuria, frequency, urgency without vaginal symptoms → uncomplicated cystitis in nonpregnant women often treatable with first-line short-course agents. Pyelo: fever, flank pain, nausea — broader therapy and closer disposition judgment.
 
 ### Special populations
 
+Source: IDSA uncomplicated cystitis and pyelonephritis guideline, 2011.
+
 | Population | Twist |
 | --- | --- |
-| Pregnancy | Treat bacteriuria themes per Ob guidance; avoid fluoroquinolones/tetracyclines; nitrofurantoin/sulfa timing nuances — verify |
+| Pregnancy | Treat bacteriuria per Ob guidance; avoid fluoroquinolones/tetracyclines; nitrofurantoin/sulfa timing nuances |
 | Male UTI | Often complicated — consider urologic factors |
 | Older Adult | Atypical (confusion, falls); **don’t treat asymptomatic bacteriuria** routinely (except pregnancy and selected procedures) |
 | Catheter | Colonization common — treat symptoms/systemic infection, not every positive culture |
@@ -250,15 +266,17 @@ Pyelo with instability, obstruction suspicion, male/pediatric febrile UTI pathwa
 
 ### HIV
 
-Offer screening per **current USPSTF-style adult themes** (and risk-based anytime). Acute HIV can look like mono — consider testing. PrEP awareness for ongoing risk; post-exposure pathways exist — know to seek urgent evaluation. Pregnant patients: prenatal HIV testing is standard theme.
+Source: USPSTF HIV screening recommendation, 2019.
+
+Offer screening per **current USPSTF-style adult ** (and risk-based anytime). Acute HIV can look like mono — consider testing. PrEP awareness for ongoing risk; post-exposure pathways exist — know to seek urgent evaluation. Pregnant patients: prenatal HIV testing is standard.
 
 ### Hepatitis B / C
 
-Risk-based and cohort/universal adult hep C screening themes. Hep B: vaccine status, birth in endemic regions, sexual/household exposure, before immunosuppressing therapy. Positive screens → confirmatory tests + linkage to care (Evaluate failure = positive result with no follow-up).
+Risk-based and cohort/universal adult hep C screening. Hep B: vaccine status, birth in endemic regions, sexual/household exposure, before immunosuppressing therapy. Positive screens → confirmatory tests + linkage to care (Evaluate failure = positive result with no follow-up).
 
 ### TB
 
-Screen high-risk (contacts, incarceration, congregate settings, immunosuppression, endemic exposure) with IGRA or TST themes. Positive test → rule out active TB before latent treatment; chest imaging/symptoms review. Latent TB treatment regimens — specialty collaboration often; drug interactions (rifamycins + many meds including some DOACs/HIV meds).
+Screen high-risk (contacts, incarceration, congregate settings, immunosuppression, endemic exposure) with IGRA or TST. Positive test → rule out active TB before latent treatment; chest imaging/symptoms review. Latent TB treatment regimens — specialty collaboration often; drug interactions (rifamycins + many meds including some DOACs/HIV meds).
 
 ### STI crossover
 
@@ -274,13 +292,15 @@ Gonorrhea/chlamydia screening in young adults* and risk groups; syphilis rising 
 
 Assess severity (hypoxia, RR, work of breathing, hydration, comorbidities), timing of symptom onset for antivirals, exposure, vaccination, pregnancy, older adult/immunocompromise.
 
-### Influenza themes
+### Influenza
 
-High-risk groups benefit most from early antivirals when indicated (verify timing windows). Chemoprophylaxis in outbreaks/selected exposures — situational. Vaccine counseling every season.
+Source: ACIP immunization schedule, 2026.
 
-### COVID themes
+High-risk groups benefit most from early antivirals when indicated. Chemoprophylaxis in outbreaks/selected exposures — situational. Vaccine counseling every season.
 
-Guidance evolves — exam wants **judgment**: isolate/mask counseling per current public health themes, know when pulse ox/ED needed (hypoxia, severe dyspnea), be aware antivirals/mAbs eligibility concepts change — **follow**, don’t invent regimens. Vaccination/boosters per ACIP current.
+### COVID
+
+Guidance evolves — exam wants **judgment**: isolate/mask counseling per current public health, know when pulse ox/ED needed (hypoxia, severe dyspnea), be aware antivirals/mAbs eligibility concepts change — **follow**, don’t invent regimens. Vaccination/boosters per ACIP current.
 
 ### Overlap traps
 
@@ -295,12 +315,14 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 **Stem:** 17-year-old with 5 days of severe sore throat, fever, fatigue. Exudative pharynx, tender posterior cervical nodes, mild LUQ discomfort. Rapid strep negative. Parent wants amoxicillin “just in case.” Plays soccer.
 
 ### Assess
-- Adolescent* band. Posterior nodes + fatigue + LUQ → mono on board. RADT negative lowers GAS probability (culture per pediatric themes if needed).
+- Adolescent* band. Posterior nodes + fatigue + LUQ → mono on board. RADT negative lowers GAS probability (culture per pediatric if needed).
 
 ### Diagnose
 - Likely EBV mono; still consider GAS false-negative pathways per age guidance; airway ok.
 
 ### Plan
+
+Source: IDSA streptococcal pharyngitis guideline, 2012.
 - Supportive care; heterophile/EBV testing as indicated; **avoid empiric aminopenicillin**; splenic rupture counseling — no contact sports until cleared; hydrate; return precautions for airway/dehydration.
 
 ### Evaluate
@@ -324,6 +346,8 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - Suspected microbial keratitis — not garden-variety viral conjunctivitis.
 
 ### Plan
+
+Source: IDSA streptococcal pharyngitis guideline, 2012.
 - Stop contact lenses; **urgent ophthalmology same day**; do not start steroid drops; avoid patching infected cornea casually.
 
 ### Evaluate
@@ -344,9 +368,11 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - Older Adult 30%. Iron deficiency pattern. NSAID bleed risk. No postmenopausal/male free pass.
 
 ### Diagnose
-- Iron-deficiency anemia — **source must be sought** (GI evaluation themes).
+- Iron-deficiency anemia — **source must be sought** (GI evaluation).
 
 ### Plan
+
+Source: USPSTF colorectal cancer screening, 2021.
 - Start iron if appropriate; stop/replace NSAID; arrange GI workup (colonoscopy ± EGD per guidance); screen for other deficiencies as indicated; counsel dark stools on iron vs melena.
 
 ### Evaluate
@@ -371,7 +397,7 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 | Contact-lens pain = pink eye | Urgent keratitis pathway |
 | Iron in older man without GI workup | Find the bleed |
 | Treat asymptomatic bacteriuria in elders | Usually don’t |
-| Ignore HIV/hep offer | Routine screening themes |
+| Ignore HIV/hep offer | Routine screening |
 | Miss hypoxia calling it “just flu” | ED / oxygen pathway |
 
 ---
@@ -393,22 +419,24 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 
 ## Remember this
 
+Source: CDC STI Treatment Guidelines, 2021.
+
 - Domain II: YA* owns STI/mono/prenatal infection; Older Adult owns atypical infection and anemia-source hunts.
 - Stewardship is Plan — not optional flavor text.
-- Teaching regimens change — verify guidelines and labels.
+- Teaching regimens change.
 - Independent study aid — not NPCB/AANP; no pass guarantee.
-
-**Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
 ## Topic I — Lymphadenopathy & “mono-spot negative” thinking
 
-Localized nodes after infection often observe. Generalized nodes → systemic workup (HIV, EBV/CMV, syphilis, TB, lymphoma/leukemia themes). Hard, fixed, supraclavicular → malignancy worry — don’t reassure endlessly. Negative heterophile early in mono can be false-negative — clinical follow-up / EBV serology themes.
+Localized nodes after infection often observe. Generalized nodes → systemic workup (HIV, EBV/CMV, syphilis, TB, lymphoma/leukemia). Hard, fixed, supraclavicular → malignancy worry — don’t reassure endlessly. Negative heterophile early in mono can be false-negative — clinical follow-up / EBV serology.
 
 ---
 
 ## Topic J — Counseling scripts that map to Plan items
+
+Source: USPSTF HIV screening recommendation, 2019.
 
 - “Most sinus infections start viral — antibiotics won’t help the first days.”
 - “We test strep when the score says it might help — treating every sore throat breeds resistance.”
@@ -430,24 +458,24 @@ Localized nodes after infection often observe. Generalized nodes → systemic wo
 
 ## Concept checks
 
-**1.** Best approach to day-3 viral-pattern rhinosinusitis without severe features?  
-A. Immediate levofloxacin  B. Supportive care; bacterial criteria before abx  C. Urgent MRI  D. High-dose steroid injection  
+**1.** Best approach to day-3 viral-pattern rhinosinusitis without severe features?
+A. Immediate levofloxacin B. Supportive care; bacterial criteria before abx C. Urgent MRI D. High-dose steroid injection
 **Answer:** B.
 
-**2.** Contact-lens wearer, unilateral painful photophobic red eye?  
-A. Artificial tears only  B. Urgent ophthalmology for keratitis pathway  C. Patch and sleep  D. Oral steroid burst  
+**2.** Contact-lens wearer, unilateral painful photophobic red eye?
+A. Artificial tears only B. Urgent ophthalmology for keratitis pathway C. Patch and sleep D. Oral steroid burst
 **Answer:** B.
 
-**3.** 70-year-old man, ferritin low, Hb 9.5 microcytic — next priority beyond iron?  
-A. Nothing  B. GI source evaluation themes  C. Empiric methotrexate  D. Stop all vegetables  
+**3.** 70-year-old man, ferritin low, Hb 9.5 microcytic — next priority beyond iron?
+A. Nothing B. GI source evaluation C. Empiric methotrexate D. Stop all vegetables
 **Answer:** B.
 
-**4.** Nursing-home resident, cloudy urine, no symptoms, stable — treat?  
-A. Always treat ASB  B. Usually do not treat asymptomatic bacteriuria  C. IV vancomycin automatic  D. Cystoscopy same day always  
+**4.** Nursing-home resident, cloudy urine, no symptoms, stable — treat?
+A. Always treat ASB B. Usually do not treat asymptomatic bacteriuria C. IV vancomycin automatic D. Cystoscopy same day always
 **Answer:** B.
 
-**5.** Exudative pharyngitis, fatigue, posterior nodes, negative RADT — avoid?  
-A. Hydration  B. Empiric aminopenicillin for “just in case strep” when mono likely  C. Activity counseling  D. Follow-up  
+**5.** Exudative pharyngitis, fatigue, posterior nodes, negative RADT — avoid?
+A. Hydration B. Empiric aminopenicillin for “just in case strep” when mono likely C. Activity counseling D. Follow-up
 **Answer:** B.
 
 ---
@@ -460,19 +488,19 @@ A. Hydration  B. Empiric aminopenicillin for “just in case strep” when mono 
 
 ## Deep dive — Centor-style decision flow (teaching)
 
-1. **Assess** cough, fever history, tender anterior nodes, tonsillar exudate, age adjustment themes.  
-2. If score low → symptomatic care; no test/abx needed in many adults.  
-3. If intermediate/high → RADT (± culture per age guidance).  
-4. Treat only confirmed (or highly probable per protocol) GAS.  
-5. Concurrent mono features → avoid aminopenicillin; counsel spleen.  
+1. **Assess** cough, fever history, tender anterior nodes, tonsillar exudate, age adjustment.
+2. If score low → symptomatic care; no test/abx needed in many adults.
+3. If intermediate/high → RADT (± culture per age guidance).
+4. Treat only confirmed (or highly probable per protocol) GAS.
+5. Concurrent mono features → avoid aminopenicillin; counsel spleen.
 6. Toxic, drooling, asymmetric tonsillar bulge → peritonsillar abscess / airway ED path — not another clinic antibiotic trial.
 
 ## Deep dive — Anemia “what next” micro-scripts
 
-- Microcytic + low ferritin + postmenopausal/male → **GI referral language** in Plan.  
-- Microcytic + normal/high ferritin + ethnicity cues → consider thalassemia trait (Hb electrophoresis themes) before iron overload.  
-- Macrocytic + neuro symptoms → B12 urgently; don’t give folate alone and mask B12.  
-- Normocytic + rising Cr → CKD anemia lane; don’t start ESA in primary care casually.  
+- Microcytic + low ferritin + postmenopausal/male → **GI referral language** in Plan.
+- Microcytic + normal/high ferritin + ethnicity cues → consider thalassemia trait (Hb electrophoresis) before iron overload.
+- Macrocytic + neuro symptoms → B12 urgently; don’t give folate alone and mask B12.
+- Normocytic + rising Cr → CKD anemia lane; don’t start ESA in primary care casually.
 - Sudden drop + hemodynamic change → ED for bleed/hemolysis.
 
 ## Deep dive — Vision acuity is Assess

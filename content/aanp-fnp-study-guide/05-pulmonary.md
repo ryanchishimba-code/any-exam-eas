@@ -1,6 +1,6 @@
 # Chapter 5 — Pulmonary
 
-> **Study aid only.** Primary-care pulmonary themes for AANP FNP exam judgment — not a protocol. Follow NHLBI/GINA/GOLD-aligned guidance, antibiotic stewardship resources, and labels. Drug choices below name the guideline and year.
+> **Study aid only.** Primary-care pulmonary for AANP FNP exam judgment — not a protocol. Follow NHLBI/GINA/GOLD-aligned guidance, antibiotic stewardship resources, and labels. Drug choices below name the guideline and year.
 
 ![Asthma vs COPD contrast](visuals/asthma-copd-contrast.svg)
 
@@ -14,8 +14,6 @@
 
 Dyspnea, cough, wheeze, and “I can’t shake this cold” fill primary care — across **Child/Adolescent asthma**, **Young/Middle Adult** asthma and PE risk, and **Older Adult (30%)** COPD, pneumonia, and HF mimics. Domain I will ask whether you **Assess** severity and hypoxia, **Diagnose** asthma vs COPD vs CHF vs PE, **Plan** controllers vs ED, and **Evaluate** technique, adherence, and steroids/antibiotics stewardship.
 
-**Pair with practice:** After each topic, drill pulmonary items and tag age band + ADPE.
-
 ---
 
 ## ADPE lens for pulmonary
@@ -24,8 +22,8 @@ Dyspnea, cough, wheeze, and “I can’t shake this cold” fill primary care �
 | --- | --- |
 | Assess | RR, SpO₂, work of breathing, speak-full-sentences?, peak flow if known asthmatic, smoking/vape/occupational, orthopnea (HF overlap), calf swelling (PE), meds (ACEI cough, beta blocker) |
 | Diagnose | Obstructive vs infectious vs cardiac vs PE vs anemia; CXR when it changes management; spirometry for chronic labels |
-| Plan | Reliever/controller themes; steroids/abx stewardship; oxygen only if hypoxic per themes; ED thresholds; smoking cessation |
-| Evaluate | Inhaler teach-back, exacerbation frequency, step-up/down, vaccine status, pulmonary rehab referral themes |
+| Plan | Reliever/controller; steroids/abx stewardship; oxygen only if hypoxic per; ED thresholds; smoking cessation |
+| Evaluate | Inhaler teach-back, exacerbation frequency, step-up/down, vaccine status, pulmonary rehab referral |
 
 **Red-flag filter:** SpO₂ low, severe work of breathing, altered mentation, silent chest, hemoptysis with instability, suspected PE with instability, stridor → ED/EMS.
 
@@ -37,7 +35,7 @@ Dyspnea, cough, wheeze, and “I can’t shake this cold” fill primary care �
 
 Chronic airway inflammation + hyperresponsiveness → variable airflow obstruction. Triggers: viruses, allergens, exercise, irritants, GERD, sinus disease, NSAIDs/ASA in sensitive patients. Night symptoms and viral exacerbations are common. Kids often present with cough-variant patterns; adults may have occupational asthma.
 
-### Assess severity / control (themes)
+### Assess severity / control
 
 Day symptoms, night awakenings, reliever use, activity limitation, exacerbations requiring oral steroids/ED. In visit: RR, SpO₂, accessory muscles, breath sounds, peak expiratory flow if patient has personal best.
 
@@ -51,19 +49,21 @@ Day symptoms, night awakenings, reliever use, activity limitation, exacerbations
 
 ### Differentials
 
-COPD (smoking, older, less reversible) · HF (“cardiac asthma”) · vocal cord dysfunction · PE · foreign body (child) · bronchiolitis (infant) · eosinophilic/COPD overlap themes.
+COPD (smoking, older, less reversible) · HF (“cardiac asthma”) · vocal cord dysfunction · PE · foreign body (child) · bronchiolitis (infant) · eosinophilic/COPD overlap.
 
-### Workup themes
+### Workup
 
 Spirometry with bronchodilator response for diagnosis/monitoring when feasible. Allergy testing selective. CXR if focal findings, first atypical presentation, or suspect alternate diagnosis — not every wheeze.
 
-### Plan themes (verify GINA/NHLBI current)
+### Plan
 
-- Reliever access + **controller** for persistent patterns — exam loves “no long-acting beta agonist alone in asthma.”  
-- Inhaled corticosteroid backbone themes; add-on therapies stepwise.  
-- Spacer technique for MDIs; rinse mouth after ICS.  
-- Written action plan: green/yellow/red.  
-- Exacerbation: prompt systemic corticosteroids themes when indicated; oxygen if hypoxic; SABA frequent dosing per protocol; ED if not responding.  
+Source: GINA strategy report, 2025.
+
+- Reliever access + **controller** for persistent patterns — exam loves “no long-acting beta agonist alone in asthma.”
+- Inhaled corticosteroid backbone; add-on therapies stepwise.
+- Spacer technique for MDIs; rinse mouth after ICS.
+- Written action plan: green/yellow/red.
+- Exacerbation: prompt systemic corticosteroids when indicated; oxygen if hypoxic; SABA frequent dosing per protocol; ED if not responding.
 - Vaccines; trigger reduction; treat comorbid rhinitis/GERD/obesity.
 
 ### Evaluate
@@ -72,8 +72,10 @@ Technique every visit until perfect · adherence (cost, thrush, dysphonia) · st
 
 ### Lifespan
 
-- **Peds:** growth concerns with ICS are usually outweighed by control benefits at appropriate doses — verify; spacer/mask by age; school action plan.  
-- **Pregnancy (YA\*):** uncontrolled asthma harms fetus more than most controller therapies — coordinate; avoid cavalier step-downs.  
+Source: GINA strategy report, 2025.
+
+- **Peds:** growth concerns with ICS are usually outweighed by control benefits at appropriate doses.
+- **Pregnancy (YA\*):** uncontrolled asthma harms fetus more than most controller therapies — coordinate; avoid cavalier step-downs.
 - **Older adults:** overlapping COPD/HF; inhaler arthritis/cognitive barriers; nebulizer logistics.
 
 ---
@@ -90,11 +92,13 @@ Smoking pack-years, alpha-1 antitrypsin consideration in young emphysema, SpO₂
 
 ### Diagnose
 
-Spirometry required for confident diagnosis themes (post-bronchodilator obstruction). CXR/CT when alternate diagnoses (cancer, ILD, bronchiectasis). Eosinophil counts sometimes guide ICS decisions in modern paradigms — GOLD 2026-style themes.
+Spirometry required for confident diagnosis (post-bronchodilator obstruction). CXR/CT when alternate diagnoses (cancer, ILD, bronchiectasis). Eosinophil counts sometimes guide ICS decisions in modern paradigms — GOLD 2026.
 
-### Plan themes
+### Plan
 
-Smoking cessation is disease-modifying · long-acting bronchodilator themes (LAMA/LABA) · ICS for selected phenotypes (frequent exacerbations/eosinophils — verify) · not every COPD patient needs chronic ICS (pneumonia risk themes) · oxygen for qualifying resting hypoxia (evaluate carefully) · pulmonary rehab · vaccines · steroids ± antibiotics for selected exacerbations (purulence/severity themes — stewardship) · NIV/ED for hypercapnic failure.
+Source: GOLD report, 2025.
+
+Smoking cessation is disease-modifying · long-acting bronchodilator (LAMA/LABA) · ICS for selected phenotypes · not every COPD patient needs chronic ICS (pneumonia risk) · oxygen for qualifying resting hypoxia (evaluate carefully) · pulmonary rehab · vaccines · steroids ± antibiotics for selected exacerbations (purulence/severity — stewardship) · NIV/ED for hypercapnic failure.
 
 ### Red flags
 
@@ -114,19 +118,25 @@ Fever, cough, pleuritic pain, dyspnea — or **older adult afebrile confusion/fa
 
 ### Site-of-care (Plan critical)
 
-Use severity cues (RR, BP, confusion, SpO₂, urea/BUN themes, comorbidities). Hypoxia, hypotension, AMS → ED. Outpatient only if stable with reliable follow-up and SDoH supports oral therapy.
+Source: GINA strategy report, 2025.
 
-### Workup themes
+Use severity cues (RR, BP, confusion, SpO₂, urea/BUN, comorbidities). Hypoxia, hypotension, AMS → ED. Outpatient only if stable with reliable follow-up and SDoH supports oral therapy.
+
+### Workup
 
 CXR when it changes management; don’t delay ED care for perfect imaging. Microbiologic testing selective outpatient. Influenza/COVID testing when season/epidemiology fits.
 
-### Plan themes
+### Plan
 
-Empiric outpatient regimens follow current IDSA/ATS-style guidance — **verify**; consider comorbidities and resistance risk. Duration themes shorter than historical marathon courses for many uncomplicated cases — verify. Steroids not routine for all CAP. Smoking cessation; vaccines after recovery.
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
+Empiric outpatient regimens follow current IDSA/ATS-style guidance — **Confirm**; consider comorbidities and resistance risk. Duration shorter than historical marathon courses for many uncomplicated cases. Steroids not routine for all CAP. Smoking cessation; vaccines after recovery.
 
 ### Evaluate
 
-Clinical response 48–72h; if failing — wrong drug, resistant organism, wrong diagnosis (PE, HF, obstruction, empyema), nonadherence. Follow-up imaging in selected patients (e.g., smokers with risk for underlying mass) — verify local practice.
+Source: GINA strategy report, 2025.
+
+Clinical response 48–72h; if failing — wrong drug, resistant organism, wrong diagnosis (PE, HF, obstruction, empyema), nonadherence. Follow-up imaging in selected patients (e.g., smokers with risk for underlying mass).
 
 ---
 
@@ -149,10 +159,10 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 | Topic | Hooks |
 | --- | --- |
 | OSA | Day somnolence, snoring, resistant HTN, AF; sleep study referral; CPAP adherence Evaluate |
-| Chronic cough | Algorithm themes: ACEI, postnasal, asthma, GERD, smoking, CXR if indicated |
+| Chronic cough | Algorithm: ACEI, postnasal, asthma, GERD, smoking, CXR if indicated |
 | Hemoptysis | Volume + stability; infection/cancer/PE/bronchiectasis; ED if large/unstable |
-| TB themes | Risk + prolonged cough/night sweats/weight loss; public health reporting awareness |
-| Smoking/vaping | Brief intervention + pharmacotherapy themes; adolescents included |
+| TB | Risk + prolonged cough/night sweats/weight loss; public health reporting awareness |
+| Smoking/vaping | Brief intervention + pharmacotherapy; adolescents included |
 | Interstitial/cancer cues | Progressive dyspnea, clubbing, weight loss, hemoptysis → imaging/refer |
 
 ---
@@ -165,7 +175,7 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 | --- | --- |
 | Assess | Hypoxia + work of breathing; Child band; controller gap |
 | Diagnose | Moderate-severe exacerbation; persistent asthma pattern likely |
-| Plan | Clinic bronchodilators if equipped + early ED given hypoxia; systemic steroid themes; later start controller + action plan + spacer teaching |
+| Plan | Clinic bronchodilators if equipped + early ED given hypoxia; systemic steroid; later start controller + action plan + spacer teaching |
 | Evaluate | Technique, refill adherence, step therapy, school plan |
 
 **Distractors fail:** oral antibiotic for wheeze without bacterial signs; send home hypoxic with “more albuterol”; LABA monotherapy.
@@ -196,7 +206,7 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 | Assess | PE risks (flight, estrogen), tachycardia |
 | Diagnose | PE on must-not-miss board |
 | Plan | Urgent ED/pathway evaluation — not azithromycin |
-| Evaluate | Later: provoke factors, anticoagulation duration themes with specialty, OCP counseling |
+| Evaluate | Later: provoke factors, anticoagulation duration with specialty, OCP counseling |
 
 **Distractors fail:** diagnose costochondritis because chest wall tenderish; outpatient D-dimer without pathway when concern high and logistics unsafe.
 
@@ -207,7 +217,7 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 | Trap | Fix |
 | --- | --- |
 | Antibiotics for viral bronchitis | Stewardship counseling |
-| LABA alone for asthma | ICS backbone themes |
+| LABA alone for asthma | ICS backbone |
 | Missing HF as “wheeze” | Orthopnea/edema/weight |
 | Outpatient CAP despite hypoxia | Site-of-care honesty |
 | Chronic ICS in all COPD | Phenotype-selected |
@@ -220,7 +230,7 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 
 | Band | Pulmonary focus |
 | --- | --- |
-| Infant | Bronchiolitis themes; fever/work of breathing triage |
+| Infant | Bronchiolitis; fever/work of breathing triage |
 | Child | Asthma, foreign body, pneumonia |
 | Adolescent* | Asthma, vaping, sports-induced |
 | YA* / prenatal | Asthma control in pregnancy; PE risk rises |
@@ -231,36 +241,40 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 
 ## Quick checklist — pulmonary
 
-- [ ] SpO₂/RR/work of breathing documented  
-- [ ] Can’t-miss: PE, pneumothorax, severe asthma/COPD, HF  
-- [ ] Asthma: controller + no LABA alone  
-- [ ] COPD: cessation + spirometry label + stewardship on exacerbations  
-- [ ] CAP: site-of-care before drug choice  
-- [ ] Inhaler technique teach-back  
-- [ ] Vaccines (flu, pneumococcal, COVID per current)  
-- [ ] Smoking/vaping brief intervention  
-- [ ] Older adult atypical infection considered  
-- [ ] Pregnancy asthma: control > fear of controllers  
-- [ ] Evaluate: exacerbations count, step therapy, SDoH for device access  
+- [ ] SpO₂/RR/work of breathing documented
+- [ ] Can’t-miss: PE, pneumothorax, severe asthma/COPD, HF
+- [ ] Asthma: controller + no LABA alone
+- [ ] COPD: cessation + spirometry label + stewardship on exacerbations
+- [ ] CAP: site-of-care before drug choice
+- [ ] Inhaler technique teach-back
+- [ ] Vaccines (flu, pneumococcal, COVID per current)
+- [ ] Smoking/vaping brief intervention
+- [ ] Older adult atypical infection considered
+- [ ] Pregnancy asthma: control > fear of controllers
+- [ ] Evaluate: exacerbations count, step therapy, SDoH for device access
 
 ---
 
 ## Remember this
 
-- Hypoxia rarely gets a “routine outpatient” Plan.  
-- Asthma ≠ COPD management twin.  
-- Stewardship is Plan + Evaluate.  
-- Verify GINA/GOLD/IDSA-style guidance — key points age.
+Source: GINA strategy report, 2025.
 
-**Practice pulmonary ADPE items** on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
+- Hypoxia rarely gets a “routine outpatient” Plan.
+- Asthma ≠ COPD management twin.
+- Stewardship is Plan + Evaluate.
+.
 
 ---
 
 ## Topic G — Oxygen, devices, and counseling depth
 
-Oxygen is a drug for hypoxia — not a comfort default for every dyspneic patient with normal sats (current ACS/chest pain pathways similarly discourage reflexive hyperoxia). For COPD, long-term oxygen has specific qualification themes (resting hypoxemia thresholds — verify). Counsel fire safety if smoking continues (still push cessation).
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
+Oxygen is a drug for hypoxia — not a comfort default for every dyspneic patient with normal sats (current ACS/chest pain pathways similarly discourage reflexive hyperoxia). For COPD, long-term oxygen has specific qualification. Counsel fire safety if smoking continues (still push cessation).
 
 ### Device map (Plan/Evaluate)
+
+Source: GINA strategy report, 2025.
 
 | Device | Teaching hooks |
 | --- | --- |
@@ -286,26 +300,28 @@ Epidemiology changes. Exam-stable skills: isolate/test when indicated per curren
 
 ## Concept checks
 
-**1.** Best next step for SpO₂ 88% presumed viral URI in clinic?  
-A. Oral azithromycin home  B. ED/acute evaluation  C. Watch 1 week  D. DPP4 inhaler only  
+Source: GINA strategy report, 2025.
+
+**1.** Best next step for SpO₂ 88% presumed viral URI in clinic?
+A. Oral azithromycin home B. ED/acute evaluation C. Watch 1 week D. DPP4 inhaler only
 **Answer:** B.
 
-**2.** Asthma controller principle theme?  
-A. LABA monotherapy preferred  B. ICS-containing controller for persistent patterns  C. Antibiotics monthly  D. No action plans ever  
+**2.** Asthma controller principle ?
+A. LABA monotherapy preferred B. ICS-containing controller for persistent patterns C. Antibiotics monthly D. No action plans ever
 **Answer:** B.
 
-**3.** Older adult confusion + tachypnea without fever — still consider?  
-A. Only psychiatric cause  B. CAP/other infection + cardiopulmonary emergencies  C. Normal aging  D. Stop vaccines  
+**3.** Older adult confusion + tachypnea without fever — still consider?
+A. Only psychiatric cause B. CAP/other infection + cardiopulmonary emergencies C. Normal aging D. Stop vaccines
 **Answer:** B.
 
 ---
 
 ## Mechanisms that unlock stems (short pathophysiology)
 
-- **Asthma:** IgE/allergen and nonallergic triggers → inflammatory mediators → bronchoconstriction, mucus, edema → reversible obstruction.  
-- **COPD:** Smoking-related inflammation → irreversible airflow limitation ± emphysema destruction → V/Q mismatch → hypoxia/hypercapnia risk.  
-- **Pneumonia:** Alveolar infection → consolidation → impaired gas exchange; elders mount weaker fever responses.  
-- **PE:** Venous thrombi → pulmonary arterial obstruction → dead space / strain on right heart; hypoxia variable.  
+- **Asthma:** IgE/allergen and nonallergic triggers → inflammatory mediators → bronchoconstriction, mucus, edema → reversible obstruction.
+- **COPD:** Smoking-related inflammation → irreversible airflow limitation ± emphysema destruction → V/Q mismatch → hypoxia/hypercapnia risk.
+- **Pneumonia:** Alveolar infection → consolidation → impaired gas exchange; elders mount weaker fever responses.
+- **PE:** Venous thrombi → pulmonary arterial obstruction → dead space / strain on right heart; hypoxia variable.
 - **HF mimic:** Elevated pressure → pulmonary edema → wheeze/crackles overlapping asthma language.
 
 If the mechanism doesn’t fit (sudden hypoxia after flight in a young woman on OCP), don’t force “viral bronchitis.”
@@ -320,32 +336,32 @@ If the mechanism doesn’t fit (sudden hypoxia after flight in a young woman on 
 | Smoker progressive dyspnea | COPD | Spirometry + cessation |
 | Hypoxic elder “cold” | CAP/HF/PE | ED |
 | Pleuritic + risks | PE | Urgent pathway |
-| Chronic dry cough on lisinopril | ACEI cough | Switch class themes |
+| Chronic dry cough on lisinopril | ACEI cough | Switch class |
 | Daytime sleepiness + HTN | OSA | Sleep referral |
 
 ---
 
 ## Deep dive — Asthma exacerbation algorithm for primary care
 
-### Stepwise clinic thinking (themes — verify protocols)
+### Stepwise clinic thinking
 
-1. **Recognize severity:** light speaking, posture, RR, SpO₂, pulse, accessory muscles, air movement.  
-2. **Oxygen** if hypoxic per local protocol.  
-3. **SABA** via MDI+spacer or nebulizer; repeat per protocol while monitoring.  
-4. **Early systemic corticosteroid** themes when exacerbation is more than trivial — do not wait for complete failure of bronchodilators in moderate-severe flares.  
-5. **Reassess** after treatments: if not clearly safe for home (persistent hypoxia, poor air movement, fatigue, social isolation without caregiver), **ED**.  
+1. **Recognize severity:** light speaking, posture, RR, SpO₂, pulse, accessory muscles, air movement.
+2. **Oxygen** if hypoxic per local protocol.
+3. **SABA** via MDI+spacer or nebulizer; repeat per protocol while monitoring.
+4. **Early systemic corticosteroid** when exacerbation is more than trivial — do not wait for complete failure of bronchodilators in moderate-severe flares.
+5. **Reassess** after treatments: if not clearly safe for home (persistent hypoxia, poor air movement, fatigue, social isolation without caregiver), **ED**.
 6. **Before discharge (only if appropriate):** controller initiation/escalation, spacer, written action plan, steroid course counseling (mood, glucose, appetite), return precautions, follow-up in 48–72 hours.
 
 ### Controller counseling that Prevents Evaluate failures
 
-- ICS adherence prevents ED cycling more than PRN albuterol heroics.  
-- Thrush/dysphonia → rinse, spacer, technique fix — not automatic ICS abandonment.  
-- “Steroid phobia” in parents: discuss growth evidence themes honestly; uncontrolled asthma also harms growth/activity.  
+- ICS adherence prevents ED cycling more than PRN albuterol heroics.
+- Thrush/dysphonia → rinse, spacer, technique fix — not automatic ICS abandonment.
+- “Steroid phobia” in parents: discuss growth evidence honestly; uncontrolled asthma also harms growth/activity.
 - Biological therapies exist for severe eosinophilic/allergic phenotypes — refer, don’t guess doses.
 
 ### Occupational and aspirin-exacerbated respiratory disease cues
 
-Adult-onset asthma with workplace pattern (better on weekends) → occupational referral themes. Nasal polyps + asthma + NSAID sensitivity → AERD awareness; advise NSAID caution and ENT/allergy collaboration.
+Adult-onset asthma with workplace pattern (better on weekends) → occupational referral. Nasal polyps + asthma + NSAID sensitivity → AERD awareness; advise NSAID caution and ENT/allergy collaboration.
 
 ---
 
@@ -363,25 +379,29 @@ Older adults often trigger multi-lane differentials. Build a comparison habit:
 
 **Plan rule:** When lanes compete and patient is hypoxic or frail/alone → ED unlocks parallel workup safely.
 
-### Antibiotics in COPD exacerbation (stewardship themes)
+### Antibiotics in COPD exacerbation (stewardship)
 
-Not automatic. Consider when increased sputum purulence plus increased dyspnea/volume (classic Anthonisen-style thinking — GOLD 2026). Duration shorter than historical habits for many — verify. Counsel risks: C. diff, resistance, interactions (QT, warfarin).
+Not automatic. Consider when increased sputum purulence plus increased dyspnea/volume (classic Anthonisen-style thinking — GOLD 2026). Duration shorter than historical habits for many. Counsel risks: C. diff, resistance, interactions (QT, warfarin).
 
 ---
 
 ## Deep dive — CAP outpatient counseling & failure plan
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 If truly outpatient-eligible:
-- Antibiotic teaching: complete course as directed (modern durations may be shorter — verify), take with food if needed, warn diarrhea/rash/anaphylaxis signs.  
-- Antipyretics, hydration, rest.  
-- **Return precautions:** worse dyspnea, SpO₂ concerns if they have a home monitor, chest pain, confusion, inability to keep meds down, fever persisting beyond expected window.  
-- Follow-up call or visit 48–72h.  
-- Smoking cessation offer same day.  
-- Schedule vaccines after acute phase.  
+- Antibiotic teaching: complete course as directed, take with food if needed, warn diarrhea/rash/anaphylaxis signs.
+- Antipyretics, hydration, rest.
+- **Return precautions:** worse dyspnea, SpO₂ concerns if they have a home monitor, chest pain, confusion, inability to keep meds down, fever persisting beyond expected window.
+- Follow-up call or visit 48–72h.
+- Smoking cessation offer same day.
+- Schedule vaccines after acute phase.
 
-### Aspiration pneumonia themes (Older Adult)
+### Aspiration pneumonia (Older Adult)
 
-Risk: stroke, dementia, alcohol, poor dentition, GERD. Prevention: upright feeding, oral care, swallow eval. Antibiotics/regimens differ from standard CAP in some pathways — verify; disposition often higher acuity.
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
+Risk: stroke, dementia, alcohol, poor dentition, GERD. Prevention: upright feeding, oral care, swallow eval. Antibiotics/regimens differ from standard CAP in some pathways.
 
 ---
 
@@ -393,11 +413,13 @@ Pregnancy + suspected PE: do not withhold indicated imaging due to fear alone �
 
 ### Estrogen counseling crossover (YA\* / Middle Adult\*)
 
-Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, prior VTE, thrombophilia themes when prescribing (women’s health chapter expands). Pulmonary items may hide in contraception stems.
+Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, prior VTE, thrombophilia when prescribing (women’s health chapter expands). Pulmonary items may hide in contraception stems.
 
 ---
 
 ## Additional vignette 4 — Pregnancy asthma under-treated
+
+Source: GINA strategy report, 2025.
 
 **Stem:** 31-year-old at 24 weeks, using albuterol 6×/day, stopped ICS “for the baby,” night symptoms nightly, SpO₂ 97%.
 
@@ -405,7 +427,7 @@ Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, p
 | --- | --- |
 | Assess | YA\* prenatal; controller stopped; frequent reliever = poor control |
 | Diagnose | Uncontrolled asthma in pregnancy — fetal hypoxia risk from uncontrolled disease |
-| Plan | Restart appropriate controller themes per pregnancy-safe guidance (verify); Ob communication; action plan; avoid antibiotic creep |
+| Plan | Restart appropriate controller per pregnancy-safe guidance; Ob communication; action plan; avoid antibiotic creep |
 | Evaluate | Symptom diary, technique, follow closely; ED precautions |
 
 **Distractors fail:** praise stopping ICS; oral steroid bursts monthly without controller; albuterol-only plan.
@@ -429,19 +451,21 @@ Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, p
 
 ## Inhaled therapy safety & interactions (therapeutics knowledge area)
 
-- Nonselective beta blockers can blunt SABA response / worsen asthma — patient-factor filter.  
-- ICS + CYP3A inhibitors (some azoles/HIV meds) may increase systemic steroid effects — rare but real.  
-- Theophylline (less used): narrow therapeutic index, interactions — know existence.  
-- Chronic oral steroids: bone density, glucose, infection risk, adrenal suppression — Evaluate & deprescribe path.  
-- Macrolide anti-inflammatory themes in selected COPD/bronchiectasis — specialty lane.
+Source: GINA strategy report, 2025.
+
+- Nonselective beta blockers can blunt SABA response / worsen asthma — patient-factor filter.
+- ICS + CYP3A inhibitors (some azoles/HIV meds) may increase systemic steroid effects — rare but real.
+- Theophylline (less used): narrow therapeutic index, interactions — know existence.
+- Chronic oral steroids: bone density, glucose, infection risk, adrenal suppression — Evaluate & deprescribe path.
+- Macrolide anti-inflammatory in selected COPD/bronchiectasis — specialty lane.
 
 ### Pulmonary rehab & palliative crossover
 
-Rehab improves dyspnea and hospitalizations in COPD themes. In advanced disease, opioids for refractory dyspnea and advance care planning are Evaluate/Plan courage — not “giving up.”
+Rehab improves dyspnea and hospitalizations in COPD. In advanced disease, opioids for refractory dyspnea and advance care planning are Evaluate/Plan courage — not “giving up.”
 
 ### Spirometry interpretation literacy (high-level)
 
-Obstruction: FEV1/FVC reduced themes. Restriction patterns need volumes. Bronchodilator reversibility supports asthma but overlap exists. Don’t diagnose COPD on smoking history alone without confirmatory testing when feasible.
+Obstruction: FEV1/FVC reduced. Restriction patterns need volumes. Bronchodilator reversibility supports asthma but overlap exists. Don’t diagnose COPD on smoking history alone without confirmatory testing when feasible.
 
 ### Older adult pulmonary multimorbidity (Domain II realism)
 
@@ -457,4 +481,3 @@ Obstruction: FEV1/FVC reduced themes. Restriction patterns need volumes. Broncho
 - Pair practice:
 
 ---
-

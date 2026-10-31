@@ -1,6 +1,6 @@
 # Chapter 7 — GI / Hepatic
 
-> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Follow guidelines, USPSTF/ACIP when relevant, and drug labels. Drug choices below name the guideline and year. Independent of NPCB/AANP.
+> **Study aid only.** High-yield FNP primary-care for exam judgment — not a protocol. Follow guidelines, USPSTF/ACIP when relevant, and drug labels. Drug choices below name the guideline and year. Independent of NPCB/AANP.
 
 ---
 
@@ -28,22 +28,24 @@
 **Takeaway: Trial PPI thoughtfully; alarm features need investigation—not endless empiric therapy.**
 
 ### Presentation
-Heartburn, regurgitation, epigastric pain. Alarm: weight loss, anemia, dysphagia, bleeding, persistent vomiting, age/risk thresholds for endoscopy themes.
+
+Source: ACG H. pylori guideline, 2024.
+Heartburn, regurgitation, epigastric pain. Alarm: weight loss, anemia, dysphagia, bleeding, persistent vomiting, age/risk thresholds for endoscopy.
 
 | Approach | When |
 | --- | --- |
 | Lifestyle | Trigger foods, weight, head-of-bed, timing of meals |
-| PPI trial | Classic GERD without alarms — verify duration guidance |
+| PPI trial | Classic GERD without alarms |
 | H. pylori testing | Dyspepsia pathways when indicated |
 | Endoscopy | Alarms / failure / high-risk |
 
 > **MUST KNOW** — Dysphagia, GI bleeding, progressive weight loss → investigate — don’t chronic-PPI and pray.
 
-> **HIGHLIGHT** — Deprescribe PPI when indication gone — older adults: infection/fracture/malabsorption themes discussed in literature.
+> **HIGHLIGHT** — Deprescribe PPI when indication gone — older adults: infection/fracture/malabsorption discussed in literature.
 
 > **TRAP** — Ignoring NSAID + dyspepsia/bleed risk.
 
-> **LIFESPAN** — Older Adult: higher GI bleed risk on NSAID/antiplatelet/anticoag stacks. Prenatal: reflux common — med safety verify.
+> **LIFESPAN** — Older Adult: higher GI bleed risk on NSAID/antiplatelet/anticoag stacks. Prenatal: reflux common — med safety Confirm.
 
 #### Critical checklist — GERD & dyspepsia
 
@@ -57,11 +59,13 @@ Heartburn, regurgitation, epigastric pain. Alarm: weight loss, anemia, dysphagia
 **Takeaway: Stop the bleed risk; test-and-treat H. pylori when indicated; melena/hematemesis → ED if unstable.**
 
 ### Red flags
+
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
 Coffee-ground emesis, melena, hematochezia with instability, syncope, peritonitis after ulcer history.
 
 | Stable dyspepsia | Unstable bleed |
 | --- | --- |
-| Test H. pylori (stool Ag/breath — verify) | ABCs, ED |
+| Test H. pylori | ABCs, ED |
 | Stop NSAIDs if possible | Resuscitation pathway |
 | PPI per guidance | Don’t outpatient “observe melena” |
 
@@ -73,7 +77,7 @@ Coffee-ground emesis, melena, hematochezia with instability, syncope, peritoniti
 
 - [ ] Bleed disposition correct
 - [ ] NSAID review
-- [ ] H. pylori test-of-treat themes
+- [ ] H. pylori test-of-treat
 - [ ] Anticoag/antiplatelet context
 
 ## Topic C — IBS vs IBD cues
@@ -107,12 +111,12 @@ Rome-style pattern recognition helps but **alarms override**.
 | Pattern | Labs pattern | Think |
 | --- | --- | --- |
 | Hepatocellular | ALT/AST dominant | Viral, toxin/alcohol, ischemic, autoimmune |
-| Cholestatic | Alk phos/GGT/bili | Obstruction, drug, PBC themes |
+| Cholestatic | Alk phos/GGT/bili | Obstruction, drug, PBC |
 | Isolated bili | Indirect vs direct | Gilbert vs hemolysis vs obstruction |
 
 Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantification; NAFLD in metabolic syndrome.
 
-> **MUST KNOW** — Acetaminophen toxicity and acute liver failure themes → ED.
+> **MUST KNOW** — Acetaminophen toxicity and acute liver failure → ED.
 
 > **LIFESPAN** — Pregnancy: HELLP/AFLP lanes — Ob emergency, not ‘NAFLD’.
 
@@ -163,7 +167,7 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 - Outpatient ‘GI cocktail’ and home
 - Ignore fever
 
-> **MUST KNOW** — Febrile cholangitis/cholecystitis themes need acute care.
+> **MUST KNOW** — Febrile cholangitis/cholecystitis need acute care.
 
 > **TRAP** — Sending febrile biliary patient home on oral abx without pathway.
 
@@ -230,25 +234,25 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 
 ## Exam traps
 
+Source: ACG GERD guideline, 2022.
+
 | Trap | Instead |
 | --- | --- |
 | Therapy before stability | Red-flag filter first |
 | Ignoring age band | Recalculate priors (Older Adult 30%) |
 | Missing pregnancy | YA* includes prenatal |
 | SDoH as “noncompliance” | Fix barriers |
-| Inventing exact doses | Class + safety; verify guidelines |
+| Inventing exact doses | Class + safety; Confirm guidelines |
 
 ---
 
 ## Quick chapter checklist
 
-- [ ] ADPE labeled on every stem  
-- [ ] MUST KNOW emergencies dispositioned to ED  
-- [ ] Lifespan twist applied  
-- [ ] Teach-back / Evaluate plan stated  
-- [ ] Follow guidelines before clinical use  
-
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
+- [ ] ADPE labeled on every stem
+- [ ] MUST KNOW emergencies dispositioned to ED
+- [ ] Lifespan twist applied
+- [ ] Teach-back / Evaluate plan stated
+- [ ] Follow guidelines before clinical use
 
 ---
 
@@ -258,7 +262,7 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 
 ### Constipation (primary care)
 
-Assess stool form, opioids, iron, calcium, anticholinergics, hypothyroidism, obstruction red flags (vomiting, no flatus, severe pain, mass). Plan: fiber/fluids when appropriate, osmotic agents themes, stimulant short courses, opioid bowel regimens. **New severe constipation in older adult** → think obstruction/ileus/meds — exam before “just senna.”
+Assess stool form, opioids, iron, calcium, anticholinergics, hypothyroidism, obstruction red flags (vomiting, no flatus, severe pain, mass). Plan: fiber/fluids when appropriate, osmotic agents, stimulant short courses, opioid bowel regimens. **New severe constipation in older adult** → think obstruction/ileus/meds — exam before “just senna.”
 
 ### Acute diarrhea
 
@@ -282,15 +286,17 @@ Recent abx/hospitalization + watery diarrhea ± leukocytosis. Stop unnecessary a
 
 ### Assess
 
-BMI, waist, diabetes, lipids, alcohol (honest quantification), meds (amiodarone, methotrexate, tamoxifen themes), viral hepatitis risk.
+BMI, waist, diabetes, lipids, alcohol (honest quantification), meds (amiodarone, methotrexate, tamoxifen), viral hepatitis risk.
 
 ### Diagnose lane
 
-NAFLD/MASLD themes vs alcohol-associated liver disease vs viral vs drug. Fibrosis risk tools / elastography referral when indicated. Don’t label every ALT 45 as “normal for them” without metabolic Plan.
+NAFLD/MASLD vs alcohol-associated liver disease vs viral vs drug. Fibrosis risk tools / elastography referral when indicated. Don’t label every ALT 45 as “normal for them” without metabolic Plan.
 
 ### Plan
 
-Weight loss (7–10% themes often discussed), Mediterranean-style pattern, treat diabetes/HTN/lipids, alcohol counseling or abstinence if alcohol-associated. Refer for advanced fibrosis suspicion, unexplained cholestasis, or decompensation cues (ascites, encephalopathy, variceal bleed history).
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+Weight loss (7–10% often discussed), Mediterranean-style pattern, treat diabetes/HTN/lipids, alcohol counseling or abstinence if alcohol-associated. Refer for advanced fibrosis suspicion, unexplained cholestasis, or decompensation cues (ascites, encephalopathy, variceal bleed history).
 
 > **HIGHLIGHT** — Cardiovascular risk reduction is part of “liver” Plan.
 
@@ -300,7 +306,7 @@ Weight loss (7–10% themes often discussed), Mediterranean-style pattern, treat
 
 ## Topic H — Pancreatitis & gallbladder spectrum (clinic triage)
 
-**Takeaway: Epigastric pain radiating to back + lipase themes + alcohol/gallstones → acute care pathway when moderate-severe.**
+**Takeaway: Epigastric pain radiating to back + lipase + alcohol/gallstones → acute care pathway when moderate-severe.**
 
 Mild recovered gallstone colic may be outpatient surgical referral. **Fever + jaundice + RUQ pain (Charcot)** → ascending cholangitis emergency thinking. Hypertriglyceridemia pancreatitis: don’t miss very high TG as cause.
 
@@ -310,7 +316,9 @@ Mild recovered gallstone colic may be outpatient surgical referral. **Fever + ja
 
 ## Topic I — Anorectal & colorectal cancer screening bridge
 
-Hemorrhoids vs fissure vs cancer worry: **rectal bleeding still needs age-appropriate cancer exclusion** — don’t forever diagnose “hemorrhoids” in a 55-year-old never screened. FIT/colonoscopy themes per USPSTF-aligned timing (verify). Family history changes start age — ask.
+Source: USPSTF colorectal cancer screening, 2021.
+
+Hemorrhoids vs fissure vs cancer worry: **rectal bleeding still needs age-appropriate cancer exclusion** — don’t forever diagnose “hemorrhoids” in a 55-year-old never screened. FIT/colonoscopy per USPSTF-aligned timing. Family history changes start age — ask.
 
 > **LIFESPAN** — Middle Adult prevention weight; Older Adult continue screening until shared decision on life expectancy/comorbidity.
 
@@ -318,10 +326,12 @@ Hemorrhoids vs fissure vs cancer worry: **rectal bleeding still needs age-approp
 
 ## Expanded vignette notes — teach-back scripts (Plan items)
 
-- “Black stools or vomiting blood is an emergency — go to the ED.”  
-- “Heartburn with food sticking or weight loss needs a look inside, not endless acid pills.”  
-- “If your diarrhea started after antibiotics, call us — we may need a special test.”  
-- “Fatty liver improves most with weight and sugar control — this protects your heart too.”  
+Source: AASLD MASLD guidance, 2023.
+
+- “Black stools or vomiting blood is an emergency — go to the ED.”
+- “Heartburn with food sticking or weight loss needs a look inside, not endless acid pills.”
+- “If your diarrhea started after antibiotics, call us — we may need a special test.”
+- “Fatty liver improves most with weight and sugar control — this protects your heart too.”
 - “Acetaminophen is in many cold products — count your total daily amount.”
 
 ---
@@ -352,10 +362,10 @@ Hemorrhoids vs fissure vs cancer worry: **rectal bleeding still needs age-approp
 > **LIFESPAN** — Older Adult atypical abd exams; prenatal HELLP/AFLP are Ob emergencies.
 
 #### Critical checklist — GI tonight
-- [ ] Pregnancy filter on abd/pelvic pain  
-- [ ] Bleed/peritonitis disposition  
-- [ ] H. pylori / PPI stewardship  
-- [ ] IBD alarms vs IBS  
+- [ ] Pregnancy filter on abd/pelvic pain
+- [ ] Bleed/peritonitis disposition
+- [ ] H. pylori / PPI stewardship
+- [ ] IBD alarms vs IBS
 - [ ] Acetaminophen ceiling teaching
 
 ---
@@ -364,25 +374,31 @@ Hemorrhoids vs fissure vs cancer worry: **rectal bleeding still needs age-approp
 
 ### Assess details that change Plan
 
-Timing (postprandial vs nocturnal), dysphagia map (solids only vs solids+liquids), NSAID/ASA/anticoag stack, *H. pylori* risk, Barrett risk factors (chronic GERD, age, male, smoking, central obesity — verify referral thresholds), red-flag weight loss measured on scale not patterns.
+Source: ACG H. pylori guideline, 2024.
 
-### Plan ladder themes
+Timing (postprandial vs nocturnal), dysphagia map (solids only vs solids+liquids), NSAID/ASA/anticoag stack, *H. pylori* risk, Barrett risk factors, red-flag weight loss measured on scale not patterns.
 
-1. Lifestyle always documented.  
-2. Antacids/H2 for mild intermittent.  
-3. PPI once daily before meal for typical GERD without alarms — time-limited trial then reassess (verify duration).  
-4. Failure → adherence/timing check, twice-daily consideration themes, or endoscopy pathway — don’t infinite escalate forever without looking.  
+### Plan ladder
+
+Source: ACG GERD guideline, 2022.
+
+1. Lifestyle always documented.
+2. Antacids/H2 for mild intermittent.
+3. PPI once daily before meal for typical GERD without alarms — time-limited trial then reassess.
+4. Failure → adherence/timing check, twice-daily consideration, or endoscopy pathway — don’t infinite escalate forever without looking.
 5. Deprescribe: if asymptomatic on long-term PPI for unclear indication, attempt step-down with return precautions.
 
 ### Evaluate
 
-Symptom scores, alarm emergence, B12/Mg themes discussed for long-term PPI in some patients, bone health conversation in older adults on chronic PPI + other risk factors — shared decision, not fear-mongering.
+Symptom scores, alarm emergence, B12/Mg discussed for long-term PPI in some patients, bone health conversation in older adults on chronic PPI + other risk factors — shared decision, not fear-mongering.
 
 ---
 
 ## Topic B+ — GI bleed risk stacking (Older Adult favorite)
 
-Antiplatelet + anticoagulant + NSAID + SSRI + alcohol = bleed multiplier. Primary care Plan: deprescribe NSAID, gastroprotection when indicated (verify), teach melena/hematemesis return precautions, coordinate periprocedural holds with specialists.
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+Antiplatelet + anticoagulant + NSAID + SSRI + alcohol = bleed multiplier. Primary care Plan: deprescribe NSAID, gastroprotection when indicated, teach melena/hematemesis return precautions, coordinate periprocedural holds with specialists.
 
 | Stack | Thinking |
 | --- | --- |
@@ -396,7 +412,7 @@ Antiplatelet + anticoagulant + NSAID + SSRI + alcohol = bleed multiplier. Primar
 
 ## Topic C+ — Celiac & food-triggered diarrhea
 
-Chronic diarrhea, iron deficiency, dermatitis herpetiformis themes, family history — consider celiac serology **while on gluten**. Don’t start gluten-free diet before testing. Positive → dietitian + GI confirmation pathway per guidance.
+Chronic diarrhea, iron deficiency, dermatitis herpetiformis, family history — consider celiac serology **while on gluten**. Don’t start gluten-free diet before testing. Positive → dietitian + GI confirmation pathway per guidance.
 
 Lactose intolerance is common; trial is reasonable after alarms excluded. FODMAP trials for IBS — preferably with dietitian when possible.
 
@@ -404,13 +420,15 @@ Lactose intolerance is common; trial is reasonable after alarms excluded. FODMAP
 
 ## Topic D+ — Viral hepatitis primary-care jobs
 
+Source: USPSTF hepatitis C screening, 2020.
+
 | Virus | FNP jobs |
 | --- | --- |
 | HAV | Vaccine when indicated; report outbreaks; supportive care |
 | HBV | Screen at-risk; vaccinate; refer chronic for staging/therapy |
-| HCV | Universal adult screen themes (verify USPSTF); link to cure pathways |
+| HCV | Universal adult screen; link to cure pathways |
 
-Occupational exposures and pregnancy screening themes belong in YA*/prevention chapters — don’t forget them here when LFTs rise.
+Occupational exposures and pregnancy screening belong in YA*/prevention chapters — don’t forget them here when LFTs rise.
 
 > **MUST KNOW** — New jaundice with encephalopathy/coagulopathy → ED for acute liver failure pathway.
 
@@ -448,7 +466,7 @@ Occupational exposures and pregnancy screening themes belong in YA*/prevention c
 
 ## Topic J — Dysphagia & odynophagia
 
-Solids-only progressive dysphagia → structural (stricture, cancer, ring) — endoscopy pathway. Solids+liquids from outset → motility themes. Odynophagia → infectious esophagitis in immunocompromised (candida/HSV/CMV). Pill esophagitis (doxy, bisphosphonate) — take with water upright.
+Solids-only progressive dysphagia → structural (stricture, cancer, ring) — endoscopy pathway. Solids+liquids from outset → motility. Odynophagia → infectious esophagitis in immunocompromised (candida/HSV/CMV). Pill esophagitis (doxy, bisphosphonate) — take with water upright.
 
 > **MUST KNOW** — Progressive dysphagia + weight loss in older adult → investigate — not chronic PPI forever.
 
@@ -462,36 +480,38 @@ LLQ pain + fever in older adult → diverticulitis lane; peritonitis/abscess →
 
 ## Topic L — IBD therapy awareness for primary care
 
-Know vaccines before immunosuppression, infection vigilance, skin cancer counseling themes on some agents, bone health on steroids, CRC surveillance ownership with GI. Flare with toxicity → ED. Pregnancy planning with GI/Ob.
+Source: ACIP immunization schedule, 2026.
+
+Know vaccines before immunosuppression, infection vigilance, skin cancer counseling on some agents, bone health on steroids, CRC surveillance ownership with GI. Flare with toxicity → ED. Pregnancy planning with GI/Ob.
 
 ---
 
 ## Remember this — GI
 
-- Characterize the liver-test pattern before ordering a broad serology panel.  
-- Alarms override IBS labels.  
-- Acetaminophen totals include combo cold products.  
+- Characterize the liver-test pattern before ordering a broad serology panel.
+- Alarms override IBS labels.
+- Acetaminophen totals include combo cold products.
 - Prenatal RUQ + HTN ≠ routine fatty meal colic.
-
-**Practice:** [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
 ## Concept checks — GI extra
 
-**4.** Melena + BP 88/50 on warfarin — Plan?  
-A. Oral PPI and home  B. ED  C. Increase warfarin  D. Fiber  
+**4.** Melena + BP 88/50 on warfarin — Plan?
+A. Oral PPI and home B. ED C. Increase warfarin D. Fiber
 **Answer:** B.
 
-**5.** Best first LFT thinking step?  
-A. Immediate liver biopsy  B. Hepatocellular vs cholestatic pattern  C. Start steroids  D. Ignore if <2× ULN always  
+**5.** Best first LFT thinking step?
+A. Immediate liver biopsy B. Hepatocellular vs cholestatic pattern C. Start steroids D. Ignore if <2× ULN always
 **Answer:** B.
 
 ---
 
 ## Topic M — Upper endoscopy & colonoscopy referral timing (primary-care ownership)
 
-Know alarm features that should not wait: progressive dysphagia, GI bleeding, iron-deficiency anemia unexplained, progressive weight loss, abnormal imaging mass. Screening colonoscopy/FIT intervals per USPSTF-aligned age (verify). Family history of CRC/advanced polyps shifts start age — take a three-generation history. After polypectomy, follow GI surveillance intervals — Evaluate means closing the loop on the report.
+Source: USPSTF colorectal cancer screening, 2021.
+
+Know alarm features that should not wait: progressive dysphagia, GI bleeding, iron-deficiency anemia unexplained, progressive weight loss, abnormal imaging mass. Screening colonoscopy/FIT intervals per USPSTF-aligned age. Family history of CRC/advanced polyps shifts start age — take a three-generation history. After polypectomy, follow GI surveillance intervals — Evaluate means closing the loop on the report.
 
 Post-EGD “Barrett’s” letters: confirm surveillance plan; antireflux optimization; don’t lose the patient to follow-up.
 
@@ -499,7 +519,9 @@ Post-EGD “Barrett’s” letters: confirm surveillance plan; antireflux optimi
 
 ## Topic N — Nausea, antiemetics, and pregnancy bridge
 
-Assess pregnancy early (YA*). Hyperemesis with ketones/dehydration → acute care. Prefer pregnancy-safer antiemetic themes when pregnant — verify. In general adults: ondansetron QT awareness with interactors; metoclopramide tardive risk with chronic use; anticholinergic antiemetics worsen elder confusion.
+Source: ASCO antiemetic guideline, 2020.
+
+Assess pregnancy early (YA*). Hyperemesis with ketones/dehydration → acute care. Prefer pregnancy-safer antiemetic when pregnant. In general adults: ondansetron QT awareness with interactors; metoclopramide tardive risk with chronic use; anticholinergic antiemetics worsen elder confusion.
 
 Cannabinoid hyperemesis: hot showers relief history + cannabis — cessation is therapy.
 
@@ -507,7 +529,7 @@ Cannabinoid hyperemesis: hot showers relief history + cannabis — cessation is 
 
 ## Topic O — Abdominal wall vs visceral pain
 
-Carnett’s sign themes help separate wall pain from visceral. Hernia incarceration/strangulation → ED. Shingles prodrome can mimic acute abdomen — look for dermatomal vesicles.
+Carnett’s sign help separate wall pain from visceral. Hernia incarceration/strangulation → ED. Shingles prodrome can mimic acute abdomen — look for dermatomal vesicles.
 
 ---
 
@@ -521,10 +543,12 @@ Carnett’s sign themes help separate wall pain from visceral. Hernia incarcerat
 
 ## Topic P — GI pharmacology safety board (key points)
 
-| Theme | Exam hook |
+Source: ATA hypothyroidism guideline, 2014.
+
+| | Exam hook |
 | --- | --- |
 | Chronic PPI | Deprescribe when indication unclear; interaction/absorption conversations |
-| Clopidogrel + omeprazole | CYP interaction themes historically discussed
+| Clopidogrel + omeprazole | CYP interaction discussed in the FDA clopidogrel labeling |
 | Lactulose / rifaximin | Hepatic encephalopathy Plan awareness with GI/hepatology |
 | Mesalamine / thiopurines / biologics | IBD — infection screen/vaccines before immuno suppression |
 | Loperamide | Avoid in bloody/toxic colitis; high-dose misuse cardiac risk awareness |

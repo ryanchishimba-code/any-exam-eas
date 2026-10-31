@@ -18,19 +18,19 @@ Community-facing pharmacists triage **self-care vs refer**, pick safe OTC option
 
 ### Refer urgently / promptly when stems show
 
-- Chest pain, SOB, neuro deficits, severe abdominal pain, high fever with stiff neck, suicidal ideation  
-- Pediatric dehydration red flags (no tears, dry diapers, lethargy)  
-- Eye pain/vision loss, ear discharge with systemic illness  
-- Worsening asthma symptoms / peak flow red zone  
-- Suspected GI bleed (black stools, coffee-ground emesis)  
-- Anaphylaxis signs  
-- Severe headache unlike prior / thunderclap  
-- Vaginal bleeding in pregnancy  
+- Chest pain, SOB, neuro deficits, severe abdominal pain, high fever with stiff neck, suicidal ideation
+- Pediatric dehydration red flags (no tears, dry diapers, lethargy)
+- Eye pain/vision loss, ear discharge with systemic illness
+- Worsening asthma symptoms / peak flow red zone
+- Suspected GI bleed (black stools, coffee-ground emesis)
+- Anaphylaxis signs
+- Severe headache unlike prior / thunderclap
+- Vaginal bleeding in pregnancy
 
 ### Self-care OK when
 
-- Mild, recognizable, short-duration symptoms without red flags  
-- Patient can follow dosing and return if not improved in stated window  
+- Mild, recognizable, short-duration symptoms without red flags
+- Patient can follow dosing and return if not improved in stated window
 - No conflicting diseases/drugs after quick profile check
 
 ### QuEST / SCHOLAR-MAC style (conceptual)
@@ -43,53 +43,55 @@ Gather symptoms, characteristics, history, onset, location, aggravating factors,
 
 ### Pain / fever
 
-- APAP: liver ceiling (counsel ≤3–4 g/day themes per labeling/patient factors); combination product vigilance.  
-- NSAIDs: AKI, HF, GI bleed, CV risk, pregnancy (especially later trimesters), anticoag potentiation, lithium interaction.  
-- Topicals for localized MSK when systemic NSAID risky (diclofenac gel, menthol/capsaicin — wash hands).  
+- APAP: liver ceiling (counsel ≤3–4 g/day per labeling/patient factors); combination product vigilance.
+- NSAIDs: AKI, HF, GI bleed, CV risk, pregnancy (especially later trimesters), anticoag potentiation, lithium interaction.
+- Topicals for localized MSK when systemic NSAID risky (diclofenac gel, menthol/capsaicin — wash hands).
 - Avoid ASA in kids with viral illness (Reye).
 
 ### Cough / cold / allergy
 
-- Oral decongestants: HTN, tachyarrhythmia, MAOI interaction, urinary retention, glaucoma caution.  
-- Nasal oxymetazoline: max ~3 days — rhinitis medicamentosa.  
-- Antihistamines: 1st-gen sedation/anticholinergic — caution elderly (Beers); 2nd-gen preferred for allergy.  
-- Dextromethorphan: serotonergic stacks; abuse potential.  
-- Guaifenesin: hydration helps.  
-- Honey for cough in older children (not infants <1 year — botulism).  
+- Oral decongestants: HTN, tachyarrhythmia, MAOI interaction, urinary retention, glaucoma caution.
+- Nasal oxymetazoline: max ~3 days — rhinitis medicamentosa.
+- Antihistamines: 1st-gen sedation/anticholinergic — caution elderly (Beers); 2nd-gen preferred for allergy.
+- Dextromethorphan: serotonergic stacks; abuse potential.
+- Guaifenesin: hydration helps.
+- Honey for cough in older children (not infants <1 year — botulism).
 - Age cutoffs on pediatric cough/cold OTCs — respect labeling.
 
 ### GI
 
-- Antacids / H2RA / OTC PPI: duration limits; refer if alarm symptoms (weight loss, anemia, persistent vomiting, dysphagia).  
-- Loperamide: not for bloody diarrhea/high fever; QT/abuse high-dose warnings.  
-- Fiber / PEG / stimulant laxatives: match to situation; opioid constipation needs stimulant ± softener plan.  
-- Bismuth: black stools/tongue; salicylate allergy caution; kids/teens viral illness caution.  
-- ORS for gastroenteritis dehydration prevention.  
+- Antacids / H2RA / OTC PPI: duration limits; refer if alarm symptoms (weight loss, anemia, persistent vomiting, dysphagia).
+- Loperamide: not for bloody diarrhea/high fever; QT/abuse high-dose warnings.
+- Fiber / PEG / stimulant laxatives: match to situation; opioid constipation needs stimulant ± softener plan.
+- Bismuth: black stools/tongue; salicylate allergy caution; kids/teens viral illness caution.
+- ORS for gastroenteritis dehydration prevention.
 - Simethicone; alpha-galactosidase for gas — limited harm, limited miracle.
 
 ### Derm
 
-- Hydrocortisone 1% limits; fungal creams for tinea; refer for suspected cellulitis (spreading redness, fever).  
-- Sunscreen counseling SPF/reapply; mineral vs chemical preferences.  
-- Acne OTCs: benzoyl peroxide bleach warning; retinoid photosensitivity; refer cystic/nodular.  
+- Hydrocortisone 1% limits; fungal creams for tinea; refer for suspected cellulitis (spreading redness, fever).
+- Sunscreen counseling SPF/reapply; mineral vs chemical preferences.
+- Acne OTCs: benzoyl peroxide bleach warning; retinoid photosensitivity; refer cystic/nodular.
 - Impetigo / eye involvement → refer.
 
 ### Women’s / GU
 
-- Vaginal azoles for uncomplicated candidiasis if classic symptoms; refer if first episode uncertain, recurrent, pregnant, systemic signs.  
-- Emergency contraception timing themes (sooner better).  
-- UTI: refer — OTC urinary analgesics don’t cure infection; counsel that phenazopyridine colors urine.  
+- Vaginal azoles for uncomplicated candidiasis if classic symptoms; refer if first episode uncertain, recurrent, pregnant, systemic signs.
+- Emergency contraception timing (sooner better).
+- UTI: refer — OTC urinary analgesics don’t cure infection; counsel that phenazopyridine colors urine.
 - Dysmenorrhea: NSAID timing if safe; refer severe/new patterns.
 
 ### Ophthalmic / otic
 
-- Artificial tears; refer for pain/photophobia/contact-lens red eye.  
-- Softening drops for cerumen — not with perforation/tubes.  
+- Artificial tears; refer for pain/photophobia/contact-lens red eye.
+- Softening drops for cerumen — not with perforation/tubes.
 - Never put otic drops in eyes.
 
 ---
 
 ## Topic C — Interactions & special populations
+
+Source: 2025 AHA/ACC high blood pressure guideline.
 
 | OTC | Interaction / population trap |
 | --- | --- |
@@ -100,40 +102,40 @@ Gather symptoms, characteristics, history, onset, location, aggravating factors,
 | St. John’s wort | Inducer — transplant/HIV/OCP/warfarin |
 | APAP multi-sources | Hepatic ceiling |
 | 1st-gen AH | Elderly Beers; driving |
-| PPIs long OTC use | Mask serious disease; Mg/B12/infection themes long-term |
+| PPIs long OTC use | Mask serious disease; Mg/B12/infection long-term |
 
-- Warfarin: consistent vitamin K; many herbals (ginkgo, garlic high-dose, St. John’s wort) problematic.  
-- Pregnancy/lactation: verify each ingredient.  
+- Warfarin: consistent vitamin K; many herbals (ginkgo, garlic high-dose, St. John’s wort) problematic.
+- Pregnancy/lactation: Confirm each ingredient.
 - Pediatrics: weight-based liquids; never household spoons; no ASA (Reye).
 
 ### Remember this
 
-- APAP hiding in everything — count total daily mg.  
-- Pseudoephedrine ≠ free pass in uncontrolled HTN.  
+- APAP hiding in everything — count total daily mg.
+- Pseudoephedrine ≠ free pass in uncontrolled HTN.
 - Red flags → refer, don’t sell and shrug.
 
 ---
 
 ## Topic D — Home diagnostics & preventive OTCs
 
-- Pregnancy/ovulation kits timing; glucose/BP monitor technique; home COVID/flu tests false-negative awareness.  
-- Folic acid for people who can become pregnant; naloxone OTC access + overdose teaching; EC sooner-is-better.  
-- Nicotine replacement OTC counseling (see respiratory chapter).  
-- COVID tests + isolation counseling per current public health guidance themes.
+- Pregnancy/ovulation kits timing; glucose/BP monitor technique; home COVID/flu tests false-negative awareness.
+- Folic acid for people who can become pregnant; naloxone OTC access + overdose teaching; EC sooner-is-better.
+- Nicotine replacement OTC counseling (see respiratory chapter).
+- COVID tests + isolation counseling per current public health guidance.
 
 ---
 
 ## Topic E — Herbals that bite
 
-- St. John’s wort inducer (transplant/HIV/OCP/warfarin failures).  
-- High-dose vitamin E/ginkgo/garlic bleeding risk with anticoag/antiplatelets.  
-- Red yeast rice statin-like myopathy risk; “detox” teas harm in elderly.  
-- Kava/comfrey hepatotoxicity themes.  
+- St. John’s wort inducer (transplant/HIV/OCP/warfarin failures).
+- High-dose vitamin E/ginkgo/garlic bleeding risk with anticoag/antiplatelets.
+- Red yeast rice statin-like myopathy risk; “detox” teas harm in elderly.
+- Kava/comfrey hepatotoxicity.
 - Natural ≠ safe — document herbals on the profile.
 
 ### Remember this
 
-- Natural ≠ safe with anticoagulants or transplants.  
+- Natural ≠ safe with anticoagulants or transplants.
 - Naloxone teaching is core public-health pharmacy.
 
 ---
@@ -156,24 +158,26 @@ Gather symptoms, characteristics, history, onset, location, aggravating factors,
 
 ## Concept checks
 
-**1.** Patient on lithium wants ibuprofen for backache. Concern?  
-A. None  B. NSAIDs can increase lithium levels / toxicity risk — prefer alternatives / contact prescriber  C. Lithium blocks NSAID absorption completely  D. Must use high-dose naproxen  
+Source: IDSA uncomplicated cystitis and pyelonephritis guideline, 2011.
+
+**1.** Patient on lithium wants ibuprofen for backache. Concern?
+A. None B. NSAIDs can increase lithium levels / toxicity risk — prefer alternatives / contact prescriber C. Lithium blocks NSAID absorption completely D. Must use high-dose naproxen
 **Answer:** B.
 
-**2.** Toddler with cold; caregiver asks for aspirin. Response?  
-A. Fine if low dose  B. Avoid ASA in children with viral illness — Reye risk; suggest age-appropriate APAP/ibuprofen if indicated  C. Give adult enteric-coated  D. Combine ASA + pepto freely  
+**2.** Toddler with cold; caregiver asks for aspirin. Response?
+A. Fine if low dose B. Avoid ASA in children with viral illness — Reye risk; suggest age-appropriate APAP/ibuprofen if indicated C. Give adult enteric-coated D. Combine ASA + pepto freely
 **Answer:** B.
 
-**3.** Max counseling theme for oxymetazoline?  
-A. Unlimited  B. ~3 days to avoid rebound congestion  C. Only in infants  D. IV  
+**3.** Max counseling for oxymetazoline?
+A. Unlimited B. ~3 days to avoid rebound congestion C. Only in infants D. IV
 **Answer:** B.
 
-**4.** Best action for suspected UTI?  
-A. Phenazopyridine alone as cure  B. Refer for evaluation/antibiotics; analgesic only adjunct if used  C. High-dose DXM  D. St. John’s wort  
+**4.** Best action for suspected UTI?
+A. Phenazopyridine alone as cure B. Refer for evaluation/antibiotics; analgesic only adjunct if used C. High-dose DXM D. St. John’s wort
 **Answer:** B.
 
-**5.** St. John’s wort major concern?  
-A. CYP induction → loss of efficacy of substrates  B. Always safe with tacrolimus  C. Cures HIV  D. No interactions  
+**5.** St. John’s wort major concern?
+A. CYP induction → loss of efficacy of substrates B. Always safe with tacrolimus C. Cures HIV D. No interactions
 **Answer:** A.
 
 ---
@@ -182,49 +186,49 @@ A. CYP induction → loss of efficacy of substrates  B. Always safe with tacroli
 
 ### Heartburn algorithm
 
-1. Alarm symptoms → refer.  
-2. Infrequent mild → antacid/H2RA.  
-3. Frequent (≥2 weeks) → OTC PPI short course + lifestyle; if unresolved → refer.  
-4. Check for interacting drugs (azoles needing acid, etc.).  
+1. Alarm symptoms → refer.
+2. Infrequent mild → antacid/H2RA.
+3. Frequent (≥2 weeks) → OTC PPI short course + lifestyle; if unresolved → refer.
+4. Check for interacting drugs (azoles needing acid, etc.).
 5. Counsel not to use OTC PPI indefinitely without evaluation.
 
 ### Constipation algorithm
 
-1. Red flags (blood, weight loss, sudden change, severe pain) → refer.  
-2. Fiber + fluid + activity.  
-3. PEG osmotic often preferred for chronic idiopathic themes.  
-4. Stimulant for opioid-induced (with softener).  
+1. Red flags (blood, weight loss, sudden change, severe pain) → refer.
+2. Fiber + fluid + activity.
+3. PEG osmotic often preferred for chronic idiopathic.
+4. Stimulant for opioid-induced (with softener).
 5. Avoid habitual harsh stimulant dependence without plan.
 
 ### Diarrhea algorithm
 
-1. Blood/fever/severe dehydration/pregnancy/infant → refer.  
-2. ORS.  
-3. Loperamide if appropriate non-infectious mild cases.  
-4. Bismuth alternative considerations.  
+1. Blood/fever/severe dehydration/pregnancy/infant → refer.
+2. ORS.
+3. Loperamide if appropriate non-infectious mild cases.
+4. Bismuth alternative considerations.
 5. Medication causes (metformin, antibiotics, Mg) — review.
 
 ### Allergic rhinitis algorithm
 
-1. Avoid triggers.  
-2. Intranasal steroid first-line persistent.  
-3. Add 2nd-gen antihistamine.  
-4. Avoid long-term oxymetazoline.  
+1. Avoid triggers.
+2. Intranasal steroid first-line persistent.
+3. Add 2nd-gen antihistamine.
+4. Avoid long-term oxymetazoline.
 5. Refer asthma overlap / refractory.
 
 ### Pediatric fever/pain algorithm
 
-1. Age <3 months fever → urgent refer themes.  
-2. Weight-based APAP or ibuprofen (age-appropriate).  
-3. Correct concentration (infants’ vs children’s).  
-4. Oral syringe.  
+1. Age <3 months fever → urgent refer.
+2. Weight-based APAP or ibuprofen (age-appropriate).
+3. Correct concentration (infants’ vs children’s).
+4. Oral syringe.
 5. Hydration; refer lethargy/stiff neck/petechiae.
 
 ---
 
 ## Topic G — Behind-the-counter & regulated OTCs
 
-Pseudoephedrine purchase limits/log themes (law detail → MPJE); still counsel HTN. Naloxone OTC: demonstrate device, call emergency services, recovery position, second dose. Emergency contraception: timing, BMI nuances for some products, offer antiemetic if needed, counsel not an abortifacient in typical use framing per labeling education, refer for regular contraception. Some states pharmacist prescribing protocols — NAPLEX stays clinical; MPJE covers authority.
+Pseudoephedrine purchase limits/log (law detail → MPJE); still counsel HTN. Naloxone OTC: demonstrate device, call emergency services, recovery position, second dose. Emergency contraception: timing, BMI nuances for some products, offer antiemetic if needed, counsel not an abortifacient in typical use framing per labeling education, refer for regular contraception. Some states pharmacist prescribing protocols — NAPLEX stays clinical; MPJE covers authority.
 
 ### Ophthalmic red-flag list
 
@@ -232,20 +236,20 @@ Pain, vision change, contact lens with red eye, chemical splash, light sensitivi
 
 ### Remember this (chapter close)
 
-- Triage first, product second.  
-- Interaction check OTCs like Rx.  
-- Teach limits and return precautions every time.  
+- Triage first, product second.
+- Interaction check OTCs like Rx.
+- Teach limits and return precautions every time.
 - Naloxone and EC are public-health wins at the counter.
 
 ---
 
 ## Topic H — Travel, wounds, and miscellaneous OTCs
 
-- Loperamide/bismuth for traveler’s diarrhea prevention vs treatment nuances; azithromycin/rifaximin Rx roles when stemmed; ORS always.  
-- Insect repellents (DEET/picaridin) counseling; sunscreen with repellent layering.  
-- Wound care: clean, antibiotic ointment for minor cuts; refer puncture/animal bites/deep wounds.  
-- Melatonin: modest effect; interaction/sedation stacks; prefer sleep hygiene.  
-- Motion sickness: meclizine/dimenhydrinate sedation; scopolamine Rx patch counseling.  
+- Loperamide/bismuth for traveler’s diarrhea prevention vs treatment nuances; azithromycin/rifaximin Rx roles when stemmed; ORS always.
+- Insect repellents (DEET/picaridin) counseling; sunscreen with repellent layering.
+- Wound care: clean, antibiotic ointment for minor cuts; refer puncture/animal bites/deep wounds.
+- Melatonin: modest effect; interaction/sedation stacks; prefer sleep hygiene.
+- Motion sickness: meclizine/dimenhydrinate sedation; scopolamine Rx patch counseling.
 - Smoking cessation OTCs: combination NRT effectiveness (see Chapter 8).
 
 ### Caregiver communication

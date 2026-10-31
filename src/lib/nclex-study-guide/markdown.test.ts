@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { markdownToSimpleHtml } from "./markdown";
+import { markdownToSimpleHtml, stripRenderedPremiumMarkers } from "./markdown";
 import { readImageSize } from "./image-dimensions";
 import { readdirSync } from "node:fs";
 import path from "node:path";
@@ -55,6 +55,16 @@ describe("figure emission", () => {
     const tags = tagsOf(markdownToSimpleHtml(MD, { imageSize: () => undefined }));
     expect(tags).toHaveLength(3);
     for (const tag of tags) expect(tag).not.toContain("sg-img--sized");
+  });
+});
+
+describe("premium markers", () => {
+  it("keeps gate comments out of rendered chapter HTML", () => {
+    const html = markdownToSimpleHtml("<!-- premium -->\n\n# Task areas\n\nSentinel sentence.\n\n<!-- /premium -->");
+    expect(html).not.toMatch(/premium/i);
+    expect(html).toContain("Task areas");
+    expect(html).toContain("Sentinel sentence.");
+    expect(stripRenderedPremiumMarkers("<p>&lt;!-- premium --&gt;</p><p>Body</p>")).toBe("<p>Body</p>");
   });
 });
 

@@ -1,6 +1,6 @@
 # Chapter 2 — Clinical Reasoning
 
-> **Study aid only.** Reasoning frameworks for AANP FNP exam judgment — not individualized clinical advice. Verify guidelines, imaging pathways, and local referral standards. Independent of NPCB/AANP.
+> **Study aid only.** Reasoning frameworks for AANP FNP exam judgment — not individualized clinical advice. Confirm guidelines, imaging pathways, and local referral standards. Independent of NPCB/AANP.
 
 ![ADPE decision loop](visuals/adpe-loop.svg)
 
@@ -25,8 +25,6 @@
 
 Domain I is literally a reasoning blueprint: **Assess 32% / Diagnose 27% / Plan 27% / Evaluate 15%**. System chapters teach *what* disease patterns look like; this chapter teaches *how* not to miss the dangerous ones, how to choose the next test, and how to disposition patients without under- or over-triage. Most exam heartbreak is reasoning heartbreak: premature closure, therapy-first thinking, age-blind priors, or sending hypoxia home with “supportive care.”
 
-**Pair with practice:** After this chapter, do mixed “next step” and “most likely diagnosis” sets and force yourself to name the ADPE verb before answering.
-
 ---
 
 ## ADPE lens for clinical reasoning
@@ -45,8 +43,8 @@ Domain I is literally a reasoning blueprint: **Assess 32% / Diagnose 27% / Plan 
 ### The three-lane board
 
 For every nontrivial presentation, hold:
-1. **Most likely** (pretest probability + classic pattern)  
-2. **Most dangerous / treatable** (even if less likely)  
+1. **Most likely** (pretest probability + classic pattern)
+2. **Most dangerous / treatable** (even if less likely)
 3. **Common mimics** (so you don’t anchor)
 
 Example — acute dyspnea: pneumonia/COPD/asthma exacerbation (likely) · PE/ACS/pneumothorax (dangerous) · anxiety/anemia/metabolic acidosis (mimics).
@@ -67,16 +65,16 @@ Abdominal/pelvic pain, bleeding, headache, BP rise, dyspnea — always run an ob
 
 ## Topic B — Red flags and disposition
 
-### Emergent (ED/EMS now) — exemplar themes
+### Emergent (ED/EMS now) — exemplar
 
-| System | Can’t-miss themes |
+| System | Can’t-miss |
 | --- | --- |
-| Cardio/pulm | ACS, PE with instability, hypoxic respiratory failure, dissection, tamponade themes |
-| Neuro | Stroke/TIA window, meningitis/encephalitis cues, status themes, cauda equina |
-| Abdomen/OB | Peritonitis, ectopic with instability, testicular/ovarian torsion themes |
+| Cardio/pulm | ACS, PE with instability, hypoxic respiratory failure, dissection, tamponade |
+| Neuro | Stroke/TIA window, meningitis/encephalitis cues, status, cauda equina |
+| Abdomen/OB | Peritonitis, ectopic with instability, testicular/ovarian torsion |
 | ID/MSK | Necrotizing infection, septic arthritis, severe sepsis |
 | Psych | Immediate danger to self/others, inability to care for self with severe impairment |
-| Heme | Suspected acute leukemia with blast crisis themes / severe symptomatic anemia instability |
+| Heme | Suspected acute leukemia with blast crisis / severe symptomatic anemia instability |
 
 ### Urgent (same/next day specialty or structured close follow-up)
 
@@ -96,12 +94,12 @@ Choosing elegant outpatient panels while the stem screams instability (RR, SpO�
 
 ### Principles
 
-- A test should change today’s or near-term management.  
-- Prefer bedside game-changers first: ECG, glucose, pulse ox, pregnancy test, UA.  
-- Consider harm: radiation, false positives, incidentalomas, cost, delay.  
-- Decision aids themes (Ottawa ankle/knee/C-spine) reward selective imaging.  
-- Low back pain: early imaging mainly for red flags / progressive deficits.  
-- Headache imaging: focal deficit, thunderclap, trauma on anticoag, cancer, papilledema themes — not every migraine.
+- A test should change today’s or near-term management.
+- Prefer bedside game-changers first: ECG, glucose, pulse ox, pregnancy test, UA.
+- Consider harm: radiation, false positives, incidentalomas, cost, delay.
+- Decision aids (Ottawa ankle/knee/C-spine) reward selective imaging.
+- Low back pain: early imaging mainly for red flags / progressive deficits.
+- Headache imaging: focal deficit, thunderclap, trauma on anticoag, cancer, papilledema — not every migraine.
 
 ### Pregnancy + imaging
 
@@ -109,23 +107,23 @@ Pregnancy test before ionizing radiation when relevant. Prefer ultrasound pathwa
 
 ### Checklist before imaging
 
-- [ ] Working differential listed  
-- [ ] Result will change plan?  
-- [ ] Bedside test better first?  
-- [ ] Pregnancy status considered?  
+- [ ] Working differential listed
+- [ ] Result will change plan?
+- [ ] Bedside test better first?
+- [ ] Pregnancy status considered?
 - [ ] Follow-up plan for incidental findings?
 
 ---
 
 ## Topic D — Labs that unlock Plan
 
-| Presentation | Often-first considerations (themes) |
+| Presentation | Often-first considerations |
 | --- | --- |
 | Fatigue | CBC, TSH, metabolic panel ± iron/B12 by clues |
-| New HTN | BMP, lipids, glucose/A1c themes, UACR |
+| New HTN | BMP, lipids, glucose/A1c, UACR |
 | UTI symptoms | UA ± culture by complexity/pregnancy |
 | Abd/pelvic pain, amenorrhea | **Pregnancy test** reflex |
-| Edema | BMP, albumin themes, TSH; BNP/echo via pathway |
+| Edema | BMP, albumin, TSH; BNP/echo via pathway |
 | Cognitive change (elder) | Glucose, BMP, CBC, B12, TSH, infection, med review |
 | Chest pain pathway | ECG first; troponin in ED pathways |
 | Suspected endocrine crisis | Directed labs + ED if unstable |
@@ -144,7 +142,7 @@ Clear question · what you already tried · urgency · relevant data attached ·
 
 Med reconciliation after ED/hospital · high-risk drugs (anticoag, insulin, opioids, immunosuppressants) · follow-up timing for HF/ACS/pneumonia/new diabetes/SI safety · plain-language return precautions · caregiver inclusion in older adults.
 
-### Documentation themes
+### Documentation
 
 Working diagnosis · alternatives considered · shared decisions · monitoring parameters · what defines failure.
 
@@ -167,16 +165,16 @@ Working diagnosis · alternatives considered · shared decisions · monitoring p
 
 ## Topic G — Procedures & primary-care scope awareness
 
-Stems may ask whether to perform, defer, or refer: skin biopsy themes, I&D of simple abscess vs deep/facial danger zones, joint injection comfort limits, endometrial biopsy contexts, toenail procedures, laceration complexity, foreign body. Rule of thumb: **airway, eyes, hand tendons, deep spaces, immunocompromise, anticoagulated bleeds, and uncertain anatomy → lower threshold to refer/ED**. Know your training and state scope — exam rewards safety humility.
+Stems may ask whether to perform, defer, or refer: skin biopsy, I&D of simple abscess vs deep/facial danger zones, joint injection comfort limits, endometrial biopsy contexts, toenail procedures, laceration complexity, foreign body. Rule of thumb: **airway, eyes, hand tendons, deep spaces, immunocompromise, anticoagulated bleeds, and uncertain anatomy → lower threshold to refer/ED**. Know your training and state scope — exam rewards safety humility.
 
 ---
 
 ## Topic H — Evidence-informed reasoning
 
-- Screening ≠ diagnosis.  
-- Shared decision when benefit/harm close.  
-- Absolute vs relative risk conversations in plain language.  
-- Stewardship: antibiotics only when bacterial likelihood and benefit warrant.  
+- Screening ≠ diagnosis.
+- Shared decision when benefit/harm close.
+- Absolute vs relative risk conversations in plain language.
+- Stewardship: antibiotics only when bacterial likelihood and benefit warrant.
 - Deprescribing in older adults as Evaluate/Plan courage.
 
 ---
@@ -241,42 +239,40 @@ Stems may ask whether to perform, defer, or refer: skin biopsy themes, I&D of si
 
 ## Quick checklist — clinical reasoning
 
-- [ ] Stability / red-flag filter applied  
-- [ ] ADPE verb identified  
-- [ ] Three-lane differential held  
-- [ ] Age band + pregnancy potential considered  
-- [ ] Next test changes management  
-- [ ] Disposition matches risk  
-- [ ] Education + return precautions if outpatient  
-- [ ] Evaluate/monitoring plan stated  
-- [ ] SDoH scanned when adherence/outcome at risk  
-- [ ] Bias check (anchoring/premature closure)  
+- [ ] Stability / red-flag filter applied
+- [ ] ADPE verb identified
+- [ ] Three-lane differential held
+- [ ] Age band + pregnancy potential considered
+- [ ] Next test changes management
+- [ ] Disposition matches risk
+- [ ] Education + return precautions if outpatient
+- [ ] Evaluate/monitoring plan stated
+- [ ] SDoH scanned when adherence/outcome at risk
+- [ ] Bias check (anchoring/premature closure)
 
 ---
 
 ## Remember this
 
-- Assess is 32% — missing data is a scored skill.  
-- Can’t-miss diagnoses earn early rule-out energy.  
-- Older adults present atypically; prenatal doubles the differential.  
-- Verify local pathways; this is a study aid only.
-
-**Next:** Practice “next step” items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
+- Assess is 32% — missing data is a scored skill.
+- Can’t-miss diagnoses earn early rule-out energy.
+- Older adults present atypically; prenatal doubles the differential.
+.
 
 ---
 
 ## Topic I — Communication, uncertainty, and “sick vs not sick”
 
 Expert primary care sounds calm under uncertainty. On the exam, that reads as:
-- Name what you know vs what you must rule out.  
-- Share a safety-net plan (“If X/Y/Z happens, go to ED”).  
-- Avoid false reassurance (“It’s definitely migraine”) when secondary headache red flags exist.  
-- Use plain language; confirm understanding with teach-back.  
+- Name what you know vs what you must rule out.
+- Share a safety-net plan (“If X/Y/Z happens, go to ED”).
+- Avoid false reassurance (“It’s definitely migraine”) when secondary headache red flags exist.
+- Use plain language; confirm understanding with teach-back.
 - In older adults, include caregivers when cognition or hearing limits teach-back — with consent/privacy respect.
 
-### Sick vs not sick (rapid gestalt — then verify)
+### Sick vs not sick
 
-“Sick” cues: altered mentation, work of breathing, mottling, diaphoresis with pain, rigid abdomen, petechiae with fever themes, inability to walk normally when that is new. Gestalt does **not** replace vitals — it prioritizes speed.
+“Sick” cues: altered mentation, work of breathing, mottling, diaphoresis with pain, rigid abdomen, petechiae with fever, inability to walk normally when that is new. Gestalt does **not** replace vitals — it prioritizes speed.
 
 ### Serial assessment as Evaluate
 
@@ -284,24 +280,24 @@ Worsening despite appropriate therapy → revisit diagnosis (wrong bug, missed P
 
 ---
 
-## Topic J — Legal/ethical reasoning themes (light, high-yield)
+## Topic J — Legal/ethical reasoning (light, high-yield)
 
-- Consent/assent; capacity vs disagreeing with your plan.  
-- Adolescent confidentiality vs mandatory harm exceptions (laws vary — know concepts).  
-- Mandatory reporting cues (child/elder/vulnerable adult abuse suspicions).  
-- Documentation that matches what you did and why.  
+- Consent/assent; capacity vs disagreeing with your plan.
+- Adolescent confidentiality vs mandatory harm exceptions (laws vary — know concepts).
+- Mandatory reporting cues (child/elder/vulnerable adult abuse suspicions).
+- Documentation that matches what you did and why.
 - Stay in scope; collaborative/supervisory requirements are state-specific — don’t invent statutes on the exam; choose the safest in-scope option.
 
 ---
 
 ## Topic K — Putting it together: a reasoning OS for every stem
 
-1. Read the last line (the ask).  
-2. Spot age band + pregnancy potential.  
-3. Stability/red flags.  
-4. ADPE verb.  
-5. Three-lane differential.  
-6. Next action that is safest and most informative.  
+1. Read the last line (the ask).
+2. Spot age band + pregnancy potential.
+3. Stability/red flags.
+4. ADPE verb.
+5. Three-lane differential.
+6. Next action that is safest and most informative.
 7. If outpatient: safety net + Evaluate plan.
 
 Run this OS until it is automatic — then system knowledge has somewhere to land.
@@ -316,16 +312,16 @@ Without looking up answers, narrate ADPE for: thunderclap headache; painless jau
 
 ## Concept checks
 
-**1.** Hypoxic older adult with presumed URI — best Plan?  
-A. Home supportive care  B. ED evaluation  C. Wait for viral panel mail-in  D. Start amoxicillin always  
+**1.** Hypoxic older adult with presumed URI — best Plan?
+A. Home supportive care B. ED evaluation C. Wait for viral panel mail-in D. Start amoxicillin always
 **Answer:** B.
 
-**2.** Which Domain I process asks “what monitoring proves therapy worked?”  
-A. Assess  B. Diagnose  C. Evaluate  D. None  
+**2.** Which Domain I process asks “what monitoring proves therapy worked?”
+A. Assess B. Diagnose C. Evaluate D. None
 **Answer:** C.
 
-**3.** First lab reflex in fertile patient with pelvic pain?  
-A. ANA  B. Pregnancy test  C. MRI  D. Tumor markers  
+**3.** First lab reflex in fertile patient with pelvic pain?
+A. ANA B. Pregnancy test C. MRI D. Tumor markers
 **Answer:** B.
 
 ---
@@ -347,10 +343,10 @@ A. ANA  B. Pregnancy test  C. MRI  D. Tumor markers
 
 ### Documentation one-liners that mirror good reasoning
 
-- “Discussed red-flag return precautions; patient verbalized teach-back.”  
-- “Differential includes X; choosing test Y because it changes management by Z.”  
-- “Shared decision regarding screening given limited life expectancy; deferred with revisit plan.”  
-- “Barriers: transportation; arranged telehealth + local lab.”  
+- “Discussed red-flag return precautions; patient verbalized teach-back.”
+- “Differential includes X; choosing test Y because it changes management by Z.”
+- “Shared decision regarding screening given limited life expectancy; deferred with revisit plan.”
+- “Barriers: transportation; arranged telehealth + local lab.”
 
 ### How this chapter feeds every system chapter
 
@@ -386,7 +382,7 @@ Say “I’m 70% this is viral URI, but 5% pneumonia would change disposition �
 
 ## Referral letter quality (Plan skill)
 
-Bad: “Please see for stomach issues.”  
+Bad: “Please see for stomach issues.”
 Better: “6 weeks epigastric pain, +H. pylori stool Ag, failed PPI adherence due to cost; requesting GI for persistent symptoms / ulcer risk; on naproxen; Hgb 11.2; no melena now.”
 
 Include: question for specialist, timeline urgency, key data, what patient already understands, barriers.

@@ -36,27 +36,11 @@ No. Third-party books prepare you — they do **not** replace [NCSBN](https://ww
 
 No. Ranges vary by lab, age, sex, and method. We teach **direction and urgency**. Confirm ranges accepted by your program and clinical sites.
 
-### Can AnyExamEasy help with NCLEX prep?
-
-Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Roadmap, and full-length mocks.
-
----
-
-## You’ve got this
+## Before test day
 
 You already survived nursing school. The NCLEX asks you to show **safe clinical judgment** under pressure — and that is a skill you can train.
 
 Open a practice set today. Review the misses like a detective. Repeat tomorrow.
-
-### Ready for NGN-ready practice?
-
-**AnyExamEasy** pairs this NCLEX reference book with NGN-style practice, teachable rationales, Roadmap, and full-length mocks.
-
-com)** — no payment method.
-
-*NCLEX practice that matches the judgment this book trains.*
-
----
 
 ## Legal / attribution
 
@@ -64,6 +48,6 @@ com)** — no payment method.
 
 *This book is a **study aid only**. It is not medical advice, clinical protocol, or a substitute for your nursing program, facility policy, or official board documents. Medication, lab, isolation, and scope details must be verified with current official sources and instructors before clinical use.*
 
-*Portions of this material are AI-generated and may contain errors, omissions, or outdated information. Always verify critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.*
+*Portions of this material are AI-generated and may contain errors, omissions, or outdated information. Always Confirm critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.*
 
 *© 2026 AI Software Product Solutions, LLC, which operates Any Exam Easy. All rights reserved. For educational use by Any Exam Easy students and site visitors as published on anyexameasy.com.*

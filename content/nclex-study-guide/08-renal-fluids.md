@@ -1,6 +1,6 @@
 # Chapter 8 — Renal & Fluids/Electrolytes
 
-> **Study aid only.** Exact lab reference ranges vary by laboratory. Know direction and urgency; verify local ranges. Not a dialysis prescription guide.
+> **Study aid only.** Exact lab reference ranges vary by laboratory. Know direction and urgency; Confirm local ranges. Not a dialysis prescription guide.
 
 ![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.svg)
 
@@ -28,11 +28,11 @@ Water follows sodium; potassium drives cardiac conduction; calcium drives neurom
 | --- | --- |
 | **Hyponatremia** | Confusion, seizures (severe), headache |
 | **Hypernatremia** | Thirst, dry mucosa, irritability/neuro changes |
-| **Hypokalemia** | Weakness, dysrhythmias, U-wave themes, dig toxicity risk ↑ |
+| **Hypokalemia** | Weakness, dysrhythmias, U-wave, dig toxicity risk ↑ |
 | **Hyperkalemia** | Peaked T waves, weakness, bradydysrhythmias — **emergency potential** |
 | **Hypocalcemia** | Tetany, Chvostek/Trousseau, laryngospasm risk |
 | **Hypercalcemia** | “Bones, stones, groans, psychic moans,” weakness |
-| **Hypomagnesemia** | Torsades risk themes, reflexes ↑, accompanies low K⁺/Ca²⁺ |
+| **Hypomagnesemia** | Torsades risk, reflexes ↑, accompanies low K⁺/Ca²⁺ |
 
 ### Fluid volume excess vs deficit (comparison)
 
@@ -40,29 +40,29 @@ Water follows sodium; potassium drives cardiac conduction; calcium drives neurom
 | --- | --- | --- |
 | VS pattern | Tachycardia, hypotension, weak pulses | HTN (often), bounding pulses |
 | Respiratory | Clear unless weak/aspiration | Crackles, dyspnea, ↑ RR |
-| Other | Dry mucosa, oliguria, poor turgor, weight loss | Edema, JVD, weight gain, S3 themes |
-| Causes themes | Bleed, vomit/diarrhea, burns, DI, under-resuscitation | HF, renal failure, SIADH, iatrogenic IV fluids |
+| Other | Dry mucosa, oliguria, poor turgor, weight loss | Edema, JVD, weight gain, S3 |
+| Causes | Bleed, vomit/diarrhea, burns, DI, under-resuscitation | HF, renal failure, SIADH, iatrogenic IV fluids |
 | Nurse focus | Replace per orders; treat cause; orthostatics | Restrict fluids/Na⁺ as ordered; diuretics; elevate HOB; daily weights |
 
-Daily weights = best chronic volume tracker (same scale, same time, same clothes themes).
+Daily weights = best chronic volume tracker (same scale, same time, same clothes).
 
 ### Priority nursing actions
 
-1. Telemetry when K⁺/Mg²⁺ deranged.  
-2. Replace or remove electrolytes **per orders** — IV K⁺ never IV push; controlled infusion only.  
-3. Seizure precautions for severe Na⁺ shifts; correct Na⁺ carefully (over-rapid correction risks demyelination themes).  
-4. Hyperkalemia emergency themes: protect heart (calcium as ordered), shift K⁺ (insulin+glucose, beta agonists as ordered), remove K⁺ (binders, dialysis).
+1. Telemetry when K⁺/Mg²⁺ deranged.
+2. Replace or remove electrolytes **per orders** — IV K⁺ never IV push; controlled infusion only.
+3. Seizure precautions for severe Na⁺ shifts; correct Na⁺ carefully (over-rapid correction risks demyelination).
+4. Hyperkalemia emergency: protect heart (calcium as ordered), shift K⁺ (insulin+glucose, beta agonists as ordered), remove K⁺ (binders, dialysis).
 
 ### Client teaching
 
-- Diuretic diet: K⁺ rich vs avoid depending on drug.  
-- Fluid restriction adherence when ordered (HF/SIADH/renal).  
-- Report weight gains (~2–3 lb in a day or ~5 lb in a week themes — follow personal parameters).
+- Diuretic diet: K⁺ rich vs avoid depending on drug.
+- Fluid restriction adherence when ordered (HF/SIADH/renal).
+- Report weight gains (~2–3 lb in a day or ~5 lb in a week — follow personal parameters).
 
 ### Safety / red flags
 
-- IV potassium push = never.  
-- Peaked T waves → escalate.  
+- IV potassium push = never.
+- Peaked T waves → escalate.
 - Rapid Na⁺ swings.
 
 ### Remember this
@@ -75,17 +75,17 @@ Treat patient + trend. K⁺ emergencies are cardiac emergencies. Weights win for
 
 ### Shortcut
 
-1. Look at **pH**  
-2. Look at **PaCO₂** (respiratory) and **HCO₃⁻** (metabolic)  
-3. Match the one that explains pH → primary  
-4. Other may compensate  
+1. Look at **pH**
+2. Look at **PaCO₂** (respiratory) and **HCO₃⁻** (metabolic)
+3. Match the one that explains pH → primary
+4. Other may compensate
 
 | Pattern | Example drivers |
 | --- | --- |
 | Resp acidosis | Hypoventilation, COPD, oversedation |
 | Resp alkalosis | Hyperventilation, anxiety, PE early |
 | Met acidosis | DKA, lactic shock, diarrhea |
-| Met alkalosis | Vomiting, NG suction, diuretic themes |
+| Met alkalosis | Vomiting, NG suction, diuretic |
 
 ### Remember this
 
@@ -97,39 +97,39 @@ Fix the cause (ventilate, perfuse, insulin for DKA, etc.).
 
 ### Pathophysiology / concept
 
-**AKI:** sudden drop in GFR — prerenal (perfusion), intrinsic (ATN/nephritis), postrenal (obstruction).  
+**AKI:** sudden drop in GFR — prerenal (perfusion), intrinsic (ATN/nephritis), postrenal (obstruction).
 **CKD:** progressive irreversible loss; stages by GFR; complications = fluid overload, hyperkalemia, anemia, mineral bone disease, uremia, acidosis.
 
-### Nephrotic vs nephritic (themes)
+### Nephrotic vs nephritic
 
 | | **Nephrotic** | **Nephritic** |
 | --- | --- | --- |
 | Hallmark pattern | Massive proteinuria → hypoalbuminemia → edema | Inflammation → hematuria (“cola” urine), HTN, oliguria |
-| Other | Hyperlipidemia themes; infection/clot risk | RBC casts themes; rising Cr |
+| Other | Hyperlipidemia; infection/clot risk | RBC casts; rising Cr |
 | Nurse | Skin care, infection watch, nutrition as ordered, anticoag awareness if ordered | BP control, fluid/Na⁺ management, monitor renal function |
 
 ### Assessment cues (AKI/CKD)
 
-Oliguria/anuria, rising creatinine/BUN, hyperkalemia, metabolic acidosis, edema/HTN, uremic frost/encephalopathy late, pericarditis themes late.
+Oliguria/anuria, rising creatinine/BUN, hyperkalemia, metabolic acidosis, edema/HTN, uremic frost/encephalopathy late, pericarditis late.
 
 ### Priority nursing actions
 
-- Map cause: fluids for prerenal if ordered; relieve obstruction; avoid nephrotoxins (NSAIDs, aminoglycosides themes).  
-- Monitor I&O, daily weight, K⁺, ECG.  
-- Renal diet themes: often protein/K⁺/phos/Na⁺ modifications as ordered.  
-- Prepare for dialysis if refractory overload/K⁺/acidosis/uremia.  
+- Map cause: fluids for prerenal if ordered; relieve obstruction; avoid nephrotoxins (NSAIDs, aminoglycosides).
+- Monitor I&O, daily weight, K⁺, ECG.
+- Renal diet: often protein/K⁺/phos/Na⁺ modifications as ordered.
+- Prepare for dialysis if refractory overload/K⁺/acidosis/uremia.
 - CKD: EPO/iron as ordered; phosphate binders **with meals**; HTN/diabetes control.
 
 ### Meds caution
 
-- Adjust renally cleared drugs.  
-- ACEI/ARB: renal protective long-term but monitor K⁺/Cr.  
+- Adjust renally cleared drugs.
+- ACEI/ARB: renal protective long-term but monitor K⁺/Cr.
 - Contrast precautions (hydration as ordered).
 
 ### Client teaching
 
-- No NSAIDs casually; med list review.  
-- Fistula care if dialysis-bound.  
+- No NSAIDs casually; med list review.
+- Fistula care if dialysis-bound.
 - Fluid/diet adherence.
 
 ### Remember this
@@ -142,13 +142,13 @@ Protect kidneys from hypoperfusion and toxins. Nephrotic = protein/edema; nephri
 
 ### UTI / pyelo
 
-Lower UTI: dysuria, frequency, urgency, suprapubic discomfort.  
-**Pyelonephritis:** flank pain, fever, chills, N/V — systemic; can seed sepsis.  
+Lower UTI: dysuria, frequency, urgency, suprapubic discomfort.
+**Pyelonephritis:** flank pain, fever, chills, N/V — systemic; can seed sepsis.
 **Priorities:** cultures before antibiotics when possible; fluids as ordered; analgésics/antipyretics; teach wipe front-to-back, void after sex, don’t hold urine, finish antibiotics; catheter prevention (sterile insert, early removal).
 
 ### Kidney stones (urolithiasis)
 
-Severe colicky flank pain radiating to groin, hematuria, N/V, can’t sit still.  
+Severe colicky flank pain radiating to groin, hematuria, N/V, can’t sit still.
 **Nurse:** pain control, strain all urine, hydration as ordered, ambulation, filter for stone analysis; infection + obstruction = emergency energy (fever + unrelieved pain). Teaching: fluid intake goals as ordered; diet depends on stone type (don’t invent one diet for all).
 
 ### Remember this
@@ -161,12 +161,12 @@ Fever + flank pain = pyelo/sepsis watch. Stones = pain + strain + fluids; infect
 
 ### Concept
 
-**BPH:** prostate enlargement → urinary retention, weak stream, nocturia, overflow incontinence themes. Meds: alpha-blockers (orthostatic hypotension teaching), 5-ARI themes (sexual SE, pregnant partner handling precautions for crushed tabs).
+**BPH:** prostate enlargement → urinary retention, weak stream, nocturia, overflow incontinence. Meds: alpha-blockers (orthostatic hypotension teaching), 5-ARI (sexual SE, pregnant partner handling precautions for crushed tabs).
 
 ### TURP continuous bladder irrigation (CBI)
 
-Goal: keep catheter patent and urine pink-to-clear; prevent clot retention.  
-**Nurse:** hang irrigant (usually isotonic sterile) as ordered; adjust rate so output stays without bright red clots/obstruction; measure true urine = output minus irrigant in; watch for **hyponatremia/TURP syndrome** themes (confusion, N/V, HTN or bradycardia patterns) with absorption of irrigant — report neuro changes.  
+Goal: keep catheter patent and urine pink-to-clear; prevent clot retention.
+**Nurse:** hang irrigant (usually isotonic sterile) as ordered; adjust rate so output stays without bright red clots/obstruction; measure true urine = output minus irrigant in; watch for **hyponatremia/TURP syndrome** (confusion, N/V, HTN or bradycardia patterns) with absorption of irrigant — report neuro changes.
 If outflow blocked (bladder spasms, no drip out): check kinks; hand-irrigate per protocol/orders only; notify if large clots persist. Secure catheter; traction as ordered; analgesics/antispasmodics as ordered.
 
 ### Remember this
@@ -179,17 +179,17 @@ CBI: pink and flowing. Bright red + clots + spasms = patency emergency. Confusio
 
 ### Hemodialysis concepts
 
-Blood cleaned via dialyzer; access via AV fistula/graft or catheter. Complications: hypotension, disequilibrium themes, bleed from heparin, infection, cramps.
+Blood cleaned via dialyzer; access via AV fistula/graft or catheter. Complications: hypotension, disequilibrium, bleed from heparin, infection, cramps.
 
 ### Fistula care rules (classic NCLEX)
 
-- **No BP, no sticks, no tight clothes** on access arm.  
-- Feel **thrill**, hear **bruit** — report absence.  
+- **No BP, no sticks, no tight clothes** on access arm.
+- Feel **thrill**, hear **bruit** — report absence.
 - Post-dialysis: watch bleeding, VS, hold certain meds until after session per orders (many antihypertensives held pre-dialysis).
 
 ### Peritoneal dialysis & peritonitis signs
 
-Catheter in abdomen; dwell/drain. **Peritonitis:** cloudy effluent, abdominal pain, fever, rebound — report ASAP; save bag for culture; antibiotics as ordered (often intraperitoneal themes); sterile technique with exchanges; teach client asepsis at home. Other issues: incomplete drain (position change), protein loss, hyperglycemia from dialysate dextrose themes.
+Catheter in abdomen; dwell/drain. **Peritonitis:** cloudy effluent, abdominal pain, fever, rebound — report ASAP; save bag for culture; antibiotics as ordered (often intraperitoneal); sterile technique with exchanges; teach client asepsis at home. Other issues: incomplete drain (position change), protein loss, hyperglycemia from dialysate dextrose.
 
 ### Remember this
 
@@ -218,26 +218,26 @@ SIADH = soaked inside (low Na⁺). DI = dry pipes (high UOP, high Na⁺ risk).
 
 ### IV fluid types (conceptual)
 
-- **Isotonic** (NS, LR): volume expansion — watch overload.  
-- **Hypotonic** (0.45% NaCl): pushes water into cells — avoid in ICP risk.  
-- **Hypertonic** (3% NaCl): pulls water from cells — ICU-level monitoring for severe hyponatremia.  
+- **Isotonic** (NS, LR): volume expansion — watch overload.
+- **Hypotonic** (0.45% NaCl): pushes water into cells — avoid in ICP risk.
+- **Hypertonic** (3% NaCl): pulls water from cells — ICU-level monitoring for severe hyponatremia.
 - Colloids/blood: follow transfusion rights and reactions protocol.
 
 ### IV complications
 
-| Problem | Cues | Nurse actions (themes) |
+| Problem | Cues | Nurse actions |
 | --- | --- | --- |
 | **Infiltration** | Cool, pale, swollen site; damp dressing | Stop IV; remove per policy; elevate; warm/cold per fluid type/policy; restart elsewhere |
-| **Phlebitis** | Red, warm, streak, tender cord | Stop/remove; warm compress themes; restart other arm; culture if ordered |
+| **Phlebitis** | Red, warm, streak, tender cord | Stop/remove; warm compress; restart other arm; culture if ordered |
 | **Extravasation** | Vesicant leak — burning, blistering, necrosis risk | **Stop**; don’t flush; aspirate residual if policy; antidote/protocol; notify; mark area |
 | **CLABSI risk** | Fever, chills with central line | Sterile care; scrub hub; report |
 
 ### Blood transfusion reactions — deeper algorithm
 
-1. **Stop transfusion immediately** — keep IV line open with **NS** (new tubing themes per policy).  
-2. Stay with client; VS; notify provider **and** blood bank.  
-3. Recheck identifiers; save blood bag/tubing for lab per policy — don’t casually discard.  
-4. Support ABCs; meds (antihistamine, epinephrine, diuretics) as ordered by reaction type.  
+1. **Stop transfusion immediately** — keep IV line open with **NS** (new tubing per policy).
+2. Stay with client; VS; notify provider **and** blood bank.
+3. Recheck identifiers; save blood bag/tubing for lab per policy — don’t casually discard.
+4. Support ABCs; meds (antihistamine, epinephrine, diuretics) as ordered by reaction type.
 5. Document; collect urine if hemolysis suspected (hemoglobinuria).
 
 | Reaction pattern | Cues | Energy |
@@ -246,9 +246,9 @@ SIADH = soaked inside (low Na⁺). DI = dry pipes (high UOP, high Na⁺ risk).
 | Febrile non-hemolytic | Fever, chills, headache | Stop, antipyretic as ordered |
 | Allergic | Urticaria, itching ± anaphylaxis | Stop; antihistamine/epi as ordered |
 | TACO | Dyspnea, crackles, HTN during/after volume | Stop/slow; sit up; diuretic as ordered |
-| TRALI themes | Acute dyspnea/hypoxia, non-cardiogenic pulmonary edema pattern | Stop; O₂/ventilatory support; report |
+| TRALI | Acute dyspnea/hypoxia, non-cardiogenic pulmonary edema pattern | Stop; O₂/ventilatory support; report |
 
-Two-nurse check, baseline VS, stay first 15 minutes themes — follow facility.
+Two-nurse check, baseline VS, stay first 15 minutes — follow facility.
 
 ### Remember this
 
@@ -276,17 +276,17 @@ No BP/sticks on fistula arm; thrill/bruit checks; report steal syndrome pain/coo
 
 ### Extra teaching
 
-- CKD diet themes: often Na/K/phos/protein individualized — teach the *client’s* prescription, not a generic internet diet.  
-- Post-streptococcal GN and nephrotic vs nephritic pattern recognition at high level.  
+- CKD diet: often Na/K/phos/protein individualized — teach the *client’s* prescription, not a generic internet diet.
+- Post-streptococcal GN and nephrotic vs nephritic pattern recognition at high level.
 - UTI → pyelo: flank pain/fever escalate; elderly may show confusion.
 
 ### Extra concept check
 
-**Q7.** Client post-dialysis dizzy, BP 80/50. Priority?  
-A. Rapid independent ambulation  
-B. Support ABCs, supine with legs elevated (avoid Trendelenburg), reduce or stop ultrafiltration and give a normal saline bolus per protocol, notify, hold further antihypertensives as ordered  
-C. Large free-water oral challenge immediately always  
-D. Ignore — expected forever  
+**Q7.** Client post-dialysis dizzy, BP 80/50. Priority?
+A. Rapid independent ambulation
+B. Support ABCs, supine with legs elevated (avoid Trendelenburg), reduce or stop ultrafiltration and give a normal saline bolus per protocol, notify, hold further antihypertensives as ordered
+C. Large free-water oral challenge immediately always
+D. Ignore — expected forever
 
 **Answer: B.**
 
@@ -299,8 +299,8 @@ D. Ignore — expected forever
 | High K⁺ | Peaked T, weakness | Monitor + emergent protocol |
 | Low K⁺ | Dysrhythmia, dig toxicity risk | Replace per orders; watch Mag |
 | Low Na⁺ | Confusion, seizure | Safety; careful correction |
-| Low Ca²⁺/Mg²⁺ | Tetany, laryngospasm themes | Airway readiness; replace |
-| High Mg²⁺ | ↓reflexes, ↓RR | Stop Mg sources; Ca gluconate themes |
+| Low Ca²⁺/Mg²⁺ | Tetany, laryngospasm | Airway readiness; replace |
+| High Mg²⁺ | ↓reflexes, ↓RR | Stop Mg sources; Ca gluconate |
 
 ### Acid-base nursing link
 
@@ -308,60 +308,60 @@ Treat cause: COPD retention → ventilation support; DKA → fluids/insulin; vom
 
 ## Concept check
 
-**Q1.** Client with K⁺ 6.8 mEq/L and peaked T waves. Priority theme?  
-A. Encourage banana smoothie  
-B. Cardiac monitoring and emergent hyperkalemia treatment per protocol  
-C. Wait for next morning labs only  
-D. Give spironolactone  
+**Q1.** Client with K⁺ 6.8 mEq/L and peaked T waves. Priority ?
+A. Encourage banana smoothie
+B. Cardiac monitoring and emergent hyperkalemia treatment per protocol
+C. Wait for next morning labs only
+D. Give spironolactone
 
-**Q2.** Teaching for new AV fistula includes:  
-A. BP measurements on that arm are preferred  
-B. No BP or venipuncture on access arm; report loss of thrill  
-C. Sleep only on fistula arm to protect it  
-D. Ignore redness at site  
+**Q2.** Teaching for new AV fistula includes:
+A. BP measurements on that arm are preferred
+B. No BP or venipuncture on access arm; report loss of thrill
+C. Sleep only on fistula arm to protect it
+D. Ignore redness at site
 
-**Q3.** Best indicator of fluid volume status over days?  
-A. Single random urine color photo  
-B. Daily weights same conditions  
-C. One-time BP in triage  
-D. Subjective thirst alone  
+**Q3.** Best indicator of fluid volume status over days?
+A. Single random urine color photo
+B. Daily weights same conditions
+C. One-time BP in triage
+D. Subjective thirst alone
 
-**Q4.** PD client reports cloudy dialysate and abdominal pain. Priority?  
-A. Reassure that cloudiness is normal forever  
-B. Suspect peritonitis — notify provider, save effluent for culture, follow infection protocol  
-C. Increase dwell without assessment  
-D. Remove catheter at bedside without orders  
+**Q4.** PD client reports cloudy dialysate and abdominal pain. Priority?
+A. Reassure that cloudiness is normal forever
+B. Suspect peritonitis — notify provider, save effluent for culture, follow infection protocol
+C. Increase dwell without assessment
+D. Remove catheter at bedside without orders
 
-**Q5.** During CBI after TURP, no output and client has bladder spasms. First checks?  
-A. Ignore — spasms are entertainment  
-B. Check tubing kinks/clots/patency; irrigate only per protocol; notify if unresolved  
-C. Clamp irrigant and leave for night shift  
-D. Force oral fluids only  
+**Q5.** During CBI after TURP, no output and client has bladder spasms. First checks?
+A. Ignore — spasms are entertainment
+B. Check tubing kinks/clots/patency; irrigate only per protocol; notify if unresolved
+C. Clamp irrigant and leave for night shift
+D. Force oral fluids only
 
-**Q6.** Fifteen minutes into a PRBC transfusion, client has flank pain, fever, and hypotension. First action?  
-A. Slow the rate and reassess tomorrow  
-B. Stop transfusion, maintain IV with NS, notify provider/blood bank, support ABCs  
-C. Give another unit to dilute  
-D. Discard all tubing immediately in regular trash before calling  
+**Q6.** Fifteen minutes into a PRBC transfusion, client has flank pain, fever, and hypotension. First action?
+A. Slow the rate and reassess tomorrow
+B. Stop transfusion, maintain IV with NS, notify provider/blood bank, support ABCs
+C. Give another unit to dilute
+D. Discard all tubing immediately in regular trash before calling
 
 #### Answers
 
-**Q1: B.** Hyperkalemia with ECG changes = emergency pathway.  
-**Q2: B.** Protect the access arm; thrill/bruit checks.  
-**Q3: B.** Daily weights win for trends.  
-**Q4: B.** Cloudy PD + pain = peritonitis until proven otherwise.  
-**Q5: B.** Patency first for CBI obstruction.  
+**Q1: B.** Hyperkalemia with ECG changes = emergency pathway.
+**Q2: B.** Protect the access arm; thrill/bruit checks.
+**Q3: B.** Daily weights win for trends.
+**Q4: B.** Cloudy PD + pain = peritonitis until proven otherwise.
+**Q5: B.** Patency first for CBI obstruction.
 **Q6: B.** Acute hemolytic pattern — stop, NS, notify, save equipment per policy.
 
 ---
 
 ## Chapter Remember this
 
-- Electrolyte danger zones — especially K⁺ — are cardiac/neuro emergencies.  
-- Never IV push potassium; FVE vs FVD comparison.  
-- AKI causes: pre / intra / post; nephrotic vs nephritic themes.  
-- CKD complications: volume, K⁺, anemia, bones.  
-- UTI/pyelo/stones; BPH/TURP CBI patency + TURP syndrome watch.  
-- Fistula arm sacred; PD peritonitis = cloudy bag.  
-- IV complications + transfusion: stop reaction first.  
+- Electrolyte danger zones — especially K⁺ — are cardiac/neuro emergencies.
+- Never IV push potassium; FVE vs FVD comparison.
+- AKI causes: pre / intra / post; nephrotic vs nephritic.
+- CKD complications: volume, K⁺, anemia, bones.
+- UTI/pyelo/stones; BPH/TURP CBI patency + TURP syndrome watch.
+- Fistula arm sacred; PD peritonitis = cloudy bag.
+- IV complications + transfusion: stop reaction first.
 - SIADH vs DI fluid/Na⁺ story.

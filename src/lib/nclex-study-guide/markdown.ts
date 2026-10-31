@@ -12,6 +12,21 @@ function escapeHtml(s: string): string {
     .replace(/"/g, "&quot;");
 }
 
+/** Gate comments stay in the manuscript so the public page can strip paid depth. */
+const PREMIUM_MARKER = /<!--\s*\/?premium\s*-->/g;
+
+export function stripPremiumMarkers(md: string): string {
+  return md.replace(PREMIUM_MARKER, "");
+}
+
+/** Stored chapter HTML may already contain the marker as text. Hide it at read time. */
+export function stripRenderedPremiumMarkers(html: string): string {
+  return html
+    .replace(/<p>\s*(?:<!--\s*\/?premium\s*-->|&lt;!--\s*\/?premium\s*--&gt;)\s*<\/p>/gi, "")
+    .replace(PREMIUM_MARKER, "")
+    .replace(/&lt;!--\s*\/?premium\s*--&gt;/g, "");
+}
+
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -90,7 +105,7 @@ function finalizeImages(html: string, imageSize?: MarkdownOptions["imageSize"]):
 }
 
 export function markdownToSimpleHtml(md: string, opts?: MarkdownOptions): string {
-  const lines = md.replace(/\r\n/g, "\n").split("\n");
+  const lines = stripPremiumMarkers(md).replace(/\r\n/g, "\n").split("\n");
   const out: string[] = [];
   let i = 0;
   let inUl = false;
