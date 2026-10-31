@@ -10,13 +10,13 @@ import {
   practiceBoardFromExam,
 } from "@/lib/engine/rationale/parse-rationale-display";
 import {
-  rationaleAfterLead,
   rationaleFragmentShownInLead,
   selectRationaleLead,
   shortRationaleLead,
   shouldCollapseRationale,
   stripLeadingSectionTitles,
   stripRationaleMarkup,
+  visibleRationaleRemainder,
 } from "@/lib/study/rationale-disclosure";
 
 /** Wrong-option labels already end with a period. Do not add a second one before "Trap:". */
@@ -136,7 +136,7 @@ function StructuredRationaleText({
   const parsed = parseRationaleForDisplay(prepared);
   if (!parsed.isStructured) {
     const plain = stripLeadingSectionTitles(stripRationaleMarkup(prepared));
-    const rest = lead ? rationaleAfterLead(plain, lead) : stripRationaleMarkup(prepared);
+    const rest = lead ? visibleRationaleRemainder(plain, lead) : stripRationaleMarkup(prepared);
     if (!rest) return null;
     return <p className={cn(bodyClass[tone])}>{rest}</p>;
   }
@@ -296,7 +296,7 @@ export function RationaleDisclosureText({
   const lead = shortRationaleLead(prepared) || stripLeadingSectionTitles(stripRationaleMarkup(prepared));
   const collapsed = shouldCollapseRationale([prepared]);
   const body = (
-    <StructuredRationaleText text={prepared} tone={tone} examSlug={examSlug} lead={collapsed ? lead : undefined} />
+    <StructuredRationaleText text={prepared} tone={tone} examSlug={examSlug} />
   );
   if (!collapsed) {
     return <div className={className}>{body}</div>;

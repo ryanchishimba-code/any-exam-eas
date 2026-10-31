@@ -20,7 +20,7 @@ import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
+import { fieldIdForExamSlug, fieldMatchesExamSlug } from "@/lib/edtech/exam-field-ids";
 import { takeDailySet } from "@/lib/learning/today-set-stash";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { fullExamSessionHref } from "@/lib/full-exam/config";
@@ -760,10 +760,14 @@ export function StudyBankPractice({
       const expectedMeta = getFieldMetaById(expectedId);
       if (!expectedMeta) return;
 
-      // An explicit practice field in the URL wins for this page, including a
-      // board other than the saved exam and a USMLE step other than the default.
-      // The saved preference is not rewritten from here.
-      if (paramMeta && isPracticeFieldId(paramMeta.id)) {
+      // Same exam as the account, including a USMLE step. A field from another
+      // board is ignored so the header and the practice request stay on the
+      // saved exam.
+      if (
+        paramMeta &&
+        isPracticeFieldId(paramMeta.id) &&
+        fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)
+      ) {
         setField(paramMeta.label);
         return;
       }

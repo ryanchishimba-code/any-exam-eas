@@ -33,12 +33,13 @@ export function clearOptimisticExamSlug(): void {
 }
 
 /**
- * Header links (Full Exam, Bank) follow the exam just chosen.
- * A stale server prop loses to that choice until the preference read agrees.
+ * Header chip and question-bank links.
+ * The saved account exam is the source of truth once it is known.
+ * A leftover session choice is used only before that read arrives.
  */
 export function headerExamSlug(
-  serverSlug: ExamSlug | null,
+  accountExam: ExamSlug | null,
   optimisticSlug: ExamSlug | null
 ): ExamSlug | null {
-  return optimisticSlug ?? serverSlug;
+  return accountExam ?? optimisticSlug;
 }

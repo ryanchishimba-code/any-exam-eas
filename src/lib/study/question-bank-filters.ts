@@ -1,3 +1,4 @@
+import { examSlugForFieldId, fieldMatchesExamSlug } from "@/lib/edtech/exam-field-ids";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import { isOtherOpenSubject } from "@/lib/learning/other-open-subject";
 import { isBlueprintAreaId } from "@/lib/inventory/blueprint-domain-pool";
@@ -58,23 +59,28 @@ export function canonicalizeQuestionBankQuery(
 /**
  * Field the question-bank page should show.
  *
- * An explicit practice field in the URL wins over the saved board for this
- * page only. The saved preference is the fallback when the URL has no field
- * or names something that is not a practice field. This does not change the
- * saved exam.
+ * The saved account exam is the source of truth, same as the header chip.
+ * A URL field from another board (PANCE while the account is NCLEX) is ignored
+ * so practice does not call the API with a field the account cannot use.
+ * A field on the same exam, including a USMLE step, is kept.
  */
 export function questionBankPageFieldId(
   requestedFieldId: string | null,
   savedFieldId: string
 ): string {
-  if (requestedFieldId && isPracticeFieldId(requestedFieldId)) return requestedFieldId;
+  if (requestedFieldId && isPracticeFieldId(requestedFieldId)) {
+    const accountExam = examSlugForFieldId(savedFieldId);
+    if (accountExam && fieldMatchesExamSlug(requestedFieldId, accountExam)) {
+      return requestedFieldId;
+    }
+  }
   return savedFieldId;
 }
 
 /**
  * Href to replace with, or null when the query is already canonical.
- * Drops a subject that does not belong to the page field. Does not replace
- * an explicit field with the saved board.
+ * Drops a subject that does not belong to the page field. Replaces a field
+ * from another board with the saved account exam.
  */
 export function canonicalQuestionBankHref(
   pathname: string,

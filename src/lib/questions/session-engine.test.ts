@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   advanceSession,
   createStudySession,
+  flagUnansweredQuestion,
   recordSessionAnswer,
   summarizeSession,
 } from "./session-engine";
@@ -51,5 +52,28 @@ describe("createStudySession", () => {
     expect(summary.total).toBe(2);
     expect(summary.correct).toBe(1);
     expect(summary.accuracy).toBe(50);
+  });
+
+  it("keeps an unanswered question in the order and flags it", () => {
+    const { session, questions: prepared } = createStudySession({
+      questions,
+      field: "Math",
+      sourceType: "bank",
+      mode: "practice",
+      shuffleOrder: false,
+    });
+    const flagged = flagUnansweredQuestion(session, prepared[0]!.id);
+    const next = advanceSession(flagged, 1);
+    expect(next.order).toEqual(session.order);
+    expect(next.currentIndex).toBe(1);
+    expect(flagged.answers[prepared[0]!.id]).toMatchObject({
+      revealed: false,
+      unanswered: true,
+    });
+    expect(summarizeSession(next, prepared).answered).toBe(0);
+
+    const checked = recordSessionAnswer(next, prepared[0]!, [prepared[0]!.correctAnswers[0]!]);
+    expect(checked.answers[prepared[0]!.id]?.unanswered).toBe(false);
+    expect(checked.answers[prepared[0]!.id]?.revealed).toBe(true);
   });
 });

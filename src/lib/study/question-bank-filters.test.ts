@@ -88,28 +88,31 @@ describe("canonicalizeQuestionBankQuery", () => {
     expect(kept.get("blueprintArea")).toBe("assess");
   });
 
-  it("keeps an explicit field when the subject belongs to another board", () => {
+  it("uses the account exam when the URL field is another board", () => {
     const savedBoard = "nursing";
-    const requested = "aanp-fnp";
-    expect(questionBankPageFieldId(requested, savedBoard)).toBe("aanp-fnp");
+    expect(questionBankPageFieldId("pance", savedBoard)).toBe("nursing");
+    expect(questionBankPageFieldId("aanp-fnp", savedBoard)).toBe("nursing");
 
     const href = canonicalQuestionBankHref(
       "/question-bank",
-      new URLSearchParams("field=aanp-fnp&subjectId=physiology"),
+      new URLSearchParams("field=pance&subjectId=history"),
       savedBoard,
-      requested
+      "pance"
     );
-    expect(href).toBe("/question-bank?field=aanp-fnp&mode=bank");
+    expect(href).toContain("field=nursing");
+    expect(href).not.toContain("field=pance");
     expect(href).not.toContain("subjectId");
-    expect(href).not.toContain("field=nursing");
   });
 
-  it("keeps a subjectId that belongs to the explicit field", () => {
-    const search = new URLSearchParams("field=aanp-fnp&mode=bank&subjectId=assess");
-    expect(questionBankPageFieldId("aanp-fnp", "nursing")).toBe("aanp-fnp");
-    expect(canonicalQuestionBankHref("/question-bank", search, "nursing", "aanp-fnp")).toBeNull();
-    expect(search.get("subjectId")).toBe("assess");
-    expect(search.get("field")).toBe("aanp-fnp");
+  it("keeps a subjectId that belongs to the account exam", () => {
+    const search = new URLSearchParams("field=nursing&mode=bank&subjectId=pharmacology-nursing");
+    expect(questionBankPageFieldId("nursing", "nursing")).toBe("nursing");
+    expect(canonicalQuestionBankHref("/question-bank", search, "nursing", "nursing")).toBeNull();
+    expect(search.get("subjectId")).toBe("pharmacology-nursing");
+  });
+
+  it("keeps a USMLE step field on a USMLE account", () => {
+    expect(questionBankPageFieldId("usmle-step-1", "usmle-step-2")).toBe("usmle-step-1");
   });
 
   it("is idempotent", () => {

@@ -22,28 +22,28 @@ describe("resolveQuestionBankRoute", () => {
     });
   });
 
-  it("keeps field=aanp-fnp and drops an invalid subjectId when the saved exam is NCLEX", async () => {
+  it("replaces a PANCE field with the NCLEX account exam", async () => {
     await expect(
       resolveQuestionBankRoute("user-1", {
-        field: "aanp-fnp",
-        subjectId: "physiology",
+        field: "pance",
+        subjectId: "history",
       })
     ).rejects.toSatisfy((error: unknown) => {
       const url = redirectUrl(error);
-      expect(url).toContain("field=aanp-fnp");
+      expect(url).toContain("field=nursing");
+      expect(url).not.toContain("field=pance");
       expect(url).not.toContain("subjectId");
-      expect(url).not.toContain("field=nursing");
       return true;
     });
   });
 
-  it("keeps a subjectId that belongs to the explicit field", async () => {
+  it("keeps a subjectId that belongs to the account exam", async () => {
     const route = await resolveQuestionBankRoute("user-1", {
-      field: "aanp-fnp",
+      field: "nursing",
       mode: "bank",
-      subjectId: "assess",
+      subjectId: "pharmacology-nursing",
     });
-    expect(route.fieldParam).toBe("aanp-fnp");
-    expect(route.examSlug).toBe("aanp-fnp");
+    expect(route.fieldParam).toBe("nursing");
+    expect(route.examSlug).toBe("nclex");
   });
 });

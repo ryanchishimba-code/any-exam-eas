@@ -81,12 +81,37 @@ export function recordSessionAnswer(
       correct,
       confidence: opts?.confidence,
       durationMs: opts?.durationMs,
+      unanswered: false,
     } satisfies SessionAnswer,
   };
 
   return {
     ...session,
     answers,
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+/** Keep an unchecked question in the session and mark it unanswered. */
+export function flagUnansweredQuestion(
+  session: StudySessionState,
+  questionId: string
+): StudySessionState {
+  const existing = session.answers[questionId];
+  if (existing?.revealed) return session;
+  return {
+    ...session,
+    answers: {
+      ...session.answers,
+      [questionId]: {
+        selected: existing?.selected ?? [],
+        revealed: false,
+        correct: null,
+        unanswered: true,
+        confidence: existing?.confidence,
+        durationMs: existing?.durationMs,
+      } satisfies SessionAnswer,
+    },
     updatedAt: new Date().toISOString(),
   };
 }

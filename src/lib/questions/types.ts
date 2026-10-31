@@ -80,6 +80,8 @@ export type StudyQuestion = {
   blueprintTopic?: string;
   bankItemId?: string;
   difficulty?: string;
+  /** Stored bank difficulty. Absent when the row has no difficulty field. */
+  storedDifficulty?: number;
   qualityScore?: number;
   /** Expert-tier rationale — lazy-rendered in Expert view. */
   expertRationale?: import("@/lib/engine/rationale/expert-rationale-types").ExpertStructuredRationale;
@@ -91,6 +93,8 @@ export type SessionAnswer = {
   correct: boolean | null;
   confidence?: ConfidenceLevel;
   durationMs?: number;
+  /** Passed with Next before an answer was checked. Still in the session. */
+  unanswered?: boolean;
 };
 
 export type AdaptiveSessionMeta = {

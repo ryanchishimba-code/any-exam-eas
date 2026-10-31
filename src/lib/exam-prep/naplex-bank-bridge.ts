@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
+import { storedDifficultyValue } from "@/lib/questions/difficulty-label";
 import { coerceOptionList } from "@/lib/questions/option-coerce";
 import type { ExamItemType } from "./types";
 
@@ -64,6 +65,9 @@ export function bankItemToNaplexExam(item: BankItem, index: number): ExamQuestio
     ngnPayload: item.ngnPayload,
     chartData: item.ngnPayload?.kind ? (item.ngnPayload as Record<string, unknown>) : undefined,
     topicCategory: item.topicCategory,
+    ...(storedDifficultyValue(item.difficulty) != null
+      ? { difficulty: storedDifficultyValue(item.difficulty) }
+      : {}),
     difficultyLabel:
       item.difficulty != null
         ? item.difficulty <= 2

@@ -87,7 +87,8 @@ function publishOptimisticExamSlug(slug: ExamSlug | null) {
 
 function rememberConfirmedPreference(value: PreferencePayload, revision: number): void {
   const optimistic = readOptimisticExamSlug();
-  if (optimistic && value.examSlug !== optimistic) return;
+  // The saved account exam wins. A leftover chip must not keep the previous board.
+  if (optimistic && value.examSlug && value.examSlug !== optimistic) clearOptimisticExamSlug();
   cachedPreference = value;
   confirmedPreferenceRevision = revision;
   if (optimistic && value.examSlug === optimistic) clearOptimisticExamSlug();
@@ -98,9 +99,8 @@ function applyFetchedExamSlug(
   setExam: (slug: ExamSlug | null) => void
 ): void {
   const optimistic = readOptimisticExamSlug();
-  if (optimistic && payload.examSlug !== optimistic) {
-    setExam(optimistic);
-    return;
+  if (payload.examSlug && optimistic && payload.examSlug !== optimistic) {
+    clearOptimisticExamSlug();
   }
   setExam(payload.examSlug);
 }
@@ -191,21 +191,14 @@ export function AppPreferencesProvider({
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
   }, []);
 
-  // A select-exam save navigates into this provider. A stale server prop must
-  // not paint the previous board over the exam that was just saved.
+  // The layout already resolved the account exam. That value is the header chip.
+  // A sessionStorage board from an earlier visit must not replace it.
   useEffect(() => {
     if (initialExamSlug === undefined) return;
     const chosen = readOptimisticExamSlug();
-    if (chosen && chosen !== initialExamSlug) {
-      setExamSlugState(chosen);
-      return;
-    }
+    if (chosen && chosen !== initialExamSlug) clearOptimisticExamSlug();
     const pending =
       preferenceWriteRevision > confirmedPreferenceRevision && cachedPreference?.examSlug;
-    if (pending && cachedPreference?.examSlug !== initialExamSlug) {
-      setExamSlugState(cachedPreference!.examSlug);
-      return;
-    }
     if (pending && cachedPreference?.examSlug === initialExamSlug) {
       confirmedPreferenceRevision = preferenceWriteRevision;
     }
@@ -228,13 +221,8 @@ export function AppPreferencesProvider({
 
     if (initialExamSlug) {
       const chosen = readOptimisticExamSlug();
-      if (chosen && chosen !== initialExamSlug) {
-        setExamSlugState(chosen);
-        setLoading(false);
-        void load(true);
-        return;
-      }
-      setExamSlugState((prev) => prev ?? initialExamSlug);
+      if (chosen && chosen !== initialExamSlug) clearOptimisticExamSlug();
+      setExamSlugState(initialExamSlug);
       setLoading(false);
       return;
     }
@@ -291,8 +279,6 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
       setExamSlugState(slug);
     }
     window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
-    const chosen = readOptimisticExamSlug();
-    if (chosen) setExamSlugState(chosen);
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
   }, [active]);
 
