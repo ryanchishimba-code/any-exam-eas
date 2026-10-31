@@ -17,7 +17,10 @@
   "back": "46 days. Given: 5 × 3 mL × 100 units = 1,500 units. Work: 30 + 2 prime = 32 units/day; 1,500 ÷ 32 = 46.9 → 46 days. Exam trap: Forgetting the prime overstates supply (50 days).",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-026.svg",
+   "alt": "Threshold. 46 days."
+  },
   "source": {
    "guideline": "USP/ PBM days-supply conventions",
    "year": "current edition",
@@ -45,7 +48,10 @@
   "back": "11.25 mL twice daily. Given: 90 × 20 = 1,800 mg/day; 900 mg per dose. Work: 900 mg ÷ 400 mg × 5 mL = 11.25 mL BID. Exam trap: mg/kg/day is the daily total; divide before converting to mL.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-027.svg",
+   "alt": "Threshold. 11.25 mL twice daily."
+  },
   "source": {
    "guideline": "Lexicomp/peds labeling",
    "year": "current edition",
@@ -73,7 +79,10 @@
   "back": "100 mg SC once daily. Given: Usual treatment: 1 mg/kg every 12 hours. Work: CrCl <30: 1 mg/kg once daily = 100 mg daily. Prophylaxis drops 40 to 30 mg daily. Exam trap: Don't just halve each q12h dose; change the interval.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-028.svg",
+   "alt": "Threshold. 100 mg SC once daily."
+  },
   "source": {
    "guideline": "CHEST 2021 VTE; labeling",
    "year": "2021",
@@ -101,7 +110,10 @@
   "back": "125 mL/h; 31 gtt/min. Given: Rate = volume ÷ time; gtt/min = mL/h × drop factor ÷ 60. Work: 1,000 ÷ 8 = 125 mL/h; 125 × 15 ÷ 60 = 31.25 → 31 gtt/min. Exam trap: Microdrip sets are 60 gtt/mL: then gtt/min equals mL/h.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-029.svg",
+   "alt": "Threshold. 125 mL/h; 31 gtt/min."
+  },
   "source": {
    "guideline": "Standard flow-rate method",
    "year": "current edition",
@@ -160,7 +172,10 @@
   "back": "Bolus 7,200 units; 1,620 units/h = 32.4 mL/h. Given: Raschke: 80 units/kg bolus, then 18 units/kg/h. Work: 80 × 90 = 7,200; 18 × 90 = 1,620 units/h ÷ 50 units/mL = 32.4 mL/h. Exam trap: Titrate to your lab's aPTT or anti-Xa range, not a fixed number.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-031.svg",
+   "alt": "Threshold. Bolus 7,200 units; 1,620 units/h = 32.4 mL/h."
+  },
   "source": {
    "guideline": "CHEST 2021; institutional nomogram (Raschke)",
    "year": "2021",
@@ -188,7 +203,10 @@
   "back": "180 MME/day. Given: CDC factor: oxycodone 1.5. 30 × 4 = 120 mg/day. Work: 120 × 1.5 = 180 MME. For a switch, reduce the new opioid 25–50% for incomplete cross-tolerance. Exam trap: CDC: MME factors estimate overdose risk; they aren't a dosing conversion table. Methadone is nonlinear.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-032.svg",
+   "alt": "Text card. 180 MME/day."
+  },
   "source": {
    "guideline": "CDC Opioid Prescribing Guideline 2022",
    "year": "2022",
@@ -216,7 +234,10 @@
   "back": "Dexamethasone 6 mg. Given: Equivalents: hydrocortisone 20 = prednisone 5 = methylprednisolone 4 = dexamethasone 0.75 mg. Work: 40 ÷ 5 = 8 units × 0.75 = 6 mg. Exam trap: Dexamethasone has no mineralocorticoid effect; hydrocortisone does.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-033.svg",
+   "alt": "Threshold. Dexamethasone 6 mg."
+  },
   "source": {
    "guideline": "Standard glucocorticoid equivalence tables",
    "year": "current edition",
@@ -244,7 +265,10 @@
   "back": "Furosemide 20 mg IV BID; levofloxacin 750 mg PO daily. Given: Oral furosemide bioavailability is about 50%. Work: 40 × 0.5 = 20 mg IV. Levofloxacin is about 99% bioavailable: 1:1. Exam trap: Separate oral levofloxacin from Ca, Mg, Fe, Zn by at least 2 hours.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-034.svg",
+   "alt": "Threshold. Furosemide 20 mg IV BID; levofloxacin 750 mg PO daily."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -272,7 +296,10 @@
   "back": "Glargine 32 units once daily. Given: Twice-daily NPH to glargine: reduce total by 20%. Work: 20 + 20 = 40 units × 0.8 = 32 units. Exam trap: Drip to SC: give basal insulin about 2 hours before stopping the IV infusion.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-035.svg",
+   "alt": "Threshold. Glargine 32 units once daily."
+  },
   "source": {
    "guideline": "ADA Standards of Care 2026 (Sec 16)",
    "year": "2026",
@@ -300,7 +327,10 @@
   "back": "0.1% w/v = 1 mg/mL. Given: Ratio strength 1:1,000 = 1 g in 1,000 mL. Work: 1 g/1,000 mL = 0.1 g/100 mL = 0.1%; = 1,000 mg/1,000 mL = 1 mg/mL. Exam trap: Labels now state mg/mL: 1:10,000 is 0.1 mg/mL. 1 ppm = 0.0001%.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-036.svg",
+   "alt": "Threshold. 0.1% w/v = 1 mg/mL."
+  },
   "source": {
    "guideline": "USP <1160>",
    "year": "current edition",
@@ -328,7 +358,10 @@
   "back": "20 mL stock + 80 mL diluent. Given: C1V1 = C2V2. Work: 10% × V1 = 2% × 100 mL; V1 = 20 mL. Exam trap: Diluent is 80 mL, not 100 mL.",
   "word_count": 33,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-037.svg",
+   "alt": "Threshold. 20 mL stock + 80 mL diluent."
+  },
   "source": {
    "guideline": "USP <1160>",
    "year": "current edition",
@@ -356,7 +389,10 @@
   "back": "25 g of 70% + 75 g of 30%. Given: Alligation: parts of high = 40 − 30 = 10; parts of low = 70 − 40 = 30. Work: 10/40 × 100 = 25 g; 30/40 × 100 = 75 g. Check: 17.5 + 22.5 = 40 g. Exam trap: Parts come from the opposite corner of the grid.",
   "word_count": 60,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-038.svg",
+   "alt": "Threshold. 25 g of 70% + 75 g of 30%."
+  },
   "source": {
    "guideline": "USP <1160>",
    "year": "current edition",
@@ -384,7 +420,10 @@
   "back": "1.49 g KCl. Given: mEq = mg × valence ÷ MW; KCl valence 1. Work: 20 × 74.5 ÷ 1 = 1,490 mg = 1.49 g. Exam trap: Divalent ions (Ca, Mg): divide MW by 2 per mEq.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-039.svg",
+   "alt": "Threshold. 1.49 g KCl."
+  },
   "source": {
    "guideline": "USP <1160>",
    "year": "current edition",
@@ -412,7 +451,10 @@
   "back": "About 308 mOsm/L. Given: 0.9% = 9 g/L; NaCl dissociates into 2 particles. Work: 9 ÷ 58.5 = 0.154 mol/L × 2 = 308 mOsm/L. Exam trap: Peripheral PN: keep osmolarity ≤900 mOsm/L.",
   "word_count": 33,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-040.svg",
+   "alt": "Text card. About 308 mOsm/L."
+  },
   "source": {
    "guideline": "USP <1160>; ASPEN",
    "year": "current edition",
@@ -440,7 +482,10 @@
   "back": "Add 0.216 g NaCl. Given: Isotonic = 0.9% NaCl: 30 mL needs 0.27 g. Work: Drug 0.3 g × 0.18 = 0.054 g NaCl equivalent; 0.27 − 0.054 = 0.216 g. Exam trap: E-value = grams NaCl equivalent to 1 g drug.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-041.svg",
+   "alt": "Threshold. Add 0.216 g NaCl."
+  },
   "source": {
    "guideline": "USP <1160>",
    "year": "current edition",
@@ -468,7 +513,10 @@
   "back": "40 mL. Given: Volume = weight ÷ specific gravity. Work: 50 g ÷ 1.25 g/mL = 40 mL. Exam trap: Multiply for weight, divide for volume.",
   "word_count": 26,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-042.svg",
+   "alt": "Threshold. 40 mL."
+  },
   "source": {
    "guideline": "USP <1160>",
    "year": "current edition",
@@ -496,7 +544,10 @@
   "back": "No: EUA is not approval. Key clue: Phase 1 safety and dosing; 2 efficacy and dose-finding; 3 large confirmatory trials; 4 postmarketing. Pharmacist move: EUA under FD&C Act section 564 during a declared emergency; trials run under an IND (21 CFR 312). Exam trap: REMS can be required at or after approval if labeling alone isn't enough.",
   "word_count": 57,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-043.svg",
+   "alt": "Steps. No: EUA is not approval."
+  },
   "source": {
    "guideline": "FDA 21 CFR 312; FDA EUA guidance",
    "year": "current edition",
@@ -524,7 +575,10 @@
   "back": "1,750 kcal. Given: Dextrose 3.4 kcal/g; protein 4 kcal/g; 20% lipid 2 kcal/mL. Work: 850 + 400 + 500 = 1,750 kcal. Exam trap: Dextrose is 3.4 kcal/g, not 4.",
   "word_count": 30,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-044.svg",
+   "alt": "Text card. 1,750 kcal."
+  },
   "source": {
    "guideline": "ASPEN PN Safety Consensus 2014 + ASPEN Safe PN Care Transitions 2022",
    "year": "2014 / 2022",
@@ -552,7 +606,10 @@
   "back": "Balance = 0 (neutral). Given: N intake = protein ÷ 6.25; losses = UUN + 4. Work: 100 ÷ 6.25 = 16 g in; 12 + 4 = 16 g out; balance 0. Exam trap: Critically ill adults: protein 1.2–2.0 g/kg/day.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-045.svg",
+   "alt": "Steps. Balance = 0 (neutral)."
+  },
   "source": {
    "guideline": "ASPEN/SCCM Critical Care Nutrition 2022",
    "year": "2022",
@@ -580,7 +637,10 @@
   "back": "1,600 mL/day; 65 mL/h. Given: 100 mL/kg first 10 kg; 50 mL/kg next 10; 20 mL/kg after. Work: 1,000 + 500 + 100 = 1,600 mL/day. Hourly 4-2-1: 40 + 20 + 5 = 65 mL/h. Exam trap: The 4-2-1 rule gives mL/h, not mL/day.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-046.svg",
+   "alt": "Threshold. 1,600 mL/day; 65 mL/h."
+  },
   "source": {
    "guideline": "Holliday-Segar method",
    "year": "current edition",
@@ -701,7 +761,10 @@
   "back": "2,000 mg/day. Given: Target AUC 400–600 mg·h/L (MIC 1). Work: Daily dose = AUC × CL = 500 × 4 = 2,000 mg/day. Exam trap: Trough-only dosing (15–20) is no longer recommended.",
   "word_count": 32,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-050.svg",
+   "alt": "Threshold. 2,000 mg/day."
+  },
   "source": {
    "guideline": "ASHP/IDSA/PIDS/SIDP vancomycin 2020",
    "year": "2020",

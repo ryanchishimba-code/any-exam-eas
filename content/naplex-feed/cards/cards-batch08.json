@@ -17,7 +17,10 @@
   "back": "High-dose amoxicillin 80–90 mg/kg/day divided BID. Key clue: 12 kg × 90 = 1080 mg/day → 540 mg BID. Amox/clav if amoxicillin in past 30 days. Pharmacist move: Fever: acetaminophen 15 mg/kg q4–6h; ibuprofen 10 mg/kg q6–8h. Exam trap: No ibuprofen under 6 months.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-176.svg",
+   "alt": "Threshold. High-dose amoxicillin 80–90 mg/kg/day divided BID."
+  },
   "source": {
    "guideline": "AAP 2013 AOM (latest AAP AOM guideline; due for AAP review)",
    "year": "2013",
@@ -31,7 +34,7 @@
   "id": "naplex-177",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Endocrine and reproductive",
   "topic": "Pregnancy: GDM insulin/metformin, HTN in pregnancy (labetalol, nifedipine), low-dose aspirin",
   "calculation": false,
   "reused_from": "pance-011",
@@ -45,7 +48,10 @@
   "back": "Labetalol or nifedipine ER, plus aspirin 81 mg. Key clue: Treat BP ≥140/90 in pregnancy (CHAP). Pharmacist move: Aspirin 81 mg daily from 12 weeks until delivery; GDM: insulin preferred. Exam trap: ACE inhibitors and ARBs are contraindicated in pregnancy.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-177.svg",
+   "alt": "Threshold. Labetalol or nifedipine ER, plus aspirin 81 mg."
+  },
   "source": {
    "guideline": "ACOG CPU 2024 GDM screening + PB 190 (reaffirmed); ACOG PB 222 2020 + 2022 CHAP advisory; USPSTF 2021 aspirin",
    "year": "2020 / 2021 / 2022 / 2024",
@@ -73,7 +79,10 @@
   "back": "Avoid NSAIDs: high GI and high CV risk. Key clue: High GI risk alone: celecoxib plus a PPI. High CV risk alone: naproxen plus PPI if GI risk. Pharmacist move: Acetaminophen max 4 g/day; lower (e.g., 3 g) with liver disease or heavy alcohol use. Exam trap: Check OTC combination products for hidden acetaminophen.",
   "word_count": 54,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-178.svg",
+   "alt": "Steps. Avoid NSAIDs: high GI and high CV risk."
+  },
   "source": {
    "guideline": "Acetaminophen labeling; ACG 2009 NSAID-ulcer prevention (latest)",
    "year": "2009",
@@ -101,7 +110,10 @@
   "back": "No OTC cough/cold under 4 (label); pseudoephedrine behind the counter. Key clue: FDA: don't use under 2; labels say don't use under 4. Pharmacist move: Pseudoephedrine: max 3.6 g/day and 9 g/30 days; photo ID and logbook. Exam trap: Honey (age ≥1) is a non-drug option for cough.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-179.svg",
+   "alt": "Steps. No OTC cough/cold under 4 (label); pseudoephedrine behind the counter."
+  },
   "source": {
    "guideline": "FDA 2008 OTC pediatric; CMEA 2005",
    "year": "2005 / 2008",
@@ -129,7 +141,10 @@
   "back": "Never use a topical antibiotic alone: add benzoyl peroxide. Key clue: First-line: topical retinoid plus BPO, with or without topical antibiotic. Pharmacist move: Isotretinoin: iPLEDGE REMS, pregnancy tests and two forms of contraception. Exam trap: Limit oral doxycycline courses; always pair with topicals.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-180.svg",
+   "alt": "Text card. Never use a topical antibiotic alone: add benzoyl peroxide."
+  },
   "source": {
    "guideline": "AAD 2024 acne",
    "year": "2024",
@@ -157,7 +172,10 @@
   "back": "Yes: via standing order/protocol, or OTC. Key clue: Every state allows pharmacist naloxone access by standing order or protocol. Pharmacist move: Hormonal contraception and other prescribing depend on state law. Exam trap: Scope varies by state: check your board's protocol.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-181.svg",
+   "alt": "Text card. Yes: via standing order/protocol, or OTC."
+  },
   "source": {
    "guideline": "CDC 2022; USPSTF current recommendations; state protocols",
    "year": "2022",
@@ -185,7 +203,10 @@
   "back": "Only into an authorized collection receptacle. Key clue: Pharmacies may register with DEA as collectors; it's voluntary. Pharmacist move: No take-back nearby: FDA flush list drugs (e.g., fentanyl patches) can be flushed; otherwise mix with coffee grounds and seal. Exam trap: Staff can't count, sort or handle receptacle contents.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-182.svg",
+   "alt": "Steps. Only into an authorized collection receptacle."
+  },
   "source": {
    "guideline": "DEA Disposal Rule 21 CFR 1317; FDA flush list",
    "year": "current edition",
@@ -213,7 +234,10 @@
   "back": "Yes, if she's involved in care and the patient doesn't object. Key clue: Treatment, payment and operations need no written authorization. Pharmacist move: Minimum necessary applies, except for treatment disclosures. Exam trap: The 2024 reproductive-health privacy rule was vacated in 2025.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-183.svg",
+   "alt": "Text card. Yes, if she's involved in care and the patient doesn't object."
+  },
   "source": {
    "guideline": "HIPAA Privacy Rule 45 CFR 164 (2024 reproductive-health rule vacated Jun 2025)",
    "year": "2024 / 2025",
@@ -241,7 +265,10 @@
   "back": "Respect the refusal: autonomy. Key clue: Explain benefits, risks and alternatives in plain language. Pharmacist move: Document the discussion and inform the prescriber. Exam trap: Pressure or deception violates the Code of Ethics.",
   "word_count": 33,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-184.svg",
+   "alt": "Text card. Respect the refusal: autonomy."
+  },
   "source": {
    "guideline": "APhA Code of Ethics",
    "year": "current edition",
@@ -269,7 +296,10 @@
   "back": "Step away, but ensure the patient still gets it. Key clue: APhA policy: pharmacist may decline if a system ensures patient access. Pharmacist move: Arrange transfer to a colleague or another pharmacy without delay. Exam trap: State laws vary; never obstruct, lecture or withhold the prescription.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-185.svg",
+   "alt": "Do and do not. Step away, but ensure the patient still gets it."
+  },
   "source": {
    "guideline": "APhA Code of Ethics; APhA conscience policy (1998)",
    "year": "1998",
@@ -297,7 +327,10 @@
   "back": "Disclose to patient; MedWatch/ISMP for the error; VAERS for vaccine. Key clue: ISMP MERP: voluntary, confidential error reporting. Pharmacist move: MedWatch: serious adverse events and product problems. Exam trap: Vaccine adverse events go to VAERS, not MedWatch.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-186.svg",
+   "alt": "Text card. Disclose to patient; MedWatch/ISMP for the error; VAERS for vaccine."
+  },
   "source": {
    "guideline": "FDA MedWatch; ISMP MERP; VAERS 2026",
    "year": "2026",
@@ -325,7 +358,10 @@
   "back": "Act now: protect patients, then report. Key clue: Remove the colleague from patient care; tell the supervisor or pharmacist-in-charge. Pharmacist move: Refer to the state's pharmacist recovery (PRN) program or board per law. Exam trap: Covering for a colleague puts patients at risk.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-187.svg",
+   "alt": "Text card. Act now: protect patients, then report."
+  },
   "source": {
    "guideline": "APhA Code of Ethics; state PRN programs",
    "year": "current edition",
@@ -353,7 +389,10 @@
   "back": "Qualified interpreter plus teach-back. Key clue: Teach-back: patient explains in their own words how to take it. Pharmacist move: Use plain language and focus on 2–3 key points. Exam trap: Don't use family members or children as interpreters.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-188.svg",
+   "alt": "Do and do not. Qualified interpreter plus teach-back."
+  },
   "source": {
    "guideline": "AHRQ Health Literacy Toolkit 2024; Title VI",
    "year": "2024",
@@ -381,7 +420,10 @@
   "back": "Collect/Assess: ask about barriers, then plan. Key clue: PPCP: Collect, Assess, Plan, Implement, Follow-up. Pharmacist move: Address cost: lower-cost insulin, $35 Medicare cap, assistance programs. Exam trap: Ask open-ended, nonjudgmental questions.",
   "word_count": 31,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-189.svg",
+   "alt": "Text card. Collect/Assess: ask about barriers, then plan."
+  },
   "source": {
    "guideline": "JCPP Pharmacists' Patient Care Process",
    "year": "current edition",
@@ -409,7 +451,10 @@
   "back": "Functions defined in a written protocol with a prescriber. Key clue: Often: initiate, modify or stop therapy and order labs. Pharmacist move: Scope, patients and drugs depend on state law and the agreement. Exam trap: A CPA isn't independent prescriptive authority.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-190.svg",
+   "alt": "Text card. Functions defined in a written protocol with a prescriber."
+  },
   "source": {
    "guideline": "JCPP PPCP; state CPA laws (varies)",
    "year": "current edition",
@@ -437,7 +482,10 @@
   "back": "12 turns/year; ~30 days of inventory. Given: Average inventory = (160,000 + 140,000) ÷ 2 = $150,000. Work: Turnover = 1,800,000 ÷ 150,000 = 12. Days = 365 ÷ 12 ≈ 30.4. Exam trap: Use cost of goods sold, not sales revenue.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-191.svg",
+   "alt": "Threshold. 12 turns/year; ~30 days of inventory."
+  },
   "source": {
    "guideline": "Standard pharmacy management formulas",
    "year": "current edition",
@@ -465,7 +513,10 @@
   "back": "Assess supply and find alternatives. Key clue: Check on-hand stock, usage rate, and FDA/ASHP shortage lists. Pharmacist move: P&T sets therapeutic alternatives and allocation rules; communicate to prescribers. Exam trap: Don't hoard or buy from unverified gray-market sellers.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-192.svg",
+   "alt": "Steps. Assess supply and find alternatives."
+  },
   "source": {
    "guideline": "ASHP Drug Shortages Guidelines 2018 (still current, latest = 2018)",
    "year": "2018",
@@ -493,7 +544,10 @@
   "back": "Quarantine and investigate. Key clue: Buy only from authorized trading partners; keep transaction data. Pharmacist move: If illegitimate, notify FDA (Form 3911) and partners within 24 hours. Exam trap: Small dispensers (≤25 FTE) are exempt from electronic interoperability until Nov 27, 2027.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-193.svg",
+   "alt": "Text card. Quarantine and investigate."
+  },
   "source": {
    "guideline": "FDA DSCSA; small-dispenser exemption to Nov 27, 2027",
    "year": "2027",
@@ -521,7 +575,10 @@
   "back": "Class I. Key clue: Class II: temporary or reversible harm. Class III: unlikely to cause harm. Pharmacist move: Pull affected lots; contact patients when the recall reaches consumer level. Exam trap: Market withdrawal isn't a recall: no FDA violation.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-194.svg",
+   "alt": "Steps. Class I."
+  },
   "source": {
    "guideline": "FDA 21 CFR 7",
    "year": "current edition",
@@ -549,7 +606,10 @@
   "back": "DEA Form 222 or CSOS; theft: Form 106. Key clue: Biennial inventory: exact count for CII; estimate CIII–V unless container >1,000 units. Pharmacist move: Report theft to the DEA field office within 1 business day, then file Form 106. Exam trap: Keep controlled substance records at least 2 years.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-195.svg",
+   "alt": "Steps. DEA Form 222 or CSOS; theft: Form 106."
+  },
   "source": {
    "guideline": "21 CFR 1304–1305; DEA",
    "year": "current edition",
@@ -577,7 +637,10 @@
   "back": "$60,000 per QALY gained. Given: ICER = ΔCost ÷ ΔQALY. Work: (50,000 − 20,000) ÷ (3.0 − 2.5) = 30,000 ÷ 0.5 = $60,000/QALY. Exam trap: QALYs = cost-utility; outcomes in dollars = cost-benefit.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-196.svg",
+   "alt": "Text card. $60,000 per QALY gained."
+  },
   "source": {
    "guideline": "ISPOR guidance",
    "year": "current edition",
@@ -605,7 +668,10 @@
   "back": "RCA after the event; FMEA before the process. Key clue: RCA is reactive; FMEA proactively ranks failure modes. Pharmacist move: Test changes with small PDSA cycles. Exam trap: RCA targets systems, not individual blame.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-197.svg",
+   "alt": "Text card. RCA after the event; FMEA before the process."
+  },
   "source": {
    "guideline": "IHI Model for Improvement; TJC Sentinel Event Policy 2025",
    "year": "2025",
@@ -633,7 +699,10 @@
   "back": "Get the best possible list, compare, resolve discrepancies. Key clue: Include OTCs, supplements and doses at every transition. Pharmacist move: At discharge, give the patient an updated list and explain changes. Exam trap: Reconcile at admission, transfer and discharge, not only once.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-198.svg",
+   "alt": "Text card. Get the best possible list, compare, resolve discrepancies."
+  },
   "source": {
    "guideline": "Joint Commission National Performance Goals 2026 (NPG 14, replaces NPSG.03.06.01)",
    "year": "2026",
@@ -661,7 +730,10 @@
   "back": "Adherent = PDC ≥80%. Key clue: PDC = days covered ÷ days in the measurement period. Pharmacist move: Diabetes, RAS antagonist and statin adherence drive Part D Star Ratings. Exam trap: PDC doesn't double-count overlapping fills like MPR can.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-199.svg",
+   "alt": "Threshold. Adherent = PDC ≥80%."
+  },
   "source": {
    "guideline": "PQA measures 2026; CMS Star Ratings 2026",
    "year": "2026",
@@ -689,7 +761,10 @@
   "back": "Flu: Part B. Shingrix: Part D. Transplant drugs: Part B if Medicare paid for the transplant. Key clue: Part B: flu, pneumococcal, hep B, COVID vaccines; drugs given incident to a physician service. Pharmacist move: Part D covers ACIP vaccines at $0 cost-sharing; out-of-pocket cap $2,100 in 2026. Exam trap: 340B: no duplicate Medicaid discounts, no diversion to non-patients.",
   "word_count": 59,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-200.svg",
+   "alt": "Steps. Flu: Part B. Shingrix: Part D. Transplant drugs: Part B if Medicare paid for the transplant."
+  },
   "source": {
    "guideline": "CMS 2026; HRSA 340B",
    "year": "2026",

@@ -10,22 +10,32 @@
 
 ## Why it matters on NCLEX
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Respiratory stems are classic **ABC** killers. Silent chest, PE, falling SpO₂ trends, and post-op sudden dyspnea appear constantly in priority and NGN items. Train yourself to spot **work of breathing**, **ability to speak**, and **mental status** as much as the monitor number.
 
 ---
 
 ## Topic A — Asthma
 
+Source: GINA strategy report, 2025.
+
 ### Pathophysiology / concept
+
+Source: GINA strategy report, 2025.
 
 Reversible airway obstruction: bronchoconstriction + inflammation + mucus. Triggers: allergens, infection, exercise, irritants, NSAIDs/aspirin in sensitive clients, cold air. Status asthmaticus = severe attack not responding to usual therapy — impending respiratory failure.
 
 ### Assessment cues
 
+Source: GINA strategy report, 2025.
+
 **Early:** wheeze, cough, prolonged expiration, tachypnea, anxiety, accessory muscle use.
 **Late/ominous:** **silent chest**, inability to speak full sentences, cyanosis, exhaustion, SpO₂ drop, rising PaCO₂ (fatigue) — impending respiratory failure.
 
 ### Priority nursing actions
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 1. Position upright; O₂ as indicated.
 2. Short-acting beta agonist (albuterol) as ordered; anticholinergic add-ons per protocol.
@@ -34,6 +44,8 @@ Reversible airway obstruction: bronchoconstriction + inflammation + mucus. Trigg
 5. Keep client calm; avoid unnecessary procedures that increase distress.
 
 ### Meds (high-yield)
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | Med | Hook |
 | --- | --- |
@@ -45,6 +57,8 @@ Reversible airway obstruction: bronchoconstriction + inflammation + mucus. Trigg
 
 ### Client teaching
 
+Source: GINA strategy report, 2025.
+
 - Spacer use; rinse mouth after ICS.
 - Asthma action plan; when to seek emergency care (rescue not lasting, can’t speak, blue lips).
 - Avoid triggers; peak flow if used.
@@ -52,10 +66,14 @@ Reversible airway obstruction: bronchoconstriction + inflammation + mucus. Trigg
 
 ### Safety / red flags
 
+Source: GINA strategy report, 2025.
+
 > **Red flag:** Decreasing wheeze **with** increasing lethargy and falling SpO₂ = silent chest — escalate, do not chart as “improved.”
 > **Red flag:** Speaks only 1–2 words between breaths.
 
 ### Remember this
+
+Source: GINA strategy report, 2025.
 
 Silent chest ≠ improvement. Speaks of dangerous airflow collapse.
 
@@ -63,15 +81,23 @@ Silent chest ≠ improvement. Speaks of dangerous airflow collapse.
 
 ## Topic B — COPD
 
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
 ### Pathophysiology / concept
+
+Source: GINA strategy report, 2025.
 
 Chronic bronchitis / emphysema → chronic airflow limitation, air trapping, CO₂ retention in some clients, hypoxic drive nuances (still give O₂ carefully per orders — **don’t withhold** in emergency hypoxia). Exacerbations are often infection-triggered.
 
 ### Assessment cues
 
+Source: GINA strategy report, 2025.
+
 Dyspnea, barrel chest, pursed-lip breathing, chronic cough/sputum, clubbing sometimes; exacerbation = more dyspnea, sputum change (color/volume), hypoxia/hypercapnia, new confusion/somnolence.
 
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Tripod/upright; controlled O₂ titration per target SpO₂ orders.
 - Bronchodilators, steroids, antibiotics if indicated for exacerbation.
@@ -81,6 +107,8 @@ Dyspnea, barrel chest, pursed-lip breathing, chronic cough/sputum, clubbing some
 
 ### Teaching
 
+Source: GINA strategy report, 2025.
+
 - Pursed-lip / diaphragmatic breathing.
 - Vaccinations; pacing activities; energy conservation.
 - Report sputum/color change and fever.
@@ -88,10 +116,14 @@ Dyspnea, barrel chest, pursed-lip breathing, chronic cough/sputum, clubbing some
 
 ### Safety / red flags
 
+Source: GINA strategy report, 2025.
+
 > **Red flag:** Rising CO₂ + somnolence after “just a little more O₂ without orders.” Titrate to targets.
 > **Red flag:** Home O₂ + smoking = fire/explosion risk counseling mandatory.
 
 ### Remember this
+
+Source: GINA strategy report, 2025.
 
 Titrate O₂ to ordered targets; treat exacerbations early; stop smoking messaging.
 
@@ -99,15 +131,23 @@ Titrate O₂ to ordered targets; treat exacerbations early; stop smoking messagi
 
 ## Topic C — Pneumonia
 
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
 ### Concept
+
+Source: GINA strategy report, 2025.
 
 Infection of lung parenchyma → consolidation, impaired gas exchange. Aspiration risk in dysphagia/altered LOC/tube feeds/alcohol intoxication. Community vs hospital-onset changes organism risk and empiric — nursing focus remains oxygenation, cultures, antibiotics, and prevention of complications.
 
 ### Assessment
 
+Source: GINA strategy report, 2025.
+
 Fever, productive cough, pleuritic pain, crackles, tachypnea, **confusion in elderly** (may be primary cue), hypoxia, rusty/green sputum by organism folklore (don’t over-rely).
 
 ### Priority actions
+
+Source: Surviving Sepsis Campaign, 2021.
 
 - O₂; cultures then antibiotics as ordered when stable enough — **don’t delay sepsis care** inappropriately.
 - Hydration if not contraindicated; incentive spirometry / turn-cough-deep breathe.
@@ -116,9 +156,13 @@ Fever, productive cough, pleuritic pain, crackles, tachypnea, **confusion in eld
 
 ### Complications
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Empyema, bacteremia/sepsis, respiratory failure, ARDS in severe cases.
 
 ### Remember this
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Elderly: confusion may be pneumonia. Antibiotics after cultures when possible; don’t delay sepsis care inappropriately.
 
@@ -126,15 +170,23 @@ Elderly: confusion may be pneumonia. Antibiotics after cultures when possible; d
 
 ## Topic D — Pulmonary embolism
 
+Source: GINA strategy report, 2025.
+
 ### Pathophysiology / concept
+
+Source: GINA strategy report, 2025.
 
 Thrombus (often DVT) → pulmonary artery obstruction → V/Q mismatch, strain on right heart, possible sudden death. Fat/air/amniotic emboli are less common but tested as pattern recognition.
 
 ### Assessment cues
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 **Sudden** dyspnea, pleuritic chest pain, tachycardia, anxiety, hemoptysis sometimes, hypoxia; post-op/immobile/OCPs/cancer/pregnancy = risk. Massive PE: hypotension, syncope, right-heart strain.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Stay with client; call rapid response/provider.
 2. O₂; high Fowler’s; monitor VS/ECG.
@@ -143,20 +195,28 @@ Thrombus (often DVT) → pulmonary artery obstruction → V/Q mismatch, strain o
 
 ### Medication / treatment hooks
 
+Source: GINA strategy report, 2025.
+
 Anticoagulation promptly as ordered; thrombolysis/embolectomy for selected massive PE; IVC filter in selected cases.
 
 ### Safety / red flags
+
+Source: GINA strategy report, 2025.
 
 > **Red flag:** Sudden dyspnea + risk factors → think PE until proven otherwise. Don’t leave alone.
 > **Red flag:** Syncope + hypoxia post-op day 2 — escalate.
 
 ### Remember this
 
+Source: GINA strategy report, 2025.
+
 Sudden dyspnea + risk factors → PE until proven otherwise. Don’t leave alone.
 
 ---
 
 ## Clinical judgment vignette 1 — Silent chest
+
+Source: GINA strategy report, 2025.
 
 **Stem:** Teen with known asthma: after two nebulizers, wheezes are quieter; parent says “thank goodness.” Client is drowsy, SpO₂ 88%, can only whisper.
 
@@ -168,11 +228,17 @@ Sudden dyspnea + risk factors → PE until proven otherwise. Don’t leave alone
 
 ## Topic E — Oxygen delivery & chest tubes
 
+Source: GINA strategy report, 2025.
+
 ### O₂ devices (conceptual ladder)
+
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
 
 Nasal cannula → simple mask → Venturi (precise FiO₂ — useful in COPD titration) → non-rebreather (high FiO₂; bag must inflate) → high-flow nasal cannula / NIV / advanced airways. Humidify high flows as indicated; skin care on ears; fire safety with O₂.
 
 ### Chest tubes
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 - System **below** chest level; keep upright; no dependent loops full of drainage blocking flow.
 - Tidaling in water seal often expected with respiration; **continuous bubbling in water seal** may indicate air leak.
@@ -184,13 +250,19 @@ Nasal cannula → simple mask → Venturi (precise FiO₂ — useful in COPD tit
 
 ### Remember this
 
+Source: GINA strategy report, 2025.
+
 Below chest; know bubbling vs tidaling meaning; protect airway if tube issues.
 
 ---
 
 ## Topic F — ABGs intro
 
+Source: GINA strategy report, 2025.
+
 ### Concept
+
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
 
 | Look at | Meaning |
 | --- | --- |
@@ -214,15 +286,23 @@ Below chest; know bubbling vs tidaling meaning; protect airway if tube issues.
 
 ## Topic G — Acute respiratory failure & ARDS
 
+Source: GINA strategy report, 2025.
+
 ### Pathophysiology / concept
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Respiratory failure: inadequate gas exchange — hypoxemic (low PaO₂) and/or hypercapnic (high PaCO₂). **ARDS**: inflammatory alveolar injury → shunting, stiff lungs, refractory hypoxemia; often after sepsis/trauma/aspiration/pancreatitis.
 
 ### Assessment cues
 
+Source: GINA strategy report, 2025.
+
 Worsening dyspnea, tachypnea, accessory muscles, falling SpO₂ despite O₂, agitation → lethargy (CO₂ rising), crackles, pink frothy sputum in cardiogenic overlap (differentiate by history/BNP/echo).
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Escalate early — don’t wait for perfect ABG if client crashing.
 2. High-flow O₂ / NIV / intubation as ordered and scoped.
@@ -232,13 +312,19 @@ Worsening dyspnea, tachypnea, accessory muscles, falling SpO₂ despite O₂, ag
 
 ### Remember this
 
+Source: GINA strategy report, 2025.
+
 Refractory hypoxia + bilateral infiltrates context → ARDS pathway thinking. Lethargy after fighting for air is ominous.
 
 ---
 
 ## Topic H — Tracheostomy & suctioning safety
 
+Source: GINA strategy report, 2025.
+
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Spare trach at bedside for new trachs; obturator; suction equipment ready.
 - Suction only as needed; preoxygenate per protocol; sterile technique for open suction; limit pass time.
@@ -247,16 +333,22 @@ Refractory hypoxia + bilateral infiltrates context → ARDS pathway thinking. Le
 
 ### Safety / red flags
 
+Source: GINA strategy report, 2025.
+
 > **Red flag:** New trach dislodgement in first days = emergency airway — don’t casually retie and walk away.
 > **Red flag:** Continuous bloody suction returns or sudden desat during suction — stop, oxygenate, notify.
 
 ### Remember this
+
+Source: GINA strategy report, 2025.
 
 New trach dislodgement = emergency. Don’t yank ties casually in the first days.
 
 ---
 
 ## Clinical judgment vignette 2 — Post-op PE
+
+Source: GINA strategy report, 2025.
 
 **Stem:** POD2 total knee: sudden dyspnea, HR 128, SpO₂ 90%, anxiety. Pain controlled earlier.
 
@@ -268,6 +360,8 @@ New trach dislodgement = emergency. Don’t yank ties casually in the first days
 
 ## Clinical judgment vignette 3 — Chest tube air leak
 
+Source: GINA strategy report, 2025.
+
 **Stem:** Client with chest tube: continuous bubbling in water-seal chamber; SpO₂ stable; dressing dry.
 
 **What to do first:** Assess client breath sounds/VS, check tubing connections from chest to system for loose links, ensure system integrity — notify provider of new/ongoing air leak per protocol. Don’t clamp routinely without order.
@@ -277,6 +371,8 @@ New trach dislodgement = emergency. Don’t yank ties casually in the first days
 ---
 
 ## Medication highlights (respiratory system)
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 - Albuterol: expect HR↑; hold/notify if chest pain/severe tachy per parameters.
 - Systemic steroids: glucose↑, infection risk, mood — short burst still teach.
@@ -289,11 +385,17 @@ New trach dislodgement = emergency. Don’t yank ties casually in the first days
 
 ## Topic I — Tuberculosis nursing (high-yield)
 
+Source: GINA strategy report, 2025.
+
 ### Concept
+
+Source: CDC isolation precautions, 2007.
 
 Airborne isolation for suspected/confirmed pulmonary TB until cleared per protocol. Medication adherence for months prevents resistance.
 
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Airborne room + N95 for staff when indicated; door closed.
 - Collect sputum specimens correctly; mask client for transport.
@@ -302,9 +404,13 @@ Airborne isolation for suspected/confirmed pulmonary TB until cleared per protoc
 
 ### Red flag
 
+Source: CDC isolation precautions, 2007.
+
 > **Red flag:** New night sweats, hemoptysis, weight loss + abnormal CXR — isolate pending workup; don’t park in hallway waiting room without masking.
 
 ### Remember this
+
+Source: GINA strategy report, 2025.
 
 Airborne + adherence. Orange urine on rifampin is expected teaching — not “bleeding.”
 
@@ -312,11 +418,17 @@ Airborne + adherence. Orange urine on rifampin is expected teaching — not “b
 
 ## Topic J — Aspiration precautions & prevention
 
+Source: CDC isolation precautions, 2007.
+
 ### Who is at risk
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Stroke, Parkinson, altered LOC, sedation, enteral feeds, poor dentition, GERD, emergency intubation.
 
 ### Nursing actions
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 - HOB elevated for feeds; residual checks per protocol; pause feeds when flat for care.
 - Swallow screen after stroke before PO.
@@ -325,9 +437,13 @@ Stroke, Parkinson, altered LOC, sedation, enteral feeds, poor dentition, GERD, e
 
 ### Clinical judgment note
 
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
 “Client hungry” never outranks an unsafe swallow. Aspiration pneumonia is a preventable NGN outcome evaluation item.
 
 ## Concept check
+
+Source: GINA strategy report, 2025.
 
 **Q1.** Asthmatic with decreasing wheeze, rising lethargy, SpO₂ falling. Priority interpretation?
 A. Improving — less wheeze
@@ -377,6 +493,8 @@ D. Give thin liquids
 ---
 
 ## Chapter Remember this
+
+Source: GINA strategy report, 2025.
 
 - Asthma: silent chest is ominous.
 - COPD: titrate O₂; treat exacerbations; smoking cessation; home O₂ safety.

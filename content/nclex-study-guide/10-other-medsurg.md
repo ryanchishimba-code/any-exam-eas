@@ -12,18 +12,26 @@
 
 ## Why it matters on NCLEX
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 These “other” topics show up as **safety bombs**: compartment syndrome, neutropenia fever, burns ABCs, HIT bleeding/clotting paradox, sickle crisis, DIC, chemo/radiation safety. High yield for priority and SATA.
 
 ---
 
 ## Topic A — Fractures, compartment syndrome, osteoporosis & hip fracture
 
+Source: Surviving Sepsis Campaign, 2021.
+
 ### Pathophysiology / concept
+
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
 
 Bone break → bleeding, soft-tissue swelling. Casts/edema in closed fascial compartments → rising pressure → ischemia of muscle/nerve (**compartment syndrome**) — time-critical limb threat. Fat embolism risk after long-bone/pelvic fractures (esp. young adults).
 **Osteoporosis:** low bone mass → fragility fractures (hip, spine, wrist). **Hip fracture** in older adults: fall risk, delirium, DVT/pneumonia/skin breakdown post-op.
 
 ### Assessment cues
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Fracture: pain, deformity, loss of function, crepitus, swelling.
 **Compartment (6 Ps):** Pain out of proportion / pain on passive stretch (early), Pressure, Paresthesia, Pallor, Paralysis (late), Pulselessness (**late** — don’t wait for it).
@@ -31,6 +39,8 @@ Fat embolism: respiratory distress, neuro changes, petechiae after fracture.
 Hip fracture: shortened externally rotated leg; groin/hip pain; can’t bear weight.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Immobilize; neurovascular checks distal to injury **frequently**.
 2. Elevate per orders (but if compartment suspected, elevation may be limited — follow protocol; notify provider **immediately**).
@@ -42,21 +52,31 @@ Hip fracture: shortened externally rotated leg; groin/hip pain; can’t bear wei
 
 ### Osteoporosis teaching
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Weight-bearing exercise as cleared; calcium/vit D per plan; fall prevention (home hazards, vision, meds); bisphosphonate key points (upright after dose, water, esophageal irritation); smoking/alcohol reduction.
 
 ### Client teaching (casts)
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Keep dry; don’t stick objects inside; report numbness/color change/increased pain; mobility/weight-bearing as ordered; DVT prevention.
 
 ### Safety / red flags
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Pain out of proportion after cast/fracture = compartment until proven otherwise. Pulseless is late. Sudden dyspnea after long-bone fracture = fat embolism concern.
 
 ### Delegation notes
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 UAP can report client complaints of numbness; RN performs NV assessment.
 
 ### Remember this
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Compartment = pain out of proportion + passive stretch pain → call now. Hip fracture = NV + DVT + delirium + positioning rules.
 
@@ -64,7 +84,11 @@ Compartment = pain out of proportion + passive stretch pain → call now. Hip fr
 
 ## Topic B — Rheumatoid vs osteoarthritis, gout
 
+Source: Surviving Sepsis Campaign, 2021.
+
 ### Comparison (teaching lens)
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | | **Osteoarthritis** | **Rheumatoid arthritis** |
 | --- | --- | --- |
@@ -75,9 +99,13 @@ Compartment = pain out of proportion + passive stretch pain → call now. Hip fr
 
 ### Gout
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Uric acid crystal arthritis — often great toe. Acute: severe pain, swelling, redness. Teaching: meds as ordered (colchicine/NSAIDs/steroids acute; allopurinol chronic — don’t start/stop casually during acute flare without orders); hydrate; limit alcohol/purine-heavy patterns as taught; avoid triggering crash diets.
 
 ### Remember this
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 OA = use-related; RA = autoimmune systemic + infection risk on immunosuppressants. Gout = hydrate + med adherence + flare vs prevention teaching.
 
@@ -85,22 +113,32 @@ OA = use-related; RA = autoimmune systemic + infection risk on immunosuppressant
 
 ## Topic C — Immuno / oncology, SLE, chemo/radiation safety
 
+Source: Surviving Sepsis Campaign, 2021.
+
 ### Pathophysiology / concept
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Chemo/radiation suppress marrow → **neutropenia** (infection risk), thrombocytopenia (bleed), anemia (fatigue/O₂ carry). Oncologic emergencies: febrile neutropenia, tumor lysis, SVC syndrome, spinal cord compression (high-level recognition).
 **SLE (lupus):** autoimmune multisystem — butterfly rash, photosensitivity, arthritis, renal/CNS involvement possible; flares with sun/stress/infection; immunosuppressant infection risk.
 
 ### Assessment cues
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Fever in neutropenic client = emergency energy even if they “look okay.” Mucositis, cough, dysuria may be muted. ANC low. SLE: new edema/HTN (renal), chest pain, neuro changes — escalate.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Neutropenic precautions:** private room when indicated; hand hygiene; avoid sick visitors/fresh flowers per policy; no rectal temps; meticulous oral care; cultures + prompt antibiotics for fever as ordered.
 Soft toothbrush; avoid invasive procedures when possible; bleed precautions if platelets low.
 Tumor lysis: hydration, allopurinol/rasburicase, monitor K⁺/phos/uric acid/Ca²⁺.
 
 ### Chemo / radiation safety for nurses
+
+Source: Surviving Sepsis Campaign, 2021.
 
 - Chemo: PPE per policy for mixing/admin/disposal; don’t crush chemo casually; spill kits; pregnant staff often restricted from handling — follow policy.
 - Extravasation: know vesicant protocols — stop infusion, don’t just “flush harder,” follow antidote/protocol.
@@ -109,9 +147,13 @@ Tumor lysis: hydration, allopurinol/rasburicase, monitor K⁺/phos/uric acid/Ca�
 
 ### Skin cancer ABCDE teaching
 
+Source: Surviving Sepsis Campaign, 2021.
+
 **A**symmetry, **B**order irregularity, **C**olor variation, **D**iameter (concerning if growing / often taught >6 mm), **E**volving — report changing moles; sun protection (SPF, shade, no tanning beds).
 
 ### Client teaching
+
+Source: Surviving Sepsis Campaign, 2021.
 
 - Report fever immediately (exact threshold per oncology team).
 - Food safety; avoid crowds when counts nadir.
@@ -120,9 +162,13 @@ Tumor lysis: hydration, allopurinol/rasburicase, monitor K⁺/phos/uric acid/Ca�
 
 ### Safety / red flags
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Febrile neutropenia. Uncontrolled chemo nausea → dehydration. New back pain + leg weakness in cancer client (cord compression). Facial/arm swelling + cancer (SVC).
 
 ### Remember this
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Fever + neutropenia = urgent antibiotics pathway. Chemo = PPE + extravasation know-how. ABCDE for skin lesions. SLE = sun + infection + organ flare watch.
 
@@ -130,7 +176,11 @@ Fever + neutropenia = urgent antibiotics pathway. Chemo = PPE + extravasation kn
 
 ## Topic D — Integument, pressure injuries, wound healing & burns
 
+Source: NPIAP pressure-injury staging, 2016.
+
 ### Pressure injury staging (review)
+
+Source: NPIAP pressure-injury staging, 2016.
 
 - **Stage 1:** non-blanchable erythema, intact skin.
 - **Stage 2:** partial-thickness loss with exposed viable pink/red dermis; intact or ruptured serum-filled blister. Does **not** include skin tears, burns, abrasions, or moisture-associated skin damage.
@@ -142,17 +192,25 @@ Never reverse-stage (“Stage 4 healing” not “Stage 2”). Turn q2h; offload
 
 ### Wound healing factors
 
+Source: NPIAP pressure-injury staging, 2016.
+
 Favor: perfusion, nutrition, glycemic control, moist wound healing as ordered, clean technique. Impair: smoking, steroids, infection, ischemia, malnutrition, edema, radiation.
 
 ### Burns — pathophysiology / concept
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Burns destroy skin barrier → fluid loss, infection, heat loss. Depth: superficial → partial → full thickness. Rule of nines for TBSA adult. Capillary leak early → hypovolemia; then fluid remobilization later.
 
 ### Assessment cues (burns)
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Airway: facial burns, singed nasal hair, hoarseness, carbonaceous sputum → **inhalation injury**. Circumferential chest burns → ventilation restriction. Pain severe in partial thickness; full thickness may be insensate.
 
 ### Priority nursing actions (burns)
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. **Airway** first — early intubation if inhalation suspected.
 2. Stop burning process; remove constricting jewelry/clothing if not stuck.
@@ -164,13 +222,19 @@ Airway: facial burns, singed nasal hair, hoarseness, carbonaceous sputum → **i
 
 ### Client teaching / rehab
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Positioning to prevent contractures; PT/OT; sun protection of healed skin; psychosocial support.
 
 ### Safety / red flags
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Hoarse voice after smoke exposure. Drooling/stridor. Circumferential torso burn with rising ventilatory pressures.
 
 ### Remember this
+
+Source: NPIAP pressure-injury staging, 2016.
 
 Burns: airway > fluids > infection/pain/contractures. Pressure injuries: stage accurately, offload, nutrition. Don’t reverse-stage.
 
@@ -178,29 +242,43 @@ Burns: airway > fluids > infection/pain/contractures. Pressure injuries: stage a
 
 ## Topic E — Hematology: anemia, sickle cell, HIT, DIC
 
+Source: Surviving Sepsis Campaign, 2021.
+
 ### Anemia concept
+
+Source: Surviving Sepsis Campaign, 2021.
 
 ↓ RBC/Hgb → fatigue, pallor, dyspnea on exertion, tachycardia. Causes: blood loss, hemolysis, production failure (iron/B12/folate, marrow).
 
 ### Sickle cell crisis priorities
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Vaso-occlusive pain crises, infection risk (functional asplenia), acute chest syndrome (chest pain, fever, hypoxia — emergency energy), stroke risk.
 **Priorities:** fluids, opioids (believe the pain), O₂ if hypoxic, treat infection triggers, incentive spirometry, warm environment, hydroxyurea key points as ordered; avoid high altitude/dehydration extremes as taught.
 
 ### HIT (heparin-induced thrombocytopenia) high-level
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Immune reaction to heparin → **platelet drop** with **paradoxical thrombosis** risk. Stop all heparin (including flushes) as ordered; use alternative anticoagulation per protocol; avoid platelet transfusions routinely in HIT (can worsen thrombosis — follow specialist orders). Timing often 5–10 days after heparin, or sooner if re-exposed.
 
 ### DIC overview
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Widespread clotting → consumption of platelets/factors → **bleeding + clotting together**. Triggers: sepsis, trauma, abruptio, malignancy. Cues: oozing from sites, petechiae, ↑ PT/PTT, ↓ platelets/fibrinogen, ↑ D-dimer.
 **Nurse:** treat cause; support ABCs; blood products as ordered; avoid unnecessary sticks; gentle care — don’t invent heparin vs antifibrinolytic battles without orders.
 
 ### Priority actions (anemia)
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 O₂ if hypoxic; transfusion as ordered; conserve energy; treat cause.
 
 ### Remember this
+
+Source: Surviving Sepsis Campaign, 2021.
 
 HIT = stop heparin, watch clots. Sickle = hydration + pain + O₂ + infection vigilance + acute chest. DIC = bleed + clot; treat cause. Anemia = cause + symptoms + transfusion per orders.
 
@@ -208,9 +286,13 @@ HIT = stop heparin, watch clots. Sickle = hydration + pain + O₂ + infection vi
 
 ## HIV opportunistic infection (not encyclopedia)
 
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
 Focus on **immunity down → opportunistic risk up**: pneumonia (including PCP when CD4 low — know “report fever/dyspnea early”), oral thrush, TB exposure caution, live vaccine caution when immunocompromised. ART adherence prevents resistance; standard precautions (not isolation solely for HIV status). Teach: safer sex, no sharing needles, infection reporting, medication timing.
 
 ### Remember this
+
+Source: CDC isolation precautions, 2007.
 
 HIV nursing = adherence + infection vigilance + dignity + standard precautions; CD4/viral load trends matter.
 
@@ -220,7 +302,11 @@ HIV nursing = adherence + infection vigilance + dignity + standard precautions; 
 
 ## Clinical judgment vignettes — immune, MSK, sensory, integument
 
+Source: Surviving Sepsis Campaign, 2021.
+
 ### Vignette A — Compartment syndrome
+
+Source: Surviving Sepsis Campaign, 2021.
 
 **Stem:** Casted tibia; pain out of proportion, pain on passive stretch, paresthesia.
 
@@ -228,11 +314,15 @@ HIV nursing = adherence + infection vigilance + dignity + standard precautions; 
 
 ### Vignette B — Neutropenic fever
 
+Source: CDC isolation precautions, 2007.
+
 **Stem:** ANC 400; T 38.5°C; “feels fine.”
 
 **First:** Cultures + prompt Abx pathway; protective precautions — don’t wait for “looks sick.”
 
 ### Vignette C — Burn fluid & airway
+
+Source: Surviving Sepsis Campaign, 2021.
 
 **Stem:** Facial burns, singed nasal hairs, hoarse voice.
 
@@ -240,11 +330,15 @@ HIV nursing = adherence + infection vigilance + dignity + standard precautions; 
 
 ### Immune / oncology hooks
 
+Source: Surviving Sepsis Campaign, 2021.
+
 - Radiation skin care; chemo nadir timing; mucositis; tumor lysis (K⁺/phos/uric acid) monitoring.
 - Anaphylaxis to chemo/abx: epi IM, airway.
 - Graft-vs-host high-level post-transplant.
 
 ### MSK / cast / traction
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 - Neurovascular 6 Ps: pain, pressure, paralysis, paresthesia, pallor, pulselessness.
 - Fat embolism after long-bone fracture: petechiae, dyspnea, confusion.
@@ -252,6 +346,8 @@ HIV nursing = adherence + infection vigilance + dignity + standard precautions; 
 - Amputation: phantom pain real; hemorrhage watch; contracture prevention (prone for AKA).
 
 ### Sensory
+
+Source: Surviving Sepsis Campaign, 2021.
 
 - Cataract post-op: no ↑IOP (no bending/lifting/straining); shield.
 - Glaucoma: sudden pain/halos = angle-closure emergency.
@@ -261,11 +357,15 @@ HIV nursing = adherence + infection vigilance + dignity + standard precautions; 
 
 ### Integument / burns / wounds
 
+Source: CDC isolation precautions, 2007.
+
 - Staging pressure injuries; never massage a reddened bony prominence.
 - Stevens-Johnson / TEN: stop offending drug; airway/fluid/skin like burn care.
 - Cellulitis vs abscess; MRSA contact precautions as indicated.
 
 ### Extra concept checks
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Q7.** Pain out of proportion after cast — priority?
 A. Extra blanket
@@ -277,6 +377,8 @@ D. Ignore if pulses still present (pulselessness is late)
 
 ### Medication highlights — other med-surg
 
+Source: NPIAP pressure-injury staging, 2016.
+
 | | Hook |
 | --- | --- |
 | Allopurinol / colchicine | Gout; hydration; interactions |
@@ -287,6 +389,8 @@ D. Ignore if pulses still present (pulselessness is late)
 | Silver sulfadiazine / burn topicals | Allergy/sulfa; wound assessment |
 
 ## Concept check
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Q1.** Casted tibia client reports severe pain unrelieved by opioids and pain on passive toe motion. Best action?
 A. Tell them to relax
@@ -336,6 +440,8 @@ D. Give ice baths to “shrink” sickled cells
 ---
 
 ## Chapter Remember this
+
+Source: NPIAP pressure-injury staging, 2016.
 
 - Compartment: pain ≫ expected; passive stretch pain; pulseless late.
 - Osteoporosis/hip fx: falls, NV, DVT, delirium, positioning.

@@ -12,17 +12,25 @@
 
 ## Why it matters on NCLEX
 
+Source: AAP Bright Futures, 2022.
+
 Kids **compensate then crash**. Peds stems test developmental safety, dehydration, airway differences (epiglottitis vs croup), congenital heart “spells,” and mandated reporting. Weight-based calc safety is non-negotiable. NGN loves trending tachypnea + feeding fatigue before the sudden desaturation.
 
 ---
 
 ## Topic A — Growth, development & safety teaching
 
+Source: AAP Bright Futures, 2022.
+
 ### Concept
+
+Source: AAP Bright Futures, 2022.
 
 Milestones are ranges; **red flags** matter more than memorizing every week. Anticipatory guidance prevents injury (choking, drowning, falls, burns, guns, car seats). Piaget/Erikson appear as communication and teaching strategy questions.
 
 ### High-yield red flags
+
+Source: AAP Bright Futures, 2022.
 
 - Not tracking/smiling by expected windows
 - No babbling / no single words by expected ages
@@ -31,6 +39,8 @@ Milestones are ranges; **red flags** matter more than memorizing every week. Ant
 - No walking by late toddler windows — evaluate
 
 ### Age-based safety
+
+Source: VA/DoD major depressive disorder guideline, 2022.
 
 | Age pattern | Safety |
 | --- | --- |
@@ -42,6 +52,8 @@ Milestones are ranges; **red flags** matter more than memorizing every week. Ant
 
 ### Communication tips
 
+Source: AAP Bright Futures, 2022.
+
 - Infant: caregiver presence; swaddle/comfort.
 - Toddler: simple words; choices of two; procedures on stuffed animal first.
 - Preschool: concrete; may fear body injury; bandage after shots.
@@ -50,17 +62,25 @@ Milestones are ranges; **red flags** matter more than memorizing every week. Ant
 
 ### Remember this
 
+Source: AAP Bright Futures, 2022.
+
 Injury prevention teaching is Health Promotion gold. Regression with stress is common — assess for red flags vs temporary regression.
 
 ---
 
 ## Topic B — Dehydration & fluid safety
 
+Source: AAP Bright Futures, 2022.
+
 ### Pathophysiology / concept
+
+Source: AAP Bright Futures, 2022.
 
 Higher % body water + higher metabolic rate → kids dehydrate faster (GE, fever, burns). Mild → severe: from sticky mucosa to sunken fontanel/eyes, no tears, oliguria, lethargy, delayed CRT, shock. Fontanel assessment in infants is high-yield.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Oral rehydration therapy (ORT) for mild-moderate if tolerating PO — small frequent sips.
 - IV fluids for severe / shock / intractable vomiting — boluses per PALS-aligned orders.
@@ -70,14 +90,20 @@ Higher % body water + higher metabolic rate → kids dehydrate faster (GE, fever
 
 ### Teaching
 
+Source: CDC isolation precautions, 2007.
+
 ORT small frequent sips; signs to return (lethargy, no urine, blood in stool, persistent vomiting, dry mucous membranes worsening). Hand hygiene to prevent spread.
 
 ### Safety / red flags
+
+Source: AAP Bright Futures, 2022.
 
 > **Red flag:** Lethargy + CRT >3–4 sec + sunken fontanel = IV pathway, not “try juice at home.”
 > **Red flag:** Mixing formula incorrectly (too dilute/concentrated) → electrolyte disasters.
 
 ### Remember this
+
+Source: AAP Bright Futures, 2022.
 
 Lethargy + poor perfusion = IV pathway, not “just try juice.”
 
@@ -85,19 +111,29 @@ Lethargy + poor perfusion = IV pathway, not “just try juice.”
 
 ## Topic C — Pediatric respiratory: RSV, croup, epiglottitis
 
+Source: AAP acute otitis media guideline, 2013.
+
 ### RSV / bronchiolitis
+
+Source: CDC isolation precautions, 2007.
 
 Viral lower airway in infants; wheeze, tachypnea, feeding difficulty. Supportive care primary; isolation contact/droplet per policy; suction nose before feeds; watch apnea in young infants; hydration carefully.
 
 ### Croup (laryngotracheobronchitis)
 
+Source: AAP Bright Futures, 2022.
+
 Viral; barky cough, stridor, hoarseness; steeple sign. Keep child calm; steroids; nebulized epinephrine for moderate-severe as ordered. Cool mist evidence mixed — follow orders.
 
 ### Epiglottitis (less common with Hib vaccine but still tested)
 
+Source: AAP Bright Futures, 2022.
+
 **Bacterial** emergency: drooling, dysphagia, distress, tripod, high fever, **no cough** often. **Do not** throat-exam with tongue blade. Keep with parent, NPO, airway team / OR for controlled airway, antibiotics after airway secured as ordered.
 
 ### Comparison memory hook
+
+Source: AAP Bright Futures, 2022.
 
 | | Croup | Epiglottitis |
 | --- | --- | --- |
@@ -106,15 +142,21 @@ Viral; barky cough, stridor, hoarseness; steeple sign. Keep child calm; steroids
 
 ### Other airway notes
 
+Source: GINA strategy report, 2025.
+
 Foreign body: unilateral wheeze/sudden cough — don’t blind finger sweep. Asthma in kids: same silent-chest rules as adults.
 
 ### Remember this
+
+Source: AAP Bright Futures, 2022.
 
 Epiglottitis = don’t look in the throat. Kids with retractions/flaring/grunting need escalation.
 
 ---
 
 ## Clinical judgment vignette 1 — Epiglottitis
+
+Source: AAP Bright Futures, 2022.
 
 **Stem:** 4-year-old tripoding, drooling, muffled voice, SpO₂ 92%, parent asks you to “look at the throat with a light.”
 
@@ -126,15 +168,23 @@ Epiglottitis = don’t look in the throat. Kids with retractions/flaring/gruntin
 
 ## Topic D — Congenital heart disease (high-level)
 
+Source: AAP Bright Futures, 2022.
+
 ### Concept
+
+Source: AAP Bright Futures, 2022.
 
 Left-to-right shunts (VSD/ASD/PDA) → pulmonary overcirculation, failure to thrive, CHF. Right-to-left / cyanotic lesions (TOF, transposition) → cyanosis, polycythemia, spells. Obstructive (coarctation) → BP/pulse discrepancies (arms vs legs).
 
 ### Assessment cues
 
+Source: AAP Bright Futures, 2022.
+
 Poor feeding, sweating with feeds, tachypnea, murmur, cyanosis, differential cyanosis, delayed CRT, hepatomegaly in CHF, clubbing in chronic cyanosis.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Cluster care; optimize feeding (fortify calories as ordered); digoxin/diuretic as ordered (dig toxicity same cues — bradycardia, vomiting).
 - **Tet spell:** knees-to-chest, calm, O₂, morphine/fluids as ordered.
@@ -144,11 +194,15 @@ Poor feeding, sweating with feeds, tachypnea, murmur, cyanosis, differential cya
 
 ### Remember this
 
+Source: AAP Bright Futures, 2022.
+
 Feeding fatigue + sweat = cardiac red flag in infants. Tet spell → knees to chest.
 
 ---
 
 ## Clinical judgment vignette 2 — Tet spell
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 **Stem:** Toddler with TOF becomes deeply cyanotic and dyspneic after crying in clinic hallway.
 
@@ -160,25 +214,37 @@ Feeding fatigue + sweat = cardiac red flag in infants. Tet spell → knees to ch
 
 ## Topic E — Vaccines, febrile seizures, abuse reporting
 
+Source: AAP Bright Futures, 2022.
+
 ### Vaccines
+
+Source: AAP Bright Futures, 2022.
 
 Know that schedules update — teach importance, common mild reactions vs emergencies (anaphylaxis). Injection site by age (vastus lateralis infants; deltoid when muscle adequate). Document VIS. Live vaccines caution in severe immunocompromise.
 
 ### Febrile seizures
 
+Source: AAP Bright Futures, 2022.
+
 Usually brief, age-limited; protect airway/safety; antipyretics for comfort don’t always prevent recurrence; teach when to seek care (first seizure, prolonged, focal, status).
 
 ### Abuse / mandated reporting
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Nurses are **mandated reporters**. Inconsistent history, patterned injuries, spiral fractures in non-ambulatory infants, STIs in young children, retinal hemorrhages — private interview, treat injuries, report per law. Don’t confront aggressively alone in a way that blocks reporting or safety.
 
 ### Remember this
+
+Source: AAP Bright Futures, 2022.
 
 Mandated reporter = report suspicion per law. Weight-based dosing double-check. Epiglottitis ≠ croup management.
 
 ---
 
 ## Topic F — Pyloric stenosis, intussusception, Hirschsprung
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 | Condition | Classic cue | Nurse priorities |
 | --- | --- | --- |
@@ -188,9 +254,13 @@ Mandated reporter = report suspicion per law. Weight-based dosing double-check. 
 
 ### Red flag
 
+Source: AAP acute otitis media guideline, 2013.
+
 > **Red flag:** Bilious vomiting in newborn = emergency until proven otherwise (malrotation/volvulus).
 
 ### Remember this
+
+Source: AAP acute otitis media guideline, 2013.
 
 Bilious vomiting in newborn = emergency until proven otherwise.
 
@@ -198,11 +268,15 @@ Bilious vomiting in newborn = emergency until proven otherwise.
 
 ## Topic G — Otitis, meningitis peds, Kawasaki
 
+Source: AAP acute otitis media guideline, 2013.
+
 - Otitis media: pain, fever; finish Abx; feed upright; hearing follow-up if recurrent.
 - Pediatric meningitis: bulging fontanel, high-pitched cry, photophobia — droplet as indicated, Abx after cultures when safe.
 - Kawasaki: prolonged fever (≥5 days), strawberry tongue, rash, conjunctivitis, extremity changes → **coronary aneurysm** risk; IVIG + aspirin as ordered (special aspirin indication); delay live vaccines after IVIG per timing rules.
 
 ### Remember this
+
+Source: AAP Bright Futures, 2022.
 
 Kawasaki = fever + mucocutaneous signs → cardiac follow-up. Incomplete Kawasaki still dangerous.
 
@@ -210,21 +284,31 @@ Kawasaki = fever + mucocutaneous signs → cardiac follow-up. Incomplete Kawasak
 
 ## Topic H — Pain, med safety, and sickle cell hooks
 
+Source: AAP Bright Futures, 2022.
+
 ### Pain
+
+Source: AAP Bright Futures, 2022.
 
 Use age-appropriate scales (FLACC, Faces, numeric). Believe the child; combine pharm + nonpharm (distraction, sucrose for infants per policy, positions).
 
 ### Med safety
 
+Source: AAP Bright Futures, 2022.
+
 mg/kg; never exceed adult max casually; independent double-checks for high-alert; use kg not pounds in calc; leading zeros.
 
 ### Sickle cell
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infection risk (functional asplenia); acute chest syndrome = respiratory emergency; stroke risk; hydroxyurea; avoid deferral of pain as “drug seeking” stereotype.
 
 ---
 
 ## Clinical judgment vignette 3 — Severe dehydration
+
+Source: AAP Bright Futures, 2022.
 
 **Stem:** 9-month-old after 2 days diarrhea: sunken fontanel, no tears, CRT 4 sec, lethargic, dry diapers × 8 hours.
 
@@ -238,6 +322,8 @@ Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infec
 
 ## Topic I — Hip dysplasia, clubfoot, scoliosis (MSK teaching)
 
+Source: AAP Bright Futures, 2022.
+
 - DDH: Pavlik harness teaching — don’t adjust straps casually; skin checks; diaper under straps per instructions.
 - Clubfoot: serial casting; neurovascular checks; parent adherence.
 - Scoliosis: screening; brace adherence teaching; post-op spinal fusion log-roll, neuro checks, pain, ileus watch.
@@ -246,15 +332,21 @@ Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infec
 
 ## Topic J — Leukemia / immunocompromised child (brief)
 
+Source: CDC isolation precautions, 2007.
+
 ANC-based neutropenic precautions; no rectal temps/IM when platelets low; soft toothbrush; no live plants/sick visitors per policy; fever = cultures + prompt antibiotics pathway; mucositis pain/nutrition; central line care. Emotional support for family — honest, developmentally tuned explanations.
 
 ---
 
 ## Topic K — Poisoning & emergency readiness
 
+Source: AAP Bright Futures, 2022.
+
 Call poison control; bring container; don’t blindly induce vomiting. Acetaminophen OD → NAC; iron OD dangerous in toddlers; button batteries = emergency. Home teaching: locks, original containers, carbon monoxide detectors.
 
 ### Medication highlights (pediatrics)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | | Hook |
 | --- | --- |
@@ -266,6 +358,8 @@ Call poison control; bring container; don’t blindly induce vomiting. Acetamino
 | Opioids | RR monitoring; naloxone availability |
 
 ## Concept check
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Q1.** Toddler with drooling, tripod position, high fever, no cough. Priority?
 A. Examine throat with tongue blade at bedside alone
@@ -318,6 +412,8 @@ D. Share dosing “tricks” without references
 
 ## Clinical judgment teaching box — NGN cue sorting
 
+Source: AAP acute otitis media guideline, 2013.
+
 When a maternity/pediatric stem feels crowded, sort cues into:
 
 1. **Airway/breathing threats** (maternal Mag toxicity RR↓; newborn grunting; epiglottitis drooling; RSV apnea risk)
@@ -330,9 +426,13 @@ Then ask: *What kills first if I do nothing for 5 minutes?* That answer is usual
 
 ### Parent teaching close
 
+Source: AAP Bright Futures, 2022.
+
 Teach parents the difference between “fussy” and “lethargic,” how to count wet diapers, when fever needs evaluation by age (neonates = urgent), and that herbal “teething remedies” with benzocaine/opioids are dangerous. Empower caregivers without blame — partnership improves adherence and early return for warning signs.
 
 ## Chapter Remember this
+
+Source: AAP Bright Futures, 2022.
 
 - Compensate then crash — tachypnea and lethargy matter.
 - ORT vs IV based on severity.

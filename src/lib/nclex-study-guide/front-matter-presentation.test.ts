@@ -23,32 +23,20 @@ function textNodes(html: string): string[] {
 
 describe("presentFrontMatter", () => {
   it.each([
-    ["content/nclex-study-guide/00-front-matter.md", "Pair this NCLEX book"],
-    ["content/naplex-study-guide/00-front-matter.md", "Pair this NAPLEX book"],
-    ["content/aanp-fnp-study-guide/00-front-matter.md", "Pair this AANP FNP book"],
-  ])("keeps %s offer words and lifts them above the disclaimer", (file, phrase) => {
+    "content/nclex-study-guide/00-front-matter.md",
+    "content/naplex-study-guide/00-front-matter.md",
+    "content/aanp-fnp-study-guide/00-front-matter.md",
+  ])("keeps a trial price out of %s", (file) => {
     const html = ingested(file);
     const presented = presentFrontMatter(html);
 
     expect(textNodes(presented)).toEqual(textNodes(html));
-    expect(presented).toContain(phrase);
-    expect(presented).toContain("5-day free trial");
-    expect(presented).toContain("no payment method");
-    expect(presented).toContain("$27.99/mo");
-    expect(presented.match(/\$27\.99/g)).toHaveLength(1);
-
-    const offerAt = presented.indexOf("5-day free trial");
-    const pairingAt = presented.indexOf("Pairing with");
-    const howToAt = presented.indexOf("How to use this book");
-    const disclaimerAt = presented.indexOf("Study-aid disclaimer");
-    expect(offerAt).toBeGreaterThan(-1);
-    expect(offerAt).toBeLessThan(pairingAt);
-    expect(pairingAt).toBeLessThan(howToAt);
-    expect(howToAt).toBeLessThan(disclaimerAt);
-
+    expect(presented).not.toMatch(/free trial/i);
+    expect(presented).not.toContain("$27.99");
+    expect(presented).not.toContain("sg-offer");
+    expect(presented).toContain("How to use this book");
     expect(presented).toContain('class="sg-figure sg-cover"');
     expect(presented).toContain("sg-front-spread");
-    expect(presented).toContain('class="sg-offer"');
     expect(presented.indexOf("sg-cover")).toBeGreaterThan(presented.indexOf("sg-front-spread__copy"));
   });
 
@@ -86,12 +74,12 @@ describe("presentFrontMatter", () => {
 
   it("keeps a search hit inside the moved trial sentence", () => {
     const html = ingested("content/nclex-study-guide/00-front-matter.md").replace(
-      "5-day free trial",
-      '5-day free <mark class="sg-search-hit">trial</mark>'
+      "How to use this book",
+      'How to use this <mark class="sg-search-hit">book</mark>'
     );
     const presented = presentFrontMatter(html);
-    expect(presented).toContain('<mark class="sg-search-hit">trial</mark>');
-    expect(presented.indexOf("sg-search-hit")).toBeLessThan(presented.indexOf("How to use this book"));
+    expect(presented).toContain('<mark class="sg-search-hit">book</mark>');
+    expect(presented.indexOf("sg-search-hit")).toBeLessThan(presented.indexOf("Study-aid disclaimer"));
   });
 
   it("hides the trial offer for a reader who already has access", () => {

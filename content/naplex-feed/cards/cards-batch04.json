@@ -17,7 +17,10 @@
   "back": "Active, e.g., iPLEDGE. Ended: clozapine (2025), mycophenolate (2026). Key clue: iPLEDGE: isotretinoin pregnancy testing and contraception. TIRF REMS: products discontinued 2024, no new enrollments. Pharmacist move: Check the FDA REMS database for the current list before dispensing. Exam trap: Mycophenolate is still teratogenic: label counseling continues without the REMS.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-076.svg",
+   "alt": "Text card. Active, e.g., iPLEDGE. Ended: clozapine (2025), mycophenolate (2026)."
+  },
   "source": {
    "guideline": "FDA REMS database 2026; FDA TIRF discontinuation notice 2024",
    "year": "2024 / 2026",
@@ -45,7 +48,10 @@
   "back": "INR rises: bleeding risk. Key clue: Raise INR: TMP-SMX, metronidazole, fluconazole, amiodarone. Lower INR: rifampin, carbamazepine. Pharmacist move: Pick a non-interacting drug, or check INR in 3–5 days and adjust. Exam trap: Vitamin K: keep intake consistent, don't eliminate it.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-077.svg",
+   "alt": "Do and do not. INR rises: bleeding risk."
+  },
   "source": {
    "guideline": "CHEST 2021; labeling",
    "year": "2021",
@@ -73,7 +79,10 @@
   "back": "Avoid strong dual inducers; halve apixaban with strong dual inhibitors. Key clue: Inducers: rifampin, carbamazepine, phenytoin, St. John's wort. Pharmacist move: Apixaban 5 mg BID drops to 2.5 mg BID with combined strong 3A4 + P-gp inhibitors; avoid if already 2.5. Exam trap: AF dose 2.5 mg BID needs 2 of 3: age ≥80, weight ≤60 kg, SCr ≥1.5.",
   "word_count": 59,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-078.svg",
+   "alt": "Steps. Avoid strong dual inducers; halve apixaban with strong dual inhibitors."
+  },
   "source": {
    "guideline": "2023 ACC/AHA AF; labeling",
    "year": "2023",
@@ -101,7 +110,10 @@
   "back": "Max simvastatin 20 mg with amlodipine. Key clue: Also 20 mg with amiodarone or ranolazine; 10 mg with diltiazem or verapamil. Pharmacist move: Lower the dose or switch to rosuvastatin or pravastatin. Exam trap: Simvastatin 80 mg: only if already on it 12 months without myopathy.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-079.svg",
+   "alt": "Threshold. Max simvastatin 20 mg with amlodipine."
+  },
   "source": {
    "guideline": "FDA labeling 2011 simvastatin",
    "year": "2011",
@@ -129,7 +141,10 @@
   "back": "No: nitrates plus PDE5 inhibitors are contraindicated. Key clue: Additive vasodilation causes severe hypotension. Pharmacist move: If chest pain after a PDE5 inhibitor, no nitrate for 24 h (sildenafil) or 48 h (tadalafil). Exam trap: Riociguat is also contraindicated with nitrates and PDE5 inhibitors.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-080.svg",
+   "alt": "Text card. No: nitrates plus PDE5 inhibitors are contraindicated."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -157,7 +172,10 @@
   "back": "Serotonin syndrome: linezolid is an MAO inhibitor. Key clue: Riskiest with SSRIs and SNRIs. Pharmacist move: Non-urgent: stop the serotonergic drug first (2 weeks; fluoxetine 5). Urgent: give with close monitoring. Exam trap: Linezolid also interacts with high-tyramine foods.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-081.svg",
+   "alt": "Steps. Serotonin syndrome: linezolid is an MAO inhibitor."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -185,7 +203,10 @@
   "back": "Chelation: absorption drops. Key clue: Ca, Mg, Al, Fe, Zn bind fluoroquinolones and tetracyclines. Pharmacist move: Take ciprofloxacin 2 hours before or 6 hours after cations. Exam trap: Dairy alone also blocks ciprofloxacin; levothyroxine needs 4 hours from Ca or Fe.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-082.svg",
+   "alt": "Text card. Chelation: absorption drops."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -213,7 +234,10 @@
   "back": "Lithium level rises: toxicity risk. Key clue: Raisers: ACEi, ARBs, thiazides, NSAIDs, dehydration, low sodium intake. Pharmacist move: Avoid the combo or check a level within about 5 days and adjust. Exam trap: Toxicity: coarse tremor, confusion, ataxia, vomiting.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-083.svg",
+   "alt": "Text card. Lithium level rises: toxicity risk."
+  },
   "source": {
    "guideline": "VA/DoD Bipolar 2023; FDA labeling",
    "year": "2023",
@@ -241,7 +265,10 @@
   "back": "Hyperkalemia. Key clue: ACEi/ARB, MRA, TMP-SMX, NSAIDs, potassium supplements all raise K. Pharmacist move: Check potassium and creatinine; manage high K with diet, diuretics or binders. Exam trap: KDIGO: treat the potassium first instead of reflexively stopping the RAS inhibitor.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-084.svg",
+   "alt": "Steps. Hyperkalemia."
+  },
   "source": {
    "guideline": "KDIGO 2024 CKD",
    "year": "2024",
@@ -269,7 +296,10 @@
   "back": "Tyramine plus MAOI: hypertensive crisis. Key clue: High tyramine: aged cheese, cured meats, soy sauce, tap beer. Pharmacist move: Counsel a tyramine-restricted diet during and 2 weeks after MAOI therapy. Exam trap: Grapefruit raises simvastatin and lovastatin levels; vitamin K just needs consistency with warfarin.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-085.svg",
+   "alt": "Text card. Tyramine plus MAOI: hypertensive crisis."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -297,7 +327,10 @@
   "back": "No: adjust the weekly dose 5–20%. Key clue: INR reflects doses from days ago; steady state takes 5–7 days. Pharmacist move: Check adherence, diet and new drugs; recheck in about a week. Exam trap: INR >10 without bleeding: hold warfarin and give oral vitamin K.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-086.svg",
+   "alt": "Steps. No: adjust the weekly dose 5–20%."
+  },
   "source": {
    "guideline": "Warfarin labeling; CHEST 2012 (9th ed.) antithrombotic guidelines",
    "year": "2012",
@@ -325,7 +358,10 @@
   "back": "Digoxin toxicity: level, potassium, renal function. Key clue: Hypokalemia, renal decline, amiodarone or verapamil raise toxicity. Pharmacist move: Hold digoxin; DigiFab for life-threatening arrhythmias or severe toxicity. Exam trap: Draw levels at least 6 hours after a dose; aim low (~0.5–0.9 ng/mL) in HF.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-087.svg",
+   "alt": "Steps. Digoxin toxicity: level, potassium, renal function."
+  },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
    "year": "2022",
@@ -353,7 +389,10 @@
   "back": "About 0.6–1.0 mEq/L (up to 1.2), drawn 12 hours post-dose. Key clue: Check 5 days after starting or changing dose. Pharmacist move: Track renal function, TSH, calcium periodically. Exam trap: Long-term effects: hypothyroidism and nephrogenic diabetes insipidus.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-088.svg",
+   "alt": "Threshold. About 0.6–1.0 mEq/L (up to 1.2), drawn 12 hours post-dose."
+  },
   "source": {
    "guideline": "VA/DoD Bipolar 2023",
    "year": "2023",
@@ -381,7 +420,10 @@
   "back": "7 mg/kg; interval from one random level. Key clue: Hartford: one level 6–14 hours after the dose, plotted on the nomogram. Pharmacist move: Level region sets every 24, 36 or 48 hours. Exam trap: Exclude burns, ascites, pregnancy, endocarditis, CrCl <20.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-089.svg",
+   "alt": "Threshold. 7 mg/kg; interval from one random level."
+  },
   "source": {
    "guideline": "Hartford nomogram; IDSA",
    "year": "current edition",
@@ -409,7 +451,10 @@
   "back": "Autoinduction. Key clue: Carbamazepine induces its own metabolism over 3–5 weeks. Pharmacist move: Recheck the level and titrate; target 4–12 mcg/mL. Exam trap: It also induces CYP3A4: hormonal contraceptives can fail.",
   "word_count": 31,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-090.svg",
+   "alt": "Steps. Autoinduction."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -437,7 +482,10 @@
   "back": "Baseline lipids and ALT; CK only with muscle symptoms. Key clue: No routine liver or CK monitoring once started. Pharmacist move: Recheck lipids after starting to confirm response and adherence. Exam trap: Muscle aches: check CK, thyroid and vitamin D; don't stop all statins forever.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-091.svg",
+   "alt": "Do and do not. Baseline lipids and ALT; CK only with muscle symptoms."
+  },
   "source": {
    "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline",
    "year": "2026",
@@ -465,7 +513,10 @@
   "back": "Classic amiodarone toxicity. Key clue: Pulmonary fibrosis, hypo- or hyperthyroidism, hepatotoxicity, corneal deposits, photosensitivity. Pharmacist move: Report symptoms; check TFTs, LFTs, chest imaging and PFTs. Exam trap: Very long half-life: toxicity persists after stopping.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-092.svg",
+   "alt": "Steps. Classic amiodarone toxicity."
+  },
   "source": {
    "guideline": "2023 ACC/AHA AF",
    "year": "2023",
@@ -493,7 +544,10 @@
   "back": "Baseline weight, waist, BP, glucose, lipids. Key clue: Weight at 4, 8, 12 weeks, then quarterly. Pharmacist move: Glucose and BP at 12 weeks, then yearly; lipids at 12 weeks. Exam trap: Highest metabolic risk: clozapine and olanzapine.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-093.svg",
+   "alt": "Steps. Baseline weight, waist, BP, glucose, lipids."
+  },
   "source": {
    "guideline": "ADA/APA 2004 consensus; APA 2020 schizophrenia",
    "year": "2004 / 2020",
@@ -521,7 +575,10 @@
   "back": "NAC, idarucizumab, 4F-PCC, fomepizole, flumazenil. Key clue: Also: opioids naloxone; digoxin DigiFab; warfarin vitamin K plus 4F-PCC. Andexanet left the US market in Dec 2025. Pharmacist move: Know which antidotes must be stocked for immediate use in the ED. Exam trap: Flumazenil can trigger seizures in chronic benzodiazepine users.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-094.svg",
+   "alt": "Text card. NAC, idarucizumab, 4F-PCC, fomepizole, flumazenil."
+  },
   "source": {
    "guideline": "ACMT/AACT antidote stocking 2017; FDA Andexxa safety communication Dec 2025",
    "year": "2017 / 2025",
@@ -580,7 +637,10 @@
   "back": "MDI: slow, deep breath. DPI: fast, forceful breath. Key clue: MDI: shake, exhale, press and inhale slowly, hold 10 seconds; spacer helps. Pharmacist move: DPI: don't shake, don't exhale into it, no spacer. Exam trap: Rinse and spit after inhaled corticosteroids.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-096.svg",
+   "alt": "Text card. MDI: slow, deep breath. DPI: fast, forceful breath."
+  },
   "source": {
    "guideline": "GINA 2026; GOLD 2026",
    "year": "2026",
@@ -608,7 +668,10 @@
   "back": "Wait 5 minutes; pull ear down and back; fold and flush. Key clue: Eye drops: 5 minutes apart; suspensions shake first. Pharmacist move: Otic under age 3: pinna down and back; adults: up and back. Exam trap: Fentanyl patch is on the FDA flush list; avoid heat on the patch.",
   "word_count": 50,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-097.svg",
+   "alt": "Steps. Wait 5 minutes; pull ear down and back; fold and flush."
+  },
   "source": {
    "guideline": "FDA labeling; FDA flush list",
    "year": "current edition",
@@ -636,7 +699,10 @@
   "back": "Prime 2 units; hold 10 seconds; new needle each time. Key clue: Unopened pens in the fridge; in-use pens at room temperature. Pharmacist move: Rotate sites within the same region to avoid lipohypertrophy. Exam trap: Never share a pen, even with a new needle.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-098.svg",
+   "alt": "Threshold. Prime 2 units; hold 10 seconds; new needle each time."
+  },
   "source": {
    "guideline": "ADA Standards of Care 2026",
    "year": "2026",
@@ -664,7 +730,10 @@
   "back": "PLLR narrative sections 8.1, 8.2, 8.3. Key clue: 8.1 pregnancy, 8.2 lactation, 8.3 reproductive potential. Pharmacist move: Avoid ACEi/ARB, warfarin, isotretinoin, valproate in pregnancy; use labetalol or nifedipine for BP. Exam trap: 'Category X' language is outdated on current labels.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-099.svg",
+   "alt": "Steps. PLLR narrative sections 8.1, 8.2, 8.3."
+  },
   "source": {
    "guideline": "FDA PLLR 2015; ACOG",
    "year": "2015",
@@ -692,7 +761,10 @@
   "back": "Avoid benzos and Z-drugs; avoid sulfonylureas first-line. Key clue: Also avoid PPIs beyond 8 weeks without a clear reason; avoid aspirin for primary prevention. Pharmacist move: Prefer apixaban; avoid starting warfarin and long-term rivaroxaban for AF/VTE. Exam trap: If a sulfonylurea is used, choose short-acting (glipizide), not glyburide.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-100.svg",
+   "alt": "Steps. Avoid benzos and Z-drugs; avoid sulfonylureas first-line."
+  },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
    "year": "2023",

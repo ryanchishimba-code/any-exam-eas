@@ -8,17 +8,25 @@
 
 ## Why it matters on NCLEX
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Management of Care is often a large slice of RN items (commonly cited in the teens–low twenties percent range on published test plans. These stems test whether you protect clients through **prioritization, delegation, advocacy, privacy, continuity, and escalation** — not whether you sound impressive.
 
 ---
 
 ## Topic A — Multi-client prioritization
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 When several clients need you, rank by **ABCs, acute vs chronic, unstable vs stable, unexpected vs expected, actual problem vs risk** (actual usually wins if equal acuity framing). Maslow helps when ABCs are equal: physiologic and safety before psychosocial teaching.
 
 ### Assessment cues that scream “see first”
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 - New stridor, anaphylaxis signs, SpO₂ plunging
 - Active hemorrhage, chest pain with diaphoresis
@@ -28,11 +36,15 @@ When several clients need you, rank by **ABCs, acute vs chronic, unstable vs sta
 
 ### Priority actions
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 1. Who is dying/crashing or about to?
 2. Who needs a **nursing assessment** only you can do?
 3. What can be delegated so you stay with the unstable client?
 
 ### Worked prioritization vignettes (practice these)
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 **1.** Day-2 hip replacement requesting oral pain med vs new post-op thyroidectomy with neck swelling and stridor → **thyroidectomy airway first.**
 **2.** Chronic stable HF with baseline crackles requesting education vs client with sudden crushing chest pain and diaphoresis → **chest pain first.**
@@ -43,19 +55,27 @@ When several clients need you, rank by **ABCs, acute vs chronic, unstable vs sta
 
 ### Remember this
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Stable chronic pain teaching loses to new hypoxia. Expected low-grade post-op fever on day 1 often loses to unexpected chest pain.
 
 ---
 
 ## Topic B — Assignment vs delegation vs supervision
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Definitions (NCLEX lens)
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - **Assignment:** distributing responsibility for client care among staff who are authorized and competent (e.g., RN-to-RN caseload).
 - **Delegation:** transferring authority to perform a **specific nursing task** to a competent person in a selected situation while **retaining accountability**.
 - **Supervision:** monitoring, follow-up, evaluation of outcomes — you still own the result.
 
 ### Five rights of delegation
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Right **task**, **circumstance**, **person**, **direction/communication**, **supervision/evaluation**.
 
@@ -67,9 +87,13 @@ Right **task**, **circumstance**, **person**, **direction/communication**, **sup
 
 ### Float nurse safety
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Float staff get orientation to unit essentials (codes, equipment, documentation). Do **not** accept an assignment outside competency without support — negotiate: lighter acuity, buddy RN, or charge reassignment. “I am not oriented to this pump/population” is advocacy, not laziness. Document concerns if you must refuse an unsafe assignment per policy.
 
 ### Safety / red flags
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Delegating assessment of a fresh post-op or newly admitted client to UAP
 - Asking UAP to “evaluate if the pain med worked” as the only follow-up
@@ -78,25 +102,37 @@ Float staff get orientation to unit essentials (codes, equipment, documentation)
 
 ### Remember this
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 You can delegate a **task**, not the **accountability**. Float = speak up early about skill gaps.
 
 ---
 
 ## Topic C — Advocacy, HIPAA, advance directives & ethics
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Advocacy
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Speak up for consent, pain control, unsafe staffing patterns (use chain of command), cultural/language needs (qualified interpreter — not family minors as primary medical interpreters).
 
 ### HIPAA
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Share minimum necessary with care team. No hallway gossip, no posting PHI on social media, no leaving screens open. Exceptions exist for legally required reporting (abuse, certain threats) — know the **concept**.
 
 ### Advance directives
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Living will / durable power of attorney for healthcare. Ask on admission; honor DNR/AND orders per policy; if family conflicts with documented wishes, escalate to provider/ethics — don’t unilaterally override valid directives.
 
 ### Ethical principles (NCLEX style)
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 | Principle | Plain English | Exam focus |
 | --- | --- | --- |
@@ -111,17 +147,25 @@ When principles clash (e.g., autonomy vs beneficence), use ethics consult / chai
 
 ### Remember this
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Privacy + client wishes + chain of command when safety is threatened. Name the ethical principle when the stem asks.
 
 ---
 
 ## Topic D — Informed consent nuances
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Provider explains procedure, risks, benefits, alternatives; nurse **witnesses signature** and verifies client understanding / voluntary consent — nurse does **not** obtain consent for surgeries they don’t perform. Client must have capacity; interpreter if language barrier; no coercion.
 
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - If client has last-minute questions about risk/benefit → **call provider back** before signing.
 - Pre-medicated / heavily sedated clients generally should not newly sign — capacity concern.
@@ -130,26 +174,38 @@ Provider explains procedure, risks, benefits, alternatives; nurse **witnesses si
 
 ### Remember this
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Questions about the procedure → provider. Questions about timing/prep → nurse can teach. Witness ≠ explain the surgery.
 
 ---
 
 ## Topic E — Continuity, discharge readiness & referrals
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Continuity = clean handoffs (SBAR), medication reconciliation, follow-up appointments, home safety, teach-back.
 
 ### Discharge readiness criteria (high-yield)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Ready when: vitals reasonably stable for destination; client/caregiver can teach-back critical meds and warning signs; prescriptions/DME arranged; transportation/safe destination; follow-up scheduled; barriers (language, literacy, cognition) addressed.
 **Not ready:** unstable VS, new confusion unexplained, can’t state when to call 911 for their condition, no caregiver when one is required, unfinished teaching on high-risk meds (warfarin, insulin).
 
 ### Referrals (examples)
 
+Source: NPIAP pressure-injury staging, 2016.
+
 PT/OT, dietitian, social work/case management, home health, wound care, spiritual care — RN recognizes need and initiates per policy.
 
 ### Remember this
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Teach-back beats “any questions?” Discharge unsafe → hold and escalate, don’t shrug.
 
@@ -157,11 +213,17 @@ Teach-back beats “any questions?” Discharge unsafe → hold and escalate, do
 
 ## Topic F — Quality improvement & unsafe practice
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 QI uses data (falls, CLABSI rates) to improve systems. Report near-misses. If a colleague is impaired or unsafe: **remove risk to clients first**, then follow policy for reporting — protect clients over friendships.
 
 ### Chain of command when provider orders unsafe
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Clarify with provider (read-back; state concern with data).
 2. If still unsafe → charge nurse / nursing supervisor.
@@ -170,17 +232,25 @@ QI uses data (falls, CLABSI rates) to improve systems. Report near-misses. If a 
 
 ### Remember this
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Client safety > loyalty to a coworker or fear of a provider. Use policy pathways.
 
 ---
 
 ## Topic G — SBAR handoff & assignment making
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Handoff failures cause real harm. **SBAR** (Situation, Background, Assessment, Recommendation) structures urgency without novels. Assignment making matches **acuity + continuity + geography + skill mix**.
 
 ### Priority actions
+
+Source: VA/DoD major depressive disorder guideline, 2022.
 
 - Lead with what the oncoming nurse must do in the next hour.
 - Include pending labs, new anticoagulants, fall/suicide precautions, isolation.
@@ -188,9 +258,13 @@ Handoff failures cause real harm. **SBAR** (Situation, Background, Assessment, R
 
 ### NGN angle
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Trend items often hide in handoff data: “BP drifting down since 1400” beats a single normal value.
 
 ### Remember this
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Clear handoff is a safety intervention. Unsafe assignment → speak up using chain of command.
 
@@ -198,11 +272,17 @@ Clear handoff is a safety intervention. Unsafe assignment → speak up using cha
 
 ## Topic H — Informed refusal, AMA, and capacity (high-level)
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Competent adults can refuse treatment after being informed of risks. AMA (against medical advice) departure still requires education, documentation, and offering partial alternatives when possible. Capacity is decision-specific and can fluctuate with hypoxia, intoxication, psych crisis.
 
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Notify provider; ensure risks/benefits explained.
 - Document quotes, witnesses, what was offered.
@@ -210,13 +290,19 @@ Competent adults can refuse treatment after being informed of risks. AMA (agains
 
 ### Remember this
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Respect autonomy when capacity present; protect when capacity absent and danger is imminent — escalate.
 
 ---
 
 ## Topic I — Disaster triage (START high-level)
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: NPIAP pressure-injury staging, 2016.
 
 Mass casualty: do the **greatest good for the greatest number**. START-style categories (know the idea, not a memorized script as absolute law):
 
@@ -229,6 +315,8 @@ Walking wounded are often tagged green first to clear the scene. This is **not**
 
 ### Remember this
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Disaster = utilitarian sorting. Everyday care = sickest salvageable individual first. Know which frame the stem is using.
 
 ---
@@ -237,7 +325,11 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ## Enhanced NGN frames — prioritization & delegation
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Clinical judgment vignette A — Who first?
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Stem:** Four clients call at once: (1) post-op day 1 with pain 6/10 stable VS; (2) new confusion + SpO₂ 88% on 2 L; (3) wants discharge paperwork; (4) needs PRN stool softener.
 
@@ -247,6 +339,8 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ### Clinical judgment vignette B — Unsafe float assignment
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 **Stem:** Charge assigns float med-surg RN (no ICU orientation) to continuous insulin drip and arterial line client.
 
 **What to do first:** State competency limit clearly; request buddy, education, or reassignment — don’t silently accept and “Google it.”
@@ -255,6 +349,8 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ### Clinical judgment vignette C — Chain of command
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 **Stem:** Provider orders morphine 30 mg IV push for opioid-naïve frail elder; after clarify, provider says “just give it.”
 
 **What to do first:** Hold, notify charge/supervisor, continue chain of command per policy — document facts.
@@ -262,6 +358,8 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 **Why:** Nonmaleficence > hierarchy theater.
 
 ### Prioritization comparison table
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | Cue cluster | Priority pattern | Often wrong distractor |
 | --- | --- | --- |
@@ -273,12 +371,16 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ### Delegation sharpeners
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 - RN: unstable, initial assessment, initial teaching, care planning, IVP per policy, triage judgment.
 - LPN/LVN: stable predictable, reinforce teaching, many meds per scope, wound care per scope.
 - UAP: ADLs, VS on stable, I&O, positioning, transport stable.
 - Never delegate what you haven’t assessed when instability is possible.
 
 ### Extra concept checks (NGN-flavored)
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Q7.** Which task is appropriate to delegate to UAP?
 A. Evaluating whether crackles improved after diuretic
@@ -294,6 +396,8 @@ D. Titration of nitroglycerin drip
 **Q8:** Follow disaster protocol cues in the stem — expectant categories can exist.
 
 ## Concept check
+
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
 
 **Q1.** Four clients call. Whom do you see first?
 A. Day-2 post-op requesting routine oral pain med
@@ -343,6 +447,8 @@ D. Stop all unit insulin protocols
 ---
 
 ## Chapter Remember this
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Unstable / ABC / unexpected → see first; use worked vignette logic.
 - Assignment ≠ delegation ≠ supervision — RN keeps accountability.

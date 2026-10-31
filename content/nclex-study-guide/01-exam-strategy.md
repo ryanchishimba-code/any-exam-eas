@@ -8,11 +8,15 @@
 
 ## Why this chapter matters
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 The NCLEX is not a trivia bowl. It asks: **Can you practice as a brand-new nurse safely?** If you understand *how* the exam thinks — CAT, NGN clinical judgment, Client Needs, and priority frameworks — every content chapter becomes easier to apply.
 
 ---
 
 ## How the NCLEX works (plain English)
+
+Source: NCSBN RN Test Plan, 2026.
 
 ### The big picture
 
@@ -29,6 +33,8 @@ The NCLEX is not a trivia bowl. It asks: **Can you practice as a brand-new nurse
 
 ### CAT in one sentence
 
+Source: NCSBN RN Test Plan, 2026.
+
 Do well → harder items. Struggle → easier items. The computer keeps going until it’s confident you are **above or below** the passing standard (or you hit the max items/time).
 
 **What that means for you:**
@@ -38,6 +44,8 @@ Do well → harder items. Struggle → easier items. The computer keeps going un
 - Keep using the **same safe decision process** on every item.
 
 ### Next Gen NCLEX (NGN) — still the real exam in 2026
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 NGN is not a side quest. Clinical judgment is built into the exam through:
 
@@ -74,6 +82,8 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 **Remember this:** NGN rewards *thinking like a nurse*, not trivia dump. Practice the *steps*, not just the labels.
 
 ### Stronger NGN clinical judgment drill (Enhanced edition)
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Treat every unfolding case like a mini shift report:
 
@@ -112,14 +122,20 @@ Treat every unfolding case like a mini shift report:
 
 ## Core frameworks for answering questions
 
+Source: NCSBN RN Test Plan, 2026.
+
 Write these on your scratch board if it helps. Use them on almost every item.
 
 ### 1) Safety first
+
+Source: NCSBN RN Test Plan, 2026.
 
 Ask: **What keeps this client safest right now?**
 Urgent safety > nice-to-have teaching > routine tasks.
 
 ### 2) ABCs (+ “D” when relevant)
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. **Airway**
 2. **Breathing**
@@ -130,11 +146,15 @@ Urgent safety > nice-to-have teaching > routine tasks.
 
 ### 3) Maslow (when ABCs don’t settle it)
 
+Source: NCSBN RN Test Plan, 2026.
+
 Physiological needs → safety → love/belonging → esteem → self-actualization.
 
 **Hungry, hypoxic, or bleeding beats anxiety** — unless the psych stem is specifically about therapeutic communication *and* no acute physiologic threat is present.
 
 ### 4) Nursing process
+
+Source: NCSBN RN Test Plan, 2026.
 
 **Assess → Analyze → Plan → Implement → Evaluate**
 
@@ -143,10 +163,14 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 
 ### 5) Acute before chronic / unstable before stable / unexpected before expected
 
+Source: NCSBN RN Test Plan, 2026.
+
 - New confusion after surgery > chronic stable dementia baseline
 - Fresh post-op day 1 > day-of-discharge education (unless stem asks for teaching)
 
 ### 6) Elimination strategy
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Read the **stem** and cover options if you can — predict the answer type.
 2. Spot the **true question** (first action? best response? who to see first?).
@@ -154,6 +178,8 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 4. For remaining options, pick the one that is **most complete / most immediate / most nursing**.
 
 ### Keyword cheat sheet
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 | Keyword | Often means… |
 | --- | --- |
@@ -165,6 +191,8 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 | **Late sign** | Obvious crisis (cyanosis, unresponsiveness) |
 
 ### Delegation (RN) — quick rules
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **RN keeps:** unstable clients, new admissions/assessments, teaching that requires RN judgment, complex sterile procedures (as scoped), IV push meds (per policy/scope), care planning.
 
@@ -180,7 +208,11 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 
 ## Study plans
 
+Source: NCSBN RN Test Plan, 2026.
+
 ### Quick start: pick your plan
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Timeline | Best if you… | Daily questions (target) | Focus |
 | --- | --- | --- | --- |
@@ -191,6 +223,8 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 Aim for **consistency over hero days**.
 
 ### 2-week intensive
+
+Source: AAP acute otitis media guideline, 2013.
 
 | Day | Focus | Practice |
 | --- | --- | --- |
@@ -211,6 +245,8 @@ Aim for **consistency over hero days**.
 
 ### 4-week balanced plan
 
+Source: NCSBN RN Test Plan, 2026.
+
 | Week | | Daily rhythm |
 | --- | --- | --- |
 | **Week 1** | Foundations + safety + management of care | AM: content 45–60 min · PM: 75 Qs · Eve: rationales |
@@ -221,6 +257,8 @@ Aim for **consistency over hero days**.
 **Sample day:** Morning checklist 20–30 min → afternoon timed 50–75 Qs → evening review every miss + error log.
 
 ### 8-week rebuild plan
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Weeks | Phase | Goals |
 | --- | --- | --- |
@@ -234,6 +272,8 @@ Aim for **consistency over hero days**.
 ---
 
 ## Common traps
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Trap | What to do instead |
 | --- | --- |
@@ -254,7 +294,11 @@ Aim for **consistency over hero days**.
 
 ## Practice strategy
 
+Source: NCSBN RN Test Plan, 2026.
+
 ### Volume targets (adjust to your plan)
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Phase | Questions/day | Notes |
 | --- | --- | --- |
@@ -266,6 +310,8 @@ Aim for **consistency over hero days**.
 
 ### 4-box error log
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 1. **Topic** (e.g., postpartum hemorrhage)
 2. **Miss type** (cue miss / priority / content gap / misread / calc)
 3. **Correct rule** in one sentence
@@ -275,9 +321,13 @@ Review the log every 2–3 days. Patterns > single misses.
 
 ### Score interpretation (practice only)
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Practice % is **not** an official NCLEX score. Trends matter: rising rationale understanding, fewer guesses, stronger priority/safety/NGN, comfortable pacing (~1.5–2 min/item average; case studies need more focus).
 
 ### Weekly rhythm
+
+Source: NCSBN RN Test Plan, 2026.
 
 - **5–6 practice days**
 - **1 lighter day** (labs/pharm flashcards + walk)
@@ -287,7 +337,11 @@ Practice % is **not** an official NCLEX score. Trends matter: rising rationale u
 
 ## Exam-day checklist
 
+Source: NCSBN RN Test Plan, 2026.
+
 ### The week before
+
+Source: NCSBN RN Test Plan, 2026.
 - [ ] Confirm ATT, Pearson VUE appointment, ID requirements
 - [ ] Do a full timed practice under quiet conditions
 - [ ] Drive/route check or remote logistics if applicable
@@ -295,6 +349,8 @@ Practice % is **not** an official NCLEX score. Trends matter: rising rationale u
 - [ ] Taper new content — protect confidence
 
 ### Night before
+
+Source: NCSBN RN Test Plan, 2026.
 - [ ] Light review only (labs sheet, frameworks)
 - [ ] Lay out IDs + confirmation info
 - [ ] Set two alarms
@@ -302,6 +358,8 @@ Practice % is **not** an official NCLEX score. Trends matter: rising rationale u
 - [ ] Hydrate; prepare simple breakfast plan
 
 ### Morning of
+
+Source: NCSBN RN Test Plan, 2026.
 - [ ] Eat something with protein + complex carbs
 - [ ] Arrive early
 - [ ] Bathroom before check-in
@@ -309,6 +367,8 @@ Practice % is **not** an official NCLEX score. Trends matter: rising rationale u
 - [ ] Breathe: you trained for clinical judgment, not perfection
 
 ### During the exam
+
+Source: NCSBN RN Test Plan, 2026.
 - [ ] Read the stem for the **real ask**
 - [ ] Use ABC / safety / nursing process every time
 - [ ] For SATA: judge each option alone
@@ -317,6 +377,8 @@ Practice % is **not** an official NCLEX score. Trends matter: rising rationale u
 - [ ] Use optional breaks if needed (they count toward 5 hours)
 
 ### After
+
+Source: NCSBN RN Test Plan, 2026.
 - [ ] Don’t torture yourself reconstructing every item
 - [ ] Official results come through your nursing regulatory body; Quick Results may be available about **two business days** after testing in participating jurisdictions (unofficial; not a license)
 
@@ -351,6 +413,8 @@ D. Psychosocial Integrity only
 ---
 
 ## Remember this (strategy)
+
+Source: NCSBN RN Test Plan, 2026.
 
 - Hard questions can be a **good** CAT sign — keep the same safe process.
 - NGN = clinical judgment steps, not trivia.

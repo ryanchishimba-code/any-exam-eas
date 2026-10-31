@@ -17,7 +17,10 @@
   "back": "Metoprolol, atenolol, bisoprolol, nebivolol: beta-1 selective. Key clue: Selectivity fades at high doses. Pharmacist move: Carvedilol and labetalol add alpha-1 blockade. HFrEF: only metoprolol succinate, carvedilol or bisoprolol. Exam trap: Pindolol and acebutolol have ISA: avoid after MI and in HFrEF.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-001.svg",
+   "alt": "Do and do not. Metoprolol, atenolol, bisoprolol, nebivolol: beta-1 selective."
+  },
   "source": {
    "guideline": "FDA labeling; 2022 AHA/ACC/HFSA HF",
    "year": "2022",
@@ -45,7 +48,10 @@
   "back": "Anticholinergic burden: avoid in older adults. Key clue: Dry mouth, constipation, urinary retention, blurred vision, tachycardia, delirium. Pharmacist move: Stop or swap strongly anticholinergic drugs: diphenhydramine, hydroxyzine, oxybutynin, amitriptyline, paroxetine. Exam trap: Burden is cumulative: minimize combined anticholinergics, not just one drug.",
   "word_count": 42,
   "mnemonic": "Can't see, can't pee, can't spit, can't poop.",
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-002.svg",
+   "alt": "Text card. Anticholinergic burden: avoid in older adults."
+  },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
    "year": "2023",
@@ -73,7 +79,10 @@
   "back": "Serotonin syndrome: fast onset, clonus. Key clue: Hunter criteria: spontaneous, inducible or ocular clonus with a serotonergic drug. Pharmacist move: Stop serotonergic drugs; supportive care, benzodiazepines; cyproheptadine if needed. Exam trap: NMS: antipsychotic, days of onset, lead-pipe rigidity, bradyreflexia.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-003.svg",
+   "alt": "Steps. Serotonin syndrome: fast onset, clonus."
+  },
   "source": {
    "guideline": "FDA labeling; Hunter criteria",
    "year": "current edition",
@@ -101,7 +110,10 @@
   "back": "Additive QT drugs raise torsades risk. Key clue: Macrolides, fluoroquinolones, ondansetron, methadone, citalopram, haloperidol, sotalol, dofetilide, amiodarone. Pharmacist move: Baseline ECG; correct potassium and magnesium; choose a non-QT alternative. Exam trap: Citalopram: max 20 mg/day over age 60.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-004.svg",
+   "alt": "Steps. Additive QT drugs raise torsades risk."
+  },
   "source": {
    "guideline": "CredibleMeds/FDA labeling 2026",
    "year": "2026",
@@ -129,7 +141,10 @@
   "back": "Strong CYP3A4 inhibitor: statin levels spike. Key clue: Inhibitors: clarithromycin, ketoconazole, itraconazole, ritonavir, grapefruit juice. Inducers: rifampin, carbamazepine, phenytoin, St. John's wort. Pharmacist move: Simvastatin or lovastatin plus strong 3A4 inhibitor: contraindicated; hold statin or switch antibiotic. Exam trap: Azithromycin is not a meaningful 3A4 inhibitor.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-005.svg",
+   "alt": "Steps. Strong CYP3A4 inhibitor: statin levels spike."
+  },
   "source": {
    "guideline": "ICH M12 Drug Interaction guidance 2024 (supersedes FDA 2020 DDI guidances); FDA labeling",
    "year": "2020 / 2024",
@@ -157,7 +172,10 @@
   "back": "CYP2C9 and VKORC1 variants lower dose needs. Key clue: CYP2C9 *2/*3 slow S-warfarin clearance; VKORC1 variant raises sensitivity. Pharmacist move: CPIC: use a validated genotype-guided algorithm; start lower in variant carriers. Exam trap: Genotype changes the dose, not the INR target.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-006.svg",
+   "alt": "Steps. CYP2C9 and VKORC1 variants lower dose needs."
+  },
   "source": {
    "guideline": "CPIC warfarin 2017",
    "year": "2017",
@@ -185,7 +203,10 @@
   "back": "No: clopidogrel won't activate. Use prasugrel or ticagrelor. Key clue: Clopidogrel is a prodrug activated by CYP2C19; *2/*3 are loss-of-function. Pharmacist move: CPIC 2022 for ACS/PCI: poor or intermediate metabolizers get prasugrel or ticagrelor if no contraindication. Exam trap: Clopidogrel's boxed warning (2010): diminished effect in poor metabolizers.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-007.svg",
+   "alt": "Text card. No: clopidogrel won't activate. Use prasugrel or ticagrelor."
+  },
   "source": {
    "guideline": "CPIC clopidogrel 2022; FDA BBW",
    "year": "2022",
@@ -213,7 +234,10 @@
   "back": "HLA-B*15:02 for carbamazepine; HLA-B*58:01 for allopurinol. Key clue: Both alleles predict SJS/TEN (allopurinol: also DRESS). Pharmacist move: Positive: avoid the drug and choose an alternative (febuxostat for gout). Exam trap: ACR 2020: test HLA-B*58:01 before allopurinol in Southeast Asian and African American patients.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-008.svg",
+   "alt": "Text card. HLA-B*15:02 for carbamazepine; HLA-B*58:01 for allopurinol."
+  },
   "source": {
    "guideline": "CPIC 2017 (CBZ), 2015 (allopurinol); ACR 2020 gout",
    "year": "2015 / 2017 / 2020",
@@ -241,7 +265,10 @@
   "back": "TPMT/NUDT15 for thiopurines; DPYD for fluoropyrimidines. Key clue: Low enzyme activity causes life-threatening myelosuppression or toxicity. Pharmacist move: Thiopurine poor metabolizer: drastic dose cut or alternative. DPYD poor metabolizer: avoid 5-FU and capecitabine. Exam trap: DPYD intermediate metabolizer: start at 50% dose.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-009.svg",
+   "alt": "Text card. TPMT/NUDT15 for thiopurines; DPYD for fluoropyrimidines."
+  },
   "source": {
    "guideline": "CPIC TPMT/NUDT15 2025 update; CPIC DPYD 2024",
    "year": "2024 / 2025",
@@ -300,7 +327,10 @@
   "back": "AB = therapeutically equivalent; substitutable. Key clue: 90% CI for AUC and Cmax ratios within 80–125%. Pharmacist move: Substitute AB-rated products. Route or salt change: dose × F (bioavailability) × S (salt fraction). Exam trap: B codes (e.g., BX) are not considered equivalent: don't substitute.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-011.svg",
+   "alt": "Do and do not. AB = therapeutically equivalent; substitutable."
+  },
   "source": {
    "guideline": "FDA Orange Book 2026",
    "year": "2026",
@@ -328,7 +358,10 @@
   "back": "Three-plus group means: ANOVA. Key clue: Two independent means: t-test; paired before/after: paired t-test. Pharmacist move: Nominal outcomes: chi-square; ordinal or skewed: Mann-Whitney (2) or Kruskal-Wallis (3+). Exam trap: Don't run repeated t-tests across 3+ groups: it inflates type I error.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-012.svg",
+   "alt": "Steps. Three-plus group means: ANOVA."
+  },
   "source": {
    "guideline": "CONSORT 2025; standard biostatistics",
    "year": "2025",
@@ -356,7 +389,10 @@
   "back": "Store each one exactly as labeled. Key clue: In-use insulin at room temp for a product-specific time (glargine 28 days, degludec 56). Pharmacist move: Nitroglycerin: original glass bottle, cap tight. Dabigatran: original bottle; use within 4 months of opening. Exam trap: Refrigerated vaccines: 2–8 °C; freezing ruins them.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-013.svg",
+   "alt": "Steps. Store each one exactly as labeled."
+  },
   "source": {
    "guideline": "USP <659>; FDA labeling; CDC Vaccine Storage & Handling Toolkit (updated Jul 2026)",
    "year": "2026",
@@ -384,7 +420,10 @@
   "back": "Water drives the BUD. Key clue: Aqueous unpreserved 14 days refrigerated; aqueous preserved 35 days. Pharmacist move: Nonaqueous 90 days; solid dosage forms 180 days. Exam trap: BUD can't exceed the earliest expiration of any ingredient.",
   "word_count": 36,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-014.svg",
+   "alt": "Steps. Water drives the BUD."
+  },
   "source": {
    "guideline": "USP <795> (2023 revision)",
    "year": "2023",
@@ -412,7 +451,10 @@
   "back": "Category drives BUD and room requirements. Key clue: Category 1: SCA allowed; BUD 12 h room temp or 24 h refrigerated. Pharmacist move: Category 2: cleanroom suite; aseptic, sterile ingredients, no sterility test: 4 days room temp, 10 refrigerated, 45 frozen. Exam trap: Category 3 needs sterility testing; immediate-use CSPs: 4 hours.",
   "word_count": 52,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-015.svg",
+   "alt": "Steps. Category drives BUD and room requirements."
+  },
   "source": {
    "guideline": "USP <797> (2023 revision)",
    "year": "2023",
@@ -440,7 +482,10 @@
   "back": "C-PEC inside a negative-pressure C-SEC. Key clue: C-SEC externally vented, negative 0.01–0.03 inch water column. Pharmacist move: Two pairs ASTM D6978 chemo gloves and a hazardous-drug gown. Exam trap: Never compound HDs in a positive-pressure room; C-SEC at −0.01 to −0.03 in. water column.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-016.svg",
+   "alt": "Do and do not. C-PEC inside a negative-pressure C-SEC."
+  },
   "source": {
    "guideline": "USP <800>; NIOSH HD List 2024",
    "year": "2024",
@@ -468,7 +513,10 @@
   "back": "Geometric dilution; levigation; displacement factor. Key clue: Geometric dilution: mix drug with equal part diluent, keep doubling. Pharmacist move: Levigate with mineral oil (oleaginous) or glycerin (aqueous) to smooth particles. Exam trap: Base per suppository = blank weight − (drug weight ÷ density factor).",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-017.svg",
+   "alt": "Text card. Geometric dilution; levigation; displacement factor."
+  },
   "source": {
    "guideline": "USP <795>; Remington",
    "year": "current edition",
@@ -496,7 +544,10 @@
   "back": "CrCl ≈ 59 mL/min. Given: IBW = 50 + 2.3 × 10 = 73 kg (actual is within 120%, use IBW). Work: (140 − 70) × 73 ÷ (72 × 1.2) = 5110 ÷ 86.4 = 59. Exam trap: Women: multiply by 0.85. Obese (>120% IBW): use adjusted weight.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-018.svg",
+   "alt": "Threshold. CrCl ≈ 59 mL/min."
+  },
   "source": {
    "guideline": "Cockcroft-Gault 1976; FDA renal guidance 2024",
    "year": "1976 / 2024",
@@ -524,7 +575,10 @@
   "back": "IBW 54.7 kg; AdjBW 68.8 kg. Given: Devine female: 45.5 + 2.3 kg per inch over 5 ft. Work: IBW = 45.5 + 2.3 × 4 = 54.7. AdjBW = 54.7 + 0.4 × (90 − 54.7) = 68.8. Exam trap: Male base is 50 kg, not 45.5.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-019.svg",
+   "alt": "Text card. IBW 54.7 kg; AdjBW 68.8 kg."
+  },
   "source": {
    "guideline": "Devine 1974 formula",
    "year": "1974",
@@ -552,7 +606,10 @@
   "back": "BSA 1.82 m²; dose 136 mg. Given: BSA = √(height cm × weight kg ÷ 3600). Work: √(170 × 70 ÷ 3600) = √3.31 = 1.82; 1.82 × 75 = 136 mg. Exam trap: Square root of the whole product, not of each term.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-020.svg",
+   "alt": "Threshold. BSA 1.82 m²; dose 136 mg."
+  },
   "source": {
    "guideline": "Mosteller 1987",
    "year": "1987",
@@ -580,7 +637,10 @@
   "back": "Corrected Ca = 9.2 mg/dL: normal. Given: Corrected Ca = measured + 0.8 × (4 − albumin). Work: 7.6 + 0.8 × (4 − 2.0) = 7.6 + 1.6 = 9.2. Exam trap: No calcium replacement for 'low' total Ca that corrects to normal; check ionized Ca if unsure.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-021.svg",
+   "alt": "Threshold. Corrected Ca = 9.2 mg/dL: normal."
+  },
   "source": {
    "guideline": "Payne formula (Ca + 0.8×(4−alb))",
    "year": "current edition",
@@ -608,7 +668,10 @@
   "back": "AG 28; osmolal gap 30: think toxic alcohol. Given: AG = Na − (Cl + HCO3). Calculated osm = 2Na + glucose/18 + BUN/2.8. Work: AG = 140 − 112 = 28. Calc osm = 280 + 5 + 5 = 290; gap = 320 − 290 = 30. Exam trap: Gap >10 plus high-AG acidosis: start fomepizole.",
   "word_count": 58,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-022.svg",
+   "alt": "Steps. AG 28; osmolal gap 30: think toxic alcohol."
+  },
   "source": {
    "guideline": "Standard AG formula",
    "year": "current edition",
@@ -636,7 +699,10 @@
   "back": "Corrected phenytoin = 16 mcg/mL. Given: Sheiner-Tozer: measured ÷ (0.2 × albumin + 0.1). Work: 8 ÷ (0.2 × 2.0 + 0.1) = 8 ÷ 0.5 = 16. Exam trap: Don't increase the dose: it's in range. ESRD uses 0.1 × albumin.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-023.svg",
+   "alt": "Threshold. Corrected phenytoin = 16 mcg/mL."
+  },
   "source": {
    "guideline": "Sheiner-Tozer equation (Sheiner & Tozer 1978; review Ann Pharmacother 2016)",
    "year": "1978 / 2016",
@@ -664,7 +730,10 @@
   "back": "LDL-C 120; non-HDL-C 150. Given: LDL = TC − HDL − TG/5. Non-HDL = TC − HDL. Work: 200 − 50 − 30 = 120. Non-HDL = 200 − 50 = 150. Exam trap: 2026 guideline prefers Martin/Hopkins or Sampson/NIH over Friedewald; Friedewald fails at TG ≥400.",
   "word_count": 47,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-024.svg",
+   "alt": "Text card. LDL-C 120; non-HDL-C 150."
+  },
   "source": {
    "guideline": "Friedewald 1972 / Martin-Hopkins; 2026 ACC/AHA Dyslipidemia",
    "year": "1972 / 2026",
@@ -692,7 +761,10 @@
   "back": "ANC 1,350: mild neutropenia; continue clozapine. Given: ANC = WBC × (% segs + % bands). Work: 3,000 × 0.45 = 1,350. Continue; monitor ANC three times weekly until ≥1,500. Exam trap: REMS is gone since 2025; the label's ANC monitoring still applies.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-025.svg",
+   "alt": "Steps. ANC 1,350: mild neutropenia; continue clozapine."
+  },
   "source": {
    "guideline": "Standard ANC formula; clozapine labeling 2025",
    "year": "2025",

@@ -17,7 +17,10 @@
   "back": "Empty stomach, plain water, upright 30 minutes. Key clue: Take with 6–8 oz plain water, 30 minutes before food or other meds. Pharmacist move: Consider a drug holiday after 5 years (oral) or 3 years (IV zoledronic acid) if risk is lower. Exam trap: Never stop denosumab without a follow-on drug: rebound vertebral fractures.",
   "word_count": 54,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-126.svg",
+   "alt": "Do and do not. Empty stomach, plain water, upright 30 minutes."
+  },
   "source": {
    "guideline": "Endocrine Society 2020; AACE 2020; BHOF 2022",
    "year": "2020 / 2022",
@@ -45,7 +48,10 @@
   "back": "Stress dose: double or triple the oral dose. Key clue: Maintenance hydrocortisone 15–25 mg/day in 2–3 doses; primary AI adds fludrocortisone. Pharmacist move: Vomiting or crisis: hydrocortisone 100 mg IV/IM right away. Exam trap: Wear medical alert ID; carry an emergency injection kit.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-127.svg",
+   "alt": "Text card. Stress dose: double or triple the oral dose."
+  },
   "source": {
    "guideline": "Endocrine Society 2016 PAI",
    "year": "2016",
@@ -73,7 +79,10 @@
   "back": "No: Category 4 for combined hormonal contraception. Key clue: Also Category 4: migraine with aura, BP ≥160/100, <21 days postpartum. Pharmacist move: Offer a progestin-only method, IUD or implant. Exam trap: Smoking <15 a day at ≥35 is still Category 3.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-128.svg",
+   "alt": "Text card. No: Category 4 for combined hormonal contraception."
+  },
   "source": {
    "guideline": "CDC US MEC/SPR 2024",
    "year": "2024",
@@ -87,7 +96,7 @@
   "id": "naplex-129",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Endocrine and reproductive",
   "topic": "Emergency contraception: LNG vs ulipristal vs Cu-IUD; weight",
   "calculation": false,
   "reused_from": null,
@@ -101,7 +110,10 @@
   "back": "Copper IUD, or ulipristal if an IUD isn't an option. Key clue: Levonorgestrel 1.5 mg (OTC) works best within 72 hours; may be less effective with BMI ≥30. Pharmacist move: Ulipristal 30 mg (Rx) within 120 hours; the copper IUD within 5 days is most effective. Exam trap: After ulipristal, wait 5 days before starting hormonal contraception.",
   "word_count": 57,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-129.svg",
+   "alt": "Steps. Copper IUD, or ulipristal if an IUD isn't an option."
+  },
   "source": {
    "guideline": "CDC US SPR 2024; ACOG",
    "year": "2024",
@@ -115,7 +127,7 @@
   "id": "naplex-130",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Respiratory",
   "topic": "Asthma: ICS-formoterol MART (Track 1) step therapy",
   "calculation": false,
   "reused_from": "pance-040",
@@ -129,7 +141,10 @@
   "back": "As-needed low-dose ICS-formoterol (Track 1). Key clue: Steps 3–5: maintenance-and-reliever (MART) with budesonide-formoterol. Pharmacist move: SABA-only treatment raises exacerbation and death risk. Exam trap: MART uses the same inhaler; don't add a separate SABA as routine reliever.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-130.svg",
+   "alt": "Do and do not. As-needed low-dose ICS-formoterol (Track 1)."
+  },
   "source": {
    "guideline": "GINA 2026",
    "year": "2026",
@@ -143,7 +158,7 @@
   "id": "naplex-131",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Respiratory",
   "topic": "Acute asthma exacerbation: SABA, systemic steroid, magnesium",
   "calculation": false,
   "reused_from": "pance-041",
@@ -157,7 +172,10 @@
   "back": "Repeated SABA, oral corticosteroid, controlled oxygen. Key clue: Prednisolone 40–50 mg daily for 5–7 days in adults. Pharmacist move: IV magnesium sulfate in the ED for severe exacerbations not responding. Exam trap: Antibiotics aren't routine: no evidence of infection, no benefit.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-131.svg",
+   "alt": "Text card. Repeated SABA, oral corticosteroid, controlled oxygen."
+  },
   "source": {
    "guideline": "GINA 2026",
    "year": "2026",
@@ -171,7 +189,7 @@
   "id": "naplex-132",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Respiratory",
   "topic": "COPD: initial LAMA/LABA; ICS when eos ≥300; dupilumab/ensifentrine",
   "calculation": false,
   "reused_from": "pance-004",
@@ -185,7 +203,10 @@
   "back": "LAMA/LABA plus ICS (triple). Key clue: Most symptomatic patients start on LAMA/LABA. Pharmacist move: Add ICS when eosinophils ≥300; on triple with eos ≥300 and chronic bronchitis, consider dupilumab. Exam trap: LABA/ICS without a LAMA isn't encouraged in COPD.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-132.svg",
+   "alt": "Steps. LAMA/LABA plus ICS (triple)."
+  },
   "source": {
    "guideline": "GOLD 2026",
    "year": "2026",
@@ -199,7 +220,7 @@
   "id": "naplex-133",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Respiratory",
   "topic": "COPD exacerbation: prednisone 40 mg ×5 d, antibiotics",
   "calculation": false,
   "reused_from": null,
@@ -213,7 +234,10 @@
   "back": "Prednisone 40 mg daily for 5 days. Key clue: Short-acting bronchodilators first: SABA with or without SAMA. Pharmacist move: Antibiotics if sputum is purulent plus more dyspnea or volume, or ventilation needed; 5–7 days. Exam trap: Longer steroid courses add harm without benefit.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-133.svg",
+   "alt": "Threshold. Prednisone 40 mg daily for 5 days."
+  },
   "source": {
    "guideline": "GOLD 2026",
    "year": "2026",
@@ -227,7 +251,7 @@
   "id": "naplex-134",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "CAP outpatient & inpatient empiric regimens",
   "calculation": false,
   "reused_from": "pance-042",
@@ -241,7 +265,10 @@
   "back": "Amoxicillin 1 g three times daily. Key clue: Alternatives: doxycycline; a macrolide only if pneumococcal resistance <25%. Pharmacist move: Comorbidities: amox/clav or cephalosporin plus macrolide or doxy, or a respiratory FQ. Exam trap: Inpatient non-severe: beta-lactam plus macrolide, or respiratory FQ alone.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-134.svg",
+   "alt": "Threshold. Amoxicillin 1 g three times daily."
+  },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP",
    "year": "2019",
@@ -255,7 +282,7 @@
   "id": "naplex-135",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "HAP/VAP MRSA & Pseudomonas coverage",
   "calculation": false,
   "reused_from": null,
@@ -269,7 +296,10 @@
   "back": "Cover MRSA and Pseudomonas. Key clue: MRSA: vancomycin or linezolid. Pseudomonas: pip-tazo, cefepime, meropenem or similar. Pharmacist move: Two antipseudomonal agents only with high risk, e.g., recent IV antibiotics or septic shock. Exam trap: Treat 7 days for most; de-escalate on cultures.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-135.svg",
+   "alt": "Text card. Cover MRSA and Pseudomonas."
+  },
   "source": {
    "guideline": "IDSA/ATS 2016 HAP/VAP (still current, latest = 2016)",
    "year": "2016",
@@ -283,7 +313,7 @@
   "id": "naplex-136",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "Uncomplicated cystitis: nitrofurantoin, TMP-SMX, fosfomycin",
   "calculation": false,
   "reused_from": "pance-086",
@@ -297,7 +327,10 @@
   "back": "Nitrofurantoin 100 mg BID for 5 days. Key clue: TMP-SMX DS BID for 3 days if local resistance <20%; fosfomycin 3 g once. Pharmacist move: Avoid nitrofurantoin when CrCl <30 (Beers). Exam trap: Fluoroquinolones are reserved, not first-line, for cystitis.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-136.svg",
+   "alt": "Threshold. Nitrofurantoin 100 mg BID for 5 days."
+  },
   "source": {
    "guideline": "IDSA 2011 uncomplicated cystitis/pyelo (still current; IDSA 2025 covers cUTI only)",
    "year": "2011 / 2025",
@@ -311,7 +344,7 @@
   "id": "naplex-137",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "C. difficile: fidaxomicin vs oral vancomycin; recurrence",
   "calculation": false,
   "reused_from": "pance-091",
@@ -325,7 +358,10 @@
   "back": "Fidaxomicin 200 mg BID for 10 days. Key clue: Alternative: oral vancomycin 125 mg QID for 10 days. Pharmacist move: Stop unnecessary antibiotics and acid suppression when possible. Exam trap: Vancomycin must be oral: IV doesn't reach the colon.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-137.svg",
+   "alt": "Threshold. Fidaxomicin 200 mg BID for 10 days."
+  },
   "source": {
    "guideline": "IDSA/SHEA 2021 CDI focused update",
    "year": "2021",
@@ -339,7 +375,7 @@
   "id": "naplex-138",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "SSTI: purulent vs nonpurulent; MRSA oral options",
   "calculation": false,
   "reused_from": "pance-087",
@@ -353,7 +389,10 @@
   "back": "Purulent: TMP-SMX or doxycycline. Key clue: Nonpurulent cellulitis is usually strep: cephalexin or penicillin. Pharmacist move: Incision and drainage is the main treatment for abscesses. Exam trap: TMP-SMX and doxycycline don't reliably cover strep.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-138.svg",
+   "alt": "Do and do not. Purulent: TMP-SMX or doxycycline."
+  },
   "source": {
    "guideline": "IDSA 2014 SSTI (still current, latest = 2014)",
    "year": "2014",
@@ -367,7 +406,7 @@
   "id": "naplex-139",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "Bacterial meningitis empiric therapy by age + dexamethasone",
   "calculation": false,
   "reused_from": "pance-018",
@@ -381,7 +420,10 @@
   "back": "Vancomycin + ceftriaxone + ampicillin + dexamethasone. Key clue: Age >50 adds ampicillin for Listeria; ages 2–50: vancomycin plus ceftriaxone. Pharmacist move: Dexamethasone 0.15 mg/kg q6h, 10–20 minutes before or with the first antibiotic. Exam trap: Don't delay antibiotics for CT or lumbar puncture.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-139.svg",
+   "alt": "Do and do not. Vancomycin + ceftriaxone + ampicillin + dexamethasone."
+  },
   "source": {
    "guideline": "IDSA 2004 meningitis (still current, latest = 2004)",
    "year": "2004",
@@ -395,7 +437,7 @@
   "id": "naplex-140",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Endocrine and reproductive",
   "topic": "STIs: ceftriaxone 500 mg, doxycycline for chlamydia; syphilis PCN",
   "calculation": false,
   "reused_from": "pance-089",
@@ -409,7 +451,10 @@
   "back": "Ceftriaxone 500 mg IM once + doxycycline 100 mg BID ×7 days. Key clue: Ceftriaxone 1 g if weight ≥150 kg. Pharmacist move: Pregnancy: azithromycin 1 g once for chlamydia. Early syphilis: benzathine penicillin G 2.4 million units IM once. Exam trap: Azithromycin is no longer first-line for chlamydia.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-140.svg",
+   "alt": "Threshold. Ceftriaxone 500 mg IM once + doxycycline 100 mg BID ×7 days."
+  },
   "source": {
    "guideline": "CDC STI Treatment Guidelines 2021",
    "year": "2021",
@@ -423,7 +468,7 @@
   "id": "naplex-141",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "HIV: initial ART (bictegravir/TAF/FTC, dolutegravir) and PrEP options (incl. lenacapavir)",
   "calculation": false,
   "reused_from": "pance-084",
@@ -437,7 +482,10 @@
   "back": "Bictegravir/TAF/FTC or a dolutegravir-based regimen. Key clue: Start ART rapidly, ideally soon after diagnosis. Pharmacist move: Lenacapavir PrEP: subcutaneous every 6 months. Exam trap: Dolutegravir/lamivudine isn't for HBV coinfection or high viral load >500,000.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-141.svg",
+   "alt": "Text card. Bictegravir/TAF/FTC or a dolutegravir-based regimen."
+  },
   "source": {
    "guideline": "HHS Adult/Adolescent ARV Guidelines (updated Oct 27, 2026); CDC PrEP 2021 + CDC lenacapavir PrEP MMWR 2025",
    "year": "2021 / 2025 / 2026",
@@ -465,7 +513,10 @@
   "back": "PJP: TMP-SMX DS daily (CD4 <200). Key clue: Toxoplasma prophylaxis at CD4 <100 with positive IgG; TMP-SMX covers both. Pharmacist move: MAC prophylaxis isn't recommended when ART starts immediately. Exam trap: Sulfa allergy: dapsone (check G6PD) or atovaquone.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-142.svg",
+   "alt": "Threshold. PJP: TMP-SMX DS daily (CD4 <200)."
+  },
   "source": {
    "guideline": "NIH/CDC/IDSA OI guidelines 2025",
    "year": "2025",
@@ -493,7 +544,10 @@
   "back": "Rifamycin regimens: 3HP and 4R induce CYP3A4. Key clue: 3HP: isoniazid + rifapentine weekly ×12; 4R: rifampin daily ×4 months. Pharmacist move: Rifampin lowers DOACs, warfarin, many ARVs and hormonal contraceptives; if unmanageable, pick another regimen or drug. Exam trap: Active TB: RIPE 2 months, then INH/rifampin 4 months; 4-month HPZM is an option.",
   "word_count": 54,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-143.svg",
+   "alt": "Steps. Rifamycin regimens: 3HP and 4R induce CYP3A4."
+  },
   "source": {
    "guideline": "CDC/NTA latent TB 2020; ATS/CDC/ERS/IDSA 2025 TB treatment update (4-mo HPZM option)",
    "year": "2020 / 2025",
@@ -507,7 +561,7 @@
   "id": "naplex-144",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Gastrointestinal",
   "topic": "H. pylori: bismuth quadruple first-line, vonoprazan options",
   "calculation": false,
   "reused_from": "pance-008",
@@ -521,7 +575,10 @@
   "back": "Bismuth quadruple for 14 days. Key clue: PPI + bismuth + tetracycline + metronidazole. Pharmacist move: Vonoprazan-amoxicillin dual therapy is an alternative. Exam trap: No clarithromycin triple unless susceptibility is known.",
   "word_count": 31,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-144.svg",
+   "alt": "Threshold. Bismuth quadruple for 14 days."
+  },
   "source": {
    "guideline": "ACG 2024 H. pylori",
    "year": "2024",
@@ -535,7 +592,7 @@
   "id": "naplex-145",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "Sepsis: early antibiotics within 1 h, fluids 30 mL/kg, norepinephrine",
   "calculation": false,
   "reused_from": "pance-085",
@@ -549,7 +606,10 @@
   "back": "Antibiotics within 1 hour; norepinephrine first. Key clue: At least 30 mL/kg IV crystalloid in the first 3 hours; balanced crystalloids preferred. Pharmacist move: BMI >30: base fluid volume on adjusted or ideal body weight. Exam trap: Add vasopressin as norepinephrine needs rise; don't use dopamine.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-145.svg",
+   "alt": "Threshold. Antibiotics within 1 hour; norepinephrine first."
+  },
   "source": {
    "guideline": "Surviving Sepsis Campaign 2026 (replaces 2021)",
    "year": "2021 / 2026",
@@ -563,7 +623,7 @@
   "id": "naplex-146",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Cardiovascular",
   "topic": "Antimicrobial spectrum: anti-Pseudomonal & anti-MRSA agents",
   "calculation": false,
   "reused_from": null,
@@ -577,7 +637,10 @@
   "back": "Cefepime and pip-tazo. Key clue: Also: meropenem, imipenem, ceftazidime, aztreonam, cipro/levofloxacin, aminoglycosides. Pharmacist move: MRSA: vancomycin, linezolid, daptomycin, ceftaroline, TMP-SMX, doxycycline. Exam trap: Daptomycin fails in pneumonia: surfactant inactivates it.",
   "word_count": 30,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-146.svg",
+   "alt": "Text card. Cefepime and pip-tazo."
+  },
   "source": {
    "guideline": "IDSA; Sanford Guide 2026",
    "year": "2026",
@@ -605,7 +668,10 @@
   "back": "Yes: give cefazolin, no testing needed. Key clue: Cross-reactivity is low (~1–2%) and driven by side chains; cefazolin's is unique. Pharmacist move: Low-risk histories can get a direct oral amoxicillin challenge to remove the label. Exam trap: Even after penicillin anaphylaxis, a dissimilar-side-chain cephalosporin can be given.",
   "word_count": 47,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-147.svg",
+   "alt": "Text card. Yes: give cefazolin, no testing needed."
+  },
   "source": {
    "guideline": "AAAAI/ACAAI Drug Allergy Practice Parameter 2022",
    "year": "2022",
@@ -633,7 +699,10 @@
   "back": "30–60 minutes before the first meal; 8-week trial. Key clue: After response, step down to the lowest effective dose or stop. Pharmacist move: Long-term risks: C. difficile, fractures, low B12 and magnesium. Exam trap: Don't stop abruptly after long use: taper to limit rebound acid.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-148.svg",
+   "alt": "Do and do not. 30–60 minutes before the first meal; 8-week trial."
+  },
   "source": {
    "guideline": "ACG 2022 GERD",
    "year": "2022",
@@ -647,7 +716,7 @@
   "id": "naplex-149",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Gastrointestinal",
   "topic": "IBD: 5-ASA vs steroids vs biologics",
   "calculation": false,
   "reused_from": "pance-063",
@@ -661,7 +730,10 @@
   "back": "UC yes; Crohn's no. Key clue: UC: oral mesalamine ≥2 g/day, plus rectal for distal disease. Pharmacist move: Moderate-severe: biologics or small molecules; steroids only to induce. Exam trap: Never use corticosteroids for maintenance.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-149.svg",
+   "alt": "Steps. UC yes; Crohn's no."
+  },
   "source": {
    "guideline": "ACG 2025 UC; ACG 2025 Crohn's (verified)",
    "year": "2025",
@@ -675,7 +747,7 @@
   "id": "naplex-150",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Gastrointestinal",
   "topic": "Cirrhosis: SBP prophylaxis, lactulose/rifaximin, nonselective BB",
   "calculation": false,
   "reused_from": "pance-066",
@@ -689,7 +761,10 @@
   "back": "SBP prophylaxis plus lactulose ± rifaximin. Key clue: Lactulose titrated to 2–3 soft stools daily. Pharmacist move: Add rifaximin 550 mg BID after a recurrence; NSBB for varices, but reduce or stop with hypotension or AKI. Exam trap: Avoid NSAIDs: renal injury and bleeding.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-150.svg",
+   "alt": "Steps. SBP prophylaxis plus lactulose ± rifaximin."
+  },
   "source": {
    "guideline": "AASLD 2021 ascites/SBP/HRS; AASLD/EASL 2014 HE; ACG 2026 HE",
    "year": "2014 / 2021 / 2026",

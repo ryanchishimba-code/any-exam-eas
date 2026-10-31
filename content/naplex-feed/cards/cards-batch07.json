@@ -3,7 +3,7 @@
   "id": "naplex-151",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Infectious disease",
   "topic": "Hepatitis C pangenotypic DAAs (glecaprevir/pibrentasvir, sof/vel)",
   "calculation": false,
   "reused_from": null,
@@ -17,7 +17,10 @@
   "back": "Glecaprevir/pibrentasvir 8 weeks or sofosbuvir/velpatasvir 12 weeks. Key clue: Screen for HBV first: DAAs carry a boxed warning for HBV reactivation. Pharmacist move: Check DDIs: acid suppressants lower velpatasvir; rifampin is contraindicated. Exam trap: Sofosbuvir plus amiodarone can cause serious bradycardia.",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-151.svg",
+   "alt": "Threshold. Glecaprevir/pibrentasvir 8 weeks or sofosbuvir/velpatasvir 12 weeks."
+  },
   "source": {
    "guideline": "AASLD/IDSA HCV Guidance (living; updated 2026)",
    "year": "2026",
@@ -31,7 +34,7 @@
   "id": "naplex-152",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Endocrine and reproductive",
   "topic": "CKD: SGLT2i/finerenone, dose adjustments, anemia/ESA",
   "calculation": false,
   "reused_from": "pance-179",
@@ -45,7 +48,10 @@
   "back": "SGLT2i (eGFR ≥20) and RASi; consider finerenone. Key clue: Finerenone: T2D with albuminuria, eGFR ≥25, normal potassium. Pharmacist move: Metformin: reduce dose below eGFR 45; stop below 30. Exam trap: Treat iron deficiency before an ESA; don't target normal hemoglobin.",
   "word_count": 40,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-152.svg",
+   "alt": "Threshold. SGLT2i (eGFR ≥20) and RASi; consider finerenone."
+  },
   "source": {
    "guideline": "KDIGO 2024 CKD; KDIGO 2022 Diabetes in CKD",
    "year": "2022 / 2024",
@@ -73,7 +79,10 @@
   "back": "Stop nephrotoxins and re-dose by current kidney function. Key clue: Stop the NSAID; hold the ACEi and other nephrotoxins while kidney function is unstable. Pharmacist move: Avoid aminoglycosides when alternatives exist; use isotonic crystalloid, not colloids. Exam trap: Loop diuretics don't treat AKI; use only for volume overload.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-153.svg",
+   "alt": "Steps. Stop nephrotoxins and re-dose by current kidney function."
+  },
   "source": {
    "guideline": "KDIGO 2012 AKI (2026 AKI/AKD guideline in final prep; public draft Mar 2026)",
    "year": "2012 / 2026",
@@ -134,7 +143,10 @@
   "back": "Start ≤100 mg daily; titrate to urate <6 mg/dL. Key clue: Start lower (e.g., 50 mg) in CKD stage 3+; HLA-B*5801 test in Southeast Asian and African American patients. Pharmacist move: Flare prophylaxis (e.g., colchicine) for 3–6 months; keep ULT during flares. Exam trap: Flare colchicine: 1.2 mg, then 0.6 mg 1 hour later.",
   "word_count": 54,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-155.svg",
+   "alt": "Threshold. Start ≤100 mg daily; titrate to urate <6 mg/dL."
+  },
   "source": {
    "guideline": "ACR 2020 gout",
    "year": "2020",
@@ -162,7 +174,10 @@
   "back": "Once weekly, plus folic acid. Key clue: Methotrexate is first-line, titrated to ~25 mg weekly as tolerated. Pharmacist move: Before biologics or JAK inhibitors: screen for TB and hepatitis B and C. Exam trap: Daily dosing errors are fatal: stress 'weekly.'",
   "word_count": 41,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-156.svg",
+   "alt": "Text card. Once weekly, plus folic acid."
+  },
   "source": {
    "guideline": "ACR 2021 RA",
    "year": "2021",
@@ -176,7 +191,7 @@
   "id": "naplex-157",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Renal",
   "topic": "Osteoarthritis: topical NSAID, acetaminophen, avoid opioids",
   "calculation": false,
   "reused_from": "pance-070",
@@ -190,7 +205,10 @@
   "back": "Topical NSAID first. Key clue: Oral NSAIDs if needed, considering GI, renal and CV risk. Pharmacist move: Acetaminophen and tramadol: conditional; other opioids: conditionally against. Exam trap: Glucosamine, chondroitin and hydroxychloroquine aren't recommended.",
   "word_count": 33,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-157.svg",
+   "alt": "Steps. Topical NSAID first."
+  },
   "source": {
    "guideline": "ACR/AF 2019 OA",
    "year": "2019",
@@ -218,7 +236,10 @@
   "back": "Full effect takes 4–8 weeks: keep taking it. Key clue: Adequate trial: 4–8 weeks at a therapeutic dose. Pharmacist move: After remission, continue at least 6 months; taper to stop. Exam trap: Switching to an MAOI: 2-week washout, 5 weeks after fluoxetine.",
   "word_count": 42,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-158.svg",
+   "alt": "Threshold. Full effect takes 4–8 weeks: keep taking it."
+  },
   "source": {
    "guideline": "APA 2019 depression; VA/DoD MDD 2022",
    "year": "2019 / 2022",
@@ -232,7 +253,7 @@
   "id": "naplex-159",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Endocrine and reproductive",
   "topic": "Bipolar: lithium, valproate, SGAs; lamotrigine titration (SJS)",
   "calculation": false,
   "reused_from": "pance-110",
@@ -246,7 +267,10 @@
   "back": "Halve the usual titration: valproate doubles lamotrigine levels. Key clue: Usual start: 25 mg daily for 2 weeks, then 50 mg daily for 2 weeks. Pharmacist move: Lithium: trough 0.6–1.0 mEq/L (up to 1.2) maintenance; monitor renal and thyroid. Exam trap: Any rash on lamotrigine: stop and seek care (SJS risk).",
   "word_count": 51,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-159.svg",
+   "alt": "Steps. Halve the usual titration: valproate doubles lamotrigine levels."
+  },
   "source": {
    "guideline": "VA/DoD Bipolar 2023; CANMAT/ISBD 2018",
    "year": "2018 / 2023",
@@ -274,7 +298,10 @@
   "back": "Clozapine for treatment-resistant schizophrenia. Key clue: The clozapine REMS ended in 2025; ANC monitoring per labeling still applies. Pharmacist move: Watch myocarditis, constipation/ileus and seizures; metabolic monitoring for all SGAs. Exam trap: Nonadherence: offer a long-acting injectable.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-160.svg",
+   "alt": "Steps. Clozapine for treatment-resistant schizophrenia."
+  },
   "source": {
    "guideline": "APA 2020 schizophrenia",
    "year": "2020",
@@ -288,7 +315,7 @@
   "id": "naplex-161",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Neurology and psychiatry",
   "topic": "Anxiety & insomnia: SSRI/SNRI, buspirone, avoid benzo/Z-drug in elderly",
   "calculation": false,
   "reused_from": "pance-111",
@@ -302,7 +329,10 @@
   "back": "Avoid: CBT-I first. Key clue: Beers: avoid benzodiazepines and Z-drugs in older adults (falls, delirium). Pharmacist move: If a drug is needed: low-dose doxepin ≤6 mg; for anxiety, SSRI/SNRI or buspirone. Exam trap: Diphenhydramine is strongly anticholinergic: avoid too.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-161.svg",
+   "alt": "Steps. Avoid: CBT-I first."
+  },
   "source": {
    "guideline": "AASM 2017 insomnia (+AASM 2026 CBT-I + medication); AGS Beers 2023",
    "year": "2017 / 2023 / 2026",
@@ -316,7 +346,7 @@
   "id": "naplex-162",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Neurology and psychiatry",
   "topic": "ADHD stimulants: dosing, CII rules, nonstimulants",
   "calculation": false,
   "reused_from": "pance-114",
@@ -330,7 +360,10 @@
   "back": "C-II: no refills; new prescription each time. Key clue: Prescriber may issue multiple prescriptions up to a 90-day supply. Pharmacist move: Nonstimulants: atomoxetine, viloxazine, guanfacine ER, clonidine ER. Exam trap: Atomoxetine and viloxazine carry boxed warnings for suicidal thoughts.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-162.svg",
+   "alt": "Text card. C-II: no refills; new prescription each time."
+  },
   "source": {
    "guideline": "AAP 2019 ADHD",
    "year": "2019",
@@ -358,7 +391,10 @@
   "back": "Any DEA practitioner with Schedule III authority: no X-waiver. Key clue: Start when withdrawal is clear (e.g., COWS ≥8–12) to avoid precipitated withdrawal. Pharmacist move: Naltrexone needs 7–10 days opioid-free; methadone for OUD comes only from an OTP. Exam trap: Too-early buprenorphine causes precipitated withdrawal.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-163.svg",
+   "alt": "Steps. Any DEA practitioner with Schedule III authority: no X-waiver."
+  },
   "source": {
    "guideline": "ASAM NPG 2020 focused update (latest); MAT Act 2023",
    "year": "2020 / 2023",
@@ -386,7 +422,10 @@
   "back": "One spray in a nostril, call 911, repeat every 2–3 min if needed. Key clue: Naloxone 4 mg nasal has been OTC since 2023. Pharmacist move: Use a new device in the other nostril for repeat doses; stay with the person. Exam trap: Naloxone can wear off before the opioid: watch for re-sedation.",
   "word_count": 53,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-164.svg",
+   "alt": "Steps. One spray in a nostril, call 911, repeat every 2–3 min if needed."
+  },
   "source": {
    "guideline": "FDA 2023 OTC naloxone; CDC 2022",
    "year": "2022 / 2023",
@@ -400,7 +439,7 @@
   "id": "naplex-165",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Renal",
   "topic": "Alcohol withdrawal and AUD pharmacotherapy (naltrexone, acamprosate)",
   "calculation": false,
   "reused_from": "pance-014",
@@ -414,7 +453,10 @@
   "back": "Withdrawal: benzodiazepine. AUD: naltrexone or acamprosate. Key clue: Give thiamine before glucose. Pharmacist move: Naltrexone: no with opioids or acute hepatitis. Acamprosate: adjust for renal function; avoid CrCl ≤30. Exam trap: Disulfiram isn't first-line.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-165.svg",
+   "alt": "Steps. Withdrawal: benzodiazepine. AUD: naltrexone or acamprosate."
+  },
   "source": {
    "guideline": "ASAM 2020 alcohol withdrawal; APA 2018 AUD",
    "year": "2018 / 2020",
@@ -442,7 +484,10 @@
   "back": "Varenicline, ideally starting a week before quit day. Key clue: 0.5 mg daily ×3 days, 0.5 mg BID ×4 days, then 1 mg BID for 12 weeks. Pharmacist move: Combination NRT (patch plus gum or lozenge) beats single NRT. Exam trap: NRT is safe in stable cardiovascular disease.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-166.svg",
+   "alt": "Text card. Varenicline, ideally starting a week before quit day."
+  },
   "source": {
    "guideline": "ACC 2018 ECDP tobacco; USPSTF 2021",
    "year": "2018 / 2021",
@@ -456,7 +501,7 @@
   "id": "naplex-167",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Neurology and psychiatry",
   "topic": "Status epilepticus: benzodiazepine then fosphenytoin/levetiracetam/VPA",
   "calculation": false,
   "reused_from": "pance-098",
@@ -501,7 +546,10 @@
   "back": "Valproate: highest risk of malformations and lower IQ. Key clue: Lower risk: lamotrigine, levetiracetam, oxcarbazepine. Pharmacist move: Folic acid ≥0.4 mg daily; enzyme inducers lower hormonal contraceptive effect. Exam trap: Lamotrigine levels fall in pregnancy: monitor and adjust.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-168.svg",
+   "alt": "Steps. Valproate: highest risk of malformations and lower IQ."
+  },
   "source": {
    "guideline": "AAN/AES 2024 WWE practice guideline",
    "year": "2024",
@@ -515,7 +563,7 @@
   "id": "naplex-169",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Neurology and psychiatry",
   "topic": "Migraine: triptans, gepants, CGRP mAbs; triptan contraindications",
   "calculation": false,
   "reused_from": "pance-099",
@@ -529,7 +577,10 @@
   "back": "Gepants: ubrogepant or rimegepant. Key clue: Triptans are contraindicated with CAD, stroke, uncontrolled HTN, hemiplegic migraine. Pharmacist move: Lasmiditan: no driving for 8 hours; it's C-V. Exam trap: Triptan use ≥10 days a month risks medication-overuse headache.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-169.svg",
+   "alt": "Text card. Gepants: ubrogepant or rimegepant."
+  },
   "source": {
    "guideline": "AHS 2021 consensus statement",
    "year": "2021",
@@ -557,7 +608,10 @@
   "back": "Yes: it blocks dopamine. Use a non-dopamine antiemetic, e.g., ondansetron. Key clue: Also avoid haloperidol and prochlorperazine; psychosis: quetiapine or pimavanserin. Pharmacist move: Carbidopa/levodopa is most effective; dopamine agonists can cause impulse control disorders. Exam trap: MAO-B inhibitors interact with meperidine and other serotonergic drugs.",
   "word_count": 45,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-170.svg",
+   "alt": "Steps. Yes: it blocks dopamine. Use a non-dopamine antiemetic, e.g., ondansetron."
+  },
   "source": {
    "guideline": "AAN 2021 early PD",
    "year": "2021",
@@ -571,7 +625,7 @@
   "id": "naplex-171",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Neurology and psychiatry",
   "topic": "Acute ischemic stroke: tenecteplase 0.25 mg/kg or alteplase 0.9 mg/kg ≤4.5 h, BP <185/110 before lysis",
   "calculation": false,
   "reused_from": "pance-013",
@@ -585,7 +639,10 @@
   "back": "Lower BP to <185/110 first, then lyse. Key clue: Tenecteplase 0.25 mg/kg (max 25 mg) single bolus, or alteplase 0.9 mg/kg (max 90 mg). Pharmacist move: Alteplase: 10% bolus, rest over 60 minutes; keep BP <180/105 for 24 hours. Exam trap: Window is 4.5 hours from last known well.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-171.svg",
+   "alt": "Threshold. Lower BP to <185/110 first, then lyse."
+  },
   "source": {
    "guideline": "AHA/ASA 2026 AIS guideline (replaces 2018/2019)",
    "year": "2018 / 2019 / 2026",
@@ -599,7 +656,7 @@
   "id": "naplex-172",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C2 Cardiovascular",
   "topic": "Secondary stroke prevention: short-term DAPT after minor stroke/TIA",
   "calculation": false,
   "reused_from": "pance-096",
@@ -613,7 +670,10 @@
   "back": "Aspirin + clopidogrel for 21 days, then one agent. Key clue: Start within 24 hours with a clopidogrel loading dose. Pharmacist move: Alternative: ticagrelor plus aspirin for 30 days. Exam trap: Long-term DAPT adds bleeding without benefit.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-172.svg",
+   "alt": "Threshold. Aspirin + clopidogrel for 21 days, then one agent."
+  },
   "source": {
    "guideline": "AHA/ASA 2021 secondary prevention",
    "year": "2021",
@@ -641,7 +701,10 @@
   "back": "ARIA: MRI at baseline and during titration. Key clue: APOE ε4 homozygotes have the highest ARIA risk; test before starting. Pharmacist move: Mild-moderate disease: donepezil; moderate-severe: add memantine. Exam trap: Use caution with anticoagulants: ARIA can bleed.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-173.svg",
+   "alt": "Steps. ARIA: MRI at baseline and during titration."
+  },
   "source": {
    "guideline": "AAN; lecanemab/donanemab labeling 2023–24",
    "year": "2023",
@@ -669,7 +732,10 @@
   "back": "Four drugs: NK1 antagonist + 5-HT3 antagonist + dexamethasone + olanzapine. Key clue: Cisplatin is highly emetogenic. Pharmacist move: Moderate risk: 5-HT3 antagonist + dexamethasone; add NK1 for carboplatin AUC ≥4. Exam trap: Olanzapine can sedate: counsel on drowsiness.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-174.svg",
+   "alt": "Steps. Four drugs: NK1 antagonist + 5-HT3 antagonist + dexamethasone + olanzapine."
+  },
   "source": {
    "guideline": "ASCO Antiemetics 2020 (+2022 focused update)",
    "year": "2020 / 2022",
@@ -683,7 +749,7 @@
   "id": "naplex-175",
   "system": "Person-Centered Assessment & Treatment Planning",
   "blueprint_weight": "40%",
-  "task_area": "NAPLEX 3C",
+  "task_area": "NAPLEX 3C5 Adverse effects",
   "topic": "Oncology toxicities: anthracycline cardiotoxicity, cisplatin nephrotoxicity, MTX rescue",
   "calculation": false,
   "reused_from": "pance-173",
@@ -697,7 +763,10 @@
   "back": "Dexrazoxane; hydration/magnesium; leucovorin. Key clue: Doxorubicin cardiotoxicity rises with cumulative dose; check LVEF. Pharmacist move: High-dose MTX: leucovorin rescue, urine alkalinization; glucarpidase for toxic levels. Exam trap: Leucovorin rescues methotrexate, not 5-FU (it boosts 5-FU).",
   "word_count": 35,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-175.svg",
+   "alt": "Steps. Dexrazoxane; hydration/magnesium; leucovorin."
+  },
   "source": {
    "guideline": "FDA labeling; NCCN 2026",
    "year": "2026",

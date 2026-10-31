@@ -95,7 +95,10 @@
     "back": "Renal diets limit potassium, phosphorus and sodium; most salt substitutes contain potassium. Key clue: Kidney disease, high potassium, or a low-sodium cardiac diet. First-line: Teach label reading and choose herbs and spices instead of salt. Exam trap: Recommending potassium-based salt substitutes to a renal client.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-104.svg",
+      "alt": "Text card. Renal diets limit potassium, phosphorus and sodium; most salt substitutes contain potassium."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -119,7 +122,10 @@
     "back": "Fluids, fiber, activity and a regular toileting routine. Key clue: Opioids, immobility and low fluid intake slow bowel motility. First-line: Toilet after meals, encourage fluids, give stool softener or laxative as ordered. Exam trap: Relying on long-term stimulant laxatives instead of a bowel routine.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-105.svg",
+      "alt": "Do and do not. Fluids, fiber, activity and a regular toileting routine."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -143,7 +149,10 @@
     "back": "Use catheters only when indicated and remove them as early as possible. Key clue: Catheter duration is the main modifiable risk for CAUTI. First-line: Aseptic insertion, closed drainage, bag below bladder, daily review of need. Exam trap: Routine scheduled catheter changes or breaking the closed system.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-106.svg",
+      "alt": "Text card. Use catheters only when indicated and remove them as early as possible."
+    },
     "source": {
       "guideline": "CDC/HICPAC CAUTI 2009 (updated 2019)",
       "year": "2019",
@@ -221,7 +230,10 @@
     "back": "Cluster care, dim lights, reduce noise and keep a bedtime routine. Key clue: Interrupted sleep, fatigue, confusion or caffeine late in the day. First-line: Group assessments and treatments to allow longer uninterrupted rest periods. Exam trap: Waking a stable client for nonurgent routine tasks.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-109.svg",
+      "alt": "Text card. Cluster care, dim lights, reduce noise and keep a bedtime routine."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -245,7 +257,10 @@
     "back": "Hold the cane on the strong side; move it with the weak leg. Key clue: Unilateral weakness after injury or stroke. First-line: Advance the cane with the weak leg; on stairs, the strong leg leads up and the cane leads down. Exam trap: Holding the cane on the weak side.",
     "word_count": 50,
     "mnemonic": "Up with the good, down with the bad",
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-110.svg",
+      "alt": "Steps. Hold the cane on the strong side; move it with the weak leg."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -296,7 +311,10 @@
     "back": "Comfort, symptom relief and the goals the client and family choose. Key clue: Terminal illness with a focus on comfort over cure. First-line: Treat pain and dyspnea, provide mouth care, support the family. Exam trap: Withholding opioids because of addiction fears at end of life.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-112.svg",
+      "alt": "Text card. Comfort, symptom relief and the goals the client and family choose."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -320,7 +338,10 @@
     "back": "Follow facility policy, respect culture and religion, and offer family time. Key clue: Death has been pronounced and the family is arriving. First-line: Lay flat, raise head slightly, close eyes, remove tubes unless an autopsy is expected. Exam trap: Removing tubes or lines when an autopsy or coroner review is expected.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-113.svg",
+      "alt": "Text card. Follow facility policy, respect culture and religion, and offer family time."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -344,7 +365,10 @@
     "back": "Keep a calm routine, give one simple step at a time, protect privacy. Key clue: Cognitive impairment, agitation, or weakness during care. First-line: Allow choices, keep the room warm, involve family, use simple cues. Exam trap: Rushing or forcing care on an agitated client.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-114.svg",
+      "alt": "Text card. Keep a calm routine, give one simple step at a time, protect privacy."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -368,7 +392,10 @@
     "back": "Compartment syndrome: notify the provider immediately; keep the arm at heart level. Key clue: Pain out of proportion, pain with passive stretch, numbness, pallor. First-line: Do not elevate or ice; loosen dressings and expect the cast bivalved per order. Exam trap: Waiting for the absent pulse before reporting compartment syndrome.",
     "word_count": 50,
     "mnemonic": "6 Ps: Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia",
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-115.svg",
+      "alt": "Steps. Compartment syndrome: notify the provider immediately; keep the arm at heart level."
+    },
     "source": {
       "guideline": "StatPearls Acute Compartment Syndrome 2023 and BOAST 10",
       "year": "2023",
@@ -392,7 +419,10 @@
     "back": "Unplanned weight loss, low intake and BMI changes show risk. Key clue: Weight loss, poor intake, weakness or slow wound healing. First-line: Screen nutrition, weigh regularly, record intake, refer to the dietitian. Exam trap: Using albumin alone as the marker of nutrition status.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-116.svg",
+      "alt": "Text card. Unplanned weight loss, low intake and BMI changes show risk."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -416,7 +446,10 @@
     "back": "Right client, drug, dose, route, time, documentation, reason and response. Key clue: Any medication administration step. First-line: Use two identifiers and check the order against the MAR. Exam trap: Skipping the check because the client is familiar.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-117.svg",
+      "alt": "Text card. Right client, drug, dose, route, time, documentation, reason and response."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -440,7 +473,10 @@
     "back": "Insulin, anticoagulants, opioids and IV potassium are high-alert medications. Key clue: Errors with these drugs can cause significant client harm. First-line: Use independent double checks and smart pumps per facility policy. Exam trap: Treating high-alert drugs like routine medications.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-118.svg",
+      "alt": "Text card. Insulin, anticoagulants, opioids and IV potassium are high-alert medications."
+    },
     "source": {
       "guideline": "ISMP High-Alert Medications 2024",
       "year": "2024",
@@ -518,7 +554,10 @@
     "back": "Heparin-induced thrombocytopenia; stop heparin and notify the provider. Key clue: Platelets fall more than 50% about 5 to 10 days after starting heparin. First-line: Stop all heparin, including flushes and coated lines; expect a non-heparin anticoagulant. Exam trap: Continuing heparin, including flushes, when HIT is suspected.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-121.svg",
+      "alt": "Steps. Heparin-induced thrombocytopenia; stop heparin and notify the provider."
+    },
     "source": {
       "guideline": "ASH VTE Guidelines: Heparin-Induced Thrombocytopenia 2018",
       "year": "2018",
@@ -542,7 +581,10 @@
     "back": "Hold warfarin per order, notify the provider, and monitor for bleeding; vitamin K only if ordered. Key clue: INR above the target range, bruising or bleeding. First-line: Teach consistent vitamin K intake and regular INR checks. Exam trap: Telling the client to avoid all green vegetables.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-122.svg",
+      "alt": "Do and do not. Hold warfarin per order, notify the provider, and monitor for bleeding; vitamin K only if ordered."
+    },
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
       "year": "2021",
@@ -566,7 +608,10 @@
     "back": "Hold the next dose, do neuro checks, and call the provider or rapid response. Key clue: Head trauma, black stools or blood in urine on a DOAC. First-line: Anticipate a stat head CT and 4F-PCC per institutional protocol for factor Xa inhibitors. Exam trap: Using vitamin K to reverse a DOAC.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-123.svg",
+      "alt": "Text card. Hold the next dose, do neuro checks, and call the provider or rapid response."
+    },
     "source": {
       "guideline": "ACC ECDP Bleeding on Oral Anticoagulants 2020; FDA Andexxa safety update 2025",
       "year": "2025",
@@ -617,7 +662,10 @@
     "back": "Always diluted, given by infusion pump, never IV push. Key clue: Concentrated IV potassium is a high-alert medication. First-line: Check kidney function and urine output; monitor ECG at higher rates. Exam trap: Giving IV potassium by push, which can cause cardiac arrest.",
     "word_count": 42,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-125.svg",
+      "alt": "Steps. Always diluted, given by infusion pump, never IV push."
+    },
     "source": {
       "guideline": "ISMP 2024",
       "year": "2024",
@@ -641,7 +689,10 @@
     "back": "Stop the transfusion; keep the IV open with new tubing and saline. Key clue: Reactions are most likely in the first 15 minutes. First-line: Two-person verification before starting; stay with the client early on. Exam trap: Slowing the transfusion instead of stopping it.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-126.svg",
+      "alt": "Steps. Stop the transfusion; keep the IV open with new tubing and saline."
+    },
     "source": {
       "guideline": "AABB Standards 35th ed 2026",
       "year": "2026",
@@ -719,7 +770,10 @@
     "back": "Hand hygiene, chlorhexidine skin prep, and scrubbing the hub before each access. Key clue: Fever or redness at a central line site. First-line: Change the dressing per protocol and review the need for the line daily. Exam trap: Leaving an unneeded central line in place.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-129.svg",
+      "alt": "Text card. Hand hygiene, chlorhexidine skin prep, and scrubbing the hub before each access."
+    },
     "source": {
       "guideline": "INS 2024; CDC Intravascular Catheter Infection 2011 (2017 update)",
       "year": "2017",
@@ -743,7 +797,10 @@
     "back": "Hang 10% dextrose as ordered to prevent rebound hypoglycemia. Key clue: TPN bag delayed or stopped suddenly. First-line: Use a filter and pump; monitor glucose and the central line site. Exam trap: Increasing the TPN rate to catch up.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-130.svg",
+      "alt": "Steps. Hang 10% dextrose as ordered to prevent rebound hypoglycemia."
+    },
     "source": {
       "guideline": "ASPEN PN Safety Summit consensus 2024",
       "year": "2024",
@@ -767,7 +824,10 @@
     "back": "1,440 units/hour. Key clue: 176 lb is 80 kg. Convert before you multiply. First-line: 18 units/kg/hour times 80 kg is 1,440 units/hour. Exam trap: Using 176 as if it were kilograms.",
     "word_count": 31,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-131.svg",
+      "alt": "Threshold. 1,440 units/hour."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -791,7 +851,10 @@
     "back": "Stimulate the client and support breathing; give naloxone as ordered. Key clue: Sedation usually comes before respiratory depression. First-line: Use a sedation scale and check respiratory rate and SpO2. Exam trap: Ignoring rising sedation before the respiratory rate falls.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-132.svg",
+      "alt": "Text card. Stimulate the client and support breathing; give naloxone as ordered."
+    },
     "source": {
       "guideline": "CDC Opioid Prescribing 2022",
       "year": "2022",
@@ -815,7 +878,10 @@
     "back": "Only the client presses the PCA button. Key clue: Family member using the button, or the client is very sleepy. First-line: Teach the family not to press it; monitor sedation and breathing. Exam trap: Letting family members dose the client by proxy.",
     "word_count": 42,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-133.svg",
+      "alt": "Steps. Only the client presses the PCA button."
+    },
     "source": {
       "guideline": "ISMP 2024",
       "year": "2024",
@@ -839,7 +905,10 @@
     "back": "Protect the airway, call rapid response, and hold further ACE inhibitor doses per order. Key clue: Swollen lips, tongue or face after starting an ACE inhibitor. First-line: Teach that dry cough is common and to report swelling right away. Exam trap: Treating swelling of the lips or tongue as a minor side effect.",
     "word_count": 53,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-134.svg",
+      "alt": "Text card. Protect the airway, call rapid response, and hold further ACE inhibitor doses per order."
+    },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
       "year": "2025",
@@ -863,7 +932,10 @@
     "back": "Hold the dose and notify the provider if heart rate or BP is low. Key clue: Bradycardia, hypotension, dizziness or fatigue. First-line: Check apical pulse and BP before each dose; teach not to stop abruptly. Exam trap: Stopping a beta blocker suddenly, which can cause rebound effects.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-135.svg",
+      "alt": "Steps. Hold the dose and notify the provider if heart rate or BP is low."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -887,7 +959,10 @@
     "back": "Low potassium and ototoxicity are risks with loop diuretics. Key clue: Weakness, cramps, or ringing in the ears. First-line: Monitor potassium, daily weight, intake and output; give IV furosemide slowly. Exam trap: Giving high-dose IV furosemide rapidly.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-136.svg",
+      "alt": "Steps. Low potassium and ototoxicity are risks with loop diuretics."
+    },
     "source": {
       "guideline": "AHA/ACC/HFSA Heart Failure 2022",
       "year": "2022",
@@ -911,7 +986,10 @@
     "back": "Lithium toxicity; the usual maintenance range is about 0.6 to 1.2 mEq/L. Key clue: Vomiting, diarrhea, coarse tremor or confusion. First-line: Hold the dose, check a lithium level, and keep sodium and fluid intake steady. Exam trap: Cutting dietary sodium, which raises lithium levels.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-137.svg",
+      "alt": "Threshold. Lithium toxicity; the usual maintenance range is about 0.6 to 1.2 mEq/L."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -935,7 +1013,10 @@
     "back": "Neuroleptic malignant syndrome; hold further doses and notify the provider at once. Key clue: Fever, rigidity, confusion and unstable vital signs. First-line: Cool the client and support fluids per order or protocol; monitor vital signs closely. Exam trap: Mistaking NMS for simple restlessness or akathisia.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-138.svg",
+      "alt": "Steps. Neuroleptic malignant syndrome; hold further doses and notify the provider at once."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -959,7 +1040,10 @@
     "back": "Avoid tyramine-rich foods such as aged cheese, cured meats and tap beer. Key clue: Severe headache or high BP after a tyramine-rich meal. First-line: Teach the food list and to avoid drug interactions. Exam trap: Allowing aged cheese or cured meats.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-139.svg",
+      "alt": "Text card. Avoid tyramine-rich foods such as aged cheese, cured meats and tap beer."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -983,7 +1067,10 @@
     "back": "Serotonin syndrome; hold further serotonergic doses and notify the provider. Key clue: Agitation, fever, sweating, tremor, clonus and diarrhea. First-line: Review drug interactions; teach early warning signs. Exam trap: Combining SSRIs with other serotonergic drugs without monitoring.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-140.svg",
+      "alt": "Steps. Serotonin syndrome; hold further serotonergic doses and notify the provider."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1007,7 +1094,10 @@
     "back": "Monitor drug levels and kidney function as ordered. Key clue: Rising creatinine, low urine output or hearing loss. First-line: Time trough or AUC-based levels as ordered; watch for infusion reactions. Exam trap: Drawing a level at the wrong time.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-141.svg",
+      "alt": "Steps. Monitor drug levels and kidney function as ordered."
+    },
     "source": {
       "guideline": "ASHP/IDSA vancomycin 2020",
       "year": "2020",
@@ -1031,7 +1121,10 @@
     "back": "Stop the infusion and give IM epinephrine per order or protocol, 0.01 mg/kg, max 0.5 mg. Key clue: Hives, wheezing or low BP after a drug dose. First-line: Call for help, position the client, give oxygen and fluids. Exam trap: Giving antihistamines first instead of epinephrine.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-142.svg",
+      "alt": "Threshold. Stop the infusion and give IM epinephrine per order or protocol, 0.01 mg/kg, max 0.5 mg."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1055,7 +1148,10 @@
     "back": "Taper as ordered; sudden stopping can cause adrenal crisis. Key clue: Long-term steroid use. First-line: Monitor glucose, BP and infection signs. Exam trap: Stopping long-term steroids abruptly.",
     "word_count": 27,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-143.svg",
+      "alt": "Text card. Taper as ordered; sudden stopping can cause adrenal crisis."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1079,7 +1175,10 @@
     "back": "Take it on an empty stomach, 30 to 60 minutes before breakfast. Key clue: Palpitations or tremor may mean the dose is too high. First-line: Separate it from calcium and iron; check TSH as ordered. Exam trap: Taking it with calcium or iron.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-144.svg",
+      "alt": "Steps. Take it on an empty stomach, 30 to 60 minutes before breakfast."
+    },
     "source": {
       "guideline": "ATA Hypothyroidism 2014",
       "year": "2014",
@@ -1103,7 +1202,10 @@
     "back": "Albuterol relieves symptoms; controller inhalers with ICS reduce attacks. Key clue: Using albuterol more often means asthma control is worse. First-line: Use a spacer and rinse the mouth after inhaled corticosteroids. Exam trap: Using SABA alone without a controller medication.",
     "word_count": 40,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-145.svg",
+      "alt": "Text card. Albuterol relieves symptoms; controller inhalers with ICS reduce attacks."
+    },
     "source": {
       "guideline": "GINA 2026",
       "year": "2026",
@@ -1127,7 +1229,10 @@
     "back": "Phenytoin toxicity; the usual total level is about 10 to 20 mcg/mL. Key clue: Ataxia, nystagmus or slurred speech. First-line: Teach good oral hygiene to reduce gingival hyperplasia. Exam trap: Mixing IV phenytoin with dextrose.",
     "word_count": 35,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-146.svg",
+      "alt": "Threshold. Phenytoin toxicity; the usual total level is about 10 to 20 mcg/mL."
+    },
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1151,7 +1256,10 @@
     "back": "Stop the infusion and give calcium gluconate as ordered. Key clue: Loss of reflexes, respiratory depression or low urine output. First-line: Check reflexes, respirations and output often during the infusion. Exam trap: Continuing the infusion when reflexes are absent.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-147.svg",
+      "alt": "Text card. Stop the infusion and give calcium gluconate as ordered."
+    },
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, updated 2024)",
       "year": "2024",
@@ -1175,7 +1283,10 @@
     "back": "Reduce or stop the oxytocin, then notify the provider. Key clue: Tachysystole is more than 5 contractions in 10 minutes, averaged over 30 minutes. First-line: If it persists after pausing oxytocin, expect a rapid-acting uterine relaxant such as terbutaline. Exam trap: Restarting oxytocin before the tracing is reassuring and tachysystole resolves.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": null,
+    "diagram": {
+      "file": "svg/nclex-148.svg",
+      "alt": "Text card. Reduce or stop the oxytocin, then notify the provider."
+    },
     "source": {
       "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
       "year": "2025",

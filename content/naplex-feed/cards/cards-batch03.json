@@ -17,7 +17,10 @@
   "back": "Apixaban, rivaroxaban, sacubitril/valsartan, ticagrelor, metoprolol succinate. Key clue: Also: Lipitor atorvastatin, Crestor rosuvastatin, Plavix clopidogrel, Coreg carvedilol. Pharmacist move: Confirm salt and release form when substituting. Exam trap: Toprol-XL (succinate, ER) is not Lopressor (tartrate, IR).",
   "word_count": 36,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-051.svg",
+   "alt": "Text card. Apixaban, rivaroxaban, sacubitril/valsartan, ticagrelor, metoprolol succinate."
+  },
   "source": {
    "guideline": "FDA Orange Book 2026",
    "year": "2026",
@@ -45,7 +48,10 @@
   "back": "Escitalopram, bupropion, aripiprazole, quetiapine, lamotrigine, lisdexamfetamine. Key clue: Also: Zoloft sertraline, Keppra levetiracetam, Adderall mixed amphetamine salts. Pharmacist move: Verify indication on psych scripts to catch name mix-ups. Exam trap: Lamictal (lamotrigine) vs Lamisil (terbinafine) is a classic mix-up.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-052.svg",
+   "alt": "Text card. Escitalopram, bupropion, aripiprazole, quetiapine, lamotrigine, lisdexamfetamine."
+  },
   "source": {
    "guideline": "FDA Orange Book 2026",
    "year": "2026",
@@ -73,7 +79,10 @@
   "back": "Semaglutide (x2), tirzepatide (x2), empagliflozin, dapagliflozin. Key clue: Ozempic/Mounjaro: type 2 diabetes. Wegovy/Zepbound: chronic weight management. Pharmacist move: Check the brand matches the indication billed and the dose strength. Exam trap: Same molecule, different brand and doses: don't swap Ozempic and Wegovy pens.",
   "word_count": 43,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-053.svg",
+   "alt": "Do and do not. Semaglutide (x2), tirzepatide (x2), empagliflozin, dapagliflozin."
+  },
   "source": {
    "guideline": "FDA Orange Book 2026",
    "year": "2026",
@@ -101,7 +110,10 @@
   "back": "Only if FDA designates it interchangeable (and state law allows). Key clue: Biosimilar: no clinically meaningful differences from the reference. Pharmacist move: Check the Purple Book for interchangeability; follow state substitution and notification rules. Exam trap: Biologics live in the Purple Book, not the Orange Book.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-054.svg",
+   "alt": "Steps. Only if FDA designates it interchangeable (and state law allows)."
+  },
   "source": {
    "guideline": "FDA Purple Book 2026",
    "year": "2026",
@@ -129,7 +141,10 @@
   "back": "Look-alike/sound-alike: use tall-man letters plus checks. Key clue: hydrOXYzine vs hydrALAZINE; CeleBREX vs CeleXA. Pharmacist move: Put indication on the Rx, use brand and generic, barcode scanning, separate storage. Exam trap: Tall-man lettering helps but isn't enough alone.",
   "word_count": 38,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-055.svg",
+   "alt": "Text card. Look-alike/sound-alike: use tall-man letters plus checks."
+  },
   "source": {
    "guideline": "ISMP LASA list 2023",
    "year": "2023",
@@ -157,7 +172,10 @@
   "back": "Fatal overdose: nononcologic MTX is weekly. Key clue: High-alert: insulin, opioids, concentrated potassium, anticoagulants, oral methotrexate. Pharmacist move: Verify indication and weekly schedule; default systems to weekly; counsel with the day of the week. Exam trap: High-alert doesn't mean errors are more common; harm is worse when they happen.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-056.svg",
+   "alt": "Steps. Fatal overdose: nononcologic MTX is weekly."
+  },
   "source": {
    "guideline": "ISMP High-Alert List 2024",
    "year": "2024",
@@ -185,7 +203,10 @@
   "back": "Error-prone abbreviations and a trailing zero. Key clue: 'U' can read as 0 or 4; 'qd' as qid; '5.0' as 50. Pharmacist move: Write 'units' and 'daily'; never a trailing zero; always a leading zero (0.5 mg). Exam trap: 'MS' or 'MSO4' can mean morphine or magnesium: spell it out.",
   "word_count": 50,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-057.svg",
+   "alt": "Steps. Error-prone abbreviations and a trailing zero."
+  },
   "source": {
    "guideline": "ISMP Error-Prone Abbreviations 2024 (replaces 2021); TJC Do Not Use list",
    "year": "2021 / 2024",
@@ -213,7 +234,10 @@
   "back": "C-II: no refills. C-III/IV: up to 5 refills in 6 months. Key clue: C-II needs a written or electronic Rx; emergency oral C-II allowed. Pharmacist move: Emergency oral C-II: prescriber delivers the written Rx within 7 days. Multiple C-II Rxs can cover up to 90 days. Exam trap: C-V refills follow state law and the prescriber, not the 5-in-6 rule.",
   "word_count": 60,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-058.svg",
+   "alt": "Text card. C-II: no refills. C-III/IV: up to 5 refills in 6 months."
+  },
   "source": {
    "guideline": "21 CFR 1306; DEA",
    "year": "current edition",
@@ -241,7 +265,10 @@
   "back": "RZV 2 doses; one pneumococcal conjugate; Td/Tdap every 10 years. Key clue: RZV (Shingrix) at ≥50, or ≥19 if immunocompromised; 2 doses 2–6 months apart. Pharmacist move: Pneumococcal at ≥50: PCV20 or PCV21 alone, or PCV15 then PPSV23. Exam trap: Give RZV even after prior Zostavax or shingles.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-059.svg",
+   "alt": "Text card. RZV 2 doses; one pneumococcal conjugate; Td/Tdap every 10 years."
+  },
   "source": {
    "guideline": "CDC/ACIP Adult Schedule 2025 (amended Apr 27, 2026 for RSV)",
    "year": "2025 / 2026",
@@ -271,7 +298,10 @@
   "back": "High-dose, adjuvanted or recombinant preferred at ≥65. Key clue: Egg allergy: any age-appropriate flu vaccine; no extra precautions beyond usual. Pharmacist move: Use the current-season formulation; COVID-19 vaccine by individual-based (shared) decision-making. Exam trap: Live nasal flu vaccine (LAIV): not in pregnancy or immunocompromise, or ≥50.",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-060.svg",
+   "alt": "Threshold. High-dose, adjuvanted or recombinant preferred at ≥65."
+  },
   "source": {
    "guideline": "CDC/ACIP influenza 2025–26 (carried into 2026–27); CDC 2025–26 COVID-19 guidance (individual-based decision-making, Oct 2025)",
    "year": "2025 / 2026",
@@ -301,7 +331,10 @@
   "back": "Older adults: one dose. Infants: maternal vaccine or infant antibody. Key clue: Adults ≥75; or 50–74 at increased risk; single lifetime dose for now. Pharmacist move: Pregnancy: Abrysvo at 32–36 weeks (Sep–Jan). Otherwise infant nirsevimab or clesrovimab. Exam trap: Most infants need one or the other, not both. Abrysvo is the only RSV vaccine for pregnancy.",
   "word_count": 56,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-061.svg",
+   "alt": "Text card. Older adults: one dose. Infants: maternal vaccine or infant antibody."
+  },
   "source": {
    "guideline": "CDC/ACIP RSV 2024–2025 (+clesrovimab MMWR 2025)",
    "year": "2024 / 2025",
@@ -331,7 +364,10 @@
   "back": "No MMR in pregnancy; mild illness is fine. Key clue: Live vaccines (MMR, varicella, LAIV): contraindicated in pregnancy and severe immunosuppression. Pharmacist move: Screen before every dose; defer for moderate or severe illness only. Exam trap: Severe allergic reaction to a prior dose or component is the universal contraindication.",
   "word_count": 49,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-062.svg",
+   "alt": "Steps. No MMR in pregnancy; mild illness is fine."
+  },
   "source": {
    "guideline": "CDC/ACIP General Best Practices for Immunization (current web edition)",
    "year": "current edition",
@@ -361,7 +397,10 @@
   "back": "IM epinephrine 1 mg/mL, 0.01 mg/kg. Key clue: Adult max 0.5 mg per dose; autoinjector 0.3 mg. Pharmacist move: Inject anterolateral thigh; repeat every 5–15 min; call 911. Exam trap: Antihistamines are adjuncts: never instead of epinephrine.",
   "word_count": 37,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-063.svg",
+   "alt": "Threshold. IM epinephrine 1 mg/mL, 0.01 mg/kg."
+  },
   "source": {
    "guideline": "CDC/ACIP General Best Practices: preventing & managing adverse reactions",
    "year": "current edition",
@@ -391,7 +430,10 @@
   "back": "Disabling tendon, nerve and CNS effects. Key clue: Tendinitis/rupture, peripheral neuropathy, CNS effects, myasthenia gravis worsening. Pharmacist move: Reserve for sinusitis, bronchitis exacerbation or uncomplicated UTI only when no alternative. Exam trap: Highest tendon risk: age >60, corticosteroids, transplant.",
   "word_count": 39,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-064.svg",
+   "alt": "Text card. Disabling tendon, nerve and CNS effects."
+  },
   "source": {
    "guideline": "FDA labeling 2016/2018",
    "year": "2016 / 2018",
@@ -419,7 +461,10 @@
   "back": "Watch for suicidality, especially early. Key clue: Boxed warning: children, adolescents and young adults through age 24. Pharmacist move: Close follow-up in the first weeks and after dose changes; tell family to watch for agitation or mood change. Exam trap: No increased risk over 24; reduced at 65+. Don't withhold needed therapy.",
   "word_count": 52,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-065.svg",
+   "alt": "Steps. Watch for suicidality, especially early."
+  },
   "source": {
    "guideline": "FDA labeling (2007 BBW expansion to ages 18–24)",
    "year": "2007",
@@ -447,7 +492,10 @@
   "back": "Increased death in elderly dementia patients. Key clue: Applies to all antipsychotics, typical and atypical; not approved for dementia psychosis. Pharmacist move: Use only for severe, dangerous or distressing symptoms after nondrug measures; reassess in 4 weeks; taper if no benefit. Exam trap: Mortality is mostly cardiovascular or infectious. Brexpiprazole is approved for Alzheimer's agitation but keeps the warning.",
   "word_count": 59,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-066.svg",
+   "alt": "Steps. Increased death in elderly dementia patients."
+  },
   "source": {
    "guideline": "FDA labeling 2005/2008; APA 2016 dementia antipsychotics",
    "year": "2005 / 2008 / 2016",
@@ -475,7 +523,10 @@
   "back": "Cardiovascular thrombosis and GI bleeding. Key clue: CV risk can start in the first weeks and rises with dose. Pharmacist move: Use lowest dose, shortest time; avoid in recent MI or heart failure when possible. Exam trap: Contraindicated for pain right after CABG surgery.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-067.svg",
+   "alt": "Steps. Cardiovascular thrombosis and GI bleeding."
+  },
   "source": {
    "guideline": "FDA labeling 2015",
    "year": "2015",
@@ -503,7 +554,10 @@
   "back": "Boxed warning: life-threatening toxicity; reserve for serious arrhythmias. Key clue: Baseline and every 6 months: TFTs and LFTs; baseline chest X-ray, PFTs and eye exam. Pharmacist move: Cut warfarin dose by one-third to one-half and digoxin by half. Exam trap: Effects build for weeks: interactions persist long after a dose change.",
   "word_count": 51,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-068.svg",
+   "alt": "Text card. Boxed warning: life-threatening toxicity; reserve for serious arrhythmias."
+  },
   "source": {
    "guideline": "FDA labeling; 2023 ACC/AHA AF",
    "year": "2023",
@@ -531,7 +585,10 @@
   "back": "Embryo-fetal toxicity and hepatotoxicity. Key clue: Methotrexate: once weekly with folic acid; daily dosing errors have been fatal. Pharmacist move: Exclude pregnancy, use contraception, monitor CBC and LFTs. Exam trap: Leflunomide lingers: cholestyramine washout before pregnancy.",
   "word_count": 36,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-069.svg",
+   "alt": "Text card. Embryo-fetal toxicity and hepatotoxicity."
+  },
   "source": {
    "guideline": "FDA labeling; ACR 2021 RA",
    "year": "2021",
@@ -559,7 +616,10 @@
   "back": "REMS gone; neutropenia warning and ANC monitoring remain. Key clue: Boxed warning: severe neutropenia, orthostasis, seizures, myocarditis, dementia mortality. Pharmacist move: No REMS enrollment or ANC check to dispense; follow label ANC monitoring. Exam trap: Baseline ANC must be at least 1,500 to start (general population).",
   "word_count": 46,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-070.svg",
+   "alt": "Steps. REMS gone; neutropenia warning and ANC monitoring remain."
+  },
   "source": {
    "guideline": "FDA 2025 clozapine REMS elimination",
    "year": "2025",
@@ -587,7 +647,10 @@
   "back": "Combined use: sedation, respiratory depression, death. Key clue: Boxed warning on both opioids and benzodiazepines since 2016. Pharmacist move: Talk to the prescriber about avoiding the combo; lowest doses; offer naloxone. Exam trap: CDC 2022: use particular caution co-prescribing; consider tapering benzo when safe.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-071.svg",
+   "alt": "Steps. Combined use: sedation, respiratory depression, death."
+  },
   "source": {
    "guideline": "FDA 2016 opioid+benzo BBW; CDC 2022",
    "year": "2016 / 2022",
@@ -615,7 +678,10 @@
   "back": "Hepatotoxicity, pancreatitis, teratogenicity. Key clue: Neural tube defects and lower IQ in exposed children. Pharmacist move: AAN/AES 2024: avoid valproate when possible in people who could become pregnant; folic acid. Exam trap: Contraindicated in pregnancy for migraine prevention; hepatotoxicity risk highest under age 2.",
   "word_count": 44,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-072.svg",
+   "alt": "Text card. Hepatotoxicity, pancreatitis, teratogenicity."
+  },
   "source": {
    "guideline": "FDA labeling; AAN/AES 2024 WWE",
    "year": "2024",
@@ -643,7 +709,10 @@
   "back": "Serious neuropsychiatric events, including suicidality. Key clue: Agitation, nightmares, depression, suicidal thoughts. Pharmacist move: Allergic rhinitis: only if other therapy fails or isn't tolerated. Exam trap: Events can occur during treatment or after stopping.",
   "word_count": 34,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-073.svg",
+   "alt": "Text card. Serious neuropsychiatric events, including suicidality."
+  },
   "source": {
    "guideline": "FDA 2020 labeling",
    "year": "2020",
@@ -671,7 +740,10 @@
   "back": "Levothyroxine: not for weight loss. GLP-1 RA: thyroid C-cell tumors. Key clue: GLP-1 RA: contraindicated with personal or family MTC or MEN 2. Pharmacist move: Screen family history before GLP-1 RA; counsel neck lump, hoarseness, dysphagia. Exam trap: Exenatide twice daily (Byetta) and lixisenatide lack this boxed warning.",
   "word_count": 48,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-074.svg",
+   "alt": "Steps. Levothyroxine: not for weight loss. GLP-1 RA: thyroid C-cell tumors."
+  },
   "source": {
    "guideline": "FDA labeling",
    "year": "current edition",
@@ -699,7 +771,10 @@
   "back": "Endometrial cancer for estrogen-alone therapy. Key clue: FDA asked to remove boxed warnings on cardiovascular disease, breast cancer and probable dementia. Pharmacist move: Women with a uterus need a progestogen with systemic estrogen. Exam trap: Best benefit-risk when started under 60 or within 10 years of menopause.",
   "word_count": 47,
   "mnemonic": null,
-  "diagram": null,
+  "diagram": {
+   "file": "svg/naplex-075.svg",
+   "alt": "Text card. Endometrial cancer for estrogen-alone therapy."
+  },
   "source": {
    "guideline": "FDA HT labeling change Nov 2025 (first approvals Feb 2026); Menopause Society 2022",
    "year": "2022 / 2025 / 2026",

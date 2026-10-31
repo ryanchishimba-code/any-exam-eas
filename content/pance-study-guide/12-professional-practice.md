@@ -48,5 +48,17 @@ Sensitivity is the share of people with disease who test positive. A sensitive t
 > - Report suspected child abuse. You do not need proof.
 > - A negative result on a highly sensitive test makes the disease unlikely.
 
+## Prescribing, leaving, and the words you use
+
+**Controlled substances.** A prescription for a controlled substance needs a documented indication. It follows the DEA and the law of the state where the patient is treated. Do not post-date a prescription to get around a limit, and do not sign a blank form. When the state requires a prescription-drug monitoring program query, do the query before you write. The AAPA Guidelines for Ethical Conduct (2013) prohibit a sexual or romantic relationship with a current patient and require honesty when care causes harm.
+
+**A patient who wants to leave.** An adult with decision-specific capacity may refuse admission or leave. Explain the risks in plain language, document that explanation, and invite the patient to return. Do not restrain a capacitated adult because you disagree. If capacity is absent, the refusal is not valid and you treat under the emergency or surrogate standard that applies.
+
+**The interpreter.** A qualified interpreter is part of informed consent and of any serious diagnosis. HHS Section 1557 (2024) requires meaningful language access. A minor child is not the interpreter for that conversation. A bilingual staff member who is not qualified is not a substitute when the decision is high stakes.
+
+**What you write.** The note records the facts, the decision, and the information the patient received. It is not a place to speculate about motive or to argue with a colleague. Do not put an identifiable case on social media. A hallway conversation that names the patient is a disclosure. HIPAA permits sharing with another clinician who is treating the patient. It does not permit sharing with a curious family member when the patient has capacity and has said no.
+
+**Numbers without fiction.** Number needed to treat is 1 divided by the absolute risk reduction. Say that definition when the stem asks for it. Do not invent a pass rate, a class average, or a supervision percentage the stem did not give you.
+
 <!-- /premium -->
 

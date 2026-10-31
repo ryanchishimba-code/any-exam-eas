@@ -10,13 +10,19 @@
 
 ## Why it matters on NCLEX
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 Endocrine questions reward **pattern recognition** (hypo vs hyper; DKA vs HHS; thyroid extremes; SIADH vs DI) and **safe teaching** (sick days, tapering steroids, foot care, medical ID).
 
 ---
 
 ## Topic A — Diabetes mellitus & acute crises
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Pathophysiology / concept
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Insulin deficiency/resistance → hyperglycemia. Chronic damage to vessels/nerves. Acute crises:
 
@@ -28,12 +34,16 @@ Insulin deficiency/resistance → hyperglycemia. Chronic damage to vessels/nerve
 
 ### Assessment cues
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 **Hypo (adrenergic → neuroglycopenic):** sweat, tremor, hunger, tachycardia → confusion, seizure, coma.
 **Hyper:** polyuria/polydipsia/polyphagia, blurry vision, dehydration.
 **DKA:** Kussmaul respirations, fruity breath, abdominal pain, vomiting.
 **HHS:** extreme dehydration, neuro changes, often precipitating illness.
 
 ### Somogyi vs dawn phenomenon (concepts)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Both cause morning hyperglycemia — different “why”:
 - **Dawn:** natural early-morning hormone surge → rising glucose; often needs evening dose adjustment per provider.
@@ -42,11 +52,15 @@ Don’t memorize contested debates — know that **nighttime checks** guide the 
 
 ### Priority nursing actions
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 **Hypoglycemia (conscious, can swallow):** 15-15 rule concept — ~15 g fast carb, recheck ~15 min, repeat as needed; then protein/complex carb per protocol.
 **Unconscious / NPO:** glucagon IM/SQ or IV dextrose per orders — protect airway.
 **DKA/HHS:** ABCs; IV fluids first; **check K⁺ before starting insulin — hold insulin and replace potassium first if K⁺ < 3.3 mEq/L** (insulin drives K⁺ intracellularly); insulin infusion per protocol once K⁺ is adequate; continue replacement as ordered once urine output is established (total body K⁺ depleted even if serum looks normal/high initially); add dextrose to fluids as glucose approaches ~200–250 mg/dL so the drip can keep closing the gap; treat precipitating cause; NPO; frequent labs/neuro checks.
 
 ### Medications (high-yield)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Insulins by kinetics (rapid/short/intermediate/long) — **peak = hypo risk window**
 - Never share pens; site rotation; needle safety
@@ -54,11 +68,15 @@ Don’t memorize contested debates — know that **nighttime checks** guide the 
 
 ### Client teaching — foot care & sick-day rules (fuller)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 **Foot care:** inspect tops/soles/between toes daily (mirror/caregiver if needed); wash/dry carefully; moisturize (not between toes); closed leather shoes; seamless socks; never go barefoot; no bathroom surgery on calluses/ingrown nails — podiatry; report non-healing ulcers, redness, drainage.
 **Sick-day:** never stop insulin blindly when ill (stress raises glucose); check glucose more often; check ketones when taught (esp. T1); sip fluids; soft carbs if not eating; call for persistent vomiting, inability to keep fluids, moderate/large ketones, or glucose staying very high per personal parameters; know when to seek ED.
 MedicAlert; carry fast sugar.
 
 ### Safety / red flags
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Beta blockers may mask hypo tachycardia.
 - Drawing insulin: clear before cloudy when mixing (if mixing still taught); never mix long-acting analogs that shouldn’t be mixed.
@@ -66,9 +84,13 @@ MedicAlert; carry fast sugar.
 
 ### Delegation notes
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 UAP can bring juice if RN directs after confirming hypo plan; RN interprets glucose patterns and teaches.
 
 ### Remember this
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Treat hypo now — brain needs glucose.
 - DKA/HHS: fluids + insulin protocol + potassium vigilance.
@@ -79,11 +101,17 @@ UAP can bring juice if RN directs after confirming hypo plan; RN interprets gluc
 
 ## Topic B — Thyroid disorders (including storm vs myxedema)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Pathophysiology / concept
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Thyroid hormones (T3/T4) set metabolic rate. **Hypo** = underactive (Hashimoto common). **Hyper** = overactive (Graves common). Extremes: **myxedema coma** (hypo crisis) and **thyroid storm** (hyper crisis).
 
 ### Assessment cues
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | Hypothyroid | Hyperthyroid |
 | --- | --- |
@@ -91,6 +119,8 @@ Thyroid hormones (T3/T4) set metabolic rate. **Hypo** = underactive (Hashimoto c
 | Myxedema coma: hypothermia, hypoventilation, brady, altered LOC | Storm: high fever, severe tachy/arrhythmia, delirium — emergency |
 
 ### Thyroid storm vs myxedema (contrast)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | | **Thyroid storm** | **Myxedema coma** |
 | --- | --- | --- |
@@ -102,11 +132,15 @@ Thyroid hormones (T3/T4) set metabolic rate. **Hypo** = underactive (Hashimoto c
 
 ### Priority nursing actions
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 - Hypo: levothyroxine teaching (morning empty stomach; don’t stop abruptly); watch for over-replacement. Myxedema: ABCs, warming, IV hormone per orders, cautious sedation.
 - Hyper: cool quiet environment; antithyroid meds/beta blockers as ordered; iodine/surgery/RAI. Storm: escalate care, cooling, meds per protocol.
 - Post-thyroidectomy: airway (hematoma/edema), **hypocalcemia** if parathyroids affected (tetany, Chvostek/Trousseau), laryngeal nerve injury (voice/stridor).
 
 ### Meds
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Levothyroxine: take consistently; separate from some binders/iron/calcium timing.
 - Methimazole/PTU: agranulocytosis teaching (fever/sore throat → report).
@@ -114,11 +148,15 @@ Thyroid hormones (T3/T4) set metabolic rate. **Hypo** = underactive (Hashimoto c
 
 ### Client teaching
 
+Source: CDC isolation precautions, 2007.
+
 - Lifelong replacement often needed in hypo.
 - RAI: radiation precautions per instructions (sleep apart, fluid intake, avoid close contact with pregnant/infants for instructed period).
 - Report storm/myxedema warning signs.
 
 ### Remember this
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Post-op thyroid = airway + calcium. Storm and myxedema are ICU-level emergencies — opposite temperature/HR patterns.
 
@@ -126,7 +164,11 @@ Post-op thyroid = airway + calcium. Storm and myxedema are ICU-level emergencies
 
 ## Topic C — Parathyroid (hyper / hypo)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Pathophysiology / concept
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 PTH raises serum calcium (bone, kidney, gut activation).
 **Hypoparathyroid** (often post-thyroidectomy): **low Ca²⁺**, high phosphate → tetany, laryngospasm risk.
@@ -134,10 +176,14 @@ PTH raises serum calcium (bone, kidney, gut activation).
 
 ### Priority nursing actions / teaching
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 - HypoCa: calcium + vitamin D as ordered; seizure/airway watch; teach early tetany signs.
 - HyperCa: hydration, mobility as tolerated, strain urine if stones; caution digoxin toxicity with high Ca²⁺; prepare for surgery if adenoma.
 
 ### Remember this
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Post-thyroidectomy tingling/spasms = think calcium. High Ca²⁺ = stones and bones.
 
@@ -145,7 +191,11 @@ Post-thyroidectomy tingling/spasms = think calcium. High Ca²⁺ = stones and bo
 
 ## Topic D — Adrenal: Addison vs Cushing & steroid teaching
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Pathophysiology / concept
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Adrenal cortex: cortisol + aldosterone (and androgens).
 **Addison (insufficiency):** low cortisol/aldosterone → weakness, hypotension, hyperpigmentation (primary), salt craving, **hyperkalemia/hyponatremia**; crisis = shock.
@@ -153,15 +203,21 @@ Adrenal cortex: cortisol + aldosterone (and androgens).
 
 ### Assessment cues
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 Addison crisis: profound hypotension, fever, hypoglycemia, hyperkalemia after stress/stopped steroids.
 Cushing: infection, poor wound healing, fractures risk, hyperglycemia.
 
 ### Priority nursing actions
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 **Addison / crisis:** IV fluids + glucocorticoid replacement per orders; treat hyperkalemia; never abruptly stop chronic steroids.
 **Cushing:** infection precautions; monitor glucose/BP; careful skin care; if surgical cause, post-op adrenal insufficiency risk.
 
 ### Steroid teaching (high-yield — expand)
+
+Source: CDC isolation precautions, 2007.
 
 - **Taper** — never stop chronic glucocorticoids cold turkey (adrenal crisis).
 - Take with food; morning dosing often mimics circadian rhythm as taught.
@@ -173,9 +229,13 @@ Cushing: infection, poor wound healing, fractures risk, hyperglycemia.
 
 ### Safety / red flags
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 Abrupt steroid cessation → adrenal crisis. Infection in Cushing can be subtle then severe.
 
 ### Remember this
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Addison = need hormones + salt/volume in crisis. Cushing = protect from infection/injury. Never stop steroids cold turkey — taper, infection, glucose.
 
@@ -183,11 +243,17 @@ Addison = need hormones + salt/volume in crisis. Cushing = protect from infectio
 
 ## Topic E — Pituitary basics & SIADH vs DI (endocrine angle)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Concept
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Posterior pituitary releases **ADH** (and oxytocin). Anterior hormones include ACTH, TSH, GH — tumors/surgery can disrupt. After pituitary surgery: watch DI (high UOP), CSF leak (clear drainage, halo), neuro status. (See also renal chapter for fluid/Na⁺ table — same physiology, different exam angle.)
 
 ### SIADH vs DI (endocrine view)
+
+Source: CDC isolation precautions, 2007.
 
 | | **SIADH** | **DI** |
 | --- | --- | --- |
@@ -200,6 +266,8 @@ Triggers for SIADH: CNS injury, small-cell lung cancer, some meds. DI: head trau
 
 ### Remember this
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → watch UOP and CSF leak cues.
 
 ---
@@ -208,7 +276,11 @@ SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → wa
 
 ## Clinical judgment vignettes — endocrine deepening
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Vignette A — Hypoglycemia at the desk
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 **Stem:** T1D client diaphoretic, shaky, BG 54, can swallow.
 
@@ -216,11 +288,15 @@ SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → wa
 
 ### Vignette B — DKA vs HHS sorting
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 **Stem:** BG 620; one client young with Kussmaul + ketones + pH 7.1; another older with BG 900, profound dehydration, minimal ketones.
 
 **Action:** Both need ABCs + fluids per protocol; DKA emphasizes insulin + K⁺ vigilance with acidosis; HHS emphasizes profound fluid resuscitation and osmolarity — don’t memorize cookbook doses; know the pattern differences.
 
 ### Vignette C — Post-thyroidectomy
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 **Stem:** Neck swelling, stridor, anxiety after thyroidectomy.
 
@@ -228,11 +304,15 @@ SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → wa
 
 ### Teaching expansion — sick days & feet
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 - Sick days: never stop insulin blindly; check BG/ketones; sip fluids; call if vomiting/persistent highs.
 - Feet: daily inspection, closed shoes, podiatry for nails if neuropathy, report nonhealing ulcers.
 - Steroid teaching: taper; infection risk; glucose rise; medical ID for adrenal insufficiency.
 
 ### Extra concept checks
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 **Q7.** Somogyi vs dawn — which statement is correct?
 A. Both are treated by blindly increasing night insulin without data
@@ -245,6 +325,8 @@ D. Stop all basal insulin forever
 ---
 
 ## Topic deepening — thyroid, adrenal, SIADH/DI tables
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | Disorder | Glucose/BP/Na pattern | Nurse hooks |
 | --- | --- | --- |
@@ -259,15 +341,21 @@ D. Stop all basal insulin forever
 
 ### Red flags callout
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 > **Red flag:** Adrenal crisis — refractory shock + hyponatremia/hyperkalemia history of steroid stop.
 > **Red flag:** Post-op thyroid — stridor/hematoma.
 > **Red flag:** Na⁺ falling fast in SIADH — seizure risk; correct carefully per protocol (over-rapid Na rise also dangerous).
 
 ### Medication highlights
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 Insulin peaks; metformin hold around contrast per protocol; levothyroxine AM empty stomach; hydrocortisone stress dosing teaching for Addison; desmopressin for DI; methimazole/PTU liver/agranulocytosis key points.
 
 ## Concept check
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 **Q1.** Client on insulin is sweaty, shaky, and confused. Glucose 52 mg/dL. First action if able to swallow?
 A. Give 15 g fast-acting carbohydrate per protocol and recheck
@@ -317,6 +405,8 @@ D. Avoid medical ID to reduce stigma
 ---
 
 ## Chapter Remember this
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Hypo kills fast — treat.
 - DKA vs HHS: ketones/acidosis vs profound hyperosmolar dehydration.
