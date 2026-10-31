@@ -18,9 +18,12 @@ export async function GET(
   const authResult = await requirePanceFeedApi();
   if (!authResult.ok) return authResult.response;
   const card = getStudyFeedCard(board.exam, id);
-  const svg = card ? loadStudyFeedSvg(board.exam, id) : null;
-  if (!card || !svg) {
+  if (!card) {
     return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
   }
-  return NextResponse.json({ ...card, svg }, { headers: privateFeedHeaders });
+  // A missing graphic is a text-only card, not a missing card. Returning 404
+  // made the feed request a broken image for every NCLEX and NAPLEX card
+  // that has no svg file.
+  const svg = loadStudyFeedSvg(board.exam, id);
+  return NextResponse.json({ ...card, svg: svg ?? null }, { headers: privateFeedHeaders });
 }

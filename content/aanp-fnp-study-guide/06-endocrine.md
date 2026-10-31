@@ -1,12 +1,12 @@
 # Chapter 6 — Endocrine
 
-> **Study aid only.** Primary-care endocrine themes for AANP FNP exam judgment — not individualized care. Verify ADA/AACE-aligned diabetes guidance, thyroid guidelines, and drug labels. Teaching themes only.
+> **Study aid only.** Primary-care endocrine themes for AANP FNP exam judgment — not individualized care. Verify ADA/AACE-aligned diabetes guidance, thyroid guidelines, and drug labels. Thresholds below name the guideline and year.
 
-![Diabetes comorbidity-driven stepwise themes](visuals/diabetes-stepwise-themes.jpg)
+![Diabetes comorbidity-driven stepwise themes](visuals/diabetes-stepwise-themes.svg)
 
-![Thyroid hypo vs hyper](visuals/thyroid-hypo-hyper.jpg)
+![Thyroid hypo vs hyper](visuals/thyroid-hypo-hyper.svg)
 
-![Obesity counseling frame](visuals/obesity-counseling-frame.jpg)
+![Obesity counseling frame](visuals/obesity-counseling-frame.svg)
 
 ---
 
@@ -16,7 +16,7 @@
 
 You’ll **Assess** symptoms and SDoH, **Diagnose** T2DM vs others, **Plan** comorbidity-driven therapy (not “A1c-only”), and **Evaluate** hypoglycemia risk, labs, and adherence.
 
-**Pair with practice:** Drill endocrine items, tag age band + ADPE. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** Drill endocrine items, tag age band + ADPE.
 
 ---
 
@@ -41,9 +41,9 @@ You’ll **Assess** symptoms and SDoH, **Diagnose** T2DM vs others, **Plan** com
 
 Often silent until screening. Classic: polyuria, polydipsia, blurry vision, yeast infections, fatigue. Older adults may present with dehydration, falls, or confusion.
 
-### Diagnostic themes (verify current ADA-style criteria)
+### Diagnostic themes (ADA Standards of Care 2026-style criteria)
 
-| Test | Diagnostic vibe (confirm current cutoffs) |
+| Test | Diagnostic pattern |
 | --- | --- |
 | A1c | ≥6.5% theme (lab NGSP-certified) |
 | Fasting glucose | ≥126 mg/dL theme |
@@ -70,7 +70,7 @@ T1DM / LADA · drug-induced (steroids) · pancreatic disease · monogenic rare �
 
 A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some meds, baseline foot exam, retinopathy referral timing per guidance.
 
-### Plan themes (verify current ADA Standards)
+### Plan themes (ADA Standards of Care 2026 Standards)
 
 1. **Lifestyle** always: nutrition pattern, activity, sleep, tobacco.  
 2. **Metformin** remains common foundational theme if tolerated/eGFR allows — **AnyExamEasy dosing rule (based on FDA labeling and KDIGO)**:
@@ -81,7 +81,7 @@ A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some
 | **30–44** | Do **not** start; if already on metformin, **halve the dose** (maximum **1,000 mg/day**) |
 | **&lt;30** | **Discontinue** |
 
-3. **Comorbidity-driven add-ons:** ASCVD / HF / CKD → SGLT2 and/or GLP-1 RA themes often preferred regardless of A1c in modern paradigms — **verify current**.  
+3. **Comorbidity-driven add-ons:** ASCVD / HF / CKD → SGLT2 and/or GLP-1 RA themes often preferred regardless of A1c in modern paradigms — **follow**.  
 4. Insulin when catabolic, severe hyperglycemia, or not at goal on orals/GLP-1 — teach hypo.  
 5. BP and statin risk reduction are part of diabetes Plan.  
 6. Vaccines; dental; depression screen.
@@ -182,7 +182,7 @@ Low TSH + high FT4/T3 themes. Radioiodine uptake/scan via specialty for etiology
 
 ### Plan / refer
 
-Beta blocker symptom control themes if no contraindication. Antithyroid drugs / RAI / surgery — specialty. Avoid empiric reckless PTU/methimazole without plan (hepatotoxicity/agranulocytosis teaching themes).
+Beta blocker symptom control themes if no contraindication. Antithyroid drugs / RAI / surgery — specialty. Avoid empiric reckless PTU/methimazole without plan (hepatotoxicity/agranulocytosis key points).
 
 > **MUST KNOW** — Thyroid storm (fever, AMS, tachyarrhythmia) → ED.
 
@@ -324,11 +324,11 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 
 ## Remember this
 
-> **HIGHLIGHT** — SGLT2/GLP-1 changed the diabetes playbook — verify current ADA Standards annually.
+> **HIGHLIGHT** — SGLT2/GLP-1 changed the diabetes playbook — ADA Standards of Care 2026 Standards annually.
 
 > **MUST KNOW** — Unstable endocrine emergencies leave the clinic.
 
-**Practice endocrine ADPE items** on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Practice endocrine ADPE items** on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -348,7 +348,7 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 
 **1.** T2DM + HFrEF — preferred add-on theme family?  
 A. TZD  B. SGLT2 inhibitor themes  C. High-dose SU  D. Stop all meds  
-**Answer:** B (verify current).
+**Answer:** B.
 
 **2.** Frail elder A1c 6.3% on SU with hypo symptoms — best move?  
 A. Add more SU  B. Deintensify / stop SU; prioritize safety  C. Ignore  D. Start TZD for HF  
@@ -358,12 +358,11 @@ A. Add more SU  B. Deintensify / stop SU; prioritize safety  C. Ignore  D. Start
 A. Oral levo and follow up in 8 weeks  B. ED  C. Iodine supplements only  D. PTU  
 **Answer:** B.
 
-
 ## Deep therapeutics — choosing among diabetes tools
 
 **Takeaway: Ask “What organ are we protecting?” before “What drops A1c fastest?”**
 
-### Decision card (teaching themes — verify ADA Standards yearly)
+### Decision card (key points — verify ADA Standards yearly)
 
 | Patient picture | Lean toward |
 | --- | --- |
@@ -391,7 +390,6 @@ A. Oral levo and follow up in 8 weeks  B. ED  C. Iodine supplements only  D. PTU
 - [ ] When to escalate  
 - [ ] Caregiver taught in older adults  
 
-
 ## Lipid & BP as endocrine “co-travelers”
 
 Diabetes Plan without BP/statin talk is incomplete on exams.
@@ -399,7 +397,6 @@ Diabetes Plan without BP/statin talk is incomplete on exams.
 > **HIGHLIGHT** — Many diabetes mortality benefits historically came from BP + statin + smoking cessation, not only glucose cosmetics.
 
 > **LIFESPAN** — Older adults still benefit from statin in secondary prevention; primary prevention is shared decision if frailty dominates.
-
 
 ## Nodules & calcium (quick primary-care lane)
 
@@ -410,10 +407,9 @@ Diabetes Plan without BP/statin talk is incomplete on exams.
 > **MUST KNOW** — Don’t ignore corrected calcium extremes — arrhythmia and crisis risk.
 
 #### Critical checklist — nodule/calcium
-- [ ] TSH before nuclear toys in nodules  
+- [ ] TSH before scintigraphy of a thyroid nodule. A low TSH is scanned. A normal or high TSH goes to ultrasound.  
 - [ ] Urgency if compressive symptoms  
 - [ ] Severe hyperCa → ED  
-
 
 ## Additional vignette 4 — Steroid-induced hyperglycemia
 
@@ -428,7 +424,6 @@ Diabetes Plan without BP/statin talk is incomplete on exams.
 
 > **TRAP** — Blaming “noncompliance” when steroids are the driver.
 
-
 ## Additional vignette 5 — Suspected adrenal crisis
 
 **Stem:** 45-year-old chronic prednisone for autoimmune disease ran out 3 days ago; now vomiting, BP 86/50, glucose 60.
@@ -442,12 +437,10 @@ Diabetes Plan without BP/statin talk is incomplete on exams.
 
 > **MUST KNOW** — Adrenal crisis is an emergency — clinic oral refill alone is not enough when unstable.
 
-
 > **HIGHLIGHT** — Re-read the MUST KNOW boxes the night before the exam; they are your sprint sheet.
 
 ### Micro-drill
 Cover the answers and recite: first move, can’t-miss diagnosis, lifespan twist, and one trap for each topic above.
-
 
 ## Endocrine FAQ-style exam drills
 
@@ -468,9 +461,7 @@ A: Both — meds adjunct when indicated, not moral replacement for behavioral ca
 
 > **HIGHLIGHT** — Write three remember-this lines after every endocrine practice set: one drug safety, one emergency disposition, one lifespan twist.
 
-
 ---
-
 
 ---
 
@@ -526,12 +517,11 @@ Fall prevention is therapy. Weight-bearing activity as tolerated. Smoking cessat
 - [ ] Steroid / adrenal crisis awareness  
 - [ ] Obesity as chronic disease, not willpower lecture
 
-
 ---
 
 ## Integrated multimorbidity mini-case (Older Adult 30%)
 
-**Stem vibe:** 78-year-old with T2DM (A1c 6.4% on glipizide), CKD stage 3, HF history, BMI 28, daughter reports afternoon confusion and a recent ground-level fall. Home glucose log shows 55 mg/dL before dinner twice this week.
+**Practice stem:** 78-year-old with T2DM (A1c 6.4% on glipizide), CKD stage 3, HF history, BMI 28, daughter reports afternoon confusion and a recent ground-level fall. Home glucose log shows 55 mg/dL before dinner twice this week.
 
 **ADPE compressed:** Assess hypo symptoms, falls, renal function, meal timing, vision for meter use. Diagnose iatrogenic hypoglycemia from SU in a frail older adult near “too tight” control. Plan: stop/reduce SU; simplify; consider cardiorenal agents if eligible and tolerated; liberalize A1c target per frailty; fall precautions; teach hypo treatment. Evaluate: close call follow-up, meter review, caregiver teach-back.
 

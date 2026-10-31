@@ -18,6 +18,6 @@
 
 **Practice scores are not PANCE scores.** Watch trends: fewer misreads, stronger big systems, steady 1-minute pace.
 
-> **Make practice stick.** Drill on [AnyExamEasy](/practice/pance). Start free; $27.99/mo after trial (trial terms on site).
+> **Make practice stick.** Drill on [AnyExamEasy](/practice/pance).
 
 ---

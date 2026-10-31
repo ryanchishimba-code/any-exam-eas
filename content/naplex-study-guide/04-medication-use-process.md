@@ -2,9 +2,9 @@
 
 > **Study aid only.** Domain 2 themes (~25%). Process safety for exam prep — follow employer policy and current law/standards in practice.
 
-![Medication use process pipeline](visuals/med-use-process-pipeline.jpg)
+![Medication use process pipeline](visuals/med-use-process-pipeline.svg)
 
-![Immunization screening checklist graphic](visuals/immunization-screening.jpg)
+![Immunization screening checklist graphic](visuals/immunization-screening.svg)
 
 ---
 
@@ -70,7 +70,7 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 - DAW codes / substitution themes (therapeutic vs generic equivalence concepts)  
 - Orange Book AB ratings conceptual awareness  
 - Narrow therapeutic index substitution caution themes  
-- Biosimilars: naming and interchangeability concepts (verify current FDA framing)  
+- Biosimilars: naming and interchangeability concepts  
 - Packaging: unit dose, child-resistant containers, compliance packaging  
 - Beyond-use dating on reconstituted products; auxiliary labels that matter (shake, refrigerate, take with food)
 
@@ -96,7 +96,7 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 ### Assessment cues
 
 - Pregnancy, immunocompromise, recent blood products (live vaccine timing themes)  
-- Prior Guillain-Barré or severe allergy to components — follow current ACIP-style caution framing (verify current schedules)  
+- Prior Guillain-Barré or severe allergy to components — follow current ACIP-style caution framing  
 - Moderate–severe acute illness may defer some vaccines; mild cold usually does not
 
 ### Pharmacist immunization workflow
@@ -236,7 +236,6 @@ A. Hair loss only  B. Severe neutropenia / ANC monitoring framework  C. Cough  D
 A. Ignoring barcodes  B. Dual identifiers + verify before act  C. Relying on room number alone  D. Disabling all alerts forever  
 **Answer:** B.
 
-
 ---
 
 ## Topic J — Independent double-checks & high-alert workflow
@@ -277,7 +276,7 @@ Leadership (Domain 5 crossover): protect sterile compounding and final verificat
 - Pregnancy (live vaccines generally avoided)  
 - Recent illness severity  
 - History of Guillain-Barré timing themes for certain vaccines (follow current ACIP)  
-- Age/indication mismatch (zoster, pneumococcal product choice themes — verify current schedules)
+- Age/indication mismatch (zoster, pneumococcal product choice themes
 
 ### Documentation essentials
 
@@ -312,7 +311,6 @@ Epinephrine IM first-line; call emergency services; protocols for observation an
 - Domain 2 rewards careful process more than trivia brand names.  
 - Incomplete order → clarify, don’t guess.  
 - Immunizations and high-alert workflows are core pharmacist identity skills on NAPLEX.
-
 
 ---
 

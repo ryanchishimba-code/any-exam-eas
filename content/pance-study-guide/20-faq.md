@@ -19,6 +19,6 @@ Up to six times within six years. You can test once every 90 days, and no more t
 PANCE is your first certification after PA school. PANRE and PANRE-LA are recertification options for certified PAs. PANRE is a single test-center exam. PANRE-LA is answered online over several quarters.
 
 ### Can AnyExamEasy help me prepare for PANCE?
-Yes. AnyExamEasy offers exam-style PANCE questions, rationales, Blueprint Roadmaps, and full mocks, plus other boards in one login. Start free; $27.99/mo after trial; trial terms on site. We are independent and not affiliated with NCCPA.
+Yes. AnyExamEasy offers exam-style PANCE questions, rationales, Blueprint Roadmaps, and full mocks, plus other boards in one login. We are independent and not affiliated with NCCPA.
 
 ---

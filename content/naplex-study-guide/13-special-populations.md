@@ -2,11 +2,11 @@
 
 > **Study aid only.** Pediatrics, geriatrics, and pregnancy/lactation require specialized references (e.g., labeling, LactMed-style resources, Beers). Verify before clinical use.
 
-![Pediatric dosing safety checklist](visuals/peds-dosing-safety.jpg)
+![Pediatric dosing safety checklist](visuals/peds-dosing-safety.svg)
 
-![Beers criteria high-risk classes icons](visuals/beers-high-risk-classes.jpg)
+![Beers criteria high-risk classes icons](visuals/beers-high-risk-classes.svg)
 
-![Pregnancy lactation risk counseling frame](visuals/pregnancy-lactation-frame.jpg)
+![Pregnancy lactation risk counseling frame](visuals/pregnancy-lactation-frame.svg)
 
 ---
 
@@ -93,7 +93,7 @@ Special-population stems punish “adult default” dosing. You must adjust for 
 
 - Risk–benefit always; untreated disease also harms (e.g., uncontrolled epilepsy, depression, diabetes, hypertension).  
 - Known teratogen themes: ACEI/ARB, warfarin (nuance with mechanical valves specialty care), valproate, isotretinoin (iPLEDGE), methotrexate, mycophenolate, live vaccines, tetracyclines, thalidomide class, high-dose vitamin A themes.  
-- Preferred safer themes exist for many conditions (e.g., labetalol/nifedipine/methyldopa historically for HTN; insulin for diabetes; certain SSRIs preferred over others) — verify current Ob guidance.  
+- Preferred safer themes exist for many conditions (e.g., labetalol/nifedipine/methyldopa historically for HTN; insulin for diabetes; certain SSRIs preferred over others).  
 - Lactation: preferential agents with published data; counsel timing around feeds when relevant; pump-and-dump rarely needed blanket advice — be drug-specific (LactMed-style).  
 - Prenatal vitamins / folic acid for neural tube prevention (higher dose themes with some ASMs).  
 - NVP (nausea): lifestyle; doxylamine/pyridoxine themes; refer hyperemesis.
@@ -181,7 +181,6 @@ A. Preferred always  B. Restricted/avoid themes due to UM respiratory depression
 A. Always pump-and-dump all drugs  B. Drug-specific reference + risk/benefit  C. Guess based on taste  D. Stop breastfeeding for any Rx forever  
 **Answer:** B.
 
-
 ---
 
 ## Topic F — Pediatric vaccines & fever after shots
@@ -194,7 +193,7 @@ Counsel expected fussiness/low fever after vaccines; APAP/ibuprofen for comfort 
 - Avoid OTC cough/cold in very young per labels.  
 - Ceftriaxone + calcium IV incompatibility in neonates.  
 - Gasping syndrome themes with large benzyl alcohol exposures historically — compounding awareness.  
-- RSV immunoprophylaxis/vaccine landscape evolving — verify current ACIP/AAP themes when studying.
+- RSV immunoprophylaxis/vaccine landscape evolving.
 
 ---
 
@@ -217,7 +216,7 @@ Sedatives, anticholinergics, hypoglycemics, antihypertensives causing orthostasi
 
 ## Topic H — Pregnancy disease treatment principles
 
-| Condition | Judgment vibe |
+| Condition | Judgment pattern |
 | --- | --- |
 | HTN | Avoid ACEI/ARB; use pregnancy-preferred agents |
 | Diabetes | Insulin classic foundation; tight enough for fetus without severe hypo |
@@ -225,7 +224,7 @@ Sedatives, anticholinergics, hypoglycemics, antihypertensives causing orthostasi
 | Depression | Don’t leave severe disease untreated; agent selection careful |
 | Epilepsy | Optimize ASM; folate; avoid valproate when feasible |
 | VTE | LMWH themes often preferred over warfarin/DOAC |
-| Hyperthyroid | PTU/MMI trimester nuances — verify current |
+| Hyperthyroid | PTU/MMI trimester nuances
 
 Lactation: choose drugs with published infant safety data; observe infant for sedation/GI; time feeds if peak matters; coordinate with pediatrician for premature/fragile infants.
 
@@ -242,8 +241,7 @@ Lactation: choose drugs with published infant safety data; observe infant for se
 - kg × concentration × teach-back for kids.  
 - Beers + falls + anticholinergic burden for elders.  
 - Teratogen avoidance + treat the mother for pregnancy.  
-- Lactation answers are drug-specific, not vibes.
-
+- Lactation answers are drug-specific, not patterns.
 
 ---
 
@@ -263,7 +261,6 @@ GLP-1/dual agonists for weight: titration against GI effects; gallbladder/pancre
 
 Adult tablet for neonate; Beers diphenhydramine for sleep; ACEI continued after positive pregnancy test; household spoon dosing; codeine for kids; NSAIDs late pregnancy; ignoring lactation references; stopping ASM abruptly in pregnancy out of fear.
 
-
 ---
 
 ## Topic K — Concept check expansion answers explained
@@ -281,7 +278,6 @@ Oral syringes prevent household-spoon errors that cause 2–3× dosing swings. A
 
 Special populations are where “usual dose” becomes unsafe. Slow down, calculate, reference, and teach back.
 
-
 ---
 
 ## Topic L — Bridging pediatrics to adult care
@@ -289,7 +285,6 @@ Special populations are where “usual dose” becomes unsafe. Slow down, calcul
 When adolescents with asthma, diabetes, epilepsy, or transplant move to college, pharmacists help with refill logistics, medical ID, emergency plans, and alcohol interaction counseling. Encourage shared calendars for ASMs and insulin. For geriatric spouses caregiving for each other, simplify regimens and watch caregiver burnout affecting adherence.
 
 Pregnancy intention screening before teratogens (isotretinoin, MTX, mycophenolate, valproate, ACEI) is a professional obligation—document and follow REMS when applicable. Offer contraception access compassionately.
-
 
 Always verify pediatric max doses, Beers updates, pregnancy/lactation references, and REMS elements with current official sources before applying any study-aid pattern to real patients.
 

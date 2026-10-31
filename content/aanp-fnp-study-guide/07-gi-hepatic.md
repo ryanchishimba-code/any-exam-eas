@@ -1,14 +1,12 @@
 # Chapter 7 — GI / Hepatic
 
-> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Verify current guidelines, USPSTF/ACIP when relevant, and drug labels. Teaching themes only where drugs appear. Independent of NPCB/AANP.
+> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Follow guidelines, USPSTF/ACIP when relevant, and drug labels. Drug choices below name the guideline and year. Independent of NPCB/AANP.
 
 ---
 
 ## Why this chapter matters
 
 **Abdominal pain, reflux, liver tests, and GI bleeding cues cut across Young Adult* (including prenatal), Middle Adult, and Older Adult (30%). Domain I grades whether you catch surgical emergencies and choose the right first test.**
-
-Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -39,8 +37,6 @@ Heartburn, regurgitation, epigastric pain. Alarm: weight loss, anemia, dysphagia
 | H. pylori testing | Dyspepsia pathways when indicated |
 | Endoscopy | Alarms / failure / high-risk |
 
-
-
 > **MUST KNOW** — Dysphagia, GI bleeding, progressive weight loss → investigate — don’t chronic-PPI and pray.
 
 > **HIGHLIGHT** — Deprescribe PPI when indication gone — older adults: infection/fracture/malabsorption themes discussed in literature.
@@ -69,8 +65,6 @@ Coffee-ground emesis, melena, hematochezia with instability, syncope, peritoniti
 | Stop NSAIDs if possible | Resuscitation pathway |
 | PPI per guidance | Don’t outpatient “observe melena” |
 
-
-
 > **MUST KNOW** — Active GI bleeding with instability → ED.
 
 > **TRAP** — Starting anticoagulation without asking about black stools.
@@ -86,7 +80,7 @@ Coffee-ground emesis, melena, hematochezia with instability, syncope, peritoniti
 
 **Takeaway: IBS is diagnosis of pattern + limited red-flag workup; IBD needs timely GI referral.**
 
-| Feature | IBS vibe | IBD vibe |
+| Feature | IBS pattern | IBD pattern |
 | --- | --- | --- |
 | Night symptoms / blood | Less | More concerning |
 | Weight loss / fever | No | Yes concerning |
@@ -94,8 +88,6 @@ Coffee-ground emesis, melena, hematochezia with instability, syncope, peritoniti
 | Pain relieved by stool, years of stability | IBS possible | Still screen alarms |
 
 Rome-style pattern recognition helps but **alarms override**.
-
-
 
 > **HIGHLIGHT** — Normalize IBS; don’t CT every flare without indication.
 
@@ -112,7 +104,7 @@ Rome-style pattern recognition helps but **alarms override**.
 
 **Takeaway: Pattern first: hepatocellular vs cholestatic vs mixed — then etiology.**
 
-| Pattern | Labs vibe | Think |
+| Pattern | Labs pattern | Think |
 | --- | --- | --- |
 | Hepatocellular | ALT/AST dominant | Viral, toxin/alcohol, ischemic, autoimmune |
 | Cholestatic | Alk phos/GGT/bili | Obstruction, drug, PBC themes |
@@ -121,8 +113,6 @@ Rome-style pattern recognition helps but **alarms override**.
 Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantification; NAFLD in metabolic syndrome.
 
 > **MUST KNOW** — Acetaminophen toxicity and acute liver failure themes → ED.
-
-
 
 > **LIFESPAN** — Pregnancy: HELLP/AFLP lanes — Ob emergency, not ‘NAFLD’.
 
@@ -146,8 +136,6 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 | Diffuse + rigid | Perforation/peritonitis |
 | Pelvic + YA* | Ectopic/torsion |
 
-
-
 > **MUST KNOW** — Peritonitis / unstable abd pain → ED — not oral abx trial at home alone.
 
 > **LIFESPAN** — Older Adult: appendicitis atypical; diverticulitis rises. Child: intussusception/appendicitis lanes.
@@ -157,7 +145,6 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 - [ ] Pregnancy test when relevant
 - [ ] Peritoneal signs → ED
 - [ ] Age-appropriate diverticulitis/appendicitis priors
-
 
 ---
 
@@ -233,13 +220,11 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 - [ ] Can’t-miss named
 - [ ] Evaluate/follow-up planned
 
+![Abdominal pain quadrants](visuals/abdominal-pain-quadrants.svg)
 
-![Abdominal pain quadrants](visuals/abdominal-pain-quadrants.jpg)
+![LFT pattern cards](visuals/lft-pattern-cards.svg)
 
-![LFT pattern cards](visuals/lft-pattern-cards.jpg)
-
-![IBS vs IBD cues](visuals/ibs-vs-ibd-cues.jpg)
-
+![IBS vs IBD cues](visuals/ibs-vs-ibd-cues.svg)
 
 ---
 
@@ -261,10 +246,9 @@ Acute hep A/B/C testing when indicated; acetaminophen history; alcohol quantific
 - [ ] MUST KNOW emergencies dispositioned to ED  
 - [ ] Lifespan twist applied  
 - [ ] Teach-back / Evaluate plan stated  
-- [ ] Verify current guidelines before clinical use  
+- [ ] Follow guidelines before clinical use  
 
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
-
+**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
 
 ---
 
@@ -302,7 +286,7 @@ BMI, waist, diabetes, lipids, alcohol (honest quantification), meds (amiodarone,
 
 ### Diagnose lane
 
-NAFLD/MASLD themes vs alcohol-associated liver disease vs viral vs drug. Fibrosis risk tools / elastography referral when indicated (verify current hepatology pathways). Don’t label every ALT 45 as “normal for them” without metabolic Plan.
+NAFLD/MASLD themes vs alcohol-associated liver disease vs viral vs drug. Fibrosis risk tools / elastography referral when indicated. Don’t label every ALT 45 as “normal for them” without metabolic Plan.
 
 ### Plan
 
@@ -374,14 +358,13 @@ Hemorrhoids vs fissure vs cancer worry: **rectal bleeding still needs age-approp
 - [ ] IBD alarms vs IBS  
 - [ ] Acetaminophen ceiling teaching
 
-
 ---
 
 ## Topic A+ — GERD/dyspepsia depth (workup & deprescribing)
 
 ### Assess details that change Plan
 
-Timing (postprandial vs nocturnal), dysphagia map (solids only vs solids+liquids), NSAID/ASA/anticoag stack, *H. pylori* risk, Barrett risk factors (chronic GERD, age, male, smoking, central obesity — verify referral thresholds), red-flag weight loss measured on scale not vibes.
+Timing (postprandial vs nocturnal), dysphagia map (solids only vs solids+liquids), NSAID/ASA/anticoag stack, *H. pylori* risk, Barrett risk factors (chronic GERD, age, male, smoking, central obesity — verify referral thresholds), red-flag weight loss measured on scale not patterns.
 
 ### Plan ladder themes
 
@@ -485,12 +468,12 @@ Know vaccines before immunosuppression, infection vigilance, skin cancer counsel
 
 ## Remember this — GI
 
-- Pattern LFTs before shotgun serologies.  
+- Characterize the liver-test pattern before ordering a broad serology panel.  
 - Alarms override IBS labels.  
 - Acetaminophen totals include combo cold products.  
 - Prenatal RUQ + HTN ≠ routine fatty meal colic.
 
-**Practice:** [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Practice:** [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -530,18 +513,18 @@ Carnett’s sign themes help separate wall pain from visceral. Hernia incarcerat
 
 ## Integrated Older Adult GI mini-case
 
-**Stem vibe:** 81-year-old on ASA + apixaban + intermittent ibuprofen, new epigastric pain, Hb drop 2 g, guaiac positive, orthostatic.
+**Practice stem:** 81-year-old on ASA + apixaban + intermittent ibuprofen, new epigastric pain, Hb drop 2 g, guaiac positive, orthostatic.
 
 **ADPE:** Unstable bleed risk → ED. Later deprescribe NSAID, revisit gastroprotection, anticoag restart with specialty, H. pylori testing when appropriate, teach melena precautions.
 
 ---
 
-## Topic P — GI pharmacology safety board (teaching themes)
+## Topic P — GI pharmacology safety board (key points)
 
 | Theme | Exam hook |
 | --- | --- |
 | Chronic PPI | Deprescribe when indication unclear; interaction/absorption conversations |
-| Clopidogrel + omeprazole | CYP interaction themes historically discussed — verify current guidance |
+| Clopidogrel + omeprazole | CYP interaction themes historically discussed
 | Lactulose / rifaximin | Hepatic encephalopathy Plan awareness with GI/hepatology |
 | Mesalamine / thiopurines / biologics | IBD — infection screen/vaccines before immuno suppression |
 | Loperamide | Avoid in bloody/toxic colitis; high-dose misuse cardiac risk awareness |

@@ -2,7 +2,7 @@
 
 > **Study aid only.** Lab ranges vary by laboratory and population. Use as a memory scaffold — confirm with your program’s accepted ranges and current clinical sources.
 
-![Labs danger-zone dashboard](visuals/labs-danger-zones.jpg)
+![Labs danger-zone dashboard](visuals/labs-danger-zones.svg)
 
 ---
 
@@ -17,7 +17,7 @@
 
 **Tie-breakers:** acute > chronic · unstable > stable · unexpected > expected · actual > risk (when acuity otherwise similar)
 
-![ABC priority order](visuals/priority-abcs.jpg)
+![ABC priority order](visuals/priority-abcs.svg)
 
 ---
 
@@ -33,7 +33,7 @@
 
 \*Follow current facility/CDC-aligned practice.
 
-![Isolation quick card](visuals/isolation-ppe-matrix.jpg)
+![Isolation quick card](visuals/isolation-ppe-matrix.svg)
 
 ---
 
@@ -71,7 +71,7 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 **Keep:** “Tell me more.” “This is difficult.” “What concerns you most?” reflection, silence, clarification, open-ended.  
 **Kill:** “Don’t worry.” “Why did you…” “You should…” “Everyone feels that way.” judgment, false reassurance, changing subject, advising abruptly.
 
-![Therapeutic communication](visuals/therapeutic-communication.jpg)
+![Therapeutic communication](visuals/therapeutic-communication.svg)
 
 ---
 
@@ -83,7 +83,7 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 
 Five rights: task, circumstance, person, direction, supervision.
 
-![Delegation five rights](visuals/delegation-five-rights.jpg)
+![Delegation five rights](visuals/delegation-five-rights.svg)
 
 ---
 
@@ -154,7 +154,7 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 ## Antidote & high-alert flash
 
-| Problem | Antidote / action vibe |
+| Problem | Antidote / action pattern |
 | --- | --- |
 | Opioid OD | Naloxone |
 | Mag toxicity | Calcium gluconate |
@@ -173,7 +173,7 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 ## Fetal monitoring & maternity flash
 
-| Pattern | Action vibe |
+| Pattern | Action |
 | --- | --- |
 | Late decels | Stop Pitocin per protocol, left lateral, O₂, notify |
 | Variables | Reposition ± amnioinfusion as ordered |
@@ -227,4 +227,4 @@ Practice this aloud on every case study — even when the item format differs.
 - Official rules live in NCSBN documents — this sheet is a study aid.  
 - Soft CTA only: practice the flashes in a Qbank when ready.
 
-> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.
+> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.

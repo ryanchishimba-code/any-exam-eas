@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="362" viewBox="0 0 420 362" role="img" aria-label="Medication-use process">
+<title>Medication-use process</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Medication-use process</text>
+<rect x="24" y="70" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Prescribe, transcribe, dispense,</text>
+<text x="36" y="114" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">administer, monitor.</text>
+<rect x="24" y="138" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="160" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Reconciliation at every transition.</text>
+<rect x="24" y="184" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="206" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">A high-alert drug gets an independent</text>
+<text x="36" y="228" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">check where the facility requires it.</text>
+<rect x="24" y="252" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="274" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Counsel before the patient leaves with a</text>
+<text x="36" y="296" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">new medicine.</text>
+<text x="28" y="328" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">NAPLEX Domain 2</text>
+</svg>

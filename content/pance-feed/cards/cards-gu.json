@@ -57,7 +57,7 @@
     "id": "pance-196",
     "system": "Genitourinary",
     "blueprint_weight": "4%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Acute scrotum exam: what do the cremasteric reflex, Prehn sign, transillumination and a 'bag of worms' tell you?",
     "bottom": "Absent cremasteric reflex suggests torsion; light shines through a hydrocele.",
     "bullets": {
@@ -138,23 +138,23 @@
     "id": "pance-199",
     "system": "Genitourinary",
     "blueprint_weight": "4%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Man with erectile dysfunction: first-line drug, a key contraindication, and what else does ED signal?",
-    "bottom": "PDE-5 inhibitor first; nitrates are contraindicated.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Why can a nitrate plus a PDE-5 inhibitor drop blood pressure?",
+    "bottom": "Both raise cGMP in vascular smooth muscle, so the effect stacks.",
     "bullets": {
-      "clue": "ED can precede coronary disease: assess cardiovascular risk.",
-      "treat": "Sildenafil, tadalafil, vardenafil; testosterone only if deficient.",
-      "trap": "No nitrates within 24 h (48 h for tadalafil)."
+      "clue": "Nitric oxide activates guanylate cyclase. PDE-5 breaks cGMP down.",
+      "treat": "Do not combine nitrates with sildenafil, tadalafil, or vardenafil.",
+      "trap": "The washout depends on which PDE-5 inhibitor was taken."
     },
-    "back": "PDE-5 inhibitor first; nitrates are contraindicated. Key clue: ED can precede coronary disease: assess cardiovascular risk. First-line: Sildenafil, tadalafil, vardenafil; testosterone only if deficient. Exam trap: No nitrates within 24 h (48 h for tadalafil).",
-    "word_count": 35,
+    "back": "Both raise cGMP in vascular smooth muscle, so the effect stacks. Key clue: Nitric oxide activates guanylate cyclase. PDE-5 breaks cGMP down. First-line: Do not combine nitrates with sildenafil, tadalafil, or vardenafil. Exam trap: The washout depends on which PDE-5 inhibitor was taken.",
+    "word_count": 43,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-199.svg",
-      "alt": "Erectile dysfunction: PDE-5 inhibitors first-line; contraindicated with nitrates; erectile dysfunction can signal cardiovascular disease."
+      "alt": "Both raise cGMP in vascular smooth muscle, so the effect stacks."
     },
     "source": {
-      "guideline": "The Princeton IV Consensus Recommendations for the Management of Erectile Dysfunction and Cardiovascular Disease",
+      "guideline": "FDA Prescribing Information for PDE-5 inhibitors",
       "year": "2024",
       "url": "https://doi.org/10.1016/j.mayocp.2024.06.002",
       "alt_url": "https://www.auanet.org/guidelines-and-quality/guidelines/erectile-dysfunction-(ed)-guideline",
@@ -165,7 +165,7 @@
     "id": "pance-200",
     "system": "Genitourinary",
     "blueprint_weight": "4%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Fever, dysuria and perineal pain with a tender, boggy prostate: diagnosis, what exam step to avoid, and treatment length?",
     "bottom": "Acute bacterial prostatitis: culture, then weeks of antibiotics.",
     "bullets": {

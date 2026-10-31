@@ -2,9 +2,9 @@
 
 > **Study aid only.** Drug information changes. Verify dosing, interactions, pregnancy/lactation labeling (PLLR risk summaries — the old A/B/C/D/X categories were retired in 2015), and monitoring with current drug references and facility policy. This chapter teaches **patterns**, not prescriptions.
 
-![High-alert medication classes](visuals/high-alert-meds.jpg)
+![High-alert medication classes](visuals/high-alert-meds.svg)
 
-![Insulin peak timeline](visuals/insulin-peak-timeline.jpg)
+![Insulin peak timeline](visuals/insulin-peak-timeline.svg)
 
 ---
 
@@ -65,7 +65,7 @@ High-alert mistakes are rarely “minor.” Slow down.
 
 ## Topic B — Cardiac med class patterns
 
-| Class | Use vibe | Watch for | Teaching / holds |
+| Class | Use pattern | Watch for | Teaching / holds |
 | --- | --- | --- | --- |
 | ACEI (-pril) | HTN, HF, post-MI | Cough, hyperkalemia, angioedema, ↑Cr | Report lip/tongue swelling; avoid K⁺ salt substitutes |
 | ARB (-sartan) | HTN, HF | Hyperkalemia, less cough | Same K⁺ themes; pregnancy avoid |
@@ -109,7 +109,7 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 
 ### Kinetics mindset (examples — verify products)
 
-| Type | Role | Hypo risk window vibe |
+| Type | Role | Hypo risk window pattern |
 | --- | --- | --- |
 | Rapid (lispro/aspart/glulisine) | Meal coverage | ~1 hour peak themes |
 | Regular | Short / IV in DKA protocols | Later than rapid |
@@ -130,7 +130,7 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 - Metformin: GI SE; lactic acidosis risk themes with hypoxia/renal failure/contrast timing per protocol.  
 - Sulfonylureas: hypo risk — especially elderly.  
 - SGLT2: genital infections; euglycemic DKA awareness; volume depletion.  
-- GLP-1 RAs: GI SE; aspiration/peri-op themes evolving — verify current.  
+- GLP-1 RAs: GI SE; aspiration/peri-op themes evolving.  
 - TZDs: edema/HF caution themes.
 
 ### Remember this
@@ -141,7 +141,7 @@ Peak = snack plan. Unconscious hypo → glucagon/IV dextrose per orders. 15-15 r
 
 ## Topic E — Anticoagulants & antiplatelets
 
-| Agent | Monitor vibe | Reversal / notes |
+| Agent | Monitor pattern | Reversal / notes |
 | --- | --- | --- |
 | Heparin (UFH) | aPTT / anti-Xa | Protamine themes; HIT risk |
 | Enoxaparin | Often no routine aPTT; anti-Xa special pops | Renal dosing; air bubble per product teaching |

@@ -60,7 +60,7 @@ If your Qbank shows a weak Domain I process (e.g., Evaluate), deliberately hunt 
 
 ### Can AnyExamEasy help?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Roadmap, and mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. Independent — **not affiliated with NPCB or AANP**. No pass guarantee.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style AANP FNP practice, rationales, Roadmap, and mocks.
 
 ### What if I fail or feel far from ready?
 
@@ -68,7 +68,7 @@ Use your score report (when available) to map weak domains/age bands, then rebui
 
 ### Should I memorize drug doses?
 
-Prefer **class + indication + safety filters + monitoring**. When a stem needs a dose, verify against current labeling/guidelines in real practice. This study aid uses teaching themes, not standing orders. Inventing precise mg values that aren’t in official materials is a waste of scarce memory.
+Prefer **class + indication + safety filters + monitoring**. When a stem needs a dose, verify against current labeling/guidelines in real practice. This study aid uses key points, not standing orders. Inventing precise mg values that aren’t in official materials is a waste of scarce memory.
 
 ---
 
@@ -106,7 +106,7 @@ Confidence is not swagger — it’s pattern recognition you earned with deliber
 
 **AnyExamEasy** pairs this AANP FNP reference book with exam-style practice, rationales, Roadmap, and mocks.
 
-**[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at **$27.99/mo**. Use it to drill weak systems, timed mocks, and rationale review that mirrors the ADPE habits in this book.
+com)** — no payment method. Use it to drill weak systems, timed mocks, and rationale review that mirrors the ADPE habits in this book.
 
 *AANP FNP practice that matches the ADPE judgment this book trains.*
 
@@ -134,4 +134,4 @@ Confidence is not swagger — it’s pattern recognition you earned with deliber
 
 *Always confirm current eligibility, blueprint weights, exam policies, and scheduling rules in the official NPCB Candidate Handbook and FNP materials at [aanpcert.org](https://www.aanpcert.org).*
 
-*© AnyExamEasy. All rights reserved. Pricing shown (5-day free trial, no payment method; then Pro at $27.99/mo) may change — confirm current subscription details on [anyexameasy.com](https://anyexameasy.com).*
+*© AnyExamEasy. All rights reserved.com](https://anyexameasy.com).*

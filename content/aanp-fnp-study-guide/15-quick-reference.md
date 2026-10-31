@@ -1,16 +1,16 @@
 # Chapter 15 — Quick Reference
 
-> **Study aid only.** Pocket sheets for the final sprint — verify the official NPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Teaching themes only.
+> **Study aid only.** Pocket sheets for the final sprint — verify the official NPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Thresholds below name the guideline and year.
 
 ![NPCB Domain I Practice weights: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%](visuals/fnp-domain-i-weights.svg)
 
 ![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal themes](visuals/fnp-domain-ii-age-mix.svg)
 
-![Final sprint calendar](visuals/fnp-final-sprint.jpg)
+![Final sprint calendar](visuals/fnp-final-sprint.svg)
 
-![ADPE one-pager](visuals/adpe-one-pager.jpg)
+![ADPE one-pager](visuals/adpe-one-pager.svg)
 
-![Can’t-miss ED board](visuals/cant-miss-ed-board.jpg)
+![Can’t-miss ED board](visuals/cant-miss-ed-board.svg)
 
 ---
 
@@ -127,7 +127,7 @@
 | **Tetracyclines / fluoroquinolones** | Fetal risk themes |
 | **NSAIDs late pregnancy** | Fetal renal / ductus themes — verify timing |
 | **Live vaccines** | Pregnancy caution (ACIP) |
-| **Statins** | Many stems still treat as avoid — verify current labeling |
+| **Statins** | Many stems still treat as avoid
 | **Misoprostol / other abortifacients** | Obvious — don’t casual-prescribe |
 
 **Also do:** pregnancy test before teratogens and before relevant radiation; Tdap each pregnancy timing themes; influenza vaccine; HIV/syphilis/hep B prenatal screens; ectopic always on board with first-trimester pain/bleeding; MEC for contraception when not pregnant.
@@ -269,7 +269,7 @@ Fix patterns, not only single facts.
 
 ## Soft CTA — last practice sets
 
-Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Independent study aid — not affiliated with NPCB or AANP; no pass guarantee.
+Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExamEasy](https://anyexameasy. Independent study aid — not affiliated with NPCB or AANP; no pass guarantee.
 
 ---
 

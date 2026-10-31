@@ -14,10 +14,7 @@
     "back": "Trends matter; rising HR or RR often comes before a falling BP. Key clue: Rising heart rate, fast breathing, new confusion or low urine output. First-line: Reassess, compare with baseline, and escalate early with the rapid response team. Exam trap: Waiting for hypotension before escalating care.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-149.svg",
-      "alt": "Vital sign trend graph over a shift."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -41,10 +38,7 @@
     "back": "Potassium 3.5 to 5.0; sodium 135 to 145; calcium about 8.5 to 10.5. Key clue: Results outside the range with symptoms or ECG changes. First-line: Recheck to rule out a hemolyzed sample; report critical values promptly. Exam trap: Ignoring a critical value because the client looks stable.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-150.svg",
-      "alt": "Electrolyte normal range table."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -68,10 +62,7 @@
     "back": "Low pH with high PaCO2 is uncompensated respiratory acidosis. Key clue: pH below 7.35 is acidosis; above 7.45 is alkalosis. First-line: Check pH first, then PaCO2 for respiratory, then HCO3 for metabolic. Exam trap: Reading PaCO2 or HCO3 before the pH.",
     "word_count": 41,
     "mnemonic": "ROME: Respiratory Opposite, Metabolic Equal",
-    "diagram": {
-      "file": "svg/nclex-151.svg",
-      "alt": "ROME ABG interpretation arrows."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -122,10 +113,7 @@
     "back": "Start seizure precautions and correct sodium slowly as ordered. Key clue: Confusion, headache or seizures with a low sodium level. First-line: Restrict fluids or give ordered saline; monitor sodium often. Exam trap: Correcting chronic low sodium too fast, which can damage the brain.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-153.svg",
-      "alt": "Sodium correction timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -176,10 +164,7 @@
     "back": "Report it; ASA fasting is about 6 hours after a light meal. Key clue: Recent food intake, missing consent or unremoved jewelry. First-line: Complete the checklist: ID, consent, allergies, NPO status, labs. Exam trap: Assuming clear liquids follow the same timing as solid food.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-155.svg",
-      "alt": "Pre-op checklist."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ASA Fasting 2023",
       "year": "2023",
@@ -203,10 +188,7 @@
     "back": "Atelectasis or pneumonia, and possibly ileus. Key clue: Low SpO2, crackles, absent bowel sounds or bloating. First-line: Incentive spirometer 10 times an hour while awake; early walking. Exam trap: Feeding a client with an ileus before bowel function returns.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-156.svg",
-      "alt": "Post-op complications timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -230,10 +212,7 @@
     "back": "Hemorrhage; rising HR and anxiety are early signs of shock. Key clue: Restlessness, fast pulse, pale skin, low urine output. First-line: Check the dressing and drains, apply pressure, call the provider. Exam trap: Waiting for a large BP drop before acting.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-157.svg",
-      "alt": "Hemorrhagic shock signs chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -257,10 +236,7 @@
     "back": "Suspect DVT; notify the provider and do not massage the leg. Key clue: One-sided leg swelling, warmth or pain. First-line: Prevent with early walking, SCDs and anticoagulants as ordered. Exam trap: Massaging the leg, which may dislodge a clot.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-158.svg",
-      "alt": "Leg showing DVT signs."
-    },
+    "diagram": null,
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
       "year": "2021",
@@ -311,10 +287,7 @@
     "back": "Ask about prior contrast reactions and check kidney function first. Key clue: Previous contrast reaction, low eGFR, or current metformin use. First-line: Hold metformin as ordered based on eGFR; encourage hydration. Exam trap: Assuming a shellfish allergy is a contrast allergy.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-160.svg",
-      "alt": "Contrast safety checklist."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACR Manual on Contrast Media 2026",
       "year": "2026",
@@ -446,10 +419,7 @@
     "back": "Pre-oxygenate, use sterile technique and suction 10 seconds or less. Key clue: Gurgling, falling SpO2 or visible secretions. First-line: Apply suction only while withdrawing the catheter. Exam trap: Suctioning for too long, which can cause hypoxia.",
     "word_count": 36,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-165.svg",
-      "alt": "Trach suctioning steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -500,10 +470,7 @@
     "back": "DKA; give IV fluids first, then insulin as ordered. Key clue: High glucose, ketones, acidosis and a large anion gap. First-line: Check potassium before starting insulin and monitor it closely. Exam trap: Starting insulin before potassium is known.",
     "word_count": 38,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-167.svg",
-      "alt": "DKA lab panel."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ADA Standards of Care 2026",
       "year": "2026",
@@ -527,10 +494,7 @@
     "back": "AKI risk; creatinine up 0.3 in 48 hours or low urine output defines AKI. Key clue: Output under 0.5 mL/kg/hour for 6 hours. First-line: Monitor output hourly, avoid nephrotoxins, notify the provider. Exam trap: Waiting for creatinine to rise before reporting low urine output.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-168.svg",
-      "alt": "Kidney function lab chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "KDIGO AKI 2012 (current; 2026 update not yet final)",
       "year": "2026",
@@ -554,10 +518,7 @@
     "back": "The liver makes clotting factors, so bleeding risk rises. Key clue: Easy bruising, bleeding gums or a high INR. First-line: Bleeding precautions, soft toothbrush, and electric razor. Exam trap: Giving IM injections without considering bleeding risk.",
     "word_count": 36,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-169.svg",
-      "alt": "Liver function lab chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -581,10 +542,7 @@
     "back": "Digoxin, lithium, phenytoin and vancomycin need level monitoring. Key clue: Toxicity signs or a dose change. First-line: Time draws correctly and report abnormal results. Exam trap: Drawing a level at the wrong time.",
     "word_count": 33,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-170.svg",
-      "alt": "Therapeutic drug levels table."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -608,10 +566,7 @@
     "back": "Turn the client to the side first, then stop oxytocin, bolus IV fluid, and notify the provider. Key clue: Deceleration begins after the peak of the contraction. First-line: Continue monitoring; give oxygen only for maternal hypoxia, per ACOG CPG 10. Exam trap: Missing late decelerations or continuing oxytocin.",
     "word_count": 48,
     "mnemonic": "VEAL CHOP: Variable-Cord, Early-Head, Accel-OK, Late-Placenta",
-    "diagram": {
-      "file": "svg/nclex-171.svg",
-      "alt": "VEAL CHOP chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
       "year": "2025",
@@ -635,10 +590,7 @@
     "back": "Fluid overload; hypovolemia instead shows fast pulse and low BP. Key clue: Weight gain, crackles and edema suggest overload. First-line: Daily weights and intake and output; slow the IV and notify provider. Exam trap: Missing overload in clients with heart or kidney disease.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-172.svg",
-      "alt": "Signs of fluid volume deficit versus excess."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -662,10 +614,7 @@
     "back": "Hypovolemic shock; lay the client flat, apply pressure to bleeding, and call rapid response. Key clue: Flat neck veins and blood loss suggest hypovolemia; crackles and JVD suggest cardiogenic. First-line: Place two large-bore IVs and give fluids or blood as ordered; reassess often. Exam trap: Giving large fluid boluses in cardiogenic shock.",
     "word_count": 52,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-173.svg",
-      "alt": "Shock types table."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AHA Scientific Statement: Contemporary Management of Cardiogenic Shock 2017",
       "year": "2017",
@@ -689,10 +638,7 @@
     "back": "Sepsis; escalate early with the sepsis protocol. Key clue: Fever, fast heart rate, fast breathing, confusion and high lactate. First-line: Cultures before antibiotics as ordered, then antibiotics and fluids quickly. Exam trap: Delaying antibiotics while waiting for culture results.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-174.svg",
-      "alt": "Sepsis early recognition flowchart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "Surviving Sepsis Campaign 2026",
       "year": "2026",
@@ -716,10 +662,7 @@
     "back": "Compress 100 to 120 per minute and at least 2 inches deep. Key clue: Unresponsive with no normal breathing or pulse. First-line: Allow full recoil, minimize pauses, and use the AED as soon as possible. Exam trap: Long pauses in compressions.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-175.svg",
-      "alt": "CPR quality and AED steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AHA BLS/ACLS 2025",
       "year": "2025",
@@ -743,10 +686,7 @@
     "back": "Get a 12-lead ECG quickly and prepare for reperfusion. Key clue: Chest pain, ST elevation, sweating or nausea. First-line: Aspirin as ordered; oxygen only when SpO2 is low. Exam trap: Giving oxygen to every client by routine.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-176.svg",
-      "alt": "STEMI care timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACC/AHA ACS 2025",
       "year": "2025",
@@ -824,10 +764,7 @@
     "back": "Hypertensive emergency; lower BP gradually as ordered. Key clue: Very high BP with signs of organ damage. First-line: Give IV medicine as ordered with close BP monitoring. Exam trap: Dropping BP too quickly, which can harm organs.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-179.svg",
-      "alt": "BP reduction timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
       "year": "2025",
@@ -851,10 +788,7 @@
     "back": "Note the last known well time and call a stroke alert. Key clue: Face droop, arm weakness or speech change. First-line: Get a CT quickly; thrombolysis may be given within 4.5 hours if eligible. Exam trap: Giving anything by mouth before a swallow screen.",
     "word_count": 44,
     "mnemonic": "FAST: Face, Arm, Speech, Time",
-    "diagram": {
-      "file": "svg/nclex-180.svg",
-      "alt": "FAST stroke signs."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AHA/ASA Acute Ischemic Stroke 2026",
       "year": "2026",
@@ -932,10 +866,7 @@
     "back": "Status epilepticus; protect the airway and give a benzodiazepine per order or protocol. Key clue: A seizure of 5 minutes or more, or repeated seizures without recovery. First-line: Protect the airway, give oxygen, time the seizure. Exam trap: Restraining the client or putting objects in the mouth.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-183.svg",
-      "alt": "Status epilepticus timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AES Convulsive Status Epilepticus 2016",
       "year": "2016",
@@ -959,10 +890,7 @@
     "back": "Sit the client upright first, then find and remove the trigger. Key clue: Injury at T6 or above with headache, high BP and flushing. First-line: Check for bladder distention first, then bowel and skin. Exam trap: Laying the client flat.",
     "word_count": 40,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-184.svg",
-      "alt": "Autonomic dysreflexia triggers."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -986,10 +914,7 @@
     "back": "Guillain-Barre ascends; myasthenia worsens with use. Key clue: Both can cause respiratory failure. First-line: Monitor vital capacity and swallowing; prepare for ventilation. Exam trap: Missing a falling vital capacity.",
     "word_count": 29,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-185.svg",
-      "alt": "Comparison of Guillain-Barre and myasthenia."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1013,10 +938,7 @@
     "back": "Titrate oxygen to the ordered target, often 88 to 92%. Key clue: Chronic CO2 retention can worsen with excess oxygen. First-line: Teach pursed-lip breathing and the tripod position; check ABGs as ordered. Exam trap: Withholding oxygen from a hypoxic client because of CO2 retention fears.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-186.svg",
-      "alt": "Pursed-lip breathing steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "GOLD 2026",
       "year": "2026",
@@ -1040,10 +962,7 @@
     "back": "A silent chest is a life-threatening emergency. Key clue: A silent chest, inability to speak in full sentences, or new confusion. First-line: Give a SABA, oxygen and systemic corticosteroids as ordered, and call for help. Exam trap: Assuming that less wheezing means the client is improving.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-187.svg",
-      "alt": "Asthma severity chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "GINA 2026",
       "year": "2026",
@@ -1121,10 +1040,7 @@
     "back": "DKA has ketones and acidosis; HHS has extreme glucose without ketones. Key clue: HHS often affects older adults with type 2 diabetes and severe dehydration. First-line: Give IV fluids first, then insulin, with close potassium monitoring. Exam trap: Confusing DKA with HHS, or starting insulin before checking potassium.",
     "word_count": 48,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-190.svg",
-      "alt": "DKA versus HHS table."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ADA Standards of Care 2026",
       "year": "2026",
@@ -1148,10 +1064,7 @@
     "back": "Thyroid storm; myxedema coma is the opposite, with low temperature and slow pulse. Key clue: High fever, fast heart rate, agitation or delirium. First-line: Cool the client and give a beta blocker and antithyroid drugs as ordered. Exam trap: Warming the client or missing the dysrhythmia risk.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-191.svg",
-      "alt": "Thyroid storm versus myxedema."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ATA Hyperthyroidism 2016",
       "year": "2016",
@@ -1175,10 +1088,7 @@
     "back": "Adrenal crisis; call the provider at once and give IV hydrocortisone per order. Key clue: Low BP, low sodium, high potassium and low glucose. First-line: Give IV saline as ordered; monitor glucose and electrolytes. Exam trap: Delaying steroids while waiting for test results.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-192.svg",
-      "alt": "Adrenal crisis signs."
-    },
+    "diagram": null,
     "source": {
       "guideline": "Endocrine Society Primary Adrenal Insufficiency 2016",
       "year": "2016",
@@ -1202,10 +1112,7 @@
     "back": "SIADH retains water; diabetes insipidus loses water. Key clue: SIADH: low sodium. DI: high sodium with large amounts of dilute urine. First-line: Fluid restriction for SIADH; replace fluids and give desmopressin for DI. Exam trap: Mixing up the two conditions or their opposite fluid plans.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-193.svg",
-      "alt": "SIADH versus DI table."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1229,10 +1136,7 @@
     "back": "Monitor potassium, fluid status and medications. Key clue: Edema, high potassium or falling urine output. First-line: Daily weights, limit sodium, and dose medicines for kidney function. Exam trap: Giving nephrotoxic drugs, such as NSAIDs, without review.",
     "word_count": 36,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-194.svg",
-      "alt": "CKD stages chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "KDIGO CKD 2024",
       "year": "2024",
@@ -1256,10 +1160,7 @@
     "back": "Protect the airway first: position on the side, have suction ready, then start two large-bore IVs. Key clue: Hematemesis, black stools, fast heart rate or low BP. First-line: Then send labs and type and crossmatch; transfuse as ordered. Exam trap: Missing early signs of shock, such as a rising heart rate.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-195.svg",
-      "alt": "GI bleed management."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACG Upper GI and Ulcer Bleeding 2021",
       "year": "2021",
@@ -1310,10 +1211,7 @@
     "back": "Airway first; then fluid = 2 mL x kg x %TBSA of lactated Ringer, half in the first 8 hours from burn. Key clue: Large burns over about 20% of body surface area in adults. First-line: Titrate to urine output of about 0.5 mL/kg/hour; Parkland (4 mL) is the older formula. Exam trap: Giving too much fluid, which causes edema and compartment problems.",
     "word_count": 63,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-197.svg",
-      "alt": "Burn surface area chart."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ABA Burn Shock Resuscitation 2023",
       "year": "2023",
@@ -1337,10 +1235,7 @@
     "back": "Give IM epinephrine right away per order or anaphylaxis protocol. Key clue: Hives, wheezing, throat tightness, vomiting or low BP after exposure. First-line: Call for help, position the client, and repeat epinephrine in 5 to 15 minutes if needed. Exam trap: Giving antihistamines first instead of epinephrine.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-198.svg",
-      "alt": "Anaphylaxis response steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AAAAI/ACAAI Anaphylaxis 2023",
       "year": "2023",
@@ -1364,10 +1259,7 @@
     "back": "Give analgesia rapidly, within about an hour of arrival, as ordered. Key clue: Severe pain, fever, chest pain or new breathing problems. First-line: Oxygen only if hypoxic; fluids only if dehydrated; watch for acute chest syndrome. Exam trap: Undertreating pain or delaying the first dose.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-199.svg",
-      "alt": "Sickle cell crisis care."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ASH SCD Pain 2020",
       "year": "2020",
@@ -1391,10 +1283,7 @@
     "back": "Preeclampsia with severe features or HELLP syndrome. Key clue: High BP, headache, vision changes or right upper quadrant pain. First-line: Give magnesium sulfate and BP medicines as ordered; monitor labs and reflexes. Exam trap: Missing HELLP signs, such as low platelets and high liver enzymes.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-200.svg",
-      "alt": "Preeclampsia and HELLP signs."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, reaffirmed 2023; Clinical Practice Update 2024)",
       "year": "2024",

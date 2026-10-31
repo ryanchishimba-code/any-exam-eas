@@ -1,29 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 640" role="img" aria-labelledby="aanp-ancc-title">
-  <title id="aanp-ancc-title">NPCB FNP-C vs ANCC FNP-BC blueprint comparison</title>
-  <rect width="375" height="640" fill="#f8fafc"/>
-  <text x="187.5" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="17" font-weight="700" fill="#0f172a">NPCB (FNP-C) vs ANCC (FNP-BC)</text>
-  <text x="187.5" y="54" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">Both test entry-level FNP competence &#8212; blueprints differ</text>
-
-  <rect x="16" y="72" width="343" height="220" rx="10" fill="#fff" stroke="#0d9488" stroke-width="2"/>
-  <rect x="16" y="72" width="343" height="40" rx="10" fill="#0d9488"/>
-  <text x="187.5" y="98" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">NPCB FNP-C (this book)</text>
-  <text x="28" y="132" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Domain I: Assess / Diagnose / Plan / Evaluate</text>
-  <text x="28" y="154" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Domain II: patient age bands (official %)</text>
-  <text x="28" y="176" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; 150 items (135 scored + 15 pretest)</text>
-  <text x="28" y="198" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; 3-hour testing appointment</text>
-  <text x="28" y="220" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Verify aanpcert.org Candidate Handbook</text>
-  <text x="28" y="242" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Study to NPCB weights in this guide</text>
-
-  <rect x="16" y="308" width="343" height="200" rx="10" fill="#fff" stroke="#f97316" stroke-width="2"/>
-  <rect x="16" y="308" width="343" height="40" rx="10" fill="#f97316"/>
-  <text x="187.5" y="334" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">ANCC FNP-BC</text>
-  <text x="28" y="368" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Different official content outline</text>
-  <text x="28" y="390" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Clinical overlap &#8212; weights do not match</text>
-  <text x="28" y="412" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Recalibrate study time to ANCC outline</text>
-  <text x="28" y="434" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; Do not import NPCB % onto ANCC</text>
-  <text x="28" y="456" font-family="system-ui,sans-serif" font-size="12" fill="#334155">&#8226; ADPE depth still useful</text>
-
-  <rect x="16" y="524" width="343" height="88" rx="8" fill="#ccfbf1"/>
-  <text x="187.5" y="552" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0f766e">TRAP: Treating the two blueprints as identical.</text>
-  <text x="187.5" y="574" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#0f766e">Confirm your board handbook before test day.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="382" viewBox="0 0 420 382" role="img" aria-label="Two FNP exams">
+<title>Two FNP exams</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Two FNP exams</text>
+<rect x="24" y="70" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">AANPCB FNP-C Domain I: Assess 32%,</text>
+<text x="36" y="114" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Diagnose 27%, Plan 27%, Evaluate 15% (June</text>
+<text x="36" y="136" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">2026 handbook).</text>
+<rect x="24" y="160" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="182" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Age mix: newborn 2, infant 3, toddler 4,</text>
+<text x="36" y="204" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">child 4, adolescent 9, young adult 22,</text>
+<text x="36" y="226" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">middle adult 26, older adult 30.</text>
+<rect x="24" y="250" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="272" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">The ANCC FNP-BC outline is a different</text>
+<text x="36" y="294" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">document. Do not copy these percentages</text>
+<text x="36" y="316" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">onto it.</text>
+<text x="28" y="348" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">AANPCB FNP candidate handbook, June 2026</text>
 </svg>

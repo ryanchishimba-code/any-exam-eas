@@ -23,7 +23,8 @@
       "url": "https://doi.org/10.1016/j.jacc.2024.11.009",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/40014670/",
       "recommendation": "ECG within 10 min of first medical contact (COR 1). Primary PCI with FMC-to-device ≤90 min, or ≤120 min if transfer is required (COR 1, §5.2.1). If anticipated FMC-to-device >120 min and symptom onset <12 h, fibrinolytics if no contraindication (COR 1, §5.3). Posterior leads V7–V9 when ST depression in V1–V3 suggests posterior MI."
-    }
+    },
+    "task_area": "Clinical Intervention"
   },
   {
     "id": "pance-002",
@@ -49,7 +50,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/38033089/",
       "alt_url": "https://www.jacc.org/doi/full/10.1016/j.jacc.2023.08.017",
       "recommendation": "Anticoagulation recommended when annual thromboembolic risk is ≥2% (e.g., CHA₂DS₂-VASc ≥2 men / ≥3 women) (COR 1, LOE A); reasonable at 1–<2% (COR 2a). DOAC recommended over warfarin except moderate–severe rheumatic MS or mechanical valve. Hemodynamically unstable AF: immediate electrical cardioversion. Rate control: beta-blocker or non-dihydropyridine CCB when LVEF >40%. AF ≥48 h: ≥3 weeks anticoagulation or imaging to exclude thrombus before cardioversion; ≥4 weeks after."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-003",
@@ -75,7 +77,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
       "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.011",
       "recommendation": "HFrEF stage C: ARNI (Class 1; ACEi/ARB if ARNI not feasible), evidence-based beta-blocker (Class 1), MRA if eGFR >30 and K <5.0 (Class 1), SGLT2i irrespective of diabetes (Class 1). ARNI must not be given with an ACEi or within 36 h of the last ACEi dose (Class 3: Harm)."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-004",
@@ -101,7 +104,8 @@
       "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/",
       "alt_url": "https://goldcopd.org/wp-content/uploads/2026/01/GOLD-REPORT-2026-v1.3-8Dec2025_WMV2.pdf",
       "recommendation": "COPD is diagnosed by post-bronchodilator FEV1/FVC <0.7. Group A: single bronchodilator. Group B: LABA+LAMA. Group E: LABA+LAMA; consider adding ICS if eosinophils ≥300 cells/µL (LABA+LAMA+ICS preferred over LABA+ICS). 2026 lowered the Group E threshold to ≥1 moderate exacerbation. LTOT >15 h/day for PaO₂ ≤55 mmHg or SaO₂ ≤88% on two measurements over 3 weeks."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-005",
@@ -127,7 +131,8 @@
       "url": "https://www.acc.org/about-acc/press-releases/2026/02/19/19/27/first-ahaacc-acute-pulmonary-embolism-guideline-prompt-diagnosis-and-treatment-are-key",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/41712677/",
       "recommendation": "Categories A–E. D-dimer when probability is <50%; imaging if D-dimer elevated or probability >50%; CTPA standard test (V/Q if CT cannot be done). PERT assessment for Categories C–E (Class 1, LOE B-NR). DOAC preferred over VKA (not in pregnancy). Category E1–2 with acceptable bleeding risk: systemic thrombolysis + anticoagulation is reasonable (COR 2a). Categories A1–C2: systemic thrombolysis should not be used over anticoagulation alone (COR 3: Harm)."
-    }
+    },
+    "task_area": "Using Diagnostic and Laboratory Studies"
   },
   {
     "id": "pance-006",
@@ -153,7 +158,8 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10563586/",
       "alt_url": "https://doi.org/10.1136/annrheumdis-2019-215315",
       "recommendation": "Strong: colchicine, NSAIDs, or glucocorticoids for flares. Strong: allopurinol as preferred first-line ULT, including in CKD stage ≥3; low starting dose (≤100 mg/day, lower in CKD); treat-to-target serum urate <6 mg/dL; concomitant anti-inflammatory prophylaxis for ≥3–6 months when starting ULT. EULAR: demonstrating MSU crystals in synovial fluid or tophus aspirate permits definitive diagnosis."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-007",
@@ -179,7 +185,8 @@
       "url": "https://gravitas.acr.org/ACPortal/GetDataForOneScenario?senarioId=4621",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7047900/",
       "recommendation": "ACR: with negative/equivocal initial radiographs, repeat radiographs at 10–14 days, MRI wrist without contrast, and CT wrist without contrast are Usually Appropriate; ultrasound, contrast MRI, and bone scan are Usually Not Appropriate. EFORT: wrist immobilized in cast/splint until supplementary MRI; clinical signs are snuffbox tenderness, tubercle tenderness, pain on axial thumb compression; proximal pole is supplied only by dorsal-ridge vessels."
-    }
+    },
+    "task_area": "Clinical Intervention"
   },
   {
     "id": "pance-008",
@@ -205,7 +212,8 @@
       "url": "https://doi.org/10.14309/ajg.0000000000002968",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/39626064/",
       "recommendation": "Treatment-naive patients (susceptibility unknown): optimized bismuth quadruple therapy for 14 days (PPI, bismuth, tetracycline 500 mg QID, metronidazole 500 mg TID–QID); clarithromycin-containing therapy only if susceptibility is documented. Confirm eradication ≥4 weeks after therapy; stop PPI ~2 weeks before testing."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-009",
@@ -226,12 +234,13 @@
       "alt": "Charcot triad, Reynolds pentad and Tokyo severity grades with drainage timing."
     },
     "source": {
-      "guideline": "Tokyo Guidelines 2018 (TG18): diagnostic criteria/severity grading and initial management/flowchart for acute cholangitis",
+      "guideline": "Tokyo Guidelines 2018 (TG18): diagnostic criteria/severity grading and initial management/flowchart for acute cholangitis (still current as of 2026)",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/28941329/",
       "alt_url": "https://doi.org/10.1002/jhbp.512",
       "recommendation": "Initial treatment with antibiotics and circulatory/respiratory support; mild: drainage if no response; moderate: early endoscopic or percutaneous transhepatic biliary drainage; severe: drainage as soon as possible after the patient is stabilized. Charcot triad is highly specific but has low sensitivity. Grade III = new organ dysfunction (e.g., hypotension needing vasopressors, disturbed consciousness)."
-    }
+    },
+    "task_area": "Formulating Most Likely Diagnosis"
   },
   {
     "id": "pance-010",
@@ -257,7 +266,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/41665581/",
       "alt_url": "https://www.aaojournal.org/article/S0161-6420(25)00816-4/fulltext",
       "recommendation": "Acute angle closure: eye pain, headache, nausea/vomiting, blurred vision with halos; markedly elevated IOP, corneal edema, mid-dilated pupil. Initial IOP lowering with medications (beta-blockers, carbonic anhydrase inhibitors, parasympathomimetics, hyperosmotics), then laser peripheral iridotomy as soon as safely feasible as preferred definitive treatment; prompt prophylactic LPI of the fellow eye. Medications with anticholinergic/adrenergic or sulfonamide (topiramate) effects can precipitate angle closure."
-    }
+    },
+    "task_area": "Formulating Most Likely Diagnosis"
   },
   {
     "id": "pance-011",
@@ -283,7 +293,8 @@
       "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia/",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/32443079/",
       "recommendation": "BP ≥160 systolic or ≥110 diastolic = severe range (preeclampsia with severe features). Magnesium sulfate recommended for seizure prophylaxis/treatment; continue 24 h after delivery. Acute-onset severe hypertension: treat within 30–60 min; IV labetalol, IV hydralazine, or oral nifedipine are first-line options. Delivery after stabilization at ≥34 0/7 weeks with severe features; at 37 0/7 weeks without. DTRs lost at ~9 mg/dL; calcium gluconate 10% for toxicity."
-    }
+    },
+    "task_area": "Clinical Intervention"
   },
   {
     "id": "pance-012",
@@ -309,7 +320,8 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11272983/",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/39052901/",
       "recommendation": "DKA: glucose >200 mg/dL (or prior diabetes), BHB ≥3.0 mmol/L (or urine ketones ≥2+), pH <7.30 or HCO₃ <18. Isotonic saline or balanced crystalloid at 500–1,000 mL/h for the first 2–4 h. If K <3.5 mmol/L, replace K and delay insulin until >3.5. Fixed-rate IV insulin 0.1 units/kg/h; add 5–10% dextrose when glucose <250 mg/dL. Resolution: ketones <0.6 mmol/L and pH ≥7.3 or HCO₃ ≥18; overlap SC and IV insulin 1–2 h. ~10% of DKA is euglycemic, mostly SGLT2-inhibitor related."
-    }
+    },
+    "task_area": "Clinical Intervention"
   },
   {
     "id": "pance-013",
@@ -335,7 +347,8 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/41582814/",
       "alt_url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
       "recommendation": "Tenecteplase or alteplase within 4.5 h of onset/last known well for disabling deficits (tenecteplase 0.25 mg/kg, max 25 mg; alteplase 0.9 mg/kg, max 90 mg). Extended-window lysis (4.5–9 h or wake-up) with salvageable tissue on advanced imaging. DAPT rather than lysis for non-disabling deficits. EVT for large-vessel occlusion. BP <185/110 before and <180/105 for 24 h after IVT. Emergent noncontrast CT/MRI to exclude ICH before reperfusion therapy."
-    }
+    },
+    "task_area": "Clinical Intervention"
   },
   {
     "id": "pance-014",
@@ -361,7 +374,8 @@
       "url": "https://doi.org/10.1097/adm.0000000000000668",
       "alt_url": "https://downloads.asam.org/sitefinity-production-blobs/docs/default-source/quality-science/the_asam_clinical_practice_guideline_on_alcohol-1.pdf",
       "recommendation": "Withdrawal typically begins 6–24 h after last drink; seizures from 8 h to 48 h (peak ~24 h); hallucinations 12–24 h; withdrawal delirium 72–96 h, usually lasting 2–3 days. Benzodiazepines are first-line (IV.17–IV.18); longer-acting agents preferred (IV.20); with significant liver disease use a benzodiazepine with less hepatic metabolism (IV.21). Thiamine 100 mg IV/IM daily for 3–5 days (V.7). Phenytoin should not be used for withdrawal seizures."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-015",
@@ -387,7 +401,8 @@
       "url": "https://www.acep.org/siteassets/sites/acep/media/hyperk/documents/management-algorithm-for-adult-with-hyperkalemia.pdf",
       "alt_url": "https://guidelines.ukkidney.org/hyperkalaemia/",
       "recommendation": "ECG changes (arrhythmia, prolonged PR/QRS, diminished/wide P, peaked T): calcium gluconate 1 g IV push (or calcium chloride 1 ampule); repeat ECG in 5 min and repeat calcium if changes persist. Shift: regular insulin 5 units (insulin-naive or CKD) or 10 units (not naive) with D50 1–2 amps, repeat point-of-care glucose at 30 min then hourly; albuterol 10 mg nebulized over 15 min. Remove: loop diuretic (when eGFR ≥45), oral binders (sodium zirconium cyclosilicate 10–30 g), hemodialysis. Re-assess after 2–4 h: K <6 consider insulin/dextrose + albuterol ± binders ± furosemide; K 6–6.5 administer insulin/dextrose + albuterol, consider urgent hemodialysis; K >6.5 arrange immediate hemodialysis. Consider bicarbonate for metabolic acidosis. UK Kidney Association 2023 guideline used as a cross-check (UK calcium dose differs)."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-016",
@@ -413,7 +428,8 @@
       "url": "https://www.auanet.org/meetings-and-education/for-medical-students/medical-students-curriculum/acute-scrotum",
       "alt_url": "https://doi.org/10.1016/j.jacr.2024.08.011",
       "recommendation": "With a high degree of clinical suspicion, surgical exploration without delay; imaging should not delay exploration. TWIST score: testicular swelling 2, hard testis 2, absent cremasteric reflex 1, nausea/vomiting 1, high-riding testis 1; 0–2 low risk, 3–4 intermediate (ultrasound warranted), ≥5 high risk. When torsion is diagnosed, urgent surgical exploration and detorsion is mandated. Salvage approaches 100% within 6 h of pain onset, about 20% viability if torsion persists >12 h, virtually none beyond 24 h (guidelines, not guarantees). Contralateral testis is delivered and fixed (orchiopexy). Manual detorsion (\"opening the book\") is an adjunct, not a replacement. ACR AC 2024 supports Doppler ultrasound when the diagnosis is uncertain. Supplemental: RACS 2022 and AAFP 2022 point-of-care guide."
-    }
+    },
+    "task_area": "Formulating Most Likely Diagnosis"
   },
   {
     "id": "pance-017",
@@ -439,7 +455,8 @@
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8091490/",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
       "recommendation": "Treatment Rec 1: for first acute iTTP event, add corticosteroids to therapeutic plasma exchange (strong). Conditional: add rituximab; add caplacizumab. Diagnosis Rec 1 (≥90% pretest probability): collect ADAMTS13 sample before TPE or any blood product; start TPE and corticosteroids without waiting for ADAMTS13; ADAMTS13 activity <10 IU/dL is the hallmark of TTP and distinguishes it from HUS. 2025 focused update: no change to iTTP recommendations."
-    }
+    },
+    "task_area": "Formulating Most Likely Diagnosis"
   },
   {
     "id": "pance-018",
@@ -460,12 +477,13 @@
       "alt": "Meningitis dexamethasone, empiric antibiotics, Listeria age cut-off differences among guidelines, and CT-before-LP indications."
     },
     "source": {
-      "guideline": "IDSA Practice Guidelines for the Management of Bacterial Meningitis (latest IDSA adult guideline)",
+      "guideline": "IDSA Practice Guidelines for the Management of Bacterial Meningitis (latest IDSA adult guideline) (still current as of 2026)",
       "year": "2004",
       "url": "https://pubmed.ncbi.nlm.nih.gov/15494903/",
       "alt_url": "https://academic.oup.com/cid/article/39/9/1267/402080",
       "recommendation": "Dexamethasone 0.15 mg/kg q6h for 2–4 days, first dose 10–20 min before or at least concomitant with the first antimicrobial dose, in adults with suspected/proven pneumococcal meningitis (A-I); continue only if Gram stain shows gram-positive diplococci or cultures grow S. pneumoniae. Empiric therapy age 2–50: vancomycin + third-generation cephalosporin; age >50: add ampicillin (A-III). CT before LP if immunocompromised, CNS disease, new seizure, papilledema, abnormal consciousness, or focal deficit (B-II)."
-    }
+    },
+    "task_area": "Clinical Intervention"
   },
   {
     "id": "pance-019",
@@ -491,7 +509,8 @@
       "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
       "recommendation": "Primary/secondary syphilis: benzathine penicillin G 2.4 million units IM in a single dose. Do not use Bicillin C-R. Diagnosis by darkfield/PCR of lesion, or nontreponemal plus treponemal serology. Jarisch-Herxheimer reaction can occur within 24 h of therapy. Penicillin-allergic non-pregnant patients: doxycycline 100 mg BID × 14 days; pregnant patients should be desensitized."
-    }
+    },
+    "task_area": "Pharmaceutical Therapeutics"
   },
   {
     "id": "pance-020",
@@ -517,6 +536,7 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/30392755/",
       "alt_url": "https://www.jaad.org/article/S0190-9622(18)32588-X/fulltext",
       "recommendation": "Preferred biopsy: narrow-margin (1–3 mm clinically negative margins) excisional/complete biopsy, deep enough to avoid transecting the lesion (elliptical, punch, or deep shave/saucerization); partial biopsy in selected situations (e.g., facial/acral/very large lesions); Breslow thickness is a required pathology element (Strength A)."
-    }
+    },
+    "task_area": "Using Diagnostic and Laboratory Studies"
   }
 ]

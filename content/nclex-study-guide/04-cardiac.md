@@ -1,10 +1,10 @@
 # Chapter 4 — Cardiac
 
-> **Study aid only.** Cardiac protocols (ACS pathways, ACLS) follow facility/AHA-aligned standards — verify current practice. Labs/ranges vary.
+> **Study aid only.** Cardiac protocols (ACS pathways, ACLS) follow facility/AHA-aligned standards. Labs/ranges vary.
 
-![Heart failure left vs right](visuals/heart-failure-left-right.jpg)
+![Heart failure left vs right](visuals/heart-failure-left-right.svg)
 
-![Shock types overview](visuals/shock-types-overview.jpg)
+![Shock types overview](visuals/shock-types-overview.svg)
 
 ---
 
@@ -157,7 +157,7 @@ Sustained elevated BP damages vessels/organs (brain, heart, kidney, eye). **Hype
 
 ### Assessment
 
-Often silent; headache/vision changes/chest pain/neuro deficits/severe back pain (dissection vibe) = concerning. Accurate cuff size and technique matter — false highs from wrong cuff create noise.
+Often silent; headache/vision changes/chest pain/neuro deficits/severe back pain (dissection pattern) = concerning. Accurate cuff size and technique matter — false highs from wrong cuff create noise.
 
 ### Priority actions
 
@@ -259,7 +259,7 @@ Unilateral leg swelling, pain, warmth, redness; Homans’ is unreliable — don�
 
 ### Medication monitoring hooks
 
-| Agent | Monitor vibe |
+| Agent | Monitor pattern |
 | --- | --- |
 | Heparin UFH | aPTT / anti-Xa; HIT risk |
 | LMWH | Renal dosing; bleeding |
@@ -272,7 +272,7 @@ Prevention beats treatment. Unilateral swelling after surgery → take seriously
 
 ---
 
-## Topic G — Pacemaker / ICD teaching themes
+## Topic G — Pacemaker / ICD key points
 
 - Immobilize shoulder briefly as ordered post-implant; don’t raise arm above head initially.  
 - ID card; avoid strong magnets/MRI unless device-compatible.  

@@ -1,12 +1,12 @@
 # Chapter 3 — Health Promotion & Screening
 
-> **Study aid only.** Screening and immunization themes follow USPSTF-style and ACIP-style thinking for exam judgment. Recommendations change — verify current USPSTF, ACIP/CDC, specialty guidance, and NPCB handbook before clinical use.
+> **Study aid only.** Screening and immunization themes follow USPSTF-style and ACIP-style thinking for exam judgment. Recommendations change.
 
-![USPSTF-style lifespan screening strip](visuals/uspstf-lifespan-strip.jpg)
+![USPSTF-style lifespan screening strip](visuals/uspstf-lifespan-strip.svg)
 
-![SDoH screening wheel](visuals/sdoh-screening-wheel.jpg)
+![SDoH screening wheel](visuals/sdoh-screening-wheel.svg)
 
-![Lifespan immunization themes](visuals/immunization-lifespan.jpg)
+![Lifespan immunization themes](visuals/immunization-lifespan.svg)
 
 ---
 
@@ -23,12 +23,11 @@
 - [ ] I know one prenatal and one older-adult twist
 - [ ] I will do practice questions after reading
 
-
 ## Why this chapter matters
 
 Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and every Domain II age band. Young/Middle/Older adults generate most prevention volume — but missed newborn screens, adolescent risk counseling, and prenatal prevention (inside **Young Adult\***) are classic traps. Items ask *who* to screen, *when to stop*, how to counsel briefly, and how SDoH explains “nonadherence.”
 
-**Pair with practice:** Drill age-banded prevention sets, then mixed ADPE stems that hide a missing mammogram or overdue Tdap in pregnancy. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** Drill age-banded prevention sets, then mixed ADPE stems that hide a missing mammogram or overdue Tdap in pregnancy.
 
 ---
 
@@ -45,7 +44,7 @@ Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and
 
 ## Topic A — Thinking in USPSTF logic (exam mindset)
 
-- **Grade logic themes:** A/B generally offer; C selective/shared; D discourage; I insufficient — verify current grades; don’t memorize forever-fixed ages without checking.  
+- **Grade logic themes:** A/B generally offer; C selective/shared; D discourage; I insufficient.  
 - Screening is for **asymptomatic** people. Symptoms → diagnostic pathway.  
 - Harm matters: false positives, overdiagnosis (PSA themes), radiation, anxiety.  
 - Start with age, sex/anatomy, pregnancy potential, smoking, sexual history, family history, and risk enhancers.  
@@ -53,7 +52,7 @@ Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and
 
 ---
 
-## Topic B — High-yield screening map (verify current)
+## Topic B — High-yield screening map
 
 ### Cardiometabolic
 
@@ -206,7 +205,7 @@ Deprescribing · fall/bone · cognition/mood · vaccines · cancer screening sto
 | Screening a symptomatic patient | Diagnostic workup |
 | Endless cancer screening in severe frailty | Shared decision / stop rules |
 | Skipping SDoH | Barrier-focused Plan |
-| Memorizing one fixed mammogram age forever | Verify current USPSTF-style guidance |
+| Memorizing one fixed mammogram age forever | Follow USPSTF-style guidance |
 | Forgetting prenatal vaccines | YA\* includes prenatal |
 | No SI assessment after positive depression screen | Safety first |
 
@@ -233,9 +232,9 @@ Deprescribing · fall/bone · cognition/mood · vaccines · cancer screening sto
 
 - Prevention lives inside ADPE — not a separate optional chapter in your brain.  
 - Older Adult 30% means vaccines, falls, and stop-rules matter as much as “start screens.”  
-- Verify USPSTF/ACIP — teaching themes age.  
+- Verify USPSTF/ACIP — key points age.  
 
-**Practice prevention + ADPE items** on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Practice prevention + ADPE items** on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -249,7 +248,7 @@ When stems involve PSA, mammography timing preference-sensitive bands, lung canc
 
 ### Chemoprevention / preventive meds awareness (themes only)
 
-Aspirin for primary prevention is no longer a casual “everyone over 50” reflex — risk of bleed vs ASCVD benefit is individualized (verify current USPSTF-style guidance). Statins are prevention *and* therapeutics. PrEP for HIV in appropriate risk is prevention therapeutics — screen and refer/initiate per training and guidelines. Don’t invent eligibility cutoffs under stress; recognize the *lane*.
+Aspirin for primary prevention is no longer a casual “everyone over 50” reflex — risk of bleed vs ASCVD benefit is individualized. Statins are prevention *and* therapeutics. PrEP for HIV in appropriate risk is prevention therapeutics — screen and refer/initiate per training and guidelines. Don’t invent eligibility cutoffs under stress; recognize the *lane*.
 
 ---
 
@@ -288,7 +287,6 @@ A. Newborn  B. Adolescent  C. Older Adult 30%  D. Toddler
 **3.** Best prevention counseling pattern?  
 A. 20-minute lecture  B. Brief intervention + arrange follow-up  C. Pamphlet only  D. Skip tobacco if A1c high  
 **Answer:** B.
-
 
 ---
 
@@ -330,8 +328,6 @@ A. 20-minute lecture  B. Brief intervention + arrange follow-up  C. Pamphlet onl
 ### One-page “offer today” habit in adult visits
 BP · tobacco · BMI · depression · vaccines due · cancer screen status · sex/safety as appropriate · meds that need monitoring labs.
 
-
-
 ---
 
 ## Deep prevention counseling scripts (Plan)
@@ -350,14 +346,11 @@ BP · tobacco · BMI · depression · vaccines due · cancer screen status · se
 
 Standing orders for vaccines, overdue registries, after-visit summaries listing open screens, and referral navigators close loops — choose answer options that institutionalize completion when stems allow.
 
-
-
 ---
 
 ## Preconception & interconception care (YA\* bridge)
 
 Between pregnancies and before first pregnancy: optimize BMI, glycemic control, BP, teratogenic med switches (ACEI, some AEDs, isotretinoin systems), folate, rubella immunity awareness, smoking/alcohol, dental, mental health. This is Domain II Young Adult\* gold often missed by adult-medicine-only study plans.
-
 
 ---
 
@@ -380,14 +373,12 @@ Oral health affects diabetes/CVD inflammation themes; fluoride/dental referral f
 - [ ] Aspirin primary prevention not reflexive  
 - [ ] Shared decision documented when preference-sensitive  
 
-
 ### Closing prevention remember-this
 - Domain II drives prevention priorities; Older Adult 30% means stop-rules and vaccines matter.
 - Screening ≠ diagnostic testing for symptoms.
 - SDoH explains many Evaluate failures.
 - Verify USPSTF/ACIP yearly — teaching ages drift.
-- Soft practice: Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
-
+- Soft practice:
 
 ---
 

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="318" viewBox="0 0 420 318" role="img" aria-label="Arteriovenous fistula arm">
+<title>Arteriovenous fistula arm</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Arteriovenous fistula arm</text>
+<rect x="24" y="70" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">No blood pressure cuff on that arm.</text>
+<rect x="24" y="116" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="138" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">No venipuncture and no IV on that arm.</text>
+<rect x="24" y="162" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="184" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Feel for a thrill and listen for a bruit.</text>
+<rect x="24" y="208" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="230" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Bleeding from the site is direct pressure</text>
+<text x="36" y="252" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">and a call for help.</text>
+<text x="28" y="284" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">Dialysis access precautions</text>
+</svg>

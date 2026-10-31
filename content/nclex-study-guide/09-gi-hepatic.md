@@ -2,7 +2,7 @@
 
 > **Study aid only.** GI bleed and liver failure management follow facility protocols — verify. Not endoscopic procedure guidance.
 
-![GI bleed ABC priority flow](visuals/gi-bleed-abc-flow.jpg)
+![GI bleed ABC priority flow](visuals/gi-bleed-abc-flow.svg)
 
 ---
 
@@ -158,7 +158,7 @@ Sudden relief of appendicitis pain can mean rupture — not “cured.” Rigid a
 
 ### Remember this
 
-RLQ migratory pain = appendicitis pattern. Rigid abdomen = peritonitis emergency vibe.
+RLQ migratory pain = appendicitis pattern. Rigid abdomen = peritonitis emergency pattern.
 
 ---
 
@@ -311,7 +311,6 @@ Enteral: HOB up + placement check. TPN: sterile + glucose + don’t stop cold.
 
 ---
 
-
 ---
 
 ## Additional clinical judgment vignettes — GI/hepatic
@@ -332,7 +331,7 @@ New confusion + ↑ammonia context: safety, lactulose as ordered (titrate to sto
 
 ### Extra comparison
 
-| Problem | Classic cue | First nursing vibe |
+| Problem | Classic cue | First nursing pattern |
 | --- | --- | --- |
 | Appendicitis | RLQ, rebound, fever | NPO, surgery prep; sudden relief may = rupture |
 | Peritonitis | Board-like abdomen, toxic | Fluids, Abx, surgery pathway |
@@ -348,7 +347,6 @@ C. Discharge with OTC iron only
 D. Force ambulation without assessment  
 
 **Answer: B.**
-
 
 ## Concept check
 

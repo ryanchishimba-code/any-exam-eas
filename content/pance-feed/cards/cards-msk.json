@@ -3,24 +3,24 @@
     "id": "pance-070",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "Clinical Intervention",
-    "front": "Older adult with knee pain worse with use, brief morning stiffness and crepitus: diagnosis and first-line care?",
-    "bottom": "Osteoarthritis: exercise and weight loss first.",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
+    "front": "Which older adults should be offered exercise to prevent falls?",
+    "bottom": "Community-dwelling adults 65 and older who are at increased risk.",
     "bullets": {
-      "clue": "Stiffness under 30 minutes, bony enlargement, crepitus.",
-      "treat": "Exercise, weight loss; topical NSAID for knee or hand, then oral NSAID.",
-      "trap": "Glucosamine and chondroitin are not recommended."
+      "clue": "A prior fall or a gait or balance problem raises risk.",
+      "treat": "USPSTF 2024: recommend exercise. Multifactorial interventions are an individual decision.",
+      "trap": "Do not start vitamin D solely to prevent falls in community-dwelling adults."
     },
-    "back": "Osteoarthritis: exercise and weight loss first. Key clue: Stiffness under 30 minutes, bony enlargement, crepitus. First-line: Exercise, weight loss; topical NSAID for knee or hand, then oral NSAID. Exam trap: Glucosamine and chondroitin are not recommended.",
-    "word_count": 36,
+    "back": "Community-dwelling adults 65 and older who are at increased risk. Key clue: A prior fall or a gait or balance problem raises risk. First-line: USPSTF 2024: recommend exercise. Multifactorial interventions are an individual decision. Exam trap: Do not start vitamin D solely to prevent falls in community-dwelling adults.",
+    "word_count": 48,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-070.svg",
-      "alt": "Knee osteoarthritis with joint-space narrowing and an osteophyte. Exercise and weight loss first, topical then oral NSAIDs, steroid injection for flares, and joint replacement at end stage."
+      "alt": "Community-dwelling adults 65 and older who are at increased risk."
     },
     "source": {
-      "guideline": "2019 ACR/Arthritis Foundation Guideline for the Management of Osteoarthritis of the Hand, Hip, and Knee",
-      "year": "2019",
+      "guideline": "USPSTF Recommendation: Interventions to Prevent Falls in Community-Dwelling Older Adults",
+      "year": "2024",
       "url": "https://doi.org/10.1002/art.41142",
       "alt_url": "https://rheumatology.org/osteoarthritis-guideline",
       "recommendation": "Strongly recommended: exercise, weight loss (knee/hip, overweight), self-efficacy programs, oral NSAIDs, topical NSAIDs (knee), intra-articular glucocorticoids (knee/hip). Conditionally recommended: topical NSAIDs (hand), intra-articular steroid (hand), tramadol (when NSAIDs contraindicated or ineffective; preferred over non-tramadol opioids). Strongly against glucosamine (all sites) and chondroitin (knee/hip). Topical NSAIDs should be considered before oral NSAIDs."
@@ -30,23 +30,23 @@
     "id": "pance-071",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Symmetric small-joint hand swelling with an hour of morning stiffness: diagnosis, tests, and first DMARD?",
-    "bottom": "Rheumatoid arthritis: methotrexate first.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "What process damages the joint in rheumatoid arthritis, and what is first-line disease-modifying therapy?",
+    "bottom": "Synovial inflammation erodes cartilage and bone.",
     "bullets": {
-      "clue": "MCP and PIP swelling, stiffness over 1 hour, anti-CCP.",
-      "treat": "Methotrexate monotherapy; short low-dose steroid bridge only.",
-      "trap": "DIP spared; DIP involvement suggests OA or psoriatic arthritis."
+      "clue": "Anti-CCP antibodies are specific. Rheumatoid factor is not.",
+      "treat": "ACR 2021: methotrexate is the first DMARD. Add folic acid. Screen for TB and hepatitis B before a biologic.",
+      "trap": "Do not combine two biologic agents."
     },
-    "back": "Rheumatoid arthritis: methotrexate first. Key clue: MCP and PIP swelling, stiffness over 1 hour, anti-CCP. First-line: Methotrexate monotherapy; short low-dose steroid bridge only. Exam trap: DIP spared; DIP involvement suggests OA or psoriatic arthritis.",
-    "word_count": 34,
+    "back": "Synovial inflammation erodes cartilage and bone. Key clue: Anti-CCP antibodies are specific. Rheumatoid factor is not. First-line: ACR 2021: methotrexate is the first DMARD. Add folic acid. Screen for TB and hepatitis B before a biologic. Exam trap: Do not combine two biologic agents.",
+    "word_count": 44,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-071.svg",
-      "alt": "Rheumatoid arthritis with symmetric swelling of the knuckle joints. Methotrexate monotherapy first with only a short steroid bridge, then add a biologic or JAK inhibitor if not at target."
+      "alt": "Synovial inflammation erodes cartilage and bone."
     },
     "source": {
-      "guideline": "2021 American College of Rheumatology Guideline for the Treatment of Rheumatoid Arthritis",
+      "guideline": "2021 ACR Guideline for the Treatment of Rheumatoid Arthritis",
       "year": "2021",
       "url": "https://doi.org/10.1002/acr.24596",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9273041/",
@@ -57,7 +57,7 @@
     "id": "pance-072",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Acute monoarthritis: which exam findings make septic arthritis likely, and what must be done before antibiotics?",
     "bottom": "Warm effusion, fever, pain on passive motion: septic arthritis until proven otherwise.",
     "bullets": {
@@ -73,7 +73,7 @@
       "alt": "Septic arthritis with a knee effusion. Aspirate the joint for cell count, Gram stain, culture and crystals before IV antibiotics, then drain; crystals do not exclude infection."
     },
     "source": {
-      "guideline": "Standard teaching; BSR/BHPR Guideline for Management of the Hot Swollen Joint in Adults; EULAR-endorsed",
+      "guideline": "Standard teaching; BSR/BHPR Guideline for Management of the Hot Swollen Joint in Adults; EULAR-endorsed (still current as of 2026)",
       "year": "2006 (BSR)",
       "url": "https://doi.org/10.1093/rheumatology/kel215a",
       "alt_url": "https://www.idsociety.org/practice-guideline/practice-guidelines/",
@@ -84,7 +84,7 @@
     "id": "pance-073",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Acute low back pain: which history and exam red flags mean emergency imaging, and when is none needed?",
     "bottom": "Saddle anesthesia, urinary retention or bilateral weakness: cauda equina, emergency MRI.",
     "bullets": {
@@ -100,7 +100,7 @@
       "alt": "Low back pain with a disc compressing nerve roots. No imaging without red flags; heat, NSAIDs and staying active first; urgent MRI and decompression for cauda equina signs."
     },
     "source": {
-      "guideline": "ACP Clinical Practice Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (2017); ACR Appropriateness Criteria Low Back Pain (2021)",
+      "guideline": "ACP Clinical Practice Guideline: Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (2017); ACR Appropriateness Criteria Low Back Pain (2021) (still current as of 2026)",
       "year": "2017 / 2021",
       "url": "https://doi.org/10.7326/M16-2367",
       "alt_url": "https://acsearch.acr.org/docs/69483/Narrative/",
@@ -111,7 +111,7 @@
     "id": "pance-074",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Postmenopausal woman: who gets osteoporosis screening, what T-score is diagnostic, and first-line drug?",
     "bottom": "DXA at 65, or younger with risk.",
     "bullets": {
@@ -165,7 +165,7 @@
     "id": "pance-076",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Ankle sprain or knee injury: when is an X-ray needed, and which tests check the ACL and meniscus?",
     "bottom": "Ottawa rules decide who needs an X-ray.",
     "bullets": {
@@ -181,7 +181,7 @@
       "alt": "Ottawa ankle rules: X-ray for bone tenderness at the posterior malleolus, navicular or fifth metatarsal, or inability to bear weight for four steps. Lachman tests the ACL, McMurray the meniscus, and MRI confirms."
     },
     "source": {
-      "guideline": "Ottawa Ankle Rules (Stiell, JAMA 1993); ACR Appropriateness Criteria: Acute Trauma to the Ankle and Knee",
+      "guideline": "Ottawa Ankle Rules (Stiell, JAMA 1993); ACR Appropriateness Criteria: Acute Trauma to the Ankle and Knee (still current as of 2026)",
       "year": "1993 / ACR current",
       "url": "https://doi.org/10.1001/jama.1993.03500160077034",
       "alt_url": "https://acsearch.acr.org/list",
@@ -192,7 +192,7 @@
     "id": "pance-077",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Shoulder pain with overhead activity and night pain: impingement or rotator cuff tear? How to tell?",
     "bottom": "Rotator cuff: weakness suggests a tear.",
     "bullets": {
@@ -246,7 +246,7 @@
     "id": "pance-079",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Patient over 50 with shoulder and hip girdle stiffness or a new headache: which findings suggest PMR versus giant cell arteritis?",
     "bottom": "PMR: girdle stiffness, high ESR. GCA: new headache, jaw claudication, vision loss.",
     "bullets": {
@@ -300,7 +300,7 @@
     "id": "pance-081",
     "system": "Musculoskeletal",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Pain out of proportion after a tibial fracture or crush injury: which exam findings confirm compartment syndrome?",
     "bottom": "Pain on passive stretch, tense compartment, pain out of proportion.",
     "bullets": {
@@ -370,7 +370,7 @@
       "alt": "Bone tumors versus fibromyalgia: osteosarcoma has a sunburst pattern, Ewing sarcoma onion skinning, and osteoid osteoma a nidus with night pain relieved by NSAIDs; fibromyalgia has widespread pain with normal labs and is treated with exercise first."
     },
     "source": {
-      "guideline": "2016 ACR Fibromyalgia Diagnostic Criteria (Wolfe et al.); EULAR Revised Recommendations for Fibromyalgia Management (2017); standard teaching for bone tumors",
+      "guideline": "2016 ACR Fibromyalgia Diagnostic Criteria (Wolfe et al.); EULAR Revised Recommendations for Fibromyalgia Management (2017); standard teaching for bone tumors (still current as of 2026)",
       "year": "2016 / 2017",
       "url": "https://doi.org/10.1016/j.semarthrit.2016.08.012",
       "alt_url": "https://doi.org/10.1136/annrheumdis-2016-209724",

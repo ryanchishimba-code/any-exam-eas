@@ -1,16 +1,16 @@
 # Chapter 12 — MSK / Dermatology
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current AAOS/ACR/AAD-aligned and related guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Rheumatoid arthritis follows ACR 2021. Acne follows AAD 2024. Fall prevention follows USPSTF 2024. Acute low back pain follows ACP 2017. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
-![Back pain red flags](visuals/back-pain-red-flags.jpg)
+![Back pain red flags](visuals/back-pain-red-flags.svg)
 
-![Gout vs septic joint](visuals/gout-flare-vs-septic.jpg)
+![Gout vs septic joint](visuals/gout-flare-vs-septic.svg)
 
-![Derm ABCDE melanoma](visuals/derm-abcde.jpg)
+![Derm ABCDE melanoma](visuals/derm-abcde.svg)
 
-![Ottawa / fracture selectivity themes](visuals/ottawa-imaging-themes.jpg)
+![Ottawa / fracture selectivity themes](visuals/ottawa-imaging-themes.svg)
 
-![Cellulitis vs stasis dermatitis](visuals/cellulitis-vs-stasis.jpg)
+![Cellulitis vs stasis dermatitis](visuals/cellulitis-vs-stasis.svg)
 
 ---
 
@@ -33,7 +33,7 @@ MSK and derm fill half of primary-care walk-ins — and they sit where Domain II
 
 Expect stems on low-back red flags and cauda equina, OA vs inflammatory arthritis cues, Ottawa-style imaging selectivity, elder falls and occult hip fracture, gout vs septic joint, eczema/psoriasis counseling, cellulitis vs venous stasis, melanoma ABCDE, and SJS/TEN ED cues. Candidates who memorized “NSAIDs for back pain” without disposition lose dangerous points; candidates who inject steroids into a septic joint lose worse ones.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage.
 
 ---
 
@@ -77,10 +77,10 @@ Most acute low back pain in primary care is **mechanical** (strain, degenerative
 
 Mechanical LBP · lumbar radiculopathy · spinal stenosis (neurogenic claudication in older adults) · compression fracture · infection · malignancy · inflammatory spondyloarthropathy (younger adult morning stiffness themes) · AAA / visceral referred pain · pyelo / renal colic mimics.
 
-### Workup themes (verify current guidance)
+### Workup themes
 
 - **Most uncomplicated acute mechanical LBP:** no early MRI. Imaging when red flags, progressive neuro deficit, or failure of appropriate conservative care over a guideline-timed interval.
-- Labs (CBC, ESR/CRP, cultures) when infection/cancer inflammatory cues present — not shotgun every backache.
+- Order a CBC, ESR or CRP, and cultures when infection or cancer is a real concern. Do not order that panel for every backache (ACP 2017 low back pain guideline).
 - Pregnancy test before ionizing radiation when applicable.
 
 ### Plan themes
@@ -144,7 +144,7 @@ Function and pain trajectory; NSAID adverse effects (BMP, BP, GI symptoms); depr
 
 Acute trauma, swelling, inability to bear weight, point tenderness, deformity. Sprains = ligament; strains = muscle/tendon; fractures need imaging selectivity — not film every bruise, not miss high-risk sites.
 
-### Ottawa-style imaging themes (teaching — verify current rules)
+### Ottawa-style imaging themes (teaching
 
 - **Ankle/foot:** bone tenderness at malleoli / navicular / base of 5th metatarsal, or inability to bear weight — imaging more likely indicated.
 - **Knee:** age, inability to bear weight, isolated patellar or fibular head tenderness, inability to flex — themes that increase need for film.
@@ -201,7 +201,7 @@ Septic arthritis · gout · CPPD (pseudogout, often knee/wrist in older adults) 
 ### Plan themes
 
 - **Septic possible:** urgent joint aspiration (usually ED/ortho/rheum pathway), cultures before antibiotics when feasible, do **not** inject steroids.
-- **Classic gout after infection reasonably excluded:** anti-inflammatory themes (NSAID if safe, colchicine, or short steroid course — verify contraindications); later urate-lowering for recurrent disease (allopurinol etc.) with flare prophylaxis themes — don’t start ULT during acute flare as a careless first move without a plan (exam nuance: verify current teaching).
+- **Classic gout after infection reasonably excluded:** anti-inflammatory themes (NSAID if safe, colchicine, or short steroid course — verify contraindications); later urate-lowering for recurrent disease (allopurinol etc.) with flare prophylaxis themes — don’t start ULT during acute flare as a careless first move without a plan (exam nuance: follow teaching).
 - Lifestyle: alcohol, fructose, weight; med review (thiazides).
 
 ### Evaluate
@@ -300,7 +300,7 @@ Necrotizing fasciitis cues (pain out of proportion, rapid spread, crepitus, toxi
 
 > **MUST KNOW** — Suspected SJS/TEN / rapidly progressive rash with mucosal involvement → ED.
 
-> **HIGHLIGHT** — ABCDE + evolving + ugly duckling → biopsy/derm, not reassurance by vibe.
+> **HIGHLIGHT** — ABCDE + evolving + ugly duckling → biopsy/derm, not reassurance by pattern.
 
 ---
 
@@ -414,7 +414,7 @@ Necrotizing fasciitis cues (pain out of proportion, rapid spread, crepitus, toxi
 - Teaching doses/intervals change — verify guidelines and labels.
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill back-pain red flags, septic joint, Ottawa/elder fracture, gout, cellulitis vs stasis, ABCDE, and SJS/TEN items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next practice move:** Drill back-pain red flags, septic joint, Ottawa/elder fracture, gout, cellulitis vs stasis, ABCDE, and SJS/TEN items with full rationale review on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -466,7 +466,7 @@ Teach-back beats pamphlet drops — Domain I Plan loves clear education plus ret
 
 ## Integrated older-adult multimorbidity mini-case (Domain II 30%)
 
-**Stem vibe:** 81-year-old with CKD stage 3, HFpEF, bilateral stasis changes, new unilateral shin redness and fever to 38.4°C after a cat scratch, takes daily ibuprofen for knee OA, fell last month and still limps, daughter wants “another Z-pak for the legs.”
+**Practice stem:** 81-year-old with CKD stage 3, HFpEF, bilateral stasis changes, new unilateral shin redness and fever to 38.4°C after a cat scratch, takes daily ibuprofen for knee OA, fell last month and still limps, daughter wants “another Z-pak for the legs.”
 
 **ADPE compressed:** Assess unilateral vs bilateral baseline photos if available, fever, wound portal, pulses, hip/knee function after fall, NSAID burden, Cr. Diagnose: likely unilateral cellulitis on stasis terrain; still consider DVT/abscess; lingering limp → occult fracture/OA flare. Plan: appropriate antibiotic for cellulitis severity, elevation, stop NSAID, safer analgesia, wound care, low threshold imaging for hip if still non-weight-bearing, compression later when infection controlled and arterial supply OK. Evaluate: 48-hour recheck, BMP, deprescribe NSAID long-term, PT/fall review.
 

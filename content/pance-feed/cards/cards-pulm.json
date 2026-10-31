@@ -30,7 +30,7 @@
     "id": "pance-041",
     "system": "Pulmonary",
     "blueprint_weight": "9%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Acute asthma exacerbation: which exam findings mean a severe attack or impending respiratory failure?",
     "bottom": "Talks in words, hunched posture, PEF ≤50%: severe. Silent chest: life-threatening.",
     "bullets": {
@@ -84,7 +84,7 @@
     "id": "pance-043",
     "system": "Pulmonary",
     "blueprint_weight": "9%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Sudden pleuritic chest pain and dyspnea in a tall young smoker: which exam findings, and which mean tension?",
     "bottom": "Absent breath sounds on the affected side; hypotension, tracheal shift and neck-vein distension mean tension.",
     "bullets": {
@@ -127,7 +127,7 @@
       "alt": "Left pleural effusion with a blunted costophrenic angle and meniscus. Light's criteria: any one of pleural to serum protein above 0.5, LDH ratio above 0.6, or pleural LDH above two thirds of the upper normal serum value means exudate."
     },
     "source": {
-      "guideline": "Light's criteria (Light RW et al., Ann Intern Med 1972) with BTS Guideline for Pleural Disease 2023",
+      "guideline": "Light's criteria (Light RW et al., Ann Intern Med 1972) with BTS Guideline for Pleural Disease 2023 (still current as of 2026)",
       "year": "1972 / 2023",
       "url": "https://doi.org/10.7326/0003-4819-77-4-507",
       "alt_url": "https://doi.org/10.1136/thorax-2022-219784",
@@ -138,7 +138,7 @@
     "id": "pance-045",
     "system": "Pulmonary",
     "blueprint_weight": "9%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Lung cancer screening: who qualifies, and how is a screen-detected nodule followed?",
     "bottom": "Annual low-dose CT, ages 50–80, ≥20 pack-years.",
     "bullets": {
@@ -262,7 +262,7 @@
       "alt": "Obstructive sleep apnea with a collapsed oropharyngeal airway: diagnose with a home sleep apnea test or polysomnography, apnea-hypopnea index 15 or more, or 5 or more with symptoms, then positive airway pressure."
     },
     "source": {
-      "guideline": "AASM 2017 Clinical Practice Guideline for Diagnostic Testing for Adult OSA; AASM 2019 PAP Treatment guideline",
+      "guideline": "AASM 2017 Clinical Practice Guideline for Diagnostic Testing for Adult OSA; AASM 2019 PAP Treatment guideline (still current as of 2026)",
       "year": "2017 / 2019",
       "url": "https://doi.org/10.5664/jcsm.6506",
       "alt_url": "https://doi.org/10.5664/jcsm.7640",
@@ -316,7 +316,7 @@
       "alt": "Pediatric airway: croup shows subglottic narrowing, the steeple sign, and is treated with single-dose dexamethasone plus nebulized epinephrine for stridor at rest; bronchiolitis is treated supportively."
     },
     "source": {
-      "guideline": "AAP 2014 Clinical Practice Guideline: Bronchiolitis (latest AAP guideline; listed under review); croup management per current pediatric reviews",
+      "guideline": "AAP 2014 Clinical Practice Guideline: Bronchiolitis (latest AAP guideline; listed under review); croup management per current pediatric reviews (still current as of 2026)",
       "year": "2014",
       "url": "https://doi.org/10.1542/peds.2014-2742",
       "alt_url": "https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2025.1616521/full",
@@ -343,7 +343,7 @@
       "alt": "Cystic fibrosis: sweat chloride of 60 mmol per litre or more confirms the diagnosis after a positive newborn screen or compatible symptoms; 30 to 59 is intermediate; treatment includes pancreatic enzymes, airway clearance and CFTR modulators."
     },
     "source": {
-      "guideline": "Cystic Fibrosis Foundation Diagnosis Consensus Guidelines (2017); CFF Newborn Screening Consensus Guideline (2025)",
+      "guideline": "Cystic Fibrosis Foundation Diagnosis Consensus Guidelines (2017); CFF Newborn Screening Consensus Guideline (2025) (still current as of 2026)",
       "year": "2017 / 2025",
       "url": "https://doi.org/10.1016/j.jpeds.2016.09.064",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12015897/",
@@ -370,7 +370,7 @@
       "alt": "Arterial blood gas reading: low pH, low bicarbonate, primary metabolic acidosis; Winter formula predicts PaCO2 of 26 plus or minus 2, so compensation is appropriate; then calculate the anion gap."
     },
     "source": {
-      "guideline": "Standard acid-base physiology (Winter formula: Albert MS, Dell RB, Winters RW, Ann Intern Med 1967)",
+      "guideline": "Standard acid-base physiology (Winter formula: Albert MS, Dell RB, Winters RW, Ann Intern Med 1967) (still current as of 2026)",
       "year": "1967",
       "url": "https://doi.org/10.7326/0003-4819-66-2-312",
       "alt_url": "https://www.ncbi.nlm.nih.gov/books/NBK482146/",
@@ -381,24 +381,24 @@
     "id": "pance-054",
     "system": "Pulmonary",
     "blueprint_weight": "9%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Adult with paroxysmal cough, post-tussive vomiting and whoop: treatment, and who gets prophylaxis?",
-    "bottom": "Pertussis: azithromycin; treat household contacts.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "A patient with severe COPD receives high-flow oxygen and becomes somnolent as PaCO2 rises. Why?",
+    "bottom": "Extra oxygen worsens ventilation-perfusion matching in COPD.",
     "bullets": {
-      "clue": "Cough over 2 weeks with paroxysms, whoop or vomiting.",
-      "treat": "Azithromycin within 3 weeks of cough onset; PEP for household and high-risk contacts.",
-      "trap": "Plain acute bronchitis needs no antibiotics."
+      "clue": "Poorly ventilated lung units constrict their blood flow. Oxygen releases that constriction.",
+      "treat": "Target saturation about 88–92% when hypercapnia is a risk (GOLD 2026).",
+      "trap": "Hypoxic drive is not the main explanation."
     },
-    "back": "Pertussis: azithromycin; treat household contacts. Key clue: Cough over 2 weeks with paroxysms, whoop or vomiting. First-line: Azithromycin within 3 weeks of cough onset; PEP for household and high-risk contacts. Exam trap: Plain acute bronchitis needs no antibiotics.",
-    "word_count": 38,
+    "back": "Extra oxygen worsens ventilation-perfusion matching in COPD. Key clue: Poorly ventilated lung units constrict their blood flow. Oxygen releases that constriction. First-line: Target saturation about 88–92% when hypercapnia is a risk (GOLD 2026). Exam trap: Hypoxic drive is not the main explanation.",
+    "word_count": 42,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-054.svg",
-      "alt": "Pertussis stages, catarrhal, paroxysmal and convalescent; azithromycin treatment, prophylaxis for household and high-risk contacts within 21 days, and Tdap in every pregnancy between 27 and 36 weeks. Acute bronchitis needs no antibiotics."
+      "alt": "Extra oxygen worsens ventilation-perfusion matching in COPD."
     },
     "source": {
-      "guideline": "CDC Pertussis Clinical Care and Postexposure Prophylaxis guidance; CDC Tdap in pregnancy; CDC Adult Outpatient Treatment Recommendations (acute bronchitis)",
-      "year": "2024–2025",
+      "guideline": "GOLD 2026; BTS Guideline for oxygen use in adults (2017, still current as of 2026)",
+      "year": "2026",
       "url": "https://www.cdc.gov/pertussis/hcp/clinical-care/",
       "alt_url": "https://www.cdc.gov/antibiotic-use/hcp/clinical-care/adult-outpatient.html",
       "recommendation": "Azithromycin first-line (adults 500 mg day 1 then 250 mg days 2–5). Treat adults within 3 weeks of cough onset (pregnant near term and infants: within 6 weeks). PEP for household contacts and high-risk contacts (infants, third-trimester pregnancy, those in contact with them) within 21 days of exposure. Tdap during each pregnancy, preferably early in weeks 27–36. CDC adult outpatient: routine antibiotic treatment of uncomplicated acute bronchitis is not recommended."
@@ -408,24 +408,24 @@
     "id": "pance-055",
     "system": "Pulmonary",
     "blueprint_weight": "9%",
-    "task_area": "Using Diagnostic and Laboratory Studies",
-    "front": "Chest X-ray recognition: which pattern goes with which diagnosis?",
-    "bottom": "Match the pattern to the disease.",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
+    "front": "Which intervention changes the course of COPD, and which cessation medicines are used?",
+    "bottom": "Stopping smoking. Offer a medicine plus behavioral support.",
     "bullets": {
-      "clue": "Kerley B lines and cephalization mean heart failure.",
-      "treat": "Lobar consolidation: pneumonia. Hyperinflation, flat diaphragms: COPD. Hampton hump: PE infarct.",
-      "trap": "Normal X-ray does not exclude PE."
+      "clue": "Ask every patient about tobacco.",
+      "treat": "USPSTF 2021: varenicline, nicotine replacement, or bupropion, with support. GOLD 2026 treats cessation as essential.",
+      "trap": "Advice without an offer of treatment is a weaker plan."
     },
-    "back": "Match the pattern to the disease. Key clue: Kerley B lines and cephalization mean heart failure. First-line: Lobar consolidation: pneumonia. Hyperinflation, flat diaphragms: COPD. Hampton hump: PE infarct. Exam trap: Normal X-ray does not exclude PE.",
-    "word_count": 36,
+    "back": "Stopping smoking. Offer a medicine plus behavioral support. Key clue: Ask every patient about tobacco. First-line: USPSTF 2021: varenicline, nicotine replacement, or bupropion, with support. GOLD 2026 treats cessation as essential. Exam trap: Advice without an offer of treatment is a weaker plan.",
+    "word_count": 43,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-055.svg",
-      "alt": "Chest X-ray pattern matching: Kerley B lines and cephalization in heart failure, lobar consolidation with air bronchograms in pneumonia, hyperinflation in COPD, Westermark sign and Hampton hump in pulmonary embolism, and a spiculated mass in lung cancer."
+      "alt": "Stopping smoking. Offer a medicine plus behavioral support."
     },
     "source": {
-      "guideline": "Standard radiology teaching; PE workup per 2026 AHA/ACC multisociety acute PE guideline (deck card pance-005)",
-      "year": "—",
+      "guideline": "USPSTF Tobacco Smoking Cessation in Adults, Including Pregnant Persons: Interventions; GOLD 2026",
+      "year": "2021",
       "url": "https://radiopaedia.org/articles/chest-radiograph",
       "alt_url": "https://www.acc.org/about-acc/press-releases/2026/02/19/19/27/first-ahaacc-acute-pulmonary-embolism-guideline-prompt-diagnosis-and-treatment-are-key",
       "recommendation": "Classic signs: HF (cephalization, Kerley B lines, alveolar edema, effusions); pneumonia (lobar consolidation, air bronchograms); COPD (hyperinflation, flattened diaphragms); PE (usually normal or nonspecific; Westermark sign, Hampton hump uncommon); lung cancer (spiculated mass). A normal CXR does not exclude PE; diagnosis follows pretest probability, D-dimer and CTPA."

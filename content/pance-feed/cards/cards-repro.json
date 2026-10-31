@@ -3,7 +3,7 @@
     "id": "pance-122",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "First prenatal visit and routine pregnancy timeline: which labs, and when are GBS, Tdap and RSV given?",
     "bottom": "Type/Rh, antibody screen, CBC, HIV, syphilis, hep B, rubella.",
     "bullets": {
@@ -46,7 +46,7 @@
       "alt": "Ectopic pregnancy: positive hCG with empty uterus; stable unruptured gets methotrexate, unstable goes to surgery."
     },
     "source": {
-      "guideline": "ACOG Practice Bulletin 193: Tubal Ectopic Pregnancy",
+      "guideline": "ACOG Practice Bulletin 193: Tubal Ectopic Pregnancy (still current as of 2026)",
       "year": "2018 (interim update)",
       "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/03/tubal-ectopic-pregnancy",
       "alt_url": "https://doi.org/10.1097/aog.0000000000002560",
@@ -57,7 +57,7 @@
     "id": "pance-124",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Third-trimester vaginal bleeding: which history and exam findings separate placenta previa from abruption, and what exam must you avoid?",
     "bottom": "Painless bleeding: previa. Painful bleeding with a tender uterus: abruption.",
     "bullets": {
@@ -73,7 +73,7 @@
       "alt": "Third-trimester bleeding: painless suggests previa, painful suggests abruption; ultrasound before any digital exam."
     },
     "source": {
-      "guideline": "ACR Appropriateness Criteria: Second and Third Trimester Vaginal Bleeding; ACOG/SMFM Obstetric Care Consensus 7 (Placenta Accreta Spectrum)",
+      "guideline": "ACR Appropriateness Criteria: Second and Third Trimester Vaginal Bleeding; ACOG/SMFM Obstetric Care Consensus 7 (Placenta Accreta Spectrum) (still current as of 2026)",
       "year": "ACR current / 2018",
       "url": "https://gravitas.acr.org/ACPortal/TopicNarrativePdf?topicId=123",
       "alt_url": "https://www.acog.org/clinical/clinical-guidance/obstetric-care-consensus/articles/2018/12/placenta-accreta-spectrum",
@@ -111,7 +111,7 @@
     "id": "pance-126",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Pharmaceutical Therapeutics",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Routine pregnancy at 24–28 weeks: how is gestational diabetes screened and what is first-line drug therapy?",
     "bottom": "Screen at 24–28 weeks; insulin if lifestyle fails.",
     "bullets": {
@@ -138,7 +138,7 @@
     "id": "pance-127",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Average-risk 32-year-old asks how often she needs cervical cancer screening.",
     "bottom": "Ages 30–65: HPV every 5 years (or cytology every 3).",
     "bullets": {
@@ -154,7 +154,7 @@
       "alt": "Cervical screening: no screening before 21, cytology every 3 years 21 to 29, HPV every 5 years 30 to 65."
     },
     "source": {
-      "guideline": "USPSTF Cervical Cancer: Screening (final 2018; draft update Dec 2024)",
+      "guideline": "USPSTF Cervical Cancer: Screening (final 2018; draft update Dec 2024) (still current as of 2026)",
       "year": "2018 / 2024 draft",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
       "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/draft-recommendation/cervical-cancer-screening-adults-adolescents",
@@ -165,7 +165,7 @@
     "id": "pance-128",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Breast cancer screening at 40, and first imaging for a palpable mass by age.",
     "bottom": "Biennial mammography ages 40–74.",
     "bullets": {
@@ -192,7 +192,7 @@
     "id": "pance-129",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Sexually active woman with lower abdominal pain: which pelvic exam findings support PID, and what do you do next?",
     "bottom": "Cervical motion, uterine or adnexal tenderness: treat PID empirically.",
     "bullets": {
@@ -219,7 +219,7 @@
     "id": "pance-130",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Using Diagnostic and Laboratory Studies",
     "front": "47-year-old with heavy irregular bleeding: classification system and first workup step?",
     "bottom": "Classify by PALM-COEIN; endometrial sampling if over 45.",
     "bullets": {
@@ -235,7 +235,7 @@
       "alt": "Abnormal uterine bleeding: PALM-COEIN classification; endometrial sampling first-line over age 45."
     },
     "source": {
-      "guideline": "ACOG Practice Bulletin 128 (AUB, reaffirmed) and Committee Opinion 557",
+      "guideline": "ACOG Practice Bulletin 128 (AUB, reaffirmed) and Committee Opinion 557 (still current as of 2026)",
       "year": "2012 (reaffirmed)",
       "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2012/07/diagnosis-of-abnormal-uterine-bleeding-in-reproductive-aged-women",
       "alt_url": "https://journals.lww.com/greenjournal/fulltext/2013/04000/committee_opinion_no__557__management_of_acute.42.aspx",
@@ -273,23 +273,23 @@
     "id": "pance-132",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Irregular cycles, hirsutism and infertility: diagnosis criteria and first-line ovulation induction?",
-    "bottom": "PCOS by Rotterdam: 2 of 3 features.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Why are cycles irregular in many patients with PCOS, and which induction drug is first-line?",
+    "bottom": "Insulin resistance and excess LH drive ovarian androgen production.",
     "bullets": {
-      "clue": "Oligo-anovulation, hyperandrogenism, polycystic ovaries or high AMH.",
-      "treat": "Letrozole first-line for ovulation induction; lifestyle.",
-      "trap": "Letrozole is preferred over clomiphene."
+      "clue": "Two of three: oligo-ovulation, hyperandrogenism, polycystic ovaries.",
+      "treat": "2023 international PCOS guideline: letrozole is first-line for ovulation induction.",
+      "trap": "A normal ultrasound does not exclude PCOS."
     },
-    "back": "PCOS by Rotterdam: 2 of 3 features. Key clue: Oligo-anovulation, hyperandrogenism, polycystic ovaries or high AMH. First-line: Letrozole first-line for ovulation induction; lifestyle. Exam trap: Letrozole is preferred over clomiphene.",
-    "word_count": 30,
+    "back": "Insulin resistance and excess LH drive ovarian androgen production. Key clue: Two of three: oligo-ovulation, hyperandrogenism, polycystic ovaries. First-line: 2023 international PCOS guideline: letrozole is first-line for ovulation induction. Exam trap: A normal ultrasound does not exclude PCOS.",
+    "word_count": 38,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-132.svg",
-      "alt": "PCOS: two of three Rotterdam criteria; letrozole is first-line ovulation induction."
+      "alt": "Insulin resistance and excess LH drive ovarian androgen production."
     },
     "source": {
-      "guideline": "International Evidence-based Guideline for PCOS (2023)",
+      "guideline": "2023 International Evidence-based Guideline for the Assessment and Management of PCOS",
       "year": "2023",
       "url": "https://doi.org/10.1093/ejendo/lvad096",
       "alt_url": "https://www.monash.edu/medicine/mchri/pcos/guideline",
@@ -316,7 +316,7 @@
       "alt": "Postpartum hemorrhage: atony is most common; massage, oxytocin and early tranexamic acid."
     },
     "source": {
-      "guideline": "ACOG Practice Bulletin 183: Postpartum Hemorrhage",
+      "guideline": "ACOG Practice Bulletin 183: Postpartum Hemorrhage (still current as of 2026)",
       "year": "2017 (ACOG current material)",
       "url": "https://doi.org/10.1097/aog.0000000000002351",
       "alt_url": "https://dam.acog.org/download/assets/Postpartum+Hemorrhage.pdf/3b08cc0e0d0a11f19f472af91c274403",
@@ -327,7 +327,7 @@
     "id": "pance-134",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Using Diagnostic and Laboratory Studies",
     "front": "Newborn with jaundice at 18 hours of life: what to do next?",
     "bottom": "Jaundice under 24 hours is pathologic until proven otherwise.",
     "bullets": {

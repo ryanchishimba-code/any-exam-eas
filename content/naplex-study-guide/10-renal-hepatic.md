@@ -2,11 +2,11 @@
 
 > **Study aid only.** Dosing adjustments require current product labeling and clinical context — this chapter teaches judgment patterns, not automatic calculators for real patients.
 
-![Renal dosing decision tree](visuals/renal-dosing-tree.jpg)
+![Renal dosing decision tree](visuals/renal-dosing-tree.svg)
 
-![Hepatotoxic drug warning board](visuals/hepatotoxic-drug-board.jpg)
+![Hepatotoxic drug warning board](visuals/hepatotoxic-drug-board.svg)
 
-![CKD mineral bone and anemia map](visuals/ckd-anemia-mbd.jpg)
+![CKD mineral bone and anemia map](visuals/ckd-anemia-mbd.svg)
 
 ---
 
@@ -198,7 +198,6 @@ A. With meals  B. Only at midnight empty stomach always  C. Weekly  D. IV push o
 A. Improved GFR always  B. AKI (“triple whammy”)  C. No interaction  D. Cures hyperkalemia  
 **Answer:** B.
 
-
 ---
 
 ## Topic G — Applied renal dosing mini-cases
@@ -261,7 +260,6 @@ Prefer nonpharmacologic and cautious APAP within daily limits. Avoid NSAIDs. Opi
 - Cirrhosis: protect the kidney and the brain—no casual NSAIDs or sedatives.  
 - Binders with meals; lactulose to stools; CNI interaction checks every time.
 
-
 ---
 
 ## Topic K — HD dosing rhythm & CRRT awareness
@@ -280,7 +278,6 @@ SSRIs/carbamazepine/oxcarbazepine → SIADH themes. Thiazides → hypoNa. Lactul
 
 Trusting SCr alone in elderly; giving NSAIDs in cirrhosis; forgetting post-HD dosing; not separating binders; stopping lactulose because “stools are annoying” without HE plan; starting full-dose allopurinol in advanced CKD; combining triple whammy without counseling.
 
-
 ---
 
 ## Topic L — Quick reference micro-table
@@ -296,8 +293,7 @@ Trusting SCr alone in elderly; giving NSAIDs in cirrhosis; forgetting post-HD do
 | Binder start | With meals; separate thyroid/FQ |
 | Triple whammy | Counsel AKI risk |
 
-Always verify current product labeling for cutoffs—study aids give patterns, not automatic doses.
-
+Always follow product labeling for cutoffs—study aids give patterns, not automatic doses.
 
 Pair every renal/hepatic adjustment with a monitoring plan and a patient explanation in plain language—why the dose changed, what symptoms to report, and when labs repeat. That counseling is Domain 2 and Domain 3 at once.
 

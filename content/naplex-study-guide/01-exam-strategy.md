@@ -2,9 +2,9 @@
 
 > **Study aid only.** Strategy framing for the NAPLEX under the NABP Content Outline (exams on/after May 1, 2025). Confirm current rules in the official Candidate Application Bulletin. Not affiliated with NABP.
 
-![NAPLEX five content domains with weights](visuals/naplex-domain-weights.jpg)
+![NAPLEX five content domains with weights](visuals/naplex-domain-weights.svg)
 
-![Pharmacist ISCM decision framework](visuals/pharmacist-iscm-framework.jpg)
+![Pharmacist ISCM decision framework](visuals/pharmacist-iscm-framework.svg)
 
 ---
 
@@ -103,7 +103,7 @@ Map the stem to the step:
 3. Kill options that are **unsafe, out of scope, ignore organ function, or counsel incorrectly**.  
 4. Prefer the option that is **most patient-specific and most immediate**.
 
-| Keyword vibe | Often means… |
+| Keyword | Often means… |
 | --- | --- |
 | Best / most appropriate | Patient-specific + guideline-aligned |
 | Initial / first | Stabilize / assess critical safety |
@@ -119,7 +119,7 @@ Map the stem to the step:
 - Watch salt factors, reconstitution volumes, infusion rates (mL/hr vs mcg/kg/min).  
 - Round only when the stem/policy implies it — and never round into an unsafe dose.
 
-![Calculation dimensional analysis flow](visuals/calc-dimensional-analysis.jpg)
+![Calculation dimensional analysis flow](visuals/calc-dimensional-analysis.svg)
 
 ---
 
@@ -174,7 +174,7 @@ Map the stem to the step:
 
 **If you’re working full-time:** protect a non-negotiable daily block. Weekend = longer timed sets.
 
-> **Ready to practice what you just planned?** Explore NAPLEX questions on [AnyExamEasy](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.
+> **Ready to practice what you just planned?** Explore NAPLEX questions on [AnyExamEasy](https://anyexameasy.
 
 ---
 

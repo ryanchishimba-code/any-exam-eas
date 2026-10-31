@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="384" viewBox="0 0 420 384" role="img" aria-label="Shock">
+<title>Shock</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Shock</text>
+<rect x="24" y="70" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Hypovolemic: low volume. Fluid or blood.</text>
+<rect x="24" y="116" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="138" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Cardiogenic: pump failure. Do not flood a</text>
+<text x="36" y="160" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">wet lung.</text>
+<rect x="24" y="184" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="206" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Distributive: sepsis or anaphylaxis.</text>
+<text x="36" y="228" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Antibiotics and fluid for sepsis.</text>
+<text x="36" y="250" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Epinephrine for anaphylaxis.</text>
+<rect x="24" y="274" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="296" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Obstructive: tamponade, tension</text>
+<text x="36" y="318" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">pneumothorax, massive embolism.</text>
+<text x="28" y="350" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">Surviving Sepsis and emergency teaching</text>
+</svg>

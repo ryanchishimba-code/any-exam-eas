@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="406" viewBox="0 0 420 406" role="img" aria-label="Initial HIV treatment">
+<title>Initial HIV treatment</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Initial HIV treatment</text>
+<rect x="24" y="70" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Most treatment-naive adults start an</text>
+<text x="36" y="114" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">integrase inhibitor plus two nucleosides</text>
+<text x="36" y="136" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">(DHHS).</text>
+<rect x="24" y="160" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="182" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Bictegravir/tenofovir</text>
+<text x="36" y="204" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">alafenamide/emtricitabine and</text>
+<text x="36" y="226" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">dolutegravir-based regimens are common.</text>
+<rect x="24" y="250" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="272" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Start as soon as the diagnosis is made.</text>
+<rect x="24" y="296" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="318" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">CD4 under 200: Pneumocystis prophylaxis</text>
+<text x="36" y="340" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">with trimethoprim-sulfamethoxazole.</text>
+<text x="28" y="372" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">DHHS antiretroviral guidelines</text>
+</svg>

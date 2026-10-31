@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="362" viewBox="0 0 420 362" role="img" aria-label="Chest pain">
+<title>Chest pain</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Chest pain</text>
+<rect x="24" y="70" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">ECG within 10 minutes.</text>
+<rect x="24" y="116" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="138" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Pressure and risk factors: acute coronary</text>
+<text x="36" y="160" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">syndrome.</text>
+<rect x="24" y="184" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="206" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Tearing pain to the back and unequal arm</text>
+<text x="36" y="228" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">pressures: dissection.</text>
+<rect x="24" y="252" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="274" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Pleuritic pain, better sitting forward,</text>
+<text x="36" y="296" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">diffuse ST elevation: pericarditis.</text>
+<text x="28" y="328" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">2025 ACC/AHA ACS guideline</text>
+</svg>

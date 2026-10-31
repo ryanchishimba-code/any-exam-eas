@@ -2,9 +2,9 @@
 
 > **Study aid only.** Verify isolation, med rights, and facility protocols with current CDC-aligned practice and your instructors. Not clinical protocol.
 
-![Isolation precautions matrix](visuals/isolation-ppe-matrix.jpg)
+![Isolation precautions matrix](visuals/isolation-ppe-matrix.svg)
 
-![Fire safety RACE and PASS](visuals/race-pass-fire.jpg)
+![Fire safety RACE and PASS](visuals/race-pass-fire.svg)
 
 ---
 
@@ -41,7 +41,7 @@ Infection control interrupts the chain of infection (infectious agent → reserv
 
 ### Client teaching
 
-- Cover cough; stay home when contagious (community teaching themes).  
+- Cover cough; stay home when contagious (community key points).  
 - Don’t share personal items; complete antibiotic courses as prescribed.
 
 ### Safety / red flags
@@ -191,8 +191,6 @@ RACE/PASS are classic. Disaster triage ≠ everyday ED prioritization.
 
 ---
 
-
-
 ---
 
 ## Topic G — Pressure injury prevention & skin
@@ -230,9 +228,6 @@ Pain is real and deserves treatment; opioids still require RR/sedation monitorin
 ### Remember this
 
 Treat pain and protect the airway. Sedation precedes respiratory arrest — watch the trend.
-
-
-
 
 ---
 

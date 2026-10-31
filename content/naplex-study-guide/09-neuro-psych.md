@@ -2,11 +2,11 @@
 
 > **Study aid only.** Psychopharmacology and neurology themes for exam judgment — not a treatment protocol. Suicide risk, controlled substances, and monitoring requirements follow clinical/legal standards.
 
-![Antidepressant counseling and safety map](visuals/antidepressant-safety-map.jpg)
+![Antidepressant counseling and safety map](visuals/antidepressant-safety-map.svg)
 
-![Opioid risk mitigation checklist](visuals/opioid-risk-mitigation.jpg)
+![Opioid risk mitigation checklist](visuals/opioid-risk-mitigation.svg)
 
-![Seizure medication counseling card](visuals/asm-counseling-card.jpg)
+![Seizure medication counseling card](visuals/asm-counseling-card.svg)
 
 ---
 
@@ -46,7 +46,7 @@ Neuro/psych stems emphasize **safety monitoring**, interaction checks (serotonin
 - Prior mania, seizure threshold, bleeding risk on SSRI + NSAID/anticoagulant.  
 - Hyponatremia (SIADH) especially elderly on SSRIs.  
 - Sexual side effects → adherence threat.  
-- Pregnancy: paroxetine cardiac concern themes historically; sertraline often preferred — verify current guidance.
+- Pregnancy: paroxetine cardiac concern themes historically; sertraline often preferred.
 
 ### Counseling
 
@@ -71,7 +71,7 @@ Neuro/psych stems emphasize **safety monitoring**, interaction checks (serotonin
 - Acute agitation vs long-acting injectables adherence roles.  
 - QT risk varies (e.g., ziprasidone/thioridazine themes).
 
-### Metabolic monitoring schedule vibe
+### Metabolic monitoring schedule pattern
 
 Baseline and follow-up: weight/BMI, waist, BP, fasting glucose/A1C, lipids — especially olanzapine/clozapine/quetiapine themes.
 
@@ -233,10 +233,9 @@ A. Uncontrolled vascular disease / certain CV risks  B. Always safe in stroke hi
 A. NSAIDs / ACEI / thiazides / dehydration  B. Excess free water only always protective  C. Topical vitamin C  D. Inhaled albuterol exclusively  
 **Answer:** A.
 
-
 ---
 
-## Topic H — Serotonin syndrome vs NMS vs anticholinergic toxicity (recognition vibe)
+## Topic H — Serotonin syndrome vs NMS vs anticholinergic toxicity (recognition pattern)
 
 | Syndrome | Clues | Drug themes |
 | --- | --- | --- |
@@ -298,7 +297,6 @@ Newer acute/preventive options appear on exams as “not vasoconstrictive like t
 - Naloxone + constipation plan with opioids.  
 - Mood stabilizers and ASMs are interaction magnets — check every new drug.
 
-
 ---
 
 ## Topic M — Additional concept anchors
@@ -310,7 +308,6 @@ Newer acute/preventive options appear on exams as “not vasoconstrictive like t
 **When stems include suicide risk:** Do not dispense and shrug. Assess urgency, involve the patient compassionately, and use emergency/crisis pathways when indicated (local emergency services / crisis lines). Pharmacists are part of the safety net.
 
 **Gabapentinoid caution:** Sedation, misuse potential rising, renal dosing essential, additive opioid respiratory depression — document counseling and consider naloxone when combined with opioids.
-
 
 ---
 
@@ -329,7 +326,6 @@ Newer acute/preventive options appear on exams as “not vasoconstrictive like t
 
 Naloxone co-prescribing is a professional norm when overdose risk factors stack—opioids plus benzos, prior OD, respiratory disease, or high MME. Teach responders how to assemble and spray/inject, then call emergency services.
 
-
-Confirm current labeling for REMS elements, boxed warnings, and pregnancy registries whenever psych/neuro agents appear—guidelines and labels evolve.
+Follow labeling for REMS elements, boxed warnings, and pregnancy registries whenever psych/neuro agents appear—guidelines and labels evolve.
 
 Study aid only—pair this chapter with Qbank items on lithium, clozapine, and opioids.

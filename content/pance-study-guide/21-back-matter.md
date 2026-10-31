@@ -1,10 +1,10 @@
-# You've got this
+# Before test day
 
 PANCE rewards clear thinking about common problems.
 
-**What is it? What's next? What's first-line?** Train those three questions every day.
+**What is it? What is next? What is first-line?** Practice those three questions.
 
-**[Try PANCE practice free →](/signup?plan=trial&interval=monthly&tier=pro&exam=pance)**: one study system across six boards. $27.99/mo after trial; trial terms on site.
+The question bank is part of the same account as this guide.
 
 ---
 
@@ -21,4 +21,4 @@ PANCE rewards clear thinking about common problems.
 
 ---
 
-*AnyExamEasy is independent. It is not affiliated with or endorsed by the National Commission on Certification of Physician Assistants (NCCPA). PANCE®, PANRE®, and PA-C® are trademarks of NCCPA. We do not guarantee exam results, certification, licensure, or employment. Always confirm current policies in official NCCPA materials.*
+*AnyExamEasy is independent. It is not affiliated with or endorsed by the National Commission on Certification of Physician Assistants (NCCPA). PANCE®, PANRE®, and PA-C® are trademarks of NCCPA. We do not guarantee exam results, certification, licensure, or employment. Always follow policies in official NCCPA materials.*

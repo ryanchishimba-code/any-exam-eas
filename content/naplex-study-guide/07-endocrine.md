@@ -2,11 +2,11 @@
 
 > **Study aid only.** Glucose targets and regimens are individualized — verify ADA-aligned standards and labeling. Not dosing advice for real patients.
 
-![Diabetes medication class decision map](visuals/diabetes-class-map.jpg)
+![Diabetes medication class decision map](visuals/diabetes-class-map.svg)
 
-![Insulin onset peak duration timeline](visuals/insulin-peak-timeline.jpg)
+![Insulin onset peak duration timeline](visuals/insulin-peak-timeline.svg)
 
-![Thyroid hypo vs hyper contrast card](visuals/thyroid-hypo-hyper.jpg)
+![Thyroid hypo vs hyper contrast card](visuals/thyroid-hypo-hyper.svg)
 
 ---
 
@@ -21,7 +21,7 @@ Endocrine stems reward **regimen design**, hypo prevention, device counseling, s
 ### Key concepts
 
 - Lifestyle + metformin foundation for many (if tolerated/eGFR allows).  
-- **Metformin and kidney function — AnyExamEasy dosing rule (based on FDA labeling and KDIGO); verify current label:**
+- **Metformin and kidney function — AnyExamEasy dosing rule (based on FDA labeling and KDIGO); follow label:**
 
 | eGFR (mL/min/1.73 m²) | Metformin use |
 | --- | --- |
@@ -29,14 +29,14 @@ Endocrine stems reward **regimen design**, hypo prevention, device counseling, s
 | **30–44** | Do **not** start; if already on metformin, **halve the dose** (maximum **1,000 mg/day**) |
 | **&lt;30** | **Discontinue** |
 
-- Add agents by comorbidity: **ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes** independent of A1C in modern algorithms (confirm current ADA Standards and FDA labeling).  
+- Add agents by comorbidity: **ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes** independent of A1C in modern algorithms (ADA Standards of Care 2026 Standards and FDA labeling).  
 - Avoid therapeutic inertia; also avoid stacking hypo-prone agents carelessly.  
 - Injection technique and storage for GLP-1 RAs / insulin.  
 - Weight, cost, hypoglycemia risk, and patient preference still matter.
 
 ### Class comparison table
 
-| Class | Efficacy vibe | Key risks / pearls |
+| Class | Efficacy pattern | Key risks / pearls |
 | --- | --- | --- |
 | Metformin | Foundation | GI; B12 long-term; lactic acidosis rare — eGFR rules |
 | SGLT2i | CV/renal benefit | Genital mycotic, volume depletion, euglycemic DKA rare; amputation/Fournier rare boxed themes — counsel hygiene |
@@ -92,9 +92,9 @@ Endocrine stems reward **regimen design**, hypo prevention, device counseling, s
 - Concentrated insulins and pens: brand-specific counseling.  
 - Peak timing: rapid-acting with meals; basal relatively peakless (product-specific).
 
-![DKA vs HHS pharmacist contrast](visuals/dka-hhs-pharmacist.jpg)
+![DKA vs HHS pharmacist contrast](visuals/dka-hhs-pharmacist.svg)
 
-### Onset/peak/duration teaching vibe
+### Onset/peak/duration teaching pattern
 
 | Type | Role hooks |
 | --- | --- |
@@ -124,7 +124,7 @@ Endocrine stems reward **regimen design**, hypo prevention, device counseling, s
 
 - Levothyroxine: morning empty stomach; separate from cations/binders; consistent product when possible.  
 - TSH monitoring timing after dose changes (~4–6 weeks themes).  
-- Hyperthyroidism: methimazole preferred in many non-pregnant; PTU in first trimester themes historically — verify current guidance.  
+- Hyperthyroidism: methimazole preferred in many non-pregnant; PTU in first trimester themes historically.  
 - Agranulocytosis counseling (fever/sore throat) for thionamides.  
 - Thyroid storm / myxedema = emergencies (supportive + directed therapy).  
 - Amiodarone and lithium can derange thyroid — monitor.
@@ -232,7 +232,6 @@ A. Long-acting insulin bolus  B. ~15 g fast-acting carbohydrate; recheck  C. Ign
 A. Lie down immediately after  B. Upright 30–60 min with full glass water; separate cations  C. Take with milk always  D. Crush and put in juice  
 **Answer:** B.
 
-
 ---
 
 ## Topic G — Hyperglycemia hospital & steroid themes
@@ -268,8 +267,8 @@ Patient on prednisone 20 mg for 8 weeks stopping tomorrow “because they feel b
 
 ### Diabetes + CKD deep hooks
 
-- Metformin eGFR cutoffs/dose adjustments — confirm current labeling.  
-- SGLT2 renal indications may extend to nondiabetic CKD themes — confirm current labeling.  
+- Metformin eGFR cutoffs/dose adjustments.  
+- SGLT2 renal indications may extend to nondiabetic CKD themes.  
 - Avoid repeated nephrotoxins; ACEI/ARB kidney protection in albuminuric CKD.  
 - Hypoglycemia risk rises as GFR falls for insulin/sulfonylureas — de-intensify.
 
@@ -283,12 +282,11 @@ Prime pens; hold after injection; never share pens (bloodborne pathogen risk eve
 - Hypoglycemia plans are part of the prescription.  
 - Thyroid timing and steroid tapers are high-yield pharmacist saves.
 
-
 ---
 
 ## Topic I — Reproductive endocrine & PCOS themes (brief)
 
-PCOS may involve metformin, combined hormonal contraceptives for cycle regulation when safe, anti-androgens specialty, and fertility pathways — screen VTE risk before CHC. Counsel weight, glucose screening, and endometrial protection themes. For gestational diabetes, insulin is classic preferred pharmacologic; metformin/glyburide nuances exist in practice — verify current Ob guidance if stemmed. Postpartum thyroiditis can confuse LT4 needs — don’t adjust wildly without labs.
+PCOS may involve metformin, combined hormonal contraceptives for cycle regulation when safe, anti-androgens specialty, and fertility pathways — screen VTE risk before CHC. Counsel weight, glucose screening, and endometrial protection themes. For gestational diabetes, insulin is classic preferred pharmacologic; metformin/glyburide nuances exist in practice. Postpartum thyroiditis can confuse LT4 needs — don’t adjust wildly without labs.
 
 ### Pituitary / prolactin themes
 
@@ -305,12 +303,10 @@ Dopamine agonists (cabergoline/bromocriptine) for hyperprolactinemia: counsel na
 - No GLP-1 + DPP-4 stack  
 - DKA/HHS = fluids, insulin, K vigilance
 
-
 ### Final endocrine traps
 
 SU in frail elderly with tight A1C → de-intensify. TZD + HF symptoms → stop/avoid. Missed denosumab dose → urgent reschedule/plan. LT4 with breakfast coffee and multivitamin → absorption fail. SGLT2 before bariatric bowel prep / surgery without hold → DKA risk. Insulin pen sharing → never.
 
-
 When in doubt on NAPLEX endocrine stems: protect the heart and kidney first in T2D, prevent hypoglycemia, time thyroid correctly, taper steroids safely, and treat osteoporosis counseling as a fall-and-fracture prevention skill—not a footnote.
 
-Confirm current ADA Standards of Care and product labeling whenever A1C targets, eGFR cutoffs, or pregnancy guidance appear on exam stems.
+Follow ADA Standards of Care and product labeling whenever A1C targets, eGFR cutoffs, or pregnancy guidance appear on exam stems.

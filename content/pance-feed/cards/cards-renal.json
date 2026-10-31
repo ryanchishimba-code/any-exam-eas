@@ -19,7 +19,7 @@
       "alt": "Acute kidney injury: creatinine rise of 0.3 in 48 hours or 1.5 times baseline; prerenal has FENa under 1 percent, ATN has muddy brown casts, postrenal shows hydronephrosis."
     },
     "source": {
-      "guideline": "KDIGO Clinical Practice Guideline for Acute Kidney Injury",
+      "guideline": "KDIGO Clinical Practice Guideline for Acute Kidney Injury (still current as of 2026)",
       "year": "2012",
       "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
       "alt_url": "https://kdigo.org/guidelines/acute-kidney-injury/",
@@ -30,7 +30,7 @@
     "id": "pance-179",
     "system": "Renal",
     "blueprint_weight": "5%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "How is CKD staged, and which drugs slow progression in diabetic or proteinuric CKD?",
     "bottom": "Stage by GFR (G1–G5) and albuminuria (A1–A3).",
     "bullets": {
@@ -73,7 +73,7 @@
       "alt": "Severe symptomatic hyponatremia: 150 milliliters of 3 percent saline over 20 minutes, and limit the rise to 10 mEq/L in 24 hours to avoid osmotic demyelination."
     },
     "source": {
-      "guideline": "Clinical practice guideline on diagnosis and treatment of hyponatraemia (ESE, ESICM, ERA-EDTA)",
+      "guideline": "Clinical practice guideline on diagnosis and treatment of hyponatraemia (ESE, ESICM, ERA-EDTA) (still current as of 2026)",
       "year": "2014",
       "url": "https://doi.org/10.1530/eje-13-1020",
       "alt_url": "https://doi.org/10.1093/ndt/gfu040",
@@ -84,7 +84,7 @@
     "id": "pance-181",
     "system": "Renal",
     "blueprint_weight": "5%",
-    "task_area": "Formulating Most Likely Diagnosis",
+    "task_area": "Applying Foundational Scientific Concepts",
     "front": "Metabolic acidosis with an anion gap of 24: what are the causes, and what does a high osmolar gap suggest?",
     "bottom": "High gap: think GOLDMARK; high osmolar gap: toxic alcohols.",
     "bullets": {
@@ -100,7 +100,7 @@
       "alt": "Anion gap metabolic acidosis: sodium minus chloride plus bicarbonate; GOLDMARK causes; ethylene glycol and methanol are treated with fomepizole and dialysis."
     },
     "source": {
-      "guideline": "AACT Practice Guidelines on the Treatment of Ethylene Glycol Poisoning",
+      "guideline": "AACT Practice Guidelines on the Treatment of Ethylene Glycol Poisoning (still current as of 2026)",
       "year": "1999",
       "url": "https://doi.org/10.1081/clt-100102445",
       "alt_url": "https://doi.org/10.1081/clt-120006745",
@@ -192,24 +192,24 @@
     "id": "pance-185",
     "system": "Renal",
     "blueprint_weight": "5%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Which drugs injure the kidney, and which patients need fluids before IV contrast?",
-    "bottom": "Prophylaxis if eGFR <30 or AKI; stop NSAIDs.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Why can an NSAID plus an ACE inhibitor drop GFR when a patient is volume depleted?",
+    "bottom": "The NSAID constricts the afferent arteriole. The ACE inhibitor dilates the efferent arteriole.",
     "bullets": {
-      "clue": "Interstitial nephritis: fever, rash, eosinophilia, WBC casts after PPI, penicillin, NSAID.",
-      "treat": "Isotonic saline around contrast if eGFR <30; stop the drug.",
-      "trap": "Aminoglycosides: ATN. NSAIDs: prerenal AKI."
+      "clue": "Angiotensin II normally constricts the efferent arteriole and supports GFR.",
+      "treat": "Hold the NSAID and the ACE inhibitor or ARB during the illness (KDIGO 2024).",
+      "trap": "A creatinine rise of up to about 30% after starting an ACE inhibitor can be hemodynamic."
     },
-    "back": "Prophylaxis if eGFR <30 or AKI; stop NSAIDs. Key clue: Interstitial nephritis: fever, rash, eosinophilia, WBC casts after PPI, penicillin, NSAID. First-line: Isotonic saline around contrast if eGFR <30; stop the drug. Exam trap: Aminoglycosides: ATN. NSAIDs: prerenal AKI.",
-    "word_count": 39,
+    "back": "The NSAID constricts the afferent arteriole. The ACE inhibitor dilates the efferent arteriole. Key clue: Angiotensin II normally constricts the efferent arteriole and supports GFR. First-line: Hold the NSAID and the ACE inhibitor or ARB during the illness (KDIGO 2024). Exam trap: A creatinine rise of up to about 30% after starting an ACE inhibitor can be hemodynamic.",
+    "word_count": 58,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-185.svg",
-      "alt": "Nephrotoxic drugs: NSAIDs cause prerenal injury, aminoglycosides cause acute tubular necrosis, penicillins and PPIs cause interstitial nephritis; give saline before contrast if eGFR is below 30."
+      "alt": "The NSAID constricts the afferent arteriole. The ACE inhibitor dilates the efferent arteriole."
     },
     "source": {
-      "guideline": "ACR–NKF Consensus Statements on Use of Intravenous Iodinated Contrast Media in Patients with Kidney Disease",
-      "year": "2020",
+      "guideline": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD",
+      "year": "2024",
       "url": "https://doi.org/10.1148/radiol.2019192094",
       "alt_url": "https://doi.org/10.1016/j.xkme.2020.01.001",
       "recommendation": "ACR–NKF 2020: prophylaxis with IV isotonic volume expansion indicated for eGFR <30 (not on dialysis) or AKI; not routinely indicated for eGFR ≥45; individualize for eGFR 30–44; do not withhold medically necessary contrast."
@@ -219,7 +219,7 @@
     "id": "pance-186",
     "system": "Renal",
     "blueprint_weight": "5%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Perioral tingling, carpopedal spasm and a long QT: which bedside signs confirm hypocalcemia, and how is it treated?",
     "bottom": "Hypocalcemia: Chvostek and Trousseau signs.",
     "bullets": {
@@ -235,7 +235,7 @@
       "alt": "Hypocalcemia: Chvostek sign, Trousseau sign, long QT; treat symptomatic patients with IV calcium gluconate and correct magnesium."
     },
     "source": {
-      "guideline": "Society for Endocrinology Emergency Guidance: Emergency management of acute hypocalcaemia in adult patients",
+      "guideline": "Society for Endocrinology Emergency Guidance: Emergency management of acute hypocalcaemia in adult patients (still current as of 2026)",
       "year": "2016 (updated 2019)",
       "url": "https://doi.org/10.1530/ec-16-0056a",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5314808/",

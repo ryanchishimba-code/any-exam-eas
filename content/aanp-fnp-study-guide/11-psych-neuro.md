@@ -1,16 +1,16 @@
 # Chapter 11 — Psych / Neuro
 
-> **Study aid only.** Mental health and neurologic themes for FNP exam judgment — not psychotherapy protocol or stroke-center standing orders. Verify current guidelines, FDA labeling (including boxed warnings), and local crisis pathways. Independent of NPCB/AANP.
+> **Study aid only.** Mental health and neurologic themes for FNP exam judgment — not psychotherapy protocol or stroke-center standing orders. Follow guidelines, FDA labeling (including boxed warnings), and local crisis pathways. Independent of NPCB/AANP.
 
-![Psych safety screen](visuals/psych-safety-screen.jpg)
+![Psych safety screen](visuals/psych-safety-screen.svg)
 
-![Migraine vs secondary HA](visuals/migraine-vs-secondary.jpg)
+![Migraine vs secondary HA](visuals/migraine-vs-secondary.svg)
 
-![Dementia vs delirium](visuals/dementia-vs-delirium.jpg)
+![Dementia vs delirium](visuals/dementia-vs-delirium.svg)
 
-![Stroke FAST card](visuals/stroke-fast-card.jpg)
+![Stroke FAST card](visuals/stroke-fast-card.svg)
 
-![Adult ADHD mimics](visuals/adult-adhd-mimics.jpg)
+![Adult ADHD mimics](visuals/adult-adhd-mimics.svg)
 
 ---
 
@@ -35,7 +35,7 @@ Depression, anxiety, bipolar cues, migraine, TIA/stroke, and dementia/delirium s
 
 Candidates who prescribe sertraline without asking about mania or suicide lose points. Candidates who send thunderclap headache home with sumatriptan lose dangerous ones.
 
-**Pair with practice:** Tag misses with age band + ADPE. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** Tag misses with age band + ADPE.
 
 ---
 
@@ -143,7 +143,7 @@ Behavioral strategies; stimulant/nonstimulant themes with BP/HR monitoring; pref
 
 **Recurrent migraine pattern is outpatient treatable; SNOOP red flags are not “just migraine.”**
 
-| Primary migraine vibes | Secondary worry (SNOOP themes) |
+| Primary migraine patterns | Secondary worry (SNOOP themes) |
 | --- | --- |
 | Recurrent, photophobia, nausea, ± aura, disability | Systemic disease (fever, cancer, HIV) |
 | Builds over hours; triggers | Neurologic deficits (weakness, vision loss, confusion) |
@@ -328,7 +328,7 @@ First unprovoked seizure → urgent evaluation; status → EMS. Syncope with neu
 - Verify psychopharmacology labels and stroke guidance — they evolve.  
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill SI safety, antidepressant starts, migraine vs secondary HA, stroke/TIA, and delirium items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next practice move:** Drill SI safety, antidepressant starts, migraine vs secondary HA, stroke/TIA, and delirium items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -468,7 +468,7 @@ Peripheral BPPV: brief positional spinning, Dix-Hallpike themes, Epley treatment
 
 ## Multimorbidity Older Adult mini-case (Domain II 30%)
 
-**Stem vibe:** 84-year-old with dementia, CKD 3, depression on paroxetine, insomnia on diphenhydramine, knee pain on PRN hydrocodone. Family reports new night confusion after UTI abx started. Wants “something to calm her.”
+**Practice stem:** 84-year-old with dementia, CKD 3, depression on paroxetine, insomnia on diphenhydramine, knee pain on PRN hydrocodone. Family reports new night confusion after UTI abx started. Wants “something to calm her.”
 
 **ADPE:** Assess delirium triggers (infection, anticholinergic, opioid, Na, retention). Diagnose delirium on dementia. Plan: treat infection appropriately, strip anticholinergic/reduce opioid, lighting/glasses/hearing aids, avoid reflex antipsychotic, safety. Evaluate: return to baseline cognition as goal; deprescribe list.
 

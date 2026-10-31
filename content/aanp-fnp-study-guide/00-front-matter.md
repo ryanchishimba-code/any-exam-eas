@@ -28,7 +28,7 @@ This book is a **study aid for exam preparation**. It is **not**:
 - A substitute for your NP program, clinical preceptors, collaborating/supervising agreements, or employer policy  
 - An official **NPCB** or **AANP** publication or replacement for the Candidate Handbook / FNP exam blueprint  
 
-**Always verify** guidelines, dosing, immunization schedules, screening recommendations, controlled-substance rules, and state scope-of-practice requirements with current official sources (NPCB, USPSTF, ACIP/CDC, major specialty guidelines, FDA labeling, DEA/state boards). When dosing or guidelines are mentioned, treat them as **teaching themes to verify** — not standing orders.
+**Always verify** guidelines, dosing, immunization schedules, screening recommendations, controlled-substance rules, and state scope-of-practice requirements with current official sources (NPCB, USPSTF, ACIP/CDC, major specialty guidelines, FDA labeling, DEA/state boards). When dosing or guidelines are mentioned, treat them as **the named thresholds in this chapter** — not standing orders.
 
 AnyExamEasy does **not** guarantee exam results, certification, licensure, or employment. We are **independent** and not affiliated with NPCB, AANP, ANCC, or Pearson VUE. Exam names and trademarks belong to their owners.
 

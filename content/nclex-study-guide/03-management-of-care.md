@@ -2,13 +2,13 @@
 
 > **Study aid only.** Scope and assignment rules vary by state and facility. Verify with your nursing regulatory body. PN candidates: think Coordinated Care.
 
-![Delegation rights framework](visuals/delegation-five-rights.jpg)
+![Delegation rights framework](visuals/delegation-five-rights.svg)
 
 ---
 
 ## Why it matters on NCLEX
 
-Management of Care is often a large slice of RN items (commonly cited in the teens–low twenties percent range on published test plans — verify current NCSBN percentages). These stems test whether you protect clients through **prioritization, delegation, advocacy, privacy, continuity, and escalation** — not whether you sound impressive.
+Management of Care is often a large slice of RN items (commonly cited in the teens–low twenties percent range on published test plans. These stems test whether you protect clients through **prioritization, delegation, advocacy, privacy, continuity, and escalation** — not whether you sound impressive.
 
 ---
 
@@ -98,7 +98,7 @@ Living will / durable power of attorney for healthcare. Ask on admission; honor 
 
 ### Ethical principles (NCLEX style)
 
-| Principle | Plain English | Exam vibe |
+| Principle | Plain English | Exam focus |
 | --- | --- | --- |
 | **Autonomy** | Client chooses | Informed consent/refusal |
 | **Beneficence** | Do good | Pain relief, advocacy |
@@ -233,7 +233,6 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ---
 
-
 ---
 
 ## Enhanced NGN frames — prioritization & delegation
@@ -264,7 +263,7 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ### Prioritization comparison table
 
-| Cue cluster | Priority vibe | Often wrong distractor |
+| Cue cluster | Priority pattern | Often wrong distractor |
 | --- | --- | --- |
 | New stridor / can’t speak | Airway now | Detailed pain history first |
 | Chest pain + hypotension | Circulation/ACS pathway | Ambulate to calm anxiety |
@@ -293,7 +292,6 @@ D. Titration of nitroglycerin drip
 
 **Q7: B.** Stable ADL assist fits UAP.  
 **Q8:** Follow disaster protocol cues in the stem — expectant categories can exist.
-
 
 ## Concept check
 

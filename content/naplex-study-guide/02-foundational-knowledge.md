@@ -2,9 +2,9 @@
 
 > **Study aid only.** Domain 1 themes (~25%). Concepts for exam prep — not compounding certification or clinical protocols. Verify USP/FDA/current references.
 
-![PK/PD absorption distribution metabolism excretion map](visuals/pk-adme-map.jpg)
+![PK/PD absorption distribution metabolism excretion map](visuals/pk-adme-map.svg)
 
-![Biostats study design hierarchy quick map](visuals/biostats-hierarchy.jpg)
+![Biostats study design hierarchy quick map](visuals/biostats-hierarchy.svg)
 
 ---
 
@@ -18,7 +18,7 @@ Domain 1 asks whether you understand the **science underneath** safe dispensing 
 
 ### Key concepts
 
-- **Study designs (strength vibe):** meta-analysis/systematic review > RCT > cohort > case-control > case series/report > expert opinion (context matters; not absolute).  
+- **Study designs (strength pattern):** meta-analysis/systematic review > RCT > cohort > case-control > case series/report > expert opinion (context matters; not absolute).  
 - **Internal vs external validity:** Was the study well run? Do results apply to *this* patient?  
 - **Relative risk (RR) / odds ratio (OR):** association measures; OR ≈ RR when events are rare.  
 - **Absolute risk reduction (ARR)** and **NNT** = 1/ARR — clinically actionable.  
@@ -131,10 +131,10 @@ Common inhibitor themes: strong CYP3A4 (e.g., azoles, some macrolides, protease 
 - **Dosage forms:** IR vs ER/DR — do not crush ER without checking; counseling on ghost tablets when relevant  
 - **Solutions vs suspensions:** shake suspensions; dosing devices matter  
 - **Isotonicity / pH / osmolarity** themes for ophthalmics/parenterals  
-- **Beyond-use dating (BUD)** concepts vs manufacturer expiration — follow current USP guidance themes (verify current chapters)  
+- **Beyond-use dating (BUD)** concepts vs manufacturer expiration — follow current USP guidance themes  
 - **Aseptic technique / sterile compounding risk levels** (conceptual): contamination control, garbing, environmental monitoring awareness  
 - **Nonsterile compounding:** accurate weighing, geometric dilution, appropriate base selection  
-- **Hazardous drugs:** handling, PPE, containment themes (USP <800> awareness — verify current practice standards)  
+- **Hazardous drugs:** handling, PPE, containment themes (USP <800> awareness
 - **Stability:** light, temperature, humidity, incompatibilities (IV Y-site themes)
 
 ### Assessment cues
@@ -245,7 +245,6 @@ A. 1  B. 2  C. 4–5  D. 20
 A. Sensitivity  B. Specificity  C. PPV  D. Likelihood ratio fixed by prevalence alone  
 **Answer:** C (PPV falls as false positives loom larger).
 
-
 ---
 
 ## Topic G — Applied PK cases pharmacists actually use
@@ -262,7 +261,7 @@ Ask: Is significant drug removed? If yes, dose after HD when labels say so. If n
 
 Some antimicrobials and anticoagulants use TBW, IBW, or AdjBW with caps. The exam will usually signal which estimate to use or give CrCl already computed — don’t fight the stem.
 
-### Bioequivalence vs therapeutic equivalence (Orange Book vibe)
+### Bioequivalence vs therapeutic equivalence (Orange Book pattern)
 
 AB-rated products meet bioequivalence standards for substitution themes. “Same molecule” compounded or non-AB products are not automatically interchangeable. NTI drugs deserve extra caution and consistency when possible.
 
@@ -282,7 +281,7 @@ AB-rated products meet bioequivalence standards for substitution themes. “Same
 ### Sterile compounding safety culture (exam-level)
 
 - Garbing and surface disinfection are infection-control, not theater  
-- Beyond-use dating depends on risk level and storage — verify current USP framing  
+- Beyond-use dating depends on risk level and storage
 - Label must include critical BUD/storage; don’t dispense unlabeled syringes  
 - Hazardous drug spill kits / PPE awareness
 
@@ -303,7 +302,7 @@ AB-rated products meet bioequivalence standards for substitution themes. “Same
 **Drill 4:** CI for RR is 0.8–1.3 → includes 1 → typically not statistically significant for that contrast.  
 **Drill 5:** Huge RRR with tiny ARR in low-baseline-risk patients → counsel absolute benefit honestly.
 
-### Forest plot / meta-analysis vibe
+### Forest plot / meta-analysis pattern
 
 Diamond crossing the null line → pooled estimate not clearly beneficial/harmful. Heterogeneity themes: don’t blindly pool unlike studies.
 

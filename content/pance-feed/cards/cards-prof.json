@@ -19,7 +19,7 @@
       "alt": "Informed consent: disclose risks, benefits and alternatives; capacity means communicating a choice, understanding, appreciating and reasoning."
     },
     "source": {
-      "guideline": "AMA Code of Medical Ethics Opinion 2.1.1; AAPA Guidelines for Ethical Conduct (2018); Appelbaum, NEJM (2007)",
+      "guideline": "AMA Code of Medical Ethics Opinion 2.1.1; AAPA Guidelines for Ethical Conduct (2018); Appelbaum, NEJM (2007) (still current as of 2026)",
       "year": "2007–2018",
       "url": "https://code-medical-ethics.ama-assn.org/chapters/consent-communication-decision-making",
       "alt_url": "https://www.aapa.org/wp-content/uploads/2021/11/Guidelines-for-Ethical-Conduct-for-the-PA-Profession-7-1-21.pdf",
@@ -154,7 +154,7 @@
       "alt": "Optimal Team Practice: collaboration decided at the practice level; Medicare pays PAs 85% of the physician fee schedule."
     },
     "source": {
-      "guideline": "AAPA Optimal Team Practice FAQ (2017); CMS Physician Assistants payment page",
+      "guideline": "AAPA Optimal Team Practice FAQ (2017); CMS Physician Assistants payment page (still current as of 2026)",
       "year": "2017 / current",
       "url": "https://www.aapa.org/wp-content/uploads/2017/11/110917-Core-FAQ-Revised-FINAL.pdf",
       "alt_url": "https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/advanced-practice-non-physician-practitioners/physician-assistants-pas",
@@ -181,7 +181,7 @@
       "alt": "Limited English proficiency: use a qualified interpreter at no cost; avoid family members and minors."
     },
     "source": {
-      "guideline": "HHS National CLAS Standards (Standards 5–8)",
+      "guideline": "HHS National CLAS Standards (Standards 5–8) (still current as of 2026)",
       "year": "2013",
       "url": "https://thinkculturalhealth.hhs.gov/assets/pdfs/EnhancedNationalCLASStandards.pdf",
       "alt_url": "https://www.ahrq.gov/sites/default/files/wysiwyg/professionals/systems/hospital/lepguide/lepguide.pdf",
@@ -192,7 +192,7 @@
     "id": "pance-164",
     "system": "Professional Practice",
     "blueprint_weight": "6%",
-    "task_area": "Professional Practice",
+    "task_area": "Applying Foundational Scientific Concepts",
     "front": "A test has 90% sensitivity and 80% specificity. Which rules disease out? And how is NNT calculated?",
     "bottom": "High sensitivity rules out (SnNout); high specificity rules in (SpPin).",
     "bullets": {
@@ -289,7 +289,7 @@
       "alt": "Impaired colleague: protect patients, refer and report; sexual relationships with patients are generally unethical."
     },
     "source": {
-      "guideline": "AAPA Guidelines for Ethical Conduct for the PA Profession (2018)",
+      "guideline": "AAPA Guidelines for Ethical Conduct for the PA Profession (2018) (still current as of 2026)",
       "year": "2018",
       "url": "https://www.aapa.org/wp-content/uploads/2021/11/Guidelines-for-Ethical-Conduct-for-the-PA-Profession-7-1-21.pdf",
       "alt_url": "https://www.nccpa.net/resources/code-of-conduct/",

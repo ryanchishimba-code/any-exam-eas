@@ -6,7 +6,7 @@
 
 ![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal themes](visuals/fnp-domain-ii-age-mix.svg)
 
-![ADPE decision loop](visuals/adpe-loop.jpg)
+![ADPE decision loop](visuals/adpe-loop.svg)
 
 ![NPCB FNP-C vs ANCC FNP-BC blueprint comparison](visuals/aanp-vs-ancc-callout.svg)
 
@@ -25,14 +25,13 @@
 - [ ] I know one prenatal and one older-adult twist
 - [ ] I will do practice questions after reading
 
-
 ## Why this chapter matters
 
 The AANP FNP exam is not a trivia bee. It asks whether you can practice as an **entry-level family nurse practitioner** safely across the lifespan. Domain I grades *how you think* (Assess → Diagnose → Plan → Evaluate). Domain II grades *who is in front of you* — and the weights are uneven on purpose: **Older Adult 30%**, **Middle Adult 26%**, **Young Adult\* 22%** (prenatal included) dwarf the pediatric bands. If your study plan is “adult cardiology and call it a day,” you will feel Domain II on test day.
 
 This chapter locks the official numbers, teaches the ADPE habit, gives study plans that respect those weights, and names the traps that quietly sink strong clinicians.
 
-**Pair with practice:** Strategy without questions is sightseeing. After you finish this chapter, start mixed sets and tag every miss with Domain I process + Domain II age band. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**.
+**Pair with practice:** Strategy without questions is sightseeing. After you finish this chapter, start mixed sets and tag every miss with Domain I process + Domain II age band.
 
 ---
 
@@ -49,8 +48,6 @@ This chapter locks the official numbers, teaches the ADPE habit, gives study pla
 - [ ] Study plan picked
 - [ ] Error log includes age band
 - [ ] Timed practice scheduled
-
-
 
 ## How the AANP FNP exam works (plain English)
 
@@ -127,7 +124,7 @@ Habits:
 ### 3) Plan (27%)
 
 Habits:
-- Nonpharm + pharm themes; verify current guidelines/doses before clinical use.  
+- Nonpharm + pharm themes; follow the guideline and year named in this chapter.  
 - Patient education with teach-back and return precautions.  
 - Referral timing (emergent / urgent / routine).  
 - Opportunistic prevention in the same visit when safe.  
@@ -170,7 +167,7 @@ Screening grades logic (offer / selective / discourage), overdiagnosis awareness
 3. Kill unsafe, age-blind, out-of-scope options.  
 4. Choose the most patient-specific immediate action.
 
-| Keyword vibe | Often means |
+| Keyword | Often means |
 | --- | --- |
 | Most appropriate next step | Timing + safety + ADPE stage |
 | Initial / first | Stabilize or gather critical data |
@@ -247,7 +244,7 @@ Aim for **consistency over hero days**. A smaller set with full rationale review
 
 **Working full-time:** Non-negotiable daily block; weekends for long sets.
 
-> **Ready to practice what you planned?** Explore AANP FNP questions on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**.
+> **Ready to practice what you planned?** Explore AANP FNP questions on [AnyExamEasy](https://anyexameasy.
 
 ---
 
@@ -332,7 +329,7 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 
 ## Mini ADPE walkthrough (strategy chapter vignette)
 
-**Stem vibe:** 67-year-old with “cold” for a week, now short of breath; RR 28, SpO₂ 89%, HR 110.
+**Practice stem:** 67-year-old with “cold” for a week, now short of breath; RR 28, SpO₂ 89%, HR 110.
 
 | Stage | Move |
 | --- | --- |
@@ -353,8 +350,6 @@ Practice percentage is **not** an official exam score. Trends matter: better rat
 - AANP/NPCB-first; ANCC is a separate outline.  
 - Application loop: topic → questions → error log → weak area.
 
-**Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
-
 ---
 
 ## Concept checks
@@ -370,7 +365,6 @@ A. Newborn  B. Older Adult  C. Young Adult\*  D. Toddler
 **3.** Best first habit on a clinical stem?  
 A. Pick a drug  B. Identify ADPE stage + red flags + age factors  C. Ignore SDoH  D. Assume ANCC weights  
 **Answer:** B.
-
 
 ---
 

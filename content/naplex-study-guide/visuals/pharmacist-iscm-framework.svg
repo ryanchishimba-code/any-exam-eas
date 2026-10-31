@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="412" viewBox="0 0 420 412" role="img" aria-label="Indication, safety, counseling, monitoring">
+<title>Indication, safety, counseling, monitoring</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Indication, safety, counseling,</text>
+<text x="28" y="64" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">monitoring</text>
+<rect x="24" y="98" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="120" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Indication: is this the right drug for</text>
+<text x="36" y="142" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">this person?</text>
+<rect x="24" y="166" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="188" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Safety: allergy, organ function,</text>
+<text x="36" y="210" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">interactions.</text>
+<rect x="24" y="234" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="256" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Counseling: how to take it and when to</text>
+<text x="36" y="278" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">seek help.</text>
+<rect x="24" y="302" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="324" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Monitoring: the lab or the symptom that</text>
+<text x="36" y="346" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">shows it is working or harming.</text>
+<text x="28" y="378" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">NAPLEX patient-care frame</text>
+</svg>

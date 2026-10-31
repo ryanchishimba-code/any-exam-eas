@@ -2,9 +2,9 @@
 
 > **Study aid only.** Pocket sheets for final-week review. Verify critical values and schedules with current official sources.
 
-![High-alert medication icon row](visuals/high-alert-meds-row.jpg)
+![High-alert medication icon row](visuals/high-alert-meds-row.svg)
 
-![NAPLEX final sprint 7-day plan](visuals/naplex-final-sprint.jpg)
+![NAPLEX final sprint 7-day plan](visuals/naplex-final-sprint.svg)
 
 ---
 
@@ -111,7 +111,7 @@ ACEI/ARB/ARNI · evidence BB · MRA · SGLT2 · (+ loop for congestion)
 
 ### T2D comorbidity add-ons
 
-ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes (confirm current ADA)
+ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes (ADA Standards of Care 2026)
 
 ### Asthma
 
@@ -159,4 +159,4 @@ ATT/ID · snacks for breaks · pace ~1.5–1.6 min/item average · units on ever
 
 ## Soft CTA
 
-When you’re ready for exam-style NAPLEX reps, practice on [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo. Study aid; independent of NABP. MPJE is separate.
+When you’re ready for exam-style NAPLEX reps, practice on [anyexameasy.com](https://anyexameasy. Study aid; independent of NABP. MPJE is separate.

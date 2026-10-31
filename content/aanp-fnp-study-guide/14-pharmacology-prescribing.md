@@ -1,16 +1,16 @@
 # Chapter 14 — Pharmacology & Prescribing
 
-> **Study aid only.** Prescribing principles for exam judgment — not individualized therapy, not legal advice, not a protocol. Verify DEA/state rules, Beers Criteria updates, pregnancy/lactation resources (PLLR labeling), FDA labeling, renal/hepatic dosing references, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Prescribing principles for exam judgment — not individualized therapy, not legal advice, not a protocol. Verify DEA/state rules, Beers Criteria updates, pregnancy/lactation resources (PLLR labeling), FDA labeling, renal/hepatic dosing references, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
-![Beers prescribing card](visuals/beers-prescribing-card.jpg)
+![Beers prescribing card](visuals/beers-prescribing-card.svg)
 
-![Controlled substance awareness](visuals/controlled-substance-aware.jpg)
+![Controlled substance awareness](visuals/controlled-substance-aware.svg)
 
-![Interaction / CYP-QT-bleed map](visuals/interaction-cyp-qt-bleed.jpg)
+![Interaction / CYP-QT-bleed map](visuals/interaction-cyp-qt-bleed.svg)
 
-![Pregnancy teratogen awareness](visuals/pregnancy-teratogen-card.jpg)
+![Pregnancy teratogen awareness](visuals/pregnancy-teratogen-card.svg)
 
-![Stewardship & adherence](visuals/stewardship-adherence.jpg)
+![Stewardship & adherence](visuals/stewardship-adherence.svg)
 
 ---
 
@@ -33,7 +33,7 @@ Therapeutics is not a siloed “pharm chapter” on the NPCB exam — it is wove
 
 Expect stems on prescribing principles, geriatric potentially inappropriate meds, pregnancy/lactation teratogen awareness, CYP/QT/bleed interactions, controlled-substance judgment (PDMP, naloxone, opioid+benzo risk), antibiotic stewardship, systemic steroid counseling, insulin safety, and adherence/cost/SDoH barriers. Candidates who recall a drug name but skip monitoring lose Evaluate points; candidates who prescribe ACEI to a pregnant patient lose dangerous ones.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage.
 
 ---
 
@@ -87,7 +87,7 @@ Name, purpose, how to take, what to expect, red-flag stop symptoms, follow-up la
 
 Beers Criteria flag **potentially inappropriate medications** in older adults when safer alternatives exist — not absolute bans, but exam loves “pick the safer plan.”
 
-### High-yield classes (themes — verify current Beers update)
+### High-yield classes (themes
 
 | Class / example themes | Why risky in many older adults | Safer thinking |
 | --- | --- | --- |
@@ -132,7 +132,7 @@ Pregnancy labeling moved from letter categories to **PLLR** narratives — exams
 | Tetracyclines / fluoroquinolones | Teeth/bone and pregnancy caution themes |
 | NSAIDs (later pregnancy) | Fetal renal / ductus themes — timing matters; verify Ob guidance |
 | Live vaccines | Pregnancy caution (ACIP) |
-| Statins | Labeling evolved — many stems still treat as avoid unless told otherwise; **verify current** |
+| Statins | Labeling evolved — many stems still treat as avoid unless told otherwise; **follow** |
 
 ### Lactation
 
@@ -178,7 +178,7 @@ MAOI + SSRI/SNRI/tramadol/linezolid/triptan stacks (variable risk) — agitation
 
 **PDE-5 inhibitors + nitrates** → profound hypotension — absolute avoidance theme.
 
-> **MUST KNOW** — PDE-5 + nitrate = hard no. Warfarin + new antibiotic → INR plan, not vibes.
+> **MUST KNOW** — PDE-5 + nitrate = hard no. Warfarin + new antibiotic → INR plan, not patterns.
 
 > **TRAP** — Starting clarithromycin for “bronchitis” in a patient on simvastatin 40 mg without interaction check.
 
@@ -194,7 +194,7 @@ You are not being asked to recite every CFR clause. You **are** expected to: ver
 
 Additive respiratory depression — avoid combination when possible; if inherited, deprescribe thoughtfully with safety net.
 
-### Practice logistics (verify current DEA/state)
+### Practice logistics (DEA and state law)
 
 DEA registration, state controlled-substance rules, e-prescribing mandates, and PDMP use change — exam tests **safe judgment**, not your ability to invent a regulation number. When in doubt on a stem: safer, documented, monitored choice wins.
 
@@ -324,7 +324,7 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 - ACEI exposure in early pregnancy — needs regimen change and Ob coordination; NSAID counseling for later pregnancy timing.
 
 ### Plan
-- Stop ACEI; switch to obstetric-preferred antihypertensive themes (verify current Ob guidance — historical teaching examples include labetalol/nifedipine/methyldopa). Urgent prenatal entry. Avoid starting new teratogens. Document counseling.
+- Stop ACEI; switch to obstetric-preferred antihypertensive themes. Urgent prenatal entry. Avoid starting new teratogens. Document counseling.
 
 ### Evaluate
 - Confirm Ob linkage; BP control on new agent; emotional support.
@@ -400,7 +400,7 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 - Prenatal-in-YA* makes teratogen filters non-optional.
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill Beers, teratogens, interactions, stewardship, steroid/insulin safety, and controlled-substance judgment items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next practice move:** Drill Beers, teratogens, interactions, stewardship, steroid/insulin safety, and controlled-substance judgment items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -435,7 +435,7 @@ Perfect guideline drug that the patient never obtains = failed Plan. Assess phar
 
 ## Integrated older-adult multimorbidity mini-case (Domain II 30%)
 
-**Stem vibe:** 83-year-old with CKD-3, AF on apixaban, T2D on glyburide, chronic lorazepam, knee OA on naproxen, new “Z-pak” from urgent care for viral cough, daughter reports daytime sleepiness and a near-fall.
+**Practice stem:** 83-year-old with CKD-3, AF on apixaban, T2D on glyburide, chronic lorazepam, knee OA on naproxen, new “Z-pak” from urgent care for viral cough, daughter reports daytime sleepiness and a near-fall.
 
 **ADPE compressed:** Assess CrCl trend, hypo risk (SU), bleed risk (NSAID+DOAC), sedation (benzo), stewardship fail (macrolide). Diagnose: iatrogenic risk stack > undertreated cough. Plan: stop NSAID; safer analgesia; deprescribe/taper benzo with support; replace glyburide with lower-hypo agent themes if appropriate; stop unnecessary antibiotic; pharmacy med sync; PT/fall review. Evaluate: BMP/glucose, fall calendar, adherence, bleeding.
 
@@ -471,7 +471,6 @@ A. Azithromycin “just in case”  B. Supportive care + return precautions  C. 
 > **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
-
 
 ## Deep dive — Renal dosing mindset (Older Adult gold)
 
