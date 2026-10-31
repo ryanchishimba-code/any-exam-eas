@@ -84,15 +84,15 @@
     "id": "pance-087",
     "system": "Infectious Diseases",
     "blueprint_weight": "7%",
-    "task_area": "Clinical Intervention",
-    "front": "Skin abscess vs nonpurulent cellulitis: what is first-line treatment for each, and when to cover MRSA?",
-    "bottom": "Abscess: drain it. Cellulitis: cover strep.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Skin infection: which exam findings separate abscess from nonpurulent cellulitis, and which needs drainage?",
+    "bottom": "Fluctuant purulent collection: abscess. Spreading erythema without pus: cellulitis.",
     "bullets": {
-      "clue": "Fluctuant, purulent: abscess. Spreading erythema, no pus: cellulitis.",
+      "clue": "Purulent: S. aureus. Nonpurulent: streptococci.",
       "treat": "Abscess: incision and drainage; TMP-SMX if systemic signs. Cellulitis: cephalexin.",
       "trap": "TMP-SMX alone misses streptococci in cellulitis."
     },
-    "back": "Abscess: drain it. Cellulitis: cover strep. Key clue: Fluctuant, purulent: abscess. Spreading erythema, no pus: cellulitis. First-line: Abscess: incision and drainage; TMP-SMX if systemic signs. Cellulitis: cephalexin. Exam trap: TMP-SMX alone misses streptococci in cellulitis.",
+    "back": "Fluctuant purulent collection: abscess. Spreading erythema without pus: cellulitis. Key clue: Purulent: S. aureus. Nonpurulent: streptococci. First-line: Abscess: incision and drainage; TMP-SMX if systemic signs. Cellulitis: cephalexin. Exam trap: TMP-SMX alone misses streptococci in cellulitis.",
     "word_count": 35,
     "mnemonic": null,
     "diagram": {

@@ -111,16 +111,16 @@
     "id": "pance-060",
     "system": "Gastrointestinal/Nutrition",
     "blueprint_weight": "8%",
-    "task_area": "Using Diagnostic and Laboratory Studies",
-    "front": "RUQ pain after a fatty meal with fever and a positive Murphy sign: diagnosis and first test?",
-    "bottom": "Acute cholecystitis: ultrasound first.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "RUQ pain and fever after a fatty meal: which exam sign points to acute cholecystitis, and what is the first test?",
+    "bottom": "Murphy sign: inspiratory arrest on RUQ palpation; ultrasound first.",
     "bullets": {
-      "clue": "RUQ pain over 6 hours, Murphy sign, fever, leukocytosis.",
+      "clue": "RUQ pain over 6 hours, fever, leukocytosis.",
       "treat": "Ultrasound; antibiotics; early laparoscopic cholecystectomy.",
       "trap": "Jaundice or high bilirubin: think choledocholithiasis, cholangitis."
     },
-    "back": "Acute cholecystitis: ultrasound first. Key clue: RUQ pain over 6 hours, Murphy sign, fever, leukocytosis. First-line: Ultrasound; antibiotics; early laparoscopic cholecystectomy. Exam trap: Jaundice or high bilirubin: think choledocholithiasis, cholangitis.",
-    "word_count": 30,
+    "back": "Murphy sign: inspiratory arrest on RUQ palpation; ultrasound first. Key clue: RUQ pain over 6 hours, fever, leukocytosis. First-line: Ultrasound; antibiotics; early laparoscopic cholecystectomy. Exam trap: Jaundice or high bilirubin: think choledocholithiasis, cholangitis.",
+    "word_count": 33,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-060.svg",

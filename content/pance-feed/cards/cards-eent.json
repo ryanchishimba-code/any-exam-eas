@@ -3,16 +3,16 @@
     "id": "pance-146",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Toddler with ear pain and a bulging tympanic membrane: diagnosis and first-line antibiotic? And for swimmer's ear?",
-    "bottom": "Acute otitis media: high-dose amoxicillin.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Toddler with ear pain and fever: which otoscopic findings diagnose acute otitis media, and how does otitis externa differ?",
+    "bottom": "Moderate-severe tympanic membrane bulging or new otorrhea: acute otitis media.",
     "bullets": {
-      "clue": "Moderate-severe TM bulging or new otorrhea.",
+      "clue": "Otitis externa: tragus or pinna tenderness.",
       "treat": "Amoxicillin 80–90 mg/kg/day divided BID; amox-clav if amoxicillin within 30 days.",
       "trap": "Otitis externa: topical drops, not oral antibiotics."
     },
-    "back": "Acute otitis media: high-dose amoxicillin. Key clue: Moderate-severe TM bulging or new otorrhea. First-line: Amoxicillin 80–90 mg/kg/day divided BID; amox-clav if amoxicillin within 30 days. Exam trap: Otitis externa: topical drops, not oral antibiotics.",
-    "word_count": 34,
+    "back": "Moderate-severe tympanic membrane bulging or new otorrhea: acute otitis media. Key clue: Otitis externa: tragus or pinna tenderness. First-line: Amoxicillin 80–90 mg/kg/day divided BID; amox-clav if amoxicillin within 30 days. Exam trap: Otitis externa: topical drops, not oral antibiotics.",
+    "word_count": 39,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-146.svg",
@@ -84,16 +84,16 @@
     "id": "pance-149",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Clinical Intervention",
-    "front": "Sudden painless monocular vision loss with a cherry-red spot: diagnosis and next step?",
-    "bottom": "Central retinal artery occlusion: a stroke equivalent.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Sudden painless monocular vision loss: which fundus finding identifies central retinal artery occlusion, and what is the next step?",
+    "bottom": "Pale retina with a cherry-red macula: central retinal artery occlusion.",
     "bullets": {
-      "clue": "Pale retina, cherry-red macula.",
+      "clue": "Painless, sudden, one eye.",
       "treat": "Immediate referral to stroke center or ED.",
       "trap": "Flashes, floaters or curtain: urgent dilated retinal exam for detachment."
     },
-    "back": "Central retinal artery occlusion: a stroke equivalent. Key clue: Pale retina, cherry-red macula. First-line: Immediate referral to stroke center or ED. Exam trap: Flashes, floaters or curtain: urgent dilated retinal exam for detachment.",
-    "word_count": 33,
+    "back": "Pale retina with a cherry-red macula: central retinal artery occlusion. Key clue: Painless, sudden, one eye. First-line: Immediate referral to stroke center or ED. Exam trap: Flashes, floaters or curtain: urgent dilated retinal exam for detachment.",
+    "word_count": 36,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-149.svg",
@@ -240,33 +240,6 @@
       "url": "https://doi.org/10.1177/0194599818801757",
       "alt_url": "https://www.aafp.org/afp/2017/0415/p501",
       "recommendation": "AAO-HNSF 2019: watchful waiting for recurrent throat infection unless ≥7 episodes in past year, ≥5/year for 2 years or ≥3/year for 3 years with documented qualifying findings. AAFP 2017: drain peritonsillar abscess by needle aspiration or incision and drainage plus antibiotics. Epiglottitis review (PMC3498669): airway emergency; no imaging in respiratory distress; intubate in OR with spontaneous ventilation and tracheotomy backup."
-    }
-  },
-  {
-    "id": "pance-155",
-    "system": "EENT",
-    "blueprint_weight": "6%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Toothache from irreversible pulpitis without fever: are antibiotics needed? And a persistent white oral patch?",
-    "bottom": "No antibiotics; definitive dental treatment.",
-    "bullets": {
-      "clue": "No fever, malaise or spreading swelling.",
-      "treat": "Dental referral and analgesics.",
-      "trap": "White or red lesion >2 weeks: reevaluate and consider biopsy."
-    },
-    "back": "No antibiotics; definitive dental treatment. Key clue: No fever, malaise or spreading swelling. First-line: Dental referral and analgesics. Exam trap: White or red lesion >2 weeks: reevaluate and consider biopsy.",
-    "word_count": 30,
-    "mnemonic": null,
-    "diagram": {
-      "file": "svg/pance-155.svg",
-      "alt": "Dental pain without systemic signs needs dental treatment, not antibiotics; persistent oral white patch needs biopsy consideration."
-    },
-    "source": {
-      "guideline": "ADA (American Dental Association) Antibiotics for Dental Pain and Swelling Guideline (2019); ADA head and neck cancer topic",
-      "year": "2019",
-      "url": "https://www.ada.org/resources/research/science/evidence-based-dental-research/antibiotics-for-dental-pain-and-swelling",
-      "alt_url": "https://www.ada.org/resources/ada-library/oral-health-topics/cancer-head-and-neck",
-      "recommendation": "ADA 2019: antibiotics not recommended for most pulpal/periapical pain and localized swelling; definitive dental treatment; antibiotics with systemic signs (fever, malaise). ADA: white/red lesions persisting >2 weeks warrant reevaluation and biopsy consideration."
     }
   },
   {

@@ -273,27 +273,27 @@
     "id": "pance-145",
     "system": "Endocrine",
     "blueprint_weight": "6%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
-    "front": "Adult 40, BMI 31: diabetes screening and pharmacotherapy options for obesity?",
-    "bottom": "Screen for prediabetes/T2D ages 35–70 with overweight.",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Polyuria and polydipsia with dilute urine and a high-normal sodium: diagnosis, how to tell central from nephrogenic, and treatment?",
+    "bottom": "Diabetes insipidus: dilute urine despite high-normal or high sodium.",
     "bullets": {
-      "clue": "BMI ≥25 (≥23 in Asian Americans).",
-      "treat": "Lifestyle; semaglutide or tirzepatide preferred obesity medications.",
-      "trap": "Prediabetes on screening: refer to prevention programs."
+      "clue": "Urine osmolality <200 mOsm/kg; desmopressin corrects central, not nephrogenic.",
+      "treat": "Central (AVP deficiency): desmopressin. Nephrogenic: thiazide plus NSAID.",
+      "trap": "Skip water deprivation if already hypernatremic with dilute urine."
     },
-    "back": "Screen for prediabetes/T2D ages 35–70 with overweight. Key clue: BMI ≥25 (≥23 in Asian Americans). First-line: Lifestyle; semaglutide or tirzepatide preferred obesity medications. Exam trap: Prediabetes on screening: refer to prevention programs.",
-    "word_count": 32,
+    "back": "Diabetes insipidus: dilute urine despite high-normal or high sodium. Key clue: Urine osmolality <200 mOsm/kg; desmopressin corrects central, not nephrogenic. First-line: Central (AVP deficiency): desmopressin. Nephrogenic: thiazide plus NSAID. Exam trap: Skip water deprivation if already hypernatremic with dilute urine.",
+    "word_count": 40,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-145.svg",
-      "alt": "Screen adults 35 to 70 with overweight for diabetes; semaglutide or tirzepatide preferred for obesity."
+      "alt": "Diabetes insipidus: urine osmolality below 200 mOsm/kg with high-normal or high sodium. Desmopressin corrects central (AVP deficiency) but not nephrogenic (AVP resistance) disease; nephrogenic is treated with a thiazide plus an NSAID."
     },
     "source": {
-      "guideline": "USPSTF Prediabetes and T2D Screening (2021); ADA Standards of Care in Overweight and Obesity (2026); AACE Obesity Algorithm (2025)",
-      "year": "2021 / 2026 / 2025",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes",
-      "alt_url": "https://www.endocrinepractice.org/article/S1530-891X(25)00977-2/fulltext",
-      "recommendation": "USPSTF 2021: screen 35–70 with overweight/obesity (B), refer prediabetes to preventive interventions; consider BMI ≥23 Asian Americans. ADA 2026 / AACE 2025: semaglutide and tirzepatide preferred."
+      "guideline": "International expert consensus on congenital nephrogenic DI (AVP resistance), Nat Rev Nephrol 2024; Atila, Refardt, Christ-Crain: AVP deficiency review, Nat Rev Endocrinol 2024; Working Group on renaming diabetes insipidus, JCEM 2022/2023",
+      "year": "2024 / 2022",
+      "url": "https://doi.org/10.1038/s41581-024-00897-z",
+      "alt_url": "https://doi.org/10.1038/s41574-024-00985-x",
+      "recommendation": "Consensus 2024 (congenital NDI): work-up with serum Na, serum osmolality and urine osmolality; urine osmolality <200 mOsm/kg with high-normal or high Na indicates DI; DDAVP test separates central DI from NDI; water deprivation test contraindicated with hypernatremic dehydration and inappropriately dilute urine; thiazide plus prostaglandin synthesis inhibitor started in symptomatic infants and children. Review 2024: hypertonic-saline copeptin has replaced water deprivation as diagnostic gold standard; desmopressin mainstay for AVP deficiency. 2022 statement: central DI renamed AVP deficiency, nephrogenic DI renamed AVP resistance."
     }
   }
 ]

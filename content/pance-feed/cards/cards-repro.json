@@ -57,16 +57,16 @@
     "id": "pance-124",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Diagnostic Studies",
-    "front": "Third-trimester bleeding: painless versus painful, and what exam must you avoid?",
-    "bottom": "Typically painless: previa; painful, tender uterus: abruption.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Third-trimester vaginal bleeding: which history and exam findings separate placenta previa from abruption, and what exam must you avoid?",
+    "bottom": "Painless bleeding: previa. Painful bleeding with a tender uterus: abruption.",
     "bullets": {
       "clue": "Previa: placenta over os on ultrasound.",
       "treat": "Stabilize, ultrasound first, fetal monitoring, delivery planning.",
       "trap": "No digital cervical exam until previa excluded."
     },
-    "back": "Typically painless: previa; painful, tender uterus: abruption. Key clue: Previa: placenta over os on ultrasound. First-line: Stabilize, ultrasound first, fetal monitoring, delivery planning. Exam trap: No digital cervical exam until previa excluded.",
-    "word_count": 32,
+    "back": "Painless bleeding: previa. Painful bleeding with a tender uterus: abruption. Key clue: Previa: placenta over os on ultrasound. First-line: Stabilize, ultrasound first, fetal monitoring, delivery planning. Exam trap: No digital cervical exam until previa excluded.",
+    "word_count": 35,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-124.svg",
@@ -192,16 +192,16 @@
     "id": "pance-129",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Sexually active woman with pelvic pain and cervical motion tenderness: outpatient treatment?",
-    "bottom": "Pelvic inflammatory disease: treat empirically.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Sexually active woman with lower abdominal pain: which pelvic exam findings support PID, and what do you do next?",
+    "bottom": "Cervical motion, uterine or adnexal tenderness: treat PID empirically.",
     "bullets": {
-      "clue": "Cervical motion, uterine or adnexal tenderness.",
+      "clue": "Minimal criteria suffice; do not wait for cultures.",
       "treat": "Ceftriaxone 500 mg IM plus doxycycline and metronidazole 14 days.",
-      "trap": "Don't wait for cultures; BV and trich get metronidazole 7 days."
+      "trap": "Delaying treatment risks infertility and ectopic pregnancy."
     },
-    "back": "Pelvic inflammatory disease: treat empirically. Key clue: Cervical motion, uterine or adnexal tenderness. First-line: Ceftriaxone 500 mg IM plus doxycycline and metronidazole 14 days. Exam trap: Don't wait for cultures; BV and trich get metronidazole 7 days.",
-    "word_count": 37,
+    "back": "Cervical motion, uterine or adnexal tenderness: treat PID empirically. Key clue: Minimal criteria suffice; do not wait for cultures. First-line: Ceftriaxone 500 mg IM plus doxycycline and metronidazole 14 days. Exam trap: Delaying treatment risks infertility and ectopic pregnancy.",
+    "word_count": 39,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-129.svg",
@@ -246,27 +246,27 @@
     "id": "pance-131",
     "system": "Reproductive",
     "blueprint_weight": "7%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "52-year-old with hot flashes 2 years after menopause: who can take hormone therapy, and a nonhormonal option?",
-    "bottom": "Hormone therapy: favorable under 60 or within 10 years.",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Vaginal discharge: how do pH, whiff test and wet mount separate bacterial vaginosis, trichomoniasis and Candida, and what treats each?",
+    "bottom": "BV: pH >4.5, clue cells. Trichomonas: motile organisms. Candida: normal pH, hyphae.",
     "bullets": {
-      "clue": "Intact uterus needs a progestogen with estrogen.",
-      "treat": "Lowest effective systemic HT; fezolinetant, SSRI/SNRI or gabapentin if HT unsuitable.",
-      "trap": "Breast cancer, VTE, stroke history: avoid systemic HT."
+      "clue": "Candida: thick curdy discharge.",
+      "treat": "BV, trichomonas: metronidazole 7 days. Candida: fluconazole 150 mg once.",
+      "trap": "Treat trichomonas partners; negative wet mount does not exclude it."
     },
-    "back": "Hormone therapy: favorable under 60 or within 10 years. Key clue: Intact uterus needs a progestogen with estrogen. First-line: Lowest effective systemic HT; fezolinetant, SSRI/SNRI or gabapentin if HT unsuitable. Exam trap: Breast cancer, VTE, stroke history: avoid systemic HT.",
-    "word_count": 40,
+    "back": "BV: pH >4.5, clue cells. Trichomonas: motile organisms. Candida: normal pH, hyphae. Key clue: Candida: thick curdy discharge. First-line: BV, trichomonas: metronidazole 7 days. Candida: fluconazole 150 mg once. Exam trap: Treat trichomonas partners; negative wet mount does not exclude it.",
+    "word_count": 41,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-131.svg",
-      "alt": "Menopause: hormone therapy favorable under 60 or within 10 years; progestogen if uterus; fezolinetant as nonhormonal option."
+      "alt": "Vaginal discharge: bacterial vaginosis has pH above 4.5 and clue cells, trichomoniasis shows motile organisms, Candida has normal pH and hyphae; metronidazole for BV and trichomonas, fluconazole for Candida."
     },
     "source": {
-      "guideline": "NAMS (The Menopause Society) 2022 Hormone Therapy and 2023 Nonhormone Therapy Position Statements",
-      "year": "2022 / 2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/",
-      "alt_url": "https://menopause.org/wp-content/uploads/professional/2023-nonhormone-therapy-position-statement.pdf",
-      "recommendation": "2022: HT favorable benefit-risk for women <60 or within 10 years of menopause without contraindications. 2023: fezolinetant, CBT, hypnosis, SSRIs/SNRIs, gabapentin recommended nonhormonal options."
+      "guideline": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021: bacterial vaginosis, trichomoniasis and vulvovaginal candidiasis",
+      "year": "2021",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
+      "alt_url": "https://www.cdc.gov/std/treatment-guidelines/trichomoniasis.htm",
+      "recommendation": "CDC 2021: BV diagnosed by clinical (Amsel) or Gram-stain criteria including pH >4.5, clue cells and positive whiff test; trichomonas by NAAT or motile organisms on wet mount, microscopy sensitivity about 50%; metronidazole 500 mg twice daily for 7 days for BV and for trichomoniasis in women; sex partners of trichomoniasis patients should be treated; women with trichomoniasis retested about 3 months after treatment; VVC treated with topical azole or fluconazole 150 mg single dose."
     }
   },
   {
