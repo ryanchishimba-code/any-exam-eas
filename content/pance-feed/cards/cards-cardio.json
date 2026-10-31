@@ -1,0 +1,515 @@
+[
+  {
+    "id": "pance-021",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "NSTE-ACS: what starts now, and how fast does angiography happen?",
+    "bottom": "Treat now; time angiography by risk.",
+    "bullets": {
+      "clue": "Chest pain, positive troponin, no ST elevation.",
+      "treat": "Aspirin plus heparin. Unstable: cath within 2 hours; GRACE >140: within 24.",
+      "trap": "No routine P2Y12 pretreatment if cath is within 24 hours."
+    },
+    "back": "Treat now; time angiography by risk. Key clue: Chest pain, positive troponin, no ST elevation. First-line: Aspirin plus heparin. Unstable: cath within 2 hours; GRACE >140: within 24. Exam trap: No routine P2Y12 pretreatment if cath is within 24 hours.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-021.svg",
+      "alt": "NSTE-ACS timeline: immediate angiography within 2 hours for unstable patients, within 24 hours for high risk, before discharge for others, with aspirin and heparin now and a P2Y12 inhibitor chosen at angiography."
+    },
+    "source": {
+      "guideline": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes",
+      "year": "2025",
+      "url": "https://doi.org/10.1016/j.jacc.2024.11.009",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309",
+      "recommendation": "NSTE-ACS at intermediate or high ischemic risk: invasive approach with intent to revascularize during the hospitalization (COR 1). Parenteral anticoagulation for all ACS; UFH is the Class 1 agent in NSTE-ACS. Ticagrelor or prasugrel preferred over clopidogrel when PCI is planned; prasugrel is contraindicated after stroke/TIA. Upstream P2Y12 inhibitor may be considered only when angiography will be >24 h away (COR 2b). Aspirin 162–325 mg loading (chewed), then 75–100 mg daily. Timing tiers (immediate <2 h for shock, instability, refractory angina or acute HF; early <24 h for GRACE >140, rising troponin or dynamic ST change; otherwise before discharge) are taken from a clinical-reference summary that cites the guideline; timing tiers are as summarized from the guideline algorithm."
+    }
+  },
+  {
+    "id": "pance-022",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Chronic coronary disease with angina: first-line antianginal, and who needs a long-term beta-blocker?",
+    "bottom": "Beta-blocker or CCB first.",
+    "bullets": {
+      "clue": "Exertional chest pain, relieved by rest.",
+      "treat": "Nitroglycerin for attacks; add second class, then ranolazine; statin.",
+      "trap": "Long-term beta-blocker needs MI within a year, LVEF ≤50%, or another indication."
+    },
+    "back": "Beta-blocker or CCB first. Key clue: Exertional chest pain, relieved by rest. First-line: Nitroglycerin for attacks; add second class, then ranolazine; statin. Exam trap: Long-term beta-blocker needs MI within a year, LVEF ≤50%, or another indication.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-022.svg",
+      "alt": "Chronic coronary disease: a fixed plaque narrows an artery so pain comes with exertion. First-line beta-blocker, calcium channel blocker or long-acting nitrate; add a second class, then ranolazine; sublingual nitroglycerin for attacks."
+    },
+    "source": {
+      "guideline": "2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease",
+      "year": "2023",
+      "url": "https://doi.org/10.1016/j.jacc.2023.04.003",
+      "alt_url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001168",
+      "recommendation": "Beta-blocker, calcium channel blocker or long-acting nitrate first-line for angina relief; add a second class if symptoms persist; ranolazine if still symptomatic; sublingual nitroglycerin or spray for immediate relief. Ivabradine with normal LV function: COR 3 Harm. Long-term beta-blocker not recommended to reduce MACE without MI in the past year, LVEF ≤50%, or another indication. Statin first-line; SGLT2 inhibitor or GLP-1 RA for CCD with type 2 diabetes (COR 1); annual influenza vaccine (COR 1)."
+    }
+  },
+  {
+    "id": "pance-023",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Hypertension (2025 guideline): when do you start medication, and which classes are first-line?",
+    "bottom": "Drugs at ≥140/90, or ≥130/80 with high risk.",
+    "bullets": {
+      "clue": "Stage 1 is 130–139/80–89; stage 2 is ≥140/90.",
+      "treat": "Thiazide-type, dihydropyridine CCB, ACEi or ARB; stage 2: two drugs, one pill.",
+      "trap": "Beta-blockers are not first-line unless indicated."
+    },
+    "back": "Drugs at ≥140/90, or ≥130/80 with high risk. Key clue: Stage 1 is 130–139/80–89; stage 2 is ≥140/90. First-line: Thiazide-type, dihydropyridine CCB, ACEi or ARB; stage 2: two drugs, one pill. Exam trap: Beta-blockers are not first-line unless indicated.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-023.svg",
+      "alt": "Blood pressure categories from normal to stage 2 with the treatment thresholds, and the three first-line drug classes: thiazide-type diuretic, long-acting dihydropyridine calcium channel blocker, and ACE inhibitor or ARB."
+    },
+    "source": {
+      "guideline": "2025 AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for the Prevention, Detection, Evaluation and Management of High Blood Pressure in Adults",
+      "year": "2025",
+      "url": "https://doi.org/10.1161/hyp.0000000000000249",
+      "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2025.05.007",
+      "recommendation": "Categories: normal <120/<80; elevated 120–129/<80; stage 1 130–139 or 80–89; stage 2 ≥140 or ≥90. Treatment goal <130/80. Start medication at ≥140/90, or at ≥130/80 with clinical CVD, prior stroke, diabetes, CKD or PREVENT 10-year risk ≥7.5%; otherwise lifestyle for 3–6 months first. Stage 2: two first-line agents of different classes, preferably a single-pill combination. First-line classes: thiazide-type diuretics, long-acting dihydropyridine CCBs, ACEi/ARB. Beta-blockers are not first-line unless there is a compelling indication. Pregnancy: avoid ACEi, ARB, direct renin inhibitors, MRA, atenolol, nitroprusside."
+    }
+  },
+  {
+    "id": "pance-024",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "BP >180/120: what makes it a hypertensive emergency, and how fast do you lower it?",
+    "bottom": "Severe BP plus acute organ damage.",
+    "bullets": {
+      "clue": "Encephalopathy, ACS, pulmonary edema, dissection, or AKI.",
+      "treat": "ICU and IV drug; lower SBP no more than 25% in hour 1.",
+      "trap": "No organ damage: oral therapy as outpatient, not IV."
+    },
+    "back": "Severe BP plus acute organ damage. Key clue: Encephalopathy, ACS, pulmonary edema, dissection, or AKI. First-line: ICU and IV drug; lower SBP no more than 25% in hour 1. Exam trap: No organ damage: oral therapy as outpatient, not IV.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-024.svg",
+      "alt": "Hypertensive emergency: blood pressure above 180/120 with acute organ damage. ICU and an IV titratable drug, lowering systolic pressure no more than 25 percent in the first hour, then stepwise targets; aortic dissection is the exception with a systolic goal under 120."
+    },
+    "source": {
+      "guideline": "2025 AHA/ACC High Blood Pressure Guideline, §6.2 Hypertensive Emergency (with the 2022 AHA scientific statement on acute BP management)",
+      "year": "2025",
+      "url": "https://doi.org/10.1161/hyp.0000000000000249",
+      "alt_url": "https://www.ahajournals.org/doi/full/10.1161/HYP.0000000000000238",
+      "recommendation": "Hypertensive emergency = BP >180 systolic and/or >120 diastolic with acute target-organ damage: ICU admission and parenteral therapy (COR 1). Without a compelling condition: reduce SBP by no more than 25% in hour 1, then <160/100 over 2–6 h, then cautiously to 130–140 systolic over 24–48 h. Aortic dissection: SBP <120. Severe BP without acute target-organ damage: oral agents, outpatient follow-up; intermittent IV or oral drugs to lower BP acutely in hospitalized patients are not recommended (COR 3 Harm). Titratable IV options named in the AHA statement: nicardipine, clevidipine, labetalol, esmolol, nitroglycerin."
+    }
+  },
+  {
+    "id": "pance-025",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Who gets a statin, and what is the LDL-C goal for very-high-risk ASCVD? (2026 guideline)",
+    "bottom": "Statin by risk; goals are back.",
+    "bullets": {
+      "clue": "ASCVD, LDL ≥190, diabetes 40–75, or PREVENT ≥5%.",
+      "treat": "Very high risk: LDL <55; add ezetimibe, then PCSK9 inhibitor.",
+      "trap": "Use PREVENT risk, not the old Pooled Cohort Equations."
+    },
+    "back": "Statin by risk; goals are back. Key clue: ASCVD, LDL ≥190, diabetes 40–75, or PREVENT ≥5%. First-line: Very high risk: LDL <55; add ezetimibe, then PCSK9 inhibitor. Exam trap: Use PREVENT risk, not the old Pooled Cohort Equations.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-025.svg",
+      "alt": "PREVENT 10-year risk categories low, borderline, intermediate and high with the matching statin action, and the add-on ladder of maximal statin, ezetimibe, then PCSK9 inhibitor or bempedoic acid for very-high-risk ASCVD with an LDL-C goal under 55."
+    },
+    "source": {
+      "guideline": "2026 ACC/AHA/AACVPR/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Dyslipidemia (replaces the 2018 cholesterol guideline)",
+      "year": "2026",
+      "url": "https://doi.org/10.1016/j.jacc.2025.11.016",
+      "alt_url": "https://doi.org/10.1161/cir.0000000000001423",
+      "recommendation": "PREVENT-ASCVD 10-year risk (ages 30–79, LDL-C 70–189): low <3%, borderline 3 to <5%, intermediate 5 to <10%, high ≥10%. Borderline: statin reasonable after discussion; intermediate: at least moderate-intensity statin; high: high-intensity statin. LDL-C ≥190: maximally tolerated statin. LDL-lowering recommended at ages 40–75 with diabetes, CKD stage 3–4 or HIV. Very-high-risk ASCVD goals LDL-C <55 and non-HDL-C <85; add ezetimibe, then PCSK9 inhibitor or bempedoic acid if not at goal. Measure Lp(a) at least once."
+    }
+  },
+  {
+    "id": "pance-026",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Acute decompensated heart failure with congestion: first drug, and what is added for HFpEF?",
+    "bottom": "Decongest with an IV loop diuretic.",
+    "bullets": {
+      "clue": "Dyspnea, orthopnea, edema, JVD, rales.",
+      "treat": "Early IV loop diuretic; escalate if poor response. HFpEF: SGLT2 inhibitor.",
+      "trap": "A normal ejection fraction does not rule out heart failure."
+    },
+    "back": "Decongest with an IV loop diuretic. Key clue: Dyspnea, orthopnea, edema, JVD, rales. First-line: Early IV loop diuretic; escalate if poor response. HFpEF: SGLT2 inhibitor. Exam trap: A normal ejection fraction does not rule out heart failure.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-026.svg",
+      "alt": "Heart failure classified by ejection fraction: HFrEF 40 percent or less, HFmrEF 41 to 49, HFpEF 50 or more. Acute congestion is treated with an IV loop diuretic; an SGLT2 inhibitor is used in HFpEF."
+    },
+    "source": {
+      "guideline": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+      "year": "2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+      "recommendation": "HFrEF LVEF ≤40%; HFmrEF 41–49%; HFpEF ≥50% with evidence of elevated filling pressures. Hospitalized with fluid overload: IV loop diuretics promptly; if response is inadequate, escalate the dose or add a second diuretic (no fixed multiple of the home dose is given). HFpEF: SGLT2 inhibitor COR 2a; diuretics for congestion."
+    }
+  },
+  {
+    "id": "pance-027",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "Aortic stenosis: classic symptoms, and when is valve replacement indicated?",
+    "bottom": "Symptomatic severe AS needs valve replacement.",
+    "bullets": {
+      "clue": "Exertional dyspnea, angina or syncope; crescendo-decrescendo murmur.",
+      "treat": "Replace the valve: surgery if under 65; TAVR if over 80; either from 65–80.",
+      "trap": "Do not stress-test symptomatic severe AS."
+    },
+    "back": "Symptomatic severe AS needs valve replacement. Key clue: Exertional dyspnea, angina or syncope; crescendo-decrescendo murmur. First-line: Replace the valve: surgery if under 65; TAVR if over 80; either from 65–80. Exam trap: Do not stress-test symptomatic severe AS.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-027.svg",
+      "alt": "Aortic stenosis: crescendo-decrescendo murmur, severe when peak velocity is 4 m/s or more or mean gradient 40 mmHg or more. Symptoms of exertional dyspnea, angina or syncope call for valve replacement; the route depends on age."
+    },
+    "source": {
+      "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+      "year": "2020",
+      "url": "https://doi.org/10.1016/j.jacc.2020.11.018",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+      "recommendation": "Severe AS: Vmax ≥4 m/s or mean gradient ≥40 mmHg (very severe Vmax ≥5 m/s). AVR indicated (COR 1) in symptomatic severe AS and in asymptomatic severe AS with LVEF <50%. Exercise testing in symptomatic severe AS: COR 3 Harm. Statins do not slow progression. Valve choice: SAVR if <65 years or life expectancy >20 years; SAVR or TAVI at 65–80 by shared decision; TAVI if >80 or life expectancy <10 years with suitable transfemoral anatomy."
+    }
+  },
+  {
+    "id": "pance-028",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Match the murmur: MR, AR, mitral stenosis. What triggers treatment?",
+    "bottom": "Symptoms or LV dysfunction trigger intervention.",
+    "bullets": {
+      "clue": "Holosystolic apical (MR), early diastolic (AR), rumble with snap (MS).",
+      "treat": "Symptomatic severe MR or AR: surgery. Rheumatic MS: balloon commissurotomy.",
+      "trap": "Rheumatic MS with AF needs warfarin, not a DOAC."
+    },
+    "back": "Symptoms or LV dysfunction trigger intervention. Key clue: Holosystolic apical (MR), early diastolic (AR), rumble with snap (MS). First-line: Symptomatic severe MR or AR: surgery. Rheumatic MS: balloon commissurotomy. Exam trap: Rheumatic MS with AF needs warfarin, not a DOAC.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-028.svg",
+      "alt": "Three murmur tracings between heart sounds: mitral regurgitation holosystolic, aortic regurgitation early diastolic decrescendo, mitral stenosis opening snap with diastolic rumble. Symptomatic severe regurgitation goes to surgery; rheumatic mitral stenosis with atrial fibrillation needs warfarin."
+    },
+    "source": {
+      "guideline": "2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease",
+      "year": "2020",
+      "url": "https://doi.org/10.1016/j.jacc.2020.11.018",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+      "recommendation": "Severe MS: MVA ≤1.5 cm². Symptomatic severe MS with favorable morphology, <2+ MR and no LA thrombus: percutaneous mitral balloon commissurotomy (TEE first to exclude LA thrombus). Rheumatic MS with AF, prior embolism or LA thrombus: VKA, not a NOAC. Symptomatic severe primary MR: intervention, repair preferred over replacement for degenerative disease. Symptomatic severe AR: aortic valve surgery regardless of LV function; asymptomatic with LVEF ≤55% or LVESD >50 mm: surgery. Murmur timing/quality is standard examination teaching, not guideline text."
+    }
+  },
+  {
+    "id": "pance-029",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Suspected infective endocarditis: how is it diagnosed, and who gets dental prophylaxis?",
+    "bottom": "Cultures first, then echo, then antibiotics.",
+    "bullets": {
+      "clue": "Fever, new murmur, emboli, IV drug use.",
+      "treat": "Blood cultures before antibiotics; TTE, then TEE if unclear; Duke criteria.",
+      "trap": "Prophylaxis only for prosthetic valves, prior IE, certain congenital disease."
+    },
+    "back": "Cultures first, then echo, then antibiotics. Key clue: Fever, new murmur, emboli, IV drug use. First-line: Blood cultures before antibiotics; TTE, then TEE if unclear; Duke criteria. Exam trap: Prophylaxis only for prosthetic valves, prior IE, certain congenital disease.",
+    "word_count": 39,
+    "mnemonic": "FROM JANE: Fever, Roth spots, Osler nodes, Murmur, Janeway lesions, Anemia, Nail-bed hemorrhages, Emboli.",
+    "diagram": {
+      "file": "svg/pance-029.svg",
+      "alt": "Endocarditis diagnosis: blood cultures before antibiotics, echocardiography starting with TTE and escalating to TEE, and the Duke criteria. Dental prophylaxis with amoxicillin 2 grams is reserved for prosthetic valves, prior endocarditis, certain congenital disease and transplant valvulopathy."
+    },
+    "source": {
+      "guideline": "2023 Duke-ISCVID Criteria; AHA 2015 Adult IE Scientific Statement; 2021 AHA Statement on Prevention of Viridans Group Streptococcal IE; 2020 ACC/AHA VHD Guideline",
+      "year": "2023",
+      "url": "https://academic.oup.com/cid/article/77/4/518/7151107",
+      "alt_url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000000969",
+      "recommendation": "Obtain blood cultures (≥2 separate sets for typical organisms, ≥3 for atypical; aerobic plus anaerobic bottles) before antibiotics; TTE first, TEE if TTE is negative or inadequate or suspicion/complications remain high. Major criteria: qualifying blood cultures and endocardial involvement on imaging. Surgery for heart failure, abscess or fistula, valve perforation or dehiscence, persistent infection or recurrent emboli. Dental prophylaxis (COR 2a) only for prosthetic valve or repair material, prior IE, unrepaired cyanotic CHD or repaired CHD with residual defect, or transplant valvulopathy, before procedures that manipulate gingiva, the periapical region or perforate mucosa; amoxicillin 2 g orally 30–60 min before. Not for GI or GU procedures. FROM JANE is standard teaching, not guideline text."
+    }
+  },
+  {
+    "id": "pance-030",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Pleuritic chest pain that eases when leaning forward, diffuse ST elevation: diagnosis and treatment?",
+    "bottom": "Acute pericarditis: NSAID plus colchicine.",
+    "bullets": {
+      "clue": "Pleuritic pain, friction rub, diffuse ST elevation with PR depression.",
+      "treat": "High-dose NSAID or aspirin plus colchicine for 3 months.",
+      "trap": "Hypotension, JVD, muffled heart sounds mean tamponade: pericardiocentesis, not NSAIDs."
+    },
+    "back": "Acute pericarditis: NSAID plus colchicine. Key clue: Pleuritic pain, friction rub, diffuse ST elevation with PR depression. First-line: High-dose NSAID or aspirin plus colchicine for 3 months. Exam trap: Hypotension, JVD, muffled heart sounds mean tamponade: pericardiocentesis, not NSAIDs.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-030.svg",
+      "alt": "Acute pericarditis on ECG: diffuse concave ST elevation with PR depression. Treat with a high-dose NSAID or aspirin plus colchicine for three months. Tamponade, shown by hypotension, distended neck veins and muffled heart sounds, needs urgent pericardiocentesis."
+    },
+    "source": {
+      "guideline": "2025 ACC Concise Clinical Guidance: Diagnosis and Management of Pericarditis; 2025 ESC Guidelines for Myocarditis and Pericarditis",
+      "year": "2025",
+      "url": "https://doi.org/10.1016/j.jacc.2025.05.023",
+      "alt_url": "https://doi.org/10.1093/eurheartj/ehaf192",
+      "recommendation": "Diagnosis: pleuritic chest pain plus at least one of friction rub, ECG changes (diffuse ST elevation, PR depression), elevated CRP/ESR, or new/worsening effusion or imaging inflammation (the older 2015 ESC rule was 2 of 4 criteria). First-line: high-dose NSAID or aspirin plus colchicine (0.5 mg once daily under 70 kg, twice daily at ≥70 kg) for 3 months for a first episode, 6 months for recurrence. Corticosteroids are not routine; reserve for contraindication, autoimmune disease or refractory disease at low-to-moderate dose. Cardiac tamponade: urgent echo-guided pericardiocentesis. Beck triad is standard teaching, not guideline text."
+    }
+  },
+  {
+    "id": "pance-031",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Obstructive HCM: first-line drug, and what should you avoid?",
+    "bottom": "Obstructive HCM: beta-blocker first.",
+    "bullets": {
+      "clue": "Murmur louder with Valsalva or standing.",
+      "treat": "Non-vasodilating beta-blocker; then verapamil or diltiazem; then mavacamten or disopyramide.",
+      "trap": "Avoid vasodilators, digoxin and high-dose diuretics."
+    },
+    "back": "Obstructive HCM: beta-blocker first. Key clue: Murmur louder with Valsalva or standing. First-line: Non-vasodilating beta-blocker; then verapamil or diltiazem; then mavacamten or disopyramide. Exam trap: Avoid vasodilators, digoxin and high-dose diuretics.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-031.svg",
+      "alt": "Hypertrophic cardiomyopathy with a thick septum and systolic anterior motion of the mitral valve narrowing the outflow tract. The murmur is louder with Valsalva or standing and softer with squatting. Beta-blocker first, then verapamil or diltiazem, then mavacamten, disopyramide or septal reduction."
+    },
+    "source": {
+      "guideline": "2024 AHA/ACC/AMSSM/HRS/PACES/SCMR Guideline for the Management of Hypertrophic Cardiomyopathy",
+      "year": "2024",
+      "url": "https://doi.org/10.1161/cir.0000000000001250",
+      "alt_url": "https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2024/05/06/15/12/2024-hypertrophic-cardiomyopathy-gl",
+      "recommendation": "Symptomatic obstructive HCM: non-vasodilating beta-blocker first; verapamil or diltiazem if beta-blockers are ineffective or not tolerated; then add mavacamten (adults), disopyramide, or septal reduction therapy. Avoid vasodilators and digoxin; low-dose diuretics only for volume overload. Reassess sudden-death risk every 1–2 years; ICD after cardiac arrest or sustained VT. Valsalva/standing intensify and squatting reduces the murmur: standard examination teaching."
+    }
+  },
+  {
+    "id": "pance-032",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "Tearing chest pain radiating to the back: imaging, BP and heart-rate goals, type A versus B?",
+    "bottom": "Beta-blocker and BP control; type A goes to surgery.",
+    "bullets": {
+      "clue": "Tearing chest or back pain, arm BP difference.",
+      "treat": "CT angiography. IV beta-blocker: SBP under 120, heart rate 60–80.",
+      "trap": "Never start a vasodilator before a beta-blocker."
+    },
+    "back": "Beta-blocker and BP control; type A goes to surgery. Key clue: Tearing chest or back pain, arm BP difference. First-line: CT angiography. IV beta-blocker: SBP under 120, heart rate 60–80. Exam trap: Never start a vasodilator before a beta-blocker.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-032.svg",
+      "alt": "Aortic dissection. Type A involves the ascending aorta and needs emergency surgery; type B involves only the descending aorta and starts with medical therapy. CT angiography, IV beta-blocker first, systolic pressure under 120 and heart rate 60 to 80."
+    },
+    "source": {
+      "guideline": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease",
+      "year": "2022",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2022.08.004",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9860464/",
+      "recommendation": "Acute aortic syndrome: IV beta-blocker first to heart rate 60–80, SBP <120 (or lowest tolerated), then a vasodilator if needed. Type A: emergency surgery. Uncomplicated type B: initial medical therapy, intervention for rupture, malperfusion, extension, progressive enlargement, intractable pain or uncontrolled hypertension. AAA: one-time ultrasound screening for men ≥65 who ever smoked."
+    }
+  },
+  {
+    "id": "pance-033",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Calf pain with walking that resolves with rest: how is PAD confirmed and managed, and what is the limb-threat exception?",
+    "bottom": "ABI ≤0.90 confirms PAD.",
+    "bullets": {
+      "clue": "Claudication, weak pulses, ankle-brachial index ≤0.90.",
+      "treat": "Supervised exercise, high-intensity statin, antiplatelet therapy.",
+      "trap": "Acute limb ischemia: heparin and urgent revascularization."
+    },
+    "back": "ABI ≤0.90 confirms PAD. Key clue: Claudication, weak pulses, ankle-brachial index ≤0.90. First-line: Supervised exercise, high-intensity statin, antiplatelet therapy. Exam trap: Acute limb ischemia: heparin and urgent revascularization.",
+    "word_count": 28,
+    "mnemonic": "6 Ps of acute limb ischemia: Pain, Pallor, Pulselessness, Poikilothermia, Paresthesia, Paralysis.",
+    "diagram": {
+      "file": "svg/pance-033.svg",
+      "alt": "Peripheral artery disease: ankle-brachial index scale with 0.90 or less abnormal, the leg artery plaque, and the first-line plan of supervised exercise, high-intensity statin and antiplatelet. Acute limb ischemia with the six Ps needs heparin and urgent revascularization."
+    },
+    "source": {
+      "guideline": "2024 ACC/AHA/AACVPR/ABC/SCAI/SIR/SVM/SVN/VESS Guideline for Lower Extremity Peripheral Artery Disease",
+      "year": "2024",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.02.013",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001251",
+      "recommendation": "ABI ≤0.90 abnormal; 0.91–0.99 borderline. Single antiplatelet (aspirin or clopidogrel); rivaroxaban 2.5 mg twice daily plus aspirin if bleeding risk is not increased; high-intensity statin. Supervised exercise therapy for claudication. Revascularize chronic limb-threatening ischemia; for claudication only after an inadequate response to medical and exercise therapy. Acute limb ischemia with a salvageable limb: immediate unfractionated heparin plus urgent revascularization. The 6 Ps are standard teaching."
+    }
+  },
+  {
+    "id": "pance-034",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Suspected DVT: how is the work-up chosen, and how long do you treat a provoked DVT?",
+    "bottom": "Wells score, then ultrasound or D-dimer.",
+    "bullets": {
+      "clue": "Unilateral leg swelling and calf tenderness.",
+      "treat": "DOAC over warfarin; three months if provoked by a transient factor.",
+      "trap": "Wells likely: go straight to ultrasound; D-dimer only if unlikely."
+    },
+    "back": "Wells score, then ultrasound or D-dimer. Key clue: Unilateral leg swelling and calf tenderness. First-line: DOAC over warfarin; three months if provoked by a transient factor. Exam trap: Wells likely: go straight to ultrasound; D-dimer only if unlikely.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-034.svg",
+      "alt": "Suspected DVT pathway: a two-level Wells score of 2 or more is likely and goes to proximal ultrasound; 1 or less is unlikely and gets a D-dimer, with ultrasound if positive. Treat with a DOAC for three months when provoked by a transient factor."
+    },
+    "source": {
+      "guideline": "ASH 2020 VTE Treatment Guideline; CHEST 2021 Antithrombotic Therapy for VTE; NICE NG158; 2026 AHA/ACC acute PE guideline (anticoagulant choice)",
+      "year": "2021",
+      "url": "https://ashpublications.org/bloodadvances/article/4/19/4693/463998/",
+      "alt_url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+      "recommendation": "Two-level Wells: ≥2 likely, ≤1 unlikely. Likely: proximal compression duplex ultrasound; unlikely: D-dimer first, ultrasound if positive (NICE NG158). Confirmed proximal DVT: DOAC over VKA (ASH 2020; the 2026 AHA/ACC acute PE guideline likewise recommends DOACs over warfarin when appropriate). Provoked by a transient risk factor: 3 months (CHEST 2021). Unprovoked or persistent risk: reassess for extended therapy after 3 months."
+    }
+  },
+  {
+    "id": "pance-035",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "Tachycardia with a pulse: when do you cardiovert, and what is first-line for stable regular narrow-complex tachycardia?",
+    "bottom": "Unstable: cardiovert. Stable regular narrow: adenosine.",
+    "bullets": {
+      "clue": "Hypotension, altered mentation, shock, chest pain, or acute HF.",
+      "treat": "Sedate and synchronize. Stable regular narrow: vagal maneuvers, adenosine 6 then 12 mg.",
+      "trap": "Polymorphic VT: unsynchronized shock, not synchronized."
+    },
+    "back": "Unstable: cardiovert. Stable regular narrow: adenosine. Key clue: Hypotension, altered mentation, shock, chest pain, or acute HF. First-line: Sedate and synchronize. Stable regular narrow: vagal maneuvers, adenosine 6 then 12 mg. Exam trap: Polymorphic VT: unsynchronized shock, not synchronized.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-035.svg",
+      "alt": "Tachycardia with a pulse: if unstable, synchronized cardioversion with sedation; if stable and regular with a narrow QRS, vagal maneuvers then adenosine 6 mg followed by 12 mg. Polymorphic VT gets an unsynchronized shock."
+    },
+    "source": {
+      "guideline": "2025 AHA Guidelines for CPR and ECC, Part 9 Adult Advanced Life Support: Adult Tachyarrhythmia With a Pulse Algorithm",
+      "year": "2025",
+      "url": "https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-ACLS-Tachycardia-250514.pdf",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001376",
+      "recommendation": "Tachyarrhythmia (rate typically ≥150) causing hypotension, acutely altered mental status, signs of shock, ischemic chest discomfort or acute heart failure: synchronized cardioversion, sedate whenever feasible. Energies (electrical cardioversion algorithm): AF 200 J, atrial flutter 200 J, narrow-complex tachycardia 100 J, monomorphic VT 100 J; polymorphic VT: unsynchronized high-energy shock. Stable: vagal maneuvers and adenosine if regular; beta-blocker or calcium channel blocker. Adenosine 6 mg rapid IV push with saline flush, then 12 mg. Wide QRS: adenosine only if regular and monomorphic; procainamide or amiodarone 150 mg over 10 min."
+    }
+  },
+  {
+    "id": "pance-036",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "Adult cardiac arrest with VF: what is the sequence of CPR, shock and drugs?",
+    "bottom": "High-quality CPR and early defibrillation come first.",
+    "bullets": {
+      "clue": "Pulseless and unresponsive with VF or pulseless VT.",
+      "treat": "Compress 100–120/min; shock; epinephrine after failed shocks; then amiodarone or lidocaine.",
+      "trap": "Asystole or PEA: epinephrine as soon as possible, no shock."
+    },
+    "back": "High-quality CPR and early defibrillation come first. Key clue: Pulseless and unresponsive with VF or pulseless VT. First-line: Compress 100–120/min; shock; epinephrine after failed shocks; then amiodarone or lidocaine. Exam trap: Asystole or PEA: epinephrine as soon as possible, no shock.",
+    "word_count": 41,
+    "mnemonic": "Reversible causes, Hs and Ts: Hypovolemia, Hypoxia, Hydrogen ion (acidosis), Hypo/hyperkalemia, Hypothermia; Tension pneumothorax, Tamponade, Toxins, Thrombosis (coronary or pulmonary).",
+    "diagram": {
+      "file": "svg/pance-036.svg",
+      "alt": "Cardiac arrest: chest compressions 100 to 120 per minute, at least 2 and no more than 2.4 inches deep, shock for ventricular fibrillation or pulseless ventricular tachycardia, epinephrine after failed shocks, then amiodarone or lidocaine. Asystole and PEA get epinephrine early and no shock."
+    },
+    "source": {
+      "guideline": "2025 AHA Guidelines for CPR and ECC, Part 9 Adult Advanced Life Support and Part 7 Adult Basic Life Support",
+      "year": "2025",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001376",
+      "alt_url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-basic-life-support",
+      "recommendation": "Shockable VF/pVT: rapid defibrillation; epinephrine after initial CPR and shock(s) fail, repeated every 3–5 min. Asystole/PEA: epinephrine as soon as possible. Shock-refractory VF/pVT: amiodarone 300 mg then 150 mg, or lidocaine 1–1.5 mg/kg then 0.5–0.75 mg/kg. Compressions 100–120/min, depth at least 2 in (5 cm) and no more than 2.4 in (6 cm), full recoil, minimal interruptions. The epinephrine dose of 1 mg is the long-standing standard dose and is unchanged long-standing standard teaching. Hs and Ts are the AHA's own reversible-cause list."
+    }
+  },
+  {
+    "id": "pance-037",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Syncope: what is the initial evaluation, and which features mean high risk?",
+    "bottom": "Initial workup: history, orthostatics, ECG.",
+    "bullets": {
+      "clue": "Exertional syncope, palpitations, no prodrome, abnormal ECG, structural heart disease.",
+      "treat": "History, orthostatic vitals, ECG. Vasovagal: reassure, avoid triggers.",
+      "trap": "High-risk features: evaluate for a cardiac cause, often admit."
+    },
+    "back": "Initial workup: history, orthostatics, ECG. Key clue: Exertional syncope, palpitations, no prodrome, abnormal ECG, structural heart disease. First-line: History, orthostatic vitals, ECG. Vasovagal: reassure, avoid triggers. Exam trap: High-risk features: evaluate for a cardiac cause, often admit.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-037.svg",
+      "alt": "Syncope evaluation: history, orthostatic blood pressure and heart rate lying and after standing, and a 12-lead ECG. A systolic fall of 20 or a diastolic fall of 10 within 3 minutes is orthostatic hypotension. Exertion, palpitations, no warning, abnormal ECG or structural heart disease mark high risk."
+    },
+    "source": {
+      "guideline": "2017 ACC/AHA/HRS Guideline for the Evaluation and Management of Patients With Syncope",
+      "year": "2017",
+      "url": "https://www.jacc.org/doi/full/10.1016/j.jacc.2017.03.003",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/cir.0000000000000499",
+      "recommendation": "Detailed history and physical examination (COR 1) including orthostatic BP and HR lying, sitting, immediately on standing and after 3 minutes upright; careful cardiac examination; resting 12-lead ECG. Orthostatic hypotension: fall of ≥20 systolic or ≥10 diastolic with standing. Cardiac syncope has a worse prognosis than reflex syncope; features favoring cardiac cause: older age, known structural/ischemic heart disease or arrhythmia, brief or no prodrome, palpitations, exertional or supine onset, abnormal cardiac examination. Reflex (vasovagal) syncope is diagnosed mainly from history."
+    }
+  },
+  {
+    "id": "pance-038",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Congenital heart lesions: key findings, and how is the newborn pulse-oximetry screen read?",
+    "bottom": "Newborn screen passes at ≥95% in both limbs.",
+    "bullets": {
+      "clue": "ASD fixed split S2. VSD holosystolic. PDA continuous. Coarctation arm–leg BP gap.",
+      "treat": "Failed screen: echocardiogram. Ductal-dependent lesion: prostaglandin E1.",
+      "trap": "A pass can still miss coarctation."
+    },
+    "back": "Newborn screen passes at ≥95% in both limbs. Key clue: ASD fixed split S2. VSD holosystolic. PDA continuous. Coarctation arm–leg BP gap. First-line: Failed screen: echocardiogram. Ductal-dependent lesion: prostaglandin E1. Exam trap: A pass can still miss coarctation.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-038.svg",
+      "alt": "Schematic heart showing an atrial septal defect, a ventricular septal defect, a patent ductus arteriosus and a narrowing of the aorta. Newborn pulse-oximetry screening passes at 95 percent or higher in both hand and foot, with one retest after an indeterminate result."
+    },
+    "source": {
+      "guideline": "AAP Clinical Report: Newborn Screening for Critical Congenital Heart Disease, A New Algorithm and Other Updated Recommendations (Pediatrics 2025); 2025 ACC/AHA/HRS/ISACHD/SCAI Adult CHD Guideline",
+      "year": "2025",
+      "url": "https://publications.aap.org/pediatrics/article/155/1/e2024069667/200337/Newborn-Screening-for-Critical-Congenital-Heart",
+      "alt_url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001402",
+      "recommendation": "New AAP algorithm: acceptable saturation ≥95% in both pre- AND post-ductal (right hand and foot) measurements; only one retest after an indeterminate result; infant should be on room air. Screening does not rule out CCHD: sensitivity is limited, coarctation can be missed (as low as 21% in cited series). Failed screens: evaluate for CCHD (echocardiography) and for non-cardiac causes of hypoxemia. Prostaglandin E1 for ductal-dependent lesions is standard teaching (CDC/AAP pages describe ductal dependence)."
+    }
+  },
+  {
+    "id": "pance-039",
+    "system": "Cardiovascular",
+    "blueprint_weight": "11%",
+    "task_area": "Clinical Intervention",
+    "front": "Symptomatic bradycardia with hypotension: first drug, next step, and which AV blocks need a pacemaker?",
+    "bottom": "Atropine first; pace if it fails.",
+    "bullets": {
+      "clue": "Heart rate under 50 with hypotension or shock.",
+      "treat": "Atropine 1 mg (max 3 mg); then pacing, dopamine or epinephrine.",
+      "trap": "Mobitz II and complete block need pacemakers; asymptomatic Mobitz I does not."
+    },
+    "back": "Atropine first; pace if it fails. Key clue: Heart rate under 50 with hypotension or shock. First-line: Atropine 1 mg (max 3 mg); then pacing, dopamine or epinephrine. Exam trap: Mobitz II and complete block need pacemakers; asymptomatic Mobitz I does not.",
+    "word_count": 42,
+    "mnemonic": "Mobitz I (Wenckebach): longer, longer, longer, drop.",
+    "diagram": {
+      "file": "svg/pance-039.svg",
+      "alt": "Three ECG strips: Mobitz I with PR lengthening then a dropped beat, Mobitz II with constant PR and a sudden dropped beat, and complete heart block with P waves and QRS complexes unrelated. Atropine 1 milligram first, then pacing or dopamine or epinephrine."
+    },
+    "source": {
+      "guideline": "2025 AHA Guidelines for CPR and ECC, Part 9: Adult Bradycardia With a Pulse Algorithm; 2018 ACC/AHA/HRS Bradycardia and Cardiac Conduction Delay Guideline",
+      "year": "2025",
+      "url": "https://www.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Algorithms/Algorithm-ACLS-Bradycardia-250514.pdf",
+      "alt_url": "https://www.jacc.org/doi/10.1016/j.jacc.2018.10.043",
+      "recommendation": "Bradycardia (typically <50) with hypotension, altered mental status, shock, ischemic chest discomfort or acute HF: atropine 1 mg IV, repeat every 3–5 min to a maximum of 3 mg; if ineffective, transcutaneous pacing and/or dopamine 5–20 mcg/kg/min or epinephrine 2–10 mcg/min; consider expert consultation and transvenous pacing. Permanent pacing is recommended regardless of symptoms for acquired Mobitz II, high-grade or third-degree AV block not due to reversible causes (COR 1); asymptomatic first-degree or Mobitz I (AV-node level) block: permanent pacing should not be performed (COR 3 Harm). The Wenckebach rhyme is standard teaching."
+    }
+  }
+]

@@ -1,0 +1,353 @@
+[
+  {
+    "id": "pance-122",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "First prenatal visit and routine pregnancy timeline: which labs, and when are GBS, Tdap and RSV given?",
+    "bottom": "Type/Rh, antibody screen, CBC, HIV, syphilis, hep B, rubella.",
+    "bullets": {
+      "clue": "Rh-negative unsensitized: repeat antibody screen 24–28 weeks.",
+      "treat": "Tdap 27–36 weeks; GBS culture 36–37 weeks; seasonal RSV 32–36.",
+      "trap": "High preeclampsia risk: aspirin 81 mg after 12 weeks."
+    },
+    "back": "Type/Rh, antibody screen, CBC, HIV, syphilis, hep B, rubella. Key clue: Rh-negative unsensitized: repeat antibody screen 24–28 weeks. First-line: Tdap 27–36 weeks; GBS culture 36–37 weeks; seasonal RSV 32–36. Exam trap: High preeclampsia risk: aspirin 81 mg after 12 weeks.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-122.svg",
+      "alt": "Prenatal timeline: first-visit labs, Rh antibody repeat at 24 to 28 weeks, Tdap 27 to 36 weeks, GBS culture 36 to 37 weeks."
+    },
+    "source": {
+      "guideline": "ACOG GBS Committee Opinion 797 (2020); USPSTF Rh(D) and preeclampsia aspirin; ACOG Maternal Immunization Schedule (2026)",
+      "year": "2020 / 2021 / 2026",
+      "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/02/prevention-of-group-b-streptococcal-early-onset-disease-in-newborns",
+      "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation-topics/uspstf-a-and-b-recommendations",
+      "recommendation": "ACOG: GBS screening 36 0/7–37 6/7 weeks. USPSTF: Rh(D) typing and antibody testing at first visit, repeat at 24–28 weeks if unsensitized Rh−; aspirin 81 mg after 12 weeks for high preeclampsia risk. ACOG 2026 schedule: Tdap 27–36 weeks, RSV 32 0/7–36 6/7 weeks in season."
+    }
+  },
+  {
+    "id": "pance-123",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Positive hCG, pelvic pain, no intrauterine pregnancy on ultrasound: diagnosis and who gets methotrexate?",
+    "bottom": "Ectopic until proven otherwise; stable and unruptured can get methotrexate.",
+    "bullets": {
+      "clue": "hCG above discriminatory zone with empty uterus.",
+      "treat": "Methotrexate if stable; surgery if unstable or rupture.",
+      "trap": "hCG >5,000, cardiac activity, mass >4 cm favor surgery."
+    },
+    "back": "Ectopic until proven otherwise; stable and unruptured can get methotrexate. Key clue: hCG above discriminatory zone with empty uterus. First-line: Methotrexate if stable; surgery if unstable or rupture. Exam trap: hCG >5,000, cardiac activity, mass >4 cm favor surgery.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-123.svg",
+      "alt": "Ectopic pregnancy: positive hCG with empty uterus; stable unruptured gets methotrexate, unstable goes to surgery."
+    },
+    "source": {
+      "guideline": "ACOG Practice Bulletin 193: Tubal Ectopic Pregnancy",
+      "year": "2018 (interim update)",
+      "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/03/tubal-ectopic-pregnancy",
+      "alt_url": "https://doi.org/10.1097/aog.0000000000002560",
+      "recommendation": "ACOG PB 193: methotrexate for hemodynamically stable unruptured tubal ectopic without absolute contraindications; hCG >5,000, fetal cardiac activity and mass >4 cm are relative contraindications; surgery for instability or rupture."
+    }
+  },
+  {
+    "id": "pance-124",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Diagnostic Studies",
+    "front": "Third-trimester bleeding: painless versus painful, and what exam must you avoid?",
+    "bottom": "Typically painless: previa; painful, tender uterus: abruption.",
+    "bullets": {
+      "clue": "Previa: placenta over os on ultrasound.",
+      "treat": "Stabilize, ultrasound first, fetal monitoring, delivery planning.",
+      "trap": "No digital cervical exam until previa excluded."
+    },
+    "back": "Typically painless: previa; painful, tender uterus: abruption. Key clue: Previa: placenta over os on ultrasound. First-line: Stabilize, ultrasound first, fetal monitoring, delivery planning. Exam trap: No digital cervical exam until previa excluded.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-124.svg",
+      "alt": "Third-trimester bleeding: painless suggests previa, painful suggests abruption; ultrasound before any digital exam."
+    },
+    "source": {
+      "guideline": "ACR Appropriateness Criteria: Second and Third Trimester Vaginal Bleeding; ACOG/SMFM Obstetric Care Consensus 7 (Placenta Accreta Spectrum)",
+      "year": "ACR current / 2018",
+      "url": "https://gravitas.acr.org/ACPortal/TopicNarrativePdf?topicId=123",
+      "alt_url": "https://www.acog.org/clinical/clinical-guidance/obstetric-care-consensus/articles/2018/12/placenta-accreta-spectrum",
+      "recommendation": "ACR: ultrasound is the mainstay; digital pelvic exam should be avoided until previa, low-lying placenta and vasa previa are excluded; transvaginal US is accurate and safe for previa. ACOG/SMFM OCC 7: previa plus prior cesarean is the key accreta risk."
+    }
+  },
+  {
+    "id": "pance-125",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "35-year-old smoker of 20 cigarettes a day wants birth control: which methods are unsafe and what is emergency contraception?",
+    "bottom": "Combined hormonal contraception is category 4.",
+    "bullets": {
+      "clue": "Age ≥35 and ≥15 cigarettes/day.",
+      "treat": "IUD, implant, DMPA or progestin pill; copper IUD most effective EC.",
+      "trap": "Migraine with aura and <21 days postpartum are also CHC category 4."
+    },
+    "back": "Combined hormonal contraception is category 4. Key clue: Age ≥35 and ≥15 cigarettes/day. First-line: IUD, implant, DMPA or progestin pill; copper IUD most effective EC. Exam trap: Migraine with aura and <21 days postpartum are also CHC category 4.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-125.svg",
+      "alt": "US MEC 2024: combined hormonal contraception unacceptable for smokers 35 or older using 15 or more cigarettes daily; progestin and IUD methods acceptable."
+    },
+    "source": {
+      "guideline": "CDC US Medical Eligibility Criteria (US MEC) 2024; US Selected Practice Recommendations (US SPR) 2024",
+      "year": "2024",
+      "url": "https://www.cdc.gov/contraception/hcp/usmec/summary-contraceptive.html",
+      "alt_url": "https://www.cdc.gov/contraception/hcp/usspr/emergency-contraception.html",
+      "recommendation": "US MEC 2024: CHC category 4 for age ≥35 smoking ≥15/day, migraine with aura, <21 days postpartum; other methods category 1. US SPR 2024: Cu-IUD within 5 days as EC; UPA 30 mg or LNG 1.5 mg."
+    }
+  },
+  {
+    "id": "pance-126",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Routine pregnancy at 24–28 weeks: how is gestational diabetes screened and what is first-line drug therapy?",
+    "bottom": "Screen at 24–28 weeks; insulin if lifestyle fails.",
+    "bullets": {
+      "clue": "Two-step 50 g then 100 g, or one-step 75 g OGTT.",
+      "treat": "Nutrition and activity first; insulin preferred drug.",
+      "trap": "Metformin and glyburide cross the placenta; not first-line."
+    },
+    "back": "Screen at 24–28 weeks; insulin if lifestyle fails. Key clue: Two-step 50 g then 100 g, or one-step 75 g OGTT. First-line: Nutrition and activity first; insulin preferred drug. Exam trap: Metformin and glyburide cross the placenta; not first-line.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-126.svg",
+      "alt": "Gestational diabetes: screen at 24 to 28 weeks, lifestyle first, insulin preferred over metformin or glyburide."
+    },
+    "source": {
+      "guideline": "USPSTF Gestational Diabetes: Screening (2021); ACOG Clinical Practice Update (2024); ADA Standards of Care 2025 section 15",
+      "year": "2021 / 2024 / 2025",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/gestational-diabetes-screening",
+      "alt_url": "https://doi.org/10.2337/dc25-s015",
+      "recommendation": "USPSTF 2021: screen at ≥24 weeks (B). ACOG 2024: one- or two-step acceptable. ADA 2025: lifestyle first; insulin preferred; metformin and glyburide not first-line (cross placenta)."
+    }
+  },
+  {
+    "id": "pance-127",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Average-risk 32-year-old asks how often she needs cervical cancer screening.",
+    "bottom": "Ages 30–65: HPV every 5 years (or cytology every 3).",
+    "bullets": {
+      "clue": "21–29: cytology every 3 years.",
+      "treat": "Primary HPV, cotesting or cytology by age interval.",
+      "trap": "No screening under 21 or after hysterectomy with cervix removed."
+    },
+    "back": "Ages 30–65: HPV every 5 years (or cytology every 3). Key clue: 21–29: cytology every 3 years. First-line: Primary HPV, cotesting or cytology by age interval. Exam trap: No screening under 21 or after hysterectomy with cervix removed.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-127.svg",
+      "alt": "Cervical screening: no screening before 21, cytology every 3 years 21 to 29, HPV every 5 years 30 to 65."
+    },
+    "source": {
+      "guideline": "USPSTF Cervical Cancer: Screening (final 2018; draft update Dec 2024)",
+      "year": "2018 / 2024 draft",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
+      "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/draft-recommendation/cervical-cancer-screening-adults-adolescents",
+      "recommendation": "USPSTF: cytology q3y ages 21–29; ages 30–65 hrHPV q5y, cotesting q5y or cytology q3y; D for <21, >65 with adequate screening, hysterectomy without CIN2+. 2024 draft adds patient-collected HPV."
+    }
+  },
+  {
+    "id": "pance-128",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Diagnostic Studies",
+    "front": "Breast cancer screening at 40, and first imaging for a palpable mass by age.",
+    "bottom": "Biennial mammography ages 40–74.",
+    "bullets": {
+      "clue": "Mass: ultrasound under 30; 30–39 ultrasound or mammogram; 40+ mammogram.",
+      "treat": "Image, then biopsy any suspicious mass.",
+      "trap": "Supplemental MRI or ultrasound for dense breasts: insufficient evidence (I)."
+    },
+    "back": "Biennial mammography ages 40–74. Key clue: Mass: ultrasound under 30; 30–39 ultrasound or mammogram; 40+ mammogram. First-line: Image, then biopsy any suspicious mass. Exam trap: Supplemental MRI or ultrasound for dense breasts: insufficient evidence (I).",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-128.svg",
+      "alt": "Breast: biennial mammography 40 to 74; palpable mass ultrasound under 30 and diagnostic mammography 40 and older."
+    },
+    "source": {
+      "guideline": "USPSTF Breast Cancer: Screening (2024); ACR Appropriateness Criteria Palpable Breast Masses (2022)",
+      "year": "2024 / 2022",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
+      "alt_url": "https://www.jacr.org/article/S1546-1440(23)00184-9/abstract",
+      "recommendation": "USPSTF 2024: biennial mammography 40–74 (B); ≥75 and dense-breast supplemental imaging I. ACR 2022 narrative: ultrasound initial under 30; 30–39 (variant 11) ultrasound, diagnostic mammography or DBT all usually appropriate; diagnostic mammography/DBT at ≥40; suspicious exam with negative imaging still needs biopsy."
+    }
+  },
+  {
+    "id": "pance-129",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Sexually active woman with pelvic pain and cervical motion tenderness: outpatient treatment?",
+    "bottom": "Pelvic inflammatory disease: treat empirically.",
+    "bullets": {
+      "clue": "Cervical motion, uterine or adnexal tenderness.",
+      "treat": "Ceftriaxone 500 mg IM plus doxycycline and metronidazole 14 days.",
+      "trap": "Don't wait for cultures; BV and trich get metronidazole 7 days."
+    },
+    "back": "Pelvic inflammatory disease: treat empirically. Key clue: Cervical motion, uterine or adnexal tenderness. First-line: Ceftriaxone 500 mg IM plus doxycycline and metronidazole 14 days. Exam trap: Don't wait for cultures; BV and trich get metronidazole 7 days.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-129.svg",
+      "alt": "PID: cervical motion tenderness, treat with ceftriaxone plus 14 days of doxycycline and metronidazole."
+    },
+    "source": {
+      "guideline": "CDC STI Treatment Guidelines 2021: PID, BV, trichomoniasis",
+      "year": "2021",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/pid.htm",
+      "alt_url": "https://www.cdc.gov/std/treatment-guidelines/bv.htm",
+      "recommendation": "CDC 2021: PID outpatient ceftriaxone 500 mg IM once + doxycycline 100 mg BID 14 d + metronidazole 500 mg BID 14 d. BV (Amsel ≥3/4) metronidazole 500 mg BID 7 d. Trich (women) metronidazole 500 mg BID 7 d."
+    }
+  },
+  {
+    "id": "pance-130",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Diagnostic Studies",
+    "front": "47-year-old with heavy irregular bleeding: classification system and first workup step?",
+    "bottom": "Classify by PALM-COEIN; endometrial sampling if over 45.",
+    "bullets": {
+      "clue": "Pregnancy test first, then CBC and ultrasound.",
+      "treat": "Hormonal therapy or LNG-IUD for ovulatory/anovulatory AUB once cancer excluded.",
+      "trap": "Under 45 with obesity or unopposed estrogen also needs biopsy."
+    },
+    "back": "Classify by PALM-COEIN; endometrial sampling if over 45. Key clue: Pregnancy test first, then CBC and ultrasound. First-line: Hormonal therapy or LNG-IUD for ovulatory/anovulatory AUB once cancer excluded. Exam trap: Under 45 with obesity or unopposed estrogen also needs biopsy.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-130.svg",
+      "alt": "Abnormal uterine bleeding: PALM-COEIN classification; endometrial sampling first-line over age 45."
+    },
+    "source": {
+      "guideline": "ACOG Practice Bulletin 128 (AUB, reaffirmed) and Committee Opinion 557",
+      "year": "2012 (reaffirmed)",
+      "url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2012/07/diagnosis-of-abnormal-uterine-bleeding-in-reproductive-aged-women",
+      "alt_url": "https://journals.lww.com/greenjournal/fulltext/2013/04000/committee_opinion_no__557__management_of_acute.42.aspx",
+      "recommendation": "ACOG: PALM-COEIN classification; endometrial sampling first-line for AUB at >45 and for younger women with unopposed estrogen exposure, failed management or persistent AUB."
+    }
+  },
+  {
+    "id": "pance-131",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "52-year-old with hot flashes 2 years after menopause: who can take hormone therapy, and a nonhormonal option?",
+    "bottom": "Hormone therapy: favorable under 60 or within 10 years.",
+    "bullets": {
+      "clue": "Intact uterus needs a progestogen with estrogen.",
+      "treat": "Lowest effective systemic HT; fezolinetant, SSRI/SNRI or gabapentin if HT unsuitable.",
+      "trap": "Breast cancer, VTE, stroke history: avoid systemic HT."
+    },
+    "back": "Hormone therapy: favorable under 60 or within 10 years. Key clue: Intact uterus needs a progestogen with estrogen. First-line: Lowest effective systemic HT; fezolinetant, SSRI/SNRI or gabapentin if HT unsuitable. Exam trap: Breast cancer, VTE, stroke history: avoid systemic HT.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-131.svg",
+      "alt": "Menopause: hormone therapy favorable under 60 or within 10 years; progestogen if uterus; fezolinetant as nonhormonal option."
+    },
+    "source": {
+      "guideline": "NAMS (The Menopause Society) 2022 Hormone Therapy and 2023 Nonhormone Therapy Position Statements",
+      "year": "2022 / 2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/",
+      "alt_url": "https://menopause.org/wp-content/uploads/professional/2023-nonhormone-therapy-position-statement.pdf",
+      "recommendation": "2022: HT favorable benefit-risk for women <60 or within 10 years of menopause without contraindications. 2023: fezolinetant, CBT, hypnosis, SSRIs/SNRIs, gabapentin recommended nonhormonal options."
+    }
+  },
+  {
+    "id": "pance-132",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Irregular cycles, hirsutism and infertility: diagnosis criteria and first-line ovulation induction?",
+    "bottom": "PCOS by Rotterdam: 2 of 3 features.",
+    "bullets": {
+      "clue": "Oligo-anovulation, hyperandrogenism, polycystic ovaries or high AMH.",
+      "treat": "Letrozole first-line for ovulation induction; lifestyle.",
+      "trap": "Letrozole is preferred over clomiphene."
+    },
+    "back": "PCOS by Rotterdam: 2 of 3 features. Key clue: Oligo-anovulation, hyperandrogenism, polycystic ovaries or high AMH. First-line: Letrozole first-line for ovulation induction; lifestyle. Exam trap: Letrozole is preferred over clomiphene.",
+    "word_count": 30,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-132.svg",
+      "alt": "PCOS: two of three Rotterdam criteria; letrozole is first-line ovulation induction."
+    },
+    "source": {
+      "guideline": "International Evidence-based Guideline for PCOS (2023)",
+      "year": "2023",
+      "url": "https://doi.org/10.1093/ejendo/lvad096",
+      "alt_url": "https://www.monash.edu/medicine/mchri/pcos/guideline",
+      "recommendation": "2023 guideline: Rotterdam criteria (2 of 3) in adults, AMH may replace ultrasound; letrozole first-line pharmacological ovulation induction over clomiphene; screen metabolic risk."
+    }
+  },
+  {
+    "id": "pance-133",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Boggy uterus and heavy bleeding after delivery: cause and first-line treatment?",
+    "bottom": "Uterine atony, most common cause of postpartum hemorrhage.",
+    "bullets": {
+      "clue": "4 Ts: tone, trauma, tissue, thrombin.",
+      "treat": "Uterine massage and oxytocin; tranexamic acid early.",
+      "trap": "TXA benefit is clearest within 3 hours of birth."
+    },
+    "back": "Uterine atony, most common cause of postpartum hemorrhage. Key clue: 4 Ts: tone, trauma, tissue, thrombin. First-line: Uterine massage and oxytocin; tranexamic acid early. Exam trap: TXA benefit is clearest within 3 hours of birth.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-133.svg",
+      "alt": "Postpartum hemorrhage: atony is most common; massage, oxytocin and early tranexamic acid."
+    },
+    "source": {
+      "guideline": "ACOG Practice Bulletin 183: Postpartum Hemorrhage",
+      "year": "2017 (ACOG current material)",
+      "url": "https://doi.org/10.1097/aog.0000000000002351",
+      "alt_url": "https://dam.acog.org/download/assets/Postpartum+Hemorrhage.pdf/3b08cc0e0d0a11f19f472af91c274403",
+      "recommendation": "ACOG PB 183: routine postpartum oxytocin; 4 Ts; atony 70–80%; massage, bladder emptying, uterotonics; consider TXA when initial therapy fails, most benefit within 3 hours."
+    }
+  },
+  {
+    "id": "pance-134",
+    "system": "Reproductive",
+    "blueprint_weight": "7%",
+    "task_area": "Diagnostic Studies",
+    "front": "Newborn with jaundice at 18 hours of life: what to do next?",
+    "bottom": "Jaundice under 24 hours is pathologic until proven otherwise.",
+    "bullets": {
+      "clue": "Visible jaundice in first day of life.",
+      "treat": "Measure TSB or TcB now; phototherapy by hour-specific thresholds.",
+      "trap": "Don't rely on visual estimate; plot bilirubin by age in hours."
+    },
+    "back": "Jaundice under 24 hours is pathologic until proven otherwise. Key clue: Visible jaundice in first day of life. First-line: Measure TSB or TcB now; phototherapy by hour-specific thresholds. Exam trap: Don't rely on visual estimate; plot bilirubin by age in hours.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-134.svg",
+      "alt": "Newborn jaundice before 24 hours: measure bilirubin promptly and treat per hour-specific thresholds."
+    },
+    "source": {
+      "guideline": "AAP Clinical Practice Guideline: Hyperbilirubinemia in the Newborn ≥35 Weeks (2022)",
+      "year": "2022",
+      "url": "https://publications.aap.org/pediatrics/article/150/3/e2022058859/188726/Clinical-Practice-Guideline-Revision-Management-of",
+      "alt_url": "https://www.aap.org/en/patient-care/hyperbilirubinemia/",
+      "recommendation": "AAP 2022: assess jaundice at least every 12 h; jaundice <24 h requires TSB/TcB as soon as possible; otherwise TcB/TSB at 24–48 h or before discharge; phototherapy by hour-specific thresholds."
+    }
+  }
+]

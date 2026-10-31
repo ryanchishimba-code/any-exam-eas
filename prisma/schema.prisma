@@ -86,6 +86,7 @@ model User {
   readinessChecks    ReadinessCheck[]
   examOutcomes       ExamOutcome[]
   examPassCheckIns   ExamPassCheckIn[]
+  panceFeedProgress  PanceFeedProgress?
 }
 
 model Account {
@@ -1288,6 +1289,20 @@ model DrugCardProgress {
   @@unique([userId, cycleKey, drugId])
   @@index([userId, cycleKey, nextReviewAt])
   @@index([userId, cycleKey, mastered])
+}
+
+/// Cross-device PANCE feed progress. One row per learner.
+/// `mastered` and `reviewQueue` are card ids from content/pance-feed.
+model PanceFeedProgress {
+  userId         String    @id
+  mastered       String[]  @default([])
+  reviewQueue    String[]  @default([])
+  lastSeenCardId String?
+  lastSeenAt     DateTime?
+  updatedAt      DateTime  @updatedAt
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("pance_feed_progress")
 }
 
 /// Per-memory-card mastery (got-it / need-review) for Reference Hub spaced study.

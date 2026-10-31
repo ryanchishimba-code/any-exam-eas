@@ -11,6 +11,7 @@ import {
   Clapperboard,
   Clock,
   FileText,
+  Layers,
   LayoutGrid,
   Lock,
   PenLine,
@@ -114,6 +115,13 @@ const NAV_SECTIONS: NavSection[] = [
         href: `${ROUTES.dashboard}#video-quick-bites-pance`,
         label: "Quick Bites: PANCE",
         icon: Clapperboard,
+        exams: ["pance"],
+      },
+      {
+        id: "pance-feed",
+        href: ROUTES.panceFeed,
+        label: "PANCE Feed",
+        icon: Layers,
         exams: ["pance"],
       },
       {

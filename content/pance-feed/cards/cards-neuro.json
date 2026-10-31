@@ -1,0 +1,353 @@
+[
+  {
+    "id": "pance-096",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "TIA or minor stroke (NIHSS ≤3): which antiplatelet plan, and for how long?",
+    "bottom": "Aspirin plus clopidogrel for 21 days, then one agent.",
+    "bullets": {
+      "clue": "High-risk TIA (ABCD2 ≥4) or minor stroke within 24 h.",
+      "treat": "DAPT 21 days; high-intensity statin, LDL <70; BP control.",
+      "trap": "Do not continue DAPT long term."
+    },
+    "back": "Aspirin plus clopidogrel for 21 days, then one agent. Key clue: High-risk TIA (ABCD2 ≥4) or minor stroke within 24 h. First-line: DAPT 21 days; high-intensity statin, LDL <70; BP control. Exam trap: Do not continue DAPT long term.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-096.svg",
+      "alt": "After high-risk TIA or minor stroke, aspirin plus clopidogrel for 21 days then a single antiplatelet, high-intensity statin to LDL under 70, carotid imaging and heart-rhythm monitoring."
+    },
+    "source": {
+      "guideline": "2021 AHA/ASA Guideline for the Prevention of Stroke in Patients With Stroke and TIA",
+      "year": "2021",
+      "url": "https://www.ahajournals.org/doi/full/10.1161/STR.0000000000000375",
+      "alt_url": "https://www.acc.org/latest-in-cardiology/ten-points-to-remember/2021/06/02/18/08/2021-guideline-for-the-prevention-of-stroke",
+      "recommendation": "Noncardioembolic minor stroke (NIHSS ≤3) or high-risk TIA (ABCD2 ≥4) within 24 h: aspirin plus clopidogrel for 21 days, then single antiplatelet. Atherosclerotic stroke/TIA: high-intensity statin, LDL-C target <70 mg/dL; add ezetimibe then PCSK9 inhibitor if needed."
+    }
+  },
+  {
+    "id": "pance-097",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Spontaneous ICH vs aneurysmal SAH: the key BP target and the one drug for SAH?",
+    "bottom": "ICH: lower SBP to 140. SAH: nimodipine.",
+    "bullets": {
+      "clue": "Thunderclap headache: SAH. Focal deficit, hypertension: ICH.",
+      "treat": "ICH: SBP 140 (130–150), reverse anticoagulants. SAH: nimodipine 21 days, secure aneurysm.",
+      "trap": "Do not drop ICH SBP below 130."
+    },
+    "back": "ICH: lower SBP to 140. SAH: nimodipine. Key clue: Thunderclap headache: SAH. Focal deficit, hypertension: ICH. First-line: ICH: SBP 140 (130–150), reverse anticoagulants. SAH: nimodipine 21 days, secure aneurysm. Exam trap: Do not drop ICH SBP below 130.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-097.svg",
+      "alt": "Intracerebral hemorrhage: lower systolic BP to 140 and keep 130 to 150, reverse anticoagulation. Subarachnoid hemorrhage: nimodipine 60 mg every 4 hours for 21 days and early aneurysm repair."
+    },
+    "source": {
+      "guideline": "2022 AHA/ASA Spontaneous ICH Guideline; 2023 AHA/ASA Aneurysmal SAH Guideline",
+      "year": "2022 / 2023",
+      "url": "https://www.ahajournals.org/doi/full/10.1161/STR.0000000000000407",
+      "alt_url": "https://www.ahajournals.org/doi/full/10.1161/STR.0000000000000436",
+      "recommendation": "ICH 2022: mild-moderate ICH with SBP 150–220: target 140, maintain 130–150; avoid <130. SAH 2023: enteral nimodipine to reduce delayed cerebral ischemia; nimodipine 60 mg q4h for 21 days."
+    }
+  },
+  {
+    "id": "pance-098",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Generalized seizure lasting 5 minutes: first drug, second drug, and timing?",
+    "bottom": "Benzodiazepine at 5 minutes; second agent by 20–40.",
+    "bullets": {
+      "clue": "Seizure ≥5 minutes or no recovery between seizures.",
+      "treat": "IV lorazepam or IM midazolam; then fosphenytoin, valproate or levetiracetam.",
+      "trap": "Check glucose; do not under-dose benzodiazepines."
+    },
+    "back": "Benzodiazepine at 5 minutes; second agent by 20–40. Key clue: Seizure ≥5 minutes or no recovery between seizures. First-line: IV lorazepam or IM midazolam; then fosphenytoin, valproate or levetiracetam. Exam trap: Check glucose; do not under-dose benzodiazepines.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-098.svg",
+      "alt": "Status epilepticus timeline: stabilize and check glucose, benzodiazepine at 5 minutes, then fosphenytoin, valproate or levetiracetam at 20 to 40 minutes, then anesthetic infusion with EEG."
+    },
+    "source": {
+      "guideline": "AES Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus (2016); AAN/AES Unprovoked First Seizure in Adults (2015)",
+      "year": "2016 / 2015",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4749120/",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4527147/",
+      "recommendation": "AES 2016: benzodiazepine at 5 min (IV lorazepam 0.1 mg/kg max 4 mg, IM midazolam 10 mg >40 kg, IV diazepam); 20–40 min: fosphenytoin 20 mg PE/kg, valproate 40 mg/kg or levetiracetam 60 mg/kg; ESETT: no clear preferred second-line agent. AAN/AES 2015: recurrence 21–45% in 2 years; immediate AED reduces 2-year recurrence but not sustained remission."
+    }
+  },
+  {
+    "id": "pance-099",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Migraine vs cluster headache: first-line acute treatment, and which red flags need imaging?",
+    "bottom": "Migraine: NSAID or triptan. Cluster: oxygen or sumatriptan.",
+    "bullets": {
+      "clue": "Cluster: unilateral orbital pain, tearing, attacks in bouts.",
+      "treat": "Migraine: NSAID or triptan; gepant if triptans fail. Cluster: 100% oxygen or SC sumatriptan.",
+      "trap": "Thunderclap or new after 50: image."
+    },
+    "back": "Migraine: NSAID or triptan. Cluster: oxygen or sumatriptan. Key clue: Cluster: unilateral orbital pain, tearing, attacks in bouts. First-line: Migraine: NSAID or triptan; gepant if triptans fail. Cluster: 100% oxygen or SC sumatriptan. Exam trap: Thunderclap or new after 50: image.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-099.svg",
+      "alt": "Migraine treated with an NSAID then a triptan, gepants after triptan failure; cluster headache treated with 100 percent oxygen or subcutaneous sumatriptan; red flags such as thunderclap onset need imaging."
+    },
+    "source": {
+      "guideline": "American Headache Society Consensus Statement: Integrating New Migraine Treatments (2021); AHS cluster oxygen statement",
+      "year": "2021",
+      "url": "https://onlinelibrary.wiley.com/doi/full/10.1111/head.14153",
+      "alt_url": "https://americanheadachesociety.org/news/our-joint-statement-on-oxygen-therapy-for-cluster-headache",
+      "recommendation": "AHS 2021: NSAIDs for mild-moderate attacks; triptans for moderate-severe; gepants or lasmiditan when triptans are contraindicated or after 2 failed triptans; limit acute medication. Cluster: oxygen 100% 6–12 L/min or SC sumatriptan 6 mg first-line acute therapy."
+    }
+  },
+  {
+    "id": "pance-100",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Resting tremor, rigidity and bradykinesia in a 72-year-old: first-line drug?",
+    "bottom": "Parkinson disease: start levodopa.",
+    "bullets": {
+      "clue": "Asymmetric resting tremor, rigidity, bradykinesia, shuffling gait.",
+      "treat": "Carbidopa-levodopa, lowest effective dose.",
+      "trap": "Avoid dopamine agonists over 70 or with hallucinations."
+    },
+    "back": "Parkinson disease: start levodopa. Key clue: Asymmetric resting tremor, rigidity, bradykinesia, shuffling gait. First-line: Carbidopa-levodopa, lowest effective dose. Exam trap: Avoid dopamine agonists over 70 or with hallucinations.",
+    "word_count": 28,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-100.svg",
+      "alt": "Parkinson disease with resting tremor, rigidity and bradykinesia treated first with immediate-release levodopa; dopamine agonists only for selected patients under 60 and avoided over 70."
+    },
+    "source": {
+      "guideline": "AAN Practice Guideline: Dopaminergic Therapy for Motor Symptoms in Early Parkinson Disease",
+      "year": "2021",
+      "url": "https://www.neurology.org/doi/10.1212/WNL.0000000000012868",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8672433/",
+      "recommendation": "AAN 2021: levodopa preferred initial dopaminergic therapy at lowest effective dose; dopamine agonists may be considered for selected patients <60 at higher dyskinesia risk; avoid agonists in >70 or with impulse control disorders, cognitive impairment, sleepiness or hallucinations."
+    }
+  },
+  {
+    "id": "pance-101",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Acute confusion that fluctuates in a hospitalized 80-year-old vs slow memory loss: how to tell and treat?",
+    "bottom": "Delirium is acute and fluctuating; dementia is gradual.",
+    "bullets": {
+      "clue": "Inattention and fluctuation point to delirium.",
+      "treat": "Delirium: treat the cause, stop offending drugs. Dementia: check B12, TSH; cholinesterase inhibitor.",
+      "trap": "Avoid benzodiazepines; antipsychotics only for danger."
+    },
+    "back": "Delirium is acute and fluctuating; dementia is gradual. Key clue: Inattention and fluctuation point to delirium. First-line: Delirium: treat the cause, stop offending drugs. Dementia: check B12, TSH; cholinesterase inhibitor. Exam trap: Avoid benzodiazepines; antipsychotics only for danger.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-101.svg",
+      "alt": "Delirium is acute and fluctuating with inattention, screened with CAM and treated by finding the cause; dementia is gradual, worked up with B12 and TSH, and may use a cholinesterase inhibitor."
+    },
+    "source": {
+      "guideline": "APA Practice Guideline for Prevention and Treatment of Delirium (2025); AGS Beers Criteria 2023; AAN Etiologic Diagnosis of Dementia",
+      "year": "2023–2025",
+      "url": "https://psychiatryonline.org/doi/full/10.1176/appi.ajp.25182013",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12478568/",
+      "recommendation": "Screen with CAM/4AT; treat reversible causes and review medications; avoid benzodiazepines (Beers) and routine antipsychotics, reserving them for severe distress or safety risk at the lowest dose and shortest duration. Dementia: check B12 and thyroid; cholinesterase inhibitors may be considered (avoid with syncope)."
+    }
+  },
+  {
+    "id": "pance-102",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Optic neuritis, then numbness months later in a 30-year-old: diagnosis, relapse treatment and long-term plan?",
+    "bottom": "Multiple sclerosis: MRI, steroids for relapse, early DMT.",
+    "bullets": {
+      "clue": "Neuro episodes separated in time and space; young woman.",
+      "treat": "Relapse: IV methylprednisolone 3–5 days. Start disease-modifying therapy early.",
+      "trap": "Steroids speed recovery but do not change long-term course."
+    },
+    "back": "Multiple sclerosis: MRI, steroids for relapse, early DMT. Key clue: Neuro episodes separated in time and space; young woman. First-line: Relapse: IV methylprednisolone 3–5 days. Start disease-modifying therapy early. Exam trap: Steroids speed recovery but do not change long-term course.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-102.svg",
+      "alt": "Multiple sclerosis diagnosed with MRI under the 2024 McDonald criteria, relapses treated with high-dose methylprednisolone for 3 to 5 days, and disease-modifying therapy started early."
+    },
+    "source": {
+      "guideline": "2024 Revisions of the McDonald Criteria; AAN DMT Guideline (2018, reaffirmed 2024)",
+      "year": "2024",
+      "url": "https://www.thelancet.com/article/S1474-4422%2825%2900270-4/fulltext",
+      "alt_url": "https://www.aan.com/Guidelines/Home/GuidelineDetail/898",
+      "recommendation": "McDonald 2024: optic nerve added as fifth location; central vein sign, paramagnetic rim lesions and CSF kappa free light chains may support diagnosis. AAN 2018 DMT guideline reaffirmed 2024. Relapse: methylprednisolone 1 g/day IV 3–5 days (review)."
+    }
+  },
+  {
+    "id": "pance-103",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Ascending weakness after diarrhea vs fatigable ptosis: diagnosis and treatment?",
+    "bottom": "GBS: IVIG or plasma exchange. MG: pyridostigmine.",
+    "bullets": {
+      "clue": "GBS: ascending weakness, lost reflexes. MG: worse with use.",
+      "treat": "GBS: IVIG or plasma exchange; monitor vital capacity. MG: pyridostigmine; AChR antibodies.",
+      "trap": "Do not give plasma exchange then IVIG."
+    },
+    "back": "GBS: IVIG or plasma exchange. MG: pyridostigmine. Key clue: GBS: ascending weakness, lost reflexes. MG: worse with use. First-line: GBS: IVIG or plasma exchange; monitor vital capacity. MG: pyridostigmine; AChR antibodies. Exam trap: Do not give plasma exchange then IVIG.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-103.svg",
+      "alt": "Guillain-Barré syndrome with ascending weakness and lost reflexes treated with IVIG or plasma exchange and close breathing monitoring; myasthenia gravis with fatigable ptosis tested with AChR antibodies and treated with pyridostigmine."
+    },
+    "source": {
+      "guideline": "EAN/PNS Guideline on Guillain-Barré Syndrome (2023); International Consensus Guidance for Myasthenia Gravis: 2020 Update",
+      "year": "2023 / 2020",
+      "url": "https://doi.org/10.1111/ene.16073",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7884987/",
+      "recommendation": "EAN/PNS 2023: IVIg 0.4 g/kg/day for 5 days within 2 weeks of onset in patients unable to walk unaided; PE within 4 weeks; equivalent; do not give PE immediately followed by IVIg. MG 2020: pyridostigmine symptomatic therapy."
+    }
+  },
+  {
+    "id": "pance-104",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Head injury with brief loss of consciousness, then a lucid interval: which bleed, and who needs CT?",
+    "bottom": "Epidural hematoma: lens-shaped; emergency surgery.",
+    "bullets": {
+      "clue": "Lucid interval, temporal bone fracture, middle meningeal artery.",
+      "treat": "Noncontrast head CT; neurosurgery for epidural.",
+      "trap": "A lucid interval is unreliable; do not wait."
+    },
+    "back": "Epidural hematoma: lens-shaped; emergency surgery. Key clue: Lucid interval, temporal bone fracture, middle meningeal artery. First-line: Noncontrast head CT; neurosurgery for epidural. Exam trap: A lucid interval is unreliable; do not wait.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-104.svg",
+      "alt": "Schematic heads: a lens-shaped epidural hematoma from the middle meningeal artery and a crescent subdural hematoma from bridging veins; head CT for GCS under 15 at 2 hours, age 65 or older, or repeated vomiting."
+    },
+    "source": {
+      "guideline": "Canadian CT Head Rule; Brain Trauma Foundation Severe TBI 4th edition; CDC Pediatric mTBI Guideline (2018)",
+      "year": "2018",
+      "url": "https://www.thelancet.com/journals/lancet/article/PIIS014067360004561X/fulltext",
+      "alt_url": "https://cdc.gov/traumatic-brain-injury/hcp/clinical-guidance/pediatric-mtbi.html",
+      "recommendation": "Canadian CT Head Rule high-risk: GCS <15 at 2 h, suspected open/depressed fracture, basal skull fracture signs, vomiting ≥2, age ≥65. CDC 2018 pediatric mTBI: do not routinely image; use validated rules."
+    }
+  },
+  {
+    "id": "pance-105",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Vertigo on rolling over in bed vs continuous vertigo with skew deviation: peripheral or central?",
+    "bottom": "BPPV: Dix-Hallpike, then Epley.",
+    "bullets": {
+      "clue": "Brief positional vertigo with torsional nystagmus.",
+      "treat": "Epley maneuver; no vestibular suppressants.",
+      "trap": "HINTS: normal head impulse means central; image."
+    },
+    "back": "BPPV: Dix-Hallpike, then Epley. Key clue: Brief positional vertigo with torsional nystagmus. First-line: Epley maneuver; no vestibular suppressants. Exam trap: HINTS: normal head impulse means central; image.",
+    "word_count": 27,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-105.svg",
+      "alt": "Positional vertigo diagnosed by Dix-Hallpike and treated with the Epley maneuver without vestibular suppressants; in continuous vertigo the HINTS exam finds central causes such as stroke."
+    },
+    "source": {
+      "guideline": "AAO-HNS Clinical Practice Guideline: BPPV (Update)",
+      "year": "2017",
+      "url": "https://doi.org/10.1177/0194599816689667",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12439488/",
+      "recommendation": "AAO-HNS 2017: diagnose posterior canal BPPV with Dix-Hallpike; treat with canalith repositioning; no post-procedure restrictions; do not routinely use vestibular suppressants. HINTS: normal head impulse, direction-changing nystagmus or skew suggest central cause (review)."
+    }
+  },
+  {
+    "id": "pance-106",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Morning headache with vomiting and papilledema: what is it, and what lowers the pressure?",
+    "bottom": "Raised ICP from a mass: image, steroids if edema.",
+    "bullets": {
+      "clue": "Worse lying down, morning vomiting, papilledema.",
+      "treat": "MRI with contrast; dexamethasone for symptomatic edema; neurosurgery.",
+      "trap": "Cushing triad: hypertension, bradycardia, irregular breathing."
+    },
+    "back": "Raised ICP from a mass: image, steroids if edema. Key clue: Worse lying down, morning vomiting, papilledema. First-line: MRI with contrast; dexamethasone for symptomatic edema; neurosurgery. Exam trap: Cushing triad: hypertension, bradycardia, irregular breathing.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-106.svg",
+      "alt": "Raised intracranial pressure from a brain mass with morning headache, vomiting and papilledema, imaged with contrast MRI and treated with dexamethasone only for symptomatic edema; Cushing triad warns of herniation."
+    },
+    "source": {
+      "guideline": "CNS Guideline: Role of Steroids in Adults With Metastatic Brain Tumors; ASCO/SNO Joint Endorsement (2019)",
+      "year": "2019",
+      "url": "https://ascopubs.org/doi/full/10.1200/JOP.19.00058",
+      "alt_url": "https://www.cns.org/guidelines/treatment-adults-metastatic-brain-tumors/role-of-steroids-in-treatment-of-adults-with-metas",
+      "recommendation": "ASCO/SNO-endorsed CNS guideline: dexamethasone for symptomatic metastatic brain tumors with mass effect (4–8 mg/day mild; ≥16 mg/day severe), not for asymptomatic patients; no routine anticonvulsant prophylaxis."
+    }
+  },
+  {
+    "id": "pance-107",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Sudden one-sided facial droop including the forehead vs burning feet in diabetes: treatment?",
+    "bottom": "Bell palsy: steroids within 72 h. Neuropathy pain: four drug classes.",
+    "bullets": {
+      "clue": "Bell: whole face, forehead included.",
+      "treat": "Bell: prednisone within 72 h; protect the eye. Neuropathy: gabapentinoid, SNRI, TCA or sodium-channel blocker.",
+      "trap": "Forehead spared means central; image."
+    },
+    "back": "Bell palsy: steroids within 72 h. Neuropathy pain: four drug classes. Key clue: Bell: whole face, forehead included. First-line: Bell: prednisone within 72 h; protect the eye. Neuropathy: gabapentinoid, SNRI, TCA or sodium-channel blocker. Exam trap: Forehead spared means central; image.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-107.svg",
+      "alt": "Bell palsy involving the forehead treated with oral steroids within 72 hours and eye protection; painful diabetic neuropathy treated with gabapentinoids, SNRIs, tricyclics or sodium-channel blockers."
+    },
+    "source": {
+      "guideline": "AAO-HNS Clinical Practice Guideline: Bell's Palsy (2013); AAN Painful Diabetic Polyneuropathy Guideline Update (2022)",
+      "year": "2013 / 2022",
+      "url": "https://doi.org/10.1177/0194599813505967",
+      "alt_url": "https://www.neurology.org/doi/full/10.1212/WNL.0000000000013038",
+      "recommendation": "AAO-HNS: oral steroids within 72 h for age ≥16; do not use antivirals alone; may add antivirals; eye protection if closure impaired. AAN 2022: TCAs, SNRIs, gabapentinoids and/or sodium-channel blockers for painful diabetic neuropathy."
+    }
+  },
+  {
+    "id": "pance-108",
+    "system": "Neurologic",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Toddler with a brief generalized seizure during fever vs an infant with stiff legs: work-up?",
+    "bottom": "Simple febrile seizure: no EEG or imaging. CP: diagnose early.",
+    "bullets": {
+      "clue": "Age 6 months–5 years, under 15 minutes, one per illness.",
+      "treat": "Febrile: find the fever source. CP: MRI, HINE, General Movements.",
+      "trap": "Meningeal signs need a lumbar puncture."
+    },
+    "back": "Simple febrile seizure: no EEG or imaging. CP: diagnose early. Key clue: Age 6 months–5 years, under 15 minutes, one per illness. First-line: Febrile: find the fever source. CP: MRI, HINE, General Movements. Exam trap: Meningeal signs need a lumbar puncture.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-108.svg",
+      "alt": "Simple febrile seizure in a child 6 months to 5 years needs no EEG, blood work or imaging, with lumbar puncture only for meningeal signs; cerebral palsy is diagnosed early with MRI, General Movements Assessment and HINE."
+    },
+    "source": {
+      "guideline": "AAP Febrile Seizures: Neurodiagnostic Evaluation of the Child With a Simple Febrile Seizure (2011); Early Diagnosis of Cerebral Palsy (Novak, JAMA Pediatrics 2017)",
+      "year": "2011 / 2017",
+      "url": "https://publications.aap.org/pediatrics/article/127/2/389/65189/Febrile-Seizures-Guideline-for-the-Neurodiagnostic",
+      "alt_url": "https://doi.org/10.1001/jamapediatrics.2017.1689",
+      "recommendation": "AAP 2011: simple febrile seizure: no routine EEG, blood studies or neuroimaging; LP if meningeal signs, an option for 6–12 months if under-immunized or pretreated with antibiotics. Novak 2017: before 5 months, MRI, Prechtl GMA and HINE most predictive."
+    }
+  }
+]

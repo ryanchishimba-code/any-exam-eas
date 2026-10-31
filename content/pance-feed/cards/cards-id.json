@@ -1,0 +1,326 @@
+[
+  {
+    "id": "pance-084",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "HIV: who gets screened, when does ART start after diagnosis, and who is offered PrEP?",
+    "bottom": "Screen ages 15–65; start ART at diagnosis.",
+    "bullets": {
+      "clue": "Universal screening; PrEP for anyone at ongoing risk.",
+      "treat": "ART at diagnosis, same day if possible. PrEP: daily oral, or cabotegravir or lenacapavir injection.",
+      "trap": "Test for HIV before starting PrEP."
+    },
+    "back": "Screen ages 15–65; start ART at diagnosis. Key clue: Universal screening; PrEP for anyone at ongoing risk. First-line: ART at diagnosis, same day if possible. PrEP: daily oral, or cabotegravir or lenacapavir injection. Exam trap: Test for HIV before starting PrEP.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-084.svg",
+      "alt": "HIV screening for everyone aged 15 to 65, antiretroviral therapy started at diagnosis, and PrEP with daily oral tenofovir-emtricitabine, cabotegravir injections, or lenacapavir every 6 months after a negative HIV test."
+    },
+    "source": {
+      "guideline": "USPSTF HIV Screening; DHHS Adult and Adolescent ARV Guidelines (Initiation of ART); CDC/USPHS PrEP Guideline 2021; CDC Lenacapavir PrEP Recommendation (MMWR 2025)",
+      "year": "2021–2025",
+      "url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/initiation-antiretroviral-therapy",
+      "alt_url": "https://www.cdc.gov/mmwr/volumes/74/wr/mm7435a1.htm",
+      "recommendation": "USPSTF: screen adolescents and adults 15–65 (A), and younger/older at increased risk; all pregnant persons. DHHS: start ART immediately (or as soon as possible) after diagnosis; same-day initiation is feasible. CDC 2021 PrEP: daily TDF/FTC or TAF/FTC, or cabotegravir injection, for eligible people ≥35 kg, after HIV testing (and renal testing for oral). CDC 2025: injectable lenacapavir every 6 months is a recommended PrEP option."
+    }
+  },
+  {
+    "id": "pance-085",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Suspected sepsis with hypotension and lactate 4: what happens in the first hour?",
+    "bottom": "Hour-1 bundle: cultures, antibiotics, fluids.",
+    "bullets": {
+      "clue": "Infection plus organ dysfunction; hypotension or lactate ≥4.",
+      "treat": "Blood cultures, then antibiotics within 1 hour; 30 mL/kg crystalloid; norepinephrine for MAP ≥65.",
+      "trap": "Do not delay antibiotics to obtain cultures or imaging."
+    },
+    "back": "Hour-1 bundle: cultures, antibiotics, fluids. Key clue: Infection plus organ dysfunction; hypotension or lactate ≥4. First-line: Blood cultures, then antibiotics within 1 hour; 30 mL/kg crystalloid; norepinephrine for MAP ≥65. Exam trap: Do not delay antibiotics to obtain cultures or imaging.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-085.svg",
+      "alt": "Sepsis hour-1 bundle: measure lactate, draw blood cultures, give broad-spectrum antibiotics within 1 hour, infuse 30 mL/kg crystalloid, and start norepinephrine to keep mean arterial pressure at 65 or higher."
+    },
+    "source": {
+      "guideline": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021; SCCM Hour-1 Bundle",
+      "year": "2021",
+      "url": "https://doi.org/10.1007/s00134-021-06506-y",
+      "alt_url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-guidelines-2021",
+      "recommendation": "Measure lactate; blood cultures before antibiotics; antimicrobials immediately, ideally within 1 h of recognition for possible septic shock or high likelihood of sepsis; at least 30 mL/kg IV crystalloid within the first 3 h for sepsis-induced hypoperfusion or septic shock; initial MAP target 65 mmHg; norepinephrine first-line vasopressor; add vasopressin rather than escalating norepinephrine (SSC 2021)."
+    }
+  },
+  {
+    "id": "pance-086",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Dysuria and frequency in a healthy woman vs fever and flank pain: first-line antibiotics for each?",
+    "bottom": "Cystitis vs pyelonephritis.",
+    "bullets": {
+      "clue": "Cystitis: dysuria, no fever. Pyelonephritis: fever, flank pain, CVA tenderness.",
+      "treat": "Cystitis: nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin. Pyelonephritis: fluoroquinolone 5–7 days.",
+      "trap": "Nitrofurantoin and fosfomycin do not treat pyelonephritis."
+    },
+    "back": "Cystitis vs pyelonephritis. Key clue: Cystitis: dysuria, no fever. Pyelonephritis: fever, flank pain, CVA tenderness. First-line: Cystitis: nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin. Pyelonephritis: fluoroquinolone 5–7 days. Exam trap: Nitrofurantoin and fosfomycin do not treat pyelonephritis.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-086.svg",
+      "alt": "Uncomplicated cystitis treated with nitrofurantoin for 5 days, TMP-SMX for 3 days, or single-dose fosfomycin; pyelonephritis needs a urine culture and a fluoroquinolone for 5 to 7 days; nitrofurantoin and fosfomycin do not treat pyelonephritis."
+    },
+    "source": {
+      "guideline": "IDSA/ESCMID Guidelines for Acute Uncomplicated Cystitis and Pyelonephritis in Women (2010); IDSA 2025 Guideline on Complicated UTI",
+      "year": "2010 / 2025",
+      "url": "https://doi.org/10.1093/cid/ciaf460",
+      "alt_url": "https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections",
+      "recommendation": "Cystitis (IDSA 2010): nitrofurantoin 100 mg BID x5 days; TMP-SMX DS BID x3 days if resistance ≤20% or known susceptible; fosfomycin 3 g once. IDSA 2025 cUTI (includes pyelonephritis): avoid nitrofurantoin and oral fosfomycin; if improving on effective therapy, 5–7 days of a fluoroquinolone or 7 days of a non-fluoroquinolone; TMP-SMX reasonable when susceptible."
+    }
+  },
+  {
+    "id": "pance-087",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Skin abscess vs nonpurulent cellulitis: what is first-line treatment for each, and when to cover MRSA?",
+    "bottom": "Abscess: drain it. Cellulitis: cover strep.",
+    "bullets": {
+      "clue": "Fluctuant, purulent: abscess. Spreading erythema, no pus: cellulitis.",
+      "treat": "Abscess: incision and drainage; TMP-SMX if systemic signs. Cellulitis: cephalexin.",
+      "trap": "TMP-SMX alone misses streptococci in cellulitis."
+    },
+    "back": "Abscess: drain it. Cellulitis: cover strep. Key clue: Fluctuant, purulent: abscess. Spreading erythema, no pus: cellulitis. First-line: Abscess: incision and drainage; TMP-SMX if systemic signs. Cellulitis: cephalexin. Exam trap: TMP-SMX alone misses streptococci in cellulitis.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-087.svg",
+      "alt": "A fluctuant skin abscess treated by incision and drainage, with TMP-SMX if systemic signs; nonpurulent cellulitis is treated with strep-active cephalexin, adding MRSA coverage only when warranted."
+    },
+    "source": {
+      "guideline": "IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections (2014 update)",
+      "year": "2014",
+      "url": "https://doi.org/10.1093/cid/ciu296",
+      "alt_url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+      "recommendation": "Purulent abscess: incision and drainage; antibiotics if SIRS, severe disease, impaired host defenses or failure to improve (TMP-SMX or doxycycline for MRSA). Nonpurulent cellulitis: streptococcal-active agent (e.g., cephalexin); if MRSA coverage warranted, TMP-SMX plus a beta-lactam, or clindamycin alone."
+    }
+  },
+  {
+    "id": "pance-088",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Expanding target-shaped rash after a tick bite in an endemic area: need serology? Treatment and prophylaxis?",
+    "bottom": "Erythema migrans: treat without serology.",
+    "bullets": {
+      "clue": "Expanding target rash after an Ixodes bite.",
+      "treat": "Doxycycline 100 mg twice daily for 10 days; amoxicillin or cefuroxime for 14 days.",
+      "trap": "Serology is often negative early; do not test typical erythema migrans."
+    },
+    "back": "Erythema migrans: treat without serology. Key clue: Expanding target rash after an Ixodes bite. First-line: Doxycycline 100 mg twice daily for 10 days; amoxicillin or cefuroxime for 14 days. Exam trap: Serology is often negative early; do not test typical erythema migrans.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-088.svg",
+      "alt": "Erythema migrans target rash after an Ixodes tick bite, treated clinically without serology using doxycycline for 10 days; a single 200 mg doxycycline dose within 72 hours prevents Lyme after a high-risk bite."
+    },
+    "source": {
+      "guideline": "IDSA/AAN/ACR 2020 Guidelines for the Prevention, Diagnosis and Treatment of Lyme Disease",
+      "year": "2020",
+      "url": "https://doi.org/10.1002/art.41562",
+      "alt_url": "https://www.idsociety.org/practice-guideline/lyme-disease/",
+      "recommendation": "EM: clinical diagnosis, no serology; doxycycline 10 days, or amoxicillin or cefuroxime axetil 14 days; azithromycin second-line. Prophylaxis: single oral doxycycline 200 mg (adults) within 72 h of removing a high-risk tick (endemic area, Ixodes species, attached ≥36 h)."
+    }
+  },
+  {
+    "id": "pance-089",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Cervicitis or urethritis with a positive NAAT: treatment for gonorrhea and for chlamydia?",
+    "bottom": "GC: ceftriaxone 500 mg IM. CT: doxycycline.",
+    "bullets": {
+      "clue": "Mucopurulent discharge, dysuria; NAAT positive.",
+      "treat": "Ceftriaxone 500 mg IM once; chlamydia: doxycycline 7 days.",
+      "trap": "Retest at 3 months; test of cure only for pharyngeal GC or pregnancy."
+    },
+    "back": "GC: ceftriaxone 500 mg IM. CT: doxycycline. Key clue: Mucopurulent discharge, dysuria; NAAT positive. First-line: Ceftriaxone 500 mg IM once; chlamydia: doxycycline 7 days. Exam trap: Retest at 3 months; test of cure only for pharyngeal GC or pregnancy.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-089.svg",
+      "alt": "Gonorrhea is treated with ceftriaxone 500 mg IM once and chlamydia with doxycycline 100 mg twice daily for 7 days, azithromycin in pregnancy; partners are treated and patients retested at 3 months."
+    },
+    "source": {
+      "guideline": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021",
+      "year": "2021",
+      "url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
+      "alt_url": "https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm",
+      "recommendation": "Uncomplicated gonorrhea: ceftriaxone 500 mg IM once (1 g if ≥150 kg); if chlamydia not excluded add doxycycline 100 mg BID x7 days. Chlamydia: doxycycline 100 mg BID x7 days; azithromycin 1 g in pregnancy. No test of cure for nonpregnant chlamydia; retest ~3 months after treatment. Test of cure for pharyngeal gonorrhea 7–14 days; chlamydia in pregnancy ~4 weeks. Expedited partner therapy. CDC 2024: doxy-PEP for MSM/transgender women with a recent bacterial STI."
+    }
+  },
+  {
+    "id": "pance-090",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Who is screened for latent TB, which test is preferred after BCG, and what does a positive test need next?",
+    "bottom": "Screen high-risk adults; IGRA after BCG.",
+    "bullets": {
+      "clue": "Born in high-incidence country, shelters, prison, HIV, immunosuppression.",
+      "treat": "Positive test: chest X-ray to exclude active TB, then latent TB treatment.",
+      "trap": "BCG causes false-positive TST, not IGRA."
+    },
+    "back": "Screen high-risk adults; IGRA after BCG. Key clue: Born in high-incidence country, shelters, prison, HIV, immunosuppression. First-line: Positive test: chest X-ray to exclude active TB, then latent TB treatment. Exam trap: BCG causes false-positive TST, not IGRA.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-090.svg",
+      "alt": "Latent TB screening for increased-risk adults, using IGRA after BCG vaccination; a positive test needs a chest X-ray to exclude active TB before latent TB treatment."
+    },
+    "source": {
+      "guideline": "USPSTF Latent Tuberculosis Infection in Adults: Screening (2023); CDC Clinical Testing and Diagnosis for TB",
+      "year": "2023",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/latent-tuberculosis-infection-screening",
+      "alt_url": "https://www.cdc.gov/tb/hcp/testing-diagnosis/index.html",
+      "recommendation": "USPSTF 2023: screen asymptomatic adults at increased risk (B), e.g., born in or former residents of high-prevalence countries, residents of congregate settings (shelters, correctional facilities). CDC: targeted testing; IGRA preferred for BCG-vaccinated people ≥5 years and those unlikely to return for TST reading; TST acceptable. Positive test: evaluate for active TB (symptoms, chest radiograph) before treating LTBI."
+    }
+  },
+  {
+    "id": "pance-091",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Diarrhea after antibiotics: how is C. difficile confirmed, first-line treatment, and recurrence options?",
+    "bottom": "C. difficile: fidaxomicin preferred.",
+    "bullets": {
+      "clue": "≥3 unformed stools in 24 h after antibiotics or hospitalization.",
+      "treat": "Fidaxomicin 10 days, or oral vancomycin 10 days.",
+      "trap": "Test only unformed stool; no test of cure."
+    },
+    "back": "C. difficile: fidaxomicin preferred. Key clue: ≥3 unformed stools in 24 h after antibiotics or hospitalization. First-line: Fidaxomicin 10 days, or oral vancomycin 10 days. Exam trap: Test only unformed stool; no test of cure.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-091.svg",
+      "alt": "C. difficile infection after antibiotics treated first with fidaxomicin for 10 days or oral vancomycin, then fidaxomicin, vancomycin taper or bezlotoxumab for recurrence, and fecal microbiota therapy after two or more recurrences."
+    },
+    "source": {
+      "guideline": "IDSA/SHEA 2021 Focused Update Guidelines on Management of Clostridioides difficile Infection in Adults",
+      "year": "2021",
+      "url": "https://doi.org/10.1093/cid/ciab549",
+      "alt_url": "https://www.idsociety.org/practice-guideline/clostridioides-difficile-2021-focused-update/",
+      "recommendation": "Initial CDI: fidaxomicin 200 mg BID x10 days preferred; oral vancomycin 125 mg QID x10 days acceptable. First recurrence: fidaxomicin (standard or extended-pulsed) preferred; vancomycin taper-and-pulse alternative; bezlotoxumab adjunct for recurrence within 6 months (caution in heart failure). FMT after multiple recurrences (≥2 recurrences). Fulminant disease, testing of unformed stool only, and metronidazole limits are from the 2017 IDSA/SHEA guideline retained in the 2021 update."
+    }
+  },
+  {
+    "id": "pance-092",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Healthy 50-year-old: which vaccines are due (zoster, pneumococcal, Tdap), and who gets RSV?",
+    "bottom": "Age 50: zoster series and pneumococcal.",
+    "bullets": {
+      "clue": "Adult schedule by age; RSV at 75, or 50–74 with risk.",
+      "treat": "Recombinant zoster 2 doses; PCV20 or PCV21 once; Td/Tdap every 10 years.",
+      "trap": "RSV vaccine is one dose, not yearly."
+    },
+    "back": "Age 50: zoster series and pneumococcal. Key clue: Adult schedule by age; RSV at 75, or 50–74 with risk. First-line: Recombinant zoster 2 doses; PCV20 or PCV21 once; Td/Tdap every 10 years. Exam trap: RSV vaccine is one dose, not yearly.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-092.svg",
+      "alt": "Adult vaccines from age 50: two doses of recombinant zoster vaccine, one dose of PCV20 or PCV21, Tdap once then Td or Tdap every 10 years, and a single RSV dose at 75 or at 50 to 74 with increased risk."
+    },
+    "source": {
+      "guideline": "CDC/ACIP Recommended Adult Immunization Schedule (2025, with July 2025 addendum); CDC RSV Vaccine Guidance for Adults",
+      "year": "2025",
+      "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
+      "alt_url": "https://www.cdc.gov/rsv/hcp/vaccine-clinical-guidance/adults.html",
+      "recommendation": "Adults 50–64: recombinant zoster 2 doses 2–6 months apart; pneumococcal (PCV15/PCV20/PCV21; PPSV23 after PCV15) by prior history, now routine from age 50; Tdap once then Td/Tdap every 10 years. RSV: all adults ≥75 one dose; 50–74 one dose if at increased risk; not annual."
+    }
+  },
+  {
+    "id": "pance-093",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Traveler to a chloroquine-resistant malaria area: prophylaxis options, and how is severe malaria treated?",
+    "bottom": "Atovaquone-proguanil or doxycycline.",
+    "bullets": {
+      "clue": "Fever in a returned traveler is malaria until proven otherwise.",
+      "treat": "Atovaquone-proguanil daily, 7 days after; doxycycline daily, 4 weeks after. Severe: IV artesunate.",
+      "trap": "Mefloquine starts 2 weeks before; avoid with psychiatric or seizure history."
+    },
+    "back": "Atovaquone-proguanil or doxycycline. Key clue: Fever in a returned traveler is malaria until proven otherwise. First-line: Atovaquone-proguanil daily, 7 days after; doxycycline daily, 4 weeks after. Severe: IV artesunate. Exam trap: Mefloquine starts 2 weeks before; avoid with psychiatric or seizure history.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-093.svg",
+      "alt": "Malaria prophylaxis for chloroquine-resistant areas with atovaquone-proguanil continued 7 days after travel or doxycycline continued 4 weeks after, weekly mefloquine started 2 weeks before; severe malaria is treated with IV artesunate."
+    },
+    "source": {
+      "guideline": "CDC Yellow Book 2026: Malaria; CDC Treatment of Severe Malaria",
+      "year": "2026",
+      "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/malaria.html",
+      "alt_url": "https://www.cdc.gov/malaria/hcp/clinical-guidance/treatment-of-severe-malaria.html",
+      "recommendation": "Chloroquine-resistant areas: atovaquone-proguanil (1–2 days before, daily, 7 days after), doxycycline (1–2 days before, daily, 4 weeks after), mefloquine (≥2 weeks before, weekly, 4 weeks after), or tafenoquine. Severe malaria: IV artesunate 2.4 mg/kg at 0, 12 and 24 h, then follow-on oral therapy. Diagnosis by thick and thin blood smears."
+    }
+  },
+  {
+    "id": "pance-094",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "New HIV with a low CD4 count: which opportunistic infection prophylaxis starts at which CD4 threshold?",
+    "bottom": "CD4 <200: TMP-SMX for PCP.",
+    "bullets": {
+      "clue": "CD4 <200: PCP. <100 with Toxoplasma IgG: toxo.",
+      "treat": "TMP-SMX 1 DS daily covers PCP and toxoplasma; start ART promptly.",
+      "trap": "MAC prophylaxis is not needed if ART starts right away."
+    },
+    "back": "CD4 <200: TMP-SMX for PCP. Key clue: CD4 <200: PCP. <100 with Toxoplasma IgG: toxo. First-line: TMP-SMX 1 DS daily covers PCP and toxoplasma; start ART promptly. Exam trap: MAC prophylaxis is not needed if ART starts right away.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-094.svg",
+      "alt": "Opportunistic infection prophylaxis in HIV: TMP-SMX at CD4 below 200 for Pneumocystis and below 100 for Toxoplasma if IgG positive; MAC prophylaxis below 50 only if ART is not started immediately."
+    },
+    "source": {
+      "guideline": "NIH/CDC/IDSA Guidelines for the Prevention and Treatment of Opportunistic Infections in Adults and Adolescents With HIV",
+      "year": "current (living)",
+      "url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-opportunistic-infections/prophylaxis-prevent-first-episode",
+      "alt_url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-opportunistic-infections/pneumocystis",
+      "recommendation": "PCP: TMP-SMX (1 DS or 1 SS daily) for CD4 <200 not on or starting ART. Toxoplasma: TMP-SMX DS daily for Toxoplasma IgG-positive with CD4 <100. MAC: not recommended if ART started immediately; otherwise CD4 <50 without ART or with ongoing viremia. Alternatives include dapsone and atovaquone. Discontinue PCP prophylaxis when CD4 >200 for ≥3 months on ART."
+    }
+  },
+  {
+    "id": "pance-095",
+    "system": "Infectious Diseases",
+    "blueprint_weight": "7%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Child with fever and rash: measles, varicella, or Kawasaki? Key features and treatment?",
+    "bottom": "Match the rash pattern and fever.",
+    "bullets": {
+      "clue": "Measles: Koplik spots. Varicella: vesicle crops. Kawasaki: fever ≥5 days.",
+      "treat": "Measles: vitamin A. Varicella: isolate until crusted. Kawasaki: IVIG plus aspirin.",
+      "trap": "Kawasaki untreated risks coronary aneurysm: echocardiogram."
+    },
+    "back": "Match the rash pattern and fever. Key clue: Measles: Koplik spots. Varicella: vesicle crops. Kawasaki: fever ≥5 days. First-line: Measles: vitamin A. Varicella: isolate until crusted. Kawasaki: IVIG plus aspirin. Exam trap: Kawasaki untreated risks coronary aneurysm: echocardiogram.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-095.svg",
+      "alt": "Three pediatric fever-and-rash illnesses: measles with cough, coryza, conjunctivitis and Koplik spots treated with vitamin A; varicella with vesicles in all stages, contagious until crusted; and Kawasaki disease treated with IVIG and aspirin within 10 days."
+    },
+    "source": {
+      "guideline": "AHA Scientific Statement: Update on Diagnosis and Management of Kawasaki Disease (2024); CDC Clinical Overview of Measles; CDC Pink Book: Varicella",
+      "year": "2024 / current",
+      "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001295",
+      "alt_url": "https://www.cdc.gov/measles/hcp/clinical-overview/index.html",
+      "recommendation": "AHA 2024: diagnose and treat Kawasaki within 10 days of fever onset; IVIG 2 g/kg over 8–12 h; aspirin acutely then low dose after defervescence; echocardiography. CDC measles: vitamin A for children with measles (two doses, age-based). CDC varicella: contagious 1–2 days before rash until all lesions crusted."
+    }
+  }
+]

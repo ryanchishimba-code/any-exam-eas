@@ -1,0 +1,353 @@
+[
+  {
+    "id": "pance-109",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Adult primary care visit: who gets depression screening, is suicide screening recommended, and what is first-line treatment?",
+    "bottom": "Screen all adults for depression.",
+    "bullets": {
+      "clue": "PHQ-2, then PHQ-9; ask directly about suicide if positive.",
+      "treat": "Psychotherapy or antidepressant by preference; psychotherapy first if pregnant.",
+      "trap": "Universal suicide screening is an I statement."
+    },
+    "back": "Screen all adults for depression. Key clue: PHQ-2, then PHQ-9; ask directly about suicide if positive. First-line: Psychotherapy or antidepressant by preference; psychotherapy first if pregnant. Exam trap: Universal suicide screening is an I statement.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-109.svg",
+      "alt": "All adults are screened for depression with PHQ-2 then PHQ-9, treated with psychotherapy or an antidepressant by preference; universal suicide screening has insufficient evidence but depressed patients are asked directly."
+    },
+    "source": {
+      "guideline": "USPSTF Depression and Suicide Risk in Adults: Screening (2023); VA/DoD MDD Guideline (2022)",
+      "year": "2023 / 2022",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults",
+      "alt_url": "https://healthquality.va.gov/HEALTHQUALITY/guidelines/MH/mdd/EffectivePsychotherapiesTreatmentOfMDD_CST_V43_221108.pdf",
+      "recommendation": "USPSTF 2023: screen all adults incl. pregnant/postpartum and older adults for depression (B); suicide-risk screening I. VA/DoD 2022: psychotherapy or pharmacotherapy monotherapy by preference; psychotherapy first-line for mild-moderate MDD in pregnancy/breastfeeding and suggested for older adults."
+    }
+  },
+  {
+    "id": "pance-110",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Mania with decreased need for sleep: first-line drugs for mania, bipolar depression and maintenance?",
+    "bottom": "Lithium or quetiapine; avoid antidepressant monotherapy.",
+    "bullets": {
+      "clue": "≥1 week elevated mood, less sleep, grandiosity.",
+      "treat": "Mania: lithium or quetiapine. Bipolar depression: quetiapine. Maintenance: lithium or quetiapine.",
+      "trap": "Antidepressants alone can trigger mania."
+    },
+    "back": "Lithium or quetiapine; avoid antidepressant monotherapy. Key clue: ≥1 week elevated mood, less sleep, grandiosity. First-line: Mania: lithium or quetiapine. Bipolar depression: quetiapine. Maintenance: lithium or quetiapine. Exam trap: Antidepressants alone can trigger mania.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-110.svg",
+      "alt": "Bipolar disorder: lithium or quetiapine for mania and maintenance, quetiapine for bipolar depression, no antidepressant monotherapy, and lithium toxicity near 1.5 mEq/L."
+    },
+    "source": {
+      "guideline": "VA/DoD Clinical Practice Guideline for Management of Bipolar Disorder (2023); FDA lithium label",
+      "year": "2023",
+      "url": "https://www.healthquality.va.gov/guidelines/MH/bd/VA-DoD-CPG-BD-Full-CPGFinal508.pdf",
+      "alt_url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a8f37c66-0b88-4f7c-e053-2995a90a4dea&type=display",
+      "recommendation": "VA/DoD 2023: suggest lithium or quetiapine for acute mania; recommend quetiapine for acute bipolar depression; lamotrigine with lithium or quetiapine suggested; recommend lithium or quetiapine to prevent mania recurrence; insufficient evidence for antidepressant monotherapy; algorithm says continue to avoid antidepressants. FDA label: toxic ≥1.5 mEq/L."
+    }
+  },
+  {
+    "id": "pance-111",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Excessive worry most days for 6 months vs sudden attacks of chest tightness and fear: diagnosis and first-line care?",
+    "bottom": "GAD or panic disorder: CBT or SSRI/SNRI.",
+    "bullets": {
+      "clue": "GAD: 6 months of worry. Panic: recurrent attacks, fear of more.",
+      "treat": "CBT, SSRI or SNRI; screen adults 64 and younger.",
+      "trap": "Avoid long-term benzodiazepines."
+    },
+    "back": "GAD or panic disorder: CBT or SSRI/SNRI. Key clue: GAD: 6 months of worry. Panic: recurrent attacks, fear of more. First-line: CBT, SSRI or SNRI; screen adults 64 and younger. Exam trap: Avoid long-term benzodiazepines.",
+    "word_count": 35,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-111.svg",
+      "alt": "Generalized anxiety and panic disorder screened in adults 64 and younger and treated with CBT or an SSRI or SNRI, after ruling out thyroid, cardiac and substance causes; avoid long-term benzodiazepines."
+    },
+    "source": {
+      "guideline": "USPSTF Anxiety Disorders in Adults: Screening (2023)",
+      "year": "2023",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/anxiety-adults-screening",
+      "alt_url": "https://jamanetwork.com/journals/jama/fullarticle/2806144",
+      "recommendation": "USPSTF 2023: screen adults ≤64 incl. pregnant/postpartum for anxiety (B); ≥65 I statement. Treatment can include psychotherapy (e.g., CBT) and pharmacotherapy."
+    }
+  },
+  {
+    "id": "pance-112",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Schizophrenia on an antipsychotic: when to use clozapine, and how to treat dystonia, akathisia and tardive dyskinesia?",
+    "bottom": "Clozapine for resistance or suicide risk; VMAT2 inhibitor for TD.",
+    "bullets": {
+      "clue": "Psychosis ≥6 months; failed two antipsychotics.",
+      "treat": "Acute dystonia: anticholinergic. Akathisia: lower dose, propranolol. TD: valbenazine or deutetrabenazine.",
+      "trap": "Clozapine needs ANC monitoring."
+    },
+    "back": "Clozapine for resistance or suicide risk; VMAT2 inhibitor for TD. Key clue: Psychosis ≥6 months; failed two antipsychotics. First-line: Acute dystonia: anticholinergic. Akathisia: lower dose, propranolol. TD: valbenazine or deutetrabenazine. Exam trap: Clozapine needs ANC monitoring.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-112.svg",
+      "alt": "Schizophrenia: clozapine for treatment resistance or ongoing suicide risk; anticholinergic for acute dystonia, dose reduction or beta-blocker for akathisia, VMAT2 inhibitor for tardive dyskinesia, plus metabolic monitoring."
+    },
+    "source": {
+      "guideline": "APA Practice Guideline for the Treatment of Patients With Schizophrenia (2020)",
+      "year": "2020",
+      "url": "https://psychiatryonline.org/doi/full/10.1176/appi.ajp.2020.177901",
+      "alt_url": "https://psychiatryonline.org/doi/full/10.1176/appi.books.9780890424841.schizophrenia02",
+      "recommendation": "APA 2020: clozapine for treatment-resistant schizophrenia (1B) and substantial suicide risk (1B); anticholinergic for acute dystonia (1C); akathisia: lower dose, switch, benzodiazepine or beta-blocker (2C); VMAT2 inhibitor for moderate-severe TD (1B). Metabolic: weight each visit for 6 months; glucose/lipids at 4 months then annually."
+    }
+  },
+  {
+    "id": "pance-113",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Opioid use disorder: which medications, how to start buprenorphine, and who gets naloxone?",
+    "bottom": "Offer buprenorphine, methadone or naltrexone; naloxone for all.",
+    "bullets": {
+      "clue": "Craving, tolerance, withdrawal, use despite harm.",
+      "treat": "Buprenorphine once withdrawal starts; methadone in programs; naltrexone after detox.",
+      "trap": "No X-waiver needed since 2023."
+    },
+    "back": "Offer buprenorphine, methadone or naltrexone; naloxone for all. Key clue: Craving, tolerance, withdrawal, use despite harm. First-line: Buprenorphine once withdrawal starts; methadone in programs; naltrexone after detox. Exam trap: No X-waiver needed since 2023.",
+    "word_count": 34,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-113.svg",
+      "alt": "Opioid use disorder treated with buprenorphine started once withdrawal begins, methadone through a treatment program, or naltrexone after detox, with naloxone for every patient; no X-waiver is needed since 2023."
+    },
+    "source": {
+      "guideline": "ASAM National Practice Guideline for the Treatment of Opioid Use Disorder: 2020 Focused Update; SAMHSA MAT Act waiver elimination (2023)",
+      "year": "2020 / 2023",
+      "url": "https://downloads.asam.org/sitefinity-production-blobs/docs/default-source/guidelines/npg_2020_focus_update-final.pdf",
+      "alt_url": "https://www.samhsa.gov/substance-use/treatment/resources/mat-act",
+      "recommendation": "ASAM 2020: methadone, buprenorphine and naltrexone recommended; buprenorphine after objective withdrawal; extended-release naltrexone for patients no longer physically dependent; declining psychosocial treatment should not delay medication; naloxone for patients and families. SAMHSA: 2023 Act removed the X-waiver."
+    }
+  },
+  {
+    "id": "pance-114",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "A 5-year-old vs an 8-year-old with ADHD: first-line treatment for each?",
+    "bottom": "Age 4–5: behavior therapy first. Age 6+: medication plus behavior therapy.",
+    "bullets": {
+      "clue": "Symptoms in ≥2 settings before age 12.",
+      "treat": "Parent training first; stimulant if age 6+ or still impaired.",
+      "trap": "Check cardiac history before stimulants."
+    },
+    "back": "Age 4–5: behavior therapy first. Age 6+: medication plus behavior therapy. Key clue: Symptoms in ≥2 settings before age 12. First-line: Parent training first; stimulant if age 6+ or still impaired. Exam trap: Check cardiac history before stimulants.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-114.svg",
+      "alt": "ADHD in children 4 to 5 treated first with parent training and classroom behavior interventions, methylphenidate only if still impaired; ages 6 to 11 get FDA-approved medication plus behavioral therapy and school supports."
+    },
+    "source": {
+      "guideline": "AAP Clinical Practice Guideline for ADHD in Children and Adolescents (2019)",
+      "year": "2019",
+      "url": "https://publications.aap.org/pediatrics/article/144/4/e20192528/81590/Clinical-Practice-Guideline-for-the-Diagnosis",
+      "alt_url": "https://eqipp.aap.org/courses/adhd/mn/clinical-guide/popups/evidence-based-behavioral-training-interventions",
+      "recommendation": "AAP 2019: ages 4–5: PTBM and/or behavioral classroom interventions first (A); methylphenidate if moderate-severe disturbance persists (B). Ages 6–11: FDA-approved ADHD medication plus PTBM and/or classroom interventions, preferably both (A); educational supports (IEP/504)."
+    }
+  },
+  {
+    "id": "pance-115",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Nightmares and flashbacks after combat vs intrusive thoughts with hand-washing rituals: first-line treatment?",
+    "bottom": "PTSD: trauma-focused therapy. OCD: ERP or SSRI.",
+    "bullets": {
+      "clue": "PTSD: re-experiencing >1 month after trauma. OCD: obsessions plus compulsions.",
+      "treat": "PTSD: CPT, PE or EMDR; or sertraline, paroxetine, venlafaxine. OCD: ERP or SSRI.",
+      "trap": "Benzodiazepines are not recommended for PTSD."
+    },
+    "back": "PTSD: trauma-focused therapy. OCD: ERP or SSRI. Key clue: PTSD: re-experiencing >1 month after trauma. OCD: obsessions plus compulsions. First-line: PTSD: CPT, PE or EMDR; or sertraline, paroxetine, venlafaxine. OCD: ERP or SSRI. Exam trap: Benzodiazepines are not recommended for PTSD.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-115.svg",
+      "alt": "PTSD treated with trauma-focused psychotherapy such as CPT, prolonged exposure or EMDR, or sertraline, paroxetine or venlafaxine, never benzodiazepines; OCD treated with exposure and response prevention or an SSRI."
+    },
+    "source": {
+      "guideline": "VA/DoD Clinical Practice Guideline for PTSD and Acute Stress Disorder (2023); APA Practice Guideline for OCD",
+      "year": "2023 / 2007",
+      "url": "https://healthquality.va.gov/guidelines/MH/ptsd/VA-DoD-CPG-PTSD-Full-CPG-Edited-111624-V5-81825.pdf",
+      "alt_url": "https://psychiatryonline.org/pb/assets/raw/sitewide/practice_guidelines/guidelines/ocd.pdf",
+      "recommendation": "VA/DoD 2023: recommend CPT, EMDR or PE; recommend paroxetine, sertraline or venlafaxine; recommend against benzodiazepines and cannabis. APA OCD: CBT with ERP and SRIs first-line; combine after inadequate monotherapy or if severe."
+    }
+  },
+  {
+    "id": "pance-116",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Underweight teen with bradycardia vs normal-weight binge-purge cycles: first steps?",
+    "bottom": "Anorexia: medical stability, then nutrition. Bulimia: CBT plus fluoxetine.",
+    "bullets": {
+      "clue": "Anorexia: low weight, restriction. Bulimia: binge-purge, normal weight.",
+      "treat": "Anorexia: family-based treatment, monitored refeeding. Bulimia: CBT and fluoxetine 60 mg.",
+      "trap": "Refeeding drops phosphate; monitor electrolytes."
+    },
+    "back": "Anorexia: medical stability, then nutrition. Bulimia: CBT plus fluoxetine. Key clue: Anorexia: low weight, restriction. Bulimia: binge-purge, normal weight. First-line: Anorexia: family-based treatment, monitored refeeding. Bulimia: CBT and fluoxetine 60 mg. Exam trap: Refeeding drops phosphate; monitor electrolytes.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-116.svg",
+      "alt": "Anorexia nervosa managed with medical stabilization, weight goals and monitored refeeding with phosphate checks; bulimia nervosa treated with CBT plus fluoxetine 60 mg daily."
+    },
+    "source": {
+      "guideline": "APA Practice Guideline for the Treatment of Patients With Eating Disorders (2023)",
+      "year": "2023",
+      "url": "https://psychiatryonline.org/doi/full/10.1176/appi.ajp.23180001",
+      "alt_url": "https://www.psychiatryonline.org/doi/full/10.1176/appi.books.9780890424865.eatingdisorder03",
+      "recommendation": "APA 2023: individualized weight goals in anorexia; monitor electrolytes incl. phosphorus for refeeding risk; family-based treatment for adolescents with anorexia; adults with bulimia: eating-disorder CBT plus an SSRI (e.g., fluoxetine 60 mg)."
+    }
+  },
+  {
+    "id": "pance-117",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Most Likely Diagnosis",
+    "front": "Unstable relationships and self-harm vs a patient who blames others for his own feelings: personality disorder and defense?",
+    "bottom": "Borderline: structured psychotherapy. Name the defense mechanism.",
+    "bullets": {
+      "clue": "Splitting: all good or all bad. Projection: own feelings onto others.",
+      "treat": "Borderline: DBT or similar psychotherapy; medication only for target symptoms.",
+      "trap": "No drug treats borderline personality disorder itself."
+    },
+    "back": "Borderline: structured psychotherapy. Name the defense mechanism. Key clue: Splitting: all good or all bad. Projection: own feelings onto others. First-line: Borderline: DBT or similar psychotherapy; medication only for target symptoms. Exam trap: No drug treats borderline personality disorder itself.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-117.svg",
+      "alt": "Personality disorder clusters A odd, B dramatic, C anxious; borderline personality disorder treated with structured psychotherapy such as DBT, medication only as a short adjunct; splitting and projection defense mechanisms."
+    },
+    "source": {
+      "guideline": "APA Practice Guideline for the Treatment of Patients With Borderline Personality Disorder (2024)",
+      "year": "2024",
+      "url": "https://www.psychiatryonline.org/doi/full/10.1176/appi.ajp.24181010",
+      "alt_url": "https://www.apa.org/monitor/2025/04-05/treating-borderline-personality",
+      "recommendation": "APA 2024: structured evidence-based psychotherapy targeting BPD (e.g., DBT, mentalization-based treatment); medication adjunctive, time-limited, for specific symptoms or comorbidity, reviewed periodically."
+    }
+  },
+  {
+    "id": "pance-118",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Agitation and clonus after adding tramadol to an SSRI vs rigidity and fever on haloperidol: which syndrome, and treatment?",
+    "bottom": "Serotonin syndrome: clonus, fast. NMS: rigidity, slow.",
+    "bullets": {
+      "clue": "Serotonin: hyperreflexia, clonus within 24 h. NMS: lead-pipe rigidity over days.",
+      "treat": "Stop the drug; cool, benzodiazepines. Serotonin: cyproheptadine. NMS: dantrolene or bromocriptine.",
+      "trap": "Bromocriptine worsens serotonin syndrome."
+    },
+    "back": "Serotonin syndrome: clonus, fast. NMS: rigidity, slow. Key clue: Serotonin: hyperreflexia, clonus within 24 h. NMS: lead-pipe rigidity over days. First-line: Stop the drug; cool, benzodiazepines. Serotonin: cyproheptadine. NMS: dantrolene or bromocriptine. Exam trap: Bromocriptine worsens serotonin syndrome.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-118.svg",
+      "alt": "Serotonin syndrome with clonus and hyperreflexia within a day, treated by stopping serotonergic drugs and cyproheptadine; neuroleptic malignant syndrome with rigidity over days, treated with dantrolene or bromocriptine."
+    },
+    "source": {
+      "guideline": "Hunter criteria and NMS/serotonin syndrome reviews; FDA lithium label",
+      "year": "current",
+      "url": "https://iaem.ie/wp-content/uploads/2024/04/IAEM-Serotonin-Syndrome-V1.0.pdf",
+      "alt_url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=a8f37c66-0b88-4f7c-e053-2995a90a4dea&type=display",
+      "recommendation": "Serotonin syndrome (Hunter): spontaneous clonus, or inducible/ocular clonus with agitation or diaphoresis; stop serotonergic drugs; cyproheptadine for moderate-severe. NMS: rigidity, slower onset; dantrolene and/or bromocriptine; bromocriptine can worsen serotonin syndrome. Lithium: no specific antidote (label)."
+    }
+  },
+  {
+    "id": "pance-119",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Professional Practice",
+    "front": "Infant with a bruise and a parent's story that doesn't fit vs an older adult with unexplained injuries: next steps?",
+    "bottom": "Reasonable suspicion: report; certainty is not required.",
+    "bullets": {
+      "clue": "Sentinel injury in a baby who cannot cruise.",
+      "treat": "Under 2: skeletal survey; report to CPS. Elders: adult protective services.",
+      "trap": "Bruising in a non-mobile infant is abuse until proven otherwise."
+    },
+    "back": "Reasonable suspicion: report; certainty is not required. Key clue: Sentinel injury in a baby who cannot cruise. First-line: Under 2: skeletal survey; report to CPS. Elders: adult protective services. Exam trap: Bruising in a non-mobile infant is abuse until proven otherwise.",
+    "word_count": 41,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-119.svg",
+      "alt": "Suspected child abuse in children under 2 gets a full exam and skeletal survey and a report on reasonable suspicion; women of reproductive age are screened for partner violence; suspected elder abuse is reported to adult protective services."
+    },
+    "source": {
+      "guideline": "AAP Evaluation of Suspected Child Physical Abuse (2015); USPSTF Intimate Partner Violence and Caregiver Abuse Screening (2025)",
+      "year": "2015 / 2025",
+      "url": "https://www.ncmedboard.org/images/uploads/other_pdfs/EvalSuspectedChildPhysicalAbuse.pdf",
+      "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/intimate-partner-violence-and-abuse-of-elderly-and-vulnerable-adults-screening",
+      "recommendation": "AAP: children <2 with injuries concerning for abuse: complete skeletal survey; consider neuroimaging (<1 y); report on reasonable suspicion. USPSTF: screen reproductive-age women for IPV (B); insufficient evidence for screening older or vulnerable adults for abuse (I)."
+    }
+  },
+  {
+    "id": "pance-120",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Clinical Intervention",
+    "front": "Dilated pupils and chest pain after cocaine vs pinpoint pupils and slow breathing: treatment, and withdrawal clues?",
+    "bottom": "Stimulant: benzodiazepines. Opioid: naloxone.",
+    "bullets": {
+      "clue": "Stimulants: mydriasis, tachycardia. Opioids: miosis, apnea.",
+      "treat": "Cocaine chest pain: benzodiazepine, aspirin. Stimulant use disorder: contingency management.",
+      "trap": "Benzodiazepine withdrawal can seize; taper slowly."
+    },
+    "back": "Stimulant: benzodiazepines. Opioid: naloxone. Key clue: Stimulants: mydriasis, tachycardia. Opioids: miosis, apnea. First-line: Cocaine chest pain: benzodiazepine, aspirin. Stimulant use disorder: contingency management. Exam trap: Benzodiazepine withdrawal can seize; taper slowly.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-120.svg",
+      "alt": "Stimulant intoxication with dilated pupils treated with benzodiazepines and contingency management for use disorder; opioid toxidrome with pinpoint pupils; cannabinoid hyperemesis cured by stopping cannabis; benzodiazepines tapered 5 to 10 percent every 2 to 4 weeks."
+    },
+    "source": {
+      "guideline": "ASAM/AAAP Stimulant Use Disorder Guideline (2023); AGA Cannabinoid Hyperemesis Update (2024); Joint Clinical Practice Guideline on Benzodiazepine Tapering (2025)",
+      "year": "2023–2025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11105801/",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12463801/",
+      "recommendation": "ASAM/AAAP: contingency management is the best-supported psychosocial treatment for stimulant use disorder. AGA 2024: cannabis cessation is definitive for CHS. Benzodiazepine tapering guideline 2025: gradual supervised taper, generally 5–10% every 2–4 weeks; avoid abrupt discontinuation; typically not faster than 25% every 2 weeks."
+    }
+  },
+  {
+    "id": "pance-121",
+    "system": "Psychiatry/Behavioral",
+    "blueprint_weight": "7%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Toddler with no pointing or words at 18 months: which screen, when, and what next?",
+    "bottom": "Autism: screen at 18 and 24 months with M-CHAT-R/F.",
+    "bullets": {
+      "clue": "Poor eye contact, no pointing, repetitive behaviors.",
+      "treat": "Positive screen: refer for diagnosis, early intervention and hearing test.",
+      "trap": "Do not wait for diagnosis to start early intervention."
+    },
+    "back": "Autism: screen at 18 and 24 months with M-CHAT-R/F. Key clue: Poor eye contact, no pointing, repetitive behaviors. First-line: Positive screen: refer for diagnosis, early intervention and hearing test. Exam trap: Do not wait for diagnosis to start early intervention.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-121.svg",
+      "alt": "Developmental screening at 9, 18 and 30 months and autism screening with M-CHAT-R/F at 18 and 24 months; positive screens are referred for diagnosis, hearing testing and early intervention."
+    },
+    "source": {
+      "guideline": "AAP Developmental Surveillance and Screening; AAP Autism Identification and Evaluation",
+      "year": "current",
+      "url": "https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/",
+      "alt_url": "https://publications.aap.org/pediatrics/article/145/1/e20193447/36917/Identification-Evaluation-and-Management-of",
+      "recommendation": "AAP: developmental surveillance at every well visit; general developmental screening at 9, 18 and 30 months; ASD-specific screening at 18 and 24 months (M-CHAT-R/F commonly used)."
+    }
+  }
+]

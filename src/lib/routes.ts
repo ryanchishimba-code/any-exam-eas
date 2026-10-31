@@ -44,6 +44,8 @@ export const ROUTES = {
   community: "/community",
   settings: "/settings",
   drugs300: "/study/drugs300",
+  /** Paid PANCE flashcard feed. Card JSON is not a public route. */
+  panceFeed: "/study-tools/pance/feed",
   /** NCLEX product hub (study guide entry — separate from QBank). */
   nclexHub: "/nclex",
   nclexStudyGuide: "/nclex/study-guide",

@@ -1,0 +1,434 @@
+[
+  {
+    "id": "pance-040",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Asthma in an adult (GINA 2025): what is the preferred reliever, and how does treatment step up?",
+    "bottom": "Preferred reliever: as-needed low-dose ICS-formoterol.",
+    "bullets": {
+      "clue": "Variable symptoms with variable expiratory airflow.",
+      "treat": "Steps 1–2 as-needed ICS-formoterol; 3–4 daily maintenance plus reliever (MART).",
+      "trap": "SABA-only treatment is not recommended."
+    },
+    "back": "Preferred reliever: as-needed low-dose ICS-formoterol. Key clue: Variable symptoms with variable expiratory airflow. First-line: Steps 1–2 as-needed ICS-formoterol; 3–4 daily maintenance plus reliever (MART). Exam trap: SABA-only treatment is not recommended.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-040.svg",
+      "alt": "GINA 2025 Track 1: as-needed low-dose ICS-formoterol at steps 1 and 2, maintenance-and-reliever therapy at steps 3 and 4, referral and add-on therapy at step 5."
+    },
+    "source": {
+      "guideline": "Global Initiative for Asthma (GINA) 2025 Strategy Report and Summary Guide",
+      "year": "2025",
+      "url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
+      "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-2025-Update-25_11_08-WMS.pdf",
+      "recommendation": "Track 1 (preferred): low-dose ICS-formoterol as the reliever across steps 1–4. Steps 1–2: as-needed only (AIR-only). Step 3: low-dose maintenance plus as-needed (MART). Step 4: medium-dose MART. Step 5: refer for phenotyping; add-on LAMA, biologics. Track 2 step 4 changed to medium-dose ICS-LABA. ICS-LABA without formoterol cannot be used as MART. Diagnosis rests on variable symptoms and variable expiratory airflow."
+    }
+  },
+  {
+    "id": "pance-041",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Clinical Intervention",
+    "front": "Acute asthma exacerbation in the ED: first treatments, and what signals impending respiratory failure?",
+    "bottom": "Bronchodilator, oxygen and early oral steroid.",
+    "bullets": {
+      "clue": "Can't speak sentences, accessory muscles, low peak flow.",
+      "treat": "Repeated SABA; oxygen to SpO2 93–95%; prednisolone; ipratropium if severe.",
+      "trap": "Normal or rising PaCO2 means tiring: escalate."
+    },
+    "back": "Bronchodilator, oxygen and early oral steroid. Key clue: Can't speak sentences, accessory muscles, low peak flow. First-line: Repeated SABA; oxygen to SpO2 93–95%; prednisolone; ipratropium if severe. Exam trap: Normal or rising PaCO2 means tiring: escalate.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-041.svg",
+      "alt": "Acute asthma: repeated short-acting bronchodilator, controlled oxygen to 93 to 95 percent, early oral corticosteroid, ipratropium and IV magnesium for severe attacks; a normal or rising carbon dioxide level signals impending failure."
+    },
+    "source": {
+      "guideline": "GINA 2025 Strategy Report, Chapter 4 (management of worsening asthma and exacerbations)",
+      "year": "2025",
+      "url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-2025-Update-25_11_08-WMS.pdf",
+      "alt_url": "https://ginasthma.org/reports/",
+      "recommendation": "Acute care: repeated inhaled SABA (or ICS-formoterol in some settings), controlled oxygen targeting SpO2 93–95% in adults, systemic corticosteroid given early (e.g., prednisolone 40–50 mg daily for 5–7 days in adults), ipratropium added for severe exacerbations in acute care, IV magnesium sulfate considered for severe exacerbations not responding to initial treatment. Antibiotics not routinely recommended. Discharge on ICS-containing controller."
+    }
+  },
+  {
+    "id": "pance-042",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Outpatient community-acquired pneumonia in a healthy adult: empiric antibiotic, and how long?",
+    "bottom": "Amoxicillin for healthy outpatients; short course.",
+    "bullets": {
+      "clue": "Fever, cough, focal crackles, new infiltrate.",
+      "treat": "Healthy: amoxicillin. Comorbid: amox-clav plus macrolide, or respiratory fluoroquinolone. 3–5 days.",
+      "trap": "Steroids only for severe CAP."
+    },
+    "back": "Amoxicillin for healthy outpatients; short course. Key clue: Fever, cough, focal crackles, new infiltrate. First-line: Healthy: amoxicillin. Comorbid: amox-clav plus macrolide, or respiratory fluoroquinolone. 3–5 days. Exam trap: Steroids only for severe CAP.",
+    "word_count": 33,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-042.svg",
+      "alt": "Community-acquired pneumonia with a lobar consolidation: amoxicillin for healthy outpatients, combination therapy or a respiratory fluoroquinolone with comorbidities, and a short course of 3 to 5 days once stable."
+    },
+    "source": {
+      "guideline": "2019 ATS/IDSA Guideline for Adults with Community-acquired Pneumonia (regimens) and 2025 ATS CAP Guideline Update (duration, corticosteroids)",
+      "year": "2019 / 2025",
+      "url": "https://doi.org/10.1164/rccm.201908-1581ST",
+      "alt_url": "https://doi.org/10.1164/rccm.202507-1692st",
+      "recommendation": "2019: outpatients without comorbidities: amoxicillin, or doxycycline, or a macrolide only where pneumococcal macrolide resistance <25%. With comorbidities: amoxicillin-clavulanate or a cephalosporin plus a macrolide or doxycycline, or monotherapy with a respiratory fluoroquinolone. 2025 ATS update: clinically stable outpatients and non-severe inpatients <5 days (minimum 3); severe CAP ≥5 days; systemic corticosteroids suggested for severe CAP (excluding influenza), not for non-severe CAP. IDSA endorsed 8 of 10 2025 recommendations but not the update as a whole (dispute is antibiotics in virus-positive CAP)."
+    }
+  },
+  {
+    "id": "pance-043",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Clinical Intervention",
+    "front": "Spontaneous pneumothorax: who can be observed, and what needs immediate decompression?",
+    "bottom": "Stable, minimally symptomatic primary pneumothorax: observe.",
+    "bullets": {
+      "clue": "Sudden pleuritic pain, dyspnea, absent breath sounds.",
+      "treat": "Symptomatic: needle aspiration or chest tube; ambulatory device possible.",
+      "trap": "Tension pneumothorax: decompress before imaging."
+    },
+    "back": "Stable, minimally symptomatic primary pneumothorax: observe. Key clue: Sudden pleuritic pain, dyspnea, absent breath sounds. First-line: Symptomatic: needle aspiration or chest tube; ambulatory device possible. Exam trap: Tension pneumothorax: decompress before imaging.",
+    "word_count": 32,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-043.svg",
+      "alt": "Right-sided pneumothorax with a visceral pleural line and no lung markings beyond it. Minimally symptomatic primary pneumothorax can be observed; symptomatic ones get needle aspiration, an ambulatory valve or a chest drain; tension pneumothorax is decompressed at once."
+    },
+    "source": {
+      "guideline": "British Thoracic Society Guideline for Pleural Disease 2023",
+      "year": "2023",
+      "url": "https://doi.org/10.1136/thorax-2022-219784",
+      "alt_url": "https://www.brit-thoracic.org.uk/document-library/guidelines/pleural-disease/bts-guideline-for-pleural-disease/",
+      "recommendation": "Conservative management can be considered for minimally symptomatic or asymptomatic primary spontaneous pneumothorax in adults regardless of size (conditional). Ambulatory management should be considered with good support and follow-up. If not suitable, needle aspiration or tube drainage. Chemical pleurodesis can be considered to prevent recurrence of secondary pneumothorax; surgery at first presentation if recurrence prevention is important (e.g., tension pneumothorax, high-risk occupations). Discuss options and choose the least invasive."
+    }
+  },
+  {
+    "id": "pance-044",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Pleural effusion: how do Light's criteria separate exudate from transudate?",
+    "bottom": "Any one Light criterion means exudate.",
+    "bullets": {
+      "clue": "Pleural/serum protein >0.5; LDH >0.6; LDH >2/3 upper normal.",
+      "treat": "Thoracentesis; transudate: treat cause (HF, cirrhosis). Parapneumonic pH <7.2: drain.",
+      "trap": "Diuresed HF can falsely meet exudate criteria."
+    },
+    "back": "Any one Light criterion means exudate. Key clue: Pleural/serum protein >0.5; LDH >0.6; LDH >2/3 upper normal. First-line: Thoracentesis; transudate: treat cause (HF, cirrhosis). Parapneumonic pH <7.2: drain. Exam trap: Diuresed HF can falsely meet exudate criteria.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-044.svg",
+      "alt": "Left pleural effusion with a blunted costophrenic angle and meniscus. Light's criteria: any one of pleural to serum protein above 0.5, LDH ratio above 0.6, or pleural LDH above two thirds of the upper normal serum value means exudate."
+    },
+    "source": {
+      "guideline": "Light's criteria (Light RW et al., Ann Intern Med 1972) with BTS Guideline for Pleural Disease 2023",
+      "year": "1972 / 2023",
+      "url": "https://doi.org/10.7326/0003-4819-77-4-507",
+      "alt_url": "https://doi.org/10.1136/thorax-2022-219784",
+      "recommendation": "Exudate if any one: pleural/serum protein >0.5, pleural/serum LDH >0.6, or pleural LDH >2/3 of the upper limit of normal serum LDH (Light 1972). BTS 2023: in pleural infection, pleural fluid pH <7.2 indicates need for chest tube drainage. Serum-pleural albumin gradient >1.2 g/dL supports a transudate when diuretic-treated HF meets Light's criteria."
+    }
+  },
+  {
+    "id": "pance-045",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "front": "Lung cancer screening: who qualifies, and how is a screen-detected nodule followed?",
+    "bottom": "Annual low-dose CT, ages 50–80, ≥20 pack-years.",
+    "bullets": {
+      "clue": "Current smoker, or quit within 15 years.",
+      "treat": "Screen-detected nodules: Lung-RADS. Incidental nodules: Fleischner criteria.",
+      "trap": "Stop when 15 years quit or not fit for surgery."
+    },
+    "back": "Annual low-dose CT, ages 50–80, ≥20 pack-years. Key clue: Current smoker, or quit within 15 years. First-line: Screen-detected nodules: Lung-RADS. Incidental nodules: Fleischner criteria. Exam trap: Stop when 15 years quit or not fit for surgery.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-045.svg",
+      "alt": "Lung cancer screening: annual low-dose CT for ages 50 to 80 with at least 20 pack-years who smoke or quit within 15 years; screen-found nodules follow Lung-RADS and incidental ones follow Fleischner."
+    },
+    "source": {
+      "guideline": "USPSTF 2021 Lung Cancer Screening Recommendation; ACR Lung-RADS v2022; Fleischner Society 2017 incidental nodule guideline",
+      "year": "2021 / 2022 / 2017",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
+      "alt_url": "https://doi.org/10.1148/radiol.2017161659",
+      "recommendation": "USPSTF (B): annual LDCT for adults 50–80 with ≥20 pack-years who currently smoke or quit within the past 15 years; discontinue once 15 years since quitting or with a health problem limiting life expectancy or ability/willingness to have curative surgery. Screen-detected nodules are managed with Lung-RADS (e.g., category 3, 6 to <8 mm solid: LDCT in 6 months). Fleischner 2017 applies to incidental nodules (not screening): solid <6 mm in low-risk patients, no routine follow-up."
+    }
+  },
+  {
+    "id": "pance-046",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Clinical Intervention",
+    "front": "ARDS: how is it defined, and which ventilator strategy improves survival?",
+    "bottom": "Low tidal volume, plateau under 30.",
+    "bullets": {
+      "clue": "Bilateral opacities within 1 week; PaO2/FiO2 ≤300; not heart failure.",
+      "treat": "Tidal volume 4–8 mL/kg predicted weight; prone >12 h/day if severe.",
+      "trap": "Use predicted, not actual, body weight."
+    },
+    "back": "Low tidal volume, plateau under 30. Key clue: Bilateral opacities within 1 week; PaO2/FiO2 ≤300; not heart failure. First-line: Tidal volume 4–8 mL/kg predicted weight; prone >12 h/day if severe. Exam trap: Use predicted, not actual, body weight.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-046.svg",
+      "alt": "ARDS with bilateral opacities: lung-protective ventilation at 4 to 8 millilitres per kilogram of predicted body weight with plateau pressure below 30, prone positioning more than 12 hours a day in severe ARDS, and corticosteroids considered."
+    },
+    "source": {
+      "guideline": "ATS 2024 Update on Management of Adult ARDS; 2023 New Global Definition of ARDS",
+      "year": "2024 / 2023",
+      "url": "https://doi.org/10.1164/rccm.202311-2011st",
+      "alt_url": "https://academic.oup.com/ajrccm/article/209/1/37/8427597",
+      "recommendation": "Retained strong recommendations: tidal volume 4–8 mL/kg predicted body weight and plateau pressure <30 cm H2O; prone positioning >12 h/day in severe ARDS; against routine HFOV. 2024 conditional: corticosteroids for ARDS; VV-ECMO in selected severe ARDS; neuromuscular blockers in early severe ARDS; higher PEEP without recruitment manoeuvres in moderate-severe ARDS; strong against prolonged recruitment manoeuvres. Global definition: onset within 1 week, bilateral opacities (CXR, CT or ultrasound), PaO2/FiO2 ≤300 or SpO2/FiO2 ≤315, not fully explained by cardiac failure or fluid overload; includes HFNO ≥30 L/min."
+    }
+  },
+  {
+    "id": "pance-047",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Young adult with bilateral hilar lymphadenopathy and erythema nodosum: likely diagnosis and how is it confirmed?",
+    "bottom": "Sarcoidosis: noncaseating granulomas.",
+    "bullets": {
+      "clue": "Hilar nodes, erythema nodosum, uveitis, high calcium.",
+      "treat": "Tissue by EBUS node sampling; glucocorticoids if symptomatic organ threat.",
+      "trap": "Löfgren syndrome often needs no biopsy."
+    },
+    "back": "Sarcoidosis: noncaseating granulomas. Key clue: Hilar nodes, erythema nodosum, uveitis, high calcium. First-line: Tissue by EBUS node sampling; glucocorticoids if symptomatic organ threat. Exam trap: Löfgren syndrome often needs no biopsy.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-047.svg",
+      "alt": "Bilateral hilar lymphadenopathy on a chest X-ray. Sarcoidosis is confirmed by a compatible picture, nonnecrotizing granulomas on EBUS-guided lymph node sampling and exclusion of other causes; glucocorticoids treat symptomatic disease."
+    },
+    "source": {
+      "guideline": "ATS 2020 Diagnosis and Detection of Sarcoidosis; ERS 2021 Treatment of Sarcoidosis guideline",
+      "year": "2020 / 2021",
+      "url": "https://doi.org/10.1164/rccm.202002-0251st",
+      "alt_url": "https://doi.org/10.1183/13993003.04079-2020",
+      "recommendation": "Diagnosis: compatible clinical presentation, nonnecrotizing granulomatous inflammation in tissue, and exclusion of alternative causes. ATS neither recommends for nor against biopsy in asymptomatic bilateral hilar lymphadenopathy (close follow-up reasonable); Löfgren syndrome is highly specific clinically. When sampling is needed, EBUS-guided node sampling over mediastinoscopy. Baseline eye exam, serum calcium, ECG screening. ERS 2021: glucocorticoids first-line for symptomatic disease at risk of disability or death."
+    }
+  },
+  {
+    "id": "pance-048",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Older adult with progressive dyspnea, dry cough, clubbing and basal crackles: likely diagnosis, key test, therapy?",
+    "bottom": "Idiopathic pulmonary fibrosis: HRCT shows UIP.",
+    "bullets": {
+      "clue": "Velcro basal crackles, clubbing, restrictive PFTs, low DLCO.",
+      "treat": "Antifibrotic: nintedanib or pirfenidone; oxygen and rehab.",
+      "trap": "Corticosteroids do not help IPF."
+    },
+    "back": "Idiopathic pulmonary fibrosis: HRCT shows UIP. Key clue: Velcro basal crackles, clubbing, restrictive PFTs, low DLCO. First-line: Antifibrotic: nintedanib or pirfenidone; oxygen and rehab. Exam trap: Corticosteroids do not help IPF.",
+    "word_count": 31,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-048.svg",
+      "alt": "Idiopathic pulmonary fibrosis: subpleural basal reticulation and honeycombing (UIP pattern) on HRCT, restrictive spirometry with low DLCO, and antifibrotic therapy with nintedanib or pirfenidone."
+    },
+    "source": {
+      "guideline": "ATS/ERS/JRS/ALAT 2022 IPF (update) and Progressive Pulmonary Fibrosis guideline; 2018 IPF diagnosis guideline",
+      "year": "2022 / 2018",
+      "url": "https://doi.org/10.1164/rccm.202202-0399st",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9851481/",
+      "recommendation": "UIP on HRCT: subpleural, basal-predominant reticulation with honeycombing ± traction bronchiectasis; with the right clinical context (exposures and CTD excluded) confirms IPF without biopsy. IPF: antifibrotic therapy (nintedanib or pirfenidone) per the 2015/2022 guidelines; progressive pulmonary fibrosis (non-IPF): nintedanib suggested. Prednisone/azathioprine/NAC combination is harmful in IPF (strong recommendation against, 2015)."
+    }
+  },
+  {
+    "id": "pance-049",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Snoring, witnessed apneas and daytime sleepiness: how is OSA diagnosed and first treated?",
+    "bottom": "Confirm with a sleep study, then start PAP.",
+    "bullets": {
+      "clue": "Obesity, large neck, snoring, hypertension, sleepiness.",
+      "treat": "Home sleep apnea test or polysomnography; CPAP if AHI ≥15, or ≥5 with symptoms.",
+      "trap": "Negative home test with high suspicion: polysomnography."
+    },
+    "back": "Confirm with a sleep study, then start PAP. Key clue: Obesity, large neck, snoring, hypertension, sleepiness. First-line: Home sleep apnea test or polysomnography; CPAP if AHI ≥15, or ≥5 with symptoms. Exam trap: Negative home test with high suspicion: polysomnography.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-049.svg",
+      "alt": "Obstructive sleep apnea with a collapsed oropharyngeal airway: diagnose with a home sleep apnea test or polysomnography, apnea-hypopnea index 15 or more, or 5 or more with symptoms, then positive airway pressure."
+    },
+    "source": {
+      "guideline": "AASM 2017 Clinical Practice Guideline for Diagnostic Testing for Adult OSA; AASM 2019 PAP Treatment guideline",
+      "year": "2017 / 2019",
+      "url": "https://doi.org/10.5664/jcsm.6506",
+      "alt_url": "https://doi.org/10.5664/jcsm.7640",
+      "recommendation": "Use PSG or, in uncomplicated adults with signs and symptoms of moderate-severe OSA (excessive sleepiness plus ≥2 of loud snoring, witnessed apnea/gasping, hypertension), HSAT. Clinical tools/questionnaires should not be used to diagnose OSA without testing. If a single HSAT is negative, inconclusive or technically inadequate, perform PSG. OSA: AHI/RDI ≥15/h, or ≥5/h with typical symptoms (ICSD-3). PAP recommended for OSA with excessive sleepiness (2019)."
+    }
+  },
+  {
+    "id": "pance-050",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Active pulmonary TB: standard regimen, and how is latent TB treated?",
+    "bottom": "Active TB: RIPE for 2 months, then INH-rifampin.",
+    "bullets": {
+      "clue": "Cough >3 weeks, night sweats, weight loss, upper-lobe cavity.",
+      "treat": "Isolate; sputum AFB and NAAT; 6-month RIPE. Latent: 3HP, 4R or 3HR.",
+      "trap": "Rifampin causes orange fluids and many drug interactions."
+    },
+    "back": "Active TB: RIPE for 2 months, then INH-rifampin. Key clue: Cough >3 weeks, night sweats, weight loss, upper-lobe cavity. First-line: Isolate; sputum AFB and NAAT; 6-month RIPE. Latent: 3HP, 4R or 3HR. Exam trap: Rifampin causes orange fluids and many drug interactions.",
+    "word_count": 42,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-050.svg",
+      "alt": "Pulmonary tuberculosis with an upper-lobe cavity: airborne isolation and sputum testing, then 2 months of rifampin, isoniazid, pyrazinamide and ethambutol followed by 4 months of isoniazid and rifampin; latent infection is treated with short rifamycin-based courses."
+    },
+    "source": {
+      "guideline": "ATS/CDC/ERS/IDSA 2025 Updates on Treatment of Drug-Susceptible and Drug-Resistant TB; CDC latent TB treatment guidance",
+      "year": "2025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11755361/",
+      "alt_url": "https://www.cdc.gov/tb/hcp/treatment/latent-tuberculosis-infection.html",
+      "recommendation": "Standard drug-susceptible pulmonary TB: 2 months isoniazid, rifampin, pyrazinamide, ethambutol (2HRZE) then 4 months isoniazid-rifampin (4HR). 2025 conditional: 4-month 2HPZM/2HPM (isoniazid, rifapentine, pyrazinamide, moxifloxacin; 17 weeks) for age ≥12, weight ≥40 kg, HIV with CD4 ≥100. Latent TB: CDC/NTCA preferentially recommend 3HP (weekly), 4R (daily rifampin) or 3HR; 6H/9H are alternatives."
+    }
+  },
+  {
+    "id": "pance-051",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Formulating Most Likely Diagnosis",
+    "front": "Infant with rhinorrhea then wheeze vs toddler with barking cough and stridor: diagnoses and treatment?",
+    "bottom": "Bronchiolitis: supportive. Croup: dexamethasone.",
+    "bullets": {
+      "clue": "Infant RSV wheeze and crackles; toddler barking cough, steeple sign.",
+      "treat": "Bronchiolitis: suction, fluids, oxygen. Croup: single-dose dexamethasone; racemic epinephrine if stridor at rest.",
+      "trap": "No routine albuterol or steroids in bronchiolitis."
+    },
+    "back": "Bronchiolitis: supportive. Croup: dexamethasone. Key clue: Infant RSV wheeze and crackles; toddler barking cough, steeple sign. First-line: Bronchiolitis: suction, fluids, oxygen. Croup: single-dose dexamethasone; racemic epinephrine if stridor at rest. Exam trap: No routine albuterol or steroids in bronchiolitis.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-051.svg",
+      "alt": "Pediatric airway: croup shows subglottic narrowing, the steeple sign, and is treated with single-dose dexamethasone plus nebulized epinephrine for stridor at rest; bronchiolitis is treated supportively."
+    },
+    "source": {
+      "guideline": "AAP 2014 Clinical Practice Guideline: Bronchiolitis (latest AAP guideline; listed under review); croup management per current pediatric reviews",
+      "year": "2014",
+      "url": "https://doi.org/10.1542/peds.2014-2742",
+      "alt_url": "https://www.frontiersin.org/journals/pediatrics/articles/10.3389/fped.2025.1616521/full",
+      "recommendation": "AAP bronchiolitis: clinical diagnosis; do not administer albuterol, epinephrine, systemic corticosteroids or antibiotics routinely; no routine radiography or viral testing; supplemental oxygen if SpO2 persistently <90%; nasogastric or IV fluids if oral intake inadequate. Croup: single dose of oral dexamethasone (0.15–0.6 mg/kg) for all severities; nebulized racemic or L-epinephrine for moderate-severe croup with observation at least 2 h."
+    }
+  },
+  {
+    "id": "pance-052",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Infant with failure to thrive, greasy stools and recurrent pneumonia: confirmatory test for cystic fibrosis?",
+    "bottom": "Sweat chloride ≥60 mmol/L confirms CF.",
+    "bullets": {
+      "clue": "Positive newborn screen, meconium ileus, steatorrhea, nasal polyps.",
+      "treat": "Sweat test; CFTR genotyping; pancreatic enzymes, airway clearance, CFTR modulators.",
+      "trap": "Sweat chloride 30–59 is intermediate: needs CFTR testing."
+    },
+    "back": "Sweat chloride ≥60 mmol/L confirms CF. Key clue: Positive newborn screen, meconium ileus, steatorrhea, nasal polyps. First-line: Sweat test; CFTR genotyping; pancreatic enzymes, airway clearance, CFTR modulators. Exam trap: Sweat chloride 30–59 is intermediate: needs CFTR testing.",
+    "word_count": 37,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-052.svg",
+      "alt": "Cystic fibrosis: sweat chloride of 60 mmol per litre or more confirms the diagnosis after a positive newborn screen or compatible symptoms; 30 to 59 is intermediate; treatment includes pancreatic enzymes, airway clearance and CFTR modulators."
+    },
+    "source": {
+      "guideline": "Cystic Fibrosis Foundation Diagnosis Consensus Guidelines (2017); CFF Newborn Screening Consensus Guideline (2025)",
+      "year": "2017 / 2025",
+      "url": "https://doi.org/10.1016/j.jpeds.2016.09.064",
+      "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12015897/",
+      "recommendation": "CF diagnosis: positive newborn screen, clinical features or family history plus sweat chloride ≥60 mmol/L; 30–59 intermediate (CFTR genetic testing/further evaluation); <30 CF unlikely. Sweat testing after 10 days of age, ideally by 4 weeks, in infants >36 weeks corrected and >2 kg. Do not delay treatment while diagnosis is pursued. In-utero CFTR modulator exposure may cause false-negative IRT screening."
+    }
+  },
+  {
+    "id": "pance-053",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "ABG pH 7.30, PaCO2 25, HCO3 12: what is the primary disorder, and is compensation appropriate?",
+    "bottom": "Metabolic acidosis; check Winter formula.",
+    "bullets": {
+      "clue": "Low pH with low bicarbonate means metabolic acidosis.",
+      "treat": "Expected PaCO2 = 1.5 × HCO3 + 8 ± 2; then calculate anion gap.",
+      "trap": "PaCO2 above expected means added respiratory acidosis."
+    },
+    "back": "Metabolic acidosis; check Winter formula. Key clue: Low pH with low bicarbonate means metabolic acidosis. First-line: Expected PaCO2 = 1.5 × HCO3 + 8 ± 2; then calculate anion gap. Exam trap: PaCO2 above expected means added respiratory acidosis.",
+    "word_count": 39,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-053.svg",
+      "alt": "Arterial blood gas reading: low pH, low bicarbonate, primary metabolic acidosis; Winter formula predicts PaCO2 of 26 plus or minus 2, so compensation is appropriate; then calculate the anion gap."
+    },
+    "source": {
+      "guideline": "Standard acid-base physiology (Winter formula: Albert MS, Dell RB, Winters RW, Ann Intern Med 1967)",
+      "year": "1967",
+      "url": "https://doi.org/10.7326/0003-4819-66-2-312",
+      "alt_url": "https://www.ncbi.nlm.nih.gov/books/NBK482146/",
+      "recommendation": "Metabolic acidosis: expected PaCO2 = 1.5 × [HCO3−] + 8 ± 2 (Winter formula). PaCO2 above the expected range indicates concomitant respiratory acidosis; below indicates concomitant respiratory alkalosis. Anion gap = Na − (Cl + HCO3)."
+    }
+  },
+  {
+    "id": "pance-054",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Pharmaceutical Therapeutics",
+    "front": "Adult with paroxysmal cough, post-tussive vomiting and whoop: treatment, and who gets prophylaxis?",
+    "bottom": "Pertussis: azithromycin; treat household contacts.",
+    "bullets": {
+      "clue": "Cough over 2 weeks with paroxysms, whoop or vomiting.",
+      "treat": "Azithromycin within 3 weeks of cough onset; PEP for household and high-risk contacts.",
+      "trap": "Plain acute bronchitis needs no antibiotics."
+    },
+    "back": "Pertussis: azithromycin; treat household contacts. Key clue: Cough over 2 weeks with paroxysms, whoop or vomiting. First-line: Azithromycin within 3 weeks of cough onset; PEP for household and high-risk contacts. Exam trap: Plain acute bronchitis needs no antibiotics.",
+    "word_count": 38,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-054.svg",
+      "alt": "Pertussis stages, catarrhal, paroxysmal and convalescent; azithromycin treatment, prophylaxis for household and high-risk contacts within 21 days, and Tdap in every pregnancy between 27 and 36 weeks. Acute bronchitis needs no antibiotics."
+    },
+    "source": {
+      "guideline": "CDC Pertussis Clinical Care and Postexposure Prophylaxis guidance; CDC Tdap in pregnancy; CDC Adult Outpatient Treatment Recommendations (acute bronchitis)",
+      "year": "2024–2025",
+      "url": "https://www.cdc.gov/pertussis/hcp/clinical-care/",
+      "alt_url": "https://www.cdc.gov/antibiotic-use/hcp/clinical-care/adult-outpatient.html",
+      "recommendation": "Azithromycin first-line (adults 500 mg day 1 then 250 mg days 2–5). Treat adults within 3 weeks of cough onset (pregnant near term and infants: within 6 weeks). PEP for household contacts and high-risk contacts (infants, third-trimester pregnancy, those in contact with them) within 21 days of exposure. Tdap during each pregnancy, preferably early in weeks 27–36. CDC adult outpatient: routine antibiotic treatment of uncomplicated acute bronchitis is not recommended."
+    }
+  },
+  {
+    "id": "pance-055",
+    "system": "Pulmonary",
+    "blueprint_weight": "9%",
+    "task_area": "Using Diagnostic and Laboratory Studies",
+    "front": "Chest X-ray recognition: which pattern goes with which diagnosis?",
+    "bottom": "Match the pattern to the disease.",
+    "bullets": {
+      "clue": "Kerley B lines and cephalization mean heart failure.",
+      "treat": "Lobar consolidation: pneumonia. Hyperinflation, flat diaphragms: COPD. Hampton hump: PE infarct.",
+      "trap": "Normal X-ray does not exclude PE."
+    },
+    "back": "Match the pattern to the disease. Key clue: Kerley B lines and cephalization mean heart failure. First-line: Lobar consolidation: pneumonia. Hyperinflation, flat diaphragms: COPD. Hampton hump: PE infarct. Exam trap: Normal X-ray does not exclude PE.",
+    "word_count": 36,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-055.svg",
+      "alt": "Chest X-ray pattern matching: Kerley B lines and cephalization in heart failure, lobar consolidation with air bronchograms in pneumonia, hyperinflation in COPD, Westermark sign and Hampton hump in pulmonary embolism, and a spiculated mass in lung cancer."
+    },
+    "source": {
+      "guideline": "Standard radiology teaching; PE workup per 2026 AHA/ACC multisociety acute PE guideline (deck card pance-005)",
+      "year": "—",
+      "url": "https://radiopaedia.org/articles/chest-radiograph",
+      "alt_url": "https://www.acc.org/about-acc/press-releases/2026/02/19/19/27/first-ahaacc-acute-pulmonary-embolism-guideline-prompt-diagnosis-and-treatment-are-key",
+      "recommendation": "Classic signs: HF (cephalization, Kerley B lines, alveolar edema, effusions); pneumonia (lobar consolidation, air bronchograms); COPD (hyperinflation, flattened diaphragms); PE (usually normal or nonspecific; Westermark sign, Hampton hump uncommon); lung cancer (spiculated mass). A normal CXR does not exclude PE; diagnosis follows pretest probability, D-dimer and CTPA."
+    }
+  }
+]
