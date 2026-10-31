@@ -18,6 +18,7 @@ import {
 import { parseMasteryItemTags } from "@/lib/engine/mastery/item-tags";
 import type { MasteryItemTags } from "@/lib/engine/mastery/types";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
+import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { getFieldMetaById } from "@/lib/fields";
 import { sealCatalogQuestionKey, sealStudentFacingIds } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
@@ -116,11 +117,16 @@ export async function POST(req: Request) {
 
     const questions = ordered.map((row, i) => {
       const publicId = sealCatalogQuestionKey(row.id);
+      const storedOptions: unknown = row.options;
+      const item =
+        typeof storedOptions === "string"
+          ? enrichBankItemFromRow(row)
+          : (row as unknown as BankItem);
       const raw = bankItemToSessionRaw(
         built.fieldId,
         fieldLabel,
         row.subjectId ?? "mixed",
-        row as unknown as BankItem,
+        item,
         i
       );
       const study = examQuestionToStudy(

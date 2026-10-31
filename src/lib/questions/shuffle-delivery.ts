@@ -202,7 +202,8 @@ function rationaleCorpus(input: DeliveryShuffleInput): string {
   const parts: string[] = [];
   if (input.explanation) parts.push(input.explanation);
   if (input.clinicalReasoning) parts.push(input.clinicalReasoning);
-  if (input.solutionSteps?.length) parts.push(input.solutionSteps.join("\n"));
+  const steps = asStringList(input.solutionSteps);
+  if (steps.length) parts.push(steps.join("\n"));
   if (input.distractorRationale) parts.push(Object.values(input.distractorRationale).join("\n"));
   if (input.expertRationale != null) parts.push(flattenUnknown(input.expertRationale));
   return parts.join("\n");
@@ -227,6 +228,24 @@ function rewriteUnknown(value: unknown, letterMap: ReadonlyMap<string, string>):
   return out;
 }
 
+/** QuestionBankItem.solutionSteps and options are JSON strings until a loader parses them. */
+function asStringList(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value.map((entry) => choiceText(entry).trim()).filter(Boolean);
+  }
+  if (typeof value !== "string" || !value.trim()) return [];
+  const trimmed = value.trim();
+  if (trimmed.startsWith("[")) {
+    try {
+      const parsed = JSON.parse(trimmed) as unknown;
+      if (Array.isArray(parsed)) return asStringList(parsed);
+    } catch {
+      /* plain sentence */
+    }
+  }
+  return [trimmed];
+}
+
 function shuffleSlice(items: string[], random: () => number): string[] {
   const out = [...items];
   for (let i = out.length - 1; i > 0; i--) {
@@ -237,7 +256,8 @@ function shuffleSlice(items: string[], random: () => number): string[] {
 }
 
 export function shuffleDeliveryChoices(input: DeliveryShuffleInput): DeliveryShuffleResult {
-  const options = input.options.map((option) => cleanOptionText(option)).filter(Boolean);
+  const options = asStringList(input.options).map((option) => cleanOptionText(option)).filter(Boolean);
+  const solutionSteps = asStringList(input.solutionSteps);
   const correctAnswer = cleanOptionText(input.correctAnswer);
   const base: DeliveryShuffleResult = {
     options,
@@ -245,7 +265,7 @@ export function shuffleDeliveryChoices(input: DeliveryShuffleInput): DeliveryShu
     explanation: input.explanation,
     clinicalReasoning: input.clinicalReasoning,
     distractorRationale: input.distractorRationale,
-    solutionSteps: input.solutionSteps,
+    solutionSteps: solutionSteps.length ? solutionSteps : undefined,
     expertRationale: input.expertRationale,
     shuffled: false,
   };
@@ -285,7 +305,9 @@ export function shuffleDeliveryChoices(input: DeliveryShuffleInput): DeliveryShu
       ? rewriteChoiceLetters(choiceText(input.clinicalReasoning), letterMap)
       : input.clinicalReasoning,
     distractorRationale: distractor,
-    solutionSteps: input.solutionSteps?.map((step) => rewriteChoiceLetters(choiceText(step), letterMap)),
+    solutionSteps: solutionSteps.length
+      ? solutionSteps.map((step) => rewriteChoiceLetters(choiceText(step), letterMap))
+      : undefined,
     expertRationale: rewriteUnknown(input.expertRationale, letterMap),
     shuffled: true,
   };

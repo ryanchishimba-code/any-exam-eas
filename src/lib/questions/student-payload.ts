@@ -150,10 +150,32 @@ export function studentLayoutPayload(
   return cleaned;
 }
 
+/** Bank rows store tags as a JSON string. Prepare only filters a real list. */
+function tagList(tags: unknown): string[] | undefined {
+  if (Array.isArray(tags)) {
+    const list = tags
+      .map((tag) => (typeof tag === "string" ? tag.trim() : ""))
+      .filter(Boolean);
+    return list.length ? list : undefined;
+  }
+  if (typeof tags !== "string" || !tags.trim()) return undefined;
+  const trimmed = tags.trim();
+  if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+    try {
+      const parsed = JSON.parse(trimmed) as unknown;
+      if (Array.isArray(parsed)) return tagList(parsed);
+    } catch {
+      /* one stored tag */
+    }
+  }
+  return [trimmed];
+}
+
 /** Drop clinical-judgment step names from tags the player uses for links. */
 export function studentFacingTags(tags: string[] | null | undefined): string[] | undefined {
-  if (!tags) return undefined;
-  const next = tags.filter((tag) => {
+  const list = tagList(tags);
+  if (!list) return undefined;
+  const next = list.filter((tag) => {
     const trimmed = tag.trim();
     if (!trimmed) return false;
     if (/^cjmm:/i.test(trimmed)) return false;
