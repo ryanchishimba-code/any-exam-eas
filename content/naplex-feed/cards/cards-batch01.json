@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-001.svg",
-   "alt": "branch diagram for naplex-001"
+   "alt": "Ordered steps. Selectivity fades at high doses. Carvedilol and labetalol add alpha-1 blockade. HFrEF: only metoprolol succinate, carvedilol or bisoprolol."
   },
   "source": {
    "guideline": "FDA labeling; 2022 AHA/ACC/HFSA HF",
@@ -50,7 +50,7 @@
   "mnemonic": "Can't see, can't pee, can't spit, can't poop.",
   "diagram": {
    "file": "svg/naplex-002.svg",
-   "alt": "anatomy diagram for naplex-002"
+   "alt": "Decision flow. Dry mouth, constipation, urinary retention, blurred vision, tachycardia, delirium."
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-003.svg",
-   "alt": "contrast diagram for naplex-003"
+   "alt": "Two paths. Hunter criteria: spontaneous, inducible or ocular clonus with a serotonergic drug. Stop serotonergic drugs; supportive care, benzodiazepines; cyproheptadine if needed."
   },
   "source": {
    "guideline": "FDA labeling; Hunter criteria",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-004.svg",
-   "alt": "ladder diagram for naplex-004"
+   "alt": "Two paths. Macrolides, fluoroquinolones, ondansetron, methadone, citalopram, haloperidol, sotalol, dofetilide, amiodarone."
   },
   "source": {
    "guideline": "CredibleMeds/FDA labeling 2026",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-005.svg",
-   "alt": "contrast diagram for naplex-005"
+   "alt": "Decision flow. Inhibitors: clarithromycin, ketoconazole, itraconazole, ritonavir, grapefruit juice. Inducers: rifampin, carbamazepine, phenytoin, St. John's wort."
   },
   "source": {
    "guideline": "ICH M12 Drug Interaction guidance 2024 (supersedes FDA 2020 DDI guidances); FDA labeling",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-006.svg",
-   "alt": "ladder diagram for naplex-006"
+   "alt": "Ordered steps. CYP2C9 *2/*3 slow S-warfarin clearance; VKORC1 variant raises sensitivity. CPIC: use a validated genotype-guided algorithm; start lower in variant carriers."
   },
   "source": {
    "guideline": "CPIC warfarin 2017",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-007.svg",
-   "alt": "branch diagram for naplex-007"
+   "alt": "Decision flow. Clopidogrel is a prodrug activated by CYP2C19; *2/*3 are loss-of-function."
   },
   "source": {
    "guideline": "CPIC clopidogrel 2022; FDA BBW",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-008.svg",
-   "alt": "ladder diagram for naplex-008"
+   "alt": "Two paths. Both alleles predict SJS/TEN (allopurinol: also DRESS). Positive: avoid the drug and choose an alternative (febuxostat for gout)."
   },
   "source": {
    "guideline": "CPIC 2017 (CBZ), 2015 (allopurinol); ACR 2020 gout",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-009.svg",
-   "alt": "contrast diagram for naplex-009"
+   "alt": "Ordered steps. Low enzyme activity causes life-threatening myelosuppression or toxicity. Thiopurine poor metabolizer: drastic dose cut or alternative."
   },
   "source": {
    "guideline": "CPIC TPMT/NUDT15 2025 update; CPIC DPYD 2024",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-011.svg",
-   "alt": "trend diagram for naplex-011"
+   "alt": "Threshold. Substitute AB-rated products. Route or salt change: dose × F (bioavailability) × S (salt fraction)."
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-012.svg",
-   "alt": "branch diagram for naplex-012"
+   "alt": "Ordered steps. Two independent means: t-test; paired before/after: paired t-test. Nominal outcomes: chi-square; ordinal or skewed: Mann-Whitney (2) or Kruskal-Wallis (3+)."
   },
   "source": {
    "guideline": "CONSORT 2025; standard biostatistics",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-013.svg",
-   "alt": "timeline diagram for naplex-013"
+   "alt": "Timeline. In-use insulin at room temp for a product-specific time (glargine 28 days, degludec 56). Nitroglycerin: original glass bottle, cap tight."
   },
   "source": {
    "guideline": "USP <659>; FDA labeling; CDC Vaccine Storage & Handling Toolkit (updated Jul 2026)",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-014.svg",
-   "alt": "timeline diagram for naplex-014"
+   "alt": "Timeline. Aqueous unpreserved 14 days refrigerated; aqueous preserved 35 days. Nonaqueous 90 days; solid dosage forms 180 days."
   },
   "source": {
    "guideline": "USP <795> (2023 revision)",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-015.svg",
-   "alt": "timeline diagram for naplex-015"
+   "alt": "Timeline. Category 1: SCA allowed; BUD 12 h room temp or 24 h refrigerated."
   },
   "source": {
    "guideline": "USP <797> (2023 revision)",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-016.svg",
-   "alt": "branch diagram for naplex-016"
+   "alt": "Decision flow. C-SEC externally vented, negative 0.01–0.03 inch water column. Two pairs ASTM D6978 chemo gloves and a hazardous-drug gown."
   },
   "source": {
    "guideline": "USP <800>; NIOSH HD List 2024",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-017.svg",
-   "alt": "contrast diagram for naplex-017"
+   "alt": "Two paths. Geometric dilution: mix drug with equal part diluent, keep doubling. Levigate with mineral oil (oleaginous) or glycerin (aqueous) to smooth particles."
   },
   "source": {
    "guideline": "USP <795>; Remington",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-018.svg",
-   "alt": "threshold diagram for naplex-018"
+   "alt": "Ordered steps. IBW = 50 + 2.3 × 10 = 73 kg (actual is within 120%, use IBW). (140 − 70) × 73 ÷ (72 × 1.2) = 5110 ÷ 86.4 = 59. Women: multiply by 0.85. Obese (>120% IBW): use adjusted weight."
   },
   "source": {
    "guideline": "Cockcroft-Gault 1976; FDA renal guidance 2024",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-019.svg",
-   "alt": "ladder diagram for naplex-019"
+   "alt": "Decision flow. Devine female: 45.5 + 2.3 kg per inch over 5 ft. IBW = 45.5 + 2.3 × 4 = 54.7. AdjBW = 54.7 + 0.4 × (90 − 54.7) = 68.8. Male base is 50 kg, not 45.5."
   },
   "source": {
    "guideline": "Devine 1974 formula",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-020.svg",
-   "alt": "trend diagram for naplex-020"
+   "alt": "Threshold. Square root of the whole product, not of each term."
   },
   "source": {
    "guideline": "Mosteller 1987",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-021.svg",
-   "alt": "threshold diagram for naplex-021"
+   "alt": "Threshold. No calcium replacement for 'low' total Ca that corrects to normal; check ionized Ca if unsure."
   },
   "source": {
    "guideline": "Payne formula (Ca + 0.8×(4−alb))",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-022.svg",
-   "alt": "ladder diagram for naplex-022"
+   "alt": "Two paths. AG = Na − (Cl + HCO3). Calculated osm = 2Na + glucose/18 + BUN/2.8. AG = 140 − 112 = 28. Calc osm = 280 + 5 + 5 = 290; gap = 320 − 290 = 30."
   },
   "source": {
    "guideline": "Standard AG formula",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-023.svg",
-   "alt": "trend diagram for naplex-023"
+   "alt": "Threshold. Sheiner-Tozer: measured ÷ (0.2 × albumin + 0.1)."
   },
   "source": {
    "guideline": "Sheiner-Tozer equation (Sheiner & Tozer 1978; review Ann Pharmacother 2016)",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-024.svg",
-   "alt": "contrast diagram for naplex-024"
+   "alt": "Decision flow. LDL = TC − HDL − TG/5. Non-HDL = TC − HDL. 200 − 50 − 30 = 120. Non-HDL = 200 − 50 = 150."
   },
   "source": {
    "guideline": "Friedewald 1972 / Martin-Hopkins; 2026 ACC/AHA Dyslipidemia",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-025.svg",
-   "alt": "threshold diagram for naplex-025"
+   "alt": "Threshold. ANC = WBC × (% segs + % bands)."
   },
   "source": {
    "guideline": "Standard ANC formula; clozapine labeling 2025",

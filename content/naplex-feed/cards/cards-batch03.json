@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-051.svg",
-   "alt": "ladder diagram for naplex-051"
+   "alt": "Ordered steps. Also: Lipitor atorvastatin, Crestor rosuvastatin, Plavix clopidogrel, Coreg carvedilol. Confirm salt and release form when substituting."
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-052.svg",
-   "alt": "contrast diagram for naplex-052"
+   "alt": "Decision flow. Also: Zoloft sertraline, Keppra levetiracetam, Adderall mixed amphetamine salts. Verify indication on psych scripts to catch name mix-ups."
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-053.svg",
-   "alt": "branch diagram for naplex-053"
+   "alt": "Two paths. Ozempic/Mounjaro: type 2 diabetes. Wegovy/Zepbound: chronic weight management. Check the brand matches the indication billed and the dose strength."
   },
   "source": {
    "guideline": "FDA Orange Book 2026",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-054.svg",
-   "alt": "ladder diagram for naplex-054"
+   "alt": "Ordered steps. Biosimilar: no clinically meaningful differences from the reference. Check the Purple Book for interchangeability; follow state substitution and notification rules."
   },
   "source": {
    "guideline": "FDA Purple Book 2026",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-055.svg",
-   "alt": "branch diagram for naplex-055"
+   "alt": "Decision flow. HydrOXYzine vs hydrALAZINE; CeleBREX vs CeleXA. Put indication on the Rx, use brand and generic, barcode scanning, separate storage."
   },
   "source": {
    "guideline": "ISMP LASA list 2023",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-056.svg",
-   "alt": "contrast diagram for naplex-056"
+   "alt": "Ordered steps. High-alert: insulin, opioids, concentrated potassium, anticoagulants, oral methotrexate."
   },
   "source": {
    "guideline": "ISMP High-Alert List 2024",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-057.svg",
-   "alt": "threshold diagram for naplex-057"
+   "alt": "Threshold. 'U' can read as 0 or 4; 'qd' as qid; '5.0' as 50."
   },
   "source": {
    "guideline": "ISMP Error-Prone Abbreviations 2024 (replaces 2021); TJC Do Not Use list",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-058.svg",
-   "alt": "timeline diagram for naplex-058"
+   "alt": "Timeline. C-II needs a written or electronic Rx; emergency oral C-II allowed. Emergency oral C-II: prescriber delivers the written Rx within 7 days."
   },
   "source": {
    "guideline": "21 CFR 1306; DEA",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-059.svg",
-   "alt": "cycle diagram for naplex-059"
+   "alt": "Timeline. RZV (Shingrix) at ≥50, or ≥19 if immunocompromised; 2 doses 2–6 months apart. Pneumococcal at ≥50: PCV20 or PCV21 alone, or PCV15 then PPSV23."
   },
   "source": {
    "guideline": "CDC/ACIP Adult Schedule 2025 (amended Apr 27, 2026 for RSV)",
@@ -300,7 +300,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-060.svg",
-   "alt": "ladder diagram for naplex-060"
+   "alt": "Decision flow. Egg allergy: any age-appropriate flu vaccine; no extra precautions beyond usual. Use the current-season formulation; COVID-19 vaccine by individual-based (shared) decision-making."
   },
   "source": {
    "guideline": "CDC/ACIP influenza 2025–26 (carried into 2026–27); CDC 2025–26 COVID-19 guidance (individual-based decision-making, Oct 2025)",
@@ -333,7 +333,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-061.svg",
-   "alt": "trend diagram for naplex-061"
+   "alt": "Threshold. Most infants need one or the other, not both. Abrysvo is the only RSV vaccine for pregnancy."
   },
   "source": {
    "guideline": "CDC/ACIP RSV 2024–2025 (+clesrovimab MMWR 2025)",
@@ -366,7 +366,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-062.svg",
-   "alt": "cycle diagram for naplex-062"
+   "alt": "Two paths. Live vaccines (MMR, varicella, LAIV): contraindicated in pregnancy and severe immunosuppression. Screen before every dose; defer for moderate or severe illness only."
   },
   "source": {
    "guideline": "CDC/ACIP General Best Practices for Immunization (current web edition)",
@@ -399,7 +399,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-063.svg",
-   "alt": "anatomy diagram for naplex-063"
+   "alt": "Threshold. Antihistamines are adjuncts: never instead of epinephrine."
   },
   "source": {
    "guideline": "CDC/ACIP General Best Practices: preventing & managing adverse reactions",
@@ -432,7 +432,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-064.svg",
-   "alt": "anatomy diagram for naplex-064"
+   "alt": "Two paths. Tendinitis/rupture, peripheral neuropathy, CNS effects, myasthenia gravis worsening. Reserve for sinusitis, bronchitis exacerbation or uncomplicated UTI only when no alternative."
   },
   "source": {
    "guideline": "FDA labeling 2016/2018",
@@ -463,7 +463,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-065.svg",
-   "alt": "cycle diagram for naplex-065"
+   "alt": "Ordered steps. Boxed warning: children, adolescents and young adults through age 24. Close follow-up in the first weeks and after dose changes; tell family to watch for agitation or mood change."
   },
   "source": {
    "guideline": "FDA labeling (2007 BBW expansion to ages 18–24)",
@@ -494,7 +494,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-066.svg",
-   "alt": "contrast diagram for naplex-066"
+   "alt": "Decision flow. Applies to all antipsychotics, typical and atypical; not approved for dementia psychosis."
   },
   "source": {
    "guideline": "FDA labeling 2005/2008; APA 2016 dementia antipsychotics",
@@ -525,7 +525,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-067.svg",
-   "alt": "anatomy diagram for naplex-067"
+   "alt": "Two paths. CV risk can start in the first weeks and rises with dose. Use lowest dose, shortest time; avoid in recent MI or heart failure when possible."
   },
   "source": {
    "guideline": "FDA labeling 2015",
@@ -556,7 +556,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-068.svg",
-   "alt": "anatomy diagram for naplex-068"
+   "alt": "Ordered steps. Baseline and every 6 months: TFTs and LFTs; baseline chest X-ray, PFTs and eye exam. Cut warfarin dose by one-third to one-half and digoxin by half."
   },
   "source": {
    "guideline": "FDA labeling; 2023 ACC/AHA AF",
@@ -587,7 +587,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-069.svg",
-   "alt": "branch diagram for naplex-069"
+   "alt": "Decision flow. Methotrexate: once weekly with folic acid; daily dosing errors have been fatal. Exclude pregnancy, use contraception, monitor CBC and LFTs."
   },
   "source": {
    "guideline": "FDA labeling; ACR 2021 RA",
@@ -618,7 +618,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-070.svg",
-   "alt": "anatomy diagram for naplex-070"
+   "alt": "Two paths. Boxed warning: severe neutropenia, orthostasis, seizures, myocarditis, dementia mortality. No REMS enrollment or ANC check to dispense; follow label ANC monitoring."
   },
   "source": {
    "guideline": "FDA 2025 clozapine REMS elimination",
@@ -649,7 +649,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-071.svg",
-   "alt": "contrast diagram for naplex-071"
+   "alt": "Ordered steps. Boxed warning on both opioids and benzodiazepines since 2016. Talk to the prescriber about avoiding the combo; lowest doses; offer naloxone."
   },
   "source": {
    "guideline": "FDA 2016 opioid+benzo BBW; CDC 2022",
@@ -680,7 +680,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-072.svg",
-   "alt": "anatomy diagram for naplex-072"
+   "alt": "Decision flow. Neural tube defects and lower IQ in exposed children. AAN/AES 2024: avoid valproate when possible in people who could become pregnant; folic acid."
   },
   "source": {
    "guideline": "FDA labeling; AAN/AES 2024 WWE",
@@ -711,7 +711,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-073.svg",
-   "alt": "anatomy diagram for naplex-073"
+   "alt": "Ordered steps. Agitation, nightmares, depression, suicidal thoughts. Allergic rhinitis: only if other therapy fails or isn't tolerated. Events can occur during treatment or after stopping."
   },
   "source": {
    "guideline": "FDA 2020 labeling",
@@ -742,7 +742,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-074.svg",
-   "alt": "anatomy diagram for naplex-074"
+   "alt": "Two paths. GLP-1 RA: contraindicated with personal or family MTC or MEN 2. Screen family history before GLP-1 RA; counsel neck lump, hoarseness, dysphagia."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -773,7 +773,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-075.svg",
-   "alt": "anatomy diagram for naplex-075"
+   "alt": "Decision flow. FDA asked to remove boxed warnings on cardiovascular disease, breast cancer and probable dementia. Women with a uterus need a progestogen with systemic estrogen."
   },
   "source": {
    "guideline": "FDA HT labeling change Nov 2025 (first approvals Feb 2026); Menopause Society 2022",

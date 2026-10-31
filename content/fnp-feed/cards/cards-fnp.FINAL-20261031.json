@@ -16,7 +16,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-001.svg",
-   "alt": "Lab trend. Seated 5 minutes, back supported, arm at heart level, right cuff."
+   "alt": "Threshold. A small cuff overestimates BP; rule out white-coat and masked hypertension."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -44,7 +44,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-002.svg",
-   "alt": "Schematic. Under 13: BP ≥95th percentile for age, sex and height on 3 visits. Age 13 and older: adult cutoffs; stage 1 is ≥130/80."
+   "alt": "Two paths. Under 13: BP ≥95th percentile for age, sex and height on 3 visits. Age 13 and older: adult cutoffs; stage 1 is ≥130/80."
   },
   "source": {
    "guideline": "AAP 2017 pediatric HTN CPG (still current)",
@@ -72,7 +72,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-003.svg",
-   "alt": "Threshold. Moderate-intensity statin at intermediate risk; high-intensity at high risk; borderline: weigh risk enhancers."
+   "alt": "Decision flow. 10-year risk: <3% low, 3–<5% borderline, 5–<10% intermediate, ≥10% high."
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia; USPSTF statin 2022",
@@ -100,7 +100,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-004.svg",
-   "alt": "Two paths. Nonfasting non-HDL cholesterol is acceptable for universal screening. Targeted screening from age 2 for family history of early ASCVD or high cholesterol."
+   "alt": "Ordered steps. Nonfasting non-HDL cholesterol is acceptable for universal screening. Targeted screening from age 2 for family history of early ASCVD or high cholesterol."
   },
   "source": {
    "guideline": "AAP Bright Futures periodicity 2025; NHLBI 2011",
@@ -128,7 +128,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-005.svg",
-   "alt": "Decision flow. Ever smoked means at least 100 lifetime cigarettes. One-time abdominal ultrasound; men who never smoked: selective (C). Women who never smoked: do not screen (D)."
+   "alt": "Two paths. Ever smoked means at least 100 lifetime cigarettes. One-time abdominal ultrasound; men who never smoked: selective (C). Women who never smoked: do not screen (D)."
   },
   "source": {
    "guideline": "USPSTF AAA 2019",
@@ -156,7 +156,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-006.svg",
-   "alt": "Ordered steps. ADA screens all adults from 35, earlier with BMI ≥25 (≥23 Asian American) plus a risk factor. Normal result: rescreen at least every 3 years."
+   "alt": "Decision flow. ADA screens all adults from 35, earlier with BMI ≥25 (≥23 Asian American) plus a risk factor. Normal result: rescreen at least every 3 years."
   },
   "source": {
    "guideline": "USPSTF prediabetes/T2D 2021; ADA Standards of Care 2026",
@@ -184,7 +184,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-007.svg",
-   "alt": "Threshold. Prediabetes: A1C 5.7–6.4%, fasting 100–125, 2-hour 140–199 mg/dL."
+   "alt": "Ordered steps. Prediabetes: A1C 5.7–6.4%, fasting 100–125, 2-hour 140–199 mg/dL. Confirm with a second abnormal test unless hyperglycemic crisis or classic symptoms with glucose ≥200."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -212,7 +212,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-008.svg",
-   "alt": "Repeat cycle. Second test: pinprick, temperature, 128-Hz vibration or ankle reflexes. Loss of protective sensation: daily self-inspection, therapeutic footwear, podiatry."
+   "alt": "Ordered steps. Second test: pinprick, temperature, 128-Hz vibration or ankle reflexes. Loss of protective sensation: daily self-inspection, therapeutic footwear, podiatry."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -268,7 +268,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-010.svg",
-   "alt": "Two paths. A1 <30, A2 30–300, A3 >300 mg/g; CKD needs >3 months of abnormality. Annual eGFR and UACR in diabetes and hypertension."
+   "alt": "Decision flow. A1 <30, A2 30–300, A3 >300 mg/g; CKD needs >3 months of abnormality. Annual eGFR and UACR in diabetes and hypertension."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -296,7 +296,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-011.svg",
-   "alt": "Repeat cycle. High TSH, low free T4: primary hypothyroidism; Hashimoto is most common. High TSH with normal free T4 is subclinical; repeat in 2–3 months."
+   "alt": "Two paths. High TSH, low free T4: primary hypothyroidism; Hashimoto is most common. High TSH with normal free T4 is subclinical; repeat in 2–3 months."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -324,7 +324,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-012.svg",
-   "alt": "Ordered steps. Low TSH: radionuclide scan; a hot nodule rarely needs FNA. Normal or high TSH: ultrasound; FNA by sonographic pattern and size."
+   "alt": "Two paths. Low TSH: radionuclide scan; a hot nodule rarely needs FNA. Normal or high TSH: ultrasound; FNA by sonographic pattern and size."
   },
   "source": {
    "guideline": "ATA 2015 nodules/DTC (current for nodules)",
@@ -352,7 +352,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-013.svg",
-   "alt": "Timeline. Options: yearly FIT, stool DNA-FIT every 1–3 years, colonoscopy every 10 years. CT colonography or flexible sigmoidoscopy every 5 years are alternatives."
+   "alt": "Threshold. Any positive stool test needs a follow-up colonoscopy."
   },
   "source": {
    "guideline": "USPSTF CRC 2021",
@@ -380,7 +380,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-014.svg",
-   "alt": "Lab trend. Ages 21–29: cytology every 3 years."
+   "alt": "Timeline. Ages 21–29: cytology every 3 years. Alternatives: cotesting every 5 years or cytology every 3; self-collected HPV now an option."
   },
   "source": {
    "guideline": "USPSTF cervical 2018 final (2024 draft); HRSA WPSI 2026; ACOG 2026",
@@ -436,7 +436,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-016.svg",
-   "alt": "Schematic. Current smoker, or quit within the past 15 years. Annual low-dose CT; offer cessation treatment to current smokers. Stop once 15 years quit or not fit for curative surgery."
+   "alt": "Ordered steps. Current smoker, or quit within the past 15 years. Annual low-dose CT; offer cessation treatment to current smokers. Stop once 15 years quit or not fit for curative surgery."
   },
   "source": {
    "guideline": "USPSTF lung 2021",
@@ -464,7 +464,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-017.svg",
-   "alt": "Lab trend. Discuss false positives, overdiagnosis, biopsy and treatment harms."
+   "alt": "Threshold. Discuss false positives, overdiagnosis, biopsy and treatment harms."
   },
   "source": {
    "guideline": "USPSTF prostate 2018 (update in progress); AUA/SUO 2023, amended 2026",
@@ -492,7 +492,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-018.svg",
-   "alt": "Two paths. Use a brief familial risk tool first, such as a pedigree assessment tool. Positive tool: genetic counseling, then testing if indicated."
+   "alt": "Decision flow. Use a brief familial risk tool first, such as a pedigree assessment tool. Positive tool: genetic counseling, then testing if indicated."
   },
   "source": {
    "guideline": "USPSTF BRCA 2019",
@@ -520,7 +520,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-019.svg",
-   "alt": "Decision flow. Use a risk tool, such as FRAX, under 65. T-score ≤−2.5 at hip or spine defines osteoporosis."
+   "alt": "Ordered steps. Use a risk tool, such as FRAX, under 65. T-score ≤−2.5 at hip or spine defines osteoporosis."
   },
   "source": {
    "guideline": "USPSTF osteoporosis 2025",
@@ -548,7 +548,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-020.svg",
-   "alt": "Ordered steps. Anti-HCV antibody with reflex HCV RNA. Positive RNA: active infection; treat with direct-acting antivirals. Positive antibody alone may be cleared or cured infection; RNA confirms."
+   "alt": "Two paths. Anti-HCV antibody with reflex HCV RNA. Positive RNA: active infection; treat with direct-acting antivirals. Positive antibody alone may be cleared or cured infection; RNA confirms."
   },
   "source": {
    "guideline": "USPSTF HCV 2020",
@@ -576,7 +576,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-021.svg",
-   "alt": "Repeat cycle. HBsAg positive: infection; anti-HBc IgM: acute infection. Anti-HBs alone: vaccinated; anti-HBs plus anti-HBc: resolved infection. Isolated anti-HBc needs HBV DNA and follow-up."
+   "alt": "Decision flow. HBsAg positive: infection; anti-HBc IgM: acute infection. Anti-HBs alone: vaccinated; anti-HBs plus anti-HBc: resolved infection. Isolated anti-HBc needs HBV DNA and follow-up."
   },
   "source": {
    "guideline": "CDC 2023 adult HBV screening (MMWR); USPSTF HBV 2020 (risk-based)",
@@ -604,7 +604,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-022.svg",
-   "alt": "Decision flow. Fourth-generation antigen/antibody test; positive goes to differentiation assay. Suspected acute HIV: add HIV RNA. Antibody-only tests miss the early window period."
+   "alt": "Two paths. Fourth-generation antigen/antibody test; positive goes to differentiation assay. Suspected acute HIV: add HIV RNA. Antibody-only tests miss the early window period."
   },
   "source": {
    "guideline": "USPSTF HIV 2019",
@@ -688,7 +688,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-025.svg",
-   "alt": "Two paths. PHQ-2 first, then PHQ-9; PHQ-A in adolescents. Positive screen: diagnostic interview and suicide risk assessment. Children under 12: insufficient evidence (I)."
+   "alt": "Decision flow. PHQ-2 first, then PHQ-9; PHQ-A in adolescents. Positive screen: diagnostic interview and suicide risk assessment. Children under 12: insufficient evidence (I)."
   },
   "source": {
    "guideline": "USPSTF depression 2023 (adult), 2022 (child/adol)",
@@ -732,7 +732,7 @@
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "A 32-year-old is in clinic. How do you screen adults for unhealthy alcohol use?",
+  "front": "A 70-year-old is in clinic. How do you screen adults for unhealthy alcohol use?",
   "bottom": "Screen all adults 18+, including pregnant patients.",
   "bullets": {
    "clue": "AUDIT-C or single question about heavy-drinking days.",
@@ -744,7 +744,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-027.svg",
-   "alt": "Decision flow. AUDIT-C or single question about heavy-drinking days. Positive screen: brief behavioral counseling. Adolescents 12–17: insufficient evidence for screening (I)."
+   "alt": "Two paths. AUDIT-C or single question about heavy-drinking days. Positive screen: brief behavioral counseling. Adolescents 12–17: insufficient evidence for screening (I)."
   },
   "source": {
    "guideline": "USPSTF alcohol 2018 final (2025 draft pending)",
@@ -753,7 +753,7 @@
    "alt_url": null,
    "recommendation": "Screen all adults 18+, including pregnant patients. Positive screen: brief behavioral counseling."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-028",
@@ -772,7 +772,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-028.svg",
-   "alt": "Repeat cycle. 5 A's: Ask, Advise, Assess, Assist, Arrange follow-up. Nonpregnant adults: counseling plus FDA-approved medication (A)."
+   "alt": "Ordered steps. 5 A's: Ask, Advise, Assess, Assist, Arrange follow-up. Nonpregnant adults: counseling plus FDA-approved medication (A)."
   },
   "source": {
    "guideline": "USPSTF tobacco 2021",
@@ -828,7 +828,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-030.svg",
-   "alt": "Two paths. Timed Up and Go ≥12 seconds suggests risk. Exercise interventions for those at increased risk (B). Multifactorial interventions are selective (C), not routine."
+   "alt": "Decision flow. Timed Up and Go ≥12 seconds suggests risk. Exercise interventions for those at increased risk (B). Multifactorial interventions are selective (C), not routine."
   },
   "source": {
    "guideline": "USPSTF falls 2024; CDC STEADI",
@@ -856,7 +856,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-031.svg",
-   "alt": "Schematic. Concerns from patient or family: Mini-Cog or MoCA. Work up reversible causes: TSH, B12, depression, medications."
+   "alt": "Two paths. Concerns from patient or family: Mini-Cog or MoCA. Work up reversible causes: TSH, B12, depression, medications."
   },
   "source": {
    "guideline": "USPSTF cognitive impairment 2020 (I); AAN 2017 MCI retired",
@@ -912,7 +912,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-033.svg",
-   "alt": "Schematic. Sudden sensorineural loss: audiogram within 14 days; offer steroids within 2 weeks. Routine screening of asymptomatic adults 50+: insufficient evidence (I)."
+   "alt": "Timeline. Sudden sensorineural loss: audiogram within 14 days; offer steroids within 2 weeks. Routine screening of asymptomatic adults 50+: insufficient evidence (I)."
   },
   "source": {
    "guideline": "USPSTF hearing 2021",
@@ -940,7 +940,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-034.svg",
-   "alt": "Schematic. Visual acuity charts, stereoacuity or instrument-based photoscreening. Failed screen: pediatric eye referral. Under 3: insufficient evidence for screening (I)."
+   "alt": "Ordered steps. Visual acuity charts, stereoacuity or instrument-based photoscreening. Failed screen: pediatric eye referral. Under 3: insufficient evidence for screening (I)."
   },
   "source": {
    "guideline": "USPSTF vision 2017",
@@ -1024,7 +1024,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-037.svg",
-   "alt": "Schematic. Poor eye contact, no pointing, repetitive behaviors. Positive: refer for diagnosis, early intervention and hearing test at once."
+   "alt": "Two paths. Poor eye contact, no pointing, repetitive behaviors. Positive: refer for diagnosis, early intervention and hearing test at once."
   },
   "source": {
    "guideline": "AAP 2020 ASD report (reaffirmed 2025)",
@@ -1052,7 +1052,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-038.svg",
-   "alt": "Ordered steps. CDC reference value: 3.5 µg/dL. Elevated capillary sample: confirm with venous test. Source removal is first-line; chelation is for ≥45 µg/dL."
+   "alt": "Decision flow. CDC reference value: 3.5 µg/dL. Elevated capillary sample: confirm with venous test. Source removal is first-line; chelation is for ≥45 µg/dL."
   },
   "source": {
    "guideline": "CDC lead 2021 reference value",
@@ -1108,7 +1108,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-040.svg",
-   "alt": "Two paths. Precocious: before 8 in girls, before 9 in boys. Delayed: no breast by 13 or testicular enlargement by 14. No menarche by 15: evaluate for primary amenorrhea."
+   "alt": "Ordered steps. Precocious: before 8 in girls, before 9 in boys. Delayed: no breast by 13 or testicular enlargement by 14. No menarche by 15: evaluate for primary amenorrhea."
   },
   "source": {
    "guideline": "AAFP 2017 disorders of puberty",
@@ -1136,7 +1136,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-041.svg",
-   "alt": "Repeat cycle. SSHADESS: strengths, school, home, activities, drugs, emotions, sexuality, safety. Screen behavior and emotions at every visit; depression and suicide risk yearly from age 12."
+   "alt": "Two paths. SSHADESS: strengths, school, home, activities, drugs, emotions, sexuality, safety. Screen behavior and emotions at every visit; depression and suicide risk yearly from age 12."
   },
   "source": {
    "guideline": "AAFP 2020 adolescent screening and counseling; AAP/Bright Futures 2025 periodicity schedule; AAFP 2012 confidential care",
@@ -1164,7 +1164,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-042.svg",
-   "alt": "Schematic. Murmur louder with Valsalva or standing, softer with squatting. Refer for ECG, echocardiogram and cardiology evaluation."
+   "alt": "Decision flow. Murmur louder with Valsalva or standing, softer with squatting. Refer for ECG, echocardiogram and cardiology evaluation."
   },
   "source": {
    "guideline": "AAP PPE 5th ed 2019",
@@ -1248,7 +1248,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-045.svg",
-   "alt": "Repeat cycle. Gestational hypertension: ≥140/90 twice, 4 hours apart, after 20 weeks. Elevated BP: check proteinuria, platelets, creatinine and liver enzymes."
+   "alt": "Timeline. Gestational hypertension: ≥140/90 twice, 4 hours apart, after 20 weeks. Elevated BP: check proteinuria, platelets, creatinine and liver enzymes."
   },
   "source": {
    "guideline": "USPSTF preeclampsia screening 2023",
@@ -1304,7 +1304,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-047.svg",
-   "alt": "Decision flow. Fundus at the umbilicus around 20 weeks. Size–date discrepancy: ultrasound for growth and amniotic fluid. Obesity or fibroids make fundal height unreliable; use ultrasound."
+   "alt": "Timeline. Fundus at the umbilicus around 20 weeks. Size–date discrepancy: ultrasound for growth and amniotic fluid."
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -1360,7 +1360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-049.svg",
-   "alt": "Lab trend. Adults: FEV1 rises >12% and >200 mL after bronchodilator."
+   "alt": "Two paths. Adults: FEV1 rises >12% and >200 mL after bronchodilator. Peak flow variability or bronchoprovocation if spirometry is normal."
   },
   "source": {
    "guideline": "GINA 2025",
@@ -1388,7 +1388,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-050.svg",
-   "alt": "Lab trend. Symptoms plus exposure history, such as tobacco or biomass smoke."
+   "alt": "Threshold. Symptoms plus exposure history, such as tobacco or biomass smoke."
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -1500,7 +1500,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-054.svg",
-   "alt": "Two paths. Drop-arm sign or weak external rotation: full-thickness tear. Atraumatic tear: physical therapy first. Acute traumatic tear with weakness: early orthopedic referral."
+   "alt": "Ordered steps. Drop-arm sign or weak external rotation: full-thickness tear. Atraumatic tear: physical therapy first. Acute traumatic tear with weakness: early orthopedic referral."
   },
   "source": {
    "guideline": "AAOS rotator cuff CPG 2025",
@@ -1528,7 +1528,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-055.svg",
-   "alt": "Ordered steps. Cancer history, weight loss, fever, injection drug use. No red flags: no imaging; stay active, heat, NSAIDs. Cauda equina is a same-day emergency MRI."
+   "alt": "Decision flow. Cancer history, weight loss, fever, injection drug use. No red flags: no imaging; stay active, heat, NSAIDs. Cauda equina is a same-day emergency MRI."
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -1544,7 +1544,7 @@
   "system": "MSK",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "A 36-year-old is in clinic. Hand numbness at night: how is carpal tunnel syndrome assessed?",
+  "front": "A 68-year-old is in clinic. Hand numbness at night: how is carpal tunnel syndrome assessed?",
   "bottom": "Phalen and Tinel tests, plus symptom distribution.",
   "bullets": {
    "clue": "Thumb, index, middle and radial half of ring finger.",
@@ -1565,7 +1565,7 @@
    "alt_url": null,
    "recommendation": "Phalen and Tinel tests, plus symptom distribution. Splinting or steroid injection; surgery if severe."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-057",
@@ -1584,7 +1584,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-057.svg",
-   "alt": "Schematic. Mild bulging plus ear pain under 48 hours, or intense TM redness. Pneumatic otoscopy confirms middle ear effusion. No effusion: not otitis media; don't treat red TM alone."
+   "alt": "Ordered steps. Mild bulging plus ear pain under 48 hours, or intense TM redness. Pneumatic otoscopy confirms middle ear effusion. No effusion: not otitis media; don't treat red TM alone."
   },
   "source": {
    "guideline": "AAP AOM 2013 (still current)",
@@ -1668,7 +1668,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-060.svg",
-   "alt": "Decision flow. Normal ferritin with Mentzer index <13: consider thalassemia trait. Men and postmenopausal women: bidirectional endoscopy."
+   "alt": "Two paths. Normal ferritin with Mentzer index <13: consider thalassemia trait. Men and postmenopausal women: bidirectional endoscopy."
   },
   "source": {
    "guideline": "AGA 2020 IDA",
@@ -1696,7 +1696,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-061.svg",
-   "alt": "Schematic. Methylmalonic acid high: B12 deficiency; normal: folate deficiency. Long-term metformin: check B12 periodically. Folate alone can mask worsening B12 neuropathy; replace B12 first."
+   "alt": "Decision flow. Methylmalonic acid high: B12 deficiency; normal: folate deficiency. Long-term metformin: check B12 periodically. Folate alone can mask worsening B12 neuropathy; replace B12 first."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026 (B12 on metformin)",
@@ -1724,7 +1724,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-062.svg",
-   "alt": "Decision flow. FIB-4 <1.3: low risk; ≥1.3: elastography or ELF test. Weight loss of 7–10% improves steatosis and fibrosis. Normal ALT does not rule out advanced fibrosis."
+   "alt": "Ordered steps. FIB-4 <1.3: low risk; ≥1.3: elastography or ELF test. Weight loss of 7–10% improves steatosis and fibrosis. Normal ALT does not rule out advanced fibrosis."
   },
   "source": {
    "guideline": "AASLD 2023 MASLD",
@@ -1780,7 +1780,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-064.svg",
-   "alt": "Schematic. Colicky flank pain and hematuria. Ultrasound first in pregnancy and children; NSAIDs for colic; tamsulosin for distal stones ≤10 mm."
+   "alt": "Two paths. Colicky flank pain and hematuria. Ultrasound first in pregnancy and children; NSAIDs for colic; tamsulosin for distal stones ≤10 mm."
   },
   "source": {
    "guideline": "AUA kidney stones 2026; ACR AC flank pain 2023",
@@ -1808,7 +1808,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-065.svg",
-   "alt": "Two paths. Aldosterone-renin ratio; check potassium too. Positive: confirm with specialist; unilateral disease may be surgical, bilateral gets an MRA."
+   "alt": "Decision flow. Aldosterone-renin ratio; check potassium too. Positive: confirm with specialist; unilateral disease may be surgical, bilateral gets an MRA."
   },
   "source": {
    "guideline": "Endocrine Society PA 2025",
@@ -1836,7 +1836,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-066.svg",
-   "alt": "Ordered steps. ACS: new, rest or crescendo pain. Suspected ACS: call EMS, chewed aspirin, ECG within 10 minutes. Women, older adults and diabetes present atypically, with dyspnea or fatigue."
+   "alt": "Decision flow. ACS: new, rest or crescendo pain. Suspected ACS: call EMS, chewed aspirin, ECG within 10 minutes. Women, older adults and diabetes present atypically, with dyspnea or fatigue."
   },
   "source": {
    "guideline": "ACC/AHA 2023 chronic coronary disease; ACC/AHA 2025 ACS",
@@ -1892,7 +1892,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-068.svg",
-   "alt": "Schematic. CHA2DS2-VASc ≥2 in men or ≥3 in women. Anticoagulate; check TSH and echocardiogram. Aspirin alone is not an alternative for stroke prevention."
+   "alt": "Two paths. CHA2DS2-VASc ≥2 in men or ≥3 in women. Anticoagulate; check TSH and echocardiogram. Aspirin alone is not an alternative for stroke prevention."
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -1920,7 +1920,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-069.svg",
-   "alt": "Decision flow. AS radiates to carotids; HCM gets louder with Valsalva or standing. Echocardiogram for both. Do not stress-test symptomatic severe AS."
+   "alt": "Ordered steps. AS radiates to carotids; HCM gets louder with Valsalva or standing. Echocardiogram for both. Do not stress-test symptomatic severe AS."
   },
   "source": {
    "guideline": "ACC/AHA 2020 valvular disease",
@@ -1964,7 +1964,7 @@
   "system": "Cardiovascular",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "A 22-year-old is in clinic. Unilateral leg swelling: how do you work up DVT?",
+  "front": "A 70-year-old is in clinic. Unilateral leg swelling: how do you work up DVT?",
   "bottom": "Wells score first.",
   "bullets": {
    "clue": "Wells unlikely: D-dimer; negative excludes DVT.",
@@ -1985,7 +1985,7 @@
    "alt_url": "https://ashpublications.org/bloodadvances/article/4/19/4693/463998/",
    "recommendation": "Wells score first. Wells likely: proximal or whole-leg ultrasound."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-072",
@@ -2004,7 +2004,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-072.svg",
-   "alt": "Schematic. Heart rate >100, respiratory rate >24, temperature >38 °C. Suspected pneumonia: chest X-ray; bronchitis: symptom care. Acute bronchitis cough lasts up to 3 weeks; no antibiotics."
+   "alt": "Decision flow. Heart rate >100, respiratory rate >24, temperature >38 °C. Suspected pneumonia: chest X-ray; bronchitis: symptom care. Acute bronchitis cough lasts up to 3 weeks; no antibiotics."
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP; ACP/CDC 2016 acute respiratory tract infection advice",
@@ -2032,7 +2032,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-073.svg",
-   "alt": "Schematic. Bronchiolitis: under 2 with RSV; croup: steeple sign. Croup: single-dose dexamethasone; epiglottitis: secure the airway. No routine albuterol or steroids for bronchiolitis."
+   "alt": "Decision flow. Bronchiolitis: under 2 with RSV; croup: steeple sign. Croup: single-dose dexamethasone; epiglottitis: secure the airway. No routine albuterol or steroids for bronchiolitis."
   },
   "source": {
    "guideline": "AAP bronchiolitis 2014 (still current)",
@@ -2088,7 +2088,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-075.svg",
-   "alt": "Decision flow. Persistent: ≥10 days without improvement; severe: fever ≥39 °C with purulence. Amoxicillin with or without clavulanate, or watchful waiting. No imaging for uncomplicated sinusitis."
+   "alt": "Two paths. Persistent: ≥10 days without improvement; severe: fever ≥39 °C with purulence. Amoxicillin with or without clavulanate, or watchful waiting. No imaging for uncomplicated sinusitis."
   },
   "source": {
    "guideline": "IDSA rhinosinusitis 2012; AAO-HNS 2015",
@@ -2116,7 +2116,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-076.svg",
-   "alt": "Two paths. Viral: preauricular node, recent URI. Bacterial: topical antibiotic; allergic: antihistamine/mast-cell stabilizer drops."
+   "alt": "Ordered steps. Viral: preauricular node, recent URI. Bacterial: topical antibiotic; allergic: antihistamine/mast-cell stabilizer drops."
   },
   "source": {
    "guideline": "AAO Conjunctivitis PPP 2024",
@@ -2200,7 +2200,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-079.svg",
-   "alt": "Ordered steps. Posterior cervical nodes, splenomegaly, atypical lymphocytes. Supportive care; no contact sports until cleared."
+   "alt": "Decision flow. Posterior cervical nodes, splenomegaly, atypical lymphocytes. Supportive care; no contact sports until cleared."
   },
   "source": {
    "guideline": "CDC EBV/mono clinical overview (current web guidance)",
@@ -2312,7 +2312,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-083.svg",
-   "alt": "Decision flow. Periumbilical pain shifting to RLQ, anorexia, fever. Ultrasound first in children and pregnancy; CT in most adults. Delaying referral increases perforation risk."
+   "alt": "Two paths. Periumbilical pain shifting to RLQ, anorexia, fever. Ultrasound first in children and pregnancy; CT in most adults. Delaying referral increases perforation risk."
   },
   "source": {
    "guideline": "WSES Jerusalem 2020 update",
@@ -2340,7 +2340,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-084.svg",
-   "alt": "Two paths. Left lower quadrant tenderness, fever, leukocytosis. Uncomplicated and immunocompetent: antibiotics selectively."
+   "alt": "Ordered steps. Left lower quadrant tenderness, fever, leukocytosis. Uncomplicated and immunocompetent: antibiotics selectively."
   },
   "source": {
    "guideline": "AGA 2021 diverticulitis",
@@ -2396,7 +2396,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-086.svg",
-   "alt": "Repeat cycle. GAD65, IA-2, ZnT8 or insulin antibodies point to type 1. Test autoantibodies in every youth with new diabetes. Obesity does not exclude type 1; DKA can occur in type 2."
+   "alt": "Two paths. GAD65, IA-2, ZnT8 or insulin antibodies point to type 1. Test autoantibodies in every youth with new diabetes. Obesity does not exclude type 1; DKA can occur in type 2."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -2424,7 +2424,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-087.svg",
-   "alt": "Schematic. TSH receptor antibodies, eye findings, or radioactive iodine uptake. Beta-blocker for symptoms; antithyroid drug for Graves."
+   "alt": "Ordered steps. TSH receptor antibodies, eye findings, or radioactive iodine uptake. Beta-blocker for symptoms; antithyroid drug for Graves."
   },
   "source": {
    "guideline": "ATA 2016 hyperthyroidism",
@@ -2452,7 +2452,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-088.svg",
-   "alt": "Lab trend. Positive TPO antibodies raise progression risk."
+   "alt": "Threshold. Positive TPO antibodies raise progression risk."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -2480,7 +2480,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-089.svg",
-   "alt": "Schematic. Cystitis: dysuria, frequency, urgency, no fever. Pyelonephritis: urine culture; oral fluoroquinolone if local resistance ≤10%."
+   "alt": "Decision flow. Cystitis: dysuria, frequency, urgency, no fever. Pyelonephritis: urine culture; oral fluoroquinolone if local resistance ≤10%."
   },
   "source": {
    "guideline": "IDSA 2010 uncomplicated cystitis/pyelo (still current; update in development)",
@@ -2564,7 +2564,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-092.svg",
-   "alt": "Ordered steps. HCG above discriminatory zone with empty uterus. Stable and unruptured: methotrexate; unstable: surgery. Ectopic pregnancy is assumed until intrauterine pregnancy is seen."
+   "alt": "Two paths. HCG above discriminatory zone with empty uterus. Stable and unruptured: methotrexate; unstable: surgery. Ectopic pregnancy is assumed until intrauterine pregnancy is seen."
   },
   "source": {
    "guideline": "ACOG PB 193 2018 (still current)",
@@ -2592,7 +2592,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-093.svg",
-   "alt": "Schematic. Ovulatory dysfunction, hyperandrogenism, polycystic ovaries or high AMH. Exclude thyroid disease, high prolactin and nonclassic CAH."
+   "alt": "Decision flow. Ovulatory dysfunction, hyperandrogenism, polycystic ovaries or high AMH. Exclude thyroid disease, high prolactin and nonclassic CAH."
   },
   "source": {
    "guideline": "International PCOS guideline 2023",
@@ -2648,7 +2648,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-095.svg",
-   "alt": "Two paths. Age 45 or older with symptoms, no period for 12 months and no hormonal contraception: menopause. Amenorrhea workup adds FSH, LH, prolactin and TSH."
+   "alt": "Ordered steps. Age 45 or older with symptoms, no period for 12 months and no hormonal contraception: menopause. Amenorrhea workup adds FSH, LH, prolactin and TSH."
   },
   "source": {
    "guideline": "NICE NG23 menopause (updated 2024); AAFP 2019 amenorrhea",
@@ -2676,7 +2676,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-096.svg",
-   "alt": "Timeline. Culture pending: ≥10 WBC/hpf or ≥+2 leukocyte esterase. Culture: catheter ≥10,000 CFU/mL single uropathogen; clean catch ≥100,000."
+   "alt": "Two paths. Culture pending: ≥10 WBC/hpf or ≥+2 leukocyte esterase. Culture: catheter ≥10,000 CFU/mL single uropathogen; clean catch ≥100,000."
   },
   "source": {
    "guideline": "AAP UTI CPG 2026 (8 days-5 years)",
@@ -2704,7 +2704,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-097.svg",
-   "alt": "Ordered steps. Smooth enlarged prostate: BPH; hard nodule: cancer. Tender, boggy prostate with fever: acute bacterial prostatitis; antibiotics. Avoid prostate massage in acute prostatitis."
+   "alt": "Two paths. Smooth enlarged prostate: BPH; hard nodule: cancer. Tender, boggy prostate with fever: acute bacterial prostatitis; antibiotics. Avoid prostate massage in acute prostatitis."
   },
   "source": {
    "guideline": "AUA BPH 2023",
@@ -2732,7 +2732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-098.svg",
-   "alt": "Decision flow. Overflow: high post-void residual. Stress: pelvic floor training; urge: behavioral therapy first. Antimuscarinics carry dementia risk in older adults; consider a beta-3 agonist."
+   "alt": "Ordered steps. Overflow: high post-void residual. Stress: pelvic floor training; urge: behavioral therapy first. Antimuscarinics carry dementia risk in older adults; consider a beta-3 agonist."
   },
   "source": {
    "guideline": "AUA/SUFU OAB 2024",
@@ -2788,7 +2788,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-100.svg",
-   "alt": "Two paths. Gout: negatively birefringent needle-shaped crystals. Septic: Gram stain and culture, very high synovial WBC; both can coexist. Serum urate can be normal during a gout flare."
+   "alt": "Decision flow. Gout: negatively birefringent needle-shaped crystals. Septic: Gram stain and culture, very high synovial WBC; both can coexist. Serum urate can be normal during a gout flare."
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -2816,7 +2816,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-101.svg",
-   "alt": "Schematic. PMR: age >50, morning stiffness, high ESR or CRP. PMR: low-dose prednisone; suspected GCA: high-dose steroids now."
+   "alt": "Two paths. PMR: age >50, morning stiffness, high ESR or CRP. PMR: low-dose prednisone; suspected GCA: high-dose steroids now."
   },
   "source": {
    "guideline": "ACR/EULAR 2015 PMR; ACR 2021 GCA",
@@ -2844,7 +2844,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-102.svg",
-   "alt": "Schematic. Proteinuria: ≥300 mg/24 h or protein/creatinine ≥0.3. Severe: BP ≥160/110, platelets <100,000, creatinine >1.1, pulmonary edema."
+   "alt": "Decision flow. Proteinuria: ≥300 mg/24 h or protein/creatinine ≥0.3. Severe: BP ≥160/110, platelets <100,000, creatinine >1.1, pulmonary edema."
   },
   "source": {
    "guideline": "ACOG PB 222 2020 (reaffirmed 2026)",
@@ -2872,7 +2872,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-103.svg",
-   "alt": "Lab trend. Cluster: severe unilateral orbital pain, 15–180 minutes, tearing, restlessness."
+   "alt": "Threshold. Thunderclap onset: exclude subarachnoid hemorrhage first."
   },
   "source": {
    "guideline": "ICHD-3 (2018)",
@@ -2888,7 +2888,7 @@
   "system": "Neuro",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "A 32-year-old is in clinic. Facial weakness: how do you tell Bell palsy from stroke?",
+  "front": "A 70-year-old is in clinic. Facial weakness: how do you tell Bell palsy from stroke?",
   "bottom": "Bell palsy affects the forehead.",
   "bullets": {
    "clue": "Forehead sparing suggests central lesion.",
@@ -2900,7 +2900,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-104.svg",
-   "alt": "Two paths. Forehead sparing suggests central lesion. Bell palsy: oral steroids within 72 hours; eye protection. No routine labs or imaging for typical Bell palsy."
+   "alt": "Ordered steps. Forehead sparing suggests central lesion. Bell palsy: oral steroids within 72 hours; eye protection. No routine labs or imaging for typical Bell palsy."
   },
   "source": {
    "guideline": "AAO-HNS 2013 Bell palsy",
@@ -2909,7 +2909,7 @@
    "alt_url": null,
    "recommendation": "Bell palsy affects the forehead. Bell palsy: oral steroids within 72 hours; eye protection."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-105",
@@ -2928,7 +2928,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-105.svg",
-   "alt": "Decision flow. Brief vertigo triggered by head position changes, lasting under a minute. Epley maneuver; no routine imaging or vestibular suppressants."
+   "alt": "Two paths. Brief vertigo triggered by head position changes, lasting under a minute. Epley maneuver; no routine imaging or vestibular suppressants."
   },
   "source": {
    "guideline": "AAO-HNS 2017 BPPV",
@@ -2956,7 +2956,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-106.svg",
-   "alt": "Ordered steps. PD: bradykinesia with rest tremor or rigidity. Essential tremor: bilateral action tremor, often familial; propranolol or primidone."
+   "alt": "Decision flow. PD: bradykinesia with rest tremor or rigidity. Essential tremor: bilateral action tremor, often familial; propranolol or primidone."
   },
   "source": {
    "guideline": "MDS PD criteria 2015",
@@ -2984,7 +2984,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-107.svg",
-   "alt": "Two paths. Lewy body: visual hallucinations, parkinsonism, REM sleep behavior disorder. Labs for reversible causes; brain imaging. Lewy body dementia: severe antipsychotic sensitivity."
+   "alt": "Ordered steps. Lewy body: visual hallucinations, parkinsonism, REM sleep behavior disorder. Labs for reversible causes; brain imaging. Lewy body dementia: severe antipsychotic sensitivity."
   },
   "source": {
    "guideline": "Alzheimer's Assoc. revised AD criteria 2024; DLB Consortium 2017",
@@ -3012,7 +3012,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-108.svg",
-   "alt": "Ordered steps. Symptoms ≥6 months, several before age 12. Gather parent and teacher rating scales. Screen for coexisting anxiety, depression and learning disorders."
+   "alt": "Decision flow. Symptoms ≥6 months, several before age 12. Gather parent and teacher rating scales. Screen for coexisting anxiety, depression and learning disorders."
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -3040,7 +3040,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-109.svg",
-   "alt": "Decision flow. Orthostatic pulse rise >20, or BP drop >20 systolic or >10 diastolic. Also admit: ≤75% median BMI, electrolyte or ECG abnormality, syncope, acute food refusal."
+   "alt": "Two paths. Orthostatic pulse rise >20, or BP drop >20 systolic or >10 diastolic. Also admit: ≤75% median BMI, electrolyte or ECG abnormality, syncope, acute food refusal."
   },
   "source": {
    "guideline": "AAP eating disorders clinical report 2021 (still current)",
@@ -3096,7 +3096,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-111.svg",
-   "alt": "Two paths. Tinea: annular with central clearing; psoriasis: silvery scale. Nummular eczema: itchy round to oval spots; topical steroid and moisturizer."
+   "alt": "Decision flow. Tinea: annular with central clearing; psoriasis: silvery scale. Nummular eczema: itchy round to oval spots; topical steroid and moisturizer."
   },
   "source": {
    "guideline": "AAFP 2014 tinea infections; AAD nummular eczema treatment page; AAP atopic dermatitis differential page",
@@ -3152,7 +3152,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-113.svg",
-   "alt": "Schematic. Measles: cough, coryza, conjunctivitis, Koplik spots. Roseola: rash after fever; fifth disease: slapped cheek. Parvovirus: aplastic crisis in sickle cell disease and fetal hydrops."
+   "alt": "Two paths. Measles: cough, coryza, conjunctivitis, Koplik spots. Roseola: rash after fever; fifth disease: slapped cheek. Parvovirus: aplastic crisis in sickle cell disease and fetal hydrops."
   },
   "source": {
    "guideline": "CDC; AAP Red Book 2024",
@@ -3180,7 +3180,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-114.svg",
-   "alt": "Schematic. Conjunctivitis, oral changes, rash, extremity changes, cervical node. IVIG and aspirin; echocardiogram. Infants often have incomplete Kawasaki disease."
+   "alt": "Ordered steps. Conjunctivitis, oral changes, rash, extremity changes, cervical node. IVIG and aspirin; echocardiogram. Infants often have incomplete Kawasaki disease."
   },
   "source": {
    "guideline": "AHA Kawasaki scientific statement 2024",
@@ -3208,7 +3208,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-115.svg",
-   "alt": "Decision flow. Measure TSB or TcB; plot by age in hours. Phototherapy by hour-specific thresholds and risk factors. Pale stools or dark urine: check direct bilirubin."
+   "alt": "Two paths. Measure TSB or TcB; plot by age in hours. Phototherapy by hour-specific thresholds and risk factors. Pale stools or dark urine: check direct bilirubin."
   },
   "source": {
    "guideline": "AAP 2022 hyperbilirubinemia",
@@ -3236,7 +3236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-116.svg",
-   "alt": "Decision flow. Bruises on the torso, ears or neck. Under 2: skeletal survey; report to CPS. Report on reasonable suspicion; certainty is not required."
+   "alt": "Ordered steps. Bruises on the torso, ears or neck. Under 2: skeletal survey; report to CPS. Report on reasonable suspicion; certainty is not required."
   },
   "source": {
    "guideline": "AAP 2015 suspected physical abuse (reaffirmed 2026)",
@@ -3264,7 +3264,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-117.svg",
-   "alt": "Ordered steps. Unexplained injuries, poor hygiene, delayed care, financial changes. Report to Adult Protective Services per state law."
+   "alt": "Decision flow. Unexplained injuries, poor hygiene, delayed care, financial changes. Report to Adult Protective Services per state law."
   },
   "source": {
    "guideline": "USPSTF IPV/caregiver abuse 2025 (I for older adults)",
@@ -3280,7 +3280,7 @@
   "system": "Psych",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "A 36-year-old is in clinic. Adult with depression before starting an SSRI: what must you screen for?",
+  "front": "A 70-year-old is in clinic. Adult with depression before starting an SSRI: what must you screen for?",
   "bottom": "Personal or family history of bipolar disorder, mania or hypomania.",
   "bullets": {
    "clue": "Manic signs: greatly increased energy, severe trouble sleeping, racing thoughts.",
@@ -3292,7 +3292,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-118.svg",
-   "alt": "Two paths. Manic signs: greatly increased energy, severe trouble sleeping, racing thoughts. Positive history: involve psychiatry before prescribing."
+   "alt": "Ordered steps. Manic signs: greatly increased energy, severe trouble sleeping, racing thoughts. Positive history: involve psychiatry before prescribing."
   },
   "source": {
    "guideline": "FDA sertraline label, warning 5.4 (2023)",
@@ -3301,7 +3301,7 @@
    "alt_url": null,
    "recommendation": "Personal or family history of bipolar disorder, mania or hypomania. Positive history: involve psychiatry before prescribing."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-119",
@@ -3348,7 +3348,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-120.svg",
-   "alt": "Lab trend. Albuminuria A3, or A2 with diabetes."
+   "alt": "Decision flow. Albuminuria A3, or A2 with diabetes. Recheck creatinine and potassium in 2–4 weeks. Continue unless creatinine rises >30%; don't combine ACEi and ARB."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD; ADA Standards of Care 2026",
@@ -3376,7 +3376,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-121.svg",
-   "alt": "Schematic. Without diabetes: UACR ≥200 mg/g or heart failure. Continue until dialysis or transplant. An early eGFR dip is expected; hold during acute illness."
+   "alt": "Ordered steps. Without diabetes: UACR ≥200 mg/g or heart failure. Continue until dialysis or transplant. An early eGFR dip is expected; hold during acute illness."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -3432,7 +3432,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-123.svg",
-   "alt": "Threshold. Labetalol or nifedipine."
+   "alt": "Timeline. Labetalol or nifedipine. Aspirin 81 mg daily from 12 to 28 weeks, ideally before 16."
   },
   "source": {
    "guideline": "ACOG PB 203 (2019); ACOG CHAP practice advisory (2022)",
@@ -3460,7 +3460,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-124.svg",
-   "alt": "Schematic. A1C goal often <7%. Start low and titrate to limit GI effects; extended release helps. Contraindicated at eGFR <30; check B12 periodically on long-term use."
+   "alt": "Decision flow. A1C goal often <7%. Start low and titrate to limit GI effects; extended release helps. Contraindicated at eGFR <30; check B12 periodically on long-term use."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3488,7 +3488,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-125.svg",
-   "alt": "Schematic. ASCVD: GLP-1 RA or SGLT2i; HF: SGLT2i. CKD: SGLT2i, or GLP-1 RA. Don't wait for A1C to rise first."
+   "alt": "Two paths. ASCVD: GLP-1 RA or SGLT2i; HF: SGLT2i. CKD: SGLT2i, or GLP-1 RA. Don't wait for A1C to rise first."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3516,7 +3516,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-126.svg",
-   "alt": "Repeat cycle. Titrate by fasting glucose, such as 2 units every 3 days. Fasting goal 80–130 mg/dL without hypoglycemia. Basal >0."
+   "alt": "Threshold. Titrate by fasting glucose, such as 2 units every 3 days."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3544,7 +3544,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-127.svg",
-   "alt": "Lab trend. Atorvastatin 40–80 mg or rosuvastatin 20–40 mg."
+   "alt": "Threshold. Atorvastatin 40–80 mg or rosuvastatin 20–40 mg."
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -3572,7 +3572,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-128.svg",
-   "alt": "Decision flow. Apixaban, rivaroxaban, edoxaban or dabigatran. Warfarin only for mechanical valves or moderate-severe mitral stenosis."
+   "alt": "Two paths. Apixaban, rivaroxaban, edoxaban or dabigatran. Warfarin only for mechanical valves or moderate-severe mitral stenosis."
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -3628,7 +3628,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-130.svg",
-   "alt": "Lab trend. Steps 1–2: as-needed ICS-formoterol, no daily controller needed."
+   "alt": "Threshold. SABA-only treatment is not recommended."
   },
   "source": {
    "guideline": "GINA 2025",
@@ -3656,7 +3656,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-131.svg",
-   "alt": "Schematic. Add ICS if eosinophils ≥300, or ≥100 with exacerbations. Single-inhaler triple therapy; pulmonary rehab."
+   "alt": "Decision flow. Add ICS if eosinophils ≥300, or ≥100 with exacerbations. Single-inhaler triple therapy; pulmonary rehab."
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -3684,7 +3684,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-132.svg",
-   "alt": "Ordered steps. Alternatives: doxycycline, or a macrolide only if local resistance is <25%."
+   "alt": "Decision flow. Alternatives: doxycycline, or a macrolide only if local resistance is <25%."
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP (antibiotic choice); ATS 2025 CAP update (duration, steroids)",
@@ -3712,7 +3712,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-133.svg",
-   "alt": "Repeat cycle. Observation option: nonsevere, 6–23 months unilateral, or ≥24 months. Amoxicillin in past 30 days: amoxicillin-clavulanate. Observation needs follow-up within 48–72 hours."
+   "alt": "Timeline. Observation option: nonsevere, 6–23 months unilateral, or ≥24 months. Amoxicillin in past 30 days: amoxicillin-clavulanate."
   },
   "source": {
    "guideline": "AAP AOM 2013 (still current)",
@@ -3740,7 +3740,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-134.svg",
-   "alt": "Decision flow. Single IM benzathine penicillin is an alternative. Non-anaphylactic allergy: cephalexin; anaphylaxis: clindamycin or azithromycin. Amoxicillin in mono causes rash."
+   "alt": "Two paths. Single IM benzathine penicillin is an alternative. Non-anaphylactic allergy: cephalexin; anaphylaxis: clindamycin or azithromycin. Amoxicillin in mono causes rash."
   },
   "source": {
    "guideline": "IDSA GAS 2012 (treatment section not yet replaced)",
@@ -3796,7 +3796,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-136.svg",
-   "alt": "Two paths. Pregnancy: screen early and treat. Older adults, diabetes or catheters: do not screen or treat. Confusion without urinary symptoms: look for another cause."
+   "alt": "Ordered steps. Pregnancy: screen early and treat. Older adults, diabetes or catheters: do not screen or treat. Confusion without urinary symptoms: look for another cause."
   },
   "source": {
    "guideline": "IDSA 2019 ASB",
@@ -3896,7 +3896,7 @@
   "system": "ID",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "A 36-year-old is in clinic. Erythema migrans: how is early Lyme disease treated?",
+  "front": "A 70-year-old is in clinic. Erythema migrans: how is early Lyme disease treated?",
   "bottom": "Doxycycline for 10 days.",
   "bullets": {
    "clue": "Diagnose clinically; no serology needed.",
@@ -3917,14 +3917,14 @@
    "alt_url": "https://doi.org/10.1002/art.41562",
    "recommendation": "Doxycycline for 10 days. Alternatives: amoxicillin or cefuroxime 14 days."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-141",
   "system": "Derm",
   "blueprint_weight": "26.5%",
   "task_area": "Plan",
-  "front": "A 22-year-old is in clinic. Skin infection: cellulitis or abscess, and when to cover MRSA?",
+  "front": "A 68-year-old is in clinic. Skin infection: cellulitis or abscess, and when to cover MRSA?",
   "bottom": "Abscess: incision and drainage.",
   "bullets": {
    "clue": "Purulent: TMP-SMX or doxycycline if antibiotics needed.",
@@ -3945,7 +3945,7 @@
    "alt_url": null,
    "recommendation": "Abscess: incision and drainage. Nonpurulent cellulitis: cephalexin for streptococci."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-142",
@@ -3964,7 +3964,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-142.svg",
-   "alt": "Repeat cycle. F/TAF is not for receptive vaginal sex. HIV test every 3 months on oral PrEP; check creatinine and STIs. Rule out acute HIV before starting."
+   "alt": "Decision flow. F/TAF is not for receptive vaginal sex. HIV test every 3 months on oral PrEP; check creatinine and STIs. Rule out acute HIV before starting."
   },
   "source": {
    "guideline": "CDC PrEP 2021; CDC lenacapavir PrEP MMWR 2025; USPSTF PrEP 2023",
@@ -4020,7 +4020,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-144.svg",
-   "alt": "Repeat cycle. Recombinant zoster 2 doses from 50. Pneumococcal from 50; RSV once at 75 or 50–74 at risk. Recombinant zoster is given even after prior shingles."
+   "alt": "Two paths. Recombinant zoster 2 doses from 50. Pneumococcal from 50; RSV once at 75 or 50–74 at risk. Recombinant zoster is given even after prior shingles."
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025); no 2026 CDC adult schedule",
@@ -4104,7 +4104,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-147.svg",
-   "alt": "Lab trend. Inactivated influenza in any trimester."
+   "alt": "Threshold. Inactivated influenza in any trimester."
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025)",
@@ -4132,7 +4132,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-148.svg",
-   "alt": "Schematic. Age ≥35 and ≥15 cigarettes daily; migraine with aura. IUD, implant, DMPA or progestin pill instead. <21 days postpartum is also category 4."
+   "alt": "Ordered steps. Age ≥35 and ≥15 cigarettes daily; migraine with aura. IUD, implant, DMPA or progestin pill instead. <21 days postpartum is also category 4."
   },
   "source": {
    "guideline": "CDC US MEC 2024",
@@ -4244,7 +4244,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-152.svg",
-   "alt": "Two paths. Bothersome vasomotor symptoms. Uterus present: add progestogen; transdermal lowers VTE risk. Avoid with breast cancer, CHD, VTE, stroke or unexplained bleeding."
+   "alt": "Ordered steps. Bothersome vasomotor symptoms. Uterus present: add progestogen; transdermal lowers VTE risk. Avoid with breast cancer, CHD, VTE, stroke or unexplained bleeding."
   },
   "source": {
    "guideline": "Menopause Society 2022 HT position",
@@ -4272,7 +4272,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-153.svg",
-   "alt": "Ordered steps. Alendronate, risedronate or zoledronic acid. Very high risk: anabolic agent first, then antiresorptive; ensure calcium and vitamin D."
+   "alt": "Decision flow. Alendronate, risedronate or zoledronic acid. Very high risk: anabolic agent first, then antiresorptive; ensure calcium and vitamin D."
   },
   "source": {
    "guideline": "ACP 2023 osteoporosis; Endocrine Society 2020",
@@ -4300,7 +4300,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-154.svg",
-   "alt": "Decision flow. Combining CBT with an antidepressant is also suggested; mild disease: CBT alone. No response to an adequate dose: switch, augment, or add CBT."
+   "alt": "Two paths. Combining CBT with an antidepressant is also suggested; mild disease: CBT alone. No response to an adequate dose: switch, augment, or add CBT."
   },
   "source": {
    "guideline": "ACP 2023 major depressive disorder; FDA sertraline label boxed warning (2023)",
@@ -4356,7 +4356,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-156.svg",
-   "alt": "Repeat cycle. No X-waiver needed since 2023. Prescribe naloxone to every patient."
+   "alt": "Two paths. No X-waiver needed since 2023. Prescribe naloxone to every patient."
   },
   "source": {
    "guideline": "ASAM NPG 2020 focused update; ASAM 2024 clinical considerations",
@@ -4412,7 +4412,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-158.svg",
-   "alt": "Two paths. Diphenhydramine causes confusion and retention. Avoid sulfonylureas, PPIs >8 weeks and aspirin for primary prevention. Prefer DOAC over warfarin as initial therapy."
+   "alt": "Ordered steps. Diphenhydramine causes confusion and retention. Avoid sulfonylureas, PPIs >8 weeks and aspirin for primary prevention. Prefer DOAC over warfarin as initial therapy."
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -4440,7 +4440,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-159.svg",
-   "alt": "Lab trend. ULT: ≥2 flares a year, tophi or joint damage."
+   "alt": "Decision flow. ULT: ≥2 flares a year, tophi or joint damage. Allopurinol ≤100 mg/day; target urate <6. Continue ULT during flares; add prophylaxis 3–6 months."
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -4468,7 +4468,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-160.svg",
-   "alt": "Decision flow. Tai chi, oral NSAIDs, intra-articular steroids. Avoid glucosamine, hyaluronic acid and PRP. Tramadol is conditional; other opioids are conditionally discouraged."
+   "alt": "Ordered steps. Tai chi, oral NSAIDs, intra-articular steroids. Avoid glucosamine, hyaluronic acid and PRP. Tramadol is conditional; other opioids are conditionally discouraged."
   },
   "source": {
    "guideline": "ACR 2019 OA",
@@ -4496,7 +4496,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-161.svg",
-   "alt": "Ordered steps. Drug: NSAID or skeletal muscle relaxant. No imaging without red flags. Acetaminophen and opioids are not first-line; bed rest delays recovery."
+   "alt": "Two paths. Drug: NSAID or skeletal muscle relaxant. No imaging without red flags. Acetaminophen and opioids are not first-line; bed rest delays recovery."
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -4524,7 +4524,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-162.svg",
-   "alt": "Schematic. With vascular disease, gepants, ditans or devices may be useful. CGRP-targeting agents are a first-line prevention option."
+   "alt": "Decision flow. With vascular disease, gepants, ditans or devices may be useful. CGRP-targeting agents are a first-line prevention option."
   },
   "source": {
    "guideline": "FDA triptan labeling; AHS consensus 2021; AHS CGRP position 2024; ICHD-3 (2018)",
@@ -4580,7 +4580,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-164.svg",
-   "alt": "Decision flow. Alternatives: tacrolimus, pimecrolimus, crisaborole or ruxolitinib cream. Maintenance: a medium-potency steroid twice weekly reduces relapse."
+   "alt": "Two paths. Alternatives: tacrolimus, pimecrolimus, crisaborole or ruxolitinib cream. Maintenance: a medium-potency steroid twice weekly reduces relapse."
   },
   "source": {
    "guideline": "AAD 2023 atopic dermatitis (adult, topical therapy)",
@@ -4608,7 +4608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-165.svg",
-   "alt": "Repeat cycle. Repeat on day 9 to kill newly hatched lice. Resistance or failure: ivermectin lotion or spinosad. No \"no-nit\" policies; child stays in school."
+   "alt": "Decision flow. Repeat on day 9 to kill newly hatched lice. Resistance or failure: ivermectin lotion or spinosad. No \"no-nit\" policies; child stays in school."
   },
   "source": {
    "guideline": "AAP 2022 head lice",
@@ -4664,7 +4664,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-167.svg",
-   "alt": "Two paths. Oral vancomycin 125 mg four times daily 10 days. Recurrent: fidaxomicin or FMT after multiple recurrences. Don't test asymptomatic patients or test for cure."
+   "alt": "Decision flow. Oral vancomycin 125 mg four times daily 10 days. Recurrent: fidaxomicin or FMT after multiple recurrences. Don't test asymptomatic patients or test for cure."
   },
   "source": {
    "guideline": "IDSA/SHEA 2021 C. difficile",
@@ -4692,7 +4692,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-168.svg",
-   "alt": "Repeat cycle. Two extra doses per week is a simple approach. Check TSH every 4 weeks until midgestation. Return to prepregnancy dose after delivery."
+   "alt": "Ordered steps. Two extra doses per week is a simple approach. Check TSH every 4 weeks until midgestation. Return to prepregnancy dose after delivery."
   },
   "source": {
    "guideline": "ATA 2026 thyroid in pregnancy",
@@ -4720,7 +4720,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-169.svg",
-   "alt": "Ordered steps. At least 26 contact hours over 3–12 months, family-based. Medication from 12; surgical referral from 13 if severe. Watchful waiting is not recommended."
+   "alt": "Two paths. At least 26 contact hours over 3–12 months, family-based. Medication from 12; surgical referral from 13 if severe. Watchful waiting is not recommended."
   },
   "source": {
    "guideline": "AAP 2023 pediatric obesity",
@@ -4776,7 +4776,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-171.svg",
-   "alt": "Repeat cycle. Home BP: two readings morning and evening. Titrate to <130/80. Check technique and adherence before adding drugs."
+   "alt": "Ordered steps. Home BP: two readings morning and evening. Titrate to <130/80. Check technique and adherence before adding drugs."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -4832,7 +4832,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-173.svg",
-   "alt": "Lab trend. Recheck in 15 minutes; repeat if still low."
+   "alt": "Decision flow. Recheck in 15 minutes; repeat if still low. Unable to swallow: glucagon. Everyone on insulin needs a glucagon prescription."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -4888,7 +4888,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-175.svg",
-   "alt": "Schematic. Symptoms in large muscles, often bilateral. Stop if severe or CK >10× ULN; rechallenge lower dose or another statin. Routine baseline CK isn't needed."
+   "alt": "Ordered steps. Symptoms in large muscles, often bilateral. Stop if severe or CK >10× ULN; rechallenge lower dose or another statin. Routine baseline CK isn't needed."
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -4916,7 +4916,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-176.svg",
-   "alt": "Lab trend. Up to 30% creatinine rise is acceptable."
+   "alt": "Two paths. Up to 30% creatinine rise is acceptable. Manage high potassium rather than stop RAAS blockade. Creatinine rise >30%: look for stenosis or volume depletion."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -4944,7 +4944,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-177.svg",
-   "alt": "Schematic. Start MRA only if eGFR >30 and K <5.0. Check K and creatinine within 1 week, then periodically. Avoid NSAIDs and potassium supplements; reduce or stop MRA if K >5.5."
+   "alt": "Decision flow. Start MRA only if eGFR >30 and K <5.0. Check K and creatinine within 1 week, then periodically. Avoid NSAIDs and potassium supplements; reduce or stop MRA if K >5.5."
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -4972,7 +4972,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-178.svg",
-   "alt": "Repeat cycle. Antibody stays positive after cure. No cirrhosis: no liver follow-up after cure. Ongoing risk: annual HCV RNA; reinfection is possible."
+   "alt": "Ordered steps. Antibody stays positive after cure. No cirrhosis: no liver follow-up after cure. Ongoing risk: annual HCV RNA; reinfection is possible."
   },
   "source": {
    "guideline": "AASLD/IDSA HCV Guidance (living, reviewed 2025)",
@@ -5000,7 +5000,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-179.svg",
-   "alt": "Lab trend. Mechanical mitral valve: 2.5–3.5."
+   "alt": "Threshold. TMP-SMX, metronidazole, fluconazole and amiodarone raise INR."
   },
   "source": {
    "guideline": "CHEST VTE antithrombotic 2021",
@@ -5084,7 +5084,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-182.svg",
-   "alt": "Repeat cycle. Daytime symptoms or reliever use >2/week, night waking, activity limit. Step down after 3 months of good control. Check technique and adherence before stepping up."
+   "alt": "Timeline. Daytime symptoms or reliever use >2/week, night waking, activity limit. Step down after 3 months of good control."
   },
   "source": {
    "guideline": "GINA 2025",
@@ -5112,7 +5112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-183.svg",
-   "alt": "Repeat cycle. Review inhaler technique, adherence and blood eosinophils. Start pulmonary rehab within 4 weeks of discharge. Escalate maintenance therapy after any exacerbation needing treatment."
+   "alt": "Timeline. Review inhaler technique, adherence and blood eosinophils. Start pulmonary rehab within 4 weeks of discharge."
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -5140,7 +5140,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-184.svg",
-   "alt": "Repeat cycle. Weigh each morning after voiding, same scale and clothing. Rapid weight gain or worse dyspnea: adjust diuretic. Avoid NSAIDs; they worsen fluid retention."
+   "alt": "Decision flow. Weigh each morning after voiding, same scale and clothing. Rapid weight gain or worse dyspnea: adjust diuretic. Avoid NSAIDs; they worsen fluid retention."
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -5168,7 +5168,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-185.svg",
-   "alt": "Repeat cycle. FDA boxed warning for patients under 25. Close follow-up during the first months and dose changes. Create a safety plan; counsel on lethal means."
+   "alt": "Two paths. FDA boxed warning for patients under 25. Close follow-up during the first months and dose changes. Create a safety plan; counsel on lethal means."
   },
   "source": {
    "guideline": "FDA antidepressant boxed warning (2004, extended to under 25 in 2007)",
@@ -5196,7 +5196,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-186.svg",
-   "alt": "Decision flow. Appetite and sleep changes are common. Ask about cardiac history and family sudden death before starting. Routine ECG is not needed."
+   "alt": "Two paths. Appetite and sleep changes are common. Ask about cardiac history and family sudden death before starting. Routine ECG is not needed."
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -5280,7 +5280,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-189.svg",
-   "alt": "Repeat cycle. Retest again in 3 months. Azithromycin 1 g once in pregnancy. NAAT before 3 weeks can be falsely positive."
+   "alt": "Timeline. Retest again in 3 months. Azithromycin 1 g once in pregnancy."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5308,7 +5308,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-190.svg",
-   "alt": "Lab trend. Same nontreponemal test each time."
+   "alt": "Threshold. Same nontreponemal test each time."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5364,7 +5364,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-192.svg",
-   "alt": "Schematic. BP, weight and fetal heart tones each visit. Fundal height from 24 weeks. Telehealth visits can replace some in-person visits."
+   "alt": "Ordered steps. BP, weight and fetal heart tones each visit. Fundal height from 24 weeks. Telehealth visits can replace some in-person visits."
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -5420,7 +5420,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-194.svg",
-   "alt": "Lab trend. Weight loss ≥10% needs evaluation."
+   "alt": "Threshold. Weight loss ≥10% needs evaluation."
   },
   "source": {
    "guideline": "AAP 2022 breastfeeding policy",
@@ -5504,7 +5504,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-197.svg",
-   "alt": "Two paths. Stage 1: intact skin, non-blanchable redness. Offload pressure: reposition, support surface; Braden scale for risk."
+   "alt": "Decision flow. Stage 1: intact skin, non-blanchable redness. Offload pressure: reposition, support surface; Braden scale for risk."
   },
   "source": {
    "guideline": "NPIAP 2019 international guideline",
@@ -5532,7 +5532,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-198.svg",
-   "alt": "Ordered steps. Sensitivity = TP/(TP+FN); specificity = TN/(TN+FP). Higher prevalence raises PPV and lowers NPV. Predictive values depend on disease prevalence."
+   "alt": "Two paths. Sensitivity = TP/(TP+FN); specificity = TN/(TN+FP). Higher prevalence raises PPV and lowers NPV. Predictive values depend on disease prevalence."
   },
   "source": {
    "guideline": "Parikh 2008 sensitivity, specificity and predictive values",
@@ -5560,7 +5560,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-199.svg",
-   "alt": "Repeat cycle. Face-to-face visit within 7 or 14 days. Medication reconciliation at the visit. Readmission risk is highest in the first weeks; reconcile every medication."
+   "alt": "Two paths. Face-to-face visit within 7 or 14 days. Medication reconciliation at the visit. Readmission risk is highest in the first weeks; reconcile every medication."
   },
   "source": {
    "guideline": "CMS Transitional Care Management services (MLN908628)",
@@ -5588,7 +5588,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-200.svg",
-   "alt": "Two paths. Goal: at least 5% weight loss. Below 5%: stop or switch. Not for use in pregnancy; stop if pregnancy occurs."
+   "alt": "Ordered steps. Goal: at least 5% weight loss. Below 5%: stop or switch. Not for use in pregnancy; stop if pregnancy occurs."
   },
   "source": {
    "guideline": "AGA 2022 obesity pharmacotherapy",

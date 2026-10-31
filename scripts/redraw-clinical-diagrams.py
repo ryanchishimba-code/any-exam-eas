@@ -178,22 +178,53 @@ def anatomy_kind(card: dict) -> str | None:
     return None
 
 
+DANGLING_TITLE = {
+    "a", "an", "the", "to", "of", "for", "in", "on", "at", "by", "with", "from",
+    "that", "who", "which", "and", "or", "but", "if", "as", "into", "than",
+    "has", "is", "are", "need", "was",
+}
+
+
+def clinical_title(card: dict) -> str:
+    topic = clean(card.get("topic") or "")
+    front = card.get("front") or ""
+    front = re.sub(r"^An?\s+[^.]{0,90}?is in clinic\.\s*", "", front, flags=re.I)
+    front = re.sub(
+        r"^An?\s+\d{1,2}-(?:year|month)-old(?:\s+(?:man|woman|adult))?\s*",
+        "",
+        front,
+        flags=re.I,
+    )
+    if ":" in front:
+        left, right = front.split(":", 1)
+        left = clean(left).rstrip(".")
+        generic = bool(re.match(r"^(patient|adult|client|older|infant|child|teen|a |an )", left, re.I))
+        title = clean(re.split(r"\?", right)[0]) if generic or len(left) < 12 else left
+    else:
+        title = clean(re.split(r"\?", front)[0])
+    words = title.split()
+    lead = {"who", "what", "when", "how", "which", "should", "does", "do", "is", "are", "can"}
+    while words and words[0].lower() in lead | {"and", "or", "but"}:
+        words = words[1:]
+    title = " ".join(words) or topic
+    if len(title) > 36:
+        title = title[:36].rsplit(" ", 1)[0]
+    parts = title.split()
+    while parts and parts[-1].lower().strip(".,") in DANGLING_TITLE | {"include", "assess"}:
+        if len(parts) <= 3 and parts[-1].lower() in {"include", "assess"}:
+            break
+        if parts[-1].lower() in {"include", "assess"} or parts[-1].lower().strip(".,") in DANGLING_TITLE:
+            parts.pop()
+            continue
+        break
+    title = " ".join(parts).rstrip(".,;:(")
+    if len(title) < 8 and topic:
+        title = topic[:36]
+    return cap(title) if title else "Clinical decision"
+
+
 def heading_for(card: dict, layout: str) -> str:
-    system = clean(card.get("system") or "Clinical")
-    names = {
-        "branch": "decision flow",
-        "timeline": "timeline",
-        "threshold": "thresholds",
-        "trend": "lab trend",
-        "contrast": "two paths",
-        "ladder": "ordered steps",
-        "cycle": "repeat cycle",
-        "anatomy": "schematic",
-    }
-    heading = f"{system} {names[layout]}"
-    if len(heading) > 34:
-        heading = names[layout].capitalize()
-    return heading
+    return clinical_title(card)
 
 
 def document(layout: str, heading: str, body: str, height: int) -> str:
@@ -244,7 +275,7 @@ def draw_contrast(card: dict, items: list[str]) -> str:
     parts = [
         f'<rect x="16" y="48" width="188" height="{col_h}" rx="10" fill="#e7f5f3" stroke="{LINE}"/>',
         f'<rect x="216" y="48" width="188" height="{col_h}" rx="10" fill="{CREAM}" stroke="#f0d2c4"/>',
-        text_el(28, 70, "Do this", 14, TEAL, 700),
+        text_el(28, 70, "Do this", 14, NAVY, 700),
         text_el(228, 70, "Do not", 14, AMBER, 700),
         multiline(28, 96, left_lines, 14, INK),
         multiline(228, 96, right_lines, 14, INK),
@@ -288,9 +319,19 @@ def draw_timeline(card: dict, items: list[str]) -> str:
     return document("timeline", heading, "".join(parts), int(y + 10))
 
 
+def shared_numbers(card: dict) -> list[str]:
+    grouped: dict[str, list[str]] = {}
+    for label in numbers_of(card):
+        unit = "range" if re.search(r"[–\-]", label) and not re.search(r"[A-Za-z%]", label) else re.sub(r"^[\d.\s–\-]+", "", label) or "range"
+        grouped.setdefault(unit, []).append(label)
+    if not grouped:
+        return []
+    return max(grouped.values(), key=len)[:4]
+
+
 def draw_threshold(card: dict, items: list[str]) -> str:
     heading = heading_for(card, "threshold")
-    marks = numbers_of(card)[:4]
+    marks = shared_numbers(card) or numbers_of(card)[:4]
     parts = [f'<line x1="28" y1="92" x2="392" y2="92" stroke="{NAVY}" stroke-width="3" stroke-linecap="round"/>']
     count = len(marks)
     for index, mark in enumerate(marks):
@@ -397,17 +438,19 @@ def draw_anatomy(card: dict, items: list[str], kind: str) -> str:
 
 
 def eligible(card: dict, items: list[str]) -> list[str]:
+    # Trend lines without a shared unit, empty repeat icons, and organ clip art
+    # do not carry a readable clinical picture. Use a decision, a cutoff, or a clock.
     options = ["branch", "ladder"]
     if len(items) >= 2:
         options.append("contrast")
     if len(times_of(card)) >= 2:
         options.append("timeline")
-    if len(numbers_of(card)) >= 2:
-        options.extend(["threshold", "trend"])
-    if re.search(r"\b(every|annual|repeat|rescreen|follow[- ]up)\b", blob(card), re.I):
-        options.append("cycle")
-    if anatomy_kind(card):
-        options.append("anatomy")
+    units: dict[str, int] = {}
+    for label in numbers_of(card):
+        unit = "range" if re.search(r"[–\-]", label) and not re.search(r"[A-Za-z%]", label) else re.sub(r"^[\d.\s–\-]+", "", label) or "range"
+        units[unit] = units.get(unit, 0) + 1
+    if units and max(units.values()) >= 2:
+        options.append("threshold")
     return options
 
 
@@ -464,13 +507,13 @@ def title_of(svg: str) -> str:
 def should_redraw(exam: str, svg: str) -> bool:
     if 'class="v3"' in svg:
         return False
+    if "linearGradient" in svg:
+        return False
+    if exam in {"nclex", "fnp", "naplex"} and "data-layout=" in svg:
+        return True
     if exam in {"nclex", "fnp"}:
         return True
     if exam == "naplex":
-        if "linearGradient" in svg:
-            return False
-        if "data-layout=" in svg:
-            return True
         return title_of(svg) in TEMPLATES or svg.count("<text") < 14
     return False
 
@@ -497,6 +540,45 @@ def patch_kept(svg: str) -> str:
     return svg
 
 
+def describe_svg(svg: str) -> str:
+    labels = {
+        "contrast": "Two paths",
+        "timeline": "Timeline",
+        "threshold": "Threshold",
+        "branch": "Decision flow",
+        "ladder": "Ordered steps",
+    }
+    layout = re.search(r'data-layout="([^"]+)"', svg)
+    label = labels.get(layout.group(1) if layout else "", "Diagram")
+    title = ""
+    title_match = re.search(r"<title[^>]*>([^<]*)</title>", svg)
+    if title_match:
+        title = clean(title_match.group(1))
+    lines = []
+    for match in re.finditer(r"<text\b[^>]*>([\s\S]*?)</text>", svg):
+        spans = re.findall(r"<tspan\b[^>]*>([^<]*)</tspan>", match.group(1))
+        raw = spans or [re.sub(r"<[^>]+>", "", match.group(1))]
+        text = clean(" ".join(esc_back(part) for part in raw if part.strip()))
+        if not text or re.fullmatch(r"\d", text):
+            continue
+        if text.lower() in {"do this", "do not", "repeat"} or text == title:
+            continue
+        if re.fullmatch(r"[\d.%–\- ]+", text):
+            continue
+        lines.append(re.sub(r"^\d+\.\s*", "", text))
+    sentences = [line for line in lines if re.search(r"[.!?]$", line)]
+    desc = " ".join(sentences or lines)
+    if len(desc) > 180:
+        cut = desc[:180]
+        stop = max(cut.rfind("."), cut.rfind("!"), cut.rfind("?"))
+        desc = cut[: stop + 1] if stop > 40 else cut.rsplit(" ", 1)[0]
+    return f"{label}. {desc or title}"
+
+
+def esc_back(text: str) -> str:
+    return text.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
+
+
 def main() -> None:
     counts: dict[str, dict[str, int]] = {}
     redrawn = 0
@@ -520,7 +602,9 @@ def main() -> None:
             used = re.search(r'data-layout="([^"]+)"', svg)
             layout_name = used.group(1) if used else layout
             svg_path.write_text(svg)
-            card["diagram"] = {"file": f"svg/{card['id']}.svg", "alt": f"{layout_name} diagram for {card['id']}"}
+            card.setdefault("diagram", {})
+            card["diagram"]["file"] = f"svg/{card['id']}.svg"
+            card["diagram"]["alt"] = describe_svg(svg)
             board_counts[layout_name] = board_counts.get(layout_name, 0) + 1
             redrawn += 1
             dirty = True

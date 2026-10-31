@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-026.svg",
-   "alt": "trend diagram for naplex-026"
+   "alt": "Timeline. 5 × 3 mL × 100 units = 1,500 units. Forgetting the prime overstates supply (50 days)."
   },
   "source": {
    "guideline": "USP/ PBM days-supply conventions",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-027.svg",
-   "alt": "threshold diagram for naplex-027"
+   "alt": "Two paths. 90 × 20 = 1,800 mg/day; 900 mg per dose. 900 mg ÷ 400 mg × 5 mL = 11.25 mL BID. Mg/kg/day is the daily total; divide before converting to mL."
   },
   "source": {
    "guideline": "Lexicomp/peds labeling",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-028.svg",
-   "alt": "cycle diagram for naplex-028"
+   "alt": "Threshold. Usual treatment: 1 mg/kg every 12 hours."
   },
   "source": {
    "guideline": "CHEST 2021 VTE; labeling",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-029.svg",
-   "alt": "threshold diagram for naplex-029"
+   "alt": "Ordered steps. Rate = volume ÷ time; gtt/min = mL/h × drop factor ÷ 60. 1,000 ÷ 8 = 125 mL/h; 125 × 15 ÷ 60 = 31.25 → 31 gtt/min. Microdrip sets are 60 gtt/mL: then gtt/min equals mL/h."
   },
   "source": {
    "guideline": "Standard flow-rate method",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-031.svg",
-   "alt": "branch diagram for naplex-031"
+   "alt": "Ordered steps. Raschke: 80 units/kg bolus, then 18 units/kg/h. 80 × 90 = 7,200; 18 × 90 = 1,620 units/h ÷ 50 units/mL = 32.4 mL/h. Titrate to your lab's aPTT or anti-Xa range, not a fixed number."
   },
   "source": {
    "guideline": "CHEST 2021; institutional nomogram (Raschke)",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-032.svg",
-   "alt": "cycle diagram for naplex-032"
+   "alt": "Threshold. CDC: MME factors estimate overdose risk; they aren't a dosing conversion table. Methadone is nonlinear."
   },
   "source": {
    "guideline": "CDC Opioid Prescribing Guideline 2022",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-033.svg",
-   "alt": "trend diagram for naplex-033"
+   "alt": "Decision flow. Equivalents: hydrocortisone 20 = prednisone 5 = methylprednisolone 4 = dexamethasone 0.75 mg. 40 ÷ 5 = 8 units × 0.75 = 6 mg."
   },
   "source": {
    "guideline": "Standard glucocorticoid equivalence tables",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-034.svg",
-   "alt": "trend diagram for naplex-034"
+   "alt": "Two paths. Oral furosemide bioavailability is about 50%. 40 × 0.5 = 20 mg IV. Levofloxacin is about 99% bioavailable: 1:1. Separate oral levofloxacin from Ca, Mg, Fe, Zn by at least 2 hours."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-035.svg",
-   "alt": "threshold diagram for naplex-035"
+   "alt": "Decision flow. Twice-daily NPH to glargine: reduce total by 20%. 20 + 20 = 40 units × 0.8 = 32 units. Drip to SC: give basal insulin about 2 hours before stopping the IV infusion."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026 (Sec 16)",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-036.svg",
-   "alt": "branch diagram for naplex-036"
+   "alt": "Two paths. Ratio strength 1:1,000 = 1 g in 1,000 mL. 1 g/1,000 mL = 0.1 g/100 mL = 0.1%; = 1,000 mg/1,000 mL = 1 mg/mL. Labels now state mg/mL: 1:10,000 is 0.1 mg/mL. 1 ppm = 0.0001%."
   },
   "source": {
    "guideline": "USP <1160>",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-037.svg",
-   "alt": "contrast diagram for naplex-037"
+   "alt": "Threshold. C1V1 = C2V2."
   },
   "source": {
    "guideline": "USP <1160>",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-038.svg",
-   "alt": "ladder diagram for naplex-038"
+   "alt": "Ordered steps. Alligation: parts of high = 40 − 30 = 10; parts of low = 70 − 40 = 30. 10/40 × 100 = 25 g; 30/40 × 100 = 75 g. Check: 17.5 + 22.5 = 40 g."
   },
   "source": {
    "guideline": "USP <1160>",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-039.svg",
-   "alt": "branch diagram for naplex-039"
+   "alt": "Decision flow. MEq = mg × valence ÷ MW; KCl valence 1. 20 × 74.5 ÷ 1 = 1,490 mg = 1.49 g. Divalent ions (Ca, Mg): divide MW by 2 per mEq."
   },
   "source": {
    "guideline": "USP <1160>",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-040.svg",
-   "alt": "contrast diagram for naplex-040"
+   "alt": "Two paths. 9% = 9 g/L; NaCl dissociates into 2 particles. 9 ÷ 58.5 = 0.154 mol/L × 2 = 308 mOsm/L. Peripheral PN: keep osmolarity ≤900 mOsm/L."
   },
   "source": {
    "guideline": "USP <1160>; ASPEN",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-041.svg",
-   "alt": "ladder diagram for naplex-041"
+   "alt": "Ordered steps. Isotonic = 0.9% NaCl: 30 mL needs 0.27 g. Drug 0.3 g × 0.18 = 0.054 g NaCl equivalent; 0.27 − 0.054 = 0.216 g. E-value = grams NaCl equivalent to 1 g drug."
   },
   "source": {
    "guideline": "USP <1160>",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-042.svg",
-   "alt": "contrast diagram for naplex-042"
+   "alt": "Decision flow. Volume = weight ÷ specific gravity. Multiply for weight, divide for volume."
   },
   "source": {
    "guideline": "USP <1160>",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-043.svg",
-   "alt": "branch diagram for naplex-043"
+   "alt": "Ordered steps. Phase 1 safety and dosing; 2 efficacy and dose-finding; 3 large confirmatory trials; 4 postmarketing."
   },
   "source": {
    "guideline": "FDA 21 CFR 312; FDA EUA guidance",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-044.svg",
-   "alt": "threshold diagram for naplex-044"
+   "alt": "Two paths. Dextrose 3.4 kcal/g; protein 4 kcal/g; 20% lipid 2 kcal/mL. Dextrose is 3.4 kcal/g, not 4."
   },
   "source": {
    "guideline": "ASPEN PN Safety Consensus 2014 + ASPEN Safe PN Care Transitions 2022",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-045.svg",
-   "alt": "ladder diagram for naplex-045"
+   "alt": "Two paths. N intake = protein ÷ 6.25; losses = UUN + 4. 100 ÷ 6.25 = 16 g in; 12 + 4 = 16 g out; balance 0. Critically ill adults: protein 1.2–2.0 g/kg/day."
   },
   "source": {
    "guideline": "ASPEN/SCCM Critical Care Nutrition 2022",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-046.svg",
-   "alt": "trend diagram for naplex-046"
+   "alt": "Threshold. 100 mL/kg first 10 kg; 50 mL/kg next 10; 20 mL/kg after."
   },
   "source": {
    "guideline": "Holliday-Segar method",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-050.svg",
-   "alt": "trend diagram for naplex-050"
+   "alt": "Threshold. Target AUC 400–600 mg·h/L (MIC 1)."
   },
   "source": {
    "guideline": "ASHP/IDSA/PIDS/SIDP vancomycin 2020",

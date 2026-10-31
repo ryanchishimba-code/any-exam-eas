@@ -31,6 +31,9 @@ Yes. A cardiology item can be a history question, a drug question, or a basic-sc
 ### Where do the numbers in this book come from?
 Blood pressure statements follow the 2025 AHA/ACC guideline. Lipid statements follow the 2026 ACC/AHA dyslipidemia guideline. Acute kidney injury statements follow KDIGO 2024. Streptococcal pharyngitis follows IDSA 2012. Acute otitis media follows the AAP 2013 guideline. If a line does not name a source, treat it as a study prompt and open the guideline before you memorize a dose.
 
+### Dermatology is only 4%. Why does the chapter feel long?
+Cardiovascular disease is 11% and dermatologic disease is 4% on the NCCPA blueprint effective January 2025. A long dermatology chapter does not mean dermatology is a large share of the exam. Learn the lesions that change management (melanoma excision, purulent versus nonpurulent infection, mucosal drug rash) and do not let the photo atlas crowd out cardiovascular, pulmonary, gastrointestinal, and musculoskeletal disease.
+
 ### What if two answers both seem right?
 Read the verb again. Initial test, best test, and first-line treatment are different. If the patient is unstable, stabilize first. Then check pregnancy, kidney function, and allergy. The choice that matches the verb, and does not violate one of those three constraints, is the one the item is scoring.
 

@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-104.svg",
-      "alt": "anatomy diagram for nclex-104"
+      "alt": "Two paths. Kidney disease, high potassium, or a low-sodium cardiac diet. Teach label reading and choose herbs and spices instead of salt."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -124,7 +124,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-105.svg",
-      "alt": "contrast diagram for nclex-105"
+      "alt": "Two paths. Opioids, immobility and low fluid intake slow bowel motility. Toilet after meals, encourage fluids, give stool softener or laxative as ordered."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -151,7 +151,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-106.svg",
-      "alt": "branch diagram for nclex-106"
+      "alt": "Decision flow. Catheter duration is the main modifiable risk for CAUTI. Aseptic insertion, closed drainage, bag below bladder, daily review of need."
     },
     "source": {
       "guideline": "CDC/HICPAC CAUTI 2009 (updated 2019)",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-109.svg",
-      "alt": "ladder diagram for nclex-109"
+      "alt": "Ordered steps. Interrupted sleep, fatigue, confusion or caffeine late in the day. Group assessments and treatments to allow longer uninterrupted rest periods."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": "Up with the good, down with the bad",
     "diagram": {
       "file": "svg/nclex-110.svg",
-      "alt": "anatomy diagram for nclex-110"
+      "alt": "Two paths. Unilateral weakness after injury or stroke. Advance the cane with the weak leg; on stairs, the strong leg leads up and the cane leads down."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -313,7 +313,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-112.svg",
-      "alt": "contrast diagram for nclex-112"
+      "alt": "Ordered steps. Terminal illness with a focus on comfort over cure. Treat pain and dyspnea, provide mouth care, support the family. Withholding opioids because of addiction fears at end of life."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -340,7 +340,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-113.svg",
-      "alt": "ladder diagram for nclex-113"
+      "alt": "Decision flow. Death has been pronounced and the family is arriving. Lay flat, raise head slightly, close eyes, remove tubes unless an autopsy is expected."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -367,7 +367,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-114.svg",
-      "alt": "branch diagram for nclex-114"
+      "alt": "Two paths. Cognitive impairment, agitation, or weakness during care. Allow choices, keep the room warm, involve family, use simple cues. Rushing or forcing care on an agitated client."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -394,7 +394,7 @@
     "mnemonic": "6 Ps: Pain, Pallor, Pulselessness, Paresthesia, Paralysis, Poikilothermia",
     "diagram": {
       "file": "svg/nclex-115.svg",
-      "alt": "anatomy diagram for nclex-115"
+      "alt": "Decision flow. Pain out of proportion, pain with passive stretch, numbness, pallor. Do not elevate or ice; loosen dressings and expect the cast bivalved per order."
     },
     "source": {
       "guideline": "StatPearls Acute Compartment Syndrome 2023 and BOAST 10",
@@ -421,7 +421,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-116.svg",
-      "alt": "branch diagram for nclex-116"
+      "alt": "Ordered steps. Weight loss, poor intake, weakness or slow wound healing. Screen nutrition, weigh regularly, record intake, refer to the dietitian."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-117.svg",
-      "alt": "ladder diagram for nclex-117"
+      "alt": "Ordered steps. Any medication administration step. Use two identifiers and check the order against the MAR. Skipping the check because the client is familiar."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -475,7 +475,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-118.svg",
-      "alt": "contrast diagram for nclex-118"
+      "alt": "Decision flow. Errors with these drugs can cause significant client harm. Use independent double checks and smart pumps per facility policy. Treating high-alert drugs like routine medications."
     },
     "source": {
       "guideline": "ISMP High-Alert Medications 2024",
@@ -556,7 +556,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-121.svg",
-      "alt": "ladder diagram for nclex-121"
+      "alt": "Two paths. Platelets fall more than 50% about 5 to 10 days after starting heparin. Stop all heparin, including flushes and coated lines; expect a non-heparin anticoagulant."
     },
     "source": {
       "guideline": "ASH VTE Guidelines: Heparin-Induced Thrombocytopenia 2018",
@@ -583,7 +583,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-122.svg",
-      "alt": "branch diagram for nclex-122"
+      "alt": "Ordered steps. INR above the target range, bruising or bleeding. Teach consistent vitamin K intake and regular INR checks. Telling the client to avoid all green vegetables."
     },
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
@@ -610,7 +610,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-123.svg",
-      "alt": "anatomy diagram for nclex-123"
+      "alt": "Decision flow. Head trauma, black stools or blood in urine on a DOAC. Anticipate a stat head CT and 4F-PCC per institutional protocol for factor Xa inhibitors. Using vitamin K to reverse a DOAC."
     },
     "source": {
       "guideline": "ACC ECDP Bleeding on Oral Anticoagulants 2020; FDA Andexxa safety update 2025",
@@ -664,7 +664,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-125.svg",
-      "alt": "anatomy diagram for nclex-125"
+      "alt": "Two paths. Concentrated IV potassium is a high-alert medication. Check kidney function and urine output; monitor ECG at higher rates."
     },
     "source": {
       "guideline": "ISMP 2024",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-126.svg",
-      "alt": "contrast diagram for nclex-126"
+      "alt": "Decision flow. Reactions are most likely in the first 15 minutes. Two-person verification before starting; stay with the client early on. Slowing the transfusion instead of stopping it."
     },
     "source": {
       "guideline": "AABB Standards 35th ed 2026",
@@ -772,7 +772,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-129.svg",
-      "alt": "branch diagram for nclex-129"
+      "alt": "Ordered steps. Fever or redness at a central line site. Change the dressing per protocol and review the need for the line daily. Leaving an unneeded central line in place."
     },
     "source": {
       "guideline": "INS 2024; CDC Intravascular Catheter Infection 2011 (2017 update)",
@@ -799,7 +799,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-130.svg",
-      "alt": "contrast diagram for nclex-130"
+      "alt": "Two paths. TPN bag delayed or stopped suddenly. Use a filter and pump; monitor glucose and the central line site. Increasing the TPN rate to catch up."
     },
     "source": {
       "guideline": "ASPEN PN Safety Summit consensus 2024",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-131.svg",
-      "alt": "threshold diagram for nclex-131"
+      "alt": "Threshold. 176 lb is 80 kg. Convert before you multiply."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -853,7 +853,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-132.svg",
-      "alt": "ladder diagram for nclex-132"
+      "alt": "Decision flow. Sedation usually comes before respiratory depression. Use a sedation scale and check respiratory rate and SpO2. Ignoring rising sedation before the respiratory rate falls."
     },
     "source": {
       "guideline": "CDC Opioid Prescribing 2022",
@@ -880,7 +880,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-133.svg",
-      "alt": "contrast diagram for nclex-133"
+      "alt": "Two paths. Family member using the button, or the client is very sleepy. Teach the family not to press it; monitor sedation and breathing. Letting family members dose the client by proxy."
     },
     "source": {
       "guideline": "ISMP 2024",
@@ -907,7 +907,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-134.svg",
-      "alt": "ladder diagram for nclex-134"
+      "alt": "Ordered steps. Swollen lips, tongue or face after starting an ACE inhibitor. Teach that dry cough is common and to report swelling right away."
     },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-135.svg",
-      "alt": "anatomy diagram for nclex-135"
+      "alt": "Ordered steps. Bradycardia, hypotension, dizziness or fatigue. Check apical pulse and BP before each dose; teach not to stop abruptly."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -961,7 +961,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-136.svg",
-      "alt": "branch diagram for nclex-136"
+      "alt": "Decision flow. Weakness, cramps, or ringing in the ears. Monitor potassium, daily weight, intake and output; give IV furosemide slowly. Giving high-dose IV furosemide rapidly."
     },
     "source": {
       "guideline": "AHA/ACC/HFSA Heart Failure 2022",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-137.svg",
-      "alt": "ladder diagram for nclex-137"
+      "alt": "Two paths. Vomiting, diarrhea, coarse tremor or confusion. Hold the dose, check a lithium level, and keep sodium and fluid intake steady. Cutting dietary sodium, which raises lithium levels."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-138.svg",
-      "alt": "anatomy diagram for nclex-138"
+      "alt": "Decision flow. Fever, rigidity, confusion and unstable vital signs. Cool the client and support fluids per order or protocol; monitor vital signs closely."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-139.svg",
-      "alt": "anatomy diagram for nclex-139"
+      "alt": "Two paths. Severe headache or high BP after a tyramine-rich meal. Teach the food list and to avoid drug interactions. Allowing aged cheese or cured meats."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1069,7 +1069,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-140.svg",
-      "alt": "contrast diagram for nclex-140"
+      "alt": "Ordered steps. Agitation, fever, sweating, tremor, clonus and diarrhea. Review drug interactions; teach early warning signs. Combining SSRIs with other serotonergic drugs without monitoring."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1096,7 +1096,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-141.svg",
-      "alt": "anatomy diagram for nclex-141"
+      "alt": "Ordered steps. Rising creatinine, low urine output or hearing loss. Time trough or AUC-based levels as ordered; watch for infusion reactions. Drawing a level at the wrong time."
     },
     "source": {
       "guideline": "ASHP/IDSA vancomycin 2020",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-142.svg",
-      "alt": "trend diagram for nclex-142"
+      "alt": "Threshold. Hives, wheezing or low BP after a drug dose."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-143.svg",
-      "alt": "branch diagram for nclex-143"
+      "alt": "Decision flow. Long-term steroid use. Monitor glucose, BP and infection signs. Stopping long-term steroids abruptly."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-144.svg",
-      "alt": "anatomy diagram for nclex-144"
+      "alt": "Two paths. Palpitations or tremor may mean the dose is too high. Separate it from calcium and iron; check TSH as ordered. Taking it with calcium or iron."
     },
     "source": {
       "guideline": "ATA Hypothyroidism 2014",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-145.svg",
-      "alt": "anatomy diagram for nclex-145"
+      "alt": "Decision flow. Using albuterol more often means asthma control is worse. Use a spacer and rinse the mouth after inhaled corticosteroids. Using SABA alone without a controller medication."
     },
     "source": {
       "guideline": "GINA 2026",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-146.svg",
-      "alt": "contrast diagram for nclex-146"
+      "alt": "Ordered steps. Ataxia, nystagmus or slurred speech. Teach good oral hygiene to reduce gingival hyperplasia. Mixing IV phenytoin with dextrose."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-147.svg",
-      "alt": "branch diagram for nclex-147"
+      "alt": "Two paths. Loss of reflexes, respiratory depression or low urine output. Check reflexes, respirations and output often during the infusion. Continuing the infusion when reflexes are absent."
     },
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, updated 2024)",

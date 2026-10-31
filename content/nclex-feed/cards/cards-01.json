@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-001.svg",
-      "alt": "contrast diagram for nclex-001"
+      "alt": "Two paths. Any threat to airway or breathing outranks comfort, elimination or teaching needs. Apply ABCs first, then Maslow: physiologic needs before safety and psychosocial needs."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-002.svg",
-      "alt": "branch diagram for nclex-002"
+      "alt": "Decision flow. A new, acute or unexpected change; expected findings for the diagnosis can wait. Rank acute over chronic, unstable over stable, and actual over potential problems."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-003.svg",
-      "alt": "ladder diagram for nclex-003"
+      "alt": "Ordered steps. Vital signs, hygiene, ambulation, and intake and output for stable clients. Delegate routine tasks; keep assessment, teaching, evaluation and clinical judgment with the RN."
     },
     "source": {
       "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-004.svg",
-      "alt": "branch diagram for nclex-004"
+      "alt": "Ordered steps. Reinforcing teaching, giving many routine medications, and collecting data on stable clients. The RN keeps initial assessment, care planning, unstable clients and initial teaching."
     },
     "source": {
       "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
@@ -124,7 +124,7 @@
     "mnemonic": "Task, Circumstance, Person, Direction, Supervision",
     "diagram": {
       "file": "svg/nclex-005.svg",
-      "alt": "cycle diagram for nclex-005"
+      "alt": "Two paths. Every delegation question tests one or more of these five rights. Confirm each right before handing off a task, then evaluate the outcome."
     },
     "source": {
       "guideline": "NCSBN/ANA National Guidelines for Nursing Delegation 2019",
@@ -151,7 +151,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-006.svg",
-      "alt": "ladder diagram for nclex-006"
+      "alt": "Decision flow. The client must be competent, informed and signing voluntarily, without sedation. Confirm understanding; if the client has questions, hold the signing and notify the provider."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-007.svg",
-      "alt": "contrast diagram for nclex-007"
+      "alt": "Two paths. Capacity means the client understands, appreciates, reasons and communicates a choice. Explore the reason, explain consequences, notify the provider, and document the refusal."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -205,7 +205,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-008.svg",
-      "alt": "branch diagram for nclex-008"
+      "alt": "Decision flow. The client loses capacity and family members disagree with the directive. Follow the valid directive and the proxy; involve the provider and ethics team."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-009.svg",
-      "alt": "contrast diagram for nclex-009"
+      "alt": "Ordered steps. A friend, coworker or relative asks about a client's condition. Share for treatment with the care team; limit other uses to the minimum necessary."
     },
     "source": {
       "guideline": "HHS HIPAA Privacy Rule, minimum necessary standard (45 CFR 164.502(b), current 2026)",
@@ -283,7 +283,7 @@
     "mnemonic": "SBAR: Situation, Background, Assessment, Recommendation",
     "diagram": {
       "file": "svg/nclex-011.svg",
-      "alt": "ladder diagram for nclex-011"
+      "alt": "Ordered steps. Calling a provider about a change in a client's condition. Have vital signs, labs, medications and allergies ready; state a clear request."
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -337,7 +337,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-013.svg",
-      "alt": "ladder diagram for nclex-013"
+      "alt": "Two paths. A medication error or fall happened, with or without harm. Documenting that an incident report was filed in the chart."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -364,7 +364,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-014.svg",
-      "alt": "branch diagram for nclex-014"
+      "alt": "Decision flow. Slurred speech, alcohol odor, repeated errors or missing controlled substances. Have the supervisor remove the colleague from client care, and follow facility policy."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -391,7 +391,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-015.svg",
-      "alt": "contrast diagram for nclex-015"
+      "alt": "Ordered steps. Injuries that do not match the history or the child's developmental stage. Ensure safety, document objectively, and report to child protective services per state law."
     },
     "source": {
       "guideline": "CAPTA, as amended through P.L. 118-193 (2024)",
@@ -418,7 +418,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-016.svg",
-      "alt": "branch diagram for nclex-016"
+      "alt": "Decision flow. Fear of the caregiver, unexplained bruises, poor hygiene or missed care. Interview alone, document findings, follow state reporting rules, and provide safety resources."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -445,7 +445,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-017.svg",
-      "alt": "contrast diagram for nclex-017"
+      "alt": "Two paths. Restraints are used only after less restrictive measures have failed. Get an order; check circulation and skin; release, give fluids and toileting per policy."
     },
     "source": {
       "guideline": "CMS CoP 42 CFR 482.13(e) (current eCFR)",
@@ -472,7 +472,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-018.svg",
-      "alt": "anatomy diagram for nclex-018"
+      "alt": "Decision flow. The client has new needs at home, such as equipment, medications or follow-up. Assess home support early; refer to case management, social work and home health."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -499,7 +499,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-019.svg",
-      "alt": "ladder diagram for nclex-019"
+      "alt": "Two paths. Ethics questions ask which principle is at stake in a decision. Advocate for the client's informed choices and for safe, fair care."
     },
     "source": {
       "guideline": "ANA Code of Ethics 2025",
@@ -553,7 +553,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-021.svg",
-      "alt": "branch diagram for nclex-021"
+      "alt": "Ordered steps. Walking wounded are green; no breathing after opening the airway is black. Treat red tags first, and reassess all clients often as conditions change."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -580,7 +580,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-022.svg",
-      "alt": "contrast diagram for nclex-022"
+      "alt": "Ordered steps. A disaster creates an urgent need for inpatient beds. Discharge stable, ambulatory clients; keep unstable clients and recent post-op clients."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -607,7 +607,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-023.svg",
-      "alt": "ladder diagram for nclex-023"
+      "alt": "Decision flow. A client is moving to another unit or another facility. Give a structured report including code status, allergies, lines and medications due."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -634,7 +634,7 @@
     "mnemonic": "PDSA: Plan, Do, Study, Act",
     "diagram": {
       "file": "svg/nclex-024.svg",
-      "alt": "ladder diagram for nclex-024"
+      "alt": "Two paths. The unit wants to lower fall or CAUTI rates. Test a small change, measure results, then adopt, adapt or abandon it. Rolling out a large change without measuring its effect."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -688,7 +688,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-026.svg",
-      "alt": "contrast diagram for nclex-026"
+      "alt": "Ordered steps. Swallowing problems, mobility limits, home safety needs or financial concerns. Speech for swallowing, PT for gait, OT for daily living, social work for resources."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -742,7 +742,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-028.svg",
-      "alt": "cycle diagram for nclex-028"
+      "alt": "Two paths. Admission to a hospital or facility that receives Medicare or Medicaid funds. Ask whether the client has a directive, give written information, and document."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -769,7 +769,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-029.svg",
-      "alt": "branch diagram for nclex-029"
+      "alt": "Decision flow. A telephone or verbal order is given by a provider. Read back the full order, confirm drug, dose and route, and get it signed per policy."
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -796,7 +796,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-030.svg",
-      "alt": "cycle diagram for nclex-030"
+      "alt": "Decision flow. Assistive personnel report a change in vital signs or the client's condition. Follow up promptly, reassess the client yourself, and give feedback to the delegatee."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -823,7 +823,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-031.svg",
-      "alt": "branch diagram for nclex-031"
+      "alt": "Two paths. Conflict between coworkers is affecting client care. Use direct, respectful communication; escalate to the manager if it is unresolved."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -850,7 +850,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-032.svg",
-      "alt": "contrast diagram for nclex-032"
+      "alt": "Ordered steps. The float nurse is unfamiliar with the specialty unit. Assign stable clients that match skills; pair for specialty tasks or devices."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -877,7 +877,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-033.svg",
-      "alt": "ladder diagram for nclex-033"
+      "alt": "Decision flow. An unattended screen or a request to use another person's login. Lock screens, follow downtime procedures, and protect or shred printouts."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -904,7 +904,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-034.svg",
-      "alt": "branch diagram for nclex-034"
+      "alt": "Two paths. A competent adult insists on leaving before discharge. Explain risks, notify the provider, ask the client to sign the AMA form, and document."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -931,7 +931,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-035.svg",
-      "alt": "ladder diagram for nclex-035"
+      "alt": "Ordered steps. An error by the nurse that injures a client. Follow standards of care, and document care accurately and promptly. Calling an error malpractice when no harm resulted."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -958,7 +958,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-036.svg",
-      "alt": "contrast diagram for nclex-036"
+      "alt": "Two paths. Off-duty emergency care given in good faith without pay. Act within your skills, and stay until equal or higher-level help arrives."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -985,7 +985,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-037.svg",
-      "alt": "cycle diagram for nclex-037"
+      "alt": "Ordered steps. Standard precautions apply to every client, every time. Use alcohol rub before and after contact; wear gloves for body fluid contact. Believing gloves can replace hand hygiene."
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1012,7 +1012,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-038.svg",
-      "alt": "branch diagram for nclex-038"
+      "alt": "Decision flow. A resistant organism is present in a wound, urine or stool. Private room or cohort, dedicated stethoscope, and cleaning of high-touch surfaces."
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1039,7 +1039,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-039.svg",
-      "alt": "contrast diagram for nclex-039"
+      "alt": "Two paths. New watery diarrhea after recent antibiotic use. Contact precautions, gown and gloves, and sporicidal cleaning such as bleach. Relying on alcohol-based hand rub alone."
     },
     "source": {
       "guideline": "IDSA/SHEA C. difficile focused update 2021",
@@ -1066,7 +1066,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-040.svg",
-      "alt": "ladder diagram for nclex-040"
+      "alt": "Ordered steps. Large droplets spread within about 6 feet of the client. Surgical mask and private room or cohort; the client wears a mask for transport."
     },
     "source": {
       "guideline": "CDC/HICPAC Isolation Precautions 2007 (Appendix A updated 2024)",
@@ -1093,7 +1093,7 @@
     "mnemonic": "My Chicken Has TB: Measles, Chickenpox, Herpes zoster (disseminated), TB",
     "diagram": {
       "file": "svg/nclex-041.svg",
-      "alt": "branch diagram for nclex-041"
+      "alt": "Decision flow. Small particles stay in the air and spread over long distances. Negative-pressure room, fit-tested N95, door closed; the client masks for transport."
     },
     "source": {
       "guideline": "CDC TB Infection Control in Health-Care Settings 2005",
@@ -1120,7 +1120,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-042.svg",
-      "alt": "contrast diagram for nclex-042"
+      "alt": "Ordered steps. Putting on PPE before entering, and removing it when leaving an isolation room. Remove gloves, goggles, gown, then mask; perform hand hygiene right after."
     },
     "source": {
       "guideline": "CDC Sequence for Donning and Doffing PPE (CDC Stacks record, 2014)",
@@ -1147,7 +1147,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-043.svg",
-      "alt": "ladder diagram for nclex-043"
+      "alt": "Two paths. Limited private rooms are available for new admissions. Cohort clients with the same infection; keep immunocompromised clients away from infection."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1201,7 +1201,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-045.svg",
-      "alt": "ladder diagram for nclex-045"
+      "alt": "Decision flow. An exposure to blood or other body fluids occurred. Report promptly, test the source, and start HIV PEP ideally within hours, by 72 hours."
     },
     "source": {
       "guideline": "USPHS/CDC Occupational HIV PEP Guidelines 2025",
@@ -1228,7 +1228,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-046.svg",
-      "alt": "branch diagram for nclex-046"
+      "alt": "Two paths. Older age, sedation, diuretics, confusion or unsteady gait. Bed low and locked, call light in reach, nonskid socks, and a toileting schedule. Using restraints to prevent falls."
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -1255,7 +1255,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-047.svg",
-      "alt": "contrast diagram for nclex-047"
+      "alt": "Decision flow. Giving medications or blood, or collecting specimens. Check two identifiers against the order and the client's ID band. Using the room number or bed location as an identifier."
     },
     "source": {
       "guideline": "Joint Commission National Performance Goals 2026",
@@ -1282,7 +1282,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-048.svg",
-      "alt": "ladder diagram for nclex-048"
+      "alt": "Ordered steps. Pre-procedure verification before any invasive procedure. The whole team stops for a time-out to confirm client, procedure and site."
     },
     "source": {
       "guideline": "Joint Commission NPG.01.06.01-.03 (former Universal Protocol) 2026",
@@ -1309,7 +1309,7 @@
     "mnemonic": "RACE: Rescue, Alarm, Contain, Extinguish; PASS: Pull, Aim, Squeeze, Sweep",
     "diagram": {
       "file": "svg/nclex-049.svg",
-      "alt": "contrast diagram for nclex-049"
+      "alt": "Two paths. Smoke or flame near a client or in a room. Rescue, alarm, contain by closing doors, then extinguish or evacuate. Using the elevator during a fire."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1336,7 +1336,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-050.svg",
-      "alt": "anatomy diagram for nclex-050"
+      "alt": "Ordered steps. A history of seizures or a new seizure risk. Bed low; during a seizure, turn to side, time it, nothing in the mouth. Restraining the client or inserting a tongue blade."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",

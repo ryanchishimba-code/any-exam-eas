@@ -32,6 +32,10 @@
 | Acute kidney injury | Creatinine and urine output, and stop the nephrotoxin | KDIGO acute kidney injury guidance, 2024 |
 | Stage 2 hypertension in an adult who is not pregnant | Two first-line drugs from different classes | 2025 AHA/ACC high blood pressure guideline |
 | Pregnancy with hypertension | Do not start an ACE inhibitor or an ARB | ACOG Practice Bulletin 222, 2020 |
+| Suspected melanoma | Excise with a narrow margin; do not shave through the base | AAD melanoma guidance; Breslow depth requires the full lesion |
+| COPD, symptomatic | Spirometry: post-bronchodilator FEV1/FVC under 0.70 | GOLD 2026 |
+| Diabetic ketoacidosis, potassium under 3.5 | Hold insulin and replace potassium | ADA Standards of Care in Diabetes, 2026 |
+| Minor stroke or high-risk TIA, after a bleed is excluded | Short dual antiplatelet therapy, about 21 days | AHA/ASA 2021 secondary prevention |
 
 These are study prompts. The dose on a real patient comes from the current label and the full guideline, not from this table.
 

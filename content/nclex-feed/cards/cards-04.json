@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-149.svg",
-      "alt": "anatomy diagram for nclex-149"
+      "alt": "Two paths. Rising heart rate, fast breathing, new confusion or low urine output. Reassess, compare with baseline, and escalate early with the rapid response team."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-150.svg",
-      "alt": "ladder diagram for nclex-150"
+      "alt": "Ordered steps. Results outside the range with symptoms or ECG changes. Recheck to rule out a hemolyzed sample; report critical values promptly."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": "ROME: Respiratory Opposite, Metabolic Equal",
     "diagram": {
       "file": "svg/nclex-151.svg",
-      "alt": "contrast diagram for nclex-151"
+      "alt": "Decision flow. PH below 7.35 is acidosis; above 7.45 is alkalosis. Check pH first, then PaCO2 for respiratory, then HCO3 for metabolic. Reading PaCO2 or HCO3 before the pH."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -124,7 +124,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-153.svg",
-      "alt": "anatomy diagram for nclex-153"
+      "alt": "Ordered steps. Confusion, headache or seizures with a low sodium level. Restrict fluids or give ordered saline; monitor sodium often."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-155.svg",
-      "alt": "ladder diagram for nclex-155"
+      "alt": "Decision flow. Recent food intake, missing consent or unremoved jewelry. Complete the checklist: ID, consent, allergies, NPO status, labs."
     },
     "source": {
       "guideline": "ASA Fasting 2023",
@@ -205,7 +205,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-156.svg",
-      "alt": "anatomy diagram for nclex-156"
+      "alt": "Two paths. Low SpO2, crackles, absent bowel sounds or bloating. Incentive spirometer 10 times an hour while awake; early walking. Feeding a client with an ileus before bowel function returns."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-157.svg",
-      "alt": "branch diagram for nclex-157"
+      "alt": "Decision flow. Restlessness, fast pulse, pale skin, low urine output. Check the dressing and drains, apply pressure, call the provider. Waiting for a large BP drop before acting."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-158.svg",
-      "alt": "contrast diagram for nclex-158"
+      "alt": "Two paths. One-sided leg swelling, warmth or pain. Prevent with early walking, SCDs and anticoagulants as ordered. Massaging the leg, which may dislodge a clot."
     },
     "source": {
       "guideline": "CHEST VTE guideline 2021 update",
@@ -313,7 +313,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-160.svg",
-      "alt": "anatomy diagram for nclex-160"
+      "alt": "Ordered steps. Previous contrast reaction, low eGFR, or current metformin use. Hold metformin as ordered based on eGFR; encourage hydration. Assuming a shellfish allergy is a contrast allergy."
     },
     "source": {
       "guideline": "ACR Manual on Contrast Media 2026",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-165.svg",
-      "alt": "anatomy diagram for nclex-165"
+      "alt": "Decision flow. Gurgling, falling SpO2 or visible secretions. Apply suction only while withdrawing the catheter. Suctioning for too long, which can cause hypoxia."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -502,7 +502,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-167.svg",
-      "alt": "branch diagram for nclex-167"
+      "alt": "Two paths. High glucose, ketones, acidosis and a large anion gap. Check potassium before starting insulin and monitor it closely. Starting insulin before potassium is known."
     },
     "source": {
       "guideline": "ADA Standards of Care 2026",
@@ -529,7 +529,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-168.svg",
-      "alt": "threshold diagram for nclex-168"
+      "alt": "Threshold. Monitor output hourly, avoid nephrotoxins, notify the provider."
     },
     "source": {
       "guideline": "KDIGO AKI 2012 (current; 2026 update not yet final)",
@@ -556,7 +556,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-169.svg",
-      "alt": "ladder diagram for nclex-169"
+      "alt": "Ordered steps. Easy bruising, bleeding gums or a high INR. Bleeding precautions, soft toothbrush, and electric razor. Giving IM injections without considering bleeding risk."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -583,7 +583,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-170.svg",
-      "alt": "contrast diagram for nclex-170"
+      "alt": "Two paths. Toxicity signs or a dose change. Time draws correctly and report abnormal results. Drawing a level at the wrong time."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -610,7 +610,7 @@
     "mnemonic": "VEAL CHOP: Variable-Cord, Early-Head, Accel-OK, Late-Placenta",
     "diagram": {
       "file": "svg/nclex-171.svg",
-      "alt": "anatomy diagram for nclex-171"
+      "alt": "Ordered steps. Deceleration begins after the peak of the contraction. Continue monitoring; give oxygen only for maternal hypoxia, per ACOG CPG 10."
     },
     "source": {
       "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
@@ -637,7 +637,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-172.svg",
-      "alt": "anatomy diagram for nclex-172"
+      "alt": "Decision flow. Weight gain, crackles and edema suggest overload. Daily weights and intake and output; slow the IV and notify provider. Missing overload in clients with heart or kidney disease."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -664,7 +664,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-173.svg",
-      "alt": "ladder diagram for nclex-173"
+      "alt": "Ordered steps. Flat neck veins and blood loss suggest hypovolemia; crackles and JVD suggest cardiogenic. Place two large-bore IVs and give fluids or blood as ordered; reassess often."
     },
     "source": {
       "guideline": "AHA Scientific Statement: Contemporary Management of Cardiogenic Shock 2017",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-174.svg",
-      "alt": "anatomy diagram for nclex-174"
+      "alt": "Decision flow. Fever, fast heart rate, fast breathing, confusion and high lactate. Cultures before antibiotics as ordered, then antibiotics and fluids quickly."
     },
     "source": {
       "guideline": "Surviving Sepsis Campaign 2026",
@@ -718,7 +718,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-175.svg",
-      "alt": "branch diagram for nclex-175"
+      "alt": "Two paths. Unresponsive with no normal breathing or pulse. Allow full recoil, minimize pauses, and use the AED as soon as possible. Long pauses in compressions."
     },
     "source": {
       "guideline": "AHA BLS/ACLS 2025",
@@ -745,7 +745,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-176.svg",
-      "alt": "cycle diagram for nclex-176"
+      "alt": "Ordered steps. Chest pain, ST elevation, sweating or nausea. Aspirin as ordered; oxygen only when SpO2 is low. Giving oxygen to every client by routine."
     },
     "source": {
       "guideline": "ACC/AHA ACS 2025",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-179.svg",
-      "alt": "anatomy diagram for nclex-179"
+      "alt": "Decision flow. Very high BP with signs of organ damage. Give IV medicine as ordered with close BP monitoring. Dropping BP too quickly, which can harm organs."
     },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
@@ -853,7 +853,7 @@
     "mnemonic": "FAST: Face, Arm, Speech, Time",
     "diagram": {
       "file": "svg/nclex-180.svg",
-      "alt": "anatomy diagram for nclex-180"
+      "alt": "Two paths. Face droop, arm weakness or speech change. Get a CT quickly; thrombolysis may be given within 4.5 hours if eligible. Giving anything by mouth before a swallow screen."
     },
     "source": {
       "guideline": "AHA/ASA Acute Ischemic Stroke 2026",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-183.svg",
-      "alt": "timeline diagram for nclex-183"
+      "alt": "Timeline. A seizure of 5 minutes or more, or repeated seizures without recovery. Protect the airway, give oxygen, time the seizure."
     },
     "source": {
       "guideline": "AES Convulsive Status Epilepticus 2016",
@@ -961,7 +961,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-184.svg",
-      "alt": "anatomy diagram for nclex-184"
+      "alt": "Two paths. Injury at T6 or above with headache, high BP and flushing. Check for bladder distention first, then bowel and skin. Laying the client flat."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-185.svg",
-      "alt": "branch diagram for nclex-185"
+      "alt": "Ordered steps. Both can cause respiratory failure. Monitor vital capacity and swallowing; prepare for ventilation. Missing a falling vital capacity."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-186.svg",
-      "alt": "anatomy diagram for nclex-186"
+      "alt": "Decision flow. Chronic CO2 retention can worsen with excess oxygen. Teach pursed-lip breathing and the tripod position; check ABGs as ordered."
     },
     "source": {
       "guideline": "GOLD 2026",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-187.svg",
-      "alt": "anatomy diagram for nclex-187"
+      "alt": "Ordered steps. A silent chest, inability to speak in full sentences, or new confusion. Give a SABA, oxygen and systemic corticosteroids as ordered, and call for help."
     },
     "source": {
       "guideline": "GINA 2026",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-190.svg",
-      "alt": "contrast diagram for nclex-190"
+      "alt": "Two paths. HHS often affects older adults with type 2 diabetes and severe dehydration. Give IV fluids first, then insulin, with close potassium monitoring."
     },
     "source": {
       "guideline": "ADA Standards of Care 2026",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-191.svg",
-      "alt": "anatomy diagram for nclex-191"
+      "alt": "Decision flow. High fever, fast heart rate, agitation or delirium. Cool the client and give a beta blocker and antithyroid drugs as ordered. Warming the client or missing the dysrhythmia risk."
     },
     "source": {
       "guideline": "ATA Hyperthyroidism 2016",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-192.svg",
-      "alt": "ladder diagram for nclex-192"
+      "alt": "Decision flow. Low BP, low sodium, high potassium and low glucose. Give IV saline as ordered; monitor glucose and electrolytes. Delaying steroids while waiting for test results."
     },
     "source": {
       "guideline": "Endocrine Society Primary Adrenal Insufficiency 2016",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-193.svg",
-      "alt": "ladder diagram for nclex-193"
+      "alt": "Ordered steps. SIADH: low sodium. DI: high sodium with large amounts of dilute urine. Fluid restriction for SIADH; replace fluids and give desmopressin for DI."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-194.svg",
-      "alt": "anatomy diagram for nclex-194"
+      "alt": "Two paths. Edema, high potassium or falling urine output. Daily weights, limit sodium, and dose medicines for kidney function. Giving nephrotoxic drugs, such as NSAIDs, without review."
     },
     "source": {
       "guideline": "KDIGO CKD 2024",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-195.svg",
-      "alt": "anatomy diagram for nclex-195"
+      "alt": "Decision flow. Hematemesis, black stools, fast heart rate or low BP. Then send labs and type and crossmatch; transfuse as ordered. Missing early signs of shock, such as a rising heart rate."
     },
     "source": {
       "guideline": "ACG Upper GI and Ulcer Bleeding 2021",
@@ -1312,7 +1312,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-197.svg",
-      "alt": "trend diagram for nclex-197"
+      "alt": "Threshold. Giving too much fluid, which causes edema and compartment problems."
     },
     "source": {
       "guideline": "ABA Burn Shock Resuscitation 2023",
@@ -1339,7 +1339,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-198.svg",
-      "alt": "cycle diagram for nclex-198"
+      "alt": "Ordered steps. Hives, wheezing, throat tightness, vomiting or low BP after exposure. Call for help, position the client, and repeat epinephrine in 5 to 15 minutes if needed."
     },
     "source": {
       "guideline": "AAAAI/ACAAI Anaphylaxis 2023",
@@ -1366,7 +1366,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-199.svg",
-      "alt": "contrast diagram for nclex-199"
+      "alt": "Two paths. Severe pain, fever, chest pain or new breathing problems. Oxygen only if hypoxic; fluids only if dehydrated; watch for acute chest syndrome."
     },
     "source": {
       "guideline": "ASH SCD Pain 2020",
@@ -1393,7 +1393,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-200.svg",
-      "alt": "branch diagram for nclex-200"
+      "alt": "Decision flow. High BP, headache, vision changes or right upper quadrant pain. Give magnesium sulfate and BP medicines as ordered; monitor labs and reflexes."
     },
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, reaffirmed 2023; Clinical Practice Update 2024)",

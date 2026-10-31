@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-101.svg",
-   "alt": "anatomy diagram for naplex-101"
+   "alt": "Ordered steps. Drugs at ≥140/90, or ≥130/80 with CVD, diabetes, CKD or PREVENT risk ≥7.5%. Thiazide-type, dihydropyridine CCB, ACEi or ARB. Stage 2: two drugs, ideally one pill."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-102.svg",
-   "alt": "anatomy diagram for naplex-102"
+   "alt": "Decision flow. Organ damage defines emergency; no damage = urgency, treat orally. IV nicardipine, clevidipine, labetalol or esmolol; lower ≤25% in the first hour."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-103.svg",
-   "alt": "branch diagram for naplex-103"
+   "alt": "Two paths. CKD with albuminuria: ACEi or ARB, titrated to max tolerated. HFrEF: GDMT (ARNI/ACEi/ARB, beta-blocker, MRA, SGLT2i). Post-MI: beta-blocker plus ACEi/ARB."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN; KDIGO 2024",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-105.svg",
-   "alt": "branch diagram for naplex-105"
+   "alt": "Two paths. Non-DHP CCBs, thiazolidinediones, NSAIDs. Also avoid cilostazol, dronedarone and class IC antiarrhythmics. Amlodipine is neutral and OK for BP or angina."
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-106.svg",
-   "alt": "contrast diagram for naplex-106"
+   "alt": "Decision flow. Per guideline, the IV dose should equal or exceed the total daily oral dose. Give IV furosemide at least 40 mg; titrate to urine output and symptoms."
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-107.svg",
-   "alt": "cycle diagram for naplex-107"
+   "alt": "Threshold. Other ASCVD: LDL-C <70. Measure Lp(a) once in every adult."
   },
   "source": {
    "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline (replaces 2018 cholesterol)",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-108.svg",
-   "alt": "timeline diagram for naplex-108"
+   "alt": "Timeline. DAPT usually 12 months; selected patients can drop aspirin after 1 month on ticagrelor."
   },
   "source": {
    "guideline": "ACC/AHA/ACEP 2025 ACS",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-109.svg",
-   "alt": "timeline diagram for naplex-109"
+   "alt": "Timeline. Ischemic stroke or significant head trauma within 3 months; intracranial tumor. If eligible, give the lytic within 30 minutes of arrival."
   },
   "source": {
    "guideline": "ACC/AHA/ACEP 2025 ACS",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-110.svg",
-   "alt": "cycle diagram for naplex-110"
+   "alt": "Ordered steps. Call 911 if pain isn't better 5 minutes after the first dose. Keep in original glass bottle; long-acting nitrates need a 10–14 h nitrate-free interval."
   },
   "source": {
    "guideline": "AHA/ACC 2023 Chronic Coronary Disease",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-111.svg",
-   "alt": "ladder diagram for naplex-111"
+   "alt": "Two paths. Age 65–74 (1) + female (1) + hypertension (1) = 3. Anticoagulate at ≥2 in men or ≥3 in women; dose DOACs by label criteria."
   },
   "source": {
    "guideline": "2023 ACC/AHA/ACCP/HRS AF",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-112.svg",
-   "alt": "anatomy diagram for naplex-112"
+   "alt": "Decision flow. Avoid non-DHP CCBs in HFrEF. Flecainide or propafenone only without structural heart disease; add an AV nodal blocker."
   },
   "source": {
    "guideline": "2023 ACC/AHA/ACCP/HRS AF",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-113.svg",
-   "alt": "timeline diagram for naplex-113"
+   "alt": "Timeline. Rivaroxaban: 15 mg BID for 21 days, then 20 mg daily with food. Dabigatran and edoxaban need 5–10 days of parenteral lead-in."
   },
   "source": {
    "guideline": "CHEST 2021 VTE (2024 compendium); 2026 AHA/ACC multisociety acute PE guideline",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-114.svg",
-   "alt": "contrast diagram for naplex-114"
+   "alt": "Ordered steps. High bleeding risk: mechanical prophylaxis instead. Stop at discharge; don't routinely extend. ASH prefers LMWH over DOACs for inpatient medical prophylaxis."
   },
   "source": {
    "guideline": "ASH 2018 VTE prophylaxis; CHEST",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-117.svg",
-   "alt": "anatomy diagram for naplex-117"
+   "alt": "Ordered steps. Single antiplatelet (aspirin or clopidogrel) for symptomatic PAD. Consider rivaroxaban 2.5 mg BID plus aspirin; high-intensity statin; supervised exercise."
   },
   "source": {
    "guideline": "ACC/AHA 2024 PAD",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-118.svg",
-   "alt": "ladder diagram for naplex-118"
+   "alt": "Two paths. ASCVD: GLP-1 RA or SGLT2i with proven benefit. Obesity: GLP-1 RA or tirzepatide for weight; CKD: SGLT2i plus consider GLP-1 RA."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-119.svg",
-   "alt": "threshold diagram for naplex-119"
+   "alt": "Threshold. Hypoglycemia risk, comorbidities and life expectancy drive the goal."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-120.svg",
-   "alt": "trend diagram for naplex-120"
+   "alt": "Threshold. Titrate 2–4 units (or 10–15%) once or twice weekly to fasting 80–130."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-121.svg",
-   "alt": "threshold diagram for naplex-121"
+   "alt": "Decision flow. Level 1 <70; level 2 <54; level 3 needs assistance. Unable to swallow: glucagon (nasal 3 mg or injection); prescribe it for insulin users."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-123.svg",
-   "alt": "branch diagram for naplex-123"
+   "alt": "Ordered steps. Nausea, vomiting, diarrhea, constipation; gallbladder disease; pancreatitis. Stop and seek care for severe abdominal pain; don't combine with a DPP-4 inhibitor."
   },
   "source": {
    "guideline": "ADA Standards 2026; FDA labeling",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-124.svg",
-   "alt": "cycle diagram for naplex-124"
+   "alt": "Timeline. Healthy younger adults: about 1.6 mcg/kg/day. Empty stomach 30–60 minutes before breakfast; recheck TSH in 6–8 weeks."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current, latest = 2014); ATA 2026 pregnancy guideline",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-125.svg",
-   "alt": "contrast diagram for naplex-125"
+   "alt": "Decision flow. Switch methimazole to PTU as soon as pregnancy is confirmed. Counsel: fever or sore throat on either drug means a CBC for agranulocytosis."
   },
   "source": {
    "guideline": "ATA 2016 hyperthyroidism; ATA 2026 pregnancy/postpartum thyroid guideline",

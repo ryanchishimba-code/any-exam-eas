@@ -57,3 +57,13 @@
 --    sg_notes, sg_reading_progress, and sg_chapter_progress still point at the
 --    old chapter ids. Restore the dump taken before ingest so those ids match.
 --    Do not delete those user tables as part of the undo.
+--
+-- PANCE derm trim and closing chapters (prepared, not applied):
+--   CREATE TABLE sg_guides_backup_pance_tail AS TABLE sg_guides;
+--   CREATE TABLE sg_chapters_backup_pance_tail AS TABLE sg_chapters;
+-- Dry run after this manuscript: pance 23 files / 24056 words.
+-- nclex 17 / 40141, naplex 17 / 29628, aanp-fnp 17 / 52154 are unchanged.
+-- Apply only the pance ingest, and only if the file count is still 23.
+-- Undo by copying the backup tables back onto sg_guides and sg_chapters.
+-- Do not delete highlights, bookmarks, notes, or progress.
+-- Do not run this against production as part of the draft.

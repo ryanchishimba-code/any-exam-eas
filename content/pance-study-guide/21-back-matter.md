@@ -14,6 +14,10 @@ On the morning of the exam, eat, leave early, and use the 45 minutes of break ti
 
 If the report shows a thin system, rebuild a short plan around that system and the task attached to it. Diagnosis items, history items, and drug items are not interchangeable. The blueprint scores both axes.
 
+A thin dermatology line is not the same problem as a thin cardiovascular line. Dermatology is 4%. Cardiovascular disease is 11%, pulmonary 9%, gastrointestinal and nutrition 8%, and musculoskeletal 8% (NCCPA blueprint effective January 2025). Put the next week on the largest thin system, and on the task you missed inside it. Diagnosis is 18% of the task axis, history and physical examination 16%, clinical intervention 16%, and pharmaceutical therapeutics 15%. A plan that only rereads pictures leaves those weights untouched.
+
+The passing score is 350 on a 200 to 800 scale. A practice percentage is not that number. Use the official score report for the systems and tasks, then return to the chapter that cites the guideline for that system. Do not add a new book in the week after a score.
+
 <!-- /premium -->
 
 ---
