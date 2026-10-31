@@ -1,0 +1,86 @@
+n,id,key_text,db_old_key,blind_key,final_key,db_old_to_final,blind_to_final,new_option,new_option_final_letter
+1,cmr81p6fx00231y08oynn7b2y,Topical corticosteroids,A,B,D,A>D B>B C>E D>C,A>A B>D C>B D>E E>C,Topical antifungal cream,A
+2,cmr81vi4x00071y54fstoiqcb,Topical corticosteroids,A,A,B,A>B B>A C>E D>C,A>B B>D C>A D>E E>C,Oral methotrexate,D
+3,cmr81vim5000c1y54pucssfy2,Perimenopause,A,A,D,A>D B>B C>E D>A,A>D B>B C>C D>E E>A,Pheochromocytoma,C
+4,cmqgrcbzm00001yxd8eb4qzdl,Orthostatic hypotension,A,B,A,A>A B>C C>B D>D,A>E B>A C>C D>B E>D,Benign positional vertigo,E
+5,cmqgdhx1r000e1yr87kzvb89z,CT chest with contrast and tissue diagnosis planning,A,A,C,A>C B>B C>D D>E,A>C B>B C>D D>A E>E,Sputum culture and repeat chest X-ray,A
+6,cmqgdhvxc00041yr8s7oufad9,Start magnesium sulfate and plan delivery,B,C,C,A>D B>C C>E D>B,A>D B>A C>C D>E E>B,Start labetalol and repeat labs in 1 week,A
+7,cmqgdhzv700181yr8vn2g56vb,Hold ACE inhibitor and evaluate for prerenal vs intrinsic cause,A,B,E,A>E B>C C>B D>D,A>A B>E C>C D>B E>D,Switch lisinopril to losartan,A
+9,cmr828cjo00501y8w5v35zr1g,Hypertensive emergency,A,B,C,A>C B>B C>A D>E,A>D B>C C>B D>A E>E,Hypertensive urgency,D
+10,cmqwuk5sz00151yzejbgq0p2j,Immune-mediated inflammation,A,A,A,A>A B>D C>E D>C,A>A B>D C>B D>E E>C,Drug-induced injury,B
+11,cmqwuviet00gv1yzey62zuc1i,Insulin deficiency,A,B,E,A>E B>A C>C D>D,A>B B>E C>A D>C E>D,Excess cortisol secretion,B
+12,cmqwuvohk00i01yzeezvjnsb5,Colonoscopy,A,A,B,A>B B>E C>A D>D,A>B B>E C>A D>C E>D,Flexible sigmoidoscopy,C
+13,cmqwuwzlu00jq1yze7u83w7se,Acute psychotic episode due to substance use,A,A,C,A>C B>A C>B D>E,A>C B>A C>B D>E E>D,Serotonin syndrome,D
+14,cmqghspl6000g1y91p8e7z8y0,Ankle sprain,A,B,A,A>A B>B C>D D>E,A>C B>A C>B D>D E>E,Gout flare,C
+15,cmqghsvpv000v1y91x5mmbshd,Type 2 diabetes mellitus,A,A,B,A>B B>D C>E D>A,A>B B>C C>D D>E E>A,Cystic fibrosis-related diabetes,C
+16,cmqgjpl4f001m1y4vw0uqmbvc,Administer calcium gluconate,A,B,B,A>B B>C C>D D>E,A>A B>B C>C D>D E>E,Administer IV furosemide,A
+18,cmqgquzto000b1y4vkacfpb7z,ACE inhibitor-induced cough,B,C,D,A>B B>D C>E D>A,A>B B>C C>D D>E E>A,Gastroesophageal reflux,C
+20,cmqgrep1g000a1yxdmc0xrzuy,Herniated disc,A,B,D,A>D B>E C>A D>B,A>C B>D C>E D>A E>B,Spinal abscess,C
+21,cmqgssfrz000k1yy7qr6o846k,Post-streptococcal glomerulonephritis,A,A,A,A>A B>E C>C D>B,A>A B>E C>C D>D E>B,IgA nephropathy (Berger),D
+23,cmqgz35ti003b1ybcxaibpre0,Assess right ventricular function (CT or echocardiography) and measure cardiac troponin,B,C,B,A>D B>B C>E D>A,A>D B>C C>B D>E E>A,Place an inferior vena cava filter before starting anticoagulation,C
+25,cmqgdhxfb000i1yr8ob6juadu,Supportive care and counseling on transmission,A,B,B,A>B B>E C>A D>D,A>C B>B C>E D>A E>D,Start corticosteroids for hepatitis,C
+26,cmqgdhxzh000o1yr8d8gfte03,"RIPE therapy (rifampin, isoniazid, pyrazinamide, ethambutol)",A,A,C,A>C B>D C>E D>B,A>C B>D C>A D>E E>B,Rifampin and isoniazid for 4 months,A
+27,cmqgdi0jo001f1yr85orv24y5,Emergent ophthalmology referral and topical fortified antibiotics,A,A,C,A>C B>E C>D D>B,A>C B>E C>D D>A E>B,Topical antiviral drops and recheck in 3 days,A
+28,cmqghstgy000q1y91032ht4mq,Diabetic ketoacidosis,A,B,C,A>C B>B C>D D>A,A>E B>C C>B D>D E>A,Acute gastroparesis,E
+29,cmqgqkq04001c1ydwo1tpww8r,Initiate an ACE inhibitor,B,C,A,A>D B>A C>E D>C,A>D B>B C>A D>E E>C,Start a thiazide diuretic,B
+30,cmqgmv8oi001v1yc5wlyf95b0,Conduct a psychiatric evaluation,A,A,C,A>C B>D C>E D>B,A>C B>D C>E D>B E>A,Start a short benzodiazepine course,A
+32,cmqgdhwrl000b1yr8w1m5y7xj,"Short-acting bronchodilator, systemic corticosteroid, and antibiotic",A,A,B,A>B B>E C>C D>D,A>B B>E C>A D>C E>D,Inhaled corticosteroid monotherapy without antibiotic,A
+33,cmqgdhx8k000g1yr8tsp8guvq,Upper endoscopy,A,B,C,A>C B>E C>A D>D,A>B B>C C>E D>A E>D,Esophageal manometry first,B
+34,cmqgdhxpf000l1yr8wmzd23e3,Urgent MRI lumbar spine,A,A,A,A>A B>B C>D D>E,A>A B>B C>D D>C E>E,Lumbar epidural steroid,C
+35,cmqgdhy9i000r1yr83kaqdiry,IV antibiotics pending culture and orthopedic drainage if no improvement,A,B,C,A>C B>E C>D D>A,A>B B>C C>E D>D E>A,Oral antibiotics and recheck in 1 week,B
+36,cmqgdhyqq000w1yr8m5d2wt4g,Mood stabilizer such as valproate or atypical antipsychotic,A,A,C,A>C B>D C>A D>E,A>C B>D C>A D>E E>B,Benzodiazepine monotherapy,B
+37,cmqgdhyu6000x1yr8ihh5gojy,Benzodiazepines (e.g. lorazepam) with thiamine before glucose,A,B,E,A>E B>A C>B D>C,A>D B>E C>A D>B E>C,Naltrexone started in the ED,D
+38,cmqgdhyxk000y1yr82zfew59w,Postpartum obsessive-compulsive disorder,A,A,D,A>D B>C C>B D>A,A>D B>C C>E D>B E>A,Generalized anxiety disorder,E
+39,cmqgqkqwq001n1ydwck3mt81g,Advise humidification and nasal saline,B,C,C,A>B B>C C>E D>A,A>B B>D C>C D>E E>A,Order CT imaging of the sinuses,D
+40,cmqgrj6o2000q1yxdeva2kibc,Discontinue ibuprofen,B,C,E,A>C B>E C>D D>B,A>C B>A C>E D>D E>B,Start oral prednisone,A
+42,cmqgqv00s000d1y4v7pwbsto0,Hospitalize the patient for safety,A,B,B,A>B B>C C>D D>E,A>A B>B C>C D>D E>E,Discharge with a safety plan,A
+44,cmqgrcc8900021yxd83ioanv1,Septic shock,A,B,D,A>D B>B C>C D>E,A>A B>D C>B D>C E>E,Hypovolemic shock,A
+45,cmqgsq08l000a1yy7i6mhp407,Prerenal acute kidney injury,C,D,E,A>B B>A C>E D>C,A>B B>A C>D D>E E>C,Rhabdomyolysis-induced AKI,D
+46,cmqgz640d001a1yqyc8kosyxy,Surgical repair,A,A,E,A>E B>A C>D D>B,A>E B>A C>D D>C E>B,Emergency laparotomy,C
+47,cmqgzabyc006w1yqytdql8i26,Acute pancreatitis,A,B,A,A>A B>C C>E D>B,A>D B>A C>C D>E E>B,Acute hepatitis,D
+48,cmqgzdqh4000k1ydkws60piut,Cartilage degeneration,A,A,B,A>B B>C C>D D>A,A>B B>C C>D D>A E>E,Crystal deposition,E
+49,cmqgzdoib000f1ydku70gs4mh,Start a proton pump inhibitor,A,B,E,A>E B>A C>B D>C,A>D B>E C>A D>B E>C,Start metoclopramide daily,D
+50,cmqwuof9p007h1yzedl5q8tbi,Prescribe amoxicillin,A,A,B,A>B B>D C>A D>C,A>B B>D C>E D>A E>C,Prescribe azithromycin,E
+52,cmr828byx004u1y8w5za40ha9,Generalized Anxiety Disorder,A,B,D,A>D B>A C>B D>C,A>E B>D C>A D>B E>C,Persistent depressive disorder,E
+53,cmqgz2vsi002k1ybcqxbjlx0p,Acute coronary syndrome,A,A,A,A>A B>D C>C D>B,A>A B>D C>C D>E E>B,Stable angina,E
+54,cmqgz1a3r001h1ybc9tp8vtd6,Start intravenous heparin,A,A,E,A>E B>A C>B D>C,A>E B>A C>B D>C E>D,Start aspirin and clopidogrel,D
+55,cmqgdhxby000h1yr8ok0d8hve,Emergent upper endoscopy after resuscitation,A,B,D,A>D B>B C>A D>C,A>E B>D C>B D>A E>C,Balloon tamponade as first-line therapy,E
+56,cmqgdhz4a00101yr8bqaqfj2q,Ceftriaxone IM plus doxycycline with metronidazole,A,A,E,A>E B>A C>D D>C,A>E B>A C>B D>D E>C,Oral levofloxacin monotherapy,B
+57,cmqgdhzl600151yr8z85nd5i6,Hold warfarin; consider oral vitamin K if bleeding persists,A,B,E,A>E B>B C>A D>D,A>C B>E C>B D>A E>D,IV vitamin K 10 mg with four-factor PCC,C
+58,cmqght2cj001e1y916gpncny1,Herniated disc,A,A,E,A>E B>A C>B D>D,A>E B>A C>B D>C E>D,Spinal tumor,C
+59,cmqghsngr000a1y91tsnvqvj5,Type 1 diabetes mellitus,A,B,B,A>B B>C C>D D>A,A>E B>B C>C D>D E>A,Stress hyperglycemia,E
+60,cmqght4xc00281y91zh2yygfv,Lumbar herniated disc,A,A,B,A>B B>E C>A D>C,A>B B>E C>A D>C E>D,Piriformis syndrome,D
+61,cmqgjphjt000l1y4vn078nnz4,Prescribe topical corticosteroids,A,B,E,A>E B>D C>C D>A,A>B B>E C>D D>C E>A,Prescribe oral antibiotics,B
+62,cmqgjpk2s001b1y4vozmkjrdi,Urine pregnancy test,C,D,A,A>C B>E C>A D>D,A>C B>E C>B D>A E>D,Order a serum CA-125,B
+63,cmqgjpgde000b1y4vbcthnd7f,Inhibition of ovulation,A,A,B,A>B B>E C>D D>C,A>B B>E C>D D>A E>C,Increased prolactin secretion,A
+64,cmqgjph82000i1y4vxuz8je00,Anterior shoulder dislocation,A,B,A,A>A B>D C>C D>E,A>B B>A C>D D>C E>E,Acromioclavicular separation,B
+65,cmqgjphgh000k1y4vdls4y778,Prescribe acetaminophen and ibuprofen,A,A,D,A>D B>B C>A D>E,A>D B>B C>A D>E E>C,Prescribe acetaminophen with codeine,C
+66,cmqgjphqo000n1y4v5r5aiguz,Administer systemic corticosteroids,A,B,A,A>A B>C C>D D>B,A>E B>A C>C D>D E>B,Add a leukotriene receptor antagonist,E
+67,cmqgjpid0000t1y4v3v8z30ju,Immune thrombocytopenic purpura (ITP),A,A,D,A>D B>E C>B D>A,A>D B>C C>E D>B E>A,Acute lymphoblastic leukemia,C
+68,cmqglg1lt00031yqjhj1wweqi,Order a mixing study,D,E,B,A>A B>D C>C D>B,A>A B>D C>E D>C E>B,Start a heparin infusion,E
+69,cmqglg4wk000r1yqje2495r4n,Major depressive disorder,A,A,C,A>C B>E C>A D>D,A>C B>E C>A D>B E>D,Persistent depressive disorder,B
+70,cmqglg63600131yqjju34uvdc,Type 1 diabetes mellitus,A,B,D,A>D B>A C>C D>E,A>B B>D C>A D>C E>E,Stress hyperglycemia,B
+71,cmqglg7pv001k1yqjmaw7w89q,Screen for chlamydia and gonorrhea,C,D,C,A>D B>A C>C D>E,A>D B>B C>A D>C E>E,Order serologic HSV testing,B
+72,cmqgqknsk000k1ydw4hq51p81,Hydroxychloroquine,B,C,D,A>C B>D C>B D>E,A>C B>A C>D D>B E>E,Topical tacrolimus,A
+73,cmqgqkp8800121ydwnzvwopgw,Perform an HIV test,A,A,E,A>E B>C C>D D>B,A>E B>C C>D D>B E>A,Test for herpes simplex IgG,A
+74,cmqgqv257000y1y4vlr9yr0st,Ankylosing spondylitis,B,C,E,A>B B>E C>D D>A,A>B B>C C>E D>D E>A,Spinal stenosis,C
+75,cmqgqv5s8001y1y4vx16p403s,Benign prostatic hyperplasia,A,B,C,A>C B>E C>D D>A,A>B B>C C>E D>D E>A,Overactive bladder,B
+76,cmqgqv0z4000n1y4vxaczmw92,Stable angina,A,A,D,A>D B>B C>A D>E,A>D B>B C>C D>A E>E,Prinzmetal angina,C
+78,cmqgr7srb00031y8rkd7ket8p,Hospitalize the patient for safety,B,C,A,A>B B>A C>E D>C,A>B B>D C>A D>E E>C,Discharge with family supervision,D
+79,cmqgr7uta000n1y8romy4cszx,Acute exacerbation of asthma,A,A,A,A>A B>D C>B D>E,A>A B>D C>B D>C E>E,Foreign body aspiration,C
+80,cmqgr7x0k00191y8ryf3e3w8l,Renal calculi,A,B,A,A>A B>E C>C D>B,A>D B>A C>E D>C E>B,Renal infarction,D
+81,cmqgr80g000281y8rxpaaz1st,Refer for dialysis evaluation,A,A,D,A>D B>C C>A D>B,A>D B>C C>A D>B E>E,Stop lisinopril immediately,E
+82,cmqgtre03000d1yd2j1c4f92s,Major depressive disorder,A,B,A,A>A B>D C>E D>B,A>C B>A C>D D>E E>B,Somatic symptom disorder,C
+83,cmqgtre7y000g1yd2s1kkj8ln,Administer desmopressin,A,A,B,A>B B>A C>E D>C,A>B B>A C>D D>E E>C,Administer protamine sulfate,D
+84,cmqgz4dmu00401ybc9o1wv0qi,Airway hyperresponsiveness,A,A,D,A>D B>A C>E D>B,A>D B>A C>E D>C E>B,Alveolar wall destruction,C
+85,cmqgz630p000x1yqym1jj1way,Acute pancreatitis due to alcohol use,B,C,A,A>D B>A C>C D>E,A>D B>B C>A D>C E>E,Pancreatitis due to hypercalcemia,B
+86,cmqgdhvhz00001yr8ngjgwd40,Activate the cath lab for primary PCI,B,C,E,A>B B>E C>C D>D,A>B B>A C>E D>C E>D,Give IV metoprolol and repeat ECG in 1 hour,A
+87,cmqgdhvn200011yr8wf38gisq,Ceftriaxone plus azithromycin,B,C,D,A>B B>D C>A D>C,A>B B>E C>D D>A E>C,Oral doxycycline monotherapy,E
+88,cmqgdhvtz00031yr8h4h10sk0,Administer IV alteplase if no contraindications,B,C,A,A>C B>A C>D D>B,A>C B>E C>A D>D E>B,Lower BP to under 140/90 before alteplase,E
+89,cmqgdhwg500081yr8ezkgmr4k,Ventilation-perfusion scan,A,B,B,A>B B>C C>A D>D,A>E B>B C>C D>A E>D,MRI pulmonary angiography,E
+90,cmqgdhwyf000d1yr8lu8n4ktp,CT pulmonary angiography,A,A,E,A>E B>B C>A D>D,A>E B>B C>A D>D E>C,Start aspirin and discharge,C
+91,cmqgdhx54000f1yr8amb7o2hk,Acute pancreatitis,A,B,C,A>C B>D C>A D>E,A>B B>C C>D D>A E>E,Alcoholic hepatitis,B
+92,cmqgdhxw5000n1yr8md0s7w6l,"Blood cultures, lumbar puncture, and empiric IV ceftriaxone plus vancomycin",A,A,C,A>C B>D C>A D>E,A>C B>D C>B D>A E>E,"Dexamethasone alone, then antibiotics after MRI",B
+93,cmqgdhy66000q1yr8xjgscz3c,Broad-spectrum IV antibiotics and urgent surgical evaluation,A,B,B,A>B B>E C>D D>A,A>C B>B C>E D>D E>A,Hyperbaric oxygen therapy alone,C
+94,cmqgdhycy000s1yr8iosy3sbi,Neurosurgical consultation and blood pressure control,A,A,D,A>D B>E C>A D>C,A>D B>E C>A D>B E>C,Start IV heparin for vasospasm,B
+95,cmqgdhz7o00111yr88vhbbyxj,Progestin-only method or nonhormonal IUD,A,B,E,A>E B>C C>A D>B,A>D B>E C>C D>A E>B,Combined vaginal ring with ethinyl estradiol,D
