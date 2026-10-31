@@ -111,15 +111,15 @@
     "id": "pance-100",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Resting tremor, rigidity and bradykinesia in a 72-year-old: first-line drug?",
-    "bottom": "Parkinson disease: start levodopa.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "72-year-old with slowness and a hand tremor at rest: which exam findings define Parkinson disease?",
+    "bottom": "Resting tremor, rigidity and bradykinesia: Parkinson disease.",
     "bullets": {
-      "clue": "Asymmetric resting tremor, rigidity, bradykinesia, shuffling gait.",
+      "clue": "Asymmetric onset, shuffling gait.",
       "treat": "Carbidopa-levodopa, lowest effective dose.",
       "trap": "Avoid dopamine agonists over 70 or with hallucinations."
     },
-    "back": "Parkinson disease: start levodopa. Key clue: Asymmetric resting tremor, rigidity, bradykinesia, shuffling gait. First-line: Carbidopa-levodopa, lowest effective dose. Exam trap: Avoid dopamine agonists over 70 or with hallucinations.",
+    "back": "Resting tremor, rigidity and bradykinesia: Parkinson disease. Key clue: Asymmetric onset, shuffling gait. First-line: Carbidopa-levodopa, lowest effective dose. Exam trap: Avoid dopamine agonists over 70 or with hallucinations.",
     "word_count": 28,
     "mnemonic": null,
     "diagram": {
@@ -192,16 +192,16 @@
     "id": "pance-103",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Clinical Intervention",
-    "front": "Ascending weakness after diarrhea vs fatigable ptosis: diagnosis and treatment?",
-    "bottom": "GBS: IVIG or plasma exchange. MG: pyridostigmine.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Ascending weakness after diarrhea versus fatigable ptosis: which exam findings point to GBS and which to myasthenia gravis?",
+    "bottom": "GBS: ascending weakness with lost reflexes. MG: fatigable ptosis, worse with use.",
     "bullets": {
-      "clue": "GBS: ascending weakness, lost reflexes. MG: worse with use.",
+      "clue": "Both threaten breathing.",
       "treat": "GBS: IVIG or plasma exchange; monitor vital capacity. MG: pyridostigmine; AChR antibodies.",
       "trap": "Do not give plasma exchange then IVIG."
     },
-    "back": "GBS: IVIG or plasma exchange. MG: pyridostigmine. Key clue: GBS: ascending weakness, lost reflexes. MG: worse with use. First-line: GBS: IVIG or plasma exchange; monitor vital capacity. MG: pyridostigmine; AChR antibodies. Exam trap: Do not give plasma exchange then IVIG.",
-    "word_count": 40,
+    "back": "GBS: ascending weakness with lost reflexes. MG: fatigable ptosis, worse with use. Key clue: Both threaten breathing. First-line: GBS: IVIG or plasma exchange; monitor vital capacity. MG: pyridostigmine; AChR antibodies. Exam trap: Do not give plasma exchange then IVIG.",
+    "word_count": 39,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-103.svg",
@@ -300,16 +300,16 @@
     "id": "pance-107",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Sudden one-sided facial droop including the forehead vs burning feet in diabetes: treatment?",
-    "bottom": "Bell palsy: steroids within 72 h. Neuropathy pain: four drug classes.",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Sudden facial droop with forehead involvement versus burning feet in diabetes: which exam findings identify Bell palsy and diabetic neuropathy?",
+    "bottom": "Bell: whole face weak, forehead included. Forehead spared: central. Neuropathy: stocking pattern.",
     "bullets": {
-      "clue": "Bell: whole face, forehead included.",
+      "clue": "Acute onset.",
       "treat": "Bell: prednisone within 72 h; protect the eye. Neuropathy: gabapentinoid, SNRI, TCA or sodium-channel blocker.",
-      "trap": "Forehead spared means central; image."
+      "trap": "Antivirals alone are not recommended for Bell palsy."
     },
-    "back": "Bell palsy: steroids within 72 h. Neuropathy pain: four drug classes. Key clue: Bell: whole face, forehead included. First-line: Bell: prednisone within 72 h; protect the eye. Neuropathy: gabapentinoid, SNRI, TCA or sodium-channel blocker. Exam trap: Forehead spared means central; image.",
-    "word_count": 41,
+    "back": "Bell: whole face weak, forehead included. Forehead spared: central. Neuropathy: stocking pattern. Key clue: Acute onset. First-line: Bell: prednisone within 72 h; protect the eye. Neuropathy: gabapentinoid, SNRI, TCA or sodium-channel blocker. Exam trap: Antivirals alone are not recommended for Bell palsy.",
+    "word_count": 42,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-107.svg",

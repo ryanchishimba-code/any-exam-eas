@@ -187,5 +187,32 @@
       "alt_url": "https://www.ameriburn.org/burn-care-team/resources/guidelines-for-burn-patient-referral",
       "recommendation": "ABA 2023 burn shock CPG: adults with ≥20% TBSA burns: initiate resuscitation at about 2 mL/kg/%TBSA, titrated to urine output; ABA referral guidelines: full-thickness, partial-thickness ≥10% TBSA, face/hands/feet/genitalia/joints, inhalation, chemical and high-voltage injuries."
     }
+  },
+  {
+    "id": "pance-155",
+    "system": "Dermatologic",
+    "blueprint_weight": "4%",
+    "task_area": "History Taking and Physical Examination",
+    "front": "Sacral wound in a bedbound patient: how do stages 1 to 4, unstageable and deep tissue injury differ on exam?",
+    "bottom": "Depth sets stage: dermis 2, fat 3, muscle or bone 4.",
+    "bullets": {
+      "clue": "Stage 1 is intact skin with non-blanchable erythema.",
+      "treat": "Offload pressure: reposition; support surface.",
+      "trap": "Slough or eschar hiding the base: unstageable. Maroon, non-blanchable: deep tissue."
+    },
+    "back": "Depth sets stage: dermis 2, fat 3, muscle or bone 4. Key clue: Stage 1 is intact skin with non-blanchable erythema. First-line: Offload pressure: reposition; support surface. Exam trap: Slough or eschar hiding the base: unstageable. Maroon, non-blanchable: deep tissue.",
+    "word_count": 40,
+    "mnemonic": null,
+    "diagram": {
+      "file": "svg/pance-155.svg",
+      "alt": "Pressure injury stages: stage 1 intact skin with non-blanchable erythema, stage 2 partial thickness with dermis, stage 3 full thickness with fat, stage 4 exposed muscle or bone; unstageable when slough or eschar hides the base; deep tissue injury is maroon non-blanchable skin."
+    },
+    "source": {
+      "guideline": "NPIAP Pressure Injury Stages (2016 staging system); International Guideline: Prevention and Treatment of Pressure Ulcers/Injuries, 4th edition (EPUAP/NPIAP/PPPIA, 2026)",
+      "year": "2016 / 2026",
+      "url": "https://doi.org/10.1097/WON.0000000000000281",
+      "alt_url": "https://www.internationalguideline.com/the-international-guideline",
+      "recommendation": "NPIAP 2016 staging: stage 1 intact skin with localized non-blanchable erythema; stage 2 partial-thickness loss with exposed dermis; stage 3 full-thickness skin loss with visible fat; stage 4 full-thickness loss with exposed fascia, muscle, tendon, ligament, cartilage or bone; unstageable when slough or eschar obscures the wound base; deep tissue pressure injury is persistent non-blanchable deep red, maroon or purple discoloration. International Guideline 2026 has chapters on classification, repositioning and mobilization, support surfaces and heel pressure injuries."
+    }
   }
 ]
