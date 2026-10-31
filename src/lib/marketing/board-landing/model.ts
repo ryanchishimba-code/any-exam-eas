@@ -3,8 +3,9 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
+  formatSeparatePublishedCatalog,
   publishedNgnItemCount,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
@@ -399,14 +400,14 @@ export function openBoardQuickBite(track: QuickBiteBoardTrack): BoardQuickBite |
 
 function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQuestionUnits | null {
   if (degraded || !units) return null;
-  if (scoredQuestionCount(units) <= 0) return null;
+  if (servedQuestionCount(units) <= 0) return null;
   return units;
 }
 
 function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer: string }[] {
   const price = formatMonthlyPrice("pro");
   const howMany = units
-    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for NCLEX-RN.`
+    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for NCLEX-RN. ${formatSeparatePublishedCatalog(units)}`.trim()
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
   return [
     {
@@ -439,7 +440,7 @@ function nclexHeroOffer(
 ): NonNullable<BoardLandingModel["heroOffer"]> {
   const price = formatMonthlyPrice("pro");
   return {
-    liveQuestions: units ? formatExactQuestionCount(scoredQuestionCount(units)) : null,
+    liveQuestions: units ? formatExactQuestionCount(servedQuestionCount(units)) : null,
     proPrice: `${price}/mo`,
     questionNoun: "NCLEX questions",
     trialLine: formatLandingHeroTrialLine(),
@@ -466,7 +467,7 @@ export function nclexHeroChips(offer: NonNullable<BoardLandingModel["heroOffer"]
 
 function nclexStats(units: BoardQuestionUnits | null): { value: string; label: string }[] {
   if (!units) return [];
-  const stats = [{ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" }];
+  const stats = [{ value: formatExactQuestionCount(servedQuestionCount(units)), label: "Questions" }];
   if (units.caseStudies > 0) {
     stats.push({ value: formatExactQuestionCount(units.caseStudies), label: "Case studies" });
   }

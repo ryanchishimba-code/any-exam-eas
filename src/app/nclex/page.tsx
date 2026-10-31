@@ -11,7 +11,7 @@ import { buildNclexLandingMetadata, buildNclexLandingModel } from "@/lib/marketi
 import { nclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { loadBoardPageQuestionUnits } from "@/lib/marketing/live-board-counts";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
-import { scoredQuestionCount } from "@/lib/counts";
+import { servedQuestionCount } from "@/lib/counts";
 import { getCachedNclexTrustAudienceCount } from "@/lib/marketing/student-trust-count";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
@@ -36,7 +36,7 @@ export default async function NclexHubPage() {
     ]);
   const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.nclex ?? null) : null;
   const units = await loadBoardPageQuestionUnits("nclex", snapshotUnits);
-  const live = units != null && scoredQuestionCount(units) > 0;
+  const live = units != null && servedQuestionCount(units) > 0;
   const full = buildNclexLandingModel({
     degraded: !live,
     units,
@@ -61,7 +61,7 @@ export default async function NclexHubPage() {
 
   const render = nclexBoardLandingRenderModel(full, {
     nclexDonut: {
-      liveQuestionCount: units ? scoredQuestionCount(units) : 0,
+      liveQuestionCount: units ? servedQuestionCount(units) : 0,
       includeQuickBite: Boolean(full.quickBite),
       includeNgn: ngnTypeRows.length > 0,
     },

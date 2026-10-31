@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
+  formatSeparatePublishedCatalog,
   formatExactQuestionCount,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
@@ -134,7 +135,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
 
 function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQuestionUnits | null {
   if (degraded || !units) return null;
-  if (scoredQuestionCount(units) <= 0) return null;
+  if (servedQuestionCount(units) <= 0) return null;
   return units;
 }
 
@@ -145,7 +146,7 @@ function hubFaqs(
   const boardLabel = boardLandingBreadcrumbName(examKey);
   const price = formatMonthlyPrice("pro");
   const howMany = units
-    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${boardLabel}.`
+    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${boardLabel}. ${formatSeparatePublishedCatalog(units)}`.trim()
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
   const base = [
     {
@@ -264,7 +265,7 @@ export function buildHubLandingModel(input: {
   ];
   const stats: { value: string; label: string }[] = [];
   if (units) {
-    stats.push({ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" });
+    stats.push({ value: formatExactQuestionCount(servedQuestionCount(units)), label: "Questions" });
   }
   if (input.examKey === "usmle" && input.usmleStepCounts) {
     const stepLabels: { key: "step1" | "step2" | "step3"; label: string }[] = [

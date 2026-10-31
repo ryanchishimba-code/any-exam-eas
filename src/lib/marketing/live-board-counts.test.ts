@@ -98,9 +98,9 @@ describe("live board question counts", () => {
       3754
     );
     expect(scoredQuestionCount(nclex)).toBe(4033);
-    expect(formatBoardQuestionSentence(nclex)).toBe(
-      "4,033 questions, including 222 items in 37 case studies and 57 standalone NGN items"
-    );
+    expect(formatBoardQuestionSentence(nclex)).toBe("3,754 questions");
+    expect(nclex.caseItems).toBe(222);
+    expect(nclex.standaloneNgn).toBe(57);
   });
 
   it("uses the live count when the snapshot is missing and the snapshot when the live read fails", () => {

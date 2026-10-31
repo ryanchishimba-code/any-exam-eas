@@ -26,13 +26,17 @@ import {
   formatExactQuestionCount,
   formatRoundedDownQuestionCount,
   loadClinicalExtrasByBoard,
-  scoredQuestionCount,
   siteQuestionCounts,
   type BoardQuestionUnits,
   type ClinicalQuestionExtra,
   type CountBoardSlug,
 } from "@/lib/counts";
 import { formatExactServeReadyQuestions } from "./bank-stats";
+import {
+  applyServedFieldCounts,
+  inventoryFromLiveFieldCounts,
+  loadServedQuestionCounts,
+} from "./served-question-counts";
 
 export type FieldQuestionBankCounts = {
   fieldId: ExamFieldId;
@@ -58,7 +62,7 @@ export type LandingExamCountDisplay = {
   countLabel: string;
   /** Hero display. Includes case-study items when this board has a separate NGN catalog. */
   questionsLabel: string;
-  /** Full scored-item sentence, e.g. "5,495 questions, including …". */
+  /** Served-gate sentence. Catalog NGN is a separate clause, not part of the number. */
   sentence: string;
   /** Floored to the nearest hundred. Never rounds up. */
   roundedDown: string;
@@ -70,7 +74,7 @@ export type LandingExamCountDisplay = {
 export type LandingBankCountsDisplay = {
   totalLabel: string;
   totalQuestionsLabel: string;
-  /** Honest site sentence, including case-study items when any board has them. */
+  /** Served-gate site sentence. Catalog NGN is named separately when a board has it. */
   sentence: string;
   /** Floored site total. Empty when the live lookup failed. */
   roundedDown: string;
@@ -139,18 +143,33 @@ function failedCountBundle(inventory: ActiveQuestionInventory): BankStatsBundle 
 }
 
 /**
- * Prefer the stored active-question inventory so marketing totals match the Qbank.
- * A failed read serves the last good snapshot. It does not run the live group-by.
+ * Live served-gate inventory, with the stored snapshot only when that read fails.
+ * Catalog NGN is attached for the separate NGN figures and is not added to the
+ * question total. A failed catalog read still publishes the bank total.
  */
 async function loadBankStatsBundle(): Promise<BankStatsBundle> {
-  const inventory = await fetchActiveInventoryFromDb();
-  if (inventory.degraded) return failedCountBundle(inventory);
-  let clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = {};
-  try {
-    clinical = await loadClinicalExtrasByBoard();
-  } catch (error) {
-    console.error("[marketing/question-bank-counts] clinical catalog failed:", error);
-    return failedCountBundle(inventory);
+  const [stored, served] = await Promise.all([
+    fetchActiveInventoryFromDb(),
+    loadServedQuestionCounts(),
+  ]);
+  let inventory = stored;
+  if (served.inventory) {
+    inventory = served.inventory;
+  } else if (served.live) {
+    inventory = stored.degraded
+      ? inventoryFromLiveFieldCounts(served.live)
+      : applyServedFieldCounts(stored, served.live);
+  } else if (stored.degraded) {
+    return failedCountBundle(stored);
+  }
+  let clinical: Partial<Record<CountBoardSlug, ClinicalQuestionExtra>> = served.clinical;
+  if (Object.keys(clinical).length === 0) {
+    try {
+      clinical = await loadClinicalExtrasByBoard();
+    } catch (error) {
+      console.error("[marketing/question-bank-counts] clinical catalog failed:", error);
+      if (!served.inventory && !served.live) return failedCountBundle(inventory);
+    }
   }
   const bundle = bundleFromInventory(inventory, clinical);
   rememberLastGoodBankStats(bundle);
@@ -340,7 +359,7 @@ export function snapshotFromActiveInventory(
   const fields = Object.fromEntries(
     EXAM_FIELD_IDS.map((fieldId) => {
       const units = boards[MARKETING_FIELD_BOARD[fieldId]];
-      const served = inventory.degraded || !units ? 0 : scoredQuestionCount(units);
+      const served = inventory.degraded || !units ? 0 : units.bankItems;
       return [fieldId, { fieldId, total: served, active: served, served }];
     })
   ) as Record<ExamFieldId, FieldQuestionBankCounts>;

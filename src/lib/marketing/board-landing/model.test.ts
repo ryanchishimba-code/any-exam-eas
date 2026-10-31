@@ -91,7 +91,7 @@ describe("NCLEX landing model", () => {
       expect.arrayContaining(["adaptive", "readiness", "explained", "qotd", "review", "mobile"])
     );
     expect(model.features.find((feature) => feature.id === "ngn")?.line).toMatch(/select all that apply/i);
-    expect(model.heroOffer.liveQuestions).toBe("108");
+    expect(model.heroOffer.liveQuestions).toBe("100");
     expect(model.heroOffer.proPrice).toBe("$27.99/mo");
     expect(serialized).not.toMatch(/\$139|\$349|Save \$|typical 30-day prep/i);
     expect(model.stats.map((stat) => stat.label)).toEqual([
@@ -101,7 +101,7 @@ describe("NCLEX landing model", () => {
       "NCSBN test plan",
     ]);
     expect(model.stats[2]?.value).toBe("8");
-    expect(model.stats[0]?.value).toBe("108");
+    expect(model.stats[0]?.value).toBe("100");
     expect(model.stories.length).toBeGreaterThan(0);
     expect(model.stories.some((story) => story.name === "Nathan C.")).toBe(true);
     expect(model.h1Lead).toBe("NCLEX-RN practice with every answer explained.");

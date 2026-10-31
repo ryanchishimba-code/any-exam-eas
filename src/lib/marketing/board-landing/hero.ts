@@ -1,7 +1,7 @@
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatExactQuestionCount,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
@@ -16,8 +16,8 @@ export function boardLandingHeroHeadline(
 ): { h1Lead: string; h1Accent: string } {
   const price = formatMonthlyPrice("pro");
   const h1Lead = boardLandingH1(boardLabel);
-  if (units && scoredQuestionCount(units) > 0) {
-    const count = formatExactQuestionCount(scoredQuestionCount(units));
+  if (units && servedQuestionCount(units) > 0) {
+    const count = formatExactQuestionCount(servedQuestionCount(units));
     return { h1Lead, h1Accent: `${count} questions · explained · ${price}/mo` };
   }
   return { h1Lead, h1Accent: `Explained rationales · ${price}/mo` };
@@ -35,7 +35,7 @@ export function boardHeroOffer(
   const price = formatMonthlyPrice("pro");
   const noun = options?.questionNoun ?? "questions";
   return {
-    liveQuestions: units ? formatExactQuestionCount(scoredQuestionCount(units)) : null,
+    liveQuestions: units ? formatExactQuestionCount(servedQuestionCount(units)) : null,
     proPrice: `${price}/mo`,
     questionNoun: noun,
     trialLine: formatLandingHeroTrialLine(),

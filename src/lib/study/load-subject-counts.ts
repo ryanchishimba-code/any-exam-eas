@@ -58,9 +58,9 @@ export async function loadSubjectCountsForUser(
       });
       return {
         fieldId,
-        counts: scored.topicCounts,
+        counts: scored.sessionCounts,
         sessionCounts: scored.sessionCounts,
-        total: scored.total,
+        total: scored.bankItemTotal,
         bankItemTotal: scored.bankItemTotal,
         formats: scored.formats,
         topicFormats: scored.topicFormats,

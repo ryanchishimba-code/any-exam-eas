@@ -3,7 +3,7 @@ import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
 import { NAPLEX_CONTENT_OUTLINE, NAPLEX_OUTLINE_SOURCE } from "@/lib/exam-prep/naplex/content-outline";
@@ -127,7 +127,7 @@ export function buildNaplexLandingMetadata(): Metadata {
 
 function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQuestionUnits | null {
   if (degraded || !units) return null;
-  if (scoredQuestionCount(units) <= 0) return null;
+  if (servedQuestionCount(units) <= 0) return null;
   return units;
 }
 
@@ -167,7 +167,7 @@ function naplexStats(
   bankTypes: Record<string, number>
 ): { value: string; label: string }[] {
   if (!units) return [];
-  const stats = [{ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" }];
+  const stats = [{ value: formatExactQuestionCount(servedQuestionCount(units)), label: "Questions" }];
   const vignettes = bankTypes.vignette ?? 0;
   if (vignettes > 0) {
     stats.push({ value: formatExactQuestionCount(vignettes), label: "Patient vignettes" });

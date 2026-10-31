@@ -1,7 +1,7 @@
 import {
   formatExactQuestionCount,
   publishedNgnItemCount,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
 import { NCLEX_NGN_SERVE_TARGETS, NCLEX_PUBLISHED_SERVE_TOTAL } from "@/lib/exam-prep/nclex/types";
@@ -38,8 +38,8 @@ export function buildNclexCompareChartData(units: BoardQuestionUnits | null): Nc
   const bars: NclexCompareBar[] = [];
   let inventoryNote: string | null = null;
 
-  if (units && scoredQuestionCount(units) > 0) {
-    const total = scoredQuestionCount(units);
+  if (units && servedQuestionCount(units) > 0) {
+    const total = servedQuestionCount(units);
     const ngn = publishedNgnItemCount(units);
     const cases = units.caseStudies;
     const caseTarget = NCLEX_NGN_SERVE_TARGETS.case_study ?? 180;
@@ -48,7 +48,7 @@ export function buildNclexCompareChartData(units: BoardQuestionUnits | null): Nc
       {
         id: "live-questions",
         label: "Live NCLEX questions",
-        sublabel: "Served from the current bank snapshot",
+        sublabel: "Student-eligible questions in the live bank",
         amountLabel: formatExactQuestionCount(total),
         fillPct: clampPct((total / NCLEX_PUBLISHED_SERVE_TOTAL) * 100),
         highlight: true,

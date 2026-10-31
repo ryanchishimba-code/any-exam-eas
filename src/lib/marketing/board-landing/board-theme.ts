@@ -1,6 +1,6 @@
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import { formatExactQuestionCount, scoredQuestionCount, type BoardQuestionUnits } from "@/lib/counts";
+import { formatExactQuestionCount, servedQuestionCount, type BoardQuestionUnits } from "@/lib/counts";
 import { formatMonthlyPrice } from "@/lib/site";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 
@@ -252,7 +252,7 @@ export function buildBoardVisuals(input: {
   }
   return {
     proPrice: input.offer.proPrice,
-    liveCount: input.units ? formatExactQuestionCount(scoredQuestionCount(input.units)) : input.offer.liveQuestions,
+    liveCount: input.units ? formatExactQuestionCount(servedQuestionCount(input.units)) : input.offer.liveQuestions,
     steps: [...STEPS],
     questionTypes,
     showPracticeDevice: input.slug === "nclex" || input.slug === "naplex",

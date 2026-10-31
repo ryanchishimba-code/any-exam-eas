@@ -12,7 +12,7 @@
 import { unstable_cache } from "next/cache";
 import {
   boardQuestionUnits,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
   type CountBoardSlug,
 } from "@/lib/counts";
@@ -113,9 +113,9 @@ export function liveUsmleStepCounts(
 }
 
 /**
- * Replace the bank-item total and keep published NGN catalog extras.
- * Those extras are not QuestionBankItem rows, so the NCLEX "including …"
- * clause stays in place.
+ * Replace the bank-item total and keep published NGN catalog extras on the
+ * unit. Those extras are not QuestionBankItem rows, so the question count
+ * does not add them.
  */
 export function applyLiveBankItemCount(
   units: BoardQuestionUnits,
@@ -141,7 +141,7 @@ export function boardPageQuestionUnits(input: {
       formats: { mcq: liveBank, ngn: 0, case: 0 },
     });
   }
-  if (!input.snapshotUnits || scoredQuestionCount(input.snapshotUnits) <= 0) return null;
+  if (!input.snapshotUnits || servedQuestionCount(input.snapshotUnits) <= 0) return null;
   return input.snapshotUnits;
 }
 

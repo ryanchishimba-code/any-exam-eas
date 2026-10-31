@@ -8,6 +8,7 @@ import {
   formatExactQuestionCount,
   formatRoundedDownQuestionCount,
   scoredQuestionCount,
+  servedQuestionCount,
   publishedNgnItemCount,
   publishedSiteQuestionCounts,
   PUBLISHED_BOARD_UNITS,
@@ -38,9 +39,7 @@ describe("scored question counts", () => {
 
   it("counts case-study items and does not count the case shell", () => {
     expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5495);
-    expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe(
-      "5,495 questions, including 60 items in 10 case studies and 10 standalone NGN items"
-    );
+    expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe("5,425 questions");
     expect(formatRoundedDownQuestionCount(5495)).toBe("5,400+");
     expect(formatRoundedDownQuestionCount(99)).toBe("99");
     expect(formatRoundedDownQuestionCount(100)).toBe("100+");
@@ -100,11 +99,11 @@ function snapshotFor(boards: Record<CountBoardSlug, BoardQuestionUnits>): Questi
     EXAM_FIELD_IDS.map((fieldId) => {
       const slug = (Object.entries(FIELD_FOR_SLUG).find(([, id]) => id === fieldId)?.[0] ??
         null) as CountBoardSlug | null;
-      const served = slug ? scoredQuestionCount(boards[slug]) : 0;
+      const served = slug ? servedQuestionCount(boards[slug]) : 0;
       return [fieldId, { fieldId, total: served, active: served, served }];
     })
   ) as QuestionBankCountsSnapshot["fields"];
-  const served = COUNT_BOARD_SLUGS.reduce((sum, slug) => sum + scoredQuestionCount(boards[slug]), 0);
+  const served = COUNT_BOARD_SLUGS.reduce((sum, slug) => sum + servedQuestionCount(boards[slug]), 0);
   return {
     fields,
     boards,
@@ -120,17 +119,18 @@ describe("public count labels match the source", () => {
     const site = publishedSiteQuestionCounts();
     const display = buildLandingBankCountsDisplay(snapshotFor(boards));
 
-    expect(site.totalQuestions).toBe(43338);
+    expect(site.totalQuestions).toBe(43268);
     expect(display.totalLabel).toBe(formatExactQuestionCount(site.totalQuestions));
     expect(display.totalServed).toBe(site.totalQuestions);
     expect(display.sentence).toBe(site.sentence);
-    expect(display.roundedDown).toBe("43,300+");
-    expect(display.sentence).toContain("60 items in 10 case studies");
-    expect(display.sentence).toContain("10 standalone NGN items");
+    expect(display.roundedDown).toBe("43,200+");
+    expect(display.sentence).toBe("43,268 questions");
+    expect(boards.nclex.caseItems).toBe(60);
+    expect(boards.nclex.standaloneNgn).toBe(10);
 
     for (const exam of display.exams) {
       const unitsForExam = boards[exam.slug as CountBoardSlug];
-      const questions = scoredQuestionCount(unitsForExam);
+      const questions = servedQuestionCount(unitsForExam);
       expect(exam.countLabel).toBe(formatExactQuestionCount(questions));
       expect(exam.served).toBe(questions);
       expect(exam.sentence).toBe(formatBoardQuestionSentence(unitsForExam));
@@ -142,7 +142,7 @@ describe("public count labels match the source", () => {
         expect(rounded).toBeLessThanOrEqual(questions);
       }
     }
-    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("43,338");
+    expect(displayTotalQuestionCount(snapshotFor(boards))).toBe("43,268");
   });
 });
 

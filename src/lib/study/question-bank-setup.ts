@@ -313,11 +313,8 @@ export function availableQuestionCount(
 /**
  * Count the question bank page shows for Mixed topics or one topic.
  *
- * Pass the scored topic map (`counts` from applyScoredClinicalCatalog).
- * That is the public total: bank items plus published NGN standalones and
- * case items. `sessionCounts` is bank rows only, so a standard draw is not
- * sized with case-study items. On NCLEX that bank-only sum is 70 lower
- * (5,419 vs 5,489). Do not display it.
+ * Pass the served-gate topic map (bank rows only). Published NGN catalog
+ * items are counted separately and are not added to this total.
  */
 export function questionBankPageCount(
   subjectId: string,

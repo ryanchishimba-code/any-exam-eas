@@ -1,13 +1,10 @@
 /**
- * One scored-item count for every board, public page, and the Qbank.
+ * Question counts for every board, public page, and the Qbank.
  *
- * A question is one item a student can answer:
- * - one student-eligible QuestionBankItem row (MCQ, SATA, constructed response, CCS)
- * - one published standalone NGN item
- * - one published item inside a published case study
- *
- * A case study is not an extra question. QuestionBankItem rows that are already
- * case-style or NGN-style stay inside the bank-item total. They are not added again.
+ * The number labeled "questions" is the student-serving gate: one active,
+ * qaPassed, student-eligible QuestionBankItem row. Code-level hidden ids are
+ * part of that gate. Published NGN catalog items live in their own tables and
+ * are reported separately. They are not added to the question total.
  */
 import type { PublishedCatalog, PublishedCaseUnit } from "@/lib/assessment/serve";
 import { blueprintAreaLabel, blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
@@ -25,7 +22,7 @@ export const COUNT_BOARD_SLUGS = [
 export type CountBoardSlug = (typeof COUNT_BOARD_SLUGS)[number];
 
 export const QUESTION_UNIT_DEFINITION =
-  "A question is one scored item: a student-eligible bank row, a published standalone NGN item, or a published item inside a published case study. The case study itself is not an extra question.";
+  "A question is one student-eligible bank row: active, qa-passed, and past the student-serving gate. Published NGN catalog items are counted separately and are not added to this total.";
 
 export type BoardQuestionUnits = {
   slug: CountBoardSlug;
@@ -55,6 +52,14 @@ export function scoredQuestionCount(
   units: Pick<BoardQuestionUnits, "bankItems" | "standaloneNgn" | "caseItems">
 ): number {
   return units.bankItems + units.standaloneNgn + units.caseItems;
+}
+
+/**
+ * The count public pages and the question picker show.
+ * Catalog NGN items stay on `standaloneNgn` / `caseItems` and are not added.
+ */
+export function servedQuestionCount(units: Pick<BoardQuestionUnits, "bankItems">): number {
+  return Math.max(0, Math.floor(units.bankItems || 0));
 }
 
 /**
@@ -89,15 +94,19 @@ function countNoun(count: number, one: string, many: string): string {
 }
 
 /**
- * Honest sentence.
- * NCLEX: "5,483 questions, including 60 items in 10 case studies and 10 standalone NGN items"
- * A board with no separate NGN catalog: "17,276 questions"
+ * Served-gate sentence. Catalog NGN is not inside this number.
+ * A board with no separate catalog: "17,276 questions"
  */
 export function formatBoardQuestionSentence(
-  units: Pick<BoardQuestionUnits, "bankItems" | "standaloneNgn" | "caseStudies" | "caseItems">
+  units: Pick<BoardQuestionUnits, "bankItems">
 ): string {
-  const total = scoredQuestionCount(units);
-  const head = countNoun(total, "question", "questions");
+  return countNoun(servedQuestionCount(units), "question", "questions");
+}
+
+/** Catalog NGN, stated apart from the served-gate question total. Empty when there is none. */
+export function formatSeparatePublishedCatalog(
+  units: Pick<BoardQuestionUnits, "standaloneNgn" | "caseStudies" | "caseItems">
+): string {
   const parts: string[] = [];
   if (units.caseStudies > 0) {
     parts.push(
@@ -107,8 +116,8 @@ export function formatBoardQuestionSentence(
   if (units.standaloneNgn > 0) {
     parts.push(countNoun(units.standaloneNgn, "standalone NGN item", "standalone NGN items"));
   }
-  if (parts.length === 0) return head;
-  return `${head}, including ${parts.join(" and ")}`;
+  if (parts.length === 0) return "";
+  return `Separately, ${parts.join(" and ")} are published.`;
 }
 
 export function emptyClinicalExtra(): ClinicalQuestionExtra {
@@ -202,7 +211,7 @@ export function siteQuestionCounts(
   const caseStudies = list.reduce((sum, board) => sum + board.caseStudies, 0);
   const caseItems = list.reduce((sum, board) => sum + board.caseItems, 0);
   const bankItems = list.reduce((sum, board) => sum + board.bankItems, 0);
-  const totalQuestions = bankItems + standaloneNgn + caseItems;
+  const totalQuestions = bankItems;
   return {
     boards,
     totalQuestions,

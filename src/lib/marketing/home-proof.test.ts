@@ -53,11 +53,11 @@ describe("homepage proof facts", () => {
     const site = siteQuestionCounts(FIXTURE);
     const facts = buildHomeProofFacts(site);
     const questions = facts.find((fact) => fact.id === "questions");
-    expect(site.totalQuestions).toBe(43338);
+    expect(site.totalQuestions).toBe(43268);
     expect(questions?.text).toBe(
       `${formatExactQuestionCount(site.totalQuestions)} practice questions`
     );
-    expect(questions?.text).toBe("43,338 practice questions");
+    expect(questions?.text).toBe("43,268 practice questions");
   });
 
   it("names live questions and NGN, and keeps the price out of the strip", () => {
