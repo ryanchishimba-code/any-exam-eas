@@ -16,7 +16,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-001.svg",
-   "alt": "Flow chart: Average ≥2 readings on ≥2 visits; confirm out of office. Clue: Seated 5 minutes, back supported, arm at heart level, right cuff. First-line: Home BP or ambulatory monitoring confirms; stage 1 is 130–139/80–89. Trap: A small cuff overestimates BP; rule out white-coat and masked hypertension."
+   "alt": "Threshold. Average ≥2 readings on ≥2 visits; confirm out of office."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -24,8 +24,7 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Average ≥2 readings on ≥2 visits; confirm out of office. Home BP or ambulatory monitoring confirms; stage 1 is 130–139/80–89."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-002",
@@ -44,7 +43,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-002.svg",
-   "alt": "Flow chart: Screen yearly from age 3. Clue: Under 13: BP ≥95th percentile for age, sex and height on 3 visits. First-line: Age 13 and older: adult cutoffs; stage 1 is ≥130/80. Trap: Screen before age 3 if preterm, congenital heart disease or kidney disease."
+   "alt": "Text card. Screen yearly from age 3."
   },
   "source": {
    "guideline": "AAP 2017 pediatric HTN CPG (still current)",
@@ -53,7 +52,7 @@
    "alt_url": "https://doi.org/10.1542/peds.2017-1904",
    "recommendation": "Screen yearly from age 3. Age 13 and older: adult cutoffs; stage 1 is ≥130/80."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-003",
@@ -72,7 +71,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-003.svg",
-   "alt": "Flow chart: Statin at intermediate or high PREVENT risk. Clue: 10-year risk: <3% low, 3–<5% borderline, 5–<10% intermediate, ≥10% high. First-line: Moderate-intensity statin at intermediate risk; high-intensity at high risk; borderline: weigh risk enhancers. Trap: LDL ≥190 or diabetes ages 40–75 gets a statin regardless of score."
+   "alt": "Text card. Statin at intermediate or high PREVENT risk."
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia; USPSTF statin 2022",
@@ -80,8 +79,7 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": "https://doi.org/10.1016/j.jacc.2025.11.016",
    "recommendation": "Statin at intermediate or high PREVENT risk. Moderate-intensity statin at intermediate risk; high-intensity at high risk; borderline: weigh risk enhancers."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-004",
@@ -100,7 +98,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-004.svg",
-   "alt": "Flow chart: Once at 9–11 years and again at 17–21. Clue: Nonfasting non-HDL cholesterol is acceptable for universal screening. First-line: Targeted screening from age 2 for family history of early ASCVD or high cholesterol. Trap: Suspected familial hypercholesterolemia: statins can start from age 10."
+   "alt": "Text card. Once at 9–11 years and again at 17–21."
   },
   "source": {
    "guideline": "AAP Bright Futures periodicity 2025; NHLBI 2011",
@@ -109,7 +107,7 @@
    "alt_url": null,
    "recommendation": "Once at 9–11 years and again at 17–21. Targeted screening from age 2 for family history of early ASCVD or high cholesterol."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-005",
@@ -128,7 +126,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-005.svg",
-   "alt": "Flow chart: Men 65–75 who have ever smoked (B). Clue: Ever smoked means at least 100 lifetime cigarettes. First-line: One-time abdominal ultrasound; men who never smoked: selective (C). Trap: Women who never smoked: do not screen (D)."
+   "alt": "Do and do not. Men 65–75 who have ever smoked (B)."
   },
   "source": {
    "guideline": "USPSTF AAA 2019",
@@ -137,7 +135,7 @@
    "alt_url": null,
    "recommendation": "Men 65–75 who have ever smoked (B). One-time abdominal ultrasound; men who never smoked: selective (C)."
   },
-  "age_band": "Middle adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-006",
@@ -156,7 +154,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-006.svg",
-   "alt": "Flow chart: USPSTF: ages 35–70 with overweight or obesity. Clue: ADA screens all adults from 35, earlier with BMI ≥25 (≥23 Asian American) plus a risk factor. First-line: Normal result: rescreen at least every 3 years. Trap: Prediabetes: refer to lifestyle intervention; metformin can be considered."
+   "alt": "Text card. USPSTF: ages 35–70 with overweight or obesity."
   },
   "source": {
    "guideline": "USPSTF prediabetes/T2D 2021; ADA Standards of Care 2026",
@@ -164,8 +162,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes",
    "alt_url": null,
    "recommendation": "USPSTF: ages 35–70 with overweight or obesity. Normal result: rescreen at least every 3 years."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-007",
@@ -184,7 +181,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-007.svg",
-   "alt": "Flow chart: A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200. Clue: Prediabetes: A1C 5.7–6.4%, fasting 100–125, 2-hour 140–199 mg/dL. First-line: Confirm with a second abnormal test unless hyperglycemic crisis or classic symptoms with glucose ≥200. Trap: A1C misleads in anemia, hemoglobinopathies, pregnancy and recent transfusion."
+   "alt": "Threshold. A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -192,8 +189,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200. Confirm with a second abnormal test unless hyperglycemic crisis or classic symptoms with glucose ≥200."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-008",
@@ -212,7 +208,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-008.svg",
-   "alt": "Flow chart: Inspection, pulses and monofilament plus one more sensory test. Clue: Second test: pinprick, temperature, 128-Hz vibration or ankle reflexes. First-line: Loss of protective sensation: daily self-inspection, therapeutic footwear, podiatry. Trap: Claudication or weak pulses: check ankle-brachial index."
+   "alt": "Text card. Inspection, pulses and monofilament plus one more sensory test."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -220,8 +216,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "Inspection, pulses and monofilament plus one more sensory test. Loss of protective sensation: daily self-inspection, therapeutic footwear, podiatry."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-009",
@@ -240,7 +235,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-009.svg",
-   "alt": "Flow chart: Type 2 at diagnosis; type 1 within 5 years. Clue: No retinopathy and good glucose control: every 1–2 years. First-line: Any retinopathy: at least yearly; refer macular edema to ophthalmology. Trap: Pregnancy with preexisting diabetes: exam before conception or in the first trimester."
+   "alt": "Text card. Type 2 at diagnosis; type 1 within 5 years."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -248,8 +243,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S261/163919/12-Retinopathy-Neuropathy-and-Foot-Care-Standards",
    "recommendation": "Type 2 at diagnosis; type 1 within 5 years. Any retinopathy: at least yearly; refer macular edema to ophthalmology."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-010",
@@ -268,7 +262,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-010.svg",
-   "alt": "Flow chart: Stage by GFR (G1–G5) and albuminuria (A1–A3). Clue: A1 <30, A2 30–300, A3 >300 mg/g; CKD needs >3 months of abnormality. First-line: Annual eGFR and UACR in diabetes and hypertension. Trap: Exercise, fever or UTI can raise albuminuria; confirm in 2 of 3 samples."
+   "alt": "Text card. Stage by GFR (G1–G5) and albuminuria (A1–A3)."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -276,8 +270,7 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "Stage by GFR (G1–G5) and albuminuria (A1–A3). Annual eGFR and UACR in diabetes and hypertension."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-011",
@@ -296,7 +289,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-011.svg",
-   "alt": "Flow chart: TSH first; add free T4 if abnormal. Clue: High TSH, low free T4: primary hypothyroidism; Hashimoto is most common. First-line: High TSH with normal free T4 is subclinical; repeat in 2–3 months. Trap: Pituitary disease: TSH misleads; measure free T4."
+   "alt": "Text card. TSH first; add free T4 if abnormal."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -304,8 +297,7 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "TSH first; add free T4 if abnormal. High TSH with normal free T4 is subclinical; repeat in 2–3 months."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-012",
@@ -324,7 +316,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-012.svg",
-   "alt": "Flow chart: TSH first, then ultrasound. Clue: Low TSH: radionuclide scan; a hot nodule rarely needs FNA. First-line: Normal or high TSH: ultrasound; FNA by sonographic pattern and size. Trap: High-suspicion nodules ≥1 cm get FNA; very low-suspicion may be observed."
+   "alt": "Text card. TSH first, then ultrasound."
   },
   "source": {
    "guideline": "ATA 2015 nodules/DTC (current for nodules)",
@@ -332,8 +324,7 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/631761-dtc-thyroid-nodules/2",
    "recommendation": "TSH first, then ultrasound. Normal or high TSH: ultrasound; FNA by sonographic pattern and size."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-013",
@@ -352,7 +343,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-013.svg",
-   "alt": "Flow chart: Ages 45–75; selective at 76–85. Clue: Options: yearly FIT, stool DNA-FIT every 1–3 years, colonoscopy every 10 years. First-line: CT colonography or flexible sigmoidoscopy every 5 years are alternatives. Trap: Any positive stool test needs a follow-up colonoscopy."
+   "alt": "Text card. Ages 45–75; selective at 76–85."
   },
   "source": {
    "guideline": "USPSTF CRC 2021",
@@ -360,8 +351,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
    "alt_url": null,
    "recommendation": "Ages 45–75; selective at 76–85. CT colonography or flexible sigmoidoscopy every 5 years are alternatives."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-014",
@@ -380,7 +370,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-014.svg",
-   "alt": "Flow chart: Primary hrHPV every 5 years preferred. Clue: Ages 21–29: cytology every 3 years. First-line: Alternatives: cotesting every 5 years or cytology every 3; self-collected HPV now an option. Trap: No screening under 21, or after hysterectomy with cervix removed for benign disease."
+   "alt": "Text card. Primary hrHPV every 5 years preferred."
   },
   "source": {
    "guideline": "USPSTF cervical 2018 final (2024 draft); HRSA WPSI 2026; ACOG 2026",
@@ -389,7 +379,7 @@
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
    "recommendation": "Primary hrHPV every 5 years preferred. Alternatives: cotesting every 5 years or cytology every 3; self-collected HPV now an option."
   },
-  "age_band": "Young adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-015",
@@ -408,7 +398,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-015.svg",
-   "alt": "Flow chart: Every 2 years, ages 40–74 (B). Clue: Age 75 and older: insufficient evidence (I). First-line: Palpable mass at any age: diagnostic imaging, not screening. Trap: Dense breasts: supplemental MRI or ultrasound has insufficient evidence (I)."
+   "alt": "Text card. Every 2 years, ages 40–74 (B)."
   },
   "source": {
    "guideline": "USPSTF breast 2024",
@@ -416,8 +406,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
    "alt_url": null,
    "recommendation": "Every 2 years, ages 40–74 (B). Palpable mass at any age: diagnostic imaging, not screening."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-016",
@@ -436,7 +425,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-016.svg",
-   "alt": "Flow chart: Ages 50–80 with ≥20 pack-years. Clue: Current smoker, or quit within the past 15 years. First-line: Annual low-dose CT; offer cessation treatment to current smokers. Trap: Stop once 15 years quit or not fit for curative surgery."
+   "alt": "Threshold. Ages 50–80 with ≥20 pack-years."
   },
   "source": {
    "guideline": "USPSTF lung 2021",
@@ -444,8 +433,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
    "alt_url": null,
    "recommendation": "Ages 50–80 with ≥20 pack-years. Annual low-dose CT; offer cessation treatment to current smokers."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-017",
@@ -464,7 +452,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-017.svg",
-   "alt": "Flow chart: Individual decision after discussion (C). Clue: Discuss false positives, overdiagnosis, biopsy and treatment harms. First-line: AUA: baseline PSA may start at 45–50; offer from 40–45 if Black, germline mutation or strong family history. Trap: USPSTF recommends against screening at 70 or older (D)."
+   "alt": "Text card. Individual decision after discussion (C)."
   },
   "source": {
    "guideline": "USPSTF prostate 2018 (update in progress); AUA/SUO 2023, amended 2026",
@@ -472,8 +460,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/prostate-cancer-screening",
    "alt_url": "https://www.auanet.org/documents/Guidelines/PDF/2026%20Guidelines/EDPC%202026%20Unabridged%20FINAL.pdf",
    "recommendation": "Individual decision after discussion (C). AUA: baseline PSA may start at 45–50; offer from 40–45 if Black, germline mutation or strong family history."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-018",
@@ -492,7 +479,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-018.svg",
-   "alt": "Flow chart: Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk. Clue: Use a brief familial risk tool first, such as a pedigree assessment tool. First-line: Positive tool: genetic counseling, then testing if indicated. Trap: Routine genetic testing without risk history: not recommended (D)."
+   "alt": "Steps. Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk."
   },
   "source": {
    "guideline": "USPSTF BRCA 2019",
@@ -500,8 +487,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/brca-related-cancer-risk-assessment-genetic-counseling-and-genetic-testing",
    "alt_url": null,
    "recommendation": "Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk. Positive tool: genetic counseling, then testing if indicated."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-019",
@@ -520,7 +506,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-019.svg",
-   "alt": "Flow chart: Women 65+ and younger postmenopausal women at increased risk. Clue: Use a risk tool, such as FRAX, under 65. First-line: T-score ≤−2.5 at hip or spine defines osteoporosis. Trap: Men: insufficient evidence (I); fragility fracture means osteoporosis regardless of T-score."
+   "alt": "Text card. Women 65+ and younger postmenopausal women at increased risk."
   },
   "source": {
    "guideline": "USPSTF osteoporosis 2025",
@@ -536,8 +522,8 @@
   "system": "GI",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "A healthy 45-year-old has never had a hepatitis C test. Is 45 the cutoff, and what proves active infection?",
-  "bottom": "All adults 18–79 at least once.",
+  "front": "A healthy 45-year-old has never had a hepatitis C test. Who is screened?",
+  "bottom": "All adults 18–79, at least once.",
   "bullets": {
    "clue": "Anti-HCV antibody with reflex HCV RNA.",
    "treat": "Positive RNA: active infection; treat with direct-acting antivirals.",
@@ -548,7 +534,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-020.svg",
-   "alt": "Flow chart: All adults 18–79 at least once. Clue: Anti-HCV antibody with reflex HCV RNA. First-line: Positive RNA: active infection; treat with direct-acting antivirals. Trap: Positive antibody alone may be cleared or cured infection; RNA confirms."
+   "alt": "Text card. All adults 18–79, at least once."
   },
   "source": {
    "guideline": "USPSTF HCV 2020",
@@ -576,7 +562,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-021.svg",
-   "alt": "Flow chart: Screen once with HBsAg, anti-HBs and total anti-HBc. Clue: HBsAg positive: infection; anti-HBc IgM: acute infection. First-line: Anti-HBs alone: vaccinated; anti-HBs plus anti-HBc: resolved infection. Trap: Isolated anti-HBc needs HBV DNA and follow-up."
+   "alt": "Text card. Screen once with HBsAg, anti-HBs and total anti-HBc."
   },
   "source": {
    "guideline": "CDC 2023 adult HBV screening (MMWR); USPSTF HBV 2020 (risk-based)",
@@ -584,8 +570,7 @@
    "url": "https://www.cdc.gov/mmwr/volumes/72/rr/rr7201a1.htm",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hepatitis-b-virus-infection-screening",
    "recommendation": "Screen once with HBsAg, anti-HBs and total anti-HBc. Anti-HBs alone: vaccinated; anti-HBs plus anti-HBc: resolved infection."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-022",
@@ -604,7 +589,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-022.svg",
-   "alt": "Flow chart: Everyone 15–65, younger and older at risk, and every pregnancy. Clue: Fourth-generation antigen/antibody test; positive goes to differentiation assay. First-line: Suspected acute HIV: add HIV RNA. Trap: Antibody-only tests miss the early window period."
+   "alt": "Text card. Everyone 15–65, younger and older at risk, and every pregnancy."
   },
   "source": {
    "guideline": "USPSTF HIV 2019",
@@ -632,7 +617,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-023.svg",
-   "alt": "Flow chart: Sexually active women 24 and younger, and older women at risk. Clue: NAAT; vaginal swab preferred in women, first-catch urine in men. First-line: Treat positives; retest about 3 months later. Trap: Men: insufficient evidence for routine screening (I)."
+   "alt": "Text card. Sexually active women 24 and younger, and older women at risk."
   },
   "source": {
    "guideline": "USPSTF CT/GC 2021; CDC STI 2021",
@@ -640,16 +625,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/chlamydia-and-gonorrhea-screening",
    "alt_url": null,
    "recommendation": "Sexually active women 24 and younger, and older women at risk. Treat positives; retest about 3 months later."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-024",
   "system": "ID",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "The first prenatal panel includes syphilis testing. Which other adults are tested, and which result stays positive for life?",
-  "bottom": "All pregnant patients at the first visit; adults at increased risk.",
+  "front": "Syphilis testing is already on the first prenatal panel. Which other adults are tested?",
+  "bottom": "Adults and adolescents at increased risk.",
   "bullets": {
    "clue": "Nontreponemal test (RPR) plus treponemal confirmation.",
    "treat": "High risk: repeat at 28 weeks and at delivery.",
@@ -660,7 +644,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-024.svg",
-   "alt": "Flow chart: All pregnant patients at the first visit; adults at increased risk. Clue: Nontreponemal test (RPR) plus treponemal confirmation. First-line: High risk: repeat at 28 weeks and at delivery. Trap: A positive treponemal test usually stays positive for life."
+   "alt": "Text card. Adults and adolescents at increased risk."
   },
   "source": {
    "guideline": "USPSTF syphilis 2022; CDC STI 2021",
@@ -668,8 +652,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-nonpregnant-adults-adolescents-screening",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-in-pregnancy-screening",
    "recommendation": "All pregnant patients at the first visit; adults at increased risk. High risk: repeat at 28 weeks and at delivery."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-025",
@@ -688,7 +671,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-025.svg",
-   "alt": "Flow chart: All adults, including pregnant and postpartum, and teens 12–18. Clue: PHQ-2 first, then PHQ-9; PHQ-A in adolescents. First-line: Positive screen: diagnostic interview and suicide risk assessment. Trap: Children under 12: insufficient evidence (I)."
+   "alt": "Text card. All adults, including pregnant and postpartum, and teens 12–18."
   },
   "source": {
    "guideline": "USPSTF depression 2023 (adult), 2022 (child/adol)",
@@ -716,7 +699,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-026.svg",
-   "alt": "Flow chart: Adults 64 and younger, including pregnant patients (B). Clue: GAD-7; children 8–18 are also screened. First-line: Positive screen: confirm diagnosis and assess function. Trap: Adults 65 and older: insufficient evidence (I)."
+   "alt": "Text card. Adults 64 and younger, including pregnant patients (B)."
   },
   "source": {
    "guideline": "USPSTF anxiety 2023",
@@ -725,7 +708,7 @@
    "alt_url": null,
    "recommendation": "Adults 64 and younger, including pregnant patients (B). Positive screen: confirm diagnosis and assess function."
   },
-  "age_band": "Young adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-027",
@@ -744,7 +727,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-027.svg",
-   "alt": "Flow chart: Screen all adults 18+, including pregnant patients. Clue: AUDIT-C or single question about heavy-drinking days. First-line: Positive screen: brief behavioral counseling. Trap: Adolescents 12–17: insufficient evidence for screening (I)."
+   "alt": "Text card. Screen all adults 18+, including pregnant patients."
   },
   "source": {
    "guideline": "USPSTF alcohol 2018 final (2025 draft pending)",
@@ -752,8 +735,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/draft-recommendation/unhealthy-alcohol-use-adolescents-adults-behavioral-counseling-interventions",
    "alt_url": null,
    "recommendation": "Screen all adults 18+, including pregnant patients. Positive screen: brief behavioral counseling."
-  },
-  "age_band": "Adolescent"
+  }
  },
  {
   "id": "fnp-028",
@@ -772,7 +754,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-028.svg",
-   "alt": "Flow chart: Ask, advise, then offer behavioral help and medication. Clue: 5 A's: Ask, Advise, Assess, Assist, Arrange follow-up. First-line: Nonpregnant adults: counseling plus FDA-approved medication (A). Trap: Pregnancy: behavioral counseling; e-cigarettes have insufficient evidence for cessation (I)."
+   "alt": "Text card. Ask, advise, then offer behavioral help and medication."
   },
   "source": {
    "guideline": "USPSTF tobacco 2021",
@@ -780,8 +762,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/tobacco-use-in-adults-and-pregnant-women-counseling-and-interventions",
    "alt_url": null,
    "recommendation": "Ask, advise, then offer behavioral help and medication. Nonpregnant adults: counseling plus FDA-approved medication (A)."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-029",
@@ -800,7 +781,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-029.svg",
-   "alt": "Flow chart: Women of reproductive age, including pregnant and postpartum (B). Clue: Ask privately, without a partner present, using a brief validated tool. First-line: Positive screen: refer to ongoing support services. Trap: Older or vulnerable adults: insufficient evidence for abuse screening (I)."
+   "alt": "Text card. Women of reproductive age, including pregnant and postpartum (B)."
   },
   "source": {
    "guideline": "USPSTF IPV 2025",
@@ -808,8 +789,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/intimate-partner-violence-and-abuse-of-elderly-and-vulnerable-adults-screening/",
    "alt_url": null,
    "recommendation": "Women of reproductive age, including pregnant and postpartum (B). Positive screen: refer to ongoing support services."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-030",
@@ -828,7 +808,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-030.svg",
-   "alt": "Flow chart: Ask about falls, unsteadiness and fear of falling. Clue: Timed Up and Go ≥12 seconds suggests risk. First-line: Exercise interventions for those at increased risk (B). Trap: Multifactorial interventions are selective (C), not routine."
+   "alt": "Text card. Ask about falls, unsteadiness and fear of falling."
   },
   "source": {
    "guideline": "USPSTF falls 2024; CDC STEADI",
@@ -837,7 +817,7 @@
    "alt_url": null,
    "recommendation": "Ask about falls, unsteadiness and fear of falling. Exercise interventions for those at increased risk (B)."
   },
-  "age_band": "Middle adult"
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-031",
@@ -856,7 +836,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-031.svg",
-   "alt": "Flow chart: No; evidence is insufficient (I). Clue: Concerns from patient or family: Mini-Cog or MoCA. First-line: Work up reversible causes: TSH, B12, depression, medications. Trap: Symptomatic patients need evaluation; the I statement is for asymptomatic adults."
+   "alt": "Text card. No; evidence is insufficient (I)."
   },
   "source": {
    "guideline": "USPSTF cognitive impairment 2020 (I); AAN 2017 MCI retired",
@@ -884,7 +864,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-032.svg",
-   "alt": "Flow chart: Insufficient evidence in asymptomatic adults (I). Clue: Fair skin, many moles or prior skin cancer raise risk. First-line: Counsel fair-skinned people aged 6 months to 24 years on UV avoidance (B). Trap: A changing mole needs evaluation, regardless of screening policy."
+   "alt": "Text card. Insufficient evidence in asymptomatic adults (I)."
   },
   "source": {
    "guideline": "USPSTF skin cancer 2023 (I)",
@@ -892,8 +872,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/skin-cancer-screening",
    "alt_url": null,
    "recommendation": "Insufficient evidence in asymptomatic adults (I). Counsel fair-skinned people aged 6 months to 24 years on UV avoidance (B)."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-033",
@@ -912,7 +891,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-033.svg",
-   "alt": "Flow chart: Conductive: Weber to affected ear, bone > air. Clue: Sensorineural: Weber to good ear, air > bone. First-line: Sudden sensorineural loss: audiogram within 14 days; offer steroids within 2 weeks. Trap: Routine screening of asymptomatic adults 50+: insufficient evidence (I)."
+   "alt": "Threshold. Conductive: Weber to affected ear, bone > air."
   },
   "source": {
    "guideline": "USPSTF hearing 2021",
@@ -920,8 +899,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hearing-loss-in-older-adults-screening",
    "alt_url": "https://doi.org/10.1177/0194599819859885",
    "recommendation": "Conductive: Weber to affected ear, bone > air. Sudden sensorineural loss: audiogram within 14 days; offer steroids within 2 weeks."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-034",
@@ -940,7 +918,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-034.svg",
-   "alt": "Flow chart: At least once at ages 3–5 (B). Clue: Visual acuity charts, stereoacuity or instrument-based photoscreening. First-line: Failed screen: pediatric eye referral. Trap: Under 3: insufficient evidence for screening (I)."
+   "alt": "Text card. At least once at ages 3–5 (B)."
   },
   "source": {
    "guideline": "USPSTF vision 2017",
@@ -949,7 +927,7 @@
    "alt_url": null,
    "recommendation": "At least once at ages 3–5 (B). Failed screen: pediatric eye referral."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-035",
@@ -968,7 +946,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-035.svg",
-   "alt": "Flow chart: Eye disease, hip dysplasia and critical heart disease. Clue: Absent or white red reflex: urgent ophthalmology. First-line: Positive Ortolani or Barlow: orthopedic referral; pulse-ox ≥95% in hand and foot passes. Trap: Pulse-ox <90% fails immediately; a pass can still miss coarctation."
+   "alt": "Text card. Eye disease, hip dysplasia and critical heart disease."
   },
   "source": {
    "guideline": "AAP 2016 DDH; AAP 2025 CCHD pulse-ox algorithm",
@@ -996,7 +974,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-036.svg",
-   "alt": "Flow chart: Smile, roll, walk holding on, walk alone. Clue: 9 months: sits without support; 12 months: pulls to stand, waves. First-line: 18 months: walks alone, says 3+ words, points to show. Trap: 2022 milestones reflect what most (75%) children do; any miss needs screening."
+   "alt": "Text card. Smile, roll, walk holding on, walk alone."
   },
   "source": {
    "guideline": "CDC/AAP 2022 milestones",
@@ -1004,8 +982,7 @@
    "url": "https://doi.org/10.1542/peds.2021-052138",
    "alt_url": null,
    "recommendation": "Smile, roll, walk holding on, walk alone. 18 months: walks alone, says 3+ words, points to show."
-  },
-  "age_band": "Toddler"
+  }
  },
  {
   "id": "fnp-037",
@@ -1024,7 +1001,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-037.svg",
-   "alt": "Flow chart: M-CHAT-R/F at 18 and 24 months. Clue: Poor eye contact, no pointing, repetitive behaviors. First-line: Positive: refer for diagnosis, early intervention and hearing test at once. Trap: Do not wait for a diagnosis to start early intervention."
+   "alt": "Do and do not. M-CHAT-R/F at 18 and 24 months."
   },
   "source": {
    "guideline": "AAP 2020 ASD report (reaffirmed 2025)",
@@ -1032,8 +1009,7 @@
    "url": "https://publications.aap.org/pediatrics/article/145/1/e20193447/36917",
    "alt_url": "https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/",
    "recommendation": "M-CHAT-R/F at 18 and 24 months. Positive: refer for diagnosis, early intervention and hearing test at once."
-  },
-  "age_band": "Child"
+  }
  },
  {
   "id": "fnp-038",
@@ -1052,7 +1028,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-038.svg",
-   "alt": "Flow chart: Medicaid and high-risk children at 12 and 24 months. Clue: CDC reference value: 3.5 µg/dL. First-line: Elevated capillary sample: confirm with venous test. Trap: Source removal is first-line; chelation is for ≥45 µg/dL."
+   "alt": "Text card. Medicaid and high-risk children at 12 and 24 months."
   },
   "source": {
    "guideline": "CDC lead 2021 reference value",
@@ -1080,7 +1056,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-039.svg",
-   "alt": "Flow chart: CBC plus ferritin at 9–12 months if breastfed. Clue: Formula-fed infants: 15–18 months; also menstruating adolescents. First-line: Low ferritin identifies deficiency before anemia develops. Trap: Excess cow's milk intake is a classic toddler cause."
+   "alt": "Text card. CBC plus ferritin at 9–12 months if breastfed."
   },
   "source": {
    "guideline": "AAP 2026 iron deficiency clinical report",
@@ -1108,7 +1084,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-040.svg",
-   "alt": "Flow chart: Girls: breast budding first; boys: testicular enlargement. Clue: Precocious: before 8 in girls, before 9 in boys. First-line: Delayed: no breast by 13 or testicular enlargement by 14. Trap: No menarche by 15: evaluate for primary amenorrhea."
+   "alt": "Text card. Girls: breast budding first; boys: testicular enlargement."
   },
   "source": {
    "guideline": "AAFP 2017 disorders of puberty",
@@ -1116,8 +1092,7 @@
    "url": "https://www.aafp.org/pubs/afp/issues/2017/1101/p590.html",
    "alt_url": null,
    "recommendation": "Girls: breast budding first; boys: testicular enlargement. Delayed: no breast by 13 or testicular enlargement by 14."
-  },
-  "age_band": "Child"
+  }
  },
  {
   "id": "fnp-041",
@@ -1136,7 +1111,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-041.svg",
-   "alt": "Flow chart: Offer confidential time alone with the teen. Clue: SSHADESS: strengths, school, home, activities, drugs, emotions, sexuality, safety. First-line: Screen behavior and emotions at every visit; depression and suicide risk yearly from age 12. Trap: Confidentiality has limits set by state law; know your state's rules."
+   "alt": "Text card. Offer confidential time alone with the teen."
   },
   "source": {
    "guideline": "AAFP 2020 adolescent screening and counseling; AAP/Bright Futures 2025 periodicity schedule; AAFP 2012 confidential care",
@@ -1145,7 +1120,7 @@
    "alt_url": "https://downloads.aap.org/AAP/PDF/periodicity_schedule.pdf",
    "recommendation": "Offer confidential time alone with the teen. Screen behavior and emotions at every visit; depression and suicide risk yearly from age 12."
   },
-  "age_band": "Child"
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-042",
@@ -1164,7 +1139,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-042.svg",
-   "alt": "Flow chart: Exertional syncope, chest pain or early family sudden death. Clue: Murmur louder with Valsalva or standing, softer with squatting. First-line: Refer for ECG, echocardiogram and cardiology evaluation. Trap: HCM no longer means automatic disqualification; shared decision after evaluation."
+   "alt": "Text card. Exertional syncope, chest pain or early family sudden death."
   },
   "source": {
    "guideline": "AAP PPE 5th ed 2019",
@@ -1172,8 +1147,7 @@
    "url": "https://www.aap.org/en/patient-care/preparticipation-physical-evaluation/",
    "alt_url": "https://doi.org/10.1161/cir.0000000000001250",
    "recommendation": "Exertional syncope, chest pain or early family sudden death. Refer for ECG, echocardiogram and cardiology evaluation."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-043",
@@ -1192,7 +1166,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-043.svg",
-   "alt": "Flow chart: CBC, type/Rh, antibody screen, HIV, syphilis, HBV, HCV, rubella. Clue: Urine culture for asymptomatic bacteriuria; first-trimester ultrasound dates most accurately. First-line: Rh-negative and unsensitized: anti-D at 28 weeks. Trap: Screen chlamydia and gonorrhea at 24 and younger, or at risk."
+   "alt": "Text card. CBC, type/Rh, antibody screen, HIV, syphilis, HBV, HCV, rubella."
   },
   "source": {
    "guideline": "AAP/ACOG Guidelines for Perinatal Care 8th ed 2017; ACOG CC 8 2025",
@@ -1200,8 +1174,7 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/02/prevention-of-group-b-streptococcal-early-onset-disease-in-newborns",
    "recommendation": "CBC, type/Rh, antibody screen, HIV, syphilis, HBV, HCV, rubella. Rh-negative and unsensitized: anti-D at 28 weeks."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-044",
@@ -1220,7 +1193,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-044.svg",
-   "alt": "Flow chart: At 24–28 weeks (B). Clue: One-step 75 g OGTT or two-step 50 g then 100 g. First-line: Early testing if risk factors, such as prior GDM or obesity. Trap: Abnormal early test: manage as diabetes, not wait for 24 weeks."
+   "alt": "Threshold. At 24–28 weeks (B)."
   },
   "source": {
    "guideline": "ACOG Clinical Practice Update 2024; USPSTF GDM 2021",
@@ -1228,8 +1201,7 @@
    "url": "https://doi.org/10.1097/aog.0000000000005612",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/gestational-diabetes-screening",
    "recommendation": "At 24–28 weeks (B). Early testing if risk factors, such as prior GDM or obesity."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-045",
@@ -1248,7 +1220,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-045.svg",
-   "alt": "Flow chart: Measure BP at every prenatal visit (B). Clue: Gestational hypertension: ≥140/90 twice, 4 hours apart, after 20 weeks. First-line: Elevated BP: check proteinuria, platelets, creatinine and liver enzymes. Trap: Routine urine dipstick screening has low accuracy."
+   "alt": "Text card. Measure BP at every prenatal visit (B)."
   },
   "source": {
    "guideline": "USPSTF preeclampsia screening 2023",
@@ -1256,8 +1228,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertensive-disorders-pregnancy-screening",
    "alt_url": null,
    "recommendation": "Measure BP at every prenatal visit (B). Elevated BP: check proteinuria, platelets, creatinine and liver enzymes."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-046",
@@ -1276,7 +1247,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-046.svg",
-   "alt": "Flow chart: Rectovaginal culture at 36 0/7–37 6/7 weeks. Clue: Positive culture, GBS bacteriuria or prior infant with GBS disease. First-line: Intrapartum penicillin; low-risk penicillin allergy: cefazolin. Trap: Rescreen if birth has not occurred within 5 weeks of culture."
+   "alt": "Threshold. Rectovaginal culture at 36 0/7–37 6/7 weeks."
   },
   "source": {
    "guideline": "ACOG CO 797 2020",
@@ -1304,7 +1275,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-047.svg",
-   "alt": "Flow chart: From 24 weeks, centimeters roughly equal gestational weeks. Clue: Fundus at the umbilicus around 20 weeks. First-line: Size–date discrepancy: ultrasound for growth and amniotic fluid. Trap: Obesity or fibroids make fundal height unreliable; use ultrasound."
+   "alt": "Threshold. From 24 weeks, centimeters roughly equal gestational weeks."
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -1312,8 +1283,7 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": null,
    "recommendation": "From 24 weeks, centimeters roughly equal gestational weeks. Size–date discrepancy: ultrasound for growth and amniotic fluid."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-048",
@@ -1332,7 +1302,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-048.svg",
-   "alt": "Flow chart: Early pregnancy, later pregnancy and postpartum visits. Clue: Edinburgh Postnatal Depression Scale or PHQ-9; screen anxiety too. First-line: Assess for bipolar disorder before starting medication. Trap: Blues resolve by 2 weeks; psychosis is an emergency."
+   "alt": "Text card. Early pregnancy, later pregnancy and postpartum visits."
   },
   "source": {
    "guideline": "ACOG CPG No. 4 2023; USPSTF perinatal depression 2019",
@@ -1340,8 +1310,7 @@
    "url": "https://www.acog.org/clinical/guidance/clinical-practice-guideline/2023/06/screening-and-diagnosis-of-mental-health-conditions-during-pregnancy-and-postpartum/",
    "alt_url": null,
    "recommendation": "Early pregnancy, later pregnancy and postpartum visits. Assess for bipolar disorder before starting medication."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-049",
@@ -1360,7 +1329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-049.svg",
-   "alt": "Flow chart: Spirometry with bronchodilator reversibility. Clue: Adults: FEV1 rises >12% and >200 mL after bronchodilator. First-line: Peak flow variability or bronchoprovocation if spirometry is normal. Trap: Normal spirometry between symptoms does not exclude asthma."
+   "alt": "Text card. Spirometry with bronchodilator reversibility."
   },
   "source": {
    "guideline": "GINA 2025",
@@ -1368,8 +1337,7 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "Spirometry with bronchodilator reversibility. Peak flow variability or bronchoprovocation if spirometry is normal."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-050",
@@ -1388,7 +1356,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-050.svg",
-   "alt": "Flow chart: Post-bronchodilator FEV1/FVC <0.70. Clue: Symptoms plus exposure history, such as tobacco or biomass smoke. First-line: FEV1 grades severity: ≥80%, 50–79%, 30–49%, <30%. Trap: Test once for alpha-1 antitrypsin deficiency."
+   "alt": "Threshold. Post-bronchodilator FEV1/FVC <0.70."
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -1396,8 +1364,7 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "Post-bronchodilator FEV1/FVC <0.70. FEV1 grades severity: ≥80%, 50–79%, 30–49%, <30%."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-051",
@@ -1416,7 +1383,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-051.svg",
-   "alt": "Flow chart: Sleep study, not a questionnaire alone. Clue: STOP-BANG flags risk: snoring, tiredness, observed apnea, BP, BMI, age, neck, sex. First-line: Diagnosis: AHI ≥5 with symptoms or ≥15; CPAP is first-line treatment. Trap: Significant cardiopulmonary disease or negative home test: in-lab polysomnography."
+   "alt": "Text card. Sleep study, not a questionnaire alone."
   },
   "source": {
    "guideline": "AASM 2017 OSA testing",
@@ -1424,8 +1391,7 @@
    "url": "https://doi.org/10.5664/jcsm.6506",
    "alt_url": null,
    "recommendation": "Sleep study, not a questionnaire alone. Diagnosis: AHI ≥5 with symptoms or ≥15; CPAP is first-line treatment."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-052",
@@ -1444,7 +1410,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-052.svg",
-   "alt": "Flow chart: Bone tenderness or inability to bear weight 4 steps. Clue: Ankle: malleolus edge or tip; foot: navicular or 5th metatarsal base. First-line: Knee: age ≥55, fibular head or isolated patellar tenderness, no 90° flexion. Trap: Not valid with intoxication or distracting injuries."
+   "alt": "Text card. Bone tenderness or inability to bear weight 4 steps."
   },
   "source": {
    "guideline": "Ottawa ankle rule (Stiell 1992/1993), knee rule (1996)",
@@ -1452,8 +1418,7 @@
    "url": "https://pubmed.ncbi.nlm.nih.gov/8433468/",
    "alt_url": null,
    "recommendation": "Bone tenderness or inability to bear weight 4 steps. Knee: age ≥55, fibular head or isolated patellar tenderness, no 90° flexion."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-053",
@@ -1472,7 +1437,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-053.svg",
-   "alt": "Flow chart: Lachman is most sensitive for ACL tear. Clue: Anterior drawer for ACL; McMurray or joint-line tenderness for meniscus. First-line: MRI confirms; refer active patients to orthopedics. Trap: Rapid hemarthrosis after a pivot injury suggests ACL tear."
+   "alt": "Text card. Lachman is most sensitive for ACL tear."
   },
   "source": {
    "guideline": "AAOS ACL CPG 2022",
@@ -1480,8 +1445,7 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/anterior-cruciate-ligament-injuries/aclcpg.pdf",
    "alt_url": null,
    "recommendation": "Lachman is most sensitive for ACL tear. MRI confirms; refer active patients to orthopedics."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-054",
@@ -1500,7 +1464,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-054.svg",
-   "alt": "Flow chart: Neer and Hawkins: impingement. Clue: Drop-arm sign or weak external rotation: full-thickness tear. First-line: Atraumatic tear: physical therapy first. Trap: Acute traumatic tear with weakness: early orthopedic referral."
+   "alt": "Text card. Neer and Hawkins: impingement."
   },
   "source": {
    "guideline": "AAOS rotator cuff CPG 2025",
@@ -1508,8 +1472,7 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/rotator-cuff/rotator-cuff-2025/rotator-cuff-cpg.pdf",
    "alt_url": "https://www.aaos.org/rccpg2025",
    "recommendation": "Neer and Hawkins: impingement. Atraumatic tear: physical therapy first."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-055",
@@ -1528,7 +1491,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-055.svg",
-   "alt": "Flow chart: Saddle anesthesia, urinary retention, progressive weakness. Clue: Cancer history, weight loss, fever, injection drug use. First-line: No red flags: no imaging; stay active, heat, NSAIDs. Trap: Cauda equina is a same-day emergency MRI."
+   "alt": "Text card. Saddle anesthesia, urinary retention, progressive weakness."
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -1536,8 +1499,7 @@
    "url": "https://doi.org/10.7326/M16-2367",
    "alt_url": null,
    "recommendation": "Saddle anesthesia, urinary retention, progressive weakness. No red flags: no imaging; stay active, heat, NSAIDs."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-056",
@@ -1556,7 +1518,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-056.svg",
-   "alt": "Flow chart: Phalen and Tinel tests, plus symptom distribution. Clue: Thumb, index, middle and radial half of ring finger. First-line: Splinting or steroid injection; surgery if severe. Trap: Thenar atrophy or weakness: early electrodiagnostic testing and referral."
+   "alt": "Text card. Phalen and Tinel tests, plus symptom distribution."
   },
   "source": {
    "guideline": "AAOS CTS CPG 2024",
@@ -1564,8 +1526,7 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/carpal-tunnel/carpal-tunnel-2024/cts-cpg.pdf",
    "alt_url": null,
    "recommendation": "Phalen and Tinel tests, plus symptom distribution. Splinting or steroid injection; surgery if severe."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-057",
@@ -1584,7 +1545,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-057.svg",
-   "alt": "Flow chart: Moderate-severe bulging or new otorrhea. Clue: Mild bulging plus ear pain under 48 hours, or intense TM redness. First-line: Pneumatic otoscopy confirms middle ear effusion. Trap: No effusion: not otitis media; don't treat red TM alone."
+   "alt": "Do and do not. Moderate-severe bulging or new otorrhea."
   },
   "source": {
    "guideline": "AAP AOM 2013 (still current)",
@@ -1593,7 +1554,7 @@
    "alt_url": null,
    "recommendation": "Moderate-severe bulging or new otorrhea. Pneumatic otoscopy confirms middle ear effusion."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-058",
@@ -1612,7 +1573,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-058.svg",
-   "alt": "Flow chart: Use a clinical score, such as Centor or McIsaac. Clue: Fever, tonsillar exudate, tender anterior nodes, no cough. First-line: Low score: no test; higher score: rapid antigen test. Trap: Children with negative rapid test: back-up culture; adults don't need one."
+   "alt": "Do and do not. Use a clinical score, such as Centor or McIsaac."
   },
   "source": {
    "guideline": "IDSA GAS pharyngitis 2025 update (scoring); IDSA 2012",
@@ -1620,8 +1581,7 @@
    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis2/",
    "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
    "recommendation": "Use a clinical score, such as Centor or McIsaac. Low score: no test; higher score: rapid antigen test."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-059",
@@ -1640,7 +1600,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-059.svg",
-   "alt": "Flow chart: ABCDE: asymmetry, border, color, diameter >6 mm, evolving. Clue: An \"ugly duckling\" lesion looks different from others. First-line: Excisional biopsy with 1–3 mm margins. Trap: Evolving lesions are the highest-risk feature."
+   "alt": "Threshold. ABCDE: asymmetry, border, color, diameter >6 mm, evolving."
   },
   "source": {
    "guideline": "AAD 2019 melanoma",
@@ -1648,8 +1608,7 @@
    "url": "https://doi.org/10.1016/j.jaad.2018.08.055",
    "alt_url": null,
    "recommendation": "ABCDE: asymmetry, border, color, diameter >6 mm, evolving. Excisional biopsy with 1–3 mm margins."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-060",
@@ -1668,7 +1627,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-060.svg",
-   "alt": "Flow chart: Ferritin; <45 ng/mL supports iron deficiency. Clue: Normal ferritin with Mentzer index <13: consider thalassemia trait. First-line: Men and postmenopausal women: bidirectional endoscopy. Trap: Also test for celiac disease in unexplained iron deficiency."
+   "alt": "Threshold. Ferritin; <45 ng/mL supports iron deficiency."
   },
   "source": {
    "guideline": "AGA 2020 IDA",
@@ -1676,8 +1635,7 @@
    "url": "https://doi.org/10.1053/j.gastro.2020.06.046",
    "alt_url": null,
    "recommendation": "Ferritin; <45 ng/mL supports iron deficiency. Men and postmenopausal women: bidirectional endoscopy."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-061",
@@ -1696,7 +1654,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-061.svg",
-   "alt": "Flow chart: B12 and folate first. Clue: Methylmalonic acid high: B12 deficiency; normal: folate deficiency. First-line: Long-term metformin: check B12 periodically. Trap: Folate alone can mask worsening B12 neuropathy; replace B12 first."
+   "alt": "Text card. B12 and folate first."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026 (B12 on metformin)",
@@ -1704,8 +1662,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://doi.org/10.1111/bjh.12959",
    "recommendation": "B12 and folate first. Long-term metformin: check B12 periodically."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-062",
@@ -1724,7 +1681,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-062.svg",
-   "alt": "Flow chart: FIB-4 first. Clue: FIB-4 <1.3: low risk; ≥1.3: elastography or ELF test. First-line: Weight loss of 7–10% improves steatosis and fibrosis. Trap: Normal ALT does not rule out advanced fibrosis."
+   "alt": "Text card. FIB-4 first."
   },
   "source": {
    "guideline": "AASLD 2023 MASLD",
@@ -1732,8 +1689,7 @@
    "url": "https://doi.org/10.1097/HEP.0000000000000323",
    "alt_url": null,
    "recommendation": "FIB-4 first. Weight loss of 7–10% improves steatosis and fibrosis."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-063",
@@ -1752,7 +1708,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-063.svg",
-   "alt": "Flow chart: Urinalysis, blood culture and inflammatory markers. Clue: 8–21 days: lumbar puncture, admission and antibiotics. First-line: 22–60 days: markers guide lumbar puncture and disposition. Trap: Ill-appearing infants are excluded; give full sepsis care."
+   "alt": "Text card. Urinalysis, blood culture and inflammatory markers."
   },
   "source": {
    "guideline": "AAP 2021 febrile infant",
@@ -1780,7 +1736,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-064.svg",
-   "alt": "Flow chart: Noncontrast CT in most adults. Clue: Colicky flank pain and hematuria. First-line: Ultrasound first in pregnancy and children; NSAIDs for colic; tamsulosin for distal stones ≤10 mm. Trap: Fever with obstruction needs urgent decompression."
+   "alt": "Text card. Noncontrast CT in most adults."
   },
   "source": {
    "guideline": "AUA kidney stones 2026; ACR AC flank pain 2023",
@@ -1789,7 +1745,7 @@
    "alt_url": null,
    "recommendation": "Noncontrast CT in most adults. Ultrasound first in pregnancy and children; NSAIDs for colic; tamsulosin for distal stones ≤10 mm."
   },
-  "age_band": "Young adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-065",
@@ -1808,7 +1764,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-065.svg",
-   "alt": "Flow chart: All adults with hypertension. Clue: Aldosterone-renin ratio; check potassium too. First-line: Positive: confirm with specialist; unilateral disease may be surgical, bilateral gets an MRA. Trap: Normal potassium does not rule out primary aldosteronism."
+   "alt": "Text card. All adults with hypertension."
   },
   "source": {
    "guideline": "Endocrine Society PA 2025",
@@ -1816,8 +1772,7 @@
    "url": "https://www.endocrine.org/clinical-practice-guidelines/primary-aldosteronism-2",
    "alt_url": null,
    "recommendation": "All adults with hypertension. Positive: confirm with specialist; unilateral disease may be surgical, bilateral gets an MRA."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-066",
@@ -1836,7 +1791,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-066.svg",
-   "alt": "Flow chart: Stable: predictable exertional pain relieved by rest. Clue: ACS: new, rest or crescendo pain. First-line: Suspected ACS: call EMS, chewed aspirin, ECG within 10 minutes. Trap: Women, older adults and diabetes present atypically, with dyspnea or fatigue."
+   "alt": "Text card. Stable: predictable exertional pain relieved by rest."
   },
   "source": {
    "guideline": "ACC/AHA 2023 chronic coronary disease; ACC/AHA 2025 ACS",
@@ -1844,8 +1799,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001168",
    "alt_url": "https://doi.org/10.1016/j.jacc.2024.11.009",
    "recommendation": "Stable: predictable exertional pain relieved by rest. Suspected ACS: call EMS, chewed aspirin, ECG within 10 minutes."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-067",
@@ -1864,7 +1818,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-067.svg",
-   "alt": "Flow chart: Natriuretic peptide supports HF; echo sets the type. Clue: HFrEF ≤40%, HFmrEF 41–49%, HFpEF ≥50%. First-line: Elevated BNP or NT-proBNP, then echocardiogram. Trap: Obesity lowers BNP; sacubitril raises BNP, so follow NT-proBNP."
+   "alt": "Steps. Natriuretic peptide supports HF; echo sets the type."
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -1872,8 +1826,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "Natriuretic peptide supports HF; echo sets the type. Elevated BNP or NT-proBNP, then echocardiogram."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-068",
@@ -1892,7 +1845,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-068.svg",
-   "alt": "Flow chart: ECG: no P waves, irregular RR. Clue: CHA2DS2-VASc ≥2 in men or ≥3 in women. First-line: Anticoagulate; check TSH and echocardiogram. Trap: Aspirin alone is not an alternative for stroke prevention."
+   "alt": "Text card. ECG: no P waves, irregular RR."
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -1900,8 +1853,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "ECG: no P waves, irregular RR. Anticoagulate; check TSH and echocardiogram."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-069",
@@ -1920,7 +1872,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-069.svg",
-   "alt": "Flow chart: AS: crescendo-decrescendo at right upper sternal border. Clue: AS radiates to carotids; HCM gets louder with Valsalva or standing. First-line: Echocardiogram for both. Trap: Do not stress-test symptomatic severe AS."
+   "alt": "Do and do not. AS: crescendo-decrescendo at right upper sternal border."
   },
   "source": {
    "guideline": "ACC/AHA 2020 valvular disease",
@@ -1928,8 +1880,7 @@
    "url": "https://doi.org/10.1016/j.jacc.2020.11.018",
    "alt_url": null,
    "recommendation": "AS: crescendo-decrescendo at right upper sternal border. Echocardiogram for both."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-070",
@@ -1948,7 +1899,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-070.svg",
-   "alt": "Flow chart: Resting ABI ≤0.90. Clue: 0.91–0.99 is borderline; >1.40 is noncompressible. First-line: Supervised exercise, high-intensity statin, antiplatelet; noncompressible: toe-brachial index. Trap: Rest pain or nonhealing wound is chronic limb-threatening ischemia; refer urgently."
+   "alt": "Threshold. Resting ABI ≤0.90."
   },
   "source": {
    "guideline": "ACC/AHA 2024 PAD",
@@ -1956,8 +1907,7 @@
    "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.02.013",
    "alt_url": null,
    "recommendation": "Resting ABI ≤0.90. Supervised exercise, high-intensity statin, antiplatelet; noncompressible: toe-brachial index."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-071",
@@ -1976,7 +1926,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-071.svg",
-   "alt": "Flow chart: Wells score first. Clue: Wells unlikely: D-dimer; negative excludes DVT. First-line: Wells likely: proximal or whole-leg ultrasound. Trap: Do not use D-dimer alone when pretest probability is high."
+   "alt": "Do and do not. Wells score first."
   },
   "source": {
    "guideline": "ASH 2018 VTE diagnosis",
@@ -1984,8 +1934,7 @@
    "url": "https://doi.org/10.1182/bloodadvances.2018024828",
    "alt_url": "https://ashpublications.org/bloodadvances/article/4/19/4693/463998/",
    "recommendation": "Wells score first. Wells likely: proximal or whole-leg ultrasound."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-072",
@@ -2004,7 +1953,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-072.svg",
-   "alt": "Flow chart: Abnormal vitals or focal exam suggest pneumonia. Clue: Heart rate >100, respiratory rate >24, temperature >38 °C. First-line: Suspected pneumonia: chest X-ray; bronchitis: symptom care. Trap: Acute bronchitis cough lasts up to 3 weeks; no antibiotics."
+   "alt": "Text card. Abnormal vitals or focal exam suggest pneumonia."
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP; ACP/CDC 2016 acute respiratory tract infection advice",
@@ -2012,8 +1961,7 @@
    "url": "https://doi.org/10.1164/rccm.201908-1581ST",
    "alt_url": "https://doi.org/10.7326/M15-1840",
    "recommendation": "Abnormal vitals or focal exam suggest pneumonia. Suspected pneumonia: chest X-ray; bronchitis: symptom care."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-073",
@@ -2032,7 +1980,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-073.svg",
-   "alt": "Flow chart: Wheeze and crackles, barking cough, or drooling and tripod. Clue: Bronchiolitis: under 2 with RSV; croup: steeple sign. First-line: Croup: single-dose dexamethasone; epiglottitis: secure the airway. Trap: No routine albuterol or steroids for bronchiolitis."
+   "alt": "Text card. Wheeze and crackles, barking cough, or drooling and tripod."
   },
   "source": {
    "guideline": "AAP bronchiolitis 2014 (still current)",
@@ -2041,7 +1989,7 @@
    "alt_url": "https://doi.org/10.1542/peds.2014-2742",
    "recommendation": "Wheeze and crackles, barking cough, or drooling and tripod. Croup: single-dose dexamethasone; epiglottitis: secure the airway."
   },
-  "age_band": "Infant"
+  "age_band": "Child"
  },
  {
   "id": "fnp-074",
@@ -2060,7 +2008,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-074.svg",
-   "alt": "Flow chart: Pertussis; give azithromycin. Clue: Cough over 2 weeks with paroxysms, whoop or vomiting. First-line: Treat within 3 weeks of cough onset; prophylaxis for household contacts. Trap: Infants may have apnea instead of whoop."
+   "alt": "Do and do not. Pertussis; give azithromycin."
   },
   "source": {
    "guideline": "CDC pertussis clinical care (current web guidance)",
@@ -2069,7 +2017,7 @@
    "alt_url": null,
    "recommendation": "Pertussis; give azithromycin. Treat within 3 weeks of cough onset; prophylaxis for household contacts."
   },
-  "age_band": "Infant"
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-075",
@@ -2088,7 +2036,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-075.svg",
-   "alt": "Flow chart: Persistent, severe or double-worsening symptoms. Clue: Persistent: ≥10 days without improvement; severe: fever ≥39 °C with purulence. First-line: Amoxicillin with or without clavulanate, or watchful waiting. Trap: No imaging for uncomplicated sinusitis."
+   "alt": "Text card. Persistent, severe or double-worsening symptoms."
   },
   "source": {
    "guideline": "IDSA rhinosinusitis 2012; AAO-HNS 2015",
@@ -2096,8 +2044,7 @@
    "url": "https://doi.org/10.1093/cid/cir1043",
    "alt_url": "https://doi.org/10.1177/0194599815572097",
    "recommendation": "Persistent, severe or double-worsening symptoms. Amoxicillin with or without clavulanate, or watchful waiting."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-076",
@@ -2116,7 +2063,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-076.svg",
-   "alt": "Flow chart: Watery, mucopurulent, or itchy and bilateral. Clue: Viral: preauricular node, recent URI. First-line: Bacterial: topical antibiotic; allergic: antihistamine/mast-cell stabilizer drops. Trap: Contact lens wearer or hyperacute purulence: urgent ophthalmology."
+   "alt": "Text card. Watery, mucopurulent, or itchy and bilateral."
   },
   "source": {
    "guideline": "AAO Conjunctivitis PPP 2024",
@@ -2124,8 +2071,7 @@
    "url": "https://www.aaojournal.org/article/S0161-6420(24)00009-5/fulltext",
    "alt_url": null,
    "recommendation": "Watery, mucopurulent, or itchy and bilateral. Bacterial: topical antibiotic; allergic: antihistamine/mast-cell stabilizer drops."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-077",
@@ -2144,7 +2090,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-077.svg",
-   "alt": "Flow chart: Acute angle-closure glaucoma. Clue: Mid-dilated, fixed pupil; hard eye; nausea. First-line: Emergency ophthalmology; lower pressure, then laser iridotomy. Trap: Dim light, anticholinergics or decongestants can trigger an attack."
+   "alt": "Steps. Acute angle-closure glaucoma."
   },
   "source": {
    "guideline": "AAO Primary Angle-Closure Disease PPP 2026",
@@ -2152,8 +2098,7 @@
    "url": "https://www.aaojournal.org/article/S0161-6420(25)00816-4/fulltext",
    "alt_url": "https://www.aoa.org/AOA/Documents/Practice%20Management/Clinical%20Guidelines/EBO%20Guidelines/2024_FINAL%20EBO_Glaucoma_Guideline_digital_10_28_24.pdf",
    "recommendation": "Acute angle-closure glaucoma. Emergency ophthalmology; lower pressure, then laser iridotomy."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-078",
@@ -2172,7 +2117,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-078.svg",
-   "alt": "Flow chart: Tragal or pinna pain means otitis externa. Clue: Canal edema and debris; TM may be normal. First-line: Topical antibiotic drops; nonototoxic drops if TM perforation. Trap: Older adult with diabetes and severe pain: malignant otitis externa."
+   "alt": "Text card. Tragal or pinna pain means otitis externa."
   },
   "source": {
    "guideline": "AAO-HNS 2014 AOE",
@@ -2180,8 +2125,7 @@
    "url": "https://doi.org/10.1177/0194599813517083",
    "alt_url": null,
    "recommendation": "Tragal or pinna pain means otitis externa. Topical antibiotic drops; nonototoxic drops if TM perforation."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-079",
@@ -2200,7 +2144,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-079.svg",
-   "alt": "Flow chart: Infectious mononucleosis; heterophile antibody test. Clue: Posterior cervical nodes, splenomegaly, atypical lymphocytes. First-line: Supportive care; no contact sports until cleared. Trap: Amoxicillin causes rash; early heterophile test can be falsely negative."
+   "alt": "Text card. Infectious mononucleosis; heterophile antibody test."
   },
   "source": {
    "guideline": "CDC EBV/mono clinical overview (current web guidance)",
@@ -2228,7 +2172,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-080.svg",
-   "alt": "Flow chart: Dyspepsia under 60: test for H. pylori and treat if positive. Clue: Typical GERD without alarm symptoms: 8-week empiric PPI trial. First-line: GERD with dysphagia, weight loss or GI bleeding: endoscopy first. Trap: H. pylori test of cure: stop PPI 2 weeks before breath or stool antigen testing."
+   "alt": "Text card. Dyspepsia under 60: test for H. pylori and treat if positive."
   },
   "source": {
    "guideline": "ACG GERD 2022; ACG/CAG dyspepsia 2017; ACG H. pylori 2024",
@@ -2256,7 +2200,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-081.svg",
-   "alt": "Flow chart: Rome IV positive diagnosis. Clue: Pain ≥1 day/week for 3 months, with stool frequency or form change. First-line: CBC, CRP or calprotectin, and celiac serology in diarrhea. Trap: Bleeding, weight loss or nocturnal symptoms need further work-up."
+   "alt": "Text card. Rome IV positive diagnosis."
   },
   "source": {
    "guideline": "ACG IBS 2021",
@@ -2264,8 +2208,7 @@
    "url": "https://doi.org/10.14309/ajg.0000000000001036",
    "alt_url": "https://journals.lww.com/ajg/pages/articleviewer.aspx?article=00013&issue=06000&type=Fulltext&year=2025",
    "recommendation": "Rome IV positive diagnosis. CBC, CRP or calprotectin, and celiac serology in diarrhea."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-082",
@@ -2284,7 +2227,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-082.svg",
-   "alt": "Flow chart: tTG-IgA with total IgA. Clue: Iron deficiency, diarrhea, dermatitis herpetiformis, type 1 diabetes. First-line: Positive: duodenal biopsy to confirm. Trap: Patient must eat gluten during testing; IgA deficiency gives false negatives."
+   "alt": "Text card. tTG-IgA with total IgA."
   },
   "source": {
    "guideline": "ACG celiac 2023",
@@ -2292,8 +2235,7 @@
    "url": "https://doi.org/10.14309/ajg.0000000000002075",
    "alt_url": null,
    "recommendation": "tTG-IgA with total IgA. Positive: duodenal biopsy to confirm."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-083",
@@ -2312,7 +2254,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-083.svg",
-   "alt": "Flow chart: Suspected appendicitis: surgical evaluation. Clue: Periumbilical pain shifting to RLQ, anorexia, fever. First-line: Ultrasound first in children and pregnancy; CT in most adults. Trap: Delaying referral increases perforation risk."
+   "alt": "Text card. Suspected appendicitis: surgical evaluation."
   },
   "source": {
    "guideline": "WSES Jerusalem 2020 update",
@@ -2321,7 +2263,7 @@
    "alt_url": null,
    "recommendation": "Suspected appendicitis: surgical evaluation. Ultrasound first in children and pregnancy; CT in most adults."
   },
-  "age_band": "Young adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-084",
@@ -2340,7 +2282,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-084.svg",
-   "alt": "Flow chart: Acute diverticulitis; CT if diagnosis uncertain. Clue: Left lower quadrant tenderness, fever, leukocytosis. First-line: Uncomplicated and immunocompetent: antibiotics selectively. Trap: Abscess or perforation is complicated; colonoscopy after recovery if not recent."
+   "alt": "Text card. Acute diverticulitis; CT if diagnosis uncertain."
   },
   "source": {
    "guideline": "AGA 2021 diverticulitis",
@@ -2368,7 +2310,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-085.svg",
-   "alt": "Flow chart: Projectile nonbilious vomiting or intermittent colicky pain. Clue: Pyloric: 3–6 weeks, olive mass, hypochloremic alkalosis. First-line: Ultrasound for both; enema can reduce intussusception. Trap: Bilious vomiting suggests malrotation; emergency."
+   "alt": "Text card. Projectile nonbilious vomiting or intermittent colicky pain."
   },
   "source": {
    "guideline": "ACR AC Vomiting in Infants 2020; ACR AC Abdominal Pain-Child 2026",
@@ -2396,7 +2338,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-086.svg",
-   "alt": "Flow chart: Islet autoantibodies. Clue: GAD65, IA-2, ZnT8 or insulin antibodies point to type 1. First-line: Test autoantibodies in every youth with new diabetes. Trap: Obesity does not exclude type 1; DKA can occur in type 2."
+   "alt": "Text card. Islet autoantibodies."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -2424,7 +2366,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-087.svg",
-   "alt": "Flow chart: Graves, toxic nodule or thyroiditis. Clue: TSH receptor antibodies, eye findings, or radioactive iodine uptake. First-line: Beta-blocker for symptoms; antithyroid drug for Graves. Trap: Thyroiditis has low uptake; antithyroid drugs do not help."
+   "alt": "Do and do not. Graves, toxic nodule or thyroiditis."
   },
   "source": {
    "guideline": "ATA 2016 hyperthyroidism",
@@ -2432,8 +2374,7 @@
    "url": "https://doi.org/10.1089/thy.2016.0229",
    "alt_url": null,
    "recommendation": "Graves, toxic nodule or thyroiditis. Beta-blocker for symptoms; antithyroid drug for Graves."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-088",
@@ -2452,7 +2393,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-088.svg",
-   "alt": "Flow chart: Repeat TSH with free T4 in 2–3 months. Clue: Positive TPO antibodies raise progression risk. First-line: Treat TSH >10; individualize 4.5–10. Trap: Pregnancy uses lower trimester-specific TSH thresholds."
+   "alt": "Text card. Repeat TSH with free T4 in 2–3 months."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -2460,8 +2401,7 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "Repeat TSH with free T4 in 2–3 months. Treat TSH >10; individualize 4.5–10."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-089",
@@ -2480,7 +2420,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-089.svg",
-   "alt": "Flow chart: Fever or flank pain means pyelonephritis. Clue: Cystitis: dysuria, frequency, urgency, no fever. First-line: Pyelonephritis: urine culture; oral fluoroquinolone if local resistance ≤10%. Trap: Nitrofurantoin and fosfomycin do not treat pyelonephritis."
+   "alt": "Do and do not. Fever or flank pain means pyelonephritis."
   },
   "source": {
    "guideline": "IDSA 2010 uncomplicated cystitis/pyelo (still current; update in development)",
@@ -2488,8 +2428,7 @@
    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
    "alt_url": "https://doi.org/10.1093/cid/ciaf460",
    "recommendation": "Fever or flank pain means pyelonephritis. Pyelonephritis: urine culture; oral fluoroquinolone if local resistance ≤10%."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-090",
@@ -2508,7 +2447,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-090.svg",
-   "alt": "Flow chart: BV: clue cells, pH >4.5, amine odor. Clue: Trichomonas: motile organisms; candida: hyphae, normal pH. First-line: BV and trichomonas: metronidazole 7 days; candida: fluconazole 150 mg once. Trap: Negative wet mount does not exclude trichomonas; use NAAT."
+   "alt": "Threshold. BV: clue cells, pH >4.5, amine odor."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -2516,8 +2455,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
    "alt_url": null,
    "recommendation": "BV: clue cells, pH >4.5, amine odor. BV and trichomonas: metronidazole 7 days; candida: fluconazole 150 mg once."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-091",
@@ -2536,7 +2474,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-091.svg",
-   "alt": "Flow chart: Cervical motion, uterine or adnexal tenderness. Clue: Minimum criteria are enough; do not wait for cultures. First-line: Ceftriaxone 500 mg IM plus doxycycline and metronidazole for 14 days. Trap: Delayed treatment raises infertility and ectopic risk."
+   "alt": "Text card. Cervical motion, uterine or adnexal tenderness."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -2544,8 +2482,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/pid.htm",
    "alt_url": null,
    "recommendation": "Cervical motion, uterine or adnexal tenderness. Ceftriaxone 500 mg IM plus doxycycline and metronidazole for 14 days."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-092",
@@ -2564,7 +2501,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-092.svg",
-   "alt": "Flow chart: Transvaginal ultrasound plus serial hCG. Clue: hCG above discriminatory zone with empty uterus. First-line: Stable and unruptured: methotrexate; unstable: surgery. Trap: Ectopic pregnancy is assumed until intrauterine pregnancy is seen."
+   "alt": "Text card. Transvaginal ultrasound plus serial hCG."
   },
   "source": {
    "guideline": "ACOG PB 193 2018 (still current)",
@@ -2572,8 +2509,7 @@
    "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy/",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/03/tubal-ectopic-pregnancy",
    "recommendation": "Transvaginal ultrasound plus serial hCG. Stable and unruptured: methotrexate; unstable: surgery."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-093",
@@ -2592,7 +2528,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-093.svg",
-   "alt": "Flow chart: Rotterdam: 2 of 3 features. Clue: Ovulatory dysfunction, hyperandrogenism, polycystic ovaries or high AMH. First-line: Exclude thyroid disease, high prolactin and nonclassic CAH. Trap: Within 8 years of menarche, do not use ultrasound or AMH."
+   "alt": "Do and do not. Rotterdam: 2 of 3 features."
   },
   "source": {
    "guideline": "International PCOS guideline 2023",
@@ -2600,8 +2536,7 @@
    "url": "https://doi.org/10.1093/ejendo/lvad096",
    "alt_url": null,
    "recommendation": "Rotterdam: 2 of 3 features. Exclude thyroid disease, high prolactin and nonclassic CAH."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-094",
@@ -2620,7 +2555,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-094.svg",
-   "alt": "Flow chart: PALM-COEIN classifies structural and nonstructural causes. Clue: Pregnancy test first, then CBC, TSH and pelvic ultrasound. First-line: Endometrial sampling at 45 and older. Trap: Younger with obesity or unopposed estrogen also needs sampling."
+   "alt": "Text card. PALM-COEIN classifies structural and nonstructural causes."
   },
   "source": {
    "guideline": "ACOG/FIGO PALM-COEIN 2018",
@@ -2628,8 +2563,7 @@
    "url": "https://doi.org/10.1002/ijgo.12666",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2012/07/diagnosis-of-abnormal-uterine-bleeding-in-reproductive-aged-women",
    "recommendation": "PALM-COEIN classifies structural and nonstructural causes. Endometrial sampling at 45 and older."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-095",
@@ -2648,7 +2582,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-095.svg",
-   "alt": "Flow chart: Pregnancy test first. Clue: Age 45 or older with symptoms, no period for 12 months and no hormonal contraception: menopause. First-line: Amenorrhea workup adds FSH, LH, prolactin and TSH. Trap: Healthy and 45 or older with symptoms: no lab tests are needed to identify menopause."
+   "alt": "Text card. Pregnancy test first."
   },
   "source": {
    "guideline": "NICE NG23 menopause (updated 2024); AAFP 2019 amenorrhea",
@@ -2656,8 +2590,7 @@
    "url": "https://www.nice.org.uk/guidance/ng23/chapter/Recommendations",
    "alt_url": "https://www.aafp.org/pubs/afp/issues/2019/0701/p39.html",
    "recommendation": "Pregnancy test first. Amenorrhea workup adds FSH, LH, prolactin and TSH."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-096",
@@ -2676,7 +2609,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-096.svg",
-   "alt": "Flow chart: Abnormal urinalysis plus a positive culture from a catheter specimen. Clue: Culture pending: ≥10 WBC/hpf or ≥+2 leukocyte esterase. First-line: Culture: catheter ≥10,000 CFU/mL single uropathogen; clean catch ≥100,000. Trap: Bag urine is for urinalysis only; culture needs a catheter specimen."
+   "alt": "Text card. Abnormal urinalysis plus a positive culture from a catheter specimen."
   },
   "source": {
    "guideline": "AAP UTI CPG 2026 (8 days-5 years)",
@@ -2685,7 +2618,7 @@
    "alt_url": null,
    "recommendation": "Abnormal urinalysis plus a positive culture from a catheter specimen. Culture: catheter ≥10,000 CFU/mL single uropathogen; clean catch ≥100,000."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-097",
@@ -2704,7 +2637,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-097.svg",
-   "alt": "Flow chart: Exam and symptoms point the way. Clue: Smooth enlarged prostate: BPH; hard nodule: cancer. First-line: Tender, boggy prostate with fever: acute bacterial prostatitis; antibiotics. Trap: Avoid prostate massage in acute prostatitis."
+   "alt": "Do and do not. Exam and symptoms point the way."
   },
   "source": {
    "guideline": "AUA BPH 2023",
@@ -2712,8 +2645,7 @@
    "url": "https://www.auanet.org/guidelines-and-quality/guidelines/benign-prostatic-hyperplasia-(bph)-guideline",
    "alt_url": "https://doi.org/10.1097/ju.0000000000003698",
    "recommendation": "Exam and symptoms point the way. Tender, boggy prostate with fever: acute bacterial prostatitis; antibiotics."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-098",
@@ -2732,7 +2664,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-098.svg",
-   "alt": "Flow chart: Leak with cough, urgency, or constant dribbling. Clue: Overflow: high post-void residual. First-line: Stress: pelvic floor training; urge: behavioral therapy first. Trap: Antimuscarinics carry dementia risk in older adults; consider a beta-3 agonist."
+   "alt": "Text card. Leak with cough, urgency, or constant dribbling."
   },
   "source": {
    "guideline": "AUA/SUFU OAB 2024",
@@ -2740,8 +2672,7 @@
    "url": "https://www.auanet.org/guidelines-and-quality/guidelines/idiopathic-overactive-bladder",
    "alt_url": "https://doi.org/10.1097/ju.0000000000003985",
    "recommendation": "Leak with cough, urgency, or constant dribbling. Stress: pelvic floor training; urge: behavioral therapy first."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-099",
@@ -2760,7 +2691,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-099.svg",
-   "alt": "Flow chart: OA: DIP and PIP, stiffness <30 minutes. Clue: RA: MCP, PIP and wrists, symmetric, stiffness >1 hour. First-line: RA: RF, anti-CCP, ESR and CRP; start methotrexate early. Trap: OA needs no lab work-up."
+   "alt": "Threshold. OA: DIP and PIP, stiffness <30 minutes."
   },
   "source": {
    "guideline": "ACR 2019 OA; ACR 2021 RA",
@@ -2768,8 +2699,7 @@
    "url": "https://doi.org/10.1002/art.41752",
    "alt_url": "https://doi.org/10.1002/art.41142",
    "recommendation": "OA: DIP and PIP, stiffness <30 minutes. RA: RF, anti-CCP, ESR and CRP; start methotrexate early."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-100",
@@ -2788,7 +2718,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-100.svg",
-   "alt": "Flow chart: Arthrocentesis decides. Clue: Gout: negatively birefringent needle-shaped crystals. First-line: Septic: Gram stain and culture, very high synovial WBC; both can coexist. Trap: Serum urate can be normal during a gout flare."
+   "alt": "Text card. Arthrocentesis decides."
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -2796,8 +2726,7 @@
    "url": "https://doi.org/10.1002/art.41247",
    "alt_url": null,
    "recommendation": "Arthrocentesis decides. Septic: Gram stain and culture, very high synovial WBC; both can coexist."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-101",
@@ -2816,7 +2745,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-101.svg",
-   "alt": "Flow chart: Polymyalgia rheumatica; ask about GCA symptoms. Clue: PMR: age >50, morning stiffness, high ESR or CRP. First-line: PMR: low-dose prednisone; suspected GCA: high-dose steroids now. Trap: Headache, jaw claudication or vision change: do not wait for biopsy."
+   "alt": "Do and do not. Polymyalgia rheumatica; ask about GCA symptoms."
   },
   "source": {
    "guideline": "ACR/EULAR 2015 PMR; ACR 2021 GCA",
@@ -2844,7 +2773,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-102.svg",
-   "alt": "Flow chart: Hypertension plus proteinuria or end-organ signs. Clue: Proteinuria: ≥300 mg/24 h or protein/creatinine ≥0.3. First-line: Severe: BP ≥160/110, platelets <100,000, creatinine >1.1, pulmonary edema. Trap: Proteinuria is not required; preeclampsia can start postpartum."
+   "alt": "Text card. Hypertension plus proteinuria or end-organ signs."
   },
   "source": {
    "guideline": "ACOG PB 222 2020 (reaffirmed 2026)",
@@ -2852,8 +2781,7 @@
    "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia/",
    "alt_url": null,
    "recommendation": "Hypertension plus proteinuria or end-organ signs. Severe: BP ≥160/110, platelets <100,000, creatinine >1.1, pulmonary edema."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-103",
@@ -2872,7 +2800,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-103.svg",
-   "alt": "Flow chart: Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital. Clue: Cluster: severe unilateral orbital pain, 15–180 minutes, tearing, restlessness. First-line: Migraine: 4–72 hours with nausea or light and sound sensitivity; tension: 30 minutes to 7 days, no nausea. Trap: Thunderclap onset: exclude subarachnoid hemorrhage first."
+   "alt": "Text card. Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital."
   },
   "source": {
    "guideline": "ICHD-3 (2018)",
@@ -2880,8 +2808,7 @@
    "url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
    "alt_url": "https://doi.org/10.1177/0333102417738202",
    "recommendation": "Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital. Migraine: 4–72 hours with nausea or light and sound sensitivity; tension: 30 minutes to 7 days, no nausea."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-104",
@@ -2900,7 +2827,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-104.svg",
-   "alt": "Flow chart: Bell palsy affects the forehead. Clue: Forehead sparing suggests central lesion. First-line: Bell palsy: oral steroids within 72 hours; eye protection. Trap: No routine labs or imaging for typical Bell palsy."
+   "alt": "Text card. Bell palsy affects the forehead."
   },
   "source": {
    "guideline": "AAO-HNS 2013 Bell palsy",
@@ -2908,8 +2835,7 @@
    "url": "https://doi.org/10.1177/0194599813505967",
    "alt_url": null,
    "recommendation": "Bell palsy affects the forehead. Bell palsy: oral steroids within 72 hours; eye protection."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-105",
@@ -2928,7 +2854,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-105.svg",
-   "alt": "Flow chart: Dix-Hallpike provokes torsional nystagmus. Clue: Brief vertigo triggered by head position changes, lasting under a minute. First-line: Epley maneuver; no routine imaging or vestibular suppressants. Trap: Direction-changing nystagmus or skew deviation: stroke work-up."
+   "alt": "Text card. Dix-Hallpike provokes torsional nystagmus."
   },
   "source": {
    "guideline": "AAO-HNS 2017 BPPV",
@@ -2936,8 +2862,7 @@
    "url": "https://doi.org/10.1177/0194599816689667",
    "alt_url": null,
    "recommendation": "Dix-Hallpike provokes torsional nystagmus. Epley maneuver; no routine imaging or vestibular suppressants."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-106",
@@ -2956,7 +2881,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-106.svg",
-   "alt": "Flow chart: Rest tremor versus action tremor. Clue: PD: bradykinesia with rest tremor or rigidity. First-line: Essential tremor: bilateral action tremor, often familial; propranolol or primidone. Trap: Antipsychotics and metoclopramide cause drug-induced parkinsonism."
+   "alt": "Contrast. Rest tremor versus action tremor."
   },
   "source": {
    "guideline": "MDS PD criteria 2015",
@@ -2964,8 +2889,7 @@
    "url": "https://doi.org/10.1002/mds.26424",
    "alt_url": "https://www.neurology.org/doi/10.1212/WNL.0000000000012868",
    "recommendation": "Rest tremor versus action tremor. Essential tremor: bilateral action tremor, often familial; propranolol or primidone."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-107",
@@ -2984,7 +2908,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-107.svg",
-   "alt": "Flow chart: Gradual, stepwise or fluctuating. Clue: Lewy body: visual hallucinations, parkinsonism, REM sleep behavior disorder. First-line: Labs for reversible causes; brain imaging. Trap: Lewy body dementia: severe antipsychotic sensitivity."
+   "alt": "Text card. Gradual, stepwise or fluctuating."
   },
   "source": {
    "guideline": "Alzheimer's Assoc. revised AD criteria 2024; DLB Consortium 2017",
@@ -2992,8 +2916,7 @@
    "url": "https://doi.org/10.1002/alz.13859",
    "alt_url": null,
    "recommendation": "Gradual, stepwise or fluctuating. Labs for reversible causes; brain imaging."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-108",
@@ -3012,7 +2935,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-108.svg",
-   "alt": "Flow chart: DSM-5 criteria in ≥2 settings. Clue: Symptoms ≥6 months, several before age 12. First-line: Gather parent and teacher rating scales. Trap: Screen for coexisting anxiety, depression and learning disorders."
+   "alt": "Threshold. DSM-5 criteria in ≥2 settings."
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -3021,7 +2944,7 @@
    "alt_url": "https://publications.aap.org/pediatrics/article/144/4/e20192528/81590/Clinical-Practice-Guideline-for-the-Diagnosis",
    "recommendation": "DSM-5 criteria in ≥2 settings. Gather parent and teacher rating scales."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-109",
@@ -3040,7 +2963,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-109.svg",
-   "alt": "Flow chart: HR <50 by day or <45 at night, BP <90/45, or temperature <35.6 °C. Clue: Orthostatic pulse rise >20, or BP drop >20 systolic or >10 diastolic. First-line: Also admit: ≤75% median BMI, electrolyte or ECG abnormality, syncope, acute food refusal. Trap: Refeeding risks low phosphorus; monitor electrolytes closely."
+   "alt": "Threshold. HR <50 by day or <45 at night, BP <90/45, or temperature <35.6 °C."
   },
   "source": {
    "guideline": "AAP eating disorders clinical report 2021 (still current)",
@@ -3068,7 +2991,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-110.svg",
-   "alt": "Flow chart: Atopic: itchy, cheeks and extensors; seborrheic: greasy scale, little itch. Clue: Seborrheic: scalp (cradle cap), face and folds, often the diaper area; little itch. First-line: Atopic dermatitis: moisturizers plus a low-potency topical steroid on the face and folds. Trap: Atopic dermatitis usually spares the groin and axillae."
+   "alt": "Text card. Atopic: itchy, cheeks and extensors; seborrheic: greasy scale, little itch."
   },
   "source": {
    "guideline": "AAD 2014 atopic dermatitis diagnosis; AAFP 2020 atopic dermatitis",
@@ -3096,7 +3019,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-111.svg",
-   "alt": "Flow chart: KOH preparation helps identify tinea. Clue: Tinea: annular with central clearing; psoriasis: silvery scale. First-line: Nummular eczema: itchy round to oval spots; topical steroid and moisturizer. Trap: A steroid on unrecognized tinea can mask or worsen it (tinea incognito)."
+   "alt": "Text card. KOH preparation helps identify tinea."
   },
   "source": {
    "guideline": "AAFP 2014 tinea infections; AAD nummular eczema treatment page; AAP atopic dermatitis differential page",
@@ -3104,8 +3027,7 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12707599/",
    "alt_url": "https://www.aad.org/public/diseases/eczema/types/nummular-dermatitis/treatment",
    "recommendation": "KOH preparation helps identify tinea. Nummular eczema: itchy round to oval spots; topical steroid and moisturizer."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-112",
@@ -3124,7 +3046,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-112.svg",
-   "alt": "Flow chart: Burrows in web spaces, wrists and waist. Clue: Night itch; household members affected. First-line: Permethrin 5% neck down; repeat in 1–2 weeks; treat contacts. Trap: Itch can last 2–4 weeks after successful treatment."
+   "alt": "Text card. Burrows in web spaces, wrists and waist."
   },
   "source": {
    "guideline": "CDC scabies clinical care (current web guidance)",
@@ -3132,8 +3054,7 @@
    "url": "https://www.cdc.gov/scabies/hcp/clinical-care/index.html",
    "alt_url": null,
    "recommendation": "Burrows in web spaces, wrists and waist. Permethrin 5% neck down; repeat in 1–2 weeks; treat contacts."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-113",
@@ -3152,7 +3073,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-113.svg",
-   "alt": "Flow chart: Pattern and timing name the virus. Clue: Measles: cough, coryza, conjunctivitis, Koplik spots. First-line: Roseola: rash after fever; fifth disease: slapped cheek. Trap: Parvovirus: aplastic crisis in sickle cell disease and fetal hydrops."
+   "alt": "Text card. Pattern and timing name the virus."
   },
   "source": {
    "guideline": "CDC; AAP Red Book 2024",
@@ -3180,7 +3101,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-114.svg",
-   "alt": "Flow chart: Fever ≥5 days plus ≥4 of 5 criteria. Clue: Conjunctivitis, oral changes, rash, extremity changes, cervical node. First-line: IVIG and aspirin; echocardiogram. Trap: Infants often have incomplete Kawasaki disease."
+   "alt": "Threshold. Fever ≥5 days plus ≥4 of 5 criteria."
   },
   "source": {
    "guideline": "AHA Kawasaki scientific statement 2024",
@@ -3188,8 +3109,7 @@
    "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001295",
    "alt_url": null,
    "recommendation": "Fever ≥5 days plus ≥4 of 5 criteria. IVIG and aspirin; echocardiogram."
-  },
-  "age_band": "Infant"
+  }
  },
  {
   "id": "fnp-115",
@@ -3208,7 +3128,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-115.svg",
-   "alt": "Flow chart: Jaundice in the first 24 hours. Clue: Measure TSB or TcB; plot by age in hours. First-line: Phototherapy by hour-specific thresholds and risk factors. Trap: Pale stools or dark urine: check direct bilirubin."
+   "alt": "Threshold. Jaundice in the first 24 hours."
   },
   "source": {
    "guideline": "AAP 2022 hyperbilirubinemia",
@@ -3236,7 +3156,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-116.svg",
-   "alt": "Flow chart: Possible physical abuse; sentinel injury. Clue: Bruises on the torso, ears or neck. First-line: Under 2: skeletal survey; report to CPS. Trap: Report on reasonable suspicion; certainty is not required."
+   "alt": "Text card. Possible physical abuse; sentinel injury."
   },
   "source": {
    "guideline": "AAP 2015 suspected physical abuse (reaffirmed 2026)",
@@ -3264,7 +3184,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-117.svg",
-   "alt": "Flow chart: Assess when suspected, interview alone. Clue: Unexplained injuries, poor hygiene, delayed care, financial changes. First-line: Report to Adult Protective Services per state law. Trap: Routine screening of older adults: insufficient evidence (I)."
+   "alt": "Text card. Assess when suspected, interview alone."
   },
   "source": {
    "guideline": "USPSTF IPV/caregiver abuse 2025 (I for older adults)",
@@ -3292,7 +3212,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-118.svg",
-   "alt": "Flow chart: Personal or family history of bipolar disorder, mania or hypomania. Clue: Manic signs: greatly increased energy, severe trouble sleeping, racing thoughts. First-line: Positive history: involve psychiatry before prescribing. Trap: An antidepressant alone may precipitate a mixed or manic episode."
+   "alt": "Text card. Personal or family history of bipolar disorder, mania or hypomania."
   },
   "source": {
    "guideline": "FDA sertraline label, warning 5.4 (2023)",
@@ -3300,8 +3220,7 @@
    "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019839s108,20990s062lbl.pdf",
    "alt_url": null,
    "recommendation": "Personal or family history of bipolar disorder, mania or hypomania. Positive history: involve psychiatry before prescribing."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-119",
@@ -3320,7 +3239,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-119.svg",
-   "alt": "Flow chart: Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug. Clue: Stage 2 (≥140/90): start two drugs, ideally one pill. First-line: Goal <130/80 for most adults. Trap: Never combine an ACEi with an ARB."
+   "alt": "Do and do not. Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN (race no longer guides initial drug choice)",
@@ -3328,8 +3247,7 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug. Goal <130/80 for most adults."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-120",
@@ -3348,7 +3266,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-120.svg",
-   "alt": "Flow chart: ACEi or ARB, titrated to maximum tolerated. Clue: Albuminuria A3, or A2 with diabetes. First-line: Recheck creatinine and potassium in 2–4 weeks. Trap: Continue unless creatinine rises >30%; don't combine ACEi and ARB."
+   "alt": "Do and do not. ACEi or ARB, titrated to maximum tolerated."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD; ADA Standards of Care 2026",
@@ -3356,8 +3274,7 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "ACEi or ARB, titrated to maximum tolerated. Recheck creatinine and potassium in 2–4 weeks."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-121",
@@ -3376,7 +3293,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-121.svg",
-   "alt": "Flow chart: eGFR ≥20 with diabetes, albuminuria or HF. Clue: Without diabetes: UACR ≥200 mg/g or heart failure. First-line: Continue until dialysis or transplant. Trap: An early eGFR dip is expected; hold during acute illness."
+   "alt": "Threshold. eGFR ≥20 with diabetes, albuminuria or HF."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -3384,8 +3301,7 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "eGFR ≥20 with diabetes, albuminuria or HF. Continue until dialysis or transplant."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-122",
@@ -3404,7 +3320,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-122.svg",
-   "alt": "Flow chart: Levothyroxine alone; full replacement is about 1.6 mcg/kg daily. Clue: Start low, 12.5–25 mcg daily, with known CAD; also lower doses for mild disease. First-line: Take it 60 minutes before breakfast or at bedtime, 3 or more hours after dinner. Trap: Thyroid extract and liothyronine combinations show no proven advantage over levothyroxine."
+   "alt": "Threshold. Levothyroxine alone; full replacement is about 1.6 mcg/kg daily."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism",
@@ -3412,8 +3328,7 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267409/",
    "alt_url": "https://doi.org/10.1089/thy.2014.0028",
    "recommendation": "Levothyroxine alone; full replacement is about 1.6 mcg/kg daily. Take it 60 minutes before breakfast or at bedtime, 3 or more hours after dinner."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-123",
@@ -3432,7 +3347,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-123.svg",
-   "alt": "Flow chart: Start treatment at ≥140/90; CHAP set no blood pressure goal. Clue: Labetalol or nifedipine. First-line: Aspirin 81 mg daily from 12 to 28 weeks, ideally before 16. Trap: No ACEi, ARB or atenolol; severe ≥160/110 needs treatment within 30–60 minutes."
+   "alt": "Threshold. Start treatment at ≥140/90; CHAP set no blood pressure goal."
   },
   "source": {
    "guideline": "ACOG PB 203 (2019); ACOG CHAP practice advisory (2022)",
@@ -3440,8 +3355,7 @@
    "url": "https://www.acog.org/clinical/guidance/practice-advisory/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study/",
    "alt_url": "https://doi.org/10.1097/AOG.0000000000003020",
    "recommendation": "Start treatment at ≥140/90; CHAP set no blood pressure goal. Aspirin 81 mg daily from 12 to 28 weeks, ideally before 16."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-124",
@@ -3460,7 +3374,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-124.svg",
-   "alt": "Flow chart: Metformin plus lifestyle change. Clue: A1C goal often <7%. First-line: Start low and titrate to limit GI effects; extended release helps. Trap: Contraindicated at eGFR <30; check B12 periodically on long-term use."
+   "alt": "Text card. Metformin plus lifestyle change."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3468,8 +3382,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "Metformin plus lifestyle change. Start low and titrate to limit GI effects; extended release helps."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-125",
@@ -3488,7 +3401,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-125.svg",
-   "alt": "Flow chart: GLP-1 RA or SGLT2 inhibitor, regardless of A1C. Clue: ASCVD: GLP-1 RA or SGLT2i; HF: SGLT2i. First-line: CKD: SGLT2i, or GLP-1 RA. Trap: Don't wait for A1C to rise first."
+   "alt": "Do and do not. GLP-1 RA or SGLT2 inhibitor, regardless of A1C."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3496,8 +3409,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "GLP-1 RA or SGLT2 inhibitor, regardless of A1C. CKD: SGLT2i, or GLP-1 RA."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-126",
@@ -3516,7 +3428,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-126.svg",
-   "alt": "Flow chart: 10 units or 0.1–0.2 units/kg daily. Clue: Titrate by fasting glucose, such as 2 units every 3 days. First-line: Fasting goal 80–130 mg/dL without hypoglycemia. Trap: Basal >0.5 units/kg suggests overbasalization; add prandial insulin or GLP-1 RA."
+   "alt": "Threshold. 10 units or 0.1–0.2 units/kg daily."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -3524,8 +3436,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "10 units or 0.1–0.2 units/kg daily. Fasting goal 80–130 mg/dL without hypoglycemia."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-127",
@@ -3544,7 +3455,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-127.svg",
-   "alt": "Flow chart: High-intensity statin. Clue: Atorvastatin 40–80 mg or rosuvastatin 20–40 mg. First-line: Very high risk: LDL <55; add ezetimibe, then PCSK9 inhibitor. Trap: LDL goals are reinstated; check LDL 4–12 weeks after starting."
+   "alt": "Steps. High-intensity statin."
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -3552,8 +3463,7 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": "https://doi.org/10.1016/j.jacc.2025.11.016",
    "recommendation": "High-intensity statin. Very high risk: LDL <55; add ezetimibe, then PCSK9 inhibitor."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-128",
@@ -3572,7 +3482,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-128.svg",
-   "alt": "Flow chart: DOAC over warfarin. Clue: Apixaban, rivaroxaban, edoxaban or dabigatran. First-line: Warfarin only for mechanical valves or moderate-severe mitral stenosis. Trap: Bleeding risk scores alone should not be used to withhold anticoagulation."
+   "alt": "Text card. DOAC over warfarin."
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -3580,8 +3490,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "DOAC over warfarin. Warfarin only for mechanical valves or moderate-severe mitral stenosis."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-129",
@@ -3600,7 +3509,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-129.svg",
-   "alt": "Flow chart: ARNI, beta-blocker, MRA and SGLT2 inhibitor. Clue: Beta-blockers: carvedilol, metoprolol succinate or bisoprolol. First-line: Loop diuretic for congestion. Trap: Wait 36 hours after the last ACEi dose before starting an ARNI."
+   "alt": "Text card. ARNI, beta-blocker, MRA and SGLT2 inhibitor."
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -3608,8 +3517,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "ARNI, beta-blocker, MRA and SGLT2 inhibitor. Loop diuretic for congestion."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-130",
@@ -3628,7 +3536,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-130.svg",
-   "alt": "Flow chart: As-needed low-dose ICS-formoterol. Clue: Steps 1–2: as-needed ICS-formoterol, no daily controller needed. First-line: Steps 3–4: daily maintenance plus the same inhaler as reliever (MART). Trap: SABA-only treatment is not recommended."
+   "alt": "Text card. As-needed low-dose ICS-formoterol."
   },
   "source": {
    "guideline": "GINA 2025",
@@ -3636,8 +3544,7 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "As-needed low-dose ICS-formoterol. Steps 3–4: daily maintenance plus the same inhaler as reliever (MART)."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-131",
@@ -3656,7 +3563,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-131.svg",
-   "alt": "Flow chart: LAMA plus LABA for most symptomatic patients. Clue: Add ICS if eosinophils ≥300, or ≥100 with exacerbations. First-line: Single-inhaler triple therapy; pulmonary rehab. Trap: No ICS monotherapy; eosinophils <100 predict little ICS benefit, and ICS raises pneumonia risk."
+   "alt": "Text card. LAMA plus LABA for most symptomatic patients."
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -3664,8 +3571,7 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "LAMA plus LABA for most symptomatic patients. Single-inhaler triple therapy; pulmonary rehab."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-132",
@@ -3684,7 +3590,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-132.svg",
-   "alt": "Flow chart: Healthy adult: amoxicillin. Clue: Alternatives: doxycycline, or a macrolide only if local resistance is <25%. First-line: Comorbidities: amox-clav or cephalosporin plus macrolide or doxycycline, or a respiratory fluoroquinolone. Trap: Outpatients stable: under 5 days (minimum 3); no steroids for hospitalized nonsevere CAP."
+   "alt": "Text card. Healthy adult: amoxicillin."
   },
   "source": {
    "guideline": "ATS/IDSA 2019 CAP (antibiotic choice); ATS 2025 CAP update (duration, steroids)",
@@ -3692,8 +3598,7 @@
    "url": "https://doi.org/10.1164/rccm.201908-1581ST",
    "alt_url": "https://doi.org/10.1164/rccm.202507-1692ST",
    "recommendation": "Healthy adult: amoxicillin. Comorbidities: amox-clav or cephalosporin plus macrolide or doxycycline, or a respiratory fluoroquinolone."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-133",
@@ -3712,7 +3617,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-133.svg",
-   "alt": "Flow chart: High-dose amoxicillin 80–90 mg/kg/day. Clue: Observation option: nonsevere, 6–23 months unilateral, or ≥24 months. First-line: Amoxicillin in past 30 days: amoxicillin-clavulanate. Trap: Observation needs follow-up within 48–72 hours."
+   "alt": "Threshold. High-dose amoxicillin 80–90 mg/kg/day."
   },
   "source": {
    "guideline": "AAP AOM 2013 (still current)",
@@ -3721,7 +3626,7 @@
    "alt_url": null,
    "recommendation": "High-dose amoxicillin 80–90 mg/kg/day. Amoxicillin in past 30 days: amoxicillin-clavulanate."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-134",
@@ -3740,7 +3645,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-134.svg",
-   "alt": "Flow chart: Penicillin V or amoxicillin for 10 days. Clue: Single IM benzathine penicillin is an alternative. First-line: Non-anaphylactic allergy: cephalexin; anaphylaxis: clindamycin or azithromycin. Trap: Amoxicillin in mono causes rash."
+   "alt": "Threshold. Penicillin V or amoxicillin for 10 days."
   },
   "source": {
    "guideline": "IDSA GAS 2012 (treatment section not yet replaced)",
@@ -3748,8 +3653,7 @@
    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis2/",
    "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
    "recommendation": "Penicillin V or amoxicillin for 10 days. Non-anaphylactic allergy: cephalexin; anaphylaxis: clindamycin or azithromycin."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-135",
@@ -3768,7 +3672,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-135.svg",
-   "alt": "Flow chart: Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin. Clue: TMP-SMX if local resistance <20%. First-line: Fosfomycin 3 g single dose. Trap: Fluoroquinolones are not first-line for simple cystitis; the US label contraindicates nitrofurantoin at CrCl <60."
+   "alt": "Threshold. Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin."
   },
   "source": {
    "guideline": "IDSA 2010 uncomplicated cystitis (still current); nitrofurantoin FDA label (2024)",
@@ -3776,8 +3680,7 @@
    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
    "alt_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/009175s050lbl.pdf",
    "recommendation": "Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin. Fosfomycin 3 g single dose."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-136",
@@ -3796,7 +3699,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-136.svg",
-   "alt": "Flow chart: Only in pregnancy or before urologic procedures. Clue: Pregnancy: screen early and treat. First-line: Older adults, diabetes or catheters: do not screen or treat. Trap: Confusion without urinary symptoms: look for another cause."
+   "alt": "Text card. Only in pregnancy or before urologic procedures."
   },
   "source": {
    "guideline": "IDSA 2019 ASB",
@@ -3824,7 +3727,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-137.svg",
-   "alt": "Flow chart: Ceftriaxone 500 mg IM; doxycycline 7 days. Clue: Ceftriaxone 1 g if ≥150 kg; pharyngeal gonorrhea needs test of cure. First-line: Pregnancy: azithromycin for chlamydia. Trap: Retest 3 months after treatment; offer expedited partner therapy."
+   "alt": "Threshold. Ceftriaxone 500 mg IM; doxycycline 7 days."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3832,8 +3735,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/gonorrhea-adults.htm",
    "alt_url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
    "recommendation": "Ceftriaxone 500 mg IM; doxycycline 7 days. Pregnancy: azithromycin for chlamydia."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-138",
@@ -3852,7 +3754,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-138.svg",
-   "alt": "Flow chart: Benzathine penicillin G. Clue: Primary, secondary or early latent: 2.4 million units IM once. First-line: Late latent or unknown duration: weekly for 3 weeks. Trap: Neurosyphilis: IV penicillin G; pregnant with allergy: desensitize."
+   "alt": "Text card. Benzathine penicillin G."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3860,8 +3762,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
    "alt_url": null,
    "recommendation": "Benzathine penicillin G. Late latent or unknown duration: weekly for 3 weeks."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-139",
@@ -3880,7 +3781,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-139.svg",
-   "alt": "Flow chart: Metronidazole 500 mg twice daily for 7 days. Clue: Trichomonas in men: metronidazole 2 g once; women: 7 days. First-line: Treat trichomonas partners. Trap: BV partners don't need treatment; recurrent BV may need suppression."
+   "alt": "Threshold. Metronidazole 500 mg twice daily for 7 days."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -3888,8 +3789,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
    "alt_url": null,
    "recommendation": "Metronidazole 500 mg twice daily for 7 days. Treat trichomonas partners."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-140",
@@ -3908,7 +3808,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-140.svg",
-   "alt": "Flow chart: Doxycycline for 10 days. Clue: Diagnose clinically; no serology needed. First-line: Alternatives: amoxicillin or cefuroxime 14 days. Trap: Short-course doxycycline is safe at any age; prophylaxis is one 200 mg dose within 72 hours."
+   "alt": "Threshold. Doxycycline for 10 days."
   },
   "source": {
    "guideline": "IDSA/AAN/ACR 2020 Lyme",
@@ -3916,8 +3816,7 @@
    "url": "https://doi.org/10.1093/cid/ciaa1215",
    "alt_url": "https://doi.org/10.1002/art.41562",
    "recommendation": "Doxycycline for 10 days. Alternatives: amoxicillin or cefuroxime 14 days."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-141",
@@ -3936,7 +3835,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-141.svg",
-   "alt": "Flow chart: Abscess: incision and drainage. Clue: Purulent: TMP-SMX or doxycycline if antibiotics needed. First-line: Nonpurulent cellulitis: cephalexin for streptococci. Trap: TMP-SMX alone misses streptococci in nonpurulent cellulitis; treat about 5 days."
+   "alt": "Text card. Abscess: incision and drainage."
   },
   "source": {
    "guideline": "IDSA SSTI 2014",
@@ -3944,8 +3843,7 @@
    "url": "https://doi.org/10.1093/cid/ciu296",
    "alt_url": null,
    "recommendation": "Abscess: incision and drainage. Nonpurulent cellulitis: cephalexin for streptococci."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-142",
@@ -3964,7 +3862,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-142.svg",
-   "alt": "Flow chart: Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir. Clue: F/TAF is not for receptive vaginal sex. First-line: HIV test every 3 months on oral PrEP; check creatinine and STIs. Trap: Rule out acute HIV before starting."
+   "alt": "Text card. Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir."
   },
   "source": {
    "guideline": "CDC PrEP 2021; CDC lenacapavir PrEP MMWR 2025; USPSTF PrEP 2023",
@@ -3972,8 +3870,7 @@
    "url": "https://www.cdc.gov/mmwr/volumes/74/wr/mm7435a1.htm",
    "alt_url": null,
    "recommendation": "Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir. HIV test every 3 months on oral PrEP; check creatinine and STIs."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-143",
@@ -3992,7 +3889,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-143.svg",
-   "alt": "Flow chart: Rifamycin-based short courses. Clue: 3HP weekly for 12 weeks, 4 months rifampin, or 3 months rifampin-isoniazid. First-line: Exclude active TB with chest X-ray first. Trap: Rifamycins interact with contraceptives, warfarin, DOACs and HIV drugs."
+   "alt": "Text card. Rifamycin-based short courses."
   },
   "source": {
    "guideline": "CDC/NTCA 2020 LTBI",
@@ -4000,8 +3897,7 @@
    "url": "https://www.cdc.gov/mmwr/volumes/69/rr/rr6901a1.htm",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/latent-tuberculosis-infection-screening",
    "recommendation": "Rifamycin-based short courses. Exclude active TB with chest X-ray first."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-144",
@@ -4020,7 +3916,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-144.svg",
-   "alt": "Flow chart: Tdap once, then Td or Tdap every 10 years. Clue: Recombinant zoster 2 doses from 50. First-line: Pneumococcal from 50; RSV once at 75 or 50–74 at risk. Trap: Recombinant zoster is given even after prior shingles."
+   "alt": "Text card. Tdap once, then Td or Tdap every 10 years."
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025); no 2026 CDC adult schedule",
@@ -4028,8 +3924,7 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
    "alt_url": null,
    "recommendation": "Tdap once, then Td or Tdap every 10 years. Pneumococcal from 50; RSV once at 75 or 50–74 at risk."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-145",
@@ -4048,7 +3943,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-145.svg",
-   "alt": "Flow chart: Hep B vaccine at birth; HBIG if the mother is HBsAg-positive. Clue: Mother HBsAg-positive: vaccine plus HBIG within 12 hours. First-line: Status unknown: vaccine within 12 hours; HBIG by 7 days if she is positive or stays unknown. Trap: Status unknown and under 2,000 g: give HBIG with the vaccine within 12 hours."
+   "alt": "Text card. Hep B vaccine at birth; HBIG if the mother is HBsAg-positive."
   },
   "source": {
    "guideline": "CDC child and adolescent schedule notes (July 2, 2025 schedule in effect)",
@@ -4076,7 +3971,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-146.svg",
-   "alt": "Flow chart: Routine at 11–12 (can start at 9): two doses if started at 9–14. Clue: Two doses 6–12 months apart; minimum interval 5 months. First-line: Started at 15 or older: three doses at 0, 1–2 and 6 months. Trap: Immunocompromised patients need three doses at any age."
+   "alt": "Text card. Routine at 11–12 (can start at 9): two doses if started at 9–14."
   },
   "source": {
    "guideline": "CDC child and adolescent schedule notes (July 2, 2025 schedule in effect)",
@@ -4084,8 +3979,7 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-notes.html",
    "alt_url": null,
    "recommendation": "Routine at 11–12 (can start at 9): two doses if started at 9–14. Started at 15 or older: three doses at 0, 1–2 and 6 months."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-147",
@@ -4104,7 +3998,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-147.svg",
-   "alt": "Flow chart: Tdap at 27–36 weeks every pregnancy. Clue: Inactivated influenza in any trimester. First-line: RSV vaccine at 32–36 weeks in season. Trap: No live vaccines, such as MMR or varicella."
+   "alt": "Threshold. Tdap at 27–36 weeks every pregnancy."
   },
   "source": {
    "guideline": "CDC adult schedule 2025 (addendum updated July 2, 2025)",
@@ -4112,8 +4006,7 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
    "alt_url": null,
    "recommendation": "Tdap at 27–36 weeks every pregnancy. RSV vaccine at 32–36 weeks in season."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-148",
@@ -4132,7 +4025,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-148.svg",
-   "alt": "Flow chart: Category 4 contraindications. Clue: Age ≥35 and ≥15 cigarettes daily; migraine with aura. First-line: IUD, implant, DMPA or progestin pill instead. Trap: <21 days postpartum is also category 4."
+   "alt": "Text card. Category 4 contraindications."
   },
   "source": {
    "guideline": "CDC US MEC 2024",
@@ -4140,8 +4033,7 @@
    "url": "https://www.cdc.gov/contraception/hcp/usmec/index.html",
    "alt_url": "https://www.cdc.gov/contraception/hcp/usmec/summary-contraceptive.html",
    "recommendation": "Category 4 contraindications. IUD, implant, DMPA or progestin pill instead."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-149",
@@ -4160,7 +4052,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-149.svg",
-   "alt": "Flow chart: Copper IUD within 5 days, most effective. Clue: Ulipristal up to 120 hours; levonorgestrel ideally within 72 hours. First-line: Obesity lowers oral effectiveness; IUD preferred. Trap: After ulipristal, wait 5 days before hormonal contraception."
+   "alt": "Threshold. Copper IUD within 5 days, most effective."
   },
   "source": {
    "guideline": "CDC US SPR 2024",
@@ -4168,8 +4060,7 @@
    "url": "https://www.cdc.gov/contraception/hcp/usspr/index.html",
    "alt_url": null,
    "recommendation": "Copper IUD within 5 days, most effective. Obesity lowers oral effectiveness; IUD preferred."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-150",
@@ -4188,7 +4079,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-150.svg",
-   "alt": "Flow chart: 0.4–0.8 mg daily (A). Clue: Start at least 1 month before conception. First-line: Prior neural tube defect pregnancy: 4 mg daily, from 1 month before conception through the first 3 months. Trap: Applies to all who can become pregnant."
+   "alt": "Threshold. 0.4–0.8 mg daily (A)."
   },
   "source": {
    "guideline": "USPSTF folic acid 2023; CDC folic acid clinician overview (July 15, 2026)",
@@ -4196,8 +4087,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/folic-acid-for-the-prevention-of-neural-tube-defects-preventive-medication",
    "alt_url": "https://www.cdc.gov/folic-acid/hcp/clinical-overview/index.html",
    "recommendation": "0.4–0.8 mg daily (A). Prior neural tube defect pregnancy: 4 mg daily, from 1 month before conception through the first 3 months."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-151",
@@ -4216,7 +4106,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-151.svg",
-   "alt": "Flow chart: High risk: 81 mg daily after 12 weeks. Clue: Prior preeclampsia, multifetal, chronic HTN, diabetes, kidney or autoimmune disease. First-line: Also ≥2 moderate risk factors. Trap: Start between 12 and 28 weeks, ideally before 16."
+   "alt": "Threshold. High risk: 81 mg daily after 12 weeks."
   },
   "source": {
    "guideline": "USPSTF aspirin preeclampsia 2021",
@@ -4224,8 +4114,7 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
    "alt_url": null,
    "recommendation": "High risk: 81 mg daily after 12 weeks. Also ≥2 moderate risk factors."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-152",
@@ -4244,7 +4133,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-152.svg",
-   "alt": "Flow chart: Under 60 or within 10 years of menopause. Clue: Bothersome vasomotor symptoms. First-line: Uterus present: add progestogen; transdermal lowers VTE risk. Trap: Avoid with breast cancer, CHD, VTE, stroke or unexplained bleeding."
+   "alt": "Do and do not. Under 60 or within 10 years of menopause."
   },
   "source": {
    "guideline": "Menopause Society 2022 HT position",
@@ -4252,8 +4141,7 @@
    "url": "https://doi.org/10.1097/GME.0000000000002028",
    "alt_url": null,
    "recommendation": "Under 60 or within 10 years of menopause. Uterus present: add progestogen; transdermal lowers VTE risk."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-153",
@@ -4272,7 +4160,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-153.svg",
-   "alt": "Flow chart: Bisphosphonate. Clue: Alendronate, risedronate or zoledronic acid. First-line: Very high risk: anabolic agent first, then antiresorptive; ensure calcium and vitamin D. Trap: Oral: empty stomach, water, upright 30 minutes; avoid at eGFR <35."
+   "alt": "Steps. Bisphosphonate."
   },
   "source": {
    "guideline": "ACP 2023 osteoporosis; Endocrine Society 2020",
@@ -4280,8 +4168,7 @@
    "url": "https://doi.org/10.7326/M22-1034",
    "alt_url": null,
    "recommendation": "Bisphosphonate. Very high risk: anabolic agent first, then antiresorptive; ensure calcium and vitamin D."
-  },
-  "age_band": "Older adult"
+  }
  },
  {
   "id": "fnp-154",
@@ -4300,7 +4187,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-154.svg",
-   "alt": "Flow chart: Moderate to severe: CBT or a second-generation antidepressant alone. Clue: Combining CBT with an antidepressant is also suggested; mild disease: CBT alone. First-line: No response to an adequate dose: switch, augment, or add CBT. Trap: Boxed warning: monitor all patients for suicidality, especially young adults."
+   "alt": "Text card. Moderate to severe: CBT or a second-generation antidepressant alone."
   },
   "source": {
    "guideline": "ACP 2023 major depressive disorder; FDA sertraline label boxed warning (2023)",
@@ -4308,8 +4195,7 @@
    "url": "https://doi.org/10.7326/M22-2056",
    "alt_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019839s108,20990s062lbl.pdf",
    "recommendation": "Moderate to severe: CBT or a second-generation antidepressant alone. No response to an adequate dose: switch, augment, or add CBT."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-155",
@@ -4328,7 +4214,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-155.svg",
-   "alt": "Flow chart: Ages 4–5: parent behavior training first. Clue: Ages 6–11: medication plus behavioral therapy. First-line: Ages 12–18: medication with teen assent. Trap: Preschool: methylphenidate only if behavior therapy fails."
+   "alt": "Text card. Ages 4–5: parent behavior training first."
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -4356,7 +4242,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-156.svg",
-   "alt": "Flow chart: Start at mild to moderate withdrawal. Clue: No X-waiver needed since 2023. First-line: Prescribe naloxone to every patient. Trap: Fentanyl raises precipitated withdrawal risk; consider low-dose initiation; counseling is not a condition of treatment."
+   "alt": "Do and do not. Start at mild to moderate withdrawal."
   },
   "source": {
    "guideline": "ASAM NPG 2020 focused update; ASAM 2024 clinical considerations",
@@ -4364,8 +4250,7 @@
    "url": "https://doi.org/10.1097/adm.0000000000000633",
    "alt_url": "https://downloads.asam.org/sitefinity-production-blobs/docs/default-source/guidelines/npg_2020_focus_update-final.pdf",
    "recommendation": "Start at mild to moderate withdrawal. Prescribe naloxone to every patient."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-157",
@@ -4384,7 +4269,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-157.svg",
-   "alt": "Flow chart: Varenicline first-line. Clue: Start varenicline 1 week before quit date; treat at least 12 weeks. First-line: Or combination NRT: patch plus gum or lozenge. Trap: Neuropsychiatric boxed warning was removed in 2016."
+   "alt": "Text card. Varenicline first-line."
   },
   "source": {
    "guideline": "USPSTF tobacco 2021; ACC ECDP 2018 (still current)",
@@ -4392,8 +4277,7 @@
    "url": "https://www.acc.org/guidelines/guidelines/2018/12/05/07/44/tobacco-cessation-treatment",
    "alt_url": null,
    "recommendation": "Varenicline first-line. Or combination NRT: patch plus gum or lozenge."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-158",
@@ -4412,7 +4296,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-158.svg",
-   "alt": "Flow chart: Anticholinergics, benzodiazepines, Z-drugs. Clue: Diphenhydramine causes confusion and retention. First-line: Avoid sulfonylureas, PPIs >8 weeks and aspirin for primary prevention. Trap: Prefer DOAC over warfarin as initial therapy."
+   "alt": "Text card. Anticholinergics, benzodiazepines, Z-drugs."
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -4440,7 +4324,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-159.svg",
-   "alt": "Flow chart: Colchicine, NSAID or steroid for flares. Clue: ULT: ≥2 flares a year, tophi or joint damage. First-line: Allopurinol ≤100 mg/day; target urate <6. Trap: Continue ULT during flares; add prophylaxis 3–6 months."
+   "alt": "Text card. Colchicine, NSAID or steroid for flares."
   },
   "source": {
    "guideline": "ACR 2020 gout",
@@ -4448,8 +4332,7 @@
    "url": "https://doi.org/10.1002/art.41247",
    "alt_url": null,
    "recommendation": "Colchicine, NSAID or steroid for flares. Allopurinol ≤100 mg/day; target urate <6."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-160",
@@ -4468,7 +4351,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-160.svg",
-   "alt": "Flow chart: Exercise, weight loss, topical NSAID. Clue: Tai chi, oral NSAIDs, intra-articular steroids. First-line: Avoid glucosamine, hyaluronic acid and PRP. Trap: Tramadol is conditional; other opioids are conditionally discouraged."
+   "alt": "Text card. Exercise, weight loss, topical NSAID."
   },
   "source": {
    "guideline": "ACR 2019 OA",
@@ -4476,8 +4359,7 @@
    "url": "https://doi.org/10.1002/art.41142",
    "alt_url": null,
    "recommendation": "Exercise, weight loss, topical NSAID. Avoid glucosamine, hyaluronic acid and PRP."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-161",
@@ -4496,7 +4378,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-161.svg",
-   "alt": "Flow chart: Stay active; heat, massage or manipulation. Clue: Drug: NSAID or skeletal muscle relaxant. First-line: No imaging without red flags. Trap: Acetaminophen and opioids are not first-line; bed rest delays recovery."
+   "alt": "Text card. Stay active; heat, massage or manipulation."
   },
   "source": {
    "guideline": "ACP 2017 low back pain",
@@ -4504,8 +4386,7 @@
    "url": "https://doi.org/10.7326/M16-2367",
    "alt_url": null,
    "recommendation": "Stay active; heat, massage or manipulation. No imaging without red flags."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-162",
@@ -4524,7 +4405,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-162.svg",
-   "alt": "Flow chart: Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine. Clue: With vascular disease, gepants, ditans or devices may be useful. First-line: CGRP-targeting agents are a first-line prevention option. Trap: Triptans on 10 or more days a month risk medication overuse headache."
+   "alt": "Text card. Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine."
   },
   "source": {
    "guideline": "FDA triptan labeling; AHS consensus 2021; AHS CGRP position 2024; ICHD-3 (2018)",
@@ -4532,8 +4413,7 @@
    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d2cd01c-05e7-44cf-a71d-0f474e826b7e",
    "alt_url": "https://doi.org/10.1111/head.14692",
    "recommendation": "Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine. CGRP-targeting agents are a first-line prevention option."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-163",
@@ -4552,7 +4432,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-163.svg",
-   "alt": "Flow chart: Topical retinoid plus benzoyl peroxide. Clue: Inflammatory acne: add oral doxycycline, with topical therapy. First-line: Severe, nodular or scarring acne: isotretinoin. Trap: Isotretinoin needs pregnancy prevention; never use antibiotics alone."
+   "alt": "Do and do not. Topical retinoid plus benzoyl peroxide."
   },
   "source": {
    "guideline": "AAD 2024 acne",
@@ -4560,8 +4440,7 @@
    "url": "https://doi.org/10.1016/j.jaad.2023.12.017",
    "alt_url": null,
    "recommendation": "Topical retinoid plus benzoyl peroxide. Severe, nodular or scarring acne: isotretinoin."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-164",
@@ -4580,7 +4459,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-164.svg",
-   "alt": "Flow chart: Moisturizers plus a topical corticosteroid. Clue: Alternatives: tacrolimus, pimecrolimus, crisaborole or ruxolitinib cream. First-line: Maintenance: a medium-potency steroid twice weekly reduces relapse. Trap: Topical antimicrobials and antihistamines are not recommended."
+   "alt": "Text card. Moisturizers plus a topical corticosteroid."
   },
   "source": {
    "guideline": "AAD 2023 atopic dermatitis (adult, topical therapy)",
@@ -4588,8 +4467,7 @@
    "url": "https://doi.org/10.1016/j.jaad.2022.12.029",
    "alt_url": null,
    "recommendation": "Moisturizers plus a topical corticosteroid. Maintenance: a medium-potency steroid twice weekly reduces relapse."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-165",
@@ -4608,7 +4486,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-165.svg",
-   "alt": "Flow chart: Permethrin 1% or pyrethrins. Clue: Repeat on day 9 to kill newly hatched lice. First-line: Resistance or failure: ivermectin lotion or spinosad. Trap: No \"no-nit\" policies; child stays in school."
+   "alt": "Text card. Permethrin 1% or pyrethrins."
   },
   "source": {
    "guideline": "AAP 2022 head lice",
@@ -4616,8 +4494,7 @@
    "url": "https://doi.org/10.1542/peds.2022-059282",
    "alt_url": null,
    "recommendation": "Permethrin 1% or pyrethrins. Resistance or failure: ivermectin lotion or spinosad."
-  },
-  "age_band": "Child"
+  }
  },
  {
   "id": "fnp-166",
@@ -4636,7 +4513,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-166.svg",
-   "alt": "Flow chart: Bismuth quadruple therapy for 14 days. Clue: PPI, bismuth, tetracycline and metronidazole. First-line: Test of cure at least 4 weeks after treatment. Trap: Clarithromycin triple therapy only if susceptibility known."
+   "alt": "Threshold. Bismuth quadruple therapy for 14 days."
   },
   "source": {
    "guideline": "ACG H. pylori 2024",
@@ -4644,8 +4521,7 @@
    "url": "https://doi.org/10.14309/ajg.0000000000002968",
    "alt_url": null,
    "recommendation": "Bismuth quadruple therapy for 14 days. Test of cure at least 4 weeks after treatment."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-167",
@@ -4664,7 +4540,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-167.svg",
-   "alt": "Flow chart: Fidaxomicin preferred. Clue: Oral vancomycin 125 mg four times daily 10 days. First-line: Recurrent: fidaxomicin or FMT after multiple recurrences. Trap: Don't test asymptomatic patients or test for cure."
+   "alt": "Do and do not. Fidaxomicin preferred."
   },
   "source": {
    "guideline": "IDSA/SHEA 2021 C. difficile",
@@ -4672,8 +4548,7 @@
    "url": "https://doi.org/10.1093/cid/ciab549",
    "alt_url": null,
    "recommendation": "Fidaxomicin preferred. Recurrent: fidaxomicin or FMT after multiple recurrences."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-168",
@@ -4692,7 +4567,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-168.svg",
-   "alt": "Flow chart: Increase 20–30% at pregnancy confirmation. Clue: Two extra doses per week is a simple approach. First-line: Check TSH every 4 weeks until midgestation. Trap: Return to prepregnancy dose after delivery."
+   "alt": "Text card. Increase 20–30% at pregnancy confirmation."
   },
   "source": {
    "guideline": "ATA 2026 thyroid in pregnancy",
@@ -4700,8 +4575,7 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": null,
    "recommendation": "Increase 20–30% at pregnancy confirmation. Check TSH every 4 weeks until midgestation."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-169",
@@ -4720,7 +4594,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-169.svg",
-   "alt": "Flow chart: Intensive behavioral treatment. Clue: At least 26 contact hours over 3–12 months, family-based. First-line: Medication from 12; surgical referral from 13 if severe. Trap: Watchful waiting is not recommended."
+   "alt": "Text card. Intensive behavioral treatment."
   },
   "source": {
    "guideline": "AAP 2023 pediatric obesity",
@@ -4748,7 +4622,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-170.svg",
-   "alt": "Flow chart: Intranasal corticosteroid. Clue: Oral antihistamine: second-generation preferred over first-generation. First-line: Adding an intranasal antihistamine to the steroid spray gives additive benefit. Trap: Montelukast only after inadequate response; depot steroid injections are not recommended."
+   "alt": "Text card. Intranasal corticosteroid."
   },
   "source": {
    "guideline": "AAAAI/ACAAI rhinitis 2020 practice parameter; CSACI 2019 antihistamine position",
@@ -4756,8 +4630,7 @@
    "url": "https://doi.org/10.1016/j.jaci.2020.07.007",
    "alt_url": "https://doi.org/10.1186/s13223-019-0375-9",
    "recommendation": "Intranasal corticosteroid. Adding an intranasal antihistamine to the steroid spray gives additive benefit."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-171",
@@ -4776,7 +4649,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-171.svg",
-   "alt": "Flow chart: Monthly visits until goal, then every 3–6 months. Clue: Home BP: two readings morning and evening. First-line: Titrate to <130/80. Trap: Check technique and adherence before adding drugs."
+   "alt": "Text card. Monthly visits until goal, then every 3–6 months."
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN",
@@ -4784,8 +4657,7 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Monthly visits until goal, then every 3–6 months. Titrate to <130/80."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-172",
@@ -4804,7 +4676,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-172.svg",
-   "alt": "Flow chart: Less stringent, often <8.0%. Clue: Healthy older adults: <7.0–7.5%. First-line: Very poor health: avoid hypoglycemia; don't rely on A1C. Trap: Deintensify sulfonylureas and insulin when hypoglycemia risk is high."
+   "alt": "Threshold. Less stringent, often <8.0%."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -4832,7 +4704,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-173.svg",
-   "alt": "Flow chart: Level 2 hypoglycemia; 15–20 g glucose. Clue: Recheck in 15 minutes; repeat if still low. First-line: Unable to swallow: glucagon. Trap: Everyone on insulin needs a glucagon prescription."
+   "alt": "Threshold. Level 2 hypoglycemia; 15–20 g glucose."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -4840,8 +4712,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://doi.org/10.2337/dc26-s006",
    "recommendation": "Level 2 hypoglycemia; 15–20 g glucose. Unable to swallow: glucagon."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-174",
@@ -4860,7 +4731,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-174.svg",
-   "alt": "Flow chart: 75-g OGTT at 4–12 weeks. Clue: Persistent risk of type 2 diabetes. First-line: Then screen every 1–3 years for life. Trap: A1C is unreliable early postpartum; use the glucose tolerance test."
+   "alt": "Threshold. 75-g OGTT at 4–12 weeks."
   },
   "source": {
    "guideline": "ACOG Clinical Practice Update 2024",
@@ -4868,8 +4739,7 @@
    "url": "https://doi.org/10.1097/aog.0000000000005612",
    "alt_url": null,
    "recommendation": "75-g OGTT at 4–12 weeks. Then screen every 1–3 years for life."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-175",
@@ -4888,7 +4758,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-175.svg",
-   "alt": "Flow chart: Check CK and TSH. Clue: Symptoms in large muscles, often bilateral. First-line: Stop if severe or CK >10× ULN; rechallenge lower dose or another statin. Trap: Routine baseline CK isn't needed."
+   "alt": "Text card. Check CK and TSH."
   },
   "source": {
    "guideline": "ACC/AHA 2026 dyslipidemia",
@@ -4896,8 +4766,7 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": null,
    "recommendation": "Check CK and TSH. Stop if severe or CK >10× ULN; rechallenge lower dose or another statin."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-176",
@@ -4916,7 +4785,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-176.svg",
-   "alt": "Flow chart: Creatinine and potassium at 2–4 weeks. Clue: Up to 30% creatinine rise is acceptable. First-line: Manage high potassium rather than stop RAAS blockade. Trap: Creatinine rise >30%: look for stenosis or volume depletion."
+   "alt": "Threshold. Creatinine and potassium at 2–4 weeks."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -4924,8 +4793,7 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "Creatinine and potassium at 2–4 weeks. Manage high potassium rather than stop RAAS blockade."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-177",
@@ -4944,7 +4812,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-177.svg",
-   "alt": "Flow chart: Hyperkalemia. Clue: Start MRA only if eGFR >30 and K <5.0. First-line: Check K and creatinine within 1 week, then periodically. Trap: Avoid NSAIDs and potassium supplements; reduce or stop MRA if K >5.5."
+   "alt": "Steps. Hyperkalemia."
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -4952,8 +4820,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": null,
    "recommendation": "Hyperkalemia. Check K and creatinine within 1 week, then periodically."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-178",
@@ -4972,7 +4839,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-178.svg",
-   "alt": "Flow chart: HCV RNA ≥12 weeks after therapy (SVR12). Clue: Antibody stays positive after cure. First-line: No cirrhosis: no liver follow-up after cure. Trap: Ongoing risk: annual HCV RNA; reinfection is possible."
+   "alt": "Threshold. HCV RNA ≥12 weeks after therapy (SVR12)."
   },
   "source": {
    "guideline": "AASLD/IDSA HCV Guidance (living, reviewed 2025)",
@@ -4980,8 +4847,7 @@
    "url": "https://www.hcvguidelines.org/guidance/simplified-hcv-treatment-for-treatment-naive-adults-without-cirrhosis/",
    "alt_url": null,
    "recommendation": "HCV RNA ≥12 weeks after therapy (SVR12). No cirrhosis: no liver follow-up after cure."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-179",
@@ -5000,7 +4866,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-179.svg",
-   "alt": "Flow chart: INR 2–3 for AF and VTE. Clue: Mechanical mitral valve: 2.5–3.5. First-line: TMP-SMX, metronidazole, fluconazole and amiodarone raise INR. Trap: Rifampin lowers INR; keep vitamin K intake consistent."
+   "alt": "Text card. INR 2–3 for AF and VTE."
   },
   "source": {
    "guideline": "CHEST VTE antithrombotic 2021",
@@ -5008,8 +4874,7 @@
    "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
    "alt_url": null,
    "recommendation": "INR 2–3 for AF and VTE. TMP-SMX, metronidazole, fluconazole and amiodarone raise INR."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-180",
@@ -5028,7 +4893,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-180.svg",
-   "alt": "Flow chart: Use Cockcroft-Gault creatinine clearance. Clue: Apixaban 2.5 mg: ≥2 of age ≥80, weight ≤60 kg, creatinine ≥1.5. First-line: Check renal function at least yearly. Trap: Dabigatran: 75 mg twice daily at CrCl 15–30; no dosing guidance below 15."
+   "alt": "Text card. Use Cockcroft-Gault creatinine clearance."
   },
   "source": {
    "guideline": "ACC/AHA/ACCP/HRS 2023 AF",
@@ -5036,8 +4901,7 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "Use Cockcroft-Gault creatinine clearance. Check renal function at least yearly."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-181",
@@ -5056,7 +4920,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-181.svg",
-   "alt": "Flow chart: In 4–6 weeks. Clue: Steady state takes about 6 weeks after any dose change. First-line: At target: recheck in 4–6 months, then yearly. Trap: Calcium, iron and PPIs reduce absorption; biotin can skew thyroid assays."
+   "alt": "Threshold. In 4–6 weeks."
   },
   "source": {
    "guideline": "ATA 2014 hypothyroidism (still current)",
@@ -5064,8 +4928,7 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267409/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "In 4–6 weeks. At target: recheck in 4–6 months, then yearly."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-182",
@@ -5084,7 +4947,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-182.svg",
-   "alt": "Flow chart: Symptoms over the past 4 weeks. Clue: Daytime symptoms or reliever use >2/week, night waking, activity limit. First-line: Step down after 3 months of good control. Trap: Check technique and adherence before stepping up."
+   "alt": "Threshold. Symptoms over the past 4 weeks."
   },
   "source": {
    "guideline": "GINA 2025",
@@ -5092,8 +4955,7 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "Symptoms over the past 4 weeks. Step down after 3 months of good control."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-183",
@@ -5112,7 +4974,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-183.svg",
-   "alt": "Flow chart: Visit within 1–4 weeks. Clue: Review inhaler technique, adherence and blood eosinophils. First-line: Start pulmonary rehab within 4 weeks of discharge. Trap: Escalate maintenance therapy after any exacerbation needing treatment."
+   "alt": "Threshold. Visit within 1–4 weeks."
   },
   "source": {
    "guideline": "GOLD 2026",
@@ -5120,8 +4982,7 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "Visit within 1–4 weeks. Start pulmonary rehab within 4 weeks of discharge."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-184",
@@ -5140,7 +5001,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-184.svg",
-   "alt": "Flow chart: Daily weights and symptoms. Clue: Weigh each morning after voiding, same scale and clothing. First-line: Rapid weight gain or worse dyspnea: adjust diuretic. Trap: Avoid NSAIDs; they worsen fluid retention."
+   "alt": "Do and do not. Daily weights and symptoms."
   },
   "source": {
    "guideline": "ACC/AHA/HFSA 2022 HF",
@@ -5148,8 +5009,7 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "Daily weights and symptoms. Rapid weight gain or worse dyspnea: adjust diuretic."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-185",
@@ -5168,7 +5028,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-185.svg",
-   "alt": "Flow chart: Watch for suicidality, especially early. Clue: FDA boxed warning for patients under 25. First-line: Close follow-up during the first months and dose changes. Trap: Create a safety plan; counsel on lethal means."
+   "alt": "Text card. Watch for suicidality, especially early."
   },
   "source": {
    "guideline": "FDA antidepressant boxed warning (2004, extended to under 25 in 2007)",
@@ -5196,7 +5056,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-186.svg",
-   "alt": "Flow chart: Height, weight, BP and heart rate. Clue: Appetite and sleep changes are common. First-line: Ask about cardiac history and family sudden death before starting. Trap: Routine ECG is not needed."
+   "alt": "Text card. Height, weight, BP and heart rate."
   },
   "source": {
    "guideline": "AAP ADHD 2019",
@@ -5205,7 +5065,7 @@
    "alt_url": "https://publications.aap.org/pediatrics/article/144/4/e20192528/81590/Clinical-Practice-Guideline-for-the-Diagnosis",
    "recommendation": "Height, weight, BP and heart rate. Ask about cardiac history and family sudden death before starting."
   },
-  "age_band": "Middle adult"
+  "age_band": "Child"
  },
  {
   "id": "fnp-187",
@@ -5224,7 +5084,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-187.svg",
-   "alt": "Flow chart: Contraindicated below eGFR 30. Clue: Don't start at eGFR 30–45. First-line: Reassess benefit if eGFR falls below 45. Trap: Hold metformin for iodinated contrast if eGFR 30–60, then recheck."
+   "alt": "Text card. Contraindicated below eGFR 30."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -5232,8 +5092,7 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "Contraindicated below eGFR 30. Reassess benefit if eGFR falls below 45."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-188",
@@ -5252,7 +5111,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-188.svg",
-   "alt": "Flow chart: Low to moderate fracture risk. Clue: Reassess after 5 years oral or 3 years IV. First-line: High risk: continue treatment. Trap: Denosumab must not be stopped abruptly; rebound fractures."
+   "alt": "Text card. Low to moderate fracture risk."
   },
   "source": {
    "guideline": "ACP 2023 osteoporosis; ASBMR 2016 drug-holiday task force",
@@ -5260,8 +5119,7 @@
    "url": "https://doi.org/10.7326/M22-1034",
    "alt_url": "https://doi.org/10.1002/jbmr.2708",
    "recommendation": "Low to moderate fracture risk. High risk: continue treatment."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-189",
@@ -5280,7 +5138,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-189.svg",
-   "alt": "Flow chart: Test of cure 4 weeks after treatment. Clue: Retest again in 3 months. First-line: Azithromycin 1 g once in pregnancy. Trap: NAAT before 3 weeks can be falsely positive."
+   "alt": "Threshold. Test of cure 4 weeks after treatment."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5288,8 +5146,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm",
    "alt_url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
    "recommendation": "Test of cure 4 weeks after treatment. Azithromycin 1 g once in pregnancy."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-190",
@@ -5308,7 +5165,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-190.svg",
-   "alt": "Flow chart: Fourfold RPR decline within 6–12 months. Clue: Same nontreponemal test each time. First-line: Latent syphilis: follow 12–24 months. Trap: Treponemal tests usually stay positive for life; a fourfold rise means failure or reinfection."
+   "alt": "Text card. Fourfold RPR decline within 6–12 months."
   },
   "source": {
    "guideline": "CDC STI 2021",
@@ -5316,8 +5173,7 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
    "alt_url": null,
    "recommendation": "Fourfold RPR decline within 6–12 months. Latent syphilis: follow 12–24 months."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-191",
@@ -5336,7 +5192,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-191.svg",
-   "alt": "Flow chart: Viral load 4–8 weeks after start. Clue: Then every 4–8 weeks until suppressed. First-line: Then every 3–4 months; 6 months if stable. Trap: Confirmed load >200: resistance testing."
+   "alt": "Threshold. Viral load 4–8 weeks after start."
   },
   "source": {
    "guideline": "DHHS adult/adolescent ARV guidelines (updated Sep 2026)",
@@ -5344,8 +5200,7 @@
    "url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/plasma-hiv-1-rna-cd4-monitoring",
    "alt_url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/initiation-antiretroviral-therapy",
    "recommendation": "Viral load 4–8 weeks after start. Then every 3–4 months; 6 months if stable."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-192",
@@ -5364,7 +5219,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-192.svg",
-   "alt": "Flow chart: Tailored schedule, often 6–10 visits. Clue: BP, weight and fetal heart tones each visit. First-line: Fundal height from 24 weeks. Trap: Telehealth visits can replace some in-person visits."
+   "alt": "Text card. Tailored schedule, often 6–10 visits."
   },
   "source": {
    "guideline": "ACOG Clinical Consensus No. 8 2025",
@@ -5372,8 +5227,7 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": null,
    "recommendation": "Tailored schedule, often 6–10 visits. Fundal height from 24 weeks."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-193",
@@ -5392,7 +5246,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-193.svg",
-   "alt": "Flow chart: Contact within 3 weeks; full visit by 12 weeks. Clue: Hypertensive disorders: BP check no later than 7–10 days. First-line: Screen mood, contraception, feeding and chronic disease. Trap: Severe hypertension: check within 72 hours."
+   "alt": "Threshold. Contact within 3 weeks; full visit by 12 weeks."
   },
   "source": {
    "guideline": "ACOG CO 736 2018",
@@ -5400,8 +5254,7 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2018/05/optimizing-postpartum-care",
    "alt_url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia",
    "recommendation": "Contact within 3 weeks; full visit by 12 weeks. Screen mood, contraception, feeding and chronic disease."
-  },
-  "age_band": "Young adult"
+  }
  },
  {
   "id": "fnp-194",
@@ -5420,7 +5273,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-194.svg",
-   "alt": "Flow chart: Regain birth weight by 10–14 days. Clue: Weight loss ≥10% needs evaluation. First-line: Visit 48–72 hours after discharge. Trap: Breastfed infants need vitamin D 400 IU daily from the first days."
+   "alt": "Threshold. Regain birth weight by 10–14 days."
   },
   "source": {
    "guideline": "AAP 2022 breastfeeding policy",
@@ -5448,7 +5301,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-195.svg",
-   "alt": "Flow chart: Review all meds, including OTC. Clue: Look for prescribing cascades. First-line: Taper benzodiazepines and long-term PPIs gradually; stop drugs without a current indication. Trap: Use Beers Criteria to find high-risk drugs."
+   "alt": "Text card. Review all meds, including OTC."
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
@@ -5476,7 +5329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-196.svg",
-   "alt": "Flow chart: Offload pressure; check perfusion. Clue: Nonremovable knee-high device for plantar ulcer. First-line: Probe-to-bone and X-ray for osteomyelitis. Trap: Check ABI or toe pressures if pulses are weak; poor perfusion slows healing."
+   "alt": "Text card. Offload pressure; check perfusion."
   },
   "source": {
    "guideline": "IWGDF 2023",
@@ -5484,8 +5337,7 @@
    "url": "https://iwgdfguidelines.org/guidelines-2023/",
    "alt_url": null,
    "recommendation": "Offload pressure; check perfusion. Probe-to-bone and X-ray for osteomyelitis."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-197",
@@ -5504,7 +5356,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-197.svg",
-   "alt": "Flow chart: Depth sets the stage. Clue: Stage 1: intact skin, non-blanchable redness. First-line: Offload pressure: reposition, support surface; Braden scale for risk. Trap: Slough or eschar hiding the base: unstageable; maroon intact skin: deep tissue injury."
+   "alt": "Text card. Depth sets the stage."
   },
   "source": {
    "guideline": "NPIAP 2019 international guideline",
@@ -5512,8 +5364,7 @@
    "url": "https://npiap.com/page/2019Guideline",
    "alt_url": "https://doi.org/10.1097/WON.0000000000000281",
    "recommendation": "Depth sets the stage. Offload pressure: reposition, support surface; Braden scale for risk."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-198",
@@ -5532,7 +5383,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-198.svg",
-   "alt": "Flow chart: High sensitivity: a negative result rules out. High specificity: a positive rules in. Clue: Sensitivity = TP/(TP+FN); specificity = TN/(TN+FP). First-line: Higher prevalence raises PPV and lowers NPV. Trap: Predictive values depend on disease prevalence."
+   "alt": "Text card. High sensitivity: a negative result rules out. High specificity: a positive rules in."
   },
   "source": {
    "guideline": "Parikh 2008 sensitivity, specificity and predictive values",
@@ -5540,8 +5391,7 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2636062/",
    "alt_url": "https://doi.org/10.4103/0301-4738.37595",
    "recommendation": "High sensitivity: a negative result rules out. High specificity: a positive rules in. Higher prevalence raises PPV and lowers NPV."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-199",
@@ -5560,7 +5410,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-199.svg",
-   "alt": "Flow chart: Contact within 2 business days. Clue: Face-to-face visit within 7 or 14 days. First-line: Medication reconciliation at the visit. Trap: Readmission risk is highest in the first weeks; reconcile every medication."
+   "alt": "Text card. Contact within 2 business days."
   },
   "source": {
    "guideline": "CMS Transitional Care Management services (MLN908628)",
@@ -5568,8 +5418,7 @@
    "url": "https://www.cms.gov/files/document/mln908628-transitional-care-management-services.pdf",
    "alt_url": null,
    "recommendation": "Contact within 2 business days. Medication reconciliation at the visit."
-  },
-  "age_band": "Middle adult"
+  }
  },
  {
   "id": "fnp-200",
@@ -5588,7 +5437,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-200.svg",
-   "alt": "Flow chart: At 12 weeks on maintenance dose. Clue: Goal: at least 5% weight loss. First-line: Below 5%: stop or switch. Trap: Not for use in pregnancy; stop if pregnancy occurs."
+   "alt": "Threshold. At 12 weeks on maintenance dose."
   },
   "source": {
    "guideline": "AGA 2022 obesity pharmacotherapy",
@@ -5596,7 +5445,6 @@
    "url": "https://doi.org/10.1053/j.gastro.2022.08.045",
    "alt_url": null,
    "recommendation": "At 12 weeks on maintenance dose. Below 5%: stop or switch."
-  },
-  "age_band": "Young adult"
+  }
  }
 ]

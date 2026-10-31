@@ -4,7 +4,11 @@
 
 ## FAQ
 
+Source: NCSBN RN Test Plan, 2026.
+
 ### What is CAT on the NCLEX?
+
+Source: NCSBN RN Test Plan, 2026.
 
 **CAT** (Computerized Adaptive Testing) means the exam adapts to your performance. Do well → harder items; struggle → easier ones. The computer continues until it’s confident you’re above or below the passing standard — or you hit the maximum items or time.
 
@@ -14,29 +18,43 @@ NGN is the current NCLEX format. It emphasizes **clinical judgment** through unf
 
 ### How long should I study?
 
+Source: NCSBN RN Test Plan, 2026.
+
 It depends on how fresh your content is. Many grads do well with **4–8 weeks** of focused practice after school. Use the **2-week** plan if knowledge is hot and the test is soon; use **8 weeks** if you need a rebuild or you’re balancing work and family.
 
 ### What’s the difference between NCLEX-RN and NCLEX-PN?
+
+Source: NCSBN RN Test Plan, 2026.
 
 Both use CAT, NGN clinical judgment, and a similar length/time window (85–150 items, up to 5 hours). RN organizes content under categories like **Management of Care** and **Pharmacological and Parenteral Therapies**; PN uses **Coordinated Care** and **Pharmacological Therapies**, with different percentage bands. Download the official test plan for the exam you’re taking.
 
 ### How many questions is the NCLEX?
 
+Source: NCSBN RN Test Plan, 2026.
+
 You’ll see between **85 and 150** items. Some are unscored pretest items — you won’t know which. The exam may stop early once the computer is confident about pass/fail.
 
 ### Is this book enough without a question bank?
+
+Source: NCSBN RN Test Plan, 2026.
 
 No. Content review builds knowledge; **practice builds clinical judgment**. Pair these chapters with daily NGN-ready questions, full rationale review, and an error log. One strong bank beats five half-used resources.
 
 ### Does this book replace the official test plan?
 
+Source: NCSBN RN Test Plan, 2026.
+
 No. Third-party books prepare you — they do **not** replace [NCSBN](https://www.ncsbn.org) test plans or the Candidate Bulletin.
 
 ### Are the lab values in this book exact?
 
+Source: NCSBN RN Test Plan, 2026.
+
 No. Ranges vary by lab, age, sex, and method. We teach **direction and urgency**. Confirm ranges accepted by your program and clinical sites.
 
 ## Before test day
+
+Source: NCSBN RN Test Plan, 2026.
 
 You already survived nursing school. The NCLEX asks you to show **safe clinical judgment** under pressure — and that is a skill you can train.
 

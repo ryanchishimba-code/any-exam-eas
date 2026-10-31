@@ -10,19 +10,27 @@
 
 ## Why it matters on NCLEX
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Cardiac items test **perfusion, oxygen supply/demand, fluid overload, and lethal rhythm urgency**. NGN cases love trending vitals, troponin, ECG changes, and response to nitro or diuretics. When stems feel “busy,” sort cues into **congestion vs hypoperfusion** and **stable vs unstable**.
 
 ---
 
 ## Topic A — CAD / ACS / MI
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 ### Pathophysiology / concept
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 Coronary arteries supply myocardium. Atherosclerotic plaque → ischemia (stable angina with exertion) → plaque rupture/thrombus → **acute coronary syndrome** (unstable angina / NSTEMI / STEMI). Time is muscle: ischemic but still-viable myocardium in the border zone (area at risk) can be salvaged with timely reperfusion; delayed care enlarges infarct and raises arrhythmia, HF, and shock risk.
 
 Supply–demand mismatch also drives demand ischemia (severe anemia, tachyarrhythmia, hypotension). NCLEX usually focuses on atherosclerotic ACS, but the same ABC and monitoring mindset applies.
 
 ### Assessment cues
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 **Early / typical:** chest pressure/pain ± radiation to arm/jaw/back, dyspnea, diaphoresis, nausea, sense of doom; women/diabetics/elderly may have atypical cues (fatigue, epigastric discomfort, dyspnea alone, “indigestion”).
 
@@ -31,6 +39,8 @@ Supply–demand mismatch also drives demand ischemia (severe anemia, tachyarrhyt
 **Labs/diagnostics:** 12-lead ECG urgently; serial troponin; CXR if HF suspected; prepare for cath lab when indicated.
 
 ### Priority nursing actions
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 1. ABCs; sit upright if dyspneic; O₂ **if hypoxic** per current protocol mindset (not automatic high-flow for every chest-pain client).
 2. Continuous cardiac monitoring; **12-lead ECG urgently** — do not delay for lengthy history.
@@ -41,6 +51,8 @@ Supply–demand mismatch also drives demand ischemia (severe anemia, tachyarrhyt
 7. Comfort, anxiety reduction, and clear explanations reduce catecholamine surge.
 
 ### Medications / treatments (high-yield)
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | Med | Nursing hooks |
 | --- | --- |
@@ -54,6 +66,8 @@ Supply–demand mismatch also drives demand ischemia (severe anemia, tachyarrhyt
 
 ### Complications to anticipate
 
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
+
 - Arrhythmias (PVCs → VT/VF; bradycardia; heart blocks)
 - Left ventricular failure / pulmonary edema
 - Cardiogenic shock
@@ -62,6 +76,8 @@ Supply–demand mismatch also drives demand ischemia (severe anemia, tachyarrhyt
 
 ### Client teaching
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 - Call emergency services for unrelieved chest pain (don’t drive yourself).
 - Risk factor modification: smoking, lipids, HTN, diabetes, activity as cleared, cardiac rehab.
 - Nitro storage/use teaching when prescribed (sit/lie; call EMS if pain persists after prescribed doses per teaching).
@@ -69,15 +85,21 @@ Supply–demand mismatch also drives demand ischemia (severe anemia, tachyarrhyt
 
 ### Safety / red flags
 
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
+
 > **Red flag:** Sudden hypotension + tachycardia after nitro — stay with client, support ABCs, notify.
 > **Red flag:** New loud murmur / flash pulmonary edema post-MI — mechanical complication until proven otherwise.
 > **Red flag:** Expanding hematoma or unexplained hypotension after femoral access — escalate immediately.
 
 ### Delegation notes
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 UAP can report chest pain complaints immediately and obtain VS on stable clients; **RN stays with unstable ACS** clients, interprets ECG urgency, and titrates vasoactive/antianginal therapies per orders/policy.
 
 ### Remember this
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 - ECG + don’t leave unstable chest-pain clients alone.
 - Aspirin/nitro per orders; watch BP and PDE-5 history.
@@ -87,7 +109,11 @@ UAP can report chest pain complaints immediately and obtain VS on stable clients
 
 ## Topic B — Heart failure (left vs right, congestion vs perfusion)
 
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
+
 ### Pathophysiology / concept
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 Pump failure → backup (**pulmonary congestion** in left-sided; **systemic edema**/JVD/hepatomegaly in right-sided) and/or poor forward flow (fatigue, oliguria, cool extremities, confusion). Compensatory SNS/RAAS worsen remodeling over time. Many clients have mixed pictures; chronic right-sided often follows left-sided disease.
 
@@ -99,11 +125,15 @@ Pump failure → backup (**pulmonary congestion** in left-sided; **systemic edem
 
 ### Assessment cues
 
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
+
 **Congestion:** dyspnea, orthopnea, crackles, weight gain, edema, JVD, S3.
 **Hypoperfusion:** cool clammy skin, hypotension, confusion, falling UOP, narrow pulse pressure.
 **Acute decompensation:** pink frothy sputum = pulmonary edema emergency energy — ABC first.
 
 ### Priority nursing actions
+
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
 
 1. ABCs; high Fowler’s; O₂ as indicated; consider NIV as ordered for flash edema.
 2. Telemetry; **daily weights**; strict I&O; compare to dry-weight goals.
@@ -114,6 +144,8 @@ Pump failure → backup (**pulmonary congestion** in left-sided; **systemic edem
 
 ### Medications (high-yield)
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 - Loop diuretics (furosemide): K⁺ wasting; ototoxicity if pushed too fast IV
 - ACEI/ARB/ARNI: cough/hyperkalemia/angioedema awareness for ACEI; ARNI washout after ACEI per protocol
 - Evidence-based beta blockers in stable chronic HFrEF
@@ -122,6 +154,8 @@ Pump failure → backup (**pulmonary congestion** in left-sided; **systemic edem
 
 ### Client teaching
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 - Weigh daily — report gain per provider parameters (commonly ~2–3 lb in a day or ~5 lb in a week — follow specific teaching).
 - Sodium awareness; med adherence; vaccines as advised.
 - Know when to seek care (worsening dyspnea, orthopnea, swelling, sudden weight gain).
@@ -129,17 +163,23 @@ Pump failure → backup (**pulmonary congestion** in left-sided; **systemic edem
 
 ### Safety / red flags
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 > **Red flag:** Rapid weight gain + new orthopnea = decompensation — escalate, don’t “watch overnight” without reassessment.
 > **Red flag:** Hypokalemia on loops → dysrhythmia / dig toxicity risk.
 > **Red flag:** Confusion + cool clammy + falling BP = hypoperfusion — this is not “just anxiety.”
 
 ### Remember this
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Daily weights are a vital sign in HF. Treat congestion and protect perfusion — they are not the same problem.
 
 ---
 
 ## Clinical judgment vignette 1 — Flash pulmonary edema
+
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
 
 **Stem:** 72-year-old with HFrEF becomes acutely dyspneic; SpO₂ 86% on room air; pink frothy sputum; BP 168/98; HR 118; crackles throughout.
 
@@ -151,15 +191,23 @@ Daily weights are a vital sign in HF. Treat congestion and protect perfusion —
 
 ## Topic C — Hypertension & hypertensive crisis
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 ### Concept
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 Sustained elevated BP damages vessels/organs (brain, heart, kidney, eye). **Hypertensive urgency** vs **emergency** (acute end-organ damage: encephalopathy, ACS, acute HF, aortic dissection, papilledema) drives how aggressively and how carefully BP is lowered.
 
 ### Assessment
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Often silent; headache/vision changes/chest pain/neuro deficits/severe back pain (dissection pattern) = concerning. Accurate cuff size and technique matter — false highs from wrong cuff create noise.
 
 ### Priority actions
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 - Accurate BP technique; trend readings; both arms if dissection suspected.
 - Meds as ordered; **slow controlled reduction** in emergencies per protocol (avoid crashing BP and watershed stroke).
@@ -167,9 +215,13 @@ Often silent; headache/vision changes/chest pain/neuro deficits/severe back pain
 
 ### Med
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Diuretics, ACEI/ARB, CCB, beta blockers — hypotension/dizziness teaching; orthostatics; don’t stop clonidine abruptly (rebound HTN).
 
 ### Remember this
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 Lower BP safely; teach lifelong management; watch acute end-organ clues.
 
@@ -177,7 +229,11 @@ Lower BP safely; teach lifelong management; watch acute end-organ clues.
 
 ## Topic D — Shock overview (cardiac lens)
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 ### Concept
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Shock = inadequate tissue perfusion. Types: hypovolemic, cardiogenic, distributive (septic/anaphylactic/neurogenic), obstructive (PE/tamponade).
 
@@ -191,9 +247,13 @@ Shock = inadequate tissue perfusion. Types: hypovolemic, cardiogenic, distributi
 
 ### Assessment cues
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Tachycardia, hypotension, cool clammy (or warm in early distributive), oliguria, rising lactate, altered LOC, delayed CRT.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Recognize shock early — trending BP/HR/UOP/LOC beats one snapshot.
 2. ABCs; O₂; IV access; notify provider/rapid response.
@@ -202,11 +262,15 @@ Tachycardia, hypotension, cool clammy (or warm in early distributive), oliguria,
 
 ### Remember this
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Treat cause + restore perfusion. Cardiogenic ≠ “just give lots of fluid.”
 
 ---
 
 ## Clinical judgment vignette 2 — Cardiogenic vs hypovolemic
+
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
 
 **Stem:** Post-MI client: BP 82/50, cool clammy, crackles, JVD. UAP asks if they should hang a liter bolus “like last shock patient.”
 
@@ -218,11 +282,17 @@ Treat cause + restore perfusion. Cardiogenic ≠ “just give lots of fluid.”
 
 ## Topic E — Dysrhythmia nursing priorities
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 ### Concept
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 Electrical problems alter rate/output. Focus on **pulse presence, stability (BP, LOC, chest pain, dyspnea), and lethal rhythms**. Always treat the patient, not only the monitor strip.
 
 ### Priority actions
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 - Assess **patient**, not only the monitor (pulse check).
 - Unstable tachycardia/bradycardia → rapid response / ACLS-aligned pathway.
@@ -233,9 +303,13 @@ Electrical problems alter rate/output. Focus on **pulse presence, stability (BP,
 
 ### Med
 
+Source: AHA ACLS guidelines, 2025.
+
 Amiodarone, adenosine, atropine, epinephrine — recognition of emergency use classes, not cookbook dosing from memory alone. Confirm ACLS/facility. Warn clients that adenosine causes brief asystole sensation.
 
 ### Remember this
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 No pulse + shockable lethal rhythm = CPR/defib energy. Stable vs unstable changes the pathway.
 
@@ -243,21 +317,31 @@ No pulse + shockable lethal rhythm = CPR/defib energy. Stable vs unstable change
 
 ## Topic F — VTE / DVT / anticoagulation nursing
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 ### Pathophysiology / concept
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Virchow’s triad: stasis, endothelial injury, hypercoagulability. DVT → PE risk. Orthopedic surgery, cancer, pregnancy/postpartum, estrogen, prior VTE, and immobility raise risk.
 
 ### Assessment cues
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Unilateral leg swelling, pain, warmth, redness; Homans’ is unreliable — don’t rely on it. Sudden dyspnea/chest pain after DVT risk = PE until ruled out.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Prevention: early ambulation, SCDs on correctly (not on active DVT limb per typical practice), anticoag prophylaxis as ordered.
 - Suspected DVT: don’t massage limb; elevate as ordered; prepare for duplex; anticoagulate as ordered.
 - Bleeding precautions once anticoagulated; teach fall prevention.
 
 ### Medication monitoring hooks
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | Agent | Monitor pattern |
 | --- | --- |
@@ -268,11 +352,15 @@ Unilateral leg swelling, pain, warmth, redness; Homans’ is unreliable — don�
 
 ### Remember this
 
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
+
 Prevention beats treatment. Unilateral swelling after surgery → take seriously.
 
 ---
 
 ## Topic G — Pacemaker / ICD key points
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 - Immobilize shoulder briefly as ordered post-implant; don’t raise arm above head initially.
 - ID card; avoid strong magnets/MRI unless device-compatible.
@@ -282,11 +370,15 @@ Prevention beats treatment. Unilateral swelling after surgery → take seriously
 
 ### Remember this
 
+Source: CDC isolation precautions, 2007.
+
 Arm precautions early post-op; know when to report shocks.
 
 ---
 
 ## Clinical judgment vignette 3 — Unstable ACS
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 **Stem:** Client with crushing pain, diaphoresis, BP 88/54, HR 40s, pale. Monitor shows slow wide complex.
 
@@ -297,6 +389,8 @@ Arm precautions early post-op; know when to report shocks.
 ---
 
 ## Concept check
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 **Q1.** Client with crushing chest pain, diaphoresis, BP 88/50. First nursing action?
 A. Detailed diet history
@@ -346,6 +440,8 @@ D. Apply heating pad and chart later
 ---
 
 ## Chapter Remember this
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 - ACS: time, ECG, aspirin/nitro per orders, watch BP and PDE-5 history.
 - HF: weights, Na⁺, diuretics/K⁺, congestion vs hypoperfusion; left vs right tables.

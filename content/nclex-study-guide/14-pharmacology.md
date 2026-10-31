@@ -10,11 +10,15 @@
 
 ## Why it matters on NCLEX
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Pharmacological and Parenteral Therapies is a large Client Needs band (~13–19% RN). The exam tests **class patterns, safety checks, monitoring labs, and teaching** — not obscure brand trivia. NGN cases may ask you to choose which labs to trend after a new med or which teaching statement shows risk for harm.
 
 ---
 
 ## How to study pharm for NCLEX
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 For every class, lock four hooks:
 
@@ -29,11 +33,17 @@ Drill **high-alert** and **look-alike/sound-alike** separately. Build a one-page
 
 ## Topic A — High-alert medications
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 ### Concept
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 High-alert = elevated risk of significant harm if used in error. Independent double-checks per policy. Smart pumps help but do not replace thinking.
 
 ### Classic high-alert groups
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Insulins (including U-500 / concentrated)
 - Anticoagulants / thrombolytics
@@ -45,6 +55,8 @@ High-alert = elevated risk of significant harm if used in error. Independent dou
 
 ### Priority nursing actions
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 - Two-nurse check when required.
 - Smart-pump libraries; no workarounds or “basic mode” bypass without policy.
 - Clarify unusual doses; read back verbal orders.
@@ -53,17 +65,23 @@ High-alert = elevated risk of significant harm if used in error. Independent dou
 
 ### Safety / red flags
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 > **Red flag:** “We’ve always given KCl IV push here” — never.
 > **Red flag:** PCA family dosing by proxy when not ordered.
 > **Red flag:** Insulin syringe used for non-insulin — or tuberculin syringe for U-100 confusion.
 
 ### Remember this
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 High-alert mistakes are rarely “minor.” Slow down.
 
 ---
 
 ## Topic B — Cardiac med class patterns
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | Class | Use pattern | Watch for | Teaching / holds |
 | --- | --- | --- | --- |
@@ -80,11 +98,15 @@ High-alert mistakes are rarely “minor.” Slow down.
 
 ### Remember this
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro = no.
 
 ---
 
 ## Clinical judgment vignette 1 — ACEI angioedema
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 **Stem:** Client started lisinopril 2 days ago; now lip swelling and “throat feels thick”; SpO₂ 94%.
 
@@ -95,6 +117,8 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 ---
 
 ## Topic C — Respiratory meds
+
+Source: GINA strategy report, 2025.
 
 - **SABA (albuterol):** rescue; tachycardia/tremor; overuse = uncontrolled asthma signal.
 - **ICS:** rinse mouth — thrush prevention; not for acute rescue alone.
@@ -107,7 +131,11 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 
 ## Topic D — Endocrine: insulin deep dive
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### Kinetics mindset
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 | Type | Role | Hypo risk window pattern |
 | --- | --- | --- |
@@ -118,6 +146,8 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 
 ### Safety rules
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 - Match insulin to meal timing (rapid with food arrival).
 - Site rotation; never share pens.
 - Clear before cloudy when mixing **only** if that pair is mixable (never mix long-acting glargine etc.).
@@ -127,6 +157,8 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 
 ### Oral / injectable non-insulin agents (pattern)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 - Metformin: GI SE; lactic acidosis risk with hypoxia/renal failure/contrast timing per protocol.
 - Sulfonylureas: hypo risk — especially elderly.
 - SGLT2: genital infections; euglycemic DKA awareness; volume depletion.
@@ -135,11 +167,15 @@ ACE cough/angioedema; dig + low K⁺ = trouble; loops waste K⁺; PDE-5 + nitro 
 
 ### Remember this
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Peak = snack plan. Unconscious hypo → glucagon/IV dextrose per orders. 15-15 rule for conscious hypo with intact swallow.
 
 ---
 
 ## Topic E — Anticoagulants & antiplatelets
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 | Agent | Monitor pattern | Reversal / notes |
 | --- | --- | --- |
@@ -151,19 +187,27 @@ Peak = snack plan. Unconscious hypo → glucagon/IV dextrose per orders. 15-15 r
 
 ### Teaching
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Soft toothbrush, electric razor, report black stools/coffee ground emesis/bleeding gums, medic alert, fall prevention, no contact sports when therapeutic, tell all providers including dentists.
 
 ### HIT
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Falling platelets on heparin + thrombosis risk — stop heparin products per protocol; don’t start warfarin alone in acute HIT without guidance.
 
 ### Remember this
+
+Source: CDC isolation precautions, 2007.
 
 Know which lab pairs conceptually with which drug. Bleeding precautions universal.
 
 ---
 
 ## Clinical judgment vignette 2 — Supratherapeutic INR
+
+Source: CDC isolation precautions, 2007.
 
 **Stem:** INR 5.8, new epistaxis, warfarin daily.
 
@@ -174,6 +218,8 @@ Know which lab pairs conceptually with which drug. Bleeding precautions universa
 ---
 
 ## Topic F — Antibiotics
+
+Source: Surviving Sepsis Campaign, 2021.
 
 - **Allergy history** every time — clarify rash vs anaphylaxis vs GI upset.
 - Culture before first dose when possible (don’t delay sepsis care inappropriately).
@@ -195,17 +241,25 @@ Know which lab pairs conceptually with which drug. Bleeding precautions universa
 
 ### Remember this
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Allergy + superinfection + organ toxicity patterns > memorizing every MIC.
 
 ---
 
 ## Topic G — Opioids, psych, maternity pharm
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 ### Opioids
+
+Source: VA/DoD major depressive disorder guideline, 2022.
 
 Resp depression, sedation, constipation, nausea, pruritus. Hold if RR low per parameters; **naloxone** for overdose (may need repeat — short half-life); stool softener teaching for chronic use; PCA teaching — only client presses.
 
 ### Psych meds
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 - SSRIs/SNRIs: serotonin syndrome (clonus, hyperreflexia, fever, agitation) with interactions (MAOI, triptans, St. John’s wort, tramadol).
 - MAOIs: tyramine hypertensive crisis.
@@ -215,6 +269,8 @@ Resp depression, sedation, constipation, nausea, pruritus. Hold if RR low per pa
 - Stimulants (ADHD): appetite/sleep/HR; diversion teaching.
 
 ### Maternity
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 - Oxytocin: tachysystole / fetal distress — stop per protocol.
 - Mag sulfate: toxicity monitoring (see maternity chapter).
@@ -226,7 +282,11 @@ Resp depression, sedation, constipation, nausea, pruritus. Hold if RR low per pa
 
 ## Topic H — Calculation safety
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 ### Habits
+
+Source: AAP acute otitis media guideline, 2013.
 
 1. Dimensional analysis.
 2. Leading zeros yes (0.5); trailing zeros no (5.0 forbidden).
@@ -238,17 +298,23 @@ Resp depression, sedation, constipation, nausea, pruritus. Hold if RR low per pa
 
 ### Mini sense-checks
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 - Adult acetaminophen single dose is usually 325–1000 mg; the safety limit is the **daily** maximum (3–4 g/day depending on source and liver status). Recheck any order that pushes past the daily ceiling, especially with combination opioid products.
 - Heparin infusions are protocol-driven — don’t freestyle.
 - Insulin doses in hundreds of units should scream U-500 / error check.
 
 ### Remember this
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 If an option skips allergy, ID, or compatible route/time — wrong. Calc errors are preventable with process.
 
 ---
 
 ## Topic I — Fluids, electrolytes & emergency meds (pattern)
+
+Source: AHA ACLS guidelines, 2025.
 
 | Med | Hook |
 | --- | --- |
@@ -269,21 +335,29 @@ If an option skips allergy, ID, or compatible route/time — wrong. Calc errors 
 
 ### Remember this
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Know antidote pairs cold — they are free points and real lives.
 
 ---
 
 ## Topic J — Herbal & interaction awareness
 
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
+
 Garlic/ginkgo/ginseng/ginger → bleeding risk with anticoags. St. John’s wort → many CYP interactions / serotonin risk. Licorice → BP/K⁺. Teach clients to disclose herbals and OTC NSAIDs (kidney/bleed/BP). Grapefruit with selected CCB/statins.
 
 ### Remember this
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 “Natural” ≠ harmless on NCLEX stems about bleeding or serotonin.
 
 ---
 
 ## Clinical judgment vignette 3 — Vancomycin flushing reaction
+
+Source: ISMP Targeted Medication Safety Best Practices, 2024.
 
 **Stem:** Vanc started 20 minutes ago; client flushed, itchy, BP stable, no wheeze; infusion was running “wide open.”
 
@@ -294,6 +368,8 @@ Garlic/ginkgo/ginseng/ginger → bleeding risk with anticoags. St. John’s wort
 ---
 
 ## Concept check
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 **Q1.** Client on warfarin with INR above therapeutic range and new epistaxis. Nurse anticipates:
 A. Extra heparin SQ
@@ -343,6 +419,8 @@ D. Combine with non-DHP CCB freely without checking
 ---
 
 ## Chapter Remember this
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Study by class: use → SE → labs → teaching.
 - High-alert double-checks.

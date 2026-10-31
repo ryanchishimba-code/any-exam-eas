@@ -46,8 +46,22 @@ Active anterior epistaxis: the patient sits forward, and the soft part of the no
 
 > **Important to remember**
 > - Pain, halos, and a mid-dilated pupil: angle closure. Do not send the patient home with antibiotic drops.
-> - High-dose amoxicillin for acute otitis media when an antibiotic is indicated (AAP).
+> - High-dose amoxicillin for acute otitis media when an antibiotic is indicated (AAP 2013).
 > - Pinch the nose for a full 15 minutes before you pack it.
+
+## Sinus, allergy, ear canal, and the mouth
+
+**Acute bacterial rhinosinusitis.** The IDSA 2012 guideline treats bacterial sinusitis when symptoms last 10 days or longer without improvement, worsen after getting better (double worsening), or are severe from the start (high fever and purulent nasal discharge for 3 to 4 consecutive days). A viral cold on day 3 is not an antibiotic visit. When an antibiotic is indicated, amoxicillin-clavulanate is first-line. A macrolide is not.
+
+**Allergic rhinitis.** The AAO-HNS clinical practice guideline (2015) uses an intranasal corticosteroid as first-line treatment. An oral antihistamine helps itch and sneezing. It does not replace the nasal steroid for congestion. Do not start a long oral corticosteroid for ordinary allergic rhinitis.
+
+**Otitis externa and the diabetic ear.** Swimmer's ear is tragal tenderness and a swollen canal. Treatment is topical antibiotic drops, not oral amoxicillin. Malignant otitis externa is a different disease: an older adult with diabetes, severe pain, and granulation tissue in the canal. That needs antipseudomonal therapy and otolaryngology, not a course of routine drops.
+
+**Effusion is not infection.** Otitis media with effusion is fluid behind an intact drum without acute infection. The AAO-HNS otitis media with effusion guideline (2016) does not use antibiotics, antihistamines, or decongestants to clear it. Watch hearing and speech if it persists.
+
+**The mouth and the floor of the mouth.** A nonhealing oral ulcer or a red or white patch present for more than 2 weeks is a biopsy, not another course of nystatin. Oral thrush in an adult is a prompt to check inhaled-steroid technique, recent antibiotics, glucose, and HIV risk. Floor-of-mouth swelling with tongue elevation is Ludwig angina. The airway comes first. Drainage and antibiotics follow. A simple dental abscess without airway threat goes to dental care, with antibiotics when there are systemic signs.
+
+**Bleeding that continues.** Anterior epistaxis that persists after 15 minutes of firm pressure on the soft nose needs packing or cautery. Posterior bleeding, especially in an older adult taking an anticoagulant, can be hidden and serious. Do not send that patient home with a tissue.
 
 <!-- /premium -->
 

@@ -128,7 +128,6 @@ Third-party guides (including this one) prepare you — they do **not** replace 
 | **This book** | Foundation & strategy — domains, ADPE, high-yield primary care |
 | **AnyExamEasy Qbank** | Active practice — exam-style items, teachable rationales, Roadmap, mocks |
 
-**Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 
 ---

@@ -19,6 +19,17 @@
 --    npm run ingest:naplex-guide
 --    npm run ingest:aanp-fnp-guide
 --
+-- Feed-visuals / guide-depth round (prepared, not applied to production):
+-- Backup first:
+--   CREATE TABLE sg_guides_backup_feed_depth AS TABLE sg_guides;
+--   CREATE TABLE sg_chapters_backup_feed_depth AS TABLE sg_chapters;
+-- Dry-run counts for this manuscript: pance 23 files / 22367 words,
+-- nclex 17 / 40141, naplex 17 / 29628, aanp-fnp 17 / 52154.
+-- Apply only if those counts match. Undo by copying the backup tables
+-- back onto sg_guides and sg_chapters. Do not delete highlights,
+-- bookmarks, notes, or progress. Do not run this against production
+-- branch br-super-frog-apuqj2ol as part of the draft.
+--
 -- Copy pass (prepared, not applied):
 -- After this manuscript change, backup to new tables before any ingest:
 --   CREATE TABLE sg_guides_backup_copy_pass AS TABLE sg_guides;

@@ -12,17 +12,25 @@
 
 ## Why it matters on NCLEX
 
+Source: KDIGO CKD guideline, 2024.
+
 Fluids/electrolytes and renal items sit at the intersection of **cardiac rhythm safety, neuro status, and medication effects**. Hyperkalemia, volume overload, transfusion reactions, and dialysis access problems are frequent “who do you see first?” drivers.
 
 ---
 
 ## Topic A — Fluids & electrolytes
 
+Source: KDIGO CKD guideline, 2024.
+
 ### Pathophysiology / concept
+
+Source: KDIGO CKD guideline, 2024.
 
 Water follows sodium; potassium drives cardiac conduction; calcium drives neuromuscular stability; magnesium often rides with K⁺ issues.
 
 ### Assessment cues (high-level)
+
+Source: KDIGO CKD guideline, 2024.
 
 | Imbalance | Classic cues |
 | --- | --- |
@@ -36,6 +44,8 @@ Water follows sodium; potassium drives cardiac conduction; calcium drives neurom
 
 ### Fluid volume excess vs deficit (comparison)
 
+Source: KDIGO CKD guideline, 2024.
+
 | | **Fluid volume deficit** | **Fluid volume excess** |
 | --- | --- | --- |
 | VS pattern | Tachycardia, hypotension, weak pulses | HTN (often), bounding pulses |
@@ -48,6 +58,8 @@ Daily weights = best chronic volume tracker (same scale, same time, same clothes
 
 ### Priority nursing actions
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 1. Telemetry when K⁺/Mg²⁺ deranged.
 2. Replace or remove electrolytes **per orders** — IV K⁺ never IV push; controlled infusion only.
 3. Seizure precautions for severe Na⁺ shifts; correct Na⁺ carefully (over-rapid correction risks demyelination).
@@ -55,11 +67,15 @@ Daily weights = best chronic volume tracker (same scale, same time, same clothes
 
 ### Client teaching
 
+Source: KDIGO CKD guideline, 2024.
+
 - Diuretic diet: K⁺ rich vs avoid depending on drug.
 - Fluid restriction adherence when ordered (HF/SIADH/renal).
 - Report weight gains (~2–3 lb in a day or ~5 lb in a week — follow personal parameters).
 
 ### Safety / red flags
+
+Source: KDIGO CKD guideline, 2024.
 
 - IV potassium push = never.
 - Peaked T waves → escalate.
@@ -67,13 +83,19 @@ Daily weights = best chronic volume tracker (same scale, same time, same clothes
 
 ### Remember this
 
+Source: KDIGO CKD guideline, 2024.
+
 Treat patient + trend. K⁺ emergencies are cardiac emergencies. Weights win for volume.
 
 ---
 
 ## Topic B — Acid-base (integrated)
 
+Source: KDIGO CKD guideline, 2024.
+
 ### Shortcut
+
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
 
 1. Look at **pH**
 2. Look at **PaCO₂** (respiratory) and **HCO₃⁻** (metabolic)
@@ -89,18 +111,26 @@ Treat patient + trend. K⁺ emergencies are cardiac emergencies. Weights win for
 
 ### Remember this
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 Fix the cause (ventilate, perfuse, insulin for DKA, etc.).
 
 ---
 
 ## Topic C — AKI & CKD; nephrotic vs nephritic
 
+Source: KDIGO CKD guideline, 2024.
+
 ### Pathophysiology / concept
+
+Source: KDIGO CKD guideline, 2024.
 
 **AKI:** sudden drop in GFR — prerenal (perfusion), intrinsic (ATN/nephritis), postrenal (obstruction).
 **CKD:** progressive irreversible loss; stages by GFR; complications = fluid overload, hyperkalemia, anemia, mineral bone disease, uremia, acidosis.
 
 ### Nephrotic vs nephritic
+
+Source: KDIGO CKD guideline, 2024.
 
 | | **Nephrotic** | **Nephritic** |
 | --- | --- | --- |
@@ -110,9 +140,13 @@ Fix the cause (ventilate, perfuse, insulin for DKA, etc.).
 
 ### Assessment cues (AKI/CKD)
 
+Source: KDIGO CKD guideline, 2024.
+
 Oliguria/anuria, rising creatinine/BUN, hyperkalemia, metabolic acidosis, edema/HTN, uremic frost/encephalopathy late, pericarditis late.
 
 ### Priority nursing actions
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Map cause: fluids for prerenal if ordered; relieve obstruction; avoid nephrotoxins (NSAIDs, aminoglycosides).
 - Monitor I&O, daily weight, K⁺, ECG.
@@ -122,11 +156,15 @@ Oliguria/anuria, rising creatinine/BUN, hyperkalemia, metabolic acidosis, edema/
 
 ### Meds caution
 
+Source: CDC isolation precautions, 2007.
+
 - Adjust renally cleared drugs.
 - ACEI/ARB: renal protective long-term but monitor K⁺/Cr.
 - Contrast precautions (hydration as ordered).
 
 ### Client teaching
+
+Source: KDIGO CKD guideline, 2024.
 
 - No NSAIDs casually; med list review.
 - Fistula care if dialysis-bound.
@@ -134,13 +172,19 @@ Oliguria/anuria, rising creatinine/BUN, hyperkalemia, metabolic acidosis, edema/
 
 ### Remember this
 
+Source: KDIGO CKD guideline, 2024.
+
 Protect kidneys from hypoperfusion and toxins. Nephrotic = protein/edema; nephritic = blood/HTN. Hyperkalemia and volume overload drive urgency.
 
 ---
 
 ## Topic D — UTI, pyelonephritis & kidney stones
 
+Source: KDIGO CKD guideline, 2024.
+
 ### UTI / pyelo
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Lower UTI: dysuria, frequency, urgency, suprapubic discomfort.
 **Pyelonephritis:** flank pain, fever, chills, N/V — systemic; can seed sepsis.
@@ -148,10 +192,14 @@ Lower UTI: dysuria, frequency, urgency, suprapubic discomfort.
 
 ### Kidney stones (urolithiasis)
 
+Source: KDIGO CKD guideline, 2024.
+
 Severe colicky flank pain radiating to groin, hematuria, N/V, can’t sit still.
 **Nurse:** pain control, strain all urine, hydration as ordered, ambulation, filter for stone analysis; infection + obstruction = emergency energy (fever + unrelieved pain). Teaching: fluid intake goals as ordered; diet depends on stone type (don’t invent one diet for all).
 
 ### Remember this
+
+Source: Surviving Sepsis Campaign, 2021.
 
 Fever + flank pain = pyelo/sepsis watch. Stones = pain + strain + fluids; infection with obstruction escalates.
 
@@ -159,11 +207,17 @@ Fever + flank pain = pyelo/sepsis watch. Stones = pain + strain + fluids; infect
 
 ## Topic E — BPH & TURP irrigation / clots
 
+Source: KDIGO CKD guideline, 2024.
+
 ### Concept
+
+Source: CDC isolation precautions, 2007.
 
 **BPH:** prostate enlargement → urinary retention, weak stream, nocturia, overflow incontinence. Meds: alpha-blockers (orthostatic hypotension teaching), 5-ARI (sexual SE, pregnant partner handling precautions for crushed tabs).
 
 ### TURP continuous bladder irrigation (CBI)
+
+Source: KDIGO CKD guideline, 2024.
 
 Goal: keep catheter patent and urine pink-to-clear; prevent clot retention.
 **Nurse:** hang irrigant (usually isotonic sterile) as ordered; adjust rate so output stays without bright red clots/obstruction; measure true urine = output minus irrigant in; watch for **hyponatremia/TURP syndrome** (confusion, N/V, HTN or bradycardia patterns) with absorption of irrigant — report neuro changes.
@@ -171,17 +225,25 @@ If outflow blocked (bladder spasms, no drip out): check kinks; hand-irrigate per
 
 ### Remember this
 
+Source: KDIGO CKD guideline, 2024.
+
 CBI: pink and flowing. Bright red + clots + spasms = patency emergency. Confusion post-TURP → think TURP syndrome / Na⁺.
 
 ---
 
 ## Topic F — Dialysis nursing priorities
 
+Source: KDIGO CKD guideline, 2024.
+
 ### Hemodialysis concepts
+
+Source: KDIGO CKD guideline, 2024.
 
 Blood cleaned via dialyzer; access via AV fistula/graft or catheter. Complications: hypotension, disequilibrium, bleed from heparin, infection, cramps.
 
 ### Fistula care rules (classic NCLEX)
+
+Source: KDIGO CKD guideline, 2024.
 
 - **No BP, no sticks, no tight clothes** on access arm.
 - Feel **thrill**, hear **bruit** — report absence.
@@ -189,15 +251,21 @@ Blood cleaned via dialyzer; access via AV fistula/graft or catheter. Complicatio
 
 ### Peritoneal dialysis & peritonitis signs
 
+Source: Surviving Sepsis Campaign, 2021.
+
 Catheter in abdomen; dwell/drain. **Peritonitis:** cloudy effluent, abdominal pain, fever, rebound — report ASAP; save bag for culture; antibiotics as ordered (often intraperitoneal); sterile technique with exchanges; teach client asepsis at home. Other issues: incomplete drain (position change), protein loss, hyperglycemia from dialysate dextrose.
 
 ### Remember this
+
+Source: KDIGO CKD guideline, 2024.
 
 No BP/sticks on fistula arm. Cloudy PD fluid = infection until proven otherwise.
 
 ---
 
 ## Topic G — SIADH vs diabetes insipidus (high-yield contrast)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | | **SIADH** | **DI** |
 | --- | --- | --- |
@@ -210,13 +278,19 @@ No BP/sticks on fistula arm. Cloudy PD fluid = infection until proven otherwise.
 
 ### Remember this
 
+Source: KDIGO CKD guideline, 2024.
+
 SIADH = soaked inside (low Na⁺). DI = dry pipes (high UOP, high Na⁺ risk).
 
 ---
 
 ## Topic H — IV fluid types, IV complications & transfusions
 
+Source: KDIGO CKD guideline, 2024.
+
 ### IV fluid types (conceptual)
+
+Source: KDIGO CKD guideline, 2024.
 
 - **Isotonic** (NS, LR): volume expansion — watch overload.
 - **Hypotonic** (0.45% NaCl): pushes water into cells — avoid in ICP risk.
@@ -224,6 +298,8 @@ SIADH = soaked inside (low Na⁺). DI = dry pipes (high UOP, high Na⁺ risk).
 - Colloids/blood: follow transfusion rights and reactions protocol.
 
 ### IV complications
+
+Source: KDIGO CKD guideline, 2024.
 
 | Problem | Cues | Nurse actions |
 | --- | --- | --- |
@@ -233,6 +309,8 @@ SIADH = soaked inside (low Na⁺). DI = dry pipes (high UOP, high Na⁺ risk).
 | **CLABSI risk** | Fever, chills with central line | Sterile care; scrub hub; report |
 
 ### Blood transfusion reactions — deeper algorithm
+
+Source: 2025 ACC/AHA acute coronary syndromes guideline.
 
 1. **Stop transfusion immediately** — keep IV line open with **NS** (new tubing per policy).
 2. Stay with client; VS; notify provider **and** blood bank.
@@ -252,6 +330,8 @@ Two-nurse check, baseline VS, stay first 15 minutes — follow facility.
 
 ### Remember this
 
+Source: KDIGO CKD guideline, 2024.
+
 Match fluid tonicity to the problem. Infiltration ≠ extravasation (vesicants escalate). Transfusion reaction → **stop first**, NS, notify, save bag.
 
 ---
@@ -260,7 +340,11 @@ Match fluid tonicity to the problem. Infiltration ≠ extravasation (vesicants e
 
 ## Clinical judgment vignettes — renal & fluids
 
+Source: KDIGO CKD guideline, 2024.
+
 ### Vignette A — Hyperkalemia with ECG changes
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 **Stem:** K⁺ 6.8, peaked T waves, client weak.
 
@@ -268,19 +352,27 @@ Match fluid tonicity to the problem. Infiltration ≠ extravasation (vesicants e
 
 ### Vignette B — Fluid volume overload vs deficit
 
+Source: KDIGO CKD guideline, 2024.
+
 Sort cues: crackles/JVD/weight↑ vs dry mucosa/tachycardia/oliguria. Wrong fluids kill.
 
 ### Vignette C — AV fistula
 
+Source: KDIGO CKD guideline, 2024.
+
 No BP/sticks on fistula arm; thrill/bruit checks; report steal syndrome pain/cool hand; hold meds pre-dialysis as ordered.
 
 ### Extra teaching
+
+Source: KDIGO CKD guideline, 2024.
 
 - CKD diet: often Na/K/phos/protein individualized — teach the *client’s* prescription, not a generic internet diet.
 - Post-streptococcal GN and nephrotic vs nephritic pattern recognition at high level.
 - UTI → pyelo: flank pain/fever escalate; elderly may show confusion.
 
 ### Extra concept check
+
+Source: KDIGO CKD guideline, 2024.
 
 **Q7.** Client post-dialysis dizzy, BP 80/50. Priority?
 A. Rapid independent ambulation
@@ -294,6 +386,8 @@ D. Ignore — expected forever
 
 ## Electrolyte “action first” pocket
 
+Source: KDIGO CKD guideline, 2024.
+
 | Electrolyte | Danger cue | First nursing energy |
 | --- | --- | --- |
 | High K⁺ | Peaked T, weakness | Monitor + emergent protocol |
@@ -304,9 +398,13 @@ D. Ignore — expected forever
 
 ### Acid-base nursing link
 
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
 Treat cause: COPD retention → ventilation support; DKA → fluids/insulin; vomiting alkalosis → volume/electrolytes; hyperventilation alkalosis → coach breathing when anxiety-driven (after ruling out PE/hypoxia causes).
 
 ## Concept check
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Q1.** Client with K⁺ 6.8 mEq/L and peaked T waves. Priority ?
 A. Encourage banana smoothie
@@ -356,6 +454,8 @@ D. Discard all tubing immediately in regular trash before calling
 ---
 
 ## Chapter Remember this
+
+Source: KDIGO CKD guideline, 2024.
 
 - Electrolyte danger zones — especially K⁺ — are cardiac/neuro emergencies.
 - Never IV push potassium; FVE vs FVD comparison.

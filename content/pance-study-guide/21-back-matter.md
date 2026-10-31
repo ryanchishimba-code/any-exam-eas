@@ -4,7 +4,17 @@ PANCE rewards clear thinking about common problems.
 
 **What is it? What is next? What is first-line?** Practice those three questions.
 
-The question bank is part of the same account as this guide.
+<!-- premium -->
+
+## The last week
+
+Use the seven-day sprint in the exam-day chapter. Do not add a new resource. The work is the large systems (cardiovascular 11%, pulmonary 9%, gastrointestinal 8%, musculoskeletal 8% on the NCCPA blueprint effective January 2025), the task you miss most often, and sleep.
+
+On the morning of the exam, eat, leave early, and use the 45 minutes of break time on purpose. Afterward, wait for the score NCCPA posts. A practice percentage is not that score.
+
+If the report shows a thin system, rebuild a short plan around that system and the task attached to it. Diagnosis items, history items, and drug items are not interchangeable. The blueprint scores both axes.
+
+<!-- /premium -->
 
 ---
 

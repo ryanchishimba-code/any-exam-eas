@@ -8,6 +8,8 @@
 
 ## ABCs + priority order (pocket)
 
+Source: VA/DoD major depressive disorder guideline, 2022.
+
 1. Airway obstruction / compromise
 2. Breathing failure / severe distress
 3. Circulation — shock, uncontrolled bleed, lethal rhythms
@@ -22,6 +24,8 @@
 ---
 
 ## Isolation — ultra short
+
+Source: CDC isolation precautions, 2007.
 
 | Type | Think | PPE highlight |
 | --- | --- | --- |
@@ -38,6 +42,8 @@
 ---
 
 ## Labs — know the danger zone (direction + urgency)
+
+Source: NCSBN RN Test Plan, 2026.
 
 Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 
@@ -68,6 +74,8 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 
 ## Therapeutic communication — keep / kill
 
+Source: NCSBN RN Test Plan, 2026.
+
 **Keep:** “Tell me more.” “This is difficult.” “What concerns you most?” reflection, silence, clarification, open-ended.
 **Kill:** “Don’t worry.” “Why did you…” “You should…” “Everyone feels that way.” judgment, false reassurance, changing subject, advising abruptly.
 
@@ -76,6 +84,8 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 ---
 
 ## Delegation pocket
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 | Keep with RN | Often LPN/LVN | Often UAP |
 | --- | --- | --- |
@@ -88,6 +98,8 @@ Five rights: task, circumstance, person, direction, supervision.
 ---
 
 ## Emergency action flashes
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 | Situation | First moves |
 | --- | --- |
@@ -116,7 +128,11 @@ Five rights: task, circumstance, person, direction, supervision.
 
 ## Must-know comparison tables (sprint)
 
+Source: NCSBN RN Test Plan, 2026.
+
 ### Left vs right HF
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Left | Right |
 | --- | --- |
@@ -124,11 +140,15 @@ Five rights: task, circumstance, person, direction, supervision.
 
 ### DKA vs HHS
 
+Source: NCSBN RN Test Plan, 2026.
+
 | DKA | HHS |
 | --- | --- |
 | Ketones + acidosis, often younger T1D | Profound hyperosmolar dehydration, often older T2D |
 
 ### Croup vs epiglottitis
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Croup | Epiglottitis |
 | --- | --- |
@@ -136,11 +156,15 @@ Five rights: task, circumstance, person, direction, supervision.
 
 ### Previa vs abruption
 
+Source: NCSBN RN Test Plan, 2026.
+
 | Previa | Abruption |
 | --- | --- |
 | Painless bleed; no vaginal exam | Painful, board-like uterus |
 
 ### Early vs late ICP
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Early | Late |
 | --- | --- |
@@ -148,11 +172,15 @@ Five rights: task, circumstance, person, direction, supervision.
 
 ### Contact vs droplet vs airborne (memory)
 
+Source: NCSBN RN Test Plan, 2026.
+
 Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 ---
 
 ## Antidote & high-alert flash
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | Problem | Antidote / action pattern |
 | --- | --- |
@@ -173,6 +201,8 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 ## Fetal monitoring & maternity flash
 
+Source: NCSBN RN Test Plan, 2026.
+
 | Pattern | Action |
 | --- | --- |
 | Late decels | Stop Pitocin per protocol, left lateral, O₂, notify |
@@ -183,6 +213,8 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 ---
 
 ## 7-day final sprint
+
+Source: NCSBN RN Test Plan, 2026.
 
 | Day | Do this |
 | --- | --- |
@@ -198,6 +230,8 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 ## Error-log mini template
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 1. Topic: __________
 2. Miss type: cue / priority / content / misread / calc
 3. Correct rule (1 sentence): __________
@@ -207,6 +241,8 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 ---
 
 ## NGN bow-tie mental template (study aid)
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Center (condition):** What is the priority problem?
 **Left (actions):** What do you do first / next?
@@ -219,6 +255,8 @@ Practice this aloud on every case study — even when the item format differs.
 ---
 
 ## Remember this (sprint)
+
+Source: NCSBN RN Test Plan, 2026.
 
 - Process > panic on every item.
 - Safety → ABC → Maslow → nursing process.

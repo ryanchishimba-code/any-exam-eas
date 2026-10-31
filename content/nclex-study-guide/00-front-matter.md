@@ -58,8 +58,6 @@ Download the **official test plan** for the exam you are taking from [ncsbn.org]
 | --- | --- |
 | Strategy, patho-enough-to-reason, memory hooks, red flags | NGN-style practice, teachable rationales, Roadmap, full-length mocks |
 
-**Soft CTA:** Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this NCLEX book with NGN-style practice.
-
 ---
 
 ## Table of contents

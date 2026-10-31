@@ -12,17 +12,25 @@
 
 ## Why it matters on NCLEX
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Neuro items test **airway protection, time-sensitive perfusion (stroke), rising ICP recognition, and seizure safety**. Early vs late signs are classic NCLEX bait. NGN cases often trend serial neuro checks — a “soft” LOC change beats a single normal pupil exam from two hours ago.
 
 ---
 
 ## Topic A — Stroke (CVA)
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### Pathophysiology / concept
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Brain tissue dies when blood flow stops. **Ischemic** (thrombotic/embolic) is most common; **hemorrhagic** (ICH/SAH) bleeds into/around brain. “Time is brain.” Penumbra can be saved with timely reperfusion in eligible ischemic strokes — hemorrhagic paths differ (**no tPA**). Embolic strokes often sudden (afib); thrombotic may stutter with TIAs.
 
 ### Assessment cues
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 **FAST:** Face droop, Arm weakness, Speech difficulty, Time to call emergency care.
 Other: sudden severe headache (esp. hemorrhagic/SAH “worst headache”), visual field loss, ataxia, neglect, altered LOC, aphasia vs dysarthria, unilateral numbness.
@@ -30,6 +38,8 @@ Other: sudden severe headache (esp. hemorrhagic/SAH “worst headache”), visua
 **NIHSS ** (high-level): structured deficit scoring — know that serial neuro checks matter more than memorizing every item.
 
 ### Priority nursing actions
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 1. ABCs; **NPO until swallow screen** passed — aspiration is a killer complication.
 2. Exact **last known well** time — drives eligibility windows.
@@ -42,6 +52,8 @@ Other: sudden severe headache (esp. hemorrhagic/SAH “worst headache”), visua
 
 ### Medications / treatments (high-yield)
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 | | Hooks |
 | --- | --- |
 | Alteplase (tPA) | Strict inclusion/exclusion; bleed risk; ICU monitoring; no anticoags/antiplatelets for a period after per protocol |
@@ -52,9 +64,13 @@ Other: sudden severe headache (esp. hemorrhagic/SAH “worst headache”), visua
 
 ### Complications
 
+Source: ATS/IDSA community-acquired pneumonia guideline, 2019.
+
 Aspiration pneumonia, DVT/PE, increased ICP/herniation, hemorrhagic transformation after tPA, shoulder subluxation on flaccid side, depression, neglect injuries.
 
 ### Client teaching
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 - Call emergency services at FAST signs — don’t “wait and see.”
 - Med adherence; smoking cessation; diabetes/HTN/lipid control; afib anticoagulation importance.
@@ -63,15 +79,21 @@ Aspiration pneumonia, DVT/PE, increased ICP/herniation, hemorrhagic transformati
 
 ### Safety / red flags
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 > **Red flag:** Sudden neuro decline after tPA → possible hemorrhage — stop infusions per protocol, notify, prepare CT.
 > **Red flag:** Wet voice / coughing with sips before swallow screen cleared.
 > **Red flag:** Pulling on flaccid arm during transfer.
 
 ### Delegation notes
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 UAP can assist with safe positioning and report changes; **RN** does swallow screen and neuro assessment.
 
 ### Remember this
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 - NPO until swallow cleared.
 - Last known well time is critical data.
@@ -80,6 +102,8 @@ UAP can assist with safe positioning and report changes; **RN** does swallow scr
 ---
 
 ## Clinical judgment vignette 1 — Stroke arrival
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 **Stem:** Client with right face droop and aphasia; last known well 90 minutes ago; family offers coffee “to calm nerves.”
 
@@ -91,16 +115,24 @@ UAP can assist with safe positioning and report changes; **RN** does swallow scr
 
 ## Topic B — Increased ICP & head injury
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### Pathophysiology / concept
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Skull is closed box (Monro-Kellie): brain + blood + CSF. Increase in one → ICP rises unless compensation. High ICP → ischemia → herniation risk. Cerebral perfusion pressure ≈ MAP − ICP — both extremes of BP matter.
 
 ### Assessment cues
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 **Early:** change in **LOC** (irritability, confusion, restlessness), headache, vomiting (sometimes projectile), pupil changes beginning.
 **Late:** Cushing’s triad (**bradycardia, irregular respirations, widening pulse pressure/hypertension**), fixed dilated pupils, posturing, coma.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Maintain airway; avoid hypoxia/hypercarbia (both raise ICP).
 2. HOB elevation ~30° often; head midline; avoid tight collar ties.
@@ -112,6 +144,8 @@ Skull is closed box (Monro-Kellie): brain + blood + CSF. Increase in one → ICP
 
 ### Meds (high-yield)
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 - Mannitol / hypertonic saline: monitor osmolality, electrolytes, volume status, IV site (hypertonic vesicant risk)
 - Antiepileptics if ordered
 - Avoid hypotonic free water overload
@@ -119,11 +153,15 @@ Skull is closed box (Monro-Kellie): brain + blood + CSF. Increase in one → ICP
 
 ### Safety / red flags
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 > **Red flag:** Sudden LOC drop + Cushing’s signs = emergency herniation pathway.
 > **Red flag:** CSF leak (halo sign / clear drainage) — report; don’t pack nose aggressively.
 > **Red flag:** Dilating pupil on one side after head injury.
 
 ### Remember this
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Early ICP = LOC change. Late = Cushing’s. Protect airway and cerebral perfusion.
 
@@ -131,15 +169,23 @@ Early ICP = LOC change. Late = Cushing’s. Protect airway and cerebral perfusio
 
 ## Topic C — Seizures
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### Pathophysiology / concept
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Abnormal synchronized electrical discharge. Status epilepticus = prolonged/repeated seizures without recovery — airway and brain injury risk. Causes: epilepsy, missed meds, fever (peds), hyponatremia, hypoglycemia, alcohol withdrawal, brain injury, infection.
 
 ### Assessment cues
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Aura possible; tonic-clonic motor activity; incontinence; postictal confusion; focal deficits after (Todd’s paralysis); automatisms in focal seizures.
 
 ### Priority nursing actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 1. Protect from injury — lower to floor if needed, pad, turn side when able.
 2. **Nothing in the mouth.**
@@ -150,6 +196,8 @@ Aura possible; tonic-clonic motor activity; incontinence; postictal confusion; f
 
 ### Client teaching
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 - Med adherence (breakthrough seizures often = missed doses).
 - Safety: driving laws vary; swim with buddy; medical ID; cook with care.
 - Triggers: sleep deprivation, alcohol, flashing lights in photosensitive types, illness.
@@ -157,15 +205,21 @@ Aura possible; tonic-clonic motor activity; incontinence; postictal confusion; f
 
 ### Medication hooks
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Phenytoin (levels, gum hyperplasia, IV compatibility/cardiac monitoring), carbamazepine (levels, blood dyscrasia), valproate (liver, platelets), levetiracetam (mood), lamotrigine (rash/SJS teaching), benzos for acute status.
 
 ### Remember this
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Airway/safety; time it; nothing in mouth; status = emergency meds/airway.
 
 ---
 
 ## Clinical judgment vignette 2 — Status epilepticus
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 **Stem:** Client seizing continuously for 8 minutes; SpO₂ dropping; family screaming for tongue blade.
 
@@ -177,15 +231,23 @@ Airway/safety; time it; nothing in mouth; status = emergency meds/airway.
 
 ## Topic D — Meningitis basics
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### Concept
+
+Source: CDC isolation precautions, 2007.
 
 Infection/inflammation of meninges. Bacterial is a **medical emergency** and often **droplet** precautions (e.g., N. meningitidis) until adequately treated per protocol. Viral often less fulminant but still serious. Fungal more in immunocompromised.
 
 ### Assessment cues
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Fever, severe headache, nuchal rigidity, photophobia, altered LOC; Kernig/Brudzinski; petechial/purpuric rash with meningococcus (purpura fulminans concern). Infants: bulging fontanel, poor feeding, high-pitched cry — less classic stiff neck.
 
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Droplet precautions early when suspected.
 - Blood cultures / LP as ordered when safe; antibiotics promptly — don’t delay for LP if unstable and Abx ordered.
@@ -195,17 +257,25 @@ Fever, severe headache, nuchal rigidity, photophobia, altered LOC; Kernig/Brudzi
 
 ### Remember this
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Droplet + don’t delay antibiotics for bacterial meningitis suspicion. Rash + meningitis signs = scary fast.
 
 ---
 
 ## Topic E — Spinal precautions & SCI
 
+Source: CDC isolation precautions, 2007.
+
 ### Concept
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Protect spinal cord when trauma mechanism suggests injury (falls, MVC, diving). Movement can convert incomplete injury to complete.
 
 ### Priority actions
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 - Manual in-line stabilization / C-collar as trained; log roll with team.
 - ABC first — airway with jaw thrust if trauma.
@@ -214,10 +284,14 @@ Protect spinal cord when trauma mechanism suggests injury (falls, MVC, diving). 
 
 ### Safety / red flags
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 > **Red flag:** SCI client with sudden severe headache + BP 210/110 — sit up and find stimulus; don’t lay flat and “observe.”
 > **Red flag:** Neurogenic shock (hypotension + bradycardia after cervical/high thoracic injury) ≠ hypovolemia automatically.
 
 ### Remember this
+
+Source: CDC isolation precautions, 2007.
 
 Spine precautions until cleared. Autonomic dysreflexia = sit up + find stimulus.
 
@@ -225,7 +299,11 @@ Spine precautions until cleared. Autonomic dysreflexia = sit up + find stimulus.
 
 ## Topic F — Myasthenia gravis & Guillain-Barré
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### Myasthenia gravis
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Autoimmune attack on ACh receptors → fatigable weakness, ptosis, risk of **myasthenic crisis** (airway/breathing failure). Tensilon test historical; now antibody/EMG. Crisis vs cholinergic crisis (overdose of cholinesterase inhibitors) — both can cause weakness; differentiate carefully under protocol (often ICU).
 
@@ -233,11 +311,15 @@ Autoimmune attack on ACh receptors → fatigable weakness, ptosis, risk of **mya
 
 ### Guillain-Barré
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Post-infectious ascending paralysis; autonomic instability; **airway** may fail as paralysis climbs. Often needs ICU monitoring; plasmapheresis/IVIG.
 
 **Nurse focus:** serial VC/NIF as ordered; prepare for intubation; DVT prophylaxis; fear/communication support (client may be locked-in aware); pain management for paresthesias.
 
 ### Remember this
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 GBS rising weakness → watch breathing capacity. MG crisis = ventilatory emergency potential.
 
@@ -245,21 +327,31 @@ GBS rising weakness → watch breathing capacity. MG crisis = ventilatory emerge
 
 ## Topic G — Parkinson’s & Alzheimer’s care
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### Parkinson’s
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Dopamine loss → tremor, rigidity, bradykinesia, postural instability. Fall risk; aspiration; med timing (levodopa/carbidopa) critical for “on” periods. Deep brain stimulator teaching if applicable.
 
 ### Alzheimer’s / dementia
 
+Source: CDC isolation precautions, 2007.
+
 Safety, redirection, routine, caregiver support; don’t argue delusions aggressively; wandering precautions; cholinesterase inhibitors SE (GI, bradycardia); memantine.
 
 ### Remember this
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Fall + aspiration + dignity. Schedule care when Parkinson meds are working.
 
 ---
 
 ## Clinical judgment vignette 3 — Rising ICP
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 **Stem:** Post-op craniotomy night: client was oriented; now restless, BP 188/70, HR 58, one pupil sluggish.
 
@@ -273,6 +365,8 @@ Fall + aspiration + dignity. Schedule care when Parkinson meds are working.
 
 ## Topic H — Bell’s palsy vs stroke (quick contrast)
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 | | Bell’s palsy | Stroke |
 | --- | --- | --- |
 | Onset | Facial nerve inflammation; often overnight | Sudden; may include arm/leg/speech/vision |
@@ -285,15 +379,23 @@ Fall + aspiration + dignity. Schedule care when Parkinson meds are working.
 
 ## Topic I — Multiple sclerosis & migraine nursing hooks
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 ### MS
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 Demyelination with relapses/remissions or progressive courses. Fatigue, vision changes (optic neuritis), weakness, ataxia, bladder issues, heat sensitivity (Uhthoff). Nursing: energy conservation, fall safety, bowel/bladder program, infection prevention (can trigger flares), med adherence (injectables/infusions/orals — infection risk with some DMTs).
 
 ### Migraine
 
+Source: AHA/ASA early management of ischemic stroke, 2019.
+
 Severe headache ± aura, photophobia, nausea. Red flags for secondary headache: sudden “thunderclap,” neuro deficit, fever/neck stiffness, new after trauma, cancer/HIV context — escalate. Teaching: triggers, abortive timing, med overuse headache awareness.
 
 ## Concept check
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 **Q1.** Suspected stroke client arrives. Highest early nursing priority among these?
 A. Hot breakfast tray immediately
@@ -343,6 +445,8 @@ D. Preference for TV channel
 ---
 
 ## Chapter Remember this
+
+Source: AHA/ASA early management of ischemic stroke, 2019.
 
 - Stroke: FAST, last known well, NPO until swallow screen.
 - ICP: early LOC → late Cushing’s.

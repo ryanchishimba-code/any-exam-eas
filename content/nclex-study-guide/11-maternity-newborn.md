@@ -12,17 +12,25 @@
 
 ## Why it matters on NCLEX
 
+Source: AAP acute otitis media guideline, 2013.
+
 Maternity items reward **pattern recognition under time pressure**: late decelerations, boggy fundus, magnesium toxicity, newborn thermoregulation. One correct priority action saves mother and baby in the stem — and in real life. NGN cases often unfold from subtle BP/proteinuria to seizure prophylaxis decisions.
 
 ---
 
 ## Topic A — Antepartum essentials
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 ### Pathophysiology / concept
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Pregnancy is a high-flow, high-volume state. Screening catches preeclampsia, GDM, anemia, infections. **Placenta previa** (painless bleeding, placenta over os) vs **abruption** (painful bleeding, board-like uterus) are classic contrasts. Ectopic pregnancy (first trimester pain + bleeding + shoulder pain) is a rupture risk.
 
 ### Assessment cues — prenatal danger signs (teach these)
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 - Vaginal bleeding
 - Severe headache, visual changes, epigastric/RUQ pain (preeclampsia)
@@ -34,6 +42,8 @@ Pregnancy is a high-flow, high-volume state. Screening catches preeclampsia, GDM
 
 ### Priority nursing actions
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 - Accurate BP, urine protein, weight trends.
 - Rh-negative clients: Rho(D) immune globulin timing concepts (28 weeks / after sensitizing events / postpartum if baby Rh+).
 - GDM teaching: glucose monitoring, diet, insulin if ordered; fetal surveillance.
@@ -42,9 +52,13 @@ Pregnancy is a high-flow, high-volume state. Screening catches preeclampsia, GDM
 
 ### Medication / treatment hooks
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Prenatal vitamins / folate (NTD prevention early); iron for anemia (take with vitamin C; constipation teaching); avoid ACEI/ARB/teratogens.
 
 ### Remember this
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Painless bleeding → think previa (don’t do vaginal exam). Painful rigid uterus → abruption energy.
 
@@ -52,7 +66,11 @@ Painless bleeding → think previa (don’t do vaginal exam). Painful rigid uter
 
 ## Topic B — Labor & fetal monitoring
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 ### Stages (nursing priorities)
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 | Stage | What’s happening | Nurse focus |
 | --- | --- | --- |
@@ -63,6 +81,8 @@ Painless bleeding → think previa (don’t do vaginal exam). Painful rigid uter
 
 ### Fetal heart patterns
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 | Pattern | Meaning pattern | First moves |
 | --- | --- | --- |
 | Accelerations | Generally reassuring | Continue surveillance |
@@ -72,9 +92,13 @@ Painless bleeding → think previa (don’t do vaginal exam). Painful rigid uter
 
 ### Priority actions for nonreassuring patterns (intrauterine resuscitation)
 
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
+
 Left lateral (or other position off vena cava), O₂ per protocol, stop oxytocin per protocol, IV bolus as ordered, notify provider, prepare for expedited delivery if unresolved. Check for tachysystole.
 
 ### Meds
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 - Oxytocin: titration for labor; watch tachysystole and late decels — **stop per protocol** when fetus in trouble.
 - Epidural: prehydrate as ordered; watch hypotension (left lateral, fluids, ephedrine/phenylephrine as ordered); bladder catheterization.
@@ -82,11 +106,15 @@ Left lateral (or other position off vena cava), O₂ per protocol, stop oxytocin
 
 ### Remember this
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Late decels → act, don’t just document. Stop Pitocin per protocol when fetus is in trouble.
 
 ---
 
 ## Clinical judgment vignette 1 — Late decelerations
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 **Stem:** Multipara on oxytocin; recurrent late decelerations; contractions every 1.5 minutes; client dizzy supine.
 
@@ -98,15 +126,23 @@ Late decels → act, don’t just document. Stop Pitocin per protocol when fetus
 
 ## Topic C — Postpartum hemorrhage (PPH)
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 ### Pathophysiology / concept
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 **4 Ts:** Tone (atony — most common), Trauma (lacerations), Tissue (retained placenta), Thrombin (coagulopathy). Atony = boggy fundus. Risk: multiparity, macrosomia, twins, prolonged labor, magnesium, chorio, prior PPH.
 
 ### Assessment cues
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Saturating pads rapidly, boggy uterus, clots, hypotension/tachycardia, anxiety; may underestimate with slow steady loss — **quantify** (QBL). Fundus displaced up/right → full bladder.
 
 ### Priority nursing actions
+
+Source: GINA strategy report, 2025.
 
 1. Call for help / stay with client.
 2. **Fundal massage** for boggy fundus.
@@ -118,11 +154,15 @@ Saturating pads rapidly, boggy uterus, clots, hypotension/tachycardia, anxiety; 
 
 ### Safety / red flags
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 > **Red flag:** Pad soaked in <15 minutes or large clots — massage and escalate.
 > **Red flag:** Firm fundus + bright bleeding → think laceration/trauma, not more massage alone.
 > **Red flag:** Giving methergine to client with BP 170/110.
 
 ### Remember this
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Boggy fundus → massage. Know uterotonic contraindications at a high level.
 
@@ -130,15 +170,23 @@ Boggy fundus → massage. Know uterotonic contraindications at a high level.
 
 ## Topic D — Preeclampsia / eclampsia / HELLP
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 ### Pathophysiology / concept
+
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
 
 Hypertensive disorder of pregnancy with proteinuria/end-organ after 20 weeks (or postpartum). Severe features: high BP, thrombocytopenia, LFTs, creatinine, pulmonary edema, visual/neuro symptoms. Eclampsia = seizures. HELLP = hemolysis, elevated liver enzymes, low platelets — RUQ pain, nausea, DIC risk.
 
 ### Assessment cues
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Headache, visual changes, RUQ/epigastric pain, hyperreflexia/clonus, edema, ↓ UOP, fetal growth concerns, proteinuria, rising BP from baseline.
 
 ### Priority nursing actions
+
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
 
 - Quiet room; seizure precautions; bed rest as ordered.
 - **Magnesium sulfate** as ordered for seizure prophylaxis: monitor RR, DTRs, UOP, Mag levels; calcium gluconate antidote available.
@@ -149,15 +197,21 @@ Headache, visual changes, RUQ/epigastric pain, hyperreflexia/clonus, edema, ↓ 
 
 ### Mag toxicity cues
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Loss of reflexes, ↓ RR (<12), ↓ UOP, extreme flushing, cardiac issues — **stop Mag**, give calcium gluconate per protocol, support airway.
 
 ### Remember this
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Mag: reflexes, respirations, urine output. Antidote = calcium gluconate. Headache/visual changes = take seriously.
 
 ---
 
 ## Clinical judgment vignette 2 — Mag toxicity
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 **Stem:** Severe preeclampsia on mag; RR 10; DTRs absent; client drowsy; infusion still running.
 
@@ -169,7 +223,11 @@ Mag: reflexes, respirations, urine output. Antidote = calcium gluconate. Headach
 
 ## Topic E — Newborn care
 
+Source: AAP acute otitis media guideline, 2013.
+
 ### Priority concepts
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 1. **Airway** — clear secretions as needed; skin-to-skin when stable.
 2. **Thermoregulation** — dry thoroughly, hat, warmer/skin-to-skin; cold stress → hypoxia/hypoglycemia/acidosis cascade.
@@ -183,13 +241,19 @@ Mag: reflexes, respirations, urine output. Antidote = calcium gluconate. Headach
 
 ### Assessment red flags
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Grunting, flaring, retractions; central cyanosis; temp instability; lethargy; sugar low; bilious vomiting; ambiguous genitalia with crisis risk (CAH high-level); no void/stool in expected windows per policy.
 
 ### Teaching
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Back to sleep (ABC: alone, back, crib); car seat rear-facing; feeding cues; cord care; when to call (fever, poor feeding, jaundice spreading, fewer wet diapers). Never shake. Smoke-free environment.
 
 ### Remember this
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Airway + warm + sugar. Pathologic jaundice early is concerning. Back to sleep.
 
@@ -197,11 +261,17 @@ Airway + warm + sugar. Pathologic jaundice early is concerning. Back to sleep.
 
 ## Topic F — Preterm labor & PROM / cord prolapse
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 ### Concept
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Contractions + cervical change before 37 weeks. PROM = membrane rupture before labor; PPROM if preterm. Infection (chorio) and cord prolapse risks. GBS status drives intrapartum antibiotic.
 
 ### Priority actions
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 - Lateral position; tocolytics as ordered; antenatal corticosteroids for fetal lungs if indicated.
 - Mag for neuroprotection in early preterm as ordered (different goal than preeclampsia dosing — follow OB orders).
@@ -210,21 +280,31 @@ Contractions + cervical change before 37 weeks. PROM = membrane rupture before l
 
 ### Remember this
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Cord prolapse = relieve pressure, call for help, to OR. Steroids for fetal lung maturity when indicated.
 
 ---
 
 ## Topic G — Mastitis, endometritis, postpartum mood
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 ### Mastitis
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 Unilateral red painful breast + fever; continue breastfeeding/pumping as advised; antibiotics; hydration; complete emptying.
 
 ### Endometritis
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Postpartum uterine infection: fever, foul lochia, uterine tenderness — antibiotics, Fowler’s, fluids; more common after cesarean.
 
 ### Mood
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 | | Baby blues | Postpartum depression | Postpartum psychosis |
 | --- | --- | --- | --- |
@@ -233,11 +313,15 @@ Postpartum uterine infection: fever, foul lochia, uterine tenderness — antibio
 
 ### Remember this
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 Fever + uterine tenderness after birth ≠ ignore. Psychosis = safety first.
 
 ---
 
 ## Clinical judgment vignette 3 — Boggy fundus
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 **Stem:** 45 minutes after vaginal birth; fundus boggy above umbilicus and displaced right; lochia soaking pad; BP 100/60 from 118/72.
 
@@ -248,6 +332,8 @@ Fever + uterine tenderness after birth ≠ ignore. Psychosis = safety first.
 ---
 
 ## Medication highlights (maternity)
+
+Source: GINA strategy report, 2025.
 
 | Med | Hook |
 | --- | --- |
@@ -265,11 +351,17 @@ Fever + uterine tenderness after birth ≠ ignore. Psychosis = safety first.
 
 ## Topic H — Gestational diabetes & hyperemesis (teaching depth)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 ### GDM
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 Insulin resistance of pregnancy → maternal hyperglycemia → fetal hyperinsulinemia → macrosomia, birth trauma, neonatal hypoglycemia. Teaching: carb awareness, glucose log, after-meal targets per OB, exercise as cleared, fetal kick counts, when insulin is added. Postpartum: screen for ongoing diabetes; breastfeeding usually encouraged.
 
 ### Hyperemesis gravidarum
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 Persistent vomiting with weight loss/electrolyte imbalance/dehydration — not “normal morning sickness.” Priorities: IV fluids, electrolytes, antiemetics as ordered, thiamine before glucose if prolonged starvation risk (Wernicke), small frequent bland intake when able, emotional support (often dismissed unfairly).
 
@@ -277,12 +369,16 @@ Persistent vomiting with weight loss/electrolyte imbalance/dehydration — not �
 
 ## Topic I — Cesarean & postpartum infection prevention
 
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
+
 - Incentive spirometry, early ambulation, SCDs, incision assessment (REEDA).
 - Lochia progression: rubra → serosa → alba; foul odor/fever = report.
 - Rhogam if indicated; rubella vaccine postpartum if nonimmune (avoid pregnancy per teaching window).
 - Contraception counseling before discharge when appropriate; pelvic rest teaching per OB.
 
 ## Concept check
+
+Source: NCSBN/ANA National Guidelines for Nursing Delegation, 2019.
 
 **Q1.** Late decelerations appear with oxytocin running. Best cluster?
 A. Increase oxytocin and leave
@@ -335,6 +431,8 @@ D. Remove hat to “cool evenly”
 
 ## Clinical judgment teaching box — NGN cue sorting
 
+Source: AAP acute otitis media guideline, 2013.
+
 When a maternity/pediatric stem feels crowded, sort cues into:
 
 1. **Airway/breathing threats** (maternal Mag toxicity RR↓; newborn grunting; epiglottitis drooling; RSV apnea risk)
@@ -346,6 +444,8 @@ When a maternity/pediatric stem feels crowded, sort cues into:
 Then ask: *What kills first if I do nothing for 5 minutes?* That answer is usually your first action.
 
 ## Chapter Remember this
+
+Source: ACOG Practice Bulletin 183 on postpartum hemorrhage, 2017.
 
 - Danger signs in pregnancy — teach and act.
 - Late decels → intervene; stop Pitocin per protocol.
