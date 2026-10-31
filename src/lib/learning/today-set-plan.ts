@@ -118,7 +118,7 @@ function topicForSubject(
   return {
     id,
     label,
-    href: links.deepDiveHref ?? links.practiceHref,
+    href: links.practiceHref,
   };
 }
 

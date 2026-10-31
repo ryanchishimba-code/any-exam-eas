@@ -8,9 +8,9 @@ import {
   BarChart3,
   BookOpen,
   Clock,
+  Layers,
   LayoutGrid,
   Lock,
-  Square,
 } from "lucide-react";
 import { SubscribeToContinueHint } from "@/components/app/SubscribeToContinueHint";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
@@ -43,19 +43,24 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
     const bankHref = examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
     const examHref = examSlug ? fullExamHref(examSlug) : ROUTES.fullExam;
 
-    return [
+    const navItems: NavItem[] = [
       { id: "home", href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
-      {
-        id: "topics",
-        href: ROUTES.highYieldTopics,
-        label: "Topics",
-        icon: Square,
-        ariaLabel: "High-Yield Topics",
-      },
+    ];
+    if (examSlug === "pance") {
+      navItems.push({
+        id: "pance-feed",
+        href: ROUTES.panceFeed,
+        label: "Feed",
+        icon: Layers,
+        ariaLabel: "PANCE Feed",
+      });
+    }
+    navItems.push(
       { id: "bank", href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
       { id: "exam", href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
       { id: "stats", href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },
-    ];
+    );
+    return navItems;
   }, [examSlug]);
 
   usePrefetchHrefs(items.map((item) => item.href));

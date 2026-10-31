@@ -35,9 +35,9 @@ const ITEMS = [
   },
   {
     icon: Layers,
-    title: "Library & Memory Cards",
+    title: "Study guides",
     detail:
-      "High-yield flip cards by subject, weak-area shortcuts, and deep links to Review Modules — your study home base beyond the question bank.",
+      "Blueprint chapters on NCLEX, NAPLEX, PANCE, and AANP FNP — included with your plan, not a separate book.",
   },
   {
     icon: MousePointerClick,

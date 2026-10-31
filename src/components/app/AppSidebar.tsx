@@ -10,14 +10,12 @@ import {
   BookMarked,
   Clapperboard,
   Clock,
-  FileText,
   Layers,
   LayoutGrid,
   Lock,
   PenLine,
   RefreshCw,
   SlidersHorizontal,
-  Square,
   type LucideIcon,
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
@@ -124,13 +122,6 @@ const NAV_SECTIONS: NavSection[] = [
         icon: Layers,
         exams: ["pance"],
       },
-      {
-        id: "high-yield",
-        href: ROUTES.highYieldTopics,
-        label: "High-Yield Topics",
-        icon: Square,
-      },
-      { id: "library", href: ROUTES.library, label: "Library", icon: FileText },
     ],
   },
   {

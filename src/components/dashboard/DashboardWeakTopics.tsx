@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, GraduationCap, Target } from "lucide-react";
+import { ArrowRight, Layers, Target } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
-import { analyticsHref, libraryTopicHref, practiceTopicHref } from "@/lib/edtech/practice-links-core";
+import { analyticsHref, practiceTopicHref } from "@/lib/edtech/practice-links-core";
+import { ROUTES } from "@/lib/routes";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
@@ -32,12 +33,23 @@ export function DashboardWeakTopics({
             Extra practice where it may help most.
           </p>
         </div>
-        <Link
-          href={analyticsHref()}
-          className="text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
-        >
-          Full analytics
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          {examSlug === "pance" ? (
+            <Link
+              href={ROUTES.panceFeed}
+              className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
+            >
+              <Layers className="h-3 w-3" aria-hidden />
+              PANCE Feed
+            </Link>
+          ) : null}
+          <Link
+            href={analyticsHref()}
+            className="text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
+          >
+            Full analytics
+          </Link>
+        </div>
       </div>
 
       <ul className={dbUi.listSurface}>
@@ -60,18 +72,6 @@ export function DashboardWeakTopics({
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {links?.deepDiveHref ? (
-                    <Link href={links.deepDiveHref} className={dbUi.ghostBtn}>
-                      <GraduationCap className="h-3 w-3" aria-hidden />
-                      Deep dive
-                    </Link>
-                  ) : null}
-                  <Link
-                    href={links?.libraryHref ?? libraryTopicHref(examSlug, slug)}
-                    className={dbUi.ghostBtn}
-                  >
-                    Library
-                  </Link>
                   <Link
                     href={links?.practiceHref ?? practiceTopicHref(examSlug, slug, 10)}
                     className={dbUi.ghostBtn}

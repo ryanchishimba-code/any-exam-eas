@@ -767,9 +767,9 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   const guideHref =
     guideTopic?.guideHref ??
     input.fallbackGuideHref ??
-    `${ROUTES.highYieldTopics}?exam=${encodeURIComponent(input.examSlug)}`;
+    `/dashboard?exam=${encodeURIComponent(input.examSlug)}`;
   const guideLabel =
-    guideTopic?.guideLabel ?? guideTopic?.label ?? input.fallbackGuideLabel ?? "High-yield topics";
+    guideTopic?.guideLabel ?? guideTopic?.label ?? input.fallbackGuideLabel ?? "Study hub";
 
   const drugHref = drugSafetyPathHref(input.examSlug);
   const drugLabel = safetyPathLabel(input.examSlug);

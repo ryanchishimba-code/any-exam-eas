@@ -30,7 +30,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "nclex",
     tagline:
       "Master clinical judgment, prioritization, and Next-Gen formats with nursing-first prep.",
-    stats: ["Question bank", "High-yield topics", "Full simulations"],
+    stats: ["Question bank", "Study guide", "Full simulations"],
     icon: Activity,
     gradient: "from-sky-600/90 via-teal-600/85 to-cyan-700/90",
     glow: "group-hover:shadow-teal-500/25 group-hover:border-teal-300/80",

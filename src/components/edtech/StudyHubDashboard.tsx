@@ -5,7 +5,6 @@ import {
   Bone,
   Clock,
   Layers,
-  Sparkles,
   ArrowRight,
   LayoutGrid,
 } from "lucide-react";
@@ -19,7 +18,6 @@ import { ROUTES } from "@/lib/routes";
 import {
   analyticsHref,
   anatomyHref,
-  highYieldTopicsHref,
   questionBankHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
@@ -51,14 +49,18 @@ export function StudyHubDashboard({
   const ExamIcon = theme.icon;
 
   const cards: HubCard[] = [
-    {
-      title: "High-Yield Topics",
-      description: "15 condensed, exam-specific summaries with must-know facts and pearls.",
-      href: highYieldTopicsHref(examSlug),
-      cta: "Browse topics",
-      icon: Sparkles,
-      badge: "Top 15",
-    },
+    ...(examSlug === "pance"
+      ? [
+          {
+            title: "PANCE Feed",
+            description: "Flashcards for paid PANCE plans.",
+            href: ROUTES.panceFeed,
+            cta: "Open feed",
+            icon: Layers,
+            badge: "Paid",
+          },
+        ]
+      : []),
     {
       title: "Question Bank",
       description: "Adaptive practice by topic. Filter, set count, and review rationales.",
@@ -152,7 +154,7 @@ export function StudyHubDashboard({
           </p>
         ) : stats.questionsToday === 0 ? (
           <p className="relative mt-4 text-sm text-slate-600 dark:text-slate-400">
-            Start with High-Yield Topics or a quick 10-question set today.
+            Start with a quick 10-question set today.
           </p>
         ) : null}
       </header>

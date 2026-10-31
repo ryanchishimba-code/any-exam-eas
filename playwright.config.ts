@@ -71,13 +71,13 @@ export default defineConfig({
     {
       name: "chromium",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/, /retired-study-surfaces\.spec\.ts/],
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "mobile-chrome",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/, /retired-study-surfaces\.spec\.ts/],
       use: { ...devices["Pixel 7"] },
     },
     // Public marketing ATF — no auth/DB. Covers 390px overflow + board-hub hero.
@@ -116,6 +116,21 @@ export default defineConfig({
       name: "parity-webkit",
       testMatch: /landing-parity\.spec\.ts/,
       use: { ...devices["Desktop Safari"] },
+    },
+    {
+      name: "retired-study",
+      testMatch: /retired-study-surfaces\.spec\.ts/,
+      use: {
+        ...devices["Desktop Chrome"],
+        ...(process.env.PLAYWRIGHT_CHROME_PATH
+          ? {
+              launchOptions: {
+                executablePath: process.env.PLAYWRIGHT_CHROME_PATH,
+                args: ["--no-sandbox", "--disable-dev-shm-usage"],
+              },
+            }
+          : {}),
+      },
     },
     {
       name: "pance-feed",

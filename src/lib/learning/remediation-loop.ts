@@ -9,7 +9,7 @@
  * catalog match exists.
  */
 
-import { libraryTopicHref, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import {
   drugSafetyPathHref,
   drugStudyHref,
@@ -307,25 +307,9 @@ export function resolveRelatedDrug(params: {
 }
 
 export function resolveRelatedCards(
-  examSlug: ExamSlug,
-  topicKeys: Array<string | null | undefined>
+  _examSlug: ExamSlug,
+  _topicKeys: Array<string | null | undefined>
 ): RelatedCardsLink | null {
-  const seen = new Set<string>();
-  for (const raw of topicKeys) {
-    if (!raw) continue;
-    const slug = topicNameToSlug(raw);
-    if (!slug || seen.has(slug)) continue;
-    seen.add(slug);
-    if (seen.size > 4) break;
-    const links = getExamTopicStudyLinks(examSlug, slug);
-    if (links.memoryCardIds.length === 0) continue;
-    const count = links.memoryCardIds.length;
-    return {
-      href: links.firstCardHref ?? libraryTopicHref(examSlug, links.topicKey),
-      count,
-      title: count === 1 ? "Related card" : `Related cards (${count})`,
-    };
-  }
   return null;
 }
 

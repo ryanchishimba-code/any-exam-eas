@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { retiredStudyRedirects } from "./src/lib/navigation/retired-study-redirects";
 
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
 const useStandaloneOutput = !process.env.VERCEL;
@@ -216,6 +217,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      ...retiredStudyRedirects(),
       {
         source: "/npte",
         destination: "/npte-pt",

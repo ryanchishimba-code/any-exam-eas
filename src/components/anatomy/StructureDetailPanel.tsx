@@ -1,16 +1,11 @@
 "use client";
 
 import { useState, type ComponentType } from "react";
-import Link from "next/link";
-import { BookMarked, Brain, Stethoscope, X, Zap } from "lucide-react";
+import { Brain, Layers, Stethoscope, X, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
-import {
-  anatomyPracticeHref,
-  highYieldTopicHref,
-  libraryCardHref,
-  structurePracticeHref,
-} from "@/lib/edtech/practice-links";
+import { anatomyPracticeHref, structurePracticeHref } from "@/lib/edtech/practice-links";
+import { ROUTES } from "@/lib/routes";
 import type { AnatomyStructure, AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { MemoryCard } from "@/lib/library/types";
@@ -38,7 +33,7 @@ type Props = {
 
 export function StructureDetailPanel({
   structure,
-  memoryCards,
+  memoryCards: _memoryCards,
   examSlug,
   showStudioCta,
   onOpenStudio,
@@ -148,25 +143,6 @@ export function StructureDetailPanel({
         initialFocusedProcedureId={initialFocusedProcedureId}
       />
 
-      {memoryCards.length > 0 ? (
-        <section className={anatomyUi.detailSection}>
-          <SectionHeading icon={BookMarked} title="Memory cards" />
-          <ul className="mt-3 space-y-2">
-            {memoryCards.map((card) => (
-              <li key={card.id}>
-                <Link
-                  href={libraryCardHref(examSlug, card.id)}
-                  className="block rounded-[14px] border border-white/[0.08] bg-[#283040] px-3.5 py-3 text-[14px] transition hover:border-cyan-500/25 hover:bg-[#2e3848]"
-                >
-                  <p className="font-semibold text-white">{card.title}</p>
-                  <p className="mt-0.5 text-[12px] text-white/70">{card.teaser}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
       <div className="flex flex-col gap-2 pt-1 pb-safe">
         {showStudioCta && onOpenStudio ? (
           <Button
@@ -191,13 +167,14 @@ export function StructureDetailPanel({
         >
           All anatomy practice
         </Button>
-        {structure.highYieldTopicSlug ? (
+        {examSlug === "pance" && structure.highYieldTopicSlug ? (
           <Button
-            href={highYieldTopicHref(examSlug, structure.highYieldTopicSlug)}
+            href={ROUTES.panceFeed}
             variant="secondary"
             className="h-11 w-full justify-center rounded-full text-[14px]"
           >
-            High-yield topic review
+            <Layers className="mr-2 h-4 w-4" aria-hidden />
+            PANCE Feed
           </Button>
         ) : null}
       </div>

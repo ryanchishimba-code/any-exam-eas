@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import {
   Activity,
   ArrowRight,
-  BookOpen,
   Clock,
   Bone,
   HeartPulse,
+  Layers,
   Map,
   Pill,
   Stethoscope,
@@ -168,7 +168,7 @@ export function ExamLanding({ slug }: Props) {
         <h2 id="practice-modes" className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Start practicing
         </h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={cn("mt-4 grid gap-4 sm:grid-cols-2", slug === "pance" && "lg:grid-cols-3")}>
           <ModeTile
             icon={Zap}
             title="Adaptive practice"
@@ -181,12 +181,14 @@ export function ExamLanding({ slug }: Props) {
             description="Board-length session with per-question timer."
             href={practiceHref(slug, { mode: "timed" })}
           />
-          <ModeTile
-            icon={BookOpen}
-            title="Deep dive modules"
-            description="Textbook-style review tied to your question bank."
-            href={`${ROUTES.highYieldTopics}?mode=deep`}
-          />
+          {slug === "pance" ? (
+            <ModeTile
+              icon={Layers}
+              title="PANCE Feed"
+              description="Flashcards for paid PANCE plans."
+              href={ROUTES.panceFeed}
+            />
+          ) : null}
         </div>
       </section>
 

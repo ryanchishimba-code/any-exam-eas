@@ -3,6 +3,7 @@
  * Avoids importing exam topic-practice resolvers (and their seed bundles).
  * Use `@/lib/edtech/practice-links` when you need `highYieldTopicPracticeHref`.
  */
+import { boardStudyToolsPath } from "@/lib/navigation/retired-study-redirects";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
@@ -106,13 +107,11 @@ export function parseTopicPracticeReturn(
   const returnExam = params.get("returnExam");
   const returnTopic = params.get("returnTopic");
   const returnTitle = params.get("returnTitle");
-  if (!returnExam || !returnTopic || !isExamSlug(returnExam)) return null;
-  return {
-    href: highYieldTopicHref(returnExam, returnTopic, {
-      deepDive: params.get("returnMode") === "deep",
-    }),
-    label: returnTitle?.trim() || "Review module",
-  };
+  if (!returnExam || !returnTopic || !returnTitle?.trim() || !isExamSlug(returnExam)) return null;
+  if (returnExam === "pance") {
+    return { href: ROUTES.panceFeed, label: "PANCE Feed" };
+  }
+  return { href: boardStudyToolsPath(returnExam), label: "study tools" };
 }
 
 export function questionBankHref(examSlug?: ExamSlug, fieldIdOverride?: string): string {

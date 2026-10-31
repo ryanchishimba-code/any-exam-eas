@@ -1,14 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BarChart3, BookMarked, BookOpen, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpen, Clock, Layers } from "lucide-react";
 import { FullExamModeButtons } from "@/components/exam/FullExamModeButtons";
-import {
-  analyticsHref,
-  highYieldTopicsHref,
-  questionBankHref,
-  libraryHref,
-} from "@/lib/edtech/practice-links-core";
+import { analyticsHref, questionBankHref } from "@/lib/edtech/practice-links-core";
+import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -29,18 +25,16 @@ export function DashboardContinueRow({ examSlug }: { examSlug: ExamSlug }) {
       href: questionBankHref(examSlug),
       icon: BookOpen,
     },
-    {
-      title: "Library",
-      description: "Memory cards and tools",
-      href: libraryHref(examSlug),
-      icon: BookMarked,
-    },
-    {
-      title: "High-Yield Topics",
-      description: "Summaries and review modules",
-      href: highYieldTopicsHref(examSlug),
-      icon: Sparkles,
-    },
+    ...(examSlug === "pance"
+      ? [
+          {
+            title: "PANCE Feed",
+            description: "Flashcards for paid plans",
+            href: ROUTES.panceFeed,
+            icon: Layers,
+          },
+        ]
+      : []),
     {
       title: "Analytics",
       description: "Trends and weak areas",

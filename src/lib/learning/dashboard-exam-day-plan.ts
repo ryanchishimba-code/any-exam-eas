@@ -9,7 +9,6 @@ import type { CoverageInventoryCategory } from "@/lib/learning/coverage-heatmap"
 import { buildExamDayPlan, type ExamDayPlan, type ExamDayTopicInput } from "@/lib/learning/exam-day-plan";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
-import { ROUTES } from "@/lib/routes";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -40,7 +39,7 @@ export function buildDashboardExamDayPlan(input: {
     seen: topic.pushesCompleted,
     available: topic.pushesAvailable,
     practiceHref: topic.practiceHref,
-    guideHref: topic.deepDiveHref ?? topic.topicsHubHref,
+    guideHref: guide?.routeBase ?? topic.practiceHref,
     guideLabel: topic.highYieldTopics[0] ?? topic.label,
     drugHref: topic.drugClassHref,
     drugLabel: topic.drugClassLabel,
@@ -64,8 +63,8 @@ export function buildDashboardExamDayPlan(input: {
     examSimTrend: input.roadmap?.examSimTrend ?? null,
     examSimCompletedToday: input.roadmap?.examSimCompletedToday === true,
     drugsCompletedToday: input.drugsCompletedToday === true,
-    fallbackGuideHref: guide?.routeBase ?? `${ROUTES.highYieldTopics}?exam=${input.examSlug}`,
-    fallbackGuideLabel: guide?.title ?? "High-yield topics",
+    fallbackGuideHref: guide?.routeBase ?? `/dashboard?exam=${encodeURIComponent(input.examSlug)}`,
+    fallbackGuideLabel: guide?.title ?? "Study hub",
     fallbackDrugHref: top500Href(input.examSlug),
   });
 }

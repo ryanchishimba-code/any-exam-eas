@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { BookMarked, BookOpen, Bone, GraduationCap, Pill, RotateCcw } from "lucide-react";
+import { BookOpen, Bone, Layers, Pill, RotateCcw } from "lucide-react";
 import { anatomyHref, topicRetestHref } from "@/lib/edtech/practice-links";
+import { ROUTES } from "@/lib/routes";
 import { REMEDIATION_MASTERY_RULE, reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { MarkItemMastered } from "./MarkItemMastered";
 import type { ResolvedQuestionStudyLinks } from "@/lib/library/question-study-links";
@@ -44,10 +45,10 @@ export function StudyThisTopicButton({
   reviewQueue = false,
   className,
 }: Props) {
-  const deepDive = links.primaryDeepDive;
   const guide = links.studyGuide;
   const drug = links.relatedDrug;
-  const cards = links.relatedCards;
+  const showPanceFeed =
+    examSlug === "pance" && Boolean(links.primaryDeepDive || links.relatedCards);
   const primaryStructure = links.anatomyStructures[0];
   const showContent = Boolean(missed || flagged);
   const topicKey = links.topicLinks.topicKey;
@@ -59,10 +60,9 @@ export function StudyThisTopicButton({
         : null
     : null;
 
-  const showDeepDive = Boolean(deepDive && showContent);
   const showGuide = Boolean(guide && showContent);
   const showDrug = Boolean(drug && missed);
-  const showCards = Boolean(cards && showContent);
+  const showFeed = Boolean(showPanceFeed && showContent);
   const showAnatomy = Boolean(missed && primaryStructure);
   const masteryItemId = bankItemId?.trim() || "";
   const showMastery = Boolean(
@@ -70,10 +70,9 @@ export function StudyThisTopicButton({
   );
 
   if (
-    !showDeepDive &&
+    !showFeed &&
     !showGuide &&
     !showDrug &&
-    !showCards &&
     !showAnatomy &&
     !retestHref &&
     !showMastery &&
@@ -136,17 +135,10 @@ export function StudyThisTopicButton({
           </Link>
         ) : null}
 
-        {showCards && cards ? (
-          <Link href={cards.href} className={ghostLink}>
-            <BookMarked className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
-            <span className="min-w-0 truncate">{cards.title}</span>
-          </Link>
-        ) : null}
-
-        {showDeepDive && deepDive ? (
-          <Link href={deepDive.href} className={ghostLink}>
-            <GraduationCap className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
-            <span className="min-w-0 truncate">Deep dive · {deepDive.title}</span>
+        {showFeed ? (
+          <Link href={ROUTES.panceFeed} className={ghostLink}>
+            <Layers className="h-4 w-4 shrink-0 text-[var(--study-accent)]" aria-hidden />
+            <span className="min-w-0 truncate">PANCE Feed</span>
           </Link>
         ) : null}
 

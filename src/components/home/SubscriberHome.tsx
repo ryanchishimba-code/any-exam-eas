@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import {
   ArrowRight,
-  BookMarked,
   BookOpen,
   Clock,
+  Layers,
   Sparkles,
 } from "lucide-react";
 import { AnatomyExplorerCard } from "@/components/study-hub/AnatomyExplorerCard";
@@ -15,6 +15,7 @@ import { firstName } from "@/lib/client/returning-user";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
+import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -24,10 +25,6 @@ const STUDY_HUB_PATH = "/dashboard";
 
 function questionBankHref(examSlug: ExamSlug): string {
   return `/question-bank?field=${encodeURIComponent(EXAM_CATALOG[examSlug].fieldId)}`;
-}
-
-function libraryHref(examSlug: ExamSlug): string {
-  return `/library?exam=${encodeURIComponent(examSlug)}`;
 }
 
 const QUICK_ACTIONS = [
@@ -44,10 +41,11 @@ const QUICK_ACTIONS = [
     icon: BookOpen,
   },
   {
-    title: "Library",
-    description: "Brief & memory cards",
-    href: (slug: ExamSlug) => libraryHref(slug),
-    icon: BookMarked,
+    title: "PANCE Feed",
+    description: "Flashcards for paid plans",
+    href: () => ROUTES.panceFeed,
+    icon: Layers,
+    exams: ["pance"] as const,
   },
 ] as const;
 
@@ -69,7 +67,7 @@ export function SubscriberHome() {
             {name ? `Ready to study, ${name}?` : "Ready to study?"}
           </h2>
           <p className={cn(dbUi.subtitle, "mx-auto mt-2 max-w-lg")}>
-            Question banks, reference hub, anatomy, and analytics — everything for your exam in one place.
+            Question banks, anatomy, and analytics — everything for your exam in one place.
           </p>
           <Link
             href={STUDY_HUB_PATH}
@@ -85,7 +83,10 @@ export function SubscriberHome() {
             <div className={dbUi.panelSection}>
               <h3 className={dbUi.sectionTitle}>Quick start</h3>
               <div className={cn(dbUi.chipRow, "mt-3")}>
-                {QUICK_ACTIONS.map((action) =>
+                {QUICK_ACTIONS.filter((action) => {
+                  if (!("exams" in action)) return true;
+                  return Boolean(activeExamSlug && (action.exams as readonly string[]).includes(activeExamSlug));
+                }).map((action) =>
                   activeExamSlug ? (
                     <Link
                       key={action.title}

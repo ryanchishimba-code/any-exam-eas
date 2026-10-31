@@ -53,10 +53,12 @@ describe("resolvePathAfterExamSwitch", () => {
     expect(href).not.toContain("style=");
   });
 
-  it("updates library exam query and clears card/topic deep links", () => {
+  it("sends retired library and topics URLs to the new board study hub", () => {
     const qs = new URLSearchParams("exam=nclex&card=nclex-sepsis-bundle&topic=sepsis");
-    const href = resolvePathAfterExamSwitch(ROUTES.library, qs, "naplex");
-    expect(href).toBe(`${ROUTES.library}?exam=naplex`);
+    expect(resolvePathAfterExamSwitch(ROUTES.library, qs, "naplex")).toBe("/dashboard?exam=naplex");
+    expect(resolvePathAfterExamSwitch(ROUTES.highYieldTopics, qs, "pance")).toBe(
+      "/dashboard?exam=pance"
+    );
   });
 
   it("moves full-exam route to the newly selected exam slug", () => {

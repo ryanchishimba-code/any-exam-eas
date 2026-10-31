@@ -1,10 +1,7 @@
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import {
-  deepDiveTopicHref,
-  highYieldTopicHref,
-  practiceTopicHref
-} from "@/lib/edtech/practice-links";
+import { practiceTopicHref } from "@/lib/edtech/practice-links";
+import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { ROUTES } from "@/lib/routes";
 import {
   USMLE_LEARNING_STAGES,
@@ -103,7 +100,7 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
       kind: "review",
       title: `Read: ${mod.title}`,
       description: mod.overview,
-      href: deepDiveTopicHref("usmle", mod.reviewTopicSlug),
+      href: studyHubHref("usmle"),
       estimatedMinutes: Math.min(20, mod.estimatedMinutes),
       meta: { system: mod.system }
 });
@@ -111,9 +108,9 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
     tasks.push({
       id: "review-topic",
       kind: "review",
-      title: `High-yield: ${mod.system}`,
+      title: `Study hub: ${mod.system}`,
       description: mod.overview,
-      href: highYieldTopicHref("usmle", mod.slug),
+      href: studyHubHref("usmle"),
       estimatedMinutes: 10,
       meta: { system: mod.system }
 });
@@ -188,11 +185,9 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
     {
       id: "review-module",
       kind: "review",
-      title: mod.title,
-      description: mod.overview,
-      href: mod.reviewTopicSlug
-        ? deepDiveTopicHref("pance", mod.reviewTopicSlug)
-        : highYieldTopicHref("pance", mod.slug),
+      title: "PANCE Feed",
+      description: "Flashcards for paid PANCE plans.",
+      href: ROUTES.panceFeed,
       estimatedMinutes: Math.min(20, mod.estimatedMinutes),
       meta: { system: mod.system }
 },
@@ -262,9 +257,7 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
       kind: "review",
       title: mod.title,
       description: mod.overview,
-      href: mod.reviewTopicSlug
-        ? deepDiveTopicHref("aanp-fnp", mod.reviewTopicSlug)
-        : highYieldTopicHref("aanp-fnp", mod.slug),
+      href: studyHubHref("aanp-fnp"),
       estimatedMinutes: mod.estimatedMinutes
 },
     {
@@ -346,9 +339,7 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
       kind: "review",
       title: mod.title,
       description: mod.overview,
-      href: mod.reviewTopicSlug
-        ? deepDiveTopicHref("npte-pt", mod.reviewTopicSlug)
-        : highYieldTopicHref("npte-pt", mod.slug),
+      href: studyHubHref("npte-pt"),
       estimatedMinutes: Math.min(20, mod.estimatedMinutes),
       meta: { system: mod.system }
 },
@@ -433,9 +424,9 @@ export function buildDailyAssignment(
       {
         id: "topics",
         kind: "review",
-        title: "High-yield topics",
-        description: "Textbook-style review modules.",
-        href: "/dashboard/topics",
+        title: "Study guide",
+        description: "Blueprint chapters for this board.",
+        href: getStudyGuideConfig(examSlug)?.routeBase ?? studyHubHref(examSlug),
         estimatedMinutes: 15
 },
     ]
