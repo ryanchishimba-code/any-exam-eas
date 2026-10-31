@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-176.svg",
-   "alt": "trend diagram for naplex-176"
+   "alt": "Threshold. 12 kg × 90 = 1080 mg/day → 540 mg BID. Amox/clav if amoxicillin in past 30 days."
   },
   "source": {
    "guideline": "AAP 2013 AOM (latest AAP AOM guideline; due for AAP review)",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-177.svg",
-   "alt": "contrast diagram for naplex-177"
+   "alt": "Decision flow. Treat BP ≥140/90 in pregnancy (CHAP). Aspirin 81 mg daily from 12 weeks until delivery; GDM: insulin preferred. ACE inhibitors and ARBs are contraindicated in pregnancy."
   },
   "source": {
    "guideline": "ACOG CPU 2024 GDM screening + PB 190 (reaffirmed); ACOG PB 222 2020 + 2022 CHAP advisory; USPSTF 2021 aspirin",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-178.svg",
-   "alt": "ladder diagram for naplex-178"
+   "alt": "Ordered steps. High GI risk alone: celecoxib plus a PPI. High CV risk alone: naproxen plus PPI if GI risk. Acetaminophen max 4 g/day; lower (e.g., 3 g) with liver disease or heavy alcohol use."
   },
   "source": {
    "guideline": "Acetaminophen labeling; ACG 2009 NSAID-ulcer prevention (latest)",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-179.svg",
-   "alt": "branch diagram for naplex-179"
+   "alt": "Two paths. FDA: don't use under 2; labels say don't use under 4. Pseudoephedrine: max 3.6 g/day and 9 g/30 days; photo ID and logbook. Honey (age ≥1) is a non-drug option for cough."
   },
   "source": {
    "guideline": "FDA 2008 OTC pediatric; CMEA 2005",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-180.svg",
-   "alt": "contrast diagram for naplex-180"
+   "alt": "Two paths. First-line: topical retinoid plus BPO, with or without topical antibiotic. Isotretinoin: iPLEDGE REMS, pregnancy tests and two forms of contraception."
   },
   "source": {
    "guideline": "AAD 2024 acne",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-181.svg",
-   "alt": "cycle diagram for naplex-181"
+   "alt": "Ordered steps. Every state allows pharmacist naloxone access by standing order or protocol. Hormonal contraception and other prescribing depend on state law."
   },
   "source": {
    "guideline": "CDC 2022; USPSTF current recommendations; state protocols",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-182.svg",
-   "alt": "branch diagram for naplex-182"
+   "alt": "Decision flow. Pharmacies may register with DEA as collectors; it's voluntary. No take-back nearby: FDA flush list drugs (e.g."
   },
   "source": {
    "guideline": "DEA Disposal Rule 21 CFR 1317; FDA flush list",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-183.svg",
-   "alt": "contrast diagram for naplex-183"
+   "alt": "Decision flow. Treatment, payment and operations need no written authorization. Minimum necessary applies, except for treatment disclosures."
   },
   "source": {
    "guideline": "HIPAA Privacy Rule 45 CFR 164 (2024 reproductive-health rule vacated Jun 2025)",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-184.svg",
-   "alt": "ladder diagram for naplex-184"
+   "alt": "Two paths. Explain benefits, risks and alternatives in plain language. Document the discussion and inform the prescriber. Pressure or deception violates the Code of Ethics."
   },
   "source": {
    "guideline": "APhA Code of Ethics",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-185.svg",
-   "alt": "branch diagram for naplex-185"
+   "alt": "Ordered steps. APhA policy: pharmacist may decline if a system ensures patient access. Arrange transfer to a colleague or another pharmacy without delay."
   },
   "source": {
    "guideline": "APhA Code of Ethics; APhA conscience policy (1998)",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-186.svg",
-   "alt": "ladder diagram for naplex-186"
+   "alt": "Two paths. ISMP MERP: voluntary, confidential error reporting. MedWatch: serious adverse events and product problems. Vaccine adverse events go to VAERS, not MedWatch."
   },
   "source": {
    "guideline": "FDA MedWatch; ISMP MERP; VAERS 2026",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-187.svg",
-   "alt": "contrast diagram for naplex-187"
+   "alt": "Ordered steps. Remove the colleague from patient care; tell the supervisor or pharmacist-in-charge. Refer to the state's pharmacist recovery (PRN) program or board per law."
   },
   "source": {
    "guideline": "APhA Code of Ethics; state PRN programs",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-188.svg",
-   "alt": "branch diagram for naplex-188"
+   "alt": "Decision flow. Teach-back: patient explains in their own words how to take it. Use plain language and focus on 2–3 key points. Don't use family members or children as interpreters."
   },
   "source": {
    "guideline": "AHRQ Health Literacy Toolkit 2024; Title VI",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-189.svg",
-   "alt": "cycle diagram for naplex-189"
+   "alt": "Decision flow. PPCP: Collect, Assess, Plan, Implement, Follow-up. Address cost: lower-cost insulin, $35 Medicare cap, assistance programs. Ask open-ended, nonjudgmental questions."
   },
   "source": {
    "guideline": "JCPP Pharmacists' Patient Care Process",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-190.svg",
-   "alt": "ladder diagram for naplex-190"
+   "alt": "Ordered steps. Often: initiate, modify or stop therapy and order labs. Scope, patients and drugs depend on state law and the agreement. A CPA isn't independent prescriptive authority."
   },
   "source": {
    "guideline": "JCPP PPCP; state CPA laws (varies)",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-191.svg",
-   "alt": "cycle diagram for naplex-191"
+   "alt": "Two paths. Average inventory = (160,000 + 140,000) ÷ 2 = $150,000. Turnover = 1,800,000 ÷ 150,000 = 12. Days = 365 ÷ 12 ≈ 30.4. Use cost of goods sold, not sales revenue."
   },
   "source": {
    "guideline": "Standard pharmacy management formulas",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-192.svg",
-   "alt": "contrast diagram for naplex-192"
+   "alt": "Decision flow. Check on-hand stock, usage rate, and FDA/ASHP shortage lists. P&T sets therapeutic alternatives and allocation rules; communicate to prescribers."
   },
   "source": {
    "guideline": "ASHP Drug Shortages Guidelines 2018 (still current, latest = 2018)",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-193.svg",
-   "alt": "branch diagram for naplex-193"
+   "alt": "Two paths. Buy only from authorized trading partners; keep transaction data. If illegitimate, notify FDA (Form 3911) and partners within 24 hours."
   },
   "source": {
    "guideline": "FDA DSCSA; small-dispenser exemption to Nov 27, 2027",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-194.svg",
-   "alt": "contrast diagram for naplex-194"
+   "alt": "Ordered steps. Pull affected lots; contact patients when the recall reaches consumer level. Market withdrawal isn't a recall: no FDA violation."
   },
   "source": {
    "guideline": "FDA 21 CFR 7",
@@ -608,7 +608,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-195.svg",
-   "alt": "ladder diagram for naplex-195"
+   "alt": "Two paths. Biennial inventory: exact count for CII; estimate CIII–V unless container >1,000 units. Report theft to the DEA field office within 1 business day, then file Form 106."
   },
   "source": {
    "guideline": "21 CFR 1304–1305; DEA",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-196.svg",
-   "alt": "ladder diagram for naplex-196"
+   "alt": "Decision flow. ICER = ΔCost ÷ ΔQALY. (50,000 − 20,000) ÷ (3.0 − 2.5) = 30,000 ÷ 0.5 = $60,000/QALY. QALYs = cost-utility; outcomes in dollars = cost-benefit."
   },
   "source": {
    "guideline": "ISPOR guidance",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-197.svg",
-   "alt": "contrast diagram for naplex-197"
+   "alt": "Ordered steps. RCA is reactive; FMEA proactively ranks failure modes. Test changes with small PDSA cycles. RCA targets systems, not individual blame."
   },
   "source": {
    "guideline": "IHI Model for Improvement; TJC Sentinel Event Policy 2025",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-198.svg",
-   "alt": "cycle diagram for naplex-198"
+   "alt": "Two paths. Include OTCs, supplements and doses at every transition. At discharge, give the patient an updated list and explain changes."
   },
   "source": {
    "guideline": "Joint Commission National Performance Goals 2026 (NPG 14, replaces NPSG.03.06.01)",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-199.svg",
-   "alt": "trend diagram for naplex-199"
+   "alt": "Threshold. PDC = days covered ÷ days in the measurement period."
   },
   "source": {
    "guideline": "PQA measures 2026; CMS Star Ratings 2026",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-200.svg",
-   "alt": "branch diagram for naplex-200"
+   "alt": "Ordered steps. Part B: flu, pneumococcal, hep B, COVID vaccines; drugs given incident to a physician service. Part D covers ACIP vaccines at $0 cost-sharing; out-of-pocket cap $2,100 in 2026."
   },
   "source": {
    "guideline": "CMS 2026; HRSA 340B",

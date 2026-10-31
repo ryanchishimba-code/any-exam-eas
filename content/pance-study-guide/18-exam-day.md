@@ -34,6 +34,10 @@
 
 **After you leave.** Do not reconstruct the whole exam in the parking lot. Results are released on the schedule NCCPA publishes. A practice-test percentage is not a PANCE score. Use the score report, when you have one, to see which systems and tasks were thin.
 
+**How to spend the 45 minutes.** Five blocks of 60 questions, 60 minutes each, is the NCCPA structure (see the facts table in the back of this book). A short break after block 1 and block 3 leaves enough time for a longer break after block 4, when fatigue changes answers. Do not skip the tutorial clock and then discover you have less break than you planned. Eat something you have eaten before. A new snack is an unnecessary variable.
+
+**If a block starts badly.** The first five items do not predict the block. Mark a stem you cannot parse in under a minute and return if time remains. Changing a completed answer in the last two minutes, without a new fact from the stem, is the late-block trap in the previous chapter. The task weights on the January 2025 blueprint (diagnosis 18%, history 16%, clinical intervention 16%, pharmacotherapy 15%) mean a bad run of drug items is not a bad run of the whole exam.
+
 <!-- /premium -->
 
 ---

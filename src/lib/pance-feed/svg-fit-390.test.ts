@@ -68,7 +68,7 @@ async function launch(): Promise<Browser> {
 }
 
 async function overflowLines(page: Page, svg: string): Promise<string[]> {
-  return page.evaluate((source) => {
+  return page.evaluate(async (source) => {
     const host = document.getElementById("host");
     if (!host) return ["missing host"];
     host.innerHTML = source.replace("<svg", "<svg style=\"width:390px;height:auto;display:block\"");
@@ -104,6 +104,52 @@ async function overflowLines(page: Page, svg: string): Promise<string[]> {
             line.bottom > container.bottom + 3 ||
             line.left < container.left - 3);
         if (outside || spills) problems.push((node.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 60));
+      }
+    });
+
+    function lum(hex: string): number {
+      const raw = hex.replace("#", "");
+      const full = raw.length === 3 ? raw.split("").map((ch) => ch + ch).join("") : raw.slice(0, 6);
+      const channels = [0, 2, 4].map((index) => {
+        const channel = parseInt(full.slice(index, index + 2), 16) / 255;
+        return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+      });
+      return 0.2126 * channels[0]! + 0.7152 * channels[1]! + 0.0722 * channels[2]!;
+    }
+    const probe = root.cloneNode(true) as SVGSVGElement;
+    probe.querySelectorAll("text,tspan").forEach((node) => node.setAttribute("fill", "none"));
+    const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(probe)], { type: "image/svg+xml;charset=utf-8" }));
+    const image = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("svg image"));
+      img.src = url;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.ceil(box.width));
+    canvas.height = Math.max(1, Math.ceil(box.height));
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return problems;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    URL.revokeObjectURL(url);
+    root.querySelectorAll("text").forEach((node) => {
+      const painted = [...node.querySelectorAll("[fill]")].find((el) => (el.getAttribute("fill") || "").startsWith("#")) || node;
+      const fill = painted.getAttribute("fill") || node.getAttribute("fill") || "";
+      if (!fill.startsWith("#")) return;
+      const size = parseFloat(node.getAttribute("font-size") || "16");
+      const weight = parseInt(node.getAttribute("font-weight") || painted.getAttribute("font-weight") || "400", 10);
+      const minimum = size >= 24 || (weight >= 700 && size >= 18.67) ? 3 : 4.5;
+      const line = [...node.getClientRects()].find((rect) => rect.width > 2 && rect.height > 2);
+      if (!line) return;
+      const x = Math.min(canvas.width - 1, Math.max(0, Math.round(line.left - box.left + 3)));
+      const y = Math.min(canvas.height - 1, Math.max(0, Math.round(line.top - box.top + line.height / 2)));
+      const pixel = ctx.getImageData(x, y, 1, 1).data;
+      const bg = `#${[pixel[0]!, pixel[1]!, pixel[2]!].map((value) => value.toString(16).padStart(2, "0")).join("")}`;
+      const ratio = (Math.max(lum(fill), lum(bg)) + 0.05) / (Math.min(lum(fill), lum(bg)) + 0.05);
+      if (ratio + 0.05 < minimum) {
+        problems.push(`contrast ${(node.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 40)}`);
       }
     });
     return problems;

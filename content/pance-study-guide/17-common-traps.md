@@ -32,6 +32,10 @@
 
 **The late blocks.** Fatigue shows up as rereading a stem you already understood and changing a right answer. Two full-length practice sets, with the clock, tell you whether that happens. The fix is sleep and a one-minute pace, not a new resource the night before.
 
+**Age that changes the drug, not the diagnosis.** A diagnosis can be right and the drug still wrong because of age. High-intensity statin for secondary prevention is the 2026 ACC/AHA recommendation at 75 and younger; after 75 the same guideline says to individualize. Subclinical hypothyroidism with TSH under 10 is often watched in older adults (TRUST, NEJM 2017). Stage 2 blood pressure can start with two drugs in a younger adult (2025 AHA/ACC), and the same guideline allows a slower start when the patient is older or prone to falls. If the stem gives an age over 75, do not apply the under-75 default without reading the exception.
+
+**A red flag that is the age itself.** New back pain after 50, and a change in bowel habit after 50, are reasons to image or to refer, not to reassure (ACR Appropriateness Criteria for low back pain, 2021; ACG irritable bowel syndrome guideline, 2021). "No red flags, so no imaging" is the rule for a younger adult whose stem has no neurologic deficit. It is the wrong rule when the stem's age is the red flag.
+
 <!-- /premium -->
 
 ---

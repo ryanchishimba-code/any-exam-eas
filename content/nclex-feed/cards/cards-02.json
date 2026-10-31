@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-051.svg",
-      "alt": "branch diagram for nclex-051"
+      "alt": "Decision flow. Belts, cords, sharps, plastic bags, glass or stored medications. Search belongings, use a ligature-resistant room, and observe per policy."
     },
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-052.svg",
-      "alt": "contrast diagram for nclex-052"
+      "alt": "Decision flow. The client cannot bear weight or help with the transfer. Use a mechanical lift or slide sheet, lock the wheels, and raise the bed."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-053.svg",
-      "alt": "branch diagram for nclex-053"
+      "alt": "Two paths. A confused client is pulling at lines, tubes or dressings. Reorient, use a sitter or bed alarm, cover lines, and schedule toileting. Applying restraints as the first intervention."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-054.svg",
-      "alt": "ladder diagram for nclex-054"
+      "alt": "Ordered steps. An absolute neutrophil count below about 1,000 cells/mm3. Private room, strict hand hygiene, no fresh flowers or sick visitors; report fever."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -124,7 +124,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-055.svg",
-      "alt": "branch diagram for nclex-055"
+      "alt": "Two paths. Giving, spilling or disposing of a hazardous drug. Wear double chemo gloves and a gown; use the spill kit; discard as hazardous waste."
     },
     "source": {
       "guideline": "USP <800> (official 2020)",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-057.svg",
-      "alt": "ladder diagram for nclex-057"
+      "alt": "Ordered steps. Throw rugs, clutter, poor lighting, stairs or no handrails. Add night lights, grab bars, nonslip mats, and clear walkways. Keeping throw rugs in walkways."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -205,7 +205,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-058.svg",
-      "alt": "contrast diagram for nclex-058"
+      "alt": "Decision flow. A suspected bioterrorism event with several ill clients. Smallpox needs airborne and contact precautions; anthrax needs standard precautions."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-059.svg",
-      "alt": "branch diagram for nclex-059"
+      "alt": "Decision flow. Lifting, pulling or repositioning a client. Use leg muscles, avoid twisting, and raise the bed to working height. Bending at the waist to lift."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-060.svg",
-      "alt": "ladder diagram for nclex-060"
+      "alt": "Two paths. Damaged, sparking or ungrounded electrical equipment. Tag the device out of service, and use grounded three-prong plugs. Continuing to use the equipment until the end of the shift."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -286,7 +286,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-061.svg",
-      "alt": "contrast diagram for nclex-061"
+      "alt": "Ordered steps. Spina bifida, many prior surgeries, or banana, avocado, kiwi or chestnut allergy. Use a latex-free room and supplies, and flag the chart and band."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -340,7 +340,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-063.svg",
-      "alt": "timeline diagram for nclex-063"
+      "alt": "Timeline. No words or pointing at 18 months is a warning sign. Use CDC milestone checklists; refer for screening if a milestone is missed."
     },
     "source": {
       "guideline": "CDC/AAP Learn the Signs. Act Early. milestones 2022",
@@ -367,7 +367,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-064.svg",
-      "alt": "branch diagram for nclex-064"
+      "alt": "Two paths. A toddler seeks independence; a teen seeks identity. Support each stage task: choices for toddlers, privacy and respect for teens."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -394,7 +394,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-065.svg",
-      "alt": "ladder diagram for nclex-065"
+      "alt": "Ordered steps. A mild cold or low fever does not delay vaccination. Follow the CDC schedule your facility uses; AAP publishes its own schedule; screen first."
     },
     "source": {
       "guideline": "CDC child/adolescent schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
@@ -421,7 +421,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-066.svg",
-      "alt": "contrast diagram for nclex-066"
+      "alt": "Decision flow. A midlife adult at a routine wellness visit. Follow the current CDC adult schedule; teach about expected arm soreness."
     },
     "source": {
       "guideline": "CDC adult schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-067.svg",
-      "alt": "anatomy diagram for nclex-067"
+      "alt": "Ordered steps. Second-trimester visits check fundal height, fetal heart tones, BP, urine and glucose screening at 24 to 28 weeks."
     },
     "source": {
       "guideline": "ACOG Clinical Consensus: Tailored Prenatal Care Delivery 2025",
@@ -475,7 +475,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-068.svg",
-      "alt": "timeline diagram for nclex-068"
+      "alt": "Timeline. Fundal height in centimeters roughly equals weeks from 20 to 36. Measure fundal height at each visit after 20 weeks."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -502,7 +502,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-069.svg",
-      "alt": "anatomy diagram for nclex-069"
+      "alt": "Two paths. Presumptive: amenorrhea, nausea. Probable: positive test, Hegar sign. Classify each sign as presumptive, probable or positive to answer certainty questions."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -529,7 +529,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-070.svg",
-      "alt": "anatomy diagram for nclex-070"
+      "alt": "Decision flow. Stage 1 ends at 10 cm; stage 4 is the first hours after birth. Monitor contractions and fetal heart rate; check the fundus often in stage 4."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -556,7 +556,7 @@
     "mnemonic": "BUBBLE-HE: Breasts, Uterus, Bladder, Bowel, Lochia, Episiotomy, Hemorrhage, Emotions",
     "diagram": {
       "file": "svg/nclex-071.svg",
-      "alt": "contrast diagram for nclex-071"
+      "alt": "Decision flow. A boggy or displaced fundus, or heavy lochia. Massage the fundus, empty the bladder, and report continued heavy bleeding."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -583,7 +583,7 @@
     "mnemonic": "APGAR: Appearance, Pulse, Grimace, Activity, Respiration",
     "diagram": {
       "file": "svg/nclex-072.svg",
-      "alt": "cycle diagram for nclex-072"
+      "alt": "Two paths. Scores are given at 1 and 5 minutes after birth. A score of 7 to 10 is reassuring; lower scores need support and repeat scoring."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -610,7 +610,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-073.svg",
-      "alt": "branch diagram for nclex-073"
+      "alt": "Ordered steps. Good latch, enough wet diapers and weight gain show adequate intake. Exclusive breastfeeding for about 6 months, then continue with solid foods."
     },
     "source": {
       "guideline": "AAP Breastfeeding policy 2022",
@@ -637,7 +637,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-074.svg",
-      "alt": "anatomy diagram for nclex-074"
+      "alt": "Decision flow. A smoker 35 or older, migraine with aura, or a history of blood clots. Offer progestin-only pills, an IUD or an implant, and teach correct use."
     },
     "source": {
       "guideline": "CDC US MEC 2024",
@@ -664,7 +664,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-075.svg",
-      "alt": "cycle diagram for nclex-075"
+      "alt": "Ordered steps. Adults at average risk with no symptoms or strong family history. Mammography every 2 years from 40 to 74; colorectal screening from 45 to 75."
     },
     "source": {
       "guideline": "USPSTF breast 2024; colorectal 2021",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-076.svg",
-      "alt": "ladder diagram for nclex-076"
+      "alt": "Two paths. Sudden confusion is never a normal part of aging. Teach safety for normal changes, and report acute changes right away. Labeling new confusion or delirium as normal aging."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -718,7 +718,7 @@
     "mnemonic": "ABCs of safe sleep: Alone, Back, Crib",
     "diagram": {
       "file": "svg/nclex-077.svg",
-      "alt": "ladder diagram for nclex-077"
+      "alt": "Ordered steps. A parent asks about bumpers, side sleeping or bed sharing. Share a room without sharing a bed, and keep soft bedding out of the crib."
     },
     "source": {
       "guideline": "AAP Safe Sleep 2022",
@@ -745,7 +745,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-078.svg",
-      "alt": "contrast diagram for nclex-078"
+      "alt": "Two paths. The toddler has reached the rear-facing height or weight limit. Then use a forward harness, then a booster until the belt fits, about 4 feet 9 inches."
     },
     "source": {
       "guideline": "AAP Child Passenger Safety (reaffirmed 2025)",
@@ -772,7 +772,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-079.svg",
-      "alt": "cycle diagram for nclex-079"
+      "alt": "Decision flow. Any adult who uses tobacco, at any visit. Combine behavioral support with FDA-approved medicine, and set a quit date."
     },
     "source": {
       "guideline": "USPSTF tobacco cessation 2021",
@@ -799,7 +799,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-080.svg",
-      "alt": "branch diagram for nclex-080"
+      "alt": "Decision flow. A positive chlamydia or gonorrhea test result. Avoid sex until treatment is done and partners are treated; retest as advised."
     },
     "source": {
       "guideline": "CDC STI Treatment Guidelines 2021",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-081.svg",
-      "alt": "ladder diagram for nclex-081"
+      "alt": "Ordered steps. The client is sharing feelings, fears or worries. Use statements like tell me more, restate feelings, and offer your presence."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -853,7 +853,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-082.svg",
-      "alt": "branch diagram for nclex-082"
+      "alt": "Two paths. The nurse dismisses fear with phrases like don't worry. Acknowledge the client's feelings and explore the specific concerns."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -880,7 +880,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-083.svg",
-      "alt": "contrast diagram for nclex-083"
+      "alt": "Decision flow. Hopelessness, giving belongings away, or sudden calm after depression. Ensure safety, provide 1:1 observation per policy, and notify the provider."
     },
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
@@ -907,7 +907,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-084.svg",
-      "alt": "ladder diagram for nclex-084"
+      "alt": "Ordered steps. Acute stress has overwhelmed the client's usual ways of coping. Stay with the client, use short direct statements, and find support resources."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-085.svg",
-      "alt": "branch diagram for nclex-085"
+      "alt": "Two paths. Energy rises on antidepressants before mood fully lifts. Watch suicide risk closely as energy returns, and give simple, achievable tasks."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -961,7 +961,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-086.svg",
-      "alt": "contrast diagram for nclex-086"
+      "alt": "Two paths. Hyperactivity, little sleep, poor intake and impulsive behavior. Low stimulation, finger foods, firm limits; monitor lithium if it is prescribed."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-087.svg",
-      "alt": "ladder diagram for nclex-087"
+      "alt": "Decision flow. Command hallucinations directing the client to cause harm. Ask what the voices say, assess for harm to self or others, and redirect."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-088.svg",
-      "alt": "anatomy diagram for nclex-088"
+      "alt": "Ordered steps. A racing heart, chest tightness, shortness of breath and fear. Move to a quiet room, and coach slow breathing. Starting teaching during severe or panic-level anxiety."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-089.svg",
-      "alt": "contrast diagram for nclex-089"
+      "alt": "Two paths. Nightmares, flashbacks and hypervigilance after trauma. Explain each step, offer choices, ask permission, and avoid known triggers."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1069,7 +1069,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-090.svg",
-      "alt": "timeline diagram for nclex-090"
+      "alt": "Timeline. Tremor, sweating, fast heart rate, anxiety and agitation. Use CIWA-Ar, give benzodiazepines as ordered, and give thiamine before glucose."
     },
     "source": {
       "guideline": "ASAM Alcohol Withdrawal Management 2020",
@@ -1096,7 +1096,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-091.svg",
-      "alt": "branch diagram for nclex-091"
+      "alt": "Ordered steps. Pinpoint pupils, slow breathing and decreased responsiveness. Call rapid response; give naloxone per standing order or protocol; refer for OUD care."
     },
     "source": {
       "guideline": "AHA 2025 CPR and ECC Guidelines, Part 10 Special Circumstances (opioids)",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-092.svg",
-      "alt": "anatomy diagram for nclex-092"
+      "alt": "Decision flow. Anorexia with low weight, bradycardia or electrolyte problems. Monitor phosphate, potassium, magnesium and heart rhythm, and advance feeding slowly."
     },
     "source": {
       "guideline": "APA Eating Disorders 2023",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-093.svg",
-      "alt": "ladder diagram for nclex-093"
+      "alt": "Two paths. The stages do not happen in a fixed order. Listen, be present, and support the client's cultural and spiritual rituals."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-094.svg",
-      "alt": "contrast diagram for nclex-094"
+      "alt": "Decision flow. A fearful client, delayed care, or poor hygiene. Ensure safety, document objectively, and report per state law. Confronting the suspected abuser."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-095.svg",
-      "alt": "branch diagram for nclex-095"
+      "alt": "Ordered steps. A hospitalized older adult becomes confused overnight. Look for causes such as infection, medications or hypoxia, and reorient the client. Assuming new confusion is dementia."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-096.svg",
-      "alt": "contrast diagram for nclex-096"
+      "alt": "Decision flow. The client splits staff into good and bad groups. Use the same rules for all staff, and give calm, consistent consequences. Bending unit rules for this one client."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-097.svg",
-      "alt": "branch diagram for nclex-097"
+      "alt": "Ordered steps. The client is being held on an involuntary admission. Inform the client of their rights, and follow the legal process for the hold."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1285,7 +1285,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-098.svg",
-      "alt": "ladder diagram for nclex-098"
+      "alt": "Two paths. The client declines a food or treatment for religious reasons. Respect practices, involve the chaplain or interpreter, and adjust the care plan."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1312,7 +1312,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-099.svg",
-      "alt": "anatomy diagram for nclex-099"
+      "alt": "Decision flow. A bedbound client with a sacral wound. Reposition, use support surfaces, optimize nutrition, and stage the wound accurately."
     },
     "source": {
       "guideline": "International Pressure Ulcer/Injury Guideline 4th ed 2025 (NPIAP/EPUAP/PPPIA)",
@@ -1339,7 +1339,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-100.svg",
-      "alt": "anatomy diagram for nclex-100"
+      "alt": "Ordered steps. The client cannot speak or self-report pain. Use behavioral pain scales, and combine medication with nondrug methods. Not reassessing pain after giving an intervention."
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",

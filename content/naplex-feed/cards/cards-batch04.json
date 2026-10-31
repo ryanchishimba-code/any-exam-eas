@@ -19,7 +19,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-076.svg",
-   "alt": "branch diagram for naplex-076"
+   "alt": "Decision flow. IPLEDGE: isotretinoin pregnancy testing and contraception. TIRF REMS: products discontinued 2024, no new enrollments."
   },
   "source": {
    "guideline": "FDA REMS database 2026; FDA TIRF discontinuation notice 2024",
@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-077.svg",
-   "alt": "ladder diagram for naplex-077"
+   "alt": "Ordered steps. Raise INR: TMP-SMX, metronidazole, fluconazole, amiodarone. Lower INR: rifampin, carbamazepine. Pick a non-interacting drug, or check INR in 3–5 days and adjust."
   },
   "source": {
    "guideline": "CHEST 2021; labeling",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-078.svg",
-   "alt": "threshold diagram for naplex-078"
+   "alt": "Threshold. Inducers: rifampin, carbamazepine, phenytoin, St. John's wort."
   },
   "source": {
    "guideline": "2023 ACC/AHA AF; labeling",
@@ -112,7 +112,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-079.svg",
-   "alt": "threshold diagram for naplex-079"
+   "alt": "Threshold. Lower the dose or switch to rosuvastatin or pravastatin."
   },
   "source": {
    "guideline": "FDA labeling 2011 simvastatin",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-080.svg",
-   "alt": "anatomy diagram for naplex-080"
+   "alt": "Two paths. Additive vasodilation causes severe hypotension. If chest pain after a PDE5 inhibitor, no nitrate for 24 h (sildenafil) or 48 h (tadalafil)."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-081.svg",
-   "alt": "branch diagram for naplex-081"
+   "alt": "Ordered steps. Riskiest with SSRIs and SNRIs. Non-urgent: stop the serotonergic drug first (2 weeks; fluoxetine 5). Urgent: give with close monitoring."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-082.svg",
-   "alt": "timeline diagram for naplex-082"
+   "alt": "Timeline. Ca, Mg, Al, Fe, Zn bind fluoroquinolones and tetracyclines. Take ciprofloxacin 2 hours before or 6 hours after cations."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -236,7 +236,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-083.svg",
-   "alt": "ladder diagram for naplex-083"
+   "alt": "Decision flow. Raisers: ACEi, ARBs, thiazides, NSAIDs, dehydration, low sodium intake. Avoid the combo or check a level within about 5 days and adjust."
   },
   "source": {
    "guideline": "VA/DoD Bipolar 2023; FDA labeling",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-084.svg",
-   "alt": "anatomy diagram for naplex-084"
+   "alt": "Two paths. ACEi/ARB, MRA, TMP-SMX, NSAIDs, potassium supplements all raise K. Check potassium and creatinine; manage high K with diet, diuretics or binders."
   },
   "source": {
    "guideline": "KDIGO 2024 CKD",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-085.svg",
-   "alt": "contrast diagram for naplex-085"
+   "alt": "Two paths. High tyramine: aged cheese, cured meats, soy sauce, tap beer. Counsel a tyramine-restricted diet during and 2 weeks after MAOI therapy."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -329,7 +329,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-086.svg",
-   "alt": "trend diagram for naplex-086"
+   "alt": "Threshold. Check adherence, diet and new drugs; recheck in about a week."
   },
   "source": {
    "guideline": "Warfarin labeling; CHEST 2012 (9th ed.) antithrombotic guidelines",
@@ -360,7 +360,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-087.svg",
-   "alt": "anatomy diagram for naplex-087"
+   "alt": "Decision flow. Hypokalemia, renal decline, amiodarone or verapamil raise toxicity. Hold digoxin; DigiFab for life-threatening arrhythmias or severe toxicity."
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -391,7 +391,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-088.svg",
-   "alt": "timeline diagram for naplex-088"
+   "alt": "Timeline. Check 5 days after starting or changing dose. Track renal function, TSH, calcium periodically."
   },
   "source": {
    "guideline": "VA/DoD Bipolar 2023",
@@ -422,7 +422,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-089.svg",
-   "alt": "cycle diagram for naplex-089"
+   "alt": "Timeline. Hartford: one level 6–14 hours after the dose, plotted on the nomogram. Level region sets every 24, 36 or 48 hours."
   },
   "source": {
    "guideline": "Hartford nomogram; IDSA",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-090.svg",
-   "alt": "trend diagram for naplex-090"
+   "alt": "Ordered steps. Carbamazepine induces its own metabolism over 3–5 weeks. Recheck the level and titrate; target 4–12 mcg/mL. It also induces CYP3A4: hormonal contraceptives can fail."
   },
   "source": {
    "guideline": "FDA labeling",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-091.svg",
-   "alt": "anatomy diagram for naplex-091"
+   "alt": "Two paths. No routine liver or CK monitoring once started. Recheck lipids after starting to confirm response and adherence."
   },
   "source": {
    "guideline": "2026 ACC/AHA multisociety Dyslipidemia guideline",
@@ -515,7 +515,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-092.svg",
-   "alt": "ladder diagram for naplex-092"
+   "alt": "Ordered steps. Pulmonary fibrosis, hypo- or hyperthyroidism, hepatotoxicity, corneal deposits, photosensitivity. Report symptoms; check TFTs, LFTs, chest imaging and PFTs."
   },
   "source": {
    "guideline": "2023 ACC/AHA AF",
@@ -546,7 +546,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-093.svg",
-   "alt": "branch diagram for naplex-093"
+   "alt": "Decision flow. Weight at 4, 8, 12 weeks, then quarterly. Glucose and BP at 12 weeks, then yearly; lipids at 12 weeks. Highest metabolic risk: clozapine and olanzapine."
   },
   "source": {
    "guideline": "ADA/APA 2004 consensus; APA 2020 schizophrenia",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-094.svg",
-   "alt": "contrast diagram for naplex-094"
+   "alt": "Two paths. Also: opioids naloxone; digoxin DigiFab; warfarin vitamin K plus 4F-PCC. Andexanet left the US market in Dec 2025. Know which antidotes must be stocked for immediate use in the ED."
   },
   "source": {
    "guideline": "ACMT/AACT antidote stocking 2017; FDA Andexxa safety communication Dec 2025",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-096.svg",
-   "alt": "ladder diagram for naplex-096"
+   "alt": "Ordered steps. MDI: shake, exhale, press and inhale slowly, hold 10 seconds; spacer helps. DPI: don't shake, don't exhale into it, no spacer. Rinse and spit after inhaled corticosteroids."
   },
   "source": {
    "guideline": "GINA 2026; GOLD 2026",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-097.svg",
-   "alt": "branch diagram for naplex-097"
+   "alt": "Decision flow. Eye drops: 5 minutes apart; suspensions shake first. Otic under age 3: pinna down and back; adults: up and back. Fentanyl patch is on the FDA flush list; avoid heat on the patch."
   },
   "source": {
    "guideline": "FDA labeling; FDA flush list",
@@ -701,7 +701,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-098.svg",
-   "alt": "contrast diagram for naplex-098"
+   "alt": "Decision flow. Unopened pens in the fridge; in-use pens at room temperature. Rotate sites within the same region to avoid lipohypertrophy. Never share a pen, even with a new needle."
   },
   "source": {
    "guideline": "ADA Standards of Care 2026",
@@ -732,7 +732,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-099.svg",
-   "alt": "contrast diagram for naplex-099"
+   "alt": "Ordered steps. 8.1 pregnancy, 8.2 lactation, 8.3 reproductive potential. Avoid ACEi/ARB, warfarin, isotretinoin, valproate in pregnancy; use labetalol or nifedipine for BP."
   },
   "source": {
    "guideline": "FDA PLLR 2015; ACOG",
@@ -763,7 +763,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-100.svg",
-   "alt": "ladder diagram for naplex-100"
+   "alt": "Two paths. Also avoid PPIs beyond 8 weeks without a clear reason; avoid aspirin for primary prevention. Prefer apixaban; avoid starting warfarin and long-term rivaroxaban for AF/VTE."
   },
   "source": {
    "guideline": "AGS Beers Criteria 2023",
