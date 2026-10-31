@@ -1,4 +1,5 @@
 import { matrixRowHeader } from "@/lib/assessment/matrix-row-header";
+import { storedDifficultyValue } from "@/lib/questions/difficulty-label";
 import type { ExamQuestion } from "@/lib/ai";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import { coerceOptionList } from "@/lib/questions/option-coerce";
@@ -162,6 +163,9 @@ export function bankItemToExamQuestion(
     chartData,
     caseStep,
     topicCategory: item.topicCategory,
+    ...(storedDifficultyValue(item.difficulty) != null
+      ? { difficulty: storedDifficultyValue(item.difficulty) }
+      : {}),
     difficultyLabel:
       item.difficulty != null
         ? item.difficulty <= 2

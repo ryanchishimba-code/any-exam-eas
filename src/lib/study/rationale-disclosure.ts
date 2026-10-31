@@ -168,7 +168,21 @@ export function rationaleFragmentShownInLead(fragment: string, lead: string): bo
   const part = normalizeRationaleSentence(fragment);
   const shown = normalizeRationaleSentence(lead);
   if (!part || !shown || part.length < 16) return false;
-  return part === shown || shown.includes(part) || (shown.length >= 24 && part.startsWith(shown));
+  // A longer section that only starts with the preview still has unread text.
+  return part === shown || shown.includes(part);
+}
+
+/**
+ * Text still hidden behind Show more.
+ * If the lead is only a prefix, return the unread tail. If that tail was
+ * dropped, return the full rationale so the expand is not empty.
+ */
+export function visibleRationaleRemainder(text: string, lead: string): string {
+  const full = text.trim();
+  const rest = rationaleAfterLead(full, lead).trim();
+  if (rest) return rest;
+  if (full.length > lead.trim().length) return full;
+  return "";
 }
 
 export function shortRationaleLead(text: string | null | undefined): string {

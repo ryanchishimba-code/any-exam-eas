@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -14,6 +15,9 @@ import { isExamSlug } from "@/lib/edtech/exams";
 import { EXAM_SWITCH_EVENT } from "@/lib/client/exam-switch-reset";
 import {
   clearOptimisticExamSlug,
+  displayedExamSlug,
+  optimisticExamIsFresh,
+  readOptimisticExamChoice,
   readOptimisticExamSlug,
   writeOptimisticExamSlug,
 } from "@/lib/client/header-exam-slug";
@@ -29,6 +33,7 @@ export type AppPreferences = {
 };
 
 const AppPreferencesContext = createContext<AppPreferences | null>(null);
+const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 type PreferencePayload = {
   examSlug: ExamSlug | null;
@@ -85,24 +90,41 @@ function publishOptimisticExamSlug(slug: ExamSlug | null) {
   };
 }
 
+function shownExam(accountExam: ExamSlug | null): ExamSlug | null {
+  const choice = readOptimisticExamChoice();
+  return displayedExamSlug({
+    accountExam,
+    optimisticExam: choice?.slug ?? null,
+    optimisticAt: choice?.at,
+  });
+}
+
+function dropStaleOptimistic(accountExam: ExamSlug | null): void {
+  const choice = readOptimisticExamChoice();
+  if (!choice) return;
+  // A board chosen in the last minute must survive a cached read of the previous one.
+  if (optimisticExamIsFresh(choice) && choice.slug !== accountExam) return;
+  clearOptimisticExamSlug();
+  if (choice.slug === accountExam) {
+    confirmedPreferenceRevision = preferenceWriteRevision;
+  }
+}
+
 function rememberConfirmedPreference(value: PreferencePayload, revision: number): void {
-  const optimistic = readOptimisticExamSlug();
-  if (optimistic && value.examSlug !== optimistic) return;
+  const choice = readOptimisticExamChoice();
+  if (choice && optimisticExamIsFresh(choice) && value.examSlug !== choice.slug) {
+    return;
+  }
   cachedPreference = value;
   confirmedPreferenceRevision = revision;
-  if (optimistic && value.examSlug === optimistic) clearOptimisticExamSlug();
 }
 
 function applyFetchedExamSlug(
   payload: PreferencePayload,
   setExam: (slug: ExamSlug | null) => void
 ): void {
-  const optimistic = readOptimisticExamSlug();
-  if (optimistic && payload.examSlug !== optimistic) {
-    setExam(optimistic);
-    return;
-  }
-  setExam(payload.examSlug);
+  dropStaleOptimistic(payload.examSlug);
+  setExam(shownExam(payload.examSlug));
 }
 
 /** Shared across provider and fallback consumers; `force` bypasses the cache after a save. */
@@ -184,32 +206,21 @@ export function AppPreferencesProvider({
     function onExamSwitch(event: Event) {
       const slug = (event as CustomEvent<{ examSlug?: string }>).detail?.examSlug;
       if (!slug || !isExamSlug(slug)) return;
-      writeOptimisticExamSlug(slug);
+      publishOptimisticExamSlug(slug);
       setExamSlugState(slug);
     }
     window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
   }, []);
 
-  // A select-exam save navigates into this provider. A stale server prop must
-  // not paint the previous board over the exam that was just saved.
-  useEffect(() => {
+  // A switch in this session paints immediately. The layout can still be the
+  // previous board for the preference cache window; that must not rewind the chip
+  // or the feed link before the first click.
+  useIsoLayoutEffect(() => {
     if (initialExamSlug === undefined) return;
-    const chosen = readOptimisticExamSlug();
-    if (chosen && chosen !== initialExamSlug) {
-      setExamSlugState(chosen);
-      return;
-    }
-    const pending =
-      preferenceWriteRevision > confirmedPreferenceRevision && cachedPreference?.examSlug;
-    if (pending && cachedPreference?.examSlug !== initialExamSlug) {
-      setExamSlugState(cachedPreference!.examSlug);
-      return;
-    }
-    if (pending && cachedPreference?.examSlug === initialExamSlug) {
-      confirmedPreferenceRevision = preferenceWriteRevision;
-    }
-    setExamSlugState((prev) => (prev === initialExamSlug ? prev : initialExamSlug));
+    const shown = shownExam(initialExamSlug);
+    dropStaleOptimistic(initialExamSlug);
+    setExamSlugState((prev) => (prev === shown ? prev : shown));
   }, [initialExamSlug]);
 
   useEffect(() => {
@@ -227,14 +238,9 @@ export function AppPreferencesProvider({
     }
 
     if (initialExamSlug) {
-      const chosen = readOptimisticExamSlug();
-      if (chosen && chosen !== initialExamSlug) {
-        setExamSlugState(chosen);
-        setLoading(false);
-        void load(true);
-        return;
-      }
-      setExamSlugState((prev) => prev ?? initialExamSlug);
+      const shown = shownExam(initialExamSlug);
+      dropStaleOptimistic(initialExamSlug);
+      setExamSlugState((prev) => (prev === shown ? prev : shown));
       setLoading(false);
       return;
     }
@@ -287,12 +293,10 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
     function onExamSwitch(event: Event) {
       const slug = (event as CustomEvent<{ examSlug?: string }>).detail?.examSlug;
       if (!slug || !isExamSlug(slug)) return;
-      writeOptimisticExamSlug(slug);
+      publishOptimisticExamSlug(slug);
       setExamSlugState(slug);
     }
     window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
-    const chosen = readOptimisticExamSlug();
-    if (chosen) setExamSlugState(chosen);
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
   }, [active]);
 

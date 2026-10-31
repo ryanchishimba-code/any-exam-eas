@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
+import { storedDifficultyValue } from "@/lib/questions/difficulty-label";
 import { coerceOptionList } from "@/lib/questions/option-coerce";
 import { splitUsmleBankItem } from "./usmle-bank-split";
 
@@ -48,6 +49,9 @@ export function bankItemToUsmleExam(item: BankItem, index: number): ExamQuestion
         ? (payload as Record<string, unknown>)
         : undefined,
     topicCategory: item.topicCategory,
+    ...(storedDifficultyValue(item.difficulty) != null
+      ? { difficulty: storedDifficultyValue(item.difficulty) }
+      : {}),
     difficultyLabel:
       item.difficulty != null
         ? item.difficulty <= 2

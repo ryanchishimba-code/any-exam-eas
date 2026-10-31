@@ -23,6 +23,7 @@ import {
   parseBowTieLayout,
   parseMatrixLayout,
 } from "./ngn-structures";
+import { storedDifficultyValue } from "./difficulty-label";
 import { coerceOptionList } from "./option-coerce";
 import { shufflePreservingSequentialSets } from "./sequential-sets";
 import {
@@ -286,6 +287,7 @@ export function examQuestionToStudy(
     bankItemId: q.bankItemId,
     qualityScore: q.qualityScore,
     difficulty: q.difficultyLabel?.toLowerCase(),
+    storedDifficulty: storedDifficultyValue(q.difficulty),
     chartData: studentLayoutPayload(q.chartData),
     expertRationale,
   };
@@ -385,6 +387,7 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
       topicCategory: p.topicCategory,
       blueprintDomain: p.blueprintDomain,
       blueprintTopic: p.blueprintTopic,
+      ...(typeof p.storedDifficulty === "number" ? { difficulty: p.storedDifficulty } : {}),
     });
   });
 }

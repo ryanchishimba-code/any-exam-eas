@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
+import { difficultyChipText } from "@/lib/questions/difficulty-label";
 import {
   repairSplitInstructionQuote,
   studentFacingStem,
@@ -12,9 +13,9 @@ import {
 } from "@/lib/questions/student-display-text";
 import { parseRationaleForDisplay, type ParsedRationaleDisplay } from "@/lib/engine/rationale/parse-rationale-display";
 import {
-  rationaleAfterLead,
   shouldCollapseRationale,
   uniqueRationaleParts,
+  visibleRationaleRemainder,
 } from "@/lib/study/rationale-disclosure";
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
 import { CollapsibleSources } from "./CollapsibleSources";
@@ -143,8 +144,16 @@ export const QuestionRenderer = memo(function QuestionRenderer({
 
   return (
     <>
-      {(question.highYield || question.qualityScore != null) && (
+      {(question.highYield || question.qualityScore != null || difficultyChipText(question.storedDifficulty)) && (
         <div className="flex flex-wrap items-center gap-2">
+          {difficultyChipText(question.storedDifficulty) ? (
+            <span
+              className="rounded-full bg-black/[0.05] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]"
+              data-difficulty={question.storedDifficulty}
+            >
+              {difficultyChipText(question.storedDifficulty)}
+            </span>
+          ) : null}
           {question.highYield && (
             <span className="text-[10px] font-medium uppercase tracking-wide text-amber-600">
               High yield
@@ -370,7 +379,7 @@ function ExplanationDetail({
   const plain = !parsed.isStructured && !question.expertRationale;
   const plainBody = plain
     ? leadToOmit
-      ? rationaleAfterLead(question.explanation ?? "", leadToOmit)
+      ? visibleRationaleRemainder(question.explanation ?? "", leadToOmit)
       : (question.explanation ?? "")
     : "";
   return (
@@ -520,7 +529,7 @@ export function ExplanationPanel({
       examSlug={examSlug}
       incorrect={incorrect}
       hasExpert={hasExpert}
-      leadToOmit={collapsible ? lead : undefined}
+      leadToOmit={undefined}
       compact={!collapsible}
     />
   );

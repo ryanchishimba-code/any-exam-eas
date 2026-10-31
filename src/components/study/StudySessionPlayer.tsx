@@ -5,6 +5,7 @@ import type { GeneratedExam } from "@/lib/ai";
 import {
   advanceSession,
   createStudySession,
+  flagUnansweredQuestion,
   getQuestionByIndex,
   isSessionComplete,
   recordSessionAnswer,
@@ -14,7 +15,7 @@ import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
 import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
 import { serializeStudySelectedAnswer } from "@/lib/learning/attempt-selection";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
-import { requiredSelectionCount } from "@/lib/questions/required-selections";
+import { matrixAllRowsAnswered, requiredSelectionCount } from "@/lib/questions/required-selections";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import {
   bowTieSelectionValid,
@@ -521,9 +522,22 @@ export function StudySessionPlayer({
   const goPrevRef = useRef<() => void>(() => undefined);
   const toggleSelectRef = useRef<(option: string) => void>(() => undefined);
 
+  function withUnansweredFlag(base: StudySessionState): StudySessionState {
+    if (!current || base.answers[current.id]?.revealed) return base;
+    return flagUnansweredQuestion(base, current.id);
+  }
+
+  function goToIndex(index: number) {
+    const base = withUnansweredFlag(sessionState);
+    const nextIndex = Math.max(0, Math.min(base.order.length - 1, index));
+    const next = { ...base, currentIndex: nextIndex, updatedAt: new Date().toISOString() };
+    setSessionState(next);
+    persist(next);
+  }
+
   function goNext(from?: StudySessionState) {
     const base = from ?? sessionState;
-    const next = advanceSession(base, 1);
+    const next = advanceSession(withUnansweredFlag(base), 1);
     setSessionState(next);
     persist(next);
   }
@@ -605,7 +619,7 @@ export function StudySessionPlayer({
       return bowTieSelectionValid(selected, layout);
     }
     if (current.type === "matrix") {
-      return selected.length === correctCount;
+      return matrixAllRowsAnswered(current, selected);
     }
     if (current.type === "drag_drop") {
       const prompts = (current.ngnPayload as { prompts?: string[] } | undefined)?.prompts;
@@ -766,6 +780,10 @@ export function StudySessionPlayer({
   const showPostSession = (showCompletion || timeUp) && !inReview;
 
   const progressPct = ((sessionState.currentIndex + 1) / questionList.length) * 100;
+  const unansweredIndexes = sessionState.order.flatMap((id, index) => {
+    const row = sessionState.answers[id];
+    return row?.unanswered && !row.revealed ? [index] : [];
+  });
   const reviewMeta =
     adaptiveMeta?.openQueueTotal != null ? adaptiveMeta : (sessionState.adaptiveMeta ?? adaptiveMeta);
   const selectionReasoning = reviewIncorrectQuestionReason(
@@ -831,6 +849,27 @@ export function StudySessionPlayer({
         />
       </div>
 
+      {unansweredIndexes.length > 0 ? (
+        <p className="flex flex-wrap items-center gap-1.5 text-xs text-[var(--color-ink-muted)]" data-unanswered-count={unansweredIndexes.length}>
+          <span className="font-semibold uppercase tracking-wide">Unanswered</span>
+          {unansweredIndexes.map((index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => goToIndex(index)}
+              className={`rounded-full px-2 py-0.5 font-semibold ${
+                index === sessionState.currentIndex
+                  ? "bg-rose-100 text-rose-900"
+                  : "bg-black/[0.05] text-[var(--color-ink)] hover:bg-black/[0.08]"
+              }`}
+              aria-current={index === sessionState.currentIndex ? "true" : undefined}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </p>
+      ) : null}
+
       <div className={studyUi.sessionProgress} role="progressbar" aria-valuenow={Math.round(progressPct)} aria-valuemin={0} aria-valuemax={100} aria-label="Session progress">
         <div
           className={studyUi.sessionProgressFill}
@@ -882,6 +921,13 @@ export function StudySessionPlayer({
               {isFlagged ? "Flagged" : "Flag for review"}
             </button>
           </div>
+          {answer?.unanswered && !answer.revealed ? (
+            <p className="mb-3" data-question-status="unanswered">
+              <span className="rounded-full bg-rose-50 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-rose-800">
+                Unanswered
+              </span>
+            </p>
+          ) : null}
           {naplexDomainChip ? (
             <p className="mb-3">
               <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800 dark:text-emerald-200">
@@ -916,7 +962,7 @@ export function StudySessionPlayer({
                 : current.type === "bow_tie" && !canSubmitSelection()
                   ? "Complete bow-tie selections"
                   : current.type === "matrix" && !canSubmitSelection()
-                    ? `Select ${requiredSelectionCount(current)} cells`
+                    ? "Answer each row"
                     : "Check"}
             </button>
           )}
@@ -1051,8 +1097,7 @@ export function StudySessionPlayer({
           </button>
           <button
             type="button"
-            onClick={() => void revealAnswer(selected)}
-            disabled={!selected.length}
+            onClick={() => goNext()}
             className={`w-full sm:w-auto ${studyUi.sessionPrimaryBtn}`}
           >
             Next

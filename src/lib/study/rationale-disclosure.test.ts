@@ -4,10 +4,12 @@ import { describe, expect, it } from "vitest";
 import {
   explanatoryRationaleSummary,
   rationaleAfterLead,
+  rationaleFragmentShownInLead,
   selectRationaleLead,
   shortRationaleLead,
   shouldCollapseRationale,
   uniqueRationaleParts,
+  visibleRationaleRemainder,
   wouldRenderLabelOnlySummary,
 } from "./rationale-disclosure";
 
@@ -97,6 +99,13 @@ describe("rationale disclosure", () => {
         explanation: CJMM_BOW_TIE,
       })
     ).toBe("watery diarrhea after antibiotics, fever, and leukocytosis.");
+  });
+
+  it("keeps the unread tail when the preview is only the opening sentence", () => {
+    const lead = "Protect the airway before routine tasks.";
+    const full = `${lead} Charting, calling the provider, and analgesia all wait until breathing is secure.`;
+    expect(rationaleFragmentShownInLead(full, lead)).toBe(false);
+    expect(visibleRationaleRemainder(full, lead)).toMatch(/Charting, calling the provider/);
   });
 
   it("does not measure text that is already inside the explanation", () => {

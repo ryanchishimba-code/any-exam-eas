@@ -40,6 +40,8 @@ export type ExamQuestion = {
   tags?: string[];
   /** Easy | Medium | Hard — board-exam calibrated difficulty. */
   difficultyLabel?: "Easy" | "Medium" | "Hard";
+  /** Stored bank difficulty. Omitted when the row has no difficulty field. */
+  difficulty?: number;
   /** Blueprint category (e.g. Management of Care, Pharmacotherapy). */
   topicCategory?: string;
   /** Bank subject slug, kept so results can group by the board's content areas. */
