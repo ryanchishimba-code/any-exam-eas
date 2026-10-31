@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { BookMarked, Bone, BookOpen, GraduationCap, Pill } from "lucide-react";
-import { libraryCardHref } from "@/lib/edtech/practice-links-core";
+import { Bone, BookOpen, Layers, Pill } from "lucide-react";
+import { ROUTES } from "@/lib/routes";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { matchCatalogDrug } from "@/lib/learning/remediation-loop";
@@ -67,9 +67,9 @@ export function QuestionRelatedLinks({
       ? (links.relatedDrug?.safetyPathHref ?? drugSafetyPathHref(examSlug))
       : null;
 
-  const hasDeepDives = links.relatedDeepDives.length > 0;
-  const memoryCards = links.memoryCards ?? [];
-  const hasCards = memoryCards.length > 0;
+  const showPanceFeed =
+    examSlug === "pance" &&
+    (links.relatedDeepDives.length > 0 || (links.memoryCards?.length ?? 0) > 0);
   const hasAnatomy = clinical && links.anatomyStructures.length > 0;
   const hasGuide = Boolean(links.studyGuide);
   const hasDrugs = uniqueDrugLinks.length > 0;
@@ -81,8 +81,7 @@ export function QuestionRelatedLinks({
   if (
     showAnatomy &&
     showNonAnatomy &&
-    !hasDeepDives &&
-    !hasCards &&
+    !showPanceFeed &&
     !hasAnatomy &&
     !hasGuide &&
     !hasDrugs &&
@@ -93,8 +92,7 @@ export function QuestionRelatedLinks({
   if (sections === "anatomy" && !hasAnatomy) return null;
   if (
     sections === "non-anatomy" &&
-    !hasDeepDives &&
-    !hasCards &&
+    !showPanceFeed &&
     !hasGuide &&
     !hasDrugs &&
     !hasTakeaway
@@ -126,34 +124,17 @@ export function QuestionRelatedLinks({
         </div>
       ) : null}
 
-      {showNonAnatomy && hasDeepDives ? (
+      {showNonAnatomy && showPanceFeed ? (
         <div className="mt-3 flex flex-wrap gap-2">
-          {links.relatedDeepDives.map((mod) => (
-            <Link key={mod.slug} href={mod.href} className={chipClass}>
-              <GraduationCap className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
-              {mod.title}
-            </Link>
-          ))}
-        </div>
-      ) : null}
-
-      {showNonAnatomy && hasCards ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {memoryCards.map((card) => (
-            <Link
-              key={card.id}
-              href={libraryCardHref(examSlug, card.id)}
-              className={chipClass}
-            >
-              <BookMarked className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
-              {card.title}
-            </Link>
-          ))}
+          <Link href={ROUTES.panceFeed} className={chipClass}>
+            <Layers className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
+            PANCE Feed
+          </Link>
         </div>
       ) : null}
 
       {showAnatomy && hasAnatomy ? (
-        <div className={showNonAnatomy && (hasTakeaway || hasDeepDives || hasCards) ? "mt-3" : ""}>
+          <div className={showNonAnatomy && (hasTakeaway || showPanceFeed) ? "mt-3" : ""}>
           <p className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
             <Bone className="h-3 w-3" aria-hidden />
             Explore in Anatomy

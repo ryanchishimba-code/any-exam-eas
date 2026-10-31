@@ -3,9 +3,7 @@ import { mistakeCategoryLabel } from "./mistake-analysis";
 import type { MistakeCategory } from "./types";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
-import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import {
-  resolveRelatedCards,
   resolveRelatedDrug,
   resolveStudyGuideSection,
 } from "@/lib/learning/remediation-loop";
@@ -28,10 +26,6 @@ export function buildRemediationRecommendations(params: {
   const examSlug = examSlugFromFieldId(params.fieldId);
 
   const topicForLinks = params.subjectId ?? params.weakConcepts[0] ?? params.weakest[0]?.conceptKey;
-  const deepDive =
-    examSlug && topicForLinks
-      ? getExamTopicStudyLinks(examSlug, topicForLinks).deepDiveHref
-      : undefined;
 
   if (!params.correct && examSlug) {
     const guide = resolveStudyGuideSection(examSlug, [
@@ -79,26 +73,6 @@ export function buildRemediationRecommendations(params: {
         });
       }
     }
-    const cards = resolveRelatedCards(examSlug, [params.subjectId, topicForLinks]);
-    if (cards) {
-      recs.push({
-        type: "foundational_review",
-        title: cards.title,
-        description: "Library cards for this topic.",
-        href: cards.href,
-        priority: 2,
-      });
-    }
-  }
-
-  if (!params.correct && deepDive && examSlug && topicForLinks) {
-    recs.push({
-      type: "foundational_review",
-      title: "Study this topic — deep dive",
-      description: "Eight-section review module matched to this question.",
-      href: deepDive,
-      priority: 3,
-    });
   }
 
   // Closed miss→retest loop: same topic, wheel-size block, autostart.

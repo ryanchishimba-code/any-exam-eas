@@ -37,11 +37,6 @@ const TOOLKIT_WINS = [
     body: "Structures and procedures for clinical exams.",
   },
   {
-    href: `${ROUTES.library}#hub-calculators`,
-    title: "Lab values & calculators",
-    body: "Board-relevant ranges and clinical calculators.",
-  },
-  {
     href: ROUTES.toolkit,
     title: "Full toolkit",
     body: "Official blueprints, compare guides, and more free tools.",

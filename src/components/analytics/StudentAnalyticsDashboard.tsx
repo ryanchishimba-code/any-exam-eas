@@ -2,19 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, BarChart3, BookMarked, GraduationCap } from "lucide-react";
+import { ArrowRight, BarChart3, Layers } from "lucide-react";
 import { ReadinessRing } from "@/components/study/ReadinessRing";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
 import { recentTestHref } from "@/lib/edtech/recent-test-links";
-import { libraryTopicHref, spacedReviewHref, topicRetestHref } from "@/lib/edtech/practice-links";
+import { spacedReviewHref, topicRetestHref } from "@/lib/edtech/practice-links";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
-import {
-  getMemoryCardIdsForTopic,
-  normalizeWeakAreaTopicKey,
-} from "@/lib/library/weak-area-map";
+import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
+import { ROUTES } from "@/lib/routes";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { studyUi } from "@/lib/study/study-ui";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
@@ -295,7 +293,18 @@ export function StudentAnalyticsDashboard({
         </section>
 
         <section className={studyUi.chartPanel}>
-          <h3 className={studyUi.sectionTitle}>Weak areas — remediation</h3>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className={studyUi.sectionTitle}>Weak areas — remediation</h3>
+            {examSlug === "pance" ? (
+              <Link
+                href={ROUTES.panceFeed}
+                className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
+              >
+                <Layers className="h-3.5 w-3.5" aria-hidden />
+                PANCE Feed
+              </Link>
+            ) : null}
+          </div>
           {weakTopics.length === 0 ? null : (
             <ul className="mt-4 space-y-3">
               {weakTopics.slice(0, 6).map((t) => (
@@ -304,8 +313,6 @@ export function StudentAnalyticsDashboard({
                     <span className="font-medium">{t.name}</span>
                     <span className="flex flex-wrap items-center justify-end gap-2">
                       <WeakTopicFixLink conceptKey={t.id} fieldId={t.fieldId} />
-                      <WeakTopicDeepDiveLink conceptKey={t.id} fieldId={t.fieldId} />
-                      <WeakTopicCardsLink conceptKey={t.id} fieldId={t.fieldId} />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
                         {t.masteryScore}%
                       </span>
@@ -382,31 +389,6 @@ export function StudentAnalyticsDashboard({
   );
 }
 
-/** Deep dive link for a weak topic when a review module exists. */
-function WeakTopicDeepDiveLink({
-  conceptKey,
-  fieldId,
-}: {
-  conceptKey: string;
-  fieldId: string;
-}) {
-  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
-  const examSlug = examSlugFromFieldId(fieldId);
-  if (!examSlug) return null;
-  const links = getExamTopicStudyLinks(examSlug, topicKey);
-  if (!links.deepDiveHref) return null;
-
-  return (
-    <Link
-      href={links.deepDiveHref}
-      className="inline-flex items-center gap-1 rounded-full bg-[var(--study-accent)] px-2 py-0.5 text-[11px] font-semibold text-[var(--study-accent-on,#fff)] transition hover:bg-[var(--study-accent-hover)]"
-    >
-      <GraduationCap className="h-3 w-3" aria-hidden />
-      Deep dive
-    </Link>
-  );
-}
-
 /** One-tap closed-loop retest for a weak topic. */
 function WeakTopicFixLink({
   conceptKey,
@@ -428,29 +410,6 @@ function WeakTopicFixLink({
     >
       <ArrowRight className="h-3 w-3" aria-hidden />
       Fix this weakness
-    </Link>
-  );
-}
-
-/** Links a weak topic to its recommended memory cards on /library, when any exist. */
-function WeakTopicCardsLink({
-  conceptKey,
-  fieldId,
-}: {
-  conceptKey: string;
-  fieldId: string;
-}) {
-  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
-  const examSlug = examSlugFromFieldId(fieldId);
-  if (!examSlug || getMemoryCardIdsForTopic(topicKey).length === 0) return null;
-
-  return (
-    <Link
-      href={libraryTopicHref(examSlug, topicKey)}
-      className="inline-flex items-center gap-1 rounded-full border border-[var(--study-accent)]/25 bg-[var(--study-accent)]/10 px-2 py-0.5 text-[11px] font-semibold text-[var(--study-accent)] transition hover:bg-[var(--study-accent)]/15"
-    >
-      <BookMarked className="h-3 w-3" aria-hidden />
-      Memory cards
     </Link>
   );
 }

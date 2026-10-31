@@ -9,7 +9,8 @@ import {
   USMLE_TOPIC_MODULES,
   modulesForStage,
 } from "@/lib/edtech/learning-hub";
-import { highYieldTopicsHref, deepDiveTopicHref, highYieldTopicHref } from "@/lib/edtech/practice-links";
+import { studyHubHref } from "@/lib/learning/roadmap-links";
+import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -51,12 +52,14 @@ export function LearningHubPanel({ examSlug }: { examSlug: ExamSlug }) {
             preparing for boards.
           </p>
         </div>
-        <Link
-          href={highYieldTopicsHref(examSlug)}
-          className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
-        >
-          All topics →
-        </Link>
+        {examSlug === "pance" ? (
+          <Link
+            href={ROUTES.panceFeed}
+            className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
+          >
+            PANCE Feed →
+          </Link>
+        ) : null}
       </div>
 
       {loading ? (
@@ -105,11 +108,7 @@ export function LearningHubPanel({ examSlug }: { examSlug: ExamSlug }) {
               {clerkshipModules.map((mod) => (
                 <Link
                   key={mod.id}
-                  href={
-                    mod.reviewTopicSlug
-                      ? deepDiveTopicHref("usmle", mod.reviewTopicSlug)
-                      : highYieldTopicHref("usmle", mod.slug)
-                  }
+                  href={studyHubHref("usmle")}
                   className="group rounded-xl border border-black/[0.06] bg-white px-4 py-3 transition hover:border-indigo-200 hover:shadow-sm"
                 >
                   <p className="text-xs font-medium uppercase tracking-wide text-indigo-600">

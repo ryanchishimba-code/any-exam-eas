@@ -21,7 +21,6 @@ export const metadata = buildToolkitHubMetadata();
  * Real in-product / marketing routes used below (verified against ROUTES + examMarketingPath):
  * - Exam hubs: /usmle /nclex /naplex /pance /aanp-fnp /npte-pt
  * - Reference books: trial signup (manuscript stays behind the premium reader)
- * - Lab values & calculators: /library#hub-calculators
  * - Top 500 drugs: /study/drugs300
  * - Anatomy Explorer: /anatomy
  * - Roadmap (Study Hub): /dashboard
@@ -44,11 +43,6 @@ const IN_PRODUCT_LINKS = [
     title: card.title,
     body: card.body,
   })),
-  {
-    href: `${ROUTES.library}#hub-calculators`,
-    title: "Lab values & calculators",
-    body: "Clinical calculators and study tools in Library.",
-  },
   {
     href: ROUTES.drugs300,
     title: DRUGS_DECK_MARKETING_TITLE,

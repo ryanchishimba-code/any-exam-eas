@@ -82,13 +82,13 @@ const VALUE_PILLARS = [
   },
   {
     icon: Brain,
-    title: "Library & Memory Cards",
-    detail: "High-yield flip cards, weak-area shortcuts, and links to Review Modules.",
+    title: "Study guides",
+    detail: "Blueprint chapters on the boards that include a guide.",
   },
   {
     icon: BookOpen,
-    title: "Review Modules & Anatomy Studio",
-    detail: "Eight-section deep dives plus 3D anatomy, video, and CT Atlas — tied to your exam.",
+    title: "Anatomy Studio",
+    detail: "3D anatomy, video, and CT Atlas — tied to your exam.",
   },
   {
     icon: MapPin,

@@ -36,19 +36,19 @@ const benefits = [
   {
     icon: Layers,
     visualId: "hero-app-mockup",
-    outcome: "Library",
-    title: "Memory Cards & weak-area shortcuts",
+    outcome: "Study tools",
+    title: "Guides, anatomy, and the drug deck",
     description:
-      "Flip high-yield cards by subject, open linked Review Modules, and jump to drugs or anatomy from one study home base.",
+      "Open a study guide when your board has one, explore 3D anatomy, and review drugs from the same account.",
     accent: "from-cyan-500 to-sky-500",
   },
   {
     icon: BarChart3,
     visualId: "screenshot-analytics",
-    outcome: "Review Modules",
-    title: "Textbook-depth topics when you need them",
+    outcome: "Weak areas",
+    title: "Practice the topics you miss",
     description:
-      "Eight-section modules on sepsis, heart failure, delegation, and more — linked from questions and Memory Cards.",
+      "Missed questions open a retest on the same topic, with rationales you can learn from.",
     accent: "from-cyan-600 to-teal-500",
   },
   {
@@ -105,7 +105,7 @@ export function LandingFeatures() {
             <span className="aee-display-accent-vibrant">serious licensing prep</span>
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-sm text-[var(--color-ink-muted)]">
-            Curated question banks, Library, Review Modules, Anatomy Studio, and timed
+            Curated question banks, study guides, Anatomy Studio, and timed
             simulations — without paying separately for each exam.
           </p>
         </div>

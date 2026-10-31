@@ -75,8 +75,8 @@ describe("parseTopicPracticeReturn", () => {
     });
     const parsed = parseTopicPracticeReturn(params);
     expect(parsed).toEqual({
-      href: "/dashboard/topics?topic=sepsis-shock",
-      label: "Sepsis & Shock Prioritization",
+      href: "/dashboard?exam=nclex",
+      label: "study tools",
     });
   });
 
@@ -123,7 +123,8 @@ describe("parsePracticeReturn", () => {
       returnStructure: "heart",
       returnStructureName: "Heart",
     });
-    expect(parsePracticeReturn(params)?.label).toBe("Sepsis module");
+    expect(parsePracticeReturn(params)?.label).toBe("study tools");
+    expect(parsePracticeReturn(params)?.href).toBe("/dashboard?exam=nclex");
   });
 
   it("falls back to anatomy return when no topic return", () => {

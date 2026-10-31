@@ -5,6 +5,7 @@ import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { clearActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { clearAllStudySessionsLocally } from "@/lib/questions/storage";
 import { fetchSubjectCounts } from "@/lib/study/subject-counts-client";
+import { boardStudyToolsPath } from "@/lib/navigation/retired-study-redirects";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -133,12 +134,13 @@ export function resolvePathAfterExamSwitch(
     return `${ROUTES.questionBank}?${qs.toString()}`;
   }
 
-  if (pathname === ROUTES.library || pathname.startsWith(`${ROUTES.library}/`)) {
-    const qs = new URLSearchParams(searchParams.toString());
-    qs.set("exam", nextExamSlug);
-    qs.delete("card");
-    qs.delete("topic");
-    return `${ROUTES.library}?${qs.toString()}`;
+  if (
+    pathname === ROUTES.library ||
+    pathname.startsWith(`${ROUTES.library}/`) ||
+    pathname === ROUTES.highYieldTopics ||
+    pathname.startsWith(`${ROUTES.highYieldTopics}/`)
+  ) {
+    return boardStudyToolsPath(nextExamSlug);
   }
 
   if (pathname.startsWith(`${ROUTES.fullExam}/`)) {

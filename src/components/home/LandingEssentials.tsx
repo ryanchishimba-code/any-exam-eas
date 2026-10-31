@@ -67,8 +67,8 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
 
 const subscriberValue = [
   {
-    title: "Library & Memory Cards",
-    detail: "Flip high-yield cards, track weak areas, and open Review Modules from one study home base.",
+    title: "Study guides and analytics",
+    detail: "Blueprint chapters where your board includes a guide, plus readiness and weak-area practice.",
   },
   {
     title: "Curated, aligned question banks",
@@ -96,7 +96,7 @@ export function LandingEssentials() {
             Everything you need for board exam prep.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--color-ink-muted)]">
-            NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus Library, Review Modules,
+            NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus study guides,
             Anatomy Studio, and {DRUGS_DECK_MARKETING_TITLE} with FDA reference search that follow you across devices.
           </p>
         </div>

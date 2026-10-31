@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { BookMarked, BookOpen, GraduationCap, Sparkles } from "lucide-react";
+import { BookOpen, Layers, Sparkles } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
+import { ROUTES } from "@/lib/routes";
 import {
   getExamTopicStudyLinks,
   getWeakTopicsFromBreakdown,
@@ -43,8 +44,18 @@ export function FullExamStudyLinks({
         </h2>
       </div>
       <p className={cn(feUi.sectionHint, "mt-1")}>
-        Jump to your Library — memory cards, review modules, and targeted practice.
+        Practice the topics you missed
+        {examSlug === "pance" ? ", or open the PANCE Feed." : "."}
       </p>
+      {examSlug === "pance" ? (
+        <Link
+          href={ROUTES.panceFeed}
+          className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] hover:underline"
+        >
+          <Layers className="h-4 w-4" aria-hidden />
+          PANCE Feed
+        </Link>
+      ) : null}
 
       <ul className="mt-4 space-y-3">
         {weak.map((row) => {
@@ -63,19 +74,9 @@ export function FullExamStudyLinks({
                   <p className="font-semibold text-[var(--color-ink)]">{row.topic}</p>
                   <p className="text-xs text-[var(--color-ink-muted)]">
                     {row.correct}/{row.total} correct ({row.pct}%)
-                    {links.memoryCardIds.length > 0
-                      ? ` · ${links.memoryCardIds.length} memory card(s)`
-                      : ""}
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <Link
-                    href={links.libraryHref}
-                    className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)] px-3 py-1.5 text-xs font-bold text-white hover:opacity-90"
-                  >
-                    <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                    Library
-                  </Link>
                   <Link
                     href={practiceHref}
                     className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}
@@ -83,27 +84,6 @@ export function FullExamStudyLinks({
                     <BookOpen className="h-3.5 w-3.5" aria-hidden />
                     Practice {practiceCount}
                   </Link>
-                  {links.firstCardHref ? (
-                    <Link
-                      href={links.firstCardHref}
-                      className={cn(feUi.footerBtn, "border-amber-300/60 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-900")}
-                    >
-                      <BookMarked className="h-3.5 w-3.5" aria-hidden />
-                      Memory card
-                    </Link>
-                  ) : null}
-                  {links.deepDiveHref ? (
-                    <Link
-                      href={links.deepDiveHref}
-                      className={cn(
-                        feUi.footerBtn,
-                        "border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 px-3 py-1.5 text-xs text-[var(--color-accent)]"
-                      )}
-                    >
-                      <GraduationCap className="h-3.5 w-3.5" aria-hidden />
-                      Deep dive
-                    </Link>
-                  ) : null}
                   <RelatedAnatomyLinks
                     examSlug={examSlug}
                     structures={links.anatomyStructures}
