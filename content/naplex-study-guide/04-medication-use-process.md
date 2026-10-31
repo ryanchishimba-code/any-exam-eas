@@ -1,6 +1,6 @@
 # Chapter 4 — Medication Use Process
 
-> **Study aid only.** Domain 2 themes (~25%). Process safety for exam prep — follow employer policy and current law/standards in practice.
+> **Study aid only.** Domain 2 (~25%). Process safety for exam prep — follow employer policy and current law/standards in practice.
 
 ![Medication use process pipeline](visuals/med-use-process-pipeline.svg)
 
@@ -18,27 +18,27 @@ Domain 2 evaluates whether you can move a medication safely from **decision → 
 
 ### Key concepts
 
-- Appropriateness for indication, dose, route, duration  
-- Allergy / ADR history reconciliation (reaction type matters)  
-- Duplicate therapy and therapeutic duplication  
-- Interaction check (PK/PD) with actionable plan  
+- Appropriateness for indication, dose, route, duration
+- Allergy / ADR history reconciliation (reaction type matters)
+- Duplicate therapy and therapeutic duplication
+- Interaction check (PK/PD) with actionable plan
 - Missing information: weight, CrCl, indication for PRN, stop dates for antibiotics, BSA for chemo
 
 ### Pharmacist actions
 
-1. Clarify incomplete/unsafe orders before dispensing.  
-2. Propose alternatives when contraindicated.  
-3. Document interventions professionally.  
+1. Clarify incomplete/unsafe orders before dispensing.
+2. Propose alternatives when contraindicated.
+3. Document interventions professionally.
 4. Escalate high-alert uncertainty — don’t “hope the nurse catches it.”
 
 ### Red flags
 
 > **Red flag:** Daily methotrexate dosing when the regimen should be weekly (rheum/derm classic).
 
-- Unusually high opioid or insulin doses without context  
-- Potassium concentrate free-text orders  
-- Pediatric liquid without weight  
-- Anticoagulant + epidural without hold plan  
+- Unusually high opioid or insulin doses without context
+- Potassium concentrate free-text orders
+- Pediatric liquid without weight
+- Anticoagulant + epidural without hold plan
 - “Continue home meds” without reconciliation
 
 ### Indication–Safety–Counseling–Monitoring on every new start
@@ -51,10 +51,10 @@ Even process items are ISCM: if indication is unclear, safety checks incomplete,
 
 ### Key concepts
 
-- CPOE, e-prescribing benefits and new error types (wrong patient, wrong sig dropdown, wrong product selected from autocomplete)  
-- Tall-man lettering, barcode verification themes  
-- Allergy documentation quality (rash vs anaphylaxis)  
-- Med reconciliation at transitions  
+- CPOE, e-prescribing benefits and new error types (wrong patient, wrong sig dropdown, wrong product selected from autocomplete)
+- Tall-man lettering, barcode verification
+- Allergy documentation quality (rash vs anaphylaxis)
+- Med reconciliation at transitions
 - Alert fatigue: still triage serious alerts
 
 ### Remember this
@@ -67,19 +67,19 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Key concepts
 
-- DAW codes / substitution themes (therapeutic vs generic equivalence concepts)  
-- Orange Book AB ratings conceptual awareness  
-- Narrow therapeutic index substitution caution themes  
-- Biosimilars: naming and interchangeability concepts  
-- Packaging: unit dose, child-resistant containers, compliance packaging  
+- DAW codes / substitution (therapeutic vs generic equivalence concepts)
+- Orange Book AB ratings conceptual awareness
+- Narrow therapeutic index substitution caution
+- Biosimilars: naming and interchangeability concepts
+- Packaging: unit dose, child-resistant containers, compliance packaging
 - Beyond-use dating on reconstituted products; auxiliary labels that matter (shake, refrigerate, take with food)
 
 ### Counseling at pickup (high-yield)
 
-- Directions in patient language + teach-back for devices  
-- Missed-dose guidance when standard  
-- Storage (insulin, biologics, suspensions)  
-- Serious ADR warning symptoms  
+- Directions in patient language + teach-back for devices
+- Missed-dose guidance when standard
+- Storage (insulin, biologics, suspensions)
+- Serious ADR warning symptoms
 - Device technique (inhalers, pens, nasal sprays, patches)
 
 ---
@@ -88,15 +88,15 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Key concepts
 
-- Rights of administration mindset (patient, drug, dose, route, time + documentation)  
-- Immunization: screen for contraindications/precautions, age indications, spacing, live-vaccine themes, adverse event reporting awareness (VAERS concept)  
-- Injection site / route / IM vs SQ; needle length for body habitus themes  
-- Anaphylaxis preparedness themes when vaccinating (epinephrine available)
+- Rights of administration mindset (patient, drug, dose, route, time + documentation)
+- Immunization: screen for contraindications/precautions, age indications, spacing, live-vaccine, adverse event reporting awareness (VAERS concept)
+- Injection site / route / IM vs SQ; needle length for body habitus
+- Anaphylaxis preparedness when vaccinating (epinephrine available)
 
 ### Assessment cues
 
-- Pregnancy, immunocompromise, recent blood products (live vaccine timing themes)  
-- Prior Guillain-Barré or severe allergy to components — follow current ACIP-style caution framing  
+- Pregnancy, immunocompromise, recent blood products (live vaccine timing)
+- Prior Guillain-Barré or severe allergy to components — follow current ACIP-style caution framing
 - Moderate–severe acute illness may defer some vaccines; mild cold usually does not
 
 ### Pharmacist immunization workflow
@@ -109,17 +109,17 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Key concepts
 
-- Labs for efficacy and toxicity scheduled at start  
-- Adherence check-ins and refill gap patterns  
-- High-alert medication lists; independent double-checks themes  
-- LASA (look-alike sound-alike) pairs — storage separation  
-- ISMP-style safety habits (conceptual): avoid abbreviations that harm, read-back, dilute properly  
-- Error reporting culture — fix systems, not only blame people  
+- Labs for efficacy and toxicity scheduled at start
+- Adherence check-ins and refill gap patterns
+- High-alert medication lists; independent double-checks
+- LASA (look-alike sound-alike) pairs — storage separation
+- ISMP-style safety habits (conceptual): avoid abbreviations that harm, read-back, dilute properly
+- Error reporting culture — fix systems, not only blame people
 - Smart pumps / concentration standardization reduce IV errors
 
 ### High-alert process examples
 
-| Drug / class | Process control themes |
+| Drug / class | Process control |
 | --- | --- |
 | Insulin | Standard concentrations; U-500 safeguards; pen labeling |
 | Anticoagulants | Indication, overlapping therapy check, procedure holds |
@@ -130,8 +130,8 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Remember this
 
-- Weekly vs daily methotrexate is a forever trap.  
-- Immunization = screening + technique + emergency readiness + documentation.  
+- Weekly vs daily methotrexate is a forever trap.
+- Immunization = screening + technique + emergency readiness + documentation.
 - Monitoring plans belong in Domain 2 *and* Domain 3 thinking.
 
 ---
@@ -140,15 +140,15 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Key concepts
 
-- Generic substitution vs therapeutic interchange (class swap under protocol)  
-- Orange Book therapeutic equivalence codes (AB) conceptual use  
-- Narrow therapeutic index drugs — extra caution with product switches  
-- Biosimilar interchangeability vs “highly similar” — follow current FDA + state rules (law detail → MPJE)  
+- Generic substitution vs therapeutic interchange (class swap under protocol)
+- Orange Book therapeutic equivalence codes (AB) conceptual use
+- Narrow therapeutic index drugs — extra caution with product switches
+- Biosimilar interchangeability vs “highly similar” — follow current FDA + state rules (law detail → MPJE)
 - During shortages: evidence-based alternatives + prescriber communication + patient counseling on device/technique changes
 
 ### Remember this
 
-- Interchange protocols still need clinical appropriateness.  
+- Interchange protocols still need clinical appropriateness.
 - Teach device changes explicitly (inhaler/pen switches).
 
 ---
@@ -157,9 +157,9 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Key concepts
 
-- Corresponding responsibility themes when verifying controlled Rx  
-- PDMP check habits where required (jurisdiction-specific — MPJE)  
-- Partial fills / dating / inventory concepts at high level for NAPLEX ops awareness  
+- Corresponding responsibility when verifying controlled Rx
+- PDMP check habits where required (jurisdiction-specific — MPJE)
+- Partial fills / dating / inventory concepts at high level for NAPLEX ops awareness
 - Diversion red flags: early fills pattern, cash-only, multi-prescriber — address professionally and legally
 
 **Do not** treat this as complete controlled-substance law review.
@@ -170,30 +170,30 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ### Key concepts
 
-- Admission/discharge/AMC: best possible med history  
-- High-risk: anticoagulants, insulin, opioids, immunosuppressants, anticonvulsants  
-- Clarify OTC/herbals — they count  
-- Provide updated list + teach changes (“stop / start / change”)  
+- Admission/discharge/AMC: best possible med history
+- High-risk: anticoagulants, insulin, opioids, immunosuppressants, anticonvulsants
+- Clarify OTC/herbals — they count
+- Provide updated list + teach changes (“stop / start / change”)
 - Discharge counseling beats handing a bag silently
 
 ### Common transition failures
 
-- Duplicate anticoagulants (bridging leftovers)  
-- Wrong insulin product/concentration after formulary swap  
+- Duplicate anticoagulants (bridging leftovers)
+- Wrong insulin product/concentration after formulary swap
 - Missing rebound plans (steroids, PPIs, beta blockers, clonidine, denosumab)
 
 ---
 
 ## Topic I — Adverse event reporting & REMS awareness
 
-- FAERS / MedWatch conceptual reporting for serious ADRs  
-- REMS elements: may include prescriber certification, pharmacy certification, patient enrollment, labs (clozapine ANC, isotretinoin iPLEDGE, etc.)  
-- Vaccines: VAERS awareness after immunization clinics  
+- FAERS / MedWatch conceptual reporting for serious ADRs
+- REMS elements: may include prescriber certification, pharmacy certification, patient enrollment, labs (clozapine ANC, isotretinoin iPLEDGE, etc.)
+- Vaccines: VAERS awareness after immunization clinics
 - Document interventions that prevent harm — they are part of the medication-use record
 
 ### Remember this
 
-- REMS is not optional paperwork trivia — it gates safe access.  
+- REMS is not optional paperwork trivia — it gates safe access.
 - Reporting serious ADRs improves population safety.
 
 ---
@@ -216,37 +216,41 @@ Technology reduces some errors and creates others — still think. Barcode scan 
 
 ## Concept checks
 
-**1.** Patient picks up new warfarin. Which dispensing action is most complete?  
-A. Hand vial only  B. Verify dose/indication interactions, counsel diet/bleeding signs, confirm INR follow-up plan  C. Substitute to any anticoagulant silently  D. Skip allergy check because history unknown  
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+**1.** Patient picks up new warfarin. Which dispensing action is most complete?
+A. Hand vial only B. Confirm dose/indication interactions, counsel diet/bleeding signs, confirm INR follow-up plan C. Substitute to any anticoagulant silently D. Skip allergy check because history unknown
 **Answer:** B.
 
-**2.** Best immediate step if order is incomplete for a pediatric liquid antibiotic?  
-A. Guess weight  B. Clarify weight/dose with prescriber before dispensing  C. Dispense adult tablet  D. Ignore duration  
+**2.** Best immediate step if order is incomplete for a pediatric liquid antibiotic?
+A. Guess weight B. Clarify weight/dose with prescriber before dispensing C. Dispense adult tablet D. Ignore duration
 **Answer:** B.
 
-**3.** Shortage of a patient’s inhaler brand device. Best process?  
-A. Omit therapy until next year  B. Identify equivalent therapy/device per protocol, ensure technique counseling, communicate change  C. Substitute oral steroid chronically without plan  D. Double unrelated nasal spray  
+**3.** Shortage of a patient’s inhaler brand device. Best process?
+A. Omit therapy until next year B. Identify equivalent therapy/device per protocol, ensure technique counseling, communicate change C. Substitute oral steroid chronically without plan D. Double unrelated nasal spray
 **Answer:** B.
 
-**4.** REMS for clozapine primarily exists to manage which monitoring theme?  
-A. Hair loss only  B. Severe neutropenia / ANC monitoring framework  C. Cough  D. Hyperglycemia alone without labs  
+**4.** REMS for clozapine primarily exists to manage which monitoring ?
+A. Hair loss only B. Severe neutropenia / ANC monitoring framework C. Cough D. Hyperglycemia alone without labs
 **Answer:** B.
 
-**5.** Wrong-patient CPOE risk is best reduced by which habit theme?  
-A. Ignoring barcodes  B. Dual identifiers + verify before act  C. Relying on room number alone  D. Disabling all alerts forever  
+**5.** Wrong-patient CPOE risk is best reduced by which habit ?
+A. Ignoring barcodes B. Dual identifiers + Confirm before act C. Relying on room number alone D. Disabling all alerts forever
 **Answer:** B.
 
 ---
 
 ## Topic J — Independent double-checks & high-alert workflow
 
-Independent double-check means **two qualified people separately verify** critical elements (patient, drug, dose, route, pump settings) — not one person rubber-stamping the other. Use for chemo, pediatric high-alert, concentrated electrolytes, and per policy for insulin/anticoagulants.
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+Independent double-check means **two qualified people separately Confirm** critical elements (patient, drug, dose, route, pump settings) — not one person rubber-stamping the other. Use for chemo, pediatric high-alert, concentrated electrolytes, and per policy for insulin/anticoagulants.
 
 ### Pump programming traps
 
-- Wrong concentration selected in drug library  
-- Weight entered in lb instead of kg  
-- Bolus vs continuous line mix-ups  
+- Wrong concentration selected in drug library
+- Weight entered in lb instead of kg
+- Bolus vs continuous line mix-ups
 - Secondary infusion “piggyback” rate errors
 
 Pharmacist verifying IV drips should confirm bag label concentration matches order *and* pump library entry.
@@ -255,10 +259,10 @@ Pharmacist verifying IV drips should confirm bag label concentration matches ord
 
 ## Topic K — Medication safety culture & just culture
 
-- Human error → console, train, system design  
-- At-risk behavior → coach  
-- Reckless conduct → disciplinary pathway  
-- Hide-the-error cultures guarantee repeat harm  
+- Human error → console, train, system design
+- At-risk behavior → coach
+- Reckless conduct → disciplinary pathway
+- Hide-the-error cultures guarantee repeat harm
 - Near-miss reporting is gold — celebrate reporting, fix latent conditions (look-alike storage, ambiguous labels, staffing interruptions)
 
 ### Interruptions during verification
@@ -271,12 +275,14 @@ Leadership (Domain 5 crossover): protect sterile compounding and final verificat
 
 ### Screening questions that change the plan
 
-- Prior anaphylaxis to vaccine component  
-- Immunosuppression / household contacts (live vaccine nuances)  
-- Pregnancy (live vaccines generally avoided)  
-- Recent illness severity  
-- History of Guillain-Barré timing themes for certain vaccines (follow current ACIP)  
-- Age/indication mismatch (zoster, pneumococcal product choice themes
+Source: ACIP immunization schedule, 2026.
+
+- Prior anaphylaxis to vaccine component
+- Immunosuppression / household contacts (live vaccine nuances)
+- Pregnancy (live vaccines generally avoided)
+- Recent illness severity
+- History of Guillain-Barré timing for certain vaccines (follow current ACIP)
+- Age/indication mismatch (zoster, pneumococcal product choice
 
 ### Documentation essentials
 
@@ -284,16 +290,16 @@ Product, lot, expiration, site, route, dose, VIS date, consenter, vaccinator —
 
 ### Anaphylaxis readiness
 
-Epinephrine IM first-line; call emergency services; protocols for observation and second dose themes. Antihistamines are adjunctive, not a substitute.
+Epinephrine IM first-line; call emergency services; protocols for observation and second dose. Antihistamines are adjunctive, not a substitute.
 
 ---
 
 ## Topic M — Med rec script pharmacists can run
 
-1. Collect: Rx + OTC + herbals + samples + specialty meds  
-2. Compare: home vs hospital vs discharge  
-3. Correct: duplicates, omissions, dose discrepancies  
-4. Communicate: patient + team + updated list  
+1. Collect: Rx + OTC + herbals + samples + specialty meds
+2. Compare: home vs hospital vs discharge
+3. Correct: duplicates, omissions, dose discrepancies
+4. Communicate: patient + team + updated list
 5. Counsel: what changed and why; red-flag symptoms
 
 **High-yield discrepancy:** “Home warfarin + new prophylactic heparin both active” or “two APAP-containing products.”
@@ -302,14 +308,14 @@ Epinephrine IM first-line; call emergency services; protocols for observation an
 
 ## Topic N — Specialty pharmacy & REMS operations (exam level)
 
-- Specialty: cold chain, financial onboarding, adherence calendars, lab gatekeeping  
-- REMS: enrollments, negative pregnancy tests, ANC thresholds — **no product until elements met**  
+- Specialty: cold chain, financial onboarding, adherence calendars, lab gatekeeping
+- REMS: enrollments, negative pregnancy tests, ANC thresholds — **no product until elements met**
 - 340B / PA delays affect adherence — help navigate without inventing coverage rules
 
 ### Remember this (chapter close)
 
-- Domain 2 rewards careful process more than trivia brand names.  
-- Incomplete order → clarify, don’t guess.  
+- Domain 2 rewards careful process more than trivia brand names.
+- Incomplete order → clarify, don’t guess.
 - Immunizations and high-alert workflows are core pharmacist identity skills on NAPLEX.
 
 ---

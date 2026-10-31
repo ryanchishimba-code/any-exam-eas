@@ -230,7 +230,7 @@ describe("StudyGuideReader", () => {
       "https://www.ncsbn.org"
     );
     expect(screen.getByRole("note")).toHaveTextContent(
-      "Portions are AI-generated; verify against authoritative sources"
+      "Portions are AI-generated. Where this chapter names a guideline and year, that citation is the source for the point."
     );
   });
 

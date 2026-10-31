@@ -20,19 +20,19 @@ Renal/hepatic items are classic **Domain 1 + 3** crossovers: estimate function, 
 
 ### Key concepts
 
-- CrCl (Cockcroft–Gault) still common for drug dosing tables; eGFR (CKD-EPI) for staging CKD — know which the label references.  
-- Weight choice (TBW/IBW/AdjBW) matters in extremes — follow reference for the drug.  
-- SCr lag in AKI — don’t assume “normal SCr” = normal function in frail elderly.  
-- Dialysis: does the drug clear? Dose after HD when indicated.  
+- CrCl (Cockcroft–Gault) still common for drug dosing tables; eGFR (CKD-EPI) for staging CKD — know which the label references.
+- Weight choice (TBW/IBW/AdjBW) matters in extremes — follow reference for the drug.
+- SCr lag in AKI — don’t assume “normal SCr” = normal function in frail elderly.
+- Dialysis: does the drug clear? Dose after HD when indicated.
 - Cystatin C / measured GFR rarely on NAPLEX — stick to stem data.
 
 ### Pharmacist renal dosing tree (applied)
 
-1. Identify renally cleared / nephrotoxic drugs on profile.  
-2. Compute/estimate function with correct patient factors.  
-3. Decide: **full dose / reduce dose / extend interval / avoid / monitor levels**.  
-4. Set monitoring (SCr, K⁺, drug levels, urine output inpatient).  
-5. Reassess frequently in AKI — yesterday’s CrCl is stale.  
+1. Identify renally cleared / nephrotoxic drugs on profile.
+2. Compute/estimate function with correct patient factors.
+3. Decide: **full dose / reduce dose / extend interval / avoid / monitor levels**.
+4. Set monitoring (SCr, K⁺, drug levels, urine output inpatient).
+5. Reassess frequently in AKI — yesterday’s CrCl is stale.
 6. Document the estimate used.
 
 ### High-yield renally adjusted / caution classes
@@ -41,7 +41,7 @@ Renal/hepatic items are classic **Domain 1 + 3** crossovers: estimate function, 
 
 ### Nephrotoxin awareness
 
-- NSAIDs, iodinated contrast themes, AG, amphotericin, calcineurin inhibitors, high-dose vancomycin ± pip-tazo controversy themes — monitor.  
+- NSAIDs, iodinated contrast, AG, amphotericin, calcineurin inhibitors, high-dose vancomycin ± pip-tazo controversy — monitor.
 - Triple whammy: ACEI/ARB + diuretic + NSAID → AKI risk counseling.
 
 > **Red flag:** Starting metformin or SGLT2 without checking eGFR trajectory in acute illness.
@@ -52,58 +52,58 @@ Renal/hepatic items are classic **Domain 1 + 3** crossovers: estimate function, 
 
 ### Anemia of CKD
 
-- ESA therapy when indicated; iron repletion first often; Hb targets not normalized aggressively (thrombosis risk themes).  
-- Monitor BP with ESAs.  
+- ESA therapy when indicated; iron repletion first often; Hb targets not normalized aggressively (thrombosis risk).
+- Monitor BP with ESAs.
 - IV vs oral iron: formulation reaction differences.
 
 ### Mineral bone disorder
 
-- Phosphate binders (calcium vs non-calcium); take **with meals**.  
-- Separate binders from interacting drugs (levothyroxine, FQs, etc.) per labeling.  
-- Vitamin D analogs / calcimimetics themes; watch Ca/P/PTH.  
+- Phosphate binders (calcium vs non-calcium); take **with meals**.
+- Separate binders from interacting drugs (levothyroxine, FQs, etc.) per labeling.
+- Vitamin D analogs / calcimimetics; watch Ca/P/PTH.
 - Avoid aluminum binders chronically.
 
 ### Hyperkalemia
 
-- Diet + binders (patiromer/SZC themes) + review ACEI/ARB/MRA/TMP-SMX/salt substitutes.  
-- Emergency treatment is inpatient algorithm (calcium to stabilize membrane, insulin/glucose, etc.).  
+- Diet + binders (patiromer/SZC) + review ACEI/ARB/MRA/TMP-SMX/salt substitutes.
+- Emergency treatment is inpatient algorithm (calcium to stabilize membrane, insulin/glucose, etc.).
 - Don’t blindly hold GDMT forever without cardiology/nephrology plan in HFrEF.
 
 ### Acidosis / volume
 
-- Bicarb therapy themes; loop diuretics for volume overload; careful in dialysis patients’ residual function.
+- Bicarb therapy; loop diuretics for volume overload; careful in dialysis patients’ residual function.
 
 ### Remember this
 
-- Binders with meals; separate from interacting drugs per labeling.  
+- Binders with meals; separate from interacting drugs per labeling.
 - ESA ≠ ignore iron.
 
 ---
 
-## Topic C — AKI vs CKD themes
+## Topic C — AKI vs CKD
 
 | Feature | AKI | CKD |
 | --- | --- | --- |
-| Time | Hours–days | ≥3 months themes |
+| Time | Hours–days | ≥3 months |
 | SCr | Rising acutely | Stable elevated / low GFR |
 | Drug move | Hold nephrotoxins; frequent adjust | Chronic dose tables; complication management |
 | Sick-day | Hold metformin/SGLT2/ACEI per protocols | Sick-day rules still apply |
 
-- Pre-renal vs intrinsic vs post-renal framing.  
-- Hold nephrotoxins / metformin / SGLT2 per sick-day rules.  
-- Dose-adjust antibiotics promptly.  
-- Contrast: hydration strategies when used.  
+- Pre-renal vs intrinsic vs post-renal framing.
+- Hold nephrotoxins / metformin / SGLT2 per sick-day rules.
+- Dose-adjust antibiotics promptly.
+- Contrast: hydration strategies when used.
 - Recovery ≠ automatic return to full home doses without check.
 
 ---
 
 ## Topic D — Dialysis considerations (high-level)
 
-- HD vs PD clearing differs.  
-- Dose after HD if significantly removed.  
-- Avoid drugs with toxic metabolites that accumulate.  
-- Monitor residual renal function drugs carefully.  
-- Heparin/citrate anticoagulation on circuit — institutional.  
+- HD vs PD clearing differs.
+- Dose after HD if significantly removed.
+- Avoid drugs with toxic metabolites that accumulate.
+- Monitor residual renal function drugs carefully.
+- Heparin/citrate anticoagulation on circuit — institutional.
 - Transplant waitlist meds (specialty) — infection prophylaxis calendars.
 
 ---
@@ -112,14 +112,14 @@ Renal/hepatic items are classic **Domain 1 + 3** crossovers: estimate function, 
 
 ### Key concepts
 
-- Child-Pugh categories appear in some labels more than INR alone.  
-- First-pass drugs may have ↑ bioavailability in cirrhosis.  
-- Avoid unnecessary hepatotoxins; counsel alcohol abstinence.  
-- Ascites: spironolactone ± furosemide ratios themes; avoid NSAIDs; careful large-volume paracentesis albumin themes.  
-- Hepatic encephalopathy: lactulose (goal soft stools), rifaximin adjunct; avoid sedatives when possible.  
-- Variceal bleed secondary prevention: nonselective beta blockers themes.  
-- SBP prophylaxis/treatment antibiotic themes.  
-- Acetaminophen: still usable carefully — counsel ceilings; combination products.  
+- Child-Pugh categories appear in some labels more than INR alone.
+- First-pass drugs may have ↑ bioavailability in cirrhosis.
+- Avoid unnecessary hepatotoxins; counsel alcohol abstinence.
+- Ascites: spironolactone ± furosemide ratios; avoid NSAIDs; careful large-volume paracentesis albumin.
+- Hepatic encephalopathy: lactulose (goal soft stools), rifaximin adjunct; avoid sedatives when possible.
+- Variceal bleed secondary prevention: nonselective beta blockers.
+- SBP prophylaxis/treatment antibiotic.
+- Acetaminophen: still usable carefully — counsel ceilings; combination products.
 - Coagulopathy ≠ automatic “never prophylax VTE” — nuanced inpatient decisions.
 
 ### Hepatotoxicity triage
@@ -139,23 +139,25 @@ Counsel: stop and seek care for jaundice, dark urine, severe fatigue, RUQ pain. 
 
 ### Remember this
 
-- Lactulose is titrated to stools, not a fixed vanity dose.  
-- NSAIDs + cirrhosis = bad idea (bleed/AKI/ascites).  
+- Lactulose is titrated to stools, not a fixed vanity dose.
+- NSAIDs + cirrhosis = bad idea (bleed/AKI/ascites).
 - Always recheck renal AND hepatic before “standard” dosing.
 
 ---
 
-## Topic F — Transplant pharmacotherapy themes
+## Topic F — Transplant pharmacotherapy
 
-- CNIs (tacrolimus/cyclosporine): narrow TI, levels, nephrotoxicity, CYP3A/P-gp interactions (azoles, rifampin, grapefruit).  
-- Mycophenolate: GI, cytopenias, teratogenicity counseling seriousness (REMS themes).  
-- mTOR inhibitors: wound healing, lipids, proteinuria themes.  
-- Steroids + infection prophylaxis calendars (PCP/CMV protocols).  
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+- CNIs (tacrolimus/cyclosporine): narrow TI, levels, nephrotoxicity, CYP3A/P-gp interactions (azoles, rifampin, grapefruit).
+- Mycophenolate: GI, cytopenias, teratogenicity counseling seriousness (REMS).
+- mTOR inhibitors: wound healing, lipids, proteinuria.
+- Steroids + infection prophylaxis calendars (PCP/CMV protocols).
 - Vaccinate before intensified immunosuppression when possible; avoid live vaccines when immunosuppressed.
 
 ### Remember this
 
-- Tacrolimus + strong CYP3A inhibitor → toxicity risk.  
+- Tacrolimus + strong CYP3A inhibitor → toxicity risk.
 - Every new drug → interaction check against transplant backbone.
 
 ---
@@ -178,24 +180,26 @@ Counsel: stop and seek care for jaundice, dark urine, severe fatigue, RUQ pain. 
 
 ## Concept checks
 
-**1.** Elderly patient, SCr 0.7, weight 45 kg — why might CrCl still be low?  
-A. SCr falsely reassuring due to low muscle mass  B. SCr always overestimates age  C. Weight irrelevant  D. CrCl unused in pharmacy  
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+**1.** Elderly patient, SCr 0.7, weight 45 kg — why might CrCl still be low?
+A. SCr falsely reassuring due to low muscle mass B. SCr always overestimates age C. Weight irrelevant D. CrCl unused in pharmacy
 **Answer:** A.
 
-**2.** Cirrhosis with ascites — analgesic to avoid routinely?  
-A. Cautious APAP within limits  B. Chronic NSAIDs  C. Lidocaine patch  D. Nonpharmacologic heat  
+**2.** Cirrhosis with ascites — analgesic to avoid routinely?
+A. Cautious APAP within limits B. Chronic NSAIDs C. Lidocaine patch D. Nonpharmacologic heat
 **Answer:** B.
 
-**3.** Lactulose for HE is titrated to?  
-A. Fixed 30 mL forever without stool goal  B. Soft stool frequency goals  C. INR normalization only  D. TSH  
+**3.** Lactulose for HE is titrated to?
+A. Fixed 30 mL forever without stool goal B. Soft stool frequency goals C. INR normalization only D. TSH
 **Answer:** B.
 
-**4.** Phosphate binders should generally be taken?  
-A. With meals  B. Only at midnight empty stomach always  C. Weekly  D. IV push only  
+**4.** Phosphate binders should generally be taken?
+A. With meals B. Only at midnight empty stomach always C. Weekly D. IV push only
 **Answer:** A.
 
-**5.** ACEI + diuretic + NSAID risk theme?  
-A. Improved GFR always  B. AKI (“triple whammy”)  C. No interaction  D. Cures hyperkalemia  
+**5.** ACEI + diuretic + NSAID risk ?
+A. Improved GFR always B. AKI (“triple whammy”) C. No interaction D. Cures hyperkalemia
 **Answer:** B.
 
 ---
@@ -204,9 +208,9 @@ A. Improved GFR always  B. AKI (“triple whammy”)  C. No interaction  D. Cure
 
 **Case 1:** Gabapentin for neuropathy; CrCl ~30. Reduce dose/extend interval per labeling; counsel sedation; avoid abrupt stacking with opioids without naloxone plan.
 
-**Case 2:** Enoxaparin therapeutic; CrCl <30. Prefer dose adjustment or UFH themes per protocol; monitor anti-Xa when indicated; bleed counseling.
+**Case 2:** Enoxaparin therapeutic; CrCl <30. Prefer dose adjustment or UFH per protocol; monitor anti-Xa when indicated; bleed counseling.
 
-**Case 3:** Allopurinol start in CKD. Lower starting dose; HLA-B*5801 themes in at-risk ancestry for severe cutaneous reactions; counsel rash stop rules.
+**Case 3:** Allopurinol start in CKD. Lower starting dose; HLA-B*5801 in at-risk ancestry for severe cutaneous reactions; counsel rash stop rules.
 
 **Case 4:** Fluconazole in CKD. Extend interval for many doses; interaction with warfarin still matters.
 
@@ -216,7 +220,7 @@ A. Improved GFR always  B. AKI (“triple whammy”)  C. No interaction  D. Cure
 
 ## Topic H — Hepatic encephalopathy & ascites medication map
 
-| Problem | Med themes | Counsel / monitor |
+| Problem | Med | Counsel / monitor |
 | --- | --- | --- |
 | HE | Lactulose ± rifaximin | Soft stools goal; mental status |
 | Ascites | Spironolactone ± furosemide | Weight, K/Na/Cr; no NSAIDs |
@@ -224,16 +228,16 @@ A. Improved GFR always  B. AKI (“triple whammy”)  C. No interaction  D. Cure
 | Varices | Nonselective BB secondary prevention | HR/BP; hold if shock/bleed acute per team |
 | Pruritus | Cholestyramine etc. specialty | Separate other drugs |
 
-Alcohol cessation support (naltrexone/acamprosate themes when appropriate) is disease-modifying in alcohol-related liver disease — screen compassionately.
+Alcohol cessation support (naltrexone/acamprosate when appropriate) is disease-modifying in alcohol-related liver disease — screen compassionately.
 
 ---
 
 ## Topic I — Drug-induced kidney injury patterns
 
-- Hemodynamically mediated (NSAIDs, ACEI in volume depletion)  
-- Acute tubular necrosis (AG, contrast, vancomycin high exposure themes)  
-- AIN (some antibiotics/PPIs/NSAIDs) — rash/eosinophilia clues  
-- Crystal nephropathy (acyclovir, methotrexate high-dose, sulfonamides) — hydration  
+- Hemodynamically mediated (NSAIDs, ACEI in volume depletion)
+- Acute tubular necrosis (AG, contrast, vancomycin high exposure)
+- AIN (some antibiotics/PPIs/NSAIDs) — rash/eosinophilia clues
+- Crystal nephropathy (acyclovir, methotrexate high-dose, sulfonamides) — hydration
 - Rhabdomyolysis-related (statin interaction extremes, toxins)
 
 Pharmacist move: timeline the new drugs, stop offenders with the team, adjust remaining renally cleared meds the same day.
@@ -246,18 +250,20 @@ Prefer nonpharmacologic and cautious APAP within daily limits. Avoid NSAIDs. Opi
 
 ### Transplant interaction lightning round
 
-- Azole + tacrolimus → raise CNI levels  
-- Rifampin + tacrolimus → crash levels → rejection risk  
-- Macrolides vary; check  
-- St. John’s wort → induction failure  
-- Grapefruit → ↑ some CNIs  
+Source: KDIGO CKD guideline, 2024.
+
+- Azole + tacrolimus → raise CNI levels
+- Rifampin + tacrolimus → crash levels → rejection risk
+- Macrolides vary; check
+- St. John’s wort → induction failure
+- Grapefruit → ↑ some CNIs
 - Antacids separate from mycophenolate/some products per labeling
 
 ### Remember this (chapter close)
 
-- Calculate function with the right weight and equation for the label.  
-- AKI demands frequent reassessment.  
-- Cirrhosis: protect the kidney and the brain—no casual NSAIDs or sedatives.  
+- Calculate function with the right weight and equation for the label.
+- AKI demands frequent reassessment.
+- Cirrhosis: protect the kidney and the brain—no casual NSAIDs or sedatives.
 - Binders with meals; lactulose to stools; CNI interaction checks every time.
 
 ---
@@ -272,7 +278,7 @@ Before imaging with contrast or during vomiting/diarrhea: hold metformin per pro
 
 ### Hyponatremia / hypernatremia drug angles
 
-SSRIs/carbamazepine/oxcarbazepine → SIADH themes. Thiazides → hypoNa. Lactulose overdoing → volume issues. Tolvaptan specialty for hyponatremia — REMS/hepatotoxicity awareness. Correct chronic hypoNa slowly to avoid ODS.
+SSRIs/carbamazepine/oxcarbazepine → SIADH. Thiazides → hypoNa. Lactulose overdoing → volume issues. Tolvaptan specialty for hyponatremia — REMS/hepatotoxicity awareness. Correct chronic hypoNa slowly to avoid ODS.
 
 ### Final renal/hepatic traps
 

@@ -1,12 +1,12 @@
 # Chapter 3 — Health Promotion & Screening
 
-> **Study aid only.** Screening and immunization themes follow USPSTF-style and ACIP-style thinking for exam judgment. Recommendations change.
+> **Study aid only.** Screening and immunization follow USPSTF-style and ACIP-style thinking for exam judgment. Recommendations change.
 
 ![USPSTF-style lifespan screening strip](visuals/uspstf-lifespan-strip.svg)
 
 ![SDoH screening wheel](visuals/sdoh-screening-wheel.svg)
 
-![Lifespan immunization themes](visuals/immunization-lifespan.svg)
+![Lifespan immunization ](visuals/immunization-lifespan.svg)
 
 ---
 
@@ -27,8 +27,6 @@
 
 Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and every Domain II age band. Young/Middle/Older adults generate most prevention volume — but missed newborn screens, adolescent risk counseling, and prenatal prevention (inside **Young Adult\***) are classic traps. Items ask *who* to screen, *when to stop*, how to counsel briefly, and how SDoH explains “nonadherence.”
 
-**Pair with practice:** Drill age-banded prevention sets, then mixed ADPE stems that hide a missing mammogram or overdue Tdap in pregnancy.
-
 ---
 
 ## ADPE lens for prevention
@@ -44,10 +42,10 @@ Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and
 
 ## Topic A — Thinking in USPSTF logic (exam mindset)
 
-- **Grade logic themes:** A/B generally offer; C selective/shared; D discourage; I insufficient.  
-- Screening is for **asymptomatic** people. Symptoms → diagnostic pathway.  
-- Harm matters: false positives, overdiagnosis (PSA themes), radiation, anxiety.  
-- Start with age, sex/anatomy, pregnancy potential, smoking, sexual history, family history, and risk enhancers.  
+- **Grade logic:** A/B generally offer; C selective/shared; D discourage; I insufficient.
+- Screening is for **asymptomatic** people. Symptoms → diagnostic pathway.
+- Harm matters: false positives, overdiagnosis (PSA), radiation, anxiety.
+- Start with age, sex/anatomy, pregnancy potential, smoking, sexual history, family history, and risk enhancers.
 - Frail older adults: life expectancy may modify cancer screening — shared decisions, not automatic endless colonoscopy.
 
 ---
@@ -56,55 +54,65 @@ Prevention is not a side quest. It is woven through **Assess/Plan/Evaluate** and
 
 ### Cardiometabolic
 
-| Theme | Exam hooks |
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+| | Exam hooks |
 | --- | --- |
 | BP | All adults; technique; out-of-office confirmation |
 | Lipids / ASCVD | Risk-based statin discussions; diabetes as enhancer |
-| Diabetes/prediabetes | Age/BMI/risk-based themes |
+| Diabetes/prediabetes | Age/BMI/risk-based |
 | Obesity | BMI + counseling offer; waist adjunct |
 
-### Cancer themes
+### Cancer
 
-| Theme | Hooks |
+Source: USPSTF colorectal cancer screening, 2021.
+
+| | Hooks |
 | --- | --- |
 | Cervical | Cytology/HPV strategies by age; stop rules after adequate history + hysterectomy nuances |
-| Breast | Mammography start/interval shared decisions in some bands — verify |
-| Colorectal | Start-age themes; FIT vs colonoscopy options |
+| Breast | Mammography start/interval shared decisions in some bands |
+| Colorectal | Start-age; FIT vs colonoscopy options |
 | Lung | Pack-year + quit-year eligibility for LDCT |
 | Prostate | Shared decision — avoid automatic PSA |
 | Skin | Opportunistic exam; ABCDE teaching; biopsy suspicious lesions |
 
 ### Infectious / prenatal-adjacent
 
-HIV offer/risk-based themes · hepatitis C adult one-time themes (verify birth-cohort vs universal adult) · hepatitis B risk/pregnancy · STI intensification for young adults/pregnancy · prenatal panel themes (type/Rh, anemia, infections, GDM timing, GBS later — verify schedules)
+Source: USPSTF hepatitis C screening, 2020.
+
+HIV offer/risk-based · hepatitis C adult one-time · hepatitis B risk/pregnancy · STI intensification for young adults/pregnancy · prenatal panel
 
 ### Behavioral / safety / bone / sensory
 
-Depression (± anxiety) screens with **SI safety net** · alcohol/tobacco/substance brief interventions · IPV screening themes · fall risk older adults · osteoporosis screening older women (selected men) · vision/hearing opportunistic in elders
+Depression (± anxiety) screens with **SI safety net** · alcohol/tobacco/substance brief interventions · IPV screening · fall risk older adults · osteoporosis screening older women (selected men) · vision/hearing opportunistic in elders
 
 ---
 
-## Topic C — Immunizations (verify ACIP every year)
+## Topic C — Immunizations
 
 ### Principles
 
-Live vaccine precautions (pregnancy, severe immunocompromise themes) · catch-up exists · document counseling/VIS themes when asked · egg-allergy myths vs current influenza guidance — verify.
+Source: ACIP immunization schedule, 2026.
+
+Live vaccine precautions (pregnancy, severe immunocompromise) · catch-up exists · document counseling/VIS when asked · egg-allergy myths vs current influenza guidance.
 
 ### Lifespan hooks
 
-| Group | Themes |
+| Group | |
 | --- | --- |
 | Infants/children | Series completeness; prematurity nuances |
-| Adolescents | HPV, meningococcal decision themes, Tdap, influenza |
-| Pregnancy | Inactivated influenza; Tdap each pregnancy timing; RSV themes as current |
-| Adults | Td/Tdap, influenza, COVID per current, pneumococcal age/risk, zoster age, hep B adult themes |
-| Older adults | Pneumococcal, zoster, higher-dose/adjuvant influenza themes as current |
+| Adolescents | HPV, meningococcal decision steps, Tdap, influenza |
+| Pregnancy | Inactivated influenza; Tdap each pregnancy timing; RSV as current |
+| Adults | Td/Tdap, influenza, COVID per current, pneumococcal age/risk, zoster age, hep B adult |
+| Older adults | Pneumococcal, zoster, higher-dose/adjuvant influenza as current |
 
 **Trap:** Live vaccines in pregnancy; missing Tdap opportunity in pregnancy; assuming “I had shingles vaccine once forever ago” without checking product/age rules.
 
 ---
 
 ## Topic D — Counseling that scores (Plan)
+
+Source: USPSTF screening recommendations and the ACIP immunization schedule, 2026.
 
 ### 5A-style brief intervention
 
@@ -122,6 +130,8 @@ DASH/Mediterranean patterns · sugar-sweetened beverage limits · protein + resi
 
 ## Topic E — SDoH (Assess/Plan/Evaluate glue)
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 Domains: food · housing · transport · utilities · interpersonal safety · literacy · insurance/pharmacy · immigration stress · digital access.
 
 Uncontrolled A1c may be insulin rationing. Missed mammogram may be no ride. Plan moves: resources, regimen simplification, covered generics, sometimes *shorter* follow-up.
@@ -137,13 +147,13 @@ Plain language · interpreter use (not minor children for complex consent) · te
 ## Topic G — Special prevention lanes by Domain II
 
 ### Newborn/infant/child
-Congenital screens follow-through · bilirubin risk · well-child periodicity · lead/anemia risk themes · dental varnish/fluoride themes as indicated · injury prevention anticipatory guidance.
+Congenital screens follow-through · bilirubin risk · well-child periodicity · lead/anemia risk · dental varnish/fluoride as indicated · injury prevention anticipatory guidance.
 
 ### Adolescent\*
 Confidential time · HEADDSS-style · HPV · sexual health · mood · substances · firearms/safety · sports physical as prevention opportunity — not only a form.
 
 ### Young Adult\* / prenatal
-Preconception folate themes · medication teratogen review · prenatal visit cadence · vaccine opportunities · STI/HIV · intimate partner safety · postpartum depression screen themes.
+Preconception folate · medication teratogen review · prenatal visit cadence · vaccine opportunities · STI/HIV · intimate partner safety · postpartum depression screen.
 
 ### Middle Adult\*
 Cancer screening peak · cardiometabolic assault · alcohol · sleep apnea · caregiver stress.
@@ -161,7 +171,7 @@ Deprescribing · fall/bone · cognition/mood · vaccines · cancer screening sto
 | --- | --- |
 | Assess | Tobacco, CRC gap, PHQ, falls/vision, vaccines, BP/lipids/A1c |
 | Diagnose | Tobacco use disorder; overdue CRC screen; screen for depression |
-| Plan | Brief tobacco intervention ± pharmacotherapy themes; schedule CRC modality; ACIP vaccines; LDCT if eligible |
+| Plan | Brief tobacco intervention ± pharmacotherapy; schedule CRC modality; ACIP vaccines; LDCT if eligible |
 | Evaluate | Quit follow-up 1–2 weeks; confirm screening done; recheck PHQ |
 
 **Distractors fail:** only refill HTN med; PSA without shared decision as the “main” prevention move; skip tobacco because “BP first.”
@@ -191,7 +201,7 @@ Deprescribing · fall/bone · cognition/mood · vaccines · cancer screening sto
 | --- | --- |
 | Assess | Prenatal care gaps, mood safety, tobacco, domestic safety |
 | Diagnose | Overdue gestational Tdap opportunity; tobacco use; possible depression — assess SI |
-| Plan | Tdap timing themes; tobacco assist; mental health plan; Ob coordination as needed |
+| Plan | Tdap timing; tobacco assist; mental health plan; Ob coordination as needed |
 | Evaluate | Confirm vaccine given; mood follow-up; cessation check |
 
 **Distractors fail:** live vaccine offers; ignore PHQ; delay Tdap to postpartum without reason.
@@ -213,40 +223,42 @@ Deprescribing · fall/bone · cognition/mood · vaccines · cancer screening sto
 
 ## Quick checklist — prevention
 
-- [ ] Age/anatomy/pregnancy potential known  
-- [ ] Screening vs diagnostic distinguished  
-- [ ] Cardiometabolic screens considered  
-- [ ] Cancer screens age/risk-appropriate  
-- [ ] HIV/hep/STI themes offered when indicated  
-- [ ] Vaccines: live-vaccine safety checked  
-- [ ] Depression screen + SI pathway  
-- [ ] Tobacco/alcohol brief intervention  
-- [ ] SDoH scanned  
-- [ ] Teach-back used  
-- [ ] Older adult fall/bone/vaccine/deprescribing considered  
-- [ ] Evaluate: completion tracking  
+- [ ] Age/anatomy/pregnancy potential known
+- [ ] Screening vs diagnostic distinguished
+- [ ] Cardiometabolic screens considered
+- [ ] Cancer screens age/risk-appropriate
+- [ ] HIV/hep/STI offered when indicated
+- [ ] Vaccines: live-vaccine safety checked
+- [ ] Depression screen + SI pathway
+- [ ] Tobacco/alcohol brief intervention
+- [ ] SDoH scanned
+- [ ] Teach-back used
+- [ ] Older adult fall/bone/vaccine/deprescribing considered
+- [ ] Evaluate: completion tracking
 
 ---
 
 ## Remember this
 
-- Prevention lives inside ADPE — not a separate optional chapter in your brain.  
-- Older Adult 30% means vaccines, falls, and stop-rules matter as much as “start screens.”  
-- Verify USPSTF/ACIP — key points age.  
+Source: ACIP immunization schedule, 2026.
 
-**Practice prevention + ADPE items** on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
+- Prevention lives inside ADPE — not a separate optional chapter in your brain.
+- Older Adult 30% means vaccines, falls, and stop-rules matter as much as “start screens.”
+.
 
 ---
 
 ## Topic H — Shared decision tools (Plan language)
 
+Source: USPSTF prostate cancer screening, 2018.
+
 When stems involve PSA, mammography timing preference-sensitive bands, lung cancer screening eligibility borderline cases, or continuing cancer screening in limited life expectancy:
-- Explain benefit and harm in absolute terms when possible.  
-- Ask values (fear of cancer vs fear of procedures/false positives).  
-- Document the decision.  
+- Explain benefit and harm in absolute terms when possible.
+- Ask values (fear of cancer vs fear of procedures/false positives).
+- Document the decision.
 - Offer a revisit — readiness changes.
 
-### Chemoprevention / preventive meds awareness (themes only)
+### Chemoprevention / preventive meds awareness (only)
 
 Aspirin for primary prevention is no longer a casual “everyone over 50” reflex — risk of bleed vs ASCVD benefit is individualized. Statins are prevention *and* therapeutics. PrEP for HIV in appropriate risk is prevention therapeutics — screen and refer/initiate per training and guidelines. Don’t invent eligibility cutoffs under stress; recognize the *lane*.
 
@@ -255,9 +267,9 @@ Aspirin for primary prevention is no longer a casual “everyone over 50” refl
 ## Topic I — Occupational, environmental, travel, school forms
 
 FNP prevention includes:
-- School/camp forms as chances to catch vaccine gaps and mental health.  
-- Travel: vaccines/meds timing, malaria themes by destination — often refer travel clinic if complex.  
-- Occupation: noise, chemical, shift work, needlestick policies.  
+- School/camp forms as chances to catch vaccine gaps and mental health.
+- Travel: vaccines/meds timing, malaria by destination — often refer travel clinic if complex.
+- Occupation: noise, chemical, shift work, needlestick policies.
 - Environmental: lead risk housing, smoke exposure, heat risk in elders.
 
 ---
@@ -276,16 +288,16 @@ Even on an individual exam, items may imply panel thinking: overdue colorectal l
 
 ## Concept checks
 
-**1.** Rectal bleeding in average-risk 52-year-old — mindset?  
-A. Wait until screening birthday only  B. Diagnostic evaluation for symptoms  C. Reassure hemorrhoids always  D. Vitamin D only  
+**1.** Rectal bleeding in average-risk 52-year-old — mindset?
+A. Wait until screening birthday only B. Diagnostic evaluation for symptoms C. Reassure hemorrhoids always D. Vitamin D only
 **Answer:** B.
 
-**2.** Largest Domain II weight?  
-A. Newborn  B. Adolescent  C. Older Adult 30%  D. Toddler  
+**2.** Largest Domain II weight?
+A. Newborn B. Adolescent C. Older Adult 30% D. Toddler
 **Answer:** C.
 
-**3.** Best prevention counseling pattern?  
-A. 20-minute lecture  B. Brief intervention + arrange follow-up  C. Pamphlet only  D. Skip tobacco if A1c high  
+**3.** Best prevention counseling pattern?
+A. 20-minute lecture B. Brief intervention + arrange follow-up C. Pamphlet only D. Skip tobacco if A1c high
 **Answer:** B.
 
 ---
@@ -293,37 +305,37 @@ A. 20-minute lecture  B. Brief intervention + arrange follow-up  C. Pamphlet onl
 ## Appendix — Age-band prevention sprint cards
 
 ### Newborn / infant / child (small Domain II % — high regret)
-- Hearing/metabolic screen follow-through  
-- Growth plotting + development surveillance  
-- Vaccine series on time; catch-up without panic inventing intervals  
-- Anticipatory guidance: sleep safe, choking, car seats, dental  
-- Lead/anemia risk questions when indicated  
+- Hearing/metabolic screen follow-through
+- Growth plotting + development surveillance
+- Vaccine series on time; catch-up without panic inventing intervals
+- Anticipatory guidance: sleep safe, choking, car seats, dental
+- Lead/anemia risk questions when indicated
 
 ### Adolescent* (9%)
-- Confidential HEADDSS  
-- HPV series  
-- Depression/anxiety/substance  
-- Sexual health + consent education  
-- Sports cardiac screen questions; concussion return-to-play awareness  
+- Confidential HEADDSS
+- HPV series
+- Depression/anxiety/substance
+- Sexual health + consent education
+- Sports cardiac screen questions; concussion return-to-play awareness
 
 ### Young Adult* incl. prenatal (22%)
-- Cervical/STI/HIV as indicated  
-- Preconception: folate, teratogen med review, glycemic control if diabetes  
-- Prenatal visit rhythm + vaccines (influenza, Tdap timing, RSV themes as current)  
-- Postpartum mood screen  
+- Cervical/STI/HIV as indicated
+- Preconception: folate, teratogen med review, glycemic control if diabetes
+- Prenatal visit rhythm + vaccines (influenza, Tdap timing, RSV as current)
+- Postpartum mood screen
 
 ### Middle Adult (26%)
-- Cardiometabolic + cancer screens peak  
-- Alcohol, sleep apnea, caregiver stress  
-- Skin checks opportunistic  
+- Cardiometabolic + cancer screens peak
+- Alcohol, sleep apnea, caregiver stress
+- Skin checks opportunistic
 
 ### Older Adult (30%)
-- Vaccines with product nuances  
-- Fall/bone/vision/hearing  
-- Cognition/mood  
-- Deprescribing Beers themes  
-- Cancer screening stop conversations  
-- Advance care planning  
+- Vaccines with product nuances
+- Fall/bone/vision/hearing
+- Cognition/mood
+- Deprescribing Beers
+- Cancer screening stop conversations
+- Advance care planning
 
 ### One-page “offer today” habit in adult visits
 BP · tobacco · BMI · depression · vaccines due · cancer screen status · sex/safety as appropriate · meds that need monitoring labs.
@@ -332,11 +344,13 @@ BP · tobacco · BMI · depression · vaccines due · cancer screen status · se
 
 ## Deep prevention counseling scripts (Plan)
 
-**Tobacco:** “The most important thing you can do for your BP and lungs is stop smoking. I’m recommending varenicline/NRT themes if appropriate — verify — and a quit date this week. Can we problem-solve triggers?”  
+Source: USPSTF colorectal cancer screening, 2021.
 
-**Colon cancer screen:** “You have two good options — colonoscopy or FIT stool testing — let’s match to your values and access.”  
+**Tobacco:** “The most important thing you can do for your BP and lungs is stop smoking. I’m recommending varenicline/NRT if appropriate. Can we problem-solve triggers?”
 
-**Lung CT eligibility:** “Because of your pack-years and age, low-dose CT can find cancers earlier — also false alarms happen; here’s what follow-up looks like.”  
+**Colon cancer screen:** “You have two good options — colonoscopy or FIT stool testing — let’s match to your values and access.”
+
+**Lung CT eligibility:** “Because of your pack-years and age, low-dose CT can find cancers earlier — also false alarms happen; here’s what follow-up looks like.”
 
 **Depression screen positive:** “Thanks for telling me. Are you having thoughts of wanting to die or of hurting yourself?” — never skip safety.
 
@@ -364,21 +378,22 @@ Race, language, rural access, disability, and insurance alter completion of scre
 
 ### Dental, vision, hearing — primary care adjacent
 
-Oral health affects diabetes/CVD inflammation themes; fluoride/dental referral for kids; vision screens for driving safety and diabetes retinopathy referral pathways; hearing loss → isolation/depression in elders. Mention when stems offer the option.
+Oral health affects diabetes/CVD inflammation; fluoride/dental referral for kids; vision screens for driving safety and diabetes retinopathy referral pathways; hearing loss → isolation/depression in elders. Mention when stems offer the option.
 
 ### Final prevention checklist add-ons
-- [ ] Preconception offered when relevant  
-- [ ] Postpartum mood screen not forgotten  
-- [ ] PrEP/HIV prevention lane recognized for risk  
-- [ ] Aspirin primary prevention not reflexive  
-- [ ] Shared decision documented when preference-sensitive  
+- [ ] Preconception offered when relevant
+- [ ] Postpartum mood screen not forgotten
+- [ ] PrEP/HIV prevention lane recognized for risk
+- [ ] Aspirin primary prevention not reflexive
+- [ ] Shared decision documented when preference-sensitive
 
 ### Closing prevention remember-this
+
+Source: ACIP immunization schedule, 2026.
 - Domain II drives prevention priorities; Older Adult 30% means stop-rules and vaccines matter.
 - Screening ≠ diagnostic testing for symptoms.
 - SDoH explains many Evaluate failures.
-- Verify USPSTF/ACIP yearly — teaching ages drift.
+.
 - Soft practice:
 
 ---
-

@@ -1,6 +1,6 @@
 # Chapter 8 — Respiratory
 
-> **Study aid only.** Asthma/COPD regimens follow evolving GINA/GOLD-aligned themes. Device technique matters as much as drug choice.
+> **Study aid only.** Asthma/COPD regimens follow evolving GINA/GOLD-aligned. Device technique matters as much as drug choice.
 
 ![Inhaler device technique comparison](visuals/inhaler-devices.svg)
 
@@ -20,28 +20,30 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 
 ### Key concepts
 
-- Inflammation + variable airflow obstruction + airway hyperresponsiveness.  
-- GINA 2026 Track 1 uses as-needed low-dose ICS-formoterol for adults. A short-acting beta-agonist alone is not the preferred reliever.  
-- Controllers: ICS backbone; add LABA only in combination with ICS (**never LABA monotherapy in asthma**).  
-- LAMA add-on, biologics for severe phenotypes (eosinophilic/IgE/IL-5 themes).  
-- Step up for poor control; step down when stable after 3 months themes.  
+- Inflammation + variable airflow obstruction + airway hyperresponsiveness.
+- GINA 2026 Track 1 uses as-needed low-dose ICS-formoterol for adults. A short-acting beta-agonist alone is not the preferred reliever.
+- Controllers: ICS backbone; add LABA only in combination with ICS (**never LABA monotherapy in asthma**).
+- LAMA add-on, biologics for severe phenotypes (eosinophilic/IgE/IL-5).
+- Step up for poor control; step down when stable after 3 months.
 - Written action plan beats verbal-only counseling.
 
 ### Stepwise treatment (GINA 2026)
+
+Source: GINA strategy report, 2025.
 
 | Control issue | Pharmacist thinking |
 | --- | --- |
 | Rare symptoms | ICS-containing approach preferred over SABA-only chronic patterns |
 | More frequent symptoms | Daily ICS or ICS-LABA maintenance |
 | Uncontrolled on low-dose ICS-LABA | Increase ICS dose / add LAMA / check adherence & technique |
-| Severe eosinophilic/allergic | Biologic referral themes |
+| Severe eosinophilic/allergic | Biologic referral |
 | Exacerbation | Systemic steroids short course; escalate controller after |
 
 ### Assessment cues
 
-- Night symptoms, rescue frequency, activity limitation, peak flow trends.  
-- Red flags: silent chest, hypoxia, accessory muscles — emergency care.  
-- Triggers: allergens, viral illness, NSAIDs/beta blockers in sensitive patients.  
+- Night symptoms, rescue frequency, activity limitation, peak flow trends.
+- Red flags: silent chest, hypoxia, accessory muscles — emergency care.
+- Triggers: allergens, viral illness, NSAIDs/beta blockers in sensitive patients.
 - GERD, rhinitis, obesity as comorbidities worsening control.
 
 ### Device counseling table
@@ -55,23 +57,23 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 
 ### Counseling
 
-- Shake/prime/spacer/rinse mouth after ICS (thrush, dysphonia).  
-- Distinguish maintenance vs rescue inhalers visually (stickers help).  
-- Action plan zones (green/yellow/red themes).  
+- Shake/prime/spacer/rinse mouth after ICS (thrush, dysphonia).
+- Distinguish maintenance vs rescue inhalers visually (stickers help).
+- Action plan zones (green/yellow/red).
 - Nebs ≠ automatically “stronger” than proper inhaler + spacer.
 
 ### Safety
 
 > **Red flag:** LABA alone for asthma. Oral steroid bursts without follow-up plan.
 
-- Theophylline: narrow TI — mostly legacy.  
-- Aspirin-exacerbated respiratory disease awareness.  
+- Theophylline: narrow TI — mostly legacy.
+- Aspirin-exacerbated respiratory disease awareness.
 - Biologics: injection site, hypersensitivity, specialty monitoring.
 
 ### Remember this
 
-- No LABA alone for asthma.  
-- Technique failure looks like “drug failure.”  
+- No LABA alone for asthma.
+- Technique failure looks like “drug failure.”
 - Mouth rinse after ICS.
 
 ---
@@ -80,40 +82,40 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 
 ### Key concepts
 
-- Spirometry for diagnosis themes; smoking cessation = disease-modifying.  
-- Bronchodilators (LAMA/LABA) foundation; ICS for exacerbators with eosinophil/asthma-overlap themes — not everyone needs ICS.  
-- Exacerbation: bronchodilators, steroids (±), antibiotics when indicated (sputum purulence/severity criteria themes).  
-- Oxygen for severe resting hypoxemia — CO₂ retainers need controlled O₂ targets.  
-- Vaccinations critical (influenza, pneumococcal, COVID, pertussis/RSV themes per current ACIP).  
-- Pulmonary rehab referral themes for deconditioning.
+- Spirometry for diagnosis; smoking cessation = disease-modifying.
+- Bronchodilators (LAMA/LABA) foundation; ICS for exacerbators with eosinophil/asthma-overlap — not everyone needs ICS.
+- Exacerbation: bronchodilators, steroids (±), antibiotics when indicated (sputum purulence/severity criteria).
+- Oxygen for severe resting hypoxemia — CO₂ retainers need controlled O₂ targets.
+- Vaccinations critical (influenza, pneumococcal, COVID, pertussis/RSV per current ACIP).
+- Pulmonary rehab referral for deconditioning.
 
 ### Assessment cues
 
-- Chronic bronchitis vs emphysema phenotypes (clinical).  
-- Frequent exacerbators → escalate therapy / check eosinophils for ICS benefit likelihood.  
-- Depression/anxiety and malnutrition common comorbidities.  
-- Alpha-1 antitrypsin testing themes in younger/ nonsmoker emphysema.
+- Chronic bronchitis vs emphysema phenotypes (clinical).
+- Frequent exacerbators → escalate therapy / check eosinophils for ICS benefit likelihood.
+- Depression/anxiety and malnutrition common comorbidities.
+- Alpha-1 antitrypsin testing in younger/ nonsmoker emphysema.
 
 ### Exacerbation flowchart pattern
 
-1. Increase short-acting bronchodilators.  
-2. Systemic corticosteroids short course when indicated.  
-3. Antibiotics if purulent sputum / certain criteria.  
-4. Assess O₂ need carefully.  
-5. Escalate controller after recovery; review inhaler technique.  
+1. Increase short-acting bronchodilators.
+2. Systemic corticosteroids short course when indicated.
+3. Antibiotics if purulent sputum / certain criteria.
+4. Assess O₂ need carefully.
+5. Escalate controller after recovery; review inhaler technique.
 6. Red flags (respiratory failure) → ED.
 
 ### Counseling
 
-- HandiHaler/Ellipta/Respimat technique differences.  
-- Smoking cessation every visit.  
-- Recognize exacerbation early (sputum, dyspnea change).  
+- HandiHaler/Ellipta/Respimat technique differences.
+- Smoking cessation every visit.
+- Recognize exacerbation early (sputum, dyspnea change).
 - ICS pneumonia risk counseling in COPD — risk/benefit.
 
 ### Safety
 
-- Chronic systemic steroids — avoid as maintenance when possible.  
-- ICS pneumonia risk in COPD.  
+- Chronic systemic steroids — avoid as maintenance when possible.
+- ICS pneumonia risk in COPD.
 - Uncontrolled O₂ in chronic hypercapnia can worsen CO₂ retention.
 
 ---
@@ -122,57 +124,59 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 
 ### Key concepts
 
-- Intranasal corticosteroids first-line for persistent allergic rhinitis.  
-- Antihistamines: 2nd-gen preferred (less sedation).  
-- Intranasal antihistamines / combination sprays.  
-- Epinephrine autoinjector counseling for anaphylaxis history: when to use, hold correctly, call emergency services, second dose timing themes.  
-- Immunotherapy: specialty-supervised; observe after injections.  
+- Intranasal corticosteroids first-line for persistent allergic rhinitis.
+- Antihistamines: 2nd-gen preferred (less sedation).
+- Intranasal antihistamines / combination sprays.
+- Epinephrine autoinjector counseling for anaphylaxis history: when to use, hold correctly, call emergency services, second dose timing.
+- Immunotherapy: specialty-supervised; observe after injections.
 - Avoid 1st-gen antihistamines in elderly when possible (Beers).
 
 ### Autoinjector counseling checklist
 
-1. Recognize anaphylaxis (skin + respiratory/GI/hypotension themes).  
-2. Inject into mid-outer thigh; hold per device.  
-3. Call emergency services even if improved.  
-4. Second dose timing if available/needed.  
-5. Positioning; avoid sudden standing if hypotensive.  
+1. Recognize anaphylaxis (skin + respiratory/GI/hypotension).
+2. Inject into mid-outer thigh; hold per device.
+3. Call emergency services even if improved.
+4. Second dose timing if available/needed.
+5. Positioning; avoid sudden standing if hypotensive.
 6. Expiration check; train caregivers; school plans for kids.
 
 ### Remember this
 
-- Epinephrine first for anaphylaxis — not diphenhydramine alone.  
+- Epinephrine first for anaphylaxis — not diphenhydramine alone.
 - Intranasal steroid technique (aim outward) reduces epistaxis.
 
 ---
 
 ## Topic D — Smoking cessation pharmacotherapy
 
+Source: GINA strategy report, 2025.
+
 ### Key concepts
 
-- NRT (patch/gum/lozenge/inhaler/nasal): combination NRT (patch + short-acting) often effective.  
-- Varenicline: neuropsych monitoring historically — still counsel mood changes; start before quit date per labeling; vivid dreams.  
-- Bupropion SR: seizure risk; avoid in eating disorder/seizure history themes; insomnia/dry mouth.  
-- Behavioral support multiplies success.  
+- NRT (patch/gum/lozenge/inhaler/nasal): combination NRT (patch + short-acting) often effective.
+- Varenicline: neuropsych monitoring historically — still counsel mood changes; start before quit date per labeling; vivid dreams.
+- Bupropion SR: seizure risk; avoid in eating disorder/seizure history; insomnia/dry mouth.
+- Behavioral support multiplies success.
 - E-cigarettes: not FDA-approved cessation drugs — don’t present as proven therapy on exam.
 
 ### Counseling pearls
 
-- Patch: rotate sites; don’t smoke while using as a dual unrestricted habit without plan.  
-- Gum: park-and-chew technique; avoid acidic beverages around dose.  
+- Patch: rotate sites; don’t smoke while using as a dual unrestricted habit without plan.
+- Gum: park-and-chew technique; avoid acidic beverages around dose.
 - Set quit date; address triggers; follow up.
 
 ---
 
 ## Topic E — Specialty pulmonary & oxygen
 
-- PAH drugs (ERA, PDE-5, prostacyclin themes): REMS/monitoring/interactions when stemmed; don’t confuse PAH vs ED PDE-5 counseling.  
-- Antifibrotics: GI/LFT monitoring specialty.  
-- Home O₂: fire risk, no smoking, target sats per clinician (CO₂ retainers).  
+- PAH drugs (ERA, PDE-5, prostacyclin): REMS/monitoring/interactions when stemmed; don’t confuse PAH vs ED PDE-5 counseling.
+- Antifibrotics: GI/LFT monitoring specialty.
+- Home O₂: fire risk, no smoking, target sats per clinician (CO₂ retainers).
 - Nebulizer cleaning; peak flow technique for asthma plans.
 
 ### Remember this
 
-- Controlled O₂ targets matter in chronic hypercapnia.  
+- Controlled O₂ targets matter in chronic hypercapnia.
 - Device hygiene is part of therapy success.
 
 ---
@@ -195,24 +199,26 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 
 ## Concept checks
 
-**1.** Why is LABA monotherapy inappropriate in asthma?  
-A. It cures inflammation alone  B. Associated with increased risk of asthma-related adverse outcomes without ICS  C. It never bronchodilates  D. DEA scheduling  
+Source: GINA strategy report, 2025.
+
+**1.** Why is LABA monotherapy inappropriate in asthma?
+A. It cures inflammation alone B. Associated with increased risk of asthma-related adverse outcomes without ICS C. It never bronchodilates D. DEA scheduling
 **Answer:** B.
 
-**2.** First drug for anaphylaxis intramuscularly?  
-A. Ranitidine  B. Epinephrine  C. Inhaled fluticasone only  D. Oral prednisone alone  
+**2.** First drug for anaphylaxis intramuscularly?
+A. Ranitidine B. Epinephrine C. Inhaled fluticasone only D. Oral prednisone alone
 **Answer:** B.
 
-**3.** Best foundational COPD intervention that modifies disease?  
-A. Chronic systemic steroids for all  B. Smoking cessation  C. Theophylline monotherapy  D. Ignoring vaccines  
+**3.** Best foundational COPD intervention that modifies disease?
+A. Chronic systemic steroids for all B. Smoking cessation C. Theophylline monotherapy D. Ignoring vaccines
 **Answer:** B.
 
-**4.** Mouth rinse after ICS prevents mainly?  
-A. Otitis  B. Oral candidiasis / dysphonia themes  C. Renal failure  D. Hyperkalemia  
+**4.** Mouth rinse after ICS prevents mainly?
+A. Otitis B. Oral candidiasis / dysphonia C. Renal failure D. Hyperkalemia
 **Answer:** B.
 
-**5.** Oxymetazoline counseling limit theme?  
-A. Unlimited months  B. About 3 days to avoid rhinitis medicamentosa  C. Only with MAOI  D. IV use only  
+**5.** Oxymetazoline counseling limit ?
+A. Unlimited months B. About 3 days to avoid rhinitis medicamentosa C. Only with MAOI D. IV use only
 **Answer:** B.
 
 ---
@@ -230,10 +236,10 @@ A. Unlimited months  B. About 3 days to avoid rhinitis medicamentosa  C. Only wi
 
 ### Inhaler technique failure patterns
 
-- MDI: inhaling too fast; not coordinating actuation; empty canister guessing  
-- DPI: insufficient inspiratory flow; exhaling into device; swallowing capsule wrong  
-- Holding chambers: not cleaning; multiple puffs without waiting  
-- Soft mist: incomplete turn/prime  
+- MDI: inhaling too fast; not coordinating actuation; empty canister guessing
+- DPI: insufficient inspiratory flow; exhaling into device; swallowing capsule wrong
+- Holding chambers: not cleaning; multiple puffs without waiting
+- Soft mist: incomplete turn/prime
 
 Always demonstrate + teach-back. Refill too frequent for SABA = uncontrolled disease signal.
 
@@ -241,14 +247,14 @@ Always demonstrate + teach-back. Refill too frequent for SABA = uncontrolled dis
 
 ## Topic G — Acute severe asthma pharmacist actions
 
-Oxygen per targets, frequent SABA (± ipratropium), systemic corticosteroids early, monitor response, prepare for escalation (Mg themes inpatient, ventilatory support). Avoid nonspecific beta blockers. Counsel after discharge: controller intensification, spacer, follow-up within days, trigger plan. Dispense epinephrine if anaphylaxis overlap unclear — but primary path is asthma exacerbation protocol.
+Oxygen per targets, frequent SABA (± ipratropium), systemic corticosteroids early, monitor response, prepare for escalation (Mg inpatient, ventilatory support). Avoid nonspecific beta blockers. Counsel after discharge: controller intensification, spacer, follow-up within days, trigger plan. Dispense epinephrine if anaphylaxis overlap unclear — but primary path is asthma exacerbation protocol.
 
 ### Allergic rhinitis step-up
 
-1. Allergen avoidance practical tips  
-2. Intranasal steroid daily (not PRN-only for persistent)  
-3. Add antihistamine / saline irrigation  
-4. Refer for immunotherapy if refractory  
+1. Allergen avoidance practical tips
+2. Intranasal steroid daily (not PRN-only for persistent)
+3. Add antihistamine / saline irrigation
+4. Refer for immunotherapy if refractory
 5. Watch for CSF leak red flags with trauma history before nasal steroid in special cases — rare stem
 
 ### Smoking cessation motivational micro-script
@@ -257,9 +263,9 @@ Ask → Advise → Assess readiness → Assist (meds + counseling) → Arrange f
 
 ### Pulmonary drug interaction sparks
 
-- Fluvoxamine / strong CYP1A2 inhibitors with some agents (theophylline legacy)  
-- PAH ERA pregnancy REMS themes  
-- Corticosteroids + CYP3A inhibitors → Cushingoid risk (even inhaled in extreme interaction cases themes)  
+- Fluvoxamine / strong CYP1A2 inhibitors with some agents (theophylline legacy)
+- PAH ERA pregnancy REMS
+- Corticosteroids + CYP3A inhibitors → Cushingoid risk (even inhaled in extreme interaction cases)
 - Beta blockers in reactive airway disease — cardioselective nuance, still caution
 
 ### Oxygen safety counseling
@@ -272,9 +278,9 @@ Keep current on influenza yearly, pneumococcal per age/indication schedules, COV
 
 ### Remember this (chapter close)
 
-- Device technique is therapy.  
-- LABA needs ICS in asthma.  
-- Exacerbation prevention: vaccines, smoking cessation, adherence, action plans.  
+- Device technique is therapy.
+- LABA needs ICS in asthma.
+- Exacerbation prevention: vaccines, smoking cessation, adherence, action plans.
 - Epinephrine first in anaphylaxis.
 
 ---
@@ -289,7 +295,7 @@ Once-daily Ellipta-style or single-inhaler ICS-LABA-LAMA products can improve ad
 
 ### Montelukast counseling note
 
-Neuropsychiatric events boxed warning themes — counsel mood/behavior changes, especially in adolescents; reserve per current indication preference after shared decision. Still useful in select allergic rhinitis/asthma overlap cases.
+Neuropsychiatric events boxed warning — counsel mood/behavior changes, especially in adolescents; reserve per current indication preference after shared decision. Still useful in select allergic rhinitis/asthma overlap cases.
 
 ### Rescue vs maintenance labeling
 

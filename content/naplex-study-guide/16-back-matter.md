@@ -24,24 +24,6 @@ It depends on how fresh your therapeutics and calculations are. Many candidates 
 
 No — and that’s intentional. The book builds frameworks and high-yield judgment; **practice builds exam performance**. Pair with a strong Qbank and the official NABP outline/bulletin.
 
-### Can AnyExamEasy help with NAPLEX prep?
-
-Yes. [AnyExamEasy](https://anyexameasy.com) offers exam-style NAPLEX practice, teachable rationales, Roadmap, and mocks.
-
----
-
-## You’ve got this
+## Before test day
 
 You already trained for years to think like a pharmacist. This book is a map — **ISCM on every item**, patient factors first, calcs with units, Domain 3 reps daily. Open a practice set today. Review misses like a detective. Repeat tomorrow.
-
-### Ready for NAPLEX practice?
-
-**AnyExamEasy** pairs this NAPLEX reference book with exam-style practice, teachable rationales, Roadmap, and mocks.
-
-com)** — no payment method.
-
-*NAPLEX practice that matches the judgment this book trains.*
-
----
-
-*AnyExamEasy is independent and not affiliated with NABP, Pearson VUE, or other exam owners. Exam names are trademarks of their owners. We do not guarantee exam results, licensure, certification, or employment. Always confirm current policies in the official Candidate Application Bulletin and NAPLEX Content Outline at [nabp.pharmacy](https://nabp.pharmacy).*

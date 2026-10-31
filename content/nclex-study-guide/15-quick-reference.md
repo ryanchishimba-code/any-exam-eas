@@ -8,11 +8,11 @@
 
 ## ABCs + priority order (pocket)
 
-1. Airway obstruction / compromise  
-2. Breathing failure / severe distress  
-3. Circulation — shock, uncontrolled bleed, lethal rhythms  
-4. Neuro disability / acute change in LOC  
-5. Safety (falls, suicide means, infection exposure)  
+1. Airway obstruction / compromise
+2. Breathing failure / severe distress
+3. Circulation — shock, uncontrolled bleed, lethal rhythms
+4. Neuro disability / acute change in LOC
+5. Safety (falls, suicide means, infection exposure)
 6. Pain, education, psychosocial (unless that’s the stem’s true focus and client is stable)
 
 **Tie-breakers:** acute > chronic · unstable > stable · unexpected > expected · actual > risk (when acuity otherwise similar)
@@ -41,12 +41,12 @@
 
 Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 
-| Lab | Low concern themes | High concern themes |
+| Lab | Low concern | High concern |
 | --- | --- | --- |
 | **Na⁺** | Seizures, confusion | Thirst, neuro changes |
 | **K⁺** | Dysrhythmia, weakness | Peaked T, emergency risk |
 | **Ca²⁺** | Tetany, spasms | Weakness, stones, moans |
-| **Mg²⁺** | Dysrhythmia, tetany themes | Reflexes ↓, RR ↓ if severe |
+| **Mg²⁺** | Dysrhythmia, tetany | Reflexes ↓, RR ↓ if severe |
 | **Glucose** | Shake/sweat/confusion/seizure | Dehydration, DKA/HHS risk |
 | **Hgb / Hct** | Fatigue, bleed signs, O₂ carry ↓ | Context (e.g., polycythemia) |
 | **WBC** | Infection risk (neutropenia) | Infection/inflammation |
@@ -56,11 +56,11 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 | **Creatinine / BUN** | — | Kidney injury / clearance |
 | **Troponin** | — | Cardiac injury |
 | **Lactate** | — | Perfusion/sepsis concern |
-| **BNP** | — | HF strain themes |
+| **BNP** | — | HF strain |
 | **Ammonia** | — | Encephalopathy context |
 | **Lipase** | — | Pancreatitis context |
 | **LFTs** | — | Hepatotoxicity / HELLP context |
-| **CK** | — | Rhabdo / statin injury themes |
+| **CK** | — | Rhabdo / statin injury |
 
 **Remember this:** A **trending** change often matters more than one static number.
 
@@ -68,7 +68,7 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 
 ## Therapeutic communication — keep / kill
 
-**Keep:** “Tell me more.” “This is difficult.” “What concerns you most?” reflection, silence, clarification, open-ended.  
+**Keep:** “Tell me more.” “This is difficult.” “What concerns you most?” reflection, silence, clarification, open-ended.
 **Kill:** “Don’t worry.” “Why did you…” “You should…” “Everyone feels that way.” judgment, false reassurance, changing subject, advising abruptly.
 
 ![Therapeutic communication](visuals/therapeutic-communication.svg)
@@ -98,7 +98,7 @@ Five rights: task, circumstance, person, direction, supervision.
 | Status epilepticus | Help, airway, benzo per protocol |
 | Hypoglycemia conscious | 15-15 carb concept |
 | Hypoglycemia unconscious | Glucagon / IV dextrose per orders |
-| Anaphylaxis | Epinephrine IM themes, airway |
+| Anaphylaxis | Epinephrine IM, airway |
 | Boggy fundus | Massage + help |
 | Late decels | Stop oxytocin per protocol, reposition, O₂, notify |
 | Mag toxicity | Stop mag, Ca gluconate, airway |
@@ -158,13 +158,13 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 | --- | --- |
 | Opioid OD | Naloxone |
 | Mag toxicity | Calcium gluconate |
-| Warfarin bleed | Vitamin K / PCC themes |
-| Heparin | Protamine themes |
+| Warfarin bleed | Vitamin K / PCC |
+| Heparin | Protamine |
 | Acetaminophen OD | NAC |
 | Hypoglycemia | Glucose / glucagon |
-| Malignant hyperthermia | Dantrolene themes |
-| Extrapyramidal acute dystonia | Benztropine / diphenhydramine themes |
-| Dig toxicity severe | Digoxin immune Fab themes |
+| Malignant hyperthermia | Dantrolene |
+| Extrapyramidal acute dystonia | Benztropine / diphenhydramine |
+| Dig toxicity severe | Digoxin immune Fab |
 | Benzodiazepine (selected) | Flumazenil — cautious |
 
 **High-alert:** insulin, anticoags, opioids, chemo, concentrated electrolytes — double-check.
@@ -198,18 +198,18 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 ## Error-log mini template
 
-1. Topic: __________  
-2. Miss type: cue / priority / content / misread / calc  
-3. Correct rule (1 sentence): __________  
-4. Drill tomorrow: 10 similar Qs  
+1. Topic: __________
+2. Miss type: cue / priority / content / misread / calc
+3. Correct rule (1 sentence): __________
+4. Drill tomorrow: 10 similar Qs
 5. CJMM step missed (recognize / analyze / prioritize / generate / act / evaluate): __________
 
 ---
 
 ## NGN bow-tie mental template (study aid)
 
-**Center (condition):** What is the priority problem?  
-**Left (actions):** What do you do first / next?  
+**Center (condition):** What is the priority problem?
+**Left (actions):** What do you do first / next?
 **Right (monitor):** What parameters show improvement or deterioration?
 
 Practice this aloud on every case study — even when the item format differs.
@@ -220,11 +220,8 @@ Practice this aloud on every case study — even when the item format differs.
 
 ## Remember this (sprint)
 
-- Process > panic on every item.  
-- Safety → ABC → Maslow → nursing process.  
-- Review lucky-right answers too.  
-- Sleep is a study strategy.  
-- Official rules live in NCSBN documents — this sheet is a study aid.  
-- Soft CTA only: practice the flashes in a Qbank when ready.
-
-> **Drill these flashes in a Qbank.** [anyexameasy.com](https://anyexameasy.
+- Process > panic on every item.
+- Safety → ABC → Maslow → nursing process.
+- Review lucky-right answers too.
+- Sleep is a study strategy.
+- Official rules live in NCSBN documents — this sheet is a study aid.

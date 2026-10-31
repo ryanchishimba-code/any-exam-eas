@@ -1,6 +1,6 @@
 # Chapter 15 — Quick Reference
 
-> **Study aid only.** Pocket sheets for final-week review. Verify critical values and schedules with current official sources.
+> **Study aid only.** Pocket sheets for final-week review. Confirm critical values and schedules with current official sources.
 
 ![High-alert medication icon row](visuals/high-alert-meds-row.svg)
 
@@ -10,9 +10,9 @@
 
 ## ISCM card
 
-1. **Indication** appropriate?  
-2. **Safety** — allergy, organ, interaction, contraindication?  
-3. **Counseling** — how to take + red flags?  
+1. **Indication** appropriate?
+2. **Safety** — allergy, organ, interaction, contraindication?
+3. **Counseling** — how to take + red flags?
 4. **Monitoring** — efficacy + toxicity?
 
 ---
@@ -77,7 +77,7 @@ Always cancel units; sanity-check adult vs peds magnitude.
 | Lithium + NSAID/ACEI/thiazide | Lithium↑ |
 | Valproate + lamotrigine | SJS risk if rush titration |
 | CNI + azole / rifampin | Toxicity or rejection |
-| Clopidogrel + strong CYP2C19 inhibit themes | Efficacy questions |
+| Clopidogrel + strong CYP2C19 inhibit | Efficacy questions |
 | Simvastatin + strong CYP3A inhibit | Myopathy |
 | Opioid + benzo / alcohol / gabapentinoid | Respiratory depression |
 | QT stacks + low K/Mg | TdP |
@@ -111,7 +111,7 @@ ACEI/ARB/ARNI · evidence BB · MRA · SGLT2 · (+ loop for congestion)
 
 ### T2D comorbidity add-ons
 
-ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA themes (ADA Standards of Care 2026)
+ASCVD/HF/CKD → SGLT2 and/or GLP-1 RA (ADA Standards of Care 2026)
 
 ### Asthma
 
@@ -129,10 +129,10 @@ Peds: oral syringe · Geriatrics: Beers/anticholinergic · Pregnancy: no ACEI/AR
 
 ## Special population sparks
 
-- Pregnancy: no ACEI/ARB; isotretinoin REMS; valproate caution  
-- Peds: weight-based mL with oral syringe  
-- Geriatrics: anticholinergic burden; Beers; falls  
-- Renal: adjust or avoid; don’t trust low SCr in frail elderly alone  
+- Pregnancy: no ACEI/ARB; isotretinoin REMS; valproate caution
+- Peds: weight-based mL with oral syringe
+- Geriatrics: anticholinergic burden; Beers; falls
+- Renal: adjust or avoid; don’t trust low SCr in frail elderly alone
 - Hepatic: no NSAIDs in cirrhosis; lactulose to stools
 
 ---
@@ -156,7 +156,3 @@ Peds: oral syringe · Geriatrics: Beers/anticholinergic · Pregnancy: no ACEI/AR
 ATT/ID · snacks for breaks · pace ~1.5–1.6 min/item average · units on every calc · optional breaks · no return mindset · breathe · ISCM on every stem · don’t mix MPJE law trivia into NAPLEX answers unless asked as practice process
 
 ---
-
-## Soft CTA
-
-When you’re ready for exam-style NAPLEX reps, practice on [anyexameasy.com](https://anyexameasy. Study aid; independent of NABP. MPJE is separate.

@@ -1,6 +1,6 @@
 # Chapter 3 — Management of Care
 
-> **Study aid only.** Scope and assignment rules vary by state and facility. Verify with your nursing regulatory body. PN candidates: think Coordinated Care.
+> **Study aid only.** Scope and assignment rules vary by state and facility. Confirm with your nursing regulatory body. PN candidates: think Coordinated Care.
 
 ![Delegation rights framework](visuals/delegation-five-rights.svg)
 
@@ -20,25 +20,25 @@ When several clients need you, rank by **ABCs, acute vs chronic, unstable vs sta
 
 ### Assessment cues that scream “see first”
 
-- New stridor, anaphylaxis signs, SpO₂ plunging  
-- Active hemorrhage, chest pain with diaphoresis  
-- Sudden change in LOC  
-- Post-op fresh bleeds or airway risk  
+- New stridor, anaphylaxis signs, SpO₂ plunging
+- Active hemorrhage, chest pain with diaphoresis
+- Sudden change in LOC
+- Post-op fresh bleeds or airway risk
 - Suicidal client with means and plan (safety)
 
 ### Priority actions
 
-1. Who is dying/crashing or about to?  
-2. Who needs a **nursing assessment** only you can do?  
+1. Who is dying/crashing or about to?
+2. Who needs a **nursing assessment** only you can do?
 3. What can be delegated so you stay with the unstable client?
 
 ### Worked prioritization vignettes (practice these)
 
-**1.** Day-2 hip replacement requesting oral pain med vs new post-op thyroidectomy with neck swelling and stridor → **thyroidectomy airway first.**  
-**2.** Chronic stable HF with baseline crackles requesting education vs client with sudden crushing chest pain and diaphoresis → **chest pain first.**  
-**3.** Client ready for routine discharge teaching in 1 hour vs client pulling at ET tube and desatting → **airway client first**; assign teaching later or to another RN when safe.  
-**4.** UAP reports “confused” diabetic → **RN assesses** glucose/neuro before assuming dementia baseline.  
-**5.** Three “stable” requests: snack, linen change, scheduled PO vitamin — none beat a fresh OR arrival with hypotensive trend.  
+**1.** Day-2 hip replacement requesting oral pain med vs new post-op thyroidectomy with neck swelling and stridor → **thyroidectomy airway first.**
+**2.** Chronic stable HF with baseline crackles requesting education vs client with sudden crushing chest pain and diaphoresis → **chest pain first.**
+**3.** Client ready for routine discharge teaching in 1 hour vs client pulling at ET tube and desatting → **airway client first**; assign teaching later or to another RN when safe.
+**4.** UAP reports “confused” diabetic → **RN assesses** glucose/neuro before assuming dementia baseline.
+**5.** Three “stable” requests: snack, linen change, scheduled PO vitamin — none beat a fresh OR arrival with hypotensive trend.
 **6.** Psych client with escalating agitation and clenched fists vs client needing reinforcement of already-taught incentive spirometry → **safety/de-escalation first**, then IS.
 
 ### Remember this
@@ -51,8 +51,8 @@ Stable chronic pain teaching loses to new hypoxia. Expected low-grade post-op fe
 
 ### Definitions (NCLEX lens)
 
-- **Assignment:** distributing responsibility for client care among staff who are authorized and competent (e.g., RN-to-RN caseload).  
-- **Delegation:** transferring authority to perform a **specific nursing task** to a competent person in a selected situation while **retaining accountability**.  
+- **Assignment:** distributing responsibility for client care among staff who are authorized and competent (e.g., RN-to-RN caseload).
+- **Delegation:** transferring authority to perform a **specific nursing task** to a competent person in a selected situation while **retaining accountability**.
 - **Supervision:** monitoring, follow-up, evaluation of outcomes — you still own the result.
 
 ### Five rights of delegation
@@ -71,9 +71,9 @@ Float staff get orientation to unit essentials (codes, equipment, documentation)
 
 ### Safety / red flags
 
-- Delegating assessment of a fresh post-op or newly admitted client to UAP  
-- Asking UAP to “evaluate if the pain med worked” as the only follow-up  
-- Unclear handoff (“watch him”)  
+- Delegating assessment of a fresh post-op or newly admitted client to UAP
+- Asking UAP to “evaluate if the pain med worked” as the only follow-up
+- Unclear handoff (“watch him”)
 - Floating without stating competency limits
 
 ### Remember this
@@ -123,9 +123,9 @@ Provider explains procedure, risks, benefits, alternatives; nurse **witnesses si
 
 ### Priority actions
 
-- If client has last-minute questions about risk/benefit → **call provider back** before signing.  
-- Pre-medicated / heavily sedated clients generally should not newly sign — capacity concern.  
-- Emergency exceptions when client can’t consent and delay threatens life — follow law/policy.  
+- If client has last-minute questions about risk/benefit → **call provider back** before signing.
+- Pre-medicated / heavily sedated clients generally should not newly sign — capacity concern.
+- Emergency exceptions when client can’t consent and delay threatens life — follow law/policy.
 - Minors / guardianship: know who may legally consent in your jurisdiction.
 
 ### Remember this
@@ -138,11 +138,11 @@ Questions about the procedure → provider. Questions about timing/prep → nurs
 
 ### Concept
 
-Continuity = clean handoffs (SBAR), medication reconciliation themes, follow-up appointments, home safety, teach-back.
+Continuity = clean handoffs (SBAR), medication reconciliation, follow-up appointments, home safety, teach-back.
 
 ### Discharge readiness criteria (high-yield)
 
-Ready when: vitals reasonably stable for destination; client/caregiver can teach-back critical meds and warning signs; prescriptions/DME arranged; transportation/safe destination; follow-up scheduled; barriers (language, literacy, cognition) addressed.  
+Ready when: vitals reasonably stable for destination; client/caregiver can teach-back critical meds and warning signs; prescriptions/DME arranged; transportation/safe destination; follow-up scheduled; barriers (language, literacy, cognition) addressed.
 **Not ready:** unstable VS, new confusion unexplained, can’t state when to call 911 for their condition, no caregiver when one is required, unfinished teaching on high-risk meds (warfarin, insulin).
 
 ### Referrals (examples)
@@ -163,9 +163,9 @@ QI uses data (falls, CLABSI rates) to improve systems. Report near-misses. If a 
 
 ### Chain of command when provider orders unsafe
 
-1. Clarify with provider (read-back; state concern with data).  
-2. If still unsafe → charge nurse / nursing supervisor.  
-3. Continue up (house supervisor, medical director, ethics) per policy until resolved.  
+1. Clarify with provider (read-back; state concern with data).
+2. If still unsafe → charge nurse / nursing supervisor.
+3. Continue up (house supervisor, medical director, ethics) per policy until resolved.
 4. Do **not** give a med/perform act you know is unsafe solely because “the doctor said.” Document facts objectively.
 
 ### Remember this
@@ -182,8 +182,8 @@ Handoff failures cause real harm. **SBAR** (Situation, Background, Assessment, R
 
 ### Priority actions
 
-- Lead with what the oncoming nurse must do in the next hour.  
-- Include pending labs, new anticoagulants, fall/suicide precautions, isolation.  
+- Lead with what the oncoming nurse must do in the next hour.
+- Include pending labs, new anticoagulants, fall/suicide precautions, isolation.
 - When floating: don’t take an assignment outside your competency without orientation/support — advocate for safe assignment via charge/supervisor.
 
 ### NGN angle
@@ -204,8 +204,8 @@ Competent adults can refuse treatment after being informed of risks. AMA (agains
 
 ### Priority actions
 
-- Notify provider; ensure risks/benefits explained.  
-- Document quotes, witnesses, what was offered.  
+- Notify provider; ensure risks/benefits explained.
+- Document quotes, witnesses, what was offered.
 - If lack of capacity + emergent threat to life, emergency exceptions may apply — follow law/policy; don’t invent.
 
 ### Remember this
@@ -220,9 +220,9 @@ Respect autonomy when capacity present; protect when capacity absent and danger 
 
 Mass casualty: do the **greatest good for the greatest number**. START-style categories (know the idea, not a memorized script as absolute law):
 
-- **Red (immediate):** life-threatening but salvageable now (e.g., airway issues you can open, controlled bleeding urgency).  
-- **Yellow (delayed):** serious but can wait briefly.  
-- **Green (minor):** walking wounded.  
+- **Red (immediate):** life-threatening but salvageable now (e.g., airway issues you can open, controlled bleeding urgency).
+- **Yellow (delayed):** serious but can wait briefly.
+- **Green (minor):** walking wounded.
 - **Black (expectant/deceased):** unlikely to survive given resources — still treat with dignity; roles vary by protocol.
 
 Walking wounded are often tagged green first to clear the scene. This is **not** everyday ED triage — don’t apply black tags to routine single-client care.
@@ -273,83 +273,83 @@ Disaster = utilitarian sorting. Everyday care = sickest salvageable individual f
 
 ### Delegation sharpeners
 
-- RN: unstable, initial assessment, initial teaching, care planning, IVP per policy, triage judgment.  
-- LPN/LVN: stable predictable, reinforce teaching, many meds per scope, wound care per scope.  
-- UAP: ADLs, VS on stable, I&O, positioning, transport stable.  
+- RN: unstable, initial assessment, initial teaching, care planning, IVP per policy, triage judgment.
+- LPN/LVN: stable predictable, reinforce teaching, many meds per scope, wound care per scope.
+- UAP: ADLs, VS on stable, I&O, positioning, transport stable.
 - Never delegate what you haven’t assessed when instability is possible.
 
 ### Extra concept checks (NGN-flavored)
 
-**Q7.** Which task is appropriate to delegate to UAP?  
-A. Evaluating whether crackles improved after diuretic  
-B. Assisting stable client to chair with gait belt after RN assessment  
-C. Initial teaching on warfarin diet  
-D. Titration of nitroglycerin drip  
+**Q7.** Which task is appropriate to delegate to UAP?
+A. Evaluating whether crackles improved after diuretic
+B. Assisting stable client to chair with gait belt after RN assessment
+C. Initial teaching on warfarin diet
+D. Titration of nitroglycerin drip
 
 **Q8.** Mass casualty START-style stem: walking wounded vs apnea corrected with airway vs unsurvivable injuries — NCLEX wants recognition that **disaster triage differs** from everyday “sickest first.” Read the stem for “disaster/mass casualty” language before answering.
 
 #### Answers addendum
 
-**Q7: B.** Stable ADL assist fits UAP.  
+**Q7: B.** Stable ADL assist fits UAP.
 **Q8:** Follow disaster protocol cues in the stem — expectant categories can exist.
 
 ## Concept check
 
-**Q1.** Four clients call. Whom do you see first?  
-A. Day-2 post-op requesting routine oral pain med  
-B. COPD client with SpO₂ 84% on usual O₂ and new confusion  
-C. Diabetic requesting bedtime snack  
-D. Client needing discharge teaching in 1 hour  
+**Q1.** Four clients call. Whom do you see first?
+A. Day-2 post-op requesting routine oral pain med
+B. COPD client with SpO₂ 84% on usual O₂ and new confusion
+C. Diabetic requesting bedtime snack
+D. Client needing discharge teaching in 1 hour
 
-**Q2.** Appropriate UAP assignment?  
-A. Assess breath sounds after albuterol  
-B. Teach insulin self-injection  
-C. Stable client bed bath and empty Foley  
-D. Evaluate response to IV opioid  
+**Q2.** Appropriate UAP assignment?
+A. Assess breath sounds after albuterol
+B. Teach insulin self-injection
+C. Stable client bed bath and empty Foley
+D. Evaluate response to IV opioid
 
-**Q3.** A nurse coworker smells of alcohol and is about to give meds. Best first action?  
-A. Ignore to avoid conflict  
-B. Post on social media  
-C. Intervene to protect clients and notify charge/supervisor per policy  
-D. Document only at end of week  
+**Q3.** A nurse coworker smells of alcohol and is about to give meds. Best first action?
+A. Ignore to avoid conflict
+B. Post on social media
+C. Intervene to protect clients and notify charge/supervisor per policy
+D. Document only at end of week
 
-**Q4.** Provider orders a dose the nurse knows exceeds safe limits for this client. After clarifying, the provider says “just give it.” Next best action?  
-A. Give it to avoid conflict  
-B. Refuse silently and hide the order  
-C. Hold the dose, notify charge/supervisor, continue chain of command per policy  
-D. Ask UAP to decide  
+**Q4.** Provider orders a dose the nurse knows exceeds safe limits for this client. After clarifying, the provider says “just give it.” Next best action?
+A. Give it to avoid conflict
+B. Refuse silently and hide the order
+C. Hold the dose, notify charge/supervisor, continue chain of command per policy
+D. Ask UAP to decide
 
-**Q5.** Which client is **least** ready for discharge?  
-A. Teach-back correct on warfarin diet/INR follow-up; ride home present  
-B. New insulin user cannot recall hypo treatment after two teaching sessions; lives alone  
-C. Stable VS; home health arranged; med list reconciled  
-D. Ortho client ambulating with PT clearance and caregiver  
+**Q5.** Which client is **least** ready for discharge?
+A. Teach-back correct on warfarin diet/INR follow-up; ride home present
+B. New insulin user cannot recall hypo treatment after two teaching sessions; lives alone
+C. Stable VS; home health arranged; med list reconciled
+D. Ortho client ambulating with PT clearance and caregiver
 
-**Q6.** Float RN not oriented to continuous insulin drips is assigned a DKA insulin infusion. Best action?  
-A. Accept quietly and “figure it out”  
-B. State competency limit; request orientation, buddy, or reassignment via charge  
-C. Have UAP titrate the drip  
-D. Stop all unit insulin protocols  
+**Q6.** Float RN not oriented to continuous insulin drips is assigned a DKA insulin infusion. Best action?
+A. Accept quietly and “figure it out”
+B. State competency limit; request orientation, buddy, or reassignment via charge
+C. Have UAP titrate the drip
+D. Stop all unit insulin protocols
 
 #### Answers
 
-**Q1: B.** Airway/breathing + new confusion = unstable.  
-**Q2: C.** ADLs on stable client fit UAP.  
-**Q3: C.** Remove immediate risk; follow reporting policy.  
-**Q4: C.** Unsafe order → hold and escalate; never knowingly harm.  
-**Q5: B.** Failed teach-back on high-risk med + lives alone = not ready.  
+**Q1: B.** Airway/breathing + new confusion = unstable.
+**Q2: C.** ADLs on stable client fit UAP.
+**Q3: C.** Remove immediate risk; follow reporting policy.
+**Q4: C.** Unsafe order → hold and escalate; never knowingly harm.
+**Q5: B.** Failed teach-back on high-risk med + lives alone = not ready.
 **Q6: B.** Float safety = competency advocacy.
 
 ---
 
 ## Chapter Remember this
 
-- Unstable / ABC / unexpected → see first; use worked vignette logic.  
-- Assignment ≠ delegation ≠ supervision — RN keeps accountability.  
-- Five rights; float nurses must declare skill gaps.  
-- Consent: provider explains; nurse witnesses/advocates.  
-- Ethics: autonomy, beneficence, nonmaleficence, justice, fidelity, veracity.  
-- HIPAA minimum necessary; advance directives honored.  
-- Discharge = teach-back + safety + follow-up.  
-- Unsafe order/practice → chain of command.  
+- Unstable / ABC / unexpected → see first; use worked vignette logic.
+- Assignment ≠ delegation ≠ supervision — RN keeps accountability.
+- Five rights; float nurses must declare skill gaps.
+- Consent: provider explains; nurse witnesses/advocates.
+- Ethics: autonomy, beneficence, nonmaleficence, justice, fidelity, veracity.
+- HIPAA minimum necessary; advance directives honored.
+- Discharge = teach-back + safety + follow-up.
+- Unsafe order/practice → chain of command.
 - Disaster START ≠ everyday triage — read the stem.

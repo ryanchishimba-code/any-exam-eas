@@ -1,6 +1,6 @@
 # Chapter 9 — Women’s Health
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Contraception follows the CDC Medical Eligibility Criteria (2024). Mammography follows USPSTF 2024. Cervical intervals follow the posted USPSTF recommendation. STI treatment follows the CDC STI guidelines. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
+> **Study aid only.** Recommendations for primary-care FNP exam judgment — not individualized prescribing or a protocol. Contraception follows the CDC Medical Eligibility Criteria (2024). Mammography follows USPSTF 2024. Cervical intervals follow the posted USPSTF recommendation. STI treatment follows the CDC STI guidelines. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
 ![Contraception decision map](visuals/contraception-decision-map.svg)
 
@@ -20,7 +20,7 @@
 
 > **TRAP** — Combined hormonal contraception with migraine with aura, or ACEI/ARB in pregnancy.
 
-> **LIFESPAN** — Adolescents need confidential care themes; midlife AUB needs cancer risk thinking; older adults still need breast/cervical decisions by life expectancy.
+> **LIFESPAN** — Adolescents need confidential care; midlife AUB needs cancer risk thinking; older adults still need breast/cervical decisions by life expectancy.
 
 #### Critical checklist — open this chapter
 - [ ] I can name ectopic / PID / postpartum preeclampsia red flags
@@ -35,8 +35,6 @@ Women’s health is not a “niche elective” on NPCB — it is everyday primar
 
 Candidates who memorize pill brands without medical-eligibility thinking lose easy points. Candidates who send unilateral first-trimester pain home without an ectopic plan lose dangerous ones.
 
-**Pair with practice:** After each topic, run related items, review every miss, and tag your error log with age band + ADPE stage.
-
 ---
 
 ## ADPE lens for women’s health
@@ -44,8 +42,8 @@ Candidates who memorize pill brands without medical-eligibility thinking lose ea
 | Domain I process | What it looks like in women’s-health stems |
 | --- | --- |
 | **Assess (32%)** | LMP/pregnancy intention, bleeding pattern, pelvic/abd exam when indicated, STI risk, migraine/aura, smoking, VTE/HTN history, meds (teratogens), SDoH (pharmacy, confidentiality, IPV), postpartum status |
-| **Diagnose (27%)** | Pregnancy location viability themes; PID vs UTI vs appendicitis; AUB structural vs ovulatory; PCOS vs other hyperandrogenism; menopause vs thyroid; screening result triage |
-| **Plan (27%)** | MEC-matched contraception; dual protection; STI treat + partners; prenatal labs/vaccines themes; HRT eligibility shared decision; refer/ED timing |
+| **Diagnose (27%)** | Pregnancy location viability; PID vs UTI vs appendicitis; AUB structural vs ovulatory; PCOS vs other hyperandrogenism; menopause vs thyroid; screening result triage |
+| **Plan (27%)** | MEC-matched contraception; dual protection; STI treat + partners; prenatal labs/vaccines; HRT eligibility shared decision; refer/ED timing |
 | **Evaluate (15%)** | Bleeding expectations on new method; test-of-cure when indicated; Rhogam follow-through; Pap/HPV recall systems; HRT symptom response + risk revisit |
 
 **Red-flag filter first:** hemodynamic instability from bleeding, peritoneal signs, pregnancy + unilateral pain/spotting, fever + cervical motion tenderness with toxicity, severe HA/visual/RUQ in pregnancy or postpartum → disposition before clever outpatient titration.
@@ -60,21 +58,25 @@ Patient requests a method, postpartum method timing, emergency contraception, or
 
 ### Assess — ask before you prescribe
 
-- Pregnancy already? Need exclusion when starting selected methods (verify Quick Start rules).  
-- Migraine **with aura**? Smoking and age ≥35? VTE, thrombophilia, uncontrolled HTN, migraine with aura, breast cancer history, liver disease — classic combined-hormonal restriction themes.  
-- Postpartum / breastfeeding timing (estrogen timing differs — verify).  
-- Adherence reality, confidentiality (adolescents), cost, desire for amenorrhea vs regular bleeds.  
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+- Pregnancy already? Need exclusion when starting selected methods.
+- Migraine **with aura**? Smoking and age ≥35? VTE, thrombophilia, uncontrolled HTN, migraine with aura, breast cancer history, liver disease — classic combined-hormonal restriction.
+- Postpartum / breastfeeding timing.
+- Adherence reality, confidentiality (adolescents), cost, desire for amenorrhea vs regular bleeds.
 - STI risk → condoms even with LARC.
 
-### Method themes (verify CDC MEC categories)
+### Method
 
-| Method themes | Strengths | Watch / counsel |
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
+
+| Method | Strengths | Watch / counsel |
 | --- | --- | --- |
-| LNG-IUD / Cu-IUD | Highest typical-use effectiveness; Cu is hormone-free | Insertion risks; Cu may increase menses/cramps; infection timing themes |
-| Implant | Set-and-forget | Irregular bleeding common — set expectations |
-| DMPA | Private; no daily task | Bleeding changes; bone-density themes with prolonged use — verify counseling |
-| Combined pill / patch / ring | Cycle control; acne benefit themes | **Estrogen contraindications**; patch adherence/detachment; VTE teaching |
-| Progestin-only pill | Lactation-friendly themes; estrogen-sparing | Timing adherence for some formulations |
+| LNG-IUD / Cu-IUD | Highest typical-use effectiveness; Cu is hormone-free | Insertion risks; Cu may increase menses/cramps; infection timing |
+| Implant | No daily dose | Irregular bleeding is common; set expectations |
+| DMPA | Private; no daily task | Bleeding changes; bone-density with prolonged use |
+| Combined pill / patch / ring | Cycle control; acne benefit | **Estrogen contraindications**; patch adherence/detachment; VTE teaching |
+| Progestin-only pill | Lactation-friendly; estrogen-sparing | Timing adherence for some formulations |
 | Barrier / fertility awareness | No hormones | Higher typical-use failure — honest counseling |
 | Emergency contraception | Time-sensitive; nonjudgmental offer | Not ongoing contraception; discuss ongoing method |
 
@@ -86,14 +88,16 @@ Patient requests a method, postpartum method timing, emergency contraception, or
 
 ### Plan & Evaluate
 
-Shared decision + teach missed-pill / patch / ring rules (verify). Return for problematic bleeding after expected adjustment window. Revisit method when migraine phenotype, smoking, or BP changes.
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+Shared decision + teach missed-pill / patch / ring rules. Return for problematic bleeding after expected adjustment window. Revisit method when migraine phenotype, smoking, or BP changes.
 
 #### Critical checklist — contraception
-- [ ] Pregnancy intention + exclusion when needed  
-- [ ] Aura / smoking≥35 / VTE / HTN scanned  
-- [ ] Dual protection if STI risk  
-- [ ] Backup method teaching  
-- [ ] Follow-up for bleeding expectations  
+- [ ] Pregnancy intention + exclusion when needed
+- [ ] Aura / smoking≥35 / VTE / HTN scanned
+- [ ] Dual protection if STI risk
+- [ ] Backup method teaching
+- [ ] Follow-up for bleeding expectations
 
 ---
 
@@ -101,17 +105,17 @@ Shared decision + teach missed-pill / patch / ring rules (verify). Return for pr
 
 ### Takeaway
 
-**Screen by risk and guideline age themes; treat patient + partners; keep HIV/syphilis/hepatitis on the board when indicated.**
+**Screen by risk and guideline age; treat patient + partners; keep HIV/syphilis/hepatitis on the board when indicated.**
 
 ### Syndromes map
 
 | Syndrome | Think | Plan pattern |
 | --- | --- | --- |
-| Cervicitis / urethritis | GC/CT (± M. genitalium awareness) | NAAT; treat per CDC themes; partner therapy concepts where legal |
+| Cervicitis / urethritis | GC/CT (± M. genitalium awareness) | NAAT; treat per CDC; partner therapy concepts where legal |
 | Vaginal discharge | BV, candida, trich | Exam + tests — don’t guess forever |
 | Genital ulcers | HSV vs syphilis (± rare others) | Dark-field/serology pathways; don’t miss syphilis |
 | PID | Lower abd pain + CMT/adnexal tenderness ± fever | Prompt therapy; **ED if abscess/toxic/pregnancy uncertain instability** |
-| PrEP / HIV | Risk assessment | Offer prevention themes; test before PrEP |
+| PrEP / HIV | Risk assessment | Offer prevention; test before PrEP |
 
 ### Red flags → acute care
 
@@ -128,11 +132,11 @@ Toxic appearance, inability to tolerate oral therapy, TOA suspicion, pregnancy w
 Adolescents and YA*: confidentiality + vaccine (HPV) bridge. Pregnancy changes drug choices and urgency. IPV screening when STI or injuries raise concern — safety first.
 
 #### Critical checklist — STI
-- [ ] Right tests ordered (not culture-only nostalgia)  
-- [ ] Partners addressed  
-- [ ] HIV/syphilis considered when fitting  
-- [ ] PID disposition correct  
-- [ ] Retest / PrEP offered when indicated  
+- [ ] Right tests ordered (not culture-only nostalgia)
+- [ ] Partners addressed
+- [ ] HIV/syphilis considered when fitting
+- [ ] PID disposition correct
+- [ ] Retest / PrEP offered when indicated
 
 ---
 
@@ -150,13 +154,17 @@ Cycle history, hirsutism/acne, weight trajectory, acanthosis, BP, mood, fertilit
 
 PCOS · thyroid · hyperprolactinemia · CAH nonclassic · androgen-secreting tumor (rapid virilization) · Cushing · meds.
 
-### Workup themes (verify)
+### Workup
 
-Pregnancy test, TSH, prolactin when indicated, androgen panel when hyperandrogenism unclear, 17-OHP if CAH on board, A1c/glucose, lipids. Ultrasound when needed for morphology or AUB structure — not mandatory for every classic phenotype (guidance nuance — verify).
+Source: 2026 ACC/AHA dyslipidemia guideline.
 
-### Plan themes
+Pregnancy test, TSH, prolactin when indicated, androgen panel when hyperandrogenism unclear, 17-OHP if CAH on board, A1c/glucose, lipids. Ultrasound when needed for morphology or AUB structure — not mandatory for every classic phenotype.
 
-Lifestyle is first-line metabolic therapy. Combined hormonal contraception often used for cycle control/androgen symptoms **if MEC-eligible**. Progestin exposure protects endometrium in anovulation. Metformin themes for metabolic/insulin resistance selected cases. Spironolactone for hirsutism with pregnancy prevention. Fertility → letrozole/specialty pathways — don’t endless clomiphene folklore without referral when needed.
+### Plan
+
+Source: ADA Standards of Care in Diabetes, 2026.
+
+Lifestyle is first-line metabolic therapy. Combined hormonal contraception often used for cycle control/androgen symptoms **if MEC-eligible**. Progestin exposure protects endometrium in anovulation. Metformin for metabolic/insulin resistance selected cases. Spironolactone for hirsutism with pregnancy prevention. Fertility → letrozole/specialty pathways — don’t endless clomiphene folklore without referral when needed.
 
 > **MUST KNOW** — Chronic anovulation without progestin protection → endometrial hyperplasia/cancer risk awareness.
 
@@ -178,7 +186,7 @@ Volume (pad/tampon counts, clots, flooding), timing (intermenstrual, postcoital,
 
 ### Red flags
 
-Soaking through protection hourly, orthostasis/syncope, postpartum hemorrhage themes, postmenopausal bleeding (cancer until evaluated), pregnancy + bleeding (ectopic/SAB lanes).
+Soaking through protection hourly, orthostasis/syncope, postpartum hemorrhage, postmenopausal bleeding (cancer until evaluated), pregnancy + bleeding (ectopic/SAB lanes).
 
 ### PALM-COEIN (memory frame)
 
@@ -190,13 +198,15 @@ Soaking through protection hourly, orthostasis/syncope, postpartum hemorrhage th
 | Malignancy/hyperplasia | Iatrogenic |
 | | Not otherwise classified |
 
-### Workup themes
+### Workup
 
-Pregnancy test always when possible. CBC for anemia. TSH when fitting. Pelvic exam ± STI tests. Ultrasound for structural. Endometrial sampling when age/risk warrant (persistent AUB, failed medical therapy, postmenopausal bleeding pathways — verify thresholds). Coag workup in adolescents with heavy menses from menarche.
+Pregnancy test always when possible. CBC for anemia. TSH when fitting. Pelvic exam ± STI tests. Ultrasound for structural. Endometrial sampling when age/risk warrant (persistent AUB, failed medical therapy, postmenopausal bleeding pathways — KDIGO 2024 allows up to a 30% creatinine rise after an ACE inhibitor or ARB). Coag workup in adolescents with heavy menses from menarche.
 
-### Plan themes
+### Plan
 
-Acute heavy bleed with instability → ED. Stable: hormonal regulation themes (combined or progestin), TXA awareness in selected acute heavy menses (verify), iron repletion, treat cause (fibroid referral, polyp removal, etc.).
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
+
+Acute heavy bleed with instability → ED. Stable: hormonal regulation (combined or progestin), TXA awareness in selected acute heavy menses, iron repletion, treat cause (fibroid referral, polyp removal, etc.).
 
 > **MUST KNOW** — Pregnancy test before hormones/imaging assumptions for reproductive-age AUB.
 
@@ -208,15 +218,19 @@ Acute heavy bleed with instability → ED. Stable: hormonal regulation themes (c
 
 ### Takeaway
 
-**Vasomotor and genitourinary syndrome of menopause (GSM) are treatable; systemic MHT eligibility is timing- and risk-based — verify, don’t dogma.**
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
+
+**Vasomotor and genitourinary syndrome of menopause (GSM) are treatable; systemic MHT eligibility is timing- and risk-based.**
 
 ### Assess
 
 Last menstrual period, hot flashes, sleep, mood, vaginal dryness/dyspareunia, fracture risk, CVD risk, breast/endometrial cancer history, clotting history, smoking.
 
-### Plan themes
+### Plan
 
-Nonhormonal options for vasomotor (behavioral, selected nonhormonal meds — verify). Systemic MHT for appropriate candidates within shared decision (timing hypothesis themes — younger/recent menopause generally more favorable than starting late with high ASCVD risk. **Vaginal estrogen** for GSM often local with minimal systemic themes — still counsel. Bone health, CVD prevention, cancer screening up to date.
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+Nonhormonal options for vasomotor. Systemic MHT for appropriate candidates within shared decision (timing hypothesis — younger/recent menopause generally more favorable than starting late with high ASCVD risk. **Vaginal estrogen** for GSM often local with minimal systemic — still counsel. Bone health, CVD prevention, cancer screening up to date.
 
 > **TRAP** — Refusing vaginal estrogen for GSM because “hormones cause cancer” without nuance — local therapy differs from systemic risk conversations.
 
@@ -230,50 +244,54 @@ Nonhormonal options for vasomotor (behavioral, selected nonhormonal meds — ver
 
 **Prenatal content is mapped into Young Adult* — dating, core labs, vaccines, GDM screen timing, and red flags are exam-eligible.**
 
-### Each-visit / early care themes
+### Each-visit / early care
 
-| Theme | Hooks |
+Source: CDC STI Treatment Guidelines, 2021.
+
+| | Hooks |
 | --- | --- |
 | Dating & viability | Early US when indicated; confirm IUP location |
-| Core labs | Type/Rh, anemia, infections (HIV, syphilis, hep B themes), urine — verify panel |
+| Core labs | Type/Rh, anemia, infections (HIV, syphilis, hep B ), urine |
 | Visits | BP, weight, symptom screen, fetal heart when applicable |
-| GDM screen | Mid-pregnancy timing themes (earlier if high risk) |
-| Vaccines | Influenza, Tdap timing, RSV themes as current ACIP — verify |
-| Rh | Anti-D immunoglobulin themes when indicated |
+| GDM screen | Mid-pregnancy timing (earlier if high risk) |
+| Vaccines | Influenza, Tdap timing, RSV as current ACIP |
+| Rh | Anti-D immunoglobulin when indicated |
 | Nutrition | Prenatal vitamin/folate; food safety; substance counseling |
 
 ### Teratogen / drug safety (primary-care ownership)
 
-| Avoid / extreme caution themes | Why it shows up |
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+| Avoid / extreme caution | Why it shows up |
 | --- | --- |
-| ACEI / ARB | Fetal renal toxicity / teratogenicity themes — **stop and switch** with Ob |
+| ACEI / ARB | Fetal renal toxicity / teratogenicity — **stop and switch** with Ob |
 | Isotretinoin / many antiepileptics / warfarin / methotrexate | High-stakes teratogens — specialty + contraception |
-| Tetracyclines / fluoroquinolones (selected) | Prefer pregnancy-safer abx — verify |
-| NSAIDs (later pregnancy themes) | Verify timing cautions |
+| Tetracyclines / fluoroquinolones (selected) | Prefer pregnancy-safer abx |
+| NSAIDs (later pregnancy) | Confirm timing cautions |
 | Uncontrolled alcohol / tobacco / illicit drugs | Screen and counsel every prenatal contact |
 
 > **MUST KNOW** — ACEI/ARB exposure in pregnancy → immediate regimen change + Ob coordination — not “finish the bottle.”
 
 ### Pregnancy red flags → ED / L&D pathway
 
-- Unilateral pain + spotting + positive test → **ectopic until evaluated**  
-- Heavy bleeding / hypotension  
-- Severe HA, visual changes, RUQ pain, severe HTN → preeclampsia spectrum  
-- Fluid leak, decreased fetal movement, contractions preterm  
-- Fever with pyelo picture  
+- Unilateral pain + spotting + positive test → **ectopic until evaluated**
+- Heavy bleeding / hypotension
+- Severe HA, visual changes, RUQ pain, severe HTN → preeclampsia spectrum
+- Fluid leak, decreased fetal movement, contractions preterm
+- Fever with pyelo picture
 
 > **LIFESPAN** — **Postpartum preeclampsia** can declare after discharge — severe HA/HTN after delivery is not “just tired mom.”
 
 #### Critical checklist — prenatal
-- [ ] IUP location considered when bleeding/pain  
-- [ ] Teratogen meds reconciled  
-- [ ] Vaccines timed  
-- [ ] BP emergency features dispositioned  
-- [ ] Postpartum warning signs taught  
+- [ ] IUP location considered when bleeding/pain
+- [ ] Teratogen meds reconciled
+- [ ] Vaccines timed
+- [ ] BP emergency features dispositioned
+- [ ] Postpartum warning signs taught
 
 ---
 
-## Topic G — Breast & cervical screening themes
+## Topic G — Breast & cervical screening
 
 ### Cervical
 
@@ -281,7 +299,7 @@ HPV-based / cytology strategies per age. Don’t over-screen low-risk after hyst
 
 ### Breast
 
-Shared decision mammography start age themes; don’t ignore palpable mass regardless of last mammogram (“imaging negative” does not erase a dominant mass — refer). BRCA/risk models when family history stacks — genetic counseling referral themes.
+Shared decision mammography start age; don’t ignore palpable mass regardless of last mammogram (“imaging negative” does not erase a dominant mass — refer). BRCA/risk models when family history stacks — genetic counseling referral.
 
 > **HIGHLIGHT** — Screening intervals are preference- and evidence-sensitive — document shared decisions; follow abnormal results to closure (Evaluate).
 
@@ -297,18 +315,20 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 - MEC contraindications: **aura** is the key. Pregnancy intention and STI risk. Preference for bleeding pattern. Young Adult\* band.
 
 ### Diagnose
-- Combined hormonal estrogen methods are not preferred (MEC-style restriction themes). Pregnancy not suspected today.
+- Combined hormonal estrogen methods are not preferred (MEC-style restriction). Pregnancy not suspected today.
 
 ### Plan
+
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
 - Offer progestin-only methods and LARC (IUD/implant) with counseling on bleeding patterns. Dual protection discussion. Emergency contraception information. Migraine specialty/primary management separate.
 
 ### Evaluate
 - Follow-up for method satisfaction and migraine pattern; BP monitoring if any hormonal method started; Pap/HPV age-appropriate schedule.
 
 ### Why distractors fail
-- “Start ethinyl estradiol combined OCP because she’s young and nonsmoking” — **aura overrides**.  
-- “Refuse all contraception” — wrong; many safe options exist.  
-- “Copper IUD only option ever” — valid offer, not the only one.  
+- “Start ethinyl estradiol combined OCP because she’s young and nonsmoking” — **aura overrides**.
+- “Refuse all contraception” — wrong; many safe options exist.
+- “Copper IUD only option ever” — valid offer, not the only one.
 - “Ignore STI prevention because monogamous by report” — still counsel.
 
 ---
@@ -324,15 +344,17 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 - Threatened SAB vs ectopic vs early IUP — **cannot exclude ectopic in clinic without pathway**.
 
 ### Plan
+
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
 - Urgent quantitative hCG + urgent ultrasound / Ob-ED pathway today — do not send home with “rest and repeat urine tomorrow” alone. Rhogam if Rh-negative per guidance once status known. NPO if surgical risk.
 
 ### Evaluate
 - Confirm follow-through; serial hCG/US ownership; return precautions for syncope/heavy bleed/shoulder pain.
 
 ### Why distractors fail
-- “Probable miscarriage — expectant home care without imaging.”  
-- “Treat UTI empirically for pelvic pain.”  
-- “Schedule routine OB intake in 2 weeks.”  
+- “Probable miscarriage — expectant home care without imaging.”
+- “Treat UTI empirically for pelvic pain.”
+- “Schedule routine OB intake in 2 weeks.”
 - “Start progesterone without locating pregnancy.”
 
 ---
@@ -348,20 +370,24 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 - Symptomatic AUB with anemia — not “normal perimenopause” reassurance alone. Structural disease and endometrial pathology on the board.
 
 ### Plan
-- If unstable or ongoing flooding → ED for acute management. If stabilizable: iron therapy, ultrasound, endometrial evaluation per age/risk, hormonal regulation themes, GYN referral as needed. Update cervical screening.
+
+Source: USPSTF cervical cancer screening, 2018.
+- If unstable or ongoing flooding → ED for acute management. If stabilizable: iron therapy, ultrasound, endometrial evaluation per age/risk, hormonal regulation, GYN referral as needed. Update cervical screening.
 
 ### Evaluate
 - Hb response; pathology results closure; contraception if still at risk for pregnancy; transition to menopause counseling when appropriate.
 
 ### Why distractors fail
-- “It’s perimenopause — no workup.”  
-- “Start combined HRT without evaluation of heavy bleeding cause.”  
-- “Only iron and follow up in 6 months without structural/endometrial plan.”  
+- “It’s perimenopause — no workup.”
+- “Start combined HRT without evaluation of heavy bleeding cause.”
+- “Only iron and follow up in 6 months without structural/endometrial plan.”
 - “Assume fibroids without imaging or sampling when indicated.”
 
 ---
 
 ## Exam traps / common miss patterns
+
+Source: 2025 AHA/ACC high blood pressure guideline.
 
 | Trap | What to do instead |
 | --- | --- |
@@ -370,39 +396,39 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 | First-trimester unilateral pain home without ectopic plan | Urgent hCG/US pathway |
 | Postmenopausal bleeding = “hormones” | Evaluate for cancer |
 | Treating ASB logic in nonpregnant UTI chapter confusion | Know pregnancy exception lives in prenatal/UTI |
-| Ignoring PID toxicity | ED / imaging / parenteral themes |
+| Ignoring PID toxicity | ED / imaging / parenteral |
 | Mammogram last year rules out palpable mass | Refer dominant mass |
-| No partner treatment for STI | Partner strategy + retest themes |
-| Starting estrogen too early postpartum when VTE risk high | Verify timing |
+| No partner treatment for STI | Partner strategy + retest |
+| Starting estrogen too early postpartum when VTE risk high | Confirm timing |
 | Eternal irregular menses labeled PCOS without endometrial protection | Protect endometrium / evaluate |
 
 ---
 
 ## Quick checklist — women’s health
 
-- [ ] Pregnancy test when it changes management  
-- [ ] MEC-style scan: aura, smoking≥35, VTE, HTN  
-- [ ] Dual protection / STI prevention discussed  
-- [ ] PID / ectopic / postpartum preeclampsia disposition correct  
-- [ ] PALM-COEIN + pregnancy ruled out for AUB  
-- [ ] PCOS metabolic + endometrial risk addressed  
-- [ ] Prenatal labs/vaccines/teratogen reconciliation themes  
-- [ ] ACEI/ARB never continued in pregnancy  
-- [ ] Breast mass ≠ “normal imaging last year”  
-- [ ] Cervical screening recalls closed (Evaluate)  
-- [ ] SDoH: confidentiality, cost, IPV safety  
-- [ ] Teach-back on method use and return precautions  
+- [ ] Pregnancy test when it changes management
+- [ ] MEC-style scan: aura, smoking≥35, VTE, HTN
+- [ ] Dual protection / STI prevention discussed
+- [ ] PID / ectopic / postpartum preeclampsia disposition correct
+- [ ] PALM-COEIN + pregnancy ruled out for AUB
+- [ ] PCOS metabolic + endometrial risk addressed
+- [ ] Prenatal labs/vaccines/teratogen reconciliation
+- [ ] ACEI/ARB never continued in pregnancy
+- [ ] Breast mass ≠ “normal imaging last year”
+- [ ] Cervical screening recalls closed (Evaluate)
+- [ ] SDoH: confidentiality, cost, IPV safety
+- [ ] Teach-back on method use and return precautions
 
 ---
 
 ## Remember this
 
-- Domain II: prenatal lives inside **Young Adult\*** — study it on purpose.  
-- ADPE order: stability and can’t-miss pregnancy complications before clever hormone titration.  
-- Teaching doses/intervals change — verify CDC/USPSTF/ACOG-aligned sources and labels.  
-- Independent study aid — not NPCB/AANP; no pass guarantee.
+Source: CDC U.S. Medical Eligibility Criteria, 2024.
 
-**Next practice move:** Drill contraception MEC, STI/PID, AUB/PCOS, prenatal red flags, and screening items with full rationale review on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
+- Domain II: prenatal lives inside **Young Adult\*** — study it on purpose.
+- ADPE order: stability and can’t-miss pregnancy complications before clever hormone titration.
+- Teaching doses/intervals change.
+- Independent study aid — not NPCB/AANP; no pass guarantee.
 
 ---
 
@@ -412,7 +438,7 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 | --- | --- |
 | +hCG + unilateral pain | Ectopic |
 | Fever + CMT | PID / TOA |
-| Midcycle sudden pain | Ruptured cyst vs torsion themes |
+| Midcycle sudden pain | Ruptured cyst vs torsion |
 | Dysmenorrhea progressive | Endometriosis awareness → GYN |
 | Postmenopausal pain + bleeding | Cancer pathway |
 | +GI symptoms | Appendicitis / diverticulitis age-based |
@@ -423,7 +449,9 @@ Always pregnancy test when possible. Torsion and ectopic are time-sensitive.
 
 ## Topic I — Intimate partner violence & confidentiality (Plan/Assess gold)
 
-Assess privately when safe. Document injuries. Offer resources without forcing disclosure in unsafe moments. Adolescent confidentiality themes for sexual health with mandated-reporting boundaries (know local rules conceptually). Contraception access and STI care may be the visit’s hidden agenda — create a safe opening.
+Source: GOLD report, 2025.
+
+Assess privately when safe. Document injuries. Offer resources without forcing disclosure in unsafe moments. Adolescent confidentiality for sexual health with mandated-reporting boundaries (know local rules conceptually). Contraception access and STI care may be the visit’s hidden agenda — create a safe opening.
 
 > **HIGHLIGHT** — A “routine GYN” stem can be an IPV Assess item — listen for control, fear, unexplained injuries.
 
@@ -444,20 +472,22 @@ Assess privately when safe. Document injuries. Offer resources without forcing d
 > **LIFESPAN** — YA* prenatal; adolescent confidentiality; midlife cancer risk in AUB.
 
 #### Critical checklist — women’s health tonight
-- [ ] MEC matching  
-- [ ] Ectopic/PID/preeclampsia red flags  
-- [ ] AUB pregnancy + PALM-COEIN  
-- [ ] Screening follow-through  
+- [ ] MEC matching
+- [ ] Ectopic/PID/preeclampsia red flags
+- [ ] AUB pregnancy + PALM-COEIN
+- [ ] Screening follow-through
 
 ---
 
 ## Counseling scripts that map to Plan items
 
-- “Because you get migraine with aura, estrogen birth control raises stroke risk talk — let’s pick a safer highly effective option.”  
-- “Spotting and one-sided pain in early pregnancy needs same-day evaluation to rule out ectopic.”  
-- “If your partner isn’t treated, your STI can come right back — here’s how we handle partners.”  
-- “Heavy periods that make you dizzy need labs and a cause workup — not only ‘you’re getting older.’”  
-- “After delivery, a sudden severe headache with high blood pressure is an emergency — don’t wait for your six-week visit.”  
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+- “Because you get migraine with aura, estrogen birth control raises stroke risk talk — let’s pick a safer highly effective option.”
+- “Spotting and one-sided pain in early pregnancy needs same-day evaluation to rule out ectopic.”
+- “If your partner isn’t treated, your STI can come right back — here’s how we handle partners.”
+- “Heavy periods that make you dizzy need labs and a cause workup — not only ‘you’re getting older.’”
+- “After delivery, a sudden severe headache with high blood pressure is an emergency — don’t wait for your six-week visit.”
 - “A breast lump still needs evaluation even if last year’s mammogram was normal.”
 
 Teach-back beats pamphlet drops — Domain I Plan loves clear education plus return precautions.
@@ -466,14 +496,14 @@ Teach-back beats pamphlet drops — Domain I Plan loves clear education plus ret
 
 ## Concept checks
 
-**1.** Best contraception Plan for migraine with aura?  
-A. Combined ethinyl estradiol pill  B. Progestin-only or LARC themes  C. No contraception allowed  D. Estrogen patch preferred  
+**1.** Best contraception Plan for migraine with aura?
+A. Combined ethinyl estradiol pill B. Progestin-only or LARC C. No contraception allowed D. Estrogen patch preferred
 **Answer:** B.
 
-**2.** Positive hCG, unilateral pain, spotting — priority?  
-A. Routine OB intake in 3 weeks  B. Urgent ectopic evaluation pathway  C. Combined OCP start  D. Reassure implantation only  
+**2.** Positive hCG, unilateral pain, spotting — priority?
+A. Routine OB intake in 3 weeks B. Urgent ectopic evaluation pathway C. Combined OCP start D. Reassure implantation only
 **Answer:** B.
 
-**3.** Why stop lisinopril when pregnancy confirmed?  
-A. Improves milk supply  B. ACEI/ARB fetal toxicity themes  C. No reason  D. Only matters in third trimester  
+**3.** Why stop lisinopril when pregnancy confirmed?
+A. Improves milk supply B. ACEI/ARB fetal toxicity C. No reason D. Only matters in third trimester
 **Answer:** B.

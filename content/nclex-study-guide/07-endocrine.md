@@ -1,6 +1,6 @@
 # Chapter 7 — Endocrine
 
-> **Study aid only.** Glucose targets and insulin protocols vary. Verify with current ADA-aligned teaching and facility policy. Not dosing advice for real patients.
+> **Study aid only.** Glucose targets and insulin protocols vary. Confirm with current ADA-aligned teaching and facility policy. Not dosing advice for real patients.
 
 ![Glucose emergencies — hypoglycemia vs DKA vs HHS](visuals/glucose-emergencies.svg)
 
@@ -28,40 +28,40 @@ Insulin deficiency/resistance → hyperglycemia. Chronic damage to vessels/nerve
 
 ### Assessment cues
 
-**Hypo (adrenergic → neuroglycopenic):** sweat, tremor, hunger, tachycardia → confusion, seizure, coma.  
-**Hyper:** polyuria/polydipsia/polyphagia, blurry vision, dehydration.  
-**DKA:** Kussmaul respirations, fruity breath, abdominal pain, vomiting.  
+**Hypo (adrenergic → neuroglycopenic):** sweat, tremor, hunger, tachycardia → confusion, seizure, coma.
+**Hyper:** polyuria/polydipsia/polyphagia, blurry vision, dehydration.
+**DKA:** Kussmaul respirations, fruity breath, abdominal pain, vomiting.
 **HHS:** extreme dehydration, neuro changes, often precipitating illness.
 
 ### Somogyi vs dawn phenomenon (concepts)
 
-Both cause morning hyperglycemia — different “why”:  
-- **Dawn:** natural early-morning hormone surge → rising glucose; often needs evening dose adjustment per provider.  
-- **Somogyi (rebound) theme:** nocturnal hypo → counter-regulatory rebound hyper; check **3 a.m. glucose** when taught — if low at 3 a.m. then high at breakfast, discuss with provider (may need less evening insulin, not more).  
+Both cause morning hyperglycemia — different “why”:
+- **Dawn:** natural early-morning hormone surge → rising glucose; often needs evening dose adjustment per provider.
+- **Somogyi (rebound):** nocturnal hypo → counter-regulatory rebound hyper; check **3 a.m. glucose** when taught — if low at 3 a.m. then high at breakfast, discuss with provider (may need less evening insulin, not more).
 Don’t memorize contested debates — know that **nighttime checks** guide the plan.
 
 ### Priority nursing actions
 
-**Hypoglycemia (conscious, can swallow):** 15-15 rule concept — ~15 g fast carb, recheck ~15 min, repeat as needed; then protein/complex carb per protocol.  
-**Unconscious / NPO:** glucagon IM/SQ or IV dextrose per orders — protect airway.  
-**DKA/HHS:** ABCs; IV fluids first themes; **check K⁺ before starting insulin — hold insulin and replace potassium first if K⁺ < 3.3 mEq/L** (insulin drives K⁺ intracellularly); insulin infusion per protocol once K⁺ is adequate; continue replacement as ordered once urine output is established (total body K⁺ depleted even if serum looks normal/high initially); add dextrose to fluids as glucose approaches ~200–250 mg/dL so the drip can keep closing the gap; treat precipitating cause; NPO; frequent labs/neuro checks.
+**Hypoglycemia (conscious, can swallow):** 15-15 rule concept — ~15 g fast carb, recheck ~15 min, repeat as needed; then protein/complex carb per protocol.
+**Unconscious / NPO:** glucagon IM/SQ or IV dextrose per orders — protect airway.
+**DKA/HHS:** ABCs; IV fluids first; **check K⁺ before starting insulin — hold insulin and replace potassium first if K⁺ < 3.3 mEq/L** (insulin drives K⁺ intracellularly); insulin infusion per protocol once K⁺ is adequate; continue replacement as ordered once urine output is established (total body K⁺ depleted even if serum looks normal/high initially); add dextrose to fluids as glucose approaches ~200–250 mg/dL so the drip can keep closing the gap; treat precipitating cause; NPO; frequent labs/neuro checks.
 
 ### Medications (high-yield)
 
-- Insulins by kinetics (rapid/short/intermediate/long) — **peak = hypo risk window**  
-- Never share pens; site rotation; needle safety  
-- Oral agents themes: metformin (contrast/lactic caution concepts), sulfonylurea hypo risk, SGLT2 infection/DKA awareness themes
+- Insulins by kinetics (rapid/short/intermediate/long) — **peak = hypo risk window**
+- Never share pens; site rotation; needle safety
+- Oral agents: metformin (contrast/lactic caution concepts), sulfonylurea hypo risk, SGLT2 infection/DKA awareness
 
 ### Client teaching — foot care & sick-day rules (fuller)
 
-**Foot care:** inspect tops/soles/between toes daily (mirror/caregiver if needed); wash/dry carefully; moisturize (not between toes); closed leather shoes; seamless socks; never go barefoot; no bathroom surgery on calluses/ingrown nails — podiatry; report non-healing ulcers, redness, drainage.  
-**Sick-day:** never stop insulin blindly when ill (stress raises glucose); check glucose more often; check ketones when taught (esp. T1); sip fluids; soft carbs if not eating; call for persistent vomiting, inability to keep fluids, moderate/large ketones, or glucose staying very high per personal parameters; know when to seek ED.  
-MedicAlert themes; carry fast sugar.
+**Foot care:** inspect tops/soles/between toes daily (mirror/caregiver if needed); wash/dry carefully; moisturize (not between toes); closed leather shoes; seamless socks; never go barefoot; no bathroom surgery on calluses/ingrown nails — podiatry; report non-healing ulcers, redness, drainage.
+**Sick-day:** never stop insulin blindly when ill (stress raises glucose); check glucose more often; check ketones when taught (esp. T1); sip fluids; soft carbs if not eating; call for persistent vomiting, inability to keep fluids, moderate/large ketones, or glucose staying very high per personal parameters; know when to seek ED.
+MedicAlert; carry fast sugar.
 
 ### Safety / red flags
 
-- Beta blockers may mask hypo tachycardia.  
-- Drawing insulin: clear before cloudy when mixing (if mixing still taught); never mix long-acting analogs that shouldn’t be mixed.  
+- Beta blockers may mask hypo tachycardia.
+- Drawing insulin: clear before cloudy when mixing (if mixing still taught); never mix long-acting analogs that shouldn’t be mixed.
 - Hypo unawareness in longstanding diabetes.
 
 ### Delegation notes
@@ -70,9 +70,9 @@ UAP can bring juice if RN directs after confirming hypo plan; RN interprets gluc
 
 ### Remember this
 
-- Treat hypo now — brain needs glucose.  
-- DKA/HHS: fluids + insulin protocol + potassium vigilance.  
-- Peak of insulin = watch for hypo.  
+- Treat hypo now — brain needs glucose.
+- DKA/HHS: fluids + insulin protocol + potassium vigilance.
+- Peak of insulin = watch for hypo.
 - Sick days ≠ stop insulin; feet are sacred.
 
 ---
@@ -97,25 +97,25 @@ Thyroid hormones (T3/T4) set metabolic rate. **Hypo** = underactive (Hashimoto c
 | Temp | High fever | Hypothermia |
 | HR | Severe tachy / arrhythmia | Bradycardia |
 | Neuro | Agitation → delirium | Stupor → coma |
-| Trigger themes | Infection, surgery, abrupt antithyroid stop | Cold, infection, sedatives, missed levothyroxine |
+| Trigger | Infection, surgery, abrupt antithyroid stop | Cold, infection, sedatives, missed levothyroxine |
 | Nurse energy | Cooling, O₂, meds per protocol, ICU | Airway, warming, IV hormone per orders, cautious sedation |
 
 ### Priority nursing actions
 
-- Hypo: levothyroxine teaching (morning empty stomach themes; don’t stop abruptly); watch for over-replacement. Myxedema: ABCs, warming, IV hormone per orders, cautious sedation.  
-- Hyper: cool quiet environment; antithyroid meds/beta blockers as ordered; iodine/surgery/RAI themes. Storm: escalate care, cooling, meds per protocol.  
+- Hypo: levothyroxine teaching (morning empty stomach; don’t stop abruptly); watch for over-replacement. Myxedema: ABCs, warming, IV hormone per orders, cautious sedation.
+- Hyper: cool quiet environment; antithyroid meds/beta blockers as ordered; iodine/surgery/RAI. Storm: escalate care, cooling, meds per protocol.
 - Post-thyroidectomy: airway (hematoma/edema), **hypocalcemia** if parathyroids affected (tetany, Chvostek/Trousseau), laryngeal nerve injury (voice/stridor).
 
 ### Meds
 
-- Levothyroxine: take consistently; separate from some binders/iron/calcium timing.  
-- Methimazole/PTU themes: agranulocytosis teaching (fever/sore throat → report).  
+- Levothyroxine: take consistently; separate from some binders/iron/calcium timing.
+- Methimazole/PTU: agranulocytosis teaching (fever/sore throat → report).
 - Beta blockers for symptom control in hyper.
 
 ### Client teaching
 
-- Lifelong replacement often needed in hypo.  
-- RAI: radiation precautions per instructions (sleep apart, fluid intake, avoid close contact with pregnant/infants for instructed period).  
+- Lifelong replacement often needed in hypo.
+- RAI: radiation precautions per instructions (sleep apart, fluid intake, avoid close contact with pregnant/infants for instructed period).
 - Report storm/myxedema warning signs.
 
 ### Remember this
@@ -128,14 +128,14 @@ Post-op thyroid = airway + calcium. Storm and myxedema are ICU-level emergencies
 
 ### Pathophysiology / concept
 
-PTH raises serum calcium (bone, kidney, gut activation themes).  
-**Hypoparathyroid** (often post-thyroidectomy): **low Ca²⁺**, high phosphate themes → tetany, laryngospasm risk.  
+PTH raises serum calcium (bone, kidney, gut activation).
+**Hypoparathyroid** (often post-thyroidectomy): **low Ca²⁺**, high phosphate → tetany, laryngospasm risk.
 **Hyperparathyroid:** **high Ca²⁺** → stones, bones, groans, psychic moans; osteoporosis/fracture risk; dehydration.
 
 ### Priority nursing actions / teaching
 
-- HypoCa: calcium + vitamin D as ordered; seizure/airway watch; teach early tetany signs.  
-- HyperCa: hydration, mobility as tolerated, strain urine if stones; caution digoxin toxicity themes with high Ca²⁺; prepare for surgery if adenoma.
+- HypoCa: calcium + vitamin D as ordered; seizure/airway watch; teach early tetany signs.
+- HyperCa: hydration, mobility as tolerated, strain urine if stones; caution digoxin toxicity with high Ca²⁺; prepare for surgery if adenoma.
 
 ### Remember this
 
@@ -147,28 +147,28 @@ Post-thyroidectomy tingling/spasms = think calcium. High Ca²⁺ = stones and bo
 
 ### Pathophysiology / concept
 
-Adrenal cortex: cortisol + aldosterone (and androgens).  
-**Addison (insufficiency):** low cortisol/aldosterone → weakness, hypotension, hyperpigmentation (primary), salt craving, **hyperkalemia/hyponatremia** themes; crisis = shock.  
+Adrenal cortex: cortisol + aldosterone (and androgens).
+**Addison (insufficiency):** low cortisol/aldosterone → weakness, hypotension, hyperpigmentation (primary), salt craving, **hyperkalemia/hyponatremia**; crisis = shock.
 **Cushing (excess cortisol):** central obesity, moon face, buffalo hump, hyperglycemia, infection risk, thin skin, hypertension, mood changes — exogenous steroids common cause.
 
 ### Assessment cues
 
-Addison crisis: profound hypotension, fever, hypoglycemia, hyperkalemia themes after stress/stopped steroids.  
+Addison crisis: profound hypotension, fever, hypoglycemia, hyperkalemia after stress/stopped steroids.
 Cushing: infection, poor wound healing, fractures risk, hyperglycemia.
 
 ### Priority nursing actions
 
-**Addison / crisis:** IV fluids + glucocorticoid replacement per orders; treat hyperkalemia; never abruptly stop chronic steroids.  
+**Addison / crisis:** IV fluids + glucocorticoid replacement per orders; treat hyperkalemia; never abruptly stop chronic steroids.
 **Cushing:** infection precautions; monitor glucose/BP; careful skin care; if surgical cause, post-op adrenal insufficiency risk.
 
 ### Steroid teaching (high-yield — expand)
 
-- **Taper** — never stop chronic glucocorticoids cold turkey (adrenal crisis).  
-- Take with food; morning dosing often mimics circadian rhythm as taught.  
-- **Infection** risk — report fever early; may mask signs.  
-- **Glucose** rises — monitor if diabetic.  
-- Weight/BP/mood changes; calcium/vit D and fall precautions for bone loss themes.  
-- Stress dosing concepts as taught by provider (illness/surgery may need higher doses).  
+- **Taper** — never stop chronic glucocorticoids cold turkey (adrenal crisis).
+- Take with food; morning dosing often mimics circadian rhythm as taught.
+- **Infection** risk — report fever early; may mask signs.
+- **Glucose** rises — monitor if diabetic.
+- Weight/BP/mood changes; calcium/vit D and fall precautions for bone loss.
+- Stress dosing concepts as taught by provider (illness/surgery may need higher doses).
 - Medical ID for adrenal insufficiency.
 
 ### Safety / red flags
@@ -185,7 +185,7 @@ Addison = need hormones + salt/volume in crisis. Cushing = protect from infectio
 
 ### Concept
 
-Posterior pituitary releases **ADH** (and oxytocin). Anterior hormones include ACTH, TSH, GH — tumors/surgery can disrupt. After pituitary surgery: watch DI (high UOP), CSF leak themes (clear drainage, halo), neuro status. (See also renal chapter for fluid/Na⁺ table — same physiology, different exam angle.)
+Posterior pituitary releases **ADH** (and oxytocin). Anterior hormones include ACTH, TSH, GH — tumors/surgery can disrupt. After pituitary surgery: watch DI (high UOP), CSF leak (clear drainage, halo), neuro status. (See also renal chapter for fluid/Na⁺ table — same physiology, different exam angle.)
 
 ### SIADH vs DI (endocrine view)
 
@@ -196,7 +196,7 @@ Posterior pituitary releases **ADH** (and oxytocin). Anterior hormones include A
 | Na⁺ | Dilutional hyponatremia | Hypernatremia risk |
 | Nurse | Fluid restriction as ordered; seizure precautions; slow Na⁺ correction | Replace fluids; desmopressin (central DI) as ordered; strict I&O/weights |
 
-Triggers for SIADH themes: CNS injury, small-cell lung cancer, some meds. DI: head trauma, pituitary surgery, nephrogenic causes.
+Triggers for SIADH: CNS injury, small-cell lung cancer, some meds. DI: head trauma, pituitary surgery, nephrogenic causes.
 
 ### Remember this
 
@@ -218,7 +218,7 @@ SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → wa
 
 **Stem:** BG 620; one client young with Kussmaul + ketones + pH 7.1; another older with BG 900, profound dehydration, minimal ketones.
 
-**Action theme:** Both need ABCs + fluids per protocol; DKA emphasizes insulin + K⁺ vigilance with acidosis; HHS emphasizes profound fluid resuscitation and osmolarity — don’t memorize cookbook doses; know the pattern differences.
+**Action:** Both need ABCs + fluids per protocol; DKA emphasizes insulin + K⁺ vigilance with acidosis; HHS emphasizes profound fluid resuscitation and osmolarity — don’t memorize cookbook doses; know the pattern differences.
 
 ### Vignette C — Post-thyroidectomy
 
@@ -228,17 +228,17 @@ SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → wa
 
 ### Teaching expansion — sick days & feet
 
-- Sick days: never stop insulin blindly; check BG/ketones; sip fluids; call if vomiting/persistent highs.  
-- Feet: daily inspection, closed shoes, podiatry for nails if neuropathy, report nonhealing ulcers.  
+- Sick days: never stop insulin blindly; check BG/ketones; sip fluids; call if vomiting/persistent highs.
+- Feet: daily inspection, closed shoes, podiatry for nails if neuropathy, report nonhealing ulcers.
 - Steroid teaching: taper; infection risk; glucose rise; medical ID for adrenal insufficiency.
 
 ### Extra concept checks
 
-**Q7.** Somogyi vs dawn — which statement is correct?  
-A. Both are treated by blindly increasing night insulin without data  
-B. Nocturnal checks help distinguish hypo rebound (Somogyi) vs dawn phenomenon  
-C. Ignore 0300 glucoses  
-D. Stop all basal insulin forever  
+**Q7.** Somogyi vs dawn — which statement is correct?
+A. Both are treated by blindly increasing night insulin without data
+B. Nocturnal checks help distinguish hypo rebound (Somogyi) vs dawn phenomenon
+C. Ignore 0300 glucoses
+D. Stop all basal insulin forever
 
 **Answer: B.**
 
@@ -255,12 +255,12 @@ D. Stop all basal insulin forever
 | SIADH | Low Na, concentrated urine | Fluid restrict as ordered, seizure precautions |
 | DI | High Na risk, huge UOP, dilute urine | Replace fluids, desmopressin as ordered |
 | Hypothyroid / myxedema | Bradycardia, hypothermia, coma risk | Warm, airway, hormone as ordered — no rush warm extremes |
-| Thyroid storm | Fever, tachy, delirium | Cooling, airway, ordered antithyroid/beta-blocker themes |
+| Thyroid storm | Fever, tachy, delirium | Cooling, airway, ordered antithyroid/beta-blocker |
 
 ### Red flags callout
 
-> **Red flag:** Adrenal crisis — refractory shock + hyponatremia/hyperkalemia history of steroid stop.  
-> **Red flag:** Post-op thyroid — stridor/hematoma.  
+> **Red flag:** Adrenal crisis — refractory shock + hyponatremia/hyperkalemia history of steroid stop.
+> **Red flag:** Post-op thyroid — stridor/hematoma.
 > **Red flag:** Na⁺ falling fast in SIADH — seizure risk; correct carefully per protocol (over-rapid Na rise also dangerous).
 
 ### Medication highlights
@@ -269,60 +269,60 @@ Insulin peaks; metformin hold around contrast per protocol; levothyroxine AM emp
 
 ## Concept check
 
-**Q1.** Client on insulin is sweaty, shaky, and confused. Glucose 52 mg/dL. First action if able to swallow?  
-A. Give 15 g fast-acting carbohydrate per protocol and recheck  
-B. Give NPH peak dose now  
-C. Start DKA insulin drip immediately  
-D. Ignore — likely anxiety  
+**Q1.** Client on insulin is sweaty, shaky, and confused. Glucose 52 mg/dL. First action if able to swallow?
+A. Give 15 g fast-acting carbohydrate per protocol and recheck
+B. Give NPH peak dose now
+C. Start DKA insulin drip immediately
+D. Ignore — likely anxiety
 
-**Q2.** DKA treatment priority sequence theme?  
-A. Insulin powder PO first  
-B. Airway/fluids, insulin per protocol, monitor potassium  
-C. Restrict all fluids  
-D. Only treat with bicarbonate always first  
+**Q2.** DKA treatment priority sequence ?
+A. Insulin powder PO first
+B. Airway/fluids, insulin per protocol, monitor potassium
+C. Restrict all fluids
+D. Only treat with bicarbonate always first
 
-**Q3.** Day-1 post-thyroidectomy with stridor and expanding neck swelling. Priority?  
-A. Reassure and recheck in 4 hours  
-B. Support airway and notify provider/rapid response immediately  
-C. Give PO calcium without assessment  
-D. Ambulate in hall  
+**Q3.** Day-1 post-thyroidectomy with stridor and expanding neck swelling. Priority?
+A. Reassure and recheck in 4 hours
+B. Support airway and notify provider/rapid response immediately
+C. Give PO calcium without assessment
+D. Ambulate in hall
 
-**Q4.** Client with fever, HR 150, temperature 40°C (104°F), and known hyperthyroidism. Nurse suspects:  
-A. Myxedema coma — warm blankets only  
-B. Possible thyroid storm — escalate, cooling, protocol meds  
-C. Simple anxiety — discharge  
-D. Addison crisis from too much thyroid hormone  
+**Q4.** Client with fever, HR 150, temperature 40°C (104°F), and known hyperthyroidism. Nurse suspects:
+A. Myxedema coma — warm blankets only
+B. Possible thyroid storm — escalate, cooling, protocol meds
+C. Simple anxiety — discharge
+D. Addison crisis from too much thyroid hormone
 
-**Q5.** Best sick-day teaching for insulin-dependent client?  
-A. Stop all insulin until appetite returns  
-B. Continue insulin per plan, check glucose/ketones more often, hydrate, know call parameters  
-C. Exercise intensely until ketones clear  
-D. Double long-acting insulin without guidance  
+**Q5.** Best sick-day teaching for insulin-dependent client?
+A. Stop all insulin until appetite returns
+B. Continue insulin per plan, check glucose/ketones more often, hydrate, know call parameters
+C. Exercise intensely until ketones clear
+D. Double long-acting insulin without guidance
 
-**Q6.** Chronic prednisone teaching priority includes:  
-A. Stop suddenly if feeling better  
-B. Taper per provider; report infection; monitor glucose themes  
-C. Take only at bedtime with grapefruit juice always  
-D. Avoid medical ID to reduce stigma  
+**Q6.** Chronic prednisone teaching priority includes:
+A. Stop suddenly if feeling better
+B. Taper per provider; report infection; monitor glucose
+C. Take only at bedtime with grapefruit juice always
+D. Avoid medical ID to reduce stigma
 
 #### Answers
 
-**Q1: A.** Symptomatic hypo with intact swallow → fast carb (15-15 concept).  
-**Q2: B.** Fluids + insulin protocol + K⁺ vigilance.  
-**Q3: B.** Airway hematoma emergency.  
-**Q4: B.** Hyperthermia + severe tachy in hyperthyroid = storm pattern.  
-**Q5: B.** Sick-day = don’t blindly stop insulin; monitor and call.  
+**Q1: A.** Symptomatic hypo with intact swallow → fast carb (15-15 concept).
+**Q2: B.** Fluids + insulin protocol + K⁺ vigilance.
+**Q3: B.** Airway hematoma emergency.
+**Q4: B.** Hyperthermia + severe tachy in hyperthyroid = storm pattern.
+**Q5: B.** Sick-day = don’t blindly stop insulin; monitor and call.
 **Q6: B.** Taper + infection + glucose awareness.
 
 ---
 
 ## Chapter Remember this
 
-- Hypo kills fast — treat.  
-- DKA vs HHS: ketones/acidosis vs profound hyperosmolar dehydration.  
-- Dawn vs Somogyi: use nocturnal checks to guide.  
-- Thyroid extremes and post-op airway/Ca²⁺; storm ≠ myxedema.  
-- Parathyroid = calcium story.  
-- Addison crisis vs Cushing infection/glucose; steroid taper forever teaching.  
-- SIADH vs DI; pituitary post-op UOP/CSF.  
+- Hypo kills fast — treat.
+- DKA vs HHS: ketones/acidosis vs profound hyperosmolar dehydration.
+- Dawn vs Somogyi: use nocturnal checks to guide.
+- Thyroid extremes and post-op airway/Ca²⁺; storm ≠ myxedema.
+- Parathyroid = calcium story.
+- Addison crisis vs Cushing infection/glucose; steroid taper forever teaching.
+- SIADH vs DI; pituitary post-op UOP/CSF.
 - Feet + sick days = pass-level diabetes teaching.

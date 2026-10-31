@@ -1,6 +1,6 @@
 # Chapter 8 — Renal / GU
 
-> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Follow guidelines, USPSTF/ACIP when relevant, and drug labels. Drug choices below name the guideline and year. Independent of NPCB/AANP.
+> **Study aid only.** High-yield FNP primary-care for exam judgment — not a protocol. Follow guidelines, USPSTF/ACIP when relevant, and drug labels. Drug choices below name the guideline and year. Independent of NPCB/AANP.
 
 ---
 
@@ -25,16 +25,18 @@
 
 ## Topic A — CKD
 
+Source: 2025 AHA/ACC high blood pressure guideline.
+
 **Takeaway: Stage with eGFR + albuminuria; protect kidney with BP and drug choices; know when to refer.**
 
 | Tool | Use |
 | --- | --- |
-| eGFR | Staging themes |
+| eGFR | Staging |
 | UACR | Albuminuria grading |
 | BMP | K, bicarb, Cr trend |
 | Med review | NSAIDs, dual blockade, nephrotoxins |
 
-Plan themes: BP control, ACEI/ARB for albuminuria/diabetes themes, SGLT2 in eligible T2DM/CKD — verify, avoid NSAIDs, dose-adjust renally cleared drugs, anemia/MBD awareness, refer when eGFR low or rapid decline/uncertain etiology.
+Plan: BP control, ACEI/ARB for albuminuria/diabetes, SGLT2 in eligible T2DM/CKD.
 
 > **MUST KNOW** — Severe hyperK with ECG changes / weakness → ED.
 
@@ -55,10 +57,10 @@ Plan themes: BP control, ACEI/ARB for albuminuria/diabetes themes, SGLT2 in elig
 
 | Type | Plan pattern |
 | --- | --- |
-| Uncomplicated cystitis (nonpregnant) | Short-course abx themes — verify local resistance |
+| Uncomplicated cystitis (nonpregnant) | Short-course abx — match the local antibiogram (IDSA uncomplicated cystitis and pyelonephritis guideline, 2011) |
 | Pyelo | Broader / possible ED if toxic |
 | Complicated (male, stone, catheter, immunocompromise) | Culture + broader thinking |
-| Pregnancy | Always treat bacteriuria themes — verify agents safe |
+| Pregnancy | Always treat bacteriuria |
 | Asymptomatic bacteriuria | Usually don’t treat |
 
 > **MUST KNOW** — Male UTI is complicated until proven otherwise — don’t 3-day nitrofurantoin autopilot without thought.
@@ -78,7 +80,7 @@ Plan themes: BP control, ACEI/ARB for albuminuria/diabetes themes, SGLT2 in elig
 
 **Takeaway: Improve symptoms; watch retention; ED is CVD risk conversation too.**
 
-BPH: alpha blockers / 5-ARI themes; avoid anticholinergics that worsen retention in some; catheterize/ED for acute retention.
+BPH: alpha blockers / 5-ARI; avoid anticholinergics that worsen retention in some; catheterize/ED for acute retention.
 
 ED: ask about CVD symptoms; PDE-5 inhibitors — **never with nitrates**.
 
@@ -110,7 +112,7 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 
 **Takeaway: Na/K emergencies first; find the drug driver.**
 
-| Problem | Themes |
+| Problem | |
 | --- | --- |
 | HyperK | ACEI/ARB/MRA/TMP, CKD; ECG; ED if severe |
 | HypoK | Diuretics, GI loss; arrhythmia risk; replete Mg too often |
@@ -175,13 +177,15 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 
 ## Clinical vignette 3 — Pregnancy ASB
 
+Source: KDIGO CKD guideline, 2024.
+
 **Stem:** 29-year-old 16 weeks, asymptomatic, UA culture 10^5 E. coli
 
 | Stage | Move |
 | --- | --- |
 | **Assess** | YA* prenatal |
 | **Diagnose** | ASB in pregnancy — treat |
-| **Plan** | Pregnancy-safe abx themes — verify; test of cure per guidance |
+| **Plan** | Pregnancy-safe antibiotics and a test of cure (ACOG; IDSA urinary guidance, 2011) |
 | **Evaluate** | Recurrence surveillance |
 
 **Why distractors fail**
@@ -203,25 +207,25 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 
 ## Exam traps
 
+Source: KDIGO CKD guideline, 2024.
+
 | Trap | Instead |
 | --- | --- |
 | Therapy before stability | Red-flag filter first |
 | Ignoring age band | Recalculate priors (Older Adult 30%) |
 | Missing pregnancy | YA* includes prenatal |
 | SDoH as “noncompliance” | Fix barriers |
-| Inventing exact doses | Class + safety; verify guidelines |
+| Inventing exact doses | Class + safety; Confirm guidelines |
 
 ---
 
 ## Quick chapter checklist
 
-- [ ] ADPE labeled on every stem  
-- [ ] MUST KNOW emergencies dispositioned to ED  
-- [ ] Lifespan twist applied  
-- [ ] Teach-back / Evaluate plan stated  
-- [ ] Follow guidelines before clinical use  
-
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
+- [ ] ADPE labeled on every stem
+- [ ] MUST KNOW emergencies dispositioned to ED
+- [ ] Lifespan twist applied
+- [ ] Teach-back / Evaluate plan stated
+- [ ] Follow guidelines before clinical use
 
 ---
 
@@ -231,7 +235,7 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 
 ### Assess
 
-Pain pattern, prior stones, urine output, fever, nausea, pregnancy status, meds (topiramate, protease inhibitors themes), high-purine diet/hydration.
+Pain pattern, prior stones, urine output, fever, nausea, pregnancy status, meds (topiramate, protease inhibitors), high-purine diet/hydration.
 
 ### Diagnose / disposition
 
@@ -239,7 +243,9 @@ Uncomplicated stone: analgesia, strain urine, imaging pathway per guidance, urol
 
 ### Plan / Evaluate
 
-Hydration teaching, citrate/dietary themes by stone type when known, thiazide for recurrent calcium stones in selected patients (verify), follow imaging as indicated, metabolic workup for recurrent formers.
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+Hydration teaching, citrate/dietary by stone type when known, thiazide for recurrent calcium stones in selected patients, follow imaging as indicated, metabolic workup for recurrent formers.
 
 > **MUST KNOW** — Stone + infection/sepsis cues → ED, not oral abx and hope.
 
@@ -249,7 +255,7 @@ Hydration teaching, citrate/dietary themes by stone type when known, thiazide fo
 
 ## Topic G — Proteinuria, nephritic/nephrotic awareness
 
-**Takeaway: UACR quantifies albuminuria; heavy proteinuria + edema + hypoalbuminemia themes → nephrotic lane — timely nephrology.**
+**Takeaway: UACR quantifies albuminuria; heavy proteinuria + edema + hypoalbuminemia → nephrotic lane — timely nephrology.**
 
 Nephritic patterns (HTN, oliguria, active urine sediment, rising Cr) need urgent evaluation. Orthostatic proteinuria in adolescents is a different story — history and timed collections help.
 
@@ -264,10 +270,10 @@ Nephritic patterns (HTN, oliguria, active urine sediment, rising Cr) need urgent
 | Bin | Clues | First moves |
 | --- | --- | --- |
 | Prerenal | Volume loss, HF low output, overdiuresis | Fluids if dry; hold nephrotoxins |
-| Intrinsic | ATN after ischemia/toxin; AIN (drugs, rash, eos themes) | Stop offender; specialty |
+| Intrinsic | ATN after ischemia/toxin; AIN (drugs, rash, eos) | Stop offender; specialty |
 | Post-renal | Retention, hydronephrosis, BPH, stones, mass | Bladder scan/catheter; imaging; urology |
 
-Triple whammy: ACEI/ARB + diuretic + NSAID in volume depletion. Hold metformin in significant AKI (lactic acidosis risk themes). HyperK and volume overload drive ED.
+Triple whammy: ACEI/ARB + diuretic + NSAID in volume depletion. Hold metformin in significant AKI (lactic acidosis risk). HyperK and volume overload drive ED.
 
 > **MUST KNOW** — Anuric/oliguric AKI with hyperK/volume overload/uremic symptoms → ED.
 
@@ -279,7 +285,7 @@ Triple whammy: ACEI/ARB + diuretic + NSAID in volume depletion. Hold metformin i
 
 Stress vs urge vs overflow incontinence — exam + PVR when overflow/retention suspected. Avoid reflex anticholinergics in cognitively frail elders without reviewing Beers-style risk. Catheters: remove ASAP; treat CAUTI only when symptomatic infection criteria met.
 
-**Scrotal pain:** torsion (adolescent/young adult sudden severe) → ED/urology immediately. Epididymitis often STI-related in young — treat GC/CT themes + partners. Older: consider enteric organisms / obstruction.
+**Scrotal pain:** torsion (adolescent/young adult sudden severe) → ED/urology immediately. Epididymitis often STI-related in young — treat GC/CT + partners. Older: consider enteric organisms / obstruction.
 
 > **MUST KNOW** — Suspected testicular torsion → immediate ED/urology — time = testis.
 
@@ -293,10 +299,12 @@ Urethritis, epididymitis, proctitis — NAAT testing, empiric coverage when indi
 
 ## Expanded counseling scripts (Plan)
 
-- “Ibuprofen plus your blood-pressure kidney medicine can injure kidneys when you’re sick or dehydrated — use other pain plans.”  
-- “A urine culture growing bacteria without symptoms usually should not get antibiotics — except in pregnancy.”  
-- “If you take nitroglycerin or isosorbide, you cannot use erectile-dysfunction pills like sildenafil.”  
-- “Blood you can see in the urine needs a full evaluation even if a urine infection was treated.”  
+Source: KDIGO CKD guideline, 2024.
+
+- “Ibuprofen plus your blood-pressure kidney medicine can injure kidneys when you’re sick or dehydrated — use other pain plans.”
+- “A urine culture growing bacteria without symptoms usually should not get antibiotics — except in pregnancy.”
+- “If you take nitroglycerin or isosorbide, you cannot use erectile-dysfunction pills like sildenafil.”
+- “Blood you can see in the urine needs a full evaluation even if a urine infection was treated.”
 - “Sudden severe testicular pain is an emergency.”
 
 ---
@@ -327,24 +335,26 @@ Urethritis, epididymitis, proctitis — NAAT testing, empiric coverage when indi
 > **LIFESPAN** — YA* prenatal UTI/ASB; Older Adult 30% = CKD + polypharmacy + atypical UTI.
 
 #### Critical checklist — renal/GU tonight
-- [ ] Complicated vs uncomplicated UTI labeled  
-- [ ] CKD staged; NSAIDs off the table when risky  
-- [ ] K/Cr after ACEI/ARB/MRA changes  
-- [ ] Hematuria pathway not endless abx  
+- [ ] Complicated vs uncomplicated UTI labeled
+- [ ] CKD staged; NSAIDs off the table when risky
+- [ ] K/Cr after ACEI/ARB/MRA changes
+- [ ] Hematuria pathway not endless abx
 - [ ] Nitrate screen before PDE-5
 
 ---
 
 ## Topic A+ — CKD staging & referral thresholds (teaching map)
 
+Source: 2025 AHA/ACC high blood pressure guideline.
+
 | Element | Why it matters on items |
 | --- | --- |
-| eGFR category | G1–G5 themes — know severe CKD needs specialty |
+| eGFR category | G1–G5 — know severe CKD needs specialty |
 | Albuminuria A1–A3 | Drives ACEI/ARB and SGLT2 conversations |
 | Trajectory | Rapid decline ≠ “watch yearly” |
 | Cause | Diabetes/HTN vs GN vs obstruction vs polycystic — etiology changes Plan |
 
-Referral themes (verify local/guideline): eGFR below threshold, heavy proteinuria, active urine sediment, refractory HTN, uncertain diagnosis, preparation for RRT education. Vaccinate; avoid nephrotoxins; dose-adjust; discuss advance care when appropriate.
+Referral: eGFR below threshold, heavy proteinuria, active urine sediment, refractory HTN, uncertain diagnosis, preparation for RRT education. Vaccinate; avoid nephrotoxins; dose-adjust; discuss advance care when appropriate.
 
 ### Anemia & mineral bone disease awareness
 
@@ -352,11 +362,11 @@ CKD anemia is not always “iron deficiency only” — check iron studies befor
 
 ---
 
-## Topic B+ — UTI stewardship table (verify local antibiogram)
+## Topic B+ — UTI stewardship table (match the local antibiogram (IDSA uncomplicated cystitis and pyelonephritis guideline, 2011))
 
 | Scenario | Stewardship pattern |
 | --- | --- |
-| Healthy nonpregnant cystitis | Short course; nitrofurantoin/TMP-SMX/fosfomycin themes when susceptible |
+| Healthy nonpregnant cystitis | Short course; nitrofurantoin/TMP-SMX/fosfomycin when susceptible |
 | Pyelonephritis outpatient-eligible | Broader / longer; culture; close follow-up |
 | Catheter | Remove catheter if possible; treat only symptomatic CAUTI criteria |
 | Recurrent cystitis | Confirm cultures; non-abx prevention first; post-coital strategies when fitting |
@@ -368,18 +378,18 @@ Return precautions: fever, flank pain, vomiting, pregnancy symptoms.
 
 ## Topic C+ — BPH / LUTS expanded
 
-IPSS-style symptom scoring conceptually. Alpha-1 blockers: orthostasis teaching (older adult fall risk). 5-ARIs: sexual side effects, PSA interpretation changes, slower onset. Combination therapy for larger glands/higher risk progression themes. **Acute urinary retention** → catheter + urology. Hematuria with BPH still needs cancer exclusion when risk warrants.
+IPSS-style symptom scoring conceptually. Alpha-1 blockers: orthostasis teaching (older adult fall risk). 5-ARIs: sexual side effects, PSA interpretation changes, slower onset. Combination therapy for larger glands/higher risk progression. **Acute urinary retention** → catheter + urology. Hematuria with BPH still needs cancer exclusion when risk warrants.
 
-PSA shared decision: age, life expectancy, family history, Black ancestry risk themes, false positives → biopsy anxiety — document conversation.
+PSA shared decision: age, life expectancy, family history, Black ancestry risk, false positives → biopsy anxiety — document conversation.
 
 ---
 
 ## Topic E+ — Hyponatremia clinic algorithm (conceptual)
 
-1. Confirm true hypoNa (not pseudohyponatremia themes).  
-2. Volume status: hypovolemic vs euvolemic vs hypervolemic.  
-3. Meds: thiazides, SSRIs/SNRIs, carbamazepine, oxcarbazepine, ecstasy — classic.  
-4. SIADH vs hypothyroidism/adrenal insufficiency when euvolemic.  
+1. Confirm true hypoNa (not pseudohyponatremia).
+2. Volume status: hypovolemic vs euvolemic vs hypervolemic.
+3. Meds: thiazides, SSRIs/SNRIs, carbamazepine, oxcarbazepine, ecstasy — classic.
+4. SIADH vs hypothyroidism/adrenal insufficiency when euvolemic.
 5. Severe symptoms (seizure, deep AMS) → ED for controlled correction — osmotic demyelination risk if too fast (specialty).
 
 > **TRAP** — Free-water chasing every low Na without volume/med assessment.
@@ -418,7 +428,7 @@ PSA shared decision: age, life expectancy, family history, Black ancestry risk t
 
 ## Topic K — Prostate cancer screening shared decision
 
-Offer PSA discussion at appropriate ages with life expectancy; discuss false positives, biopsy risks, overdiagnosis. Black men and strong family history may warrant earlier conversation themes — verify USPSTF/specialty. Abnormal DRE → evaluate regardless of PSA.
+Offer PSA discussion at appropriate ages with life expectancy; discuss false positives, biopsy risks, overdiagnosis. Black men and strong family history may warrant earlier conversation — USPSTF prostate cancer screening, 2018. Abnormal DRE → evaluate regardless of PSA.
 
 ---
 
@@ -441,36 +451,34 @@ SGLT2 inhibitors and finerenone awareness in eligible albuminuric CKD. ACEI/ARB 
 
 ## Remember this — renal/GU
 
-- Complicated UTI ≠ 3-day cystitis autopilot.  
-- Pregnancy ASB treated; most other ASB not.  
-- Triple whammy AKI is preventable.  
+- Complicated UTI ≠ 3-day cystitis autopilot.
+- Pregnancy ASB treated; most other ASB not.
+- Triple whammy AKI is preventable.
 - Torsion is time = testis.
-
-**Practice:** [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
 ## Concept checks — renal extra
 
-**4.** PDE-5 inhibitor counseling must include?  
-A. Take with grapefruit only  B. Absolute nitrate contraindication  C. Doubles warfarin always  D. Safe in all HF  
+**4.** PDE-5 inhibitor counseling must include?
+A. Take with grapefruit only B. Absolute nitrate contraindication C. Doubles warfarin always D. Safe in all HF
 **Answer:** B.
 
-**5.** Asymptomatic bacteriuria in nonpregnant elder LTC resident — usual Plan?  
-A. Treat every positive culture  B. Do not treat if truly asymptomatic (stewardship)  C. Lifelong prophylaxis automatic  D. CT each time  
+**5.** Asymptomatic bacteriuria in nonpregnant elder LTC resident — usual Plan?
+A. Treat every positive culture B. Do not treat if truly asymptomatic (stewardship) C. Lifelong prophylaxis automatic D. CT each time
 **Answer:** B.
 
 ---
 
 ## Topic N — Male GU infections beyond cystitis
 
-Prostatitis: acute febrile obstructive symptoms → careful exam, culture, longer therapy themes, ED if septic/retention. Chronic pelvic pain syndrome ≠ endless quinolones without diagnosis. Epididymo-orchitis age split: STI organisms in younger vs enteric in older/obstruction. Always keep torsion on the board for acute scrotal pain.
+Prostatitis: acute febrile obstructive symptoms → careful exam, culture, longer therapy, ED if septic/retention. Chronic pelvic pain syndrome ≠ endless quinolones without diagnosis. Epididymo-orchitis age split: STI organisms in younger vs enteric in older/obstruction. Always keep torsion on the board for acute scrotal pain.
 
 ---
 
 ## Topic O — Female GU overlap (cystitis vs STI vs vaginitis)
 
-Dysuria with vaginal discharge → examine and test for STI/vaginitis, not nitrofurantoin autopilot alone. Interstitial cystitis/BPS is chronic diagnosis of exclusion. Postcoital prevention strategies for recurrent cystitis when fitting. Atrophic urethritis in menopause: local vaginal estrogen themes help selected patients (women’s health bridge).
+Dysuria with vaginal discharge → examine and test for STI/vaginitis, not nitrofurantoin autopilot alone. Interstitial cystitis/BPS is chronic diagnosis of exclusion. Postcoital prevention strategies for recurrent cystitis when fitting. Atrophic urethritis in menopause: local vaginal estrogen help selected patients (women’s health bridge).
 
 ---
 
@@ -490,25 +498,29 @@ CT stone protocols carry radiation — use when disposition/management changes. 
 
 ## Topic Q — Renal dosing & common primary-care drugs
 
-Metformin eGFR thresholds, DOAC renal dosing, nitrofurantoin caution when eGFR very low (verify), bisphosphonate renal limits, gabapentin accumulation in CKD (falls/sedation), NSAID avoidance. Always check CrCl/eGFR before renewing these — Evaluate is a kidney exam.
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+Metformin eGFR thresholds, DOAC renal dosing, nitrofurantoin caution when eGFR very low, bisphosphonate renal limits, gabapentin accumulation in CKD (falls/sedation), NSAID avoidance. Always check CrCl/eGFR before renewing these — Evaluate is a kidney exam.
 
 ---
 
 ## Topic R — Hypertension + CKD Plan overlap
 
-BP control protects kidneys. ACEI/ARB for albuminuria — expect small Cr rise; know when rise is too much (verify thresholds) vs expected. Dual ACEI+ARB not appropriate. Hyperkalemia management: diet, binders specialty, diuretic adjustment, stop TMP-SMX stacks when possible. SGLT2 eligibility in CKD even near glycemic goal when indicated — endocrine bridge.
+BP control protects kidneys. ACEI/ARB for albuminuria — expect small Cr rise; know when rise is too much (KDIGO 2024 allows up to a 30% creatinine rise after an ACE inhibitor or ARB) vs expected. Dual ACEI+ARB not appropriate. Hyperkalemia management: diet, binders specialty, diuretic adjustment, stop TMP-SMX stacks when possible. SGLT2 eligibility in CKD even near glycemic goal when indicated — endocrine bridge.
 
 ---
 
 ## Topic S — Urolithiasis prevention counseling
 
-Fluid target themes (clear urine), sodium moderation, citrate-rich foods when fitting, normal calcium diet (don’t zero calcium), thiazide for recurrent calcium stones selected patients, allopurinol for uric acid stones when indicated — verify. Strain stones; tailor by composition.
+Source: 2025 AHA/ACC high blood pressure guideline.
+
+Fluid target (clear urine), sodium moderation, citrate-rich foods when fitting, normal calcium diet (don’t zero calcium), thiazide for recurrent calcium stones selected patients, allopurinol for uric acid stones when indicated. Strain stones; tailor by composition.
 
 ---
 
 ## Clinical vignette 6 — HyperK on TMP-SMX
 
-**Stem:** 70-year-old CKD 3 on lisinopril and spironolactone starts TMP-SMX for “UTI.” One week later K 6.4, mild weakness, ECG with peaked T themes in ED triage story.
+**Stem:** 70-year-old CKD 3 on lisinopril and spironolactone starts TMP-SMX for “UTI.” One week later K 6.4, mild weakness, ECG with peaked T in ED triage story.
 
 | ADPE | Move |
 | --- | --- |
@@ -527,18 +539,18 @@ Acute retention: bladder scan, catheterize, urology follow-up, review anticholin
 
 ### Sexual health / ED revisit
 
-ED is a CVD risk marker — ask about exertional angina before PDE-5. Testosterone therapy is not a casual ED fix; evaluate appropriately and avoid in active prostate cancer themes. Partner STI prevention still matters in GU visits.
+ED is a CVD risk marker — ask about exertional angina before PDE-5. Testosterone therapy is not a casual ED fix; evaluate appropriately and avoid in active prostate cancer. Partner STI prevention still matters in GU visits.
 
 > **MUST KNOW** — Retention + infection/sepsis cues or torsion → ED/urology, not “try flomax and call next week” alone when unstable.
 
 > **LIFESPAN** — Older Adult 30%: retention, CKD drug dosing, hyperK stacks, and ASB stewardship dominate — practice them together.
 
 #### Critical checklist — renal/GU final
-- [ ] eGFR + UACR staged when CKD known  
-- [ ] Complicated UTI recognized  
-- [ ] Pregnancy ASB treated; other ASB usually not  
-- [ ] HyperK / torsion / toxic pyelo dispositioned  
-- [ ] Nitrate screen before PDE-5  
-- [ ] Hematuria follow-through closed  
+- [ ] eGFR + UACR staged when CKD known
+- [ ] Complicated UTI recognized
+- [ ] Pregnancy ASB treated; other ASB usually not
+- [ ] HyperK / torsion / toxic pyelo dispositioned
+- [ ] Nitrate screen before PDE-5
+- [ ] Hematuria follow-through closed
 
 > **HIGHLIGHT** — Med reconciliation every CKD visit prevents the triple whammy.

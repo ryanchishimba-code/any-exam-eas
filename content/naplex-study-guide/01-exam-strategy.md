@@ -18,7 +18,7 @@ The NAPLEX asks: **Can you practice as an entry-level pharmacist safely and comp
 
 ### The big picture
 
-| Fact | Detail (verify in current NABP bulletin) |
+| Fact | Detail |
 | --- | --- |
 | Style / delivery | Computerized **fixed-form** exam (not CAT) at Pearson VUE |
 | Length | **225** questions total — **200 scored** + **25 pretest** (you won’t know which) |
@@ -36,17 +36,17 @@ The NAPLEX asks: **Can you practice as an entry-level pharmacist safely and comp
 
 | Domain | Focus | Exam weight (approx. scored items) |
 | --- | --- | --- |
-| **1. Foundational Knowledge for Pharmacy Practice** | Pharmaceutical sciences, PK/PD themes, compounding/pharmaceutics, literature/biostats basics | **25%** (~50) |
+| **1. Foundational Knowledge for Pharmacy Practice** | Pharmaceutical sciences, PK/PD, compounding/pharmaceutics, literature/biostats basics | **25%** (~50) |
 | **2. Medication Use Process** | Prescribe → transcribe/document → dispense → administer → monitor; substitutions; immunizations; med safety | **25%** (~50) |
 | **3. Person-Centered Assessment and Treatment Planning** | Histories, conditions, regimens, monitoring plans, counseling — patient-centered care | **40%** (~80) |
 | **4. Professional Practice** | Ethics, public health, professional responsibilities | **5%** (~10) |
-| **5. Pharmacy Management and Leadership** | Operations, inventory, workflow, leadership themes | **5%** (~10) |
+| **5. Pharmacy Management and Leadership** | Operations, inventory, workflow, leadership | **5%** (~10) |
 
 **Study implication:** Domains 1–3 are ~**90%** of the exam. Don’t ignore 4–5, but don’t let inventory SOP trivia crowd out therapeutics and patient assessment.
 
 ### Question flavors (high-level)
 
-NABP publishes sample items showing multiple choice and other interactive styles (e.g., multiple response, ordered response, constructed response, hotspot themes). Practice the **thinking**, not just one button type. Download official sample items from NABP when available.
+NABP publishes sample items showing multiple choice and other interactive styles (e.g., multiple response, ordered response, constructed response, hotspot). Practice the **thinking**, not just one button type. Download official sample items from NABP when available.
 
 ---
 
@@ -58,9 +58,9 @@ Use these on almost every clinical item.
 
 For any drug or regimen ask:
 
-1. **Indication** — Is this appropriate for *this* patient / condition / guideline theme?  
-2. **Safety** — Allergies, contraindications, organ function, interactions, high-alert risks?  
-3. **Counseling** — What must the patient know to use it correctly and seek help?  
+1. **Indication** — Is this appropriate for *this* patient / condition / guideline ?
+2. **Safety** — Allergies, contraindications, organ function, interactions, high-alert risks?
+3. **Counseling** — What must the patient know to use it correctly and seek help?
 4. **Monitoring** — Labs, efficacy endpoints, adverse-effect surveillance?
 
 If an option fails any pillar, it is usually wrong.
@@ -69,19 +69,19 @@ If an option fails any pillar, it is usually wrong.
 
 Before choosing a “best drug,” filter:
 
-- Allergies / intolerances / prior ADRs  
-- Age, weight, pregnancy/lactation  
-- Renal and hepatic function  
-- Concurrent meds (PK and PD interactions)  
-- Disease severity and goals of therapy  
-- Adherence barriers, cost/access themes when the stem provides them  
+- Allergies / intolerances / prior ADRs
+- Age, weight, pregnancy/lactation
+- Renal and hepatic function
+- Concurrent meds (PK and PD interactions)
+- Disease severity and goals of therapy
+- Adherence barriers, cost/access when the stem provides them
 - Formulation / route feasibility
 
 **Remember this:** The “guideline first-line” drug is wrong if the patient can’t take it safely.
 
 ### 3) Acute before chronic / unstable before stable
 
-- Treat life-threatening toxicity, anaphylaxis themes, status symptoms, and severe infection source control urgency before optimizing a chronic titration.  
+- Treat life-threatening toxicity, anaphylaxis, status symptoms, and severe infection source control urgency before optimizing a chronic titration.
 - On calc items: unit safety and dose reasonableness beat fancy algebra.
 
 ### 4) Medication-use process lens (Domain 2)
@@ -93,14 +93,14 @@ Map the stem to the step:
 | Prescribing / order review | Appropriateness, interactions, missing info |
 | Transcribing / documenting | Error prevention, clarity |
 | Dispensing | Right product, labeling, counseling opportunity |
-| Administering | Immunization technique themes, timing, route |
+| Administering | Immunization technique, timing, route |
 | Monitoring | Efficacy, toxicity, adherence follow-up |
 
 ### 5) Elimination / keyword strategy
 
-1. Read the **stem** — what is the *real* ask (best initial, safest, counseling priority, next lab)?  
-2. Predict the answer category before looking (e.g., “hold + call,” “renal adjust,” “vaccine timing”).  
-3. Kill options that are **unsafe, out of scope, ignore organ function, or counsel incorrectly**.  
+1. Read the **stem** — what is the *real* ask (best initial, safest, counseling priority, next lab)?
+2. Predict the answer category before looking (e.g., “hold + call,” “renal adjust,” “vaccine timing”).
+3. Kill options that are **unsafe, out of scope, ignore organ function, or counsel incorrectly**.
 4. Prefer the option that is **most patient-specific and most immediate**.
 
 | Keyword | Often means… |
@@ -114,9 +114,9 @@ Map the stem to the step:
 
 ### 6) Calculation discipline
 
-- Write units every step (dimensional analysis).  
-- Sanity-check: adult vs pediatric dose magnitude; concentration vs amount.  
-- Watch salt factors, reconstitution volumes, infusion rates (mL/hr vs mcg/kg/min).  
+- Write units every step (dimensional analysis).
+- Sanity-check: adult vs pediatric dose magnitude; concentration vs amount.
+- Watch salt factors, reconstitution volumes, infusion rates (mL/hr vs mcg/kg/min).
 - Round only when the stem/policy implies it — and never round into an unsafe dose.
 
 ![Calculation dimensional analysis flow](visuals/calc-dimensional-analysis.svg)
@@ -138,10 +138,10 @@ Map the stem to the step:
 | Day | Focus | Practice |
 | --- | --- | --- |
 | 1 | Format + ISCM + domain weights + calc warm-up | 40 mixed + 15 calc |
-| 2 | Foundational: PK/PD, biostats, compounding themes | 80 |
+| 2 | Foundational: PK/PD, biostats, compounding | 80 |
 | 3 | Med-use process + immunizations + substitutions | 80–100 |
 | 4 | Cardiology + anticoag | 80–100 |
-| 5 | ID + antimicrobials stewardship themes | 80–100 |
+| 5 | ID + antimicrobials stewardship | 80–100 |
 | 6 | Endocrine + respiratory | 80–100 |
 | 7 | Neuro/psych + pain/opioids safety | 80 |
 | 8 | Renal/hepatic + special pops | 80 |
@@ -154,7 +154,7 @@ Map the stem to the step:
 
 ### 4-week balanced plan
 
-| Week | Theme | Daily rhythm |
+| Week | | Daily rhythm |
 | --- | --- | --- |
 | 1 | Foundations + calc + med-use process | AM content 45–60 · PM 50–75 Q · Eve rationales |
 | 2 | Cardio, ID, endocrine, respiratory | 60–90 Q · daily calc drill |
@@ -173,8 +173,6 @@ Map the stem to the step:
 | 8 | Peak & protect | Weak areas only; sleep; logistics |
 
 **If you’re working full-time:** protect a non-negotiable daily block. Weekend = longer timed sets.
-
-> **Ready to practice what you just planned?** Explore NAPLEX questions on [AnyExamEasy](https://anyexameasy.
 
 ---
 
@@ -209,9 +207,9 @@ Map the stem to the step:
 
 ### 4-box error log
 
-1. **Topic / domain**  
-2. **Miss type** (cue miss / interaction / organ function / calc / counseling / strategy)  
-3. **Correct rule** in one sentence  
+1. **Topic / domain**
+2. **Miss type** (cue miss / interaction / organ function / calc / counseling / strategy)
+3. **Correct rule** in one sentence
 4. **Next drill** (similar items tomorrow)
 
 ### Score interpretation (practice only)
@@ -224,63 +222,63 @@ Practice % is **not** an official NAPLEX score. Trends matter: rising rationale 
 
 ### The week before
 
-- [ ] Confirm eligibility, ATT, appointment, ID requirements (bulletin + Pearson)  
-- [ ] Full timed practice under quiet conditions  
-- [ ] Route / parking / remote logistics check  
-- [ ] Taper new content — protect confidence  
+- [ ] Confirm eligibility, ATT, appointment, ID requirements (bulletin + Pearson)
+- [ ] Full timed practice under quiet conditions
+- [ ] Route / parking / remote logistics check
+- [ ] Taper new content — protect confidence
 - [ ] Confirm you are **not** confusing NAPLEX with MPJE scheduling
 
 ### Night before
 
-- [ ] Light review only (ISCM + calc patterns + high-alert hooks)  
-- [ ] Lay out IDs + confirmation info  
-- [ ] Set two alarms  
-- [ ] No late-night cram  
+- [ ] Light review only (ISCM + calc patterns + high-alert hooks)
+- [ ] Lay out IDs + confirmation info
+- [ ] Set two alarms
+- [ ] No late-night cram
 - [ ] Hydrate; simple breakfast / snack plan for breaks
 
 ### Morning of
 
-- [ ] Eat something sustaining  
-- [ ] Arrive early  
-- [ ] Phone off / stored per center rules  
+- [ ] Eat something sustaining
+- [ ] Arrive early
+- [ ] Phone off / stored per center rules
 - [ ] Breathe: you trained for judgment, not perfection
 
 ### During the exam
 
-- [ ] Read the stem for the **real ask**  
-- [ ] Apply ISCM + patient-factor filter every time  
-- [ ] Write units on calcs; sanity-check magnitude  
-- [ ] Use optional breaks — decision fatigue is real mid-exam  
-- [ ] Keep moving — don’t narrate failure mid-item  
+- [ ] Read the stem for the **real ask**
+- [ ] Apply ISCM + patient-factor filter every time
+- [ ] Write units on calcs; sanity-check magnitude
+- [ ] Use optional breaks — decision fatigue is real mid-exam
+- [ ] Keep moving — don’t narrate failure mid-item
 - [ ] Remember: pretest items are invisible — treat every item seriously
 
 ### After
 
-- [ ] Don’t torture yourself reconstructing every item  
+- [ ] Don’t torture yourself reconstructing every item
 - [ ] Results route through NABP / boards per bulletin timelines — confirm official channels
 
 ---
 
 ## Remember this (strategy)
 
-- Domain 3 is the largest — practice **patient-centered** plans.  
-- Fixed-form + typically no return → **pace and commit**.  
-- ISCM beats trivia.  
-- Calcs daily.  
+- Domain 3 is the largest — practice **patient-centered** plans.
+- Fixed-form + typically no return → **pace and commit**.
+- ISCM beats trivia.
+- Calcs daily.
 - Official outline + bulletin beat any third-party rumor.
 
 ### Concept check
 
-**1.** Which domain carries the largest approximate weight on the current Content Outline?  
-A. Foundational Knowledge  
-B. Medication Use Process  
-C. Person-Centered Assessment and Treatment Planning  
-D. Pharmacy Management and Leadership  
+**1.** Which domain carries the largest approximate weight on the current Content Outline?
+A. Foundational Knowledge
+B. Medication Use Process
+C. Person-Centered Assessment and Treatment Planning
+D. Pharmacy Management and Leadership
 
-**2.** A stem asks for the safest next step for a patient with CrCl 25 mL/min being started on a renally cleared antibiotic. Which framework move comes first?  
-A. Pick the brand with the nicest counseling leaflet  
-B. Filter by renal dosing / alternative agent before “first-line popularity”  
-C. Skip to Domain 5 inventory rules  
-D. Memorize the half-life only  
+**2.** A stem asks for the safest next step for a patient with CrCl 25 mL/min being started on a renally cleared antibiotic. Which framework move comes first?
+A. Pick the brand with the nicest counseling leaflet
+B. Filter by renal dosing / alternative agent before “first-line popularity”
+C. Skip to Domain 5 inventory rules
+D. Memorize the half-life only
 
 **Answers:** 1-C (≈40%). 2-B — patient factors (organ function) filter before default first-line.

@@ -19,6 +19,18 @@
 --    npm run ingest:naplex-guide
 --    npm run ingest:aanp-fnp-guide
 --
+-- Copy pass (prepared, not applied):
+-- After this manuscript change, backup to new tables before any ingest:
+--   CREATE TABLE sg_guides_backup_copy_pass AS TABLE sg_guides;
+--   CREATE TABLE sg_chapters_backup_copy_pass AS TABLE sg_chapters;
+-- Dry-run the four exams below. Apply only if the counts match this
+-- manuscript: pance 23 files / 20540 words, nclex 17 / 35191,
+-- naplex 17 / 29652, aanp-fnp 17 / 52179. Undo by copying those backup tables back onto sg_guides and
+-- sg_chapters (update existing ids; delete only a chapter that this ingest
+-- added and that has no highlight, bookmark, note, or progress rows).
+-- Do not delete sg_highlights, sg_bookmarks, sg_notes, sg_reading_progress,
+-- or sg_chapter_progress. Do not run this copy-pass ingest on production.
+--
 -- 4. Undo: restore the custom dump from step 1.
 --    pg_restore --data-only --disable-triggers --dbname="$DATABASE_URL" sg-guides-chapters.dump
 --    If chapter primary keys changed, user rows in sg_highlights, sg_bookmarks,

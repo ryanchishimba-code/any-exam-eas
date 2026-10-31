@@ -1,8 +1,8 @@
 # Chapter 6 — Endocrine
 
-> **Study aid only.** Primary-care endocrine themes for AANP FNP exam judgment — not individualized care. Verify ADA/AACE-aligned diabetes guidance, thyroid guidelines, and drug labels. Thresholds below name the guideline and year.
+> **Study aid only.** Primary-care endocrine for AANP FNP exam judgment — not individualized care. Confirm ADA/AACE-aligned diabetes guidance, thyroid guidelines, and drug labels. Thresholds below name the guideline and year.
 
-![Diabetes comorbidity-driven stepwise themes](visuals/diabetes-stepwise-themes.svg)
+![Diabetes comorbidity-driven stepwise ](visuals/diabetes-stepwise-.svg)
 
 ![Thyroid hypo vs hyper](visuals/thyroid-hypo-hyper.svg)
 
@@ -16,8 +16,6 @@
 
 You’ll **Assess** symptoms and SDoH, **Diagnose** T2DM vs others, **Plan** comorbidity-driven therapy (not “A1c-only”), and **Evaluate** hypoglycemia risk, labs, and adherence.
 
-**Pair with practice:** Drill endocrine items, tag age band + ADPE.
-
 ---
 
 ## ADPE lens for endocrine
@@ -25,11 +23,11 @@ You’ll **Assess** symptoms and SDoH, **Diagnose** T2DM vs others, **Plan** com
 | Process | What good looks like |
 | --- | --- |
 | **Assess** | Polyuria/polydipsia, weight change, hypo cues, meds (steroids), foot/eye/dental, food access, pregnancy |
-| **Diagnose** | Diagnostic thresholds themes; hypo vs hyperthyroid; secondary obesity cues |
+| **Diagnose** | Diagnostic thresholds; hypo vs hyperthyroid; secondary obesity cues |
 | **Plan** | Lifestyle + meds matched to ASCVD/HF/CKD; thyroid replace/refer; obesity 5A + meds/surgery awareness |
 | **Evaluate** | A1c timing, hypo logs, TSH after dose change, weight trajectory, SDoH barriers |
 
-> **MUST KNOW** — Unstable DKA/HHS, myxedema, thyroid storm themes → **ED**, not clinic titration.
+> **MUST KNOW** — Unstable DKA/HHS, myxedema, thyroid storm → **ED**, not clinic titration.
 
 ---
 
@@ -41,14 +39,16 @@ You’ll **Assess** symptoms and SDoH, **Diagnose** T2DM vs others, **Plan** com
 
 Often silent until screening. Classic: polyuria, polydipsia, blurry vision, yeast infections, fatigue. Older adults may present with dehydration, falls, or confusion.
 
-### Diagnostic themes (ADA Standards of Care 2026-style criteria)
+### Diagnostic (ADA Standards of Care 2026 criteria)
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | Test | Diagnostic pattern |
 | --- | --- |
-| A1c | ≥6.5% theme (lab NGSP-certified) |
-| Fasting glucose | ≥126 mg/dL theme |
-| Random + symptoms | ≥200 mg/dL theme |
-| OGTT 2-hr | ≥200 mg/dL theme |
+| A1c | ≥6.5% (lab NGSP-certified) |
+| Fasting glucose | ≥126 mg/dL |
+| Random + symptoms | ≥200 mg/dL |
+| OGTT 2-hr | ≥200 mg/dL |
 
 Confirm unless clear classic hyperglycemia with symptoms. Watch false A1c (anemia, CKD, hemoglobinopathy).
 
@@ -66,14 +66,18 @@ Confirm unless clear classic hyperglycemia with symptoms. Watch false A1c (anemi
 
 T1DM / LADA · drug-induced (steroids) · pancreatic disease · monogenic rare · stress hyperglycemia.
 
-### First-line workup themes
+### First-line workup
+
+Source: 2026 ACC/AHA dyslipidemia guideline.
 
 A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some meds, baseline foot exam, retinopathy referral timing per guidance.
 
-### Plan themes (ADA Standards of Care 2026 Standards)
+### Plan (ADA Standards of Care 2026 Standards)
 
-1. **Lifestyle** always: nutrition pattern, activity, sleep, tobacco.  
-2. **Metformin** remains common foundational theme if tolerated/eGFR allows — **AnyExamEasy dosing rule (based on FDA labeling and KDIGO)**:
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+1. **Lifestyle** always: nutrition pattern, activity, sleep, tobacco.
+2. **Metformin** remains common foundational if tolerated/eGFR allows — **AnyExamEasy dosing rule (based on FDA labeling and KDIGO)**:
 
 | eGFR (mL/min/1.73 m²) | Metformin use |
 | --- | --- |
@@ -81,16 +85,16 @@ A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some
 | **30–44** | Do **not** start; if already on metformin, **halve the dose** (maximum **1,000 mg/day**) |
 | **&lt;30** | **Discontinue** |
 
-3. **Comorbidity-driven add-ons:** ASCVD / HF / CKD → SGLT2 and/or GLP-1 RA themes often preferred regardless of A1c in modern paradigms — **follow**.  
-4. Insulin when catabolic, severe hyperglycemia, or not at goal on orals/GLP-1 — teach hypo.  
-5. BP and statin risk reduction are part of diabetes Plan.  
+3. **Comorbidity-driven add-ons:** ASCVD / HF / CKD → SGLT2 and/or GLP-1 RA often preferred regardless of A1c in modern paradigms — **follow**.
+4. Insulin when catabolic, severe hyperglycemia, or not at goal on orals/GLP-1 — teach hypo.
+5. BP and statin risk reduction are part of diabetes Plan.
 6. Vaccines; dental; depression screen.
 
-| Class theme | Pearl | Watch |
+| Class | Pearl | Watch |
 | --- | --- | --- |
 | Metformin | Foundational | GI; B12 long-term; eGFR limits |
-| SGLT2i | HF/CKD/ASCVD benefit themes | GU infections; volume; euglycemic DKA rare; foot caution peri-op |
-| GLP-1 RA | Weight + ASCVD themes | GI; titrate; boxed themes for MTC/MEN2 history — verify |
+| SGLT2i | HF/CKD/ASCVD benefit | GU infections; volume; euglycemic DKA rare; foot caution peri-op |
+| GLP-1 RA | Weight and ASCVD benefit | GI effects; titrate; boxed warning for MTC/MEN2 history (ADA Standards of Care in Diabetes, 2026) |
 | DPP-4 | Modest A1c | HF nuance agent-specific historically |
 | Sulfonylurea | Cheap glucose drop | **Hypoglycemia** — risky in elders |
 | TZD | Insulin sensitivity | HF edema — avoid in HF |
@@ -102,21 +106,21 @@ A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some
 
 ### Evaluate
 
-- A1c ~q3 months when changing therapy (themes).  
-- Hypo log; CGM awareness when used.  
-- eGFR/UACR periodic.  
-- Foot checks; eye follow-through.  
+- A1c ~q3 months when changing therapy.
+- Hypo log; CGM awareness when used.
+- eGFR/UACR periodic.
+- Foot checks; eye follow-through.
 - Cost/refill gaps = SDoH Evaluate problem.
 
 #### Critical checklist — T2DM
-- [ ] Confirm diagnosis properly  
-- [ ] ASCVD/HF/CKD drive therapy class  
-- [ ] Hypo risk screened every visit  
-- [ ] Metformin OK with eGFR rules  
-- [ ] Statin/BP addressed  
-- [ ] DKA/HHS disposition correct  
-- [ ] Older adult: simplify + avoid risky hypo drugs when possible  
-- [ ] Pregnancy: specialty pathway  
+- [ ] Confirm diagnosis properly
+- [ ] ASCVD/HF/CKD drive therapy class
+- [ ] Hypo risk screened every visit
+- [ ] Metformin OK with eGFR rules
+- [ ] Statin/BP addressed
+- [ ] DKA/HHS disposition correct
+- [ ] Older adult: simplify + avoid risky hypo drugs when possible
+- [ ] Pregnancy: specialty pathway
 
 ---
 
@@ -129,11 +133,11 @@ A1c, fasting lipids, BMP/eGFR, UACR, TSH if indicated, liver enzymes before some
 Primary care still owns: vaccine, lipids/BP when applicable, depression, device prescription logistics, sick-day teaching collaboration.
 
 #### Critical checklist — insulin safety
-- [ ] Never confuse basal vs bolus  
-- [ ] Teach hypo rule-15 themes  
-- [ ] Storage/expiration  
-- [ ] Needle disposal  
-- [ ] Sick-day when not eating  
+- [ ] Never confuse basal vs bolus
+- [ ] Teach hypo rule-15
+- [ ] Storage/expiration
+- [ ] Needle disposal
+- [ ] Sick-day when not eating
 
 ---
 
@@ -151,20 +155,22 @@ TSH first-line; free T4 if TSH abnormal. Antibodies (TPO) selective. Look for am
 
 > **TRAP** — Treating on a single mildly abnormal TSH without context/repeat when asymptomatic and unreliable timing.
 
-### Plan themes
+### Plan
 
-Levothyroxine dosing individualized (weight, age, pregnancy, cardiac disease — **verify**). Take empty stomach; separate from calcium/iron/antacids. Recheck TSH after dose change (~6 weeks theme).
+Source: ATA hypothyroidism guideline, 2014.
+
+Levothyroxine dosing individualized. Take empty stomach; separate from calcium/iron/antacids. Recheck TSH after dose change (~6 weeks).
 
 > **LIFESPAN** — **Pregnancy:** dose needs often rise; trimester-specific TSH goals — coordinate Ob. **Older Adult:** start lower, go slower; over-replacement → AF/osteoporosis risk.
 
-> **MUST KNOW** — Myxedema coma themes (hypothermia, AMS, hypotension) → ED.
+> **MUST KNOW** — Myxedema coma (hypothermia, AMS, hypotension) → ED.
 
 #### Critical checklist — hypoT
-- [ ] TSH ± FT4 interpreted correctly  
-- [ ] Central hypo considered if both low  
-- [ ] Absorption counseling  
-- [ ] Pregnancy dosing vigilance  
-- [ ] Elder: avoid over-replacement  
+- [ ] TSH ± FT4 interpreted correctly
+- [ ] Central hypo considered if both low
+- [ ] Absorption counseling
+- [ ] Pregnancy dosing vigilance
+- [ ] Elder: avoid over-replacement
 
 ---
 
@@ -178,21 +184,23 @@ Heat intolerance, tremor, palpitations, weight loss, diarrhea, anxiety, lid lag.
 
 ### Diagnose
 
-Low TSH + high FT4/T3 themes. Radioiodine uptake/scan via specialty for etiology (Graves vs toxic nodule vs thyroiditis).
+Low TSH + high FT4/T3. Radioiodine uptake/scan via specialty for etiology (Graves vs toxic nodule vs thyroiditis).
 
 ### Plan / refer
 
-Beta blocker symptom control themes if no contraindication. Antithyroid drugs / RAI / surgery — specialty. Avoid empiric reckless PTU/methimazole without plan (hepatotoxicity/agranulocytosis key points).
+Source: ATA hyperthyroidism guideline, 2016.
+
+Beta blocker symptom control if no contraindication. Antithyroid drugs / RAI / surgery — specialty. Avoid empiric reckless PTU/methimazole without plan (hepatotoxicity/agranulocytosis key points).
 
 > **MUST KNOW** — Thyroid storm (fever, AMS, tachyarrhythmia) → ED.
 
 > **LIFESPAN** — Postpartum thyroiditis lane in YA\*; screen mood + thyroid when indicated.
 
 #### Critical checklist — hyperT
-- [ ] TSH suppressed → free hormones  
-- [ ] AF workup includes thyroid  
-- [ ] Storm = ED  
-- [ ] Refer for definitive therapy  
+- [ ] TSH suppressed → free hormones
+- [ ] AF workup includes thyroid
+- [ ] Storm = ED
+- [ ] Refer for definitive therapy
 
 ---
 
@@ -204,20 +212,22 @@ Beta blocker symptom control themes if no contraindication. Antithyroid drugs / 
 
 BMI, waist, weight trajectory, sleep apnea, OA, NAFLD cues, meds that cause weight gain, food insecurity, ready-to-change.
 
-### Plan themes
+### Plan
 
-Lifestyle foundation · behavioral programs · meds when BMI/comorbidity thresholds met (GLP-1 RA / others — verify indications) · bariatric referral awareness · treat OSA/HTN/lipids/glucose.
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
+Lifestyle foundation · behavioral programs · meds when BMI/comorbidity thresholds met · bariatric referral awareness · treat OSA/HTN/lipids/glucose.
 
 > **TRAP** — Only saying “eat less, move more” with no follow-up, no barrier assessment, no therapy offer when indicated.
 
 > **HIGHLIGHT** — Stopping weight-gain meds (when safe) is therapy.
 
 #### Critical checklist — obesity
-- [ ] BMI + complications mapped  
-- [ ] 5A brief intervention  
-- [ ] SDoH food access  
-- [ ] Pharmacotherapy/surgery eligibility considered  
-- [ ] OSA screened  
+- [ ] BMI + complications mapped
+- [ ] 5A brief intervention
+- [ ] SDoH food access
+- [ ] Pharmacotherapy/surgery eligibility considered
+- [ ] OSA screened
 
 ---
 
@@ -225,9 +235,9 @@ Lifestyle foundation · behavioral programs · meds when BMI/comorbidity thresho
 
 | Cue cluster | Think | Move |
 | --- | --- | --- |
-| Centripetal obesity, purple striae, easy bruise, resistant HTN | Cushing themes | Screen/refer |
+| Centripetal obesity, purple striae, easy bruise, resistant HTN | Cushing | Screen/refer |
 | Orthostatic hypo, hyperK, tan skin, crisis with illness | Adrenal insufficiency | ED if unstable; don’t stop chronic steroids abruptly |
-| Headache, visual field cuts, milky discharge, low hormones | Pituitary mass / prolactinoma themes | Imaging/refer |
+| Headache, visual field cuts, milky discharge, low hormones | Pituitary mass / prolactinoma | Imaging/refer |
 | Incidental adrenal nodule | Workup per guidance | Don’t ignore hormonally |
 
 > **MUST KNOW** — Chronic steroid users need stress-dose thinking when sick — adrenal crisis kills.
@@ -240,11 +250,13 @@ Lifestyle foundation · behavioral programs · meds when BMI/comorbidity thresho
 
 **Takeaway: Fracture risk > T-score alone; treat high-risk; fall prevention is Plan.**
 
-DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Antiresorptives when indicated — jaw osteonecrosis/atypical femur counseling themes. Fall risk Evaluate in Older Adult 30%.
+DEXA screening in older women (selected men). Calcium/vit D adequacy. Antiresorptives when indicated — jaw osteonecrosis/atypical femur counseling. Fall risk Evaluate in Older Adult 30%.
 
 ---
 
 ## Clinical vignette 1 — Middle adult\* new T2DM with CKD albuminuria
+
+Source: 2026 ACC/AHA dyslipidemia guideline.
 
 **Stem:** 54-year-old A1c 8.2%, eGFR 52, UACR elevated, BMI 34, prior MI stent 2 years ago. On metformin 1 g BID.
 
@@ -252,12 +264,12 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 | --- | --- |
 | **Assess** | ASCVD + CKD + obesity; med tolerance; hypo history; food access |
 | **Diagnose** | T2DM with CKD + ASCVD — comorbidity-driven lane |
-| **Plan** | Add SGLT2 and/or GLP-1 themes per current ADA-style guidance (**verify**); lifestyle; statin intensity check; BP/ACEI-ARB if indicated for albuminuria |
-| **Evaluate** | eGFR after SGLT2 start (expected dip themes), GU symptoms, A1c 3 months, weight |
+| **Plan** | Add SGLT2 and/or GLP-1 per current ADA-style guidance; lifestyle; statin intensity check; BP/ACEI-ARB if indicated for albuminuria |
+| **Evaluate** | eGFR after SGLT2 start (expected dip), GU symptoms, A1c 3 months, weight |
 
 **Why distractors fail**
-- Add sulfonylurea only → hypo, no outcome focus.  
-- Stop metformin automatically at eGFR 52 → often still OK in range — verify cutoff.  
+- Add sulfonylurea only → hypo, no outcome focus.
+- Stop metformin automatically at eGFR 52 → often still OK in range.
 - “Diet alone for 1 year” with A1c 8.2% + ASCVD → undertreats.
 
 > **TRAP** — Ignoring cardiorenal benefit drugs because A1c is “only 8.”
@@ -272,7 +284,7 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 | --- | --- |
 | **Assess** | Hypo cues; frailty; Older Adult band |
 | **Diagnose** | Iatrogenic hypoglycemia; overtight control for frailty |
-| **Plan** | Stop/reduce sulfonylurea; simplify; individualized higher A1c target themes; treat fall risk |
+| **Plan** | Stop/reduce sulfonylurea; simplify; individualized higher A1c target; treat fall risk |
 | **Evaluate** | Symptom resolution; safer regimen; home safety |
 
 **Distractors fail:** increase glipizide to “optimize” A1c 6.4%; ignore neuroglycopenic symptoms as dementia.
@@ -311,14 +323,14 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 
 ## Quick checklist — endocrine chapter
 
-- [ ] T2DM: cardiorenal therapy themes  
-- [ ] Hypo risk every diabetes visit  
-- [ ] DKA/HHS/storm/myxedema → ED  
-- [ ] Levothyroxine absorption counseling  
-- [ ] Pregnancy changes thyroid + diabetes lanes  
-- [ ] Older adult: simplify, prevent hypo  
-- [ ] Obesity: chronic care model  
-- [ ] Steroid / adrenal crisis awareness  
+- [ ] T2DM: cardiorenal therapy
+- [ ] Hypo risk every diabetes visit
+- [ ] DKA/HHS/storm/myxedema → ED
+- [ ] Levothyroxine absorption counseling
+- [ ] Pregnancy changes thyroid + diabetes lanes
+- [ ] Older adult: simplify, prevent hypo
+- [ ] Obesity: chronic care model
+- [ ] Steroid / adrenal crisis awareness
 
 ---
 
@@ -328,8 +340,6 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 
 > **MUST KNOW** — Unstable endocrine emergencies leave the clinic.
 
-**Practice endocrine ADPE items** on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
-
 ---
 
 ## Monitoring table (diabetes & thyroid)
@@ -337,39 +347,45 @@ DEXA screening themes in older women (selected men). Calcium/vit D adequacy. Ant
 | Therapy | Evaluate hooks |
 | --- | --- |
 | Metformin | GI, B12 long-term, eGFR |
-| SGLT2i | Volume, GU, eGFR dip, foot peri-op hold themes |
-| GLP-1 RA | GI titration, gallbladder themes, weight |
+| SGLT2i | Volume, GU, eGFR dip, foot peri-op hold |
+| GLP-1 RA | GI titration, gallbladder, weight |
 | Insulin | Hypo, technique, site rotation |
 | Levothyroxine | TSH timing, interactors, pregnancy |
 | Antithyroid | CBC/LFT symptom triggers; agranulocytosis teaching — fever/sore throat → urgent labs |
-| Anti-osteoporosis | Dental exam themes before some agents; adherence (weekly/monthly/yearly products differ) |
+| Anti-osteoporosis | Dental exam before some agents; adherence (weekly/monthly/yearly products differ) |
 
 ### Concept checks
 
-**1.** T2DM + HFrEF — preferred add-on theme family?  
-A. TZD  B. SGLT2 inhibitor themes  C. High-dose SU  D. Stop all meds  
+Source: 2022 AHA/ACC/HFSA heart failure guideline.
+
+**1.** T2DM + HFrEF — preferred add-on family?
+A. TZD B. SGLT2 inhibitor C. High-dose SU D. Stop all meds
 **Answer:** B.
 
-**2.** Frail elder A1c 6.3% on SU with hypo symptoms — best move?  
-A. Add more SU  B. Deintensify / stop SU; prioritize safety  C. Ignore  D. Start TZD for HF  
+**2.** Frail elder A1c 6.3% on SU with hypo symptoms — best move?
+A. Add more SU B. Deintensify / stop SU; prioritize safety C. Ignore D. Start TZD for HF
 **Answer:** B.
 
-**3.** Suspected myxedema with AMS — Plan?  
-A. Oral levo and follow up in 8 weeks  B. ED  C. Iodine supplements only  D. PTU  
+**3.** Suspected myxedema with AMS — Plan?
+A. Oral levo and follow up in 8 weeks B. ED C. Iodine supplements only D. PTU
 **Answer:** B.
 
 ## Deep therapeutics — choosing among diabetes tools
 
+Source: ADA Standards of Care in Diabetes, 2026.
+
 **Takeaway: Ask “What organ are we protecting?” before “What drops A1c fastest?”**
 
-### Decision card (key points — verify ADA Standards yearly)
+### Decision card
+
+Source: ADA Standards of Care in Diabetes, 2026.
 
 | Patient picture | Lean toward |
 | --- | --- |
-| Prior MI / stroke / high ASCVD risk | GLP-1 RA and/or SGLT2 themes |
-| HFrEF or HFpEF | SGLT2 themes |
-| CKD with albuminuria / reduced eGFR (eligible) | SGLT2 ± GLP-1 themes |
-| Need weight loss | GLP-1 RA (or dual agonists as available — verify) |
+| Prior MI / stroke / high ASCVD risk | GLP-1 RA and/or SGLT2 |
+| HFrEF or HFpEF | SGLT2 |
+| CKD with albuminuria / reduced eGFR (eligible) | SGLT2 ± GLP-1 |
+| Need weight loss | GLP-1 RA |
 | Cost-constrained, low hypo risk, no compelling comorbidity | Metformin foundation; consider SU carefully |
 | Catabolic / A1c very high / pregnancy hyperglycemia lane | Insulin pathways |
 
@@ -379,16 +395,18 @@ A. Oral levo and follow up in 8 weeks  B. ED  C. Iodine supplements only  D. PTU
 
 ### Sick-day rules teaching (Evaluate/Plan)
 
-- Hold SGLT2 when critically ill / prolonged fasting / dehydration risk (ketoacidosis awareness).  
-- Continue basal insulin in T1 — never stop abruptly.  
-- Fingerstick more often when ill.  
+Source: ADA Standards of Care in Diabetes, 2026.
+
+- Hold SGLT2 when critically ill / prolonged fasting / dehydration risk (ketoacidosis awareness).
+- Continue basal insulin in T1 — never stop abruptly.
+- Fingerstick more often when ill.
 - ED if vomiting prevents intake / AMS / Kussmaul.
 
 #### Critical checklist — sick day
-- [ ] Written instructions given  
-- [ ] Which meds to hold  
-- [ ] When to escalate  
-- [ ] Caregiver taught in older adults  
+- [ ] Written instructions given
+- [ ] Which meds to hold
+- [ ] When to escalate
+- [ ] Caregiver taught in older adults
 
 ## Lipid & BP as endocrine “co-travelers”
 
@@ -400,18 +418,20 @@ Diabetes Plan without BP/statin talk is incomplete on exams.
 
 ## Nodules & calcium (quick primary-care lane)
 
-**Thyroid nodule:** TSH → ultrasound risk stratification → FNA when indicated (specialty). Red flags: hard fixed mass, nodes, history radiation, vocal cord paralysis themes.
+**Thyroid nodule:** TSH → ultrasound risk stratification → FNA when indicated (specialty). Red flags: hard fixed mass, nodes, history radiation, vocal cord paralysis.
 
 **Hypercalcemia:** Stones, bones, groans, psychiatric overtones — check PTH to separate PTH-dependent vs not; severe symptomatic → ED; cancer and hyperpara on board.
 
 > **MUST KNOW** — Don’t ignore corrected calcium extremes — arrhythmia and crisis risk.
 
 #### Critical checklist — nodule/calcium
-- [ ] TSH before scintigraphy of a thyroid nodule. A low TSH is scanned. A normal or high TSH goes to ultrasound.  
-- [ ] Urgency if compressive symptoms  
-- [ ] Severe hyperCa → ED  
+- [ ] TSH before scintigraphy of a thyroid nodule. A low TSH is scanned. A normal or high TSH goes to ultrasound.
+- [ ] Urgency if compressive symptoms
+- [ ] Severe hyperCa → ED
 
 ## Additional vignette 4 — Steroid-induced hyperglycemia
+
+Source: GOLD report, 2025.
 
 **Stem:** 62-year-old on prednisone 40 mg for COPD burst; home glucoses 280s; no prior diabetes.
 
@@ -419,7 +439,7 @@ Diabetes Plan without BP/statin talk is incomplete on exams.
 | --- | --- |
 | Assess | Steroid timing (often post-lunch/evening peaks); hypo risk if adding SU |
 | Diagnose | Drug-induced hyperglycemia |
-| Plan | Diet counseling; temporary glucose-lowering themes (sometimes insulin) — verify; don’t ignore |
+| Plan | Diet counseling and temporary glucose-lowering, sometimes insulin (ADA Standards of Care in Diabetes, 2026) |
 | Evaluate | Taper steroids when possible; screen for persistent diabetes after |
 
 > **TRAP** — Blaming “noncompliance” when steroids are the driver.
@@ -444,19 +464,21 @@ Cover the answers and recite: first move, can’t-miss diagnosis, lifespan twist
 
 ## Endocrine FAQ-style exam drills
 
-**Q: A1c unreliable when?**  
+Source: ADA Standards of Care in Diabetes, 2026.
+
+**Q: A1c unreliable when?**
 A: Anemia, CKD, recent transfusion, hemoglobinopathy — use glucose criteria.
 
-**Q: When is insulin first-line-ish in T2?**  
-A: Catabolism, severe hyperglycemia, pregnancy pathways, or failure to escalate orals/GLP-1 appropriately — verify.
+**Q: When is insulin first-line-ish in T2?**
+A: Catabolism, severe hyperglycemia, pregnancy pathways, or failure to escalate orals/GLP-1 appropriately.
 
-**Q: Subclinical hypo treat?**  
+**Q: Subclinical hypo treat?**
 A: Depends on TSH level, antibodies, symptoms, pregnancy — not automatic for every TSH 4.8.
 
-**Q: Graves eye disease?**  
+**Q: Graves eye disease?**
 A: Refer; don’t smoke; specialty therapies.
 
-**Q: Obesity meds instead of lifestyle?**  
+**Q: Obesity meds instead of lifestyle?**
 A: Both — meds adjunct when indicated, not moral replacement for behavioral care.
 
 > **HIGHLIGHT** — Write three remember-this lines after every endocrine practice set: one drug safety, one emergency disposition, one lifespan twist.
@@ -467,19 +489,21 @@ A: Both — meds adjunct when indicated, not moral replacement for behavioral ca
 
 ## Topic G — Osteoporosis (expanded primary-care ownership)
 
-**Takeaway: Fracture prevention is Assess (falls + bone density risk) + Plan (lifestyle, calcium/vit D adequacy, pharmacologic candidates) + Evaluate (adherence, dental clearance themes for some agents).**
+**Takeaway: Fracture prevention is Assess (falls + bone density risk) + Plan (lifestyle, calcium/vit D adequacy, pharmacologic candidates) + Evaluate (adherence, dental clearance for some agents).**
 
 ### Who to think about
 
 Postmenopausal women, older men with fragility fracture or height loss, long-term glucocorticoids, hyperthyroid/hyperpara, malabsorption, smoking/alcohol, hypogonadism, prior fracture from standing height.
 
-### Workup themes (verify)
+### Workup
 
 DEXA when indicated by age/risk/fracture history. Labs before blaming “just aging bone”: Ca, vitamin D, TSH, CBC/BMP when secondary causes plausible. Spine imaging if height loss/kyphosis suggests vertebral fracture.
 
-### Plan themes
+### Plan
 
-Fall prevention is therapy. Weight-bearing activity as tolerated. Smoking cessation. Calcium/vitamin D from diet ± supplements to meet targets — verify. Pharmacologic candidates (bisphosphonates, denosumab, anabolics in high risk) — know **who refers**, dental exam themes before antiresorptives that risk ONJ, and that atypical femur fracture counseling exists for long-term antiresorptive use.
+Source: USPSTF fall prevention, 2024.
+
+Fall prevention is therapy. Weight-bearing activity as tolerated. Smoking cessation. Calcium/vitamin D from diet ± supplements to meet targets. Pharmacologic candidates (bisphosphonates, denosumab, anabolics in high risk) — know **who refers**, dental exam before antiresorptives that risk ONJ, and that atypical femur fracture counseling exists for long-term antiresorptive use.
 
 > **MUST KNOW** — Hip/vertebral fragility fracture → treat as high risk; don’t wait for another break to “start thinking.”
 
@@ -488,19 +512,21 @@ Fall prevention is therapy. Weight-bearing activity as tolerated. Smoking cessat
 > **LIFESPAN** — Older Adult (30%): treat to reduce fracture/mortality risk when life expectancy and goals support; deprescribe only with deliberate rationale.
 
 #### Critical checklist — osteoporosis
-- [ ] Fall risk addressed  
-- [ ] Secondary causes considered  
-- [ ] Therapy matched to fracture risk  
-- [ ] Dental/ONJ counseling when relevant  
-- [ ] Follow-up adherence plan  
+- [ ] Fall risk addressed
+- [ ] Secondary causes considered
+- [ ] Therapy matched to fracture risk
+- [ ] Dental/ONJ counseling when relevant
+- [ ] Follow-up adherence plan
 
 ---
 
 ## Critical callouts — endocrine (scan tonight)
 
+Source: 2026 ACC/AHA dyslipidemia guideline.
+
 > **MUST KNOW** — DKA/HHS/thyroid storm/myxedema/adrenal crisis → ED.
 
-> **MUST KNOW** — Compelling ASCVD/HF/CKD drive diabetes drug class themes — verify ADA Standards yearly.
+> **MUST KNOW** — Compelling ASCVD/HF/CKD drive diabetes drug class.
 
 > **MUST KNOW** — Never stop chronic steroids abruptly; unstable adrenal crisis needs ED glucocorticoids.
 
@@ -511,10 +537,10 @@ Fall prevention is therapy. Weight-bearing activity as tolerated. Smoking cessat
 > **LIFESPAN** — Older Adult: individualized looser targets if hypo risk high. Prenatal (YA*): specialty diabetes/thyroid pathways.
 
 #### Critical checklist — endocrine tonight
-- [ ] Cardiorenal therapy matched  
-- [ ] Hypo risk every diabetes visit  
-- [ ] Thyroid absorption + pregnancy rules  
-- [ ] Steroid / adrenal crisis awareness  
+- [ ] Cardiorenal therapy matched
+- [ ] Hypo risk every diabetes visit
+- [ ] Thyroid absorption + pregnancy rules
+- [ ] Steroid / adrenal crisis awareness
 - [ ] Obesity as chronic disease, not willpower lecture
 
 ---
@@ -531,10 +557,10 @@ Fall prevention is therapy. Weight-bearing activity as tolerated. Smoking cessat
 
 ## Concept checks — extra
 
-**6.** Why separate levothyroxine from calcium/iron?  
-A. Improves taste  B. Absorption interaction themes  C. No reason  D. Only matters in infants  
+**6.** Why separate levothyroxine from calcium/iron?
+A. Improves taste B. Absorption interaction C. No reason D. Only matters in infants
 **Answer:** B.
 
-**7.** New lean adult with vomiting, glucose 420, ketones — first Plan?  
-A. Metformin and f/u 3 months  B. ED for DKA pathway  C. SU starter pack  D. Reassure stress hyperglycemia only  
+**7.** New lean adult with vomiting, glucose 420, ketones — first Plan?
+A. Metformin and f/u 3 months B. ED for DKA pathway C. SU starter pack D. Reassure stress hyperglycemia only
 **Answer:** B.

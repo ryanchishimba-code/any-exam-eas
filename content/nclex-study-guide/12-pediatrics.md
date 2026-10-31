@@ -1,6 +1,6 @@
 # Chapter 12 — Pediatrics
 
-> **Study aid only.** Pediatric dosing is weight-based and error-prone — always verify with current references and double-checks. Vaccine schedules change; confirm CDC schedule. Not clinical protocol.
+> **Study aid only.** Pediatric dosing is weight-based and error-prone — always Confirm with current references and double-checks. Vaccine schedules change; confirm CDC schedule. Not clinical protocol.
 
 ![Pediatric respiratory distress cues](visuals/peds-respiratory-distress.svg)
 
@@ -20,32 +20,32 @@ Kids **compensate then crash**. Peds stems test developmental safety, dehydratio
 
 ### Concept
 
-Milestones are ranges; **red flags** matter more than memorizing every week. Anticipatory guidance prevents injury (choking, drowning, falls, burns, guns, car seats). Piaget/Erikson themes appear as communication and teaching strategy questions.
+Milestones are ranges; **red flags** matter more than memorizing every week. Anticipatory guidance prevents injury (choking, drowning, falls, burns, guns, car seats). Piaget/Erikson appear as communication and teaching strategy questions.
 
-### High-yield red flags (examples — verify with developmental refs)
+### High-yield red flags
 
-- Not tracking/smiling by expected windows  
-- No babbling / no single words by expected ages  
-- Loss of previously acquired skills  
-- Extreme tone abnormalities  
+- Not tracking/smiling by expected windows
+- No babbling / no single words by expected ages
+- Loss of previously acquired skills
+- Extreme tone abnormalities
 - No walking by late toddler windows — evaluate
 
-### Age-themed safety
+### Age-based safety
 
-| Age pattern | Safety themes |
+| Age pattern | Safety |
 | --- | --- |
 | Infant | Back to sleep, no loose bedding, rear-facing car seat, water heater temp, never shake, crib safety |
 | Toddler | Choking hazards, cabinet locks, water safety, rear-facing as long as possible then forward per guidelines |
 | Preschool | Stranger safety, helmet, poison control number, firearm locked |
 | School-age | Bike/helmet, sports, bullying, internet beginnings |
-| Adolescent | Driving, substances, mental health, sexual health, consent, suicide screening themes |
+| Adolescent | Driving, substances, mental health, sexual health, consent, suicide screening |
 
 ### Communication tips
 
-- Infant: caregiver presence; swaddle/comfort.  
-- Toddler: simple words; choices of two; procedures on stuffed animal first.  
-- Preschool: concrete; may fear body injury; bandage after shots.  
-- School-age: want explanations; involve in care.  
+- Infant: caregiver presence; swaddle/comfort.
+- Toddler: simple words; choices of two; procedures on stuffed animal first.
+- Preschool: concrete; may fear body injury; bandage after shots.
+- School-age: want explanations; involve in care.
 - Adolescent: privacy; speak to them directly; confidential care limits (safety).
 
 ### Remember this
@@ -62,10 +62,10 @@ Higher % body water + higher metabolic rate → kids dehydrate faster (GE, fever
 
 ### Priority nursing actions
 
-- Oral rehydration therapy (ORT) for mild-moderate if tolerating PO — small frequent sips.  
-- IV fluids for severe / shock / intractable vomiting — boluses per PALS-aligned orders.  
-- Daily weights; strict I&O; avoid diluted homemade “guess” recipes when commercial ORS available.  
-- Electrolyte caution with IV hypotonic fluids (iatrogenic hyponatremia themes).  
+- Oral rehydration therapy (ORT) for mild-moderate if tolerating PO — small frequent sips.
+- IV fluids for severe / shock / intractable vomiting — boluses per PALS-aligned orders.
+- Daily weights; strict I&O; avoid diluted homemade “guess” recipes when commercial ORS available.
+- Electrolyte caution with IV hypotonic fluids (iatrogenic hyponatremia).
 - Replace ongoing losses; treat fever; skin care for diarrhea.
 
 ### Teaching
@@ -74,7 +74,7 @@ ORT small frequent sips; signs to return (lethargy, no urine, blood in stool, pe
 
 ### Safety / red flags
 
-> **Red flag:** Lethargy + CRT >3–4 sec + sunken fontanel = IV pathway, not “try juice at home.”  
+> **Red flag:** Lethargy + CRT >3–4 sec + sunken fontanel = IV pathway, not “try juice at home.”
 > **Red flag:** Mixing formula incorrectly (too dilute/concentrated) → electrolyte disasters.
 
 ### Remember this
@@ -91,7 +91,7 @@ Viral lower airway in infants; wheeze, tachypnea, feeding difficulty. Supportive
 
 ### Croup (laryngotracheobronchitis)
 
-Viral; barky cough, stridor, hoarseness; steeple sign themes. Keep child calm; steroids; nebulized epinephrine for moderate-severe as ordered. Cool mist evidence mixed — follow orders.
+Viral; barky cough, stridor, hoarseness; steeple sign. Keep child calm; steroids; nebulized epinephrine for moderate-severe as ordered. Cool mist evidence mixed — follow orders.
 
 ### Epiglottitis (less common with Hib vaccine but still tested)
 
@@ -128,7 +128,7 @@ Epiglottitis = don’t look in the throat. Kids with retractions/flaring/gruntin
 
 ### Concept
 
-Left-to-right shunts (VSD/ASD/PDA) → pulmonary overcirculation, failure to thrive, CHF themes. Right-to-left / cyanotic lesions (TOF, transposition) → cyanosis, polycythemia, spells. Obstructive (coarctation) → BP/pulse discrepancies (arms vs legs).
+Left-to-right shunts (VSD/ASD/PDA) → pulmonary overcirculation, failure to thrive, CHF. Right-to-left / cyanotic lesions (TOF, transposition) → cyanosis, polycythemia, spells. Obstructive (coarctation) → BP/pulse discrepancies (arms vs legs).
 
 ### Assessment cues
 
@@ -136,10 +136,10 @@ Poor feeding, sweating with feeds, tachypnea, murmur, cyanosis, differential cya
 
 ### Priority nursing actions
 
-- Cluster care; optimize feeding (fortify calories as ordered); digoxin/diuretic themes as ordered (dig toxicity same cues — bradycardia, vomiting).  
-- **Tet spell:** knees-to-chest, calm, O₂, morphine/fluids as ordered.  
-- Pre/post ductal sat comparisons when relevant.  
-- Infective endocarditis prophylaxis only when currently indicated — guidelines change; don’t invent.  
+- Cluster care; optimize feeding (fortify calories as ordered); digoxin/diuretic as ordered (dig toxicity same cues — bradycardia, vomiting).
+- **Tet spell:** knees-to-chest, calm, O₂, morphine/fluids as ordered.
+- Pre/post ductal sat comparisons when relevant.
+- Infective endocarditis prophylaxis only when currently indicated — guidelines change; don’t invent.
 - Post-op cardiac: chest tube, rhythm, perfusion, pain, infection.
 
 ### Remember this
@@ -162,7 +162,7 @@ Feeding fatigue + sweat = cardiac red flag in infants. Tet spell → knees to ch
 
 ### Vaccines
 
-Know that schedules update — teach importance, common mild reactions vs emergencies (anaphylaxis). Injection site by age (vastus lateralis infants; deltoid when muscle adequate). Document VIS themes. Live vaccines caution in severe immunocompromise — verify.
+Know that schedules update — teach importance, common mild reactions vs emergencies (anaphylaxis). Injection site by age (vastus lateralis infants; deltoid when muscle adequate). Document VIS. Live vaccines caution in severe immunocompromise.
 
 ### Febrile seizures
 
@@ -170,7 +170,7 @@ Usually brief, age-limited; protect airway/safety; antipyretics for comfort don�
 
 ### Abuse / mandated reporting
 
-Nurses are **mandated reporters**. Inconsistent history, patterned injuries, spiral fractures themes in non-ambulatory infants, STIs in young children, retinal hemorrhages — private interview, treat injuries, report per law. Don’t confront aggressively alone in a way that blocks reporting or safety.
+Nurses are **mandated reporters**. Inconsistent history, patterned injuries, spiral fractures in non-ambulatory infants, STIs in young children, retinal hemorrhages — private interview, treat injuries, report per law. Don’t confront aggressively alone in a way that blocks reporting or safety.
 
 ### Remember this
 
@@ -183,12 +183,12 @@ Mandated reporter = report suspicion per law. Weight-based dosing double-check. 
 | Condition | Classic cue | Nurse priorities |
 | --- | --- | --- |
 | Pyloric stenosis | Projectile nonbilious vomit, olive mass, hungry, dehydrated/alkalosis | NPO, IV fluids/electrolytes, prep surgery |
-| Intussusception | Currant jelly stools, intermittent severe pain, sausage mass | Air/contrast enema themes may reduce; NPO; watch perforation |
+| Intussusception | Currant jelly stools, intermittent severe pain, sausage mass | Air/contrast enema may reduce; NPO; watch perforation |
 | Hirschsprung | Failure to pass meconium, ribbon stools, obstruction | Prep for pull-through; measure abd girth; avoid rectal temps if ordered |
 
 ### Red flag
 
-> **Red flag:** Bilious vomiting in newborn = emergency until proven otherwise (malrotation/volvulus themes).
+> **Red flag:** Bilious vomiting in newborn = emergency until proven otherwise (malrotation/volvulus).
 
 ### Remember this
 
@@ -198,9 +198,9 @@ Bilious vomiting in newborn = emergency until proven otherwise.
 
 ## Topic G — Otitis, meningitis peds, Kawasaki
 
-- Otitis media: pain, fever; finish Abx; feed upright; hearing follow-up if recurrent.  
-- Pediatric meningitis: bulging fontanel, high-pitched cry, photophobia — droplet as indicated, Abx after cultures when safe.  
-- Kawasaki: prolonged fever (≥5 days themes), strawberry tongue, rash, conjunctivitis, extremity changes → **coronary aneurysm** risk; IVIG + aspirin as ordered (special aspirin indication); delay live vaccines after IVIG per timing rules — verify.
+- Otitis media: pain, fever; finish Abx; feed upright; hearing follow-up if recurrent.
+- Pediatric meningitis: bulging fontanel, high-pitched cry, photophobia — droplet as indicated, Abx after cultures when safe.
+- Kawasaki: prolonged fever (≥5 days), strawberry tongue, rash, conjunctivitis, extremity changes → **coronary aneurysm** risk; IVIG + aspirin as ordered (special aspirin indication); delay live vaccines after IVIG per timing rules.
 
 ### Remember this
 
@@ -220,7 +220,7 @@ mg/kg; never exceed adult max casually; independent double-checks for high-alert
 
 ### Sickle cell
 
-Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infection risk (functional asplenia); acute chest syndrome = respiratory emergency; stroke risk; hydroxyurea themes; avoid deferral of pain as “drug seeking” stereotype.
+Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infection risk (functional asplenia); acute chest syndrome = respiratory emergency; stroke risk; hydroxyurea; avoid deferral of pain as “drug seeking” stereotype.
 
 ---
 
@@ -238,8 +238,8 @@ Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infec
 
 ## Topic I — Hip dysplasia, clubfoot, scoliosis (MSK teaching)
 
-- DDH: Pavlik harness teaching — don’t adjust straps casually; skin checks; diaper under straps per instructions.  
-- Clubfoot: serial casting; neurovascular checks; parent adherence.  
+- DDH: Pavlik harness teaching — don’t adjust straps casually; skin checks; diaper under straps per instructions.
+- Clubfoot: serial casting; neurovascular checks; parent adherence.
 - Scoliosis: screening; brace adherence teaching; post-op spinal fusion log-roll, neuro checks, pain, ileus watch.
 
 ---
@@ -252,11 +252,11 @@ ANC-based neutropenic precautions; no rectal temps/IM when platelets low; soft t
 
 ## Topic K — Poisoning & emergency readiness
 
-Call poison control; bring container; don’t blindly induce vomiting. Acetaminophen OD → NAC themes; iron OD dangerous in toddlers; button batteries = emergency. Home teaching: locks, original containers, carbon monoxide detectors.
+Call poison control; bring container; don’t blindly induce vomiting. Acetaminophen OD → NAC; iron OD dangerous in toddlers; button batteries = emergency. Home teaching: locks, original containers, carbon monoxide detectors.
 
 ### Medication highlights (pediatrics)
 
-| Theme | Hook |
+| | Hook |
 | --- | --- |
 | Digoxin | Apical HR hold parameters by age; toxicity vomiting/brady |
 | Weight-based Abx | mg/kg; max daily ceilings |
@@ -267,49 +267,49 @@ Call poison control; bring container; don’t blindly induce vomiting. Acetamino
 
 ## Concept check
 
-**Q1.** Toddler with drooling, tripod position, high fever, no cough. Priority?  
-A. Examine throat with tongue blade at bedside alone  
-B. Keep child calm with parent, NPO, prepare for emergency airway management, notify provider  
-C. Force flat supine for XR immediately without airway plan  
-D. Give orange juice  
+**Q1.** Toddler with drooling, tripod position, high fever, no cough. Priority?
+A. Examine throat with tongue blade at bedside alone
+B. Keep child calm with parent, NPO, prepare for emergency airway management, notify provider
+C. Force flat supine for XR immediately without airway plan
+D. Give orange juice
 
-**Q2.** Infant with diarrhea, sunken fontanel, CRT 4 seconds, lethargic. Best theme?  
-A. Home observation only  
-B. Emergent evaluation and IV fluid resuscitation per orders  
-C. Tap water boluses by parents  
-D. Restrict all fluids  
+**Q2.** Infant with diarrhea, sunken fontanel, CRT 4 seconds, lethargic. Best ?
+A. Home observation only
+B. Emergent evaluation and IV fluid resuscitation per orders
+C. Tap water boluses by parents
+D. Restrict all fluids
 
-**Q3.** Nurse suspects child abuse. Correct action?  
-A. Ignore if parents are “nice”  
-B. Report per mandated reporter law/policy after ensuring immediate safety  
-C. Post photos on social media  
-D. Wait until absolute courtroom proof  
+**Q3.** Nurse suspects child abuse. Correct action?
+A. Ignore if parents are “nice”
+B. Report per mandated reporter law/policy after ensuring immediate safety
+C. Post photos on social media
+D. Wait until absolute courtroom proof
 
-**Q4.** Tet spell first nursing position theme?  
-A. Trendelenburg with legs straight only  
-B. Knees-to-chest / squat, calm, O₂  
-C. Prone flat immediately always  
-D. Walk briskly to increase HR  
+**Q4.** Tet spell first nursing position ?
+A. Trendelenburg with legs straight only
+B. Knees-to-chest / squat, calm, O₂
+C. Prone flat immediately always
+D. Walk briskly to increase HR
 
-**Q5.** Kawasaki priority medication theme after diagnosis?  
-A. IVIG (+ aspirin as ordered) and cardiac follow-up awareness  
-B. High-dose ibuprofen only forever without follow-up  
-C. No treatment needed if fever broke once  
-D. Live vaccine tomorrow always after IVIG  
+**Q5.** Kawasaki priority medication after diagnosis?
+A. IVIG (+ aspirin as ordered) and cardiac follow-up awareness
+B. High-dose ibuprofen only forever without follow-up
+C. No treatment needed if fever broke once
+D. Live vaccine tomorrow always after IVIG
 
-**Q6.** Best pediatric calc safety habit?  
-A. Use pounds and skip kg conversion  
-B. Weight in kg, dimensional analysis, sense-check 10× errors, double-check high-alert  
-C. Round all ped doses to nearest gram  
-D. Share dosing “tricks” without references  
+**Q6.** Best pediatric calc safety habit?
+A. Use pounds and skip kg conversion
+B. Weight in kg, dimensional analysis, sense-check 10× errors, double-check high-alert
+C. Round all ped doses to nearest gram
+D. Share dosing “tricks” without references
 
 #### Answers
 
-**Q1: B.** Epiglottitis airway emergency — don’t blade the throat.  
-**Q2: B.** Severe dehydration/shock pathway.  
-**Q3: B.** Mandated reporting — safety first.  
-**Q4: B.** Knees-to-chest reduces R→L shunt.  
-**Q5: A.** IVIG/aspirin themes + coronary risk.  
+**Q1: B.** Epiglottitis airway emergency — don’t blade the throat.
+**Q2: B.** Severe dehydration/shock pathway.
+**Q3: B.** Mandated reporting — safety first.
+**Q4: B.** Knees-to-chest reduces R→L shunt.
+**Q5: A.** IVIG/aspirin + coronary risk.
 **Q6: B.** Process prevents dosing disasters.
 
 ---
@@ -320,15 +320,13 @@ D. Share dosing “tricks” without references
 
 When a maternity/pediatric stem feels crowded, sort cues into:
 
-1. **Airway/breathing threats** (maternal Mag toxicity RR↓; newborn grunting; epiglottitis drooling; RSV apnea risk)  
-2. **Circulation / bleeding / shock** (PPH pad count; pediatric CRT/fontanel; cyanotic spell)  
-3. **Neurologic emergencies** (eclampsia; febrile status; rising ICP cues in meningitis)  
-4. **Infection / isolation** (endometritis; varicella exposure; neutropenic fever)  
+1. **Airway/breathing threats** (maternal Mag toxicity RR↓; newborn grunting; epiglottitis drooling; RSV apnea risk)
+2. **Circulation / bleeding / shock** (PPH pad count; pediatric CRT/fontanel; cyanotic spell)
+3. **Neurologic emergencies** (eclampsia; febrile status; rising ICP cues in meningitis)
+4. **Infection / isolation** (endometritis; varicella exposure; neutropenic fever)
 5. **Teaching & safety** (back to sleep; car seat; mandated reporting; med adherence)
 
 Then ask: *What kills first if I do nothing for 5 minutes?* That answer is usually your first action.
-
-**Practice loop:** Read this chapter section → 20–30 related Qbank items → write three “remember this” lines in your error log → redrill misses in 48 hours.
 
 ### Parent teaching close
 
@@ -336,10 +334,10 @@ Teach parents the difference between “fussy” and “lethargic,” how to cou
 
 ## Chapter Remember this
 
-- Compensate then crash — tachypnea and lethargy matter.  
-- ORT vs IV based on severity.  
-- Croup vs epiglottitis — management differs radically.  
-- CHD: feeding fatigue; tet spell knees-to-chest.  
-- Mandated reporter; vaccine teaching; weight-based calc safety.  
-- Bilious vomit / Kawasaki / sickle fever — high-stakes patterns.  
+- Compensate then crash — tachypnea and lethargy matter.
+- ORT vs IV based on severity.
+- Croup vs epiglottitis — management differs radically.
+- CHD: feeding fatigue; tet spell knees-to-chest.
+- Mandated reporter; vaccine teaching; weight-based calc safety.
+- Bilious vomit / Kawasaki / sickle fever — high-stakes patterns.
 - Talk to kids at their developmental level; keep caregivers as allies when safe.

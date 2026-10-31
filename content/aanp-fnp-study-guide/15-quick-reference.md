@@ -1,10 +1,10 @@
 # Chapter 15 — Quick Reference
 
-> **Study aid only.** Pocket sheets for the final sprint — verify the official NPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Thresholds below name the guideline and year.
+> **Study aid only.** Pocket sheets for the final sprint — Confirm the official NPCB Candidate Handbook, current guidelines, and FDA labeling. No invented weights. Thresholds below name the guideline and year.
 
 ![NPCB Domain I Practice weights: Assess 32%, Diagnose 27%, Plan 27%, Evaluate 15%](visuals/fnp-domain-i-weights.svg)
 
-![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal themes](visuals/fnp-domain-ii-age-mix.svg)
+![NPCB Domain II patient age mix with Older Adult 30% and Young Adult prenatal ](visuals/fnp-domain-ii-age-mix.svg)
 
 ![Final sprint calendar](visuals/fnp-final-sprint.svg)
 
@@ -47,7 +47,7 @@
 | Age band | Weight | Sprint hooks |
 | --- | ---: | --- |
 | Newborn | **2%** | Fever → ED; jaundice timing; feeding |
-| Infant | **3%** | Vaccines; bronchiolitis themes; serious bacterial worry when toxic |
+| Infant | **3%** | Vaccines; bronchiolitis; serious bacterial worry when toxic |
 | Toddler | **4%** | Foreign body; development; accidental ingestions |
 | Child | **4%** | Asthma; AOM stewardship; growth |
 | Adolescent* | **9%** | SI confidentiality; mono; STI; sports clearance |
@@ -79,7 +79,7 @@
 | System | Can’t-miss cues (go now) |
 | --- | --- |
 | **Cardio** | ACS/anginal equivalent; dissection tearing pain; hypoxic HF; unstable arrhythmia; syncope with cardiac red flags |
-| **Pulm** | Hypoxia; severe asthma/COPD; PE instability; tension pneumothorax themes |
+| **Pulm** | Hypoxia; severe asthma/COPD; PE instability; tension pneumothorax |
 | **Neuro** | Stroke/TIA; thunderclap; meningitis; status; cauda equina |
 | **OB / YA*** | Ectopic shock; preeclampsia severe features; postpartum danger signs |
 | **MSK / ID** | Septic joint; necrotizing soft tissue; spinal infection; neonatal fever |
@@ -88,7 +88,7 @@
 | **Psych** | SI with plan/intent/means; mania with danger; psychosis with safety risk |
 | **Endocrine** | DKA/HHS; thyroid storm/myxedema; adrenal crisis; severe hypo |
 | **GI / GU** | Peritonitis; GI bleed instability; testicular torsion; pyelo in pregnancy with toxicity |
-| **Heme** | Severe symptomatic anemia; suspected TTP/DIC themes; febrile neutropenia |
+| **Heme** | Severe symptomatic anemia; suspected TTP/DIC; febrile neutropenia |
 
 > **MUST KNOW** — Walking, talking patients can still need EMS (ectopic, hypoxia, early sepsis).
 
@@ -115,22 +115,24 @@
 
 ---
 
-## Prenatal do-nots & high-alert themes (Young Adult*)
+## Prenatal do-nots & high-alert drugs (Young Adult*)
 
-| Avoid / urgent switch themes | Why (teaching) |
+Source: 2023 ACC/AHA/ACCP/HRS atrial fibrillation guideline.
+
+| Avoid / urgent switch | Why (teaching) |
 | --- | --- |
 | **ACEI / ARB** | Fetal renal toxicity / teratogenicity — switch per Ob |
 | **Isotretinoin / REMS teratogens** | Severe birth defects |
 | **Methotrexate** | Abortifacient/teratogen |
 | **Valproate** | Neural tube / neurodevelopmental risk |
 | **Warfarin** | Teratogen — specialty anticoagulation plan |
-| **Tetracyclines / fluoroquinolones** | Fetal risk themes |
-| **NSAIDs late pregnancy** | Fetal renal / ductus themes — verify timing |
+| **Tetracyclines / fluoroquinolones** | Fetal risk |
+| **NSAIDs late pregnancy** | Fetal renal / ductus |
 | **Live vaccines** | Pregnancy caution (ACIP) |
-| **Statins** | Many stems still treat as avoid
-| **Misoprostol / other abortifacients** | Obvious — don’t casual-prescribe |
+| **Statins** | Many stems still treat as avoid |
+| **Misoprostol / other abortifacients** | Obvious — don’t prescribe |
 
-**Also do:** pregnancy test before teratogens and before relevant radiation; Tdap each pregnancy timing themes; influenza vaccine; HIV/syphilis/hep B prenatal screens; ectopic always on board with first-trimester pain/bleeding; MEC for contraception when not pregnant.
+**Also do:** pregnancy test before teratogens and before relevant radiation; Tdap each pregnancy timing; influenza vaccine; HIV/syphilis/hep B prenatal screens; ectopic always on board with first-trimester pain/bleeding; MEC for contraception when not pregnant.
 
 ---
 
@@ -153,16 +155,16 @@
 
 ---
 
-## Screening sprint (verify USPSTF / ACIP current)
+## Screening sprint
 
 | Item | Hook |
 | --- | --- |
 | BP / lipids / diabetes | Cardiometabolic core |
 | Cervical / breast / CRC / lung | Age/risk + shared decisions |
-| HIV / hep C | Offer per current adult themes |
+| HIV / hep C | Offer per current adult |
 | Depression / SI | + safety pathway |
 | Intimate partner violence | Screen + resources |
-| AAA / osteoporosis | Age/sex/risk themes |
+| AAA / osteoporosis | Age/sex/risk |
 | Vaccines | ACIP yearly — live vaccine pregnancy caution |
 | STI | YA* and risk-based |
 
@@ -191,7 +193,7 @@ AKI triple whammy · pyelo disposition · male/pregnant UTI twists · torsion ·
 Ectopic · preeclampsia · MEC contraception · teratogen list · postpartum BP/blues vs psychosis
 
 ### Peds
-Neonatal fever · bronchiolitis supportive · AOM stewardship · foreign body · vaccine catch-up themes
+Neonatal fever · bronchiolitis supportive · AOM stewardship · foreign body · vaccine catch-up
 
 ### Psych / neuro
 SI plan · serotonin syndrome · stroke window thinking · SNOOP secondary headache · status epilepticus · dementia vs delirium
@@ -208,6 +210,8 @@ Beers · teratogens · interactions · stewardship · PDMP/naloxone · Evaluate 
 ---
 
 ## Final 7-day sprint plan (−7 to −1)
+
+Source: AGS Beers Criteria, 2023.
 
 | Day | Focus | Deliverable |
 | --- | --- | --- |
@@ -258,18 +262,12 @@ Fix patterns, not only single facts.
 
 ## Walk-into-the-center card
 
-1. Read the stem for **stability** first.  
-2. Name **Assess** gaps before treating.  
-3. Keep **can’t-miss** on the board.  
-4. Apply **age band** (OA / prenatal).  
-5. Pick Plan that includes **teach + follow-up**.  
+1. Read the stem for **stability** first.
+2. Name **Assess** gaps before treating.
+3. Keep **can’t-miss** on the board.
+4. Apply **age band** (OA / prenatal).
+5. Pick Plan that includes **teach + follow-up**.
 6. If two answers seem right, the one that matches the **scored verb** wins.
-
----
-
-## Soft CTA — last practice sets
-
-Finish weak areas with exam-style AANP FNP items and full rationales on [AnyExamEasy](https://anyexameasy. Independent study aid — not affiliated with NPCB or AANP; no pass guarantee.
 
 ---
 
