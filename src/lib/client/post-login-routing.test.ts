@@ -95,6 +95,25 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/settings?billing=past_due");
   });
 
+  it("returns a learner to the PANCE feed after sign-in", () => {
+    expect(
+      resolvePostLoginDestination("/study-tools/pance/feed", { hasAccess: true }, "pance")
+    ).toBe("/study-tools/pance/feed");
+    expect(
+      resolvePostLoginDestination(
+        "/study-tools/pance/feed",
+        { hasAccess: false, hasAppAccess: true, status: "trialing" },
+        "pance"
+      )
+    ).toBe("/study-tools/pance/feed");
+  });
+
+  it("still opens the dashboard for a question-bank callback when an exam is saved", () => {
+    expect(
+      resolvePostLoginDestination("/question-bank", { hasAccess: true }, "pance")
+    ).toBe("/dashboard");
+  });
+
   it("returns dashboard for subscribed users with an exam", () => {
     expect(
       resolvePostLoginDestination("/dashboard", { hasAccess: true }, "usmle")

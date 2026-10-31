@@ -25,6 +25,12 @@ export function resolvePostLoginDestination(
     return safe;
   }
 
+  // The feed page owns its own paid-plan gate. Send the learner back there
+  // instead of the dashboard or the reactivate screen.
+  if (safe === ROUTES.panceFeed || safe.startsWith(`${ROUTES.panceFeed}?`)) {
+    return safe;
+  }
+
   // Only route to billing/reactivate when we have a definitive no-access response.
   if (status && !status.hasAccess && !status.hasAppAccess) {
     if (
