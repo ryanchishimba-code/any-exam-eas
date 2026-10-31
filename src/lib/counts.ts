@@ -94,14 +94,19 @@ function countNoun(count: number, one: string, many: string): string {
 }
 
 /**
- * Served-gate sentence. The head is bank rows only.
- * Catalog NGN is a separate clause and is not inside that number.
+ * Served-gate sentence. Catalog NGN is not inside this number.
  * A board with no separate catalog: "17,276 questions"
  */
 export function formatBoardQuestionSentence(
-  units: Pick<BoardQuestionUnits, "bankItems" | "standaloneNgn" | "caseStudies" | "caseItems">
+  units: Pick<BoardQuestionUnits, "bankItems">
 ): string {
-  const head = countNoun(servedQuestionCount(units), "question", "questions");
+  return countNoun(servedQuestionCount(units), "question", "questions");
+}
+
+/** Catalog NGN, stated apart from the served-gate question total. Empty when there is none. */
+export function formatSeparatePublishedCatalog(
+  units: Pick<BoardQuestionUnits, "standaloneNgn" | "caseStudies" | "caseItems">
+): string {
   const parts: string[] = [];
   if (units.caseStudies > 0) {
     parts.push(
@@ -111,8 +116,8 @@ export function formatBoardQuestionSentence(
   if (units.standaloneNgn > 0) {
     parts.push(countNoun(units.standaloneNgn, "standalone NGN item", "standalone NGN items"));
   }
-  if (parts.length === 0) return head;
-  return `${head}. Separately, ${parts.join(" and ")} are published.`;
+  if (parts.length === 0) return "";
+  return `Separately, ${parts.join(" and ")} are published.`;
 }
 
 export function emptyClinicalExtra(): ClinicalQuestionExtra {

@@ -3,6 +3,7 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
+  formatSeparatePublishedCatalog,
   publishedNgnItemCount,
   servedQuestionCount,
   type BoardQuestionUnits,
@@ -406,7 +407,7 @@ function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQu
 function nclexFaqs(units: BoardQuestionUnits | null): { question: string; answer: string }[] {
   const price = formatMonthlyPrice("pro");
   const howMany = units
-    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for NCLEX-RN.`
+    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for NCLEX-RN. ${formatSeparatePublishedCatalog(units)}`.trim()
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
   return [
     {

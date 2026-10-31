@@ -11,7 +11,7 @@
  * caseGroupId buried only in generation JSON is not scanned — that column is
  * large, and the Qbank count has to stay on the indexed serve filter.
  */
-import { formatBoardQuestionSentence } from "@/lib/counts";
+import { formatBoardQuestionSentence, formatSeparatePublishedCatalog } from "@/lib/counts";
 import type { ExamRouteSlug } from "@/lib/routes";
 import { sqlQuery } from "@/lib/db";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
@@ -466,16 +466,12 @@ export function presentBoardInventory(input: {
 
   const clinical = input.clinical ?? { standaloneNgn: 0, caseStudies: 0, caseItems: 0 };
   const scored = input.board.active;
-  const hasSeparateCatalog = clinical.standaloneNgn > 0 || clinical.caseStudies > 0;
   const ngnLabel = input.slug === "nclex" ? "NGN" : "NGN-style";
-  const formatLine = hasSeparateCatalog
-    ? formatBoardQuestionSentence({
-        bankItems: input.board.active,
-        standaloneNgn: clinical.standaloneNgn,
-        caseStudies: clinical.caseStudies,
-        caseItems: clinical.caseItems,
-      })
-    : formatInventoryFormatLine(input.board.formats, ngnLabel);
+  const catalog = formatSeparatePublishedCatalog(clinical);
+  const bankLine =
+    formatInventoryFormatLine(input.board.formats, ngnLabel) ??
+    formatBoardQuestionSentence({ bankItems: input.board.active });
+  const formatLine = [bankLine, catalog].filter(Boolean).join(" ");
   return {
     formatLine,
     formats: input.board.formats,

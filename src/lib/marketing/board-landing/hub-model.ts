@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
+  formatSeparatePublishedCatalog,
   formatExactQuestionCount,
   servedQuestionCount,
   type BoardQuestionUnits,
@@ -145,7 +146,7 @@ function hubFaqs(
   const boardLabel = boardLandingBreadcrumbName(examKey);
   const price = formatMonthlyPrice("pro");
   const howMany = units
-    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${boardLabel}.`
+    ? `The live bank currently serves ${formatBoardQuestionSentence(units)} for ${boardLabel}. ${formatSeparatePublishedCatalog(units)}`.trim()
     : "We show the live total on this page when the bank lookup succeeds; we do not guess a number.";
   const base = [
     {

@@ -39,9 +39,7 @@ describe("scored question counts", () => {
 
   it("counts case-study items and does not count the case shell", () => {
     expect(scoredQuestionCount(NCLEX_UNITS)).toBe(5495);
-    expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe(
-      "5,425 questions. Separately, 60 items in 10 case studies and 10 standalone NGN items are published."
-    );
+    expect(formatBoardQuestionSentence(NCLEX_UNITS)).toBe("5,425 questions");
     expect(formatRoundedDownQuestionCount(5495)).toBe("5,400+");
     expect(formatRoundedDownQuestionCount(99)).toBe("99");
     expect(formatRoundedDownQuestionCount(100)).toBe("100+");
@@ -126,8 +124,9 @@ describe("public count labels match the source", () => {
     expect(display.totalServed).toBe(site.totalQuestions);
     expect(display.sentence).toBe(site.sentence);
     expect(display.roundedDown).toBe("43,200+");
-    expect(display.sentence).toContain("60 items in 10 case studies");
-    expect(display.sentence).toContain("10 standalone NGN items");
+    expect(display.sentence).toBe("43,268 questions");
+    expect(boards.nclex.caseItems).toBe(60);
+    expect(boards.nclex.standaloneNgn).toBe(10);
 
     for (const exam of display.exams) {
       const unitsForExam = boards[exam.slug as CountBoardSlug];
