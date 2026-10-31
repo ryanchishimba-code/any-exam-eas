@@ -205,7 +205,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-032.svg",
-   "alt": "Text card. 180 MME/day."
+   "alt": "axis diagram for naplex-032"
   },
   "source": {
    "guideline": "CDC Opioid Prescribing Guideline 2022",
@@ -453,7 +453,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-040.svg",
-   "alt": "Text card. About 308 mOsm/L."
+   "alt": "axis diagram for naplex-040"
   },
   "source": {
    "guideline": "USP <1160>; ASPEN",
@@ -577,7 +577,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-044.svg",
-   "alt": "Text card. 1,750 kcal."
+   "alt": "table diagram for naplex-044"
   },
   "source": {
    "guideline": "ASPEN PN Safety Consensus 2014 + ASPEN Safe PN Care Transitions 2022",

@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-103.svg",
-   "alt": "Text card. Match the drug to the compelling indication."
+   "alt": "chips diagram for naplex-103"
   },
   "source": {
    "guideline": "ACC/AHA 2025 HTN; KDIGO 2024",
@@ -143,7 +143,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-105.svg",
-   "alt": "Text card. All three: avoid in HFrEF."
+   "alt": "chips diagram for naplex-105"
   },
   "source": {
    "guideline": "2022 AHA/ACC/HFSA HF",
@@ -267,7 +267,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-109.svg",
-   "alt": "Text card. Absolute: prior ICH, recent stroke, active bleeding, dissection."
+   "alt": "flow diagram for naplex-109"
   },
   "source": {
    "guideline": "ACC/AHA/ACEP 2025 ACS",

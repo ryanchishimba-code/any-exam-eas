@@ -42,6 +42,14 @@ Hypercalcemia with a high PTH is primary hyperparathyroidism. Surgery is indicat
 
 Polyuria and polydipsia with a normal glucose is diabetes insipidus or primary polydipsia. Urine that stays dilute while the sodium is high-normal is diabetes insipidus. Desmopressin concentrates the urine in central disease and does not in nephrogenic disease. Do not start a water-deprivation test if the patient is already hypernatremic with dilute urine.
 
+## Hypoglycemia, bone, and the nodule
+
+Hypoglycemia in a patient who takes insulin or a sulfonylurea is treated with 15 g of fast carbohydrate if the patient can swallow, then a recheck in 15 minutes. If the patient cannot swallow, give glucagon or intravenous dextrose. Do not put juice in the mouth of an unconscious patient. Recheck, because the drug may outlast the snack. The ADA Standards of Care (2026) keep this as the practical response.
+
+Osteoporosis in a postmenopausal woman is a T-score of −2.5 or lower at the hip or spine, or a fragility fracture. The USPSTF (2025) recommends screening women 65 and older, and younger postmenopausal women at increased risk. First-line treatment for most is an oral bisphosphonate taken correctly: upright, with water, and nothing else by mouth for 30 minutes. Atypical femur pain or jaw pain after a dental extraction is a reason to stop and reassess, not a reason to ignore a new groin pain.
+
+A thyroid nodule pathway starts with the TSH (ATA nodule guideline, 2015). Low TSH means a radionuclide scan. A hot nodule is not biopsied as cancer. A normal or high TSH goes to ultrasound. Biopsy follows the sonographic pattern and the size, not a reflex needle for every 8 mm spongiform nodule. Do not start levothyroxine to shrink a nodule as the diagnostic plan.
+
 > **Important to remember**
 > - Potassium before insulin when the potassium is under 3.3 mEq/L.
 > - SGLT2 inhibitor for heart failure or albuminuric kidney disease, regardless of the need for more glucose lowering (ADA 2026).

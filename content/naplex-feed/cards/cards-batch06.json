@@ -50,7 +50,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-127.svg",
-   "alt": "Text card. Stress dose: double or triple the oral dose."
+   "alt": "axis diagram for naplex-127"
   },
   "source": {
    "guideline": "Endocrine Society 2016 PAI",
@@ -81,7 +81,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-128.svg",
-   "alt": "Text card. No: Category 4 for combined hormonal contraception."
+   "alt": "chips diagram for naplex-128"
   },
   "source": {
    "guideline": "CDC US MEC/SPR 2024",
@@ -174,7 +174,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-131.svg",
-   "alt": "Text card. Repeated SABA, oral corticosteroid, controlled oxygen."
+   "alt": "axis diagram for naplex-131"
   },
   "source": {
    "guideline": "GINA 2026",
@@ -298,7 +298,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-135.svg",
-   "alt": "Text card. Cover MRSA and Pseudomonas."
+   "alt": "chips diagram for naplex-135"
   },
   "source": {
    "guideline": "IDSA/ATS 2016 HAP/VAP (still current, latest = 2016)",
@@ -484,7 +484,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-141.svg",
-   "alt": "Text card. Bictegravir/TAF/FTC or a dolutegravir-based regimen."
+   "alt": "flow diagram for naplex-141"
   },
   "source": {
    "guideline": "HHS Adult/Adolescent ARV Guidelines (updated Oct 27, 2026); CDC PrEP 2021 + CDC lenacapavir PrEP MMWR 2025",
@@ -639,7 +639,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-146.svg",
-   "alt": "Text card. Cefepime and pip-tazo."
+   "alt": "chips diagram for naplex-146"
   },
   "source": {
    "guideline": "IDSA; Sanford Guide 2026",
@@ -670,7 +670,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-147.svg",
-   "alt": "Text card. Yes: give cefazolin, no testing needed."
+   "alt": "flow diagram for naplex-147"
   },
   "source": {
    "guideline": "AAAAI/ACAAI Drug Allergy Practice Parameter 2022",

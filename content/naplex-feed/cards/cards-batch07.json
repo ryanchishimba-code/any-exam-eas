@@ -176,7 +176,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-156.svg",
-   "alt": "Text card. Once weekly, plus folic acid."
+   "alt": "table diagram for naplex-156"
   },
   "source": {
    "guideline": "ACR 2021 RA",
@@ -362,7 +362,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-162.svg",
-   "alt": "Text card. C-II: no refills; new prescription each time."
+   "alt": "chips diagram for naplex-162"
   },
   "source": {
    "guideline": "AAP 2019 ADHD",
@@ -486,7 +486,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-166.svg",
-   "alt": "Text card. Varenicline, ideally starting a week before quit day."
+   "alt": "axis diagram for naplex-166"
   },
   "source": {
    "guideline": "ACC 2018 ECDP tobacco; USPSTF 2021",
@@ -579,7 +579,7 @@
   "mnemonic": null,
   "diagram": {
    "file": "svg/naplex-169.svg",
-   "alt": "Text card. Gepants: ubrogepant or rimegepant."
+   "alt": "chips diagram for naplex-169"
   },
   "source": {
    "guideline": "AHS 2021 consensus statement",

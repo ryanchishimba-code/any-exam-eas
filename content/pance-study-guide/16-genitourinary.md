@@ -47,6 +47,16 @@ Stress incontinence leaks with cough or a sneeze and is treated with pelvic-floo
 
 Painless gross hematuria in an older adult who smokes is urothelial cancer until a cystoscopy and imaging of the upper tracts have been done. A culture treats infection. It does not replace the cancer evaluation when the hematuria is painless and gross.
 
+## Stones, infection, and the priapism clock
+
+A ureteral stone is flank pain that radiates to the groin, often with blood on the dipstick. Noncontrast CT is the most sensitive test in an adult who is not pregnant. Ultrasound is the first image in pregnancy. A stone of 5 mm or smaller often passes. Pain control is an NSAID when the kidney function allows it. Tamsulosin is discussed for distal stones. Infected obstructed kidney, a stone with fever, is a urologic emergency: antibiotics and decompression, not a plan to pass the stone at home (AUA medical management of kidney stones, 2014, and standard emergency practice).
+
+Epididymitis in a sexually active adult under 35 is treated for gonorrhea and chlamydia (CDC STI treatment guidelines, 2021). After 35, enteric organisms are more likely and a fluoroquinolone is the usual choice when the local resistance allows it. The cremasteric reflex is present. Torsion is not.
+
+Ischemic priapism is a painful erection lasting about 4 hours. It is a compartment syndrome of the corpora. Aspirate and irrigate. Do not send the patient home to wait. Nonischemic priapism is less painful and is related to trauma. The distinction is the pain and the blood gas, not a casual guess.
+
+A hydrocele transilluminates and is a fluid collection around the testis. A varicocele is a bag of worms, more often on the left, and is evaluated with ultrasound if it is right-sided, sudden, or does not decompress when the patient lies down, because those features raise concern for a retroperitoneal mass.
+
 > **Important to remember**
 > - Torsion goes to the operating room. Ultrasound is for the uncertain exam, not for a classic one.
 > - PSA screening at 55 to 69 is a discussion. It is not a reflex, and it stops at 70 (USPSTF).

@@ -16,7 +16,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-051.svg",
-      "alt": "Text card. Remove ligature points and any items usable for harm."
+      "alt": "chips diagram for nclex-051"
     },
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-052.svg",
-      "alt": "Text card. Use lift devices and enough trained staff."
+      "alt": "table diagram for nclex-052"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -70,7 +70,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-053.svg",
-      "alt": "Text card. Least restrictive alternatives before any restraint."
+      "alt": "chips diagram for nclex-053"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -178,7 +178,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-057.svg",
-      "alt": "Text card. Remove trip hazards; add lighting and grab bars."
+      "alt": "chips diagram for nclex-057"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-059.svg",
-      "alt": "Text card. Wide base of support, bent knees, load kept close."
+      "alt": "chips diagram for nclex-059"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -259,7 +259,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-060.svg",
-      "alt": "Text card. Remove the equipment from use and report it."
+      "alt": "table diagram for nclex-060"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -286,7 +286,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-061.svg",
-      "alt": "Text card. Latex allergy risk is higher with certain food allergies."
+      "alt": "chips diagram for nclex-061"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-067.svg",
-      "alt": "Text card. Weight, BP, urine, fundal height and fetal heart tones."
+      "alt": "chips diagram for nclex-067"
     },
     "source": {
       "guideline": "ACOG Clinical Consensus: Tailored Prenatal Care Delivery 2025",
@@ -502,7 +502,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-069.svg",
-      "alt": "Text card. Fetal heart tones, examiner-felt movement and ultrasound."
+      "alt": "flow diagram for nclex-069"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -556,7 +556,7 @@
     "mnemonic": "BUBBLE-HE: Breasts, Uterus, Bladder, Bowel, Lochia, Episiotomy, Hemorrhage, Emotions",
     "diagram": {
       "file": "svg/nclex-071.svg",
-      "alt": "Text card. Massage the boggy fundus and have the client void."
+      "alt": "chips diagram for nclex-071"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -637,7 +637,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-074.svg",
-      "alt": "Text card. Combined estrogen-containing methods."
+      "alt": "chips diagram for nclex-074"
     },
     "source": {
       "guideline": "CDC US MEC 2024",
@@ -691,7 +691,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-076.svg",
-      "alt": "Text card. Less skin elasticity, slower reactions and presbyopia are normal."
+      "alt": "table diagram for nclex-076"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -718,7 +718,7 @@
     "mnemonic": "ABCs of safe sleep: Alone, Back, Crib",
     "diagram": {
       "file": "svg/nclex-077.svg",
-      "alt": "Text card. On the back, alone, on a firm, flat surface."
+      "alt": "flow diagram for nclex-077"
     },
     "source": {
       "guideline": "AAP Safe Sleep 2022",
@@ -772,7 +772,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-079.svg",
-      "alt": "Text card. Ask, advise, and offer counseling plus medication."
+      "alt": "chips diagram for nclex-079"
     },
     "source": {
       "guideline": "USPSTF tobacco cessation 2021",
@@ -826,7 +826,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-081.svg",
-      "alt": "Text card. Open-ended questions, reflection and therapeutic silence."
+      "alt": "chips diagram for nclex-081"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -880,7 +880,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-083.svg",
-      "alt": "Text card. Ask directly about a plan, intent and means."
+      "alt": "chips diagram for nclex-083"
     },
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
@@ -907,7 +907,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-084.svg",
-      "alt": "Text card. Safety, a calm presence and short-term problem solving."
+      "alt": "chips diagram for nclex-084"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -934,7 +934,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-085.svg",
-      "alt": "Text card. Safety, sleep, nutrition and self-care."
+      "alt": "flow diagram for nclex-085"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -988,7 +988,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-087.svg",
-      "alt": "Text card. Acknowledge the experience, do not argue, and state reality."
+      "alt": "flow diagram for nclex-087"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1015,7 +1015,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-088.svg",
-      "alt": "Text card. Stay with the client and use short, calm statements."
+      "alt": "chips diagram for nclex-088"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-089.svg",
-      "alt": "Text card. Safety, trust, choice and collaboration in all care."
+      "alt": "chips diagram for nclex-089"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1123,7 +1123,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-092.svg",
-      "alt": "Text card. Refeeding syndrome with low phosphate, potassium and magnesium."
+      "alt": "chips diagram for nclex-092"
     },
     "source": {
       "guideline": "APA Eating Disorders 2023",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-093.svg",
-      "alt": "Text card. Denial, anger, bargaining, depression and acceptance."
+      "alt": "flow diagram for nclex-093"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1177,7 +1177,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-094.svg",
-      "alt": "Text card. Injuries that do not match the history given."
+      "alt": "chips diagram for nclex-094"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-095.svg",
-      "alt": "Text card. Delirium is sudden and fluctuates; dementia develops slowly."
+      "alt": "flow diagram for nclex-095"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1231,7 +1231,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-096.svg",
-      "alt": "Text card. Set clear, consistent limits across all staff."
+      "alt": "table diagram for nclex-096"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-097.svg",
-      "alt": "Text card. Rights remain, including refusing treatment in most cases."
+      "alt": "flow diagram for nclex-097"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1285,7 +1285,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-098.svg",
-      "alt": "Text card. Ask about beliefs and needs; do not assume."
+      "alt": "table diagram for nclex-098"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1312,7 +1312,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-099.svg",
-      "alt": "Text card. Stage 3: full-thickness skin loss with visible fat; no bone, tendon or muscle exposed."
+      "alt": "chips diagram for nclex-099"
     },
     "source": {
       "guideline": "International Pressure Ulcer/Injury Guideline 4th ed 2025 (NPIAP/EPUAP/PPPIA)",
@@ -1339,7 +1339,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-100.svg",
-      "alt": "Text card. Use a valid pain scale, then reassess after treatment."
+      "alt": "table diagram for nclex-100"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",

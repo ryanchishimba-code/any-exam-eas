@@ -56,6 +56,14 @@ Screen adults for HIV at least once (USPSTF). Start antiretroviral therapy as so
 
 Outpatient pneumonia choices are in the pulmonary chapter. Active tuberculosis is RIPE therapy. Latent tuberculosis is a shorter rifamycin regimen when interactions allow. Gonorrhea and chlamydia doses are in the table above. Pelvic inflammatory disease covers both organisms and anaerobes. Treat partners. A pregnant patient with syphilis receives penicillin. If she reports an allergy, she is desensitized. Doxycycline is not the substitute in pregnancy.
 
+## Neutropenic fever, meningitis, and latent tuberculosis
+
+Fever in a patient whose absolute neutrophil count is under 500 cells/µL, or is expected to fall under 500, is neutropenic fever. Draw cultures and start an antipseudomonal beta-lactam within an hour. Add vancomycin when there is a line infection, severe mucositis, known MRSA, or hemodynamic instability (IDSA neutropenic fever guidance, 2010, still the IDSA document used for this decision). Do not wait for the neutrophil nadir to be confirmed if the story is chemotherapy and a new fever.
+
+Community bacterial meningitis in an adult is vancomycin plus a third-generation cephalosporin. Add ampicillin when the patient is older than 50 or immunocompromised, to cover Listeria. Dexamethasone is given with or just before the first antibiotic dose when pneumococcus is likely (IDSA bacterial meningitis guideline, 2004). Do not delay the first dose for a CT if the patient has no focal deficit, no papilledema, and no new seizure. Image first when those findings are present, and start the antibiotic before the patient leaves for the scanner.
+
+Latent tuberculosis is a positive interferon-gamma release assay or a tuberculin skin test in a person without active disease. Rule out active disease with symptoms and a chest radiograph before you treat. A short rifamycin regimen is preferred when drug interactions allow it (CDC latent tuberculosis treatment, 2020). Do not start a single rifamycin in a patient who might have active tuberculosis. That selects resistance.
+
 > **Important to remember**
 > - Cultures and antibiotics in the first hour of septic shock. Norepinephrine if fluid does not restore the mean arterial pressure.
 > - Erythema migrans is treated without a confirmatory titer.

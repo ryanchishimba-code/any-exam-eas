@@ -97,7 +97,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-104.svg",
-      "alt": "Text card. Renal diets limit potassium, phosphorus and sodium; most salt substitutes contain potassium."
+      "alt": "chips diagram for nclex-104"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -151,7 +151,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-106.svg",
-      "alt": "Text card. Use catheters only when indicated and remove them as early as possible."
+      "alt": "chips diagram for nclex-106"
     },
     "source": {
       "guideline": "CDC/HICPAC CAUTI 2009 (updated 2019)",
@@ -232,7 +232,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-109.svg",
-      "alt": "Text card. Cluster care, dim lights, reduce noise and keep a bedtime routine."
+      "alt": "flow diagram for nclex-109"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -313,7 +313,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-112.svg",
-      "alt": "Text card. Comfort, symptom relief and the goals the client and family choose."
+      "alt": "chips diagram for nclex-112"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -340,7 +340,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-113.svg",
-      "alt": "Text card. Follow facility policy, respect culture and religion, and offer family time."
+      "alt": "chips diagram for nclex-113"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -367,7 +367,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-114.svg",
-      "alt": "Text card. Keep a calm routine, give one simple step at a time, protect privacy."
+      "alt": "chips diagram for nclex-114"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -421,7 +421,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-116.svg",
-      "alt": "Text card. Unplanned weight loss, low intake and BMI changes show risk."
+      "alt": "chips diagram for nclex-116"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -448,7 +448,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-117.svg",
-      "alt": "Text card. Right client, drug, dose, route, time, documentation, reason and response."
+      "alt": "flow diagram for nclex-117"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -475,7 +475,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-118.svg",
-      "alt": "Text card. Insulin, anticoagulants, opioids and IV potassium are high-alert medications."
+      "alt": "table diagram for nclex-118"
     },
     "source": {
       "guideline": "ISMP High-Alert Medications 2024",
@@ -610,7 +610,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-123.svg",
-      "alt": "Text card. Hold the next dose, do neuro checks, and call the provider or rapid response."
+      "alt": "flow diagram for nclex-123"
     },
     "source": {
       "guideline": "ACC ECDP Bleeding on Oral Anticoagulants 2020; FDA Andexxa safety update 2025",
@@ -772,7 +772,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-129.svg",
-      "alt": "Text card. Hand hygiene, chlorhexidine skin prep, and scrubbing the hub before each access."
+      "alt": "flow diagram for nclex-129"
     },
     "source": {
       "guideline": "INS 2024; CDC Intravascular Catheter Infection 2011 (2017 update)",
@@ -853,7 +853,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-132.svg",
-      "alt": "Text card. Stimulate the client and support breathing; give naloxone as ordered."
+      "alt": "table diagram for nclex-132"
     },
     "source": {
       "guideline": "CDC Opioid Prescribing 2022",
@@ -907,7 +907,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-134.svg",
-      "alt": "Text card. Protect the airway, call rapid response, and hold further ACE inhibitor doses per order."
+      "alt": "table diagram for nclex-134"
     },
     "source": {
       "guideline": "ACC/AHA Hypertension 2025",
@@ -1042,7 +1042,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-139.svg",
-      "alt": "Text card. Avoid tyramine-rich foods such as aged cheese, cured meats and tap beer."
+      "alt": "flow diagram for nclex-139"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1150,7 +1150,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-143.svg",
-      "alt": "Text card. Taper as ordered; sudden stopping can cause adrenal crisis."
+      "alt": "flow diagram for nclex-143"
     },
     "source": {
       "guideline": "NCSBN 2026 test plan",
@@ -1204,7 +1204,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-145.svg",
-      "alt": "Text card. Albuterol relieves symptoms; controller inhalers with ICS reduce attacks."
+      "alt": "flow diagram for nclex-145"
     },
     "source": {
       "guideline": "GINA 2026",
@@ -1258,7 +1258,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/nclex-147.svg",
-      "alt": "Text card. Stop the infusion and give calcium gluconate as ordered."
+      "alt": "flow diagram for nclex-147"
     },
     "source": {
       "guideline": "ACOG Practice Bulletin 222 (2020, updated 2024)",
@@ -1283,10 +1283,7 @@
     "back": "Reduce or stop the oxytocin, then notify the provider. Key clue: Tachysystole is more than 5 contractions in 10 minutes, averaged over 30 minutes. First-line: If it persists after pausing oxytocin, expect a rapid-acting uterine relaxant such as terbutaline. Exam trap: Restarting oxytocin before the tracing is reassuring and tachysystole resolves.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-148.svg",
-      "alt": "Text card. Reduce or stop the oxytocin, then notify the provider."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACOG Clinical Practice Guideline No. 10 (2025)",
       "year": "2025",

@@ -50,6 +50,14 @@ Life-threatening bleeding on warfarin is treated with vitamin K and four-factor 
 
 Auer rods are acute myeloid leukemia. Smudge cells suggest chronic lymphocytic leukemia. Reed-Sternberg cells suggest Hodgkin lymphoma. The Philadelphia chromosome is chronic myeloid leukemia and is treated with a tyrosine kinase inhibitor. An older adult with back pain, anemia, kidney injury, and a calcium of 12 mg/dL has multiple myeloma until the protein studies say otherwise.
 
+## Iron studies, transfusion, and the smear
+
+Iron deficiency is a low ferritin. Ferritin is an acute-phase reactant, so inflammation can hide a low store; a ferritin under 30 ng/mL still means iron deficiency, and a ferritin under 100 ng/mL with inflammation is treated as deficiency until proven otherwise (AGA iron-deficiency guideline, 2020, and common hematology practice). Total iron-binding capacity is high in iron deficiency and low in anemia of inflammation. Thalassemia trait is a very low mean corpuscular volume with a normal or high red-cell count and a normal ferritin. Do not give iron for months to a patient whose ferritin is already high.
+
+The AABB transfusion guideline uses a restrictive threshold: transfuse red cells at a hemoglobin under 7 g/dL in stable hospitalized adults, and under 8 g/dL when there is symptomatic cardiovascular disease or the stem says the patient is unstable. Do not transfuse to a hemoglobin of 10 because the number looks low. Platelets are not the treatment of thrombotic thrombocytopenic purpura. They can be given for life-threatening bleeding, not as the plan that replaces plasma exchange.
+
+A smear with schistocytes and few platelets is a microangiopathy. Draw the ADAMTS13 sample before plasma, then start plasma exchange. Waiting for the activity result is the trap. Isolated thrombocytopenia with a normal smear is immune thrombocytopenia. Steroids are first-line when a drug is needed. A new clot and a falling platelet count on heparin is heparin-induced thrombocytopenia. Stop every heparin exposure.
+
 > **Important to remember**
 > - Fever in sickle cell disease is parenteral antibiotics, not reassurance.
 > - A platelet fall on heparin is heparin-induced thrombocytopenia until you have excluded it. Stop the heparin.
