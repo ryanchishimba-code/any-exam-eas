@@ -465,7 +465,7 @@ export function presentBoardInventory(input: {
   }
 
   const clinical = input.clinical ?? { standaloneNgn: 0, caseStudies: 0, caseItems: 0 };
-  const scored = input.board.active + clinical.standaloneNgn + clinical.caseItems;
+  const scored = input.board.active;
   const hasSeparateCatalog = clinical.standaloneNgn > 0 || clinical.caseStudies > 0;
   const ngnLabel = input.slug === "nclex" ? "NGN" : "NGN-style";
   const formatLine = hasSeparateCatalog

@@ -3,7 +3,7 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   formatBoardQuestionSentence,
   formatExactQuestionCount,
-  scoredQuestionCount,
+  servedQuestionCount,
   type BoardQuestionUnits,
 } from "@/lib/counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
@@ -134,7 +134,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
 
 function liveUnits(units: BoardQuestionUnits | null, degraded: boolean): BoardQuestionUnits | null {
   if (degraded || !units) return null;
-  if (scoredQuestionCount(units) <= 0) return null;
+  if (servedQuestionCount(units) <= 0) return null;
   return units;
 }
 
@@ -264,7 +264,7 @@ export function buildHubLandingModel(input: {
   ];
   const stats: { value: string; label: string }[] = [];
   if (units) {
-    stats.push({ value: formatExactQuestionCount(scoredQuestionCount(units)), label: "Questions" });
+    stats.push({ value: formatExactQuestionCount(servedQuestionCount(units)), label: "Questions" });
   }
   if (input.examKey === "usmle" && input.usmleStepCounts) {
     const stepLabels: { key: "step1" | "step2" | "step3"; label: string }[] = [

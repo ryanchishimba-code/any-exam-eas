@@ -27,11 +27,7 @@ export async function GET() {
     const boards = Object.fromEntries(
       Object.entries(inventory.boards).map(([slug, board]) => {
         const units = snapshot.boards?.[slug as keyof NonNullable<typeof snapshot.boards>];
-        const scored = snapshot.degraded
-          ? 0
-          : units
-            ? units.bankItems + units.standaloneNgn + units.caseItems
-            : board.active;
+        const scored = snapshot.degraded ? 0 : units ? units.bankItems : board.active;
         const formatLine = snapshot.degraded
           ? null
           : units && (units.standaloneNgn > 0 || units.caseStudies > 0)

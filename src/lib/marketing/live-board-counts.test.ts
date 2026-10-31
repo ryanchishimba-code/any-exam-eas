@@ -99,7 +99,7 @@ describe("live board question counts", () => {
     );
     expect(scoredQuestionCount(nclex)).toBe(4033);
     expect(formatBoardQuestionSentence(nclex)).toBe(
-      "4,033 questions, including 222 items in 37 case studies and 57 standalone NGN items"
+      "3,754 questions. Separately, 222 items in 37 case studies and 57 standalone NGN items are published."
     );
   });
 

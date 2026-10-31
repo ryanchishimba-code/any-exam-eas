@@ -10,7 +10,7 @@ import {
 import { naplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { loadBoardPageQuestionUnits } from "@/lib/marketing/live-board-counts";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
-import { scoredQuestionCount } from "@/lib/counts";
+import { servedQuestionCount } from "@/lib/counts";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 
 /**
@@ -31,7 +31,7 @@ export default async function NaplexHubPage() {
   ]);
   const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.naplex ?? null) : null;
   const units = await loadBoardPageQuestionUnits("naplex", snapshotUnits);
-  const live = units != null && scoredQuestionCount(units) > 0;
+  const live = units != null && servedQuestionCount(units) > 0;
   const full = buildNaplexLandingModel({
     degraded: !live,
     units,
@@ -41,7 +41,7 @@ export default async function NaplexHubPage() {
   });
   const formats = live ? naplexFormatCards(bankTypes) : [];
   const render = naplexBoardLandingRenderModel(full, {
-    liveQuestionCount: units ? scoredQuestionCount(units) : 0,
+    liveQuestionCount: units ? servedQuestionCount(units) : 0,
     includeQuickBite: Boolean(full.quickBite),
     includeItemTypes: formats.length > 0,
   });

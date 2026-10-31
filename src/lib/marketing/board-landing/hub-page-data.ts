@@ -1,4 +1,4 @@
-import { scoredQuestionCount } from "@/lib/counts";
+import { servedQuestionCount } from "@/lib/counts";
 import { loadFieldBankTypeCounts } from "@/lib/marketing/board-landing/bank-types";
 import {
   boardPageQuestionUnits,
@@ -35,7 +35,7 @@ export async function loadHubBoardLanding(examKey: HubExamKey) {
   ]);
   const snapshotUnits = !display.degraded ? (bundle.snapshot.boards?.[examKey] ?? null) : null;
   const units = boardPageQuestionUnits({ slug: examKey, snapshotUnits, live: liveCounts });
-  const counted = units != null && scoredQuestionCount(units) > 0;
+  const counted = units != null && servedQuestionCount(units) > 0;
 
   const inventorySteps =
     examKey === "usmle" && !bundle.inventory.degraded
@@ -56,7 +56,7 @@ export async function loadHubBoardLanding(examKey: HubExamKey) {
     usmleStepCounts,
   });
 
-  const liveQuestionCount = units ? scoredQuestionCount(units) : 0;
+  const liveQuestionCount = units ? servedQuestionCount(units) : 0;
   const hubDonut: HubBoardDonutRenderInput = {
     examKey,
     liveQuestionCount,
