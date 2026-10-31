@@ -141,14 +141,14 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
   }, [board.apiBase]);
 
   const ensureSvg = useCallback(async (id: string) => {
-    if (svgRef.current[id] || inflight.current.has(id)) return;
+    if (Object.prototype.hasOwnProperty.call(svgRef.current, id) || inflight.current.has(id)) return;
     inflight.current.add(id);
     try {
       const res = await fetch(`${board.apiBase}/cards/${id}`);
       if (!res.ok) return;
-      const data = (await res.json()) as { svg?: string };
-      if (!data.svg) return;
-      svgRef.current = { ...svgRef.current, [id]: data.svg };
+      const data = (await res.json()) as { svg?: string | null };
+      const svg = typeof data.svg === "string" && data.svg.includes("<svg") ? data.svg : "";
+      svgRef.current = { ...svgRef.current, [id]: svg };
       setSvgs(svgRef.current);
     } catch {
       /* the back face stays text-only until a retry */
@@ -350,6 +350,10 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
   function onZoom(slide: Slide) {
     const svg = svgs[slide.id];
     if (!svg) {
+      if (svg === "") {
+        showToast("This card is text only");
+        return;
+      }
       void ensureSvg(slide.id);
       showToast("Graphic still loading");
       return;
@@ -533,6 +537,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
                     <span className={`pf-chip${slide.again ? " pf-chip-again" : ""}`}>
                       {slide.again ? "Review again · " : ""}
                       {card.system}
+                      {card.ageBand ? ` · ${card.ageBand}` : ""}
                     </span>
                     <h2 className="pf-q">{card.front}</h2>
                     <div className="pf-hint">Tap to reveal the answer</div>

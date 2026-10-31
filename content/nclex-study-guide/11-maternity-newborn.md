@@ -2,11 +2,11 @@
 
 > **Study aid only.** Obstetric emergencies follow facility/ACOG-aligned protocols — verify. Not a substitute for obstetric clinical training. Medication use in pregnancy must be confirmed with current references.
 
-![Fetal heart decelerations pattern guide](visuals/fetal-heart-decels.jpg)
+![Fetal heart decelerations pattern guide](visuals/fetal-heart-decels.svg)
 
-![PPH uterine atony algorithm](visuals/pph-atony-algorithm.jpg)
+![PPH uterine atony algorithm](visuals/pph-atony-algorithm.svg)
 
-![Newborn thermoregulation](visuals/newborn-thermoregulation.jpg)
+![Newborn thermoregulation](visuals/newborn-thermoregulation.svg)
 
 ---
 
@@ -63,7 +63,7 @@ Painless bleeding → think previa (don’t do vaginal exam). Painful rigid uter
 
 ### Fetal heart patterns
 
-| Pattern | Meaning vibe | First moves |
+| Pattern | Meaning pattern | First moves |
 | --- | --- | --- |
 | Accelerations | Generally reassuring | Continue surveillance |
 | Early decelerations | Head compression — often benign mirror | Observe; document |
@@ -228,7 +228,7 @@ Postpartum uterine infection: fever, foul lochia, uterine tenderness — antibio
 
 | | Baby blues | Postpartum depression | Postpartum psychosis |
 | --- | --- | --- | --- |
-| Timing/vibe | Early days, mild, self-limited | Persistent, impaired function | Sudden, delusions/hallucinations |
+| Timing/pattern | Early days, mild, self-limited | Persistent, impaired function | Sudden, delusions/hallucinations |
 | Action | Support, sleep, normalize | Screen, refer, treat, safety | **Emergency** — safety of mother/infant |
 
 ### Remember this
@@ -261,8 +261,6 @@ Fever + uterine tenderness after birth ≠ ignore. Psychosis = safety first.
 
 ---
 
-
-
 ---
 
 ## Topic H — Gestational diabetes & hyperemesis (teaching depth)
@@ -283,7 +281,6 @@ Persistent vomiting with weight loss/electrolyte imbalance/dehydration — not �
 - Lochia progression: rubra → serosa → alba; foul odor/fever = report.  
 - Rhogam if indicated; rubella vaccine postpartum if nonimmune (avoid pregnancy per teaching window).  
 - Contraception counseling before discharge when appropriate; pelvic rest teaching per OB.
-
 
 ## Concept check
 
@@ -334,8 +331,6 @@ D. Remove hat to “cool evenly”
 
 ---
 
-
-
 ---
 
 ## Clinical judgment teaching box — NGN cue sorting
@@ -351,7 +346,6 @@ When a maternity/pediatric stem feels crowded, sort cues into:
 Then ask: *What kills first if I do nothing for 5 minutes?* That answer is usually your first action.
 
 **Practice loop:** Read this chapter section → 20–30 related Qbank items → write three “remember this” lines in your error log → redrill misses in 48 hours.
-
 
 ## Chapter Remember this
 

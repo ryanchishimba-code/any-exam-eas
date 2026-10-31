@@ -1,12 +1,12 @@
 # Chapter 5 — Pulmonary
 
-> **Study aid only.** Primary-care pulmonary themes for AANP FNP exam judgment — not a protocol. Verify current NHLBI/GINA/GOLD-aligned guidance, antibiotic stewardship resources, and labels. Teaching themes only where drugs appear.
+> **Study aid only.** Primary-care pulmonary themes for AANP FNP exam judgment — not a protocol. Follow NHLBI/GINA/GOLD-aligned guidance, antibiotic stewardship resources, and labels. Drug choices below name the guideline and year.
 
-![Asthma vs COPD contrast](visuals/asthma-copd-contrast.jpg)
+![Asthma vs COPD contrast](visuals/asthma-copd-contrast.svg)
 
-![Pneumonia site-of-care decision](visuals/pneumonia-site-of-care.jpg)
+![Pneumonia site-of-care decision](visuals/pneumonia-site-of-care.svg)
 
-![PE red-flag card](visuals/pe-red-flag-card.jpg)
+![PE red-flag card](visuals/pe-red-flag-card.svg)
 
 ---
 
@@ -14,7 +14,7 @@
 
 Dyspnea, cough, wheeze, and “I can’t shake this cold” fill primary care — across **Child/Adolescent asthma**, **Young/Middle Adult** asthma and PE risk, and **Older Adult (30%)** COPD, pneumonia, and HF mimics. Domain I will ask whether you **Assess** severity and hypoxia, **Diagnose** asthma vs COPD vs CHF vs PE, **Plan** controllers vs ED, and **Evaluate** technique, adherence, and steroids/antibiotics stewardship.
 
-**Pair with practice:** After each topic, drill pulmonary items and tag age band + ADPE. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After each topic, drill pulmonary items and tag age band + ADPE.
 
 ---
 
@@ -43,7 +43,7 @@ Day symptoms, night awakenings, reliever use, activity limitation, exacerbations
 
 ### Red flags / exacerbation triage
 
-| Feature | Action vibe |
+| Feature | Action |
 | --- | --- |
 | Speaks words only, hunched, hypoxic, silent chest | ED/EMS |
 | Partial response to clinic nebulizer/MDI+spacer | Close watch; low threshold ED |
@@ -90,7 +90,7 @@ Smoking pack-years, alpha-1 antitrypsin consideration in young emphysema, SpO₂
 
 ### Diagnose
 
-Spirometry required for confident diagnosis themes (post-bronchodilator obstruction). CXR/CT when alternate diagnoses (cancer, ILD, bronchiectasis). Eosinophil counts sometimes guide ICS decisions in modern paradigms — verify current GOLD-style themes.
+Spirometry required for confident diagnosis themes (post-bronchodilator obstruction). CXR/CT when alternate diagnoses (cancer, ILD, bronchiectasis). Eosinophil counts sometimes guide ICS decisions in modern paradigms — GOLD 2026-style themes.
 
 ### Plan themes
 
@@ -250,9 +250,9 @@ Sudden dyspnea/pleuritic pain/hemoptysis/syncope; risk: surgery, cancer, estroge
 - Hypoxia rarely gets a “routine outpatient” Plan.  
 - Asthma ≠ COPD management twin.  
 - Stewardship is Plan + Evaluate.  
-- Verify GINA/GOLD/IDSA-style guidance — teaching themes age.
+- Verify GINA/GOLD/IDSA-style guidance — key points age.
 
-**Practice pulmonary ADPE items** on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Practice pulmonary ADPE items** on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -280,7 +280,7 @@ Diagnostic uncertainty, severe persistent asthma, frequent exacerbations, oxygen
 
 ## Topic H — COVID / post-viral / overlapping eras (high-level)
 
-Epidemiology changes. Exam-stable skills: isolate/test when indicated per current public health, protect high-risk older adults with vaccines/antivirals eligibility awareness (verify current), watch for red-flag dyspnea/hypoxia, and don’t let “it’s just COVID” blind you to PE or bacterial superinfection when course worsens.
+Epidemiology changes. Exam-stable skills: isolate/test when indicated per current public health, protect high-risk older adults with vaccines/antivirals eligibility awareness, watch for red-flag dyspnea/hypoxia, and don’t let “it’s just COVID” blind you to PE or bacterial superinfection when course worsens.
 
 ---
 
@@ -298,7 +298,6 @@ A. LABA monotherapy preferred  B. ICS-containing controller for persistent patte
 A. Only psychiatric cause  B. CAP/other infection + cardiopulmonary emergencies  C. Normal aging  D. Stop vaccines  
 **Answer:** B.
 
-
 ---
 
 ## Mechanisms that unlock stems (short pathophysiology)
@@ -315,7 +314,7 @@ If the mechanism doesn’t fit (sudden hypoxia after flight in a young woman on 
 
 ## Final pulmonary sprint table
 
-| If you see… | Think… | First move vibe |
+| If you see… | Think… | First move |
 | --- | --- | --- |
 | Night cough child + viral | Asthma pattern | Severity + controller plan |
 | Smoker progressive dyspnea | COPD | Spirometry + cessation |
@@ -323,7 +322,6 @@ If the mechanism doesn’t fit (sudden hypoxia after flight in a young woman on 
 | Pleuritic + risks | PE | Urgent pathway |
 | Chronic dry cough on lisinopril | ACEI cough | Switch class themes |
 | Daytime sleepiness + HTN | OSA | Sleep referral |
-
 
 ---
 
@@ -349,7 +347,6 @@ If the mechanism doesn’t fit (sudden hypoxia after flight in a young woman on 
 
 Adult-onset asthma with workplace pattern (better on weekends) → occupational referral themes. Nasal polyps + asthma + NSAID sensitivity → AERD awareness; advise NSAID caution and ENT/allergy collaboration.
 
-
 ---
 
 ## Deep dive — COPD exacerbation vs pneumonia vs PE vs HF
@@ -368,8 +365,7 @@ Older adults often trigger multi-lane differentials. Build a comparison habit:
 
 ### Antibiotics in COPD exacerbation (stewardship themes)
 
-Not automatic. Consider when increased sputum purulence plus increased dyspnea/volume (classic Anthonisen-style thinking — verify current GOLD). Duration shorter than historical habits for many — verify. Counsel risks: C. diff, resistance, interactions (QT, warfarin).
-
+Not automatic. Consider when increased sputum purulence plus increased dyspnea/volume (classic Anthonisen-style thinking — GOLD 2026). Duration shorter than historical habits for many — verify. Counsel risks: C. diff, resistance, interactions (QT, warfarin).
 
 ---
 
@@ -387,7 +383,6 @@ If truly outpatient-eligible:
 
 Risk: stroke, dementia, alcohol, poor dentition, GERD. Prevention: upright feeding, oral care, swallow eval. Antibiotics/regimens differ from standard CAP in some pathways — verify; disposition often higher acuity.
 
-
 ---
 
 ## Deep dive — PE in primary care: communication & risk
@@ -399,7 +394,6 @@ Pregnancy + suspected PE: do not withhold indicated imaging due to fear alone �
 ### Estrogen counseling crossover (YA\* / Middle Adult\*)
 
 Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, prior VTE, thrombophilia themes when prescribing (women’s health chapter expands). Pulmonary items may hide in contraception stems.
-
 
 ---
 
@@ -416,7 +410,6 @@ Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, p
 
 **Distractors fail:** praise stopping ICS; oral steroid bursts monthly without controller; albuterol-only plan.
 
-
 ---
 
 ## Additional vignette 5 — COPD + possible lung cancer cue
@@ -431,7 +424,6 @@ Combined hormonals raise VTE risk — assess migraines with aura, smoking >35, p
 | Evaluate | Track imaging completion (SDoH transport), staging referrals |
 
 **Distractors fail:** treat as “acute bronchitis” with azithromycin alone; delay imaging until “hemoptysis is massive.”
-
 
 ---
 
@@ -455,7 +447,6 @@ Obstruction: FEV1/FVC reduced themes. Restriction patterns need volumes. Broncho
 
 82-year-old with COPD, HF, CKD, on LABA/LAMA, PRN furosemide, using albuterol q2h for a week, sleeping in recliner, SpO₂ 90%. Assess both congestion and obstruction; Diagnose possible HF exacerbation ± COPD ± pneumonia; Plan ED; Evaluate later for palliative goals, home O₂ qualification, caregiver support, vaccine status. This is Domain II Older Adult 30% realism.
 
-
 ### Closing pulmonary remember-this
 - Hypoxia changes disposition.
 - Asthma needs ICS-containing controllers for persistent disease — no LABA alone.
@@ -463,8 +454,7 @@ Obstruction: FEV1/FVC reduced themes. Restriction patterns need volumes. Broncho
 - CAP site-of-care before drug name.
 - PE lives on sudden dyspnea boards — especially estrogen/pregnancy/post-op/cancer.
 - Inhaler teach-back is Evaluate gold.
-- Pair practice: Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
-
+- Pair practice:
 
 ---
 

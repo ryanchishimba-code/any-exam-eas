@@ -2,11 +2,11 @@
 
 > **Study aid only.** Exact lab reference ranges vary by laboratory. Know direction and urgency; verify local ranges. Not a dialysis prescription guide.
 
-![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.jpg)
+![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.svg)
 
-![AV fistula arm rules](visuals/av-fistula-arm-rules.jpg)
+![AV fistula arm rules](visuals/av-fistula-arm-rules.svg)
 
-![Acid-base common causes](visuals/acid-base-common-causes.jpg)
+![Acid-base common causes](visuals/acid-base-common-causes.svg)
 
 ---
 
@@ -38,7 +38,7 @@ Water follows sodium; potassium drives cardiac conduction; calcium drives neurom
 
 | | **Fluid volume deficit** | **Fluid volume excess** |
 | --- | --- | --- |
-| VS vibe | Tachycardia, hypotension, weak pulses | HTN (often), bounding pulses |
+| VS pattern | Tachycardia, hypotension, weak pulses | HTN (often), bounding pulses |
 | Respiratory | Clear unless weak/aspiration | Crackles, dyspnea, ↑ RR |
 | Other | Dry mucosa, oliguria, poor turgor, weight loss | Edema, JVD, weight gain, S3 themes |
 | Causes themes | Bleed, vomit/diarrhea, burns, DI, under-resuscitation | HF, renal failure, SIADH, iatrogenic IV fluids |
@@ -104,7 +104,7 @@ Fix the cause (ventilate, perfuse, insulin for DKA, etc.).
 
 | | **Nephrotic** | **Nephritic** |
 | --- | --- | --- |
-| Hallmark vibe | Massive proteinuria → hypoalbuminemia → edema | Inflammation → hematuria (“cola” urine), HTN, oliguria |
+| Hallmark pattern | Massive proteinuria → hypoalbuminemia → edema | Inflammation → hematuria (“cola” urine), HTN, oliguria |
 | Other | Hyperlipidemia themes; infection/clot risk | RBC casts themes; rising Cr |
 | Nurse | Skin care, infection watch, nutrition as ordered, anticoag awareness if ordered | BP control, fluid/Na⁺ management, monitor renal function |
 
@@ -202,7 +202,7 @@ No BP/sticks on fistula arm. Cloudy PD fluid = infection until proven otherwise.
 | | **SIADH** | **DI** |
 | --- | --- | --- |
 | Problem | Too much ADH → water retention | Too little ADH effect → water loss |
-| Na⁺ vibe | Dilutional **hyponatremia** | **Hypernatremia** risk |
+| Na⁺ pattern | Dilutional **hyponatremia** | **Hypernatremia** risk |
 | Urine | Concentrated / low output | Large volumes dilute urine |
 | Nurse focus | Fluid restriction as ordered; seizure precautions; careful Na⁺ correction | Replace fluids; desmopressin as ordered; monitor UOP/weight |
 
@@ -240,13 +240,13 @@ SIADH = soaked inside (low Na⁺). DI = dry pipes (high UOP, high Na⁺ risk).
 4. Support ABCs; meds (antihistamine, epinephrine, diuretics) as ordered by reaction type.  
 5. Document; collect urine if hemolysis suspected (hemoglobinuria).
 
-| Reaction vibe | Cues | Energy |
+| Reaction pattern | Cues | Energy |
 | --- | --- | --- |
 | Acute hemolytic | Fever, flank/chest pain, hypotension, hemoglobinuria (ABO mismatch) | Emergency — stop, support, blood bank |
 | Febrile non-hemolytic | Fever, chills, headache | Stop, antipyretic as ordered |
 | Allergic | Urticaria, itching ± anaphylaxis | Stop; antihistamine/epi as ordered |
 | TACO | Dyspnea, crackles, HTN during/after volume | Stop/slow; sit up; diuretic as ordered |
-| TRALI themes | Acute dyspnea/hypoxia, non-cardiogenic pulmonary edema vibe | Stop; O₂/ventilatory support; report |
+| TRALI themes | Acute dyspnea/hypoxia, non-cardiogenic pulmonary edema pattern | Stop; O₂/ventilatory support; report |
 
 Two-nurse check, baseline VS, stay first 15 minutes themes — follow facility.
 
@@ -255,7 +255,6 @@ Two-nurse check, baseline VS, stay first 15 minutes themes — follow facility.
 Match fluid tonicity to the problem. Infiltration ≠ extravasation (vesicants escalate). Transfusion reaction → **stop first**, NS, notify, save bag.
 
 ---
-
 
 ---
 
@@ -291,8 +290,6 @@ D. Ignore — expected forever
 
 **Answer: B.**
 
-
-
 ---
 
 ## Electrolyte “action first” pocket
@@ -308,7 +305,6 @@ D. Ignore — expected forever
 ### Acid-base nursing link
 
 Treat cause: COPD retention → ventilation support; DKA → fluids/insulin; vomiting alkalosis → volume/electrolytes; hyperventilation alkalosis → coach breathing when anxiety-driven (after ruling out PE/hypoxia causes).
-
 
 ## Concept check
 

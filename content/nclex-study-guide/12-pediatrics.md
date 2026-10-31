@@ -2,11 +2,11 @@
 
 > **Study aid only.** Pediatric dosing is weight-based and error-prone — always verify with current references and double-checks. Vaccine schedules change; confirm CDC schedule. Not clinical protocol.
 
-![Pediatric respiratory distress cues](visuals/peds-respiratory-distress.jpg)
+![Pediatric respiratory distress cues](visuals/peds-respiratory-distress.svg)
 
-![Croup vs epiglottitis](visuals/croup-vs-epiglottitis.jpg)
+![Croup vs epiglottitis](visuals/croup-vs-epiglottitis.svg)
 
-![Tet spell knees to chest](visuals/tet-spell-knees-chest.jpg)
+![Tet spell knees to chest](visuals/tet-spell-knees-chest.svg)
 
 ---
 
@@ -32,7 +32,7 @@ Milestones are ranges; **red flags** matter more than memorizing every week. Ant
 
 ### Age-themed safety
 
-| Age vibe | Safety themes |
+| Age pattern | Safety themes |
 | --- | --- |
 | Infant | Back to sleep, no loose bedding, rear-facing car seat, water heater temp, never shake, crib safety |
 | Toddler | Choking hazards, cabinet locks, water safety, rear-facing as long as possible then forward per guidelines |
@@ -234,8 +234,6 @@ Pain crisis = opioids + fluids + O₂ as ordered + heat; fever = emergency infec
 
 ---
 
-
-
 ---
 
 ## Topic I — Hip dysplasia, clubfoot, scoliosis (MSK teaching)
@@ -256,9 +254,6 @@ ANC-based neutropenic precautions; no rectal temps/IM when platelets low; soft t
 
 Call poison control; bring container; don’t blindly induce vomiting. Acetaminophen OD → NAC themes; iron OD dangerous in toddlers; button batteries = emergency. Home teaching: locks, original containers, carbon monoxide detectors.
 
-
-
-
 ### Medication highlights (pediatrics)
 
 | Theme | Hook |
@@ -269,7 +264,6 @@ Call poison control; bring container; don’t blindly induce vomiting. Acetamino
 | IVIG (Kawasaki) | Infusion reactions; live vaccine timing delay |
 | Insulin (peds T1D) | Peaks/snacks; school plan; glucagon teaching for caregivers |
 | Opioids | RR monitoring; naloxone availability |
-
 
 ## Concept check
 
@@ -320,8 +314,6 @@ D. Share dosing “tricks” without references
 
 ---
 
-
-
 ---
 
 ## Clinical judgment teaching box — NGN cue sorting
@@ -337,7 +329,6 @@ When a maternity/pediatric stem feels crowded, sort cues into:
 Then ask: *What kills first if I do nothing for 5 minutes?* That answer is usually your first action.
 
 **Practice loop:** Read this chapter section → 20–30 related Qbank items → write three “remember this” lines in your error log → redrill misses in 48 hours.
-
 
 ### Parent teaching close
 

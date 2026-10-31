@@ -1,16 +1,16 @@
 # Chapter 4 — Cardiology
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current ACC/AHA-aligned and related guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Blood pressure statements follow the 2025 AHA/ACC guideline. Lipid statements follow the 2026 ACC/AHA dyslipidemia guideline. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
-![HTN cascade](visuals/htn-cascade.jpg)
+![HTN cascade](visuals/htn-cascade.svg)
 
-![Chest pain differential map](visuals/chest-pain-differential.jpg)
+![Chest pain differential map](visuals/chest-pain-differential.svg)
 
-![Lipid risk / statin intensity ladder](visuals/lipid-risk-ladder.jpg)
+![Lipid risk / statin intensity ladder](visuals/lipid-risk-ladder.svg)
 
-![HF primary-care path](visuals/hf-primary-care-path.jpg)
+![HF primary-care path](visuals/hf-primary-care-path.svg)
 
-![AF stroke-prevention awareness card](visuals/af-stroke-prevention.jpg)
+![AF stroke-prevention awareness card](visuals/af-stroke-prevention.svg)
 
 ---
 
@@ -27,14 +27,13 @@
 - [ ] I know one prenatal and one older-adult twist
 - [ ] I will do practice questions after reading
 
-
 ## Why this chapter matters
 
 Cardiology is the backbone of outpatient adult primary care — and it sits squarely where NPCB puts the most Domain II weight: **Middle Adult 26%** and **Older Adult 30%**, with **Young Adult\* 22%** (including prenatal hypertensive disorders themes). Domain I still grades every item by process: Did you **Assess** BP correctly and catch instability? **Diagnose** urgency vs emergency and the right differential lane? **Plan** lifestyle + compelling-indication therapy? **Evaluate** labs, home readings, and adherence?
 
 Expect stems on hypertension cascades, statin risk conversations, chest-pain triage, heart-failure congestion vs perfusion, atrial fibrillation rate-vs-anticoagulation decisions, and syncope red flags. Candidates who memorize drug lists without ADPE lose easy points; candidates who send unstable patients home with “trial of PPI” lose dangerous ones.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage.
 
 ---
 
@@ -78,9 +77,9 @@ Sustained elevated arterial pressure damages vessels and end organs (heart, brai
 
 Primary HTN · white-coat · masked · secondary · resistant (≥3 agents at optimal doses including diuretic themes, adherence confirmed) · pseudoresistance (wrong cuff, nonadherence).
 
-### First-line workup themes (verify current guidance)
+### First-line workup themes
 
-BMP (electrolytes/Cr), lipids, A1c or glucose themes, urinalysis ± urine albumin-creatinine, ECG when useful. Add TSH, sleep study referral, renal duplex, aldosterone/renin themes, plasma metanephrines **when secondary cues present** — not shotgun every mild HTN.
+BMP, lipids, A1C or fasting glucose, urinalysis with urine albumin-creatinine, and an ECG when the history suggests cardiac disease. Add TSH, a sleep study, renal duplex, an aldosterone-renin ratio, or plasma metanephrines only when a secondary cause is suggested. Do not order that panel for every mild elevation (2025 AHA/ACC).
 
 ### Plan themes (pharmacology = classes + compelling indications)
 
@@ -90,7 +89,7 @@ BMP (electrolytes/Cr), lipids, A1c or glucose themes, urinalysis ± urine albumi
 | CKD with albuminuria / diabetes with albuminuria | ACEI or ARB themes |
 | HFrEF | GDMT-aware choices (see HF section) — beta blocker evidence agents, etc. |
 | Black adults, HTN alone (nuance) | CCB or thiazide often preferred initially per guideline themes |
-| Pregnancy | Avoid ACEI/ARB; obstetric-preferred agents (historical teaching examples: labetalol, nifedipine, methyldopa — **verify current Ob guidance**) |
+| Pregnancy | Avoid ACEI/ARB; obstetric-preferred agents (historical teaching examples: labetalol, nifedipine, methyldopa — **follow Ob guidance**) |
 | Markedly above goal | Combination therapy themes; single-pill combos help adherence |
 | Resistant | Confirm adherence & interfering meds; add MRA themes often discussed; seek secondary causes |
 
@@ -124,7 +123,7 @@ ASCVD history (secondary prevention?), diabetes, CKD, smoking, BP, family premat
 ### Diagnose / risk frame
 
 - Secondary prevention nearly always high-intensity statin themes unless contraindicated.  
-- Primary prevention uses risk estimators + risk enhancers (verify current calculator/guideline year).  
+- Primary prevention uses the PREVENT 10-year equation (2025 AHA/ACC high blood pressure guideline and 2026 ACC/AHA dyslipidemia guideline).  
 - Very high TG → pancreatitis prevention mindset + glycemic control/alcohol/weight.
 
 ### Plan themes
@@ -341,7 +340,7 @@ Claudication, pulse deficits, wound healing issues; high-intensity statin themes
 
 ### Why distractors fail
 - “Metoprolol prescription and routine follow-up in 3 months” without ECG/pregnancy/urgency — undertriage.  
-- “CTPE on every palpitations patient” without pretest — shotgun.  
+- CT pulmonary angiography for every patient with palpitations, without a pretest probability.  
 - “Warfarin today without indication clarity” — premature.  
 - “Ignore LMP” — misses prenatal Domain II mapping and drug safety.
 
@@ -390,8 +389,7 @@ Claudication, pulse deficits, wound healing issues; high-intensity statin themes
 - Teaching doses/intervals change — verify guidelines and labels.  
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill HTN, lipids, chest pain triage, HF, and AF items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
-
+**Next practice move:** Drill HTN, lipids, chest pain triage, HF, and AF items with full rationale review on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -411,7 +409,7 @@ You may not start every anticoagulant, but you will **Assess** bleed/fall risk, 
 ### Evaluate hooks that show up on items
 
 - Missed DOAC doses → don’t invent doubling rules; use labeling/specialty advice.  
-- New antibiotic on warfarin → INR plan, not vibes.  
+- New antibiotic on warfarin → INR plan, not patterns.  
 - CrCl decline in older adult → DOAC dose may need adjustment or agent change.  
 - Epistaxis/melena/hematuria on therapy → assess severity; hold/ED as indicated; look for underlying lesion when appropriate.
 
@@ -460,7 +458,7 @@ Teach-back beats pamphlet drops — Domain I Plan loves clear education plus ret
 
 ## Integrated older-adult multimorbidity mini-case (Domain II 30%)
 
-**Stem vibe:** 82-year-old with CKD stage 3, HFpEF, AF on apixaban, osteoarthritis on frequent naproxen, BP 168/70, dizzy on standing, daughter reports missed DOAC doses because “breakfast is weird in assisted living.”
+**Practice stem:** 82-year-old with CKD stage 3, HFpEF, AF on apixaban, osteoarthritis on frequent naproxen, BP 168/70, dizzy on standing, daughter reports missed DOAC doses because “breakfast is weird in assisted living.”
 
 **ADPE compressed:** Assess orthostasis, volume, adherence system, NSAID use, CrCl trend. Diagnose competing risks (stroke vs bleed vs AKI vs congestion). Plan: stop NSAID, coordinate analgesic alternatives, simplify BP regimen for orthostasis, fix DOAC administration workflow with facility, consider cardiology/geriatrics input. Evaluate: close follow-up, BMP, symptom diary, confirm DOAC administration logs.
 
@@ -490,11 +488,9 @@ A. Improves fetal renal development always  B. ACEI/ARB teratogenicity / fetal t
 A. Yes, always  B. No — anticoagulation decision follows stroke-risk/indication frameworks separately  C. Only if HR <50  D. Only in newborns  
 **Answer:** B.
 
-
 > **TRAP** — Skipping Evaluate (monitoring/follow-up) because the prescription felt complete.
 
 > **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
-
 
 ---
 

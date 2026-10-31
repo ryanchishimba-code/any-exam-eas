@@ -2,9 +2,9 @@
 
 > **Study aid only.** Domains 4–5 (~5% each). Ethics and operations themes for NAPLEX — **not** a substitute for MPJE/state law study.
 
-![Pharmacy workflow quality and safety loop](visuals/pharmacy-ops-safety-loop.jpg)
+![Pharmacy workflow quality and safety loop](visuals/pharmacy-ops-safety-loop.svg)
 
-![Ethics and public health pharmacist roles](visuals/ethics-public-health-roles.jpg)
+![Ethics and public health pharmacist roles](visuals/ethics-public-health-roles.svg)
 
 ---
 
@@ -63,7 +63,7 @@ Small weight, easy points if you practice: ethics, public health, continuous qua
 - Metrics: safety > speed alone; monitor wait times without crushing verification quality.  
 - Staffing, training, and feedback.  
 - Billing/insurance basics that affect adherence (PA delays) — help patients navigate.  
-- Technology downtime downtime procedures.
+- Technology downtime procedures.
 
 ### Leadership behaviors
 
@@ -164,7 +164,6 @@ A. Immediate firing always  B. Console/support + fix latent system conditions  C
 A. Fine if quiet  B. Privacy breach risk — avoid  C. Required  D. Only illegal on Tuesdays  
 **Answer:** B.
 
-
 ---
 
 ## Topic F — Communication & teamwork
@@ -204,7 +203,6 @@ Vanity speed metrics alone harm patients.
 
 Domains 4–5 are thin but sharp: privacy, honesty after error, just culture, shortages, cold chain, tech oversight, and public health access. Study law separately for MPJE. On NAPLEX, pick the answer that protects the patient and the system.
 
-
 ---
 
 ## Topic H — Exam-day Domains 4–5 spark list
@@ -221,7 +219,6 @@ Domains 4–5 are thin but sharp: privacy, honesty after error, just culture, sh
 - MPJE ≠ this chapter  
 
 These sparks are enough for the 10% combined Domains 4–5 if your Domain 3 work is strong. Revisit after each mock only for missed ethics/ops items—don’t rebuild your whole study plan around them.
-
 
 ---
 

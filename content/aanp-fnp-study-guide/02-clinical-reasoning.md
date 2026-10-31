@@ -2,9 +2,9 @@
 
 > **Study aid only.** Reasoning frameworks for AANP FNP exam judgment — not individualized clinical advice. Verify guidelines, imaging pathways, and local referral standards. Independent of NPCB/AANP.
 
-![ADPE decision loop](visuals/adpe-loop.jpg)
+![ADPE decision loop](visuals/adpe-loop.svg)
 
-![Emergent vs urgent vs routine referral board](visuals/red-flag-referral-board.jpg)
+![Emergent vs urgent vs routine referral board](visuals/red-flag-referral-board.svg)
 
 ---
 
@@ -21,12 +21,11 @@
 - [ ] I know one prenatal and one older-adult twist
 - [ ] I will do practice questions after reading
 
-
 ## Why this chapter matters
 
 Domain I is literally a reasoning blueprint: **Assess 32% / Diagnose 27% / Plan 27% / Evaluate 15%**. System chapters teach *what* disease patterns look like; this chapter teaches *how* not to miss the dangerous ones, how to choose the next test, and how to disposition patients without under- or over-triage. Most exam heartbreak is reasoning heartbreak: premature closure, therapy-first thinking, age-blind priors, or sending hypoxia home with “supportive care.”
 
-**Pair with practice:** After this chapter, do mixed “next step” and “most likely diagnosis” sets and force yourself to name the ADPE verb before answering. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After this chapter, do mixed “next step” and “most likely diagnosis” sets and force yourself to name the ADPE verb before answering.
 
 ---
 
@@ -101,7 +100,7 @@ Choosing elegant outpatient panels while the stem screams instability (RR, SpO�
 - Prefer bedside game-changers first: ECG, glucose, pulse ox, pregnancy test, UA.  
 - Consider harm: radiation, false positives, incidentalomas, cost, delay.  
 - Decision aids themes (Ottawa ankle/knee/C-spine) reward selective imaging.  
-- Low back pain: early imaging mainly for red flags / progressive deficits (verify current guidance).  
+- Low back pain: early imaging mainly for red flags / progressive deficits.  
 - Headache imaging: focal deficit, thunderclap, trauma on anticoag, cancer, papilledema themes — not every migraine.
 
 ### Pregnancy + imaging
@@ -232,7 +231,7 @@ Stems may ask whether to perform, defer, or refer: skin biopsy themes, I&D of si
 | Trap | Better move |
 | --- | --- |
 | Therapy before differential | Three-lane board first |
-| Shotgun imaging | Bedside tests + pretest probability |
+| Imaging without a reason | Bedside findings plus pretest probability |
 | Ignoring age band | Recalculate priors |
 | Calling SDoH “noncompliance” | Fix access barriers |
 | Undertriage because patient is “walking” | Walking hypoxic patients still leave by EMS |
@@ -262,7 +261,7 @@ Stems may ask whether to perform, defer, or refer: skin biopsy themes, I&D of si
 - Older adults present atypically; prenatal doubles the differential.  
 - Verify local pathways; this is a study aid only.
 
-**Next:** Practice “next step” items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next:** Practice “next step” items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -329,7 +328,6 @@ A. Assess  B. Diagnose  C. Evaluate  D. None
 A. ANA  B. Pregnancy test  C. MRI  D. Tumor markers  
 **Answer:** B.
 
-
 ---
 
 ## Appendix — High-yield “next step” patterns (drill these)
@@ -358,8 +356,6 @@ A. ANA  B. Pregnancy test  C. MRI  D. Tumor markers
 
 When you open Cardiology or Pediatrics next, keep this OS open. Disease facts without disposition skill fail Domain I Assess/Diagnose. Disposition skill without disease facts fails Diagnose/Plan. You need both — and Domain II age tags on every miss.
 
-
-
 ---
 
 ## Extended case set — narrate ADPE aloud (answers in mindset form)
@@ -386,8 +382,6 @@ Assess obstructive/malignant lane; Diagnose need for urgent labs/imaging; Plan e
 
 Say “I’m 70% this is viral URI, but 5% pneumonia would change disposition — what finding would move me?” SpO₂ 91% moves you. That’s Diagnose discipline.
 
-
-
 ---
 
 ## Referral letter quality (Plan skill)
@@ -401,11 +395,9 @@ Include: question for specialist, timeline urgency, key data, what patient alrea
 
 A correct diagnosis with no follow-up plan fails Evaluate. Write the monitoring interval into your mental answer before you pick the option.
 
-
 > **TRAP** — Skipping Evaluate (monitoring/follow-up) because the prescription felt complete.
 
 > **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
-
 
 ---
 

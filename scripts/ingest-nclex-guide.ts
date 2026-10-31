@@ -35,6 +35,7 @@ import {
  */
 const examArg =
   process.argv.slice(2).find((a) => a.startsWith("--exam="))?.split("=")[1] ?? "nclex";
+const dryRun = process.argv.includes("--dry-run");
 
 if (!isStudyGuideExam(examArg)) {
   console.error(
@@ -184,6 +185,19 @@ async function main() {
   if (numbered.length === 0 && other.length === 0) {
     console.error("No .md manuscript files found.");
     process.exit(1);
+  }
+
+  if (dryRun) {
+    const files = numbered.length > 0 ? numbered : other;
+    let words = 0;
+    for (const file of files) {
+      const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf8");
+      const count = raw.split(/\s+/).filter(Boolean).length;
+      words += count;
+      console.log(`${file}\t${count} words`);
+    }
+    console.log(`Dry run only. ${files.length} file(s), ${words} words. No database writes.`);
+    return;
   }
 
   await prisma.sgGuide.upsert({

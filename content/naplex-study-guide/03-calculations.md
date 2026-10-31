@@ -2,9 +2,9 @@
 
 > **Study aid only.** Practice patterns for exam prep. Always verify institutional dosing policies and product labeling. Not a prescription for real patients.
 
-![IV rate and dosing calculation ladder](visuals/iv-rate-calc-ladder.jpg)
+![IV rate and dosing calculation ladder](visuals/iv-rate-calc-ladder.svg)
 
-![Dilution and alligation visual](visuals/dilution-alligation.jpg)
+![Dilution and alligation visual](visuals/dilution-alligation.svg)
 
 ---
 
@@ -186,7 +186,7 @@ AdjBW ≈ IBW + 0.4 × (TBW − IBW) when obese and reference calls for it. **Us
 
 IV digoxin 0.125 mg daily; F oral ≈ 0.7 for tablets (product-specific — confirm labeling). Rough oral equivalent ≈ 0.125 / 0.7 ≈ **0.18 mg** → often rounded to available strengths with clinical judgment (exam will give F if needed).
 
-### Salt factor vibe
+### Salt factor pattern
 
 Phenytoin sodium vs acid: know that suspension/chewable (acid) and capsules (sodium salt) are not mg-for-mg identical — classic teaching trap. Prefer label-guided conversion factors when stemmed.
 
@@ -217,10 +217,10 @@ Parenteral nutrition with dextrose 250 g + amino acids 80 g + 20% lipid 250 mL (
 
 - Dextrose kcal ≈ 250 × 3.4 = 850  
 - AA kcal ≈ 80 × 4 = 320  
-- Lipid kcal ≈ 50 × 10 = 500 (teaching vibe — verify emulsion)  
+- Lipid kcal ≈ 50 × 10 = 500 (teaching pattern — verify emulsion)  
 - Total ≈ **1670 kcal**
 
-### Osmolarity vibe
+### Osmolarity pattern
 
 Osmolarity ≈ Σ (mM × i) for particles. Peripheral vs central line limits are institutional — check before verifying high-osmolar peripheral drips.
 
@@ -364,6 +364,5 @@ C1V1=C2V2 → 2×V=1×500 → **250 mL** of 2% + 250 mL diluent.
 ### Practice discipline
 
 On exam, re-copy the stem numbers once before committing. If options differ by a factor of 10, hunt the decimal. High-alert calcs deserve a second pass every time.
-
 
 Keep a one-page personal formula sheet from your misses (only patterns you actually miss). Recopy units every time—even on exam day in the whiteboard space—and you will catch the 10× errors that sink otherwise strong candidates.

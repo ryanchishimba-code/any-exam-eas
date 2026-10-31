@@ -57,23 +57,23 @@
     "id": "pance-137",
     "system": "Endocrine",
     "blueprint_weight": "6%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Fatigue, weight gain, high TSH with low free T4: treatment and monitoring?",
-    "bottom": "Primary hypothyroidism: levothyroxine.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Free T4 is low and TSH is high. Which gland failed, and how is hormone replaced?",
+    "bottom": "The thyroid failed. Pituitary TSH rises because the feedback signal is gone.",
     "bullets": {
-      "clue": "High TSH, low free T4; Hashimoto most common.",
-      "treat": "Levothyroxine on empty stomach; recheck TSH 4–6 weeks after change.",
-      "trap": "Elderly or CAD: start low dose; avoid TSH suppression."
+      "clue": "A low TSH with a low free T4 is central, not primary, hypothyroidism.",
+      "treat": "Levothyroxine on an empty stomach. Recheck TSH in about 6 weeks. Start lower in older adults and in coronary disease.",
+      "trap": "Biotin can make free T4 look high and TSH look low."
     },
-    "back": "Primary hypothyroidism: levothyroxine. Key clue: High TSH, low free T4; Hashimoto most common. First-line: Levothyroxine on empty stomach; recheck TSH 4–6 weeks after change. Exam trap: Elderly or CAD: start low dose; avoid TSH suppression.",
-    "word_count": 35,
+    "back": "The thyroid failed. Pituitary TSH rises because the feedback signal is gone. Key clue: A low TSH with a low free T4 is central, not primary, hypothyroidism. First-line: Levothyroxine on an empty stomach. Recheck TSH in about 6 weeks. Start lower in older adults and in coronary disease. Exam trap: Biotin can make free T4 look high and TSH look low.",
+    "word_count": 61,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-137.svg",
-      "alt": "Primary hypothyroidism: high TSH, low free T4; levothyroxine titrated to TSH checked 4 to 6 weeks after changes."
+      "alt": "The thyroid failed. Pituitary TSH rises because the feedback signal is gone."
     },
     "source": {
-      "guideline": "ATA Guidelines for the Treatment of Hypothyroidism (2014) – ATA pocket card",
+      "guideline": "ATA Guidelines for the Treatment of Hypothyroidism (2014, still current as of 2026)",
       "year": "2014",
       "url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
       "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/4",
@@ -100,7 +100,7 @@
       "alt": "Thyroid storm: beta-blocker, propylthiouracil, then iodine, steroids and ICU care."
     },
     "source": {
-      "guideline": "ATA Guidelines for Hyperthyroidism and Other Causes of Thyrotoxicosis (2016)",
+      "guideline": "ATA Guidelines for Hyperthyroidism and Other Causes of Thyrotoxicosis (2016) (still current as of 2026)",
       "year": "2016",
       "url": "https://doi.org/10.1089/thy.2016.0229",
       "alt_url": "https://journals.sagepub.com/doi/10.1089/thy.2016.0229",
@@ -111,7 +111,7 @@
     "id": "pance-139",
     "system": "Endocrine",
     "blueprint_weight": "6%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Using Diagnostic and Laboratory Studies",
     "front": "Thyroid nodule found on exam: first test and when to scan versus biopsy?",
     "bottom": "Check TSH first.",
     "bullets": {
@@ -138,7 +138,7 @@
     "id": "pance-140",
     "system": "Endocrine",
     "blueprint_weight": "6%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Using Diagnostic and Laboratory Studies",
     "front": "Hypotension, hyperkalemia, hyperpigmentation: diagnosis and treatment; and first screening tests for Cushing?",
     "bottom": "Primary adrenal insufficiency: glucocorticoid plus mineralocorticoid.",
     "bullets": {
@@ -154,7 +154,7 @@
       "alt": "Adrenal insufficiency: high ACTH, low cortisol; hydrocortisone and fludrocortisone. Cushing screening uses urine free cortisol, late-night salivary cortisol or dexamethasone suppression."
     },
     "source": {
-      "guideline": "Endocrine Society: Primary Adrenal Insufficiency (2016); Diagnosis of Cushing Syndrome (2008)",
+      "guideline": "Endocrine Society: Primary Adrenal Insufficiency (2016); Diagnosis of Cushing Syndrome (2008) (still current as of 2026)",
       "year": "2016 / 2008",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2386281/",
       "alt_url": "https://www.endocrine.org/clinical-practice-guidelines/primary-adrenal-insufficiency",
@@ -165,7 +165,7 @@
     "id": "pance-141",
     "system": "Endocrine",
     "blueprint_weight": "6%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Using Diagnostic and Laboratory Studies",
     "front": "Hypertension: who gets screened for primary aldosteronism, and how is pheochromocytoma tested?",
     "bottom": "Screen all with hypertension for primary aldosteronism.",
     "bullets": {
@@ -219,24 +219,24 @@
     "id": "pance-143",
     "system": "Endocrine",
     "blueprint_weight": "6%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Amenorrhea, galactorrhea and high prolactin: treatment? And first-line for chronic SIADH?",
-    "bottom": "Prolactinoma: cabergoline first.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Free T4 is high and TSH is low. What feedback loop explains that, and why can prolactin rise when dopamine falls?",
+    "bottom": "Thyroid hormone suppresses TSH. Dopamine suppresses prolactin.",
     "bullets": {
-      "clue": "Exclude pregnancy, hypothyroidism, drugs.",
-      "treat": "Cabergoline over bromocriptine; SIADH: fluid restriction.",
-      "trap": "Correct chronic hyponatremia slowly to avoid demyelination."
+      "clue": "The hypothalamus releases TRH and dopamine.",
+      "treat": "High T4 with high TSH is not primary hyperthyroidism. A dopamine agonist treats prolactinoma.",
+      "trap": "Primary hypothyroidism can raise prolactin through TRH. Check TSH first."
     },
-    "back": "Prolactinoma: cabergoline first. Key clue: Exclude pregnancy, hypothyroidism, drugs. First-line: Cabergoline over bromocriptine; SIADH: fluid restriction. Exam trap: Correct chronic hyponatremia slowly to avoid demyelination.",
-    "word_count": 25,
+    "back": "Thyroid hormone suppresses TSH. Dopamine suppresses prolactin. Key clue: The hypothalamus releases TRH and dopamine. First-line: High T4 with high TSH is not primary hyperthyroidism. A dopamine agonist treats prolactinoma. Exam trap: Primary hypothyroidism can raise prolactin through TRH. Check TSH first.",
+    "word_count": 42,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-143.svg",
-      "alt": "Prolactinoma treated with cabergoline; chronic SIADH first-line fluid restriction with slow sodium correction."
+      "alt": "Thyroid hormone suppresses TSH. Dopamine suppresses prolactin."
     },
     "source": {
-      "guideline": "Endocrine Society: Hyperprolactinemia (2011); hyponatremia management review (2015)",
-      "year": "2011 / 2015",
+      "guideline": "2016 ATA hyperthyroidism guideline; Endocrine Society prolactinoma guideline (2011, still current as of 2026)",
+      "year": "2016",
       "url": "https://academic.oup.com/jcem/article/96/2/273/2720744",
       "alt_url": "https://pubmed.ncbi.nlm.nih.gov/26173050/",
       "recommendation": "ES 2011: cabergoline preferred dopamine agonist for symptomatic micro/macroprolactinoma. Review: fluid restriction first-line for chronic SIADH; avoid overcorrection."
@@ -274,7 +274,7 @@
     "system": "Endocrine",
     "blueprint_weight": "6%",
     "task_area": "Formulating Most Likely Diagnosis",
-    "front": "Polyuria and polydipsia with dilute urine and a high-normal sodium: diagnosis, how to tell central from nephrogenic, and treatment?",
+    "front": "Months of extreme thirst and very large urine volumes. Glucose is normal. How do you separate the two causes?",
     "bottom": "Diabetes insipidus: dilute urine despite high-normal or high sodium.",
     "bullets": {
       "clue": "Urine osmolality <200 mOsm/kg; desmopressin corrects central, not nephrogenic.",
@@ -286,7 +286,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-145.svg",
-      "alt": "Diabetes insipidus: urine osmolality below 200 mOsm/kg with high-normal or high sodium. Desmopressin corrects central (AVP deficiency) but not nephrogenic (AVP resistance) disease; nephrogenic is treated with a thiazide plus an NSAID."
+      "alt": "Diabetes insipidus: dilute urine despite high-normal or high sodium."
     },
     "source": {
       "guideline": "International expert consensus on congenital nephrogenic DI (AVP resistance), Nat Rev Nephrol 2024; Atila, Refardt, Christ-Crain: AVP deficiency review, Nat Rev Endocrinol 2024; Working Group on renaming diabetes insipidus, JCEM 2022/2023",

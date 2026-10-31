@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   SEO_DESC_MAX,
@@ -87,6 +88,22 @@ describe("public PANCE study guide", () => {
     expect(page.html).toContain("8 task areas");
     expect(page.html).not.toContain("13%");
     expect(page.html).not.toContain("7 task areas");
+  });
+
+  it("keeps paid depth out of the public teaser", () => {
+    const dir = path.join(process.cwd(), "content/pance-study-guide");
+    const manuscript = readdirSync(dir)
+      .filter((name) => /^\d{2}-.+\.md$/.test(name))
+      .map((name) => readFileSync(path.join(dir, name), "utf8"))
+      .join("\n");
+    expect(manuscript).toContain("KDIGO 2024 defines acute kidney injury");
+    expect(page.html).not.toContain("KDIGO 2024 defines acute kidney injury");
+    const publicWords = page.html
+      .replace(/<[^>]+>/g, " ")
+      .split(/\s+/)
+      .filter(Boolean).length;
+    const fullWords = manuscript.split(/\s+/).filter(Boolean).length;
+    expect(fullWords).toBeGreaterThan(publicWords + 8000);
   });
 
   it("is a static marketing route listed in the sitemap", () => {

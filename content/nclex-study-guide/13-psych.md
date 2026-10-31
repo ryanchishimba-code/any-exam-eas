@@ -2,7 +2,7 @@
 
 > **Study aid only.** Crisis and suicide protocols follow facility and local law. Duty-to-warn and reporting rules vary by jurisdiction — know concepts and verify locally. Not psychotherapy.
 
-![Therapeutic communication keep-kill](visuals/therapeutic-communication.jpg)
+![Therapeutic communication keep-kill](visuals/therapeutic-communication.svg)
 
 ---
 
@@ -171,7 +171,7 @@ MAOIs + **tyramine-rich foods** (aged cheeses, cured meats, fermented soy, draft
 
 | | **Serotonin syndrome** | **NMS** |
 | --- | --- | --- |
-| Trigger vibe | Serotonergic stacking (SSRI+MAOI, etc.) | Antipsychotics (dopamine block) |
+| Trigger pattern | Serotonergic stacking (SSRI+MAOI, etc.) | Antipsychotics (dopamine block) |
 | Onset | Often faster (hours) | Often slower (days) |
 | Neuromuscular | Hyperreflexia, clonus, myoclonus | **Lead-pipe rigidity**, bradyreflexia |
 | Autonomic | Diaphoresis, tachy, unstable VS | Fever, tachy, labile BP |
@@ -246,7 +246,6 @@ Refeeding can be medically dangerous — electrolytes. Eating disorders are medi
 
 ---
 
-
 ---
 
 ## Clinical judgment vignettes — psychosocial integrity
@@ -261,7 +260,7 @@ Refeeding can be medically dangerous — electrolytes. Eating disorders are medi
 
 **Stem:** Client crying after stillbirth; visitor says “You’re young — you’ll have another.”
 
-**Nurse response vibe:** Sit, presence, “This is devastating — I’m here,” allow grief — kill false reassurance and “why” questions.
+**Nurse response pattern:** Sit, presence, “This is devastating — I’m here,” allow grief — kill false reassurance and “why” questions.
 
 ### Vignette C — NMS vs serotonin syndrome (sorting)
 
@@ -293,8 +292,6 @@ D. Leave to get paperwork
 
 **Answer: B.**
 
-
-
 ### Medication highlights — psych
 
 | Class | Hook |
@@ -306,7 +303,6 @@ D. Leave to get paperwork
 | Clozapine | ANC monitoring; myocarditis rare; agranulocytosis |
 | Stimulants | Appetite/sleep; diversion |
 | Disulfiram / naltrexone / acamprosate | Alcohol use disorder supports — verify indications |
-
 
 ## Concept check
 

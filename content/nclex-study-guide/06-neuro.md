@@ -1,12 +1,12 @@
 # Chapter 6 — Neurologic
 
-> **Study aid only.** Stroke pathways and seizure protocols follow facility/AHA-aligned standards — verify current practice. Not a neurosurgery manual.
+> **Study aid only.** Stroke pathways and seizure protocols follow facility/AHA-aligned standards. Not a neurosurgery manual.
 
-![Stroke FAST and time-is-brain](visuals/stroke-fast-timeline.jpg)
+![Stroke FAST and time-is-brain](visuals/stroke-fast-timeline.svg)
 
-![ICP early vs late signs](visuals/icp-early-late.jpg)
+![ICP early vs late signs](visuals/icp-early-late.svg)
 
-![Seizure safety steps](visuals/seizure-safety-steps.jpg)
+![Seizure safety steps](visuals/seizure-safety-steps.svg)
 
 ---
 
@@ -269,8 +269,6 @@ Fall + aspiration + dignity. Schedule care when Parkinson meds are working.
 
 ---
 
-
-
 ---
 
 ## Topic H — Bell’s palsy vs stroke (quick contrast)
@@ -294,7 +292,6 @@ Demyelination with relapses/remissions or progressive courses. Fatigue, vision c
 ### Migraine
 
 Severe headache ± aura, photophobia, nausea. Red flags for secondary headache: sudden “thunderclap,” neuro deficit, fever/neck stiffness, new after trauma, cancer/HIV context — escalate. Teaching: triggers, abortive timing, med overuse headache awareness.
-
 
 ## Concept check
 

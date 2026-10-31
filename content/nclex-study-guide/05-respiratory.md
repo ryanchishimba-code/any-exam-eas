@@ -2,7 +2,7 @@
 
 > **Study aid only.** Oxygen protocols and ABG reference ranges vary — confirm with current clinical sources. Study aid, not ventilator management certification.
 
-![Oxygen delivery devices ladder](visuals/o2-delivery-devices.jpg)
+![Oxygen delivery devices ladder](visuals/o2-delivery-devices.svg)
 
 ![ABG interpretation ladder](visuals/abg-interpretation-ladder.svg)
 
@@ -143,7 +143,7 @@ Thrombus (often DVT) → pulmonary artery obstruction → V/Q mismatch, strain o
 
 ### Medication / treatment hooks
 
-Anticoagulation promptly as ordered; thrombolysis/embolectomy for selected massive PE; IVC filter themes in selected cases — verify current indications.
+Anticoagulation promptly as ordered; thrombolysis/embolectomy for selected massive PE; IVC filter themes in selected cases.
 
 ### Safety / red flags
 
@@ -180,7 +180,7 @@ Nasal cannula → simple mask → Venturi (precise FiO₂ — useful in COPD tit
 - Don’t routinely clamp without direction; dislodgement → occlusive dressing themes per protocol (often three-sided for sucking chest wound concepts); call for help.  
 - Output: sudden stop may mean kink/clot; sudden large bloody output → hemorrhage concern — notify.
 
-![Chest tube drainage system zones](visuals/chest-tube-system.jpg)
+![Chest tube drainage system zones](visuals/chest-tube-system.svg)
 
 ### Remember this
 
@@ -285,8 +285,6 @@ New trach dislodgement = emergency. Don’t yank ties casually in the first days
 
 ---
 
-
-
 ---
 
 ## Topic I — Tuberculosis nursing themes (high-yield)
@@ -329,7 +327,6 @@ Stroke, Parkinson, altered LOC, sedation, enteral feeds, poor dentition, GERD, e
 
 “Client hungry” never outranks an unsafe swallow. Aspiration pneumonia is a preventable NGN outcome evaluation item.
 
-
 ## Concept check
 
 **Q1.** Asthmatic with decreasing wheeze, rising lethargy, SpO₂ falling. Priority interpretation?  
@@ -370,7 +367,7 @@ D. Give thin liquids
 
 #### Answers
 
-**Q1: B.** Silent chest / fatigue = emergency vibe.  
+**Q1: B.** Silent chest / fatigue = emergency pattern.  
 **Q2: B.** Sudden dyspnea + tachy post-op → PE until ruled out.  
 **Q3: B.** Continuous water-seal bubbling → leak concern.  
 **Q4: B.** Fire/smoking safety + prescribed use.  

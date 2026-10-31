@@ -2,9 +2,9 @@
 
 > **Study aid only.** Self-care recommendations for exam scenarios — not a substitute for medical evaluation. Know referral red flags.
 
-![OTC self-care triage flowchart](visuals/otc-triage-flow.jpg)
+![OTC self-care triage flowchart](visuals/otc-triage-flow.svg)
 
-![Common OTC drug interaction callouts](visuals/otc-interaction-callouts.jpg)
+![Common OTC drug interaction callouts](visuals/otc-interaction-callouts.svg)
 
 ---
 
@@ -176,7 +176,6 @@ A. Phenazopyridine alone as cure  B. Refer for evaluation/antibiotics; analgesic
 A. CYP induction → loss of efficacy of substrates  B. Always safe with tacrolimus  C. Cures HIV  D. No interactions  
 **Answer:** A.
 
-
 ---
 
 ## Topic F — Common self-care algorithms (exam-ready)
@@ -238,7 +237,6 @@ Pain, vision change, contact lens with red eye, chemical splash, light sensitivi
 - Teach limits and return precautions every time.  
 - Naloxone and EC are public-health wins at the counter.
 
-
 ---
 
 ## Topic H — Travel, wounds, and miscellaneous OTCs
@@ -258,7 +256,6 @@ Use teach-back; provide written max doses; highlight combination APAP products b
 
 Treating meningitis-like symptoms with APAP; NSAIDs in CKD/HF/pregnancy late; oral decongestants in uncontrolled HTN; DXM with MAOI/SSRI stacks; endless PPI without referral; household spoons for kids; herbal inducers with transplants; missing naloxone offers when opioid risk present.
 
-
 ---
 
 ## Topic I — Medication list hygiene at self-care
@@ -267,14 +264,11 @@ Ask every time: “What else are you taking—including vitamins and powders?”
 
 Return precautions belong on every bag: “If X happens within Y days, seek care.” Without that sentence, self-care becomes unsafe care.
 
-
 ### APAP ceiling counseling script
 
 “Many cold and pain products already contain acetaminophen. Add the milligrams from every bottle so you stay within the daily limit on the Drug Facts label—and lower if you have liver disease or drink heavily. When unsure, bring the bottles in and we’ll add them together.”
 
-
 Soft skill that scores: listen for the real question under the symptom (“I’m worried this is cancer” / “I can’t afford a doctor”). Triage medically first, then help navigate access without inventing diagnoses.
-
 
 Before recommending any OTC, reopen the profile: anticoagulants, lithium, MTX, MAOIs, CKD, HF, pregnancy, and elderly anticholinergic load change the answer more often than brand preference does.
 

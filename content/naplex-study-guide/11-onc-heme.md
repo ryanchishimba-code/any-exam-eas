@@ -2,11 +2,11 @@
 
 > **Study aid only.** Oncology regimens are protocol-driven and specialized. Focus on supportive care, toxicity recognition, VTE, and anticoagulation in cancer — verify protocols and labeling.
 
-![Chemotherapy toxicity timeline map](visuals/chemo-toxicity-timeline.jpg)
+![Chemotherapy toxicity timeline map](visuals/chemo-toxicity-timeline.svg)
 
-![Neutropenic fever urgency pathway](visuals/neutropenic-fever-path.jpg)
+![Neutropenic fever urgency pathway](visuals/neutropenic-fever-path.svg)
 
-![DOAC vs warfarin in cancer VTE](visuals/cancer-vte-anticoag.jpg)
+![DOAC vs warfarin in cancer VTE](visuals/cancer-vte-anticoag.svg)
 
 ---
 
@@ -191,7 +191,6 @@ A. More IO drug immediately  B. Urgent evaluation ± high-dose steroids per prot
 A. Ototoxicity  B. Hemorrhagic cystitis from certain oxazaphosphorines  C. Alopecia completely  D. Hyperthyroid  
 **Answer:** B.
 
-
 ---
 
 ## Topic F — Growth factors, transfusions, and infection prevention
@@ -210,7 +209,7 @@ Stop infusion, aspirate residual, do not flush blindly, notify team, follow cold
 
 ## Topic H — VTE prevention in cancer
 
-Hospitalized medical oncology patients often need prophylaxis unless contraindicated. Ambulatory high-risk patients may use risk scores (Khorana themes) for consideration of prophylaxis — confirm current guidance. Educate on clot signs (unilateral swelling, dyspnea). Avoid unnecessary central lines when possible.
+Hospitalized medical oncology patients often need prophylaxis unless contraindicated. Ambulatory high-risk patients may use risk scores (Khorana themes) for consideration of prophylaxis. Educate on clot signs (unilateral swelling, dyspnea). Avoid unnecessary central lines when possible.
 
 ### Oral TKI interaction lightning
 
@@ -227,7 +226,6 @@ CRS and neurotoxicity management specialty (tocilizumab themes); infection risk 
 - Route controls prevent fatal IT vinca errors.  
 - Cancer VTE needs cancer-specific anticoagulation thinking.
 
-
 ---
 
 ## Topic I — Antiemetic & bowel regimen pairing
@@ -236,7 +234,7 @@ CRS and neurotoxicity management specialty (tocilizumab themes); infection risk 
 
 ### Cancer pain overview (pharmacist)
 
-WHO ladder vibe still teaches stepwise multimodal care: APAP/NSAID if safe, adjuvants for neuropathic pain, opioids when needed with naloxone, constipation prophylaxis from day one, and avoid abrupt stops. Methadone for pain is specialist territory (QT, conversion complexity). Fentanyl patches only for opioid-tolerant patients—never for acute titration in naïve patients.
+WHO ladder pattern still teaches stepwise multimodal care: APAP/NSAID if safe, adjuvants for neuropathic pain, opioids when needed with naloxone, constipation prophylaxis from day one, and avoid abrupt stops. Methadone for pain is specialist territory (QT, conversion complexity). Fentanyl patches only for opioid-tolerant patients—never for acute titration in naïve patients.
 
 ### Chemo brain / fatigue / fertility
 
@@ -249,7 +247,6 @@ Patient identity ×2, protocol name, cycle day, height/weight/BSA date, allergie
 ### Final onc traps
 
 Missing CINV prophylaxis; treating neutropenic fever at home with APAP alone; IT vinca possibility; DOAC in high-bleed GI cancer without thought; ignoring TKI–PPI interactions; restarting IO during active severe irAE without team; crushing oral chemo casually.
-
 
 ---
 
@@ -265,9 +262,7 @@ Explain expected nadir timing before it happens so patients don’t panic on day
 
 Antiemetics matched? G-CSF indicated? TLS prophylaxis if high risk? Infection teaching done? VTE plan appropriate? Oral oncolytic interactions checked? Hazardous handling explained? If any “no,” intervene before the chair or pickup ends.
 
-
 Study aid reminder: oncology protocols change—verify antiemetic guidelines, growth-factor indications, and anticoagulation in cancer with current references before clinical application. On NAPLEX, pick the answer that prioritizes safety systems and urgent fever pathways over memorizing every regimen acronym.
-
 
 Independent double-checks and fever action plans are the two oncology habits that most often separate safe systems from tragic near-misses—practice explaining both out loud before exam day.
 

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="434" viewBox="0 0 420 434" role="img" aria-label="When to start blood-pressure medicine">
+<title>When to start blood-pressure medicine</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">When to start blood-pressure</text>
+<text x="28" y="64" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">medicine</text>
+<rect x="24" y="98" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="120" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Confirm the reading. Goal under 130/80 mm</text>
+<text x="36" y="142" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Hg (2025 AHA/ACC).</text>
+<rect x="24" y="166" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="188" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Start a drug at 130/80 or higher if there</text>
+<text x="36" y="210" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">is CVD, diabetes, CKD, or PREVENT risk of</text>
+<text x="36" y="232" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">7.5% or higher.</text>
+<rect x="24" y="256" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="278" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Otherwise, lifestyle for 3 to 6 months.</text>
+<rect x="24" y="302" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="324" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">First-line: thiazide-type diuretic,</text>
+<text x="36" y="346" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">dihydropyridine CCB, ACE inhibitor, or</text>
+<text x="36" y="368" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">ARB.</text>
+<text x="28" y="400" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">2025 AHA/ACC high blood pressure guideline</text>
+</svg>

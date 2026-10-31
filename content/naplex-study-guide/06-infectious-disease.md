@@ -2,11 +2,11 @@
 
 > **Study aid only.** Stewardship and regimen themes for exam prep — not a substitute for culture data, ID consult, or current IDSA-style guidance.
 
-![Antibiotic stewardship decision loop](visuals/abx-stewardship-loop.jpg)
+![Antibiotic stewardship decision loop](visuals/abx-stewardship-loop.svg)
 
-![Beta-lactam allergy assessment pathway](visuals/beta-lactam-allergy-pathway.jpg)
+![Beta-lactam allergy assessment pathway](visuals/beta-lactam-allergy-pathway.svg)
 
-![HIV ART backbone counseling card](visuals/hiv-art-backbone.jpg)
+![HIV ART backbone counseling card](visuals/hiv-art-backbone.svg)
 
 ---
 
@@ -23,7 +23,7 @@ ID items test **bug-drug-patient** matching, allergy assessment, organ dosing, i
 - Empiric therapy → de-escalate with cultures/clinical response.  
 - IV→PO when absorbing and clinically stable (excellent bioavailability agents are classic switches).  
 - Avoid treating asymptomatic bacteriuria in most non-pregnant adults.  
-- Duration: longer isn’t always better — confirm current syndrome guidance.  
+- Duration: longer isn’t always better.  
 - Double coverage only when evidence/context supports (e.g., selected severe Pseudomonas themes).  
 - Source control beats endless antibiotic escalation.
 
@@ -78,7 +78,7 @@ ID items test **bug-drug-patient** matching, allergy assessment, organ dosing, i
 - Outpatient vs inpatient regimen themes; comorbidities; MRSA/Pseudomonas risk factors for CAP.  
 - HAP/VAP: local resistance, prior IV antibiotics, MDR risk — institutional antibiograms matter.  
 - Vaccination counseling (pneumococcal, influenza, COVID per current ACIP).  
-- Duration often shorter than historical 10–14 day habits for uncomplicated CAP — confirm current guidance themes.
+- Duration often shorter than historical 10–14 day habits for uncomplicated CAP.
 
 ### UTI
 
@@ -126,13 +126,13 @@ ID items test **bug-drug-patient** matching, allergy assessment, organ dosing, i
 
 ### Key concepts
 
-- Prefer guideline-recommended INSTI-based regimens for many starting ART (verify current DHHS themes).  
+- Prefer guideline-recommended INSTI-based regimens for many starting ART.  
 - Never monotherapy; never dual NRTI alone as complete modern ART.  
 - **HLA-B\*5701 before abacavir.**  
 - Tenofovir formulations: TDF vs TAF renal/bone tradeoffs.  
 - Boosters (ritonavir/cobicistat) = interaction bombs.  
 - Opportunistic infection prophylaxis thresholds (CD4 themes).  
-- PrEP/PEP: adherence and renal monitoring themes; confirm current CDC regimens when studying.
+- PrEP/PEP: adherence and renal monitoring themes; follow CDC regimens when studying.
 
 ### Counseling
 
@@ -200,7 +200,6 @@ A. Treat with 14 days FQ always  B. Generally do not treat  C. Lifelong nitrofur
 A. Continue IV for tradition  B. Switch to PO when clinically appropriate  C. Stop all antibiotics abruptly without plan  D. Add aminoglycoside automatically  
 **Answer:** B.
 
-
 ---
 
 ## Topic G — Spectrum & organism hooks (study aid)
@@ -256,7 +255,7 @@ Extended-interval dosing when appropriate; levels; avoid in some myasthenia cont
 - Adjust for age (Listeria coverage in extremes of age).  
 - Renal dosing for acyclovir/vanco; hydration.
 
-### SSTI algorithm vibe
+### SSTI algorithm pattern
 
 1. Purulent vs nonpurulent  
 2. Mild vs moderate vs severe  
@@ -264,7 +263,7 @@ Extended-interval dosing when appropriate; levels; avoid in some myasthenia cont
 4. Drain abscesses  
 5. Reassess in 48 h — failure may mean wrong bug, deep infection, or resistance
 
-### UTI algorithm vibe
+### UTI algorithm pattern
 
 1. Symptoms vs colonization  
 2. Cystitis vs pyelo  
@@ -279,7 +278,7 @@ Extended-interval dosing when appropriate; levels; avoid in some myasthenia cont
 
 - PCP prophylaxis below CD4 thresholds (TMP-SMX classic).  
 - Toxoplasma IgG+ additional considerations at lower CD4.  
-- MAC prophylaxis historically at very low CD4 — confirm current guidance as ART potency changed practice.  
+- MAC prophylaxis historically at very low CD4.  
 - Vaccinations: avoid live vaccines when immunocompromised; hepatitis/pneumococcal/influenza importance.
 
 ### PrEP/PEP counseling essentials
@@ -304,7 +303,6 @@ Extended-interval dosing when appropriate; levels; avoid in some myasthenia cont
 - Bug–drug–patient–place (site) — all four.  
 - Allergy labels deserve investigation.  
 - Interactions with warfarin, ART, azoles, and rifampin change lives.
-
 
 ---
 
@@ -336,10 +334,9 @@ Minimize unnecessary antibiotics and PPIs when possible; isolate per policy; soa
 - Site of infection changes drug choice as much as the organism name.  
 - Every new antibiotic on warfarin or ART deserves an interaction pause.
 
-
 ---
 
-## Topic M — Rapid ID exam traps (memorize the vibe)
+## Topic M — Rapid ID exam traps (memorize the pattern)
 
 1. Daptomycin for pneumonia → wrong.  
 2. Treating asymptomatic bacteriuria in non-pregnant adults → usually wrong.  

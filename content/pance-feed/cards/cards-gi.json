@@ -3,24 +3,24 @@
     "id": "pance-056",
     "system": "Gastrointestinal/Nutrition",
     "blueprint_weight": "8%",
-    "task_area": "Clinical Intervention",
-    "front": "Typical heartburn and regurgitation, no alarm features: first step, and when is endoscopy needed?",
-    "bottom": "8-week once-daily PPI trial first.",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
+    "front": "Which adults should be screened for unhealthy alcohol use, and what follows a positive screen?",
+    "bottom": "Screen adults 18 and older, including pregnant patients, and offer a brief intervention.",
     "bullets": {
-      "clue": "Heartburn after meals or lying down; regurgitation.",
-      "treat": "PPI 30–60 min before breakfast for 8 weeks; then try stopping.",
-      "trap": "Dysphagia, weight loss, bleeding or anemia: endoscopy first."
+      "clue": "AUDIT-C is a short screen.",
+      "treat": "USPSTF 2018, still the posted recommendation: screening plus brief behavioral counseling.",
+      "trap": "A brief intervention is not treatment for withdrawal or severe use disorder."
     },
-    "back": "8-week once-daily PPI trial first. Key clue: Heartburn after meals or lying down; regurgitation. First-line: PPI 30–60 min before breakfast for 8 weeks; then try stopping. Exam trap: Dysphagia, weight loss, bleeding or anemia: endoscopy first.",
-    "word_count": 36,
+    "back": "Screen adults 18 and older, including pregnant patients, and offer a brief intervention. Key clue: AUDIT-C is a short screen. First-line: USPSTF 2018, still the posted recommendation: screening plus brief behavioral counseling. Exam trap: A brief intervention is not treatment for withdrawal or severe use disorder.",
+    "word_count": 46,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-056.svg",
-      "alt": "Gastroesophageal reflux across a weak lower esophageal sphincter. An 8-week once-daily PPI trial for typical symptoms without alarm features; endoscopy for alarm features or no response; one-time Barrett screening with three or more risk factors."
+      "alt": "Screen adults 18 and older, including pregnant patients, and offer a brief intervention."
     },
     "source": {
-      "guideline": "ACG Clinical Guideline for the Diagnosis and Management of GERD (2022); ACG Barrett's Esophagus Guideline (2022)",
-      "year": "2022",
+      "guideline": "USPSTF Unhealthy Alcohol Use in Adolescents and Adults: Screening and Behavioral Counseling Interventions (2018, still current as of 2026)",
+      "year": "2018",
       "url": "https://doi.org/10.14309/ajg.0000000000001538",
       "alt_url": "https://journals.lww.com/ajg/Fulltext/2022/04000/Diagnosis_and_Management_of_Barrett_s_Esophagus_.17.aspx",
       "recommendation": "Classic heartburn/regurgitation without alarm symptoms: 8-week empiric once-daily PPI before a meal; if response, attempt discontinuation. If no response or symptoms recur after stopping: diagnostic endoscopy, ideally off PPI 2–4 weeks. Alarm symptoms (dysphagia, weight loss, bleeding, vomiting, anemia) warrant prompt endoscopy. Barrett: single screening endoscopy for chronic GERD plus ≥3 risk factors (male, age >50, White race, tobacco, obesity, family history of BE/EAC)."
@@ -111,7 +111,7 @@
     "id": "pance-060",
     "system": "Gastrointestinal/Nutrition",
     "blueprint_weight": "8%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "RUQ pain and fever after a fatty meal: which exam sign points to acute cholecystitis, and what is the first test?",
     "bottom": "Murphy sign: inspiratory arrest on RUQ palpation; ultrasound first.",
     "bullets": {
@@ -127,7 +127,7 @@
       "alt": "Acute cholecystitis with a thick-walled gallbladder and stone. Ultrasound first, HIDA if unclear, then early laparoscopic cholecystectomy; jaundice points to a common bile duct stone."
     },
     "source": {
-      "guideline": "Tokyo Guidelines 2018 (TG18) for acute cholecystitis",
+      "guideline": "Tokyo Guidelines 2018 (TG18) for acute cholecystitis (still current as of 2026)",
       "year": "2018",
       "url": "https://doi.org/10.1002/jhbp.515",
       "alt_url": "https://doi.org/10.1002/jhbp.516",
@@ -154,7 +154,7 @@
       "alt": "Small-bowel obstruction with dilated loops. CT finds the transition point; nil by mouth, IV fluids and nasogastric decompression with a water-soluble contrast challenge; strangulation signs mean urgent surgery."
     },
     "source": {
-      "guideline": "WSES Bologna Guidelines for Adhesive Small Bowel Obstruction (2017 update)",
+      "guideline": "WSES Bologna Guidelines for Adhesive Small Bowel Obstruction (2017 update) (still current as of 2026)",
       "year": "2017",
       "url": "https://doi.org/10.1186/s13017-018-0185-2",
       "alt_url": "https://wjes.biomedcentral.com/",
@@ -219,7 +219,7 @@
     "id": "pance-064",
     "system": "Gastrointestinal/Nutrition",
     "blueprint_weight": "8%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Average-risk adult: when does colorectal cancer screening start, and what are the options?",
     "bottom": "Screen ages 45–75.",
     "bullets": {
@@ -327,24 +327,24 @@
     "id": "pance-068",
     "system": "Gastrointestinal/Nutrition",
     "blueprint_weight": "8%",
-    "task_area": "Formulating Most Likely Diagnosis",
-    "front": "Pediatric GI emergencies: projectile vomiting, currant-jelly stool, or delayed meconium. Which is which?",
-    "bottom": "Pyloric stenosis, intussusception, Hirschsprung.",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
+    "front": "Who should be screened once for hepatitis C, and which result means active infection?",
+    "bottom": "Adults 18 to 79, at least once. HCV RNA confirms active infection.",
     "bullets": {
-      "clue": "Olive mass; sausage mass; no meconium in 48 hours.",
-      "treat": "Pyloric: fluids, then pyloromyotomy. Intussusception: enema reduction. Hirschsprung: rectal biopsy.",
-      "trap": "Pyloric stenosis: fix hypokalemic alkalosis before surgery."
+      "clue": "Antibody can remain positive after cure.",
+      "treat": "Positive RNA: link the patient to direct-acting antiviral treatment.",
+      "trap": "Do not tell a patient they are cured from the antibody alone."
     },
-    "back": "Pyloric stenosis, intussusception, Hirschsprung. Key clue: Olive mass; sausage mass; no meconium in 48 hours. First-line: Pyloric: fluids, then pyloromyotomy. Intussusception: enema reduction. Hirschsprung: rectal biopsy. Exam trap: Pyloric stenosis: fix hypokalemic alkalosis before surgery.",
-    "word_count": 35,
+    "back": "Adults 18 to 79, at least once. HCV RNA confirms active infection. Key clue: Antibody can remain positive after cure. First-line: Positive RNA: link the patient to direct-acting antiviral treatment. Exam trap: Do not tell a patient they are cured from the antibody alone.",
+    "word_count": 44,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-068.svg",
-      "alt": "Three pediatric GI emergencies: pyloric stenosis with projectile nonbilious vomiting and an olive mass, intussusception with currant-jelly stool and a target sign, and Hirschsprung disease with delayed meconium confirmed by rectal biopsy."
+      "alt": "Adults 18 to 79, at least once. HCV RNA confirms active infection."
     },
     "source": {
-      "guideline": "Standard pediatric surgery teaching; ACR Appropriateness Criteria: Vomiting in Infants; ACR intussusception guidance",
-      "year": "—",
+      "guideline": "USPSTF Hepatitis C Virus Infection in Adolescents and Adults: Screening",
+      "year": "2020",
       "url": "https://acsearch.acr.org/docs/69445/Narrative/",
       "alt_url": "https://acsearch.acr.org/list",
       "recommendation": "Pyloric stenosis: ultrasound is the imaging of choice; correct dehydration and hypochloremic hypokalemic metabolic alkalosis before pyloromyotomy. Intussusception: ultrasound (target sign) is first-line; image-guided air or hydrostatic enema reduction unless peritonitis, perforation or shock. Hirschsprung: suction rectal biopsy showing absent ganglion cells is diagnostic."
@@ -370,7 +370,7 @@
       "alt": "Vitamin deficiencies: thiamine with Wernicke encephalopathy and beriberi, niacin with pellagra, vitamin C with scurvy, and B12 with megaloblastic anemia and neuropathy; give IV thiamine before glucose."
     },
     "source": {
-      "guideline": "Standard nutrition teaching; EFNS Guidelines for Diagnosis, Therapy and Prevention of Wernicke Encephalopathy (2010)",
+      "guideline": "Standard nutrition teaching; EFNS Guidelines for Diagnosis, Therapy and Prevention of Wernicke Encephalopathy (2010) (still current as of 2026)",
       "year": "2010",
       "url": "https://doi.org/10.1111/j.1468-1331.2010.03153.x",
       "alt_url": "https://ods.od.nih.gov/factsheets/list-all/",

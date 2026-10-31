@@ -30,6 +30,14 @@ function chapterFiles(): string[] {
     .sort();
 }
 
+/**
+ * Paid depth is wrapped in these markers. The public teaser keeps the
+ * manuscript outside them. The gated reader ingests the full file.
+ */
+export function stripPremiumBlocks(markdown: string): string {
+  return markdown.replace(/<!--\s*premium\s*-->[\s\S]*?<!--\s*\/premium\s*-->/g, "\n");
+}
+
 function rewriteVisuals(markdown: string): string {
   return markdown.replace(/\]\(visuals\//g, "](/pance-study-guide/visuals/");
 }
@@ -112,7 +120,9 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
 
 export function loadPanceStudyGuidePage(): PanceStudyGuidePage {
   const files = chapterFiles();
-  const parts = files.map((name) => readFileSync(path.join(CONTENT_DIR, name), "utf8"));
+  const parts = files.map((name) =>
+    stripPremiumBlocks(readFileSync(path.join(CONTENT_DIR, name), "utf8"))
+  );
   const faqFile = parts.find((_, index) => files[index] === "20-faq.md") ?? "";
   const faqs = parseFaqs(faqFile);
   const html = singleH1(

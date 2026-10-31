@@ -3,7 +3,7 @@
     "id": "pance-146",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Toddler with ear pain and fever: which otoscopic findings diagnose acute otitis media, and how does otitis externa differ?",
     "bottom": "Moderate-severe tympanic membrane bulging or new otorrhea: acute otitis media.",
     "bullets": {
@@ -19,7 +19,7 @@
       "alt": "Acute otitis media: bulging tympanic membrane, high-dose amoxicillin; otitis externa treated with topical drops."
     },
     "source": {
-      "guideline": "AAP Acute Otitis Media Guideline (2013); AAO-HNSF Acute Otitis Externa Guideline (2014)",
+      "guideline": "AAP Acute Otitis Media Guideline (2013); AAO-HNSF Acute Otitis Externa Guideline (2014) (still current as of 2026)",
       "year": "2013 / 2014",
       "url": "https://publications.aap.org/pediatrics/article/131/3/e964/30912",
       "alt_url": "https://aao-hnsfjournals.onlinelibrary.wiley.com/doi/10.1177/0194599813517083",
@@ -46,7 +46,7 @@
       "alt": "Strep pharyngitis: rapid test with culture back-up in children, penicillin or amoxicillin 10 days; adult sinusitis watchful waiting or amoxicillin."
     },
     "source": {
-      "guideline": "IDSA Group A Streptococcal Pharyngitis (2012); AAO-HNSF Adult Sinusitis Update (2015)",
+      "guideline": "IDSA Group A Streptococcal Pharyngitis (2012); AAO-HNSF Adult Sinusitis Update (2015) (still current as of 2026)",
       "year": "2012 / 2015",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
       "alt_url": "https://www.entnet.org/resource/aao-hnsf-updated-cpg-adult-sinusitis-press-release-fact-sheet/",
@@ -84,7 +84,7 @@
     "id": "pance-149",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Sudden painless monocular vision loss: which fundus finding identifies central retinal artery occlusion, and what is the next step?",
     "bottom": "Pale retina with a cherry-red macula: central retinal artery occlusion.",
     "bullets": {
@@ -111,24 +111,24 @@
     "id": "pance-150",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Red eye with watery discharge after a cold: treatment, and what to avoid?",
-    "bottom": "Viral (adenoviral) conjunctivitis: supportive care.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "A light in one eye constricts both pupils. A light in the other eye constricts neither. Where is the lesion?",
+    "bottom": "Relative afferent pupillary defect: the afferent limb on the bad side.",
     "bullets": {
-      "clue": "Watery discharge, preauricular node, recent URI.",
-      "treat": "Cool compresses, artificial tears, hygiene.",
-      "trap": "Avoid indiscriminate topical antibiotics and steroids."
+      "clue": "The consensual reflex uses the opposite optic nerve.",
+      "treat": "Swinging flashlight test. A defect means optic nerve or severe retinal disease.",
+      "trap": "A cataract dims vision. It does not cause this defect."
     },
-    "back": "Viral (adenoviral) conjunctivitis: supportive care. Key clue: Watery discharge, preauricular node, recent URI. First-line: Cool compresses, artificial tears, hygiene. Exam trap: Avoid indiscriminate topical antibiotics and steroids.",
-    "word_count": 27,
+    "back": "Relative afferent pupillary defect: the afferent limb on the bad side. Key clue: The consensual reflex uses the opposite optic nerve. First-line: Swinging flashlight test. A defect means optic nerve or severe retinal disease. Exam trap: A cataract dims vision. It does not cause this defect.",
+    "word_count": 46,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-150.svg",
-      "alt": "Viral conjunctivitis: supportive care; avoid routine antibiotic or steroid drops."
+      "alt": "Relative afferent pupillary defect: the afferent limb on the bad side."
     },
     "source": {
-      "guideline": "AAO Preferred Practice Pattern: Conjunctivitis (2023)",
-      "year": "2023",
+      "guideline": "AAO Preferred Practice Pattern: Comprehensive Adult Medical Eye Evaluation",
+      "year": "2020",
       "url": "https://www.aaojournal.org/article/S0161-6420(24)00009-5/fulltext",
       "alt_url": "https://www.aao.org/preferred-practice-pattern",
       "recommendation": "AAO PPP: avoid indiscriminate topical antibiotics or corticosteroids; viral conjunctivitis does not respond to antibacterials; mild bacterial conjunctivitis likely self-limited; no topical antibiotic superior."
@@ -138,7 +138,7 @@
     "id": "pance-151",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Diagnostic Studies",
+    "task_area": "Using Diagnostic and Laboratory Studies",
     "front": "Sudden one-sided hearing loss over 2 days, Weber lateralizes to the good ear: next steps?",
     "bottom": "Sudden sensorineural hearing loss: urgent audiometry.",
     "bullets": {
@@ -165,7 +165,7 @@
     "id": "pance-152",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "When do people with diabetes need retinal screening, and what treats center-involved macular edema?",
     "bottom": "Dilated eye exam: type 2 at diagnosis, type 1 within 5 years.",
     "bullets": {
@@ -192,24 +192,24 @@
     "id": "pance-153",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Pharmaceutical Therapeutics",
-    "front": "Elevated eye pressure with optic disc cupping: first-line drug? And first-line for wet macular degeneration?",
-    "bottom": "Open-angle glaucoma: prostaglandin analog first.",
+    "task_area": "Applying Foundational Scientific Concepts",
+    "front": "Where does aqueous humor leave the eye, and why does that matter in open-angle glaucoma?",
+    "bottom": "It exits through the trabecular meshwork into Schlemm canal.",
     "bullets": {
-      "clue": "Painless peripheral vision loss, cupping.",
-      "treat": "Prostaglandin analog drops; wet AMD: intravitreal anti-VEGF.",
-      "trap": "AREDS2 vitamins only for intermediate or one-eye advanced AMD."
+      "clue": "Open-angle glaucoma is impaired outflow, not a closed angle.",
+      "treat": "First-line drug: a prostaglandin analog at night (AAO).",
+      "trap": "Acute angle closure is a separate emergency. Do not treat it as chronic glaucoma."
     },
-    "back": "Open-angle glaucoma: prostaglandin analog first. Key clue: Painless peripheral vision loss, cupping. First-line: Prostaglandin analog drops; wet AMD: intravitreal anti-VEGF. Exam trap: AREDS2 vitamins only for intermediate or one-eye advanced AMD.",
-    "word_count": 31,
+    "back": "It exits through the trabecular meshwork into Schlemm canal. Key clue: Open-angle glaucoma is impaired outflow, not a closed angle. First-line: First-line drug: a prostaglandin analog at night (AAO). Exam trap: Acute angle closure is a separate emergency. Do not treat it as chronic glaucoma.",
+    "word_count": 45,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-153.svg",
-      "alt": "Open-angle glaucoma treated first with prostaglandin analog drops; wet macular degeneration with anti-VEGF injections."
+      "alt": "It exits through the trabecular meshwork into Schlemm canal."
     },
     "source": {
-      "guideline": "AOA Evidence-Based Guideline: Primary Open-Angle Glaucoma (2024); AAO Age-Related Macular Degeneration PPP (2024)",
-      "year": "2024",
+      "guideline": "AAO Preferred Practice Pattern: Primary Open-Angle Glaucoma",
+      "year": "2020",
       "url": "https://www.aoa.org/AOA/Documents/Practice%20Management/Clinical%20Guidelines/EBO%20Guidelines/2024_FINAL%20EBO_Glaucoma_Guideline_digital_10_28_24.pdf",
       "alt_url": "https://www.aaojournal.org/article/S0161-6420(24)00782-6/fulltext",
       "recommendation": "AOA 2024: prostaglandin analogs strong initial option unless contraindicated. AAO 2024 AMD PPP: intravitreal anti-VEGF first-line for neovascular AMD; AREDS2 for intermediate AMD or advanced AMD in one eye."
@@ -219,24 +219,24 @@
     "id": "pance-154",
     "system": "EENT",
     "blueprint_weight": "6%",
-    "task_area": "Clinical Intervention",
-    "front": "Child with recurrent sore throats: when is tonsillectomy indicated?",
-    "bottom": "Paradise criteria: 7 in 1 year, 5/year for 2, or 3/year for 3.",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
+    "front": "A newborn failed the hearing screen. What are the time targets for diagnosis and intervention?",
+    "bottom": "Screen by 1 month, diagnose by 3 months, intervene by 6 months.",
     "bullets": {
-      "clue": "Each episode documented with qualifying findings.",
-      "treat": "Below threshold: watchful waiting.",
-      "trap": "Peritonsillar abscess: drain plus antibiotics; epiglottitis: secure airway first."
+      "clue": "Most congenital hearing loss is not obvious on examination.",
+      "treat": "Refer for diagnostic audiology. Do not wait for a speech delay.",
+      "trap": "A passed newborn screen does not exclude later progressive loss."
     },
-    "back": "Paradise criteria: 7 in 1 year, 5/year for 2, or 3/year for 3. Key clue: Each episode documented with qualifying findings. First-line: Below threshold: watchful waiting. Exam trap: Peritonsillar abscess: drain plus antibiotics; epiglottitis: secure airway first.",
-    "word_count": 37,
+    "back": "Screen by 1 month, diagnose by 3 months, intervene by 6 months. Key clue: Most congenital hearing loss is not obvious on examination. First-line: Refer for diagnostic audiology. Do not wait for a speech delay. Exam trap: A passed newborn screen does not exclude later progressive loss.",
+    "word_count": 47,
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-154.svg",
-      "alt": "Tonsillectomy for recurrent throat infection: 7 episodes in 1 year, 5 per year for 2 years, or 3 per year for 3 years."
+      "alt": "Screen by 1 month, diagnose by 3 months, intervene by 6 months."
     },
     "source": {
-      "guideline": "AAO-HNSF Tonsillectomy in Children (Update 2019); AAFP Peritonsillar Abscess review (2017); Acute epiglottitis review, PMC (2012)",
-      "year": "2019 / 2017 / 2012",
+      "guideline": "Joint Committee on Infant Hearing Year 2019 Position Statement",
+      "year": "2019",
       "url": "https://doi.org/10.1177/0194599818801757",
       "alt_url": "https://www.aafp.org/afp/2017/0415/p501",
       "recommendation": "AAO-HNSF 2019: watchful waiting for recurrent throat infection unless ≥7 episodes in past year, ≥5/year for 2 years or ≥3/year for 3 years with documented qualifying findings. AAFP 2017: drain peritonsillar abscess by needle aspiration or incision and drainage plus antibiotics. Epiglottitis review (PMC3498669): airway emergency; no imaging in respiratory distress; intubate in OR with spontaneous ventilation and tracheotomy backup."

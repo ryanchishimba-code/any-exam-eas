@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="338" viewBox="0 0 420 338" role="img" aria-label="Febrile neutropenia">
+<title>Febrile neutropenia</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Febrile neutropenia</text>
+<rect x="24" y="70" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">ANC under 500 and fever of 38.3 °C once,</text>
+<text x="36" y="114" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">or 38.0 °C for an hour.</text>
+<rect x="24" y="138" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="160" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Antipseudomonal beta-lactam within 60</text>
+<text x="36" y="182" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">minutes.</text>
+<rect x="24" y="206" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="228" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Add vancomycin for a line infection,</text>
+<text x="36" y="250" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">severe mucositis, or hemodynamic</text>
+<text x="36" y="272" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">instability.</text>
+<text x="28" y="304" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">IDSA febrile neutropenia guidance</text>
+</svg>

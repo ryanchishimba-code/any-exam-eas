@@ -2,9 +2,9 @@
 
 > **Study aid only.** Glucose targets and insulin protocols vary. Verify with current ADA-aligned teaching and facility policy. Not dosing advice for real patients.
 
-![Glucose emergencies — hypoglycemia vs DKA vs HHS](visuals/glucose-emergencies.jpg)
+![Glucose emergencies — hypoglycemia vs DKA vs HHS](visuals/glucose-emergencies.svg)
 
-![Addison vs Cushing comparison](visuals/addison-vs-cushing.jpg)
+![Addison vs Cushing comparison](visuals/addison-vs-cushing.svg)
 
 ---
 
@@ -23,7 +23,7 @@ Insulin deficiency/resistance → hyperglycemia. Chronic damage to vessels/nerve
 | | **Hypoglycemia** | **DKA** | **HHS** |
 | --- | --- | --- | --- |
 | Who | Any on insulin/secretagogues | Often T1; can be T2 | Often T2 older adults |
-| Key lab vibe | Low glucose | High glucose + ketones + anion-gap acidosis | Very high glucose, profound dehydration, usually minimal ketones |
+| Key lab pattern | Low glucose | High glucose + ketones + anion-gap acidosis | Very high glucose, profound dehydration, usually minimal ketones |
 | Mental status | Shaky → confused → seizure/coma | Fruity breath, Kussmaul, abd pain | Profound lethargy/coma risk |
 
 ### Assessment cues
@@ -50,7 +50,7 @@ Don’t memorize contested debates — know that **nighttime checks** guide the 
 
 - Insulins by kinetics (rapid/short/intermediate/long) — **peak = hypo risk window**  
 - Never share pens; site rotation; needle safety  
-- Oral agents themes: metformin (contrast/lactic caution concepts), sulfonylurea hypo risk, SGLT2 infection/DKA awareness themes — verify current teaching  
+- Oral agents themes: metformin (contrast/lactic caution concepts), sulfonylurea hypo risk, SGLT2 infection/DKA awareness themes
 
 ### Client teaching — foot care & sick-day rules (fuller)
 
@@ -204,7 +204,6 @@ SIADH = soaked (low Na⁺). DI = high UOP dilute urine. Pituitary post-op → wa
 
 ---
 
-
 ---
 
 ## Clinical judgment vignettes — endocrine deepening
@@ -243,13 +242,11 @@ D. Stop all basal insulin forever
 
 **Answer: B.**
 
-
-
 ---
 
 ## Topic deepening — thyroid, adrenal, SIADH/DI tables
 
-| Disorder | Glucose/BP/Na vibe | Nurse hooks |
+| Disorder | Glucose/BP/Na pattern | Nurse hooks |
 | --- | --- | --- |
 | DKA | High glucose, ketones, acidosis | Fluids, insulin protocol, K⁺ |
 | HHS | Very high glucose, hyperosmolar | Fluids heavy, insulin, neuro |
@@ -268,8 +265,7 @@ D. Stop all basal insulin forever
 
 ### Medication highlights
 
-Insulin peaks; metformin hold around contrast per protocol; levothyroxine AM empty stomach; hydrocortisone stress dosing teaching for Addison; desmopressin for DI; methimazole/PTU liver/agranulocytosis teaching themes.
-
+Insulin peaks; metformin hold around contrast per protocol; levothyroxine AM empty stomach; hydrocortisone stress dosing teaching for Addison; desmopressin for DI; methimazole/PTU liver/agranulocytosis key points.
 
 ## Concept check
 

@@ -1,0 +1,27 @@
+-- Study-guide re-ingest plan. Not applied by this change.
+-- The gated reader serves sg_chapters."bodyHtml". Markdown in
+-- content/*-study-guide is the manuscript. Ingest is a separate step.
+--
+-- Prisma stores camelCase columns ("guideId", "bodyHtml", "examSlug").
+--
+-- 1. Backup, before any ingest:
+--    pg_dump --format=custom --table=sg_guides --table=sg_chapters "$DATABASE_URL" --file=sg-guides-chapters.dump
+--
+-- 2. Dry run (prints word counts, does not open a write):
+--    npx tsx scripts/ingest-nclex-guide.ts --exam=pance --dry-run
+--    npx tsx scripts/ingest-nclex-guide.ts --exam=nclex --dry-run
+--    npx tsx scripts/ingest-nclex-guide.ts --exam=naplex --dry-run
+--    npx tsx scripts/ingest-nclex-guide.ts --exam=aanp-fnp --dry-run
+--
+-- 3. Ingest only after the dump from step 1 is stored outside the database:
+--    npm run ingest:pance-guide
+--    npm run ingest:nclex-guide
+--    npm run ingest:naplex-guide
+--    npm run ingest:aanp-fnp-guide
+--
+-- 4. Undo: restore the custom dump from step 1.
+--    pg_restore --data-only --disable-triggers --dbname="$DATABASE_URL" sg-guides-chapters.dump
+--    If chapter primary keys changed, user rows in sg_highlights, sg_bookmarks,
+--    sg_notes, sg_reading_progress, and sg_chapter_progress still point at the
+--    old chapter ids. Restore the dump taken before ingest so those ids match.
+--    Do not delete those user tables as part of the undo.

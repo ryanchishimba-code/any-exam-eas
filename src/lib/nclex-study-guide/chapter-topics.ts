@@ -193,6 +193,7 @@ const PANCE_CHAPTER_TOPICS: ChapterTopicMap = {
   "quick-reference": [],
   faq: [],
   "back-matter": [],
+  "task-areas": [],
 };
 
 export const CHAPTER_TOPICS_BY_EXAM: Record<StudyGuideExam, ChapterTopicMap> = {

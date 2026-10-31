@@ -174,7 +174,7 @@ Download the **official test plan** for the exam you are taking from [ncsbn.org]
 
 > **Study aid only.** Strategy framing for the 2026 Next Gen NCLEX. Confirm current rules in the official NCSBN test plan and Candidate Bulletin. Not affiliated with NCSBN.
 
-![CAT and NGN overview diagram](visuals/cat-ngn-overview.jpg)
+![CAT and NGN overview diagram](visuals/cat-ngn-overview.svg)
 
 ---
 
@@ -218,11 +218,11 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Six clinical judgment steps (CJMM / NCJMM)
 
-![Six clinical judgment steps](visuals/cjmm-six-steps.jpg)
+![Six clinical judgment steps](visuals/cjmm-six-steps.svg)
 
-![NGN bow-tie template](visuals/bow-tie-ngn-example.jpg)
+![NGN bow-tie template](visuals/bow-tie-ngn-example.svg)
 
-![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.jpg)
+![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.svg)
 
 1. **Recognize cues** — What data matters?  
 2. **Analyze cues** — What does it mean?  
@@ -346,7 +346,7 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 
 **Remember this:** You can delegate a **task**, not the **accountability**. If the client is unstable or the outcome is unpredictable, keep it.
 
-![Prioritization decision tree](visuals/priority-decision-tree.jpg)
+![Prioritization decision tree](visuals/priority-decision-tree.svg)
 
 ---
 
@@ -538,9 +538,9 @@ D. Psychosocial Integrity only
 
 > **Study aid only.** Verify isolation, med rights, and facility protocols with current CDC-aligned practice and your instructors. Not clinical protocol.
 
-![Isolation precautions matrix](visuals/isolation-ppe-matrix.jpg)
+![Isolation precautions matrix](visuals/isolation-ppe-matrix.svg)
 
-![Fire safety RACE and PASS](visuals/race-pass-fire.jpg)
+![Fire safety RACE and PASS](visuals/race-pass-fire.svg)
 
 ---
 
@@ -923,7 +923,7 @@ D. Tie to side rails tightly for safety
 
 > **Study aid only.** Scope and assignment rules vary by state and facility. Verify with your nursing regulatory body. PN candidates: think Coordinated Care.
 
-![Delegation rights framework](visuals/delegation-five-rights.jpg)
+![Delegation rights framework](visuals/delegation-five-rights.svg)
 
 ---
 
@@ -1283,9 +1283,9 @@ D. Stop all unit insulin protocols
 
 > **Study aid only.** Cardiac protocols (ACS pathways, ACLS) follow facility/AHA-aligned standards — verify current practice. Labs/ranges vary.
 
-![Heart failure left vs right](visuals/heart-failure-left-right.jpg)
+![Heart failure left vs right](visuals/heart-failure-left-right.svg)
 
-![Shock types overview](visuals/shock-types-overview.jpg)
+![Shock types overview](visuals/shock-types-overview.svg)
 
 ---
 
@@ -1641,7 +1641,7 @@ D. Apply heating pad and chart later
 
 > **Study aid only.** Oxygen protocols and ABG reference ranges vary — confirm with current clinical sources. Study aid, not ventilator management certification.
 
-![Oxygen delivery devices ladder](visuals/o2-delivery-devices.jpg)
+![Oxygen delivery devices ladder](visuals/o2-delivery-devices.svg)
 
 ![ABG interpretation ladder](visuals/abg-interpretation-ladder.svg)
 
@@ -1819,7 +1819,7 @@ Nasal cannula → simple mask → Venturi (precise FiO₂ — useful in COPD tit
 - Don’t routinely clamp without direction; dislodgement → occlusive dressing themes per protocol (often three-sided for sucking chest wound concepts); call for help.  
 - Output: sudden stop may mean kink/clot; sudden large bloody output → hemorrhage concern — notify.
 
-![Chest tube drainage system zones](visuals/chest-tube-system.jpg)
+![Chest tube drainage system zones](visuals/chest-tube-system.svg)
 
 ### Remember this
 
@@ -2034,11 +2034,11 @@ D. Give thin liquids
 
 > **Study aid only.** Stroke pathways and seizure protocols follow facility/AHA-aligned standards — verify current practice. Not a neurosurgery manual.
 
-![Stroke FAST and time-is-brain](visuals/stroke-fast-timeline.jpg)
+![Stroke FAST and time-is-brain](visuals/stroke-fast-timeline.svg)
 
-![ICP early vs late signs](visuals/icp-early-late.jpg)
+![ICP early vs late signs](visuals/icp-early-late.svg)
 
-![Seizure safety steps](visuals/seizure-safety-steps.jpg)
+![Seizure safety steps](visuals/seizure-safety-steps.svg)
 
 ---
 
@@ -2393,9 +2393,9 @@ D. Preference for TV channel
 
 > **Study aid only.** Glucose targets and insulin protocols vary. Verify with current ADA-aligned teaching and facility policy. Not dosing advice for real patients.
 
-![Glucose emergencies — hypoglycemia vs DKA vs HHS](visuals/glucose-emergencies.jpg)
+![Glucose emergencies — hypoglycemia vs DKA vs HHS](visuals/glucose-emergencies.svg)
 
-![Addison vs Cushing comparison](visuals/addison-vs-cushing.jpg)
+![Addison vs Cushing comparison](visuals/addison-vs-cushing.svg)
 
 ---
 
@@ -2728,11 +2728,11 @@ D. Avoid medical ID to reduce stigma
 
 > **Study aid only.** Exact lab reference ranges vary by laboratory. Know direction and urgency; verify local ranges. Not a dialysis prescription guide.
 
-![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.jpg)
+![Electrolyte imbalance cue map](visuals/electrolyte-imbalance-map.svg)
 
-![AV fistula arm rules](visuals/av-fistula-arm-rules.jpg)
+![AV fistula arm rules](visuals/av-fistula-arm-rules.svg)
 
-![Acid-base common causes](visuals/acid-base-common-causes.jpg)
+![Acid-base common causes](visuals/acid-base-common-causes.svg)
 
 ---
 
@@ -3102,7 +3102,7 @@ D. Discard all tubing immediately in regular trash before calling
 
 > **Study aid only.** GI bleed and liver failure management follow facility protocols — verify. Not endoscopic procedure guidance.
 
-![GI bleed ABC priority flow](visuals/gi-bleed-abc-flow.jpg)
+![GI bleed ABC priority flow](visuals/gi-bleed-abc-flow.svg)
 
 ---
 
@@ -3518,9 +3518,9 @@ D. Ambulating immediately if dizzy
 
 > **Study aid only.** Oncologic emergencies and burn fluid formulas are facility/protocol-driven — verify. Not a procedural manual.
 
-![Compartment syndrome six Ps](visuals/compartment-six-ps.jpg)
+![Compartment syndrome six Ps](visuals/compartment-six-ps.svg)
 
-![Neutropenic precautions](visuals/neutropenic-precautions.jpg)
+![Neutropenic precautions](visuals/neutropenic-precautions.svg)
 
 ![Burn rule of nines adult](visuals/burn-rule-of-nines.svg)
 
@@ -3871,11 +3871,11 @@ D. Give ice baths to “shrink” sickled cells
 
 > **Study aid only.** Obstetric emergencies follow facility/ACOG-aligned protocols — verify. Not a substitute for obstetric clinical training. Medication use in pregnancy must be confirmed with current references.
 
-![Fetal heart decelerations pattern guide](visuals/fetal-heart-decels.jpg)
+![Fetal heart decelerations pattern guide](visuals/fetal-heart-decels.svg)
 
-![PPH uterine atony algorithm](visuals/pph-atony-algorithm.jpg)
+![PPH uterine atony algorithm](visuals/pph-atony-algorithm.svg)
 
-![Newborn thermoregulation](visuals/newborn-thermoregulation.jpg)
+![Newborn thermoregulation](visuals/newborn-thermoregulation.svg)
 
 ---
 
@@ -4238,11 +4238,11 @@ Then ask: *What kills first if I do nothing for 5 minutes?* That answer is usual
 
 > **Study aid only.** Pediatric dosing is weight-based and error-prone — always verify with current references and double-checks. Vaccine schedules change; confirm CDC schedule. Not clinical protocol.
 
-![Pediatric respiratory distress cues](visuals/peds-respiratory-distress.jpg)
+![Pediatric respiratory distress cues](visuals/peds-respiratory-distress.svg)
 
-![Croup vs epiglottitis](visuals/croup-vs-epiglottitis.jpg)
+![Croup vs epiglottitis](visuals/croup-vs-epiglottitis.svg)
 
-![Tet spell knees to chest](visuals/tet-spell-knees-chest.jpg)
+![Tet spell knees to chest](visuals/tet-spell-knees-chest.svg)
 
 ---
 
@@ -4595,7 +4595,7 @@ Teach parents the difference between “fussy” and “lethargic,” how to cou
 
 > **Study aid only.** Crisis and suicide protocols follow facility and local law. Duty-to-warn and reporting rules vary by jurisdiction — know concepts and verify locally. Not psychotherapy.
 
-![Therapeutic communication keep-kill](visuals/therapeutic-communication.jpg)
+![Therapeutic communication keep-kill](visuals/therapeutic-communication.svg)
 
 ---
 
@@ -4970,9 +4970,9 @@ D. Confront the partner in the hallway
 
 > **Study aid only.** Drug information changes. Verify dosing, interactions, pregnancy/lactation labeling (PLLR risk summaries — the old A/B/C/D/X categories were retired in 2015), and monitoring with current drug references and facility policy. This chapter teaches **patterns**, not prescriptions.
 
-![High-alert medication classes](visuals/high-alert-meds.jpg)
+![High-alert medication classes](visuals/high-alert-meds.svg)
 
-![Insulin peak timeline](visuals/insulin-peak-timeline.jpg)
+![Insulin peak timeline](visuals/insulin-peak-timeline.svg)
 
 ---
 
@@ -5328,7 +5328,7 @@ D. Combine with non-DHP CCB freely without checking
 
 > **Study aid only.** Lab ranges vary by laboratory and population. Use as a memory scaffold — confirm with your program’s accepted ranges and current clinical sources.
 
-![Labs danger-zone dashboard](visuals/labs-danger-zones.jpg)
+![Labs danger-zone dashboard](visuals/labs-danger-zones.svg)
 
 ---
 
@@ -5343,7 +5343,7 @@ D. Combine with non-DHP CCB freely without checking
 
 **Tie-breakers:** acute > chronic · unstable > stable · unexpected > expected · actual > risk (when acuity otherwise similar)
 
-![ABC priority order](visuals/priority-abcs.jpg)
+![ABC priority order](visuals/priority-abcs.svg)
 
 ---
 
@@ -5359,7 +5359,7 @@ D. Combine with non-DHP CCB freely without checking
 
 \*Follow current facility/CDC-aligned practice.
 
-![Isolation quick card](visuals/isolation-ppe-matrix.jpg)
+![Isolation quick card](visuals/isolation-ppe-matrix.svg)
 
 ---
 
@@ -5397,7 +5397,7 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 **Keep:** “Tell me more.” “This is difficult.” “What concerns you most?” reflection, silence, clarification, open-ended.  
 **Kill:** “Don’t worry.” “Why did you…” “You should…” “Everyone feels that way.” judgment, false reassurance, changing subject, advising abruptly.
 
-![Therapeutic communication](visuals/therapeutic-communication.jpg)
+![Therapeutic communication](visuals/therapeutic-communication.svg)
 
 ---
 
@@ -5409,7 +5409,7 @@ Exact numbers vary. Focus on **which way is dangerous** and **what you do**.
 
 Five rights: task, circumstance, person, direction, supervision.
 
-![Delegation five rights](visuals/delegation-five-rights.jpg)
+![Delegation five rights](visuals/delegation-five-rights.svg)
 
 ---
 
@@ -5540,7 +5540,7 @@ Soap/water for C. diff · Mask for droplet · N95+room for airborne
 
 Practice this aloud on every case study — even when the item format differs.
 
-![Bow-tie NGN template](visuals/bow-tie-ngn-example.jpg)
+![Bow-tie NGN template](visuals/bow-tie-ngn-example.svg)
 
 ---
 

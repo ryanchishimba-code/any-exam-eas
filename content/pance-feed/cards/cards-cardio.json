@@ -31,7 +31,7 @@
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
     "task_area": "Pharmaceutical Therapeutics",
-    "front": "Chronic coronary disease with angina: first-line antianginal, and who needs a long-term beta-blocker?",
+    "front": "Chronic coronary disease with exertional chest pain that stops with rest. What is first-line for symptoms?",
     "bottom": "Beta-blocker or CCB first.",
     "bullets": {
       "clue": "Exertional chest pain, relieved by rest.",
@@ -43,7 +43,7 @@
     "mnemonic": null,
     "diagram": {
       "file": "svg/pance-022.svg",
-      "alt": "Chronic coronary disease: a fixed plaque narrows an artery so pain comes with exertion. First-line beta-blocker, calcium channel blocker or long-acting nitrate; add a second class, then ranolazine; sublingual nitroglycerin for attacks."
+      "alt": "Beta-blocker or CCB first."
     },
     "source": {
       "guideline": "2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease",
@@ -111,7 +111,7 @@
     "id": "pance-025",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Who gets a statin, and what is the LDL-C goal for very-high-risk ASCVD? (2026 guideline)",
     "bottom": "Statin by risk; goals are back.",
     "bullets": {
@@ -165,7 +165,7 @@
     "id": "pance-027",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Older adult with exertional syncope: which murmur and symptom triad point to severe aortic stenosis?",
     "bottom": "Crescendo-decrescendo systolic murmur with exertional dyspnea, angina or syncope.",
     "bullets": {
@@ -192,7 +192,7 @@
     "id": "pance-028",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Match the murmur: MR, AR, mitral stenosis. What triggers treatment?",
     "bottom": "Symptoms or LV dysfunction trigger intervention.",
     "bullets": {
@@ -273,7 +273,7 @@
     "id": "pance-031",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Obstructive HCM: first-line drug, and what should you avoid?",
     "bottom": "Obstructive HCM: beta-blocker first.",
     "bullets": {
@@ -300,7 +300,7 @@
     "id": "pance-032",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Tearing chest pain radiating to the back: which exam finding suggests aortic dissection, and what comes first?",
     "bottom": "Tearing pain with an arm blood-pressure difference suggests dissection.",
     "bullets": {
@@ -327,7 +327,7 @@
     "id": "pance-033",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Calf pain with walking that resolves with rest: which exam findings and bedside test point to PAD?",
     "bottom": "Claudication with weak pulses: ABI ≤0.90 confirms PAD.",
     "bullets": {
@@ -435,7 +435,7 @@
     "id": "pance-037",
     "system": "Cardiovascular",
     "blueprint_weight": "11%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Syncope: what is the initial evaluation, and which features mean high risk?",
     "bottom": "Initial workup: history, orthostatics, ECG.",
     "bullets": {
@@ -451,7 +451,7 @@
       "alt": "Syncope evaluation: history, orthostatic blood pressure and heart rate lying and after standing, and a 12-lead ECG. A systolic fall of 20 or a diastolic fall of 10 within 3 minutes is orthostatic hypotension. Exertion, palpitations, no warning, abnormal ECG or structural heart disease mark high risk."
     },
     "source": {
-      "guideline": "2017 ACC/AHA/HRS Guideline for the Evaluation and Management of Patients With Syncope",
+      "guideline": "2017 ACC/AHA/HRS Guideline for the Evaluation and Management of Patients With Syncope (still current as of 2026)",
       "year": "2017",
       "url": "https://www.jacc.org/doi/full/10.1016/j.jacc.2017.03.003",
       "alt_url": "https://www.ahajournals.org/doi/10.1161/cir.0000000000000499",

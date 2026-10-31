@@ -1,38 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 720" role="img" aria-labelledby="bow-tie-title bow-tie-desc">
-  <title id="bow-tie-title">NGN bow-tie item layout</title>
-  <desc id="bow-tie-desc">Next Generation NCLEX bow-tie format: select two actions to take, one client condition in the center, and two parameters to monitor.</desc>
-  <rect width="375" height="720" fill="#f8fafc"/>
-  <text x="187.5" y="36" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#0f172a">NGN Bow-Tie Template</text>
-  <text x="187.5" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#475569">2 actions &#183; 1 condition &#183; 2 parameters (NCSBN NGN)</text>
-
-  <rect x="20" y="78" width="335" height="168" rx="10" fill="#0d9488" fill-opacity="0.12" stroke="#0d9488" stroke-width="2"/>
-  <text x="187.5" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#0f766e">Actions to take</text>
-  <text x="187.5" y="128" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Select 2</text>
-  <rect x="40" y="142" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="187.5" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Action 1</text>
-  <rect x="40" y="190" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="187.5" y="216" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Action 2</text>
-
-  <polygon points="167.5,262 187.5,252 207.5,262 187.5,272" fill="#0d9488"/>
-  <line x1="187.5" y1="248" x2="187.5" y2="262" stroke="#0d9488" stroke-width="2"/>
-
-  <rect x="87.5" y="278" width="200" height="120" rx="10" fill="#1e3a5f" stroke="#1e3a5f"/>
-  <text x="187.5" y="308" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#fff">Condition</text>
-  <text x="187.5" y="328" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#cbd5e1">Clinical problem</text>
-  <text x="187.5" y="348" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Select 1</text>
-  <rect x="107.5" y="358" width="160" height="28" rx="6" fill="#fff" fill-opacity="0.95"/>
-
-  <polygon points="167.5,412 187.5,402 207.5,412 187.5,422" fill="#1e3a5f"/>
-  <line x1="187.5" y1="398" x2="187.5" y2="412" stroke="#1e3a5f" stroke-width="2"/>
-
-  <rect x="20" y="428" width="335" height="168" rx="10" fill="#1e3a5f" fill-opacity="0.08" stroke="#1e3a5f" stroke-width="2"/>
-  <text x="187.5" y="458" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#1e3a5f">Parameters to monitor</text>
-  <text x="187.5" y="478" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#334155">Select 2</text>
-  <rect x="40" y="492" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="187.5" y="518" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Parameter 1</text>
-  <rect x="40" y="540" width="295" height="40" rx="6" fill="#fff" stroke="#94a3b8"/>
-  <text x="187.5" y="566" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#64748b">Parameter 2</text>
-
-  <text x="187.5" y="640" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Study aid &#183; AnyExamEasy</text>
-  <text x="187.5" y="660" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="#64748b">Verify current NCSBN NGN item types</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="318" viewBox="0 0 420 318" role="img" aria-label="NGN bow-tie item">
+<title>NGN bow-tie item</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">NGN bow-tie item</text>
+<rect x="24" y="70" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">One condition in the center.</text>
+<rect x="24" y="116" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="138" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Two actions to take.</text>
+<rect x="24" y="162" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="184" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Two parameters to monitor.</text>
+<rect x="24" y="208" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="230" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Each token has to match the condition. Do</text>
+<text x="36" y="252" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">not pick a true but unrelated action.</text>
+<text x="28" y="284" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">NCSBN 2026 RN test plan</text>
 </svg>

@@ -6,14 +6,12 @@ This is **AnyExamEasy's free PANCE Study Guide**.
 
 It gives you a plan, the 3 question types PANCE asks most, and a topic map where **study time matches exam points**.
 
-[**Try PANCE practice free →**](/signup?plan=trial&interval=monthly&tier=pro&exam=pance)
-
 > **Study aid only.** This guide helps you prepare for an exam. It is **not** medical advice. It does not replace your PA program, your preceptors, or official **NCCPA** documents. A rule that names a source was checked against that page in October 2026. Confirm the current official page before you use a rule in clinic.
 
 > **MUST KNOW**
 > - **300 questions**, in **5 blocks of 60**
 > - **60 minutes per block** (about 1 minute per question)
-> - Scored **200–800**. **You pass at 350.**
+> - Scored **200–800**. The passing score is **350**.
 
 ---
 
@@ -71,7 +69,7 @@ AnyExamEasy is **one study system for six boards** (NCLEX, USMLE, NAPLEX, PANCE,
 
 **Daily loop:** checklist → 60-question timed set → review every rationale → update error log.
 
-**Start free** at [anyexameasy.com](https://anyexameasy.com). $27.99/mo after trial; trial terms on site.
+Practice sets live at [anyexameasy.com](https://anyexameasy.com).
 
 ---
 
@@ -135,6 +133,6 @@ AnyExamEasy is **one study system for six boards** (NCLEX, USMLE, NAPLEX, PANCE,
 
 **Working full-time?** Protect one block each weekday. Do a full mock on weekends during the Peak phase.
 
-> **Ready to practice?** Explore PANCE questions on [AnyExamEasy](/pance). Start free; $27.99/mo after trial (trial terms on site).
+> **Ready to practice?** Explore PANCE questions on [AnyExamEasy](/pance).
 
 ---

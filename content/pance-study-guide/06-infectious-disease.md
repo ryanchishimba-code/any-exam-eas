@@ -31,3 +31,35 @@ During the Bicillin L-A shortage, CDC recommends preserving benzathine penicilli
 > - **Trap:** azithromycin as "preferred" for chlamydia. **Doxycycline 100 mg by mouth twice daily for 7 days is the recommended regimen** for adolescents and adults. ([CDC STI Treatment Guidelines](https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm))
 
 ---
+
+<!-- premium -->
+
+## Infectious disease in depth
+
+Infectious disease is 7% of the exam. The CDC STI guidelines and the sepsis clock are the core.
+
+**Sepsis and meningitis**
+
+Suspected sepsis with hypotension or a lactate of 4 mmol/L or higher is an emergency. Obtain cultures and give broad antibiotics, intravenous fluid (30 mL/kg of crystalloid when the patient is in septic shock and can tolerate the volume), and norepinephrine if the mean arterial pressure stays under 65 mm Hg. The Surviving Sepsis Campaign hour-1 bundle is the framework. Do not wait for a CT before the first antibiotic dose in a patient who is in shock.
+
+Adult bacterial meningitis is treated with vancomycin plus a third-generation cephalosporin, and ampicillin is added when the patient is older than 50 or immunocompromised, to cover Listeria. Dexamethasone is given with or just before the first antibiotic dose when pneumococcus is likely. Do not delay antibiotics for the lumbar puncture if the puncture will be delayed by imaging.
+
+**Skin, tick, lung, and gut**
+
+Purulent skin infection is drained. Nonpurulent cellulitis is treated for streptococci. Lyme disease with an expanding target rash in an endemic area is a clinical diagnosis. Do not wait for serology to treat erythema migrans. Doxycycline is first-line for adults. Neurologic or cardiac Lyme is a different plan. C. difficile is confirmed with a toxin or a nucleic-acid test in a patient with new diarrhea after antibiotics. Fidaxomicin or oral vancomycin is first-line. Do not use metronidazole as the preferred drug for a first episode. Do not treat a formed stool just because a test was sent.
+
+**HIV and opportunistic infection**
+
+Screen adults for HIV at least once (USPSTF). Start antiretroviral therapy as soon as the diagnosis is made. PrEP is offered to adults at substantial risk. At a CD4 count under 200 cells/µL, start prophylaxis against Pneumocystis, usually trimethoprim-sulfamethoxazole. Toxoplasma prophylaxis is added when the CD4 count is under 100 and the IgG is positive. MAC prophylaxis is no longer routine if antiretroviral therapy is starting promptly. Name the threshold the stem gives you.
+
+**Respiratory and sexually transmitted infection, continued**
+
+Outpatient pneumonia choices are in the pulmonary chapter. Active tuberculosis is RIPE therapy. Latent tuberculosis is a shorter rifamycin regimen when interactions allow. Gonorrhea and chlamydia doses are in the table above. Pelvic inflammatory disease covers both organisms and anaerobes. Treat partners. A pregnant patient with syphilis receives penicillin. If she reports an allergy, she is desensitized. Doxycycline is not the substitute in pregnancy.
+
+> **Important to remember**
+> - Cultures and antibiotics in the first hour of septic shock. Norepinephrine if fluid does not restore the mean arterial pressure.
+> - Erythema migrans is treated without a confirmatory titer.
+> - Penicillin is the syphilis drug in pregnancy. Desensitize if needed.
+
+<!-- /premium -->
+

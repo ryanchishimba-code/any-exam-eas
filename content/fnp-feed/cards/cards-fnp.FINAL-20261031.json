@@ -24,7 +24,8 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Average ≥2 readings on ≥2 visits; confirm out of office. Home BP or ambulatory monitoring confirms; stage 1 is 130–139/80–89."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-002",
@@ -51,7 +52,8 @@
    "url": "https://pubmed.ncbi.nlm.nih.gov/28827377/",
    "alt_url": "https://doi.org/10.1542/peds.2017-1904",
    "recommendation": "Screen yearly from age 3. Age 13 and older: adult cutoffs; stage 1 is ≥130/80."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-003",
@@ -78,7 +80,8 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": "https://doi.org/10.1016/j.jacc.2025.11.016",
    "recommendation": "Statin at intermediate or high PREVENT risk. Moderate-intensity statin at intermediate risk; high-intensity at high risk; borderline: weigh risk enhancers."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-004",
@@ -105,7 +108,8 @@
    "url": "https://www.aap.org/en/practice-management/care-delivery-approaches/periodicity-schedule/",
    "alt_url": null,
    "recommendation": "Once at 9–11 years and again at 17–21. Targeted screening from age 2 for family history of early ASCVD or high cholesterol."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-005",
@@ -132,7 +136,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening",
    "alt_url": null,
    "recommendation": "Men 65–75 who have ever smoked (B). One-time abdominal ultrasound; men who never smoked: selective (C)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-006",
@@ -159,7 +164,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes",
    "alt_url": null,
    "recommendation": "USPSTF: ages 35–70 with overweight or obesity. Normal result: rescreen at least every 3 years."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-007",
@@ -186,7 +192,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "A1C ≥6.5%, fasting glucose ≥126, 2-hour OGTT ≥200. Confirm with a second abnormal test unless hyperglycemic crisis or classic symptoms with glucose ≥200."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-008",
@@ -213,7 +220,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "Inspection, pulses and monofilament plus one more sensory test. Loss of protective sensation: daily self-inspection, therapeutic footwear, podiatry."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-009",
@@ -240,7 +248,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S261/163919/12-Retinopathy-Neuropathy-and-Foot-Care-Standards",
    "recommendation": "Type 2 at diagnosis; type 1 within 5 years. Any retinopathy: at least yearly; refer macular edema to ophthalmology."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-010",
@@ -267,7 +276,8 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "Stage by GFR (G1–G5) and albuminuria (A1–A3). Annual eGFR and UACR in diabetes and hypertension."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-011",
@@ -294,7 +304,8 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "TSH first; add free T4 if abnormal. High TSH with normal free T4 is subclinical; repeat in 2–3 months."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-012",
@@ -321,7 +332,8 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/631761-dtc-thyroid-nodules/2",
    "recommendation": "TSH first, then ultrasound. Normal or high TSH: ultrasound; FNA by sonographic pattern and size."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-013",
@@ -348,7 +360,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
    "alt_url": null,
    "recommendation": "Ages 45–75; selective at 76–85. CT colonography or flexible sigmoidoscopy every 5 years are alternatives."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-014",
@@ -375,7 +388,8 @@
    "url": "https://www.hrsa.gov/womens-guidelines",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
    "recommendation": "Primary hrHPV every 5 years preferred. Alternatives: cotesting every 5 years or cytology every 3; self-collected HPV now an option."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-015",
@@ -402,7 +416,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
    "alt_url": null,
    "recommendation": "Every 2 years, ages 40–74 (B). Palpable mass at any age: diagnostic imaging, not screening."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-016",
@@ -429,7 +444,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
    "alt_url": null,
    "recommendation": "Ages 50–80 with ≥20 pack-years. Annual low-dose CT; offer cessation treatment to current smokers."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-017",
@@ -456,7 +472,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/prostate-cancer-screening",
    "alt_url": "https://www.auanet.org/documents/Guidelines/PDF/2026%20Guidelines/EDPC%202026%20Unabridged%20FINAL.pdf",
    "recommendation": "Individual decision after discussion (C). AUA: baseline PSA may start at 45–50; offer from 40–45 if Black, germline mutation or strong family history."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-018",
@@ -483,7 +500,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/brca-related-cancer-risk-assessment-genetic-counseling-and-genetic-testing",
    "alt_url": null,
    "recommendation": "Women with breast, ovarian, tubal or peritoneal cancer history or ancestry risk. Positive tool: genetic counseling, then testing if indicated."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-019",
@@ -510,14 +528,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/osteoporosis-screening",
    "alt_url": null,
    "recommendation": "Women 65+ and younger postmenopausal women at increased risk. T-score ≤−2.5 at hip or spine defines osteoporosis."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-020",
   "system": "GI",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets hepatitis C screening, and how is it done?",
+  "front": "An asymptomatic 45-year-old has never been tested for hepatitis C. Who is screened, and which result means active infection?",
   "bottom": "All adults 18–79 at least once.",
   "bullets": {
    "clue": "Anti-HCV antibody with reflex HCV RNA.",
@@ -537,7 +556,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hepatitis-c-screening",
    "alt_url": null,
    "recommendation": "All adults 18–79 at least once. Positive RNA: active infection; treat with direct-acting antivirals."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-021",
@@ -564,7 +584,8 @@
    "url": "https://www.cdc.gov/mmwr/volumes/72/rr/rr7201a1.htm",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hepatitis-b-virus-infection-screening",
    "recommendation": "Screen once with HBsAg, anti-HBs and total anti-HBc. Anti-HBs alone: vaccinated; anti-HBs plus anti-HBc: resolved infection."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-022",
@@ -591,7 +612,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/human-immunodeficiency-virus-hiv-infection-screening",
    "alt_url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/initiation-antiretroviral-therapy",
    "recommendation": "Everyone 15–65, younger and older at risk, and every pregnancy. Suspected acute HIV: add HIV RNA."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-023",
@@ -618,14 +640,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/chlamydia-and-gonorrhea-screening",
    "alt_url": null,
    "recommendation": "Sexually active women 24 and younger, and older women at risk. Treat positives; retest about 3 months later."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-024",
   "system": "ID",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets syphilis screening, and how is it confirmed?",
+  "front": "A patient is at the first prenatal visit. Who else needs syphilis testing, and which tests confirm it?",
   "bottom": "All pregnant patients at the first visit; adults at increased risk.",
   "bullets": {
    "clue": "Nontreponemal test (RPR) plus treponemal confirmation.",
@@ -645,14 +668,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-nonpregnant-adults-adolescents-screening",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/syphilis-infection-in-pregnancy-screening",
    "recommendation": "All pregnant patients at the first visit; adults at increased risk. High risk: repeat at 28 weeks and at delivery."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-025",
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets depression screening, and which tool?",
+  "front": "Which adults and adolescents are screened for depression, and which tool do you start with?",
   "bottom": "All adults, including pregnant and postpartum, and teens 12–18.",
   "bullets": {
    "clue": "PHQ-2 first, then PHQ-9; PHQ-A in adolescents.",
@@ -672,14 +696,15 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/depression-in-children-and-adolescents-screening",
    "recommendation": "All adults, including pregnant and postpartum, and teens 12–18. Positive screen: diagnostic interview and suicide risk assessment."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-026",
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "Who gets anxiety screening, and which tool?",
+  "front": "Which adults are screened for anxiety, which tool is used, and why does the plan change after 64?",
   "bottom": "Adults 64 and younger, including pregnant patients (B).",
   "bullets": {
    "clue": "GAD-7; children 8–18 are also screened.",
@@ -699,7 +724,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/anxiety-adults-screening",
    "alt_url": null,
    "recommendation": "Adults 64 and younger, including pregnant patients (B). Positive screen: confirm diagnosis and assess function."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-027",
@@ -726,7 +752,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/draft-recommendation/unhealthy-alcohol-use-adolescents-adults-behavioral-counseling-interventions",
    "alt_url": null,
    "recommendation": "Screen all adults 18+, including pregnant patients. Positive screen: brief behavioral counseling."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-028",
@@ -753,7 +780,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/tobacco-use-in-adults-and-pregnant-women-counseling-and-interventions",
    "alt_url": null,
    "recommendation": "Ask, advise, then offer behavioral help and medication. Nonpregnant adults: counseling plus FDA-approved medication (A)."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-029",
@@ -780,7 +808,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/intimate-partner-violence-and-abuse-of-elderly-and-vulnerable-adults-screening/",
    "alt_url": null,
    "recommendation": "Women of reproductive age, including pregnant and postpartum (B). Positive screen: refer to ongoing support services."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-030",
@@ -807,7 +836,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/falls-prevention-community-dwelling-older-adults-interventions",
    "alt_url": null,
    "recommendation": "Ask about falls, unsteadiness and fear of falling. Exercise interventions for those at increased risk (B)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-031",
@@ -834,7 +864,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cognitive-impairment-in-older-adults-screening",
    "alt_url": null,
    "recommendation": "No; evidence is insufficient (I). Work up reversible causes: TSH, B12, depression, medications."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-032",
@@ -861,7 +892,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/skin-cancer-screening",
    "alt_url": null,
    "recommendation": "Insufficient evidence in asymptomatic adults (I). Counsel fair-skinned people aged 6 months to 24 years on UV avoidance (B)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-033",
@@ -888,7 +920,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hearing-loss-in-older-adults-screening",
    "alt_url": "https://doi.org/10.1177/0194599819859885",
    "recommendation": "Conductive: Weber to affected ear, bone > air. Sudden sensorineural loss: audiogram within 14 days; offer steroids within 2 weeks."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-034",
@@ -915,7 +948,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vision-in-children-ages-6-months-to-5-years-screening",
    "alt_url": null,
    "recommendation": "At least once at ages 3–5 (B). Failed screen: pediatric eye referral."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-035",
@@ -942,7 +976,8 @@
    "url": "https://publications.aap.org/pediatrics/article/155/1/e2024069667/200337",
    "alt_url": "https://publications.aap.org/pediatrics/article/155/1/e2024069667/200337/Newborn-Screening-for-Critical-Congenital-Heart",
    "recommendation": "Eye disease, hip dysplasia and critical heart disease. Positive Ortolani or Barlow: orthopedic referral; pulse-ox ≥95% in hand and foot passes."
-  }
+  },
+  "age_band": "Newborn"
  },
  {
   "id": "fnp-036",
@@ -969,7 +1004,8 @@
    "url": "https://doi.org/10.1542/peds.2021-052138",
    "alt_url": null,
    "recommendation": "Smile, roll, walk holding on, walk alone. 18 months: walks alone, says 3+ words, points to show."
-  }
+  },
+  "age_band": "Toddler"
  },
  {
   "id": "fnp-037",
@@ -996,7 +1032,8 @@
    "url": "https://publications.aap.org/pediatrics/article/145/1/e20193447/36917",
    "alt_url": "https://www.aap.org/en/patient-care/developmental-surveillance-and-screening-patient-care/",
    "recommendation": "M-CHAT-R/F at 18 and 24 months. Positive: refer for diagnosis, early intervention and hearing test at once."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-038",
@@ -1023,7 +1060,8 @@
    "url": "https://www.cdc.gov/lead-prevention/hcp/clinical-guidance/index.html",
    "alt_url": null,
    "recommendation": "Medicaid and high-risk children at 12 and 24 months. Elevated capillary sample: confirm with venous test."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-039",
@@ -1050,7 +1088,8 @@
    "url": "https://publications.aap.org/pediatrics/article/158/1/e2026077414/207901",
    "alt_url": null,
    "recommendation": "CBC plus ferritin at 9–12 months if breastfed. Low ferritin identifies deficiency before anemia develops."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-040",
@@ -1077,7 +1116,8 @@
    "url": "https://www.aafp.org/pubs/afp/issues/2017/1101/p590.html",
    "alt_url": null,
    "recommendation": "Girls: breast budding first; boys: testicular enlargement. Delayed: no breast by 13 or testicular enlargement by 14."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-041",
@@ -1104,7 +1144,8 @@
    "url": "https://www.aafp.org/pubs/afp/issues/2020/0201/p147.html",
    "alt_url": "https://downloads.aap.org/AAP/PDF/periodicity_schedule.pdf",
    "recommendation": "Offer confidential time alone with the teen. Screen behavior and emotions at every visit; depression and suicide risk yearly from age 12."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-042",
@@ -1131,7 +1172,8 @@
    "url": "https://www.aap.org/en/patient-care/preparticipation-physical-evaluation/",
    "alt_url": "https://doi.org/10.1161/cir.0000000000001250",
    "recommendation": "Exertional syncope, chest pain or early family sudden death. Refer for ECG, echocardiogram and cardiology evaluation."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-043",
@@ -1158,7 +1200,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/02/prevention-of-group-b-streptococcal-early-onset-disease-in-newborns",
    "recommendation": "CBC, type/Rh, antibody screen, HIV, syphilis, HBV, HCV, rubella. Rh-negative and unsensitized: anti-D at 28 weeks."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-044",
@@ -1185,7 +1228,8 @@
    "url": "https://doi.org/10.1097/aog.0000000000005612",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/gestational-diabetes-screening",
    "recommendation": "At 24–28 weeks (B). Early testing if risk factors, such as prior GDM or obesity."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-045",
@@ -1212,7 +1256,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertensive-disorders-pregnancy-screening",
    "alt_url": null,
    "recommendation": "Measure BP at every prenatal visit (B). Elevated BP: check proteinuria, platelets, creatinine and liver enzymes."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-046",
@@ -1239,7 +1284,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/02/prevention-of-group-b-streptococcal-early-onset-disease-in-newborns",
    "alt_url": null,
    "recommendation": "Rectovaginal culture at 36 0/7–37 6/7 weeks. Intrapartum penicillin; low-risk penicillin allergy: cefazolin."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-047",
@@ -1266,14 +1312,15 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": null,
    "recommendation": "From 24 weeks, centimeters roughly equal gestational weeks. Size–date discrepancy: ultrasound for growth and amniotic fluid."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-048",
   "system": "Psych",
   "blueprint_weight": "32%",
   "task_area": "Assess",
-  "front": "When is perinatal depression screened, and with what?",
+  "front": "A patient is 12 weeks pregnant and returns 6 weeks after delivery. When is mood screened, and with which scale?",
   "bottom": "Early pregnancy, later pregnancy and postpartum visits.",
   "bullets": {
    "clue": "Edinburgh Postnatal Depression Scale or PHQ-9; screen anxiety too.",
@@ -1293,7 +1340,8 @@
    "url": "https://www.acog.org/clinical/guidance/clinical-practice-guideline/2023/06/screening-and-diagnosis-of-mental-health-conditions-during-pregnancy-and-postpartum/",
    "alt_url": null,
    "recommendation": "Early pregnancy, later pregnancy and postpartum visits. Assess for bipolar disorder before starting medication."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-049",
@@ -1320,7 +1368,8 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "Spirometry with bronchodilator reversibility. Peak flow variability or bronchoprovocation if spirometry is normal."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-050",
@@ -1347,7 +1396,8 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "Post-bronchodilator FEV1/FVC <0.70. FEV1 grades severity: ≥80%, 50–79%, 30–49%, <30%."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-051",
@@ -1374,7 +1424,8 @@
    "url": "https://doi.org/10.5664/jcsm.6506",
    "alt_url": null,
    "recommendation": "Sleep study, not a questionnaire alone. Diagnosis: AHI ≥5 with symptoms or ≥15; CPAP is first-line treatment."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-052",
@@ -1401,7 +1452,8 @@
    "url": "https://pubmed.ncbi.nlm.nih.gov/8433468/",
    "alt_url": null,
    "recommendation": "Bone tenderness or inability to bear weight 4 steps. Knee: age ≥55, fibular head or isolated patellar tenderness, no 90° flexion."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-053",
@@ -1428,7 +1480,8 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/anterior-cruciate-ligament-injuries/aclcpg.pdf",
    "alt_url": null,
    "recommendation": "Lachman is most sensitive for ACL tear. MRI confirms; refer active patients to orthopedics."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-054",
@@ -1455,7 +1508,8 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/rotator-cuff/rotator-cuff-2025/rotator-cuff-cpg.pdf",
    "alt_url": "https://www.aaos.org/rccpg2025",
    "recommendation": "Neer and Hawkins: impingement. Atraumatic tear: physical therapy first."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-055",
@@ -1482,7 +1536,8 @@
    "url": "https://doi.org/10.7326/M16-2367",
    "alt_url": null,
    "recommendation": "Saddle anesthesia, urinary retention, progressive weakness. No red flags: no imaging; stay active, heat, NSAIDs."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-056",
@@ -1509,7 +1564,8 @@
    "url": "https://www.aaos.org/globalassets/quality-and-practice-resources/carpal-tunnel/carpal-tunnel-2024/cts-cpg.pdf",
    "alt_url": null,
    "recommendation": "Phalen and Tinel tests, plus symptom distribution. Splinting or steroid injection; surgery if severe."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-057",
@@ -1536,7 +1592,8 @@
    "url": "https://publications.aap.org/pediatrics/article/131/3/e964/30912",
    "alt_url": null,
    "recommendation": "Moderate-severe bulging or new otorrhea. Pneumatic otoscopy confirms middle ear effusion."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-058",
@@ -1563,7 +1620,8 @@
    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis2/",
    "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
    "recommendation": "Use a clinical score, such as Centor or McIsaac. Low score: no test; higher score: rapid antigen test."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-059",
@@ -1590,7 +1648,8 @@
    "url": "https://doi.org/10.1016/j.jaad.2018.08.055",
    "alt_url": null,
    "recommendation": "ABCDE: asymmetry, border, color, diameter >6 mm, evolving. Excisional biopsy with 1–3 mm margins."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-060",
@@ -1617,7 +1676,8 @@
    "url": "https://doi.org/10.1053/j.gastro.2020.06.046",
    "alt_url": null,
    "recommendation": "Ferritin; <45 ng/mL supports iron deficiency. Men and postmenopausal women: bidirectional endoscopy."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-061",
@@ -1644,7 +1704,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://doi.org/10.1111/bjh.12959",
    "recommendation": "B12 and folate first. Long-term metformin: check B12 periodically."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-062",
@@ -1671,7 +1732,8 @@
    "url": "https://doi.org/10.1097/HEP.0000000000000323",
    "alt_url": null,
    "recommendation": "FIB-4 first. Weight loss of 7–10% improves steatosis and fibrosis."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-063",
@@ -1698,7 +1760,8 @@
    "url": "https://doi.org/10.1542/peds.2021-052228",
    "alt_url": null,
    "recommendation": "Urinalysis, blood culture and inflammatory markers. 22–60 days: markers guide lumbar puncture and disposition."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-064",
@@ -1725,7 +1788,8 @@
    "url": "https://www.jacr.org/article/S1546-1440(23)00619-1/fulltext",
    "alt_url": null,
    "recommendation": "Noncontrast CT in most adults. Ultrasound first in pregnancy and children; NSAIDs for colic; tamsulosin for distal stones ≤10 mm."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-065",
@@ -1752,7 +1816,8 @@
    "url": "https://www.endocrine.org/clinical-practice-guidelines/primary-aldosteronism-2",
    "alt_url": null,
    "recommendation": "All adults with hypertension. Positive: confirm with specialist; unilateral disease may be surgical, bilateral gets an MRA."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-066",
@@ -1779,7 +1844,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001168",
    "alt_url": "https://doi.org/10.1016/j.jacc.2024.11.009",
    "recommendation": "Stable: predictable exertional pain relieved by rest. Suspected ACS: call EMS, chewed aspirin, ECG within 10 minutes."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-067",
@@ -1806,7 +1872,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "Natriuretic peptide supports HF; echo sets the type. Elevated BNP or NT-proBNP, then echocardiogram."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-068",
@@ -1833,7 +1900,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "ECG: no P waves, irregular RR. Anticoagulate; check TSH and echocardiogram."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-069",
@@ -1860,7 +1928,8 @@
    "url": "https://doi.org/10.1016/j.jacc.2020.11.018",
    "alt_url": null,
    "recommendation": "AS: crescendo-decrescendo at right upper sternal border. Echocardiogram for both."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-070",
@@ -1887,7 +1956,8 @@
    "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.02.013",
    "alt_url": null,
    "recommendation": "Resting ABI ≤0.90. Supervised exercise, high-intensity statin, antiplatelet; noncompressible: toe-brachial index."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-071",
@@ -1914,7 +1984,8 @@
    "url": "https://doi.org/10.1182/bloodadvances.2018024828",
    "alt_url": "https://ashpublications.org/bloodadvances/article/4/19/4693/463998/",
    "recommendation": "Wells score first. Wells likely: proximal or whole-leg ultrasound."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-072",
@@ -1941,7 +2012,8 @@
    "url": "https://doi.org/10.1164/rccm.201908-1581ST",
    "alt_url": "https://doi.org/10.7326/M15-1840",
    "recommendation": "Abnormal vitals or focal exam suggest pneumonia. Suspected pneumonia: chest X-ray; bronchitis: symptom care."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-073",
@@ -1968,7 +2040,8 @@
    "url": "https://publications.aap.org/aapbooks/book/696/chapter/8471492/Bronchiolitis-Clinical-Practice-Guideline-Quick",
    "alt_url": "https://doi.org/10.1542/peds.2014-2742",
    "recommendation": "Wheeze and crackles, barking cough, or drooling and tripod. Croup: single-dose dexamethasone; epiglottitis: secure the airway."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-074",
@@ -1995,7 +2068,8 @@
    "url": "https://www.cdc.gov/pertussis/hcp/clinical-care/",
    "alt_url": null,
    "recommendation": "Pertussis; give azithromycin. Treat within 3 weeks of cough onset; prophylaxis for household contacts."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-075",
@@ -2022,7 +2096,8 @@
    "url": "https://doi.org/10.1093/cid/cir1043",
    "alt_url": "https://doi.org/10.1177/0194599815572097",
    "recommendation": "Persistent, severe or double-worsening symptoms. Amoxicillin with or without clavulanate, or watchful waiting."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-076",
@@ -2049,7 +2124,8 @@
    "url": "https://www.aaojournal.org/article/S0161-6420(24)00009-5/fulltext",
    "alt_url": null,
    "recommendation": "Watery, mucopurulent, or itchy and bilateral. Bacterial: topical antibiotic; allergic: antihistamine/mast-cell stabilizer drops."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-077",
@@ -2076,7 +2152,8 @@
    "url": "https://www.aaojournal.org/article/S0161-6420(25)00816-4/fulltext",
    "alt_url": "https://www.aoa.org/AOA/Documents/Practice%20Management/Clinical%20Guidelines/EBO%20Guidelines/2024_FINAL%20EBO_Glaucoma_Guideline_digital_10_28_24.pdf",
    "recommendation": "Acute angle-closure glaucoma. Emergency ophthalmology; lower pressure, then laser iridotomy."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-078",
@@ -2103,7 +2180,8 @@
    "url": "https://doi.org/10.1177/0194599813517083",
    "alt_url": null,
    "recommendation": "Tragal or pinna pain means otitis externa. Topical antibiotic drops; nonototoxic drops if TM perforation."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-079",
@@ -2130,14 +2208,15 @@
    "url": "https://www.cdc.gov/epstein-barr/hcp/clinical-overview/",
    "alt_url": null,
    "recommendation": "Infectious mononucleosis; heterophile antibody test. Supportive care; no contact sports until cleared."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-080",
   "system": "GI",
   "blueprint_weight": "26.5%",
   "task_area": "Diagnose",
-  "front": "Heartburn or dyspepsia: treat, test for H. pylori, or scope?",
+  "front": "Burning epigastric pain after meals in a 46-year-old, with no weight loss, trouble swallowing, or bleeding. What is the first step?",
   "bottom": "Dyspepsia under 60: test for H. pylori and treat if positive.",
   "bullets": {
    "clue": "Typical GERD without alarm symptoms: 8-week empiric PPI trial.",
@@ -2157,7 +2236,8 @@
    "url": "https://doi.org/10.14309/ajg.0000000000001538",
    "alt_url": "https://doi.org/10.1038/ajg.2017.154",
    "recommendation": "Dyspepsia under 60: test for H. pylori and treat if positive. GERD with dysphagia, weight loss or GI bleeding: endoscopy first."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-081",
@@ -2184,7 +2264,8 @@
    "url": "https://doi.org/10.14309/ajg.0000000000001036",
    "alt_url": "https://journals.lww.com/ajg/pages/articleviewer.aspx?article=00013&issue=06000&type=Fulltext&year=2025",
    "recommendation": "Rome IV positive diagnosis. CBC, CRP or calprotectin, and celiac serology in diarrhea."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-082",
@@ -2211,7 +2292,8 @@
    "url": "https://doi.org/10.14309/ajg.0000000000002075",
    "alt_url": null,
    "recommendation": "tTG-IgA with total IgA. Positive: duodenal biopsy to confirm."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-083",
@@ -2238,7 +2320,8 @@
    "url": "https://doi.org/10.1186/s13017-020-00306-3",
    "alt_url": null,
    "recommendation": "Suspected appendicitis: surgical evaluation. Ultrasound first in children and pregnancy; CT in most adults."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-084",
@@ -2265,7 +2348,8 @@
    "url": "https://doi.org/10.1053/j.gastro.2020.09.059",
    "alt_url": null,
    "recommendation": "Acute diverticulitis; CT if diagnosis uncertain. Uncomplicated and immunocompetent: antibiotics selectively."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-085",
@@ -2292,7 +2376,8 @@
    "url": "https://www.jacr.org/article/S1546-1440(20)30939-X/fulltext",
    "alt_url": "https://acsearch.acr.org/docs/69445/Narrative/",
    "recommendation": "Projectile nonbilious vomiting or intermittent colicky pain. Ultrasound for both; enema can reduce intussusception."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-086",
@@ -2319,7 +2404,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "Islet autoantibodies. Test autoantibodies in every youth with new diabetes."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-087",
@@ -2346,7 +2432,8 @@
    "url": "https://doi.org/10.1089/thy.2016.0229",
    "alt_url": null,
    "recommendation": "Graves, toxic nodule or thyroiditis. Beta-blocker for symptoms; antithyroid drug for Graves."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-088",
@@ -2373,7 +2460,8 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "Repeat TSH with free T4 in 2–3 months. Treat TSH >10; individualize 4.5–10."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-089",
@@ -2400,7 +2488,8 @@
    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
    "alt_url": "https://doi.org/10.1093/cid/ciaf460",
    "recommendation": "Fever or flank pain means pyelonephritis. Pyelonephritis: urine culture; oral fluoroquinolone if local resistance ≤10%."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-090",
@@ -2427,7 +2516,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
    "alt_url": null,
    "recommendation": "BV: clue cells, pH >4.5, amine odor. BV and trichomonas: metronidazole 7 days; candida: fluconazole 150 mg once."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-091",
@@ -2454,7 +2544,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/pid.htm",
    "alt_url": null,
    "recommendation": "Cervical motion, uterine or adnexal tenderness. Ceftriaxone 500 mg IM plus doxycycline and metronidazole for 14 days."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-092",
@@ -2481,7 +2572,8 @@
    "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy/",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2018/03/tubal-ectopic-pregnancy",
    "recommendation": "Transvaginal ultrasound plus serial hCG. Stable and unruptured: methotrexate; unstable: surgery."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-093",
@@ -2508,7 +2600,8 @@
    "url": "https://doi.org/10.1093/ejendo/lvad096",
    "alt_url": null,
    "recommendation": "Rotterdam: 2 of 3 features. Exclude thyroid disease, high prolactin and nonclassic CAH."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-094",
@@ -2535,7 +2628,8 @@
    "url": "https://doi.org/10.1002/ijgo.12666",
    "alt_url": "https://www.acog.org/clinical/clinical-guidance/practice-bulletin/articles/2012/07/diagnosis-of-abnormal-uterine-bleeding-in-reproductive-aged-women",
    "recommendation": "PALM-COEIN classifies structural and nonstructural causes. Endometrial sampling at 45 and older."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-095",
@@ -2562,7 +2656,8 @@
    "url": "https://www.nice.org.uk/guidance/ng23/chapter/Recommendations",
    "alt_url": "https://www.aafp.org/pubs/afp/issues/2019/0701/p39.html",
    "recommendation": "Pregnancy test first. Amenorrhea workup adds FSH, LH, prolactin and TSH."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-096",
@@ -2589,7 +2684,8 @@
    "url": "https://publications.aap.org/pediatrics/article/158/4/e2026078565/209460",
    "alt_url": null,
    "recommendation": "Abnormal urinalysis plus a positive culture from a catheter specimen. Culture: catheter ≥10,000 CFU/mL single uropathogen; clean catch ≥100,000."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-097",
@@ -2616,7 +2712,8 @@
    "url": "https://www.auanet.org/guidelines-and-quality/guidelines/benign-prostatic-hyperplasia-(bph)-guideline",
    "alt_url": "https://doi.org/10.1097/ju.0000000000003698",
    "recommendation": "Exam and symptoms point the way. Tender, boggy prostate with fever: acute bacterial prostatitis; antibiotics."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-098",
@@ -2643,7 +2740,8 @@
    "url": "https://www.auanet.org/guidelines-and-quality/guidelines/idiopathic-overactive-bladder",
    "alt_url": "https://doi.org/10.1097/ju.0000000000003985",
    "recommendation": "Leak with cough, urgency, or constant dribbling. Stress: pelvic floor training; urge: behavioral therapy first."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-099",
@@ -2670,7 +2768,8 @@
    "url": "https://doi.org/10.1002/art.41752",
    "alt_url": "https://doi.org/10.1002/art.41142",
    "recommendation": "OA: DIP and PIP, stiffness <30 minutes. RA: RF, anti-CCP, ESR and CRP; start methotrexate early."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-100",
@@ -2697,7 +2796,8 @@
    "url": "https://doi.org/10.1002/art.41247",
    "alt_url": null,
    "recommendation": "Arthrocentesis decides. Septic: Gram stain and culture, very high synovial WBC; both can coexist."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-101",
@@ -2724,7 +2824,8 @@
    "url": "https://doi.org/10.1002/art.41774",
    "alt_url": null,
    "recommendation": "Polymyalgia rheumatica; ask about GCA symptoms. PMR: low-dose prednisone; suspected GCA: high-dose steroids now."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-102",
@@ -2751,7 +2852,8 @@
    "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia/",
    "alt_url": null,
    "recommendation": "Hypertension plus proteinuria or end-organ signs. Severe: BP ≥160/110, platelets <100,000, creatinine >1.1, pulmonary edema."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-103",
@@ -2778,7 +2880,8 @@
    "url": "https://ichd-3.org/1-migraine/1-1-migraine-without-aura/",
    "alt_url": "https://doi.org/10.1177/0333102417738202",
    "recommendation": "Migraine: pulsating, nausea; tension: bilateral pressing; cluster: orbital. Migraine: 4–72 hours with nausea or light and sound sensitivity; tension: 30 minutes to 7 days, no nausea."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-104",
@@ -2805,7 +2908,8 @@
    "url": "https://doi.org/10.1177/0194599813505967",
    "alt_url": null,
    "recommendation": "Bell palsy affects the forehead. Bell palsy: oral steroids within 72 hours; eye protection."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-105",
@@ -2832,7 +2936,8 @@
    "url": "https://doi.org/10.1177/0194599816689667",
    "alt_url": null,
    "recommendation": "Dix-Hallpike provokes torsional nystagmus. Epley maneuver; no routine imaging or vestibular suppressants."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-106",
@@ -2859,7 +2964,8 @@
    "url": "https://doi.org/10.1002/mds.26424",
    "alt_url": "https://www.neurology.org/doi/10.1212/WNL.0000000000012868",
    "recommendation": "Rest tremor versus action tremor. Essential tremor: bilateral action tremor, often familial; propranolol or primidone."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-107",
@@ -2886,7 +2992,8 @@
    "url": "https://doi.org/10.1002/alz.13859",
    "alt_url": null,
    "recommendation": "Gradual, stepwise or fluctuating. Labs for reversible causes; brain imaging."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-108",
@@ -2913,7 +3020,8 @@
    "url": "https://doi.org/10.1542/peds.2019-2528",
    "alt_url": "https://publications.aap.org/pediatrics/article/144/4/e20192528/81590/Clinical-Practice-Guideline-for-the-Diagnosis",
    "recommendation": "DSM-5 criteria in ≥2 settings. Gather parent and teacher rating scales."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-109",
@@ -2940,7 +3048,8 @@
    "url": "https://publications.aap.org/pediatrics/article/147/1/e2020040279/33504",
    "alt_url": "https://psychiatryonline.org/doi/full/10.1176/appi.ajp.23180001",
    "recommendation": "HR <50 by day or <45 at night, BP <90/45, or temperature <35.6 °C. Also admit: ≤75% median BMI, electrolyte or ECG abnormality, syncope, acute food refusal."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-110",
@@ -2967,7 +3076,8 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4410183/",
    "alt_url": "https://www.aafp.org/pubs/afp/issues/2020/0515/p590.html",
    "recommendation": "Atopic: itchy, cheeks and extensors; seborrheic: greasy scale, little itch. Atopic dermatitis: moisturizers plus a low-potency topical steroid on the face and folds."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-111",
@@ -2994,7 +3104,8 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12707599/",
    "alt_url": "https://www.aad.org/public/diseases/eczema/types/nummular-dermatitis/treatment",
    "recommendation": "KOH preparation helps identify tinea. Nummular eczema: itchy round to oval spots; topical steroid and moisturizer."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-112",
@@ -3021,7 +3132,8 @@
    "url": "https://www.cdc.gov/scabies/hcp/clinical-care/index.html",
    "alt_url": null,
    "recommendation": "Burrows in web spaces, wrists and waist. Permethrin 5% neck down; repeat in 1–2 weeks; treat contacts."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-113",
@@ -3048,7 +3160,8 @@
    "url": "https://publications.aap.org/redbook",
    "alt_url": null,
    "recommendation": "Pattern and timing name the virus. Roseola: rash after fever; fifth disease: slapped cheek."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-114",
@@ -3075,7 +3188,8 @@
    "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001295",
    "alt_url": null,
    "recommendation": "Fever ≥5 days plus ≥4 of 5 criteria. IVIG and aspirin; echocardiogram."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-115",
@@ -3102,7 +3216,8 @@
    "url": "https://publications.aap.org/pediatrics/article/150/3/e2022058859/188726",
    "alt_url": "https://publications.aap.org/pediatrics/article/150/3/e2022058859/188726/Clinical-Practice-Guideline-Revision-Management-of",
    "recommendation": "Jaundice in the first 24 hours. Phototherapy by hour-specific thresholds and risk factors."
-  }
+  },
+  "age_band": "Newborn"
  },
  {
   "id": "fnp-116",
@@ -3129,7 +3244,8 @@
    "url": "https://doi.org/10.1542/peds.2015-0356",
    "alt_url": null,
    "recommendation": "Possible physical abuse; sentinel injury. Under 2: skeletal survey; report to CPS."
-  }
+  },
+  "age_band": "Infant"
  },
  {
   "id": "fnp-117",
@@ -3156,7 +3272,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/intimate-partner-violence-and-abuse-of-elderly-and-vulnerable-adults-screening/",
    "alt_url": null,
    "recommendation": "Assess when suspected, interview alone. Report to Adult Protective Services per state law."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-118",
@@ -3183,7 +3300,8 @@
    "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019839s108,20990s062lbl.pdf",
    "alt_url": null,
    "recommendation": "Personal or family history of bipolar disorder, mania or hypomania. Positive history: involve psychiatry before prescribing."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-119",
@@ -3210,7 +3328,8 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Thiazide-type, ACEi or ARB, or dihydropyridine CCB; race does not pick the drug. Goal <130/80 for most adults."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-120",
@@ -3237,7 +3356,8 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "ACEi or ARB, titrated to maximum tolerated. Recheck creatinine and potassium in 2–4 weeks."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-121",
@@ -3264,7 +3384,8 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "eGFR ≥20 with diabetes, albuminuria or HF. Continue until dialysis or transplant."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-122",
@@ -3291,7 +3412,8 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267409/",
    "alt_url": "https://doi.org/10.1089/thy.2014.0028",
    "recommendation": "Levothyroxine alone; full replacement is about 1.6 mcg/kg daily. Take it 60 minutes before breakfast or at bedtime, 3 or more hours after dinner."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-123",
@@ -3318,7 +3440,8 @@
    "url": "https://www.acog.org/clinical/guidance/practice-advisory/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study/",
    "alt_url": "https://doi.org/10.1097/AOG.0000000000003020",
    "recommendation": "Start treatment at ≥140/90; CHAP set no blood pressure goal. Aspirin 81 mg daily from 12 to 28 weeks, ideally before 16."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-124",
@@ -3345,7 +3468,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "Metformin plus lifestyle change. Start low and titrate to limit GI effects; extended release helps."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-125",
@@ -3372,7 +3496,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "GLP-1 RA or SGLT2 inhibitor, regardless of A1C. CKD: SGLT2i, or GLP-1 RA."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-126",
@@ -3399,7 +3524,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "10 units or 0.1–0.2 units/kg daily. Fasting goal 80–130 mg/dL without hypoglycemia."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-127",
@@ -3426,7 +3552,8 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": "https://doi.org/10.1016/j.jacc.2025.11.016",
    "recommendation": "High-intensity statin. Very high risk: LDL <55; add ezetimibe, then PCSK9 inhibitor."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-128",
@@ -3453,7 +3580,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "DOAC over warfarin. Warfarin only for mechanical valves or moderate-severe mitral stenosis."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-129",
@@ -3480,7 +3608,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "ARNI, beta-blocker, MRA and SGLT2 inhibitor. Loop diuretic for congestion."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-130",
@@ -3507,7 +3636,8 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "As-needed low-dose ICS-formoterol. Steps 3–4: daily maintenance plus the same inhaler as reliever (MART)."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-131",
@@ -3534,7 +3664,8 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "LAMA plus LABA for most symptomatic patients. Single-inhaler triple therapy; pulmonary rehab."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-132",
@@ -3561,7 +3692,8 @@
    "url": "https://doi.org/10.1164/rccm.201908-1581ST",
    "alt_url": "https://doi.org/10.1164/rccm.202507-1692ST",
    "recommendation": "Healthy adult: amoxicillin. Comorbidities: amox-clav or cephalosporin plus macrolide or doxycycline, or a respiratory fluoroquinolone."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-133",
@@ -3588,7 +3720,8 @@
    "url": "https://publications.aap.org/pediatrics/article/131/3/e964/30912",
    "alt_url": null,
    "recommendation": "High-dose amoxicillin 80–90 mg/kg/day. Amoxicillin in past 30 days: amoxicillin-clavulanate."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-134",
@@ -3615,7 +3748,8 @@
    "url": "https://www.idsociety.org/practice-guideline/streptococcal-pharyngitis2/",
    "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
    "recommendation": "Penicillin V or amoxicillin for 10 days. Non-anaphylactic allergy: cephalexin; anaphylaxis: clindamycin or azithromycin."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-135",
@@ -3642,7 +3776,8 @@
    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
    "alt_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/009175s050lbl.pdf",
    "recommendation": "Nitrofurantoin 5 days, TMP-SMX 3 days, or fosfomycin. Fosfomycin 3 g single dose."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-136",
@@ -3669,7 +3804,8 @@
    "url": "https://doi.org/10.1093/cid/ciy1121",
    "alt_url": null,
    "recommendation": "Only in pregnancy or before urologic procedures. Older adults, diabetes or catheters: do not screen or treat."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-137",
@@ -3696,7 +3832,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/gonorrhea-adults.htm",
    "alt_url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
    "recommendation": "Ceftriaxone 500 mg IM; doxycycline 7 days. Pregnancy: azithromycin for chlamydia."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-138",
@@ -3723,7 +3860,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
    "alt_url": null,
    "recommendation": "Benzathine penicillin G. Late latent or unknown duration: weekly for 3 weeks."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-139",
@@ -3750,7 +3888,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/vaginal-discharge.htm",
    "alt_url": null,
    "recommendation": "Metronidazole 500 mg twice daily for 7 days. Treat trichomonas partners."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-140",
@@ -3777,7 +3916,8 @@
    "url": "https://doi.org/10.1093/cid/ciaa1215",
    "alt_url": "https://doi.org/10.1002/art.41562",
    "recommendation": "Doxycycline for 10 days. Alternatives: amoxicillin or cefuroxime 14 days."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-141",
@@ -3804,7 +3944,8 @@
    "url": "https://doi.org/10.1093/cid/ciu296",
    "alt_url": null,
    "recommendation": "Abscess: incision and drainage. Nonpurulent cellulitis: cephalexin for streptococci."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-142",
@@ -3831,7 +3972,8 @@
    "url": "https://www.cdc.gov/mmwr/volumes/74/wr/mm7435a1.htm",
    "alt_url": null,
    "recommendation": "Oral F/TDF or F/TAF, injectable cabotegravir, or injectable lenacapavir. HIV test every 3 months on oral PrEP; check creatinine and STIs."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-143",
@@ -3858,7 +4000,8 @@
    "url": "https://www.cdc.gov/mmwr/volumes/69/rr/rr6901a1.htm",
    "alt_url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/latent-tuberculosis-infection-screening",
    "recommendation": "Rifamycin-based short courses. Exclude active TB with chest X-ray first."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-144",
@@ -3885,7 +4028,8 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
    "alt_url": null,
    "recommendation": "Tdap once, then Td or Tdap every 10 years. Pneumococcal from 50; RSV once at 75 or 50–74 at risk."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-145",
@@ -3912,7 +4056,8 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-notes.html",
    "alt_url": null,
    "recommendation": "Hep B vaccine at birth; HBIG if the mother is HBsAg-positive. Status unknown: vaccine within 12 hours; HBIG by 7 days if she is positive or stays unknown."
-  }
+  },
+  "age_band": "Newborn"
  },
  {
   "id": "fnp-146",
@@ -3939,7 +4084,8 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-notes.html",
    "alt_url": null,
    "recommendation": "Routine at 11–12 (can start at 9): two doses if started at 9–14. Started at 15 or older: three doses at 0, 1–2 and 6 months."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-147",
@@ -3966,7 +4112,8 @@
    "url": "https://www.cdc.gov/vaccines/hcp/imz-schedules/adult-age.html",
    "alt_url": null,
    "recommendation": "Tdap at 27–36 weeks every pregnancy. RSV vaccine at 32–36 weeks in season."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-148",
@@ -3993,7 +4140,8 @@
    "url": "https://www.cdc.gov/contraception/hcp/usmec/index.html",
    "alt_url": "https://www.cdc.gov/contraception/hcp/usmec/summary-contraceptive.html",
    "recommendation": "Category 4 contraindications. IUD, implant, DMPA or progestin pill instead."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-149",
@@ -4020,7 +4168,8 @@
    "url": "https://www.cdc.gov/contraception/hcp/usspr/index.html",
    "alt_url": null,
    "recommendation": "Copper IUD within 5 days, most effective. Obesity lowers oral effectiveness; IUD preferred."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-150",
@@ -4047,7 +4196,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/folic-acid-for-the-prevention-of-neural-tube-defects-preventive-medication",
    "alt_url": "https://www.cdc.gov/folic-acid/hcp/clinical-overview/index.html",
    "recommendation": "0.4–0.8 mg daily (A). Prior neural tube defect pregnancy: 4 mg daily, from 1 month before conception through the first 3 months."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-151",
@@ -4074,7 +4224,8 @@
    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
    "alt_url": null,
    "recommendation": "High risk: 81 mg daily after 12 weeks. Also ≥2 moderate risk factors."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-152",
@@ -4101,7 +4252,8 @@
    "url": "https://doi.org/10.1097/GME.0000000000002028",
    "alt_url": null,
    "recommendation": "Under 60 or within 10 years of menopause. Uterus present: add progestogen; transdermal lowers VTE risk."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-153",
@@ -4128,7 +4280,8 @@
    "url": "https://doi.org/10.7326/M22-1034",
    "alt_url": null,
    "recommendation": "Bisphosphonate. Very high risk: anabolic agent first, then antiresorptive; ensure calcium and vitamin D."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-154",
@@ -4155,7 +4308,8 @@
    "url": "https://doi.org/10.7326/M22-2056",
    "alt_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/019839s108,20990s062lbl.pdf",
    "recommendation": "Moderate to severe: CBT or a second-generation antidepressant alone. No response to an adequate dose: switch, augment, or add CBT."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-155",
@@ -4182,7 +4336,8 @@
    "url": "https://doi.org/10.1542/peds.2019-2528",
    "alt_url": "https://publications.aap.org/pediatrics/article/144/4/e20192528/81590/Clinical-Practice-Guideline-for-the-Diagnosis",
    "recommendation": "Ages 4–5: parent behavior training first. Ages 12–18: medication with teen assent."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-156",
@@ -4209,7 +4364,8 @@
    "url": "https://doi.org/10.1097/adm.0000000000000633",
    "alt_url": "https://downloads.asam.org/sitefinity-production-blobs/docs/default-source/guidelines/npg_2020_focus_update-final.pdf",
    "recommendation": "Start at mild to moderate withdrawal. Prescribe naloxone to every patient."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-157",
@@ -4236,7 +4392,8 @@
    "url": "https://www.acc.org/guidelines/guidelines/2018/12/05/07/44/tobacco-cessation-treatment",
    "alt_url": null,
    "recommendation": "Varenicline first-line. Or combination NRT: patch plus gum or lozenge."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-158",
@@ -4263,7 +4420,8 @@
    "url": "https://doi.org/10.1111/jgs.18372",
    "alt_url": null,
    "recommendation": "Anticholinergics, benzodiazepines, Z-drugs. Avoid sulfonylureas, PPIs >8 weeks and aspirin for primary prevention."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-159",
@@ -4290,7 +4448,8 @@
    "url": "https://doi.org/10.1002/art.41247",
    "alt_url": null,
    "recommendation": "Colchicine, NSAID or steroid for flares. Allopurinol ≤100 mg/day; target urate <6."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-160",
@@ -4317,7 +4476,8 @@
    "url": "https://doi.org/10.1002/art.41142",
    "alt_url": null,
    "recommendation": "Exercise, weight loss, topical NSAID. Avoid glucosamine, hyaluronic acid and PRP."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-161",
@@ -4344,7 +4504,8 @@
    "url": "https://doi.org/10.7326/M16-2367",
    "alt_url": null,
    "recommendation": "Stay active; heat, massage or manipulation. No imaging without red flags."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-162",
@@ -4371,7 +4532,8 @@
    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d2cd01c-05e7-44cf-a71d-0f474e826b7e",
    "alt_url": "https://doi.org/10.1111/head.14692",
    "recommendation": "Ischemic heart disease, stroke or TIA, uncontrolled hypertension, hemiplegic or basilar migraine. CGRP-targeting agents are a first-line prevention option."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-163",
@@ -4398,7 +4560,8 @@
    "url": "https://doi.org/10.1016/j.jaad.2023.12.017",
    "alt_url": null,
    "recommendation": "Topical retinoid plus benzoyl peroxide. Severe, nodular or scarring acne: isotretinoin."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-164",
@@ -4425,7 +4588,8 @@
    "url": "https://doi.org/10.1016/j.jaad.2022.12.029",
    "alt_url": null,
    "recommendation": "Moisturizers plus a topical corticosteroid. Maintenance: a medium-potency steroid twice weekly reduces relapse."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-165",
@@ -4452,7 +4616,8 @@
    "url": "https://doi.org/10.1542/peds.2022-059282",
    "alt_url": null,
    "recommendation": "Permethrin 1% or pyrethrins. Resistance or failure: ivermectin lotion or spinosad."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-166",
@@ -4479,7 +4644,8 @@
    "url": "https://doi.org/10.14309/ajg.0000000000002968",
    "alt_url": null,
    "recommendation": "Bismuth quadruple therapy for 14 days. Test of cure at least 4 weeks after treatment."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-167",
@@ -4506,7 +4672,8 @@
    "url": "https://doi.org/10.1093/cid/ciab549",
    "alt_url": null,
    "recommendation": "Fidaxomicin preferred. Recurrent: fidaxomicin or FMT after multiple recurrences."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-168",
@@ -4533,7 +4700,8 @@
    "url": "https://www.thyroid.org/professionals/ata-professional-guidelines/",
    "alt_url": null,
    "recommendation": "Increase 20–30% at pregnancy confirmation. Check TSH every 4 weeks until midgestation."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-169",
@@ -4560,7 +4728,8 @@
    "url": "https://doi.org/10.1542/peds.2022-060640",
    "alt_url": null,
    "recommendation": "Intensive behavioral treatment. Medication from 12; surgical referral from 13 if severe."
-  }
+  },
+  "age_band": "Child"
  },
  {
   "id": "fnp-170",
@@ -4587,7 +4756,8 @@
    "url": "https://doi.org/10.1016/j.jaci.2020.07.007",
    "alt_url": "https://doi.org/10.1186/s13223-019-0375-9",
    "recommendation": "Intranasal corticosteroid. Adding an intranasal antihistamine to the steroid spray gives additive benefit."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-171",
@@ -4614,7 +4784,8 @@
    "url": "https://doi.org/10.1016/j.jacc.2025.05.007",
    "alt_url": "https://doi.org/10.1161/hyp.0000000000000249",
    "recommendation": "Monthly visits until goal, then every 3–6 months. Titrate to <130/80."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-172",
@@ -4641,7 +4812,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": null,
    "recommendation": "Less stringent, often <8.0%. Very poor health: avoid hypoglycemia; don't rely on A1C."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-173",
@@ -4668,7 +4840,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://doi.org/10.2337/dc26-s006",
    "recommendation": "Level 2 hypoglycemia; 15–20 g glucose. Unable to swallow: glucagon."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-174",
@@ -4695,7 +4868,8 @@
    "url": "https://doi.org/10.1097/aog.0000000000005612",
    "alt_url": null,
    "recommendation": "75-g OGTT at 4–12 weeks. Then screen every 1–3 years for life."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-175",
@@ -4722,7 +4896,8 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001423",
    "alt_url": null,
    "recommendation": "Check CK and TSH. Stop if severe or CK >10× ULN; rechallenge lower dose or another statin."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-176",
@@ -4749,7 +4924,8 @@
    "url": "https://doi.org/10.1016/j.kint.2023.10.018",
    "alt_url": null,
    "recommendation": "Creatinine and potassium at 2–4 weeks. Manage high potassium rather than stop RAAS blockade."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-177",
@@ -4776,7 +4952,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001063",
    "alt_url": null,
    "recommendation": "Hyperkalemia. Check K and creatinine within 1 week, then periodically."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-178",
@@ -4803,7 +4980,8 @@
    "url": "https://www.hcvguidelines.org/guidance/simplified-hcv-treatment-for-treatment-naive-adults-without-cirrhosis/",
    "alt_url": null,
    "recommendation": "HCV RNA ≥12 weeks after therapy (SVR12). No cirrhosis: no liver follow-up after cure."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-179",
@@ -4830,7 +5008,8 @@
    "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
    "alt_url": null,
    "recommendation": "INR 2–3 for AF and VTE. TMP-SMX, metronidazole, fluconazole and amiodarone raise INR."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-180",
@@ -4857,7 +5036,8 @@
    "url": "https://doi.org/10.1161/CIR.0000000000001193",
    "alt_url": null,
    "recommendation": "Use Cockcroft-Gault creatinine clearance. Check renal function at least yearly."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-181",
@@ -4884,7 +5064,8 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4267409/",
    "alt_url": "https://eguideline.guidelinecentral.com/i/521958-ata-hypothyroidism-pocket-card/3",
    "recommendation": "In 4–6 weeks. At target: recheck in 4–6 months, then yearly."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-182",
@@ -4911,7 +5092,8 @@
    "url": "https://ginasthma.org/reports/",
    "alt_url": "https://ginasthma.org/wp-content/uploads/2025/11/GINA-Summary-Guide-2025-WEB_FINAL-WMS.pdf",
    "recommendation": "Symptoms over the past 4 weeks. Step down after 3 months of good control."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-183",
@@ -4938,7 +5120,8 @@
    "url": "https://goldcopd.org/2026-gold-report/",
    "alt_url": null,
    "recommendation": "Visit within 1–4 weeks. Start pulmonary rehab within 4 weeks of discharge."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-184",
@@ -4965,7 +5148,8 @@
    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
    "alt_url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
    "recommendation": "Daily weights and symptoms. Rapid weight gain or worse dyspnea: adjust diuretic."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-185",
@@ -4992,7 +5176,8 @@
    "url": "https://web.archive.org/web/20090525085544/http://www.fda.gov/bbs/topics/NEWS/2007/NEW01624.html",
    "alt_url": null,
    "recommendation": "Watch for suicidality, especially early. Close follow-up during the first months and dose changes."
-  }
+  },
+  "age_band": "Adolescent"
  },
  {
   "id": "fnp-186",
@@ -5019,7 +5204,8 @@
    "url": "https://doi.org/10.1542/peds.2019-2528",
    "alt_url": "https://publications.aap.org/pediatrics/article/144/4/e20192528/81590/Clinical-Practice-Guideline-for-the-Diagnosis",
    "recommendation": "Height, weight, BP and heart rate. Ask about cardiac history and family sudden death before starting."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-187",
@@ -5046,7 +5232,8 @@
    "url": "https://diabetesjournals.org/care/issue/49/Supplement_1",
    "alt_url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
    "recommendation": "Contraindicated below eGFR 30. Reassess benefit if eGFR falls below 45."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-188",
@@ -5073,7 +5260,8 @@
    "url": "https://doi.org/10.7326/M22-1034",
    "alt_url": "https://doi.org/10.1002/jbmr.2708",
    "recommendation": "Low to moderate fracture risk. High risk: continue treatment."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-189",
@@ -5100,7 +5288,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/chlamydia.htm",
    "alt_url": "https://www.cdc.gov/std/treatment-guidelines/STI-Guidelines-2021.pdf",
    "recommendation": "Test of cure 4 weeks after treatment. Azithromycin 1 g once in pregnancy."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-190",
@@ -5127,7 +5316,8 @@
    "url": "https://www.cdc.gov/std/treatment-guidelines/p-and-s-syphilis.htm",
    "alt_url": null,
    "recommendation": "Fourfold RPR decline within 6–12 months. Latent syphilis: follow 12–24 months."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-191",
@@ -5154,7 +5344,8 @@
    "url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/plasma-hiv-1-rna-cd4-monitoring",
    "alt_url": "https://clinicalinfo.hiv.gov/en/guidelines/hiv-clinical-guidelines-adult-and-adolescent-arv/initiation-antiretroviral-therapy",
    "recommendation": "Viral load 4–8 weeks after start. Then every 3–4 months; 6 months if stable."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-192",
@@ -5181,7 +5372,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2025/04/tailored-prenatal-care-delivery-for-pregnant-individuals",
    "alt_url": null,
    "recommendation": "Tailored schedule, often 6–10 visits. Fundal height from 24 weeks."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-193",
@@ -5208,7 +5400,8 @@
    "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2018/05/optimizing-postpartum-care",
    "alt_url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia",
    "recommendation": "Contact within 3 weeks; full visit by 12 weeks. Screen mood, contraception, feeding and chronic disease."
-  }
+  },
+  "age_band": "Young adult"
  },
  {
   "id": "fnp-194",
@@ -5235,7 +5428,8 @@
    "url": "https://doi.org/10.1542/peds.2022-057988",
    "alt_url": null,
    "recommendation": "Regain birth weight by 10–14 days. Visit 48–72 hours after discharge."
-  }
+  },
+  "age_band": "Newborn"
  },
  {
   "id": "fnp-195",
@@ -5262,7 +5456,8 @@
    "url": "https://doi.org/10.1111/jgs.18372",
    "alt_url": null,
    "recommendation": "Review all meds, including OTC. Taper benzodiazepines and long-term PPIs gradually; stop drugs without a current indication."
-  }
+  },
+  "age_band": "Older adult"
  },
  {
   "id": "fnp-196",
@@ -5289,7 +5484,8 @@
    "url": "https://iwgdfguidelines.org/guidelines-2023/",
    "alt_url": null,
    "recommendation": "Offload pressure; check perfusion. Probe-to-bone and X-ray for osteomyelitis."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-197",
@@ -5316,7 +5512,8 @@
    "url": "https://npiap.com/page/2019Guideline",
    "alt_url": "https://doi.org/10.1097/WON.0000000000000281",
    "recommendation": "Depth sets the stage. Offload pressure: reposition, support surface; Braden scale for risk."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-198",
@@ -5343,7 +5540,8 @@
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2636062/",
    "alt_url": "https://doi.org/10.4103/0301-4738.37595",
    "recommendation": "High sensitivity: a negative result rules out. High specificity: a positive rules in. Higher prevalence raises PPV and lowers NPV."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-199",
@@ -5370,7 +5568,8 @@
    "url": "https://www.cms.gov/files/document/mln908628-transitional-care-management-services.pdf",
    "alt_url": null,
    "recommendation": "Contact within 2 business days. Medication reconciliation at the visit."
-  }
+  },
+  "age_band": "Middle adult"
  },
  {
   "id": "fnp-200",
@@ -5397,6 +5596,7 @@
    "url": "https://doi.org/10.1053/j.gastro.2022.08.045",
    "alt_url": null,
    "recommendation": "At 12 weeks on maintenance dose. Below 5%: stop or switch."
-  }
+  },
+  "age_band": "Young adult"
  }
 ]

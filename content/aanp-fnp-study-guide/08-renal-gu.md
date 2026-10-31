@@ -1,14 +1,12 @@
 # Chapter 8 — Renal / GU
 
-> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Verify current guidelines, USPSTF/ACIP when relevant, and drug labels. Teaching themes only where drugs appear. Independent of NPCB/AANP.
+> **Study aid only.** High-yield FNP primary-care themes for exam judgment — not a protocol. Follow guidelines, USPSTF/ACIP when relevant, and drug labels. Drug choices below name the guideline and year. Independent of NPCB/AANP.
 
 ---
 
 ## Why this chapter matters
 
 **CKD, UTI, BPH, hematuria, and electrolytes show up constantly in Older Adult (30%) and women’s health overlap. Missed complicated UTI and hyperkalemia emergencies are classic board traps.**
-
-Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -38,8 +36,6 @@ Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — n
 
 Plan themes: BP control, ACEI/ARB for albuminuria/diabetes themes, SGLT2 in eligible T2DM/CKD — verify, avoid NSAIDs, dose-adjust renally cleared drugs, anemia/MBD awareness, refer when eGFR low or rapid decline/uncertain etiology.
 
-
-
 > **MUST KNOW** — Severe hyperK with ECG changes / weakness → ED.
 
 > **HIGHLIGHT** — AKI on CKD often from volume depletion + NSAID + ACEI ‘triple whammy’ with diuretic.
@@ -57,15 +53,13 @@ Plan themes: BP control, ACEI/ARB for albuminuria/diabetes themes, SGLT2 in elig
 
 **Takeaway: Treat true infection; don’t treat asymptomatic bacteriuria except pregnancy/specific procedures.**
 
-| Type | Plan vibe |
+| Type | Plan pattern |
 | --- | --- |
 | Uncomplicated cystitis (nonpregnant) | Short-course abx themes — verify local resistance |
 | Pyelo | Broader / possible ED if toxic |
 | Complicated (male, stone, catheter, immunocompromise) | Culture + broader thinking |
 | Pregnancy | Always treat bacteriuria themes — verify agents safe |
 | Asymptomatic bacteriuria | Usually don’t treat |
-
-
 
 > **MUST KNOW** — Male UTI is complicated until proven otherwise — don’t 3-day nitrofurantoin autopilot without thought.
 
@@ -88,8 +82,6 @@ BPH: alpha blockers / 5-ARI themes; avoid anticholinergics that worsen retention
 
 ED: ask about CVD symptoms; PDE-5 inhibitors — **never with nitrates**.
 
-
-
 > **MUST KNOW** — PDE-5 inhibitor + nitrate = hard no.
 
 > **TRAP** — Starting anticholinergic for LUTS without checking PVR/retention risk.
@@ -105,8 +97,6 @@ ED: ask about CVD symptoms; PDE-5 inhibitors — **never with nitrates**.
 **Takeaway: Gross hematuria needs evaluation; don’t assume UTI forever.**
 
 Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if present but ensure resolution and follow through if hematuria persists.
-
-
 
 > **MUST KNOW** — Painless gross hematuria → urologic evaluation pathway — not endless abx.
 
@@ -127,8 +117,6 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 | Hyponatremia | SIADH vs thiazide vs polydipsia; severe AMS → ED |
 | HyperNa | Free water loss; elders with poor access |
 
-
-
 > **MUST KNOW** — Symptomatic severe Na/K disorders → ED — not casual oral repletion alone.
 
 #### Critical checklist — Electrolytes high-yield
@@ -136,7 +124,6 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 - [ ] ECG thinking for K extremes
 - [ ] Med list reviewed
 - [ ] Severe symptomatic Na disorders → ED
-
 
 ---
 
@@ -208,11 +195,9 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 - [ ] Can’t-miss named
 - [ ] Evaluate/follow-up planned
 
-
-![CKD staging map](visuals/ckd-staging-map.jpg)
-![UTI pathway](visuals/uti-pathway.jpg)
-![Electrolyte quick map](visuals/electrolyte-quick-map.jpg)
-
+![CKD staging map](visuals/ckd-staging-map.svg)
+![UTI pathway](visuals/uti-pathway.svg)
+![Electrolyte quick map](visuals/electrolyte-quick-map.svg)
 
 ---
 
@@ -234,10 +219,9 @@ Risk-based urology pathways (smoking, age, gross vs microscopic). Treat UTI if p
 - [ ] MUST KNOW emergencies dispositioned to ED  
 - [ ] Lifespan twist applied  
 - [ ] Teach-back / Evaluate plan stated  
-- [ ] Verify current guidelines before clinical use  
+- [ ] Follow guidelines before clinical use  
 
-**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
-
+**Pair with Qbank:** Practice related items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice. Independent of NPCB/AANP; no pass guarantee.
 
 ---
 
@@ -267,7 +251,7 @@ Hydration teaching, citrate/dietary themes by stone type when known, thiazide fo
 
 **Takeaway: UACR quantifies albuminuria; heavy proteinuria + edema + hypoalbuminemia themes → nephrotic lane — timely nephrology.**
 
-Nephritic vibes (HTN, oliguria, active urine sediment, rising Cr) need urgent evaluation. Orthostatic proteinuria in adolescents is a different story — history and timed collections help.
+Nephritic patterns (HTN, oliguria, active urine sediment, rising Cr) need urgent evaluation. Orthostatic proteinuria in adolescents is a different story — history and timed collections help.
 
 > **HIGHLIGHT** — Diabetes + albuminuria → ACEI/ARB + SGLT2 eligibility thinking (endocrine/renal bridge).
 
@@ -349,7 +333,6 @@ Urethritis, epididymitis, proctitis — NAAT testing, empiric coverage when indi
 - [ ] Hematuria pathway not endless abx  
 - [ ] Nitrate screen before PDE-5
 
-
 ---
 
 ## Topic A+ — CKD staging & referral thresholds (teaching map)
@@ -371,7 +354,7 @@ CKD anemia is not always “iron deficiency only” — check iron studies befor
 
 ## Topic B+ — UTI stewardship table (verify local antibiogram)
 
-| Scenario | Stewardship vibe |
+| Scenario | Stewardship pattern |
 | --- | --- |
 | Healthy nonpregnant cystitis | Short course; nitrofurantoin/TMP-SMX/fosfomycin themes when susceptible |
 | Pyelonephritis outpatient-eligible | Broader / longer; culture; close follow-up |
@@ -441,13 +424,13 @@ Offer PSA discussion at appropriate ages with life expectancy; discuss false pos
 
 ## Topic L — CKD–cardiorenal–diabetes bridge
 
-SGLT2 inhibitors and finerenone awareness in eligible albuminuric CKD — verify current. ACEI/ARB foundational for albuminuria. BP targets individualized. Avoid NSAIDs. Sick-day hold teaching for some agents. Vaccinate; prepare for nephrology when approaching advanced CKD.
+SGLT2 inhibitors and finerenone awareness in eligible albuminuric CKD. ACEI/ARB foundational for albuminuria. BP targets individualized. Avoid NSAIDs. Sick-day hold teaching for some agents. Vaccinate; prepare for nephrology when approaching advanced CKD.
 
 ---
 
 ## Topic M — Hematuria risk table
 
-| Feature | Action vibe |
+| Feature | Action |
 | --- | --- |
 | Gross, painless | Urology pathway — cancer until evaluated |
 | Microscopic + risk (age, smoking, male, occupational dyes) | Risk-stratified urology |
@@ -463,7 +446,7 @@ SGLT2 inhibitors and finerenone awareness in eligible albuminuric CKD — verify
 - Triple whammy AKI is preventable.  
 - Torsion is time = testis.
 
-**Practice:** [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Practice:** [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -499,7 +482,7 @@ CT stone protocols carry radiation — use when disposition/management changes. 
 
 ## Integrated Older Adult renal mini-case
 
-**Stem vibe:** 86-year-old eGFR 32, on lisinopril/furosemide, starts OTC naproxen, poor PO intake during gastroenteritis, K 6.1, Cr up 0.8 from baseline, mild weakness.
+**Practice stem:** 86-year-old eGFR 32, on lisinopril/furosemide, starts OTC naproxen, poor PO intake during gastroenteritis, K 6.1, Cr up 0.8 from baseline, mild weakness.
 
 **ADPE:** Hold nephrotoxins/ACEI per severity; ED for hyperK management if ECG changes/severe; volume assessment; later pain plan without NSAID; sick-day teaching; pharmacy strip of OTC NSAID.
 

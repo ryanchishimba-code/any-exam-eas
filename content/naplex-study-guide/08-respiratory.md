@@ -1,12 +1,12 @@
 # Chapter 8 — Respiratory
 
-> **Study aid only.** Asthma/COPD regimens follow evolving GINA/GOLD-aligned themes — verify current guidelines and product labeling. Device technique matters as much as drug choice.
+> **Study aid only.** Asthma/COPD regimens follow evolving GINA/GOLD-aligned themes. Device technique matters as much as drug choice.
 
-![Inhaler device technique comparison](visuals/inhaler-devices.jpg)
+![Inhaler device technique comparison](visuals/inhaler-devices.svg)
 
-![Asthma stepwise therapy ladder](visuals/asthma-stepwise-ladder.jpg)
+![Asthma stepwise therapy ladder](visuals/asthma-stepwise-ladder.svg)
 
-![COPD exacerbation treatment flowchart](visuals/copd-exacerbation-flow.jpg)
+![COPD exacerbation treatment flowchart](visuals/copd-exacerbation-flow.svg)
 
 ---
 
@@ -21,13 +21,13 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 ### Key concepts
 
 - Inflammation + variable airflow obstruction + airway hyperresponsiveness.  
-- Reliever strategies evolving: many adults use ICS-containing reliever approaches per modern GINA themes (verify current). Classic teaching still contrasts SABA-only risks.  
+- GINA 2026 Track 1 uses as-needed low-dose ICS-formoterol for adults. A short-acting beta-agonist alone is not the preferred reliever.  
 - Controllers: ICS backbone; add LABA only in combination with ICS (**never LABA monotherapy in asthma**).  
 - LAMA add-on, biologics for severe phenotypes (eosinophilic/IgE/IL-5 themes).  
 - Step up for poor control; step down when stable after 3 months themes.  
 - Written action plan beats verbal-only counseling.
 
-### Stepwise vibe (confirm current GINA)
+### Stepwise treatment (GINA 2026)
 
 | Control issue | Pharmacist thinking |
 | --- | --- |
@@ -94,7 +94,7 @@ Respiratory items test **controller vs reliever logic**, exacerbation management
 - Depression/anxiety and malnutrition common comorbidities.  
 - Alpha-1 antitrypsin testing themes in younger/ nonsmoker emphysema.
 
-### Exacerbation flowchart vibe
+### Exacerbation flowchart pattern
 
 1. Increase short-acting bronchodilators.  
 2. Systemic corticosteroids short course when indicated.  
@@ -215,14 +215,13 @@ A. Otitis  B. Oral candidiasis / dysphonia themes  C. Renal failure  D. Hyperkal
 A. Unlimited months  B. About 3 days to avoid rhinitis medicamentosa  C. Only with MAOI  D. IV use only  
 **Answer:** B.
 
-
 ---
 
 ## Topic F — Asthma vs COPD contrast table
 
 | Feature | Asthma | COPD |
 | --- | --- | --- |
-| Age vibe | Often younger / allergic | Older / smoking history |
+| Age pattern | Often younger / allergic | Older / smoking history |
 | Reversibility | Variable, often reversible | Persistent airflow limitation |
 | ICS role | Core controller | Selected exacerbators / eos / overlap |
 | LABA alone | Never | May appear with LAMA strategies |
@@ -269,7 +268,7 @@ No smoking/vaping/open flames; secure tanks; know target saturation range; repor
 
 ### Vaccination bundle for chronic lung disease
 
-Keep current on influenza yearly, pneumococcal per age/indication schedules, COVID per ACIP, Tdap if due, RSV when indicated by age/risk — verify current ACIP at study time. Pharmacists screen and document.
+Keep current on influenza yearly, pneumococcal per age/indication schedules, COVID per ACIP, Tdap if due, RSV when indicated by age/risk. Pharmacists screen and document.
 
 ### Remember this (chapter close)
 
@@ -277,7 +276,6 @@ Keep current on influenza yearly, pneumococcal per age/indication schedules, COV
 - LABA needs ICS in asthma.  
 - Exacerbation prevention: vaccines, smoking cessation, adherence, action plans.  
 - Epinephrine first in anaphylaxis.
-
 
 ---
 
@@ -297,14 +295,12 @@ Neuropsychiatric events boxed warning themes — counsel mood/behavior changes, 
 
 Put colored stickers: “EVERY DAY” vs “FOR RESCUE.” Ask patients to show you which inhaler they would grab if wheezing at 2 a.m. Wrong answer = teach again.
 
-
 ---
 
 ## Topic I — Final respiratory exam traps
 
 SABA-only reliance without controller reassessment; DPI counseling as if it were an MDI; chronic oral steroids for COPD maintenance; skipping vaccines; giving diphenhydramine alone for anaphylaxis; ignoring pneumonia risk talk when adding ICS in COPD; uncontrolled oxygen in retainers; empty inhalers continued because the canister still “rattles.” Fix these and you pick up easy Domain 3 points.
 
-
-Verify current GINA/GOLD documents when stepping therapy; product technique videos help teach-back stick. Pair every controller change with a device check the same day.
+Follow GINA/GOLD documents when stepping therapy; product technique videos help teach-back stick. Pair every controller change with a device check the same day.
 
 Keep spacers clean and replace inhalers before they run empty—dose counters beat rattling canisters.

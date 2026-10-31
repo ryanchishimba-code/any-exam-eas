@@ -14,10 +14,7 @@
     "back": "Remove ligature points and any items usable for harm. Key clue: Belts, cords, sharps, plastic bags, glass or stored medications. First-line: Search belongings, use a ligature-resistant room, and observe per policy. Exam trap: Leaving the client alone in the bathroom or with personal belongings.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-051.svg",
-      "alt": "Room safety sweep for self-harm hazards."
-    },
+    "diagram": null,
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
       "year": "2026",
@@ -41,10 +38,7 @@
     "back": "Use lift devices and enough trained staff. Key clue: The client cannot bear weight or help with the transfer. First-line: Use a mechanical lift or slide sheet, lock the wheels, and raise the bed. Exam trap: Lifting a dependent adult manually without equipment.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-052.svg",
-      "alt": "Safe handling equipment choices."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -68,10 +62,7 @@
     "back": "Least restrictive alternatives before any restraint. Key clue: A confused client is pulling at lines, tubes or dressings. First-line: Reorient, use a sitter or bed alarm, cover lines, and schedule toileting. Exam trap: Applying restraints as the first intervention.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-053.svg",
-      "alt": "Alternatives ladder from reorientation to sitter."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -95,10 +86,7 @@
     "back": "Protect the client from infection sources. Key clue: An absolute neutrophil count below about 1,000 cells/mm3. First-line: Private room, strict hand hygiene, no fresh flowers or sick visitors; report fever. Exam trap: Taking rectal temperatures or giving suppositories.",
     "word_count": 38,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-054.svg",
-      "alt": "Protective environment checklist."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -122,10 +110,7 @@
     "back": "Use chemo-rated gloves, gowns and a spill kit. Key clue: Giving, spilling or disposing of a hazardous drug. First-line: Wear double chemo gloves and a gown; use the spill kit; discard as hazardous waste. Exam trap: Letting pregnant staff handle hazardous drugs without precautions.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-055.svg",
-      "alt": "Hazardous drug PPE and disposal."
-    },
+    "diagram": null,
     "source": {
       "guideline": "USP <800> (official 2020)",
       "year": "2020",
@@ -176,10 +161,7 @@
     "back": "Remove trip hazards; add lighting and grab bars. Key clue: Throw rugs, clutter, poor lighting, stairs or no handrails. First-line: Add night lights, grab bars, nonslip mats, and clear walkways. Exam trap: Keeping throw rugs in walkways.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-057.svg",
-      "alt": "Home safety checklist."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -203,10 +185,7 @@
     "back": "Smallpox spreads between people; inhalation anthrax does not. Key clue: A suspected bioterrorism event with several ill clients. First-line: Smallpox needs airborne and contact precautions; anthrax needs standard precautions. Exam trap: Placing an inhalation anthrax client on airborne precautions.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-058.svg",
-      "alt": "Comparison of two bioterrorism agents."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -230,10 +209,7 @@
     "back": "Wide base of support, bent knees, load kept close. Key clue: Lifting, pulling or repositioning a client. First-line: Use leg muscles, avoid twisting, and raise the bed to working height. Exam trap: Bending at the waist to lift.",
     "word_count": 38,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-059.svg",
-      "alt": "Correct and incorrect lifting posture."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -257,10 +233,7 @@
     "back": "Remove the equipment from use and report it. Key clue: Damaged, sparking or ungrounded electrical equipment. First-line: Tag the device out of service, and use grounded three-prong plugs. Exam trap: Continuing to use the equipment until the end of the shift.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-060.svg",
-      "alt": "Equipment safety steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -284,10 +257,7 @@
     "back": "Latex allergy risk is higher with certain food allergies. Key clue: Spina bifida, many prior surgeries, or banana, avocado, kiwi or chestnut allergy. First-line: Use a latex-free room and supplies, and flag the chart and band. Exam trap: Assuming non-latex gloves alone make the room safe.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-061.svg",
-      "alt": "Latex risk factors and food cross-reactions."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -338,10 +308,7 @@
     "back": "At 18 months: says 3 or more words, points, walks alone; two-word phrases by 24 months. Key clue: No words or pointing at 18 months is a warning sign. First-line: Use CDC milestone checklists; refer for screening if a milestone is missed. Exam trap: Waiting and watching after a missed milestone instead of referring.",
     "word_count": 54,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-063.svg",
-      "alt": "Milestone timeline from 2 months to 5 years."
-    },
+    "diagram": null,
     "source": {
       "guideline": "CDC/AAP Learn the Signs. Act Early. milestones 2022",
       "year": "2022",
@@ -365,10 +332,7 @@
     "back": "Toddler: autonomy versus shame and doubt. Teen: identity versus role confusion. Key clue: A toddler seeks independence; a teen seeks identity. First-line: Support each stage task: choices for toddlers, privacy and respect for teens. Exam trap: Confusing initiative in preschool with industry in school age.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-064.svg",
-      "alt": "Erikson stages listed by age."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -392,10 +356,7 @@
     "back": "A prior severe allergic reaction to that vaccine or component. Key clue: A mild cold or low fever does not delay vaccination. First-line: Follow the CDC schedule your facility uses; AAP publishes its own schedule; screen first. Exam trap: Delaying vaccines for a mild illness such as a cold or low fever.",
     "word_count": 52,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-065.svg",
-      "alt": "Vaccine screening questions."
-    },
+    "diagram": null,
     "source": {
       "guideline": "CDC child/adolescent schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
       "year": "2025",
@@ -419,10 +380,7 @@
     "back": "Recombinant zoster, Tdap or Td, and yearly flu. Key clue: A midlife adult at a routine wellness visit. First-line: Follow the current CDC adult schedule; teach about expected arm soreness. Exam trap: Skipping the zoster vaccine because the client already had shingles.",
     "word_count": 42,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-066.svg",
-      "alt": "Adult vaccine checklist."
-    },
+    "diagram": null,
     "source": {
       "guideline": "CDC adult schedule 2025 (addendum Jul 2025), operative after the Mar 2026 court stay; checked Oct 2026",
       "year": "2025",
@@ -446,10 +404,7 @@
     "back": "Weight, BP, urine, fundal height and fetal heart tones. Key clue: Second-trimester visits check fundal height, fetal heart tones, BP, urine and glucose screening at 24 to 28 weeks. First-line: Teach warning signs: bleeding, severe headache, fluid leakage, or decreased movement. Exam trap: Skipping glucose screening at 24 to 28 weeks.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-067.svg",
-      "alt": "Prenatal visit timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ACOG Clinical Consensus: Tailored Prenatal Care Delivery 2025",
       "year": "2025",
@@ -473,10 +428,7 @@
     "back": "First day of LMP, minus 3 months, plus 7 days. Key clue: Fundal height in centimeters roughly equals weeks from 20 to 36. First-line: Measure fundal height at each visit after 20 weeks. Exam trap: Thinking the fundus at the umbilicus means 12 weeks, not 20.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-068.svg",
-      "alt": "Due date calculation and fundal height landmarks."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -500,10 +452,7 @@
     "back": "Fetal heart tones, examiner-felt movement and ultrasound. Key clue: Presumptive: amenorrhea, nausea. Probable: positive test, Hegar sign. First-line: Classify each sign as presumptive, probable or positive to answer certainty questions. Exam trap: Calling a positive pregnancy test a positive sign rather than probable.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-069.svg",
-      "alt": "Three columns: presumptive, probable, positive."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -527,10 +476,7 @@
     "back": "Dilation, birth of the baby, placenta, then recovery. Key clue: Stage 1 ends at 10 cm; stage 4 is the first hours after birth. First-line: Monitor contractions and fetal heart rate; check the fundus often in stage 4. Exam trap: Encouraging pushing before the cervix is fully dilated.",
     "word_count": 48,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-070.svg",
-      "alt": "Labor stages timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -554,10 +500,7 @@
     "back": "Massage the boggy fundus and have the client void. Key clue: A boggy or displaced fundus, or heavy lochia. First-line: Massage the fundus, empty the bladder, and report continued heavy bleeding. Exam trap: Missing a full bladder, which displaces the uterus and increases bleeding.",
     "word_count": 44,
     "mnemonic": "BUBBLE-HE: Breasts, Uterus, Bladder, Bowel, Lochia, Episiotomy, Hemorrhage, Emotions",
-    "diagram": {
-      "file": "svg/nclex-071.svg",
-      "alt": "Postpartum assessment checklist."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -581,10 +524,7 @@
     "back": "Heart rate, respiratory effort, tone, reflex and color. Key clue: Scores are given at 1 and 5 minutes after birth. First-line: A score of 7 to 10 is reassuring; lower scores need support and repeat scoring. Exam trap: Using the Apgar score to decide whether to start resuscitation.",
     "word_count": 48,
     "mnemonic": "APGAR: Appearance, Pulse, Grimace, Activity, Respiration",
-    "diagram": {
-      "file": "svg/nclex-072.svg",
-      "alt": "Apgar scoring table."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -608,10 +548,7 @@
     "back": "Feed on demand, about 8 to 12 times a day. Key clue: Good latch, enough wet diapers and weight gain show adequate intake. First-line: Exclusive breastfeeding for about 6 months, then continue with solid foods. Exam trap: Routinely supplementing with formula in the first days without a medical reason.",
     "word_count": 49,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-073.svg",
-      "alt": "Signs of good latch and intake."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AAP Breastfeeding policy 2022",
       "year": "2022",
@@ -635,10 +572,7 @@
     "back": "Combined estrogen-containing methods. Key clue: A smoker 35 or older, migraine with aura, or a history of blood clots. First-line: Offer progestin-only pills, an IUD or an implant, and teach correct use. Exam trap: Ignoring that combined pills raise stroke and clot risk in these clients.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-074.svg",
-      "alt": "Contraception options by risk."
-    },
+    "diagram": null,
     "source": {
       "guideline": "CDC US MEC 2024",
       "year": "2024",
@@ -662,10 +596,7 @@
     "back": "Mammograms begin at 40; colorectal screening begins at 45. Key clue: Adults at average risk with no symptoms or strong family history. First-line: Mammography every 2 years from 40 to 74; colorectal screening from 45 to 75. Exam trap: Waiting until age 50 to start colorectal screening.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-075.svg",
-      "alt": "Screening ages timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "USPSTF breast 2024; colorectal 2021",
       "year": "2021",
@@ -689,10 +620,7 @@
     "back": "Less skin elasticity, slower reactions and presbyopia are normal. Key clue: Sudden confusion is never a normal part of aging. First-line: Teach safety for normal changes, and report acute changes right away. Exam trap: Labeling new confusion or delirium as normal aging.",
     "word_count": 42,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-076.svg",
-      "alt": "Normal aging versus warning signs."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -716,10 +644,7 @@
     "back": "On the back, alone, on a firm, flat surface. Key clue: A parent asks about bumpers, side sleeping or bed sharing. First-line: Share a room without sharing a bed, and keep soft bedding out of the crib. Exam trap: Using inclined sleepers, bumpers or side sleeping.",
     "word_count": 46,
     "mnemonic": "ABCs of safe sleep: Alone, Back, Crib",
-    "diagram": {
-      "file": "svg/nclex-077.svg",
-      "alt": "Safe infant sleep setup."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AAP Safe Sleep 2022",
       "year": "2022",
@@ -743,10 +668,7 @@
     "back": "Stay rear-facing as long as the seat allows. Key clue: The toddler has reached the rear-facing height or weight limit. First-line: Then use a forward harness, then a booster until the belt fits, about 4 feet 9 inches. Exam trap: Moving the child to forward-facing too early.",
     "word_count": 47,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-078.svg",
-      "alt": "Car seat stages by size."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AAP Child Passenger Safety (reaffirmed 2025)",
       "year": "2025",
@@ -770,10 +692,7 @@
     "back": "Ask, advise, and offer counseling plus medication. Key clue: Any adult who uses tobacco, at any visit. First-line: Combine behavioral support with FDA-approved medicine, and set a quit date. Exam trap: Advising the client to quit without offering any help or follow-up.",
     "word_count": 42,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-079.svg",
-      "alt": "Ask, advise, refer steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "USPSTF tobacco cessation 2021",
       "year": "2021",
@@ -797,10 +716,7 @@
     "back": "Condoms, routine testing and partner treatment. Key clue: A positive chlamydia or gonorrhea test result. First-line: Avoid sex until treatment is done and partners are treated; retest as advised. Exam trap: Assuming the infection is gone because symptoms have cleared.",
     "word_count": 40,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-080.svg",
-      "alt": "STI prevention tips."
-    },
+    "diagram": null,
     "source": {
       "guideline": "CDC STI Treatment Guidelines 2021",
       "year": "2021",
@@ -824,10 +740,7 @@
     "back": "Open-ended questions, reflection and therapeutic silence. Key clue: The client is sharing feelings, fears or worries. First-line: Use statements like tell me more, restate feelings, and offer your presence. Exam trap: Asking why questions, which can make clients defensive.",
     "word_count": 39,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-081.svg",
-      "alt": "Therapeutic techniques list."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -851,10 +764,7 @@
     "back": "False reassurance, advice and changing the subject block communication. Key clue: The nurse dismisses fear with phrases like don't worry. First-line: Acknowledge the client's feelings and explore the specific concerns. Exam trap: Giving personal opinions or advice instead of exploring feelings.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-082.svg",
-      "alt": "Common nontherapeutic responses."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -878,10 +788,7 @@
     "back": "Ask directly about a plan, intent and means. Key clue: Hopelessness, giving belongings away, or sudden calm after depression. First-line: Ensure safety, provide 1:1 observation per policy, and notify the provider. Exam trap: Fearing that asking directly about suicide will increase the risk.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-083.svg",
-      "alt": "Suicide risk screening flow."
-    },
+    "diagram": null,
     "source": {
       "guideline": "Joint Commission NPG 8 (suicide risk) 2026",
       "year": "2026",
@@ -905,10 +812,7 @@
     "back": "Safety, a calm presence and short-term problem solving. Key clue: Acute stress has overwhelmed the client's usual ways of coping. First-line: Stay with the client, use short direct statements, and find support resources. Exam trap: Exploring deep, long-term issues during the acute crisis.",
     "word_count": 43,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-084.svg",
-      "alt": "Crisis steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -932,10 +836,7 @@
     "back": "Safety, sleep, nutrition and self-care. Key clue: Energy rises on antidepressants before mood fully lifts. First-line: Watch suicide risk closely as energy returns, and give simple, achievable tasks. Exam trap: Assuming that improved energy means lower suicide risk.",
     "word_count": 38,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-085.svg",
-      "alt": "Depression care priorities."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -959,10 +860,7 @@
     "back": "Safety and nutrition come first. Key clue: Hyperactivity, little sleep, poor intake and impulsive behavior. First-line: Low stimulation, finger foods, firm limits; monitor lithium if it is prescribed. Exam trap: Planning competitive group activities that increase stimulation.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-086.svg",
-      "alt": "Mania care setup."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -986,10 +884,7 @@
     "back": "Acknowledge the experience, do not argue, and state reality. Key clue: Command hallucinations directing the client to cause harm. First-line: Ask what the voices say, assess for harm to self or others, and redirect. Exam trap: Agreeing with the hallucination or arguing about it.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-087.svg",
-      "alt": "Communication with a hallucinating client."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1013,10 +908,7 @@
     "back": "Stay with the client and use short, calm statements. Key clue: A racing heart, chest tightness, shortness of breath and fear. First-line: Move to a quiet room, and coach slow breathing. Exam trap: Starting teaching during severe or panic-level anxiety.",
     "word_count": 40,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-088.svg",
-      "alt": "Anxiety levels and nurse actions."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1040,10 +932,7 @@
     "back": "Safety, trust, choice and collaboration in all care. Key clue: Nightmares, flashbacks and hypervigilance after trauma. First-line: Explain each step, offer choices, ask permission, and avoid known triggers. Exam trap: Pushing the client to retell the trauma before they are ready.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-089.svg",
-      "alt": "Trauma-informed principles."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1067,10 +956,7 @@
     "back": "Delirium tremens peaks at 48 to 72 hours, so this client at 30 hours is high risk. Key clue: Tremor, sweating, fast heart rate, anxiety and agitation. First-line: Use CIWA-Ar, give benzodiazepines as ordered, and give thiamine before glucose. Exam trap: Missing the delirium tremens window at 48 to 72 hours.",
     "word_count": 51,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-090.svg",
-      "alt": "Withdrawal timeline."
-    },
+    "diagram": null,
     "source": {
       "guideline": "ASAM Alcohol Withdrawal Management 2020",
       "year": "2020",
@@ -1094,10 +980,7 @@
     "back": "Airway and breathing first: stimulate, open the airway, and bag-mask ventilate. Key clue: Pinpoint pupils, slow breathing and decreased responsiveness. First-line: Call rapid response; give naloxone per standing order or protocol; refer for OUD care. Exam trap: Forgetting that sedation can return when naloxone wears off.",
     "word_count": 46,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-091.svg",
-      "alt": "Overdose response steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "AHA 2025 CPR and ECC Guidelines, Part 10 Special Circumstances (opioids)",
       "year": "2025",
@@ -1121,10 +1004,7 @@
     "back": "Refeeding syndrome with low phosphate, potassium and magnesium. Key clue: Anorexia with low weight, bradycardia or electrolyte problems. First-line: Monitor phosphate, potassium, magnesium and heart rhythm, and advance feeding slowly. Exam trap: Feeding rapidly without monitoring labs.",
     "word_count": 37,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-092.svg",
-      "alt": "Refeeding monitoring plan."
-    },
+    "diagram": null,
     "source": {
       "guideline": "APA Eating Disorders 2023",
       "year": "2023",
@@ -1148,10 +1028,7 @@
     "back": "Denial, anger, bargaining, depression and acceptance. Key clue: The stages do not happen in a fixed order. First-line: Listen, be present, and support the client's cultural and spiritual rituals. Exam trap: Telling the client how they should feel or what stage they are in.",
     "word_count": 44,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-093.svg",
-      "alt": "Grief stages."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1175,10 +1052,7 @@
     "back": "Injuries that do not match the history given. Key clue: A fearful client, delayed care, or poor hygiene. First-line: Ensure safety, document objectively, and report per state law. Exam trap: Confronting the suspected abuser.",
     "word_count": 34,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-094.svg",
-      "alt": "Abuse signs list."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1202,10 +1076,7 @@
     "back": "Delirium is sudden and fluctuates; dementia develops slowly. Key clue: A hospitalized older adult becomes confused overnight. First-line: Look for causes such as infection, medications or hypoxia, and reorient the client. Exam trap: Assuming new confusion is dementia.",
     "word_count": 38,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-095.svg",
-      "alt": "Delirium versus dementia comparison."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1229,10 +1100,7 @@
     "back": "Set clear, consistent limits across all staff. Key clue: The client splits staff into good and bad groups. First-line: Use the same rules for all staff, and give calm, consistent consequences. Exam trap: Bending unit rules for this one client.",
     "word_count": 40,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-096.svg",
-      "alt": "Limit-setting approach."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1256,10 +1124,7 @@
     "back": "Rights remain, including refusing treatment in most cases. Key clue: The client is being held on an involuntary admission. First-line: Inform the client of their rights, and follow the legal process for the hold. Exam trap: Assuming involuntary status removes all of the client's rights.",
     "word_count": 45,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-097.svg",
-      "alt": "Admission types and rights."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1283,10 +1148,7 @@
     "back": "Ask about beliefs and needs; do not assume. Key clue: The client declines a food or treatment for religious reasons. First-line: Respect practices, involve the chaplain or interpreter, and adjust the care plan. Exam trap: Stereotyping the client based on background.",
     "word_count": 41,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-098.svg",
-      "alt": "Cultural assessment steps."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",
@@ -1300,7 +1162,7 @@
     "system": "Skin",
     "blueprint_weight": "9%",
     "task_area": "Basic Care and Comfort",
-    "front": "A bedbound client has a sacral wound with full-thickness skin loss and visible fat: what stage is it?",
+    "front": "Which sacral pressure injury is stage 3: intact maroon skin, a serum blister, visible fat, or exposed bone?",
     "bottom": "Stage 3: full-thickness skin loss with visible fat; no bone, tendon or muscle exposed.",
     "bullets": {
       "clue": "A bedbound client with a sacral wound.",
@@ -1310,10 +1172,7 @@
     "back": "Stage 3: full-thickness skin loss with visible fat; no bone, tendon or muscle exposed. Key clue: A bedbound client with a sacral wound. First-line: Reposition, use support surfaces, optimize nutrition, and stage the wound accurately. Exam trap: Reverse-staging a healing wound, such as calling a stage 4 a stage 2.",
     "word_count": 50,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-099.svg",
-      "alt": "Pressure injury stages."
-    },
+    "diagram": null,
     "source": {
       "guideline": "International Pressure Ulcer/Injury Guideline 4th ed 2025 (NPIAP/EPUAP/PPPIA)",
       "year": "2025",
@@ -1337,10 +1196,7 @@
     "back": "Use a valid pain scale, then reassess after treatment. Key clue: The client cannot speak or self-report pain. First-line: Use behavioral pain scales, and combine medication with nondrug methods. Exam trap: Not reassessing pain after giving an intervention.",
     "word_count": 38,
     "mnemonic": null,
-    "diagram": {
-      "file": "svg/nclex-100.svg",
-      "alt": "Pain scales."
-    },
+    "diagram": null,
     "source": {
       "guideline": "NCSBN 2026 test plan",
       "year": "2026",

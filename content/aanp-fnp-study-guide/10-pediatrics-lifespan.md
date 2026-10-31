@@ -1,16 +1,16 @@
 # Chapter 10 — Pediatrics & Lifespan
 
-> **Study aid only.** Pediatric and adolescent primary-care themes for FNP exam judgment — not a protocol. Verify current AAP Bright Futures–aligned well-child themes, ACIP vaccine schedules, otitis/asthma guidance, and drug labels. Teaching themes only. Independent of NPCB/AANP.
+> **Study aid only.** Pediatric and adolescent primary-care themes for FNP exam judgment — not a protocol. Follow AAP Bright Futures–aligned well-child themes, ACIP vaccine schedules, otitis/asthma guidance, and drug labels. Thresholds below name the guideline and year. Independent of NPCB/AANP.
 
-![Well-child visit grid](visuals/well-child-visit-grid.jpg)
+![Well-child visit grid](visuals/well-child-visit-grid.svg)
 
-![Pediatric fever red flags](visuals/peds-fever-red-flags.jpg)
+![Pediatric fever red flags](visuals/peds-fever-red-flags.svg)
 
-![Otitis decision](visuals/otitis-decision.jpg)
+![Otitis decision](visuals/otitis-decision.svg)
 
-![Bronchiolitis vs asthma cues](visuals/bronchiolitis-vs-asthma.jpg)
+![Bronchiolitis vs asthma cues](visuals/bronchiolitis-vs-asthma.svg)
 
-![Adolescent HEADSS card](visuals/adolescent-headss.jpg)
+![Adolescent HEADSS card](visuals/adolescent-headss.svg)
 
 ---
 
@@ -33,7 +33,7 @@
 
 Newborn through adolescent care is a smaller Domain II slice than middle/older adult — and that is exactly why candidates under-study it. NPCB still scores **Assess / Diagnose / Plan / Evaluate** (32% / 27% / 27% / 15%) on well-child visits, fever triage, AOM stewardship, asthma, ADHD, sports clearance, dehydration, bronchiolitis, vaccines, and adolescent risk. Miss a neonate fever disposition or clear an athlete with exertional syncope and you fail the item the way you’d fail the child.
 
-**Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** Tag every miss with age band (newborn/infant/child/adolescent*) + ADPE stage.
 
 ---
 
@@ -86,7 +86,7 @@ Safe sleep, choking hazards, water safety, firearm storage, sunscreen, media lim
 
 **Age changes pretest probability of serious bacterial infection more than the number on the thermometer alone.**
 
-| Age vibe | Disposition thinking |
+| Age pattern | Disposition thinking |
 | --- | --- |
 | Neonate (≤28 days themes) febrile | **ED / protocolized full evaluation** — not “viral and home” |
 | Young infant (~1–2–3 months themes) | Low threshold acute eval; follow current febrile infant pathways |
@@ -113,7 +113,7 @@ Antipyretics for comfort (correct weight-based dosing — verify; never aspirin 
 
 **Many red ears and sore throats do not need antibiotics — age, severity, laterality, and testing drive Plan.**
 
-### AOM themes (verify current AAP-aligned)
+### AOM themes
 
 | Factor | Thinking |
 | --- | --- |
@@ -146,7 +146,7 @@ Work of breathing (retractions, grunting, nasal flaring), SpO₂, feeding abilit
 
 ### Plan themes
 
-Suction gently, hydrate, oxygen when indicated, ED if hypoxic/distressed/poor feeding/apnea. Bronchodilators/steroids generally not routine for typical bronchiolitis (verify current). Isolate teaching for caregivers.
+Suction gently, hydrate, oxygen when indicated, ED if hypoxic/distressed/poor feeding/apnea. Bronchodilators/steroids generally not routine for typical bronchiolitis. Isolate teaching for caregivers.
 
 Differential: foreign body, pertussis, cardiac, bacterial pneumonia, asthma in older child.
 
@@ -232,7 +232,7 @@ Document refusal with education; revisit. Anaphylaxis preparedness.
 
 > **TRAP** — Delaying all vaccines for mild URI without indication; inventing permanent contraindications from family lore.
 
-> **HIGHLIGHT** — Verify schedules — teaching themes only in this book.
+> **HIGHLIGHT** — Verify schedules — key points only in this book.
 
 ---
 
@@ -365,7 +365,7 @@ ORS teaching beats juice/soda. Ondansetron themes in selected vomiting to enable
 - Verify vaccine schedules and abx durations — they update.  
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill neonatal fever, AOM stewardship, asthma, sports cardiac screens, and adolescent safety items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next practice move:** Drill neonatal fever, AOM stewardship, asthma, sports cardiac screens, and adolescent safety items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 

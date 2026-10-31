@@ -1,16 +1,16 @@
 # Chapter 13 — ENT / Eyes / Heme / ID
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current IDSA/AAO-HNS/ophthalmology-aligned and related guidance, USPSTF/ACIP themes, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Pharyngitis follows the IDSA guideline. Otitis media follows the AAP guideline. Immunizations follow ACIP. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
-![Anemia workup tree](visuals/anemia-workup-tree.jpg)
+![Anemia workup tree](visuals/anemia-workup-tree.svg)
 
-![Sinusitis / pharyngitis decision themes](visuals/sinusitis-pharyngitis-themes.jpg)
+![Sinusitis / pharyngitis decision themes](visuals/sinusitis-pharyngitis-themes.svg)
 
-![Otitis decision](visuals/otitis-decision.jpg)
+![Otitis decision](visuals/otitis-decision.svg)
 
-![Red eye triage](visuals/red-eye-triage.jpg)
+![Red eye triage](visuals/red-eye-triage.svg)
 
-![STI / HIV-hep screening panel](visuals/sti-screening-panel.jpg)
+![STI / HIV-hep screening panel](visuals/sti-screening-panel.svg)
 
 ---
 
@@ -33,7 +33,7 @@ ENT, eyes, anemia, and everyday infections are the “between cardiology chapter
 
 Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing (Centor-style themes), AOM watchful waiting, conjunctivitis vs keratitis/acute angle-closure, iron-deficiency anemia source-finding, UTI basics, HIV/hepatitis/TB screening cues, influenza/COVID primary-care decisions, and mono vs strep. Candidates who auto-antibiotic every red throat lose stewardship points; candidates who send acute angle-closure home with artificial tears lose sight.
 
-**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After each topic block, run related items in a strong Qbank, review every miss, and tag your error log with age band + ADPE stage.
 
 ---
 
@@ -54,7 +54,7 @@ Expect stems on acute bacterial rhinosinusitis criteria, GAS pharyngitis testing
 
 ### Presentation & concepts
 
-Most acute rhinosinusitis is **viral**. Bacterial disease is suggested by patterns such as: persistent symptoms beyond ~10 days without improvement, severe onset with high fever and purulent discharge for several days, or “double sickening” (worsening after initial improvement) — **verify current IDSA-style criteria** rather than memorizing a single day count as dogma.
+Most acute rhinosinusitis is **viral**. Bacterial disease is suggested by patterns such as: persistent symptoms beyond ~10 days without improvement, severe onset with high fever and purulent discharge for several days, or “double sickening” (worsening after initial improvement) — **follow IDSA-style criteria** rather than memorizing a single day count as dogma.
 
 ### Assess
 
@@ -97,14 +97,14 @@ Sore throat ± fever, exudate, tender anterior cervical nodes, cough absence ( C
 ### Assess / testing themes
 
 - Use a validated clinical score **theme** (Centor/McIsaac-style) to decide who needs RADT/throat culture — don’t swab everyone and don’t treat everyone.
-- Negative RADT in kids often needs culture confirmation themes; adult algorithms differ — verify current guidance.
+- Negative RADT in kids often needs culture confirmation themes; adult algorithms differ.
 - Consider gonococcal pharyngitis in sexual-risk stems; Fusobacterium/Lemierre rare but toxic young adult with septic emboli cues.
 
 ### Mono vs strep — exam favorite
 
 | Feature | Favors GAS | Favors mono (EBV) |
 | --- | --- | --- |
-| Age vibe | School-age / young adult | Adolescent / YA* |
+| Age pattern | School-age / young adult | Adolescent / YA* |
 | Nodes | Anterior cervical | Posterior cervical, diffuse |
 | Exudate | Possible | Possible — overlap! |
 | Fatigue / splenomegaly | Less | More |
@@ -254,7 +254,7 @@ Offer screening per **current USPSTF-style adult themes** (and risk-based anytim
 
 ### Hepatitis B / C
 
-Risk-based and cohort/universal adult hep C screening themes (verify current USPSTF). Hep B: vaccine status, birth in endemic regions, sexual/household exposure, before immunosuppressing therapy. Positive screens → confirmatory tests + linkage to care (Evaluate failure = positive result with no follow-up).
+Risk-based and cohort/universal adult hep C screening themes. Hep B: vaccine status, birth in endemic regions, sexual/household exposure, before immunosuppressing therapy. Positive screens → confirmatory tests + linkage to care (Evaluate failure = positive result with no follow-up).
 
 ### TB
 
@@ -280,7 +280,7 @@ High-risk groups benefit most from early antivirals when indicated (verify timin
 
 ### COVID themes
 
-Guidance evolves — exam wants **judgment**: isolate/mask counseling per current public health themes, know when pulse ox/ED needed (hypoxia, severe dyspnea), be aware antivirals/mAbs eligibility concepts change — **verify current**, don’t invent regimens. Vaccination/boosters per ACIP current.
+Guidance evolves — exam wants **judgment**: isolate/mask counseling per current public health themes, know when pulse ox/ED needed (hypoxia, severe dyspnea), be aware antivirals/mAbs eligibility concepts change — **follow**, don’t invent regimens. Vaccination/boosters per ACIP current.
 
 ### Overlap traps
 
@@ -385,7 +385,7 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - [ ] Anemia: indices pattern → next labs; adult iron deficiency → source
 - [ ] UTI: pregnancy & elderly ASB traps; pyelo disposition
 - [ ] Offer HIV/hep screening; TB risk-based; close the loop on positives
-- [ ] Flu/COVID: timing, risk, hypoxia disposition; verify current antivirals
+- [ ] Flu/COVID: timing, risk, hypoxia disposition; follow antivirals
 - [ ] Pregnancy filters on drugs/imaging/UTI
 - [ ] Evaluate: 48–72h failure plans, biopsy/endoscopy/serology follow-through
 
@@ -398,7 +398,7 @@ Don’t miss bacterial pneumonia, PE, HF, or ACS hiding under “viral” labels
 - Teaching regimens change — verify guidelines and labels.
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next practice move:** Drill sinusitis, Centor/GAS, mono, AOM, red-eye emergencies, anemia, UTI/ASB, HIV/hep screening, and flu/COVID items on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 
@@ -422,7 +422,7 @@ Localized nodes after infection often observe. Generalized nodes → systemic wo
 
 ## Integrated older-adult mini-case (Domain II 30%)
 
-**Stem vibe:** 79-year-old with COPD, diabetes, “pink eye” on the right with pain and reduced acuity after sleeping in contacts (occasional use), also dysuria without fever, UA colonized on last admission, Hb 10.1 MCV 88, daughter wants azithromycin “for sinus drip.”
+**Practice stem:** 79-year-old with COPD, diabetes, “pink eye” on the right with pain and reduced acuity after sleeping in contacts (occasional use), also dysuria without fever, UA colonized on last admission, Hb 10.1 MCV 88, daughter wants azithromycin “for sinus drip.”
 
 **ADPE compressed:** Assess acuity/pain (urgent eye), UTI symptoms vs colonization, anemia chronic disease vs other, viral drip vs ABRS criteria. Diagnose: urgent keratitis lane + possible uncomplicated UTI if truly symptomatic + not bacterial sinus yet. Plan: same-day ophtho; avoid reflex azithromycin for drip; treat UTI only if syndrome fits; anemia follow-up with CKD/COPD context. Evaluate: eye follow-through, UA clinical correlation, Hb trend.
 
@@ -457,7 +457,6 @@ A. Hydration  B. Empiric aminopenicillin for “just in case strep” when mono 
 > **TRAP** — Using ANCC weights while sitting NPCB (or the reverse).
 
 ---
-
 
 ## Deep dive — Centor-style decision flow (teaching)
 

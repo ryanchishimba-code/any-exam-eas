@@ -1,12 +1,12 @@
 # Chapter 5 — Cardiology
 
-> **Study aid only.** Guideline themes for exam judgment — not individualized prescribing. Verify current ACC/AHA-aligned references and labeling.
+> **Study aid only.** Guideline themes for exam judgment — not individualized prescribing. Follow ACC/AHA-aligned references and labeling.
 
-![Heart failure GDMT pillars overview](visuals/hf-gdmt-pillars.jpg)
+![Heart failure GDMT pillars overview](visuals/hf-gdmt-pillars.svg)
 
-![Anticoagulation decision and monitoring map](visuals/anticoag-monitoring-map.jpg)
+![Anticoagulation decision and monitoring map](visuals/anticoag-monitoring-map.svg)
 
-![ACS antiplatelet pathway overview](visuals/acs-antiplatelet-pathway.jpg)
+![ACS antiplatelet pathway overview](visuals/acs-antiplatelet-pathway.svg)
 
 ---
 
@@ -41,7 +41,7 @@ Cardiology items sit heavily in **Domain 3**: choose/adjust regimens, catch inte
 
 ### Assessment cues / patient factors
 
-- Pregnancy: avoid ACEI/ARB (teratogenicity themes); know safer alternatives conceptually (labetalol/nifedipine/methyldopa historically — verify current Ob guidance).  
+- Pregnancy: avoid ACEI/ARB (teratogenicity themes); know safer alternatives conceptually (labetalol/nifedipine/methyldopa historically.  
 - Black adults: CCB/thiazide often preferred initially for HTN alone (guideline-theme nuance).  
 - Bilateral renal artery stenosis caution with ACEI/ARB.  
 - Baseline K⁺/Cr before ACEI/ARB; watch hyperkalemia and Cr bumps.  
@@ -86,9 +86,9 @@ Cardiology items sit heavily in **Domain 3**: choose/adjust regimens, catch inte
 - Triglycerides: lifestyle; pharmacologic themes when very high to reduce pancreatitis risk.  
 - Lifestyle always: diet pattern, activity, weight, glycemic control, alcohol in high TG.
 
-### Statin intensity vibe (confirm current labeling/guidelines)
+### Statin intensity (2026 ACC/AHA dyslipidemia guideline)
 
-High-intensity themes often include atorvastatin 40–80 mg and rosuvastatin 20–40 mg — verify product/indication. Moderate intensity covers many primary-prevention starts.
+High-intensity therapy is atorvastatin 40–80 mg or rosuvastatin 20–40 mg. For very-high-risk ASCVD the 2026 ACC/AHA goal is LDL-C under 55 mg/dL. Add ezetimibe, then a PCSK9 inhibitor, if the goal is not met.
 
 ### Counseling
 
@@ -99,7 +99,7 @@ High-intensity themes often include atorvastatin 40–80 mg and rosuvastatin 20�
 
 ### Safety
 
-- Pregnancy: generally avoid statins (labeling evolved — verify current FDA framing for specific cases; exam often still treats as avoid unless told otherwise).  
+- Pregnancy: generally avoid statins (labeling evolved.  
 - LFTs: baseline themes; not endless routine panels if asymptomatic per modern practice themes.  
 - Simvastatin dose ceilings with certain interactors — classic safety stem.
 
@@ -306,7 +306,6 @@ A. Mild seasonal allergies  B. Heart failure  C. Remote resolved sprain  D. Cont
 A. Take standing during PDE-5 use  B. Sit, use as directed, seek emergency care if unrelieved per teaching; never with PDE-5 inhibitors  C. Combine freely with sildenafil  D. Stop all antiplatelets when using NTG  
 **Answer:** B.
 
-
 ---
 
 ## Topic I — ACS acute pharmacotherapy themes (pharmacist lens)
@@ -323,7 +322,7 @@ In acute coronary syndromes, pharmacists reinforce: dual antiplatelet loading wh
 
 ### Rate vs rhythm decision hooks
 
-Rate control is reasonable for many patients; rhythm control when symptoms persist, younger patients, or heart failure themes where sinus rhythm helps — confirm current trial-aligned guidance. Anticoagulation continues based on stroke risk, not on “I feel fine in sinus.”
+Rate control is reasonable for many patients; rhythm control when symptoms persist, younger patients, or heart failure themes where sinus rhythm helps. Anticoagulation continues based on stroke risk, not on “I feel fine in sinus.”
 
 ### Digoxin practical safety
 

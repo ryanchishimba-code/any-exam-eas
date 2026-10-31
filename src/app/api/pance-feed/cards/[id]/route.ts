@@ -18,9 +18,9 @@ export async function GET(
     return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
   }
   const card = getPanceFeedCard(id);
-  const svg = card ? loadPanceFeedSvg(id) : null;
-  if (!card || !svg) {
+  if (!card) {
     return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
   }
-  return NextResponse.json({ ...card, svg }, { headers: privateFeedHeaders });
+  const svg = loadPanceFeedSvg(id);
+  return NextResponse.json({ ...card, svg: svg ?? null }, { headers: privateFeedHeaders });
 }

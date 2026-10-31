@@ -1,6 +1,6 @@
 # Chapter 1 — Exam Strategy (Part I)
 
-> **Study aid only.** Strategy framing for the 2026 Next Gen NCLEX. Confirm current rules in the official NCSBN test plan and Candidate Bulletin. Not affiliated with NCSBN.
+> **Study aid only.** Strategy framing for the 2026 Next Gen NCLEX. Follow rules in the official NCSBN test plan and Candidate Bulletin. Not affiliated with NCSBN.
 
 ![CAT and NGN overview diagram](visuals/cat-ngn-overview.svg)
 
@@ -25,7 +25,7 @@ The NCLEX is not a trivia bowl. It asks: **Can you practice as a brand-new nurse
 | Unscored | Some **pretest** items (you can’t tell which) |
 | Result | Pass/fail vs. a set standard (not a “percent correct” you see) |
 
-**Minimum-length mix (typical framing):** about **52** content-area items + **18** case-study clinical judgment items (3 cases × 6) + **15** pretest items. Longer exams add more scored content and stand-alone clinical judgment items as needed. Always verify current Candidate Bulletin details.
+**Minimum-length mix (typical framing):** about **52** content-area items + **18** case-study clinical judgment items (3 cases × 6) + **15** pretest items. Longer exams add more scored content and stand-alone clinical judgment items as needed. Always follow Candidate Bulletin details.
 
 ### CAT in one sentence
 
@@ -46,11 +46,11 @@ NGN is not a side quest. Clinical judgment is built into the exam through:
 
 #### Six clinical judgment steps (CJMM / NCJMM)
 
-![Six clinical judgment steps](visuals/cjmm-six-steps.jpg)
+![Six clinical judgment steps](visuals/cjmm-six-steps.svg)
 
 ![NGN bow-tie template: two actions to take, one condition, two parameters to monitor](visuals/bow-tie-ngn-example.svg)
 
-![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.jpg)
+![Maslow pyramid for NCLEX priority](visuals/maslow-pyramid-nclex.svg)
 
 1. **Recognize cues** — What data matters?  
 2. **Analyze cues** — What does it mean?  
@@ -88,8 +88,6 @@ Treat every unfolding case like a mini shift report:
 **Bow-tie:** condition ↔ actions ↔ monitors — practice even on multiple-choice stems.
 
 **Honest caveat:** Item formats evolve; this book trains *judgment*, not a claim of official NCSBN item replicas.
-
-
 
 ### Client Needs (how content is organized)
 
@@ -176,7 +174,7 @@ Physiological needs → safety → love/belonging → esteem → self-actualizat
 
 **Remember this:** You can delegate a **task**, not the **accountability**. If the client is unstable or the outcome is unpredictable, keep it.
 
-![Prioritization decision tree](visuals/priority-decision-tree.jpg)
+![Prioritization decision tree](visuals/priority-decision-tree.svg)
 
 ---
 
@@ -360,4 +358,4 @@ D. Psychosocial Integrity only
 - One strong Qbank + error log > five half-used resources.  
 - Sleep and logistics are part of prep.  
 
-> **Practice the frameworks.** Open an NGN-ready NCLEX set on [anyexameasy.com](https://anyexameasy.com) — 5-day free trial, no payment method. Then Pro at $27.99/mo.
+> **Practice the frameworks.** Open an NGN-ready NCLEX set on [anyexameasy.com](https://anyexameasy.

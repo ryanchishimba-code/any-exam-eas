@@ -38,7 +38,7 @@ No. Ranges vary by lab, age, sex, and method. We teach **direction and urgency**
 
 ### Can AnyExamEasy help with NCLEX prep?
 
-Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Roadmap, and full-length mocks. Start a **5-day free trial** — no payment method — then Pro at **$27.99/mo**. We’re independent and not affiliated with NCSBN.
+Yes. [AnyExamEasy](https://anyexameasy.com) offers NGN-style NCLEX practice, teachable rationales, Roadmap, and full-length mocks.
 
 ---
 
@@ -52,7 +52,7 @@ Open a practice set today. Review the misses like a detective. Repeat tomorrow.
 
 **AnyExamEasy** pairs this NCLEX reference book with NGN-style practice, teachable rationales, Roadmap, and full-length mocks.
 
-**[Start a 5-day free trial →](https://anyexameasy.com)** — no payment method. Then Pro at $27.99/mo.
+com)** — no payment method.
 
 *NCLEX practice that matches the judgment this book trains.*
 
@@ -60,7 +60,7 @@ Open a practice set today. Review the misses like a detective. Repeat tomorrow.
 
 ## Legal / attribution
 
-*NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). All other exam names and related marks are the property of their respective owners and are used here for identification and descriptive purposes only. Any Exam Easy and AI Software Product Solutions, LLC are not affiliated with, authorized by, endorsed by, or sponsored by NCSBN, Pearson VUE, or any other exam owner, and these organizations do not review, approve, license, or sponsor our content. We do not guarantee exam results, licensure, or employment. Always confirm current policies in the official Candidate Bulletin and with your nursing regulatory body.*
+*NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). All other exam names and related marks are the property of their respective owners and are used here for identification and descriptive purposes only. Any Exam Easy and AI Software Product Solutions, LLC are not affiliated with, authorized by, endorsed by, or sponsored by NCSBN, Pearson VUE, or any other exam owner, and these organizations do not review, approve, license, or sponsor our content. We do not guarantee exam results, licensure, or employment. Always follow policies in the official Candidate Bulletin and with your nursing regulatory body.*
 
 *This book is a **study aid only**. It is not medical advice, clinical protocol, or a substitute for your nursing program, facility policy, or official board documents. Medication, lab, isolation, and scope details must be verified with current official sources and instructors before clinical use.*
 

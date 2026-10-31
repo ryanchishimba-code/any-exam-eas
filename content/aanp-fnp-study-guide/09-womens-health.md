@@ -1,16 +1,16 @@
 # Chapter 9 — Women’s Health
 
-> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Verify current CDC MEC, USPSTF, ACOG-aligned prenatal themes, STI treatment guidance, FDA labeling, and the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **teaching themes to verify**, not standing orders.
+> **Study aid only.** Guideline themes for primary-care FNP exam judgment — not individualized prescribing or a protocol. Contraception follows the CDC Medical Eligibility Criteria (2024). Mammography follows USPSTF 2024. Cervical intervals follow the posted USPSTF recommendation. STI treatment follows the CDC STI guidelines. Exam policy follows the NPCB Candidate Handbook. When drugs or intervals appear below, treat them as **the named thresholds in this chapter**, not standing orders.
 
-![Contraception decision map](visuals/contraception-decision-map.jpg)
+![Contraception decision map](visuals/contraception-decision-map.svg)
 
-![STI screening panel](visuals/sti-screening-panel.jpg)
+![STI screening panel](visuals/sti-screening-panel.svg)
 
-![Prenatal timeline](visuals/prenatal-timeline.jpg)
+![Prenatal timeline](visuals/prenatal-timeline.svg)
 
-![AUB PALM-COEIN](visuals/aub-palms-coein.jpg)
+![AUB PALM-COEIN](visuals/aub-palms-coein.svg)
 
-![Breast cervical screening ladder](visuals/breast-cervical-screening.jpg)
+![Breast cervical screening ladder](visuals/breast-cervical-screening.svg)
 
 ---
 
@@ -35,7 +35,7 @@ Women’s health is not a “niche elective” on NPCB — it is everyday primar
 
 Candidates who memorize pill brands without medical-eligibility thinking lose easy points. Candidates who send unilateral first-trimester pain home without an ectopic plan lose dangerous ones.
 
-**Pair with practice:** After each topic, run related items, review every miss, and tag your error log with age band + ADPE stage. Start a **5-day free trial** on [anyexameasy.com](https://anyexameasy.com) — no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Pair with practice:** After each topic, run related items, review every miss, and tag your error log with age band + ADPE stage.
 
 ---
 
@@ -105,7 +105,7 @@ Shared decision + teach missed-pill / patch / ring rules (verify). Return for pr
 
 ### Syndromes map
 
-| Syndrome | Think | Plan vibe |
+| Syndrome | Think | Plan pattern |
 | --- | --- | --- |
 | Cervicitis / urethritis | GC/CT (± M. genitalium awareness) | NAAT; treat per CDC themes; partner therapy concepts where legal |
 | Vaginal discharge | BV, candida, trich | Exam + tests — don’t guess forever |
@@ -216,7 +216,7 @@ Last menstrual period, hot flashes, sleep, mood, vaginal dryness/dyspareunia, fr
 
 ### Plan themes
 
-Nonhormonal options for vasomotor (behavioral, selected nonhormonal meds — verify). Systemic MHT for appropriate candidates within shared decision (timing hypothesis themes — younger/recent menopause generally more favorable than starting late with high ASCVD risk — verify current). **Vaginal estrogen** for GSM often local with minimal systemic themes — still counsel. Bone health, CVD prevention, cancer screening up to date.
+Nonhormonal options for vasomotor (behavioral, selected nonhormonal meds — verify). Systemic MHT for appropriate candidates within shared decision (timing hypothesis themes — younger/recent menopause generally more favorable than starting late with high ASCVD risk. **Vaginal estrogen** for GSM often local with minimal systemic themes — still counsel. Bone health, CVD prevention, cancer screening up to date.
 
 > **TRAP** — Refusing vaginal estrogen for GSM because “hormones cause cancer” without nuance — local therapy differs from systemic risk conversations.
 
@@ -277,7 +277,7 @@ Nonhormonal options for vasomotor (behavioral, selected nonhormonal meds — ver
 
 ### Cervical
 
-HPV-based / cytology strategies per age (verify current USPSTF/ASCCP-aligned intervals). Don’t over-screen low-risk after hysterectomy for benign disease without cervix. Abnormal results → ASCCP-aligned pathways — know when colposcopy referral is expected.
+HPV-based / cytology strategies per age. Don’t over-screen low-risk after hysterectomy for benign disease without cervix. Abnormal results → ASCCP-aligned pathways — know when colposcopy referral is expected.
 
 ### Breast
 
@@ -402,7 +402,7 @@ Shared decision mammography start age themes; don’t ignore palpable mass regar
 - Teaching doses/intervals change — verify CDC/USPSTF/ACOG-aligned sources and labels.  
 - Independent study aid — not NPCB/AANP; no pass guarantee.
 
-**Next practice move:** Drill contraception MEC, STI/PID, AUB/PCOS, prenatal red flags, and screening items with full rationale review on [AnyExamEasy](https://anyexameasy.com) — **5-day free trial**, no payment method. Then Pro at **$27.99/mo**. Pair this AANP FNP book with exam-style practice.
+**Next practice move:** Drill contraception MEC, STI/PID, AUB/PCOS, prenatal red flags, and screening items with full rationale review on [AnyExamEasy](https://anyexameasy. Pair this AANP FNP book with exam-style practice.
 
 ---
 

@@ -27,6 +27,10 @@ export type PanceFeedCard = {
   bottom: string;
   bullets: { clue: string; treat: string; trap: string };
   source: { guideline: string; year: string };
+  /** Official blueprint task, when the deck records one. */
+  taskArea?: string;
+  /** FNP patient-age band from the handbook, when the deck records one. */
+  ageBand?: string;
 };
 
 type Cache = {
@@ -121,6 +125,8 @@ function normalizeCard(row: unknown, idPrefix: string): PanceFeedCard | null {
   }
   if (typeof s.guideline !== "string" || typeof s.year !== "string") return null;
   if (typeof card.system !== "string" || !card.system.trim()) return null;
+  const taskArea = typeof card.task_area === "string" ? card.task_area.trim() : "";
+  const ageBand = typeof card.age_band === "string" ? card.age_band.trim() : "";
   return {
     id,
     system: shortSystemName(card.system),
@@ -128,5 +134,7 @@ function normalizeCard(row: unknown, idPrefix: string): PanceFeedCard | null {
     bottom: card.bottom,
     bullets: { clue: b.clue, treat: b.treat, trap: b.trap },
     source: { guideline: s.guideline, year: s.year },
+    ...(taskArea ? { taskArea } : {}),
+    ...(ageBand ? { ageBand } : {}),
   };
 }

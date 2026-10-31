@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="366" viewBox="0 0 420 366" role="img" aria-label="Left-sided and right-sided heart failure">
+<title>Left-sided and right-sided heart failure</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Left-sided and right-sided heart</text>
+<text x="28" y="64" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">failure</text>
+<rect x="24" y="98" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="120" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Left: pulmonary edema, dyspnea, orthopnea,</text>
+<text x="36" y="142" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">crackles.</text>
+<rect x="24" y="166" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="188" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Right: edema, jugular distention, hepatic</text>
+<text x="36" y="210" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">congestion.</text>
+<rect x="24" y="234" width="372" height="82" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="256" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">HFrEF medicines: ARNI, evidence-based</text>
+<text x="36" y="278" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">beta-blocker, MRA, SGLT2 inhibitor (2022</text>
+<text x="36" y="300" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">AHA/ACC/HFSA).</text>
+<text x="28" y="332" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">2022 AHA/ACC/HFSA heart failure guideline</text>
+</svg>

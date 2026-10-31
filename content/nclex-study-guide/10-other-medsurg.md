@@ -2,9 +2,9 @@
 
 > **Study aid only.** Oncologic emergencies and burn fluid formulas are facility/protocol-driven — verify. Not a procedural manual.
 
-![Compartment syndrome six Ps](visuals/compartment-six-ps.jpg)
+![Compartment syndrome six Ps](visuals/compartment-six-ps.svg)
 
-![Neutropenic precautions](visuals/neutropenic-precautions.jpg)
+![Neutropenic precautions](visuals/neutropenic-precautions.svg)
 
 ![Burn rule of nines adult](visuals/burn-rule-of-nines.svg)
 
@@ -42,7 +42,7 @@ Hip fracture: shortened externally rotated leg themes; groin/hip pain; can’t b
 
 ### Osteoporosis teaching
 
-Weight-bearing exercise as cleared; calcium/vit D per plan; fall prevention (home hazards, vision, meds); bisphosphonate teaching themes (upright after dose, water, esophageal irritation); smoking/alcohol reduction.
+Weight-bearing exercise as cleared; calcium/vit D per plan; fall prevention (home hazards, vision, meds); bisphosphonate key points (upright after dose, water, esophageal irritation); smoking/alcohol reduction.
 
 ### Client teaching (casts)
 
@@ -185,7 +185,7 @@ Burns: airway > fluids > infection/pain/contractures. Pressure injuries: stage a
 ### Sickle cell crisis priorities
 
 Vaso-occlusive pain crises, infection risk (functional asplenia themes), acute chest syndrome (chest pain, fever, hypoxia — emergency energy), stroke risk.  
-**Priorities:** fluids, opioids (believe the pain), O₂ if hypoxic, treat infection triggers, incentive spirometry themes, warm environment, hydroxyurea teaching themes as ordered; avoid high altitude/dehydration extremes as taught.
+**Priorities:** fluids, opioids (believe the pain), O₂ if hypoxic, treat infection triggers, incentive spirometry themes, warm environment, hydroxyurea key points as ordered; avoid high altitude/dehydration extremes as taught.
 
 ### HIT (heparin-induced thrombocytopenia) high-level
 
@@ -215,7 +215,6 @@ Focus on **immunity down → opportunistic risk up**: pneumonia themes (includin
 HIV nursing = adherence + infection vigilance + dignity + standard precautions; CD4/viral load trends matter.
 
 ---
-
 
 ---
 
@@ -276,8 +275,6 @@ D. Ignore if pulses still present (pulselessness is late)
 
 **Answer: B.** Pulselessness is late — act on pain/stretch pain early.
 
-
-
 ### Medication highlights — other med-surg
 
 | Theme | Hook |
@@ -288,7 +285,6 @@ D. Ignore if pulses still present (pulselessness is late)
 | Biologics / immunosuppressants | Infection risk; TB screen themes |
 | Eyedrops | Punctal occlusion; wait between drops |
 | Silver sulfadiazine / burn topicals | Allergy/sulfa; wound assessment |
-
 
 ## Concept check
 

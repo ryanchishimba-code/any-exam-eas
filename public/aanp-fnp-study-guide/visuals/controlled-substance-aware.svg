@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="340" viewBox="0 0 420 340" role="img" aria-label="Controlled substances">
+<title>Controlled substances</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, 'Iowan Old Style', serif" font-size="22" font-weight="700" fill="#102027">Controlled substances</text>
+<rect x="24" y="70" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="92" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Check the prescription monitoring program.</text>
+<rect x="24" y="116" width="372" height="38" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="138" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Offer naloxone with opioids.</text>
+<rect x="24" y="162" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="184" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Buprenorphine for opioid use disorder no</text>
+<text x="36" y="206" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">longer requires the old waiver.</text>
+<rect x="24" y="230" width="372" height="60" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+<text x="36" y="252" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">Do not combine benzodiazepines and opioids</text>
+<text x="36" y="274" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="16" fill="#1C2830">without a reason that is documented.</text>
+<text x="28" y="306" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">DEA and CDC opioid guidance</text>
+</svg>

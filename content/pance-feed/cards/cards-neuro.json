@@ -73,7 +73,7 @@
       "alt": "Status epilepticus timeline: stabilize and check glucose, benzodiazepine at 5 minutes, then fosphenytoin, valproate or levetiracetam at 20 to 40 minutes, then anesthetic infusion with EEG."
     },
     "source": {
-      "guideline": "AES Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus (2016); AAN/AES Unprovoked First Seizure in Adults (2015)",
+      "guideline": "AES Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus (2016); AAN/AES Unprovoked First Seizure in Adults (2015) (still current as of 2026)",
       "year": "2016 / 2015",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4749120/",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4527147/",
@@ -111,7 +111,7 @@
     "id": "pance-100",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "72-year-old with slowness and a hand tremor at rest: which exam findings define Parkinson disease?",
     "bottom": "Resting tremor, rigidity and bradykinesia: Parkinson disease.",
     "bullets": {
@@ -138,7 +138,7 @@
     "id": "pance-101",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Most Likely Diagnosis",
+    "task_area": "Formulating Most Likely Diagnosis",
     "front": "Acute confusion that fluctuates in a hospitalized 80-year-old vs slow memory loss: how to tell and treat?",
     "bottom": "Delirium is acute and fluctuating; dementia is gradual.",
     "bullets": {
@@ -165,7 +165,7 @@
     "id": "pance-102",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Most Likely Diagnosis",
+    "task_area": "Formulating Most Likely Diagnosis",
     "front": "Optic neuritis, then numbness months later in a 30-year-old: diagnosis, relapse treatment and long-term plan?",
     "bottom": "Multiple sclerosis: MRI, steroids for relapse, early DMT.",
     "bullets": {
@@ -192,7 +192,7 @@
     "id": "pance-103",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Ascending weakness after diarrhea versus fatigable ptosis: which exam findings point to GBS and which to myasthenia gravis?",
     "bottom": "GBS: ascending weakness with lost reflexes. MG: fatigable ptosis, worse with use.",
     "bullets": {
@@ -219,7 +219,7 @@
     "id": "pance-104",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Most Likely Diagnosis",
+    "task_area": "Formulating Most Likely Diagnosis",
     "front": "Head injury with brief loss of consciousness, then a lucid interval: which bleed, and who needs CT?",
     "bottom": "Epidural hematoma: lens-shaped; emergency surgery.",
     "bullets": {
@@ -235,7 +235,7 @@
       "alt": "Schematic heads: a lens-shaped epidural hematoma from the middle meningeal artery and a crescent subdural hematoma from bridging veins; head CT for GCS under 15 at 2 hours, age 65 or older, or repeated vomiting."
     },
     "source": {
-      "guideline": "Canadian CT Head Rule; Brain Trauma Foundation Severe TBI 4th edition; CDC Pediatric mTBI Guideline (2018)",
+      "guideline": "Canadian CT Head Rule; Brain Trauma Foundation Severe TBI 4th edition; CDC Pediatric mTBI Guideline (2018) (still current as of 2026)",
       "year": "2018",
       "url": "https://www.thelancet.com/journals/lancet/article/PIIS014067360004561X/fulltext",
       "alt_url": "https://cdc.gov/traumatic-brain-injury/hcp/clinical-guidance/pediatric-mtbi.html",
@@ -246,7 +246,7 @@
     "id": "pance-105",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Most Likely Diagnosis",
+    "task_area": "Formulating Most Likely Diagnosis",
     "front": "Vertigo on rolling over in bed vs continuous vertigo with skew deviation: peripheral or central?",
     "bottom": "BPPV: Dix-Hallpike, then Epley.",
     "bullets": {
@@ -262,7 +262,7 @@
       "alt": "Positional vertigo diagnosed by Dix-Hallpike and treated with the Epley maneuver without vestibular suppressants; in continuous vertigo the HINTS exam finds central causes such as stroke."
     },
     "source": {
-      "guideline": "AAO-HNS Clinical Practice Guideline: BPPV (Update)",
+      "guideline": "AAO-HNS Clinical Practice Guideline: BPPV (Update) (still current as of 2026)",
       "year": "2017",
       "url": "https://doi.org/10.1177/0194599816689667",
       "alt_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12439488/",
@@ -273,7 +273,7 @@
     "id": "pance-106",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Most Likely Diagnosis",
+    "task_area": "Formulating Most Likely Diagnosis",
     "front": "Morning headache with vomiting and papilledema: what is it, and what lowers the pressure?",
     "bottom": "Raised ICP from a mass: image, steroids if edema.",
     "bullets": {
@@ -300,7 +300,7 @@
     "id": "pance-107",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Sudden facial droop with forehead involvement versus burning feet in diabetes: which exam findings identify Bell palsy and diabetic neuropathy?",
     "bottom": "Bell: whole face weak, forehead included. Forehead spared: central. Neuropathy: stocking pattern.",
     "bullets": {
@@ -316,7 +316,7 @@
       "alt": "Bell palsy involving the forehead treated with oral steroids within 72 hours and eye protection; painful diabetic neuropathy treated with gabapentinoids, SNRIs, tricyclics or sodium-channel blockers."
     },
     "source": {
-      "guideline": "AAO-HNS Clinical Practice Guideline: Bell's Palsy (2013); AAN Painful Diabetic Polyneuropathy Guideline Update (2022)",
+      "guideline": "AAO-HNS Clinical Practice Guideline: Bell's Palsy (2013); AAN Painful Diabetic Polyneuropathy Guideline Update (2022) (still current as of 2026)",
       "year": "2013 / 2022",
       "url": "https://doi.org/10.1177/0194599813505967",
       "alt_url": "https://www.neurology.org/doi/full/10.1212/WNL.0000000000013038",
@@ -327,7 +327,7 @@
     "id": "pance-108",
     "system": "Neurologic",
     "blueprint_weight": "7%",
-    "task_area": "Most Likely Diagnosis",
+    "task_area": "Formulating Most Likely Diagnosis",
     "front": "Toddler with a brief generalized seizure during fever vs an infant with stiff legs: work-up?",
     "bottom": "Simple febrile seizure: no EEG or imaging. CP: diagnose early.",
     "bullets": {
@@ -343,7 +343,7 @@
       "alt": "Simple febrile seizure in a child 6 months to 5 years needs no EEG, blood work or imaging, with lumbar puncture only for meningeal signs; cerebral palsy is diagnosed early with MRI, General Movements Assessment and HINE."
     },
     "source": {
-      "guideline": "AAP Febrile Seizures: Neurodiagnostic Evaluation of the Child With a Simple Febrile Seizure (2011); Early Diagnosis of Cerebral Palsy (Novak, JAMA Pediatrics 2017)",
+      "guideline": "AAP Febrile Seizures: Neurodiagnostic Evaluation of the Child With a Simple Febrile Seizure (2011); Early Diagnosis of Cerebral Palsy (Novak, JAMA Pediatrics 2017) (still current as of 2026)",
       "year": "2011 / 2017",
       "url": "https://publications.aap.org/pediatrics/article/127/2/389/65189/Febrile-Seizures-Guideline-for-the-Neurodiagnostic",
       "alt_url": "https://doi.org/10.1001/jamapediatrics.2017.1689",

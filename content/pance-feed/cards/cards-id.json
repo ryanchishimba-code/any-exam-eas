@@ -3,7 +3,7 @@
     "id": "pance-084",
     "system": "Infectious Diseases",
     "blueprint_weight": "7%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "HIV: who gets screened, when does ART start after diagnosis, and who is offered PrEP?",
     "bottom": "Screen ages 15–65; start ART at diagnosis.",
     "bullets": {
@@ -73,7 +73,7 @@
       "alt": "Uncomplicated cystitis treated with nitrofurantoin for 5 days, TMP-SMX for 3 days, or single-dose fosfomycin; pyelonephritis needs a urine culture and a fluoroquinolone for 5 to 7 days; nitrofurantoin and fosfomycin do not treat pyelonephritis."
     },
     "source": {
-      "guideline": "IDSA/ESCMID Guidelines for Acute Uncomplicated Cystitis and Pyelonephritis in Women (2010); IDSA 2025 Guideline on Complicated UTI",
+      "guideline": "IDSA/ESCMID Guidelines for Acute Uncomplicated Cystitis and Pyelonephritis in Women (2010); IDSA 2025 Guideline on Complicated UTI (still current as of 2026)",
       "year": "2010 / 2025",
       "url": "https://doi.org/10.1093/cid/ciaf460",
       "alt_url": "https://www.idsociety.org/practice-guideline/complicated-urinary-tract-infections",
@@ -84,7 +84,7 @@
     "id": "pance-087",
     "system": "Infectious Diseases",
     "blueprint_weight": "7%",
-    "task_area": "History Taking and Physical Examination",
+    "task_area": "History Taking and Performing Physical Examination",
     "front": "Skin infection: which exam findings separate abscess from nonpurulent cellulitis, and which needs drainage?",
     "bottom": "Fluctuant purulent collection: abscess. Spreading erythema without pus: cellulitis.",
     "bullets": {
@@ -100,7 +100,7 @@
       "alt": "A fluctuant skin abscess treated by incision and drainage, with TMP-SMX if systemic signs; nonpurulent cellulitis is treated with strep-active cephalexin, adding MRSA coverage only when warranted."
     },
     "source": {
-      "guideline": "IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections (2014 update)",
+      "guideline": "IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections (2014 update) (still current as of 2026)",
       "year": "2014",
       "url": "https://doi.org/10.1093/cid/ciu296",
       "alt_url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
@@ -219,7 +219,7 @@
     "id": "pance-092",
     "system": "Infectious Diseases",
     "blueprint_weight": "7%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Healthy 50-year-old: which vaccines are due (zoster, pneumococcal, Tdap), and who gets RSV?",
     "bottom": "Age 50: zoster series and pneumococcal.",
     "bullets": {
@@ -246,7 +246,7 @@
     "id": "pance-093",
     "system": "Infectious Diseases",
     "blueprint_weight": "7%",
-    "task_area": "Health Maintenance, Patient Education, Prevention",
+    "task_area": "Health Maintenance, Patient Education, and Preventive Measures",
     "front": "Traveler to a chloroquine-resistant malaria area: prophylaxis options, and how is severe malaria treated?",
     "bottom": "Atovaquone-proguanil or doxycycline.",
     "bullets": {
