@@ -67,11 +67,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "Provider already ordered the insulin-rate decrease; the key tells the nurse to notify the provider about that order.",
   },
   {
-    id: "cmr0pfqyf004q1yhdgfkg2m1u",
-    sampleId: "S52",
-    note: "DKA at glucose 250 keyed to potassium with no potassium or urine output.",
-  },
-  {
     id: "cmqwmxq3d000b1yq70s18zd8q",
     sampleId: "S32",
     note: "Lethargy on an insulin drip keyed to calling the provider before a bedside glucose.",
@@ -369,12 +364,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "Keys notification of an aPTT result that is not given in the scenario.",
   },
   {
-    id: "cmr8ufrug009r1y0yy7zwc3fz",
-    sampleId: "KF2-inr-cardioversion",
-    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
-    note: "INR 1.8 before cardioversion: notify and continue warfarin (cardioversion postponed); no option says that, and holding warfarin raises stroke risk.",
-  },
-  {
     id: "cmr76u9cr00ss1ywug0wsx63o",
     sampleId: "KF2-donning-order",
     auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
@@ -469,12 +458,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "KF2-pap-age",
     auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
     note: "Age 28: cytology alone every 3 years is recommended; no option states this (co-testing is for 30\u201365).",
-  },
-  {
-    id: "cmr0ufrka00251y7owlq2oh3d",
-    sampleId: "KF2-bse-family",
-    auditRef: NCLEX_KEYFIX_HIDE_B2_AUDIT_REF,
-    note: "25-year-old with family history: BSE key not recommended; risk assessment/genetic counseling referral not offered as such.",
   },
   {
     id: "cmr0ylppz00ay1ybs9y5edbuy",
@@ -5738,12 +5721,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "NC-UH1-002",
     auditRef: NCLEX_URGENT_HIDE_1_AUDIT_REF,
     note: "DKA item that teaches carbohydrates at glucose 70 or above on an insulin drip, or insulin while potassium is under 3.5. Current key: Client reports feeling shaky and sweaty",
-  },
-  {
-    id: "cmr0xdqyg00071ybsvb4sqisw",
-    sampleId: "NC-UH1-003",
-    auditRef: NCLEX_URGENT_HIDE_1_AUDIT_REF,
-    note: "Withholds methadone maintenance for acute pain. Current key: Offer non-opioid analgesics before opioids",
   },
   {
     id: "cmr0ylpj200aw1ybscyrzfdxn",

@@ -44,6 +44,10 @@ describe("KEYFIX_BACKUP_TABLES", () => {
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fix_20261025_backup");
     expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_loose_20261025_backup");
   });
+
+  it("includes the 2026-10-30 NCLEX rewrite backup", () => {
+    expect(KEYFIX_BACKUP_TABLES).toContain("qbi_nclex_fixes13_20261030_backup");
+  });
 });
 
 describe("decideSeedUpsert", () => {
