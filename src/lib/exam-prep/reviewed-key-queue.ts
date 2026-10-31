@@ -850,12 +850,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     note: "Using the stated formula: 15 x 56 x (1 - e^-1.2)/e^-1.2 = about 1,950 mg, not 1,000 mg. No option is correct.",
   },
   {
-    id: "cmshj9yog002g1yorbkxdjnpd",
-    sampleId: "NP-KF-054",
-    auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,
-    note: "5% and 50% to 10% is 8:1, so 444 mL of 5% and 56 mL of 50%; the keyed 400/100 gives 14%. No option is correct.",
-  },
-  {
     id: "cmshk9x8200051ys7e9ddksh9",
     sampleId: "NP-KF-055",
     auditRef: NAPLEX_KEYFIX_HIDE_AUDIT_REF,
@@ -5353,12 +5347,6 @@ export const KEY_WRONG_PENDING_RN_REVIEW: readonly ReviewedKeyItem[] = [
     sampleId: "NP-UH3-063",
     auditRef: NAPLEX_URGENT_HIDE_3_AUDIT_REF,
     note: "Safety error found on independent re-read. Current key: Contact the prescriber to adjust the apixaban dose",
-  },
-  {
-    id: "cmr4bs38g00151ycjtidtao40",
-    sampleId: "NP-UH3-064",
-    auditRef: NAPLEX_URGENT_HIDE_3_AUDIT_REF,
-    note: "Safety error found on independent re-read. Current key: Losartan 50 mg daily",
   },
   {
     id: "cmr4bs46j001e1ycjgvls0b82",

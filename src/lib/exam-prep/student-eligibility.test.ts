@@ -262,6 +262,14 @@ describe("student eligibility", () => {
     expect(isKeyWrongPendingReview("cmqwrpox200051yb34bokv6c0")).toBe(true);
   });
 
+  it("serves the two rewritten NAPLEX rows", () => {
+    for (const id of ["cmshj9yog002g1yorbkxdjnpd", "cmr4bs38g00151ycjtidtao40"]) {
+      expect(isKeyWrongPendingReview(id)).toBe(false);
+      expect(KEY_WRONG_PENDING_RN_REVIEW.some((item) => item.id === id)).toBe(false);
+      expect(STUDENT_ELIGIBLE_SQL).not.toContain(`'${id}'`);
+    }
+  });
+
   it("mirrors the reviewed ids in SQL behind the restore override", () => {
     for (const item of KEY_WRONG_PENDING_RN_REVIEW) {
       expect(STUDENT_ELIGIBLE_SQL).toContain(`'${item.id}'`);
