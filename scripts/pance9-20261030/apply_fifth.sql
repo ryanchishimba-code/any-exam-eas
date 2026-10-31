@@ -7,7 +7,7 @@ select case when :'blind_check_passed'='yes' then 1 else (select 1/0) end as gat
 begin;
 \i backup.sql
 update "QuestionBankItem" q set options=jsonb_set(q.options::jsonb,'{options}',s.new_options)::text, explanation=s.new_expl, scenario=s.new_sc, question=s.new_q, "correctAnswer"=s.key_text, "updatedAt"=now(),
- curation_meta=coalesce(q.curation_meta,'{}'::jsonb)||jsonb_build_object('pance9',coalesce(q.curation_meta->'pance9','{}'::jsonb)||jsonb_build_object('fifthOption','pending blind check','addedOption',s.new_option,'keyLetter',s.new_key_letter,'shuffled','2026-10'))
+ curation_meta=coalesce(q.curation_meta,'{}'::jsonb)||jsonb_build_object('pance9',coalesce(q.curation_meta->'pance9','{}'::jsonb)||jsonb_build_object('fifthOption','pending blind check','keyLetter',s.new_key_letter,'shuffled','2026-10'))
  from s_fifth s where q.id=s.id and q.active
   and (case when left(btrim(q.options),1)='{' then q.options::jsonb->'options' end)=s.old_options
   and q."correctAnswer"=s.old_key and md5(coalesce(q.explanation,''))=s.old_expl_md5
