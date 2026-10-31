@@ -131,7 +131,8 @@ export async function POST(req: Request) {
           field: fieldLabel,
         },
         i,
-        { shuffleOptions: false }
+        // Fixed seed: multiple-choice shuffle uses Math.random when no seed is passed.
+        { shuffleOptions: true, shuffleSeed: 0x161 }
       );
       const mastery = parseMasteryItemTags({
         clientNeeds: row.clientNeeds,
