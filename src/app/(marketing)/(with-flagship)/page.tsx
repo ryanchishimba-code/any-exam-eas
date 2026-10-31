@@ -16,9 +16,10 @@ import { buildHomeMetadata } from "@/lib/seo";
 
 /**
  * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
- * imported config value) and must match ACTIVE_INVENTORY_STAMP_TTL_SECONDS.
- * Counts come from the ISR data cache of the same snapshot the bank-counts
- * API uses. The head shows only a floor of that total.
+ * imported config value). The proof line, hero, and metadata read
+ * `loadServedQuestionCounts` through `loadPublicQuestionCounts`: the
+ * student-serving gate, cached at most one hour. The hero floors that bank
+ * total. Catalog NGN is not included, and the cron snapshot is not read.
  */
 export const revalidate = 300;
 
