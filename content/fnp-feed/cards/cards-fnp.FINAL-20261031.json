@@ -2893,14 +2893,14 @@
   "bullets": {
    "clue": "Forehead sparing suggests central lesion.",
    "treat": "Bell palsy: oral steroids within 72 hours; eye protection.",
-   "trap": "No routine labs or imaging for typical Bell palsy."
+   "trap": "No routine labs or imaging for typical Bell palsy. Low threshold to exclude stroke if the onset is sudden or other deficits are present."
   },
-  "back": "Bell palsy affects the forehead. Key clue: Forehead sparing suggests central lesion. First-line: Bell palsy: oral steroids within 72 hours; eye protection. Exam trap: No routine labs or imaging for typical Bell palsy.",
+  "back": "Bell palsy affects the forehead. Key clue: Forehead sparing suggests central lesion. First-line: Bell palsy: oral steroids within 72 hours; eye protection. Exam trap: No routine labs or imaging for typical Bell palsy. Low threshold to exclude stroke if the onset is sudden or other deficits are present.",
   "word_count": 28,
   "mnemonic": null,
   "diagram": {
    "file": "svg/fnp-104.svg",
-   "alt": "Ordered steps. Forehead sparing suggests central lesion. Bell palsy: oral steroids within 72 hours; eye protection. No routine labs or imaging for typical Bell palsy."
+   "alt": "Ordered steps. Forehead sparing suggests central lesion. Bell palsy: oral steroids within 72 hours; eye protection. No routine labs or imaging for typical Bell palsy. Low threshold to exclude stroke if the onset is sudden or other deficits are present."
   },
   "source": {
    "guideline": "AAO-HNS 2013 Bell palsy",

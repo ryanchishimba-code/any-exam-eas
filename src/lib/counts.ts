@@ -207,15 +207,12 @@ export function siteQuestionCounts(
   boards: Record<CountBoardSlug, BoardQuestionUnits>
 ): SiteQuestionCounts {
   const list = COUNT_BOARD_SLUGS.map((slug) => boards[slug]);
-  const standaloneNgn = list.reduce((sum, board) => sum + board.standaloneNgn, 0);
-  const caseStudies = list.reduce((sum, board) => sum + board.caseStudies, 0);
-  const caseItems = list.reduce((sum, board) => sum + board.caseItems, 0);
   const bankItems = list.reduce((sum, board) => sum + board.bankItems, 0);
   const totalQuestions = bankItems;
   return {
     boards,
     totalQuestions,
-    sentence: formatBoardQuestionSentence({ bankItems, standaloneNgn, caseStudies, caseItems }),
+    sentence: formatBoardQuestionSentence({ bankItems }),
     roundedDown: formatRoundedDownQuestionCount(totalQuestions),
   };
 }
