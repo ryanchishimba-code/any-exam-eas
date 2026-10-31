@@ -1,0 +1,55 @@
+{
+  "confirmed": [
+    {
+      "id": "cmr84dejz009k1yzbhdule3hz",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmr844c7900491yzb8zkat4k4",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmqgwasng000w1yk0laky7wk0",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmr844bhi00401yzb9bbk1ein",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmqvnyzu5001n1yfgsoiuihup",
+      "fieldId": "pharmacy",
+      "board": "NAPLEX"
+    },
+    {
+      "id": "cmr85p3vz002s1yz6hhbrtuts",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmsfjghmy001k1ymsdipg8syy",
+      "fieldId": "pharmacy",
+      "board": "NAPLEX"
+    },
+    {
+      "id": "cmtwf1m08006q1y2noia7k533",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmtwf7io4006c1yfswvmjy89j",
+      "fieldId": "aanp-fnp",
+      "board": "FNP"
+    },
+    {
+      "id": "cmpnjm1r90nm51ymxbf97v0t7",
+      "fieldId": "nursing",
+      "board": "NCLEX"
+    }
+  ],
+  "cleared": "cmr0ssxq4002a1yfni9317cpj"
+}
