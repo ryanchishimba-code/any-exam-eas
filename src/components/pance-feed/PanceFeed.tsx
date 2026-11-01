@@ -8,6 +8,7 @@ import type { PanceFeedCard } from "@/lib/pance-feed/load-cards";
 import { ROUTES } from "@/lib/routes";
 import { STUDY_FEEDS, type StudyFeedBoard } from "@/lib/study-feed/catalog";
 import { classifyFeedSwipe, feedHintStorageKey } from "@/lib/study-feed/gesture";
+import { feedIndexFromOffsets, feedMountedRange, isFeedSlideMounted } from "@/lib/study-feed/mount";
 import "./pance-feed.css";
 
 const RING = 100.53;
@@ -107,11 +108,13 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
   const [status, setStatus] = useState("Loading cards…");
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const progressRef = useRef<ProgressBody>({ mastered: [], reviewQueue: [], lastSeenCardId: null });
   const saveTimer = useRef<number | null>(null);
   const saveAbort = useRef<AbortController | null>(null);
   const svgRef = useRef<Record<string, string>>({});
   const inflight = useRef(new Set<string>());
+  const retainIds = useRef(new Set<string>());
   const restored = useRef(false);
   const reducedMotion = useRef(false);
   const gesture = useRef<{ x: number; y: number; pointerId: number; interactive: boolean } | null>(
@@ -141,6 +144,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
   }, [board.apiBase]);
 
   const ensureSvg = useCallback(async (id: string) => {
+    if (!retainIds.current.has(id)) return;
     if (Object.prototype.hasOwnProperty.call(svgRef.current, id) || inflight.current.has(id)) return;
     inflight.current.add(id);
     try {
@@ -148,8 +152,9 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
       if (!res.ok) return;
       const data = (await res.json()) as { svg?: string | null };
       const svg = typeof data.svg === "string" && data.svg.includes("<svg") ? data.svg : "";
+      if (!retainIds.current.has(id)) return;
       svgRef.current = { ...svgRef.current, [id]: svg };
-      setSvgs(svgRef.current);
+      setSvgs({ ...svgRef.current });
     } catch {
       /* the back face stays text-only until a retry */
     } finally {
@@ -218,37 +223,80 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
     const feed = feedRef.current;
     if (!feed || !lastSeen) return;
     const el = feed.querySelector<HTMLElement>(`[data-id="${lastSeen}"]`);
-    if (el) feed.scrollTop = el.offsetTop;
+    if (!el) return;
+    feed.scrollTop = el.offsetTop;
+    const offsets = [...feed.querySelectorAll<HTMLElement>(".pf-slide")].map((node) => node.offsetTop);
+    setActiveIndex(feedIndexFromOffsets(feed.scrollTop, offsets));
   }, [ready, lastSeen, slides.length]);
 
   useEffect(() => {
     const feed = feedRef.current;
     if (!feed || !ready) return;
-    const seen = new Set<string>();
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const slide = entry.target as HTMLElement;
-          const id = slide.dataset.id;
-          if (!id) continue;
-          if (entry.isIntersecting) {
-            void ensureSvg(id);
-            if (!seen.has(id)) {
-              seen.add(id);
-              setLastSeen(id);
-              publish({ ...progressRef.current, lastSeenCardId: id });
-            }
-          } else {
-            const key = slide.dataset.key;
-            if (key) setFlipped((current) => (current[key] ? { ...current, [key]: false } : current));
-          }
-        }
-      },
-      { root: feed, threshold: 0.6 }
-    );
-    feed.querySelectorAll(".pf-slide[data-id]").forEach((node) => io.observe(node));
-    return () => io.disconnect();
-  }, [ready, slides, ensureSvg, publish]);
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const offsets = [...feed.querySelectorAll<HTMLElement>(".pf-slide")].map((node) => node.offsetTop);
+        const index = feedIndexFromOffsets(feed.scrollTop, offsets);
+        setActiveIndex((prev) => (prev === index ? prev : index));
+      });
+    };
+    feed.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      feed.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [ready]);
+
+  useEffect(() => {
+    if (!ready || !restored.current) return;
+    const feed = feedRef.current;
+    const offsets = feed
+      ? [...feed.querySelectorAll<HTMLElement>(".pf-slide")].map((node) => node.offsetTop)
+      : [];
+    const index = feed ? feedIndexFromOffsets(feed.scrollTop, offsets) : activeIndex;
+    if (index !== activeIndex) {
+      setActiveIndex(index);
+      return;
+    }
+    const count = slides.length + 1;
+    const { start, end } = feedMountedRange(count, index);
+    const ids = new Set<string>();
+    for (let cursor = start; cursor <= end; cursor += 1) {
+      const slide = slides[cursor];
+      if (slide) ids.add(slide.id);
+    }
+    retainIds.current = ids;
+    let dropped = false;
+    const nextSvgs: Record<string, string> = {};
+    for (const [id, svg] of Object.entries(svgRef.current)) {
+      if (ids.has(id)) nextSvgs[id] = svg;
+      else dropped = true;
+    }
+    if (dropped) {
+      svgRef.current = nextSvgs;
+      setSvgs(nextSvgs);
+    }
+    for (const id of ids) void ensureSvg(id);
+    const current = slides[index];
+    if (current && progressRef.current.lastSeenCardId !== current.id) {
+      publish({ ...progressRef.current, lastSeenCardId: current.id });
+      setLastSeen(current.id);
+    }
+    setFlipped((currentFlipped) => {
+      const keep = new Set(
+        slides.slice(start, Math.min(end, slides.length - 1) + 1).map((slide) => slide.key)
+      );
+      let changed = false;
+      const next: Record<string, boolean> = {};
+      for (const [key, value] of Object.entries(currentFlipped)) {
+        if (keep.has(key) && value) next[key] = true;
+        else if (value) changed = true;
+      }
+      return changed ? next : currentFlipped;
+    });
+  }, [activeIndex, ready, slides, ensureSvg, publish]);
 
   function dismissHint() {
     setHint(false);
@@ -262,9 +310,12 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
   function visibleSlide(): Slide | null {
     const feed = feedRef.current;
     if (!feed) return null;
-    const nodes = [...feed.querySelectorAll<HTMLElement>(".pf-slide[data-key]")];
-    const height = feed.clientHeight || 1;
-    const current = nodes[Math.round(feed.scrollTop / height)];
+    const nodes = [...feed.querySelectorAll<HTMLElement>(".pf-slide")];
+    const index = feedIndexFromOffsets(
+      feed.scrollTop,
+      nodes.map((node) => node.offsetTop)
+    );
+    const current = nodes[index];
     if (!current?.dataset.key) return null;
     return slides.find((item) => item.key === current.dataset.key) ?? null;
   }
@@ -368,6 +419,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
     setFlipped({});
     setSlides(ids.map((id) => ({ key: id, id, again: false })));
     publish({ mastered: [], reviewQueue: [], lastSeenCardId: ids[0] ?? null });
+    setActiveIndex(0);
     feedRef.current?.scrollTo({ top: 0 });
   }
 
@@ -389,8 +441,11 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
     const feed = feedRef.current;
     if (!feed) return;
     const nodes = [...feed.querySelectorAll<HTMLElement>(".pf-slide")];
-    const height = feed.clientHeight || 1;
-    const current = nodes[Math.round(feed.scrollTop / height)];
+    const index = feedIndexFromOffsets(
+      feed.scrollTop,
+      nodes.map((node) => node.offsetTop)
+    );
+    const current = nodes[index];
     if (!current?.dataset.id || !current.dataset.key) {
       if ((event.key === "Enter" || event.key === " ") && current?.querySelector("[data-a=restart]")) {
         event.preventDefault();
@@ -501,6 +556,21 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
         {slides.map((slide, index) => {
           const card = byId.get(slide.id);
           if (!card) return null;
+          // Only the visible card and its neighbor are real DOM. The rest are
+          // empty snap spacers. Mounting every face and diagram crashes iOS Safari.
+          const windowCount = slides.length + 1;
+          if (!isFeedSlideMounted(index, windowCount, activeIndex)) {
+            return (
+              <article
+                key={slide.key}
+                className="pf-slide"
+                data-id={slide.id}
+                data-key={slide.key}
+                data-mounted="0"
+                aria-hidden="true"
+              />
+            );
+          }
           const n = cards.findIndex((item) => item.id === slide.id) + 1;
           const done = mastered.includes(slide.id);
           return (
@@ -598,20 +668,24 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
           );
         })}
         {ready ? (
-          <article className="pf-slide pf-end" style={{ ["--tint" as string]: "#0f766e" }}>
-            <div className="pf-bg" />
-            <div className="pf-stage" style={{ right: 12 }}>
-              <div className="pf-face pf-front pf-endbox">
-                <h2>Feed complete</h2>
-                <p>
-                  {masteredCount} of {total} mastered
-                </p>
-                <button className="pf-pill" type="button" data-a="restart">
-                  Start again
-                </button>
+          isFeedSlideMounted(slides.length, slides.length + 1, activeIndex) ? (
+            <article key="feed-end" className="pf-slide pf-end" style={{ ["--tint" as string]: "#0f766e" }}>
+              <div className="pf-bg" />
+              <div className="pf-stage" style={{ right: 12 }}>
+                <div className="pf-face pf-front pf-endbox">
+                  <h2>Feed complete</h2>
+                  <p>
+                    {masteredCount} of {total} mastered
+                  </p>
+                  <button className="pf-pill" type="button" data-a="restart">
+                    Start again
+                  </button>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          ) : (
+            <article key="feed-end" className="pf-slide" data-key="feed-end" data-mounted="0" aria-hidden="true" />
+          )
         ) : null}
       </main>
       {hint ? (
