@@ -82,6 +82,8 @@ describe("google review copy", () => {
     expect(text).not.toMatch(/uworld|archer|bootcamp|kaplan|nursing\.com/i);
     expect(text).toMatch(/never required/i);
     expect(text).toMatch(/nothing is offered in return/i);
+    expect(text).toContain("AnyExamEasy");
+    expect(text).not.toContain("Any Exam Easy");
   });
 });
 
