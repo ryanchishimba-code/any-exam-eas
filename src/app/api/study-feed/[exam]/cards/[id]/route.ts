@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { privateFeedHeaders, requirePanceFeedApi } from "@/lib/pance-feed/api-guard";
-import { getStudyFeedCard, loadStudyFeedSvg } from "@/lib/pance-feed/load-cards";
+import { privateFeedHeaders, requireFlashcardFeedRead } from "@/lib/pance-feed/api-guard";
+import { getStudyFeedCard, loadStudyFeedCards, loadStudyFeedSvg } from "@/lib/pance-feed/load-cards";
+import { isTrialFlashcardAllowed } from "@/lib/pance-feed/trial-slice";
 import { isStudyFeedCardId, studyFeedApiBoard } from "@/lib/study-feed/catalog";
 
 export const runtime = "nodejs";
@@ -15,8 +16,18 @@ export async function GET(
   if (!board || !isStudyFeedCardId(board.idPrefix, id)) {
     return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
   }
-  const authResult = await requirePanceFeedApi();
+  const authResult = await requireFlashcardFeedRead();
   if (!authResult.ok) return authResult.response;
+  const ids = loadStudyFeedCards(board.exam).map((card) => card.id);
+  if (!ids.includes(id)) {
+    return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
+  }
+  if (authResult.level === "trial" && !isTrialFlashcardAllowed(ids, id)) {
+    return NextResponse.json(
+      { error: "A paid plan is required for this card.", code: "FEED_CARD_LOCKED" },
+      { status: 403, headers: privateFeedHeaders }
+    );
+  }
   const card = getStudyFeedCard(board.exam, id);
   if (!card) {
     return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });

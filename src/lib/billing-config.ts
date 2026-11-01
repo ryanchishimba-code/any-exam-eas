@@ -11,6 +11,13 @@ export const TRIAL_LIFETIME_QUESTIONS = Number(
 );
 
 /**
+ * Fraction of each board flashcard deck a free-trial account may open.
+ * The slice is the first ceil(deck size × this fraction) cards in catalog order.
+ * Paid plans receive the full deck. This does not change the question-bank cap.
+ */
+export const TRIAL_FLASHCARD_FEED_FRACTION = 0.1;
+
+/**
  * Lifetime question cap after trial expires.
  * Post-trial users keep login + dashboard only — study surfaces are locked.
  */

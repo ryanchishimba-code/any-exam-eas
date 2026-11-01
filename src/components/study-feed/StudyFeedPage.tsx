@@ -6,7 +6,7 @@ import "@/components/pance-feed/pance-feed.css";
 import { getCachedSession } from "@/lib/auth/session";
 import { getUserAccess } from "@/lib/access-control";
 import { redirectIfDbUnavailable } from "@/lib/page-access-error";
-import { canUsePanceFeed } from "@/lib/pance-feed/access";
+import { flashcardFeedLevel } from "@/lib/pance-feed/access";
 import { type StudyFeedBoard } from "@/lib/study-feed/catalog";
 
 export function studyFeedMetadata(board: StudyFeedBoard): Metadata {
@@ -39,7 +39,7 @@ export async function StudyFeedPage({ board }: { board: StudyFeedBoard }) {
   if (access.blockReason === "email_unverified") {
     redirect(`/dashboard?verify=1`);
   }
-  if (!canUsePanceFeed(access)) {
+  if (flashcardFeedLevel(access) === "locked") {
     return <PanceFeedUpgrade board={board} />;
   }
 
