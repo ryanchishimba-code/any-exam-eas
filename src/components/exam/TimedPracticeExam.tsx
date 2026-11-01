@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { ShareModal } from "@/components/share/ShareModal";
 import { EndExamControl } from "@/components/study/EndExamControl";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
+import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
 import { RationaleDisclosureText } from "@/components/study/questions/CollapsibleRationale";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
@@ -359,6 +360,7 @@ export function TimedPracticeExam({
                 Back to hub
               </Button>
             </div>
+            <GoogleReviewPrompt surface="practice_exam_results" />
           </div>
         ) : (
           <>
