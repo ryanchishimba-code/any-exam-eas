@@ -29,7 +29,7 @@ export const GOOGLE_REVIEW_COPY = {
   cardEyebrow: "Optional",
   cardTitle: "Review us on Google",
   cardBody:
-    "A short, honest Google review helps other students understand what studying with Any Exam Easy is like. Say what worked, what did not, or both. Reviewing is never required, and nothing is offered in return.",
+    "A short, honest Google review helps other students understand what studying with AnyExamEasy is like. Say what worked, what did not, or both. Reviewing is never required, and nothing is offered in return.",
   cardAction: "Review us on Google",
   dismiss: "Not now",
   linkLabel: "Review us on Google",
