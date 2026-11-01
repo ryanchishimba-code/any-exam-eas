@@ -14,6 +14,7 @@ import { formatDisplayName } from "@/lib/display-name";
 import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
 import { requestTourReplay } from "@/lib/onboarding/tour-client";
 import { SettingsExamOutcome } from "@/components/readiness/SettingsExamOutcome";
+import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
 import type { ExamSlug } from "@/types/edtech";
 
 export function SettingsClient({
@@ -44,6 +45,7 @@ export function SettingsClient({
           {formatDisplayName(name) ?? "Student"}
         </p>
         <p className="text-sm text-[var(--color-ink-muted)]">{email}</p>
+        <GoogleReviewPrompt surface="account" variant="link" className="mt-4" />
       </section>
 
       <section className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">

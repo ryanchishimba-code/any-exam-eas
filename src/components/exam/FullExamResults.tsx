@@ -31,6 +31,8 @@ import { cn } from "@/lib/utils";
 import { FullExamPassPathPanel } from "@/components/exam/FullExamPassPathPanel";
 import { PhoneFold } from "@/components/study/PhoneFold";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
+import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
+import { googleReviewSurfaceForLength } from "@/lib/reviews/google-review";
 import { FullExamResultsInsights } from "@/components/exam/FullExamResultsInsights";
 import { FullExamCatPracticeBand } from "@/components/exam/FullExamCatPracticeBand";
 import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
@@ -465,6 +467,10 @@ export function FullExamResults({
           </Link>
         </div>
       )}
+
+      <GoogleReviewPrompt
+        surface={googleReviewSurfaceForLength(analysis.sessionConfig.lengthPreset)}
+      />
 
       <PhoneFold summary="Score breakdown">
       <div className="space-y-4 sm:space-y-6">
