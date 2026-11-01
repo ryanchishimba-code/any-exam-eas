@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
+import { isGoogleAuthButtonEnabled } from "@/lib/auth/oauth-buttons";
 import { parseBoardSlug, stampBoardIntentFromLocation } from "@/lib/auth/board-intent";
 import { DEFAULT_AUTH_CALLBACK, loginCompleteUrl, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 
@@ -26,7 +27,7 @@ export function GoogleSignInButton({
 }: GoogleSignInButtonProps) {
   const [loading, setLoading] = useState(false);
 
-  if (process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED !== "true") return null;
+  if (!isGoogleAuthButtonEnabled()) return null;
 
   return (
     <Button

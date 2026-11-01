@@ -5,6 +5,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { Check, ChevronDown, Eye, EyeOff, Loader2 } from "lucide-react";
 import { LegalCheckbox } from "./LegalCheckbox";
+import { AppleSignInButton } from "@/components/auth/AppleSignInButton";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { AuthLoadingOverlay } from "@/components/ui/AuthLoadingOverlay";
@@ -37,6 +38,14 @@ import {
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 import { analytics } from "@/lib/analytics";
+import {
+  VERCEL_FUNNEL_EVENTS,
+  funnelPropsFromAttribution,
+  trackVercelFunnel,
+} from "@/lib/analytics/vercel-funnel";
+import { isAppleAuthButtonEnabled, isGoogleAuthButtonEnabled } from "@/lib/auth/oauth-buttons";
+import { readClientFirstTouch } from "@/lib/marketing/first-touch-client";
+import { mergeFirstTouch } from "@/lib/marketing/first-touch";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -87,8 +96,10 @@ export function SignupForm({
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
 
-  const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
+  const googleEnabled = isGoogleAuthButtonEnabled();
+  const appleEnabled = isAppleAuthButtonEnabled();
   const linkedinEnabled = process.env.NEXT_PUBLIC_LINKEDIN_AUTH_ENABLED === "true";
+  const socialEnabled = googleEnabled || appleEnabled || linkedinEnabled;
 
   const subscribeCheckoutPath = signupSubscribeCheckoutPath({
     interval: initialInterval,
@@ -177,6 +188,13 @@ export function SignupForm({
       const trimmedLast = lastName.trim();
       const trimmedEmail = email.trim();
       const fullName = `${trimmedFirst} ${trimmedLast}`;
+      const touch = mergeFirstTouch(readClientFirstTouch(), {
+        utmSource: attribution?.utmSource,
+        utmMedium: attribution?.utmMedium,
+        utmCampaign: attribution?.utmCampaign,
+      });
+      const funnelProps = funnelPropsFromAttribution(touch);
+      trackVercelFunnel(VERCEL_FUNNEL_EVENTS.SIGNUP_SUBMIT, { plan, ...funnelProps });
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -193,9 +211,10 @@ export function SignupForm({
           testDate: testDate || undefined,
           promoCode: initialPromo.trim() || undefined,
           passCode: passCode.trim() || undefined,
-          utm_source: attribution?.utmSource,
-          utm_medium: attribution?.utmMedium,
-          utm_campaign: attribution?.utmCampaign,
+          utm_source: touch.utmSource,
+          utm_medium: touch.utmMedium,
+          utm_campaign: touch.utmCampaign,
+          referrer: touch.referrer,
         }),
       });
       const text = await res.text();
@@ -241,6 +260,10 @@ export function SignupForm({
         },
         { persist: false }
       );
+      trackVercelFunnel(VERCEL_FUNNEL_EVENTS.SIGNUP_SUCCESS, { plan, ...funnelProps });
+      if (plan === "trial" && !data.passRedeemed) {
+        trackVercelFunnel(VERCEL_FUNNEL_EVENTS.TRIAL_START, { plan: "trial", ...funnelProps });
+      }
 
       if (data.passRedeemed) {
         window.location.href = examSlug ? `/dashboard?verify=1` : `/select-exam?verify=1`;
@@ -289,7 +312,7 @@ export function SignupForm({
 
       {step === 1 ? (
         <div className="aee-auth-step" data-testid="signup-step-account">
-          {(googleEnabled || linkedinEnabled) && !configWarning ? (
+          {socialEnabled && !configWarning ? (
             <div className="mb-4 space-y-3">
               {googleEnabled ? (
                 <GoogleSignInButton
@@ -303,6 +326,23 @@ export function SignupForm({
                         email: trimmedEmail,
                         name: [firstName.trim(), lastName.trim()].filter(Boolean).join(" ") || undefined,
                         lastMethod: "google",
+                      });
+                    }
+                  }}
+                />
+              ) : null}
+              {appleEnabled ? (
+                <AppleSignInButton
+                  large
+                  board={examSlug || undefined}
+                  callbackUrl={oauthCallbackUrl}
+                  onClick={() => {
+                    const trimmedEmail = email.trim();
+                    if (trimmedEmail) {
+                      saveReturningUserHint({
+                        email: trimmedEmail,
+                        name: [firstName.trim(), lastName.trim()].filter(Boolean).join(" ") || undefined,
+                        lastMethod: "apple",
                       });
                     }
                   }}

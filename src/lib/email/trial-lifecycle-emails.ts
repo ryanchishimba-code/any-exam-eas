@@ -42,13 +42,16 @@ export function dashboardEmailUrl(): string {
   return `${appBaseUrl()}/dashboard`;
 }
 
-export function upgradeEmailUrl(context: "welcome" | "trial-ending"): string {
-  if (context === "trial-ending") {
+export const TRIAL_EMAIL_LIABILITY_LINE =
+  "Any Exam Easy is a study aid for self-assessment. It does not guarantee a score, a passing result, licensure, or certification.";
+
+export function upgradeEmailUrl(context: "welcome" | "trial-ending" | "trial-ended"): string {
+  if (context === "trial-ending" || context === "trial-ended") {
     const params = new URLSearchParams({
       plan: "subscribe",
       tier: "pro",
       interval: "monthly",
-      from: "email-trial-ending",
+      from: context === "trial-ended" ? "email-trial-ended" : "email-trial-ending",
     });
     return `${appBaseUrl()}/checkout?${params.toString()}`;
   }
@@ -210,15 +213,13 @@ export async function sendTrialEndingUpgradeEmail(
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
     emailParagraph(
-      `Your AnyExamEasy trial ends in about <strong>24 hours</strong> (${when}). After that, you'll move to our free tier — dashboard access plus a limited question allowance unless you upgrade.`
+      `Your AnyExamEasy trial ends in about <strong>24 hours</strong> (${when}). After that time, the practice questions included with the trial are no longer available.`
     ),
     emailParagraph(
-      "You've already started building real study momentum. Keep it going with unlimited questions, teachable rationales, AI Tutor, spaced repetition, and full-length mocks on Pro."
+      "You can subscribe if you want to continue. You can also cancel in Settings before the trial ends."
     ),
     billingNote.html,
-    emailParagraph(
-      "Upgrade now and pick up exactly where you left off — no reset, no re-setup."
-    ),
+    emailParagraph(TRIAL_EMAIL_LIABILITY_LINE),
   ]
     .filter(Boolean)
     .join("");
@@ -227,12 +228,12 @@ export async function sendTrialEndingUpgradeEmail(
     greeting(params.name),
     "",
     `Your trial ends in about 24 hours (${when}).`,
-    "After that, access downgrades to the free tier unless you upgrade.",
-    "",
-    "Keep your momentum — upgrade for unlimited questions, teachable rationales, AI Tutor, and Pro tools.",
+    "After that time, the practice questions included with the trial are no longer available.",
+    "You can subscribe if you want to continue. You can also cancel in Settings before the trial ends.",
     billingNote.text,
+    TRIAL_EMAIL_LIABILITY_LINE,
     "",
-    `Upgrade: ${upgradeUrl}`,
+    `Subscribe: ${upgradeUrl}`,
     `Dashboard: ${dashboardUrl}`,
     "",
     `Support: ${LEGAL_ENTITY.supportEmail}`,
@@ -241,20 +242,71 @@ export async function sendTrialEndingUpgradeEmail(
     .join("\n");
 
   const html = transactionalEmailLayout({
-    title: "Your trial ends tomorrow",
-    preheader: "Don't lose momentum — upgrade to keep unlimited practice",
+    title: "Your trial ends in about a day",
+    preheader: "Practice questions from the trial stop when it ends. Subscribe only if you want to continue.",
     bodyHtml,
-    primaryCta: { label: "Upgrade Now", url: upgradeUrl },
-    secondaryCta: { label: "Go to Dashboard", url: dashboardUrl },
+    primaryCta: { label: "Review subscribe options", url: upgradeUrl },
+    secondaryCta: { label: "Open dashboard", url: dashboardUrl },
     footerNote:
-      "You're receiving this because your AnyExamEasy trial is ending soon. Manage email in account settings.",
+      "You are receiving this because your AnyExamEasy trial is ending soon. This is an account notice, not a bill.",
   });
 
   return sendTransactionalEmail({
     to: params.to,
-    subject: "Your AnyExamEasy Trial Ends Tomorrow — Don't Lose Access!",
+    subject: "Your AnyExamEasy trial ends in about a day",
     html,
     text,
     tags: [{ name: "category", value: "trial-ending" }],
+  });
+}
+
+export async function sendTrialEndedEmail(
+  params: TrialEmailParams & { trialEndsAt: Date }
+): Promise<EmailDeliveryResult> {
+  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
+
+  const dashboardUrl = dashboardEmailUrl();
+  const subscribeUrl = upgradeEmailUrl("trial-ended");
+  const when = formatEmailDate(params.trialEndsAt);
+
+  const bodyHtml = [
+    emailParagraph(`${greeting(params.name)}`),
+    emailParagraph(
+      `Your AnyExamEasy trial ended on <strong>${when}</strong>. Practice questions from the trial are no longer included.`
+    ),
+    emailParagraph(
+      "If you want to continue, you can subscribe from the link below. Subscribing starts a paid plan. This note is not a bill, and it does not charge a card by itself."
+    ),
+    emailParagraph(TRIAL_EMAIL_LIABILITY_LINE),
+  ].join("");
+
+  const text = [
+    greeting(params.name),
+    "",
+    `Your trial ended on ${when}. Practice questions from the trial are no longer included.`,
+    "If you want to continue, you can subscribe. Subscribing starts a paid plan. This note is not a bill.",
+    TRIAL_EMAIL_LIABILITY_LINE,
+    "",
+    `Subscribe: ${subscribeUrl}`,
+    `Dashboard: ${dashboardUrl}`,
+    "",
+    `Support: ${LEGAL_ENTITY.supportEmail}`,
+  ].join("\n");
+
+  const html = transactionalEmailLayout({
+    title: "Your trial has ended",
+    preheader: "Trial practice questions are no longer included. Subscribe only if you want to continue.",
+    bodyHtml,
+    primaryCta: { label: "See subscribe options", url: subscribeUrl },
+    secondaryCta: { label: "Open dashboard", url: dashboardUrl },
+    footerNote: "You are receiving this because your AnyExamEasy trial ended. This is an account notice, not a bill.",
+  });
+
+  return sendTransactionalEmail({
+    to: params.to,
+    subject: "Your AnyExamEasy trial has ended",
+    html,
+    text,
+    tags: [{ name: "category", value: "trial-ended" }],
   });
 }
