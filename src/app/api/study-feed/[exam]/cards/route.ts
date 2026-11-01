@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { privateFeedHeaders, requirePanceFeedApi } from "@/lib/pance-feed/api-guard";
+import { privateFeedHeaders, requireFlashcardFeedRead } from "@/lib/pance-feed/api-guard";
 import { loadStudyFeedCards } from "@/lib/pance-feed/load-cards";
+import { feedCardsPayload } from "@/lib/pance-feed/trial-slice";
 import { studyFeedApiBoard } from "@/lib/study-feed/catalog";
 
 export const runtime = "nodejs";
@@ -15,8 +16,8 @@ export async function GET(
   if (!board) {
     return NextResponse.json({ error: "Feed not found" }, { status: 404, headers: privateFeedHeaders });
   }
-  const authResult = await requirePanceFeedApi();
+  const authResult = await requireFlashcardFeedRead();
   if (!authResult.ok) return authResult.response;
   const cards = loadStudyFeedCards(board.exam);
-  return NextResponse.json({ total: cards.length, cards }, { headers: privateFeedHeaders });
+  return NextResponse.json(feedCardsPayload(cards, authResult.level), { headers: privateFeedHeaders });
 }

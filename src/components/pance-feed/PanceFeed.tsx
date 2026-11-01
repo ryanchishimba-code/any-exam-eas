@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Check, Maximize2, RotateCcw, Tag } from "lucide-react";
+import { trialUpgradeCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { feedOrder, REVIEW_GAP, sourceLine } from "@/lib/pance-feed/format";
 import type { PanceFeedCard } from "@/lib/pance-feed/load-cards";
 import { ROUTES } from "@/lib/routes";
@@ -109,12 +110,15 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
   const [lightbox, setLightbox] = useState<string | null>(null);
   const [ready, setReady] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [trialLimited, setTrialLimited] = useState(false);
+  const [deckTotal, setDeckTotal] = useState(0);
   const progressRef = useRef<ProgressBody>({ mastered: [], reviewQueue: [], lastSeenCardId: null });
   const saveTimer = useRef<number | null>(null);
   const saveAbort = useRef<AbortController | null>(null);
   const svgRef = useRef<Record<string, string>>({});
   const inflight = useRef(new Set<string>());
   const retainIds = useRef(new Set<string>());
+  const trialRef = useRef(false);
   const restored = useRef(false);
   const reducedMotion = useRef(false);
   const gesture = useRef<{ x: number; y: number; pointerId: number; interactive: boolean } | null>(
@@ -128,6 +132,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
 
   const publish = useCallback((next: ProgressBody) => {
     progressRef.current = next;
+    if (trialRef.current) return;
     if (saveTimer.current) window.clearTimeout(saveTimer.current);
     saveTimer.current = window.setTimeout(() => {
       saveAbort.current?.abort();
@@ -178,14 +183,32 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
           window.location.assign(`/login?callbackUrl=${encodeURIComponent(board.href)}`);
           return;
         }
-        if (!cardRes.ok || !progRes.ok) {
+        if (!cardRes.ok) {
           setStatus(cardRes.status === 403 ? "A paid plan is required." : "The feed could not load.");
           return;
         }
-        const cardJson = (await cardRes.json()) as { cards: PanceFeedCard[] };
-        const prog = (await progRes.json()) as ProgressBody & { lastSeenAt?: string | null };
+        const cardJson = (await cardRes.json()) as {
+          cards: PanceFeedCard[];
+          total?: number;
+          trialLimited?: boolean;
+        };
+        const limited = Boolean(cardJson.trialLimited);
+        trialRef.current = limited;
+        setTrialLimited(limited);
+        let prog: ProgressBody & { lastSeenAt?: string | null } = {
+          mastered: [],
+          reviewQueue: [],
+          lastSeenCardId: null,
+        };
+        if (progRes.ok) {
+          prog = (await progRes.json()) as ProgressBody & { lastSeenAt?: string | null };
+        } else if (!limited) {
+          setStatus(progRes.status === 403 ? "A paid plan is required." : "The feed could not load.");
+          return;
+        }
         if (cancel) return;
         const list = cardJson.cards ?? [];
+        setDeckTotal(typeof cardJson.total === "number" ? cardJson.total : list.length);
         const ids = list.map((card) => card.id);
         const nextMastered = prog.mastered ?? [];
         const nextQueue = prog.reviewQueue ?? [];
@@ -669,6 +692,37 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
         })}
         {ready ? (
           isFeedSlideMounted(slides.length, slides.length + 1, activeIndex) ? (
+            trialLimited && deckTotal > total ? (
+              <article
+                key="feed-end"
+                className="pf-slide pf-end"
+                data-testid={`${board.testId}-trial-lock`}
+                style={{ ["--tint" as string]: "#0f766e" }}
+              >
+                <div className="pf-bg" />
+                <div className="pf-stage" style={{ right: 12 }}>
+                  <div className="pf-face pf-front pf-endbox pf-trial-lock">
+                    <p className="pf-gate-kicker">Pro</p>
+                    <h2>The rest of this deck is on Pro</h2>
+                    <p>
+                      Your free trial includes the first {total} of {deckTotal} cards in this feed.
+                      Start a plan to open every card.
+                    </p>
+                    <div className="pf-gate-actions">
+                      <Link className="pf-gate-primary" href={trialUpgradeCheckoutHref(board.href)}>
+                        Start a plan
+                      </Link>
+                      <Link className="pf-gate-secondary" href={`${ROUTES.pricing}?paywall=1`}>
+                        Compare plans
+                      </Link>
+                      <Link className="pf-gate-text" href={ROUTES.dashboard}>
+                        Back to dashboard
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ) : (
             <article key="feed-end" className="pf-slide pf-end" style={{ ["--tint" as string]: "#0f766e" }}>
               <div className="pf-bg" />
               <div className="pf-stage" style={{ right: 12 }}>
@@ -683,6 +737,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
                 </div>
               </div>
             </article>
+            )
           ) : (
             <article key="feed-end" className="pf-slide" data-key="feed-end" data-mounted="0" aria-hidden="true" />
           )
