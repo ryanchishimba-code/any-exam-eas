@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
+import { CheckoutStartBeacon } from "@/components/analytics/CheckoutStartBeacon";
 import { PageShell } from "@/components/PageShell";
 import {
   paidSubscribeHrefFromCheckoutQuery,
@@ -103,6 +104,7 @@ export default async function CheckoutPage({
       maxWidth="max-w-2xl"
       compact
     >
+      <CheckoutStartBeacon />
       <PurchaseTrustNotes className="mt-4" showTrialOffer={false} />
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <EmbeddedStripeCheckout />

@@ -7,6 +7,7 @@ import { AGE_ATTESTATION_PLACEHOLDER_DOB } from "@/lib/age-attestation";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
+import { attributionColumns, type FirstTouchAttribution } from "@/lib/marketing/first-touch";
 
 /** Thrown when OAuth sign-in targets an email/password account without an explicit link. */
 export class OAuthLinkBlockedError extends Error {
@@ -23,7 +24,8 @@ export async function findOrCreateGoogleUser(params: {
   image?: string | null;
   providerAccountId: string;
   provider?: "google" | "apple" | "linkedin";
-}): Promise<{ id: string; role: string }> {
+  attribution?: FirstTouchAttribution;
+}): Promise<{ id: string; role: string; created: boolean; startedTrial: boolean }> {
   const email = normalizeEmail(params.email);
   const provider = params.provider ?? "google";
 
@@ -60,7 +62,7 @@ export async function findOrCreateGoogleUser(params: {
         },
       });
     }
-    return { id: existing.id, role: existing.role };
+    return { id: existing.id, role: existing.role, created: false, startedTrial: false };
   }
 
   const trialAlreadyUsed = await hasConsumedTrial(email);
@@ -90,6 +92,7 @@ export async function findOrCreateGoogleUser(params: {
       image: params.image ?? null,
       emailVerified: new Date(),
       dateOfBirth: AGE_ATTESTATION_PLACEHOLDER_DOB,
+      ...attributionColumns(params.attribution),
       subscription: {
         create: subscriptionCreate,
       },
@@ -118,5 +121,5 @@ export async function findOrCreateGoogleUser(params: {
     });
   }
 
-  return { id: user.id, role: user.role };
+  return { id: user.id, role: user.role, created: true, startedTrial: !trialAlreadyUsed };
 }

@@ -9,6 +9,7 @@ import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
 import { captureBoardForUser, readServerBoardIntent } from "@/lib/auth/board-intent-server";
 import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
+import { readFirstTouchFromAuthCookies, stampFunnelEventCookie } from "@/lib/auth/funnel-event-cookie";
 import { OAuthAccountDisabledError } from "@/lib/account-security";
 import {
   scheduleCredentialsLoginSideEffects,
@@ -172,8 +173,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             image: user.image,
             providerAccountId: oauthProfile?.sub ?? user.email,
             provider: account!.provider as OAuthProvider,
+            attribution: await readFirstTouchFromAuthCookies(),
           });
           user.id = linked.id;
+          if (linked.created) {
+            const events = ["signup_success"];
+            if (linked.startedTrial) events.push("trial_start");
+            await stampFunnelEventCookie(events);
+          }
           (user as { role?: string }).role = linked.role;
 
           const incomingBoard = await readServerBoardIntent();

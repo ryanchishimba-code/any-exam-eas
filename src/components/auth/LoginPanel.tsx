@@ -23,7 +23,9 @@ import {
   type LoginMethod,
   type ReturningUserHint
 } from "@/lib/client/returning-user";
+import { AppleSignInButton } from "@/components/auth/AppleSignInButton";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
+import { isAppleAuthButtonEnabled, isGoogleAuthButtonEnabled } from "@/lib/auth/oauth-buttons";
 import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 
@@ -38,7 +40,7 @@ type LoginPanelProps = {
 function displayMethod(method?: LoginMethod): string | null {
   if (!method) return null;
   if (method === "magic" || method === "email") return "email & password";
-  if (method === "apple") return "Google";
+  if (method === "apple") return "Apple";
   return method;
 }
 
@@ -142,8 +144,11 @@ export function LoginPanel({
     }
   }
 
-  const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
-  const googleHighlighted = hint?.lastMethod === "google" || hint?.lastMethod === "apple";
+  const googleEnabled = isGoogleAuthButtonEnabled();
+  const appleEnabled = isAppleAuthButtonEnabled();
+  const linkedinEnabled = process.env.NEXT_PUBLIC_LINKEDIN_AUTH_ENABLED === "true";
+  const googleHighlighted = hint?.lastMethod === "google";
+  const appleHighlighted = hint?.lastMethod === "apple";
 
   const busy = loading || redirecting;
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -171,6 +176,15 @@ export function LoginPanel({
         />
       )}
 
+      {appleEnabled && (
+        <AppleSignInButton
+          callbackUrl={safeCallbackUrl}
+          highlighted={appleHighlighted}
+          large
+          onClick={() => rememberMethod("apple")}
+        />
+      )}
+
       <SocialLoginButton
         provider="linkedin"
         callbackUrl={safeCallbackUrl}
@@ -178,7 +192,7 @@ export function LoginPanel({
         onClick={() => rememberMethod("linkedin")}
       />
 
-      {googleEnabled && (
+      {(googleEnabled || appleEnabled || linkedinEnabled) && (
         <div className="relative py-1">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-black/[0.06]" />

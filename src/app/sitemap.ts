@@ -3,6 +3,7 @@ import { listPublishedBlogPosts } from "@/lib/blog/public";
 import { qotdPath, todayIsoCentral } from "@/lib/demo/qotd";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
+import { isGatedStudyGuidePath } from "@/lib/seo/gated-study-guide-paths";
 import { getExamMarketingSitemapPaths } from "@/lib/seo/marketing-metadata";
 import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 
@@ -95,5 +96,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...qotdEntries,
     ...resourceEntries,
     ...blogEntries,
-  ];
+  ].filter((entry) => !isGatedStudyGuidePath(entry.url));
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { track } from "@vercel/analytics";
 import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
 import { dailyCtaLocation, dailyTrialHref, dailyTrialQuote, type DailyCtaPlacement } from "@/lib/marketing/daily-trial";
+import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
 import { formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 function trackTrialClick(board: string, placement: DailyCtaPlacement) {
@@ -87,6 +88,7 @@ export function DailyTrialPitch({
         Start free trial
       </DailyTrialLink>
       <p className="aee-qotd-trial__meta">{formatPricingCheckoutTrialOffer()}</p>
+      <DailyInboxCapture examSlug={board} />
       {quote ? (
         <figure className="aee-qotd-trial__quote">
           <blockquote>

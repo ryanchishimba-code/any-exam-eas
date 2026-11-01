@@ -18,6 +18,12 @@ model User {
   passwordAlgo  String?   @default("bcrypt_12")
   passwordUpdatedAt DateTime?
   image         String?
+  /// First-touch campaign tags, saved once at signup. Null on older accounts.
+  utmSource      String?
+  utmMedium      String?
+  utmCampaign    String?
+  /// External referrer from the first visit, origin and path only.
+  signupReferrer String?
   dateOfBirth   DateTime
   lastLoginAt   DateTime?
   lastActiveAt  DateTime?
@@ -88,6 +94,7 @@ model User {
   examPassCheckIns   ExamPassCheckIn[]
   panceFeedProgress  PanceFeedProgress?
   examFeedProgress   ExamFeedProgress[]
+  trialEmailSendLogs TrialEmailSendLog[]
 }
 
 model Account {
@@ -2036,6 +2043,37 @@ model ActiveInventoryCount {
 
   @@id([fieldId, subjectId, clientNeeds, itemType])
   @@map("ActiveInventoryCount")
+}
+
+/// Optional daily-question email. Pending until the person confirms. No question is sent before that.
+model DailyQuestionLead {
+  id                   String    @id @default(cuid())
+  email                String    @unique
+  examSlug             String?
+  /// pending | confirmed | unsubscribed
+  status               String    @default("pending")
+  confirmTokenHash     String    @unique
+  unsubscribeTokenHash String    @unique
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  confirmedAt          DateTime?
+  unsubscribedAt       DateTime?
+
+  @@index([status])
+}
+
+/// Idempotency log for trial reminder and trial-ended emails. One row per user, kind, and trial end.
+model TrialEmailSendLog {
+  id          String   @id @default(cuid())
+  userId      String
+  /// reminder_1d | trial_ended
+  kind        String
+  trialEndsAt DateTime
+  sentAt      DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, kind, trialEndsAt])
+  @@index([kind, sentAt])
 }
 
 /// One row (id = 1) with the published total and latest edit from the same refresh.
