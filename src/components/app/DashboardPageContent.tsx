@@ -35,6 +35,7 @@ import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBites
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
+import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
 
 export type DashboardHeadline = {
@@ -207,6 +208,7 @@ export function DashboardPageContent({
             </Link>
           </>
         ) : null}
+        <GoogleReviewPrompt surface="dashboard" variant="link" />
       </div>
 
       {examDayPlan ? (
