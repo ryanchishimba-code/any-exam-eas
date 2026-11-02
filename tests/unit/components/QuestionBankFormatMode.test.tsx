@@ -6,7 +6,7 @@ import { QuestionBankFormatMode } from "@/components/study/question-bank/Questio
 const formats = { mcq: 5400, ngn: 842, case: 0 };
 
 describe("QuestionBankFormatMode", () => {
-  it("shows the inventory split and keeps an empty case pool selectable", async () => {
+  it("shows the inventory split and hides an empty case pool", async () => {
     const onChange = vi.fn();
     render(
       <QuestionBankFormatMode
@@ -18,21 +18,18 @@ describe("QuestionBankFormatMode", () => {
     );
 
     const ngn = screen.getByRole("radio", { name: /NGN/i });
-    const cases = screen.getByRole("radio", { name: /Cases/i });
     expect(ngn).toHaveAttribute("data-format-count", "842");
     expect(ngn).toHaveTextContent("842");
-    expect(cases).toHaveAttribute("data-format-count", "0");
-    expect(cases).toBeEnabled();
-    expect(cases).toHaveTextContent("None published");
+    expect(ngn).toHaveTextContent("Standalone NGN items");
+    expect(screen.getByRole("radio", { name: /All questions/i })).toBeInTheDocument();
+    expect(screen.queryByRole("radio", { name: /Cases/i })).not.toBeInTheDocument();
 
     const user = userEvent.setup();
     await user.click(ngn);
     expect(onChange).toHaveBeenCalledWith("ngn");
-    await user.click(cases);
-    expect(onChange).toHaveBeenCalledWith("case");
   });
 
-  it("tells a mixed-topic student the card count is the session pool", () => {
+  it("keeps a mixed-topic NGN card selectable", () => {
     render(
       <QuestionBankFormatMode
         value="ngn"
@@ -43,14 +40,25 @@ describe("QuestionBankFormatMode", () => {
       />
     );
 
-    expect(screen.getAllByText(/from every topic/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/The number on the card is that pool/i)).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /NGN/i })).toHaveAttribute("data-format-count", "842");
     expect(screen.queryByText(/Mixed topics is not available/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Pick one topic/i)).not.toBeInTheDocument();
   });
 
-  it("uses NGN-style for boards that are not Client Needs and hides counts while loading", () => {
-    render(
+  it("uses NGN-style for boards that are not Client Needs and hides the chooser while loading", () => {
+    const { rerender } = render(
+      <QuestionBankFormatMode
+        value="all"
+        onChange={() => undefined}
+        formats={{ mcq: 10, ngn: 4, case: 2 }}
+        ngnLabel="NGN-style"
+      />
+    );
+
+    expect(screen.getByRole("radio", { name: /NGN-style/i })).toBeEnabled();
+    expect(screen.getByRole("radio", { name: /Cases/i })).toBeEnabled();
+
+    rerender(
       <QuestionBankFormatMode
         value="all"
         onChange={() => undefined}
@@ -60,8 +68,6 @@ describe("QuestionBankFormatMode", () => {
       />
     );
 
-    expect(screen.getByRole("radio", { name: /NGN-style/i })).toBeDisabled();
-    expect(screen.getByRole("radio", { name: /Cases/i })).toBeDisabled();
-    expect(screen.getByRole("radio", { name: /NGN-style/i })).toHaveTextContent("…");
+    expect(screen.queryByRole("radio")).not.toBeInTheDocument();
   });
 });

@@ -291,19 +291,19 @@ describe("StudyGuideReader", () => {
           {
             slug: "cardiovascular",
             title: "Cardiovascular",
+            summary: "Heart and vessels",
             libraryCardCount: 4,
-            deepDiveHref: "/dashboard/topics?topic=cardiovascular&mode=deep",
-            libraryHref: "/library?topicKey=cardiovascular",
+            anatomyHref: "/anatomy?structure=heart",
+            anatomyLabel: "Heart",
           },
         ],
       })
     );
     expect(screen.getByText(/Go deeper on this chapter/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /deep dive/i })).toHaveAttribute(
+    expect(screen.getByText("Cardiovascular")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Anatomy: Heart" })).toHaveAttribute(
       "href",
-      "/dashboard/topics?topic=cardiovascular&mode=deep"
+      "/anatomy?structure=heart"
     );
-    // The count only appears when cards actually back the topic.
-    expect(screen.getByRole("link", { name: /library \(4\)/i })).toBeInTheDocument();
   });
 });

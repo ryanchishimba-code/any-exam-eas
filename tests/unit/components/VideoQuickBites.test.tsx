@@ -510,7 +510,7 @@ describe("Video Quick Bites", () => {
     expect(screen.getByRole("heading", { name: "You got 1 of 1." })).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Close quiz" }));
     expect(screen.queryByRole("heading", { name: "You got 1 of 1." })).not.toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "Next episode" }));
+    await user.click(screen.getByRole("button", { name: "Next video" }));
     expect(await screen.findByRole("heading", { name: "2. Priority: Who Do You See First?" })).toBeInTheDocument();
     expect(document.getElementById("quick-bites-quiz-panel")).toHaveAttribute("data-state", "closed");
 

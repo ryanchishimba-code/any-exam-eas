@@ -124,7 +124,7 @@ describe("FullExamResults early-end heading", () => {
     ).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Exam complete" })).toBeNull();
     expect(screen.getByText(EARLY_SUMMARY)).toBeInTheDocument();
-    expect(screen.getByText("0 / 2 correct")).toBeInTheDocument();
+    expect(screen.getByText(/Answered 2 of 2 · 0 correct/)).toBeInTheDocument();
     expect(screen.getByText(FULL_EXAM_PRACTICE_DISCLAIMER)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass|licensure result is|guaranteed pass/i);
   });
@@ -183,7 +183,7 @@ describe("FullExamResults early-end heading", () => {
     });
 
     expectEarlySummaryDoesNotShareExamCompleteHeading();
-    expect(screen.getByText("0 / 50 correct")).toBeInTheDocument();
+    expect(screen.getByText(/Answered 50 of 50 · 0 correct/)).toBeInTheDocument();
     expect(screen.getAllByText("0%").length).toBeGreaterThan(0);
     expect(screen.getByText("NCLEX-RN")).toBeInTheDocument();
     expect(screen.getByText(FULL_EXAM_PRACTICE_DISCLAIMER)).toBeInTheDocument();
@@ -247,7 +247,7 @@ describe("FullExamResults early-end heading", () => {
     });
 
     expectEarlySummaryDoesNotShareExamCompleteHeading();
-    expect(screen.getByText("0 / 2 correct")).toBeInTheDocument();
+    expect(screen.getByText(/Answered 2 of 2 · 0 correct/)).toBeInTheDocument();
     expect(screen.getByText(FULL_EXAM_PRACTICE_DISCLAIMER)).toBeInTheDocument();
   });
 
@@ -276,7 +276,7 @@ describe("FullExamResults early-end heading", () => {
     );
     expect(screen.getByRole("heading", { level: 1, name: "Exam complete" })).toBeInTheDocument();
     expect(screen.getByText("88%")).toBeInTheDocument();
-    expect(screen.getByText("80 / 91 correct")).toBeInTheDocument();
+    expect(screen.getByText(/Answered 91 of 91 · 80 correct/)).toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Incomplete simulation" })).toBeNull();
     expect(screen.queryByRole("heading", { name: "You ended the exam early" })).toBeNull();
   });
@@ -303,7 +303,7 @@ describe("FullExamResults early-end heading", () => {
       />
     );
     expect(screen.getByRole("heading", { level: 1, name: "Exam complete" })).toBeInTheDocument();
-    expect(screen.getByText("120 / 150 correct")).toBeInTheDocument();
+    expect(screen.getByText(/Answered 150 of 150 · 120 correct/)).toBeInTheDocument();
   });
 
   it("keeps a true early end when the student stopped before the form was done", () => {

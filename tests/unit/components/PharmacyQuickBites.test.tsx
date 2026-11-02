@@ -92,7 +92,7 @@ describe("Quick Bites: Pharmacy", () => {
       screen.getByRole("button", { name: "Play 1. Anticoagulants: Warfarin vs Heparins vs DOACs" })
     );
     const video = await screen.findByLabelText("Anticoagulants: Warfarin vs Heparins vs DOACs video");
-    expect(video).toHaveAttribute("preload", "none");
+    expect(video).toHaveAttribute("preload", "metadata");
     expect(video).toHaveAttribute(
       "poster",
       "/quick-bites-pharmacy/quick-bites-pharm-ep01-anticoagulants-poster.webp"

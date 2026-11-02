@@ -1,6 +1,7 @@
+import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const requirePremiumPage = vi.fn();
+const resolveStudyGuideAccess = vi.fn();
 const loadPublishedGuideChapter = vi.fn();
 const loadPublishedGuideFirstSlug = vi.fn();
 
@@ -13,7 +14,7 @@ vi.mock("next/navigation", () => ({
 }));
 
 vi.mock("@/lib/require-premium-page", () => ({
-  requirePremiumPage: (...args: unknown[]) => requirePremiumPage(...args),
+  resolveStudyGuideAccess: (...args: unknown[]) => resolveStudyGuideAccess(...args),
 }));
 
 vi.mock("@/lib/nclex-study-guide/load-published", () => ({
@@ -28,23 +29,25 @@ import {
 
 describe("study guide page gate", () => {
   beforeEach(() => {
-    requirePremiumPage.mockReset();
+    resolveStudyGuideAccess.mockReset();
     loadPublishedGuideChapter.mockReset();
     loadPublishedGuideFirstSlug.mockReset();
-    requirePremiumPage.mockRejectedValue(new Error("NEXT_REDIRECT"));
+    resolveStudyGuideAccess.mockResolvedValue({ status: "upsell", signedIn: false });
   });
 
   it("does not load chapter HTML when access is denied", async () => {
-    await expect(
-      StudyGuideChapterScreen({ exam: "nclex", chapterSlug: "cardiac" })
-    ).rejects.toThrow(/NEXT_REDIRECT/);
-    expect(requirePremiumPage).toHaveBeenCalledWith("/nclex/study-guide/cardiac");
+    const view = await StudyGuideChapterScreen({ exam: "nclex", chapterSlug: "cardiac" });
+    render(view);
+    expect(resolveStudyGuideAccess).toHaveBeenCalledWith("/nclex/study-guide/cardiac");
     expect(loadPublishedGuideChapter).not.toHaveBeenCalled();
+    expect(screen.getByRole("heading", { name: /study guide/i })).toBeInTheDocument();
   });
 
   it("does not resolve a chapter slug for a denied index visit", async () => {
-    await expect(StudyGuideIndexScreen({ exam: "aanp-fnp" })).rejects.toThrow(/NEXT_REDIRECT/);
-    expect(requirePremiumPage).toHaveBeenCalledWith("/aanp-fnp/study-guide");
+    const view = await StudyGuideIndexScreen({ exam: "aanp-fnp" });
+    render(view);
+    expect(resolveStudyGuideAccess).toHaveBeenCalledWith("/aanp-fnp/study-guide");
     expect(loadPublishedGuideFirstSlug).not.toHaveBeenCalled();
+    expect(screen.getByText(/reference book/i)).toBeInTheDocument();
   });
 });

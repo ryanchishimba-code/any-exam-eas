@@ -17,6 +17,9 @@ describe("RemediationPanel", () => {
 
     expect(screen.getByRole("heading", { name: "41 open remediations" })).toBeInTheDocument();
     expect(screen.getByText("33 still missed · 8 pending re-proof.")).toBeInTheDocument();
-    expect(screen.getByText(/5 open items have no topic id/)).toBeInTheDocument();
+    expect(screen.getByText("5 open")).toBeInTheDocument();
+    expect(
+      screen.getByText("These items have no topic id. They still count here, and you can review them.")
+    ).toBeInTheDocument();
   });
 });

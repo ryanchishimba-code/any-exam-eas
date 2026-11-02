@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { QuestionBankSetup } from "@/components/study/QuestionBankSetup";
 
@@ -47,7 +46,6 @@ describe("QuestionBankSetup format topic", () => {
     renderSetup("__mixed__");
     expect(screen.queryByText(/Mixed topics is not available/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Pick one topic for this NGN set/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/The number on the card is that pool/i)).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: /NGN/i })).toHaveAttribute("data-format-count", "20");
     expect(screen.queryByRole("button", { name: "Practice all questions" })).not.toBeInTheDocument();
   });
@@ -55,8 +53,8 @@ describe("QuestionBankSetup format topic", () => {
   it("lets mixed topics start a case set the same way", () => {
     renderSetup("__mixed__", "case");
     expect(screen.queryByText(/Mixed topics is not available/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/eligible case items from every topic/i)).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: /Cases/i })).toHaveAttribute("data-format-count", "24");
+    expect(screen.getByRole("radio", { name: /Cases/i })).toHaveTextContent("Case studies");
   });
 
   it("keeps a selected topic on that topic's pool", () => {
@@ -66,41 +64,32 @@ describe("QuestionBankSetup format topic", () => {
     });
     expect(screen.queryByText(/Mixed topics is not available/i)).not.toBeInTheDocument();
     expect(screen.getByText("Management of Care")).toBeInTheDocument();
-    expect(screen.getByText(/eligible NGN items from this topic/i)).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: /NGN/i })).toHaveAttribute("data-format-count", "2");
+    expect(screen.queryByRole("radio", { name: /Cases/i })).not.toBeInTheDocument();
   });
 
-  it("offers standard practice when the board has no case studies", async () => {
-    const onPracticeAllQuestions = vi.fn();
+  it("offers standard practice when the board has no case studies", () => {
     renderSetup("__mixed__", "case", {
       formats: { mcq: 144, ngn: 144, case: 0 },
-      onPracticeAllQuestions,
     });
-    expect(screen.getByText("No case studies yet")).toBeInTheDocument();
-    expect(screen.getByText(/Standard practice is ready now/i)).toBeInTheDocument();
-    const action = screen.getByRole("button", { name: "Practice all questions" });
-    expect(action).toBeEnabled();
-    await userEvent.setup().click(action);
-    expect(onPracticeAllQuestions).toHaveBeenCalledOnce();
+    expect(screen.getByText("No published case items in this pool.")).toBeInTheDocument();
+    expect(screen.queryByRole("radio", { name: /Cases/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /All questions/i })).toBeInTheDocument();
   });
 
-  it("offers mixed topics when one topic has no NGN items and the bank does", async () => {
-    const onPracticeMixedTopics = vi.fn();
+  it("offers mixed topics when one topic has no NGN items and the bank does", () => {
     renderSetup("management-of-care", "ngn", {
       formats: { mcq: 40, ngn: 0, case: 6 },
       boardFormats: { mcq: 5000, ngn: 20, case: 24 },
-      onPracticeMixedTopics,
     });
-    expect(screen.getByText("No NGN items in this topic")).toBeInTheDocument();
-    const action = screen.getByRole("button", { name: "Practice mixed topics" });
-    expect(action).toBeEnabled();
-    await userEvent.setup().click(action);
-    expect(onPracticeMixedTopics).toHaveBeenCalledOnce();
+    expect(screen.getByText("No published NGN items in this pool.")).toBeInTheDocument();
+    expect(screen.queryByRole("radio", { name: /^NGN/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /Cases/i })).toBeInTheDocument();
   });
 
   it("leaves the all-questions path free to use mixed topics", () => {
     renderSetup("__mixed__", "all");
     expect(screen.queryByText(/Pick one topic for this/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/No case studies yet/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/No published case items/i)).not.toBeInTheDocument();
   });
 });
