@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { axe } from "vitest-axe";
 import { useSession } from "next-auth/react";
 import { Hero } from "@/components/Hero";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
 import { sampleMemoryCard } from "../../fixtures/memory-cards";
 
 vi.mock("@/lib/client/returning-user", () => ({

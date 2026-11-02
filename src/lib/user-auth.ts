@@ -23,6 +23,7 @@ import { scheduleSignupEmailVerification } from "@/lib/email-verification";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { redeemFreePassOnTx } from "@/lib/promo/redeem-free-pass";
+import { attributionColumns, type FirstTouchAttribution } from "@/lib/marketing/first-touch";
 
 /** Outer wrap stays light — Prisma $extends already retries; stacking caused pool pile-up. */
 const REGISTER_RETRIES = 2;
@@ -167,7 +168,7 @@ export function resolveSignupEntitlement(plan: string, passCode: string | null |
 
 export async function registerUser(
   input: SignUpInput,
-  options?: { signupSource?: string | null }
+  options?: { signupSource?: string | null; attribution?: FirstTouchAttribution }
 ): Promise<
   SafeUser & { plan: "trial" | "subscribe"; promoCode?: string; passRedeemed?: boolean }
 > {
@@ -242,6 +243,7 @@ export async function registerUser(
                 ) ?? joinPersonName(parsed.firstName, parsed.lastName),
               ...passwordCredentialFields(passwordHash),
               dateOfBirth: dob,
+              ...attributionColumns(options?.attribution),
               subscription: { create: subscriptionData },
             },
           });

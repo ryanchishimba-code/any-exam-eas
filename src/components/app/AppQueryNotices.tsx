@@ -3,6 +3,8 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { StatusMessage } from "@/components/ui/StatusMessage";
+import { VERCEL_FUNNEL_EVENTS, funnelPropsFromAttribution, trackVercelFunnel } from "@/lib/analytics/vercel-funnel";
+import { readClientFirstTouch } from "@/lib/marketing/first-touch-client";
 
 const NOTICE_KEYS = ["checkout", "verified", "error"] as const;
 
@@ -38,6 +40,17 @@ function AppQueryNoticesInner() {
   useEffect(() => {
     if (searchParams.get("checkout") === "success") {
       setNotice({ kind: "checkout" });
+      try {
+        if (!window.sessionStorage.getItem("aee_paid_tracked")) {
+          window.sessionStorage.setItem("aee_paid_tracked", "1");
+          trackVercelFunnel(VERCEL_FUNNEL_EVENTS.PAID, {
+            plan: searchParams.get("welcome") === "trial" ? "trial" : "subscribe",
+            ...funnelPropsFromAttribution(readClientFirstTouch()),
+          });
+        }
+      } catch {
+        trackVercelFunnel(VERCEL_FUNNEL_EVENTS.PAID, { plan: "subscribe" });
+      }
     } else if (searchParams.get("verified") === "1") {
       setNotice({ kind: "verified" });
     } else {

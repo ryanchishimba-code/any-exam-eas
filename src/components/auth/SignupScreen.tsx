@@ -1,7 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
+import {
+  VERCEL_FUNNEL_EVENTS,
+  funnelPropsFromAttribution,
+  trackVercelFunnel,
+} from "@/lib/analytics/vercel-funnel";
+import { mergeFirstTouch } from "@/lib/marketing/first-touch";
+import { readClientFirstTouch } from "@/lib/marketing/first-touch-client";
 import { AuthFocusLayout } from "@/components/auth/AuthFocusLayout";
 import { SignupForm } from "@/components/SignupForm";
 import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
@@ -61,6 +68,21 @@ export function SignupScreen({
 }) {
   const [plan, setPlan] = useState<SignupPlan>(initialPlan === "subscribe" ? "subscribe" : "trial");
   const trial = plan === "trial";
+  const viewed = useRef(false);
+
+  useEffect(() => {
+    if (viewed.current) return;
+    viewed.current = true;
+    const touch = mergeFirstTouch(readClientFirstTouch(), {
+      utmSource,
+      utmMedium,
+      utmCampaign,
+    });
+    trackVercelFunnel(VERCEL_FUNNEL_EVENTS.SIGNUP_VIEW, {
+      plan: trial ? "trial" : "subscribe",
+      ...funnelPropsFromAttribution(touch),
+    });
+  }, [trial, utmCampaign, utmMedium, utmSource]);
 
   useEffect(() => {
     if (!arrivedFromDaily) return;

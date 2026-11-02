@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { isEmailConfigured } from "@/lib/email/config";
+import { isInternalTestEmail } from "@/lib/test-accounts";
 import { sendTrialDay4ReminderEmail } from "@/lib/email/trial-lifecycle-emails";
 import { isTrialDay4ReminderWindow } from "@/lib/trial/trial-status";
 
@@ -61,6 +62,10 @@ export async function runTrialDay4ReminderEmails(
   for (const sub of candidates) {
     const trialEndsAt = sub.trialEndsAt!;
     if (!isTrialDay4ReminderWindow(trialEndsAt, now)) continue;
+    if (isInternalTestEmail(sub.user.email)) {
+      result.skipped += 1;
+      continue;
+    }
 
     const endsKey = trialEndsAt.toISOString();
     const meta = parseMetadata(sub.user.preferences?.metadata);

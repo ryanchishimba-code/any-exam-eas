@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { DeferredPlatformScripts } from "@/components/analytics/DeferredPlatformScripts";
+import { FirstTouchCapture } from "@/components/analytics/FirstTouchCapture";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { ThemeScript } from "@/components/theme/ThemeScript";
@@ -39,6 +40,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <AppProviders>
+          <FirstTouchCapture />
           <SiteShell>{children}</SiteShell>
         </AppProviders>
         <DeferredPlatformScripts />

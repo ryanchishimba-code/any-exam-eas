@@ -10,15 +10,15 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { UsmleStepSheet } from "@/components/edtech/UsmleStepSheet";
 import { ExamSelectionScreen } from "@/components/edtech/ExamSelectionScreen";
 
-const { mockPush, mockRefresh, mockSetExamSlug, mockPersistUsmle, mockPersistExam } = vi.hoisted(
-  () => ({
+const { mockPush, mockRefresh, mockPreferencesRefresh, mockSetExamSlug, mockPersistUsmle, mockPersistExam } =
+  vi.hoisted(() => ({
     mockPush: vi.fn(),
     mockRefresh: vi.fn(),
+    mockPreferencesRefresh: vi.fn(async () => {}),
     mockSetExamSlug: vi.fn(),
     mockPersistUsmle: vi.fn(async () => ({ ok: true, examSlug: "usmle" })),
     mockPersistExam: vi.fn(async () => ({ ok: true, examSlug: "naplex" })),
-  })
-);
+  }));
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/select-exam",
@@ -36,7 +36,7 @@ vi.mock("@/lib/client/use-app-preferences", () => ({
     examSlug: "naplex",
     mpjeStateCode: null,
     loading: false,
-    refresh: vi.fn(),
+    refresh: mockPreferencesRefresh,
     setExamSlug: mockSetExamSlug,
   }),
 }));
@@ -98,6 +98,12 @@ describe("UsmleStepSheet", () => {
 describe("ExamSelectionScreen USMLE switch", () => {
   it("opens the step sheet instead of /select-exam/usmle and lands on the dashboard", async () => {
     const user = userEvent.setup();
+    const assign = vi.fn();
+    const originalLocation = window.location;
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: { ...originalLocation, assign },
+    });
     renderScreen();
 
     await user.click(screen.getByRole("button", { name: /select usmle/i }));
@@ -116,8 +122,14 @@ describe("ExamSelectionScreen USMLE switch", () => {
       expect(mockPersistUsmle).toHaveBeenCalledWith("usmle-step-1");
     });
     await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith("/dashboard");
+      expect(assign).toHaveBeenCalledWith("/dashboard");
     });
-    expect(mockRefresh).toHaveBeenCalled();
+    expect(mockPush).not.toHaveBeenCalled();
+    expect(mockPreferencesRefresh).toHaveBeenCalled();
+    expect(mockRefresh).not.toHaveBeenCalled();
+    Object.defineProperty(window, "location", {
+      configurable: true,
+      value: originalLocation,
+    });
   });
 });

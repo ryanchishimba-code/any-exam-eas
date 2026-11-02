@@ -1,5 +1,6 @@
 "use client";
 
+import { AppleSignInButton } from "@/components/auth/AppleSignInButton";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 
@@ -21,6 +22,10 @@ export function HeroSocialAuth({
       </p>
       <div className="space-y-2.5">
         <GoogleSignInButton callbackUrl={callbackUrl} className="aee-social-btn aee-social-google !justify-center" />
+        <AppleSignInButton
+          callbackUrl={callbackUrl}
+          className="aee-social-btn aee-social-apple !justify-center !border-[#1d1d1f] !bg-[#1d1d1f] !text-white hover:!bg-[#333336]"
+        />
         <LoginModalTrigger
           callbackUrl={callbackUrl}
           className="aee-btn-hero-secondary block w-full text-center !py-3 !text-sm"

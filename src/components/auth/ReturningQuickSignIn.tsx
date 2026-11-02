@@ -4,7 +4,9 @@ import { useSession } from "next-auth/react";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { useReturningUserHint } from "@/hooks/useReturningUserHint";
+import { AppleSignInButton } from "@/components/auth/AppleSignInButton";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
+import { isAppleAuthButtonEnabled, isGoogleAuthButtonEnabled } from "@/lib/auth/oauth-buttons";
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import { maskEmail, saveReturningUserHint, type LoginMethod } from "@/lib/client/returning-user";
 
@@ -33,13 +35,13 @@ export function ReturningQuickSignIn({
 
   const preferred = hint.lastMethod;
   const masked = maskEmail(hint.email);
-  const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
+  const googleEnabled = isGoogleAuthButtonEnabled();
+  const appleEnabled = isAppleAuthButtonEnabled();
+  const useApple = appleEnabled && preferred === "apple";
   const useGoogle =
     googleEnabled &&
-    (preferred === "google" ||
-      preferred === "apple" ||
-      preferred === "magic" ||
-      !preferred);
+    !useApple &&
+    (preferred === "google" || preferred === "magic" || !preferred);
 
   function track(method: LoginMethod) {
     saveReturningUserHint({ email: hint!.email, name: hint!.name, lastMethod: method });
@@ -47,7 +49,19 @@ export function ReturningQuickSignIn({
 
   return (
     <div className={`flex flex-col items-center gap-3 ${className}`}>
-      {useGoogle && googleEnabled ? (
+      {useApple ? (
+        <div className="flex flex-col items-center gap-1.5">
+          <p className="text-xs font-medium text-teal-700">
+            Welcome back — one tap to continue
+          </p>
+          <AppleSignInButton
+            callbackUrl={callbackUrl}
+            highlighted
+            large
+            onClick={() => track("apple")}
+          />
+        </div>
+      ) : useGoogle ? (
         <div className="flex flex-col items-center gap-1.5">
           <p className="text-xs font-medium text-teal-700">
             Welcome back — one tap to continue

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
 import { sampleMemoryCard } from "../../fixtures/memory-cards";
 
 describe("MemoryCardTile", () => {
@@ -9,12 +9,10 @@ describe("MemoryCardTile", () => {
     render(<MemoryCardTile card={sampleMemoryCard} onOpen={vi.fn()} />);
 
     expect(screen.getByText(sampleMemoryCard.title)).toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeInTheDocument();
-    expect(screen.getByText("Tables")).toBeInTheDocument();
-    expect(screen.getByText("Cardiology")).toBeInTheDocument();
-    expect(screen.getByText(sampleMemoryCard.topic)).toBeInTheDocument();
+    expect(screen.getByRole("button")).toHaveTextContent(sampleMemoryCard.title);
+    expect(screen.getByTitle("Tables")).toBeInTheDocument();
+    expect(screen.getByText(/Cardiology · Heart Failure/)).toBeInTheDocument();
     expect(screen.getByText(sampleMemoryCard.teaser)).toBeInTheDocument();
-    expect(screen.getByText(/open card/i)).toBeInTheDocument();
   });
 
   it("calls onOpen when clicked", async () => {

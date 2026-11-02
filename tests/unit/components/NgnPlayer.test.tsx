@@ -53,7 +53,7 @@ describe("NGN case player", () => {
 
   it("hides later chart timepoints until the student reaches them", async () => {
     const user = userEvent.setup();
-    render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" attemptSeed="test" />);
+    render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" attemptSeed="test" showStepNames />);
     await openChart(user);
     expect(screen.queryByText(/2,500 mL lactated Ringer/)).not.toBeInTheDocument();
     await user.click(screen.getByRole("tab", { name: "Orders" }));
@@ -82,32 +82,36 @@ describe("NGN case player", () => {
     expect(tablist.className).not.toContain("overflow-x-auto");
     const labs = screen.getByRole("tab", { name: "Laboratory Results" });
     expect(labs.className).toContain("min-h-11");
-    expect(labs.className).toContain("min-w-11");
+    expect(labs.className).toContain("max-w-full");
+    expect(labs.className).not.toContain("min-w-11");
     expect(labs.className).not.toContain("truncate");
     expect(labs.className).not.toContain("whitespace-nowrap");
     expect(labs).toHaveTextContent("Laboratory Results");
     await user.click(screen.getByRole("button", { name: "Close" }));
     expect(screen.queryByRole("dialog", { name: "Client chart" })).not.toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "38.6 °C" }));
-    expect(screen.getByRole("button", { name: "38.6 °C" })).toHaveAttribute("aria-pressed", "true");
+    const phrase = screen.getByRole("button", { name: "Selectable phrase: 38.6 °C" });
+    await user.click(phrase);
+    expect(phrase).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByText(/Question 1 of/)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Next" }));
-    expect(screen.getByRole("button", { name: /Analyze cues/ })).toHaveAttribute("aria-current", "step");
+    expect(screen.getByText(/Question 2 of/)).toBeInTheDocument();
   });
 
   it("does not allow going back in exam mode", async () => {
     const user = userEvent.setup();
     render(<CaseStudyPlayer caseDoc={caseDoc} mode="exam" attemptSeed="exam" />);
-    const later = screen.getByRole("button", { name: /Analyze cues/ });
-    expect(later).toBeDisabled();
+    expect(screen.queryByRole("button", { name: /Analyze cues|Recognize cues|Evaluate outcomes/ })).toBeNull();
+    expect(screen.getByText(/Question 1 of/)).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Next" }));
-    expect(screen.getByRole("button", { name: /Recognize cues/ })).toBeDisabled();
-    expect(screen.getByRole("button", { name: /Analyze cues/ })).toHaveAttribute("aria-current", "step");
+    expect(screen.getByText("You cannot go back.")).toBeInTheDocument();
+    expect(screen.getByText(/Question 2 of/)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Previous|Back/ })).toBeNull();
   });
 
   it("selects highlight tokens and reveals the rationale", async () => {
     const user = userEvent.setup();
     render(<CaseStudyPlayer caseDoc={caseDoc} mode="review" attemptSeed="rationale" />);
-    const token = screen.getByRole("button", { name: "38.6 °C" });
+    const token = screen.getByRole("button", { name: "Selectable phrase: 38.6 °C" });
     await user.click(token);
     expect(token).toHaveAttribute("aria-pressed", "true");
     await user.click(screen.getByRole("button", { name: "Show rationale" }));

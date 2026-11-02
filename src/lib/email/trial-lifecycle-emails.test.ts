@@ -17,6 +17,9 @@ describe("trial lifecycle email URLs", () => {
     expect(upgradeEmailUrl("trial-ending")).toContain("/checkout?");
     expect(upgradeEmailUrl("trial-ending")).toContain("plan=subscribe");
     expect(upgradeEmailUrl("trial-ending")).toContain("from=email-trial-ending");
+    expect(upgradeEmailUrl("trial-ended")).toContain("/checkout?");
+    expect(upgradeEmailUrl("trial-ended")).toContain("plan=subscribe");
+    expect(upgradeEmailUrl("trial-ended")).toContain("from=email-trial-ended");
   });
 });
 

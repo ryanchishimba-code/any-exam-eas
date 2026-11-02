@@ -1,4 +1,4 @@
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 
 export const sampleMemoryCard: MemoryCard = {
   id: "test-naplex-hf",

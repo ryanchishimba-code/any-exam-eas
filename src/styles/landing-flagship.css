@@ -4075,49 +4075,60 @@ button.aee-flagship-cta {
 
 .aee-qotd-hub__inbox {
   display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
   margin: 1rem auto 0;
   max-width: 40rem;
+  text-align: left;
 }
 
 .aee-qotd-hub__inbox label {
-  flex: 0 1 auto;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.2;
-  white-space: nowrap;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  line-height: 1.3;
   color: var(--color-ink);
 }
 
+.aee-qotd-trial__inbox-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .aee-qotd-hub__inbox input {
-  flex: 1 1 6rem;
+  flex: 1 1 12rem;
   min-width: 0;
-  height: 2.75rem;
+  min-height: 2.75rem;
   border: 1px solid var(--color-border);
   border-radius: 999px;
   background: #fff;
-  padding: 0 0.85rem;
-  font-size: 0.875rem;
+  padding: 0 0.95rem;
+  font-size: 1rem;
   color: var(--color-ink);
 }
 
 .aee-qotd-hub__inbox button {
-  flex: 0 0 auto;
-  height: 2.75rem;
+  flex: 1 1 auto;
+  min-height: 2.75rem;
   border: 0;
   border-radius: 999px;
-  background: var(--color-accent);
-  padding: 0 0.95rem;
-  font-size: 0.875rem;
+  background: var(--color-ink);
+  padding: 0 1rem;
+  font-size: 0.9375rem;
   font-weight: 650;
   color: #fff;
 }
 
 .aee-qotd-hub__inbox button:disabled {
   opacity: 0.7;
+}
+
+.aee-qotd-trial__note {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--color-ink-muted);
 }
 
 .aee-qotd__card {
@@ -4158,10 +4169,12 @@ button.aee-flagship-cta {
 
 .aee-qotd-trial {
   margin-top: 1.5rem;
-  padding: 1.15rem 1.15rem 1.2rem;
-  border: 1px solid var(--color-border);
-  border-radius: 1rem;
-  background: var(--color-surface-elevated);
+  padding: 1.35rem 1.2rem 1.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.96));
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
   color: var(--color-ink);
   text-align: left;
 }
@@ -4177,11 +4190,18 @@ button.aee-flagship-cta {
 
 .aee-qotd-trial__title {
   margin: 0.35rem 0 0;
-  font-size: 1.35rem;
-  font-weight: 750;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  font-size: 1.55rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   color: var(--color-ink);
+}
+
+.aee-qotd-trial .aee-qotd-trial__inbox {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  max-width: none;
 }
 
 .aee-qotd-trial__detail,
@@ -4215,6 +4235,45 @@ button.aee-flagship-cta {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-ink-muted);
+}
+
+.aee-daily-mail {
+  box-sizing: border-box;
+  width: min(28rem, calc(100% - 2rem));
+  margin: 2.5rem auto 4rem;
+  padding: 1.5rem 1.25rem 1.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1.35rem;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+}
+
+.aee-daily-mail h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.aee-daily-mail p {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.aee-daily-mail button {
+  margin-top: 1.1rem;
+  min-height: 2.75rem;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-ink);
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-weight: 650;
+  color: #fff;
 }
 
 .aee-qotd-sticky {

@@ -34,6 +34,10 @@
     {
       "path": "/api/cron/expire-trials",
       "schedule": "30 4 * * *"
+    },
+    {
+      "path": "/api/cron/trial-emails",
+      "schedule": "20 * * * *"
     }
   ],
   "functions": {
@@ -44,6 +48,9 @@
       "maxDuration": 60
     },
     "src/app/api/cron/expire-trials/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/cron/trial-emails/route.ts": {
       "maxDuration": 60
     },
     "src/app/api/cron/sync-question-bank/route.ts": {

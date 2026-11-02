@@ -12,6 +12,12 @@ import { EVENT_TYPES } from "@/lib/analytics/types";
 import { ageAttestationDateIso } from "@/lib/age-attestation";
 import { readSignupUtms } from "@/lib/auth/signup-utms";
 import { signupFromDailyProperties } from "@/lib/marketing/daily-trial";
+import {
+  cleanAttributionValue,
+  mergeFirstTouch,
+  readFirstTouchFromCookieHeader,
+  type FirstTouchAttribution,
+} from "@/lib/marketing/first-touch";
 
 export const runtime = "nodejs";
 
@@ -28,14 +34,20 @@ export async function POST(req: Request) {
     const raw = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
     const text = (key: string) => (typeof raw[key] === "string" ? raw[key] : null);
     const utms = readSignupUtms(raw);
+    const fromBody: FirstTouchAttribution = {
+      ...utms,
+      referrer: cleanAttributionValue(text("referrer"), 300),
+    };
+    const touch = mergeFirstTouch(readFirstTouchFromCookieHeader(req.headers.get("cookie")), fromBody);
     const user = await registerUser(input, {
       signupSource: formatTrialSource({
-        utmSource: utms.utmSource,
-        utmMedium: utms.utmMedium,
-        utmCampaign: utms.utmCampaign,
+        utmSource: touch.utmSource,
+        utmMedium: touch.utmMedium,
+        utmCampaign: touch.utmCampaign,
         utmContent: text("utm_content") ?? text("utmContent"),
-        referrer: text("referrer") ?? req.headers.get("referer"),
+        referrer: touch.referrer ?? req.headers.get("referer"),
       }),
+      attribution: touch,
     });
 
     void import("@/lib/legal/consent-record").then(({ recordUserLegalConsent }) =>

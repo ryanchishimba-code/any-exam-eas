@@ -5,8 +5,8 @@ import {
   sendAnnualRenewalReminderEmail,
   sendNextBillingReminderEmail,
 } from "@/lib/email/billing-emails";
-import { sendTrialEndingUpgradeEmail } from "@/lib/email/trial-lifecycle-emails";
 import { runTrialDay4ReminderEmails } from "@/lib/billing/trial-day4-reminder";
+import { runTrialLifecycleEmails } from "@/lib/billing/trial-lifecycle-mail";
 import { getSubscriptionBillingDetails } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
 
@@ -17,6 +17,7 @@ const ANNUAL_REMINDER_MAX_DAYS = 31;
 
 export type BillingReminderRunResult = {
   trialRemindersSent: number;
+  trialEndedEmailsSent: number;
   trialDay4RemindersSent: number;
   billingRemindersSent: number;
   annualRenewalRemindersSent: number;
@@ -40,6 +41,7 @@ export async function runBillingReminderEmails(
 ): Promise<BillingReminderRunResult> {
   const result: BillingReminderRunResult = {
     trialRemindersSent: 0,
+    trialEndedEmailsSent: 0,
     trialDay4RemindersSent: 0,
     billingRemindersSent: 0,
     annualRenewalRemindersSent: 0,
@@ -50,66 +52,10 @@ export async function runBillingReminderEmails(
   result.trialDay4RemindersSent = day4.sent;
   result.errors.push(...day4.errors);
 
-  const trialCandidates = await prisma.subscription.findMany({
-    where: {
-      status: "trialing",
-      trialEndsAt: { not: null },
-    },
-    include: {
-      user: { select: { email: true, name: true } },
-    },
-  });
-
-  for (const sub of trialCandidates) {
-    const trialEndsAt = sub.trialEndsAt!;
-    if (!isWithin24HourReminderWindow(trialEndsAt, now)) continue;
-    if (
-      sub.trialReminderForEndsAt &&
-      sub.trialReminderForEndsAt.getTime() === trialEndsAt.getTime()
-    ) {
-      continue;
-    }
-
-    let interval = parseBillingInterval(sub.planInterval);
-    const tier = resolveStoredTier(sub.planTier);
-    let amountUsd = intervalTotalUsd(tier, interval);
-    // A stored Stripe id is not a live trial. Only Stripe status `trialing`
-    // gets the legacy "payment method at checkout" sentence.
-    let legacyStripeTrial = false;
-
-    if (sub.stripeSubscriptionId && isStripeConfigured()) {
-      try {
-        const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
-        if (billing?.onTrial === true) legacyStripeTrial = true;
-        if (billing?.nextRecurringInterval) {
-          interval = parseBillingInterval(billing.nextRecurringInterval);
-        }
-        if (billing?.nextRecurringUsd) amountUsd = billing.nextRecurringUsd;
-      } catch (err) {
-        const message = err instanceof Error ? err.message : String(err);
-        result.errors.push(`trial Stripe lookup ${sub.userId}: ${message}`);
-      }
-    }
-
-    const sent = await sendTrialEndingUpgradeEmail({
-      to: sub.user.email,
-      name: sub.user.name,
-      trialEndsAt,
-      legacyStripeTrial,
-      planInterval: interval,
-      amountUsd,
-    });
-
-    if (sent.ok) {
-      await prisma.subscription.update({
-        where: { id: sub.id },
-        data: { trialReminderForEndsAt: trialEndsAt },
-      });
-      result.trialRemindersSent += 1;
-    } else {
-      result.errors.push(`trial reminder ${sub.userId}: ${sent.reason ?? "failed"}`);
-    }
-  }
+  const lifecycle = await runTrialLifecycleEmails(now);
+  result.trialRemindersSent = lifecycle.remindersSent;
+  result.trialEndedEmailsSent = lifecycle.endedSent;
+  result.errors.push(...lifecycle.errors);
 
   const billingCandidates = await prisma.subscription.findMany({
     where: {
