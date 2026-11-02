@@ -41,7 +41,9 @@ const VIEWPORTS = [
 
 function trialHref(path: string): string {
   if (path === "/") return TRIAL;
-  return `${TRIAL}&exam=${path.slice(1)}`;
+  const exam = path.slice(1);
+  // Same shape as landingTrialHrefForExam. `board` keeps signup on that exam.
+  return `${TRIAL}&exam=${exam}&board=${exam}`;
 }
 
 type Shot = {

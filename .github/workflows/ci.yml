@@ -30,7 +30,33 @@ jobs:
         run: npm run test:qa:questions
 
       - name: Install SVG tools
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          if command -v xmllint >/dev/null 2>&1; then
+            xmllint --version
+            exit 0
+          fi
+          # apt-get waits forever on a lock or a dead mirror. That step sat for
+          # six hours on this branch and cancelled the job before unit tests.
+          sudo systemctl stop apt-daily.service apt-daily-upgrade.service unattended-upgrades.service >/dev/null 2>&1 || true
+          export DEBIAN_FRONTEND=noninteractive
+          APT_OPTS=(
+            -o Acquire::Retries=3
+            -o Acquire::http::Timeout=20
+            -o Acquire::https::Timeout=20
+            -o DPkg::Lock::Timeout=60
+          )
+          for attempt in 1 2 3; do
+            if sudo apt-get "${APT_OPTS[@]}" update && sudo apt-get "${APT_OPTS[@]}" install -y --no-install-recommends libxml2-utils; then
+              command -v xmllint >/dev/null
+              exit 0
+            fi
+            echo "libxml2-utils install attempt ${attempt} failed; retrying"
+            sleep $((attempt * 5))
+          done
+          echo "libxml2-utils install failed"
+          exit 1
 
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
