@@ -65,10 +65,18 @@ describe("inventory surfaces do not keep an hour-old total", () => {
   const scripts = ["scripts/retire-near-duplicates.ts", "scripts/remediate-text-flags.ts"];
 
   it("serves public count pages from a 5-minute ISR and keeps the counts API dynamic", () => {
+    const home = "src/app/(marketing)/(with-flagship)/page.tsx";
     for (const file of isrHubs) {
       const source = readFileSync(path.join(process.cwd(), file), "utf8");
       expect(source, file).toContain("export const revalidate = 300");
-      expect(source, file).toContain("ACTIVE_INVENTORY_STAMP_TTL_SECONDS");
+      // Home keeps the five-minute page ISR, but its counts come from
+      // loadPublicQuestionCounts (served bank, at most one hour), not the stamp.
+      if (file === home) {
+        expect(source, file).toContain("loadPublicQuestionCounts");
+        expect(source, file).toContain("cached at most one hour");
+      } else {
+        expect(source, file).toContain("ACTIVE_INVENTORY_STAMP_TTL_SECONDS");
+      }
       expect(source, file).toContain("dynamic: false");
       expect(source, file).not.toContain('dynamic = "force-dynamic"');
     }
