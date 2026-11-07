@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { StudentAnalyticsDashboard } from "@/components/analytics/StudentAnalyticsDashboard";
 import { DashboardGraphicHero } from "@/components/dashboard/DashboardGraphicHero";
@@ -43,7 +44,7 @@ const plan = buildExamDayPlan({
 });
 
 describe("practice goals surfaces", () => {
-  it("shows the same headline and score on the ring, proof, and analytics", () => {
+  it("shows the same headline and score on the ring, proof, and analytics", async () => {
     render(
       <>
         <DashboardGraphicHero
@@ -92,5 +93,17 @@ describe("practice goals surfaces", () => {
     expect(plan.readiness.headline).toMatch(/^\d of 3 practice goals met$/);
     expect(document.body.textContent).toContain("A practice measure, not a pass prediction.");
     expect(document.body.textContent).not.toMatch(/you will pass|Practice progress index|national pass/i);
+
+    const toggles = screen.getAllByRole("button", { name: /practice goals met/ });
+    expect(toggles.length).toBeGreaterThanOrEqual(2);
+    for (const toggle of toggles) {
+      expect(toggle).toHaveAttribute("aria-expanded", "false");
+    }
+    toggles[0]!.focus();
+    await userEvent.keyboard(" ");
+    expect(toggles[0]).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getAllByText("Outline coverage").length).toBeGreaterThan(0);
+    await userEvent.keyboard("{Escape}");
+    expect(toggles[0]).toHaveAttribute("aria-expanded", "false");
   });
 });

@@ -1,16 +1,11 @@
 import type { CoverageDomain, CoverageHeatmap } from "@/lib/learning/coverage-heatmap";
 import type {
   ExamDayReadiness,
-  ReadinessCriterionStatus,
   ReadinessDomainBar,
 } from "@/lib/learning/exam-day-plan";
-import { ReadinessRing } from "@/components/study/ReadinessRing";
+import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
 import { dbUi } from "@/lib/study/dashboard-ui";
-
-function statusClass(status: ReadinessCriterionStatus): string {
-  if (status === "met") return dbUi.statusPillAccent;
-  return dbUi.statusPill;
-}
+import { cn } from "@/lib/utils";
 
 type CoverageBar = {
   id: string;
@@ -103,61 +98,16 @@ export function ReadinessProofPanel({
 
   return (
     <section
-      aria-labelledby="readiness-proof-heading"
       data-tour="readiness"
-      className={embedded ? "space-y-4" : `${dbUi.heroSurface} space-y-4`}
+      className={embedded ? "" : cn(dbUi.surface, "px-3.5 py-3")}
     >
-      <div data-practice-goals="proof" data-practice-headline={readiness.headline} data-practice-score={readiness.score ?? 0}>
-        <p className={dbUi.eyebrow}>Practice progress</p>
-        <div className="mt-3 flex flex-col items-center gap-4 sm:flex-row sm:items-center">
-          <ReadinessRing
-            score={readiness.score ?? 0}
-            size={112}
-            label="Practice"
-            ariaLabel={`${readiness.headline}. ${readiness.score ?? 0} practice progress. ${readiness.disclaimer}`}
-          />
-          <div className="min-w-0 text-center sm:text-left">
-            <h3
-              id="readiness-proof-heading"
-              className="text-[22px] font-semibold leading-tight tracking-[-0.03em] text-[var(--color-ink)]"
-            >
-              {readiness.headline}
-            </h3>
-            <p className="mt-2 text-[15px] leading-snug text-[var(--color-ink)]">{readiness.disclaimer}</p>
-            {readiness.sampleDetail ? (
-              <p className="mt-1 text-[15px] leading-snug text-[var(--color-ink-muted)]">{readiness.sampleDetail}</p>
-            ) : null}
-          </div>
-        </div>
-      </div>
-
-      {scoredCriteria.length > 0 ? (
-        <ul className="space-y-2">
-          {scoredCriteria.map((row) => (
-            <li
-              key={row.id}
-              className="rounded-2xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/50 px-3.5 py-3"
-            >
-              <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <p className="min-w-0 text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
-                  {row.label}
-                  <span className="ml-2 font-medium tabular-nums text-[var(--color-ink-muted)]">
-                    {row.valueLabel}
-                  </span>
-                </p>
-                <span className={`${statusClass(row.status)} max-w-full shrink-0 text-left sm:text-right`}>
-                  {row.badge}
-                </span>
-              </div>
-              {row.nextStep ? (
-                <p className="mt-2 text-[15px] leading-snug text-[var(--color-ink)]">{row.nextStep}</p>
-              ) : null}
-              <p className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)]">{row.detail}</p>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-
+      <PracticeGoalsMenu
+        surface="proof"
+        headline={readiness.headline}
+        score={readiness.score ?? 0}
+        disclaimer={readiness.disclaimer}
+        criteria={scoredCriteria}
+      >
       {showLeadReason && readiness.visible && readiness.leadReason ? (
         <p className="text-[14px] font-medium leading-relaxed tracking-[-0.01em] text-[var(--color-accent)]">
           {readiness.leadReason}
@@ -213,6 +163,7 @@ export function ReadinessProofPanel({
       {examSim ? (
         <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{examSim.detail}</p>
       ) : null}
+      </PracticeGoalsMenu>
     </section>
   );
 }

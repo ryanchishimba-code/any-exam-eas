@@ -149,6 +149,8 @@ export type ReadinessCriterion = {
   badge: string;
   /** What to do next when this goal is not met. */
   nextStep?: string;
+  /** 0–100 fill for the goal row. */
+  progressPct?: number;
 };
 
 export type ReadinessDomainBar = {
@@ -823,6 +825,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     status: (goal.met ? "met" : "below_target") as ReadinessCriterion["status"],
     badge: goal.badge,
     nextStep: goal.nextStep,
+    progressPct: goal.progressPct,
   }));
   if (examSim) criteria.push(examSimCriterion(examSim));
 

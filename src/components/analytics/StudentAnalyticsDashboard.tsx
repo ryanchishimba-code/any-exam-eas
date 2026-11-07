@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BarChart3, Layers } from "lucide-react";
-import { ReadinessRing } from "@/components/study/ReadinessRing";
+import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { ExamDayReadiness } from "@/lib/learning/exam-day-plan";
 import { PRACTICE_MEASURE_DISCLAIMER } from "@/lib/learning/practice-measure";
@@ -170,38 +170,14 @@ export function StudentAnalyticsDashboard({
         />
       ) : null}
 
-      <section
-        className={cn(
-          studyUi.panel,
-          studyUi.panelPad,
-          "flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8"
-        )}
-      >
-        <ReadinessRing
+      <section className={cn(studyUi.panel, "px-3.5 py-3")}>
+        <PracticeGoalsMenu
+          surface="analytics"
+          headline={practiceHeadline}
           score={practiceScore}
-          label="Practice"
-          ariaLabel={`${practiceHeadline}. ${practiceScore} practice progress. ${PRACTICE_MEASURE_DISCLAIMER}`}
+          disclaimer={PRACTICE_MEASURE_DISCLAIMER}
+          criteria={practice?.criteria ?? []}
         />
-        <div
-          className="min-w-0 flex-1 space-y-2"
-          data-practice-goals="analytics"
-          data-practice-headline={practiceHeadline}
-          data-practice-score={practiceScore}
-        >
-          <p className={studyUi.eyebrow}>{PRACTICE_PROGRESS_LABEL}</p>
-          <p className="text-[22px] font-semibold leading-tight tracking-[-0.03em] text-[var(--color-ink)]">
-            {practiceHeadline}
-          </p>
-          <p className="text-[15px] leading-snug text-[var(--color-ink)]">{PRACTICE_MEASURE_DISCLAIMER}</p>
-          <p className={studyUi.sectionHint}>
-            {dashboard.headline.overallAccuracy != null
-              ? `${dashboard.headline.overallAccuracy}% accuracy across ${dashboard.headline.totalAttempts} attempts`
-              : `${dashboard.headline.totalAttempts} attempts logged`}
-            {dashboard.headline.studyStreakDays > 0
-              ? ` · ${dashboard.headline.studyStreakDays}-day streak`
-              : ""}
-          </p>
-        </div>
       </section>
 
       <PhoneFold summary="Practice analytics">
