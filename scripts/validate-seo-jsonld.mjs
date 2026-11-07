@@ -1,6 +1,6 @@
 /**
  * Validates SEO JSON-LD builders for Rich Results eligibility.
- * Run: node scripts/validate-seo-jsonld.mjs
+ * Run: npx tsx scripts/validate-seo-jsonld.mjs
  */
 import { createRequire } from "module";
 
@@ -42,10 +42,10 @@ async function main() {
       console.log(`\n=== ${label} ===`);
       console.log("Types:", found.join(", "));
       const required = {
-        "/pricing": ["BreadcrumbList", "Product", "FAQPage"],
+        "/pricing": ["BreadcrumbList", "Course", "FAQPage"],
         "/nclex": ["BreadcrumbList", "Course", "FAQPage", "HowTo"],
         "/resources/multi-exam-board-prep-2026": ["BreadcrumbList", "Article", "FAQPage"],
-        "/ (home)": ["Organization", "WebSite", "SoftwareApplication", "Product", "HowTo"],
+        "/ (home)": ["Organization", "WebSite", "SoftwareApplication", "Course", "HowTo"],
       };
       for (const t of required[label] ?? []) {
         if (!found.includes(t)) {
@@ -53,6 +53,20 @@ async function main() {
           ok = false;
         } else {
           console.log(`  ✓ ${t}`);
+        }
+      }
+      if (found.includes("Product") || found.includes("ProductGroup")) {
+        console.error("  PRODUCT RICH RESULT STILL PRESENT");
+        ok = false;
+      }
+      const { findCourseSchemaIssues } = await import("../src/lib/seo/course-jsonld.ts");
+      if (found.includes("Course")) {
+        const issues = findCourseSchemaIssues(data);
+        if (issues.length > 0) {
+          for (const issue of issues) console.error(`  COURSE: ${issue}`);
+          ok = false;
+        } else {
+          console.log("  ✓ Course name, description, provider, url, Subscription offer, Online instance");
         }
       }
     }

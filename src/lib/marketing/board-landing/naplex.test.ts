@@ -84,7 +84,7 @@ describe("NAPLEX landing model", () => {
     expect(model.stats[0]?.value).toBe("80");
     const types = (model.jsonLd["@graph"] as { "@type": string }[]).map((node) => node["@type"]);
     expect(types).toEqual(
-      expect.arrayContaining(["Organization", "BreadcrumbList", "Product", "FAQPage", "VideoObject"])
+      expect.arrayContaining(["Organization", "BreadcrumbList", "Course", "FAQPage", "VideoObject"])
     );
     const video = (model.jsonLd["@graph"] as { "@type": string; embedUrl?: string }[]).find(
       (node) => node["@type"] === "VideoObject"

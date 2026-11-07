@@ -3,7 +3,7 @@ import path from "node:path";
 import { readImageSize } from "@/lib/nclex-study-guide/image-dimensions";
 import { markdownToSimpleHtml } from "@/lib/nclex-study-guide/markdown";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
-import { SITE_NAME } from "@/lib/site";
+import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
 
 export const PANCE_STUDY_GUIDE_PATH = "/pance-study-guide";
 
@@ -103,8 +103,8 @@ function buildJsonLd(h1: string, faqs: PanceFaq[]): Record<string, unknown> {
         description: PANCE_STUDY_GUIDE_DESCRIPTION,
         dateModified: "2026-10-24",
         mainEntityOfPage: pageUrl,
-        author: { "@type": "Organization", name: SITE_NAME },
-        publisher: { "@type": "Organization", name: SITE_NAME },
+        author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
+        publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
       },
       {
         "@type": "FAQPage",
