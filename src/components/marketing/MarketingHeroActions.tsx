@@ -1,9 +1,5 @@
 import { LandingCta } from "@/components/landing/LandingCta";
-import {
-  HERO_TRIAL_CTA_LABEL,
-  SEE_QUESTIONS_CTA_LABEL,
-  heroTrialPriceLine,
-} from "@/lib/marketing/home-cta";
+import { HERO_TRIAL_CTA_LABEL, SEE_QUESTIONS_CTA_LABEL } from "@/lib/marketing/home-cta";
 
 type MarketingHeroActionsProps = {
   trialHref: string;
@@ -31,7 +27,6 @@ export function MarketingHeroActions({
         <LandingCta href={trialHref} ctaName={ctaName} location={ctaLocation}>
           {HERO_TRIAL_CTA_LABEL}
         </LandingCta>
-        <p className="bl-hero-price">{heroTrialPriceLine()}</p>
         {trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
       </div>
       {showSeeQuestions ? (

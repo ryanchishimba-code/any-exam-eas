@@ -72,9 +72,7 @@ test.describe("Signup form", () => {
       "autocomplete",
       "new-password"
     );
-    await expect(
-      page.getByText("5-day free trial · no payment method required · then $27.99/mo")
-    ).toBeVisible();
+    await expect(page.getByText(/100 questions, one full-length exam/i)).toBeVisible();
     await expect(
       page.getByText(
         "Your trial includes 100 practice questions across all six boards, plus Roadmap and Deep Dives."
@@ -188,12 +186,8 @@ test.describe("Signup form", () => {
     await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "trial");
 
     await page.goto("/signup?plan=trial&interval=yearly&tier=pro", { waitUntil: "domcontentloaded" });
-    await page.getByRole("button", { name: "Skip trial — subscribe to Pro" }).click();
-    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "subscribe");
-    await expect(page.locator("form")).toHaveAttribute(
-      "data-checkout-path",
-      "/checkout?plan=subscribe&interval=yearly&tier=pro"
-    );
+    await expect(page.getByRole("button", { name: "Skip trial — subscribe to Pro" })).toHaveCount(0);
+    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "trial");
     await expect(page.getByRole("link", { name: "Log in" })).toHaveAttribute("href", "/login");
 
     await page.route("**/api/register", (route) =>

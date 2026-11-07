@@ -84,7 +84,7 @@ describe("NCLEX landing model", () => {
     expect(model.prices[0]?.label).toBe("AnyExamEasy Pro");
     expect(model.proofPoints).toEqual([]);
     expect(model.heroChips).toHaveLength(3);
-    expect(model.heroChips?.[0]?.text).toMatch(/\$27\.99\/mo · 5-day free trial/);
+    expect(model.heroChips?.[0]?.text).toBe("5-day free trial, no card required");
     expect(model.heroChips?.[1]?.text).toMatch(/Detailed rationales/i);
     expect(nclexHeroChips(model.heroOffer!)[2]?.text).toMatch(/NGN case studies/i);
     expect(model.features.map((feature) => feature.id)).toEqual(

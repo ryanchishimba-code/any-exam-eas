@@ -703,15 +703,13 @@ export function SignupForm({
           </>
         )}
       </p>
-      <p className="mt-1 text-center">
-        <button
-          type="button"
-          className="aee-auth-text-btn"
-          onClick={() => onPlanChange(plan === "trial" ? "subscribe" : "trial")}
-        >
-          {plan === "trial" ? "Skip trial — subscribe to Pro" : "Start with the free trial instead"}
-        </button>
-      </p>
+      {plan === "subscribe" ? (
+        <p className="mt-1 text-center">
+          <button type="button" className="aee-auth-text-btn" onClick={() => onPlanChange("trial")}>
+            Start with the free trial instead
+          </button>
+        </p>
+      ) : null}
     </form>
   );
 }

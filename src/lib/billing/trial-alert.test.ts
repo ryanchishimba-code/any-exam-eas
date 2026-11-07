@@ -25,6 +25,7 @@ vi.mock("@/lib/email/resend-client", () => ({
 
 vi.mock("@/lib/trial-email-triggers", () => ({
   triggerWelcomeTrialEmail: vi.fn().mockResolvedValue({ ok: true }),
+  scheduleWelcomeTrialEmail: vi.fn(),
 }));
 
 import { prisma } from "@/lib/prisma";

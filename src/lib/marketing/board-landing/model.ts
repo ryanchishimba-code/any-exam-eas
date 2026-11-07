@@ -481,7 +481,7 @@ export function nclexHeroChips(offer: NonNullable<BoardLandingModel["heroOffer"]
   return [
     {
       id: "price",
-      text: `${offer.proPrice} · ${TRIAL_DAYS}-day free trial`,
+      text: `${TRIAL_DAYS}-day free trial, no card required`,
     },
     {
       id: "explained",

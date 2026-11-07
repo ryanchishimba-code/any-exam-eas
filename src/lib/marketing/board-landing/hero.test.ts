@@ -12,13 +12,13 @@ describe("boardLandingHeroHeadline", () => {
     const headline = boardLandingHeroHeadline("PANCE", units);
     expect(headline).toEqual({
       h1Lead: "PANCE Practice Questions",
-      h1Accent: "1,200 questions · explained · $27.99/mo",
+      h1Accent: "1,200 questions · explained",
     });
   });
 
   it("keeps the SEO H1 when the bank lookup failed", () => {
     const headline = boardLandingHeroHeadline("USMLE", null);
     expect(headline.h1Lead).toBe("USMLE Practice Questions");
-    expect(headline.h1Accent).toBe("Explained rationales · $27.99/mo");
+    expect(headline.h1Accent).toBe("Explained rationales");
   });
 });

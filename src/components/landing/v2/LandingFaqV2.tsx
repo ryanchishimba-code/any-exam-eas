@@ -12,8 +12,7 @@ import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
-import { formatMonthlyPrice, formatSignupTrialScope } from "@/lib/site";
+import { formatAfterTrialPriceLine, formatSignupTrialScope } from "@/lib/site";
 
 const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail}.`;
 
@@ -26,7 +25,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   {
     home: true,
     q: "How much does it cost?",
-    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves ${PRO_ANNUAL_SAVINGS_PERCENT}% versus monthly. Roadmap, Deep Dive, and Full Exam stay on the same plan.`,
+    a: `After the free trial, Pro is ${formatAfterTrialPriceLine()}.`,
   },
   {
     home: true,

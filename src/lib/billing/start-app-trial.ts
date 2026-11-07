@@ -55,9 +55,8 @@ export async function startCardFreeTrialForUser(params: {
   }
 
   await recordTrialUsed(params.email, params.userId);
-  void import("@/lib/trial-email-triggers").then((m) =>
-    m.triggerWelcomeTrialEmail(params.userId)
-  );
+  const { scheduleWelcomeTrialEmail } = await import("@/lib/trial-email-triggers");
+  scheduleWelcomeTrialEmail(params.userId);
   scheduleTrialStartAlert({
     userId: params.userId,
     source: params.signupSource ?? null,

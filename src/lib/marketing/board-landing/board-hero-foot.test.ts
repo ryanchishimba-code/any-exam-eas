@@ -45,13 +45,13 @@ describe("board hero foot", () => {
     expect(storiesBelowHero(stories, null)).toHaveLength(2);
   });
 
-  it("builds a factual chip from live count and price, with no invented review", () => {
+  it("builds a factual chip from the live count, with no price and no invented review", () => {
     expect(
       boardHeroProofFacts({ liveQuestions: "1,240", proPrice: "$27.99/mo" })
-    ).toEqual(["1,240 questions", "Cited rationales", "$27.99/mo"]);
+    ).toEqual(["1,240 questions", "Cited rationales", "5-day free trial, no card required"]);
     expect(boardHeroProofFacts({ liveQuestions: null, proPrice: "$27.99/mo" })).toEqual([
       "Cited rationales",
-      "$27.99/mo",
+      "5-day free trial, no card required",
     ]);
     expect(boardHeroProofFacts(null).join(" ")).not.toMatch(/\bpass\b/i);
   });

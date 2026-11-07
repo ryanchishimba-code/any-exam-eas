@@ -4,15 +4,15 @@ import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLand
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardPainIcons } from "@/components/marketing/board-landing/BoardPainIcons";
 import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/PracticeReviewPassFlow";
-import { BoardPriceCompare } from "@/components/marketing/board-landing/BoardPriceCompare";
 import { NaplexAceDonutSection } from "@/components/marketing/board-landing/NaplexAceDonutSection";
+import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
 import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatStrip";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NaplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
-import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
+import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
 
 export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderModel }) {
   const donut = model.naplexDonut;
@@ -62,6 +62,8 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
         }
       />
 
+      <WhyAnyExamEasy board="naplex" trialHref={model.trialHref} />
+
       {model.features.length > 0 ? (
         <div className="bl-band">
           <BoardFeatureGrid cards={model.features} tight visual />
@@ -92,7 +94,6 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
 
       <div className="bl-band">
         <PracticeReviewPassFlow />
-        <BoardPriceCompare chart={model.priceChart} />
       </div>
 
       <section className="bl-final bl-band bl-band--final" aria-labelledby="final-heading">
@@ -100,7 +101,6 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
         <LandingCta href={model.trialHref} ctaName={model.finalCtaName} location={model.finalCtaLocation}>
           {HERO_TRIAL_CTA_LABEL}
         </LandingCta>
-        <p className="bl-hero-price bl-final__price">{heroTrialPriceLine()}</p>
       </section>
 
       <div className="bl-band bl-band--alt bl-band--faq">

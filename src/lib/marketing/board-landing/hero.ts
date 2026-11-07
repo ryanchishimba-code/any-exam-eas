@@ -14,13 +14,12 @@ export function boardLandingHeroHeadline(
   boardLabel: string,
   units: BoardQuestionUnits | null
 ): { h1Lead: string; h1Accent: string } {
-  const price = formatMonthlyPrice("pro");
   const h1Lead = boardLandingH1(boardLabel);
   if (units && servedQuestionCount(units) > 0) {
     const count = formatExactQuestionCount(servedQuestionCount(units));
-    return { h1Lead, h1Accent: `${count} questions · explained · ${price}/mo` };
+    return { h1Lead, h1Accent: `${count} questions · explained` };
   }
-  return { h1Lead, h1Accent: `Explained rationales · ${price}/mo` };
+  return { h1Lead, h1Accent: "Explained rationales" };
 }
 
 export function boardLandingTrustPills(): string[] {
@@ -50,7 +49,7 @@ export function boardHeroChips(
   return [
     {
       id: "price",
-      text: `${offer.proPrice} · ${TRIAL_DAYS}-day free trial`,
+      text: `${TRIAL_DAYS}-day free trial, no card required`,
     },
     { id: "middle", text: middle },
     { id: "third", text: third },

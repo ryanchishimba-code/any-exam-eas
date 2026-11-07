@@ -89,8 +89,14 @@ export function requestClientIp(req: Request): string | null {
   return req.headers.get("x-real-ip");
 }
 
-/** Home hero H1. No outcome promise. */
-export const HOME_PRACTICE_HEADLINE = `Six board exams. One plan at ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo.`;
+/** Home hero H1. No price and no outcome promise. Price lives on pricing, FAQ, and checkout. */
+export const HOME_PRACTICE_HEADLINE = "Six board exams. One plan.";
+
+/** Homepage hero only. Attribution is the role, not a name. */
+export const HOME_FOUNDER_QUOTE =
+  "Studying for boards is hard enough. We exist to make it clearer, simpler and within reach for every student.";
+
+export const HOME_FOUNDER_ATTRIBUTION = "— Founder";
 
 /**
  * Home hero subline under the H1. Uses the same floored total as metadata when provided.

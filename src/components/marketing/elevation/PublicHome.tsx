@@ -17,12 +17,16 @@ import {
   homeStickyCtaLabel,
   homeTrialCloseHeading,
 } from "@/lib/marketing/home-cta";
-import { formatHomeHeroSubline, HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
+import {
+  formatHomeHeroSubline,
+  HOME_FOUNDER_ATTRIBUTION,
+  HOME_FOUNDER_QUOTE,
+  HOME_PRACTICE_HEADLINE,
+} from "@/lib/marketing/legal-copy";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 import { ROUTES } from "@/lib/routes";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { PrepPriceBarChart } from "@/components/marketing/PrepPriceBarChart";
-import { buildHomePrepPriceBarChartData } from "@/lib/marketing/prep-price-bar-chart";
+import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
 import { MarketingPhotoHero, MarketingPhotoHeroCopy } from "@/components/marketing/MarketingPhotoHero";
 
 /** First-screen board tiles. Labels match the hero; hrefs are the public board pages. */
@@ -50,7 +54,6 @@ export function PublicHome({
   heroQuestionCountLabel?: string | null;
 }) {
   const stickyLabel = homeStickyCtaLabel();
-  const homePriceChart = buildHomePrepPriceBarChartData();
   const heroSubline = formatHomeHeroSubline(heroQuestionCountLabel);
   const headlineBreak = HOME_PRACTICE_HEADLINE.lastIndexOf(". ");
   const headlineLead =
@@ -101,8 +104,18 @@ export function PublicHome({
               className="mkt-photo-hero__actions home-hero__actions"
             />
           }
+          after={
+            <figure className="home-hero__founder">
+              <blockquote>
+                <p>{HOME_FOUNDER_QUOTE}</p>
+              </blockquote>
+              <figcaption>{HOME_FOUNDER_ATTRIBUTION}</figcaption>
+            </figure>
+          }
         />
       </MarketingPhotoHero>
+
+      <WhyAnyExamEasy trialHref={LANDING_TRIAL_HREF} />
 
       {featureCards.length > 0 ? (
         <div className="home-features board-landing">
@@ -119,10 +132,6 @@ export function PublicHome({
       <HomeQuickBites />
 
       <HomeFreeQuizSection />
-
-      <div className="home-section home-rise board-landing">
-        <PrepPriceBarChart data={homePriceChart} />
-      </div>
 
       <section
         id="faq"

@@ -30,6 +30,8 @@ type MarketingPhotoHeroCopyProps = {
   /** Optional block between the subline and the actions. Home uses board chips. */
   extra?: ReactNode;
   actions: ReactNode;
+  /** Sits after the actions so a note does not push the primary button down. */
+  after?: ReactNode;
 };
 
 /** Shared headline, subline, and action stack. Photo and words are the only page differences. */
@@ -39,6 +41,7 @@ export function MarketingPhotoHeroCopy({
   subline,
   extra,
   actions,
+  after,
 }: MarketingPhotoHeroCopyProps) {
   return (
     <div className="mkt-photo-hero__copy">
@@ -46,6 +49,7 @@ export function MarketingPhotoHeroCopy({
       <p className="mkt-photo-hero__sub">{subline}</p>
       {extra}
       {actions}
+      {after}
     </div>
   );
 }

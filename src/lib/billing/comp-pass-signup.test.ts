@@ -20,6 +20,7 @@ vi.mock("@/lib/trial-eligibility", () => ({
 }));
 vi.mock("@/lib/trial-email-triggers", () => ({
   triggerWelcomeTrialEmail: vi.fn(),
+  scheduleWelcomeTrialEmail: vi.fn(),
 }));
 vi.mock("@/lib/billing/trial-alert", () => ({
   scheduleTrialStartAlert: vi.fn(),

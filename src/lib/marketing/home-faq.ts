@@ -1,6 +1,6 @@
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { HOME_GUIDELINE_LINE } from "@/lib/marketing/home-compare";
-import { formatLandingTrialScopeSentence, formatMonthlyPrice } from "@/lib/site";
+import { formatAfterTrialPriceLine, formatLandingTrialScopeSentence } from "@/lib/site";
 
 /**
  * Short homepage FAQ. Longer marketing copy lives here instead of on the page body.
@@ -20,7 +20,7 @@ export const HOME_FAQ = [
   },
   {
     q: "What does Pro cost after the trial?",
-    a: `${formatMonthlyPrice("pro")}/mo for every board. Cancel anytime in Settings to stop the next charge.`,
+    a: `After the free trial, Pro is ${formatAfterTrialPriceLine()}.`,
   },
   {
     q: "Can I cancel anytime?",

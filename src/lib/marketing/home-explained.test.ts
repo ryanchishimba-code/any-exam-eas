@@ -37,7 +37,10 @@ describe("homepage faq and price placement", () => {
     );
     expect(source).not.toMatch(/formatMonthlyPrice\(/);
     expect(source).toContain("HOME_PRACTICE_HEADLINE");
-    expect(HOME_PRACTICE_HEADLINE).toMatch(/\$27\.99\/mo/);
+    expect(HOME_PRACTICE_HEADLINE).not.toMatch(/\$27\.99/);
+    expect(source).toContain("HOME_FOUNDER_QUOTE");
+    expect(source).toContain("HOME_FOUNDER_ATTRIBUTION");
+    expect(source).not.toMatch(/Ryan Chishimba/);
     expect(source).not.toMatch(/24\/7|support hours|Quality exam prep shouldn't/);
     expect(source).toContain("formatHomeHeroSubline");
     expect(source).toContain("HOME_PRACTICE_HEADLINE");

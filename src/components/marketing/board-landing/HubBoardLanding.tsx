@@ -4,8 +4,8 @@ import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLand
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardLiveCountBarChart } from "@/components/marketing/board-landing/BoardLiveCountBarChart";
 import { BoardPainIcons } from "@/components/marketing/board-landing/BoardPainIcons";
-import { BoardPriceCompare } from "@/components/marketing/board-landing/BoardPriceCompare";
 import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatStrip";
+import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
 import { HubBoardDonutSection } from "@/components/marketing/board-landing/HubBoardDonutSection";
 import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/PracticeReviewPassFlow";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
@@ -15,7 +15,7 @@ import { FreePracticeLink } from "@/components/marketing/free-practice/FreePract
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
-import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
+import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
 
 export function HubBoardLanding({
   model,
@@ -75,6 +75,8 @@ export function HubBoardLanding({
         }
       />
 
+      <WhyAnyExamEasy board={freeQuizBoard} trialHref={model.trialHref} />
+
       {model.features.length > 0 ? (
         <div className="bl-band">
           <BoardFeatureGrid cards={model.features} tight visual />
@@ -100,16 +102,11 @@ export function HubBoardLanding({
         </div>
       ) : null}
 
-      <div className="bl-band">
-        <BoardPriceCompare chart={model.priceChart} />
-      </div>
-
       <section className="bl-final bl-band bl-band--final" aria-labelledby="final-heading">
         <h2 id="final-heading">{model.finalHeading}</h2>
         <LandingCta href={model.trialHref} ctaName={model.finalCtaName} location={model.finalCtaLocation}>
           {HERO_TRIAL_CTA_LABEL}
         </LandingCta>
-        <p className="bl-hero-price bl-final__price">{heroTrialPriceLine()}</p>
       </section>
 
       <div className="bl-band bl-band--alt bl-band--faq">

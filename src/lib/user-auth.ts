@@ -19,6 +19,7 @@ import { joinPersonName, normalizeStoredName } from "@/lib/display-name";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
+import { scheduleWelcomeTrialEmail } from "@/lib/trial-email-triggers";
 import { scheduleSignupEmailVerification } from "@/lib/email-verification";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
@@ -270,9 +271,7 @@ export async function registerUser(
     }
 
     if (startsAppTrial) {
-      void import("@/lib/trial-email-triggers").then((m) =>
-        m.triggerWelcomeTrialEmail(user.id)
-      );
+      scheduleWelcomeTrialEmail(user.id);
       scheduleTrialStartAlert({
         userId: user.id,
         email: parsed.email,
