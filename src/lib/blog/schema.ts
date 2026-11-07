@@ -1,5 +1,5 @@
 import { absoluteUrl } from "@/lib/seo";
-import { SITE_NAME } from "@/lib/site";
+import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
 
 export type BlogFaqPair = { question: string; answer: string };
 
@@ -65,7 +65,7 @@ export function blogArticleJsonLd(input: {
   authorName: string | null;
   imageUrl: string | null;
 }): Record<string, unknown> {
-  const authorName = input.authorName?.trim() || SITE_NAME;
+  const authorName = input.authorName?.trim() || SCHEMA_BRAND_NAME;
   const brand = /any\s*exam/i.test(authorName);
   return {
     "@context": "https://schema.org",
@@ -76,11 +76,11 @@ export function blogArticleJsonLd(input: {
     datePublished: input.publishedAt ?? undefined,
     dateModified: input.updatedAt ?? input.publishedAt ?? undefined,
     author: brand
-      ? { "@type": "Organization", name: SITE_NAME, url: absoluteUrl("/") }
+      ? { "@type": "Organization", name: SCHEMA_BRAND_NAME, url: absoluteUrl("/") }
       : { "@type": "Person", name: authorName },
     publisher: {
       "@type": "Organization",
-      name: SITE_NAME,
+      name: SCHEMA_BRAND_NAME,
       url: absoluteUrl("/"),
     },
     image: input.imageUrl ? [input.imageUrl] : undefined,
@@ -108,7 +108,7 @@ export function blogIndexJsonLd(
     "@type": "CollectionPage",
     name: "Board exam prep blog",
     url: absoluteUrl("/blog"),
-    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: absoluteUrl("/") },
+    isPartOf: { "@type": "WebSite", name: SCHEMA_BRAND_NAME, url: absoluteUrl("/") },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: posts.map((post, index) => ({

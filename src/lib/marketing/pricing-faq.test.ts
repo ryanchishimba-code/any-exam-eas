@@ -24,11 +24,17 @@ describe("pricing offer math and schema", () => {
   it("publishes monthly and annual offers plus the visible FAQ", () => {
     const data = buildPricingJsonLd();
     const graph = data["@graph"] as Array<Record<string, unknown>>;
-    const product = graph.find((node) => node["@type"] === "Product");
+    const course = graph.find((node) => node["@type"] === "Course");
     const faq = graph.find((node) => node["@type"] === "FAQPage");
-    const offers = product?.offers as Array<Record<string, unknown>>;
+    const offers = course?.offers as Array<Record<string, unknown>>;
+    expect(course?.name).toBe("AnyExamEasy Pro — All 6 Board Exams");
     expect(offers.map((offer) => offer.price)).toEqual(["27.99", "235.12"]);
     expect(offers.map((offer) => offer.priceCurrency)).toEqual(["USD", "USD"]);
+    expect(offers.map((offer) => offer.category)).toEqual(["Subscription", "Subscription"]);
+    expect(offers.map((offer) => offer.name)).toEqual([
+      "AnyExamEasy Pro monthly",
+      "AnyExamEasy Pro annual",
+    ]);
     expect(JSON.stringify(data)).not.toMatch(/883-6375|2148836375|telephone/);
 
     const questions = (faq?.mainEntity as Array<{ name: string; acceptedAnswer: { text: string } }>).map(

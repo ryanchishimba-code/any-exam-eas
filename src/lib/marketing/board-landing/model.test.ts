@@ -117,7 +117,7 @@ describe("NCLEX landing model", () => {
     expect(model.faqs.map((faq) => faq.question).join(" ")).toMatch(/how many|Next Gen|cost|trial|rationales|reviews/i);
     const types = (model.jsonLd["@graph"] as { "@type": string }[]).map((node) => node["@type"]);
     expect(types).toEqual(
-      expect.arrayContaining(["Organization", "BreadcrumbList", "Product", "FAQPage", "VideoObject"])
+      expect.arrayContaining(["Organization", "BreadcrumbList", "Course", "FAQPage", "VideoObject"])
     );
     expect(model.sample?.stem.length).toBeGreaterThan(40);
     expect(model.sample?.options.some((option) => option.correct && option.rationale)).toBe(true);

@@ -62,6 +62,7 @@ export function absoluteUrl(path: string): string {
 }
 
 import { SEO_KEYWORD_CLUSTERS, seoPlatformPitch } from "@/lib/seo/seo-copy";
+import { SCHEMA_BRAND_NAME, buildCourseJsonLd } from "@/lib/seo/course-jsonld";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { scrubPublicFormatCopy } from "@/lib/marketing/public-format-copy";
 
@@ -212,7 +213,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
         "@type": "WebSite",
         "@id": `${url}/#website`,
         url,
-        name: SITE_NAME,
+        name: SCHEMA_BRAND_NAME,
         publisher: { "@id": `${url}/#organization` },
         inLanguage: "en-US",
         potentialAction: {
@@ -226,7 +227,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
       },
       {
         "@type": "SoftwareApplication",
-        name: SITE_NAME,
+        name: SCHEMA_BRAND_NAME,
         applicationCategory: "EducationalApplication",
         operatingSystem: "Web",
         offers: {
@@ -238,14 +239,13 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
         },
         description: seoPlatformPitch(totalQuestionsLabel),
       },
-      {
-        "@type": "Product",
-        name: `${SITE_NAME} Pro — Multi-Exam Board Prep`,
+      buildCourseJsonLd({
+        name: `${SCHEMA_BRAND_NAME} Pro — Multi-Exam Board Prep`,
         description: seoPlatformPitch(totalQuestionsLabel),
+        url,
+        providerUrl: url,
         image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
-        brand: { "@type": "Brand", name: SITE_NAME },
         offers: {
-          "@type": "Offer",
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
@@ -253,7 +253,7 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
           priceValidUntil: `${new Date().getFullYear()}-12-31`,
           description: formatPricingCheckoutTrialOffer(),
         },
-      },
+      }),
       {
         "@type": "HowTo",
         name: "How to study for NCLEX, USMLE, or NAPLEX with AnyExamEasy",

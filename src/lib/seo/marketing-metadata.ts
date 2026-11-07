@@ -36,6 +36,7 @@ import {
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { ABOUT_FOUNDER } from "@/lib/marketing/about-copy";
 import { CLINICAL_REVIEWERS } from "@/lib/marketing/company";
+import { SCHEMA_BRAND_NAME, buildCourseJsonLd } from "@/lib/seo/course-jsonld";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { publicExamSeo } from "@/lib/marketing/public-format-copy";
 
@@ -253,22 +254,20 @@ export function buildExamJsonLd(key: ExamSeoKey, formats?: FormatCounts | null) 
           { "@type": "ListItem", position: 2, name: config.displayName, item: url },
         ],
       },
-      {
-        "@type": "Course",
-        name: `${config.displayName} Board Exam Prep`,
+      buildCourseJsonLd({
+        name: `${SCHEMA_BRAND_NAME} ${config.displayName} Board Prep`,
         description: config.metaDescription,
         url,
-        provider: { "@type": "Organization", name: LEGAL_ENTITY.companyName, url: site },
+        providerUrl: site,
         educationalLevel: "Professional certification preparation",
         inLanguage: "en-US",
         offers: {
-          "@type": "Offer",
           price: TIER_MONTHLY_USD.pro.toFixed(2),
           priceCurrency: "USD",
           description: formatPricingCheckoutTrialOffer(),
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
         },
-      },
+      }),
       {
         "@type": "FAQPage",
         "@id": `${url}#faq`,
@@ -374,18 +373,16 @@ export function buildPricingJsonLd(totalLabel?: string) {
           { "@type": "ListItem", position: 2, name: "Pricing", item: url },
         ],
       },
-      {
-        "@type": "Product",
-        name: `${SITE_NAME} Pro — All 6 Board Exams`,
+      buildCourseJsonLd({
+        name: `${SCHEMA_BRAND_NAME} Pro — All 6 Board Exams`,
         description: seoPlatformPitch(totalLabel),
-        image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
-        brand: { "@type": "Brand", name: SITE_NAME },
         url,
+        providerUrl: getSiteUrl(),
+        image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
         offers: (["monthly", "yearly"] as const).map((interval) => {
           const plan = getBillingPlanTier("pro", interval);
           return {
-            "@type": "Offer" as const,
-            name: interval === "monthly" ? `${SITE_NAME} Pro monthly` : `${SITE_NAME} Pro annual`,
+            name: interval === "monthly" ? `${SCHEMA_BRAND_NAME} Pro monthly` : `${SCHEMA_BRAND_NAME} Pro annual`,
             price: plan.totalUsd.toFixed(2),
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
@@ -404,7 +401,7 @@ export function buildPricingJsonLd(totalLabel?: string) {
             },
           };
         }),
-      },
+      }),
       {
         "@type": "FAQPage",
         mainEntity: pricingFaqItems().map((item) => ({
@@ -451,9 +448,9 @@ export function buildAboutJsonLd() {
         "@type": "AboutPage",
         "@id": `${url}#webpage`,
         url,
-        name: ABOUT_TITLE,
+        name: ABOUT_TITLE.replaceAll("Any Exam Easy", SCHEMA_BRAND_NAME),
         description: ABOUT_DESCRIPTION,
-        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: site },
+        isPartOf: { "@type": "WebSite", name: SCHEMA_BRAND_NAME, url: site },
         about: { "@id": organizationId },
         mainEntity: { "@id": organizationId },
         mentions: people.map((person) => ({ "@id": person["@id"] })),
