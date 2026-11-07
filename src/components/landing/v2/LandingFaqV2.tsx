@@ -44,7 +44,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
+    a: "Yes. Cancel a paid plan anytime in Settings. That stops the next charge. A free trial has no card on file and ends on its own; you are not charged unless you subscribe. Paid charges are non-refundable except where the law requires a refund.",
   },
   {
     q: "Why not just buy a single-exam question bank for the one board I'm taking?",
