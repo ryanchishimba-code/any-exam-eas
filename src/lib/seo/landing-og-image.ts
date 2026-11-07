@@ -12,7 +12,7 @@ export const LANDING_OG_HEIGHT = 630;
  * Bump when the card art changes. iMessage and Facebook cache the image URL,
  * so a new query value makes the next scrape fetch the new file.
  */
-export const LANDING_OG_VERSION = "1";
+export const LANDING_OG_VERSION = "2";
 
 export const LANDING_OG_IDS = [
   "home",

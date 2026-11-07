@@ -224,7 +224,7 @@ export function nclexMetaTitle(): string {
 
 export function nclexMetaDescription(): string {
   return enforceMetaDescription(
-    `NCLEX-RN practice questions and a Next Gen NCLEX qbank with NGN case studies. Try a free practice question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
+    "NCLEX-RN practice questions that match the current test plan, with Next Gen NCLEX case studies, explanations for every choice, and a readiness score.",
     "/nclex"
   );
 }

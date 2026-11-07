@@ -78,7 +78,7 @@ export function naplexMetaTitle(): string {
 
 export function naplexMetaDescription(): string {
   return enforceMetaDescription(
-    `NAPLEX practice questions and pharmacy calculations in one qbank. Try a free practice question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial. Cancel anytime.`,
+    "NAPLEX practice questions for the calculations and the drugs. Pharmacy calculations, drug vignettes, flashcards, and explanations that show the work.",
     "/naplex"
   );
 }

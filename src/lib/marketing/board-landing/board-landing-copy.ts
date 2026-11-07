@@ -1,14 +1,24 @@
-import { TRIAL_DAYS } from "@/lib/billing-config";
-import { formatMonthlyPrice } from "@/lib/site";
+import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
+import type { BoardSlug } from "@/lib/marketing/board-landing/board-theme";
 import { getExamSeoConfig, type ExamSeoKey } from "@/lib/seo/exam-config";
 
 /** Visible final band heading (matches primary CTA tone). */
 export const BOARD_LANDING_FINAL_HEADING = "Start free trial.";
 
-/** SEO title for board hubs — truthful trial, fits 60-char budget for every board label. */
+const META_TITLE_SLUG: Record<string, BoardSlug> = {
+  "NCLEX-RN": "nclex",
+  NAPLEX: "naplex",
+  USMLE: "usmle",
+  PANCE: "pance",
+  "AANP FNP": "aanp-fnp",
+  "NPTE-PT": "npte-pt",
+};
+
+/** SEO title for board hubs. Same words as the page H1, with no price. */
 export function boardLandingMetaTitle(boardLabel: string): string {
-  const price = formatMonthlyPrice("pro");
-  return `${boardLabel} Practice Questions + ${TRIAL_DAYS}-Day Free Trial | ${price}/mo`;
+  const slug = META_TITLE_SLUG[boardLabel];
+  if (!slug) return `${boardLabel} Practice Questions`;
+  return boardHeroMarketingCopy(slug).headline;
 }
 
 /** Breadcrumb / kicker board name on `/nclex`, `/npte-pt`, etc. */

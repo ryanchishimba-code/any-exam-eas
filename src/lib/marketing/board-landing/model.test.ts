@@ -31,7 +31,7 @@ describe("NCLEX landing model", () => {
     expect(description.length).toBeLessThanOrEqual(SEO_DESC_MAX);
     expect(description).toMatch(/NCLEX-RN practice questions/i);
     expect(description).toMatch(/Next Gen NCLEX/i);
-    expect(description).toMatch(/\$27\.99/);
+    expect(description).not.toMatch(/\$|one plan/i);
   });
 
   it("uses live counts and hides item types at zero", () => {

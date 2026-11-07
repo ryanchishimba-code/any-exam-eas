@@ -44,8 +44,8 @@ describe("NAPLEX landing model", () => {
     expect(title.length).toBeLessThanOrEqual(SEO_TITLE_MAX);
     expect(description.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
     expect(description.length).toBeLessThanOrEqual(SEO_DESC_MAX);
-    expect(title).toMatch(/NAPLEX practice questions/i);
-    expect(description).toMatch(/\$27\.99/);
+    expect(title).toMatch(/NAPLEX questions/i);
+    expect(description).not.toMatch(/\$|one plan/i);
   });
 
   it("lists only live pharmacy item types and hides zeros", () => {

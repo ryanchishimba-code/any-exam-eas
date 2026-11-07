@@ -41,12 +41,12 @@ describe("landing share images", () => {
 
     const titles = [
       "NCLEX, NAPLEX, PANCE & USMLE Practice Questions",
-      "NCLEX-RN Practice Questions + 5-Day Free Trial | $27.99/mo",
-      "NAPLEX Practice Questions + 5-Day Free Trial | $27.99/mo",
-      "USMLE Practice Questions + 5-Day Free Trial | $27.99/mo",
-      "PANCE Practice Questions + 5-Day Free Trial | $27.99/mo",
-      "AANP FNP Practice Questions + 5-Day Free Trial | $27.99/mo",
-      "NPTE-PT Practice Questions + 5-Day Free Trial | $27.99/mo",
+      "NCLEX-RN questions that match the current test plan.",
+      "NAPLEX questions for the calculations and the drugs.",
+      "USMLE vignettes for Step 1, Step 2 CK, and Step 3.",
+      "PANCE vignettes that show where the reasoning slips.",
+      "AANP FNP vignettes across the lifespan, explained.",
+      "NPTE-PT questions that explain the clinical why.",
     ];
     const urls = pages.map(([, meta]) => imageUrl(meta));
     expect(new Set(urls).size).toBe(pages.length);
