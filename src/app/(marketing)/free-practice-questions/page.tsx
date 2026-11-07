@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { TrialStartLink } from "@/components/marketing/TrialStartLink";
 import {
   buildFreePracticeJsonLd,
   FREE_PRACTICE_BOARDS,
@@ -79,10 +80,10 @@ function Mark({ name }: { name: "book" | "arrow" | "check" }) {
 
 function TrialLink() {
   return (
-    <Link className="fp-cta" href={FREE_PRACTICE_TRIAL_HREF}>
+    <TrialStartLink className="fp-cta" href={FREE_PRACTICE_TRIAL_HREF}>
       {FREE_PRACTICE_CTA_LABEL}
       <Mark name="arrow" />
-    </Link>
+    </TrialStartLink>
   );
 }
 

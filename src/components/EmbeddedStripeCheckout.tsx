@@ -5,7 +5,6 @@ import { useEffect, useMemo, useState } from "react";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 import { CheckoutReview } from "@/components/checkout/CheckoutReview";
 import { CheckoutStepIndicator } from "@/components/checkout/CheckoutStepIndicator";
-import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { loadCheckoutDiscount } from "@/lib/client/checkout-discount";
 import type { BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
@@ -192,12 +191,6 @@ export function EmbeddedStripeCheckout() {
         onContinue={handleContinueToPayment}
         continueBusy={upgradeBusy}
       />
-      <div className="mx-auto mt-6 max-w-lg space-y-2">
-        <PaymentMethodBadges className="justify-center" size="sm" />
-        <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-          Card, Apple Pay, or Google Pay — wallets show when your device supports them.
-        </p>
-      </div>
     </div>
   );
 }

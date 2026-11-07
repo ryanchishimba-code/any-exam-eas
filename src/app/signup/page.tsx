@@ -4,8 +4,12 @@ import { SignupScreen } from "@/components/auth/SignupScreen";
 import { parseBoardSlug } from "@/lib/auth/board-intent";
 import { isDailySignupArrival } from "@/lib/marketing/daily-trial";
 import { getCachedSession } from "@/lib/auth/session";
-import { resolveSignupIntent, signedInSignupRedirect } from "@/lib/auth/signup-intent";
+import { resolveSignedInSignup, resolveSignupIntent } from "@/lib/auth/signup-intent";
+import { startCardFreeTrialForUser } from "@/lib/billing/start-app-trial";
+import { formatTrialSource } from "@/lib/billing/trial-alert-content";
 import { assignBoardIfUnset } from "@/lib/edtech/exam-preference";
+import { getSubscriptionAccess } from "@/lib/subscription-access";
+import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { SITE_NAME } from "@/lib/site";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
@@ -60,7 +64,44 @@ export default async function SignupPage({
         );
       }
     }
-    redirect(signedInSignupRedirect(params));
+
+    let accessStatus: string | null = null;
+    let trialAvailable = false;
+    if (session.user.email) {
+      const [access, consumed] = await Promise.all([
+        getSubscriptionAccess(session.user.id),
+        hasConsumedTrial(session.user.email),
+      ]);
+      accessStatus = access.status;
+      trialAvailable = !consumed;
+    }
+
+    const decision = resolveSignedInSignup({
+      plan: params.plan,
+      interval: params.interval,
+      tier: params.tier,
+      promo: params.promo,
+      exam: params.exam ?? params.board,
+      accessStatus,
+      trialAvailable,
+    });
+
+    if (decision.action === "start-trial" && session.user.email) {
+      const started = await startCardFreeTrialForUser({
+        userId: session.user.id,
+        email: session.user.email,
+        tier: params.tier,
+        interval: params.interval,
+        signupSource: formatTrialSource({
+          utmSource: params.utm_source,
+          utmMedium: params.utm_medium,
+          utmCampaign: params.utm_campaign,
+        }),
+      });
+      redirect(started.started ? decision.href : "/dashboard");
+    }
+
+    redirect(decision.href);
   }
 
   const intent = resolveSignupIntent(params);

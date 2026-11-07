@@ -31,7 +31,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   {
     home: true,
     q: "Is there a free trial? Do I need a card?",
-    a: `Yes. ${formatSignupTrialScope()} No payment method required at signup. Upgrade anytime for unlimited questions, Deep Dive modules, and advanced analytics.`,
+    a: `Yes. ${formatSignupTrialScope()} No payment method required at signup. Upgrade anytime for unlimited questions and advanced analytics.`,
   },
   {
     q: "How is this different from typical single-exam prep?",

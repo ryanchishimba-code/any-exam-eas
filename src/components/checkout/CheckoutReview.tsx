@@ -204,7 +204,7 @@ export function CheckoutReview({
       <CancelAnytimeNote hidden={isUpgrade} />
       <PaymentMethodBadges className="justify-center" size="sm" />
       <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-        Secured by Stripe
+        Card, Apple Pay, or Google Pay — wallets show when your device supports them.
       </p>
     </div>
   );

@@ -191,7 +191,7 @@ export function formatTrialPlanDetail(): string {
 }
 
 export function formatTrialCheckoutDescription(): string {
-  return `${TRIAL_DAYS}-day free trial on your chosen plan. Add payment below — ${formatTrialTodayPrice()} due today unless intro pricing applies. Your plan is not charged until the trial ends. ${BILLING_POLICY_SHORT}`;
+  return `${formatPricingCheckoutTrialOffer()}. Upgrade when you want unlimited access.`;
 }
 
 export const TRIAL_CARD_DISCLOSURE = TRIAL_PAYMENT_DISCLOSURE;

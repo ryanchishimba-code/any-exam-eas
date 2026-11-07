@@ -5,7 +5,6 @@ import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { CheckoutStartBeacon } from "@/components/analytics/CheckoutStartBeacon";
 import { PageShell } from "@/components/PageShell";
 import {
-  paidSubscribeHrefFromCheckoutQuery,
   resolveCheckoutEntry,
   signupHrefFromCheckoutQuery,
 } from "@/lib/billing/card-free-checkout";
@@ -60,9 +59,10 @@ export default async function CheckoutPage({
     });
 
     if (decision.kind === "signup") redirect(decision.href);
-    if (decision.kind === "paid-subscribe") redirect(decision.href);
     if (decision.kind === "update-payment") redirect(decision.href);
-    if (decision.kind === "dashboard") redirect(ROUTES.dashboard);
+    if (decision.kind === "dashboard" || decision.kind === "paid-subscribe") {
+      redirect(ROUTES.dashboard);
+    }
     if (decision.kind === "start-app-trial" && session?.user?.id && session.user.email) {
       const started = await startCardFreeTrialForUser({
         userId: session.user.id,
@@ -77,7 +77,7 @@ export default async function CheckoutPage({
           referrer: query.referrer,
         }),
       });
-      redirect(started.started ? ROUTES.dashboard : paidSubscribeHrefFromCheckoutQuery(query));
+      redirect(started.started ? `${ROUTES.dashboard}?welcome=trial` : ROUTES.dashboard);
     }
     redirect(signupHrefFromCheckoutQuery(query));
   }

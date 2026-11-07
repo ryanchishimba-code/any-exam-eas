@@ -82,7 +82,8 @@ export function paidSubscribeHrefFromCheckoutQuery(query: CheckoutQuery): string
 
 /**
  * `plan=subscribe` stays on paid checkout. Every other checkout URL, including
- * a missing plan, `plan=trial`, and `reactivate=1`, is a card-free trial route.
+ * a missing plan, `plan=trial`, and `reactivate=1`, is a card-free trial route
+ * and never becomes a charge due today.
  */
 export function resolveCheckoutEntry(input: {
   plan: string | null | undefined;
@@ -102,15 +103,12 @@ export function resolveCheckoutEntry(input: {
     return { kind: "update-payment", href: "/settings?billing=past_due" };
   }
 
-  if (input.accessStatus === "active") {
+  if (input.accessStatus === "active" || input.accessStatus === "trialing") {
     return { kind: "dashboard" };
   }
 
-  if (input.accessStatus === "trialing") {
-    if (input.trialAvailable) return { kind: "dashboard" };
-    return { kind: "paid-subscribe", href: paidSubscribeHrefFromCheckoutQuery(query) };
-  }
-
   if (input.trialAvailable) return { kind: "start-app-trial" };
-  return { kind: "paid-subscribe", href: paidSubscribeHrefFromCheckoutQuery(query) };
+  // A used or ineligible trial stays in the app. Paid checkout is only
+  // `plan=subscribe`, never a rewritten trial link.
+  return { kind: "dashboard" };
 }

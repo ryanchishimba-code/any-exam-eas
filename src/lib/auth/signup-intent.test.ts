@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  resolveSignedInSignup,
   resolveSignupIntent,
   signedInSignupRedirect,
   signupStepStatus,
@@ -76,11 +77,55 @@ describe("signup query intent", () => {
     );
   });
 
-  it("sends a signed-in pricing visit to checkout and a bare visit to the dashboard", () => {
+  it("sends a signed-in trial visit to the dashboard and a subscribe visit to paid checkout", () => {
     expect(signedInSignupRedirect({})).toBe("/dashboard");
     expect(
       signedInSignupRedirect({ plan: "trial", interval: "yearly", tier: "pro" })
-    ).toBe("/checkout?plan=trial&interval=yearly&tier=pro");
+    ).toBe("/dashboard");
+    expect(signedInSignupRedirect({ plan: "trial" })).not.toContain("/checkout");
+    expect(
+      signedInSignupRedirect({ plan: "subscribe", interval: "yearly", tier: "pro", promo: "SAVE" })
+    ).toBe("/checkout?plan=subscribe&interval=yearly&tier=pro&promo=SAVE");
+  });
+
+  it("starts a card-free trial for an eligible signed-in visitor and never opens checkout", () => {
+    expect(
+      resolveSignedInSignup({
+        plan: "trial",
+        interval: "monthly",
+        tier: "pro",
+        accessStatus: "none",
+        trialAvailable: true,
+      })
+    ).toEqual({ action: "start-trial", href: "/dashboard?welcome=trial" });
+
+    expect(
+      resolveSignedInSignup({
+        plan: "trial",
+        accessStatus: "inactive",
+        trialAvailable: true,
+      }).action
+    ).toBe("start-trial");
+
+    for (const accessStatus of ["active", "trialing", "trial_expired", "canceled"]) {
+      const decision = resolveSignedInSignup({
+        plan: "trial",
+        interval: "monthly",
+        tier: "pro",
+        accessStatus,
+        trialAvailable: accessStatus === "active" || accessStatus === "trialing",
+      });
+      expect(decision.action, accessStatus).not.toBe("checkout");
+      expect(decision.href, accessStatus).not.toContain("/checkout");
+    }
+
+    expect(
+      resolveSignedInSignup({
+        plan: "trial",
+        accessStatus: "inactive",
+        trialAvailable: false,
+      })
+    ).toEqual({ action: "dashboard", href: "/dashboard" });
   });
 
   it("names only the step that is on screen", () => {
