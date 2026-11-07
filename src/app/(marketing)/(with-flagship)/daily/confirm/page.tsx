@@ -21,12 +21,12 @@ export default async function DailyConfirmPage({
     <main className="aee-daily-mail">
       <h1>{done === "1" ? "Email confirmed" : done === "0" ? "Link not valid" : "Confirm your email"}</h1>
       {done === "1" ? (
-        <p>This address can receive the daily question. You can unsubscribe from any of those emails.</p>
+        <p>This address is confirmed. The daily question stays on the site. We do not email one.</p>
       ) : done === "0" ? (
         <p>That confirmation link is missing or no longer valid. Request a new one from a daily question page.</p>
       ) : token ? (
         <>
-          <p>Confirm if you want the daily question at this address. Nothing is sent until you do.</p>
+          <p>Confirm this address. We do not email a question each day.</p>
           <form action={confirmDailyLeadAction}>
             <input type="hidden" name="token" value={token} />
             <button type="submit">Confirm email</button>

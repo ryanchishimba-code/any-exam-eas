@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  buildMidTrialStudyNudge,
   buildTrialEndingBillingNote,
   dashboardEmailUrl,
+  trialEndingContinueLine,
   upgradeEmailUrl,
 } from "@/lib/email/trial-lifecycle-emails";
 
@@ -20,6 +22,31 @@ describe("trial lifecycle email URLs", () => {
     expect(upgradeEmailUrl("trial-ended")).toContain("/checkout?");
     expect(upgradeEmailUrl("trial-ended")).toContain("plan=subscribe");
     expect(upgradeEmailUrl("trial-ended")).toContain("from=email-trial-ended");
+  });
+});
+
+describe("trial ending continue line", () => {
+  it("does not tell a card-free trial to cancel", () => {
+    expect(trialEndingContinueLine(false)).not.toMatch(/cancel/i);
+    expect(trialEndingContinueLine()).toContain("did not ask for a card");
+    expect(trialEndingContinueLine(true)).toContain("cancel in Settings");
+  });
+});
+
+describe("mid-trial study nudge", () => {
+  it("uses one title for the subject and the heading, and names the board", () => {
+    const message = buildMidTrialStudyNudge({
+      name: "Jordan",
+      examName: "NCLEX",
+      startUrl: "https://www.anyexameasy.com/question-bank?field=nursing&mode=bank&count=10",
+    });
+    expect(message.subject).toBe("Start 10 NCLEX questions");
+    expect(message.html).toContain(">Start 10 NCLEX questions<");
+    expect(message.text).toContain("have not answered a question yet");
+    expect(message.text).toContain("About 2 to 3 days");
+    expect(message.text).not.toMatch(/two days left/i);
+    expect(message.text).not.toMatch(/upgrade/i);
+    expect(message.text).toContain("does not guarantee a score");
   });
 });
 

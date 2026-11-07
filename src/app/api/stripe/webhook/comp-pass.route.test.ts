@@ -66,6 +66,8 @@ vi.mock("@/lib/stripe", async () => {
 vi.mock("@/lib/email/billing-emails", () => ({
   sendPaymentFailedEmail: vi.fn(async () => ({ ok: true })),
   sendSubscriptionActiveEmail: vi.fn(async () => ({ ok: true })),
+  sendCancellationEmail: vi.fn(async () => ({ ok: true })),
+  sendRenewalReceiptEmail: vi.fn(async () => ({ ok: true })),
 }));
 
 vi.mock("@/lib/analytics/events", () => ({ trackEvent: vi.fn() }));

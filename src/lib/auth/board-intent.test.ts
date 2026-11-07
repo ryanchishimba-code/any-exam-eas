@@ -32,7 +32,7 @@ describe("signup from a board page", () => {
     expect(
       shouldPersistIncomingBoard(null, board, "capture")
     ).toEqual({ persist: true, examSlug: board });
-    expect(signupTrialDestination(board)).toBe("/dashboard?welcome=trial&verify=1");
+    expect(signupTrialDestination(board)).toBe("/dashboard?welcome=trial");
   });
 
   it("reads the board from a landing, study guide, quiz, or pricing-with-board URL", () => {
@@ -140,7 +140,7 @@ describe("generic signup", () => {
     expect(landingTrialHrefForExam()).toBe(LANDING_TRIAL_HREF);
     expect(landingTrialHrefForExam()).not.toContain("board=");
     expect(resolveSignupIntent({}).exam).toBe("");
-    expect(signupTrialDestination("")).toBe("/select-exam?welcome=trial&verify=1");
+    expect(signupTrialDestination("")).toBe("/select-exam?welcome=trial");
     expect(shouldPersistIncomingBoard(null, null, "capture")).toEqual({
       persist: false,
       examSlug: null,

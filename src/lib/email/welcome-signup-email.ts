@@ -1,11 +1,19 @@
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { displayFirstName } from "@/lib/display-name";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { LEGAL_SUPPORT_PHONE } from "@/lib/legal-phone";
 
-/** Public site link used verbatim in the new-account welcome email. */
-export const WELCOME_SIGNUP_SITE_URL = "https://www.anyexameasy.com";
-
 export const WELCOME_SIGNUP_EMAIL_SUBJECT = "Welcome to AnyExamEasy";
+
+export const WELCOME_EMAIL_DELAY_MS = 60 * 60 * 1000;
+
+/** Same no-pass line used on the other trial notes. */
+export const WELCOME_NO_PASS_LINE =
+  "AnyExamEasy is a study aid for self-assessment. It does not guarantee a score, a passing result, licensure, or certification.";
+
+export function welcomeEmailSendAfter(now = new Date()): Date {
+  return new Date(now.getTime() + WELCOME_EMAIL_DELAY_MS);
+}
 
 /**
  * Resend accepts a display name in the From header. This welcome note is the
@@ -15,10 +23,13 @@ export const WELCOME_SIGNUP_EMAIL_FROM = `Ryan C <${LEGAL_ENTITY.supportEmail}>`
 
 export const WELCOME_SIGNUP_EMAIL_REPLY_TO = LEGAL_ENTITY.supportEmail;
 
-/** No account email-preference page exists; opt-out is a reply to support. */
-export const WELCOME_SIGNUP_UNSUBSCRIBE_MAILTO = `mailto:${LEGAL_ENTITY.supportEmail}?subject=Unsubscribe`;
-
-export const WELCOME_SIGNUP_UNSUBSCRIBE_TEXT = "Reply UNSUBSCRIBE to opt out";
+export type WelcomeSignupEmailInput = {
+  name?: string | null;
+  /** Sentence before the link, such as "Start with 10 NCLEX questions". */
+  startCta: string;
+  startUrl: string;
+  unsubscribeUrl: string;
+};
 
 const FONT =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
@@ -45,7 +56,7 @@ function greetingLine(name?: string | null): string {
 }
 
 function thankYouLine(): string {
-  return `Thank you for joining ${LEGAL_ENTITY.productName}. Your account is ready, and everything you need to prepare is waiting for you at ${WELCOME_SIGNUP_SITE_URL}.`;
+  return `Thank you for joining ${LEGAL_ENTITY.productName}. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions.`;
 }
 
 function helpLine(): string {
@@ -60,12 +71,12 @@ function paragraph(html: string, marginBottom = "18px"): string {
   return `<p style="margin:0 0 ${marginBottom};font-family:${FONT};font-size:16px;line-height:1.7;color:#3f4a5a;">${html}</p>`;
 }
 
-function welcomeHtml(greeting: string): string {
-  const siteLink = `<a href="${WELCOME_SIGNUP_SITE_URL}" style="color:#0f766e;font-weight:600;text-decoration:underline;">${escapeHtml(WELCOME_SIGNUP_SITE_URL)}</a>`;
+function welcomeHtml(input: WelcomeSignupEmailInput, greeting: string): string {
   const phoneLink = `<a href="${LEGAL_SUPPORT_PHONE.tel}" style="color:#0f766e;font-weight:600;text-decoration:none;">${escapeHtml(LEGAL_SUPPORT_PHONE.display)}</a>`;
-  const thanks = `Thank you for joining ${escapeHtml(LEGAL_ENTITY.productName)}. Your account is ready, and everything you need to prepare is waiting for you at ${siteLink}.`;
+  const start = `<a href="${escapeHtml(input.startUrl)}" style="color:#0f766e;font-weight:600;text-decoration:underline;">${escapeHtml(input.startCta)}</a>`;
+  const thanks = `Thank you for joining ${escapeHtml(LEGAL_ENTITY.productName)}. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions.`;
   const help = `Whenever you have a question, just reply to this email or call us at ${phoneLink}. We're here for you.`;
-  const unsubscribeHref = escapeHtml(WELCOME_SIGNUP_UNSUBSCRIBE_MAILTO);
+  const unsubscribeHref = escapeHtml(input.unsubscribeUrl);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -84,7 +95,7 @@ function welcomeHtml(greeting: string): string {
   </style>
 </head>
 <body style="margin:0;padding:0;background:#f4f3f1;color:#1c1917;-webkit-text-size-adjust:100%;">
-  <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;color:transparent;">Thank you for joining ${escapeHtml(LEGAL_ENTITY.productName)}. Your account is ready.</div>
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;color:transparent;">Thank you for joining ${escapeHtml(LEGAL_ENTITY.productName)}. Start with 10 practice questions.</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f4f3f1" style="background:#f4f3f1;">
     <tr>
       <td class="welcome-shell" align="center" style="padding:40px 16px;">
@@ -100,6 +111,8 @@ function welcomeHtml(greeting: string): string {
                     <p style="margin:0 0 28px;font-family:${FONT};font-size:12px;line-height:1;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#0f766e;">${escapeHtml(LEGAL_ENTITY.productName)}</p>
                     <h1 style="margin:0 0 18px;font-family:${FONT};font-size:26px;line-height:1.25;font-weight:600;color:#0f172a;">${escapeHtml(greeting)}</h1>
                     ${paragraph(thanks)}
+                    ${paragraph(start)}
+                    ${paragraph(escapeHtml(WELCOME_NO_PASS_LINE))}
                     ${paragraph(help, "0")}
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:28px 0 22px;">
                       <tr>
@@ -133,21 +146,33 @@ function welcomeHtml(greeting: string): string {
 </html>`;
 }
 
-/** Copy and HTML for the signup welcome email. Send trigger stays elsewhere. */
-export function buildWelcomeSignupEmail(name?: string | null): WelcomeSignupEmail {
-  const greeting = greetingLine(name);
-  const text = [greeting, "", thankYouLine(), "", helpLine(), "", ...signatureLines(), "", WELCOME_SIGNUP_UNSUBSCRIBE_TEXT].join(
-    "\n"
-  );
+/** Copy and HTML for the delayed signup welcome email. */
+export function buildWelcomeSignupEmail(input: WelcomeSignupEmailInput): WelcomeSignupEmail {
+  const greeting = greetingLine(input.name);
+  const text = [
+    greeting,
+    "",
+    thankYouLine(),
+    "",
+    `${input.startCta}: ${input.startUrl}`,
+    "",
+    WELCOME_NO_PASS_LINE,
+    "",
+    helpLine(),
+    "",
+    ...signatureLines(),
+    "",
+    `Unsubscribe: ${input.unsubscribeUrl}`,
+  ].join("\n");
 
   return {
     subject: WELCOME_SIGNUP_EMAIL_SUBJECT,
-    html: welcomeHtml(greeting),
+    html: welcomeHtml(input, greeting),
     text,
     from: WELCOME_SIGNUP_EMAIL_FROM,
     replyTo: WELCOME_SIGNUP_EMAIL_REPLY_TO,
     headers: {
-      "List-Unsubscribe": `<${WELCOME_SIGNUP_UNSUBSCRIBE_MAILTO}>`,
+      "List-Unsubscribe": `<${input.unsubscribeUrl}>`,
     },
   };
 }

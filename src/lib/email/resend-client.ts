@@ -2,6 +2,7 @@ import {
   getEmailFromAddress,
   type EmailDeliveryResult,
 } from "@/lib/email/config";
+import { LEGAL_ENTITY } from "@/lib/legal";
 
 export type TransactionalEmailPayload = {
   to: string;
@@ -41,9 +42,7 @@ export async function sendTransactionalEmail(
       html: params.html,
       text: params.text,
     };
-    if (params.replyTo?.trim()) {
-      body.reply_to = params.replyTo.trim();
-    }
+    body.reply_to = params.replyTo?.trim() || LEGAL_ENTITY.supportEmail;
     if (params.tags?.length) {
       body.tags = params.tags;
     }

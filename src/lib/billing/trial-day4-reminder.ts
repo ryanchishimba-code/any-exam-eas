@@ -1,14 +1,14 @@
 import { prisma } from "@/lib/prisma";
 import { isEmailConfigured } from "@/lib/email/config";
+import {
+  marketingUnsubscribeHeaders,
+  marketingUnsubscribePageUrl,
+} from "@/lib/email/marketing-preference";
 import { isInternalTestEmail } from "@/lib/test-accounts";
 import { sendTrialDay4ReminderEmail } from "@/lib/email/trial-lifecycle-emails";
 import { isTrialDay4ReminderWindow } from "@/lib/trial/trial-status";
-
-export const TRIAL_DAY4_REMINDER_FLAG = "ENABLE_TRIAL_DAY4_REMINDER_EMAIL";
-
-export function isTrialDay4ReminderEnabled(): boolean {
-  return process.env[TRIAL_DAY4_REMINDER_FLAG] === "true";
-}
+import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
+import { firstTenQuestionsHref } from "@/lib/study/first-ten-href";
 
 type Metadata = {
   trialReminders?: { day4ForEndsAt?: string };
@@ -30,30 +30,34 @@ export type TrialDay4ReminderRunResult = {
 };
 
 /**
- * Day-4 trial nudge (48–72h before trial end). OFF unless ENABLE_TRIAL_DAY4_REMINDER_EMAIL=true.
- * Dedupes via UserPreference.metadata.trialReminders.day4ForEndsAt.
+ * About 2–3 days before trial end (48–72 hours left). Sends one board-specific
+ * note only when the person has not answered a question and still has an exam.
  */
 export async function runTrialDay4ReminderEmails(
   now = new Date()
 ): Promise<TrialDay4ReminderRunResult> {
   const result: TrialDay4ReminderRunResult = { sent: 0, skipped: 0, errors: [] };
-  if (!isTrialDay4ReminderEnabled()) {
-    result.skipped += 1;
-    return result;
-  }
   if (!isEmailConfigured()) {
     result.errors.push("email_not_configured");
     return result;
   }
 
+  const windowStart = new Date(now.getTime() + 48 * 60 * 60 * 1000);
+  const windowEnd = new Date(now.getTime() + 72 * 60 * 60 * 1000);
   const candidates = await prisma.subscription.findMany({
-    where: { status: "trialing", trialEndsAt: { not: null } },
+    where: {
+      status: "trialing",
+      trialEndsAt: { gt: windowStart, lte: windowEnd },
+    },
     include: {
       user: {
         select: {
           email: true,
           name: true,
-          preferences: { select: { metadata: true } },
+          accountStatus: true,
+          examPreference: { select: { examSlug: true } },
+          preferences: { select: { metadata: true, marketingOptOutAt: true } },
+          _count: { select: { questionAttempts: true } },
         },
       },
     },
@@ -62,7 +66,7 @@ export async function runTrialDay4ReminderEmails(
   for (const sub of candidates) {
     const trialEndsAt = sub.trialEndsAt!;
     if (!isTrialDay4ReminderWindow(trialEndsAt, now)) continue;
-    if (isInternalTestEmail(sub.user.email)) {
+    if (sub.user.accountStatus !== "active" || isInternalTestEmail(sub.user.email)) {
       result.skipped += 1;
       continue;
     }
@@ -71,10 +75,39 @@ export async function runTrialDay4ReminderEmails(
     const meta = parseMetadata(sub.user.preferences?.metadata);
     if (meta.trialReminders?.day4ForEndsAt === endsKey) continue;
 
+    const examSlug = sub.user.examPreference?.examSlug;
+    const studied = sub.user._count.questionAttempts > 0;
+    const suppressed = sub.user.preferences?.marketingOptOutAt != null;
+    const examName = examSlug && isExamSlug(examSlug) ? EXAM_CATALOG[examSlug].shortName : null;
+    const startUrl = examSlug ? firstTenQuestionsHref(examSlug) : null;
+
+    if (studied || suppressed || !examName || !startUrl) {
+      if (studied || suppressed) {
+        await rememberDay4(sub.userId, meta, endsKey);
+      }
+      result.skipped += 1;
+      continue;
+    }
+
+    let unsubscribeUrl: string | undefined;
+    let headers: Record<string, string> | undefined;
+    try {
+      unsubscribeUrl = marketingUnsubscribePageUrl(sub.userId);
+      headers = marketingUnsubscribeHeaders(sub.userId);
+    } catch (error) {
+      result.errors.push(
+        `${sub.userId}: ${error instanceof Error ? error.message : "unsubscribe link"}`
+      );
+      continue;
+    }
+
     const sent = await sendTrialDay4ReminderEmail({
       to: sub.user.email,
       name: sub.user.name,
-      trialEndsAt,
+      examName,
+      startUrl,
+      unsubscribeUrl,
+      headers,
     });
 
     if (!sent.ok) {
@@ -82,21 +115,24 @@ export async function runTrialDay4ReminderEmails(
       continue;
     }
 
-    const nextMeta = {
-      ...meta,
-      trialReminders: { ...meta.trialReminders, day4ForEndsAt: endsKey },
-    };
-    await prisma.userPreference.upsert({
-      where: { userId: sub.userId },
-      create: {
-        userId: sub.userId,
-        metadata: JSON.stringify(nextMeta),
-        updatedAt: new Date(),
-      },
-      update: { metadata: JSON.stringify(nextMeta), updatedAt: new Date() },
-    });
+    await rememberDay4(sub.userId, meta, endsKey);
     result.sent += 1;
   }
 
   return result;
+}
+
+async function rememberDay4(userId: string, meta: Metadata, endsKey: string): Promise<void> {
+  const nextMeta = {
+    ...meta,
+    trialReminders: { ...meta.trialReminders, day4ForEndsAt: endsKey },
+  };
+  await prisma.userPreference.upsert({
+    where: { userId },
+    create: {
+      userId,
+      metadata: JSON.stringify(nextMeta),
+    },
+    update: { metadata: JSON.stringify(nextMeta) },
+  });
 }

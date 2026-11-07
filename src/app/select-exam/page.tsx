@@ -33,10 +33,7 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
   const switchMode = params.switch === "1" || params.switch === "true";
   const access = await getUserAccess(session.user.id);
 
-  if (
-    access.blockReason === "email_unverified" ||
-    (params.verify === "1" && !access.emailVerified)
-  ) {
+  if (access.blockReason === "email_unverified") {
     return (
       <AccessBlockedNotice
         reason="email_unverified"

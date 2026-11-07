@@ -83,6 +83,7 @@ async function sendBillingEmail(params: {
       body: JSON.stringify({
         from,
         to: [params.to],
+        reply_to: LEGAL_ENTITY.supportEmail,
         subject: params.subject,
         html: params.html,
         text: params.text,
@@ -184,16 +185,16 @@ export async function sendSubscriptionActiveEmail(
 
   const bodyHtml = `
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your AnyExamEasy subscription is active.</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;"><strong>${params.planLabel}</strong> · ${amount}. Next charge: ${nextCharge}.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Payment received: <strong>${amount}</strong>. Your AnyExamEasy subscription is active.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;"><strong>${params.planLabel}</strong>. Next charge: ${nextCharge}.</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Cancel anytime in Settings. Canceling stops the next charge. Payments are non-refundable except where required by law.</p>
     <p style="margin:0;font-size:14px;color:#64748b;">Refund policy: <a href="${refundsUrl}">${refundsUrl}</a><br/>Support: ${support}</p>`;
 
   const text = [
     greeting(params.name),
     "",
-    "Your AnyExamEasy subscription is active.",
-    `${params.planLabel} · ${amount}.`,
+    `Payment received: ${amount}. Your AnyExamEasy subscription is active.`,
+    params.planLabel,
     `Next charge: ${nextCharge}.`,
     "",
     `Cancel anytime in Settings: ${settingsUrl}`,
@@ -203,9 +204,9 @@ export async function sendSubscriptionActiveEmail(
 
   return sendBillingEmail({
     to: params.to,
-    subject: "Your AnyExamEasy subscription is active",
+    subject: "Payment received — your AnyExamEasy subscription is active",
     html: billingEmailShell(
-      "Your AnyExamEasy subscription is active",
+      "Payment received",
       bodyHtml,
       "Manage subscription",
       settingsUrl
@@ -287,4 +288,74 @@ export async function sendPaymentFailedEmail(
     ),
     text,
   });
+}
+
+export function renewalReceiptContent(params: {
+  name?: string | null;
+  amountLabel: string;
+  planLabel: string;
+}): { subject: string; html: string; text: string } {
+  const subject = "Your AnyExamEasy renewal receipt";
+  const settingsUrl = `${appBaseUrl()}/settings`;
+  const bodyHtml = `
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Payment received: <strong>${params.amountLabel}</strong> for ${params.planLabel}.</p>
+    <p style="margin:0;font-size:14px;color:#64748b;">This confirms a renewal charge. It is not a new signup.</p>`;
+  const text = [
+    greeting(params.name),
+    "",
+    `Payment received: ${params.amountLabel} for ${params.planLabel}.`,
+    "This confirms a renewal charge. It is not a new signup.",
+    "",
+    `Manage billing: ${settingsUrl}`,
+  ].join("\n");
+  return {
+    subject,
+    text,
+    html: billingEmailShell(subject, bodyHtml, "Manage subscription", settingsUrl),
+  };
+}
+
+export async function sendRenewalReceiptEmail(
+  params: BillingEmailParams & { amountLabel: string; planLabel: string }
+): Promise<EmailDeliveryResult> {
+  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
+  const message = renewalReceiptContent(params);
+  return sendBillingEmail({ to: params.to, ...message });
+}
+
+export function cancellationEmailContent(params: {
+  name?: string | null;
+  accessUntilLabel?: string | null;
+}): { subject: string; html: string; text: string } {
+  const subject = "Your AnyExamEasy subscription is canceled";
+  const settingsUrl = `${appBaseUrl()}/settings`;
+  const until = params.accessUntilLabel
+    ? `Paid access continues until ${params.accessUntilLabel}.`
+    : "You will not be charged again.";
+  const bodyHtml = `
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your AnyExamEasy subscription is canceled. ${until}</p>
+    <p style="margin:0;font-size:14px;color:#64748b;">This note is not a bill, and it does not promise a score or a license.</p>`;
+  const text = [
+    greeting(params.name),
+    "",
+    `Your AnyExamEasy subscription is canceled. ${until}`,
+    "This note is not a bill, and it does not promise a score or a license.",
+    "",
+    `Settings: ${settingsUrl}`,
+  ].join("\n");
+  return {
+    subject,
+    text,
+    html: billingEmailShell("Subscription canceled", bodyHtml, "Open settings", settingsUrl),
+  };
+}
+
+export async function sendCancellationEmail(
+  params: BillingEmailParams & { accessUntilLabel?: string | null }
+): Promise<EmailDeliveryResult> {
+  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
+  const message = cancellationEmailContent(params);
+  return sendBillingEmail({ to: params.to, ...message });
 }

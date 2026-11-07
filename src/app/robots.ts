@@ -23,6 +23,7 @@ export default function robots(): MetadataRoute.Robots {
         ...gatedStudyGuidePaths(),
         "/daily/confirm",
         "/daily/unsubscribe",
+        "/email/unsubscribe",
       ],
     },
     sitemap: "https://www.anyexameasy.com/sitemap.xml",

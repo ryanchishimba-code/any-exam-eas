@@ -303,6 +303,12 @@ model Subscription {
   trialReminderForEndsAt DateTime?
   /** Dedupes welcome email on trial start. */
   welcomeEmailSentAt     DateTime?
+  /// Welcome mail is eligible at this time. Null on older rows, which are not backfilled.
+  welcomeEmailEarliestAt DateTime?
+  /// Stripe invoice id of the last renewal receipt emailed to the customer.
+  lastPaymentReceiptInvoiceId String?
+  /// Cancellation confirmation already sent for this subscription row.
+  cancellationEmailSentAt DateTime?
   /// Dedupes the owner new-trial alert for this trial window. A later trial
   /// with a different trialEndsAt can alert again. Renewals do not call it.
   trialAlertForEndsAt    DateTime?
@@ -970,6 +976,8 @@ model UserPreference {
   preferredFields   String?
   defaultDifficulty String?
   metadata          String?
+  /// Trial reminders, the welcome note, and other non-essential mail stop. Verification, password, and billing mail still send.
+  marketingOptOutAt DateTime?
   updatedAt         DateTime @updatedAt
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

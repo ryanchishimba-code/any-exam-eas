@@ -26,18 +26,18 @@ export function dailyUnsubscribeUrl(token: string): string {
 export function dailyLeadConfirmationContent(confirmUrl: string, unsubscribeUrl: string) {
   const subject = "Confirm your AnyExamEasy daily question email";
   const bodyHtml = [
-    emailParagraph("You asked to get the question of the day by email."),
+    emailParagraph("You asked to confirm this address from a daily question page."),
     emailParagraph(
-      "Confirm below if that was you. We will not send a daily question until you do. If you did not ask for this, you can ignore the message or unsubscribe."
+      "Confirm below if that was you. We do not email a question each day. The daily question stays on the site. If you did not ask for this, you can ignore the message or unsubscribe."
     ),
     emailParagraph(
       `${LEGAL_ENTITY.productName} is a study aid. A daily question is practice, not a promise of a score or a license.`
     ),
   ].join("");
   const text = [
-    "You asked to get the question of the day by email.",
+    "You asked to confirm this address from a daily question page.",
     "",
-    "Confirm if that was you. We will not send a daily question until you do.",
+    "Confirm if that was you. We do not email a question each day. The daily question stays on the site.",
     `Confirm: ${confirmUrl}`,
     `Unsubscribe: ${unsubscribeUrl}`,
     "",
@@ -45,7 +45,7 @@ export function dailyLeadConfirmationContent(confirmUrl: string, unsubscribeUrl:
   ].join("\n");
   const html = transactionalEmailLayout({
     title: "Confirm this email",
-    preheader: "No daily question is sent until you confirm.",
+    preheader: "We do not email a question each day.",
     bodyHtml,
     primaryCta: { label: "Confirm email", url: confirmUrl },
     secondaryCta: { label: "Unsubscribe", url: unsubscribeUrl },

@@ -14,7 +14,8 @@ describe("daily question email capture", () => {
       "https://www.anyexameasy.com/daily/unsubscribe?token=def"
     );
     const copy = `${DAILY_LEAD_CONSENT_COPY} ${content.subject} ${content.text}`.toLowerCase();
-    expect(copy).toContain("until you confirm");
+    expect(copy).toContain("do not email a question each day");
+    expect(copy).not.toContain("until you confirm");
     expect(copy).toContain("unsubscribe");
     expect(copy).not.toContain("you're subscribed");
     expect(copy).not.toContain("you are subscribed");

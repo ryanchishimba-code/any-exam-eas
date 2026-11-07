@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
+import { runTrialDay4ReminderEmails } from "@/lib/billing/trial-day4-reminder";
 import { runTrialLifecycleEmails } from "@/lib/billing/trial-lifecycle-mail";
+import { runDueWelcomeEmails } from "@/lib/billing/welcome-email-job";
 import { isCronAuthorized } from "@/lib/cron-auth";
 import { DbUnavailableError, isTransientDbError } from "@/lib/db-resilience";
 import { warmNeonCompute } from "@/lib/neon-warmup";
@@ -9,8 +11,9 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * Hourly. Sends the 1-day trial reminder and the trial-ended note.
- * `?dryRun=1` lists recipients and does not send or write the send log.
+ * Hourly. Owns trial mail: the delayed welcome, the mid-trial nudge,
+ * the 1-day reminder, and the trial-ended note.
+ * `?dryRun=1` lists ending and ended recipients and does not send.
  */
 export async function GET(req: Request) {
   if (!isCronAuthorized(req)) {
@@ -21,10 +24,21 @@ export async function GET(req: Request) {
 
   try {
     await warmNeonCompute(dryRun ? "cron.trial-emails.dry-run" : "cron.trial-emails");
-    const result = await runTrialLifecycleEmails(new Date(), { dryRun });
+    const now = new Date();
+    const result = await runTrialLifecycleEmails(now, { dryRun });
+    const welcome = dryRun ? null : await runDueWelcomeEmails(now);
+    const midTrial = dryRun ? null : await runTrialDay4ReminderEmails(now);
+    const errors = [
+      ...result.errors,
+      ...(welcome?.errors ?? []),
+      ...(midTrial?.errors ?? []),
+    ];
     return NextResponse.json({
-      ok: result.errors.length === 0,
+      ok: errors.length === 0,
       ...result,
+      errors,
+      welcome,
+      midTrial,
     });
   } catch (error) {
     if (error instanceof DbUnavailableError || isTransientDbError(error)) {

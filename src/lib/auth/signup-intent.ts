@@ -97,9 +97,7 @@ export function signupSubscribeCheckoutPath(
 
 /** Trial path after account creation. An exam goes straight to the dashboard. */
 export function signupTrialDestination(exam: ExamSlug | ""): string {
-  return exam
-    ? "/dashboard?welcome=trial&verify=1"
-    : "/select-exam?welcome=trial&verify=1";
+  return exam ? "/dashboard?welcome=trial" : "/select-exam?welcome=trial";
 }
 
 /** One status for the current step. Step 2 is never announced while step 1 is showing. */
