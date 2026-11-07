@@ -3,9 +3,9 @@ import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: { absolute: "Privacy Policy — Any Exam Easy" },
+  title: { absolute: "Privacy Policy — AnyExamEasy" },
   description:
-    "Read the Any Exam Easy Privacy Policy — how we collect, use and protect account data for NCLEX, USMLE and multi-exam board prep students today.",
+    "Read the AnyExamEasy Privacy Policy — how we collect, use and protect account data for NCLEX, USMLE and multi-exam board prep students today.",
   alternates: { canonical: "/legal/privacy" },
 };
 

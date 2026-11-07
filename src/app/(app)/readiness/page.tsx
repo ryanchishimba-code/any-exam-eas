@@ -12,7 +12,7 @@ import { requireAppPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
-  title: "Readiness — Any Exam Easy",
+  title: "Readiness — AnyExamEasy",
   description: "Baseline and progress across your board, without a pass prediction.",
 };
 

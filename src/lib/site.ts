@@ -23,12 +23,12 @@ import {
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { PRICING_TRIAL_OFFER_LINE } from "@/lib/marketing/legal-copy";
 
-export const SITE_NAME = "Any Exam Easy";
+export const SITE_NAME = "AnyExamEasy";
 export const SITE_DOMAIN = "anyexameasy.com";
 
 /** Short disclaimer for signup and marketing surfaces. */
 export const MARKETING_DISCLAIMER =
-  "Any Exam Easy is a study support tool. We do not guarantee exam results, licensure, or employment outcomes.";
+  "AnyExamEasy is a study support tool. We do not guarantee exam results, licensure, or employment outcomes.";
 
 /** User-facing label for in-app progress scores (not exam readiness claims). */
 export const PRACTICE_PROGRESS_LABEL = "Practice progress";

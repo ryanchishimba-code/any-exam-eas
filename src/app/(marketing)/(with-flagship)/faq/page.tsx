@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LandingFaqV2 } from "@/components/landing/v2/LandingFaqV2";
 
 export const metadata: Metadata = {
-  title: { absolute: "FAQ — Pricing, Trial & Exam Coverage | Any Exam Easy" },
+  title: { absolute: "FAQ — Pricing, Trial & Exam Coverage | AnyExamEasy" },
   description:
     "Which exams are included, what Pro costs, how the free trial works, and how to reach support.",
   alternates: { canonical: "/faq" },

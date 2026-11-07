@@ -204,9 +204,9 @@ export function buildCompareJsonLd() {
   };
 }
 
-const ABOUT_TITLE = "Any Exam Easy Exam Prep from the Founder";
+const ABOUT_TITLE = "AnyExamEasy Exam Prep from the Founder";
 const ABOUT_DESCRIPTION =
-  "Any Exam Easy exam prep from founder Ryan Chishimba, PharmD. One plan for NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE-PT. Start a 5-day free trial.";
+  "AnyExamEasy exam prep from founder Ryan Chishimba, PharmD. One plan for NCLEX, NAPLEX, USMLE, PANCE, FNP, and NPTE-PT. Start a 5-day free trial.";
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = ABOUT_TITLE;
@@ -228,7 +228,7 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
       "NCLEX practice questions",
       "USMLE question bank",
       "affordable board exam prep",
-      "QA-gated question bank",
+      "reviewed question bank",
       "one subscription six exams",
       "Roadmap board prep",
       "deep dive exam review",
@@ -448,7 +448,7 @@ export function buildAboutJsonLd() {
         "@type": "AboutPage",
         "@id": `${url}#webpage`,
         url,
-        name: ABOUT_TITLE.replaceAll("Any Exam Easy", SCHEMA_BRAND_NAME),
+        name: ABOUT_TITLE.replaceAll("AnyExamEasy", SCHEMA_BRAND_NAME),
         description: ABOUT_DESCRIPTION,
         isPartOf: { "@type": "WebSite", name: SCHEMA_BRAND_NAME, url: site },
         about: { "@id": organizationId },

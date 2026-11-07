@@ -42,7 +42,7 @@ export function scenarioHomepage() {
 
   const ok = check(res, {
     'homepage status 200': (r) => r.status === 200,
-    'homepage has title': (r) => r.body && r.body.includes('Any Exam Easy'),
+    'homepage has title': (r) => r.body && r.body.includes('AnyExamEasy'),
   });
   ok ? recordSuccess() : recordError();
 

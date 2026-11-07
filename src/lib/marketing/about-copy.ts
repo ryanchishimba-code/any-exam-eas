@@ -1,7 +1,7 @@
 /** One H1: brand, exam-prep intent, and founder intent. No pass claim. */
-export const ABOUT_HERO_HEADLINE = "Any Exam Easy exam prep from the founder";
+export const ABOUT_HERO_HEADLINE = "AnyExamEasy exam prep from the founder";
 
-export const ABOUT_HERO_LEAD = "Any Exam Easy";
+export const ABOUT_HERO_LEAD = "AnyExamEasy";
 
 export const ABOUT_HERO_ACCENT = "exam prep from the founder";
 

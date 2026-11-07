@@ -1,7 +1,7 @@
 import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 
 export const metadata = {
-  title: "Admin Sign In — Any Exam Easy",
+  title: "Admin Sign In — AnyExamEasy",
   robots: { index: false, follow: false },
 };
 

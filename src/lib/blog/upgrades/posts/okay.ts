@@ -123,7 +123,7 @@ const content = [
     `${a(HUB, "NABP NAPLEX program hub", true)}.`,
   ]),
   p(
-    `Any Exam Easy is not affiliated with NABP or any board of pharmacy. If NABP updates the outline after your exam date, follow the document that matches your appointment.`
+    `AnyExamEasy is not affiliated with NABP or any board of pharmacy. If NABP updates the outline after your exam date, follow the document that matches your appointment.`
   ),
 
   faq([

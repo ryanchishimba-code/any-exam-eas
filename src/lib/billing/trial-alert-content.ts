@@ -360,7 +360,7 @@ export function formatTrialAlertEmail(model: TrialAlertEmailModel): {
           <a href="${escapeHtml(analyticsUrl)}" style="display:inline-block;background-color:#0e7490;background-image:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;font-size:15px;padding:12px 22px;border-radius:12px;">Open analytics</a>
         </td></tr>
       </table>
-      <p class="aee-foot" style="margin:14px 0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:11px;color:#94a3b8;">Any Exam Easy</p>
+      <p class="aee-foot" style="margin:14px 0 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:11px;color:#94a3b8;">AnyExamEasy</p>
     </td></tr>
   </table>
 </body>

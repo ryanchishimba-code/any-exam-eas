@@ -11,7 +11,7 @@ export async function generateMetadata({
 }) {
   const { mode } = await searchParams;
   return {
-    title: mode === "bank" ? "Question Bank — Any Exam Easy" : "Study — Any Exam Easy",
+    title: mode === "bank" ? "Question Bank — AnyExamEasy" : "Study — AnyExamEasy",
   };
 }
 

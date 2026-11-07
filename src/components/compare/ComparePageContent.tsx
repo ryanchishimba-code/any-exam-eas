@@ -112,7 +112,7 @@ export function ComparePageContent({
             One exam per subscription
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Many candidates stack separate QBanks or courses when they sit more than one board.
+            Many candidates stack separate question banks or courses when they sit more than one board.
             Pricing and trial terms vary by provider and plan length.
           </p>
         </div>
@@ -227,11 +227,11 @@ export function ComparePageContent({
         <ul className="mt-4 space-y-3" role="list">
           {[
             "You need more than one board exam on the same timeline (RN + NP, PharmD + side cert, Step 1 + Step 2).",
-            "You want Roadmap, Deep Dives, and Full Exams — not QBank-only prep.",
+            "You want Roadmap, Deep Dives, and Full Exams — not a question bank on its own.",
             `${formatPricingCheckoutTrialOffer()} Cancel anytime in Settings. Paid charges are non-refundable except where the law requires a refund.`,
             questionCountLabel
-              ? `${questionCountLabel} active questions across six exams on one plan — not six separate QBanks.`
-              : "Six exams on one plan — not six separate QBanks.",
+              ? `${questionCountLabel} active questions across six exams on one plan — not six separate question banks.`
+              : "Six exams on one plan — not six separate question banks.",
           ].map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
               <Check

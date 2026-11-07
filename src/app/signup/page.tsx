@@ -10,7 +10,7 @@ import { SITE_NAME } from "@/lib/site";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
 const SIGNUP_DESCRIPTION =
-  "Create your Any Exam Easy account for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE prep. Start a free trial or subscribe to Pro.";
+  "Create your AnyExamEasy account for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE prep. Start a free trial or subscribe to Pro.";
 
 export const dynamic = "force-dynamic";
 

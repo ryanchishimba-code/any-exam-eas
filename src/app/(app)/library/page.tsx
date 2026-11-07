@@ -18,7 +18,7 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "Library — Any Exam Easy",
+  title: "Library — AnyExamEasy",
   description:
     "AI-personalized study brief, quick tools, memory cards, drugs, and anatomy — your exam home base.",
 };

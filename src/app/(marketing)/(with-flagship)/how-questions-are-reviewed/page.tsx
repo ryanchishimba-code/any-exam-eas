@@ -24,10 +24,10 @@ export const revalidate = 300;
 
 const TITLE = "How our questions are built and reviewed";
 const DESCRIPTION =
-  "How AnyExamEasy sources questions to official test plans, hides flawed items, cites rationales, and handles student reports.";
+  "How AnyExamEasy aligns questions with official test plans, hides flawed questions, shows sources, and handles student reports.";
 
 export const metadata: Metadata = {
-  title: { absolute: `${TITLE} — Any Exam Easy` },
+  title: { absolute: `${TITLE} — AnyExamEasy` },
   description: DESCRIPTION,
   alternates: { canonical: ROUTES.howQuestionsAreReviewed },
   openGraph: { title: TITLE, description: DESCRIPTION, type: "article" },
@@ -48,7 +48,7 @@ export default async function HowQuestionsAreReviewedPage() {
   const nclexUnits = bank.bundle.snapshot.boards?.nclex;
   const ngnSentence =
     nclexUnits && (nclexUnits.standaloneNgn > 0 || nclexUnits.caseStudies > 0)
-      ? `${nclexUnits.standaloneNgn.toLocaleString("en-US")} standalone NGN items and ${nclexUnits.caseItems.toLocaleString("en-US")} items in ${nclexUnits.caseStudies.toLocaleString("en-US")} case studies are published.`
+      ? `${nclexUnits.standaloneNgn.toLocaleString("en-US")} standalone Next Generation NCLEX questions and ${nclexUnits.caseItems.toLocaleString("en-US")} questions in ${nclexUnits.caseStudies.toLocaleString("en-US")} case studies are published.`
       : null;
   return (
     <>
@@ -98,19 +98,19 @@ export default async function HowQuestionsAreReviewedPage() {
             Content weights
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-            Timed practice forms pull student-eligible items into the official category weights:
-            NCSBN Client Needs for NCLEX-RN, NABP domain weights for NAPLEX, NBME and FSMB
-            organ-system ranges for USMLE, NPCB domain and age-group weights for AANP FNP, the
-            NCCPA blueprint for PANCE, and the FSBPT outline for NPTE-PT. A form that cannot fill
-            those weights is not padded with a made-up mix.
+            Timed practice exams use only questions students can study, and they follow the official
+            category weights: NCSBN Client Needs for NCLEX-RN, NABP domain weights for NAPLEX, NBME
+            and FSMB organ-system ranges for USMLE, NPCB domain and age-group weights for AANP FNP,
+            the NCCPA blueprint for PANCE, and the FSBPT outline for NPTE-PT. A practice exam that
+            cannot meet those weights is not padded with a made-up mix.
           </p>
           {!counts.degraded && counts.totalServed > 0 ? (
             <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              {counts.totalQuestionsLabel} are student-eligible right now. {ACTIVE_QUESTION_DEFINITION}
+              {counts.totalQuestionsLabel} are available to study right now. {ACTIVE_QUESTION_DEFINITION}
             </p>
           ) : (
             <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              The live bank count is unavailable on this load, so this page does not print a
+              The current question count is unavailable, so this page does not show a
               substitute number.
             </p>
           )}
@@ -118,21 +118,22 @@ export default async function HowQuestionsAreReviewedPage() {
 
         <section className="mt-12" aria-labelledby="gate-heading">
           <h2 id="gate-heading" className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
-            The quality gate
+            Before a question is shown
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-            A question reaches a student session only when it is active, marked qa-passed, and
-            still student-eligible. Items that fail a structural check — a bad key, a broken
-            format, or an editorial retire — are flagged and hidden. Hiding does not delete the
-            stem, the options, the key, or the rationale. A later repair can restore the same row.
+            A question appears in a study session only when it is live, it has passed review, and
+            it is still cleared for students. Questions that fail a basic check — a wrong answer
+            key, a broken format, or a decision to pull them from practice — are flagged and hidden.
+            Hiding does not erase the question, the choices, the correct answer, or the explanation.
+            A later fix can bring that same question back.
           </p>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
             {AI_ASSISTED_REVIEW_NOTE}
           </p>
           {facts.live && suppressed ? (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-              {suppressed} NCLEX questions are currently suppressed and stay out of student
-              practice until that repair. The count is read from the bank on this page load.
+              {suppressed} NCLEX questions are currently held back and stay out of student
+              practice until they are repaired. This page reads that number when it loads.
             </p>
           ) : null}
           {ngnSentence ? (
@@ -141,7 +142,7 @@ export default async function HowQuestionsAreReviewedPage() {
             </p>
           ) : (
             <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-              NGN case items live in their own tables. {NGN_PUBLISHED_DESCRIPTION}
+              Next Generation NCLEX case questions are counted separately. {NGN_PUBLISHED_DESCRIPTION}
             </p>
           )}
         </section>
@@ -152,13 +153,13 @@ export default async function HowQuestionsAreReviewedPage() {
 
         <section className="mt-12" aria-labelledby="sources-heading">
           <h2 id="sources-heading" className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
-            Rationales and sources
+            Explanations and sources
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-            When an item stores references — a test plan, an open textbook, or a standard society
-            source — that citation is shown with the rationale. If an item has no stored source, we
-            do not invent one for the screen. Blog posts that discuss a board link the official
-            outline they are describing.
+            When a question includes references — a test plan, an open textbook, or a recognized
+            professional source — that citation is shown with the explanation. If a question has no
+            source on file, we do not invent one for the screen. Blog posts that discuss a board link
+            the official outline they are describing.
           </p>
         </section>
 
@@ -167,8 +168,8 @@ export default async function HowQuestionsAreReviewedPage() {
             Report an issue
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-            Every rationale has a Report an issue control. The report is saved for review with the
-            question, the answer you selected, and a short reason.             You can also write{" "}
+            Every explanation includes a way to report an issue. The report is saved for review with
+            the question, the answer you selected, and a short reason. You can also write{" "}
             <a
               className="font-semibold text-[var(--color-accent)] hover:underline"
               href={`mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("Question issue")}`}
@@ -183,9 +184,9 @@ export default async function HowQuestionsAreReviewedPage() {
             Corrections
           </h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
-            A confirmed flaw is corrected on the row or suppressed until it is safe to serve again.
-            We do not silently delete the original item to make a report disappear. We do not
-            promise a reply window we cannot keep. A content fix is not an automatic refund. Billing
+            A confirmed flaw is corrected on that question, or the question is held back until it is
+            safe to show again. We do not quietly delete the original question to make a report
+            disappear. We do not promise a reply window we cannot keep. A content fix is not an automatic refund. Billing
             rules are on the{" "}
             <Link href="/legal/refunds" className="font-semibold text-[var(--color-accent)] hover:underline">
               refunds and cancellation

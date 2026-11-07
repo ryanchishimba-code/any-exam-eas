@@ -8,7 +8,7 @@ import { safetyPathLabel } from "@/lib/drugs300/safety-path";
 import { studyUi } from "@/lib/study/study-ui";
 
 export const metadata = {
-  title: `${DRUGS_DECK_MARKETING_TITLE} — Any Exam Easy`,
+  title: `${DRUGS_DECK_MARKETING_TITLE} — AnyExamEasy`,
   description:
     "One shared Top 500 drug list for NCLEX, USMLE, and NAPLEX — flashcards with spaced repetition.",
 };

@@ -5,7 +5,7 @@ import { fullExamHref, ROUTES } from "@/lib/routes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 export const metadata = {
-  title: "Study Hub — Any Exam Easy",
+  title: "Study Hub — AnyExamEasy",
 };
 
 export default async function StudyPage({

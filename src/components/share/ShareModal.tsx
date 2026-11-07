@@ -17,8 +17,8 @@ export function ShareModal({ open, onClose, examLabel = "board" }: ShareModalPro
   const total =
     bankCounts?.totalLabel && bankCounts.totalLabel !== "—" ? bankCounts.totalLabel : "";
   const text = total
-    ? `I'm studying for my ${examLabel} with Any Exam Easy — ${total} active questions and adaptive practice. Join me → ${SITE}`
-    : `I'm studying for my ${examLabel} with Any Exam Easy — adaptive practice across six boards. Join me → ${SITE}`;
+    ? `I'm studying for my ${examLabel} with AnyExamEasy — ${total} active questions and adaptive practice. Join me → ${SITE}`
+    : `I'm studying for my ${examLabel} with AnyExamEasy — adaptive practice across six boards. Join me → ${SITE}`;
   const encoded = encodeURIComponent(text);
   const url = encodeURIComponent(SITE);
 

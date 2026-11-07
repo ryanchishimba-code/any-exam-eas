@@ -18,7 +18,7 @@ import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
-  title: "Checkout — Any Exam Easy",
+  title: "Checkout — AnyExamEasy",
 };
 
 function firstSearchValue(

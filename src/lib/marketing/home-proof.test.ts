@@ -63,7 +63,7 @@ describe("homepage proof facts", () => {
   it("names live questions and NGN, and keeps the price out of the strip", () => {
     const facts = buildHomeProofFacts(siteQuestionCounts(FIXTURE));
     expect(facts.map((fact) => fact.id)).toEqual(["questions", "ngn"]);
-    expect(facts.map((fact) => fact.text)).toContain("NGN case studies included");
+    expect(facts.map((fact) => fact.text)).toContain("Next Generation NCLEX case studies included");
     const joined = facts.map((fact) => fact.text).join(" ");
     expect(joined).not.toMatch(/\$|\/mo|pass rate|% passed|stars|users|24\/7/i);
   });

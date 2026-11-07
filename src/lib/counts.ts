@@ -22,7 +22,7 @@ export const COUNT_BOARD_SLUGS = [
 export type CountBoardSlug = (typeof COUNT_BOARD_SLUGS)[number];
 
 export const QUESTION_UNIT_DEFINITION =
-  "A question is one student-eligible bank row: active, qa-passed, and past the student-serving gate. Published NGN catalog items are counted separately and are not added to this total.";
+  "A question in this count is one practice item a student can study. It is live, it has passed review, and it has cleared the checks that keep flawed questions out of a session. Published Next Generation NCLEX items are counted separately and are not added to this total.";
 
 export type BoardQuestionUnits = {
   slug: CountBoardSlug;

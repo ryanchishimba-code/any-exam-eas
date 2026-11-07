@@ -263,7 +263,7 @@ export function ExamSelectionScreen({
           className="mx-auto max-w-3xl text-center"
         >
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-600 dark:text-teal-400">
-            Any Exam Easy
+            AnyExamEasy
           </p>
           <h1 className="mt-4 bg-gradient-to-br from-slate-900 via-slate-800 to-teal-800 bg-clip-text text-4xl font-extrabold tracking-tight text-transparent dark:from-white dark:via-slate-100 dark:to-teal-300 sm:text-5xl md:text-6xl">
             Choose Your Exam

@@ -104,7 +104,7 @@ export function nclexFeatureCards(input: {
   cards.push({
     id: "explained",
     title: "Every answer explained",
-    line: "Keyed answer, distractor reasons, and cited sources on scored items.",
+    line: "The correct answer, why the other choices are wrong, and a source when the question includes one.",
     icon: "explained",
   });
 
@@ -161,7 +161,7 @@ function explainedCard(_boardShort: string): BoardFeatureCard {
   return {
     id: "explained",
     title: "Every answer explained",
-    line: "Keyed answer, distractor reasons, and cited sources on scored items.",
+    line: "The correct answer, why the other choices are wrong, and a source when the question includes one.",
     icon: "explained",
   };
 }
@@ -344,7 +344,7 @@ export function homeFeatureCards(input: {
     cards.push({
       id: "ngn",
       title: "Next Gen NCLEX",
-      line: "Published NGN case studies and CAT-style exams for nursing.",
+      line: "Published Next Generation NCLEX case studies and CAT-style exams for nursing.",
       icon: "ngn",
     });
   }
@@ -353,7 +353,7 @@ export function homeFeatureCards(input: {
     {
       id: "content-review",
       title: "Content review",
-      line: "Named clinical reviewers on scored bank items.",
+      line: "Named clinical reviewers for the boards they cover.",
       icon: "review",
     },
     {

@@ -45,7 +45,7 @@ import {
 } from "@/lib/learning/study-completion/compute-study-completion";
 
 export const metadata = {
-  title: "Dashboard — Any Exam Easy",
+  title: "Dashboard — AnyExamEasy",
   description: "Your personalized NCLEX, USMLE, NAPLEX, and PANCE study dashboard.",
 };
 

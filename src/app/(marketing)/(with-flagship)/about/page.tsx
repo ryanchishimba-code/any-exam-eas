@@ -197,7 +197,7 @@ export default async function AboutPage() {
             <p className="aee-about-copy">
               {live
                 ? ACTIVE_QUESTION_DEFINITION
-                : "Live bank count is unavailable, so this page does not show a number."}
+                : "The current question count is unavailable, so this page does not show a number."}
             </p>
             <p className="aee-about-meta">Last updated {QUALITY_PAGE_UPDATED}</p>
           </div>

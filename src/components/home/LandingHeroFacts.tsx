@@ -17,7 +17,7 @@ export function LandingHeroFacts({ className = "" }: { className?: string }) {
   return (
     <ul
       className={`grid gap-2 sm:grid-cols-2 ${className}`}
-      aria-label="What Any Exam Easy includes"
+      aria-label="What AnyExamEasy includes"
     >
       {FACTS.map(({ icon: Icon, label }) => (
         <li

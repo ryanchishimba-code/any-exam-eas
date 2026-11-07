@@ -10,7 +10,7 @@ import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
-  title: "Choose Your USMLE Step — Any Exam Easy",
+  title: "Choose Your USMLE Step — AnyExamEasy",
   description:
     "Pick USMLE Step 1, Step 2 CK, or Step 3. Each step has its own question bank with live counts.",
 };

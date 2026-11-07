@@ -48,6 +48,9 @@ const PUBLIC_FORMAT_FALLBACKS: Record<string, string | null> = {
   "NGN formats on NCLEX; structured/expert rationales (growing coverage)":
     "Structured, teachable rationales across the banks (growing coverage).",
   "NGN + teachable rationales": "Teachable rationales",
+  "Next Generation NCLEX and explanations that teach": "Explanations that teach",
+  "Next Generation formats on NCLEX, with explanations that teach. Coverage is still growing.":
+    "Explanations that teach why an answer is right. Coverage is still growing.",
   "NGN clinical judgment and prioritization.": "Clinical judgment and prioritization.",
   "NGN vignettes and clinical judgment — try a free sample, then keep going.":
     "Clinical judgment and prioritization — try a free sample, then keep going.",

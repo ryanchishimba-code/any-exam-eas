@@ -21,7 +21,7 @@ export function PricingGuarantees({ className, variant = "full" }: PricingGuaran
           "rounded-2xl border border-black/[0.06] bg-slate-50/50 px-4 py-4",
           className
         )}
-        aria-label="Why Any Exam Easy"
+        aria-label="Why AnyExamEasy"
       >
         <p className="text-sm font-semibold leading-snug text-[var(--color-ink)]">
           {BILLING_GUARANTEE_HEADLINE}
@@ -50,7 +50,7 @@ export function PricingGuarantees({ className, variant = "full" }: PricingGuaran
         "rounded-[28px] border border-black/[0.06] bg-gradient-to-b from-white to-slate-50/60 p-6 sm:p-8",
         className
       )}
-      aria-label="Why Any Exam Easy"
+      aria-label="Why AnyExamEasy"
     >
       <h2 className="text-lg font-semibold tracking-tight text-[var(--color-ink)] sm:text-xl">
         {BILLING_GUARANTEE_HEADLINE}

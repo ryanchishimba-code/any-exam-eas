@@ -21,7 +21,7 @@ import { formatMonthlyPrice, formatTrialLabel, MARKETING_DISCLAIMER } from "@/li
 import { LEGAL_ENTITY } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: "For Employers & Programs | Any Exam Easy",
+  title: "For Employers & Programs | AnyExamEasy",
   description:
     "Equip your nursing, medical, PA, NP, and pharmacy candidates with premium board prep for six licensing exams under one affordable plan. Readiness analytics, one bill, fast onboarding.",
   alternates: { canonical: "/employers" },

@@ -122,7 +122,7 @@ function CompareUsCard({
       <header className="relative">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs font-bold uppercase tracking-wide text-teal-700 dark:text-teal-300">
-            Any Exam Easy
+            AnyExamEasy
           </p>
         </div>
         <p

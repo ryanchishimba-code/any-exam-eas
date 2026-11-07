@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { LoginCompleteClient } from "./LoginCompleteClient";
 
 export const metadata = {
-  title: "Signing in — Any Exam Easy",
+  title: "Signing in — AnyExamEasy",
 };
 
 function LoginCompleteFallback() {

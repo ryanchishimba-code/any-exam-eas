@@ -43,7 +43,7 @@ export async function POST(req: Request, context: RouteContext) {
       );
     }
 
-    const subject = `Re: Your Any Exam Easy feedback`;
+    const subject = `Re: Your AnyExamEasy feedback`;
     const emailBody = [
       `Hi${item.name ? ` ${item.name}` : ""},`,
       "",

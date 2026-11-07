@@ -4,7 +4,7 @@ import { SITE_NAME } from "@/lib/site";
 
 const LOGIN_TITLE = `Log In — ${SITE_NAME}`;
 const LOGIN_DESCRIPTION =
-  "Log in to Any Exam Easy to continue NCLEX, USMLE, NAPLEX, PANCE, FNP or NPTE practice. Your progress syncs securely across all of your devices.";
+  "Log in to AnyExamEasy to continue NCLEX, USMLE, NAPLEX, PANCE, FNP or NPTE practice. Your progress syncs securely across all of your devices.";
 
 export const metadata: Metadata = {
   title: { absolute: LOGIN_TITLE },

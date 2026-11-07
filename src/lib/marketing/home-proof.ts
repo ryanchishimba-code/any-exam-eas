@@ -57,7 +57,7 @@ export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofF
   if (site.boards.nclex.caseStudies > 0) {
     facts.push({
       id: "ngn",
-      text: "NGN case studies included",
+      text: "Next Generation NCLEX case studies included",
     });
   }
 

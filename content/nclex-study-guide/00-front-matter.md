@@ -23,7 +23,7 @@ This book is a **study aid for exam preparation**. It is **not**:
 
 Portions of this material are **AI-generated** and may contain errors, omissions, or outdated information. Confirm critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.
 
-Any Exam Easy does **not** guarantee exam results, licensure, or employment. We are **independent** and not affiliated with, endorsed by, or sponsored by NCSBN, Pearson VUE, or other exam owners. NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc.
+AnyExamEasy does **not** guarantee exam results, licensure, or employment. We are **independent** and not affiliated with, endorsed by, or sponsored by NCSBN, Pearson VUE, or other exam owners. NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc.
 
 ---
 

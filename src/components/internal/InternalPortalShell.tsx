@@ -133,7 +133,7 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
             <p className="text-sm font-medium text-[var(--color-ink)] md:text-base">
-              Any Exam Easy · Internal
+              AnyExamEasy · Internal
             </p>
             <div className="w-10 md:hidden" />
           </header>
