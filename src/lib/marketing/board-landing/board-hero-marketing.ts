@@ -12,10 +12,6 @@ if (!panceHeroTestimonialSeed) {
 
 export const BOARD_LANDING_HERO_TRIAL_LABEL = "Start 5-day free trial";
 
-function boardHeroTrialSuffix(): string {
-  return `${TRIAL_DAYS}-day free trial, no card required.`;
-}
-
 export const BOARD_LANDING_HERO_QUIZ_LABEL = "Try the free quiz";
 
 export const BOARD_LANDING_HERO_QUIZ_HREF = "#quiz";
@@ -35,8 +31,9 @@ export type BoardHeroMarketingCopy = {
 
 const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   nclex: {
-    headline: "NCLEX-RN practice with every answer explained.",
-    subline: `NGN case studies, explained rationales, and timed mocks. ${boardHeroTrialSuffix()}`,
+    headline: "NCLEX-RN questions that match the current test plan.",
+    subline:
+      "Next Generation case studies, explanations for every choice, and a readiness score for weak areas.",
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",
@@ -44,8 +41,8 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     },
   },
   naplex: {
-    headline: "NAPLEX questions. Every answer explained.",
-    subline: `Drug questions, calculations, and timed mocks. ${boardHeroTrialSuffix()}`,
+    headline: "NAPLEX questions for the calculations and the drugs.",
+    subline: "Pharmacy calculations, drug vignettes, flashcards, and explanations that show the work.",
     testimonial: {
       name: "Frank C.",
       quote: "The drug cards were a game changer.",
@@ -53,13 +50,13 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     },
   },
   usmle: {
-    headline: "USMLE practice with every answer explained.",
-    subline: `Step-style vignettes, explained rationales, and timed mocks. ${boardHeroTrialSuffix()}`,
+    headline: "USMLE vignettes for Step 1, Step 2 CK, and Step 3.",
+    subline: "Step-style practice questions with explanations for every choice and timed practice exams.",
     testimonial: null,
   },
   "aanp-fnp": {
-    headline: "FNP practice with every vignette explained.",
-    subline: `Lifespan vignettes, explained rationales, and mocks. ${boardHeroTrialSuffix()}`,
+    headline: "AANP FNP vignettes across the lifespan, explained.",
+    subline: "Family nurse practitioner practice questions, flashcards, a study guide, and timed practice exams.",
     testimonial: {
       name: "Mag B.",
       quote: "I couldn't believe the price for everything I got.",
@@ -67,8 +64,8 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     },
   },
   pance: {
-    headline: "PANCE practice with every vignette explained.",
-    subline: `Organ-system vignettes, explained rationales, and mocks. ${boardHeroTrialSuffix()}`,
+    headline: "PANCE vignettes that show where the reasoning slips.",
+    subline: "Physician assistant practice questions, flashcards, a study guide, and timed practice exams.",
     testimonial: {
       name: panceHeroTestimonialSeed.name,
       quote: panceHeroTestimonialSeed.quote,
@@ -76,8 +73,8 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
     },
   },
   "npte-pt": {
-    headline: "NPTE-PT practice written for physical therapists.",
-    subline: `PT-specific scenarios, explained rationales, and a full mock. ${boardHeroTrialSuffix()}`,
+    headline: "NPTE-PT questions that explain the clinical why.",
+    subline: "Physical therapy scenarios, explanations for each choice, timed practice exams, and 3D anatomy.",
     testimonial: null,
   },
 };

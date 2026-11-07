@@ -40,7 +40,7 @@ describe("landing share images", () => {
     ] as const;
 
     const titles = [
-      "NCLEX, NAPLEX, USMLE & More — One Plan, $27.99/mo",
+      "NCLEX, NAPLEX, PANCE & USMLE Practice Questions",
       "NCLEX-RN Practice Questions + 5-Day Free Trial | $27.99/mo",
       "NAPLEX Practice Questions + 5-Day Free Trial | $27.99/mo",
       "USMLE Practice Questions + 5-Day Free Trial | $27.99/mo",

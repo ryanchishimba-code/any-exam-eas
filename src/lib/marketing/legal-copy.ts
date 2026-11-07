@@ -90,7 +90,11 @@ export function requestClientIp(req: Request): string | null {
 }
 
 /** Home hero H1. No price and no outcome promise. Price lives on pricing, FAQ, and checkout. */
-export const HOME_PRACTICE_HEADLINE = "Six board exams. One plan.";
+export const HOME_PRACTICE_HEADLINE = "Built for your exam, from the first question to test day.";
+
+/** Home hero subline. Names the boards; the live count stays on the proof line. */
+export const HOME_HERO_BOARD_SUBLINE =
+  "NCLEX, NAPLEX, PANCE, AANP FNP, USMLE, and NPTE-PT practice questions.";
 
 /** Homepage hero only. Attribution is the role, not a name. */
 export const HOME_FOUNDER_QUOTE =
@@ -101,10 +105,8 @@ export const HOME_FOUNDER_ATTRIBUTION = "— Founder";
 /**
  * Home hero subline under the H1. Uses the same floored total as metadata when provided.
  */
-export function formatHomeHeroSubline(questionCountLabel?: string | null): string {
-  const count = questionCountLabel?.trim();
-  const countLead = count ? `${count} explained questions` : "Explained questions";
-  return `${countLead}, mock exams and a readiness score. ${TRIAL_DAYS}-day free trial, no payment method required.`;
+export function formatHomeHeroSubline(_questionCountLabel?: string | null): string {
+  return HOME_HERO_BOARD_SUBLINE;
 }
 
 /** Readiness panel. The picture is a practice estimate, not a pass prediction. */

@@ -72,10 +72,14 @@ export function PublicHome({
         <MarketingPhotoHeroCopy
           headingId="hero-heading"
           title={
-            <>
-              <span className="home-hero__line">{headlineLead} </span>
-              <span className="home-hero__accent">{headlineAccent}</span>
-            </>
+            headlineAccent ? (
+              <>
+                <span className="home-hero__line">{headlineLead} </span>
+                <span className="home-hero__accent">{headlineAccent}</span>
+              </>
+            ) : (
+              headlineLead
+            )
           }
           subline={heroSubline}
           extra={

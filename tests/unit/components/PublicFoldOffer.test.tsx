@@ -18,7 +18,7 @@ describe("PublicFoldOffer", () => {
     expect(
       screen.queryByText("5-day free trial · no payment method required · then $27.99/mo")
     ).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /start your free trial/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /start free trial, no card required/i })).toHaveAttribute(
       "href",
       expect.stringContaining("/signup?plan=trial")
     );

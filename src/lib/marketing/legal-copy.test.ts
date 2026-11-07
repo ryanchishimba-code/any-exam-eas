@@ -77,14 +77,16 @@ describe("legal copy", () => {
 
 describe("home legal copy", () => {
   it("keeps the home headline and practice estimate in the shared module", () => {
-    expect(HOME_PRACTICE_HEADLINE).toBe("Six board exams. One plan.");
+    expect(HOME_PRACTICE_HEADLINE).toBe(
+      "Built for your exam, from the first question to test day."
+    );
     expect(HOME_FOUNDER_QUOTE).toBe(
       "Studying for boards is hard enough. We exist to make it clearer, simpler and within reach for every student."
     );
     expect(HOME_FOUNDER_ATTRIBUTION).toBe("— Founder");
     expect(HOME_FOUNDER_ATTRIBUTION).not.toMatch(/Chishimba|Ryan/i);
     expect(formatHomeHeroSubline("43,300+")).toBe(
-      "43,300+ explained questions, mock exams and a readiness score. 5-day free trial, no payment method required."
+      "NCLEX, NAPLEX, PANCE, AANP FNP, USMLE, and NPTE-PT practice questions."
     );
     expect(HOME_READINESS_HEADING).toMatch(/practice estimate/i);
     expect(HOME_READINESS_LINE).toMatch(/questions you answer/i);
