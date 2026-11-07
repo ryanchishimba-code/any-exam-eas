@@ -182,11 +182,40 @@ export function iso8601Duration(clock: string): string | null {
   return `PT${Number(match[1])}M${Number(match[2])}S`;
 }
 
-/** Upload day stamped on a re-rendered media folder, when the catalog records one. */
+/**
+ * Upload instant stamped on a re-rendered media folder.
+ * Google VideoObject requires a full ISO 8601 datetime with a timezone.
+ * The catalog day is midnight America/Chicago (CDT -05:00 in October).
+ */
 export function mediaVersionUploadDate(mediaVersion: string | undefined): string | null {
   const match = /^v\d+-(\d{4})(\d{2})(\d{2})$/.exec(mediaVersion ?? "");
   if (!match) return null;
-  return `${match[1]}-${match[2]}-${match[3]}`;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const utc = new Date(Date.UTC(year, month - 1, day));
+  if (
+    utc.getUTCFullYear() !== year ||
+    utc.getUTCMonth() !== month - 1 ||
+    utc.getUTCDate() !== day
+  ) {
+    return null;
+  }
+  const date = `${match[1]}-${match[2]}-${match[3]}`;
+  return `${date}T00:00:00${chicagoOffsetAtMidnight(date)}`;
+}
+
+/** Offset of midnight America/Chicago on a calendar day. */
+function chicagoOffsetAtMidnight(isoDate: string): "-05:00" | "-06:00" {
+  const probe = new Date(`${isoDate}T06:00:00.000Z`);
+  const hour = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Chicago",
+    hour: "2-digit",
+    hourCycle: "h23",
+  })
+    .formatToParts(probe)
+    .find((part) => part.type === "hour")?.value;
+  return hour === "00" || hour === "24" ? "-06:00" : "-05:00";
 }
 
 export function nclexMetaTitle(): string {
