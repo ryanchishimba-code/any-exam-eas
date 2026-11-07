@@ -58,6 +58,14 @@ describe("hub board landing model", () => {
       }),
     });
     expect(fnp.quickBite?.slug).toBe(OPEN_FNP_QUICK_BITE_SLUG);
+    for (const model of [pance, fnp]) {
+      const videos = (model.jsonLd["@graph"] as { "@type": string; uploadDate?: string }[]).filter(
+        (node) => node["@type"] === "VideoObject"
+      );
+      for (const video of videos) {
+        expect(video.uploadDate).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/);
+      }
+    }
   });
 
   it("keeps hub metadata inside SEO budget", () => {

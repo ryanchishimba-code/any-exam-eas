@@ -86,10 +86,11 @@ describe("NAPLEX landing model", () => {
     expect(types).toEqual(
       expect.arrayContaining(["Organization", "BreadcrumbList", "Course", "FAQPage", "VideoObject"])
     );
-    const video = (model.jsonLd["@graph"] as { "@type": string; embedUrl?: string }[]).find(
+    const video = (model.jsonLd["@graph"] as { "@type": string; embedUrl?: string; uploadDate?: string }[]).find(
       (node) => node["@type"] === "VideoObject"
     );
     expect(video?.embedUrl).toMatch(/\/naplex#quick-bites$/);
+    expect(JSON.stringify(model.jsonLd)).not.toMatch(/"uploadDate":"\d{4}-\d{2}-\d{2}"(?!T)/);
   });
 
   it("omits the question total when the bank lookup failed", () => {

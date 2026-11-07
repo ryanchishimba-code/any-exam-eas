@@ -119,6 +119,11 @@ describe("NCLEX landing model", () => {
     expect(types).toEqual(
       expect.arrayContaining(["Organization", "BreadcrumbList", "Course", "FAQPage", "VideoObject"])
     );
+    const video = (model.jsonLd["@graph"] as { "@type": string; name?: string; uploadDate?: string }[]).find(
+      (node) => node["@type"] === "VideoObject"
+    );
+    expect(video?.name).toBe("How the Nursing Boards Work");
+    expect(video?.uploadDate).toBe("2026-10-17T00:00:00-05:00");
     expect(model.sample?.stem.length).toBeGreaterThan(40);
     expect(model.sample?.options.some((option) => option.correct && option.rationale)).toBe(true);
   });
@@ -154,7 +159,10 @@ describe("Quick Bites sample", () => {
     expect(fnp?.mediaUrl).toBe(`/api/quick-bites-fnp/${OPEN_FNP_QUICK_BITE_SLUG}/media`);
     expect(pance?.mediaUrl).toBe(`/api/quick-bites-pance/${OPEN_PANCE_QUICK_BITE_SLUG}/media`);
     expect(nursing?.isoDuration).toBe("PT3M15S");
-    expect(mediaVersionUploadDate("v2-20261017")).toBe("2026-10-17");
+    expect(mediaVersionUploadDate("v2-20261017")).toBe("2026-10-17T00:00:00-05:00");
+    expect(mediaVersionUploadDate("v1-20260115")).toBe("2026-01-15T00:00:00-06:00");
+    expect(mediaVersionUploadDate("v2-20260231")).toBeNull();
+    expect(mediaVersionUploadDate("v2")).toBeNull();
     expect(iso8601Duration("3:15")).toBe("PT3M15S");
     expect(JSON.stringify(nursing)).not.toMatch(/lessons|locked|premium/i);
   });
