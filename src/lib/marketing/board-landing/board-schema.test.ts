@@ -9,7 +9,8 @@ describe("boardLandingMetaTitle", () => {
     for (const label of BOARD_LABELS) {
       const title = boardLandingMetaTitle(label);
       expect(title.length, label).toBeLessThanOrEqual(SEO_TITLE_MAX);
-      expect(title).toMatch(/Practice Questions \+ 5-Day Free Trial \| \$27\.99\/mo$/);
+      expect(title).not.toMatch(/\$/);
+      expect(title).not.toMatch(/one plan/i);
     }
   });
 });

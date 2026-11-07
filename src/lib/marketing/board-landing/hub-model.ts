@@ -80,7 +80,8 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipThird: "Anatomy Explorer, timed blocks, and readiness score — one Pro plan.",
     questionNoun: "USMLE questions",
     metaBoardLabel: HUB_META_LABEL.usmle,
-    metaDescription: `USMLE practice questions for Step 1, Step 2 CK, and Step 3 in one qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial. Cancel anytime.`,
+    metaDescription:
+      "USMLE practice questions for Step 1, Step 2 CK, and Step 3. Step-style vignettes with explanations for every choice and timed practice exams in one qbank.",
     keywords: [
       "USMLE practice questions",
       "USMLE Step 2 CK practice",
@@ -94,7 +95,8 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipThird: "Timed practice, readiness score, and six boards on one plan.",
     questionNoun: "PANCE questions",
     metaBoardLabel: HUB_META_LABEL.pance,
-    metaDescription: `PANCE practice questions and physician assistant board prep in a live qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
+    metaDescription:
+      "PANCE practice questions that show where the reasoning slips. Physician assistant vignettes, flashcards, a study guide, and timed practice exams.",
     keywords: [
       "PANCE practice questions",
       "PANCE qbank",
@@ -108,7 +110,8 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipThird: "Question of the Day, readiness score, and timed full exams.",
     questionNoun: "AANP FNP questions",
     metaBoardLabel: HUB_META_LABEL["aanp-fnp"],
-    metaDescription: `AANP FNP practice questions, nurse practitioner vignettes, and study guide chapters. Try a free sample. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
+    metaDescription:
+      "AANP FNP practice questions across the lifespan. Family nurse practitioner vignettes, flashcards, a study guide, and timed practice exams for test day.",
     keywords: [
       "AANP FNP practice questions",
       "FNP certification prep",
@@ -122,7 +125,8 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     chipThird: "Anatomy Explorer, timed sets, and six boards on Pro.",
     questionNoun: "NPTE-PT questions",
     metaBoardLabel: HUB_META_LABEL["npte-pt"],
-    metaDescription: `NPTE-PT practice questions and physical therapy board prep in a live qbank. Try a free sample question. Pro is ${formatMonthlyPrice("pro")}/mo after a ${TRIAL_DAYS}-day trial.`,
+    metaDescription:
+      "NPTE-PT practice questions that explain the clinical why. Physical therapy scenarios, explanations for each choice, timed practice exams, and 3D anatomy review.",
     keywords: [
       "NPTE practice questions",
       "NPTE-PT qbank",
