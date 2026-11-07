@@ -6,6 +6,7 @@ import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { CollapsibleSources } from "@/components/study/questions/CollapsibleSources";
 import type { PublicSampleQuestion } from "@/lib/marketing/public-sample";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { cn } from "@/lib/utils";
 
 const LETTERS = ["A", "B", "C", "D", "E", "F"] as const;
@@ -147,6 +148,7 @@ export function PublicSampleSet({
         <p className="mt-3 text-base leading-relaxed text-[var(--color-ink-muted)]">
           Student-eligible items from the live bank.
         </p>
+        <FreePracticeLink />
         <div className="mt-8 space-y-5">
           {visible.map((item) => (
             <SampleCard key={item.id} item={item} />

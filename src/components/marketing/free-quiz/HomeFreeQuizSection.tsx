@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { boardAccentPillClass } from "@/lib/marketing/board-accent";
 import { examMarketingPath, type ExamSeoKey } from "@/lib/seo/exam-config";
 
@@ -21,6 +22,7 @@ export function HomeFreeQuizSection() {
       <p className="home-free-quiz__lede">
         Open a board page, answer live sample items, and read rationales. No sign-up.
       </p>
+      <FreePracticeLink />
       <ul className="home-free-quiz__boards">
         {BOARDS.map((board) => (
           <li key={board.slug}>

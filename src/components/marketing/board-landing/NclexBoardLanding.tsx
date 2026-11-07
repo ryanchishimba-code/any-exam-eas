@@ -12,6 +12,7 @@ import { NclexToolkitDonutSection } from "@/components/marketing/board-landing/N
 import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/PracticeReviewPassFlow";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
@@ -34,6 +35,9 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         boardName={model.boardName}
         trail={
           <>
+      <div className="bl-band">
+        <FreePracticeLink board="nclex" prominent />
+      </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>

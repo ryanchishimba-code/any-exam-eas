@@ -37,6 +37,7 @@ const AvatarDropdown = dynamic(
 type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
+  { href: "/free-practice-questions", label: "Free practice questions" },
   { href: ROUTES.pricing, label: "Pricing" },
   { href: ROUTES.faq, label: "FAQ" },
   { href: ROUTES.howQuestionsAreReviewed, label: "How we review" },
@@ -198,7 +199,10 @@ export function Navigation() {
           <li>
             <ExamsDropdown />
           </li>
-          {(landingMinimal && !isAuthenticated ? [] : links).map((l) => {
+          {(landingMinimal && !isAuthenticated
+            ? guestLinks.filter((link) => link.href === "/free-practice-questions")
+            : links
+          ).map((l) => {
             const linkActive =
               l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
             return (

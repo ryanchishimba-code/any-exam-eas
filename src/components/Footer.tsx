@@ -6,6 +6,7 @@ import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
 import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
 
 const EXPLORE_LINKS = [
+  { href: "/free-practice-questions", label: "Free practice questions" },
   { href: "/daily", label: "Question of the Day" },
   { href: ROUTES.blog, label: "Blog" },
   { href: ROUTES.freeGuides, label: "Free Guides" },

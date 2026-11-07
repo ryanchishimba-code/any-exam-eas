@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useState } from "react";
 import dynamic from "next/dynamic";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 
 const FreeQuizPlayer = dynamic(
@@ -44,6 +45,7 @@ export function BoardFreeQuizSection({ board }: { board: FreeQuizBoardSlug }) {
       <p className="bl-section-lede">
         Student-eligible items from the live bank. No account required.
       </p>
+      <FreePracticeLink board={board} />
       <div className="bl-card bl-free-quiz__shell">
         <button
           type="button"
