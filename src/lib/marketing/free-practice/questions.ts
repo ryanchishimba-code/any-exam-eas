@@ -1,5 +1,5 @@
-/* Generated from a read-only select of active, qaPassed, student-eligible bank rows.
- * Do not edit question text by hand. Swap an id only after a new read-only pick.
+/* Static seed from read-only selects of active, qaPassed, student-eligible bank rows.
+ * Question text is the served stem, key, and rationale. Do not invent a citation.
  */
 export type FreePracticeQuestion = {
   id: string;
@@ -19,20 +19,20 @@ export const FREE_PRACTICE_QUESTIONS: Record<
 > = {
   "nclex": [
     {
-      "id": "cmr11eqi400a61y8a71dygol1",
-      "stem": "A 35-year-old female nurse is managing a team of healthcare workers in a busy medical-surgical unit. The team includes one LPN and two UAPs. The nurse needs to delegate tasks appropriately while ensuring patient safety.\n\nWhich nursing action is most appropriate?",
+      "id": "cmr7j7u2m007t1y66jk9upnts",
+      "stem": "A 35-year-old nurse is preparing to enter the room of a client with suspected tuberculosis. The client is in a negative pressure room and has a persistent cough.\n\nWhich nursing action is most appropriate?",
       "options": [
-        "Assign the LPN to perform wound care for a client with a new surgical incision.",
-        "Delegate the UAP to administer oral medications to stable clients.",
-        "Instruct the LPN to develop a care plan for a newly admitted client.",
-        "Ask the UAP to assess the pain level of a postoperative client."
+        "Wear a surgical mask before entering the room.",
+        "Wear an N95 respirator before entering the room.",
+        "Wear a face shield and gloves before entering the room.",
+        "Wear a gown and gloves before entering the room."
       ],
-      "answer": "Assign the LPN to perform wound care for a client with a new surgical incision.",
-      "rationale": "Why this answer is correct\nAppropriate Delegation to Ensure Patient Safety\n• LPNs are trained to perform wound care, which is within their scope of practice.\n• Delegating tasks according to scope of practice enhances patient safety and care quality.\n• Wound care for a surgical incision requires clinical judgment and skill, making it suitable for an LPN.\nIn practice: In a busy medical-surgical unit, effective delegation is crucial for managing patient care and ensuring that tasks are performed by the appropriate team member.\nWhy the other options are wrong\n\nDelegate the UAP to administer oral medications to stable clients.\n• Trap: Assuming UAPs can perform any task related to patient care.\n• Why it fails here: Medication administration requires nursing judgment and is outside the UAP's scope of practice.\n• Remember: UAPs can assist with activities of daily living but cannot administer medications.\n\nInstruct the LPN to develop a care plan for a newly admitted client.\n• Trap: Believing LPNs can perform all nursing tasks.\n• Why it fails here: Developing a care plan is an RN responsibility, as it requires comprehensive assessment and critical thinking.\n• Remember: LPNs can contribute to care plans but cannot independently create them.\n\nAsk the UAP to assess the pain level of a postoperative client.\n• Trap: Assuming UAPs can perform assessments.\n• Why it fails here: Pain assessment requires nursing judgment and is not within the UAP's scope of practice.\n• Remember: UAPs can report observations but cannot perform assessments that require clinical judgment.\nKey takeaway\nEffective delegation is essential for patient safety and optimal care delivery in nursing.\n\nMemory hook: Remember: 'Delegate wisely, ensure safety.'\n\nStep-by-step reasoning\n\n1. Recognize cues: The team consists of one LPN and two UAPs, each with different scopes of practice.\n2. Analyze cues: Wound care for a new surgical incision requires specific skills and knowledge that fall within the LPN's training.\n3. Prioritize hypotheses: Ensuring patient safety is paramount; tasks must be delegated based on the team members' competencies.\n4. Generate solutions: Assign the LPN to perform wound care, as it is appropriate and safe.\n5. Take action: Delegate the task to the LPN and provide any necessary support or resources.\n6. Evaluate outcomes: Monitor the LPN's performance and the patient's response to the wound care.\n\nClinical pearl\n\nAlways verify the scope of practice for each team member before delegating tasks to ensure patient safety and compliance with regulations.\n\nHigh-yield facts\n\n• LPNs can perform certain tasks like wound care and medication administration under supervision.\n• UAPs can assist with basic care tasks but cannot perform assessments or administer medications.\n• Delegation is a critical nursing skill that requires understanding the scope of practice for each team member.\n\nCommon pitfalls\n\n• Confusing the roles of LPNs and UAPs, leading to inappropriate task delegation.\n• Underestimating the complexity of tasks that require nursing judgment.\n• Assuming all care tasks can be delegated without considering patient safety.\n\nNext step in care\n\nAfter delegating the task, the nurse should monitor the LPN's progress and assess the patient's wound healing and overall condition.\n\nTest-taking tip\n\nLook for keywords in the question stem that indicate the need for safe delegation and scope of practice considerations.\n\nReal-world nursing application\n\nIn practice, always ensure that tasks assigned to team members align with their training and legal scope to prevent errors.\n\nLayered depth\n\nBasic: Delegation is assigning tasks to team members based on their qualifications.\n\nIntermediate: Understanding scope of practice is essential for safe delegation in nursing.\n\nAdvanced: Recognize the legal implications of improper delegation and the potential for patient harm.\n\nVisual cues\n\n• Scope of Practice Chart: A chart outlining the specific tasks that LPNs and UAPs can perform.\n\nRelated topics\n\n• NCLEX — Delegation and Scope of Practice: Critical for safe nursing practice.",
+      "answer": "Wear an N95 respirator before entering the room.",
+      "rationale": "An N95 respirator is required for airborne precautions, which are necessary for clients with suspected tuberculosis. Surgical masks, face shields, and gowns do not provide adequate protection against airborne pathogens.\n\nClinical reasoning: Recognize Cues: Client with suspected TB in negative pressure room. Analyze Cues: TB requires airborne precautions. Prioritize Hypotheses: Prevent airborne transmission. Generate Solutions: Use N95 respirator. Take Action: Wear N95 before entry. Evaluate Outcomes: Reduce risk of TB transmission.\n\nWhy other options are incorrect:\n• Wear a surgical mask before entering the room.: Incorrect — Surgical masks do not provide adequate protection against airborne pathogens.\n• Wear a face shield and gloves before entering the room.: Incorrect — Face shields and gloves do not protect against airborne transmission.\n• Wear a gown and gloves before entering the room.: Incorrect — Gowns and gloves do not protect against airborne transmission.",
       "sources": [
-        "Open RN Project"
+        "OpenStax / LibreTexts — Basic Care & Comfort Open RN Fundamentals textbook chapter practice problems"
       ],
-      "difficulty": 3,
+      "difficulty": 4,
       "topic": null,
       "step": null
     },
@@ -69,25 +69,25 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "OpenStax / LibreTexts — Management of Care Open RN Nursing Leadership"
       ],
       "difficulty": 5,
-      "topic": "client advocacy education",
+      "topic": null,
       "step": null
     },
     {
-      "id": "cmr10eza6000v1y8a36c5m1c2",
-      "stem": "A 65-year-old male with a history of chronic heart failure is admitted for worsening shortness of breath. He is on a low-sodium diet and takes furosemide daily. The nurse is planning his meals for the day.\n\nWhich meal selection is most appropriate for this client?",
+      "id": "cmr7hagnu004w1yx3ogpl25gj",
+      "stem": "An 82-year-old female client with a history of osteoporosis is admitted to the hospital after a fall at home. She is confused and has a bruise on her right hip. The nurse is preparing to implement fall prevention strategies.\n\nWhich nursing action is most appropriate?",
       "options": [
-        "Grilled chicken with steamed vegetables and a baked potato.",
-        "Ham sandwich with chips and a pickle.",
-        "Spaghetti with meat sauce and garlic bread.",
-        "Fried fish with coleslaw and French fries."
+        "Apply a bed alarm to alert staff if the client attempts to get up.",
+        "Keep the side rails up at all times to prevent falls.",
+        "Place the client in a wheelchair with a seatbelt to prevent falls.",
+        "Encourage the client to use a walker for ambulation."
       ],
-      "answer": "Grilled chicken with steamed vegetables and a baked potato.",
-      "rationale": "Why this answer is correct\nGrilled Chicken with Steamed Vegetables and Baked Potato: Heart Failure-Friendly Meal\n• Low in sodium, which is essential for managing fluid retention in heart failure.\n• Balanced meal providing lean protein and vegetables for overall health.\n• Baked potato offers potassium, beneficial for heart function, without excess sodium.\nIn practice: In patients with chronic heart failure, dietary management is crucial to prevent exacerbations and maintain optimal fluid balance.\nWhy the other options are wrong\n\nHam sandwich with chips and a pickle.\n• Trap: Assuming processed meats and snacks are acceptable in a low-sodium diet.\n• Why it fails here: Processed meats like ham are typically high in sodium, which can exacerbate heart failure.\n• Remember: High sodium intake can lead to increased fluid retention and worsening heart failure symptoms.\n\nSpaghetti with meat sauce and garlic bread.\n• Trap: Believing that pasta dishes are inherently healthy without considering sodium content.\n• Why it fails here: Many pasta sauces and garlic bread contain high levels of sodium, which is contraindicated for this patient.\n• Remember: Sodium can contribute to fluid overload in heart failure patients.\n\nFried fish with coleslaw and French fries.\n• Trap: Thinking that fried foods are acceptable as long as they are protein-based.\n• Why it fails here: Fried foods are often high in unhealthy fats and sodium, which can worsen heart failure symptoms.\n• Remember: Unhealthy fats and sodium can increase the risk of fluid retention and heart strain.\nKey takeaway\nMeal planning for heart failure patients must prioritize low sodium to prevent exacerbation of symptoms.\n\nMemory hook: Remember: 'Low sodium, low stress on the heart.'\n\nStep-by-step reasoning\n\n1. Recognize cues: The patient has chronic heart failure and is on a low-sodium diet.\n2. Analyze cues: High sodium intake can lead to fluid retention and worsen heart failure symptoms.\n3. Prioritize hypotheses: A meal that adheres to a low-sodium diet is vital to manage the patient's condition.\n4. Generate solutions: Choose a meal option that is low in sodium and healthy.\n5. Take action: Plan the meal with grilled chicken, steamed vegetables, and a baked potato.\n6. Evaluate outcomes: Monitor the patient's symptoms and weight for improvement.\n\nClinical pearl\n\nAlways check food labels for sodium content, especially in processed foods, to ensure compliance with dietary restrictions for heart failure patients.\n\nHigh-yield facts\n\n• A low-sodium diet is crucial for managing chronic heart failure to prevent fluid retention.\n• High sodium intake can lead to increased blood pressure and exacerbate heart failure symptoms.\n• Lean proteins and fresh vegetables are preferred in heart failure meal planning.\n\nCommon pitfalls\n\n• Confusing low-sodium options with low-fat options; they are not the same.\n• Overlooking hidden sodium in sauces, dressings, and processed foods.\n• Assuming all meats are low in sodium; processed meats often contain high sodium levels.\n\nNext step in care\n\nAfter meal planning, monitor the patient's response to the diet, including weight changes and symptom relief.\n\nTest-taking tip\n\nLook for keywords related to dietary restrictions in the stem, especially when dealing with chronic conditions like heart failure.\n\nReal-world nursing application\n\nBe vigilant about patients' dietary choices, as even small amounts of sodium can significantly impact heart failure management.\n\nLayered depth\n\nBasic: A low-sodium diet is essential for patients with heart failure.\n\nIntermediate: Excess sodium can lead to fluid retention, increasing the workload on the heart.\n\nAdvanced: In cases of severe heart failure, sodium restriction may need to be less than 1,500 mg/day, and careful monitoring of fluid intake is critical.\n\nVisual cues\n\n• Sodium Content in Common Foods: A chart comparing sodium levels in various foods, highlighting low-sodium options.",
+      "answer": "Apply a bed alarm to alert staff if the client attempts to get up.",
+      "rationale": "Applying a bed alarm is an appropriate fall prevention strategy for a confused client. It alerts staff if the client attempts to get up, allowing for timely assistance and reducing the risk of falls. This intervention respects the client's autonomy and safety.\n\nClinical reasoning: Recognize Cues: Client is confused and has a fall history. Analyze Cues: Risk of falls is high due to confusion and osteoporosis. Prioritize Hypotheses: Preventing falls is critical. Generate Solutions: Implement bed alarm for timely assistance. Take Action: Apply bed alarm. Evaluate Outcomes: Monitor for fall prevention effectiveness.\n\nWhy other options are incorrect:\n• Keep the side rails up at all times to prevent falls.: Incorrect — Full side rails can be considered a restraint and may increase fall risk if the client attempts to climb over them.\n• Place the client in a wheelchair with a seatbelt to prevent falls.: Incorrect — This can be considered a restraint and limits the client's mobility unnecessarily.\n• Encourage the client to use a walker for ambulation.: Incorrect — While beneficial, a walker does not address the immediate risk of falls when the client is confused and in bed.",
       "sources": [
-        "Open RN Project"
+        "OpenStax / LibreTexts — Fall Prevention"
       ],
-      "difficulty": 4,
-      "topic": null,
+      "difficulty": 3,
+      "topic": "fall prevention",
       "step": null
     },
     {
@@ -192,8 +192,8 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "answer": "Perform hand hygiene before and after client contact",
       "rationale": "Performing hand hygiene is the most critical action in preventing the spread of infection. It is the foundation of standard precautions and should always be prioritized before and after any client contact. While the other actions are important, they do not take precedence over hand hygiene.\n\nClinical reasoning: 1. Recognize Cues: Identify the need for infection control measures. 2. Analyze Cues: Understand that hand hygiene is essential in preventing infection transmission. 3. Prioritize Hypotheses: Hand hygiene is the first line of defense against infection. 4. Generate Solutions: Implement hand hygiene protocols. 5. Take Action: Perform hand hygiene consistently. 6. Evaluate Outcomes: Monitor compliance with hand hygiene practices.\n\nWhy other options are incorrect:\n• Ensure the client is wearing a mask: Incorrect — This is not necessary for a UTI unless respiratory symptoms are present.\n• Use gloves when handling the client's urine specimen: Incorrect — While gloves are necessary, they do not replace the need for hand hygiene.\n• Educate the client about the importance of completing the antibiotic course: Incorrect — Education is important but should not take precedence over hand hygiene.",
       "sources": [
-        "Source 1 - NCSBN NCLEX-RN Test Plan",
-        "Source 2 - Open RN Project"
+        "NCSBN NCLEX-RN Test Plan",
+        "Open RN Project"
       ],
       "difficulty": 5,
       "topic": null,
@@ -217,7 +217,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "American Diabetes Association Standards of Medical Care"
       ],
       "difficulty": 3,
-      "topic": "diabetes pharmacotherapy",
+      "topic": null,
       "step": null
     },
     {
@@ -240,22 +240,22 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "step": null
     },
     {
-      "id": "cmr7tqnsu000y1yivkymyd4ey",
-      "stem": "A 50-year-old female with a history of hypertension and hyperlipidemia is prescribed atorvastatin 40 mg daily. She reports muscle pain and weakness after starting the medication. Her current medications include lisinopril and a multivitamin. She has no known drug allergies, and her last liver function tests were normal.\n\nWhich monitoring parameter is most critical for this patient?",
+      "id": "cmra7gm5a000f1y3eqjfqg5q0",
+      "stem": "A 70-year-old female with a history of atrial fibrillation is on warfarin 5 mg daily. She presents to the clinic for her INR check, and her INR is 4.5. She reports no bleeding but is concerned about the elevated INR. Her renal function is stable with an eGFR of 60 mL/min.\n\nWhich action should the pharmacist take first?",
       "options": [
-        "Lipid panel",
-        "Creatine kinase (CK)",
-        "Liver function tests",
-        "Blood pressure"
+        "Administer vitamin K 1 mg orally",
+        "Hold warfarin and monitor INR",
+        "Administer prothrombin complex concentrate",
+        "Increase warfarin dose"
       ],
-      "answer": "Creatine kinase (CK)",
-      "rationale": "Why this answer is correct\nMonitoring creatine kinase (CK) is essential to evaluate potential statin-related muscle damage.\n• Statin therapy can cause muscle pain and weakness, known as myopathy.\n• Elevated CK levels indicate muscle damage and help assess for serious conditions like rhabdomyolysis.\n• While other tests are important, CK monitoring is urgent in the presence of muscle symptoms.\nIn practice: In practice, this means you should prioritize CK monitoring to prevent complications from statin use. If CK levels are significantly elevated, it may necessitate discontinuation of the statin.\nWhy the other options are wrong\n\nLipid panel\n• Trap: Students may think lipid panels are crucial for all patients on statins.\n• Why it fails here: While lipid panels are important for monitoring cholesterol levels, they do not address the immediate concern of muscle pain and potential muscle damage in this patient.\n• Remember: This highlights the need to prioritize monitoring parameters based on the patient's presenting symptoms.\n\nLiver function tests\n• Trap: There is a belief that liver function tests should always be monitored in patients on statins.\n• Why it fails here: Although liver function tests are relevant for assessing statin safety, they are not the most critical parameter when the patient is experiencing muscle pain, which suggests a different risk.\n• Remember: This reinforces the importance of tailoring monitoring to the patient's specific symptoms and risks.\n\nBlood pressure\n• Trap: Students might assume blood pressure monitoring is always a priority for patients with hypertension.\n• Why it fails here: While blood pressure is important for overall health management, it is not the primary concern when the patient presents with muscle symptoms indicative of potential statin-related issues.\n• Remember: This emphasizes the need to focus on the most relevant monitoring parameters based on the patient's current condition.\nKey takeaway\nWhen a patient on statins reports muscle pain, prioritize monitoring creatine kinase (CK) to assess for muscle damage.\n\nMemory hook: Remember: CK for Critical Kare in muscle pain.",
+      "answer": "Hold warfarin and monitor INR",
+      "rationale": "The correct answer is to hold warfarin and monitor INR, as the INR of 4.5 indicates a moderate risk of bleeding, but there is no active bleeding present. Administering vitamin K or prothrombin complex concentrate is reserved for cases of significant bleeding or higher INR levels. Increasing the warfarin dose is inappropriate given the elevated INR. Continuous monitoring is essential to ensure patient safety.\n\nClinical reasoning: Assess the patient's INR and bleeding risk. Analyze the need for immediate intervention based on INR levels. Recommend holding warfarin and monitoring INR closely. Counsel the patient on signs of bleeding and the importance of follow-up. Monitor INR levels until they return to a safe range.\n\nWhy other options are incorrect:\n• Administer vitamin K 1 mg orally: Vitamin K should only be administered if there is significant bleeding or if INR exceeds 5.\n• Administer prothrombin complex concentrate: This is reserved for life-threatening bleeding and is not indicated in this case.\n• Increase warfarin dose: This is contraindicated due to the elevated INR.",
       "sources": [
         "NABP NAPLEX 2026",
-        "AHA/ACC Guidelines on the Treatment of Blood Cholesterol"
+        "American College of Chest Physicians Guidelines on Antithrombotic Therapy"
       ],
       "difficulty": 3,
-      "topic": "controlled substance monitoring",
+      "topic": null,
       "step": null
     },
     {
@@ -278,20 +278,20 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "step": null
     },
     {
-      "id": "cmr7sbuyf00101y2vnn88ew6j",
-      "stem": "A 50-year-old male with a history of heart failure is on lisinopril and furosemide. His recent lab results show a potassium level of 5.8 mEq/L. He reports feeling fatigued and has had some muscle weakness.\n\nWhich finding requires immediate follow-up?",
+      "id": "cmr7v6yre000v1y2z0ld7z1px",
+      "stem": "A 45-year-old female presents to the pharmacy with a prescription for the influenza vaccine. She has a history of asthma and is currently taking albuterol as needed. She reports no known drug allergies and has not received any vaccines this season. Her last asthma exacerbation was three months ago, and she has been stable since then.\n\nWhich counseling point is most important?",
       "options": [
-        "Potassium level of 5.8 mEq/L",
-        "Fatigue and muscle weakness",
-        "Current medications",
-        "History of heart failure"
+        "Inform her that she should avoid the vaccine if she has a respiratory infection.",
+        "Advise her to take her albuterol before receiving the vaccine.",
+        "Explain that the vaccine can cause asthma exacerbations.",
+        "Reassure her that the vaccine is safe and effective for individuals with asthma."
       ],
-      "answer": "Potassium level of 5.8 mEq/L",
-      "rationale": "Why this answer is correct\nThe potassium level of 5.8 mEq/L requires immediate follow-up due to the risk of hyperkalemia.\n• Hyperkalemia (high potassium) can lead to serious cardiac complications.\n• A potassium level above 5.5 mEq/L is considered critical and needs prompt attention.\n• Symptoms like fatigue and muscle weakness may indicate issues but are not immediate threats.\nIn practice: In practice, this means that monitoring potassium levels is crucial, especially in patients with heart failure, to prevent life-threatening arrhythmias.\nWhy the other options are wrong\n\nFatigue and muscle weakness\n• Trap: Students may think that symptoms like fatigue and muscle weakness are the most pressing issues.\n• Why it fails here: While these symptoms are concerning and could be related to the elevated potassium, they do not indicate an immediate life-threatening condition like hyperkalemia does.\n• Remember: This highlights the importance of prioritizing lab values over symptoms in acute situations.\n\nCurrent medications\n• Trap: Some may believe that reviewing the patient's medications is critical in this scenario.\n• Why it fails here: Although the medications are relevant for understanding the patient's condition, they do not require immediate follow-up compared to the dangerously high potassium level.\n• Remember: This emphasizes that while medication management is important, acute lab results take precedence in urgent care.\n\nHistory of heart failure\n• Trap: Students might think that the patient's history of heart failure is the most urgent concern.\n• Why it fails here: While this history is important for context, it does not necessitate immediate action like the potassium level does.\n• Remember: This reinforces the need to focus on current lab results when assessing immediate risks.\nKey takeaway\nWhen potassium levels are elevated, prioritize immediate follow-up to prevent serious complications.\n\nMemory hook: Remember: High potassium = urgent care needed!",
+      "answer": "Reassure her that the vaccine is safe and effective for individuals with asthma.",
+      "rationale": "The correct answer is to reassure the patient that the vaccine is safe and effective for individuals with asthma. Vaccination is particularly important for patients with respiratory conditions, as they are at higher risk for complications from influenza. Avoiding the vaccine because of a respiratory history is not necessary, taking albuterol before the vaccine is not required, and the vaccine does not typically exacerbate asthma.\n\nClinical reasoning: Assess the patient's history of asthma and current medications. Analyze the importance of vaccination in preventing influenza complications in asthmatic patients. Recommend the vaccination while providing reassurance regarding its safety. Counsel the patient on the importance of the vaccine and monitor for any adverse effects post-vaccination.\n\nWhy other options are incorrect:\n• Inform her that she should avoid the vaccine if she has a respiratory infection.: This is incorrect because patients with mild respiratory infections can still receive the vaccine safely.\n• Advise her to take her albuterol before receiving the vaccine.: This is unnecessary; there is no requirement to use albuterol prior to vaccination.\n• Explain that the vaccine can cause asthma exacerbations.: This is misleading as the vaccine is generally safe and does not typically cause exacerbations.",
       "sources": [
         "NABP NAPLEX 2026"
       ],
-      "difficulty": 4,
+      "difficulty": 3,
       "topic": null,
       "step": null
     },
@@ -426,7 +426,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "Virani SS et al. 2023 AHA/ACC/ACCP/ASPC/NLA/PCNA Guideline for the Management of Patients With Chronic Coronary Disease. J Am Coll Cardiol 2023"
       ],
       "difficulty": 3,
-      "topic": "vasospastic (Prinzmetal) angina",
+      "topic": null,
       "step": null
     },
     {
@@ -503,7 +503,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "KDIGO 2021 Glomerular Diseases Guideline. Kidney Int 2021 (PubMed)"
       ],
       "difficulty": 4,
-      "topic": "anti GBM disease treatment",
+      "topic": null,
       "step": null
     },
     {
@@ -522,7 +522,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "Bilezikian JP et al. Evaluation and Management of Primary Hyperparathyroidism: Summary Statement and Guidelines from the Fifth International Workshop. J Bone Miner Res 2022"
       ],
       "difficulty": 3,
-      "topic": "indications for parathyroidectomy in asymptomatic primary hyperparathyroidism",
+      "topic": null,
       "step": null
     },
     {
@@ -541,7 +541,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "Cuker A et al. American Society of Hematology 2018 guidelines for management of venous thromboembolism: heparin-induced thrombocytopenia. Blood Adv 2018"
       ],
       "difficulty": 3,
-      "topic": "heparin induced thrombocytopenia management",
+      "topic": null,
       "step": null
     },
     {
@@ -599,7 +599,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "American Gastroenterological Association Guidelines for Constipation"
       ],
       "difficulty": 3,
-      "topic": "constipation diarrhea hemorrhoids",
+      "topic": null,
       "step": null
     },
     {
@@ -617,7 +617,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "GINA Guidelines"
       ],
       "difficulty": 4,
-      "topic": "asthma gina stepwise",
+      "topic": null,
       "step": null
     },
     {
@@ -707,7 +707,7 @@ export const FREE_PRACTICE_QUESTIONS: Record<
         "American Academy of Pediatrics Guidelines"
       ],
       "difficulty": 4,
-      "topic": "pediatric immunization schedules",
+      "topic": null,
       "step": null
     },
     {
@@ -729,39 +729,39 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "step": null
     },
     {
-      "id": "cmqgtrmsp000v1yfg0x38jsem",
-      "stem": "A 30-year-old woman presents to the primary care clinic with complaints of weight gain and fatigue. She has a family history of obesity and is currently taking no medications. Her BMI is 32, and her blood pressure is 120/80 mm Hg. Lab results show elevated fasting glucose levels.\n\nWhat is the most likely diagnosis?",
+      "id": "cmr82t5v0009s1yfvcxwvzyke",
+      "stem": "An 8-year-old girl presents to the clinic with a 2-day history of fever, dysuria, and abdominal pain. She has a history of recurrent urinary tract infections. On examination, her temperature is 101°F, and a urinalysis shows positive leukocyte esterase and nitrites.\n\nWhat is the most appropriate next step in management?",
       "options": [
-        "Hypothyroidism",
-        "Cushing's syndrome",
-        "Type 2 diabetes mellitus",
-        "Polycystic ovary syndrome"
+        "Start oral antibiotics",
+        "Obtain a urine culture",
+        "Order a renal ultrasound",
+        "Prescribe analgesics for pain"
       ],
-      "answer": "Polycystic ovary syndrome",
-      "rationale": "Polycystic ovary syndrome (PCOS) is characterized by weight gain, fatigue, and insulin resistance, which aligns with the patient's symptoms and elevated fasting glucose levels.\n- Incorrect because hypothyroidism typically presents with additional symptoms such as cold intolerance and dry skin.\n- Incorrect because Cushing's syndrome would present with more specific features such as facial rounding and striae.\n- Incorrect because while type 2 diabetes is a possibility, the combination of symptoms and the patient's age suggests PCOS is more likely.\nReference: ACOG guidelines on PCOS.\n\nClinical reasoning: Assess: Patient's symptoms and lab results indicate metabolic issues. Diagnose: Likely PCOS based on presentation. Plan: Discuss lifestyle changes and potential treatments. Evaluate: Monitor weight and glucose levels.\n\nWhy other options are incorrect:\n• Hypothyroidism: Incorrect because this condition would have additional symptoms not noted in the vignette.\n• Cushing's syndrome: Incorrect because this syndrome presents with distinct physical signs not mentioned here.\n• Type 2 diabetes mellitus: Incorrect because while this is a consideration, the overall presentation aligns more with PCOS.",
+      "answer": "Obtain a urine culture",
+      "rationale": "In cases of recurrent urinary tract infections, obtaining a urine culture is essential to identify the causative organism and guide appropriate antibiotic therapy. Starting antibiotics without culture may lead to inappropriate treatment.\n\nClinical reasoning: Assess: Child presents with fever and urinary symptoms. Diagnose: Likely UTI indicated by urinalysis. Plan: Obtain urine culture to identify pathogen. Evaluate: Monitor response to treatment once initiated.\n\nWhy other options are incorrect:\n• Start oral antibiotics: Incorrect because while antibiotics are needed, a culture should be obtained first to ensure the correct antibiotic is chosen.\n• Order a renal ultrasound: Incorrect because imaging is not indicated at this stage unless there are recurrent infections despite treatment.\n• Prescribe analgesics for pain: Incorrect because while pain management is important, it does not address the underlying infection.",
       "sources": [
-        "ACOG guidelines on PCOS"
+        "Pediatric UTI Guidelines"
       ],
       "difficulty": 3,
       "topic": null,
       "step": null
     },
     {
-      "id": "cmr83k1qq004s1yq53ataz460",
-      "stem": "A 28-year-old female presents for a routine health maintenance visit. She has no chronic medical conditions and is up to date on vaccinations. She inquires about screening for colorectal cancer. Her family history is significant for colorectal cancer in her father at age 60. Her BMI is 24, and she does not smoke.\n\nWhat is the best explanation for the findings?",
+      "id": "cmr82t59i009m1yfvszvkwtg2",
+      "stem": "A 7-year-old girl presents to the clinic with a 2-day history of ear pain and fever. On examination, her right tympanic membrane is bulging and erythematous. She has no known drug allergies and is otherwise healthy. Her temperature is 101.5°F.\n\nWhat is the most appropriate pharmacotherapy?",
       "options": [
-        "Start screening at age 40 due to family history",
-        "Screening should start at age 50 for average-risk individuals",
-        "Screening should start at age 45 for average-risk individuals",
-        "Screening is not necessary due to her current health status"
+        "Amoxicillin",
+        "Azithromycin",
+        "Ibuprofen",
+        "Ciprofloxacin ear drops"
       ],
-      "answer": "Start screening at age 40 due to family history",
-      "rationale": "Given the family history of colorectal cancer in her father at age 60, the appropriate recommendation is to begin screening at age 40, or 10 years before the age at which her father was diagnosed. This aligns with the guidelines for individuals with a family history of colorectal cancer.\n\n- Incorrect because screening starting at age 50 applies to average-risk individuals without a family history.\n- Incorrect because screening starting at age 45 is a new recommendation for average-risk individuals but does not apply here due to her family history.\n- Incorrect because screening is necessary given her family history, regardless of her current health status.\n\nKey takeaway: Family history significantly influences the timing of colorectal cancer screening.\n\nMemory hook: Remember to screen 10 years before the age of diagnosis in first-degree relatives.\n\nClinical reasoning: Assess: The patient inquires about colorectal cancer screening.\nDiagnose: Family history necessitates earlier screening.\nPlan: Recommend screening at age 40.\nEvaluate: Ensure follow-up for screening results and further management.\n\nWhy other options are incorrect:\n• Screening should start at age 50 for average-risk individuals: Incorrect because screening starting at age 50 applies to average-risk individuals without a family history.\n• Screening should start at age 45 for average-risk individuals: Incorrect because screening starting at age 45 is a new recommendation for average-risk individuals but does not apply here due to her family history.\n• Screening is not necessary due to her current health status: Incorrect because screening is necessary given her family history, regardless of her current health status.",
+      "answer": "Amoxicillin",
+      "rationale": "The most appropriate pharmacotherapy for this child with acute otitis media is amoxicillin, which is the first-line treatment according to the AAP guidelines. Azithromycin is not first-line and is generally used for penicillin-allergic patients. Ibuprofen is an analgesic and antipyretic but does not treat the underlying infection. Ciprofloxacin ear drops are not indicated for acute otitis media.\n\nClinical reasoning: Assess: The child has signs of acute otitis media. Diagnose: Acute bacterial otitis media. Plan: Initiate treatment with amoxicillin. Evaluate: Monitor symptoms and follow up if no improvement in 48-72 hours.\n\nWhy other options are incorrect:\n• Azithromycin: Incorrect because it is not first-line and is generally used for penicillin-allergic patients.\n• Ibuprofen: Incorrect because it does not treat the underlying infection.\n• Ciprofloxacin ear drops: Incorrect because they are not indicated for acute otitis media.",
       "sources": [
-        "American Cancer Society Guidelines for Colorectal Cancer Screening"
+        "AAP Guidelines for Otitis Media"
       ],
-      "difficulty": 4,
-      "topic": "colorectal cancer screening",
+      "difficulty": 3,
+      "topic": null,
       "step": null
     }
   ],
@@ -821,23 +821,22 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "step": "Step 1"
     },
     {
-      "id": "cmrrtm7w100521y8wga6v8lia",
-      "stem": "A 60-year-old man with a history of heart failure presents to the emergency department with worsening dyspnea and bilateral lower extremity edema. He reports decreased urine output over the past few days. Laboratory tests reveal a serum creatinine of 2.0 mg/dL and a BUN of 40 mg/dL. Urinalysis shows muddy brown casts, indicating acute tubular necrosis. He is currently taking furosemide and lisinopril for his heart failure.\n\nWhat is the most likely diagnosis for this patient's renal condition?",
+      "id": "cmr8atu83000c1ylo3l86gwib",
+      "stem": "A 32-year-old woman presents to the emergency department with anaphylaxis after eating peanuts. She has a history of asthma and reports difficulty breathing, hives, and swelling of the lips and tongue. Her vital signs show a blood pressure of 80/50 mm Hg and a heart rate of 120 bpm.\n\nWhat is the most appropriate next step in management?",
       "options": [
-        "Acute glomerulonephritis",
-        "Acute tubular necrosis",
-        "Post-renal azotemia",
-        "Chronic kidney disease",
-        "Interstitial nephritis"
+        "Administer epinephrine intramuscularly",
+        "Provide intravenous fluids",
+        "Start corticosteroids",
+        "Administer antihistamines"
       ],
-      "answer": "Acute tubular necrosis",
-      "rationale": "Why this answer is correct\nThe most likely diagnosis for this patient's renal condition is acute tubular necrosis.\n• Muddy brown casts in the urine are a hallmark of acute tubular necrosis (ATN).\n• The patient's history of heart failure and use of furosemide can lead to renal ischemia, contributing to ATN.\n• Elevated serum creatinine and BUN indicate acute kidney injury, consistent with ATN.\nIn practice: In practice, recognizing ATN is crucial because it often requires specific management strategies, including addressing the underlying cause and monitoring renal function closely.\nWhy the other options are wrong\n\nAcute glomerulonephritis\n• Trap: Students may confuse ATN with acute glomerulonephritis due to both being forms of acute kidney injury.\n• Why it fails here: Acute glomerulonephritis typically presents with hematuria (blood in urine) and proteinuria, which are not observed in this patient.\n• Remember: Understanding the specific urinary findings helps differentiate between types of acute kidney injury.\n\nPost-renal azotemia\n• Trap: This option may be chosen if students think about kidney obstruction as a cause of renal failure.\n• Why it fails here: Post-renal azotemia requires evidence of urinary obstruction, such as hydronephrosis, which is not indicated in this case.\n• Remember: Recognizing the absence of obstruction is key to ruling out post-renal causes of kidney injury.\n\nChronic kidney disease\n• Trap: Students might think of chronic kidney disease due to the elevated creatinine and BUN levels.\n• Why it fails here: Chronic kidney disease typically shows a gradual decline in renal function over time, not the acute changes seen here.\n• Remember: Differentiating acute from chronic conditions is essential for appropriate diagnosis and management.\n\nInterstitial nephritis\n• Trap: Some may confuse ATN with interstitial nephritis due to both being forms of kidney injury.\n• Why it fails here: Interstitial nephritis usually presents with eosinophils or white blood cell casts in the urine, which are not present in this patient's urinalysis.\n• Remember: Identifying specific urinary findings is crucial for distinguishing between different types of renal pathology.\nKey takeaway\nWhen you see muddy brown casts in a patient with acute kidney injury, think acute tubular necrosis first.\n\nMemory hook: Remember: Muddy casts = ATN.",
+      "answer": "Administer epinephrine intramuscularly",
+      "rationale": "The correct answer is to administer epinephrine intramuscularly, as it is the first-line treatment for anaphylaxis. The patient's severe symptoms and hypotension indicate a life-threatening situation requiring immediate action. Providing intravenous fluids does not treat the reaction. Corticosteroids are not first-line in acute management. Antihistamines are not sufficient alone for anaphylaxis.\n\nClinical reasoning: Assess the patient's presentation of anaphylaxis, including respiratory distress and hypotension. Analyze the need for immediate intervention to stabilize the patient. Integrate the urgency of administering epinephrine to effectively treat the anaphylactic reaction.\n\nWhy other options are incorrect:\n• Provide intravenous fluids: While fluids are important for support, they do not treat the underlying anaphylactic reaction.\n• Start corticosteroids: Corticosteroids are not effective in the acute phase of anaphylaxis and should not delay epinephrine administration.\n• Administer antihistamines: Antihistamines can provide relief but are not adequate treatment for anaphylaxis on their own.",
       "sources": [
-        "USMLE Content Outline 2026"
+        "USMLE Step 2 CK Content Outline 2026"
       ],
-      "difficulty": 4,
+      "difficulty": 3,
       "topic": null,
-      "step": "Step 1"
+      "step": "Step 3"
     },
     {
       "id": "cmqxdeo7y009y1yma8dfh7bqf",
@@ -985,35 +984,35 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "step": null
     },
     {
-      "id": "cmqh087d2001r1yay1bi35lie",
-      "stem": "A 60-year-old male patient with a history of chronic low back pain is being evaluated for his physical therapy plan. The physical therapist is considering the most appropriate patient education strategy regarding body mechanics to prevent further injury.\n\nWhat is the best explanation for the findings related to body mechanics in this patient?",
+      "id": "cmqh1jrbv00151yz8vfc18u4s",
+      "stem": "A 55-year-old male patient is being treated in an outpatient clinic after a total knee arthroplasty. He is experiencing pain and limited range of motion. The physical therapist is considering the most appropriate examination technique to assess his knee function.\n\nWhat is the most appropriate examination technique to evaluate knee range of motion in this patient?",
       "options": [
-        "Proper body mechanics can reduce the risk of injury during daily activities.",
-        "Body mechanics are not significant in managing chronic pain.",
-        "Increased awareness of body mechanics can worsen pain symptoms.",
-        "Body mechanics only matter during heavy lifting tasks."
+        "Goniometry",
+        "Visual inspection",
+        "Palpation",
+        "Functional mobility tests"
       ],
-      "answer": "Proper body mechanics can reduce the risk of injury during daily activities.",
-      "rationale": "Educating patients about proper body mechanics is crucial in preventing further injury and managing chronic pain, particularly in the context of low back pain. Proper body mechanics help distribute forces evenly across the body, reducing strain on vulnerable structures. This knowledge is applicable not only during heavy lifting but also in daily activities such as sitting, standing, and bending. The misconception that body mechanics are not significant in managing chronic pain undermines the importance of preventive strategies. Additionally, increased awareness of body mechanics should not worsen pain symptoms; rather, it should empower patients to engage in their daily activities safely. Therefore, the best explanation for the findings related to body mechanics is that they can significantly reduce the risk of injury.",
+      "answer": "Goniometry",
+      "rationale": "Goniometry is the most appropriate examination technique for accurately measuring the range of motion in the knee joint after total knee arthroplasty. This objective measurement allows the therapist to quantify the patient's progress and determine the effectiveness of the rehabilitation program. Visual inspection may provide some insight but is subjective and not as reliable as goniometric measurements. Palpation can help assess joint integrity but does not provide quantitative data on range of motion. Functional mobility tests are useful for assessing overall function but do not specifically measure range of motion.",
       "sources": [],
       "difficulty": 4,
-      "topic": "low back pain",
+      "topic": "total knee arthroplasty",
       "step": null
     },
     {
-      "id": "cmqh1cysz002j1y55p35zgs03",
-      "stem": "A 35-year-old male presents to the clinic with right ankle pain after twisting his ankle during a basketball game. He reports swelling and bruising around the ankle. On examination, there is tenderness over the lateral malleolus and a positive anterior drawer test.\n\nWhat is the most appropriate intervention for this patient to facilitate recovery?",
+      "id": "cmqh086k5000d1yayd1jkz9kz",
+      "stem": "A 35-year-old male presents to the outpatient clinic with chronic shoulder pain following a rotator cuff repair 6 months ago. He reports difficulty lifting his arm overhead and has been experiencing stiffness in the shoulder joint. Physical examination reveals limited active range of motion, particularly in external rotation, and tenderness over the greater tuberosity.\n\nWhat is the most appropriate examination technique to assess the integrity of the rotator cuff in this patient?",
       "options": [
-        "Immediate weight-bearing exercises",
-        "RICE (rest, ice, compression, elevation)",
-        "Surgical intervention",
-        "Manual therapy techniques"
+        "Empty can test",
+        "Hawkins-Kennedy test",
+        "Neer test",
+        "Cross-body adduction test"
       ],
-      "answer": "RICE (rest, ice, compression, elevation)",
-      "rationale": "B (RICE (rest, ice, compression, elevation)) is correct. He has an acute lateral ankle sprain from basketball with swelling, bruising, lateral malleolar tenderness and a positive anterior drawer test; initial care is protection, rest, ice, compression and elevation to control pain and swelling, with weight bearing resumed early as tolerated. \"Immediate weight-bearing exercises\" is wrong: early protected weight bearing as tolerated is encouraged, but it is part of initial PRICE care, not a replacement for it, and exercise loading is progressed after the acute swelling settles. \"Surgical intervention\" is wrong: most ankle sprains are treated without surgery, which is reserved for some very severe injuries. \"Manual therapy techniques\" is wrong: manual therapy may help later in rehabilitation but is not the first intervention for an acutely swollen sprain.",
+      "answer": "Empty can test",
+      "rationale": "The empty can test assesses the supraspinatus, a key part of the rotator cuff. After a rotator cuff repair, limited overhead reach and tenderness over the greater tuberosity make this the test that matches the question. The Hawkins-Kennedy and Neer tests look for subacromial impingement rather than cuff integrity. The cross-body adduction test assesses the acromioclavicular joint, not the rotator cuff.",
       "sources": [],
-      "difficulty": 4,
-      "topic": "ankle sprain",
+      "difficulty": 3,
+      "topic": "rotator cuff",
       "step": null
     },
     {
@@ -1097,19 +1096,19 @@ export const FREE_PRACTICE_QUESTIONS: Record<
       "step": null
     },
     {
-      "id": "cmqh0xw7u001o1ydq65qjq3wq",
-      "stem": "A 75-year-old male with congestive heart failure (CHF) is being evaluated in a geriatric rehabilitation unit. He reports increasing shortness of breath with minimal exertion and has a history of fluid retention. The physical therapist is developing a treatment plan to improve his functional capacity.\n\nWhat is the most appropriate progression for this patient's exercise program?",
+      "id": "cmqh03mnr00091y1by7skmhet",
+      "stem": "A 50-year-old male with Parkinson's disease presents for a follow-up physical therapy session. He reports increased difficulty with balance and coordination, particularly when turning. The therapist notes a shuffling gait pattern and reduced arm swing during ambulation.\n\nWhat is the most appropriate modality parameter to incorporate into this patient's treatment plan?",
       "options": [
-        "Start with high-intensity interval training",
-        "Incorporate low-intensity aerobic exercises gradually",
-        "Focus solely on resistance training",
-        "Advise complete bed rest to manage symptoms"
+        "Electrical stimulation for muscle strengthening",
+        "Vestibular rehabilitation exercises",
+        "Aquatic therapy for gait training",
+        "Visual cueing techniques during ambulation"
       ],
-      "answer": "Incorporate low-intensity aerobic exercises gradually",
-      "rationale": "For this patient with congestive heart failure (CHF), the most appropriate progression for his exercise program is to incorporate low-intensity aerobic exercises gradually. This approach allows the patient to build endurance and improve functional capacity without overexerting himself, which is crucial given his history of shortness of breath and fluid retention. Starting with high-intensity interval training is inappropriate as it may exacerbate his symptoms. Focusing solely on resistance training does not address cardiovascular conditioning, which is essential for CHF management. Advising complete bed rest is not advisable as it can lead to deconditioning and further decline in functional capacity. Therefore, a gradual introduction of low-intensity aerobic exercises is the safest and most effective strategy.",
+      "answer": "Visual cueing techniques during ambulation",
+      "rationale": "Visual cueing techniques help patients with Parkinson disease improve a shuffling gait and reduce freezing. This patient has a shuffling gait, reduced arm swing, and trouble turning, so visual cues during walking match the problem. Electrical stimulation does not address that gait pattern. Vestibular rehabilitation is not the first focus here. Aquatic therapy can help some people, but it is not the specific cue this gait needs. Visual cueing during ambulation is the best choice of the options listed.",
       "sources": [],
       "difficulty": 4,
-      "topic": null,
+      "topic": "Parkinson",
       "step": null
     }
   ]

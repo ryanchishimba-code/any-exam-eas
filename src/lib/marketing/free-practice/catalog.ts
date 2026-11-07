@@ -61,7 +61,7 @@ export const FREE_PRACTICE_FAQS = [
   {
     question: "Do I need a card to start a free trial?",
     answer:
-      "No. Choose Start free trial, no card required. The trial does not ask for a payment method up front.",
+      "No. Start free trial, no card required. The trial does not ask for a payment method up front.",
   },
   {
     question: "Does AnyExamEasy promise a passing result?",
@@ -71,7 +71,7 @@ export const FREE_PRACTICE_FAQS = [
   {
     question: "When is a guideline source shown?",
     answer:
-      "A guideline source is shown when that bank item stores one. If an item has no stored source, the page still shows the full rationale and does not add a citation.",
+      "A source line is shown when that bank item stores one. If an item has no stored source, the page still shows the full rationale and does not invent a citation.",
   },
 ] as const;
 
@@ -98,7 +98,10 @@ function quizNode(board: (typeof FREE_PRACTICE_BOARDS)[number]) {
       suggestedAnswer: question.options
         .filter((option) => option !== question.answer)
         .map((text) => ({ "@type": "Answer", text })),
-      comment: { "@type": "Comment", text: question.rationale },
+      comment: {
+        "@type": "Comment",
+        text: question.rationale.replace(/\s+/g, " ").slice(0, 280),
+      },
     })),
   };
 }

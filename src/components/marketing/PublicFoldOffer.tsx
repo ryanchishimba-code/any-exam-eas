@@ -23,6 +23,7 @@ const HIDDEN_PREFIXES = [
   "/contact",
   "/daily",
   "/how-to-pass",
+  "/free-practice-questions",
 ];
 
 /**

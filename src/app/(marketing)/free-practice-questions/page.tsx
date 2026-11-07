@@ -45,6 +45,12 @@ export const metadata: Metadata = {
   },
 };
 
+function displaySources(sources: string[]): string[] {
+  return sources
+    .map((source) => source.replace(/^Source\s*(\[\d+\]|\d+)\s*[—–-]\s*/i, "").trim())
+    .filter(Boolean);
+}
+
 function rationaleParagraphs(rationale: string): string[] {
   return rationale
     .split(/\n{2,}/)
@@ -62,7 +68,7 @@ export default function FreePracticeQuestionsPage() {
           <h1>{FREE_PRACTICE_H1}</h1>
           <p className="fp-lede">
             Read free practice questions for six boards. Every stem, choice, answer, and rationale
-            is on this page. A guideline source appears when the bank item has one. No account is
+            is on this page. A source line appears when the bank item stores one. No account is
             required.
           </p>
           <div className="fp-cta-row">
@@ -74,8 +80,9 @@ export default function FreePracticeQuestionsPage() {
         </div>
       </header>
 
-      <div className="fp-wrap">
-        <nav aria-label="Free practice questions by board">
+      <div className="fp-after-hero">
+      <div className="fp-jump-wrap">
+        <nav className="fp-wrap" aria-label="Free practice questions by board">
           <ul className="fp-jump">
             {FREE_PRACTICE_BOARDS.map((board) => (
               <li key={board.slug}>
@@ -131,10 +138,10 @@ export default function FreePracticeQuestionsPage() {
                             <p key={paragraphIndex}>{paragraph}</p>
                           ))}
                         </div>
-                        {question.sources.length > 0 ? (
+                        {displaySources(question.sources).length > 0 ? (
                           <p className="fp-source">
-                            <strong>Guideline. </strong>
-                            {question.sources.map((source, sourceIndex) => (
+                            <strong>Source. </strong>
+                            {displaySources(question.sources).map((source, sourceIndex) => (
                               <cite key={source}>
                                 {sourceIndex > 0 ? " · " : ""}
                                 {source}
@@ -151,6 +158,7 @@ export default function FreePracticeQuestionsPage() {
           </section>
         );
       })}
+      </div>
 
       <section className="fp-faq" id="faq" aria-labelledby="free-practice-faq-heading">
         <div className="fp-wrap">

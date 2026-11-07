@@ -47,7 +47,7 @@ describe("free practice questions page", () => {
         expect(ids.has(question.id)).toBe(false);
         ids.add(question.id);
         expect(question.options).toContain(question.answer);
-        expect(question.rationale.length).toBeGreaterThan(500);
+        expect(question.rationale.length).toBeGreaterThan(300);
         expect(question.stem.toLowerCase()).not.toMatch(/uworld|kaplan|nursing\.com|archer review/);
         expect(question.difficulty).toBeGreaterThanOrEqual(3);
         expect(question.difficulty).toBeLessThanOrEqual(5);

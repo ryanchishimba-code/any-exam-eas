@@ -49,6 +49,7 @@ const FOLD_HIDDEN_PREFIXES = [
   "/contact",
   "/daily",
   "/how-to-pass",
+  "/free-practice-questions",
 ];
 
 function showPublicFoldOffer(pathname: string): boolean {
