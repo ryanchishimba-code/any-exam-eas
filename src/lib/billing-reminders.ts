@@ -5,8 +5,6 @@ import {
   sendAnnualRenewalReminderEmail,
   sendNextBillingReminderEmail,
 } from "@/lib/email/billing-emails";
-import { runTrialDay4ReminderEmails } from "@/lib/billing/trial-day4-reminder";
-import { runTrialLifecycleEmails } from "@/lib/billing/trial-lifecycle-mail";
 import { getSubscriptionBillingDetails } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
 
@@ -48,15 +46,7 @@ export async function runBillingReminderEmails(
     errors: [],
   };
 
-  const day4 = await runTrialDay4ReminderEmails(now);
-  result.trialDay4RemindersSent = day4.sent;
-  result.errors.push(...day4.errors);
-
-  const lifecycle = await runTrialLifecycleEmails(now);
-  result.trialRemindersSent = lifecycle.remindersSent;
-  result.trialEndedEmailsSent = lifecycle.endedSent;
-  result.errors.push(...lifecycle.errors);
-
+  // Trial welcome, mid-trial, ending, and ended mail run only from /api/cron/trial-emails.
   const billingCandidates = await prisma.subscription.findMany({
     where: {
       status: "active",

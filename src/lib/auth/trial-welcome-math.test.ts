@@ -27,11 +27,12 @@ describe("trial welcome length", () => {
     expect(trialUrgencyMessage(shown.daysRemaining, shown.trialDays)).not.toMatch(/halfway/i);
   });
 
-  it("day 1 of 5 is full access, not halfway", () => {
+  it("day 1 of 5 names the question cap, not full access", () => {
     expect(trialDayNumber(5, 5)).toBe(1);
     expect(isTrialHalfway(5, 5)).toBe(false);
     expect(trialUrgencyTone(5, 5)).toBe("calm");
-    expect(trialUrgencyMessage(5, 5)).toBe("Day 1 of 5 · full access");
+    expect(trialUrgencyMessage(5, 5)).toBe("Day 1 of 5 · 100 practice questions");
+    expect(trialUrgencyMessage(5, 5)).not.toMatch(/full access/i);
     expect(trialDayCaption(5, 5)).toBe("Day 1 of 5");
   });
 

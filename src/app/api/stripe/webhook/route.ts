@@ -9,7 +9,7 @@ import {
 import { stripeUnixToDate, subscriptionCurrentPeriodEnd } from "@/lib/stripe-period";
 import { stripeEventMatchesKeyMode } from "@/lib/stripe-livemode";
 import { prisma } from "@/lib/prisma";
-import { getBillingPlanTier, parseBillingInterval } from "@/lib/billing-plans";
+import { formatPlanUsd, getBillingPlanTier, parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import type Stripe from "stripe";
 import { trackEvent } from "@/lib/analytics/events";
@@ -19,7 +19,13 @@ import { EVENT_TYPES } from "@/lib/analytics/types";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
 import { isInitialStripeTrial } from "@/lib/billing/trial-alert-content";
 import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
-import { sendPaymentFailedEmail, sendSubscriptionActiveEmail } from "@/lib/email/billing-emails";
+import {
+  sendCancellationEmail,
+  sendPaymentFailedEmail,
+  sendRenewalReceiptEmail,
+  sendSubscriptionActiveEmail,
+} from "@/lib/email/billing-emails";
+import { loadLifecycleExam } from "@/lib/email/lifecycle-exam";
 import { invalidateSubscriptionStatusCache } from "@/lib/cache";
 import {
   applyOneTimePurchase,
@@ -45,6 +51,7 @@ async function maybeSendActiveSubscriptionEmail(
   const tier = parseSubscriptionTier(stripeSub.metadata?.tier);
   const interval = parseBillingInterval(stripeSub.metadata?.interval);
   const plan = getBillingPlanTier(tier, interval);
+  const exam = await loadLifecycleExam(userId);
   const sent = await sendSubscriptionActiveEmail({
     to: user.email,
     name: user.name,
@@ -52,6 +59,9 @@ async function maybeSendActiveSubscriptionEmail(
     amountUsd: plan.totalUsd,
     interval,
     nextChargeAt: subscriptionCurrentPeriodEnd(stripeSub),
+    examName: exam.name,
+    startCta: exam.startCta,
+    startUrl: exam.startUrl,
   });
 
   if (!sent.ok) {
@@ -68,6 +78,45 @@ async function maybeSendActiveSubscriptionEmail(
       activeConfirmationSent: "1",
       pendingActiveConfirmation: "",
     },
+  });
+}
+
+async function maybeSendCancellationEmail(userId: string, stripeSub: Stripe.Subscription) {
+  const existing = await prisma.subscription.findUnique({
+    where: { userId },
+    select: { cancellationEmailSentAt: true },
+  });
+  if (existing?.cancellationEmailSentAt) return;
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { email: true, name: true },
+  });
+  if (!user?.email) return;
+
+  const until = subscriptionCurrentPeriodEnd(stripeSub);
+  const sent = await sendCancellationEmail({
+    to: user.email,
+    name: user.name,
+    accessUntilLabel: until
+      ? until.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+          timeZone: "UTC",
+        })
+      : null,
+  });
+  if (!sent.ok) {
+    console.error("[stripe/webhook] cancellation email not sent", {
+      userId,
+      reason: sent.reason,
+    });
+    return;
+  }
+  await prisma.subscription.update({
+    where: { userId },
+    data: { cancellationEmailSentAt: new Date() },
   });
 }
 
@@ -278,6 +327,9 @@ export async function POST(req: Request) {
         ) {
           await maybeSendActiveSubscriptionEmail(userId, sub);
         }
+        if (event.type === "customer.subscription.deleted") {
+          await maybeSendCancellationEmail(userId, sub);
+        }
         invalidateSubscriptionStatusCache(userId);
         trackEvent({
           userId,
@@ -337,6 +389,43 @@ export async function POST(req: Request) {
               : stripeSub.customer?.id;
           await applySubscriptionFromStripe(userId, stripeSub, customerId);
           invalidateSubscriptionStatusCache(userId);
+
+          const amountPaid = invoice.amount_paid ?? 0;
+          if (invoice.billing_reason === "subscription_cycle" && amountPaid > 0) {
+            const receiptRow = await prisma.subscription.findUnique({
+              where: { userId },
+              select: { lastPaymentReceiptInvoiceId: true },
+            });
+            if (receiptRow?.lastPaymentReceiptInvoiceId !== invoice.id) {
+              const user = await prisma.user.findUnique({
+                where: { id: userId },
+                select: { email: true, name: true },
+              });
+              if (user?.email) {
+                const exam = await loadLifecycleExam(userId);
+                const sent = await sendRenewalReceiptEmail({
+                  to: user.email,
+                  name: user.name,
+                  amountLabel: formatPlanUsd(amountPaid / 100),
+                  planLabel: "Pro",
+                  examName: exam.name,
+                  startCta: exam.startCta,
+                  startUrl: exam.startUrl,
+                });
+                if (sent.ok) {
+                  await prisma.subscription.update({
+                    where: { userId },
+                    data: { lastPaymentReceiptInvoiceId: invoice.id },
+                  });
+                } else {
+                  console.error("[stripe/webhook] renewal receipt not sent", {
+                    userId,
+                    reason: sent.reason,
+                  });
+                }
+              }
+            }
+          }
         }
       }
       break;

@@ -36,6 +36,9 @@ vi.mock("@/lib/prisma", () => ({
     user: {
       findUnique: vi.fn(async () => ({ email: "comp-pass@example.com", name: "Comp" })),
     },
+    userExamPreference: {
+      findUnique: vi.fn(async () => ({ examSlug: "naplex" })),
+    },
   },
 }));
 
@@ -66,6 +69,8 @@ vi.mock("@/lib/stripe", async () => {
 vi.mock("@/lib/email/billing-emails", () => ({
   sendPaymentFailedEmail: vi.fn(async () => ({ ok: true })),
   sendSubscriptionActiveEmail: vi.fn(async () => ({ ok: true })),
+  sendCancellationEmail: vi.fn(async () => ({ ok: true })),
+  sendRenewalReceiptEmail: vi.fn(async () => ({ ok: true })),
 }));
 
 vi.mock("@/lib/analytics/events", () => ({ trackEvent: vi.fn() }));

@@ -7,7 +7,7 @@ import { warmNeonCompute } from "@/lib/neon-warmup";
 export const maxDuration = 60;
 export const runtime = "nodejs";
 
-/** Hourly — sends trial-ending and pre-renewal emails ~24h before charge. */
+/** Hourly — pre-renewal billing emails only. Trial lifecycle mail is /api/cron/trial-emails. */
 export async function GET(req: Request) {
   if (!isCronAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

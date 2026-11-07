@@ -1,4 +1,4 @@
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { formatMonthlyPrice, formatPricingCheckoutTrialOffer } from "@/lib/site";
 
 /**
@@ -93,9 +93,9 @@ export function trialUrgencyMessage(daysRemaining: number, trialDays?: number | 
     return "You're halfway through — keep the momentum.";
   }
   if (day === 1) {
-    return `Day 1 of ${length} · full access`;
+    return `Day 1 of ${length} · ${TRIAL_LIFETIME_QUESTIONS} practice questions`;
   }
-  return "Full access unlocked — start whenever you're ready.";
+  return `${TRIAL_LIFETIME_QUESTIONS} practice questions in this trial — start whenever you're ready.`;
 }
 
 /** Approved product line. Identical to pricing and landing. No percent-off. */

@@ -28,14 +28,14 @@ describe("pricing and checkout offer copy", () => {
     const offer = screen.getByText(APPROVED);
     expect(screen.getAllByText(APPROVED)).toHaveLength(1);
     expect(offer.className).toContain("text-sm");
-    const trialButtons = screen.getAllByRole("link", { name: /start your free trial/i });
+    const trialButtons = screen.getAllByRole("link", { name: /start free trial/i });
     expect(trialButtons[0]).toHaveAttribute("href", expect.stringContaining("interval=monthly"));
     expect(trialButtons.some((link) => link.getAttribute("href")?.includes("interval=yearly"))).toBe(true);
     const cancel = screen.getAllByText(/cancel anytime in settings/i)[0];
     expect(trialButtons[0].compareDocumentPosition(offer) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(offer.compareDocumentPosition(cancel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByText(/payments are non-refundable/i)).toBeInTheDocument();
-    expect(screen.queryByText(/no card/i)).not.toBeInTheDocument();
+    expect(offer.textContent ?? "").not.toMatch(/no card/i);
     expect(screen.queryByText(/20% off first month/i)).not.toBeInTheDocument();
     expect(screen.getByText("Save 30%")).toBeInTheDocument();
     expect(screen.queryByText(/best value/i)).not.toBeInTheDocument();

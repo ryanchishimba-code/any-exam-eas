@@ -1,20 +1,22 @@
 import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
-import type { EmailDeliveryResult } from "@/lib/email/config";
-import { sendWelcomeTrialEmail } from "@/lib/email/trial-lifecycle-emails";
+import { welcomeEmailSendAfter } from "@/lib/email/welcome-signup-email";
 
-export type WelcomeEmailTriggerResult =
-  | EmailDeliveryResult
+export type WelcomeEmailScheduleResult =
+  | { ok: true; scheduled: true }
   | { ok: false; reason: "skipped" | "not_trialing" | "already_sent" };
 
-/** Send welcome email once when app-native trial starts. Safe to call fire-and-forget. */
+/**
+ * Record the welcome for about one hour from now. The hourly trial-email cron sends it.
+ * Does not send during the signup request.
+ */
 export async function triggerWelcomeTrialEmail(
   userId: string
-): Promise<WelcomeEmailTriggerResult> {
+): Promise<WelcomeEmailScheduleResult> {
   const sub = await prisma.subscription.findUnique({
     where: { userId },
     include: {
-      user: { select: { email: true, name: true, accountStatus: true } },
+      user: { select: { accountStatus: true } },
     },
   });
 
@@ -26,41 +28,34 @@ export async function triggerWelcomeTrialEmail(
     return { ok: false, reason: "skipped" };
   }
 
-  if (sub.welcomeEmailSentAt) {
-    return { ok: false, reason: "already_sent" };
+  if (sub.welcomeEmailSentAt || sub.welcomeEmailEarliestAt) {
+    return sub.welcomeEmailSentAt
+      ? { ok: false, reason: "already_sent" }
+      : { ok: true, scheduled: true };
   }
 
-  const result = await sendWelcomeTrialEmail({
-    to: sub.user.email,
-    name: sub.user.name,
+  await prisma.subscription.update({
+    where: { userId },
+    data: { welcomeEmailEarliestAt: welcomeEmailSendAfter() },
   });
 
-  if (result.ok) {
-    await prisma.subscription.update({
-      where: { userId },
-      data: { welcomeEmailSentAt: new Date() },
-    });
-  }
-
-  return result;
+  return { ok: true, scheduled: true };
 }
 
 /**
- * Keep the welcome send alive until the response finishes. A floating promise
- * was frozen when the signup function returned, so the message never left.
+ * Keep the schedule write alive until the response finishes. A floating promise
+ * was frozen when the signup function returned.
  */
 export function scheduleWelcomeTrialEmail(userId: string): void {
   const task = async () => {
     try {
       const result = await triggerWelcomeTrialEmail(userId);
       if (!result.ok) {
-        console.error("[trial-welcome] not sent:", "reason" in result ? result.reason : "unknown", {
-          userId,
-        });
+        console.error("[trial-welcome] not scheduled:", result.reason, { userId });
       }
     } catch (err) {
       console.error(
-        "[trial-welcome] send failed:",
+        "[trial-welcome] schedule failed:",
         err instanceof Error ? err.message : err,
         { userId }
       );

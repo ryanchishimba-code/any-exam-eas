@@ -34,13 +34,13 @@ export function DailyInboxCapture({ examSlug }: { examSlug?: string }) {
       }
       setStatus("done");
       if (data.status === "confirmed") {
-        setNote("This address is already confirmed. You can unsubscribe from a daily question email.");
+        setNote("This address is already confirmed. The daily question stays on the site.");
         return;
       }
       setNote(
         data.confirmationSent
-          ? "Check your inbox to confirm. We will not send a question until you do."
-          : "Saved as unconfirmed. We could not send the confirmation email just now, and we will not send a question until you confirm."
+          ? "Check your inbox to confirm this address. We do not email a question each day."
+          : "Saved as unconfirmed. We could not send the confirmation email just now. We do not email a question each day."
       );
     } catch {
       setStatus("error");
@@ -51,7 +51,7 @@ export function DailyInboxCapture({ examSlug }: { examSlug?: string }) {
   return (
     <form className="aee-qotd-hub__inbox aee-qotd-trial__inbox" onSubmit={onSubmit}>
       <label htmlFor={examSlug ? `daily-inbox-email-${examSlug}` : "daily-inbox-email"}>
-        Email me the daily question
+        Save this email
       </label>
       <p className="aee-qotd-trial__note">{DAILY_LEAD_CONSENT_COPY}</p>
       <div className="aee-qotd-trial__inbox-row">

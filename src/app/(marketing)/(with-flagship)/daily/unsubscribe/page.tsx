@@ -21,12 +21,12 @@ export default async function DailyUnsubscribePage({
     <main className="aee-daily-mail">
       <h1>{done === "1" ? "Unsubscribed" : done === "0" ? "Link not valid" : "Unsubscribe"}</h1>
       {done === "1" ? (
-        <p>This address will not receive the daily question. You can sign up again later from a question page.</p>
+        <p>This address is removed from the list. We do not email a question each day.</p>
       ) : done === "0" ? (
         <p>That unsubscribe link is missing or no longer valid.</p>
       ) : token ? (
         <>
-          <p>Stop the daily question email for this address.</p>
+          <p>Remove this address from the daily question list. We do not email a question each day.</p>
           <form action={unsubscribeDailyLeadAction}>
             <input type="hidden" name="token" value={token} />
             <button type="submit">Unsubscribe</button>

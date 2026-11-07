@@ -51,8 +51,8 @@ describe("signup query intent", () => {
       promo: " SAVE ",
     });
     expect(trial.plan).toBe("trial");
-    expect(signupTrialDestination("nclex")).toBe("/dashboard?welcome=trial&verify=1");
-    expect(signupTrialDestination("")).toBe("/select-exam?welcome=trial&verify=1");
+    expect(signupTrialDestination("nclex")).toBe("/dashboard?welcome=trial");
+    expect(signupTrialDestination("")).toBe("/select-exam?welcome=trial");
     expect(signupSubscribeCheckoutPath(trial)).toBe(
       "/checkout?plan=subscribe&interval=yearly&tier=pro&promo=SAVE"
     );

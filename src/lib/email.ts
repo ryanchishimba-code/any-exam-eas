@@ -111,6 +111,7 @@ export async function sendPasswordResetEmail({
       body: JSON.stringify({
         from,
         to: [to],
+        reply_to: LEGAL_ENTITY.supportEmail,
         subject: "Reset your AnyExamEasy password",
         html: passwordResetHtml(resetUrl),
         text: passwordResetText(resetUrl),

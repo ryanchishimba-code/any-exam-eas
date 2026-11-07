@@ -2,6 +2,11 @@ import { Prisma } from "@prisma/client";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { isEmailConfigured } from "@/lib/email/config";
 import {
+  isMarketingEmailSuppressed,
+  marketingUnsubscribeHeaders,
+  marketingUnsubscribePageUrl,
+} from "@/lib/email/marketing-preference";
+import {
   sendTrialEndedEmail,
   sendTrialEndingUpgradeEmail,
 } from "@/lib/email/trial-lifecycle-emails";
@@ -85,7 +90,12 @@ type SubscriptionRow = {
   stripeSubscriptionId: string | null;
   trialReminderForEndsAt: Date | null;
   planInterval: string | null;
-  user: { email: string; name: string | null; accountStatus: string };
+  user: {
+    email: string;
+    name: string | null;
+    accountStatus: string;
+    examPreference: { examSlug: string } | null;
+  };
 };
 
 async function loadRows(now: Date): Promise<SubscriptionRow[]> {
@@ -119,7 +129,14 @@ const rowSelect = {
   stripeSubscriptionId: true,
   trialReminderForEndsAt: true,
   planInterval: true,
-  user: { select: { email: true, name: true, accountStatus: true } },
+  user: {
+    select: {
+      email: true,
+      name: true,
+      accountStatus: true,
+      examPreference: { select: { examSlug: true } },
+    },
+  },
 } as const;
 
 export async function planTrialLifecycleEmails(now = new Date()): Promise<TrialEmailPlan> {
@@ -227,6 +244,19 @@ export async function runTrialLifecycleEmails(
   for (const recipient of [...plan.reminder, ...plan.ended]) {
     const row = byUserEnd.get(`${recipient.userId}:${recipient.trialEndsAt}`);
     if (!row?.trialEndsAt) continue;
+    if (await isMarketingEmailSuppressed(row.userId)) {
+      await claimSend(row.userId, recipient.kind, row.trialEndsAt);
+      continue;
+    }
+    let unsubscribeUrl: string | undefined;
+    let headers: Record<string, string> | undefined;
+    try {
+      unsubscribeUrl = marketingUnsubscribePageUrl(row.userId);
+      headers = marketingUnsubscribeHeaders(row.userId);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      result.errors.push(`unsubscribe link ${row.userId}: ${message}`);
+    }
     const claimed = await claimSend(row.userId, recipient.kind, row.trialEndsAt);
     if (!claimed) continue;
 
@@ -253,6 +283,9 @@ export async function runTrialLifecycleEmails(
         legacyStripeTrial,
         planInterval: interval,
         amountUsd,
+        examSlug: row.user.examPreference?.examSlug,
+        unsubscribeUrl,
+        headers,
       });
       sentOk = sent.ok;
       if (!sent.ok) result.errors.push(`reminder ${row.userId}: ${sent.reason ?? "send_failed"}`);
@@ -261,6 +294,9 @@ export async function runTrialLifecycleEmails(
         to: row.user.email,
         name: row.user.name,
         trialEndsAt: row.trialEndsAt,
+        examSlug: row.user.examPreference?.examSlug,
+        unsubscribeUrl,
+        headers,
       });
       sentOk = sent.ok;
       if (!sent.ok) result.errors.push(`ended ${row.userId}: ${sent.reason ?? "send_failed"}`);

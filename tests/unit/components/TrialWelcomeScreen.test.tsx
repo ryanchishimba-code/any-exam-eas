@@ -17,7 +17,13 @@ vi.mock("@/lib/client/use-user-access", () => ({
 describe("TrialWelcomeScreen trial length", () => {
   it("day 1 of 5 does not say halfway and uses the approved offer", () => {
     render(<TrialWelcomeScreen daysRemaining={5} trialDays={5} onDismiss={() => {}} />);
-    expect(screen.getByTestId("trial-urgency")).toHaveTextContent("Day 1 of 5 · full access");
+    expect(screen.getByTestId("trial-urgency")).toHaveTextContent(
+      "Day 1 of 5 · 100 practice questions"
+    );
+    expect(screen.getByRole("link", { name: "Start 10 questions" })).toHaveAttribute(
+      "href",
+      "/question-bank?field=nursing&mode=bank&count=10"
+    );
     expect(screen.getByTestId("trial-day-caption")).toHaveTextContent("Day 1 of 5");
     expect(screen.getByTestId("trial-offer")).toHaveTextContent(
       "5-day free trial · no payment method required · then $27.99/mo"
@@ -59,9 +65,22 @@ describe("TrialWelcomeScreen trial length", () => {
     expect(
       screen.getByText(/100 practice questions across all six boards, plus Roadmap and Deep Dives/i)
     ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Start 10 questions" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /show me around/i })).toBeInTheDocument();
     expect(screen.getByText(/Don't see it\? Check your Spam or Junk folder\./i)).toBeInTheDocument();
     expect(screen.queryByText(/halfway/i)).not.toBeInTheDocument();
+  });
+
+  it("does not offer the tour before an exam is chosen", () => {
+    render(
+      <TrialWelcomeScreen daysRemaining={5} examSlug={null} onDismiss={() => {}} />
+    );
+    expect(screen.getByRole("link", { name: "Choose your exam" })).toHaveAttribute(
+      "href",
+      "/select-exam"
+    );
+    expect(screen.queryByRole("button", { name: /show me around/i })).not.toBeInTheDocument();
+    expect(screen.getByText(/tour starts after you choose an exam/i)).toBeInTheDocument();
   });
 
   it("defaults to the 5-day plan instead of 14", () => {
