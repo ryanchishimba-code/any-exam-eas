@@ -96,8 +96,8 @@ export function nclexFeatureCards(input: {
 
   cards.push({
     id: "readiness",
-    title: "Readiness score",
-    line: "Track practice progress and your readiness score in the dashboard.",
+    title: "Practice progress",
+    line: "Track practice progress on your dashboard.",
     icon: "readiness",
   });
 
@@ -178,8 +178,8 @@ function qotdCard(boardShort: string): BoardFeatureCard {
 function readinessCard(): BoardFeatureCard {
   return {
     id: "readiness",
-    title: "Readiness score",
-    line: "Track practice progress and your readiness score in the dashboard.",
+    title: "Practice progress",
+    line: "Track practice progress on your dashboard.",
     icon: "readiness",
   };
 }

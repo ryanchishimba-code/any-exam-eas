@@ -47,7 +47,7 @@ function levelToScore(level: string | null | undefined): number | null {
     case "not_yet":
       return 38;
     case "insufficient":
-      return 50;
+      return null;
     default:
       return null;
   }

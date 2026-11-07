@@ -47,6 +47,8 @@ import {
   rollingAccuracyFromAttempts,
   type ExamSimTrend,
 } from "@/lib/learning/exam-day-plan";
+import { practiceAnswersFromRows } from "@/lib/learning/practice-answer-rows";
+import type { PracticeAnswer } from "@/lib/learning/practice-measure";
 import {
   examSimDoneTodayAnswerCount,
   examSimQualifyingQuestionCount,
@@ -122,6 +124,8 @@ export type ExamRoadmapData = {
   topics: RoadmapTopicRow[];
   priorityTopics: RoadmapTopicRow[];
   totalAttempts: number;
+  /** Answer rows for the shared practice measure. Omitted on older cached payloads. */
+  practiceAnswers?: PracticeAnswer[];
   /**
    * Last 100 saved answers on this board. Present after the attempt scan.
    * Older cached payloads may omit it.
@@ -504,6 +508,8 @@ async function loadExamRoadmapData(
         questionKey: true,
         createdAt: true,
         sessionId: true,
+        difficultyAtAttempt: true,
+        questionType: true,
       },
     }),
     prisma.conceptMastery.findMany({
@@ -525,6 +531,36 @@ async function loadExamRoadmapData(
   }
 
   const hydratedAttempts = await hydrateAttemptAreaFromBank(attempts);
+  let practiceAnswers: PracticeAnswer[] | undefined;
+  try {
+    const ids = [
+      ...new Set(
+        hydratedAttempts
+          .map((row) => row.bankItemId?.trim() || row.questionKey?.trim() || "")
+          .filter((id) => id.length > 0)
+      ),
+    ].slice(0, 4000);
+    const bankRows = ids.length
+      ? await prisma.questionBankItem.findMany({
+          where: { id: { in: ids } },
+          select: { id: true, active: true, difficulty: true, itemType: true },
+        })
+      : [];
+    practiceAnswers = practiceAnswersFromRows({
+      boardId: fieldId,
+      fieldId,
+      rows: hydratedAttempts,
+      bank: new Map(
+        bankRows.map((row) => [
+          row.id,
+          { active: row.active, difficulty: row.difficulty, itemType: row.itemType },
+        ])
+      ),
+      lookedUp: new Set(ids),
+    });
+  } catch {
+    practiceAnswers = undefined;
+  }
   const { statsByCategory, seenByCategory } = aggregateAttemptsByBlueprintCategory(
     fieldId,
     hydratedAttempts
@@ -594,6 +630,7 @@ async function loadExamRoadmapData(
     topics,
     priorityTopics,
     totalAttempts: attempts.length,
+    practiceAnswers,
     recentAccuracyWindow: rollingAccuracyFromAttempts(attempts),
     examSimTrend: examSimTrendFromSessions(
       history.sessions.map((session) => ({

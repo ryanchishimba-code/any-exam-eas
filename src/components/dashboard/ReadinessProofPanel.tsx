@@ -4,6 +4,7 @@ import type {
   ReadinessCriterionStatus,
   ReadinessDomainBar,
 } from "@/lib/learning/exam-day-plan";
+import { ReadinessRing } from "@/components/study/ReadinessRing";
 import { dbUi } from "@/lib/study/dashboard-ui";
 
 function statusClass(status: ReadinessCriterionStatus): string {
@@ -85,10 +86,6 @@ export function ReadinessProofPanel({
   /** Today's block already prints this on the first row. */
   showLeadReason?: boolean;
 }) {
-  const formulaLine =
-    readiness.visible && readiness.score != null
-      ? `${readiness.coveragePct}% coverage × ${readiness.recentAccuracyPct}% recent accuracy × ${readiness.remediationPct}% remediation = ${readiness.score}.`
-      : `${readiness.coveragePct}% coverage × ${readiness.recentAccuracyPct}% recent accuracy × ${readiness.remediationPct}% remediation.`;
   const scoredCriteria = readiness.criteria.filter((row) => row.id !== "exam_sim");
   const examSim = readiness.criteria.find((row) => row.id === "exam_sim") ?? null;
   const label = domainsLabel ?? coverage?.domainsLabel ?? "Blueprint topics";
@@ -110,38 +107,52 @@ export function ReadinessProofPanel({
       data-tour="readiness"
       className={embedded ? "space-y-4" : `${dbUi.heroSurface} space-y-4`}
     >
-      <div>
-        <p className={dbUi.eyebrow}>Readiness proof</p>
-        <h3
-          id="readiness-proof-heading"
-          className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
-        >
-          {readiness.headline}
-        </h3>
-        <p className={`${dbUi.subtitle} mt-2`}>{readiness.sampleDetail}</p>
-        {readiness.visible ? (
-          <p className="mt-3 text-[15px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink)]">
-            {formulaLine} {readiness.formula}
-          </p>
-        ) : null}
+      <div data-practice-goals="proof" data-practice-headline={readiness.headline} data-practice-score={readiness.score ?? 0}>
+        <p className={dbUi.eyebrow}>Practice progress</p>
+        <div className="mt-3 flex flex-col items-center gap-4 sm:flex-row sm:items-center">
+          <ReadinessRing
+            score={readiness.score ?? 0}
+            size={112}
+            label="Practice"
+            ariaLabel={`${readiness.headline}. ${readiness.score ?? 0} practice progress. ${readiness.disclaimer}`}
+          />
+          <div className="min-w-0 text-center sm:text-left">
+            <h3
+              id="readiness-proof-heading"
+              className="text-[22px] font-semibold leading-tight tracking-[-0.03em] text-[var(--color-ink)]"
+            >
+              {readiness.headline}
+            </h3>
+            <p className="mt-2 text-[15px] leading-snug text-[var(--color-ink)]">{readiness.disclaimer}</p>
+            {readiness.sampleDetail ? (
+              <p className="mt-1 text-[15px] leading-snug text-[var(--color-ink-muted)]">{readiness.sampleDetail}</p>
+            ) : null}
+          </div>
+        </div>
       </div>
 
-      {readiness.visible ? (
+      {scoredCriteria.length > 0 ? (
         <ul className="space-y-2">
           {scoredCriteria.map((row) => (
             <li
               key={row.id}
-              className="flex flex-col items-start gap-2 rounded-2xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/50 px-3.5 py-3 sm:flex-row sm:items-center sm:justify-between"
+              className="rounded-2xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/50 px-3.5 py-3"
             >
-              <p className="min-w-0 text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
-                {row.label}
-                <span className="ml-2 font-medium tabular-nums text-[var(--color-ink-muted)]">
-                  {row.valueLabel}
+              <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <p className="min-w-0 text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+                  {row.label}
+                  <span className="ml-2 font-medium tabular-nums text-[var(--color-ink-muted)]">
+                    {row.valueLabel}
+                  </span>
+                </p>
+                <span className={`${statusClass(row.status)} max-w-full shrink-0 text-left sm:text-right`}>
+                  {row.badge}
                 </span>
-              </p>
-              <span className={`${statusClass(row.status)} max-w-full shrink-0 text-left sm:text-right`}>
-                {row.badge}
-              </span>
+              </div>
+              {row.nextStep ? (
+                <p className="mt-2 text-[15px] leading-snug text-[var(--color-ink)]">{row.nextStep}</p>
+              ) : null}
+              <p className="mt-1 text-[13px] leading-snug text-[var(--color-ink-muted)]">{row.detail}</p>
             </li>
           ))}
         </ul>
@@ -162,7 +173,7 @@ export function ReadinessProofPanel({
             {bars.map((domain) => (
               <li key={domain.id}>
                 <div className="flex items-baseline justify-between gap-4">
-                  <p className="min-w-0 truncate text-[15px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+                  <p className="min-w-0 text-[15px] font-semibold leading-snug tracking-[-0.02em] text-[var(--color-ink)]">
                     {domain.label}
                     {domain.isTopGap ? (
                       <span className="ml-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">
@@ -199,30 +210,9 @@ export function ReadinessProofPanel({
         </div>
       ) : null}
 
-      {examSim && readiness.visible ? (
+      {examSim ? (
         <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{examSim.detail}</p>
       ) : null}
-
-      <details className="rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
-        <summary className="cursor-pointer text-[13px] font-semibold tracking-[-0.01em] text-[var(--color-ink)]">
-          How this proof is scored
-        </summary>
-        <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">{formulaLine}</p>
-        <ul className="mt-2 space-y-2 pb-1">
-          {readiness.criteria.map((row) => (
-            <li key={row.id} className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-              <span className="font-semibold text-[var(--color-ink)]">
-                {row.label} · {row.badge}
-              </span>
-              {" — "}
-              {row.detail}
-            </li>
-          ))}
-        </ul>
-        <p className="border-t border-[var(--color-border)]/50 pt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {readiness.disclaimer}
-        </p>
-      </details>
     </section>
   );
 }

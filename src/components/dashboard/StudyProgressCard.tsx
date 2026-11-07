@@ -16,7 +16,6 @@ export function StudyProgressCard({ data }: { data: StudyCompletionResult }) {
   const ringPct = studyProgressRingPercent(data.overallPercent);
   const microcopy = studyProgressMicrocopy(ringPct);
   const nextStep = studyProgressNextStep(data);
-  const estimate = data.readinessEstimate;
 
   return (
     <section
@@ -81,20 +80,6 @@ export function StudyProgressCard({ data }: { data: StudyCompletionResult }) {
         </Link>
       </p>
 
-      <div className="mt-2.5 text-[11px] leading-snug">
-        {estimate.status === "insufficient_data" ? (
-          <p className="text-[var(--color-ink-muted)]">{estimate.message}</p>
-        ) : (
-          <>
-            <p className="text-[12px] text-[var(--color-ink)]">
-              Readiness estimate: {estimate.score}/100 · {estimate.band}
-            </p>
-            <p className="mt-1 text-[10px] leading-snug text-[var(--color-ink-muted)]">
-              {estimate.disclaimer}
-            </p>
-          </>
-        )}
-      </div>
     </section>
   );
 }

@@ -33,7 +33,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   nclex: {
     headline: "NCLEX-RN questions that match the current test plan.",
     subline:
-      "Next Generation case studies, explanations for every choice, and a readiness score for weak areas.",
+      "Next Generation case studies, explanations for every choice, and practice progress for weak areas.",
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",

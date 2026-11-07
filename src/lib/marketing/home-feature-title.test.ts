@@ -3,7 +3,7 @@ import { homeFeatureShortTitle } from "@/lib/marketing/home-feature-title";
 
 describe("homeFeatureShortTitle", () => {
   it("keeps titles with four or fewer words", () => {
-    expect(homeFeatureShortTitle("Readiness score")).toBe("Readiness score");
+    expect(homeFeatureShortTitle("Practice progress")).toBe("Practice progress");
     expect(homeFeatureShortTitle("Every answer explained")).toBe("Every answer explained");
   });
 

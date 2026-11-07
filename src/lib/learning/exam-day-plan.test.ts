@@ -96,18 +96,18 @@ describe("buildExamDayPlan", () => {
     expect(drugs?.detail).toMatch(/Insulin/);
     expect(drugs?.doneToday).toBe(false);
     expect(drugs?.cta).toBe("Open safety path");
-    expect(plan.readiness.visible).toBe(false);
+    expect(plan.readiness.visible).toBe(true);
     expect(plan.readiness.label).toBeNull();
-    expect(plan.readiness.headline).toBe("Not enough practice yet");
-    expect(plan.readiness.sampleDetail).toMatch(/0 of 100/);
-    expect(plan.readiness.score).toBeNull();
+    expect(plan.readiness.headline).toBe("0 of 3 practice goals met");
+    expect(plan.readiness.sampleDetail).toMatch(/Need 40 more answers/);
+    expect(plan.readiness.score).toBe(0);
     expect(plan.readiness.minSample).toBe(READINESS_MIN_SAMPLE);
     expect(plan.readiness.formula).toBe(READINESS_FORMULA);
     expect(plan.weekPlan.active).toBe(true);
     expect(plan.weekPlan.intensity).toBe("building");
     expect(plan.weekPlan.goals.map((goal) => goal.id)).toEqual(["coverage", "remediation"]);
     expect(plan.items.some((item) => item.id === "exam_sim")).toBe(false);
-    expect(plan.readiness.criteria.every((row) => row.status === "not_scored")).toBe(true);
+    expect(plan.readiness.criteria.some((row) => row.badge.includes("Need 40 more answers"))).toBe(true);
     expect(planText(plan)).not.toMatch(/you will pass/i);
   });
 
@@ -197,7 +197,7 @@ describe("buildExamDayPlan", () => {
     expect(beforeIncorrect?.title).toBe("Review 2 incorrect");
     expect(beforeIncorrect?.href).toContain("style=review_incorrect");
     expect(beforeIncorrect?.href).toContain("count=2");
-    expect(before.readiness.visible).toBe(false);
+    expect(before.readiness.headline).toBe("0 of 3 practice goals met");
 
     const after = buildExamDayPlan({
       ...shared,
@@ -225,7 +225,7 @@ describe("buildExamDayPlan", () => {
     expect(after.totalAttempts).toBe(40);
   });
 
-  it("hides the band below 100 answers and shows the formula at the sample floor", () => {
+  it("asks for more answers below the sample and shows practice goals at the floor", () => {
     const topics = [
       topic({
         id: "a",
@@ -254,8 +254,8 @@ describe("buildExamDayPlan", () => {
       openIncorrect: 0,
       topics,
     });
-    expect(hidden.readiness.visible).toBe(false);
-    expect(hidden.readiness.sampleDetail).toMatch(/99/);
+    expect(hidden.readiness.headline).toBe("0 of 3 practice goals met");
+    expect(hidden.readiness.sampleDetail).toMatch(/Need 1 more answer/);
 
     const shown = buildExamDayPlan({
       examSlug: "pance",
@@ -270,9 +270,9 @@ describe("buildExamDayPlan", () => {
     expect(shown.readiness.visible).toBe(true);
     expect(shown.readiness.coveragePct).toBe(100);
     expect(shown.readiness.remediationPct).toBe(100);
-    expect(shown.readiness.score).toBe(readinessScoreFromFactors(100, 80, 100));
-    expect(shown.readiness.label).toBe("Ready");
-    expect(shown.readiness.bandKey).toBe(classifyReadinessBand(3).key);
+    expect(shown.readiness.score).not.toBe(readinessScoreFromFactors(100, 80, 100));
+    expect(shown.readiness.headline).toBe("3 of 3 practice goals met");
+    expect(shown.readiness.headline).toBe(classifyReadinessBand(3).label);
     expect(shown.readiness.criteria.filter((row) => row.status === "met")).toHaveLength(3);
     expect(shown.readiness.formula).toMatch(/not a pass prediction/);
     expect(shown.readiness.domains.map((domain) => domain.label).sort()).toEqual(["Alpha", "Beta"]);
@@ -357,11 +357,14 @@ describe("readiness factors", () => {
     ).toBe(25);
   });
 
-  it("multiplies the three factors and classifies by how many criteria are met", () => {
+  it("names practice goals instead of a multiplied pass-style band", () => {
     expect(readinessScoreFromFactors(80, 90, 50)).toBe(36);
-    expect(classifyReadinessBand(3)).toEqual({ key: "ready", label: "Ready" });
-    expect(classifyReadinessBand(2)).toEqual({ key: "almost", label: "Almost" });
-    expect(classifyReadinessBand(1)).toEqual({ key: "not_yet", label: "Not yet" });
+    expect(classifyReadinessBand(3).label).toBe("3 of 3 practice goals met");
+    expect(classifyReadinessBand(2).label).toBe("2 of 3 practice goals met");
+    expect(classifyReadinessBand(0).label).toBe("0 of 3 practice goals met");
+    expect(`${classifyReadinessBand(3).label} ${classifyReadinessBand(2).label}`).not.toMatch(
+      /Ready|Almost|Not yet|On track|Exam ready|you will pass/i
+    );
   });
 });
 
@@ -401,12 +404,12 @@ describe("readiness proof gaps", () => {
     expect(plan.items[0]?.why).toMatch(/12 incorrect items are still open/);
     expect(plan.readiness.leadReason).toBe(plan.items[0]?.why);
     expect(plan.readiness.visible).toBe(true);
-    expect(plan.readiness.label).toBe("Almost");
+    expect(plan.readiness.headline).toBe("2 of 3 practice goals met");
     expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.status).toBe(
       "below_target"
     );
-    expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.badge).toMatch(
-      /Below target · needs 85%/
+    expect(plan.readiness.criteria.find((row) => row.id === "remediation")?.nextStep).toMatch(
+      /Retry 12 open questions/
     );
   });
 
@@ -435,9 +438,9 @@ describe("readiness proof gaps", () => {
     expect(byId.coverage?.status).toBe("met");
     expect(byId.coverage?.badge).toBe("Met");
     expect(byId.recent_accuracy?.status).toBe("below_target");
-    expect(byId.recent_accuracy?.badge).toBe("Below target · needs 70%");
+    expect(byId.recent_accuracy?.nextStep).toMatch(/70%/);
     expect(byId.remediation?.status).toBe("below_target");
-    expect(byId.remediation?.badge).toMatch(/needs 85%/);
+    expect(byId.remediation?.nextStep).toMatch(/Retry 41 open questions/);
     expect(measured.readiness.criteria.map((row) => row.badge)).not.toContain("Missing");
 
     const empty = buildExamDayPlan({
@@ -452,10 +455,10 @@ describe("readiness proof gaps", () => {
       topics: [],
     });
     const emptyById = Object.fromEntries(empty.readiness.criteria.map((row) => [row.id, row]));
-    expect(emptyById.coverage?.status).toBe("missing");
-    expect(emptyById.recent_accuracy?.status).toBe("missing");
-    expect(emptyById.remediation?.status).toBe("missing");
-    expect(emptyById.coverage?.badge).toBe("Missing");
+    expect(emptyById.coverage?.status).toBe("below_target");
+    expect(emptyById.recent_accuracy?.status).toBe("below_target");
+    expect(emptyById.remediation?.status).toBe("below_target");
+    expect(emptyById.remediation?.nextStep).toMatch(/could not be counted/i);
   });
 
   it("keeps an untouched high-weight domain ahead of a short incorrect queue", () => {
@@ -520,14 +523,13 @@ describe("readiness proof gaps", () => {
         }),
       ],
     });
-    expect(almost.readiness.label).toBe("Almost");
+    expect(almost.readiness.headline).toBe("2 of 3 practice goals met");
     expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.status).toBe(
       "below_target"
     );
-    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.badge).toMatch(
-      /needs 8 answers/
+    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.nextStep).toMatch(
+      /8 more questions in Pulmonary/
     );
-    expect(almost.readiness.criteria.find((row) => row.id === "coverage")?.detail).toMatch(/Pulmonary/);
 
     const early = buildExamDayPlan({
       examSlug: "pance",
@@ -548,8 +550,10 @@ describe("readiness proof gaps", () => {
         }),
       ],
     });
-    expect(early.readiness.label).toBe("Not yet");
-    expect(early.readiness.criteria.find((row) => row.id === "recent_accuracy")?.detail).toMatch(/40 answers/);
+    expect(early.readiness.headline).toBe("0 of 3 practice goals met");
+    expect(early.readiness.criteria.find((row) => row.id === "recent_accuracy")?.nextStep).toMatch(
+      /Need 20 more answers/
+    );
   });
 
   it("does not let an optional exam simulation change the band", () => {

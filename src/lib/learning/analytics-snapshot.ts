@@ -6,6 +6,7 @@ import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
+import { getCachedPracticeBankStats } from "@/lib/learning/served-bank-stats-cache";
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
@@ -37,7 +38,7 @@ export async function loadAnalyticsSnapshot(
   const metadata = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const fieldId = canonicalPracticeFieldId(examSlug, metadata?.usmleFieldId);
 
-  const [dashboard, profile, roadmap, inventory, activeInventory] = await Promise.all([
+  const [dashboard, profile, roadmap, inventory, activeInventory, servedBank] = await Promise.all([
     getStudentDashboardData(userId, [fieldId]),
     getLearningProfileSnapshot(userId),
     getExamRoadmapData(userId, examSlug, {
@@ -45,6 +46,7 @@ export async function loadAnalyticsSnapshot(
     }).catch(() => null),
     loadCoverageInventory(fieldId).catch(() => null),
     getCachedActiveInventory().catch(() => null),
+    getCachedPracticeBankStats(fieldId).catch(() => null),
   ]);
 
   const boardCounts = boardStudyCountsFromSources({
@@ -62,6 +64,7 @@ export async function loadAnalyticsSnapshot(
     roadmap,
     inventoryCategories: inventory?.categories ?? null,
     topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
+    servedBank,
   });
 
   return {

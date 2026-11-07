@@ -33,16 +33,11 @@ import { TrialStartHerePath } from "@/components/trial/TrialStartHerePath";
 import type { TrialStartHereRecord } from "@/lib/trial/trial-start-here";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
+import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
 import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
-
-export type DashboardHeadline = {
-  readinessScore: number;
-  motivationalMessage: string;
-  trendDelta: number | null;
-};
 
 function topWeakFocus(
   examSlug: ExamSlug,
@@ -63,7 +58,6 @@ function topWeakFocus(
 export function DashboardPageContent({
   examSlug,
   stats,
-  headline,
   weakTopics,
   spacedReview,
   roadmap,
@@ -87,7 +81,6 @@ export function DashboardPageContent({
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
-  headline: DashboardHeadline;
   weakTopics: WeakTopicRow[];
   spacedReview: SpacedReviewSummary;
   roadmap: ExamRoadmapData | null;
@@ -212,6 +205,15 @@ export function DashboardPageContent({
       </div>
 
       {examDayPlan ? (
+        <ReadinessProofPanel
+          readiness={examDayPlan.readiness}
+          domainsLabel={examDayPlan.coverage.domainsLabel}
+          coverage={examDayPlan.coverage}
+          showLeadReason={false}
+        />
+      ) : null}
+
+      {examDayPlan ? (
         <DashboardTodayBlock
           plan={examDayPlan}
           studyLocked={studyLocked}
@@ -268,7 +270,7 @@ export function DashboardPageContent({
         <DashboardGraphicHero
           examSlug={examSlug}
           examName={exam.name}
-          readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
+          readinessScore={examDayPlan?.readiness.score ?? 0}
           readinessSummary={readinessSummary}
           categoriesLabel={categoriesLabel}
           dueCount={spacedReview.dueCount}
@@ -278,7 +280,8 @@ export function DashboardPageContent({
           practiceFieldId={fieldId}
           masteryMapTiles={masteryMapTiles}
           eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
-          bandLabel={examDayPlan ? "Practice" : undefined}
+          bandLabel="Practice"
+          practiceHeadline={examDayPlan?.readiness.headline ?? "0 of 3 practice goals met"}
           showPrimaryAction={!examDayPlan}
         />
 

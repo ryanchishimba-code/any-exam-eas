@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { DashboardWeekPlan } from "@/components/dashboard/DashboardWeekPlan";
-import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 
@@ -57,14 +56,6 @@ export function DashboardProgressFold({
           ) : (
             <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{plan.weekPlan.summary}</p>
           )
-        ) : null}
-        {plan ? (
-          <ReadinessProofPanel
-            readiness={plan.readiness}
-            domainsLabel={plan.coverage.domainsLabel}
-            coverage={plan.coverage}
-            showLeadReason={false}
-          />
         ) : null}
         {children}
       </div>

@@ -232,8 +232,7 @@ describe("Dashboard progress fold", () => {
     expect(details?.querySelector("summary")?.textContent).toMatch(/See progress/);
     expect(details?.querySelector("[data-today-new-note]")).toBeNull();
     expect(screen.getByText(/Set a target exam date/)).toBeInTheDocument();
-    expect(screen.getByText("Not enough practice yet")).toBeInTheDocument();
-    expect(screen.getByText(/19 of 100 answered/)).toBeInTheDocument();
+    expect(screen.queryByText("Not enough practice yet")).toBeNull();
 
     const review = screen.getByRole("link", { name: /Start review/ });
     expect(review).toHaveAttribute("href", "/question-bank?style=review_incorrect");

@@ -19,10 +19,11 @@ describe("ReadinessProofPanel", () => {
       topics: [],
     });
     render(<ReadinessProofPanel readiness={plan.readiness} />);
-    expect(screen.getByRole("heading", { name: "Not enough practice yet" })).toBeInTheDocument();
-    expect(screen.getByText(/19 of 100 answered/)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "0 of 3 practice goals met" })).toBeInTheDocument();
+    expect(screen.getAllByText(/Need 21 more answers/).length).toBeGreaterThan(0);
     expect(screen.queryByText("Ready")).toBeNull();
     expect(screen.queryByText("Almost")).toBeNull();
+    expect(screen.getByText("A practice measure, not a pass prediction.")).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass/i);
   });
 
@@ -69,7 +70,7 @@ describe("ReadinessProofPanel", () => {
         coverage={plan.coverage}
       />
     );
-    expect(screen.getByRole("heading", { name: "Not enough practice yet" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "0 of 3 practice goals met" })).toBeInTheDocument();
     expect(screen.getByText("Client Needs")).toBeInTheDocument();
     expect(screen.getByText("Management of Care")).toBeInTheDocument();
     expect(screen.getByText("Untouched · 1,204 questions")).toBeInTheDocument();
@@ -119,11 +120,11 @@ describe("ReadinessProofPanel", () => {
       ],
     });
     render(<ReadinessProofPanel readiness={plan.readiness} />);
-    expect(plan.readiness.label).toBe("Ready");
-    expect(screen.getByRole("heading", { name: "Ready" })).toBeInTheDocument();
-    expect(screen.getByText("Coverage")).toBeInTheDocument();
+    expect(plan.readiness.headline).toBe("3 of 3 practice goals met");
+    expect(screen.getByRole("heading", { name: "3 of 3 practice goals met" })).toBeInTheDocument();
+    expect(screen.getByText("Outline coverage")).toBeInTheDocument();
     expect(screen.getByText("Recent accuracy")).toBeInTheDocument();
-    expect(screen.getByText("Remediation")).toBeInTheDocument();
+    expect(screen.getByText("Reviewed misses")).toBeInTheDocument();
     expect(screen.getAllByText("Met").length).toBeGreaterThanOrEqual(3);
     expect(screen.getByText("Medication Use Process")).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass/i);

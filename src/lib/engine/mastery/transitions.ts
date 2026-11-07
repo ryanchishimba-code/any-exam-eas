@@ -154,6 +154,6 @@ export function cellStateLabel(state: CellState): string {
     case "stable":
       return "Stable";
     case "exam_ready":
-      return "Exam ready";
+      return "Practiced";
   }
 }
