@@ -30,17 +30,17 @@ export const FREE_PRACTICE_TRIAL_HREF = LANDING_TRIAL_HREF;
 
 const BOARD_INTRO: Record<FreePracticeBoardSlug, string> = {
   nclex:
-    "Ten free NCLEX practice questions from the student bank. Each item shows the choices, the keyed answer, and the full rationale.",
+    "Ten free NCLEX practice questions from the student bank. The choices sit on the card. Open it for the answer and the full rationale.",
   naplex:
-    "Ten free NAPLEX practice questions on dosing, safety, and therapeutics. Open an item to read the answer and the full rationale.",
+    "Ten free NAPLEX practice questions on dosing, safety, and therapeutics. Open a card to read the answer and the full rationale.",
   pance:
-    "Ten free PANCE practice questions across organ systems. The answer and rationale stay in the page so you can review them without an account.",
+    "Ten free PANCE practice questions across organ systems. The answer and rationale stay on this page, so you can review them without an account.",
   "aanp-fnp":
-    "Ten free AANP FNP practice questions for primary care decisions. Each one includes the keyed answer and the stored rationale.",
+    "Ten free AANP FNP practice questions for primary care decisions. Each card includes the answer and the stored rationale.",
   usmle:
-    "Ten free USMLE practice questions drawn from Step 1, Step 2 CK, and Step 3. Read the answer and the full rationale on this page.",
+    "Ten free USMLE practice questions from Step 1, Step 2 CK, and Step 3. Read the answer and the full rationale on this page.",
   "npte-pt":
-    "Ten free NPTE-PT practice questions for physical therapy. The answer is on the page, with the rationale and a guideline when the item has one.",
+    "Ten free NPTE-PT practice questions for physical therapy. The answer is on the page, with the rationale and a guideline when the item stores one.",
 };
 
 export function freePracticeIntro(slug: FreePracticeBoardSlug): string {
