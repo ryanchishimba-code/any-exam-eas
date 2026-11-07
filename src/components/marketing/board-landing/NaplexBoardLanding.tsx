@@ -9,6 +9,7 @@ import { NaplexAceDonutSection } from "@/components/marketing/board-landing/Napl
 import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatStrip";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NaplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
@@ -31,6 +32,9 @@ export function NaplexBoardLanding({ model }: { model: NaplexBoardLandingRenderM
         boardName={model.boardName}
         trail={
           <>
+      <div className="bl-band">
+        <FreePracticeLink board="naplex" prominent />
+      </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>

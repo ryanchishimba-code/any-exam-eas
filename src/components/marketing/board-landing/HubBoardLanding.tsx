@@ -11,6 +11,7 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { hubLiveBarChartHeading } from "@/lib/marketing/board-landing/hub-live-bar-chart";
 import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
@@ -40,6 +41,9 @@ export function HubBoardLanding({
         boardName={model.boardName}
         trail={
           <>
+      <div className="bl-band">
+        <FreePracticeLink board={freeQuizBoard} prominent />
+      </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import {
@@ -52,6 +53,7 @@ export default function DailyHubPage() {
           One free board-style item per exam, every day. No account required to try — share
           with classmates and start a free trial when you&apos;re ready.
         </p>
+        <FreePracticeLink />
         <DailyInboxCapture />
         <p className="aee-qotd-hub__date">{formatQotdDisplayDate(today)}</p>
 

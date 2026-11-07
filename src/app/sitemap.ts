@@ -14,6 +14,7 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/how-to-pass", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" },
   { path: "/how-questions-are-reviewed", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/free-practice-questions", priority: 0.9, changeFrequency: "weekly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
   { path: "/compare", priority: 0.88, changeFrequency: "weekly" },
   { path: "/toolkit", priority: 0.9, changeFrequency: "weekly" },

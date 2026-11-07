@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
+import { isFreePracticeBoardSlug } from "@/lib/marketing/free-practice/paths";
 import { Check } from "lucide-react";
 import { StudyUseNote } from "@/components/legal/StudyUseNote";
 import {
@@ -204,6 +206,7 @@ export function QotdPractice({
       >
         Explore {examName} prep →
       </Link>
+      {isFreePracticeBoardSlug(item.examSlug) ? <FreePracticeLink board={item.examSlug} /> : null}
 
       <div className="aee-qotd__share">
         <p className="aee-qotd__share-label">Share today’s question</p>

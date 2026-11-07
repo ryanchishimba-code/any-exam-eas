@@ -20,6 +20,7 @@ const SHARE_FAB_HIDDEN_PREFIXES = [
   "/toolkit",
   "/blog",
   "/free-guides",
+  "/free-practice-questions",
   "/how-questions-are-reviewed",
   "/employers",
   "/community",
