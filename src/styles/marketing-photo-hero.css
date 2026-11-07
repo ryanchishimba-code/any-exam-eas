@@ -160,6 +160,11 @@
   text-align: left;
 }
 
+.home-visual .home-hero.mkt-photo-hero h1 {
+  font-size: clamp(1.7rem, 4.8vw, 2.85rem);
+  max-width: 18em;
+}
+
 .home-visual .mkt-photo-hero h1,
 .board-landing .mkt-photo-hero h1,
 .aee-marketing .mkt-photo-hero h1 {

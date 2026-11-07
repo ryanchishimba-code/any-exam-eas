@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {
   SITE_DOMAIN,
   SITE_NAME,
-  formatLandingHeroTrialLine,
   formatMonthlyPrice,
   formatPricingCheckoutTrialOffer,
 } from "@/lib/site";
@@ -101,17 +100,12 @@ export function buildHomeMetadata(
   totalQuestionsLabel?: string,
   nclexFormats?: FormatCounts | null
 ): Metadata {
-  const count = totalQuestionsLabel?.trim();
-  const pro = formatMonthlyPrice("pro");
-  const baseTitle = `NCLEX, NAPLEX, USMLE & More — One Plan, ${pro}/mo`;
-  const title = enforceMetaTitle(baseTitle, "home");
-  const trialLine = formatLandingHeroTrialLine();
+  const title = enforceMetaTitle("NCLEX, NAPLEX, PANCE & USMLE Practice Questions", "home");
   const description = enforceMetaDescription(
-    count
-      ? `${count} scored questions across six boards on one ${pro} plan with Roadmap and mocks. ${TRIAL_DAYS}-day trial, ${TRIAL_LIFETIME_QUESTIONS} practice questions, no payment method.`
-      : `USMLE, NCLEX, NAPLEX, PANCE, AANP FNP and NPTE-PT on one ${pro} plan with Roadmap and mocks. ${trialLine}.`,
+    "NCLEX, NAPLEX, PANCE, AANP FNP, USMLE, and NPTE-PT practice questions with full rationales, timed practice exams, and a study plan built for test day.",
     "home"
   );
+  void totalQuestionsLabel;
   const url = getSiteUrl();
   const ogImage = landingOgImage("home");
 

@@ -4,14 +4,19 @@ import { boardHeroMarketingCopy, BOARD_LANDING_HERO_QUIZ_LABEL } from "@/lib/mar
 describe("boardHeroMarketingCopy", () => {
   it("matches approved hero headlines and sublines", () => {
     expect(boardHeroMarketingCopy("nclex").headline).toBe(
-      "NCLEX-RN practice with every answer explained."
+      "NCLEX-RN questions that match the current test plan."
     );
-    expect(boardHeroMarketingCopy("nclex").subline).toBe(
-      "NGN case studies, explained rationales, and timed mocks. 5-day free trial, no card required."
-    );
+    expect(boardHeroMarketingCopy("nclex").subline).toMatch(/Next Generation case studies/i);
+    expect(boardHeroMarketingCopy("nclex").subline).not.toMatch(/\bpass\b/i);
+    expect(boardHeroMarketingCopy("usmle").subline).not.toMatch(/flashcard|NGN|case stud/i);
+    expect(boardHeroMarketingCopy("npte-pt").subline).not.toMatch(/flashcard|NGN/i);
     expect(boardHeroMarketingCopy("naplex").headline).toBe(
-      "NAPLEX questions. Every answer explained."
+      "NAPLEX questions for the calculations and the drugs."
     );
+    expect(boardHeroMarketingCopy("naplex").subline).toMatch(/flashcards/i);
+    expect(boardHeroMarketingCopy("pance").headline).toMatch(/^PANCE /);
+    expect(boardHeroMarketingCopy("aanp-fnp").headline).toMatch(/AANP FNP/);
+    expect(boardHeroMarketingCopy("npte-pt").headline).toMatch(/^NPTE-PT /);
     expect(boardHeroMarketingCopy("usmle").testimonial).toBeNull();
     expect(boardHeroMarketingCopy("npte-pt").testimonial).toBeNull();
     expect(BOARD_LANDING_HERO_QUIZ_LABEL).toBe("Try the free quiz");
