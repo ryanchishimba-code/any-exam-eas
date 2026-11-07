@@ -53,7 +53,7 @@ export function homeCompareRows(ngnCaseStudies: boolean): HomeCompareRow[] {
     },
     {
       id: "readiness",
-      feature: "Readiness score",
+      feature: "Practice progress",
       detail: "",
       typical: "Varies",
     },

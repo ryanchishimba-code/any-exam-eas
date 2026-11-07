@@ -10,6 +10,7 @@ import { buildExamDayPlan, type ExamDayPlan, type ExamDayTopicInput } from "@/li
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudyGuideConfig } from "@/lib/nclex-study-guide/guide-registry";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
+import type { ServedBankStats } from "@/lib/learning/served-bank-stats";
 import type { ExamSlug } from "@/types/edtech";
 
 export function buildDashboardExamDayPlan(input: {
@@ -27,6 +28,7 @@ export function buildDashboardExamDayPlan(input: {
   topicQuestionTotal?: number | null;
   /** Every safety-path drug reviewed today. */
   drugsCompletedToday?: boolean;
+  servedBank?: ServedBankStats | null;
 }): ExamDayPlan {
   const guide = getStudyGuideConfig(input.examSlug);
   const topics: ExamDayTopicInput[] = (input.roadmap?.topics ?? []).map((topic) => ({
@@ -63,6 +65,8 @@ export function buildDashboardExamDayPlan(input: {
     examSimTrend: input.roadmap?.examSimTrend ?? null,
     examSimCompletedToday: input.roadmap?.examSimCompletedToday === true,
     drugsCompletedToday: input.drugsCompletedToday === true,
+    answers: input.roadmap?.practiceAnswers,
+    servedBank: input.servedBank,
     fallbackGuideHref: guide?.routeBase ?? `/dashboard?exam=${encodeURIComponent(input.examSlug)}`,
     fallbackGuideLabel: guide?.title ?? "Study hub",
     fallbackDrugHref: top500Href(input.examSlug),

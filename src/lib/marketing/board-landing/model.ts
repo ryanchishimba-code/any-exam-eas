@@ -224,7 +224,7 @@ export function nclexMetaTitle(): string {
 
 export function nclexMetaDescription(): string {
   return enforceMetaDescription(
-    "NCLEX-RN practice questions that match the current test plan, with Next Gen NCLEX case studies, explanations for every choice, and a readiness score.",
+    "NCLEX-RN practice questions that match the current test plan, with Next Gen NCLEX case studies, explanations for every choice, and practice progress.",
     "/nclex"
   );
 }

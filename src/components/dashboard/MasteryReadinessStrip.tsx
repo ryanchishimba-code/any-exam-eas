@@ -17,7 +17,7 @@ export function MasteryReadinessStrip({ rollup }: { rollup: MasteryRollup }) {
     tiles.push({
       label: "Competence",
       value: `${rollup.competencePct}%`,
-      detail: "Stable or exam-ready weight",
+      detail: "Stable or practiced weight",
     });
   }
   if (rollup.topLeaks.length > 0) {

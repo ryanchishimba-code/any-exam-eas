@@ -69,7 +69,7 @@ export function AnalyticsLive({ examSlug }: { examSlug: ExamSlug }) {
 
   return (
     <div className="flex flex-col gap-4 sm:block sm:space-y-8">
-      <div className="order-2 sm:order-none">
+      <div className="order-1 sm:order-none">
         <p className="mb-3 text-[14px]">
           <Link href={ROUTES.readiness} className="font-semibold text-[var(--color-accent)]">
             Readiness checks
@@ -81,7 +81,7 @@ export function AnalyticsLive({ examSlug }: { examSlug: ExamSlug }) {
           coverage={snapshot.coverage}
         />
       </div>
-      <div className="order-1 sm:order-none">
+      <div className="order-2 sm:order-none">
         <StudentAnalyticsDashboard
           examSlug={snapshot.examSlug}
           examName={snapshot.examName}
@@ -89,6 +89,7 @@ export function AnalyticsLive({ examSlug }: { examSlug: ExamSlug }) {
           openRemediation={snapshot.openRemediation}
           initialData={{ dashboard: snapshot.dashboard, profile: snapshot.profile }}
           formats={snapshot.formats}
+          practice={snapshot.readiness}
         />
       </div>
     </div>

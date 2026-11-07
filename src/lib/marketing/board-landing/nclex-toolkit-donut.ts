@@ -58,7 +58,7 @@ export function buildNclexToolkitDonutSegments(input: {
     },
     {
       id: "readiness",
-      label: "Readiness score",
+      label: "Practice progress",
       detail: "Track weak areas before test day.",
     },
     {

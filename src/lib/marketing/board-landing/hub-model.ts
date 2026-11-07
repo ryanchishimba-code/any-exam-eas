@@ -77,7 +77,7 @@ const HUB_META_LABEL: Record<HubExamKey, string> = {
 const HUB_COPY: Record<HubExamKey, HubCopy> = {
   usmle: {
     chipMiddle: "Step 1, Step 2 CK, and Step 3 banks with teachable rationales.",
-    chipThird: "Anatomy Explorer, timed blocks, and readiness score — one Pro plan.",
+    chipThird: "Anatomy Explorer, timed blocks, and practice progress — one Pro plan.",
     questionNoun: "USMLE questions",
     metaBoardLabel: HUB_META_LABEL.usmle,
     metaDescription:
@@ -92,7 +92,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
   },
   pance: {
     chipMiddle: "Board-style vignettes with teachable rationales and an included study guide.",
-    chipThird: "Timed practice, readiness score, and six boards on one plan.",
+    chipThird: "Timed practice, practice progress, and six boards on one plan.",
     questionNoun: "PANCE questions",
     metaBoardLabel: HUB_META_LABEL.pance,
     metaDescription:
@@ -107,7 +107,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
   },
   "aanp-fnp": {
     chipMiddle: "FNP vignettes with teachable rationales and an included study guide.",
-    chipThird: "Question of the Day, readiness score, and timed full exams.",
+    chipThird: "Question of the Day, practice progress, and timed full exams.",
     questionNoun: "AANP FNP questions",
     metaBoardLabel: HUB_META_LABEL["aanp-fnp"],
     metaDescription:

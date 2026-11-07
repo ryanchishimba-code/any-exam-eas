@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import { buildExamDayPlan } from "@/lib/learning/exam-day-plan";
@@ -6,7 +7,7 @@ import { buildExamDayPlan } from "@/lib/learning/exam-day-plan";
 const now = new Date("2026-09-22T15:00:00.000Z");
 
 describe("ReadinessProofPanel", () => {
-  it("hides the band under 100 answers and shows the count", () => {
+  it("hides the band under 100 answers and shows the count", async () => {
     const plan = buildExamDayPlan({
       examSlug: "nclex",
       examName: "NCLEX-RN",
@@ -19,14 +20,24 @@ describe("ReadinessProofPanel", () => {
       topics: [],
     });
     render(<ReadinessProofPanel readiness={plan.readiness} />);
-    expect(screen.getByRole("heading", { name: "Not enough practice yet" })).toBeInTheDocument();
-    expect(screen.getByText(/19 of 100 answered/)).toBeInTheDocument();
+    const toggle = screen.getByRole("button", { name: /0 of 3 practice goals met/ });
+    const goals = document.getElementById(toggle.getAttribute("aria-controls") ?? "");
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(goals).toHaveAttribute("hidden");
+    await userEvent.click(toggle);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByText("Coverage")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Coverage/ })).toHaveAttribute(
+      "aria-label",
+      expect.stringMatching(/Need 21 more answers/)
+    );
     expect(screen.queryByText("Ready")).toBeNull();
     expect(screen.queryByText("Almost")).toBeNull();
+    expect(screen.getByText("A practice measure, not a pass prediction.")).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass/i);
   });
 
-  it("shows the untouched high-weight domain on the same heatmap as Today", () => {
+  it("shows the untouched high-weight domain on the same heatmap as Today", async () => {
     const plan = buildExamDayPlan({
       examSlug: "nclex",
       examName: "NCLEX-RN",
@@ -69,11 +80,15 @@ describe("ReadinessProofPanel", () => {
         coverage={plan.coverage}
       />
     );
-    expect(screen.getByRole("heading", { name: "Not enough practice yet" })).toBeInTheDocument();
-    expect(screen.getByText("Client Needs")).toBeInTheDocument();
-    expect(screen.getByText("Management of Care")).toBeInTheDocument();
-    expect(screen.getByText("Untouched · 1,204 questions")).toBeInTheDocument();
-    expect(screen.getByText("Top gap")).toBeInTheDocument();
+    const toggle = screen.getByRole("button", { name: /0 of 3 practice goals met/ });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(document.getElementById(toggle.getAttribute("aria-controls") ?? "")).toHaveAttribute(
+      "hidden"
+    );
+    await userEvent.click(toggle);
+    expect(screen.getByText("Outline depth")).toBeInTheDocument();
+    expect(screen.getByText(/Management of Care/)).toBeInTheDocument();
+    expect(screen.getByText("Gap")).toBeInTheDocument();
     expect(plan.items[0]?.detail).toMatch(/Management of Care/);
     expect(plan.weekPlan.goals.find((goal) => goal.id === "coverage")?.title).toMatch(
       /Management of Care/
@@ -87,7 +102,7 @@ describe("ReadinessProofPanel", () => {
     expect(document.body.textContent).not.toMatch(/you will pass/i);
   });
 
-  it("shows Ready with criteria once the sample and factors are met", () => {
+  it("shows Ready with criteria once the sample and factors are met", async () => {
     const plan = buildExamDayPlan({
       examSlug: "naplex",
       examName: "NAPLEX",
@@ -119,13 +134,20 @@ describe("ReadinessProofPanel", () => {
       ],
     });
     render(<ReadinessProofPanel readiness={plan.readiness} />);
-    expect(plan.readiness.label).toBe("Ready");
-    expect(screen.getByRole("heading", { name: "Ready" })).toBeInTheDocument();
+    expect(plan.readiness.headline).toBe("3 of 3 practice goals met");
+    const toggle = screen.getByRole("button", { name: /3 of 3 practice goals met/ });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(document.getElementById(toggle.getAttribute("aria-controls") ?? "")).toHaveAttribute(
+      "hidden"
+    );
+    toggle.focus();
+    await userEvent.keyboard("{Enter}");
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText("Coverage")).toBeInTheDocument();
-    expect(screen.getByText("Recent accuracy")).toBeInTheDocument();
-    expect(screen.getByText("Remediation")).toBeInTheDocument();
-    expect(screen.getAllByText("Met").length).toBeGreaterThanOrEqual(3);
-    expect(screen.getByText("Medication Use Process")).toBeInTheDocument();
+    expect(screen.getByText("Accuracy")).toBeInTheDocument();
+    expect(screen.getByText("Review")).toBeInTheDocument();
+    expect(screen.getAllByRole("img", { name: /percent/i }).length).toBeGreaterThanOrEqual(3);
+    expect(screen.getByText(/Medication Use Process/)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass/i);
     expect(document.body.textContent).toMatch(/not a pass prediction/i);
   });

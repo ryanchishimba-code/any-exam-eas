@@ -34,7 +34,7 @@ export function buildHomeHeroChips(_band: HomeHeroBand): { id: string; text: str
     },
     {
       id: "readiness",
-      text: "Readiness score and Roadmap in your dashboard.",
+      text: "Practice progress and Roadmap in your dashboard.",
     },
   ];
 }

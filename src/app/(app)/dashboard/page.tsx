@@ -27,6 +27,7 @@ import { isDrugSafetyPathComplete } from "@/lib/drugs300/service";
 import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
 import { buildDashboardExamDayPlan } from "@/lib/learning/dashboard-exam-day-plan";
 import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
+import { getCachedPracticeBankStats } from "@/lib/learning/served-bank-stats-cache";
 import { ROUTES } from "@/lib/routes";
 import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
 import { DashboardUpgradeRedirect } from "@/app/(app)/dashboard/upgrade-redirect";
@@ -98,7 +99,7 @@ async function DashboardContent({
   // dashboard returned left the second connection idle and held the HTML
   // stream open for both round trips. Format buckets are an analytics chart;
   // the dashboard does not render them.
-  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday] =
+  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday, servedBank] =
     await runPageDb(() => {
       const masteryPromise =
         examSlug === "nclex"
@@ -135,7 +136,6 @@ async function DashboardContent({
       return Promise.all([
         getExamScopedStats(userId, examSlug, fieldId),
         getStudentDashboardData(userId, [fieldId], {
-          skipAccuracyTrend: true,
           skipFormatPractice: true,
         }),
         settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
@@ -150,6 +150,7 @@ async function DashboardContent({
         settled(getStudyUsageSnapshot(access), null, "usage"),
         masteryPromise,
         settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
+        settled(getCachedPracticeBankStats(fieldId), null, "served bank"),
       ]);
     });
 
@@ -177,6 +178,7 @@ async function DashboardContent({
     inventoryCategories: inventory?.categories ?? null,
     topicQuestionTotal: inventory?.topicQuestionTotal ?? null,
     drugsCompletedToday,
+    servedBank,
   });
 
   const weakTopics = enrichWeakTopicsWithStudyLinks(
@@ -202,11 +204,6 @@ async function DashboardContent({
     <DashboardPageContent
       examSlug={examSlug}
       stats={stats}
-      headline={{
-        readinessScore: dashboard.headline.readinessScore,
-        motivationalMessage: dashboard.headline.motivationalMessage,
-        trendDelta: dashboard.headline.trendDelta,
-      }}
       weakTopics={weakTopics}
       spacedReview={dashboard.spacedReview}
       roadmap={roadmap}
@@ -220,6 +217,7 @@ async function DashboardContent({
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}
       examDayPlan={examDayPlan}
+      accuracyTrend={dashboard.accuracyTrend}
       tourSeen={tourSeen}
       accountAttemptCount={accountAttemptCount}
       deferTodayMix

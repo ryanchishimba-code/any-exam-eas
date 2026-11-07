@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BarChart3, Layers } from "lucide-react";
-import { ReadinessRing } from "@/components/study/ReadinessRing";
+import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
+import type { ExamDayReadiness } from "@/lib/learning/exam-day-plan";
+import { PRACTICE_MEASURE_DISCLAIMER } from "@/lib/learning/practice-measure";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
@@ -24,7 +26,7 @@ import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { cn } from "@/lib/utils";
-import { PRACTICE_PROGRESS_HINT, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
+import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import {
   filterStudentFacingWeakTopics,
   formatConceptLabel,
@@ -36,22 +38,6 @@ type AnalyticsPayload = {
   profile: LearningProfileSnapshot | null;
 };
 
-/** Illustrative national pass-rate references — not verified benchmarks for this product. */
-const REFERENCE_PASS_RATES: Partial<Record<ExamSlug, number>> = {
-  nclex: 88,
-  naplex: 89,
-  pance: 92,
-  usmle: 92,
-};
-
-function practiceProgressIndex(
-  readiness: number,
-  accuracy: number | null
-): number {
-  const acc = accuracy ?? readiness;
-  return Math.min(100, Math.max(0, Math.round(readiness * 0.55 + acc * 0.45)));
-}
-
 export function StudentAnalyticsDashboard({
   examSlug,
   examName,
@@ -59,6 +45,7 @@ export function StudentAnalyticsDashboard({
   openRemediation = null,
   initialData,
   formats = null,
+  practice = null,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -66,6 +53,8 @@ export function StudentAnalyticsDashboard({
   openRemediation?: OpenRemediationSummary | null;
   initialData?: AnalyticsPayload;
   formats?: FormatCounts | null;
+  /** Same practice measure the dashboard ring and proof use. */
+  practice?: ExamDayReadiness | null;
 }) {
   const [data, setData] = useState<AnalyticsPayload | null>(initialData ?? null);
   const [loading, setLoading] = useState(!initialData);
@@ -132,11 +121,8 @@ export function StudentAnalyticsDashboard({
   const { dashboard, profile } = data;
   const fieldIds = expandReviewFieldIds(fieldId ? [fieldId] : examFieldIds(examSlug));
   const primaryField = EXAM_CATALOG[examSlug].fieldId;
-  const progressIndex = practiceProgressIndex(
-    dashboard.headline.readinessScore,
-    dashboard.headline.overallAccuracy
-  );
-  const referenceRate = REFERENCE_PASS_RATES[examSlug];
+  const practiceHeadline = practice?.headline ?? "0 of 3 practice goals met";
+  const practiceScore = practice?.score ?? 0;
 
   // The API already scopes the payload to this exam; keep a defensive client
   // filter so nothing from another exam can ever leak into the view.
@@ -168,7 +154,7 @@ export function StudentAnalyticsDashboard({
         <div className="max-sm:hidden">
           <SocialShareBar
             entityType="progress"
-            text={`My ${examName} ${PRACTICE_PROGRESS_LABEL.toLowerCase()} is ${dashboard.headline.readinessScore}% on AnyExamEasy — keeping at it.`}
+            text={`My ${examName} practice progress: ${practiceHeadline}. ${PRACTICE_MEASURE_DISCLAIMER}`}
             url="https://www.anyexameasy.com"
             size="sm"
           />
@@ -184,6 +170,27 @@ export function StudentAnalyticsDashboard({
         />
       ) : null}
 
+      <section className={cn(studyUi.panel, "px-3.5 py-3")}>
+        <PracticeGoalsMenu
+          surface="analytics"
+          headline={practiceHeadline}
+          score={practiceScore}
+          disclaimer={PRACTICE_MEASURE_DISCLAIMER}
+          criteria={practice?.criteria ?? []}
+          trend={dashboard.accuracyTrend}
+          difficultyMix={practice?.difficultyMix}
+          domains={(practice?.domains ?? []).slice(0, 5).map((domain) => ({
+            id: domain.id,
+            label: domain.label,
+            weightPct: domain.blueprintWeightPct,
+            answeredPct: domain.available > 0 ? Math.round((domain.seen / domain.available) * 100) : domain.fillPct,
+            served: domain.available,
+            seen: domain.seen,
+            gap: domain.isTopGap,
+          }))}
+        />
+      </section>
+
       <PhoneFold summary="Practice analytics">
       <div className="space-y-4 sm:space-y-8">
       <FormatPracticePanel
@@ -192,30 +199,6 @@ export function StudentAnalyticsDashboard({
         fieldId={fieldId}
         formats={formats}
       />
-
-      <section
-        className={cn(
-          studyUi.panel,
-          studyUi.panelPad,
-          "flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8"
-        )}
-      >
-        <ReadinessRing
-          score={dashboard.headline.readinessScore}
-          label={PRACTICE_PROGRESS_LABEL}
-        />
-        <div className="min-w-0 flex-1 space-y-2">
-          <p className={studyUi.eyebrow}>{PRACTICE_PROGRESS_LABEL}</p>
-          <p className={studyUi.sectionHint}>
-            {dashboard.headline.overallAccuracy != null
-              ? `${dashboard.headline.overallAccuracy}% accuracy across ${dashboard.headline.totalAttempts} attempts`
-              : `${dashboard.headline.totalAttempts} attempts logged`}
-            {dashboard.headline.studyStreakDays > 0
-              ? ` · ${dashboard.headline.studyStreakDays}-day streak`
-              : ""}
-          </p>
-        </div>
-      </section>
 
       {srsDue > 0 ? (
         <section className={cn(studyUi.panel, studyUi.panelPad, "flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between")}>
@@ -238,13 +221,8 @@ export function StudentAnalyticsDashboard({
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           label={PRACTICE_PROGRESS_LABEL}
-          value={`${dashboard.headline.readinessScore}%`}
-          hint={PRACTICE_PROGRESS_HINT}
-        />
-        <MetricCard
-          label="Practice progress index"
-          value={`${progressIndex}%`}
-          hint="Secondary in-app index — not an exam pass prediction"
+          value={`${practiceScore}`}
+          hint={practiceHeadline}
         />
         <MetricCard
           label="Overall accuracy"
@@ -261,13 +239,6 @@ export function StudentAnalyticsDashboard({
           hint={dashboard.headline.motivationalMessage}
         />
       </div>
-
-      {referenceRate != null ? (
-        <p className="text-xs text-[var(--color-ink-muted)]">
-          Reference only: published national pass rates for this exam type are often cited around{" "}
-          {referenceRate}% — not a benchmark or prediction for your results.
-        </p>
-      ) : null}
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className={studyUi.chartPanel}>

@@ -123,6 +123,7 @@ export function DashboardGraphicHero({
   eyebrow = "Today's focus",
   showPrimaryAction = true,
   bandLabel: bandLabelOverride,
+  practiceHeadline,
   ringScore,
   disclosure,
 }: {
@@ -142,6 +143,8 @@ export function DashboardGraphicHero({
   showPrimaryAction?: boolean;
   /** Visible ring label. Practice snapshot stays unlabeled as a pass band. */
   bandLabel?: string;
+  /** Same headline the proof and analytics show. */
+  practiceHeadline?: string;
   ringScore?: number;
   /** Replaces the older Ready / Almost footnote when Today's block owns the band. */
   disclosure?: { summary: string; lines: string[]; disclaimer: string } | null;
@@ -166,14 +169,19 @@ export function DashboardGraphicHero({
   const tiles =
     masteryMapTiles && masteryMapTiles.length > 0
       ? masteryMapTiles
-      : readinessSummary
-        ? domainTilesFromReadiness(readinessSummary)
-        : [];
+      : practiceHeadline
+        ? []
+        : readinessSummary
+          ? domainTilesFromReadiness(readinessSummary)
+          : [];
 
   return (
     <section
       aria-labelledby="dashboard-hero-heading"
       className={dbUi.heroSurface}
+      data-practice-goals="ring"
+      data-practice-headline={practiceHeadline ?? bandLabel}
+      data-practice-score={ringValue}
     >
       <div className={dbUi.heroLayout}>
         <ReadinessRing
@@ -237,23 +245,6 @@ export function DashboardGraphicHero({
           </ul>
           <p className="border-t border-[var(--color-border)]/50 pt-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
             {disclosure.disclaimer}
-          </p>
-        </details>
-      ) : showPrimaryAction && readinessSummary ? (
-        <details className="mt-5 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
-          <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
-            Why {readinessSummary.bandLabel}?
-          </summary>
-          <p className="mt-2 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
-            {readinessSummary.reason}
-          </p>
-          <ul className="mt-2 space-y-1 pb-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-            {readinessSummary.criteria.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-          <p className="border-t border-[var(--color-border)]/50 pt-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-            {readinessSummary.disclaimer}
           </p>
         </details>
       ) : null}

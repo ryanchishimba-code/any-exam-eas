@@ -30,17 +30,12 @@
  *    days, and Today's rows follow that day's kind. Finishing today's Qbank
  *    block or incorrect review ticks the matching goal. A qualifying exam
  *    simulation completed today ticks the simulation goal.
- * 7. Readiness proof = coverage × recent accuracy × remediation completion.
- *    Coverage bars, Today's gap, the week plan, and Qbank chips share one
- *    heatmap. The coverage factor is the blueprint-weighted share of categories
- *    with ≥1 saved attempt, and it is met only when every high-weight domain
- *    has a minimum sample. Bar fill is item coverage from that same heatmap.
- *    Recent accuracy is the last 100 saved answers and counts only after 40 of
- *    them exist. Remediation completion is the share of saved attempts that are
- *    not still-open incorrect items. The band stays hidden until 100 answered
- *    questions, then shows Ready / Almost / Not yet from those criteria.
- *    A completed exam simulation can be shown as an optional trend. It does not
- *    change the band. None of this is a licensure prediction.
+ * 7. Practice goals come from buildPracticeMeasure. Outline weight counts in
+ *    proportion to answers toward a per-area minimum. Recent accuracy can weigh
+ *    difficulty and fade old answers when answer rows are passed in. Reviewed
+ *    misses are the third goal. The headline is how many of the three goals
+ *    are met. A short sample says how many answers are still needed. None of
+ *    this is a licensure prediction.
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
@@ -59,10 +54,19 @@ import {
   type WeekCountdownPlan,
 } from "@/lib/learning/week-countdown-plan";
 import { drugSafetyPathHref, safetyPathLabel } from "@/lib/drugs300/safety-path";
+import {
+  buildPracticeMeasure,
+  PRACTICE_MEASURE_DISCLAIMER,
+  PRACTICE_MIN_ANSWERS,
+  PRACTICE_GOALS_TOTAL,
+  practiceGoalsHeadline,
+  type PracticeAnswer,
+} from "@/lib/learning/practice-measure";
+import type { ServedBankStats } from "@/lib/learning/served-bank-stats";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
-export const READINESS_MIN_SAMPLE = 100;
+export const READINESS_MIN_SAMPLE = PRACTICE_MIN_ANSWERS;
 export const TODAY_QBANK_COUNT = 25;
 export const TODAY_INCORRECT_CAP = 10;
 export const TODAY_DRUG_COUNT = 5;
@@ -86,11 +90,9 @@ export const REMEDIATION_MAX_OPEN = 4;
 /** Completed exam sessions at least this long can show as an optional trend. */
 export const EXAM_SIM_MIN_QUESTIONS = 50;
 
-export const READINESS_FORMULA =
-  "Coverage × recent accuracy × remediation completion — not a pass prediction.";
+export const READINESS_FORMULA = PRACTICE_MEASURE_DISCLAIMER;
 
-export const READINESS_DISCLAIMER =
-  "This band describes saved practice on this board only. It does not predict a licensure result.";
+export const READINESS_DISCLAIMER = PRACTICE_MEASURE_DISCLAIMER;
 
 const PRACTICE_BAND_LABELS = new Set([
   "Strong practice band",
@@ -145,6 +147,17 @@ export type ReadinessCriterion = {
   status: ReadinessCriterionStatus;
   /** Met, Missing (no data), or Below target with the number the student still needs. */
   badge: string;
+  /** What to do next when this goal is not met. */
+  nextStep?: string;
+  /** 0–100 fill for the goal row. */
+  progressPct?: number;
+};
+
+export type DifficultyMix = {
+  easy: number;
+  mid: number;
+  hard: number;
+  unrated: number;
 };
 
 export type ReadinessDomainBar = {
@@ -209,6 +222,8 @@ export type ExamDayReadiness = {
   /** Why Today's first row leads. */
   leadReason: string | null;
   examSim: ExamSimTrend | null;
+  /** Served-bank difficulty mix. Absent when the snapshot was not loaded. */
+  difficultyMix?: DifficultyMix | null;
 };
 
 export type ExamDayPlan = {
@@ -268,6 +283,13 @@ export type ExamDayPlanInput = {
   examSimCompletedToday?: boolean;
   /** Every safety-path drug reviewed on the UTC day of `now`. */
   drugsCompletedToday?: boolean;
+  /**
+   * Saved answers for the practice measure. Omit to score from topic totals.
+   * Pass an empty array when the load found no countable rows.
+   */
+  answers?: PracticeAnswer[] | null;
+  /** Served-bank denominators and neutral difficulty. Omitted only when the snapshot failed. */
+  servedBank?: ServedBankStats | null;
 };
 
 const MS_DAY = 86_400_000;
@@ -311,14 +333,14 @@ export function readinessScoreFromFactors(
   return Math.round(coverage * accuracy * remediation * 100);
 }
 
-/** Ready is all three criteria. Almost is two. The band is practice progress only. */
+/** How many of the three practice goals are met. The label is not a pass band. */
 export function classifyReadinessBand(metCount: number): {
   key: ReadinessBandKey;
-  label: ReadinessBandLabel;
+  label: string;
 } {
-  if (metCount >= 3) return { key: "ready", label: "Ready" };
-  if (metCount === 2) return { key: "almost", label: "Almost" };
-  return { key: "not_yet", label: "Not yet" };
+  const met = Math.max(0, Math.min(PRACTICE_GOALS_TOTAL, Math.round(metCount) || 0));
+  const key: ReadinessBandKey = met >= 3 ? "ready" : met === 2 ? "almost" : "not_yet";
+  return { key, label: practiceGoalsHeadline(met) };
 }
 
 export function rollingAccuracyFromAttempts(
@@ -505,125 +527,10 @@ function planRules(): string[] {
     "The guide link is one topic you haven't practiced yet, or the same topic as the question set. Every board uses the same topic links.",
     `Drugs is ${TODAY_DRUG_COUNT} high-alert drugs for this board, in one order. It is done when each of those drugs is reviewed today.`,
     `This week follows your exam date. With more than 14 days left, most days are topics you haven't practiced yet, and the rest are questions you missed. In the last 14 days the week adds practice exams. Finishing today's ${TODAY_QBANK_COUNT} questions, the review, or a full practice exam marks that part done. Earlier days this week are not filled in after the fact. This is practice progress only.`,
-    `${READINESS_FORMULA} Topic bars, today's topic, this week, and untouched or low topics use one exam outline. Topics practiced is how much of the outline you have answered, weighted by how much the exam emphasizes each topic. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every topic weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers. Recent accuracy is the last ${RECENT_ACCURACY_WINDOW} saved answers and is met at ${RECENT_ACCURACY_MIN_PCT}% once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers. Questions reviewed is the share of saved answers that are not still waiting for a correct retry. It is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} questions to review. Ready means all three are met. Almost means two. Not yet means fewer. The band stays hidden until ${READINESS_MIN_SAMPLE} answered questions.`,
-    `A completed exam simulation of ${EXAM_SIM_MIN_QUESTIONS} or more questions can appear as an optional trend. It does not change Ready, Almost, or Not yet.`,
+    `${READINESS_DISCLAIMER} Outline coverage counts each area in proportion to answers toward ${HIGH_WEIGHT_MIN_ATTEMPTS}, weighted by how much the exam emphasizes that area. It is met at ${COVERAGE_MIN_PCT}% or more, and only when every area weighted ${HIGH_WEIGHT_PCT}% or more has those answers. Recent accuracy is met at ${RECENT_ACCURACY_MIN_PCT}% once ${READINESS_MIN_SAMPLE} answers are in. Questions reviewed is met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} still open. The headline is how many of the three practice goals are met. Fewer than ${READINESS_MIN_SAMPLE} answers says how many more are needed.`,
+    `A completed exam simulation of ${EXAM_SIM_MIN_QUESTIONS} or more questions can appear as an optional trend. It does not change how many practice goals are met.`,
     READINESS_DISCLAIMER,
   ];
-}
-
-function readinessStatus(scored: boolean, hasData: boolean, met: boolean): ReadinessCriterionStatus {
-  if (!scored) return "not_scored";
-  if (!hasData) return "missing";
-  return met ? "met" : "below_target";
-}
-
-function readinessBadge(status: ReadinessCriterionStatus, needs: string): string {
-  if (status === "met") return "Met";
-  if (status === "missing") return "Missing";
-  if (status === "not_scored") return "Not scored";
-  return `Below target · ${needs}`;
-}
-
-function coverageCriterion(
-  topics: ExamDayTopicInput[],
-  coveragePct: number,
-  scored: boolean
-): { met: boolean; criterion: ReadinessCriterion } {
-  const heavy = topics.filter((topic) => topic.blueprintWeightPct >= HIGH_WEIGHT_PCT);
-  const short = heavy.filter((topic) => topic.attempts < HIGH_WEIGHT_MIN_ATTEMPTS);
-  const hasData = topics.length > 0;
-  const met = hasData && coveragePct >= COVERAGE_MIN_PCT && short.length === 0;
-  const status = readinessStatus(scored, hasData, met);
-  const needs =
-    coveragePct < COVERAGE_MIN_PCT && short.length > 0
-      ? `needs ${COVERAGE_MIN_PCT}% and ${HIGH_WEIGHT_MIN_ATTEMPTS} answers in each high-weight topic`
-      : short.length > 0
-        ? `needs ${HIGH_WEIGHT_MIN_ATTEMPTS} answers in each high-weight topic`
-        : `needs ${COVERAGE_MIN_PCT}%`;
-  const missingNames = short
-    .slice(0, 3)
-    .map((topic) => `${topic.label} (${topic.attempts} answers, ${topic.blueprintWeightPct}% of blueprint)`)
-    .join("; ");
-  const detail = topics.length
-    ? `Blueprint-weighted coverage is ${coveragePct}%. Met when coverage is at least ${COVERAGE_MIN_PCT}% and every domain weighted ${HIGH_WEIGHT_PCT}% or more has at least ${HIGH_WEIGHT_MIN_ATTEMPTS} answers.${
-        missingNames ? ` Still short: ${missingNames}.` : ""
-      }`
-    : "Blueprint categories were not loaded, so coverage cannot be scored.";
-  return {
-    met,
-    criterion: {
-      id: "coverage",
-      label: "Coverage",
-      valueLabel: `${coveragePct}%`,
-      detail,
-      status,
-      badge: readinessBadge(status, needs),
-    },
-  };
-}
-
-function accuracyCriterion(input: {
-  pct: number;
-  windowAttempts: number;
-  measured: boolean;
-  scored: boolean;
-}): { met: boolean; criterion: ReadinessCriterion } {
-  const hasData = input.windowAttempts > 0;
-  const sampleMet = input.windowAttempts >= RECENT_ACCURACY_MIN_SAMPLE;
-  const met = sampleMet && input.pct >= RECENT_ACCURACY_MIN_PCT;
-  const status = readinessStatus(input.scored, hasData, met);
-  const needs =
-    !sampleMet && input.pct < RECENT_ACCURACY_MIN_PCT
-      ? `needs ${RECENT_ACCURACY_MIN_PCT}% across ${RECENT_ACCURACY_MIN_SAMPLE} answers`
-      : !sampleMet
-        ? `needs ${RECENT_ACCURACY_MIN_SAMPLE} answers`
-        : `needs ${RECENT_ACCURACY_MIN_PCT}%`;
-  const windowPhrase = input.measured
-    ? `${input.windowAttempts} answers in the last ${RECENT_ACCURACY_WINDOW}`
-    : `${input.windowAttempts} saved answers`;
-  const detail = sampleMet
-    ? `Recent accuracy is ${input.pct}% across ${windowPhrase}. Met at ${RECENT_ACCURACY_MIN_PCT}% once the window has at least ${RECENT_ACCURACY_MIN_SAMPLE} answers.`
-    : `Recent accuracy is ${input.pct}% across ${windowPhrase}. This factor counts once that window has ${RECENT_ACCURACY_MIN_SAMPLE} answers.`;
-  return {
-    met,
-    criterion: {
-      id: "recent_accuracy",
-      label: "Recent accuracy",
-      valueLabel: `${input.pct}% · ${input.windowAttempts} answers`,
-      detail,
-      status,
-      badge: readinessBadge(status, needs),
-    },
-  };
-}
-
-function remediationCriterion(input: {
-  openKnown: boolean;
-  openIncorrect: number;
-  remediationPct: number;
-  scored: boolean;
-}): { met: boolean; criterion: ReadinessCriterion } {
-  const hasData = input.openKnown;
-  const met =
-    hasData &&
-    input.remediationPct >= REMEDIATION_MIN_PCT &&
-    input.openIncorrect <= REMEDIATION_MAX_OPEN;
-  const status = readinessStatus(input.scored, hasData, met);
-  const needs = `needs ${REMEDIATION_MIN_PCT}% and at most ${REMEDIATION_MAX_OPEN} open`;
-  const detail = input.openKnown
-    ? `Open incorrect items: ${input.openIncorrect}. Remediation completion is ${input.remediationPct}%. Met at ${REMEDIATION_MIN_PCT}% or more with at most ${REMEDIATION_MAX_OPEN} open incorrect items.`
-    : "Open incorrect items could not be counted on this load, so remediation completion is missing.";
-  return {
-    met,
-    criterion: {
-      id: "remediation",
-      label: "Remediation",
-      valueLabel: input.openKnown ? `${input.remediationPct}% · ${input.openIncorrect} open` : "—",
-      detail,
-      status,
-      badge: readinessBadge(status, needs),
-    },
-  };
 }
 
 function examSimCriterion(trend: ExamSimTrend): ReadinessCriterion {
@@ -636,7 +543,7 @@ function examSimCriterion(trend: ExamSimTrend): ReadinessCriterion {
     id: "exam_sim",
     label: "Exam simulation",
     valueLabel: `${trend.latestScore}%`,
-    detail: `Last exam simulation scored ${trend.latestScore}%.${previous}${band} Optional trend from completed simulations of ${EXAM_SIM_MIN_QUESTIONS} or more questions. It does not change Ready, Almost, or Not yet, and it is not a licensure result.`,
+    detail: `Last exam simulation scored ${trend.latestScore}%.${previous}${band} Optional trend from completed simulations of ${EXAM_SIM_MIN_QUESTIONS} or more questions. It does not change how many practice goals are met, and it is not a licensure result.`,
     status: "not_scored",
     badge: "Not scored",
   };
@@ -891,26 +798,44 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     else item.doneToday = false;
   }
 
-  const coveragePct = heatmap.touchCoveragePct;
-  const remediationPct = openKnown ? remediationCompletionPct(totalAttempts, openIncorrect) : 0;
-  const score = readinessScoreFromFactors(coveragePct, recentAccuracyPct, remediationPct);
-  const visible = totalAttempts >= READINESS_MIN_SAMPLE;
-  const coverage = coverageCriterion(topics, coveragePct, visible);
-  const accuracy = accuracyCriterion({
-    pct: recentAccuracyPct,
-    windowAttempts: recentWindowAttempts,
-    measured: windowMeasured,
-    scored: visible,
+  const measure = buildPracticeMeasure({
+    boardId: input.fieldId,
+    now: now.toISOString(),
+    domains: topics.map((topic) => ({
+      id: topic.id,
+      label: topic.label,
+      blueprintWeightPct: topic.blueprintWeightPct,
+      href: topic.practiceHref,
+    })),
+    answers: input.answers,
+    domainAttempts: topics.map((topic) => ({
+      domainId: topic.id,
+      attempts: topic.attempts,
+      correct:
+        topic.accuracyPct == null
+          ? 0
+          : Math.round((topic.attempts * topic.accuracyPct) / 100),
+    })),
+    recentAccuracyPct,
+    recentAnswerCount: recentWindowAttempts,
+    openIncorrect: openKnown ? openIncorrect : null,
+    totalAttempts,
+    readinessCheck: { scored: false },
+    servedBank: input.servedBank,
   });
-  const remediation = remediationCriterion({
-    openKnown,
-    openIncorrect,
-    remediationPct,
-    scored: visible,
-  });
-  const metCount = [coverage.met, accuracy.met, remediation.met].filter(Boolean).length;
-  const band = visible ? classifyReadinessBand(metCount) : null;
-  const criteria = [coverage.criterion, accuracy.criterion, remediation.criterion];
+  const coveragePct = measure.coveragePct;
+  const remediationPct = measure.remediationPct;
+  const visible = true;
+  const criteria: ReadinessCriterion[] = measure.criteria.map((goal) => ({
+    id: goal.id,
+    label: goal.label,
+    valueLabel: goal.valueLabel,
+    detail: goal.detail,
+    status: (goal.met ? "met" : "below_target") as ReadinessCriterion["status"],
+    badge: goal.badge,
+    nextStep: goal.nextStep,
+    progressPct: goal.progressPct,
+  }));
   if (examSim) criteria.push(examSimCriterion(examSim));
 
   const domains: ReadinessDomainBar[] = heatmap.domains.map((domain) => ({
@@ -932,12 +857,12 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
   const readiness: ExamDayReadiness = {
     visible,
     minSample: READINESS_MIN_SAMPLE,
-    bandKey: band?.key ?? null,
-    label: band?.label ?? null,
-    headline: band?.label ?? "Not enough practice yet",
-    score: visible ? score : null,
+    bandKey: null,
+    label: null,
+    headline: measure.headline,
+    score: measure.score,
     coveragePct,
-    recentAccuracyPct,
+    recentAccuracyPct: measure.accuracyPct,
     recentWindowAttempts,
     recentWindowSize: RECENT_ACCURACY_WINDOW,
     recentWindowMinSample: RECENT_ACCURACY_MIN_SAMPLE,
@@ -947,13 +872,14 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     totalAttempts,
     formula: READINESS_FORMULA,
     disclaimer: READINESS_DISCLAIMER,
-    sampleDetail: visible
-      ? `Based on ${totalAttempts} answered questions on this board. Minimum sample is ${READINESS_MIN_SAMPLE}. Recent accuracy uses the last ${RECENT_ACCURACY_WINDOW} answers and needs at least ${RECENT_ACCURACY_MIN_SAMPLE} in that window.`
-      : `Not enough practice yet — ${totalAttempts} of ${READINESS_MIN_SAMPLE} answered on this board. The proof stays hidden until then.`,
+    sampleDetail:
+      measure.sampleNote ??
+      `Based on ${measure.sampleCount} answered questions on this board.`,
     criteria,
     domains,
     leadReason: items[0]?.why ?? null,
     examSim,
+    difficultyMix: input.servedBank?.difficultyMix ?? null,
   };
 
   return {

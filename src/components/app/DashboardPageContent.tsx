@@ -19,7 +19,7 @@ import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
+import type { AccuracyTrendPoint, RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { MasteryReadinessStrip } from "@/components/dashboard/MasteryReadinessStrip";
 import { NaplexMasteryPanel } from "@/components/dashboard/NaplexMasteryPanel";
@@ -33,16 +33,11 @@ import { TrialStartHerePath } from "@/components/trial/TrialStartHerePath";
 import type { TrialStartHereRecord } from "@/lib/trial/trial-start-here";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
+import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
 import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
-
-export type DashboardHeadline = {
-  readinessScore: number;
-  motivationalMessage: string;
-  trendDelta: number | null;
-};
 
 function topWeakFocus(
   examSlug: ExamSlug,
@@ -63,7 +58,6 @@ function topWeakFocus(
 export function DashboardPageContent({
   examSlug,
   stats,
-  headline,
   weakTopics,
   spacedReview,
   roadmap,
@@ -84,10 +78,10 @@ export function DashboardPageContent({
   quickBites = null,
   trialStartHere = null,
   studyCompletion = null,
+  accuracyTrend = [],
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
-  headline: DashboardHeadline;
   weakTopics: WeakTopicRow[];
   spacedReview: SpacedReviewSummary;
   roadmap: ExamRoadmapData | null;
@@ -122,6 +116,7 @@ export function DashboardPageContent({
     show: boolean;
   } | null;
   studyCompletion?: StudyCompletionResult | null;
+  accuracyTrend?: AccuracyTrendPoint[];
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -212,6 +207,16 @@ export function DashboardPageContent({
       </div>
 
       {examDayPlan ? (
+        <ReadinessProofPanel
+          readiness={examDayPlan.readiness}
+          domainsLabel={examDayPlan.coverage.domainsLabel}
+          coverage={examDayPlan.coverage}
+          showLeadReason={false}
+          trend={accuracyTrend}
+        />
+      ) : null}
+
+      {examDayPlan ? (
         <DashboardTodayBlock
           plan={examDayPlan}
           studyLocked={studyLocked}
@@ -268,7 +273,7 @@ export function DashboardPageContent({
         <DashboardGraphicHero
           examSlug={examSlug}
           examName={exam.name}
-          readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
+          readinessScore={examDayPlan?.readiness.score ?? 0}
           readinessSummary={readinessSummary}
           categoriesLabel={categoriesLabel}
           dueCount={spacedReview.dueCount}
@@ -278,7 +283,8 @@ export function DashboardPageContent({
           practiceFieldId={fieldId}
           masteryMapTiles={masteryMapTiles}
           eyebrow={examDayPlan ? "Practice snapshot" : "Today's focus"}
-          bandLabel={examDayPlan ? "Practice" : undefined}
+          bandLabel="Practice"
+          practiceHeadline={examDayPlan?.readiness.headline ?? "0 of 3 practice goals met"}
           showPrimaryAction={!examDayPlan}
         />
 
