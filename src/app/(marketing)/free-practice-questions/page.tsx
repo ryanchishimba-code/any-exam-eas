@@ -138,8 +138,8 @@ export default function FreePracticeQuestionsPage() {
               Sixty free practice questions, with every answer and rationale on this page.
             </p>
             <p className="fp-lede">
-              Open any card to read the answer and the full rationale. A source line appears when
-              the bank item stores one. No account is required.
+              Open any card to reveal the answer and a full rationale written to the current exam
+              outline. No account required.
             </p>
             <div className="fp-cta-row">
               <TrialLink />
@@ -274,7 +274,7 @@ export default function FreePracticeQuestionsPage() {
                 <div className="fp-band">
                   <div className="fp-band-copy">
                     <p className="fp-band-kicker">{board.label}</p>
-                    <p className="fp-band-title">{`A sample of the ${board.label} bank`}</p>
+                    <p className="fp-band-title">{`Keep going with ${board.label}`}</p>
                     <p className="fp-band-note">
                       {`These ten questions are free to read. A free trial opens the rest of the ${board.label} practice on AnyExamEasy. No card is required.`}
                     </p>
@@ -316,8 +316,8 @@ export default function FreePracticeQuestionsPage() {
         <div className="fp-wrap">
           <h2 id="free-practice-close-heading">Keep practicing on AnyExamEasy</h2>
           <p className="fp-lede">
-            These free practice questions are a sample. A free trial opens the rest of the bank for
-            the board you choose.
+            These free practice questions are a sample. A free trial opens the rest of the practice
+            for the board you choose.
           </p>
           <div className="fp-cta-row">
             <TrialLink />

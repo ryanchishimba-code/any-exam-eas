@@ -30,17 +30,17 @@ export const FREE_PRACTICE_TRIAL_HREF = LANDING_TRIAL_HREF;
 
 const BOARD_INTRO: Record<FreePracticeBoardSlug, string> = {
   nclex:
-    "Ten free NCLEX practice questions from the student bank. The choices sit on the card. Open it for the answer and the full rationale.",
+    "Ten free NCLEX practice questions. The choices are on the card. Open it for the answer and a full rationale.",
   naplex:
-    "Ten free NAPLEX practice questions on dosing, safety, and therapeutics. Open a card to read the answer and the full rationale.",
+    "Ten free NAPLEX practice questions on dosing, safety, and therapeutics. Open a card for the answer and a full rationale.",
   pance:
-    "Ten free PANCE practice questions across organ systems. The answer and rationale stay on this page, so you can review them without an account.",
+    "Ten free PANCE practice questions across organ systems. The answer and rationale are on this page, ready to review without an account.",
   "aanp-fnp":
-    "Ten free AANP FNP practice questions for primary care decisions. Each card includes the answer and the stored rationale.",
+    "Ten free AANP FNP practice questions for primary care decisions. Each card includes the answer and a full rationale.",
   usmle:
-    "Ten free USMLE practice questions from Step 1, Step 2 CK, and Step 3. Read the answer and the full rationale on this page.",
+    "Ten free USMLE practice questions from Step 1, Step 2 CK, and Step 3. The answer and a full rationale are on this page.",
   "npte-pt":
-    "Ten free NPTE-PT practice questions for physical therapy. The answer is on the page, with the rationale and a guideline when the item stores one.",
+    "Ten free NPTE-PT practice questions for physical therapy. The answer is on the page, with the rationale and a guideline when one is included.",
 };
 
 export function freePracticeIntro(slug: FreePracticeBoardSlug): string {
@@ -51,7 +51,7 @@ export const FREE_PRACTICE_FAQS = [
   {
     question: "Can I read these free practice questions without an account?",
     answer:
-      "Yes. Every question, answer, and rationale on this page is in the HTML. You do not need to sign in or start a trial to read them.",
+      "Yes. Every question, answer, and rationale is on this page. You do not need to sign in or start a trial to read them.",
   },
   {
     question: "Which exams have free practice questions on this page?",
@@ -69,9 +69,9 @@ export const FREE_PRACTICE_FAQS = [
       "No. AnyExamEasy is a study support tool. Practice on this page does not guarantee a score, a passing result, a license, or a job.",
   },
   {
-    question: "When is a guideline source shown?",
+    question: "When is a source shown?",
     answer:
-      "A source line is shown when that bank item stores one. If an item has no stored source, the page still shows the full rationale and does not invent a citation.",
+      "A source appears when the question includes one. When it does not, the rationale is still complete.",
   },
 ] as const;
 
