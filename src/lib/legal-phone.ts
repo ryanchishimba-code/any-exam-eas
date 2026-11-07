@@ -1,6 +1,6 @@
 /**
- * Support phone for Terms, Privacy, and Refunds only.
- * Public pages, the footer, email, and Organization JSON-LD use support@anyexameasy.com.
+ * Support phone for Terms, Privacy, Refunds, and the new-account welcome email.
+ * Public pages, the footer, and Organization JSON-LD use support@anyexameasy.com.
  */
 export const LEGAL_SUPPORT_PHONE = {
   display: "(214) 883-6375",

@@ -10,6 +10,11 @@ export type TransactionalEmailPayload = {
   text: string;
   /** Resend tags for observability (optional). */
   tags?: { name: string; value: string }[];
+  /** Overrides EMAIL_FROM for this message when a dedicated sender is required. */
+  from?: string;
+  /** Resend reply_to. */
+  replyTo?: string;
+  headers?: Record<string, string>;
 };
 
 export async function sendTransactionalEmail(
@@ -30,14 +35,20 @@ export async function sendTransactionalEmail(
 
   try {
     const body: Record<string, unknown> = {
-      from,
+      from: params.from?.trim() || from,
       to: [params.to],
       subject: params.subject,
       html: params.html,
       text: params.text,
     };
+    if (params.replyTo?.trim()) {
+      body.reply_to = params.replyTo.trim();
+    }
     if (params.tags?.length) {
       body.tags = params.tags;
+    }
+    if (params.headers && Object.keys(params.headers).length > 0) {
+      body.headers = params.headers;
     }
 
     const res = await fetch("https://api.resend.com/emails", {

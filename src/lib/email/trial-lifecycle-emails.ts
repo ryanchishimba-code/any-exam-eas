@@ -8,10 +8,10 @@ import { PRO_MONTHLY_PRICE_USD } from "@/lib/pricing-defaults";
 import { appBaseUrl, isEmailConfigured } from "@/lib/email/config";
 import {
   emailParagraph,
-  emailTipList,
   transactionalEmailLayout,
 } from "@/lib/email/layout";
 import { sendTransactionalEmail } from "@/lib/email/resend-client";
+import { buildWelcomeSignupEmail } from "@/lib/email/welcome-signup-email";
 import type { EmailDeliveryResult } from "@/lib/email/config";
 import { displayFirstName } from "@/lib/display-name";
 import { LEGAL_ENTITY } from "@/lib/legal";
@@ -68,58 +68,16 @@ export async function sendWelcomeTrialEmail(
 ): Promise<EmailDeliveryResult> {
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
 
-  const dashboardUrl = dashboardEmailUrl();
-  const upgradeUrl = upgradeEmailUrl("welcome");
-
-  const bodyHtml = [
-    emailParagraph(`${greeting(params.name)}`),
-    emailParagraph(
-      `Welcome to <strong>${LEGAL_ENTITY.productName}</strong> — your ${TRIAL_DAYS}-day trial is live. You have <strong>${TRIAL_LIFETIME_QUESTIONS} practice questions</strong> to explore every board bank, plus Roadmap and concise explanations while you decide if Pro is right for you.`
-    ),
-    emailParagraph(
-      "Whether you're days from NCLEX, deep in Step 2 CK, or juggling NAPLEX calculations — you're in the right place. Here's how to make the first session count:"
-    ),
-    emailTipList([
-      `Open your <strong>Dashboard</strong> to see readiness, streaks, and what to study next.`,
-      `Set your <strong>exam date</strong> so your countdown and study plan stay realistic.`,
-      `Start a <strong>practice block</strong> in the question bank — even 10 questions builds momentum.`,
-    ]),
-    emailParagraph(
-      "When you're ready for unlimited questions, AI Tutor, and unlimited full-length mocks, upgrading takes one click."
-    ),
-  ].join("");
-
-  const text = [
-    greeting(params.name),
-    "",
-    `Welcome to ${LEGAL_ENTITY.productName}! Your ${TRIAL_DAYS}-day trial is active with ${TRIAL_LIFETIME_QUESTIONS} practice questions.`,
-    "",
-    "Quick start:",
-    "1. Open your Dashboard for readiness and study focus.",
-    "2. Set your exam date in account settings.",
-    "3. Start practicing in the question bank.",
-    "",
-    `Dashboard: ${dashboardUrl}`,
-    `Upgrade: ${upgradeUrl}`,
-    "",
-    `Support: ${LEGAL_ENTITY.supportEmail}`,
-  ].join("\n");
-
-  const html = transactionalEmailLayout({
-    title: "Your trial has started — let's go",
-    preheader: `${TRIAL_DAYS}-day trial · ${TRIAL_LIFETIME_QUESTIONS} questions · Dashboard ready`,
-    bodyHtml,
-    primaryCta: { label: "Upgrade Now", url: upgradeUrl },
-    secondaryCta: { label: "Open Dashboard", url: dashboardUrl },
-    footerNote:
-      "You're receiving this because you created an AnyExamEasy account. Manage notifications in account settings.",
-  });
+  const message = buildWelcomeSignupEmail(params.name);
 
   return sendTransactionalEmail({
     to: params.to,
-    subject: `Welcome to AnyExamEasy — Your ${TRIAL_DAYS}-Day Trial Has Started!`,
-    html,
-    text,
+    subject: message.subject,
+    html: message.html,
+    text: message.text,
+    from: message.from,
+    replyTo: message.replyTo,
+    headers: message.headers,
     tags: [{ name: "category", value: "trial-welcome" }],
   });
 }

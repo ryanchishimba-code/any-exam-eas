@@ -98,22 +98,3 @@ export function transactionalEmailLayout({
 export function emailParagraph(html: string): string {
   return `<p style="margin:0 0 16px;font-size:15px;color:#475569;line-height:1.65;">${html}</p>`;
 }
-
-export function emailTipList(items: string[]): string {
-  const rows = items
-    .map(
-      (item, index) =>
-        `<tr>
-          <td style="vertical-align:top;padding:0 10px 10px 0;width:22px;font-size:14px;font-weight:600;color:#0891b2;">${index + 1}.</td>
-          <td style="vertical-align:top;padding:0 0 10px;font-size:14px;color:#475569;line-height:1.55;">${item}</td>
-        </tr>`
-    )
-    .join("");
-
-  return `<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin:0 0 8px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
-    <tr><td style="padding:16px 18px;">
-      <p style="margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#64748b;">Quick start</p>
-      <table width="100%" cellpadding="0" cellspacing="0" role="presentation">${rows}</table>
-    </td></tr>
-  </table>`;
-}
