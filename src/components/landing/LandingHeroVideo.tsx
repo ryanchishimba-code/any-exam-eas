@@ -32,7 +32,7 @@ export function LandingHeroVideo({
   const posterSrc = landingVisualSrc(posterVisualId);
   const posterAlt =
     getLandingVisual(posterVisualId)?.alt ??
-    "Any Exam Easy exam prep platform preview";
+    "AnyExamEasy exam prep platform preview";
 
   useEffect(() => {
     if (reduceMotion) {

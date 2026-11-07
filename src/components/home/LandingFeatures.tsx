@@ -98,7 +98,7 @@ export function LandingFeatures() {
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[0.625rem] font-bold uppercase tracking-wider text-teal-600">
-            Why Any Exam Easy
+            Why AnyExamEasy
           </p>
           <h2 id="landing-features-heading" className="mt-2 text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl">
             Built for{" "}

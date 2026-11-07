@@ -51,7 +51,7 @@ export function formatNightlyTrafficReportEmail(report: NightlyTrafficReport): {
   text: string;
 } {
   const adminUrl = `${appBaseUrl()}/admin/analytics`;
-  const subject = `Any Exam Easy traffic · ${report.date}`;
+  const subject = `AnyExamEasy traffic · ${report.date}`;
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -109,14 +109,14 @@ export function formatNightlyTrafficReportEmail(report: NightlyTrafficReport): {
           </p>
         </td></tr>
       </table>
-      <p style="margin:14px 0 0;font-size:11px;color:#94a3b8;">Any Exam Easy · automated nightly digest</p>
+      <p style="margin:14px 0 0;font-size:11px;color:#94a3b8;">AnyExamEasy · automated nightly digest</p>
     </td></tr>
   </table>
 </body>
 </html>`;
 
   const textLines = [
-    `Any Exam Easy traffic · ${report.date} (UTC)`,
+    `AnyExamEasy traffic · ${report.date} (UTC)`,
     "",
     `Unique visitors: ${report.uniqueVisitors} (${deltaLabel(report.uniqueVisitors, report.priorDayUniqueVisitors)} vs prior day)`,
     `Page views: ${report.pageViews}`,

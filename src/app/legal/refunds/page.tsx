@@ -3,9 +3,9 @@ import Link from "next/link";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 export const metadata: Metadata = {
-  title: { absolute: "Refunds and cancellation — Any Exam Easy" },
+  title: { absolute: "Refunds and cancellation — AnyExamEasy" },
   description:
-    "How to cancel an Any Exam Easy subscription in Settings, what happens to access, and when payments are refundable.",
+    "How to cancel an AnyExamEasy subscription in Settings, what happens to access, and when payments are refundable.",
   alternates: { canonical: "/legal/refunds" },
 };
 

@@ -38,7 +38,7 @@ export const STUDENT_QUOTE_CLAUSE = LEGAL_DISCLAIMERS.testimonials;
 
 /** Added on /how-questions-are-reviewed. */
 export const AI_ASSISTED_REVIEW_NOTE =
-  "Questions are AI-assisted and pass automated quality checks. Not every item has been individually reviewed by a clinician.";
+  "Questions are AI-assisted and pass automated quality checks. Not every question has been individually reviewed by a clinician.";
 
 export function nclexContentReviewLedBy(displayName: string): string {
   return `NCLEX content review led by ${displayName}`;

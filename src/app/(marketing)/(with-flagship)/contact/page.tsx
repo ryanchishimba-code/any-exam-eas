@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: ROUTES.contact },
   keywords: [
     "contact AnyExamEasy",
-    "Any Exam Easy support",
+    "AnyExamEasy support",
     "board exam prep help",
     "AnyExamEasy feedback",
   ],

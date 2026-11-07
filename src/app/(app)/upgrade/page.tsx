@@ -12,7 +12,7 @@ import { ROUTES } from "@/lib/routes";
 import type { UserAccess } from "@/lib/access-control";
 
 export const metadata = {
-  title: "Upgrade — Any Exam Easy",
+  title: "Upgrade — AnyExamEasy",
   description: "Subscribe to keep your board prep progress.",
 };
 

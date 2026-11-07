@@ -39,7 +39,7 @@ export function LandingVisualSlot({
       {src ? (
         <Image
           src={src}
-          alt={spec?.alt ?? "Any Exam Easy product illustration"}
+          alt={spec?.alt ?? "AnyExamEasy product illustration"}
           width={1200}
           height={800}
           priority={priority}

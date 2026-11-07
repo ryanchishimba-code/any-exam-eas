@@ -50,7 +50,7 @@ export function FeedbackForm() {
         <CheckCircle2 className="h-8 w-8 text-[var(--color-accent)]" aria-hidden />
         <p className="mt-3 text-lg font-semibold text-[var(--color-ink)]">Message sent</p>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Thanks — we read every submission and use it to improve Any Exam Easy.
+          Thanks — we read every submission and use it to improve AnyExamEasy.
         </p>
         <Button
           type="button"

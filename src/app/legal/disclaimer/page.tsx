@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED, PUBLIC_DISCLAIMER_KEYS } from "@/lib/legal";
 
 export const metadata: Metadata = {
-  title: { absolute: "Disclaimers — Any Exam Easy" },
+  title: { absolute: "Disclaimers — AnyExamEasy" },
   description:
-    "Read Any Exam Easy disclaimers — educational purpose, no outcome guarantees, AI content notes and billing terms for board exam prep users today.",
+    "Read AnyExamEasy disclaimers — educational purpose, no outcome guarantees, AI content notes and billing terms for board exam prep users today.",
   alternates: { canonical: "/legal/disclaimer" },
 };
 

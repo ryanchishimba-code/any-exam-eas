@@ -16,7 +16,7 @@ export function LandingAppMockup() {
       <div className="aee-landing-app-mockup__frame overflow-hidden">
         <Image
           src={src!}
-          alt={spec?.alt ?? "Any Exam Easy study dashboard"}
+          alt={spec?.alt ?? "AnyExamEasy study dashboard"}
           width={1200}
           height={900}
           priority

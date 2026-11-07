@@ -74,7 +74,7 @@ describe("landing share images", () => {
     expect(landingOgImage("home").alt).toBe(HOME_PRACTICE_HEADLINE);
     expect(landingOgImage("about").alt).toBe(ABOUT_HERO_HEADLINE);
     expect(landingOgImage("about").alt.toLowerCase()).not.toMatch(/\bpass\b/);
-    expect(ABOUT_HERO_HEADLINE).toMatch(/Any Exam Easy/);
+    expect(ABOUT_HERO_HEADLINE).toMatch(/AnyExamEasy/);
     expect(ABOUT_HERO_HEADLINE.toLowerCase()).toMatch(/exam prep/);
     expect(ABOUT_HERO_HEADLINE.toLowerCase()).toMatch(/founder/);
     const aboutTitle = buildAboutMetadata().title;

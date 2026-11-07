@@ -11,7 +11,7 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "Anatomy Catalog — Any Exam Easy",
+  title: "Anatomy Catalog — AnyExamEasy",
   description:
     "Browse anatomy structures, guided tours, and quizzes — pearls and practice without a body viewer.",
 };

@@ -2,7 +2,7 @@ import AnalyticsDashboard from "@/app/internal/analytics/AnalyticsDashboard";
 import { ConversionsDashboard } from "@/components/analytics/ConversionsDashboard";
 
 export const metadata = {
-  title: "Admin Analytics — Any Exam Easy",
+  title: "Admin Analytics — AnyExamEasy",
 };
 
 export default function AdminAnalyticsPage() {

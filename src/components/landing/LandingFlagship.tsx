@@ -181,7 +181,7 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             </div>
             <Image
               src={heroSrc}
-              alt={heroSpec?.alt ?? "Any Exam Easy study dashboard"}
+              alt={heroSpec?.alt ?? "AnyExamEasy study dashboard"}
               width={1200}
               height={750}
               priority

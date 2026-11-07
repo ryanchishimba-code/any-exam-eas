@@ -2,7 +2,7 @@ import { AdminUserSearch } from "@/components/admin/AdminUserSearch";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Admin Users — Any Exam Easy",
+  title: "Admin Users — AnyExamEasy",
 };
 
 export default function AdminUsersPage() {

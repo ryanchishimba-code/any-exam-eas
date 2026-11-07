@@ -5,9 +5,9 @@ import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal
 import { purchasableBillingIntervalPhrase } from "@/lib/stripe-prices";
 
 export const metadata: Metadata = {
-  title: { absolute: "Terms of Service — Any Exam Easy" },
+  title: { absolute: "Terms of Service — AnyExamEasy" },
   description:
-    "Read the Any Exam Easy Terms of Service — subscription rules, trials, refunds and acceptable use for our online board exam prep platform today.",
+    "Read the AnyExamEasy Terms of Service — subscription rules, trials, refunds and acceptable use for our online board exam prep platform today.",
   alternates: { canonical: "/legal/terms" },
 };
 

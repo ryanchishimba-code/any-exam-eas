@@ -28,7 +28,7 @@ test.describe("About page", () => {
 
   test("has a descriptive document title", async ({ page }) => {
     await page.goto("/about", { waitUntil: "domcontentloaded" });
-    await expect(page).toHaveTitle("Any Exam Easy Exam Prep from the Founder");
+    await expect(page).toHaveTitle("AnyExamEasy Exam Prep from the Founder");
   });
 
   test("passes serious axe checks", async ({ page }) => {

@@ -8,7 +8,7 @@ import { isStripeConfigured } from "@/lib/payments";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 
 export const metadata = {
-  title: "Payment complete — Any Exam Easy",
+  title: "Payment complete — AnyExamEasy",
 };
 
 export default async function CheckoutReturnPage({

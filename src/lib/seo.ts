@@ -92,7 +92,7 @@ const HOME_KEYWORDS = dedupeKeywords([
   "AANP FNP certification prep",
   "NPTE-PT board prep",
   "spaced repetition board prep",
-  "QA-gated question bank",
+  "reviewed question bank",
   "one subscription six exams",
   "AnyExamEasy",
 ]);

@@ -128,7 +128,7 @@ const content = [
     `${a(PASSING, "NCLEX passing standard", true)} for 0.00 logits (RN) and −0.18 logits (PN) through March 31, 2029.`,
   ]),
   p(
-    `This is a study aid, not an official item and not medical advice. Any Exam Easy is not affiliated with NCSBN. If a number here ever disagrees with the test plan, follow NCSBN.`
+    `This is a study aid, not an official item and not medical advice. AnyExamEasy is not affiliated with NCSBN. If a number here ever disagrees with the test plan, follow NCSBN.`
   ),
 
   faq([

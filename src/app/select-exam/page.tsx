@@ -11,7 +11,7 @@ import { ROUTES } from "@/lib/routes";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 
 export const metadata = {
-  title: "Choose Your Exam — Any Exam Easy",
+  title: "Choose Your Exam — AnyExamEasy",
   description: `Bold, personalized prep for ${PLATFORM_EXAM_LIST}.`,
 };
 

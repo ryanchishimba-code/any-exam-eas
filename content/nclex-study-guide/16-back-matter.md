@@ -62,10 +62,10 @@ Open a practice set today. Review the misses like a detective. Repeat tomorrow.
 
 ## Legal / attribution
 
-*NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). All other exam names and related marks are the property of their respective owners and are used here for identification and descriptive purposes only. Any Exam Easy and AI Software Product Solutions, LLC are not affiliated with, authorized by, endorsed by, or sponsored by NCSBN, Pearson VUE, or any other exam owner, and these organizations do not review, approve, license, or sponsor our content. We do not guarantee exam results, licensure, or employment. Always follow policies in the official Candidate Bulletin and with your nursing regulatory body.*
+*NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). All other exam names and related marks are the property of their respective owners and are used here for identification and descriptive purposes only. AnyExamEasy and AI Software Product Solutions, LLC are not affiliated with, authorized by, endorsed by, or sponsored by NCSBN, Pearson VUE, or any other exam owner, and these organizations do not review, approve, license, or sponsor our content. We do not guarantee exam results, licensure, or employment. Always follow policies in the official Candidate Bulletin and with your nursing regulatory body.*
 
 *This book is a **study aid only**. It is not medical advice, clinical protocol, or a substitute for your nursing program, facility policy, or official board documents. Medication, lab, isolation, and scope details must be verified with current official sources and instructors before clinical use.*
 
 *Portions of this material are AI-generated and may contain errors, omissions, or outdated information. Always Confirm critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.*
 
-*© 2026 AI Software Product Solutions, LLC, which operates Any Exam Easy. All rights reserved. For educational use by Any Exam Easy students and site visitors as published on anyexameasy.com.*
+*© 2026 AI Software Product Solutions, LLC, which operates AnyExamEasy. All rights reserved. For educational use by AnyExamEasy students and site visitors as published on anyexameasy.com.*

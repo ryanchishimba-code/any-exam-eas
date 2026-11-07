@@ -66,8 +66,8 @@ export function BoardLandingHero({
           }
         />
       </MarketingPhotoHero>
-      <nav className="bl-band bl-band--stats" aria-label="Any Exam Easy">
-        <Link href="/about">About Any Exam Easy</Link>
+      <nav className="bl-band bl-band--stats" aria-label="AnyExamEasy">
+        <Link href="/about">About AnyExamEasy</Link>
         <span aria-hidden> · </span>
         <Link href="/daily">Free daily practice question</Link>
       </nav>

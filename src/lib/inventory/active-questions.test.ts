@@ -119,7 +119,7 @@ describe("active question inventory", () => {
     });
     expect(live.countSource).toBe("active-inventory");
     expect(live.activeCount).toBe(7581);
-    expect(live.definition).toMatch(/student-serving gate/i);
+    expect(live.definition).toBe(ACTIVE_QUESTION_DEFINITION);
 
     const floor = presentBoardInventory({
       slug: "nclex",

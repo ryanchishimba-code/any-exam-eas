@@ -20,7 +20,7 @@ export function getComparePageFaq(): ComparePageFaqItem[] {
     {
       question: "When is a single-exam prep product a better fit?",
       answer:
-        "If you are only sitting one board and want a product built exclusively for that exam, a premium single-exam QBank or live review course may match your workflow. AnyExamEasy is designed for candidates who want multiple boards on one plan.",
+        "If you are only sitting one board and want a product built exclusively for that exam, a premium single-exam question bank or a live review course may match your workflow. AnyExamEasy is designed for candidates who want multiple boards on one plan.",
     },
   ];
 }

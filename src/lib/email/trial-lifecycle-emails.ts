@@ -43,7 +43,7 @@ export function dashboardEmailUrl(): string {
 }
 
 export const TRIAL_EMAIL_LIABILITY_LINE =
-  "Any Exam Easy is a study aid for self-assessment. It does not guarantee a score, a passing result, licensure, or certification.";
+  "AnyExamEasy is a study aid for self-assessment. It does not guarantee a score, a passing result, licensure, or certification.";
 
 export function upgradeEmailUrl(context: "welcome" | "trial-ending" | "trial-ended"): string {
   if (context === "trial-ending" || context === "trial-ended") {

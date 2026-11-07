@@ -14,7 +14,7 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "3D Anatomy Model — Any Exam Easy",
+  title: "3D Anatomy Model — AnyExamEasy",
   description:
     "Orbit a stylized 3D body, explore organs, and jump into pearls, tours, and board-style practice.",
 };

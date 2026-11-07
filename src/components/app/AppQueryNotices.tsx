@@ -92,7 +92,7 @@ function AppQueryNoticesInner() {
 
   return (
     <StatusMessage variant="success" className="mb-4">
-      Subscription active — welcome to Any Exam Easy.
+      Subscription active — welcome to AnyExamEasy.
     </StatusMessage>
   );
 }

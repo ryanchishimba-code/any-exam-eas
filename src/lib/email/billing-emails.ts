@@ -39,7 +39,7 @@ function billingEmailShell(title: string, bodyHtml: string, ctaLabel: string, ct
     <tr><td align="center">
       <table width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;padding:32px 28px;border:1px solid rgba(0,0,0,0.06);">
         <tr><td>
-          <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">Any Exam Easy</p>
+          <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">AnyExamEasy</p>
           <h1 style="margin:0 0 16px;font-size:22px;font-weight:600;color:#0f172a;">${title}</h1>
           ${bodyHtml}
           <p style="margin:24px 0 0;text-align:center;">
@@ -47,7 +47,7 @@ function billingEmailShell(title: string, bodyHtml: string, ctaLabel: string, ct
           </p>
         </td></tr>
       </table>
-      <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© Any Exam Easy · anyexameasy.com</p>
+      <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© AnyExamEasy · anyexameasy.com</p>
     </td></tr>
   </table>
 </body>
@@ -140,7 +140,7 @@ export async function sendNextBillingReminderEmail(
 
   const bodyHtml = `
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your Any Exam Easy subscription renews in about 24 hours (<strong>${when}</strong>).</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your AnyExamEasy subscription renews in about 24 hours (<strong>${when}</strong>).</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your saved payment method will be charged <strong>${amount}</strong> for your ${tier.label} plan.</p>
     <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. Payments are non-refundable.</p>`;
 
@@ -155,7 +155,7 @@ export async function sendNextBillingReminderEmail(
 
   return sendBillingEmail({
     to: params.to,
-    subject: `Your Any Exam Easy subscription renews in 24 hours`,
+    subject: `Your AnyExamEasy subscription renews in 24 hours`,
     html: billingEmailShell(
       "Subscription renews tomorrow",
       bodyHtml,
@@ -230,7 +230,7 @@ export async function sendAnnualRenewalReminderEmail(
 
   const bodyHtml = `
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your Any Exam Easy annual subscription renews in about 30 days (<strong>${when}</strong>).</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your AnyExamEasy annual subscription renews in about 30 days (<strong>${when}</strong>).</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your saved payment method will be charged <strong>${amount}</strong> for your ${tier.label} plan.</p>
     <p style="margin:0;font-size:14px;color:#64748b;">Update your payment method or cancel anytime in Settings before renewal. Payments are non-refundable.</p>`;
 
@@ -245,7 +245,7 @@ export async function sendAnnualRenewalReminderEmail(
 
   return sendBillingEmail({
     to: params.to,
-    subject: "Your Any Exam Easy annual plan renews in about 30 days",
+    subject: "Your AnyExamEasy annual plan renews in about 30 days",
     html: billingEmailShell(
       "Annual plan renews in about 30 days",
       bodyHtml,

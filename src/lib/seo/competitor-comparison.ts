@@ -31,20 +31,20 @@ export const COMPETITOR_MAY_WIN: string[] = [
   "You are preparing for only one board and want a product built exclusively around that exam.",
   "You prefer a live review course with scheduled instruction over self-directed QBank study.",
   "You already use and trust a single-exam provider and do not need a multi-board plan.",
-  "You want the deepest possible item bank for one exam and will not sit other boards on the same timeline.",
+  "You want the deepest possible question bank for one exam and will not sit other boards on the same timeline.",
 ];
 
 export const PREP_APPROACH_PROFILES: PrepApproachProfile[] = [
   {
     id: "single-board-qbank",
-    title: "Premium single-board QBank",
-    tagline: "Deep item bank for one licensing exam",
+    title: "Premium single-board question bank",
+    tagline: "A deep question bank for one licensing exam",
     strengths: [
       "Focused content for a single exam track",
       "Performance analytics and explanations vary by provider",
       "Often sold per exam with its own renewal cycle",
     ],
-    bestFor: "Candidates sitting one board who want a specialist QBank for that exam only",
+    bestFor: "Candidates sitting one board who want a specialist question bank for that exam only",
   },
   {
     id: "live-review",
@@ -60,7 +60,7 @@ export const PREP_APPROACH_PROFILES: PrepApproachProfile[] = [
   {
     id: "self-assembled",
     title: "Self-assembled prep stack",
-    tagline: "Mix of QBanks, videos, and third-party mocks",
+    tagline: "A mix of question banks, videos, and practice exams",
     strengths: [
       "Pick best-in-class tools per exam",
       "Can tailor spend to one high-stakes board",
@@ -86,12 +86,12 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
   },
   {
     feature: "Question access",
-    anyExamEasy: "Live banks across six boards on Pro (trial is capped)",
+    anyExamEasy: "Practice questions across six boards on Pro. The free trial includes a limited set.",
     competitor: "Scope varies by provider and tier",
   },
   {
     feature: "Roadmap",
-    anyExamEasy: "Per-exam weak-area queue",
+    anyExamEasy: "A plan for each exam that focuses on weak areas",
     competitor: "Often performance stats only; limited roadmap",
   },
   {
@@ -105,8 +105,9 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
     competitor: "Self-assembly or separate mock products",
   },
   {
-    feature: "NGN + teachable rationales",
-    anyExamEasy: "NGN formats on NCLEX; structured rationales (growing coverage)",
+    feature: "Next Generation NCLEX and explanations that teach",
+    anyExamEasy:
+      "Next Generation formats on NCLEX, with explanations that teach. Coverage is still growing.",
     competitor: "Format depth varies by exam and provider",
   },
   {
@@ -119,7 +120,7 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
 export const EXAM_ONE_PAGER_LINKS = [
   {
     slug: "nclex-single-exam-qbank-comparison-2026",
-    title: "NCLEX prep: single-exam QBank vs one plan",
+    title: "NCLEX prep: a single-exam question bank vs one plan",
     exam: "NCLEX",
   },
   {
@@ -129,7 +130,7 @@ export const EXAM_ONE_PAGER_LINKS = [
   },
   {
     slug: "naplex-single-exam-qbank-comparison-2026",
-    title: "NAPLEX prep: pharmacy QBank vs multi-exam plan",
+    title: "NAPLEX prep: a pharmacy question bank vs a multi-exam plan",
     exam: "NAPLEX",
   },
   {

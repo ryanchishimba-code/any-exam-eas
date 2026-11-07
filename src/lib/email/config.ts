@@ -6,7 +6,7 @@ export type EmailDeliveryResult =
 
 /** Resend sender — must use a verified domain in production (not onboarding@resend.dev). */
 export function getEmailFromAddress(): string {
-  return process.env.EMAIL_FROM?.trim() || "Any Exam Easy <onboarding@resend.dev>";
+  return process.env.EMAIL_FROM?.trim() || "AnyExamEasy <onboarding@resend.dev>";
 }
 
 export function isEmailConfigured(): boolean {
@@ -101,7 +101,7 @@ export function getEmailSetupWarnings(): string[] {
 
   if (process.env.NODE_ENV === "production" && isResendSandboxFrom()) {
     warnings.push(
-      "EMAIL_FROM uses Resend sandbox (onboarding@resend.dev) — emails only reach your Resend account owner. Verify anyexameasy.com in Resend and set EMAIL_FROM=Any Exam Easy <noreply@anyexameasy.com>."
+      "EMAIL_FROM uses Resend sandbox (onboarding@resend.dev) — emails only reach your Resend account owner. Verify anyexameasy.com in Resend and set EMAIL_FROM=AnyExamEasy <noreply@anyexameasy.com>."
     );
   }
 

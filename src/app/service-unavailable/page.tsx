@@ -1,7 +1,7 @@
 import ServiceUnavailableClient from "./ServiceUnavailableClient";
 
 export const metadata = {
-  title: "Temporarily unavailable — Any Exam Easy",
+  title: "Temporarily unavailable — AnyExamEasy",
   robots: { index: false, follow: false },
 };
 

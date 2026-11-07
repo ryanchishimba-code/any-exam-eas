@@ -28,9 +28,9 @@ function passwordResetHtml(resetUrl: string): string {
         <table width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;padding:32px 28px;border:1px solid rgba(0,0,0,0.06);">
           <tr>
             <td>
-              <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">Any Exam Easy</p>
+              <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">AnyExamEasy</p>
               <h1 style="margin:0 0 16px;font-size:22px;font-weight:600;color:#0f172a;">Reset your password</h1>
-              <p style="margin:0 0 20px;font-size:15px;color:#475569;">We received a request to reset the password for your Any Exam Easy account. Tap the button below to choose a new password.</p>
+              <p style="margin:0 0 20px;font-size:15px;color:#475569;">We received a request to reset the password for your AnyExamEasy account. Tap the button below to choose a new password.</p>
               <p style="margin:0 0 24px;text-align:center;">
                 <a href="${resetUrl}" style="display:inline-block;background:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:12px;">Reset password</a>
               </p>
@@ -39,7 +39,7 @@ function passwordResetHtml(resetUrl: string): string {
                 <tr>
                   <td style="padding:14px 16px;">
                     <p style="margin:0 0 6px;font-size:12px;font-weight:600;color:#475569;">Security notice</p>
-                    <p style="margin:0;font-size:12px;color:#64748b;line-height:1.5;">If you did not request a password reset, you can safely ignore this email — your password will not change. Never share this link with anyone. Any Exam Easy will never ask for your password by email.</p>
+                    <p style="margin:0;font-size:12px;color:#64748b;line-height:1.5;">If you did not request a password reset, you can safely ignore this email — your password will not change. Never share this link with anyone. AnyExamEasy will never ask for your password by email.</p>
                   </td>
                 </tr>
               </table>
@@ -47,7 +47,7 @@ function passwordResetHtml(resetUrl: string): string {
             </td>
           </tr>
         </table>
-        <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© Any Exam Easy · anyexameasy.com</p>
+        <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© AnyExamEasy · anyexameasy.com</p>
       </td>
     </tr>
   </table>
@@ -58,16 +58,16 @@ function passwordResetHtml(resetUrl: string): string {
 function passwordResetText(resetUrl: string): string {
   const expiry = PASSWORD_RESET_EXPIRY_MINUTES;
   return [
-    "Reset your Any Exam Easy password",
+    "Reset your AnyExamEasy password",
     "",
-    "We received a request to reset the password for your Any Exam Easy account.",
+    "We received a request to reset the password for your AnyExamEasy account.",
     "Open the link below to choose a new password:",
     resetUrl,
     "",
     `This link expires in ${expiry} minutes and can only be used once.`,
     "",
     "SECURITY: If you did not request this, ignore this email — your password will not change.",
-    "Never share this link. Any Exam Easy will never ask for your password by email.",
+    "Never share this link. AnyExamEasy will never ask for your password by email.",
   ].join("\n");
 }
 
@@ -111,7 +111,7 @@ export async function sendPasswordResetEmail({
       body: JSON.stringify({
         from,
         to: [to],
-        subject: "Reset your Any Exam Easy password",
+        subject: "Reset your AnyExamEasy password",
         html: passwordResetHtml(resetUrl),
         text: passwordResetText(resetUrl),
       }),
@@ -217,7 +217,7 @@ export async function sendVerificationEmail({
 
   if (isResendSandboxFrom()) {
     console.warn(
-      "[email] EMAIL_FROM is unset — using Resend sandbox sender (Any Exam Easy <onboarding@resend.dev>). Verify anyexameasy.com in Resend and set EMAIL_FROM for production delivery.",
+      "[email] EMAIL_FROM is unset — using Resend sandbox sender (AnyExamEasy <onboarding@resend.dev>). Verify anyexameasy.com in Resend and set EMAIL_FROM for production delivery.",
       { from, toDomain }
     );
   }
@@ -289,12 +289,12 @@ function supportEmailHtml(subject: string, body: string): string {
     <tr><td align="center">
       <table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:16px;padding:32px 28px;border:1px solid rgba(0,0,0,0.06);">
         <tr><td>
-          <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">Any Exam Easy Support</p>
+          <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">AnyExamEasy Support</p>
           <h1 style="margin:0 0 16px;font-size:20px;font-weight:600;color:#0f172a;">${subject.replace(/</g, "&lt;")}</h1>
           <p style="margin:0;font-size:15px;color:#475569;">${escaped}</p>
         </td></tr>
       </table>
-      <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© Any Exam Easy · anyexameasy.com</p>
+      <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© AnyExamEasy · anyexameasy.com</p>
     </td></tr>
   </table>
 </body>

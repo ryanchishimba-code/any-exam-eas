@@ -20,7 +20,7 @@ export function HomeFreeQuizSection() {
     >
       <h2 id="home-free-quiz-heading">Try a free quiz</h2>
       <p className="home-free-quiz__lede">
-        Open a board page, answer live sample items, and read rationales. No sign-up.
+        Open a board page, answer real sample questions, and read the explanations. No sign-up.
       </p>
       <FreePracticeLink />
       <ul className="home-free-quiz__boards">

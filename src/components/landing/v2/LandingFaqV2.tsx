@@ -35,24 +35,24 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     q: "How is this different from typical single-exam prep?",
-    a: `Many QBanks are sold one exam at a time. AnyExamEasy gives you six boards under one plan, with an integrated Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
+    a: `Many question banks are sold one exam at a time. AnyExamEasy gives you six boards under one plan, with an integrated Roadmap, Deep Dive review modules opened from missed questions, timed Full Exams, and a 3D Anatomy Explorer.`,
   },
   {
     home: true,
     q: "Are the questions actually high quality?",
-    a: "A student session only serves items that are active, qa-passed, and still eligible. Flawed items can be hidden without deleting them, and you can report an issue from the rationale. Read the standards page for the gate, the official outlines, and the corrections policy.",
+    a: "A study session only includes questions that are live, that have passed our review, and that are still cleared for practice. If a question has a flaw, we can hide it without erasing it, and you can report an issue from the explanation. The standards page explains how we review questions, which official outlines we follow, and how we correct problems.",
   },
   {
     q: "Can I cancel anytime?",
     a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
   },
   {
-    q: "Why not just buy a single-exam QBank for the one board I'm taking?",
+    q: "Why not just buy a single-exam question bank for the one board I'm taking?",
     a: "If you only need one exam, a dedicated single-board product may fit. AnyExamEasy is built for candidates who want six boards on one plan, with a Roadmap, review opened from the questions you miss, and timed practice exams.",
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
-    a: "No prep service can honestly guarantee a pass, and we will not. Items have to pass a quality gate before a student session can serve them. Roadmap follow published blueprints, and a rationale shows a source when the item stores one. Passing still depends on how you study. Read how questions are reviewed for the exact gate.",
+    a: "No prep service can honestly guarantee a pass, and we will not. Questions have to pass review before a study session can include them. The Roadmap follows each exam's published outline, and an explanation shows a source when the question includes one. Passing still depends on how you study. Read how questions are reviewed for the full standard.",
   },
   {
     home: true,

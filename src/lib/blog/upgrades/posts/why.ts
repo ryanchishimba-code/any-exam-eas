@@ -105,7 +105,7 @@ const content = [
     `${a(PREPARE, "NCLEX prepare page", true)} for the tutorial and sample pack.`,
   ]),
   p(
-    `Any Exam Easy is an independent study aid. It is not affiliated with, endorsed by, or sponsored by NCSBN. Confirm every rule in the documents above if your appointment is outside the 2026 test-plan window.`
+    `AnyExamEasy is an independent study aid. It is not affiliated with, endorsed by, or sponsored by NCSBN. Confirm every rule in the documents above if your appointment is outside the 2026 test-plan window.`
   ),
 
   faq([

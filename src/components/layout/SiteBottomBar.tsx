@@ -9,7 +9,7 @@ type Props = {
 
 /** Site-wide bottom strip — support contact, kept separate from main nav. */
 export function SiteBottomBar({ className }: Props) {
-  const mailto = `mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("Any Exam Easy — Contact")}`;
+  const mailto = `mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("AnyExamEasy — Contact")}`;
 
   return (
     <div

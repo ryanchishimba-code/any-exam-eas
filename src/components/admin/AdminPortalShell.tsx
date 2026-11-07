@@ -155,7 +155,7 @@ export function AdminPortalShell({
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
             <p className="text-sm font-medium text-slate-800 dark:text-zinc-100 md:text-base">
-              Any Exam Easy · Admin
+              AnyExamEasy · Admin
             </p>
             <div className="w-8 md:hidden" />
           </header>

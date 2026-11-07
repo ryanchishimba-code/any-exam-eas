@@ -3,7 +3,7 @@ import { AuthFocusLayout } from "@/components/auth/AuthFocusLayout";
 import { ResetPasswordForm } from "@/components/ResetPasswordForm";
 
 export const metadata = {
-  title: "Choose New Password — Any Exam Easy",
+  title: "Choose New Password — AnyExamEasy",
 };
 
 export default function ResetPasswordPage() {
