@@ -25,7 +25,7 @@ export default function robots(): MetadataRoute.Robots {
         "/daily/unsubscribe",
       ],
     },
-    sitemap: `${base}/sitemap.xml`,
+    sitemap: "https://www.anyexameasy.com/sitemap.xml",
     host: base,
   };
 }
