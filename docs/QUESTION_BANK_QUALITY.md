@@ -63,7 +63,16 @@ and NCLEX first (highest usage). Nothing here deploys.
 5. Confirm serve alignment with `npm run db:audit-bank-quality` and the served-alignment audits.
 6. Repeat for `nursing`, then `pharmacy`, `pance`, `aanp-fnp`, `npte-pt`.
 
-## 4. Filtering correctness fixes
+## 4. Cue and difficulty gate (read-only)
+
+`scripts/quality-gate-cue-difficulty.ts` flags cue, duplicate, position, difficulty, and support gaps without writing the bank. Usage, the eight checks, and the JSON shape are in [QUALITY_GATE.md](./QUALITY_GATE.md).
+
+```bash
+npm run db:quality-gate -- --help
+npm run db:quality-gate -- --board nclex --served-only --limit 200
+```
+
+## 5. Filtering correctness fixes
 
 - `practiceTopicHref` now resolves USMLE **basic-science** topics (anatomy, physiology,
   pathology, pharmacology, biochemistry, microbiology) to `usmle-step-1` instead of the
