@@ -12,7 +12,7 @@ import { readClientFirstTouch } from "@/lib/marketing/first-touch-client";
 import { AuthFocusLayout } from "@/components/auth/AuthFocusLayout";
 import { SignupForm } from "@/components/SignupForm";
 import { CONSENTED_TESTIMONIAL_SEEDS } from "@/lib/testimonials/consented-seed";
-import { formatPricingCheckoutTrialOffer, formatSignupTrialScope } from "@/lib/site";
+import { formatTrialLimitsLine } from "@/lib/site";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
@@ -96,10 +96,9 @@ export function SignupScreen({
   return (
     <AuthFocusLayout
       title={trial ? "Start your free trial." : "Create your account."}
-      offer={trial ? formatPricingCheckoutTrialOffer() : undefined}
       detail={
         trial
-          ? formatSignupTrialScope()
+          ? formatTrialLimitsLine()
           : "Create your account, then pay securely at checkout to unlock Pro."
       }
       after={<SignupProof />}

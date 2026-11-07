@@ -1,3 +1,4 @@
+import { after } from "next/server";
 import { prisma } from "@/lib/prisma";
 import type { EmailDeliveryResult } from "@/lib/email/config";
 import { sendWelcomeTrialEmail } from "@/lib/email/trial-lifecycle-emails";
@@ -42,4 +43,33 @@ export async function triggerWelcomeTrialEmail(
   }
 
   return result;
+}
+
+/**
+ * Keep the welcome send alive until the response finishes. A floating promise
+ * was frozen when the signup function returned, so the message never left.
+ */
+export function scheduleWelcomeTrialEmail(userId: string): void {
+  const task = async () => {
+    try {
+      const result = await triggerWelcomeTrialEmail(userId);
+      if (!result.ok) {
+        console.error("[trial-welcome] not sent:", "reason" in result ? result.reason : "unknown", {
+          userId,
+        });
+      }
+    } catch (err) {
+      console.error(
+        "[trial-welcome] send failed:",
+        err instanceof Error ? err.message : err,
+        { userId }
+      );
+    }
+  };
+
+  try {
+    after(task);
+  } catch {
+    void task();
+  }
 }

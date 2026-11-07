@@ -3,7 +3,6 @@ import { BoardFeatureGrid } from "@/components/marketing/board-landing/BoardFeat
 import { BoardLandingHero } from "@/components/marketing/board-landing/BoardLandingHero";
 import { BoardLandingTestimonials } from "@/components/marketing/board-landing/BoardLandingTestimonials";
 import { BoardPainIcons } from "@/components/marketing/board-landing/BoardPainIcons";
-import { BoardPriceCompare } from "@/components/marketing/board-landing/BoardPriceCompare";
 import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatStrip";
 import { NclexLandingCompareChart } from "@/components/marketing/board-landing/NclexLandingCompareChart";
 import { NclexNgnTypeChart } from "@/components/marketing/board-landing/NclexNgnTypeChart";
@@ -15,7 +14,8 @@ import type { NclexBoardLandingRenderModel } from "@/lib/marketing/board-landing
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
-import { HERO_TRIAL_CTA_LABEL, heroTrialPriceLine } from "@/lib/marketing/home-cta";
+import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
+import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
 
 export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
   const depthChart = model.nclexCompare;
@@ -67,6 +67,8 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         }
       />
 
+      <WhyAnyExamEasy board="nclex" trialHref={model.trialHref} />
+
       {model.features.length > 0 ? (
         <div className="bl-band">
           <BoardFeatureGrid cards={model.features} tight visual />
@@ -92,16 +94,11 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         </div>
       ) : null}
 
-      <div className="bl-band">
-        <BoardPriceCompare chart={model.priceChart} />
-      </div>
-
       <section className="bl-final bl-band bl-band--final" aria-labelledby="final-heading">
         <h2 id="final-heading">{model.finalHeading}</h2>
         <LandingCta href={model.trialHref} ctaName={model.finalCtaName} location={model.finalCtaLocation}>
           {HERO_TRIAL_CTA_LABEL}
         </LandingCta>
-        <p className="bl-hero-price bl-final__price">{heroTrialPriceLine()}</p>
       </section>
 
       <div className="bl-band bl-band--alt bl-band--faq">

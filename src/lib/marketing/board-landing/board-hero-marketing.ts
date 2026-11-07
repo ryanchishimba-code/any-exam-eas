@@ -1,7 +1,5 @@
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import { formatPlanUsd } from "@/lib/billing-plans";
 import type { BoardSlug } from "@/lib/marketing/board-landing/board-theme";
-import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import {
   PANCE_HERO_TESTIMONIAL_SEED_ID,
   consentedSeedById,
@@ -14,8 +12,8 @@ if (!panceHeroTestimonialSeed) {
 
 export const BOARD_LANDING_HERO_TRIAL_LABEL = "Start 5-day free trial";
 
-function boardHeroPriceTrialSuffix(): string {
-  return `${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo after a ${TRIAL_DAYS}-day free trial.`;
+function boardHeroTrialSuffix(): string {
+  return `${TRIAL_DAYS}-day free trial, no card required.`;
 }
 
 export const BOARD_LANDING_HERO_QUIZ_LABEL = "Try the free quiz";
@@ -38,7 +36,7 @@ export type BoardHeroMarketingCopy = {
 const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   nclex: {
     headline: "NCLEX-RN practice with every answer explained.",
-    subline: `NGN case studies, explained rationales, and timed mocks. ${boardHeroPriceTrialSuffix()}`,
+    subline: `NGN case studies, explained rationales, and timed mocks. ${boardHeroTrialSuffix()}`,
     testimonial: {
       name: "Nathan C.",
       quote: "The best questions I've found for NCLEX prep.",
@@ -47,7 +45,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   naplex: {
     headline: "NAPLEX questions. Every answer explained.",
-    subline: `Drug questions, calculations, and timed mocks. ${boardHeroPriceTrialSuffix()}`,
+    subline: `Drug questions, calculations, and timed mocks. ${boardHeroTrialSuffix()}`,
     testimonial: {
       name: "Frank C.",
       quote: "The drug cards were a game changer.",
@@ -56,12 +54,12 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   usmle: {
     headline: "USMLE practice with every answer explained.",
-    subline: `Step-style vignettes, explained rationales, and timed mocks. ${boardHeroPriceTrialSuffix()}`,
+    subline: `Step-style vignettes, explained rationales, and timed mocks. ${boardHeroTrialSuffix()}`,
     testimonial: null,
   },
   "aanp-fnp": {
     headline: "FNP practice with every vignette explained.",
-    subline: `Lifespan vignettes, explained rationales, and mocks. ${boardHeroPriceTrialSuffix()}`,
+    subline: `Lifespan vignettes, explained rationales, and mocks. ${boardHeroTrialSuffix()}`,
     testimonial: {
       name: "Mag B.",
       quote: "I couldn't believe the price for everything I got.",
@@ -70,7 +68,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   pance: {
     headline: "PANCE practice with every vignette explained.",
-    subline: `Organ-system vignettes, explained rationales, and mocks. ${boardHeroPriceTrialSuffix()}`,
+    subline: `Organ-system vignettes, explained rationales, and mocks. ${boardHeroTrialSuffix()}`,
     testimonial: {
       name: panceHeroTestimonialSeed.name,
       quote: panceHeroTestimonialSeed.quote,
@@ -79,7 +77,7 @@ const BOARD_HERO_MARKETING: Record<BoardSlug, BoardHeroMarketingCopy> = {
   },
   "npte-pt": {
     headline: "NPTE-PT practice written for physical therapists.",
-    subline: `PT-specific scenarios, explained rationales, and a full mock. ${boardHeroPriceTrialSuffix()}`,
+    subline: `PT-specific scenarios, explained rationales, and a full mock. ${boardHeroTrialSuffix()}`,
     testimonial: null,
   },
 };
@@ -105,8 +103,7 @@ export function boardHeroProofFacts(
   const count = offer?.liveQuestions?.trim();
   if (count) facts.push(`${count} questions`);
   facts.push("Cited rationales");
-  const price = offer?.proPrice?.trim();
-  if (price) facts.push(price);
+  facts.push(`${TRIAL_DAYS}-day free trial, no card required`);
   return facts;
 }
 

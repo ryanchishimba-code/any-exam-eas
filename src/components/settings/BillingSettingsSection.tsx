@@ -149,10 +149,13 @@ export function BillingSettingsSection() {
     !isOneTime &&
     status?.daysRemaining != null;
 
+  const cardFreeTrial = onTrial && !status?.hasStripeSubscription;
+
   const canChangePlan =
     status?.hasAccess &&
     !isOneTime &&
     !complimentary &&
+    !cardFreeTrial &&
     (status.status === "trialing" || status.status === "active");
 
   const planAlreadySelected =
@@ -164,9 +167,12 @@ export function BillingSettingsSection() {
 
   let statusTitle = "Subscription";
   let statusBody = `Pro · ${planLabel}`;
+
   if (onTrial) {
     statusTitle = `Free trial · ${status?.daysRemaining ?? "—"} day${status?.daysRemaining === 1 ? "" : "s"} left`;
-    statusBody = "Not charged until the trial ends.";
+    statusBody = cardFreeTrial
+      ? "No card on file. The trial ends on its own, and you are not charged unless you subscribe."
+      : "Not charged until the trial ends.";
   } else if (isOneTime) {
     statusTitle = `Pay-once access · ${status?.daysRemaining ?? "—"} day${status?.daysRemaining === 1 ? "" : "s"} left`;
     statusBody = accessEndsLabel
@@ -262,6 +268,15 @@ export function BillingSettingsSection() {
           )}
         </div>
 
+        {cardFreeTrial && !paymentPastDue && (
+          <Button
+            href={`/checkout?plan=subscribe&interval=${currentInterval}&tier=${currentTier}`}
+            className="w-full"
+          >
+            Upgrade to Pro
+          </Button>
+        )}
+
         {complimentary && !paymentPastDue && (
           <Button
             href={`/checkout?plan=subscribe&interval=${currentInterval}&tier=${currentTier}`}
@@ -302,7 +317,7 @@ export function BillingSettingsSection() {
         )}
 
         <div className="flex flex-wrap gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
-          {!isOneTime && !complimentary && (
+          {!isOneTime && !complimentary && !cardFreeTrial && (
             <ManageBillingButton label="Cancel or manage billing" variant="secondary" />
           )}
           <Link

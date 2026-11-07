@@ -7,7 +7,7 @@ describe("boardHeroMarketingCopy", () => {
       "NCLEX-RN practice with every answer explained."
     );
     expect(boardHeroMarketingCopy("nclex").subline).toBe(
-      "NGN case studies, explained rationales, and timed mocks. $27.99/mo after a 5-day free trial."
+      "NGN case studies, explained rationales, and timed mocks. 5-day free trial, no card required."
     );
     expect(boardHeroMarketingCopy("naplex").headline).toBe(
       "NAPLEX questions. Every answer explained."

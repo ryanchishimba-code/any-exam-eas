@@ -120,8 +120,23 @@ export function formatSignupTrialScope(): string {
   return `Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions across all six boards, plus Roadmap and Deep Dives.`;
 }
 
+/**
+ * One line for signup. Counts come from the trial config: the question cap,
+ * one full-length adaptive exam, and the first 10% of a 200-card feed
+ * (NCLEX, NAPLEX, PANCE, and AANP FNP). USMLE and NPTE-PT have no flashcard feed.
+ */
+export function formatTrialLimitsLine(): string {
+  const flashcards = Math.ceil(200 * 0.1);
+  return `${TRIAL_DAYS}-day free trial, no card: ${TRIAL_LIFETIME_QUESTIONS} questions, one full-length exam, and the first ${flashcards} of 200 flashcards on the NCLEX, NAPLEX, PANCE, and AANP FNP feeds.`;
+}
+
+/** After-trial price. Use on pricing, FAQ, and checkout only. */
+export function formatAfterTrialPriceLine(): string {
+  return `${formatMonthlyPrice("pro")}/month, all six boards, cancel anytime`;
+}
+
 /** Primary marketing CTA label (buttons, sticky bars, nav). */
-export const TRIAL_CTA_LABEL = "Start your free trial";
+export const TRIAL_CTA_LABEL = "Start free trial, no card required";
 
 export function formatTrialCtaLabel(): string {
   return TRIAL_CTA_LABEL;
@@ -191,7 +206,7 @@ export function formatTrialPlanDetail(): string {
 }
 
 export function formatTrialCheckoutDescription(): string {
-  return `${TRIAL_DAYS}-day free trial on your chosen plan. Add payment below — ${formatTrialTodayPrice()} due today unless intro pricing applies. Your plan is not charged until the trial ends. ${BILLING_POLICY_SHORT}`;
+  return `${formatPricingCheckoutTrialOffer()}. Upgrade when you want unlimited access.`;
 }
 
 export const TRIAL_CARD_DISCLOSURE = TRIAL_PAYMENT_DISCLOSURE;

@@ -112,6 +112,31 @@ describe("BillingSettingsSection pay-once view", () => {
     expect(screen.queryByText(/no payment method required/i)).toBeNull();
   });
 
+  it("does not send a card-free trial to Stripe billing or imply an automatic charge", async () => {
+    mockStatus({
+      status: "trialing",
+      hasStripeSubscription: false,
+      daysRemaining: 5,
+      trialEndsAt: "2026-11-12T12:00:00.000Z",
+      needsPaymentMethod: false,
+    });
+
+    render(<BillingSettingsSection />);
+
+    await waitFor(() => {
+      expect(screen.getByText(/Free trial · 5 days left/)).toBeTruthy();
+    });
+    expect(
+      screen.getByText(/No card on file\. The trial ends on its own, and you are not charged unless you subscribe\./)
+    ).toBeTruthy();
+    expect(screen.queryByText(/Not charged until the trial ends/)).toBeNull();
+    expect(screen.queryByText("Change plan")).toBeNull();
+    expect(screen.queryByText("Cancel or manage billing")).toBeNull();
+    const upgrade = screen.getByRole("link", { name: "Upgrade to Pro" });
+    expect(upgrade.getAttribute("href")).toContain("plan=subscribe");
+    expect(upgrade.getAttribute("href")).not.toContain("plan=trial");
+  });
+
   it("still shows the plan switcher for a recurring subscriber", async () => {
     mockStatus({ hasStripeSubscription: true });
 

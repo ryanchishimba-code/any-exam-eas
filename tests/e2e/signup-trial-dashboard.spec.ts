@@ -3,12 +3,11 @@ import { test as authTest, hasAuthStorage } from "./fixtures/auth";
 import { acceptSignupTerms } from "./helpers/forms";
 
 /**
- * Critical revenue path: signup intent → checkout → authenticated study hub.
- * Full Stripe wallet flows (Apple Pay / Google Pay) require live Stripe keys and
- * are covered in scripts/test-payments.mjs; here we validate UI gates and redirects.
+ * Card-free trial: signup form → account → dashboard. No Checkout charge.
+ * Full Stripe wallet flows stay in scripts/test-payments.mjs.
  */
 test.describe("Signup → trial → dashboard", () => {
-  test("trial signup surfaces plan disclosure and routes toward checkout", async ({ page }) => {
+  test("trial signup surfaces plan disclosure and lands in the app", async ({ page }) => {
     const uniqueEmail = `e2e-trial-${Date.now()}@example.com`;
 
     await page.goto("/signup?plan=trial&exam=nclex", { waitUntil: "domcontentloaded" });
@@ -28,20 +27,20 @@ test.describe("Signup → trial → dashboard", () => {
 
     await expect
       .poll(
-        async () => /\/(checkout|dashboard|select-exam)/.test(page.url()),
+        async () => /\/(dashboard|select-exam)/.test(page.url()),
         { timeout: 120_000 }
       )
       .toBe(true);
+    expect(page.url()).not.toContain("/checkout");
   });
 
-  test("checkout page exposes Stripe payment element when configured", async ({ page }) => {
-    test.skip(!process.env.STRIPE_SECRET_KEY, "Stripe not configured in this environment");
-
-    await page.goto("/checkout?plan=trial", { waitUntil: "domcontentloaded" });
-    await expect(page.getByText(/payment|checkout|subscribe|trial/i).first()).toBeVisible();
-    await expect(
-      page.locator('[data-testid="embedded-checkout"], iframe[name*="stripe"], .StripeElement').first()
-    ).toBeVisible({ timeout: 30_000 });
+  test("a signed-out trial checkout opens the signup form, not a charge due today", async ({ page }) => {
+    await page.goto("/checkout?plan=trial&interval=monthly&tier=pro", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/\/signup\?/);
+    await expect(page.getByRole("heading", { name: "Start your free trial." })).toBeVisible();
+    await expect(page.getByLabel("Email")).toBeVisible();
+    await expect(page.getByText("Due today")).toHaveCount(0);
+    await expect(page.locator("form")).toHaveAttribute("data-signup-plan", "trial");
   });
 
   authTest("authenticated trial user lands on dashboard with study navigation", async ({

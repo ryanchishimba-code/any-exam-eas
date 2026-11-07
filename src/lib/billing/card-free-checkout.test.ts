@@ -73,7 +73,7 @@ describe("resolveCheckoutEntry", () => {
     ).toBe("start-app-trial");
   });
 
-  it("sends a used trial to paid subscribe without a trial plan", () => {
+  it("sends a used trial to the dashboard, not paid checkout", () => {
     const decision = resolveCheckoutEntry({
       plan: "trial",
       loggedIn: true,
@@ -81,14 +81,7 @@ describe("resolveCheckoutEntry", () => {
       accessStatus: "trial_expired",
       query: trialQuery,
     });
-    expect(decision).toEqual({
-      kind: "paid-subscribe",
-      href: "/checkout?plan=subscribe&interval=monthly&tier=pro&reactivate=1",
-    });
-    expect(decision.kind === "paid-subscribe" && decision.href).not.toContain("plan=trial");
-    expect(decision.kind === "paid-subscribe" && decision.href).not.toContain(
-      "no payment method required"
-    );
+    expect(decision).toEqual({ kind: "dashboard" });
   });
 
   it("does not restart a trial that is already running", () => {
@@ -102,7 +95,7 @@ describe("resolveCheckoutEntry", () => {
     ).toEqual({ kind: "dashboard" });
   });
 
-  it("offers paid subscribe when a current trial was already used", () => {
+  it("keeps a running trial on the dashboard even if the trial flag is already used", () => {
     expect(
       resolveCheckoutEntry({
         plan: "trial",
@@ -111,10 +104,7 @@ describe("resolveCheckoutEntry", () => {
         accessStatus: "trialing",
         query: { interval: "yearly" },
       })
-    ).toEqual({
-      kind: "paid-subscribe",
-      href: "/checkout?plan=subscribe&interval=yearly",
-    });
+    ).toEqual({ kind: "dashboard" });
   });
 
   it("does not open a trial over an active paid subscription or a failed payment", () => {

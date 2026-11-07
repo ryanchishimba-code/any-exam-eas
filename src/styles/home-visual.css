@@ -449,6 +449,9 @@
 .home-visual .home-hero.mkt-photo-hero {
   padding: 0;
   background: #071422;
+  height: auto;
+  min-height: 100svh;
+  overflow: visible;
 }
 
 /* Homepage button sizing must not override the shared photo-hero CTA. */

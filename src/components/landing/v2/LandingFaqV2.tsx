@@ -12,8 +12,7 @@ import type { ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
-import { formatMonthlyPrice, formatSignupTrialScope } from "@/lib/site";
+import { formatAfterTrialPriceLine, formatSignupTrialScope } from "@/lib/site";
 
 const HELP_ANSWER = `Email ${LEGAL_ENTITY.supportEmail}.`;
 
@@ -26,12 +25,12 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   {
     home: true,
     q: "How much does it cost?",
-    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves ${PRO_ANNUAL_SAVINGS_PERCENT}% versus monthly. Roadmap, Deep Dive, and Full Exam stay on the same plan.`,
+    a: `After the free trial, Pro is ${formatAfterTrialPriceLine()}.`,
   },
   {
     home: true,
     q: "Is there a free trial? Do I need a card?",
-    a: `Yes. ${formatSignupTrialScope()} No payment method required at signup. Upgrade anytime for unlimited questions, Deep Dive modules, and advanced analytics.`,
+    a: `Yes. ${formatSignupTrialScope()} No payment method required at signup. Upgrade anytime for unlimited questions and advanced analytics.`,
   },
   {
     q: "How is this different from typical single-exam prep?",
@@ -44,7 +43,7 @@ const FAQ: { q: string; a: string; body?: ReactNode; home?: boolean }[] = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. Cancel anytime in Settings. That opens Stripe billing and stops the next charge. Canceling before a trial ends means you are not charged. Paid charges are non-refundable except where the law requires a refund.",
+    a: "Yes. Cancel a paid plan anytime in Settings. That stops the next charge. A free trial has no card on file and ends on its own; you are not charged unless you subscribe. Paid charges are non-refundable except where the law requires a refund.",
   },
   {
     q: "Why not just buy a single-exam question bank for the one board I'm taking?",

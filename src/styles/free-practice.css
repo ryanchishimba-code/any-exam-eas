@@ -133,8 +133,28 @@
     transform 0.2s ease;
 }
 
-.fp-cta svg {
+.fp-cta svg,
+.fp-cta-spin {
   flex: none;
+}
+
+.fp-cta-spin {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-top-color: currentColor;
+  animation: fp-cta-spin 0.7s linear infinite;
+}
+
+.fp-cta[aria-busy="true"] {
+  cursor: progress;
+}
+
+@keyframes fp-cta-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .fp-cta:hover {
@@ -786,6 +806,11 @@
 }
 
 @media (max-width: 479px) {
+  .fp-cta {
+    white-space: normal;
+    text-align: center;
+  }
+
   .fp-hero .fp-cta,
   .fp-close .fp-cta {
     width: 100%;
@@ -855,6 +880,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fp-cta,
+  .fp-cta-spin,
   .fp-card,
   .fp-option,
   .fp-letter,
@@ -867,5 +893,9 @@
 
   .fp-cta:hover {
     transform: none;
+  }
+
+  .fp-cta-spin {
+    animation: none;
   }
 }

@@ -1,7 +1,5 @@
-import { formatMonthlyPrice } from "@/lib/site";
-
 /** Primary hero button on home and board landing pages. */
-export const HERO_TRIAL_CTA_LABEL = "Start free trial";
+export const HERO_TRIAL_CTA_LABEL = "Start free trial, no card required";
 
 export function homeTrialCtaLabel(): string {
   return HERO_TRIAL_CTA_LABEL;
@@ -17,21 +15,15 @@ export const HOME_NO_PAYMENT_LINE = "No payment method required.";
 export const HOME_NO_CARD_LINE = "No card needed.";
 
 export function homeStickyCtaLabel(): string {
-  return `${formatMonthlyPrice("pro")}/mo · Start free trial`;
+  return HERO_TRIAL_CTA_LABEL;
 }
 
 /** Anchor for the public “See questions” secondary CTA on the homepage. */
 export const HOME_SEE_QUESTIONS_HREF = "#quick-bites-heading";
 
-/**
- * Pro monthly price beside the trial CTA.
- * Subscriptions renew until canceled in Settings (see paidRenewalConsentText).
- */
+/** Heroes do not show a price. */
 export function heroTrialPriceLine(): string {
-  if (subscriptionAllowsCancelAnytime()) {
-    return `${formatMonthlyPrice("pro")}/mo, cancel anytime`;
-  }
-  return `${formatMonthlyPrice("pro")}/mo`;
+  return "";
 }
 
 /** Self-service cancel in Settings stops the next renewal charge. */

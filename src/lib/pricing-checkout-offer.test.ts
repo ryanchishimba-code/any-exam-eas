@@ -10,6 +10,7 @@ import {
   formatSignupTrialScope,
   formatTierPriceLine,
   formatTrialCtaWithSavings,
+  formatTrialCheckoutDescription,
   formatTrialPlanDetail,
   NO_PAYMENT_TRIAL_BADGE,
   NO_PAYMENT_TRIAL_SUBLINE,
@@ -26,6 +27,8 @@ describe("pricing and checkout trial offer", () => {
     expect(formatCheckoutTrialPageDescription("yearly")).toBe(
       "5-day free trial · $0 today · no payment method required"
     );
+    expect(formatTrialCheckoutDescription()).not.toMatch(/add payment|due today/i);
+    expect(formatTrialCheckoutDescription()).toMatch(/no payment method required/i);
   });
 
   it("does not use card or percent-off trial wording", () => {

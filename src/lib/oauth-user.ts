@@ -111,9 +111,8 @@ export async function findOrCreateGoogleUser(params: {
   }
 
   if (!trialAlreadyUsed) {
-    void import("@/lib/trial-email-triggers").then((m) =>
-      m.triggerWelcomeTrialEmail(user.id)
-    );
+    const { scheduleWelcomeTrialEmail } = await import("@/lib/trial-email-triggers");
+    scheduleWelcomeTrialEmail(user.id);
     scheduleTrialStartAlert({
       userId: user.id,
       email,

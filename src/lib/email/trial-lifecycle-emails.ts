@@ -85,7 +85,7 @@ export async function sendWelcomeTrialEmail(
       `Start a <strong>practice block</strong> in the question bank — even 10 questions builds momentum.`,
     ]),
     emailParagraph(
-      "When you're ready for unlimited questions, teachable rationales, AI Tutor, and full-length mocks, upgrading takes one click."
+      "When you're ready for unlimited questions, AI Tutor, and unlimited full-length mocks, upgrading takes one click."
     ),
   ].join("");
 

@@ -38,9 +38,44 @@ export function resolveSignupIntent(input: {
   };
 }
 
+export type SignedInSignupDecision =
+  | { action: "checkout"; href: string }
+  | { action: "start-trial"; href: string }
+  | { action: "dashboard"; href: string };
+
 /**
- * A signed-in visitor who arrived with a plan query should reach checkout
- * with that query. A bare /signup visit still goes to the dashboard.
+ * Signed-in trial visits never open Checkout. An explicit subscribe visit
+ * still does. A trial that can still be started is started by the page, then
+ * the learner lands on the dashboard. Everyone else on a trial link goes to
+ * the dashboard too — including a trial that was already used.
+ */
+export function resolveSignedInSignup(input: {
+  plan?: string | null;
+  interval?: string | null;
+  tier?: string | null;
+  promo?: string | null;
+  exam?: string | null;
+  accessStatus?: string | null;
+  trialAvailable: boolean;
+}): SignedInSignupDecision {
+  if (input.plan?.trim() === "subscribe") {
+    return {
+      action: "checkout",
+      href: signupSubscribeCheckoutPath(resolveSignupIntent(input)),
+    };
+  }
+
+  const status = input.accessStatus ?? "";
+  if (status === "active" || status === "trialing" || !input.trialAvailable) {
+    return { action: "dashboard", href: "/dashboard" };
+  }
+
+  return { action: "start-trial", href: "/dashboard?welcome=trial" };
+}
+
+/**
+ * A signed-in subscribe visit reaches paid checkout. Every other visit,
+ * including a trial link and a bare /signup, goes to the dashboard.
  */
 export function signedInSignupRedirect(input: {
   plan?: string | null;
@@ -49,13 +84,7 @@ export function signedInSignupRedirect(input: {
   promo?: string | null;
   exam?: string | null;
 }): string {
-  const next = new URLSearchParams();
-  for (const key of ["plan", "interval", "tier", "promo", "exam"] as const) {
-    const value = input[key]?.trim();
-    if (value) next.set(key, value);
-  }
-  const qs = next.toString();
-  return qs ? `/checkout?${qs}` : "/dashboard";
+  return resolveSignedInSignup({ ...input, trialAvailable: false }).href;
 }
 
 /** Paid path after account creation, or the OAuth return for Skip-trial. */
