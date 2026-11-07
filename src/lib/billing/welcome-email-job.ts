@@ -1,12 +1,11 @@
 import { prisma } from "@/lib/prisma";
-import { appBaseUrl, isEmailConfigured } from "@/lib/email/config";
+import { isEmailConfigured } from "@/lib/email/config";
 import {
   marketingUnsubscribeHeaders,
   marketingUnsubscribePageUrl,
 } from "@/lib/email/marketing-preference";
+import { lifecycleExamFromSlug } from "@/lib/email/lifecycle-exam";
 import { sendWelcomeTrialEmail } from "@/lib/email/trial-lifecycle-emails";
-import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { firstTenQuestionsHref } from "@/lib/study/first-ten-href";
 import { isInternalTestEmail } from "@/lib/test-accounts";
 
 export type WelcomeEmailJobResult = {
@@ -14,21 +13,6 @@ export type WelcomeEmailJobResult = {
   skipped: number;
   errors: string[];
 };
-
-function startForExam(examSlug: string | null | undefined): { startCta: string; startUrl: string } {
-  const href = examSlug ? firstTenQuestionsHref(examSlug) : null;
-  const name = examSlug && isExamSlug(examSlug) ? EXAM_CATALOG[examSlug].shortName : null;
-  if (href && name) {
-    return {
-      startCta: `Start with 10 ${name} questions`,
-      startUrl: `${appBaseUrl()}${href}`,
-    };
-  }
-  return {
-    startCta: "Choose your exam, then start 10 questions",
-    startUrl: `${appBaseUrl()}/select-exam`,
-  };
-}
 
 /** Sends welcomes whose earliest time has passed. Older rows with a null earliest time are left alone. */
 export async function runDueWelcomeEmails(now = new Date()): Promise<WelcomeEmailJobResult> {
@@ -67,7 +51,7 @@ export async function runDueWelcomeEmails(now = new Date()): Promise<WelcomeEmai
       continue;
     }
 
-    const start = startForExam(sub.user.examPreference?.examSlug);
+    const exam = lifecycleExamFromSlug(sub.user.examPreference?.examSlug);
     let unsubscribeUrl = "";
     let headers: Record<string, string> | undefined;
     try {
@@ -83,8 +67,9 @@ export async function runDueWelcomeEmails(now = new Date()): Promise<WelcomeEmai
     const sent = await sendWelcomeTrialEmail({
       to: sub.user.email,
       name: sub.user.name,
-      startCta: start.startCta,
-      startUrl: start.startUrl,
+      examName: exam.name,
+      startCta: exam.startCta,
+      startUrl: exam.startUrl,
       unsubscribeUrl,
       headers,
     });

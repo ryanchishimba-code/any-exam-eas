@@ -10,6 +10,7 @@ import {
   transactionalEmailLayout,
 } from "@/lib/email/layout";
 import { sendTransactionalEmail } from "@/lib/email/resend-client";
+import { lifecycleExamFromSlug } from "@/lib/email/lifecycle-exam";
 import { buildWelcomeSignupEmail } from "@/lib/email/welcome-signup-email";
 import type { EmailDeliveryResult } from "@/lib/email/config";
 import { displayFirstName } from "@/lib/display-name";
@@ -64,6 +65,7 @@ export function upgradeEmailUrl(context: "welcome" | "trial-ending" | "trial-end
 
 export async function sendWelcomeTrialEmail(
   params: TrialEmailParams & {
+    examName?: string | null;
     startCta: string;
     startUrl: string;
     unsubscribeUrl: string;
@@ -74,6 +76,7 @@ export async function sendWelcomeTrialEmail(
 
   const message = buildWelcomeSignupEmail({
     name: params.name,
+    examName: params.examName,
     startCta: params.startCta,
     startUrl: params.startUrl,
     unsubscribeUrl: params.unsubscribeUrl,
@@ -116,19 +119,21 @@ export function buildTrialEndingBillingNote(params: {
   };
 }
 
-export function midTrialStudyNudgeSubject(examName: string): string {
-  return `Start 10 ${examName} questions`;
+export function midTrialStudyNudgeSubject(examName?: string | null): string {
+  return examName ? `Start 10 ${examName} questions` : "Start 10 practice questions";
 }
 
 /** Board-specific note for someone who has not answered a question. Title matches the subject. */
 export function buildMidTrialStudyNudge(params: {
   name?: string | null;
-  examName: string;
+  examName?: string | null;
   startUrl: string;
   unsubscribeUrl?: string;
 }): { subject: string; html: string; text: string } {
   const subject = midTrialStudyNudgeSubject(params.examName);
-  const body = `You have not answered a question yet. About 2 to 3 days are left in your ${TRIAL_DAYS}-day trial, which includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Start with 10 ${params.examName} questions.`;
+  const body = params.examName
+    ? `You have not answered a ${params.examName} question yet. About 2 to 3 days are left in your ${TRIAL_DAYS}-day ${params.examName} trial, which includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Start with 10 ${params.examName} questions.`
+    : `You have not answered a question yet. About 2 to 3 days are left in your ${TRIAL_DAYS}-day trial, which includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Choose your exam, then start with 10.`;
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
     emailParagraph(body),
@@ -160,7 +165,7 @@ export function buildMidTrialStudyNudge(params: {
 
 export async function sendTrialDay4ReminderEmail(
   params: TrialEmailParams & {
-    examName: string;
+    examName?: string | null;
     startUrl: string;
     unsubscribeUrl?: string;
     headers?: Record<string, string>;
@@ -187,15 +192,22 @@ export async function sendTrialEndingUpgradeEmail(
     legacyStripeTrial?: boolean;
     planInterval?: BillingInterval;
     amountUsd?: number;
+    examSlug?: string | null;
     unsubscribeUrl?: string;
     headers?: Record<string, string>;
   }
 ): Promise<EmailDeliveryResult> {
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
 
-  const dashboardUrl = dashboardEmailUrl();
+  const exam = lifecycleExamFromSlug(params.examSlug);
   const upgradeUrl = upgradeEmailUrl("trial-ending");
   const when = formatEmailDate(params.trialEndsAt);
+  const subject = exam.name
+    ? `Your ${exam.name} trial ends in about a day`
+    : "Your AnyExamEasy trial ends in about a day";
+  const endingLine = exam.name
+    ? `Your ${exam.name} trial ends in about 24 hours (${when}). After that, the ${exam.name} practice questions included with the trial are no longer available.`
+    : `Your trial ends in about 24 hours (${when}). After that, the practice questions included with the trial are no longer available.`;
   const billingNote = buildTrialEndingBillingNote({
     legacyStripeTrial: params.legacyStripeTrial,
     planInterval: params.planInterval,
@@ -204,9 +216,7 @@ export async function sendTrialEndingUpgradeEmail(
 
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
-    emailParagraph(
-      `Your AnyExamEasy trial ends in about <strong>24 hours</strong> (${when}). After that time, the practice questions included with the trial are no longer available.`
-    ),
+    emailParagraph(endingLine.replace(when, `<strong>${when}</strong>`)),
     emailParagraph(trialEndingContinueLine(params.legacyStripeTrial)),
     billingNote.html,
     emailParagraph(TRIAL_EMAIL_LIABILITY_LINE),
@@ -217,14 +227,13 @@ export async function sendTrialEndingUpgradeEmail(
   const text = [
     greeting(params.name),
     "",
-    `Your trial ends in about 24 hours (${when}).`,
-    "After that time, the practice questions included with the trial are no longer available.",
+    endingLine,
     trialEndingContinueLine(params.legacyStripeTrial),
     billingNote.text,
     TRIAL_EMAIL_LIABILITY_LINE,
     "",
+    `${exam.startCta}: ${exam.startUrl}`,
     `Subscribe: ${upgradeUrl}`,
-    `Dashboard: ${dashboardUrl}`,
     "",
     `Support: ${LEGAL_ENTITY.supportEmail}`,
     params.unsubscribeUrl ? `Unsubscribe: ${params.unsubscribeUrl}` : "",
@@ -233,11 +242,11 @@ export async function sendTrialEndingUpgradeEmail(
     .join("\n");
 
   const html = transactionalEmailLayout({
-    title: "Your trial ends in about a day",
-    preheader: "Practice questions from the trial stop when it ends. Subscribe only if you want to continue.",
+    title: subject,
+    preheader: endingLine,
     bodyHtml,
-    primaryCta: { label: "Review subscribe options", url: upgradeUrl },
-    secondaryCta: { label: "Open dashboard", url: dashboardUrl },
+    primaryCta: { label: exam.startCta, url: exam.startUrl },
+    secondaryCta: { label: "Review subscribe options", url: upgradeUrl },
     footerNote: params.unsubscribeUrl
       ? `<a href="${params.unsubscribeUrl}" style="color:#64748b;">Unsubscribe</a>`
       : "You are receiving this because your AnyExamEasy trial is ending soon. This is an account notice, not a bill.",
@@ -245,7 +254,7 @@ export async function sendTrialEndingUpgradeEmail(
 
   return sendTransactionalEmail({
     to: params.to,
-    subject: "Your AnyExamEasy trial ends in about a day",
+    subject,
     html,
     text,
     replyTo: LEGAL_ENTITY.supportEmail,
@@ -257,36 +266,40 @@ export async function sendTrialEndingUpgradeEmail(
 export async function sendTrialEndedEmail(
   params: TrialEmailParams & {
     trialEndsAt: Date;
+    examSlug?: string | null;
     unsubscribeUrl?: string;
     headers?: Record<string, string>;
   }
 ): Promise<EmailDeliveryResult> {
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
 
-  const dashboardUrl = dashboardEmailUrl();
+  const exam = lifecycleExamFromSlug(params.examSlug);
   const subscribeUrl = upgradeEmailUrl("trial-ended");
   const when = formatEmailDate(params.trialEndsAt);
+  const subject = exam.name ? `Your ${exam.name} trial has ended` : "Your AnyExamEasy trial has ended";
+  const endedLine = exam.name
+    ? `Your ${exam.name} trial ended on ${when}. ${exam.name} practice questions from the trial are no longer included.`
+    : `Your trial ended on ${when}. Practice questions from the trial are no longer included.`;
+  const continueLine = exam.name
+    ? `Subscribe if you want to keep ${exam.name} practice. Subscribing starts a paid plan. This note is not a bill, and it does not charge a card by itself.`
+    : "If you want to continue, you can subscribe from the link below. Subscribing starts a paid plan. This note is not a bill, and it does not charge a card by itself.";
 
   const bodyHtml = [
     emailParagraph(`${greeting(params.name)}`),
-    emailParagraph(
-      `Your AnyExamEasy trial ended on <strong>${when}</strong>. Practice questions from the trial are no longer included.`
-    ),
-    emailParagraph(
-      "If you want to continue, you can subscribe from the link below. Subscribing starts a paid plan. This note is not a bill, and it does not charge a card by itself."
-    ),
+    emailParagraph(endedLine.replace(when, `<strong>${when}</strong>`)),
+    emailParagraph(continueLine),
     emailParagraph(TRIAL_EMAIL_LIABILITY_LINE),
   ].join("");
 
   const text = [
     greeting(params.name),
     "",
-    `Your trial ended on ${when}. Practice questions from the trial are no longer included.`,
-    "If you want to continue, you can subscribe. Subscribing starts a paid plan. This note is not a bill.",
+    endedLine,
+    continueLine,
     TRIAL_EMAIL_LIABILITY_LINE,
     "",
     `Subscribe: ${subscribeUrl}`,
-    `Dashboard: ${dashboardUrl}`,
+    `${exam.startCta}: ${exam.startUrl}`,
     "",
     `Support: ${LEGAL_ENTITY.supportEmail}`,
     params.unsubscribeUrl ? `Unsubscribe: ${params.unsubscribeUrl}` : "",
@@ -295,11 +308,11 @@ export async function sendTrialEndedEmail(
     .join("\n");
 
   const html = transactionalEmailLayout({
-    title: "Your trial has ended",
-    preheader: "Trial practice questions are no longer included. Subscribe only if you want to continue.",
+    title: subject,
+    preheader: endedLine,
     bodyHtml,
-    primaryCta: { label: "See subscribe options", url: subscribeUrl },
-    secondaryCta: { label: "Open dashboard", url: dashboardUrl },
+    primaryCta: { label: exam.name ? `Continue ${exam.name}` : "See subscribe options", url: subscribeUrl },
+    secondaryCta: { label: exam.startCta, url: exam.startUrl },
     footerNote: params.unsubscribeUrl
       ? `<a href="${params.unsubscribeUrl}" style="color:#64748b;">Unsubscribe</a>`
       : "You are receiving this because your AnyExamEasy trial ended. This is an account notice, not a bill.",
@@ -307,7 +320,7 @@ export async function sendTrialEndedEmail(
 
   return sendTransactionalEmail({
     to: params.to,
-    subject: "Your AnyExamEasy trial has ended",
+    subject,
     html,
     text,
     replyTo: LEGAL_ENTITY.supportEmail,

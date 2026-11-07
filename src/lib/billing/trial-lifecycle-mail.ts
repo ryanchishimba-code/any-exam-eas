@@ -90,7 +90,12 @@ type SubscriptionRow = {
   stripeSubscriptionId: string | null;
   trialReminderForEndsAt: Date | null;
   planInterval: string | null;
-  user: { email: string; name: string | null; accountStatus: string };
+  user: {
+    email: string;
+    name: string | null;
+    accountStatus: string;
+    examPreference: { examSlug: string } | null;
+  };
 };
 
 async function loadRows(now: Date): Promise<SubscriptionRow[]> {
@@ -124,7 +129,14 @@ const rowSelect = {
   stripeSubscriptionId: true,
   trialReminderForEndsAt: true,
   planInterval: true,
-  user: { select: { email: true, name: true, accountStatus: true } },
+  user: {
+    select: {
+      email: true,
+      name: true,
+      accountStatus: true,
+      examPreference: { select: { examSlug: true } },
+    },
+  },
 } as const;
 
 export async function planTrialLifecycleEmails(now = new Date()): Promise<TrialEmailPlan> {
@@ -271,6 +283,7 @@ export async function runTrialLifecycleEmails(
         legacyStripeTrial,
         planInterval: interval,
         amountUsd,
+        examSlug: row.user.examPreference?.examSlug,
         unsubscribeUrl,
         headers,
       });
@@ -281,6 +294,7 @@ export async function runTrialLifecycleEmails(
         to: row.user.email,
         name: row.user.name,
         trialEndsAt: row.trialEndsAt,
+        examSlug: row.user.examPreference?.examSlug,
         unsubscribeUrl,
         headers,
       });

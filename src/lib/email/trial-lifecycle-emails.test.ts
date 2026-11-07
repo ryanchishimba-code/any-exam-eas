@@ -42,11 +42,22 @@ describe("mid-trial study nudge", () => {
     });
     expect(message.subject).toBe("Start 10 NCLEX questions");
     expect(message.html).toContain(">Start 10 NCLEX questions<");
-    expect(message.text).toContain("have not answered a question yet");
+    expect(message.text).toContain("have not answered a NCLEX question yet");
     expect(message.text).toContain("About 2 to 3 days");
     expect(message.text).not.toMatch(/two days left/i);
     expect(message.text).not.toMatch(/upgrade/i);
     expect(message.text).toContain("does not guarantee a score");
+    expect(message.text).not.toMatch(/NAPLEX|PANCE|USMLE|Step 2|six boards/i);
+  });
+
+  it("stays generic when no exam is saved", () => {
+    const message = buildMidTrialStudyNudge({
+      name: "Jordan",
+      startUrl: "https://www.anyexameasy.com/select-exam",
+    });
+    expect(message.subject).toBe("Start 10 practice questions");
+    expect(message.text).toContain("Choose your exam");
+    expect(`${message.subject} ${message.text}`).not.toMatch(/NCLEX|NAPLEX|PANCE|USMLE|FNP|NPTE|Step 2/i);
   });
 });
 

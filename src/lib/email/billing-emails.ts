@@ -110,6 +110,7 @@ export async function sendTrialEndingReminderEmail(
     amountUsd: number;
     /** True only for a live Stripe subscription whose status is trialing. */
     legacyStripeTrial?: boolean;
+    examSlug?: string | null;
   }
 ): Promise<EmailDeliveryResult> {
   const { sendTrialEndingUpgradeEmail } = await import(
@@ -122,6 +123,7 @@ export async function sendTrialEndingReminderEmail(
     legacyStripeTrial: params.legacyStripeTrial,
     planInterval: params.planInterval,
     amountUsd: params.amountUsd,
+    examSlug: params.examSlug,
   });
 }
 
@@ -173,6 +175,9 @@ export async function sendSubscriptionActiveEmail(
     amountUsd: number;
     interval: BillingInterval;
     nextChargeAt: Date | null;
+    examName?: string | null;
+    startCta?: string | null;
+    startUrl?: string | null;
   }
 ): Promise<EmailDeliveryResult> {
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
@@ -182,20 +187,35 @@ export async function sendSubscriptionActiveEmail(
   const amount = `${formatPlanUsd(params.amountUsd)}/${renewalIntervalWord(params.interval)}`;
   const nextCharge = params.nextChargeAt ? formatEmailDate(params.nextChargeAt) : "the end of this billing period";
   const support = LEGAL_ENTITY.supportEmail;
+  const examName = params.examName?.trim() || null;
+  const subject = examName
+    ? `Payment received — your ${examName} subscription is active`
+    : "Payment received — your AnyExamEasy subscription is active";
+  const activeLine = examName
+    ? `Payment received: <strong>${amount}</strong>. Your ${examName} subscription is active.`
+    : `Payment received: <strong>${amount}</strong>. Your AnyExamEasy subscription is active.`;
+  const startLine =
+    params.startCta && params.startUrl
+      ? `<a href="${params.startUrl}">${params.startCta}</a>`
+      : "";
 
   const bodyHtml = `
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Payment received: <strong>${amount}</strong>. Your AnyExamEasy subscription is active.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${activeLine}</p>
     <p style="margin:0 0 16px;font-size:15px;color:#475569;"><strong>${params.planLabel}</strong>. Next charge: ${nextCharge}.</p>
+    ${startLine ? `<p style="margin:0 0 16px;font-size:15px;color:#475569;">${startLine}</p>` : ""}
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">Cancel anytime in Settings. Canceling stops the next charge. Payments are non-refundable except where required by law.</p>
     <p style="margin:0;font-size:14px;color:#64748b;">Refund policy: <a href="${refundsUrl}">${refundsUrl}</a><br/>Support: ${support}</p>`;
 
   const text = [
     greeting(params.name),
     "",
-    `Payment received: ${amount}. Your AnyExamEasy subscription is active.`,
+    examName
+      ? `Payment received: ${amount}. Your ${examName} subscription is active.`
+      : `Payment received: ${amount}. Your AnyExamEasy subscription is active.`,
     params.planLabel,
     `Next charge: ${nextCharge}.`,
+    params.startCta && params.startUrl ? `${params.startCta}: ${params.startUrl}` : "",
     "",
     `Cancel anytime in Settings: ${settingsUrl}`,
     `Refund policy: ${refundsUrl}`,
@@ -204,9 +224,9 @@ export async function sendSubscriptionActiveEmail(
 
   return sendBillingEmail({
     to: params.to,
-    subject: "Payment received — your AnyExamEasy subscription is active",
+    subject,
     html: billingEmailShell(
-      "Payment received",
+      subject,
       bodyHtml,
       "Manage subscription",
       settingsUrl
@@ -294,21 +314,38 @@ export function renewalReceiptContent(params: {
   name?: string | null;
   amountLabel: string;
   planLabel: string;
+  examName?: string | null;
+  startCta?: string | null;
+  startUrl?: string | null;
 }): { subject: string; html: string; text: string } {
-  const subject = "Your AnyExamEasy renewal receipt";
+  const examName = params.examName?.trim() || null;
+  const subject = examName ? `Your ${examName} renewal receipt` : "Your AnyExamEasy renewal receipt";
   const settingsUrl = `${appBaseUrl()}/settings`;
+  const paidLine = examName
+    ? `Payment received: <strong>${params.amountLabel}</strong> for your ${examName} plan (${params.planLabel}).`
+    : `Payment received: <strong>${params.amountLabel}</strong> for ${params.planLabel}.`;
+  const startLine =
+    params.startCta && params.startUrl
+      ? `<a href="${params.startUrl}">${params.startCta}</a>`
+      : "";
   const bodyHtml = `
     <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Payment received: <strong>${params.amountLabel}</strong> for ${params.planLabel}.</p>
+    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${paidLine}</p>
+    ${startLine ? `<p style="margin:0 0 16px;font-size:15px;color:#475569;">${startLine}</p>` : ""}
     <p style="margin:0;font-size:14px;color:#64748b;">This confirms a renewal charge. It is not a new signup.</p>`;
   const text = [
     greeting(params.name),
     "",
-    `Payment received: ${params.amountLabel} for ${params.planLabel}.`,
+    examName
+      ? `Payment received: ${params.amountLabel} for your ${examName} plan (${params.planLabel}).`
+      : `Payment received: ${params.amountLabel} for ${params.planLabel}.`,
+    params.startCta && params.startUrl ? `${params.startCta}: ${params.startUrl}` : "",
     "This confirms a renewal charge. It is not a new signup.",
     "",
     `Manage billing: ${settingsUrl}`,
-  ].join("\n");
+  ]
+    .filter((line) => line !== "")
+    .join("\n");
   return {
     subject,
     text,
@@ -317,7 +354,13 @@ export function renewalReceiptContent(params: {
 }
 
 export async function sendRenewalReceiptEmail(
-  params: BillingEmailParams & { amountLabel: string; planLabel: string }
+  params: BillingEmailParams & {
+    amountLabel: string;
+    planLabel: string;
+    examName?: string | null;
+    startCta?: string | null;
+    startUrl?: string | null;
+  }
 ): Promise<EmailDeliveryResult> {
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
   const message = renewalReceiptContent(params);

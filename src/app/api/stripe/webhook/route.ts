@@ -25,6 +25,7 @@ import {
   sendRenewalReceiptEmail,
   sendSubscriptionActiveEmail,
 } from "@/lib/email/billing-emails";
+import { loadLifecycleExam } from "@/lib/email/lifecycle-exam";
 import { invalidateSubscriptionStatusCache } from "@/lib/cache";
 import {
   applyOneTimePurchase,
@@ -50,6 +51,7 @@ async function maybeSendActiveSubscriptionEmail(
   const tier = parseSubscriptionTier(stripeSub.metadata?.tier);
   const interval = parseBillingInterval(stripeSub.metadata?.interval);
   const plan = getBillingPlanTier(tier, interval);
+  const exam = await loadLifecycleExam(userId);
   const sent = await sendSubscriptionActiveEmail({
     to: user.email,
     name: user.name,
@@ -57,6 +59,9 @@ async function maybeSendActiveSubscriptionEmail(
     amountUsd: plan.totalUsd,
     interval,
     nextChargeAt: subscriptionCurrentPeriodEnd(stripeSub),
+    examName: exam.name,
+    startCta: exam.startCta,
+    startUrl: exam.startUrl,
   });
 
   if (!sent.ok) {
@@ -397,11 +402,15 @@ export async function POST(req: Request) {
                 select: { email: true, name: true },
               });
               if (user?.email) {
+                const exam = await loadLifecycleExam(userId);
                 const sent = await sendRenewalReceiptEmail({
                   to: user.email,
                   name: user.name,
                   amountLabel: formatPlanUsd(amountPaid / 100),
                   planLabel: "Pro",
+                  examName: exam.name,
+                  startCta: exam.startCta,
+                  startUrl: exam.startUrl,
                 });
                 if (sent.ok) {
                   await prisma.subscription.update({

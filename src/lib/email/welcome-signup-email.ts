@@ -25,11 +25,17 @@ export const WELCOME_SIGNUP_EMAIL_REPLY_TO = LEGAL_ENTITY.supportEmail;
 
 export type WelcomeSignupEmailInput = {
   name?: string | null;
+  /** Selected exam short name. Omit when the account has no exam yet. */
+  examName?: string | null;
   /** Sentence before the link, such as "Start with 10 NCLEX questions". */
   startCta: string;
   startUrl: string;
   unsubscribeUrl: string;
 };
+
+export function welcomeSubject(examName?: string | null): string {
+  return examName ? `Welcome to AnyExamEasy — ${examName}` : WELCOME_SIGNUP_EMAIL_SUBJECT;
+}
 
 const FONT =
   "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
@@ -55,7 +61,10 @@ function greetingLine(name?: string | null): string {
   return `Hi ${displayFirstName(name)},`;
 }
 
-function thankYouLine(): string {
+function thankYouLine(examName?: string | null): string {
+  if (examName) {
+    return `Thank you for joining ${LEGAL_ENTITY.productName}. Your ${examName} trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions over ${TRIAL_DAYS} days.`;
+  }
   return `Thank you for joining ${LEGAL_ENTITY.productName}. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions.`;
 }
 
@@ -71,12 +80,15 @@ function paragraph(html: string, marginBottom = "18px"): string {
   return `<p style="margin:0 0 ${marginBottom};font-family:${FONT};font-size:16px;line-height:1.7;color:#3f4a5a;">${html}</p>`;
 }
 
-function welcomeHtml(input: WelcomeSignupEmailInput, greeting: string): string {
+function welcomeHtml(input: WelcomeSignupEmailInput, greeting: string, subject: string): string {
   const phoneLink = `<a href="${LEGAL_SUPPORT_PHONE.tel}" style="color:#0f766e;font-weight:600;text-decoration:none;">${escapeHtml(LEGAL_SUPPORT_PHONE.display)}</a>`;
   const start = `<a href="${escapeHtml(input.startUrl)}" style="color:#0f766e;font-weight:600;text-decoration:underline;">${escapeHtml(input.startCta)}</a>`;
-  const thanks = `Thank you for joining ${escapeHtml(LEGAL_ENTITY.productName)}. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions.`;
+  const thanks = escapeHtml(thankYouLine(input.examName));
   const help = `Whenever you have a question, just reply to this email or call us at ${phoneLink}. We're here for you.`;
   const unsubscribeHref = escapeHtml(input.unsubscribeUrl);
+  const preheader = input.examName
+    ? `Your ${input.examName} trial is ready. Start with 10 questions.`
+    : "Choose your exam, then start with 10 questions.";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -85,7 +97,7 @@ function welcomeHtml(input: WelcomeSignupEmailInput, greeting: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
-  <title>${escapeHtml(WELCOME_SIGNUP_EMAIL_SUBJECT)}</title>
+  <title>${escapeHtml(subject)}</title>
   <style>
     @media only screen and (max-width: 600px) {
       .welcome-shell { padding: 20px 12px !important; }
@@ -95,7 +107,7 @@ function welcomeHtml(input: WelcomeSignupEmailInput, greeting: string): string {
   </style>
 </head>
 <body style="margin:0;padding:0;background:#f4f3f1;color:#1c1917;-webkit-text-size-adjust:100%;">
-  <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;color:transparent;">Thank you for joining ${escapeHtml(LEGAL_ENTITY.productName)}. Start with 10 practice questions.</div>
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;color:transparent;">${escapeHtml(preheader)}</div>
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f4f3f1" style="background:#f4f3f1;">
     <tr>
       <td class="welcome-shell" align="center" style="padding:40px 16px;">
@@ -149,10 +161,11 @@ function welcomeHtml(input: WelcomeSignupEmailInput, greeting: string): string {
 /** Copy and HTML for the delayed signup welcome email. */
 export function buildWelcomeSignupEmail(input: WelcomeSignupEmailInput): WelcomeSignupEmail {
   const greeting = greetingLine(input.name);
+  const subject = welcomeSubject(input.examName);
   const text = [
     greeting,
     "",
-    thankYouLine(),
+    thankYouLine(input.examName),
     "",
     `${input.startCta}: ${input.startUrl}`,
     "",
@@ -166,8 +179,8 @@ export function buildWelcomeSignupEmail(input: WelcomeSignupEmailInput): Welcome
   ].join("\n");
 
   return {
-    subject: WELCOME_SIGNUP_EMAIL_SUBJECT,
-    html: welcomeHtml(input, greeting),
+    subject,
+    html: welcomeHtml(input, greeting, subject),
     text,
     from: WELCOME_SIGNUP_EMAIL_FROM,
     replyTo: WELCOME_SIGNUP_EMAIL_REPLY_TO,

@@ -7,8 +7,7 @@ import {
 import { isInternalTestEmail } from "@/lib/test-accounts";
 import { sendTrialDay4ReminderEmail } from "@/lib/email/trial-lifecycle-emails";
 import { isTrialDay4ReminderWindow } from "@/lib/trial/trial-status";
-import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { firstTenQuestionsHref } from "@/lib/study/first-ten-href";
+import { lifecycleExamFromSlug } from "@/lib/email/lifecycle-exam";
 
 type Metadata = {
   trialReminders?: { day4ForEndsAt?: string };
@@ -75,16 +74,12 @@ export async function runTrialDay4ReminderEmails(
     const meta = parseMetadata(sub.user.preferences?.metadata);
     if (meta.trialReminders?.day4ForEndsAt === endsKey) continue;
 
-    const examSlug = sub.user.examPreference?.examSlug;
     const studied = sub.user._count.questionAttempts > 0;
     const suppressed = sub.user.preferences?.marketingOptOutAt != null;
-    const examName = examSlug && isExamSlug(examSlug) ? EXAM_CATALOG[examSlug].shortName : null;
-    const startUrl = examSlug ? firstTenQuestionsHref(examSlug) : null;
+    const exam = lifecycleExamFromSlug(sub.user.examPreference?.examSlug);
 
-    if (studied || suppressed || !examName || !startUrl) {
-      if (studied || suppressed) {
-        await rememberDay4(sub.userId, meta, endsKey);
-      }
+    if (studied || suppressed) {
+      await rememberDay4(sub.userId, meta, endsKey);
       result.skipped += 1;
       continue;
     }
@@ -104,8 +99,8 @@ export async function runTrialDay4ReminderEmails(
     const sent = await sendTrialDay4ReminderEmail({
       to: sub.user.email,
       name: sub.user.name,
-      examName,
-      startUrl,
+      examName: exam.name,
+      startUrl: exam.startUrl,
       unsubscribeUrl,
       headers,
     });

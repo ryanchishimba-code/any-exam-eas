@@ -13,6 +13,7 @@ import {
 
 const sample: WelcomeSignupEmailInput = {
   name: "Jordan Lee",
+  examName: "NCLEX",
   startCta: "Start with 10 NCLEX questions",
   startUrl: "https://www.anyexameasy.com/question-bank?field=nursing&mode=bank&count=10",
   unsubscribeUrl: "https://www.anyexameasy.com/email/unsubscribe?token=abc",
@@ -20,7 +21,7 @@ const sample: WelcomeSignupEmailInput = {
 
 const NAMED_TEXT = `Hi Jordan,
 
-Thank you for joining AnyExamEasy. Your 5-day trial includes 100 practice questions.
+Thank you for joining AnyExamEasy. Your NCLEX trial includes 100 practice questions over 5 days.
 
 Start with 10 NCLEX questions: https://www.anyexameasy.com/question-bank?field=nursing&mode=bank&count=10
 
@@ -38,8 +39,9 @@ describe("welcome signup email copy", () => {
   it("uses the requested subject, sender, and reply-to", () => {
     const message = buildWelcomeSignupEmail(sample);
 
-    expect(message.subject).toBe("Welcome to AnyExamEasy");
+    expect(message.subject).toBe("Welcome to AnyExamEasy — NCLEX");
     expect(WELCOME_SIGNUP_EMAIL_SUBJECT).toBe("Welcome to AnyExamEasy");
+    expect(message.text).not.toMatch(/NAPLEX|PANCE|USMLE|NPTE|Step 2|six boards/i);
     expect(message.from).toBe("Ryan C <support@anyexameasy.com>");
     expect(WELCOME_SIGNUP_EMAIL_FROM).toBe(message.from);
     expect(message.replyTo).toBe("support@anyexameasy.com");
@@ -67,7 +69,8 @@ describe("welcome signup email copy", () => {
 
     expect(html).toContain('name="viewport" content="width=device-width, initial-scale=1"');
     expect(html).toContain("Hi Jordan,");
-    expect(html).toContain("Your 5-day trial includes 100 practice questions.");
+    expect(html).toContain("Your NCLEX trial includes 100 practice questions over 5 days.");
+    expect(html).not.toMatch(/NAPLEX|PANCE|USMLE|Step 2|six boards/i);
     expect(html).toContain(">Start with 10 NCLEX questions</a>");
     expect(html).toContain("question-bank?field=nursing&amp;mode=bank&amp;count=10");
     expect(html).toContain("We're here for you.");
@@ -138,7 +141,7 @@ describe("welcome signup email delivery", () => {
     };
     expect(body.from).toBe("Ryan C <support@anyexameasy.com>");
     expect(body.reply_to).toBe("support@anyexameasy.com");
-    expect(body.subject).toBe("Welcome to AnyExamEasy");
+    expect(body.subject).toBe("Welcome to AnyExamEasy — NCLEX");
     expect(body.text).toBe(NAMED_TEXT);
     expect(body.html).toContain(`href="${sample.unsubscribeUrl}"`);
     expect(body.headers["List-Unsubscribe"]).toBe(`<${sample.unsubscribeUrl}>`);

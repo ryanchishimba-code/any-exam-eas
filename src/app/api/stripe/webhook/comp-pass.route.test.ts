@@ -36,6 +36,9 @@ vi.mock("@/lib/prisma", () => ({
     user: {
       findUnique: vi.fn(async () => ({ email: "comp-pass@example.com", name: "Comp" })),
     },
+    userExamPreference: {
+      findUnique: vi.fn(async () => ({ examSlug: "naplex" })),
+    },
   },
 }));
 

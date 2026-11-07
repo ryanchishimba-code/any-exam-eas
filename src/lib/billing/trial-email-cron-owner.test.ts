@@ -30,6 +30,18 @@ describe("payment and cancellation mail", () => {
     });
     expect(message.subject).toBe("Your AnyExamEasy renewal receipt");
     expect(message.text).toContain("Payment received: $27.99");
+
+    const naplex = renewalReceiptContent({
+      name: "Jordan",
+      amountLabel: "$27.99",
+      planLabel: "Pro",
+      examName: "NAPLEX",
+      startCta: "Start with 10 NAPLEX questions",
+      startUrl: "https://www.anyexameasy.com/question-bank?field=pharmacy&mode=bank&count=10",
+    });
+    expect(naplex.subject).toBe("Your NAPLEX renewal receipt");
+    expect(naplex.text).toContain("NAPLEX");
+    expect(naplex.text).not.toMatch(/NCLEX|PANCE|USMLE|Step 2/i);
   });
 
   it("confirms cancellation without promising a result", () => {
