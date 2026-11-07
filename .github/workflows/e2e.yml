@@ -9,7 +9,7 @@ on:
 
 jobs:
   playwright:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     services:
       postgres:
@@ -77,7 +77,7 @@ jobs:
   # placeholder DATABASE_URL the app rejects. Browsers install to the default
   # cache (the chromium job above uses PLAYWRIGHT_BROWSERS_PATH=0).
   landing-parity:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
