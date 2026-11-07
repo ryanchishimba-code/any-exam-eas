@@ -2,14 +2,14 @@
 
 import { useId, useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
-import type { ReadinessCriterion, ReadinessCriterionStatus } from "@/lib/learning/exam-day-plan";
-import { dbUi } from "@/lib/study/dashboard-ui";
+import type { ReadinessCriterion } from "@/lib/learning/exam-day-plan";
+import type { DifficultyMix } from "@/lib/learning/served-bank-stats";
+import {
+  PracticeGoalsCharts,
+  type GoalDomainBar,
+  type GoalTrendPoint,
+} from "@/components/dashboard/PracticeGoalsCharts";
 import { cn } from "@/lib/utils";
-
-function statusClass(status: ReadinessCriterionStatus): string {
-  if (status === "met") return dbUi.statusPillAccent;
-  return dbUi.statusPill;
-}
 
 function MiniRing({ met, total, score }: { met: number; total: number; score: number }) {
   const size = 36;
@@ -62,6 +62,9 @@ export function PracticeGoalsMenu({
   score,
   disclaimer,
   criteria,
+  trend = [],
+  domains = [],
+  difficultyMix = null,
   children,
 }: {
   surface: "proof" | "analytics";
@@ -69,6 +72,9 @@ export function PracticeGoalsMenu({
   score: number;
   disclaimer: string;
   criteria: ReadinessCriterion[];
+  trend?: GoalTrendPoint[];
+  domains?: GoalDomainBar[];
+  difficultyMix?: DifficultyMix | null;
   children?: ReactNode;
 }) {
   const reactId = useId().replace(/:/g, "");
@@ -124,50 +130,13 @@ export function PracticeGoalsMenu({
         className={cn(open && "motion-safe:animate-[practice-goals-in_220ms_ease-out]")}
       >
         <style>{`@keyframes practice-goals-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}`}</style>
-        <div>
-          <ul className="mt-3 space-y-2">
-            {goals.map((row) => {
-              const progress =
-                typeof row.progressPct === "number"
-                  ? Math.max(0, Math.min(100, Math.round(row.progressPct)))
-                  : null;
-              return (
-                <li
-                  key={row.id}
-                  className="rounded-xl border border-[var(--db-line,var(--color-border))]/70 bg-[var(--color-surface)]/60 px-3 py-2.5"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="min-w-0 text-[14px] font-semibold leading-tight tracking-[-0.02em] text-[var(--color-ink)]">
-                      {row.label}
-                      <span className="ml-1.5 font-medium tabular-nums text-[var(--color-ink-muted)]">
-                        {row.valueLabel}
-                      </span>
-                    </p>
-                    <span className={`${statusClass(row.status)} shrink-0`}>{row.badge}</span>
-                  </div>
-                  {progress != null ? (
-                    <div
-                      className="mt-2 h-1 overflow-hidden rounded-full bg-[var(--color-border)]/50"
-                      aria-hidden
-                    >
-                      <div
-                        className="h-full rounded-full bg-[var(--color-accent)] motion-safe:transition-[width] motion-safe:duration-300"
-                        style={{ width: `${progress}%` }}
-                      />
-                    </div>
-                  ) : null}
-                  {row.nextStep ? (
-                    <p className="mt-1.5 text-[13px] leading-snug text-[var(--color-ink)]">
-                      <span className="font-medium text-[var(--color-ink-muted)]">Next. </span>
-                      {row.nextStep}
-                    </p>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
-          {children ? <div className="mt-3">{children}</div> : null}
-        </div>
+        <PracticeGoalsCharts
+          criteria={goals}
+          trend={trend}
+          domains={domains}
+          difficultyMix={difficultyMix}
+        />
+        {children ? <div className="mt-4">{children}</div> : null}
       </div>
     </div>
   );

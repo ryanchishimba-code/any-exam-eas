@@ -153,6 +153,13 @@ export type ReadinessCriterion = {
   progressPct?: number;
 };
 
+export type DifficultyMix = {
+  easy: number;
+  mid: number;
+  hard: number;
+  unrated: number;
+};
+
 export type ReadinessDomainBar = {
   id: string;
   label: string;
@@ -215,6 +222,8 @@ export type ExamDayReadiness = {
   /** Why Today's first row leads. */
   leadReason: string | null;
   examSim: ExamSimTrend | null;
+  /** Served-bank difficulty mix. Absent when the snapshot was not loaded. */
+  difficultyMix?: DifficultyMix | null;
 };
 
 export type ExamDayPlan = {
@@ -870,6 +879,7 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     domains,
     leadReason: items[0]?.why ?? null,
     examSim,
+    difficultyMix: input.servedBank?.difficultyMix ?? null,
   };
 
   return {

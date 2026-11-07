@@ -40,6 +40,13 @@ export type ServedDomainStats = {
   depthMinimum: number;
 };
 
+export type DifficultyMix = {
+  easy: number;
+  mid: number;
+  hard: number;
+  unrated: number;
+};
+
 export type ServedBankStats = {
   domains: ServedDomainStats[];
   /**
@@ -48,6 +55,8 @@ export type ServedBankStats = {
    */
   neutralDifficultyWeight: number;
   servedCount: number;
+  /** Served questions grouped from their stored difficulty. */
+  difficultyMix: DifficultyMix;
 };
 
 /** Active, QA-passed, student-eligible, and not on a code hide list. */
@@ -117,15 +126,21 @@ export function buildServedBankStatsFromCounts(input: {
   let difficultySum = 0;
   let difficultyCount = 0;
   let servedCount = 0;
+  const difficultyMix: DifficultyMix = { easy: 0, mid: 0, hard: 0, unrated: 0 };
 
   for (const row of input.rows) {
     const count = Math.max(0, Math.floor(row.count) || 0);
     if (count === 0) continue;
     servedCount += count;
     const difficulty = parseStoredDifficulty(row.difficulty);
-    if (difficulty != null) {
+    if (difficulty == null) {
+      difficultyMix.unrated += count;
+    } else {
       difficultySum += difficulty * count;
       difficultyCount += count;
+      if (difficulty < 3) difficultyMix.easy += count;
+      else if (difficulty < 4) difficultyMix.mid += count;
+      else difficultyMix.hard += count;
     }
     const domainId = row.domainId?.trim() || "";
     if (!domainId || !counts.has(domainId)) continue;
@@ -147,6 +162,7 @@ export function buildServedBankStatsFromCounts(input: {
       difficultyCount > 0 ? [difficultySum / difficultyCount] : []
     ),
     servedCount,
+    difficultyMix,
   };
 }
 

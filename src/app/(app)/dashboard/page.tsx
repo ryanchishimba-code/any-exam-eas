@@ -136,7 +136,6 @@ async function DashboardContent({
       return Promise.all([
         getExamScopedStats(userId, examSlug, fieldId),
         getStudentDashboardData(userId, [fieldId], {
-          skipAccuracyTrend: true,
           skipFormatPractice: true,
         }),
         settled(loadCoverageInventory(fieldId), null, "coverage inventory"),
@@ -218,6 +217,7 @@ async function DashboardContent({
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}
       examDayPlan={examDayPlan}
+      accuracyTrend={dashboard.accuracyTrend}
       tourSeen={tourSeen}
       accountAttemptCount={accountAttemptCount}
       deferTodayMix

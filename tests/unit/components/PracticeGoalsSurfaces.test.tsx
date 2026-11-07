@@ -102,7 +102,7 @@ describe("practice goals surfaces", () => {
     toggles[0]!.focus();
     await userEvent.keyboard(" ");
     expect(toggles[0]).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getAllByText("Outline coverage").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Coverage").length).toBeGreaterThan(0);
     await userEvent.keyboard("{Escape}");
     expect(toggles[0]).toHaveAttribute("aria-expanded", "false");
   });

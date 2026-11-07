@@ -26,7 +26,11 @@ describe("ReadinessProofPanel", () => {
     expect(goals).toHaveAttribute("hidden");
     await userEvent.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getAllByText(/Need 21 more answers/).length).toBeGreaterThan(0);
+    expect(screen.getByText("Coverage")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Coverage/ })).toHaveAttribute(
+      "aria-label",
+      expect.stringMatching(/Need 21 more answers/)
+    );
     expect(screen.queryByText("Ready")).toBeNull();
     expect(screen.queryByText("Almost")).toBeNull();
     expect(screen.getByText("A practice measure, not a pass prediction.")).toBeInTheDocument();
@@ -82,10 +86,9 @@ describe("ReadinessProofPanel", () => {
       "hidden"
     );
     await userEvent.click(toggle);
-    expect(screen.getByText("Client Needs")).toBeInTheDocument();
-    expect(screen.getByText("Management of Care")).toBeInTheDocument();
-    expect(screen.getByText("Untouched · 1,204 questions")).toBeInTheDocument();
-    expect(screen.getByText("Top gap")).toBeInTheDocument();
+    expect(screen.getByText("Outline depth")).toBeInTheDocument();
+    expect(screen.getByText(/Management of Care/)).toBeInTheDocument();
+    expect(screen.getByText("Gap")).toBeInTheDocument();
     expect(plan.items[0]?.detail).toMatch(/Management of Care/);
     expect(plan.weekPlan.goals.find((goal) => goal.id === "coverage")?.title).toMatch(
       /Management of Care/
@@ -140,11 +143,11 @@ describe("ReadinessProofPanel", () => {
     toggle.focus();
     await userEvent.keyboard("{Enter}");
     expect(toggle).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText("Outline coverage")).toBeInTheDocument();
-    expect(screen.getByText("Recent accuracy")).toBeInTheDocument();
-    expect(screen.getByText("Reviewed misses")).toBeInTheDocument();
-    expect(screen.getAllByText("Met").length).toBeGreaterThanOrEqual(3);
-    expect(screen.getByText("Medication Use Process")).toBeInTheDocument();
+    expect(screen.getByText("Coverage")).toBeInTheDocument();
+    expect(screen.getByText("Accuracy")).toBeInTheDocument();
+    expect(screen.getByText("Review")).toBeInTheDocument();
+    expect(screen.getAllByRole("img", { name: /percent/i }).length).toBeGreaterThanOrEqual(3);
+    expect(screen.getByText(/Medication Use Process/)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass/i);
     expect(document.body.textContent).toMatch(/not a pass prediction/i);
   });

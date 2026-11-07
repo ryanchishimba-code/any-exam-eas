@@ -177,6 +177,17 @@ export function StudentAnalyticsDashboard({
           score={practiceScore}
           disclaimer={PRACTICE_MEASURE_DISCLAIMER}
           criteria={practice?.criteria ?? []}
+          trend={dashboard.accuracyTrend}
+          difficultyMix={practice?.difficultyMix}
+          domains={(practice?.domains ?? []).slice(0, 5).map((domain) => ({
+            id: domain.id,
+            label: domain.label,
+            weightPct: domain.blueprintWeightPct,
+            answeredPct: domain.available > 0 ? Math.round((domain.seen / domain.available) * 100) : domain.fillPct,
+            served: domain.available,
+            seen: domain.seen,
+            gap: domain.isTopGap,
+          }))}
         />
       </section>
 

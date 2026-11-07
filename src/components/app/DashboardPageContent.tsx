@@ -19,7 +19,7 @@ import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
+import type { AccuracyTrendPoint, RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { MasteryReadinessStrip } from "@/components/dashboard/MasteryReadinessStrip";
 import { NaplexMasteryPanel } from "@/components/dashboard/NaplexMasteryPanel";
@@ -78,6 +78,7 @@ export function DashboardPageContent({
   quickBites = null,
   trialStartHere = null,
   studyCompletion = null,
+  accuracyTrend = [],
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -115,6 +116,7 @@ export function DashboardPageContent({
     show: boolean;
   } | null;
   studyCompletion?: StudyCompletionResult | null;
+  accuracyTrend?: AccuracyTrendPoint[];
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
@@ -210,6 +212,7 @@ export function DashboardPageContent({
           domainsLabel={examDayPlan.coverage.domainsLabel}
           coverage={examDayPlan.coverage}
           showLeadReason={false}
+          trend={accuracyTrend}
         />
       ) : null}
 

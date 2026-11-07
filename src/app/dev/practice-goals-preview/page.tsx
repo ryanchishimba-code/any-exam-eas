@@ -11,6 +11,11 @@ export const metadata = {
 
 const now = new Date("2026-11-07T12:00:00.000Z");
 
+const trend = Array.from({ length: 14 }, (_, index) => ({
+  label: `D${index + 1}`,
+  accuracy: 48 + ((index * 3) % 28),
+}));
+
 const plan = buildExamDayPlan({
   examSlug: "nclex",
   examName: "NCLEX-RN",
@@ -49,6 +54,16 @@ const plan = buildExamDayPlan({
       practiceHref: "/question-bank?subjectId=safety",
     },
   ],
+  servedBank: {
+    servedCount: 180,
+    neutralDifficultyWeight: 2.6,
+    difficultyMix: { easy: 40, mid: 90, hard: 35, unrated: 15 },
+    domains: [
+      { id: "management-of-care", label: "Management of Care", blueprintWeightPct: 18, servedCount: 70, depthMinimum: 70 },
+      { id: "pharmacology", label: "Pharmacological Therapies", blueprintWeightPct: 16, servedCount: 64, depthMinimum: 64 },
+      { id: "safety", label: "Safety and Infection Control", blueprintWeightPct: 12, servedCount: 46, depthMinimum: 46 },
+    ],
+  },
 });
 
 /** Local fixture for 375px screenshots. Not available in production. */
@@ -68,15 +83,13 @@ export default function PracticeGoalsPreviewPage() {
           domainsLabel="Client Needs"
           coverage={plan.coverage}
           showLeadReason={false}
+          trend={trend}
         />
       </section>
       <section id="analytics-practice-goals" aria-label="Analytics" className="space-y-4">
-        <ReadinessProofPanel
-          readiness={plan.readiness}
-          domainsLabel="Client Needs"
-          coverage={plan.coverage}
-          showLeadReason={false}
-        />
+        <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
+          Analytics
+        </p>
         <StudentAnalyticsDashboard
           examSlug="nclex"
           examName="NCLEX-RN"
@@ -91,7 +104,12 @@ export default function PracticeGoalsPreviewPage() {
                 trendDelta: 2,
                 motivationalMessage: "Keep the mixed set going.",
               },
-              accuracyTrend: [],
+              accuracyTrend: trend.map((point, index) => ({
+                date: `2026-10-${String(index + 1).padStart(2, "0")}`,
+                label: point.label,
+                accuracy: point.accuracy,
+                attempts: 6,
+              })),
               weakTopics: [],
               recentTests: [],
               spacedReview: { dueCount: 0, weakDueCount: 0 },

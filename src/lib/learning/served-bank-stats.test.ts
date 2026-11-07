@@ -97,6 +97,12 @@ describe("served bank stats", () => {
       served({ id: "d3", domainId: "pharm", difficulty: null }),
     ];
     expect(buildServedBankStats({ categories, questions }).neutralDifficultyWeight).toBe(3);
+    expect(buildServedBankStats({ categories, questions }).difficultyMix).toEqual({
+      easy: 1,
+      mid: 0,
+      hard: 1,
+      unrated: 1,
+    });
 
     questions[1] = { ...questions[1]!, difficulty: 8 };
     expect(buildServedBankStats({ categories, questions }).neutralDifficultyWeight).toBe(5);
