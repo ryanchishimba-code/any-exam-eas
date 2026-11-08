@@ -1,0 +1,838 @@
+{
+  "batch": 1,
+  "scope": "87 items that were uncertain after the first read",
+  "dbWritesForTheseVerdicts": false,
+  "counts": {
+    "pass": 10,
+    "uncertain": 67,
+    "fail": 10
+  },
+  "reasonTypes": {
+    "verified": 10,
+    "incomplete-source": 64,
+    "verified-failure-draft-only": 10,
+    "real-uncertainty": 3
+  },
+  "items": [
+    {
+      "id": "3d49a4db-a2e1-4558-be64-0b6115c31533",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Unstable peritonitis and lactate 4.9 six days after colectomy. Surviving Sepsis 2021 says start resuscitation immediately and give antimicrobials immediately in shock. The key does both and returns to the operating room instead of delaying them for CT. https://pmc.ncbi.nlm.nih.gov/articles/PMC8486643/ recommendations 4, 5, and 12.",
+      "area": "gastrointestinal / Postoperative day 6 leak in shock returns to the operating room / surgery / vignette src=generated elen=1086 teach=false",
+      "key": "Resuscitation, intravenous antibiotics, and reoperation rather than CT",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8486643/",
+      "reasonType": "verified"
+    },
+    {
+      "id": "48e85d79-f83f-44eb-b3ac-99682da700bc",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Platelets 42,000 with petechiae only, no blood thinner, no procedure. ASH 2019 recommendation 1b recommends observation rather than corticosteroids at a count of at least 30 with minor bleeding. https://ashpublications.org/bloodadvances/article/3/23/3829/429213/American-Society-of-Hematology-2019-guidelines-for",
+      "area": "blood-lymph-immune / itp-adult-observe-over-30 / hematology / vignette src=generated elen=990 teach=false",
+      "key": "Observation without a corticosteroid",
+      "url": "https://ashpublications.org/bloodadvances/article/3/23/3829/429213/American-Society-of-Hematology-2019-guidelines-for",
+      "reasonType": "verified"
+    },
+    {
+      "id": "6a484c9f-a792-4921-a9cd-a440866214f1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "PubMed returned 429 for the 2022 AHA intracerebral-hemorrhage guideline (35579034). The 140 mm Hg target was not opened. Not a pass and not a fail.",
+      "area": "behavioral-nervous / Cocaine-associated ICH blood pressure control / psychiatry / vignette src=generated elen=1124 teach=false",
+      "key": "Lower systolic pressure smoothly toward 140 mm Hg and do not give alteplase or platelets",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "89951228-4ff1-4da6-91db-cb666af34b02",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "FDA label opened: nimodipine is enteral only, 60 mg every 4 hours for 21 days, not intravenous. The wrong choices are an IV bolus, phenytoin instead, a two-week delay, and heparin. https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/203340Orig1s019lbl.pdf",
+      "area": "behavioral-nervous / Oral nimodipine and urgent aneurysm securing / neurology / vignette src=generated elen=1107 teach=false",
+      "key": "Oral nimodipine 60 mg every 4 hours for 21 days and urgent securing of the aneurysm",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/203340Orig1s019lbl.pdf",
+      "reasonType": "verified"
+    },
+    {
+      "id": "97d9d6c2-f72a-41e3-bc1f-d01ced46497a",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Child with skin bleeding only, platelets 8,000, family ten minutes away. ASH 2019 recommends observation rather than IVIG and suggests outpatient care when follow-up is reliable. Same guideline, recommendations 10 and 12.",
+      "area": "blood-lymph-immune / itp-child-observe-low-count / hematology / vignette src=generated elen=1009 teach=false",
+      "key": "Outpatient observation without immunoglobulin or a corticosteroid",
+      "url": "https://ashpublications.org/bloodadvances/article/3/23/3829/429213/American-Society-of-Hematology-2019-guidelines-for",
+      "reasonType": "verified"
+    },
+    {
+      "id": "a09e8eb1-6ab6-4cac-ba4d-9392ae204f83",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "A capacity reference was not opened. The stem describes a manic patient who cannot appreciate death from perforation.",
+      "area": "behavioral-nervous / Acute mania can remove capacity to refuse emergency surgery / psychiatry / vignette src=generated elen=1100 teach=false",
+      "key": "He lacks decision-making capacity for this refusal",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjhacg001v1ymxgq5z4o45",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "KDIGO AKI guideline section on FENa and muddy-brown casts was not opened. https://kdigo.org/guidelines/acute-kidney-injury/",
+      "area": "biostats-epi / diagnostic-test-interpretation / nephrology / mcq src=polished elen=2573 teach=true",
+      "key": "Acute kidney injury from ATN (likely NSAID + hypoperfusion)",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjhahy001x1ymx3of7522a",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "Heart-failure diagnosis keeper. Edema, an S3, BNP 1,850, and a congested radiograph name the answer. The other choices have no finding. Draft only. Not hidden in the database.",
+      "area": "cardiovascular / chf-management / nephrology / mcq src=polished elen=2499 teach=true",
+      "key": "Acute decompensated systolic heart failure with pulmonary edema",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmpnjjcsd09cy1ymxf8b2sydj",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ACC/AHA heart-failure guideline was not opened for oxygen plus an intravenous loop diuretic at saturation 90%.",
+      "area": "cardiovascular / chf-management / cardiology / mcq src=polished elen=2782 teach=true",
+      "key": "Administer IV loop diuretic, supplemental oxygen, and assess perfusion; consider afterload reduction and treat precipitants",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjjlxf0awj1ymxqx4p6knk",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "IDSA 2004 bacterial meningitis guideline was not opened. The key bundles dexamethasone after the lumbar puncture is already done.",
+      "area": "behavioral-nervous / seizures-headaches / pulmonology / mcq src=polished elen=2206 teach=true",
+      "key": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjjlxf0awo1ymx14o4p17b",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same KDIGO AKI page was not opened for holding nephrotoxins and giving volume before dialysis.",
+      "area": "respiratory-renal / aki-ckd-electrolytes / pulmonology / mcq src=polished elen=2388 teach=true",
+      "key": "Hold nephrotoxins, restore intravascular volume if hypovolemic, avoid unnecessary diuretics, and monitor electrolytes",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjjm2x0axs1ymxb04op7hb",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "Pancreatitis diagnosis keeper. Lipase 1,420 and pain to the back name the answer. Draft only. Not hidden in the database.",
+      "area": "gastrointestinal / pancreatitis-hepatitis / pulmonology / mcq src=polished elen=2423 teach=true",
+      "key": "Acute alcoholic pancreatitis",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmpnjjm8d0ayy1ymxa4ysrtzj",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "No separate stroke-diagnosis page was opened. The CT and glucose already remove the other choices, so this was not passed.",
+      "area": "behavioral-nervous / stroke-management / pulmonology / mcq src=polished elen=2134 teach=true",
+      "key": "Acute ischemic stroke in the setting of atrial fibrillation",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjjmed0azw1ymxg4r0vn9i",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "IDSA 2012 was opened for treatment, not re-cited as a pass here because the item has no source and calls the acute rash desquamating.",
+      "area": "biostats-epi / diagnostic-test-interpretation / pulmonology / mcq src=polished elen=2219 teach=true",
+      "key": "Strep pharyngitis with scarlet fever rash",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmpnjjn2v0b2j1ymxi7v5x24r",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Missed insulin, glucose 486, pH 7.18, anion gap 22, ketones. The same report defines DKA as hyperglycemia plus ketosis plus acidosis, and HHS as hyperglycemia without significant acidosis.",
+      "area": "reproductive-endocrine / diabetes-dka-management / pulmonology / mcq src=polished elen=2249 teach=true",
+      "key": "Diabetic ketoacidosis due to insulin nonadherence",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "reasonType": "verified"
+    },
+    {
+      "id": "cmq0g7k1800441y4f51z1rb68",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATA hypothyroidism guideline page was not opened. TPO antibodies name Hashimoto thyroiditis in the stem.",
+      "area": "respiratory-renal / copd-asthma-exacerbation / pulmonology / mcq src=polished elen=2038 teach=true",
+      "key": "Primary hypothyroidism due to Hashimoto thyroiditis",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmqkgnyd50k98l304pmvigv64",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "A streptococcal-exotoxin source was not opened. The item is a mechanism question tagged as labor and delivery.",
+      "area": "reproductive-endocrine / labor-delivery / obgyn / mcq src=generated elen=2287 teach=true",
+      "key": "Streptococcal pyrogenic exotoxins \u2192 superantigen T-cell activation \u2192 diffuse erythematous rash (scarlet fever)",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmqxd0s2m00721yma3kw70v5j",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ACC/AHA heart-failure guideline was not opened for intravenous furosemide with weight gain and congestion. Dialysis and a beta blocker are the other choices.",
+      "area": "cardiovascular / chf-management / nephrology / vignette src=ai-curated elen=2169 teach=true",
+      "key": "Start furosemide intravenously",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr4hzv3d00ai1yde8dm4mkdt",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "AAP febrile-infant urine-testing page was not opened. The child is 6 months old, outside the 8-to-60-day guideline.",
+      "area": "human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=950 teach=true",
+      "key": "Obtain urinalysis and urine culture by catheterization",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr86obok007w1yr9dcr6f9t1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATA 2016 hyperthyroidism page was opened earlier for TRAb, not for this stem. The digest did not show tenderness or a goiter, so Graves versus thyroiditis was not confirmed.",
+      "area": "behavioral-nervous / personality-disorders / psychiatry / vignette src=ai-curated elen=2322 teach=true",
+      "key": "Graves' disease",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr86ycf600ar1yr9hfrdpyeb",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "A surgical source for appendiceal obstruction was not opened.",
+      "area": "gastrointestinal / appendicitis-cholecystitis / emergency-medicine / vignette src=ai-curated elen=1982 teach=true",
+      "key": "Obstruction of the appendiceal lumen",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr877j8500db1yr9j3fk3m85",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ACOG preeclampsia bulletin was not opened. The stem has pressure 160/110, headache, visual change, and proteinuria, and no seizure.",
+      "area": "cardiovascular / acs-management / internal-medicine / vignette src=ai-curated elen=1926 teach=true",
+      "key": "Preeclampsia",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmra6lzic003vic045vg3w06m",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "AHA subarachnoid-hemorrhage diagnosis page was not opened for lumbar puncture after a negative CT at 13 hours.",
+      "area": "gastrointestinal / gi-bleed-management / neurology / vignette src=ai-curated elen=631 teach=true",
+      "key": "Lumbar puncture to look for xanthochromia",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrpw5xar006s1ylulwcdwjes",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ACG 2024, already opened, supports early fluid for pancreatitis. This stem also has necrosis and fever, and antibiotics are a choice. Infection versus sterile necrosis was not separated, so it stays incomplete.",
+      "area": "gastrointestinal / bowel-obstruction / surgery / vignette src=ai-curated elen=2025 teach=true",
+      "key": "Intravenous fluids",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrpw5z1l00791ylum6doi011",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "A surgical or obstetric source distinguishing appendicitis, torsion, ectopic pregnancy, and pelvic inflammatory disease was not opened. Ultrasound result was cut off in the first read.",
+      "area": "gastrointestinal / appendicitis-cholecystitis / surgery / vignette src=ai-curated elen=2023 teach=true",
+      "key": "Acute appendicitis",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrpwg4x000bb1yluk0nzqgl4",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same gap. Ultrasound result was not in the portion used for a source check.",
+      "area": "gastrointestinal / appendicitis-cholecystitis / surgery / exhibit src=ai-curated elen=1974 teach=true",
+      "key": "Appendicitis",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrqh919c00021ypxh0aj0dce",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An ASAM or APA benzodiazepine-withdrawal page was not opened.",
+      "area": "behavioral-nervous / personality-disorders / psychiatry / vignette src=ai-curated elen=599 teach=true",
+      "key": "Benzodiazepine withdrawal",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrqhfl0q00291ypx6ixeoedr",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Severe asthma, saturation 85%, speaking in words. GINA 2021 pocket guide, opened: give oxygen, inhaled short-acting beta agonist, ipratropium, and a systemic corticosteroid immediately. Magnesium is not the first drug. https://ginasthma.org/wp-content/uploads/2021/04/Main-Pocket-Guide-2021-FINAL-WM.pdf",
+      "area": "behavioral-nervous / depression-bipolar / psychiatry / vignette src=ai-curated elen=694 teach=true",
+      "key": "Oxygen, inhaled albuterol plus ipratropium and systemic corticosteroids",
+      "url": "https://ginasthma.org/wp-content/uploads/2021/04/Main-Pocket-Guide-2021-FINAL-WM.pdf",
+      "reasonType": "verified"
+    },
+    {
+      "id": "cmrqhfmhg002o1ypxlwbuv1aw",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The question asks which drug is contraindicated. An APA or FDA disulfiram page requiring abstinence before the drug was not opened. Benzodiazepines are the other choice and are treatment, not a contraindication.",
+      "area": "behavioral-nervous / suicide-risk / psychiatry / vignette src=ai-curated elen=2116 teach=true",
+      "key": "Disulfiram",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrqhfnya00331ypxizgvvjf1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "DSM-5-TR was named but not opened for major depression versus adjustment disorder.",
+      "area": "behavioral-nervous / depression-bipolar / psychiatry / vignette src=ai-curated elen=2133 teach=true",
+      "key": "Major depressive disorder",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrqhnztz005h1ypxlhxcd43p",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same benzodiazepine-withdrawal page was not opened.",
+      "area": "behavioral-nervous / substance-use-disorders / psychiatry / vignette src=ai-curated elen=2138 teach=true",
+      "key": "Benzodiazepine withdrawal syndrome",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrqhwnbl007o1ypxfxdgp25w",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An APA depression-treatment page was not opened for sertraline as first line with passive suicidal thoughts and no plan.",
+      "area": "behavioral-nervous / suicide-risk / psychiatry / vignette src=ai-curated elen=777 teach=true",
+      "key": "Sertraline",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrrbwb2h0015l104ot4ug6r8",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An NSTEMI guideline page was not opened for the unstable-angina pathway versus discharge.",
+      "area": "cardiovascular / acs-management / cardiology / vignette src=ai-curated elen=2112 teach=true",
+      "key": "Unstable angina / NSTEMI pathway",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrrvjk4p005b1yl8naz62opt",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure guideline page was not opened. The radiograph and history name congestion. COPD, pneumonia, and embolism have no finding.",
+      "area": "biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=1860 teach=true",
+      "key": "Acute exacerbation of heart failure",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrrvrqav00911yl8qbzulnae",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "GOLD was not opened. The key is antibiotics alone while a bronchodilator and a steroid are the other choices and saturation is 88%.",
+      "area": "biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=2136 teach=true",
+      "key": "Initiate antibiotics",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrrvrt1q00a01yl8v0pza8d9",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "AHA subarachnoid-hemorrhage page was not opened. CT is negative and the key is still subarachnoid hemorrhage before a lumbar puncture.",
+      "area": "cardiovascular / emergency-acls / ethics / vignette src=ai-curated elen=2196 teach=true",
+      "key": "Subarachnoid hemorrhage",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrtgb2vd002n1ydwq7m4z87f",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "A Tokyo or ACG biliary page was not opened. Fever, right-upper-quadrant pain, and gallstones suggest cholecystitis. Lipase is not given.",
+      "area": "biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=1946 teach=true",
+      "key": "Acute cholecystitis",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrtq0tf600131yqc55lzl0gs",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An ACC/AHA heart-failure drug page was not opened. The key says calcium-channel blockers as a class are contraindicated, and the ejection fraction is missing.",
+      "area": "cardiovascular / chf-management / pulmonology / sequential src=ai-curated elen=2003 teach=true",
+      "key": "Calcium channel blockers",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrtq0thx00141yqc564nzznr",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The STEMI guideline page was not opened. Hypotensive inferior ST elevation lists angiography, aspirin, and nitroglycerin as separate choices.",
+      "area": "cardiovascular / acs-management / nephrology / sequential src=ai-curated elen=2059 teach=true",
+      "key": "Perform immediate coronary angiography",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpvy0wj000z1ylcasgiul55",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "CDC opportunistic-infection page for Pneumocystis returned 404. CD4 150, hypoxia, and bilateral infiltrates were not confirmed against a retrieved page.",
+      "area": "blood-lymph-immune / hiv-opportunistic / internal-medicine / vignette src=ai-curated elen=1543 teach=true",
+      "key": "Pneumocystis jirovecii pneumonia",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpx00y0007s1y6h02bn6ip4",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same Pneumocystis blocker. Not on treatment, CD4 150, hypoxia, bilateral infiltrates.",
+      "area": "blood-lymph-immune / hiv-opportunistic / pathology / vignette src=ai-curated elen=1560 teach=true",
+      "key": "Pneumocystis jirovecii pneumonia",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpx01ys00851y6h27ntp1ru",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same Pneumocystis blocker. Exertional desaturation and interstitial infiltrates.",
+      "area": "blood-lymph-immune / hiv-opportunistic / microbiology / vignette src=ai-curated elen=803 teach=true",
+      "key": "Pneumocystis jirovecii",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "d73aed5b-3f4f-45fd-8216-fee75816980b",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An APSA or pediatric-surgery page for unstable intussusception was not opened. Surviving Sepsis supports immediate fluid and antibiotics, not the choice of surgery over enema.",
+      "area": "gastrointestinal / Unstable intussusception is resuscitated and explored, not reduced by enema / pediatrics / vignette src=generated elen=1082 teach=false",
+      "key": "Isotonic fluid resuscitation, intravenous antibiotics, and emergent surgical exploration",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "0a5c5e08-e3ab-491d-9a44-3b415116a763",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Uremic pericarditis. Cleveland Clinic Journal of Medicine, opened: start dialysis promptly. NSAIDs and colchicine are not the first treatment before dialysis. https://www.ccjm.org/content/90/9/549",
+      "area": "respiratory-renal / rrt-uremic-pericarditis / nephrology / vignette src=generated elen=963 teach=false",
+      "key": "Start renal-replacement therapy for uremic pericarditis",
+      "url": "https://www.ccjm.org/content/90/9/549",
+      "reasonType": "verified"
+    },
+    {
+      "id": "1913c60e-caa5-4343-a0be-bb0c19e1a9d4",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Partner-notification duty depends on the state. The citation is the AMA Code homepage, which does not say this physician must notify the health department over a refusal.",
+      "area": "social-sciences / hiv-partner-notification / ethics / vignette src=generated elen=834 teach=false",
+      "key": "Notify the health department so the identifiable partner can be protected",
+      "url": "",
+      "reasonType": "real-uncertainty"
+    },
+    {
+      "id": "1f227f1f-dd7f-4446-9ba2-0ec770386cd1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "KDIGO 2024 CKD guideline (PubMed 38490803) was not opened. Finerenone versus spironolactone, and adding a second ACE inhibitor, are not confirmed.",
+      "area": "respiratory-renal / finerenone-t2d / nephrology / vignette src=generated elen=967 teach=false",
+      "key": "Finerenone",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "36553f44-844b-40c4-ae41-22afe16a69f8",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ACR 2021 rheumatoid arthritis guideline (PubMed 34101376) was not opened for split-dose or subcutaneous methotrexate.",
+      "area": "msk-skin / ra-oral-mtx-intolerance / internal-medicine / vignette src=generated elen=836 teach=false",
+      "key": "Split the oral dose or switch to subcutaneous methotrexate, and optimize folic acid",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "5590022c-5da4-476a-9b0e-1e73bc48e775",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The cited GOLD 2026 page was not opened. The 5-day steroid line opened from GINA is for asthma, not this COPD order.",
+      "area": "respiratory-renal / copd-steroid-duration / pulmonology / vignette src=generated elen=868 teach=false",
+      "key": "Prednisone 40 mg daily for five days, without a three-week taper",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "5dd9a862-bd0f-4532-b966-7a405671f039",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Age 60, 22 pack-years, quit eight years ago, willing to treat a cancer found on screening. USPSTF, opened: annual low-dose CT from 50 to 80 with at least 20 pack-years and cessation within 15 years. A chest radiograph is not the test. https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
+      "area": "respiratory-renal / lung-cancer-screening-eligible / pulmonology / vignette src=generated elen=879 teach=false",
+      "key": "Annual low-dose CT",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
+      "reasonType": "verified"
+    },
+    {
+      "id": "85a8a1f7-23f3-4021-9d55-0de71d8630b3",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The AMA opinion on asking the patient before telling the family was not opened.",
+      "area": "social-sciences / family-requests-nondisclosure / ethics / vignette src=generated elen=802 teach=false",
+      "key": "Ask the father how much he wants to know before disclosing details to the son",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmqxd0p49006b1ymavw3vosvu",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Glucose 450 and anion gap 18. ADA/EASD 2024 report, opened: start isotonic fluid immediately. The key is that first fluid step. https://doi.org/10.2337/dci24-0032",
+      "area": "reproductive-endocrine / diabetes-dka-management / nephrology / exhibit src=ai-curated elen=2020 teach=true",
+      "key": "Intravenous fluids with normal saline",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "reasonType": "verified"
+    },
+    {
+      "id": "cmqxdy68f000p1y79s4a3lndp",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Potassium is 5.2, so insulin is not held. Among insulin, metformin, bicarbonate, and glucagon, insulin is the crisis drug in the same ADA/EASD report.",
+      "area": "reproductive-endocrine / diabetes-dka-management / cardiology / vignette src=ai-curated elen=1892 teach=true",
+      "key": "Insulin",
+      "url": "https://doi.org/10.2337/dci24-0032",
+      "reasonType": "verified"
+    },
+    {
+      "id": "cmr4hb0bx003u1ydee95uw2nh",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "A pediatric pneumonia guideline was not opened. The radiograph shows a lobar infiltrate.",
+      "area": "human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=2046 teach=true",
+      "key": "Bacterial pneumonia",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr4hzu5e00a61ydeccxxfw4g",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "WHO or CDC diarrheal-rehydration page was not opened. Bloody stools, fever, and heart rate 110. Oral rehydration is the key and intravenous fluid is another choice.",
+      "area": "social-sciences / child-abuse-red-flags / pediatrics / ethics src=ai-curated elen=498 teach=false",
+      "key": "Administer oral rehydration solution",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr4hzvqr00ao1yde5ttpyspc",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An AAP hearing-before-imaging page was not opened. Five words at age 2 and failure of one-step commands.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=817 teach=true",
+      "key": "Formal audiologic evaluation",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr85sudc00031yr9ds12v7f7",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "GOLD was not opened. Wheeze, saturation 88%, and no infiltrate. The key is a COPD exacerbation.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2151 teach=true",
+      "key": "Acute exacerbation of chronic obstructive pulmonary disease",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr86yad400a21yr91taseafz",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ACG 2024, already opened, supports fluid for pancreatitis. This item also offers immediate surgery and antibiotics. The necrosis-versus-infection split was not rechecked for this stem.",
+      "area": "multisystem / trauma-atls / emergency-medicine / vignette src=ai-curated elen=2111 teach=true",
+      "key": "Administer intravenous fluids and pain control",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr86yarv00a71yr98b7vhmta",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "The question asks for the most likely diagnosis. Hypertension and diabetes are already in the history. Pressure 150/90 and glucose 130 do not create one diagnosis.",
+      "area": "multisystem / pre-post-op-care / emergency-medicine / vignette src=ai-curated elen=1956 teach=true",
+      "key": "Uncontrolled hypertension",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmr877lug00e71yr9gm87tle5",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The question is the most likely complication of thyroid storm. An ATA storm page naming atrial fibrillation as that complication was not opened. No ECG rhythm is described beyond rate 120.",
+      "area": "reproductive-endocrine / thyroid-storm / internal-medicine / vignette src=ai-curated elen=2328 teach=true",
+      "key": "Atrial fibrillation",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr88s2v000tz1yr9644hpxxn",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Appendicitis source not opened. Afebrile, chronic intermittent pain, white count only partly shown.",
+      "area": "multisystem / pre-post-op-care / emergency-medicine / vignette src=ai-curated elen=2020 teach=true",
+      "key": "Acute appendicitis",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr8919wr00wv1yr957gg9zkj",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATA 2016 was opened for thyrotoxicosis testing, not for this storm diagnosis. Fever 40.1 C, confusion, vomiting, irregular rate 150, and jaundice after stopping methimazole.",
+      "area": "reproductive-endocrine / thyroid-storm / internal-medicine / vignette src=ai-curated elen=647 teach=true",
+      "key": "Thyroid storm",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr891e3p00y11yr9nwm5b18h",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure guideline not opened. BNP and congestion name the keyed diagnosis.",
+      "area": "msk-skin / rheumatology-autoimmune / nephrology / vignette src=ai-curated elen=1912 teach=true",
+      "key": "Acute heart failure",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr89lvea01091yr909wito7c",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "A 2-year-old says no words and does not answer to his name. Hearing impairment is an option and has not been tested. The key is autism.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2347 teach=true",
+      "key": "Autism spectrum disorder",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmr89lwgo010m1yr9of7blm7j",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "CDC child immunization schedule was not opened. Age 2, already up to date, flu season, key is influenza vaccine.",
+      "area": "human-development / vaccination-schedules / pediatrics / vignette src=ai-curated elen=1923 teach=true",
+      "key": "Influenza vaccine",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr89lxgb010y1yr9i3xbce8d",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure guideline not opened. Pulmonary edema and BNP name the keyed exacerbation.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2096 teach=true",
+      "key": "Heart failure exacerbation",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmr89vb9w01321yr98qfspbkv",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "Fever and pressure 85/55 after pneumonia. The key is only intravenous fluid, and antibiotics are a separate choice. Surviving Sepsis 2021 recommendation 12 says give antimicrobials immediately in shock, and recommendation 5 says give fluid. Fluid alone is not the whole next step. https://pmc.ncbi.nlm.nih.gov/articles/PMC8486643/",
+      "area": "multisystem / sepsis-bundles / cardiology / vignette src=ai-curated elen=1977 teach=true",
+      "key": "Administer intravenous fluids",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmrpvq7qp00021yluxtlpmuc9",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "Glucose 350 and confusion, with no pH, ketones, or osmolality. The ADA/EASD 2024 report reserves hyperosmolar state for severe hyperglycemia without significant acidosis. Diabetic ketoacidosis is still an option. https://doi.org/10.2337/dci24-0032",
+      "area": "msk-skin / burns-management / surgery / vignette src=ai-curated elen=1998 teach=true",
+      "key": "Hyperglycemic hyperosmolar state",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmrpvvgg3002k1ylujmx8kcxb",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Unstable vital signs and free fluid. Laparotomy and blood transfusion are both listed. An ATLS page was not opened, and the stem does not rank those two.",
+      "area": "multisystem / trauma-atls / surgery / vignette src=ai-curated elen=214 teach=false",
+      "key": "Perform an exploratory laparotomy",
+      "url": "",
+      "reasonType": "real-uncertainty"
+    },
+    {
+      "id": "cmrrvnkgu007a1yl8d44cfwmm",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "GOLD not opened. Hyperinflation and accessory muscles, no infiltrate described. Key is COPD exacerbation.",
+      "area": "social-sciences / ethics-professionalism / biostatistics / vignette src=ai-curated elen=2492 teach=true",
+      "key": "Acute exacerbation of COPD",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrrvvm3600c11yl81ajpq2ns",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure guideline not opened. Congestion and BNP name the keyed diagnosis.",
+      "area": "social-sciences / sdoh-health-equity / biostatistics / vignette src=ai-curated elen=2075 teach=true",
+      "key": "Acute heart failure",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrrvzx4x00eh1yl81h5htn57",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Pressure is 150/95 with headache, and the stem says there is no proteinuria so it is not preeclampsia. The ACOG rule that severe features can define preeclampsia without protein was not opened. Oral treatment versus admission is not settled.",
+      "area": "social-sciences / sdoh-health-equity / ethics / vignette src=ai-curated elen=1960 teach=true",
+      "key": "Start oral antihypertensives",
+      "url": "",
+      "reasonType": "real-uncertainty"
+    },
+    {
+      "id": "cmrsfgln8004i1yny3eqfrhuk",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure guideline not opened. Pulmonary edema, key is a diuretic rather than dialysis. No creatinine is in the portion read.",
+      "area": "multisystem / pharmacology-interactions / biostatistics / vignette src=ai-curated elen=2022 teach=true",
+      "key": "Administer diuretics",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmru6qzlx0031l1044rxkc2pn",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "An adolescent-consent page was not opened. The stem says clinic policy allows a confidential visit.",
+      "area": "multisystem / pre-post-op-care / ethics / vignette src=ai-curated elen=2572 teach=true",
+      "key": "Respect confidentiality and discuss contraception with the patient alone",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmrvm6h8i0084jw0456ulh4w5",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATA hypothyroidism page not opened. High TSH, low free T4, and TPO antibodies. The key is the feedback mechanism.",
+      "area": "reproductive-endocrine / prenatal-care / obgyn / mcq src=generated elen=2470 teach=true",
+      "key": "Autoimmune destruction of thyroid \u2192 decreased T4/T3 synthesis \u2192 loss of negative feedback \u2192 elevated TSH",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtps7umi000d1y1qp7r1cpbk",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATA page not opened. TSH 12 and free T4 0.8. Hashimoto thyroiditis is also a choice and antibodies are not given.",
+      "area": "respiratory-renal / copd-asthma-exacerbation / nephrology / vignette src=ai-curated elen=1221 teach=true",
+      "key": "Hypothyroidism",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpsazey002f1y1qctp4nz3n",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ADA DKA definition was opened and fits missed insulin, glucose 450, and ketones. pH is not in the stem, so HHS is not fully excluded. Left incomplete for that gap.",
+      "area": "msk-skin / rheumatology-autoimmune / internal-medicine / vignette src=ai-curated elen=1441 teach=true",
+      "key": "Diabetic ketoacidosis",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpsb1sm00391y1qjz9vg4jz",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "The stem says the ECG shows ST elevation in II, III, and aVF. The key is acute myocardial infarction. The tracing already states the answer.",
+      "area": "msk-skin / rheumatology-autoimmune / internal-medicine / vignette src=ai-curated elen=1366 teach=true",
+      "key": "Acute myocardial infarction",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmtpw0ohn002u1ylc23bzxe0b",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "COPD exacerbation with saturation 88%. The key is only nebulized albuterol, and a systemic corticosteroid is another choice. GINA 2021, opened for severe bronchospasm, gives oxygen, a bronchodilator, and a steroid together. https://ginasthma.org/wp-content/uploads/2021/04/Main-Pocket-Guide-2021-FINAL-WM.pdf",
+      "area": "social-sciences / sdoh-health-equity / internal-medicine / ethics src=ai-curated elen=1142 teach=true",
+      "key": "Initiate nebulized albuterol",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmtpw0pmz00311ylc2ci0p5c2",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same STEMI gap. The key is immediate PCI. Aspirin is a separate choice. Pressure is 90/60.",
+      "area": "social-sciences / ethics-professionalism / psychiatry / ethics src=ai-curated elen=1723 teach=true",
+      "key": "Prepare for immediate percutaneous coronary intervention",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpwldlx000f1y6hisi344ai",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATA page not opened. High TSH and low free T4. The key is hypothyroidism rather than the narrower Hashimoto choice.",
+      "area": "respiratory-renal / nephrotic-nephritic / pulmonology / vignette src=ai-curated elen=895 teach=true",
+      "key": "Hypothyroidism",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpwleok000r1y6hn9imzog5",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "The scenario says the CT angiogram shows a large pulmonary embolism, then asks for the diagnosis. The key repeats the CT.",
+      "area": "respiratory-renal / pe-workup / pulmonology / vignette src=ai-curated elen=1597 teach=true",
+      "key": "Pulmonary embolism",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmtpwlex7000u1y6h8uum4zx3",
+      "verdict": "fail",
+      "action": "draft-hide-not-applied",
+      "evidence": "The stem again says the ECG shows inferior ST elevation. The key repeats that finding.",
+      "area": "respiratory-renal / nephrotic-nephritic / pulmonology / vignette src=ai-curated elen=1351 teach=true",
+      "key": "Acute myocardial infarction",
+      "url": "",
+      "reasonType": "verified-failure-draft-only"
+    },
+    {
+      "id": "cmtpwlfz000171y6h7rq4lwb3",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same ATA gap. High TSH and low free T4. Hashimoto thyroiditis is also listed and antibodies are absent.",
+      "area": "respiratory-renal / copd-asthma-exacerbation / nephrology / vignette src=ai-curated elen=872 teach=false",
+      "key": "Hypothyroidism",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpwlh8y001n1y6h7ezkgv7m",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The cited KDOQI nutrition guideline does not establish prerenal azotemia. A KDIGO AKI page was not opened. The stem was cut off before the creatinine.",
+      "area": "respiratory-renal / aki-ckd-electrolytes / physiology / vignette src=ai-curated elen=1842 teach=true",
+      "key": "Pre-renal azotemia due to heart failure",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpx3ejw00aw1y6hwz0c76gm",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Same STEMI gap. The key is aspirin. Angiography is a separate choice. No onset time is stated.",
+      "area": "social-sciences / child-abuse-red-flags / internal-medicine / ethics src=ai-curated elen=1606 teach=true",
+      "key": "Initiate aspirin therapy",
+      "url": "",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "cmtpx3f0z00b21y6hkhbr5tas",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure guideline not opened. Leg edema and a high BNP. The key raises the diuretic. No dose or current drug list was in the portion read.",
+      "area": "social-sciences / sdoh-health-equity / internal-medicine / ethics src=ai-curated elen=1231 teach=true",
+      "key": "Increase diuretic dosage",
+      "reasonType": "incomplete-source"
+    },
+    {
+      "id": "e2999b18-1ef1-4be2-9274-306917ba0345",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "That ACR guideline was not opened for stopping a TNF inhibitor after new heart failure.",
+      "area": "msk-skin / ra-new-hf-on-tnf / internal-medicine / vignette src=generated elen=878 teach=false",
+      "key": "Stop the tumor necrosis factor inhibitor and switch to a non-TNF mechanism",
+      "url": "",
+      "reasonType": "incomplete-source"
+    }
+  ]
+}
