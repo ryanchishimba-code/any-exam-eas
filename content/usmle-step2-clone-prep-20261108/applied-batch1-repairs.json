@@ -1,0 +1,31 @@
+{
+  "applied": true,
+  "blocked": 0,
+  "leftUnchanged": ["1913c60e-caa5-4343-a0be-bb0c19e1a9d4"],
+  "snapshotId": "snap-jolly-dew-ap8mb6gg",
+  "snapshotName": "usmle-step2-batch1-repairs-20261108-before",
+  "backupTable": "qbi_usmle_step2_batch1repair_20261108",
+  "backupRows": 8,
+  "undo": "content/usmle-step2-clone-prep-20261108/undo-batch1-repairs.sql",
+  "dryRun": "Raised DRY_RUN_OK and left the three hide rows active and the hearing key as autism.",
+  "repairedIds": [
+    "cmrrvrqav00911yl8qbzulnae",
+    "cmtpw0ohn002u1ylc23bzxe0b",
+    "cmr89lvea01091yr909wito7c",
+    "cmr89vb9w01321yr98qfspbkv",
+    "cmrrvzx4x00eh1yl81h5htn57"
+  ],
+  "hiddenIds": [
+    "cmrtq0tf600131yqc55lzl0gs",
+    "cmr86yarv00a71yr98b7vhmta",
+    "cmrpvq7qp00021yluxtlpmuc9"
+  ],
+  "hearingWording": "Formal audiologic evaluation before assigning a developmental diagnosis. Not a hearing-loss diagnosis.",
+  "copdOxygenNote": "cmtpw0ohn002u1ylc23bzxe0b saturation is already 88%, the GOLD floor, so oxygen was not made mandatory.",
+  "servedRouteBefore": 1768,
+  "servedRouteAfter": 1765,
+  "stepLevelExactlyStep2Before": 1730,
+  "stepLevelExactlyStep2After": 1727,
+  "blankStepBefore": 38,
+  "blankStepAfter": 38
+}

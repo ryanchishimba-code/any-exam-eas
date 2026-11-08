@@ -1,0 +1,846 @@
+{
+  "batch": 1,
+  "seed": "step2ck-bar-batch1-20261108",
+  "order": "Within each blueprintDomain, md5(id || seed). Largest-remainder allocation of 84 from the 1,761 served items that are not the 14 keepers or 2 held stroke items.",
+  "allocation": {
+    "human-development": 11,
+    "social-sciences": 11,
+    "respiratory-renal": 11,
+    "behavioral-nervous": 10,
+    "multisystem": 8,
+    "cardiovascular": 7,
+    "gastrointestinal": 7,
+    "msk-skin": 6,
+    "reproductive-endocrine": 5,
+    "blood-lymph-immune": 5,
+    "biostats-epi": 3
+  },
+  "cohort": "14 duplicate representatives + 2 held stroke items + 84 stratified draws = 100",
+  "dbWrites": false,
+  "teachingCorrectionsApplied": false,
+  "servedStill": 1777,
+  "reviewedThisBatch": 100,
+  "counts": {
+    "uncertain": 87,
+    "fail": 12,
+    "pass": 1
+  },
+  "actions": {
+    "hold": 87,
+    "hide": 9,
+    "fix-not-hide": 3,
+    "keep": 1
+  },
+  "unreviewedRemaining": 1677,
+  "passMeans": "Useful Step 2 decision, key supported by a source opened in this project, realistic case, plausible distractors, and an explanation that teaches those distractors. A correct key or a long vignette is not enough.",
+  "sourcesOpenedForThisBatch": [
+    "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext recommendation 7",
+    "https://publications.aap.org/pediatrics/article/134/5/e1474/75848/Clinical-Practice-Guideline-The-Diagnosis",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
+    "https://journals.lww.com/ajg/fulltext/2024/03000/american_college_of_gastroenterology_guidelines_.14.aspx",
+    "https://www.nejm.org/doi/full/10.1056/NEJMoa2202884",
+    "https://www.cdc.gov/vaccines/hcp/imz-best-practices/contraindications-precautions.html"
+  ],
+  "items": [
+    {
+      "id": "3d49a4db-a2e1-4558-be64-0b6115c31533",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / Postoperative day 6 leak in shock returns to the operating room / surgery / vignette src=generated elen=1086 teach=false. Key: Resuscitation, intravenous antibiotics, and reoperation rather than CT. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / Postoperative day 6 leak in shock returns to the operating room / surgery / vignette src=generated elen=1086 teach=false",
+      "key": "Resuscitation, intravenous antibiotics, and reoperation rather than CT"
+    },
+    {
+      "id": "48e85d79-f83f-44eb-b3ac-99682da700bc",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: blood-lymph-immune / itp-adult-observe-over-30 / hematology / vignette src=generated elen=990 teach=false. Key: Observation without a corticosteroid. Citation was not an opened source this run, so this is not a pass.",
+      "area": "blood-lymph-immune / itp-adult-observe-over-30 / hematology / vignette src=generated elen=990 teach=false",
+      "key": "Observation without a corticosteroid"
+    },
+    {
+      "id": "6a484c9f-a792-4921-a9cd-a440866214f1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / Cocaine-associated ICH blood pressure control / psychiatry / vignette src=generated elen=1124 teach=false. Key: Lower systolic pressure smoothly toward 140 mm Hg and do not give alteplase or platelets. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / Cocaine-associated ICH blood pressure control / psychiatry / vignette src=generated elen=1124 teach=false",
+      "key": "Lower systolic pressure smoothly toward 140 mm Hg and do not give alteplase or platelets"
+    },
+    {
+      "id": "89951228-4ff1-4da6-91db-cb666af34b02",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / Oral nimodipine and urgent aneurysm securing / neurology / vignette src=generated elen=1107 teach=false. Key: Oral nimodipine 60 mg every 4 hours for 21 days and urgent securing of the aneurysm. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / Oral nimodipine and urgent aneurysm securing / neurology / vignette src=generated elen=1107 teach=false",
+      "key": "Oral nimodipine 60 mg every 4 hours for 21 days and urgent securing of the aneurysm"
+    },
+    {
+      "id": "97d9d6c2-f72a-41e3-bc1f-d01ced46497a",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: blood-lymph-immune / itp-child-observe-low-count / hematology / vignette src=generated elen=1009 teach=false. Key: Outpatient observation without immunoglobulin or a corticosteroid. Citation was not an opened source this run, so this is not a pass.",
+      "area": "blood-lymph-immune / itp-child-observe-low-count / hematology / vignette src=generated elen=1009 teach=false",
+      "key": "Outpatient observation without immunoglobulin or a corticosteroid"
+    },
+    {
+      "id": "a09e8eb1-6ab6-4cac-ba4d-9392ae204f83",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / Acute mania can remove capacity to refuse emergency surgery / psychiatry / vignette src=generated elen=1100 teach=false. Key: He lacks decision-making capacity for this refusal. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / Acute mania can remove capacity to refuse emergency surgery / psychiatry / vignette src=generated elen=1100 teach=false",
+      "key": "He lacks decision-making capacity for this refusal"
+    },
+    {
+      "id": "cmpnjgwak001o1ymxv6vdibhi",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Held stroke item. CT shows no blood, NIHSS 12, no thrombolytic given. The key bundles hemorrhagic transformation with herniation as the single highest risk. Distractors are a benign course in all cases and an acute demyelinating plaque. No source.",
+      "area": "behavioral-nervous / stroke-management / cardiology / mcq src=polished elen=2635 teach=true",
+      "key": "Hemorrhagic transformation or cerebral edema with herniation"
+    },
+    {
+      "id": "cmpnjhacg001v1ymxgq5z4o45",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATN diagnosis keeper. Muddy-brown casts and FENa 2.1% point away from prerenal azotemia. Empty source. The NSAID parenthetical is a simplification. Not a pass.",
+      "area": "biostats-epi / diagnostic-test-interpretation / nephrology / mcq src=polished elen=2573 teach=true",
+      "key": "Acute kidney injury from ATN (likely NSAID + hypoperfusion)"
+    },
+    {
+      "id": "cmpnjhahy001x1ymx3of7522a",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure diagnosis keeper. Congestion, an S3, BNP, and the radiograph name the answer. Empty source. Not a pass. Left as the retained copy.",
+      "area": "cardiovascular / chf-management / nephrology / mcq src=polished elen=2499 teach=true",
+      "key": "Acute decompensated systolic heart failure with pulmonary edema"
+    },
+    {
+      "id": "cmpnjjcsd09cv1ymxcxoj7f5g",
+      "verdict": "fail",
+      "action": "fix-not-hide",
+      "evidence": "Stroke-copy keeper. CT already shows no hemorrhage, and no one can time the onset. The key still says to evaluate for thrombolysis or thrombectomy within time windows. Deferring imaging is not a real choice after the CT. Do not invent a clock time to save the key. Rewrite the decision to establishing last known well. The drafted correction was not applied.",
+      "area": "cardiovascular / acs-management / cardiology / exhibit src=polished elen=2684 teach=true",
+      "key": "Evaluate for IV thrombolysis and/or mechanical thrombectomy within time windows; admit to stroke unit"
+    },
+    {
+      "id": "cmpnjjcsd09cy1ymxf8b2sydj",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Heart-failure management keeper. Oxygen and an intravenous loop diuretic fit saturation 90% and edema. Saline bolus and discharge are weak distractors. Empty source. Not a pass.",
+      "area": "cardiovascular / chf-management / cardiology / mcq src=polished elen=2782 teach=true",
+      "key": "Administer IV loop diuretic, supplemental oxygen, and assess perfusion; consider afterload reduction and treat precipitants"
+    },
+    {
+      "id": "cmpnjjlxf0awe1ymxp2alr335",
+      "verdict": "fail",
+      "action": "fix-not-hide",
+      "evidence": "Pancreatitis management keeper. The key says aggressive intravenous fluids. ACG 2024, opened, suggests moderately aggressive lactated Ringer. WATERFALL, opened, stopped the aggressive arm for fluid overload. ERCP for every case, prophylactic antibiotics, and discharge stay wrong. Reword the key. Do not hide the only management copy. The drafted correction was not applied.",
+      "area": "gastrointestinal / gi-bleed-management / pulmonology / mcq src=polished elen=2451 teach=true",
+      "key": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutrition when tolerated"
+    },
+    {
+      "id": "cmpnjjlxf0awj1ymxqx4p6knk",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Meningitis keeper. The spinal fluid is already bacterial, so intravenous antibiotics are right, but the key also bundles dexamethasone and not delaying imaging after the puncture is done. Empty source. Not a pass.",
+      "area": "behavioral-nervous / seizures-headaches / pulmonology / mcq src=polished elen=2206 teach=true",
+      "key": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable"
+    },
+    {
+      "id": "cmpnjjlxf0awo1ymx14o4p17b",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "ATN management keeper. Holding nephrotoxins and giving volume is reasonable. Adding an aminoglycoside is not a plausible choice. Empty source. Not a pass.",
+      "area": "respiratory-renal / aki-ckd-electrolytes / pulmonology / mcq src=polished elen=2388 teach=true",
+      "key": "Hold nephrotoxins, restore intravascular volume if hypovolemic, avoid unnecessary diuretics, and monitor electrolytes"
+    },
+    {
+      "id": "cmpnjjm2x0ax81ymx1p0getp2",
+      "verdict": "fail",
+      "action": "fix-not-hide",
+      "evidence": "Scarlet-fever treatment keeper. Penicillin or amoxicillin for 10 days is the right drug. IDSA 2012, opened, says that course prevents rheumatic fever and does not prevent poststreptococcal glomerulonephritis. The explanation says antibiotics prevent long-term complications without that distinction. Fix the explanation. Do not hide.",
+      "area": "biostats-epi / diagnostic-test-interpretation / pulmonology / mcq src=polished elen=2581 teach=true",
+      "key": "Treat with penicillin or amoxicillin for 10 days to prevent rheumatic fever and suppurative complications"
+    },
+    {
+      "id": "cmpnjjm2x0axs1ymxb04op7hb",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Pancreatitis-diagnosis keeper. Lipase 1,420 and pain to the back name the diagnosis. Empty source. Not a pass.",
+      "area": "gastrointestinal / pancreatitis-hepatitis / pulmonology / mcq src=polished elen=2423 teach=true",
+      "key": "Acute alcoholic pancreatitis"
+    },
+    {
+      "id": "cmpnjjm8d0ayy1ymxa4ysrtzj",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Stroke-diagnosis keeper. Glucose, no seizure, and a CT with no blood remove the other choices, so the decision is thin. The key matches the CT. Empty source. Not a pass, and not proposed for hiding because it is the only remaining copy.",
+      "area": "behavioral-nervous / stroke-management / pulmonology / mcq src=polished elen=2134 teach=true",
+      "key": "Acute ischemic stroke in the setting of atrial fibrillation"
+    },
+    {
+      "id": "cmpnjjmed0azw1ymxg4r0vn9i",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Scarlet-fever diagnosis keeper. Rapid test plus sandpaper rash supports scarlet fever over EBV, Kawasaki disease, and a drug eruption. The acute rash is called desquamating, which is imprecise. Empty source. Not a pass.",
+      "area": "biostats-epi / diagnostic-test-interpretation / pulmonology / mcq src=polished elen=2219 teach=true",
+      "key": "Strep pharyngitis with scarlet fever rash"
+    },
+    {
+      "id": "cmpnjjn2v0b2j1ymxi7v5x24r",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "DKA keeper. Glucose, pH, gap, ketones, and missed insulin name DKA. Empty source. The lab distinction is real. A correct key alone is not a pass.",
+      "area": "reproductive-endocrine / diabetes-dka-management / pulmonology / mcq src=polished elen=2249 teach=true",
+      "key": "Diabetic ketoacidosis due to insulin nonadherence"
+    },
+    {
+      "id": "cmq0g7jqk00401y4fvpfojevx",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Same stroke-outcome item as cmpnjgwak001o1ymxv6vdibhi with a different age and encounter number. Same unsupported key and the same non-choices.",
+      "area": "behavioral-nervous / stroke-management / cardiology / mcq src=polished elen=2377 teach=true",
+      "key": "Hemorrhagic transformation or cerebral edema with herniation"
+    },
+    {
+      "id": "cmq0g7k1800441y4f51z1rb68",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Hashimoto keeper. High TSH, low free T4, and TPO antibodies name the diagnosis. Empty source. Tagged as COPD. Not a pass.",
+      "area": "respiratory-renal / copd-asthma-exacerbation / pulmonology / mcq src=polished elen=2038 teach=true",
+      "key": "Primary hypothyroidism due to Hashimoto thyroiditis"
+    },
+    {
+      "id": "cmqkgnyd50k98l304pmvigv64",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Scarlet-fever mechanism keeper. The exotoxin answer fits, but it is a mechanism question on the same template and it is tagged as labor and delivery. No source opened for those options. Not a pass.",
+      "area": "reproductive-endocrine / labor-delivery / obgyn / mcq src=generated elen=2287 teach=true",
+      "key": "Streptococcal pyrogenic exotoxins → superantigen T-cell activation → diffuse erythematous rash (scarlet fever)"
+    },
+    {
+      "id": "cmqxd0s2m00721yma3kw70v5j",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: cardiovascular / chf-management / nephrology / vignette src=ai-curated elen=2169 teach=true. Key: Start furosemide intravenously. Citation was not an opened source this run, so this is not a pass.",
+      "area": "cardiovascular / chf-management / nephrology / vignette src=ai-curated elen=2169 teach=true",
+      "key": "Start furosemide intravenously"
+    },
+    {
+      "id": "cmr4hzv3d00ai1yde8dm4mkdt",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=950 teach=true. Key: Obtain urinalysis and urine culture by catheterization. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=950 teach=true",
+      "key": "Obtain urinalysis and urine culture by catheterization"
+    },
+    {
+      "id": "cmr4kio7x00tn1yder9tmn9a8",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Asks which vaccine is contraindicated. The child is up to date, 37.5 C, mild cough, and no allergy is in the stem. The key is MMR. The explanation invents a neomycin or gelatin allergy. Mild illness is not a contraindication. CDC page opened earlier: https://www.cdc.gov/vaccines/hcp/imz-best-practices/contraindications-precautions.html",
+      "area": "human-development / vaccination-schedules / pediatrics / vignette src=ai-curated elen=1866 teach=true",
+      "key": "Providing the MMR vaccine"
+    },
+    {
+      "id": "cmr86obok007w1yr9dcr6f9t1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / personality-disorders / psychiatry / vignette src=ai-curated elen=2322 teach=true. Key: Graves' disease. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / personality-disorders / psychiatry / vignette src=ai-curated elen=2322 teach=true",
+      "key": "Graves' disease"
+    },
+    {
+      "id": "cmr86ycf600ar1yr9hfrdpyeb",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / appendicitis-cholecystitis / emergency-medicine / vignette src=ai-curated elen=1982 teach=true. Key: Obstruction of the appendiceal lumen. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / appendicitis-cholecystitis / emergency-medicine / vignette src=ai-curated elen=1982 teach=true",
+      "key": "Obstruction of the appendiceal lumen"
+    },
+    {
+      "id": "cmr877j8500db1yr9j3fk3m85",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: cardiovascular / acs-management / internal-medicine / vignette src=ai-curated elen=1926 teach=true. Key: Preeclampsia. Citation was not an opened source this run, so this is not a pass.",
+      "area": "cardiovascular / acs-management / internal-medicine / vignette src=ai-curated elen=1926 teach=true",
+      "key": "Preeclampsia"
+    },
+    {
+      "id": "cmra6lzic003vic045vg3w06m",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / gi-bleed-management / neurology / vignette src=ai-curated elen=631 teach=true. Key: Lumbar puncture to look for xanthochromia. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / gi-bleed-management / neurology / vignette src=ai-curated elen=631 teach=true",
+      "key": "Lumbar puncture to look for xanthochromia"
+    },
+    {
+      "id": "cmrpw5xar006s1ylulwcdwjes",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / bowel-obstruction / surgery / vignette src=ai-curated elen=2025 teach=true. Key: Intravenous fluids. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / bowel-obstruction / surgery / vignette src=ai-curated elen=2025 teach=true",
+      "key": "Intravenous fluids"
+    },
+    {
+      "id": "cmrpw5z1l00791ylum6doi011",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / appendicitis-cholecystitis / surgery / vignette src=ai-curated elen=2023 teach=true. Key: Acute appendicitis. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / appendicitis-cholecystitis / surgery / vignette src=ai-curated elen=2023 teach=true",
+      "key": "Acute appendicitis"
+    },
+    {
+      "id": "cmrpwg4x000bb1yluk0nzqgl4",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / appendicitis-cholecystitis / surgery / exhibit src=ai-curated elen=1974 teach=true. Key: Appendicitis. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / appendicitis-cholecystitis / surgery / exhibit src=ai-curated elen=1974 teach=true",
+      "key": "Appendicitis"
+    },
+    {
+      "id": "cmrqh919c00021ypxh0aj0dce",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / personality-disorders / psychiatry / vignette src=ai-curated elen=599 teach=true. Key: Benzodiazepine withdrawal. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / personality-disorders / psychiatry / vignette src=ai-curated elen=599 teach=true",
+      "key": "Benzodiazepine withdrawal"
+    },
+    {
+      "id": "cmrqhfl0q00291ypx6ixeoedr",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / depression-bipolar / psychiatry / vignette src=ai-curated elen=694 teach=true. Key: Oxygen, inhaled albuterol plus ipratropium and systemic corticosteroids. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / depression-bipolar / psychiatry / vignette src=ai-curated elen=694 teach=true",
+      "key": "Oxygen, inhaled albuterol plus ipratropium and systemic corticosteroids"
+    },
+    {
+      "id": "cmrqhfmhg002o1ypxlwbuv1aw",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "The question asks which drug is contraindicated, not which drug to start. Recent heavy alcohol use makes disulfiram the contraindicated choice. The citation is only an APA label and was not opened. Not a pass.",
+      "area": "behavioral-nervous / suicide-risk / psychiatry / vignette src=ai-curated elen=2116 teach=true",
+      "key": "Disulfiram"
+    },
+    {
+      "id": "cmrqhfnya00331ypxizgvvjf1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / depression-bipolar / psychiatry / vignette src=ai-curated elen=2133 teach=true. Key: Major depressive disorder. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / depression-bipolar / psychiatry / vignette src=ai-curated elen=2133 teach=true",
+      "key": "Major depressive disorder"
+    },
+    {
+      "id": "cmrqhnztz005h1ypxlhxcd43p",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / substance-use-disorders / psychiatry / vignette src=ai-curated elen=2138 teach=true. Key: Benzodiazepine withdrawal syndrome. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / substance-use-disorders / psychiatry / vignette src=ai-curated elen=2138 teach=true",
+      "key": "Benzodiazepine withdrawal syndrome"
+    },
+    {
+      "id": "cmrqhwnbl007o1ypxfxdgp25w",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: behavioral-nervous / suicide-risk / psychiatry / vignette src=ai-curated elen=777 teach=true. Key: Sertraline. Citation was not an opened source this run, so this is not a pass.",
+      "area": "behavioral-nervous / suicide-risk / psychiatry / vignette src=ai-curated elen=777 teach=true",
+      "key": "Sertraline"
+    },
+    {
+      "id": "cmrrbwb2h0015l104ot4ug6r8",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: cardiovascular / acs-management / cardiology / vignette src=ai-curated elen=2112 teach=true. Key: Unstable angina / NSTEMI pathway. Citation was not an opened source this run, so this is not a pass.",
+      "area": "cardiovascular / acs-management / cardiology / vignette src=ai-curated elen=2112 teach=true",
+      "key": "Unstable angina / NSTEMI pathway"
+    },
+    {
+      "id": "cmrrvjk4p005b1yl8naz62opt",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=1860 teach=true. Key: Acute exacerbation of heart failure. Citation was not an opened source this run, so this is not a pass.",
+      "area": "biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=1860 teach=true",
+      "key": "Acute exacerbation of heart failure"
+    },
+    {
+      "id": "cmrrvrqav00911yl8qbzulnae",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=2136 teach=true. Key: Initiate antibiotics. Citation was not an opened source this run, so this is not a pass.",
+      "area": "biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=2136 teach=true",
+      "key": "Initiate antibiotics"
+    },
+    {
+      "id": "cmrrvrt1q00a01yl8v0pza8d9",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: cardiovascular / emergency-acls / ethics / vignette src=ai-curated elen=2196 teach=true. Key: Subarachnoid hemorrhage. Citation was not an opened source this run, so this is not a pass.",
+      "area": "cardiovascular / emergency-acls / ethics / vignette src=ai-curated elen=2196 teach=true",
+      "key": "Subarachnoid hemorrhage"
+    },
+    {
+      "id": "cmrtgb2vd002n1ydwq7m4z87f",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=1946 teach=true. Key: Acute cholecystitis. Citation was not an opened source this run, so this is not a pass.",
+      "area": "biostats-epi / biostatistics-interpretation / ethics / vignette src=ai-curated elen=1946 teach=true",
+      "key": "Acute cholecystitis"
+    },
+    {
+      "id": "cmrtq0tf600131yqc55lzl0gs",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: cardiovascular / chf-management / pulmonology / sequential src=ai-curated elen=2003 teach=true. Key: Calcium channel blockers. Citation was not an opened source this run, so this is not a pass.",
+      "area": "cardiovascular / chf-management / pulmonology / sequential src=ai-curated elen=2003 teach=true",
+      "key": "Calcium channel blockers"
+    },
+    {
+      "id": "cmrtq0thx00141yqc564nzznr",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: cardiovascular / acs-management / nephrology / sequential src=ai-curated elen=2059 teach=true. Key: Perform immediate coronary angiography. Citation was not an opened source this run, so this is not a pass.",
+      "area": "cardiovascular / acs-management / nephrology / sequential src=ai-curated elen=2059 teach=true",
+      "key": "Perform immediate coronary angiography"
+    },
+    {
+      "id": "cmrvm6c0b004cjw04v293g40u",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Same overloaded EF 30% vignette. Pressure is 102/68, not shock, and the story is volume overload rather than over-diuresis. The key is cardiogenic shock or kidney injury from over-diuresis. The other choices are not a differential.",
+      "area": "cardiovascular / chf-management / cardiology / mcq src=generated elen=2271 teach=true",
+      "key": "Cardiogenic shock or acute kidney injury from over-diuresis"
+    },
+    {
+      "id": "cmtpvy0wj000z1ylcasgiul55",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: blood-lymph-immune / hiv-opportunistic / internal-medicine / vignette src=ai-curated elen=1543 teach=true. Key: Pneumocystis jirovecii pneumonia. Citation was not an opened source this run, so this is not a pass.",
+      "area": "blood-lymph-immune / hiv-opportunistic / internal-medicine / vignette src=ai-curated elen=1543 teach=true",
+      "key": "Pneumocystis jirovecii pneumonia"
+    },
+    {
+      "id": "cmtpx00y0007s1y6h02bn6ip4",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: blood-lymph-immune / hiv-opportunistic / pathology / vignette src=ai-curated elen=1560 teach=true. Key: Pneumocystis jirovecii pneumonia. Citation was not an opened source this run, so this is not a pass.",
+      "area": "blood-lymph-immune / hiv-opportunistic / pathology / vignette src=ai-curated elen=1560 teach=true",
+      "key": "Pneumocystis jirovecii pneumonia"
+    },
+    {
+      "id": "cmtpx01ys00851y6h27ntp1ru",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: blood-lymph-immune / hiv-opportunistic / microbiology / vignette src=ai-curated elen=803 teach=true. Key: Pneumocystis jirovecii. Citation was not an opened source this run, so this is not a pass.",
+      "area": "blood-lymph-immune / hiv-opportunistic / microbiology / vignette src=ai-curated elen=803 teach=true",
+      "key": "Pneumocystis jirovecii"
+    },
+    {
+      "id": "d73aed5b-3f4f-45fd-8216-fee75816980b",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: gastrointestinal / Unstable intussusception is resuscitated and explored, not reduced by enema / pediatrics / vignette src=generated elen=1082 teach=false. Key: Isotonic fluid resuscitation, intravenous antibiotics, and emergent surgical exploration. Citation was not an opened source this run, so this is not a pass.",
+      "area": "gastrointestinal / Unstable intussusception is resuscitated and explored, not reduced by enema / pediatrics / vignette src=generated elen=1082 teach=false",
+      "key": "Isotonic fluid resuscitation, intravenous antibiotics, and emergent surgical exploration"
+    },
+    {
+      "id": "0a5c5e08-e3ab-491d-9a44-3b415116a763",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / rrt-uremic-pericarditis / nephrology / vignette src=generated elen=963 teach=false. Key: Start renal-replacement therapy for uremic pericarditis. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / rrt-uremic-pericarditis / nephrology / vignette src=generated elen=963 teach=false",
+      "key": "Start renal-replacement therapy for uremic pericarditis"
+    },
+    {
+      "id": "1913c60e-caa5-4343-a0be-bb0c19e1a9d4",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / hiv-partner-notification / ethics / vignette src=generated elen=834 teach=false. Key: Notify the health department so the identifiable partner can be protected. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / hiv-partner-notification / ethics / vignette src=generated elen=834 teach=false",
+      "key": "Notify the health department so the identifiable partner can be protected"
+    },
+    {
+      "id": "1f227f1f-dd7f-4446-9ba2-0ec770386cd1",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / finerenone-t2d / nephrology / vignette src=generated elen=967 teach=false. Key: Finerenone. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / finerenone-t2d / nephrology / vignette src=generated elen=967 teach=false",
+      "key": "Finerenone"
+    },
+    {
+      "id": "36553f44-844b-40c4-ae41-22afe16a69f8",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: msk-skin / ra-oral-mtx-intolerance / internal-medicine / vignette src=generated elen=836 teach=false. Key: Split the oral dose or switch to subcutaneous methotrexate, and optimize folic acid. Citation was not an opened source this run, so this is not a pass.",
+      "area": "msk-skin / ra-oral-mtx-intolerance / internal-medicine / vignette src=generated elen=836 teach=false",
+      "key": "Split the oral dose or switch to subcutaneous methotrexate, and optimize folic acid"
+    },
+    {
+      "id": "5590022c-5da4-476a-9b0e-1e73bc48e775",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / copd-steroid-duration / pulmonology / vignette src=generated elen=868 teach=false. Key: Prednisone 40 mg daily for five days, without a three-week taper. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / copd-steroid-duration / pulmonology / vignette src=generated elen=868 teach=false",
+      "key": "Prednisone 40 mg daily for five days, without a three-week taper"
+    },
+    {
+      "id": "5dd9a862-bd0f-4532-b966-7a405671f039",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / lung-cancer-screening-eligible / pulmonology / vignette src=generated elen=879 teach=false. Key: Annual low-dose CT. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / lung-cancer-screening-eligible / pulmonology / vignette src=generated elen=879 teach=false",
+      "key": "Annual low-dose CT"
+    },
+    {
+      "id": "620a0d94-751f-42b3-b3f7-26a850122bc1",
+      "verdict": "pass",
+      "action": "keep",
+      "evidence": "Persistent hypotension after fluid from a central pulmonary embolus, no high bleeding risk. CHEST 2021 recommendation 7, opened earlier, suggests systemic thrombolysis when systolic pressure is under 90. The explanation uses that fact and says troponin and right-ventricular strain are not the trigger. The other choices are real errors: waiting, a filter instead of treatment, aspirin, and discharge.",
+      "area": "respiratory-renal / pe-thrombolysis-hypotension / pulmonology / vignette src=generated elen=937 teach=false",
+      "key": "Systemic thrombolysis if bleeding risk stays acceptable"
+    },
+    {
+      "id": "85a8a1f7-23f3-4021-9d55-0de71d8630b3",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / family-requests-nondisclosure / ethics / vignette src=generated elen=802 teach=false. Key: Ask the father how much he wants to know before disclosing details to the son. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / family-requests-nondisclosure / ethics / vignette src=generated elen=802 teach=false",
+      "key": "Ask the father how much he wants to know before disclosing details to the son"
+    },
+    {
+      "id": "cmqxd0p49006b1ymavw3vosvu",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: reproductive-endocrine / diabetes-dka-management / nephrology / exhibit src=ai-curated elen=2020 teach=true. Key: Intravenous fluids with normal saline. Citation was not an opened source this run, so this is not a pass.",
+      "area": "reproductive-endocrine / diabetes-dka-management / nephrology / exhibit src=ai-curated elen=2020 teach=true",
+      "key": "Intravenous fluids with normal saline"
+    },
+    {
+      "id": "cmqxdy68f000p1y79s4a3lndp",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: reproductive-endocrine / diabetes-dka-management / cardiology / vignette src=ai-curated elen=1892 teach=true. Key: Insulin. Citation was not an opened source this run, so this is not a pass.",
+      "area": "reproductive-endocrine / diabetes-dka-management / cardiology / vignette src=ai-curated elen=1892 teach=true",
+      "key": "Insulin"
+    },
+    {
+      "id": "cmr4hb0bx003u1ydee95uw2nh",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=2046 teach=true. Key: Bacterial pneumonia. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=2046 teach=true",
+      "key": "Bacterial pneumonia"
+    },
+    {
+      "id": "cmr4hztir009y1ydem5aapgfq",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "RSV-positive wheezing keyed to albuterol. The explanation says a positive RSV test makes bronchodilators appropriate. AAP 2014, opened this run, says clinicians should not administer albuterol in bronchiolitis. https://publications.aap.org/pediatrics/article/134/5/e1474/75848/Clinical-Practice-Guideline-The-Diagnosis",
+      "area": "human-development / pediatric-infections / pediatrics / exhibit src=ai-curated elen=1866 teach=true",
+      "key": "Albuterol nebulization"
+    },
+    {
+      "id": "cmr4hzu5e00a61ydeccxxfw4g",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / child-abuse-red-flags / pediatrics / ethics src=ai-curated elen=498 teach=false. Key: Administer oral rehydration solution. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / child-abuse-red-flags / pediatrics / ethics src=ai-curated elen=498 teach=false",
+      "key": "Administer oral rehydration solution"
+    },
+    {
+      "id": "cmr4hzvqr00ao1yde5ttpyspc",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=817 teach=true. Key: Formal audiologic evaluation. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=817 teach=true",
+      "key": "Formal audiologic evaluation"
+    },
+    {
+      "id": "cmr4kimod00t41yde56x76zi3",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "RSV-positive wheezing keyed to supportive care with bronchodilators. AAP 2014, opened, recommends against albuterol in bronchiolitis.",
+      "area": "human-development / pediatric-infections / pediatrics / vignette src=ai-curated elen=1878 teach=true",
+      "key": "Provide supportive care with bronchodilators"
+    },
+    {
+      "id": "cmr4kimzr00t81yde8wey7cbf",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Unvaccinated child who already has fever and a measles-like rash. The key is to give MMR now as the preventive measure, and the explanation treats vaccination as treatment of this illness. MMR does not treat measles that is already present. Supportive care is one of the options.",
+      "area": "human-development / febrile-infant / pediatrics / vignette src=ai-curated elen=2048 teach=true",
+      "key": "Administer the measles-mumps-rubella (MMR) vaccine"
+    },
+    {
+      "id": "cmr85sudc00031yr9ds12v7f7",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2151 teach=true. Key: Acute exacerbation of chronic obstructive pulmonary disease. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2151 teach=true",
+      "key": "Acute exacerbation of chronic obstructive pulmonary disease"
+    },
+    {
+      "id": "cmr86yad400a21yr91taseafz",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / trauma-atls / emergency-medicine / vignette src=ai-curated elen=2111 teach=true. Key: Administer intravenous fluids and pain control. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / trauma-atls / emergency-medicine / vignette src=ai-curated elen=2111 teach=true",
+      "key": "Administer intravenous fluids and pain control"
+    },
+    {
+      "id": "cmr86yarv00a71yr98b7vhmta",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / pre-post-op-care / emergency-medicine / vignette src=ai-curated elen=1956 teach=true. Key: Uncontrolled hypertension. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / pre-post-op-care / emergency-medicine / vignette src=ai-curated elen=1956 teach=true",
+      "key": "Uncontrolled hypertension"
+    },
+    {
+      "id": "cmr877lug00e71yr9gm87tle5",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: reproductive-endocrine / thyroid-storm / internal-medicine / vignette src=ai-curated elen=2328 teach=true. Key: Atrial fibrillation. Citation was not an opened source this run, so this is not a pass.",
+      "area": "reproductive-endocrine / thyroid-storm / internal-medicine / vignette src=ai-curated elen=2328 teach=true",
+      "key": "Atrial fibrillation"
+    },
+    {
+      "id": "cmr88s2v000tz1yr9644hpxxn",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / pre-post-op-care / emergency-medicine / vignette src=ai-curated elen=2020 teach=true. Key: Acute appendicitis. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / pre-post-op-care / emergency-medicine / vignette src=ai-curated elen=2020 teach=true",
+      "key": "Acute appendicitis"
+    },
+    {
+      "id": "cmr8919wr00wv1yr957gg9zkj",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: reproductive-endocrine / thyroid-storm / internal-medicine / vignette src=ai-curated elen=647 teach=true. Key: Thyroid storm. Citation was not an opened source this run, so this is not a pass.",
+      "area": "reproductive-endocrine / thyroid-storm / internal-medicine / vignette src=ai-curated elen=647 teach=true",
+      "key": "Thyroid storm"
+    },
+    {
+      "id": "cmr891e3p00y11yr9nwm5b18h",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: msk-skin / rheumatology-autoimmune / nephrology / vignette src=ai-curated elen=1912 teach=true. Key: Acute heart failure. Citation was not an opened source this run, so this is not a pass.",
+      "area": "msk-skin / rheumatology-autoimmune / nephrology / vignette src=ai-curated elen=1912 teach=true",
+      "key": "Acute heart failure"
+    },
+    {
+      "id": "cmr89lvea01091yr909wito7c",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2347 teach=true. Key: Autism spectrum disorder. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2347 teach=true",
+      "key": "Autism spectrum disorder"
+    },
+    {
+      "id": "cmr89lwgo010m1yr9of7blm7j",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / vaccination-schedules / pediatrics / vignette src=ai-curated elen=1923 teach=true. Key: Influenza vaccine. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / vaccination-schedules / pediatrics / vignette src=ai-curated elen=1923 teach=true",
+      "key": "Influenza vaccine"
+    },
+    {
+      "id": "cmr89lxgb010y1yr9i3xbce8d",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2096 teach=true. Key: Heart failure exacerbation. Citation was not an opened source this run, so this is not a pass.",
+      "area": "human-development / developmental-milestones / pediatrics / vignette src=ai-curated elen=2096 teach=true",
+      "key": "Heart failure exacerbation"
+    },
+    {
+      "id": "cmr89vb9w01321yr98qfspbkv",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / sepsis-bundles / cardiology / vignette src=ai-curated elen=1977 teach=true. Key: Administer intravenous fluids. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / sepsis-bundles / cardiology / vignette src=ai-curated elen=1977 teach=true",
+      "key": "Administer intravenous fluids"
+    },
+    {
+      "id": "cmrpvq7qp00021yluxtlpmuc9",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: msk-skin / burns-management / surgery / vignette src=ai-curated elen=1998 teach=true. Key: Hyperglycemic hyperosmolar state. Citation was not an opened source this run, so this is not a pass.",
+      "area": "msk-skin / burns-management / surgery / vignette src=ai-curated elen=1998 teach=true",
+      "key": "Hyperglycemic hyperosmolar state"
+    },
+    {
+      "id": "cmrpvvgg3002k1ylujmx8kcxb",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / trauma-atls / surgery / vignette src=ai-curated elen=214 teach=false. Key: Perform an exploratory laparotomy. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / trauma-atls / surgery / vignette src=ai-curated elen=214 teach=false",
+      "key": "Perform an exploratory laparotomy"
+    },
+    {
+      "id": "cmrrvnkgu007a1yl8d44cfwmm",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / ethics-professionalism / biostatistics / vignette src=ai-curated elen=2492 teach=true. Key: Acute exacerbation of COPD. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / ethics-professionalism / biostatistics / vignette src=ai-curated elen=2492 teach=true",
+      "key": "Acute exacerbation of COPD"
+    },
+    {
+      "id": "cmrrvvm3600c11yl81ajpq2ns",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / sdoh-health-equity / biostatistics / vignette src=ai-curated elen=2075 teach=true. Key: Acute heart failure. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / sdoh-health-equity / biostatistics / vignette src=ai-curated elen=2075 teach=true",
+      "key": "Acute heart failure"
+    },
+    {
+      "id": "cmrrvzx4x00eh1yl81h5htn57",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / sdoh-health-equity / ethics / vignette src=ai-curated elen=1960 teach=true. Key: Start oral antihypertensives. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / sdoh-health-equity / ethics / vignette src=ai-curated elen=1960 teach=true",
+      "key": "Start oral antihypertensives"
+    },
+    {
+      "id": "cmrsf7co300051ynyt5ngonmo",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Sudden weakness, CT with no blood, pressure 180/110, and no last-known-well time. The key is to give intravenous thrombolytics now. Aspirin and blood-pressure treatment are also listed. The stem cannot support giving the drug. Do not add an invented onset.",
+      "area": "social-sciences / sdoh-health-equity / biostatistics / vignette src=ai-curated elen=2017 teach=true",
+      "key": "Administer intravenous thrombolytics"
+    },
+    {
+      "id": "cmrsfd0wb002a1yny8ots68yv",
+      "verdict": "fail",
+      "action": "hide",
+      "evidence": "Glucose 600 mg/dL, pH 7.25, anion gap 18. The key is hyperosmolar hyperglycemic state. Those numbers are a gap acidosis, which is not HHS. The explanation says ketones are absent. The stem does not say that.",
+      "area": "multisystem / pharmacology-interactions / ethics / vignette src=ai-curated elen=2253 teach=true",
+      "key": "Hyperglycemic Hyperosmolar State (HHS)"
+    },
+    {
+      "id": "cmrsfgln8004i1yny3eqfrhuk",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / pharmacology-interactions / biostatistics / vignette src=ai-curated elen=2022 teach=true. Key: Administer diuretics. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / pharmacology-interactions / biostatistics / vignette src=ai-curated elen=2022 teach=true",
+      "key": "Administer diuretics"
+    },
+    {
+      "id": "cmru6qzlx0031l1044rxkc2pn",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: multisystem / pre-post-op-care / ethics / vignette src=ai-curated elen=2572 teach=true. Key: Respect confidentiality and discuss contraception with the patient alone. Citation was not an opened source this run, so this is not a pass.",
+      "area": "multisystem / pre-post-op-care / ethics / vignette src=ai-curated elen=2572 teach=true",
+      "key": "Respect confidentiality and discuss contraception with the patient alone"
+    },
+    {
+      "id": "cmrvm6h8i0084jw0456ulh4w5",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: reproductive-endocrine / prenatal-care / obgyn / mcq src=generated elen=2470 teach=true. Key: Autoimmune destruction of thyroid → decreased T4/T3 synthesis → loss of negative feedback → elevated TSH. Citation was not an opened source this run, so this is not a pass.",
+      "area": "reproductive-endocrine / prenatal-care / obgyn / mcq src=generated elen=2470 teach=true",
+      "key": "Autoimmune destruction of thyroid → decreased T4/T3 synthesis → loss of negative feedback → elevated TSH"
+    },
+    {
+      "id": "cmtps7umi000d1y1qp7r1cpbk",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / copd-asthma-exacerbation / nephrology / vignette src=ai-curated elen=1221 teach=true. Key: Hypothyroidism. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / copd-asthma-exacerbation / nephrology / vignette src=ai-curated elen=1221 teach=true",
+      "key": "Hypothyroidism"
+    },
+    {
+      "id": "cmtpsazey002f1y1qctp4nz3n",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: msk-skin / rheumatology-autoimmune / internal-medicine / vignette src=ai-curated elen=1441 teach=true. Key: Diabetic ketoacidosis. Citation was not an opened source this run, so this is not a pass.",
+      "area": "msk-skin / rheumatology-autoimmune / internal-medicine / vignette src=ai-curated elen=1441 teach=true",
+      "key": "Diabetic ketoacidosis"
+    },
+    {
+      "id": "cmtpsb1sm00391y1qjz9vg4jz",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: msk-skin / rheumatology-autoimmune / internal-medicine / vignette src=ai-curated elen=1366 teach=true. Key: Acute myocardial infarction. Citation was not an opened source this run, so this is not a pass.",
+      "area": "msk-skin / rheumatology-autoimmune / internal-medicine / vignette src=ai-curated elen=1366 teach=true",
+      "key": "Acute myocardial infarction"
+    },
+    {
+      "id": "cmtpw0ohn002u1ylc23bzxe0b",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / sdoh-health-equity / internal-medicine / ethics src=ai-curated elen=1142 teach=true. Key: Initiate nebulized albuterol. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / sdoh-health-equity / internal-medicine / ethics src=ai-curated elen=1142 teach=true",
+      "key": "Initiate nebulized albuterol"
+    },
+    {
+      "id": "cmtpw0pmz00311ylc2ci0p5c2",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / ethics-professionalism / psychiatry / ethics src=ai-curated elen=1723 teach=true. Key: Prepare for immediate percutaneous coronary intervention. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / ethics-professionalism / psychiatry / ethics src=ai-curated elen=1723 teach=true",
+      "key": "Prepare for immediate percutaneous coronary intervention"
+    },
+    {
+      "id": "cmtpwldlx000f1y6hisi344ai",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / nephrotic-nephritic / pulmonology / vignette src=ai-curated elen=895 teach=true. Key: Hypothyroidism. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / nephrotic-nephritic / pulmonology / vignette src=ai-curated elen=895 teach=true",
+      "key": "Hypothyroidism"
+    },
+    {
+      "id": "cmtpwleok000r1y6hn9imzog5",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / pe-workup / pulmonology / vignette src=ai-curated elen=1597 teach=true. Key: Pulmonary embolism. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / pe-workup / pulmonology / vignette src=ai-curated elen=1597 teach=true",
+      "key": "Pulmonary embolism"
+    },
+    {
+      "id": "cmtpwlex7000u1y6h8uum4zx3",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / nephrotic-nephritic / pulmonology / vignette src=ai-curated elen=1351 teach=true. Key: Acute myocardial infarction. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / nephrotic-nephritic / pulmonology / vignette src=ai-curated elen=1351 teach=true",
+      "key": "Acute myocardial infarction"
+    },
+    {
+      "id": "cmtpwlfz000171y6h7rq4lwb3",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / copd-asthma-exacerbation / nephrology / vignette src=ai-curated elen=872 teach=false. Key: Hypothyroidism. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / copd-asthma-exacerbation / nephrology / vignette src=ai-curated elen=872 teach=false",
+      "key": "Hypothyroidism"
+    },
+    {
+      "id": "cmtpwlh8y001n1y6h7ezkgv7m",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: respiratory-renal / aki-ckd-electrolytes / physiology / vignette src=ai-curated elen=1842 teach=true. Key: Pre-renal azotemia due to heart failure. Citation was not an opened source this run, so this is not a pass.",
+      "area": "respiratory-renal / aki-ckd-electrolytes / physiology / vignette src=ai-curated elen=1842 teach=true",
+      "key": "Pre-renal azotemia due to heart failure"
+    },
+    {
+      "id": "cmtpx3ejw00aw1y6hwz0c76gm",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / child-abuse-red-flags / internal-medicine / ethics src=ai-curated elen=1606 teach=true. Key: Initiate aspirin therapy. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / child-abuse-red-flags / internal-medicine / ethics src=ai-curated elen=1606 teach=true",
+      "key": "Initiate aspirin therapy"
+    },
+    {
+      "id": "cmtpx3f0z00b21y6hkhbr5tas",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: social-sciences / sdoh-health-equity / internal-medicine / ethics src=ai-curated elen=1231 teach=true. Key: Increase diuretic dosage. Citation was not an opened source this run, so this is not a pass.",
+      "area": "social-sciences / sdoh-health-equity / internal-medicine / ethics src=ai-curated elen=1231 teach=true",
+      "key": "Increase diuretic dosage"
+    },
+    {
+      "id": "e2999b18-1ef1-4be2-9274-306917ba0345",
+      "verdict": "uncertain",
+      "action": "hold",
+      "evidence": "Read in full. Area line: msk-skin / ra-new-hf-on-tnf / internal-medicine / vignette src=generated elen=878 teach=false. Key: Stop the tumor necrosis factor inhibitor and switch to a non-TNF mechanism. Citation was not an opened source this run, so this is not a pass.",
+      "area": "msk-skin / ra-new-hf-on-tnf / internal-medicine / vignette src=generated elen=878 teach=false",
+      "key": "Stop the tumor necrosis factor inhibitor and switch to a non-TNF mechanism"
+    }
+  ]
+}

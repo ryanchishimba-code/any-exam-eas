@@ -1,0 +1,396 @@
+{
+  "status": "hides-applied-corrections-not-applied",
+  "dbWrites": "3177 active=false hides only; teaching corrections were not run",
+  "snapshotId": "snap-withered-smoke-apxcbq4i",
+  "backupTable": "qbi_usmle_step2_duphide_20261108",
+  "servedCounts": {
+    "studentRouteIncludesBlankStepLevel": 4954,
+    "stepLevelExactlyStep2": 4915,
+    "blankStepLevelInsideStudentRoute": 39,
+    "codeHiddenIdsInStudentRoute": 0,
+    "theseAreNotOneCount": "No current student route requires stepLevel = 'step2'. 4915 is that extra slice. 4954 is the student route."
+  },
+  "projectedAfterHide": {
+    "studentRoute": 1777,
+    "stepLevelExactlyStep2": 1738,
+    "blankStepLevel": 39,
+    "hidden": 3177,
+    "keptRepresentatives": 14,
+    "uncertainNotHidden": 2,
+    "correctionsDoNotChangeCounts": true
+  },
+  "familySizesIncludingKeeper": {
+    "hf-diagnosis": 317,
+    "stroke-reperfusion": 338,
+    "pancreatitis-fluids": 148,
+    "atn-diagnosis": 553,
+    "atn-management": 370,
+    "hf-management": 313,
+    "scarlet-treatment": 146,
+    "scarlet-diagnosis": 160,
+    "meningitis-treatment": 153,
+    "dka-diagnosis": 293,
+    "pancreatitis-diagnosis": 201,
+    "stroke-diagnosis": 194,
+    "scarlet-mechanism": 2,
+    "hashimoto": 3
+  },
+  "keep": [
+    {
+      "family": "hf-diagnosis",
+      "id": "cmpnjhahy001x1ymx3of7522a",
+      "reason": "Same EF 30% pulmonary-edema stem. The two diagnosis phrasings are the same decision.",
+      "priorTopic": "chf-management",
+      "priorSubject": "nephrology",
+      "priorDomain": "cardiovascular",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "stroke-reperfusion",
+      "id": "cmpnjjcsd09cv1ymxcxoj7f5g",
+      "reason": "Same atrial-fibrillation NIHSS-12 stem and the same reperfusion key. Age, encounter number, and option order only. The keeper is rewritten because the stem has no onset time.",
+      "priorTopic": "acs-management",
+      "priorSubject": "cardiology",
+      "priorDomain": "cardiovascular",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "pancreatitis-fluids",
+      "id": "cmpnjjlxf0awe1ymxp2alr335",
+      "reason": "Same pancreatitis stem and the same initial-management decision. The keeper's 'aggressive fluids' wording is corrected to the ACG 2024 regimen.",
+      "priorTopic": "gi-bleed-management",
+      "priorSubject": "pulmonology",
+      "priorDomain": "gastrointestinal",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "atn-diagnosis",
+      "id": "cmpnjhacg001v1ymxgq5z4o45",
+      "reason": "Same NSAID, FENa 2.1%, muddy-brown stem. 'Most likely diagnosis' and 'which diagnosis best explains' ask the same ATN-versus-prerenal decision.",
+      "priorTopic": "diagnostic-test-interpretation",
+      "priorSubject": "nephrology",
+      "priorDomain": "biostats-epi",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "atn-management",
+      "id": "cmpnjjlxf0awo1ymx14o4p17b",
+      "reason": "Same ATN stem. Hold-nephrotoxins-and-give-volume and 'volume repletion if hypovolemic' are the same action. The keeper is the fuller wording.",
+      "priorTopic": "aki-ckd-electrolytes",
+      "priorSubject": "pulmonology",
+      "priorDomain": "respiratory-renal",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "hf-management",
+      "id": "cmpnjjcsd09cy1ymxf8b2sydj",
+      "reason": "Same heart-failure stem. The keeper includes oxygen and a perfusion check. The furosemide-only wording is the same decision and omits oxygen at an oxygen saturation of 90%.",
+      "priorTopic": "chf-management",
+      "priorSubject": "cardiology",
+      "priorDomain": "cardiovascular",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "scarlet-treatment",
+      "id": "cmpnjjm2x0ax81ymx1p0getp2",
+      "reason": "Same scarlet-fever stem and the same penicillin decision. The keeper explanation is corrected so it does not imply antibiotics prevent poststreptococcal glomerulonephritis.",
+      "priorTopic": "diagnostic-test-interpretation",
+      "priorSubject": "pulmonology",
+      "priorDomain": "biostats-epi",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "scarlet-diagnosis",
+      "id": "cmpnjjmed0azw1ymxg4r0vn9i",
+      "reason": "Same scarlet-fever stem, including copies whose question text sits in the scenario field.",
+      "priorTopic": "diagnostic-test-interpretation",
+      "priorSubject": "pulmonology",
+      "priorDomain": "biostats-epi",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "meningitis-treatment",
+      "id": "cmpnjjlxf0awj1ymxqx4p6knk",
+      "reason": "Same cerebrospinal-fluid profile and the same immediate-antibiotic decision. Boy versus man and the encounter number are not a different decision.",
+      "priorTopic": "seizures-headaches",
+      "priorSubject": "pulmonology",
+      "priorDomain": "behavioral-nervous",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "dka-diagnosis",
+      "id": "cmpnjjn2v0b2j1ymxi7v5x24r",
+      "reason": "Same anion-gap DKA stem. The two question phrasings ask the same diagnosis.",
+      "priorTopic": "diabetes-dka-management",
+      "priorSubject": "pulmonology",
+      "priorDomain": "reproductive-endocrine",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "pancreatitis-diagnosis",
+      "id": "cmpnjjm2x0axs1ymxb04op7hb",
+      "reason": "Same lipase 1,420 alcoholic-pancreatitis stem and the same diagnosis.",
+      "priorTopic": "pancreatitis-hepatitis",
+      "priorSubject": "pulmonology",
+      "priorDomain": "gastrointestinal",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "stroke-diagnosis",
+      "id": "cmpnjjm8d0ayy1ymxa4ysrtzj",
+      "reason": "Same stroke stem asking for the diagnosis of ischemic stroke. That is a different decision from the reperfusion item, so one copy is kept.",
+      "priorTopic": "stroke-management",
+      "priorSubject": "pulmonology",
+      "priorDomain": "behavioral-nervous",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "scarlet-mechanism",
+      "id": "cmqkgnyd50k98l304pmvigv64",
+      "reason": "Same scarlet-fever case asking for the pyrogenic-exotoxin mechanism. One copy kept.",
+      "priorTopic": "labor-delivery",
+      "priorSubject": "obgyn",
+      "priorDomain": "reproductive-endocrine",
+      "stepLevel": "step2"
+    },
+    {
+      "family": "hashimoto",
+      "id": "cmq0g7k1800441y4f51z1rb68",
+      "reason": "Same anti-TPO hypothyroidism stem and the same diagnosis. Two copies hidden. Topic is not moved to thyroid-storm.",
+      "priorTopic": "copd-asthma-exacerbation",
+      "priorSubject": "pulmonology",
+      "priorDomain": "respiratory-renal",
+      "stepLevel": "step2"
+    }
+  ],
+  "uncertain": [
+    {
+      "id": "cmpnjgwak001o1ymxv6vdibhi",
+      "family": "stroke-adverse-outcome",
+      "reason": "Same initial stroke vignette, but the question asks which adverse outcome is highest risk and the key bundles hemorrhagic transformation with herniation. Not hidden. Needs a source before a keep or hide decision.",
+      "topic": "stroke-management",
+      "subject": "cardiology"
+    },
+    {
+      "id": "cmq0g7jqk00401y4fvpfojevx",
+      "family": "stroke-adverse-outcome",
+      "reason": "Same initial stroke vignette, but the question asks which adverse outcome is highest risk and the key bundles hemorrhagic transformation with herniation. Not hidden. Needs a source before a keep or hide decision.",
+      "topic": "stroke-management",
+      "subject": "cardiology"
+    }
+  ],
+  "topicCoverageChanges": [
+    {
+      "topic": "chf-management",
+      "before": 577,
+      "delta": -527,
+      "after": 50
+    },
+    {
+      "topic": "diagnostic-test-interpretation",
+      "before": 530,
+      "delta": -494,
+      "after": 36
+    },
+    {
+      "topic": "pediatric-infections",
+      "before": 510,
+      "delta": -414,
+      "after": 96
+    },
+    {
+      "topic": "labor-delivery",
+      "before": 335,
+      "delta": -323,
+      "after": 12
+    },
+    {
+      "topic": "diabetes-dka-management",
+      "before": 285,
+      "delta": -245,
+      "after": 40
+    },
+    {
+      "topic": "acs-management",
+      "before": 264,
+      "delta": -244,
+      "after": 20
+    },
+    {
+      "topic": "pre-post-op-care",
+      "before": 218,
+      "delta": -149,
+      "after": 69
+    },
+    {
+      "topic": "pancreatitis-hepatitis",
+      "before": 160,
+      "delta": -134,
+      "after": 26
+    },
+    {
+      "topic": "aki-ckd-electrolytes",
+      "before": 163,
+      "delta": -133,
+      "after": 30
+    },
+    {
+      "topic": "bowel-obstruction",
+      "before": 139,
+      "delta": -113,
+      "after": 26
+    },
+    {
+      "topic": "seizures-headaches",
+      "before": 125,
+      "delta": -110,
+      "after": 15
+    },
+    {
+      "topic": "stroke-management",
+      "before": 111,
+      "delta": -94,
+      "after": 17
+    },
+    {
+      "topic": "gi-bleed-management",
+      "before": 92,
+      "delta": -68,
+      "after": 24
+    },
+    {
+      "topic": "dementia-workup",
+      "before": 67,
+      "delta": -56,
+      "after": 11
+    },
+    {
+      "topic": "prenatal-care",
+      "before": 57,
+      "delta": -47,
+      "after": 10
+    },
+    {
+      "topic": "appendicitis-cholecystitis",
+      "before": 43,
+      "delta": -14,
+      "after": 29
+    },
+    {
+      "topic": "suicide-risk",
+      "before": 10,
+      "delta": -4,
+      "after": 6
+    },
+    {
+      "topic": "nephrotic-nephritic",
+      "before": 34,
+      "delta": -3,
+      "after": 31
+    },
+    {
+      "topic": "copd-asthma-exacerbation",
+      "before": 41,
+      "delta": -1,
+      "after": 40
+    },
+    {
+      "topic": "biostatistics-interpretation",
+      "before": 33,
+      "delta": -1,
+      "after": 32
+    },
+    {
+      "topic": "trauma-atls",
+      "before": 45,
+      "delta": 1,
+      "after": 46
+    },
+    {
+      "topic": "depression-bipolar",
+      "before": null,
+      "delta": -1,
+      "after": null
+    },
+    {
+      "topic": "MRI for cord compression when the patient is stable",
+      "before": null,
+      "delta": -1,
+      "after": null
+    },
+    {
+      "topic": "Neuroleptic malignant syndrome with a convulsion",
+      "before": null,
+      "delta": -1,
+      "after": null
+    },
+    {
+      "topic": "Postoperative C. difficile is treated with fidaxomicin, not antimotility drugs",
+      "before": null,
+      "delta": -1,
+      "after": null
+    }
+  ],
+  "domainCoverageChanges": [
+    {
+      "topic": "cardiovascular",
+      "before": 933,
+      "delta": -771,
+      "after": 162
+    },
+    {
+      "topic": "reproductive-endocrine",
+      "before": 724,
+      "delta": -612,
+      "after": 112
+    },
+    {
+      "topic": "biostats-epi",
+      "before": 563,
+      "delta": -496,
+      "after": 67
+    },
+    {
+      "topic": "human-development",
+      "before": 643,
+      "delta": -414,
+      "after": 229
+    },
+    {
+      "topic": "gastrointestinal",
+      "before": 478,
+      "delta": -330,
+      "after": 148
+    },
+    {
+      "topic": "behavioral-nervous",
+      "before": 476,
+      "delta": -267,
+      "after": 209
+    },
+    {
+      "topic": "multisystem",
+      "before": 322,
+      "delta": -149,
+      "after": 173
+    },
+    {
+      "topic": "respiratory-renal",
+      "before": 363,
+      "delta": -138,
+      "after": 225
+    }
+  ],
+  "sources": [
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC7108032/",
+    "https://journals.lww.com/ajg/fulltext/2024/03000/american_college_of_gastroenterology_guidelines_.14.aspx",
+    "https://www.nejm.org/doi/full/10.1056/NEJMoa2202884",
+    "https://www.ahajournals.org/doi/10.1161/STR.0000000000000211",
+    "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+    "https://www.idsociety.org/practice-guideline/clostridioides-difficile-2021-focused-update/",
+    "https://journals.sagepub.com/doi/full/10.1089/thy.2016.0229",
+    "https://ameriburn.org/resources/burn-first-aid/",
+    "https://www.cns.org/about/press-room-detail/congress-of-neurological-surgeions-recommends-agai",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC4749120/"
+  ]
+}

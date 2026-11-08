@@ -1,0 +1,31 @@
+{
+  "applied": true,
+  "snapshotId": "snap-dry-tree-ap9mv29h",
+  "snapshotName": "usmle-step2-batch1-fixes-20261108-before",
+  "backupTable": "qbi_usmle_step2_batch1fix_20261108",
+  "backupRows": 12,
+  "undo": "content/usmle-step2-clone-prep-20261108/undo-batch1-fixes.sql",
+  "hiddenIds": [
+    "cmpnjgwak001o1ymxv6vdibhi",
+    "cmq0g7jqk00401y4fvpfojevx",
+    "cmrvm6c0b004cjw04v293g40u",
+    "cmrsfd0wb002a1yny8ots68yv",
+    "cmr4hztir009y1ydem5aapgfq",
+    "cmr4kimod00t41yde56x76zi3",
+    "cmr4kimzr00t81yde8wey7cbf",
+    "cmr4kio7x00tn1yder9tmn9a8",
+    "cmrsf7co300051ynyt5ngonmo"
+  ],
+  "fixedIds": [
+    "cmpnjjcsd09cv1ymxcxoj7f5g",
+    "cmpnjjlxf0awe1ymxp2alr335",
+    "cmpnjjm2x0ax81ymx1p0getp2"
+  ],
+  "servedRouteBefore": 1777,
+  "servedRouteAfter": 1768,
+  "stepLevelExactlyStep2Before": 1738,
+  "stepLevelExactlyStep2After": 1730,
+  "blankStepBefore": 39,
+  "blankStepAfter": 38,
+  "dryRun": "Raised DRY_RUN_OK and left all nine active and the old stroke key in place before the apply."
+}
