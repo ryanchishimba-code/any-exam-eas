@@ -1,0 +1,1902 @@
+[
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "stop-diphenhydramine-for-sleep",
+    "difficulty": 4,
+    "scenario": "An 82-year-old woman asks for a refill of diphenhydramine, which she takes nightly for sleep. She has fallen twice this month. Blood pressure is 138/72 mm Hg lying and 110/64 mm Hg standing. The neurologic examination shows no focal deficit. Creatinine is 1.1 mg/dL. She is not depressed and has no psychosis.",
+    "question": "Which sleep plan is most appropriate?",
+    "options": [
+      "Add amitriptyline at bedtime",
+      "Add oxybutynin for the nocturia she does not have",
+      "Increase diphenhydramine to 50 mg nightly",
+      "Stop diphenhydramine and use non-drug sleep measures",
+      "Start a long-acting benzodiazepine"
+    ],
+    "correctAnswer": "Stop diphenhydramine and use non-drug sleep measures",
+    "explanation": "Diphenhydramine is a strong anticholinergic and is inappropriate for insomnia in older adults, especially with falls and orthostasis. Raising the dose increases confusion, urinary retention, and fall risk. Oxybutynin is another anticholinergic and she has no overactive-bladder indication. A long-acting benzodiazepine and amitriptyline are also Beers-list drugs that worsen falls and cognition. Stop the antihistamine and use sleep habits, and treat pain or nocturia only if those problems are actually present.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "taper-chronic-benzodiazepine",
+    "difficulty": 5,
+    "scenario": "An 84-year-old man has taken lorazepam 2 mg nightly for eight years. He wants a higher dose because he wakes at 3 a.m. He is unsteady, and last week he was found on the floor. He has no alcohol withdrawal and no seizure disorder. The examination shows a cautious gait and no tremor of withdrawal today.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Begin a slow taper rather than increasing the dose",
+      "Switch to a higher dose of diazepam and continue indefinitely",
+      "Stop lorazepam today with no taper and no follow-up",
+      "Add diphenhydramine so the benzodiazepine can stay",
+      "Increase lorazepam to 4 mg nightly"
+    ],
+    "correctAnswer": "Begin a slow taper rather than increasing the dose",
+    "explanation": "A chronic benzodiazepine in an older adult who is falling should be tapered, not increased. A higher lorazepam dose deepens sedation and fall risk. Moving to long-acting diazepam at a higher dose prolongs exposure. Diphenhydramine adds anticholinergic harm and does not make the benzodiazepine safe. Stopping abruptly after years of nightly use can precipitate withdrawal, so the taper is gradual and supervised.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-sliding-scale-as-sole-insulin",
+    "difficulty": 4,
+    "scenario": "A 78-year-old woman with type 2 diabetes is in clinic after a stay in which her only glucose plan was sliding-scale insulin. She eats reliably. A1c is 9.4%. Fasting glucoses at home are 210 to 260 mg/dL, and she has had no glucose below 80 mg/dL. eGFR is 58 mL/min/1.73 m². She is not in hospital now.",
+    "question": "Which outpatient regimen is most appropriate?",
+    "options": [
+      "Stop all glucose-lowering drugs because she is older than 75",
+      "Start glyburide at a high dose",
+      "Add a nonsteroidal anti-inflammatory drug to lower glucose",
+      "Replace sole sliding-scale insulin with scheduled therapy",
+      "Continue sliding-scale insulin as the only treatment"
+    ],
+    "correctAnswer": "Replace sole sliding-scale insulin with scheduled therapy",
+    "explanation": "Sliding-scale insulin as the only regimen treats hyperglycemia after it happens and is specifically discouraged. She needs scheduled therapy matched to her meals and A1c, which may include basal insulin and non-insulin agents that fit her kidney function. Glyburide is a long-acting sulfonylurea that causes prolonged hypoglycemia in older adults. Stopping all treatment at an A1c of 9.4% leaves symptomatic hyperglycemia. NSAIDs do not treat diabetes and harm the kidney. Adding a nonsteroidal anti-inflammatory drug does not treat diabetes and harms the kidney.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "stop-nsaid-in-heart-failure-and-ckd",
+    "difficulty": 5,
+    "scenario": "An 80-year-old man with HFrEF and an eGFR of 28 mL/min/1.73 m² takes ibuprofen 800 mg three times daily for knee pain. He has new edema and a 2 kg weight gain. Blood pressure is 150/88 mm Hg. Creatinine has risen from 2.0 to 2.6 mg/dL. The knee is bony and cool, without a hot effusion.",
+    "question": "Which pain plan is most appropriate?",
+    "options": [
+      "Give meperidine for chronic knee pain",
+      "Add indomethacin at night",
+      "Increase ibuprofen because the pain is osteoarthritis",
+      "Start prednisone 40 mg daily for three months",
+      "Stop ibuprofen and use acetaminophen or a topical agent"
+    ],
+    "correctAnswer": "Stop ibuprofen and use acetaminophen or a topical agent",
+    "explanation": "NSAIDs worsen heart failure, raise blood pressure, and reduce GFR, which is already happening. The knee is osteoarthritic, not an infected or crystal joint, so stopping ibuprofen and using acetaminophen or a topical drug is the right change. Indomethacin is another NSAID and is especially risky in older adults. Three months of prednisone is not osteoarthritis treatment and brings infection, glucose, and fracture harm. Meperidine accumulates a toxic metabolite when the kidney is impaired.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-megestrol-for-appetite",
+    "difficulty": 4,
+    "scenario": "An 86-year-old woman has lost 4 kg in six months. She is lonely and her dentures do not fit. The examination shows no mass and no edema. Basic laboratories, including TSH and glucose, are normal. A family member asks for megestrol to stimulate appetite.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start megestrol acetate",
+      "Start an antipsychotic to increase weight",
+      "Start a high-dose cannabinoid as first therapy",
+      "Start cyproheptadine indefinitely",
+      "Fix the dentures and the social situation, and do not start megestrol"
+    ],
+    "correctAnswer": "Fix the dentures and the social situation, and do not start megestrol",
+    "explanation": "Megestrol is inappropriate in older adults: it increases thrombi and fluid retention and does not fix a reversible cause. Ill-fitting dentures and isolation are the findings in front of you. A cannabinoid and cyproheptadine are not first-line answers to a dental and social problem. An antipsychotic used for weight gain exposes her to sedation, falls, and stroke risk without a psychiatric indication.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "deprescribe-ppi-without-indication",
+    "difficulty": 4,
+    "scenario": "A 79-year-old man has taken omeprazole 40 mg daily for six years. The original duodenal ulcer was healed and Helicobacter pylori was eradicated. He has had no reflux, no NSAID use, and no gastrointestinal bleeding since. He now has a second wrist fracture after a fall from standing. Calcium and vitamin D intake are poor. He reports no heartburn, and examination of the abdomen is benign.",
+    "question": "Which acid-suppression plan is most appropriate?",
+    "options": [
+      "Add an NSAID for the wrist and continue omeprazole",
+      "Double the omeprazole dose because of the fracture",
+      "Start long-term prednisone for bone pain and continue omeprazole",
+      "Switch to a higher dose of a different proton-pump inhibitor indefinitely",
+      "Taper and stop the proton-pump inhibitor"
+    ],
+    "correctAnswer": "Taper and stop the proton-pump inhibitor",
+    "explanation": "A proton-pump inhibitor without an ongoing indication should be stopped, particularly when fracture risk is a concern. Doubling it or swapping to another agent forever continues exposure he no longer needs. An NSAID for a healed fracture adds bleeding and kidney risk. Prednisone worsens bone loss and is not treatment for a fragility fracture. Address calcium, vitamin D, and fall risk while the acid drug is tapered.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "stop-cyclobenzaprine",
+    "difficulty": 4,
+    "scenario": "An 81-year-old woman has taken cyclobenzaprine nightly for two years for chronic low-back pain. She is drowsy by day and has had two falls. The back examination shows no neurologic deficit and no infection. Pain is mechanical and unchanged for months.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add carisoprodol",
+      "Start long-term oral prednisone",
+      "Stop cyclobenzaprine and use activity and acetaminophen",
+      "Increase cyclobenzaprine",
+      "Add diphenhydramine at noon for the daytime drowsiness"
+    ],
+    "correctAnswer": "Stop cyclobenzaprine and use activity and acetaminophen",
+    "explanation": "Skeletal-muscle relaxants such as cyclobenzaprine are anticholinergic and are inappropriate for chronic pain in older adults. Increasing the dose, or adding carisoprodol, stacks sedation and falls. Diphenhydramine treats the adverse effect with another harmful drug. Long-term prednisone is not mechanical back-pain therapy. Stop the relaxant and use movement and a safer analgesic.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "orthostasis-stop-culprit-drug",
+    "difficulty": 5,
+    "scenario": "An 83-year-old man fell this morning. Blood pressure is 146/80 mm Hg lying and 98/60 mm Hg standing, with dizziness. He takes doxazosin for benign prostatic symptoms, hydrochlorothiazide, and a bedtime benzodiazepine. The examination shows no focal weakness. Fingerstick glucose is 110 mg/dL.",
+    "question": "Which medication change is most appropriate first?",
+    "options": [
+      "Increase doxazosin",
+      "Add midodrine and continue every current drug",
+      "Stop or reduce the drugs causing orthostasis, including doxazosin and the benzodiazepine",
+      "Add diphenhydramine at night",
+      "Start fludrocortisone before any drug is reviewed"
+    ],
+    "correctAnswer": "Stop or reduce the drugs causing orthostasis, including doxazosin and the benzodiazepine",
+    "explanation": "Orthostatic hypotension and a fall should trigger removal of the offenders: an alpha blocker and a benzodiazepine, and reconsideration of the diuretic. Adding midodrine or fludrocortisone while those drugs continue treats a problem the medication list is causing. Increasing doxazosin widens the postural drop. Diphenhydramine adds sedation and a further fall risk.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "stop-glyburide",
+    "difficulty": 5,
+    "scenario": "An 81-year-old woman is found confused before breakfast. Glucose is 42 mg/dL and improves with dextrose. She takes glyburide 10 mg daily. A1c is 6.6%. eGFR is 38 mL/min/1.73 m². She lives alone. There is no sepsis.",
+    "question": "Which diabetes plan is most appropriate?",
+    "options": [
+      "Ignore the event because the A1c is at goal",
+      "Switch to chlorpropamide",
+      "Stop glyburide and use an agent less likely to cause prolonged hypoglycemia",
+      "Increase glyburide because the morning glucose was low only once",
+      "Add a bedtime sulfonylurea on top of glyburide"
+    ],
+    "correctAnswer": "Stop glyburide and use an agent less likely to cause prolonged hypoglycemia",
+    "explanation": "Glyburide is a long-acting sulfonylurea and is inappropriate in older adults, especially with a reduced eGFR, because hypoglycemia is prolonged. She already has an A1c of 6.6% and a glucose of 42 mg/dL while living alone. Increasing it, switching to chlorpropamide, or adding another sulfonylurea repeats the injury. An A1c at a tight goal does not make severe hypoglycemia acceptable; the drug comes off. Ignoring the event because the A1c is at goal misses the point: the goal was too tight and the drug caused a glucose of 42 mg/dL.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "gout-flare-avoid-indomethacin",
+    "difficulty": 4,
+    "scenario": "An 85-year-old man has had a warm, red first metatarsophalangeal joint for one day. He has had the same podagra before, and synovial fluid last year showed negatively birefringent crystals. eGFR is 32 mL/min/1.73 m². He has heart failure with a clear examination today. A colleague orders indomethacin 50 mg three times daily.",
+    "question": "Which anti-inflammatory plan is most appropriate?",
+    "options": [
+      "Indomethacin at the ordered dose",
+      "Ibuprofen around the clock",
+      "Use low-dose colchicine or a short corticosteroid, and do not use indomethacin",
+      "Naproxen at a high dose for two weeks",
+      "Allopurinol 300 mg tonight as the only drug, with no anti-inflammatory"
+    ],
+    "correctAnswer": "Use low-dose colchicine or a short corticosteroid, and do not use indomethacin",
+    "explanation": "Indomethacin and other NSAIDs are poor choices in an older adult with CKD and heart failure. A gout flare still needs an anti-inflammatory: low-dose colchicine if the kidney and drug interactions allow, or a short corticosteroid. High-dose naproxen or ibuprofen carries the same NSAID harm. Allopurinol does not treat the pain of an acute flare, and 300 mg is too high a start for this eGFR.",
+    "ref": "acr-gout-2020"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-antipsychotic-for-sleep",
+    "difficulty": 5,
+    "scenario": "An 88-year-old woman with mild forgetfulness is sleeping poorly. She has no hallucinations, no aggression, and no psychosis. Her daughter asks for quetiapine 'because it is used in dementia.' The examination shows an alert woman who can discuss the request. There is no depression severe enough to need an antipsychotic.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add diphenhydramine and quetiapine together",
+      "Do not start an antipsychotic; address sleep habits and reversible causes",
+      "Start nightly quetiapine",
+      "Start olanzapine for weight and sleep",
+      "Start haloperidol at bedtime"
+    ],
+    "correctAnswer": "Do not start an antipsychotic; address sleep habits and reversible causes",
+    "explanation": "Antipsychotics are not sleep aids and are not indicated for insomnia or mild forgetfulness without dangerous psychosis or aggression. They raise the risk of stroke and death in dementia and cause falls. Haloperidol and olanzapine are the same class of mistake. Combining quetiapine with diphenhydramine adds anticholinergic delirium. Look for pain, nocturia, caffeine, and a poor sleep schedule instead.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "reduce-high-digoxin-dose",
+    "difficulty": 4,
+    "scenario": "An 86-year-old man with HFrEF and atrial fibrillation takes digoxin 0.25 mg daily. He has nausea and sees halos. Heart rate is 52 beats per minute. Creatinine is 1.8 mg/dL, up from a baseline near 1.1. Potassium is 4.2 mEq/L. The digoxin concentration is 2.4 ng/mL.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give another 0.25 mg now for the nausea",
+      "Hold digoxin and restart later, if at all, at no more than 0.125 mg daily",
+      "Continue 0.25 mg daily because the heart rate is controlled",
+      "Add verapamil to lower the rate further",
+      "Start a thiazide to raise the digoxin level"
+    ],
+    "correctAnswer": "Hold digoxin and restart later, if at all, at no more than 0.125 mg daily",
+    "explanation": "Nausea, visual halos, bradycardia, and a level of 2.4 ng/mL are digoxin toxicity, worsened by a falling GFR. Doses above 0.125 mg daily are inappropriate in older adults. Continuing or re-dosing 0.25 mg deepens toxicity. Verapamil can raise the digoxin level and worsen bradycardia. A thiazide does not treat toxicity and can disturb potassium. Hold the drug and, if it is still needed later, use a lower dose. Continuing 0.25 mg daily because the heart rate is controlled keeps a toxic dose in place.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "deintensify-frail-diabetes",
+    "difficulty": 5,
+    "scenario": "A 79-year-old man with frailty, a prior stroke, and limited life expectancy has had two glucose readings of 48 mg/dL this month, both with sweating and confusion. A1c is 6.4%. He takes glipizide and 40 units of basal insulin. eGFR is 42 mL/min/1.73 m². He lives alone.",
+    "question": "Which diabetes plan is most appropriate?",
+    "options": [
+      "Add a second sulfonylurea",
+      "Increase basal insulin to 50 units",
+      "Relax the target, stop the sulfonylurea, and reduce insulin",
+      "Start glyburide on top of glipizide",
+      "Aim for an A1c below 6%"
+    ],
+    "correctAnswer": "Relax the target, stop the sulfonylurea, and reduce insulin",
+    "explanation": "Frailty, solitary living, and recurrent hypoglycemia mean the A1c of 6.4% is too low. Stop the sulfonylurea and reduce insulin rather than chasing a tighter number. Adding another sulfonylurea, including glyburide, or raising basal insulin will produce the next severe low. An A1c target below 6% is the opposite of what this patient needs.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "add-sglt2-or-glp1-for-ascvd",
+    "difficulty": 4,
+    "scenario": "A 62-year-old man with type 2 diabetes and a prior myocardial infarction has an A1c of 8.2% on metformin alone. eGFR is 72 mL/min/1.73 m². Blood pressure is 128/74 mm Hg. He has no history of pancreatitis or medullary thyroid cancer. He is not hypoglycemic.",
+    "question": "Which addition is most appropriate?",
+    "options": [
+      "Pioglitazone, despite planning no heart-failure review",
+      "Acarbose as the only agent with outcome data",
+      "An SGLT2 inhibitor or a GLP-1 receptor agonist with cardiovascular benefit",
+      "Glyburide",
+      "Stop metformin and start sliding-scale insulin alone"
+    ],
+    "correctAnswer": "An SGLT2 inhibitor or a GLP-1 receptor agonist with cardiovascular benefit",
+    "explanation": "When atherosclerotic disease is present, the next agent should be one that reduces cardiovascular or kidney events, an SGLT2 inhibitor or a GLP-1 receptor agonist, not a drug chosen only to move the A1c. Glyburide lowers glucose and causes hypoglycemia without that outcome benefit. Pioglitazone can worsen heart failure and is a poor default after a myocardial infarction. Acarbose is not the outcome-proven choice here. Sliding-scale insulin alone is an unsafe substitution for metformin.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-metformin-or-sglt2-at-low-egfr",
+    "difficulty": 5,
+    "scenario": "A 70-year-old woman with longstanding type 2 diabetes has an eGFR of 22 mL/min/1.73 m² and an A1c of 8.8%. She has symptoms of hyperglycemia. A discharge list restarts metformin 1000 mg twice daily and starts empagliflozin. Potassium is 4.8 mEq/L. She is not acidotic.",
+    "question": "Which medication plan is most appropriate?",
+    "options": [
+      "Glyburide, because the kidney is protected by sulfonylureas",
+      "Do not start metformin or an SGLT2 inhibitor at this eGFR; use insulin",
+      "Metformin 1000 mg twice daily",
+      "Both metformin and empagliflozin as written",
+      "Empagliflozin as monotherapy"
+    ],
+    "correctAnswer": "Do not start metformin or an SGLT2 inhibitor at this eGFR; use insulin",
+    "explanation": "Metformin is stopped below an eGFR of 30, and an SGLT2 inhibitor is not started at an eGFR of 22. Insulin can treat the hyperglycemia without those restrictions. Restarting either drug as written ignores the kidney threshold. Glyburide is particularly likely to cause prolonged hypoglycemia when the GFR is this low. Empagliflozin as monotherapy is still an SGLT2 inhibitor started below the allowed eGFR.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hold-sglt2-before-surgery",
+    "difficulty": 4,
+    "scenario": "A 66-year-old man takes empagliflozin and metformin. Elective knee arthroplasty is in four days. He will be NPO after midnight before surgery. Glucose today is 132 mg/dL. He has never had ketoacidosis. The preoperative order says to take empagliflozin with a sip of water on the morning of surgery.",
+    "question": "Which instruction is most appropriate?",
+    "options": [
+      "Double empagliflozin tonight so a missed dose does not matter",
+      "Stop metformin forever because surgery cancels its indication",
+      "Hold the SGLT2 inhibitor for several days before the operation",
+      "Take empagliflozin on the morning of surgery",
+      "Replace the held dose with a sulfonylurea on the morning of surgery"
+    ],
+    "correctAnswer": "Hold the SGLT2 inhibitor for several days before the operation",
+    "explanation": "SGLT2 inhibitors are held ahead of surgery, typically for three days for empagliflozin, because perioperative ketoacidosis can occur even when glucose is near normal. Taking it on the morning of surgery, or doubling it, keeps that risk. Metformin is held around the procedure for kidney and contrast reasons, but the operation does not end the long-term indication. A sulfonylurea on a fasting morning is a setup for hypoglycemia.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "sick-day-continue-basal-insulin",
+    "difficulty": 5,
+    "scenario": "A 24-year-old woman with type 1 diabetes has gastroenteritis and has not kept food down for 12 hours. Glucose is 286 mg/dL. She has moderate ketones on a urine dipstick. She is tachycardic but blood pressure is 112/70 mm Hg and she can drink small sips. She asks whether to skip her basal insulin until she can eat.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Continue basal insulin, give extra correction, and seek care if she cannot drink",
+      "Stop all insulin until the vomiting ends",
+      "Drink only water and recheck in two days",
+      "Take a double dose of a sulfonylurea she does not use",
+      "Exercise to bring the glucose down"
+    ],
+    "correctAnswer": "Continue basal insulin, give extra correction, and seek care if she cannot drink",
+    "explanation": "People with type 1 diabetes must not stop basal insulin during illness. She already has ketones and hyperglycemia, so she needs basal insulin, correction, fluids as tolerated, and a low threshold to be seen. Stopping insulin precipitates ketoacidosis. She does not take a sulfonylurea, and exercise with ketones is unsafe. Waiting two days on water alone allows acidosis to deepen.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "postpartum-glucose-testing-after-gdm",
+    "difficulty": 4,
+    "scenario": "A 32-year-old woman had gestational diabetes treated with insulin during pregnancy. She delivered a healthy infant six weeks ago and stopped insulin. Fasting glucoses at home have been 100 to 112 mg/dL. She feels well. A one-week postpartum A1c was 5.6%. She asks whether any further testing is needed.",
+    "question": "Which test is most appropriate?",
+    "options": [
+      "No testing until the next pregnancy",
+      "Start insulin tonight based on the A1c of 5.6%",
+      "A 75-gram oral glucose tolerance test now",
+      "A random fingerstick only",
+      "A hemoglobin electrophoresis"
+    ],
+    "correctAnswer": "A 75-gram oral glucose tolerance test now",
+    "explanation": "Gestational diabetes requires a 75-gram oral glucose tolerance test at 4 to 12 weeks postpartum because an early A1c misses ongoing diabetes and prediabetes. Waiting until the next pregnancy loses the chance to treat her now. A single fingerstick is not that test. An A1c of 5.6% does not justify restarting insulin. Hemoglobin electrophoresis does not assess glucose metabolism.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "statin-for-diabetes-aged-40-to-75",
+    "difficulty": 4,
+    "scenario": "A 52-year-old woman with type 2 diabetes has an LDL cholesterol of 148 mg/dL. She has no known atherosclerotic disease, no statin intolerance, and normal liver enzymes. Blood pressure is treated. A1c is 7.4% on metformin. She asks whether a cholesterol drug is useful if she has never had a heart attack.",
+    "question": "Which lipid plan is most appropriate?",
+    "options": [
+      "A fibrate as the only lipid drug for an LDL of 148 mg/dL",
+      "Start a moderate- or high-intensity statin",
+      "Niacin as the preferred first drug",
+      "No statin until after a first myocardial infarction",
+      "Stop metformin to improve the lipid panel"
+    ],
+    "correctAnswer": "Start a moderate- or high-intensity statin",
+    "explanation": "Adults aged 40 to 75 with diabetes are treated with a statin regardless of a prior heart attack, and her LDL is clearly above a level where drug therapy is appropriate. Waiting for an infarction forfeits prevention. Niacin and a fibrate are not the first drugs for this LDL. Metformin is her glucose therapy and is not stopped to treat cholesterol.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "continue-ics-in-pregnancy",
+    "difficulty": 4,
+    "scenario": "A 28-year-old woman at 18 weeks of gestation has asthma that was controlled on budesonide-formoterol. A friend told her to stop every inhaler because steroids harm fetuses. She is now waking at night and using a rescue inhaler daily. Oxygen saturation is 98% on room air, and the fetal heart rate is normal. She is not in respiratory distress.",
+    "question": "Which asthma plan is most appropriate?",
+    "options": [
+      "Start oral prednisone 40 mg daily for the rest of pregnancy and stop the inhaler",
+      "Continue the inhaled corticosteroid regimen",
+      "Use salmeterol alone",
+      "Treat nighttime symptoms with diphenhydramine only",
+      "Stop all inhaled corticosteroids until delivery"
+    ],
+    "correctAnswer": "Continue the inhaled corticosteroid regimen",
+    "explanation": "Inhaled corticosteroids, including budesonide, are continued in pregnancy because uncontrolled asthma is the greater risk to mother and fetus. Stopping them has already produced daily symptoms. Months of oral prednisone are not a substitute for an inhaler that was working. Salmeterol alone, without an inhaled corticosteroid, is unsafe in asthma. Diphenhydramine does not treat airway inflammation.",
+    "ref": "gina-2025"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "home-oxygen-for-resting-hypoxemia",
+    "difficulty": 4,
+    "scenario": "A 72-year-old man with severe COPD is seen after a hospitalization. He has stopped smoking. At rest, oxygen saturation is 86% on room air and rises to 93% on 2 L. He is not in an exacerbation. Arterial blood gas on room air shows PaO2 54 mm Hg and PaCO2 46 mm Hg. He is awake and not acidemic.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Oxygen only while walking, with none at rest",
+      "Oral prednisone 20 mg daily instead of oxygen",
+      "No oxygen, because he is not currently dyspneic at the visit",
+      "Prescribe long-term oxygen at a flow that keeps saturation above 90%",
+      "A nonrebreather mask at home to hold saturation at 100%"
+    ],
+    "correctAnswer": "Prescribe long-term oxygen at a flow that keeps saturation above 90%",
+    "explanation": "Resting hypoxemia with saturation at or below 88%, or PaO2 at or below 55 mm Hg, is an indication for long-term oxygen, titrated to a safe saturation. Absence of dyspnea at one visit does not cancel that indication. Restricting oxygen to walking leaves the resting hypoxemia untreated. A nonrebreather targeting 100% risks hypercapnia in COPD. Daily prednisone does not replace oxygen and causes harm.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "pulmonary-rehab-after-copd-admission",
+    "difficulty": 4,
+    "scenario": "A 69-year-old woman is two weeks past an admission for a COPD exacerbation. She is on a long-acting bronchodilator, uses it correctly, and is no longer wheezing. Oxygen saturation is 94% on room air. She is afraid to leave the house and asks for prednisone 10 mg daily so she will not be admitted again.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Theophylline as the only new therapy",
+      "Prednisone 10 mg daily indefinitely",
+      "Azithromycin with no inhaler and no rehabilitation",
+      "Refer her to pulmonary rehabilitation and do not start chronic prednisone",
+      "A 21-day prednisone taper for every future cough"
+    ],
+    "correctAnswer": "Refer her to pulmonary rehabilitation and do not start chronic prednisone",
+    "explanation": "After a COPD hospitalization, pulmonary rehabilitation reduces readmission and improves capacity. Chronic daily prednisone is not maintenance therapy and brings infection, fracture, and glucose harm. Theophylline is not first-line and has a narrow margin. Azithromycin prophylaxis is considered only after inhaled therapy is optimized and exacerbations continue, not instead of rehabilitation. A standing three-week taper for every cough overtreats ordinary symptoms.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-use-theophylline-first",
+    "difficulty": 4,
+    "scenario": "A 64-year-old man with newly confirmed COPD is breathless on hills. He is on no inhaler. Eosinophils are 80 cells/µL. He has atrial fibrillation and takes several other drugs. A sample of theophylline is offered as the first maintenance drug because it is inexpensive. On examination the expiratory phase is prolonged, and he reports dyspnea on hills.",
+    "question": "Which initial maintenance plan is most appropriate?",
+    "options": [
+      "A long-acting bronchodilator, not theophylline",
+      "Salmeterol alone for coexisting asthma he does not have",
+      "An inhaled corticosteroid alone",
+      "Theophylline as the only maintenance drug",
+      "Chronic oral prednisone"
+    ],
+    "correctAnswer": "A long-acting bronchodilator, not theophylline",
+    "explanation": "Initial COPD maintenance is a long-acting bronchodilator. Theophylline is a later, poorly tolerated option and is a bad first drug in a patient with arrhythmia and polypharmacy. Chronic prednisone is not maintenance. An inhaled corticosteroid alone does not bronchodilate and is not favored at this low eosinophil count. Salmeterol monotherapy is an asthma error and he does not have asthma.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "smoking-cessation-pharmacotherapy",
+    "difficulty": 4,
+    "scenario": "A 58-year-old man with COPD smokes a pack daily and wants to quit. He has no unstable psychiatric disease and no seizure disorder. He tried to stop without medicine twice and returned to smoking within a week. Carbon monoxide is elevated. He asks whether a pill or a patch is reasonable.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start bupropion and a monoamine-oxidase inhibitor together",
+      "Offer varenicline or combination nicotine replacement, plus counseling",
+      "Chronic prednisone to make quitting unnecessary",
+      "A benzodiazepine to blunt the craving",
+      "Tell him medication does not help and not to try again"
+    ],
+    "correctAnswer": "Offer varenicline or combination nicotine replacement, plus counseling",
+    "explanation": "Pharmacotherapy plus counseling is more effective than advice alone, and varenicline or combination nicotine replacement is appropriate here. Saying drugs do not work is false and abandons a willing patient. Combining bupropion with a monoamine-oxidase inhibitor risks serious drug interaction. Prednisone does not treat tobacco dependence. A benzodiazepine adds sedation and dependence without treating the addiction. Telling him medication does not help, and not to try again, abandons a willing patient.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "azithromycin-only-after-optimized-inhalers",
+    "difficulty": 5,
+    "scenario": "A 70-year-old man with COPD has had two exacerbations this year. He is on no maintenance inhaler and uses albuterol daily. Eosinophils are 300 cells/µL. Someone proposes azithromycin three times weekly and no inhaler change, because macrolides prevent exacerbations.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Theophylline monotherapy",
+      "Azithromycin alone with no inhaler",
+      "Chronic prednisone 20 mg daily",
+      "A 14-day course of azithromycin every month and no inhaler",
+      "Start inhaled maintenance therapy first, including an inhaled corticosteroid given the eosinophil count"
+    ],
+    "correctAnswer": "Start inhaled maintenance therapy first, including an inhaled corticosteroid given the eosinophil count",
+    "explanation": "Exacerbation prevention starts with the right inhalers. Two exacerbations and eosinophils of 300 cells/µL support inhaled corticosteroid therapy combined with long-acting bronchodilation, not a macrolide in place of an inhaler. Chronic prednisone and theophylline monotherapy are not the initial regimen. Monthly 14-day azithromycin courses add resistance without fixing the missing inhalers.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "lenient-rate-control-if-asymptomatic",
+    "difficulty": 4,
+    "scenario": "A 74-year-old woman with permanent atrial fibrillation and a normal ejection fraction feels well. Heart rate is 96 beats per minute at rest and she has no edema. Blood pressure is 126/70 mm Hg. She is anticoagulated. A note says the rate must be driven below 60 or she needs a pacemaker.",
+    "question": "Which rate plan is most appropriate?",
+    "options": [
+      "Add enough atrioventricular nodal blocker to force a rate below 60",
+      "Stop anticoagulation because the rate is under 100",
+      "A pacemaker now because the rate is 96",
+      "Immediate cardioversion in the clinic without sedation or fasting",
+      "A resting rate under 110 is acceptable while she is asymptomatic and the ventricle is preserved"
+    ],
+    "correctAnswer": "A resting rate under 110 is acceptable while she is asymptomatic and the ventricle is preserved",
+    "explanation": "Lenient rate control, a resting rate under 110, is acceptable when symptoms are absent and systolic function is preserved. Forcing a rate below 60 can cause symptomatic bradycardia. A pacemaker is not indicated for a rate of 96. Anticoagulation is independent of the rate. Immediate unsedated cardioversion is not the treatment of stable permanent atrial fibrillation.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "anticoagulate-before-elective-cardioversion",
+    "difficulty": 5,
+    "scenario": "A 63-year-old man has felt an irregular pulse for five days. He is comfortable. Heart rate is 110 beats per minute, blood pressure is 132/78 mm Hg, and he has no chest pain or heart failure. Electrocardiogram shows atrial fibrillation. He has hypertension. He wants the rhythm 'shocked back today' before a trip.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Immediate cardioversion with no anticoagulation and no echo",
+      "Do not cardiovert today; anticoagulate and use a delayed or transesophageal-echo-guided strategy",
+      "No anticoagulation ever if the shock succeeds",
+      "Ibutilide in the clinic with no monitoring",
+      "Aspirin only, then cardioversion this afternoon"
+    ],
+    "correctAnswer": "Do not cardiovert today; anticoagulate and use a delayed or transesophageal-echo-guided strategy",
+    "explanation": "When atrial fibrillation has lasted more than 48 hours or the duration is not short and certain, elective cardioversion waits for three weeks of anticoagulation or a transesophageal echocardiogram plus anticoagulation. He is stable, so today is not an emergency shock. Aspirin does not cover the peri-cardioversion thrombus risk. Success of a shock does not erase the need for anticoagulation in a patient with stroke risk, and at least four weeks are required afterward. Unmonitored ibutilide is unsafe.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "continue-anticoagulation-after-cardioversion",
+    "difficulty": 4,
+    "scenario": "A 68-year-old woman with hypertension and diabetes underwent cardioversion for atrial fibrillation one week ago after three weeks of apixaban. She is in sinus rhythm. A discharge note says to stop apixaban today because the electrocardiogram is normal. CHA2DS2-VASc score is 4. She has had no bleeding.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No further rhythm or anticoagulation follow-up",
+      "Switch to aspirin now that she is in sinus rhythm",
+      "Stop apixaban today",
+      "Stop anticoagulation and start dual antiplatelet therapy",
+      "Continue anticoagulation for at least four weeks, and long-term because her stroke risk remains high"
+    ],
+    "correctAnswer": "Continue anticoagulation for at least four weeks, and long-term because her stroke risk remains high",
+    "explanation": "After cardioversion, anticoagulation continues for at least four weeks because atrial stunning persists, and her CHA2DS2-VASc score of 4 means long-term anticoagulation regardless of the current rhythm. Stopping today, or substituting aspirin or dual antiplatelet therapy, removes stroke prevention. She still needs follow-up of rhythm and bleeding risk.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "postoperative-af-is-still-af",
+    "difficulty": 5,
+    "scenario": "A 72-year-old man with hypertension and diabetes develops atrial fibrillation on the second day after a colectomy. Heart rate is 120 beats per minute and falls to 90 with a beta blocker. Blood pressure is 124/70 mm Hg. He has no chest pain and no heart failure. A note says postoperative atrial fibrillation needs no anticoagulation because it is 'just surgical.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Immediate cardioversion while he is stable and pain is controlled",
+      "No anticoagulation because the arrhythmia started after surgery",
+      "Stop the beta blocker and give a fluid bolus only",
+      "Aspirin alone",
+      "Treat the rate and anticoagulate according to his stroke risk, not according to the surgical label"
+    ],
+    "correctAnswer": "Treat the rate and anticoagulate according to his stroke risk, not according to the surgical label",
+    "explanation": "Postoperative atrial fibrillation still confers stroke risk, and his age, hypertension, and diabetes favor anticoagulation once bleeding risk from fresh surgery is acceptable. Calling it 'just surgical' does not remove that risk. Aspirin alone is inadequate. He is stable, so immediate cardioversion is not required. Stopping the beta blocker would give back the rate that was just controlled.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "wpw-af-avoid-nodal-blocker",
+    "difficulty": 5,
+    "scenario": "A 28-year-old man has a wide-complex irregular tachycardia at 220 beats per minute after palpitations. Blood pressure is 128/70 mm Hg and he is awake. A prior electrocardiogram showed a delta wave. The emergency physician reaches for diltiazem to 'slow atrial fibrillation.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Adenosine as a diagnostic test in this irregular wide rhythm",
+      "Intravenous digoxin",
+      "Do not give an atrioventricular nodal blocker; cardiovert if he becomes unstable, or use procainamide if he stays stable",
+      "Intravenous diltiazem",
+      "Intravenous metoprolol as the preferred drug"
+    ],
+    "correctAnswer": "Do not give an atrioventricular nodal blocker; cardiovert if he becomes unstable, or use procainamide if he stays stable",
+    "explanation": "Pre-excited atrial fibrillation can accelerate into ventricular fibrillation if an atrioventricular nodal blocker is given. Diltiazem, digoxin, and metoprolol are all the wrong class. A stable patient can receive procainamide; an unstable patient is cardioverted. Adenosine is not a treatment or a safe diagnostic maneuver for an irregular wide-complex tachycardia.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "ace-cough-switch-to-arb",
+    "difficulty": 4,
+    "scenario": "A 60-year-old woman started lisinopril three weeks ago for hypertension and albuminuria. Blood pressure is now 128/76 mm Hg. She has a dry cough that keeps her awake and has no rash, angioedema, hyperkalemia, or creatinine rise. She wants the blood pressure benefit without the cough.",
+    "question": "Which change is most appropriate?",
+    "options": [
+      "Add a second ACE inhibitor",
+      "Replace lisinopril with ibuprofen",
+      "Stop all blood-pressure drugs",
+      "Switch to an ARB",
+      "Continue lisinopril and add codeine indefinitely for the cough"
+    ],
+    "correctAnswer": "Switch to an ARB",
+    "explanation": "Cough from an ACE inhibitor is a reason to switch to an ARB, which preserves the blood-pressure and kidney benefit. Stopping all therapy lets the pressure and albuminuria return. Ibuprofen raises blood pressure and harms the kidney. Two ACE inhibitors are not combined. Chronic codeine treats a drug effect that will stop when the ACE inhibitor is changed.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "white-coat-use-home-readings",
+    "difficulty": 4,
+    "scenario": "A 55-year-old woman has office blood pressures of 158/92 mm Hg on three visits. Properly taken home readings over two weeks average 124/76 mm Hg. She has no target-organ damage. She is on no medication. Ambulatory monitoring is not immediately available. She feels well.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start two drugs today for stage 2 hypertension",
+      "Do not start drug therapy based on the office readings alone",
+      "An intensive-care infusion because the office reading exceeded 150",
+      "Start a beta blocker for white-coat anxiety and ignore the home log",
+      "Repeat the office reading after a cup of coffee and treat that number"
+    ],
+    "correctAnswer": "Do not start drug therapy based on the office readings alone",
+    "explanation": "Home readings that average well below the treatment threshold indicate white-coat hypertension, so drug therapy is not started on the office number alone. Two drugs, an infusion, or a beta blocker for anxiety would medicate a clinic phenomenon. A single post-coffee office reading is a worse measurement, not a better one. Confirm with ambulatory monitoring when it can be arranged, and keep following her.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "screen-primary-aldosteronism",
+    "difficulty": 5,
+    "scenario": "A 48-year-old man is on lisinopril, amlodipine, and chlorthalidone, all at adequate doses. Repeated office and home blood pressures are 156/96 mm Hg. Potassium is 3.1 mEq/L without a diarrheal illness. Creatinine is 0.9 mg/dL. He does not eat licorice. A colleague adds a fourth drug without any further test.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop the diuretic because potassium is low and add a calcium-channel blocker he already takes",
+      "Add minoxidil and do not investigate",
+      "Screen for primary aldosteronism before declaring the regimen complete",
+      "Add an NSAID",
+      "Bilateral adrenalectomy this week without labs"
+    ],
+    "correctAnswer": "Screen for primary aldosteronism before declaring the regimen complete",
+    "explanation": "Resistant hypertension plus spontaneous hypokalemia is a classic prompt to screen for primary aldosteronism, ideally with a plasma aldosterone-renin ratio. Adding minoxidil skips a curable or specifically treatable cause. An NSAID worsens pressure control. He is already on a calcium-channel blocker, and stopping the diuretic without a diagnosis leaves the question unanswered. Surgery without biochemical confirmation is not the next step. Bilateral adrenalectomy this week without labs removes both glands before any diagnosis.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "obstetrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "postpartum-severe-hypertension",
+    "difficulty": 5,
+    "scenario": "A 34-year-old woman is six days after a vaginal delivery complicated by preeclampsia. At a blood-pressure check she has a headache and a reading of 172/112 mm Hg, repeated 15 minutes later. She has no chest pain. Reflexes are brisk. The infant is well. She is breastfeeding.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start an estrogen contraceptive today and recheck in a month",
+      "Start lisinopril as the acute intravenous-equivalent drug",
+      "No treatment unless she has a seizure first",
+      "Treat the severe-range pressure now and evaluate for postpartum preeclampsia",
+      "Reassure her that blood pressure is unimportant after delivery"
+    ],
+    "correctAnswer": "Treat the severe-range pressure now and evaluate for postpartum preeclampsia",
+    "explanation": "Severe-range hypertension in the days after delivery is treated immediately and postpartum preeclampsia is considered, including magnesium if features of severity evolve. Delivery does not end the risk. Lisinopril is not the acute drug and is not preferred in the early postpartum breastfeeding period as an emergency bolus. An estrogen contraceptive is a poor choice while pressure is this high. Waiting for a seizure means waiting for eclampsia.",
+    "ref": "acog-preeclampsia-2020"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "obstetrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-estrogen-while-pressure-is-high",
+    "difficulty": 4,
+    "scenario": "A 29-year-old woman is two weeks postpartum. Her blood pressure is still 158/100 mm Hg on nifedipine. She wants contraception before discharge from the visit. She has migraines without aura and no thrombus history. She is not breastfeeding exclusively as her only consideration; she simply wants a method today.",
+    "question": "Which contraceptive plan is most appropriate?",
+    "options": [
+      "Use a progestin-only method or defer estrogen until the hypertension is controlled",
+      "Start a combined estrogen-progestin pill today",
+      "A combined vaginal ring, because it is not a pill",
+      "No contraception advice until the six-week visit if she might be fertile",
+      "Depot medroxyprogesterone is forbidden, so estrogen is the only option"
+    ],
+    "correctAnswer": "Use a progestin-only method or defer estrogen until the hypertension is controlled",
+    "explanation": "Estrogen-containing contraception is avoided while hypertension is uncontrolled. A progestin-only pill, implant, injection, or intrauterine device can be started, or estrogen can wait until pressure is controlled. A ring still contains estrogen. Sending her out with no plan because the visit is early leaves a preventable pregnancy. The injection is not forbidden; estrogen is the method to avoid right now. A combined vaginal ring is not safer than a pill; it still contains estrogen.",
+    "ref": "acog-preeclampsia-2020"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "nephrology-referral-egfr-under-30",
+    "difficulty": 4,
+    "scenario": "A 67-year-old man with diabetes has an eGFR of 24 mL/min/1.73 m², down from 40 two years ago. Urine albumin-creatinine ratio is 600 mg/g. He is on losartan. Potassium is 4.9 mEq/L. He feels well and asks whether he needs a kidney specialist or can wait until he needs dialysis.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start dialysis this week for an eGFR of 24",
+      "Stop losartan so the eGFR number looks higher before referral",
+      "No referral if he is asymptomatic",
+      "Refer to nephrology now",
+      "Wait until eGFR is under 10"
+    ],
+    "correctAnswer": "Refer to nephrology now",
+    "explanation": "An eGFR below 30, especially with progression and heavy albuminuria, is a reason for nephrology referral, not a wait until dialysis. Symptoms are a late finding. Stopping losartan to cosmetically raise GFR removes kidney protection. Dialysis is not indicated at an eGFR of 24 without refractory volume overload, acidosis, hyperkalemia, or uremic symptoms.",
+    "ref": "kdigo-ckd-2024"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "supplement-bicarbonate-in-ckd",
+    "difficulty": 4,
+    "scenario": "A 70-year-old woman with CKD and an eGFR of 26 mL/min/1.73 m² has a serum bicarbonate of 16 mEq/L on two checks. She is not volume overloaded and has no diarrhea. Potassium is 4.6 mEq/L. She takes an ACE inhibitor. A note says bicarbonate replacement is cosmetic.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start oral bicarbonate and look for a cause of the acidosis",
+      "No treatment until bicarbonate is under 10 mEq/L",
+      "Give hydrochloric acid",
+      "Stop the ACE inhibitor as the treatment of acidosis",
+      "Start dialysis for a bicarbonate of 16 mEq/L alone"
+    ],
+    "correctAnswer": "Start oral bicarbonate and look for a cause of the acidosis",
+    "explanation": "Chronic metabolic acidosis in CKD is treated with oral alkali, usually to a bicarbonate nearer the normal range, because acidosis contributes to progression and bone and muscle loss. Waiting for a bicarbonate of 10, or calling replacement cosmetic, leaves that harm in place. The ACE inhibitor is not the cause to remove. Acid makes acidosis worse. Dialysis is not required for this number alone. Giving hydrochloric acid would worsen the acidosis.",
+    "ref": "kdigo-ckd-2024"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "iron-before-esa",
+    "difficulty": 5,
+    "scenario": "A 68-year-old man with an eGFR of 20 mL/min/1.73 m² has fatigue. Hemoglobin is 8.6 g/dL. Ferritin is 40 ng/mL and transferrin saturation is 12%. He has no bleeding symptoms. A plan starts an erythropoiesis-stimulating agent today and does not mention iron.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No evaluation because fatigue in CKD is expected",
+      "Start an ESA and a high-dose NSAID",
+      "Start an ESA and ignore iron",
+      "Replete iron before or with any erythropoiesis-stimulating agent, and investigate other causes",
+      "Transfuse to a hemoglobin of 14 g/dL"
+    ],
+    "correctAnswer": "Replete iron before or with any erythropoiesis-stimulating agent, and investigate other causes",
+    "explanation": "Iron deficiency will blunt the response to an erythropoiesis-stimulating agent and should be corrected, and other causes of anemia still need a look. Ignoring a ferritin of 40 and a saturation of 12% guarantees a poor response. Transfusing to a hemoglobin of 14 overshoots any CKD target and exposes him to volume and iron overload. An NSAID worsens CKD. Fatigue is a symptom, not a reason to skip the evaluation. Starting an ESA and ignoring iron wastes the drug when ferritin and saturation are low.",
+    "ref": "kdigo-ckd-2024"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "urgent-hyperkalemia-with-ecg-changes",
+    "difficulty": 5,
+    "scenario": "A 74-year-old man with CKD misses dialysis and comes in weak. Potassium is 7.1 mEq/L. The electrocardiogram shows peaked T waves and a widened QRS. Blood pressure is 100/60 mm Hg. He is awake. A plan gives oral sodium polystyrene sulfonate and sends him home.",
+    "question": "Which immediate plan is most appropriate?",
+    "options": [
+      "Normal saline at 1 L/hour and no cardiac monitoring",
+      "Oral sodium polystyrene sulfonate and discharge",
+      "Intravenous calcium, shift potassium inward, and arrange urgent dialysis",
+      "Wait for the morning laboratory draw",
+      "A beta-agonist inhaler as the only treatment"
+    ],
+    "correctAnswer": "Intravenous calcium, shift potassium inward, and arrange urgent dialysis",
+    "explanation": "Peaked T waves and a wide QRS with a potassium of 7.1 mEq/L are an emergency. Calcium stabilizes the membrane, insulin with glucose and a beta agonist shift potassium, and dialysis removes it because he already depends on dialysis. A cation-exchange resin does not act in time and is not a discharge plan. One inhaler, unmonitored saline, or a delayed lab leaves the arrhythmia untreated. Waiting for the morning laboratory draw leaves a wide QRS untreated.",
+    "ref": "kdigo-ckd-2024"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "uptitrate-beta-blocker-in-stable-hfref",
+    "difficulty": 4,
+    "scenario": "A 61-year-old man with HFrEF, ejection fraction 32%, is euvolemic on carvedilol 3.125 mg twice daily, losartan, and furosemide. Blood pressure is 118/70 mm Hg and heart rate is 84 beats per minute. He walked through the clinic without dyspnea. Potassium and creatinine are stable. He has been on this dose for six weeks.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Increase carvedilol toward the evidence-based target",
+      "Stop carvedilol because the heart rate is above 80",
+      "Switch carvedilol to diltiazem",
+      "Add ibuprofen and leave the beta blocker unchanged",
+      "Start a home milrinone infusion"
+    ],
+    "correctAnswer": "Increase carvedilol toward the evidence-based target",
+    "explanation": "Stable, euvolemic patients should have guideline-directed therapy titrated. Carvedilol 3.125 mg twice daily is a starting dose, not a target. Stopping it because the rate is 84 removes survival benefit. Diltiazem is harmful in HFrEF. Ibuprofen promotes decompensation. Milrinone at home is for selected refractory stage D disease, not a man who walks through clinic.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "iv-iron-for-hfref-iron-deficiency",
+    "difficulty": 5,
+    "scenario": "A 66-year-old woman with HFrEF, ejection fraction 35%, is short of breath despite foundational therapy and has no congestion today. Hemoglobin is 11.2 g/dL. Ferritin is 70 ng/mL and transferrin saturation is 14%. She has not had a trial of intravenous iron. Oral iron makes her constipated and she stopped it.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No iron evaluation because hemoglobin is above 10 g/dL",
+      "Stop the beta blocker to raise the hemoglobin",
+      "Give intravenous iron",
+      "Oral iron only, despite intolerance and an empty trial of intravenous iron",
+      "Transfuse two units for a hemoglobin of 11.2 g/dL"
+    ],
+    "correctAnswer": "Give intravenous iron",
+    "explanation": "Iron deficiency in HFrEF, including with a hemoglobin that is not severely low, is treated with intravenous iron because oral iron is poorly tolerated and less effective for this indication. A hemoglobin of 11.2 g/dL does not exclude iron deficiency when ferritin and saturation meet criteria. Stopping a beta blocker does not treat iron deficiency. Transfusion is not indicated at this hemoglobin.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "icd-referral-after-gdmt",
+    "difficulty": 5,
+    "scenario": "A 64-year-old man had an anterior myocardial infarction 14 months ago. Ejection fraction was 28% at least four months ago and is 30% today. He is NYHA class II on an ARNI, evidence-based beta blocker, mineralocorticoid antagonist, and SGLT2 inhibitor. He is euvolemic. QRS duration is 100 ms. He is expected to live more than a year. On examination the lungs are clear and there is no edema.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Amiodarone instead of a defibrillator",
+      "Stop the beta blocker so the ejection fraction can be rechecked off therapy",
+      "No device discussion because he has not yet survived a cardiac arrest",
+      "Refer for a primary-prevention defibrillator",
+      "Ablation of a ventricular rhythm he does not have"
+    ],
+    "correctAnswer": "Refer for a primary-prevention defibrillator",
+    "explanation": "Ischemic HFrEF that remains at or below 35% on chronic guideline-directed therapy, with NYHA class II symptoms and a narrow QRS, is considered for a primary-prevention ICD. Amiodarone does not replace that indication. Waiting for a first arrest is what primary prevention is meant to avoid. There is no documented ventricular arrhythmia to ablate. Stopping the beta blocker to 'recheck' the EF removes a drug that may be supporting that number and his survival.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-use-nondihydropyridine-in-hfref",
+    "difficulty": 4,
+    "scenario": "A 59-year-old woman with HFrEF and atrial fibrillation has a heart rate of 108 beats per minute. Ejection fraction is 25%. She is not on a beta blocker. Blood pressure is 130/80 mm Hg. A covering clinician starts diltiazem because 'rate control is rate control.'",
+    "question": "Which rate-control plan is most appropriate?",
+    "options": [
+      "Continue diltiazem as the disease-modifying rate drug",
+      "Add verapamil to diltiazem",
+      "Use disopyramide",
+      "No rate control until she is in sinus rhythm",
+      "Use an evidence-based beta blocker, not diltiazem"
+    ],
+    "correctAnswer": "Use an evidence-based beta blocker, not diltiazem",
+    "explanation": "Nondihydropyridine calcium-channel blockers depress contractility and are avoided in HFrEF. An evidence-based beta blocker treats both the rate and the cardiomyopathy. Adding verapamil stacks the same harm. Disopyramide is negatively inotropic and is not heart-failure therapy. Leaving a rate of 108 untreated is also wrong, but the drug chosen has to be one her ventricle can tolerate. Continuing diltiazem as if it were disease-modifying rate control, or giving no rate control until she is in sinus rhythm, either harms the ventricle or leaves the rate at 108.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "statin-after-ischemic-stroke",
+    "difficulty": 4,
+    "scenario": "A 68-year-old man is seen three weeks after an atherothrombotic ischemic stroke. LDL cholesterol is 142 mg/dL. He has no liver disease. A discharge summary says a statin can wait until he is 'fully recovered,' and he is on aspirin only. Blood pressure is 138/80 mm Hg. He has no atrial fibrillation.",
+    "question": "Which lipid plan is most appropriate?",
+    "options": [
+      "Niacin as the preferred agent",
+      "Stop aspirin and give no other prevention",
+      "No statin until a second stroke",
+      "A fibrate alone for the LDL of 142 mg/dL",
+      "Start high-intensity statin therapy now"
+    ],
+    "correctAnswer": "Start high-intensity statin therapy now",
+    "explanation": "Atherosclerotic ischemic stroke is treated with high-intensity statin therapy, not delayed until some undefined recovery. Waiting for a second stroke misses the point of secondary prevention. Niacin and a fibrate are not the drugs that have the stroke evidence he needs. Aspirin stays; stopping it and offering nothing removes antiplatelet protection in a noncardioembolic stroke.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "anticoagulate-af-after-stroke-not-aspirin-forever",
+    "difficulty": 5,
+    "scenario": "A 76-year-old woman had a modest ischemic stroke ten days ago. Infarct is small, she is walking, and CT shows no hemorrhage. Electrocardiogram shows atrial fibrillation. She has been on aspirin. CHA2DS2-VASc score is at least 4. A note says aspirin is safer forever because anticoagulation caused the stroke.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No antithrombotic drug",
+      "Dual antiplatelet therapy for life",
+      "Warfarin with an INR target of 4",
+      "Aspirin indefinitely and no anticoagulant",
+      "Start anticoagulation now that the infarct is small and imaging shows no bleed, and stop using aspirin as the long-term stroke drug"
+    ],
+    "correctAnswer": "Start anticoagulation now that the infarct is small and imaging shows no bleed, and stop using aspirin as the long-term stroke drug",
+    "explanation": "Atrial fibrillation caused the indication for anticoagulation, and a small infarct without hemorrhage can be anticoagulated by this point rather than left on aspirin. Aspirin does not provide comparable stroke prevention. An INR target of 4 is excessive. Lifelong dual antiplatelet therapy adds bleeding and is not the AF regimen. No antithrombotic drug returns her to the risk that produced the stroke.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "symptomatic-carotid-stenosis",
+    "difficulty": 5,
+    "scenario": "A 70-year-old man had a left-hemisphere TIA three days ago that resolved. Carotid imaging shows 85% stenosis of the left internal carotid artery and a smooth 20% plaque on the right. He is otherwise a good surgical candidate. He is on aspirin and a statin. Blood pressure is controlled. A plan says both sides look 'not that bad' and schedules imaging in one year.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Operate on the 20% asymptomatic side and leave the 85% side",
+      "Stop aspirin before any surgical opinion",
+      "Medical therapy only, with imaging in one year",
+      "Refer for revascularization of the recently symptomatic severe carotid stenosis",
+      "Carotid massage in the office as the treatment"
+    ],
+    "correctAnswer": "Refer for revascularization of the recently symptomatic severe carotid stenosis",
+    "explanation": "Recently symptomatic high-grade ipsilateral carotid stenosis in a surgical candidate is referred for endarterectomy or stenting, not watched for a year. The 20% contralateral plaque is not the symptomatic lesion. Stopping aspirin before a plan exists increases early recurrent-stroke risk. Carotid massage is not treatment and can cause stroke. Medical therapy only, with imaging in one year, watches a recently symptomatic 85% lesion, and operating on the 20% asymptomatic side treats the wrong artery.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "long-term-bp-after-stroke",
+    "difficulty": 4,
+    "scenario": "A 72-year-old woman is three months past an ischemic stroke. She has no dizziness. Home blood pressures average 158/92 mm Hg on amlodipine alone. Creatinine is stable. She asks whether the pressure can stay there because she feels fine.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop amlodipine so the brain stays 'perfused'",
+      "Lower systolic pressure to 90 mm Hg today in the office",
+      "Intensify treatment toward a systolic pressure below 130 mm Hg",
+      "Start an NSAID, which will also lower pressure",
+      "Leave the pressure at 158 mm Hg"
+    ],
+    "correctAnswer": "Intensify treatment toward a systolic pressure below 130 mm Hg",
+    "explanation": "After the acute phase, blood pressure is lowered for secondary prevention, generally toward less than 130 mm Hg systolic, in a patient who tolerates it. Leaving 158 mm Hg untreated because she feels well ignores that target. Stopping the calcium-channel blocker moves the pressure the wrong way. NSAIDs raise blood pressure. Dropping her to 90 mm Hg in a single office visit is unsafe. Stopping amlodipine so the brain stays perfused lets the systolic pressure stay at 158 mm Hg.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "antiplatelet-not-warfarin-for-noncardioembolic-stroke",
+    "difficulty": 4,
+    "scenario": "A 66-year-old man had a lacunar stroke. Monitoring shows no atrial fibrillation, the echocardiogram shows no thrombus or low ejection fraction, and the carotids are open. He is on aspirin. A relative asks for warfarin because 'blood thinners are stronger.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Dual antiplatelet therapy indefinitely",
+      "Stop all prevention because the deficit was lacunar",
+      "Warfarin with an INR of 2 to 3",
+      "Continue an antiplatelet drug, not warfarin",
+      "Anticoagulation plus aspirin plus clopidogrel"
+    ],
+    "correctAnswer": "Continue an antiplatelet drug, not warfarin",
+    "explanation": "Noncardioembolic ischemic stroke is prevented with an antiplatelet drug. Warfarin does not outperform aspirin for this mechanism and adds bleeding. Indefinite dual therapy, or triple antithrombotic therapy, increases hemorrhage without an indication such as a recent coronary stent. A lacunar mechanism is still atherosclerosis of small vessels and still needs prevention.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "short-dapt-then-single-agent",
+    "difficulty": 5,
+    "scenario": "A 64-year-old woman is seen 21 days after a high-risk TIA. She was discharged on aspirin plus clopidogrel. Symptoms resolved and she has had no bleeding. The plan in the chart says to continue both drugs for the rest of her life. She reports no bleeding, and the neurologic examination is normal.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop clopidogrel and continue a single antiplatelet drug",
+      "Continue dual therapy for life",
+      "Switch both drugs to warfarin",
+      "Add a third antiplatelet drug",
+      "Stop both drugs now"
+    ],
+    "correctAnswer": "Stop clopidogrel and continue a single antiplatelet drug",
+    "explanation": "A short course of dual antiplatelet therapy is used after a high-risk TIA or minor stroke, on the order of 21 to 90 days, and then a single agent is continued. At day 21 the extra bleeding risk of continuing both is no longer justified. Warfarin is not the substitute. Stopping both removes prevention. A third antiplatelet drug adds bleeding. Stopping both drugs now removes antiplatelet protection entirely.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "same-day-prevention-after-tia",
+    "difficulty": 4,
+    "scenario": "A 59-year-old man had 20 minutes of aphasia yesterday that resolved. Examination is normal. CT shows no bleed. Electrocardiogram shows sinus rhythm. LDL is unknown. He is on no medicines. The clinic offers an MRI in three months as the only plan.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "MRI in three months and no medication",
+      "Heparin infusion overnight as the only prevention",
+      "Carotid massage and discharge",
+      "Start an antiplatelet drug and a statin now, and evaluate carotids and rhythm promptly",
+      "Warfarin for a lacunar-sounding spell without a proven cardioembolic source"
+    ],
+    "correctAnswer": "Start an antiplatelet drug and a statin now, and evaluate carotids and rhythm promptly",
+    "explanation": "A resolved TIA is unstable atherosclerosis until proven otherwise. Antiplatelet therapy and a statin start now, and carotid and heart-rhythm evaluation should not wait three months. An MRI later does not prevent the stroke that may come this week. Heparin overnight is not standard secondary prevention. Warfarin without a cardioembolic source is the wrong drug. Carotid massage can dislodge plaque.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "extended-anticoagulation-unprovoked-dvt",
+    "difficulty": 5,
+    "scenario": "A 58-year-old man finished three months of apixaban for a first unprovoked proximal deep-vein thrombosis. Bleeding risk is low: no prior bleed, hemoglobin stable, and he takes no antiplatelet drug. He walks and has no cancer on the evaluation already done. He asks whether to stop today because the calendar says three months.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Switch to aspirin as equal protection",
+      "Discuss extended anticoagulation, which is favored when bleeding risk is low",
+      "Place a permanent inferior vena cava filter and stop the anticoagulant",
+      "Stop today and never reassess",
+      "Continue apixaban only if a second clot occurs"
+    ],
+    "correctAnswer": "Discuss extended anticoagulation, which is favored when bleeding risk is low",
+    "explanation": "After an unprovoked proximal DVT, extended anticoagulation is favored when bleeding risk is low, rather than an automatic stop at three months. A permanent filter plus stopping the drug trades a recurrence for filter complications. Aspirin is inferior secondary prevention. Waiting for a second clot accepts a preventable embolus. The decision is revisited if bleeding risk changes, but 'never reassess' is not the plan.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cancer-associated-vte-doac",
+    "difficulty": 4,
+    "scenario": "A 66-year-old woman with metastatic breast cancer has a new femoral-vein thrombosis. She is not vomiting, has no gastric lesion, and her platelet count is 180,000/µL. Creatinine clearance is 70 mL/min. A note recommends aspirin because anticoagulants are unsafe in cancer.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Unfractionated heparin for three days and then nothing",
+      "No treatment because cancer patients do not embolize",
+      "A direct oral anticoagulant, or low-molecular-weight heparin if a DOAC is unsuitable",
+      "Aspirin 81 mg daily",
+      "A permanent vena cava filter as the only treatment"
+    ],
+    "correctAnswer": "A direct oral anticoagulant, or low-molecular-weight heparin if a DOAC is unsuitable",
+    "explanation": "Cancer-associated venous thrombosis is treated with a direct oral anticoagulant in many patients, or with low-molecular-weight heparin when a DOAC is a poor fit. Aspirin does not treat an acute femoral clot. A filter without anticoagulation is for the rare patient who cannot be anticoagulated. Three days of heparin is not a course. Cancer increases, rather than removes, embolic risk.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "extensive-superficial-thrombophlebitis",
+    "difficulty": 4,
+    "scenario": "A 54-year-old man has a red, cordlike, tender vein on the medial thigh for two days. Ultrasound shows great-saphenous thrombus extending 8 cm and staying 4 cm from the deep junction, with no deep-vein thrombosis. He has no fever and no puncture wound. A clinician prescribes antibiotics and warm compresses only.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No follow-up ultrasound and no anticoagulant, because superficial clots never propagate",
+      "Antibiotics only",
+      "Incision and drainage of the cord",
+      "A vena cava filter",
+      "Anticoagulate, because the thrombus is long and close to the deep system"
+    ],
+    "correctAnswer": "Anticoagulate, because the thrombus is long and close to the deep system",
+    "explanation": "Superficial vein thrombosis that is long or close to the deep junction is treated with anticoagulation, not dismissed as cellulitis. There is no fever or wound to support antibiotics as the main therapy. The cord is thrombus, not an abscess to drain. A vena cava filter is not the treatment. Superficial thrombi do propagate, which is why the location and length matter. Incision and drainage of the cord treats thrombus as if it were an abscess.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "hematology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "no-filter-for-distal-dvt-that-can-be-watched",
+    "difficulty": 4,
+    "scenario": "A 49-year-old woman has calf pain. Ultrasound shows an isolated posterior-tibial thrombus and a patent popliteal vein. She has no cancer, no severe symptoms, and a low bleeding risk. She can return in one week. A surgical colleague wants a permanent inferior vena cava filter so she can avoid decisions about the leg.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Antibiotics for the thrombus",
+      "A permanent inferior vena cava filter and no anticoagulant",
+      "Bed rest for six weeks and no imaging follow-up",
+      "Serial ultrasound or a course of anticoagulation, not a filter",
+      "Thrombolysis of the calf vein"
+    ],
+    "correctAnswer": "Serial ultrasound or a course of anticoagulation, not a filter",
+    "explanation": "An isolated distal DVT can be anticoagulated or followed with serial ultrasound when symptoms are mild and the patient will return. A permanent filter does not treat the clot and leaves a device she does not need. Thrombolysis is for selected limb-threatening proximal disease. Antibiotics do not dissolve thrombus. Bed rest without a plan misses propagation into the popliteal vein.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "continue-allopurinol-once-urate-is-at-target",
+    "difficulty": 4,
+    "scenario": "A 60-year-old man has taken allopurinol 300 mg daily for two years. Serum urate is 5.2 mg/dL. He has had no flares in the past year and no tophi. eGFR is 70 mL/min/1.73 m². He feels well and asks to stop because 'the number is normal, so the disease is gone.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start indomethacin prophylaxis for life and stop allopurinol",
+      "Increase to 800 mg because the urate is under 6",
+      "Stop allopurinol today",
+      "Continue allopurinol",
+      "Switch to pegloticase"
+    ],
+    "correctAnswer": "Continue allopurinol",
+    "explanation": "Urate-lowering therapy is continued after the target is reached. A urate of 5.2 mg/dL means the dose is working, not that the indication has vanished. Stopping invites recurrent flares. Raising the dose to 800 mg is unnecessary at target. Pegloticase is for severe refractory disease. Indomethacin prophylaxis is not a substitute for urate lowering and is a poor long-term drug. Stopping allopurinol today because the number looks normal invites the flares the drug is preventing.",
+    "ref": "acr-gout-2020"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "diet-does-not-replace-urate-lowering",
+    "difficulty": 4,
+    "scenario": "A 55-year-old man has had four gout flares in the past year. Serum urate is 8.6 mg/dL and eGFR is 78 mL/min/1.73 m². He has changed his diet and lost 3 kg. He believes diet alone should be enough and declines a drug. The last flare was a month ago.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Probenecid as a mandatory first drug despite normal kidney function and no contraindication to allopurinol",
+      "Recommend urate-lowering therapy in addition to diet",
+      "Allopurinol 300 mg with no prophylaxis and no titration plan in a man who could take prophylaxis",
+      "Diet alone, because he has already had four flares",
+      "Pegloticase as the first drug"
+    ],
+    "correctAnswer": "Recommend urate-lowering therapy in addition to diet",
+    "explanation": "Frequent flares are an indication for urate-lowering therapy. Diet is an adjunct, not a replacement, after four flares in a year. Pegloticase is not first-line. Starting allopurinol at 300 mg without anti-inflammatory prophylaxis and a titration plan is how flares and, in the wrong patient, hypersensitivity are invited; prophylaxis and a lower start are preferred. Probenecid is not mandatory when allopurinol is suitable.",
+    "ref": "acr-gout-2020"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "rheumatology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "screen-tb-and-hepatitis-before-tnf",
+    "difficulty": 5,
+    "scenario": "A 48-year-old woman with rheumatoid arthritis is about to start adalimumab after methotrexate was not enough. She was born in a country with high tuberculosis prevalence. She has no cough. Hepatitis serologies and a tuberculosis test are not in the chart. A note says to infuse first and test if she develops a fever.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Skip testing because methotrexate was already used",
+      "Start etanercept instead, which needs no infection screen",
+      "Give a live vaccine the morning of the first dose",
+      "Start adalimumab today and test only if fever appears",
+      "Test for latent tuberculosis and hepatitis B before the first dose"
+    ],
+    "correctAnswer": "Test for latent tuberculosis and hepatitis B before the first dose",
+    "explanation": "TNF inhibitors can reactivate latent tuberculosis and hepatitis B, so both are assessed before the first dose, not after a fever. A live vaccine is avoided once significant immunosuppression is underway and is not given as a same-morning add-on to a biologic start. Prior methotrexate does not replace the screen. Etanercept is also a TNF inhibitor and needs the same tests.",
+    "ref": "acr-ra-2021"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "rheumatology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "stop-methotrexate-in-pregnancy",
+    "difficulty": 5,
+    "scenario": "A 31-year-old woman with rheumatoid arthritis finds she is six weeks pregnant. She takes methotrexate 20 mg weekly and hydroxychloroquine. Disease is quiet. She had been told to use contraception and the prescription was not stopped. She wants to continue the pregnancy.",
+    "question": "Which drug plan is most appropriate?",
+    "options": [
+      "Switch methotrexate to leflunomide",
+      "Stop all drugs, including hydroxychloroquine, because every rheumatic drug is teratogenic",
+      "Stop methotrexate now; hydroxychloroquine may be continued",
+      "Continue methotrexate through the first trimester",
+      "Add a TNF inhibitor and keep methotrexate"
+    ],
+    "correctAnswer": "Stop methotrexate now; hydroxychloroquine may be continued",
+    "explanation": "Methotrexate is teratogenic and is stopped as soon as pregnancy is recognized. Hydroxychloroquine is compatible with pregnancy and should not be stopped reflexively if she needs it. Leflunomomide is also teratogenic and is not a substitute. Continuing methotrexate beside a biologic does not remove the harm. Not every rheumatic drug is teratogenic; the one that must stop today is methotrexate.",
+    "ref": "acr-ra-2021"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "rheumatology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "inactivated-vaccines-before-rituximab",
+    "difficulty": 4,
+    "scenario": "A 55-year-old man will start rituximab next month for rheumatoid arthritis that failed other drugs. He is due for inactivated influenza and COVID-19 vaccines and has never received pneumococcal vaccine. He feels well and is afebrile. A scheduler says vaccines can wait until after the infusion because he is busy.",
+    "question": "Which vaccine plan is most appropriate?",
+    "options": [
+      "Wait until a month after rituximab, when the response will be better",
+      "Skip vaccines because rituximab replaces them",
+      "Give intravenous immunoglobulin instead of vaccines",
+      "Give a live attenuated vaccine the day of infusion",
+      "Give the inactivated vaccines before rituximab"
+    ],
+    "correctAnswer": "Give the inactivated vaccines before rituximab",
+    "explanation": "Inactivated vaccines are given before rituximab when the calendar allows, because the drug blunts the antibody response for months. Waiting until after the infusion produces a weaker response. Live vaccines are avoided with this degree of immunosuppression. Rituximab does not replace immunization. Immunoglobulin is not a vaccine schedule.",
+    "ref": "acr-ra-2021"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "infectious-disease",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "fidaxomicin-for-recurrent-cdi",
+    "difficulty": 5,
+    "scenario": "A 72-year-old woman finished a course of vancomycin for a first episode of C. difficile infection and now, three weeks later, has watery stools six times a day, a leukocyte count of 14,000/µL, and a positive toxin assay. Blood pressure is 128/70 mm Hg and creatinine is at baseline. She is not distended. She has been taking loperamide.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Treat the recurrence with fidaxomicin or a vancomycin taper, and stop loperamide",
+      "Loperamide alone",
+      "Intravenous vancomycin as the only drug",
+      "No treatment because a second positive test is colonization",
+      "Metronidazole as preferred therapy"
+    ],
+    "correctAnswer": "Treat the recurrence with fidaxomicin or a vancomycin taper, and stop loperamide",
+    "explanation": "A recurrent episode of C. difficile is treated with fidaxomicin or a tapered and pulsed vancomycin course, not ignored. Loperamide is stopped because antimotility drugs worsen colitis. Intravenous vancomycin does not reach the colon lumen in useful amounts. A symptomatic toxin-positive recurrence is disease, not colonization. Metronidazole is no longer preferred therapy.",
+    "ref": "idsa-cdi-2021"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "infectious-disease",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "fulminant-cdi-needs-surgery-backup",
+    "difficulty": 5,
+    "scenario": "A 68-year-old man on a psychiatry ward has C. difficile after antibiotics. He is now hypotensive at 82/48 mm Hg, the abdomen is distended and tender, and the leukocyte count is 32,000/µL. Lactate is 4.2 mmol/L. Oral intake has stopped. A plan starts loperamide and a regular diet.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "High-dose enteral vancomycin, intravenous metronidazole, and immediate surgical consultation",
+      "Fidaxomicin and discharge back to the ward with no surgical review",
+      "Loperamide and a regular diet",
+      "Intravenous vancomycin alone",
+      "Wait for free air before calling a surgeon"
+    ],
+    "correctAnswer": "High-dose enteral vancomycin, intravenous metronidazole, and immediate surgical consultation",
+    "explanation": "Hypotension, marked leukocytosis, and a distended tender abdomen are fulminant colitis. He needs high-dose vancomycin by the enteral route, intravenous metronidazole, and a surgeon now, not after perforation. Loperamide and feeding worsen ileus. Intravenous vancomycin alone does not treat luminal disease. Fidaxomicin without resuscitation and surgical backup is the wrong intensity. Waiting for free air waits too long.",
+    "ref": "idsa-cdi-2021"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "adolescent-sti-confidential-care",
+    "difficulty": 4,
+    "scenario": "A 16-year-old girl is diagnosed with chlamydia at a visit she scheduled herself. She is Gillick-competent in the practical sense that she understands the infection, the treatment, and why a partner needs treatment. She asks that her parents not be told. State law permits minors to consent for sexually transmitted infection care. Cervical motion tenderness is absent. Weight is 55 kg.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Refuse treatment until a parent signs",
+      "Ciprofloxacin, because it is a single dose she can hide",
+      "Treat her and do not require parental consent",
+      "Doxycycline is forbidden at 16, so give nothing",
+      "Tell the parents before the first dose despite her objection and the law"
+    ],
+    "correctAnswer": "Treat her and do not require parental consent",
+    "explanation": "Where minors may consent for sexually transmitted infection care, treatment proceeds without parental permission, and confidentiality is part of getting partners treated. Refusing care or notifying parents over her objection deters treatment. Doxycycline is acceptable at this age and weight when she is not pregnant; the vignette is about consent, and ciprofloxacin is not reliable therapy for chlamydia. Give guideline therapy and partner services.",
+    "ref": "cdc-sti-2021"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "time-limited-trial-not-open-ended-ventilation",
+    "difficulty": 5,
+    "scenario": "A 78-year-old man with metastatic lung cancer and a stated wish to avoid prolonged life support is intubated during a sudden pneumonia. On day 5 he is awake enough to confirm that he wants a short trial only. Two physicians agree that meaningful recovery of independence is very unlikely. His son demands indefinite ventilation because stopping would be abandonment. He reports that he wants only a short trial.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give a neuromuscular blocker so distress is invisible and skip opioids",
+      "Tell him withdrawal is illegal once a tube is in",
+      "Continue ventilation indefinitely because a son requests it",
+      "Honor the time-limited trial he confirms, and move to comfort if the trial fails",
+      "Extubate with no medication for air hunger"
+    ],
+    "correctAnswer": "Honor the time-limited trial he confirms, and move to comfort if the trial fails",
+    "explanation": "A capacitated patient can set a time-limited trial, and continuing past it because a son disagrees overrides the patient. That is not abandonment; it is following his goal. Extubation without treating air hunger is cruel. Withdrawal of unwanted ventilation is lawful and is not homicide. A paralytic without sedation or opioid hides distress and does not treat it.",
+    "ref": "ama-ethics"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "chronic-pain-do-not-abandon",
+    "difficulty": 4,
+    "scenario": "A 57-year-old man on long-term opioids for severe knee osteoarthritis has an unexpected urine drug screen that lacks the prescribed drug and contains cocaine. He is in a pain flare and can still walk. The contract he signed says unexpected results are discussed. A covering clinician discharges him with no opioids, no taper, and no follow-up.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Ignore the cocaine and refill automatically",
+      "Add a benzodiazepine for the distress",
+      "Discharge with no medicines and no follow-up",
+      "Double the opioid because the screen was negative for it",
+      "Address the result, taper or restructure therapy, and do not abandon him without a plan"
+    ],
+    "correctAnswer": "Address the result, taper or restructure therapy, and do not abandon him without a plan",
+    "explanation": "An aberrant screen requires a conversation, a check for diversion or nonadherence, and a safe plan, which may include a taper and addiction treatment. It does not justify dumping him with untreated pain and withdrawal risk. Doubling the opioid because it was absent rewards possible diversion. A benzodiazepine plus an opioid is a dangerous combination. Automatic refill ignores cocaine and the agreement he signed. Discharge with no medicines and no follow-up abandons him in a pain flare and risks withdrawal.",
+    "ref": "ama-ethics"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "disclose-a-retained-sponge-at-follow-up",
+    "difficulty": 5,
+    "scenario": "A 45-year-old woman is seen two weeks after a cesarean delivery. A sponge count was wrong and a retained sponge was removed on a return to the operating room the same night. She was sedated and was never told. She feels well. The obstetrician asks you not to 'upset a new mother.' On examination the incision is healing, and she reports that she feels well.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Say the second operation was routine scar revision",
+      "Wait to see if she asks a more specific question",
+      "Tell her what happened, what was done, and what will change",
+      "Ask her partner to decide whether she may know",
+      "Document the event only in an incident file she cannot access"
+    ],
+    "correctAnswer": "Tell her what happened, what was done, and what will change",
+    "explanation": "A retained sponge and a return to the operating room are harm she must be told about, even though she recovered. Calling it a scar revision is a lie. Waiting for a precise question, hiding the event in an incident system, or letting a partner filter the truth are forms of concealment. Disclose the facts, the remedy, and the prevention steps, and document the conversation.",
+    "ref": "ama-ethics"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "vaccinate-after-trauma-splenectomy",
+    "difficulty": 4,
+    "scenario": "A 34-year-old man had an emergency splenectomy yesterday after blunt trauma. He is afebrile and eating. Pneumococcal, meningococcal, Haemophilus, and influenza vaccines have not been given. A discharge order says 'vaccines at the annual physical.' On examination he is afebrile and the incision is clean.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Daily penicillin for one year and no vaccines",
+      "A live bacterial vaccine in the recovery room",
+      "Wait for the annual physical",
+      "Give the indicated vaccines before discharge, or on a scheduled early return if he is still unstable today",
+      "No vaccines, because the spleen was removed for trauma rather than hematologic disease"
+    ],
+    "correctAnswer": "Give the indicated vaccines before discharge, or on a scheduled early return if he is still unstable today",
+    "explanation": "Asplenia from trauma has the same infection risk as elective splenectomy. The inactivated vaccines are given in the early postoperative window, before discharge when he is well enough, not parked until a routine physical. Antibiotics do not replace immunization. There is no live bacterial vaccine to give in recovery; the point is to give the proper inactivated vaccines and teach him about fever.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "lmwh-after-hip-fracture",
+    "difficulty": 4,
+    "scenario": "An 82-year-old woman is one day after fixation of a hip fracture. She is not bleeding, hemoglobin is stable, and the surgeon says she may get out of bed with help. Creatinine clearance is 50 mL/min. No pharmacologic prophylaxis has been written. She is not at extreme bleeding risk.",
+    "question": "Which prophylaxis plan is most appropriate?",
+    "options": [
+      "Start low-molecular-weight heparin",
+      "A permanent vena cava filter",
+      "Aspirin 81 mg as the only method in a patient who can take an anticoagulant",
+      "No prophylaxis because she might walk today",
+      "Warfarin with a first INR check in two weeks and no other drug"
+    ],
+    "correctAnswer": "Start low-molecular-weight heparin",
+    "explanation": "Hip fracture is a high-risk orthopedic setting, and low-molecular-weight heparin should be started once bleeding is controlled. Hoping she will walk is not prophylaxis. Aspirin alone is not the preferred drug when an anticoagulant can be used. A permanent filter is not prophylaxis for a patient who can be anticoagulated. Warfarin without overlap leaves her unprotected for days.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "stable-small-pneumothorax-observe",
+    "difficulty": 4,
+    "scenario": "A 22-year-old man is stabbed in the chest with a small pocketknife. He is comfortable. Blood pressure is 124/76 mm Hg, heart rate is 88, oxygen saturation is 98% on room air, and breath sounds are present. Chest radiograph shows a 1 cm apical pneumothorax and no hemothorax. A plan books him for thoracotomy.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Discharge with no repeat imaging and no observation",
+      "Observe with oxygen and a repeat radiograph",
+      "Immediate thoracotomy",
+      "Needle both sides of the chest",
+      "Clamp a chest tube that has not been placed"
+    ],
+    "correctAnswer": "Observe with oxygen and a repeat radiograph",
+    "explanation": "A tiny pneumothorax in a stable patient is observed. Thoracotomy is for ongoing bleeding, a large air leak, or instability he does not have. Clamping a tube that is not there, or needling both chests, creates harm. Sending him out with no observation misses expansion of the pneumothorax.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "elderly-rib-fractures-admit",
+    "difficulty": 5,
+    "scenario": "An 84-year-old woman fell and has three displaced rib fractures. Oxygen saturation is 93% on room air, she cannot take a deep breath, and pain is severe. She lives alone. The lung is expanded and there is no pneumothorax. It is 11 p.m. A plan sends her home with eight tablets of acetaminophen.",
+    "question": "Which disposition is most appropriate?",
+    "options": [
+      "Start a benzodiazepine so she will breathe less deeply",
+      "Admit for analgesia and pulmonary care",
+      "Discharge with eight tablets of acetaminophen",
+      "Splint the chest tightly with tape and discharge",
+      "Anticoagulate for the rib pain"
+    ],
+    "correctAnswer": "Admit for analgesia and pulmonary care",
+    "explanation": "Multiple rib fractures in an older adult who lives alone and cannot breathe deeply are admitted. Pain control and pulmonary toilet prevent pneumonia and respiratory failure. Eight acetaminophen tablets will not cover the night. Tight taping restricts ventilation further. A benzodiazepine depresses respiratory drive. Anticoagulation does not treat fractures and adds bleeding after a fall. Taping the chest tightly restricts the breath she cannot take, and anticoagulation does not treat rib pain.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "surgery",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "day-7-fever-after-colectomy-is-not-atelectasis",
+    "difficulty": 5,
+    "scenario": "A 66-year-old man is seven days after a sigmoid colectomy. This morning he has a fever of 39.0°C, heart rate 120, and new diffuse abdominal tenderness with guarding. He passed flatus yesterday. A note from the night team attributes every postoperative fever to atelectasis and orders incentive spirometry only.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Incentive spirometry only",
+      "A chest radiograph in the morning and no abdominal examination follow-up",
+      "Discharge if the incentive spirometer volume improves",
+      "Resuscitate, start antibiotics, and obtain urgent imaging or return to the operating room",
+      "Loperamide for presumed diarrhea"
+    ],
+    "correctAnswer": "Resuscitate, start antibiotics, and obtain urgent imaging or return to the operating room",
+    "explanation": "Fever, tachycardia, and a newly guarded abdomen a week after colectomy suggest leak or abscess, not routine atelectasis. Atelectasis is an early, mild explanation and does not produce peritonitis. He needs resuscitation, antibiotics, and a surgeon, with imaging only if it will not delay source control. Loperamide and discharge ignore an abdominal disaster. Incentive spirometry only is the treatment for atelectasis, which this peritonitis is not.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "necrotizing-infection-after-hernia-repair",
+    "difficulty": 5,
+    "scenario": "Eighteen hours after an elective hernia repair, a 55-year-old man has a temperature of 39.3°C, heart rate 140, and pain far beyond the redness at the incision. Blood pressure is 96/60 mm Hg. A small blister is forming. He is toxic. The night plan is a wound check tomorrow.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Emergent operative exploration and broad intravenous antibiotics",
+      "A wound check tomorrow",
+      "Topical mupirocin",
+      "Oral cephalexin and discharge",
+      "CT in the morning if the pain continues"
+    ],
+    "correctAnswer": "Emergent operative exploration and broad intravenous antibiotics",
+    "explanation": "Pain out of proportion, bullae, high fever, and tachycardia hours after surgery are necrotizing infection until the operating room says otherwise. Tomorrow is too late. Oral or topical antibiotics do not reach a necrotizing process. Imaging must not delay the incision. He needs immediate debridement and intravenous antibiotics. Oral cephalexin and discharge, or a CT in the morning if the pain continues, both delay the incision he needs tonight.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "endocrinology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "thyroiditis-versus-graves-postpartum",
+    "difficulty": 5,
+    "scenario": "A 30-year-old woman is four months postpartum and has palpitations. TSH is suppressed and free T4 is high. She has a nontender thyroid. Radioiodine uptake, arranged because she is not breastfeeding, is very low. She has no eye disease. A plan starts methimazole and a beta blocker as if uptake were high.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Subtotal thyroidectomy before the uptake result is believed",
+      "Propylthiouracil and methimazole together",
+      "A beta blocker if needed, and no methimazole, because uptake shows thyroiditis",
+      "Methimazole for a year",
+      "Radioiodine ablation this week"
+    ],
+    "correctAnswer": "A beta blocker if needed, and no methimazole, because uptake shows thyroiditis",
+    "explanation": "Low uptake with thyrotoxicosis is thyroiditis, which releases stored hormone and is not making new hormone. Antithyroid drugs do not help and are not started. A beta blocker treats symptoms until the hormone clears. Ablation and surgery treat overproduction she does not have. Combining two antithyroid drugs adds harm without a target. Methimazole for a year, or propylthiouracil plus methimazole, treats hormone production she is not making.",
+    "ref": "ata-hyper-2016"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "psychiatry",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "treat-a-positive-depression-screen",
+    "difficulty": 4,
+    "scenario": "A 47-year-old man is in clinic for a blood-pressure check. A PHQ-9 score is 18. He has low mood, he has stopped seeing friends, and he wakes early. He has no plan or intent to kill himself, and he agrees he needs help. The visit note says 'screen positive, recheck in one year.' He reports low mood and early waking, and he appears tired but not psychotic.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start treatment or refer now, and arrange close follow-up",
+      "Start an antipsychotic as the first drug for uncomplicated depression",
+      "Recheck the score in one year",
+      "A benzodiazepine as the antidepressant",
+      "Tell him depression screening is optional and not to worry"
+    ],
+    "correctAnswer": "Start treatment or refer now, and arrange close follow-up",
+    "explanation": "A PHQ-9 of 18 with clear impairment is depression that needs treatment or a prompt referral, not a one-year delay. Screening programs exist to act on the result. A benzodiazepine is not an antidepressant. Dismissing the screen abandons him. An antipsychotic is not first-line therapy for uncomplicated major depression. Rechecking the score in one year leaves a PHQ-9 of 18 untreated.",
+    "ref": "uspstf-depression"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-stop-levodopa-abruptly",
+    "difficulty": 5,
+    "scenario": "A 74-year-old man with Parkinson disease takes carbidopa-levodopa four times a day. He is admitted for pneumonia and the admitting order set omits all home medications. By the next afternoon he is rigid, febrile at 38.9°C, and confused, with a normal leukocyte count and a clear chest radiograph after antibiotics have started. Creatine kinase is rising.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give a large dose of metoclopramide",
+      "Give haloperidol for the confusion",
+      "Start dantrolene and never restart levodopa",
+      "Restart carbidopa-levodopa promptly",
+      "Continue to hold levodopa until discharge"
+    ],
+    "correctAnswer": "Restart carbidopa-levodopa promptly",
+    "explanation": "Abrupt cessation of levodopa can cause a neuroleptic-malignant-like state: rigidity, fever, and confusion. The drug should be restarted promptly by a route he can take. Holding it until discharge prolongs the crisis. Haloperidol and metoclopramide block dopamine and worsen parkinsonism and this syndrome. Dantrolene does not replace dopaminergic therapy.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "maintenance-asm-after-status",
+    "difficulty": 4,
+    "scenario": "A 46-year-old woman is ready to leave the hospital two days after convulsive status epilepticus. She had no prior seizure diagnosis, imaging and glucose were addressed, and she has been seizure-free on a loading dose of levetiracetam. The discharge plan says to take no antiseizure drug and to drive to work tomorrow.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A benzodiazepine at bedtime as the maintenance drug",
+      "Stop the levetiracetam load's follow-through and give an antidepressant instead",
+      "Prescribe a maintenance antiseizure drug and tell her not to drive",
+      "Phenytoin only if she has another episode of status",
+      "No drug and no driving restriction"
+    ],
+    "correctAnswer": "Prescribe a maintenance antiseizure drug and tell her not to drive",
+    "explanation": "After status epilepticus she needs a maintenance antiseizure drug and counseling not to drive, according to local law, until a clinician clears her. Sending her out with no drug and permission to drive tomorrow risks a recurrent seizure at the wheel. Waiting for a second episode of status is too late. A bedtime benzodiazepine is not a maintenance plan for epilepsy. An antidepressant does not prevent seizures. No drug and no driving restriction is how a recurrent seizure happens on the way to work.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "avoid-opioid-plus-benzo",
+    "difficulty": 5,
+    "scenario": "An 80-year-old man takes oxycodone for severe spinal stenosis and lorazepam for sleep. He is drowsy and has nodded off in clinic. Oxygen saturation is 93% on room air. Pain is present but he is not in a crisis. There is no cancer. A refill renews both drugs at the same doses.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add a muscle relaxant",
+      "Increase both because he is still in pain and still anxious",
+      "Add diphenhydramine for the residual wakefulness",
+      "Refill both at the same doses",
+      "Taper the benzodiazepine and reassess the opioid; do not refill both unchanged"
+    ],
+    "correctAnswer": "Taper the benzodiazepine and reassess the opioid; do not refill both unchanged",
+    "explanation": "The combination of an opioid and a benzodiazepine is a high-risk sedative pair in older adults and should not be refilled unchanged after observed somnolence and borderline saturation. Increasing both, or adding a muscle relaxant or diphenhydramine, deepens respiratory depression and delirium. Taper the benzodiazepine, reconsider the opioid dose, and treat pain with safer measures where possible. Increasing both because he is still in pain and still anxious deepens the sedation already visible in clinic.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "weight-gain-adjust-loop-diuretic",
+    "difficulty": 4,
+    "scenario": "A 63-year-old man with HFrEF calls because his weight is up 2.5 kg in three days. He has new ankle edema and can still speak full sentences. Oxygen saturation is 96% and he has no chest pain. He takes furosemide 40 mg daily and foundational therapy. His action plan, which he has not used, says to increase the loop diuretic for a gain of this size.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add ibuprofen for the ankle swelling",
+      "Start antibiotics for presumed pneumonia",
+      "Go to bed and call if he gains another 5 kg",
+      "Stop the evidence-based beta blocker tonight",
+      "Increase the loop diuretic for a few days and review the next day"
+    ],
+    "correctAnswer": "Increase the loop diuretic for a few days and review the next day",
+    "explanation": "A gain of 2 to 3 kg with edema is the usual trigger for a short-term increase in the loop diuretic, with next-day contact. Ibuprofen worsens fluid retention. Waiting for another 5 kg invites a readmission. Stopping the beta blocker removes disease-modifying therapy during a mild volume bump. There is no fever or hypoxia to support pneumonia.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "confirm-albuminuria-before-ignoring-a-dipstick",
+    "difficulty": 4,
+    "scenario": "A 58-year-old man with diabetes has a urine dipstick positive for protein at a workplace physical. He feels well. Blood pressure is 146/88 mm Hg. eGFR is 74 mL/min/1.73 m². No urine albumin-creatinine ratio has ever been done. The form says 'trace protein, no action.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No action, because a dipstick is enough to exclude kidney disease",
+      "A kidney biopsy tomorrow",
+      "Stop his diabetes care because the eGFR is above 60",
+      "Start dual ACE-inhibitor and ARB therapy today",
+      "Quantify albuminuria with a urine albumin-creatinine ratio and treat the blood pressure"
+    ],
+    "correctAnswer": "Quantify albuminuria with a urine albumin-creatinine ratio and treat the blood pressure",
+    "explanation": "A positive dipstick needs quantification with an albumin-creatinine ratio, and his blood pressure is already above goal. Ignoring it misses diabetic kidney disease while the eGFR is still preserved. Dual renin-angiotensin blockade is harmful. A biopsy is not the first test for typical diabetic albuminuria. An eGFR of 74 does not mean the kidney is uninvolved. Starting dual ACE-inhibitor and ARB therapy today combines two renin-angiotensin drugs and skips the quantification.",
+    "ref": "kdigo-ckd-2024"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "eye-exam-in-diabetes",
+    "difficulty": 4,
+    "scenario": "A 55-year-old man with type 2 diabetes for 12 years has not had a dilated eye examination in four years. A1c is 8.0%. He has no visual complaint. A visit note says screening can wait until he notices a change in vision.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Refer for a dilated eye examination now",
+      "A visual acuity card in the office is a full substitute for a dilated examination",
+      "Stop glucose-lowering therapy to rest the retina",
+      "Start chronic prednisone eye prophylaxis",
+      "Wait until vision changes"
+    ],
+    "correctAnswer": "Refer for a dilated eye examination now",
+    "explanation": "Diabetic retinopathy is often asymptomatic until it is advanced, so a dilated examination is scheduled on a regular interval and he is already overdue. Waiting for symptoms misses treatable disease. An acuity card does not see the retina. Stopping glucose therapy and giving chronic prednisone both harm him and do not screen the eye.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "infectious-disease",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cdi-first-episode-fidaxomicin",
+    "difficulty": 4,
+    "scenario": "A 64-year-old man has had watery stools eight times a day since finishing antibiotics for pneumonia. Toxin assay is positive. Leukocyte count is 13,000/µL, creatinine is at baseline, and blood pressure is 122/74 mm Hg. The abdomen is soft. He was given loperamide in the waiting room.",
+    "question": "Which therapy is most appropriate?",
+    "options": [
+      "Intravenous vancomycin alone",
+      "Loperamide alone",
+      "Metronidazole as preferred therapy",
+      "No treatment if the stool is not bloody",
+      "Fidaxomicin for 10 days, and stop loperamide"
+    ],
+    "correctAnswer": "Fidaxomicin for 10 days, and stop loperamide",
+    "explanation": "A first nonfulminant episode is treated with fidaxomicin, or with vancomycin if fidaxomicin is not used. Loperamide is stopped. Intravenous vancomycin does not treat colonic disease. Metronidazole is no longer preferred. Nonbloody stool does not make toxin-positive colitis colonization.",
+    "ref": "idsa-cdi-2021"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "seizure-driving-and-provoked-versus-unprovoked",
+    "difficulty": 4,
+    "scenario": "A 36-year-old man had a first seizure last night. Glucose, sodium, and a CT scan are normal, and he was not withdrawing from alcohol. He feels well this morning and has a commercial driver's job tomorrow. He has no antiseizure drug on the list. He asks to leave and drive the truck.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A lumbar puncture before any counseling, despite a normal examination and no fever",
+      "Phenytoin for one dose and then the highway",
+      "Start an antibiotic for the seizure",
+      "Do not clear him to drive; evaluate and discuss an antiseizure drug",
+      "Clear him to drive the truck tomorrow"
+    ],
+    "correctAnswer": "Do not clear him to drive; evaluate and discuss an antiseizure drug",
+    "explanation": "An unprovoked first seizure with a normal emergency evaluation still requires driving restriction under local rules and a real discussion of recurrence risk and medication, not a clearance for a commercial truck tomorrow. Antibiotics do not treat a seizure. Lumbar puncture is for suspected meningitis, which he does not have. One dose of phenytoin is not a plan and does not make driving safe.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "continue-beta-blocker-in-mild-decompensation",
+    "difficulty": 4,
+    "scenario": "A 62-year-old man with HFrEF comes in with a 1.5 kg weight gain and mild edema. He is warm, blood pressure is 118/74 mm Hg, and he is speaking in full sentences. He has taken carvedilol 25 mg twice daily for a year. Oxygen saturation is 97%. A covering note stops the beta blocker 'until the fluid is gone.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start a dobutamine infusion at home",
+      "Replace carvedilol with diltiazem",
+      "Stop carvedilol until a dry weight is reached",
+      "Continue carvedilol and adjust the loop diuretic",
+      "Add ibuprofen and stop the diuretic"
+    ],
+    "correctAnswer": "Continue carvedilol and adjust the loop diuretic",
+    "explanation": "In warm, perfusing, mildly congested HFrEF, the evidence-based beta blocker is continued and the diuretic is adjusted. Stopping carvedilol during a small volume bump risks rebound and loss of survival benefit. Diltiazem is harmful in HFrEF. An NSAID with diuretic withdrawal worsens congestion. Home dobutamine is not treatment for mild edema.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "avoid-thiazolidinedione-in-hf",
+    "difficulty": 4,
+    "scenario": "A 67-year-old woman with HFrEF, ejection fraction 30%, and type 2 diabetes has an A1c of 8.1% on metformin. She is euvolemic. A refill request adds pioglitazone because it is inexpensive. She has no history of bladder cancer and no osteoporosis.",
+    "question": "Which diabetes plan is most appropriate?",
+    "options": [
+      "Use ibuprofen as an insulin sensitizer",
+      "Start pioglitazone and stop the loop diuretic",
+      "Do not use pioglitazone; choose an agent that does not cause fluid retention",
+      "Start pioglitazone",
+      "Stop metformin and all other drugs"
+    ],
+    "correctAnswer": "Do not use pioglitazone; choose an agent that does not cause fluid retention",
+    "explanation": "Thiazolidinediones cause fluid retention and are avoided in heart failure. An SGLT2 inhibitor or a GLP-1 receptor agonist would fit both the A1c and the heart. Stopping the diuretic to 'make room' for pioglitazone invites edema. Ibuprofen is not diabetes therapy. Metformin can stay if the kidney allows it.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "copd-action-plan-steroid-duration",
+    "difficulty": 4,
+    "scenario": "A 71-year-old man with COPD calls on day two of increased dyspnea and purulent sputum. He is speaking in sentences, oxygen saturation on his home check is 93%, and he is not drowsy. His action plan starts an antibiotic he has used before and prednisone. The prescription he was given is prednisone 40 mg daily for 21 days with a taper.",
+    "question": "Which steroid plan is most appropriate?",
+    "options": [
+      "Inhaled corticosteroid monotherapy and no oral steroid for this exacerbation",
+      "Prednisone 10 mg daily for six months",
+      "A 21-day taper",
+      "Prednisone 40 mg daily for five days, without a three-week taper",
+      "No systemic steroid because he is at home"
+    ],
+    "correctAnswer": "Prednisone 40 mg daily for five days, without a three-week taper",
+    "explanation": "A COPD exacerbation treated with systemic steroid uses about five days of prednisone 40 mg, not a three-week taper, including when the patient is well enough to be at home. Six months of prednisone is harm, not a plan. He has the cardinal symptoms that justify the short course. An inhaler alone does not replace systemic steroid for an exacerbation that has already declared itself.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "asthma-do-not-stop-controller-after-a-good-month",
+    "difficulty": 4,
+    "scenario": "A 26-year-old woman with asthma has been well for six weeks on budesonide-formoterol. She has had two intubations in prior years. She feels so well that she stopped the inhaler a week ago and now wakes coughing. Oxygen saturation is 97% and she speaks in sentences. She asks for a refill of albuterol only.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop all inhalers because six good weeks means asthma has resolved",
+      "Restart the inhaled corticosteroid-formoterol regimen and do not leave her on albuterol alone",
+      "Start salmeterol alone",
+      "A five-day steroid every month and no inhaler",
+      "Refill albuterol only"
+    ],
+    "correctAnswer": "Restart the inhaled corticosteroid-formoterol regimen and do not leave her on albuterol alone",
+    "explanation": "Prior intubation marks high-risk asthma. A good month is not a cure, and stopping the controller has already brought symptoms back. Albuterol alone, or salmeterol alone, leaves inflammation untreated and salmeterol monotherapy is unsafe. Monthly steroid bursts are not a controller. Restart the regimen that was working.",
+    "ref": "gina-2025"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hypoglycemia-unawareness-relax-target",
+    "difficulty": 5,
+    "scenario": "A 54-year-old man with type 1 diabetes no longer feels the warning symptoms of hypoglycemia. Last week a coworker found him unresponsive; glucose was 32 mg/dL. A1c is 6.5%. He has been tightening doses to stay below 100 mg/dL before meals. He drives a delivery van.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add a sulfonylurea",
+      "Clear him to keep driving the van without a medication change",
+      "Stop all insulin for a month",
+      "Tighten further toward a fasting glucose of 70 mg/dL",
+      "Relax the glucose target for several weeks and reduce insulin so awareness can return"
+    ],
+    "correctAnswer": "Relax the glucose target for several weeks and reduce insulin so awareness can return",
+    "explanation": "Hypoglycemia unawareness is treated by strictly avoiding lows for several weeks so counter-regulation can recover, which means a higher target and less insulin. Tightening toward 70 mg/dL will produce another severe event. A sulfonylurea is not used in type 1 diabetes and causes more hypoglycemia. He should not drive a van until this is addressed. Stopping all insulin causes ketoacidosis. Clearing him to keep driving the van without a medication change leaves the next severe low on the road.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "graves-treat-not-ignore-in-pregnancy",
+    "difficulty": 5,
+    "scenario": "A 27-year-old woman at 12 weeks of gestation has heat intolerance, a heart rate of 124, and a diffuse goiter. TSH is suppressed and free T4 is twice normal. Thyroid-stimulating immunoglobulin is positive. She is vomiting but keeping down some fluids. A note says pregnancy causes tachycardia, so no treatment is needed.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Methimazole is required in the first trimester and propylthiouracil is forbidden",
+      "Iodinated contrast as long-term monotherapy",
+      "No treatment until after delivery",
+      "Radioiodine this week",
+      "Start propylthiouracil and a beta blocker, and refer for urgent endocrine and obstetric care"
+    ],
+    "correctAnswer": "Start propylthiouracil and a beta blocker, and refer for urgent endocrine and obstetric care",
+    "explanation": "Overt Graves disease in pregnancy is treated. In the first trimester propylthiouracil is preferred over methimazole because methimazole has a higher risk of specific birth defects. A beta blocker can be used for symptomatic tachycardia. Waiting until delivery leaves her and the fetus thyrotoxic. Radioiodine is contraindicated in pregnancy. Contrast is not a long-term regimen.",
+    "ref": "ata-hyper-2016"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "itp-pregnancy-no-routine-cesarean",
+    "difficulty": 4,
+    "scenario": "A 30-year-old woman at 36 weeks has ITP. Platelets are 70,000/µL on prednisone, and she has no bleeding. The fetus has no known indication for cesarean delivery. A birth plan says cesarean is mandatory because the mother has ITP.",
+    "question": "Which delivery plan is most appropriate?",
+    "options": [
+      "Stop prednisone the morning of induction",
+      "Platelet transfusion to 150,000/µL before a normal vaginal delivery",
+      "Cesarean solely because of maternal ITP",
+      "Warfarin until delivery",
+      "Mode of delivery follows obstetric indications, not the ITP label"
+    ],
+    "correctAnswer": "Mode of delivery follows obstetric indications, not the ITP label",
+    "explanation": "Maternal ITP is not itself an indication for cesarean delivery. The route is chosen for obstetric reasons. Prednisone that is holding the count should not be stopped on the morning of delivery. Transfusion to a normal count is unnecessary at 70,000/µL without bleeding or a procedure that requires it. Warfarin is not ITP treatment and is harmful this late in pregnancy.",
+    "ref": "ash-itp-2019"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "vaccine-counsel-before-discharge-after-splenectomy",
+    "difficulty": 4,
+    "scenario": "A 40-year-old woman had a splenectomy yesterday for trauma and is ready to leave. Vaccines were given this morning. Nobody has told her what to do if she develops a fever next month. She is afebrile now and the wound is clean.",
+    "question": "Which counseling is most appropriate?",
+    "options": [
+      "Antibiotics are harmful if the spleen is absent",
+      "She no longer needs any vaccines because one set was given",
+      "Fever can wait for a routine clinic visit next month",
+      "Fever is an emergency after splenectomy and she needs prompt antibiotics",
+      "A fever at home should be treated only with ibuprofen"
+    ],
+    "correctAnswer": "Fever is an emergency after splenectomy and she needs prompt antibiotics",
+    "explanation": "Asplenic patients are told that fever may be the start of overwhelming sepsis and that they should seek care immediately, often with a supply of antibiotics as advised by the surgical team. Waiting a month, or using only ibuprofen, is how that infection is missed. Vaccines already given do not end the need for boosters and education. Antibiotics are not harmful because the spleen is gone; they are sometimes lifesaving.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "compartment-syndrome-do-not-wait-for-absent-pulse",
+    "difficulty": 5,
+    "scenario": "A 24-year-old man has a tibial fracture in a splint. Pain is severe despite opioids and explodes when the toes are passively stretched. The calf is swollen and wooden. Pulses are still present and the foot is warm. It is midnight. A plan says to recheck pulses in the morning.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Emergent fasciotomy",
+      "Recheck pulses in the morning",
+      "Elevation and ice only",
+      "Anticoagulation instead of surgery",
+      "Loosen nothing and add a tighter wrap"
+    ],
+    "correctAnswer": "Emergent fasciotomy",
+    "explanation": "Compartment syndrome is diagnosed from pain, pain with passive stretch, and a tense compartment. Pulses are lost late, so waiting for a pulseless foot waits for irreversible muscle death. A tighter wrap and ice worsen ischemia. Anticoagulation does not open a fascia. He needs fasciotomy now. Elevation and ice only cool a compartment that needs to be opened.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "open-fracture-antibiotics-and-debridement",
+    "difficulty": 4,
+    "scenario": "A 19-year-old man has a tibial fracture with a 3 cm wound through which bone is visible. The foot is warm and pulses are present. There is no compartment tightness. Tetanus immunization is out of date. A plan rinses the wound in the emergency department, closes it, and sends him home on oral antibiotics.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A walking boot and primary closure tonight",
+      "Intravenous antibiotics, tetanus prophylaxis, splinting, and operative irrigation and debridement",
+      "Emergency-department closure and oral antibiotics only",
+      "No antibiotics because the wound was rinsed",
+      "Observation for ten days before any antibiotic"
+    ],
+    "correctAnswer": "Intravenous antibiotics, tetanus prophylaxis, splinting, and operative irrigation and debridement",
+    "explanation": "An open fracture needs early intravenous antibiotics, tetanus update, immobilization, and operative debridement. Closing it in the emergency department and relying on oral antibiotics traps contamination. Rinsing does not sterilize bone. A walking boot on an unfixed open fracture is not care. Waiting ten days for the first antibiotic invites osteomyelitis.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "surgery",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "stable-blunt-splenic-injury-ct",
+    "difficulty": 4,
+    "scenario": "A 28-year-old man struck his abdomen on a handlebar. He is tender in the left upper quadrant but talking comfortably. Blood pressure is 122/74 mm Hg and heart rate is 84. Hemoglobin is 13.8 g/dL. FAST is negative. A plan takes him straight to laparotomy.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Discharge with no imaging",
+      "CT of the abdomen",
+      "Diagnostic peritoneal lavage as the only test in this stable patient",
+      "Oral antibiotics and no further examination",
+      "Immediate laparotomy"
+    ],
+    "correctAnswer": "CT of the abdomen",
+    "explanation": "He is hemodynamically stable, so blunt solid-organ injury is defined by CT, not by an immediate laparotomy. Many splenic injuries are observed. Discharge with a negative FAST misses injuries FAST does not see well. Peritoneal lavage is rarely the right sole test in a stable patient who can have CT. Antibiotics do not evaluate the spleen.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "penetrating-trauma-to-or-if-unstable",
+    "difficulty": 5,
+    "scenario": "A 30-year-old man is shot in the abdomen. Blood pressure is 74/42 mm Hg after two liters of crystalloid, heart rate is 146, and the abdomen is distended. FAST shows free fluid. He is pale and diaphoretic. A plan orders a CT scan once the pressure is normal.",
+    "question": "Which resuscitation plan is most appropriate?",
+    "options": [
+      "Oral rehydration and local wound care",
+      "Albumin and observation",
+      "Another two liters of saline, then CT",
+      "Vasopressin before any blood or operation",
+      "Blood-product resuscitation and laparotomy, limiting further crystalloid"
+    ],
+    "correctAnswer": "Blood-product resuscitation and laparotomy, limiting further crystalloid",
+    "explanation": "Hypotension, peritonitis physiology, and free fluid after a gunshot wound mean the operating room, with blood rather than more crystalloid. Waiting for a normal pressure to get a CT delays source control. Vasopressin and albumin do not stop bleeding. Oral fluids are irrelevant in hemorrhagic shock. Another two liters of saline, then CT, delays the operating room and dilutes the bleeding patient.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "critical-care",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cap-five-days-at-follow-up",
+    "difficulty": 4,
+    "scenario": "A 60-year-old man is seen on day 5 of treatment for community-acquired pneumonia. He has been afebrile for 48 hours, oxygen saturation is 97% on room air, and he is eating. The radiograph still shows the original infiltrate, smaller than at admission. A note extends antibiotics to 14 days because the film is not clear.",
+    "question": "Which duration is most appropriate?",
+    "options": [
+      "Fourteen days because of residual infiltrate",
+      "Six weeks for presumed necrotizing pneumonia",
+      "Stop antibiotics at five days",
+      "Continue until the radiograph clears",
+      "Stop only the macrolide and continue a beta-lactam for another week"
+    ],
+    "correctAnswer": "Stop antibiotics at five days",
+    "explanation": "Uncomplicated pneumonia that is clinically stable is treated for five days. The radiograph lags behind the patient and is not a reason to extend therapy. Fourteen days, six weeks, and an extra week of beta-lactam overtreat a recovering infection and add adverse effects.",
+    "ref": "ats-cap-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "critical-care",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "sepsis-source-control-not-broader-antibiotics-alone",
+    "difficulty": 5,
+    "scenario": "A 74-year-old woman with a blocked ureteral stone has fever, a heart rate of 120, and a blood pressure of 84/50 mm Hg despite fluids. Urine is infected. Antibiotics were started an hour ago. She remains in shock. A plan adds a second and third antibiotic and does not call urology.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add antibiotics only and recheck tomorrow",
+      "Urgent source control to decompress the kidney, in addition to antibiotics and resuscitation",
+      "Nephrectomy tonight as the first procedure",
+      "Stop fluids because antibiotics were given",
+      "Oral antibiotics and a clinic visit in three days"
+    ],
+    "correctAnswer": "Urgent source control to decompress the kidney, in addition to antibiotics and resuscitation",
+    "explanation": "Obstructed pyelonephritis with septic shock needs decompression, usually a stent or nephrostomy, not another antibiotic in place of drainage. Tomorrow and a three-day clinic delay are source-control failures. Stopping fluids removes resuscitation. Nephrectomy is not the first procedure when drainage can save the kidney.",
+    "ref": "ssc-2021"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "delirium-stop-anticholinergic",
+    "difficulty": 4,
+    "scenario": "An 86-year-old man is inattentive and picking at the air on the second night in hospital. He received diphenhydramine for sleep and oxybutynin was continued from home. Oxygen saturation is 96%, glucose is 118 mg/dL, and sodium is 138 mEq/L. There is no focal weakness. A note starts haloperidol around the clock before the medication list is reviewed.",
+    "question": "Which first step is most appropriate?",
+    "options": [
+      "Stop diphenhydramine and oxybutynin, and look for other reversible causes before standing antipsychotics",
+      "Add a benzodiazepine for sleep",
+      "Four-point restraints as the treatment of delirium",
+      "Scheduled haloperidol without stopping the anticholinergics",
+      "Ignore the confusion because it is nighttime"
+    ],
+    "correctAnswer": "Stop diphenhydramine and oxybutynin, and look for other reversible causes before standing antipsychotics",
+    "explanation": "Anticholinergics are a common, reversible cause of delirium. Stop them and check for infection, retention, and pain before committing to standing haloperidol. Adding a benzodiazepine worsens delirium except in specific withdrawal states he does not have. Restraints are not therapy. Nighttime is when delirium shows itself; it is not a reason to skip the evaluation.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "psychiatry",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "postpartum-depression-treat",
+    "difficulty": 5,
+    "scenario": "A 29-year-old woman is six weeks postpartum. She cannot sleep even when the infant sleeps, she feels worthless, and a PHQ-9 score is 20. She has no psychosis and no plan to harm herself or the baby, and she says she wants help. A relative says sadness after birth is normal and should not be treated for a year. She reports that she cannot sleep even when the infant sleeps.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop all contact with the infant as the treatment",
+      "An antipsychotic as the first drug for uncomplicated depression",
+      "Start treatment or refer now, and arrange close follow-up",
+      "No treatment for a year because postpartum sadness is expected",
+      "A benzodiazepine as the antidepressant"
+    ],
+    "correctAnswer": "Start treatment or refer now, and arrange close follow-up",
+    "explanation": "This is more than baby blues: six weeks of impairment and a PHQ-9 of 20 need treatment or prompt referral. A year of waiting is how postpartum depression becomes entrenched. A benzodiazepine is not an antidepressant. Separating her from the infant is not the therapy. An antipsychotic is not first-line for nonpsychotic depression. No treatment for a year because postpartum sadness is expected is how this illness is missed.",
+    "ref": "uspstf-depression"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "continue-ace-if-creatinine-rise-under-30",
+    "difficulty": 4,
+    "scenario": "A 63-year-old man with diabetic kidney disease started ramipril two weeks ago. Creatinine rose from 1.4 to 1.6 mg/dL, about 14%. Potassium is 4.7 mEq/L. Blood pressure is at goal and he is euvolemic. The urine albumin-creatinine ratio was 400 mg/g. A lab message says to stop the ACE inhibitor.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Replace it with ibuprofen",
+      "Start dialysis for a creatinine of 1.6 mg/dL",
+      "Continue ramipril",
+      "Stop it because creatinine rose",
+      "Add an ARB to ramipril"
+    ],
+    "correctAnswer": "Continue ramipril",
+    "explanation": "A rise under 30% after an ACE inhibitor, with a safe potassium and no volume problem, is expected and the drug is continued for albuminuric diabetic kidney disease. Stopping it removes the kidney protection just started. Adding an ARB creates dual blockade. Ibuprofen is nephrotoxic. Dialysis is not indicated. Stopping ramipril because creatinine rose, or adding an ARB to ramipril, either removes protection or stacks two blockers.",
+    "ref": "kdigo-ckd-2024"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-bridge-doac-for-low-risk-procedure",
+    "difficulty": 4,
+    "scenario": "A 70-year-old man on apixaban for atrial fibrillation, CHA2DS2-VASc score 3, is scheduled for a cataract extraction. He has no prior stroke and no mechanical valve. The eye surgeon asks for heparin bridging and to stop apixaban five days ahead, which is longer than needed for this drug. He reports no prior stroke, and examination shows an uncomplicated cataract.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Do not bridge with heparin; interrupt apixaban only briefly if interruption is needed at all",
+      "Continue full-dose apixaban through an operation that the surgeon has said requires a brief hold, and also bridge",
+      "Stop apixaban a week ahead and give aspirin only",
+      "Warfarin with an INR of 4 on the morning of surgery",
+      "Heparin bridging for five days"
+    ],
+    "correctAnswer": "Do not bridge with heparin; interrupt apixaban only briefly if interruption is needed at all",
+    "explanation": "Cataract surgery is a minimal-bleed procedure, and heparin bridging of a direct oral anticoagulant adds major bleeding without fewer strokes in this setting. If a hold is used, apixaban is stopped for a short interval matched to kidney function, not five to seven days, and it is not replaced with aspirin. Continuing full anticoagulation plus bridging doubles the drug. An INR of 4 is irrelevant and unsafe; he is not on warfarin.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-replace-insulin-with-glp1-in-type-1",
+    "difficulty": 5,
+    "scenario": "A 22-year-old man with type 1 diabetes since age 9 wants to stop insulin and use a friend's semaglutide because he wants to lose weight. A1c is 7.6%. He has no residual C-peptide on a recent test. He has had ketoacidosis twice when he omitted basal insulin.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop insulin and start metformin",
+      "Stop insulin and start semaglutide",
+      "Stop insulin on days he does not eat",
+      "Use sliding-scale insulin only",
+      "Do not stop insulin; a GLP-1 receptor agonist cannot replace it in type 1 diabetes"
+    ],
+    "correctAnswer": "Do not stop insulin; a GLP-1 receptor agonist cannot replace it in type 1 diabetes",
+    "explanation": "Type 1 diabetes requires insulin. A GLP-1 receptor agonist does not replace basal insulin and stopping insulin risks ketoacidosis, which he has already had. Metformin and sliding-scale-only regimens also leave him without basal insulin. Skipping insulin on days he eats less is a common path into acidosis.",
+    "ref": "ada-2026"
+  }
+]

@@ -1,0 +1,1902 @@
+[
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "aki-stop-nsaid-and-give-volume",
+    "difficulty": 4,
+    "scenario": "A 72-year-old man has had vomiting for two days and has kept taking ibuprofen for a bad knee. He is thirsty. Blood pressure is 102/64 mm Hg lying and 84/58 mm Hg standing. Mucous membranes are dry. Creatinine has risen from 1.0 to 2.4 mg/dL. Potassium is 5.1 mEq/L. The bladder is not distended and a catheter returns 40 mL.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start dopamine at renal dose",
+      "Stop ibuprofen and give isotonic volume",
+      "Continue ibuprofen and add a thiazide",
+      "Start dialysis for a creatinine of 2.4 mg/dL",
+      "Give furosemide to make the oliguria nonoliguric"
+    ],
+    "correctAnswer": "Stop ibuprofen and give isotonic volume",
+    "explanation": "This is prerenal azotemia from volume loss plus an NSAID. Stop the nephrotoxin and restore volume with isotonic fluid. A thiazide and continued ibuprofen worsen the injury. Renal-dose dopamine does not protect the kidney. A loop diuretic does not fix hypovolemia and is not indicated without overload. Dialysis is not required for this number while he can still recover with volume.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "aki-stop-ace-when-hypotensive",
+    "difficulty": 5,
+    "scenario": "A 68-year-old woman with HFrEF is admitted with sepsis. Blood pressure is 78/50 mm Hg on norepinephrine. Creatinine rose from 1.3 to 2.8 mg/dL overnight. She is still taking lisinopril. Potassium is 5.6 mEq/L. Lungs have crackles, but she is in shock.",
+    "question": "Which blood-pressure and kidney plan is most appropriate?",
+    "options": [
+      "Give dopamine instead of norepinephrine",
+      "Hold lisinopril while she is in shock",
+      "Add spironolactone for the potassium",
+      "Start ibuprofen for fever",
+      "Continue lisinopril because ACE inhibitors protect the kidney"
+    ],
+    "correctAnswer": "Hold lisinopril while she is in shock",
+    "explanation": "ACE inhibitors are held during shock and acute kidney injury with rising potassium. Continuing lisinopril, or adding spironolactone, worsens hypotension and hyperkalemia. Ibuprofen further reduces GFR. Norepinephrine is the vasopressor of choice in septic shock; dopamine is not substituted for it to spare the kidney.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "post-renal-aki-image-before-dialysis",
+    "difficulty": 4,
+    "scenario": "A 76-year-old man cannot void after a long car ride. He has a history of prostate enlargement. The bladder is tense. Creatinine is 6.2 mg/dL from a baseline of 1.1. Potassium is 5.0 mEq/L and bicarbonate is 20 mEq/L. He is making no urine. A plan schedules dialysis because the creatinine is above 6.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give furosemide and recheck in the morning",
+      "Fluid-restrict him for 48 hours",
+      "Start dialysis before any bladder examination",
+      "Start tamsulosin only and send him home",
+      "Drain the bladder now and recheck the creatinine"
+    ],
+    "correctAnswer": "Drain the bladder now and recheck the creatinine",
+    "explanation": "A tense bladder and anuria after prostate disease is post-renal obstruction until drainage proves otherwise. Empty the bladder and the creatinine often falls. Dialysis is not the first move when a simple drain may reverse the number. A diuretic does not bypass a blocked outlet. Sending him home on tamsulosin alone leaves an obstructed, uremic patient. Fluid restriction treats the wrong physiology.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "rhabdomyolysis-isotonic-fluid",
+    "difficulty": 5,
+    "scenario": "A 28-year-old man is found after lying on the floor for a day. His thighs are swollen and tender. Creatine kinase is 48,000 U/L. Creatinine is 2.1 mg/dL. Potassium is 5.8 mEq/L. The urine dipstick is positive for blood but microscopy shows no red cells. He is awake and blood pressure is 110/70 mm Hg.",
+    "question": "Which fluid plan is most appropriate?",
+    "options": [
+      "Mannitol and bicarbonate as mandatory first therapy before any saline",
+      "A loop diuretic as the only treatment",
+      "Oral free water and observation",
+      "Hemodialysis now because the dipstick is positive",
+      "Large-volume isotonic saline"
+    ],
+    "correctAnswer": "Large-volume isotonic saline",
+    "explanation": "Pigment nephropathy from rhabdomyolysis is treated with aggressive isotonic saline to maintain urine flow. A diuretic alone, or free water, does not clear myoglobin. Alkalinization and mannitol are not required before saline and are not the priority. Dialysis is for the usual indications, not for a positive dipstick.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "contrast-hold-metformin",
+    "difficulty": 4,
+    "scenario": "A 70-year-old woman with type 2 diabetes and an eGFR of 34 mL/min/1.73 m² needs a contrast CT this afternoon for suspected diverticulitis. She took metformin this morning. She is not in heart failure. The order says to continue metformin through the scan and the next two days.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Cancel the CT because any contrast is forbidden below an eGFR of 45",
+      "Hold metformin at the time of contrast and restart after kidney function is shown to be stable",
+      "Start an SGLT2 inhibitor to replace the held metformin during the scan",
+      "Continue metformin without a creatinine check",
+      "Give oral bicarbonate as a substitute for holding metformin"
+    ],
+    "correctAnswer": "Hold metformin at the time of contrast and restart after kidney function is shown to be stable",
+    "explanation": "Metformin is held around iodinated contrast when the eGFR is reduced, and it is restarted only after kidney function is stable, because of lactic acidosis risk if AKI occurs. Continuing it with no check ignores that risk. An SGLT2 inhibitor is not a peri-scan substitute. Bicarbonate does not replace the hold. The scan itself can proceed when it is needed; the drug is what changes.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "ain-stop-the-offending-drug",
+    "difficulty": 5,
+    "scenario": "A 64-year-old man started a penicillin for cellulitis ten days ago. He now has a fever, a faint rash, and eosinophils of 8%. Creatinine rose from 0.9 to 2.6 mg/dL. The urine shows white cells and white-cell casts, no bacteria. A colleague adds gentamicin for the rising creatinine.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Add gentamicin and continue the penicillin",
+      "Start indomethacin for the fever",
+      "Give a loop diuretic to clear the casts",
+      "Stop the penicillin and do not add gentamicin",
+      "Start dialysis today for white-cell casts"
+    ],
+    "correctAnswer": "Stop the penicillin and do not add gentamicin",
+    "explanation": "Fever, rash, eosinophilia, and white-cell casts after a new beta-lactam are acute interstitial nephritis. The drug stops. Gentamicin is another nephrotoxin and does not treat sterile pyuria. An NSAID can itself cause interstitial nephritis. A diuretic does not remove the allergy. Dialysis is not indicated for casts alone.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cardiorenal-do-not-stop-diuretic-if-overloaded",
+    "difficulty": 5,
+    "scenario": "A 71-year-old man with HFrEF has oxygen saturation of 88% on 4 L, new rales, and a weight 3 kg above yesterday. Creatinine rose from 1.4 to 2.0 mg/dL. Potassium is 4.6 mEq/L. Blood pressure is 138/80 mm Hg. A sign-out says diuretics are contraindicated once creatinine rises.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give normal saline boluses for the creatinine rise",
+      "Give an intravenous loop diuretic for the pulmonary edema",
+      "Start dopamine and free-water restriction",
+      "Start dialysis because the creatinine doubled",
+      "Withhold all diuretics until creatinine returns to baseline"
+    ],
+    "correctAnswer": "Give an intravenous loop diuretic for the pulmonary edema",
+    "explanation": "Congestion with hypoxia is a reason to diurese even when creatinine has risen. Waiting for the creatinine to normalize leaves him in pulmonary edema. Dopamine and free water do not unload the lungs. Saline boluses worsen overload. A doubling of creatinine without refractory acidosis, hyperkalemia, or anuria is not itself a dialysis indication while a diuretic trial is possible.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "avoid-starch-for-resuscitation",
+    "difficulty": 4,
+    "scenario": "A 60-year-old man is in septic shock. He has received 30 mL/kg of crystalloid and still needs norepinephrine. Creatinine is 1.6 mg/dL. A colleague orders hydroxyethyl starch because 'colloid stays in the vessels.'",
+    "question": "Which fluid plan is most appropriate?",
+    "options": [
+      "Oral rehydration only",
+      "Use more crystalloid or blood products as indicated, not hydroxyethyl starch",
+      "Hydroxyethyl starch as the resuscitation fluid",
+      "Dextran as a renal-protective colloid",
+      "Free water as the bolus"
+    ],
+    "correctAnswer": "Use more crystalloid or blood products as indicated, not hydroxyethyl starch",
+    "explanation": "Hydroxyethyl starch increases kidney injury and mortality in sepsis and is not used for resuscitation. More crystalloid, or blood if he is bleeding, is the volume. Dextran is not renal protection. Free water and oral fluid do not resuscitate shock.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cap-outpatient-if-stable",
+    "difficulty": 4,
+    "scenario": "A 34-year-old man has two days of fever, a productive cough, and a focal infiltrate. Blood pressure is 124/76 mm Hg, respiratory rate 18, oxygen saturation 96% on room air, and blood urea nitrogen is normal. He has no comorbidities and no recent antibiotics. Local macrolide resistance is high. He can eat and has a ride home.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Discharge on amoxicillin",
+      "A 14-day course of levofloxacin because he is young",
+      "Admit for intravenous vancomycin",
+      "Azithromycin monotherapy",
+      "No antibiotic because he can walk"
+    ],
+    "correctAnswer": "Discharge on amoxicillin",
+    "explanation": "He meets criteria for outpatient treatment of community-acquired pneumonia. With high macrolide resistance, amoxicillin is preferred to azithromycin alone. Vancomycin and admission are for severe or MRSA-risk disease he does not have. Fourteen days is longer than he needs. Walking does not mean the pneumonia is viral; he has a focal infiltrate and fever.",
+    "ref": "ats-cap-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cap-oral-stepdown",
+    "difficulty": 4,
+    "scenario": "A 58-year-old woman was admitted with pneumonia and improved on ceftriaxone plus azithromycin. On day 3 she is afebrile, eating, and her oxygen saturation is 96% on room air. The team plans to keep intravenous antibiotics until the radiograph clears.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Continue intravenous therapy until the film is clear",
+      "Switch to metronidazole monotherapy",
+      "Add vancomycin because she is on day 3",
+      "Change to an oral regimen and plan a five-day total course if she stays stable",
+      "Stop antibiotics today because she is afebrile once"
+    ],
+    "correctAnswer": "Change to an oral regimen and plan a five-day total course if she stays stable",
+    "explanation": "Once a patient is clinically stable, oral step-down is appropriate and the radiograph should not dictate the duration. A five-day total course is enough for uncomplicated pneumonia. Vancomycin is not added without MRSA risk. Stopping on the first afebrile day may be before a minimum effective course if she has only just defervesced and treatment just began; the point of this case is step-down, not a one-day stop, and metronidazole does not treat typical pneumonia.",
+    "ref": "ats-cap-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "severe-cap-beta-lactam-plus-macrolide",
+    "difficulty": 5,
+    "scenario": "A 64-year-old woman with severe community-acquired pneumonia is admitted to intensive care. She has no prior MRSA or Pseudomonas, no recent hospitalization, and no intravenous antibiotics in the past 90 days. She is not in refractory shock. A colleague orders levofloxacin alone.",
+    "question": "Which regimen is most appropriate?",
+    "options": [
+      "Metronidazole plus levofloxacin",
+      "A beta-lactam plus a macrolide",
+      "Levofloxacin monotherapy",
+      "Azithromycin monotherapy",
+      "Vancomycin plus cefepime"
+    ],
+    "correctAnswer": "A beta-lactam plus a macrolide",
+    "explanation": "Severe pneumonia in the ICU is treated with a beta-lactam plus a macrolide, or a beta-lactam plus a respiratory fluoroquinolone. Fluoroquinolone monotherapy is not enough for severe disease. Azithromycin alone misses the beta-lactam. Vancomycin and cefepime add MRSA and Pseudomonas coverage she has no risk for. Metronidazole is not routine pneumonia therapy.",
+    "ref": "ats-cap-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "aspiration-no-routine-anaerobe-coverage",
+    "difficulty": 4,
+    "scenario": "A 48-year-old man aspirated during a seizure and has a new right-lower-lobe infiltrate and a low-grade fever. There is no cavitation, no empyema, and no foul sputum. Oxygen saturation is 95% on room air. The night team added metronidazole to ceftriaxone because his teeth are poor.",
+    "question": "Which antibiotic plan is most appropriate?",
+    "options": [
+      "Piperacillin-tazobactam plus metronidazole",
+      "Continue metronidazole for three weeks",
+      "Stop metronidazole and treat with a standard pneumonia regimen",
+      "Stop all antibiotics because aspiration is chemical",
+      "Clindamycin monotherapy"
+    ],
+    "correctAnswer": "Stop metronidazole and treat with a standard pneumonia regimen",
+    "explanation": "Uncomplicated aspiration pneumonia is treated like other pneumonia. Routine anaerobic coverage is not added just because dentition is poor, in the absence of abscess, empyema, or foul drainage. Clindamycin monotherapy and double anaerobic coverage overtreat. Stopping all antibiotics misses a true infiltrate with fever.",
+    "ref": "ats-cap-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "niv-for-copd-with-acidosis",
+    "difficulty": 5,
+    "scenario": "A 70-year-old man with a COPD exacerbation has pH 7.28, PaCO2 70 mm Hg, and PaO2 62 mm Hg on controlled oxygen. He is awake, cooperative, and not vomiting. Respiratory rate is 28. There is no do-not-intubate order. The board says to intubate immediately because the carbon dioxide is 70.",
+    "question": "Which ventilatory plan is most appropriate?",
+    "options": [
+      "Immediate intubation solely because PaCO2 is 70 mm Hg",
+      "No support because he is still speaking",
+      "High-flow oxygen alone and a blood gas in the morning",
+      "Heliox without pressure support",
+      "Start noninvasive ventilation now"
+    ],
+    "correctAnswer": "Start noninvasive ventilation now",
+    "explanation": "A COPD exacerbation with respiratory acidosis and a cooperative patient is treated first with noninvasive ventilation, which reduces the need for intubation. A carbon dioxide of 70 is not by itself a mandate to intubate. Oxygen alone without pressure support, or waiting until morning, leaves the acidosis untreated. He needs ventilatory support now, not observation because he can speak.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "copd-oxygen-target",
+    "difficulty": 5,
+    "scenario": "A 73-year-old man with COPD was placed on a nonrebreather mask and his saturation is now 100%. He has become somnolent. Repeat blood gas shows pH 7.22 and PaCO2 92 mm Hg, up from 58 mm Hg on arrival when saturation was 88%.",
+    "question": "Which oxygen plan is most appropriate?",
+    "options": [
+      "Give bicarbonate and leave the mask unchanged",
+      "Turn oxygen off completely and recheck in four hours",
+      "Keep the nonrebreather mask to hold saturation at 100%",
+      "Reduce inspired oxygen toward a saturation of 88% to 92% and support ventilation",
+      "Ignore the gas because the oximeter reads 100%"
+    ],
+    "correctAnswer": "Reduce inspired oxygen toward a saturation of 88% to 92% and support ventilation",
+    "explanation": "Excess oxygen in a COPD exacerbation can drive hypercapnia. The target is about 88% to 92%, with ventilatory support because he is now somnolent and severely acidemic. Holding 100% continues the harm. Cutting oxygen off entirely risks dangerous hypoxia. The oximeter does not measure ventilation. Bicarbonate does not fix the excess oxygen.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "critical-care",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "sepsis-antibiotics-and-fluids-in-first-hour",
+    "difficulty": 5,
+    "scenario": "A 67-year-old man from a nursing home has a fever of 39.4°C, heart rate 130, blood pressure 82/48 mm Hg, and confusion. Lactate is 4.1 mmol/L. A chronic Foley is in place and the urine is cloudy. He has received no fluids and no antibiotics. A plan waits for culture results before the first dose.",
+    "question": "Which immediate plan is most appropriate?",
+    "options": [
+      "Wait for sensitivities before any antibiotic",
+      "Hydrocortisone as the only first drug",
+      "Oral amoxicillin and a clinic visit tomorrow",
+      "Norepinephrine before any fluid",
+      "Draw cultures if they do not delay treatment, give intravenous antibiotics, and 30 mL/kg crystalloid"
+    ],
+    "correctAnswer": "Draw cultures if they do not delay treatment, give intravenous antibiotics, and 30 mL/kg crystalloid",
+    "explanation": "Septic shock is treated in the first hour with antibiotics and 30 mL/kg of crystalloid, after cultures if they will not delay the drug. Waiting for sensitivities, or using an oral drug tomorrow, misses the window. Steroids are for refractory shock, not the first action. Vasopressors come if hypotension persists after volume, not instead of volume.",
+    "ref": "ssc-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "critical-care",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "norepinephrine-not-dopamine-for-septic-shock",
+    "difficulty": 4,
+    "scenario": "A 70-year-old woman remains hypotensive at 78/46 mm Hg after 30 mL/kg of lactated Ringer's for pneumonia with septic shock. She has received antibiotics. A colleague starts dopamine because it 'supports the kidney.' She is lethargic and the skin is mottled.",
+    "question": "Which vasopressor plan is most appropriate?",
+    "options": [
+      "Phenylephrine as the default first agent",
+      "Vasopressin as the sole agent before norepinephrine",
+      "Start norepinephrine",
+      "More free water instead of a vasopressor",
+      "Dopamine as the first vasopressor"
+    ],
+    "correctAnswer": "Start norepinephrine",
+    "explanation": "Norepinephrine is the first-line vasopressor in septic shock. Dopamine causes more arrhythmias and is not renal protection. Phenylephrine and vasopressin are not the initial single agent in ordinary septic shock. Free water is the wrong fluid and does not replace a vasopressor after adequate crystalloid.",
+    "ref": "ssc-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "critical-care",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "steroids-only-if-shock-is-refractory",
+    "difficulty": 4,
+    "scenario": "A 62-year-old man with pneumonia has a blood pressure of 110/70 mm Hg after one liter of fluid and antibiotics. Lactate was 2.2 mmol/L and is falling. He is not on a vasopressor. A consultant orders hydrocortisone 50 mg every six hours 'for sepsis.'",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Fludrocortisone alone",
+      "Do not start hydrocortisone",
+      "Hydrocortisone because every sepsis case gets steroids",
+      "Stop antibiotics and give only steroids",
+      "A methylprednisolone burst for the infiltrate"
+    ],
+    "correctAnswer": "Do not start hydrocortisone",
+    "explanation": "Corticosteroids are considered when septic shock requires ongoing vasopressors, not for a patient whose pressure has already recovered. Routine steroids, fludrocortisone alone, or a pneumonia steroid burst are not this indication. Stopping antibiotics removes the treatment that is working.",
+    "ref": "ssc-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "critical-care",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "avoid-bicarb-if-ph-above-7-15",
+    "difficulty": 5,
+    "scenario": "A 58-year-old man with septic shock has a pH of 7.22, lactate 5 mmol/L, and bicarbonate 14 mEq/L. Blood pressure is 88/50 mm Hg on norepinephrine. He has no acute kidney injury hyperkalemia emergency. A bolus of sodium bicarbonate is ordered to 'correct the number.'",
+    "question": "Which acid-base plan is most appropriate?",
+    "options": [
+      "Do not give bicarbonate for this pH; treat the shock",
+      "Stop norepinephrine so the pH can rise",
+      "Hydrochloric acid",
+      "Sodium bicarbonate as the main therapy",
+      "Oral bicarbonate tablets and discharge"
+    ],
+    "correctAnswer": "Do not give bicarbonate for this pH; treat the shock",
+    "explanation": "Surviving Sepsis suggests against bicarbonate to improve hemodynamics when hypoperfusion lactic acidosis has a pH of 7.15 or higher. This pH is 7.22, so the treatment is source control, antibiotics, volume, and norepinephrine, not a bicarbonate bolus. Acid makes it worse. Stopping the vasopressor and sending him out are unsafe.",
+    "ref": "ssc-2021"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "critical-care",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "anaphylaxis-epinephrine-first",
+    "difficulty": 5,
+    "scenario": "A 24-year-old woman develops hives, wheezing, and hypotension of 78/40 mm Hg five minutes after a new antibiotic. Oxygen saturation is 90% on room air. She is stridorous. A nurse asks whether to start diphenhydramine and methylprednisolone and hold epinephrine until the rash is photographed.",
+    "question": "Which first drug is most appropriate?",
+    "options": [
+      "Albuterol only",
+      "Normal saline and observation without epinephrine",
+      "Diphenhydramine first",
+      "Intramuscular epinephrine now",
+      "Methylprednisolone first"
+    ],
+    "correctAnswer": "Intramuscular epinephrine now",
+    "explanation": "Anaphylaxis with airway involvement and shock is treated with intramuscular epinephrine immediately. Antihistamines and steroids do not replace it and must not delay it. Albuterol may help bronchospasm later but does not treat shock or airway edema. Fluid without epinephrine leaves the mediator-driven vasodilation untreated.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "hypertensive-emergency-with-encephalopathy",
+    "difficulty": 5,
+    "scenario": "A 55-year-old man has a blood pressure of 230/130 mm Hg, a severe headache, vomiting, and confusion. Papilledema is present. Creatinine is 1.4 mg/dL. CT shows no bleed. He is not a candidate for thrombolysis. A plan gives oral amlodipine and a clinic appointment tomorrow.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Oral amlodipine and discharge",
+      "Immediate systolic pressure of 100 mm Hg within five minutes",
+      "No treatment because CT is negative",
+      "Alteplase because the pressure is above 180",
+      "Admit and lower the pressure in a controlled way with an intravenous agent"
+    ],
+    "correctAnswer": "Admit and lower the pressure in a controlled way with an intravenous agent",
+    "explanation": "Encephalopathy and papilledema make this a hypertensive emergency. He needs monitored intravenous reduction, not a tablet and a next-day visit. Dropping the systolic pressure to 100 within minutes can cause ischemia. Alteplase is for ischemic stroke, and a negative CT does not make the emergency disappear.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "beta-blocker-not-first-line-for-uncomplicated-hypertension",
+    "difficulty": 4,
+    "scenario": "A 48-year-old man has repeated blood pressures of 152/96 mm Hg. He has no heart failure, no coronary disease, no migraine, and a normal heart rate. A starter pack of atenolol is offered as the first drug because it is on the shelf.",
+    "question": "Which initial drug is most appropriate?",
+    "options": [
+      "Hydralazine monotherapy",
+      "Clonidine as the only agent",
+      "Combined ACE inhibitor and ARB",
+      "A thiazide-like diuretic, a calcium-channel blocker, or an ACE inhibitor or ARB",
+      "Atenolol as first-line therapy"
+    ],
+    "correctAnswer": "A thiazide-like diuretic, a calcium-channel blocker, or an ACE inhibitor or ARB",
+    "explanation": "Uncomplicated hypertension starts with a thiazide-like diuretic, a dihydropyridine calcium-channel blocker, or an ACE inhibitor or ARB. A beta blocker is not preferred first-line without a compelling cardiac reason. Clonidine is a poor single starter. Dual renin-angiotensin blockade is harmful. Hydralazine alone is not initial therapy.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-use-ace-in-pregnancy",
+    "difficulty": 5,
+    "scenario": "A 29-year-old woman at 16 weeks has chronic hypertension. Blood pressure is 152/96 mm Hg. She has been taking lisinopril. Creatinine is 0.6 mg/dL and there is no proteinuria. She feels well.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Continue lisinopril because the pressure is controlled",
+      "Switch to losartan",
+      "Stop lisinopril and use labetalol, nifedipine, or methyldopa",
+      "No treatment until after delivery",
+      "Add spironolactone"
+    ],
+    "correctAnswer": "Stop lisinopril and use labetalol, nifedipine, or methyldopa",
+    "explanation": "ACE inhibitors and ARBs are teratogenic and are stopped in pregnancy. Labetalol, extended-release nifedipine, and methyldopa are the usual replacements. Losartan is also an ARB and is likewise stopped. Spironolactone is not a pregnancy antihypertensive. Leaving severe-range-approaching pressure untreated until delivery is not safe, and 152/96 still warrants treatment in pregnancy.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "spironolactone-for-resistant-hypertension",
+    "difficulty": 4,
+    "scenario": "A 60-year-old man is on lisinopril, amlodipine, and chlorthalidone at confirmed doses. Home blood pressure is still 148/92 mm Hg. Potassium is 4.1 mEq/L and creatinine is 1.0 mg/dL. He does not have hypokalemia. Adherence is good.",
+    "question": "Which addition is most appropriate?",
+    "options": [
+      "Stop the diuretic and add a beta blocker only",
+      "Spironolactone",
+      "Ibuprofen",
+      "A second ACE inhibitor",
+      "Minoxidil as the next drug before a mineralocorticoid antagonist"
+    ],
+    "correctAnswer": "Spironolactone",
+    "explanation": "When three drugs including a diuretic fail and potassium is normal, a mineralocorticoid antagonist is the preferred next add-on. A second ACE inhibitor is dual blockade. Ibuprofen raises pressure. Minoxidil is a later, more toxic option. Removing the diuretic undermines the regimen that defines resistant hypertension.",
+    "ref": "acc-htn-2025"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hfref-avoid-spironolactone-if-potassium-high",
+    "difficulty": 5,
+    "scenario": "A 66-year-old man with HFrEF, ejection fraction 30%, is on carvedilol, sacubitril/valsartan, and empagliflozin. Potassium is 5.3 mEq/L and eGFR is 38 mL/min/1.73 m². A pathway adds spironolactone 25 mg because 'everyone with HFrEF gets an MRA.' On examination he is euvolemic and reports no muscle weakness.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start spironolactone 100 mg",
+      "Start spironolactone 25 mg and recheck in three months",
+      "Do not start spironolactone at this potassium",
+      "Stop the SGLT2 inhibitor so the MRA can be started",
+      "Add ibuprofen and spironolactone"
+    ],
+    "correctAnswer": "Do not start spironolactone at this potassium",
+    "explanation": "An MRA is foundational, but it is not started when potassium is already above 5.0 mEq/L. A three-month wait before the next lab would miss dangerous hyperkalemia, and 100 mg is too high a start. An NSAID plus an MRA is a potassium problem. The SGLT2 inhibitor should stay; it is not sacrificed to force an unsafe MRA.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hydralazine-nitrate-if-ace-intolerant",
+    "difficulty": 5,
+    "scenario": "A 58-year-old Black man with HFrEF, ejection fraction 28%, had angioedema on lisinopril and cannot take an ARNI or an ARB. He is on carvedilol, spironolactone, and dapagliflozin. Blood pressure is 130/80 mm Hg and potassium is 4.4 mEq/L. He is euvolemic.",
+    "question": "Which addition is most appropriate?",
+    "options": [
+      "Diltiazem",
+      "No further disease-modifying drug is possible",
+      "Hydralazine plus isosorbide dinitrate",
+      "Retry lisinopril at a lower dose",
+      "A nonsteroidal anti-inflammatory drug for pressure control"
+    ],
+    "correctAnswer": "Hydralazine plus isosorbide dinitrate",
+    "explanation": "When an ACE inhibitor, ARB, and ARNI are all off the table, hydralazine plus nitrate is the substitute vasodilator regimen, with particular outcome evidence in Black patients with HFrEF. Retrying the drug that caused angioedema is dangerous. Diltiazem and NSAIDs harm HFrEF. Saying nothing more can be done skips a proven option.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "early-follow-up-after-hf-discharge",
+    "difficulty": 4,
+    "scenario": "A 74-year-old woman is leaving the hospital after a new heart-failure admission. She is euvolemic, on foundational therapy, and understands her daily weight. The scheduler offers a cardiology visit in three months.",
+    "question": "Which follow-up plan is most appropriate?",
+    "options": [
+      "A visit in three months",
+      "An emergency-department check only if she gains 10 kg",
+      "A visit within seven days",
+      "No follow-up if the weight is stable on the day of discharge",
+      "Stop the beta blocker so the clinic visit is simpler"
+    ],
+    "correctAnswer": "A visit within seven days",
+    "explanation": "Heart-failure discharge needs early follow-up, within about seven days, because that is when readmission risk is highest. Three months, or no visit, misses medication problems and recurrent congestion. Waiting for a 10 kg gain is too late. The beta blocker stays.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "ich-lower-systolic-toward-140",
+    "difficulty": 5,
+    "scenario": "A 64-year-old man has sudden headache and left weakness. Blood pressure is 204/112 mm Hg. CT shows a 20 mL right basal ganglia hemorrhage with no herniation. He is drowsy but protecting his airway. A plan either ignores the pressure or drives it to 90 mm Hg at once.",
+    "question": "Which blood-pressure plan is most appropriate?",
+    "options": [
+      "Dexamethasone as the treatment of the bleed",
+      "Lower systolic pressure smoothly toward 140 mm Hg and do not go below 130",
+      "Do not treat unless the pressure exceeds 240 mm Hg",
+      "Give alteplase once the pressure falls",
+      "Lower systolic pressure to 90 mm Hg within five minutes"
+    ],
+    "correctAnswer": "Lower systolic pressure smoothly toward 140 mm Hg and do not go below 130",
+    "explanation": "For intracerebral hemorrhage with systolic pressure between 150 and 220, a smooth reduction toward 140 mm Hg is reasonable, and intensive lowering below that range has not helped. A plunge to 90 mm Hg risks ischemia. Leaving 204 untreated, giving alteplase, or using dexamethasone as the main therapy are wrong.",
+    "ref": "aha-ich-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "reverse-warfarin-ich",
+    "difficulty": 5,
+    "scenario": "A 79-year-old man on warfarin is found down. CT shows a large intracerebral hemorrhage. INR is 3.4. Blood pressure is 188/100 mm Hg. He withdraws asymmetrically.",
+    "question": "Which reversal plan is most appropriate?",
+    "options": [
+      "Fresh frozen plasma as the preferred product",
+      "Protamine",
+      "Platelet transfusion because the INR is high",
+      "Vitamin K alone",
+      "Four-factor prothrombin complex concentrate and intravenous vitamin K"
+    ],
+    "correctAnswer": "Four-factor prothrombin complex concentrate and intravenous vitamin K",
+    "explanation": "Warfarin-related intracerebral hemorrhage is reversed with four-factor PCC plus intravenous vitamin K. Vitamin K alone is too slow. Plasma is slower and volume-heavy and is not preferred when PCC is available. Protamine reverses heparin, not warfarin. Platelets do not correct the INR.",
+    "ref": "aha-ich-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-platelet-transfusion-for-antiplatelet-ich",
+    "difficulty": 4,
+    "scenario": "A 72-year-old woman takes aspirin and clopidogrel. She has a spontaneous lobar hemorrhage, is awake, and neurosurgery plans nonoperative care. A reflex order transfuses platelets.",
+    "question": "Which hematologic plan is most appropriate?",
+    "options": [
+      "Give alteplase after the pressure falls",
+      "Transfuse platelets now",
+      "Start therapeutic enoxaparin tonight",
+      "Do not transfuse platelets",
+      "Give protamine"
+    ],
+    "correctAnswer": "Do not transfuse platelets",
+    "explanation": "Platelet transfusion is not recommended for antiplatelet-associated intracerebral hemorrhage managed without an operation. Protamine is for heparin. Alteplase and therapeutic anticoagulation worsen the bleed.",
+    "ref": "aha-ich-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "cerebellar-hemorrhage-deteriorate-operate",
+    "difficulty": 5,
+    "scenario": "A 68-year-old man with a cerebellar hemorrhage was drowsy and is now hard to arouse, with pinpoint pupils and extensor posturing. Repeat CT shows brainstem compression and hydrocephalus.",
+    "question": "Which intervention is most appropriate?",
+    "options": [
+      "Blood-pressure tablets until morning",
+      "Intravenous alteplase",
+      "Emergency surgical decompression and cerebrospinal fluid diversion",
+      "High-dose dexamethasone and observation",
+      "Lumbar puncture to relieve the hydrocephalus"
+    ],
+    "correctAnswer": "Emergency surgical decompression and cerebrospinal fluid diversion",
+    "explanation": "A deteriorating cerebellar hemorrhage with brainstem compression is a surgical emergency. Medical delay, lumbar puncture in the face of a posterior-fossa mass, steroids, and alteplase are not the treatment.",
+    "ref": "aha-ich-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-seizure-prophylaxis-after-ich",
+    "difficulty": 4,
+    "scenario": "A 60-year-old woman with a 15 mL cortical hemorrhage is alert and has never had a seizure. The family asks for a preventive antiseizure drug.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A benzodiazepine infusion despite no seizures",
+      "Alteplase once she is comfortable",
+      "Carbamazepine for a year",
+      "Phenytoin for six weeks",
+      "Do not start a prophylactic antiseizure drug"
+    ],
+    "correctAnswer": "Do not start a prophylactic antiseizure drug",
+    "explanation": "Patients with intracerebral hemorrhage who have not seized do not get prophylactic antiseizure drugs. Phenytoin, carbamazepine, and a benzodiazepine infusion add harm without a seizure. Alteplase is contraindicated.",
+    "ref": "aha-ich-2022"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "sah-nimodipine-and-secure-aneurysm",
+    "difficulty": 5,
+    "scenario": "A 57-year-old woman has CT-confirmed subarachnoid hemorrhage and a 7 mm anterior communicating aneurysm. She is Hunt-Hess grade II and protecting her airway. Blood pressure is 158/92 mm Hg. The team can secure the aneurysm today.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Heparin to prevent vasospasm",
+      "Delay securing for two weeks of bed rest only",
+      "Intravenous nimodipine bolus",
+      "Phenytoin for 21 days instead of a calcium-channel blocker",
+      "Oral nimodipine 60 mg every 4 hours for 21 days and urgent securing of the aneurysm"
+    ],
+    "correctAnswer": "Oral nimodipine 60 mg every 4 hours for 21 days and urgent securing of the aneurysm",
+    "explanation": "Nimodipine by mouth for 21 days and early securing of the aneurysm are standard. Intravenous nimodipine boluses are not the regimen. Phenytoin does not prevent vasospasm. Delay and heparin are not the plan.",
+    "ref": "aha-sah-2023"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "sah-negative-late-ct-needs-lp",
+    "difficulty": 5,
+    "scenario": "A 45-year-old woman has a 16-hour thunderclap headache that is still severe, with vomiting and neck stiffness. Noncontrast CT is negative. She has a history of migraine but says this pain is different.",
+    "question": "Which next step is most appropriate?",
+    "options": [
+      "Intravenous alteplase",
+      "Lumbar puncture",
+      "MRI next week",
+      "Nimodipine without proving blood",
+      "Discharge with sumatriptan"
+    ],
+    "correctAnswer": "Lumbar puncture",
+    "explanation": "CT sensitivity for subarachnoid blood falls over hours. A negative study many hours after a thunderclap headache needs a lumbar puncture before the diagnosis is dismissed. Sumatriptan, a delayed MRI, empiric nimodipine, and alteplase are not the next step.",
+    "ref": "aha-sah-2023"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "do-not-lp-with-mass-effect",
+    "difficulty": 5,
+    "scenario": "A 60-year-old man has a sudden headache and is obtunded. CT shows thick subarachnoid blood plus a temporal hematoma with 8 mm of midline shift. A clinician wants a lumbar puncture before calling neurosurgery.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Outpatient MRA in one month",
+      "Do not perform lumbar puncture; obtain vascular imaging and urgent neurosurgical care",
+      "Discharge if morphine helps",
+      "Lumbar puncture to lower intracranial pressure",
+      "Alteplase"
+    ],
+    "correctAnswer": "Do not perform lumbar puncture; obtain vascular imaging and urgent neurosurgical care",
+    "explanation": "A hematoma with shift is a mass lesion. Lumbar puncture can precipitate herniation and is unnecessary because the CT already shows blood. He needs vascular imaging and a surgeon, not discharge, thrombolysis, or a delayed scan.",
+    "ref": "aha-sah-2023"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "status-benzodiazepine-first",
+    "difficulty": 4,
+    "scenario": "A 40-year-old man has been convulsing for 8 minutes. Oxygen saturation is 90% on a nonrebreather mask. An intravenous line is in place. Bedside glucose is 96 mg/dL.",
+    "question": "Which immediate drug is most appropriate?",
+    "options": [
+      "Succinylcholine without an airway plan",
+      "Intravenous lorazepam",
+      "No medication until a lumbar puncture is done",
+      "Oral levetiracetam",
+      "Intramuscular phenytoin"
+    ],
+    "correctAnswer": "Intravenous lorazepam",
+    "explanation": "Ongoing convulsive seizure is treated at once with a benzodiazepine, lorazepam intravenously when a line exists. Oral levetiracetam and intramuscular phenytoin are not the immediate stop. Paralysis without treating the brain hides the seizure. Lumbar puncture does not come before the benzodiazepine.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "status-im-midazolam-without-iv",
+    "difficulty": 4,
+    "scenario": "Paramedics find a 36-year-old woman who has been convulsing for 6 minutes. She weighs about 78 kg. Two intravenous attempts have failed. Glucose is 96 mg/dL. Oxygen saturation is 88% and improves with a mask.",
+    "question": "Which immediate medication is most appropriate?",
+    "options": [
+      "Intramuscular phenytoin",
+      "Intramuscular midazolam 10 mg",
+      "Rectal acetaminophen",
+      "Oral diazepam tablets",
+      "Delay all medication until a hospital intravenous line"
+    ],
+    "correctAnswer": "Intramuscular midazolam 10 mg",
+    "explanation": "Without intravenous access, intramuscular midazolam is the immediate treatment, 10 mg for an adult over 40 kg. Waiting for a line, giving acetaminophen, using phenytoin intramuscularly, or offering oral tablets wastes the minutes that matter.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "status-second-line-after-benzodiazepine",
+    "difficulty": 5,
+    "scenario": "A 28-year-old man has received two adequate doses of intravenous lorazepam and is still convulsing 25 minutes after onset. Glucose is 110 mg/dL. The airway is being supported.",
+    "question": "Which next antiseizure drug is most appropriate?",
+    "options": [
+      "More lorazepam as the only drug for the next hour",
+      "Intravenous fosphenytoin",
+      "Oral carbamazepine",
+      "Dantrolene",
+      "Cyproheptadine"
+    ],
+    "correctAnswer": "Intravenous fosphenytoin",
+    "explanation": "After adequate benzodiazepine, convulsive status needs a second-line intravenous antiseizure drug such as fosphenytoin. More benzodiazepine alone deepens respiratory depression without using a definitive agent. Oral carbamazepine is too slow. Cyproheptadine and dantrolene treat other toxic syndromes.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "status-anesthetic-infusion-if-refractory",
+    "difficulty": 5,
+    "scenario": "A 34-year-old woman is still in generalized convulsive status after lorazepam and a full load of fosphenytoin. She has just been intubated. Glucose is 95 mg/dL.",
+    "question": "Which next therapy is most appropriate?",
+    "options": [
+      "Extubate and give only oral topiramate",
+      "Dantrolene",
+      "Observation without further antiseizure medication",
+      "A continuous anesthetic infusion with EEG monitoring",
+      "High-dose aspirin"
+    ],
+    "correctAnswer": "A continuous anesthetic infusion with EEG monitoring",
+    "explanation": "Refractory convulsive status after benzodiazepine and a second-line drug is treated with a continuous anesthetic infusion and EEG. Extubation, dantrolene, aspirin, and observation abandon the seizure.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "psychiatry",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "nms-restart-dopamine-stop-antipsychotic",
+    "difficulty": 5,
+    "scenario": "A 29-year-old man had his haloperidol dose doubled four days ago. He is now mute, with lead-pipe rigidity, a temperature of 39.4°C, labile blood pressure, and a rising creatine kinase. He begins to convulse. Glucose is 100 mg/dL.",
+    "question": "Which immediate plan is most appropriate?",
+    "options": [
+      "Bromocriptine as the only immediate drug before the seizure is stopped",
+      "Continue haloperidol and observe",
+      "Succinylcholine with no airway plan",
+      "Cyproheptadine as the only drug",
+      "Stop haloperidol, give intravenous lorazepam for the convulsion, and support him in intensive care"
+    ],
+    "correctAnswer": "Stop haloperidol, give intravenous lorazepam for the convulsion, and support him in intensive care",
+    "explanation": "Lead-pipe rigidity, fever, and autonomic instability after a neuroleptic are neuroleptic malignant syndrome. The drug stops, the seizure is treated with a benzodiazepine, and he needs intensive support. Continuing the antipsychotic, using only a serotonin antagonist, skipping the seizure, or paralyzing him without an airway are wrong.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "psychiatry",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "serotonin-syndrome-benzodiazepine-not-dantrolene-first",
+    "difficulty": 5,
+    "scenario": "A 35-year-old man on sertraline was started on linezolid yesterday. Overnight he developed diarrhea, shivering, dilated pupils, clonus, and a temperature of 38.8°C. He is agitated and then has a brief convulsion. Glucose is 108 mg/dL.",
+    "question": "Which immediate plan is most appropriate?",
+    "options": [
+      "Stop the serotonergic drugs and give intravenous lorazepam",
+      "Dantrolene before any benzodiazepine",
+      "Succinylcholine as seizure treatment",
+      "Bromocriptine as the only drug",
+      "Another dose of linezolid"
+    ],
+    "correctAnswer": "Stop the serotonergic drugs and give intravenous lorazepam",
+    "explanation": "Clonus, shivering, diarrhea, and mydriasis after a new serotonergic combination are serotonin syndrome. Stop the offenders and use a benzodiazepine for agitation and the convulsion. Dantrolene is not first-line. More linezolid continues the cause. Bromocriptine is a dopamine agonist used in other syndromes. Paralysis is not seizure treatment.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "psychiatry",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "alcohol-withdrawal-seizure-benzodiazepine",
+    "difficulty": 4,
+    "scenario": "A 52-year-old man with daily heavy alcohol use stopped two days ago. He is tremulous, tachycardic at 120, diaphoretic, and has just had a generalized convulsion. Glucose is 90 mg/dL. Blood pressure is 160/96 mm Hg. He is not febrile.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Phenytoin as the only therapy",
+      "Intravenous lorazepam and a symptom-triggered benzodiazepine protocol",
+      "Cyproheptadine",
+      "Haloperidol as the only drug",
+      "A larger drink of alcohol and discharge"
+    ],
+    "correctAnswer": "Intravenous lorazepam and a symptom-triggered benzodiazepine protocol",
+    "explanation": "Alcohol-withdrawal seizure is treated with benzodiazepines, then a withdrawal protocol, not an antipsychotic alone, a drink, phenytoin monotherapy, or a serotonin antagonist.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "psychiatry",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "suicidal-plan-do-not-discharge",
+    "difficulty": 5,
+    "scenario": "A 24-year-old man says he will shoot himself tonight. He has a gun at home, a written note, and no one who can stay with him. He is medically clear. He asks to leave because he has an appointment in the morning. He is not intoxicated. He reports a specific plan and appears calm rather than intoxicated.",
+    "question": "Which disposition is most appropriate?",
+    "options": [
+      "A single dose of a benzodiazepine and a taxi",
+      "Hospitalize; he has a plan, means, and no safe support",
+      "Tell him suicide contracts make discharge safe",
+      "No documentation so the record cannot be used later",
+      "Discharge with a clinic appointment next week"
+    ],
+    "correctAnswer": "Hospitalize; he has a plan, means, and no safe support",
+    "explanation": "A specific plan, lethal means, and no support require a protected setting, not a next-week appointment, a sedative, a contract, or a missing note.",
+    "ref": "uspstf-depression"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "capacity-refusal-of-surgery-when-understanding-is-intact",
+    "difficulty": 4,
+    "scenario": "A 70-year-old man with a bowel obstruction understands that he may die without surgery, repeats the risks, and still declines. He is not delirious, not depressed to the point of inability to reason, and his choice is stable when his children leave the room.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Sedate him for a two-physician consent",
+      "Hide the refusal from the record",
+      "Honor the refusal and continue care he accepts",
+      "Operate because the choice is dangerous",
+      "Ask psychiatry to declare him incapable because the family disagrees"
+    ],
+    "correctAnswer": "Honor the refusal and continue care he accepts",
+    "explanation": "A capacitated refusal stands even when the choice is dangerous and the family disagrees. Surgery, a sham incapacity finding, sedation, and a hidden record override him.",
+    "ref": "ama-ethics"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "minor-life-saving-transfusion-despite-parent",
+    "difficulty": 5,
+    "scenario": "A 7-year-old is in hemorrhagic shock after a crash, with a distended abdomen and hemoglobin of 5.1 g/dL. Blood pressure is 62/34 mm Hg despite crystalloid. The parents refuse blood on religious grounds and are at the bedside.",
+    "question": "Which action is most appropriate?",
+    "options": [
+      "Give blood secretly and never document it",
+      "Discharge against medical advice",
+      "Honor the refusal and continue crystalloid only",
+      "Wait for a court date next week",
+      "Transfuse and operate; parental refusal does not allow withholding life-saving blood from a child"
+    ],
+    "correctAnswer": "Transfuse and operate; parental refusal does not allow withholding life-saving blood from a child",
+    "explanation": "Parents cannot refuse life-saving transfusion for a child. Crystalloid alone, a next-week court date, and discharge abandon the child. Secret transfusion without a record is the wrong way to do the right act; treat and document.",
+    "ref": "ama-ethics"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "report-impaired-colleague",
+    "difficulty": 4,
+    "scenario": "At 6 a.m. a 29-year-old night-float resident smells of alcohol, misses easy intravenous attempts, and is assigned to place a central line. The line has not started. The attending is not in the hospital.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Send him to nap and keep it off the incident log",
+      "Cover his patients quietly",
+      "Wait until afternoon",
+      "Take him off duty now and notify the supervising physician",
+      "Let him place the line if you stand beside him"
+    ],
+    "correctAnswer": "Take him off duty now and notify the supervising physician",
+    "explanation": "Impairment during a procedure requires immediate removal from duty and a report to the supervisor. Supervising the line, hiding it, delaying, or a nap leaves patients exposed.",
+    "ref": "ama-ethics"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "tension-pneumothorax-decompress",
+    "difficulty": 5,
+    "scenario": "A 19-year-old driver hits a tree. Blood pressure is 74/48 mm Hg, heart rate 134, oxygen saturation 84% on a nonrebreather mask. The trachea is deviated to the right, and the left chest has no breath sounds. Neck veins are distended.",
+    "question": "Which immediate intervention is most appropriate?",
+    "options": [
+      "Albuterol for a history of asthma",
+      "Decompress the left chest before the radiograph",
+      "Heparin for pulmonary embolism",
+      "Observation until the x-ray is processed",
+      "CT of the chest before any procedure"
+    ],
+    "correctAnswer": "Decompress the left chest before the radiograph",
+    "explanation": "Hypotension, hypoxia, tracheal deviation, and absent breath sounds are tension pneumothorax. The chest is decompressed before imaging. Asthma treatment, CT, heparin, and waiting for a film delay a reversible cause of shock.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "unstable-blunt-abdomen-to-or",
+    "difficulty": 5,
+    "scenario": "A 36-year-old woman who was unrestrained arrives after a crash. Blood pressure is 76/44 mm Hg, heart rate 140, and the abdomen is distended. FAST shows free fluid. She remains hypotensive after blood is started.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Oral contrast and a clinic appointment",
+      "CT before any operation",
+      "MRI of the liver",
+      "Discharge if a second FAST is negative after saline",
+      "Laparotomy rather than CT"
+    ],
+    "correctAnswer": "Laparotomy rather than CT",
+    "explanation": "Persistent hypotension and free fluid after blunt trauma go to the operating room. CT, discharge, oral contrast, and MRI are for stable patients.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "pelvic-binder-before-ct",
+    "difficulty": 4,
+    "scenario": "A 41-year-old man is crushed at a loading dock. The pelvis is widely separated on a portable radiograph. Blood pressure is 70/40 mm Hg and heart rate is 146.",
+    "question": "Which immediate intervention is most appropriate?",
+    "options": [
+      "Heparin for pelvic veins",
+      "Apply a pelvic binder and resuscitate with blood before CT",
+      "Oral tranexamic acid and a floor bed",
+      "CT before any binder",
+      "Bilateral traction as the only hemostasis"
+    ],
+    "correctAnswer": "Apply a pelvic binder and resuscitate with blood before CT",
+    "explanation": "An open-book pelvic fracture in shock gets a binder and blood, not a trip to CT first. Traction, heparin, and oral tranexamic acid on a floor bed do not stop pelvic bleeding.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "chest-tube-output-thoracotomy",
+    "difficulty": 5,
+    "scenario": "A 30-year-old man is shot in the right chest. After a chest tube, 1700 mL of blood empties at once and the output continues. Blood pressure is 86/52 mm Hg after the first unit of blood.",
+    "question": "Which next intervention is most appropriate?",
+    "options": [
+      "Discharge once the first 1700 mL has drained",
+      "CT of the chest now",
+      "Clamp the chest tube and observe",
+      "Alteplase through the chest tube",
+      "Thoracotomy"
+    ],
+    "correctAnswer": "Thoracotomy",
+    "explanation": "Immediate chest-tube output of about 1500 mL or ongoing bleeding with shock is an indication for thoracotomy. Clamping the tube, scanning, thrombolysis, and discharge leave the bleeding inside.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "epidural-hematoma-to-or",
+    "difficulty": 5,
+    "scenario": "A 22-year-old man was briefly unconscious, woke, and is now unconscious again. The right pupil is dilated. CT shows a lens-shaped extra-axial hematoma. Blood pressure is 160/90 mm Hg.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Mannitol and a scan in the morning",
+      "Heparin for a possible stroke",
+      "Lumbar puncture",
+      "Discharge if he wakes again",
+      "Emergency surgical evacuation"
+    ],
+    "correctAnswer": "Emergency surgical evacuation",
+    "explanation": "A lucid interval and a lens-shaped hematoma with a blown pupil is an epidural hematoma. It is evacuated now. Delay, lumbar puncture, heparin, and discharge are how the patient herniates.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "cholangitis-decompress",
+    "difficulty": 5,
+    "scenario": "A 72-year-old woman has fever, jaundice, and right-upper-quadrant pain, now with blood pressure 82/50 mm Hg and heart rate 122. Temperature is 39.2°C. Bilirubin and alkaline phosphatase are high.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Ursodiol and a clinic visit next week",
+      "Oral antibiotics and discharge",
+      "Cholecystectomy as the only intervention, with no duct drainage",
+      "Intravenous fluid, broad-spectrum antibiotics, and urgent biliary decompression",
+      "CT in the morning and no antibiotics tonight"
+    ],
+    "correctAnswer": "Intravenous fluid, broad-spectrum antibiotics, and urgent biliary decompression",
+    "explanation": "Fever, jaundice, pain, and shock are ascending cholangitis. She needs resuscitation, antibiotics, and drainage of the duct. Oral antibiotics, cholecystectomy without duct drainage, delayed imaging, and ursodiol do not decompress an infected biliary tree.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "sbo-ischemia-to-or",
+    "difficulty": 5,
+    "scenario": "A 66-year-old woman has vomiting and a distended abdomen. Lactate is 5 mmol/L, heart rate is 120, and she has peritonitis. CT shows a closed-loop small-bowel obstruction. A plan orders nasogastric suction and a repeat examination tomorrow.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A proton-pump inhibitor as the treatment",
+      "Discharge if the pain lessens after morphine",
+      "Emergency surgery, not a night of suction",
+      "Nasogastric suction and recheck tomorrow",
+      "Oral contrast challenge"
+    ],
+    "correctAnswer": "Emergency surgery, not a night of suction",
+    "explanation": "Peritonitis, lactate, and a closed loop mean dead or dying bowel. Suction and delay, an oral challenge, acid suppression, and discharge miss ischemia.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "surgery",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "ileus-versus-obstruction",
+    "difficulty": 4,
+    "scenario": "A 60-year-old man is two days after an uncomplicated colectomy. The abdomen is distended but soft, and he has hypoactive bowel sounds without peritonitis. He is passing no flatus. He is afebrile, lactate is normal, and a radiograph shows dilated loops with gas throughout the colon.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Emergency laparotomy tonight",
+      "Treat as ileus with bowel rest and mobilization, not an immediate reoperation",
+      "A corticosteroid for the distension",
+      "Oral laxatives and a full meal",
+      "Loperamide"
+    ],
+    "correctAnswer": "Treat as ileus with bowel rest and mobilization, not an immediate reoperation",
+    "explanation": "Gas throughout the colon, a soft abdomen, and a normal lactate after recent surgery fit ileus. Immediate reoperation, feeding, antimotility drugs, and steroids are not the treatment.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "appendicitis-in-pregnancy-operate",
+    "difficulty": 5,
+    "scenario": "A 27-year-old woman at 18 weeks has migratory pain that is now in the right lower quadrant, fever of 38.4°C, and a white count of 16,000/µL. Ultrasound cannot see the appendix well, and MRI shows an enlarged appendix with surrounding fluid. The fetal heart rate is normal.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Cesarean delivery now",
+      "Appendectomy; do not delay for the pregnancy",
+      "No imaging follow-through because ultrasound was inconclusive",
+      "A 24-hour delay to repeat the white count",
+      "Antibiotics only until after delivery"
+    ],
+    "correctAnswer": "Appendectomy; do not delay for the pregnancy",
+    "explanation": "Appendicitis in pregnancy is treated with appendectomy. Antibiotics until delivery, a casual delay, cesarean delivery, and stopping after an inconclusive ultrasound risk perforation.",
+    "ref": "acog-preeclampsia-2020"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "orthopedics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "hip-fracture-fix-within-a-day",
+    "difficulty": 4,
+    "scenario": "An 84-year-old woman fell and has a displaced femoral-neck fracture. She is medically stable after fluids and pain control. It is 8 p.m. The schedule offers the operating room tomorrow afternoon, about 20 hours from now, or next week.",
+    "question": "Which timing is most appropriate?",
+    "options": [
+      "Traction for a month as definitive care",
+      "Immediate amputation",
+      "Wait a week so she can 'get stronger' on bed rest",
+      "Fix the fracture within about 24 hours",
+      "No prophylaxis against clots while she waits a week"
+    ],
+    "correctAnswer": "Fix the fracture within about 24 hours",
+    "explanation": "Hip fracture in a stable older adult is fixed promptly, generally within 24 to 48 hours, because delay increases complications. A week of bed rest, traction as treatment, skipped prophylaxis, and amputation are not the plan.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "septic-arthritis-not-gout-until-tapped",
+    "difficulty": 5,
+    "scenario": "A 68-year-old man with a prosthetic knee has fever of 38.9°C and a hot, swollen joint for one day. He can barely bear weight. White count is 18,000/µL. Serum urate is 7.8 mg/dL. A plan starts indomethacin for gout and does not tap the knee.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A corticosteroid injection without fluid analysis",
+      "Indomethacin and no tap",
+      "Allopurinol tonight as the only drug",
+      "Aspirate the joint before treating it as gout",
+      "Antibiotics by mouth and a clinic visit in a week"
+    ],
+    "correctAnswer": "Aspirate the joint before treating it as gout",
+    "explanation": "A hot prosthetic joint with fever is septic arthritis until the fluid says otherwise. Urate does not prove gout. Oral antibiotics next week, allopurinol, NSAIDs alone, and a steroid injection without analysis miss an infected prosthesis.",
+    "ref": "acr-gout-2020"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "hydroxychloroquine-eye-exam",
+    "difficulty": 4,
+    "scenario": "A 52-year-old woman has taken hydroxychloroquine for rheumatoid arthritis for six years at an acceptable dose. She has never had an eye examination for the drug. She has no visual complaint. A refill is due.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop the drug forever because she has no symptoms",
+      "No eye care is needed on hydroxychloroquine",
+      "Double the dose because the eyes feel fine",
+      "Refer for a baseline-or-interval retinal examination and continue the drug if the eyes are clear",
+      "Add chloroquine on top"
+    ],
+    "correctAnswer": "Refer for a baseline-or-interval retinal examination and continue the drug if the eyes are clear",
+    "explanation": "Hydroxychloroquine needs retinal screening on a schedule even when vision is normal. Stopping it without an exam, doubling it, adding chloroquine, or skipping eye care are wrong.",
+    "ref": "acr-ra-2021"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "no-live-vaccine-on-biologic",
+    "difficulty": 4,
+    "scenario": "A 49-year-old man on etanercept for rheumatoid arthritis is due for vaccines. The clinic offers a live attenuated vaccine tomorrow and says biologics do not change immunization.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give the live vaccine tomorrow",
+      "Skip all vaccines",
+      "Stop etanercept for one day and give the live vaccine the next morning",
+      "Intravenous immunoglobulin instead of any vaccine",
+      "Give inactivated vaccines; do not give a live vaccine while he is on a TNF inhibitor"
+    ],
+    "correctAnswer": "Give inactivated vaccines; do not give a live vaccine while he is on a TNF inhibitor",
+    "explanation": "Live vaccines are avoided during TNF-inhibitor therapy. Inactivated vaccines can be given. A one-day hold does not restore immunity. Skipping inactivated vaccines, or substituting immunoglobulin, is not the schedule.",
+    "ref": "acr-ra-2021"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "itp-life-threatening-bleed",
+    "difficulty": 5,
+    "scenario": "A 52-year-old man with ITP has a sudden severe headache. CT shows an intracerebral hemorrhage. Platelets are 6,000/µL. He takes no anticoagulant.",
+    "question": "Which hematologic treatment is most appropriate besides neurosurgical care?",
+    "options": [
+      "Corticosteroid, intravenous immunoglobulin, and platelet transfusion",
+      "Observation because the INR is normal",
+      "Splenectomy as the only immediate measure",
+      "Aspirin 325 mg",
+      "Heparin"
+    ],
+    "correctAnswer": "Corticosteroid, intravenous immunoglobulin, and platelet transfusion",
+    "explanation": "Life-threatening bleeding in ITP is treated with a corticosteroid, intravenous immunoglobulin, and platelets, along with the neurosurgical plan. A normal INR does not make the platelets adequate. Heparin, aspirin, and splenectomy as the sole immediate step are wrong.",
+    "ref": "ash-itp-2019"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "transfusion-threshold-stable-patient",
+    "difficulty": 4,
+    "scenario": "A 70-year-old man with gastrointestinal bleeding that has stopped has a hemoglobin of 8.2 g/dL. He is chest-pain free, normotensive, and not short of breath. A plan transfuses two units to reach 10 g/dL.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Do not transfuse at 8.2 g/dL while he is stable and not bleeding",
+      "Transfuse to 14 g/dL",
+      "Transfuse to a hemoglobin of 10 g/dL",
+      "Start heparin because the bleeding stopped",
+      "Give platelets for a hemoglobin of 8.2 g/dL"
+    ],
+    "correctAnswer": "Do not transfuse at 8.2 g/dL while he is stable and not bleeding",
+    "explanation": "A stable patient who is not actively bleeding and has no ischemia is not transfused at a hemoglobin of 8 g/dL; a restrictive threshold near 7 g/dL is used. Transfusing to 10 or 14, giving platelets for anemia, and starting heparin are wrong.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "febrile-transfusion-stop-and-evaluate",
+    "difficulty": 5,
+    "scenario": "A 60-year-old woman develops fever of 39°C, rigors, and back pain ten minutes into a red-cell transfusion. Blood pressure falls from 130/70 to 90/50 mm Hg. The bag is still running.",
+    "question": "Which first action is most appropriate?",
+    "options": [
+      "Slow the rate and give acetaminophen",
+      "Start antibiotics and finish the unit",
+      "Continue the unit because fever is expected",
+      "Stop the transfusion and keep the line open with saline",
+      "Give another unit of the same product immediately"
+    ],
+    "correctAnswer": "Stop the transfusion and keep the line open with saline",
+    "explanation": "Fever, rigors, pain, and hypotension during transfusion are a possible hemolytic reaction. Stop the blood first. Slowing it, finishing it, or hanging another unit of the same product continues the exposure. Antibiotics may be considered later; they do not come before stopping the blood.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "dka-potassium-low-hold-insulin",
+    "difficulty": 5,
+    "scenario": "A 19-year-old with new diabetes has glucose 480 mg/dL, pH 7.12, bicarbonate 8 mEq/L, and potassium 2.8 mEq/L. He is dehydrated but blood pressure is adequate after a fluid bolus.",
+    "question": "Which initial plan is most appropriate?",
+    "options": [
+      "No fluids until the anion gap closes",
+      "Bicarbonate as the only drug",
+      "Intravenous insulin bolus immediately",
+      "Replace potassium and withhold insulin until potassium is at least 3.3 mEq/L",
+      "Subcutaneous insulin and discharge"
+    ],
+    "correctAnswer": "Replace potassium and withhold insulin until potassium is at least 3.3 mEq/L",
+    "explanation": "Insulin drives potassium into cells. At 2.8 mEq/L, potassium is replaced before insulin so the level does not fall further and cause arrhythmia. An immediate bolus, discharge, bicarbonate alone, and withholding fluid are wrong.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hhs-fluids-first",
+    "difficulty": 4,
+    "scenario": "A 78-year-old woman from a nursing home is confused. Glucose is 860 mg/dL, sodium is 148 mEq/L, and there are no ketones. Bicarbonate is 22 mEq/L. Blood pressure is 100/60 mm Hg and mucous membranes are dry.",
+    "question": "Which initial plan is most appropriate?",
+    "options": [
+      "Free water by mouth as the only treatment",
+      "Bicarbonate",
+      "A sulfonylurea and discharge",
+      "Isotonic fluid first, then insulin",
+      "Insulin bolus before any fluid"
+    ],
+    "correctAnswer": "Isotonic fluid first, then insulin",
+    "explanation": "Hyperosmolar hyperglycemic state is profoundly volume depleted. Isotonic fluid comes first; insulin follows once circulation is supported and potassium is known. Bicarbonate is not needed without acidosis. Oral water, a sulfonylurea, and discharge are unsafe.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "preconception-a1c",
+    "difficulty": 4,
+    "scenario": "A 31-year-old woman with type 1 diabetes wants to conceive. A1c is 10.2%. She has had two recent episodes of ketoacidosis. She asks whether to stop contraception this month.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Aim for an A1c above 10% during the first trimester",
+      "Stop basal insulin on the day of a positive test",
+      "Stop contraception now",
+      "Continue contraception and improve glucose before pregnancy",
+      "Switch from insulin to metformin and then conceive"
+    ],
+    "correctAnswer": "Continue contraception and improve glucose before pregnancy",
+    "explanation": "Pregnancy should wait until glucose is safer. An A1c of 10% and recent ketoacidosis raise the risk of malformation and maternal crisis. Metformin does not replace insulin in type 1 diabetes. A high A1c target and stopping basal insulin are harmful.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "infectious-disease",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-treat-asymptomatic-bacteriuria",
+    "difficulty": 4,
+    "scenario": "A 78-year-old woman has a urine culture sent because the urine looked cloudy. It grew more than 100,000 CFU/mL of E. coli. She has no dysuria, fever, or flank pain. Vital signs are normal.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A single dose of fosfomycin 'to be safe'",
+      "No antibiotic",
+      "Amoxicillin for 14 days because of her age",
+      "Intravenous ertapenem",
+      "Ciprofloxacin for the colony count"
+    ],
+    "correctAnswer": "No antibiotic",
+    "explanation": "Asymptomatic bacteriuria in an older adult is not treated. Colony count, age, and cloudy urine are not indications. Any of the antibiotic plans exposes her to harm without benefit.",
+    "ref": "idsa-asb-2019"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "infectious-disease",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "asb-before-turp-is-treated",
+    "difficulty": 5,
+    "scenario": "A 69-year-old man is scheduled for transurethral resection of the prostate tomorrow. A preoperative culture grows E. coli sensitive to ceftriaxone. He has no dysuria. Someone says asymptomatic bacteriuria is never treated before surgery.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A permanent suppressive antibiotic and no perioperative dose",
+      "Give a culture-directed antibiotic shortly before the resection",
+      "No antibiotic, by analogy with joint replacement",
+      "Treat only if he has a fever after the catheter comes out",
+      "Six weeks of ciprofloxacin and cancel the resection"
+    ],
+    "correctAnswer": "Give a culture-directed antibiotic shortly before the resection",
+    "explanation": "Mucosal bleeding procedures such as transurethral resection are an exception: asymptomatic bacteriuria is treated with a short perioperative course. Joint-replacement rules do not apply. Six weeks, waiting for fever, and lifelong suppression are wrong.",
+    "ref": "idsa-asb-2019"
+  },
+  {
+    "blueprintDomain": "gastrointestinal",
+    "subjectId": "infectious-disease",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cdi-stop-the-inciting-antibiotic",
+    "difficulty": 4,
+    "scenario": "A 70-year-old man has nonsevere C. difficile colitis. The original infection that led to antibiotics has resolved, but the broad-spectrum drug is still on the list 'to finish the course.' He is hemodynamically stable. He reports watery stools six times today and has no abdominal pain out of proportion.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop the unnecessary antibiotic and treat the C. difficile",
+      "Finish the broad-spectrum course and add loperamide",
+      "Metronidazole as the preferred C. difficile drug",
+      "No treatment of either condition",
+      "Intravenous vancomycin only"
+    ],
+    "correctAnswer": "Stop the unnecessary antibiotic and treat the C. difficile",
+    "explanation": "The inciting antibiotic is stopped when it is no longer needed, and C. difficile is treated with fidaxomicin or vancomycin. Loperamide, intravenous vancomycin alone, no treatment, and metronidazole as preferred therapy are wrong.",
+    "ref": "idsa-cdi-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "pe-stable-no-thrombolysis",
+    "difficulty": 5,
+    "scenario": "A 63-year-old woman has a blood pressure of 132/78 mm Hg. CT shows a segmental pulmonary embolus with right-ventricular strain and a mildly elevated troponin. She is uncomfortable but not in respiratory failure. Anticoagulation has not started. A note recommends alteplase because of right-ventricular strain.",
+    "question": "Which initial treatment is most appropriate?",
+    "options": [
+      "No treatment if a repeat troponin falls",
+      "Aspirin alone for three months",
+      "Anticoagulation without systemic thrombolysis",
+      "An inferior vena cava filter plus thrombolysis",
+      "Systemic alteplase now"
+    ],
+    "correctAnswer": "Anticoagulation without systemic thrombolysis",
+    "explanation": "Normotensive pulmonary embolism, even with right-ventricular strain, is treated with anticoagulation, not routine systemic thrombolysis. Aspirin, a filter plus lytics, and no treatment are wrong.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "massive-pe-thrombolysis",
+    "difficulty": 5,
+    "scenario": "A 58-year-old woman with a central pulmonary embolus still has a systolic blood pressure of 78 mm Hg after a liter of fluid. She has no prior intracranial hemorrhage, no active bleeding, and no recent surgery. She is awake.",
+    "question": "Which reperfusion plan is most appropriate?",
+    "options": [
+      "Systemic thrombolysis if bleeding risk stays acceptable",
+      "Discharge on a direct oral anticoagulant once the systolic pressure reaches 90",
+      "An inferior vena cava filter instead of any drug",
+      "Anticoagulation alone and a blood pressure check in four hours",
+      "Aspirin 325 mg"
+    ],
+    "correctAnswer": "Systemic thrombolysis if bleeding risk stays acceptable",
+    "explanation": "Hypotension from pulmonary embolism is massive embolism and is treated with systemic thrombolysis when bleeding risk allows. Anticoagulation alone, a filter instead of a drug, aspirin, and discharge do not reperfuse her.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "upper-extremity-dvt-anticoagulate",
+    "difficulty": 4,
+    "scenario": "A 46-year-old man has a swollen arm. Ultrasound shows an axillary-vein thrombosis. He has no cancer and a low bleeding risk. A note says arm clots are observed.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "A permanent vena cava filter",
+      "Antibiotics",
+      "Anticoagulate",
+      "Aspirin only",
+      "Observation because it is not in the leg"
+    ],
+    "correctAnswer": "Anticoagulate",
+    "explanation": "Proximal upper-extremity deep-vein thrombosis is anticoagulated. Location in the arm does not make it trivial. A filter, antibiotics, and aspirin are not the treatment.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "subtherapeutic-inr-recurrent-clot-fix-warfarin",
+    "difficulty": 4,
+    "scenario": "A 62-year-old man on warfarin for a prior pulmonary embolus has a new leg clot. INR today is 1.4. He missed several doses. He has no bleeding. A plan adds aspirin and an inferior vena cava filter and stops warfarin.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Stop warfarin and use aspirin",
+      "Add two antiplatelet drugs and keep the INR at 1.4",
+      "No change because one clot on warfarin means anticoagulation can never work",
+      "Resume effective anticoagulation; the failure was a subtherapeutic INR, not a need for a filter",
+      "Place a permanent filter and stop anticoagulation"
+    ],
+    "correctAnswer": "Resume effective anticoagulation; the failure was a subtherapeutic INR, not a need for a filter",
+    "explanation": "A recurrent clot at an INR of 1.4 means the anticoagulant was not therapeutic. Restore anticoagulation. Aspirin, a filter, dual antiplatelet therapy, and abandoning anticoagulation treat the wrong problem.",
+    "ref": "chest-vte-2021"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-nitrofurantoin-if-egfr-low",
+    "difficulty": 4,
+    "scenario": "An 84-year-old woman has dysuria and a urine culture with E. coli. eGFR is 28 mL/min/1.73 m². She is afebrile and not vomiting. A prescription is written for nitrofurantoin. She reports burning with urination and has no fever.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "An intravenous carbapenem for simple cystitis",
+      "No antibiotic because dysuria in older women is colonization",
+      "Choose another agent; nitrofurantoin is a poor choice at this eGFR",
+      "Nitrofurantoin for 14 days",
+      "Nitrofurantoin plus ibuprofen"
+    ],
+    "correctAnswer": "Choose another agent; nitrofurantoin is a poor choice at this eGFR",
+    "explanation": "Nitrofurantoin does not reach useful urine levels when the GFR is this low and is on the Beers list in reduced kidney function. She has cystitis and needs an active oral alternative, not no treatment and not a carbapenem. Ibuprofen does not treat the infection.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "geriatrics",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "avoid-meperidine",
+    "difficulty": 4,
+    "scenario": "A 79-year-old man needs postoperative pain control. eGFR is 32 mL/min/1.73 m². An order is written for meperidine every three hours.",
+    "question": "Which analgesic plan is most appropriate?",
+    "options": [
+      "No analgesia because older adults should not receive opioids",
+      "Meperidine as ordered",
+      "Use a different opioid; do not use meperidine",
+      "Meperidine plus a benzodiazepine",
+      "Indomethacin as the only analgesic"
+    ],
+    "correctAnswer": "Use a different opioid; do not use meperidine",
+    "explanation": "Meperidine's metabolite accumulates in low GFR and causes seizures and delirium. Another opioid, dose-adjusted, is safer. Adding a benzodiazepine or using indomethacin adds harm. Pain still needs treatment.",
+    "ref": "beers-2023"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "tpa-within-window-if-eligible",
+    "difficulty": 4,
+    "scenario": "A 68-year-old man was last known well 90 minutes ago. He has aphasia and right hemiparesis. Blood pressure is 158/88 mm Hg, glucose is 118 mg/dL, and CT shows no hemorrhage. He is not on anticoagulation. Platelets are normal.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give intravenous alteplase",
+      "Aspirin only and no reperfusion discussion",
+      "Heparin for 24 hours",
+      "Wait until 6 hours to see if the deficit fades",
+      "Discharge for outpatient MRI"
+    ],
+    "correctAnswer": "Give intravenous alteplase",
+    "explanation": "He is inside the alteplase window with no hemorrhage and no anticoagulant exclusion. Aspirin alone, heparin, discharge, and a deliberate wait past the window are wrong.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "withhold-alteplase-if-inr-high",
+    "difficulty": 5,
+    "scenario": "A 74-year-old woman on warfarin for a mechanical mitral valve has sudden arm weakness. Onset was 50 minutes ago. CT shows no hemorrhage. INR is 2.6. Blood pressure is 154/86 mm Hg.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Give half-dose alteplase because of the valve",
+      "Withhold alteplase and obtain vessel imaging for possible thrombectomy",
+      "Give full-dose alteplase",
+      "Reverse the INR and immediately give alteplase",
+      "Start therapeutic heparin as reperfusion"
+    ],
+    "correctAnswer": "Withhold alteplase and obtain vessel imaging for possible thrombectomy",
+    "explanation": "An INR of 2.6 excludes intravenous alteplase. Vessel imaging still matters because thrombectomy may be possible. Half-dose alteplase, reversal followed immediately by lytic, and heparin as a substitute are not the regimen.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "preventive",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "lung-cancer-screen-eligible",
+    "difficulty": 4,
+    "scenario": "A 60-year-old man at an annual visit quit smoking eight years ago and has a 22 pack-year history. He feels well, can walk a mile, and would want treatment if a screen found a resectable cancer. He asks for a yearly chest radiograph.",
+    "question": "Which screening plan is most appropriate?",
+    "options": [
+      "Annual chest radiograph",
+      "A one-time PET scan",
+      "Sputum cytology every year",
+      "No imaging because he has already quit",
+      "Annual low-dose CT"
+    ],
+    "correctAnswer": "Annual low-dose CT",
+    "explanation": "He is 50 to 80, smoked at least 20 pack-years, and quit within 15 years, so low-dose CT is the screen. Chest radiograph, no imaging, sputum cytology, and PET are not the screening test.",
+    "ref": "uspstf-lung-2021"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "preventive",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "lung-cancer-screen-remote-quit",
+    "difficulty": 5,
+    "scenario": "A 64-year-old woman stopped smoking 16 years ago after 40 pack-years. She is asymptomatic and would accept surgery if a nodule were malignant. She asks for low-dose CT because of the heavy history.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "One PET scan",
+      "Do not screen with low-dose CT",
+      "Annual low-dose CT because pack-years exceed 20",
+      "Screen once as a compromise",
+      "Chest radiograph now and CT if it is clear"
+    ],
+    "correctAnswer": "Do not screen with low-dose CT",
+    "explanation": "Screening stops, or is not started, when the quit date is more than 15 years ago. Pack-years alone do not override that window. Radiograph, PET, and a single compromise scan are not indicated.",
+    "ref": "uspstf-lung-2021"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "preventive",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "breast-screen-start-at-40",
+    "difficulty": 4,
+    "scenario": "A 42-year-old woman has no family history of breast or ovarian cancer, no personal atypia, and no chest radiation. She has never had a mammogram. She asks what screening she needs.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Screening breast MRI now",
+      "Start biennial screening mammography",
+      "BRCA testing for every woman before any mammogram",
+      "Screening ultrasound as the first test",
+      "No breast screening until age 50"
+    ],
+    "correctAnswer": "Start biennial screening mammography",
+    "explanation": "USPSTF recommends biennial mammography starting at age 40 for average-risk women. Waiting until 50, MRI, ultrasound as the first test, and universal BRCA testing are not the average-risk plan.",
+    "ref": "uspstf-breast-2024"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "subclinical-hyperthyroidism-in-older-adult-treat-if-tsh-very-low",
+    "difficulty": 5,
+    "scenario": "A 72-year-old woman has a TSH of 0.05 mU/L, confirmed, with a normal free T4 and no symptoms. Heart rate is 96 beats per minute and she has osteoporosis. A thyroid scan shows a hot nodule. A note says a normal free T4 means no treatment.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "No treatment because free T4 is normal",
+      "Methimazole and propylthiouracil together for life",
+      "Levothyroxine",
+      "Radioiodine is forbidden above age 70",
+      "Treat the nodule-related subclinical hyperthyroidism"
+    ],
+    "correctAnswer": "Treat the nodule-related subclinical hyperthyroidism",
+    "explanation": "Older adults with TSH persistently below 0.1, especially with heart or bone risk and a hot nodule, are treated. A normal free T4 does not make severe TSH suppression harmless. Age 70 does not forbid radioiodine. Two antithyroid drugs forever, and levothyroxine, are wrong.",
+    "ref": "ata-hyper-2016"
+  },
+  {
+    "blueprintDomain": "reproductive-endocrine",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "beta-blocker-and-methimazole-for-symptomatic-graves",
+    "difficulty": 4,
+    "scenario": "A 36-year-old woman has weight loss, a heart rate of 120, a diffuse goiter, and tremor. TSH is suppressed, free T4 is high, and thyroid-stimulating immunoglobulin is positive. She is not pregnant. She asks for a beta blocker only and no antithyroid drug.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Levothyroxine",
+      "Radioiodine today with no discussion of options",
+      "A beta blocker only",
+      "Propylthiouracil and methimazole together",
+      "A beta blocker for symptoms and methimazole to stop hormone production"
+    ],
+    "correctAnswer": "A beta blocker for symptoms and methimazole to stop hormone production",
+    "explanation": "Symptomatic Graves disease in a nonpregnant adult is treated with a beta blocker plus an antithyroid drug, usually methimazole, while definitive therapy is discussed. A beta blocker alone leaves production unchecked. Levothyroxine, same-day radioiodine without counseling, and two antithyroid drugs are wrong.",
+    "ref": "ata-hyper-2016"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "asthma-normal-paco2-is-danger",
+    "difficulty": 5,
+    "scenario": "A 22-year-old woman has had an asthma attack for six hours. Respiratory rate is 30, she speaks one word at a time, and oxygen saturation is 90% on room air. Arterial blood gas shows pH 7.38 and PaCO2 40 mm Hg. A colleague calls the gas reassuring because it is not acidemic and writes a discharge prescription.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Discharge because the PaCO2 is normal",
+      "An anxiolytic for the respiratory rate",
+      "Treat as near-fatal asthma and do not discharge",
+      "Azithromycin and home if the next nebulizer helps a little",
+      "A chest radiograph and no further asthma treatment"
+    ],
+    "correctAnswer": "Treat as near-fatal asthma and do not discharge",
+    "explanation": "A normal PaCO2 during a severe asthma attack means she is tiring and can no longer hyperventilate. That is near-fatal asthma, not a reassuring gas. Discharge, a token antibiotic, an anxiolytic, and skipping treatment are unsafe.",
+    "ref": "gina-2025"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "no-laba-monotherapy",
+    "difficulty": 4,
+    "scenario": "A 31-year-old woman is due for a salmeterol refill. There is no inhaled corticosteroid on the list. She uses salmeterol for exercise and on other tight days. Spirometry last year showed asthma. Oxygen saturation is 98% and she is comfortable in the chair.",
+    "question": "Which refill plan is most appropriate?",
+    "options": [
+      "Add a long oral steroid taper and continue salmeterol alone",
+      "Do not refill salmeterol alone; prescribe an inhaled corticosteroid-formoterol regimen",
+      "Continue salmeterol and add tiotropium, still without an inhaled corticosteroid",
+      "Replace salmeterol with scheduled albuterol four times daily",
+      "Refill salmeterol because symptoms are mainly with exercise"
+    ],
+    "correctAnswer": "Do not refill salmeterol alone; prescribe an inhaled corticosteroid-formoterol regimen",
+    "explanation": "Long-acting beta-agonist monotherapy in asthma increases serious exacerbations. She needs an inhaled corticosteroid, preferably in a formoterol combination she can also use for relief. Steroid tapers, scheduled albuterol, and tiotropium without a steroid leave the inflammation untreated.",
+    "ref": "gina-2025"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "copd-no-antibiotic-if-sputum-not-purulent",
+    "difficulty": 4,
+    "scenario": "A 66-year-old man on day three of a COPD exacerbation has worse dyspnea and more sputum, but the sputum is white and mucoid. He is not in respiratory failure. Temperature is 37.2°C. Prednisone has been started. A colleague adds doxycycline because two of three cardinal symptoms are present.",
+    "question": "Which antibiotic decision is most appropriate?",
+    "options": [
+      "Add doxycycline because dyspnea and volume increased",
+      "Stop prednisone and treat with an antibiotic only",
+      "Levofloxacin for five days",
+      "Fourteen days of amoxicillin-clavulanate",
+      "Do not add an antibiotic while sputum remains nonpurulent"
+    ],
+    "correctAnswer": "Do not add an antibiotic while sputum remains nonpurulent",
+    "explanation": "Antibiotics for a COPD exacerbation are used when sputum is purulent, or when ventilation is needed. Two nonpurulent symptoms are not enough. A fluoroquinolone, a long course, and stopping the steroid are wrong.",
+    "ref": "gold-2026"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "pulmonology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "cap-do-not-withhold-for-low-procalcitonin",
+    "difficulty": 5,
+    "scenario": "A 66-year-old man has a focal infiltrate, fever, and a new oxygen requirement. Procalcitonin is 0.08 ng/mL. Blood pressure is 110/68 mm Hg and respiratory rate is 24. He looks ill enough to stay. A resident pauses antibiotics because the value is below a bacterial threshold.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start empiric antibiotics now despite the procalcitonin",
+      "Repeat the test in 24 hours and treat only if it rises",
+      "Oseltamivir alone until cultures grow",
+      "A single antibiotic dose and stop if tomorrow's value is still low",
+      "Withhold antibiotics because the value is low"
+    ],
+    "correctAnswer": "Start empiric antibiotics now despite the procalcitonin",
+    "explanation": "Clinical pneumonia with hypoxia is treated. A low procalcitonin does not cancel that decision. Delay, influenza treatment alone, and a token dose are not the plan.",
+    "ref": "ats-cap-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "decompressive-craniectomy-malignant-mca",
+    "difficulty": 5,
+    "scenario": "A 48-year-old man has a large right middle-cerebral-artery infarct. Twelve hours later he is harder to arouse. CT shows edema and 6 mm of midline shift. He was well before this stroke and the neurosurgeon is available.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Dexamethasone as definitive care",
+      "Refer for decompressive craniectomy",
+      "Alteplase now, 12 hours after onset",
+      "Mannitol and a scan tomorrow as the only plan",
+      "Comfort care only because edema has started"
+    ],
+    "correctAnswer": "Refer for decompressive craniectomy",
+    "explanation": "Malignant middle-cerebral-artery edema in a previously well younger adult is considered for early decompressive craniectomy. Delayed medical care, steroids as definitive therapy, late alteplase, and automatic comfort care are not the first answer.",
+    "ref": "aha-ais-2019"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "sah-hydrocephalus-evd",
+    "difficulty": 5,
+    "scenario": "A 55-year-old woman with subarachnoid hemorrhage becomes less responsive six hours later. CT shows enlarged lateral ventricles and transependymal edema. She had been following commands.",
+    "question": "Which intervention is most appropriate?",
+    "options": [
+      "Observation for 72 hours if blood pressure is normal",
+      "Serial lumbar punctures as definitive care",
+      "Dexamethasone alone",
+      "Heparin",
+      "External ventricular drainage"
+    ],
+    "correctAnswer": "External ventricular drainage",
+    "explanation": "Acute hydrocephalus after subarachnoid hemorrhage is drained with an external ventricle. Lumbar puncture is not definitive care, and steroids, heparin, and observation leave the pressure high.",
+    "ref": "aha-sah-2023"
+  },
+  {
+    "blueprintDomain": "behavioral-nervous",
+    "subjectId": "neurology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hypoglycemia-before-status-drugs",
+    "difficulty": 4,
+    "scenario": "A 19-year-old man with type 1 diabetes is convulsing. Roommates say he took insulin and skipped dinner. Fingerstick glucose is 24 mg/dL. An intravenous line is being placed.",
+    "question": "Which immediate medication is most appropriate?",
+    "options": [
+      "Oral phenytoin",
+      "Intravenous dextrose",
+      "Glucagon by mouth while he is convulsing",
+      "Dantrolene",
+      "Intravenous insulin"
+    ],
+    "correctAnswer": "Intravenous dextrose",
+    "explanation": "The seizure is hypoglycemia. Intravenous dextrose stops it. Insulin, phenytoin, and dantrolene treat the wrong problem. Oral glucagon is not given during a convulsion.",
+    "ref": "aan-status-2016"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "flail-chest-support-ventilation",
+    "difficulty": 4,
+    "scenario": "A 54-year-old man after a crash has a segment of chest wall that moves inward on inspiration. Oxygen saturation is 88% on a face mask. He is tiring. Breath sounds are present and the trachea is midline. Blood pressure is 110/70 mm Hg.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Discharge with an incentive spirometer",
+      "Needle both sides of the chest",
+      "Immediate bilateral thoracotomy",
+      "Heparin",
+      "Support oxygenation and ventilation; do not place bilateral chest tubes for a flail chest alone"
+    ],
+    "correctAnswer": "Support oxygenation and ventilation; do not place bilateral chest tubes for a flail chest alone",
+    "explanation": "Flail chest needs oxygen and ventilatory support, plus pain control. It is not tension pneumothorax, so bilateral needles and thoracotomy are not the first move when breath sounds are present and the trachea is midline. Heparin and discharge ignore respiratory failure.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "blood-at-meatus-no-foley",
+    "difficulty": 5,
+    "scenario": "A 27-year-old man has a pelvic fracture. There is blood at the urethral meatus and a high-riding prostate is described. He has not voided. A nurse is about to insert a Foley catheter.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Insert the Foley and inflate the balloon",
+      "Do not pass the catheter; get a retrograde urethrogram",
+      "Ignore the blood because pelvic fractures do not injure the urethra",
+      "Force the catheter past resistance",
+      "Suprapubic tap with a needle in the emergency department as the first attempt without imaging"
+    ],
+    "correctAnswer": "Do not pass the catheter; get a retrograde urethrogram",
+    "explanation": "Blood at the meatus means a urethral injury until a urethrogram says otherwise. Blind catheterization can complete a partial tear. A blind suprapubic stick and ignoring the blood are wrong.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "circumferential-burn-escharotomy",
+    "difficulty": 5,
+    "scenario": "A 45-year-old man is pulled from a house fire with full-thickness circumferential burns of the chest. He is intubated. Peak airway pressures are rising and tidal volumes are falling. Breath sounds are present bilaterally. The chest is tight to examination and he is difficult to ventilate.",
+    "question": "Which immediate procedure is most appropriate?",
+    "options": [
+      "Albuterol only",
+      "CT pulmonary angiography before any incision",
+      "Heparin",
+      "Observation until a burn-center tour tomorrow",
+      "Chest escharotomy"
+    ],
+    "correctAnswer": "Chest escharotomy",
+    "explanation": "Circumferential chest eschar can restrict ventilation. Escharotomy is the procedure when pressures rise and volumes fall. Inhalers, CT, heparin, and overnight observation do not release the chest wall.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "surgery",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "neck-hematoma-airway-first",
+    "difficulty": 5,
+    "scenario": "A 26-year-old woman is stabbed in zone II of the neck. A hematoma is expanding, her voice is hoarse, and she is drooling. Oxygen saturation is 91% and falling.",
+    "question": "Which next step is most appropriate?",
+    "options": [
+      "Oral antibiotics and a neck wrap",
+      "Discharge if hoarseness improves with whispering",
+      "CT angiography before any airway intervention",
+      "Secure the airway before CT angiography",
+      "Heparin as the only treatment"
+    ],
+    "correctAnswer": "Secure the airway before CT angiography",
+    "explanation": "An expanding neck hematoma with a falling saturation is an airway problem first. Imaging waits. Discharge, heparin, and a wrap do not protect the airway.",
+    "ref": "acs-atls"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "start-allopurinol-during-indicated-flare",
+    "difficulty": 5,
+    "scenario": "A 52-year-old man is limping on day two of his third gout flare this year. eGFR is 76 mL/min/1.73 m². He can take pills. He may not return next week. A colleague says allopurinol must wait until the toe is normal. The toe is swollen, red, and painful, and he reports two earlier flares this year.",
+    "question": "Which timing is most appropriate?",
+    "options": [
+      "Probenecid only after a one-month wait",
+      "Start allopurinol 300 mg tonight with no flare treatment",
+      "Delay allopurinol until the flare has fully resolved",
+      "Start low-dose allopurinol during this flare, with anti-inflammatory treatment",
+      "Start pegloticase today"
+    ],
+    "correctAnswer": "Start low-dose allopurinol during this flare, with anti-inflammatory treatment",
+    "explanation": "When urate-lowering therapy is indicated, it may be started during a flare if anti-inflammatory treatment is also given, especially if follow-up is uncertain. Waiting, pegloticase first, a full 300 mg dose without flare coverage, and a mandatory delay are not required.",
+    "ref": "acr-gout-2020"
+  },
+  {
+    "blueprintDomain": "msk-skin",
+    "subjectId": "rheumatology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-use-long-steroid-instead-of-dmard",
+    "difficulty": 4,
+    "scenario": "A 51-year-old woman with new moderate rheumatoid arthritis is starting methotrexate. She asks to take prednisone 10 mg daily for five months instead of methotrexate. She has no contraindication to methotrexate.",
+    "question": "Which glucocorticoid plan is most appropriate?",
+    "options": [
+      "Intra-articular steroid into every joint monthly and no methotrexate",
+      "Dexamethasone 40 mg for fourteen days every month",
+      "Prednisone 10 mg daily for five months as the only disease-modifying plan",
+      "Prednisone 40 mg indefinitely plus methotrexate",
+      "Do not use a glucocorticoid course of three months or longer in place of a DMARD"
+    ],
+    "correctAnswer": "Do not use a glucocorticoid course of three months or longer in place of a DMARD",
+    "explanation": "Glucocorticoids are a bridge, not a five-month substitute for a DMARD. Monthly dexamethasone pulses, indefinite high-dose prednisone, and steroid injections without methotrexate leave the disease unmodified.",
+    "ref": "acr-ra-2021"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "neutropenic-fever-antibiotics-now",
+    "difficulty": 5,
+    "scenario": "A 56-year-old man on chemotherapy has a temperature of 38.6°C. Absolute neutrophil count is 200/µL. Blood pressure is 118/70 mm Hg and he looks well. A plan waits for the blood culture result before the first antibiotic.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Wait for the culture result",
+      "No antibiotic because the pressure is normal",
+      "Start antipseudomonal intravenous antibiotics immediately after cultures are drawn",
+      "Vancomycin as the only drug in a stable patient with no MRSA risk",
+      "Oral amoxicillin and a visit tomorrow"
+    ],
+    "correctAnswer": "Start antipseudomonal intravenous antibiotics immediately after cultures are drawn",
+    "explanation": "Neutropenic fever is treated immediately with an antipseudomonal beta-lactam after cultures, even when the patient looks stable. Waiting, oral amoxicillin, vancomycin monotherapy, and no antibiotic are wrong.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "blood-lymph-immune",
+    "subjectId": "hematology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "sickle-acute-chest-not-ordinary-pneumonia",
+    "difficulty": 5,
+    "scenario": "A 22-year-old man with sickle cell disease has chest pain, fever of 38.7°C, and a new infiltrate. Oxygen saturation is 91% on room air. Hemoglobin is 7.1 g/dL, down from his baseline of 9 g/dL. A plan treats him as ordinary outpatient pneumonia.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Oral azithromycin and discharge",
+      "Aspirin and no antibiotics",
+      "Incentive spirometry at home with no visit",
+      "Heparin as the only drug",
+      "Admit, give antibiotics and supportive care, and discuss transfusion for acute chest syndrome"
+    ],
+    "correctAnswer": "Admit, give antibiotics and supportive care, and discuss transfusion for acute chest syndrome",
+    "explanation": "A new infiltrate, hypoxia, and a falling hemoglobin in sickle cell disease are acute chest syndrome. He is admitted, not sent home on azithromycin, aspirin, heparin, or a spirometer.",
+    "ref": "katzung-16"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "dialysis-for-uremic-pericarditis",
+    "difficulty": 5,
+    "scenario": "A 59-year-old man with acute kidney injury has a new scratchy rub and positional chest pain. Creatinine is 6.4 mg/dL and urea nitrogen is 96 mg/dL. Potassium is 4.8 mEq/L and bicarbonate is 19 mEq/L. A plan gives colchicine and waits unless potassium exceeds 6.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Ibuprofen and defer dialysis because potassium is normal",
+      "Start renal-replacement therapy for uremic pericarditis",
+      "High-dose prednisone for viral pericarditis",
+      "Oral bicarbonate and a recheck in three days",
+      "Anticoagulation for the rub"
+    ],
+    "correctAnswer": "Start renal-replacement therapy for uremic pericarditis",
+    "explanation": "A rub and positional pain in severe uremia are uremic pericarditis, an indication for dialysis even when potassium is acceptable. NSAIDs, delay, steroids, and anticoagulation miss that indication and anticoagulation is dangerous if the effusion is present.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "respiratory-renal",
+    "subjectId": "nephrology",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "no-dialysis-for-number-alone",
+    "difficulty": 4,
+    "scenario": "A 62-year-old man on day 4 of acute tubular injury has urea nitrogen 118 mg/dL and creatinine 7.1 mg/dL. Potassium is 4.6 mEq/L, bicarbonate is 21 mEq/L, and he made 900 mL of urine yesterday. Lungs are clear and he is eating breakfast. A consultant writes dialysis because the urea nitrogen is over 100.",
+    "question": "Which dialysis decision is most appropriate?",
+    "options": [
+      "Do not start dialysis for the laboratory numbers alone",
+      "Dialysis unless urine output exceeds 2 liters",
+      "Place a permanent catheter and begin three-times-weekly dialysis tonight",
+      "Start dialysis today because urea nitrogen exceeds 100",
+      "Kayexalate as a renal-replacement substitute"
+    ],
+    "correctAnswer": "Do not start dialysis for the laboratory numbers alone",
+    "explanation": "Dialysis is for refractory hyperkalemia, acidosis, volume overload, uremic complications, or certain toxins, not for a urea nitrogen number in a patient who is eating, breathing, and making urine. A permanent schedule, a resin, and a urine-output rule are not the indication.",
+    "ref": "kdigo-aki-2012"
+  },
+  {
+    "blueprintDomain": "multisystem",
+    "subjectId": "endocrinology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "do-not-stop-basal-when-eating-less",
+    "difficulty": 4,
+    "scenario": "A 46-year-old man with type 2 diabetes on 30 units of basal insulin has a stomach illness and is eating half his usual food. Glucose values are 180 to 220 mg/dL. He has no ketones. He plans to skip basal insulin until he is hungry again.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Double the basal dose because he is ill",
+      "Stop all insulin until appetite returns",
+      "Exercise through the illness to lower glucose",
+      "Continue basal insulin and adjust mealtime doses",
+      "Start a sulfonylurea on top and stop insulin"
+    ],
+    "correctAnswer": "Continue basal insulin and adjust mealtime doses",
+    "explanation": "Basal insulin continues during illness. Mealtime doses can fall if he is eating less, but stopping basal insulin risks ketoacidosis, especially if any insulin deficiency is present. Doubling basal, swapping to a sulfonylurea, and exercising while ill are wrong.",
+    "ref": "ada-2026"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "cardiology",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "af-pill-in-pocket-not-with-structural-disease",
+    "difficulty": 5,
+    "scenario": "A 62-year-old man with a prior myocardial infarction and an ejection fraction of 35% has rare episodes of atrial fibrillation. He asks for a pocket supply of flecainide to take when palpitations start. He is not anticoagulated. CHA2DS2-VASc score is 3. He reports palpitations a few times a year and has no chest pain today.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Flecainide as needed with no anticoagulation",
+      "Do not use flecainide; anticoagulate and choose a rhythm strategy that fits structural disease",
+      "Amiodarone as a single pocket dose with no monitoring",
+      "Flecainide plus aspirin",
+      "No stroke prevention because episodes are rare"
+    ],
+    "correctAnswer": "Do not use flecainide; anticoagulate and choose a rhythm strategy that fits structural disease",
+    "explanation": "Flecainide is avoided in coronary disease and HFrEF. He also needs anticoagulation for a CHA2DS2-VASc score of 3. Aspirin, an unmonitored amiodarone dose, and no stroke prevention are wrong.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "social-sciences",
+    "subjectId": "ethics",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "use-interpreter-for-consent",
+    "difficulty": 4,
+    "scenario": "A 54-year-old woman is scheduled for an elective cholecystectomy. She speaks little English. Her daughter, a nurse, offers to interpret and says her mother 'basically agrees.' A qualified phone interpreter is available in a few minutes. The patient is comfortable.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Use a qualified interpreter and obtain consent from the patient",
+      "Proceed because the surgical listing is consent",
+      "Let the daughter interpret to avoid a short delay",
+      "Ask the daughter to sign the consent",
+      "Have a nurse who knows a few phrases confirm agreement"
+    ],
+    "correctAnswer": "Use a qualified interpreter and obtain consent from the patient",
+    "explanation": "Elective consent requires a qualified interpreter and the patient's own decision. A family member, even a nurse, may filter the discussion. A signature by the daughter, the listing itself, and a few phrases are not informed consent.",
+    "ref": "ama-ethics"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "status": "live",
+  "inserted": true,
+  "snapshot": "usmle-step3-300-20261108-before",
+  "snapshotId": "snap-green-band-apf2zoef",
+  "fieldId": "usmle-step-3",
+  "count": 300,
+  "target": 300,
+  "parts": { "a": 100, "b": 100, "c": 100 },
+  "difficulty": { "4": 162, "5": 138 },
+  "domains": {
+    "respiratory-renal": 73,
+    "multisystem": 50,
+    "behavioral-nervous": 46,
+    "cardiovascular": 38,
+    "msk-skin": 36,
+    "reproductive-endocrine": 19,
+    "blood-lymph-immune": 14,
+    "gastrointestinal": 12,
+    "social-sciences": 12
+  },
+  "vignetteRich": 300,
+  "blindRead": { "answered": 300, "matched": 300, "ambiguous": 0 },
+  "note": "Loaded live as usmle-step3-300-20261108-v1. Snapshot snap-green-band-apf2zoef was taken before the write. Rollback dry run would_insert 300, then 0 rows remained. After apply, active+qaPassed and the served gate are both 7,693, and all 300 new rows are served. Undo is undo.sql."
+}
