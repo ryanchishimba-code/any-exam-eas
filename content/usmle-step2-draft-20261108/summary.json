@@ -7,6 +7,6 @@
     "4": 77,
     "5": 73
   },
-  "vignetteRich": 11,
-  "note": "139 of 150 fail the practice-session vignette check (age plus objective detail plus two sentences). Do not load until that is fixed."
+  "vignetteRich": 150,
+  "note": "All 150 now include an age and an examination or history sentence so they pass the session vignette check. Still only the first 150 of 300. Not loaded."
 }

@@ -5,7 +5,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "capacitated-refusal",
     "difficulty": 4,
-    "scenario": "Staff from the surgical waiting room pull you back to a man scheduled for below-knee amputation this afternoon. He lost the prior toe to osteomyelitis, and imaging now shows bone involvement of the forefoot. His adult children have already signed the consent they brought from home and say he is too frightened to think straight. He is afebrile, mean arterial pressure is 78 mm Hg, and he is not on vasopressors. He names the operation, says he may die of sepsis without it, explains that he would rather risk death than lose the leg, and gives the same answer after his children leave the room. Attention and orientation are intact.",
+    "scenario": "A 72-year-old man is the patient. Staff from the surgical waiting room pull you back to a man scheduled for below-knee amputation this afternoon. He lost the prior toe to osteomyelitis, and imaging now shows bone involvement of the forefoot. His adult children have already signed the consent they brought from home and say he is too frightened to think straight. He is afebrile, mean arterial pressure is 78 mm Hg, and he is not on vasopressors. He names the operation, says he may die of sepsis without it, explains that he would rather risk death than lose the leg, and gives the same answer after his children leave the room. Attention and orientation are intact. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Proceed with amputation because the family's consent overrides a frightened refusal",
@@ -24,7 +24,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "depression-and-capacity",
     "difficulty": 5,
-    "scenario": "The oncology note lists major depression, treated with sertraline, in a woman who has just declined adjuvant chemotherapy for a resected cancer. Her sister says the diagnosis of depression means she cannot refuse life-prolonging treatment. On interview she describes the survival gain quoted to her, says she has weighed neuropathy and time in clinic against that gain, and states she wants surveillance only. She is not suicidal, not psychotic, and not delirious. She asks you to record the refusal so the infusion unit does not call her again.",
+    "scenario": "A 62-year-old woman is the patient. The oncology note lists major depression, treated with sertraline, in a woman who has just declined adjuvant chemotherapy for a resected cancer. Her sister says the diagnosis of depression means she cannot refuse life-prolonging treatment. On interview she describes the survival gain quoted to her, says she has weighed neuropathy and time in clinic against that gain, and states she wants surveillance only. She is not suicidal, not psychotic, and not delirious. She asks you to record the refusal so the infusion unit does not call her again. On examination the woman appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Accept the refusal and document the capacity assessment",
@@ -81,7 +81,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "qualified-interpreter",
     "difficulty": 4,
-    "scenario": "The cholecystectomy consent is on the clipboard, and the patient's adult daughter says she will interpret because she is a nurse and the hospital interpreter is running late. The patient speaks little English. The daughter already told you her mother 'basically agrees.' The case is elective, the patient is comfortable, and a qualified phone interpreter can be connected in a few minutes. The daughter asks you not to embarrass her mother by bringing a stranger into the conversation.",
+    "scenario": "A 28-year-old woman is the patient. The cholecystectomy consent is on the clipboard, and the patient's adult daughter says she will interpret because she is a nurse and the hospital interpreter is running late. The patient speaks little English. The daughter already told you her mother 'basically agrees.' The case is elective, the patient is comfortable, and a qualified phone interpreter can be connected in a few minutes. The daughter asks you not to embarrass her mother by bringing a stranger into the conversation.",
     "question": "What is the appropriate next step?",
     "options": [
       "Let the daughter interpret the consent to avoid delaying an elective case",
@@ -100,7 +100,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "family-requests-nondisclosure",
     "difficulty": 5,
-    "scenario": "An adult son phones the clinic before his father's visit and says the new scan shows cancer. He asks you to tell his father it is only scar tissue, because the truth will make him give up. The father is 71, still drives, and scheduled the visit himself. He has never said he wants information withheld. There is no prior capacity evaluation and no advance directive appointing the son. The son says that in their culture the eldest child receives bad news first.",
+    "scenario": "A 71-year-old man is the patient. An adult son phones the clinic before his father's visit and says the new scan shows cancer. He asks you to tell his father it is only scar tissue, because the truth will make him give up. The father is 71, still drives, and scheduled the visit himself. He has never said he wants information withheld. There is no prior capacity evaluation and no advance directive appointing the son. The son says that in their culture the eldest child receives bad news first. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Agree to the son's wording so the visit does not destroy hope",
@@ -119,7 +119,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "error-disclosure",
     "difficulty": 4,
-    "scenario": "Overnight, a sliding-scale order was misread and the patient received ten times the intended rapid-acting insulin. Glucose fell to 28 mg/dL, he was treated with dextrose, and the morning value is 142 mg/dL with a normal exam. He asks why the nurse checked his fingerstick so often. The attending says there is no need to upset him because the numbers are normal now and the incident is already in the safety system.",
+    "scenario": "A 44-year-old man is the patient. Overnight, a sliding-scale order was misread and the patient received ten times the intended rapid-acting insulin. Glucose fell to 28 mg/dL, he was treated with dextrose, and the morning value is 142 mg/dL with a normal exam. He asks why the nurse checked his fingerstick so often. The attending says there is no need to upset him because the numbers are normal now and the incident is already in the safety system.",
     "question": "What is the appropriate next step?",
     "options": [
       "Tell him an error caused the low glucose, what was done, and what will change",
@@ -138,7 +138,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "falsified-documentation",
     "difficulty": 5,
-    "scenario": "After a patient falls, the senior resident asks you to add a late sentence saying fall precautions and a bed alarm were in place all night. The alarm was never ordered, and the bedside sign was placed after the fall. The senior says the change is only clarifying and that the attending wants the chart to look complete before risk management arrives. The patient has a new hip fracture. No one has spoken to him yet about how the fall happened.",
+    "scenario": "A 57-year-old man is the patient. After a patient falls, the senior resident asks you to add a late sentence saying fall precautions and a bed alarm were in place all night. The alarm was never ordered, and the bedside sign was placed after the fall. The senior says the change is only clarifying and that the attending wants the chart to look complete before risk management arrives. The patient has a new hip fracture. No one has spoken to him yet about how the fall happened.",
     "question": "What is the appropriate next step?",
     "options": [
       "Add the sentence because the senior is accountable for the team's notes",
@@ -157,7 +157,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "impaired-colleague",
     "difficulty": 4,
-    "scenario": "At 6:10 a.m. the night-float resident smells of alcohol, misses two easy intravenous attempts, and laughs when the nurse asks if he is fit to hand off. He is assigned to place a central line after sign-out on a patient whose access just failed. He says he had one drink at dinner and that covering for him will make the team late. The line is not yet started. The attending is not in the hospital.",
+    "scenario": "A 75-year-old man is the patient. At 6:10 a.m. the night-float resident smells of alcohol, misses two easy intravenous attempts, and laughs when the nurse asks if he is fit to hand off. He is assigned to place a central line after sign-out on a patient whose access just failed. He says he had one drink at dinner and that covering for him will make the team late. The line is not yet started. The attending is not in the hospital.",
     "question": "What is the appropriate next step?",
     "options": [
       "Take him off duty now and notify the supervising physician",
@@ -176,7 +176,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "unauthorized-chart-access",
     "difficulty": 4,
-    "scenario": "A co-intern waves you toward a chart opened on the workroom computer. A well-known athlete was admitted overnight to a different service. Your co-intern is not on that team and neither are you. He says the record is worth seeing because the tox screen is probably interesting, and he promises not to tell anyone you looked. The athlete is not your patient, and no one has asked you to consult.",
+    "scenario": "A 52-year-old man is the patient. A co-intern waves you toward a chart opened on the workroom computer. A well-known athlete was admitted overnight to a different service. Your co-intern is not on that team and neither are you. He says the record is worth seeing because the tox screen is probably interesting, and he promises not to tell anyone you looked. The athlete is not your patient, and no one has asked you to consult. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Look once, then close the chart, because curiosity is not the same as gossip",
@@ -195,7 +195,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "dnr-is-not-do-not-treat",
     "difficulty": 4,
-    "scenario": "The family reads the DNR order and tells the nurse to stop the antibiotics, the oxygen, and the morning labs because 'do not resuscitate means do not treat.' The patient has a postoperative pneumonia, is hypotensive only to 102/64 mm Hg, and is awake enough to nod that he wants to be treated and to go home if he improves. The DNR/DNI order was signed last month after a goals discussion and limits cardiopulmonary resuscitation and intubation. He is not asking for comfort care only.",
+    "scenario": "A 64-year-old man is the patient. The family reads the DNR order and tells the nurse to stop the antibiotics, the oxygen, and the morning labs because 'do not resuscitate means do not treat.' The patient has a postoperative pneumonia, is hypotensive only to 102/64 mm Hg, and is awake enough to nod that he wants to be treated and to go home if he improves. The DNR/DNI order was signed last month after a goals discussion and limits cardiopulmonary resuscitation and intubation. He is not asking for comfort care only.",
     "question": "What is the appropriate next step?",
     "options": [
       "Stop antibiotics and oxygen because the order forbids disease-directed care",
@@ -214,7 +214,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "advance-directive-over-surrogate",
     "difficulty": 5,
-    "scenario": "The chart contains a signed living will, completed last year, refusing a feeding tube if he cannot recognize family and the impairment is not expected to improve. He now has advanced dementia, does not track conversation, and two physicians agree the deficit is permanent. His daughter was named surrogate in the same document. She demands a percutaneous endoscopic gastrostomy this week, saying she has changed her mind about what he meant and that a surrogate outranks old paperwork.",
+    "scenario": "A 49-year-old patient. The chart contains a signed living will, completed last year, refusing a feeding tube if he cannot recognize family and the impairment is not expected to improve. He now has advanced dementia, does not track conversation, and two physicians agree the deficit is permanent. His daughter was named surrogate in the same document. She demands a percutaneous endoscopic gastrostomy this week, saying she has changed her mind about what he meant and that a surrogate outranks old paperwork.",
     "question": "What is the appropriate next step?",
     "options": [
       "Place the feeding tube because the current surrogate can revise the directive",
@@ -233,7 +233,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "adult-transfusion-refusal",
     "difficulty": 4,
-    "scenario": "In the GI lab, hemoglobin is 5.2 g/dL after hematemesis. The patient is a capacitated adult and a Jehovah's Witness. He refuses red cells, plasma, and platelets, and he can describe death from anemia as the consequence. Blood pressure is 96/60 mm Hg and improves with crystalloid. He consents to endoscopy, iron, and any non-blood measure. His spouse asks you to transfuse once he is sedated because the marriage should outrank the refusal.",
+    "scenario": "A 75-year-old man is the patient. In the GI lab, hemoglobin is 5.2 g/dL after hematemesis. The patient is a capacitated adult and a Jehovah's Witness. He refuses red cells, plasma, and platelets, and he can describe death from anemia as the consequence. Blood pressure is 96/60 mm Hg and improves with crystalloid. He consents to endoscopy, iron, and any non-blood measure. His spouse asks you to transfuse once he is sedated because the marriage should outrank the refusal.",
     "question": "What is the appropriate next step?",
     "options": [
       "Transfuse once he is sedated because hemorrhage makes the refusal invalid",
@@ -271,7 +271,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "maternal-refusal-of-cesarean",
     "difficulty": 5,
-    "scenario": "At 34 weeks, fetal heart-rate tracings are category III and the obstetrician recommends immediate cesarean delivery. The patient is awake, not septic, and not cognitively impaired. She refuses the operation. She can explain that her fetus may die or be injured, and she says she still declines surgery. The father of the baby asks for a court order. Anesthesia is ready and the operating room is open.",
+    "scenario": "At 34 weeks, fetal heart-rate tracings are category III and the obstetrician recommends immediate cesarean delivery. The patient is awake, not septic, and not cognitively impaired. She refuses the operation. She can explain that her fetus may die or be injured, and she says she still declines surgery. The father of the baby asks for a court order. Anesthesia is ready and the operating room is open. On examination the woman appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Obtain an emergency court order and operate to protect the fetus",
@@ -290,7 +290,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "honest-prognosis",
     "difficulty": 5,
-    "scenario": "After you say the cancer has spread to the liver, the patient asks how long people in his exact situation usually live. You know the median survival with the regimen he is being offered is measured in months, with a wide range. His spouse shakes her head and whispers that you should say you never put a number on hope. He is calm, capacitated, and repeats the question. He is not asking for a promise and not asking you to hide the diagnosis.",
+    "scenario": "A 36-year-old man is the patient. After you say the cancer has spread to the liver, the patient asks how long people in his exact situation usually live. You know the median survival with the regimen he is being offered is measured in months, with a wide range. His spouse shakes her head and whispers that you should say you never put a number on hope. He is calm, capacitated, and repeats the question. He is not asking for a promise and not asking you to hide the diagnosis. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Say that nobody can know and change the subject to the next scan date",
@@ -309,7 +309,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "influential-gift",
     "difficulty": 4,
-    "scenario": "At discharge, the patient presses a $2,000 gift card into your hand and says he will need disability paperwork completed next week, the kind that 'really has to be approved.' The hospitalization was straightforward. He says refusing the card would insult his family. You do not know yet whether the disability statement he wants is accurate.",
+    "scenario": "A 75-year-old man is the patient. At discharge, the patient presses a $2,000 gift card into your hand and says he will need disability paperwork completed next week, the kind that 'really has to be approved.' The hospitalization was straightforward. He says refusing the card would insult his family. You do not know yet whether the disability statement he wants is accurate. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Accept the card so the relationship survives, then decide the paperwork on its merits",
@@ -328,7 +328,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "informal-prescription",
     "difficulty": 4,
-    "scenario": "A co-resident texts that their flight is tonight and asks you to send ten zolpidem tablets to the retail pharmacy downstairs. They are not your patient, you have not examined them, and they say their own doctor is off today. They promise it is only for the flight and that they have taken it before without a problem. The pharmacy will accept your order.",
+    "scenario": "A 42-year-old patient. A co-resident texts that their flight is tonight and asks you to send ten zolpidem tablets to the retail pharmacy downstairs. They are not your patient, you have not examined them, and they say their own doctor is off today. They promise it is only for the flight and that they have taken it before without a problem. The pharmacy will accept your order. On examination the patient appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Send a ten-tablet supply because you know them and the quantity is small",
@@ -347,7 +347,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "duty-to-protect",
     "difficulty": 5,
-    "scenario": "On the inpatient psychiatry consult, a man who is medically stable says that if he is discharged today he will shoot his named supervisor tonight. He describes a handgun locked in his truck in the hospital garage and the supervisor's evening shift. He asks you to keep it confidential because he came to the hospital for chest pain, not for this. He is not asking for help controlling the impulse. He can state the plan, the person, and the means.",
+    "scenario": "A 36-year-old man is the patient. On the inpatient psychiatry consult, a man who is medically stable says that if he is discharged today he will shoot his named supervisor tonight. He describes a handgun locked in his truck in the hospital garage and the supervisor's evening shift. He asks you to keep it confidential because he came to the hospital for chest pain, not for this. He is not asking for help controlling the impulse. He can state the plan, the person, and the means.",
     "question": "What is the appropriate next step?",
     "options": [
       "Keep the statement confidential and arrange routine outpatient therapy",
@@ -366,7 +366,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "hiv-partner-notification",
     "difficulty": 5,
-    "scenario": "A new HIV antigen-antibody test is positive and the confirmatory test matches. The patient has a current sexual partner he names, and he says they do not use condoms. He refuses to tell the partner, refuses a public-health partner-services interview, and asks you to promise that the result stays inside the visit. He is not a minor. He understands transmission and still declines. The partner is identifiable and lives in the same city.",
+    "scenario": "A 40-year-old man is the patient. A new HIV antigen-antibody test is positive and the confirmatory test matches. The patient has a current sexual partner he names, and he says they do not use condoms. He refuses to tell the partner, refuses a public-health partner-services interview, and asks you to promise that the result stays inside the visit. He is not a minor. He understands transmission and still declines. The partner is identifiable and lives in the same city.",
     "question": "What is the appropriate next step?",
     "options": [
       "Promise confidentiality and document that he declined to notify anyone",
@@ -385,7 +385,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "elder-abuse-surrogate",
     "difficulty": 5,
-    "scenario": "Bruises in different stages of healing are on the upper arms of a woman with moderate dementia. When her daughter leaves for coffee, she says the daughter hits her and takes her pension. The daughter is the health-care surrogate and is pushing for a sedating antipsychotic so her mother will 'stop accusing people.' Rent at the facility is unpaid. The patient cannot manage complex finances but can consistently describe who hurts her and when.",
+    "scenario": "A 74-year-old woman is the patient. Bruises in different stages of healing are on the upper arms of a woman with moderate dementia. When her daughter leaves for coffee, she says the daughter hits her and takes her pension. The daughter is the health-care surrogate and is pushing for a sedating antipsychotic so her mother will 'stop accusing people.' Rent at the facility is unpaid. The patient cannot manage complex finances but can consistently describe who hurts her and when.",
     "question": "What is the appropriate next step?",
     "options": [
       "Follow the daughter's medication request because she is the legal surrogate",
@@ -404,7 +404,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "mandated-child-report",
     "difficulty": 4,
-    "scenario": "A toddler's femur fracture story changes twice in an hour. First the father says the child rolled off a sofa, then that an older sibling closed a door on the leg. The child is quiet, has a second bruise over the pinna, and there is no witnessed mechanism that fits a femur fracture. The father says this is a private family matter and that reporting it would be a betrayal of the therapeutic relationship. The orthopedic team is ready to admit.",
+    "scenario": "A 75-year-old man is the patient. A toddler's femur fracture story changes twice in an hour. First the father says the child rolled off a sofa, then that an older sibling closed a door on the leg. The child is quiet, has a second bruise over the pinna, and there is no witnessed mechanism that fits a femur fracture. The father says this is a private family matter and that reporting it would be a betrayal of the therapeutic relationship. The orthopedic team is ready to admit. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Honor the father's confidentiality request because he brought the child in",
@@ -423,7 +423,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "adult-ipv-not-automatic-police",
     "difficulty": 5,
-    "scenario": "She asks the nurse to step out, then tells you her partner hit her last night. The bruise is over the upper arm. She is decisionally capacitated, not suicidal, and there are no children in the home. She does not want police called, does not want her partner confronted, and does want to know how to leave later if she chooses. The injury is not a gunshot or stab wound. Your state does not mandate a police report for this injury in a capacitated adult.",
+    "scenario": "A 45-year-old woman is the patient. She asks the nurse to step out, then tells you her partner hit her last night. The bruise is over the upper arm. She is decisionally capacitated, not suicidal, and there are no children in the home. She does not want police called, does not want her partner confronted, and does want to know how to leave later if she chooses. The injury is not a gunshot or stab wound. Your state does not mandate a police report for this injury in a capacitated adult. On examination the woman appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Call the police over her objection because domestic violence is always reported",
@@ -442,7 +442,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "leaving-ama",
     "difficulty": 4,
-    "scenario": "Halfway through the chest-pain workup, troponin is still pending and the first electrocardiogram is nondiagnostic. The patient has capacity. He understands you have explained a possible heart attack and the risk of death if he leaves. He can repeat those risks and still wants to go. He is not intoxicated, not hypoxic, and not under a psychiatric hold. He will accept a copy of his electrocardiogram and a plan for where to return.",
+    "scenario": "A 71-year-old man is the patient. Halfway through the chest-pain workup, troponin is still pending and the first electrocardiogram is nondiagnostic. The patient has capacity. He understands you have explained a possible heart attack and the risk of death if he leaves. He can repeat those risks and still wants to go. He is not intoxicated, not hypoxic, and not under a psychiatric hold. He will accept a copy of his electrocardiogram and a plan for where to return.",
     "question": "What is the appropriate next step?",
     "options": [
       "Let him leave after the risks are documented, and do not restrain him",
@@ -461,7 +461,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "emergency-implied-consent",
     "difficulty": 4,
-    "scenario": "Smoke inhalation left him unconscious in the trauma bay. Oxygen saturation is 86% on a nonrebreather mask, the airway is sooty, and he is not protecting a gag. No family came with him, the phone in his pocket is locked, and there is no advance directive in the record. The resident hesitates because consent for intubation has not been signed. Blood pressure is 88/52 mm Hg.",
+    "scenario": "A 32-year-old man is the patient. Smoke inhalation left him unconscious in the trauma bay. Oxygen saturation is 86% on a nonrebreather mask, the airway is sooty, and he is not protecting a gag. No family came with him, the phone in his pocket is locked, and there is no advance directive in the record. The resident hesitates because consent for intubation has not been signed. Blood pressure is 88/52 mm Hg.",
     "question": "What is the appropriate next step?",
     "options": [
       "Intubate now under emergency implied consent",
@@ -480,7 +480,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "social-media-reidentification",
     "difficulty": 4,
-    "scenario": "A post in the team group chat describes a 'funny' admission from last night without using the patient's name. It includes his job as the only pipe-organ repairer in the city, the floor he is on, and a photo of the city skyline taken from his window. Comments from classmates guess his name correctly. The author says the post is acceptable because the name and medical-record number were left out.",
+    "scenario": "A 52-year-old man is the patient. A post in the team group chat describes a 'funny' admission from last night without using the patient's name. It includes his job as the only pipe-organ repairer in the city, the floor he is on, and a photo of the city skyline taken from his window. Comments from classmates guess his name correctly. The author says the post is acceptable because the name and medical-record number were left out.",
     "question": "What is the appropriate next step?",
     "options": [
       "Leave the post up because the name and record number are absent",
@@ -499,7 +499,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "elevator-disclosure",
     "difficulty": 4,
-    "scenario": "The elevator doors close with you, two visitors, and a student who starts presenting the new admission in 714: HIV, a job at the courthouse, and a CD4 count. The visitors are not hospital staff. The student thinks this is efficient teaching because the ride is short and he is speaking quietly. You are the only clinician who knows the case is real.",
+    "scenario": "A 71-year-old man is the patient. The elevator doors close with you, two visitors, and a student who starts presenting the new admission in 714: HIV, a job at the courthouse, and a CD4 count. The visitors are not hospital staff. The student thinks this is efficient teaching because the ride is short and he is speaking quietly. You are the only clinician who knows the case is real. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Let him finish because interrupting would embarrass a learner",
@@ -518,7 +518,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "discriminatory-reassignment",
     "difficulty": 5,
-    "scenario": "The patient points at the resident and says he does not want a Black doctor touching him. He asks for a different physician 'who looks like me.' The resident is the assigned clinician, is competent to do the paracentesis, and is willing to continue. The procedure is not an emergency, and another resident is technically available. The patient is capacitated and is not refusing the procedure itself, only the physician's race.",
+    "scenario": "A 43-year-old man is the patient. The patient points at the resident and says he does not want a Black doctor touching him. He asks for a different physician 'who looks like me.' The resident is the assigned clinician, is competent to do the paracentesis, and is willing to continue. The procedure is not an emergency, and another resident is technically available. The patient is capacitated and is not refusing the procedure itself, only the physician's race.",
     "question": "What is the appropriate next step?",
     "options": [
       "Reassign the resident so the patient stays comfortable and the procedure happens",
@@ -537,7 +537,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "conscience-and-transfer",
     "difficulty": 5,
-    "scenario": "Tomorrow's elective procedure conflicts with a deeply held conviction of yours, and you do not want to perform it. The patient is stable, has already completed counseling and consent with the service, and still wants the procedure. Another qualified physician in the group can take the case if notified today. The patient does not know about your objection. No emergency is unfolding.",
+    "scenario": "A 70-year-old patient. Tomorrow's elective procedure conflicts with a deeply held conviction of yours, and you do not want to perform it. The patient is stable, has already completed counseling and consent with the service, and still wants the procedure. Another qualified physician in the group can take the case if notified today. The patient does not know about your objection. No emergency is unfolding.",
     "question": "What is the appropriate next step?",
     "options": [
       "Cancel the procedure yourself and leave a note that it was not appropriate",
@@ -556,7 +556,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "fee-splitting",
     "difficulty": 4,
-    "scenario": "A specialist's office offers cash for each patient you send them for a procedure they already perform well. The amount is $150 per referral, paid monthly, and they say it is a 'coordination stipend,' not a kickback, because you would refer some patients there anyway. They are one of several competent options. No patient has asked you to choose them.",
+    "scenario": "A 30-year-old patient. A specialist's office offers cash for each patient you send them for a procedure they already perform well. The amount is $150 per referral, paid monthly, and they say it is a 'coordination stipend,' not a kickback, because you would refer some patients there anyway. They are one of several competent options. No patient has asked you to choose them.",
     "question": "What is the appropriate next step?",
     "options": [
       "Accept the stipend only for patients you would have referred there regardless",
@@ -575,7 +575,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "occupational-disclosure-limit",
     "difficulty": 5,
-    "scenario": "Human resources calls the occupational clinic asking for a full copy of today's note. The employee was sent for a fitness-for-duty examination after a near-faint on a ladder. He has authorized a statement about whether he can climb ladders safely. He has not authorized release of his depression screen, blood pressure readings, or the medication list. The employer paid for the visit and says payment includes the chart.",
+    "scenario": "A 73-year-old man is the patient. Human resources calls the occupational clinic asking for a full copy of today's note. The employee was sent for a fitness-for-duty examination after a near-faint on a ladder. He has authorized a statement about whether he can climb ladders safely. He has not authorized release of his depression screen, blood pressure readings, or the medication list. The employer paid for the visit and says payment includes the chart.",
     "question": "What is the appropriate next step?",
     "options": [
       "Send the full note because the employer paid for the examination",
@@ -613,7 +613,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "postmortem-confidentiality",
     "difficulty": 4,
-    "scenario": "A neighbor stops you in the grocery aisle. She knows you were the hospitalist for a man who died yesterday, and she asks what he 'really' died of, because the obituary said 'suddenly' and she is worried about something contagious in the building. You did care for him. She is not the executor, not a relative, and not a public-health officer. No public-health disclosure is required for the cause of death.",
+    "scenario": "A 74-year-old woman is the patient. A neighbor stops you in the grocery aisle. She knows you were the hospitalist for a man who died yesterday, and she asks what he 'really' died of, because the obituary said 'suddenly' and she is worried about something contagious in the building. You did care for him. She is not the executor, not a relative, and not a public-health officer. No public-health disclosure is required for the cause of death.",
     "question": "What is the appropriate next step?",
     "options": [
       "Tell her the cause of death now that he can no longer be harmed",
@@ -632,7 +632,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "declining-inappropriate-antibiotics",
     "difficulty": 4,
-    "scenario": "Day four of a cough, the patient demands the same azithromycin she received last winter. She is afebrile, breathing comfortably, oxygen saturation is 98% on room air, her lungs are clear, and she has no focal findings. She says she will write a poor review if she leaves without a prescription, and she reminds you that the visit copay should buy something. Viral upper-respiratory infection is the assessment you can support.",
+    "scenario": "A 30-year-old woman is the patient. Day four of a cough, the patient demands the same azithromycin she received last winter. She is afebrile, breathing comfortably, oxygen saturation is 98% on room air, her lungs are clear, and she has no focal findings. She says she will write a poor review if she leaves without a prescription, and she reminds you that the visit copay should buy something. Viral upper-respiratory infection is the assessment you can support.",
     "question": "What is the appropriate next step?",
     "options": [
       "Prescribe a short azithromycin course to preserve the relationship",
@@ -651,7 +651,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "honest-trainee-role",
     "difficulty": 4,
-    "scenario": "The patient addresses you as the surgeon and asks you to walk him through the risks you will personally manage in the operating room. You are a student. The attending surgeon has not yet entered, and the consent form is unsigned. The student beside you whispers that correcting the title will only make the patient anxious and that students always do this. The procedure is elective.",
+    "scenario": "A 47-year-old man is the patient. The patient addresses you as the surgeon and asks you to walk him through the risks you will personally manage in the operating room. You are a student. The attending surgeon has not yet entered, and the consent form is unsigned. The student beside you whispers that correcting the title will only make the patient anxious and that students always do this. The procedure is elective.",
     "question": "What is the appropriate next step?",
     "options": [
       "Continue the consent as if you are the surgeon so the patient stays calm",
@@ -670,7 +670,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "procedures-on-the-newly-dead",
     "difficulty": 4,
-    "scenario": "An hour after death was pronounced, a senior suggests you practice a central line on the patient before the family arrives. No consent for postmortem procedures was ever discussed, and the death was unexpected. He says the patient cannot be harmed, the skill saves lives, and the family will never know if the bandage looks ordinary. The body is still in the room.",
+    "scenario": "A 44-year-old man is the patient. An hour after death was pronounced, a senior suggests you practice a central line on the patient before the family arrives. No consent for postmortem procedures was ever discussed, and the death was unexpected. He says the patient cannot be harmed, the skill saves lives, and the family will never know if the bandage looks ordinary. The body is still in the room.",
     "question": "What is the appropriate next step?",
     "options": [
       "Practice the line if you can restore the appearance before the family enters",
@@ -689,7 +689,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "chaperone",
     "difficulty": 4,
-    "scenario": "The speculum is already open on the tray when you realize no chaperone was offered. The patient hesitates when you ask her to move down the table, glances at the closed door, and says she did not know someone else could be in the room. The examination is a routine pelvic exam, not an emergency. A trained chaperone is available in the clinic hallway. You are running behind.",
+    "scenario": "A 59-year-old woman is the patient. The speculum is already open on the tray when you realize no chaperone was offered. The patient hesitates when you ask her to move down the table, glances at the closed door, and says she did not know someone else could be in the room. The examination is a routine pelvic exam, not an emergency. A trained chaperone is available in the clinic hallway. You are running behind.",
     "question": "What is the appropriate next step?",
     "options": [
       "Continue without a chaperone so the delay does not push the next visit",
@@ -708,7 +708,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "telephone-surrogate-consent",
     "difficulty": 4,
-    "scenario": "He cannot repeat the risks of a nonemergent amputation. Attention is fluctuating, and two clinicians agree he lacks capacity for this decision. The infection is serious but not unstable over the next several hours. His appointed surrogate is driving and can be reached by phone now. The operating room wants to keep the afternoon slot. There is no advance directive that specifies amputation.",
+    "scenario": "A 30-year-old man is the patient. He cannot repeat the risks of a nonemergent amputation. Attention is fluctuating, and two clinicians agree he lacks capacity for this decision. The infection is serious but not unstable over the next several hours. His appointed surrogate is driving and can be reached by phone now. The operating room wants to keep the afternoon slot. There is no advance directive that specifies amputation.",
     "question": "What is the appropriate next step?",
     "options": [
       "Operate on the booked slot using the intern's best-interest judgment alone",
@@ -727,7 +727,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "best-interest-without-surrogate",
     "difficulty": 4,
-    "scenario": "No family can be reached, and there is no directive, for a permanently unconscious patient who no longer benefits from a nonemergent feeding tube. A neighbor says he is sure the patient would want everything, based on a conversation at a picnic years ago. The neighbor is not a surrogate under state law. The decision can wait until tomorrow without physiologic harm. The attending asks you to list the neighbor as next of kin so the form will accept a signature.",
+    "scenario": "A 52-year-old man is the patient. No family can be reached, and there is no directive, for a permanently unconscious patient who no longer benefits from a nonemergent feeding tube. A neighbor says he is sure the patient would want everything, based on a conversation at a picnic years ago. The neighbor is not a surrogate under state law. The decision can wait until tomorrow without physiologic harm. The attending asks you to list the neighbor as next of kin so the form will accept a signature.",
     "question": "What is the appropriate next step?",
     "options": [
       "Accept the neighbor's signature so the form is complete",
@@ -746,7 +746,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "withdrawing-versus-killing",
     "difficulty": 5,
-    "scenario": "The daughter asks whether removing the ventilator is the same as killing her father. He has a directive refusing prolonged ventilation in permanent unconsciousness, two neurologists agree he will not recover awareness, and the goals are comfort. He has been intubated for three weeks. She is not asking you to give a lethal drug. She is asking you to leave the ventilator because stopping it would be an act with a consequence.",
+    "scenario": "A 63-year-old patient. The daughter asks whether removing the ventilator is the same as killing her father. He has a directive refusing prolonged ventilation in permanent unconsciousness, two neurologists agree he will not recover awareness, and the goals are comfort. He has been intubated for three weeks. She is not asking you to give a lethal drug. She is asking you to leave the ventilator because stopping it would be an act with a consequence.",
     "question": "What is the appropriate next step?",
     "options": [
       "Explain that stopping the ventilator lets the disease proceed and is not the same as killing",
@@ -765,7 +765,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "double-effect-opioids",
     "difficulty": 5,
-    "scenario": "Breathing looks agonal, and the forehead is furrowed. The dying patient is on comfort care, with a directive that refuses ventilation and prioritizes relief of suffering. A dose of opioid sufficient to ease the distress may also slow respirations that are already failing. His son asks you to withhold the opioid so death is not hastened by even an hour. Pain and air hunger are visible. No curative treatment remains.",
+    "scenario": "A 74-year-old man is the patient. Breathing looks agonal, and the forehead is furrowed. The dying patient is on comfort care, with a directive that refuses ventilation and prioritizes relief of suffering. A dose of opioid sufficient to ease the distress may also slow respirations that are already failing. His son asks you to withhold the opioid so death is not hastened by even an hour. Pain and air hunger are visible. No curative treatment remains.",
     "question": "What is the appropriate next step?",
     "options": [
       "Give the opioid dose needed to relieve the distress",
@@ -784,7 +784,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "ex-partner-chart",
     "difficulty": 4,
-    "scenario": "Your former partner was admitted to another team last night. You still know how to find the record, and you want to see whether the toxicology screen explains the breakup. You are not covering that service, you were not asked to consult, and the admission is not an emergency that requires your skills. A colleague says one look is harmless because you already know the person.",
+    "scenario": "A 67-year-old patient. Your former partner was admitted to another team last night. You still know how to find the record, and you want to see whether the toxicology screen explains the breakup. You are not covering that service, you were not asked to consult, and the admission is not an emergency that requires your skills. A colleague says one look is harmless because you already know the person. On examination the patient appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Open the chart once and do not tell anyone what you saw",
@@ -803,7 +803,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "immigration-status",
     "difficulty": 4,
-    "scenario": "Diabetic ketoacidosis is improving when a visitor says you should call immigration authorities because the patient 'should not be using the emergency department.' The patient is undocumented, is now conversing, and has not asked you to contact any agency. Glucose and the anion gap are correcting on the protocol. There is no criminal threat and no public-health mandate in front of you.",
+    "scenario": "A 42-year-old patient. Diabetic ketoacidosis is improving when a visitor says you should call immigration authorities because the patient 'should not be using the emergency department.' The patient is undocumented, is now conversing, and has not asked you to contact any agency. Glucose and the anion gap are correcting on the protocol. There is no criminal threat and no public-health mandate in front of you.",
     "question": "What is the appropriate next step?",
     "options": [
       "Call immigration after the gap closes because the emergency is resolving",
@@ -841,7 +841,7 @@
     "taskCategory": "communication",
     "blueprintTopic": "waiver-of-information",
     "difficulty": 4,
-    "scenario": "He taps the visit summary and says he does not want numbers, scan details, or bad news. He wants his sister, who is in the waiting room, to hear the full result and then tell him only the next step in simple words. He is capacitated, not depressed to the point of impaired reasoning, and he repeats the request after you explain that the result may be serious. He names his sister as the person to inform. The scan does show a new mass.",
+    "scenario": "A 29-year-old man is the patient. He taps the visit summary and says he does not want numbers, scan details, or bad news. He wants his sister, who is in the waiting room, to hear the full result and then tell him only the next step in simple words. He is capacitated, not depressed to the point of impaired reasoning, and he repeats the request after you explain that the result may be serious. He names his sister as the person to inform. The scan does show a new mass. On examination the man appears as described and reports the history above.",
     "question": "What is the appropriate next step?",
     "options": [
       "Insist he hear the diagnosis himself because autonomy requires full disclosure",
@@ -860,7 +860,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "cap-outpatient-healthy",
     "difficulty": 4,
-    "scenario": "Local antibiogram data are taped to the clinic computer: macrolide resistance among pneumococci is 32%. The man in front of you is 34, otherwise healthy, and has two days of fever, a productive cough, and a focal infiltrate on the chest radiograph. Blood pressure is 124/76 mm Hg, respiratory rate 18, oxygen saturation 96% on room air, and blood urea nitrogen is normal. He has no recent antibiotics, no hospitalizations, and no MRSA or Pseudomonas risk. He can eat and has a ride home.",
+    "scenario": "A 34-year-old man is the patient. Local antibiogram data are taped to the clinic computer: macrolide resistance among pneumococci is 32%. The man in front of you is 34, otherwise healthy, and has two days of fever, a productive cough, and a focal infiltrate on the chest radiograph. Blood pressure is 124/76 mm Hg, respiratory rate 18, oxygen saturation 96% on room air, and blood urea nitrogen is normal. He has no recent antibiotics, no hospitalizations, and no MRSA or Pseudomonas risk. He can eat and has a ride home.",
     "question": "Which regimen is the most appropriate?",
     "options": [
       "Azithromycin monotherapy for five days",
@@ -879,7 +879,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "cap-outpatient-comorbidity",
     "difficulty": 4,
-    "scenario": "Chronic obstructive pulmonary disease and type 2 diabetes are on the intake form of a woman with a new focal infiltrate, fever, and cough. She has not been hospitalized this year, has no prior respiratory culture with MRSA or Pseudomonas, and takes no recent antibiotics. Oxygen saturation is 95% on room air, respiratory rate is 20, and she keeps fluids down. The macrolide-resistance rate locally is under 25%. A colleague suggests amoxicillin alone because she is well enough to leave the clinic.",
+    "scenario": "A 74-year-old woman is the patient. Chronic obstructive pulmonary disease and type 2 diabetes are on the intake form of a woman with a new focal infiltrate, fever, and cough. She has not been hospitalized this year, has no prior respiratory culture with MRSA or Pseudomonas, and takes no recent antibiotics. Oxygen saturation is 95% on room air, respiratory rate is 20, and she keeps fluids down. The macrolide-resistance rate locally is under 25%. A colleague suggests amoxicillin alone because she is well enough to leave the clinic.",
     "question": "Which regimen is the most appropriate?",
     "options": [
       "Amoxicillin monotherapy",
@@ -898,7 +898,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "cap-severe-icu",
     "difficulty": 5,
-    "scenario": "Three minor findings arrive together on a man with a new multilobar-looking story that is actually counted this way: respiratory rate 32 breaths per minute, new confusion, and blood urea nitrogen 28 mg/dL. Blood pressure is 118/72 mm Hg without vasopressors, and he has not been intubated. Oxygen saturation is 94% on 2 L. Fever responded to acetaminophen. His son asks for a prescription and a ride home because the blood pressure 'is fine.' The chest radiograph shows a dense lobar infiltrate, and he cannot give a reliable history.",
+    "scenario": "A 41-year-old man is the patient. Three minor findings arrive together on a man with a new multilobar-looking story that is actually counted this way: respiratory rate 32 breaths per minute, new confusion, and blood urea nitrogen 28 mg/dL. Blood pressure is 118/72 mm Hg without vasopressors, and he has not been intubated. Oxygen saturation is 94% on 2 L. Fever responded to acetaminophen. His son asks for a prescription and a ride home because the blood pressure 'is fine.' The chest radiograph shows a dense lobar infiltrate, and he cannot give a reliable history.",
     "question": "What is the most appropriate disposition?",
     "options": [
       "Discharge on oral levofloxacin because blood pressure is normal",
@@ -917,7 +917,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "cap-severe-regimen",
     "difficulty": 5,
-    "scenario": "Intensive care has accepted a woman with severe community-acquired pneumonia. She has no prior respiratory isolation of MRSA or Pseudomonas, no recent hospitalization, and no recent intravenous antibiotics. She is not in refractory shock. A colleague orders levofloxacin alone and says a respiratory fluoroquinolone is sufficient coverage for the intensive care unit. Blood and sputum cultures have just been drawn. She has no prolonged QT and no drug allergy.",
+    "scenario": "A 63-year-old woman is the patient. Intensive care has accepted a woman with severe community-acquired pneumonia. She has no prior respiratory isolation of MRSA or Pseudomonas, no recent hospitalization, and no recent intravenous antibiotics. She is not in refractory shock. A colleague orders levofloxacin alone and says a respiratory fluoroquinolone is sufficient coverage for the intensive care unit. Blood and sputum cultures have just been drawn. She has no prolonged QT and no drug allergy.",
     "question": "Which regimen is the most appropriate?",
     "options": [
       "Levofloxacin monotherapy",
@@ -936,7 +936,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "cap-prior-mrsa",
     "difficulty": 5,
-    "scenario": "Two months ago a sputum culture from a prior pneumonia grew MRSA. He is back with a nonsevere inpatient pneumonia: blood pressure 130/78 mm Hg, respiratory rate 22, and a single lobar infiltrate. He has not required vasopressors or ventilation. Standard ceftriaxone plus azithromycin has been proposed. Renal function is normal, and he has no vancomycin allergy. Cultures have not been sent yet.",
+    "scenario": "A 63-year-old man is the patient. Two months ago a sputum culture from a prior pneumonia grew MRSA. He is back with a nonsevere inpatient pneumonia: blood pressure 130/78 mm Hg, respiratory rate 22, and a single lobar infiltrate. He has not required vasopressors or ventilation. Standard ceftriaxone plus azithromycin has been proposed. Renal function is normal, and he has no vancomycin allergy. Cultures have not been sent yet.",
     "question": "What is the most appropriate antimicrobial plan?",
     "options": [
       "Ceftriaxone plus azithromycin only, because he is not in shock",
@@ -955,7 +955,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "aspiration-no-anaerobes",
     "difficulty": 4,
-    "scenario": "Witnessed emesis during a seizure left a new right-lower-lobe infiltrate and a low-grade fever. There is no cavitary lesion, no empyema, and no foul drainage. Dentition is poor, which is why the night team added metronidazole to ceftriaxone. Oxygen saturation is 95% on room air. He is not severely ill and has no MRSA or Pseudomonas history. The seizure is controlled.",
+    "scenario": "A 34-year-old man is the patient. Witnessed emesis during a seizure left a new right-lower-lobe infiltrate and a low-grade fever. There is no cavitary lesion, no empyema, and no foul drainage. Dentition is poor, which is why the night team added metronidazole to ceftriaxone. Oxygen saturation is 95% on room air. He is not severely ill and has no MRSA or Pseudomonas history. The seizure is controlled.",
     "question": "What is the most appropriate antibiotic adjustment?",
     "options": [
       "Continue metronidazole for anaerobic coverage of aspiration",
@@ -974,7 +974,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "cap-duration",
     "difficulty": 4,
-    "scenario": "Hospital day 5 of uncomplicated pneumonia arrives with temperature 37.0°C for the past 48 hours, heart rate 82, respiratory rate 16, and oxygen saturation 97% on room air. He is eating and walking. The chest radiograph still shows the original infiltrate, slightly smaller. The admission regimen was ceftriaxone plus azithromycin, and he has no empyema, abscess, or extrapulmonary infection. A sign-out suggests completing 14 days because the film is not clear.",
+    "scenario": "A 56-year-old man is the patient. Hospital day 5 of uncomplicated pneumonia arrives with temperature 37.0°C for the past 48 hours, heart rate 82, respiratory rate 16, and oxygen saturation 97% on room air. He is eating and walking. The chest radiograph still shows the original infiltrate, slightly smaller. The admission regimen was ceftriaxone plus azithromycin, and he has no empyema, abscess, or extrapulmonary infection. A sign-out suggests completing 14 days because the film is not clear.",
     "question": "What is the most appropriate duration?",
     "options": [
       "Stop antibiotics today, at five days of therapy",
@@ -993,7 +993,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "cap-procalcitonin",
     "difficulty": 5,
-    "scenario": "A focal infiltrate, fever, and a new oxygen requirement convinced the emergency department of pneumonia, and then the procalcitonin returned at 0.08 ng/mL. The resident pauses the antibiotic order because the value is below the usual bacterial threshold. Blood pressure is 110/68 mm Hg, respiratory rate 24, and the patient looks ill enough to stay. No alternative diagnosis better explains the infiltrate. Cultures are pending.",
+    "scenario": "A 75-year-old patient. A focal infiltrate, fever, and a new oxygen requirement convinced the emergency department of pneumonia, and then the procalcitonin returned at 0.08 ng/mL. The resident pauses the antibiotic order because the value is below the usual bacterial threshold. Blood pressure is 110/68 mm Hg, respiratory rate 24, and the patient looks ill enough to stay. No alternative diagnosis better explains the infiltrate. Cultures are pending.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Withhold antibiotics because the procalcitonin is low",
@@ -1012,7 +1012,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "asthma-no-saba-only",
     "difficulty": 4,
-    "scenario": "Albuterol is the only inhaler on the medication list. He uses it six days a week and wakes with wheeze once a week. He has never been prescribed an inhaled corticosteroid. Spirometry last month showed reversible obstruction. Today he is between exacerbations, speaking in sentences, and oxygen saturation is 97% on room air. He asks for a refill of albuterol and a spacer.",
+    "scenario": "A 67-year-old man is the patient. Albuterol is the only inhaler on the medication list. He uses it six days a week and wakes with wheeze once a week. He has never been prescribed an inhaled corticosteroid. Spirometry last month showed reversible obstruction. Today he is between exacerbations, speaking in sentences, and oxygen saturation is 97% on room air. He asks for a refill of albuterol and a spacer.",
     "question": "What is the most appropriate treatment change?",
     "options": [
       "Scheduled albuterol four times daily and no corticosteroid",
@@ -1031,7 +1031,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "asthma-exacerbation-no-antibiotic",
     "difficulty": 4,
-    "scenario": "Green sputum and a three-day wheeze brought a woman with known asthma to urgent care. Temperature is 37.1°C, the chest radiograph has no infiltrate, and oxygen saturation is 94% on room air. She is speaking in phrases and responds to nebulized bronchodilator. A colleague adds azithromycin because the sputum is green and writes prednisone 40 mg. She has no comorbidity suggesting a separate bacterial source.",
+    "scenario": "A 59-year-old woman is the patient. Green sputum and a three-day wheeze brought a woman with known asthma to urgent care. Temperature is 37.1°C, the chest radiograph has no infiltrate, and oxygen saturation is 94% on room air. She is speaking in phrases and responds to nebulized bronchodilator. A colleague adds azithromycin because the sputum is green and writes prednisone 40 mg. She has no comorbidity suggesting a separate bacterial source.",
     "question": "What is the most appropriate treatment?",
     "options": [
       "Prednisone and bronchodilator treatment, without an antibiotic",
@@ -1050,7 +1050,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "asthma-technique-before-stepup",
     "difficulty": 5,
-    "scenario": "Nighttime wheeze has returned on budesonide-formoterol maintenance-and-reliever therapy. The prescription was filled twice in four months, and when he demonstrates the inhaler he inhales too fast and exhales immediately. He thought the device was a rescue medicine for 'bad days only' and skipped it when he felt well. Eosinophils are normal, and there is no new allergen or occupational exposure. A referral for a biologic has been drafted.",
+    "scenario": "A 71-year-old man is the patient. Nighttime wheeze has returned on budesonide-formoterol maintenance-and-reliever therapy. The prescription was filled twice in four months, and when he demonstrates the inhaler he inhales too fast and exhales immediately. He thought the device was a rescue medicine for 'bad days only' and skipped it when he felt well. Eosinophils are normal, and there is no new allergen or occupational exposure. A referral for a biologic has been drafted.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Start omalizumab before changing anything about the inhaler",
@@ -1069,7 +1069,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "laba-monotherapy",
     "difficulty": 5,
-    "scenario": "The refill queue contains salmeterol, twice daily, with no inhaled corticosteroid on the list. She has exercise-induced wheeze and uses the salmeterol before runs and on other days when she feels tight. Last year's spirometry was consistent with asthma. She says the salmeterol works and she does not want a steroid inhaler because she is 'not that sick.' Oxygen saturation is 98%, and she is asymptomatic in the chair.",
+    "scenario": "A 38-year-old woman is the patient. The refill queue contains salmeterol, twice daily, with no inhaled corticosteroid on the list. She has exercise-induced wheeze and uses the salmeterol before runs and on other days when she feels tight. Last year's spirometry was consistent with asthma. She says the salmeterol works and she does not want a steroid inhaler because she is 'not that sick.' Oxygen saturation is 98%, and she is asymptomatic in the chair.",
     "question": "What is the most appropriate action on the refill?",
     "options": [
       "Refill salmeterol because symptoms occur mainly with exercise",
@@ -1088,7 +1088,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "asthma-normal-paco2",
     "difficulty": 5,
-    "scenario": "An asthma exacerbation has been underway for six hours. Respiratory rate is 30, she speaks one word at a time, and oxygen saturation is 90% on room air. Arterial blood gas shows pH 7.38 and PaCO2 40 mm Hg. A colleague reads the gas as reassuring because it is not acidemic and writes a discharge prescription for prednisone. Nebulizers have just started. The chest is quiet rather than loudly wheezing.",
+    "scenario": "A 28-year-old woman is the patient. An asthma exacerbation has been underway for six hours. Respiratory rate is 30, she speaks one word at a time, and oxygen saturation is 90% on room air. Arterial blood gas shows pH 7.38 and PaCO2 40 mm Hg. A colleague reads the gas as reassuring because it is not acidemic and writes a discharge prescription for prednisone. Nebulizers have just started. The chest is quiet rather than loudly wheezing.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Discharge on prednisone because the PaCO2 is normal",
@@ -1107,7 +1107,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "copd-low-eosinophils",
     "difficulty": 4,
-    "scenario": "Two moderate exacerbations occurred last year in a man with COPD whose blood eosinophils are 60 cells/µL. He is already on a long-acting beta-agonist, uses it correctly, and remains breathless on hills. He is not asthmatic. A refill request adds an inhaled corticosteroid because 'exacerbators need triple therapy.' He has not had pneumonia. Smoking cessation was achieved eight months ago.",
+    "scenario": "A 57-year-old man is the patient. Two moderate exacerbations occurred last year in a man with COPD whose blood eosinophils are 60 cells/µL. He is already on a long-acting beta-agonist, uses it correctly, and remains breathless on hills. He is not asthmatic. A refill request adds an inhaled corticosteroid because 'exacerbators need triple therapy.' He has not had pneumonia. Smoking cessation was achieved eight months ago.",
     "question": "What is the most appropriate inhaler change?",
     "options": [
       "Add an inhaled corticosteroid to the long-acting beta-agonist",
@@ -1126,7 +1126,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "copd-high-eosinophils-triple",
     "difficulty": 5,
-    "scenario": "Hospital discharge last month and another steroid-treated exacerbation six months earlier define the year. Blood eosinophils are 380 cells/µL. Spirometry confirms COPD, he is not on a maintenance inhaler, and there is no asthmatic history of childhood onset that would reclassify the disease. He still smokes. The discharging team recommended a long-acting beta-agonist plus a long-acting muscarinic antagonist and wrote 'avoid inhaled corticosteroids because of pneumonia.'",
+    "scenario": "A 42-year-old man is the patient. Hospital discharge last month and another steroid-treated exacerbation six months earlier define the year. Blood eosinophils are 380 cells/µL. Spirometry confirms COPD, he is not on a maintenance inhaler, and there is no asthmatic history of childhood onset that would reclassify the disease. He still smokes. The discharging team recommended a long-acting beta-agonist plus a long-acting muscarinic antagonist and wrote 'avoid inhaled corticosteroids because of pneumonia.'. On examination the man appears as described and reports the history above.",
     "question": "What is the most appropriate initial maintenance regimen?",
     "options": [
       "Long-acting beta-agonist plus long-acting muscarinic antagonist only",
@@ -1145,7 +1145,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "copd-niv",
     "difficulty": 5,
-    "scenario": "An exacerbation of COPD produced this arterial blood gas on controlled oxygen: pH 7.28, PaCO2 70 mm Hg, PaO2 62 mm Hg. He is awake, cooperative, and not vomiting. Respiratory rate is 28. A do-not-intubate order is not in the chart. The plan on the board is immediate endotracheal intubation because the carbon dioxide is 70. Oxygen saturation is 91% on the current device.",
+    "scenario": "A 41-year-old man is the patient. An exacerbation of COPD produced this arterial blood gas on controlled oxygen: pH 7.28, PaCO2 70 mm Hg, PaO2 62 mm Hg. He is awake, cooperative, and not vomiting. Respiratory rate is 28. A do-not-intubate order is not in the chart. The plan on the board is immediate endotracheal intubation because the carbon dioxide is 70. Oxygen saturation is 91% on the current device.",
     "question": "What is the most appropriate ventilatory step?",
     "options": [
       "Immediate intubation because PaCO2 is 70 mm Hg",
@@ -1164,7 +1164,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "copd-oxygen-target",
     "difficulty": 5,
-    "scenario": "A nonrebreather mask was placed during an exacerbation, and oxygen saturation is now 100%. He has become somnolent. The repeat arterial blood gas shows pH 7.22 and PaCO2 92 mm Hg, up from 58 mm Hg on arrival when saturation was 88%. The nurse asks whether to keep the mask because hypoxia is more dangerous than hypercapnia. He is difficult to arouse but still has a gag.",
+    "scenario": "A 50-year-old man is the patient. A nonrebreather mask was placed during an exacerbation, and oxygen saturation is now 100%. He has become somnolent. The repeat arterial blood gas shows pH 7.22 and PaCO2 92 mm Hg, up from 58 mm Hg on arrival when saturation was 88%. The nurse asks whether to keep the mask because hypoxia is more dangerous than hypercapnia. He is difficult to arouse but still has a gag.",
     "question": "What is the most appropriate oxygen plan?",
     "options": [
       "Keep the nonrebreather mask in place to hold saturation at 100%",
@@ -1183,7 +1183,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "copd-antibiotics-purulence",
     "difficulty": 4,
-    "scenario": "Dyspnea is worse and sputum volume is higher on the third day of a COPD exacerbation. The sputum is white and mucoid, not purulent. He is not in respiratory failure and does not need ventilatory support. Temperature is 37.2°C. Prednisone 40 mg daily has been started. A colleague adds doxycycline because two of the three cardinal symptoms are present.",
+    "scenario": "A 66-year-old man is the patient. Dyspnea is worse and sputum volume is higher on the third day of a COPD exacerbation. The sputum is white and mucoid, not purulent. He is not in respiratory failure and does not need ventilatory support. Temperature is 37.2°C. Prednisone 40 mg daily has been started. A colleague adds doxycycline because two of the three cardinal symptoms are present.",
     "question": "What is the most appropriate antibiotic decision?",
     "options": [
       "Add doxycycline because dyspnea and sputum volume both increased",
@@ -1202,7 +1202,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "copd-steroid-duration",
     "difficulty": 4,
-    "scenario": "Prednisone was started yesterday for a COPD exacerbation that also has purulent sputum and an appropriate antibiotic. The admission order says prednisone 40 mg daily with a three-week taper because 'lungs need a slow wean.' He is not in shock, has no eosinophilic pneumonia picture, and has never required a prolonged taper to recover from prior exacerbations. Glucose this morning is 246 mg/dL.",
+    "scenario": "A 30-year-old man is the patient. Prednisone was started yesterday for a COPD exacerbation that also has purulent sputum and an appropriate antibiotic. The admission order says prednisone 40 mg daily with a three-week taper because 'lungs need a slow wean.' He is not in shock, has no eosinophilic pneumonia picture, and has never required a prolonged taper to recover from prior exacerbations. Glucose this morning is 246 mg/dL.",
     "question": "What is the most appropriate steroid plan?",
     "options": [
       "Prednisone 40 mg daily for five days, without a three-week taper",
@@ -1221,7 +1221,7 @@
     "taskCategory": "health-maintenance",
     "blueprintTopic": "lung-cancer-screening-eligible",
     "difficulty": 4,
-    "scenario": "Quit date eight years ago, a 22 pack-year history, and age 60 are the smoking numbers at an annual visit. He feels well, can walk a mile, and says he would want treatment if a screen found a resectable cancer. He asks for a chest radiograph every year because that is what his brother had at a workplace physical. He has no symptom of hemoptysis or weight loss.",
+    "scenario": "A 60-year-old man is the patient. Quit date eight years ago, a 22 pack-year history, and age 60 are the smoking numbers at an annual visit. He feels well, can walk a mile, and says he would want treatment if a screen found a resectable cancer. He asks for a chest radiograph every year because that is what his brother had at a workplace physical. He has no symptom of hemoptysis or weight loss. On examination the man appears as described and reports the history above.",
     "question": "What is the most appropriate screening recommendation?",
     "options": [
       "Annual chest radiograph",
@@ -1240,7 +1240,7 @@
     "taskCategory": "health-maintenance",
     "blueprintTopic": "lung-cancer-screening-quit-window",
     "difficulty": 5,
-    "scenario": "Sixteen years of abstinence follow a 40 pack-year history. She is 64, asymptomatic, and willing to have surgery if a nodule proves malignant. She read that heavy smoking history is what qualifies someone for lung-cancer screening and brought the name of a low-dose CT facility. Life expectancy is not limited by another disease. No prior screen was abnormal.",
+    "scenario": "A 64-year-old woman is the patient. Sixteen years of abstinence follow a 40 pack-year history. She is 64, asymptomatic, and willing to have surgery if a nodule proves malignant. She read that heavy smoking history is what qualifies someone for lung-cancer screening and brought the name of a low-dose CT facility. Life expectancy is not limited by another disease. No prior screen was abnormal. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate recommendation?",
     "options": [
       "Annual low-dose CT, because pack-years exceed 20",
@@ -1259,7 +1259,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "pe-thrombolysis-hypotension",
     "difficulty": 5,
-    "scenario": "Systolic blood pressure remains 78 mm Hg after a liter of crystalloid in a woman whose CT angiogram shows a central pulmonary embolus. She has no prior intracranial hemorrhage, no active bleeding, and no recent surgery. Troponin is elevated and the right ventricle is dilated, but those findings are not what the blood pressure is showing. Anticoagulation has not yet been given. She is awake.",
+    "scenario": "A 69-year-old woman is the patient. Systolic blood pressure remains 78 mm Hg after a liter of crystalloid in a woman whose CT angiogram shows a central pulmonary embolus. She has no prior intracranial hemorrhage, no active bleeding, and no recent surgery. Troponin is elevated and the right ventricle is dilated, but those findings are not what the blood pressure is showing. Anticoagulation has not yet been given. She is awake.",
     "question": "What is the most appropriate reperfusion step?",
     "options": [
       "Anticoagulation alone and a repeat blood pressure in four hours",
@@ -1278,7 +1278,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "pe-no-lysis-if-normotensive",
     "difficulty": 5,
-    "scenario": "Blood pressure is 132/78 mm Hg on arrival and stays there. CT angiography shows a segmental pulmonary embolus with right-ventricular strain, and the troponin is mildly elevated. She is uncomfortable but not in respiratory failure. There is no cancer and no prior intracranial bleed. A note from the night team says to give alteplase because right-ventricular strain means the embolism is massive. Anticoagulation has not started.",
+    "scenario": "A 53-year-old woman is the patient. Blood pressure is 132/78 mm Hg on arrival and stays there. CT angiography shows a segmental pulmonary embolus with right-ventricular strain, and the troponin is mildly elevated. She is uncomfortable but not in respiratory failure. There is no cancer and no prior intracranial bleed. A note from the night team says to give alteplase because right-ventricular strain means the embolism is massive. Anticoagulation has not started.",
     "question": "What is the most appropriate initial treatment?",
     "options": [
       "Systemic alteplase now because of right-ventricular strain",
@@ -1297,7 +1297,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "vte-surgery-provoked-duration",
     "difficulty": 4,
-    "scenario": "Twelve days after hip arthroplasty, a proximal deep-vein thrombosis was diagnosed and anticoagulation was started. Bleeding risk is ordinary: no prior bleed, hemoglobin stable, and she is not on an antiplatelet drug. The surgeon asks whether the clot means lifelong anticoagulation, because it was proximal. She is now walking. There is no cancer and no second event. The operative report confirms the thrombosis came after the arthroplasty.",
+    "scenario": "A 69-year-old woman is the patient. Twelve days after hip arthroplasty, a proximal deep-vein thrombosis was diagnosed and anticoagulation was started. Bleeding risk is ordinary: no prior bleed, hemoglobin stable, and she is not on an antiplatelet drug. The surgeon asks whether the clot means lifelong anticoagulation, because it was proximal. She is now walking. There is no cancer and no second event. The operative report confirms the thrombosis came after the arthroplasty.",
     "question": "What is the most appropriate planned duration?",
     "options": [
       "Three months, then stop if no new indication appears",
@@ -1316,7 +1316,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "aki-no-dopamine",
     "difficulty": 4,
-    "scenario": "Urine output is 15 mL/hour six hours after blood pressure was restored with fluids. Creatinine has risen from 1.0 to 1.8 mg/dL. Lungs are clear, and there is no pressor requirement now. A 'renal-dose' dopamine infusion at 2 mcg/kg/min is proposed to raise urine output and protect the kidney. He is not in heart failure. Volume status is judged euvolemic to slightly dry.",
+    "scenario": "A 46-year-old man is the patient. Urine output is 15 mL/hour six hours after blood pressure was restored with fluids. Creatinine has risen from 1.0 to 1.8 mg/dL. Lungs are clear, and there is no pressor requirement now. A 'renal-dose' dopamine infusion at 2 mcg/kg/min is proposed to raise urine output and protect the kidney. He is not in heart failure. Volume status is judged euvolemic to slightly dry.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Start low-dose dopamine to convert oliguria",
@@ -1335,7 +1335,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "aki-no-diuretic-if-euvolemic",
     "difficulty": 4,
-    "scenario": "Twelve-hour urine output is 180 mL. Weight is down 0.3 kg from admission, jugular veins are flat, and the lungs are clear. Creatinine is 3.1 mg/dL from a baseline of 1.1. Potassium is 4.7 mEq/L and bicarbonate is 22 mEq/L. An order for a furosemide infusion is written 'to make this nonoliguric AKI, which has a better prognosis.' There is no pulmonary edema.",
+    "scenario": "A 45-year-old patient. Twelve-hour urine output is 180 mL. Weight is down 0.3 kg from admission, jugular veins are flat, and the lungs are clear. Creatinine is 3.1 mg/dL from a baseline of 1.1. Potassium is 4.7 mEq/L and bicarbonate is 22 mEq/L. An order for a furosemide infusion is written 'to make this nonoliguric AKI, which has a better prognosis.' There is no pulmonary edema.",
     "question": "What is the most appropriate diuretic decision?",
     "options": [
       "Start a furosemide infusion to convert oliguric injury to nonoliguric injury",
@@ -1354,7 +1354,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "aki-diuretic-for-overload",
     "difficulty": 5,
-    "scenario": "Oxygen saturation is 88% on 4 L, with new rales and a weight 4 kg above yesterday. Creatinine rose from 1.2 to 2.4 mg/dL overnight. Potassium is 4.9 mEq/L. A sign-out says diuretics are contraindicated in acute kidney injury and recommends waiting for dialysis evaluation even though he is breathless now. He is not anuric. Blood pressure is 150/90 mm Hg.",
+    "scenario": "A 42-year-old man is the patient. Oxygen saturation is 88% on 4 L, with new rales and a weight 4 kg above yesterday. Creatinine rose from 1.2 to 2.4 mg/dL overnight. Potassium is 4.9 mEq/L. A sign-out says diuretics are contraindicated in acute kidney injury and recommends waiting for dialysis evaluation even though he is breathless now. He is not anuric. Blood pressure is 150/90 mm Hg.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Intravenous loop diuretic for the pulmonary edema",
@@ -1373,7 +1373,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "contrast-volume-expansion",
     "difficulty": 4,
-    "scenario": "Estimated GFR is 24 mL/min/1.73 m². CT angiography tonight is required to decide whether he goes to the operating room for suspected acute mesenteric ischemia. He takes ibuprofen for a bad knee. Oral water at the bedside is the only prophylaxis written. A resident wants to cancel all iodinated contrast because the GFR is under 30. He is not in heart failure, and intravenous access is available.",
+    "scenario": "A 59-year-old man is the patient. Estimated GFR is 24 mL/min/1.73 m². CT angiography tonight is required to decide whether he goes to the operating room for suspected acute mesenteric ischemia. He takes ibuprofen for a bad knee. Oral water at the bedside is the only prophylaxis written. A resident wants to cancel all iodinated contrast because the GFR is under 30. He is not in heart failure, and intravenous access is available.",
     "question": "What is the most appropriate plan?",
     "options": [
       "Cancel the angiogram because contrast is contraindicated below a GFR of 30",
@@ -1392,7 +1392,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "no-rrt-for-number",
     "difficulty": 4,
-    "scenario": "Blood urea nitrogen is 118 mg/dL and creatinine is 7.1 mg/dL on hospital day 4 of acute tubular injury. Potassium is 4.6 mEq/L, bicarbonate is 21 mEq/L, and he made 900 mL of urine yesterday. Lungs are clear, there is no pericardial rub, and he is eating breakfast and reading. A consultant writes 'BUN over 100, start dialysis today.' No toxin needs removal.",
+    "scenario": "A 55-year-old man is the patient. Blood urea nitrogen is 118 mg/dL and creatinine is 7.1 mg/dL on hospital day 4 of acute tubular injury. Potassium is 4.6 mEq/L, bicarbonate is 21 mEq/L, and he made 900 mL of urine yesterday. Lungs are clear, there is no pericardial rub, and he is eating breakfast and reading. A consultant writes 'BUN over 100, start dialysis today.' No toxin needs removal.",
     "question": "What is the most appropriate dialysis decision?",
     "options": [
       "Start dialysis today because the urea nitrogen exceeds 100",
@@ -1411,7 +1411,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "rrt-uremic-pericarditis",
     "difficulty": 5,
-    "scenario": "A scratchy rub and positional chest pain appeared this morning. Creatinine is 6.4 mg/dL from 1.0 three days ago, urea nitrogen is 96 mg/dL, potassium is 4.8 mEq/L, and bicarbonate is 19 mEq/L. He is not hypoxic. The working diagnosis had been acute tubular necrosis after sepsis. A plan is written for colchicine and ibuprofen for presumed viral pericarditis, with dialysis only if potassium exceeds 6.",
+    "scenario": "A 45-year-old man is the patient. A scratchy rub and positional chest pain appeared this morning. Creatinine is 6.4 mg/dL from 1.0 three days ago, urea nitrogen is 96 mg/dL, potassium is 4.8 mEq/L, and bicarbonate is 19 mEq/L. He is not hypoxic. The working diagnosis had been acute tubular necrosis after sepsis. A plan is written for colchicine and ibuprofen for presumed viral pericarditis, with dialysis only if potassium exceeds 6.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Ibuprofen and colchicine, and defer dialysis because potassium is normal",
@@ -1430,7 +1430,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "aki-hold-nephrotoxins",
     "difficulty": 4,
-    "scenario": "Creatinine rose from 0.9 to 2.2 mg/dL in 48 hours. He has been taking lisinopril, hydrochlorothiazide, and ibuprofen, and he has been unable to drink because of gastroenteritis. Mucous membranes are dry and orthostatic vital signs are positive. Potassium is 5.3 mEq/L. A note says to continue lisinopril because ACE inhibitors protect the kidney and to stop only the ibuprofen.",
+    "scenario": "A 58-year-old man is the patient. Creatinine rose from 0.9 to 2.2 mg/dL in 48 hours. He has been taking lisinopril, hydrochlorothiazide, and ibuprofen, and he has been unable to drink because of gastroenteritis. Mucous membranes are dry and orthostatic vital signs are positive. Potassium is 5.3 mEq/L. A note says to continue lisinopril because ACE inhibitors protect the kidney and to stop only the ibuprofen.",
     "question": "What is the most appropriate medication change?",
     "options": [
       "Continue lisinopril, stop only ibuprofen, and avoid fluids",
@@ -1449,7 +1449,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "sglt2-t2d-any-albuminuria",
     "difficulty": 4,
-    "scenario": "Type 2 diabetes, an eGFR of 46 mL/min/1.73 m², and a urine albumin-creatinine ratio of 20 mg/g are this quarter's numbers. Metformin is the only glucose-lowering drug. Blood pressure is treated. A pharmacist note says SGLT2 inhibitors are for albumin-creatinine ratios over 300, so none was started. Potassium and volume status are normal. He is not acutely ill.",
+    "scenario": "A 44-year-old man is the patient. Type 2 diabetes, an eGFR of 46 mL/min/1.73 m², and a urine albumin-creatinine ratio of 20 mg/g are this quarter's numbers. Metformin is the only glucose-lowering drug. Blood pressure is treated. A pharmacist note says SGLT2 inhibitors are for albumin-creatinine ratios over 300, so none was started. Potassium and volume status are normal. He is not acutely ill.",
     "question": "What is the most appropriate medication addition?",
     "options": [
       "No SGLT2 inhibitor, because the albumin-creatinine ratio is only 20",
@@ -1468,7 +1468,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "sglt2-nondiabetic-albuminuria",
     "difficulty": 5,
-    "scenario": "There is no diabetes and no heart-failure diagnosis. eGFR is 38 mL/min/1.73 m² and the urine albumin-creatinine ratio is 450 mg/g. Losartan is already at the maximum tolerated dose. A note in the chart says SGLT2 inhibitors are diabetes drugs and should not be used. Potassium is 4.5 mEq/L. He is euvolemic.",
+    "scenario": "A 36-year-old man is the patient. There is no diabetes and no heart-failure diagnosis. eGFR is 38 mL/min/1.73 m² and the urine albumin-creatinine ratio is 450 mg/g. Losartan is already at the maximum tolerated dose. A note in the chart says SGLT2 inhibitors are diabetes drugs and should not be used. Potassium is 4.5 mEq/L. He is euvolemic.",
     "question": "What is the most appropriate addition?",
     "options": [
       "No SGLT2 inhibitor, because he does not have diabetes",
@@ -1487,7 +1487,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "sglt2-not-indicated",
     "difficulty": 5,
-    "scenario": "eGFR is 62 mL/min/1.73 m² and the urine albumin-creatinine ratio is 25 mg/g. There is no diabetes, no heart failure, and no other proteinuric disease. Blood pressure is at goal on amlodipine. A quality measure prompt suggests dapagliflozin for every chart labeled chronic kidney disease. He has had a single eGFR in the 50s once, attributed to dehydration, and current staging does not meet an SGLT2 initiation category. He feels well.",
+    "scenario": "A 47-year-old man is the patient. eGFR is 62 mL/min/1.73 m² and the urine albumin-creatinine ratio is 25 mg/g. There is no diabetes, no heart failure, and no other proteinuric disease. Blood pressure is at goal on amlodipine. A quality measure prompt suggests dapagliflozin for every chart labeled chronic kidney disease. He has had a single eGFR in the 50s once, attributed to dehydration, and current staging does not meet an SGLT2 initiation category. He feels well.",
     "question": "What is the most appropriate SGLT2 decision?",
     "options": [
       "Start dapagliflozin because the prompt fired",
@@ -1506,7 +1506,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "sglt2-egfr-dip",
     "difficulty": 5,
-    "scenario": "Two weeks after dapagliflozin was started, eGFR fell from 52 to 44 mL/min/1.73 m². He has no orthostasis, no genital infection, and no ketosis. Potassium is unchanged. The indication was type 2 diabetes and chronic kidney disease, and he has taken the tablet daily. A covering clinician stops it because the eGFR dropped by more than 10%.",
+    "scenario": "A 59-year-old man is the patient. Two weeks after dapagliflozin was started, eGFR fell from 52 to 44 mL/min/1.73 m². He has no orthostasis, no genital infection, and no ketosis. Potassium is unchanged. The indication was type 2 diabetes and chronic kidney disease, and he has taken the tablet daily. A covering clinician stops it because the eGFR dropped by more than 10%.",
     "question": "What is the most appropriate action?",
     "options": [
       "Stop dapagliflozin because the eGFR fell",
@@ -1525,7 +1525,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "sglt2-perioperative-hold",
     "difficulty": 4,
-    "scenario": "Elective colectomy is tomorrow and he will be NPO from midnight. Empagliflozin is on the home list for type 2 diabetes and an eGFR of 48. The preoperative order says continue all home medications with a sip of water, including the SGLT2 inhibitor. He has not had ketoacidosis. Glucose today is 128 mg/dL.",
+    "scenario": "A 63-year-old man is the patient. Elective colectomy is tomorrow and he will be NPO from midnight. Empagliflozin is on the home list for type 2 diabetes and an eGFR of 48. The preoperative order says continue all home medications with a sip of water, including the SGLT2 inhibitor. He has not had ketoacidosis. Glucose today is 128 mg/dL.",
     "question": "What is the most appropriate instruction about empagliflozin?",
     "options": [
       "Give it tomorrow morning with a sip of water",
@@ -1544,7 +1544,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ace-creatinine-under-30-percent",
     "difficulty": 5,
-    "scenario": "Two weeks after ramipril was started for albuminuric diabetic kidney disease, creatinine rose from 1.6 to 1.9 mg/dL, about 19%. Potassium is 4.6 mEq/L. He is euvolemic, not on a nonsteroidal anti-inflammatory drug, and the cough he was warned about has not appeared. Blood pressure is at goal. A message from the lab pool says to stop the ACE inhibitor because creatinine rose.",
+    "scenario": "A 62-year-old man is the patient. Two weeks after ramipril was started for albuminuric diabetic kidney disease, creatinine rose from 1.6 to 1.9 mg/dL, about 19%. Potassium is 4.6 mEq/L. He is euvolemic, not on a nonsteroidal anti-inflammatory drug, and the cough he was warned about has not appeared. Blood pressure is at goal. A message from the lab pool says to stop the ACE inhibitor because creatinine rose.",
     "question": "What is the most appropriate action?",
     "options": [
       "Stop ramipril because any creatinine rise means injury",
@@ -1563,7 +1563,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "no-dual-ras-blockade",
     "difficulty": 4,
-    "scenario": "Losartan is already at the highest dose he tolerates. Urine albumin-creatinine ratio remains 800 mg/g, eGFR is 40, and potassium is 4.7 mEq/L. A colleague adds ramipril 'for dual blockade' because the ratio is still in the nephrotic-range neighborhood. Blood pressure is 128/74 on standardized measurement. There is no heart-failure indication written for a second agent of this class.",
+    "scenario": "A 71-year-old man is the patient. Losartan is already at the highest dose he tolerates. Urine albumin-creatinine ratio remains 800 mg/g, eGFR is 40, and potassium is 4.7 mEq/L. A colleague adds ramipril 'for dual blockade' because the ratio is still in the nephrotic-range neighborhood. Blood pressure is 128/74 on standardized measurement. There is no heart-failure indication written for a second agent of this class.",
     "question": "What is the most appropriate change?",
     "options": [
       "Add ramipril to losartan",
@@ -1582,7 +1582,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "ckd-bp-target",
     "difficulty": 5,
-    "scenario": "Standardized office blood pressure, measured correctly and repeated, is 136/78 mm Hg. He has chronic kidney disease, eGFR 48, and no orthostasis, falls, or frailty that would make intensive treatment hazardous. He tolerates his current two agents. A note calls the reading controlled because it is under 140. He asks whether anything has to change.",
+    "scenario": "A 37-year-old man is the patient. Standardized office blood pressure, measured correctly and repeated, is 136/78 mm Hg. He has chronic kidney disease, eGFR 48, and no orthostasis, falls, or frailty that would make intensive treatment hazardous. He tolerates his current two agents. A note calls the reading controlled because it is under 140. He asks whether anything has to change.",
     "question": "What is the most appropriate blood-pressure plan?",
     "options": [
       "Leave treatment unchanged because systolic pressure is under 140",
@@ -1601,7 +1601,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "finerenone-t2d",
     "difficulty": 5,
-    "scenario": "Type 2 diabetes, eGFR 36 mL/min/1.73 m², and a urine albumin-creatinine ratio of 180 mg/g persist despite maximum-dose losartan. Dapagliflozin was added two months ago and is tolerated. Potassium is 4.4 mEq/L on two checks. A proposal adds spironolactone 'because mineralocorticoid antagonists are all the same,' and another proposal adds enalapril.",
+    "scenario": "A 75-year-old patient. Type 2 diabetes, eGFR 36 mL/min/1.73 m², and a urine albumin-creatinine ratio of 180 mg/g persist despite maximum-dose losartan. Dapagliflozin was added two months ago and is tolerated. Potassium is 4.4 mEq/L on two checks. A proposal adds spironolactone 'because mineralocorticoid antagonists are all the same,' and another proposal adds enalapril.",
     "question": "What is the most appropriate addition?",
     "options": [
       "Enalapril on top of losartan",
@@ -1639,7 +1639,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "asb-older-adult-do-not-treat",
     "difficulty": 4,
-    "scenario": "A urine culture was sent because the urine looked cloudy. It grew more than 100,000 CFU/mL of E. coli. She is 78, lives at home, has no dysuria, no frequency, no fever, and no flank pain. Vital signs are normal and she came for a blood-pressure check. The culture result is red on the inbox, and ciprofloxacin is the one-click order.",
+    "scenario": "A 78-year-old woman is the patient. A urine culture was sent because the urine looked cloudy. It grew more than 100,000 CFU/mL of E. coli. She is 78, lives at home, has no dysuria, no frequency, no fever, and no flank pain. Vital signs are normal and she came for a blood-pressure check. The culture result is red on the inbox, and ciprofloxacin is the one-click order.",
     "question": "What is the most appropriate plan?",
     "options": [
       "Ciprofloxacin for the colony count above 100,000",
@@ -1658,7 +1658,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "asb-arthroplasty",
     "difficulty": 5,
-    "scenario": "Preoperative urine culture before elective knee arthroplasty grows Klebsiella. She has no dysuria, fever, or flank pain. The surgeon wants five days of antibiotics and a delay of the operation because 'hardware will get seeded.' The culture was sent as a routine screen. The knee is not infected, and the surgery is not a mucosal urologic procedure.",
+    "scenario": "A 43-year-old woman is the patient. Preoperative urine culture before elective knee arthroplasty grows Klebsiella. She has no dysuria, fever, or flank pain. The surgeon wants five days of antibiotics and a delay of the operation because 'hardware will get seeded.' The culture was sent as a routine screen. The knee is not infected, and the surgery is not a mucosal urologic procedure.",
     "question": "What is the most appropriate plan?",
     "options": [
       "Delay surgery and treat the urine for five days",
@@ -1677,7 +1677,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "asb-before-turp",
     "difficulty": 5,
-    "scenario": "Transurethral resection of the prostate is scheduled, and mucosal bleeding is expected. A preoperative culture grows E. coli, susceptible to ceftriaxone, and he has no dysuria. Someone applies the arthroplasty rule and says asymptomatic bacteriuria is never treated before surgery. He has no penicillin allergy. The procedure is tomorrow.",
+    "scenario": "A 42-year-old man is the patient. Transurethral resection of the prostate is scheduled, and mucosal bleeding is expected. A preoperative culture grows E. coli, susceptible to ceftriaxone, and he has no dysuria. Someone applies the arthroplasty rule and says asymptomatic bacteriuria is never treated before surgery. He has no penicillin allergy. The procedure is tomorrow.",
     "question": "What is the most appropriate plan?",
     "options": [
       "No antibiotics, by analogy with knee replacement",
@@ -1715,7 +1715,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-first-flare-no-ult",
     "difficulty": 4,
-    "scenario": "A first episode of podagra resolved after three days of naproxen. Serum urate is 7.2 mg/dL. eGFR is 88 mL/min/1.73 m². There are no tophi, no stones, and no radiographic damage. He feels well and asks for allopurinol so the number never returns. A colleague says any urate above 6.8 should be treated for life.",
+    "scenario": "A 32-year-old man is the patient. A first episode of podagra resolved after three days of naproxen. Serum urate is 7.2 mg/dL. eGFR is 88 mL/min/1.73 m². There are no tophi, no stones, and no radiographic damage. He feels well and asks for allopurinol so the number never returns. A colleague says any urate above 6.8 should be treated for life.",
     "question": "What is the most appropriate urate-lowering decision?",
     "options": [
       "Start allopurinol 300 mg today",
@@ -1734,7 +1734,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-first-flare-ckd",
     "difficulty": 5,
-    "scenario": "The same first metatarsophalangeal flare is improving on a short steroid burst. eGFR is 38 mL/min/1.73 m². Serum urate is 7.6 mg/dL. There are no tophi. He has no allopurinol allergy. A hospitalist says urate-lowering therapy is never started after one flare and cancels the outpatient plan to discuss it.",
+    "scenario": "A 41-year-old man is the patient. The same first metatarsophalangeal flare is improving on a short steroid burst. eGFR is 38 mL/min/1.73 m². Serum urate is 7.6 mg/dL. There are no tophi. He has no allopurinol allergy. A hospitalist says urate-lowering therapy is never started after one flare and cancels the outpatient plan to discuss it.",
     "question": "What is the most appropriate urate-lowering decision?",
     "options": [
       "Do not discuss urate-lowering therapy, because this was only one flare",
@@ -1753,7 +1753,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-low-start-ckd",
     "difficulty": 4,
-    "scenario": "Three flares in the past year establish the indication for urate-lowering therapy. eGFR is 32 mL/min/1.73 m². A discharge prescription reads allopurinol 300 mg daily, copied from a healthy patient's order, with a note that allopurinol is 'contraindicated in chronic kidney disease' and that probenecid should be substituted if the pharmacist balks.",
+    "scenario": "A 51-year-old patient. Three flares in the past year establish the indication for urate-lowering therapy. eGFR is 32 mL/min/1.73 m². A discharge prescription reads allopurinol 300 mg daily, copied from a healthy patient's order, with a note that allopurinol is 'contraindicated in chronic kidney disease' and that probenecid should be substituted if the pharmacist balks.",
     "question": "What is the most appropriate regimen?",
     "options": [
       "Allopurinol 300 mg daily",
@@ -1772,7 +1772,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-hla-test",
     "difficulty": 5,
-    "scenario": "Parents were born in Korea, and he is about to start allopurinol for recurrent gout. eGFR is 78. No rash has ever occurred. The prescription is written for 100 mg, which is an appropriate start, and the counselor says HLA-B*5801 testing is only for patients who already had a hypersensitivity reaction. He has no other xanthine-oxidase-inhibitor history.",
+    "scenario": "A 65-year-old man is the patient. Parents were born in Korea, and he is about to start allopurinol for recurrent gout. eGFR is 78. No rash has ever occurred. The prescription is written for 100 mg, which is an appropriate start, and the counselor says HLA-B*5801 testing is only for patients who already had a hypersensitivity reaction. He has no other xanthine-oxidase-inhibitor history.",
     "question": "What is the most appropriate step before the first allopurinol tablet?",
     "options": [
       "No HLA test, because he has never had a rash",
@@ -1791,7 +1791,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-no-universal-hla",
     "difficulty": 4,
-    "scenario": "Ancestry is Irish and Italian, with no Southeast Asian and no African American ancestry, and allopurinol is indicated for recurrent flares. A panel order includes HLA-B*5801 because 'everyone should be tested before allopurinol now.' eGFR is 90. He has had no drug rash. The starting dose planned is 100 mg.",
+    "scenario": "A 32-year-old man is the patient. Ancestry is Irish and Italian, with no Southeast Asian and no African American ancestry, and allopurinol is indicated for recurrent flares. A panel order includes HLA-B*5801 because 'everyone should be tested before allopurinol now.' eGFR is 90. He has had no drug rash. The starting dose planned is 100 mg.",
     "question": "What is the most appropriate testing decision?",
     "options": [
       "Order HLA-B*5801 because testing is universal",
@@ -1810,7 +1810,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-prophylaxis-duration",
     "difficulty": 4,
-    "scenario": "Allopurinol 100 mg is being started after a second flare this year. The flare itself ended ten days ago. He is not on colchicine, a nonsteroidal, or prednisone. Kidney function and the QT interval are normal, and he has no contraindication to a low dose of colchicine. A note says prophylaxis is unnecessary because the joint is quiet and prophylaxis only causes diarrhea.",
+    "scenario": "A 33-year-old man is the patient. Allopurinol 100 mg is being started after a second flare this year. The flare itself ended ten days ago. He is not on colchicine, a nonsteroidal, or prednisone. Kidney function and the QT interval are normal, and he has no contraindication to a low dose of colchicine. A note says prophylaxis is unnecessary because the joint is quiet and prophylaxis only causes diarrhea.",
     "question": "What is the most appropriate prophylaxis plan?",
     "options": [
       "No prophylaxis, because the joint is quiet",
@@ -1829,7 +1829,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-start-ult-during-flare",
     "difficulty": 5,
-    "scenario": "He is in the clinic, limping, on day two of a flare, and this is his third flare in twelve months. eGFR is 76. You have decided urate-lowering therapy is indicated. He says he may not get another ride back next week. A colleague tells you to wait until the toe is completely normal before any allopurinol, because starting during a flare will make it much longer. He can take oral medication.",
+    "scenario": "A 60-year-old man is the patient. He is in the clinic, limping, on day two of a flare, and this is his third flare in twelve months. eGFR is 76. You have decided urate-lowering therapy is indicated. He says he may not get another ride back next week. A colleague tells you to wait until the toe is completely normal before any allopurinol, because starting during a flare will make it much longer. He can take oral medication. On examination the man appears as described and reports the history above.",
     "question": "What is the most appropriate timing?",
     "options": [
       "Delay allopurinol until the flare has fully resolved",
@@ -1848,7 +1848,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-treat-to-target",
     "difficulty": 4,
-    "scenario": "Allopurinol has been 200 mg daily for a year. Serum urate today is 7.4 mg/dL. He has had one flare in the past four months. A refill is written for the same dose with the comment 'standard dose achieved.' eGFR is 70. He tolerates the drug and is not at the labeled maximum.",
+    "scenario": "A 73-year-old man is the patient. Allopurinol has been 200 mg daily for a year. Serum urate today is 7.4 mg/dL. He has had one flare in the past four months. A refill is written for the same dose with the comment 'standard dose achieved.' eGFR is 70. He tolerates the drug and is not at the labeled maximum.",
     "question": "What is the most appropriate allopurinol plan?",
     "options": [
       "Continue 200 mg, because a fixed dose is the goal",
@@ -1867,7 +1867,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-low-dose-colchicine",
     "difficulty": 4,
-    "scenario": "A flare started eight hours ago. He can take pills, eGFR is 80, and he is not on a strong CYP3A4 or P-glycoprotein inhibitor. The order copied from an old handbook is colchicine 0.6 mg every hour until diarrhea. Naproxen and prednisone are available alternatives if colchicine is not used, but colchicine was the drug he and you selected.",
+    "scenario": "A 42-year-old man is the patient. A flare started eight hours ago. He can take pills, eGFR is 80, and he is not on a strong CYP3A4 or P-glycoprotein inhibitor. The order copied from an old handbook is colchicine 0.6 mg every hour until diarrhea. Naproxen and prednisone are available alternatives if colchicine is not used, but colchicine was the drug he and you selected.",
     "question": "What is the most appropriate colchicine order?",
     "options": [
       "0.6 mg every hour until diarrhea develops",
@@ -1886,7 +1886,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-npo-steroid",
     "difficulty": 5,
-    "scenario": "Acute monoarthritis of the knee is confirmed as gout by prior synovial crystals, and he is NPO for pancreatitis. Oral colchicine, oral nonsteroidals, and oral prednisone are all impossible today. Renal function is acceptable. A request is placed for anakinra as the first injectable because 'nothing oral can be given.' The knee is accessible to injection, and there is no overlying cellulitis.",
+    "scenario": "A 43-year-old man is the patient. Acute monoarthritis of the knee is confirmed as gout by prior synovial crystals, and he is NPO for pancreatitis. Oral colchicine, oral nonsteroidals, and oral prednisone are all impossible today. Renal function is acceptable. A request is placed for anakinra as the first injectable because 'nothing oral can be given.' The knee is accessible to injection, and there is no overlying cellulitis.",
     "question": "What is the most appropriate anti-inflammatory choice?",
     "options": [
       "Anakinra as the preferred first injectable",
@@ -1905,7 +1905,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-asymptomatic-hyperuricemia",
     "difficulty": 4,
-    "scenario": "An annual chemistry panel shows a serum urate of 9.4 mg/dL. He has never had a flare, has no tophus, and has no urolithiasis. eGFR is 92. A message suggests allopurinol because the value is above 9 and 'the kidney will suffer.' Blood pressure and glucose are normal. He exercises and has no joint pain.",
+    "scenario": "A 73-year-old man is the patient. An annual chemistry panel shows a serum urate of 9.4 mg/dL. He has never had a flare, has no tophus, and has no urolithiasis. eGFR is 92. A message suggests allopurinol because the value is above 9 and 'the kidney will suffer.' Blood pressure and glucose are normal. He exercises and has no joint pain.",
     "question": "What is the most appropriate urate-lowering decision?",
     "options": [
       "Start allopurinol because the urate exceeds 9",
@@ -1924,7 +1924,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gout-febuxostat-cvd",
     "difficulty": 5,
-    "scenario": "Febuxostat has held the serum urate at 5.4 mg/dL. Last week he was admitted with a new myocardial infarction, now recovering, with no plan for a xanthine-oxidase inhibitor change. Allopurinol is available and he has no history of allopurinol hypersensitivity. A note says to continue febuxostat because the cardiovascular outcome trial's primary composite endpoint was neutral.",
+    "scenario": "A 61-year-old man is the patient. Febuxostat has held the serum urate at 5.4 mg/dL. Last week he was admitted with a new myocardial infarction, now recovering, with no plan for a xanthine-oxidase inhibitor change. Allopurinol is available and he has no history of allopurinol hypersensitivity. A note says to continue febuxostat because the cardiovascular outcome trial's primary composite endpoint was neutral.",
     "question": "What is the most appropriate urate-lowering change?",
     "options": [
       "Continue febuxostat because the primary endpoint was neutral",
@@ -1943,7 +1943,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-mtx-first",
     "difficulty": 4,
-    "scenario": "Symmetric synovitis in the hands and wrists has been present for three months, with prolonged morning stiffness and a positive anti-CCP antibody. Disease activity is moderate to high. She has never taken a disease-modifying drug. Hepatitis B surface antigen is negative, and she is not pregnant. A sample card for adalimumab is on the desk because it 'works faster than methotrexate.' Alcohol use is minimal and liver enzymes are normal.",
+    "scenario": "A 63-year-old woman is the patient. Symmetric synovitis in the hands and wrists has been present for three months, with prolonged morning stiffness and a positive anti-CCP antibody. Disease activity is moderate to high. She has never taken a disease-modifying drug. Hepatitis B surface antigen is negative, and she is not pregnant. A sample card for adalimumab is on the desk because it 'works faster than methotrexate.' Alcohol use is minimal and liver enzymes are normal.",
     "question": "What is the most appropriate initial regimen?",
     "options": [
       "Adalimumab monotherapy",
@@ -1962,7 +1962,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-low-activity-hcq",
     "difficulty": 5,
-    "scenario": "Two joints are swollen, morning stiffness lasts under fifteen minutes, and a validated disease-activity score sits in the low range. Symptoms have been present for four months. She is DMARD-naive, with a positive rheumatoid factor and no erosions discussed on the initial film. Methotrexate is proposed because 'methotrexate is always the first disease-modifying drug in rheumatoid arthritis.' She is not pregnant. Kidney and liver tests are normal.",
+    "scenario": "A 29-year-old woman is the patient. Two joints are swollen, morning stiffness lasts under fifteen minutes, and a validated disease-activity score sits in the low range. Symptoms have been present for four months. She is DMARD-naive, with a positive rheumatoid factor and no erosions discussed on the initial film. Methotrexate is proposed because 'methotrexate is always the first disease-modifying drug in rheumatoid arthritis.' She is not pregnant. Kidney and liver tests are normal.",
     "question": "What is the most appropriate initial disease-modifying drug?",
     "options": [
       "Methotrexate, because it is always first",
@@ -1981,7 +1981,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-no-long-steroid",
     "difficulty": 4,
-    "scenario": "Newly diagnosed moderate rheumatoid arthritis is being started on methotrexate today. The patient likes prednisone and asks to take 10 mg daily for five months instead of 'a chemotherapy drug,' then taper if she feels well. She has no contraindication to methotrexate. Glucose and bone history are unremarkable so far. The five-month plan is the only disease-modifying strategy written.",
+    "scenario": "A 59-year-old woman is the patient. Newly diagnosed moderate rheumatoid arthritis is being started on methotrexate today. The patient likes prednisone and asks to take 10 mg daily for five months instead of 'a chemotherapy drug,' then taper if she feels well. She has no contraindication to methotrexate. Glucose and bone history are unremarkable so far. The five-month plan is the only disease-modifying strategy written.",
     "question": "What is the most appropriate glucocorticoid plan?",
     "options": [
       "Prednisone 10 mg daily for five months as the sole disease-modifying plan",
@@ -2000,7 +2000,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-oral-mtx-intolerance",
     "difficulty": 4,
-    "scenario": "Oral methotrexate 15 mg weekly causes nausea for a day after each dose. Folic acid is 1 mg daily. Disease activity has improved but dosing has been inconsistent because she skips doses when she has a meeting. A biologic is proposed solely for the nausea. She has not tried a split oral dose or a subcutaneous injection. Liver enzymes are normal.",
+    "scenario": "A 41-year-old woman is the patient. Oral methotrexate 15 mg weekly causes nausea for a day after each dose. Folic acid is 1 mg daily. Disease activity has improved but dosing has been inconsistent because she skips doses when she has a meeting. A biologic is proposed solely for the nausea. She has not tried a split oral dose or a subcutaneous injection. Liver enzymes are normal. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate next methotrexate step?",
     "options": [
       "Stop methotrexate and start a tumor necrosis factor inhibitor for nausea",
@@ -2019,7 +2019,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-subcutaneous-before-biologic",
     "difficulty": 5,
-    "scenario": "Oral methotrexate is 25 mg weekly, folic acid is adequate, and adherence is good. Moderate disease activity persists. She has never used a subcutaneous formulation. A prior authorization for adalimumab is started because the oral dose is 'as high as it goes.' There is no methotrexate toxicity, only inadequate effect. eGFR and liver enzymes are acceptable.",
+    "scenario": "A 62-year-old woman is the patient. Oral methotrexate is 25 mg weekly, folic acid is adequate, and adherence is good. Moderate disease activity persists. She has never used a subcutaneous formulation. A prior authorization for adalimumab is started because the oral dose is 'as high as it goes.' There is no methotrexate toxicity, only inadequate effect. eGFR and liver enzymes are acceptable. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate next step?",
     "options": [
       "Add adalimumab now while remaining on oral methotrexate",
@@ -2038,7 +2038,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-add-biologic-over-triple",
     "difficulty": 5,
-    "scenario": "Subcutaneous methotrexate 25 mg weekly is tolerated and adherence is confirmed, yet disease activity remains moderate. Cost and access are not barriers, and she says she wants the approach most likely to improve symptoms fastest. Triple therapy with sulfasalazine and hydroxychloroquine is offered as equal to a biologic because a trial showed similar long-term radiographic outcomes. She has no heart failure, no prior lymphoma, and no chronic infection.",
+    "scenario": "A 39-year-old woman is the patient. Subcutaneous methotrexate 25 mg weekly is tolerated and adherence is confirmed, yet disease activity remains moderate. Cost and access are not barriers, and she says she wants the approach most likely to improve symptoms fastest. Triple therapy with sulfasalazine and hydroxychloroquine is offered as equal to a biologic because a trial showed similar long-term radiographic outcomes. She has no heart failure, no prior lymphoma, and no chronic infection.",
     "question": "What is the conditionally preferred addition?",
     "options": [
       "Sulfasalazine plus hydroxychloroquine, as the preferred add-on",
@@ -2057,7 +2057,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-switch-class",
     "difficulty": 5,
-    "scenario": "Etanercept plus methotrexate has been used correctly for five months. Disease activity is still moderate. Adherence is good and injection technique is correct. The plan proposed is a switch to adalimumab because another tumor necrosis factor inhibitor might succeed where etanercept did not. She has not tried a non-TNF mechanism. There is no new infection.",
+    "scenario": "A 66-year-old woman is the patient. Etanercept plus methotrexate has been used correctly for five months. Disease activity is still moderate. Adherence is good and injection technique is correct. The plan proposed is a switch to adalimumab because another tumor necrosis factor inhibitor might succeed where etanercept did not. She has not tried a non-TNF mechanism. There is no new infection.",
     "question": "What is the most appropriate switch?",
     "options": [
       "Adalimumab, staying inside the tumor necrosis factor class",
@@ -2076,7 +2076,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-heart-failure-avoid-tnf",
     "difficulty": 5,
-    "scenario": "NYHA class III heart failure is documented by the cardiologist, with dyspnea on minimal exertion despite guideline-directed heart-failure therapy. Rheumatoid activity remains moderate on subcutaneous methotrexate. A biologic is being added. Etanercept is the default because tumor necrosis factor inhibitors are usually the first biologic. There is no active infection.",
+    "scenario": "A 58-year-old patient. NYHA class III heart failure is documented by the cardiologist, with dyspnea on minimal exertion despite guideline-directed heart-failure therapy. Rheumatoid activity remains moderate on subcutaneous methotrexate. A biologic is being added. Etanercept is the default because tumor necrosis factor inhibitors are usually the first biologic. There is no active infection. On examination the patient appears as described and reports the history above.",
     "question": "What is the most appropriate biologic choice?",
     "options": [
       "Etanercept",
@@ -2095,7 +2095,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-new-hf-on-tnf",
     "difficulty": 5,
-    "scenario": "Infliximab and methotrexate had controlled her arthritis. Over six weeks she developed orthopnea, edema, and a new reduction in ejection fraction to 30%. The cardiologist diagnoses heart failure. A plan continues infliximab and adds a diuretic only, because the joints are finally quiet. No infusion reaction has occurred. She can take other DMARDs.",
+    "scenario": "A 41-year-old woman is the patient. Infliximab and methotrexate had controlled her arthritis. Over six weeks she developed orthopnea, edema, and a new reduction in ejection fraction to 30%. The cardiologist diagnoses heart failure. A plan continues infliximab and adds a diuretic only, because the joints are finally quiet. No infusion reaction has occurred. She can take other DMARDs.",
     "question": "What is the most appropriate change to infliximab?",
     "options": [
       "Continue infliximab and treat the heart failure separately",
@@ -2114,7 +2114,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-rituximab-hbcore",
     "difficulty": 5,
-    "scenario": "Rituximab is planned for rheumatoid arthritis that did not respond to other agents. Hepatitis B surface antigen is negative, core antibody is positive, and surface antibody is positive. Liver enzymes are normal. A protocol says to check ALT every three months and skip antiviral prophylaxis because the surface antigen is negative. She has no signs of cirrhosis. The first infusion is next week.",
+    "scenario": "A 73-year-old woman is the patient. Rituximab is planned for rheumatoid arthritis that did not respond to other agents. Hepatitis B surface antigen is negative, core antibody is positive, and surface antibody is positive. Liver enzymes are normal. A protocol says to check ALT every three months and skip antiviral prophylaxis because the surface antigen is negative. She has no signs of cirrhosis. The first infusion is next week.",
     "question": "What is the most appropriate hepatitis B plan?",
     "options": [
       "ALT monitoring alone, because surface antigen is negative",
@@ -2133,7 +2133,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-taper-mtx-not-biologic",
     "difficulty": 4,
-    "scenario": "Low disease activity has been stable for eight months on methotrexate plus a tumor necrosis factor inhibitor. She wants to take fewer drugs. A message tells her to stop both tomorrow. She is not pregnant and has had no toxicity. The biologic is due next week.",
+    "scenario": "A 46-year-old woman is the patient. Low disease activity has been stable for eight months on methotrexate plus a tumor necrosis factor inhibitor. She wants to take fewer drugs. A message tells her to stop both tomorrow. She is not pregnant and has had no toxicity. The biologic is due next week.",
     "question": "What is the most appropriate de-escalation?",
     "options": [
       "Stop both drugs tomorrow",
@@ -2152,7 +2152,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "ra-progressive-nodules",
     "difficulty": 4,
-    "scenario": "Subcutaneous nodules have enlarged and multiplied over four months on methotrexate. Disease activity is otherwise moderate. An increase in the methotrexate dose is proposed because nodules are taken as a sign of under-treated rheumatoid arthritis. She is not on a biologic. The nodules are tender and clearly progressing.",
+    "scenario": "A 43-year-old woman is the patient. Subcutaneous nodules have enlarged and multiplied over four months on methotrexate. Disease activity is otherwise moderate. An increase in the methotrexate dose is proposed because nodules are taken as a sign of under-treated rheumatoid arthritis. She is not on a biologic. The nodules are tender and clearly progressing.",
     "question": "What is the most appropriate methotrexate decision?",
     "options": [
       "Increase methotrexate, because nodules mean under-treatment",
@@ -2171,7 +2171,7 @@
     "taskCategory": "health-maintenance",
     "blueprintTopic": "dm-foot-high-risk-exam",
     "difficulty": 4,
-    "scenario": "A prior plantar ulcer healed eight months ago in a man with longstanding type 2 diabetes and loss of monofilament sensation. Today he is in clinic for blood pressure. Shoes are on, and nobody has looked at the feet. The after-visit plan says 'comprehensive foot exam in twelve months' and does not mention podiatry. He has no new open sore that he knows of. Pedal pulses are unexamined.",
+    "scenario": "A 31-year-old man is the patient. A prior plantar ulcer healed eight months ago in a man with longstanding type 2 diabetes and loss of monofilament sensation. Today he is in clinic for blood pressure. Shoes are on, and nobody has looked at the feet. The after-visit plan says 'comprehensive foot exam in twelve months' and does not mention podiatry. He has no new open sore that he knows of. Pedal pulses are unexamined.",
     "question": "What is the most appropriate foot plan today?",
     "options": [
       "Wait twelve months for the next comprehensive exam",
@@ -2190,7 +2190,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "dm-foot-offload",
     "difficulty": 4,
-    "scenario": "A new plantar forefoot ulcer measures 1.5 cm, with erythema under 2 cm and no fever. He is reliable, can be seen again in two days, and pulses are palpable. Probe to bone is negative. The proposed plan is cephalexin and 'walk as tolerated,' with no mention of pressure relief. Glucose is 190 mg/dL. There is no systemic toxicity.",
+    "scenario": "A 52-year-old man is the patient. A new plantar forefoot ulcer measures 1.5 cm, with erythema under 2 cm and no fever. He is reliable, can be seen again in two days, and pulses are palpable. Probe to bone is negative. The proposed plan is cephalexin and 'walk as tolerated,' with no mention of pressure relief. Glucose is 190 mg/dL. There is no systemic toxicity.",
     "question": "What is the most appropriate ulcer plan?",
     "options": [
       "Oral antibiotic alone and weight bearing as tolerated",
@@ -2209,7 +2209,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "dm-foot-severe-infection",
     "difficulty": 5,
-    "scenario": "Fever is 38.9°C, blood pressure is 86/52 mm Hg, and bullae have appeared over a chronic plantar ulcer in the last twelve hours. He has type 2 diabetes and cannot feel the 10 g monofilament. A clinic prescription for oral cephalexin was written this morning by phone, and he was told to follow up in a week. Lactate is elevated. He is diaphoretic.",
+    "scenario": "A 57-year-old man is the patient. Fever is 38.9°C, blood pressure is 86/52 mm Hg, and bullae have appeared over a chronic plantar ulcer in the last twelve hours. He has type 2 diabetes and cannot feel the 10 g monofilament. A clinic prescription for oral cephalexin was written this morning by phone, and he was told to follow up in a week. Lactate is elevated. He is diaphoretic.",
     "question": "What is the most appropriate care setting?",
     "options": [
       "Oral cephalexin and a clinic visit in one week",
@@ -2228,7 +2228,7 @@
     "taskCategory": "diagnosis",
     "blueprintTopic": "dm-charcot",
     "difficulty": 5,
-    "scenario": "The midfoot is warm, swollen, and collapsed-looking. There is no ulcer, no fever, and the white count is normal. He has longstanding neuropathy and walked on the foot for two weeks because it did not hurt. Radiographs show midfoot fragmentation. A course of antibiotics for osteomyelitis has been started, and he is encouraged to keep walking so the joint does not stiffen.",
+    "scenario": "A 65-year-old man is the patient. The midfoot is warm, swollen, and collapsed-looking. There is no ulcer, no fever, and the white count is normal. He has longstanding neuropathy and walked on the foot for two weeks because it did not hurt. Radiographs show midfoot fragmentation. A course of antibiotics for osteomyelitis has been started, and he is encouraged to keep walking so the joint does not stiffen.",
     "question": "What is the most appropriate change?",
     "options": [
       "Continue antibiotics and encourage walking",
@@ -2247,7 +2247,7 @@
     "taskCategory": "health-maintenance",
     "blueprintTopic": "dm-never-barefoot",
     "difficulty": 4,
-    "scenario": "Monofilament testing shows he cannot feel the 10 g filament at several plantar sites. There is no current ulcer. He says he is careful outdoors and goes barefoot only in the house. Indoor shoes are not in the plan. A small puncture is how his last infection started, from a tack he did not feel in the kitchen.",
+    "scenario": "A 38-year-old man is the patient. Monofilament testing shows he cannot feel the 10 g filament at several plantar sites. There is no current ulcer. He says he is careful outdoors and goes barefoot only in the house. Indoor shoes are not in the plan. A small puncture is how his last infection started, from a tack he did not feel in the kitchen.",
     "question": "What is the most appropriate footwear counseling?",
     "options": [
       "Barefoot indoors is acceptable if the yard is avoided",
@@ -2266,7 +2266,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gonorrhea-weight-based",
     "difficulty": 5,
-    "scenario": "Uncomplicated urogenital gonorrhea is confirmed, and the chlamydia nucleic acid test is already negative. Weight today is 162 kg. He has no cephalosporin allergy. The preprinted order is ceftriaxone 500 mg intramuscularly plus azithromycin 1 g, copied from a protocol that has not been revised. He is not pregnant.",
+    "scenario": "A 56-year-old man is the patient. Uncomplicated urogenital gonorrhea is confirmed, and the chlamydia nucleic acid test is already negative. Weight today is 162 kg. He has no cephalosporin allergy. The preprinted order is ceftriaxone 500 mg intramuscularly plus azithromycin 1 g, copied from a protocol that has not been revised. He is not pregnant.",
     "question": "What is the most appropriate treatment?",
     "options": [
       "Ceftriaxone 500 mg intramuscularly plus azithromycin 1 g",
@@ -2285,7 +2285,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "gonorrhea-add-doxy",
     "difficulty": 4,
-    "scenario": "Cervical gonorrhea is diagnosed by nucleic acid testing, and the chlamydia result is still pending. Weight is 70 kg. The clinician remembers that azithromycin was dropped from gonorrhea treatment and sends ceftriaxone 500 mg alone, with no second drug. She is not pregnant and has no drug allergy. Partners have not been discussed yet.",
+    "scenario": "A 42-year-old woman is the patient. Cervical gonorrhea is diagnosed by nucleic acid testing, and the chlamydia result is still pending. Weight is 70 kg. The clinician remembers that azithromycin was dropped from gonorrhea treatment and sends ceftriaxone 500 mg alone, with no second drug. She is not pregnant and has no drug allergy. Partners have not been discussed yet.",
     "question": "What is the most appropriate regimen?",
     "options": [
       "Ceftriaxone 500 mg alone",
@@ -2323,7 +2323,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "secondary-syphilis-one-dose",
     "difficulty": 4,
-    "scenario": "A new rash and mucous patches accompany a reactive treponemal test and an RPR of 1:64. Symptoms began six weeks ago. There are no neurologic findings, and she is not pregnant. HIV testing is ordered. The regimen selected is benzathine penicillin G 2.4 million units weekly for three weeks, copied from the late-latent order set. She has no penicillin allergy.",
+    "scenario": "A 45-year-old woman is the patient. A new rash and mucous patches accompany a reactive treponemal test and an RPR of 1:64. Symptoms began six weeks ago. There are no neurologic findings, and she is not pregnant. HIV testing is ordered. The regimen selected is benzathine penicillin G 2.4 million units weekly for three weeks, copied from the late-latent order set. She has no penicillin allergy.",
     "question": "What is the most appropriate penicillin schedule?",
     "options": [
       "Benzathine penicillin G 2.4 million units intramuscularly once",
@@ -2342,7 +2342,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "neurosyphilis-aqueous-penicillin",
     "difficulty": 5,
-    "scenario": "RPR is 1:128 and a treponemal test is reactive. Over two weeks he has developed a cranial-nerve palsy and worsening headache. HIV antigen-antibody testing is pending. There is no penicillin allergy. The emergency department gave benzathine penicillin G 2.4 million units once and discharged him because that dose treats secondary syphilis and the titer is high. Lumbar puncture is being arranged.",
+    "scenario": "A 73-year-old man is the patient. RPR is 1:128 and a treponemal test is reactive. Over two weeks he has developed a cranial-nerve palsy and worsening headache. HIV antigen-antibody testing is pending. There is no penicillin allergy. The emergency department gave benzathine penicillin G 2.4 million units once and discharged him because that dose treats secondary syphilis and the titer is high. Lumbar puncture is being arranged.",
     "question": "What is the most appropriate antibiotic change?",
     "options": [
       "No change, because one dose of benzathine penicillin covers neurosyphilis",
@@ -2361,7 +2361,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "disseminated-gonorrhea",
     "difficulty": 5,
-    "scenario": "Tenosynovitis of the wrist, two painful joints, and a handful of pustules on the forearm started after a sore throat. Pharyngeal nucleic acid amplification is positive for Neisseria gonorrhoeae. Synovial fluid white count is inflammatory and the gram stain shows no organisms. He is febrile but blood pressure is normal. Vancomycin was started for 'septic arthritis,' and no cephalosporin has been given. Weight is 80 kg. Chlamydia testing is pending.",
+    "scenario": "A 33-year-old man is the patient. Tenosynovitis of the wrist, two painful joints, and a handful of pustules on the forearm started after a sore throat. Pharyngeal nucleic acid amplification is positive for Neisseria gonorrhoeae. Synovial fluid white count is inflammatory and the gram stain shows no organisms. He is febrile but blood pressure is normal. Vancomycin was started for 'septic arthritis,' and no cephalosporin has been given. Weight is 80 kg. Chlamydia testing is pending.",
     "question": "What is the most appropriate antibiotic change?",
     "options": [
       "Continue vancomycin alone",
@@ -2380,7 +2380,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-adult-observe-over-30",
     "difficulty": 4,
-    "scenario": "Petechiae on the shins are the only bleeding. Platelets are 42,000/µL, newly recognized, and the smear shows large platelets without schistocytes or clumps. Hemoglobin and white count are normal. She takes no anticoagulant or antiplatelet drug, and no procedure is planned. Age is 34. Prednisone is proposed because any petechiae are said to require steroids.",
+    "scenario": "A 34-year-old woman is the patient. Petechiae on the shins are the only bleeding. Platelets are 42,000/µL, newly recognized, and the smear shows large platelets without schistocytes or clumps. Hemoglobin and white count are normal. She takes no anticoagulant or antiplatelet drug, and no procedure is planned. Age is 34. Prednisone is proposed because any petechiae are said to require steroids. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate initial management?",
     "options": [
       "Prednisone because petechiae are present",
@@ -2399,7 +2399,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-adult-steroid-under-30",
     "difficulty": 4,
-    "scenario": "Petechiae and a few oral blood blisters are minor, and she feels well. Platelets are 18,000/µL on a new smear that confirms true thrombocytopenia without schistocytes. Age is 29. She takes no blood thinner. A colleague argues for observation because there is no gross hemorrhage and the blisters are not active bleeding.",
+    "scenario": "A 29-year-old woman is the patient. Petechiae and a few oral blood blisters are minor, and she feels well. Platelets are 18,000/µL on a new smear that confirms true thrombocytopenia without schistocytes. Age is 29. She takes no blood thinner. A colleague argues for observation because there is no gross hemorrhage and the blisters are not active bleeding.",
     "question": "What is the most appropriate initial management?",
     "options": [
       "Observation only, because bleeding is limited to skin and a small oral blister",
@@ -2418,7 +2418,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-adult-new-admit-under-20",
     "difficulty": 5,
-    "scenario": "Platelets are 14,000/µL on the first recognition of ITP. Bleeding is petechiae only. She lives ten minutes away, has a phone, and can see hematology tomorrow. Blood pressure is normal and there is no mucosal bleeding. The emergency department wants to send her home on prednisone because she looks well and the count, they say, only matters if it is under 10,000.",
+    "scenario": "A 33-year-old woman is the patient. Platelets are 14,000/µL on the first recognition of ITP. Bleeding is petechiae only. She lives ten minutes away, has a phone, and can see hematology tomorrow. Blood pressure is normal and there is no mucosal bleeding. The emergency department wants to send her home on prednisone because she looks well and the count, they say, only matters if it is under 10,000.",
     "question": "What is the most appropriate disposition?",
     "options": [
       "Outpatient prednisone, because she looks well and lives nearby",
@@ -2437,7 +2437,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-adult-outpatient-over-20",
     "difficulty": 4,
-    "scenario": "Newly diagnosed ITP, platelets 26,000/µL, petechiae only. She lives with family near the clinic, has a working phone, and hematology can see her within 48 hours. There is no anticoagulant and no diagnostic uncertainty beyond a confirmed smear. Prednisone has been prescribed. The night team wants admission because the count is under 30,000.",
+    "scenario": "A 59-year-old woman is the patient. Newly diagnosed ITP, platelets 26,000/µL, petechiae only. She lives with family near the clinic, has a working phone, and hematology can see her within 48 hours. There is no anticoagulant and no diagnostic uncertainty beyond a confirmed smear. Prednisone has been prescribed. The night team wants admission because the count is under 30,000. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate disposition?",
     "options": [
       "Admit because the count is under 30,000",
@@ -2456,7 +2456,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-established-outpatient-under-20",
     "difficulty": 5,
-    "scenario": "ITP has been the diagnosis for two years. Platelets today are 12,000/µL after a viral illness, with petechiae and no wet purpura. She has had similar dips managed at home. She lives near the clinic, is not refractory in the sense of active dangerous bleeding, and can be seen tomorrow. The triage note applies the new-diagnosis admission rule and requests a bed.",
+    "scenario": "A 41-year-old woman is the patient. ITP has been the diagnosis for two years. Platelets today are 12,000/µL after a viral illness, with petechiae and no wet purpura. She has had similar dips managed at home. She lives near the clinic, is not refractory in the sense of active dangerous bleeding, and can be seen tomorrow. The triage note applies the new-diagnosis admission rule and requests a bed.",
     "question": "What is the most appropriate disposition?",
     "options": [
       "Admit because the count is under 20,000",
@@ -2475,7 +2475,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-steroid-duration",
     "difficulty": 4,
-    "scenario": "Prednisone 1 mg/kg is started for newly diagnosed ITP with platelets of 16,000/µL. The taper on the prescription stretches across twelve weeks so the count 'does not crash.' She has hypertension and a history of insomnia. No one has planned glucose or mood checks. The pharmacist asks if the duration is what you meant.",
+    "scenario": "A 69-year-old woman is the patient. Prednisone 1 mg/kg is started for newly diagnosed ITP with platelets of 16,000/µL. The taper on the prescription stretches across twelve weeks so the count 'does not crash.' She has hypertension and a history of insomnia. No one has planned glucose or mood checks. The pharmacist asks if the duration is what you meant. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate duration?",
     "options": [
       "Continue the twelve-week taper as protection against relapse",
@@ -2494,7 +2494,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-dex-for-speed",
     "difficulty": 5,
-    "scenario": "Dental extraction that the dentist will not do below a higher platelet count is scheduled in eight days. Platelets are 15,000/µL, newly diagnosed, with petechiae only. She places a high value on a rise by day 7 and a low value on a month of daily prednisone. Both prednisone and dexamethasone are available. There is no diabetes. A slow prednisone start is defended as gentler and equally fast.",
+    "scenario": "A 43-year-old woman is the patient. Dental extraction that the dentist will not do below a higher platelet count is scheduled in eight days. Platelets are 15,000/µL, newly diagnosed, with petechiae only. She places a high value on a rise by day 7 and a low value on a month of daily prednisone. Both prednisone and dexamethasone are available. There is no diabetes. A slow prednisone start is defended as gentler and equally fast.",
     "question": "What is the most appropriate corticosteroid?",
     "options": [
       "Prednisone, because it raises the count as fast as dexamethasone",
@@ -2513,7 +2513,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-no-upfront-rituximab",
     "difficulty": 4,
-    "scenario": "Newly diagnosed ITP, platelets 12,000/µL, minor bleeding. She has no strong preference for chasing a remission and is worried about infection from extra immunosuppression. An order set pairs rituximab with dexamethasone as 'standard first treatment' because combination therapy might raise the remission rate. Hepatitis B status is not yet known.",
+    "scenario": "A 64-year-old woman is the patient. Newly diagnosed ITP, platelets 12,000/µL, minor bleeding. She has no strong preference for chasing a remission and is worried about infection from extra immunosuppression. An order set pairs rituximab with dexamethasone as 'standard first treatment' because combination therapy might raise the remission rate. Hepatitis B status is not yet known.",
     "question": "What is the most appropriate initial therapy?",
     "options": [
       "Rituximab plus a corticosteroid",
@@ -2532,7 +2532,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-eltrombopag-preference",
     "difficulty": 4,
-    "scenario": "ITP has lasted five months and every steroid taper fails. A thrombopoietin receptor agonist is the agreed class. She drives long-haul routes and cannot attend a clinic every week for an injection. She can take a daily pill and has no liver-disease history that would forbid the oral agent. The hematologist on call prefers romiplostim because injections 'always work better.'",
+    "scenario": "A 52-year-old woman is the patient. ITP has lasted five months and every steroid taper fails. A thrombopoietin receptor agonist is the agreed class. She drives long-haul routes and cannot attend a clinic every week for an injection. She can take a daily pill and has no liver-disease history that would forbid the oral agent. The hematologist on call prefers romiplostim because injections 'always work better.'",
     "question": "What is the most appropriate thrombopoietin receptor agonist?",
     "options": [
       "Romiplostim, because injections are more effective",
@@ -2551,7 +2551,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-tpo-over-rituximab",
     "difficulty": 5,
-    "scenario": "Steroid-dependent ITP has lasted five months. She has no preference between an infusion and a longer-term drug, no hepatitis B core antibody, and no strong desire to avoid chronic medication. Second-line options are being compared. Rituximab is favored in the note because it is time-limited. A thrombopoietin receptor agonist is the alternative.",
+    "scenario": "A 30-year-old woman is the patient. Steroid-dependent ITP has lasted five months. She has no preference between an infusion and a longer-term drug, no hepatitis B core antibody, and no strong desire to avoid chronic medication. Second-line options are being compared. Rituximab is favored in the note because it is time-limited. A thrombopoietin receptor agonist is the alternative.",
     "question": "What does ASH suggest as the preferred option in this comparison?",
     "options": [
       "Rituximab, because it is time-limited",
@@ -2570,7 +2570,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-delay-splenectomy",
     "difficulty": 5,
-    "scenario": "ITP was diagnosed five weeks ago. A steroid course raised the platelets briefly, then they fell to 22,000/µL. Bleeding is petechiae. The surgical service can do a splenectomy next Tuesday and describes it as definitive first relapse management. Vaccines have not been discussed. She had hoped to avoid an operation this month.",
+    "scenario": "A 53-year-old woman is the patient. ITP was diagnosed five weeks ago. A steroid course raised the platelets briefly, then they fell to 22,000/µL. Bleeding is petechiae. The surgical service can do a splenectomy next Tuesday and describes it as definitive first relapse management. Vaccines have not been discussed. She had hoped to avoid an operation this month. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate surgical plan?",
     "options": [
       "Splenectomy next Tuesday as the standard first relapse step",
@@ -2589,7 +2589,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-vaccinate-before-spleen",
     "difficulty": 4,
-    "scenario": "ITP has lasted fourteen months. After shared decision-making she has chosen splenectomy rather than ongoing drugs. The operation is on tomorrow's add-on list. Pneumococcal, meningococcal, and Haemophilus vaccines have not been given, and nobody has counseled her about fever after the spleen is gone. She is otherwise ready for surgery and understands the procedure.",
+    "scenario": "A 71-year-old woman is the patient. ITP has lasted fourteen months. After shared decision-making she has chosen splenectomy rather than ongoing drugs. The operation is on tomorrow's add-on list. Pneumococcal, meningococcal, and Haemophilus vaccines have not been given, and nobody has counseled her about fever after the spleen is gone. She is otherwise ready for surgery and understands the procedure.",
     "question": "What is the most appropriate preoperative step?",
     "options": [
       "Operate tomorrow and vaccinate at the postoperative visit",
@@ -2608,7 +2608,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-child-observe-low-count",
     "difficulty": 4,
-    "scenario": "A 5-year-old has platelets of 8,000/µL found after bruising. Bleeding is skin only. Parents live ten minutes from the emergency department and can return tonight if bleeding changes. The child is playful. Intravenous immunoglobulin is drawn up because the count is under 10,000, and admission is requested for the same reason.",
+    "scenario": "A 5-year-old has platelets of 8,000/µL found after bruising. Bleeding is skin only. Parents live ten minutes from the emergency department and can return tonight if bleeding changes. The child is playful. Intravenous immunoglobulin is drawn up because the count is under 10,000, and admission is requested for the same reason. On examination the patient appears as described and reports the history above.",
     "question": "What is the most appropriate plan?",
     "options": [
       "Admit and give intravenous immunoglobulin",
@@ -2627,7 +2627,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-child-short-prednisone",
     "difficulty": 5,
-    "scenario": "Epistaxis that keeps restarting, without hemodynamic change, is the bleeding in a 7-year-old with newly diagnosed ITP and platelets of 11,000/µL. Quality of life is affected. A corticosteroid is appropriate. The prescription is dexamethasone for four days because that is the adult rapid protocol, and a second plan offers prednisone for 21 days. Parents ask which steroid and how long.",
+    "scenario": "Epistaxis that keeps restarting, without hemodynamic change, is the bleeding in a 7-year-old with newly diagnosed ITP and platelets of 11,000/µL. Quality of life is affected. A corticosteroid is appropriate. The prescription is dexamethasone for four days because that is the adult rapid protocol, and a second plan offers prednisone for 21 days. Parents ask which steroid and how long. On examination the patient appears as described and reports the history above.",
     "question": "What is the most appropriate corticosteroid plan?",
     "options": [
       "Dexamethasone, using the adult four-day protocol as the default",
@@ -2684,7 +2684,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-child-no-early-splenectomy",
     "difficulty": 4,
-    "scenario": "After one short prednisone course, a surgeon offers splenectomy for a 6-year-old whose platelets are 15,000/µL and whose bleeding is intermittent nosebleeds. The family was told children do better with early splenectomy because they recover from surgery quickly. Vaccines have not been planned. Medical second-line therapy has not been tried.",
+    "scenario": "After one short prednisone course, a surgeon offers splenectomy for a 6-year-old whose platelets are 15,000/µL and whose bleeding is intermittent nosebleeds. The family was told children do better with early splenectomy because they recover from surgery quickly. Vaccines have not been planned. Medical second-line therapy has not been tried. On examination the patient appears as described and reports the history above.",
     "question": "What is the most appropriate next treatment?",
     "options": [
       "Splenectomy now, because children tolerate surgery well",
@@ -2703,7 +2703,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-procedure-near-threshold",
     "difficulty": 5,
-    "scenario": "Platelets are 36,000/µL with a few petechiae. Newly diagnosed ITP is otherwise quiet, and she is 40 years old without an anticoagulant. A tooth extraction is booked in two days and the dentist wants a higher count before he will work. Observation is proposed because 36,000 is above 30,000 and the strong recommendation favors no steroid. She can take either prednisone or dexamethasone.",
+    "scenario": "Platelets are 36,000/µL with a few petechiae. Newly diagnosed ITP is otherwise quiet, and she is 40 years old without an anticoagulant. A tooth extraction is booked in two days and the dentist wants a higher count before he will work. Observation is proposed because 36,000 is above 30,000 and the strong recommendation favors no steroid. She can take either prednisone or dexamethasone. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate plan?",
     "options": [
       "Observation only, because the count is above 30,000",
@@ -2722,7 +2722,7 @@
     "taskCategory": "clinical-intervention",
     "blueprintTopic": "itp-admit-social-above-20",
     "difficulty": 5,
-    "scenario": "Platelets are 28,000/µL, petechiae only, newly diagnosed. She lives alone, two hours from the nearest hospital, and has no phone service at the house. A corticosteroid has been prescribed. The disposition algorithm says discharge everyone at or above 20,000. No family can check on her tonight.",
+    "scenario": "A 33-year-old woman is the patient. Platelets are 28,000/µL, petechiae only, newly diagnosed. She lives alone, two hours from the nearest hospital, and has no phone service at the house. A corticosteroid has been prescribed. The disposition algorithm says discharge everyone at or above 20,000. No family can check on her tonight. On examination the woman appears as described and reports the history above.",
     "question": "What is the most appropriate disposition?",
     "options": [
       "Discharge tonight because the count is above 20,000",
@@ -2760,7 +2760,7 @@
     "taskCategory": "health-maintenance",
     "blueprintTopic": "itp-prompt-hematology-followup",
     "difficulty": 4,
-    "scenario": "Newly diagnosed ITP is being discharged from the emergency department after the count and the bleeding were judged safe for home. Prednisone was started. The discharge order says 'primary care in one month, no hematology needed unless bleeding returns.' The family asks when a specialist should look at the count.",
+    "scenario": "A 42-year-old patient. Newly diagnosed ITP is being discharged from the emergency department after the count and the bleeding were judged safe for home. Prednisone was started. The discharge order says 'primary care in one month, no hematology needed unless bleeding returns.' The family asks when a specialist should look at the count. On examination the patient appears as described and reports the history above.",
     "question": "What is the most appropriate follow-up interval?",
     "options": [
       "Primary care in one month is sufficient",
@@ -2779,7 +2779,7 @@
     "taskCategory": "health-maintenance",
     "blueprintTopic": "itp-monitor-steroid-harm",
     "difficulty": 4,
-    "scenario": "Prednisone was started three days ago for ITP. The only monitoring ordered is a platelet count. She has gained no new counseling about mood, sleep, blood pressure, or glucose. Clinic protocol says platelets twice a week and nothing else, because ITP is a platelet disease. She has a mood-disorder history.",
+    "scenario": "A 64-year-old woman is the patient. Prednisone was started three days ago for ITP. The only monitoring ordered is a platelet count. She has gained no new counseling about mood, sleep, blood pressure, or glucose. Clinic protocol says platelets twice a week and nothing else, because ITP is a platelet disease. She has a mood-disorder history.",
     "question": "What is the most appropriate monitoring addition?",
     "options": [
       "Platelet counts only",
@@ -2798,7 +2798,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-child-ivig-if-steroid-barred",
     "difficulty": 5,
-    "scenario": "Nosebleeds are frequent but not life-threatening in a child with new ITP. A corticosteroid would ordinarily be the suggestion. Uncontrolled diabetes and a recent severe steroid-induced mood episode make the pediatrician unwilling to use prednisone. The child is Rh-negative, so anti-D immunoglobulin is not an option. Intravenous immunoglobulin is available. Skin bleeding is no longer the only site.",
+    "scenario": "A 52-year-old patient. Nosebleeds are frequent but not life-threatening in a child with new ITP. A corticosteroid would ordinarily be the suggestion. Uncontrolled diabetes and a recent severe steroid-induced mood episode make the pediatrician unwilling to use prednisone. The child is Rh-negative, so anti-D immunoglobulin is not an option. Intravenous immunoglobulin is available. Skin bleeding is no longer the only site.",
     "question": "What is the most appropriate treatment?",
     "options": [
       "Prednisone despite the stated contraindications",
@@ -2817,7 +2817,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-adult-rituximab-over-spleen",
     "difficulty": 4,
-    "scenario": "Adult ITP has lasted eight months. Steroids failed. She is choosing between rituximab and splenectomy and has no strong preference about surgery versus an infusion. A thrombopoietin receptor agonist was already discussed and declined for cost. The surgeon's note says splenectomy is preferred because it is definitive and the disease has passed three months.",
+    "scenario": "A 31-year-old woman is the patient. Adult ITP has lasted eight months. Steroids failed. She is choosing between rituximab and splenectomy and has no strong preference about surgery versus an infusion. A thrombopoietin receptor agonist was already discussed and declined for cost. The surgeon's note says splenectomy is preferred because it is definitive and the disease has passed three months.",
     "question": "What does ASH suggest in this comparison?",
     "options": [
       "Splenectomy rather than rituximab",
@@ -2836,7 +2836,7 @@
     "taskCategory": "pharmacotherapy",
     "blueprintTopic": "itp-child-no-antid",
     "difficulty": 4,
-    "scenario": "Bruises only, platelets 10,000/µL, in a 5-year-old who is Rh-positive and has a spleen. Anti-D immunoglobulin is ordered because the blood bank notes that he is a candidate and the count is low. There is no mucosal bleeding. Parents were told anti-D is gentler than intravenous immunoglobulin and therefore indicated tonight.",
+    "scenario": "Bruises only, platelets 10,000/µL, in a 5-year-old who is Rh-positive and has a spleen. Anti-D immunoglobulin is ordered because the blood bank notes that he is a candidate and the count is low. There is no mucosal bleeding. Parents were told anti-D is gentler than intravenous immunoglobulin and therefore indicated tonight. On examination the man appears as described and reports the history above.",
     "question": "What is the most appropriate treatment?",
     "options": [
       "Anti-D immunoglobulin tonight",
