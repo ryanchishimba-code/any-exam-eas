@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { boardQuestionUnits } from "@/lib/counts";
 import { OPEN_FNP_QUICK_BITE_SLUG } from "@/lib/quick-bites/fnp-catalog";
 import { OPEN_PANCE_QUICK_BITE_SLUG } from "@/lib/quick-bites/pance-catalog";
+import { boardPainPoints } from "./board-theme";
 import { buildHubLandingModel } from "./hub-model";
 import { SEO_TITLE_MAX } from "@/lib/seo/meta-budget";
 import { buildHubLandingMetadata } from "./hub-model";
@@ -65,6 +66,14 @@ describe("hub board landing model", () => {
       for (const video of videos) {
         expect(video.uploadDate).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/);
       }
+    }
+  });
+
+  it("keeps the monthly price out of board body copy", () => {
+    for (const slug of ["nclex", "naplex", "usmle", "aanp-fnp", "pance", "npte-pt"] as const) {
+      const cost = boardPainPoints(slug).find((point) => point.id === "cost");
+      expect(cost?.fix).toContain("AnyExamEasy");
+      expect(cost?.fix).not.toMatch(/\$/);
     }
   });
 

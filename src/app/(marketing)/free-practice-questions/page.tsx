@@ -15,7 +15,10 @@ import {
   FREE_PRACTICE_TRIAL_HREF,
   questionsForBoard,
 } from "@/lib/marketing/free-practice/catalog";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import "@/styles/free-practice.css";
+
+const FREE_PRACTICE_SHARE_IMAGE = landingOgImage("home");
 
 export const dynamic = "force-static";
 export const revalidate = 86400;
@@ -33,11 +36,13 @@ export const metadata: Metadata = {
     siteName: "AnyExamEasy",
     title: FREE_PRACTICE_TITLE,
     description: FREE_PRACTICE_DESCRIPTION,
+    images: [FREE_PRACTICE_SHARE_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: FREE_PRACTICE_TITLE,
     description: FREE_PRACTICE_DESCRIPTION,
+    images: [FREE_PRACTICE_SHARE_IMAGE.url],
   },
   robots: {
     index: true,
