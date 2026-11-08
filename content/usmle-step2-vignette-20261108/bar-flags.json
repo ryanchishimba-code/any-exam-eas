@@ -1,0 +1,38 @@
+{
+  "applied100": [
+    {
+      "id": "cmtpx3dxn00ao1y6h49x7oy89",
+      "why": "Same inferior STEMI with right-ventricular involvement and an open cath lab as cmrqhwkj2006w1ypxmjd7zox0. Primary PCI is already taught."
+    },
+    {
+      "id": "cmtpwsnwu00431y6h82whxsuc",
+      "why": "Another inferior STEMI whose decision is primary PCI because the lab is available. Same reperfusion choice."
+    },
+    {
+      "id": "cmtpw0obr002s1ylcvah3jo4h",
+      "why": "Inferior STEMI, PCI-capable hospital, next step is angiography. Same decision again."
+    },
+    {
+      "id": "cmrpwg52l00bd1ylu6nvz4zi9",
+      "why": "COPD flare, nonpurulent sputum, add a systemic steroid and skip antibiotics. Same call as cmrrvb7ql000l1yl875oby7ol."
+    },
+    {
+      "id": "cmr85sw8h000m1yr9jlj3palw",
+      "why": "Measles in the waiting room, next step is airborne isolation. Same call as cmr4hb0j3003w1yde0je84map."
+    },
+    {
+      "id": "cmr89ve8n01421yr9tb819ogb",
+      "why": "Thunderclap headache, CT negative, next step is lumbar puncture. Same call as cmra6lzic003vic045vg3w06m."
+    },
+    {
+      "id": "cmr89lvz4010g1yr9a7yxx5ux",
+      "why": "Teaches students to delay MMR for a two-day fever of 38.9 C in a consolable child. Mild febrile illness is not a reason to defer vaccines."
+    }
+  ],
+  "draft10held": [
+    {
+      "id": "cmtpx3bwn009y1y6hkl34tbw2",
+      "why": "Primary PCI for inferior STEMI with right-ventricular involvement. Already live more than once."
+    }
+  ]
+}

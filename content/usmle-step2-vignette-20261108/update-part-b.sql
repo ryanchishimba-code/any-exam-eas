@@ -1,4 +1,4 @@
--- Draft only. Do not apply until Ryan approves these 10.
+-- Draft only. Nine items that meet the bar. The PCI duplicate is excluded. Do not apply until Ryan approves.
 BEGIN;
 UPDATE "QuestionBankItem"
 SET scenario = 'A 72-year-old woman with COPD who uses a long-acting beta-agonist and an inhaled corticosteroid comes to the emergency department with 3 days of worsening dyspnea and productive cough. On arrival, respiratory rate is 28/min, oxygen saturation is 88% on room air, and she has diffuse wheezing. Chest x-ray shows hyperinflation without infiltrate, pneumothorax, or pulmonary edema. Arterial blood gas on room air shows pH 7.32, PaCO2 60 mm Hg, PaO2 55 mm Hg, HCO3- 30 mEq/L. Over the next hour she receives three nebulized albuterol-ipratropium treatments, oral prednisone 40 mg, and controlled oxygen by Venturi mask titrated to SpO2 90%. She remains alert and oriented, can clear her secretions, and has blood pressure 138/82 mm Hg and heart rate 104/min, but her respiratory rate is now 28/min with accessory muscle use. Repeat arterial blood gas on oxygen shows pH 7.29, PaCO2 65 mm Hg, PaO2 62 mm Hg, HCO3- 30 mEq/L.',
@@ -41,12 +41,6 @@ SET scenario = 'A 72-year-old woman comes to the emergency department because of
     question = 'Which of the following medications should be given first?',
     "updatedAt" = NOW()
 WHERE "id" = 'cmtpw0p6a002x1ylc1hjw5tp2'
-  AND "fieldId" = 'usmle-step-2';
-UPDATE "QuestionBankItem"
-SET scenario = 'A 68-year-old man with hypertension and type 2 diabetes is brought to the emergency department 40 minutes after the sudden onset of crushing substernal chest pain radiating to his left arm that began while he was gardening. Paramedics gave him 324 mg of chewable aspirin en route. Blood pressure is 150/90 mm Hg, heart rate is 100/min, and oxygen saturation is 95% on room air. Lungs are clear. ECG shows 3-mm ST-segment elevation in leads II, III, and aVF with reciprocal ST depression in leads I and aVL; right-sided lead V4R shows 1-mm ST elevation. The hospital has a 24-hour cardiac catheterization laboratory, and the interventional team can be ready within 30 minutes.',
-    question = 'Which of the following is the most appropriate next step in management?',
-    "updatedAt" = NOW()
-WHERE "id" = 'cmtpx3bwn009y1y6hkl34tbw2'
   AND "fieldId" = 'usmle-step-2';
 UPDATE "QuestionBankItem"
 SET scenario = 'A 62-year-old man with chronic obstructive pulmonary disease comes to the clinic because of worsening shortness of breath for 1 week, with increased sputum volume and a change in sputum color to green. His usual resting oxygen saturation is 89% to 90% on room air. His respiratory rate is 22/min and oxygen saturation is 89% on room air; he is speaking in full sentences. Chest x-ray shows no infiltrate. His inhaled albuterol-ipratropium has been increased, and a 5-day course of oral prednisone has been prescribed.',

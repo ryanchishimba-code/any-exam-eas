@@ -7,12 +7,14 @@
   "activeQaAfter": 4960,
   "rewritesApplied": 100,
   "clonesHidden": 53,
-  "draftRewritesNotApplied": 10,
+  "draftRewritesNotApplied": 9,
+  "draftHeldForBar": 1,
+  "applied100FailingBar": 7,
   "snapshot": "usmle-step2-vignette-100-20261108-before",
   "snapshotId": "snap-young-waterfall-apc51hdb",
   "hideBackupTable": "qbi_usmle_step2_clone_hide_20261108",
   "dryRun": { "rewrites": "would_update 100, then 0 remained", "hides": "would_hide 53, then all 53 were still active" },
   "spotCheck": { "rewrittenWithVignette": 100, "bad": 0 },
   "blindReadPartB": { "answered": 10, "matched": 10 },
-  "note": "The 100 scenario updates are live. The 53 clones are active=false and still in the table. The 10 in rewrites-part-b.json are not loaded."
+  "note": "Seven of the live 100 do not meet the bar and are listed in bar-flags.json. They were already applied. Nine of the last ten meet the bar and stay unloaded. The tenth is a repeat primary-PCI item and is held out of update-part-b.sql."
 }
