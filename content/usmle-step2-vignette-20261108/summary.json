@@ -1,0 +1,14 @@
+{
+  "status": "draft, not applied",
+  "fieldId": "usmle-step-2",
+  "served": 4974,
+  "lackingSeparateVignette": 163,
+  "rewriteCandidates": 110,
+  "thisBatch": 100,
+  "deferredRewrites": 10,
+  "hideAsDuplicateConcept": 53,
+  "databaseWrites": false,
+  "dryRunExecuted": false,
+  "blindRead": { "answered": 100, "matched": 100, "ambiguous": 0 },
+  "note": "Served Step 2 CK rows with an empty scenario. The patient story sits in the question, so the vignette gate does not see it. This batch moves 100 unique high-yield cases into scenario and leaves the lead-in as the question. Fifty-three clones of the same decision are listed to hide and are not updated. The rollback file was not run."
+}

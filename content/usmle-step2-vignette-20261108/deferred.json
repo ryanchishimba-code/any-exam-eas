@@ -1,0 +1,62 @@
+[
+  {
+    "id": "cmtpx3eva00b01y6h47lzch7a",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "child-abuse-red-flags",
+    "concept": "a 5-day course of an oral antibiotic"
+  },
+  {
+    "id": "cmrrvvldw00bu1yl8tki22z44",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "ethics-professionalism",
+    "concept": "start intravenous magnesium sulfate"
+  },
+  {
+    "id": "cmrsfgnam00531ynylrn693fp",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "ethics-professionalism",
+    "concept": "nimodipine"
+  },
+  {
+    "id": "cmtpw0p6a002x1ylc1hjw5tp2",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "ethics-professionalism",
+    "concept": "chewed aspirin"
+  },
+  {
+    "id": "cmr88ih7000re1yr9qc2wuldb",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "preventive-screening",
+    "concept": "initiate noninvasive positive pressure ventilation (bilevel)"
+  },
+  {
+    "id": "cmr8al7zo019c1yr9fjbpmco4",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "preventive-screening",
+    "concept": "increase atorvastatin to a high-intensity dose"
+  },
+  {
+    "id": "cmrrw4x6i00fx1yl81imni67z",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "concept": "order a full lipid panel"
+  },
+  {
+    "id": "cmrsfd2kw002v1ynyt2asdjcl",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "concept": "administer magnesium sulfate"
+  },
+  {
+    "id": "cmtpx3bwn009y1y6hkl34tbw2",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "concept": "perform emergency coronary angiography with primary pci"
+  },
+  {
+    "id": "cmtpx3fnp00ba1y6hhal2zfp6",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "concept": "start a dobutamine infusion"
+  }
+]
