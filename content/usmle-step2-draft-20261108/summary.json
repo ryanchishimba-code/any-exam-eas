@@ -1,13 +1,13 @@
 {
   "status": "partial draft, not inserted",
   "fieldId": "usmle-step-2",
-  "count": 295,
+  "count": 300,
   "target": 300,
-  "parts": { "a": 150, "b": 145 },
-  "difficulty": { "4": 125, "5": 170 },
+  "parts": { "a": 150, "b": 145, "c": 5 },
+  "difficulty": { "4": 128, "5": 172 },
   "partBSubjects": { "pediatrics": 39, "psychiatry": 35, "surgery": 34, "neurology": 30, "hematology": 7 },
   "vignetteRich": 295,
-  "blindRead": { "partA": { "answered": 139, "matched": 139 }, "partB": { "answered": 145, "matched": 145, "ambiguous": 0 } },
+  "blindRead": { "partA": { "answered": 139, "matched": 139 }, "partB": { "answered": 145, "matched": 145 }, "partC": { "answered": 5, "matched": 5, "ambiguous": 0 } },
   "heldOutAsDuplicates": 5,
-  "note": "Part B adds pediatrics, psychiatry, surgery, neurology, and a few hematology items that were not already in part A. Five items were left out because they repeat a decision already in the draft. Not loaded."
+  "note": "Part C is five cardiovascular items that were the gap left after duplicate ITP items were held out. A keyless read matched all five. Not loaded."
 }

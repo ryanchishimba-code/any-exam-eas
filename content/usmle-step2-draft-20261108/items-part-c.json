@@ -1,0 +1,97 @@
+[
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "internal-medicine",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hfref-start-foundational-therapy",
+    "difficulty": 5,
+    "scenario": "A 58-year-old man is seen two weeks after a first admission for pulmonary edema. He is now euvolemic. Ejection fraction is 30% with a dilated left ventricle. Blood pressure is 118/74 mm Hg, heart rate is 82 beats per minute, potassium is 4.4 mEq/L, and creatinine is 1.0 mg/dL. He walks one block without chest pain. His only discharge medicine is furosemide. He asks what will actually change the course of the disease, not just the fluid.",
+    "question": "Which disease-modifying plan is most appropriate?",
+    "options": [
+      "A home inotrope infusion because the ejection fraction is under 35%",
+      "Digoxin alone, because a low ejection fraction is a digoxin deficiency",
+      "Start an ARNI or an ACE inhibitor or ARB, an evidence-based beta blocker, a mineralocorticoid receptor antagonist, and an SGLT2 inhibitor",
+      "Diltiazem in place of a beta blocker",
+      "Daily ibuprofen for the fatigue of heart failure"
+    ],
+    "correctAnswer": "Start an ARNI or an ACE inhibitor or ARB, an evidence-based beta blocker, a mineralocorticoid receptor antagonist, and an SGLT2 inhibitor",
+    "explanation": "HFrEF with EF 30% is treated with four foundational drugs, titrated as tolerated: an ARNI (or an ACE inhibitor or ARB), an evidence-based beta blocker, a mineralocorticoid receptor antagonist, and an SGLT2 inhibitor. Digoxin alone does not replace that regimen and is not first-line disease-modifying therapy. Daily ibuprofen promotes sodium retention and can precipitate another decompensation. Diltiazem is a negative inotrope and is not a substitute for carvedilol, metoprolol succinate, or bisoprolol in HFrEF. A home inotrope is for selected stage D patients who remain advanced and refractory, not for a euvolemic man who walks a block on a loop diuretic only.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "internal-medicine",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "hfref-continue-arni-after-small-creatinine-rise",
+    "difficulty": 4,
+    "scenario": "A 64-year-old woman with an ejection fraction of 25% started sacubitril/valsartan two weeks ago. She feels better and has no cough, dizziness, or edema. Blood pressure is 110/70 mm Hg. Creatinine has risen from 1.2 to 1.4 mg/dL. Potassium is 4.6 mEq/L. The lung examination is clear and the neck veins are flat. A refill message says to stop the new drug because the creatinine rose.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Start dialysis today for a creatinine of 1.4 mg/dL",
+      "Stop it because any creatinine rise means kidney injury",
+      "Replace it with diltiazem",
+      "Continue sacubitril/valsartan and recheck electrolytes",
+      "Add ibuprofen to protect the kidney"
+    ],
+    "correctAnswer": "Continue sacubitril/valsartan and recheck electrolytes",
+    "explanation": "A creatinine rise of about 17% after an ARNI, with a normal potassium and no congestion, is an expected hemodynamic change and is not a reason to stop therapy. Stopping because any rise occurred would withhold a drug that improves survival. Diltiazem does not treat HFrEF and can worsen systolic function. Ibuprofen is nephrotoxic and worsens heart failure. Dialysis is not indicated for a creatinine of 1.4 mg/dL in a patient who is eating, euvolemic, and otherwise well.",
+    "ref": "aha-hf-2022"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "internal-medicine",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "af-anticoagulate-elevated-chadsvasc",
+    "difficulty": 4,
+    "scenario": "A 76-year-old man has had persistent atrial fibrillation for a year. He has hypertension and type 2 diabetes. Heart rate is 78 beats per minute on metoprolol, and blood pressure is 128/76 mm Hg. He has never had a stroke or a major bleed. Creatinine clearance is 62 mL/min. His only antithrombotic drug is aspirin 81 mg daily. He feels well and asks whether the aspirin is enough.",
+    "question": "Which stroke-prevention plan is most appropriate?",
+    "options": [
+      "Continue aspirin alone because the rate is controlled",
+      "No antithrombotic drug, because he has not yet had a stroke",
+      "Warfarin with a target INR of 3.5 to 4.5",
+      "Clopidogrel plus aspirin and no anticoagulant",
+      "Start a direct oral anticoagulant and stop aspirin"
+    ],
+    "correctAnswer": "Start a direct oral anticoagulant and stop aspirin",
+    "explanation": "Age, hypertension, and diabetes put his CHA2DS2-VASc score at 4, so anticoagulation is indicated. A direct oral anticoagulant is appropriate with his creatinine clearance, and aspirin does not prevent stroke in this setting. Aspirin alone leaves him unprotected because rate control does not remove thromboembolic risk. An INR target of 3.5 to 4.5 is higher than the usual range and adds bleeding without a reason. Dual antiplatelet therapy is not a substitute for anticoagulation in atrial fibrillation. Waiting for a first stroke to begin prevention is the outcome the score is meant to avoid.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "internal-medicine",
+    "taskCategory": "clinical-intervention",
+    "blueprintTopic": "unstable-af-immediate-cardioversion",
+    "difficulty": 5,
+    "scenario": "A 67-year-old man is brought from a meeting with palpitations that began this afternoon. He is pale and confused, and he reports crushing chest pain. The monitor shows atrial fibrillation at 164 beats per minute. Blood pressure is 78/50 mm Hg. The skin is cool. An electrocardiogram shows ST-segment depression. Onset of the arrhythmia is otherwise unknown. A colleague wants a transesophageal echocardiogram in the morning before any shock.",
+    "question": "Which immediate plan is most appropriate?",
+    "options": [
+      "Fibrinolytic therapy instead of treating the rhythm",
+      "A digoxin load and discharge",
+      "Delay cardioversion for a transesophageal echocardiogram tomorrow",
+      "Oral metoprolol and a clinic visit in three days",
+      "Synchronized cardioversion now"
+    ],
+    "correctAnswer": "Synchronized cardioversion now",
+    "explanation": "Hypotension, ischemic chest pain, and cool skin make this atrial fibrillation unstable, so synchronized cardioversion is immediate. A transesophageal echocardiogram tomorrow leaves an unstable patient in a harmful rhythm so that a clot search can be scheduled. Oral metoprolol and a delayed clinic visit do not treat shock. Digoxin loading is slow and does not fix ischemia and hypotension. Fibrinolysis treats coronary occlusion, not an unstable tachyarrhythmia whose next step is to restore a perfusing rhythm.",
+    "ref": "aha-af-2023"
+  },
+  {
+    "blueprintDomain": "cardiovascular",
+    "subjectId": "internal-medicine",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "severe-hypertension-without-target-organ-damage",
+    "difficulty": 4,
+    "scenario": "A 52-year-old man is at a routine visit. Repeated blood pressures are 184/102 mm Hg. He describes his usual band-like headache and has no chest pain, dyspnea, weakness, or visual change. The neurologic examination is normal. Creatinine is unchanged from last year at 0.9 mg/dL, and the electrocardiogram matches an old tracing. He takes no antihypertensive drug. The triage note has already requested an intensive-care nicardipine drip.",
+    "question": "Which plan is most appropriate?",
+    "options": [
+      "Emergency dialysis for a creatinine of 0.9 mg/dL",
+      "Intravenous alteplase because the pressure is above 180 mm Hg",
+      "An intensive-care nicardipine infusion today",
+      "Start oral antihypertensive therapy and arrange close follow-up",
+      "A clonidine load and no follow-up"
+    ],
+    "correctAnswer": "Start oral antihypertensive therapy and arrange close follow-up",
+    "explanation": "Severe hypertension without acute target-organ damage is managed with oral therapy and timely follow-up, not an infusion in intensive care. A nicardipine drip is for hypertensive emergency with ongoing damage, which this examination and these stable studies do not show. Alteplase is a stroke treatment and has no role for an asymptomatic pressure reading. A clonidine load without follow-up risks rebound hypertension and abandons the titration he needs. Dialysis is not a treatment for a creatinine of 0.9 mg/dL.",
+    "ref": "acc-htn-2025"
+  }
+]
