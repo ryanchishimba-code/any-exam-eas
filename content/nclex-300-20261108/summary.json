@@ -1,0 +1,29 @@
+{
+  "count": 300,
+  "hard": 266,
+  "ngn": 70,
+  "byArea": {
+    "management-of-care": 69,
+    "reduction-risk": 38,
+    "physiological-adaptation": 15,
+    "safety-infection": 65,
+    "pharmacology-nursing": 26,
+    "basic-care-comfort": 43,
+    "psychosocial": 24,
+    "health-promotion": 20
+  },
+  "byDiff": {
+    "3": 34,
+    "4": 187,
+    "5": 79
+  },
+  "byType": {
+    "case_study": 24,
+    "ngn_bowtie": 14,
+    "ngn_matrix": 8,
+    "ordered_response": 7,
+    "select_all": 17,
+    "vignette": 230
+  },
+  "version": "nclex-300-20261108-v1"
+}
