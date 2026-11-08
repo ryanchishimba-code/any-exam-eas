@@ -1,5 +1,8 @@
--- Restores the 100 rows to an empty scenario and the original question text.
--- Does not touch any other USMLE row. Do not run unless Ryan asks to undo.
+-- Restores the 100 live vignette rewrites to an empty scenario and the original question.
+-- Does not touch any other USMLE row. Does not undo the 53 hides (see hide.undo.sql).
+-- Pre-write snapshot: usmle-step2-vignette-100-20261108-before (snap-young-waterfall-apc51hdb)
+--   on br-super-frog-apuqj2ol.
+-- Do not run unless Ryan asks to undo.
 UPDATE "QuestionBankItem"
 SET scenario = NULL,
     question = 'A 28-year-old woman comes to the clinic with 2 months of anxiety, insomnia, palpitations, heat intolerance and a 5-lb weight loss. She is breastfeeding her 4-month-old baby. Heart rate is 110/min and blood pressure is 130/85 mm Hg. She has a fine tremor, a diffusely enlarged nontender thyroid and no eye findings. TSH is less than 0.01 mIU/L and free T4 is 2.5 ng/dL. Which of the following is the most appropriate next test to establish the cause of her thyrotoxicosis?',
