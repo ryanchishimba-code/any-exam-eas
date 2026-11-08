@@ -18,6 +18,46 @@ describe("subjectCountsFieldForExamSwitch", () => {
   });
 });
 
+describe("prepareClientForExamSwitch in-flight exam", () => {
+  it("removes a started full-exam payload from session storage", () => {
+    const session = new Map<string, string>([["full-exam-payload:usmle", "{\"started\":true}"]]);
+    const local = new Map<string, string>();
+    const storage = (store: Map<string, string>) => ({
+      get length() {
+        return store.size;
+      },
+      key(index: number) {
+        return [...store.keys()][index] ?? null;
+      },
+      getItem(key: string) {
+        return store.get(key) ?? null;
+      },
+      setItem(key: string, value: string) {
+        store.set(key, value);
+      },
+      removeItem(key: string) {
+        store.delete(key);
+      },
+    });
+    const sessionStorage = storage(session);
+    vi.stubGlobal("sessionStorage", sessionStorage);
+    vi.stubGlobal("window", {
+      sessionStorage,
+      localStorage: storage(local),
+      dispatchEvent: vi.fn(),
+    });
+    const queryClient = {
+      prefetchQuery: vi.fn(),
+      removeQueries: vi.fn(),
+    } as unknown as QueryClient;
+
+    prepareClientForExamSwitch(queryClient, "usmle", "usmle-step-1");
+
+    expect(session.has("full-exam-payload:usmle")).toBe(false);
+    vi.unstubAllGlobals();
+  });
+});
+
 describe("prepareClientForExamSwitch subject-count prefetch", () => {
   it("skips the request for an unselected USMLE step and prefetches the confirmed one", () => {
     const prefetchQuery = vi.fn();

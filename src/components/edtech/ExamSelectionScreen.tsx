@@ -130,7 +130,7 @@ export function ExamSelectionScreen({
   function handleSelect(slug: ExamSlug) {
     setError(null);
 
-    // Step choice stays on this screen. Step 1 is preselected in the sheet.
+    // Step choice stays on this screen. The sheet opens on the unsaved default, Step 2 CK.
     if (slug === "usmle") {
       setSelected(slug);
       setUsmleSheetOpen(true);

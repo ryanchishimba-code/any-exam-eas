@@ -17,6 +17,7 @@ import type {
   UsmleExamOptionsPayload,
 } from "@/lib/exam-prep/usmle/exam-options";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
+import { usmleStepAccentBadge } from "@/lib/exam-prep/usmle/step-accent";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -56,7 +57,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step1" }: Prop
     options.findIndex((o) => o.level === initialLevel)
   );
 
-  // One accent badge: "Recommended" on Step 2 CK, "Largest bank" on the biggest.
+  // Step 2 CK stays Recommended even when it is also the largest bank.
   const maxLevel = useMemo(() => {
     const top = options.reduce<UsmleExamOption | null>(
       (best, o) => (!best || o.questionCount > best.questionCount ? o : best),
@@ -66,11 +67,8 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step1" }: Prop
   }, [options]);
 
   const badgeFor = useCallback(
-    (option: UsmleExamOption): string | undefined => {
-      if (option.level === maxLevel) return "Largest bank";
-      if (option.level === "step2") return "Recommended";
-      return undefined;
-    },
+    (option: UsmleExamOption): string | undefined =>
+      usmleStepAccentBadge(option.level, maxLevel),
     [maxLevel]
   );
 

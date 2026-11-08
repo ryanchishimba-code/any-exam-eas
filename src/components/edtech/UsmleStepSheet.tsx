@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check, Loader2 } from "lucide-react";
-import { USMLE_STEPS, type UsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { defaultUsmleStepLevel, USMLE_STEPS, type UsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 import { cn } from "@/lib/utils";
 
@@ -15,13 +15,13 @@ type Props = {
 
 /**
  * Inline step choice for USMLE. Stays on the exam selector — no second page.
- * Step 1 starts selected; Step 2 CK and Step 3 stay one tap away.
+ * The unsaved default is Step 2 CK, the same default as the rest of the app.
  */
 export function UsmleStepSheet({ pending = false, onClose, onConfirm }: Props) {
   const reduceMotion = useReducedMotion();
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const [level, setLevel] = useState<UsmleStepLevel>("step1");
+  const [level, setLevel] = useState<UsmleStepLevel>(defaultUsmleStepLevel);
   const selected = USMLE_STEPS.find((step) => step.level === level) ?? USMLE_STEPS[0]!;
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export function UsmleStepSheet({ pending = false, onClose, onConfirm }: Props) {
           Choose your Step
         </h2>
         <p className="mt-1.5 text-[15px] leading-relaxed tracking-tight text-[var(--color-ink-muted)]">
-          Step 1 is selected. Pick another step if you need it, then continue to your Study Hub.
+          Step 2 CK is selected when you have not saved a step. Pick another step if you need it, then continue to your Study Hub.
         </p>
 
         <div role="radiogroup" aria-label="USMLE step" className="mt-5 space-y-2">
