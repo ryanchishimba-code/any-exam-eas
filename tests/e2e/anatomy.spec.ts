@@ -46,11 +46,10 @@ test.describe("Anatomy Explorer", () => {
     await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
-    await fillControlledInput(search, "sternum");
-    await page.getByRole("button", { name: /^Sternum\b/i }).first().click();
-
-    await expect(page.getByRole("button", { name: /^Sternum\b/i }).first()).toBeVisible({
-      timeout: 15_000,
-    });
+    await search.scrollIntoViewIfNeeded();
+    await fillControlledInput(search, "femur");
+    const femur = page.getByRole("button", { name: /^Femur\b/i }).first();
+    await expect(femur).toBeVisible({ timeout: 15_000 });
+    await femur.click();
   });
 });
