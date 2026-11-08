@@ -1,13 +1,13 @@
 {
   "status": "partial draft, not inserted",
   "fieldId": "usmle-step-2",
-  "count": 150,
+  "count": 295,
   "target": 300,
-  "difficulty": {
-    "4": 77,
-    "5": 73
-  },
-  "vignetteRich": 150,
-  "blindRead": { "answered": 139, "matched": 139, "ambiguous": 0 },
-  "note": "The 139 thin openings were rewritten as board vignettes (age, presentation, and the original history, exam, and labs). A keyless read of those 139 matched the stored key on every item. Still only the first 150 of 300. Not loaded."
+  "parts": { "a": 150, "b": 145 },
+  "difficulty": { "4": 125, "5": 170 },
+  "partBSubjects": { "pediatrics": 39, "psychiatry": 35, "surgery": 34, "neurology": 30, "hematology": 7 },
+  "vignetteRich": 295,
+  "blindRead": { "partA": { "answered": 139, "matched": 139 }, "partB": { "answered": 145, "matched": 145, "ambiguous": 0 } },
+  "heldOutAsDuplicates": 5,
+  "note": "Part B adds pediatrics, psychiatry, surgery, neurology, and a few hematology items that were not already in part A. Five items were left out because they repeat a decision already in the draft. Not loaded."
 }
