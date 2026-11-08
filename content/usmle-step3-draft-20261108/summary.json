@@ -1,5 +1,8 @@
 {
-  "status": "draft, not inserted",
+  "status": "live",
+  "inserted": true,
+  "snapshot": "usmle-step3-300-20261108-before",
+  "snapshotId": "snap-green-band-apf2zoef",
   "fieldId": "usmle-step-3",
   "count": 300,
   "target": 300,
@@ -18,5 +21,5 @@
   },
   "vignetteRich": 300,
   "blindRead": { "answered": 300, "matched": 300, "ambiguous": 0 },
-  "note": "300 Step 3 items in three batches of 100. Full vignettes. A keyless read matched 300 of 300. Not loaded. No database write."
+  "note": "Loaded live as usmle-step3-300-20261108-v1. Snapshot snap-green-band-apf2zoef was taken before the write. Rollback dry run would_insert 300, then 0 rows remained. After apply, active+qaPassed and the served gate are both 7,693, and all 300 new rows are served. Undo is undo.sql."
 }
