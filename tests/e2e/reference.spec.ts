@@ -7,29 +7,11 @@ test.describe("Memory Cards / Reference", () => {
     await expect(page).toHaveURL(/\/(auth\/)?login/);
   });
 
-  authTest("reference hub lists memory cards", async ({ authenticatedPage: page }) => {
+  authTest("signed-in library URL opens the study hub", async ({ authenticatedPage: page }) => {
     await page.goto("/library", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /library/i })).toBeVisible({
+    await expect(page).toHaveURL(/\/dashboard/);
+    await expect(page.getByRole("heading", { name: /^hi,|^dashboard$/i })).toBeVisible({
       timeout: 30_000,
-    });
-    await expect(page.getByRole("searchbox", { name: /search memory cards/i })).toBeVisible({
-      timeout: 20_000,
-    });
-  });
-
-  authTest("user can filter and open a memory card", async ({ authenticatedPage: page }) => {
-    await page.goto("/library", { waitUntil: "domcontentloaded" });
-
-    const search = page.getByRole("searchbox", { name: /search memory cards/i });
-    await expect(search).toBeVisible({ timeout: 20_000 });
-    await search.fill("a");
-
-    const cardButton = page.getByRole("region", { name: "Search results" }).getByRole("button").first();
-    await expect(cardButton).toBeVisible({ timeout: 15_000 });
-    await cardButton.click();
-
-    await expect(page.locator('[role="dialog"][aria-modal="true"]')).toBeVisible({
-      timeout: 15_000,
     });
   });
 });

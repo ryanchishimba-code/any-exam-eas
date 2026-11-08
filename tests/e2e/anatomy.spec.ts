@@ -29,7 +29,9 @@ test.describe("Anatomy Explorer", () => {
     await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
-    const skeletal = page.getByRole("button", { name: "Skeletal", exact: true });
+    const skeletal = page
+      .getByRole("region", { name: "Layer visibility" })
+      .getByRole("button", { name: "Skeletal", exact: true });
     await expect(skeletal).toBeVisible({ timeout: 30_000 });
     await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 

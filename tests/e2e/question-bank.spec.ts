@@ -14,7 +14,9 @@ test.describe("Question bank", () => {
     await expect(page.getByRole("heading", { name: /^practice nclex$/i })).toBeVisible({
       timeout: 30_000,
     });
-    await expect(page.getByText(/^question bank$/i)).toBeVisible();
+    await expect(
+      page.getByRole("navigation", { name: "Breadcrumb" }).getByText("Question Bank")
+    ).toBeVisible();
   });
 
   for (const hub of PUBLIC_PRACTICE_HUBS) {
@@ -31,7 +33,7 @@ test.describe("Question bank", () => {
   }) => {
     await page.goto("/question-bank", { waitUntil: "domcontentloaded" });
     await expect(page.locator("#practice-launcher")).toBeVisible({ timeout: 30_000 });
-    await expect(page.getByText("Exam", { exact: true })).toBeVisible();
-    await expect(page.getByText("Practice mode", { exact: true })).toBeVisible();
+    await expect(page.getByRole("tab", { name: "Question Bank" })).toBeVisible();
+    await expect(page.getByRole("tab", { name: "Timed Exam" })).toBeVisible();
   });
 });
