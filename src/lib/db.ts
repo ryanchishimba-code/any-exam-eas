@@ -183,7 +183,9 @@ export async function sqlQuery<T = unknown>(
   params: unknown[] = [],
   options?: { timeoutMs?: number }
 ): Promise<T> {
-  if (!usesNeonHttpDriver(resolveDatabaseUrl())) {
+  const databaseUrl = resolveDatabaseUrl();
+  // No URL (unit tests, build placeholder) stays on the Neon client those tests mock.
+  if (isPostgresDatabaseUrl(databaseUrl) && !usesNeonHttpDriver(databaseUrl)) {
     return queryLocalPostgres<T>(text, params);
   }
   const client = getSql() as NeonSql & TimedSql & {
