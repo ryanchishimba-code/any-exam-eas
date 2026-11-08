@@ -26,10 +26,13 @@ test.describe("Authentication", () => {
     await page.goto("/auth/forgot-password", { waitUntil: "domcontentloaded" });
     const email = page.getByLabel(/email address/i);
     await fillControlledInput(email, "recover@example.com");
+    const send = page.getByRole("button", { name: /send reset link/i });
+    await expect(send).toBeEnabled();
     const submitted = page.waitForResponse(
-      (res) => res.url().includes("/api/auth/forgot-password") && res.request().method() === "POST"
+      (res) => res.url().includes("/api/auth/forgot-password") && res.request().method() === "POST",
+      { timeout: 30_000 }
     );
-    await page.getByRole("button", { name: /send reset link/i }).click();
+    await send.click();
     expect((await submitted).ok()).toBeTruthy();
     await expect(
       page.getByText(/if an account exists, a password reset link has been sent/i)

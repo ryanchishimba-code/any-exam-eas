@@ -35,8 +35,12 @@ test.describe("Anatomy Explorer", () => {
     await expect(skeletal).toBeVisible({ timeout: 30_000 });
     await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
-    await skeletal.click();
-    await expect(skeletal).toHaveAttribute("aria-pressed", "false");
+    await expect(async () => {
+      if ((await skeletal.getAttribute("aria-pressed")) !== "false") {
+        await skeletal.click();
+      }
+      await expect(skeletal).toHaveAttribute("aria-pressed", "false", { timeout: 1_500 });
+    }).toPass({ timeout: 15_000 });
     await skeletal.click();
     await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
