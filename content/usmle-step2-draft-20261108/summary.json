@@ -1,0 +1,12 @@
+{
+  "status": "partial draft, not inserted",
+  "fieldId": "usmle-step-2",
+  "count": 150,
+  "target": 300,
+  "difficulty": {
+    "4": 77,
+    "5": 73
+  },
+  "vignetteRich": 11,
+  "note": "139 of 150 fail the practice-session vignette check (age plus objective detail plus two sentences). Do not load until that is fixed."
+}
