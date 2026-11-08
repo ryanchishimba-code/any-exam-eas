@@ -1,0 +1,22 @@
+{
+  "status": "partial draft, not inserted",
+  "fieldId": "usmle-step-3",
+  "count": 100,
+  "target": 300,
+  "parts": { "a": 100 },
+  "difficulty": { "4": 59, "5": 41 },
+  "domains": {
+    "respiratory-renal": 22,
+    "multisystem": 18,
+    "cardiovascular": 18,
+    "behavioral-nervous": 13,
+    "msk-skin": 9,
+    "gastrointestinal": 6,
+    "reproductive-endocrine": 5,
+    "blood-lymph-immune": 5,
+    "social-sciences": 4
+  },
+  "vignetteRich": 100,
+  "blindRead": { "answered": 100, "matched": 100, "ambiguous": 0 },
+  "note": "First 100 of 300. Office and post-acute decisions: deprescribing, diabetes, heart failure, atrial fibrillation, kidney disease, COPD, stroke prevention, VTE, and a smaller set of surgery and ethics. Not loaded."
+}
