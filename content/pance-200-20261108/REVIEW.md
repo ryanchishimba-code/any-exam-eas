@@ -1,3 +1,9 @@
+# Blind read of the final 200
+
+A keyless sheet of the final items (scenario, question, options only) was answered before the keys were opened. 200 of 200 letters matched. No item was marked ambiguous by that read.
+
+Citation check after the comparison found one ambiguous item and several citations pointed at the wrong document. Those are corrected in this revision. The metformin-and-contrast item had been keyed to the older FDA hold at an eGFR of 48, which conflicts with the ACR manual for intravenous contrast. It was rewritten so the eGFR is 72, where the FDA hold rule and the ACR manual agree that metformin continues.
+
 # Keyless review of the reused 200 drafts
 
 The blind sheet was answered before the provided keys were opened. 199 of 200 stems were complete. All 199 matched the supplied key (100% of scored items). Item 101 was cut off in the blind sheet before the dobutamine result, so it was not scored and was not reused.

@@ -998,8 +998,8 @@
     "explanation": "Urgent decompression of the collecting system plus antibiotics is correct. An obstructing stone with sepsis is a drainage emergency. Antibiotics do not reach a closed space reliably, and expulsive therapy is for the stable patient. Incorrect alternatives: Tamsulosin, delayed ureteroscopy, clinic lithotripsy, and a metabolic workup do not decompress the infected kidney.",
     "references": [
       {
-        "label": "American Urological Association. Medical Management of Kidney Stones: AUA Guideline (2026). J Urol 2026",
-        "url": "https://www.auajournals.org/doi/10.1097/JU.0000000000005227"
+        "label": "American Urological Association. Surgical Management of Stones: AUA Guideline. J Urol 2016",
+        "url": "https://www.auanet.org/guidelines-and-quality/guidelines/kidney-stones-surgical-treatment-guideline"
       }
     ],
     "active": false,
@@ -1678,8 +1678,8 @@
     "explanation": "Prerenal azotemia from volume loss is correct. A bland sediment, urine sodium under 20, and fractional excretion of sodium under 1% in a volume-depleted patient is prerenal physiology. The tubules are still conserving sodium. Incorrect alternatives: ATN has muddy-brown casts and a fractional excretion of sodium usually above 2%. Obstruction needs imaging clues. Interstitial nephritis has white cells, white-cell casts, and often a drug latency. Cholesterol emboli follow a procedure and show livedo or eosinophilia.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -1706,8 +1706,8 @@
     "explanation": "Acute tubular necrosis is correct. Muddy-brown casts and a high urine sodium after a documented ischemic insult are the sediment of tubular injury, not ongoing prerenal conservation. Incorrect alternatives: More saline after he is resuscitated does not reverse established tubular injury. Obstruction, minimal-change disease, and heart-failure physiology have different examinations and sediments.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -1734,8 +1734,8 @@
     "explanation": "Stop pantoprazole is correct. A proton-pump inhibitor is a classic cause of acute interstitial nephritis. The rash, eosinophilia, white cells, and white-cell casts after a new drug point to that diagnosis, and the drug is stopped. Incorrect alternatives: Raising the dose, adding an NSAID, or jumping to cyclophosphamide or dialysis before withdrawal treats the wrong step.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -1762,8 +1762,8 @@
     "explanation": "Urethral catheter drainage is correct. Anuria with a full bladder is postrenal obstruction until drained. Relief of the outlet comes before diuretics or disease-modifying CKD drugs. Incorrect alternatives: Furosemide, alkali, biopsy, and an SGLT2 inhibitor do not empty an obstructed bladder.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -1930,8 +1930,8 @@
     "explanation": "Vigorous isotonic saline, with monitoring of urine output and potassium is correct. Dipstick blood without red cells plus a very high creatine kinase is rhabdomyolysis. Early volume resuscitation limits pigment injury. Potassium is already high, so fluids are given with a plan for that. Incorrect alternatives: Restriction, a diuretic first, an NSAID, and a biopsy delay or worsen the injury.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -1958,8 +1958,8 @@
     "explanation": "Protein excretion above 3.5 g/day is correct. Nephrotic syndrome is heavy proteinuria, hypoalbuminemia, edema, and often hyperlipidemia. The defining urinary number is protein above about 3.5 g/day. Incorrect alternatives: Muddy-brown casts are tubular injury. Red-cell casts suggest glomerulonephritis. White-cell casts suggest interstitial nephritis or pyelonephritis. A residual is obstruction.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -1986,8 +1986,8 @@
     "explanation": "Nephritic syndrome is correct. Hypertension, a rising creatinine, cola urine, and red-cell casts with subnephrotic protein are the nephritic pattern, here in the window after pharyngitis. Incorrect alternatives: Nephrotic syndrome is heavier protein and edema without this active sediment. Prerenal labs, retention, and myoglobin do not produce red-cell casts.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -2042,8 +2042,8 @@
     "explanation": "The abnormal drainage raises the risk of stones and infection, so new fever and flank pain need prompt evaluation is correct. Fusion and malrotation impair drainage, so stones and infection are more common. She needs a plan for symptoms, not automatic nephrectomy. Incorrect alternatives: Denying the association, removing the kidney as a first step, forbidding antibiotics, and calling it a tumor are incorrect.",
     "references": [
       {
-        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
+        "label": "NCCPA. Content Blueprint for the PANCE, effective January 2025. NCCPA 2025",
+        "url": "https://www.nccpa.net/wp-content/uploads/PANCE-Blueprint.pdf"
       }
     ],
     "active": false,
@@ -2462,8 +2462,8 @@
     "explanation": "Heart-rate control with an intravenous beta blocker before a vasodilator is correct. Dissection management lowers shear stress. Rate is controlled first so vasodilation does not cause reflex tachycardia. Type B without complications is medical at the start. Incorrect alternatives: Hydralazine alone raises heart rate. Thrombolysis and an acute coronary cocktail treat a different emergency. Ignoring the pressure leaves the flap stressed.",
     "references": [
       {
-        "label": "Jones DW et al. 2025 AHA/ACC Guideline for the Management of High Blood Pressure in Adults. J Am Coll Cardiol 2025",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/40815242/"
+        "label": "Isselbacher EM et al. 2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease. Circulation 2022",
+        "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001106"
       }
     ],
     "active": false,
@@ -2490,8 +2490,8 @@
     "explanation": "High-intensity statin is correct. Clinical atherosclerotic disease is a high-intensity statin indication regardless of an LDL already under 100. The goal is further risk reduction, not a single threshold that cancels treatment. Incorrect alternatives: Fibrate or niacin monotherapy, or a low-intensity dose because of age under 75, is not secondary prevention.",
     "references": [
       {
-        "label": "Heidenreich PA et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure. Circulation 2022",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/35363499/"
+        "label": "Grundy SM et al. 2018 AHA/ACC Guideline on the Management of Blood Cholesterol. Circulation 2019",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30423391/"
       }
     ],
     "active": false,
@@ -2518,8 +2518,8 @@
     "explanation": "Urgent echocardiography and pericardial drainage for tamponade is correct. Hypotension, elevated jugular pressure, clear lungs, faint sounds, and an inspiratory systolic drop are tamponade, especially with cancer. Drainage is the treatment. Incorrect alternatives: A beta blocker, blind thrombolysis, diuresis, and discharge worsen or miss obstructive shock.",
     "references": [
       {
-        "label": "Otto CM et al. 2020 ACC/AHA Guideline for the Management of Patients With Valvular Heart Disease. Circulation 2021",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/33332150/"
+        "label": "Adler Y et al. 2015 ESC Guidelines for the diagnosis and management of pericardial diseases. Eur Heart J 2015",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26320112/"
       }
     ],
     "active": false,
@@ -2546,8 +2546,8 @@
     "explanation": "A long-acting muscarinic antagonist plus a long-acting beta agonist is correct. High symptom burden with few exacerbations and a low eosinophil count is treated with dual long-acting bronchodilation. An inhaled corticosteroid is not monotherapy and is less useful when eosinophils are low and exacerbations are absent. Incorrect alternatives: Daily prednisone, theophylline alone, and waiting for very severe obstruction are not the initial controller strategy.",
     "references": [
       {
-        "label": "Global Initiative for Chronic Obstructive Lung Disease. GOLD 2026 report. Lancet Respir Med 2025",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/41317736/"
+        "label": "Global Initiative for Chronic Obstructive Lung Disease. Global Strategy for the Diagnosis, Management, and Prevention of COPD, 2026 report",
+        "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/"
       }
     ],
     "active": false,
@@ -2574,8 +2574,8 @@
     "explanation": "An antibiotic, because he has the three cardinal symptoms including purulence is correct. Antibiotics are used for COPD exacerbations when sputum is purulent along with increased dyspnea and volume, or when ventilation is required. A short course is enough in the absence of pneumonia. Incorrect alternatives: Ignoring purulence, a 6-week quinolone, broad intravenous therapy, and tuberculosis drugs do not match this outpatient exacerbation.",
     "references": [
       {
-        "label": "Global Initiative for Chronic Obstructive Lung Disease. GOLD 2026 report. Lancet Respir Med 2025",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/41317736/"
+        "label": "Global Initiative for Chronic Obstructive Lung Disease. Global Strategy for the Diagnosis, Management, and Prevention of COPD, 2026 report",
+        "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/"
       }
     ],
     "active": false,
@@ -2602,8 +2602,8 @@
     "explanation": "Long-term oxygen sufficient to raise the resting saturation above 90% is correct. Resting hypoxemia at this level is an indication for long-term oxygen, which is one of the few COPD treatments shown to improve survival in that group. Incorrect alternatives: Exercise-only oxygen, a PaO2 cutoff of 40, morphine as a substitute, and a steroid instead of oxygen miss the indication.",
     "references": [
       {
-        "label": "Global Initiative for Chronic Obstructive Lung Disease. GOLD 2026 report. Lancet Respir Med 2025",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/41317736/"
+        "label": "Global Initiative for Chronic Obstructive Lung Disease. Global Strategy for the Diagnosis, Management, and Prevention of COPD, 2026 report",
+        "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/"
       }
     ],
     "active": false,
@@ -2630,8 +2630,8 @@
     "explanation": "Noninvasive ventilation, and do not delay it for a normal pH is correct. Respiratory acidosis with distress in an exacerbation is a reason to start noninvasive ventilation now, before the patient tires into a tube. He still protects his airway. Incorrect alternatives: Uncontrolled oxygen, mandatory intubation at pH 7.26, benzodiazepines, and bicarbonate alone worsen CO2 retention or skip the proven support.",
     "references": [
       {
-        "label": "Global Initiative for Chronic Obstructive Lung Disease. GOLD 2026 report. Lancet Respir Med 2025",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/41317736/"
+        "label": "Global Initiative for Chronic Obstructive Lung Disease. Global Strategy for the Diagnosis, Management, and Prevention of COPD, 2026 report",
+        "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/"
       }
     ],
     "active": false,
@@ -2742,8 +2742,8 @@
     "explanation": "An exudate, because protein ratio and LDH ratio are both high is correct. Light criteria call fluid an exudate if protein ratio exceeds 0.5, LDH ratio exceeds 0.6, or fluid LDH exceeds two-thirds of the serum upper limit. His protein ratio is 0.7 and LDH ratio is 2. Incorrect alternatives: It is not a transudate. Glucose of 70 does not define empyema. A normal glucose does not reclassify an exudate.",
     "references": [
       {
-        "label": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. ATS/IDSA Guideline. Am J Respir Crit Care Med 2019",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/"
+        "label": "Roberts ME et al. British Thoracic Society Guideline for pleural disease. Thorax 2023",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37433578/"
       }
     ],
     "active": false,
@@ -2770,8 +2770,8 @@
     "explanation": "Drainage of the pleural space is correct. A low pH, low glucose, and organisms define a complicated parapneumonic effusion or empyema. Antibiotics do not replace drainage. Incorrect alternatives: Watching it, adding another drug alone, diuresis, and an inhaler leave pus in the chest.",
     "references": [
       {
-        "label": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. ATS/IDSA Guideline. Am J Respir Crit Care Med 2019",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/"
+        "label": "Roberts ME et al. British Thoracic Society Guideline for pleural disease. Thorax 2023",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37433578/"
       }
     ],
     "active": false,
@@ -2798,8 +2798,8 @@
     "explanation": "His pretest probability is low, and an age-adjusted D-dimer cutoff of about 700 makes 560 non-diagnostic of clot is correct. Wells score here is low. For patients over 50, an age-adjusted D-dimer cutoff (age times 10 ng/mL) is used in low or intermediate probability. At age 70 that cutoff is about 700, so 560 does not force a CT. Incorrect alternatives: Treating 560 as proof, starting heparin, or giving thrombolysis skips probability.",
     "references": [
       {
-        "label": "Stevens SM et al. Antithrombotic Therapy for VTE Disease: Second Update of the CHEST Guideline. Chest 2021",
-        "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext"
+        "label": "Konstantinides SV et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. Eur Heart J 2020",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31504429/"
       }
     ],
     "active": false,
@@ -2827,7 +2827,7 @@
     "references": [
       {
         "label": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention, 2025",
-        "url": "https://ginasthma.org/"
+        "url": "https://ginasthma.org/reports/"
       }
     ],
     "active": false,
@@ -2854,8 +2854,8 @@
     "explanation": "A 4-mm solid nodule in a low-risk patient does not need short-interval PET or resection is correct. Tiny smooth solid nodules in low-risk patients are overwhelmingly benign. Fleischner-style follow-up does not jump to PET, bronchoscopy, or resection at 4 mm. Incorrect alternatives: Those invasive steps are for larger or higher-risk lesions.",
     "references": [
       {
-        "label": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. ATS/IDSA Guideline. Am J Respir Crit Care Med 2019",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/"
+        "label": "MacMahon H et al. Guidelines for Management of Incidental Pulmonary Nodules Detected on CT Images. Radiology 2017",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28240562/"
       }
     ],
     "active": false,
@@ -2882,8 +2882,8 @@
     "explanation": "Needle decompression or finger thoracostomy of the right chest now is correct. Hypotension, absent sounds, and tracheal deviation away from the silent side are tension pneumothorax. Decompress before imaging. Incorrect alternatives: A CT, fluids alone, a bronchodilator, and antibiotics delay a mechanical emergency.",
     "references": [
       {
-        "label": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. ATS/IDSA Guideline. Am J Respir Crit Care Med 2019",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/"
+        "label": "American College of Surgeons Committee on Trauma. Advanced Trauma Life Support, 10th edition. ACS 2018",
+        "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/"
       }
     ],
     "active": false,
@@ -3974,8 +3974,8 @@
     "explanation": "Doxycycline for 14 days; reserve penicillin desensitization for pregnancy or neurosyphilis is correct. Penicillin is preferred for syphilis, but a nonpregnant adult with primary syphilis and documented anaphylaxis can be treated with doxycycline 100 mg twice daily for 14 days. Desensitization is the path when penicillin is required, such as pregnancy or neurosyphilis. Incorrect alternatives: A dose of penicillin without desensitization risks anaphylaxis. Azithromycin resistance makes one dose unreliable. A healing chancre and ear drops are not treatment.",
     "references": [
       {
-        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep 2021",
-        "url": "https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm"
+        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. Syphilis. MMWR 2021",
+        "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis.htm"
       }
     ],
     "active": false,
@@ -4058,8 +4058,8 @@
     "explanation": "Start a three-drug regimen now; do not wait for her baseline result to begin is correct. Occupational HIV post-exposure prophylaxis is most effective started as soon as possible, ideally within hours, and is not delayed for the baseline blood draw. It is a 28-day three-drug course. Incorrect alternatives: Waiting 72 hours, one dose of zidovudine, skipping treatment at 3 hours, and a vaccine miss the window.",
     "references": [
       {
-        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep 2021",
-        "url": "https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm"
+        "label": "US Public Health Service. 2025 Guidelines for Occupational Exposures to HIV and Post-exposure Prophylaxis. Infect Control Hosp Epidemiol 2025",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41569270/"
       }
     ],
     "active": false,
@@ -4114,8 +4114,8 @@
     "explanation": "Start oseltamivir is correct. Hospitalized and high-risk patients are treated with a neuraminidase inhibitor even when symptoms are past 48 hours. Amantadine is not used because of resistance. Incorrect alternatives: Withholding treatment at 36 hours, amantadine, antibiotics alone, and steroids as a substitute are incorrect.",
     "references": [
       {
-        "label": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. ATS/IDSA Guideline. Am J Respir Crit Care Med 2019",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/"
+        "label": "CDC. Influenza Antiviral Medications: Summary for Clinicians, 2025-2026. CDC 2025",
+        "url": "https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html"
       }
     ],
     "active": false,
@@ -4170,8 +4170,8 @@
     "explanation": "Hold the SGLT2 inhibitor for the fast and the procedure day because of euglycemic ketoacidosis is correct. SGLT2 inhibitors are held for prolonged fasting, bowel prep, and surgery. Ketoacidosis can occur with a normal glucose, so symptoms after the procedure still need a ketone check. Incorrect alternatives: Taking or doubling the dose, a sulfonylurea swap the night before, and ignoring the fast are unsafe.",
     "references": [
       {
-        "label": "American Diabetes Association. 11. Chronic Kidney Disease and Risk Management: Standards of Care in Diabetes 2026. Diabetes Care 2026",
-        "url": "https://doi.org/10.2337/dc26-s011"
+        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
       }
     ],
     "active": false,
@@ -4198,8 +4198,12 @@
     "explanation": "Euglycemic diabetic ketoacidosis is correct. An anion-gap acidosis with high beta-hydroxybutyrate and a glucose that is not high is the SGLT2-associated ketoacidosis pattern, often after a fast. Treatment is the same physiology as DKA: insulin, glucose, and volume, and the drug is stopped. Incorrect alternatives: Hyperosmolar state needs a very high glucose. A normal lactate is not metformin lactic acidosis. Starvation ketosis is milder. The glucose does not have to be 400.",
     "references": [
       {
-        "label": "American Diabetes Association. 11. Chronic Kidney Disease and Risk Management: Standards of Care in Diabetes 2026. Diabetes Care 2026",
-        "url": "https://doi.org/10.2337/dc26-s011"
+        "label": "American Diabetes Association. Standards of Care in Diabetes 2026. Diabetes Care 2026",
+        "url": "https://diabetesjournals.org/care/issue/49/Supplement_1"
+      },
+      {
+        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/"
       }
     ],
     "active": false,
@@ -4226,8 +4230,8 @@
     "explanation": "Hold insulin until the potassium is known to be at least 3.3 mEq/L is correct. Insulin shifts potassium into cells. A normal ECG does not prove the serum potassium is safe, so insulin waits until the level is known to be at least 3.3 mEq/L. Fluids can start while that lab is pending. Incorrect alternatives: Blind insulin, bicarbonate alone, one basal dose, and no fluids are not how DKA is opened.",
     "references": [
       {
-        "label": "American Diabetes Association. 11. Chronic Kidney Disease and Risk Management: Standards of Care in Diabetes 2026. Diabetes Care 2026",
-        "url": "https://doi.org/10.2337/dc26-s011"
+        "label": "American Diabetes Association. Standards of Care in Diabetes 2026. Diabetes Care 2026",
+        "url": "https://diabetesjournals.org/care/issue/49/Supplement_1"
       }
     ],
     "active": false,
@@ -4310,8 +4314,8 @@
     "explanation": "Admit; sulfonylurea hypoglycemia recurs after dextrose is correct. Sulfonylureas force insulin release for many hours. Dextrose treats the moment and then glucose falls again. Octreotide is often added, and he is observed. Incorrect alternatives: Discharge, a single glucagon dose, insulin, and more sulfonylurea are dangerous.",
     "references": [
       {
-        "label": "American Diabetes Association. 11. Chronic Kidney Disease and Risk Management: Standards of Care in Diabetes 2026. Diabetes Care 2026",
-        "url": "https://doi.org/10.2337/dc26-s011"
+        "label": "American Diabetes Association. Standards of Care in Diabetes 2026. Diabetes Care 2026",
+        "url": "https://diabetesjournals.org/care/issue/49/Supplement_1"
       }
     ],
     "active": false,
@@ -4379,23 +4383,23 @@
     "fieldId": "pance",
     "subjectId": "endocrine",
     "taskCategory": "pharmacotherapy",
-    "blueprintTopic": "Metformin and contrast",
+    "blueprintTopic": "Metformin and intravenous contrast",
     "difficulty": 4,
-    "scenario": "A 66-year-old woman takes metformin. eGFR is 48 mL/min/1.73 m2. She needs a contrasted CT today and is euvolemic with no acute kidney injury.",
-    "question": "Which of the following is the most appropriate metformin plan?",
+    "scenario": "A 66-year-old woman takes metformin. eGFR is 72 mL/min/1.73 m2 and stable. She needs an elective intravenous contrasted CT. She has no acute kidney injury, heart failure, or liver disease.",
+    "question": "Which of the following is the most appropriate metformin plan for this scan?",
     "options": [
-      "Never give contrast to anyone on metformin",
-      "Hold metformin at the time of contrast because the eGFR is under 60, then restart after kidney function is rechecked",
-      "Double metformin the morning of the scan",
+      "Hold metformin for 48 hours because every contrasted scan requires a hold",
+      "Continue metformin; a hold is not required at this eGFR for intravenous contrast",
+      "Double the dose the morning of the scan",
       "Switch to glyburide in the scanner",
-      "Stop metformin forever because the eGFR is under 60"
+      "Stop metformin forever because she is over 65"
     ],
-    "correctAnswer": "Hold metformin at the time of contrast because the eGFR is under 60, then restart after kidney function is rechecked",
-    "explanation": "Hold metformin at the time of contrast because the eGFR is under 60, then restart after kidney function is rechecked is correct. Metformin is otherwise acceptable at an eGFR of 48, and contrast is not forbidden. Product labeling holds it at the time of iodinated contrast when the eGFR is under 60 and restarts it after function is confirmed stable. An eGFR under 60 is not a reason to stop it forever. Incorrect alternatives: A blanket ban on contrast, doubling the dose, a sulfonylurea swap, and permanent cessation overstate or miss the hold.",
+    "correctAnswer": "Continue metformin; a hold is not required at this eGFR for intravenous contrast",
+    "explanation": "Continue metformin; a hold is not required at this eGFR for intravenous contrast is correct. The FDA hold for iodinated contrast applies when the eGFR is 30 to 60, or when there is liver disease, heart failure, or arterial contrast. The ACR contrast manual does not stop metformin for intravenous contrast when the eGFR is at least 30 and there is no acute kidney injury. At an eGFR of 72 those sources agree she continues it. Incorrect alternatives: Holding every scan, doubling the dose, a sulfonylurea swap, and stopping because of age are incorrect.",
     "references": [
       {
-        "label": "American Diabetes Association. 11. Chronic Kidney Disease and Risk Management: Standards of Care in Diabetes 2026. Diabetes Care 2026",
-        "url": "https://doi.org/10.2337/dc26-s011"
+        "label": "American College of Radiology. ACR Manual on Contrast Media, metformin and iodinated contrast. ACR 2023",
+        "url": "https://www.acr.org/Clinical-Resources/Contrast-Manual"
       }
     ],
     "active": false,
@@ -4814,8 +4818,8 @@
     "explanation": "Four-factor prothrombin complex concentrate and intravenous vitamin K is correct. Major bleeding on warfarin is reversed with four-factor PCC plus intravenous vitamin K. Holding the dose is for an INR elevation without bleeding. Incorrect alternatives: Oral vitamin K is too slow. Protamine reverses heparin. Idarucizumab reverses dabigatran.",
     "references": [
       {
-        "label": "Stevens SM et al. Antithrombotic Therapy for VTE Disease: Second Update of the CHEST Guideline. Chest 2021",
-        "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext"
+        "label": "Tomaselli GF et al. 2020 ACC Expert Consensus Decision Pathway on Bleeding in Patients on Oral Anticoagulants. J Am Coll Cardiol 2020",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32680646/"
       }
     ],
     "active": false,
@@ -5010,8 +5014,8 @@
     "explanation": "Magnesium sulfate is correct. Severe-range pressures with headache and thrombocytopenia are preeclampsia with severe features. Magnesium prevents seizures. Delivery planning is obstetric. ACE inhibitors and ARBs are contraindicated. Incorrect alternatives: Lisinopril, losartan, and diuretics are not the seizure-prevention drug and several are fetotoxic.",
     "references": [
       {
-        "label": "Jones DW et al. 2025 AHA/ACC Guideline for the Management of High Blood Pressure in Adults. J Am Coll Cardiol 2025",
-        "url": "https://pubmed.ncbi.nlm.nih.gov/40815242/"
+        "label": "ACOG Practice Bulletin No. 222. Gestational Hypertension and Preeclampsia. Obstet Gynecol 2020",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32443079/"
       }
     ],
     "active": false,
@@ -5122,8 +5126,8 @@
     "explanation": "Ceftriaxone plus doxycycline, with metronidazole is correct. Pelvic inflammatory disease is a clinical diagnosis. Outpatient treatment covers gonorrhea, chlamydia, and anaerobes when she is well enough to go home. Pregnancy, vomiting, or an abscess would admit her. Incorrect alternatives: Metronidazole alone, ciprofloxacin, one dose of azithromycin, and waiting on culture under-treat.",
     "references": [
       {
-        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep 2021",
-        "url": "https://www.cdc.gov/std/treatment-guidelines/epididymitis.htm"
+        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. Pelvic inflammatory disease. MMWR 2021",
+        "url": "https://www.cdc.gov/std/treatment-guidelines/pid.htm"
       }
     ],
     "active": false,

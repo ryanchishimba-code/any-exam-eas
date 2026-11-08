@@ -478,14 +478,18 @@ add("endocrine", "diagnosis", "Hypercalcemia of malignancy versus hyperparathyro
   "A thiazide raises calcium. Observation, lithium, and diet alone do not treat a calcium of 13.8 with confusion.",
   "nccpa-2025")
 
-add("endocrine", "pharmacotherapy", "Metformin and contrast", 4,
-  "A 66-year-old woman takes metformin. eGFR is 48 mL/min/1.73 m2. She needs a contrasted CT today and is euvolemic with no acute kidney injury.",
-  "Which of the following is the most appropriate metformin plan?",
-  ["Never give contrast to anyone on metformin", "Hold metformin at the time of contrast because the eGFR is under 60, then restart after kidney function is rechecked", "Double metformin the morning of the scan", "Switch to glyburide in the scanner", "Stop metformin forever because the eGFR is under 60"],
-  "Hold metformin at the time of contrast because the eGFR is under 60, then restart after kidney function is rechecked",
-  "Metformin is otherwise acceptable at an eGFR of 48, and contrast is not forbidden. Product labeling holds it at the time of iodinated contrast when the eGFR is under 60 and restarts it after function is confirmed stable. An eGFR under 60 is not a reason to stop it forever.",
-  "A blanket ban on contrast, doubling the dose, a sulfonylurea swap, and permanent cessation overstate or miss the hold.",
-  "ada-ckd-2026")
+add("endocrine", "pharmacotherapy", "Metformin and intravenous contrast", 4,
+  "A 66-year-old woman takes metformin. eGFR is 72 mL/min/1.73 m2 and stable. She needs an elective intravenous contrasted CT. She has no acute kidney injury, heart failure, or liver disease.",
+  "Which of the following is the most appropriate metformin plan for this scan?",
+  ["Hold metformin for 48 hours because every contrasted scan requires a hold",
+   "Continue metformin; a hold is not required at this eGFR for intravenous contrast",
+   "Double the dose the morning of the scan",
+   "Switch to glyburide in the scanner",
+   "Stop metformin forever because she is over 65"],
+  "Continue metformin; a hold is not required at this eGFR for intravenous contrast",
+  "The FDA hold for iodinated contrast applies when the eGFR is 30 to 60, or when there is liver disease, heart failure, or arterial contrast. The ACR contrast manual does not stop metformin for intravenous contrast when the eGFR is at least 30 and there is no acute kidney injury. At an eGFR of 72 those sources agree she continues it.",
+  "Holding every scan, doubling the dose, a sulfonylurea swap, and stopping because of age are incorrect.",
+  "acr-contrast-2023")
 
 add("endocrine", "diagnosis", "Pheochromocytoma blood pressure drug order", 5,
   "A 38-year-old man has paroxysmal hypertension, headaches, and a positive plasma metanephrine. Imaging shows an adrenal mass. Surgery is planned. A student wants a beta blocker started today, before any alpha blockade.",
