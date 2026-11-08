@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { test as authTest, hasAuthStorage } from "./fixtures/auth";
-import { acceptSignupTerms } from "./helpers/forms";
+import { acceptSignupTerms, fillControlledInput } from "./helpers/forms";
 
 /**
  * Card-free trial: signup form → account → dashboard. No Checkout charge.
@@ -13,8 +13,8 @@ test.describe("Signup → trial → dashboard", () => {
     await page.goto("/signup?plan=trial&exam=nclex", { waitUntil: "domcontentloaded" });
 
     await expect(page.getByText(/free trial|\$0|no payment method required/i).first()).toBeVisible();
-    await page.getByLabel("Email").fill(uniqueEmail);
-    await page.getByRole("textbox", { name: "Password", exact: true }).fill("E2eTrialPass1!");
+    await fillControlledInput(page.getByLabel("Email"), uniqueEmail);
+    await fillControlledInput(page.getByRole("textbox", { name: "Password", exact: true }), "E2eTrialPass1!");
     await page.getByRole("button", { name: "Continue" }).click();
     await expect(page.getByText(/preparing for nclex/i)).toBeVisible();
     await page.getByLabel("First name").fill("E2E");

@@ -78,7 +78,7 @@ test.describe("Login checklist (public)", () => {
   test("login page works on mobile viewport", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/login", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /log in to continue/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /^log in\.?$/i })).toBeVisible();
     await expect(page.getByRole("textbox", { name: "Email" })).toBeVisible();
   });
 

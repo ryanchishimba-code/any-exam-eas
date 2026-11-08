@@ -3,7 +3,7 @@ import { test, expect } from "./fixtures/auth";
 test.describe("Anatomy Explorer", () => {
   test("catalog and explorer pages load", async ({ authenticatedPage: page }) => {
     await page.goto("/anatomy", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /3d anatomy study model/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByRole("searchbox", { name: /search structures/i }).first()).toBeVisible({
@@ -26,7 +26,7 @@ test.describe("Anatomy Explorer", () => {
 
   test("skeletal layer toggle and bone structure selection", async ({ authenticatedPage: page }) => {
     await page.goto("/anatomy", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /3d anatomy study model/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
 

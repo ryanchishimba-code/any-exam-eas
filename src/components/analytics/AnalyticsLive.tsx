@@ -59,9 +59,14 @@ export function AnalyticsLive({ examSlug }: { examSlug: ExamSlug }) {
 
   if (!snapshot) {
     return failed ? (
-      <p className="text-[15px] text-[var(--color-ink-muted)]">
-        Analytics is temporarily unavailable. Refresh the page to try again.
-      </p>
+      <>
+        <h1 className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]">
+          Analytics
+        </h1>
+        <p className="mt-2 text-[15px] text-[var(--color-ink-muted)]">
+          Analytics is temporarily unavailable. Refresh the page to try again.
+        </p>
+      </>
     ) : (
       <AnalyticsSkeleton />
     );

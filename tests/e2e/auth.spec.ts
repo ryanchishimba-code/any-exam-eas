@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { DEV_USER, loginWithCredentials } from "./fixtures/auth";
 import { isAuthBackendReady } from "./helpers/auth-health";
+import { fillControlledInput } from "./helpers/forms";
 
 test.describe("Authentication", () => {
   test("login page renders", async ({ page }) => {
@@ -23,8 +24,13 @@ test.describe("Authentication", () => {
 
   test("forgot password page submits reset request", async ({ page }) => {
     await page.goto("/auth/forgot-password", { waitUntil: "domcontentloaded" });
-    await page.getByLabel(/email address/i).fill("recover@example.com");
+    const email = page.getByLabel(/email address/i);
+    await fillControlledInput(email, "recover@example.com");
+    const submitted = page.waitForResponse(
+      (res) => res.url().includes("/api/auth/forgot-password") && res.request().method() === "POST"
+    );
     await page.getByRole("button", { name: /send reset link/i }).click();
+    expect((await submitted).ok()).toBeTruthy();
     await expect(
       page.getByText(/if an account exists, a password reset link has been sent/i)
     ).toBeVisible({ timeout: 30_000 });
