@@ -159,14 +159,21 @@ describe("Quick Bites: Pharmacy catalog", () => {
     expect(getPharmacyQuickBiteBySlug("quick-bites-ep02-nclex-works")).toBeUndefined();
   });
 
-  it("is mounted on the NAPLEX dashboard only", () => {
+  it("is mounted on the NAPLEX Quick Bites page, not the dashboard", () => {
     const dashboard = readFileSync(
       new URL("../../components/app/DashboardPageContent.tsx", import.meta.url),
       "utf8"
     );
-    expect(dashboard).toContain('examSlug === "naplex"');
-    expect(dashboard).toContain('series="pharmacy"');
-    expect(dashboard).toContain('examSlug === "nclex"');
+    const boards = readFileSync(new URL("./boards.ts", import.meta.url), "utf8");
+    const route = readFileSync(
+      new URL("../../app/(app)/naplex/quick-bites/page.tsx", import.meta.url),
+      "utf8"
+    );
+    expect(dashboard).not.toContain("VideoQuickBitesSection");
+    expect(dashboard).not.toContain('series="pharmacy"');
+    expect(boards).toContain('exam: "naplex"');
+    expect(boards).toContain('series: "pharmacy"');
+    expect(route).toContain('exam="naplex"');
     const sitemap = readFileSync(new URL("../../app/sitemap.ts", import.meta.url), "utf8");
     expect(sitemap).not.toContain("quick-bites-pharmacy");
     expect(sitemap).not.toContain("Quick Bites: Pharmacy");

@@ -31,6 +31,11 @@ describe("guest preview routes", () => {
     expect(isPremiumPage("/naplex/study-guide")).toBe(true);
     expect(isPremiumPage("/aanp-fnp/study-guide/exam-strategy")).toBe(true);
     expect(isPremiumPage("/pance/study-guide/cardiovascular")).toBe(true);
+    expect(isPremiumPage("/nclex/quick-bites")).toBe(true);
+    expect(isPremiumPage("/naplex/quick-bites")).toBe(true);
+    expect(isPremiumPage("/aanp-fnp/quick-bites")).toBe(true);
+    expect(isPremiumPage("/pance/quick-bites")).toBe(true);
+    expect(isGuestPreviewPage("/nclex/quick-bites")).toBe(false);
     expect(isPremiumPage("/study/drugs300")).toBe(false);
     expect(isPremiumPage("/anatomy")).toBe(false);
     expect(isPremiumPage("/study")).toBe(true);

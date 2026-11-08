@@ -179,21 +179,23 @@ function EpisodeMeta({
   return (
     <span className="flex min-h-11 flex-col">
       <EpisodeWatchBar percent={listPct} />
-      <span className="flex items-center gap-3 px-3.5 py-2.5">
-        <span className="w-6 shrink-0 text-[13px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
+      <span className="flex items-start gap-2 px-3 py-2.5">
+        <span className="w-5 shrink-0 pt-0.5 text-[13px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
           {episode.number}
         </span>
-        <span className="min-w-0 flex-1 text-[14px] font-semibold leading-snug tracking-[-0.01em] text-[var(--color-ink)]">
-          {episode.title}
-        </span>
-        <span className="shrink-0 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
-          {watched
-            ? "Watched"
-            : listPct > 0
-              ? `${listPct}%`
-              : episode.held
-                ? "Coming soon"
-                : episode.duration}
+        <span className="flex min-w-0 flex-1 flex-col gap-0.5 lg:flex-row lg:items-baseline lg:justify-between lg:gap-3">
+          <span className="min-w-0 text-[13px] font-semibold leading-snug tracking-[-0.01em] text-[var(--color-ink)] lg:text-[14px]">
+            {episode.title}
+          </span>
+          <span className="shrink-0 text-[11px] tabular-nums text-[var(--color-ink-muted)] lg:text-[12px]">
+            {watched
+              ? "Watched"
+              : listPct > 0
+                ? `${listPct}%`
+                : episode.held
+                  ? "Coming soon"
+                  : episode.duration}
+          </span>
         </span>
       </span>
     </span>
@@ -215,11 +217,14 @@ export function VideoQuickBitesSection({
   upgradeHref,
   upgradeLabel,
   series = "nursing",
+  titleAs = "h2",
 }: {
   canPlay: boolean;
   upgradeHref: string;
   upgradeLabel: string;
   series?: "nursing" | "pharmacy" | "fnp" | "pance";
+  /** Standalone page uses h1. The old dashboard embed used h2. */
+  titleAs?: "h1" | "h2";
 }) {
   const config =
     series === "pharmacy"
@@ -229,6 +234,7 @@ export function VideoQuickBitesSection({
         : series === "pance"
           ? PANCE_SERIES
           : NURSING_SERIES;
+  const TitleTag = titleAs;
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [session, setSession] = useState(0);
   const scrollRequest = useRef(false);
@@ -295,12 +301,12 @@ export function VideoQuickBitesSection({
     >
       <div className="space-y-2">
         <p className={dbUi.eyebrow}>Quick Bites by AnyExamEasy</p>
-        <h2
+        <TitleTag
           id={config.headingId}
           className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
         >
           {config.title}
-        </h2>
+        </TitleTag>
         <p className={dbUi.subtitle}>{config.subtitle}</p>
         {config.note ? (
           <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{config.note}</p>

@@ -1,4 +1,5 @@
 import { studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
+import { quickBiteRouteBases } from "@/lib/quick-bites/boards";
 import type { ExamSlug } from "@/types/edtech";
 
 /** Derived from the guide registry so reader chrome cannot drift per exam. */
@@ -16,6 +17,7 @@ export const APP_SHELL_PREFIXES = [
   "/settings",
   "/study/drugs300",
   ...studyGuideRouteBases(),
+  ...quickBiteRouteBases(),
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = [
@@ -29,6 +31,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/auth/reset-password",
   "/checkout",
   "/dev/tour-preview",
+  "/dev/quick-bites-preview",
   "/dev/readiness-preview",
   "/dev/home-frames",
   "/study-tools/pance/feed",

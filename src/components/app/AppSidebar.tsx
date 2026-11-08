@@ -31,6 +31,7 @@ import {
   STUDY_GUIDE_EXAMS,
   getStudyGuideConfig,
 } from "@/lib/nclex-study-guide/guide-registry";
+import { QUICK_BITE_BOARDS, QUICK_BITE_EXAMS } from "@/lib/quick-bites/boards";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
 import type { ExamSlug } from "@/types/edtech";
@@ -88,34 +89,16 @@ const NAV_SECTIONS: NavSection[] = [
         icon: BookMarked,
         exams: STUDY_GUIDE_EXAMS,
       },
-      {
-        id: "quick-bites",
-        href: `${ROUTES.dashboard}#video-quick-bites`,
-        label: "Video Quick Bites",
-        icon: Clapperboard,
-        exams: ["nclex"],
-      },
-      {
-        id: "quick-bites-pharmacy",
-        href: `${ROUTES.dashboard}#video-quick-bites-pharmacy`,
-        label: "Quick Bites: Pharmacy",
-        icon: Clapperboard,
-        exams: ["naplex"],
-      },
-      {
-        id: "quick-bites-fnp",
-        href: `${ROUTES.dashboard}#video-quick-bites-fnp`,
-        label: "Quick Bites: FNP",
-        icon: Clapperboard,
-        exams: ["aanp-fnp"],
-      },
-      {
-        id: "quick-bites-pance",
-        href: `${ROUTES.dashboard}#video-quick-bites-pance`,
-        label: "Quick Bites: PANCE",
-        icon: Clapperboard,
-        exams: ["pance"],
-      },
+      ...QUICK_BITE_EXAMS.map((exam) => {
+        const board = QUICK_BITE_BOARDS[exam];
+        return {
+          id: board.navId,
+          href: board.route,
+          label: board.navLabel,
+          icon: Clapperboard,
+          exams: [board.exam],
+        };
+      }),
       {
         id: "pance-feed",
         href: STUDY_FEEDS.pance.href,

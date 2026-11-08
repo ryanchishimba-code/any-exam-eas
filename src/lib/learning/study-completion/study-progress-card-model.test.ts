@@ -114,7 +114,7 @@ describe("studyProgressNextStep", () => {
     expect(step.label).toBe("Next: complete 9 more full-length exams →");
   });
 
-  it("links Quick Bites on the dashboard for NAPLEX with singular copy", () => {
+  it("links Quick Bites to the NAPLEX page with singular copy", () => {
     const data = buildStudyCompletionResult("naplex", {
       ...baseMetrics,
       distinctBankItemsAttempted: 900,
@@ -123,7 +123,7 @@ describe("studyProgressNextStep", () => {
     });
     const step = studyProgressNextStep(data);
     expect(step.label).toBe("Next: finish 1 more Quick Bite →");
-    expect(step.href).toContain("#video-quick-bites-pharmacy");
+    expect(step.href).toBe("/naplex/quick-bites");
   });
 
   it("uses Today’s plan when every pillar is met", () => {

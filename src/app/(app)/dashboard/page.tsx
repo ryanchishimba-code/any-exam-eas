@@ -3,12 +3,8 @@ import { redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
-import {
-  postTrialCheckoutHref,
-  resolveDashboardUpgradeContext,
-  trialUpgradeCheckoutHref,
-} from "@/lib/dashboard/upgrade-banner";
-import { canPlayQuickBites } from "@/lib/quick-bites/access";
+import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
+import { QuickBitesDashboardRedirect } from "@/components/app/QuickBitesDashboardRedirect";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
 import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
@@ -221,14 +217,6 @@ async function DashboardContent({
       tourSeen={tourSeen}
       accountAttemptCount={accountAttemptCount}
       deferTodayMix
-      quickBites={{
-        canPlay: canPlayQuickBites(access),
-        upgradeHref:
-          access.role === "free"
-            ? postTrialCheckoutHref(ROUTES.dashboard)
-            : trialUpgradeCheckoutHref(ROUTES.dashboard),
-        upgradeLabel: access.role === "free" ? "Subscribe to watch" : "Upgrade to watch",
-      }}
       trialStartHere={
         showStartHere
           ? {
@@ -265,6 +253,7 @@ export default async function DashboardPage() {
 
   return (
     <>
+      <QuickBitesDashboardRedirect />
       <Suspense fallback={null}>
         <DashboardUpgradeRedirect />
         <div className="mx-auto w-full min-w-0 max-w-5xl">

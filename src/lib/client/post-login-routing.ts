@@ -1,6 +1,7 @@
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
+import { isQuickBitePath } from "@/lib/quick-bites/boards";
 import { isStudyFeedPath } from "@/lib/study-feed/catalog";
 
 export type PostLoginSubscriptionStatus = {
@@ -28,7 +29,7 @@ export function resolvePostLoginDestination(
 
   // The feed page owns its own paid-plan gate. Send the learner back there
   // instead of the dashboard or the reactivate screen.
-  if (isStudyFeedPath(safe)) {
+  if (isStudyFeedPath(safe) || isQuickBitePath(safe)) {
     return safe;
   }
 

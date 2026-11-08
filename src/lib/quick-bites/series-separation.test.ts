@@ -171,21 +171,30 @@ describe("Quick Bites series separation", () => {
     }
   });
 
-  it("mounts one Quick Bites section per board track on the dashboard", () => {
+  it("gives each board its own Quick Bites page and keeps the dashboard clear", () => {
     const dashboard = readFileSync(
       new URL("../../components/app/DashboardPageContent.tsx", import.meta.url),
       "utf8"
     );
-    const blocks = [
-      ...dashboard.matchAll(/\{examSlug === "([\w-]+)" && quickBites \? \(([\s\S]*?)\) : null\}/g),
-    ];
-    const byExam = new Map(blocks.map((match) => [match[1], match[2] ?? ""]));
-    expect([...byExam.keys()].sort()).toEqual(["aanp-fnp", "naplex", "nclex", "pance"]);
-    expect(byExam.get("nclex")).toContain("<VideoQuickBitesSection");
-    expect(byExam.get("nclex")).not.toContain("series=");
-    expect(byExam.get("naplex")).toContain('series="pharmacy"');
-    expect(byExam.get("aanp-fnp")).toContain('series="fnp"');
-    expect(byExam.get("pance")).toContain('series="pance"');
-    expect(dashboard.match(/<VideoQuickBitesSection/g)).toHaveLength(4);
+    expect(dashboard).not.toContain("VideoQuickBitesSection");
+    const page = readFileSync(
+      new URL("../../components/quick-bites/QuickBitesPage.tsx", import.meta.url),
+      "utf8"
+    );
+    expect(page).toContain("<VideoQuickBitesSection");
+    expect(page).toContain("series={board.series}");
+    expect(page).toContain("canPlayQuickBites");
+    const boards = readFileSync(new URL("./boards.ts", import.meta.url), "utf8");
+    expect(boards).toContain('series: "nursing"');
+    expect(boards).toContain('series: "pharmacy"');
+    expect(boards).toContain('series: "fnp"');
+    expect(boards).toContain('series: "pance"');
+    for (const exam of ["nclex", "naplex", "aanp-fnp", "pance"] as const) {
+      const route = readFileSync(
+        new URL(`../../app/(app)/${exam}/quick-bites/page.tsx`, import.meta.url),
+        "utf8"
+      );
+      expect(route).toContain(`exam="${exam}"`);
+    }
   });
 });

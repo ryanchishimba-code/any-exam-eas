@@ -1,4 +1,5 @@
 import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import { QUICK_BITE_BOARDS } from "@/lib/quick-bites/boards";
 import { ROUTES } from "@/lib/routes";
 import type { StudyCompletionPillar, StudyCompletionResult } from "./compute-study-completion";
 import { cappedPillarProgressPercent } from "./pillar-display";
@@ -113,14 +114,7 @@ function nextStepForPillar(
     case "quick_bites":
       return {
         label: `Next: finish ${formatCountMore(left, "Quick Bite", "Quick Bites")} →`,
-        href:
-          examSlug === "naplex"
-            ? `${ROUTES.dashboard}#video-quick-bites-pharmacy`
-            : examSlug === "aanp-fnp"
-              ? `${ROUTES.dashboard}#video-quick-bites-fnp`
-              : examSlug === "pance"
-                ? `${ROUTES.dashboard}#video-quick-bites-pance`
-                : `${ROUTES.dashboard}#video-quick-bites`,
+        href: QUICK_BITE_BOARDS[examSlug].route,
       };
     case "study_guide_chapters": {
       const guide = STUDY_GUIDES[examSlug as StudyGuideExam];

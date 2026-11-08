@@ -44,6 +44,10 @@ describe("app-shell routes", () => {
     // Either path hides marketing chrome; the shell must not double up.
     expect(hideMarketingChrome("/nclex/study-guide/cardiac")).toBe(true);
     expect(isAppShellRoute("/nclex")).toBe(false);
+    expect(isAppShellRoute("/nclex/quick-bites")).toBe(true);
+    expect(hideMarketingChrome("/naplex/quick-bites")).toBe(true);
+    expect(hideMarketingChrome("/aanp-fnp/quick-bites")).toBe(true);
+    expect(isAppShellRoute("/pance/quick-bites")).toBe(true);
     expect(isMinimalChromeRoute("/study-tools/pance/feed")).toBe(true);
     expect(hideMarketingChrome("/study-tools/pance/feed")).toBe(true);
     expect(isMinimalChromeRoute("/study-tools/nclex/feed")).toBe(true);
