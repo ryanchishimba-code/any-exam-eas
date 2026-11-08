@@ -9,7 +9,7 @@ test.describe("Memory Cards / Reference", () => {
 
   authTest("reference hub lists memory cards", async ({ authenticatedPage: page }) => {
     await page.goto("/library", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /study hub/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /library/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByRole("searchbox", { name: /search memory cards/i })).toBeVisible({

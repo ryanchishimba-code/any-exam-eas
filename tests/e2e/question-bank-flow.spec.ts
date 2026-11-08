@@ -49,6 +49,10 @@ authTest.describe("Question bank flow (checklist)", () => {
   authTest("generate standard bank returns exact count", async ({ authenticatedPage: page }) => {
     await page.goto("/question-bank", { waitUntil: "domcontentloaded" });
     await expect(page.locator("#practice-launcher")).toBeVisible({ timeout: 30_000 });
+    const launcherText = await page.locator("#practice-launcher").innerText();
+    if (/\b0 questions\b/i.test(launcherText)) {
+      authTest.skip(true, "This database has no served questions to generate");
+    }
 
     const startBtn = page.getByRole("button", { name: /start|generate|begin/i }).first();
     if (!(await startBtn.isVisible())) {

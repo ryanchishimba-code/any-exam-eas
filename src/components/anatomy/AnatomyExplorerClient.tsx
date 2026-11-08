@@ -81,7 +81,7 @@ export function AnatomyExplorerClient({
     return null;
   });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [overlayOpen, setOverlayOpen] = useState(() =>
     Boolean(initialStructureId && !invalidStructureId)
   );

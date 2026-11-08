@@ -7,6 +7,7 @@
  * Vercel function timeout (that surfaced as "Question bank unavailable").
  * Cron keepalive keeps the long retry path.
  */
+import { resolveDatabaseUrl, usesNeonHttpDriver } from "@/lib/database-url";
 import { withNeon } from "@/lib/db-resilience";
 
 export type NeonWarmupResult = {
@@ -37,6 +38,9 @@ export async function warmNeonCompute(
   options?: { maxAttempts?: number; timeoutMs?: number; baseDelayMs?: number }
 ): Promise<NeonWarmupResult> {
   const started = Date.now();
+  if (!usesNeonHttpDriver(resolveDatabaseUrl())) {
+    return { ok: true, ms: 0 };
+  }
   const forCron = label.startsWith("cron.");
   try {
     const { getNeonSql } = await import("@/db");

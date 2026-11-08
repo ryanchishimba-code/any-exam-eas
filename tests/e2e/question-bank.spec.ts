@@ -11,7 +11,7 @@ const PUBLIC_PRACTICE_HUBS = [
 test.describe("Question bank", () => {
   authTest("question bank hub loads for authenticated user", async ({ authenticatedPage: page }) => {
     await page.goto("/question-bank", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /practice/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /^practice nclex$/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByText(/^question bank$/i)).toBeVisible();
