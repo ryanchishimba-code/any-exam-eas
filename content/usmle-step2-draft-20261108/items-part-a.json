@@ -24,7 +24,7 @@
     "taskCategory": "professionalism",
     "blueprintTopic": "depression-and-capacity",
     "difficulty": 5,
-    "scenario": "A 61-year-old woman with major depression treated with sertraline has just declined adjuvant chemotherapy for a resected cancer. Her sister says the diagnosis of depression means she cannot refuse life-prolonging treatment. On interview she describes the survival gain quoted to her, says she has weighed neuropathy and time in clinic against that gain, and states she wants surveillance only. She is not suicidal, not psychotic, and not delirious. She asks you to record the refusal so the infusion unit does not call her again.",
+    "scenario": "A 61-year-old woman with major depression treated with sertraline has just declined adjuvant chemotherapy for a resected cancer. Her sister says the diagnosis of depression means she cannot refuse life-prolonging treatment. On interview she describes the survival gain quoted to her, says she has weighed neuropathy and time in clinic against that gain, and states she wants surveillance only. She is not suicidal, not psychotic, and not delirious. The examination shows organized thought, and she reports no intent to harm herself. She asks you to record the refusal so the infusion unit does not call her again.",
     "question": "What is the appropriate next step?",
     "options": [
       "Accept the refusal and document the capacity assessment",

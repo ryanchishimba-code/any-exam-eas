@@ -1,13 +1,17 @@
 {
-  "status": "partial draft, not inserted",
+  "status": "live",
+  "inserted": true,
+  "generationVersion": "usmle-step2-300-20261108-v1",
+  "snapshot": "usmle-step2-300-20261108-before",
+  "snapshotId": "snap-dark-lab-apxbse8p",
   "fieldId": "usmle-step-2",
   "count": 300,
   "target": 300,
   "parts": { "a": 150, "b": 145, "c": 5 },
   "difficulty": { "4": 128, "5": 172 },
   "partBSubjects": { "pediatrics": 39, "psychiatry": 35, "surgery": 34, "neurology": 30, "hematology": 7 },
-  "vignetteRich": 295,
+  "vignetteRich": 300,
   "blindRead": { "partA": { "answered": 139, "matched": 139 }, "partB": { "answered": 145, "matched": 145 }, "partC": { "answered": 5, "matched": 5, "ambiguous": 0 } },
   "heldOutAsDuplicates": 5,
-  "note": "Part C is five cardiovascular items that were the gap left after duplicate ITP items were held out. A keyless read matched all five. Not loaded."
+  "note": "Loaded live as usmle-step2-300-20261108-v1. Snapshot snap-dark-lab-apxbse8p was taken before the write. Rollback dry run would_insert 300, then 0 rows remained. After apply, active and qaPassed is 5,013 and all 300 new rows pass the served gate. One capacity vignette gained an examination sentence so it meets the vignette check. Undo is undo.sql."
 }
