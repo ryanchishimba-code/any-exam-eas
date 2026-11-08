@@ -1,6 +1,8 @@
 {
-  "status": "draft-not-applied",
-  "dbWrites": false,
+  "status": "hides-applied-corrections-not-applied",
+  "dbWrites": "3177 active=false hides only; teaching corrections were not run",
+  "snapshotId": "snap-withered-smoke-apxcbq4i",
+  "backupTable": "qbi_usmle_step2_duphide_20261108",
   "servedCounts": {
     "studentRouteIncludesBlankStepLevel": 4954,
     "stepLevelExactlyStep2": 4915,
