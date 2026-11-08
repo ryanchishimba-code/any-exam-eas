@@ -1,0 +1,373 @@
+[
+  {
+    "id": "cmr4gwigb000w1yde2sc9hmen",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "febrile-infant",
+    "reason": "duplicate concept",
+    "concept": "pcv-catchup"
+  },
+  {
+    "id": "cmqxd0u9u007f1ymaqun2x6hy",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "reason": "duplicate concept",
+    "concept": "pcv-catchup"
+  },
+  {
+    "id": "cmqxeea7u004b1y79vkrzflmf",
+    "blueprintDomain": "multisystem",
+    "blueprintTopic": "sepsis-bundles",
+    "reason": "duplicate concept",
+    "concept": "sepsis-cultures"
+  },
+  {
+    "id": "cmqxdy6gx000s1y79cvppofzi",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "rheumatology-autoimmune",
+    "reason": "duplicate concept",
+    "concept": "ckd-iron-before-esa"
+  },
+  {
+    "id": "cmqxee9k900441y79lb6sr16o",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "reason": "duplicate concept",
+    "concept": "acute kidney injury"
+  },
+  {
+    "id": "cmr8alb7501ad1yr9vpjm4nbq",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "seizures-headaches",
+    "reason": "duplicate concept",
+    "concept": "acute kidney injury"
+  },
+  {
+    "id": "cmr4gwkee001f1ydeowx4084w",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "pediatric-infections",
+    "reason": "duplicate concept",
+    "concept": "flu-oseltamivir"
+  },
+  {
+    "id": "cmr85swmu000q1yr9cpjwampv",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "pediatric-infections",
+    "reason": "duplicate concept",
+    "concept": "flu-oseltamivir"
+  },
+  {
+    "id": "cmr4hazxl003q1ydegxqugfds",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "pediatric-infections",
+    "reason": "duplicate concept",
+    "concept": "flu-oseltamivir"
+  },
+  {
+    "id": "cmr4kious00tv1ydeb9tvyn9m",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "pediatric-infections",
+    "reason": "duplicate concept",
+    "concept": "flu-oseltamivir"
+  },
+  {
+    "id": "cmr89lvhh010a1yr955er9lvl",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "pediatric-infections",
+    "reason": "duplicate concept",
+    "concept": "flu-oseltamivir"
+  },
+  {
+    "id": "cmr4ieuk500dp1ydegh86gq0d",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "child-abuse-red-flags",
+    "reason": "duplicate concept",
+    "concept": "vwd"
+  },
+  {
+    "id": "cmr89lujc00zz1yr9hxt7c5wb",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "reason": "duplicate concept",
+    "concept": "vwd"
+  },
+  {
+    "id": "cmr869iop003k1yr9rn0aa6gk",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "vaccination-schedules",
+    "reason": "duplicate concept",
+    "concept": "measles, mumps, and rubella (mmr) vaccine"
+  },
+  {
+    "id": "cmr4hnlrg007i1ydemw6whi60",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "pediatric-infections",
+    "reason": "duplicate concept",
+    "concept": "measles, mumps, and rubella (mmr) vaccine"
+  },
+  {
+    "id": "cmr4kipo300u51ydeiyo5k259",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "febrile-infant",
+    "reason": "duplicate concept",
+    "concept": "febrile-infant-urine"
+  },
+  {
+    "id": "cmr85swjd000p1yr9bttzv1sj",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "reason": "duplicate concept",
+    "concept": "language-disorder"
+  },
+  {
+    "id": "cmtpx3cok00a81y6haglxvp9r",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "child-abuse-red-flags",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrtgb41o00321ydwy093zvhu",
+    "blueprintDomain": "biostats-epi",
+    "blueprintTopic": "diagnostic-test-interpretation",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrtggcs1005d1ydwfrkru7e1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "emergency-acls",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrsfd2i3002u1ynyptkfapuj",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "ethics-professionalism",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrsfd38o00331ynyxas75mst",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "emergency-acls",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmtpw0p95002y1ylc7tiovi0u",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmtpwlgoq001g1y6h1k2j5gaa",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "pe-workup",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrtprwpf00051yqc1qq8hk69",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-management",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmtpsb10m002z1y1qhux5fg4e",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "rheumatology-autoimmune",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrrvnjdw006w1yl8mg9lmahs",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "emergency-acls",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrtq0tyz001a1yqcqfgd5tk9",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-management",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrpwahqy009p1ylulhbdjv00",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "appendicitis-cholecystitis",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrtgb2n2002k1ydwb66rbkw4",
+    "blueprintDomain": "biostats-epi",
+    "blueprintTopic": "diagnostic-test-interpretation",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrrvrqgj00931yl8i3fmzkif",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrrvjkiu005g1yl8oa5ilse1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "emergency-acls",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrrvji7u004m1yl8hkpea0zn",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "emergency-acls",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrsfglt4004k1ynynkd0zrpo",
+    "blueprintDomain": "biostats-epi",
+    "blueprintTopic": "biostatistics-interpretation",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrtgb4fm00371ydwj1a15t7m",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmrrvjiws004v1yl8bt0orkxd",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "reason": "duplicate concept",
+    "concept": "stroke-reperfusion"
+  },
+  {
+    "id": "cmtps7w58000x1y1q1k96ibks",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "copd-asthma-exacerbation",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmr87sn4f00kl1yr9mqyxmypz",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "pancreatitis-hepatitis",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmr8alc9201ap1yr9rdp1xtis",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmrrw4zc700go1yl8f1mvpmcb",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "emergency-acls",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmtpw0q6300381ylc3fmusudn",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "child-abuse-red-flags",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmrsfgmiw004t1ynystu7myzv",
+    "blueprintDomain": "biostats-epi",
+    "blueprintTopic": "diagnostic-test-interpretation",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmr877llq00e41yr9fumrfd3x",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "reason": "duplicate concept",
+    "concept": "hyperk-calcium"
+  },
+  {
+    "id": "cmr88ic2500q01yr9i2o6lfyk",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "reason": "duplicate concept",
+    "concept": "hfref-avoid-diltiazem"
+  },
+  {
+    "id": "cmr87j3bb00hf1yr92wn696yo",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "chf-management",
+    "reason": "duplicate concept",
+    "concept": "hfref-avoid-diltiazem"
+  },
+  {
+    "id": "cmr8alckd01as1yr97exced9u",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-storm",
+    "reason": "duplicate concept",
+    "concept": "thyroid-storm"
+  },
+  {
+    "id": "cmr891bif00xb1yr9c1vyt8d6",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "pancreatitis-hepatitis",
+    "reason": "duplicate concept",
+    "concept": "pseudocyst"
+  },
+  {
+    "id": "cmtpvxy9500051ylcuk59khj7",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hiv-opportunistic",
+    "reason": "duplicate concept",
+    "concept": "pcp-bal"
+  },
+  {
+    "id": "cmrtq0svi000w1yqc03xqrc0h",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "pneumonia-workup",
+    "reason": "duplicate concept",
+    "concept": "copd-o2-target"
+  },
+  {
+    "id": "cmrrvnkmi007c1yl8zjhqyvqf",
+    "blueprintDomain": "biostats-epi",
+    "blueprintTopic": "diagnostic-test-interpretation",
+    "reason": "duplicate concept",
+    "concept": "copd-o2-target"
+  },
+  {
+    "id": "cmtpx0065007i1y6hcsufjfmd",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hiv-opportunistic",
+    "reason": "duplicate concept",
+    "concept": "pcp-treat-steroid"
+  },
+  {
+    "id": "cmtpx00jt007n1y6hn8memxe4",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hiv-opportunistic",
+    "reason": "duplicate concept",
+    "concept": "pcp-treat-steroid"
+  },
+  {
+    "id": "cmtpx3cde00a41y6hlezz8oc6",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "child-abuse-red-flags",
+    "reason": "duplicate concept",
+    "concept": "perform immediate coronary angiography with primary pci"
+  }
+]
