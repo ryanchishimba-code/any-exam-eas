@@ -62,5 +62,13 @@ export const config = {
     "/aanp-fnp/study-guide/:path*",
     "/pance/study-guide",
     "/pance/study-guide/:path*",
+    "/nclex/quick-bites",
+    "/nclex/quick-bites/:path*",
+    "/naplex/quick-bites",
+    "/naplex/quick-bites/:path*",
+    "/aanp-fnp/quick-bites",
+    "/aanp-fnp/quick-bites/:path*",
+    "/pance/quick-bites",
+    "/pance/quick-bites/:path*",
   ],
 };

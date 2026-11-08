@@ -215,12 +215,16 @@ describe("Quick Bites catalog", () => {
     }
   });
 
-  it("is mounted on the NCLEX dashboard only", () => {
+  it("is mounted on the NCLEX Quick Bites page, not the dashboard", () => {
     const dashboard = readFileSync(
       new URL("../../components/app/DashboardPageContent.tsx", import.meta.url),
       "utf8"
     );
-    expect(dashboard).toContain('examSlug === "nclex"');
-    expect(dashboard).toContain("VideoQuickBitesSection");
+    const route = readFileSync(
+      new URL("../../app/(app)/nclex/quick-bites/page.tsx", import.meta.url),
+      "utf8"
+    );
+    expect(dashboard).not.toContain("VideoQuickBitesSection");
+    expect(route).toContain('exam="nclex"');
   });
 });

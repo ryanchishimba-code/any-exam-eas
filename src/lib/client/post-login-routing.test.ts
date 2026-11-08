@@ -95,6 +95,20 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/settings?billing=past_due");
   });
 
+  it("returns a learner to Quick Bites after sign-in", () => {
+    for (const path of [
+      "/nclex/quick-bites",
+      "/naplex/quick-bites",
+      "/aanp-fnp/quick-bites",
+      "/pance/quick-bites",
+    ]) {
+      expect(resolvePostLoginDestination(path, { hasAccess: true }, "nclex")).toBe(path);
+      expect(
+        resolvePostLoginDestination(path, { hasAccess: false, hasAppAccess: true, status: "trialing" }, "nclex")
+      ).toBe(path);
+    }
+  });
+
   it("returns a learner to a board feed after sign-in", () => {
     for (const path of [
       "/study-tools/pance/feed",

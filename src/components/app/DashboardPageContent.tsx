@@ -31,7 +31,6 @@ import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/eng
 import { FirstLoginTour } from "@/components/onboarding/FirstLoginTour";
 import { TrialStartHerePath } from "@/components/trial/TrialStartHerePath";
 import type { TrialStartHereRecord } from "@/lib/trial/trial-start-here";
-import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboardCard";
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
@@ -75,7 +74,6 @@ export function DashboardPageContent({
   accountAttemptCount = null,
   todaySet = null,
   deferTodayMix = false,
-  quickBites = null,
   trialStartHere = null,
   studyCompletion = null,
   accuracyTrend = [],
@@ -104,12 +102,6 @@ export function DashboardPageContent({
   todaySet?: TodaySetPreviewView | null;
   /** Mix line loads after the shell, from the served preview, so back navigation is not blocked on it. */
   deferTodayMix?: boolean;
-  /** Paid playback vs locked posters. Rendered only on the NCLEX dashboard. */
-  quickBites?: {
-    canPlay: boolean;
-    upgradeHref: string;
-    upgradeLabel: string;
-  } | null;
   trialStartHere?: {
     record: TrialStartHereRecord | null;
     step: 1 | 2 | 3;
@@ -226,41 +218,6 @@ export function DashboardPageContent({
       ) : null}
 
       {studyCompletion ? <StudyProgressCard data={studyCompletion} /> : null}
-
-      {examSlug === "nclex" && quickBites ? (
-        <VideoQuickBitesSection
-          canPlay={quickBites.canPlay}
-          upgradeHref={quickBites.upgradeHref}
-          upgradeLabel={quickBites.upgradeLabel}
-        />
-      ) : null}
-
-      {examSlug === "naplex" && quickBites ? (
-        <VideoQuickBitesSection
-          series="pharmacy"
-          canPlay={quickBites.canPlay}
-          upgradeHref={quickBites.upgradeHref}
-          upgradeLabel={quickBites.upgradeLabel}
-        />
-      ) : null}
-
-      {examSlug === "aanp-fnp" && quickBites ? (
-        <VideoQuickBitesSection
-          series="fnp"
-          canPlay={quickBites.canPlay}
-          upgradeHref={quickBites.upgradeHref}
-          upgradeLabel={quickBites.upgradeLabel}
-        />
-      ) : null}
-
-      {examSlug === "pance" && quickBites ? (
-        <VideoQuickBitesSection
-          series="pance"
-          canPlay={quickBites.canPlay}
-          upgradeHref={quickBites.upgradeHref}
-          upgradeLabel={quickBites.upgradeLabel}
-        />
-      ) : null}
 
       <DashboardProgressFold plan={examDayPlan} studyLocked={studyLocked}>
         <RemediationPanel

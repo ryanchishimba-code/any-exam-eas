@@ -72,18 +72,30 @@ describe("Study Guide in Study Tools", () => {
     expect(link).toHaveAttribute("href", "/naplex/study-guide");
   });
 
-  it("links Video Quick Bites on the NCLEX dashboard and hides it for other exams", () => {
+  it("links Video Quick Bites to its own page and hides it for other exams", () => {
     renderFor("nclex");
     expect(screen.getByRole("link", { name: "Video Quick Bites" })).toHaveAttribute(
       "href",
-      "/dashboard#video-quick-bites"
+      "/nclex/quick-bites"
     );
     cleanup();
     renderFor("naplex");
     expect(screen.queryByRole("link", { name: "Video Quick Bites" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Quick Bites: Pharmacy" })).toHaveAttribute(
       "href",
-      "/dashboard#video-quick-bites-pharmacy"
+      "/naplex/quick-bites"
+    );
+    cleanup();
+    renderFor("aanp-fnp");
+    expect(screen.getByRole("link", { name: "Quick Bites: FNP" })).toHaveAttribute(
+      "href",
+      "/aanp-fnp/quick-bites"
+    );
+    cleanup();
+    renderFor("pance");
+    expect(screen.getByRole("link", { name: "Quick Bites: PANCE" })).toHaveAttribute(
+      "href",
+      "/pance/quick-bites"
     );
     cleanup();
     renderFor("nclex");
