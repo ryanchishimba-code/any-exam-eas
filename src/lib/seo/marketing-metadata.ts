@@ -155,8 +155,10 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
   const description = count
     ? `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmap & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`
     : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes the Roadmap and Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day free trial. Cancel anytime.`;
+  const base = baseOpenGraph(title, description, "/pricing", { absoluteTitle: true });
+  const card = landingOgImage("home");
   return {
-    ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
+    ...base,
     keywords: [
       "affordable multi-exam board prep",
       "affordable multi-exam prep",
@@ -164,6 +166,14 @@ export function buildPricingMetadata(totalLabel?: string): Metadata {
       "USMLE question bank price",
       "NAPLEX prep subscription",
     ],
+    openGraph: {
+      ...base.openGraph,
+      images: [card],
+    },
+    twitter: {
+      ...base.twitter,
+      images: [card.url],
+    },
   };
 }
 

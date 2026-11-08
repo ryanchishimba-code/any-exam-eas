@@ -3,7 +3,7 @@ import { BrandLogo } from "@/components/brand/BrandLogo";
 import { NOT_FOR_PATIENT_CARE_LINE } from "@/lib/marketing/legal-copy";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { MARKETING_BOARD_LINKS, ROUTES } from "@/lib/routes";
-import { formatPricingCheckoutTrialOffer, MARKETING_DISCLAIMER } from "@/lib/site";
+import { formatTrialLabel, MARKETING_DISCLAIMER } from "@/lib/site";
 
 const EXPLORE_LINKS = [
   { href: "/free-practice-questions", label: "Free practice questions" },
@@ -72,7 +72,7 @@ export function Footer() {
           <div className="min-w-0 sm:col-span-2 lg:col-span-1">
             <BrandLogo href={ROUTES.home} variant="nav" showName />
             <p className="mt-3 max-w-full text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              {formatPricingCheckoutTrialOffer()}
+              {formatTrialLabel()} on AnyExamEasy. No payment method required.
             </p>
             <p className="mt-2 flex max-w-full flex-col items-start gap-0.5 text-sm leading-snug text-[var(--color-ink)]">
               <a

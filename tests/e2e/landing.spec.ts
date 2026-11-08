@@ -22,9 +22,8 @@ test.describe("Landing page", () => {
     await expect(page.getByText("Quality exam prep shouldn't be out of reach")).toHaveCount(0);
     await expect(page.getByText(/24\/7|support hours/i)).toHaveCount(0);
     await expect(page.getByText(/no payment method required/i).first()).toBeVisible();
-    await expect(
-      page.getByText("5-day free trial · no payment method required · then $27.99/mo").first()
-    ).toBeVisible();
+    await expect(page.getByText("5-day free trial on AnyExamEasy. No payment method required.")).toBeVisible();
+    await expect(page.locator("footer").getByText(/\$\d/)).toHaveCount(0);
     await expect(page.getByRole("heading", { name: "How to pass in 3 minutes", exact: true })).toBeVisible();
     await expect(page.locator("#faq")).toBeVisible();
     await expect(page.getByRole("button", { name: /share your progress/i })).toHaveCount(0);
@@ -56,9 +55,8 @@ test.describe("Landing page", () => {
     await page.goto("/naplex", { waitUntil: "domcontentloaded" });
     await expect(page.locator('[data-exam-hero="naplex"]')).toBeVisible();
     await expect(page.getByText(/active NAPLEX questions/i)).toBeVisible();
-    await expect(
-      page.getByText(/5-day free trial · no payment method required · then/i).first()
-    ).toBeVisible();
+    await expect(page.getByText("5-day free trial on AnyExamEasy. No payment method required.")).toBeVisible();
+    await expect(page.getByText(/\$27\.99\/mo plan/)).toHaveCount(0);
     await expect(page.getByText(/\bno[- ]card\b/i)).toHaveCount(0);
   });
 

@@ -74,5 +74,10 @@ describe("free practice questions page", () => {
     expect(PAGE).toContain("FREE_PRACTICE_CTA_LABEL");
     expect(PAGE).toContain("AnyExamEasy");
     expect(PAGE).not.toMatch(/Any Exam Easy/);
+    expect(PAGE).toContain('landingOgImage("home")');
+    expect(PAGE).toContain("images: [FREE_PRACTICE_SHARE_IMAGE]");
+    expect(PAGE).toContain("images: [FREE_PRACTICE_SHARE_IMAGE.url]");
+    expect(FOOTER).not.toContain("formatPricingCheckoutTrialOffer");
+    expect(FOOTER).not.toMatch(/\$\d/);
   });
 });

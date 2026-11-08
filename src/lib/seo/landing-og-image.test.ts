@@ -6,7 +6,7 @@ import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero
 import { ABOUT_HERO_HEADLINE } from "@/lib/marketing/about-copy";
 import { HOME_PRACTICE_HEADLINE } from "@/lib/marketing/legal-copy";
 import { buildHomeJsonLd, buildHomeMetadata, buildRootMetadata, DEFAULT_OG_IMAGE_PATH } from "@/lib/seo";
-import { buildAboutJsonLd, buildAboutMetadata } from "@/lib/seo/marketing-metadata";
+import { buildAboutJsonLd, buildAboutMetadata, buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 import {
   LANDING_OG_HEIGHT,
   LANDING_OG_IDS,
@@ -107,5 +107,12 @@ describe("landing share images", () => {
     const jsonLd = JSON.stringify(buildHomeJsonLd());
     expect(jsonLd).toContain(DEFAULT_OG_IMAGE_PATH);
     expect(jsonLd).not.toContain("/images/og/home.jpg");
+  });
+
+  it("gives pricing the same versioned home share card", () => {
+    const card = landingOgImage("home");
+    expect(imageUrl(buildPricingMetadata())).toBe(card.url);
+    expect(card.url).toBe(`${LANDING_OG_ORIGIN}/images/og/home.jpg?v=${LANDING_OG_VERSION}`);
+    expect(buildPricingMetadata().twitter?.images).toEqual([card.url]);
   });
 });

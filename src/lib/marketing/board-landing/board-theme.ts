@@ -1,7 +1,6 @@
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatExactQuestionCount, servedQuestionCount, type BoardQuestionUnits } from "@/lib/counts";
-import { formatMonthlyPrice } from "@/lib/site";
 import type { BoardLandingModel } from "@/lib/marketing/board-landing/model";
 
 export type BoardSlug = "nclex" | "naplex" | "usmle" | "aanp-fnp" | "pance" | "npte-pt";
@@ -91,7 +90,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Prep adds up",
           worry: "30-day prep subscriptions add up",
-          fix: `Pro is ${formatMonthlyPrice("pro")}/mo for NCLEX plus five other boards after a ${TRIAL_DAYS}-day trial.`,
+          fix: `NCLEX and five other boards share one AnyExamEasy plan after a ${TRIAL_DAYS}-day trial.`,
         },
       ];
     case "naplex":
@@ -112,7 +111,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Short QBank cost",
           worry: "Short-access QBanks are pricey",
-          fix: `One ${formatMonthlyPrice("pro")}/mo plan covers NAPLEX and five other boards.`,
+          fix: "One AnyExamEasy plan covers NAPLEX and five other boards.",
         },
       ];
     case "usmle":
@@ -127,7 +126,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Per-step cost",
           worry: "Per-step prep stacks fast",
-          fix: `All three steps stay on Pro at ${formatMonthlyPrice("pro")}/mo with a ${TRIAL_DAYS}-day trial.`,
+          fix: `All three steps stay on one AnyExamEasy plan, with a ${TRIAL_DAYS}-day trial.`,
         },
         {
           id: "anatomy",
@@ -154,7 +153,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Another subscription",
           worry: "Another single-exam subscription",
-          fix: `FNP prep shares Pro with five other boards at ${formatMonthlyPrice("pro")}/mo.`,
+          fix: "FNP prep shares one AnyExamEasy plan with five other boards.",
         },
       ];
     case "pance":
@@ -175,7 +174,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Extra QBank cost",
           worry: "Dedicated PA QBanks cost extra",
-          fix: `PANCE stays on the same ${formatMonthlyPrice("pro")}/mo plan as your other boards.`,
+          fix: "PANCE stays on the same AnyExamEasy plan as your other boards.",
         },
       ];
     case "npte-pt":
@@ -196,7 +195,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "cost",
           shortLabel: "Window pricing",
           worry: "PT prep priced per access window",
-          fix: `NPTE-PT is included on Pro at ${formatMonthlyPrice("pro")}/mo — no separate PT pass.`,
+          fix: "NPTE-PT is included on AnyExamEasy. No separate PT pass.",
         },
       ];
     default:
