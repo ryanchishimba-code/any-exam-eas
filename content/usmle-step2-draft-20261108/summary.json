@@ -8,5 +8,6 @@
     "5": 73
   },
   "vignetteRich": 150,
-  "note": "All 150 now include an age and an examination or history sentence so they pass the session vignette check. Still only the first 150 of 300. Not loaded."
+  "blindRead": { "answered": 139, "matched": 139, "ambiguous": 0 },
+  "note": "The 139 thin openings were rewritten as board vignettes (age, presentation, and the original history, exam, and labs). A keyless read of those 139 matched the stored key on every item. Still only the first 150 of 300. Not loaded."
 }
