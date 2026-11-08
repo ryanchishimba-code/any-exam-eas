@@ -16,5 +16,6 @@
   "dryRun": { "rewrites": "would_update 100, then 0 remained", "hides": "would_hide 53, then all 53 were still active" },
   "spotCheck": { "rewrittenWithVignette": 100, "bad": 0 },
   "blindReadPartB": { "answered": 10, "matched": 10 },
-  "note": "Seven of the live 100 do not meet the bar and are listed in bar-flags.json. They were already applied. Nine of the last ten meet the bar and stay unloaded. The tenth is a repeat primary-PCI item and is held out of update-part-b.sql."
+  "barFixesApplied": false,
+  "note": "The 100 rewrites and 53 hides are live. Seven of the 100 fail the bar. The draft fix hides six duplicates and corrects the vaccine item. It has not been applied. Nine of the last ten rewrites meet the bar and stay unloaded. The tenth repeats primary PCI and is not in update-part-b.sql."
 }
