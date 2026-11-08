@@ -42,8 +42,10 @@ test.describe("Anatomy Explorer", () => {
 
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
     await search.fill("sternum");
-    await page.getByRole("button", { name: /^Sternum$/i }).first().click();
+    await page.getByRole("button", { name: /^Sternum\b/i }).first().click();
 
-    await expect(page.getByText(/^Sternum$/).first()).toBeVisible({ timeout: 15_000 });
+    await expect(page.getByRole("button", { name: /^Sternum\b/i }).first()).toBeVisible({
+      timeout: 15_000,
+    });
   });
 });
