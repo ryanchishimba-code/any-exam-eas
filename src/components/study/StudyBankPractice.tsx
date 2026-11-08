@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { BookOpen, Brain, Clock, Flag, Zap } from "lucide-react";
 import {
@@ -19,6 +20,7 @@ import {
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
+import { prepareClientForExamSwitch } from "@/lib/client/exam-switch-reset";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { fieldIdForExamSlug, fieldMatchesExamSlug } from "@/lib/edtech/exam-field-ids";
 import { takeDailySet } from "@/lib/learning/today-set-stash";
@@ -375,6 +377,7 @@ export function StudyBankPractice({
   initialTopicPracticeFormats?: FormatCounts | null;
 } = {}) {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { examSlug: clientExamSlug, loading: prefLoading, setExamSlug, refresh: refreshExamPref } =
@@ -2434,6 +2437,7 @@ export function StudyBankPractice({
                       const meta = getFieldMetaById(opt.id);
                       if (meta) setField(meta.label);
                       void persistUsmleStepPreference(opt.fieldParam);
+                      prepareClientForExamSwitch(queryClient, "usmle", opt.fieldParam);
                       const qs = new URLSearchParams(searchParams.toString());
                       qs.set("field", opt.fieldParam);
                       if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");

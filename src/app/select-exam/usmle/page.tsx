@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { auth } from "@/auth";
 import { ExamWheelPicker } from "@/components/edtech/ExamWheelPicker";
 import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
-import { usmleFieldIdToStepLevel } from "@/lib/exam-prep/usmle/steps";
+import { defaultUsmleStepLevel, usmleFieldIdToStepLevel } from "@/lib/exam-prep/usmle/steps";
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { ROUTES } from "@/lib/routes";
@@ -31,7 +31,7 @@ export default async function SelectUsmleStepPage() {
   const savedLevel = meta.usmleFieldId
     ? usmleFieldIdToStepLevel(meta.usmleFieldId)
     : null;
-  const initialLevel: UsmleStepLevel = savedLevel ?? "step1";
+  const initialLevel: UsmleStepLevel = savedLevel ?? defaultUsmleStepLevel();
 
   return (
     <div className="relative min-h-[calc(100vh-var(--page-top))] overflow-hidden bg-[var(--color-bg)]">

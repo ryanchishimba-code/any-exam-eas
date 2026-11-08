@@ -6,10 +6,8 @@ import { ExamOptionCard, type ExamOptionTheme } from "@/components/edtech/ExamOp
 import { StatusMessage } from "@/components/ui/StatusMessage";
 import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
-import type {
-  UsmleExamOption,
-  UsmleExamOptionsPayload,
-} from "@/lib/exam-prep/usmle/exam-options";
+import type { UsmleExamOptionsPayload } from "@/lib/exam-prep/usmle/exam-options";
+import { usmleStepAccentBadge } from "@/lib/exam-prep/usmle/step-accent";
 
 type Props = {
   /** Server-rendered options with counts — instant first paint, no flash. */
@@ -25,13 +23,6 @@ const cardTheme: ExamOptionTheme = {
   iconColor: USMLE_THEME.iconColor,
   ctaClass: USMLE_THEME.ctaClass,
 };
-
-/** One meaningful accent badge per card — never more than two badged at once. */
-function badgeFor(option: UsmleExamOption, maxCountFieldId: string | null): string | undefined {
-  if (option.fieldId === maxCountFieldId) return "Largest bank";
-  if (option.level === "step2") return "Recommended";
-  return undefined;
-}
 
 export function UsmleStepSelector({ initialPayload }: Props) {
   const [payload, setPayload] = useState<UsmleExamOptionsPayload>(initialPayload);
@@ -72,7 +63,7 @@ export function UsmleStepSelector({ initialPayload }: Props) {
   const topOption = hasData
     ? payload.options.reduce((top, o) => (o.questionCount > top.questionCount ? o : top))
     : null;
-  const maxCountFieldId = topOption && topOption.questionCount > 0 ? topOption.fieldId : null;
+  const largestLevel = topOption && topOption.questionCount > 0 ? topOption.level : null;
 
   // Defensive loading state (options are normally always present from SSR).
   if (!hasData) {
@@ -121,7 +112,7 @@ export function UsmleStepSelector({ initialPayload }: Props) {
               questionCount={option.questionCount}
               durationMin={option.recommendedDurationMin}
               difficulty={option.difficulty}
-              badge={badgeFor(option, maxCountFieldId)}
+              badge={usmleStepAccentBadge(option.level, largestLevel)}
               theme={cardTheme}
               icon={USMLE_THEME.icon}
             />

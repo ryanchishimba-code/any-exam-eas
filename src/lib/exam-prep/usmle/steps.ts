@@ -115,6 +115,15 @@ export function defaultUsmleFieldId(): UsmleFieldId {
   return "usmle-step-2";
 }
 
+/** The only step used when a learner has not saved one. */
+export function defaultUsmleStepLevel(): UsmleStepLevel {
+  const level = usmleFieldIdToStepLevel(defaultUsmleFieldId());
+  if (!level) {
+    throw new Error("The default USMLE field is not a step.");
+  }
+  return level;
+}
+
 /** Per-step editorial QA floor for non-curated bank items. */
 export function usmleServeMinQaScore(fieldId: string): number | null {
   const step = usmleStepDefinition(fieldId);
