@@ -1,13 +1,14 @@
 {
-  "status": "100 rewrites live, 53 clones hidden, 10 rewrites draft",
+  "status": "nine rewrites and bar fixes live; one PCI item blocked",
   "fieldId": "usmle-step-2",
   "servedBefore": 4974,
   "activeQaBefore": 5013,
-  "servedAfter": 4921,
-  "activeQaAfter": 4960,
+  "servedAfterHides": 4921,
+  "servedAfterPartBAndBar": 4915,
+  "activeQaAfterPartBAndBar": 4954,
   "rewritesApplied": 100,
   "clonesHidden": 53,
-  "draftRewritesNotApplied": 9,
+  "draftRewritesNotApplied": 0,
   "draftHeldForBar": 1,
   "applied100FailingBar": 7,
   "snapshot": "usmle-step2-vignette-100-20261108-before",
@@ -16,6 +17,11 @@
   "dryRun": { "rewrites": "would_update 100, then 0 remained", "hides": "would_hide 53, then all 53 were still active" },
   "spotCheck": { "rewrittenWithVignette": 100, "bad": 0 },
   "blindReadPartB": { "answered": 10, "matched": 10 },
-  "barFixesApplied": false,
-  "note": "The 100 rewrites and 53 hides are live. Seven of the 100 fail the bar. The draft fix hides six duplicates and corrects the vaccine item. It has not been applied. Nine of the last ten rewrites meet the bar and stay unloaded. The tenth repeats primary PCI and is not in update-part-b.sql."
+  "partBApplied": true,
+  "barFixesApplied": true,
+  "partBSnapshot": "usmle-step2-partb-bar-20261108-before",
+  "partBSnapshotId": "snap-holy-dawn-ap498rkg",
+  "partBBackupTable": "qbi_usmle_step2_partb_bar_20261108",
+  "blocked": ["cmtpx3bwn009y1y6hkl34tbw2"],
+  "note": "Nine rewrites and the bar fixes are live. Snapshot snap-holy-dawn-ap498rkg. Scoped backup qbi_usmle_step2_partb_bar_20261108 holds the 16 pre-change rows. Undo is undo-part-b.sql plus bar-fixes.undo.sql. The primary-PCI duplicate was not loaded. Do not run scripts/06-rollback-DO-NOT-RUN.sql."
 }
