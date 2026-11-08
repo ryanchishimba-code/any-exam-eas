@@ -1,4 +1,5 @@
 import { test, expect } from "./fixtures/auth";
+import { fillControlledInput } from "./helpers/forms";
 
 test.describe("Anatomy Explorer", () => {
   test("catalog and explorer pages load", async ({ authenticatedPage: page }) => {
@@ -45,7 +46,7 @@ test.describe("Anatomy Explorer", () => {
     await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
-    await search.fill("sternum");
+    await fillControlledInput(search, "sternum");
     await page.getByRole("button", { name: /^Sternum\b/i }).first().click();
 
     await expect(page.getByRole("button", { name: /^Sternum\b/i }).first()).toBeVisible({
