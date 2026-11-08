@@ -39,7 +39,8 @@ export async function warmNeonCompute(
 ): Promise<NeonWarmupResult> {
   const started = Date.now();
   if (!usesNeonHttpDriver(resolveDatabaseUrl())) {
-    return { ok: true, ms: 0 };
+    lastSuccessfulWarmAt = Date.now();
+    return { ok: true, ms: Date.now() - started };
   }
   const forCron = label.startsWith("cron.");
   try {
