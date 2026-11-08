@@ -140,6 +140,7 @@ export function AnatomySidebar({
                 <button
                   key={layer}
                   type="button"
+                  aria-pressed={on}
                   onClick={() => onToggleLayer(layer)}
                   className={cn(
                     anatomyUi.chip,

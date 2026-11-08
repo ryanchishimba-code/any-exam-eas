@@ -6,6 +6,7 @@ test.describe("Anatomy Explorer", () => {
     await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
+    await page.getByRole("button", { name: /show structure list/i }).click();
     await expect(page.getByRole("searchbox", { name: /search structures/i }).first()).toBeVisible({
       timeout: 30_000,
     });
@@ -16,6 +17,7 @@ test.describe("Anatomy Explorer", () => {
 
   test("authenticated user can search structures", async ({ authenticatedPage: page }) => {
     await page.goto("/anatomy", { waitUntil: "domcontentloaded" });
+    await page.getByRole("button", { name: /show structure list/i }).click();
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
     await expect(search).toBeVisible({ timeout: 30_000 });
     await search.fill("heart");
@@ -29,15 +31,16 @@ test.describe("Anatomy Explorer", () => {
     await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
+    await page.getByRole("button", { name: /show structure list/i }).click();
 
-    const skeletalSwitch = page.getByLabel("Skeletal", { exact: true });
-    await expect(skeletalSwitch).toBeVisible({ timeout: 30_000 });
-    await expect(skeletalSwitch).toBeChecked();
+    const skeletal = page.getByRole("button", { name: "Skeletal", exact: true });
+    await expect(skeletal).toBeVisible({ timeout: 30_000 });
+    await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
-    await skeletalSwitch.click();
-    await expect(skeletalSwitch).not.toBeChecked();
-    await skeletalSwitch.click();
-    await expect(skeletalSwitch).toBeChecked();
+    await skeletal.click();
+    await expect(skeletal).toHaveAttribute("aria-pressed", "false");
+    await skeletal.click();
+    await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
     await search.fill("sternum");
