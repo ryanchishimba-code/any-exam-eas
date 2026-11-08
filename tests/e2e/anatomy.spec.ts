@@ -48,7 +48,7 @@ test.describe("Anatomy Explorer", () => {
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
     await search.scrollIntoViewIfNeeded();
     await fillControlledInput(search, "femur");
-    const femur = page.getByRole("button", { name: /^Femur\b/i }).first();
+    const femur = page.locator("aside").first().getByRole("button", { name: /^Femur\b/i });
     await expect(femur).toBeVisible({ timeout: 15_000 });
     await femur.evaluate((el) => el.scrollIntoView({ block: "center", inline: "nearest" }));
     await femur.click();
