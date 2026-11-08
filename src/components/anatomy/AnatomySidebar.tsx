@@ -69,9 +69,10 @@ export function AnatomySidebar({
     <aside
       className={cn(
         anatomyUi.panelFlat,
-        "flex h-full flex-col gap-4 rounded-none border-x-0 border-r border-y-0 p-4",
+        "flex h-full min-h-0 flex-col gap-4 overflow-y-auto rounded-none border-x-0 border-r border-y-0 p-4",
         anatomyUi.panelHeight
       )}
+      style={{ overflowY: "auto" }}
     >
       <div>
         <h2 className={anatomyUi.sectionLabel}>Structures</h2>

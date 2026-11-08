@@ -50,6 +50,7 @@ test.describe("Anatomy Explorer", () => {
     await fillControlledInput(search, "femur");
     const femur = page.getByRole("button", { name: /^Femur\b/i }).first();
     await expect(femur).toBeVisible({ timeout: 15_000 });
+    await femur.evaluate((el) => el.scrollIntoView({ block: "center", inline: "nearest" }));
     await femur.click();
   });
 });
