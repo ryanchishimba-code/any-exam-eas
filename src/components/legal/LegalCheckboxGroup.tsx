@@ -16,8 +16,6 @@ export function LegalCheckboxGroup({
   onTermsChange,
   onAgeChange,
 }: Props) {
-  const summaryLine = getSignupConsentSummaryLines()[0];
-
   return (
     <div className="space-y-4 rounded-2xl bg-[var(--color-surface)] p-4 text-sm">
       <label className="flex cursor-pointer gap-3">
@@ -52,9 +50,11 @@ export function LegalCheckboxGroup({
             Educational Disclaimers
           </Link>
           .
-          {summaryLine ? (
-            <p className="mt-2 text-[var(--color-ink-muted)]">{summaryLine}</p>
-          ) : null}
+          <div className="mt-2 space-y-1 text-[var(--color-ink-muted)]">
+            {getSignupConsentSummaryLines().map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
         </div>
       </label>
     </div>

@@ -44,6 +44,7 @@ import {
   trackVercelFunnel,
 } from "@/lib/analytics/vercel-funnel";
 import { isAppleAuthButtonEnabled, isGoogleAuthButtonEnabled } from "@/lib/auth/oauth-buttons";
+import { stampSignupConsentCookie } from "@/lib/legal/signup-consent-cookie";
 import { readClientFirstTouch } from "@/lib/marketing/first-touch-client";
 import { mergeFirstTouch } from "@/lib/marketing/first-touch";
 
@@ -58,6 +59,7 @@ export function SignupForm({
   initialTier = "pro",
   initialExam = "",
   attribution,
+  termsNotice = "",
 }: {
   plan: SignupPlan;
   onPlanChange: (plan: SignupPlan) => void;
@@ -71,6 +73,7 @@ export function SignupForm({
     utmMedium?: string;
     utmCampaign?: string;
   };
+  termsNotice?: string;
 }) {
   const examLocked = Boolean(initialExam);
   const emailErrorId = useId();
@@ -312,14 +315,28 @@ export function SignupForm({
 
       {step === 1 ? (
         <div className="aee-auth-step" data-testid="signup-step-account">
+          {termsNotice ? (
+            <p className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950" role="alert">
+              {termsNotice}
+            </p>
+          ) : null}
+          <LegalCheckbox
+            checked={accepted}
+            onChange={(value) => {
+              setAccepted(value);
+              if (value) setError("");
+            }}
+          />
           {socialEnabled && !configWarning ? (
             <div className="mb-4 space-y-3">
               {googleEnabled ? (
                 <GoogleSignInButton
                   large
+                  disabled={!accepted}
                   board={examSlug || undefined}
                   callbackUrl={oauthCallbackUrl}
                   onClick={() => {
+                    stampSignupConsentCookie();
                     const trimmedEmail = email.trim();
                     if (trimmedEmail) {
                       saveReturningUserHint({
@@ -334,9 +351,11 @@ export function SignupForm({
               {appleEnabled ? (
                 <AppleSignInButton
                   large
+                  disabled={!accepted}
                   board={examSlug || undefined}
                   callbackUrl={oauthCallbackUrl}
                   onClick={() => {
+                    stampSignupConsentCookie();
                     const trimmedEmail = email.trim();
                     if (trimmedEmail) {
                       saveReturningUserHint({
@@ -351,9 +370,11 @@ export function SignupForm({
               <SocialLoginButton
                 provider="linkedin"
                 large
+                disabled={!accepted}
                 board={examSlug || undefined}
                 callbackUrl={oauthCallbackUrl}
                 onClick={() => {
+                  stampSignupConsentCookie();
                   const trimmedEmail = email.trim();
                   if (trimmedEmail) {
                     saveReturningUserHint({

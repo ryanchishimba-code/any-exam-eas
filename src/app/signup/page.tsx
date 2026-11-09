@@ -48,6 +48,7 @@ export default async function SignupPage({
     utm_source?: string;
     utm_medium?: string;
     utm_campaign?: string;
+    error?: string;
   }>;
 }) {
   const params = await searchParams;
@@ -118,6 +119,11 @@ export default async function SignupPage({
       utmSource={params.utm_source}
       utmMedium={params.utm_medium}
       utmCampaign={params.utm_campaign}
+      termsNotice={
+        params.error === "terms_required"
+          ? "Check the terms box before creating an account with Google, Apple, or LinkedIn."
+          : ""
+      }
     />
   );
 }

@@ -14,6 +14,7 @@ type AppleSignInButtonProps = {
   highlighted?: boolean;
   large?: boolean;
   onClick?: () => void;
+  disabled?: boolean;
   className?: string;
 };
 
@@ -27,6 +28,7 @@ export function AppleSignInButton({
   highlighted,
   large,
   onClick,
+  disabled = false,
   className = "",
 }: AppleSignInButtonProps) {
   const [loading, setLoading] = useState(false);
@@ -37,7 +39,7 @@ export function AppleSignInButton({
     <Button
       type="button"
       variant="secondary"
-      disabled={loading}
+      disabled={loading || disabled}
       className={`w-full gap-2.5 ${large ? "!py-3.5 !text-base" : ""} ${
         highlighted ? "ring-2 ring-[var(--color-accent)]/30" : ""
       } ${className}`}

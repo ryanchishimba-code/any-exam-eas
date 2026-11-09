@@ -26,6 +26,8 @@ describe("about founder copy", () => {
     expect(story).not.toContain("$27.99");
     expect(story).toContain(ABOUT_PULL_QUOTE);
     expect(story.toLowerCase()).not.toMatch(/\byou will pass\b/);
+    expect(story).not.toMatch(/\bPTs\b|\bMDs\b/);
+    expect(story).toMatch(/not every item is individually reviewed by a clinician/i);
 
     const live = founderStoryParagraphs(formatMonthlyPrice("pro")).join(" ");
     expect(live).toContain(`At ${formatMonthlyPrice("pro")} a month`);

@@ -9,6 +9,14 @@ import { scheduleTrialStartAlert } from "@/lib/billing/trial-alert";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { attributionColumns, type FirstTouchAttribution } from "@/lib/marketing/first-touch";
 
+/** Thrown when a brand-new social account has no current terms stamp. */
+export class SignupConsentRequiredError extends Error {
+  constructor() {
+    super("SignupConsentRequired");
+    this.name = "SignupConsentRequiredError";
+  }
+}
+
 /** Thrown when OAuth sign-in targets an email/password account without an explicit link. */
 export class OAuthLinkBlockedError extends Error {
   constructor() {
@@ -25,6 +33,8 @@ export async function findOrCreateGoogleUser(params: {
   providerAccountId: string;
   provider?: "google" | "apple" | "linkedin";
   attribution?: FirstTouchAttribution;
+  /** Required only when this call would create the account. */
+  signupConsentAccepted: boolean;
 }): Promise<{ id: string; role: string; created: boolean; startedTrial: boolean }> {
   const email = normalizeEmail(params.email);
   const provider = params.provider ?? "google";
@@ -63,6 +73,10 @@ export async function findOrCreateGoogleUser(params: {
       });
     }
     return { id: existing.id, role: existing.role, created: false, startedTrial: false };
+  }
+
+  if (!params.signupConsentAccepted) {
+    throw new SignupConsentRequiredError();
   }
 
   const trialAlreadyUsed = await hasConsumedTrial(email);

@@ -15,6 +15,7 @@ import {
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import { AI_ASSISTED_REVIEW_NOTE } from "@/lib/marketing/legal-copy";
+import { QUESTION_COUNT_CHANGE_NOTE } from "@/lib/legal";
 
 /**
  * Five-minute ISR. This must stay a numeric literal (Next cannot analyze an
@@ -106,7 +107,8 @@ export default async function HowQuestionsAreReviewedPage() {
           </p>
           {!counts.degraded && counts.totalServed > 0 ? (
             <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-              {counts.totalQuestionsLabel} are available to study right now. {ACTIVE_QUESTION_DEFINITION}
+              {counts.totalQuestionsLabel} are available to study right now. {ACTIVE_QUESTION_DEFINITION}{" "}
+              {QUESTION_COUNT_CHANGE_NOTE}
             </p>
           ) : (
             <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">

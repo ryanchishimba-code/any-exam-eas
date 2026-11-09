@@ -30,6 +30,7 @@ type SocialLoginButtonProps = {
   board?: string | null;
   large?: boolean;
   onClick?: () => void;
+  disabled?: boolean;
   className?: string;
 };
 
@@ -39,6 +40,7 @@ export function SocialLoginButton({
   board,
   large,
   onClick,
+  disabled = false,
   className = "",
 }: SocialLoginButtonProps) {
   const [loading, setLoading] = useState(false);
@@ -49,7 +51,7 @@ export function SocialLoginButton({
     <Button
       type="button"
       variant="secondary"
-      disabled={loading}
+      disabled={loading || disabled}
       className={`w-full gap-2.5 ${large ? "!py-3.5 !text-base" : ""} ${className}`}
       onClick={() => {
         onClick?.();

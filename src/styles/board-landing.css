@@ -2097,6 +2097,14 @@
   color: var(--bl-muted);
 }
 
+.bl-stat-strip__note {
+  margin: 0.85rem 0 0;
+  max-width: 40rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--bl-muted);
+}
+
 .bl-stat-strip__cell dd {
   margin: 0.2rem 0 0;
   font-size: clamp(1.75rem, 5vw, 2.5rem);

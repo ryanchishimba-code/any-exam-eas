@@ -16,7 +16,7 @@ export const PRICING_TRIAL_OFFER_LINE = `${TRIAL_DAYS}-day free trial · no paym
 
 /** Liability-safe refund sentence. Use this string as-is on pricing and checkout. */
 export const PAID_REFUND_PARAGRAPH =
-  "Cancel anytime in Settings. Card payments go through Stripe — we do not store full card numbers. Paid charges are non-refundable except where the law requires a refund, and access runs through the period already paid.";
+  "Cancel anytime in Settings. That opens Stripe's billing portal — we do not store full card numbers, and this app does not cancel the subscription by itself. Paid charges are non-refundable except where the law requires a refund. Study access follows the subscription status Stripe returns.";
 
 /** Shown under the existing marketing disclaimer in the footer. */
 export const NOT_FOR_PATIENT_CARE_LINE =

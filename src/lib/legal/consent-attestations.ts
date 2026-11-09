@@ -1,7 +1,7 @@
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
 /** Bump when signup/consent attestation language changes — stored on each consent record. */
-export const CONSENT_ATTESTATION_VERSION = "2026-07-05";
+export const CONSENT_ATTESTATION_VERSION = "2026-11-09";
 
 /**
  * Full attestation text presented at signup and archived on each consent record.
@@ -22,6 +22,7 @@ export function getSignupConsentAttestations(): string[] {
     LEGAL_DISCLAIMERS.educationalPurpose,
     LEGAL_DISCLAIMERS.userResponsibility,
     LEGAL_DISCLAIMERS.ageRequirement,
+    "Promotional email: Accepting these terms is not consent to marketing email. Account, billing, and security messages are separate. An optional daily-question address is collected only if I submit that form and confirm it.",
     `Legal documents: I have read and agree to the Terms of Service, Privacy Policy, and Educational Disclaimers (version ${LEGAL_LAST_UPDATED}).`,
     `Billing acknowledgement: I understand subscription, auto-renewal, and non-refundable payment terms described in the Terms of Service unless required otherwise by applicable law.`,
     `Dispute resolution & liability: I acknowledge the limitation of liability, indemnification, and binding individual arbitration provisions described in the Terms of Service and Disclaimers.`,
@@ -34,6 +35,9 @@ export function getSignupConsentAttestations(): string[] {
  */
 export function getSignupConsentSummaryLines(): string[] {
   return [
-    "Original study material · not official board items · independent of NCSBN, NBME, NABP, and other exam boards.",
+    "Original study material for six boards. Not official exam items, and not affiliated with the exam boards.",
+    "No guarantee of a score, a license, a job, or a certification.",
+    "Not medical, nursing, or pharmacy advice, and not for patient care.",
+    "Accepting these terms is not consent to promotional messages.",
   ];
 }
