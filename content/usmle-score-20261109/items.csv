@@ -1,0 +1,111 @@
+bucket,id,topic,difficulty,classification,score_10,key_correct,vignette,difficulty_calibration,distractors,rationale,readiness,keyed_answer,note
+nclex,cmr75aq6100ct1ywuekc105f2,endocrine-meds,4,sound,10.0,2,2,2,2,2,2,Administer insulin glargine as prescribed,
+nclex,cmr0tik4x00831yfnuj5wjzu2,iv-fluids-electrolytes,4,sound,10.0,2,2,2,2,2,2,Blood pressure of 90/60 mm Hg,
+nclex,cmr8rje3t008i1ye3m540gv8i,delegation-assignment,3,sound,10.0,2,2,2,2,2,2,Start oxygen therapy,
+nclex,a9141a80-a398-4c28-b2e0-5b3f54cb1b20,What does the nurse do?,4,sound,10.0,2,2,2,2,2,2,Stop the infusion and assess for a contrast reaction,
+nclex,cmr8stsk700821y9nxtejk5ba,ppe-donning-doffing,2,sound,10.0,2,2,2,2,2,2,Wear an N95 respirator before entering the room,
+nclex,cmr7jrnbb00d01y6612k7ebgi,vital-sign-trending,3,sound,10.0,2,2,2,2,2,2,Hold the digoxin dose and notify the provider,
+nclex,cmr754d1000b91ywu0qxfr844,ppe-donning-doffing,2,thin,8.3,2,1,2,2,2,1,Wear an N95 respirator before entering the room.,Second airborne-precaution item in this sample; same N95 decision as another served NCLEX item
+nclex,cmr8sz69o00971y9nuuaccpb5,pre-post-procedure,4,thin,8.3,2,1,2,2,2,1,Explain the procedure and answer any questions the client may have,Explaining the colonoscopy and giving the NPO instruction are both appropriate
+nclex,cmr7gb8nf00971y59zjpe5m2x,isolation-transport,3,sound,10.0,2,2,2,2,2,2,Administer 15 g of fast-acting carbohydrate.,
+nclex,eac8ef4b-eb8c-4bd1-9ff1-88702b26e528,A client learning crutches is shown a 3-,4,thin,8.3,2,1,2,2,2,1,Teach the gait the therapist prescribed and keep a belt on during practice,"Crutch item is a one-line safety shell, not a full NCLEX stem"
+nclex,cmr7gip5f00b11y59ccjgcylh,erikson-stages,2,sound,10.0,2,2,2,2,2,2,Assess the client's current stress level.,
+nclex,e250a645-757a-4706-872b-ed3651fa4539,What does the nurse do?,4,thin,8.3,2,1,2,2,2,1,Bathe the client with the head of the bed up,COPD bath item is a one-line safety shell
+nclex,cmr7jl11y00bk1y665gie3vu7,neurological-emergencies,4,sound,10.0,2,2,2,2,2,2,Ensure the client has a patent IV line,
+nclex,cmr1239pm00451y1u6xo2j4ww,restraints,3,sound,10.0,2,2,2,2,2,2,The client is coughing and has difficulty breathing,
+nclex,cmr1d6nfa000f1ydfp6om6kci,oer-community,3,sound,10.0,2,2,2,2,2,2,Assist the client with a shower using a shower chair.,
+nclex,cmr8qpsne00cl1yvf6ynlikm1,isolation-transport,5,sound,10.0,2,2,2,2,2,2,Ensure the patient wears a surgical mask during transport.,
+nclex,cmr75n90w00go1ywu1gd8jr5v,continuity-case-management,4,sound,10.0,2,2,2,2,2,2,Coordinate with physical therapy for stair training and a home-safety evaluation before discharge.,
+nclex,cmr7djwj700951yvxbf9hj81r,cardiac-emergencies,2,sound,10.0,2,2,2,2,2,2,Chest pain rated 7/10,
+nclex,cmr0tl1y4005h1y8qbfnx1hk2,delegation,5,thin,8.3,2,1,2,2,2,1,Set up a medication reminder system,A reminder system and teaching adherence are both reasonable first steps
+nclex,cmr8m7dpf005e1yayk5zrvjhd,gi-disorders,4,sound,10.0,2,2,2,2,2,2,Administer lorazepam as prescribed,
+step1,cmr8dynlr007l1yaziopgt33g,study-designs,2,sound,10.0,2,2,2,2,2,2,Acute cholecystitis,
+step1,cmrr4t14l000b1y6pmqw5n7wn,leukemia-classification,2,thin,9.2,2,1,2,2,2,2,Decreased serum ferritin,Stem is packed into the question rather than a vignette lead
+step1,cmw8sltm6000gle086rw0f8mh,,,thin,6.7,2,2,1,2,0,1,"Pathogenic bacteria cross blood-brain barrier → neutrophilic pleocytosis, low CSF glucose, and elevated protein","Rationale is a generic reasoning outline, not why each option is right or wrong"
+step1,cmqkgnt4n0g0dl304tarli8le,metabolic-pathways,,sound,9.2,2,2,1,2,2,2,Diabetic ketoacidosis due to insulin nonadherence,
+step1,cmrpvuw3i00051yh5bp90q9af,leukemia-classification,4,fail,4.0,0,2,2,2,1,0,Adenosine deaminase deficiency,ADA deficiency is keyed for an adult picture; ADA-SCID presents in infancy
+step1,cmr8dyn75007g1yaz7va704op,sensitivity-specificity,5,thin,9.2,2,1,2,2,2,2,Insulin-induced hypoglycemia,Stem is packed into the question rather than a vignette lead
+step1,cmrtqg1a4000y1yx3nczd7iro,gram-positive-organisms,4,sound,10.0,2,2,2,2,2,2,Congestive heart failure (CHF),
+step1,cmr86y8kb007v1yw2cpx97paz,lysosomal-storage,2,sound,10.0,2,2,2,2,2,2,Increased lipolysis,
+step1,cmr4qbvfz00wg1y1e6nu4x9r7,preeclampsia-mechanism,2,sound,10.0,2,2,2,2,2,2,Increased placental release of anti-angiogenic factors,
+step1,cmr8ccmes016z1yw2pd527aka,psychiatric-pharmacology,3,sound,10.0,2,2,2,2,2,2,Inhibition of serotonin reuptake,
+step1,cmr8dyljz006w1yazpfmkjho4,lysosomal-storage,4,fail,4.0,0,2,2,2,1,0,Liver,A storage disease is asked as an injured organ; liver is not an injury
+step1,cmr8by4b601341yw2urwv7226,gout-crystals,2,sound,10.0,2,2,2,2,2,2,Deposition of monosodium urate crystals in the joint,
+step1,cmrrutkoy00k41y8wgil2duhu,emergency-acls,5,sound,10.0,2,2,2,2,2,2,Decreased renal excretion of potassium due to impaired glomerular filtration,
+step1,cmr86y8gf007u1yw2hc2wrf7d,inborn-errors,5,sound,10.0,2,2,2,2,2,2,Deficiency of the enzyme glucose-6-phosphatase,
+step1,cmr4pz6u300t41y1ep9fnju2w,gout-crystals,4,sound,10.0,2,2,2,2,2,2,First metatarsophalangeal joint,
+step1,cmrth10bo002j1yaxjczk9o1v,pharmacology-interactions,2,sound,10.0,2,2,2,2,2,2,Cholecystitis,
+step1,cmrpvuwht000a1yh5hpsv4vqw,leukemia-classification,2,sound,10.0,2,2,2,2,2,2,Impaired apoptosis of lymphocytes,
+step1,cmqgsh54q00021yq5c9bk2jik,cranial-nerve-lesions,5,sound,10.0,2,2,2,2,2,2,Autoantibody-mediated destruction of acetylcholine receptors,
+step1,cmqxcjweg004i1yma7y2166u6,metabolic-pathways,4,sound,10.0,2,2,2,2,2,2,Common bile duct,
+step1,cmrsew9ng00091y55d5mgnxf5,pe-pathophysiology,5,sound,10.0,2,2,2,2,2,2,Administer intravenous heparin,
+step1,cmw8slv9p001fle08jw4y6jy8,,,thin,6.7,2,2,1,2,0,1,Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis,"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step1,cmw8slwxn009mle08g17jby8z,,,thin,5.8,2,1,1,2,0,1,Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis,"Same dka-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step1,cmpnjgtkm000v1ymxwedn7564,heart-failure-pathophysiology,,thin,8.3,2,1,1,2,2,2,Acute decompensated systolic heart failure with pulmonary edema,Stem is packed into the question rather than a vignette lead
+step1,cmrtfrrj900101yx2mxzgre3c,hypersensitivity,5,thin,9.2,2,1,2,2,2,2,Inhibition of hepatic glucose production,Stem is packed into the question rather than a vignette lead
+step1,cmrrt9v7y000y1y8w675h750l,emergency-acls,5,sound,10.0,2,2,2,2,2,2,Endothelial dysfunction,
+step1,cmru6qxre001kl104f8lpb3gd,ms-pathology,3,sound,10.0,2,2,2,2,2,2,Respect autonomy; ensure informed refusal is documented,
+step1,cmrtfrqc5000n1yx2k50vfz2d,diabetes-pathophysiology,2,sound,10.0,2,2,2,2,2,2,Adrenal adenoma secreting cortisol,
+step1,cmqkgnthy0gful304aqs4090u,metabolic-pathways,,sound,9.2,2,2,1,2,2,2,Diabetic ketoacidosis due to insulin nonadherence,
+step1,cmw8slwxm0096le08v8vohcc3,,,thin,6.7,2,2,1,2,0,1,"Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and third-spacing","Rationale is a generic reasoning outline, not why each option is right or wrong"
+step1,cmr8d6dcz00001yazn17f9s6h,lupus-pathology,3,fail,4.0,0,2,2,2,1,0,Type III hypersensitivity reaction,SLE is both type III complex disease and type II autoantibody disease
+step2,cmrqhwkmm006x1ypxujxbshiy,substance-use-disorders,4,sound,10.0,2,2,2,2,2,2,Administer lorazepam,
+step2,cmw8sm0ji018dle085mtgz1ah,,,thin,6.7,2,2,1,2,0,1,Start levothyroxine at appropriate dose; recheck TSH in 6–8 weeks and adjust,"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8slxj100dlle08s3h00ew9,,,thin,6.7,2,2,1,2,0,1,Cardiogenic shock or acute kidney injury from over-diuresis,"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmrpwafvp00961ylu1h5xlj8o,trauma-atls,3,sound,10.0,2,2,2,2,2,2,Obtain an abdominal ultrasound,
+step2,cmw8sm0op01btle080aodopdn,,,thin,6.7,2,2,1,2,0,1,"Necrotizing pancreatitis, pseudocyst, or ARDS","Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8sm1a701drle08bb1hsju8,,,thin,5.8,2,1,1,2,0,1,Ceftriaxone plus vancomycin (add ampicillin if Listeria risk); dexamethasone before or with first antibiotic dose,"Same meningitis-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8sm02u0163le08qqons5a8,,,thin,5.8,2,1,1,2,0,1,Acute decompensated systolic heart failure with pulmonary edema,"Same hfref-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmru6qyk3002cl104swmjj0t3,pediatric-infections,4,sound,10.0,2,2,2,2,2,2,Pyloric stenosis,
+step2,cmr4hzw0s00ar1ydersyc3cuw,vaccination-schedules,5,fail,4.0,0,2,2,2,1,0,"MMR (measles, mumps, rubella) vaccine",A missed-visit 2-year-old is not specifically due for MMR over the other listed vaccines
+step2,cmqkgnxvw0jvpl30474h5h9nz,pediatric-infections,,sound,9.2,2,2,1,2,2,2,Embolic or thrombotic occlusion of cerebral artery (often cardioembolic from AF) → focal ischemia in MCA territory,
+step2,26fb664e-3976-4f0c-88b2-c44f8915f8f2,itp-established-outpatient-under-20,5,sound,10.0,2,2,2,2,2,2,Manage as an outpatient with prompt hematology follow-up,
+step2,cmw8slyxz00vzle08gna23ixa,,,thin,5.8,2,1,1,2,0,1,Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea,"Same hfref-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmrrbware000xl104h3f036j9,pediatric-infections,4,thin,8.3,2,1,2,2,2,1,Pyloric stenosis,Same pyloric-template stem already used in this served sample
+step2,cmw8slxlf00f6le083uev4u40,,,thin,5.8,2,1,1,2,0,1,Embolic or thrombotic occlusion of cerebral artery (often cardioembolic from AF) → focal ischemia in MCA territory,"Same af-stroke-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8sm1a601dnle08dsatzd64,,,thin,6.7,2,2,1,2,0,1,Primary hypothyroidism due to Hashimoto thyroiditis,"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmtpwzy72006t1y6h0yxg4xcj,hiv-opportunistic,4,fail,4.0,0,2,2,2,1,0,90 mL/min,Creatinine clearance is keyed at 90 using an assumed weight that is not in the stem
+step2,cmw8slyz200wule08hnx89nr7,,,thin,6.7,2,2,1,2,0,1,Volume repletion if hypovolemic; otherwise supportive care and treat underlying cause,"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8sm2en01kyle087vlb8g4u,,,thin,5.8,2,1,1,2,0,1,Diabetic ketoacidosis due to insulin nonadherence,"Same dka-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmqxdepif00ab1ymadg60e7v9,aki-ckd-electrolytes,2,sound,10.0,2,2,2,2,2,2,Hyperkalemia,
+step2,cmw8sm1gm01jele08oghjhzv2,,,thin,5.8,2,1,1,2,0,1,Volume repletion if hypovolemic; otherwise supportive care and treat underlying cause,"Same aki-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmr4gwj2d00121ydep24gj158,developmental-milestones,2,fail,4.0,0,2,2,2,1,0,Initiate noninvasive positive pressure ventilation,"COPD at 88% is keyed to NIPPV before oxygen, nebulizers, and steroids are established"
+step2,cmw8slz0800y8le08yzd7one7,,,thin,5.8,2,1,1,2,0,1,Volume repletion if hypovolemic; otherwise supportive care and treat underlying cause,"Same aki-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmr86ycc700aq1yr9s2lihg5f,trauma-atls,5,sound,10.0,2,2,2,2,2,2,Orthopedic surgery,
+step2,cmw8slxto00mole086sshg8sf,,,thin,5.8,2,1,1,2,0,1,Cardiogenic shock or acute kidney injury from over-diuresis,"Same hfref-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8slzia010sle08lzftgmry,,,thin,6.7,2,2,1,2,0,1,Streptococcal pyrogenic exotoxins → superantigen T-cell activation → diffuse erythematous rash (scarlet fever),"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmtpx3e3700aq1y6h99e98vtz,sdoh-health-equity,5,sound,10.0,2,2,2,2,2,2,Increase the dose of diuretics,
+step2,cmrvm6h8i008ejw04xa6benoa,prenatal-care,,thin,7.5,2,1,1,2,2,1,Volume repletion if hypovolemic; otherwise supportive care and treat underlying cause,Same aki-template stem already used in this served sample
+step2,cmrvm5uqf000cjw043tdbzvyx,chf-management,,thin,7.5,2,1,1,2,2,1,Acute decompensated heart failure,Same hfref-template stem already used in this served sample
+step2,cmw8sm1gn01jrle087ius1spk,,,thin,6.7,2,2,1,2,0,1,"Eclampsia, HELLP syndrome, placental abruption, or fetal growth restriction","Rationale is a generic reasoning outline, not why each option is right or wrong"
+step2,cmw8sm0nf01avle08d80d5qwt,,,thin,5.8,2,1,1,2,0,1,IV furosemide with strict I/O monitoring and daily weights,"Same hfref-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step3,cmru9iu0s00ao1y0sz6x9wfo1,sensitivity-specificity-lr,2,sound,10.0,2,2,2,2,2,2,Cholecystitis,
+step3,cmr8bafc9003b1yloc1t2w3x4,well-child-preventive,4,sound,10.0,2,2,2,2,2,2,Encourage a diverse diet with gradual exposure to new foods,
+step3,cbe57fa6-9d83-499e-898c-cef23ac8e2eb,sepsis-source-control-not-broader-antibiotics-alone,5,sound,10.0,2,2,2,2,2,2,"Urgent source control to decompress the kidney, in addition to antibiotics and resuscitation",
+step3,cmr8isett02e71ylo5a5p7oa1,medication-monitoring,3,thin,9.2,2,1,2,2,2,2,Give a benzodiazepine,Stem is packed into the question rather than a vignette lead
+step3,cmr8br84800b91ylo127o2ofd,confidentiality-reporting,2,sound,10.0,2,2,2,2,2,2,Ovarian torsion,
+step3,cmr8ccfl400kf1ylotfqj7uo4,chf-management,2,sound,10.0,2,2,2,2,2,2,Acute decompensated heart failure,
+step3,cmru3ud7y00h81y7w2ocub9wi,informed-consent-capacity,5,sound,10.0,2,2,2,2,2,2,Acute ischemic stroke,
+step3,cmr8h1gtp01xo1yloo9ss2l2a,acute-abdomen-ccs,5,sound,10.0,2,2,2,2,2,2,Perform exploratory laparotomy,
+step3,cmw8sm36d01sjle087255qkfi,,,thin,5.8,2,1,1,2,0,1,IV alteplase if eligible after CT excludes bleed; consider thrombectomy for large vessel occlusion,"Same af-stroke-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step3,cmru8bevi007a1yd6o4v8stu0,pharmaceutical-ads-abstracts,3,fail,4.0,0,2,2,2,1,0,Administer IV furosemide,IV furosemide is keyed while blood pressure is 90/60 in pulmonary edema
+step3,cmr8bafhy003c1ylojn8wyc1f,pediatric-ccs,5,sound,10.0,2,2,2,2,2,2,Bacterial pneumonia,
+step3,cmrvwolpg00181ye8h4exrhtl,pharmaceutical-ads-abstracts,3,sound,10.0,2,2,2,2,2,2,Dehydration-related lithium toxicity,
+step3,cmtpx8q7z002g1ymu8otdo5vn,suicide-risk,3,thin,9.2,2,1,2,2,2,2,Recommend intensive lifestyle changes and discuss her lifetime risk,Stem is packed into the question rather than a vignette lead
+step3,cmw8sm5c402f9le0825ih83i3,,,thin,5.8,2,1,1,2,0,1,Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable,"Same meningitis-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step3,cmr8bxzxt00e91yloyuylz9eo,chf-management,4,sound,10.0,2,2,2,2,2,2,Increase diuretic dosage,
+step3,cmr8ccfib00ke1ylo4m86kqp8,acs-management,5,fail,4.0,0,2,2,2,1,0,Administer tPA,Alteplase is the next step before the stem shows that CT has excluded hemorrhage
+step3,cmw8sm40x022nle08l200tqvv,,,thin,5.8,2,1,1,2,0,1,Strep pharyngitis with scarlet fever rash,"Same scarlet-template stem already used in this served sample; Rationale is a generic reasoning outline, not why each option is right or wrong"
+step3,cmr8j9o0w02ji1ylo05gms7k8,acute-abdomen-ccs,4,sound,10.0,2,2,2,2,2,2,Increase atorvastatin dosage,
+step3,cmr99ii9200u91ywym98e1ven,sensitivity-specificity-lr,5,sound,10.0,2,2,2,2,2,2,Initiate non-invasive positive pressure ventilation,
+step3,cmr8fz73n01n21ylofwctd9hd,informed-consent-capacity,4,sound,10.0,2,2,2,2,2,2,Administer intravenous fluids and initiate NPO status,
+step3,cmr9bburj01eg1ywytfzatpd2,gi-bleed-management,5,sound,10.0,2,2,2,2,2,2,Ischemic stroke,
+step3,cmr8dq9or01081ylo5mf7k4b7,gi-bleed-management,2,sound,10.0,2,2,2,2,2,2,Administer intravenous fluids,
+step3,cmr9c38mj01og1ywyl5yxxcg3,sdoh-health-equity,2,sound,10.0,2,2,2,2,2,2,Administer diuretics,
+step3,cmr97z0xs00ay1ywycogiqbfv,end-of-life-ethics,2,sound,10.0,2,2,2,2,2,2,Hypothyroidism,
+step3,cmr8q42ce01jh1ygi97em94dd,acs-management,4,thin,9.2,2,1,2,2,2,2,Administer tPA,Stem is packed into the question rather than a vignette lead
+step3,cmr8mlsq900mm1ygi4pfyrm79,ob-labor-ccs,2,sound,10.0,2,2,2,2,2,2,Chronic hypertension,
+step3,cmr97z0js00au1ywyb7lznslp,confidentiality-reporting,2,sound,10.0,2,2,2,2,2,2,Cholangitis,
+step3,cmw8sm5d702g8le08wq2clarf,,,thin,6.7,2,2,1,2,0,1,Acute coronary thrombosis → transmural ischemia and myocyte necrosis in the inferior wall (RCA territory),"Rationale is a generic reasoning outline, not why each option is right or wrong"
+step3,cmr4exvwv01mg1ykys0m1ybtj,end-of-life-ethics,4,sound,10.0,2,2,2,2,2,2,Discuss the patient's advance directives and clarify her wishes regarding resuscitation.,
+step3,cmq33agv201tn1yiur4ki7ijc,aki-ckd-electrolytes,,thin,8.3,2,1,1,2,2,2,"Hold nephrotoxins, restore intravascular volume if hypovolemic, avoid unnecessary diuretics, and monitor electrolytes",Stem is packed into the question rather than a vignette lead
