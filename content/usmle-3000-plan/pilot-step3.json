@@ -345,10 +345,10 @@
       "Loperamide",
       "High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult",
       "Repeat the broad antibiotic that preceded the illness",
-      "Oral fidaxomicin alone, with no surgical consult, because this is a first episode"
+      "Oral fidaxomicin"
     ],
     "correctAnswer": "High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult",
-    "explanation": "Fulminant C. difficile infection, with shock and ileus, is treated with high-dose oral vancomycin plus intravenous metronidazole and a surgical consult. High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult, is the IDSA 2021 regimen for hypotension and ileus; vancomycin can be given rectally if the gut is not moving. Oral metronidazole alone is not treatment of fulminant disease. Loperamide is contraindicated. Repeat the broad antibiotic that preceded the illness perpetuates the infection. Oral fidaxomicin alone, with no surgical consult, because this is a first episode, treats nonfulminant first episodes and misses both the shock regimen and the surgical threat of toxic dilation.",
+    "explanation": "Fulminant C. difficile infection, with shock and ileus, is treated with high-dose oral vancomycin plus intravenous metronidazole and a surgical consult. High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult, is the IDSA 2021 regimen once hypotension and ileus are present; vancomycin can be given rectally if the gut is not moving. Oral metronidazole alone does not treat fulminant disease. Loperamide slows a colon that is already not moving. Repeat the broad antibiotic that preceded the illness keeps the pressure on the same infection. Oral fidaxomicin is appropriate for a first nonfulminant episode, not for shock with colonic dilation.",
     "citation": "IDSA 2021"
   },
   {

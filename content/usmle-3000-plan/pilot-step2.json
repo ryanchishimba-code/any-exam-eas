@@ -247,20 +247,20 @@
     "stepLevel": "step2",
     "outlineSystem": "human-development",
     "outlineWeight": 3,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "pediatrics",
-    "examTakeaway": "A mild illness with a low fever is not a reason to delay vaccines that are due.",
-    "scenario": "A 12-month-old girl is in clinic for vaccines. Since yesterday she has a clear runny nose and a temperature of 38.1 C. She is playful and feeding. Examination shows only nasal congestion. Measles-mumps-rubella and varicella vaccines are due.",
+    "examTakeaway": "Egg allergy and a mild cold are not reasons to withhold measles-mumps-rubella or varicella vaccine that is due today.",
+    "scenario": "A 12-month-old girl is due for measles-mumps-rubella and varicella vaccines. Since yesterday she has a clear runny nose and a temperature of 38.1 C. She is playful and feeding, and examination shows only nasal congestion. Her mother says the child developed hives after scrambled eggs at 9 months and that a cousin had a fever the day after a measles vaccine. There is no history of anaphylaxis, immunodeficiency, or pregnancy in the child.",
     "question": "Which action is the most appropriate next step?",
     "options": [
-      "Give both vaccines today",
-      "Delay all vaccines until she has been afebrile for two weeks",
+      "Give measles-mumps-rubella and varicella vaccines today",
+      "Delay both vaccines until she has been afebrile for two weeks",
       "Record a permanent contraindication to measles-mumps-rubella vaccine",
-      "Give antibiotics today and vaccines after the course",
-      "Give measles-mumps-rubella today and postpone varicella until age 4 because of the fever"
+      "Treat with an antibiotic today and vaccinate after that course",
+      "Give measles-mumps-rubella today and postpone varicella until age 4"
     ],
-    "correctAnswer": "Give both vaccines today",
-    "explanation": "A mild illness with a low fever is not a reason to delay vaccines that are due. Give both vaccines today. The CDC treats a mild illness, with or without low fever, as neither a precaution nor a contraindication. Delay all vaccines until she has been afebrile for two weeks withholds protection for a cold. Record a permanent contraindication to measles-mumps-rubella vaccine is for anaphylaxis or severe immunodeficiency. Give antibiotics today and vaccines after the course treats a viral cold and invents a delay. Give measles-mumps-rubella today and postpone varicella until age 4 because of the fever uses the fever as a reason to split a pair that can both be given.",
+    "correctAnswer": "Give measles-mumps-rubella and varicella vaccines today",
+    "explanation": "Egg allergy and a mild cold are not reasons to withhold measles-mumps-rubella or varicella vaccine that is due today. Give measles-mumps-rubella and varicella vaccines today. CDC guidance treats a mild illness, with or without low fever, as neither a precaution nor a contraindication, and egg allergy is not a contraindication to measles-mumps-rubella vaccine. Delay both vaccines until she has been afebrile for two weeks withholds protection for a cold. Record a permanent contraindication to measles-mumps-rubella vaccine is reserved for anaphylaxis or severe immunodeficiency, not hives after egg. Treat with an antibiotic today and vaccinate after that course treats a viral cold and invents a delay. Give measles-mumps-rubella today and postpone varicella until age 4 splits a pair that can be given together at this visit.",
     "citation": "CDC"
   },
   {

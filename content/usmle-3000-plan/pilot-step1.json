@@ -225,11 +225,11 @@
     "stepLevel": "step1",
     "outlineSystem": "blood-lymph-immune",
     "outlineWeight": 11,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "Howell-Jolly bodies after years of sickle cell disease mean the spleen no longer pits nuclear remnants, so encapsulated bacteria are a threat.",
-    "scenario": "A 16-year-old boy with homozygous sickle cell disease has a fever of 39.2 C and a blood pressure of 82/50 mm Hg. The spleen is not palpable. The smear shows sickle cells and several red cells that each contain one round nuclear remnant.",
-    "question": "Which smear finding marks the lost splenic function?",
+    "examTakeaway": "Years of sickle cell disease infarct the spleen, so a septic teenager is expected to have Howell-Jolly bodies even when the smear is not described.",
+    "scenario": "A 16-year-old boy with homozygous sickle cell disease is brought in febrile and confused. Temperature is 39.4 C and blood pressure is 84/48 mm Hg. He has had several admissions for pain, and the spleen has not been felt since childhood. No smear result is back yet. Blood cultures are drawn before antibiotics.",
+    "question": "Which red-cell finding is expected once the smear is reviewed?",
     "options": [
       "Howell-Jolly bodies",
       "Heinz bodies",
@@ -238,7 +238,7 @@
       "Basophilic stippling"
     ],
     "correctAnswer": "Howell-Jolly bodies",
-    "explanation": "Howell-Jolly bodies after years of sickle cell disease mean the spleen no longer pits nuclear remnants, so encapsulated bacteria are a threat. Howell-Jolly bodies are those round nuclear remnants. Heinz bodies are denatured hemoglobin from oxidative injury. Bite cells are the spleen's bite out of a Heinz body and imply a working spleen. Schistocytes are fragmented cells from microvascular shearing. Basophilic stippling is aggregated ribosomes, seen in lead toxicity and thalassemia, not the marker of autosplenectomy.",
+    "explanation": "Years of sickle cell disease infarct the spleen, so a septic teenager is expected to have Howell-Jolly bodies even when the smear is not described. Howell-Jolly bodies are nuclear remnants the spleen normally pits; their presence is the smear marker of functional asplenia, which also explains encapsulated bacteremia. Heinz bodies are denatured hemoglobin from oxidative injury, not the residue of an infarcted spleen. Bite cells are what a working spleen bites out of a Heinz body, so they imply splenic function he no longer has. Schistocytes are sheared cells from microvascular hemolysis. Basophilic stippling is ribosomal aggregate seen in lead toxicity and thalassemia.",
     "citation": null
   },
   {
