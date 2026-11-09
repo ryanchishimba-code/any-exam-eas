@@ -14,6 +14,7 @@ import {
   signupSubscribeCheckoutPath,
   signupTrialDestination,
 } from "@/lib/auth/signup-intent";
+import { passCodeHelp, isFacultyAccessCode } from "@/lib/promo/faculty-access";
 import { TRIAL_CTA_LABEL } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -109,7 +110,11 @@ export function SignupForm({
     tier: initialTier,
     promo: initialPromo.trim(),
   });
-  const oauthCallbackUrl = plan === "subscribe" ? subscribeCheckoutPath : "/dashboard";
+  const oauthCallbackUrl = passCode.trim()
+    ? `/signup?code=${encodeURIComponent(passCode.trim().toUpperCase())}`
+    : plan === "subscribe"
+      ? subscribeCheckoutPath
+      : "/dashboard";
 
   const passwordChecks = checkPassword(password);
   const passwordValid = isPasswordValid(password);
@@ -503,9 +508,7 @@ export function SignupForm({
                   onChange={(e) => setPassCode(e.target.value.toUpperCase())}
                   className="apple-input uppercase tracking-wide"
                 />
-                <p className="mt-1 text-sm text-[#334155]">
-                  30 days of Pro. No card. Each code works once.
-                </p>
+                <p className="mt-1 text-sm text-[#334155]">{passCodeHelp(passCode)}</p>
               </div>
             ) : (
               <button type="button" className="aee-auth-text-btn" onClick={() => setPassOpen(true)}>
@@ -701,6 +704,8 @@ export function SignupForm({
           </>
         ) : step === 1 ? (
           "Continue"
+        ) : passCode.trim() && isFacultyAccessCode(passCode) ? (
+          "Create account — 30 days free, no card"
         ) : passCode.trim() ? (
           "Create account"
         ) : plan === "trial" ? (
