@@ -11,7 +11,7 @@ test.describe("About page", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /any exam easy\s+exam prep from the founder/i,
+        name: /anyexameasy\s+exam prep from the founder/i,
       })
     ).toBeVisible();
     await expect(page.getByText("This is my gift to my former self.").first()).toBeVisible();

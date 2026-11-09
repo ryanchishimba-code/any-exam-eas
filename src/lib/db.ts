@@ -12,6 +12,8 @@ import {
   getNeonHttpDatabaseUrl,
   isNeonPooledUrl,
   isPostgresDatabaseUrl,
+  resolveDatabaseUrl,
+  usesNeonHttpDriver,
 } from "@/lib/database-url";
 
 export type NeonSql = NeonQueryFunction<false, false>;
@@ -165,12 +167,27 @@ export async function runTimedSqlQuery<T>(
   return results[results.length - 1] as T;
 }
 
+/**
+ * Local Postgres (Playwright, CI) cannot use the Neon HTTP driver. That driver
+ * turns `127.0.0.1` into `https://api.0.0.1/sql` and the question bank error
+ * page replaces the launcher. Prisma already speaks TCP to that database.
+ */
+async function queryLocalPostgres<T>(text: string, params: unknown[]): Promise<T> {
+  const { prisma } = await import("@/lib/prisma");
+  return prisma.$queryRawUnsafe(text, ...params) as Promise<T>;
+}
+
 /** Run a SQL string. Used when the statement is built from a shared predicate. */
 export async function sqlQuery<T = unknown>(
   text: string,
   params: unknown[] = [],
   options?: { timeoutMs?: number }
 ): Promise<T> {
+  const databaseUrl = resolveDatabaseUrl();
+  // No URL (unit tests, build placeholder) stays on the Neon client those tests mock.
+  if (isPostgresDatabaseUrl(databaseUrl) && !usesNeonHttpDriver(databaseUrl)) {
+    return queryLocalPostgres<T>(text, params);
+  }
   const client = getSql() as NeonSql & TimedSql & {
     query: (queryText: string, queryParams: unknown[]) => Promise<T>;
   };

@@ -1,5 +1,5 @@
 /**
- * F3 — USMLE step choice is an inline sheet, Step 1 first, then the dashboard.
+ * F3 — USMLE step choice is an inline sheet. The unsaved default is Step 2 CK.
  *
  *   npx vitest run --project component tests/unit/components/UsmleStepSheet.test.tsx
  */
@@ -65,23 +65,23 @@ beforeEach(() => {
 });
 
 describe("UsmleStepSheet", () => {
-  it("preselects Step 1 and still offers the other steps", async () => {
+  it("preselects Step 2 CK and still offers the other steps", async () => {
     const user = userEvent.setup();
     const onConfirm = vi.fn();
     render(<UsmleStepSheet onClose={vi.fn()} onConfirm={onConfirm} />);
 
-    expect(screen.getByRole("radio", { name: /usmle step 1/i })).toHaveAttribute(
+    expect(screen.getByRole("radio", { name: /step 2 ck/i })).toHaveAttribute(
       "aria-checked",
       "true"
     );
-    expect(screen.getByRole("radio", { name: /step 2 ck/i })).toHaveAttribute(
+    expect(screen.getByRole("radio", { name: /usmle step 1/i })).toHaveAttribute(
       "aria-checked",
       "false"
     );
     expect(screen.getByRole("radio", { name: /usmle step 3/i })).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: /continue with step 1/i }));
-    expect(onConfirm).toHaveBeenCalledWith("usmle-step-1");
+    await user.click(screen.getByRole("button", { name: /continue with step 2 ck/i }));
+    expect(onConfirm).toHaveBeenCalledWith("usmle-step-2");
   });
 
   it("confirms a different step when the learner picks one", async () => {
@@ -89,9 +89,9 @@ describe("UsmleStepSheet", () => {
     const onConfirm = vi.fn();
     render(<UsmleStepSheet onClose={vi.fn()} onConfirm={onConfirm} />);
 
-    await user.click(screen.getByRole("radio", { name: /step 2 ck/i }));
-    await user.click(screen.getByRole("button", { name: /continue with step 2 ck/i }));
-    expect(onConfirm).toHaveBeenCalledWith("usmle-step-2");
+    await user.click(screen.getByRole("radio", { name: /usmle step 1/i }));
+    await user.click(screen.getByRole("button", { name: /continue with step 1/i }));
+    expect(onConfirm).toHaveBeenCalledWith("usmle-step-1");
   });
 });
 
@@ -110,16 +110,16 @@ describe("ExamSelectionScreen USMLE switch", () => {
 
     expect(mockPush).not.toHaveBeenCalledWith("/select-exam/usmle");
     expect(screen.getByRole("dialog", { name: /choose your step/i })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: /usmle step 1/i })).toHaveAttribute(
+    expect(screen.getByRole("radio", { name: /step 2 ck/i })).toHaveAttribute(
       "aria-checked",
       "true"
     );
 
-    await user.click(screen.getByRole("button", { name: /continue with step 1/i }));
+    await user.click(screen.getByRole("button", { name: /continue with step 2 ck/i }));
 
     expect(mockSetExamSlug).toHaveBeenCalledWith("usmle");
     await waitFor(() => {
-      expect(mockPersistUsmle).toHaveBeenCalledWith("usmle-step-1");
+      expect(mockPersistUsmle).toHaveBeenCalledWith("usmle-step-2");
     });
     await waitFor(() => {
       expect(assign).toHaveBeenCalledWith("/dashboard");

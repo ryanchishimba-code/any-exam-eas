@@ -5,6 +5,7 @@ import {
   isBuildPlaceholderDatabaseUrl,
   NEON_POOL_PROPOSAL,
   resolveDatabaseUrl,
+  usesNeonHttpDriver,
   withPoolParams,
 } from "./database-url";
 
@@ -17,6 +18,13 @@ const envSnapshot = { ...process.env };
 
 afterEach(() => {
   process.env = { ...envSnapshot };
+});
+
+describe("usesNeonHttpDriver", () => {
+  it("keeps local Postgres off the Neon HTTP driver", () => {
+    expect(usesNeonHttpDriver("postgresql://build:build@127.0.0.1:5432/anyexam_e2e")).toBe(false);
+    expect(usesNeonHttpDriver(REAL_URL)).toBe(true);
+  });
 });
 
 describe("resolveDatabaseUrl", () => {

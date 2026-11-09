@@ -108,6 +108,16 @@ export function isNeonPooledUrl(url = process.env.DATABASE_URL ?? "") {
   return isPostgresDatabaseUrl(url) && NEON_POOLER.test(url);
 }
 
+/** Neon HTTP (`neon()`) only speaks to Neon hosts. Local Postgres uses Prisma. */
+export function usesNeonHttpDriver(url = process.env.DATABASE_URL ?? ""): boolean {
+  if (!isPostgresDatabaseUrl(url)) return false;
+  try {
+    return new URL(url).hostname.endsWith("neon.tech");
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Append Prisma connection pool hints for serverless (Neon recommended: pooled URL + low limit).
  * @see https://www.prisma.io/docs/guides/performance-and-optimization/connection-management

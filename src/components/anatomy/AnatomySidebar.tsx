@@ -69,9 +69,10 @@ export function AnatomySidebar({
     <aside
       className={cn(
         anatomyUi.panelFlat,
-        "flex h-full flex-col gap-4 rounded-none border-x-0 border-r border-y-0 p-4",
+        "flex h-full min-h-0 flex-col gap-4 overflow-y-auto rounded-none border-x-0 border-r border-y-0 p-4",
         anatomyUi.panelHeight
       )}
+      style={{ overflowY: "auto" }}
     >
       <div>
         <h2 className={anatomyUi.sectionLabel}>Structures</h2>
@@ -102,12 +103,15 @@ export function AnatomySidebar({
         ) : null}
       </label>
 
-      <div className="flex items-center justify-between gap-3 rounded-[14px] bg-black/[0.03] px-3.5 py-2.5">
-        <span className="text-[14px] font-medium text-[var(--color-ink)]">High-yield only</span>
-        <Switch checked={highYieldOnly} onCheckedChange={onHighYieldOnlyChange} />
-      </div>
+      {search.trim() ? null : (
+        <div className="flex items-center justify-between gap-3 rounded-[14px] bg-black/[0.03] px-3.5 py-2.5">
+          <span className="text-[14px] font-medium text-[var(--color-ink)]">High-yield only</span>
+          <Switch checked={highYieldOnly} onCheckedChange={onHighYieldOnlyChange} />
+        </div>
+      )}
 
-      <div className="space-y-2">
+      {search.trim() ? null : (
+        <div className="space-y-2">
         <p className="flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-ink-muted)]">
           <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden />
           Organ system
@@ -128,9 +132,10 @@ export function AnatomySidebar({
             />
           ))}
         </div>
-      </div>
+        </div>
+      )}
 
-      {showLayerControls ? (
+      {showLayerControls && !search.trim() ? (
         <section aria-label="Layer visibility" className="space-y-2">
           <p className="text-[12px] font-medium text-[var(--color-ink-muted)]">Visible layers</p>
           <div className="flex flex-wrap gap-1.5">
@@ -140,6 +145,7 @@ export function AnatomySidebar({
                 <button
                   key={layer}
                   type="button"
+                  aria-pressed={on}
                   onClick={() => onToggleLayer(layer)}
                   className={cn(
                     anatomyUi.chip,

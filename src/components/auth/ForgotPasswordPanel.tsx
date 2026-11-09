@@ -125,7 +125,7 @@ export function ForgotPasswordPanel({
 
   const inputClass = isModal ? "login-modal-input" : "apple-input";
   const linkClass = isModal
-    ? "inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm font-semibold text-teal-600 transition hover:text-teal-700"
+    ? "aee-login-sheet__link inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm"
     : "inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm font-medium text-[var(--color-accent)] hover:underline";
 
   const BackToLoginControl = onBackToLogin ? (
@@ -152,7 +152,7 @@ export function ForgotPasswordPanel({
           <div
             className={cn(
               "mx-auto flex h-14 w-14 items-center justify-center rounded-full",
-              isModal ? "bg-teal-50 text-teal-600" : "bg-teal-50 text-teal-600"
+              isModal ? "aee-login-sheet__badge" : "bg-teal-50 text-teal-600"
             )}
           >
             <Mail className="h-6 w-6" aria-hidden />
@@ -162,23 +162,23 @@ export function ForgotPasswordPanel({
             className={cn(
               "flex items-start gap-2.5 rounded-2xl border px-4 py-3.5 text-left text-sm leading-relaxed",
               isModal
-                ? "border-teal-100 bg-teal-50/80 text-teal-950"
+                ? "aee-login-sheet__note"
                 : "a11y-banner a11y-banner--success border-transparent"
             )}
             role="status"
           >
             <CheckCircle2
-              className={cn("mt-0.5 h-4 w-4 shrink-0", isModal ? "text-teal-600" : undefined)}
+              className="mt-0.5 h-4 w-4 shrink-0"
               aria-hidden
             />
             <span>{FORGOT_PASSWORD_SUCCESS_MESSAGE}</span>
           </div>
 
-          <p className={cn("text-sm", isModal ? "text-slate-600" : "text-[var(--color-ink-muted)]")}>
+          <p className={cn("text-sm", isModal ? "aee-login-sheet__muted" : "text-[var(--color-ink-muted)]")}>
             {submittedEmail ? (
               <>
                 Sent to{" "}
-                <span className={cn("font-medium", isModal ? "text-slate-900" : "text-[var(--color-ink)]")}>
+                <span className={cn("font-medium", isModal ? "aee-login-sheet__strong" : "text-[var(--color-ink)]")}>
                   {maskEmail(submittedEmail)}
                 </span>
                 . Check your inbox and spam folder — the link expires in {PASSWORD_RESET_EXPIRY_MINUTES}{" "}
@@ -211,10 +211,12 @@ export function ForgotPasswordPanel({
           <div
             className={cn(
               "rounded-2xl border px-4 py-3.5 text-left text-sm",
-              isModal ? "border-slate-200 bg-slate-50 text-slate-700" : "border-black/[0.06] bg-[var(--color-surface)] text-[var(--color-ink-muted)]"
+              isModal ? "aee-login-sheet__card" : "border-black/[0.06] bg-[var(--color-surface)] text-[var(--color-ink-muted)]"
             )}
           >
-            <p className="font-medium text-[var(--color-ink)]">Didn&apos;t receive it?</p>
+            <p className={cn("font-medium", isModal ? "aee-login-sheet__strong" : "text-[var(--color-ink)]")}>
+              Didn&apos;t receive it?
+            </p>
             <ul className="mt-2 list-inside list-disc space-y-1.5 text-[0.8125rem] leading-relaxed">
               <li>Check spam, junk, and promotions folders.</li>
               <li>Use the same email you signed up with (including typos).</li>
@@ -227,7 +229,7 @@ export function ForgotPasswordPanel({
                 href="/contact"
                 className={cn(
                   "font-medium underline-offset-2 hover:underline",
-                  isModal ? "text-teal-600" : "text-[var(--color-accent)]"
+                  isModal ? "aee-login-sheet__link" : "text-[var(--color-accent)]"
                 )}
               >
                 Contact support
@@ -283,7 +285,7 @@ export function ForgotPasswordPanel({
               onClick={handleUseDifferentEmail}
               className={cn(
                 "text-sm font-medium transition",
-                isModal ? "text-teal-600 hover:text-teal-700" : "text-[var(--color-accent)] hover:underline"
+                isModal ? "aee-login-sheet__link" : "text-[var(--color-accent)] hover:underline"
               )}
             >
               Use a different email
@@ -294,7 +296,7 @@ export function ForgotPasswordPanel({
             <p
               className={cn(
                 "text-left text-xs sm:text-center",
-                isModal ? "text-slate-500" : "text-[var(--color-ink-muted)]"
+                isModal ? "aee-login-sheet__muted" : "text-[var(--color-ink-muted)]"
               )}
               role="status"
             >
@@ -315,7 +317,7 @@ export function ForgotPasswordPanel({
           aria-busy={loading}
         >
           {isModal ? (
-            <p className="text-sm leading-relaxed text-slate-600">
+            <p className="aee-login-sheet__muted text-sm leading-relaxed">
               Enter the email on your account and we&apos;ll send you a secure link to choose a new
               password.
             </p>
@@ -324,7 +326,7 @@ export function ForgotPasswordPanel({
           <div className="space-y-2 text-left">
             <label
               htmlFor={emailId}
-              className={isModal ? "text-xs font-semibold uppercase tracking-wide text-slate-500" : "apple-label"}
+              className={isModal ? "aee-login-sheet__field-label" : "apple-label"}
             >
               Email address
             </label>
@@ -355,7 +357,7 @@ export function ForgotPasswordPanel({
           )}
 
           {resendCooldown > 0 && !error && (
-            <p className={cn("text-xs", isModal ? "text-slate-500" : "text-[var(--color-ink-muted)]")} role="status">
+            <p className={cn("text-xs", isModal ? "aee-login-sheet__muted" : "text-[var(--color-ink-muted)]")} role="status">
               Please wait {resendCooldown}s before requesting another reset email.
             </p>
           )}

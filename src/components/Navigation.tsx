@@ -172,6 +172,9 @@ export function Navigation() {
     ? landingTrialHrefForExam(examFromPath)
     : LANDING_TRIAL_HREF;
   const landingMinimal = isMarketingLandingPath(pathname);
+  // The homepage hero already carries the trial button. On a phone the nav
+  // copy crowds the logo, Log in, and menu.
+  const hideMobileNavTrialCta = landingMinimal && pathname === "/";
   // Members on the homepage get the study hub instead of the photo hero.
   // A transparent bar would put white type on that light page.
   const subscriberHome =
@@ -184,7 +187,7 @@ export function Navigation() {
   return (
     <header
       ref={headerRef}
-      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${overPhoto ? " aee-nav--over-photo" : ""}`}
+      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}${overPhoto ? " aee-nav--over-photo" : ""}`}
     >
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <BrandLogo

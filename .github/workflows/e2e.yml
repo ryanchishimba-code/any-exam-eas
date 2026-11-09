@@ -73,12 +73,26 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
-  # Public landings only. Does not boot Postgres and does not set the
-  # placeholder DATABASE_URL the app rejects. Browsers install to the default
+  # Public landings only. CI still points Next at the local Postgres URL, so this
+  # job has to boot that disposable database. Browsers install to the default
   # cache (the chromium job above uses PLAYWRIGHT_BROWSERS_PATH=0).
   landing-parity:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: build
+          POSTGRES_PASSWORD: build
+          POSTGRES_DB: anyexam_e2e
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U build -d anyexam_e2e"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v4
 
@@ -93,11 +107,22 @@ jobs:
       - name: Prisma generate
         run: npx prisma generate
 
+      - name: Prepare database schema
+        env:
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_e2e
+        run: npx prisma db push
+
+      - name: Seed dev user
+        env:
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_e2e
+        run: npm run db:seed-user
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Landing parity (Chromium, Firefox, WebKit)
         env:
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_e2e
           NEXTAUTH_SECRET: ci-e2e-secret-min-16-chars
           NEXTAUTH_URL: http://127.0.0.1:3100
           PLAYWRIGHT_PORT: "3100"

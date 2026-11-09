@@ -1,6 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 
 const TRIAL = "/signup?plan=trial&interval=monthly&tier=pro";
+/** Hero primary label. Same string as HERO_TRIAL_CTA_LABEL. */
+const HERO_TRIAL_LABEL = "Start free trial, no card required";
 
 const PAGES = [
   { path: "/", hero: "home", ctaName: "hero_trial", location: "hero", see: "#quick-bites-heading" },
@@ -221,7 +223,7 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   const href = trialHref(entry.path);
   expect(shot.hero, entry.path).toBe(entry.hero);
   expect(shot.h1Count, entry.path).toBe(1);
-  expect(shot.primaryText, entry.path).toBe("Start free trial");
+  expect(shot.primaryText, entry.path).toBe(HERO_TRIAL_LABEL);
   expect(shot.secondaryText, entry.path).toBe("See questions");
   expect(shot.primaryHref, entry.path).toBe(href);
   expect(shot.navHref, entry.path).toBe(href);
@@ -247,7 +249,13 @@ async function scrollTo(page: Page, top: number, overPhoto: boolean) {
 
 async function settle(page: Page, path: string) {
   await page.goto(path, { waitUntil: "domcontentloaded" });
-  await page.locator(".mkt-photo-hero h1").waitFor();
+  const heroHeading = page.locator(".mkt-photo-hero h1");
+  const returningHome = page.getByRole("heading", { name: /Keep going,/i });
+  await expect(async () => {
+    const heroes = await heroHeading.count();
+    const returned = path === "/" && (await returningHome.count()) > 0;
+    expect(heroes === 1 || returned).toBe(true);
+  }).toPass({ timeout: 20_000 });
   // The layout hydrates before the page. A key or click in that gap hits the
   // server HTML only: the menu button has no toggle yet, and the trial link
   // navigates before its conversion handler exists.
@@ -324,10 +332,25 @@ test.describe("landing parity", () => {
     }
 
     for (const [name, rows] of byViewport) {
+      const narrow = rows[0] ? rows[0].shot.vw < 768 : false;
       same(
-        rows.map((row) => ({ path: row.path, value: sharedShot(row.shot) })),
+        rows.map((row) => {
+          const shot = sharedShot(row.shot);
+          // Home hides the nav trial button under 768px. Board pages keep it.
+          if (!narrow) return { path: row.path, value: shot };
+          const { navCta: _navCta, ...withoutNavCta } = shot;
+          return { path: row.path, value: withoutNavCta };
+        }),
         name
       );
+      if (narrow) {
+        same(
+          rows
+            .filter((row) => row.path !== "/")
+            .map((row) => ({ path: row.path, value: sharedShot(row.shot).navCta })),
+          `${name} board nav trial`
+        );
+      }
       const extra = rows.map((row) => {
         const shot = row.shot as Shot & { navBgScrolled?: string | null; menuPanel?: string | null };
         return { path: row.path, value: { scrolled: shot.navBgScrolled ?? null, menu: shot.menuPanel ?? null } };
@@ -428,7 +451,7 @@ test.describe("landing parity", () => {
     const rows: { path: string; value: unknown }[] = [];
     for (const entry of PAGES) {
       await page.goto(entry.path, { waitUntil: "domcontentloaded" });
-      await page.locator(".mkt-photo-hero h1").waitFor();
+      await expect(page.locator(".mkt-photo-hero h1")).toHaveCount(1);
       const shot = await readLanding(page);
       expect(shot.h1?.family, entry.path).toBeTruthy();
       expect(String(shot.photoBg), entry.path).toContain("gradient");
@@ -484,7 +507,7 @@ test.describe("landing parity", () => {
       });
       expect(html.hero, entry.path).toBe(entry.hero);
       expect(html.h1.length, entry.path).toBeGreaterThan(8);
-      expect(html.cta, entry.path).toBe("Start free trial");
+      expect(html.cta, entry.path).toBe(HERO_TRIAL_LABEL);
       expect(html.href, entry.path).toBe(trialHref(entry.path));
       expect(html.over, entry.path).toBe(true);
       expect(html.h1Count, entry.path).toBe(1);

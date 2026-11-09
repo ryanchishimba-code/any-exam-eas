@@ -1,9 +1,10 @@
 import { test, expect } from "./fixtures/auth";
+import { fillControlledInput } from "./helpers/forms";
 
 test.describe("Anatomy Explorer", () => {
   test("catalog and explorer pages load", async ({ authenticatedPage: page }) => {
     await page.goto("/anatomy", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /3d anatomy study model/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
     await expect(page.getByRole("searchbox", { name: /search structures/i }).first()).toBeVisible({
@@ -26,23 +27,32 @@ test.describe("Anatomy Explorer", () => {
 
   test("skeletal layer toggle and bone structure selection", async ({ authenticatedPage: page }) => {
     await page.goto("/anatomy", { waitUntil: "domcontentloaded" });
-    await expect(page.getByRole("heading", { name: /3d anatomy study model/i })).toBeVisible({
+    await expect(page.getByRole("heading", { name: /^anatomy$/i })).toBeVisible({
       timeout: 30_000,
     });
+    const skeletal = page
+      .getByRole("region", { name: "Layer visibility" })
+      .getByRole("button", { name: "Skeletal", exact: true });
+    await expect(skeletal).toBeVisible({ timeout: 30_000 });
+    await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
-    const skeletalSwitch = page.getByLabel("Skeletal", { exact: true });
-    await expect(skeletalSwitch).toBeVisible({ timeout: 30_000 });
-    await expect(skeletalSwitch).toBeChecked();
-
-    await skeletalSwitch.click();
-    await expect(skeletalSwitch).not.toBeChecked();
-    await skeletalSwitch.click();
-    await expect(skeletalSwitch).toBeChecked();
+    await expect(async () => {
+      if ((await skeletal.getAttribute("aria-pressed")) !== "false") {
+        await skeletal.click();
+      }
+      await expect(skeletal).toHaveAttribute("aria-pressed", "false", { timeout: 1_500 });
+    }).toPass({ timeout: 15_000 });
+    await skeletal.click();
+    await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
-    await search.fill("sternum");
-    await page.getByRole("button", { name: /^Sternum$/i }).first().click();
-
-    await expect(page.getByText(/^Sternum$/).first()).toBeVisible({ timeout: 15_000 });
+    await fillControlledInput(search, "femur");
+    const anatomyList = page.getByRole("complementary").filter({
+      has: page.getByRole("heading", { name: "Structures", level: 2 }),
+    });
+    const femur = anatomyList.getByRole("button", { name: /^Femur\b/i });
+    await expect(femur).toBeVisible({ timeout: 15_000 });
+    await femur.click();
+    await expect(page.getByRole("button", { name: /hide details/i })).toBeVisible();
   });
 });

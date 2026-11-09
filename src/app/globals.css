@@ -9,6 +9,7 @@
 @import "../styles/board-picker-menu.css";
 @import "../styles/marketing-type.css";
 @import "../styles/scroll-performance.css";
+@import "../styles/login-sheet.css";
 
 /* Light + dark UI — `data-theme` on <html> (see ThemeProvider); Tailwind `dark:` follows it. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));

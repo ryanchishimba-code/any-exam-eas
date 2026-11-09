@@ -195,9 +195,9 @@ export function LoginPanel({
       {(googleEnabled || appleEnabled || linkedinEnabled) && (
         <div className="relative py-1">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-black/[0.06]" />
+            <div className="login-panel-or-rule w-full border-t border-black/[0.06]" />
           </div>
-          <p className="relative mx-auto w-fit bg-white px-3 text-sm font-semibold text-[var(--color-ink)]">
+          <p className="login-panel-or relative mx-auto w-fit bg-white px-3 text-sm font-semibold text-[var(--color-ink)]">
             or log in with email
           </p>
         </div>

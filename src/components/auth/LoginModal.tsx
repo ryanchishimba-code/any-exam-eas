@@ -85,7 +85,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
           subtitle: hint?.email ? (
             <>
               Continue as{" "}
-              <span className="font-medium text-white">{maskEmail(hint.email)}</span>
+              <span className="aee-login-sheet__emphasis">{maskEmail(hint.email)}</span>
             </>
           ) : (
             <>One tap to your Study Hub — question banks, drugs, and progress.</>
@@ -115,7 +115,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
           <motion.button
             type="button"
             aria-label="Close login dialog"
-            className="absolute inset-0 bg-[#0c4a6e]/40 backdrop-blur-sm"
+            className="aee-login-scrim absolute inset-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -131,105 +131,109 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.98 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 flex max-h-[96dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(15,118,110,0.18)] sm:max-h-[min(94vh,820px)] sm:max-w-2xl sm:rounded-[1.75rem] lg:max-w-3xl"
+            className="aee-login-sheet relative z-10 w-full max-w-lg rounded-t-[1.75rem] sm:max-w-2xl sm:rounded-[1.75rem] lg:max-w-3xl"
           >
-            <div className="relative overflow-hidden bg-[#0f766e] px-6 pb-7 pt-6 text-white">
-              <button
-                type="button"
-                onClick={onClose}
-                className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
-                aria-label="Close"
-              >
-                <X className="h-4 w-4" />
-              </button>
-
-              {view === "forgot" && forgotStep === "form" && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setView("login");
-                    setForgotStep("form");
-                  }}
-                  className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
-                  aria-label="Back to login"
-                >
-                  <ArrowLeft className="h-4 w-4" aria-hidden />
-                </button>
-              )}
-
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={`${view}-${forgotStep}`}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.18 }}
-                  className="flex items-center gap-3"
-                >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
-                    <HeaderIcon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
-                  </span>
-                  <div className={view === "forgot" && forgotStep === "form" ? "pl-8 sm:pl-0" : undefined}>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-white">
-                      {header.eyebrow}
-                    </p>
-                    <h2 id="login-modal-title" className="text-xl font-semibold tracking-tight">
-                      {header.title}
-                    </h2>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <motion.p
-                key={`sub-${view}-${forgotStep}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mt-3 text-sm leading-relaxed text-white"
-              >
-                {header.subtitle}
-              </motion.p>
-            </div>
-
-            <div className="aee-auth-surface flex-1 overflow-y-auto px-5 py-5 sm:px-8 sm:py-7">
-              <AnimatePresence mode="wait" initial={false}>
-                {view === "login" ? (
-                  <motion.div key="login-panel" {...panelMotion}>
-                    <LoginPanel
-                      callbackUrl={callbackUrl}
-                      onForgotPassword={() => setView("forgot")}
-                      forgotLinkClassName="text-teal-600 hover:text-teal-700"
-                    />
-
-                    <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-sm text-[#334155]">
-                      <ShieldCheck className="h-3.5 w-3.5 text-teal-600" aria-hidden />
-                      Encrypted · Security-first infrastructure
-                    </p>
-
-                    <p className="mt-4 text-center text-sm text-[#334155]">
-                      New here?{" "}
-                      <Link
-                        href={LANDING_TRIAL_HREF}
-                        onClick={onClose}
-                        className="font-semibold text-teal-600 hover:text-teal-700"
-                      >
-                        Start your trial
-                      </Link>
-                    </p>
-                  </motion.div>
-                ) : (
-                  <motion.div key="forgot-panel" {...panelMotion}>
-                    <ForgotPasswordPanel
-                      variant="modal"
-                      defaultEmail={hint?.email ?? ""}
-                      onBackToLogin={() => {
+            <div className="aee-login-sheet__clip">
+              <div className="aee-login-sheet__handle" aria-hidden />
+              <div className="aee-login-sheet__header">
+                <div className="aee-login-sheet__toolbar">
+                  {view === "forgot" && forgotStep === "form" ? (
+                    <button
+                      type="button"
+                      onClick={() => {
                         setView("login");
                         setForgotStep("form");
                       }}
-                      onStepChange={setForgotStep}
-                    />
+                      className="aee-login-sheet__icon-btn"
+                      aria-label="Back to login"
+                    >
+                      <ArrowLeft className="h-4 w-4" aria-hidden />
+                    </button>
+                  ) : (
+                    <span className="inline-block h-11 w-11" aria-hidden />
+                  )}
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="aee-login-sheet__icon-btn"
+                    aria-label="Close"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={`${view}-${forgotStep}`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.18 }}
+                    className="aee-login-sheet__identity"
+                  >
+                    <span className="aee-login-sheet__mark">
+                      <HeaderIcon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="aee-login-sheet__eyebrow">{header.eyebrow}</p>
+                      <h2 id="login-modal-title" className="aee-login-sheet__title">
+                        {header.title}
+                      </h2>
+                    </div>
                   </motion.div>
-                )}
-              </AnimatePresence>
+                </AnimatePresence>
+
+                <motion.p
+                  key={`sub-${view}-${forgotStep}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="aee-login-sheet__subtitle"
+                >
+                  {header.subtitle}
+                </motion.p>
+              </div>
+
+              <div className="aee-auth-surface aee-login-sheet__body">
+                <AnimatePresence mode="wait" initial={false}>
+                  {view === "login" ? (
+                    <motion.div key="login-panel" {...panelMotion}>
+                      <LoginPanel
+                        callbackUrl={callbackUrl}
+                        onForgotPassword={() => setView("forgot")}
+                        forgotLinkClassName="aee-login-sheet__link"
+                      />
+
+                      <p className="aee-login-sheet__fine mt-5 flex items-center justify-center gap-1.5 text-center text-sm">
+                        <ShieldCheck className="aee-login-sheet__fine-icon h-3.5 w-3.5" aria-hidden />
+                        Encrypted · Security-first infrastructure
+                      </p>
+
+                      <p className="aee-login-sheet__fine mt-4 text-center text-sm">
+                        New here?{" "}
+                        <Link
+                          href={LANDING_TRIAL_HREF}
+                          onClick={onClose}
+                          className="aee-login-sheet__link"
+                        >
+                          Start your trial
+                        </Link>
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <motion.div key="forgot-panel" {...panelMotion}>
+                      <ForgotPasswordPanel
+                        variant="modal"
+                        defaultEmail={hint?.email ?? ""}
+                        onBackToLogin={() => {
+                          setView("login");
+                          setForgotStep("form");
+                        }}
+                        onStepChange={setForgotStep}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
         </div>

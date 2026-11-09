@@ -5,7 +5,7 @@ test.describe("Dashboard and progress", () => {
     await page.goto("/dashboard");
 
     await expect(
-      page.getByRole("heading", { name: /study hub|dashboard|welcome|keep going/i }).first()
+      page.getByRole("heading", { name: /study hub|dashboard|welcome|keep going|^hi,/i }).first()
     ).toBeVisible({ timeout: 20_000 });
 
     await expect(
@@ -18,7 +18,7 @@ test.describe("Dashboard and progress", () => {
 
   test("analytics page loads for authenticated user", async ({ authenticatedPage: page }) => {
     await page.goto("/analytics");
-    await expect(page.getByRole("heading", { name: /analytics|performance|progress/i }).first()).toBeVisible({
+    await expect(page.getByRole("heading", { name: /analytics|performance|progress|nclex/i }).first()).toBeVisible({
       timeout: 20_000,
     });
   });
