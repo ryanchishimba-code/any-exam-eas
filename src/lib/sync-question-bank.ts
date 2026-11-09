@@ -240,16 +240,25 @@ async function upsertSeedRow(
  * boilerplate rationales), so we exclude them from automatic top-up. Adding a
  * field here means its bank size is governed by curated/AI content only.
  */
-const PROCEDURAL_TOPUP_EXCLUDED_FIELDS = new Set([
+export const PROCEDURAL_TOPUP_EXCLUDED_FIELDS = new Set([
   "pance",
   "aanp-fnp",
   "npte-pt",
   "nursing", // NCLEX — curated/AI only
   "pharmacy", // NAPLEX — curated/AI only
+  // The 05:00 UTC sync inserted templated USMLE items. Curated content only.
+  "usmle-step-1",
+  "usmle-step-2",
+  "usmle-step-3",
 ]);
 
+/** True when the nightly sync must not generate items for this field. */
+export function proceduralTopUpExcluded(fieldId: string): boolean {
+  return PROCEDURAL_TOPUP_EXCLUDED_FIELDS.has(fieldId);
+}
+
 async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<number> {
-  if (PROCEDURAL_TOPUP_EXCLUDED_FIELDS.has(fieldId)) return 0;
+  if (proceduralTopUpExcluded(fieldId)) return 0;
 
   const existingCount = await prisma.questionBankItem.count({
     where: { fieldId, subjectId: subject.id, active: true },
@@ -427,7 +436,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
 
 export async function subjectBankNeedsTopUp(): Promise<boolean> {
   for (const { fieldId, subject } of collectAllSubjectAreas()) {
-    if (PROCEDURAL_TOPUP_EXCLUDED_FIELDS.has(fieldId)) continue;
+    if (proceduralTopUpExcluded(fieldId)) continue;
     const count = await prisma.questionBankItem.count({
       where: { fieldId, subjectId: subject.id, active: true },
     });
