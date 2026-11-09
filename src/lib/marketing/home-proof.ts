@@ -1,6 +1,5 @@
 import {
   COUNT_BOARD_SLUGS,
-  formatExactQuestionCount,
   siteQuestionCounts,
   type BoardQuestionUnits,
   type CountBoardSlug,
@@ -12,6 +11,9 @@ export type HomeProofFact = {
   id: "questions" | "ngn";
   text: string;
 };
+
+/** Homepage proof line. No sitewide number and no clinician-review claim. */
+export const HOME_QUESTION_PROOF = "Thousands of board-level questions.";
 
 function completeBoards(
   snapshot: QuestionBankCountsSnapshot
@@ -42,7 +44,7 @@ export function siteCountsFromSnapshot(
  * Proof strip under the homepage hero.
  * Every number comes from `siteQuestionCounts` in counts.ts.
  * The price is not included here — the homepage shows it once, in the pricing card.
- * Omits the question total and the NGN line when that fact is not in the snapshot.
+ * The question line is qualitative. The NGN line is omitted when that fact is not in the snapshot.
  */
 export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofFact[] {
   if (!site) return [];
@@ -50,7 +52,7 @@ export function buildHomeProofFacts(site: SiteQuestionCounts | null): HomeProofF
   const facts: HomeProofFact[] = [
     {
       id: "questions",
-      text: `${formatExactQuestionCount(site.totalQuestions)} practice questions`,
+      text: HOME_QUESTION_PROOF,
     },
   ];
 

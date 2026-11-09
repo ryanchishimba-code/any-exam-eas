@@ -28,9 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildHomeMetadata(staticLabel || undefined);
 }
 
-async function HomeJsonLdLive() {
-  const { exactLabel } = await loadPublicQuestionCounts({ dynamic: false });
-  return <HomeJsonLd totalLabel={exactLabel || undefined} />;
+function HomeJsonLdLive() {
+  return <HomeJsonLd />;
 }
 
 export default async function HomePage() {
