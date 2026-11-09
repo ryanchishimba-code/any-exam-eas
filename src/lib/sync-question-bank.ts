@@ -13,6 +13,11 @@ import {
 import type { FieldSubject } from "./field-subjects";
 import type { BankItem } from "./question-bank";
 import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
+import {
+  generatedItemFromBankItem,
+  stemFamilyFingerprint,
+  withGeneratedItemGate,
+} from "@/lib/exam-prep/generated-item-gate";
 import { KEY_WRONG_ITEM_IDS } from "@/lib/exam-prep/reviewed-key-queue";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import {
@@ -248,6 +253,31 @@ const PROCEDURAL_TOPUP_EXCLUDED_FIELDS = new Set([
   "pharmacy", // NAPLEX — curated/AI only
 ]);
 
+const generatedFingerprintCache = new Map<string, Set<string>>();
+
+/** Drop the per-process fingerprint cache at the start of a sync. */
+export function clearGeneratedItemFingerprintCache(): void {
+  generatedFingerprintCache.clear();
+}
+
+/** Stem families already stored for this field, served or inactive. */
+export async function loadGeneratedItemFingerprints(fieldId: string): Promise<Set<string>> {
+  const cached = generatedFingerprintCache.get(fieldId);
+  if (cached) return cached;
+
+  const rows = await prisma.questionBankItem.findMany({
+    where: { fieldId },
+    select: { scenario: true, question: true },
+  });
+  const fingerprints = new Set<string>();
+  for (const row of rows) {
+    const fingerprint = stemFamilyFingerprint(row.scenario ?? "", row.question);
+    if (fingerprint.length >= 40) fingerprints.add(fingerprint);
+  }
+  generatedFingerprintCache.set(fieldId, fingerprints);
+  return fingerprints;
+}
+
 async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<number> {
   if (PROCEDURAL_TOPUP_EXCLUDED_FIELDS.has(fieldId)) return 0;
 
@@ -264,12 +294,17 @@ async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<num
     existingCount,
     needed
   ).filter((item) => bankItemPassesIngestGate(fieldId, item, "generated"));
+  const fingerprints = await loadGeneratedItemFingerprints(fieldId);
 
   let created = 0;
   for (let i = 0; i < bulk.length; i += BATCH_SIZE) {
     const slice = bulk.slice(i, i + BATCH_SIZE);
     const rows = slice.map((item) =>
-      rowToCreateData(fieldId, subject.id, item, "generated")
+      withGeneratedItemGate(
+        rowToCreateData(fieldId, subject.id, item, "generated"),
+        generatedItemFromBankItem(fieldId, item),
+        fingerprints
+      )
     );
     created += await insertBatch(rows);
   }
@@ -296,6 +331,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
   const protectedItemIds: string[] = [];
 
   try {
+    clearGeneratedItemFingerprintCache();
     await ensureAllBoardExams();
     const backup = await loadKeyfixBackupIndex();
     const hideIds = new Set(KEY_WRONG_ITEM_IDS);

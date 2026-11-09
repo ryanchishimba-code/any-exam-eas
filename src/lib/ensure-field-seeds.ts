@@ -1,8 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { collectSeedQuestionRows } from "@/lib/question-bank-seed";
-import { questionContentHash } from "@/lib/sync-question-bank";
+import { loadGeneratedItemFingerprints, questionContentHash } from "@/lib/sync-question-bank";
 import type { BankItem } from "@/lib/question-bank";
 import { generateBulkQuestionsForSubject } from "@/lib/bulk-question-generator";
+import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
+import {
+  generatedItemFromBankItem,
+  withGeneratedItemGate,
+} from "@/lib/exam-prep/generated-item-gate";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 const inFlight = new Map<string, Promise<void>>();
@@ -121,7 +126,17 @@ export async function ensureSubjectHasQuestions(
 
     const need = Math.max(minimum - afterSeed, 10);
     const generated = generateBulkQuestionsForSubject(fieldId, subject, afterSeed, need);
-    const batch = generated.map((item) => rowToCreateData(fieldId, subjectId, item, "generated"));
+    const fingerprints = await loadGeneratedItemFingerprints(fieldId);
+    const batch = generated.map((item) =>
+      withGeneratedItemGate(
+        {
+          ...rowToCreateData(fieldId, subjectId, item, "generated"),
+          qaPassed: bankItemPassesIngestGate(fieldId, item, "generated"),
+        },
+        generatedItemFromBankItem(fieldId, item),
+        fingerprints
+      )
+    );
 
     const hashes = batch.map((b) => b.contentHash);
     const seen = new Set(
