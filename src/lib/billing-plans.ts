@@ -30,12 +30,12 @@ export const BILLING_GUARANTEE_POINTS = [
   "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one Pro plan",
   "Integrated Roadmap plus board-style vignettes on one plan",
   `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required at signup · Upgrade anytime for unlimited access`,
-  "Cancel anytime in Settings — access continues through the end of your paid period",
+  "Cancel anytime in Settings — that opens Stripe, and study access follows the status Stripe returns",
   "Update your saved payment method anytime for recurring billing",
 ] as const;
 
 export const BILLING_POLICY_SHORT =
-  "Cancel anytime in Settings. Payments are non-refundable — access continues through the end of your paid period.";
+  "Cancel anytime in Settings. That opens Stripe. Payments are non-refundable except where the law requires a refund. Study access follows the subscription status Stripe returns.";
 
 /** Short reassurance used as a prominent line on pricing and checkout. */
 export const CANCEL_ANYTIME_LABEL = "Cancel anytime in Settings";
@@ -60,7 +60,7 @@ export const BILLING_TRIAL_DISCLOSURE =
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =
-  "During your free trial, plan changes apply when billing starts at the end of the trial — you are not charged until then. On a paid subscription, plan changes take effect when your current term ends; you are billed only when the switch occurs, not when you schedule it. All payments are non-refundable.";
+  "Starting a paid plan from the free trial charges at checkout. On a paid subscription, a later plan change waits until the current term ends and is not charged when you schedule it. Payments are non-refundable except where the law requires a refund.";
 
 /** Recurring autopay disclosure for Settings and checkout. */
 export const BILLING_RECURRING_POLICY =

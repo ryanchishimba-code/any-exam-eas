@@ -54,6 +54,7 @@ export function SignupScreen({
   utmSource,
   utmMedium,
   utmCampaign,
+  termsNotice = "",
 }: {
   initialPlan: SignupPlan | "";
   initialPromo: string;
@@ -65,6 +66,7 @@ export function SignupScreen({
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
+  termsNotice?: string;
 }) {
   const [plan, setPlan] = useState<SignupPlan>(initialPlan === "subscribe" ? "subscribe" : "trial");
   const trial = plan === "trial";
@@ -112,6 +114,7 @@ export function SignupScreen({
         initialTier={initialTier}
         initialExam={initialExam}
         attribution={{ utmSource, utmMedium, utmCampaign }}
+        termsNotice={termsNotice}
       />
     </AuthFocusLayout>
   );

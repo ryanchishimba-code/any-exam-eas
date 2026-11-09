@@ -32,7 +32,12 @@ export default function PrivacyPage() {
           <section>
             <h2 className="font-semibold text-[var(--color-ink)]">Information we collect</h2>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>Account data: email, name, date of birth (age verification), password hash</li>
+              <li>
+                Account data: email, name, and a password hash for email signup. The signup form
+                asks you to confirm you are at least 18. It does not ask for a birth date. Because
+                the account record requires a date, an 18+ attestation is stored with a placeholder
+                date, not a birth date you typed.
+              </li>
               <li>Study activity: exam attempts, progress, preferences, generated content</li>
               <li>
                 Pass check-in answers (passed, didn&apos;t pass, haven&apos;t taken it, or dismissed)
@@ -58,7 +63,9 @@ export default function PrivacyPage() {
               To provide and improve the Service; generate AI study content; track progress;
               process subscriptions and reactivations; send account, billing, and security notices
               (including trial-ending and renewal reminders approximately 24 hours before a charge,
-              and payment-failure alerts); prevent fraud and abuse; and comply with law.
+              and payment-failure alerts); prevent fraud and abuse; and comply with law. Accepting
+              the Terms is not consent to promotional email. The optional daily-question form stores
+              an address only after you submit it, and a question email is not sent from that form.
             </p>
           </section>
 
@@ -93,13 +100,22 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="font-semibold text-[var(--color-ink)]">Cookies</h2>
+            <h2 className="font-semibold text-[var(--color-ink)]">Cookies and measurement</h2>
             <p className="mt-2">
-              We use only cookies needed for sign-in and security; no advertising or analytics
-              cookies. Sign-in uses a session cookie. The app includes a Google Analytics loader
-              that runs only when a measurement id is configured. The production
-              Content-Security-Policy allows scripts from this site and Stripe only, so
-              googletagmanager.com does not load and does not set an analytics cookie.
+              Sign-in uses a session cookie. A first-touch cookie named aee_ft can store the
+              campaign tags and referrer from your first visit for up to 180 days so a later signup
+              can be tied to that visit. A short-lived aee_evt cookie carries signup events in the
+              browser after a social login. A short-lived aee_legal cookie records that a new social
+              signup accepted the current terms. These are first-party cookies. We do not sell or
+              share personal information for cross-context targeted advertising.
+            </p>
+            <p className="mt-2">
+              The app includes a Google Analytics loader that runs only when a measurement id is
+              configured. The production Content-Security-Policy allows scripts from this site and
+              Stripe only, so googletagmanager.com does not load. Vercel Web Analytics and Speed
+              Insights do load. Vercel&apos;s current documentation says those products do not set
+              cookies: Web Analytics uses a request hash discarded after one day, and Speed Insights
+              sends page-performance measurements. We do not show a separate cookie banner for them.
             </p>
           </section>
 

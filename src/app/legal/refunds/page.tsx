@@ -30,8 +30,8 @@ export default function RefundsPage() {
             <h2 className="text-base font-semibold text-[var(--color-ink)]">Cancel anytime in Settings</h2>
             <p className="mt-2">
               Open Settings and choose Cancel or manage billing. That opens the Stripe customer
-              portal, where you can cancel a renewing subscription. Canceling stops the next
-              charge. It does not erase the period you have already paid for.
+              portal. Whether the current period stays active is the cancellation setting on that
+              Stripe account. This app follows the subscription status Stripe sends back.
             </p>
             <p className="mt-2">{LEGAL_DISCLAIMERS.refundsAndAccess}</p>
           </section>

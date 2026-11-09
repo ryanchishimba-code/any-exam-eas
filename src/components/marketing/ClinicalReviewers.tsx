@@ -1,4 +1,5 @@
 import { CLINICAL_REVIEWERS, BOARDS_REVIEWED_BY_PROCESS, type ClinicalReviewer } from "@/lib/marketing/company";
+import { ABOUT_REVIEW_CAVEAT } from "@/lib/marketing/about-copy";
 
 export function ClinicalReviewerAvatar({
   reviewer,
@@ -46,7 +47,7 @@ export function ClinicalReviewers({
         ))}
       </ul>
       <p className="mt-6 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        {BOARDS_REVIEWED_BY_PROCESS}
+        {BOARDS_REVIEWED_BY_PROCESS} {ABOUT_REVIEW_CAVEAT}
       </p>
     </section>
   );

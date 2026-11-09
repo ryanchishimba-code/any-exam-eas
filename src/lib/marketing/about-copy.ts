@@ -50,6 +50,6 @@ export function founderStoryParagraphs(monthlyPrice: string): readonly string[] 
     "The first time around, I didn't do well because I was working and doing whatever it took to survive. I had no time to dedicate. This time, I said I'm going to focus solely on practicing until I get this right. And I did.",
     "What struck me then: students who don't have money need extra help the most, and they're the ones priced out. That's where AnyExamEasy was born. My goal is to democratize high-quality practice — the kind I couldn't afford — and make it available to any student, whether you have a lot of money or a little.",
     `At ${monthlyPrice} a month, that's the break-even point for the premium material and platform we supply. ${ABOUT_PULL_QUOTE} I wish I'd had this. I wish somebody had done this.`,
-    "To make sure it meets the bar I've set, I've partnered with clinicians — RNs, PTs, MDs — to curate the content alongside my own pharmacy expertise.",
+    "Named pharmacy and nursing review leads are listed on this site. Questions are AI-assisted, and not every item is individually reviewed by a clinician.",
   ];
 }

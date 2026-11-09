@@ -8,7 +8,14 @@ import { authenticateCredentials } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
 import { captureBoardForUser, readServerBoardIntent } from "@/lib/auth/board-intent-server";
-import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
+import {
+  findOrCreateGoogleUser,
+  OAuthLinkBlockedError,
+  SignupConsentRequiredError,
+} from "@/lib/oauth-user";
+import { headers } from "next/headers";
+import { hasSignupConsentCookie } from "@/lib/legal/signup-consent-cookie-server";
+import { recordUserLegalConsent } from "@/lib/legal/consent-record";
 import { readFirstTouchFromAuthCookies, stampFunnelEventCookie } from "@/lib/auth/funnel-event-cookie";
 import { OAuthAccountDisabledError } from "@/lib/account-security";
 import {
@@ -174,9 +181,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             providerAccountId: oauthProfile?.sub ?? user.email,
             provider: account!.provider as OAuthProvider,
             attribution: await readFirstTouchFromAuthCookies(),
+            signupConsentAccepted: await hasSignupConsentCookie(),
           });
           user.id = linked.id;
           if (linked.created) {
+            let consentRequest: Request | undefined;
+            try {
+              const headerList = await headers();
+              consentRequest = new Request("https://www.anyexameasy.com/signup", {
+                headers: headerList,
+              });
+            } catch {
+              consentRequest = undefined;
+            }
+            await recordUserLegalConsent({
+              userId: linked.id,
+              signupMethod: account!.provider as OAuthProvider,
+              req: consentRequest,
+            });
             const events = ["signup_success"];
             if (linked.startedTrial) events.push("trial_start");
             await stampFunnelEventCookie(events);
@@ -201,6 +223,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           user.loginRouting = loginRouting;
           scheduleOAuthLoginTouch(linked.id);
         } catch (e) {
+          if (e instanceof SignupConsentRequiredError) {
+            return "/signup?error=terms_required";
+          }
           if (e instanceof OAuthLinkBlockedError || e instanceof OAuthAccountDisabledError) {
             return false;
           }
