@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
+import { buildBulkQuestion } from "../bulk-question-generator";
+import { getSubjectsForFieldId } from "../subjects/registry";
 import {
+  generatedItemFromBankItem,
   reviewGeneratedItem,
   stemFamilyFingerprint,
+  withGeneratedItemGate,
   type GeneratedItemForGate,
 } from "./generated-item-gate";
 
@@ -76,6 +80,49 @@ describe("generated item gate", () => {
 
     const step = reviewGeneratedItem(readyItem({ stepLevel: "step3" }), new Set());
     expect(step.failures.join(" ")).toMatch(/Step label must be step2/);
+  });
+
+  it("activates a passing row once, then keeps a same-family twin inactive", () => {
+    const fingerprints = new Set<string>();
+    const row = { active: true, qaPassed: true, generationMeta: { keep: true } };
+    const first = withGeneratedItemGate(row, readyItem(), fingerprints);
+    expect(first.active).toBe(true);
+    expect(first.qaPassed).toBe(true);
+    expect(first.generationMeta).toMatchObject({
+      keep: true,
+      generatedItemGate: { activate: true, failures: [] },
+    });
+
+    const twin = withGeneratedItemGate(
+      row,
+      readyItem({ scenario: readyItem().scenario?.replace("12-month-old", "14-month-old") }),
+      fingerprints
+    );
+    expect(twin.active).toBe(false);
+    expect(twin.qaPassed).toBe(false);
+  });
+
+  it("stays inactive when the structural ingest gate did not pass", () => {
+    const gated = withGeneratedItemGate({ active: true, qaPassed: false }, readyItem(), new Set());
+    expect(gated.active).toBe(false);
+    expect(gated.qaPassed).toBe(false);
+  });
+
+  it("keeps a procedural USMLE template inactive", () => {
+    for (const fieldId of ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const) {
+      const subject = getSubjectsForFieldId(fieldId)[0];
+      expect(subject).toBeTruthy();
+      const bulk = buildBulkQuestion(fieldId, subject!, 0);
+      const gated = withGeneratedItemGate(
+        { active: true, qaPassed: true },
+        generatedItemFromBankItem(fieldId, bulk),
+        new Set()
+      );
+      expect(gated.active).toBe(false);
+      expect(gated.qaPassed).toBe(false);
+      const meta = gated.generationMeta as { generatedItemGate: { failures: string[] } };
+      expect(meta.generatedItemGate.failures[0]).toMatch(/exam-readiness value/);
+    }
   });
 
   it("requires a citation on a management decision", () => {

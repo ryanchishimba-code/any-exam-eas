@@ -1,6 +1,7 @@
 /**
  * Gate for a generated question before it may be marked active.
- * A failure keeps the row inactive for review. This module does not write.
+ * A failure stays inactive for review. Callers apply the result on insert.
+ * This module does not write to the database.
  */
 
 const GENERIC_RATIONALE =
@@ -131,4 +132,89 @@ export function reviewGeneratedItem(
   }
 
   return { activate: failures.length === 0, failures };
+}
+
+type BankItemGateSource = {
+  question: string;
+  options: readonly string[];
+  correctAnswer: string;
+  explanation: string;
+  scenario?: string | null;
+  vignette?: string | null;
+  difficulty?: number | null;
+  ngnPayload?: Record<string, unknown> | null;
+  generationMeta?: Record<string, unknown> | null;
+  keyTakeaways?: readonly string[] | null;
+  references?: ReadonlyArray<{ citation?: string; label?: string }> | null;
+};
+
+/** Map a bank row onto the gate. Missing exam-readiness fields fail closed. */
+export function generatedItemFromBankItem(
+  fieldId: string,
+  item: BankItemGateSource
+): GeneratedItemForGate {
+  const meta = item.generationMeta ?? {};
+  const examTakeaway =
+    (typeof meta.examTakeaway === "string" && meta.examTakeaway) || item.keyTakeaways?.[0] || null;
+  const outlineWeight = typeof meta.outlineWeight === "number" ? meta.outlineWeight : null;
+  const citation =
+    (typeof meta.citation === "string" && meta.citation) ||
+    item.references
+      ?.map((reference) => reference.citation || reference.label)
+      .filter((value): value is string => Boolean(value))
+      .join(" ") ||
+    null;
+  const stepLevel =
+    typeof item.ngnPayload?.stepLevel === "string" ? item.ngnPayload.stepLevel : null;
+
+  return {
+    fieldId,
+    stepLevel,
+    scenario: item.scenario ?? item.vignette ?? null,
+    question: item.question,
+    options: item.options,
+    correctAnswer: item.correctAnswer,
+    explanation: item.explanation,
+    difficulty: item.difficulty ?? null,
+    outlineWeight,
+    examTakeaway,
+    citation,
+  };
+}
+
+type GeneratedInsertRow = {
+  active: boolean;
+  qaPassed: boolean;
+  generationMeta?: unknown;
+};
+
+/**
+ * Passing rows stay active only when they also passed the structural ingest gate.
+ * Anything else is stored inactive, with the reasons on generationMeta.
+ * A passing row claims its stem family so a later twin in the same batch cannot activate.
+ */
+export function withGeneratedItemGate<T extends GeneratedInsertRow>(
+  row: T,
+  item: GeneratedItemForGate,
+  fingerprints: Set<string>
+): T {
+  const review = reviewGeneratedItem(item, fingerprints);
+  const prior =
+    row.generationMeta && typeof row.generationMeta === "object" && !Array.isArray(row.generationMeta)
+      ? (row.generationMeta as Record<string, unknown>)
+      : {};
+  const generationMeta = {
+    ...prior,
+    generatedItemGate: {
+      activate: review.activate && row.qaPassed === true,
+      failures: review.failures,
+    },
+  };
+
+  if (!review.activate || row.qaPassed !== true) {
+    return { ...row, active: false, qaPassed: false, generationMeta };
+  }
+
+  fingerprints.add(stemFamilyFingerprint(item.scenario ?? "", item.question));
+  return { ...row, active: true, generationMeta };
 }
