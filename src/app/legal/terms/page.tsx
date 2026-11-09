@@ -42,6 +42,7 @@ export default function TermsPage() {
         <p className="mt-2">{LEGAL_DISCLAIMERS.noGuarantee}</p>
         <p className="mt-2">{LEGAL_DISCLAIMERS.notMedicalAdvice}</p>
         <p className="mt-2">{LEGAL_DISCLAIMERS.aiGenerated}</p>
+        <p className="mt-2">{LEGAL_DISCLAIMERS.questionCounts}</p>
         <p className="mt-2">{LEGAL_DISCLAIMERS.progressMetrics}</p>
         <p className="mt-2">{LEGAL_DISCLAIMERS.studySupport}</p>
         <p className="mt-2">{LEGAL_DISCLAIMERS.testimonials}</p>

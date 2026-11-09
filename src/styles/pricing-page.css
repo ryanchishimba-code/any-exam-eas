@@ -39,6 +39,14 @@
   color: #334155;
 }
 
+.aee-pricing-count-note {
+  margin: 0.55rem auto 0;
+  max-width: 34rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
 .aee-pricing-offer {
   max-width: 40rem;
   margin: 0.7rem auto 0;

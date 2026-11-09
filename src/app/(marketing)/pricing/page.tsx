@@ -5,6 +5,7 @@ import { PricingTiers } from "@/components/pricing/PricingTiers";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { buildPricingJsonLd, buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
+import { QUESTION_COUNT_AND_REPORT_NOTE } from "@/lib/legal";
 import { formatMonthlyPrice } from "@/lib/site";
 import "@/styles/pricing-page.css";
 
@@ -37,6 +38,7 @@ export default async function PricingPage() {
           <p className="aee-pricing-kicker">Pro plan</p>
           <h1>Six boards. One monthly price.</h1>
           <p className="aee-pricing-lede">{lede}</p>
+          {exactLabel ? <p className="aee-pricing-count-note">{QUESTION_COUNT_AND_REPORT_NOTE}</p> : null}
         </header>
         <Suspense fallback={null}>
           <PricingQueryNotices />

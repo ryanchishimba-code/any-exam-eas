@@ -6,6 +6,7 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { ClinicalReviewerAvatar } from "@/components/marketing/ClinicalReviewers";
 import { MarketingPhotoHero, MarketingPhotoHeroCopy } from "@/components/marketing/MarketingPhotoHero";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { QUESTION_COUNT_AND_REPORT_NOTE } from "@/lib/legal";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/active-questions";
 import {
   ABOUT_AFFILIATION,
@@ -194,6 +195,9 @@ export default async function AboutPage() {
 
             <h3 id="about-count-heading">How we count questions</h3>
             {totalQuestionsLabel ? <p className="aee-about-lead">{totalQuestionsLabel}</p> : null}
+            {totalQuestionsLabel ? (
+              <p className="aee-about-copy">{QUESTION_COUNT_AND_REPORT_NOTE}</p>
+            ) : null}
             <p className="aee-about-copy">
               {live
                 ? ACTIVE_QUESTION_DEFINITION

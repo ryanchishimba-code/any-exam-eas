@@ -23,6 +23,15 @@ export function organizationContactPoint() {
 
 export const LEGAL_LAST_UPDATED = "November 9, 2026";
 
+/** Shown with a public question total. Not a promise that the number is fixed. */
+export const QUESTION_COUNT_CHANGE_NOTE =
+  "Question counts are approximate and may change as questions are added, revised, or removed through ongoing review and updates.";
+
+/** Points at the study-session report and the existing support inbox. */
+export const QUESTION_ISSUE_REPORT_NOTE = `See a possible error? Report it from the explanation in a study session, or email ${LEGAL_ENTITY.supportEmail}.`;
+
+export const QUESTION_COUNT_AND_REPORT_NOTE = `${QUESTION_COUNT_CHANGE_NOTE} ${QUESTION_ISSUE_REPORT_NOTE}`;
+
 /** Short disclaimers for signup, pricing, checkboxes, and the Disclaimers page. */
 export const LEGAL_DISCLAIMERS = {
   companyRelationship: `${LEGAL_ENTITY.productName} is a software product and service operated by ${LEGAL_ENTITY.companyName} ("Company," "we," "us," or "our"). References to "${LEGAL_ENTITY.productName}" mean the Service offered by the Company.`,
@@ -49,6 +58,8 @@ export const LEGAL_DISCLAIMERS = {
 
   aiGenerated:
     "Questions, explanations, and other study materials may be written, edited, or generated with AI. They can contain errors, omit facts, or go out of date when a source changes. Not every question is individually reviewed by a clinician. A named review lead on the site is not a statement that that person reviewed every item. Check current authoritative references before you rely on an item.",
+
+  questionCounts: QUESTION_COUNT_AND_REPORT_NOTE,
 
   progressMetrics:
     "Practice progress, readiness, and mastery scores shown in the app are derived from your in-app question attempts only. They are self-assessment tools for study planning and are not predictors of board exam scores, pass rates, or licensure outcomes.",
@@ -124,6 +135,7 @@ export const PUBLIC_DISCLAIMER_KEYS: LegalDisclaimerKey[] = [
   "noGuarantee",
   "notMedicalAdvice",
   "aiGenerated",
+  "questionCounts",
   "progressMetrics",
   "studySupport",
   "ageRequirement",

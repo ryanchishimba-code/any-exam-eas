@@ -1,4 +1,5 @@
 import { boardStatStripFigures } from "@/lib/marketing/board-landing/stat-strip";
+import { QUESTION_COUNT_AND_REPORT_NOTE } from "@/lib/legal";
 
 export function BoardStatStrip({
   stats,
@@ -20,6 +21,7 @@ export function BoardStatStrip({
           </div>
         ))}
       </dl>
+      <p className="bl-stat-strip__note">{QUESTION_COUNT_AND_REPORT_NOTE}</p>
     </section>
   );
 }
