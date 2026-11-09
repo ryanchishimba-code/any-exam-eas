@@ -135,6 +135,27 @@
     0 8px 18px rgba(15, 118, 110, 0.24);
 }
 
+/* Same mark and word as the site header. One lockup, no second name. */
+.aee-login-sheet__logo {
+  flex-shrink: 0;
+  min-width: 0;
+  gap: 0.55rem;
+}
+
+.aee-login-sheet__logo .aee-nav-mark {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.aee-login-sheet__logo .aee-nav-wordmark__text {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
 .aee-login-sheet__eyebrow {
   margin: 0;
   font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -548,6 +569,17 @@
   .aee-login-sheet__field-label,
   .aee-login-sheet__link,
   .aee-login-sheet__link:hover {
+    color: CanvasText;
+  }
+
+  .aee-login-sheet .aee-nav-mark__cap,
+  .aee-login-sheet .aee-nav-mark__arch,
+  .aee-login-sheet .aee-nav-mark__check {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .aee-login-sheet .aee-nav-wordmark__text {
     color: CanvasText;
   }
 

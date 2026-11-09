@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Activity, ArrowLeft, KeyRound, Mail, ShieldCheck, X } from "lucide-react";
+import { ArrowLeft, KeyRound, Mail, ShieldCheck, X } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import {
   firstName,
   loadReturningUserHint,
@@ -90,7 +91,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
           ) : (
             <>One tap to your Study Hub — question banks, drugs, and progress.</>
           ),
-          icon: Activity,
+          icon: null,
         }
       : forgotStep === "success"
         ? {
@@ -171,9 +172,13 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                     transition={{ duration: 0.18 }}
                     className="aee-login-sheet__identity"
                   >
-                    <span className="aee-login-sheet__mark">
-                      <HeaderIcon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
-                    </span>
+                    {HeaderIcon ? (
+                      <span className="aee-login-sheet__mark">
+                        <HeaderIcon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
+                      </span>
+                    ) : (
+                      <BrandLogo showName className="aee-login-sheet__logo" />
+                    )}
                     <div className="min-w-0">
                       <p className="aee-login-sheet__eyebrow">{header.eyebrow}</p>
                       <h2 id="login-modal-title" className="aee-login-sheet__title">
