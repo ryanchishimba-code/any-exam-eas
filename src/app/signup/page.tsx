@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { ApplyPassScreen } from "@/components/auth/ApplyPassScreen";
 import { SignupScreen } from "@/components/auth/SignupScreen";
 import { parseBoardSlug } from "@/lib/auth/board-intent";
 import { isDailySignupArrival } from "@/lib/marketing/daily-trial";
@@ -49,10 +50,26 @@ export default async function SignupPage({
     utm_medium?: string;
     utm_campaign?: string;
     error?: string;
+    pass?: string;
   }>;
 }) {
   const params = await searchParams;
+  const intent = resolveSignupIntent(params);
   const session = await getCachedSession();
+  if (session?.user?.id && intent.passCode) {
+    const board = parseBoardSlug(params.board) ?? parseBoardSlug(params.exam);
+    if (board) {
+      try {
+        await assignBoardIfUnset(session.user.id, board);
+      } catch (error) {
+        console.warn(
+          "[signup] board intent skipped:",
+          error instanceof Error ? error.message : error
+        );
+      }
+    }
+    return <ApplyPassScreen code={intent.passCode} result={params.pass} />;
+  }
   if (session?.user?.id) {
     const board = parseBoardSlug(params.board) ?? parseBoardSlug(params.exam);
     if (board) {
@@ -104,8 +121,6 @@ export default async function SignupPage({
 
     redirect(decision.href);
   }
-
-  const intent = resolveSignupIntent(params);
 
   return (
     <SignupScreen

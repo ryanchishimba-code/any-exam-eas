@@ -1,4 +1,5 @@
-import type { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import {
   addCompDays,
   classifyPassRow,
@@ -7,6 +8,8 @@ import {
   type PassCodeRow,
   type PassGrant,
 } from "@/lib/promo/free-pass";
+
+type PassTx = Prisma.TransactionClient;
 
 type LockedPass = {
   id: string;
@@ -39,7 +42,7 @@ function asRow(row: LockedPass | undefined): PassCodeRow | null {
  * update increments currentUses only while it is still under maxUses.
  */
 export async function redeemFreePassOnTx(
-  tx: Prisma.TransactionClient,
+  tx: PassTx,
   userId: string,
   rawCode: string,
   now = new Date()
@@ -96,4 +99,60 @@ export async function redeemFreePassOnTx(
     compDays: decision.compDays,
     compAccessUntil,
   };
+}
+
+export type ExistingPassReason =
+  | "paid"
+  | "already"
+  | "missing"
+  | "invalid"
+  | "not_found"
+  | "inactive"
+  | "expired"
+  | "used"
+  | "not_a_pass";
+
+export type ExistingPassResult =
+  | { ok: true; grant: PassGrant }
+  | { ok: false; reason: ExistingPassReason };
+
+/**
+ * Apply a pass to an account that already exists. A paid Stripe subscription
+ * is left alone and does not consume a redemption, so this cannot replace a
+ * paid plan or start a charge.
+ */
+export async function redeemPassForExistingUser(
+  userId: string,
+  rawCode: string
+): Promise<ExistingPassResult> {
+  const code = normalizePassCode(rawCode);
+  if (!code) return { ok: false, reason: "invalid" };
+
+  try {
+    const outcome = await prisma.$transaction(async (tx) => {
+      const sub = await tx.subscription.findUnique({
+        where: { userId },
+        select: { stripeSubscriptionId: true },
+      });
+      if (sub?.stripeSubscriptionId?.trim()) return { blocked: "paid" as const };
+      if (!sub) return { blocked: "missing" as const };
+      const prior = await tx.promoRedemption.findFirst({
+        where: { userId, promoCode: { code } },
+        select: { id: true },
+      });
+      if (prior) return { blocked: "already" as const };
+      return { grant: await redeemFreePassOnTx(tx, userId, code) };
+    });
+    if ("blocked" in outcome && outcome.blocked) {
+      return { ok: false, reason: outcome.blocked };
+    }
+    if ("grant" in outcome) return { ok: true, grant: outcome.grant };
+    return { ok: false, reason: "invalid" };
+  } catch (err) {
+    if (err instanceof FreePassError) return { ok: false, reason: err.reason };
+    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002") {
+      return { ok: false, reason: "already" };
+    }
+    throw err;
+  }
 }
