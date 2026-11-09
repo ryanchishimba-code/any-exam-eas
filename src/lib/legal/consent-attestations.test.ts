@@ -21,7 +21,8 @@ describe("consent attestations", () => {
     expect(lines.some((l) => /original study material/i.test(l))).toBe(true);
     expect(lines.some((l) => /not official exam items/i.test(l))).toBe(true);
     expect(lines.some((l) => /not for patient care/i.test(l))).toBe(true);
-    expect(lines.some((l) => /not consent to promotional email/i.test(l))).toBe(true);
+    expect(lines.some((l) => /not consent to promotional messages/i.test(l))).toBe(true);
+    expect(lines.join(" ")).not.toMatch(/\bemail\b/i);
     expect(lines.join(" ")).not.toMatch(/AI-generated|may contain errors/i);
   });
 

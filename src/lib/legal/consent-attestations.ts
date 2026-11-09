@@ -38,6 +38,6 @@ export function getSignupConsentSummaryLines(): string[] {
     "Original study material for six boards. Not official exam items, and not affiliated with the exam boards.",
     "No guarantee of a score, a license, a job, or a certification.",
     "Not medical, nursing, or pharmacy advice, and not for patient care.",
-    "Accepting these terms is not consent to promotional email.",
+    "Accepting these terms is not consent to promotional messages.",
   ];
 }
