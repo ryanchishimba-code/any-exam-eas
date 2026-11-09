@@ -1,0 +1,23 @@
+{
+  "appliedRepairs": ["cmr4dbekm00yi1ykyfwbi0ymg", "cmr8ncpd500tx1ygijntexe7t"],
+  "appliedHides": [
+    "cmru2qakq00181y7w3s5vlea7",
+    "cmr8dbb3v00up1ylopzrqru69",
+    "cmr97qer400751ywysj2wlnnw",
+    "cmr8m9bni00k51ygitaq863sw"
+  ],
+  "blocked": {
+    "id": "cmr996ja400r11ywyk6bm3agd",
+    "reason": "Adjustment disorder is not established. The stem already says she has generalized anxiety disorder and takes sertraline. DSM-5-TR criterion C excludes a reaction that is only an exacerbation of a preexisting disorder. Panic disorder is also unmet. The row was left unchanged."
+  },
+  "ambiguousNotEdited": [
+    "cmr8ji6l302n11ylolnopwsao",
+    "cmr8ny4ue00zz1ygimo4ccllh",
+    "cmr8ccjzg00lc1ylo69pwy1oo"
+  ],
+  "servedBefore": 4787,
+  "servedAfter": 4783,
+  "snapshotId": "snap-sparkling-bonus-ap4elo3m",
+  "backupTable": "qbi_usmle_step3_sample2fix_20261109",
+  "backupRows": 7
+}
