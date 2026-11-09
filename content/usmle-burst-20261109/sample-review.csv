@@ -1,0 +1,41 @@
+id,fieldId,subjectId,classification,score_10,note
+cmw8slwxm0093le08pwp2vx6p,usmle-step-1,microbiology,fail,3,AKI outcome key filed under microbiology; boilerplate rationale
+cmw8slvwr005fle083fh7zpx5,usmle-step-1,biochemistry,fail,3,DKA mechanism is plausible but the rationale does not teach the options
+cmw8slv9p0012le08rvquc00f,usmle-step-1,pharmacology,fail,2,Heart-failure mechanism asked as a drug mechanism
+cmw8slwxn009wle083keb6hkk,usmle-step-1,microbiology,fail,3,AKI management filed under microbiology
+cmw8slvwq004ule08h1kfu7vu,usmle-step-1,biochemistry,thin,4,DKA mechanism key is directionally right; cloned stem and outline rationale
+cmw8slv9o000yle08lw550rwz,usmle-step-1,pharmacology,fail,2,IV furosemide order filed as pharmacology mechanism
+cmw8slwyv00aole08bj0s44qw,usmle-step-1,microbiology,fail,3,Same AKI management clone
+cmw8slwdk005kle08suewfkxr,usmle-step-1,microbiology,fail,2,Inferior STEMI mechanism filed under microbiology
+cmw8slwj2007vle080gefcmhe,usmle-step-1,microbiology,fail,2,PE mechanism filed under microbiology
+cmw8slvwp004rle08m8ces4ti,usmle-step-1,biochemistry,thin,4,Pancreatitis autodigestion is a fair mechanism; not a unique vignette
+cmw8slvbs002fle08az9y3iio,usmle-step-1,pharmacology,fail,2,Preeclampsia mechanism filed under pharmacology
+cmw8slwdm006jle08v7qp89t3,usmle-step-1,microbiology,fail,3,ATN explanation filed under microbiology
+cmw8slvbs0021le081u1g9i4c,usmle-step-1,pharmacology,fail,2,Scarlet-fever toxin filed as a drug mechanism
+cmw8slvbt002sle08vlrlnw52,usmle-step-1,pharmacology,fail,2,Stroke occlusion filed as a drug mechanism
+cmw8sm19201crle080t8rm47j,usmle-step-2,obgyn,thin,4,Severe preeclampsia diagnosis is directionally right; age-swapped clone
+cmw8slyz200wsle089m42uozt,usmle-step-2,nephrology,fail,2,DKA mechanism filed under nephrology
+cmw8sm1dz01gvle081a8z786z,usmle-step-2,obgyn,thin,4,Magnesium and delivery is the right preeclampsia plan; clone without option teaching
+cmw8slxml00gwle083hhpv3ja,usmle-step-2,cardiology,thin,4,HFrEF shock-or-overdiuresis key is plausible; same stem reused
+cmw8slyxz00vxle08qsdegh3y,usmle-step-2,nephrology,fail,2,Lupus-nephritis referral key does not match the NSAID-AKI stem family
+cmw8slxoz00i5le08nnvkfwk7,usmle-step-2,cardiology,thin,4,STEMI cath-lab key is directionally right; boilerplate rationale
+cmw8slzia010gle08hz8fz2eu,usmle-step-2,neurology,fail,2,AKI outcome key filed under neurology
+cmw8sm1dz01h1le0808brfqdn,usmle-step-2,obgyn,fail,2,Heart-failure mechanism filed under obgyn
+cmw8sm2ju01pble08kwhidfn7,usmle-step-2,emergency-medicine,thin,4,Scarlet fever diagnosis is directionally right; cloned pediatric stem
+cmw8slxqb00k5le08w86x7uhr,usmle-step-2,cardiology,thin,4,Same HFrEF adverse-outcome clone
+cmw8sm1be01etle081jvcbsph,usmle-step-2,obgyn,fail,2,AKI hold-nephrotoxins plan filed under obgyn
+cmw8slxlf00f6le083uev4u40,usmle-step-2,cardiology,fail,2,Stroke mechanism filed under cardiology
+cmw8sm0jn018ule08b8rn00aj,usmle-step-2,pediatrics,thin,4,Pancreatitis fluids are directionally right; not a unique case
+cmw8sm39x01sjle087255qkfi,usmle-step-3,cardiology,fail,2,Hemorrhagic-transformation key with a Step 2 rationale label
+cmw8sm33k01qale08jpfi3shp,usmle-step-3,cardiology,thin,4,Same HFrEF clone; Step 3 row uses a Step 2 rationale label
+cmw8sm3ym020qle08f4wjlb9u,usmle-step-3,pulmonology,fail,2,AKI diagnosis filed under pulmonology
+cmw8sm3da01zqle088q2aargm,usmle-step-3,cardiology,thin,4,Inferior STEMI mechanism is directionally right; cloned stem
+cmw8sm34y01rcle0847hy50xn,usmle-step-3,cardiology,fail,3,Thrombolysis window key repeats the time-window error already fixed on older rows
+cmw8sm3c701yqle08ah6iouuu,usmle-step-3,cardiology,thin,4,Same HFrEF diuretic plan
+cmw8sm58e02c7le08saz08g6p,usmle-step-3,neurology,fail,2,DKA edema key filed under neurology
+cmw8sm59u02cole08f2lza88n,usmle-step-3,neurology,fail,2,HFrEF outcome key filed under neurology
+cmw8sm5c402eyle08xrvdnh3i,usmle-step-3,neurology,fail,2,DKA mechanism filed under neurology
+cmw8sm3da01zple08o3d9u0hu,usmle-step-3,cardiology,thin,4,HFrEF diagnosis is directionally right; clone
+cmw8sm3b201wzle08dreqshiz,usmle-step-3,cardiology,thin,4,Alteplase-after-CT key is closer to correct; still a cloned stroke stem
+cmw8sm38s01uzle0827e15quz,usmle-step-3,cardiology,fail,3,Same thrombolysis-window key without a last-known-well time
+cmw8sm5c502fkle08yxsikgsm,usmle-step-3,neurology,thin,4,Meningitis antibiotics are directionally right; dorm-resident clone
