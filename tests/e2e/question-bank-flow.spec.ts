@@ -91,7 +91,8 @@ test.describe("Login checklist (public)", () => {
     page.on("console", (msg) => {
       if (msg.type() === "error") errors.push(msg.text());
     });
-    await page.goto("/login", { waitUntil: "networkidle" });
+    await page.goto("/login", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("heading", { name: /^log in\.?$/i })).toBeVisible();
     const critical = errors.filter(
       (e) => !/favicon|analytics|third-party|chrome-extension/i.test(e)
     );
