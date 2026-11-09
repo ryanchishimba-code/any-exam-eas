@@ -179,7 +179,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                     ) : (
                       <BrandLogo showName className="aee-login-sheet__logo" />
                     )}
-                    <div className="min-w-0">
+                    <div className="aee-login-sheet__copy">
                       <p className="aee-login-sheet__eyebrow">{header.eyebrow}</p>
                       <h2 id="login-modal-title" className="aee-login-sheet__title">
                         {header.title}

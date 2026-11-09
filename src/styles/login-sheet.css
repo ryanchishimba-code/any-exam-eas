@@ -74,23 +74,40 @@
 
 .aee-login-sheet__header {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-shrink: 0;
-  padding: 0.35rem 1.15rem 1rem;
+  padding: 0.55rem 1.15rem 1.05rem;
   border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  text-align: center;
 }
 
 @media (min-width: 640px) {
   .aee-login-sheet__header {
-    padding: 0.85rem 2rem 1.15rem;
+    padding: 0.85rem 2rem 1.25rem;
+  }
+
+  .aee-login-sheet__toolbar {
+    top: 0.7rem;
+    right: 1.35rem;
+    left: 1.35rem;
   }
 }
 
+/* Corner controls sit over the header so the logo can be the top row. */
 .aee-login-sheet__toolbar {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.7rem;
+  left: 0.7rem;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 2.75rem;
-  margin-bottom: 0.35rem;
+  min-height: 0;
+  margin: 0;
+  pointer-events: none;
 }
 
 .aee-login-sheet__icon-btn {
@@ -100,6 +117,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
   border-radius: 999px;
   border: 1.5px solid #475569;
   background: #ffffff;
@@ -115,9 +133,13 @@
 
 .aee-login-sheet__identity {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: center;
+  gap: 0.7rem;
+  width: 100%;
   min-width: 0;
+  text-align: center;
 }
 
 .aee-login-sheet__mark {
@@ -138,8 +160,16 @@
 /* Same mark and word as the site header. One lockup, no second name. */
 .aee-login-sheet__logo {
   flex-shrink: 0;
+  justify-content: center;
   min-width: 0;
+  max-width: 100%;
   gap: 0.55rem;
+}
+
+.aee-login-sheet__copy {
+  min-width: 0;
+  max-width: 36rem;
+  text-align: center;
 }
 
 .aee-login-sheet__logo .aee-nav-mark {
@@ -178,10 +208,13 @@
 }
 
 .aee-login-sheet__subtitle {
-  margin: 0.7rem 0 0;
+  margin: 0.6rem 0 0;
+  max-width: 34rem;
   font-size: 0.9375rem;
   line-height: 1.5;
   color: #334155;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .aee-login-sheet__emphasis {
@@ -412,6 +445,10 @@
   border-color: #99f6e4;
   background: #103044;
   color: #ccfbf1;
+}
+
+[data-theme="dark"] .aee-login-sheet__logo .aee-nav-wordmark__text {
+  color: #f8fafc;
 }
 
 [data-theme="dark"] .aee-login-sheet__eyebrow {
