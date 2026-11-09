@@ -445,13 +445,23 @@
   margin-top: 1.5rem;
 }
 
-/* The shared photo hero owns the box. The old panel padding must not come back. */
+/* The shared photo hero owns the box. The old panel padding must not come back.
+   One screen, same as the board heroes. A short landscape viewport cannot also
+   fit the board chips and founder line, so those yield and the trial action stays. */
 .home-visual .home-hero.mkt-photo-hero {
   padding: 0;
   background: #071422;
-  height: auto;
+  height: 100svh;
   min-height: 100svh;
-  overflow: visible;
+  max-height: 100svh;
+  overflow: hidden;
+}
+
+@media (max-height: 520px) {
+  .home-visual .home-hero.mkt-photo-hero .home-hero__boards,
+  .home-visual .home-hero.mkt-photo-hero .home-hero__founder {
+    display: none;
+  }
 }
 
 /* Homepage button sizing must not override the shared photo-hero CTA. */

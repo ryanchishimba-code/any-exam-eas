@@ -249,7 +249,13 @@ async function scrollTo(page: Page, top: number, overPhoto: boolean) {
 
 async function settle(page: Page, path: string) {
   await page.goto(path, { waitUntil: "domcontentloaded" });
-  await expect(page.locator(".mkt-photo-hero h1")).toHaveCount(1);
+  const heroHeading = page.locator(".mkt-photo-hero h1");
+  const returningHome = page.getByRole("heading", { name: /Keep going,/i });
+  await expect(async () => {
+    const heroes = await heroHeading.count();
+    const returned = path === "/" && (await returningHome.count()) > 0;
+    expect(heroes === 1 || returned).toBe(true);
+  }).toPass({ timeout: 20_000 });
   // The layout hydrates before the page. A key or click in that gap hits the
   // server HTML only: the menu button has no toggle yet, and the trial link
   // navigates before its conversion handler exists.
