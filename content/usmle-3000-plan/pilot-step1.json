@@ -1,0 +1,422 @@
+[
+  {
+    "id": "pilot-s1-01",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 3,
+    "subjectId": "hematology",
+    "examTakeaway": "Hereditary spherocytosis is a red-cell membrane defect, most often ankyrin or spectrin, that traps spherocytes in the spleen.",
+    "scenario": "A 9-year-old boy has had jaundice with viral illnesses since infancy. His father had a splenectomy at age 16 after similar episodes. The boy is pale, with a spleen tip 3 cm below the costal margin. Hemoglobin is 9.8 g/dL, MCHC is 38 g/dL, and the smear shows many spherocytes without bite cells or Heinz bodies. Osmotic fragility is increased. Direct antiglobulin test is negative.",
+    "question": "Which structural defect best accounts for these red cells?",
+    "options": [
+      "Defective ankyrin linking the lipid bilayer to the spectrin cytoskeleton",
+      "Glucose-6-phosphate dehydrogenase deficiency with oxidative bite cells",
+      "Spectrin overproduction that stiffens the cell into a target shape",
+      "Autoantibody coating that the direct antiglobulin test would have detected"
+    ],
+    "correctAnswer": "Defective ankyrin linking the lipid bilayer to the spectrin cytoskeleton",
+    "explanation": "Hereditary spherocytosis is a red-cell membrane defect, most often ankyrin or spectrin, that traps spherocytes in the spleen. Defective ankyrin linking the lipid bilayer to the spectrin cytoskeleton lets membrane blebs off, raising MCHC and osmotic fragility, and the negative direct antiglobulin test excludes immune hemolysis. Glucose-6-phosphate dehydrogenase deficiency with oxidative bite cells produces bite cells and Heinz bodies after an oxidant stress, which this smear lacks. Spectrin overproduction that stiffens the cell into a target shape is the wrong direction and the wrong morphology. Autoantibody coating that the direct antiglobulin test would have detected is ruled out by the negative test and the family history.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-02",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "Warfarin skin necrosis in the first days of therapy comes from a transient drop in protein C before the longer-lived procoagulant factors fall.",
+    "scenario": "A 34-year-old woman starts warfarin for a first deep-vein thrombosis. On day 3 she develops a painful purpuric plaque with a black center on the breast. Platelet count is 210,000/mm3. She has no heparin exposure. A relative had a similar wound after a short course of warfarin.",
+    "question": "Which protein falls first and explains the skin necrosis?",
+    "options": [
+      "Protein C, whose short half-life leaves a brief hypercoagulable window",
+      "Factor VIII, which warfarin inhibits directly in the skin vessels",
+      "Platelets, which warfarin aggregates inside dermal capillaries",
+      "Antithrombin, which warfarin consumes before it affects vitamin K factors"
+    ],
+    "correctAnswer": "Protein C, whose short half-life leaves a brief hypercoagulable window",
+    "explanation": "Warfarin skin necrosis in the first days of therapy comes from a transient drop in protein C before the longer-lived procoagulant factors fall. Protein C, whose short half-life leaves a brief hypercoagulable window, is the vitamin K-dependent anticoagulant that disappears first, especially in someone who already has low protein C. Factor VIII, which warfarin inhibits directly in the skin vessels, is not a vitamin K-dependent factor and is not the cause of this plaque. Platelets, which warfarin aggregates inside dermal capillaries, are normal here, unlike heparin-induced thrombocytopenia. Antithrombin, which warfarin consumes before it affects vitamin K factors, is a heparin cofactor, not a vitamin K protein.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-03",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 3,
+    "subjectId": "immunology",
+    "examTakeaway": "Adenosine deaminase deficiency causes autosomal-recessive SCID because toxic purine metabolites kill developing lymphocytes.",
+    "scenario": "A 4-month-old girl has had thrush, Pneumocystis pneumonia, and chronic diarrhea. She has no palpable lymph nodes. The chest radiograph shows no thymic shadow. Lymphocyte count is 400/mm3, and both T- and B-cell numbers are extremely low. Immunoglobulin levels are low. A sibling died of infection at 6 months.",
+    "question": "Which enzyme deficiency best explains this combined immunodeficiency?",
+    "options": [
+      "Adenosine deaminase, letting deoxyadenosine metabolites poison lymphocytes",
+      "NADPH oxidase, which would leave lymphocyte counts normal and impair only neutrophils",
+      "Sphingomyelinase, which stores lipid in macrophages rather than emptying the thymus",
+      "Bruton tyrosine kinase, which drops B cells but spares T cells and the thymus"
+    ],
+    "correctAnswer": "Adenosine deaminase, letting deoxyadenosine metabolites poison lymphocytes",
+    "explanation": "Adenosine deaminase deficiency causes autosomal-recessive SCID because toxic purine metabolites kill developing lymphocytes. Adenosine deaminase, letting deoxyadenosine metabolites poison lymphocytes, fits an infant with absent thymus, low T and B cells, and opportunistic infection. NADPH oxidase, which would leave lymphocyte counts normal and impair only neutrophils, is chronic granulomatous disease. Sphingomyelinase, which stores lipid in macrophages rather than emptying the thymus, is Niemann-Pick disease. Bruton tyrosine kinase, which drops B cells but spares T cells and the thymus, is X-linked agammaglobulinemia and would not remove the thymic shadow.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-04",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "biochemistry",
+    "examTakeaway": "The common delta-F508 mutation is a class II CFTR defect: the protein misfolds and is degraded before it reaches the apical membrane.",
+    "scenario": "A 7-month-old boy has had two pneumonias and bulky foul stools. Sweat chloride is 92 mmol/L. Genetic testing shows deletion of phenylalanine at position 508 on both CFTR alleles. Nasal potential difference is abnormal.",
+    "question": "Where does this mutant CFTR protein fail?",
+    "options": [
+      "It misfolds in the endoplasmic reticulum and is degraded before reaching the membrane",
+      "It reaches the membrane but cannot open because the gating mutation locks it shut",
+      "It is overexpressed on the basolateral membrane and secretes too much chloride",
+      "It is spliced out of only sweat-duct RNA, leaving lung CFTR intact"
+    ],
+    "correctAnswer": "It misfolds in the endoplasmic reticulum and is degraded before reaching the membrane",
+    "explanation": "The common delta-F508 mutation is a class II CFTR defect: the protein misfolds and is degraded before it reaches the apical membrane. It misfolds in the endoplasmic reticulum and is degraded before reaching the membrane, so chloride cannot be secreted and sweat chloride stays high. It reaches the membrane but cannot open because the gating mutation locks it shut describes a class III gating mutant such as G551D, not delta-F508. It is overexpressed on the basolateral membrane and secretes too much chloride reverses both the location and the direction of the defect. It is spliced out of only sweat-duct RNA, leaving lung CFTR intact cannot explain the pneumonias and steatorrhea.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-05",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "anatomy",
+    "examTakeaway": "Kartagener syndrome is immotile cilia from missing dynein arms, so situs inversus, bronchiectasis, and infertility travel together.",
+    "scenario": "A 19-year-old man has had daily productive cough since childhood. Chest imaging shows bronchiectasis and dextrocardia, and the liver is on the left. He and his partner have not conceived after two years. A nasal biopsy is planned.",
+    "question": "Which axonemal structure is missing?",
+    "options": [
+      "Dynein arms, so microtubule doublets cannot slide and cilia do not beat",
+      "Keratin filaments, which would blister skin rather than reverse the organs",
+      "Actin anchors of microvilli, which would impair gut absorption without situs inversus",
+      "Type IV collagen in basement membranes, which causes hematuria and deafness"
+    ],
+    "correctAnswer": "Dynein arms, so microtubule doublets cannot slide and cilia do not beat",
+    "explanation": "Kartagener syndrome is immotile cilia from missing dynein arms, so situs inversus, bronchiectasis, and infertility travel together. Dynein arms, so microtubule doublets cannot slide and cilia do not beat, is the primary-ciliary-dyskinesia lesion behind this triad. Keratin filaments, which would blister skin rather than reverse the organs, are an intermediate-filament disease. Actin anchors of microvilli, which would impair gut absorption without situs inversus, do not set left-right axis. Type IV collagen in basement membranes, which causes hematuria and deafness, is Alport syndrome.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-06",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "pathology",
+    "examTakeaway": "Minimal change disease selectively spills albumin, looks normal on light microscopy, and shows foot-process effacement only on electron microscopy.",
+    "scenario": "A 5-year-old boy has periorbital swelling each morning for two weeks. Urine dipstick shows 4+ protein and no blood. Serum albumin is 1.8 g/dL and cholesterol is 340 mg/dL. A renal biopsy is normal by light microscopy and immunofluorescence. Electron microscopy is pending.",
+    "question": "Which ultrastructural finding is expected?",
+    "options": [
+      "Diffuse effacement of podocyte foot processes with no immune deposits",
+      "Subepithelial humps and low C3 from a recent streptococcal infection",
+      "Linear IgG along the glomerular basement membrane",
+      "Wire-loop subendothelial deposits of IgG and C3"
+    ],
+    "correctAnswer": "Diffuse effacement of podocyte foot processes with no immune deposits",
+    "explanation": "Minimal change disease selectively spills albumin, looks normal on light microscopy, and shows foot-process effacement only on electron microscopy. Diffuse effacement of podocyte foot processes with no immune deposits matches a child with nephrotic syndrome, bland sediment, and a blank immunofluorescence study. Subepithelial humps and low C3 from a recent streptococcal infection are the picture of poststreptococcal glomerulonephritis, which is nephritic and bloody. Linear IgG along the glomerular basement membrane is anti-GBM disease. Wire-loop subendothelial deposits of IgG and C3 are lupus nephritis class IV, and immunofluorescence would not be empty.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-07",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "pathology",
+    "examTakeaway": "IgA nephropathy causes gross hematuria during or within days of a mucosal infection, and complement stays normal.",
+    "scenario": "A 22-year-old man notices cola-colored urine on the second day of a sore throat. Blood pressure is 128/78 mm Hg. Urinalysis shows many red cells and red-cell casts. Serum C3 is normal. Antistreptolysin O titer is pending. A similar episode followed a cold six months ago.",
+    "question": "Which immune deposit best fits the timing and the normal complement?",
+    "options": [
+      "Mesangial IgA deposited during the mucosal infection",
+      "Subepithelial IgG humps appearing one to two weeks after pharyngitis with a low C3",
+      "Linear IgG on the glomerular basement membrane after a pulmonary hemorrhage",
+      "Circulating C3 nephritic factor that keeps the alternative pathway turned on"
+    ],
+    "correctAnswer": "Mesangial IgA deposited during the mucosal infection",
+    "explanation": "IgA nephropathy causes gross hematuria during or within days of a mucosal infection, and complement stays normal. Mesangial IgA deposited during the mucosal infection fits synpharyngitic hematuria with a normal C3 and prior episodes. Subepithelial IgG humps appearing one to two weeks after pharyngitis with a low C3 is poststreptococcal glomerulonephritis, which waits longer and consumes complement. Linear IgG on the glomerular basement membrane after a pulmonary hemorrhage is anti-GBM disease, and there is no lung bleeding here. Circulating C3 nephritic factor that keeps the alternative pathway turned on is C3 glomerulopathy and would lower C3.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-08",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 3,
+    "subjectId": "physiology",
+    "examTakeaway": "Central diabetes insipidus leaves the urine dilute when the plasma is concentrated, and desmopressin then raises urine osmolality.",
+    "scenario": "A 46-year-old woman is day 2 after transsphenoidal removal of a pituitary macroadenoma. She is thirsty, making 400 mL of urine an hour. Serum sodium is 152 mEq/L and serum osmolality is 312 mOsm/kg. Urine osmolality is 110 mOsm/kg. One hour after a dose of desmopressin, urine osmolality rises to 480 mOsm/kg.",
+    "question": "Which lesion does the desmopressin response identify?",
+    "options": [
+      "Missing posterior-pituitary vasopressin, with kidneys that still respond to the hormone",
+      "Collecting-duct resistance to vasopressin, which would ignore desmopressin",
+      "Too much vasopressin, which would concentrate the urine and lower the serum sodium",
+      "Primary polydipsia, which would dilute the serum rather than raise sodium to 152"
+    ],
+    "correctAnswer": "Missing posterior-pituitary vasopressin, with kidneys that still respond to the hormone",
+    "explanation": "Central diabetes insipidus leaves the urine dilute when the plasma is concentrated, and desmopressin then raises urine osmolality. Missing posterior-pituitary vasopressin, with kidneys that still respond to the hormone, is what a post-operative rise in urine osmolality after desmopressin shows. Collecting-duct resistance to vasopressin, which would ignore desmopressin, is nephrogenic diabetes insipidus. Too much vasopressin, which would concentrate the urine and lower the serum sodium, is SIADH, the opposite labs. Primary polydipsia, which would dilute the serum rather than raise sodium to 152, does not produce hypernatremia.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-09",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 2,
+    "subjectId": "hematology",
+    "examTakeaway": "Iron deficiency has a low ferritin and a high RDW, while thalassemia trait has a normal ferritin, a very low MCV, and a high red-cell count.",
+    "scenario": "A 27-year-old woman has heavy menses. Hemoglobin is 9.6 g/dL, MCV is 72 fL, RDW is 18%, ferritin is 8 ng/mL, and the red-cell count is 3.6 million/mm3. A cousin with hemoglobin 11 g/dL has an MCV of 68 fL, a normal ferritin, RDW of 13%, and a red-cell count of 5.8 million/mm3.",
+    "question": "Which pair of findings belongs to the cousin's trait?",
+    "options": [
+      "Normal ferritin, narrow RDW, and a high red-cell count despite the low MCV",
+      "Ferritin of 8 ng/mL with a wide RDW from a mixed population of new and old cells",
+      "High hepcidin trapping iron in macrophages, as in anemia of chronic inflammation",
+      "Ring sideroblasts in the marrow from failed heme synthesis"
+    ],
+    "correctAnswer": "Normal ferritin, narrow RDW, and a high red-cell count despite the low MCV",
+    "explanation": "Iron deficiency has a low ferritin and a high RDW, while thalassemia trait has a normal ferritin, a very low MCV, and a high red-cell count. Normal ferritin, narrow RDW, and a high red-cell count despite the low MCV is the cousin's thalassemia trait. Ferritin of 8 ng/mL with a wide RDW from a mixed population of new and old cells is the patient's iron deficiency, not the cousin. High hepcidin trapping iron in macrophages, as in anemia of chronic inflammation, lowers iron availability with a low TIBC and is not a lifelong microcytosis with a high red-cell count. Ring sideroblasts in the marrow from failed heme synthesis are sideroblastic anemia, not thalassemia trait.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-10",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 3,
+    "subjectId": "hematology",
+    "examTakeaway": "CML is a BCR-ABL fusion from t(9;22), with a low leukocyte alkaline phosphatase and basophilia, unlike a leukemoid reaction.",
+    "scenario": "A 54-year-old man has fatigue and early satiety. The spleen is felt 8 cm below the costal margin. Leukocyte count is 86,000/mm3 with a left shift, 6% basophils, and rare blasts. Leukocyte alkaline phosphatase score is low. There are no toxic granules.",
+    "question": "Which genetic result confirms this leukemia rather than a leukemoid reaction?",
+    "options": [
+      "BCR-ABL1 fusion from a reciprocal translocation of chromosomes 9 and 22",
+      "A high leukocyte alkaline phosphatase score with toxic granulation",
+      "JAK2 V617F, which marks polycythemia vera rather than this white-cell picture",
+      "PML-RARA fusion, which would show abnormal promyelocytes and bleeding"
+    ],
+    "correctAnswer": "BCR-ABL1 fusion from a reciprocal translocation of chromosomes 9 and 22",
+    "explanation": "CML is a BCR-ABL fusion from t(9;22), with a low leukocyte alkaline phosphatase and basophilia, unlike a leukemoid reaction. BCR-ABL1 fusion from a reciprocal translocation of chromosomes 9 and 22 is the Philadelphia chromosome that defines this spleen and basophil picture. A high leukocyte alkaline phosphatase score with toxic granulation is the reactive leukemoid pattern this patient does not have. JAK2 V617F, which marks polycythemia vera rather than this white-cell picture, is a different myeloproliferative disease. PML-RARA fusion, which would show abnormal promyelocytes and bleeding, is acute promyelocytic leukemia.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-11",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 2,
+    "subjectId": "hematology",
+    "examTakeaway": "Repeated infarction of the spleen in sickle cell disease leaves Howell-Jolly bodies and a risk of encapsulated bacteria.",
+    "scenario": "A 16-year-old boy with homozygous sickle cell disease has a fever of 39.2 C and hypotension one day after the start of a febrile illness. The smear shows sickle cells and several red cells with single round nuclear remnants. He has no palpable spleen. Blood cultures are drawn.",
+    "question": "Which finding on the smear marks the lost splenic function?",
+    "options": [
+      "Howell-Jolly bodies, nuclear DNA left behind because the spleen no longer pits it",
+      "Bite cells from oxidative injury to hemoglobin inside an intact spleen",
+      "Auer rods inside blasts, which would mean acute myeloid leukemia",
+      "Hypersegmented neutrophils from vitamin B12 deficiency"
+    ],
+    "correctAnswer": "Howell-Jolly bodies, nuclear DNA left behind because the spleen no longer pits it",
+    "explanation": "Repeated infarction of the spleen in sickle cell disease leaves Howell-Jolly bodies and a risk of encapsulated bacteria. Howell-Jolly bodies, nuclear DNA left behind because the spleen no longer pits it, are the smear marker of functional asplenia in this febrile, hypotensive teenager. Bite cells from oxidative injury to hemoglobin inside an intact spleen are a G6PD finding, not nuclear remnants. Auer rods inside blasts, which would mean acute myeloid leukemia, are needle-like inclusions in myeloid blasts. Hypersegmented neutrophils from vitamin B12 deficiency are white-cell changes, not red-cell nuclear remnants.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-12",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "pharmacology",
+    "examTakeaway": "Acetaminophen toxicity is NAPQI depleting glutathione; N-acetylcysteine restores glutathione and detoxifies the remaining metabolite.",
+    "scenario": "A 23-year-old woman is brought in 10 hours after swallowing a bottle of acetaminophen tablets. She is nauseated. AST is 1,100 U/L and ALT is 1,400 U/L. The acetaminophen level, plotted on the treatment nomogram, is above the treatment line. She did not drink alcohol tonight and took no other tablets.",
+    "question": "Which antidote action limits further hepatic injury?",
+    "options": [
+      "N-acetylcysteine replenishing glutathione so remaining NAPQI can be conjugated",
+      "Fomepizole blocking alcohol dehydrogenase, which does not make NAPQI",
+      "Naloxone displacing acetaminophen from mu receptors in the liver",
+      "Deferoxamine binding free iron released by a different overdose"
+    ],
+    "correctAnswer": "N-acetylcysteine replenishing glutathione so remaining NAPQI can be conjugated",
+    "explanation": "Acetaminophen toxicity is NAPQI depleting glutathione; N-acetylcysteine restores glutathione and detoxifies the remaining metabolite. N-acetylcysteine replenishing glutathione so remaining NAPQI can be conjugated is the antidote once the level is above the treatment line and the aminotransferases are already rising. Fomepizole blocking alcohol dehydrogenase, which does not make NAPQI, is the antidote for methanol or ethylene glycol. Naloxone displacing acetaminophen from mu receptors in the liver invents a receptor acetaminophen does not use. Deferoxamine binding free iron released by a different overdose is for iron poisoning.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-13",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "pharmacology",
+    "examTakeaway": "Organophosphate poisoning floods muscarinic synapses; atropine dries those secretions, and pralidoxime regenerates acetylcholinesterase before it ages.",
+    "scenario": "A 41-year-old farm worker is salivating, wheezing, and incontinent, with pinpoint pupils and a pulse of 48 bpm, after spraying an insecticide without gloves. Muscle fasciculations are visible. He is given high-flow oxygen.",
+    "question": "Which drug pair matches the two mechanisms of this poisoning?",
+    "options": [
+      "Atropine for the muscarinic signs, plus pralidoxime to regenerate acetylcholinesterase",
+      "Pralidoxime alone, which dries secretions without any effect on the enzyme",
+      "Atropine alone, which regenerates acetylcholinesterase and stops fasciculations",
+      "Physostigmine, which would add more acetylcholine at the same synapses"
+    ],
+    "correctAnswer": "Atropine for the muscarinic signs, plus pralidoxime to regenerate acetylcholinesterase",
+    "explanation": "Organophosphate poisoning floods muscarinic synapses; atropine dries those secretions, and pralidoxime regenerates acetylcholinesterase before it ages. Atropine for the muscarinic signs, plus pralidoxime to regenerate acetylcholinesterase, covers both the secretions and the phosphorylated enzyme, including the nicotinic fasciculations pralidoxime can reverse. Pralidoxime alone, which dries secretions without any effect on the enzyme, reverses the drug's real job and leaves the muscarinic crisis untreated. Atropine alone, which regenerates acetylcholinesterase and stops fasciculations, does neither of those things; atropine is a muscarinic blocker only. Physostigmine, which would add more acetylcholine at the same synapses, is a carbamate used in antimuscarinic poisoning and would worsen this patient.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-14",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "behavioral-nervous",
+    "outlineWeight": 12,
+    "difficulty": 4,
+    "subjectId": "neurology",
+    "examTakeaway": "Lambert-Eaton syndrome is a presynaptic calcium-channel antibody; strength improves with repeated effort, the opposite of myasthenia.",
+    "scenario": "A 63-year-old man who smoked for 40 years has had trouble rising from chairs for three months. Grip strength improves after he opens and closes his hand several times. His mouth is dry. Chest imaging shows a hilar mass. Nerve stimulation shows a low first compound muscle action potential that grows after brief exercise.",
+    "question": "Which antibody location explains the facilitation?",
+    "options": [
+      "Presynaptic P/Q-type voltage-gated calcium channels, so less acetylcholine is released at rest",
+      "Postsynaptic acetylcholine receptors, which fatigues and does not facilitate with use",
+      "Muscle ryanodine receptors, which would cause malignant hyperthermia under anesthesia",
+      "Schwann-cell myelin, which slows conduction and raises protein in the spinal fluid"
+    ],
+    "correctAnswer": "Presynaptic P/Q-type voltage-gated calcium channels, so less acetylcholine is released at rest",
+    "explanation": "Lambert-Eaton syndrome is a presynaptic calcium-channel antibody; strength improves with repeated effort, the opposite of myasthenia. Presynaptic P/Q-type voltage-gated calcium channels, so less acetylcholine is released at rest, explains facilitation after exercise and the association with small-cell lung cancer. Postsynaptic acetylcholine receptors, which fatigues and does not facilitate with use, is myasthenia gravis. Muscle ryanodine receptors, which would cause malignant hyperthermia under anesthesia, are not a paraneoplastic dry-mouth syndrome. Schwann-cell myelin, which slows conduction and raises protein in the spinal fluid, is Guillain-Barre syndrome.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-15",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "behavioral-nervous",
+    "outlineWeight": 12,
+    "difficulty": 3,
+    "subjectId": "neurology",
+    "examTakeaway": "Multiple sclerosis shows oligoclonal IgG bands in the spinal fluid and lesions separated in time and space, often periventricular.",
+    "scenario": "A 29-year-old woman had painful loss of vision in the left eye that recovered over six weeks. She now has double vision on lateral gaze and an internuclear ophthalmoplegia. MRI shows ovoid bright lesions beside the lateral ventricles and one in the cervical cord. Spinal fluid has 8 lymphocytes and oligoclonal bands not present in the serum.",
+    "question": "Which spinal-fluid result supports this demyelinating disease?",
+    "options": [
+      "Oligoclonal IgG bands in the spinal fluid that are absent from the serum",
+      "A very high protein with almost no cells, the albumino-cytologic pattern of Guillain-Barre",
+      "Xanthochromia from broken-down blood in the subarachnoid space",
+      "A positive HSV PCR with hundreds of red cells from hemorrhagic encephalitis"
+    ],
+    "correctAnswer": "Oligoclonal IgG bands in the spinal fluid that are absent from the serum",
+    "explanation": "Multiple sclerosis shows oligoclonal IgG bands in the spinal fluid and lesions separated in time and space, often periventricular. Oligoclonal IgG bands in the spinal fluid that are absent from the serum are the intrathecal antibody response that fits optic neuritis plus a brainstem lesion. A very high protein with almost no cells, the albumino-cytologic pattern of Guillain-Barre, is an acute peripheral neuropathy, not central lesions on MRI. Xanthochromia from broken-down blood in the subarachnoid space is subarachnoid hemorrhage. A positive HSV PCR with hundreds of red cells from hemorrhagic encephalitis is herpes encephalitis, usually temporal and febrile.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-16",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "biochemistry",
+    "examTakeaway": "Wilson disease is ATP7B failure: ceruloplasmin is low, hepatic copper is high, and Kayser-Fleischer rings mark copper in Descemet membrane.",
+    "scenario": "A 19-year-old man has a new tremor, slurred speech, and a year of rising aminotransferases. Slit-lamp examination shows a brown-green ring at the rim of the cornea. Serum ceruloplasmin is 8 mg/dL. A sibling is being tested.",
+    "question": "Which laboratory pattern belongs to this copper disease?",
+    "options": [
+      "Low ceruloplasmin with copper trapped in the liver because ATP7B cannot load it onto the protein",
+      "High ceruloplasmin, which would be an acute-phase response rather than this storage disease",
+      "Low serum copper because the diet lacks copper and the liver is spared",
+      "High serum iron and a low ferritin from a transferrin-receptor mutation"
+    ],
+    "correctAnswer": "Low ceruloplasmin with copper trapped in the liver because ATP7B cannot load it onto the protein",
+    "explanation": "Wilson disease is ATP7B failure: ceruloplasmin is low, hepatic copper is high, and Kayser-Fleischer rings mark copper in Descemet membrane. Low ceruloplasmin with copper trapped in the liver because ATP7B cannot load it onto the protein is the biochemical lesion behind this psychiatric-hepatic picture. High ceruloplasmin, which would be an acute-phase response rather than this storage disease, is the opposite lab. Low serum copper because the diet lacks copper and the liver is spared is nutritional deficiency, not a ring and hepatitis. High serum iron and a low ferritin from a transferrin-receptor mutation is an iron disorder, not a corneal copper ring.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-17",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "behavioral-nervous",
+    "outlineWeight": 12,
+    "difficulty": 3,
+    "subjectId": "genetics",
+    "examTakeaway": "Fragile X is a CGG expansion in FMR1 that methylates and silences the gene, causing large ears, a long face, and macroorchidism.",
+    "scenario": "A 7-year-old boy has delayed speech, avoids eye contact, and flaps his hands. He has a long face, large ears, and a prominent jaw. At a later exam in adolescence the testes are much larger than expected for the genital stage. His mother has premature ovarian insufficiency. A Southern blot of FMR1 is ordered.",
+    "question": "Which repeat and consequence silence this gene?",
+    "options": [
+      "A CGG expansion that methylates the FMR1 promoter and stops transcription",
+      "A CAG expansion in huntingtin that kills striatal neurons in adulthood",
+      "A CTG expansion in a muscle kinase that causes myotonia and cataracts",
+      "A GAA expansion in frataxin that causes ataxia and a hypertrophic heart"
+    ],
+    "correctAnswer": "A CGG expansion that methylates the FMR1 promoter and stops transcription",
+    "explanation": "Fragile X is a CGG expansion in FMR1 that methylates and silences the gene, causing large ears, a long face, and macroorchidism. A CGG expansion that methylates the FMR1 promoter and stops transcription is the fragile-X mutation, and the mother's premature ovarian failure is the premutation clue. A CAG expansion in huntingtin that kills striatal neurons in adulthood is Huntington disease. A CTG expansion in a muscle kinase that causes myotonia and cataracts is myotonic dystrophy. A GAA expansion in frataxin that causes ataxia and a hypertrophic heart is Friedreich ataxia.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-18",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "pharmacology",
+    "examTakeaway": "Rasburicase converts existing uric acid to allantoin during tumor lysis; allopurinol only stops new uric acid from being made.",
+    "scenario": "A 14-year-old boy starts chemotherapy for Burkitt lymphoma. Twelve hours later potassium is 6.4 mEq/L, phosphate is 8.1 mg/dL, calcium is 6.6 mg/dL, and uric acid is 14 mg/dL. Creatinine has risen from 0.6 to 1.8 mg/dL. He is given intravenous fluid. The team chooses a drug that clears uric acid already in the blood.",
+    "question": "Which action clears uric acid that is already formed?",
+    "options": [
+      "Rasburicase oxidizes uric acid to soluble allantoin",
+      "Allopurinol blocks xanthine oxidase and leaves existing uric acid untouched",
+      "Probenecid increases urinary uric acid excretion and is unsafe when the creatinine is rising",
+      "Colchicine stops neutrophil migration into a gouty joint, which this patient does not have"
+    ],
+    "correctAnswer": "Rasburicase oxidizes uric acid to soluble allantoin",
+    "explanation": "Rasburicase converts existing uric acid to allantoin during tumor lysis; allopurinol only stops new uric acid from being made. Rasburicase oxidizes uric acid to soluble allantoin, which is the drug that lowers a uric acid of 14 mg/dL already present after Burkitt chemotherapy. Allopurinol blocks xanthine oxidase and leaves existing uric acid untouched, so it prevents new urate but does not clear this level. Probenecid increases urinary uric acid excretion and is unsafe when the creatinine is rising, and it can worsen renal precipitation. Colchicine stops neutrophil migration into a gouty joint, which this patient does not have; the picture is tumor lysis, not a hot toe.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-19",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 3,
+    "subjectId": "physiology",
+    "examTakeaway": "Primary hyperparathyroidism raises PTH and calcium and lowers phosphate; humoral hypercalcemia of malignancy suppresses PTH.",
+    "scenario": "A 58-year-old woman has had a calcium of 11.4 mg/dL on two morning draws. Phosphate is 2.1 mg/dL. Intact PTH is 92 pg/mL (elevated). She passed a calcium stone last year. The examination shows no neck mass, and a recent mammogram and chest radiograph were unremarkable. Twenty-four-hour urine calcium is high.",
+    "question": "Which gland is driving the calcium up?",
+    "options": [
+      "A parathyroid adenoma secreting PTH, which raises calcium and wastes phosphate",
+      "A lung cancer secreting PTHrP, which would suppress intact PTH",
+      "The thyroid overproducing calcitonin, which lowers calcium",
+      "Inactive vitamin D from renal failure, which lowers calcium and raises PTH only after the calcium falls"
+    ],
+    "correctAnswer": "A parathyroid adenoma secreting PTH, which raises calcium and wastes phosphate",
+    "explanation": "Primary hyperparathyroidism raises PTH and calcium and lowers phosphate; humoral hypercalcemia of malignancy suppresses PTH. A parathyroid adenoma secreting PTH, which raises calcium and wastes phosphate, fits high calcium, high PTH, low phosphate, stones, and a high urine calcium. A lung cancer secreting PTHrP, which would suppress intact PTH, is humoral hypercalcemia of malignancy, and this PTH is high, not suppressed. The thyroid overproducing calcitonin, which lowers calcium, moves calcium the wrong direction. Inactive vitamin D from renal failure, which lowers calcium and raises PTH only after the calcium falls, is secondary hyperparathyroidism with a low or normal calcium, not 11.4 mg/dL.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s1-20",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "pathology",
+    "examTakeaway": "Poststreptococcal glomerulonephritis arrives one to two weeks after pharyngitis, drops C3, and plants subepithelial humps.",
+    "scenario": "A 8-year-old boy had a fever and sore throat that resolved without antibiotics. Twelve days later his urine turns cola-colored, his face is puffy, and blood pressure is 148/96 mm Hg. Serum C3 is low. Antistreptolysin O titer is high. The urine shows red cells and red-cell casts.",
+    "question": "Which electron-microscopy deposit matches this latency and the low C3?",
+    "options": [
+      "Subepithelial humps of IgG appearing after the infection, with complement consumption",
+      "Mesangial IgA deposited on the same day as the sore throat, with a normal C3",
+      "Linear IgG along the capillary wall after hemoptysis",
+      "No deposits at all, only foot-process effacement in a child who is nephrotic and not hypertensive"
+    ],
+    "correctAnswer": "Subepithelial humps of IgG appearing after the infection, with complement consumption",
+    "explanation": "Poststreptococcal glomerulonephritis arrives one to two weeks after pharyngitis, drops C3, and plants subepithelial humps. Subepithelial humps of IgG appearing after the infection, with complement consumption, matches the 12-day gap, the low C3, the high ASO titer, and the nephritic sediment. Mesangial IgA deposited on the same day as the sore throat, with a normal C3, is IgA nephropathy and would not wait twelve days or lower complement. Linear IgG along the capillary wall after hemoptysis is anti-GBM disease. No deposits at all, only foot-process effacement in a child who is nephrotic and not hypertensive, is minimal change disease, which does not produce red-cell casts or hypertension.",
+    "citation": null
+  }
+]

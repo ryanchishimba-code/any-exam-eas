@@ -1,0 +1,422 @@
+[
+  {
+    "id": "pilot-s3-01",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "biostats",
+    "outlineWeight": 12,
+    "difficulty": 3,
+    "subjectId": "biostatistics",
+    "examTakeaway": "Number needed to treat is the reciprocal of the absolute risk reduction, not of the relative risk.",
+    "scenario": "You are reading a trial of a new anticoagulant in atrial fibrillation. Over one year, stroke occurs in 8% of the control group and 4% of the treated group. The authors emphasize a 50% relative reduction. A patient asks how many people like her must be treated for one year to prevent one stroke.",
+    "question": "Which number answers her?",
+    "options": [
+      "25, because the absolute risk reduction is 4 percentage points",
+      "2, because the relative risk is one half",
+      "50, because the relative reduction was 50%",
+      "12, the sum of the two event rates"
+    ],
+    "correctAnswer": "25, because the absolute risk reduction is 4 percentage points",
+    "explanation": "Number needed to treat is the reciprocal of the absolute risk reduction, not of the relative risk. 25, because the absolute risk reduction is 4 percentage points, is 1 divided by 0.04. 2, because the relative risk is one half, inverts the relative risk and is not a count of patients. 50, because the relative reduction was 50%, treats a percentage as if it were the number needed. 12, the sum of the two event rates, adds the risks instead of subtracting them.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s3-02",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "biostats",
+    "outlineWeight": 12,
+    "difficulty": 3,
+    "subjectId": "biostatistics",
+    "examTakeaway": "Lead-time bias makes a screening test look like it lengthens survival when it only finds the disease earlier.",
+    "scenario": "A 64-year-old patient was told her cancer survival had improved after the county started annual CT screening. Five years later the median time from diagnosis to death has risen from 18 months to 30 months. The age-adjusted mortality rate of the cancer is unchanged. A journalist writes that the scan is saving lives.",
+    "question": "Which bias best explains the longer survival after diagnosis?",
+    "options": [
+      "Lead-time bias, because the clock starts at an earlier diagnosis while death is not delayed",
+      "Length-time bias, which preferentially finds slow tumors but is not required to explain an unchanged mortality with a longer post-diagnosis interval",
+      "Selection bias from randomizing patients after they have already died",
+      "Recall bias from asking families about old symptoms"
+    ],
+    "correctAnswer": "Lead-time bias, because the clock starts at an earlier diagnosis while death is not delayed",
+    "explanation": "Lead-time bias makes a screening test look like it lengthens survival when it only finds the disease earlier. Lead-time bias, because the clock starts at an earlier diagnosis while death is not delayed, is exactly an unchanged mortality with a longer interval from diagnosis to death. Length-time bias, which preferentially finds slow tumors but is not required to explain an unchanged mortality with a longer post-diagnosis interval, is a different screening bias and is not the definition this pair of numbers shows. Selection bias from randomizing patients after they have already died is not how this county program was described. Recall bias from asking families about old symptoms is a case-control problem, not a survival-curve illusion.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s3-03",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "social",
+    "outlineWeight": 8,
+    "difficulty": 3,
+    "subjectId": "ethics",
+    "examTakeaway": "Decision-making capacity is a clinical judgment about this choice: the patient understands, appreciates, reasons, and states a choice. A court decides competency.",
+    "scenario": "A 76-year-old man with mild forgetfulness refuses repair of a painful hip fracture. He can say that without surgery the pain will continue and a pressure injury may follow, that he prefers that risk to an operation, and that this is his own choice. He names the hospital and the month. His daughter asks you to declare him incompetent so she can sign the consent.",
+    "question": "Which conclusion is correct?",
+    "options": [
+      "He has capacity for this refusal, and competency is a legal finding you do not make at the bedside",
+      "Any memory problem removes capacity for every decision",
+      "A daughter can override a capacitated refusal because she is the next of kin",
+      "You should tell the court he is incompetent based on the fracture alone"
+    ],
+    "correctAnswer": "He has capacity for this refusal, and competency is a legal finding you do not make at the bedside",
+    "explanation": "Decision-making capacity is a clinical judgment about this choice: the patient understands, appreciates, reasons, and states a choice. A court decides competency. He has capacity for this refusal, and competency is a legal finding you do not make at the bedside, because he restates the consequences and holds a stable choice. Any memory problem removes capacity for every decision is false; capacity is decision-specific. A daughter can override a capacitated refusal because she is the next of kin has no such power. You should tell the court he is incompetent based on the fracture alone confuses a clinical disagreement with a legal status.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s3-04",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "social",
+    "outlineWeight": 8,
+    "difficulty": 3,
+    "subjectId": "ethics",
+    "examTakeaway": "When a valid advance directive names an agent, that agent speaks for the patient, even if another relative at the bedside disagrees.",
+    "scenario": "A 82-year-old woman with advanced dementia is admitted with pneumonia and is now too somnolent to discuss care. Her signed advance directive names her daughter as health-care agent and asks to forgo intubation. Her son, who flew in tonight, demands intubation and says he is the oldest child. The daughter asks that her mother not be intubated.",
+    "question": "Whose direction do you follow?",
+    "options": [
+      "The daughter named in the advance directive",
+      "The son, because he is older",
+      "Whichever relative is loudest in the room",
+      "A majority vote of every relative who can be reached by phone"
+    ],
+    "correctAnswer": "The daughter named in the advance directive",
+    "explanation": "When a valid advance directive names an agent, that agent speaks for the patient, even if another relative at the bedside disagrees. The daughter named in the advance directive is the person the patient authorized, and the document also refuses intubation. The son, because he is older, has no priority over a named agent. Whichever relative is loudest in the room is not a decision rule. A majority vote of every relative who can be reached by phone replaces the patient's written choice with a poll.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s3-05",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 7,
+    "difficulty": 3,
+    "subjectId": "emergency-medicine",
+    "examTakeaway": "In suspected septic shock, cultures are drawn if they do not delay care, and a broad antibiotic is given within the first hour.",
+    "scenario": "A 64-year-old man with a urinary catheter is febrile and confused. Blood pressure is 80/48 mm Hg after a 1-liter saline bolus, heart rate is 124 bpm, and lactate is 4.8 mmol/L. The urine is cloudy. You are about to send cultures.",
+    "question": "Which timing of antibiotics is the most appropriate next step?",
+    "options": [
+      "Give a broad intravenous antibiotic within the hour, after cultures if that draw does not delay the dose",
+      "Wait for the culture result tomorrow before any antibiotic",
+      "Oral nitrofurantoin only, because the catheter is the obvious source",
+      "Hold antibiotics until a CT of the abdomen is read"
+    ],
+    "correctAnswer": "Give a broad intravenous antibiotic within the hour, after cultures if that draw does not delay the dose",
+    "explanation": "In suspected septic shock, cultures are drawn if they do not delay care, and a broad antibiotic is given within the first hour. Give a broad intravenous antibiotic within the hour, after cultures if that draw does not delay the dose, is the Surviving Sepsis Campaign 2021 hour-1 recommendation for this lactate and this pressure. Wait for the culture result tomorrow before any antibiotic misses the window. Oral nitrofurantoin only, because the catheter is the obvious source, does not treat septic shock. Hold antibiotics until a CT of the abdomen is read delays the dose for imaging he does not need before treatment.",
+    "citation": "2021"
+  },
+  {
+    "id": "pilot-s3-06",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "respiratory",
+    "outlineWeight": 9,
+    "difficulty": 3,
+    "subjectId": "pulmonology",
+    "examTakeaway": "A COPD exacerbation with respiratory acidosis and tiring work of breathing is treated with noninvasive ventilation, not intubation as the first step if the mask is feasible.",
+    "scenario": "A 69-year-old man with home oxygen for COPD is using neck muscles to breathe and can say only two words at a time. He has purulent sputum. Arterial blood gas on oxygen shows pH 7.27, PaCO2 68 mm Hg, and PaO2 58 mm Hg. He is awake, can protect his airway, and has not vomited. Blood pressure is 142/86 mm Hg.",
+    "question": "Which support is the most appropriate next step?",
+    "options": [
+      "Noninvasive positive-pressure ventilation",
+      "Immediate intubation as the first ventilator strategy",
+      "Oxygen by nasal cannula alone, with no pressure support",
+      "A chest tube for a pneumothorax the film does not show"
+    ],
+    "correctAnswer": "Noninvasive positive-pressure ventilation",
+    "explanation": "A COPD exacerbation with respiratory acidosis and tiring work of breathing is treated with noninvasive ventilation, not intubation as the first step if the mask is feasible. Noninvasive positive-pressure ventilation is the GOLD 2024 recommendation for this pH and this PaCO2 in a patient who can still protect his airway. Immediate intubation as the first ventilator strategy skips a trial that reduces the need for a tube. Oxygen by nasal cannula alone, with no pressure support, does not unload the tiring muscles or clear the carbon dioxide. A chest tube for a pneumothorax the film does not show treats a diagnosis that is not here.",
+    "citation": "GOLD 2024"
+  },
+  {
+    "id": "pilot-s3-07",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "cardiology",
+    "examTakeaway": "Acute heart failure with congestion and adequate perfusion is treated with an intravenous loop diuretic; a new oral beta blocker is not started in the acute hour.",
+    "scenario": "A 74-year-old woman with known heart failure ate a ham dinner and gained 3 kg in four days. She is short of breath at rest. Blood pressure is 156/92 mm Hg, heart rate is 104 bpm, and oxygen saturation is 93% on 2 L. She has crackles halfway up both lungs and pitting edema. The chest radiograph shows pulmonary edema. She is warm and mentating normally. Home medicines are lisinopril and oral torsemide.",
+    "question": "Which drug is the most appropriate next step?",
+    "options": [
+      "Intravenous furosemide",
+      "A new oral metoprolol dose started in the emergency department",
+      "A liter of isotonic saline",
+      "Digoxin as the only new drug"
+    ],
+    "correctAnswer": "Intravenous furosemide",
+    "explanation": "Acute heart failure with congestion and adequate perfusion is treated with an intravenous loop diuretic; a new oral beta blocker is not started in the acute hour. Intravenous furosemide is the AHA/ACC/HFSA 2022 treatment of volume overload when the patient is warm and the blood pressure is 156/92 mm Hg. A new oral metoprolol dose started in the emergency department can worsen an acute decompensation. A liter of isotonic saline adds volume she is already retaining. Digoxin as the only new drug does not unload pulmonary edema.",
+    "citation": "AHA 2022"
+  },
+  {
+    "id": "pilot-s3-08",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "cardiology",
+    "examTakeaway": "Cardiogenic shock after a myocardial infarction is treated with reperfusion and blood-pressure support, not a loop diuretic as the first drug.",
+    "scenario": "A 61-year-old man is two hours into an anterior ST-elevation myocardial infarction. The catheterization laboratory is being activated. Blood pressure is 76/48 mm Hg, he is cool and clammy, and the lungs have crackles. Heart rate is 118 bpm. Lactate is 4.1 mmol/L. A colleague reaches for furosemide because the lungs are wet.",
+    "question": "Which objection to that diuretic is correct?",
+    "options": [
+      "He is in cardiogenic shock, so reperfusion and vasopressor or inotrope support come before a diuretic",
+      "Furosemide is the correct first drug whenever crackles are heard, regardless of the blood pressure",
+      "A saline bolus of two liters is mandatory before the laboratory is called",
+      "Nitroprusside is first-line at a systolic pressure of 76 mm Hg"
+    ],
+    "correctAnswer": "He is in cardiogenic shock, so reperfusion and vasopressor or inotrope support come before a diuretic",
+    "explanation": "Cardiogenic shock after a myocardial infarction is treated with reperfusion and blood-pressure support, not a loop diuretic as the first drug. He is in cardiogenic shock, so reperfusion and vasopressor or inotrope support come before a diuretic, which matches the AHA stance that a systolic pressure of 76 mm Hg is a perfusion problem first. Furosemide is the correct first drug whenever crackles are heard, regardless of the blood pressure, is the error this case is written to catch. A saline bolus of two liters is mandatory before the laboratory is called floods a failing left ventricle. Nitroprusside is first-line at a systolic pressure of 76 mm Hg is a vasodilator choice for hypertensive emergencies, not for shock.",
+    "citation": "AHA"
+  },
+  {
+    "id": "pilot-s3-09",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "cardiology",
+    "examTakeaway": "An ST-elevation myocardial infarction goes to the catheterization laboratory for primary PCI when it can be done promptly; fibrinolysis is the alternative only if PCI will be late.",
+    "scenario": "A 54-year-old man has crushing chest pain that began 40 minutes ago. The ECG shows 3 mm of ST elevation in V2 through V4. He has no bleeding tendency. Your hospital's catheterization laboratory can accept him within 30 minutes. Blood pressure is 130/80 mm Hg.",
+    "question": "Which reperfusion plan is the most appropriate next step?",
+    "options": [
+      "Activate the catheterization laboratory for primary percutaneous coronary intervention",
+      "Tenecteplase now, because any ST elevation is treated with a lytic even when the laboratory is ready",
+      "Observe overnight and repeat the ECG in the morning",
+      "Schedule an exercise stress test for tomorrow"
+    ],
+    "correctAnswer": "Activate the catheterization laboratory for primary percutaneous coronary intervention",
+    "explanation": "An ST-elevation myocardial infarction goes to the catheterization laboratory for primary PCI when it can be done promptly; fibrinolysis is the alternative only if PCI will be late. Activate the catheterization laboratory for primary percutaneous coronary intervention is the AHA 2013 STEMI path when first-medical-contact-to-device time will be short, as this 30-minute acceptance allows. Tenecteplase now, because any ST elevation is treated with a lytic even when the laboratory is ready, chooses a lytic when timely PCI is available. Observe overnight and repeat the ECG in the morning loses myocardium. Schedule an exercise stress test for tomorrow is for a stable patient without ST elevation.",
+    "citation": "AHA 2013"
+  },
+  {
+    "id": "pilot-s3-10",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "gastrointestinal",
+    "outlineWeight": 7,
+    "difficulty": 3,
+    "subjectId": "gastroenterology",
+    "examTakeaway": "Upper gastrointestinal bleeding is resuscitated with two large-bore lines and a restrictive transfusion strategy, plus an intravenous proton-pump inhibitor.",
+    "scenario": "A 59-year-old man vomits blood twice and passes black stool. Heart rate is 118 bpm and blood pressure is 96/60 mm Hg. Hemoglobin is 7.2 g/dL. He takes ibuprofen daily for a bad knee. Two large-bore intravenous catheters are placed.",
+    "question": "Which transfusion and drug plan is the most appropriate next step?",
+    "options": [
+      "Transfuse red cells to keep hemoglobin around 7 g/dL and start an intravenous proton-pump inhibitor",
+      "Transfuse to a hemoglobin of 10 g/dL in every patient before any drug",
+      "Oral sucralfate only, with no endoscopy plan",
+      "Platelet transfusion because ibuprofen always drops the platelet count below 10,000"
+    ],
+    "correctAnswer": "Transfuse red cells to keep hemoglobin around 7 g/dL and start an intravenous proton-pump inhibitor",
+    "explanation": "Upper gastrointestinal bleeding is resuscitated with two large-bore lines and a restrictive transfusion strategy, plus an intravenous proton-pump inhibitor. Transfuse red cells to keep hemoglobin around 7 g/dL and start an intravenous proton-pump inhibitor follows the ACG 2021 upper-GI-bleeding commentary and the restrictive threshold used in stable-enough patients who are being resuscitated; this man's hemoglobin is already 7.2 and he needs the inhibitor while endoscopy is arranged. Transfuse to a hemoglobin of 10 g/dL in every patient before any drug is the liberal strategy that did not improve outcomes. Oral sucralfate only, with no endoscopy plan, does not treat an active bleed. Platelet transfusion because ibuprofen always drops the platelet count below 10,000 invents a platelet count the story does not contain.",
+    "citation": "ACG 2021"
+  },
+  {
+    "id": "pilot-s3-11",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "pregnancy",
+    "outlineWeight": 8,
+    "difficulty": 3,
+    "subjectId": "obgyn",
+    "examTakeaway": "Postpartum endometritis, fever plus uterine tenderness after delivery, is treated with intravenous clindamycin plus gentamicin until the patient is well.",
+    "scenario": "A 27-year-old woman is postpartum day 2 after a cesarean for labor arrest. Temperature is 38.9 C. The uterus is tender and the lochia is foul. Blood pressure is 118/72 mm Hg. The incision is dry. She has no drug allergy and is breastfeeding.",
+    "question": "Which antibiotic plan is the most appropriate next step?",
+    "options": [
+      "Intravenous clindamycin plus gentamicin",
+      "Oral metronidazole alone and discharge",
+      "Observation, because a fever on day 2 is always atelectasis",
+      "A single dose of cefazolin at the incision"
+    ],
+    "correctAnswer": "Intravenous clindamycin plus gentamicin",
+    "explanation": "Postpartum endometritis, fever plus uterine tenderness after delivery, is treated with intravenous clindamycin plus gentamicin until the patient is well. Intravenous clindamycin plus gentamicin is the ACOG regimen that covers the mixed genital flora after cesarean. Oral metronidazole alone and discharge misses streptococci and other aerobes and sends an ill patient home. Observation, because a fever on day 2 is always atelectasis, ignores uterine tenderness and foul lochia. A single dose of cefazolin at the incision is surgical prophylaxis, not treatment of established endometritis.",
+    "citation": "ACOG"
+  },
+  {
+    "id": "pilot-s3-12",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "pregnancy",
+    "outlineWeight": 8,
+    "difficulty": 2,
+    "subjectId": "obgyn",
+    "examTakeaway": "Gestational diabetes screening is offered at 24 to 28 weeks in an average-risk pregnancy that has not already been diagnosed.",
+    "scenario": "A 29-year-old woman at 26 weeks of gestation has a normal first-trimester glucose and no history of diabetes. Body mass index is 27. She feels well and the fetal survey was normal. She asks when the diabetes screen happens.",
+    "question": "Which test timing is correct?",
+    "options": [
+      "A glucose challenge now, in the 24- to 28-week window",
+      "No screen, because the first-trimester glucose was normal",
+      "A hemoglobin A1c every week until delivery",
+      "Postpone all glucose testing until the six-week postpartum visit"
+    ],
+    "correctAnswer": "A glucose challenge now, in the 24- to 28-week window",
+    "explanation": "Gestational diabetes screening is offered at 24 to 28 weeks in an average-risk pregnancy that has not already been diagnosed. A glucose challenge now, in the 24- to 28-week window, is the ACOG timing for this 26-week visit. No screen, because the first-trimester glucose was normal, skips the recommended screen. A hemoglobin A1c every week until delivery is not the screening schedule. Postpone all glucose testing until the six-week postpartum visit misses gestational diabetes, which is a pregnancy diagnosis.",
+    "citation": "ACOG"
+  },
+  {
+    "id": "pilot-s3-13",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "nervous",
+    "outlineWeight": 9,
+    "difficulty": 2,
+    "subjectId": "emergency-medicine",
+    "examTakeaway": "Opioid apnea is reversed with naloxone, repeated as needed, while the airway is supported.",
+    "scenario": "A 22-year-old man is found in a parked car, breathing four times a minute, with pinpoint pupils. A friend says he snorted a crushed tablet an hour ago. Oxygen saturation is 82% on room air. You open the airway and start bag-mask ventilation.",
+    "question": "Which drug is the most appropriate next step?",
+    "options": [
+      "Naloxone, repeated if the breathing slows again",
+      "Flumazenil as the first reversal drug",
+      "N-acetylcysteine",
+      "Physostigmine"
+    ],
+    "correctAnswer": "Naloxone, repeated if the breathing slows again",
+    "explanation": "Opioid apnea is reversed with naloxone, repeated as needed, while the airway is supported. Naloxone, repeated if the breathing slows again, is the CDC-endorsed reversal for pinpoint pupils and a respiratory rate of four. Flumazenil as the first reversal drug is for benzodiazepines and can precipitate seizures. N-acetylcysteine treats acetaminophen, not apnea with pinpoint pupils. Physostigmine treats anticholinergic delirium, which dilates pupils rather than pinpointing them.",
+    "citation": "CDC"
+  },
+  {
+    "id": "pilot-s3-14",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "behavioral",
+    "outlineWeight": 5,
+    "difficulty": 3,
+    "subjectId": "psychiatry",
+    "examTakeaway": "New delirium is a medical emergency: find the precipitant, and do not start a dementia drug as the first move.",
+    "scenario": "An 80-year-old woman who lived alone and paid her bills last week is now picking at the air and does not recognize her son. This began yesterday after a new prescription for oxybutynin for bladder spasms. She is afebrile. The Confusion Assessment Method is positive. A head CT shows no bleed.",
+    "question": "Which first action is correct?",
+    "options": [
+      "Stop the new anticholinergic drug and look for other medical precipitants",
+      "Start donepezil tonight as treatment of the acute confusion",
+      "Diagnose Alzheimer disease from one day of symptoms",
+      "Discharge with a plan to recheck memory in six months"
+    ],
+    "correctAnswer": "Stop the new anticholinergic drug and look for other medical precipitants",
+    "explanation": "New delirium is a medical emergency: find the precipitant, and do not start a dementia drug as the first move. Stop the new anticholinergic drug and look for other medical precipitants treats the oxybutynin that unmasked this acute change. Start donepezil tonight as treatment of the acute confusion uses a dementia drug for a one-day delirium. Diagnose Alzheimer disease from one day of symptoms requires a chronic course she does not have. Discharge with a plan to recheck memory in six months sends an acutely confused patient home.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s3-15",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "cardiology",
+    "examTakeaway": "A mechanical mitral valve needs bridging anticoagulation when warfarin is stopped for surgery; do not simply hold the warfarin with nothing in its place.",
+    "scenario": "A 55-year-old woman with a mechanical mitral valve and a target INR of 3.0 needs a bowel resection in five days. She has no bleeding now. The surgeon asks whether warfarin can be stopped tomorrow with no other anticoagulant until after surgery.",
+    "question": "Which anticoagulation plan is correct?",
+    "options": [
+      "Stop warfarin and bridge with heparin, restarting warfarin when hemostasis allows",
+      "Stop warfarin and give no anticoagulant until the first clinic visit a month later",
+      "Continue the usual warfarin dose through the incision",
+      "Switch her permanently to aspirin alone starting tonight"
+    ],
+    "correctAnswer": "Stop warfarin and bridge with heparin, restarting warfarin when hemostasis allows",
+    "explanation": "A mechanical mitral valve needs bridging anticoagulation when warfarin is stopped for surgery; do not simply hold the warfarin with nothing in its place. Stop warfarin and bridge with heparin, restarting warfarin when hemostasis allows, is the AHA/ACC 2020 valve-guideline approach for a mechanical mitral valve, which is high thrombotic risk. Stop warfarin and give no anticoagulant until the first clinic visit a month later leaves the valve unprotected. Continue the usual warfarin dose through the incision risks surgical bleeding. Switch her permanently to aspirin alone starting tonight does not anticoagulate a mechanical mitral valve.",
+    "citation": "AHA 2020"
+  },
+  {
+    "id": "pilot-s3-16",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "gastrointestinal",
+    "outlineWeight": 7,
+    "difficulty": 3,
+    "subjectId": "infectious-disease",
+    "examTakeaway": "Fulminant Clostridioides difficile infection, with hypotension or ileus, adds intravenous metronidazole to high-dose oral vancomycin and needs surgical consultation.",
+    "scenario": "A 77-year-old man in a nursing home has abdominal distention and almost no stool output. Blood pressure is 86/54 mm Hg. Leukocyte count is 32,000/mm3 and lactate is 3.9 mmol/L. The abdomen is tympanitic. A CT shows colonic dilation and wall thickening. Stool that could be obtained is positive for Clostridioides difficile toxin. This is a first episode.",
+    "question": "Which regimen is the most appropriate next step?",
+    "options": [
+      "High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult",
+      "Oral metronidazole alone on the ward",
+      "Loperamide to stop the remaining loose stool",
+      "Another course of the broad antibiotic that preceded the diarrhea"
+    ],
+    "correctAnswer": "High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult",
+    "explanation": "Fulminant Clostridioides difficile infection, with hypotension or ileus, adds intravenous metronidazole to high-dose oral vancomycin and needs surgical consultation. High-dose oral vancomycin plus intravenous metronidazole, and a surgical consult, is the IDSA 2021 approach to fulminant disease with shock and ileus, using a rectal vancomycin route if the gut is not moving. Oral metronidazole alone on the ward is neither the dose nor the setting. Loperamide to stop the remaining loose stool is contraindicated. Another course of the broad antibiotic that preceded the diarrhea perpetuates the infection.",
+    "citation": "IDSA 2021"
+  },
+  {
+    "id": "pilot-s3-17",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "cardiology",
+    "examTakeaway": "Stable atrial fibrillation with a rapid rate is treated with rate control first; immediate cardioversion is for instability.",
+    "scenario": "A 66-year-old man feels palpitations but is sitting up and speaking in full sentences. Blood pressure is 138/84 mm Hg. The ECG shows atrial fibrillation at 146 bpm with no ST elevation. He has had similar episodes and is already anticoagulated for a CHA2DS2-VASc score of 4. Symptoms began about six hours ago. He is not in heart failure.",
+    "question": "Which drug is the most appropriate next step for the rate?",
+    "options": [
+      "An intravenous beta blocker for rate control",
+      "Immediate synchronized cardioversion because every new fibrillation is unstable",
+      "Aspirin alone and no rate-control drug",
+      "Adenosine, as if this were a regular reentrant tachycardia"
+    ],
+    "correctAnswer": "An intravenous beta blocker for rate control",
+    "explanation": "Stable atrial fibrillation with a rapid rate is treated with rate control first; immediate cardioversion is for instability. An intravenous beta blocker for rate control is an AHA 2023 option for a patient whose pressure is 138/84 mm Hg and who is already anticoagulated. Immediate synchronized cardioversion because every new fibrillation is unstable mislabels a stable patient. Aspirin alone and no rate-control drug neither slows the rate nor replaces his existing anticoagulation. Adenosine, as if this were a regular reentrant tachycardia, is not the treatment of irregular atrial fibrillation.",
+    "citation": "AHA 2023"
+  },
+  {
+    "id": "pilot-s3-18",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "msk",
+    "outlineWeight": 6,
+    "difficulty": 3,
+    "subjectId": "orthopedics",
+    "examTakeaway": "A hip fracture in an older adult is fixed promptly, generally within 24 to 48 hours, not treated with weeks of traction.",
+    "scenario": "An 84-year-old woman slipped on a rug. The left leg is shortened and externally rotated. Radiographs show a displaced femoral-neck fracture. She was walking with a cane yesterday. Hemoglobin is 12 g/dL, creatinine is 0.9 mg/dL, and a medicine consultant has cleared her for surgery tomorrow morning. A family member asks whether six weeks of bed traction would be safer.",
+    "question": "Which plan is the most appropriate next step?",
+    "options": [
+      "Fix the fracture within 24 to 48 hours",
+      "Six weeks of traction and bed rest as equally effective care",
+      "Discharge with a walker and no operation because she uses a cane",
+      "Postpone surgery for a month so the bone can start healing in place"
+    ],
+    "correctAnswer": "Fix the fracture within 24 to 48 hours",
+    "explanation": "A hip fracture in an older adult is fixed promptly, generally within 24 to 48 hours, not treated with weeks of traction. Fix the fracture within 24 to 48 hours is the AAOS 2021 recommendation for this displaced femoral-neck fracture in a patient already cleared for surgery. Six weeks of traction and bed rest as equally effective care raises complications and is not equivalent. Discharge with a walker and no operation because she uses a cane leaves a displaced fracture. Postpone surgery for a month so the bone can start healing in place delays a fracture that will not reduce itself.",
+    "citation": "2021"
+  },
+  {
+    "id": "pilot-s3-19",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "biostats",
+    "outlineWeight": 12,
+    "difficulty": 4,
+    "subjectId": "biostatistics",
+    "examTakeaway": "A test with high specificity, when positive, is good at ruling a disease in; a test with high sensitivity, when negative, is good at ruling it out.",
+    "scenario": "A 40-year-old patient asks what a new blood test means. It is positive in 2 of 100 people who do not have the infection and negative in 1 of 100 people who do. You are explaining the numbers to a student who memorized the slogans without the counts.",
+    "question": "Which description of this test is correct?",
+    "options": [
+      "Specificity is 98% and sensitivity is 99%",
+      "Specificity is 2% because 2 healthy people were positive",
+      "Sensitivity is 1% because 1 sick person was negative",
+      "The positive predictive value must be 98% no matter how rare the infection is"
+    ],
+    "correctAnswer": "Specificity is 98% and sensitivity is 99%",
+    "explanation": "A test with high specificity, when positive, is good at ruling a disease in; a test with high sensitivity, when negative, is good at ruling it out. Specificity is 98% and sensitivity is 99%, because 98 of 100 people without disease test negative and 99 of 100 people with disease test positive. Specificity is 2% because 2 healthy people were positive quotes the false-positive count as if it were specificity. Sensitivity is 1% because 1 sick person was negative quotes the false-negative count as if it were sensitivity. The positive predictive value must be 98% no matter how rare the infection is forgets that predictive value depends on prevalence.",
+    "citation": null
+  },
+  {
+    "id": "pilot-s3-20",
+    "fieldId": "usmle-step-3",
+    "stepLevel": "step3",
+    "outlineSystem": "endocrine",
+    "outlineWeight": 6,
+    "difficulty": 3,
+    "subjectId": "endocrinology",
+    "examTakeaway": "New hypothyroidism with a TSH above 10 mIU/L in a symptomatic adult is treated with levothyroxine; do not start methimazole for a high TSH.",
+    "scenario": "A 48-year-old woman has cold intolerance, a 4 kg weight gain, and constipation. Pulse is 56 bpm. TSH is 18 mIU/L and free T4 is 0.6 ng/dL. She is not pregnant and takes no thyroid drug. A previous TSH three years ago was normal.",
+    "question": "Which drug is the most appropriate next step?",
+    "options": [
+      "Levothyroxine replacement",
+      "Methimazole",
+      "Radioiodine ablation",
+      "Propranolol as the only long-term drug"
+    ],
+    "correctAnswer": "Levothyroxine replacement",
+    "explanation": "New hypothyroidism with a TSH above 10 mIU/L in a symptomatic adult is treated with levothyroxine; do not start methimazole for a high TSH. Levothyroxine replacement is the ATA treatment of overt hypothyroidism with a TSH of 18 and a low free T4. Methimazole blocks thyroid hormone synthesis and would worsen this deficiency. Radioiodine ablation destroys a gland that is already underactive. Propranolol as the only long-term drug slows a heart that is already at 56 bpm and does not replace hormone. The 2014 ATA hypothyroidism guidance supports replacement once the TSH and free T4 show overt disease.",
+    "citation": "ATA 2014"
+  }
+]
