@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
 import { sqlQuery } from "@/lib/db";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import { USMLE_STEP2_SERVE_SQL } from "@/lib/exam-prep/usmle/step2-serve-sql";
 import { ROUTES } from "@/lib/routes";
 import { USMLE_FIELD_IDS, USMLE_STEPS, type UsmleFieldId } from "./steps";
 import type { UsmleStepLevel } from "./types";
@@ -78,7 +79,7 @@ async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>>
     WHERE active = true
       AND "qaPassed" = true
       AND "fieldId" = ANY($1::text[])
-      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${USMLE_STEP2_SERVE_SQL}
       ${studentEligibleAndSql()}
     GROUP BY "fieldId"
     `,
@@ -97,7 +98,7 @@ async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>>
 
 const getCachedUsmleServedCounts = unstable_cache(
   fetchUsmleServedCounts,
-  ["usmle-exam-option-counts"],
+  ["usmle-exam-option-counts-v2"],
   { revalidate: REVALIDATE_SECONDS, tags: [ACTIVE_INVENTORY_CACHE_TAG] }
 );
 

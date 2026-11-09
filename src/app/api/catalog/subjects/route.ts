@@ -8,6 +8,7 @@ import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { sqlQuery } from "@/lib/db";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import { USMLE_STEP2_SERVE_SQL } from "@/lib/exam-prep/usmle/step2-serve-sql";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 /** Inventory totals in this payload follow the published stamp, not a 60s module cache. */
@@ -44,7 +45,7 @@ async function countQuestionsByField(): Promise<Map<string, number>> {
     FROM "QuestionBankItem"
     WHERE active = true
       AND "qaPassed" = true
-      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${USMLE_STEP2_SERVE_SQL}
       ${studentEligibleAndSql()}
     GROUP BY "fieldId"
     `,

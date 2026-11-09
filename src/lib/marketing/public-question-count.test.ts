@@ -116,7 +116,7 @@ describe("marketing pages keep the question count on the ISR path", () => {
     );
     expect(loader).toContain("unstable_cache");
     expect(loader).toContain("loadServedQuestionCounts");
-    expect(loader).toContain("public-served-bank-stats-v1");
+    expect(loader).toContain("public-served-bank-stats-v2");
     expect(loader).not.toContain("getCachedBankStatsBundle");
     expect(loader).not.toContain("fetchActiveInventoryFromDb");
     expect(loader).not.toMatch(/cacheGetOrSetDeduped|getPublicBankStatsBundle|upstash|redisCache/);

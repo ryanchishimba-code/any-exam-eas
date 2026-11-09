@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { INVENTORY_FIELD_IDS } from "./active-questions";
 import {
+  ACTIVE_INVENTORY_STAMP_SQL,
   activeInventoryStampCoversFields,
   activeInventoryStampKey,
   normalizeActiveInventoryStampRow,
@@ -45,7 +46,8 @@ describe("active inventory stamp", () => {
     for (const fieldId of INVENTORY_FIELD_IDS) {
       expect(inventory).toContain(`'${fieldId}'`);
     }
-    expect(source).toContain(`"fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3'`);
+    expect(ACTIVE_INVENTORY_STAMP_SQL).toContain('"stepLevel" IS NULL');
+    expect(ACTIVE_INVENTORY_STAMP_SQL).toContain(`"stepLevel" <> 'step3'`);
     expect(source).toContain("active = true");
     expect(source).toContain(`"qaPassed" = true`);
   });

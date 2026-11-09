@@ -38,7 +38,8 @@ describe("live board question counts", () => {
     expect(LIVE_BOARD_COUNT_SQL).toContain("active = true");
     expect(LIVE_BOARD_COUNT_SQL).toContain('"qaPassed" = true');
     expect(LIVE_BOARD_COUNT_SQL).toContain('FROM "QuestionBankItem"');
-    expect(LIVE_BOARD_COUNT_SQL).toContain(`"fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3'`);
+    expect(LIVE_BOARD_COUNT_SQL).toContain('"stepLevel" IS NULL');
+    expect(LIVE_BOARD_COUNT_SQL).toContain(`"stepLevel" <> 'step3'`);
     expect(LIVE_BOARD_COUNT_SQL).toContain("studentEligibility");
     expect(LIVE_BOARD_COUNT_SQL).not.toContain("ActiveInventoryCount");
     expect(snapshot).toContain("studentEligibleAndSql()");

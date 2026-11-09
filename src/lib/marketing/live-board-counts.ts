@@ -19,6 +19,7 @@ import {
 import { sqlQuery } from "@/lib/db";
 import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import { USMLE_STEP2_SERVE_SQL } from "@/lib/exam-prep/usmle/step2-serve-sql";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import { ACTIVE_INVENTORY_CACHE_TAG } from "@/lib/inventory/active-inventory-cache";
 import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
@@ -55,7 +56,7 @@ export const LIVE_BOARD_COUNT_SQL = `
     WHERE active = true
       AND "qaPassed" = true
       AND "fieldId" IN (${INVENTORY_FIELD_IDS.map((fieldId) => `'${fieldId}'`).join(", ")})
-      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${USMLE_STEP2_SERVE_SQL}
       ${studentEligibleAndSql()}
     GROUP BY 1, 2
     `;
@@ -158,7 +159,7 @@ async function readLiveBoardQuestionCounts(): Promise<LiveBoardQuestionCounts> {
 
 const readCachedLiveBoardQuestionCounts = unstable_cache(
   readLiveBoardQuestionCounts,
-  ["live-board-question-counts-v2"],
+  ["live-board-question-counts-v3"],
   {
     revalidate: LIVE_BOARD_COUNT_REVALIDATE_SECONDS,
     tags: [ACTIVE_INVENTORY_CACHE_TAG],
