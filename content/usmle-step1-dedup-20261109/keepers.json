@@ -1,0 +1,197 @@
+[
+  {
+    "id": "cmpnjj36j07w51ymx4b4rtr6u",
+    "n": 6,
+    "key": "Acute bacterial meningitis"
+  },
+  {
+    "id": "cmpnjijgz04wx1ymx6uv7is2u",
+    "n": 19,
+    "key": "Pathogenic bacteria cross blood-brain barrier → neutrophilic pleocytosis, low CSF glucose, and elevated protein"
+  },
+  {
+    "id": "cmpnjj2q307tj1ymxi22oeua9",
+    "n": 25,
+    "key": "Strep pharyngitis with scarlet fever rash"
+  },
+  {
+    "id": "cmpnji946037d1ymxyplbyqit",
+    "n": 98,
+    "key": "Streptococcal pyrogenic exotoxins → superantigen T-cell activation → diffuse erythematous rash (scarlet fever)"
+  },
+  {
+    "id": "cmpnjj2q307tk1ymxdb4owj2a",
+    "n": 13,
+    "key": "Acute bacterial meningitis"
+  },
+  {
+    "id": "cmpnjiiwj04t51ymx6vnxth3u",
+    "n": 53,
+    "key": "Pathogenic bacteria cross blood-brain barrier → neutrophilic pleocytosis, low CSF glucose, and elevated protein"
+  },
+  {
+    "id": "cmpnjgtq9000x1ymx03bfe1wj",
+    "n": 63,
+    "key": "Diabetic ketoacidosis due to insulin nonadherence"
+  },
+  {
+    "id": "cmpnjgvbh001h1ymxexc9z235",
+    "n": 2,
+    "key": "Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis"
+  },
+  {
+    "id": "cmq0g7j7l003t1y4fcsk04vv8",
+    "n": 2,
+    "key": "Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis"
+  },
+  {
+    "id": "cmpnjiif004rx1ymx6nqzzx2c",
+    "n": 180,
+    "key": "Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis"
+  },
+  {
+    "id": "cmq0g7fsi002z1y4feffclkrr",
+    "n": 3,
+    "key": "Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis"
+  },
+  {
+    "id": "cmpnjhj4z004b1ymx299umdib",
+    "n": 68,
+    "key": "Acute alcoholic pancreatitis"
+  },
+  {
+    "id": "cmq0g7iml003n1y4fem1ythgh",
+    "n": 2,
+    "key": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and third-spacing"
+  },
+  {
+    "id": "cmq0g7gv9003a1y4f011nhnyd",
+    "n": 2,
+    "key": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and third-spacing"
+  },
+  {
+    "id": "cmpnjgw6g001n1ymxj22dpg6c",
+    "n": 232,
+    "key": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and third-spacing"
+  },
+  {
+    "id": "cmpnjhotx01011ymxioehesoz",
+    "n": 4,
+    "key": "Acute kidney injury from ATN (likely NSAID + hypoperfusion)"
+  },
+  {
+    "id": "cmpnjjca6099u1ymxevtqrby0",
+    "n": 2,
+    "key": "Acute kidney injury from ATN (likely NSAID + hypoperfusion)"
+  },
+  {
+    "id": "cmq0g7gay00351y4feyw1yd7t",
+    "n": 3,
+    "key": "Ischemic or nephrotoxic injury to renal tubules → impaired reabsorption and concentration → rising creatinine with muddy brown casts"
+  },
+  {
+    "id": "cmpnjguts001b1ymxe7pjj11x",
+    "n": 4,
+    "key": "Ischemic or nephrotoxic injury to renal tubules → impaired reabsorption and concentration → rising creatinine with muddy brown casts"
+  },
+  {
+    "id": "cmpnjjc4m098j1ymx7t0n0j4v",
+    "n": 3,
+    "key": "Ischemic or nephrotoxic injury to renal tubules → impaired reabsorption and concentration → rising creatinine with muddy brown casts"
+  },
+  {
+    "id": "cmpnjhk7j007x1ymxnt4q0jpa",
+    "n": 53,
+    "key": "Acute ischemic stroke in the setting of atrial fibrillation"
+  },
+  {
+    "id": "cmpnjgvu1001m1ymxzcqrjlqt",
+    "n": 2,
+    "key": "Acute ischemic stroke in the setting of atrial fibrillation"
+  },
+  {
+    "id": "cmpnji9fd039l1ymxudha3lkf",
+    "n": 100,
+    "key": "Embolic or thrombotic occlusion of cerebral artery (often cardioembolic from AF) → focal ischemia in MCA territory"
+  },
+  {
+    "id": "cmq0g7fpq002y1y4fhl0kgpjc",
+    "n": 2,
+    "key": "Embolic or thrombotic occlusion of cerebral artery (often cardioembolic from AF) → focal ischemia in MCA territory"
+  },
+  {
+    "id": "cmpnjgtkm000v1ymxwedn7564",
+    "n": 12,
+    "key": "Acute decompensated systolic heart failure with pulmonary edema"
+  },
+  {
+    "id": "cmq0g7h8h003e1y4fkeepsp0t",
+    "n": 2,
+    "key": "Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea"
+  },
+  {
+    "id": "cmpnjj2q307tx1ymxsbvz3apd",
+    "n": 5,
+    "key": "Acute decompensated systolic heart failure with pulmonary edema"
+  },
+  {
+    "id": "cmpnjiiwj04tj1ymxsanv8yp5",
+    "n": 19,
+    "key": "Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea"
+  },
+  {
+    "id": "cmpnjiif004s71ymxhhujckv4",
+    "n": 6,
+    "key": "Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea"
+  },
+  {
+    "id": "cmpnjgtw0000z1ymx7n9ti8hw",
+    "n": 15,
+    "key": "Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea"
+  },
+  {
+    "id": "cmpnjild8055x1ymx41qfyj5g",
+    "n": 3,
+    "key": "Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea"
+  },
+  {
+    "id": "cmpnjgu4i00121ymxegx0fv0l",
+    "n": 16,
+    "key": "Reduced forward cardiac output and elevated filling pressures → pulmonary capillary hydrostatic pressure exceeds oncotic pressure → alveolar edema and dyspnea"
+  },
+  {
+    "id": "cmpnjj2q307ts1ymxk2j6m1ik",
+    "n": 30,
+    "key": "Preeclampsia with severe features at 37 weeks"
+  },
+  {
+    "id": "cmqkgnrwa0evel304vgbowo5k",
+    "n": 3,
+    "key": "Ceftriaxone plus vancomycin (add ampicillin if Listeria risk); dexamethasone before or with first antibiotic dose"
+  },
+  {
+    "id": "cmqkgnobd0bk9l3045j3fq9p5",
+    "n": 5,
+    "key": "Pathogenic bacteria cross blood-brain barrier → neutrophilic pleocytosis, low CSF glucose, and elevated protein"
+  },
+  {
+    "id": "cmqd1lt52000s1ychx9kiz3nz",
+    "n": 2,
+    "key": "Streptococcal pyrogenic exotoxins → superantigen T-cell activation → diffuse erythematous rash (scarlet fever)"
+  },
+  {
+    "id": "cmrvm6axf002rjw04j21zwsrt",
+    "n": 3,
+    "key": "Streptococcal pyrogenic exotoxins → superantigen T-cell activation → diffuse erythematous rash (scarlet fever)"
+  },
+  {
+    "id": "cmrvm6axe002njw04r98g5cw2",
+    "n": 2,
+    "key": "Acute coronary thrombosis → transmural ischemia and myocyte necrosis in the inferior wall (RCA territory)"
+  },
+  {
+    "id": "cmrvm6axe0028jw04axs8jra3",
+    "n": 6,
+    "key": "Acute coronary thrombosis → transmural ischemia and myocyte necrosis in the inferior wall (RCA territory)"
+  }
+]
