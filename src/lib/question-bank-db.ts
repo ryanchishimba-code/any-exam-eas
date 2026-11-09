@@ -6,6 +6,7 @@ import {
   warmCompleteCaseGroups,
 } from "@/lib/exam-prep/student-eligibility";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import { USMLE_STEP2_SERVE_SQL } from "@/lib/exam-prep/usmle/step2-serve-sql";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
 import { isMpjeField } from "@/lib/mpje/config";
@@ -707,7 +708,7 @@ export async function countActiveQuestions(fieldId?: string) {
     WHERE active = true
       AND "qaPassed" = true
       AND ($1::text IS NULL OR "fieldId" = $1)
-      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${USMLE_STEP2_SERVE_SQL}
       ${studentEligibleAndSql()}
     `,
     [fieldId ?? null]

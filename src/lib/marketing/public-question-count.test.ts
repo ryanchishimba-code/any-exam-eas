@@ -100,7 +100,7 @@ describe("homepage counts use the served gate", () => {
     expect(display.totalLabel).toBe("34,543");
     expect(staticQuestionCountLabel(display.totalServed)).toBe("34,500+");
     expect(display.roundedDown).toBe("34,500+");
-    expect(proof[0]?.text).toBe("34,543 practice questions");
+    expect(proof[0]?.text).toBe("Thousands of board-level questions.");
     expect(display.exams.find((exam) => exam.slug === "nclex")?.served).toBe(3947);
     expect(display.exams.find((exam) => exam.slug === "nclex")?.countLabel).toBe("3,947");
     expect(bundle!.snapshot.boards?.nclex?.caseItems).toBe(234);
@@ -116,7 +116,7 @@ describe("marketing pages keep the question count on the ISR path", () => {
     );
     expect(loader).toContain("unstable_cache");
     expect(loader).toContain("loadServedQuestionCounts");
-    expect(loader).toContain("public-served-bank-stats-v1");
+    expect(loader).toContain("public-served-bank-stats-v2");
     expect(loader).not.toContain("getCachedBankStatsBundle");
     expect(loader).not.toContain("fetchActiveInventoryFromDb");
     expect(loader).not.toMatch(/cacheGetOrSetDeduped|getPublicBankStatsBundle|upstash|redisCache/);

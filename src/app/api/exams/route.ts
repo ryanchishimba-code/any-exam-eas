@@ -4,6 +4,7 @@ import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import { ACTIVE_INVENTORY_RESPONSE_CACHE_CONTROL } from "@/lib/inventory/active-inventory-cache";
 import { readActiveInventoryStampKey } from "@/lib/inventory/active-inventory-stamp";
+import { catalogFieldsToCount, sumFieldCounts } from "@/lib/edtech/exam-catalog-totals";
 import { countActiveQuestions } from "@/lib/question-bank-db";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
@@ -19,9 +20,12 @@ export async function GET() {
   try {
     const stamp = await readActiveInventoryStampKey();
     const loadCatalog = async () => {
-        const uniqueFieldIds = [...new Set(EXAM_SLUGS.map((slug) => EXAM_CATALOG[slug].fieldId))];
+        const slugFieldIds = [...new Set(EXAM_SLUGS.map((slug) => EXAM_CATALOG[slug].fieldId))];
+        // The usmle slug stays bound to Step 2 CK. Step 1 and Step 3 are
+        // counted too so totalQuestions is not only that one step.
+        const countFieldIds = catalogFieldsToCount(slugFieldIds);
         const countEntries = await Promise.all(
-          uniqueFieldIds.map(async (fieldId) => [fieldId, await countActiveQuestions(fieldId)] as const)
+          countFieldIds.map(async (fieldId) => [fieldId, await countActiveQuestions(fieldId)] as const)
         );
         const countByField = Object.fromEntries(countEntries) as Record<string, number>;
 
@@ -44,13 +48,13 @@ export async function GET() {
 
         return {
           exams,
-          totalQuestions: exams.reduce((sum, e) => sum + e.questionCount, 0),
+          totalQuestions: sumFieldCounts(countFieldIds, countByField),
           updatedAt: new Date().toISOString(),
         };
     };
     const payload = stamp
       ? await cacheGetOrSet(
-          cacheKey(["exam-catalog-metadata", stamp]),
+          cacheKey(["exam-catalog-metadata", stamp, "step2-blank-included"]),
           CACHE_TTL.subjectCatalog,
           loadCatalog,
           { staleTtlMs: CACHE_STALE.examCatalog }

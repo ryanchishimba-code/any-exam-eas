@@ -105,7 +105,7 @@ async function loadIsrBankStats(): Promise<BankStatsBundle> {
  * would stay STALE. The key is not the cron stamp, so an old snapshot cannot
  * satisfy this read.
  */
-const readIsrBankStats = unstable_cache(loadIsrBankStats, ["public-served-bank-stats-v1"], {
+const readIsrBankStats = unstable_cache(loadIsrBankStats, ["public-served-bank-stats-v2"], {
   revalidate: SERVED_QUESTION_COUNT_REVALIDATE_SECONDS,
   tags: [ACTIVE_INVENTORY_CACHE_TAG],
 });

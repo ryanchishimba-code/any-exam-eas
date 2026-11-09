@@ -18,6 +18,7 @@ import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import { EFFECTIVE_MCQ_SQL } from "@/lib/exam-prep/effective-type-sql";
+import { USMLE_STEP2_SERVE_SQL } from "@/lib/exam-prep/usmle/step2-serve-sql";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
 import { BANK_COUNTS_QUERY_TIMEOUT_MS } from "@/lib/inventory/active-inventory-cache";
 import { ACTIVE_QUESTION_DEFINITION } from "@/lib/inventory/question-definition";
@@ -369,7 +370,7 @@ export const ACTIVE_INVENTORY_ROWS_SQL = `
         'aanp-fnp',
         'npte-pt'
       )
-      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${USMLE_STEP2_SERVE_SQL}
       ${studentEligibleAndSql()}
     GROUP BY 1, 2, 3, 4
     `;

@@ -13,6 +13,7 @@ import { sqlQuery } from "@/lib/db";
 import { BANK_COUNTS_QUERY_TIMEOUT_MS } from "@/lib/inventory/active-inventory-cache";
 import { INVENTORY_FIELD_IDS } from "@/lib/inventory/active-questions";
 import { studentEligibleAndSql } from "@/lib/exam-prep/student-eligibility-sql";
+import { USMLE_STEP2_SERVE_SQL } from "@/lib/exam-prep/usmle/step2-serve-sql";
 
 export type ActiveInventoryStamp = {
   /** Rows the Qbank and marketing count as active. */
@@ -86,7 +87,7 @@ export const ACTIVE_INVENTORY_STAMP_SQL = `
         'aanp-fnp',
         'npte-pt'
       )
-      AND NOT ("fieldId" = 'usmle-step-2' AND "stepLevel" = 'step3')
+      ${USMLE_STEP2_SERVE_SQL}
       ${studentEligibleAndSql()}
     `;
 

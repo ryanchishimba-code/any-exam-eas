@@ -3,12 +3,15 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   boardQuestionUnits,
-  formatExactQuestionCount,
   siteQuestionCounts,
   type BoardQuestionUnits,
   type CountBoardSlug,
 } from "@/lib/counts";
-import { buildHomeProofFacts, siteCountsFromSnapshot } from "@/lib/marketing/home-proof";
+import {
+  HOME_QUESTION_PROOF,
+  buildHomeProofFacts,
+  siteCountsFromSnapshot,
+} from "@/lib/marketing/home-proof";
 import type { QuestionBankCountsSnapshot } from "@/lib/marketing/question-bank-counts";
 import { buildHomePrepPriceBarChartData } from "@/lib/marketing/prep-price-bar-chart";
 
@@ -54,10 +57,8 @@ describe("homepage proof facts", () => {
     const facts = buildHomeProofFacts(site);
     const questions = facts.find((fact) => fact.id === "questions");
     expect(site.totalQuestions).toBe(43268);
-    expect(questions?.text).toBe(
-      `${formatExactQuestionCount(site.totalQuestions)} practice questions`
-    );
-    expect(questions?.text).toBe("43,268 practice questions");
+    expect(questions?.text).toBe(HOME_QUESTION_PROOF);
+    expect(questions?.text).not.toMatch(/\d/);
   });
 
   it("names live questions and NGN, and keeps the price out of the strip", () => {
