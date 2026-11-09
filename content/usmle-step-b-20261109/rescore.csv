@@ -1,0 +1,91 @@
+id,step,call,note
+0e0ee07d-4dd5-4d60-849b-bad42062938d,step1,sound,bisphosphonate mechanism and instructions
+1426b6f7-c20d-4d85-9c09-8a7e34c8e0f3,step1,sound,refeeding hypophosphatemia
+798e87d4-a7d2-440f-bbd7-5a0fada42bd6,step1,sound,central precocious puberty
+88d45758-40c6-444f-b6fa-703fdfe643be,step1,sound,Paget disease
+aae6a64c-05f1-41b7-9a0d-25bdbe3eee3b,step1,sound,transfuse a child over parental refusal
+cmpnjgu4i00121ymxegx0fv0l,step1,thin,HFrEF mechanism with strawman distractors
+cmr31dl2u00bvjs04kan9fe1v,step1,thin,G6PD pattern is right but the buffet trigger is loose
+cmr4pbhhj00q91y1ewssm1xz1,step1,sound,metanephrines before adrenal biopsy
+cmr4pz4gw00sg1y1e6wjm6iu5,step1,sound,osteoporotic compression fracture
+cmr4qv8nq00zg1y1epav6cyn7,step1,sound,primary hyperparathyroidism
+cmr86gv29003w1yw24cybfwes,step1,sound,SSRI hyponatremia
+cmr86gv7u003y1yw254v345dt,step1,thin,Alzheimer recall with no discriminating finding
+cmr88v49v00gj1yw26nkdrlq8,step1,thin,gallstone pancreatitis is one-step
+cmr8ayp5y00w01yw2yyc5dhr2,step1,fail,the sodium is already in the stem
+cmr8by2ua012m1yw2oyoxzzig,step1,sound,acute cholangitis
+cmr8cckjh016d1yw2ka4gtqoh,step1,sound,carotid artery-to-artery embolism
+cmr8clom2018r1yw2ehn7oc23,step1,thin,asks for a cause and the options are rhythms
+cmr8dn4xd00441yazcwov479w,step1,thin,venlafaxine mechanism is a straight recall
+cmr8dylmw006x1yaz3p2ttv2i,step1,sound,hepatitis A after shellfish
+cmr8dymab00751yazur4w7aqk,step1,sound,intrapancreatic enzyme activation
+cmrpvyxbx000x1yrtq5xg3gzm,step1,thin,preload and afterload are both plausible
+cmrpwci97004c1yrtr47t3ju5,step1,sound,post-cholecystectomy cholangitis
+cmrpwcjdn004p1yrtq0su5muq,step1,thin,iron deficiency and blood loss are both taught
+cmrr4ybyx002k1y6psek79mo1,step1,sound,bacterial meningitis CSF
+cmrrualq100dr1y8wc0nl4y5e,step1,thin,obstruction and infection are both true in cholangitis
+cmrruamw900du1y8wxykbrshd,step1,fail,metformin stem is keyed as an SGLT2 inhibitor
+cmrsew9ng00091y55d5mgnxf5,step1,fail,unstable pulmonary embolism is keyed to heparin alone
+cmrtgriab00101yaxjukssm9n,step1,sound,asthma exacerbation needs oral steroids
+cmrth10ff002k1yaxsay1cgiv,step1,thin,heart-failure mechanism is not unique
+e49fb49d-2d27-4b82-b5ad-60c32a7ed4f6,step1,sound,endometriosis versus adenomyosis
+53985f0e-5441-49a7-acfa-dc279c2282ef,step2,sound,lorazepam for an active seizure
+73204f14-681c-4442-ab21-8c905f71c74e,step2,sound,low-dose allopurinol after one flare in CKD
+933c6af6-1059-4e6a-ae20-919a069df3bf,step2,sound,ceftriaxone plus doxycycline for gonorrhea
+cc76250d-8aae-45e3-aa33-d04e145ac98a,step2,sound,release only the authorized fitness statement
+ce160c78-9285-4874-827a-4497df3c3419,step2,sound,intravenous penicillin for neurosyphilis
+cmpnjjlxf0awj1ymxqx4p6knk,step2,sound,immediate antibiotics and dexamethasone for meningitis
+cmpnjjm2x0ax81ymx1p0getp2,step2,sound,penicillin for scarlet fever
+cmqxeeabd004c1y79fjrqmgwv,step2,sound,insulin for marked hyperglycemia with hyperkalemia
+cmr4gwl0i001l1ydeq2llqtt5,step2,fail,routine albuterol is not the RSV bronchiolitis answer
+cmr4kilpm00ss1ydej46ee8b5,step2,sound,oral steroids for an asthma exacerbation
+cmr85sv29000a1yr90c8x96dh,step2,sound,supportive care for infant bronchiolitis
+cmr87j09f00gl1yr9oidj999k,step2,thin,stopping the ACE inhibitor and treating the potassium are both urgent
+cmr87j2ed00h61yr9avv0wgza,step2,thin,thyrotoxicosis is not pinned to Graves disease
+cmr8alasq01a81yr9e8w3j61q,step2,thin,the precipitant of this thyroid storm is not in the options
+cmra6lv0p001uic047nu6s50r,step2,sound,intramuscular epinephrine for anaphylaxis
+cmrpw0p5v004w1ylumyaurudp,step2,sound,oral laxatives are contraindicated in ischemic obstruction
+cmrpw6025007j1ylu99w36xa4,step2,sound,acute cholecystitis
+cmrqhwley00751ypxrrhpi8mz,step2,thin,two weeks of psychosis is too short to label schizophrenia
+cmrrvztm300dn1yl8tolzjhb4,step2,thin,hypertensive emergency is not separated from subarachnoid hemorrhage
+cmrrvzvim00e51yl8bpmf3k94,step2,thin,antibiotics ultrasound and ERCP can all be next
+cmrsf7e75000o1ynynnzm6g3p,step2,thin,ischemic stroke is a one-step read of the CT
+cmrsraybn000fl40401miajzo,step2,sound,penicillin after a positive rapid strep test
+cmrtg5wpd000b1ydweg5928v8,step2,thin,antibiotics steroids and a chest film are all reasonable
+cmrtq0uwm001m1yqc5xhgr8j9,step2,thin,measles is plausible but the criteria in the stem are incomplete
+cmrtggcjo005a1ydw6gtb8vfi,step2,fail,two options are the same systemic corticosteroid
+cmtps7u5y00071y1q3m679u8i,step2,thin,an elevated D-dimer does not establish pulmonary embolism
+cmtpwlcwn00061y6hh6apttfd,step2,sound,levofloxacin monotherapy for COPD with pneumonia
+cmtpwspjw004o1y6ht2ofoiel,step2,sound,intravenous fluid for a major burn
+cmtpx3fyr00be1y6hpdwb2vcs,step2,sound,inferior STEMI
+fdcc82f8-758b-4661-afad-6eb6892059dc,step2,sound,LABA plus LAMA when blood eosinophils are low
+cmr4b30js000e1ykyrxb7cyyc,step3,thin,borderline free T4 makes overt hypothyroidism uncertain
+cmr4dj81j010x1yky258y1dap,step3,thin,no time course separates acute and chronic kidney disease
+cmr4e6ict01b61ykyq8xv5dst,step3,sound,acute cholecystitis
+cmr4enjuy01ii1ykymn9elzd6,step3,thin,colonoscopy starting at 50 is an outdated single answer
+cmr4f6dh701pu1yky397pr5qx,step3,sound,intravenous furosemide for congested heart failure
+cmr4fdhyo01rx1ykyzteo36kn,step3,sound,fluids and insulin for diabetic ketoacidosis
+cmr4gbydu025z1ykygiz4hp7s,step3,thin,diuretic and noninvasive ventilation are both defensible
+cmr8bhk79007v1yloprgme839,step3,sound,acute decompensated heart failure
+cmr8bxxr700dn1ylongbw434o,step3,sound,acute pancreatitis
+cmr8e5x2w01751ylo1yq7rbga,step3,thin,ketosis does not decide type 1 versus type 2
+cmr8fz9dt01nu1yloxxq93x8y,step3,thin,months of forgetfulness plus new agitation is not one diagnosis
+cmr8lyy2n00gc1ygi5edfmwuy,step3,thin,antibiotics steroids and a bronchodilator all fit
+cmr8mlw9n00nu1ygi2cz41zwh,step3,thin,a labor vignette asks for a study design
+cmr97c4e9000k1ywy2gsvvh2a,step3,thin,atelectasis as the cause of postoperative fever is shaky
+cmr97yymk00ab1ywyj1w6za5r,step3,sound,hyperglycemic hyperosmolar state
+cmr97z1bs00b21ywypgek0d2y,step3,sound,oral steroids for an asthma exacerbation
+cmr9a15bk011v1ywyg8994203,step3,thin,the stem does not show hypertension
+cmr9aueeu01811ywyxxsixcvl,step3,fail,anaphylaxis stem asks for a carboplatin dose
+cmru2qb31001e1y7wmttvgd8x,step3,thin,colonoscopy and a gastroenterology referral overlap
+cmru32kkq003l1y7wpz56wd3h,step3,sound,diabetic ketoacidosis
+cmru3ugqk00i91y7wadvdcylh,step3,thin,antibiotics oxygen and a nebulizer all fit
+cmru96r09004o1y0s6weegh49,step3,thin,the labor story is only a frame for a methods question
+cmru9d0f3007r1y0sr2i3xcno,step3,sound,noninvasive ventilation for acidemic COPD
+cmru9irzj00a71y0sx6pzbzo8,step3,sound,viral meningitis
+cmruieai400101yce0qotx6e5,step3,sound,clopidogrel has less effect in a CYP2C19 poor metabolizer
+cmruihps100311yce5qiswwbs,step3,sound,antibiotics for postpartum endometritis
+cmrvwqxlz00231ye8sq43mnt6,step3,sound,fluids and oxygen before cesarean for variable decelerations
+cmrwa2w22002d1ynhuf38pj2k,step3,thin,epidural opioids and breathing are all acceptable
+cmtpx6dje000n1ymugzh7sbmr,step3,sound,diabetic ketoacidosis with ketones and a low bicarbonate
+cmtpxc6iq00591ymub6okoxkc,step3,sound,noninvasive ventilation for acidemic COPD
