@@ -46,11 +46,13 @@ test.describe("Anatomy Explorer", () => {
     await expect(skeletal).toHaveAttribute("aria-pressed", "true");
 
     const search = page.getByRole("searchbox", { name: /search structures/i }).first();
-    await search.scrollIntoViewIfNeeded();
     await fillControlledInput(search, "femur");
-    const femur = page.locator("aside").first().getByRole("button", { name: /^Femur\b/i });
+    const anatomyList = page.getByRole("complementary").filter({
+      has: page.getByRole("heading", { name: "Structures", level: 2 }),
+    });
+    const femur = anatomyList.getByRole("button", { name: /^Femur\b/i });
     await expect(femur).toBeVisible({ timeout: 15_000 });
-    await femur.evaluate((el) => el.scrollIntoView({ block: "center", inline: "nearest" }));
     await femur.click();
+    await expect(page.getByRole("button", { name: /hide details/i })).toBeVisible();
   });
 });
