@@ -7,17 +7,18 @@
     "outlineWeight": 7.5,
     "difficulty": 4,
     "subjectId": "pulmonology",
-    "examTakeaway": "A pulmonary embolism that drops the blood pressure is treated with systemic thrombolysis, not anticoagulation alone.",
-    "scenario": "A 58-year-old man collapses in an airport jetway. He had a swollen left calf after a 14-hour flight. Blood pressure is 78/50 mm Hg, heart rate is 128 bpm, and oxygen saturation is 86% on a nonrebreather mask. Bedside ultrasound shows a dilated, poorly contracting right ventricle. CT angiography shows clot occluding the right main pulmonary artery. He has no prior intracranial bleed and no recent surgery.",
+    "examTakeaway": "Hypotension from a pulmonary embolism is treated with systemic thrombolysis, not anticoagulation alone.",
+    "scenario": "A 58-year-old man collapses after a 14-hour flight. The left calf is swollen. Blood pressure is 78/50 mm Hg, heart rate is 128 bpm, and oxygen saturation is 86% on a nonrebreather mask. Bedside ultrasound shows a dilated, poorly contracting right ventricle. CT angiography shows clot occluding the right main pulmonary artery. He has no prior intracranial hemorrhage and no recent surgery.",
     "question": "Which treatment is the most appropriate next step?",
     "options": [
-      "Systemic thrombolysis with alteplase while resuscitation continues",
-      "Heparin infusion alone and a plan to recheck the blood pressure in six hours",
-      "Oral rivaroxaban and discharge from the emergency department",
-      "Inferior vena cava filter as the only treatment"
+      "Heparin infusion alone, with a plan to recheck the pressure in six hours",
+      "Systemic thrombolysis while resuscitation continues",
+      "Oral rivaroxaban and discharge",
+      "An inferior vena cava filter as the only treatment",
+      "Catheter thrombolysis delayed until he has been normotensive for 24 hours"
     ],
-    "correctAnswer": "Systemic thrombolysis with alteplase while resuscitation continues",
-    "explanation": "A pulmonary embolism that drops the blood pressure is treated with systemic thrombolysis, not anticoagulation alone. Systemic thrombolysis with alteplase while resuscitation continues is the reperfusion step for massive pulmonary embolism with hypotension, as described in the AHA 2011 scientific statement on massive pulmonary embolism. Heparin infusion alone and a plan to recheck the blood pressure in six hours leaves an obstructed pulmonary artery in a patient whose pressure is 78/50 mm Hg. Oral rivaroxaban and discharge from the emergency department is outpatient care for a stable patient. Inferior vena cava filter as the only treatment does not lyse the clot that is already in the lung and is for anticoagulation that cannot be given.",
+    "correctAnswer": "Systemic thrombolysis while resuscitation continues",
+    "explanation": "Hypotension from a pulmonary embolism is treated with systemic thrombolysis, not anticoagulation alone. Systemic thrombolysis while resuscitation continues is the reperfusion step for massive pulmonary embolism, as described in the AHA 2011 scientific statement. Heparin infusion alone, with a plan to recheck the pressure in six hours, leaves the obstructing clot in a patient whose pressure is 78/50 mm Hg. Oral rivaroxaban and discharge is care for a stable outpatient. An inferior vena cava filter as the only treatment does not lyse clot already in the lung. Catheter thrombolysis delayed until he has been normotensive for 24 hours waits through the shock that defines the indication.",
     "citation": "AHA 2011"
   },
   {
@@ -28,17 +29,18 @@
     "outlineWeight": 7.5,
     "difficulty": 3,
     "subjectId": "pediatrics",
-    "examTakeaway": "A feeding infant with bronchiolitis and an oxygen saturation at or above 90% is managed with support, not routine albuterol or steroids.",
-    "scenario": "A 5-month-old girl has had two days of runny nose and cough. She still takes 80% of her bottles and has wet diapers. Temperature is 38.0 C, respiratory rate is 46/min, and oxygen saturation is 95% on room air. She has scattered wheezes and mild subcostal retractions. A nasal swab detects respiratory syncytial virus. She was born at term and has no heart disease.",
+    "examTakeaway": "A feeding infant with bronchiolitis and an oxygen saturation of 95% needs suction and fluids, not routine albuterol or steroids.",
+    "scenario": "A 5-month-old girl, born at term, has had two days of rhinorrhea and cough. She still takes most of her bottles and has wet diapers. Temperature is 38.0 C, respiratory rate is 46/min, and oxygen saturation is 95% on room air. There are scattered wheezes and mild subcostal retractions. A nasal swab detects respiratory syncytial virus. She has no heart disease.",
     "question": "Which plan is the most appropriate next step?",
     "options": [
-      "Nasal suction, fluids, and observation, without routine bronchodilator or steroid",
-      "A standing order for nebulized albuterol every two hours",
+      "Nebulized albuterol every two hours",
       "Oral dexamethasone for three days",
-      "Ribavirin aerosol in a regular pediatric room"
+      "Ribavirin aerosol",
+      "Nasal suction and fluids, without a routine bronchodilator or steroid",
+      "A chest radiograph and a macrolide before any supportive care"
     ],
-    "correctAnswer": "Nasal suction, fluids, and observation, without routine bronchodilator or steroid",
-    "explanation": "A feeding infant with bronchiolitis and an oxygen saturation at or above 90% is managed with support, not routine albuterol or steroids. Nasal suction, fluids, and observation, without routine bronchodilator or steroid, follows the AAP 2014 bronchiolitis guideline for a term infant who is still feeding and saturating at 95%. A standing order for nebulized albuterol every two hours is not recommended as routine care. Oral dexamethasone for three days does not improve ordinary bronchiolitis. Ribavirin aerosol in a regular pediatric room is not indicated for a well-hydrated term infant.",
+    "correctAnswer": "Nasal suction and fluids, without a routine bronchodilator or steroid",
+    "explanation": "A feeding infant with bronchiolitis and an oxygen saturation of 95% needs suction and fluids, not routine albuterol or steroids. Nasal suction and fluids, without a routine bronchodilator or steroid, follows the AAP 2014 bronchiolitis guideline for a term infant who is still feeding. Nebulized albuterol every two hours is not recommended as routine care. Oral dexamethasone for three days does not help ordinary bronchiolitis. Ribavirin aerosol is not indicated in a well-hydrated term infant. A chest radiograph and a macrolide before any supportive care treats a bacterial pneumonia the examination has not shown.",
     "citation": "AAP 2014"
   },
   {
@@ -47,19 +49,20 @@
     "stepLevel": "step2",
     "outlineSystem": "respiratory",
     "outlineWeight": 7.5,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "pulmonology",
-    "examTakeaway": "An asthma exacerbation with peak flow near half of personal best needs a systemic corticosteroid, not a new long-acting bronchodilator alone.",
-    "scenario": "A 26-year-old woman with asthma uses her albuterol inhaler every hour today. She can speak in short phrases. Respiratory rate is 28/min and oxygen saturation is 93% on room air. Peak flow is 180 L/min, about 50% of her personal best. She has no fever. The chest is wheezy throughout and the radiograph shows no infiltrate.",
-    "question": "Which drug should be started now, in addition to repeated albuterol?",
+    "examTakeaway": "An asthma exacerbation at half of personal-best peak flow needs a systemic corticosteroid plus repeated albuterol.",
+    "scenario": "A 26-year-old woman with asthma has used her albuterol inhaler every hour today. She speaks in short phrases. Respiratory rate is 28/min and oxygen saturation is 93% on room air. Peak flow is 180 L/min, half of her personal best. She is afebrile, the chest is diffusely wheezy, and the radiograph shows no infiltrate.",
+    "question": "Which drug should be added to repeated albuterol?",
     "options": [
-      "Oral prednisone for a short burst",
+      "Oral prednisone",
       "A long-acting beta-agonist as the only new drug",
-      "Azithromycin for five days",
-      "A leukotriene tablet started in place of the steroid"
+      "Azithromycin",
+      "A leukotriene-receptor antagonist in place of a steroid",
+      "A sedating antihistamine at bedtime"
     ],
-    "correctAnswer": "Oral prednisone for a short burst",
-    "explanation": "An asthma exacerbation with peak flow near half of personal best needs a systemic corticosteroid, not a new long-acting bronchodilator alone. Oral prednisone for a short burst is the anti-inflammatory drug GINA 2024 adds to repeated short-acting bronchodilator for this severity. A long-acting beta-agonist as the only new drug is a controller, not the treatment of an acute attack, and is unsafe as monotherapy. Azithromycin for five days treats an infection the radiograph and the story do not show. A leukotriene tablet started in place of the steroid does not replace systemic corticosteroid in an exacerbation.",
+    "correctAnswer": "Oral prednisone",
+    "explanation": "An asthma exacerbation at half of personal-best peak flow needs a systemic corticosteroid plus repeated albuterol. Oral prednisone is the anti-inflammatory drug GINA 2024 adds at this severity. A long-acting beta-agonist as the only new drug is a controller and is unsafe as the sole addition during an attack. Azithromycin treats an infection the radiograph does not show. A leukotriene-receptor antagonist in place of a steroid does not replace systemic corticosteroid in an exacerbation. A sedating antihistamine at bedtime does not open the airway and can depress ventilation.",
     "citation": "GINA 2024"
   },
   {
@@ -70,17 +73,18 @@
     "outlineWeight": 9,
     "difficulty": 4,
     "subjectId": "cardiology",
-    "examTakeaway": "Unstable tachycardia with a pulse is treated with immediate synchronized cardioversion, not another oral rate-control tablet.",
-    "scenario": "A 67-year-old man with palpitations for 40 minutes is clammy and confused. Blood pressure is 74/46 mm Hg. The monitor shows a regular narrow-complex tachycardia at 188 bpm. He is still breathing. An intravenous line is in place. He has no known accessory pathway.",
+    "examTakeaway": "A regular narrow-complex tachycardia with hypotension and confusion is treated with immediate synchronized cardioversion.",
+    "scenario": "A 67-year-old man has had palpitations for 40 minutes. He is clammy and confused. Blood pressure is 74/46 mm Hg. The monitor shows a regular narrow-complex tachycardia at 188 bpm. He is breathing, an intravenous line is in place, and he has no known accessory pathway.",
     "question": "Which action is the most appropriate next step?",
     "options": [
-      "Synchronized cardioversion",
-      "Oral metoprolol and reassessment in an hour",
-      "Adenosine as the only step, with no pads on the chest",
-      "Amiodarone infusion while waiting for the pressure to recover on its own"
+      "Oral metoprolol, with reassessment in an hour",
+      "Adenosine with no defibrillator pads applied",
+      "An amiodarone infusion while waiting for the pressure to recover",
+      "Vagal maneuvers as the only intervention",
+      "Synchronized cardioversion"
     ],
     "correctAnswer": "Synchronized cardioversion",
-    "explanation": "Unstable tachycardia with a pulse is treated with immediate synchronized cardioversion, not another oral rate-control tablet. Synchronized cardioversion is the AHA 2020 adult tachycardia step when hypotension and altered mentation are already present. Oral metoprolol and reassessment in an hour delays electricity in a patient whose pressure is 74/46 mm Hg. Adenosine as the only step, with no pads on the chest, may be tried in a stable regular narrow-complex rhythm, not as the sole plan for shock. Amiodarone infusion while waiting for the pressure to recover on its own is a stable-patient drug strategy.",
+    "explanation": "A regular narrow-complex tachycardia with hypotension and confusion is treated with immediate synchronized cardioversion. Synchronized cardioversion is the AHA 2020 step when shock and altered mentation are already present. Oral metoprolol, with reassessment in an hour, delays electricity. Adenosine with no defibrillator pads applied may be considered in a stable regular narrow-complex rhythm, not as the sole plan in shock. An amiodarone infusion while waiting for the pressure to recover is a strategy for a stable patient. Vagal maneuvers as the only intervention are also for the stable patient.",
     "citation": "AHA 2020"
   },
   {
@@ -89,19 +93,20 @@
     "stepLevel": "step2",
     "outlineSystem": "endocrine",
     "outlineWeight": 5,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "endocrinology",
-    "examTakeaway": "Hyperglycemic hyperosmolar state is treated with intravenous saline first; insulin follows fluids, and there is no large ketoacidosis to close.",
-    "scenario": "A 71-year-old woman with type 2 diabetes is found confused at home. She has been drinking juice for a week because her mouth felt dry. Blood pressure is 102/64 mm Hg and the mucous membranes are dry. Glucose is 860 mg/dL, serum osmolality is 338 mOsm/kg, bicarbonate is 22 mEq/L, and the urine has no ketones. Anion gap is 10.",
+    "examTakeaway": "Hyperglycemic hyperosmolar state is treated with intravenous saline first; insulin follows volume replacement, and there is no ketoacidosis to close.",
+    "scenario": "A 71-year-old woman with type 2 diabetes is found confused. She has been drinking juice for a week because her mouth was dry. Blood pressure is 102/64 mm Hg and the mucous membranes are dry. Glucose is 860 mg/dL, serum osmolality is 338 mOsm/kg, bicarbonate is 22 mEq/L, urine ketones are negative, and the anion gap is 10.",
     "question": "Which fluid plan is the most appropriate next step?",
     "options": [
-      "Intravenous isotonic saline first, with insulin started after initial volume replacement",
-      "Subcutaneous insulin only, with no intravenous fluid",
-      "Sodium bicarbonate to close an acidosis she does not have",
-      "Free water by mouth as the only replacement"
+      "Subcutaneous insulin and no intravenous fluid",
+      "Sodium bicarbonate",
+      "Intravenous isotonic saline first, with insulin after initial volume replacement",
+      "Free water by mouth as the only replacement",
+      "Half-normal saline with insulin withheld until the glucose is below 200 mg/dL"
     ],
-    "correctAnswer": "Intravenous isotonic saline first, with insulin started after initial volume replacement",
-    "explanation": "Hyperglycemic hyperosmolar state is treated with intravenous saline first; insulin follows fluids, and there is no large ketoacidosis to close. Intravenous isotonic saline first, with insulin started after initial volume replacement, is the ADA 2024 sequence for a glucose of 860 mg/dL, osmolality 338, and no ketones. Subcutaneous insulin only, with no intravenous fluid, ignores the profound volume deficit. Sodium bicarbonate to close an acidosis she does not have is unnecessary with a bicarbonate of 22 mEq/L. Free water by mouth as the only replacement is unsafe in a confused patient and does not restore intravascular volume.",
+    "correctAnswer": "Intravenous isotonic saline first, with insulin after initial volume replacement",
+    "explanation": "Hyperglycemic hyperosmolar state is treated with intravenous saline first; insulin follows volume replacement, and there is no ketoacidosis to close. Intravenous isotonic saline first, with insulin after initial volume replacement, is the ADA 2024 sequence for this glucose and osmolality without ketones. Subcutaneous insulin and no intravenous fluid ignores the volume deficit. Sodium bicarbonate is unnecessary with a bicarbonate of 22 mEq/L. Free water by mouth as the only replacement is unsafe while she is confused. Half-normal saline with insulin withheld until the glucose is below 200 mg/dL both picks a hypotonic fluid too early and delays insulin after the first liters.",
     "citation": "ADA 2024"
   },
   {
@@ -112,17 +117,18 @@
     "outlineWeight": 7.5,
     "difficulty": 4,
     "subjectId": "gastroenterology",
-    "examTakeaway": "Acute cholangitis with fever, jaundice, and hypotension needs resuscitation, antibiotics, and urgent biliary drainage, not observation.",
-    "scenario": "A 64-year-old man has had right-upper-quadrant pain for a day and is now jaundiced. Temperature is 39.1 C, blood pressure is 84/52 mm Hg, and heart rate is 122 bpm. Bilirubin is 5.6 mg/dL, alkaline phosphatase is 410 U/L, and the leukocyte count is 18,000/mm3. Ultrasound shows a dilated common bile duct and gallbladder sludge. Lipase is normal.",
-    "question": "Which plan is the most appropriate next step after the first liter of saline?",
+    "examTakeaway": "Fever, jaundice, and hypotension from a dilated bile duct are severe cholangitis and need antibiotics plus urgent biliary drainage.",
+    "scenario": "A 64-year-old man has had right-upper-quadrant pain for a day and is now jaundiced. Temperature is 39.1 C, blood pressure is 84/52 mm Hg, and heart rate is 122 bpm. Bilirubin is 5.6 mg/dL, alkaline phosphatase is 410 U/L, and the leukocyte count is 18,000/mm3. Ultrasound shows a dilated common bile duct. Lipase is normal. The first liter of saline is infusing.",
+    "question": "Which plan is the most appropriate next step?",
     "options": [
-      "Intravenous antibiotics and urgent biliary decompression",
-      "Discharge with oral pain medicine and a clinic visit next week",
-      "Urgent cholecystectomy before any antibiotic or duct imaging",
-      "Observation on the ward with no antibiotic because the lipase is normal"
+      "Discharge on oral analgesia with a clinic visit next week",
+      "Cholecystectomy before antibiotics or duct drainage",
+      "Observation without antibiotics",
+      "Oral ursodeoxycholic acid",
+      "Intravenous antibiotics and urgent biliary decompression"
     ],
     "correctAnswer": "Intravenous antibiotics and urgent biliary decompression",
-    "explanation": "Acute cholangitis with fever, jaundice, and hypotension needs resuscitation, antibiotics, and urgent biliary drainage, not observation. Intravenous antibiotics and urgent biliary decompression is the Tokyo Guidelines 2018 response to severe cholangitis, which this hypotension defines. Discharge with oral pain medicine and a clinic visit next week leaves septic biliary obstruction untreated. Urgent cholecystectomy before any antibiotic or duct imaging operates on the gallbladder while the obstructed duct is the emergency. Observation on the ward with no antibiotic because the lipase is normal confuses cholangitis with pancreatitis; the lipase is supposed to be normal here.",
+    "explanation": "Fever, jaundice, and hypotension from a dilated bile duct are severe cholangitis and need antibiotics plus urgent biliary drainage. Intravenous antibiotics and urgent biliary decompression is the Tokyo Guidelines 2018 response once the first fluid is in. Discharge on oral analgesia with a clinic visit next week leaves septic obstruction untreated. Cholecystectomy before antibiotics or duct drainage operates on the gallbladder while the duct is the emergency. Observation without antibiotics confuses cholangitis with pancreatitis. The normal lipase does not make the duct obstruction safe. Oral ursodeoxycholic acid dissolves some cholesterol stones over months and does not treat septic cholangitis.",
     "citation": "Tokyo Guidelines 2018"
   },
   {
@@ -133,17 +139,18 @@
     "outlineWeight": 5,
     "difficulty": 4,
     "subjectId": "obgyn",
-    "examTakeaway": "A ruptured ectopic pregnancy with hypotension goes to the operating room; methotrexate is for a stable, unruptured, carefully selected ectopic.",
-    "scenario": "A 29-year-old woman has sudden left-lower-quadrant pain and shoulder pain. Her last menstrual period was seven weeks ago. Blood pressure is 82/48 mm Hg and heart rate is 130 bpm. The abdomen is rigid. Urine pregnancy test is positive. Bedside ultrasound shows an empty uterus and free fluid in the Morrison pouch.",
+    "examTakeaway": "An empty uterus, free intraperitoneal fluid, and shock are a ruptured ectopic pregnancy and go to surgery, not methotrexate.",
+    "scenario": "A 29-year-old woman has sudden left-lower-quadrant pain and shoulder pain. Her last period was seven weeks ago. Blood pressure is 82/48 mm Hg and heart rate is 130 bpm. The abdomen is rigid. A urine pregnancy test is positive. Bedside ultrasound shows an empty uterus and free fluid in the Morrison pouch.",
     "question": "Which treatment is the most appropriate next step?",
     "options": [
-      "Emergency surgery for a ruptured ectopic pregnancy",
       "Single-dose methotrexate and discharge",
-      "Expectant management with a repeat beta-hCG in two days",
-      "Misoprostol to evacuate a presumed intrauterine pregnancy"
+      "Emergency surgery",
+      "A repeat beta-hCG in two days and expectant care",
+      "Misoprostol for a presumed intrauterine pregnancy",
+      "Oral antibiotics for pelvic inflammatory disease and a clinic visit tomorrow"
     ],
-    "correctAnswer": "Emergency surgery for a ruptured ectopic pregnancy",
-    "explanation": "A ruptured ectopic pregnancy with hypotension goes to the operating room; methotrexate is for a stable, unruptured, carefully selected ectopic. Emergency surgery for a ruptured ectopic pregnancy is the ACOG approach when the pressure is 82/48 mm Hg, the uterus is empty, and there is free fluid. Single-dose methotrexate and discharge is contraindicated in rupture and hemodynamic instability. Expectant management with a repeat beta-hCG in two days watches a patient who is already in shock. Misoprostol to evacuate a presumed intrauterine pregnancy treats a pregnancy the ultrasound did not find inside the uterus.",
+    "correctAnswer": "Emergency surgery",
+    "explanation": "An empty uterus, free intraperitoneal fluid, and shock are a ruptured ectopic pregnancy and go to surgery, not methotrexate. Emergency surgery is the ACOG path when the pressure is 82/48 mm Hg and there is free fluid. Single-dose methotrexate and discharge is for a stable, unruptured, selected ectopic. A repeat beta-hCG in two days and expectant care watches a patient already in shock. Misoprostol for a presumed intrauterine pregnancy treats a pregnancy the ultrasound did not find in the uterus. Oral antibiotics for pelvic inflammatory disease and a clinic visit tomorrow misses hemoperitoneum.",
     "citation": "ACOG"
   },
   {
@@ -152,19 +159,20 @@
     "stepLevel": "step2",
     "outlineSystem": "pregnancy",
     "outlineWeight": 5,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "obgyn",
-    "examTakeaway": "Preeclampsia with severe features at 37 weeks is delivered, after magnesium for seizure prevention, rather than prolonged outpatient watching.",
-    "scenario": "A 33-year-old woman at 37 weeks of gestation has a blood pressure of 168/112 mm Hg that remains high after repeat measurement. She has a persistent headache and spots in her vision. Platelet count is 98,000/mm3 and creatinine is 1.3 mg/dL. The fetal heart tracing is reassuring. She has no history of chronic hypertension.",
+    "examTakeaway": "Preeclampsia with severe features at 37 weeks is managed with magnesium and delivery, not another week of outpatient watching.",
+    "scenario": "A 33-year-old woman at 37 weeks has a blood pressure of 168/112 mm Hg that stays high on repeat measurement. She has a persistent headache and scotomata. The platelet count is 98,000/mm3 and creatinine is 1.3 mg/dL. The fetal heart tracing is reassuring. She has no chronic hypertension. The cervix is closed.",
     "question": "Which plan is the most appropriate next step?",
     "options": [
+      "Home blood-pressure checks in one week",
+      "Oral labetalol with induction postponed until 39 weeks",
+      "Immediate cesarean without magnesium because the cervix is closed",
       "Magnesium sulfate and delivery",
-      "Outpatient blood-pressure checks in one week",
-      "Labetalol at home and induction postponed until 39 weeks",
-      "Immediate cesarean solely because the fetus is vertex and the cervix is unfavorable, with no magnesium"
+      "Bed rest at home with a 24-hour urine collected next week"
     ],
     "correctAnswer": "Magnesium sulfate and delivery",
-    "explanation": "Preeclampsia with severe features at 37 weeks is delivered, after magnesium for seizure prevention, rather than prolonged outpatient watching. Magnesium sulfate and delivery follows ACOG guidance for severe-range pressures plus headache, visual change, thrombocytopenia, and a rising creatinine at a gestational age when the fetus is already term. Outpatient blood-pressure checks in one week delays care of severe features. Labetalol at home and induction postponed until 39 weeks is expectant care that severe features at 37 weeks do not allow. Immediate cesarean solely because the fetus is vertex and the cervix is unfavorable, with no magnesium, skips seizure prophylaxis and chooses a route that is not required by presentation alone.",
+    "explanation": "Preeclampsia with severe features at 37 weeks is managed with magnesium and delivery, not another week of outpatient watching. Magnesium sulfate and delivery follows ACOG guidance for severe-range pressures plus headache, visual change, thrombocytopenia, and a rising creatinine at term. Home blood-pressure checks in one week delays that care. Oral labetalol with induction postponed until 39 weeks is expectant management that severe features at 37 weeks do not allow. Immediate cesarean without magnesium because the cervix is closed skips seizure prophylaxis and chooses a route the closed cervix does not by itself require. Bed rest at home with a 24-hour urine collected next week is outpatient evaluation of possible chronic disease, not treatment of severe features.",
     "citation": "ACOG"
   },
   {
@@ -173,19 +181,20 @@
     "stepLevel": "step2",
     "outlineSystem": "multisystem",
     "outlineWeight": 6,
-    "difficulty": 2,
+    "difficulty": 3,
     "subjectId": "emergency-medicine",
-    "examTakeaway": "Anaphylaxis with hypotension is treated with intramuscular epinephrine in the mid-outer thigh, immediately, not an antihistamine alone.",
-    "scenario": "A 24-year-old man was stung by a wasp 15 minutes ago. His lips are swollen, he is wheezing, and a diffuse urticarial rash is spreading. Blood pressure is 78/44 mm Hg and heart rate is 126 bpm. He did not use the auto-injector in his backpack.",
+    "examTakeaway": "Anaphylaxis with airway swelling and hypotension is treated with intramuscular epinephrine in the mid-outer thigh.",
+    "scenario": "A 24-year-old man was stung by a wasp 15 minutes ago. His lips are swollen, he is wheezing, and urticaria is spreading. Blood pressure is 78/44 mm Hg and heart rate is 126 bpm. The auto-injector in his bag was not used.",
     "question": "Which drug is the most appropriate next step?",
     "options": [
       "Intramuscular epinephrine in the mid-outer thigh",
       "Oral diphenhydramine as the only drug",
       "Intravenous vancomycin",
-      "Nebulized albuterol with no epinephrine"
+      "Nebulized albuterol without epinephrine",
+      "Intravenous methylprednisolone as the only drug"
     ],
     "correctAnswer": "Intramuscular epinephrine in the mid-outer thigh",
-    "explanation": "Anaphylaxis with hypotension is treated with intramuscular epinephrine in the mid-outer thigh, immediately, not an antihistamine alone. Intramuscular epinephrine in the mid-outer thigh is the first drug in the 2020 anaphylaxis practice parameter for airway swelling plus shock. Oral diphenhydramine as the only drug does not reverse hypotension. Intravenous vancomycin is an antibiotic and has nothing to do with venom anaphylaxis. Nebulized albuterol with no epinephrine may ease wheeze later but does not replace epinephrine.",
+    "explanation": "Anaphylaxis with airway swelling and hypotension is treated with intramuscular epinephrine in the mid-outer thigh. Intramuscular epinephrine in the mid-outer thigh is the first drug in the 2020 anaphylaxis practice parameter. Oral diphenhydramine as the only drug does not reverse shock. Intravenous vancomycin is an antibiotic. Nebulized albuterol without epinephrine may ease wheeze later but does not replace epinephrine. Intravenous methylprednisolone as the only drug does not reverse airway edema or hypotension in the first minutes.",
     "citation": "2020"
   },
   {
@@ -196,17 +205,18 @@
     "outlineWeight": 7.5,
     "difficulty": 3,
     "subjectId": "internal-medicine",
-    "examTakeaway": "Annual low-dose CT is indicated for a 50- to 80-year-old with a 20 pack-year history who still smokes or quit within 15 years.",
-    "scenario": "A 58-year-old woman who still smokes asks about lung cancer screening at a routine visit. She has smoked one pack daily since age 30, about 28 pack-years. She has no cough, weight loss, or hemoptysis. A chest radiograph last year for a job physical was normal. She has never had a CT of the chest.",
+    "examTakeaway": "Annual low-dose CT is the lung-cancer screen for a 50- to 80-year-old with at least 20 pack-years who still smokes or quit within 15 years.",
+    "scenario": "A 58-year-old woman who still smokes one pack daily, and has done so since age 30, asks about lung-cancer screening. She has no cough, weight loss, or hemoptysis. A chest radiograph last year was normal. She has never had a chest CT.",
     "question": "Which screening test is the most appropriate next step?",
     "options": [
-      "Annual low-dose CT of the chest",
-      "No imaging, because screening starts only after age 65",
+      "No imaging until age 65",
       "Sputum cytology every three months",
-      "A chest radiograph each year instead of CT"
+      "Annual low-dose CT of the chest",
+      "A yearly chest radiograph",
+      "A PET scan now because the chest radiograph was normal"
     ],
     "correctAnswer": "Annual low-dose CT of the chest",
-    "explanation": "Annual low-dose CT is indicated for a 50- to 80-year-old with a 20 pack-year history who still smokes or quit within 15 years. Annual low-dose CT of the chest is the USPSTF test for this 58-year-old with 28 pack-years who still smokes. No imaging, because screening starts only after age 65, uses the wrong age floor. Sputum cytology every three months is not the recommended screen. A chest radiograph each year instead of CT does not reduce lung-cancer mortality the way low-dose CT does.",
+    "explanation": "Annual low-dose CT is the lung-cancer screen for a 50- to 80-year-old with at least 20 pack-years who still smokes or quit within 15 years. Annual low-dose CT of the chest is the USPSTF test for this 58-year-old with about 28 pack-years who still smokes. No imaging until age 65 uses the wrong age floor. Sputum cytology every three months is not the recommended screen. A yearly chest radiograph does not reduce lung-cancer mortality the way low-dose CT does. A PET scan now because the chest radiograph was normal is not a screening test.",
     "citation": "USPSTF"
   },
   {
@@ -215,19 +225,20 @@
     "stepLevel": "step2",
     "outlineSystem": "gastrointestinal",
     "outlineWeight": 7.5,
-    "difficulty": 2,
+    "difficulty": 3,
     "subjectId": "internal-medicine",
-    "examTakeaway": "Average-risk colorectal screening starts at age 45, and a recent negative FIT means a colonoscopy is not automatically due the same year.",
-    "scenario": "A 45-year-old man with no family history of colorectal cancer has never been screened. He feels well. A fecal immunochemical test he completed on his own four months ago was negative. He asks whether he still needs a screening plan.",
-    "question": "Which statement about his screening is correct?",
+    "examTakeaway": "Average-risk colorectal screening starts at 45, and a negative FIT is repeated annually rather than followed at once by colonoscopy.",
+    "scenario": "A 45-year-old man with no family history of colorectal cancer feels well. A fecal immunochemical test he completed four months ago was negative. He asks what screening he still needs.",
+    "question": "Which plan matches current screening guidance?",
     "options": [
-      "Screening is due at 45, and a negative FIT covers him until the next annual FIT",
-      "Screening is not offered until age 50, so the FIT was a wasted test",
-      "A negative FIT four months ago means he should have colonoscopy this week",
-      "One negative FIT at 45 means he never needs screening again"
+      "Colonoscopy this week because the FIT was four months ago",
+      "No screening until age 50",
+      "No further screening after one negative FIT",
+      "Repeat the FIT in about eight months, when a year has passed",
+      "CT colonography every year starting at age 45 regardless of the FIT"
     ],
-    "correctAnswer": "Screening is due at 45, and a negative FIT covers him until the next annual FIT",
-    "explanation": "Average-risk colorectal screening starts at age 45, and a recent negative FIT means a colonoscopy is not automatically due the same year. Screening is due at 45, and a negative FIT covers him until the next annual FIT, which is the USPSTF position: FIT is an accepted strategy and a negative result is not a reason for immediate colonoscopy. Screening is not offered until age 50, so the FIT was a wasted test, uses the old age cutoff. A negative FIT four months ago means he should have colonoscopy this week overcalls a valid negative screen. One negative FIT at 45 means he never needs screening again ignores the need to repeat the test.",
+    "correctAnswer": "Repeat the FIT in about eight months, when a year has passed",
+    "explanation": "Average-risk colorectal screening starts at 45, and a negative FIT is repeated annually rather than followed at once by colonoscopy. Repeat the FIT in about eight months, when a year has passed, is the USPSTF interval for a negative FIT in an average-risk adult who has already started screening at 45. Colonoscopy this week because the FIT was four months ago converts a valid negative screen into an immediate colonoscopy. No screening until age 50 uses the retired age cutoff. No further screening after one negative FIT stops a program that must be repeated. CT colonography every year starting at age 45 regardless of the FIT is not the yearly interval, and a current negative FIT already covers this cycle.",
     "citation": "USPSTF"
   },
   {
@@ -236,19 +247,20 @@
     "stepLevel": "step2",
     "outlineSystem": "human-development",
     "outlineWeight": 3,
-    "difficulty": 2,
+    "difficulty": 3,
     "subjectId": "pediatrics",
-    "examTakeaway": "A mild illness with or without low-grade fever is not a reason to delay vaccines that are due today.",
-    "scenario": "A 12-month-old girl is in clinic for vaccines. Since yesterday she has a clear runny nose and a temperature of 38.1 C. She is playful, pulling at a cracker, and her examination shows only nasal congestion. Measles-mumps-rubella and varicella vaccines are due.",
+    "examTakeaway": "A mild illness with a low fever is not a reason to delay vaccines that are due.",
+    "scenario": "A 12-month-old girl is in clinic for vaccines. Since yesterday she has a clear runny nose and a temperature of 38.1 C. She is playful and feeding. Examination shows only nasal congestion. Measles-mumps-rubella and varicella vaccines are due.",
     "question": "Which action is the most appropriate next step?",
     "options": [
-      "Give the measles-mumps-rubella and varicella vaccines today",
+      "Give both vaccines today",
       "Delay all vaccines until she has been afebrile for two weeks",
       "Record a permanent contraindication to measles-mumps-rubella vaccine",
-      "Give antibiotics today and vaccines only after the course is finished"
+      "Give antibiotics today and vaccines after the course",
+      "Give measles-mumps-rubella today and postpone varicella until age 4 because of the fever"
     ],
-    "correctAnswer": "Give the measles-mumps-rubella and varicella vaccines today",
-    "explanation": "A mild illness with or without low-grade fever is not a reason to delay vaccines that are due today. Give the measles-mumps-rubella and varicella vaccines today, which is the CDC position that a mild illness is not a precaution. Delay all vaccines until she has been afebrile for two weeks withholds protection for a cold. Record a permanent contraindication to measles-mumps-rubella vaccine is reserved for a severe allergic reaction or severe immunodeficiency, not a runny nose. Give antibiotics today and vaccines only after the course is finished treats a viral cold and invents a delay.",
+    "correctAnswer": "Give both vaccines today",
+    "explanation": "A mild illness with a low fever is not a reason to delay vaccines that are due. Give both vaccines today. The CDC treats a mild illness, with or without low fever, as neither a precaution nor a contraindication. Delay all vaccines until she has been afebrile for two weeks withholds protection for a cold. Record a permanent contraindication to measles-mumps-rubella vaccine is for anaphylaxis or severe immunodeficiency. Give antibiotics today and vaccines after the course treats a viral cold and invents a delay. Give measles-mumps-rubella today and postpone varicella until age 4 because of the fever uses the fever as a reason to split a pair that can both be given.",
     "citation": "CDC"
   },
   {
@@ -259,17 +271,18 @@
     "outlineWeight": 9,
     "difficulty": 4,
     "subjectId": "cardiology",
-    "examTakeaway": "A beta blocker is not started for the first time on the morning of surgery; perioperative beta blockade is planned earlier only in selected patients.",
-    "scenario": "A 70-year-old man is in the preoperative area for elective open aortic aneurysm repair. He has never taken a beta blocker. Heart rate is 78 bpm and blood pressure is 136/78 mm Hg. He walked a mile last week without chest pain. A colleague orders metoprolol to be given now, 30 minutes before incision, because 'vascular patients always get a beta blocker.'",
+    "examTakeaway": "A beta blocker is not started for the first time on the morning of surgery.",
+    "scenario": "A 70-year-old man is in the preoperative area for elective open aortic aneurysm repair. He has never taken a beta blocker. Heart rate is 78 bpm and blood pressure is 136/78 mm Hg. He walked a mile last week without chest pain. A colleague orders metoprolol to be given 30 minutes before incision.",
     "question": "Which decision about that order is correct?",
     "options": [
-      "Do not start a beta blocker in a naive patient on the morning of surgery",
-      "Give the metoprolol now because every vascular patient benefits",
-      "Start a high dose and hold it only if the heart rate falls below 40",
-      "Substitute clonidine on the morning of surgery as an equally studied replacement"
+      "Give the metoprolol now",
+      "Start a high dose and hold it only if the heart rate falls below 40 bpm",
+      "Substitute clonidine this morning",
+      "Give the dose only if the heart rate is above 100 bpm",
+      "Do not start a beta blocker on the morning of surgery"
     ],
-    "correctAnswer": "Do not start a beta blocker in a naive patient on the morning of surgery",
-    "explanation": "A beta blocker is not started for the first time on the morning of surgery; perioperative beta blockade is planned earlier only in selected patients. Do not start a beta blocker in a naive patient on the morning of surgery matches the ACC/AHA 2014 perioperative guideline, which warns against starting beta blockers on the day of surgery. Give the metoprolol now because every vascular patient benefits overstates a strategy that, started abruptly, has caused harm. Start a high dose and hold it only if the heart rate falls below 40 is the opposite of cautious titration. Substitute clonidine on the morning of surgery as an equally studied replacement is not a recommended swap in that guideline.",
+    "correctAnswer": "Do not start a beta blocker on the morning of surgery",
+    "explanation": "A beta blocker is not started for the first time on the morning of surgery. Do not start a beta blocker on the morning of surgery. The ACC/AHA 2014 perioperative guideline advises against starting beta blockers on the day of surgery in a naive patient. Give the metoprolol now is that order. Start a high dose and hold it only if the heart rate falls below 40 bpm is abrupt high-dose blockade. Substitute clonidine this morning is not a recommended replacement. Give the dose only if the heart rate is above 100 bpm still starts a new beta blocker on the day of surgery.",
     "citation": "AHA 2014"
   },
   {
@@ -280,17 +293,18 @@
     "outlineWeight": 7.5,
     "difficulty": 3,
     "subjectId": "infectious-disease",
-    "examTakeaway": "A first episode of nonfulminant Clostridioides difficile infection is treated with oral fidaxomicin or vancomycin, not metronidazole.",
-    "scenario": "A 68-year-old woman in a rehabilitation unit develops watery stools eight times a day, ten days after a course of ceftriaxone. Temperature is 38.2 C, blood pressure is 128/74 mm Hg, and the abdomen is soft. Leukocyte count is 14,000/mm3 and creatinine is unchanged. Stool NAAT is positive for Clostridioides difficile toxin gene. This is her first episode.",
+    "examTakeaway": "A first nonfulminant episode of C. difficile infection is treated with oral fidaxomicin or vancomycin, not metronidazole.",
+    "scenario": "A 68-year-old woman in a rehabilitation unit has watery stools eight times a day, ten days after ceftriaxone. Temperature is 38.2 C, blood pressure is 128/74 mm Hg, and the abdomen is soft. The leukocyte count is 14,000/mm3 and creatinine is unchanged. Stool NAAT detects Clostridioides difficile. This is her first episode.",
     "question": "Which antibiotic is the most appropriate next step?",
     "options": [
+      "Intravenous metronidazole alone",
       "Oral fidaxomicin",
-      "Intravenous metronidazole as the preferred single drug",
-      "Oral vancomycin only if she later needs the intensive care unit",
-      "Another dose of ceftriaxone to cover a bacterial overgrowth"
+      "Another dose of ceftriaxone",
+      "Intravenous vancomycin",
+      "Loperamide and no antibiotic"
     ],
     "correctAnswer": "Oral fidaxomicin",
-    "explanation": "A first episode of nonfulminant Clostridioides difficile infection is treated with oral fidaxomicin or vancomycin, not metronidazole. Oral fidaxomicin is a first-line drug in the IDSA 2021 focused update for an initial nonfulminant episode. Intravenous metronidazole as the preferred single drug is no longer preferred initial therapy. Oral vancomycin only if she later needs the intensive care unit withholds an effective oral agent from a patient who can take it now. Another dose of ceftriaxone to cover a bacterial overgrowth is the antibiotic class that precipitated the colitis.",
+    "explanation": "A first nonfulminant episode of C. difficile infection is treated with oral fidaxomicin or vancomycin, not metronidazole. Oral fidaxomicin is a first-line drug in the IDSA 2021 focused update for this initial episode. Intravenous metronidazole alone is no longer preferred initial therapy. Another dose of ceftriaxone is the class of drug that precipitated the colitis. Intravenous vancomycin does not reach high concentrations in the colonic lumen, so it does not treat this colitis. Oral vancomycin would be an acceptable alternative to fidaxomicin, but that is not the option offered. Loperamide and no antibiotic slows the gut and does not treat the infection.",
     "citation": "IDSA 2021"
   },
   {
@@ -301,17 +315,18 @@
     "outlineWeight": 5,
     "difficulty": 3,
     "subjectId": "obgyn",
-    "examTakeaway": "Asymptomatic bacteriuria in pregnancy is treated, because it progresses to pyelonephritis more often than in nonpregnant adults.",
-    "scenario": "A 24-year-old woman at 12 weeks of gestation has a routine urine culture with greater than 100,000 CFU/mL of Escherichia coli. She has no dysuria, fever, or flank pain. She has no drug allergy. A repeat culture the next day grows the same organism.",
+    "examTakeaway": "Asymptomatic bacteriuria in pregnancy is treated, because it progresses to pyelonephritis more often than outside pregnancy.",
+    "scenario": "A 24-year-old woman at 12 weeks of gestation has a urine culture with more than 100,000 CFU/mL of Escherichia coli, confirmed on a second culture. She has no dysuria, fever, or flank pain. She has no drug allergy. The isolate is susceptible to cephalexin.",
     "question": "Which plan is the most appropriate next step?",
     "options": [
-      "Treat with an antibiotic safe in the first trimester, such as a beta-lactam to which the isolate is susceptible",
       "No antibiotic, because she has no symptoms",
-      "Nitrofurantoin continued every day until delivery without checking susceptibility",
-      "A fluoroquinolone for seven days as the first choice in early pregnancy"
+      "Nitrofurantoin every day until delivery",
+      "A short course of cephalexin",
+      "A fluoroquinolone for seven days",
+      "A single dose of fosfomycin repeated weekly until term without a test of cure"
     ],
-    "correctAnswer": "Treat with an antibiotic safe in the first trimester, such as a beta-lactam to which the isolate is susceptible",
-    "explanation": "Asymptomatic bacteriuria in pregnancy is treated, because it progresses to pyelonephritis more often than in nonpregnant adults. Treat with an antibiotic safe in the first trimester, such as a beta-lactam to which the isolate is susceptible, is the IDSA and ACOG approach to two cultures growing the same organism. No antibiotic, because she has no symptoms, is correct outside pregnancy and wrong here. Nitrofurantoin continued every day until delivery without checking susceptibility both ignores the susceptibility result and uses a drug avoided at term, not a blanket course from 12 weeks. A fluoroquinolone for seven days as the first choice in early pregnancy is avoided in pregnancy.",
+    "correctAnswer": "A short course of cephalexin",
+    "explanation": "Asymptomatic bacteriuria in pregnancy is treated, because it progresses to pyelonephritis more often than outside pregnancy. A short course of cephalexin uses a beta-lactam to which the isolate is susceptible, which is the IDSA approach in pregnancy. No antibiotic, because she has no symptoms, is appropriate outside pregnancy and wrong here. Nitrofurantoin every day until delivery ignores susceptibility and continues a drug that is avoided at term. A fluoroquinolone for seven days is avoided in pregnancy. A single dose of fosfomycin repeated weekly until term without a test of cure is not the indicated duration or follow-up.",
     "citation": "IDSA"
   },
   {
@@ -322,17 +337,18 @@
     "outlineWeight": 3,
     "difficulty": 4,
     "subjectId": "pediatrics",
-    "examTakeaway": "A neonate under 28 days with a fever of 38 C or higher is admitted for a full evaluation, not sent home with reassurance.",
-    "scenario": "A 18-day-old boy is brought in because he felt warm. Rectal temperature is 38.4 C. He is feeding a little less but is not limp. The fontanelle is flat and the examination is otherwise normal. He was born at term and went home on day 2.",
+    "examTakeaway": "A neonate under 21 days with a rectal temperature of 38 C or higher is admitted for a full evaluation and parenteral antibiotics.",
+    "scenario": "An 18-day-old boy, born at term, feels warm. Rectal temperature is 38.4 C. He is feeding a little less and is not limp. The fontanelle is flat and the rest of the examination is normal.",
     "question": "Which plan is the most appropriate next step?",
     "options": [
-      "Admit for blood, urine, and cerebrospinal fluid studies and parenteral antibiotics",
-      "Reassurance and a clinic visit tomorrow if the fever continues",
-      "Oral amoxicillin and care at home",
-      "A viral swab only, with discharge if it is negative"
+      "Admit for cultures of blood, urine, and cerebrospinal fluid and start parenteral antibiotics",
+      "Reassurance and a clinic visit tomorrow if the fever persists",
+      "Oral amoxicillin at home",
+      "A viral swab only, with discharge if it is negative",
+      "Acetaminophen and observation in the waiting room for two hours"
     ],
-    "correctAnswer": "Admit for blood, urine, and cerebrospinal fluid studies and parenteral antibiotics",
-    "explanation": "A neonate under 28 days with a fever of 38 C or higher is admitted for a full evaluation, not sent home with reassurance. Admit for blood, urine, and cerebrospinal fluid studies and parenteral antibiotics is the AAP 2021 approach to a febrile neonate, whose examination can look reassuring while bacteremia or meningitis is present. Reassurance and a clinic visit tomorrow if the fever continues misses that window. Oral amoxicillin and care at home does not cover the serious neonatal pathogens. A viral swab only, with discharge if it is negative, does not exclude bacterial infection.",
+    "correctAnswer": "Admit for cultures of blood, urine, and cerebrospinal fluid and start parenteral antibiotics",
+    "explanation": "A neonate under 21 days with a rectal temperature of 38 C or higher is admitted for a full evaluation and parenteral antibiotics. Admit for cultures of blood, urine, and cerebrospinal fluid and start parenteral antibiotics is the AAP 2021 approach to a febrile infant in the first 21 days, whose examination can look reassuring. Reassurance and a clinic visit tomorrow if the fever persists misses that window. Oral amoxicillin at home does not cover the serious neonatal pathogens. A viral swab only, with discharge if it is negative, does not exclude bacterial infection. Acetaminophen and observation in the waiting room for two hours treats the number and sends him home.",
     "citation": "AAP 2021"
   },
   {
@@ -343,17 +359,18 @@
     "outlineWeight": 7.5,
     "difficulty": 3,
     "subjectId": "psychiatry",
-    "examTakeaway": "A patient with a formed suicidal plan and access to the means needs a locked setting, not a next-week clinic appointment.",
-    "scenario": "A 31-year-old man tells the emergency clinician he has written a note, bought a firearm yesterday, and intends to use it tonight if he is sent home. He can state the date, the name of the hospital, and the consequence of dying. He refuses voluntary admission. He is not intoxicated. A friend is in the waiting room and cannot stay with him overnight.",
+    "examTakeaway": "A specific suicidal plan with a firearm at hand and no safe supervision requires a locked setting, even if the patient can state the date.",
+    "scenario": "A 31-year-old man says he wrote a note, bought a firearm yesterday, and will use it tonight if he is sent home. He states the date, the name of the hospital, and that dying is permanent. He refuses voluntary admission. He is not intoxicated. The friend in the waiting room cannot stay with him.",
     "question": "Which plan is the most appropriate next step?",
     "options": [
-      "Involuntary hospitalization for acute suicide risk",
-      "A clinic appointment in seven days and no other plan",
-      "Discharge because he can name the hospital and therefore has capacity to refuse all care",
-      "A benzodiazepine prescription and a request that he lock the firearm himself"
+      "A clinic appointment in seven days",
+      "Discharge home",
+      "Involuntary hospitalization",
+      "A benzodiazepine prescription and a request that he lock the firearm",
+      "A no-harm contract and discharge with the friend who must leave tonight"
     ],
-    "correctAnswer": "Involuntary hospitalization for acute suicide risk",
-    "explanation": "A patient with a formed suicidal plan and access to the means needs a locked setting, not a next-week clinic appointment. Involuntary hospitalization for acute suicide risk follows the APA 2003 practice guideline when the plan is specific, the means are in hand, and no safe outpatient arrangement exists. A clinic appointment in seven days and no other plan leaves tonight uncovered. Discharge because he can name the hospital and therefore has capacity to refuse all care confuses the ability to repeat facts with the right to leave while imminently dangerous. A benzodiazepine prescription and a request that he lock the firearm himself does not hold him through the night.",
+    "correctAnswer": "Involuntary hospitalization",
+    "explanation": "A specific suicidal plan with a firearm at hand and no safe supervision requires a locked setting, even if the patient can state the date. Involuntary hospitalization follows from imminent risk when voluntary admission is refused, consistent with the APA 2003 practice guideline on suicidal behaviors. A clinic appointment in seven days leaves tonight uncovered. Discharge home confuses orientation with the right to leave while imminently dangerous. Naming the hospital does not make tonight safe. A benzodiazepine prescription and a request that he lock the firearm does not hold him. A no-harm contract and discharge with the friend who must leave tonight relies on a contract and on supervision that does not exist.",
     "citation": "APA 2003"
   },
   {
@@ -362,19 +379,20 @@
     "stepLevel": "step2",
     "outlineSystem": "respiratory",
     "outlineWeight": 7.5,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "infectious-disease",
-    "examTakeaway": "Community-acquired pneumonia that meets severity criteria is admitted and treated with a beta-lactam plus a macrolide, or a respiratory fluoroquinolone.",
-    "scenario": "A 72-year-old man with heart failure has had fever and a productive cough for two days. Temperature is 38.8 C, respiratory rate is 32/min, blood pressure is 100/62 mm Hg, and he is confused to the month. Oxygen saturation is 91% on room air. The chest radiograph shows a right-lower-lobe infiltrate. Blood urea nitrogen is 28 mg/dL. He has no drug allergy.",
+    "examTakeaway": "Severe community-acquired pneumonia is admitted and treated with a beta-lactam plus a macrolide.",
+    "scenario": "A 72-year-old man with heart failure has had fever and a productive cough for two days. Temperature is 38.8 C, respiratory rate is 32/min, blood pressure is 100/62 mm Hg, and he is confused about the month. Oxygen saturation is 91% on room air. The radiograph shows a right-lower-lobe infiltrate. Blood urea nitrogen is 28 mg/dL. He has no drug allergy.",
     "question": "Which regimen is the most appropriate next step in the hospital?",
     "options": [
-      "Ceftriaxone plus azithromycin",
-      "Amoxicillin alone by mouth and discharge",
+      "Amoxicillin alone by mouth, and discharge",
       "Oseltamivir as the only antimicrobial",
-      "Observation for 24 hours before any antibiotic"
+      "Observation for 24 hours before any antibiotic",
+      "A respiratory fluoroquinolone only after the culture grows",
+      "Ceftriaxone plus azithromycin"
     ],
     "correctAnswer": "Ceftriaxone plus azithromycin",
-    "explanation": "Community-acquired pneumonia that meets severity criteria is admitted and treated with a beta-lactam plus a macrolide, or a respiratory fluoroquinolone. Ceftriaxone plus azithromycin is an IDSA/ATS 2019 inpatient regimen for this man, whose age, confusion, urea, respiratory rate, and blood pressure put him in a severe CURB-65 class. Amoxicillin alone by mouth and discharge is outpatient care he is too sick to receive. Oseltamivir as the only antimicrobial treats influenza, which this lobar infiltrate and the season-independent story do not establish. Observation for 24 hours before any antibiotic delays antibiotics in severe pneumonia.",
+    "explanation": "Severe community-acquired pneumonia is admitted and treated with a beta-lactam plus a macrolide. Ceftriaxone plus azithromycin is an IDSA/ATS 2019 inpatient regimen for this man, whose confusion, urea, respiratory rate, and age mark severe disease. Amoxicillin alone by mouth, and discharge, is outpatient care he is too sick to receive. Oseltamivir as the only antimicrobial treats influenza, which this lobar infiltrate does not establish. Observation for 24 hours before any antibiotic delays treatment. A respiratory fluoroquinolone only after the culture grows withholds empiric therapy; a fluoroquinolone can be an alternative regimen, but not one that waits for growth.",
     "citation": "IDSA 2019"
   },
   {
@@ -383,19 +401,20 @@
     "stepLevel": "step2",
     "outlineSystem": "endocrine",
     "outlineWeight": 5,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "endocrinology",
-    "examTakeaway": "A painful thyroid after a viral illness, with a low TSH and a low radioiodine uptake, is subacute thyroiditis, and a beta blocker eases the thyrotoxic phase.",
-    "scenario": "A 38-year-old woman has two weeks of anterior neck pain that radiates to the jaw, after a cold. She is sweaty and her pulse is 112 bpm. The thyroid is exquisitely tender. TSH is 0.05 mIU/L, free T4 is high, and the 24-hour radioiodine uptake is 2%. She is not pregnant.",
+    "examTakeaway": "A tender thyroid, a low TSH, and a radioiodine uptake near zero are subacute thyroiditis; a beta blocker treats the tachycardia, and antithyroid drugs do not.",
+    "scenario": "A 38-year-old woman has two weeks of anterior neck pain radiating to the jaw after a cold. She is sweaty and her pulse is 112 bpm. The thyroid is exquisitely tender. TSH is 0.05 mIU/L, free T4 is high, and the 24-hour radioiodine uptake is 2%. She is not pregnant.",
     "question": "Which drug is the most appropriate next step for the tachycardia?",
     "options": [
-      "A beta blocker, while the gland recovers and antithyroid drugs are not used",
-      "Methimazole as disease-modifying therapy for a high-uptake gland",
+      "Methimazole",
+      "A beta blocker",
       "Radioiodine ablation this week",
-      "Levothyroxine to shrink the tender gland"
+      "Levothyroxine",
+      "Propylthiouracil"
     ],
-    "correctAnswer": "A beta blocker, while the gland recovers and antithyroid drugs are not used",
-    "explanation": "A painful thyroid after a viral illness, with a low TSH and a low radioiodine uptake, is subacute thyroiditis, and a beta blocker eases the thyrotoxic phase. A beta blocker, while the gland recovers and antithyroid drugs are not used, treats symptoms of released hormone; the ATA 2016 hyperthyroidism guideline notes that antithyroid drugs do not help a low-uptake thyroiditis. Methimazole as disease-modifying therapy for a high-uptake gland describes Graves disease, and this uptake is 2%. Radioiodine ablation this week needs a gland that takes up iodine, which this one does not. Levothyroxine to shrink the tender gland is replacement for a later hypothyroid phase, not the treatment of this tachycardia.",
+    "correctAnswer": "A beta blocker",
+    "explanation": "A tender thyroid, a low TSH, and a radioiodine uptake near zero are subacute thyroiditis; a beta blocker treats the tachycardia, and antithyroid drugs do not. A beta blocker eases adrenergic symptoms while the released hormone clears. The ATA 2016 hyperthyroidism guideline notes that antithyroid drugs do not help when uptake is this low. Methimazole blocks new hormone synthesis in a high-uptake gland such as Graves disease. Radioiodine ablation this week requires a gland that concentrates iodine. Levothyroxine is replacement for a later hypothyroid phase, not for this tachycardia. Propylthiouracil is another antithyroid drug and shares methimazole's lack of effect here.",
     "citation": "ATA 2016"
   },
   {
@@ -404,19 +423,20 @@
     "stepLevel": "step2",
     "outlineSystem": "nutrition",
     "outlineWeight": 17,
-    "difficulty": 3,
+    "difficulty": 4,
     "subjectId": "gastroenterology",
-    "examTakeaway": "Celiac disease is an immune response to gluten that flattens duodenal villi; the serology is IgA tissue transglutaminase, drawn while the patient is still eating gluten.",
-    "scenario": "A 28-year-old woman has had loose stools and a 6 kg weight loss. Hemoglobin is 10.2 g/dL with an MCV of 74 fL. She has itchy blisters on the elbows. A cousin has type 1 diabetes. She is still eating bread daily. Total IgA is normal.",
+    "examTakeaway": "Suspected celiac disease is tested with IgA tissue transglutaminase while the patient is still eating gluten.",
+    "scenario": "A 28-year-old woman has loose stools and has lost 6 kg. Hemoglobin is 10.2 g/dL and MCV is 74 fL. She has itchy blisters on the elbows. A cousin has type 1 diabetes. She eats bread daily. Total IgA is normal.",
     "question": "Which test is the most appropriate next step before any diet change?",
     "options": [
-      "IgA tissue transglutaminase antibody while she is still eating gluten",
-      "Stop gluten today and send the antibody test in three months",
-      "IgG gliadin antibody as the only test, ignoring the normal total IgA",
-      "Empiric pancreatic enzymes without serology"
+      "Stop gluten today and send the antibody in three months",
+      "IgG deamidated gliadin antibody as the only test",
+      "Empiric pancreatic enzymes",
+      "IgA tissue transglutaminase antibody now",
+      "HLA-DQ2 and HLA-DQ8 testing as the only study"
     ],
-    "correctAnswer": "IgA tissue transglutaminase antibody while she is still eating gluten",
-    "explanation": "Celiac disease is an immune response to gluten that flattens duodenal villi; the serology is IgA tissue transglutaminase, drawn while the patient is still eating gluten. IgA tissue transglutaminase antibody while she is still eating gluten is the AGA and ACG-supported first serology in a patient whose total IgA is normal and who has iron deficiency, weight loss, and dermatitis herpetiformis. The ACG 2013 celiac guideline asks that the patient not start a gluten-free diet before testing. Stop gluten today and send the antibody test in three months can make the antibody disappear before it is drawn. IgG gliadin antibody as the only test, ignoring the normal total IgA, is not the preferred single assay when IgA is normal. Empiric pancreatic enzymes without serology treats a different cause of steatorrhea.",
+    "correctAnswer": "IgA tissue transglutaminase antibody now",
+    "explanation": "Suspected celiac disease is tested with IgA tissue transglutaminase while the patient is still eating gluten. IgA tissue transglutaminase antibody now is the first serology when total IgA is normal, which the ACG 2013 guideline recommends before a gluten-free diet. Iron deficiency, weight loss, and elbow blisters are the clinical clues. Stop gluten today and send the antibody in three months can make the antibody disappear. IgG deamidated gliadin antibody as the only test is not the preferred single assay when IgA is normal. Empiric pancreatic enzymes treat a different cause of malabsorption. HLA-DQ2 and HLA-DQ8 testing as the only study can exclude celiac disease if both are absent, but it does not confirm the diagnosis.",
     "citation": "ACG 2013"
   }
 ]
