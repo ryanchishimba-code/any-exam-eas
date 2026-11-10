@@ -10,7 +10,13 @@
     "examTakeaway": "A crescendo-decrescendo systolic murmur at the right upper sternal border that radiates to the carotids, with a slow carotid upstroke, is aortic stenosis.",
     "scenario": "A 74-year-old man has exertional chest pain and one episode of syncope while climbing stairs. The carotid pulse rises slowly. There is a harsh systolic murmur at the right second intercostal space that radiates to both sides of the neck. The second heart sound is soft.",
     "question": "Which valve lesion is this?",
-    "options": ["Aortic stenosis", "Mitral regurgitation", "Aortic regurgitation", "Hypertrophic obstructive cardiomyopathy", "Pulmonic stenosis"],
+    "options": [
+      "Hypertrophic obstructive cardiomyopathy",
+      "Pulmonic stenosis",
+      "Aortic stenosis",
+      "Mitral regurgitation",
+      "Aortic regurgitation"
+    ],
     "correctAnswer": "Aortic stenosis",
     "explanation": "A crescendo-decrescendo systolic murmur at the right upper sternal border that radiates to the carotids, with a slow carotid upstroke, is aortic stenosis. Aortic stenosis obstructs left-ventricular outflow and delays the carotid pulse. Mitral regurgitation is holosystolic at the apex and radiates to the axilla. Aortic regurgitation is a diastolic decrescendo murmur. Hypertrophic obstructive cardiomyopathy grows louder with Valsalva and has a brisk carotid upstroke. Pulmonic stenosis radiates toward the left neck and does not soften the aortic second sound this way.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "A holosystolic murmur at the apex radiating to the axilla is mitral regurgitation.",
     "scenario": "A 45-year-old man had rheumatic fever as a child. He now has a holosystolic murmur loudest at the apex that radiates to the left axilla. The carotid upstroke is brisk. There is no diastolic murmur.",
     "question": "Which valve lesion is this?",
-    "options": ["Mitral regurgitation", "Aortic stenosis", "Mitral stenosis", "Tricuspid regurgitation", "Ventricular septal defect"],
+    "options": [
+      "Ventricular septal defect",
+      "Mitral regurgitation",
+      "Aortic stenosis",
+      "Mitral stenosis",
+      "Tricuspid regurgitation"
+    ],
     "correctAnswer": "Mitral regurgitation",
     "explanation": "A holosystolic murmur at the apex radiating to the axilla is mitral regurgitation. Mitral regurgitation sends blood from the left ventricle into the left atrium throughout systole, heard at the apex and axilla. Aortic stenosis is crescendo-decrescendo at the base and radiates to the carotids, with a slow upstroke. Mitral stenosis is a diastolic rumble. Tricuspid regurgitation is holosystolic at the lower left sternal border and grows with inspiration. Ventricular septal defect is holosystolic at the left sternal border, not the axilla.",
     "citation": null
@@ -40,9 +52,15 @@
     "difficulty": 4,
     "subjectId": "physiology",
     "examTakeaway": "A systolic murmur that gets louder during Valsalva is dynamic left-ventricular outflow obstruction.",
-    "scenario": "A 20-year-old man collapses while sprinting. He has a systolic murmur at the left sternal border that becomes louder when he bears down. The carotid upstroke is brisk and bifid. His father died suddenly at 30.",
+    "scenario": "A 20-year-old man collapses while sprinting. He has a systolic murmur at the left sternal border. The carotid upstroke is brisk and bifid. His father died suddenly at 30.",
     "question": "Which maneuver effect confirms the lesion?",
-    "options": ["Louder with decreased preload", "Softer with decreased preload", "Louder with more venous return from squatting", "Unchanged by any maneuver", "Heard only in diastole"],
+    "options": [
+      "Unchanged by any maneuver",
+      "Heard only in diastole",
+      "Louder with decreased preload",
+      "Softer with decreased preload",
+      "Louder with more venous return from squatting"
+    ],
     "correctAnswer": "Louder with decreased preload",
     "explanation": "A systolic murmur that gets louder during Valsalva is dynamic left-ventricular outflow obstruction. Louder with decreased preload is the hypertrophic-cardiomyopathy response: a smaller chamber worsens the obstruction. Softer with decreased preload is fixed aortic stenosis and most other murmurs. Louder with more venous return from squatting is the opposite of this lesion; squatting softens the hypertrophic murmur. Unchanged by any maneuver does not describe a dynamic outflow murmur. Heard only in diastole is a regurgitant semilunar or stenotic atrioventricular lesion.",
     "citation": null
@@ -58,7 +76,13 @@
     "examTakeaway": "A continuous machine-like murmur in an infant is a patent ductus arteriosus.",
     "scenario": "A 3-month-old girl born at 28 weeks has a continuous murmur under the left clavicle. Pulses are bounding. Oxygen saturation is a little lower in the feet than in the right hand when she cries.",
     "question": "Which fetal vessel stayed open?",
-    "options": ["Ductus arteriosus", "Foramen ovale", "Ductus venosus", "Umbilical vein", "Vitelline vein"],
+    "options": [
+      "Foramen ovale",
+      "Ductus venosus",
+      "Umbilical vein",
+      "Vitelline vein",
+      "Ductus arteriosus"
+    ],
     "correctAnswer": "Ductus arteriosus",
     "explanation": "A continuous machine-like murmur in an infant is a patent ductus arteriosus. Ductus arteriosus connects the pulmonary artery to the descending aorta and, when open, makes a continuous murmur and bounding pulses. Foramen ovale shunting is silent or causes a fixed split second sound when it is an atrial septal defect, not a continuous murmur under the clavicle. Ductus venosus bypasses the liver in fetal life and does not make a chest murmur. Umbilical vein and Vitelline vein are abdominal fetal vessels.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "A cyanotic infant who improves when he squats has tetralogy of Fallot, and squatting raises systemic resistance.",
     "scenario": "A 8-month-old boy turns blue and limp while crying, then pinks up when his mother holds his knees to his chest. He has a systolic murmur at the left sternal border. A prior film showed a boot-shaped heart.",
     "question": "Why does drawing the knees up help?",
-    "options": ["It raises systemic vascular resistance and lessens right-to-left shunt", "It lowers pulmonary resistance", "It closes a patent ductus", "It increases heart rate only", "It expands plasma volume within seconds"],
+    "options": [
+      "It increases heart rate only",
+      "It expands plasma volume within seconds",
+      "It raises systemic vascular resistance and lessens right-to-left shunt",
+      "It lowers pulmonary resistance",
+      "It closes a patent ductus"
+    ],
     "correctAnswer": "It raises systemic vascular resistance and lessens right-to-left shunt",
     "explanation": "A cyanotic infant who improves when he squats has tetralogy of Fallot, and squatting raises systemic resistance. It raises systemic vascular resistance and lessens right-to-left shunt across the ventricular septal defect, so more blood goes to the lungs. It lowers pulmonary resistance is the opposite of what a knee-chest position does. It closes a patent ductus is a drug effect of NSAIDs, not a posture. It increases heart rate only would not redirect shunt. It expands plasma volume within seconds is not how a posture works.",
     "citation": null
@@ -90,7 +120,13 @@
     "examTakeaway": "A holosystolic murmur at the left sternal border with a thrill, in a child who is not cyanotic, is a ventricular septal defect.",
     "scenario": "A 4-month-old girl is small but pink. There is a loud holosystolic murmur and a thrill at the left sternal border. The second sound splits normally. Oxygen saturation is 98% on room air.",
     "question": "Which defect is this?",
-    "options": ["Ventricular septal defect", "Atrial septal defect", "Tetralogy of Fallot", "Transposition of the great arteries", "Total anomalous pulmonary venous return"],
+    "options": [
+      "Atrial septal defect",
+      "Tetralogy of Fallot",
+      "Transposition of the great arteries",
+      "Total anomalous pulmonary venous return",
+      "Ventricular septal defect"
+    ],
     "correctAnswer": "Ventricular septal defect",
     "explanation": "A holosystolic murmur at the left sternal border with a thrill, in a child who is not cyanotic, is a ventricular septal defect. Ventricular septal defect lets blood cross throughout systole and is the most common cause of this murmur in a pink infant. Atrial septal defect causes a fixed split second sound and a soft pulmonary flow murmur, not a thrill at the sternal border. Tetralogy of Fallot presents with cyanotic spells. Transposition of the great arteries presents with cyanosis in the first day of life. Total anomalous pulmonary venous return causes cyanosis and pulmonary edema, not an isolated holosystolic thrill.",
     "citation": null
@@ -106,7 +142,13 @@
     "examTakeaway": "Higher blood pressure in the arms than the legs, with rib notching, is coarctation of the aorta.",
     "scenario": "A 16-year-old boy has headaches. Blood pressure is 150/90 mm Hg in the right arm and 100/70 mm Hg in the leg. Femoral pulses are delayed. The chest film shows notching of the undersides of the ribs.",
     "question": "Which vessel is narrowed?",
-    "options": ["Aorta just distal to the left subclavian artery", "Pulmonary valve", "Renal artery", "Aortic valve", "Superior vena cava"],
+    "options": [
+      "Aortic valve",
+      "Superior vena cava",
+      "Aorta just distal to the left subclavian artery",
+      "Pulmonary valve",
+      "Renal artery"
+    ],
     "correctAnswer": "Aorta just distal to the left subclavian artery",
     "explanation": "Higher blood pressure in the arms than the legs, with rib notching, is coarctation of the aorta. Aorta just distal to the left subclavian artery is the usual shelf, so intercostal collaterals notch the ribs and the legs are underfilled. Pulmonary valve stenosis does not raise arm pressure above leg pressure. Renal artery stenosis raises pressure equally in arms and legs. Aortic valve stenosis delays the carotid upstroke and does not notch ribs. Superior vena cava obstruction causes facial swelling, not this pulse delay.",
     "citation": null
@@ -122,7 +164,13 @@
     "examTakeaway": "Hypotension, muffled sounds, and distended neck veins after chest trauma, with a drop in systolic pressure on inspiration, are tamponade.",
     "scenario": "A 30-year-old man is stabbed in the left chest. Blood pressure is 80/60 mm Hg and falls further on inspiration. The neck veins are distended and the heart sounds are faint. The lungs are clear.",
     "question": "Which chamber filling is restricted?",
-    "options": ["All chambers, by fluid in the pericardial sac", "The left atrium only, by a left atrial myxoma", "The right ventricle only, by a pulmonary embolus", "The left ventricle only, by aortic stenosis", "Neither ventricle; the problem is hemorrhage into the abdomen"],
+    "options": [
+      "Neither ventricle; the problem is hemorrhage into the abdomen",
+      "All chambers, by fluid in the pericardial sac",
+      "The left atrium only, by a left atrial myxoma",
+      "The right ventricle only, by a pulmonary embolus",
+      "The left ventricle only, by aortic stenosis"
+    ],
     "correctAnswer": "All chambers, by fluid in the pericardial sac",
     "explanation": "Hypotension, muffled sounds, and distended neck veins after chest trauma, with a drop in systolic pressure on inspiration, are tamponade. All chambers, by fluid in the pericardial sac, cannot fill, which equalizes diastolic pressures and exaggerates pulsus paradoxus. The left atrium only, by a left atrial myxoma, causes positional obstruction without muffled sounds after a stab wound. The right ventricle only, by a pulmonary embolus, can distend neck veins but does not muffle sounds after chest trauma. The left ventricle only, by aortic stenosis, is a chronic pressure load. Neither ventricle; the problem is hemorrhage into the abdomen would flatten the neck veins.",
     "citation": null
@@ -138,7 +186,13 @@
     "examTakeaway": "Sudden tearing chest pain and a widened mediastinum are an intimal tear of the aorta.",
     "scenario": "A 62-year-old man with long-standing hypertension has sudden tearing pain between the shoulder blades. Blood pressure is 180/100 mm Hg in the right arm and 110/70 mm Hg in the left. The chest film shows a widened mediastinum. He has no fever.",
     "question": "Which wall layer has torn?",
-    "options": ["Intima, with blood tracking in the media", "Only the adventitia, leaving the lumen intact", "The myocardium of the left ventricle", "A coronary artery plaque", "The pericardium alone"],
+    "options": [
+      "Intima, with blood tracking in the media",
+      "Only the adventitia, leaving the lumen intact",
+      "The myocardium of the left ventricle",
+      "A coronary artery plaque",
+      "The pericardium alone"
+    ],
     "correctAnswer": "Intima, with blood tracking in the media",
     "explanation": "Sudden tearing chest pain and a widened mediastinum are an intimal tear of the aorta. Intima, with blood tracking in the media, is an aortic dissection, and the unequal arm pressures show a flap compromising a branch. Only the adventitia, leaving the lumen intact, would be an external rupture without a false lumen. The myocardium of the left ventricle tears in free-wall rupture after infarction, causing tamponade rather than a widened mediastinum. A coronary artery plaque causes ischemic pain without unequal arm pressures. The pericardium alone does not widen the mediastinum this way.",
     "citation": null
@@ -154,7 +208,13 @@
     "examTakeaway": "Mild unconjugated hyperbilirubinemia that rises with fasting, with a normal liver and no hemolysis, is Gilbert syndrome.",
     "scenario": "A 20-year-old man notices yellow eyes during a stomach illness when he has not eaten. Total bilirubin is 2.8 mg/dL, almost all unconjugated. Hemoglobin, reticulocytes, AST, and ALT are normal. The episode fades when he eats again.",
     "question": "Which step of bilirubin handling is mildly reduced?",
-    "options": ["Conjugation", "Uptake into the hepatocyte as the only defect of Dubin-Johnson", "Excretion into bile", "Hemoglobin breakdown in the spleen", "Conversion of heme to biliverdin"],
+    "options": [
+      "Conjugation",
+      "Uptake into the hepatocyte as the only defect of Dubin-Johnson",
+      "Excretion into bile",
+      "Hemoglobin breakdown in the spleen",
+      "Conversion of heme to biliverdin"
+    ],
     "correctAnswer": "Conjugation",
     "explanation": "Mild unconjugated hyperbilirubinemia that rises with fasting, with a normal liver and no hemolysis, is Gilbert syndrome. Conjugation by UDP-glucuronosyltransferase is partially reduced. Uptake into the hepatocyte as the only defect of Dubin-Johnson is the wrong syndrome: Dubin-Johnson is conjugated hyperbilirubinemia from failed excretion. Excretion into bile failure also raises conjugated bilirubin. Hemoglobin breakdown in the spleen in excess would raise reticulocytes, which are normal. Conversion of heme to biliverdin is heme oxygenase, not this benign fasting jaundice.",
     "citation": null

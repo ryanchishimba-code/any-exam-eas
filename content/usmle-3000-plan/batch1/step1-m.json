@@ -10,7 +10,13 @@
     "examTakeaway": "Severe unconjugated hyperbilirubinemia from birth, with a pale liver, is absent bilirubin conjugation.",
     "scenario": "A newborn boy is deeply jaundiced on day 2. Total bilirubin is 28 mg/dL, unconjugated. The liver is not enlarged and enzymes are normal. There is no hemolysis. A sibling died of kernicterus.",
     "question": "Which enzyme is absent?",
-    "options": ["UDP-glucuronosyltransferase", "Heme oxygenase", "Glucose-6-phosphate dehydrogenase", "Uroporphyrinogen decarboxylase", "Biliverdin reductase"],
+    "options": [
+      "UDP-glucuronosyltransferase",
+      "Heme oxygenase",
+      "Glucose-6-phosphate dehydrogenase",
+      "Uroporphyrinogen decarboxylase",
+      "Biliverdin reductase"
+    ],
     "correctAnswer": "UDP-glucuronosyltransferase",
     "explanation": "Severe unconjugated hyperbilirubinemia from birth, with a pale liver, is absent bilirubin conjugation. UDP-glucuronosyltransferase is absent in Crigler-Najjar type I, so bilirubin cannot be made water soluble. Heme oxygenase starts heme breakdown and its loss would lower bilirubin. Glucose-6-phosphate dehydrogenase deficiency causes hemolysis, which was excluded. Uroporphyrinogen decarboxylase deficiency is porphyria cutanea tarda. Biliverdin reductase converts biliverdin to bilirubin; its loss does not cause this kernicterus picture.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "Conjugated hyperbilirubinemia with a black liver and a normal enzyme panel is failed canalicular excretion.",
     "scenario": "A 25-year-old man has a conjugated bilirubin of 3 mg/dL found on a job physical. AST and ALT are normal. A prior surgery note says the liver looked black. He feels well.",
     "question": "Which transport step has failed?",
-    "options": ["Excretion of conjugated bilirubin into bile", "Conjugation of bilirubin", "Heme oxygenase", "Albumin binding in plasma", "Uptake of unconjugated bilirubin as the sole defect of Gilbert syndrome"],
+    "options": [
+      "Heme oxygenase",
+      "Albumin binding in plasma",
+      "Uptake of unconjugated bilirubin as the sole defect of Gilbert syndrome",
+      "Excretion of conjugated bilirubin into bile",
+      "Conjugation of bilirubin"
+    ],
     "correctAnswer": "Excretion of conjugated bilirubin into bile",
     "explanation": "Conjugated hyperbilirubinemia with a black liver and a normal enzyme panel is failed canalicular excretion. Excretion of conjugated bilirubin into bile is the Dubin-Johnson defect, and the pigment makes the liver black. Conjugation of bilirubin failure raises unconjugated bilirubin. Heme oxygenase starts heme catabolism. Albumin binding in plasma carries unconjugated bilirubin and its failure does not blacken the liver. Uptake of unconjugated bilirubin as the sole defect of Gilbert syndrome is a mild unconjugated jaundice.",
     "citation": null
@@ -42,7 +54,13 @@
     "examTakeaway": "Bronze skin, diabetes, and a high ferritin are iron overload from excess intestinal absorption.",
     "scenario": "A 50-year-old man has new diabetes, dark skin, and arthralgias. Ferritin is 1,800 ng/mL and transferrin saturation is 80%. AST is mildly high. A brother has the same labs.",
     "question": "Which protein is overactive or dysregulated?",
-    "options": ["Intestinal iron absorption", "Ceruloplasmin loading of copper", "Hepcidin in excess", "Bilirubin conjugation", "Alpha-1 antitrypsin folding"],
+    "options": [
+      "Hepcidin in excess",
+      "Bilirubin conjugation",
+      "Alpha-1 antitrypsin folding",
+      "Intestinal iron absorption",
+      "Ceruloplasmin loading of copper"
+    ],
     "correctAnswer": "Intestinal iron absorption",
     "explanation": "Bronze skin, diabetes, and a high ferritin are iron overload from excess intestinal absorption. Intestinal iron absorption is increased when hepcidin is low, as in HFE hemochromatosis, and iron deposits in liver, skin, pancreas, and joints. Ceruloplasmin loading of copper fails in Wilson disease, which presents younger with a low ceruloplasmin and a corneal ring. Hepcidin in excess would lower iron absorption and cause iron deficiency. Bilirubin conjugation failure does not raise ferritin. Alpha-1 antitrypsin folding failure causes liver disease and basal emphysema, not bronze diabetes.",
     "citation": null
@@ -58,7 +76,13 @@
     "examTakeaway": "A middle-aged woman with itching, a high alkaline phosphatase, and antimitochondrial antibodies has destruction of intrahepatic bile ducts.",
     "scenario": "A 52-year-old woman itches and feels tired. Alkaline phosphatase is 410 U/L and bilirubin is 2 mg/dL. Antimitochondrial antibody is positive. The bile ducts outside the liver are not dilated.",
     "question": "Which ducts are being destroyed?",
-    "options": ["Intrahepatic bile ducts", "Extrahepatic bile duct by a stone", "Pancreatic duct", "Hepatic artery", "Portal vein"],
+    "options": [
+      "Portal vein",
+      "Intrahepatic bile ducts",
+      "Extrahepatic bile duct by a stone",
+      "Pancreatic duct",
+      "Hepatic artery"
+    ],
     "correctAnswer": "Intrahepatic bile ducts",
     "explanation": "A middle-aged woman with itching, a high alkaline phosphatase, and antimitochondrial antibodies has destruction of intrahepatic bile ducts. Intrahepatic bile ducts are the target of primary biliary cholangitis. Extrahepatic bile duct by a stone would dilate the duct and cause pain and fever. Pancreatic duct obstruction raises lipase and causes epigastric pain. Hepatic artery injury infarcts liver parenchyma and spikes the aminotransferases. Portal vein thrombosis causes portal hypertension without this antibody.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "Ulcerative colitis plus beading of both intrahepatic and extrahepatic ducts is primary sclerosing cholangitis.",
     "scenario": "A 35-year-old man with bloody diarrhea and a continuous colitis from the rectum has itching. Alkaline phosphatase is 380 U/L. Cholangiography shows strictures and dilations of intrahepatic and extrahepatic ducts. Antimitochondrial antibody is negative.",
     "question": "Which biliary disease is this?",
-    "options": ["Primary sclerosing cholangitis", "Primary biliary cholangitis", "Gilbert syndrome", "Choledocholithiasis", "Caroli disease limited to one lobe"],
+    "options": [
+      "Primary sclerosing cholangitis",
+      "Primary biliary cholangitis",
+      "Gilbert syndrome",
+      "Choledocholithiasis",
+      "Caroli disease limited to one lobe"
+    ],
     "correctAnswer": "Primary sclerosing cholangitis",
     "explanation": "Ulcerative colitis plus beading of both intrahepatic and extrahepatic ducts is primary sclerosing cholangitis. Primary sclerosing cholangitis is that association, and the antibody to mitochondria is negative. Primary biliary cholangitis is a middle-aged woman with antimitochondrial antibody and no colitis. Gilbert syndrome is unconjugated bilirubin with a normal alkaline phosphatase. Choledocholithiasis is a stone, usually with pain and a single obstructing filling defect. Caroli disease limited to one lobe is congenital dilation of intrahepatic ducts, not beading of extrahepatic ducts with colitis.",
     "citation": null
@@ -90,7 +120,13 @@
     "examTakeaway": "An older man who regurgitates undigested food and has halitosis has a false diverticulum above the cricopharyngeus.",
     "scenario": "A 74-year-old man coughs up food he ate hours earlier and has bad breath. He sometimes chokes. A contrast swallow shows a pouch protruding from the posterior hypopharynx just above the upper esophageal sphincter.",
     "question": "Which wall layers form that pouch?",
-    "options": ["Mucosa and submucosa only", "All layers of the esophageal wall", "Muscularis only", "Serosa of the stomach", "A true diverticulum of the mid-esophagus from traction"],
+    "options": [
+      "Mucosa and submucosa only",
+      "All layers of the esophageal wall",
+      "Muscularis only",
+      "Serosa of the stomach",
+      "A true diverticulum of the mid-esophagus from traction"
+    ],
     "correctAnswer": "Mucosa and submucosa only",
     "explanation": "An older man who regurgitates undigested food and has halitosis has a false diverticulum above the cricopharyngeus. Mucosa and submucosa only herniate through Killian triangle to make a Zenker diverticulum. All layers of the esophageal wall would be a true diverticulum. Muscularis only cannot form a food-filled pouch. Serosa of the stomach is not in the neck. A true diverticulum of the mid-esophagus from traction is a midesophageal traction diverticulum from inflamed nodes, not a hypopharyngeal pouch.",
     "citation": null
@@ -106,7 +142,13 @@
     "examTakeaway": "Intermittent severe abdominal pain and currant-jelly stool in a toddler are ileocolic intussusception.",
     "scenario": "A 9-month-old boy has episodes of drawing up his legs and screaming, then looks well between spells. A sausage-shaped mass is felt in the right abdomen. The stool is red and mucoid. Ultrasound shows a target sign.",
     "question": "Which segment has telescoped?",
-    "options": ["Ileum into the colon", "Stomach into the esophagus", "Sigmoid onto itself as volvulus", "Jejunum only, with no colonic component", "Appendix into the cecum as the lead point of this age"],
+    "options": [
+      "Ileum into the colon",
+      "Stomach into the esophagus",
+      "Sigmoid onto itself as volvulus",
+      "Jejunum only, with no colonic component",
+      "Appendix into the cecum as the lead point of this age"
+    ],
     "correctAnswer": "Ileum into the colon",
     "explanation": "Intermittent severe abdominal pain and currant-jelly stool in a toddler are ileocolic intussusception. Ileum into the colon is the usual telescoping, often after a viral lead point of lymphoid tissue. Stomach into the esophagus is a hiatal hernia, not currant-jelly stool. Sigmoid onto itself as volvulus is an older adult with a closed loop. Jejunum only, with no colonic component, is not the typical target-sign disease of this age. Appendix into the cecum as the lead point of this age is uncommon; the lead point at 9 months is usually lymphoid hyperplasia, and the telescoping segment is ileum.",
     "citation": null
@@ -122,7 +164,13 @@
     "examTakeaway": "A capacitated adolescent may keep treatment of a sexually transmitted infection confidential from parents.",
     "scenario": "A 16-year-old girl asks to be tested and treated for a sexually transmitted infection and asks that her parents not be told. She understands the infection, the treatment, and what happens if it is ignored. She is not in danger from a parent. State law permits minors to consent for this care.",
     "question": "Which duty comes first?",
-    "options": ["Keep the visit confidential", "Call her parents before any test", "Refuse care until she is 18", "Notify her school nurse", "Ask a court for permission"],
+    "options": [
+      "Ask a court for permission",
+      "Keep the visit confidential",
+      "Call her parents before any test",
+      "Refuse care until she is 18",
+      "Notify her school nurse"
+    ],
     "correctAnswer": "Keep the visit confidential",
     "explanation": "A capacitated adolescent may keep treatment of a sexually transmitted infection confidential from parents. Keep the visit confidential respects both her consent and the statute that lets minors seek this care. Call her parents before any test breaks that confidentiality without a safety exception. Refuse care until she is 18 withholds indicated treatment she can consent to. Notify her school nurse shares protected information with no clinical need. Ask a court for permission is unnecessary when she has capacity and the law already allows consent.",
     "citation": null
@@ -138,7 +186,13 @@
     "examTakeaway": "A patient who credibly threatens an identifiable person creates a duty to warn that person.",
     "scenario": "A 30-year-old man in therapy says he has bought a weapon and will kill a named coworker tomorrow. He describes the coworker's address and the time of the attack. He refuses voluntary hospitalization.",
     "question": "Which duty now applies?",
-    "options": ["Warn the identifiable person", "Keep absolute confidentiality and tell no one", "Warn only after the attack occurs", "Notify the coworker's family only if the patient later consents", "Discharge him because he named a person"],
+    "options": [
+      "Warn only after the attack occurs",
+      "Notify the coworker's family only if the patient later consents",
+      "Discharge him because he named a person",
+      "Warn the identifiable person",
+      "Keep absolute confidentiality and tell no one"
+    ],
     "correctAnswer": "Warn the identifiable person",
     "explanation": "A patient who credibly threatens an identifiable person creates a duty to warn that person. Warn the identifiable person is the Tarasoff duty when the threat is specific and imminent. Keep absolute confidentiality and tell no one does not hold when an identified third party is in danger. Warn only after the attack occurs is too late. Notify the coworker's family only if the patient later consents waits on consent he will not give. Discharge him because he named a person abandons the duty.",
     "citation": null
@@ -154,7 +208,13 @@
     "examTakeaway": "After a harmful error, the patient is told what happened, what it means, and what will be done.",
     "scenario": "A 60-year-old man received a tenfold insulin dose because of a misplaced decimal. His glucose fell to 28 mg/dL and he recovered after dextrose. He is now awake and asking why he felt so ill.",
     "question": "Which response is appropriate?",
-    "options": ["Tell him the dosing error, the effect, and the plan to prevent a repeat", "Say nothing unless he sues", "Blame the night nurse and leave", "Tell him the glucose fell for an unknown reason", "Ask him to sign a waiver before any explanation"],
+    "options": [
+      "Ask him to sign a waiver before any explanation",
+      "Tell him the dosing error, the effect, and the plan to prevent a repeat",
+      "Say nothing unless he sues",
+      "Blame the night nurse and leave",
+      "Tell him the glucose fell for an unknown reason"
+    ],
     "correctAnswer": "Tell him the dosing error, the effect, and the plan to prevent a repeat",
     "explanation": "After a harmful error, the patient is told what happened, what it means, and what will be done. Tell him the dosing error, the effect, and the plan to prevent a repeat is that disclosure. Say nothing unless he sues hides a harm. Blame the night nurse and leave is not an account of the event. Tell him the glucose fell for an unknown reason is false. Ask him to sign a waiver before any explanation conditions the truth on a legal release.",
     "citation": null

@@ -10,7 +10,13 @@
     "examTakeaway": "A capacitated patient may refuse a recommended operation after the risks, benefits, and alternatives have been explained.",
     "scenario": "A 70-year-old man with a resectable colon cancer understands that surgery is the treatment most likely to cure him, that declining it may shorten his life, and that chemotherapy alone is an alternative. He refuses surgery. His daughter wants you to operate anyway.",
     "question": "Which principle decides the plan?",
-    "options": ["Respect for his informed refusal", "Beneficence overriding a capacitated refusal", "The daughter's preference", "A court order before any refusal is honored", "The surgeon's judgment alone"],
+    "options": [
+      "Beneficence overriding a capacitated refusal",
+      "The daughter's preference",
+      "A court order before any refusal is honored",
+      "The surgeon's judgment alone",
+      "Respect for his informed refusal"
+    ],
     "correctAnswer": "Respect for his informed refusal",
     "explanation": "A capacitated patient may refuse a recommended operation after the risks, benefits, and alternatives have been explained. Respect for his informed refusal is autonomy. Beneficence overriding a capacitated refusal would force surgery he understands and declines. The daughter's preference does not replace his decision. A court order before any refusal is honored is for patients who lack capacity. The surgeon's judgment alone does not authorize an operation without consent.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "In an emergency, a child who is bleeding is transfused even if the parents refuse blood products.",
     "scenario": "A 6-year-old boy is in hemorrhagic shock after trauma. Hemoglobin is 5.1 g/dL and he is tachycardic despite crystalloid. His parents refuse all blood products. There is no time for a court hearing before he needs transfusion.",
     "question": "Which action is required?",
-    "options": ["Transfuse now", "Honor the refusal exactly", "Wait for a full trial", "Ask the child to sign a refusal", "Discharge the family"],
+    "options": [
+      "Wait for a full trial",
+      "Ask the child to sign a refusal",
+      "Discharge the family",
+      "Transfuse now",
+      "Honor the refusal exactly"
+    ],
     "correctAnswer": "Transfuse now",
     "explanation": "In an emergency, a child who is bleeding is transfused even if the parents refuse blood products. Transfuse now treats a life-threatening hemorrhage; parental refusal does not extend to refusing lifesaving care for a minor. Honor the refusal exactly would apply to a capacitated adult. Wait for a full trial delays blood he needs now. Ask the child to sign a refusal treats a 6-year-old as a decision-maker. Discharge the family abandons the emergency.",
     "citation": null
@@ -42,7 +54,13 @@
     "examTakeaway": "A patient who asks for the truth about a poor prognosis is told the prognosis, not a reassuring fiction.",
     "scenario": "A 68-year-old woman with metastatic pancreatic cancer asks how long she is likely to live. She has capacity. Her son asks you to say she will be fine. She repeats that she wants the honest estimate.",
     "question": "Whom do you answer?",
-    "options": ["Her, with the prognosis", "Her son, and tell her she will recover", "Neither, and change the subject", "The son only, after she leaves the room", "A chaplain, and avoid the question"],
+    "options": [
+      "Her, with the prognosis",
+      "Her son, and tell her she will recover",
+      "Neither, and change the subject",
+      "The son only, after she leaves the room",
+      "A chaplain, and avoid the question"
+    ],
     "correctAnswer": "Her, with the prognosis",
     "explanation": "A patient who asks for the truth about a poor prognosis is told the prognosis, not a reassuring fiction. Her, with the prognosis, respects her request and her capacity. Her son, and tell her she will recover, substitutes his wish and a falsehood. Neither, and change the subject, dodges a question she is entitled to ask. The son only, after she leaves the room, hides the answer from the patient. A chaplain, and avoid the question, may support her later but does not replace the physician's answer.",
     "citation": null
@@ -58,7 +76,13 @@
     "examTakeaway": "Sensitivity is the share of people with disease who test positive.",
     "scenario": "A 22-year-old student is shown a new test given to 100 people who have a disease. 90 of them test positive and 10 test negative. It is also given to 100 people without the disease. 95 of them test negative.",
     "question": "What is the sensitivity?",
-    "options": ["90 percent", "95 percent", "10 percent", "5 percent", "50 percent"],
+    "options": [
+      "10 percent",
+      "5 percent",
+      "50 percent",
+      "90 percent",
+      "95 percent"
+    ],
     "correctAnswer": "90 percent",
     "explanation": "Sensitivity is the share of people with disease who test positive. 90 percent is 90 true positives among 100 people with disease. 95 percent is the specificity, true negatives among people without disease. 10 percent is the false-negative rate. 5 percent is the false-positive rate. 50 percent is not a count from either row of this table.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "Specificity is the share of people without disease who test negative.",
     "scenario": "A 22-year-old student reviews a test used in 200 people who do not have a disease. It is negative in 180 and positive in 20. Among 50 people who have the disease, the test is positive in 45.",
     "question": "What is the specificity?",
-    "options": ["90 percent", "45 percent", "10 percent", "80 percent", "96 percent"],
+    "options": [
+      "96 percent",
+      "90 percent",
+      "45 percent",
+      "10 percent",
+      "80 percent"
+    ],
     "correctAnswer": "90 percent",
     "explanation": "Specificity is the share of people without disease who test negative. 90 percent is 180 true negatives among 200 people without disease. 45 percent is not a row in this table. 10 percent is the false-positive share, 20 of 200. 80 percent is not the true-negative proportion. 96 percent would require a different count of true negatives.",
     "citation": null
@@ -90,7 +120,13 @@
     "examTakeaway": "Positive predictive value rises when the disease is more common, even if sensitivity and specificity stay the same.",
     "scenario": "A 22-year-old student compares two clinics. A test has a sensitivity of 90 percent and a specificity of 90 percent. It is used first where 1 percent of patients have the disease and later where 20 percent have it.",
     "question": "What happens to the positive predictive value?",
-    "options": ["It rises in the second clinic", "It falls in the second clinic", "It stays 90 percent", "It equals specificity", "It becomes the false-positive rate"],
+    "options": [
+      "It becomes the false-positive rate",
+      "It rises in the second clinic",
+      "It falls in the second clinic",
+      "It stays 90 percent",
+      "It equals specificity"
+    ],
     "correctAnswer": "It rises in the second clinic",
     "explanation": "Positive predictive value rises when the disease is more common, even if sensitivity and specificity stay the same. It rises in the second clinic because more of the positive tests are true positives when prevalence is 20 percent. It falls in the second clinic is the opposite. It stays 90 percent confuses predictive value with sensitivity. It equals specificity only by coincidence, not by definition. It becomes the false-positive rate is a different proportion.",
     "citation": null
@@ -106,7 +142,13 @@
     "examTakeaway": "A case-control study reports an odds ratio, not a relative risk that needs incidence.",
     "scenario": "A 22-year-old student reads a study that enrolled 100 people with a rare cancer and 100 people without it, then asked about a past exposure. The investigators could not follow a population forward in time.",
     "question": "Which measure can they calculate directly?",
-    "options": ["Odds ratio", "Incidence", "Relative risk from incidence rates", "Attributable risk using person-years", "Number needed to treat"],
+    "options": [
+      "Relative risk from incidence rates",
+      "Attributable risk using person-years",
+      "Number needed to treat",
+      "Odds ratio",
+      "Incidence"
+    ],
     "correctAnswer": "Odds ratio",
     "explanation": "A case-control study reports an odds ratio, not a relative risk that needs incidence. Odds ratio compares the odds of exposure in cases and controls and is what this design yields. Incidence requires a population followed over time, which they did not assemble. Relative risk from incidence rates needs those incidence figures. Attributable risk using person-years also needs a cohort. Number needed to treat is the reciprocal of an absolute risk reduction from a trial.",
     "citation": null
@@ -122,7 +164,13 @@
     "examTakeaway": "A confidence interval for a risk ratio that includes 1 is compatible with no effect.",
     "scenario": "A 22-year-old student reads a trial that reports a risk ratio of 0.8 for stroke with a 95 percent confidence interval of 0.5 to 1.3. The p value is 0.20.",
     "question": "Which reading of the interval is correct?",
-    "options": ["The data are compatible with no difference", "The treatment definitely prevents stroke", "The interval proves harm", "The p value replaces the need to look at the interval", "A ratio of 0.8 inside an interval that includes 1 is statistically significant"],
+    "options": [
+      "A ratio of 0.8 inside an interval that includes 1 is statistically significant",
+      "The data are compatible with no difference",
+      "The treatment definitely prevents stroke",
+      "The interval proves harm",
+      "The p value replaces the need to look at the interval"
+    ],
     "correctAnswer": "The data are compatible with no difference",
     "explanation": "A confidence interval for a risk ratio that includes 1 is compatible with no effect. The data are compatible with no difference because 1 sits inside 0.5 to 1.3. The treatment definitely prevents stroke overreads a point estimate whose interval includes no effect. The interval proves harm is wrong because values below 1, suggesting benefit, are also inside it. The p value replaces the need to look at the interval is false; the interval shows the range of ratios still plausible. A ratio of 0.8 inside an interval that includes 1 is statistically significant is the opposite of the usual 0.05 threshold.",
     "citation": null
@@ -138,7 +186,13 @@
     "examTakeaway": "A 12-month-old is expected to stand briefly, say a word with meaning, and use a pincer grasp.",
     "scenario": "A 12-month-old girl is in for a well visit. She pulls to stand, cruises, picks up a raisin with thumb and finger, and says mama specifically for her mother. She does not walk alone.",
     "question": "Which judgment of her development is correct?",
-    "options": ["These skills are expected at 12 months", "Failure to walk alone is delayed", "A single word is delayed until age 2", "The pincer grasp is expected only at 18 months", "Cruising is a 6-month skill that she has outgrown"],
+    "options": [
+      "The pincer grasp is expected only at 18 months",
+      "Cruising is a 6-month skill that she has outgrown",
+      "These skills are expected at 12 months",
+      "Failure to walk alone is delayed",
+      "A single word is delayed until age 2"
+    ],
     "correctAnswer": "These skills are expected at 12 months",
     "explanation": "A 12-month-old is expected to stand briefly, say a word with meaning, and use a pincer grasp. These skills are expected at 12 months, and walking alone often comes a little later. Failure to walk alone is delayed is not true at 12 months. A single word is delayed until age 2 misses the first-word milestone near the first birthday. The pincer grasp is expected only at 18 months is late; a pincer is present around 9 to 12 months. Cruising is a 6-month skill that she has outgrown is wrong because cruising appears near 9 to 12 months.",
     "citation": null
@@ -154,7 +208,13 @@
     "examTakeaway": "Breast buds and a growth spurt with a pubertal LH rise are central puberty, not isolated thelarche.",
     "scenario": "A 7-year-old girl has had breast buds for six months and is now Tanner breast stage 3. Height velocity is 9 cm per year. Bone age is 10 years. After GnRH stimulation, LH rises into the pubertal range. There are no cafe-au-lait spots.",
     "question": "Which interpretation is correct?",
-    "options": ["Central precocious puberty", "Isolated premature thelarche", "Constitutional delay", "McCune-Albright syndrome", "Premature adrenarche"],
+    "options": [
+      "Constitutional delay",
+      "McCune-Albright syndrome",
+      "Premature adrenarche",
+      "Central precocious puberty",
+      "Isolated premature thelarche"
+    ],
     "correctAnswer": "Central precocious puberty",
     "explanation": "Breast buds and a growth spurt with a pubertal LH rise are central puberty, not isolated thelarche. Central precocious puberty is gonadotropin-driven, which the LH rise and advanced bone age show. Isolated premature thelarche is breast development with a normal growth velocity and a prepubertal LH response. Constitutional delay postpones bone age and puberty. McCune-Albright syndrome is gonadotropin-independent and would not produce a pubertal LH rise, and cafe-au-lait spots are absent. Premature adrenarche adds pubic hair from adrenal androgens without a pubertal LH response.",
     "citation": null

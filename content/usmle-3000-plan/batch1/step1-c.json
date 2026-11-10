@@ -10,7 +10,13 @@
     "examTakeaway": "A painless thyroid, hypothyroidism, and Hurthle cells are Hashimoto thyroiditis, with antibodies to thyroid peroxidase.",
     "scenario": "A 45-year-old woman has cold intolerance and a pulse of 54 bpm. The thyroid is firm and nontender. TSH is 22 mIU/L and free T4 is low. Biopsy shows lymphoid follicles and oncocytic follicular cells.",
     "question": "Which antibody is most characteristic?",
-    "options": ["Thyroid peroxidase antibody", "TSH-receptor stimulating antibody", "TSH-receptor blocking antibody only, with no peroxidase antibody", "Acetylcholine-receptor antibody", "Glutamic acid decarboxylase antibody"],
+    "options": [
+      "Thyroid peroxidase antibody",
+      "TSH-receptor stimulating antibody",
+      "TSH-receptor blocking antibody only, with no peroxidase antibody",
+      "Acetylcholine-receptor antibody",
+      "Glutamic acid decarboxylase antibody"
+    ],
     "correctAnswer": "Thyroid peroxidase antibody",
     "explanation": "A painless thyroid, hypothyroidism, and Hurthle cells are Hashimoto thyroiditis, with antibodies to thyroid peroxidase. Thyroid peroxidase antibody is the serologic marker of that lymphocytic destruction. TSH-receptor stimulating antibody drives Graves disease and a high uptake. TSH-receptor blocking antibody only, with no peroxidase antibody, can cause hypothyroidism but is not the characteristic finding alongside Hurthle cells. Acetylcholine-receptor antibody is myasthenia gravis. Glutamic acid decarboxylase antibody marks type 1 diabetes.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "Hypercalcemia, a pituitary adenoma, and a pancreatic neuroendocrine tumor are MEN1, from menin loss.",
     "scenario": "A 38-year-old woman has a calcium of 11.6 mg/dL, a prolactin of 90 ng/mL, and a 2-cm pancreatic mass that stains for gastrin. Her father had a parathyroidectomy and a pituitary tumor.",
     "question": "Which gene product is lost?",
-    "options": ["Menin", "RET", "p53", "VHL", "NF1"],
+    "options": [
+      "Menin",
+      "RET",
+      "p53",
+      "VHL",
+      "NF1"
+    ],
     "correctAnswer": "Menin",
     "explanation": "Hypercalcemia, a pituitary adenoma, and a pancreatic neuroendocrine tumor are MEN1, from menin loss. Menin is the tumor suppressor on chromosome 11 whose loss defines this triad. RET is the proto-oncogene of MEN2, with medullary thyroid cancer and pheochromocytoma. p53 loss is Li-Fraumeni syndrome, not this endocrine trio. VHL loss causes renal cell carcinoma, hemangioblastoma, and pheochromocytoma. NF1 loss causes neurofibromas and cafe-au-lait spots.",
     "citation": null
@@ -42,7 +54,13 @@
     "examTakeaway": "Lithium causes nephrogenic diabetes insipidus: the urine stays dilute after desmopressin.",
     "scenario": "A 42-year-old man treated with lithium for bipolar disorder is thirsty and voids large volumes. Serum sodium is 150 mEq/L. Urine osmolality is 140 mOsm/kg and does not rise after desmopressin. Serum glucose is 96 mg/dL.",
     "question": "Which renal response is impaired?",
-    "options": ["Aquaporin insertion in the collecting duct", "Proximal bicarbonate reabsorption", "Thick-ascending salt reabsorption only", "Aldosterone-sensitive sodium channels", "Glucose reabsorption in the proximal tubule"],
+    "options": [
+      "Glucose reabsorption in the proximal tubule",
+      "Aquaporin insertion in the collecting duct",
+      "Proximal bicarbonate reabsorption",
+      "Thick-ascending salt reabsorption only",
+      "Aldosterone-sensitive sodium channels"
+    ],
     "correctAnswer": "Aquaporin insertion in the collecting duct",
     "explanation": "Lithium causes nephrogenic diabetes insipidus: the urine stays dilute after desmopressin. Aquaporin insertion in the collecting duct is the vasopressin-dependent step lithium disrupts, so an analogue cannot concentrate the urine. Proximal bicarbonate reabsorption failure is proximal renal tubular acidosis. Thick-ascending salt reabsorption only is the loop-diuretic or Bartter lesion, which wastes salt rather than free water in this pattern. Aldosterone-sensitive sodium channels are the target of potassium-sparing diuretics. Glucose reabsorption in the proximal tubule is intact here, with a normal serum glucose.",
     "citation": null
@@ -58,7 +76,13 @@
     "examTakeaway": "Hemoptysis plus rapidly rising creatinine and linear IgG on the glomerular basement membrane is anti-GBM disease.",
     "scenario": "A 22-year-old man has coughed blood for a week. Creatinine rose from 0.9 to 3.4 mg/dL. The urine shows red-cell casts. Immunofluorescence of a renal biopsy shows linear IgG along the glomerular basement membrane. The lungs have diffuse alveolar infiltrates.",
     "question": "Which antigen is the antibody attacking?",
-    "options": ["Type IV collagen in the glomerular and alveolar basement membranes", "Phospholipase A2 receptor on podocytes", "Neutrophil cytoplasm proteinase 3", "DNA in circulating immune complexes", "Mesangial IgA"],
+    "options": [
+      "Phospholipase A2 receptor on podocytes",
+      "Neutrophil cytoplasm proteinase 3",
+      "DNA in circulating immune complexes",
+      "Mesangial IgA",
+      "Type IV collagen in the glomerular and alveolar basement membranes"
+    ],
     "correctAnswer": "Type IV collagen in the glomerular and alveolar basement membranes",
     "explanation": "Hemoptysis plus rapidly rising creatinine and linear IgG on the glomerular basement membrane is anti-GBM disease. Type IV collagen in the glomerular and alveolar basement membranes is the Goodpasture antigen. Phospholipase A2 receptor on podocytes is the target in primary membranous nephropathy, a nephrotic disease without lung hemorrhage. Neutrophil cytoplasm proteinase 3 is the c-ANCA target in granulomatosis with polyangiitis, which is pauci-immune, not linear IgG. DNA in circulating immune complexes is lupus nephritis, with granular deposits. Mesangial IgA is IgA nephropathy and does not paint a linear basement-membrane line or fill the alveoli with blood.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "Hereditary nephritis, hearing loss, and ocular disease are a type IV collagen mutation, Alport syndrome.",
     "scenario": "A 14-year-old boy has had blood on urine dips since childhood. His mother wears hearing aids. He now has a creatinine of 1.6 mg/dL and anterior lenticonus. Electron microscopy shows a basket-weave glomerular basement membrane.",
     "question": "Which protein is defective?",
-    "options": ["Type IV collagen", "Type I collagen", "Fibrillin", "Dystrophin", "Polycystin"],
+    "options": [
+      "Dystrophin",
+      "Polycystin",
+      "Type IV collagen",
+      "Type I collagen",
+      "Fibrillin"
+    ],
     "correctAnswer": "Type IV collagen",
     "explanation": "Hereditary nephritis, hearing loss, and ocular disease are a type IV collagen mutation, Alport syndrome. Type IV collagen is the basement-membrane collagen whose splitting produces the basket-weave appearance. Type I collagen defects cause brittle bones or the vascular form of Ehlers-Danlos, not this renal membrane. Fibrillin defects cause Marfan syndrome. Dystrophin defects cause muscular dystrophy. Polycystin defects cause adult polycystic kidney disease, with cysts rather than a lamellated basement membrane and deafness.",
     "citation": null

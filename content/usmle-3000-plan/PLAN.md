@@ -1,6 +1,6 @@
 # Plan to reach 3,000 solid served questions on each USMLE Step
 
-Draft only. Nothing in this folder has been inserted. A batch goes live only after Ryan says so.
+The 60-item pilot is already live. Batch 1 is inserted hidden and is not live. A batch goes live only after Ryan says so.
 
 ## Where the bank is now
 
@@ -86,4 +86,4 @@ Step 3 (688). Source: Step 3 MCQ table. Biostatistics and ethics are a large sha
 
 ## Pilot
 
-Twenty items per Step are in `pilot-step1.json`, `pilot-step2.json`, and `pilot-step3.json`. They are not in the database. The unit test `src/lib/exam-prep/usmle-3000-pilot.test.ts` checks that all 60 pass the gate and do not repeat each other. A read against the served bank found no stem-family collision.
+Twenty items per Step are in `pilot-step1.json`, `pilot-step2.json`, and `pilot-step3.json`. Those 60 rows are live. Batch 1 (100 Step 1 and 100 Step 2 CK) is in `batch1/` and is inserted with active false. The unit test `src/lib/exam-prep/usmle-3000-pilot.test.ts` checks that the pilot passes the gate and does not repeat itself.

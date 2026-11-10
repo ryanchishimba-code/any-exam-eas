@@ -8,9 +8,15 @@
     "difficulty": 4,
     "subjectId": "pathology",
     "examTakeaway": "A diaphyseal small-round-cell tumor in a child with t(11;22) is Ewing sarcoma.",
-    "scenario": "An 11-year-old boy has pain and swelling in the mid-shaft of the femur. The film shows an onion-skin periosteal reaction along the diaphysis. Biopsy shows sheets of small round cells. Cytogenetics shows a translocation between chromosomes 11 and 22.",
+    "scenario": "An 11-year-old boy has pain and swelling in the mid-shaft of the femur. Biopsy shows sheets of small round cells and no osteoid.",
     "question": "Which tumor is this?",
-    "options": ["Ewing sarcoma", "Osteosarcoma", "Osteoid osteoma", "Chondrosarcoma", "Metastatic prostate cancer"],
+    "options": [
+      "Osteosarcoma",
+      "Osteoid osteoma",
+      "Chondrosarcoma",
+      "Metastatic prostate cancer",
+      "Ewing sarcoma"
+    ],
     "correctAnswer": "Ewing sarcoma",
     "explanation": "A diaphyseal small-round-cell tumor in a child with t(11;22) is Ewing sarcoma. Ewing sarcoma carries the EWS-FLI1 fusion from that translocation. Osteosarcoma is a metaphyseal osteoid-producing tumor of teenagers with a sunburst, not a diaphyseal round-cell tumor. Osteoid osteoma causes night pain relieved by NSAIDs and a small nidus, not sheets of round cells. Chondrosarcoma is a cartilage tumor of older adults in the pelvis or proximal skeleton. Metastatic prostate cancer is osteoblastic disease of older men.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "Positively birefringent rhomboid crystals in a swollen knee are calcium pyrophosphate, not monosodium urate.",
     "scenario": "A 72-year-old man has an acutely swollen knee. He has had no toe pain. The film shows chondrocalcinosis of the meniscus. Aspirate under polarized light shows rhomboid crystals that are blue when parallel to the compensator.",
     "question": "Which crystal is in the joint?",
-    "options": ["Calcium pyrophosphate", "Monosodium urate", "Cholesterol", "Hydroxyapatite", "Calcium oxalate"],
+    "options": [
+      "Monosodium urate",
+      "Cholesterol",
+      "Hydroxyapatite",
+      "Calcium oxalate",
+      "Calcium pyrophosphate"
+    ],
     "correctAnswer": "Calcium pyrophosphate",
     "explanation": "Positively birefringent rhomboid crystals in a swollen knee are calcium pyrophosphate, not monosodium urate. Calcium pyrophosphate is the pseudogout crystal, rhomboid and positively birefringent, often with chondrocalcinosis. Monosodium urate is needle-shaped and negatively birefringent and prefers the first toe. Cholesterol crystals are plates in chronic effusions, not an acute knee with chondrocalcinosis. Hydroxyapatite is not birefringent and causes calcific tendonitis. Calcium oxalate crystals occur in oxalosis, not this meniscal calcification.",
     "citation": null
@@ -40,9 +52,15 @@
     "difficulty": 3,
     "subjectId": "pathology",
     "examTakeaway": "Morning stiffness, symmetric small-joint swelling, and a positive rheumatoid factor reflect pannus destroying cartilage.",
-    "scenario": "A 48-year-old woman has an hour of morning stiffness and swelling of both wrists and the knuckles. Ulnar deviation is beginning. Rheumatoid factor and anti-CCP antibodies are positive. A radiograph shows marginal erosions.",
+    "scenario": "A 48-year-old woman has an hour of morning stiffness and swelling of both wrists and the knuckles. Ulnar deviation is beginning. A radiograph shows marginal erosions.",
     "question": "Which tissue is eroding the cartilage?",
-    "options": ["Pannus", "Tophi", "Osteoid from an osteoblast tumor", "Caseating granuloma", "Amyloid"],
+    "options": [
+      "Tophi",
+      "Osteoid from an osteoblast tumor",
+      "Caseating granuloma",
+      "Amyloid",
+      "Pannus"
+    ],
     "correctAnswer": "Pannus",
     "explanation": "Morning stiffness, symmetric small-joint swelling, and a positive rheumatoid factor reflect pannus destroying cartilage. Pannus is the inflamed synovium that creeps over cartilage and makes marginal erosions. Tophi are urate deposits of chronic gout, usually at the first toe or ear. Osteoid from an osteoblast tumor is osteosarcoma, a bone mass in a teenager. Caseating granuloma is tuberculosis. Amyloid can infiltrate tissues but does not make anti-CCP-positive marginal erosions.",
     "citation": null
@@ -56,9 +74,15 @@
     "difficulty": 3,
     "subjectId": "pathology",
     "examTakeaway": "An older adult with activity pain in one knee and eburnated bone has osteoarthritis, a mechanical failure of cartilage.",
-    "scenario": "A 68-year-old man has knee pain that is worse after walking and better with rest. There is bony enlargement of the joint and a brief morning stiffness of ten minutes. The film shows joint-space narrowing, osteophytes, and polished subchondral bone.",
-    "question": "Which process produced the polished bone?",
-    "options": ["Mechanical loss of cartilage", "Synovial pannus", "Urate crystal inflammation", "Anti-CCP antibody", "Septic destruction by Staphylococcus"],
+    "scenario": "A 68-year-old man has knee pain that is worse after walking and better with rest. There is bony enlargement of the joint and a brief morning stiffness of ten minutes. The film shows joint-space narrowing and osteophytes.",
+    "question": "Which process is wearing out the joint?",
+    "options": [
+      "Synovial pannus",
+      "Urate crystal inflammation",
+      "Anti-CCP antibody",
+      "Septic destruction by Staphylococcus",
+      "Mechanical loss of cartilage"
+    ],
     "correctAnswer": "Mechanical loss of cartilage",
     "explanation": "An older adult with activity pain in one knee and eburnated bone has osteoarthritis, a mechanical failure of cartilage. Mechanical loss of cartilage lets bone rub on bone and polish into eburnation, with osteophytes at the margins. Synovial pannus is rheumatoid arthritis, with prolonged morning stiffness and marginal erosions. Urate crystal inflammation is gout. Anti-CCP antibody marks rheumatoid arthritis, not this brief stiffness. Septic destruction by Staphylococcus is an acute hot joint with fever, not years of activity pain.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "A boy who uses his arms to stand, with calf enlargement and a high CK, has a dystrophin mutation.",
     "scenario": "A 5-year-old boy climbs up his own legs to stand. His calves look large but are weak. CK is 18,000 U/L. His mother's brother died of respiratory failure as a teenager. A muscle biopsy is planned.",
     "question": "Which protein is missing?",
-    "options": ["Dystrophin", "Fibrillin", "Type I collagen", "Spectrin", "Dystrophin-associated sarcoglycan only, with normal dystrophin"],
+    "options": [
+      "Spectrin",
+      "Dystrophin-associated sarcoglycan only, with normal dystrophin",
+      "Dystrophin",
+      "Fibrillin",
+      "Type I collagen"
+    ],
     "correctAnswer": "Dystrophin",
     "explanation": "A boy who uses his arms to stand, with calf enlargement and a high CK, has a dystrophin mutation. Dystrophin links actin to the membrane complex; its loss is Duchenne muscular dystrophy, X-linked and early. Fibrillin defects cause Marfan syndrome. Type I collagen defects cause osteogenesis imperfecta or Ehlers-Danlos. Spectrin defects cause hereditary spherocytosis. Dystrophin-associated sarcoglycan only, with normal dystrophin, is a limb-girdle dystrophy, usually later and not this classic Gowers picture in a boy with an affected uncle.",
     "citation": null
@@ -88,9 +118,15 @@
     "difficulty": 3,
     "subjectId": "genetics",
     "examTakeaway": "Fractures after minor bumps, blue sclerae, and hearing loss are a type I collagen defect.",
-    "scenario": "A 7-year-old boy has had four fractures from falls that did not seem severe. The sclerae look blue. His mother has the same sclerae and early hearing loss. Teeth are opalescent.",
+    "scenario": "A 7-year-old boy has had four fractures from falls that did not seem severe. His teeth are opalescent. His mother had the same fractures and early hearing loss.",
     "question": "Which collagen is defective?",
-    "options": ["Type I collagen", "Type II collagen", "Type IV collagen", "Type III collagen only", "Fibrillin"],
+    "options": [
+      "Type IV collagen",
+      "Type III collagen only",
+      "Fibrillin",
+      "Type I collagen",
+      "Type II collagen"
+    ],
     "correctAnswer": "Type I collagen",
     "explanation": "Fractures after minor bumps, blue sclerae, and hearing loss are a type I collagen defect. Type I collagen is the bone, sclera, and dentin collagen missing in osteogenesis imperfecta. Type II collagen is cartilage, and its defects cause skeletal dysplasias without blue sclerae. Type IV collagen is basement membrane, defective in Alport syndrome. Type III collagen only is the vascular form of Ehlers-Danlos, with arterial rupture rather than childhood fractures and blue sclerae. Fibrillin is the Marfan protein.",
     "citation": null
@@ -106,7 +142,13 @@
     "examTakeaway": "Flaccid blisters and a positive Nikolsky sign with tombstone acantholysis are IgG against desmoglein.",
     "scenario": "A 55-year-old man has painful flaccid blisters and erosions in the mouth and on the trunk. Rubbing nearby skin shears the epidermis. Biopsy shows keratinocytes falling apart above the basal layer, like a row of tombstones. Immunofluorescence shows net-like IgG around keratinocytes.",
     "question": "Which adhesion protein is the target?",
-    "options": ["Desmoglein", "Hemidesmosome", "Type VII collagen", "Type IV collagen", "Integrin of the platelet"],
+    "options": [
+      "Integrin of the platelet",
+      "Desmoglein",
+      "Hemidesmosome",
+      "Type VII collagen",
+      "Type IV collagen"
+    ],
     "correctAnswer": "Desmoglein",
     "explanation": "Flaccid blisters and a positive Nikolsky sign with tombstone acantholysis are IgG against desmoglein. Desmoglein holds keratinocytes together, and antibody against it is pemphigus vulgaris. Hemidesmosome antibody is bullous pemphigoid, with tense blisters and a linear basement-membrane stain, not a net around cells. Type VII collagen is the anchoring fibril of epidermolysis bullosa acquisita. Type IV collagen is the Goodpasture and Alport protein. Integrin of the platelet is GP IIb/IIIa, a bleeding disorder, not a blister.",
     "citation": null
@@ -122,7 +164,13 @@
     "examTakeaway": "Tense blisters in an older adult, with linear IgG at the basement membrane, are antibody against hemidesmosomes.",
     "scenario": "A 75-year-old woman has tense blisters on the thighs and flexures. The mouth is spared. Nikolsky sign is negative. Immunofluorescence shows a linear band of IgG along the basement membrane, and the split is below the basal keratinocytes.",
     "question": "Which structure is the antibody binding?",
-    "options": ["Hemidesmosome", "Desmoglein 3", "Desmoglein 1 only", "Type VII collagen in the deep dermis as the sole target", "Keratin 5"],
+    "options": [
+      "Type VII collagen in the deep dermis as the sole target",
+      "Keratin 5",
+      "Hemidesmosome",
+      "Desmoglein 3",
+      "Desmoglein 1 only"
+    ],
     "correctAnswer": "Hemidesmosome",
     "explanation": "Tense blisters in an older adult, with linear IgG at the basement membrane, are antibody against hemidesmosomes. Hemidesmosome proteins BP180 and BP230 are the bullous pemphigoid targets, so the roof of the blister stays intact and Nikolsky is negative. Desmoglein 3 is pemphigus vulgaris, with flaccid blisters and a net-like stain. Desmoglein 1 only is pemphigus foliaceus, superficial and without much mouth disease, but the stain is around cells, not linear at the base. Type VII collagen in the deep dermis as the sole target is epidermolysis bullosa acquisita, which splits deeper. Keratin 5 mutations cause epidermolysis bullosa simplex, a genetic disease from infancy.",
     "citation": null
@@ -138,7 +186,13 @@
     "examTakeaway": "Depth of invasion from the granular layer, not the color alone, is what sets melanoma mortality.",
     "scenario": "A 52-year-old man has a dark macule on the back that changed shape over six months. Excision shows melanocytes invading 2.2 mm below the granular layer. There is no ulcer. Sentinel nodes are being discussed.",
     "question": "Which measurement most changes his risk of death?",
-    "options": ["Breslow thickness", "Clark level alone, ignoring millimeters", "The diameter of the dark color", "The number of mitoses in the epidermis only", "The width of the surgical margin already taken"],
+    "options": [
+      "Breslow thickness",
+      "Clark level alone, ignoring millimeters",
+      "The diameter of the dark color",
+      "The number of mitoses in the epidermis only",
+      "The width of the surgical margin already taken"
+    ],
     "correctAnswer": "Breslow thickness",
     "explanation": "Depth of invasion from the granular layer, not the color alone, is what sets melanoma mortality. Breslow thickness is that millimeter depth and is the strongest histologic predictor here. Clark level alone, ignoring millimeters, is an older anatomic level and is less predictive once thickness is known. The diameter of the dark color is part of the clinical ABCDE screen, not the mortality measurement after excision. The number of mitoses in the epidermis only does not capture dermal invasion. The width of the surgical margin already taken is a treatment choice, not the tumor's measured depth.",
     "citation": null
@@ -152,9 +206,15 @@
     "difficulty": 3,
     "subjectId": "pathology",
     "examTakeaway": "A scaly red patch on a sun-damaged scalp that has not invaded the dermis is actinic keratosis, a squamous precursor.",
-    "scenario": "A 70-year-old man who worked outdoors has a 6-mm rough red patch on the scalp that feels like sandpaper. Biopsy shows atypical keratinocytes in the lower epidermis that have not crossed the basement membrane. The dermis shows solar elastosis.",
+    "scenario": "A 70-year-old man who worked outdoors has a 6-mm rough red patch on the scalp. It has grown slowly. There is no dark pigment and it does not look stuck on.",
     "question": "Which lesion is this?",
-    "options": ["Actinic keratosis", "Seborrheic keratosis", "Basal cell carcinoma", "Melanoma in situ", "Keratoacanthoma"],
+    "options": [
+      "Basal cell carcinoma",
+      "Melanoma in situ",
+      "Keratoacanthoma",
+      "Actinic keratosis",
+      "Seborrheic keratosis"
+    ],
     "correctAnswer": "Actinic keratosis",
     "explanation": "A scaly red patch on a sun-damaged scalp that has not invaded the dermis is actinic keratosis, a squamous precursor. Actinic keratosis is partial-thickness keratinocyte atypia on sun-damaged skin. Seborrheic keratosis is a stuck-on benign epidermal proliferation of basaloid cells, not atypical keratinocytes on a scalp. Basal cell carcinoma invades as nests with peripheral palisading. Melanoma in situ is a proliferation of atypical melanocytes along the junction. Keratoacanthoma is a rapidly growing crater of squamous cells that looks invasive.",
     "citation": null

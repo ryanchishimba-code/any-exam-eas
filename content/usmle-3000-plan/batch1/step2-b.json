@@ -11,7 +11,13 @@
     "examTakeaway": "A creatinine rise with muddy brown casts after hypotension is acute tubular necrosis, and dialysis is for refractory complications, not the first rise.",
     "scenario": "A 70-year-old woman was hypotensive for an hour in the operating room. The next day creatinine is 3.2 mg/dL and urine output is 200 mL in 12 hours. The urine has muddy brown casts. Potassium is 4.8 mEq/L, bicarbonate is 20 mEq/L, and she has no pericardial rub.",
     "question": "Which plan is the most appropriate next step?",
-    "options": ["Supportive care and watch for dialysis indications", "Hemodialysis now", "High-dose intravenous methylprednisolone", "A bolus of normal saline at 1 liter per hour for 12 hours", "Nephrostomy tubes"],
+    "options": [
+      "High-dose intravenous methylprednisolone",
+      "A bolus of normal saline at 1 liter per hour for 12 hours",
+      "Nephrostomy tubes",
+      "Supportive care and watch for dialysis indications",
+      "Hemodialysis now"
+    ],
     "correctAnswer": "Supportive care and watch for dialysis indications",
     "explanation": "A creatinine rise with muddy brown casts after hypotension is acute tubular necrosis, and dialysis is for refractory complications, not the first rise. Supportive care and watch for dialysis indications matches KDIGO guidance when potassium, acid, and volume are still manageable. Hemodialysis now is for refractory hyperkalemia, acidosis, volume overload, or uremic complications she does not have. High-dose intravenous methylprednisolone treats interstitial nephritis or glomerulonephritis. A bolus of normal saline at 1 liter per hour for 12 hours floods a patient whose injury is already established. Nephrostomy tubes relieve obstruction, and the bladder is not the problem suggested by these casts.",
     "citation": "KDIGO"
@@ -28,7 +34,13 @@
     "examTakeaway": "Stage 3 chronic kidney disease with one gout flare is a reason to discuss urate-lowering therapy, started low and with prophylaxis.",
     "scenario": "A 61-year-old man is improving from a first metatarsophalangeal flare treated with a short steroid burst. eGFR is 38 mL/min/1.73 m2. Serum urate is 7.6 mg/dL. There are no tophi and no allopurinol allergy.",
     "question": "Which urate plan is the most appropriate next step?",
-    "options": ["Low-dose allopurinol with anti-inflammatory prophylaxis", "No urate-lowering discussion because this was one flare", "Allopurinol 300 mg with no prophylaxis", "Probenecid as the preferred first drug", "Pegloticase before any oral agent"],
+    "options": [
+      "Low-dose allopurinol with anti-inflammatory prophylaxis",
+      "No urate-lowering discussion because this was one flare",
+      "Allopurinol 300 mg with no prophylaxis",
+      "Probenecid as the preferred first drug",
+      "Pegloticase before any oral agent"
+    ],
     "correctAnswer": "Low-dose allopurinol with anti-inflammatory prophylaxis",
     "explanation": "Stage 3 chronic kidney disease with one gout flare is a reason to discuss urate-lowering therapy, started low and with prophylaxis. Low-dose allopurinol with anti-inflammatory prophylaxis follows the 2020 gout guideline to start after a first flare when CKD is stage 3 or worse, and to start low. No urate-lowering discussion because this was one flare ignores that comorbidity. Allopurinol 300 mg with no prophylaxis risks a flare and a hypersensitivity reaction. Probenecid as the preferred first drug is a poor choice when eGFR is 38. Pegloticase before any oral agent is for refractory tophaceous gout.",
     "citation": "2020"
