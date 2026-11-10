@@ -467,11 +467,12 @@ export function presentBoardInventory(input: {
 
   const clinical = input.clinical ?? { standaloneNgn: 0, caseStudies: 0, caseItems: 0 };
   const scored = input.board.active;
-  const ngnLabel =
-    input.slug === "nclex" ? "NGN" : input.slug === "naplex" ? "select-all" : "other formats";
+  const ngnLabel = input.slug === "nclex" ? "NGN" : "other formats";
+  const formats =
+    input.slug === "naplex" ? { ...input.board.formats, ngn: 0 } : input.board.formats;
   const catalog = formatSeparatePublishedCatalog(clinical);
   const bankLine =
-    formatInventoryFormatLine(input.board.formats, ngnLabel) ??
+    formatInventoryFormatLine(formats, ngnLabel) ??
     formatBoardQuestionSentence({ bankItems: input.board.active });
   const formatLine = [bankLine, catalog].filter(Boolean).join(" ");
   return {

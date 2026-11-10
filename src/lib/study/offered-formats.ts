@@ -9,19 +9,30 @@ import {
  * A format is a student choice only when this scope has eligible items.
  * Unknown counts are not an offer — callers must not advertise or launch them.
  */
+/**
+ * The ngn bucket mixes select-all, bow-tie, matrix, highlight, and fill-in
+ * items. That mix is an NCLEX NGN tab. It is not one NAPLEX item type.
+ */
+export function offersNgnFormatTab(fieldId?: string | null): boolean {
+  return fieldId !== "pharmacy";
+}
+
 export function isFormatOffered(
   format: DeliberatePracticeFormat,
-  formats: FormatCounts | null | undefined
+  formats: FormatCounts | null | undefined,
+  fieldId?: string | null
 ): boolean {
   if (!formats) return false;
+  if (format === "ngn" && !offersNgnFormatTab(fieldId)) return false;
   const count = format === "ngn" ? formats.ngn : formats.case;
   return count > 0;
 }
 
 export function offeredDeliberateFormats(
-  formats: FormatCounts | null | undefined
+  formats: FormatCounts | null | undefined,
+  fieldId?: string | null
 ): DeliberatePracticeFormat[] {
-  return (["ngn", "case"] as const).filter((format) => isFormatOffered(format, formats));
+  return (["ngn", "case"] as const).filter((format) => isFormatOffered(format, formats, fieldId));
 }
 
 /**
@@ -30,11 +41,13 @@ export function offeredDeliberateFormats(
  */
 export function coercePracticeFormat(
   requested: PracticeFormatMode,
-  formats: FormatCounts | null | undefined
+  formats: FormatCounts | null | undefined,
+  fieldId?: string | null
 ): PracticeFormatMode {
   if (requested !== "ngn" && requested !== "case") return requested;
+  if (requested === "ngn" && !offersNgnFormatTab(fieldId)) return "all";
   if (!formats) return requested;
-  return isFormatOffered(requested, formats) ? requested : "all";
+  return isFormatOffered(requested, formats, fieldId) ? requested : "all";
 }
 
 export type PracticeFormatChooser = {
@@ -52,9 +65,10 @@ export function practiceFormatChooser(params: {
   ngnLabel?: string;
   subjectId?: string | null;
   lockToAll?: boolean;
+  fieldId?: string | null;
 }): PracticeFormatChooser | null {
   if (params.lockToAll || !params.formats) return null;
-  const offered = offeredDeliberateFormats(params.formats);
+  const offered = offeredDeliberateFormats(params.formats, params.fieldId);
   if (offered.length === 0) return null;
   const ngnLabel = params.ngnLabel?.trim() || "NGN";
   const names = offered.map((format) => (format === "ngn" ? ngnLabel : "Case"));
@@ -84,11 +98,12 @@ export function isFormatTaggedPreset(presetId: string | null | undefined): boole
 
 export function isPracticePresetOffered(
   presetId: string | null | undefined,
-  formats: FormatCounts | null | undefined
+  formats: FormatCounts | null | undefined,
+  fieldId?: string | null
 ): boolean {
   const format = practicePresetFormat(presetId);
   if (!format) return true;
-  return isFormatOffered(format, formats);
+  return isFormatOffered(format, formats, fieldId);
 }
 
 export function filterPresetsByOfferedFormats<T extends { id: string }>(

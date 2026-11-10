@@ -592,7 +592,7 @@ export function StudyBankPractice({
   const sessionFormat =
     countsLoading || !scopeFormats
       ? practiceFormat
-      : coercePracticeFormat(practiceFormat, scopeFormats);
+      : coercePracticeFormat(practiceFormat, scopeFormats, fieldId);
   const sessionFormatRef = useRef(sessionFormat);
   sessionFormatRef.current = sessionFormat;
   const activeCategories = useMemo(
@@ -1058,7 +1058,7 @@ export function StudyBankPractice({
         return;
       }
       if (!scopeFormats) return;
-      if (coercePracticeFormat(practiceFormat, scopeFormats) === "all") {
+      if (coercePracticeFormat(practiceFormat, scopeFormats, fieldId) === "all") {
         setPracticeFormat("all");
         syncPracticeUrl({ format: "all" });
         return;

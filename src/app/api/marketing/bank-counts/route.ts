@@ -33,8 +33,8 @@ export async function GET() {
           ? null
           : [
               formatInventoryFormatLine(
-                board.formats,
-                slug === "nclex" ? "NGN" : slug === "naplex" ? "select-all" : "other formats"
+                slug === "naplex" ? { ...board.formats, ngn: 0 } : board.formats,
+                slug === "nclex" ? "NGN" : "other formats"
               ) ??
                 (units ? formatBoardQuestionSentence(units) : null),
               units ? formatSeparatePublishedCatalog(units) : "",

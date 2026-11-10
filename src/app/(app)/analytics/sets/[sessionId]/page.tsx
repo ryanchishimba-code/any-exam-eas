@@ -69,9 +69,7 @@ export default async function SavedFormatSetPage({
       ? "Saved case set"
       : row.fieldId === "nursing"
         ? "Saved NGN set"
-        : row.fieldId === "pharmacy"
-          ? "Saved select-all set"
-          : "Saved practice set";
+        : "Saved practice set";
 
   return (
     <div className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6">
