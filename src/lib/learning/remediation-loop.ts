@@ -10,6 +10,8 @@
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
+import { resolveBlueprintCategoryIdForAttempt } from "@/lib/learning/attempt-blueprint-attribution";
+import { getSubjectArea } from "@/lib/subjects/subject-catalog";
 import {
   drugSafetyPathHref,
   drugStudyHref,
@@ -370,9 +372,18 @@ export type OpenLoopAttempt = {
   questionKey?: string | null;
   correct: boolean;
   subjectId?: string | null;
+  clientNeeds?: string | null;
+  topicCategory?: string | null;
+  blueprintDomain?: string | null;
   createdAt?: Date | string | number | null;
   sessionId?: string | null;
 };
+
+/** One catalog id per topic, whether the attempt stored the slug or the label. */
+export function canonicalOpenSubjectId(fieldId: string, subjectId: string): string {
+  const area = getSubjectArea(fieldId, subjectId);
+  return area?.id ?? subjectId.trim();
+}
 
 export type OpenRemediationLoop = {
   id: string;
@@ -416,8 +427,22 @@ export function groupOpenRemediationLoops(params: {
    */
   openIds?: readonly string[];
 }): OpenRemediationSummary {
+  const attributed = params.attempts.map((item) => {
+    const raw = item.subjectId?.trim() ?? "";
+    if (raw && !isUntaggedOpenSubject(raw)) {
+      return { ...item, subjectId: canonicalOpenSubjectId(params.fieldId, raw) };
+    }
+    const resolved = resolveBlueprintCategoryIdForAttempt(params.fieldId, {
+      subjectId: raw,
+      clientNeeds: item.clientNeeds,
+      topicCategory: item.topicCategory,
+      blueprintDomain: item.blueprintDomain,
+    });
+    if (!resolved || isUntaggedOpenSubject(resolved)) return item;
+    return { ...item, subjectId: canonicalOpenSubjectId(params.fieldId, resolved) };
+  });
   const mastery = summarizeRemediationMastery({
-    attempts: params.attempts,
+    attempts: attributed,
     marks: params.marks,
     now: params.now,
   });
@@ -426,7 +451,7 @@ export function groupOpenRemediationLoops(params: {
 
   const groups = new Map<string, { ids: Set<string>; pending: number }>();
   for (const item of items) {
-    const subject = item.subjectId?.trim();
+    const subject = item.subjectId?.trim() ?? "";
     if (!subject || isUntaggedOpenSubject(subject)) continue;
     const group = groups.get(subject) ?? { ids: new Set<string>(), pending: 0 };
     group.ids.add(item.itemId);

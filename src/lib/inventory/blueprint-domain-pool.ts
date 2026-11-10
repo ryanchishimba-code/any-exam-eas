@@ -22,11 +22,15 @@ export function blueprintCategoryIdForQuestion(
   source: QuestionAreaSource
 ): string | null {
   const explicit = source.clientNeeds?.trim();
+  const categories = getExamBlueprint(fieldId)?.categories ?? [];
   if (explicit) {
     if (isBlueprintAreaId(fieldId, explicit)) return explicit;
+    const byLabel = categories.find(
+      (category) => category.label.toLowerCase() === explicit.toLowerCase()
+    );
+    if (byLabel) return byLabel.id;
   }
   const subjectId = source.subjectId?.trim() || "unassigned";
-  const categories = getExamBlueprint(fieldId)?.categories ?? [];
   const match = categories.find(
     (category) => category.id === subjectId || category.subjectIds?.includes(subjectId)
   );

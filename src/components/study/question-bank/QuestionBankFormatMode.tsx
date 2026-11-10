@@ -79,7 +79,7 @@ export function QuestionBankFormatMode({
           const count = countFor(id, formats, id === "all" ? scoredTotal : null);
           const hint =
             id === "ngn"
-              ? "Standalone NGN items"
+              ? "NGN-style items in this bank, not the published case total"
               : id === "case"
                 ? typeof caseItemCount === "number" && caseItemCount > 0
                   ? `${caseItemCount.toLocaleString("en-US")} scored items inside`

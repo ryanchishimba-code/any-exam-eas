@@ -300,7 +300,7 @@ export function ReadinessDashboardCard({
     if (compact) {
       return (
         <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
-          <span>Baseline, not a prediction of passing.</span>
+          <span>Your readiness baseline isn&apos;t set yet.</span>
           {view.hasStudyAccess ? (
             <button type="button" className={quietAction} disabled={pending} onClick={() => void start(false)}>
               {pending ? "Starting…" : "Start baseline"}
@@ -341,7 +341,7 @@ export function ReadinessDashboardCard({
   if (compact) {
     return (
       <span className="inline-flex max-w-full flex-wrap items-center gap-x-2 gap-y-1" data-readiness-card="true">
-        <span>Baseline, not a prediction of passing.</span>
+        <span>Your readiness baseline isn&apos;t set yet.</span>
         {view.hasStudyAccess ? (
           <button type="button" className={quietAction} disabled={pending} onClick={() => void start(false)}>
             {pending ? "Starting…" : "Start baseline"}

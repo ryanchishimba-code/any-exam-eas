@@ -268,6 +268,8 @@ export function FullExamSimulator({
   const [pauseDialog, setPauseDialog] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [advancing, setAdvancing] = useState(false);
+  const [nextHint, setNextHint] = useState<string | null>(null);
   const [submitPhase, setSubmitPhase] = useState<"idle" | "finalizing" | "grading">("idle");
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [notesOpen, setNotesOpen] = useState(false);
@@ -1142,9 +1144,16 @@ export function FullExamSimulator({
 
   function goExamNext() {
     const ans = answersRef.current[index] ?? defaultAnswer();
-    if (!hasSelection(ans.selected)) return;
+    if (!hasSelection(ans.selected)) {
+      setNextHint("Choose an answer to continue.");
+      return;
+    }
+    setNextHint(null);
     if (!examAnswerEditable(index, lockedThrough)) return;
+    if (advancing || submitting) return;
+    setAdvancing(true);
     void (async () => {
+    try {
     let stop = false;
     if (isCatMode) {
       await persistAnswer(index, ans);
@@ -1163,6 +1172,8 @@ export function FullExamSimulator({
     }
     const next = lockAnswerOnNext(index, questions.length);
     if (stop || next === "submit") {
+      setNextHint("Submitting your exam…");
+      setSubmitting(true);
       void submitExam();
       return;
     }
@@ -1173,6 +1184,9 @@ export function FullExamSimulator({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ lockThrough: next.lockedThrough })
 });
+    } finally {
+      setAdvancing(false);
+    }
     })();
   }
   examNextRef.current = goExamNext;
@@ -1470,7 +1484,7 @@ export function FullExamSimulator({
         <aside
           className={cn(
             "shrink-0 border-l border-slate-200/80 bg-white transition-all",
-            notesOpen ? "w-64 p-4 xl:w-72" : "hidden w-0 overflow-hidden xl:block xl:w-64 xl:p-4"
+            notesOpen ? "w-64 p-4 xl:w-72" : "hidden"
           )}
         >
           <div className="sticky top-24">
@@ -1499,6 +1513,11 @@ export function FullExamSimulator({
 
       <footer className={feUi.glassFooter}>
         <div className="mx-auto max-w-[1400px] space-y-2.5 px-4 py-3 sm:px-6">
+          {nextHint ? (
+            <p className="text-center text-[13px] font-medium text-[var(--color-ink)]" role="status">
+              {nextHint}
+            </p>
+          ) : null}
           <div className="flex items-center justify-between gap-2">
             {examMode ? (
               <span className="text-[13px] text-[var(--color-ink-muted)]">Answers lock on Next</span>
@@ -1533,10 +1552,12 @@ export function FullExamSimulator({
             ) : (
               <button
                 type="button"
+                disabled={advancing || submitting}
+                aria-busy={advancing || submitting}
                 onClick={() => (examMode ? goExamNext() : isCatMode ? advanceCat() : setIndex((i) => i + 1))}
                 className={feUi.footerBtnDark}
               >
-                Next <ChevronRight className="h-4 w-4" />
+                {advancing || submitting ? "Working…" : "Next"} <ChevronRight className="h-4 w-4" />
               </button>
             )}
           </div>

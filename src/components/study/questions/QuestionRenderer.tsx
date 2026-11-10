@@ -333,6 +333,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
           selected={selected}
           revealed={revealed}
           onToggle={handleToggle}
+          wide={examMode}
         />
       )}
     </>

@@ -5,6 +5,7 @@
  * Eligibility and hidden-item rules stay with the caller — this only chooses
  * among rows already allowed to serve.
  */
+import { replaceRepeatedScenarios } from "@/lib/exam-prep/clinical-case-dedupe";
 import type { BankItem } from "@/lib/question-bank";
 import {
   assignSittingClusters,
@@ -456,9 +457,14 @@ export function finalizeAssembledSitting(params: {
       : null;
   const seated = quota ?? orderedBaseFinal;
   const ordered = shapeNclexCases ? restoreNclexExamOrder(seated, params.pool) : seated;
-  capStats.kept = ordered.length;
+  const uniqueScenarios =
+    params.fieldId === "nursing"
+      ? replaceRepeatedScenarios(ordered, params.pool, limit)
+      : ordered;
+  const delivered = uniqueScenarios.length >= limit ? uniqueScenarios.slice(0, limit) : ordered;
+  capStats.kept = delivered.length;
   capStats.strict = strict ?? { kept: ordered.length, rejections: { ...capStats.rejections } };
-  return { items: ordered, relaxed, excludeSeenApplied, capStats };
+  return { items: delivered, relaxed, excludeSeenApplied, capStats };
 }
 
 /**

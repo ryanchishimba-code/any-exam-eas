@@ -592,7 +592,7 @@ async function loadExamRoadmapData(
   const openRemediation = countServableOpenRemediation({
     examSlug,
     fieldId,
-    attempts,
+    attempts: hydratedAttempts,
     marks: masteryMarks,
     servableIds: servableReviewIds,
   });
@@ -676,7 +676,7 @@ export async function getExamRoadmapData(
       ? options.usmleFieldId
       : examSlug;
   return cacheGetOrSet(
-    cacheKey(["exam-roadmap-v9", userId, fieldKey]),
+    cacheKey(["exam-roadmap-v10", userId, fieldKey]),
     CACHE_TTL.learningDashboard,
     () => loadExamRoadmapData(userId, examSlug, options),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }

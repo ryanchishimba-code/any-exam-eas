@@ -49,7 +49,7 @@ export const feUi = {
   qNavEmpty:
     "bg-[var(--color-surface)] text-[var(--color-ink-muted)] hover:bg-[var(--color-surface-elevated)]",
   timerPill:
-    "fixed z-[90] select-none rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)]/90 px-4 py-2 shadow-[var(--shadow-apple-md)] backdrop-blur-xl",
+    "fixed z-[90] max-w-[calc(100vw-1.5rem)] select-none rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)]/90 px-4 py-2 shadow-[var(--shadow-apple-md)] backdrop-blur-xl",
   modal:
     "relative w-full max-w-[22rem] rounded-[28px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-lg)]",
   modalOverlay: "absolute inset-0 bg-black/40 backdrop-blur-sm",

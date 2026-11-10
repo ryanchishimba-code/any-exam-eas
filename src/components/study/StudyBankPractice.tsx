@@ -1064,7 +1064,7 @@ export function StudyBankPractice({
         return;
       }
       const pool = practiceFormatPoolCount(practiceFormat, scopeFormats);
-      const options = practiceFormatCountOptions(pool);
+      const options = practiceFormatCountOptions(pool, practiceFormat);
       if (options.length === 0) return;
       setQuestionCount((current) => {
         const resolved = resolveWheelCountValue(current, options);
@@ -2672,7 +2672,7 @@ export function StudyBankPractice({
               ngnLabel={ngnLabel}
               onPracticeFormatChange={(next) => {
                 const pool = practiceFormatPoolCount(next, scopeFormats);
-                const options = practiceFormatCountOptions(pool);
+                const options = practiceFormatCountOptions(pool, next);
                 const resolved =
                   next === "all" || options.length === 0
                     ? questionCount

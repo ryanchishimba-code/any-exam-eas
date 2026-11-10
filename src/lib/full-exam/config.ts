@@ -232,6 +232,19 @@ export function formatMmSs(totalSec: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+/** Results copy: "8 min 56 sec", never a glued "8min". */
+export function formatExamDuration(totalSec: number): string {
+  const sec = Math.max(0, Math.floor(totalSec) || 0);
+  const hours = Math.floor(sec / 3600);
+  const minutes = Math.floor((sec % 3600) / 60);
+  const seconds = sec % 60;
+  const parts: string[] = [];
+  if (hours > 0) parts.push(`${hours} hr`);
+  if (minutes > 0 || hours > 0) parts.push(`${minutes} min`);
+  parts.push(`${seconds} sec`);
+  return parts.join(" ");
+}
+
 /** Live exam clock — always H:M:S (e.g. 0:45:30, 2:30:00). */
 export function formatHms(totalSec: number): string {
   const sec = Math.max(0, Math.floor(totalSec));

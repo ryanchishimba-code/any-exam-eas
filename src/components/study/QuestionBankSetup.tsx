@@ -136,7 +136,7 @@ export function QuestionBankSetup({
       ? activeArea.available
       : availableQuestionCount(subjectId, wheelCounts);
   const countOptions = formatMode
-    ? practiceFormatCountOptions(formatPool)
+    ? practiceFormatCountOptions(formatPool, practiceFormat)
     : questionBankCountOptionsForAvailable(maxAvailable, fieldId);
   const countChoices = questionBankCountChoices({
     questionCount,

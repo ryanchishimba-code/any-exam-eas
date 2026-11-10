@@ -84,7 +84,7 @@ export function ReadinessBoard({
           {data.result?.summaryLine ?? "A baseline, then proof you're moving"}
         </h1>
         <p className="max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-          The overall level is the read that matters. Area names follow the tags on a {data.length}-question check of standard multiple-choice items, so each area level is provisional. Fewer than 2 answers stays “Not enough data yet.” This is not a prediction of passing.
+          The overall level is the read that matters. Area names follow the tags on the {data.length}-question check of standard multiple-choice items, so each area level is provisional. Fewer than 2 answers stays “Not enough data yet.” This is not a prediction of passing.
         </p>
         {data.areas.some((area) => area.thinBank) ? (
           <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
@@ -181,6 +181,9 @@ export function ReadinessBoard({
               {outlineDepthPct != null ? `${outlineDepthPct}% outline depth` : null}
             </p>
           ) : null}
+          <p className="mt-2 max-w-2xl text-[15px] font-medium text-[var(--color-ink)]">
+            {data.result ? "Baseline check on file." : "Your readiness baseline isn't set yet."}
+          </p>
           <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
             {practiceEstimate.summary}
           </p>
@@ -189,14 +192,14 @@ export function ReadinessBoard({
           </p>
           {data.hasStudyAccess ? (
             <button type="button" className={cn(dbUi.ghostBtn, "mt-4 min-h-11")} disabled={pending} onClick={() => void start(false)}>
-              {pending ? "Building your check…" : "Start a separate baseline check"}
+              {pending ? "Building your check…" : data.result ? "Start a separate baseline check" : "Start baseline"}
             </button>
           ) : null}
         </section>
       ) : (
         <section className={cn(dbUi.surface, "p-5 sm:p-6")}>
           <h2 className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]">
-            No check yet
+            Your readiness baseline isn&apos;t set yet
           </h2>
           <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
             Start with {data.length} questions drawn from the bank. You can skip it and come back.
@@ -231,6 +234,7 @@ export function ReadinessBoard({
         <ExamOutcomeForm
           examName={data.examName}
           examDate={data.examDate}
+          selected={saved}
           onSubmit={saveOutcome}
         />
       </section>

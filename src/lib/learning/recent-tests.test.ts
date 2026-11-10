@@ -24,7 +24,7 @@ describe("recent exam sessions", () => {
       field: "nursing",
       score: 72,
       correct: 1,
-      total: 85,
+      total: 2,
       completedAt: "2026-10-10T01:00:00.000Z",
     });
   });

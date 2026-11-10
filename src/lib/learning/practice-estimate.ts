@@ -8,7 +8,7 @@ import { outlineCoveragePct } from "@/lib/learning/practice-measure";
 export const PRACTICE_ESTIMATE_LABEL = "A practice measure, not a pass prediction.";
 
 export const PRACTICE_ESTIMATE_EXPLANATION =
-  "The baseline measures accuracy, how much of the outline you have answered, and how many misses you have retried. Each practice set updates those three counts.";
+  "This is practice history: accuracy, how much of the outline you have answered, and how many misses you have retried. It is not the readiness baseline. The baseline is the separate check, and it stays unset until you start one.";
 
 export type PracticeEstimateLevel = "early" | "building" | "steady";
 

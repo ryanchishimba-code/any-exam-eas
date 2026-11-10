@@ -9,10 +9,11 @@ import {
 import { COMPLETION_RULES_V1 } from "./completion-rules-v1";
 import { COMPLETION_RULES_V2 } from "./completion-rules-v2";
 
-const { prismaMock } = vi.hoisted(() => ({
+const { prismaMock, countActiveQuestions } = vi.hoisted(() => ({
+  countActiveQuestions: vi.fn(),
   prismaMock: {
     questionBankItem: { count: vi.fn() },
-    examSession: { count: vi.fn(), findFirst: vi.fn() },
+    examSession: { count: vi.fn(), findFirst: vi.fn(), findMany: vi.fn() },
     readinessCheck: { count: vi.fn(), findFirst: vi.fn() },
     quickBiteProgress: { count: vi.fn() },
     sgChapter: { count: vi.fn() },
@@ -25,12 +26,16 @@ vi.mock("@/lib/prisma", () => ({
   prisma: prismaMock
 }));
 
+vi.mock("@/lib/question-bank-db", () => ({
+  countActiveQuestions
+}));
+
 vi.mock("@/lib/nclex-study-guide/queries", () => ({
   getPublishedGuide: vi.fn(async () => ({ id: "guide_nclex" }))
 }));
 
 describe("buildStudyCompletionResult", () => {
-  it("derives coverage target from live bank size and 85% rule", () => {
+  it("uses the served bank total as the Questions denominator", () => {
     const result = buildStudyCompletionResult("nclex", {
       liveBankCount: 1000,
       distinctBankItemsAttempted: 800,
@@ -44,7 +49,7 @@ describe("buildStudyCompletionResult", () => {
 });
     expect(result.pillars[0]).toMatchObject({
       done: 800,
-      target: 850,
+      target: 1000,
       met: false
 });
     expect(result.coveragePercent).toBe(80);
@@ -131,13 +136,17 @@ describe("computeStudyCompletion", () => {
   });
 
   it("loads metrics from the database for a supported board", async () => {
+    countActiveQuestions.mockResolvedValue(200);
     prismaMock.questionBankItem.count.mockResolvedValue(200);
     prismaMock.$queryRaw
       .mockResolvedValueOnce([{ count: BigInt(40) }])
       .mockResolvedValueOnce([{ count: BigInt(3) }])
       .mockResolvedValueOnce([{ count: BigInt(40) }])
       .mockResolvedValueOnce([]);
-    prismaMock.examSession.count.mockResolvedValue(2);
+    prismaMock.examSession.findMany.mockResolvedValue([
+      { questionCount: 150, analysis: { answeredCount: 87 }, score: 90 },
+      { questionCount: 300, analysis: null, score: 70 },
+    ]);
     prismaMock.examSession.findFirst.mockResolvedValue(null);
     prismaMock.readinessCheck.count.mockResolvedValue(1);
     prismaMock.readinessCheck.findFirst.mockResolvedValue(null);
@@ -150,16 +159,10 @@ describe("computeStudyCompletion", () => {
     expect(result.examSlug).toBe("pance");
     expect(result.fieldId).toBe("pance");
     expect(result.fastAttemptsExcluded).toBe(3);
-    expect(prismaMock.examSession.count).toHaveBeenCalledWith(
-      expect.objectContaining({
-        where: expect.objectContaining({
-          userId: "user_1",
-          examType: "pance",
-          status: "completed",
-          questionCount: 300
-})
-})
-    );
+    expect(result.liveBankCount).toBe(200);
+    const exams = result.pillars.find((pillar) => pillar.id === "full_length_exams");
+    expect(exams?.done).toBe(1);
+    expect(countActiveQuestions).toHaveBeenCalledWith("pance");
   });
 
   it("rejects unsupported exam slugs", async () => {

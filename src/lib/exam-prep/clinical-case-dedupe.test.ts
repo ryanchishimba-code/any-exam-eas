@@ -4,8 +4,10 @@ import {
   applyStemCap,
   buildRankedRow,
   clinicalCaseKey,
+  examScenarioKey,
   pickBestPerClinicalCase,
   pickBestPerSessionDedupeKey,
+  replaceRepeatedScenarios,
   sessionDedupeKey,
 } from "./clinical-case-dedupe";
 
@@ -93,5 +95,30 @@ describe("NCLEX polish template dedupe", () => {
     ]);
     expect(keep.map((r) => r.id)).toEqual(["best"]);
     expect(retire.map((r) => r.id)).toEqual(["low"]);
+  });
+
+  it("replaces a repeated DKA scenario and a repeated heparin calculation", () => {
+    const heparin = (id: string, units: number): BankItem => ({
+      id,
+      subjectId: "pharmacology-nursing",
+      question: `The heparin infusion is ${units} units/hr. How many mL/hr should the nurse set?`,
+      options: ["12", "18", "24", "30"],
+      correctAnswer: "18",
+      explanation: "Rate follows the ordered units and the bag concentration.",
+    });
+    const other: BankItem = {
+      id: "other",
+      subjectId: "safety-infection",
+      question: "Which action prevents a fall for a client who is dizzy when standing?",
+      vignette: "Medical unit. A client stands and reports dizziness. Orthostatic blood pressure was checked this morning.",
+      options: ["Stay with the client", "Leave for a walker", "Document later", "Lower the bed after leaving"],
+      correctAnswer: "Stay with the client",
+      explanation: "Stay with the dizzy client.",
+    };
+    const chosen = [dkaClone("dka-1", 548, 56), dkaClone("dka-2", 312, 54), heparin("h1", 1000), heparin("h2", 1200)];
+    expect(examScenarioKey(chosen[0]!)).toBe(examScenarioKey(chosen[1]!));
+    expect(examScenarioKey(chosen[2]!)).toBe(examScenarioKey(chosen[3]!));
+    const next = replaceRepeatedScenarios(chosen, [other, ...chosen], 3);
+    expect(next.map((item) => item.id)).toEqual(["dka-1", "h1", "other"]);
   });
 });

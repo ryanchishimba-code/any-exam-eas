@@ -8,6 +8,13 @@ import { computeMasteryRollup } from "@/lib/engine/mastery/rollup";
 import { loadUserCellStates } from "@/lib/engine/mastery/persist";
 import { cellStateToRoadmapKey, emptyCellState } from "@/lib/engine/mastery/transitions";
 import {
+  applyAttemptProgressToTiles,
+  statesWithAttemptedDomains,
+  type DomainAttemptTally,
+} from "@/lib/engine/mastery/attempt-progress";
+import { resolveBlueprintCategoryIdForAttempt } from "@/lib/learning/attempt-blueprint-attribution";
+import { prisma } from "@/lib/prisma";
+import {
   isTodayEngineEnabled,
   isTodayEngineNaplexEnabled,
   isTodayEngineUsmleEnabled,
@@ -31,7 +38,7 @@ async function cachedMasteryDashboard(
   loader: () => Promise<MasteryDashboardPayload | null>
 ): Promise<MasteryDashboardPayload | null> {
   return cacheGetOrSet(
-    cacheKey(["mastery-dashboard", userId, examKey]),
+    cacheKey(["mastery-dashboard-v2", userId, examKey]),
     CACHE_TTL.learningDashboard,
     loader,
     { staleTtlMs: CACHE_STALE.learningDashboard }
@@ -46,7 +53,11 @@ export async function loadNclexMasteryDashboard(userId: string): Promise<{
 
   return cachedMasteryDashboard(userId, "nclex", async () => {
     const cells = buildNclexSkillCells("rn");
-    const states = await loadUserCellStates(userId, "nclex");
+    const [storedStates, tallies] = await Promise.all([
+      loadUserCellStates(userId, "nclex"),
+      loadNclexAttemptTallies(userId),
+    ]);
+    const states = statesWithAttemptedDomains(cells, storedStates, tallies);
     const rollup = computeMasteryRollup({ cells, states });
 
     // Aggregate to Client Needs systems for the Map (one tile per system).
@@ -97,8 +108,43 @@ export async function loadNclexMasteryDashboard(userId: string): Promise<{
       };
     });
 
-    return { rollup, mapTiles };
+    return { rollup, mapTiles: applyAttemptProgressToTiles(mapTiles, tallies) };
   });
+}
+
+async function loadNclexAttemptTallies(userId: string): Promise<DomainAttemptTally[]> {
+  const rows = await prisma.$queryRaw<
+    {
+      subjectId: string | null;
+      clientNeeds: string | null;
+      answered: number;
+      correct: number;
+    }[]
+  >`
+    SELECT
+      COALESCE(NULLIF(BTRIM(qa."subjectId"), ''), qbi."subjectId") AS "subjectId",
+      COALESCE(NULLIF(BTRIM(qbi."clientNeeds"), ''), '') AS "clientNeeds",
+      COUNT(*)::int AS answered,
+      COALESCE(SUM(CASE WHEN qa.correct THEN 1 ELSE 0 END), 0)::int AS correct
+    FROM "QuestionAttempt" qa
+    LEFT JOIN "QuestionBankItem" qbi ON qbi.id = qa."bankItemId"
+    WHERE qa."userId" = ${userId}
+      AND qa."fieldId" = 'nursing'
+    GROUP BY 1, 2
+  `;
+  const totals = new Map<string, DomainAttemptTally>();
+  for (const row of rows) {
+    const domainId = resolveBlueprintCategoryIdForAttempt("nursing", {
+      subjectId: row.subjectId,
+      clientNeeds: row.clientNeeds,
+    });
+    if (!domainId) continue;
+    const current = totals.get(domainId) ?? { domainId, answered: 0, correct: 0 };
+    current.answered += Number(row.answered) || 0;
+    current.correct += Number(row.correct) || 0;
+    totals.set(domainId, current);
+  }
+  return [...totals.values()];
 }
 
 /** Five-domain NAPLEX map tiles + rollup for Practice Hub. */

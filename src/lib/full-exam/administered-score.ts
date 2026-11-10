@@ -83,6 +83,32 @@ export function practiceScorePercent(correct: number, administered: number): num
   return Math.round((hits / total) * 100);
 }
 
+/**
+ * Review length is the items the student answered.
+ * A CAT snapshot can hold the unused prefetch pool (150). The pager uses
+ * the administered count instead.
+ */
+export function administeredReviewLength(input: {
+  cat: boolean;
+  answeredCount?: number | null;
+  snapshotCount: number;
+  answers?: Array<{ questionIndex: number; selected?: string | null }> | null;
+}): number {
+  const snapshots = Math.max(0, Math.floor(input.snapshotCount) || 0);
+  if (!input.cat) return snapshots;
+  if (typeof input.answeredCount === "number" && input.answeredCount > 0) {
+    return Math.min(snapshots || input.answeredCount, Math.floor(input.answeredCount));
+  }
+  let maxIndex = -1;
+  for (const answer of input.answers ?? []) {
+    if (typeof answer.questionIndex !== "number" || !Number.isFinite(answer.questionIndex)) continue;
+    if (typeof answer.selected !== "string" || !answer.selected.trim()) continue;
+    maxIndex = Math.max(maxIndex, Math.floor(answer.questionIndex));
+  }
+  if (maxIndex >= 0) return Math.min(snapshots || maxIndex + 1, maxIndex + 1);
+  return snapshots;
+}
+
 export function isNaturalCatStop(
   reason: CatSessionState["stopReason"] | string | null | undefined
 ): boolean {

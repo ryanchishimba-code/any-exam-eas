@@ -45,8 +45,8 @@ describe("practice estimate", () => {
       remediationPct: 40,
     });
     expect(estimate?.label).toBe("A practice measure, not a pass prediction.");
-    expect(estimate?.explanation).toMatch(/baseline measures accuracy/i);
-    expect(estimate?.explanation).toMatch(/practice set updates/i);
+    expect(estimate?.explanation).toMatch(/not the readiness baseline/i);
+    expect(estimate?.explanation).toMatch(/practice history/i);
     expect(estimate?.summary).not.toMatch(/you will pass|pass prediction/i);
   });
 });
