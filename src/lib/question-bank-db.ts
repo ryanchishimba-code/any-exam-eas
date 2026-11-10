@@ -1057,11 +1057,21 @@ export async function sampleQuestionBankItemsByBlueprintTopics(params: {
   fieldId: string;
   blueprintTopics: string[];
   count: number;
+  /** USMLE weak areas: stored tag plus a stem that is actually about that topic. */
+  requireStemMatch?: boolean;
 }): Promise<BankItem[]> {
   const topics = params.blueprintTopics.map((t) => t.trim()).filter(Boolean);
   if (topics.length === 0) return [];
 
   const want = Math.max(1, params.count);
+  if (params.requireStemMatch) {
+    const { items } = await loadOnTopicWeakAreaItems({
+      fieldId: params.fieldId,
+      subjectId: topics[0]!,
+      blueprintTopics: topics,
+    });
+    return shuffleBankItems(items).slice(0, want);
+  }
   const where = {
     fieldId: params.fieldId,
     active: true as const,
@@ -1081,10 +1091,56 @@ export async function sampleQuestionBankItemsByBlueprintTopics(params: {
   return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
 }
 
+const ON_TOPIC_SCAN_CAP = 1000;
+
 /**
- * Weak-area session: the exact served subject or blueprint topic, missed items
- * first, then unseen. Previously correct items are left out. No other subject
- * is substituted.
+ * Rows whose stored topic tag equals the weak area, then the on-topic gate.
+ * `tagged` is the raw tag count. `items` are the ones a session may serve.
+ */
+export async function loadOnTopicWeakAreaItems(params: {
+  fieldId: string;
+  subjectId: string;
+  blueprintTopics?: string[];
+}): Promise<{ tagged: number; items: BankItem[] }> {
+  const topics = (params.blueprintTopics ?? []).map((topic) => topic.trim()).filter(Boolean);
+  const where = {
+    fieldId: params.fieldId,
+    active: true as const,
+    qaPassed: true as const,
+    ...(topics.length ? { blueprintTopic: { in: topics } } : { subjectId: params.subjectId }),
+    ...usmleStepSeparationWhere(params.fieldId),
+  };
+  const tagged = await prisma.questionBankItem.count({ where });
+  if (tagged === 0) return { tagged: 0, items: [] };
+
+  const { isNclexClientNeedsArea } = await import("@/lib/learning/weak-area-on-topic");
+  const clientNeedsArea = !topics.length && isNursingFieldId(params.fieldId) && isNclexClientNeedsArea(params.subjectId);
+  const rows = await prisma.questionBankItem.findMany({
+    where: clientNeedsArea ? { ...where, clientNeeds: { not: null } } : where,
+    take: Math.min(tagged, ON_TOPIC_SCAN_CAP),
+  });
+  const { weakAreaItemIsOnTopic } = await import("@/lib/learning/weak-area-on-topic");
+  const target = { subjectId: params.subjectId, blueprintTopics: topics };
+  const items = retainStudentEligibleBankItems(rows.map(rowToBankItem)).filter((item) =>
+    weakAreaItemIsOnTopic(item, target, params.fieldId)
+  );
+  return { tagged, items };
+}
+
+/** Correctly tagged served questions, and how many stored tags missed that bar. */
+export async function countOnTopicWeakArea(params: {
+  fieldId: string;
+  subjectId: string;
+  blueprintTopics?: string[];
+}): Promise<{ tagged: number; correct: number }> {
+  const { tagged, items } = await loadOnTopicWeakAreaItems(params);
+  return { tagged, correct: items.length };
+}
+
+/**
+ * Weak-area session: only questions whose own topic tag equals the weak area
+ * and, for USMLE blueprint topics, whose stem is about that topic.
+ * Missed items first, then unseen. Previously correct items are left out.
  */
 export async function sampleWeakAreaItems(params: {
   userId: string;
@@ -1094,16 +1150,11 @@ export async function sampleWeakAreaItems(params: {
   limit: number;
 }): Promise<BankItem[]> {
   const { pickWrongOrUnseen } = await import("@/lib/learning/weak-areas-from-attempts");
-  const topics = (params.blueprintTopics ?? []).map((topic) => topic.trim()).filter(Boolean);
-  const where = {
+  const { items } = await loadOnTopicWeakAreaItems({
     fieldId: params.fieldId,
-    active: true as const,
-    qaPassed: true as const,
-    ...(topics.length
-      ? { blueprintTopic: { in: topics } }
-      : { subjectId: params.subjectId }),
-    ...usmleStepSeparationWhere(params.fieldId),
-  };
+    subjectId: params.subjectId,
+    blueprintTopics: params.blueprintTopics,
+  });
   const attempts = await prisma.questionAttempt.findMany({
     where: { userId: params.userId, fieldId: params.fieldId, subjectId: params.subjectId },
     select: { bankItemId: true, questionKey: true, correct: true, createdAt: true },
@@ -1118,32 +1169,8 @@ export async function sampleWeakAreaItems(params: {
     seen.add(id);
     attemptRows.push({ id, correct: row.correct });
   }
-  const missedIds = attemptRows.filter((row) => !row.correct).map((row) => row.id);
-  const missedRows = missedIds.length
-    ? await prisma.questionBankItem.findMany({
-        where: { ...where, id: { in: missedIds.slice(0, 40) } },
-      })
-    : [];
-  const missedItems = retainStudentEligibleBankItems(missedRows.map(rowToBankItem));
-  const exclude = new Set([
-    ...attemptRows.filter((row) => row.correct).map((row) => row.id),
-    ...missedItems.map((item) => item.id).filter((id): id is string => Boolean(id)),
-  ]);
-  const total = await prisma.questionBankItem.count({
-    where: { ...where, ...(exclude.size ? { id: { notIn: [...exclude].slice(0, 500) } } : {}) },
-  });
   const want = Math.max(1, params.limit);
-  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(want * 4, want + 20));
-  const unseenRows =
-    total > 0
-      ? await sampleQuestionBankRows({
-          where: { ...where, ...(exclude.size ? { id: { notIn: [...exclude].slice(0, 500) } } : {}) },
-          pull,
-          total,
-        })
-      : [];
-  const unseenItems = dedupeSamplePool(unseenRows.map(rowToBankItem));
-  return pickWrongOrUnseen([...missedItems, ...unseenItems], attemptRows, want);
+  return pickWrongOrUnseen(shuffleBankItems(items), attemptRows, want);
 }
 
 /** Serve-ready rows tagged with any of the blueprint topic matchers (tag-only). */
@@ -1167,6 +1194,25 @@ export async function countActiveQuestionBankItemsByBlueprintTopics(params: {
       ...(blocked.length > 0 ? { id: { notIn: blocked } } : {}),
     },
   });
+}
+
+/** On-topic blueprint pool: stored tag plus a stem about that topic. */
+export async function countOnTopicBlueprintInventory(params: {
+  fieldId: string;
+  blueprintTopics: string[];
+}): Promise<{ total: number; formats: FormatCounts }> {
+  const topics = params.blueprintTopics.map((topic) => topic.trim()).filter(Boolean);
+  if (topics.length === 0) return { total: 0, formats: emptyFormatCounts() };
+  const { items } = await loadOnTopicWeakAreaItems({
+    fieldId: params.fieldId,
+    subjectId: topics[0]!,
+    blueprintTopics: topics,
+  });
+  const formats = emptyFormatCounts();
+  for (const item of items) {
+    formats[classifyQuestionFormat(item.itemType, false)] += 1;
+  }
+  return { total: items.length, formats };
 }
 
 /** Tag-only blueprint topic pool split by deliberate-practice format buckets. */

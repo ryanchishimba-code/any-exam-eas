@@ -13,12 +13,9 @@ export function usmleWeakAreaServedSubject(input: {
 }): { subjectId: string; blueprintTopics: string[] } | null {
   const target = servedWeakAreaTarget(input.fieldId, input.topicKey);
   if (!target) return null;
-  if (
-    input.subjectCounts &&
-    target.blueprintTopics.length === 0 &&
-    (input.subjectCounts[target.subjectId] ?? 0) < WEAK_AREA_MIN_SERVED
-  ) {
-    return null;
+  if (input.subjectCounts) {
+    const served = input.subjectCounts[target.subjectId];
+    if (typeof served === "number" && served < WEAK_AREA_MIN_SERVED) return null;
   }
   return { subjectId: target.subjectId, blueprintTopics: target.blueprintTopics };
 }

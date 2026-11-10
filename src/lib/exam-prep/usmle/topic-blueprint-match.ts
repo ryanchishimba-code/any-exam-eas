@@ -49,6 +49,18 @@ const STOP_WORDS = new Set([
   "disorders",
   "mechanisms",
   "pathophysiology",
+  "care",
+  "post",
+  "complications",
+  "complication",
+  "surgical",
+  "emergency",
+  "emergencies",
+  "patient",
+  "acute",
+  "chronic",
+  "treatment",
+  "therapy",
 ]);
 
 function slugToKeywordPattern(slug: string): RegExp {
@@ -108,7 +120,24 @@ const USMLE_BLUEPRINT_KEYWORDS: { slug: string; pattern: RegExp }[] = [
   },
   {
     slug: "sensitivity-specificity-lr",
-    pattern: /\b(?:sensitivity|specificity|likelihood ratio|PPV|NPV|ROC)\b/i,
+    pattern:
+      /\b(?:sensitivity of|specificity of|sensitivity and specificity|likelihood ratio|positive predictive|negative predictive|PPV|NPV|ROC|true positive|false positive)\b/i,
+  },
+  {
+    slug: "pcos-endocrine",
+    pattern: /\b(?:PCOS|polycystic|hirsutism|oligomenorrhea|anovulation|irregular menstrual)\b/i,
+  },
+  {
+    slug: "contraception-pharmacology",
+    pattern: /\b(?:contraceptive|contraception|oral contraceptive|IUD|levonorgestrel|ethinyl estradiol)\b/i,
+  },
+  {
+    slug: "pre-post-op-care",
+    pattern: /\b(?:preoperative|postoperative|post-op|pre-op|wound dehiscence|atelectasis|surgical complication)\b/i,
+  },
+  {
+    slug: "hernia-management",
+    pattern: /\b(?:hernia|incarcerat|strangulat|inguinal|femoral canal|ventral defect)\b/i,
   },
   {
     slug: "study-design-appraisal",
@@ -198,6 +227,44 @@ function blueprintTagsMatch(stored: string, allowedSlug: string): boolean {
   return false;
 }
 
+function blueprintKeywordPattern(slug: string): RegExp {
+  return KEYWORD_BY_SLUG.get(slug) ?? slugToKeywordPattern(slug);
+}
+
+/**
+ * A keyword hit counts only when it is a whole word.
+ * `\blabor` would otherwise accept "laboratory".
+ */
+function matchesWholeWord(pattern: RegExp, text: string): boolean {
+  const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
+  const global = new RegExp(pattern.source, flags);
+  let match: RegExpExecArray | null;
+  while ((match = global.exec(text))) {
+    const after = text[match.index + match[0].length] ?? "";
+    if (!after || !/[A-Za-z0-9]/.test(after)) return true;
+    if (global.lastIndex === match.index) global.lastIndex += 1;
+  }
+  return false;
+}
+
+/** The vignette and lead-in the student reads. Tags, choices, and the rationale are not the stem. */
+export function usmleBlueprintStemText(
+  item: Pick<BankItem, "vignette" | "scenario" | "question">
+): string {
+  return [item.vignette, item.scenario, item.question].filter(Boolean).join(" ");
+}
+
+/**
+ * Content match for a weak-area topic.
+ * The stored tag is ignored so a mis-stamped slug cannot pass by itself.
+ */
+export function usmleBlueprintStemMatches(
+  item: Pick<BankItem, "vignette" | "scenario" | "question">,
+  blueprintSlug: string
+): boolean {
+  return matchesWholeWord(blueprintKeywordPattern(blueprintSlug), usmleBlueprintStemText(item));
+}
+
 /** True when item content aligns with a Study Hub blueprint slug. */
 export function matchesUsmleBlueprintTopic(
   item: BankItem,
@@ -205,8 +272,8 @@ export function matchesUsmleBlueprintTopic(
   _opts?: UsmleBlueprintMatchOpts
 ): boolean {
   const text = itemText(item);
-  const pattern = KEYWORD_BY_SLUG.get(blueprintSlug);
-  return pattern ? pattern.test(text) : slugToKeywordPattern(blueprintSlug).test(text);
+  const pattern = blueprintKeywordPattern(blueprintSlug);
+  return pattern.test(text);
 }
 
 /** Keep items matching any allowed blueprint slug (tag or content). */

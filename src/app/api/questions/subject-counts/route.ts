@@ -3,6 +3,7 @@ import { boardQuestionUnits, formatBoardQuestionSentence } from "@/lib/counts";
 import { getScoredFieldInventory } from "@/lib/inventory/scored-field-inventory";
 import {
   countBlueprintTopicPracticeInventory,
+  countOnTopicBlueprintInventory,
   getSubjectServedCountsWithRetry,
 } from "@/lib/question-bank-db";
 import { nclexBlueprintTopicsForCount } from "@/lib/study/topic-practice-filters";
@@ -49,13 +50,17 @@ export async function GET(req: Request) {
   let topicPracticeFormats:
     | Awaited<ReturnType<typeof countBlueprintTopicPracticeInventory>>["formats"]
     | undefined;
+  const onTopic = url.searchParams.get("onTopic") === "1";
   if (blueprintTopics?.length) {
     const topics =
       fieldId === "nursing" ? nclexBlueprintTopicsForCount(blueprintTopics) : blueprintTopics;
-    const inventory = await countBlueprintTopicPracticeInventory({
-      fieldId,
-      blueprintTopics: topics,
-    });
+    const inventory =
+      onTopic && fieldId.startsWith("usmle-")
+        ? await countOnTopicBlueprintInventory({ fieldId, blueprintTopics: topics })
+        : await countBlueprintTopicPracticeInventory({
+            fieldId,
+            blueprintTopics: topics,
+          });
     topicPracticePoolCount = inventory.total;
     topicPracticeFormats = inventory.formats;
   }

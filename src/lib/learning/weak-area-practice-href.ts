@@ -1,5 +1,8 @@
 import { MIXED_SUBJECT_ID, topicRetestHref } from "@/lib/edtech/practice-links-core";
-import { usmleWeakAreaServedSubject } from "@/lib/exam-prep/usmle/weak-area-served-subject";
+import {
+  WEAK_AREA_MIN_SERVED,
+  usmleWeakAreaServedSubject,
+} from "@/lib/exam-prep/usmle/weak-area-served-subject";
 import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -44,10 +47,15 @@ export function weakAreaPracticeHref(input: {
     url.searchParams.set("weakArea", "1");
     return `${url.pathname}?${url.searchParams.toString()}`;
   }
+  if (input.subjectCounts) {
+    const served = input.subjectCounts[slug];
+    if (typeof served === "number" && served < WEAK_AREA_MIN_SERVED) return null;
+  }
   const href = topicRetestHref(input.examSlug, slug || MIXED_SUBJECT_ID, input.count ?? 25, {
     filters: { fieldId: input.fieldId },
   });
   const url = new URL(href, "https://anyexameasy.local");
   url.searchParams.set("style", "standard");
+  url.searchParams.set("weakArea", "1");
   return `${url.pathname}?${url.searchParams.toString()}`;
 }

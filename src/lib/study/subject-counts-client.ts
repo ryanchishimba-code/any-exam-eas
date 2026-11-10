@@ -95,13 +95,15 @@ function parseSubjectCounts(data: unknown): SubjectCountsClient | null {
 
 export async function fetchTopicPracticeInventory(
   fieldId: string,
-  blueprintTopics: string[]
+  blueprintTopics: string[],
+  opts?: { onTopic?: boolean }
 ): Promise<TopicPracticeInventoryClient | null> {
   if (!blueprintTopics.length) return null;
   const qs = new URLSearchParams({
     field: fieldId,
     blueprintTopics: blueprintTopics.join(","),
   });
+  if (opts?.onTopic) qs.set("onTopic", "1");
   const res = await fetch(`/api/questions/subject-counts?${qs.toString()}`, {
     cache: "no-store",
     credentials: "include",

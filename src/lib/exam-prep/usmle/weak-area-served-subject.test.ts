@@ -50,4 +50,21 @@ describe("USMLE weak areas stay on the served topic", () => {
       blueprintTopics: ["confidentiality-reporting"],
     });
   });
+
+  it("hides a blueprint topic with fewer than five correctly tagged questions", () => {
+    expect(
+      usmleWeakAreaServedSubject({
+        fieldId: "usmle-step-3",
+        topicKey: "sensitivity-specificity-lr",
+        subjectCounts: { "sensitivity-specificity-lr": 2 },
+      })
+    ).toBeNull();
+    expect(
+      usmleWeakAreaServedSubject({
+        fieldId: "usmle-step-3",
+        topicKey: "sensitivity-specificity-lr",
+        subjectCounts: { "sensitivity-specificity-lr": 5 },
+      })?.subjectId
+    ).toBe("sensitivity-specificity-lr");
+  });
 });

@@ -74,12 +74,14 @@ async function QuestionBankContent({
   fieldParam,
   usmleStepLabel,
   blueprintTopics = [],
+  onTopic = false,
 }: {
   userId: string;
   examSlug: ExamSlug;
   fieldParam: string;
   usmleStepLabel?: string;
   blueprintTopics?: string[];
+  onTopic?: boolean;
 }) {
   // Retries live in the loader / Neon HTTP path. After they are exhausted,
   // this throws into question-bank/error.tsx (final fallback UI).
@@ -90,6 +92,7 @@ async function QuestionBankContent({
       fieldParam={fieldParam}
       usmleStepLabel={usmleStepLabel}
       blueprintTopics={blueprintTopics}
+      onTopic={onTopic}
     />
   );
 }
@@ -171,6 +174,7 @@ export default async function QuestionBankPage({
           userId={session.user.id}
           {...route}
           blueprintTopics={blueprintTopics}
+          onTopic={firstParam(sp.weakArea) === "1"}
         />
       </Suspense>
     </div>
