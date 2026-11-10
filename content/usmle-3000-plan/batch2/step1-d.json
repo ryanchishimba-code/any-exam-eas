@@ -7,18 +7,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "A lucid interval after temporal impact, then coma, with a lens-shaped bleed, is the middle meningeal artery.",
-    "scenario": "A 22-year-old man is hit in the temple by a baseball. He talks normally for an hour, then becomes drowsy and the right pupil dilates. CT shows a lens-shaped blood collection that does not cross suture lines. The injury was not a slow fall three weeks ago.",
-    "question": "Which vessel tore?",
+    "examTakeaway": "A lens-shaped bleed after a lucid interval is arterial blood from the middle meningeal artery, trapped by sutures.",
+    "scenario": "A 22-year-old man is hit in the temple. He talks for an hour, then becomes drowsy and one pupil dilates. CT shows a lens-shaped collection that stops at the sutures. There was no slow fall three weeks earlier and the collection does not cross suture lines.",
+    "question": "Why does the blood form a lens instead of a crescent?",
     "options": [
-      "An anterior communicating aneurysm",
-      "The transverse sinus",
-      "A bridging artery of the scalp only",
-      "Middle meningeal artery",
-      "Bridging veins"
+      "Bridging veins ooze across sutures",
+      "Aneurysm blood fills the cisterns",
+      "Scalp blood stays outside the bone",
+      "Suture lines stop an arterial epidural bleed",
+      "The transverse sinus is the source"
     ],
-    "correctAnswer": "Middle meningeal artery",
-    "explanation": "A lucid interval after temporal impact, then coma, with a lens-shaped bleed, is the middle meningeal artery. Middle meningeal artery blood is trapped by sutures into a lens. Bridging veins ooze into a crescent that crosses sutures, usually after a slower story in an older adult. An anterior communicating aneurysm dumps blood into the cisterns at the moment of the headache, with no lucid interval after trauma. The transverse sinus is a venous channel, not this epidural lens. A bridging artery of the scalp only bleeds outside the skull.",
+    "correctAnswer": "Suture lines stop an arterial epidural bleed",
+    "explanation": "A lens-shaped bleed after a lucid interval is arterial blood from the middle meningeal artery, trapped by sutures. Suture lines stop an arterial epidural bleed, so the collection cannot creep into a crescent. Bridging veins ooze across sutures and make a crescent, usually after a slower story. Aneurysm blood fills the cisterns at the moment of the headache. Scalp blood stays outside the bone. The transverse sinus is a venous channel, not this lens.",
     "citation": null
   },
   {
@@ -51,18 +51,18 @@
     "outlineWeight": 12,
     "difficulty": 5,
     "subjectId": "neurology",
-    "examTakeaway": "Weakness that improves after a few seconds of use, with a lung mass, is impaired acetylcholine release.",
-    "scenario": "A 61-year-old man with a 30-pack-year history has trouble rising from a chair at first, then walks better after a few steps. Reflexes are reduced and return after he grips the examiner's hand. CT shows a hilar mass. Eyelids are not the main problem, and symptoms do not worsen through the day.",
-    "question": "Which synapse failed?",
+    "examTakeaway": "Strength that improves after a few steps means more acetylcholine is released with repeated firing, the opposite of a receptor blockade.",
+    "scenario": "A 61-year-old man with a 30-pack-year history struggles to rise from a chair, then walks better after a few steps. Reflexes return after he grips. CT shows a hilar mass. The eyelids are not the main problem and strength does not fade through the day.",
+    "question": "Why does repeated use improve the strength?",
     "options": [
-      "The muscle membrane chloride channel",
-      "Presynaptic calcium-triggered acetylcholine release",
-      "The postsynaptic acetylcholine receptor",
-      "A demyelinated peripheral nerve",
-      "The neuromuscular junction blocked by botulinum in a wound"
+      "The postsynaptic receptor recovers",
+      "More acetylcholine is released with each firing",
+      "A demyelinated nerve catches up",
+      "Botulinum wears off in seconds",
+      "The muscle chloride channel opens"
     ],
-    "correctAnswer": "Presynaptic calcium-triggered acetylcholine release",
-    "explanation": "Weakness that improves after a few seconds of use, with a lung mass, is impaired acetylcholine release. Presynaptic calcium-triggered acetylcholine release is attacked in Lambert-Eaton syndrome, so repeated use dumps enough transmitter to improve strength. The postsynaptic acetylcholine receptor is myasthenia, which worsens with use and prefers the eyelids. A demyelinated peripheral nerve is Guillain-Barre, an ascending areflexic paralysis after an infection. The neuromuscular junction blocked by botulinum in a wound causes descending paralysis that does not improve with grip. The muscle membrane chloride channel defect is myotonia, with delayed relaxation.",
+    "correctAnswer": "More acetylcholine is released with each firing",
+    "explanation": "Strength that improves after a few steps means more acetylcholine is released with repeated firing, the opposite of a receptor blockade. More acetylcholine is released with each firing when the attack is on the presynaptic calcium channel, so use helps. The postsynaptic receptor recovers is myasthenia, which worsens with use. A demyelinated nerve catches up is not a use-dependent improvement over a few steps. Botulinum wears off in seconds is false; botulinum paralysis does not improve with grip. The muscle chloride channel opens is myotonia, delayed relaxation.",
     "citation": null
   },
   {
@@ -73,18 +73,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "Ptosis that worsens when counting, with a thymic mass, is antibodies to the acetylcholine receptor.",
-    "scenario": "A 28-year-old woman develops double vision by evening. The eyelids droop after she looks up for one minute and improve after she rests. A chest CT shows an anterior mediastinal mass. Strength in the legs does not improve with repeated grip. She has no lung cancer.",
-    "question": "Which protein is the antibody target?",
+    "examTakeaway": "Eyelids that droop after sustained gaze have fewer working acetylcholine receptors, so rest restores transmission.",
+    "scenario": "A 28-year-old woman sees double by evening. The eyelids droop after she looks up for a minute and improve after rest. CT shows an anterior mediastinal mass. Leg strength does not improve with repeated grip. She has no lung cancer.",
+    "question": "Why does rest restore the eyelids?",
     "options": [
-      "Glutamic acid decarboxylase",
-      "The voltage-gated sodium channel",
-      "The acetylcholine receptor",
-      "Presynaptic calcium channels",
-      "Myelin of peripheral nerves"
+      "Presynaptic stores refill after a lung cancer",
+      "A demyelinated nerve remyelinates in a minute",
+      "Remaining acetylcholine receptors are no longer saturated",
+      "Glutamic acid decarboxylase recovers",
+      "A sodium channel reopens"
     ],
-    "correctAnswer": "The acetylcholine receptor",
-    "explanation": "Ptosis that worsens when counting, with a thymic mass, is antibodies to the acetylcholine receptor. The acetylcholine receptor is blocked, so use depletes the remaining receptors and rest helps, and the thymus is the associated mass. Presynaptic calcium channels are Lambert-Eaton, which improves with use and tracks a lung cancer she does not have. Myelin of peripheral nerves is Guillain-Barre or a chronic demyelinating neuropathy, not fatigable eyelids. Glutamic acid decarboxylase is stiff-person syndrome. The voltage-gated sodium channel is not the myasthenia target.",
+    "correctAnswer": "Remaining acetylcholine receptors are no longer saturated",
+    "explanation": "Eyelids that droop after sustained gaze have fewer working acetylcholine receptors, so rest restores transmission. Remaining acetylcholine receptors are no longer saturated once acetylcholine is cleared, so the few unblocked receptors work again. Presynaptic stores refill after a lung cancer is Lambert-Eaton, which improves with use and tracks a lung mass she does not have. A demyelinated nerve remyelinates in a minute is impossible. Glutamic acid decarboxylase recovers is stiff-person syndrome. A sodium channel reopens is not the myasthenia mechanism.",
     "citation": null
   },
   {
@@ -95,18 +95,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "A cape of lost pain and temperature with spared touch is a central cord syrinx crossing the anterior commissure.",
-    "scenario": "A 35-year-old man burned his hands on a stove and did not feel it. Pain and temperature are lost over both shoulders and arms. Touch and position sense in the fingers are intact. The legs are spastic. MRI of the neck is ordered. There is no facial pain and no Horner syndrome from a lateral medullary infarct.",
-    "question": "Which tract crossing was cut?",
+    "examTakeaway": "A cape of lost pain with spared touch means the crossing spinothalamic fibers were cut, while the dorsal columns sit outside the syrinx.",
+    "scenario": "A 35-year-old man burned his hands and did not feel it. Pain and temperature are lost over both shoulders. Touch and position sense in the fingers are intact. The legs are spastic. MRI of the neck is ordered. There is no facial pain and no Horner syndrome.",
+    "question": "Why is touch spared while pain is lost in both arms?",
     "options": [
-      "Anterior white commissure",
-      "Dorsal columns",
-      "Lateral corticospinal tract alone",
-      "Spinothalamic tract on one side only",
-      "The optic radiation"
+      "Crossing pain fibers were cut and the dorsal columns were spared",
+      "The dorsal columns were the only tracts cut",
+      "One lateral corticospinal tract explains the cape",
+      "A single spinothalamic tract explains both arms",
+      "The optic radiation was cut"
     ],
-    "correctAnswer": "Anterior white commissure",
-    "explanation": "A cape of lost pain and temperature with spared touch is a central cord syrinx crossing the anterior commissure. Anterior white commissure fibers are the crossing spinothalamic axons, so a central syrinx hits both arms and spares the dorsal columns. Dorsal columns carry touch and position, which are intact. Lateral corticospinal tract alone would weaken the legs without a suspended sensory cape. Spinothalamic tract on one side only is a hemicord lesion, with contralateral pain loss below a level, not a cape. The optic radiation is in the cerebrum.",
+    "correctAnswer": "Crossing pain fibers were cut and the dorsal columns were spared",
+    "explanation": "A cape of lost pain with spared touch means the crossing spinothalamic fibers were cut, while the dorsal columns sit outside the syrinx. Crossing pain fibers were cut and the dorsal columns were spared, which is a central cord lesion. The dorsal columns were the only tracts cut would lose touch, which is intact. One lateral corticospinal tract explains the cape is wrong; that tract is motor. A single spinothalamic tract explains both arms would cause a contralateral level, not a suspended cape. The optic radiation was cut is a cerebral visual path.",
     "citation": null
   },
   {
@@ -117,18 +117,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "Bilateral acoustic schwannomas are NF2, a merlin defect, not the skin-tumor disease NF1.",
-    "scenario": "A 22-year-old woman has hearing loss in both ears. MRI shows a mass on each eighth nerve. She has no cafe-au-lait spots and no optic glioma. Her father had the same tumors. Skin fibromas are absent.",
-    "question": "Which protein is missing?",
+    "examTakeaway": "Bilateral eighth-nerve tumors are a merlin loss on chromosome 22, and the skin-tumor gene is a different protein.",
+    "scenario": "A 22-year-old woman has hearing loss in both ears. MRI shows a mass on each eighth nerve. She has no cafe-au-lait spots and no optic glioma. Her father had the same tumors. She asks which gene product differs from the one that causes skin fibromas.",
+    "question": "Which protein is lost in the bilateral-nerve disease?",
     "options": [
-      "Retinoblastoma protein",
-      "Merlin",
       "Neurofibromin",
+      "Merlin",
       "Hamartin",
-      "Von Hippel-Lindau protein"
+      "Von Hippel-Lindau protein",
+      "Retinoblastoma protein"
     ],
     "correctAnswer": "Merlin",
-    "explanation": "Bilateral acoustic schwannomas are NF2, a merlin defect, not the skin-tumor disease NF1. Merlin is the NF2 product on chromosome 22. Neurofibromin is NF1, with cafe-au-lait spots and optic gliomas, which she does not have. Hamartin is tuberous sclerosis, with ash-leaf spots and kidney angiomyolipomas. Von Hippel-Lindau protein loss causes cerebellar hemangiomas and kidney cancer. Retinoblastoma protein loss causes eye tumors in children, not bilateral eighth-nerve masses.",
+    "explanation": "Bilateral eighth-nerve tumors are a merlin loss on chromosome 22, and the skin-tumor gene is a different protein. Merlin is the product lost here. Neurofibromin is the skin-fibroma and cafe-au-lait gene she does not have. Hamartin is tuberous sclerosis. Von Hippel-Lindau protein loss causes kidney cancer and cerebellar hemangiomas. Retinoblastoma protein loss causes eye tumors in children.",
     "citation": null
   },
   {
@@ -139,18 +139,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "Ash-leaf spots plus a kidney tumor of fat and vessels are tuberous sclerosis, not NF1.",
-    "scenario": "A 12-year-old boy has pale leaf-shaped patches that show up under a Wood lamp, and a seizure. CT of the head shows calcified nodules along the ventricles. Ultrasound shows a renal mass of fat, vessels, and muscle. He has no bilateral eighth-nerve tumors.",
-    "question": "Which complex failed?",
+    "examTakeaway": "Ash-leaf spots and a kidney tumor of fat and vessels mean mTOR is no longer restrained by hamartin-tuberin.",
+    "scenario": "A 12-year-old boy has pale leaf-shaped patches under a Wood lamp and a seizure. CT shows calcified nodules along the ventricles. Ultrasound shows a renal mass of fat, vessels, and muscle. He has no bilateral eighth-nerve tumors. He asks what the missing complex normally restrains.",
+    "question": "Which pathway runs too freely?",
     "options": [
-      "Merlin",
-      "Von Hippel-Lindau protein",
-      "Dystrophin",
-      "Hamartin-tuberin",
-      "Neurofibromin"
+      "RAS from neurofibromin loss",
+      "Hypoxia-inducible factor from VHL loss",
+      "A sonic-hedgehog skin tumor",
+      "mTOR, no longer restrained",
+      "The dystrophin-actin link"
     ],
-    "correctAnswer": "Hamartin-tuberin",
-    "explanation": "Ash-leaf spots plus a kidney tumor of fat and vessels are tuberous sclerosis, not NF1. Hamartin-tuberin restrains mTOR, and its loss produces the ventricular nodules and the angiomyolipoma. Neurofibromin loss produces cafe-au-lait spots and neurofibromas, not this kidney tumor. Merlin loss produces bilateral schwannomas. Von Hippel-Lindau protein loss produces clear-cell kidney cancer and cerebellar hemangiomas, not an angiomyolipoma. Dystrophin loss is a muscular dystrophy.",
+    "correctAnswer": "mTOR, no longer restrained",
+    "explanation": "Ash-leaf spots and a kidney tumor of fat and vessels mean mTOR is no longer restrained by hamartin-tuberin. mTOR, no longer restrained, drives the nodules and the angiomyolipoma. RAS from neurofibromin loss is NF1, with cafe-au-lait spots and neurofibromas. Hypoxia-inducible factor from VHL loss causes clear-cell kidney cancer and cerebellar hemangiomas, not an angiomyolipoma. A sonic-hedgehog skin tumor is basal cell carcinoma. The dystrophin-actin link is muscle, not this kidney mass.",
     "citation": null
   },
   {
@@ -161,18 +161,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "A cerebellar hemangioblastoma plus a clear-cell kidney cancer is von Hippel-Lindau, a failure to degrade hypoxia-inducible factor.",
-    "scenario": "A 30-year-old man has ataxia. MRI shows a cerebellar cyst with a bright nodule. He also has a clear-cell carcinoma in one kidney and several pancreatic cysts. There is no angiomyolipoma and no ash-leaf spot. His mother had a similar kidney cancer.",
-    "question": "Which protein is lost?",
+    "examTakeaway": "A cerebellar hemangioblastoma plus clear-cell kidney cancer means hypoxia-inducible factor is not being destroyed.",
+    "scenario": "A 30-year-old man has ataxia. MRI shows a cerebellar cyst with a bright nodule. One kidney has a clear-cell carcinoma and the pancreas has cysts. There is no angiomyolipoma and no ash-leaf spot. His mother had a similar kidney cancer. He asks what the missing protein normally marks for disposal.",
+    "question": "Which factor accumulates when that protein is lost?",
     "options": [
-      "Hamartin",
-      "Merlin",
-      "Neurofibromin",
-      "Retinoblastoma protein",
-      "Von Hippel-Lindau protein"
+      "mTOR in tuberous sclerosis",
+      "RAS in NF1",
+      "Merlin in the eighth nerve",
+      "Beta-catenin",
+      "Hypoxia-inducible factor"
     ],
-    "correctAnswer": "Von Hippel-Lindau protein",
-    "explanation": "A cerebellar hemangioblastoma plus a clear-cell kidney cancer is von Hippel-Lindau, a failure to degrade hypoxia-inducible factor. Von Hippel-Lindau protein normally marks that factor for disposal, and its loss drives the vascular tumors and the kidney cancer. Hamartin loss is tuberous sclerosis with angiomyolipomas, which he does not have. Merlin loss is NF2. Neurofibromin loss is NF1. Retinoblastoma protein loss is an eye tumor of childhood.",
+    "correctAnswer": "Hypoxia-inducible factor",
+    "explanation": "A cerebellar hemangioblastoma plus clear-cell kidney cancer means hypoxia-inducible factor is not being destroyed. Hypoxia-inducible factor accumulates and drives vascular tumors and the kidney cancer. mTOR in tuberous sclerosis fits ash-leaf spots and angiomyolipomas, which he does not have. RAS in NF1 fits skin fibromas. Merlin in the eighth nerve is NF2. Beta-catenin is a colon-cancer pathway, not this family tumor set.",
     "citation": null
   },
   {
@@ -183,18 +183,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "Internuclear ophthalmoplegia plus oligoclonal bands in a young adult is demyelination in the medial longitudinal fasciculus.",
-    "scenario": "A 26-year-old woman has had two episodes of blurred vision, months apart, each resolving. On left gaze the right eye does not adduct and the left eye has nystagmus. Convergence is spared. Spinal fluid has oligoclonal bands and a normal cell-free protein pattern is not what was found. MRI shows periventricular white-matter lesions.",
-    "question": "Which tract is demyelinated?",
+    "examTakeaway": "Failed adduction on lateral gaze with spared convergence means the medial longitudinal fasciculus is demyelinated, because convergence bypasses that tract.",
+    "scenario": "A 26-year-old woman has had two episodes of blurred vision months apart, each resolving. On left gaze the right eye does not adduct and the left eye has nystagmus. She can still converge. Spinal fluid has oligoclonal bands. MRI shows periventricular white-matter lesions.",
+    "question": "Why can she converge if she cannot adduct on side gaze?",
     "options": [
-      "The corticospinal tract in the medulla",
-      "Medial longitudinal fasciculus",
-      "The left oculomotor nucleus",
-      "The abducens nerve in the orbit",
-      "The optic nerve only"
+      "The oculomotor nucleus is destroyed",
+      "Convergence bypasses the demyelinated connecting tract",
+      "The abducens nerve in the orbit is cut",
+      "Only the optic nerve is required for convergence",
+      "The corticospinal tract drives convergence"
     ],
-    "correctAnswer": "Medial longitudinal fasciculus",
-    "explanation": "Internuclear ophthalmoplegia plus oligoclonal bands in a young adult is demyelination in the medial longitudinal fasciculus. Medial longitudinal fasciculus links the abducens nucleus to the opposite oculomotor nucleus, so adduction fails on lateral gaze while convergence, which bypasses that tract, is spared. The left oculomotor nucleus would also impair convergence and the pupil. The abducens nerve in the orbit would fail to abduct, which is not the deficit. The optic nerve only explains a past visual episode, not the gaze palsy. The corticospinal tract in the medulla would weaken the body, not spare convergence.",
+    "correctAnswer": "Convergence bypasses the demyelinated connecting tract",
+    "explanation": "Failed adduction on lateral gaze with spared convergence means the medial longitudinal fasciculus is demyelinated, because convergence bypasses that tract. Convergence bypasses the demyelinated connecting tract, so near gaze still works. The oculomotor nucleus is destroyed would also lose convergence and the pupil. The abducens nerve in the orbit is cut would fail abduction, not adduction. Only the optic nerve is required for convergence does not move the eye. The corticospinal tract drives convergence is a limb pathway.",
     "citation": null
   },
   {
@@ -227,18 +227,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "Low ceruloplasmin, a brown corneal ring, and a movement disorder are copper that cannot be excreted in bile.",
-    "scenario": "A 19-year-old man has a new tremor and slurred speech. A brown ring is seen at the edge of the cornea on slit lamp. Ceruloplasmin is low and the liver enzymes are high. He has no choreiform family history of a CAG repeat. Serum iron is normal.",
-    "question": "Which excretion failed?",
+    "examTakeaway": "A brown corneal ring and a low ceruloplasmin mean copper is not being excreted into bile, so it settles in the brain and the liver.",
+    "scenario": "A 19-year-old man has a new tremor and slurred speech. A brown ring is seen at the edge of the cornea. Ceruloplasmin is low and the liver enzymes are high. Serum iron is normal. There is no family history of a CAG-repeat chorea. He asks where the copper should have left the body.",
+    "question": "Which route of copper excretion failed?",
     "options": [
-      "Canalicular bilirubin excretion",
-      "Pulmonary copper loss",
-      "Biliary copper excretion",
       "Intestinal iron absorption control",
-      "Hepatic bilirubin conjugation"
+      "Hepatic bilirubin conjugation",
+      "Biliary copper excretion",
+      "Canalicular bilirubin excretion",
+      "Pulmonary copper loss"
     ],
     "correctAnswer": "Biliary copper excretion",
-    "explanation": "Low ceruloplasmin, a brown corneal ring, and a movement disorder are copper that cannot be excreted in bile. Biliary copper excretion fails in Wilson disease, so copper settles in the basal ganglia, the cornea, and the liver. Intestinal iron absorption control fails in hemochromatosis, which raises iron and does not make a corneal ring. Hepatic bilirubin conjugation fails in Crigler-Najjar syndrome, a neonatal unconjugated jaundice. Canalicular bilirubin excretion fails in Dubin-Johnson syndrome, a black liver with conjugated bilirubin. Pulmonary copper loss is not a route of copper balance.",
+    "explanation": "A brown corneal ring and a low ceruloplasmin mean copper is not being excreted into bile, so it settles in the brain and the liver. Biliary copper excretion is the failed route. Intestinal iron absorption control fails in hemochromatosis, and his iron is normal. Hepatic bilirubin conjugation fails in Crigler-Najjar syndrome. Canalicular bilirubin excretion fails in Dubin-Johnson syndrome. Pulmonary copper loss is not how copper balance is kept.",
     "citation": null
   },
   {
@@ -249,18 +249,18 @@
     "outlineWeight": 12,
     "difficulty": 4,
     "subjectId": "neurology",
-    "examTakeaway": "Personality change before memory loss, with knife-edge frontal atrophy, is frontotemporal degeneration, not Alzheimer disease.",
-    "scenario": "A 58-year-old man has become rude, overeats sweets, and no longer cares about his family. Memory for recent events is relatively spared. MRI shows severe atrophy of the frontal and temporal poles and relative sparing of the parietal lobe. There is no resting tremor.",
-    "question": "Which region failed first?",
+    "examTakeaway": "Behavior failing before memory, with frontal atrophy, means the poles degenerated before the cholinergic memory neurons.",
+    "scenario": "A 58-year-old man has become rude, overeats sweets, and ignores his family. Recent memory is relatively spared. MRI shows severe frontal and temporal atrophy and relative sparing of the parietal lobe. There is no resting tremor. He asks why memory is not the first loss.",
+    "question": "Which neurons fail first in this pattern?",
     "options": [
       "Nucleus basalis cholinergic neurons",
       "Substantia nigra",
       "Mammillary bodies",
       "The caudate",
-      "Frontal and temporal poles"
+      "Frontal and temporal pole neurons"
     ],
-    "correctAnswer": "Frontal and temporal poles",
-    "explanation": "Personality change before memory loss, with knife-edge frontal atrophy, is frontotemporal degeneration, not Alzheimer disease. Frontal and temporal poles degenerate first, so behavior fails while memory is relatively kept. Nucleus basalis cholinergic neurons are the Alzheimer loss, which hits memory first and atrophies the parietal lobe. Substantia nigra loss is Parkinson disease, with a resting tremor he does not have. Mammillary bodies are Wernicke encephalopathy, an acute confusional state in poor nutrition. The caudate is Huntington disease, with chorea and a family history.",
+    "correctAnswer": "Frontal and temporal pole neurons",
+    "explanation": "Behavior failing before memory, with frontal atrophy, means the poles degenerated before the cholinergic memory neurons. Frontal and temporal pole neurons fail first, so manners go before memory. Nucleus basalis cholinergic neurons are the Alzheimer loss, which hits memory first and the parietal lobe. Substantia nigra loss is a resting tremor he does not have. Mammillary bodies are an acute confusional state in poor nutrition. The caudate is Huntington disease, with chorea.",
     "citation": null
   }
 ]

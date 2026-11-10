@@ -215,19 +215,19 @@
     "difficulty": 4,
     "subjectId": "neurology",
     "nutrition": false,
-    "examTakeaway": "After a subarachnoid hemorrhage is secured, nimodipine is given to reduce poor outcome from vasospasm.",
-    "scenario": "A 48-year-old woman had a subarachnoid hemorrhage yesterday. The aneurysm was coiled this morning. She is awake and the blood pressure is 130/70 mm Hg. She has a headache but no new weakness. Nimodipine has not been started.",
-    "question": "Which drug is the most appropriate next step to reduce vasospasm injury?",
+    "examTakeaway": "After an aneurysm is secured, the drug that improves outcome targets delayed ischemia from vasospasm, not rebleeding.",
+    "scenario": "A 48-year-old woman had a subarachnoid hemorrhage yesterday. The aneurysm was coiled this morning. She is awake, blood pressure is 130/70 mm Hg, and she has no new weakness. She asks which later brain injury the preventive drug is aimed at.",
+    "question": "Which later injury is that drug aimed at?",
     "options": [
-      "Observation with no calcium-channel drug",
-      "Nimodipine",
-      "Nitroprusside",
-      "A statin as the only vasospasm drug",
-      "Heparin"
+      "Rebleeding from an unsecured aneurysm",
+      "Delayed cerebral ischemia from vasospasm",
+      "Hydrocephalus as the drug's target",
+      "A seizure as the drug's main target",
+      "Hyponatremia as the drug's target"
     ],
-    "correctAnswer": "Nimodipine",
-    "explanation": "After a subarachnoid hemorrhage is secured, nimodipine is given to reduce poor outcome from vasospasm. Nimodipine is the AHA drug started for that purpose once the aneurysm is secured. Nitroprusside is a blood-pressure drug, not the vasospasm-outcome drug. A statin as the only vasospasm drug is not the proven step. Heparin is not nimodipine. Observation with no calcium-channel drug skips the drug that improves outcome.",
-    "citation": "AHA"
+    "correctAnswer": "Delayed cerebral ischemia from vasospasm",
+    "explanation": "After an aneurysm is secured, the drug that improves outcome targets delayed ischemia from vasospasm, not rebleeding. Delayed cerebral ischemia from vasospasm is what nimodipine is given to reduce, and the aneurysm is already coiled. Rebleeding from an unsecured aneurysm is what securing the aneurysm addressed. Hydrocephalus as the drug's target is treated by drainage, not this drug. A seizure as the drug's main target and hyponatremia as the drug's target are not why the drug is started.",
+    "citation": null
   },
   {
     "id": "b2-s2-71",

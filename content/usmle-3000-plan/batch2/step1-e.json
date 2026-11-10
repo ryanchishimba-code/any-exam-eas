@@ -7,18 +7,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "Bite cells and Heinz bodies after a new oxidant drug are G6PD deficiency, an X-linked inability to refill glutathione.",
-    "scenario": "A 20-year-old man develops dark urine two days after primaquine. Hemoglobin is 9 g/dL. The smear shows bite cells and blister cells. A special stain shows Heinz bodies. He is of Mediterranean ancestry. Coombs test is negative, so this is not warm antibody hemolysis.",
-    "question": "Which enzyme is low?",
+    "examTakeaway": "Bite cells after an oxidant drug mean NADPH could not be refilled, so hemoglobin denatured into Heinz bodies.",
+    "scenario": "A 20-year-old man develops dark urine two days after primaquine. Hemoglobin is 9 g/dL. The smear shows bite cells. A special stain shows clumps of denatured hemoglobin. Coombs test is negative. He is of Mediterranean ancestry. He asks which cofactor his red cells could not regenerate.",
+    "question": "Which cofactor could the red cells not refill?",
     "options": [
+      "ATP from pyruvate kinase",
       "Spectrin",
-      "A heme-synthesis enzyme",
-      "Glucose-6-phosphatase",
-      "Glucose-6-phosphate dehydrogenase",
-      "Pyruvate kinase"
+      "Heme",
+      "NADPH",
+      "Glucose-6-phosphatase product in the liver"
     ],
-    "correctAnswer": "Glucose-6-phosphate dehydrogenase",
-    "explanation": "Bite cells and Heinz bodies after a new oxidant drug are G6PD deficiency, an X-linked inability to refill glutathione. Glucose-6-phosphate dehydrogenase supplies NADPH, and without it hemoglobin denatures into Heinz bodies that the spleen bites out. Pyruvate kinase deficiency is a chronic non-spherocytic hemolysis without oxidant bites. Spectrin loss is hereditary spherocytosis, with round cells and a positive osmotic fragility, not Heinz bodies. A heme-synthesis enzyme defect causes sideroblastic anemia, a production problem. Glucose-6-phosphatase deficiency is von Gierke disease, a glycogen storage illness.",
+    "correctAnswer": "NADPH",
+    "explanation": "Bite cells after an oxidant drug mean NADPH could not be refilled, so hemoglobin denatured into Heinz bodies. NADPH is the cofactor glucose-6-phosphate dehydrogenase supplies, and without it glutathione cannot be restored. ATP from pyruvate kinase is a different hemolysis without oxidant bites. Spectrin loss makes spherocytes, not bites. Heme deficiency is a sideroblastic production problem. Glucose-6-phosphatase product in the liver is von Gierke disease, not an oxidant hemolysis.",
     "citation": null
   },
   {
@@ -29,18 +29,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "Dark urine on waking, with hemolysis and thrombosis, is loss of the GPI anchor that holds CD55 and CD59.",
-    "scenario": "A 32-year-old man has cola-colored urine on the first morning void that clears later. Hemoglobin is 10 g/dL and the LDH is high. He has had a mesenteric vein clot. Ham test and flow cytometry show red cells missing CD55 and CD59. Coombs test is negative.",
-    "question": "Which anchor is missing?",
+    "examTakeaway": "Morning hemoglobinuria plus a venous clot means complement is punching red cells that lost their GPI-anchored shields.",
+    "scenario": "A 32-year-old man has cola-colored urine on the first morning void that clears later. LDH is high. He has had a mesenteric vein clot. Flow cytometry shows red cells missing two complement-shield proteins. Coombs test is negative. He asks why complement is now able to lyse the cells.",
+    "question": "Which shield is missing from the red-cell surface?",
     "options": [
       "Spectrin",
       "A hemoglobin beta chain",
       "von Willebrand factor",
       "ADAMTS13",
-      "GPI anchor for CD55 and CD59"
+      "GPI-anchored CD55 and CD59"
     ],
-    "correctAnswer": "GPI anchor for CD55 and CD59",
-    "explanation": "Dark urine on waking, with hemolysis and thrombosis, is loss of the GPI anchor that holds CD55 and CD59. GPI anchor for CD55 and CD59 is the PIGA defect of paroxysmal nocturnal hemoglobinuria, so complement punches the red cell and platelets form clot. Spectrin loss is spherocytosis, without morning hemoglobinuria or unusual clots. A hemoglobin beta chain defect is a thalassemia or sickle syndrome, Coombs negative but not CD55-negative. von Willebrand factor deficiency prolongs bleeding time. ADAMTS13 deficiency is TTP, with schistocytes and low platelets as the lead finding.",
+    "correctAnswer": "GPI-anchored CD55 and CD59",
+    "explanation": "Morning hemoglobinuria plus a venous clot means complement is punching red cells that lost their GPI-anchored shields. GPI-anchored CD55 and CD59 are those shields, and their loss also lets platelets form clot. Spectrin loss is spherocytosis without this morning hemoglobinuria and unusual thrombosis. A hemoglobin beta chain defect is thalassemia or sickle cell disease. von Willebrand factor deficiency causes bleeding. ADAMTS13 deficiency is thrombotic thrombocytopenic purpura, led by schistocytes and low platelets.",
     "citation": null
   },
   {
@@ -51,18 +51,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "Target cells, a very low MCV, and a raised HbA2 are beta-thalassemia trait, not iron deficiency.",
-    "scenario": "A 24-year-old man has a hemoglobin of 11 g/dL and an MCV of 68 fL. Ferritin is normal. The smear shows target cells. Hemoglobin electrophoresis shows HbA2 of 6 percent. He has no ring sideroblasts and the iron stain of the marrow is not increased.",
-    "question": "Which globin is underproduced?",
+    "examTakeaway": "A very low MCV with a normal ferritin and a raised HbA2 means beta chains are underproduced, so delta chains rise.",
+    "scenario": "A 24-year-old man has a hemoglobin of 11 g/dL and an MCV of 68 fL. Ferritin is normal. The smear shows target cells. HbA2 is 6 percent. There are no ring sideroblasts. He asks why a minor hemoglobin fraction rose.",
+    "question": "Which globin shortfall raises HbA2?",
     "options": [
+      "Four alpha genes deleted",
       "A heme enzyme",
       "Spectrin",
-      "Glucose-6-phosphate dehydrogenase",
       "Beta globin",
-      "Alpha globin of four genes deleted"
+      "Glucose-6-phosphate dehydrogenase"
     ],
     "correctAnswer": "Beta globin",
-    "explanation": "Target cells, a very low MCV, and a raised HbA2 are beta-thalassemia trait, not iron deficiency. Beta globin is underproduced, so excess alpha chains and a compensatory rise in delta chains raise HbA2, while ferritin stays normal. Alpha globin of four genes deleted is hydrops fetalis, not a walking adult with HbA2 elevation. A heme enzyme defect makes ring sideroblasts and a high iron. Spectrin loss makes spherocytes, not targets with a high HbA2. Glucose-6-phosphate dehydrogenase deficiency is episodic oxidant hemolysis.",
+    "explanation": "A very low MCV with a normal ferritin and a raised HbA2 means beta chains are underproduced, so delta chains rise. Beta globin is the shortfall, and HbA2 is alpha2-delta2. Four alpha genes deleted is fatal hydrops, not a walking adult. A heme enzyme defect makes ring sideroblasts. Spectrin loss makes spherocytes. Glucose-6-phosphate dehydrogenase deficiency is episodic oxidant hemolysis, not a high HbA2.",
     "citation": null
   },
   {
@@ -73,18 +73,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "A very high white count with a low leukocyte alkaline phosphatase and a Philadelphia chromosome is CML, not a leukemoid reaction.",
-    "scenario": "A 55-year-old man has a white count of 120,000/mm3 with a left shift, including myelocytes, and few blasts. Leukocyte alkaline phosphatase is low. Cytogenetics show a 9;22 translocation. He has no fever and no abscess. The spleen is large.",
-    "question": "Which fusion drives the count?",
+    "examTakeaway": "A very high granulocyte count with a low alkaline-phosphatase score is a BCR-ABL clone, not a reactive marrow.",
+    "scenario": "A 55-year-old man has a white count of 120,000/mm3 with myelocytes and few blasts. The leukocyte alkaline phosphatase score is low. He has no fever and no abscess. The spleen is large. Cytogenetics are pending. He asks why this does not look like a reaction to infection.",
+    "question": "Which fusion keeps this count from being a reaction?",
     "options": [
-      "BCL2 of follicular lymphoma",
+      "A leukemoid reaction, which would raise the score",
       "BCR-ABL",
-      "A leukemoid reaction to infection",
       "PML-RARA",
-      "c-MYC of Burkitt lymphoma"
+      "c-MYC of Burkitt lymphoma",
+      "BCL2 of follicular lymphoma"
     ],
     "correctAnswer": "BCR-ABL",
-    "explanation": "A very high white count with a low leukocyte alkaline phosphatase and a Philadelphia chromosome is CML, not a leukemoid reaction. BCR-ABL is the 9;22 product that drives the granulocyte series, and the enzyme score is low. A leukemoid reaction to infection raises the alkaline phosphatase and has a fever or an abscess, which he lacks. PML-RARA is acute promyelocytic leukemia, with abnormal promyelocytes and bleeding. c-MYC of Burkitt lymphoma is a starry-sky B-cell tumor, not this white count. BCL2 of follicular lymphoma is t(14;18), a slow node disease.",
+    "explanation": "A very high granulocyte count with a low alkaline-phosphatase score is a BCR-ABL clone, not a reactive marrow. BCR-ABL drives the granulocytes and the enzyme score stays low. A leukemoid reaction, which would raise the score, needs a fever or an abscess he does not have. PML-RARA is acute promyelocytic leukemia with bleeding. c-MYC of Burkitt lymphoma is a B-cell tumor, not this white count. BCL2 of follicular lymphoma is a slow node disease.",
     "citation": null
   },
   {
@@ -95,18 +95,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "A child with blasts that mark as TdT-positive and no Auer rods has lymphoblastic leukemia, not myeloid leukemia.",
-    "scenario": "A 6-year-old boy has bone pain, pallor, and a white count of 40,000/mm3. Blasts fill the marrow. They stain for TdT and do not contain Auer rods. Myeloperoxidase is negative. He has no mediastinal mass.",
-    "question": "Which lineage are the blasts?",
+    "examTakeaway": "TdT-positive, peroxidase-negative blasts in a child are lymphoid, because TdT is the lymphoid marker and Auer rods are absent.",
+    "scenario": "A 6-year-old boy has bone pain and pallor. Blasts fill the marrow. They mark with TdT and the peroxidase stain is negative. No Auer rods are seen. There is no mediastinal mass. He asks which lineage the negative peroxidase supports.",
+    "question": "Which lineage fits a positive TdT and a negative peroxidase?",
     "options": [
+      "Myeloid",
       "Promyelocytic",
       "Megakaryocytic",
-      "Erythroid",
       "Lymphoid",
-      "Myeloid"
+      "Erythroid"
     ],
     "correctAnswer": "Lymphoid",
-    "explanation": "A child with blasts that mark as TdT-positive and no Auer rods has lymphoblastic leukemia, not myeloid leukemia. Lymphoid blasts are TdT positive and myeloperoxidase negative. Myeloid blasts are often myeloperoxidase positive and may show Auer rods, which are absent. Promyelocytic blasts are a myeloid subset with granules and bleeding. Megakaryocytic blasts are rare and mark for platelets. Erythroid blasts are a rare myeloid variant and are not TdT positive.",
+    "explanation": "TdT-positive, peroxidase-negative blasts in a child are lymphoid, because TdT is the lymphoid marker and Auer rods are absent. Lymphoid blasts fit that pair of stains. Myeloid blasts are often peroxidase positive and may show Auer rods. Promyelocytic blasts are a myeloid subset with granules. Megakaryocytic blasts mark for platelets. Erythroid blasts are not TdT positive.",
     "citation": null
   },
   {
@@ -117,18 +117,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "A jaw mass in a child with a starry-sky smear and t(8;14) is c-MYC driving Burkitt lymphoma.",
-    "scenario": "An 8-year-old boy in equatorial Africa has a rapidly growing mass of the jaw. Biopsy shows medium lymphocytes and pale macrophages scattered through them. Cytogenetics show a translocation of 8 and 14. There is no Philadelphia chromosome and the cells are not TdT-positive blasts filling the marrow.",
-    "question": "Which gene is moved next to the immunoglobulin promoter?",
+    "examTakeaway": "A jaw mass of medium lymphocytes with pale macrophages means c-MYC was placed next to the immunoglobulin promoter.",
+    "scenario": "An 8-year-old boy has a rapidly growing jaw mass. Biopsy shows medium lymphocytes and scattered pale macrophages. A translocation joins chromosome 8 to the immunoglobulin heavy-chain locus on 14. There is no Philadelphia chromosome. He asks which gene on 8 was moved.",
+    "question": "Which gene was placed next to the immunoglobulin promoter?",
     "options": [
+      "BCR-ABL",
       "BCL2",
       "Cyclin D1",
-      "PML-RARA",
       "c-MYC",
-      "BCR-ABL"
+      "PML-RARA"
     ],
     "correctAnswer": "c-MYC",
-    "explanation": "A jaw mass in a child with a starry-sky smear and t(8;14) is c-MYC driving Burkitt lymphoma. c-MYC is placed next to the immunoglobulin heavy-chain promoter. BCR-ABL is the 9;22 fusion of chronic myeloid leukemia. BCL2 is t(14;18) of follicular lymphoma, a slow adult node disease. Cyclin D1 is t(11;14) of mantle cell lymphoma. PML-RARA is t(15;17) of acute promyelocytic leukemia.",
+    "explanation": "A jaw mass of medium lymphocytes with pale macrophages means c-MYC was placed next to the immunoglobulin promoter. c-MYC is the chromosome 8 gene in that translocation. BCR-ABL is the 9;22 fusion. BCL2 is t(14;18) of follicular lymphoma. Cyclin D1 is t(11;14) of mantle cell lymphoma. PML-RARA is t(15;17) of acute promyelocytic leukemia.",
     "citation": null
   },
   {
@@ -139,9 +139,9 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "Punched-out bones, rouleaux, and light chains in the urine are a plasma-cell clone making immunoglobulin.",
-    "scenario": "A 68-year-old man has back pain and a creatinine of 2.2 mg/dL. The film shows round holes in the skull. The smear shows stacked red cells. Urine is positive for light chains and negative for a large amount of albumin. Calcium is 11.4 mg/dL. A node biopsy is not the study that was done.",
-    "question": "Which cell is the clone?",
+    "examTakeaway": "Punched-out bone and light chains in the urine mean a plasma-cell clone is injuring bone and the kidney, not a node-based lymphoma.",
+    "scenario": "A 68-year-old man has back pain and a creatinine of 2.2 mg/dL. The skull film shows round holes. Red cells stack on the smear. Urine has light chains and little albumin. Calcium is 11.4 mg/dL. A node is not the enlarged tissue. He asks which cell is making the light chains.",
+    "question": "Which cell is secreting the light chains that injure the kidney?",
     "options": [
       "Reed-Sternberg cell",
       "Myeloblast",
@@ -150,7 +150,7 @@
       "Plasma cell"
     ],
     "correctAnswer": "Plasma cell",
-    "explanation": "Punched-out bones, rouleaux, and light chains in the urine are a plasma-cell clone making immunoglobulin. Plasma cell clones punch bone, spill light chains that injure the kidney, and coat red cells so they stack. Reed-Sternberg cell is Hodgkin lymphoma, a node disease. Myeloblast with Auer rods is acute myeloid leukemia. Lymphoblast is childhood ALL. A mature small lymphocyte of CLL raises the lymphocyte count and makes smudge cells, not punched-out skull holes.",
+    "explanation": "Punched-out bone and light chains in the urine mean a plasma-cell clone is injuring bone and the kidney, not a node-based lymphoma. Plasma cell clones secrete the light chains and punch bone. Reed-Sternberg cell is Hodgkin lymphoma in a node. Myeloblast is acute myeloid leukemia. Lymphoblast is childhood acute lymphoblastic leukemia. A mature small lymphocyte of CLL raises the lymphocyte count and makes smudge cells, not skull holes.",
     "citation": null
   },
   {
@@ -161,9 +161,9 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "The most common inherited clot risk that resists activated protein C is factor V Leiden.",
-    "scenario": "A 28-year-old woman has a second deep-vein thrombosis. She is not pregnant and has no cancer. The clot formed while she was on a short plane ride. Activated protein C does not prolong her clotting time the way it should. Prothrombin gene testing is negative. Antiphospholipid antibody is negative.",
-    "question": "Which factor is resistant?",
+    "examTakeaway": "A second clot with a clotting time that activated protein C cannot lengthen is factor V that the protein cannot cut.",
+    "scenario": "A 28-year-old woman has a second deep-vein thrombosis after a short flight. She is not pregnant and has no cancer. Adding activated protein C does not prolong her clotting time. The prothrombin gene test is negative and an antiphospholipid antibody is negative. She asks which factor resists being cut.",
+    "question": "Which factor resists activated protein C?",
     "options": [
       "Factor VIII",
       "Antithrombin",
@@ -172,7 +172,7 @@
       "Factor V"
     ],
     "correctAnswer": "Factor V",
-    "explanation": "The most common inherited clot risk that resists activated protein C is factor V Leiden. Factor V with the Leiden change is not cut by activated protein C, so the clotting time fails to lengthen. Factor VIII excess can promote clot but is not the activated-protein-C resistance test. Antithrombin deficiency is a different assay and is rarer. Protein C itself being low is a different disease and would not be described as resistance of the substrate. von Willebrand factor deficiency causes bleeding, not thrombosis.",
+    "explanation": "A second clot with a clotting time that activated protein C cannot lengthen is factor V that the protein cannot cut. Factor V with the Leiden change is not cleaved, so the clotting time stays short. Factor VIII excess can promote clot but is not this resistance assay. Antithrombin deficiency is a different test. Protein C itself being low is a different disease. von Willebrand factor deficiency causes bleeding, not thrombosis.",
     "citation": null
   },
   {
@@ -183,18 +183,18 @@
     "outlineWeight": 11,
     "difficulty": 5,
     "subjectId": "hematology",
-    "examTakeaway": "Skin necrosis a few days after warfarin in a protein-C deficient patient is a transient hypercoagulable state.",
-    "scenario": "A 40-year-old woman starts warfarin for a new clot and is not bridged with heparin. On day 3 she has painful black patches of skin on the breasts. Protein C was low on a test drawn before any anticoagulant. Platelets have not fallen. She is not on heparin.",
-    "question": "Which protein fell first?",
+    "examTakeaway": "Skin necrosis a few days after warfarin happens because protein C falls before the longer-lived clotting factors.",
+    "scenario": "A 40-year-old woman starts warfarin for a new clot and is not bridged with heparin. On day 3 she has painful black skin on the breasts. Platelets have not fallen. She is not on heparin. A protein measured before any drug was already low, and that protein has a short half-life. She asks why the skin clotted while other factors were still present.",
+    "question": "Which short-lived anticoagulant fell first?",
     "options": [
-      "Fibrinogen in DIC",
-      "Protein C",
       "Platelets from heparin antibodies",
+      "Protein C",
       "ADAMTS13",
-      "Factor VIII"
+      "Factor VIII",
+      "Fibrinogen in DIC"
     ],
     "correctAnswer": "Protein C",
-    "explanation": "Skin necrosis a few days after warfarin in a protein-C deficient patient is a transient hypercoagulable state. Protein C has a short half-life, so warfarin drops it before the procoagulant factors, and an already low level lets clot form in skin. Platelets from heparin antibodies is HIT, and she is not on heparin and the platelet count has not fallen. ADAMTS13 deficiency is TTP. Factor VIII deficiency bleeds into joints. Fibrinogen in DIC falls with oozing from punctures and a low platelet count, not isolated skin necrosis on day 3 of warfarin.",
+    "explanation": "Skin necrosis a few days after warfarin happens because protein C falls before the longer-lived clotting factors. Protein C has the short half-life, so an already low level lets clot form in skin. Platelets from heparin antibodies is HIT, and she is not on heparin. ADAMTS13 deficiency is thrombotic thrombocytopenic purpura. Factor VIII deficiency bleeds into joints. Fibrinogen in DIC falls with oozing and a low platelet count, not isolated skin necrosis on day 3.",
     "citation": null
   },
   {
@@ -227,18 +227,18 @@
     "outlineWeight": 11,
     "difficulty": 4,
     "subjectId": "hematology",
-    "examTakeaway": "Spherocytes, a high MCHC, and a positive osmotic fragility test that improve after splenectomy are spectrin loss.",
-    "scenario": "A 15-year-old boy has jaundice and a hemoglobin of 10 g/dL. The smear shows spherocytes and the MCHC is high. Osmotic fragility is increased. Coombs test is negative. His father had the same anemia and improved after the spleen was removed. There are no bite cells.",
-    "question": "Which membrane protein is weak?",
+    "examTakeaway": "Rigid spherocytes with a high MCHC and a negative Coombs test are trapped in the spleen, which is why splenectomy stops the hemolysis.",
+    "scenario": "A 15-year-old boy has jaundice and a hemoglobin of 10 g/dL. The smear shows spherocytes and the MCHC is high. Osmotic fragility is increased. Coombs test is negative. His father had the same anemia. There are no bite cells. He asks which organ is destroying the rigid cells.",
+    "question": "Which organ traps these poorly deformable red cells?",
     "options": [
-      "Pyruvate kinase",
-      "Spectrin",
-      "GPI-anchored CD55",
-      "A beta globin chain",
-      "Glucose-6-phosphate dehydrogenase"
+      "The liver sinusoids as the only site",
+      "The spleen",
+      "The kidney",
+      "Marrow macrophages as the only site",
+      "The lung"
     ],
-    "correctAnswer": "Spectrin",
-    "explanation": "Spherocytes, a high MCHC, and a positive osmotic fragility test that improve after splenectomy are spectrin loss. Spectrin anchors the membrane, and without it red cells become spheres that the spleen traps. GPI-anchored CD55 loss is nocturnal hemoglobinuria with thrombosis. A beta globin chain defect makes target cells and a high HbA2. Glucose-6-phosphate dehydrogenase deficiency makes bite cells after an oxidant, which are absent. Pyruvate kinase deficiency causes chronic hemolysis without this spherocyte and high-MCHC pattern.",
+    "correctAnswer": "The spleen",
+    "explanation": "Rigid spherocytes with a high MCHC and a negative Coombs test are trapped in the spleen, which is why splenectomy stops the hemolysis. The spleen removes spherocytes that cannot deform. The liver sinusoids as the only site and the lung are not the filter for this membrane defect. The kidney filters plasma, not intact red cells. Marrow macrophages as the only site are not the reason splenectomy ends the hemolysis.",
     "citation": null
   }
 ]

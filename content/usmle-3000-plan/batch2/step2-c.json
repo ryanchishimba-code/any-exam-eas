@@ -146,19 +146,19 @@
     "difficulty": 4,
     "subjectId": "psychiatry",
     "nutrition": false,
-    "examTakeaway": "Long-term benzodiazepine dependence is stopped with a taper, not with an abrupt halt.",
-    "scenario": "A 50-year-old woman has taken alprazolam 4 mg daily for three years. She wants to stop. She has no seizure history. Stopping for one day last month caused tremor and insomnia. She is not using alcohol. Blood pressure is 130/80 mm Hg.",
-    "question": "Which plan is the most appropriate next step?",
+    "examTakeaway": "Years of a benzodiazepine downregulate GABA-A receptors, so an abrupt stop leaves too little inhibition.",
+    "scenario": "A 50-year-old woman has taken alprazolam 4 mg daily for three years and wants to stop. She has no seizure history. She has not yet skipped a dose. She does not drink alcohol. Blood pressure is 130/80 mm Hg. She asks what changed in the receptor that makes stopping tonight unsafe.",
+    "question": "What changed in the receptor?",
     "options": [
-      "Switch to a stimulant",
-      "Phenytoin alone",
-      "A slow taper",
-      "Stop tonight",
-      "Double the dose"
+      "NMDA receptors were destroyed",
+      "Sodium channels were blocked",
+      "GABA-A receptors were downregulated",
+      "Dopamine receptors were blocked",
+      "Nicotinic receptors were upregulated"
     ],
-    "correctAnswer": "A slow taper",
-    "explanation": "Long-term benzodiazepine dependence is stopped with a taper, not with an abrupt halt. A slow taper prevents the withdrawal she already sampled. Stop tonight risks seizure and severe withdrawal. Double the dose moves the wrong direction. Switch to a stimulant does not cover the GABA withdrawal. Phenytoin alone does not treat benzodiazepine withdrawal.",
-    "citation": "2018"
+    "correctAnswer": "GABA-A receptors were downregulated",
+    "explanation": "Years of a benzodiazepine downregulate GABA-A receptors, so an abrupt stop leaves too little inhibition. GABA-A receptors were downregulated, which is why a taper is required. NMDA receptors were destroyed is not benzodiazepine dependence. Sodium channels were blocked is a local-anesthetic or anticonvulsant effect. Dopamine receptors were blocked is an antipsychotic effect. Nicotinic receptors were upregulated follows nicotine, not alprazolam.",
+    "citation": null
   },
   {
     "id": "b2-s2-48",
@@ -330,19 +330,19 @@
     "difficulty": 4,
     "subjectId": "hematology",
     "nutrition": false,
-    "examTakeaway": "Mild type 1 von Willebrand disease with a nosebleed is treated with desmopressin, and it is avoided in type 2B.",
-    "scenario": "A 16-year-old girl with known type 1 von Willebrand disease has a nosebleed that will not stop with pressure. The disease is mild and she has responded to desmopressin before. Platelets are normal. This is not type 2B. She is not in shock.",
-    "question": "Which drug is the most appropriate next step?",
+    "examTakeaway": "Desmopressin works in mild type 1 disease because endothelial cells still store von Willebrand factor they can release.",
+    "scenario": "A 16-year-old girl with known mild type 1 von Willebrand disease has a nosebleed that pressure did not stop. Platelets are normal. The laboratory has already said this is not type 2B. She is not in shock. She asks which store the drug would release.",
+    "question": "Which store does the drug release?",
     "options": [
-      "Nothing further",
-      "Desmopressin",
-      "Platelet transfusion",
-      "Heparin",
-      "Warfarin"
+      "Platelet granules only, with no factor",
+      "Endothelial von Willebrand factor",
+      "Hepatic factor VIII from a severe hemophilia store",
+      "Fibrinogen",
+      "Vitamin K-dependent factors"
     ],
-    "correctAnswer": "Desmopressin",
-    "explanation": "Mild type 1 von Willebrand disease with a nosebleed is treated with desmopressin, and it is avoided in type 2B. Desmopressin releases stored factor and has worked for her before. Platelet transfusion is not the missing piece when the count is normal. Heparin and warfarin increase bleeding. Nothing further leaves a bleed that pressure did not stop. This approach has been standard care since 2018.",
-    "citation": "2018"
+    "correctAnswer": "Endothelial von Willebrand factor",
+    "explanation": "Desmopressin works in mild type 1 disease because endothelial cells still store von Willebrand factor they can release. Endothelial von Willebrand factor is that store, and type 2B is the subtype where release can be harmful, which she does not have. Platelet granules only, with no factor, would not explain a disease of the factor. Hepatic factor VIII from a severe hemophilia store is the wrong disease and the wrong store. Fibrinogen is not what desmopressin releases for this bleed. Vitamin K-dependent factors are a warfarin pathway.",
+    "citation": null
   },
   {
     "id": "b2-s2-56",

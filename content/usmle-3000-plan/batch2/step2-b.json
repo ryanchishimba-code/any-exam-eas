@@ -100,18 +100,18 @@
     "difficulty": 4,
     "subjectId": "emergency-medicine",
     "nutrition": false,
-    "examTakeaway": "Unstable bradycardia is treated with atropine and pacing, not with observation.",
-    "scenario": "A 72-year-old man is dizzy and pale. Heart rate is 32 bpm. Blood pressure is 78/40 mm Hg. The monitor shows a sinus bradycardia with a narrow complex. He is confused. A 12-lead is being printed.",
-    "question": "Which plan is the most appropriate next step?",
+    "examTakeaway": "A narrow-complex bradycardia with shock and a normal QRS is vagal, so the first drug blocks the vagus rather than stabilizing a wide QRS.",
+    "scenario": "A 72-year-old man is pale and confused. Heart rate is 32 bpm and blood pressure is 78/40 mm Hg. The QRS is 90 ms and potassium is 4.2 mEq/L. A colleague reaches for calcium because he is thinking of hyperkalemia. The rhythm is sinus and narrow.",
+    "question": "Which plan fits this narrow rhythm, not a wide QRS?",
     "options": [
-      "Observation",
+      "Calcium for a wide QRS",
       "Adenosine",
       "A beta blocker",
       "Amiodarone",
       "Atropine and prepare to pace"
     ],
     "correctAnswer": "Atropine and prepare to pace",
-    "explanation": "Unstable bradycardia is treated with atropine and pacing, not with observation. Atropine and prepare to pace is the AHA sequence for a slow rate with shock. Observation leaves the pressure at 78/40. Adenosine slows the node further. A beta blocker also slows the rate. Amiodarone is for tachyarrhythmias, not this bradycardia.",
+    "explanation": "A narrow-complex bradycardia with shock and a normal QRS is vagal, so the first drug blocks the vagus rather than stabilizing a wide QRS. Atropine and prepare to pace is the AHA sequence when the QRS is narrow and the potassium is 4.2. Calcium for a wide QRS treats hyperkalemia he does not have. Adenosine and a beta blocker slow the rate further. Amiodarone is for a fast rhythm, not this bradycardia.",
     "citation": "AHA"
   },
   {
@@ -192,19 +192,19 @@
     "difficulty": 4,
     "subjectId": "cardiology",
     "nutrition": false,
-    "examTakeaway": "Tamponade with a pericardial effusion is drained, and more diuretic is not the treatment.",
-    "scenario": "A 58-year-old woman with metastatic lung cancer is short of breath. Blood pressure is 84/60 mm Hg and falls further on inspiration. Heart sounds are faint. The jugular veins are up. Echo shows a large effusion and chamber collapse. The lungs are clear.",
-    "question": "Which plan is the most appropriate next step?",
+    "examTakeaway": "Hypotension that worsens on inspiration, with clear lungs and faint sounds, means the right heart cannot fill in diastole.",
+    "scenario": "A 58-year-old woman with metastatic lung cancer is short of breath. Blood pressure is 84/60 mm Hg and falls further when she inhales. Heart sounds are faint and the jugular veins are up. The lungs are clear. She asks which filling the pressure around the heart is blocking.",
+    "question": "Which filling is blocked?",
     "options": [
-      "Furosemide",
-      "A fluid restriction only",
-      "Heparin",
-      "Observation",
-      "Pericardiocentesis"
+      "Left-ventricular ejection in systole",
+      "Aortic runoff in diastole",
+      "Pulmonary venous drainage only",
+      "Bronchial filling",
+      "Diastolic filling of the right heart"
     ],
-    "correctAnswer": "Pericardiocentesis",
-    "explanation": "Tamponade with a pericardial effusion is drained, and more diuretic is not the treatment. Pericardiocentesis removes the fluid that is collapsing the chambers. Furosemide lowers preload in a patient who needs filling pressure. A fluid restriction only does the same harm more slowly. Heparin risks bleeding into the pericardium. Observation leaves the pressure at 84/60. This approach has been standard care since 2018.",
-    "citation": "2018"
+    "correctAnswer": "Diastolic filling of the right heart",
+    "explanation": "Hypotension that worsens on inspiration, with clear lungs and faint sounds, means the right heart cannot fill in diastole. Diastolic filling of the right heart is what the effusion blocks. Left-ventricular ejection in systole is not the inspiratory collapse. Aortic runoff in diastole is regurgitation, and the lungs would not be the clue. Pulmonary venous drainage only is left-sided congestion, and the lungs are clear. Bronchial filling is not a cardiac tamponade mechanism.",
+    "citation": null
   },
   {
     "id": "b2-s2-30",
@@ -215,19 +215,19 @@
     "difficulty": 3,
     "subjectId": "cardiology",
     "nutrition": false,
-    "examTakeaway": "A proximal deep-vein thrombosis is treated with anticoagulation, and a filter is for patients who cannot be anticoagulated.",
-    "scenario": "A 55-year-old woman has a swollen left leg. Ultrasound shows a femoral-vein clot. She has no cancer, no bleeding, and no recent surgery. Creatinine is normal. She can take an oral anticoagulant. She is not pregnant.",
-    "question": "Which plan is the most appropriate next step?",
+    "examTakeaway": "A femoral-vein clot is anticoagulated to prevent pulmonary embolism, and a filter is reserved for a patient who cannot take the drug.",
+    "scenario": "A 55-year-old woman has a swollen left leg. Ultrasound shows clot in the femoral vein. She has no bleeding, no recent surgery, and a normal creatinine. She can swallow a pill. She is not pregnant. She asks what the medicine is meant to keep from happening in the lung.",
+    "question": "Which lung complication is the medicine meant to prevent?",
     "options": [
-      "Thrombolysis as the first routine step",
-      "Observation",
-      "Anticoagulation",
-      "An inferior vena cava filter as the only treatment",
-      "Aspirin alone"
+      "Pneumonia",
+      "A lung cancer",
+      "Pulmonary embolism",
+      "Asthma",
+      "A pleural plaque"
     ],
-    "correctAnswer": "Anticoagulation",
-    "explanation": "A proximal deep-vein thrombosis is treated with anticoagulation, and a filter is for patients who cannot be anticoagulated. Anticoagulation is the AHA treatment when she can take the drug. An inferior vena cava filter as the only treatment is for a contraindication she does not have. Aspirin alone does not treat a femoral clot. Thrombolysis as the first routine step is not routine for an ordinary leg clot. Observation leaves the clot in place.",
-    "citation": "AHA"
+    "correctAnswer": "Pulmonary embolism",
+    "explanation": "A femoral-vein clot is anticoagulated to prevent pulmonary embolism, and a filter is reserved for a patient who cannot take the drug. Pulmonary embolism is the complication anticoagulation prevents, and she can take the drug so a filter is not first. Pneumonia is an infection. A lung cancer is not the acute risk of this clot. Asthma is airway reactivity. A pleural plaque follows asbestos.",
+    "citation": null
   },
   {
     "id": "b2-s2-31",
@@ -330,18 +330,18 @@
     "difficulty": 3,
     "subjectId": "pediatrics",
     "nutrition": false,
-    "examTakeaway": "A toddler who will not use an arm after being pulled, with no swelling, has a radial-head subluxation that is reduced by supination and flexion.",
-    "scenario": "A 2-year-old girl will not use her left arm after her father pulled her up by the hand. The arm is held slightly flexed. There is no swelling, no bruise, and no bony tenderness. She cries when the elbow is touched. The clavicle is nontender.",
-    "question": "Which maneuver is used?",
+    "examTakeaway": "A toddler's arm that hangs after a pull has a slipped annular ligament, which supination and flexion put back.",
+    "scenario": "A 2-year-old girl will not use her left arm after her father pulled her up by the hand. The arm is held slightly flexed. There is no swelling, no bruise, and no bony tenderness. The clavicle is nontender. She asks, through her parent, which ligament slipped off the radial head.",
+    "question": "Which ligament slipped off the radial head?",
     "options": [
-      "Antibiotics",
-      "Supination and flexion of the elbow",
-      "A hanging cast for six weeks",
-      "Open reduction",
-      "Observation for a month"
+      "The transverse humeral ligament",
+      "The annular ligament",
+      "The ulnar collateral ligament",
+      "The anterior cruciate ligament",
+      "The patellar tendon"
     ],
-    "correctAnswer": "Supination and flexion of the elbow",
-    "explanation": "A toddler who will not use an arm after being pulled, with no swelling, has a radial-head subluxation that is reduced by supination and flexion. Supination and flexion of the elbow reduces the annular ligament. A hanging cast for six weeks treats a fracture she does not have. Open reduction is for a dislocation that will not reduce or a fracture. Observation for a month leaves the subluxation. Antibiotics treat infection, not a pulled elbow.",
+    "correctAnswer": "The annular ligament",
+    "explanation": "A toddler's arm that hangs after a pull has a slipped annular ligament, which supination and flexion put back. The annular ligament is the one that slips off the radial head. The transverse humeral ligament holds the biceps tendon at the shoulder. The ulnar collateral ligament is the elbow's medial stabilizer in throwers, not this pull. The anterior cruciate ligament and the patellar tendon are in the knee.",
     "citation": null
   },
   {

@@ -73,18 +73,18 @@
     "outlineWeight": 14,
     "difficulty": 4,
     "subjectId": "endocrinology",
-    "examTakeaway": "Breast development with a blind vagina, no uterus, and male-range testosterone is androgen insensitivity.",
-    "scenario": "A 16-year-old has primary amenorrhea and Tanner stage 4 breasts. The vagina ends blindly and no uterus is felt. Gonads are in the inguinal canals. Testosterone is in the adult male range. A sibling with 5-alpha-reductase deficiency virilized at puberty and never grew breasts.",
-    "question": "Which receptor failed?",
+    "examTakeaway": "Breasts develop in androgen insensitivity because testosterone is aromatized to estrogen when the receptor cannot respond.",
+    "scenario": "A 16-year-old has primary amenorrhea and Tanner stage 4 breasts. The vagina ends blindly and no uterus is felt. Gonads are in the inguinal canals. Testosterone is in the adult male range. A sibling who lacks 5-alpha-reductase virilized at puberty and never grew breasts.",
+    "question": "Which conversion produced these breasts?",
     "options": [
-      "The estrogen receptor",
-      "The LH receptor on Leydig cells",
-      "The FSH receptor",
-      "The glucocorticoid receptor",
-      "The androgen receptor"
+      "Reduction of testosterone to DHT",
+      "Adrenal DHEA as the only estrogen source",
+      "Binding a working androgen receptor",
+      "Conversion of testosterone to progesterone",
+      "Aromatization to estrogen"
     ],
-    "correctAnswer": "The androgen receptor",
-    "explanation": "Breast development with a blind vagina, no uterus, and male-range testosterone is androgen insensitivity. The androgen receptor does not respond, so the body follows a female external path and testosterone is aromatized to estrogen, which builds breasts. The estrogen receptor is working, because breasts developed. The LH receptor on Leydig cells would leave testosterone low. The FSH receptor defect does not remove the uterus. The glucocorticoid receptor is unrelated to this anatomy. The sibling who virilized without breasts has a different enzyme defect.",
+    "correctAnswer": "Aromatization to estrogen",
+    "explanation": "Breasts develop in androgen insensitivity because testosterone is aromatized to estrogen when the receptor cannot respond. Aromatization to estrogen builds the breasts while the androgen receptor is silent. Reduction of testosterone to DHT is the sibling's missing step and that sibling grew no breasts. Adrenal DHEA as the only estrogen source would not require male-range testosterone. Binding a working androgen receptor would virilize and suppress breasts. Conversion of testosterone to progesterone is not the breast pathway.",
     "citation": null
   },
   {
@@ -95,18 +95,18 @@
     "outlineWeight": 14,
     "difficulty": 4,
     "subjectId": "endocrinology",
-    "examTakeaway": "Enlarging hands with a growth hormone that does not fall after glucose is a pituitary adenoma.",
-    "scenario": "A 42-year-old man needs a larger hat and his wedding ring no longer fits. IGF-1 is twice normal. After a 75 g glucose drink, growth hormone stays at 8 ng/mL. Prolactin is normal. The visual fields are full.",
-    "question": "Which cell is oversecreting?",
+    "examTakeaway": "A growth-hormone adenoma that is still below the chiasm will cause bitemporal hemianopia if it grows straight up.",
+    "scenario": "A 42-year-old man needs a larger hat and his ring no longer fits. IGF-1 is twice normal and growth hormone stays high after a glucose drink. Visual fields are full today. MRI shows a pituitary mass that has not yet reached the optic chiasm. Prolactin is normal.",
+    "question": "Which field cut appears if the mass extends upward?",
     "options": [
-      "Lactotroph",
-      "Corticotroph",
-      "Thyrotroph",
-      "A peripheral GH-releasing tumor of the lung",
-      "Somatotroph"
+      "A monocular central scotoma",
+      "A homonymous hemianopia",
+      "A superior quadrantanopia",
+      "Unilateral blindness from an optic-nerve glioma",
+      "Bitemporal hemianopia"
     ],
-    "correctAnswer": "Somatotroph",
-    "explanation": "Enlarging hands with a growth hormone that does not fall after glucose is a pituitary adenoma. Somatotroph cells release growth hormone, and a normal person suppresses that release after glucose. Lactotroph excess would raise prolactin, which is normal. Corticotroph excess causes Cushing features he does not have. Thyrotroph excess raises TSH and thyroid hormone. A peripheral GH-releasing tumor of the lung is rare and would still suppress or present with lung disease, which is not here; the failed suppression points at the pituitary somatotroph.",
+    "correctAnswer": "Bitemporal hemianopia",
+    "explanation": "A growth-hormone adenoma that is still below the chiasm will cause bitemporal hemianopia if it grows straight up. Bitemporal hemianopia is the crossing-fiber cut at the chiasm. A monocular central scotoma is optic-nerve inflammation. A homonymous hemianopia is a tract or radiation behind the chiasm. A superior quadrantanopia is a temporal-lobe loop. Unilateral blindness from an optic-nerve glioma is an NF1 tumor, not a midline pituitary mass.",
     "citation": null
   },
   {
@@ -183,18 +183,18 @@
     "outlineWeight": 13,
     "difficulty": 4,
     "subjectId": "pulmonology",
-    "examTakeaway": "Pleural plaques and lower-lobe fibrosis after shipyard work are asbestos, not the upper-lobe dust diseases.",
-    "scenario": "A 68-year-old man installed insulation on ships for 20 years. He is short of breath. The film shows calcified plaques on the diaphragm and fibrosis that is worse at the bases. Hilar nodes are not calcified in an eggshell pattern. He has no sinus disease.",
-    "question": "Which fiber reached the pleura?",
+    "examTakeaway": "Pleural plaques after shipyard work carry a risk of mesothelioma, which is a pleural cancer rather than a dust nodule.",
+    "scenario": "A 68-year-old man installed ship insulation for 20 years. The film shows calcified plaques on the diaphragm and fibrosis that is worse at the bases. Hilar nodes are not eggshell-calcified. He asks which cancer of the lining of the lung this exposure specifically raises.",
+    "question": "Which cancer of the pleural lining is the specific risk?",
     "options": [
-      "Cotton",
-      "Asbestos",
-      "Silica",
-      "Coal dust",
-      "Beryllium"
+      "Small-cell carcinoma as a pleural lining tumor",
+      "Mesothelioma",
+      "Hepatic angiosarcoma",
+      "Kaposi sarcoma",
+      "Carcinoid"
     ],
-    "correctAnswer": "Asbestos",
-    "explanation": "Pleural plaques and lower-lobe fibrosis after shipyard work are asbestos, not the upper-lobe dust diseases. Asbestos reaches the pleura and scars the bases. Silica scars the upper lobes and calcifies hilar nodes in an eggshell. Coal dust causes upper-lobe nodules without pleural plaques. Beryllium mimics sarcoidosis. Cotton causes chest tightness on Monday, not plaques.",
+    "correctAnswer": "Mesothelioma",
+    "explanation": "Pleural plaques after shipyard work carry a risk of mesothelioma, which is a pleural cancer rather than a dust nodule. Mesothelioma arises from the pleura after asbestos. Small-cell carcinoma as a pleural lining tumor is a smoking-related bronchial cancer, not the lining tumor. Hepatic angiosarcoma follows vinyl chloride. Kaposi sarcoma follows HHV-8 in severe immunodeficiency. Carcinoid is a neuroendocrine bronchial tumor without this plaque exposure.",
     "citation": null
   },
   {
@@ -205,18 +205,18 @@
     "outlineWeight": 13,
     "difficulty": 4,
     "subjectId": "pulmonology",
-    "examTakeaway": "Situs inversus with bronchiectasis and infertility is a dynein-arm defect, and the sweat chloride stays normal.",
-    "scenario": "A 19-year-old man has had daily cough and green sputum since childhood. CT shows bronchiectasis. The heart is on the right and the liver is on the left. Sweat chloride is normal. He and his partner have not conceived, and his sperm do not swim.",
-    "question": "Which structure failed?",
+    "examTakeaway": "Situs inversus with bronchiectasis means embryonic nodal cilia could not spin, the same motor that later fails in the airway.",
+    "scenario": "A 19-year-old man has had daily green sputum since childhood. CT shows bronchiectasis. The heart is on the right and the liver is on the left. Sweat chloride is normal. He has not yet been told why the organs are reversed.",
+    "question": "Which embryonic cilia failed to set left and right?",
     "options": [
-      "The cystic fibrosis channel",
-      "Alpha-1 antitrypsin",
-      "Surfactant protein B",
-      "Type I collagen",
-      "Dynein arms"
+      "Airway cilia only, after birth",
+      "Sweat-duct cilia",
+      "Intestinal cilia that cause meconium ileus",
+      "Cochlear hair cells",
+      "Nodal cilia that set left and right"
     ],
-    "correctAnswer": "Dynein arms",
-    "explanation": "Situs inversus with bronchiectasis and infertility is a dynein-arm defect, and the sweat chloride stays normal. Dynein arms move cilia and embryonic nodal cilia, so organs are reversed and sperm cannot swim. The cystic fibrosis channel would raise the sweat chloride, which is normal. Alpha-1 antitrypsin deficiency destroys bases in an adult and does not reverse the organs. Surfactant protein B deficiency presents in a newborn. Type I collagen defects cause fractures and blue sclerae.",
+    "correctAnswer": "Nodal cilia that set left and right",
+    "explanation": "Situs inversus with bronchiectasis means embryonic nodal cilia could not spin, the same motor that later fails in the airway. Nodal cilia that set left and right are the embryonic step; the same dynein later fails in airway cilia. Airway cilia only, after birth, would not reverse the organs. Sweat-duct cilia are not the cystic fibrosis channel, and his sweat chloride is normal. Intestinal cilia that cause meconium ileus describe cystic fibrosis, which this normal sweat chloride argues against. Cochlear hair cells are hearing, not left-right axis.",
     "citation": null
   },
   {
@@ -227,18 +227,18 @@
     "outlineWeight": 13,
     "difficulty": 4,
     "subjectId": "pulmonology",
-    "examTakeaway": "Walking pneumonia plus cold-agglutinin hemolysis in a young adult is Mycoplasma, not pneumococcus.",
-    "scenario": "A 19-year-old college student has had a dry cough for 10 days and still walks to class. The film shows patchy interstitial infiltrates. Hemoglobin fell from 13 to 10 g/dL and the blood clumps when cooled. He has no rusty sputum and no diarrhea.",
-    "question": "Which organism fits the cold clumping?",
+    "examTakeaway": "Cold-agglutinin hemolysis during a mild pneumonia is IgM against the I antigen, made by Mycoplasma, not a warm IgG antibody.",
+    "scenario": "A 19-year-old student has had a dry cough for 10 days and still walks to class. The film is patchy and interstitial. Hemoglobin fell from 13 to 10 g/dL and the blood clumps in the cold. The Coombs test is positive only in the cold. He has no rusty sputum.",
+    "question": "Which antibody class is clumping the red cells?",
     "options": [
-      "Pneumocystis jirovecii",
-      "Mycoplasma pneumoniae",
-      "Streptococcus pneumoniae",
-      "Legionella pneumophila",
-      "Klebsiella pneumoniae"
+      "Warm IgG",
+      "IgM against the I antigen",
+      "IgA in the gut",
+      "IgE on mast cells",
+      "A cold IgG Donath-Landsteiner antibody"
     ],
-    "correctAnswer": "Mycoplasma pneumoniae",
-    "explanation": "Walking pneumonia plus cold-agglutinin hemolysis in a young adult is Mycoplasma, not pneumococcus. Mycoplasma pneumoniae attaches IgM that clumps red cells in the cold and causes a mild interstitial pneumonia. Streptococcus pneumoniae produces rusty lobar sputum, not hemolysis on cooling. Legionella pneumophila brings diarrhea and a low sodium, which he does not have. Klebsiella pneumoniae is currant-jelly sputum in a person who drinks heavily. Pneumocystis jirovecii needs a very low CD4 count and causes exertional desaturation.",
+    "correctAnswer": "IgM against the I antigen",
+    "explanation": "Cold-agglutinin hemolysis during a mild pneumonia is IgM against the I antigen, made by Mycoplasma, not a warm IgG antibody. IgM against the I antigen clumps red cells only when cooled. Warm IgG hemolysis happens at body temperature and is not limited to the cold. IgA in the gut is mucosal, not this smear. IgE on mast cells is allergy. A cold IgG Donath-Landsteiner antibody is paroxysmal cold hemoglobinuria, usually after a childhood viral illness, not this walking pneumonia.",
     "citation": null
   },
   {
@@ -249,18 +249,18 @@
     "outlineWeight": 13,
     "difficulty": 4,
     "subjectId": "pulmonology",
-    "examTakeaway": "Apical cavity years after a first infection is reactivation tuberculosis, because oxygen tension is highest at the apex.",
-    "scenario": "A 54-year-old man who immigrated 20 years ago has night sweats and weight loss. The film shows a thick-walled cavity in the right apex. A calcified node and a small calcified spot sit at the left base from an old film. Sputum shows acid-fast bacilli. He is HIV negative.",
-    "question": "Which pattern is the cavity?",
+    "examTakeaway": "An apical cavity years after a healed base focus is reactivation, because the apex has the highest oxygen tension.",
+    "scenario": "A 54-year-old man has night sweats and weight loss. The film shows a thick-walled cavity in the right apex and an old calcified spot at the left base. Sputum shows acid-fast bacilli. He is HIV negative. He wants to know why the new hole is at the top rather than beside the old scar.",
+    "question": "Why did the new cavity form at the apex?",
     "options": [
-      "Reactivation at the apex",
-      "A new Ghon focus at the base",
-      "Miliary seeding as the only lesion",
-      "A pneumococcal lobar consolidation",
-      "An asbestos plaque"
+      "Oxygen tension is highest there",
+      "The base has more oxygen than the apex",
+      "A new Ghon focus must sit at the apex",
+      "Pleural plaques pull the cavity upward",
+      "The heart borders only the apex"
     ],
-    "correctAnswer": "Reactivation at the apex",
-    "explanation": "Apical cavity years after a first infection is reactivation tuberculosis, because oxygen tension is highest at the apex. Reactivation at the apex is the cavitary lesion, while the old calcified base is the healed primary focus. A new Ghon focus at the base is the first infection, mid or lower lung, not this cavity. Miliary seeding as the only lesion is diffuse millet seeds, not one thick-walled apex. A pneumococcal lobar consolidation is acute and not acid-fast. An asbestos plaque is pleural calcification, not a cavity full of acid-fast bacilli.",
+    "correctAnswer": "Oxygen tension is highest there",
+    "explanation": "An apical cavity years after a healed base focus is reactivation, because the apex has the highest oxygen tension. Oxygen tension is highest there, so dormant bacilli reactivate at the top. The base has more oxygen than the apex is the reverse of the gradient. A new Ghon focus must sit at the apex is wrong; the first focus is mid or lower lung, which matches his old basal scar. Pleural plaques pull the cavity upward is an asbestos story. The heart borders only the apex is anatomy he does not need; the oxygen gradient is the reason.",
     "citation": null
   },
   {
@@ -315,18 +315,18 @@
     "outlineWeight": 13,
     "difficulty": 5,
     "subjectId": "nephrology",
-    "examTakeaway": "A mild metabolic acidosis with a high potassium in a diabetic is type 4 renal tubular acidosis from low aldosterone effect.",
-    "scenario": "A 58-year-old man with long diabetes has a bicarbonate of 18 mEq/L and a potassium of 5.6 mEq/L. The anion gap is normal. Urine pH is 5.2. He has no diarrhea and no kidney stones. Renin and aldosterone are both low. Creatinine is 1.4 mg/dL.",
-    "question": "Which tubular defect is this?",
+    "examTakeaway": "A mild normal-gap acidosis with a high potassium in diabetes is low aldosterone effect, so the urine can still reach a low pH.",
+    "scenario": "A 58-year-old man with long diabetes has a bicarbonate of 18 mEq/L, a potassium of 5.6 mEq/L, and a normal anion gap. Urine pH is 5.2. He has no diarrhea and no stones. Renin is low. Creatinine is 1.4 mg/dL. He asks why the potassium is high when the urine is already acidic.",
+    "question": "Which aldosterone job failed, if acidification is still present?",
     "options": [
-      "Type 4, low aldosterone effect",
-      "Type 1, failure to acidify",
-      "Type 2, a proximal bicarbonate leak",
-      "Diarrhea losing bicarbonate",
-      "A high-anion-gap toxin"
+      "Potassium secretion in the collecting duct",
+      "Proximal bicarbonate reabsorption as the only defect",
+      "Distal acidification, so the urine stays above 5.5",
+      "Gut loss of bicarbonate",
+      "A toxin widening the anion gap"
     ],
-    "correctAnswer": "Type 4, low aldosterone effect",
-    "explanation": "A mild metabolic acidosis with a high potassium in a diabetic is type 4 renal tubular acidosis from low aldosterone effect. Type 4, low aldosterone effect, leaves him unable to excrete potassium, and the urine can still reach a pH near 5. Type 1, failure to acidify, causes a urine pH above 5.5 and a low potassium, often with stones. Type 2, a proximal bicarbonate leak, wastes bicarbonate until the plasma level falls, and potassium is low. Diarrhea losing bicarbonate also lowers potassium, and he has no diarrhea. A high-anion-gap toxin would widen the gap, which is normal.",
+    "correctAnswer": "Potassium secretion in the collecting duct",
+    "explanation": "A mild normal-gap acidosis with a high potassium in diabetes is low aldosterone effect, so the urine can still reach a low pH. Potassium secretion in the collecting duct is the aldosterone job that failed, while acidification to pH 5.2 can remain. Proximal bicarbonate reabsorption as the only defect is type 2 and lowers potassium. Distal acidification, so the urine stays above 5.5, is type 1, and his urine is 5.2. Gut loss of bicarbonate also lowers potassium, and he has no diarrhea. A toxin widening the anion gap would raise the gap, which is normal.",
     "citation": null
   },
   {

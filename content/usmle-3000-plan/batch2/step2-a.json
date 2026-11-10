@@ -100,18 +100,18 @@
     "difficulty": 4,
     "subjectId": "ethics",
     "nutrition": false,
-    "examTakeaway": "Uncontrolled epilepsy and continued driving, after he refuses to stop, is reported to the license authority where reporting is required.",
-    "scenario": "A 36-year-old man had a witnessed seizure last week and another three months ago. He drives a school bus and says he will not stop. Medication level is subtherapeutic because he skips doses. He understands the risk and still refuses. State rules require physicians to report this danger.",
-    "question": "Which action is required?",
+    "examTakeaway": "Two unprovoked seizures plus driving a school bus is a duty to report, and a promise to be careful does not replace that report.",
+    "scenario": "A 36-year-old man had a witnessed seizure last week and another three months ago. Neither seizure had a reversible provoking cause. He drives a school bus and says he will be careful. The medication level is low because he skips doses. He understands the risk and still refuses to stop. A colleague's patient had one seizure only during severe hypoglycemia that is now corrected.",
+    "question": "Which driver creates a reporting duty?",
     "options": [
-      "Report him to the license authority",
-      "Stay silent because he refused",
-      "Take his keys yourself by force",
-      "Discharge him from the practice that day with no report",
-      "Tell his passengers yourself"
+      "Report the bus driver with two unprovoked seizures",
+      "Stay silent because he promised to be careful",
+      "Report the colleague's single provoked seizure the same way",
+      "Take his keys by force",
+      "Tell the children on the bus his diagnosis"
     ],
-    "correctAnswer": "Report him to the license authority",
-    "explanation": "Uncontrolled epilepsy and continued driving, after he refuses to stop, is reported to the license authority where reporting is required. Report him to the license authority. Stay silent because he refused leaves the children on the bus at risk he will not mitigate. Take his keys yourself by force is not the legal path. Discharge him from the practice that day with no report abandons the duty. Tell his passengers yourself broadcasts his diagnosis instead of using the required report.",
+    "correctAnswer": "Report the bus driver with two unprovoked seizures",
+    "explanation": "Two unprovoked seizures plus driving a school bus is a duty to report, and a promise to be careful does not replace that report. Report the bus driver with two unprovoked seizures. Stay silent because he promised to be careful leaves the children at risk. Report the colleague's single provoked seizure the same way treats a corrected hypoglycemia as epilepsy. Take his keys by force is not the legal path. Tell the children on the bus his diagnosis broadcasts the diagnosis instead of using the report.",
     "citation": null
   },
   {
@@ -330,19 +330,19 @@
     "difficulty": 4,
     "subjectId": "nephrology",
     "nutrition": false,
-    "examTakeaway": "Seizures from hyponatremia are treated with hypertonic saline, not with normal saline alone and not with free water.",
-    "scenario": "A 28-year-old woman has a seizure. Sodium is 114 mEq/L. She had been drinking only water during a long hike. She is postictal. Glucose is 90 mg/dL. She is not volume overloaded.",
-    "question": "Which fluid is the most appropriate next step?",
+    "examTakeaway": "A seizure at a sodium of 114 needs a small rise now, but a rise that is too fast the same day causes osmotic demyelination.",
+    "scenario": "A 28-year-old woman seized after drinking only water on a long hike. Sodium is 114 mEq/L. A small bolus of hypertonic saline stopped the seizure. A colleague wants to raise the sodium by 20 mmol/L before tonight. She is not volume overloaded. Glucose is 90 mg/dL.",
+    "question": "Which injury follows if the sodium rises that fast?",
     "options": [
-      "D5W",
-      "A loop diuretic alone",
-      "Hypertonic saline",
-      "Plain water by mouth",
-      "Half-normal saline"
+      "Wernicke encephalopathy",
+      "Cerebral edema caused by the correction",
+      "Osmotic demyelination",
+      "A subdural hematoma",
+      "A multiple-sclerosis plaque"
     ],
-    "correctAnswer": "Hypertonic saline",
-    "explanation": "Seizures from hyponatremia are treated with hypertonic saline, not with normal saline alone and not with free water. Hypertonic saline is the 2014 acute treatment for seizures at a sodium of 114. Plain water by mouth lowers the sodium further. Half-normal saline is still hypotonic relative to her need. D5W is free water once the sugar is metabolized. A loop diuretic alone does not raise the sodium in this setting.",
-    "citation": "2014"
+    "correctAnswer": "Osmotic demyelination",
+    "explanation": "A seizure at a sodium of 114 needs a small rise now, but a rise that is too fast the same day causes osmotic demyelination. Osmotic demyelination is the injury from overcorrection. Wernicke encephalopathy is thiamine deficiency, not a sodium shift. Cerebral edema caused by the correction is backward; cerebral edema is the danger of the low sodium itself, and correction treats it. A subdural hematoma is trauma. A multiple-sclerosis plaque is not a sodium complication.",
+    "citation": null
   },
   {
     "id": "b2-s2-16",
@@ -422,19 +422,19 @@
     "difficulty": 4,
     "subjectId": "urology",
     "nutrition": false,
-    "examTakeaway": "Sudden inability to void, with a palpable bladder, is relieved by a catheter, not by a waiting period.",
-    "scenario": "A 72-year-old man cannot urinate. The bladder is palpable to the umbilicus and he is in pain. He has a weak stream history. Creatinine is 1.5 mg/dL. He is afebrile. Prostate exam is enlarged and nontender.",
-    "question": "Which plan is the most appropriate next step?",
+    "examTakeaway": "A bladder left full overnight obstructs both kidneys, which is postrenal azotemia even when the prostate is not infected.",
+    "scenario": "A 72-year-old man cannot urinate and the bladder reaches the umbilicus. He is in pain. Creatinine is 1.5 mg/dL. He is afebrile and the prostate is enlarged but not tender. A colleague suggests waiting until morning. He asks what the kidneys will do if the bladder stays full.",
+    "question": "Which kidney injury follows a night of retention?",
     "options": [
-      "Immediate prostatectomy",
-      "Urethral catheter now",
-      "Antibiotics and recheck tomorrow",
-      "Alpha blocker as the only act today",
-      "Observation for 24 hours"
+      "Pyelonephritis",
+      "Postrenal azotemia",
+      "Acute interstitial nephritis",
+      "Nephrotic syndrome",
+      "Renal artery stenosis"
     ],
-    "correctAnswer": "Urethral catheter now",
-    "explanation": "Sudden inability to void, with a palpable bladder, is relieved by a catheter, not by a waiting period. Urethral catheter now empties the painful bladder. Antibiotics and recheck tomorrow treat prostatitis, and the gland is not tender or febrile. Alpha blocker as the only act today may help later and does not empty this bladder. Observation for 24 hours leaves him in retention. Immediate prostatectomy is not the acute step. This approach has been standard care since 2018.",
-    "citation": "2018"
+    "correctAnswer": "Postrenal azotemia",
+    "explanation": "A bladder left full overnight obstructs both kidneys, which is postrenal azotemia even when the prostate is not infected. Postrenal azotemia is the backup from a full bladder. Pyelonephritis needs fever and a tender gland he does not have. Acute interstitial nephritis follows a drug, with white cells in the urine. Nephrotic syndrome is protein and edema. Renal artery stenosis is a bruit and high blood pressure, not a palpable bladder.",
+    "citation": null
   },
   {
     "id": "b2-s2-20",

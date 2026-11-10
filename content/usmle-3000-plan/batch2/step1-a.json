@@ -51,18 +51,18 @@
     "outlineWeight": 14,
     "difficulty": 4,
     "subjectId": "endocrinology",
-    "examTakeaway": "Failure to lactate after postpartum hemorrhage is ischemic loss of the anterior pituitary.",
-    "scenario": "A 28-year-old woman needed a transfusion for hemorrhage at delivery. Two weeks later she cannot lactate, and she is fatigued and cold. Sodium is 132 mEq/L. Prolactin, TSH, and morning cortisol are all low. MRI shows an empty sella and no pituitary mass.",
-    "question": "Which tissue was lost?",
+    "examTakeaway": "Failure to lactate plus hyponatremia after postpartum hemorrhage is loss of anterior-pituitary prolactin and ACTH together.",
+    "scenario": "A 28-year-old woman needed a transfusion for hemorrhage at delivery. Two weeks later she cannot lactate, is dizzy on standing, and has a sodium of 128 mEq/L and a glucose of 58 mg/dL. She is not polyuric. MRI shows an empty sella and no mass.",
+    "question": "Which losses explain the milk and the sodium together?",
     "options": [
-      "Thyroid follicular cells only",
-      "Hypothalamic thirst center",
-      "Posterior pituitary only",
-      "Anterior pituitary",
-      "Adrenal medulla"
+      "ADH only",
+      "Cortisol made in the adrenal medulla",
+      "Thyroxine only",
+      "Prolactin and ACTH together",
+      "Insulin"
     ],
-    "correctAnswer": "Anterior pituitary",
-    "explanation": "Failure to lactate after postpartum hemorrhage is ischemic loss of the anterior pituitary. Anterior pituitary makes prolactin, TSH, and ACTH, all of which are low, and the empty sella fits Sheehan syndrome. Posterior pituitary only would affect ADH and spare lactation. Adrenal medulla loss does not lower cortisol from the cortex or stop milk. Thyroid follicular cells only would raise TSH. Hypothalamic thirst center loss causes adipsia, not this panhypopituitary pattern.",
+    "correctAnswer": "Prolactin and ACTH together",
+    "explanation": "Failure to lactate plus hyponatremia after postpartum hemorrhage is loss of anterior-pituitary prolactin and ACTH together. Prolactin and ACTH together explains absent milk plus low sodium and low glucose. ADH only would cause polyuria, and she is not polyuric. Cortisol made in the adrenal medulla is the wrong gland; the medulla makes catecholamines. Thyroxine only does not stop lactation this fast or drop the glucose. Insulin deficiency would raise the glucose, not lower it.",
     "citation": null
   },
   {
@@ -73,18 +73,18 @@
     "outlineWeight": 14,
     "difficulty": 4,
     "subjectId": "endocrinology",
-    "examTakeaway": "Hypertension with high aldosterone and low renin, plus an adrenal nodule, is primary aldosteronism.",
-    "scenario": "A 45-year-old man has blood pressure 168/100 mm Hg on three drugs. Potassium is 3.0 mEq/L and he is not on a diuretic. The aldosterone-renin ratio is high because renin is suppressed. CT shows a 1.2 cm left adrenal nodule. He has no spells of headache or palpitations.",
-    "question": "Which hormone is in excess?",
+    "examTakeaway": "Resistant hypertension, hypokalemia, a low renin, and an adrenal nodule are volume expansion from aldosterone, not a high-renin renal artery lesion.",
+    "scenario": "A 45-year-old man has a blood pressure of 168/100 mm Hg on three drugs and is not on a beta blocker. Potassium is 3.0 mEq/L. Plasma renin is below the reference range. CT shows a 1.2 cm adrenal nodule. Plasma metanephrines are normal and he has no pounding spells.",
+    "question": "Which hormone expanded his volume and suppressed renin?",
     "options": [
-      "Parathyroid hormone",
-      "ADH",
       "Cortisol from a pituitary source",
       "Catecholamines",
+      "Renin itself from a renal artery stenosis",
+      "Parathyroid hormone",
       "Aldosterone"
     ],
     "correctAnswer": "Aldosterone",
-    "explanation": "Hypertension with high aldosterone and low renin, plus an adrenal nodule, is primary aldosteronism. Aldosterone dumps potassium and expands volume enough to switch renin off. Cortisol from a pituitary source would add weight gain and striae, which are absent. Catecholamines cause paroxysmal headache and palpitations he does not have. Parathyroid hormone raises calcium, not this blood pressure. ADH retains water and lowers sodium rather than potassium.",
+    "explanation": "Resistant hypertension, hypokalemia, a low renin, and an adrenal nodule are volume expansion from aldosterone, not a high-renin renal artery lesion. Aldosterone wastes potassium and expands volume enough to switch renin off. Cortisol from a pituitary source adds weight gain and striae, which are absent. Catecholamines would raise metanephrines and cause spells, which he does not have. Renin itself from a renal artery stenosis would be high, not suppressed. Parathyroid hormone raises calcium, not this pressure.",
     "citation": null
   },
   {

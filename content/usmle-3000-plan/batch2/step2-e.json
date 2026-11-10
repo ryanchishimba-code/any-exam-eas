@@ -353,18 +353,18 @@
     "difficulty": 4,
     "subjectId": "biostatistics",
     "nutrition": false,
-    "examTakeaway": "Patients who drop out of the sicker arm can make a drug look better than it is, which is attrition bias.",
-    "scenario": "A 22-year-old student reviews a trial. People who felt worse on the new drug left the study, and the analysis uses only those who finished. The drug looks helpful in that remaining group. Sicker people are missing from the drug arm.",
-    "question": "Which bias is this?",
+    "examTakeaway": "When sicker patients leave the drug arm, keeping every randomized person in the assigned group prevents the drug from looking better than it is.",
+    "scenario": "A 22-year-old student reviews a trial. People who felt worse on the new drug left, and an analysis that keeps only those who finished makes the drug look helpful. Sicker people are missing from the drug arm. She asks which analysis would have kept those people in the drug group.",
+    "question": "Which analysis keeps the people who left in the drug group?",
     "options": [
-      "Attrition bias",
-      "Lead-time bias",
-      "Recall bias",
-      "Length-time bias",
-      "Observer bias from a blinded reader"
+      "Intention to treat",
+      "A completers-only analysis",
+      "As treated, moving them to no drug",
+      "A case series",
+      "A per-protocol analysis"
     ],
-    "correctAnswer": "Attrition bias",
-    "explanation": "Patients who drop out of the sicker arm can make a drug look better than it is, which is attrition bias. Attrition bias is the loss of the people who felt worse. Lead-time bias is an earlier diagnostic clock. Recall bias is memory of exposures. Length-time bias is the tendency of screening to find slow tumors. Observer bias from a blinded reader is unlikely, because blinding is what limits that bias, and this problem is who remained.",
+    "correctAnswer": "Intention to treat",
+    "explanation": "When sicker patients leave the drug arm, keeping every randomized person in the assigned group prevents the drug from looking better than it is. Intention to treat keeps the people who left in the drug group. A completers-only analysis and a per-protocol analysis drop them, which is the bias she noticed. As treated, moving them to no drug, relocates them instead of keeping the assignment. A case series has no randomized groups.",
     "citation": null
   },
   {
@@ -376,18 +376,18 @@
     "difficulty": 3,
     "subjectId": "biostatistics",
     "nutrition": false,
-    "examTakeaway": "Blinding the person who judges the outcome reduces observer bias.",
-    "scenario": "A 22-year-old student compares two trials of a cream for rash. In one, the dermatologist knows who got the drug. In the other, the dermatologist does not. Photographs are scored at the end. She asks which design protects the score.",
-    "question": "Which design protects the score?",
+    "examTakeaway": "If the person scoring the rash knows who got the drug, observer bias can tilt the score even when assignment was random.",
+    "scenario": "A 22-year-old student compares two trials of a cream. Assignment was random in both. In one, the dermatologist scoring the photographs knows who got the drug. In the other, the dermatologist does not. She asks which bias the unblinded score allows.",
+    "question": "Which bias does the unblinded score allow?",
     "options": [
-      "No photographs",
-      "Letting patients score while looking at the label",
-      "Stopping early because the reader is enthusiastic",
-      "The blinded reader",
-      "The reader who knows the assignment"
+      "Selection bias from a nonrandom sample",
+      "Recall bias",
+      "Lead-time bias",
+      "Observer bias",
+      "Attrition bias"
     ],
-    "correctAnswer": "The blinded reader",
-    "explanation": "Blinding the person who judges the outcome reduces observer bias. The blinded reader cannot tilt the score toward the drug. The reader who knows the assignment can. No photographs removes the outcome rather than protecting it. Letting patients score while looking at the label unblinds them. Stopping early because the reader is enthusiastic invites a biased stop.",
+    "correctAnswer": "Observer bias",
+    "explanation": "If the person scoring the rash knows who got the drug, observer bias can tilt the score even when assignment was random. Observer bias is the unblinded score. Selection bias from a nonrandom sample is who enrolled, and assignment was random. Recall bias is memory of exposures. Lead-time bias is an earlier diagnostic clock. Attrition bias is who left the trial, not who scored the photographs.",
     "citation": null
   },
   {
@@ -422,18 +422,18 @@
     "difficulty": 3,
     "subjectId": "pediatrics",
     "nutrition": false,
-    "examTakeaway": "Head lag at five months is a delay, because head control should be present by four months.",
-    "scenario": "A 5-month-old boy still drops his head back when pulled to sit. He does not push up on his arms when prone. He smiled socially at 2 months. Birth was at term and weight gain is fine. The parents were told head lag is normal until walking.",
-    "question": "Which finding is the delay?",
+    "examTakeaway": "Head lag at five months is already late, so the response is referral now rather than waiting until the child walks.",
+    "scenario": "A 5-month-old boy still drops his head back when pulled to sit. He smiled socially at 2 months. Birth was at term and weight gain is fine. The parents were told to wait until he walks. Hearing has not been tested. They ask what the motor finding requires now.",
+    "question": "What does the motor finding require now?",
     "options": [
-      "A social smile at two months",
-      "Term birth",
-      "Normal weight",
-      "Male sex",
-      "Head lag at five months"
+      "Waiting until he walks",
+      "Treating the social smile as the delay",
+      "Blaming the term birth",
+      "Blaming male sex",
+      "Referral now for the motor delay"
     ],
-    "correctAnswer": "Head lag at five months",
-    "explanation": "Head lag at five months is a delay, because head control should be present by four months. Head lag at five months is the finding that needs action. A social smile at two months was on time. Term birth and normal weight do not explain the lag. Male sex is not a reason for head lag at five months.",
+    "correctAnswer": "Referral now for the motor delay",
+    "explanation": "Head lag at five months is already late, so the response is referral now rather than waiting until the child walks. Referral now for the motor delay is required because head control should be present by four months. Waiting until he walks misses the delay. Treating the social smile as the delay is wrong because the smile at two months was on time. Blaming the term birth and blaming male sex do not explain head lag at five months.",
     "citation": null
   },
   {

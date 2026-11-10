@@ -7,18 +7,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "Night pain in a teenager that vanishes with ibuprofen, and a small nidus, is osteoid osteoma, not osteosarcoma.",
-    "scenario": "A 15-year-old boy has shin pain that wakes him and disappears after ibuprofen. The film shows a small round lucency with a sclerotic rim in the cortex. There is no sunburst and no soft-tissue mass. Alkaline phosphatase is normal.",
-    "question": "Which lesion is the nidus?",
+    "examTakeaway": "Night pain that stops with ibuprofen comes from prostaglandin made by a tiny nidus, which is why the pain is not a large bone sarcoma.",
+    "scenario": "A 15-year-old boy has shin pain that wakes him and disappears after ibuprofen. The film shows a small cortical lucency with a sclerotic rim. There is no sunburst and alkaline phosphatase is normal. He asks which mediator the drug is blocking.",
+    "question": "Which mediator from the nidus does ibuprofen block?",
     "options": [
-      "Osteochondroma",
-      "A giant-cell tumor of the epiphysis",
-      "Osteoid osteoma",
-      "Osteosarcoma",
-      "Ewing sarcoma"
+      "Histamine",
+      "Bradykinin from a fracture",
+      "Prostaglandin",
+      "Serotonin from a carcinoid",
+      "Urate"
     ],
-    "correctAnswer": "Osteoid osteoma",
-    "explanation": "Night pain in a teenager that vanishes with ibuprofen, and a small nidus, is osteoid osteoma, not osteosarcoma. Osteoid osteoma makes prostaglandin, so a nonsteroidal drug stops the pain, and the lesion is a tiny cortical nidus. Osteosarcoma is a large metaphyseal mass with a sunburst and a high alkaline phosphatase. Ewing sarcoma is a diaphyseal permeative tumor with systemic symptoms. Osteochondroma is a cartilage-capped bony outgrowth pointing away from the joint. A giant-cell tumor of the epiphysis is a soap-bubble lesion in a young adult after the growth plate closes.",
+    "correctAnswer": "Prostaglandin",
+    "explanation": "Night pain that stops with ibuprofen comes from prostaglandin made by a tiny nidus, which is why the pain is not a large bone sarcoma. Prostaglandin from the osteoid osteoma is what a nonsteroidal drug blocks. Histamine is allergy. Bradykinin from a fracture is not a tiny painless-by-day nidus. Serotonin from a carcinoid causes flushing, not focal night pain. Urate is gout in a joint, not a cortical nidus.",
     "citation": null
   },
   {
@@ -29,18 +29,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "A soap-bubble lesion in the epiphysis of a young adult, after the growth plate has closed, is a giant-cell tumor.",
-    "scenario": "A 28-year-old woman has knee pain. The film shows a lytic lesion in the distal femoral epiphysis that looks like soap bubbles and reaches the articular surface. The growth plate is closed. There is no nidus and no sunburst. Alkaline phosphatase is normal.",
-    "question": "Which tumor sits in the epiphysis?",
+    "examTakeaway": "A soap-bubble lesion can reach the joint surface only after the growth plate closes, which is why this tumor is an adult epiphyseal lesion.",
+    "scenario": "A 28-year-old woman has knee pain. The film shows a lytic lesion in the distal femoral epiphysis that looks like soap bubbles and reaches the articular surface. The growth plate is closed. Alkaline phosphatase is normal. She asks why this lesion is not seen in a child whose plate is still open.",
+    "question": "Why can this tumor reach the joint surface now?",
     "options": [
-      "Giant-cell tumor",
-      "Osteoid osteoma",
-      "Osteosarcoma",
-      "Ewing sarcoma",
-      "Osteochondroma"
+      "The growth plate has closed",
+      "A cortical nidus has no plate barrier",
+      "A sunburst ignores the plate",
+      "A cartilage cap must cross an open plate",
+      "A diaphyseal round-cell tumor starts at the joint"
     ],
-    "correctAnswer": "Giant-cell tumor",
-    "explanation": "A soap-bubble lesion in the epiphysis of a young adult, after the growth plate has closed, is a giant-cell tumor. Giant-cell tumor reaches the joint surface only once the plate is closed. Osteoid osteoma is a small cortical nidus that hurts at night. Osteosarcoma is metaphyseal with a sunburst in a teenager. Ewing sarcoma is diaphyseal. Osteochondroma is an exostosis capped by cartilage, not a lytic epiphyseal bubble.",
+    "correctAnswer": "The growth plate has closed",
+    "explanation": "A soap-bubble lesion can reach the joint surface only after the growth plate closes, which is why this tumor is an adult epiphyseal lesion. The growth plate has closed, so a giant-cell tumor can extend to the articular surface. A cortical nidus has no plate barrier describes osteoid osteoma, a small painful lesion. A sunburst ignores the plate is osteosarcoma in the metaphysis. A cartilage cap must cross an open plate is not how an osteochondroma grows. A diaphyseal round-cell tumor starts at the joint is the wrong bone region.",
     "citation": null
   },
   {
@@ -51,18 +51,18 @@
     "outlineWeight": 10,
     "difficulty": 3,
     "subjectId": "pathology",
-    "examTakeaway": "A bony outgrowth pointing away from the knee and capped by cartilage is an osteochondroma.",
-    "scenario": "A 16-year-old boy has a hard painless bump just above the knee. The film shows a stalk of bone continuous with the cortex, pointing away from the joint, with a cartilage cap. It does not hurt at night and ibuprofen was never needed. There is no soft-tissue mass.",
-    "question": "Which lesion is the bump?",
+    "examTakeaway": "A painless stalk pointing away from the knee is cartilage left from the growth plate, continuous with the cortex.",
+    "scenario": "A 16-year-old boy has a hard painless bump just above the knee. The film shows cortex flowing into a stalk that points away from the joint, with a cartilage cap. It does not hurt at night. There is no soft-tissue mass. He asks what the cap is made of.",
+    "question": "What tissue caps the stalk?",
     "options": [
-      "Ewing sarcoma",
-      "Osteochondroma",
-      "Osteoid osteoma",
-      "Osteosarcoma",
-      "Giant-cell tumor"
+      "Osteoid of a sarcoma",
+      "Cartilage left from the growth plate",
+      "A giant-cell mass",
+      "Round cells of a diaphyseal tumor",
+      "Pus"
     ],
-    "correctAnswer": "Osteochondroma",
-    "explanation": "A bony outgrowth pointing away from the knee and capped by cartilage is an osteochondroma. Osteochondroma is a misplaced growth-plate cartilage that ossifies and points away from the joint. Osteoid osteoma is a painful cortical nidus. Osteosarcoma destroys cortex and makes a sunburst. Giant-cell tumor is a lytic epiphyseal lesion after the plate closes. Ewing sarcoma is a diaphyseal small-cell tumor, not a cartilage-capped stalk.",
+    "correctAnswer": "Cartilage left from the growth plate",
+    "explanation": "A painless stalk pointing away from the knee is cartilage left from the growth plate, continuous with the cortex. Cartilage left from the growth plate is the cap of an osteochondroma. Osteoid of a sarcoma destroys cortex and hurts. A giant-cell mass is a lytic epiphyseal lesion after the plate closes. Round cells of a diaphyseal tumor are not a cartilage cap. Pus is an infection, not a painless bony stalk.",
     "citation": null
   },
   {
@@ -73,18 +73,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "An enlarging hat, a high alkaline phosphatase, and mosaic cement lines are Paget disease of bone.",
-    "scenario": "A 70-year-old man needs a larger hat. Alkaline phosphatase is 480 U/L. Calcium and phosphate are normal. A skull film shows cotton-wool densities. Biopsy shows cement lines that look like a mosaic. He has no prostate symptoms and the PSA is normal.",
-    "question": "Which bone process is this?",
+    "examTakeaway": "An enlarging hat with a high alkaline phosphatase and a normal calcium is disordered remodeling, not a hormone that raises calcium.",
+    "scenario": "A 70-year-old man needs a larger hat. Alkaline phosphatase is 480 U/L. Calcium and phosphate are normal. The skull film shows cotton-wool densities. Biopsy shows mosaic cement lines. PSA is normal. He asks why the phosphatase is high if the calcium is not.",
+    "question": "Which process raises the phosphatase without raising calcium?",
     "options": [
+      "Osteoporosis thinning the bone",
+      "Osteomalacia from low vitamin D",
+      "Disordered remodeling of Paget disease",
       "Metastatic prostate cancer",
-      "Primary hyperparathyroidism",
-      "Paget disease",
-      "Osteoporosis",
-      "Osteomalacia"
+      "Primary hyperparathyroidism"
     ],
-    "correctAnswer": "Paget disease",
-    "explanation": "An enlarging hat, a high alkaline phosphatase, and mosaic cement lines are Paget disease of bone. Paget disease is disordered remodeling, so the phosphatase rises while calcium stays normal. Osteoporosis thins bone and does not raise the phosphatase or enlarge the hat. Osteomalacia softens bone from low vitamin D and lowers calcium or phosphate. Metastatic prostate cancer is osteoblastic and raises the phosphatase, but the PSA is normal and the mosaic lines are the Paget pattern. Primary hyperparathyroidism raises calcium, which is normal.",
+    "correctAnswer": "Disordered remodeling of Paget disease",
+    "explanation": "An enlarging hat with a high alkaline phosphatase and a normal calcium is disordered remodeling, not a hormone that raises calcium. Disordered remodeling of Paget disease raises the phosphatase while calcium stays normal. Osteoporosis thinning the bone does not raise the phosphatase or enlarge the hat. Osteomalacia from low vitamin D softens bone and disturbs calcium or phosphate. Metastatic prostate cancer can raise the phosphatase, but the PSA is normal and the mosaic lines are the Paget pattern. Primary hyperparathyroidism raises calcium, which is normal.",
     "citation": null
   },
   {
@@ -95,9 +95,9 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "Back pain in a young man that improves with movement, plus a stiff chest, is ankylosing spondylitis.",
-    "scenario": "A 23-year-old man has low-back pain for a year. The pain is worse after sleep and eases when he walks. Chest expansion is reduced. A film shows sclerosis of both sacroiliac joints. Rheumatoid factor is negative. Morning stiffness of the knees is not his complaint, and there are no marginal erosions of the hands.",
-    "question": "Which association fits?",
+    "examTakeaway": "Back pain that eases with walking in a young man is inflammatory, linked to HLA-B27, the opposite of mechanical pain that worsens with use.",
+    "scenario": "A 23-year-old man has low-back pain that is worse after sleep and eases when he walks. Chest expansion is reduced. Both sacroiliac joints are sclerotic. Rheumatoid factor is negative and the hands have no erosions. He asks why walking helps when activity usually worsens joint wear.",
+    "question": "Which association marks this inflammatory pattern?",
     "options": [
       "Rheumatoid factor",
       "Anti-CCP antibody",
@@ -106,7 +106,7 @@
       "HLA-B27"
     ],
     "correctAnswer": "HLA-B27",
-    "explanation": "Back pain in a young man that improves with movement, plus a stiff chest, is ankylosing spondylitis. HLA-B27 is the association, and the pain getting better with use separates it from mechanical wear, which gets worse with use. Rheumatoid factor and anti-CCP antibody mark rheumatoid arthritis of the hands, which he does not have. Urate crystals are gout, usually a red toe. Anticentromere antibody marks limited systemic sclerosis.",
+    "explanation": "Back pain that eases with walking in a young man is inflammatory, linked to HLA-B27, the opposite of mechanical pain that worsens with use. HLA-B27 marks ankylosing spondylitis. Rheumatoid factor and anti-CCP antibody mark hand disease he does not have. Urate crystals are gout. Anticentromere antibody marks limited scleroderma.",
     "citation": null
   },
   {
@@ -117,18 +117,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "A heliotrope rash and knuckle papules with proximal weakness are dermatomyositis, and an adult needs a cancer search.",
-    "scenario": "A 58-year-old woman cannot climb stairs. The eyelids are purple and the knuckles have scaly red papules. CK is 4,000 U/L. She has no saddle-nose deformity and no sinus disease. She has not had a cancer screening yet.",
-    "question": "Which muscle disease is this?",
+    "examTakeaway": "A heliotrope rash with proximal weakness in an adult means a cancer search is required, because dermatomyositis is a paraneoplastic risk.",
+    "scenario": "A 58-year-old woman cannot climb stairs. The eyelids are purple and the knuckles have scaly red papules. CK is 4,000 U/L. She has no sinus disease. She has not had a cancer screening. She asks what extra evaluation the rash adds beyond the weak muscles.",
+    "question": "Which added evaluation does this rash require in an adult?",
     "options": [
-      "Polymyositis without a rash",
-      "Inclusion-body myositis",
-      "Myasthenia gravis",
-      "Dermatomyositis",
-      "Polymyalgia rheumatica"
+      "No added evaluation",
+      "A sinus culture",
+      "A thymoma search as the only mass",
+      "A search for an underlying cancer",
+      "A lung-cancer search as in Lambert-Eaton only"
     ],
-    "correctAnswer": "Dermatomyositis",
-    "explanation": "A heliotrope rash and knuckle papules with proximal weakness are dermatomyositis, and an adult needs a cancer search. Dermatomyositis is the rash plus the proximal weakness. Polymyalgia rheumatica is pain and stiffness in an older adult with a normal CK. Polymyositis without a rash is the same weakness and a high CK but no eyelid or knuckle rash. Inclusion-body myositis prefers distal finger flexors and the quadriceps in older men and responds poorly. Myasthenia gravis fatigues the eyelids and does not raise CK or rash the knuckles.",
+    "correctAnswer": "A search for an underlying cancer",
+    "explanation": "A heliotrope rash with proximal weakness in an adult means a cancer search is required, because dermatomyositis is a paraneoplastic risk. A search for an underlying cancer is the added step the rash creates. No added evaluation misses that risk. A sinus culture treats vasculitis he does not have. A thymoma search as the only mass is myasthenia. A lung-cancer search as in Lambert-Eaton only is the use-improving weakness of a different synapse.",
     "citation": null
   },
   {
@@ -139,18 +139,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "Calcinosis, Raynaud, esophageal dysmotility, and a positive anticentromere antibody are limited scleroderma, not the diffuse anti-Scl-70 disease.",
-    "scenario": "A 46-year-old woman has fingers that turn white in the cold, gritty calcium lumps on the digits, and trouble swallowing. The skin is thick only on the fingers. Anticentromere antibody is positive and anti-Scl-70 is negative. She has no renal crisis.",
-    "question": "Which antibody fits the limited skin?",
+    "examTakeaway": "Skin thick only on the fingers, with Raynaud and a positive anticentromere antibody, spares the renal crisis seen when anti-Scl-70 marks diffuse disease.",
+    "scenario": "A 46-year-old woman has fingers that turn white in the cold, calcium lumps on the digits, and trouble swallowing. Skin is thick only on the fingers. One antibody test is positive and anti-Scl-70 is negative. She has no renal crisis. She asks which complication the negative anti-Scl-70 makes less likely right now.",
+    "question": "Which complication is more a feature of diffuse anti-Scl-70 disease than of this limited pattern?",
     "options": [
-      "Anti-Scl-70",
-      "Anti-Jo-1",
-      "Anti-histone antibody",
-      "Anti-dsDNA",
-      "Anticentromere antibody"
+      "Esophageal dysmotility, which she already has",
+      "Calcinosis, which she already has",
+      "Raynaud phenomenon, which she already has",
+      "Telangiectasia",
+      "Scleroderma renal crisis"
     ],
-    "correctAnswer": "Anticentromere antibody",
-    "explanation": "Calcinosis, Raynaud, esophageal dysmotility, and a positive anticentromere antibody are limited scleroderma, not the diffuse anti-Scl-70 disease. Anticentromere antibody matches skin disease limited to the fingers. Anti-Scl-70 marks diffuse skin disease and lung fibrosis, and that test is negative. Anti-Jo-1 marks antisynthetase myositis. Anti-histone antibody marks drug-induced lupus, which she does not have. Anti-dsDNA marks SLE nephritis.",
+    "correctAnswer": "Scleroderma renal crisis",
+    "explanation": "Skin thick only on the fingers, with Raynaud and a positive anticentromere antibody, spares the renal crisis seen when anti-Scl-70 marks diffuse disease. Scleroderma renal crisis is the diffuse-disease complication her negative anti-Scl-70 and limited skin make less likely now. Esophageal dysmotility, which she already has, calcinosis, which she already has, and Raynaud phenomenon, which she already has, are part of the limited pattern. Telangiectasia is also part of limited disease, not the renal crisis.",
     "citation": null
   },
   {
@@ -161,18 +161,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "Needle crystals that are yellow when parallel to the compensator are monosodium urate, not calcium pyrophosphate.",
-    "scenario": "A 55-year-old man has a red, hot first toe. He had a similar attack after a steak dinner. Aspirate shows needle-shaped crystals that look yellow when lined up with the compensator. The knee meniscus is not calcified. Serum calcium is normal.",
-    "question": "Which crystal is the needle?",
+    "examTakeaway": "Needles that look yellow when parallel to the compensator are negatively birefringent urate, the opposite of the rhomboid crystal.",
+    "scenario": "A 55-year-old man has a red first toe after a steak dinner. Aspirate shows needles that look yellow when lined up with the compensator. The knee meniscus is not calcified. Serum calcium is normal. He asks which optical sign separates these needles from the rhomboid crystal of the knee.",
+    "question": "Which optical behavior do these yellow needles show?",
     "options": [
-      "Monosodium urate",
-      "Calcium pyrophosphate",
-      "Cholesterol",
-      "Calcium oxalate",
-      "Hydroxyapatite"
+      "Negative birefringence",
+      "Positive birefringence of a rhomboid",
+      "No birefringence",
+      "A cholesterol plate",
+      "An envelope oxalate crystal"
     ],
-    "correctAnswer": "Monosodium urate",
-    "explanation": "Needle crystals that are yellow when parallel to the compensator are monosodium urate, not calcium pyrophosphate. Monosodium urate is negatively birefringent and prefers the first toe. Calcium pyrophosphate is rhomboid and positively birefringent, often with a calcified meniscus he does not have. Cholesterol crystals are plates in chronic effusions. Calcium oxalate is an envelope stone, not a needle in the toe. Hydroxyapatite is not birefringent and causes calcific tendonitis.",
+    "correctAnswer": "Negative birefringence",
+    "explanation": "Needles that look yellow when parallel to the compensator are negatively birefringent urate, the opposite of the rhomboid crystal. Negative birefringence is the yellow-when-parallel sign of monosodium urate. Positive birefringence of a rhomboid is calcium pyrophosphate, and the meniscus is not calcified. No birefringence is hydroxyapatite. A cholesterol plate is a chronic effusion crystal. An envelope oxalate crystal is a stone shape, not this needle.",
     "citation": null
   },
   {
@@ -183,18 +183,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "Itchy grouped blisters on the elbows plus granular IgA in the dermal papillae are dermatitis herpetiformis from celiac disease.",
-    "scenario": "A 34-year-old man has intensely itchy blisters grouped on the elbows and knees. He also has bloating and greasy stools. Biopsy of normal-looking skin next to a blister shows granular IgA in the dermal papillae. Anti-tissue-transglutaminase IgA is positive. The blisters are not flaccid oral erosions.",
-    "question": "Which skin deposit is this?",
+    "examTakeaway": "Granular IgA in the dermal papillae means gluten has primed an antibody that also attacks the skin.",
+    "scenario": "A 34-year-old man has itchy blisters grouped on the elbows. He also has bloating and greasy stools. Biopsy of nearby normal skin shows a granular antibody in the dermal papillae. A transglutaminase test is positive. The mouth has no flaccid erosions. He asks which dietary protein primed the antibody.",
+    "question": "Which dietary protein primed this skin antibody?",
     "options": [
-      "Net-like IgG around keratinocytes",
-      "Linear IgG at the basement membrane",
-      "IgE on mast cells",
-      "Linear IgA of a drug",
-      "Granular IgA"
+      "Cow's milk casein",
+      "Lactose",
+      "A drug such as vancomycin",
+      "Shellfish",
+      "Gluten"
     ],
-    "correctAnswer": "Granular IgA",
-    "explanation": "Itchy grouped blisters on the elbows plus granular IgA in the dermal papillae are dermatitis herpetiformis from celiac disease. Granular IgA is that deposit, and the positive transglutaminase ties it to gluten. Net-like IgG around keratinocytes is pemphigus, with flaccid oral erosions he does not have. Linear IgG at the basement membrane is bullous pemphigoid, tense blisters in an older adult. IgE on mast cells is immediate allergy, not this biopsy. Linear IgA of a drug is a different blister pattern, often after vancomycin.",
+    "correctAnswer": "Gluten",
+    "explanation": "Granular IgA in the dermal papillae means gluten has primed an antibody that also attacks the skin. Gluten is the protein, and the transglutaminase test ties the rash to celiac disease. Cow's milk casein and lactose are not this biopsy. A drug such as vancomycin is linear IgA disease. Shellfish is an immediate allergy, not granular IgA in the papillae.",
     "citation": null
   },
   {
@@ -205,18 +205,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "pathology",
-    "examTakeaway": "A blistering rash that appears two days after poison ivy, not within minutes, is T-cell memory, type IV.",
-    "scenario": "A 20-year-old woman pulled weeds. Two days later she has linear itchy blisters on the arms. She had the same rash last summer. Nothing happened in the first hour. IgE is normal and she did not wheeze.",
-    "question": "Which immune pattern is the delay?",
+    "examTakeaway": "A blistering rash that waits two days is memory T cells, not the IgE release that would have happened in the first hour.",
+    "scenario": "A 20-year-old woman pulled weeds. Nothing happened in the first hour. Two days later she has linear itchy blisters. She had the same rash last summer. IgE is normal and she did not wheeze. She asks which cell remembers the plant.",
+    "question": "Which cell carries the two-day memory?",
     "options": [
-      "Type IV T-cell memory",
-      "Type I IgE",
-      "Type II cytotoxic antibody",
-      "Type III immune complex",
-      "A fixed drug eruption"
+      "A memory T cell",
+      "IgE on a mast cell",
+      "A cytotoxic antibody",
+      "An immune complex",
+      "A fixed drug site"
     ],
-    "correctAnswer": "Type IV T-cell memory",
-    "explanation": "A blistering rash that appears two days after poison ivy, not within minutes, is T-cell memory, type IV. Type IV T-cell memory takes a day or two, which matches the delay and the prior summer. Type I IgE would itch and swell within minutes and often wheeze. Type II cytotoxic antibody attacks cells that carry the antigen, as in hemolysis. Type III immune complex is serum sickness, with fever and joints a week after a drug. A fixed drug eruption returns in the same round patch after a drug, not in a linear weed pattern.",
+    "correctAnswer": "A memory T cell",
+    "explanation": "A blistering rash that waits two days is memory T cells, not the IgE release that would have happened in the first hour. A memory T cell is the type IV delay. IgE on a mast cell would have swelled her within minutes. A cytotoxic antibody attacks cells that display the antigen, as in hemolysis. An immune complex is serum sickness a week after a drug. A fixed drug site returns as a round patch after a medicine, not a linear weed pattern.",
     "citation": null
   },
   {
@@ -227,18 +227,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "A very high neutrophil count, no pus, and a cord that is still on at three weeks are missing CD18.",
-    "scenario": "A 3-week-old boy, a patient in the nursery clinic, still has his umbilical cord. The stump is red but there is no pus. The neutrophil count is 40,000/mm3. A skin infection last week also made no pus. Lymphocyte counts are normal. He has no giant granules and his hair pigment is normal.",
-    "question": "Which adhesion molecule is missing?",
+    "examTakeaway": "A cord still attached at three weeks with a high neutrophil count and no pus means neutrophils cannot leave the blood.",
+    "scenario": "A 3-week-old boy, a patient in clinic, still has his umbilical cord. The stump is red but there is no pus. The neutrophil count is 40,000/mm3. A skin infection last week also made no pus. Lymphocyte counts are normal. His hair pigment is normal.",
+    "question": "Why are the neutrophils high if no pus forms?",
     "options": [
-      "CD55",
-      "The interferon-gamma receptor",
-      "NADPH oxidase",
-      "CD18",
-      "CD40 ligand"
+      "They are being consumed in the tissue",
+      "Oxidative burst has failed",
+      "Class switching has failed",
+      "They cannot leave the bloodstream",
+      "Complement is consuming them"
     ],
-    "correctAnswer": "CD18",
-    "explanation": "A very high neutrophil count, no pus, and a cord that is still on at three weeks are missing CD18. CD18 is the beta-2 integrin neutrophils need to leave the blood, so they pile up in the circulation and never make pus. CD40 ligand deficiency is high IgM and trouble with class switching, not a stuck cord. CD55 loss is nocturnal hemoglobinuria of adults. The interferon-gamma receptor defect predisposes to mycobacteria. NADPH oxidase deficiency is chronic granulomatous disease, with catalase-positive abscesses that do form, and a normal cord separation.",
+    "correctAnswer": "They cannot leave the bloodstream",
+    "explanation": "A cord still attached at three weeks with a high neutrophil count and no pus means neutrophils cannot leave the blood. They cannot leave the bloodstream when CD18 is missing, so the count rises and pus never forms. They are being consumed in the tissue would lower the count. Oxidative burst has failed is chronic granulomatous disease, which still makes pus. Class switching has failed is a high-IgM picture. Complement is consuming them would not leave the cord attached without pus.",
     "citation": null
   },
   {
@@ -249,18 +249,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Partial albinism, recurrent infections, and giant granules in leukocytes are a lysosomal trafficking defect.",
-    "scenario": "A 4-year-old boy has silvery hair, pale skin, and repeated skin and lung infections. The smear shows huge granules in neutrophils. He bruises easily. Lymphocyte counts are not zero and the cord fell off on time. There is no eczema-thrombocytopenia picture.",
-    "question": "Which trafficking step failed?",
+    "examTakeaway": "Silvery hair and giant granules mean melanosomes and lysosomes are not being delivered, one trafficking failure.",
+    "scenario": "A 4-year-old boy has silvery hair, pale skin, and repeated infections. The smear shows huge granules in neutrophils. He bruises easily. The cord fell off on time and lymphocyte counts are not zero. He asks why the hair and the white cells fail together.",
+    "question": "Which delivery step failed for both pigment and granules?",
     "options": [
-      "The GPI anchor",
-      "Lysosomal fusion and melanosome transfer",
-      "Leukocyte adhesion",
-      "Oxidative burst",
-      "Class switching"
+      "Leukocyte adhesion out of the vessel",
+      "Lysosomal and melanosome delivery",
+      "The oxidative burst",
+      "Class switching",
+      "The GPI anchor"
     ],
-    "correctAnswer": "Lysosomal fusion and melanosome transfer",
-    "explanation": "Partial albinism, recurrent infections, and giant granules in leukocytes are a lysosomal trafficking defect. Lysosomal fusion and melanosome transfer fail in Chediak-Higashi syndrome, so granules stay giant and melanin is not delivered to hair. Leukocyte adhesion failure keeps the cord on and raises the neutrophil count without giant granules. Oxidative burst failure is chronic granulomatous disease, with normal pigment. Class switching failure is hyper-IgM. The GPI anchor defect is nocturnal hemoglobinuria.",
+    "correctAnswer": "Lysosomal and melanosome delivery",
+    "explanation": "Silvery hair and giant granules mean melanosomes and lysosomes are not being delivered, one trafficking failure. Lysosomal and melanosome delivery is the shared step. Leukocyte adhesion out of the vessel delays the cord, which fell off on time. The oxidative burst failure leaves pigment normal. Class switching failure changes antibody classes. The GPI anchor defect is an adult hemolysis with thrombosis.",
     "citation": null
   },
   {
@@ -271,18 +271,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Eczema, tiny platelets, and low IgM in a boy are the Wiskott-Aldrich cytoskeletal defect.",
-    "scenario": "A 2-year-old boy has eczema, nosebleeds, and ear infections. Platelets are 30,000/mm3 and look small. IgM is low and IgA is high. He has no giant granules and his hair color is normal. The umbilical cord fell off on time.",
-    "question": "Which cell scaffold is defective?",
+    "examTakeaway": "Tiny platelets plus low IgM in a boy mean the actin scaffold of both platelets and immune synapses failed.",
+    "scenario": "A 2-year-old boy has eczema, nosebleeds, and ear infections. Platelets are 30,000/mm3 and look small on the smear. IgM is low and IgA is high. His hair color is normal and the cord fell off on time. He asks why the platelets are small rather than merely few.",
+    "question": "Which scaffold makes the platelets small and the antibody response poor?",
     "options": [
+      "CD18 integrin",
       "Lysosomal trafficking",
       "NADPH oxidase",
-      "Bruton tyrosine kinase",
-      "WASp actin cytoskeleton",
-      "CD18 integrin"
+      "The WASp actin scaffold",
+      "Bruton tyrosine kinase"
     ],
-    "correctAnswer": "WASp actin cytoskeleton",
-    "explanation": "Eczema, tiny platelets, and low IgM in a boy are the Wiskott-Aldrich cytoskeletal defect. WASp actin cytoskeleton organizes platelets and immune synapses, so platelets are small and IgM is low. CD18 integrin loss prevents pus and delays cord separation. Lysosomal trafficking failure makes giant granules and silver hair. NADPH oxidase loss is chronic granulomatous disease. Bruton tyrosine kinase loss removes B cells and all immunoglobulins after six months, without tiny platelets.",
+    "correctAnswer": "The WASp actin scaffold",
+    "explanation": "Tiny platelets plus low IgM in a boy mean the actin scaffold of both platelets and immune synapses failed. The WASp actin scaffold organizes platelet size and the immune synapse. CD18 integrin loss delays the cord. Lysosomal trafficking failure makes giant granules and silver hair. NADPH oxidase loss is chronic granulomatous disease. Bruton tyrosine kinase loss removes B cells without making platelets small.",
     "citation": null
   },
   {
@@ -293,18 +293,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Anaphylaxis during a transfusion in a patient with chronic sinus infections is IgA deficiency reacting to donor IgA.",
-    "scenario": "A 30-year-old man with years of sinus infections receives packed red cells. Minutes later he wheezes and the pressure falls to 80/40 mm Hg. IgA is undetectable and IgG is normal. He has no fever and the plasma is not pink. This is his first transfusion.",
-    "question": "Which antibody did he already have?",
+    "examTakeaway": "Wheezing minutes after a first transfusion, with absent IgA and normal IgG, is preformed IgG against donor IgA.",
+    "scenario": "A 30-year-old man with years of sinus infections receives his first unit of red cells. Minutes later he wheezes and the pressure falls to 80/40 mm Hg. IgA is undetectable and IgG is otherwise normal. The plasma is not pink and he has no fever. He asks which antibody he already had.",
+    "question": "Which preformed antibody caused the wheeze?",
     "options": [
-      "IgG against IgA",
-      "ABO isohemagglutinins against the unit",
-      "Anti-HLA in a multiparous recipient",
+      "IgG against donor IgA",
+      "ABO antibody against this unit",
+      "Anti-HLA from prior pregnancies",
       "IgE against pollen only",
       "A cold agglutinin"
     ],
-    "correctAnswer": "IgG against IgA",
-    "explanation": "Anaphylaxis during a transfusion in a patient with chronic sinus infections is IgA deficiency reacting to donor IgA. IgG against IgA is the preformed antibody, and his own IgA is absent while IgG is otherwise normal. ABO isohemagglutinins against the unit cause fever, flank pain, and pink plasma, not isolated wheeze with normal-colored plasma as the lead. Anti-HLA in a multiparous recipient causes fever or lung injury, usually not the first unit in a man. IgE against pollen only does not explain a transfusion reaction. A cold agglutinin clumps blood in the cold and is not anaphylaxis.",
+    "correctAnswer": "IgG against donor IgA",
+    "explanation": "Wheezing minutes after a first transfusion, with absent IgA and normal IgG, is preformed IgG against donor IgA. IgG against donor IgA is that antibody. ABO antibody against this unit causes fever, flank pain, and pink plasma. Anti-HLA from prior pregnancies fits a multiparous recipient, not a man's first unit. IgE against pollen only does not explain a transfusion. A cold agglutinin clumps blood when cold and is not anaphylaxis.",
     "citation": null
   },
   {
@@ -315,18 +315,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Recurrent Neisseria infections with a normal CH50-breaking terminal pathway are a C5 through C9 defect.",
-    "scenario": "A 19-year-old man has a second episode of meningococcal meningitis. CH50 is near zero. C3 level is normal and he does not have immune-complex lupus. Earlier childhood infections were ordinary. There is no angioedema.",
-    "question": "Which complement piece is missing?",
+    "examTakeaway": "A second Neisseria infection with a normal C3 means the membrane-attack complex failed, not the early complement that clears ordinary bacteria.",
+    "scenario": "A 19-year-old man has a second episode of meningococcal meningitis. CH50 is near zero. C3 is normal. Childhood infections were otherwise ordinary. He has no angioedema and no lupus rash. He asks which late complement job failed.",
+    "question": "Which late step failed if C3 is still normal?",
     "options": [
-      "C1 inhibitor",
-      "C3",
-      "C1q",
-      "Decay-accelerating factor",
-      "A terminal component C5 to C9"
+      "C1 inhibitor function",
+      "C3 cleavage",
+      "C1q of the classical pathway",
+      "Decay-accelerating factor on the red cell",
+      "Assembly of the membrane-attack complex"
     ],
-    "correctAnswer": "A terminal component C5 to C9",
-    "explanation": "Recurrent Neisseria infections with a normal CH50-breaking terminal pathway are a C5 through C9 defect. A terminal component C5 to C9 forms the membrane-attack complex that Neisseria is especially sensitive to, and C3 can still be normal. C1 inhibitor deficiency causes hereditary angioedema, not meningitis. C3 deficiency causes severe pyogenic infection from early childhood. C1q deficiency causes a lupus-like illness. Decay-accelerating factor is CD55, lost in nocturnal hemoglobinuria.",
+    "correctAnswer": "Assembly of the membrane-attack complex",
+    "explanation": "A second Neisseria infection with a normal C3 means the membrane-attack complex failed, not the early complement that clears ordinary bacteria. Assembly of the membrane-attack complex is the C5-to-C9 step Neisseria needs. C1 inhibitor function prevents angioedema, which he does not have. C3 cleavage failure would lower C3 and cause early pyogenic infection. C1q of the classical pathway deficiency looks like lupus. Decay-accelerating factor on the red cell is CD55, lost in nocturnal hemoglobinuria.",
     "citation": null
   },
   {
@@ -337,18 +337,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Low calcium, no thymic shadow, and a conotruncal heart defect are a third-and-fourth pouch failure.",
-    "scenario": "A newborn has tetany. Calcium is 6.2 mg/dL. The chest film shows no thymic shadow and a boot-shaped heart from tetralogy. T-cell count is low. B cells are present. He has no eczema and platelets are normal.",
-    "question": "Which pouches failed?",
+    "examTakeaway": "Low calcium and no thymic shadow with a conotruncal heart defect mean the third and fourth pouches failed together.",
+    "scenario": "A newborn has tetany and a calcium of 6.2 mg/dL. The chest film shows no thymic shadow and a boot-shaped heart. T-cell count is low and B cells are present. Platelets are normal. He asks which developmental field removes both the parathyroids and the thymus.",
+    "question": "Which pouches fail when the thymus and both sets of parathyroids are absent?",
     "options": [
-      "Neural crest of the adrenal medulla",
-      "Third and fourth pharyngeal pouches",
       "The first pouch only",
+      "The third and fourth pouches",
       "A pure B-cell block",
-      "The sixth arch only"
+      "The sixth arch only",
+      "Neural crest of the adrenal medulla alone"
     ],
-    "correctAnswer": "Third and fourth pharyngeal pouches",
-    "explanation": "Low calcium, no thymic shadow, and a conotruncal heart defect are a third-and-fourth pouch failure. Third and fourth pharyngeal pouches build the inferior parathyroids and the thymus, and the same developmental field includes the cardiac outflow tract. The first pouch only contributes to the middle ear. A pure B-cell block would spare calcium and the heart. The sixth arch only is a vessel pattern, not the thymus. Neural crest of the adrenal medulla is relevant to the heart in DiGeorge as well, but the pouches are what remove the thymus and the parathyroids.",
+    "correctAnswer": "The third and fourth pouches",
+    "explanation": "Low calcium and no thymic shadow with a conotruncal heart defect mean the third and fourth pouches failed together. The third and fourth pouches supply the thymus and the parathyroids, inferior from the third and superior from the fourth, in the same field as the cardiac outflow tract. The first pouch only contributes to the ear. A pure B-cell block would spare calcium and the heart. The sixth arch only is a vessel, not the thymus. Neural crest of the adrenal medulla alone does not remove the thymus and the parathyroids.",
     "citation": null
   },
   {
@@ -359,18 +359,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "A boy well until six months, then no tonsils and no B cells, has lost Bruton tyrosine kinase.",
-    "scenario": "A 9-month-old boy has had pneumonia and otitis since age 7 months. He was healthy while breastfeeding in the early months. Tonsils are absent. B cells are missing and all immunoglobulins are low. T-cell count is normal. There is no thymic absence and calcium is normal.",
-    "question": "Which kinase failed?",
+    "examTakeaway": "A boy well until maternal antibody wanes, then with no B cells, has lost the kinase B cells need to mature.",
+    "scenario": "A 9-month-old boy has had pneumonia since age 7 months. He was healthy in the early breastfed months. Tonsils are absent. B cells are missing and immunoglobulins are low. T cells and calcium are normal. He asks why the illness waited until the second half of the first year.",
+    "question": "Why did infections wait until after six months?",
     "options": [
-      "CD40 ligand",
-      "JAK3 as a combined defect",
-      "Bruton tyrosine kinase",
-      "Adenosine deaminase",
-      "WASp"
+      "T cells only then appear",
+      "Adenosine deaminase wanes",
+      "Maternal IgG waned and his B cells never formed",
+      "The thymus disappears at six months",
+      "Complement only then activates"
     ],
-    "correctAnswer": "Bruton tyrosine kinase",
-    "explanation": "A boy well until six months, then no tonsils and no B cells, has lost Bruton tyrosine kinase. Bruton tyrosine kinase is required for B-cell maturation, so maternal IgG hides the disease until it wanes. Adenosine deaminase deficiency empties T and B cells from birth and is not male-limited in the same way. WASp deficiency adds eczema and tiny platelets. CD40 ligand deficiency raises IgM and blocks class switching, with B cells present. JAK3 as a combined defect lowers T cells as well.",
+    "correctAnswer": "Maternal IgG waned and his B cells never formed",
+    "explanation": "A boy well until maternal antibody wanes, then with no B cells, has lost the kinase B cells need to mature. Maternal IgG waned and his B cells never formed, which is why Bruton tyrosine kinase deficiency appears after six months. T cells only then appear is false; his T cells are already normal. Adenosine deaminase wanes would empty T cells too, from early infancy. The thymus disappears at six months is not normal development. Complement only then activates is unrelated to absent tonsils.",
     "citation": null
   },
   {
@@ -381,18 +381,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Low T and B cells from birth, with no thymic shadow, is a combined immunodeficiency such as adenosine deaminase loss.",
-    "scenario": "A 2-month-old has thrush, pneumonia, and failure to grow. The chest film shows no thymic shadow. T cells and B cells are both nearly absent. Calcium is normal and the heart is normal. There is no family limit to boys only, and tonsils are not the isolated finding.",
-    "question": "Which immunity failed?",
+    "examTakeaway": "Thrush and absent T and B cells from early infancy mean both lymphocyte arms failed, not a pure B-cell block that waits until maternal IgG wanes.",
+    "scenario": "A 2-month-old has thrush, pneumonia, and poor growth. The chest film shows no thymic shadow. T cells and B cells are both nearly absent. Calcium and the heart are normal. The illness did not wait until seven months. He asks which arms are missing.",
+    "question": "Which lymphocyte arms failed this early?",
     "options": [
+      "B cells only, after maternal IgG wanes",
+      "Phagocytes only",
+      "Both T and B cells",
       "Complement only",
-      "The parathyroid-thymus field with a heart defect",
-      "Both T and B arms",
-      "B cells only",
-      "Phagocytes only"
+      "T cells only, with a heart defect"
     ],
-    "correctAnswer": "Both T and B arms",
-    "explanation": "Low T and B cells from birth, with no thymic shadow, is a combined immunodeficiency such as adenosine deaminase loss. Both T and B arms are empty, which is why thrush and bacterial pneumonia start before maternal antibody has fully waned and why calcium and the heart are spared. B cells only is Bruton syndrome, later, in boys, with normal T cells. Phagocytes only leave lymphocyte counts normal. Complement only does not remove the thymus. The parathyroid-thymus field with a heart defect is DiGeorge syndrome, which lowers T cells and calcium and leaves B cells.",
+    "correctAnswer": "Both T and B cells",
+    "explanation": "Thrush and absent T and B cells from early infancy mean both lymphocyte arms failed, not a pure B-cell block that waits until maternal IgG wanes. Both T and B cells are missing, which is why thrush starts this early and the heart and calcium are spared. B cells only, after maternal IgG wanes, is the later boy with normal T cells. Phagocytes only leave lymphocyte counts normal. Complement only does not remove the thymus. T cells only, with a heart defect, is the low-calcium conotruncal pattern, and his heart and calcium are normal.",
     "citation": null
   },
   {
@@ -403,18 +403,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Disseminated mycobacteria after BCG, with otherwise normal counts, is a failure of the IL-12 and interferon-gamma axis.",
-    "scenario": "A 1-year-old becomes very ill after the BCG vaccine, with mycobacteria in the liver. Neutrophil oxidative burst is normal. Lymphocyte counts are normal and immunoglobulins are normal. There are no giant granules. A sibling had the same reaction to BCG.",
-    "question": "Which cytokine axis failed?",
+    "examTakeaway": "Disseminated BCG with a normal oxidative burst means the IL-12 and interferon-gamma signal to macrophages failed.",
+    "scenario": "A 1-year-old becomes very ill after BCG, with mycobacteria in the liver. The neutrophil oxidative burst is normal. Lymphocyte counts and immunoglobulins are normal. There are no giant granules. A sibling had the same reaction. He asks which macrophage signal failed.",
+    "question": "Which cytokine signal to macrophages failed?",
     "options": [
+      "The oxidative burst",
       "B-cell class switching",
       "Leukocyte adhesion",
-      "The classical complement pathway",
       "IL-12 and interferon-gamma",
-      "The oxidative burst"
+      "The classical complement pathway"
     ],
     "correctAnswer": "IL-12 and interferon-gamma",
-    "explanation": "Disseminated mycobacteria after BCG, with otherwise normal counts, is a failure of the IL-12 and interferon-gamma axis. IL-12 and interferon-gamma activate macrophages against mycobacteria, and the rest of the counts stay normal. The oxidative burst is intact, so this is not chronic granulomatous disease. B-cell class switching failure would drop IgG and raise IgM. Leukocyte adhesion failure delays the cord and prevents pus. The classical complement pathway deficiency causes lupus-like disease or pyogenic infection, not selective BCG disaster.",
+    "explanation": "Disseminated BCG with a normal oxidative burst means the IL-12 and interferon-gamma signal to macrophages failed. IL-12 and interferon-gamma activate macrophages against mycobacteria, and the other counts stay normal. The oxidative burst is intact, so this is not chronic granulomatous disease. B-cell class switching failure would drop IgG. Leukocyte adhesion failure delays the cord. The classical complement pathway deficiency causes lupus-like or pyogenic disease, not selective BCG disaster.",
     "citation": null
   },
   {
@@ -425,18 +425,18 @@
     "outlineWeight": 10,
     "difficulty": 4,
     "subjectId": "immunology",
-    "examTakeaway": "Low immunoglobulins in a teenager who still has B cells is common variable immunodeficiency, not Bruton syndrome.",
-    "scenario": "A 16-year-old girl has had sinus infections and one episode of pneumonia. IgG and IgA are low. B cells are present in normal number but do not make much antibody. T cells are normal. She was not sick in the first year of life and she is not a boy with absent tonsils.",
-    "question": "Which label fits the B cells that are still there?",
+    "examTakeaway": "Low IgG in a teenager who still has B cells is a production failure, not the absence of B cells seen in boys after six months.",
+    "scenario": "A 16-year-old girl has sinus infections and one pneumonia. IgG and IgA are low. B cells are present but make little antibody. T cells are normal. She was well in the first year. She asks how this differs from a boy who has no B cells at all.",
+    "question": "What is different about her B cells?",
     "options": [
-      "Severe combined immunodeficiency",
-      "Isolated IgA deficiency",
-      "Hyper-IgM syndrome",
-      "Common variable immunodeficiency",
-      "X-linked agammaglobulinemia"
+      "They are absent, as in X-linked agammaglobulinemia",
+      "T cells are absent too",
+      "Only IgA is low",
+      "The B cells are present but do not make antibody",
+      "IgM is high from a class-switch block"
     ],
-    "correctAnswer": "Common variable immunodeficiency",
-    "explanation": "Low immunoglobulins in a teenager who still has B cells is common variable immunodeficiency, not Bruton syndrome. Common variable immunodeficiency leaves B cells present but poor at producing antibody, and it appears later in either sex. X-linked agammaglobulinemia removes B cells in boys after six months. Severe combined immunodeficiency empties T cells in infancy. Isolated IgA deficiency spares IgG, and hers is low. Hyper-IgM syndrome raises IgM and is often X-linked with a CD40-ligand defect.",
+    "correctAnswer": "The B cells are present but do not make antibody",
+    "explanation": "Low IgG in a teenager who still has B cells is a production failure, not the absence of B cells seen in boys after six months. The B cells are present but do not make antibody, which is common variable immunodeficiency. They are absent, as in X-linked agammaglobulinemia, describes the boy, not her. T cells are absent too would be combined immunodeficiency in infancy. Only IgA is low spares IgG, and hers is low. IgM is high from a class-switch block is hyper-IgM syndrome.",
     "citation": null
   }
 ]
