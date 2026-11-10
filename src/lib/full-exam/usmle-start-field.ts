@@ -1,20 +1,19 @@
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 
 /**
- * A USMLE exam starts on the saved step.
- * A request for a different step is refused before a session row is created,
- * so question load does not later fail with a step mismatch.
+ * A USMLE exam starts on the step the student selected.
+ * Step 1, Step 2 CK, and Step 3 are separate banks. Omitting a step keeps
+ * the saved one. A non-step field is not a start.
  */
 export function resolveUsmleExamStartField(input: {
   requestedField: string | null;
   savedField: string;
 }): { ok: true; fieldId: string } | { ok: false; expectedFieldId: string } {
-  if (
-    input.requestedField &&
-    isUsmleFieldId(input.requestedField) &&
-    input.requestedField !== input.savedField
-  ) {
-    return { ok: false, expectedFieldId: input.savedField };
+  if (input.requestedField && isUsmleFieldId(input.requestedField)) {
+    return { ok: true, fieldId: input.requestedField };
   }
-  return { ok: true, fieldId: input.savedField };
+  if (isUsmleFieldId(input.savedField)) {
+    return { ok: true, fieldId: input.savedField };
+  }
+  return { ok: false, expectedFieldId: input.savedField };
 }

@@ -3678,6 +3678,8 @@ body {
   stroke: #ffffff;
 }
 
+.aee-nav.aee-nav--over-photo .aee-avatar-trigger,
+.aee-nav.aee-nav--over-photo .aee-avatar-trigger span,
 .aee-nav.aee-nav--over-photo .aee-nav-wordmark__text,
 .aee-nav.aee-nav--over-photo .aee-nav-link,
 .aee-nav.aee-nav--over-photo .aee-nav-link:hover,

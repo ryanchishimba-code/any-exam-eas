@@ -17,15 +17,10 @@ export { MIXED_SUBJECT_ID };
 /** Fixed question-bank wheel choices — not used by timed/mock exams. */
 export const QUESTION_BANK_WHEEL_PRESETS = [25, 50, 75] as const;
 
-/** USMLE uses exam-block sizes closer to real Step blocks. */
-export const USMLE_QUESTION_BANK_WHEEL_PRESETS = [40, 50, 80] as const;
+export type QuestionBankWheelPreset = (typeof QUESTION_BANK_WHEEL_PRESETS)[number];
 
-export type QuestionBankWheelPreset =
-  | (typeof QUESTION_BANK_WHEEL_PRESETS)[number]
-  | (typeof USMLE_QUESTION_BANK_WHEEL_PRESETS)[number];
-
-export function questionBankWheelPresetsForField(fieldId: string): readonly number[] {
-  if (fieldId.startsWith("usmle")) return USMLE_QUESTION_BANK_WHEEL_PRESETS;
+/** One set for every board, including each USMLE step. Help text uses the same numbers. */
+export function questionBankWheelPresetsForField(_fieldId?: string): readonly number[] {
   return QUESTION_BANK_WHEEL_PRESETS;
 }
 
@@ -59,7 +54,7 @@ function describeCountOption(value: number): Pick<QuestionBankCountOption, "labe
   };
 }
 
-/** Scroll-wheel options — 25 / 50 / 75 (or USMLE 40 / 50 / 80). */
+/** Scroll-wheel options — 25 / 50 / 75 on every board. */
 export function questionBankCountOptions(fieldId?: string): QuestionBankCountOption[] {
   const presets = fieldId
     ? questionBankWheelPresetsForField(fieldId)

@@ -13,6 +13,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { ReadinessPageData } from "@/lib/learning/readiness-check/service";
+import type { PracticeEstimate } from "@/lib/learning/practice-estimate";
 
 function levelClass(level: string) {
   if (level === "on_track") return "text-[var(--color-accent)]";
@@ -21,7 +22,13 @@ function levelClass(level: string) {
   return "text-[var(--color-ink-muted)]";
 }
 
-export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
+export function ReadinessBoard({
+  data,
+  practiceEstimate = null,
+}: {
+  data: ReadinessPageData;
+  practiceEstimate?: PracticeEstimate | null;
+}) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -151,6 +158,27 @@ export function ReadinessBoard({ data }: { data: ReadinessPageData }) {
               );
             })}
           </ul>
+        </section>
+      ) : practiceEstimate ? (
+        <section className={cn(dbUi.surface, "p-5 sm:p-6")} data-practice-estimate={practiceEstimate.level}>
+          <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--color-ink-muted)]">
+            Estimated performance
+          </p>
+          <h2 className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]">
+            {practiceEstimate.levelLabel}
+          </h2>
+          <p className="mt-2 text-[15px] font-medium text-[var(--color-ink)]">{practiceEstimate.label}</p>
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+            {practiceEstimate.summary}
+          </p>
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+            {practiceEstimate.explanation}
+          </p>
+          {data.hasStudyAccess ? (
+            <button type="button" className={cn(dbUi.ghostBtn, "mt-4 min-h-11")} disabled={pending} onClick={() => void start(false)}>
+              {pending ? "Building your check…" : "Start a separate baseline check"}
+            </button>
+          ) : null}
         </section>
       ) : (
         <section className={cn(dbUi.surface, "p-5 sm:p-6")}>

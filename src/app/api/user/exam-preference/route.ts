@@ -27,6 +27,7 @@ export async function GET(req: Request) {
   ]);
   return NextResponse.json({
     examSlug: pref?.examSlug ?? null,
+    usmleFieldId: meta?.usmleFieldId ?? null,
     mpjeStateCode: meta?.mpjeStateCode ?? null,
   });
   } catch (error) {

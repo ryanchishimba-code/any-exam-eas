@@ -1,6 +1,11 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
 import type { WeekCountdownPlan, WeekGoal } from "@/lib/learning/week-countdown-plan";
 import { dbUi } from "@/lib/study/dashboard-ui";
+
+const DISMISS_KEY = "aee-exam-date-prompt-dismissed";
 
 function GoalStatus({ goal }: { goal: WeekGoal }) {
   const done = goal.status === "done_today" || goal.status === "clear";
@@ -18,6 +23,15 @@ function GoalStatus({ goal }: { goal: WeekGoal }) {
  */
 export function DashboardWeekPlan({ weekPlan }: { weekPlan: WeekCountdownPlan }) {
   const finalStretch = weekPlan.intensity === "final";
+  const [dismissed, setDismissed] = useState(false);
+  useEffect(() => {
+    try {
+      setDismissed(window.localStorage.getItem(DISMISS_KEY) === "1");
+    } catch {
+      setDismissed(false);
+    }
+  }, []);
+  if (weekPlan.intensity === "unset" && dismissed) return null;
 
   return (
     <section
@@ -34,7 +48,22 @@ export function DashboardWeekPlan({ weekPlan }: { weekPlan: WeekCountdownPlan })
             {weekPlan.title}
           </h2>
         </div>
-        {weekPlan.rangeLabel ? (
+        {weekPlan.intensity === "unset" ? (
+          <button
+            type="button"
+            className="text-[13px] font-semibold text-[var(--color-ink-muted)] underline-offset-2 hover:underline"
+            onClick={() => {
+              try {
+                window.localStorage.setItem(DISMISS_KEY, "1");
+              } catch {
+                /* private mode */
+              }
+              setDismissed(true);
+            }}
+          >
+            Dismiss
+          </button>
+        ) : weekPlan.rangeLabel ? (
           <span className={finalStretch ? dbUi.statusPillAccent : dbUi.statusPill}>
             {weekPlan.rangeLabel}
           </span>

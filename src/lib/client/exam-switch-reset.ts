@@ -55,9 +55,8 @@ export function invalidateExamScopedQueries(queryClient: QueryClient): void {
 
 /**
  * Field id to warm after an exam switch.
- * USMLE has three banks. `fieldIdForExamSlug("usmle")` is always Step 2, and a
- * Step 1 learner gets HTTP 403 (`USMLE_STEP_MISMATCH`) if we prefetch it.
- * Return null until the learner has confirmed a step — do not guess.
+ * USMLE has three banks. `fieldIdForExamSlug("usmle")` is always Step 2.
+ * Return null until the learner has confirmed a step — do not guess Step 2.
  */
 export function subjectCountsFieldForExamSwitch(
   examSlug: ExamSlug,

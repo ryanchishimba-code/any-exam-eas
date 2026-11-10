@@ -4,7 +4,7 @@ import { startTransition, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CalendarPlus, Check, ChevronDown } from "lucide-react";
 import { ExamDatePicker } from "@/components/edtech/ExamDatePicker";
-import { formatExamDateLong, todayIso } from "@/lib/edtech/exam-date-utils";
+import { calendarDaysUntil, formatExamDateLong, todayIso } from "@/lib/edtech/exam-date-utils";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -14,16 +14,8 @@ type DashboardExamCountdownProps = {
   testDate: string | null;
 };
 
-const MS_DAY = 86_400_000;
 const RING_SIZE = 136;
 const RING_STROKE = 8;
-
-function calendarDaysUntil(isoDate: string, now: number): number {
-  const today = new Date(now);
-  today.setHours(0, 0, 0, 0);
-  const target = new Date(`${isoDate}T00:00:00`);
-  return Math.round((target.getTime() - today.getTime()) / MS_DAY);
-}
 
 /** Soft progress around a 120-day planning horizon (Apple Fitness–style). */
 function ringProgress(days: number | null): number {

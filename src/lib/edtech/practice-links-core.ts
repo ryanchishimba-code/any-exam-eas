@@ -123,9 +123,9 @@ export function questionBankHref(examSlug?: ExamSlug, fieldIdOverride?: string):
     field: fieldId,
     mode: "bank",
   });
-  // USMLE defaults to a timed exam-style block.
+  // USMLE opens on the same 25-question timed block the wheel and help text describe.
   if (examSlug === "usmle") {
-    qs.set("count", "40");
+    qs.set("count", "25");
     qs.set("pace", "timed");
     qs.set("subjectId", "mixed");
   }

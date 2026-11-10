@@ -224,7 +224,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
       <p className="text-lg font-medium leading-snug text-[var(--color-ink)] sm:text-xl">
         <InlineBold text={stemText} />
       </p>
-      {revealed && (question.sourceLabel || question.reviewedAt) ? (
+      {revealed && question.sourceLabel?.trim() ? (
         <CollapsibleSources count={1} resetKey={`${question.id}-provenance`}>
           <ItemProvenanceNote
             sourceLabel={question.sourceLabel}
@@ -336,6 +336,17 @@ export const QuestionRenderer = memo(function QuestionRenderer({
     </>
   );
 });
+
+const AI_ITEM_TAGS = new Set(["ai", "ai-assisted", "ai-curated", "generated"]);
+
+/** True only when this item's tags say the copy was AI-assisted. Curated items stay unlabeled. */
+export function itemMarkedAiAssisted(question: Pick<StudyQuestion, "tags">): boolean {
+  return (question.tags ?? []).some((tag) => AI_ITEM_TAGS.has(tag.trim().toLowerCase()));
+}
+
+export function storedSourceLines(references: string[] | undefined): string[] {
+  return (references ?? []).map((row) => row.trim()).filter((row) => row.length > 0);
+}
 
 function visibleRationaleParts(question: StudyQuestion, parsed: ParsedRationaleDisplay): string[] {
   const distractors = question.distractorRationale
@@ -453,11 +464,11 @@ function ExplanationDetail({
         </>
       )}
 
-      {question.references && question.references.length > 0 ? (
-        <CollapsibleSources count={question.references.length} resetKey={question.id}>
+      {storedSourceLines(question.references).length > 0 ? (
+        <CollapsibleSources count={storedSourceLines(question.references).length} resetKey={question.id}>
           <ul className="list-inside list-disc space-y-1 text-[13px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink-muted)]">
-            {question.references.map((reference, i) => (
-              <li key={i}>{reference}</li>
+            {storedSourceLines(question.references).map((reference) => (
+              <li key={reference}>{reference}</li>
             ))}
           </ul>
         </CollapsibleSources>
@@ -495,8 +506,13 @@ export function ExplanationPanel({
   const parsed = parseRationaleForDisplay(question.explanation, question.expertRationale);
   const hasExpert = Boolean(question.expertRationale || parsed.isExpert);
   const parts = visibleRationaleParts(question, parsed);
-  const collapsible = shouldCollapseRationale(parts);
-  const lead = rationaleLeadForQuestion({
+  const whyCorrectLead = [parsed.whyCorrectHeadline, ...(parsed.conceptBullets ?? [])]
+    .map((part) => part?.trim())
+    .filter((part): part is string => Boolean(part))
+    .join(" ");
+  const lead =
+    whyCorrectLead ||
+    rationaleLeadForQuestion({
     principle:
       question.explanationDetail?.keyTakeaways?.[0] ||
       question.expertRationale?.keyTakeaway ||
@@ -519,8 +535,11 @@ export function ExplanationPanel({
     Boolean(question.clinicalReasoning && !parsed.isStructured) ||
     hasDistractors ||
     Boolean(question.solutionSteps?.length && !parsed.keyTakeaway) ||
-    Boolean(question.references?.length) ||
+    storedSourceLines(question.references).length > 0 ||
     hasExpert;
+
+  const collapsible = whyCorrectLead ? hasDeepContent : shouldCollapseRationale(parts);
+  const showAiAssisted = itemMarkedAiAssisted(question);
 
   const detail = (
     <ExplanationDetail
@@ -547,9 +566,11 @@ export function ExplanationPanel({
                 Expert
               </span>
             ) : null}
-            <span className="rounded-full bg-[var(--color-surface)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
-              AI-assisted
-            </span>
+            {showAiAssisted ? (
+              <span className="rounded-full bg-[var(--color-surface)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
+                AI-assisted
+              </span>
+            ) : null}
           </div>
         </div>
 

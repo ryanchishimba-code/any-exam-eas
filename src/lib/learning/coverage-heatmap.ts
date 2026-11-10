@@ -195,19 +195,24 @@ function resolveBank(input: {
   attempts: number;
   coveragePct: number;
 }): { seen: number; available: number; bankCoveragePct: number } {
-  const seen = Math.max(0, input.seen ?? 0);
+  const recordedSeen = Math.max(0, input.seen ?? 0);
+  const attempts = Math.max(0, Math.round(input.attempts) || 0);
   if (input.inventoryProvided) {
     const available = Math.max(0, input.inventoryAvailable ?? 0);
-    if (available > 0 && input.seen != null && input.seen > 0) {
+    const seen =
+      recordedSeen > 0 ? recordedSeen : available > 0 && attempts > 0 ? Math.min(available, attempts) : 0;
+    if (available > 0 && seen > 0) {
       return { seen, available, bankCoveragePct: coverageRatio(seen, available) };
     }
-    if (available > 0 && input.attempts > 0) {
+    if (available > 0 && attempts > 0) {
       return { seen, available, bankCoveragePct: clampPct(input.coveragePct) };
     }
     return { seen, available, bankCoveragePct: 0 };
   }
   const available = Math.max(0, input.available);
-  if (available > 0 && input.seen != null && input.seen > 0) {
+  const seen =
+    recordedSeen > 0 ? recordedSeen : available > 0 && attempts > 0 ? Math.min(available, attempts) : 0;
+  if (available > 0 && seen > 0) {
     return { seen, available, bankCoveragePct: coverageRatio(seen, available) };
   }
   return { seen, available, bankCoveragePct: clampPct(input.coveragePct) };

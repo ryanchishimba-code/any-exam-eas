@@ -63,25 +63,25 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
   if (examSlug === "usmle") {
     const stepName =
       fieldId && isUsmleFieldId(fieldId)
-        ? usmleStepDefinition(fieldId)?.shortName ?? "USMLE"
-        : "USMLE";
+        ? usmleStepDefinition(fieldId)?.shortName ?? "Selected step"
+        : "Selected step";
     return [
       {
         preset: "50",
-        label: "50 Questions",
-        description: "Timed sprint — one block of mixed organ systems.",
+        label: `${stepName} · 50 questions`,
+        description: `Timed sprint of ${stepName} items only. It does not include the other USMLE steps.`,
         questionCount: 50,
       },
       {
         preset: "100",
-        label: "Self-assessment form",
-        description: `100 blueprint-balanced items · ${stepName} practice coverage only — not a pass prediction.`,
+        label: `${stepName} self-assessment`,
+        description: `100 blueprint-balanced ${stepName} items. Practice coverage for this step only — not a pass prediction.`,
         questionCount: 100,
       },
       {
         preset: "full",
-        label: "Full-length simulation",
-        description: `${full} questions · mimics real ${stepName} length with mixed organ systems.`,
+        label: `${stepName} full-length simulation`,
+        description: `${full} ${stepName} questions. Mimics that step's length. It does not cover the other steps.`,
         questionCount: full,
       },
     ];

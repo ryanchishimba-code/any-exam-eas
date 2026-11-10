@@ -13,9 +13,7 @@ function SourceList({ label, links }: { label: string; links: CitedSource[] }) {
   return (
     <div>
       <p className="text-xs font-medium uppercase tracking-[0.12em] text-[#334155]">{label}</p>
-      {links.length === 0 ? (
-        <p className={`mt-1 text-sm leading-6 ${ngnMuted}`}>None listed.</p>
-      ) : (
+      {links.length === 0 ? null : (
         <ul className="mt-2 space-y-3">
           {links.map((link) => (
             <li key={`${label}-${link.src}-${link.locator ?? ""}`}>
@@ -58,8 +56,8 @@ export function SourcesDisclosure({ itemReferences, caseReferences, sourcesById 
       buttonClassName="text-[#334155] hover:text-[#0A2540]"
     >
       <div className="space-y-4 rounded-2xl border border-[#e2e8f0] bg-white px-4 py-4">
-        <SourceList label="This item" links={itemLinks} />
-        {caseLinks ? <SourceList label="This case" links={caseLinks} /> : null}
+        {itemLinks.length > 0 ? <SourceList label="This item" links={itemLinks} /> : null}
+        {caseLinks && caseLinks.length > 0 ? <SourceList label="This case" links={caseLinks} /> : null}
       </div>
     </CollapsibleSources>
   );

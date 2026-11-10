@@ -16,16 +16,18 @@ const SHORT_LABELS: Record<FullExamLengthPreset, string> = {
 
 type Props = {
   examSlug: ExamSlug;
+  fieldId?: string;
   className?: string;
   showCustomizeLink?: boolean;
 };
 
 export function FullExamModeButtons({
   examSlug,
+  fieldId,
   className,
   showCustomizeLink = true,
 }: Props) {
-  const options = getLengthOptions(examSlug);
+  const options = getLengthOptions(examSlug, fieldId);
 
   return (
     <div className={cn("space-y-3", className)}>
@@ -42,7 +44,11 @@ export function FullExamModeButtons({
               "inline-flex shrink-0 rounded-full border border-black/[0.06] bg-white px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
             )}
           >
-            {examSlug === "nclex" && opt.preset === "full" ? "Full CAT" : SHORT_LABELS[opt.preset]}
+            {examSlug === "nclex" && opt.preset === "full"
+              ? "Full CAT"
+              : examSlug === "usmle"
+                ? opt.label
+                : SHORT_LABELS[opt.preset]}
           </Link>
         ))}
       </div>

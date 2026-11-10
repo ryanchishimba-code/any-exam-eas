@@ -178,15 +178,18 @@ export async function enforceQuestionBankFieldAccess(
     if (trustedFieldId && fieldId === trustedFieldId) {
       return { ok: true, examSlug: pref.examSlug, fieldId: trustedFieldId };
     }
+    // Each USMLE step is its own bank. Selecting Step 1, Step 2 CK, or Step 3
+    // and starting must serve that step. Step 2 still includes blank stepLevel
+    // via the serve gate; this check only chooses the field.
+    if (pref.examSlug === "usmle" && isUsmleFieldId(fieldId) && isUsmleFieldId(canonicalFieldId)) {
+      return { ok: true, examSlug: pref.examSlug, fieldId };
+    }
     return {
       ok: false,
       response: NextResponse.json(
         {
-          error:
-            pref.examSlug === "usmle"
-              ? "That USMLE step does not match your selected step."
-              : "That field does not match your selected exam.",
-          code: pref.examSlug === "usmle" ? "USMLE_STEP_MISMATCH" : "EXAM_FIELD_MISMATCH",
+          error: "That field does not match your selected exam.",
+          code: "EXAM_FIELD_MISMATCH",
           expectedExamSlug: pref.examSlug,
           expectedFieldId: canonicalFieldId
 },

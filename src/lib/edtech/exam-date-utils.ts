@@ -90,11 +90,20 @@ export function formatExamDateShort(iso: string): string {
   return `${MONTHS_SHORT[parts.month - 1]} ${parts.day}, ${parts.year}`;
 }
 
-export function calendarDaysUntil(isoDate: string, now = Date.now()): number {
-  const today = new Date(now);
-  today.setHours(0, 0, 0, 0);
-  const target = new Date(`${isoDate}T00:00:00`);
-  return Math.round((target.getTime() - today.getTime()) / 86_400_000);
+const MS_DAY = 86_400_000;
+
+/**
+ * Whole calendar days from the UTC date of `now` until a `YYYY-MM-DD` exam date.
+ * Dashboard countdown and the week-plan sentence both use this, so they cannot
+ * disagree by a day when the browser timezone and the server differ.
+ */
+export function calendarDaysUntil(isoDate: string, now: number | Date = Date.now()): number {
+  const parts = examDateParts(isoDate);
+  if (!parts) return Number.NaN;
+  const instant = now instanceof Date ? now : new Date(now);
+  const target = Date.UTC(parts.year, parts.month - 1, parts.day);
+  const today = Date.UTC(instant.getUTCFullYear(), instant.getUTCMonth(), instant.getUTCDate());
+  return Math.round((target - today) / MS_DAY);
 }
 
 /** ISO `YYYY-MM-DD` → `MM/DD/YYYY` for typed entry. */

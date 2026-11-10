@@ -52,7 +52,7 @@ type QuestionBankSetupProps = {
   bankStyle: QuestionBankStyle;
   onBankStyleChange: (style: QuestionBankStyle) => void;
   examLabel?: string;
-  /** Bank field — USMLE uses 40/50/80 wheel presets. */
+  /** Bank field — every board uses the 25/50/75 wheel. */
   fieldId?: string;
   weakSubjectIds?: string[];
   coverageChips?: CoverageChip[];

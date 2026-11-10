@@ -77,7 +77,8 @@ export function Navigation() {
   const { hasPremiumAccess, hasAppAccess, hasStudyAccess, loading: accessLoading } = useUserAccess();
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
-  const isAuthenticated = status === "authenticated" && Boolean(session?.user);
+  const isAuthenticated =
+    Boolean(session?.user) && (status === "authenticated" || status === "loading");
   const resolvingAuthedAccess = isAuthenticated && accessLoading;
   // Session starts as "loading" for everyone. Treat that as logged out so the
   // Log in and trial buttons are in the first HTML, not a grey placeholder.

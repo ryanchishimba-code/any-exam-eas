@@ -38,6 +38,7 @@
  *    this is a licensure prediction.
  */
 
+import { calendarDaysUntil as sharedCalendarDaysUntil } from "@/lib/edtech/exam-date-utils";
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
 import {
@@ -302,11 +303,8 @@ export function utcDayIndex(now: Date): number {
 
 export function calendarDaysUntil(isoDate: string, now: Date): number | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) return null;
-  const [year, month, day] = isoDate.split("-").map(Number);
-  if (!year || !month || !day) return null;
-  const target = Date.UTC(year, month - 1, day);
-  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-  return Math.round((target - today) / MS_DAY);
+  const days = sharedCalendarDaysUntil(isoDate, now);
+  return Number.isFinite(days) ? days : null;
 }
 
 export function blueprintTouchCoveragePct(

@@ -221,7 +221,7 @@ function inactivePlan(examName: string, days: number | null): WeekCountdownPlan 
     daysUntilExam: null,
     intensity: "unset",
     title: "Set an exam date",
-    summary: `Set a target exam date for ${examName}. This week's plan appears once a date is saved.`,
+    summary: `Set an exam date to unlock this week's plan: most days are topics you haven't practiced, the rest are questions you missed, and the last 14 days add practice exams. It is a practice plan, not a pass prediction.`,
     rangeLabel: "",
     todayKind: null,
     todayLine: "",

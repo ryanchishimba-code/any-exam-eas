@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { auth } from "@/auth";
 import "./globals.css";
 import { DeferredPlatformScripts } from "@/components/analytics/DeferredPlatformScripts";
 import { FirstTouchCapture } from "@/components/analytics/FirstTouchCapture";
@@ -10,11 +11,12 @@ import { buildRootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildRootMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html lang="en" className={`scroll-smooth ${marketingFontVariables}`} suppressHydrationWarning>
       <head>
@@ -39,7 +41,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
         </a>
-        <AppProviders>
+        <AppProviders session={session}>
           <FirstTouchCapture />
           <SiteShell>{children}</SiteShell>
         </AppProviders>
