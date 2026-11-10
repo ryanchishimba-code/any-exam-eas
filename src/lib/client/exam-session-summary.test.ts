@@ -24,12 +24,21 @@ const summary: ActivitySessionSummary = {
 };
 
 describe("study hub session receipt query", () => {
-  it("round-trips the receipt on the dashboard URL", () => {
+  it("marks the session ended without putting scores in the URL", () => {
     const path = studyHubWithSummaryPath(summary);
-    expect(path.startsWith("/dashboard?")).toBe(true);
+    expect(path).toBe("/dashboard?session=ended");
+    expect(path).not.toMatch(/acc=|correct=|answered=|total=|streak=/);
     const params = new URLSearchParams(path.split("?")[1]);
     const parsed = activitySummaryFromSearchParams(params);
     expect(parsed).toMatchObject({
+      endedEarly: false,
+      title: "Practice session",
+    });
+    expect(parsed?.accuracy).toBeUndefined();
+    const legacy = new URLSearchParams(
+      "session=ended&title=Management+of+Care&early=1&saved=5&acc=60&correct=3&streak=1&weak=Management+of+Care&stats=/analytics&review=/question-bank%3Fstyle%3Dreview_incorrect"
+    );
+    expect(activitySummaryFromSearchParams(legacy)).toMatchObject({
       title: "Management of Care",
       endedEarly: true,
       attemptsSaved: 5,
@@ -42,11 +51,12 @@ describe("study hub session receipt query", () => {
     });
   });
 
-  it("uses the URL when session storage was cleared", () => {
+  it("keeps the stored receipt when the URL has no scores", () => {
     const params = new URLSearchParams(studyHubWithSummaryPath(summary).split("?")[1]);
-    const merged = mergeActivitySummary(null, activitySummaryFromSearchParams(params));
+    const merged = mergeActivitySummary(summary, activitySummaryFromSearchParams(params));
     expect(merged?.attemptsSaved).toBe(5);
     expect(merged?.weakTopicLabels).toEqual(["Management of Care"]);
+    expect(merged?.accuracy).toBe(60);
   });
 
   it("ignores unrelated dashboard URLs", () => {

@@ -236,7 +236,7 @@ export function StudentAnalyticsDashboard({
       <FormatPracticePanel
         stats={dashboard.formatPractice}
         savedSets={dashboard.savedFormatSets}
-        ngnLabel={examSlug === "nclex" ? "NGN" : "NGN-style"}
+        ngnLabel={examSlug === "nclex" ? "NGN" : examSlug === "naplex" ? "Select all" : "Other formats"}
         fieldId={fieldId}
         formats={formats}
       />
@@ -312,7 +312,22 @@ export function StudentAnalyticsDashboard({
         <section className={studyUi.chartPanel}>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className={studyUi.sectionTitle}>Weak areas — remediation</h3>
-            {studyFeedForExam(examSlug) ? (
+            {examSlug === "naplex" ? (
+              <span className="flex flex-wrap gap-x-3 gap-y-1 text-[12px] font-semibold">
+                <Link href="/study/drugs300" className="text-[var(--color-accent)] hover:underline">
+                  Top 500 drugs
+                </Link>
+                <Link href="/naplex/study-guide" className="text-[var(--color-accent)] hover:underline">
+                  Study guide
+                </Link>
+                <Link href="/naplex/quick-bites" className="text-[var(--color-accent)] hover:underline">
+                  Quick Bites
+                </Link>
+                <Link href="/anatomy" className="text-[var(--color-accent)] hover:underline">
+                  Anatomy
+                </Link>
+              </span>
+            ) : studyFeedForExam(examSlug) ? (
               <Link
                 href={studyFeedForExam(examSlug)!.href}
                 className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"

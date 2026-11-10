@@ -13,7 +13,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { ReadinessPageData } from "@/lib/learning/readiness-check/service";
-import type { PracticeEstimate } from "@/lib/learning/practice-estimate";
+import type { ExamAreaScore, PracticeAreaLevel, PracticeEstimate } from "@/lib/learning/practice-estimate";
 
 function levelClass(level: string) {
   if (level === "on_track") return "text-[var(--color-accent)]";
@@ -27,6 +27,8 @@ export function ReadinessBoard({
   practiceEstimate = null,
   accuracyPct = null,
   outlineDepthPct = null,
+  practiceAreas = [],
+  examAreas = [],
 }: {
   data: ReadinessPageData;
   practiceEstimate?: PracticeEstimate | null;
@@ -34,6 +36,10 @@ export function ReadinessBoard({
   accuracyPct?: number | null;
   /** Same outline depth the dashboard and analytics cards show. */
   outlineDepthPct?: number | null;
+  /** Levels from saved practice when a baseline check has no area rows yet. */
+  practiceAreas?: PracticeAreaLevel[];
+  /** Latest submitted exam, by the topic stored on each answer. */
+  examAreas?: ExamAreaScore[];
 }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
@@ -188,11 +194,38 @@ export function ReadinessBoard({
             {practiceEstimate.summary}
           </p>
           <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-            {practiceEstimate.explanation}
+            {practiceEstimate.explanation} The separate baseline check is {data.length} questions.
           </p>
+          {practiceAreas.length > 0 ? (
+            <ul className="mt-4 space-y-2">
+              {practiceAreas.map((area) => (
+                <li key={area.id} className="flex items-center justify-between gap-3 text-[14px]">
+                  <span className="font-semibold text-[var(--color-ink)]">{area.label}</span>
+                  <span className={levelClass(area.level)}>{area.detail}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {examAreas.length > 0 ? (
+            <div className="mt-4">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--color-ink-muted)]">
+                Latest exam by area
+              </p>
+              <ul className="mt-2 space-y-1.5">
+                {examAreas.map((area) => (
+                  <li key={area.topic} className="flex items-center justify-between gap-3 text-[14px] text-[var(--color-ink)]">
+                    <span>{area.topic}</span>
+                    <span className="tabular-nums">
+                      {area.pct}% · {area.correct}/{area.total}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           {data.hasStudyAccess ? (
             <button type="button" className={cn(dbUi.ghostBtn, "mt-4 min-h-11")} disabled={pending} onClick={() => void start(false)}>
-              {pending ? "Building your check…" : data.result ? "Start a separate baseline check" : "Start baseline"}
+              {pending ? "Building your check…" : data.result ? "Start a separate 24-question check" : `Start the ${data.length}-question baseline`}
             </button>
           ) : null}
         </section>

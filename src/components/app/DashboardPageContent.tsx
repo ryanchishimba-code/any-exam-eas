@@ -36,7 +36,6 @@ import { ReadinessDashboardCard } from "@/components/readiness/ReadinessDashboar
 import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel";
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
-import { GoogleReviewPrompt } from "@/components/reviews/GoogleReviewPrompt";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
 
 function topWeakFocus(
@@ -205,7 +204,6 @@ export function DashboardPageContent({
             </Link>
           </>
         ) : null}
-        <GoogleReviewPrompt surface="dashboard" variant="link" />
       </div>
 
       {examDayPlan ? (

@@ -82,9 +82,9 @@ describe("practice format counts", () => {
     ).toBe(false);
   });
 
-  it("labels nursing NGN and other boards NGN-style", () => {
+  it("labels nursing NGN and pharmacy select-all", () => {
     expect(ngnStyleLabel("Client Needs", "nursing")).toBe("NGN");
-    expect(ngnStyleLabel("Blueprint topics", "pharmacy")).toBe("NGN-style");
+    expect(ngnStyleLabel("Blueprint topics", "pharmacy")).toBe("Select all");
     expect(ngnStyleLabel(null, "nursing")).toBe("NGN");
     expect(parsePracticeFormat("NGN")).toBe("ngn");
     expect(parsePracticeFormat("mcq")).toBe("all");

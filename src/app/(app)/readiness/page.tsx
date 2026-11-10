@@ -8,7 +8,8 @@ import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import { sharedPracticeRead } from "@/lib/learning/practice-estimate";
+import { examAreaScoresFromAnswers, practiceAreaLevels, sharedPracticeRead } from "@/lib/learning/practice-estimate";
+import { prisma } from "@/lib/prisma";
 import { loadReadinessPage } from "@/lib/learning/readiness-check/service";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
@@ -38,7 +39,7 @@ async function ReadinessContent({ userId }: { userId: string }) {
   const access = await requireAppPage(ROUTES.readiness);
   const metadata = pref.examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const fieldId = canonicalPracticeFieldId(pref.examSlug, metadata?.usmleFieldId);
-  const [data, roadmap] = await Promise.all([
+  const [data, roadmap, latestExam] = await Promise.all([
     loadReadinessPage({
       userId,
       examSlug: pref.examSlug,
@@ -49,6 +50,13 @@ async function ReadinessContent({ userId }: { userId: string }) {
     getExamRoadmapData(userId, pref.examSlug, {
       usmleFieldId: pref.examSlug === "usmle" ? fieldId : undefined,
     }).catch(() => null),
+    prisma.examSession
+      .findFirst({
+        where: { userId, examType: pref.examSlug, status: "completed" },
+        orderBy: { completedAt: "desc" },
+        select: { answers: true },
+      })
+      .catch(() => null),
   ]);
   const practiceRead = roadmap
     ? sharedPracticeRead({
@@ -63,6 +71,19 @@ async function ReadinessContent({ userId }: { userId: string }) {
       practiceEstimate={practiceRead?.estimate ?? null}
       accuracyPct={practiceRead?.accuracyPct ?? null}
       outlineDepthPct={practiceRead?.outlineDepthPct ?? null}
+      practiceAreas={
+        roadmap
+          ? practiceAreaLevels(
+              roadmap.topics.map((topic) => ({
+                id: topic.categoryId,
+                label: topic.label,
+                attempts: topic.attempts,
+                accuracyPct: topic.accuracy,
+              }))
+            )
+          : []
+      }
+      examAreas={examAreaScoresFromAnswers(latestExam?.answers)}
     />
   );
 }

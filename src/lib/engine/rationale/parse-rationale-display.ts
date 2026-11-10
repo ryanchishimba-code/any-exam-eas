@@ -119,7 +119,16 @@ export function dedupeRepeatedBlocks(text: string): string {
     seen.add(key);
     out.push(block.trim());
   }
-  return out.join("\n\n");
+  const lines: string[] = [];
+  let previous = "";
+  for (const line of out.join("\n\n").split("\n")) {
+    const key = normalizeRationaleCompare(line);
+    const structural = /^\s*(?:#{1,6}|\*\*|•|-)/.test(line);
+    if (!structural && key.length >= 40 && key === previous) continue;
+    previous = key;
+    lines.push(line);
+  }
+  return lines.join("\n");
 }
 
 function sameRationaleText(left: string | undefined, right: string | undefined): boolean {
@@ -334,7 +343,13 @@ export function parseRationaleForDisplay(
   const lines = whyBlock.split("\n").map((l) => l.trim()).filter(Boolean);
   let headline = lines.find((l) => !l.startsWith("•") && !l.startsWith("-") && !l.startsWith("**In practice"));
   const inPractice = whyBlock.match(/\*\*In practice:\*\*\s*(.+)/i)?.[1]?.trim();
-  const conceptBullets = parseBullets(whyBlock).map((bullet) => stripBold(bullet));
+  const conceptBullets = parseBullets(whyBlock)
+    .map((bullet) => stripBold(bullet))
+    .filter((bullet, index, all) => {
+      const key = normalizeRationaleCompare(bullet);
+      if (!key) return false;
+      return all.findIndex((row) => normalizeRationaleCompare(row) === key) === index;
+    });
   if (headline && conceptBullets[0]) {
     const bullet = conceptBullets[0];
     const headlineSentence = headline.split(/(?<=[.!?])\s/)[0] ?? headline;
@@ -392,7 +407,13 @@ export function parseRationaleForDisplay(
   return {
     whyCorrectHeadline: headline ? stripBold(headline) : undefined,
     conceptBullets,
-    clinicalContext: withoutPracticePrefix(inPractice),
+    clinicalContext: (() => {
+      const practice = withoutPracticePrefix(inPractice);
+      if (!practice) return undefined;
+      if (headline && sameRationaleText(practice, stripBold(headline))) return undefined;
+      if (conceptBullets.some((bullet) => sameRationaleText(practice, bullet))) return undefined;
+      return practice;
+    })(),
     wrongOptions: parseWrongOptions(wrongBlock)
       .map((row) => ({ ...row, body: stripGenericPriorityFiller(row.body) }))
       .filter((row) => row.body.length > 0),

@@ -262,16 +262,21 @@ export function buildPracticeMeasure(input: PracticeMeasureInput): PracticeMeasu
   for (const domain of domains) domainCredit.set(domain.id, 0);
 
   let accuracyPct = 0;
+  let weightedAccuracyPct = 0;
   let sampleCount = 0;
   let answerTotal = 0;
 
   if (counted) {
     let weightedCorrect = 0;
     let weightedTotal = 0;
+    let plainCorrect = 0;
     for (const answer of counted) {
       const weight = answer.decay * answer.difficultyWeight;
       weightedTotal += weight;
-      if (answer.correct) weightedCorrect += weight;
+      if (answer.correct) {
+        weightedCorrect += weight;
+        plainCorrect += 1;
+      }
       if (answer.decay >= FRESH_DECAY_FLOOR) sampleCount += 1;
       answerTotal += 1;
       if (!answer.domainId || !domainCredit.has(answer.domainId)) continue;
@@ -280,7 +285,11 @@ export function buildPracticeMeasure(input: PracticeMeasureInput): PracticeMeasu
         (domainCredit.get(answer.domainId) ?? 0) + answer.decay
       );
     }
-    accuracyPct = weightedTotal > 0 ? clampScore((weightedCorrect / weightedTotal) * 100) : 0;
+    weightedAccuracyPct = weightedTotal > 0 ? clampScore((weightedCorrect / weightedTotal) * 100) : 0;
+    // The number labeled "accuracy" is correct ÷ answers, the same percent
+    // the dashboard header and analytics use. Difficulty still weights the
+    // composite score below, not this percent.
+    accuracyPct = counted.length > 0 ? clampPct((plainCorrect / counted.length) * 100) : 0;
   } else {
     for (const row of input.domainAttempts ?? []) {
       const attempts = Math.max(0, Math.round(row.attempts) || 0);
@@ -295,6 +304,7 @@ export function buildPracticeMeasure(input: PracticeMeasureInput): PracticeMeasu
         ? sampleCount
         : Math.max(0, Math.round(input.recentAnswerCount) || 0);
     accuracyPct = recentCount > 0 ? clampPct(input.recentAccuracyPct ?? 0) : 0;
+    weightedAccuracyPct = accuracyPct;
     answerTotal = Math.max(answerTotal, sampleCount);
   }
 
@@ -380,7 +390,7 @@ export function buildPracticeMeasure(input: PracticeMeasureInput): PracticeMeasu
     boardId,
     score: practiceScoreFromParts({
       coveragePct,
-      accuracyPct,
+      accuracyPct: weightedAccuracyPct,
       remediationPct,
       sampleCount,
     }),
@@ -418,7 +428,7 @@ function coverageGoal(input: {
     : `Answer questions across more of the outline. Coverage is ${input.coveragePct}%. The goal is ${COVERAGE_GOAL_PCT}%.`;
   return {
     id: "coverage",
-    label: "Outline coverage",
+    label: `Outline coverage · ${COVERAGE_GOAL_PCT}%`,
     met: input.met,
     progressPct: input.coveragePct,
     valueLabel: `${input.coveragePct}%`,
@@ -443,7 +453,7 @@ function accuracyGoal(input: {
     : `Recent accuracy is ${input.accuracyPct}%. Retry missed questions until it reaches ${ACCURACY_GOAL_PCT}%.`;
   return {
     id: "recent_accuracy",
-    label: "Recent accuracy",
+    label: `Recent accuracy · ${ACCURACY_GOAL_PCT}%`,
     met: input.met,
     progressPct: input.accuracyPct,
     valueLabel: `${input.accuracyPct}%`,
@@ -469,7 +479,7 @@ function remediationGoal(input: {
       : `Retry missed questions until reviewed work reaches ${REMEDIATION_GOAL_PCT}%.`;
   return {
     id: "remediation",
-    label: "Reviewed misses",
+    label: `Reviewed misses · ${REMEDIATION_GOAL_PCT}%`,
     met: input.met,
     progressPct: input.openKnown ? input.remediationPct : 0,
     valueLabel: input.openKnown ? `${input.remediationPct}% · ${input.openIncorrect} open` : "—",

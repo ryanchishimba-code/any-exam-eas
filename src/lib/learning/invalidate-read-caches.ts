@@ -44,6 +44,7 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
     keys.push(cacheKey(["exam-roadmap-v9", userId, scope]));
     keys.push(cacheKey(["exam-roadmap-v8", userId, scope]));
     keys.push(cacheKey(["exam-roadmap-v7", userId, scope]));
+    keys.push(cacheKey(["mastery-dashboard-v3", userId, scope]));
     keys.push(cacheKey(["mastery-dashboard-v2", userId, scope]));
     keys.push(cacheKey(["mastery-dashboard", userId, scope]));
     keys.push(cacheKey(["exam-scoped-stats-v2", userId, scope]));
@@ -63,6 +64,7 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
       keys.push(cacheKey(["exam-roadmap-v9", userId, slug]));
       keys.push(cacheKey(["exam-roadmap-v8", userId, slug]));
       keys.push(cacheKey(["exam-roadmap-v7", userId, slug]));
+      keys.push(cacheKey(["mastery-dashboard-v3", userId, slug]));
       keys.push(cacheKey(["mastery-dashboard-v2", userId, slug]));
       keys.push(cacheKey(["mastery-dashboard", userId, slug]));
     }

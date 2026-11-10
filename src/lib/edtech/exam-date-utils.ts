@@ -106,6 +106,19 @@ export function calendarDaysUntil(isoDate: string, now: number | Date = Date.now
   return Math.round((target - today) / MS_DAY);
 }
 
+/**
+ * Days until an exam date on the same local calendar `todayIso` uses.
+ * The date picker must not call a local "today" past just because UTC has rolled over.
+ */
+export function localCalendarDaysUntil(isoDate: string, now: number | Date = Date.now()): number {
+  const parts = examDateParts(isoDate);
+  if (!parts) return Number.NaN;
+  const instant = now instanceof Date ? now : new Date(now);
+  const target = Date.UTC(parts.year, parts.month - 1, parts.day);
+  const today = Date.UTC(instant.getFullYear(), instant.getMonth(), instant.getDate());
+  return Math.round((target - today) / MS_DAY);
+}
+
 /** ISO `YYYY-MM-DD` → `MM/DD/YYYY` for typed entry. */
 export function isoToMmddyyyy(iso: string): string {
   const match = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);

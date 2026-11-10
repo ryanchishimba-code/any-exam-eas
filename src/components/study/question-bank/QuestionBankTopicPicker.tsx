@@ -248,7 +248,7 @@ function MixedTopicRow({
       <span
         className={cn(
           "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl",
-          selected ? "bg-white/15 text-white" : "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+          selected ? "bg-white/15 text-white" : "bg-black/[0.05] text-[var(--color-ink-muted)]"
         )}
       >
         <Layers className="h-4 w-4" aria-hidden />

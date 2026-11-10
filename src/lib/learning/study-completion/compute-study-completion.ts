@@ -209,16 +209,16 @@ export function buildStudyCompletionResult(
 async function countServedBankQuestions(fieldId: string): Promise<number> {
   try {
     const served = await countActiveQuestions(fieldId);
-    if (Number.isFinite(served) && served > 0) return served;
+    if (Number.isFinite(served) && served >= 0) return served;
   } catch (error) {
     console.warn(
       "[study-completion] served bank count failed:",
       error instanceof Error ? error.message : error
     );
   }
-  return prisma.questionBankItem.count({
-    where: { fieldId, active: true, qaPassed: true },
-  });
+  // Do not fall back to active+qaPassed. That wider pool is the number
+  // that disagreed with the question bank (for example 6,245 vs 4,411).
+  return 0;
 }
 
 async function loadStudyCompletionMetrics(

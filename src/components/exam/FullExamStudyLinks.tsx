@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, Layers, Sparkles } from "lucide-react";
+import { BookOpen, Layers, Pill, Sparkles } from "lucide-react";
+import { ROUTES } from "@/lib/routes";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
 import { studyFeedForExam } from "@/lib/study-feed/catalog";
@@ -76,21 +77,40 @@ export function FullExamStudyLinks({
                     {row.correct}/{row.total} correct ({row.pct}%)
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  <Link
-                    href={practiceHref}
-                    className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}
-                  >
-                    <BookOpen className="h-3.5 w-3.5" aria-hidden />
-                    Practice {practiceCount}
+                <Link
+                  href={practiceHref}
+                  className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}
+                >
+                  <BookOpen className="h-3.5 w-3.5" aria-hidden />
+                  Practice {practiceCount}
+                </Link>
+              </div>
+              {examSlug === "naplex" ? (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <Link href={ROUTES.drugs300} className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}>
+                    <Pill className="h-3.5 w-3.5" aria-hidden />
+                    Top 500 drugs
                   </Link>
+                  <Link href="/naplex/study-guide" className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}>
+                    Study guide
+                  </Link>
+                  <Link href="/naplex/quick-bites" className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}>
+                    Quick Bites
+                  </Link>
+                  <Link href={ROUTES.anatomy} className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}>
+                    Anatomy
+                  </Link>
+                </div>
+              ) : null}
+              {links.anatomyStructures.length > 0 ? (
+                <div className="mt-2">
                   <RelatedAnatomyLinks
                     examSlug={examSlug}
                     structures={links.anatomyStructures}
                     variant="pill"
                   />
                 </div>
-              </div>
+              ) : null}
             </li>
           );
         })}

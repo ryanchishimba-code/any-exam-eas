@@ -6,7 +6,7 @@ import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { matchCatalogDrug } from "@/lib/learning/remediation-loop";
-import { drugSafetyPathHref, drugStudyHref } from "@/lib/drugs300/safety-path";
+import { drugStudyHref } from "@/lib/drugs300/safety-path";
 import {
   resolveStudyLinksFromQuestion,
   type ResolvedQuestionStudyLinks,
@@ -58,14 +58,9 @@ export function QuestionRelatedLinks({
           ...listedDrugs,
         ]
       : listedDrugs;
-  const uniqueDrugLinks = drugLinks.filter(
-    (drug, index, all) => all.findIndex((row) => row.key === drug.key) === index
-  );
-  const opensSafetyPath = uniqueDrugLinks.some((drug) => drug.href?.includes("path=safety"));
-  const safetyPathHref =
-    !opensSafetyPath && uniqueDrugLinks.length > 0
-      ? (links.relatedDrug?.safetyPathHref ?? drugSafetyPathHref(examSlug))
-      : null;
+  const uniqueDrugLinks = drugLinks
+    .filter((drug) => !/safety path/i.test(drug.label))
+    .filter((drug, index, all) => all.findIndex((row) => row.key === drug.key) === index);
 
   const feed = studyFeedForExam(examSlug);
   const showPanceFeed = Boolean(
@@ -166,13 +161,6 @@ export function QuestionRelatedLinks({
                 )}
               </li>
             ))}
-            {safetyPathHref ? (
-              <li>
-                <Link href={safetyPathHref} className={chipClass}>
-                  Safety path
-                </Link>
-              </li>
-            ) : null}
           </ul>
         </div>
       ) : null}

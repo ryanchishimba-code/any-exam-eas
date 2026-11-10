@@ -32,7 +32,10 @@ export async function GET() {
         const formatLine = snapshot.degraded
           ? null
           : [
-              formatInventoryFormatLine(board.formats, slug === "nclex" ? "NGN" : "NGN-style") ??
+              formatInventoryFormatLine(
+                board.formats,
+                slug === "nclex" ? "NGN" : slug === "naplex" ? "select-all" : "other formats"
+              ) ??
                 (units ? formatBoardQuestionSentence(units) : null),
               units ? formatSeparatePublishedCatalog(units) : "",
             ]

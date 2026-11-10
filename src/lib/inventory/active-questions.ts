@@ -467,7 +467,8 @@ export function presentBoardInventory(input: {
 
   const clinical = input.clinical ?? { standaloneNgn: 0, caseStudies: 0, caseItems: 0 };
   const scored = input.board.active;
-  const ngnLabel = input.slug === "nclex" ? "NGN" : "NGN-style";
+  const ngnLabel =
+    input.slug === "nclex" ? "NGN" : input.slug === "naplex" ? "select-all" : "other formats";
   const catalog = formatSeparatePublishedCatalog(clinical);
   const bankLine =
     formatInventoryFormatLine(input.board.formats, ngnLabel) ??

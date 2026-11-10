@@ -92,26 +92,13 @@ function finiteNumber(value: string | null): number | undefined {
   return Number.isFinite(parsed) ? parsed : undefined;
 }
 
-/** Compact receipt on the dashboard URL so a cleared sessionStorage still shows it. */
-export function studyHubWithSummaryPath(summary?: ActivitySessionSummary | null): string {
+/**
+ * End a session without putting scores in the address bar.
+ * The receipt stays in sessionStorage. The URL only marks that a session ended.
+ */
+export function studyHubWithSummaryPath(_summary?: ActivitySessionSummary | null): string {
   const qs = new URLSearchParams();
   qs.set("session", "ended");
-  if (!summary) return `${STUDY_HUB_PATH}?${qs.toString()}`;
-
-  const title = summary.title?.trim().slice(0, 80);
-  if (title) qs.set("title", title);
-  qs.set("early", summary.endedEarly ? "1" : "0");
-  if (summary.attemptsSaved != null) qs.set("saved", String(summary.attemptsSaved));
-  if (summary.accuracy != null) qs.set("acc", String(summary.accuracy));
-  if (summary.correct != null) qs.set("correct", String(summary.correct));
-  if (summary.answered != null) qs.set("answered", String(summary.answered));
-  if (summary.total != null) qs.set("total", String(summary.total));
-  if (summary.studyStreakDays != null) qs.set("streak", String(summary.studyStreakDays));
-  if (summary.weakTopicLabels?.length) {
-    qs.set("weak", summary.weakTopicLabels.slice(0, 3).join("|").slice(0, 160));
-  }
-  if (summary.reviewIncorrectHref) qs.set("review", summary.reviewIncorrectHref.slice(0, 300));
-  if (summary.analyticsHref) qs.set("stats", summary.analyticsHref.slice(0, 200));
   return `${STUDY_HUB_PATH}?${qs.toString()}`;
 }
 

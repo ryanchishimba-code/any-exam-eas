@@ -38,7 +38,7 @@ async function cachedMasteryDashboard(
   loader: () => Promise<MasteryDashboardPayload | null>
 ): Promise<MasteryDashboardPayload | null> {
   return cacheGetOrSet(
-    cacheKey(["mastery-dashboard-v2", userId, examKey]),
+    cacheKey(["mastery-dashboard-v3", userId, examKey]),
     CACHE_TTL.learningDashboard,
     loader,
     { staleTtlMs: CACHE_STALE.learningDashboard }
@@ -112,11 +112,15 @@ export async function loadNclexMasteryDashboard(userId: string): Promise<{
   });
 }
 
-async function loadNclexAttemptTallies(userId: string): Promise<DomainAttemptTally[]> {
+async function loadFieldAttemptTallies(
+  userId: string,
+  fieldId: "nursing" | "pharmacy"
+): Promise<DomainAttemptTally[]> {
   const rows = await prisma.$queryRaw<
     {
       subjectId: string | null;
       clientNeeds: string | null;
+      blueprintDomain: string | null;
       answered: number;
       correct: number;
     }[]
@@ -124,19 +128,21 @@ async function loadNclexAttemptTallies(userId: string): Promise<DomainAttemptTal
     SELECT
       COALESCE(NULLIF(BTRIM(qa."subjectId"), ''), qbi."subjectId") AS "subjectId",
       COALESCE(NULLIF(BTRIM(qbi."clientNeeds"), ''), '') AS "clientNeeds",
+      COALESCE(NULLIF(BTRIM(qbi."blueprintDomain"), ''), '') AS "blueprintDomain",
       COUNT(*)::int AS answered,
       COALESCE(SUM(CASE WHEN qa.correct THEN 1 ELSE 0 END), 0)::int AS correct
     FROM "QuestionAttempt" qa
     LEFT JOIN "QuestionBankItem" qbi ON qbi.id = qa."bankItemId"
     WHERE qa."userId" = ${userId}
-      AND qa."fieldId" = 'nursing'
-    GROUP BY 1, 2
+      AND qa."fieldId" = ${fieldId}
+    GROUP BY 1, 2, 3
   `;
   const totals = new Map<string, DomainAttemptTally>();
   for (const row of rows) {
-    const domainId = resolveBlueprintCategoryIdForAttempt("nursing", {
+    const domainId = resolveBlueprintCategoryIdForAttempt(fieldId, {
       subjectId: row.subjectId,
       clientNeeds: row.clientNeeds,
+      blueprintDomain: row.blueprintDomain,
     });
     if (!domainId) continue;
     const current = totals.get(domainId) ?? { domainId, answered: 0, correct: 0 };
@@ -145,6 +151,10 @@ async function loadNclexAttemptTallies(userId: string): Promise<DomainAttemptTal
     totals.set(domainId, current);
   }
   return [...totals.values()];
+}
+
+async function loadNclexAttemptTallies(userId: string): Promise<DomainAttemptTally[]> {
+  return loadFieldAttemptTallies(userId, "nursing");
 }
 
 /** Five-domain NAPLEX map tiles + rollup for Practice Hub. */
@@ -156,7 +166,11 @@ export async function loadNaplexMasteryDashboard(userId: string): Promise<{
 
   return cachedMasteryDashboard(userId, "naplex", async () => {
     const cells = buildNaplexSkillCells();
-    const states = await loadUserCellStates(userId, "naplex");
+    const [storedStates, tallies] = await Promise.all([
+      loadUserCellStates(userId, "naplex"),
+      loadFieldAttemptTallies(userId, "pharmacy"),
+    ]);
+    const states = statesWithAttemptedDomains(cells, storedStates, tallies);
     const rollup = computeMasteryRollup({ cells, states });
 
     const mapTiles: DomainMapTile[] = NAPLEX_OUTLINE_2025.map((domain) => {
@@ -204,7 +218,7 @@ export async function loadNaplexMasteryDashboard(userId: string): Promise<{
       };
     });
 
-    return { rollup, mapTiles };
+    return { rollup, mapTiles: applyAttemptProgressToTiles(mapTiles, tallies) };
   });
 }
 

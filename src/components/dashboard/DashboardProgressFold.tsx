@@ -50,13 +50,7 @@ export function DashboardProgressFold({
       </summary>
       <div data-today-details-body className="mt-5 space-y-5">
         {plan ? <PlanLinks plan={plan} studyLocked={studyLocked} /> : null}
-        {plan ? (
-          plan.weekPlan.active ? (
-            <DashboardWeekPlan weekPlan={plan.weekPlan} />
-          ) : (
-            <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">{plan.weekPlan.summary}</p>
-          )
-        ) : null}
+        {plan ? <DashboardWeekPlan weekPlan={plan.weekPlan} /> : null}
         {children}
       </div>
     </details>
