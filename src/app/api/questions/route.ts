@@ -723,7 +723,15 @@ export async function GET(req: Request) {
 
   if (bankPractice && items.length < limit && !topicPracticeLaunch) {
     const formatNoun =
-      formatBucket === "case" ? "case" : formatBucket === "ngn" ? (fieldId === "nursing" ? "NGN" : "NGN-style") : null;
+      formatBucket === "case"
+        ? "case"
+        : formatBucket === "ngn"
+          ? fieldId === "nursing"
+            ? "NGN"
+            : fieldId === "pharmacy"
+              ? "Select all"
+              : "other format"
+          : null;
     return NextResponse.json(
       {
         error: formatNoun

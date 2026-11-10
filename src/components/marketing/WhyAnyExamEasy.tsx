@@ -43,6 +43,7 @@ export function WhyAnyExamEasy({
   trialHref: string;
 }) {
   const quotes = quotesForBoard(board);
+  const facts = board === "naplex" ? FACTS.filter((fact) => fact.title !== "NGN case studies") : FACTS;
 
   return (
     <section className="why-aee" aria-labelledby="why-aee-heading">
@@ -50,7 +51,7 @@ export function WhyAnyExamEasy({
         <p className="why-aee__kicker">Why AnyExamEasy</p>
         <h2 id="why-aee-heading">One study system for the board in front of you.</h2>
         <ul className="why-aee__facts">
-          {FACTS.map((fact) => (
+          {facts.map((fact) => (
             <li key={fact.title}>
               <p className="why-aee__fact-title">{fact.title}</p>
               <p>{fact.body}</p>

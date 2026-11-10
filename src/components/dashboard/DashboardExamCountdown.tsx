@@ -4,7 +4,12 @@ import { startTransition, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CalendarPlus, Check, ChevronDown } from "lucide-react";
 import { ExamDatePicker } from "@/components/edtech/ExamDatePicker";
-import { calendarDaysUntil, formatExamDateLong, todayIso } from "@/lib/edtech/exam-date-utils";
+import {
+  calendarDaysUntil,
+  defaultExamDatePreview,
+  formatExamDateLong,
+  todayIso,
+} from "@/lib/edtech/exam-date-utils";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +40,7 @@ export function DashboardExamCountdown({
   const [draft, setDraft] = useState(testDate ?? "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(!testDate);
   // Date.now() during render disagrees between UTC on the server and the
   // browser, which hydrates as React #418 ("N days" vs "N-1 days").
   const [now, setNow] = useState<number | null>(null);
@@ -47,7 +52,13 @@ export function DashboardExamCountdown({
   useEffect(() => {
     setDate(testDate);
     setDraft(testDate ?? "");
+    if (!testDate) setEditing(true);
   }, [testDate]);
+
+  useEffect(() => {
+    if (now == null || testDate || draft) return;
+    setDraft(defaultExamDatePreview(todayIso()));
+  }, [now, testDate, draft]);
 
   const today = useMemo(() => (now == null ? "" : todayIso()), [now]);
   const calDays = date && now != null ? calendarDaysUntil(date, now) : null;
@@ -138,7 +149,7 @@ export function DashboardExamCountdown({
   const dateEditor = editing ? (
     <div className="mt-3 space-y-3 border-t border-[var(--db-line,var(--color-border))]/60 pt-3">
       <ExamDatePicker
-        value={draft || date || today}
+        value={draft || date || ""}
         minDate={today}
         onChange={setDraft}
         ariaLabel={`${examName} test date`}
@@ -254,7 +265,7 @@ export function DashboardExamCountdown({
       {editing ? (
         <div className="relative mt-5 space-y-3 border-t border-[var(--db-line)] pt-4">
           <ExamDatePicker
-            value={draft || date || today}
+            value={draft || date || ""}
             minDate={today}
             onChange={setDraft}
             ariaLabel={`${examName} test date`}

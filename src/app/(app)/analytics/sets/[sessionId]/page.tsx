@@ -45,7 +45,7 @@ export default async function SavedFormatSetPage({
 
   const row = await prisma.studySession.findFirst({
     where: { id: sessionId, userId: session.user.id, completed: true },
-    select: { score: true, updatedAt: true, stateJson: true },
+    select: { score: true, updatedAt: true, stateJson: true, fieldId: true },
   });
   if (!row) notFound();
 
@@ -64,7 +64,14 @@ export default async function SavedFormatSetPage({
       : [];
   const stems = new Map(bank.map((item) => [item.id, item.question]));
   const score = row.score == null ? null : Math.round(row.score);
-  const title = stored.format === "case" ? "Saved case set" : "Saved NGN set";
+  const title =
+    stored.format === "case"
+      ? "Saved case set"
+      : row.fieldId === "nursing"
+        ? "Saved NGN set"
+        : row.fieldId === "pharmacy"
+          ? "Saved select-all set"
+          : "Saved practice set";
 
   return (
     <div className="mx-auto w-full max-w-3xl space-y-6 px-4 py-8 sm:px-6">

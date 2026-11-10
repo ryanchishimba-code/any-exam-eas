@@ -14,6 +14,7 @@ import {
 import { FloatingTimer } from "@/components/exam/FloatingTimer";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { PauseExamDialog } from "@/components/exam/PauseExamDialog";
+import { ExamCalculator } from "@/components/exam/ExamCalculator";
 import { TimeUpDialog } from "@/components/exam/TimeUpDialog";
 import { Progress } from "@/components/ui/progress";
 import { QuestionRenderer } from "@/components/study/questions/QuestionRenderer";
@@ -42,6 +43,7 @@ import { sittingAskKey, sittingCapEntityKey, sittingCapTags } from "@/lib/exam-p
 import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
+import { naplexBreakLabel, nextNaplexBreakMark } from "@/lib/full-exam/naplex-breaks";
 import { patchCompleteExamSession } from "@/lib/full-exam/complete-exam-client";
 import { restoreCatSessionFromAnswers } from "@/lib/full-exam/restore-cat-session";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
@@ -271,6 +273,17 @@ export function FullExamSimulator({
   const [advancing, setAdvancing] = useState(false);
   const [nextHint, setNextHint] = useState<string | null>(null);
   const [submitPhase, setSubmitPhase] = useState<"idle" | "finalizing" | "grading">("idle");
+  const [calculatorOpen, setCalculatorOpen] = useState(false);
+  const [breakMark, setBreakMark] = useState<number | null>(null);
+  const offeredBreaksRef = useRef(new Set<number>());
+  const scoreProgress = useLongRunningProgress(submitting, {
+    steps: [
+      { at: 0, label: "Saving your answers…" },
+      { at: 20, label: "Scoring each question…" },
+      { at: 55, label: "Building the area breakdown…" },
+      { at: 75, label: "Still scoring. A full exam takes a minute…" },
+    ],
+  });
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [notesOpen, setNotesOpen] = useState(false);
   const [phase, setPhase] = useState<"exam" | "review">("exam");
@@ -549,6 +562,16 @@ export function FullExamSimulator({
     catStartedTracked.current = true;
     analytics.ctaClicked("nclex_cat_started", "full_exam_cat");
   }, [isCatMode, loading, questions.length]);
+
+  useEffect(() => {
+    if (examSlug !== "naplex" || !config.timed || config.timeLimitSec < 6 * 60 * 60 || loading) return;
+    const elapsed = Math.max(0, config.timeLimitSec - remainingSec);
+    const mark = nextNaplexBreakMark(elapsed, offeredBreaksRef.current);
+    if (mark == null || breakMark != null) return;
+    offeredBreaksRef.current.add(mark);
+    setBreakMark(mark);
+    setPaused(true);
+  }, [examSlug, config.timed, config.timeLimitSec, loading, remainingSec, breakMark]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;
@@ -1372,6 +1395,13 @@ export function FullExamSimulator({
                 : "Submit exam"}
             </button>
           </div>
+          {submitting ? (
+            <ExamLoadingProgress
+              progress={scoreProgress.progress}
+              status={scoreProgress.status}
+              showBar
+            />
+          ) : null}
         </main>
       </div>
     );
@@ -1469,7 +1499,7 @@ export function FullExamSimulator({
             </div>
           ) : null}
 
-          <article className={feUi.questionPanel}>
+          <article key={current.id || `q-${index}`} className={feUi.questionPanel}>
             <QuestionRenderer
               question={current}
               selected={currentAnswer.selected}
@@ -1531,6 +1561,17 @@ export function FullExamSimulator({
                 <ChevronLeft className="h-4 w-4" /> Previous
               </button>
             )}
+
+            {examSlug === "naplex" || current?.type === "short_answer" ? (
+              <button
+                type="button"
+                onClick={() => setCalculatorOpen((open) => !open)}
+                className={feUi.footerBtn}
+                aria-expanded={calculatorOpen}
+              >
+                Calculator
+              </button>
+            ) : null}
 
             {hasEnteredReview ? (
               <button type="button" onClick={() => setPhase("review")} className={feUi.footerBtn}>
@@ -1610,6 +1651,11 @@ export function FullExamSimulator({
               Notes
             </button>
           </div>
+          {calculatorOpen ? (
+            <div className="flex justify-end">
+              <ExamCalculator />
+            </div>
+          ) : null}
         </div>
       </footer>
 
@@ -1620,6 +1666,28 @@ export function FullExamSimulator({
         catMode={isCatMode}
       />
       <TimeUpDialog open={timeUp && !submitting} onFinish={() => void submitExam(true)} />
+      {breakMark != null ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-labelledby="naplex-break-title">
+          <div className="max-w-md rounded-2xl bg-white p-6 shadow-xl">
+            <h2 id="naplex-break-title" className="text-[20px] font-semibold text-[var(--color-ink)]">
+              Scheduled break
+            </h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+              You reached the {naplexBreakLabel(breakMark)} in this 6-hour practice exam. The clock is paused. Continue when you are ready. This is practice, not a licensure administration.
+            </p>
+            <button
+              type="button"
+              className={cn(feUi.footerBtnPrimary, "mt-4")}
+              onClick={() => {
+                setBreakMark(null);
+                setPaused(false);
+              }}
+            >
+              Continue exam
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       {current ? (
         <ReportQuestionDialog

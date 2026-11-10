@@ -16,10 +16,12 @@ type Props = {
   /** Builds a dialog here when the parent does not already have one. */
   report?: ReportQuestionContext;
   tone?: "default" | "onDark";
+  /** Hide the sources sentence when this item has none stored. */
+  hasSources?: boolean;
 };
 
 /** Sits with a rationale: standards link plus a stored issue report. */
-export function QuestionIssueFooter({ onReportIssue, report, tone = "default" }: Props) {
+export function QuestionIssueFooter({ onReportIssue, report, tone = "default", hasSources = false }: Props) {
   const [open, setOpen] = useState(false);
   const muted = tone === "onDark" ? "text-slate-300" : "text-[var(--color-ink-muted)]";
   const link = tone === "onDark" ? "text-teal-200 hover:underline" : "text-[var(--color-accent)] hover:underline";
@@ -35,8 +37,12 @@ export function QuestionIssueFooter({ onReportIssue, report, tone = "default" }:
           <Link href={ROUTES.howQuestionsAreReviewed} className={`font-semibold ${link}`}>
             How questions are reviewed
           </Link>
-          <span aria-hidden> · </span>
-          Sources shown here are the ones stored on this item.
+          {hasSources ? (
+            <>
+              <span aria-hidden> · </span>
+              Sources shown here are the ones stored on this item.
+            </>
+          ) : null}
         </p>
         <StudyUseNote className={`mt-1 ${muted}`} />
       </div>

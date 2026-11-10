@@ -132,7 +132,8 @@ describe("practice measure", () => {
     const sata = measure({
       answers: [answer({ questionId: "sata", format: "sata", correct: true })],
     });
-    expect(hard.accuracyPct).toBeGreaterThan(easy.accuracyPct);
+    expect(hard.accuracyPct).toBe(50);
+    expect(easy.accuracyPct).toBe(50);
     expect(sata.score).toBeGreaterThan(0);
     expect(sata.sampleCount).toBe(1);
   });

@@ -183,7 +183,7 @@ describe("served bank stats", () => {
       openIncorrect: 1,
       servedBank: bank(2, 2),
     });
-    expect(rerated.accuracyPct).toBeLessThan(rerate.accuracyPct);
+    expect(rerated.accuracyPct).toBe(rerate.accuracyPct);
   });
 
   it("reads the live serve gate and a one-minute cache", () => {

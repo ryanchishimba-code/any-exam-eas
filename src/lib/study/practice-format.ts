@@ -39,14 +39,15 @@ export function parseDeliberatePracticeFormat(
 
 /**
  * Noun used beside the inventory split.
- * Nursing / Client Needs says NGN. Every other board says NGN-style.
+ * Nursing says NGN. Pharmacy says Select all. NGN is a nursing format.
  */
 export function ngnStyleLabel(
   categoryLabel: string | null | undefined,
   fieldId?: string | null
 ): string {
   if (categoryLabel === "Client Needs" || fieldId === "nursing") return "NGN";
-  return "NGN-style";
+  if (fieldId === "pharmacy") return "Select all";
+  return "Other formats";
 }
 
 export function practiceFormatTitle(

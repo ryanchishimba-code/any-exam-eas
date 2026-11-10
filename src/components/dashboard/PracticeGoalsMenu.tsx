@@ -3,6 +3,12 @@
 import { useId, useState, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import type { ReadinessCriterion } from "@/lib/learning/exam-day-plan";
+import {
+  ACCURACY_GOAL_PCT,
+  COVERAGE_GOAL_PCT,
+  REMEDIATION_GOAL_PCT,
+  REMEDIATION_MAX_OPEN,
+} from "@/lib/learning/practice-measure";
 import type { DifficultyMix } from "@/lib/learning/served-bank-stats";
 import {
   PracticeGoalsCharts,
@@ -109,8 +115,8 @@ export function PracticeGoalsMenu({
           <span className="block text-[15px] font-semibold leading-tight tracking-[-0.02em] text-[var(--color-ink)]">
             {headline}
           </span>
-          <span className="mt-0.5 block text-[13px] leading-tight text-[var(--color-ink-muted)]">
-            {disclaimer}
+          <span className="mt-0.5 block text-[13px] leading-snug text-[var(--color-ink-muted)]">
+            Outline {COVERAGE_GOAL_PCT}% · accuracy {ACCURACY_GOAL_PCT}% · reviewed misses {REMEDIATION_GOAL_PCT}% with at most {REMEDIATION_MAX_OPEN} open
           </span>
         </span>
         <ChevronDown

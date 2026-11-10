@@ -4,7 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { CalendarDays } from "lucide-react";
 import {
   addMonthsToIso,
-  calendarDaysUntil,
+  localCalendarDaysUntil,
   defaultBirthDatePreview,
   formatMmddyyyyDigits,
   formatExamDateLong,
@@ -38,7 +38,7 @@ const EXAM_QUICK_PICKS = [
 ] as const;
 
 function relativeHint(iso: string, minDate?: string): string {
-  const days = calendarDaysUntil(iso);
+  const days = localCalendarDaysUntil(iso);
   if (minDate && iso < minDate) return "Choose a future date";
   if (days === 0) return "Test day is today";
   if (days === 1) return "1 day away";

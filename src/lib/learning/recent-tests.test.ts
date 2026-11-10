@@ -20,7 +20,7 @@ describe("recent exam sessions", () => {
     expect(row).toMatchObject({
       id: "sess-1",
       examId: "sess-1",
-      title: "NCLEX-RN Full Simulation",
+      title: "NCLEX-RN Full Simulation · ended early",
       field: "nursing",
       score: 72,
       correct: 1,

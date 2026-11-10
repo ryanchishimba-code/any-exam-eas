@@ -5,9 +5,10 @@
  * Does not change stems, options, keys, or rationales.
  * Dry-run is the default:
  *   npx tsx scripts/backfill-question-topic-ids.ts --field nursing
+ *   npx tsx scripts/backfill-question-topic-ids.ts --field pharmacy
  *
  * Apply, and keep an undo file:
- *   npx tsx scripts/backfill-question-topic-ids.ts --field nursing --apply --undo-file ./topic-undo.json
+ *   npx tsx scripts/backfill-question-topic-ids.ts --field pharmacy --apply --undo-file ./topic-undo.json
  *
  * Restore:
  *   npx tsx scripts/backfill-question-topic-ids.ts --undo ./topic-undo.json
@@ -23,6 +24,7 @@ ensureDatabaseUrlEnv();
 
 import { PrismaClient } from "@prisma/client";
 import { resolveBlueprintCategoryIdForAttempt } from "../src/lib/learning/attempt-blueprint-attribution";
+import { getSubjectsForFieldId } from "../src/lib/subjects/subject-catalog";
 
 type UndoRow = { id: string; from: string | null };
 
@@ -51,6 +53,15 @@ async function main() {
     }
 
     const fieldId = arg("--field") ?? "nursing";
+    const catalogIds = new Set(
+      (() => {
+        try {
+          return getSubjectsForFieldId(fieldId).map((subject) => subject.id);
+        } catch {
+          return [] as string[];
+        }
+      })()
+    );
     const rows = await prisma.questionBankItem.findMany({
       where: {
         fieldId,
@@ -62,12 +73,20 @@ async function main() {
     });
     const changes: { id: string; from: string | null; to: string }[] = [];
     for (const row of rows) {
-      const to = resolveBlueprintCategoryIdForAttempt(fieldId, {
+      const namedCatalog = [row.topicCategory, row.clientNeeds, row.blueprintDomain].find(
+        (value) => value && catalogIds.has(value.trim())
+      );
+      const resolved = resolveBlueprintCategoryIdForAttempt(fieldId, {
         subjectId: row.subjectId,
         clientNeeds: row.clientNeeds,
         blueprintDomain: row.blueprintDomain,
         topicCategory: row.topicCategory,
       });
+      // Pharmacy topic ids are catalog subjects. A blueprint area id is not a topic.
+      const to =
+        fieldId === "pharmacy"
+          ? namedCatalog?.trim() || (resolved && catalogIds.has(resolved) ? resolved : null)
+          : resolved;
       if (!to) continue;
       changes.push({ id: row.id, from: row.subjectId, to });
     }

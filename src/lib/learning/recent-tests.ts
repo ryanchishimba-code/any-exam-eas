@@ -33,13 +33,21 @@ export function recentTestFromExamSession(row: FinishedExamSessionRow): RecentTe
   const counts = scoredCounts(row.answers);
   if (counts.total <= 0 && (row.score ?? 0) <= 0) return null;
   const field = row.fieldId?.trim() || row.examType;
-  const title = row.title?.trim() || `${row.examType.toUpperCase()} exam`;
   const total = counts.total > 0 ? counts.total : row.questionCount > 0 ? row.questionCount : null;
   const stored = row.score == null ? null : Math.round(row.score);
   const score =
     counts.total > 0 && (stored == null || stored === 0)
       ? Math.round((counts.correct / counts.total) * 100)
       : (stored ?? 0);
+  const planned = row.questionCount;
+  const shortSitting = planned >= 50 && counts.total > 0 && counts.total < planned * 0.25;
+  const extreme = counts.total >= 20 && (score <= 1 || score >= 97);
+  const titleBase = row.title?.trim() || `${row.examType.toUpperCase()} exam`;
+  const title = shortSitting
+    ? `${titleBase} · ended early`
+    : extreme
+      ? `${titleBase} · extreme score`
+      : titleBase;
   return {
     id: row.id,
     examId: row.id,

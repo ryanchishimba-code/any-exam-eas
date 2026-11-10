@@ -6,7 +6,7 @@ import type { ReadinessCriterion } from "@/lib/learning/exam-day-plan";
 import type { DifficultyMix } from "@/lib/learning/served-bank-stats";
 import { cn } from "@/lib/utils";
 
-export type GoalTrendPoint = { label?: string; accuracy: number | null };
+export type GoalTrendPoint = { label?: string; accuracy: number | null; attempts?: number };
 
 export type GoalDomainBar = {
   id: string;
@@ -121,25 +121,39 @@ function Sparkline({ points }: { points: GoalTrendPoint[] }) {
   const width = 320;
   const height = 64;
   const pad = 4;
-  const usable = points.length > 0 ? points : [{ accuracy: 0 }];
+  const usable = points.length > 0 ? points : [{ accuracy: null }];
+  const answeredDays = usable.filter((point) => point.accuracy != null && (point.attempts ?? 0) > 0).length;
   const step = usable.length > 1 ? (width - pad * 2) / (usable.length - 1) : 0;
   const coords = usable.map((point, index) => {
-    const value = point.accuracy == null ? 0 : Math.max(0, Math.min(100, point.accuracy));
+    const hasAnswers = point.accuracy != null && (point.attempts ?? (point.accuracy == null ? 0 : 1)) > 0;
+    const value = hasAnswers ? Math.max(0, Math.min(100, point.accuracy ?? 0)) : null;
     const x = pad + index * step;
-    const y = pad + (1 - value / 100) * (height - pad * 2);
+    const y = value == null ? null : pad + (1 - value / 100) * (height - pad * 2);
     return { x, y, value, label: point.label ?? "" };
   });
-  const line = coords.map((point, index) => `${index === 0 ? "M" : "L"}${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(" ");
-  const area = `${line} L${coords[coords.length - 1]!.x.toFixed(1)},${height - pad} L${coords[0]!.x.toFixed(1)},${height - pad} Z`;
+  const segments: string[] = [];
+  let segment = "";
+  for (const point of coords) {
+    if (point.y == null) {
+      if (segment) segments.push(segment);
+      segment = "";
+      continue;
+    }
+    segment += `${segment ? "L" : "M"}${point.x.toFixed(1)},${point.y.toFixed(1)}`;
+  }
+  if (segment) segments.push(segment);
+  const line = segments.join(" ");
   const windowLabel = points.length > 14 ? "30-day trend" : "14-day trend";
+  const answeredLabel =
+    answeredDays === 1 ? "1 day with answers" : `${answeredDays} days with answers`;
   return (
     <figure className="mt-6" data-practice-chart="trend">
-      <figcaption className="mb-2 flex items-center justify-between">
+      <figcaption className="mb-2 flex items-center justify-between gap-3">
         <span className="text-[12px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">{windowLabel}</span>
-        <InfoTip label="About the trend" text="Daily accuracy. Empty days stay on the baseline." />
+        <span className="text-[12px] text-[var(--color-ink-muted)]">{answeredLabel}</span>
+        <InfoTip label="About the trend" text="Each point is that day's accuracy. Days with no answers are gaps, not 0%." />
       </figcaption>
-      <svg viewBox={`0 0 ${width} ${height}`} className="h-16 w-full" role="img" aria-label={`${windowLabel}. ${coords.length} days.`}>
-        <path d={area} fill="var(--color-accent)" opacity="0.16" />
+      <svg viewBox={`0 0 ${width} ${height}`} className="h-16 w-full" role="img" aria-label={`${windowLabel}. ${answeredLabel}.`}>
         <path
           d={line}
           fill="none"

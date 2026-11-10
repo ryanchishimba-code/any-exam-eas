@@ -13,6 +13,7 @@ import {
   vignetteWithoutRepeatedQuestion,
 } from "@/lib/questions/student-display-text";
 import { parseRationaleForDisplay, type ParsedRationaleDisplay } from "@/lib/engine/rationale/parse-rationale-display";
+import { alignRationaleToDisplayedOptions } from "@/lib/study/displayed-option-labels";
 import {
   shouldCollapseRationale,
   uniqueRationaleParts,
@@ -503,10 +504,25 @@ export function ExplanationPanel({
   const { role } = useUserAccess();
   const conciseOnly = role === "free";
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
+  const align = (text: string | null | undefined) =>
+    alignRationaleToDisplayedOptions(text ?? "", question.options);
+  const explanation = align(question.explanation);
+  const clinicalReasoning = question.clinicalReasoning ? align(question.clinicalReasoning) : question.clinicalReasoning;
+  const distractorRationale = question.distractorRationale
+    ? Object.fromEntries(
+        Object.entries(question.distractorRationale).map(([key, value]) => [align(key) || key, align(value)])
+      )
+    : question.distractorRationale;
+  const labeledQuestion: StudyQuestion = {
+    ...question,
+    explanation,
+    clinicalReasoning,
+    distractorRationale,
+  };
 
-  const parsed = parseRationaleForDisplay(question.explanation, question.expertRationale);
+  const parsed = parseRationaleForDisplay(explanation, question.expertRationale);
   const hasExpert = Boolean(question.expertRationale || parsed.isExpert);
-  const parts = visibleRationaleParts(question, parsed);
+  const parts = visibleRationaleParts(labeledQuestion, parsed);
   const whyCorrectLead = [parsed.whyCorrectHeadline, ...(parsed.conceptBullets ?? [])]
     .map((part) => part?.trim())
     .filter((part): part is string => Boolean(part))
@@ -515,14 +531,14 @@ export function ExplanationPanel({
     whyCorrectLead ||
     rationaleLeadForQuestion({
     principle:
-      question.explanationDetail?.keyTakeaways?.[0] ||
+      labeledQuestion.explanationDetail?.keyTakeaways?.[0] ||
       question.expertRationale?.keyTakeaway ||
       parsed.keyTakeaway,
     headline:
-      question.explanationDetail?.summary ||
+      labeledQuestion.explanationDetail?.summary ||
       question.expertRationale?.whyCorrect?.headline ||
       parsed.whyCorrectHeadline,
-    explanation: question.explanation,
+    explanation,
   });
 
   const hasDistractors =
@@ -543,7 +559,7 @@ export function ExplanationPanel({
 
   const detail = (
     <ExplanationDetail
-      question={question}
+      question={labeledQuestion}
       parsed={parsed}
       examSlug={examSlug}
       incorrect={incorrect}
@@ -607,6 +623,7 @@ export function ExplanationPanel({
       </div>
 
       <QuestionIssueFooter
+        hasSources={storedSourceLines(question.references).length > 0}
         report={buildReportContext({
           fieldId: field || question.field || examSlug,
           examSlug,

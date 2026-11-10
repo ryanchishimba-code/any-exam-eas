@@ -10,6 +10,81 @@ export const PRACTICE_ESTIMATE_LABEL = "A practice measure, not a pass predictio
 export const PRACTICE_ESTIMATE_EXPLANATION =
   "This is practice history: accuracy, how much of the outline you have answered, and how many misses you have retried. It is not the readiness baseline. The baseline is the separate check, and it stays unset until you start one.";
 
+export type PracticeAreaLevelName = "on_track" | "getting_close" | "not_yet" | "insufficient";
+
+export type PracticeAreaLevel = {
+  id: string;
+  label: string;
+  level: PracticeAreaLevelName;
+  detail: string;
+};
+
+/** Per-area level from saved practice. Not a pass prediction. */
+export function practiceAreaLevels(
+  topics: Array<{ id: string; label: string; attempts: number; accuracyPct: number | null }>
+): PracticeAreaLevel[] {
+  return topics
+    .filter((topic) => topic.attempts > 0)
+    .map((topic) => {
+      const accuracy = topic.accuracyPct == null ? 0 : Math.round(topic.accuracyPct);
+      const level: PracticeAreaLevelName =
+        topic.attempts < 2
+          ? "insufficient"
+          : accuracy >= 70
+            ? "on_track"
+            : accuracy >= 50
+              ? "getting_close"
+              : "not_yet";
+      const levelLabel =
+        level === "on_track"
+          ? "On track"
+          : level === "getting_close"
+            ? "Getting close"
+            : level === "not_yet"
+              ? "Not yet"
+              : "Not enough data yet";
+      return {
+        id: topic.id,
+        label: topic.label,
+        level,
+        detail: `${levelLabel} · ${topic.attempts} answer${topic.attempts === 1 ? "" : "s"} · ${accuracy}%`,
+      };
+    });
+}
+
+export type ExamAreaScore = {
+  topic: string;
+  correct: number;
+  total: number;
+  pct: number;
+};
+
+/** Domain scores from one submitted exam's stored answers. */
+export function examAreaScoresFromAnswers(answers: unknown): ExamAreaScore[] {
+  if (!Array.isArray(answers)) return [];
+  const totals = new Map<string, { correct: number; total: number }>();
+  for (const row of answers) {
+    if (!row || typeof row !== "object") continue;
+    const selected = (row as { selected?: unknown }).selected;
+    const chosen = typeof selected === "string" ? selected.trim() : Array.isArray(selected) ? selected.join("") : "";
+    if (!chosen) continue;
+    const topic = (row as { topicCategory?: unknown }).topicCategory;
+    const label = typeof topic === "string" && topic.trim() ? topic.trim() : "General";
+    const bucket = totals.get(label) ?? { correct: 0, total: 0 };
+    bucket.total += 1;
+    if ((row as { correct?: unknown }).correct === true) bucket.correct += 1;
+    totals.set(label, bucket);
+  }
+  return [...totals.entries()]
+    .map(([topic, bucket]) => ({
+      topic,
+      correct: bucket.correct,
+      total: bucket.total,
+      pct: bucket.total > 0 ? Math.round((bucket.correct / bucket.total) * 100) : 0,
+    }))
+    .sort((a, b) => a.pct - b.pct || b.total - a.total);
+}
+
 export type PracticeEstimateLevel = "early" | "building" | "steady";
 
 export type PracticeEstimate = {
