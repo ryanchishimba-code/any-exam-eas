@@ -654,11 +654,8 @@ export function StudyBankPractice({
     [blueprintAreaId, blueprintAreaCount, subjectCounts]
   );
   const topicAwareSessionCounts = useMemo(() => {
-    if (
-      topicPracticeLaunch &&
-      typeof topicPracticePoolCount === "number" &&
-      sessionSubjectId
-    ) {
+    if (topicPracticeLaunch) {
+      if (typeof topicPracticePoolCount !== "number" || !sessionSubjectId) return null;
       return { [sessionSubjectId]: topicPracticePoolCount };
     }
     return sessionCounts;
