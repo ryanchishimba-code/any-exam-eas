@@ -211,32 +211,26 @@ describe("weak area practice link", () => {
     expect(url.searchParams.get("field")).not.toBe("usmle-step-2");
     expect(url.searchParams.get("blueprintTopics")).toBe("confidentiality-reporting");
     expect(url.searchParams.get("usmleTopic")).toBe("confidentiality-reporting");
-    expect(url.searchParams.get("subjectId")).toBe("internal-medicine");
+    expect(url.searchParams.get("subjectId")).toBe("confidentiality-reporting");
     expect(url.searchParams.get("style")).toBe("standard");
-    expect(href).not.toContain("subjectId=confidentiality-reporting");
+    expect(href).not.toContain("subjectId=internal-medicine");
   });
 
-  it("maps Step 3 Antibiotic Mechanisms onto a served subject and hides an empty bank", () => {
-    const href = weakAreaPracticeHref({
-      examSlug: "usmle",
-      topicKey: "antibiotic-mechanisms",
-      fieldId: "usmle-step-3",
-      count: 5,
-      subjectCounts: { "internal-medicine": 40, pharmacology: 0 },
-    });
-    const url = new URL(href!, "https://anyexameasy.local");
-    expect(url.searchParams.get("field")).toBe("usmle-step-3");
-    expect(url.searchParams.get("subjectId")).toBe("internal-medicine");
-    expect(url.searchParams.get("subjectId")).not.toBe("antibiotic-mechanisms");
-    expect(url.searchParams.get("blueprintTopics")).toBeNull();
-    expect(url.searchParams.get("count")).toBe("5");
+  it("drops Step 3 Antibiotic Mechanisms instead of opening Internal Medicine", () => {
     expect(
       weakAreaPracticeHref({
         examSlug: "usmle",
         topicKey: "antibiotic-mechanisms",
         fieldId: "usmle-step-3",
         count: 5,
-        subjectCounts: { "internal-medicine": 0, cardiology: 2 },
+      })
+    ).toBeNull();
+    expect(
+      weakAreaPracticeHref({
+        examSlug: "usmle",
+        topicKey: "clinical-intervention",
+        fieldId: "usmle-step-3",
+        count: 5,
       })
     ).toBeNull();
   });

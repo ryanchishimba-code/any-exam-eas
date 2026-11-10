@@ -22,6 +22,7 @@ import {
   type FormatPracticeStats,
 } from "@/lib/study/practice-format";
 import { mergeRecentTests, recentTestFromExamSession } from "@/lib/learning/recent-tests";
+import { weakAreasFromAttempts, type AttemptSubjectRow } from "@/lib/learning/weak-areas-from-attempts";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -386,6 +387,30 @@ async function getSpacedReviewSummary(
   };
 }
 
+function attemptSubjectRows(
+  groups: {
+    fieldId: string;
+    subjectId: string | null;
+    correct: boolean;
+    _count: { _all: number };
+  }[]
+): AttemptSubjectRow[] {
+  const map = new Map<string, AttemptSubjectRow>();
+  for (const group of groups) {
+    const key = `${group.fieldId}\0${group.subjectId ?? ""}`;
+    const row = map.get(key) ?? {
+      fieldId: group.fieldId,
+      subjectId: group.subjectId,
+      attempts: 0,
+      correct: 0,
+    };
+    row.attempts += group._count._all;
+    if (group.correct) row.correct += group._count._all;
+    map.set(key, row);
+  }
+  return [...map.values()];
+}
+
 function mapWeakTopics(
   masteries: {
     conceptKey: string;
@@ -437,15 +462,35 @@ export async function getStudentWeakTopics(
     return await withDbRetry(
       () =>
         cacheGetOrSet(
-          cacheKey(["weak-topics-v3", userId, scopeKey]),
+          cacheKey(["weak-topics-v4", userId, scopeKey]),
           CACHE_TTL.learningDashboard,
           async () => {
-            const masteries = await prisma.conceptMastery.findMany({
+            if (fieldIds?.length !== 1) {
+              const masteries = await prisma.conceptMastery.findMany({
+                where: { userId, ...fieldWhere(fieldIds) },
+                orderBy: { masteryScore: "asc" },
+                take: WEAK_TOPIC_FETCH,
+              });
+              return mapWeakTopics(masteries);
+            }
+            const fieldId = fieldIds[0]!;
+            const groups = await prisma.questionAttempt.groupBy({
+              by: ["fieldId", "subjectId", "correct"],
               where: { userId, ...fieldWhere(fieldIds) },
-              orderBy: { masteryScore: "asc" },
-              take: WEAK_TOPIC_FETCH,
+              _count: { _all: true },
             });
-            return mapWeakTopics(masteries);
+            return weakAreasFromAttempts({
+              fieldId,
+              rows: attemptSubjectRows(groups),
+              limit: WEAK_TOPIC_DISPLAY,
+            }).map((row) => ({
+              id: `subject:${row.subjectId}`,
+              name: row.label,
+              fieldId,
+              masteryScore: Math.round((row.correct / row.attempts) * 100),
+              attempts: row.attempts,
+              weight: row.misses,
+            }));
           }
         ),
       "weak-topics"
@@ -470,7 +515,7 @@ export async function getStudentDashboardData(
   // payload is not served in their place.
   const formatKey = opts?.skipFormatPractice ? "no-format" : "format";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v5", userId, scopeKey, trendKey, formatKey]),
+    cacheKey(["student-dashboard-v6", userId, scopeKey, trendKey, formatKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
@@ -609,7 +654,7 @@ async function loadStudentDashboardData(
     },
   });
 
-  const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, spacedReview, formatPractice] =
+  const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, subjectAttemptGroups, spacedReview, formatPractice] =
     await Promise.all([
     // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
     prisma.learningProfile.findUnique({
@@ -643,6 +688,11 @@ async function loadStudentDashboardData(
       where: { userId, ...attemptScope },
       _count: { _all: true },
     }),
+    prisma.questionAttempt.groupBy({
+      by: ["fieldId", "subjectId", "correct"],
+      where: { userId, ...attemptScope },
+      _count: { _all: true },
+    }),
     getSpacedReviewSummary(userId, fieldIds),
     opts?.skipFormatPractice
       ? Promise.resolve(emptyFormatPracticeStats())
@@ -662,7 +712,21 @@ async function loadStudentDashboardData(
     return Boolean(scopeSlug && row.examField === scopeSlug);
   }
 
-  const weakTopics = mapWeakTopics(masteries);
+  const weakTopics =
+    fieldIds?.length === 1
+      ? weakAreasFromAttempts({
+          fieldId: fieldIds[0]!,
+          rows: attemptSubjectRows(subjectAttemptGroups),
+          limit: WEAK_TOPIC_DISPLAY,
+        }).map((row) => ({
+          id: `subject:${row.subjectId}`,
+          name: row.label,
+          fieldId: fieldIds[0]!,
+          masteryScore: Math.round((row.correct / row.attempts) * 100),
+          attempts: row.attempts,
+          weight: row.misses,
+        }))
+      : mapWeakTopics(masteries);
 
   const progressTests: RecentTestRow[] = recentExamRows
     .filter((row) => recordInScope(row))
