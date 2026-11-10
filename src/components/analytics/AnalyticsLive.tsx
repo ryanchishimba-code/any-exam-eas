@@ -96,6 +96,7 @@ export function AnalyticsLive({ examSlug }: { examSlug: ExamSlug }) {
           formats={snapshot.formats}
           practice={snapshot.readiness}
           practiceRead={snapshot.practiceRead}
+          servedSubjectCounts={snapshot.servedSubjectCounts}
         />
       </div>
     </div>

@@ -2045,9 +2045,25 @@ export function StudyBankPractice({
       if (difficultyTierParam) qs.set("difficultyTier", difficultyTierParam);
       appendTopicPracticeFiltersToQuery(qs, launchSearchParams);
 
-      const res = await fetch(`/api/questions?${qs.toString()}`);
-      const data = await res.json();
-      if (!res.ok) {
+      const weakAreaLaunch = launchSearchParams.get("weakArea") === "1";
+      let res: Response | null = null;
+      let data: { questions?: ExamQuestion[]; bankItemIds?: string[]; subjectIds?: Array<string | null>; error?: string; upgradeUrl?: string } = {};
+      for (let attempt = 0; attempt < (weakAreaLaunch ? 2 : 1); attempt += 1) {
+        if (attempt === 1) {
+          qs.delete("blueprintTopics");
+          qs.delete("usmleTopic");
+          qs.delete("naplexTopic");
+          qs.delete("panceTopic");
+          qs.delete("aanpFnpTopic");
+          qs.delete("nptePtTopic");
+        }
+        res = await fetch(`/api/questions?${qs.toString()}`);
+        data = await res.json();
+        const got = Array.isArray(data.questions) ? data.questions.length : 0;
+        if (weakAreaLaunch && attempt === 0 && (!res.ok || got < limit)) continue;
+        break;
+      }
+      if (!res!.ok) {
         if (redirectToUpgradeIfTrialCapReached(data)) return;
         setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
         throw new Error(studyLimitMessage(data) || data.error || "Could not load questions");

@@ -50,6 +50,7 @@ export function StudentAnalyticsDashboard({
   formats = null,
   practice = null,
   practiceRead = null,
+  servedSubjectCounts = null,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -61,6 +62,8 @@ export function StudentAnalyticsDashboard({
   practice?: ExamDayReadiness | null;
   /** Same accuracy, outline depth, and estimate as Dashboard and Readiness. */
   practiceRead?: ReturnType<typeof sharedPracticeRead> | null;
+  /** Serve-ready subject counts. When set, an empty weak area hides its practice link. */
+  servedSubjectCounts?: Record<string, number> | null;
 }) {
   const [data, setData] = useState<AnalyticsPayload | null>(initialData ?? null);
   const [loading, setLoading] = useState(!initialData);
@@ -318,9 +321,18 @@ export function StudentAnalyticsDashboard({
               {weakTopics.slice(0, 6).map((t) => (
                 <li key={t.id}>
                   <div className="flex items-center justify-between gap-2 text-sm">
-                    <WeakAreaPracticeLink name={t.name} conceptKey={t.id} fieldId={t.fieldId} />
+                    <WeakAreaPracticeLink
+                      name={t.name}
+                      conceptKey={t.id}
+                      fieldId={t.fieldId}
+                      subjectCounts={servedSubjectCounts}
+                    />
                     <span className="flex flex-wrap items-center justify-end gap-2">
-                      <WeakTopicFixLink conceptKey={t.id} fieldId={t.fieldId} />
+                      <WeakTopicFixLink
+                        conceptKey={t.id}
+                        fieldId={t.fieldId}
+                        subjectCounts={servedSubjectCounts}
+                      />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
                         {t.masteryScore}%
                       </span>
@@ -402,14 +414,23 @@ function WeakAreaPracticeLink({
   name,
   conceptKey,
   fieldId,
+  subjectCounts = null,
 }: {
   name: string;
   conceptKey: string;
   fieldId: string;
+  subjectCounts?: Record<string, number> | null;
 }) {
   const examSlug = examSlugFromFieldId(fieldId);
   if (!examSlug) return <span className="font-medium">{name}</span>;
-  const href = weakAreaPracticeHref({ examSlug, topicKey: conceptKey, fieldId, count: 25 });
+  const href = weakAreaPracticeHref({
+    examSlug,
+    topicKey: conceptKey,
+    fieldId,
+    count: 25,
+    subjectCounts,
+  });
+  if (!href) return <span className="font-medium">{name}</span>;
   return (
     <Link href={href} className="font-medium text-[var(--color-ink)] underline-offset-2 hover:underline">
       {name}
@@ -417,17 +438,26 @@ function WeakAreaPracticeLink({
   );
 }
 
-/** One-tap closed-loop retest for a weak topic. */
+/** One-tap closed-loop retest for a weak topic. Hidden when that step has no served questions. */
 function WeakTopicFixLink({
   conceptKey,
   fieldId,
+  subjectCounts = null,
 }: {
   conceptKey: string;
   fieldId: string;
+  subjectCounts?: Record<string, number> | null;
 }) {
   const examSlug = examSlugFromFieldId(fieldId);
   if (!examSlug) return null;
-  const href = weakAreaPracticeHref({ examSlug, topicKey: conceptKey, fieldId, count: 5 });
+  const href = weakAreaPracticeHref({
+    examSlug,
+    topicKey: conceptKey,
+    fieldId,
+    count: 5,
+    subjectCounts,
+  });
+  if (!href) return null;
 
   return (
     <Link
