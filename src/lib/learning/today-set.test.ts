@@ -9,6 +9,7 @@ import {
   composeTodaySet,
   computeDailyHabitStreak,
   dailyGoalProgress,
+  cappedGoalCount,
   fitTodayComposition,
   formatTodayMixLine,
   mergeDailyHabitDay,
@@ -436,6 +437,8 @@ describe("daily goal ring", () => {
     expect(over.done).toBe(32);
     expect(over.met).toBe(true);
     expect(over.ring).toBe(1);
+    expect(cappedGoalCount(281, 25)).toBe(25);
+    expect(cappedGoalCount(12, 25)).toBe(12);
   });
 
   it("does not treat a missing target as met", () => {

@@ -15,9 +15,15 @@ type Props = {
   fullHint?: string;
 };
 
-/** Every length option, including the 200-question full exam, uses its step label. */
+/** Every length option, including the full exam, uses its step label. */
 export function lengthOptionTitle(option: LengthOption): string {
   return option.label;
+}
+
+/** Hint under a length option. The full exam uses its own description, which names the step. */
+export function lengthOptionHint(option: LengthOption, fullHint?: string): string {
+  if (option.preset === "full") return fullHint ?? option.description;
+  return option.description;
 }
 
 /** Tap-to-select exam length — 50 / 100 / full presets. */
@@ -70,7 +76,7 @@ export function FullExamLengthWheel({ options, value, onChange, fullBadge, fullH
                 active ? "text-white/80" : "text-[var(--color-ink-muted)]"
               )}
             >
-              {option.preset === "full" ? (fullHint ?? "Full-length adaptive") : option.description}
+              {lengthOptionHint(option, fullHint)}
             </span>
           </button>
         );

@@ -529,6 +529,13 @@ export function dailyGoalProgress(done: number, target: number): DailyGoalProgre
   };
 }
 
+/** Number shown on the Today ring. Extra answers stay on the goal, not past it. */
+export function cappedGoalCount(done: number, target: number): number {
+  const progress = dailyGoalProgress(done, target);
+  if (progress.target <= 0) return progress.done;
+  return Math.min(progress.done, progress.target);
+}
+
 export function utcDateKey(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
