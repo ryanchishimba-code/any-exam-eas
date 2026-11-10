@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "b5-s1-01",
+    "rating": "sound",
+    "note": "Factor V cleavage site resists protein C"
+  },
+  {
+    "id": "b5-s1-02",
+    "rating": "thin",
+    "note": "Stem already says protein C fell first"
+  },
+  {
+    "id": "b5-s1-03",
+    "rating": "sound",
+    "note": "Platelets cannot resynthesize the enzyme"
+  },
+  {
+    "id": "b5-s1-04",
+    "rating": "sound",
+    "note": "Oldest enzyme-poor red cells hemolyze first"
+  },
+  {
+    "id": "b5-s1-05",
+    "rating": "sound",
+    "note": "Rigid spherocytes cannot pass splenic cords"
+  },
+  {
+    "id": "b5-s1-06",
+    "rating": "sound",
+    "note": "Bleeding time tests the primary platelet plug"
+  },
+  {
+    "id": "b5-s1-07",
+    "rating": "sound",
+    "note": "Lysine analogs block plasmin-fibrin binding"
+  },
+  {
+    "id": "b5-s1-08",
+    "rating": "sound",
+    "note": "Acidosis favors polymerizing deoxyhemoglobin"
+  },
+  {
+    "id": "b5-s1-09",
+    "rating": "sound",
+    "note": "HbC substitutes lysine and crystallizes"
+  },
+  {
+    "id": "b5-s1-10",
+    "rating": "thin",
+    "note": "Stem already states missing complement regulators"
+  },
+  {
+    "id": "b5-s1-11",
+    "rating": "sound",
+    "note": "Only DIC consumes clotting factors"
+  },
+  {
+    "id": "b5-s1-12",
+    "rating": "sound",
+    "note": "Alkalosis increases albumin binding of calcium"
+  },
+  {
+    "id": "b5-s1-13",
+    "rating": "sound",
+    "note": "Hyperventilation replaces the added dead space"
+  },
+  {
+    "id": "b5-s1-14",
+    "rating": "sound",
+    "note": "Kidneys excrete bicarbonate during acclimatization"
+  },
+  {
+    "id": "b5-s1-15",
+    "rating": "thin",
+    "note": "Stem already says water did not follow"
+  },
+  {
+    "id": "b5-s1-16",
+    "rating": "sound",
+    "note": "Desmopressin replaces the missing hormone"
+  },
+  {
+    "id": "b5-s1-17",
+    "rating": "sound",
+    "note": "Lithium prevents aquaporin channel insertion"
+  },
+  {
+    "id": "b5-s1-18",
+    "rating": "sound",
+    "note": "Proximal tubule reabsorbs all three solutes"
+  },
+  {
+    "id": "b5-s1-19",
+    "rating": "sound",
+    "note": "Hypokalemia increases distal acid secretion"
+  },
+  {
+    "id": "b5-s1-20",
+    "rating": "sound",
+    "note": "Transit time too short for diffusion"
+  },
+  {
+    "id": "b5-s1-21",
+    "rating": "thin",
+    "note": "Stem already defines ventilated unperfused lung"
+  },
+  {
+    "id": "b5-s1-22",
+    "rating": "sound",
+    "note": "Oxygen absorbs and collapses unventilated units"
+  },
+  {
+    "id": "b5-s1-23",
+    "rating": "sound",
+    "note": "Both hormone and duct work normally"
+  },
+  {
+    "id": "b5-s1-24",
+    "rating": "sound",
+    "note": "Amino acids dilate the afferent arteriole"
+  },
+  {
+    "id": "b5-s1-25",
+    "rating": "sound",
+    "note": "DOC and androgens accumulate together"
+  },
+  {
+    "id": "b5-s1-26",
+    "rating": "sound",
+    "note": "Testosterone virilizes at puberty without DHT"
+  },
+  {
+    "id": "b5-s1-27",
+    "rating": "sound",
+    "note": "Sertoli cells secrete anti-Mullerian hormone"
+  },
+  {
+    "id": "b5-s1-28",
+    "rating": "sound",
+    "note": "Aromatized estrogen acts unopposed"
+  },
+  {
+    "id": "b5-s1-29",
+    "rating": "sound",
+    "note": "GnRH and olfactory neurons failed migration"
+  },
+  {
+    "id": "b5-s1-30",
+    "rating": "thin",
+    "note": "Stem already names the acute hormone"
+  },
+  {
+    "id": "b5-s1-31",
+    "rating": "sound",
+    "note": "Increased binding globulin holds total hormone"
+  },
+  {
+    "id": "b5-s1-32",
+    "rating": "sound",
+    "note": "Somatostatin analog stops gallbladder emptying"
+  },
+  {
+    "id": "b5-s1-33",
+    "rating": "sound",
+    "note": "Growth hormone causes insulin resistance"
+  },
+  {
+    "id": "b5-s1-34",
+    "rating": "sound",
+    "note": "POMC precursor also drives pigmentation"
+  },
+  {
+    "id": "b5-s1-35",
+    "rating": "sound",
+    "note": "Expanded volume suppresses renin release"
+  },
+  {
+    "id": "b5-s1-36",
+    "rating": "thin",
+    "note": "Stem already places Y material there"
+  },
+  {
+    "id": "b5-s1-37",
+    "rating": "sound",
+    "note": "Placenta has not taken over yet"
+  },
+  {
+    "id": "b5-s1-38",
+    "rating": "sound",
+    "note": "Meyer loop carries upper-field fibers"
+  },
+  {
+    "id": "b5-s1-39",
+    "rating": "sound",
+    "note": "Pupillary fibers travel on the outside"
+  },
+  {
+    "id": "b5-s1-40",
+    "rating": "sound",
+    "note": "Outer fibers escape the ischemic core"
+  },
+  {
+    "id": "b5-s1-41",
+    "rating": "sound",
+    "note": "Unopposed opposite frontal eye field"
+  },
+  {
+    "id": "b5-s1-42",
+    "rating": "thin",
+    "note": "Stem already says drug misses the brain"
+  },
+  {
+    "id": "b5-s1-43",
+    "rating": "sound",
+    "note": "Facial pain fibers have not crossed"
+  },
+  {
+    "id": "b5-s1-44",
+    "rating": "sound",
+    "note": "High frequencies map to the cochlear base"
+  },
+  {
+    "id": "b5-s1-45",
+    "rating": "sound",
+    "note": "Crossbridges cannot detach without ATP"
+  },
+  {
+    "id": "b5-s1-46",
+    "rating": "sound",
+    "note": "Uncontrolled sarcoplasmic calcium release"
+  },
+  {
+    "id": "b5-s1-47",
+    "rating": "sound",
+    "note": "Left eye sends a weaker afferent signal"
+  },
+  {
+    "id": "b5-s1-48",
+    "rating": "sound",
+    "note": "Less levodopa lost to peripheral metabolism"
+  },
+  {
+    "id": "b5-s1-49",
+    "rating": "sound",
+    "note": "Baclofen acts at a different receptor"
+  },
+  {
+    "id": "b5-s1-50",
+    "rating": "sound",
+    "note": "Bone cannot be remodeled and replaced"
+  },
+  {
+    "id": "b5-s1-51",
+    "rating": "thin",
+    "note": "Stem states under-hydroxylated proline; option restates it."
+  },
+  {
+    "id": "b5-s1-52",
+    "rating": "sound",
+    "note": "Continuous PTH raises RANKL and osteoclasts."
+  },
+  {
+    "id": "b5-s1-53",
+    "rating": "thin",
+    "note": "Stem already says the inner fragment has no vessels."
+  },
+  {
+    "id": "b5-s1-54",
+    "rating": "sound",
+    "note": "Occult crack; periosteal reaction takes days to appear."
+  },
+  {
+    "id": "b5-s1-55",
+    "rating": "sound",
+    "note": "Coupled formation and resorption recycle calcium."
+  },
+  {
+    "id": "b5-s1-56",
+    "rating": "thin",
+    "note": "Stem already says the drug mimics calcium."
+  },
+  {
+    "id": "b5-s1-57",
+    "rating": "sound",
+    "note": "Excess vitamin A stimulates osteoclastic bone resorption."
+  },
+  {
+    "id": "b5-s1-58",
+    "rating": "sound",
+    "note": "PTH-driven brown tumor is reactive, not neoplastic."
+  },
+  {
+    "id": "b5-s1-59",
+    "rating": "sound",
+    "note": "Unloading slows formation while resorption continues."
+  },
+  {
+    "id": "b5-s1-60",
+    "rating": "thin",
+    "note": "Classic isoniazid neuropathy is immediate B6 recognition."
+  },
+  {
+    "id": "b5-s1-61",
+    "rating": "thin",
+    "note": "Red-green loss is classic ethambutol optic toxicity."
+  },
+  {
+    "id": "b5-s1-62",
+    "rating": "sound",
+    "note": "Amphotericin also binds cholesterol in human cells."
+  },
+  {
+    "id": "b5-s1-63",
+    "rating": "sound",
+    "note": "Sulfa and trimethoprim block sequential folate steps."
+  },
+  {
+    "id": "b5-s1-64",
+    "rating": "sound",
+    "note": "Metronidazole blocks aldehyde breakdown after drinking."
+  },
+  {
+    "id": "b5-s1-65",
+    "rating": "sound",
+    "note": "Linezolid inhibits MAO and precipitates serotonin syndrome."
+  },
+  {
+    "id": "b5-s1-66",
+    "rating": "sound",
+    "note": "Pulmonary surfactant binds and inactivates daptomycin."
+  },
+  {
+    "id": "b5-s1-67",
+    "rating": "sound",
+    "note": "Ethylene glycol oxalate precipitates with serum calcium."
+  },
+  {
+    "id": "b5-s1-68",
+    "rating": "thin",
+    "note": "Stem already says the organism destroys amoxicillin."
+  },
+  {
+    "id": "b5-s1-69",
+    "rating": "sound",
+    "note": "Aminoglycoside and loop diuretic ototoxicity are synergistic."
+  },
+  {
+    "id": "b5-s1-70",
+    "rating": "sound",
+    "note": "Higher left-atrial pressure opens the mitral valve sooner."
+  },
+  {
+    "id": "b5-s1-71",
+    "rating": "sound",
+    "note": "Inspiration increases venous return to the right heart."
+  },
+  {
+    "id": "b5-s1-72",
+    "rating": "sound",
+    "note": "Aortopulmonary gradient persists after aortic valve closure."
+  },
+  {
+    "id": "b5-s1-73",
+    "rating": "sound",
+    "note": "Intercostal collaterals erode the inferior rib margins."
+  },
+  {
+    "id": "b5-s1-74",
+    "rating": "sound",
+    "note": "High potassium speeds phase-3 repolarization, peaking T waves."
+  },
+  {
+    "id": "b5-s1-75",
+    "rating": "sound",
+    "note": "Digoxin calcium overload causes delayed afterdepolarizations."
+  },
+  {
+    "id": "b5-s1-76",
+    "rating": "sound",
+    "note": "Hypokalemia delays terminal repolarization, producing a U wave."
+  },
+  {
+    "id": "b5-s1-77",
+    "rating": "sound",
+    "note": "Standing lowers preload and flow across a fixed valve."
+  },
+  {
+    "id": "b5-s1-78",
+    "rating": "thin",
+    "note": "Stem already says the atrium hits a closed valve."
+  },
+  {
+    "id": "b5-s1-79",
+    "rating": "sound",
+    "note": "Colonic bacteria ferment unabsorbed lactose to acid."
+  },
+  {
+    "id": "b5-s1-80",
+    "rating": "thin",
+    "note": "Stem already names a lipase inhibitor."
+  },
+  {
+    "id": "b5-s1-81",
+    "rating": "sound",
+    "note": "Hepatic bile-acid replacement consumes cholesterol and lowers LDL."
+  },
+  {
+    "id": "b5-s1-82",
+    "rating": "sound",
+    "note": "Gallstone erosion creates a biliary-enteric fistula."
+  },
+  {
+    "id": "b5-s1-83",
+    "rating": "sound",
+    "note": "Missing inhibitory neurons leave the segment contracted."
+  },
+  {
+    "id": "b5-s1-84",
+    "rating": "sound",
+    "note": "Duodenal acid denatures lipase despite protein being present."
+  },
+  {
+    "id": "b5-s1-85",
+    "rating": "thin",
+    "note": "Stem already pairs the secretin rise with bicarbonate."
+  },
+  {
+    "id": "b5-s1-86",
+    "rating": "thin",
+    "note": "Stem already says GLP-1 rose only after the oral dose."
+  },
+  {
+    "id": "b5-s1-87",
+    "rating": "sound",
+    "note": "Only the brain-dead patient is legally dead now."
+  },
+  {
+    "id": "b5-s1-88",
+    "rating": "sound",
+    "note": "Placebo withholds proven antibiotics from meningitis patients."
+  },
+  {
+    "id": "b5-s1-89",
+    "rating": "sound",
+    "note": "Gunshot wounds are reported; employer STI disclosure is not."
+  },
+  {
+    "id": "b5-s1-90",
+    "rating": "sound",
+    "note": "A subpoena does not authorize an exam without consent."
+  },
+  {
+    "id": "b5-s1-91",
+    "rating": "sound",
+    "note": "Minors may keep prenatal care confidential from parents."
+  },
+  {
+    "id": "b5-s1-92",
+    "rating": "sound",
+    "note": "A work excuse requires an examination that never occurred."
+  },
+  {
+    "id": "b5-s1-93",
+    "rating": "sound",
+    "note": "Consent was for surgeon A, so B was unauthorized."
+  },
+  {
+    "id": "b5-s1-94",
+    "rating": "sound",
+    "note": "Slow tumors stay detectable longer and dominate screening."
+  },
+  {
+    "id": "b5-s1-95",
+    "rating": "thin",
+    "note": "Stem already shows weight fell only during observation."
+  },
+  {
+    "id": "b5-s1-96",
+    "rating": "thin",
+    "note": "Stem already says drug A is still acting."
+  },
+  {
+    "id": "b5-s1-97",
+    "rating": "sound",
+    "note": "A larger sample of the same volunteers preserves bias."
+  },
+  {
+    "id": "b5-s1-98",
+    "rating": "sound",
+    "note": "Absolute increase is 2 percent, so NNH is 50."
+  },
+  {
+    "id": "b5-s1-99",
+    "rating": "sound",
+    "note": "Raking at six months precedes the pincer grasp."
+  },
+  {
+    "id": "b5-s1-100",
+    "rating": "sound",
+    "note": "Social smile is expected by eight weeks, not at two."
+  },
+  {
+    "id": "b5-s2-01",
+    "rating": "sound",
+    "note": "Grade contingency is undue influence on consent"
+  },
+  {
+    "id": "b5-s2-02",
+    "rating": "thin",
+    "note": "False diagnosis for payment is already stated"
+  },
+  {
+    "id": "b5-s2-03",
+    "rating": "sound",
+    "note": "Only adolescent contraception secrecy is honored"
+  },
+  {
+    "id": "b5-s2-04",
+    "rating": "thin",
+    "note": "Stem already shows intact decision-making capacity"
+  },
+  {
+    "id": "b5-s2-05",
+    "rating": "sound",
+    "note": "Child abuse reporting overrides the caregiver objection"
+  },
+  {
+    "id": "b5-s2-06",
+    "rating": "sound",
+    "note": "Psychiatric influence persists after recent termination"
+  },
+  {
+    "id": "b5-s2-07",
+    "rating": "thin",
+    "note": "Valid confirmed order is already in the stem"
+  },
+  {
+    "id": "b5-s2-08",
+    "rating": "thin",
+    "note": "Per-head fee that changes behavior is stated"
+  },
+  {
+    "id": "b5-s2-09",
+    "rating": "sound",
+    "note": "No surrogate, so decide by best interest"
+  },
+  {
+    "id": "b5-s2-10",
+    "rating": "sound",
+    "note": "Blunt notes do not cancel record access"
+  },
+  {
+    "id": "b5-s2-11",
+    "rating": "thin",
+    "note": "Fatal delay and no surrogate already stated"
+  },
+  {
+    "id": "b5-s2-12",
+    "rating": "thin",
+    "note": "Missing disclosure and her refusal already stated"
+  },
+  {
+    "id": "b5-s2-13",
+    "rating": "sound",
+    "note": "Wide QRS needs calcium; resin acts slowly"
+  },
+  {
+    "id": "b5-s2-14",
+    "rating": "thin",
+    "note": "Low GFR plus potassium salt is one-look"
+  },
+  {
+    "id": "b5-s2-15",
+    "rating": "thin",
+    "note": "Stem already says he was overdiuresed"
+  },
+  {
+    "id": "b5-s2-16",
+    "rating": "sound",
+    "note": "Higher hemoglobin targets add cardiovascular harm"
+  },
+  {
+    "id": "b5-s2-17",
+    "rating": "thin",
+    "note": "Urea of 60 and GFR 18 already explain it"
+  },
+  {
+    "id": "b5-s2-18",
+    "rating": "thin",
+    "note": "Painless solid testicular mass is one-look cancer"
+  },
+  {
+    "id": "b5-s2-19",
+    "rating": "thin",
+    "note": "Negative cultures are already stated in the stem"
+  },
+  {
+    "id": "b5-s2-20",
+    "rating": "sound",
+    "note": "High bladder pressure means compartment syndrome"
+  },
+  {
+    "id": "b5-s2-21",
+    "rating": "thin",
+    "note": "Compression and ipsilateral renin already stated"
+  },
+  {
+    "id": "b5-s2-22",
+    "rating": "sound",
+    "note": "Refeeding shifts remaining phosphate into cells"
+  },
+  {
+    "id": "b5-s2-23",
+    "rating": "thin",
+    "note": "Hemorrhage on CT is already stated"
+  },
+  {
+    "id": "b5-s2-24",
+    "rating": "sound",
+    "note": "Bite-and-swallow nifedipine cannot be titrated"
+  },
+  {
+    "id": "b5-s2-25",
+    "rating": "sound",
+    "note": "New beta blockade further cuts output in shock"
+  },
+  {
+    "id": "b5-s2-26",
+    "rating": "sound",
+    "note": "Unsynchronized shock can fall on the T wave"
+  },
+  {
+    "id": "b5-s2-27",
+    "rating": "sound",
+    "note": "Fixed output cannot match afterload reduction"
+  },
+  {
+    "id": "b5-s2-28",
+    "rating": "sound",
+    "note": "Abrupt stop causes sympathetic rebound demand"
+  },
+  {
+    "id": "b5-s2-29",
+    "rating": "thin",
+    "note": "Rest pain and current ST depression already shown"
+  },
+  {
+    "id": "b5-s2-30",
+    "rating": "thin",
+    "note": "Fresh blood in the infarct is already shown"
+  },
+  {
+    "id": "b5-s2-31",
+    "rating": "sound",
+    "note": "Nifedipine alone causes harmful reflex tachycardia"
+  },
+  {
+    "id": "b5-s2-32",
+    "rating": "sound",
+    "note": "Injection into tendon substance can precipitate rupture"
+  },
+  {
+    "id": "b5-s2-33",
+    "rating": "sound",
+    "note": "Annular ligament slip needs a reduction maneuver"
+  },
+  {
+    "id": "b5-s2-34",
+    "rating": "thin",
+    "note": "Airway and vascular compromise already present"
+  },
+  {
+    "id": "b5-s2-35",
+    "rating": "sound",
+    "note": "Sole bruising implies an unstable midfoot joint"
+  },
+  {
+    "id": "b5-s2-36",
+    "rating": "sound",
+    "note": "Tight closure seals oral flora in the hand"
+  },
+  {
+    "id": "b5-s2-37",
+    "rating": "thin",
+    "note": "Receptor-positive history already names the estrogen risk"
+  },
+  {
+    "id": "b5-s2-38",
+    "rating": "sound",
+    "note": "Forced external rotation is unsafe while posteriorly dislocated"
+  },
+  {
+    "id": "b5-s2-39",
+    "rating": "sound",
+    "note": "Saline leak means the open joint needs washout"
+  },
+  {
+    "id": "b5-s2-40",
+    "rating": "sound",
+    "note": "A urate swing during a flare prolongs it"
+  },
+  {
+    "id": "b5-s2-41",
+    "rating": "thin",
+    "note": "Named epilepsy makes added seizure risk one-look"
+  },
+  {
+    "id": "b5-s2-42",
+    "rating": "sound",
+    "note": "Abrupt benzodiazepine cessation can cause seizures"
+  },
+  {
+    "id": "b5-s2-43",
+    "rating": "thin",
+    "note": "Named Parkinson disease makes dopamine blockade obvious"
+  },
+  {
+    "id": "b5-s2-44",
+    "rating": "sound",
+    "note": "Antagonist displaces heroin and precipitates withdrawal"
+  },
+  {
+    "id": "b5-s2-45",
+    "rating": "thin",
+    "note": "Uncertain ability to resist the command is stated"
+  },
+  {
+    "id": "b5-s2-46",
+    "rating": "sound",
+    "note": "Stimulant can raise pressure further and worsen tics"
+  },
+  {
+    "id": "b5-s2-47",
+    "rating": "sound",
+    "note": "MAOI plus SSRI without washout causes serotonin toxicity"
+  },
+  {
+    "id": "b5-s2-48",
+    "rating": "sound",
+    "note": "Withdrawal seizures need benzodiazepines, not phenytoin"
+  },
+  {
+    "id": "b5-s2-49",
+    "rating": "sound",
+    "note": "Enoxaparin cross-reacts with the heparin antibody"
+  },
+  {
+    "id": "b5-s2-50",
+    "rating": "thin",
+    "note": "Hemophilia A and the concentrate are both named"
+  },
+  {
+    "id": "b5-s2-51",
+    "rating": "thin",
+    "note": "No contraindication; filter does not treat the clot."
+  },
+  {
+    "id": "b5-s2-52",
+    "rating": "thin",
+    "note": "Already bleeding at 8,000; observation is unsafe."
+  },
+  {
+    "id": "b5-s2-53",
+    "rating": "thin",
+    "note": "Aspirin after influenza risks Reye syndrome."
+  },
+  {
+    "id": "b5-s2-54",
+    "rating": "sound",
+    "note": "Protein C falls before longer-lived clotting factors."
+  },
+  {
+    "id": "b5-s2-55",
+    "rating": "thin",
+    "note": "Shallow breathing from pain sets up acute chest."
+  },
+  {
+    "id": "b5-s2-56",
+    "rating": "thin",
+    "note": "Blood count can improve while cord disease continues."
+  },
+  {
+    "id": "b5-s2-57",
+    "rating": "thin",
+    "note": "Leaked barium causes severe chemical mediastinitis."
+  },
+  {
+    "id": "b5-s2-58",
+    "rating": "thin",
+    "note": "Fat makes the inflamed gallbladder contract."
+  },
+  {
+    "id": "b5-s2-59",
+    "rating": "thin",
+    "note": "Untreated infection lets the ulcer recur."
+  },
+  {
+    "id": "b5-s2-60",
+    "rating": "thin",
+    "note": "After recovery, fiber helps prevent recurrence."
+  },
+  {
+    "id": "b5-s2-61",
+    "rating": "thin",
+    "note": "Erythromycin prolongs QT when it is already long."
+  },
+  {
+    "id": "b5-s2-62",
+    "rating": "thin",
+    "note": "Vomiting, pain, and neck air suggest rupture."
+  },
+  {
+    "id": "b5-s2-63",
+    "rating": "thin",
+    "note": "Inability to handle saliva means complete obstruction."
+  },
+  {
+    "id": "b5-s2-64",
+    "rating": "thin",
+    "note": "He cannot swallow safely during an ongoing seizure."
+  },
+  {
+    "id": "b5-s2-65",
+    "rating": "thin",
+    "note": "Triptans constrict coronary arteries in known disease."
+  },
+  {
+    "id": "b5-s2-66",
+    "rating": "sound",
+    "note": "Ischemic penumbra still depends on higher pressure."
+  },
+  {
+    "id": "b5-s2-67",
+    "rating": "thin",
+    "note": "Cord compression can cost function within hours."
+  },
+  {
+    "id": "b5-s2-68",
+    "rating": "thin",
+    "note": "Valproate raises neural-tube defect risk."
+  },
+  {
+    "id": "b5-s2-69",
+    "rating": "sound",
+    "note": "Early steroids improve recovery; antiviral alone does not."
+  },
+  {
+    "id": "b5-s2-70",
+    "rating": "thin",
+    "note": "Cherry-red spot means embolic retinal artery occlusion."
+  },
+  {
+    "id": "b5-s2-71",
+    "rating": "thin",
+    "note": "Antihistamines do not reverse airway compromise or shock."
+  },
+  {
+    "id": "b5-s2-72",
+    "rating": "sound",
+    "note": "Cavity bleeding is mechanical and threatens the airway."
+  },
+  {
+    "id": "b5-s2-73",
+    "rating": "thin",
+    "note": "The actuated dose is not reaching the lung."
+  },
+  {
+    "id": "b5-s2-74",
+    "rating": "thin",
+    "note": "No chronic retention, and eighty percent is unsafe."
+  },
+  {
+    "id": "b5-s2-75",
+    "rating": "thin",
+    "note": "He needs to cough out infected secretions."
+  },
+  {
+    "id": "b5-s2-76",
+    "rating": "thin",
+    "note": "Tension physiology requires immediate decompression."
+  },
+  {
+    "id": "b5-s2-77",
+    "rating": "sound",
+    "note": "Ultra-rapid metabolizers can make dangerous morphine amounts."
+  },
+  {
+    "id": "b5-s2-78",
+    "rating": "thin",
+    "note": "Activated charcoal does not bind lithium."
+  },
+  {
+    "id": "b5-s2-79",
+    "rating": "thin",
+    "note": "Vomiting sends the alkali back over the esophagus."
+  },
+  {
+    "id": "b5-s2-80",
+    "rating": "sound",
+    "note": "Receptor upregulation can cause hyperkalemia despite normal potassium."
+  },
+  {
+    "id": "b5-s2-81",
+    "rating": "thin",
+    "note": "Home ipecac is useless decontamination and can harm."
+  },
+  {
+    "id": "b5-s2-82",
+    "rating": "thin",
+    "note": "Pulse oximetry reads carboxyhemoglobin as oxygen."
+  },
+  {
+    "id": "b5-s2-83",
+    "rating": "thin",
+    "note": "Honey spores can produce toxin in an infant gut."
+  },
+  {
+    "id": "b5-s2-84",
+    "rating": "sound",
+    "note": "Radioiodine ablates the fetal thyroid at twelve weeks."
+  },
+  {
+    "id": "b5-s2-85",
+    "rating": "thin",
+    "note": "It can drop glucose while he cannot eat."
+  },
+  {
+    "id": "b5-s2-86",
+    "rating": "sound",
+    "note": "Thyroid hormone can trigger crisis if cortisol is low."
+  },
+  {
+    "id": "b5-s2-87",
+    "rating": "sound",
+    "note": "Failed desmopressin trial means more hormone will not work."
+  },
+  {
+    "id": "b5-s2-88",
+    "rating": "thin",
+    "note": "High-dose vitamin A can cause birth defects."
+  },
+  {
+    "id": "b5-s2-89",
+    "rating": "thin",
+    "note": "She is ruptured, hypotensive, and needs surgery."
+  },
+  {
+    "id": "b5-s2-90",
+    "rating": "sound",
+    "note": "Misoprostol can rupture a documented classical scar."
+  },
+  {
+    "id": "b5-s2-91",
+    "rating": "thin",
+    "note": "Unpasteurized soft cheese can carry Listeria in pregnancy."
+  },
+  {
+    "id": "b5-s2-92",
+    "rating": "thin",
+    "note": "Beta blockade can tighten already reactive airways."
+  },
+  {
+    "id": "b5-s2-93",
+    "rating": "sound",
+    "note": "A nonreactive tracing needs another fetal test."
+  },
+  {
+    "id": "b5-s2-94",
+    "rating": "sound",
+    "note": "Doubling a one-in-a-million risk stays tiny."
+  },
+  {
+    "id": "b5-s2-95",
+    "rating": "sound",
+    "note": "Sickest drug-arm patients were dropped from the analysis."
+  },
+  {
+    "id": "b5-s2-96",
+    "rating": "sound",
+    "note": "Visible assignments let the enroller stack the groups."
+  },
+  {
+    "id": "b5-s2-97",
+    "rating": "sound",
+    "note": "Sensitivity is calculated only among people with disease."
+  },
+  {
+    "id": "b5-s2-98",
+    "rating": "sound",
+    "note": "Cruising at thirteen months is developmentally on time."
+  },
+  {
+    "id": "b5-s2-99",
+    "rating": "sound",
+    "note": "No words, pointing, or name response needs evaluation."
+  },
+  {
+    "id": "b5-s2-100",
+    "rating": "thin",
+    "note": "Cow's milk at four months replaces proper infant feeding."
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "b1-s1-21",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pathology",
+    "examTakeaway": "Basilar emphysema in a young nonsmoker is alpha-1 antitrypsin deficiency, which also injures the liver.",
+    "scenario": "A 34-year-old man has smoked half a pack daily for four years and is short of breath. CT shows lucency that is worse at the bases than at the apices. He was jaundiced as a newborn, and the ALT is 78 U/L. Sweat chloride is normal.",
+    "question": "Which protein is deficient?",
+    "options": [
+      "Surfactant protein B",
+      "Dynein",
+      "Cystic fibrosis transmembrane regulator",
+      "Neutrophil elastase",
+      "Alpha-1 antitrypsin"
+    ],
+    "correctAnswer": "Alpha-1 antitrypsin",
+    "explanation": "Basilar emphysema in a young nonsmoker is alpha-1 antitrypsin deficiency, which also injures the liver. Alpha-1 antitrypsin normally inhibits neutrophil elastase; without it the bases are destroyed and misfolded protein injures hepatocytes. Surfactant protein B deficiency causes neonatal respiratory failure, not adult basal emphysema. Dynein loss causes bronchiectasis and situs inversus, not panacinar bases. Cystic fibrosis transmembrane regulator defects cause bronchiectasis and a high sweat chloride, and his sweat chloride is normal. Neutrophil elastase excess from smoking prefers the apices, not bases plus neonatal jaundice.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-22",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "physiology",
+    "examTakeaway": "A premature infant with grunting and ground-glass lungs lacks surfactant from type II pneumocytes.",
+    "scenario": "A boy born at 29 weeks grunts and retracts at 2 hours of life. Temperature is 36.6 C and oxygen saturation is 84% on room air. The radiograph shows a diffuse ground-glass pattern. Amniotic fluid lecithin was low.",
+    "question": "Which cell failed to mature?",
+    "options": [
+      "Club cell",
+      "Alveolar macrophage",
+      "Bronchial goblet cell",
+      "Type II pneumocyte",
+      "Type I pneumocyte"
+    ],
+    "correctAnswer": "Type II pneumocyte",
+    "explanation": "A premature infant with grunting and ground-glass lungs lacks surfactant from type II pneumocytes. Type II pneumocyte is the source of surfactant, which was not yet adequate at 29 weeks. Type I pneumocyte is the thin gas-exchange cell and does not make the phospholipid film. Club cell secretes a protective protein in bronchioles, not the alveolar lining that was missing on the lecithin assay. Alveolar macrophage clears debris and does not produce surfactant. Bronchial goblet cell makes mucus, and excess mucus is not this ground-glass disease of prematurity.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-23",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 3,
+    "subjectId": "immunology",
+    "examTakeaway": "Wheezing minutes after allergen exposure is type I hypersensitivity, IgE on mast cells.",
+    "scenario": "A 12-year-old boy wheezes and develops hives 10 minutes after a peanut. Blood pressure is 90/60 mm Hg. He has had milder episodes after other nuts. Serum IgE specific to peanut is high.",
+    "question": "Which immune mechanism is operating?",
+    "options": [
+      "IgE cross-linking on mast cells",
+      "Immune-complex deposition in vessel walls",
+      "Cytotoxic antibody against a cell-surface antigen",
+      "Delayed T-cell response to a contact antigen",
+      "Antibody-dependent cellular cytotoxicity by NK cells"
+    ],
+    "correctAnswer": "IgE cross-linking on mast cells",
+    "explanation": "Wheezing minutes after allergen exposure is type I hypersensitivity, IgE on mast cells. IgE cross-linking on mast cells releases histamine within minutes, which is this peanut reaction. Immune-complex deposition in vessel walls is type III and takes hours to days, as in serum sickness. Cytotoxic antibody against a cell-surface antigen is type II, as in autoimmune hemolysis. Delayed T-cell response to a contact antigen is type IV, peaking at 48 hours. Antibody-dependent cellular cytotoxicity by NK cells is not the mechanism of immediate anaphylaxis.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-24",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "behavioral-nervous",
+    "outlineWeight": 12,
+    "difficulty": 4,
+    "subjectId": "neurology",
+    "examTakeaway": "Contralateral face and arm weakness with aphasia localizes to the left middle cerebral artery territory.",
+    "scenario": "A 68-year-old right-handed woman suddenly cannot speak in sentences and cannot lift the right arm. The right lower face is weak. The leg is relatively spared. She understands some commands. A noncontrast CT shows no blood.",
+    "question": "Which artery's territory is ischemic?",
+    "options": [
+      "Right middle cerebral artery",
+      "Left posterior cerebral artery",
+      "Anterior spinal artery",
+      "Left middle cerebral artery",
+      "Left anterior cerebral artery"
+    ],
+    "correctAnswer": "Left middle cerebral artery",
+    "explanation": "Contralateral face and arm weakness with aphasia localizes to the left middle cerebral artery territory. Left middle cerebral artery supplies the lateral hemisphere, including language and the face and arm areas of motor cortex. Left anterior cerebral artery would weaken the leg more than the arm and would not produce this aphasia. Right middle cerebral artery would weaken the left side and would not cause aphasia in a right-handed person. Left posterior cerebral artery affects vision in the opposite field. Anterior spinal artery infarction is a cord syndrome with bilateral motor loss and spared dorsal columns.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-25",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "behavioral-nervous",
+    "outlineWeight": 12,
+    "difficulty": 4,
+    "subjectId": "neurology",
+    "examTakeaway": "Ipsilateral third-nerve palsy and contralateral hemiparesis are a midbrain basis pontis lesion, Weber syndrome, in the cerebral peduncle.",
+    "scenario": "A 61-year-old man suddenly has a drooping left eyelid and the left eye rests down and out. The right arm and leg are weak. The right face is weak below the forehead. Sensation is intact.",
+    "question": "Which brainstem site is infarcted?",
+    "options": [
+      "Left facial colliculus",
+      "Left cerebral peduncle",
+      "Right cerebral peduncle",
+      "Left lateral medulla",
+      "Right medial medulla"
+    ],
+    "correctAnswer": "Left cerebral peduncle",
+    "explanation": "Ipsilateral third-nerve palsy and contralateral hemiparesis are a midbrain basis pontis lesion, Weber syndrome, in the cerebral peduncle. Left cerebral peduncle carries corticospinal fibers after they have not yet crossed and sits next to the left third nerve, matching a left eye that is down and out and a weak right body. Right cerebral peduncle would pair a right third-nerve palsy with left body weakness. Left lateral medulla is Wallenberg syndrome, with crossed pain and temperature loss and no hemiparesis. Right medial medulla would weaken the left body and the tongue, not the third nerve. Left facial colliculus lesion weakens the face and abducts the eye poorly, without a third-nerve palsy.",
+    "citation": null
+  }
+]

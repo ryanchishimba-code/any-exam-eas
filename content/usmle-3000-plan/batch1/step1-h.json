@@ -1,0 +1,112 @@
+[
+  {
+    "id": "b1-s1-36",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "Prolonged bleeding after a cut, a normal platelet count, and a ristocetin test that fails are von Willebrand disease.",
+    "scenario": "A 19-year-old woman has had heavy periods and prolonged bleeding after dental work. Platelet count is 240,000/mm3. PT is normal and PTT is mildly prolonged. Platelets do not aggregate when ristocetin is added, and the defect corrects when normal plasma is mixed in.",
+    "question": "Which factor is missing or defective?",
+    "options": [
+      "von Willebrand factor",
+      "Factor VIII only, with a normal von Willebrand factor",
+      "Factor IX",
+      "GP IIb/IIIa",
+      "Vitamin K-dependent factors"
+    ],
+    "correctAnswer": "von Willebrand factor",
+    "explanation": "Prolonged bleeding after a cut, a normal platelet count, and a ristocetin test that fails are von Willebrand disease. von Willebrand factor carries factor VIII and bridges platelets to collagen; without it ristocetin cannot aggregate platelets. Factor VIII only, with a normal von Willebrand factor, is hemophilia A, which deepens the PTT but does not fail ristocetin. Factor IX is hemophilia B, also a deep-bleeding PTT defect with a normal ristocetin test. GP IIb/IIIa deficiency is Glanzmann thrombasthenia, which fails aggregation to several agonists, not ristocetin alone. Vitamin K-dependent factors prolong the PT as well as the PTT.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-37",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 3,
+    "subjectId": "hematology",
+    "examTakeaway": "Deep bleeding into a joint in a boy, with a prolonged PTT that corrects on mixing, is factor VIII deficiency.",
+    "scenario": "A 6-year-old boy has a swollen, painful knee after minor play. His brother had the same problem. PT is normal, PTT is prolonged, and the PTT corrects when his plasma is mixed with normal plasma. Platelet count and bleeding time are normal.",
+    "question": "Which factor is deficient?",
+    "options": [
+      "Factor XIII",
+      "Factor VIII",
+      "Factor XII",
+      "von Willebrand factor",
+      "Factor VII"
+    ],
+    "correctAnswer": "Factor VIII",
+    "explanation": "Deep bleeding into a joint in a boy, with a prolonged PTT that corrects on mixing, is factor VIII deficiency. Factor VIII is the X-linked intrinsic-pathway factor missing in hemophilia A. Factor XII deficiency prolongs the PTT but does not cause bleeding. von Willebrand factor deficiency prolongs the bleeding time and fails ristocetin aggregation, which are normal here. Factor VII deficiency prolongs the PT. Factor XIII deficiency causes delayed bleeding with a normal PT and PTT.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-38",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "Fever, renal failure, neurologic change, and thrombocytopenia with normal coagulation times are TTP from ADAMTS13 deficiency.",
+    "scenario": "A 35-year-old woman has a fever of 38.6 C, confusion, and a creatinine of 2.9 mg/dL. Platelets are 18,000/mm3. Hemoglobin is 8 g/dL with many schistocytes. PT and PTT are normal. There is no history of diarrhea.",
+    "question": "Which enzyme is deficient?",
+    "options": [
+      "Protein C",
+      "Glucose-6-phosphate dehydrogenase",
+      "Factor VIII",
+      "UDP-glucuronosyltransferase",
+      "ADAMTS13"
+    ],
+    "correctAnswer": "ADAMTS13",
+    "explanation": "Fever, renal failure, neurologic change, and thrombocytopenia with normal coagulation times are TTP from ADAMTS13 deficiency. ADAMTS13 normally cleaves large von Willebrand multimers; without it platelets form microvascular thrombi and shear red cells. Protein C deficiency causes venous thrombosis, not this pentad with schistocytes and a normal PT. Glucose-6-phosphate dehydrogenase deficiency causes bite cells after an oxidant, not thrombocytopenia and renal failure. Factor VIII deficiency prolongs the PTT and causes deep bleeding, and it does not fragment red cells. UDP-glucuronosyltransferase deficiency is a bilirubin conjugation defect.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-39",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "Oozing from venipuncture sites, low fibrinogen, and prolonged PT and PTT after sepsis are disseminated intravascular coagulation.",
+    "scenario": "A 60-year-old man with gram-negative bacteremia is oozing from an intravenous site and a fresh central line. Platelets are 42,000/mm3, fibrinogen is 80 mg/dL, PT and PTT are both prolonged, and D-dimer is markedly elevated. The smear shows schistocytes.",
+    "question": "Which process is consuming his clotting factors?",
+    "options": [
+      "Immune destruction of fibrinogen only",
+      "Widespread microvascular thrombosis",
+      "Isolated platelet destruction by an autoantibody",
+      "Failure to absorb vitamin K",
+      "A single-factor deficiency in the intrinsic pathway"
+    ],
+    "correctAnswer": "Widespread microvascular thrombosis",
+    "explanation": "Oozing from venipuncture sites, low fibrinogen, and prolonged PT and PTT after sepsis are disseminated intravascular coagulation. Widespread microvascular thrombosis consumes platelets, fibrinogen, and factors, and the fibrin split products raise the D-dimer. Isolated platelet destruction by an autoantibody is ITP, which leaves PT, PTT, and fibrinogen normal. Failure to absorb vitamin K prolongs PT and PTT but does not drop fibrinogen or raise D-dimer this way. A single-factor deficiency in the intrinsic pathway prolongs only the PTT. Immune destruction of fibrinogen only would not consume platelets and factors together.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-40",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "blood-lymph-immune",
+    "outlineWeight": 11,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "A child with bloody diarrhea followed by renal failure and schistocytes has Shiga-toxin hemolytic uremic syndrome, not TTP.",
+    "scenario": "A 4-year-old boy had bloody diarrhea for four days after a picnic. He is now pale and oliguric. Hemoglobin is 7 g/dL, platelets are 40,000/mm3, and creatinine is 3.2 mg/dL. The smear shows schistocytes. PT is normal. Stool culture grows Escherichia coli O157:H7.",
+    "question": "Which toxin injured the endothelium?",
+    "options": [
+      "Botulinum toxin",
+      "Cholera toxin",
+      "Shiga-like toxin",
+      "TSST-1",
+      "Diphtheria toxin"
+    ],
+    "correctAnswer": "Shiga-like toxin",
+    "explanation": "A child with bloody diarrhea followed by renal failure and schistocytes has Shiga-toxin hemolytic uremic syndrome, not TTP. Shiga-like toxin from E. coli O157:H7 damages renal endothelium and triggers this microangiopathy. TSST-1 is the superantigen of toxic shock, with a rash and shock, not bloody diarrhea and schistocytes. Diphtheria toxin inhibits protein elongation and causes a pharyngeal membrane and myocarditis. Botulinum toxin blocks acetylcholine release and causes descending paralysis. Cholera toxin ADP-ribosylates Gs and causes watery, not bloody, diarrhea.",
+    "citation": null
+  }
+]

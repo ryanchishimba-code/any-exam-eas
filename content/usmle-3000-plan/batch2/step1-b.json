@@ -1,0 +1,112 @@
+[
+  {
+    "id": "b2-s1-06",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "nephrology",
+    "examTakeaway": "Hematuria during a sore throat is IgA nephropathy, not the poststreptococcal disease that waits two weeks.",
+    "scenario": "A 22-year-old man has tea-colored urine on the second day of a sore throat. Blood pressure is 128/78 mm Hg. ASO titer is normal and C3 is normal. The urine shows red-cell casts. Creatinine is 1.0 mg/dL. He had the same episode once last year, also during a cold.",
+    "question": "Which glomerular deposit fits the timing?",
+    "options": [
+      "Granular IgG and C3 in all three layers",
+      "Subepithelial humps",
+      "Linear IgG",
+      "Mesangial IgA",
+      "Spike-and-dome IgG"
+    ],
+    "correctAnswer": "Mesangial IgA",
+    "explanation": "Hematuria during a sore throat is IgA nephropathy, not the poststreptococcal disease that waits two weeks. Mesangial IgA is the deposit when the urine turns dark in the first days of a mucosal infection and complement stays normal. Subepithelial humps are poststreptococcal and follow pharyngitis by one to two weeks, with a low C3. Linear IgG is anti-GBM disease, which also injures the lung. Spike-and-dome IgG is membranous nephropathy, a nephrotic picture. Granular IgG and C3 in all three layers is membranoproliferative disease, usually with a low C3.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-07",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "nephrology",
+    "examTakeaway": "Cytoplasmic staining of neutrophils, with sinus, lung, and kidney disease, targets proteinase-3 rather than the perinuclear enzyme.",
+    "scenario": "A 48-year-old man has bloody nasal crusts, a cavitary lung nodule, and a creatinine that rose from 0.9 to 2.4 mg/dL in a week. The urine has red-cell casts. Serum lights up the cytoplasm of neutrophils, not a perinuclear rim. He has no hemoptysis with a normal sinus exam.",
+    "question": "Which neutrophil enzyme is the cytoplasmic target?",
+    "options": [
+      "Proteinase-3",
+      "Myeloperoxidase",
+      "Double-stranded DNA",
+      "Phospholipase A2 receptor",
+      "Type IV collagen"
+    ],
+    "correctAnswer": "Proteinase-3",
+    "explanation": "Cytoplasmic staining of neutrophils, with sinus, lung, and kidney disease, targets proteinase-3 rather than the perinuclear enzyme. Proteinase-3 sits in the cytoplasm pattern. Myeloperoxidase is the usual perinuclear target and fits disease that spares destructive sinusitis. Double-stranded DNA marks lupus, which lowers complement. Phospholipase A2 receptor marks membranous nephropathy. Type IV collagen is the anti-GBM and Alport antigen, not a neutrophil granule enzyme.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-08",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pulmonology",
+    "examTakeaway": "Upper-lobe nodules after years of stone cutting raise the risk of tuberculosis, not of mesothelioma.",
+    "scenario": "A 55-year-old man has cut stone for 30 years and is short of breath. The film shows small upper-lobe nodules and hilar nodes with a thin calcified rim. He has never smoked. There is no pleural plaque. A coworker exposed to ship insulation has pleural cancer, which is a different dust.",
+    "question": "Which infection becomes more likely in this dust disease?",
+    "options": [
+      "Mesothelioma",
+      "Pneumocystis",
+      "Tuberculosis",
+      "Influenza as the specific link",
+      "Aspergillus as the only added risk"
+    ],
+    "correctAnswer": "Tuberculosis",
+    "explanation": "Upper-lobe nodules after years of stone cutting raise the risk of tuberculosis, not of mesothelioma. Tuberculosis is the infection silica specifically promotes. Mesothelioma follows asbestos, which leaves pleural plaques he does not have. Pneumocystis requires a low CD4 count. Influenza as the specific link is not the occupational association. Aspergillus as the only added risk is more a cavity colonizer than the classic silica infection.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-09",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pulmonology",
+    "examTakeaway": "Pneumonia with diarrhea and a low sodium that shows nothing on Gram stain is Legionella, an organism that must be grown on charcoal agar.",
+    "scenario": "A 67-year-old man who smokes has fever of 39.4 C, a dry cough, and watery diarrhea after cleaning a hotel air conditioner. Sodium is 128 mEq/L. The film shows a patchy infiltrate. Sputum Gram stain shows no bacteria. He does not produce rusty sputum.",
+    "question": "Which organism is missed by that Gram stain?",
+    "options": [
+      "Legionella pneumophila",
+      "Streptococcus pneumoniae",
+      "Klebsiella pneumoniae",
+      "A visible Gram-positive diplococcus",
+      "Pneumocystis jirovecii"
+    ],
+    "correctAnswer": "Legionella pneumophila",
+    "explanation": "Pneumonia with diarrhea and a low sodium that shows nothing on Gram stain is Legionella, an organism that must be grown on charcoal agar. Legionella pneumophila does not show on a routine Gram stain and fits the gut symptoms and the sodium. Streptococcus pneumoniae and a visible Gram-positive diplococcus would be seen and would produce rusty sputum. Klebsiella pneumoniae is currant-jelly sputum and is Gram-negative but visible. Pneumocystis jirovecii needs a very low CD4 count and does not cause this diarrhea-and-sodium picture.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-10",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pulmonology",
+    "examTakeaway": "Walking desaturation at a CD4 count of 80 means the missed prophylaxis is trimethoprim-sulfamethoxazole, not the macrolide used at lower counts.",
+    "scenario": "A 34-year-old man has a dry cough for two weeks. Oxygen saturation falls from 96 to 86 percent when he walks. CD4 count is 80/mm3. He has never taken a preventive antibiotic. Lactate dehydrogenase is 480 U/L. He has no diarrhea and no thrush as the main complaint.",
+    "question": "Which preventive drug was the one indicated at this CD4 count?",
+    "options": [
+      "Azithromycin",
+      "Fluconazole",
+      "Trimethoprim-sulfamethoxazole",
+      "Isoniazid",
+      "Acyclovir"
+    ],
+    "correctAnswer": "Trimethoprim-sulfamethoxazole",
+    "explanation": "Walking desaturation at a CD4 count of 80 means the missed prophylaxis is trimethoprim-sulfamethoxazole, not the macrolide used at lower counts. Trimethoprim-sulfamethoxazole prevents Pneumocystis once the CD4 count is under 200. Azithromycin prevents Mycobacterium avium and is started near a count of 50, not as the drug for this lung picture at 80. Fluconazole is not routine primary prophylaxis here. Isoniazid treats latent tuberculosis, not this subacute desaturation. Acyclovir prevents herpes, not this hypoxia.",
+    "citation": null
+  }
+]

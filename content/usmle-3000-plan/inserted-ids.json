@@ -1,0 +1,302 @@
+[
+  {
+    "id": "plt8bfee250cc279a2ff03d4c36",
+    "pilotId": "pilot-s1-01",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt4936320225df90adfb17d854",
+    "pilotId": "pilot-s1-02",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltcada43759e7182b393ad3e71",
+    "pilotId": "pilot-s1-03",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt0dd804bb9b598275073184c3",
+    "pilotId": "pilot-s1-04",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt6a725f4971cc49fef69632f4",
+    "pilotId": "pilot-s1-05",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltef928c8d9e37890ae7de520c",
+    "pilotId": "pilot-s1-06",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt84c1ae8e0d45620c87c9e485",
+    "pilotId": "pilot-s1-07",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plte7356407098d52081422029e",
+    "pilotId": "pilot-s1-08",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltb7e7af7d5d3555840b05c001",
+    "pilotId": "pilot-s1-09",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt04130c937530ee328669d0d5",
+    "pilotId": "pilot-s1-10",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltd873d02ee423f09dff39b73c",
+    "pilotId": "pilot-s1-11",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt2f1726a89827460d3369b8df",
+    "pilotId": "pilot-s1-12",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltcefaf6d20609b816876f0047",
+    "pilotId": "pilot-s1-13",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt1e804f067408d36d53fa972e",
+    "pilotId": "pilot-s1-14",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltbd463fab024e9b45d4027c5b",
+    "pilotId": "pilot-s1-15",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt42c6a70e547817cb6ebab5c1",
+    "pilotId": "pilot-s1-16",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "pltb363997117852cf14d978632",
+    "pilotId": "pilot-s1-17",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt9af6279bc0cf6a75dbc13b57",
+    "pilotId": "pilot-s1-18",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt701d6253cf336270527c2a59",
+    "pilotId": "pilot-s1-19",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt7c2eda157601e6af81e21001",
+    "pilotId": "pilot-s1-20",
+    "fieldId": "usmle-step-1"
+  },
+  {
+    "id": "plt0d4d2578cee26e4ce32cba0c",
+    "pilotId": "pilot-s2-01",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "pltc4af47e2e14750a24c0d1231",
+    "pilotId": "pilot-s2-02",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt37c40186cb6a53c7ed7850ab",
+    "pilotId": "pilot-s2-03",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plte1300ea15e1e374ce8535206",
+    "pilotId": "pilot-s2-04",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt47983e4160bce439ee11195e",
+    "pilotId": "pilot-s2-05",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "pltb13b57d7d46e0bdb8219859d",
+    "pilotId": "pilot-s2-06",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt5b6078b5be3be365089fcb7c",
+    "pilotId": "pilot-s2-07",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt3a34901c3fa7958af7ab8a3a",
+    "pilotId": "pilot-s2-08",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt2025341f1068690b86ec61e0",
+    "pilotId": "pilot-s2-09",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt78394427e933d397b47db939",
+    "pilotId": "pilot-s2-10",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt0d6bdf884338233b29471ac5",
+    "pilotId": "pilot-s2-11",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt55513a1f1d563003dc30a7a3",
+    "pilotId": "pilot-s2-12",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "pltedec2825a40f7e8351655fa8",
+    "pilotId": "pilot-s2-13",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "pltf832b9904c6bb1653c587db9",
+    "pilotId": "pilot-s2-14",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt159320ca829ea4bfeaad1544",
+    "pilotId": "pilot-s2-15",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt63764db55d1b74bdcba74067",
+    "pilotId": "pilot-s2-16",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "pltc05d1e65c28f3afc7b1d108c",
+    "pilotId": "pilot-s2-17",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt407fb3c9618d0ae71d017ab3",
+    "pilotId": "pilot-s2-18",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt56461082fe8262c3bc44a246",
+    "pilotId": "pilot-s2-19",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt7bc873d3ca3e4231331f33b5",
+    "pilotId": "pilot-s2-20",
+    "fieldId": "usmle-step-2"
+  },
+  {
+    "id": "plt273c2a5bc2453fb6b465abba",
+    "pilotId": "pilot-s3-01",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt6599dcd5d83e0354b3d084f6",
+    "pilotId": "pilot-s3-02",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "pltb63b7cd7a7940b98bc6d0554",
+    "pilotId": "pilot-s3-03",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt2180ae60d4965122edc693ae",
+    "pilotId": "pilot-s3-04",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt4b12d7514453bcd71bdc4878",
+    "pilotId": "pilot-s3-05",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "pltaa4572f3bf1ae2e3bd9b1462",
+    "pilotId": "pilot-s3-06",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "pltbab0c590fd0f04d9a014cada",
+    "pilotId": "pilot-s3-07",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plte81bf20a2a014e479d8f317e",
+    "pilotId": "pilot-s3-08",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "pltbe8ad7f20cd7deb88b5a335d",
+    "pilotId": "pilot-s3-09",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt46188a7cf2568bf962d95435",
+    "pilotId": "pilot-s3-10",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt1d5950bc7c4a2fb5567ee321",
+    "pilotId": "pilot-s3-11",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt58222364066ec5d928117ceb",
+    "pilotId": "pilot-s3-12",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plte4579f779ffaead7d85e7178",
+    "pilotId": "pilot-s3-13",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt9098dfafa84653340a9e9621",
+    "pilotId": "pilot-s3-14",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plteb18fdde074f2b73985839df",
+    "pilotId": "pilot-s3-15",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt95b161ec04799c07f06b2914",
+    "pilotId": "pilot-s3-16",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt494022a65ebc2bedb7ad104d",
+    "pilotId": "pilot-s3-17",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt25e88fcdc3afcba6d64ce725",
+    "pilotId": "pilot-s3-18",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "pltc1236551969cbe316b5748b7",
+    "pilotId": "pilot-s3-19",
+    "fieldId": "usmle-step-3"
+  },
+  {
+    "id": "plt0c588d326a24738679fa91cc",
+    "pilotId": "pilot-s3-20",
+    "fieldId": "usmle-step-3"
+  }
+]
