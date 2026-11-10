@@ -11,6 +11,7 @@ import {
 } from "@/lib/inventory/active-questions";
 import {
   countBlueprintTopicPracticeInventory,
+  countOnTopicBlueprintInventory,
   getSubjectServedCountsWithRetry,
 } from "@/lib/question-bank-db";
 import { nclexBlueprintTopicsForCount } from "@/lib/study/topic-practice-filters";
@@ -115,7 +116,8 @@ export type TopicPracticeInventory = {
 export async function loadTopicPracticeInventoryForUser(
   userId: string,
   fieldParam: string,
-  blueprintTopics: string[]
+  blueprintTopics: string[],
+  opts?: { onTopic?: boolean }
 ): Promise<TopicPracticeInventory | null> {
   const topics = blueprintTopics.map((t) => t.trim()).filter(Boolean);
   if (topics.length === 0) return null;
@@ -126,11 +128,18 @@ export async function loadTopicPracticeInventoryForUser(
   );
   if (!access.ok) return null;
 
-  const inventory = await countBlueprintTopicPracticeInventory({
-    fieldId: access.fieldId,
-    blueprintTopics:
-      access.fieldId === "nursing" ? nclexBlueprintTopicsForCount(topics) : topics,
-  });
+  const resolved =
+    access.fieldId === "nursing" ? nclexBlueprintTopicsForCount(topics) : topics;
+  const inventory =
+    opts?.onTopic && access.fieldId.startsWith("usmle-")
+      ? await countOnTopicBlueprintInventory({
+          fieldId: access.fieldId,
+          blueprintTopics: resolved,
+        })
+      : await countBlueprintTopicPracticeInventory({
+          fieldId: access.fieldId,
+          blueprintTopics: resolved,
+        });
   return { poolCount: inventory.total, formats: inventory.formats };
 }
 

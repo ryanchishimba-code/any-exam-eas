@@ -10,7 +10,8 @@ import { getCachedPracticeBankStats } from "@/lib/learning/served-bank-stats-cac
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { sharedPracticeRead, type RoadmapPracticeSource } from "@/lib/learning/practice-estimate";
-import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
+import { countOnTopicWeakArea, getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
+import { servedWeakAreaTarget } from "@/lib/learning/weak-areas-from-attempts";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
@@ -57,6 +58,15 @@ export async function loadAnalyticsSnapshot(
     getSubjectServedCountsWithRetry(fieldId).catch(() => null),
   ]);
 
+  const onTopicCounts = await correctlyTaggedWeakAreaCounts(
+    fieldId,
+    dashboard.weakTopics.map((topic) => topic.id)
+  );
+  const servedCounts = {
+    ...(servedSubjectCounts ?? {}),
+    ...onTopicCounts,
+  };
+
   const boardCounts = boardStudyCountsFromSources({
     roadmap,
     headline: dashboard.headline,
@@ -96,6 +106,32 @@ export async function loadAnalyticsSnapshot(
           topics: roadmap.topics satisfies RoadmapPracticeSource["topics"],
         })
       : null,
-    servedSubjectCounts,
+    servedSubjectCounts: servedCounts,
   };
+}
+
+/**
+ * Correctly tagged pool for each shown weak area.
+ * Catalog USMLE subjects keep the subject-count already loaded.
+ * Blueprint topics and NCLEX client-needs areas use the on-topic gate.
+ */
+async function correctlyTaggedWeakAreaCounts(
+  fieldId: string,
+  topicIds: string[]
+): Promise<Record<string, number>> {
+  const counts: Record<string, number> = {};
+  await Promise.all(
+    topicIds.map(async (topicId) => {
+      const slug = topicId.replace(/^(subject|tag):/i, "").trim();
+      const target = servedWeakAreaTarget(fieldId, slug);
+      if (!target) return;
+      const { correct } = await countOnTopicWeakArea({
+        fieldId,
+        subjectId: target.subjectId,
+        blueprintTopics: target.blueprintTopics,
+      });
+      counts[target.subjectId] = correct;
+    })
+  );
+  return counts;
 }

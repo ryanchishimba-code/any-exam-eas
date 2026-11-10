@@ -411,6 +411,7 @@ export async function GET(req: Request) {
               fieldId,
               blueprintTopics,
               count: limit,
+              requireStemMatch: fieldId.startsWith("usmle-"),
             }),
         preAssembledTimed: false,
       };

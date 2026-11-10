@@ -81,6 +81,7 @@ import { cn } from "@/lib/utils";
 import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import {
   canonicalizeQuestionBankQuery,
+  questionBankQueriesMatch,
   resolvePracticeSubjectId,
   subjectIdBelongsToField,
   subjectIdForPracticeUrl,
@@ -292,7 +293,10 @@ function buildBankPracticeUrl(
     qs.set("mpjeState", params.mpjeState);
   }
   if (typeof window !== "undefined" && window.location.search) {
-    mergeTopicPracticeFiltersIntoQuery(qs, new URLSearchParams(window.location.search));
+    const current = new URLSearchParams(window.location.search);
+    mergeTopicPracticeFiltersIntoQuery(qs, current);
+    if (current.get("autostart") === "1") qs.set("autostart", "1");
+    if (current.get("weakArea") === "1") qs.set("weakArea", "1");
   }
   return `${base}?${qs.toString()}`;
 }
@@ -479,10 +483,18 @@ export function StudyBankPractice({
     initialTopicPracticePoolCount != null && initialTopicPracticeFormats
       ? { poolCount: initialTopicPracticePoolCount, formats: initialTopicPracticeFormats }
       : null;
+  const weakAreaLaunch = searchParams.get("weakArea") === "1";
   const { data: topicPracticeInventory = initialTopicPracticeInventory } = useQuery({
-    queryKey: ["topic-practice-pool", fieldId, topicPracticeBlueprintTopics?.join(",") ?? ""],
+    queryKey: [
+      "topic-practice-pool",
+      fieldId,
+      topicPracticeBlueprintTopics?.join(",") ?? "",
+      weakAreaLaunch ? "on-topic" : "tag",
+    ],
     queryFn: () =>
-      fetchTopicPracticeInventory(fieldId, topicPracticeBlueprintTopics ?? []),
+      fetchTopicPracticeInventory(fieldId, topicPracticeBlueprintTopics ?? [], {
+        onTopic: weakAreaLaunch,
+      }),
     enabled: Boolean(topicPracticeBlueprintTopics?.length) && !isTimedExam,
     staleTime: 5 * 60 * 1000,
     initialData: initialTopicPracticeInventory ?? undefined,
@@ -1249,11 +1261,16 @@ export function StudyBankPractice({
       practiceBase
     );
     if (typeof window !== "undefined") {
-      const current = `${window.location.pathname}${window.location.search}`;
-      if (current !== href) {
-        window.history.replaceState(window.history.state, "", href);
+      const currentUrl = new URL(window.location.href);
+      const nextUrl = new URL(href, window.location.origin);
+      const sameQuery = questionBankQueriesMatch(currentUrl.searchParams, nextUrl.searchParams);
+      const autostartPending = currentUrl.searchParams.get("autostart") === "1" && !questions;
+      if (!sameQuery) {
+        window.history.replaceState(window.history.state, "", `${nextUrl.pathname}${nextUrl.search}`);
       }
-      if (overrides?.historyOnly) return;
+      // router.replace remounts this page through Suspense. That is the blank
+      // screen and the setup page on the first autostart click.
+      if (sameQuery || overrides?.historyOnly || autostartPending) return;
     }
     router.replace(href, { scroll: false });
   }
@@ -2090,9 +2107,17 @@ export function StudyBankPractice({
   }
   startRef.current = start;
 
+  const autostartLaunchKey = [
+    searchParams.get("field"),
+    searchParams.get("subjectId"),
+    searchParams.get("blueprintTopics"),
+    searchParams.get("autostart"),
+    searchParams.get("weakArea"),
+  ].join("|");
+
   useEffect(() => {
     autostartAttempted.current = false;
-  }, [searchParams]);
+  }, [autostartLaunchKey]);
 
   useEffect(() => {
     setRemediationEmpty(emptyModeFromLaunchQuery(searchParams.get("launch")));
@@ -2100,12 +2125,12 @@ export function StudyBankPractice({
 
   useEffect(() => {
     if (!questions || !autostartRequested) return;
-    const qs = new URLSearchParams(searchParams.toString());
+    const qs = new URLSearchParams(window.location.search);
     if (!qs.has("autostart")) return;
     qs.delete("autostart");
     const next = qs.toString();
-    router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
-  }, [questions, autostartRequested, pathname, router, searchParams]);
+    window.history.replaceState(window.history.state, "", next ? `${pathname}?${next}` : pathname);
+  }, [questions, autostartRequested, pathname]);
 
   useEffect(() => {
     if (
@@ -2119,6 +2144,8 @@ export function StudyBankPractice({
       return;
     }
     if (autostartAttempted.current) return;
+    if (!isTimedExam && countsLoading) return;
+    if (topicPracticeLaunch && topicPracticePoolCount == null) return;
     const requestedFormat = resolvePracticeSearchParam(searchParams, "format");
     const requestedPreset =
       searchParams.get("nclexPreset") || searchParams.get("aanpFnpPreset");
@@ -2160,6 +2187,8 @@ export function StudyBankPractice({
     loading,
     searchParams,
     countsLoading,
+    topicPracticeLaunch,
+    topicPracticePoolCount,
   ]);
 
   const launchFormat = deliberateFormatForLaunch(effectiveBankStyle, sessionFormat, {

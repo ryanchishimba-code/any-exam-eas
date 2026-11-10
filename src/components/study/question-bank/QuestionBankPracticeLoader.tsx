@@ -17,6 +17,7 @@ export async function QuestionBankPracticeLoader({
   hubStats,
   usmleStepLabel,
   blueprintTopics = [],
+  onTopic = false,
 }: {
   userId: string;
   examSlug: ExamSlug;
@@ -24,6 +25,8 @@ export async function QuestionBankPracticeLoader({
   hubStats?: QuestionBankHubStats;
   usmleStepLabel?: string;
   blueprintTopics?: string[];
+  /** Weak-area links count stems that match the topic, not the raw tag column. */
+  onTopic?: boolean;
 }) {
   // Counts are the topic list. Weak marks, coverage chips, and the open
   // review total arrive from /api/learning/coverage after this HTML closes.
@@ -32,7 +35,7 @@ export async function QuestionBankPracticeLoader({
   const countsPayload = await loadSubjectCountsForUser(userId, fieldParam);
   const initialTopicPracticeInventory =
     blueprintTopics.length > 0
-      ? await loadTopicPracticeInventoryForUser(userId, fieldParam, blueprintTopics)
+      ? await loadTopicPracticeInventoryForUser(userId, fieldParam, blueprintTopics, { onTopic })
       : null;
 
   const totalQuestions = countsPayload ? countsPayload.total : null;
