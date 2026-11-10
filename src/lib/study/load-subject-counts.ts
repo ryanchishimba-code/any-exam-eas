@@ -125,11 +125,11 @@ export async function loadTopicPracticeInventoryForUser(
     "qb-topic-practice-count-access"
   );
   if (!access.ok) return null;
-  if (access.fieldId !== "nursing") return null;
 
   const inventory = await countBlueprintTopicPracticeInventory({
     fieldId: access.fieldId,
-    blueprintTopics: nclexBlueprintTopicsForCount(topics),
+    blueprintTopics:
+      access.fieldId === "nursing" ? nclexBlueprintTopicsForCount(topics) : topics,
   });
   return { poolCount: inventory.total, formats: inventory.formats };
 }

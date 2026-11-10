@@ -49,10 +49,12 @@ export async function GET(req: Request) {
   let topicPracticeFormats:
     | Awaited<ReturnType<typeof countBlueprintTopicPracticeInventory>>["formats"]
     | undefined;
-  if (blueprintTopics?.length && fieldId === "nursing") {
+  if (blueprintTopics?.length) {
+    const topics =
+      fieldId === "nursing" ? nclexBlueprintTopicsForCount(blueprintTopics) : blueprintTopics;
     const inventory = await countBlueprintTopicPracticeInventory({
       fieldId,
-      blueprintTopics: nclexBlueprintTopicsForCount(blueprintTopics),
+      blueprintTopics: topics,
     });
     topicPracticePoolCount = inventory.total;
     topicPracticeFormats = inventory.formats;

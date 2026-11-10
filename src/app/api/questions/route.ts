@@ -393,6 +393,29 @@ export async function GET(req: Request) {
       };
     }
 
+    if (bankPractice && blueprintTopics?.length && subjectId && !getFieldSubject(field, subjectId)) {
+      const { sampleQuestionBankItemsByBlueprintTopics, sampleWeakAreaItems } = await import(
+        "@/lib/question-bank-db"
+      );
+      return {
+        kind: "ok" as const,
+        items: weakArea
+          ? await sampleWeakAreaItems({
+              userId,
+              fieldId,
+              subjectId,
+              blueprintTopics,
+              limit,
+            })
+          : await sampleQuestionBankItemsByBlueprintTopics({
+              fieldId,
+              blueprintTopics,
+              count: limit,
+            }),
+        preAssembledTimed: false,
+      };
+    }
+
     if (bankPractice && weakArea) {
       const { sampleWeakAreaItems } = await import("@/lib/question-bank-db");
       return {
