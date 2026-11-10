@@ -1081,6 +1081,71 @@ export async function sampleQuestionBankItemsByBlueprintTopics(params: {
   return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
 }
 
+/**
+ * Weak-area session: the exact served subject or blueprint topic, missed items
+ * first, then unseen. Previously correct items are left out. No other subject
+ * is substituted.
+ */
+export async function sampleWeakAreaItems(params: {
+  userId: string;
+  fieldId: string;
+  subjectId: string;
+  blueprintTopics?: string[];
+  limit: number;
+}): Promise<BankItem[]> {
+  const { pickWrongOrUnseen } = await import("@/lib/learning/weak-areas-from-attempts");
+  const topics = (params.blueprintTopics ?? []).map((topic) => topic.trim()).filter(Boolean);
+  const where = {
+    fieldId: params.fieldId,
+    active: true as const,
+    qaPassed: true as const,
+    ...(topics.length
+      ? { blueprintTopic: { in: topics } }
+      : { subjectId: params.subjectId }),
+    ...usmleStepSeparationWhere(params.fieldId),
+  };
+  const attempts = await prisma.questionAttempt.findMany({
+    where: { userId: params.userId, fieldId: params.fieldId, subjectId: params.subjectId },
+    select: { bankItemId: true, questionKey: true, correct: true, createdAt: true },
+    orderBy: { createdAt: "desc" },
+    take: 2000,
+  });
+  const seen = new Set<string>();
+  const attemptRows: { id: string; correct: boolean }[] = [];
+  for (const row of attempts) {
+    const id = row.bankItemId || row.questionKey;
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    attemptRows.push({ id, correct: row.correct });
+  }
+  const missedIds = attemptRows.filter((row) => !row.correct).map((row) => row.id);
+  const missedRows = missedIds.length
+    ? await prisma.questionBankItem.findMany({
+        where: { ...where, id: { in: missedIds.slice(0, 40) } },
+      })
+    : [];
+  const missedItems = retainStudentEligibleBankItems(missedRows.map(rowToBankItem));
+  const exclude = new Set([
+    ...attemptRows.filter((row) => row.correct).map((row) => row.id),
+    ...missedItems.map((item) => item.id).filter((id): id is string => Boolean(id)),
+  ]);
+  const total = await prisma.questionBankItem.count({
+    where: { ...where, ...(exclude.size ? { id: { notIn: [...exclude].slice(0, 500) } } : {}) },
+  });
+  const want = Math.max(1, params.limit);
+  const pull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(want * 4, want + 20));
+  const unseenRows =
+    total > 0
+      ? await sampleQuestionBankRows({
+          where: { ...where, ...(exclude.size ? { id: { notIn: [...exclude].slice(0, 500) } } : {}) },
+          pull,
+          total,
+        })
+      : [];
+  const unseenItems = dedupeSamplePool(unseenRows.map(rowToBankItem));
+  return pickWrongOrUnseen([...missedItems, ...unseenItems], attemptRows, want);
+}
+
 /** Serve-ready rows tagged with any of the blueprint topic matchers (tag-only). */
 export async function countActiveQuestionBankItemsByBlueprintTopics(params: {
   fieldId: string;

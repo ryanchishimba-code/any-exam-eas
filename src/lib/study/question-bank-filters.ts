@@ -42,19 +42,18 @@ export function canonicalizeQuestionBankQuery(
   const blueprintSubject = subjectId ? usmleBlueprintPracticeSlug(fieldId, subjectId) : null;
   if (blueprintSubject) {
     const served = usmleWeakAreaServedSubject({ fieldId, topicKey: blueprintSubject });
-    if (served) {
+    if (served && served.subjectId === blueprintSubject) {
       next.set("subjectId", served.subjectId);
       if (served.blueprintTopics.length) {
         if (!next.get("blueprintTopics")) next.set("blueprintTopics", served.blueprintTopics.join(","));
         if (!next.get("usmleTopic")) next.set("usmleTopic", served.blueprintTopics[0]!);
-      } else {
-        if (next.get("blueprintTopics") === blueprintSubject) next.delete("blueprintTopics");
-        if (next.get("usmleTopic") === blueprintSubject) next.delete("usmleTopic");
       }
       const style = next.get("style");
       if (!style || style === "adaptive") next.set("style", "standard");
-    } else if (subjectId) {
+    } else {
       next.delete("subjectId");
+      if (next.get("blueprintTopics") === blueprintSubject) next.delete("blueprintTopics");
+      if (next.get("usmleTopic") === blueprintSubject) next.delete("usmleTopic");
     }
   } else if (subjectId && !subjectIdBelongsToField(fieldId, subjectId)) {
     next.delete("subjectId");
@@ -140,10 +139,8 @@ export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
 
   const { subjectParam, styleParam } = input;
   if (subjectParam && usmleBlueprintPracticeSlug(input.fieldId, subjectParam)) {
-    return (
-      usmleWeakAreaServedSubject({ fieldId: input.fieldId, topicKey: subjectParam })?.subjectId ??
-      MIXED_SUBJECT_ID
-    );
+    const served = usmleWeakAreaServedSubject({ fieldId: input.fieldId, topicKey: subjectParam });
+    return served?.subjectId ?? MIXED_SUBJECT_ID;
   }
   if (
     subjectParam === MIXED_SUBJECT_ID ||
@@ -186,7 +183,8 @@ export function subjectIdForPracticeUrl(input: {
   const servedId = (value: string | null): string | null => {
     if (!value) return null;
     if (usmleBlueprintPracticeSlug(input.fieldId, value)) {
-      return usmleWeakAreaServedSubject({ fieldId: input.fieldId, topicKey: value })?.subjectId ?? null;
+      const served = usmleWeakAreaServedSubject({ fieldId: input.fieldId, topicKey: value });
+      return served?.subjectId === value ? value : null;
     }
     return subjectIdBelongsToField(input.fieldId, value) ? value : null;
   };
