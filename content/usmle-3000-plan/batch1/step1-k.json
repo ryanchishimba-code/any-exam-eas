@@ -74,7 +74,7 @@
     "difficulty": 4,
     "subjectId": "microbiology",
     "examTakeaway": "A sandpaper rash after pharyngitis is a streptococcal pyrogenic exotoxin acting as a superantigen.",
-    "scenario": "An 8-year-old boy has a sore throat, fever of 39 C, and a fine red rash that is darker in the skin folds. The tongue is red with prominent papillae.",
+    "scenario": "An 8-year-old boy has a sore throat and fever of 39 C. A fine red rash is darker in the skin folds and blanches. The tongue is red with prominent papillae. There is no gray membrane, no lockjaw, and no descending weakness. Blood pressure is 100/60 mm Hg.",
     "question": "Which bacterial product caused the rash?",
     "options": [
       "Lipid A",
@@ -206,7 +206,7 @@
     "difficulty": 4,
     "subjectId": "immunology",
     "examTakeaway": "Recurrent catalase-positive infections and a negative nitroblue tetrazolium test are chronic granulomatous disease.",
-    "scenario": "A 4-year-old boy has had pneumonia from Aspergillus and abscesses from Staphylococcus aureus. A lymph-node biopsy shows granulomas. Lymphocyte counts are normal.",
+    "scenario": "A 4-year-old boy has had pneumonia from Aspergillus and abscesses from Staphylococcus aureus. A lymph-node biopsy shows granulomas. Lymphocyte counts are normal. His mother has two neutrophil populations, and only one of them makes superoxide.",
     "question": "Which enzyme is missing?",
     "options": [
       "Sphingomyelinase",

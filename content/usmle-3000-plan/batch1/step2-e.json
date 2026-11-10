@@ -193,7 +193,7 @@
     "subjectId": "pediatrics",
     "nutrition": false,
     "examTakeaway": "Scabies is treated with permethrin from the neck down, and household contacts are treated at the same time.",
-    "scenario": "A 7-year-old boy has intense itching at night in the finger webs and wrists. Two siblings itch as well. He has no fever. The skin is excoriated but not cellulitic.",
+    "scenario": "A 7-year-old boy has scratched for three weeks. A scraping from a serpiginous track on the wrist shows a mite and eggs. Two siblings began scratching the same week. He has no fever and no honey-colored crust. A week of topical steroid made the itch worse.",
     "question": "Which plan is the most appropriate next step?",
     "options": [
       "Oral cephalexin",
@@ -354,7 +354,7 @@
     "subjectId": "emergency-medicine",
     "nutrition": false,
     "examTakeaway": "Opioid apnea with pinpoint pupils is treated with naloxone and ventilation, not with flumazenil.",
-    "scenario": "A 27-year-old man is found barely breathing. The respiratory rate is 5/min and the pupils are pinpoint. There are fresh track marks. Oxygen saturation is 80% on room air. Glucose is 100 mg/dL.",
+    "scenario": "A 27-year-old man is barely breathing. The respiratory rate is 5/min and the pupils are 1 mm. Oxygen saturation is 80% on room air. Glucose is 100 mg/dL. A bottle of diazepam and a bag of powder were beside him. One dose of flumazenil caused a brief seizure, and he is still not breathing.",
     "question": "Which drug is the most appropriate next step?",
     "options": [
       "Naloxone",

@@ -55,7 +55,7 @@
     "subjectId": "hematology",
     "nutrition": true,
     "examTakeaway": "Pernicious anemia with numb feet is treated with vitamin B12, and folate alone does not fix the cord.",
-    "scenario": "A 70-year-old man has numb feet and a smooth tongue. Hemoglobin is 9 g/dL and MCV is 118 fL. Folate is normal. He eats meat and has had no stomach surgery.",
+    "scenario": "A 70-year-old man has numb feet, an ataxic gait, and a smooth tongue. Hemoglobin is 9 g/dL and MCV is 118 fL. Homocysteine is high and methylmalonic acid is high. He eats meat and has had no stomach surgery.",
     "question": "Which replacement is required?",
     "options": [
       "Iron alone",
@@ -65,7 +65,7 @@
       "Folate alone"
     ],
     "correctAnswer": "Vitamin B12",
-    "explanation": "Pernicious anemia with numb feet is treated with vitamin B12, and folate alone does not fix the cord. Vitamin B12 replaces the vitamin missing when a macrocytic anemia comes with cord findings. Folate alone can mask the anemia and leave the neuropathy. Iron alone treats a microcytic anemia. Observation leaves a falling cord syndrome. A proton-pump inhibitor is not the missing vitamin.",
+    "explanation": "Pernicious anemia with numb feet is treated with vitamin B12, and folate alone does not fix the cord. Vitamin B12 replaces the vitamin missing when a macrocytic anemia comes with cord findings. Homocysteine and methylmalonic acid are both high, which folate deficiency does not do. Folate alone can mask the anemia and leave the neuropathy. Iron alone treats a microcytic anemia. Observation leaves a falling cord syndrome. A proton-pump inhibitor is not the missing vitamin.",
     "citation": null
   },
   {
@@ -216,7 +216,7 @@
     "subjectId": "internal-medicine",
     "nutrition": true,
     "examTakeaway": "Neurologic symptoms years after gastric bypass are treated with vitamin B12, and folate alone can worsen the cord injury.",
-    "scenario": "A 46-year-old woman had a Roux-en-Y gastric bypass three years ago and stopped her vitamins. She has numb feet and an unsteady gait. Hemoglobin is 10 g/dL and MCV is 112 fL. Folate is normal. She still eats some meat.",
+    "scenario": "A 46-year-old woman had a Roux-en-Y gastric bypass three years ago and stopped her vitamins. Numb feet and an unsteady gait worsened after a clinic gave her folate for anemia. Hemoglobin rose from 10 to 12 g/dL, but she is more unsteady. The MCV fell from 112 to 96 fL. She still eats some meat.",
     "question": "Which replacement is required?",
     "options": [
       "Vitamin C",

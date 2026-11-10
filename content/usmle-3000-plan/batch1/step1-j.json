@@ -8,7 +8,7 @@
     "difficulty": 4,
     "subjectId": "pathology",
     "examTakeaway": "A diaphyseal small-round-cell tumor in a child with t(11;22) is Ewing sarcoma.",
-    "scenario": "An 11-year-old boy has pain and swelling in the mid-shaft of the femur. Biopsy shows sheets of small round cells and no osteoid.",
+    "scenario": "An 11-year-old boy has had fever and mid-thigh pain for a month. The ESR is 90 mm/h, and two weeks of antibiotics did not help. The film shows a permeative lesion in the femoral shaft with layered periosteal new bone. Biopsy shows glycogen-rich small cells and no osteoid.",
     "question": "Which tumor is this?",
     "options": [
       "Osteosarcoma",
@@ -52,7 +52,7 @@
     "difficulty": 3,
     "subjectId": "pathology",
     "examTakeaway": "Morning stiffness, symmetric small-joint swelling, and a positive rheumatoid factor reflect pannus destroying cartilage.",
-    "scenario": "A 48-year-old woman has an hour of morning stiffness and swelling of both wrists and the knuckles. Ulnar deviation is beginning. A radiograph shows marginal erosions.",
+    "scenario": "A 48-year-old woman has an hour of morning stiffness and swelling of both wrists. Aspirate of the right wrist shows no crystals and 8,000 white cells/mm3. The radiograph shows bone loss at the joint margin, not in the center of the cartilage. The first toe is normal.",
     "question": "Which tissue is eroding the cartilage?",
     "options": [
       "Tophi",
@@ -74,7 +74,7 @@
     "difficulty": 3,
     "subjectId": "pathology",
     "examTakeaway": "An older adult with activity pain in one knee and eburnated bone has osteoarthritis, a mechanical failure of cartilage.",
-    "scenario": "A 68-year-old man has knee pain that is worse after walking and better with rest. There is bony enlargement of the joint and a brief morning stiffness of ten minutes. The film shows joint-space narrowing and osteophytes.",
+    "scenario": "A 68-year-old man has knee pain that worsens through a day of walking and nearly disappears at rest. Morning stiffness lasts about ten minutes. His sister has long-standing rheumatoid arthritis, and his own test for anti-CCP antibody is negative. The film shows medial joint-space narrowing and osteophytes, without marginal erosions.",
     "question": "Which process is wearing out the joint?",
     "options": [
       "Synovial pannus",
@@ -118,7 +118,7 @@
     "difficulty": 3,
     "subjectId": "genetics",
     "examTakeaway": "Fractures after minor bumps, blue sclerae, and hearing loss are a type I collagen defect.",
-    "scenario": "A 7-year-old boy has had four fractures from falls that did not seem severe. His teeth are opalescent. His mother had the same fractures and early hearing loss.",
+    "scenario": "A 7-year-old boy has had four fractures from falls that did not seem severe. His teeth are translucent and wear down. His mother had the same fractures and early hearing loss. Urinalysis shows no blood, the lenses are not dislocated, and the sclerae look blue.",
     "question": "Which collagen is defective?",
     "options": [
       "Type IV collagen",
@@ -206,8 +206,8 @@
     "difficulty": 3,
     "subjectId": "pathology",
     "examTakeaway": "A scaly red patch on a sun-damaged scalp that has not invaded the dermis is actinic keratosis, a squamous precursor.",
-    "scenario": "A 70-year-old man who worked outdoors has a 6-mm rough red patch on the scalp. It has grown slowly. There is no dark pigment and it does not look stuck on.",
-    "question": "Which lesion is this?",
+    "scenario": "A 70-year-old roofer has two scalp spots. One is a 6-mm gritty red patch. The other is a brown plaque that looks stuck on. Biopsy of the gritty patch shows atypical keratinocytes that stop above the basement membrane, with solar elastosis in the dermis.",
+    "question": "Which lesion is the gritty patch?",
     "options": [
       "Basal cell carcinoma",
       "Melanoma in situ",

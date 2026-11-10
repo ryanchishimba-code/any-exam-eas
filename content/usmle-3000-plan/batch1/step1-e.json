@@ -8,7 +8,7 @@
     "difficulty": 4,
     "subjectId": "pathology",
     "examTakeaway": "Basilar emphysema in a young nonsmoker is alpha-1 antitrypsin deficiency, which also injures the liver.",
-    "scenario": "A 34-year-old man who has never smoked is short of breath. The lung bases are hyperlucent. Liver enzymes are mildly high.",
+    "scenario": "A 34-year-old man has smoked half a pack daily for four years and is short of breath. CT shows lucency that is worse at the bases than at the apices. He was jaundiced as a newborn, and the ALT is 78 U/L. Sweat chloride is normal.",
     "question": "Which protein is deficient?",
     "options": [
       "Surfactant protein B",
@@ -18,7 +18,7 @@
       "Alpha-1 antitrypsin"
     ],
     "correctAnswer": "Alpha-1 antitrypsin",
-    "explanation": "Basilar emphysema in a young nonsmoker is alpha-1 antitrypsin deficiency, which also injures the liver. Alpha-1 antitrypsin normally inhibits neutrophil elastase; without it the bases are destroyed and misfolded protein injures hepatocytes. Surfactant protein B deficiency causes neonatal respiratory failure, not adult basal emphysema. Dynein loss causes bronchiectasis and situs inversus, not panacinar bases. Cystic fibrosis transmembrane regulator defects cause bronchiectasis and a high sweat chloride, not this missing electrophoresis band. Elastase from neutrophils in excess only, with a normal inhibitor, is the smoking pattern, which prefers the apices and he does not smoke.",
+    "explanation": "Basilar emphysema in a young nonsmoker is alpha-1 antitrypsin deficiency, which also injures the liver. Alpha-1 antitrypsin normally inhibits neutrophil elastase; without it the bases are destroyed and misfolded protein injures hepatocytes. Surfactant protein B deficiency causes neonatal respiratory failure, not adult basal emphysema. Dynein loss causes bronchiectasis and situs inversus, not panacinar bases. Cystic fibrosis transmembrane regulator defects cause bronchiectasis and a high sweat chloride, and his sweat chloride is normal. Neutrophil elastase excess from smoking prefers the apices, not bases plus neonatal jaundice.",
     "citation": null
   },
   {

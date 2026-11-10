@@ -96,7 +96,7 @@
     "difficulty": 4,
     "subjectId": "endocrinology",
     "examTakeaway": "A genetic male who virilizes at puberty after a female childhood has 5-alpha-reductase deficiency.",
-    "scenario": "A 13-year-old who was raised as a girl develops a deeper voice, increased muscle, and phallic enlargement. There is no breast development. The testes are in the inguinal canals.",
+    "scenario": "A 14-year-old has primary amenorrhea and was raised as a girl. At 13 the voice deepened and the clitoris enlarged, but the breasts stayed at Tanner stage 1. Gonads are palpable in the inguinal canals. Testosterone is in the adult male range. A sibling whose androgen receptor does not work developed breasts at puberty and did not virilize.",
     "question": "Which enzyme is deficient?",
     "options": [
       "Aromatase",
@@ -106,7 +106,7 @@
       "21-hydroxylase"
     ],
     "correctAnswer": "5-alpha-reductase",
-    "explanation": "A genetic male who virilizes at puberty after a female childhood has 5-alpha-reductase deficiency. 5-alpha-reductase converts testosterone to dihydrotestosterone, which is required for external male genitalia in fetal life; at puberty the testosterone surge virilizes the child. 21-hydroxylase deficiency virilizes a female fetus and does not place testes in the inguinal canals. Aromatase deficiency prevents estrogen formation and virilizes females, not this testosterone-to-DHT gap. 17-alpha-hydroxylase deficiency blocks sex-steroid synthesis, so testosterone would be low. 11-beta-hydroxylase deficiency is a hypertensive virilizing congenital adrenal hyperplasia.",
+    "explanation": "A genetic male who virilizes at puberty after a female childhood has 5-alpha-reductase deficiency. 5-alpha-reductase converts testosterone to dihydrotestosterone, which is required for external male genitalia in fetal life; at puberty the testosterone surge virilizes the child. Male-range testosterone removes the enzyme blocks that stop sex-steroid synthesis, and the absent breasts separate this patient from the sibling whose androgen receptor does not work. 21-hydroxylase deficiency virilizes a female fetus and does not place testes in the inguinal canals. Aromatase deficiency prevents estrogen formation and virilizes females, not this testosterone-to-DHT gap. 17-alpha-hydroxylase deficiency blocks sex-steroid synthesis, so testosterone would be low. 11-beta-hydroxylase deficiency is a hypertensive virilizing congenital adrenal hyperplasia.",
     "citation": null
   },
   {
