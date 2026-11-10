@@ -19,7 +19,8 @@ import {
   showAiAssistedRationaleLabel,
   studentRationalePlain,
 } from "@/lib/questions/student-display-text";
-import { lengthOptionTitle } from "@/components/exam/FullExamLengthWheel";
+import { lengthOptionHint, lengthOptionTitle } from "@/components/exam/FullExamLengthWheel";
+import { chicagoCalendarDay } from "@/lib/learning/student-dashboard";
 import { getLengthOptions } from "@/lib/full-exam/config";
 import { weakAreaPracticeHref } from "@/lib/learning/weak-area-practice-href";
 import { initialClientSession } from "@/lib/auth/client-session";
@@ -78,6 +79,12 @@ describe("shared student numbers", () => {
     expect(points.find((point) => point.date === "2026-11-08")?.attempts).toBe(1);
     expect(points.find((point) => point.date === "2026-11-09")?.attempts).toBe(1);
     expect(points.some((point) => point.date === "2026-11-10")).toBe(false);
+    const evening = new Date("2026-11-10T04:10:00.000Z");
+    expect(chicagoCalendarDay(evening)).toBe("2026-11-09");
+    const axis = accuracyTrendFromInstants([], evening);
+    expect(axis.at(-1)?.date).toBe("2026-11-09");
+    expect(axis.at(0)?.date).toBe("2026-10-27");
+    expect(axis.some((point) => point.date === "2026-11-10")).toBe(false);
   });
 
   it("uses one outline depth and one estimate for dashboard, analytics, and readiness", () => {
@@ -181,6 +188,13 @@ describe("full exam length labels", () => {
     expect(full?.preset).toBe("full");
     expect(lengthOptionTitle(full!)).toMatch(/Step 3/);
     expect(options.every((option) => /Step 3/.test(lengthOptionTitle(option)))).toBe(true);
+    const step2 = getLengthOptions("usmle", "usmle-step-2");
+    const step2Full = step2.find((option) => option.preset === "full");
+    expect(step2Full?.questionCount).toBe(280);
+    expect(lengthOptionTitle(step2Full!)).toMatch(/Step 2 CK/);
+    expect(lengthOptionTitle(step2Full!)).not.toBe("Full");
+    expect(lengthOptionHint(step2Full!)).toMatch(/Step 2 CK/);
+    expect(lengthOptionHint(step2Full!)).not.toMatch(/Full-length adaptive/);
   });
 });
 
@@ -197,6 +211,7 @@ describe("weak area practice link", () => {
     expect(url.searchParams.get("field")).not.toBe("usmle-step-2");
     expect(url.searchParams.get("blueprintTopics")).toBe("confidentiality-reporting");
     expect(url.searchParams.get("usmleTopic")).toBe("confidentiality-reporting");
+    expect(url.searchParams.get("subjectId")).toBe("confidentiality-reporting");
     expect(url.searchParams.get("style")).toBe("standard");
   });
 });

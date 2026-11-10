@@ -173,6 +173,23 @@ export function trendDayKey(
   return `${year}-${month}-${day}`;
 }
 
+/** Calendar day in America/Chicago. Used for the trend axis so it cannot end on tomorrow UTC. */
+export function chicagoCalendarDay(
+  date: Date,
+  timeZone = PRACTICE_TREND_TIME_ZONE
+): string {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const year = parts.find((part) => part.type === "year")?.value ?? "0000";
+  const month = parts.find((part) => part.type === "month")?.value ?? "01";
+  const day = parts.find((part) => part.type === "day")?.value ?? "01";
+  return `${year}-${month}-${day}`;
+}
+
 function shiftDayKey(dayKey: string, delta: number): string {
   const [year, month, day] = dayKey.split("-").map(Number);
   const next = new Date(Date.UTC(year, (month ?? 1) - 1, day ?? 1));
@@ -182,7 +199,7 @@ function shiftDayKey(dayKey: string, delta: number): string {
 
 /** UTC instant of the start of a Chicago calendar day. */
 export function trendWindowStart(now = new Date(), days = TREND_DAYS): Date {
-  const startKey = shiftDayKey(trendDayKey(now), -(days - 1));
+  const startKey = shiftDayKey(chicagoCalendarDay(now), -(days - 1));
   for (const offset of ["-06:00", "-05:00"]) {
     const candidate = new Date(`${startKey}T00:00:00${offset}`);
     if (trendDayKey(candidate) === startKey) return candidate;
@@ -208,7 +225,7 @@ function buildTrendPoints(
   now = new Date()
 ): AccuracyTrendPoint[] {
   const points: AccuracyTrendPoint[] = [];
-  const today = trendDayKey(now);
+  const today = chicagoCalendarDay(now);
   for (let i = TREND_DAYS - 1; i >= 0; i--) {
     const key = shiftDayKey(today, -i);
     const entry = byDay.get(key);

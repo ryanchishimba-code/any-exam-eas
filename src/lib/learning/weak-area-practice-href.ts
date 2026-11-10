@@ -20,7 +20,7 @@ export function weakAreaPracticeHref(input: {
 }): string {
   const slug = practiceTopicSlug(input.topicKey);
   const usmle = input.examSlug === "usmle" || input.fieldId.startsWith("usmle-");
-  const href = topicRetestHref(input.examSlug, usmle ? MIXED_SUBJECT_ID : slug, input.count ?? 25, {
+  const href = topicRetestHref(input.examSlug, slug || MIXED_SUBJECT_ID, input.count ?? 25, {
     filters: {
       fieldId: input.fieldId,
       ...(usmle && slug

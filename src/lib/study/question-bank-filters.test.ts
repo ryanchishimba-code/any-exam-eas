@@ -75,6 +75,21 @@ describe("canonicalizeQuestionBankQuery", () => {
     expect(next.get("subjectId")).not.toBe("assess");
   });
 
+  it("keeps a USMLE blueprint topic subjectId and marks the session standard", () => {
+    const current = new URLSearchParams(
+      "field=usmle-step-2&subjectId=sepsis-bundles&count=5&autostart=1"
+    );
+    const next = canonicalizeQuestionBankQuery("usmle-step-2", current);
+    expect(next.get("subjectId")).toBe("sepsis-bundles");
+    expect(next.get("field")).toBe("usmle-step-2");
+    expect(next.get("blueprintTopics")).toBe("sepsis-bundles");
+    expect(next.get("usmleTopic")).toBe("sepsis-bundles");
+    expect(next.get("style")).toBe("standard");
+    expect(next.get("count")).toBe("5");
+    const again = canonicalizeQuestionBankQuery("usmle-step-2", next);
+    expect(again.toString()).toBe(next.toString());
+  });
+
   it("drops a blueprint area that is not on this board", () => {
     const current = new URLSearchParams(
       "field=aanp-fnp&mode=bank&blueprintArea=management-of-care"

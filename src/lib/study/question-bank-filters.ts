@@ -4,6 +4,7 @@ import { isOtherOpenSubject } from "@/lib/learning/other-open-subject";
 import { isBlueprintAreaId } from "@/lib/inventory/blueprint-domain-pool";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
+import { usmleBlueprintPracticeSlug } from "@/lib/exam-prep/usmle/blueprint-practice-subject";
 
 const MIXED_SUBJECT_IDS = new Set([MIXED_SUBJECT_ID, "mixed"]);
 
@@ -13,6 +14,7 @@ const MIXED_SUBJECT_IDS = new Set([MIXED_SUBJECT_ID, "mixed"]);
  */
 export function subjectIdBelongsToField(fieldId: string, subjectId: string): boolean {
   if (MIXED_SUBJECT_IDS.has(subjectId) || isOtherOpenSubject(subjectId)) return true;
+  if (usmleBlueprintPracticeSlug(fieldId, subjectId)) return true;
   return getSubjectsForFieldId(fieldId).some((subject) => subject.id === subjectId);
 }
 
@@ -36,8 +38,15 @@ export function canonicalizeQuestionBankQuery(
   if (!next.get("mode")) next.set("mode", "bank");
 
   const subjectId = next.get("subjectId");
+  const blueprintSubject = subjectId ? usmleBlueprintPracticeSlug(fieldId, subjectId) : null;
   if (subjectId && !subjectIdBelongsToField(fieldId, subjectId)) {
     next.delete("subjectId");
+  }
+  if (blueprintSubject) {
+    if (!next.get("blueprintTopics")) next.set("blueprintTopics", blueprintSubject);
+    if (!next.get("usmleTopic")) next.set("usmleTopic", blueprintSubject);
+    const style = next.get("style");
+    if (!style || style === "adaptive") next.set("style", "standard");
   }
 
   const blueprintArea = next.get("blueprintArea");
@@ -119,6 +128,9 @@ export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
   if (input.subjectIds.length === 0) return "";
 
   const { subjectParam, styleParam } = input;
+  if (subjectParam && usmleBlueprintPracticeSlug(input.fieldId, subjectParam)) {
+    return subjectParam;
+  }
   if (
     subjectParam === MIXED_SUBJECT_ID ||
     (subjectParam === "mixed" && styleParam === "review_incorrect")

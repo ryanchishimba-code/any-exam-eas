@@ -34,6 +34,7 @@ import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { fieldSupportsBlueprintTimedExam } from "@/lib/exam-prep/compose/blueprint-timed-fields";
+import { usmleBlueprintPracticeSlug } from "@/lib/exam-prep/usmle/blueprint-practice-subject";
 import { resolveExamBankSampleCount } from "@/lib/questions/exam-sample-count";
 import type { BankItem } from "@/lib/question-bank";
 
@@ -162,14 +163,19 @@ export async function GET(req: Request) {
   const aanpFnpPresetParam = searchParams.get("aanpFnpPreset")?.trim() || undefined;
   const difficultyTier = searchParams.get("difficultyTier")?.trim() || undefined;
   const blueprintTopicsParam = searchParams.get("blueprintTopics")?.trim();
-  const blueprintTopics = blueprintTopicsParam
+  let blueprintTopics = blueprintTopicsParam
     ? blueprintTopicsParam
         .split(",")
         .map((s) => s.trim())
         .filter(Boolean)
     : undefined;
+  let usmleTopic = searchParams.get("usmleTopic")?.trim() || undefined;
   const naplexTopic = searchParams.get("naplexTopic")?.trim() || undefined;
-  const usmleTopic = searchParams.get("usmleTopic")?.trim() || undefined;
+  const blueprintSubject = subjectId ? usmleBlueprintPracticeSlug(fieldId, subjectId) : null;
+  if (blueprintSubject) {
+    if (!blueprintTopics?.length) blueprintTopics = [blueprintSubject];
+    if (!usmleTopic) usmleTopic = blueprintSubject;
+  }
   const panceTopic = searchParams.get("panceTopic")?.trim() || undefined;
   const aanpFnpTopic = searchParams.get("aanpFnpTopic")?.trim() || undefined;
   const nptePtTopic = searchParams.get("nptePtTopic")?.trim() || undefined;
@@ -248,7 +254,7 @@ export async function GET(req: Request) {
 
   const { recordStudyQuestionsServed } = await import("@/lib/study/usage-limits");
 
-  if (!mixed && !blueprintAreaId) {
+  if (!mixed && !blueprintAreaId && !blueprintSubject) {
     if (!subjectId) {
       return NextResponse.json(
         { error: "Query param subjectId is required for topic-specific practice" },
@@ -393,7 +399,7 @@ export async function GET(req: Request) {
         kind: "ok" as const,
         items: await topicMod.gatherTopicBankSessionPool({
           fieldId,
-          subjectId: subjectId!,
+          subjectId: blueprintSubject ? MIXED_SUBJECT_ID : subjectId!,
           sessionLimit: limit,
           taskCategory,
           blueprintTopics,
@@ -719,7 +725,9 @@ export async function GET(req: Request) {
     ? areaLabel
     : mixed
       ? "Assorted topics"
-      : getFieldSubject(field, subjectId!)!.label;
+      : blueprintSubject
+        ? blueprintSubject.replace(/-/g, " ")
+        : getFieldSubject(field, subjectId!)!.label;
 
   const raw: ExamQuestion[] = items.map((item, i) =>
     bankItemToSessionRaw(fieldId, field, item.subjectId ?? resolvedSubjectId, item, i)

@@ -85,6 +85,7 @@ import {
   subjectIdBelongsToField,
   subjectIdForPracticeUrl,
 } from "@/lib/study/question-bank-filters";
+import { usmleBlueprintPracticeSlug } from "@/lib/exam-prep/usmle/blueprint-practice-subject";
 import {
   appendTopicPracticeFiltersToQuery,
   mergeTopicPracticeFiltersIntoQuery,
@@ -1540,8 +1541,13 @@ export function StudyBankPractice({
       }
 
       const useArea = Boolean(blueprintAreaId);
+      const topicLocked = Boolean(
+        usmleBlueprintPracticeSlug(fieldId, subjectId) || topicPracticeBlueprintTopics?.length
+      );
       const useAdaptive =
-        !useArea && (activeStyle === "adaptive" || activeStyle === "weak_areas");
+        !useArea &&
+        !topicLocked &&
+        (activeStyle === "adaptive" || activeStyle === "weak_areas");
       const useReviewIncorrect = !useArea && activeStyle === "review_incorrect";
       const useToday = !useArea && activeStyle === "today";
       const useDailySet = !useArea && activeStyle === "daily_set";
@@ -2013,6 +2019,11 @@ export function StudyBankPractice({
       }
       if (blueprintAreaId) qs.set("blueprintArea", blueprintAreaId);
       else qs.set("subjectId", effectiveSubjectId);
+      const blueprintSubject = usmleBlueprintPracticeSlug(fieldId, effectiveSubjectId);
+      if (blueprintSubject) {
+        if (!qs.get("blueprintTopics")) qs.set("blueprintTopics", blueprintSubject);
+        if (!qs.get("usmleTopic")) qs.set("usmleTopic", blueprintSubject);
+      }
       if (isPance && taskCategory) qs.set("taskCategory", taskCategory);
       const nclexPreset = searchParams.get("nclexPreset");
       if (
