@@ -162,6 +162,7 @@ export async function GET(req: Request) {
   const nclexPresetParam = searchParams.get("nclexPreset")?.trim() || undefined;
   const aanpFnpPresetParam = searchParams.get("aanpFnpPreset")?.trim() || undefined;
   const difficultyTier = searchParams.get("difficultyTier")?.trim() || undefined;
+  const weakArea = searchParams.get("weakArea") === "1";
   const blueprintTopicsParam = searchParams.get("blueprintTopics")?.trim();
   let blueprintTopics = blueprintTopicsParam
     ? blueprintTopicsParam
@@ -392,6 +393,21 @@ export async function GET(req: Request) {
       };
     }
 
+    if (bankPractice && weakArea) {
+      const { sampleWeakAreaItems } = await import("@/lib/question-bank-db");
+      return {
+        kind: "ok" as const,
+        items: await sampleWeakAreaItems({
+          userId,
+          fieldId,
+          subjectId: subjectId ?? "",
+          blueprintTopics,
+          limit,
+        }),
+        preAssembledTimed: false,
+      };
+    }
+
     if (bankPractice) {
       const topicMod = await topicPromise;
       if (!topicMod) throw sessionModulesFailed;
@@ -517,6 +533,7 @@ export async function GET(req: Request) {
       fieldId === "usmle-step-2" ||
       fieldId === "usmle-step-3") &&
     bankPractice &&
+    !weakArea &&
     (blueprintTopics?.length || usmleTopic)
   ) {
     const { filterItemsForUsmleTopicPractice } = await import(
