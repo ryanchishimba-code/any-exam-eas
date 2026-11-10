@@ -154,12 +154,20 @@ function Sparkline({ points }: { points: GoalTrendPoint[] }) {
   );
 }
 
-function DomainBars({ domains }: { domains: GoalDomainBar[] }) {
+function DomainBars({
+  domains,
+  outlineDepthPct = null,
+}: {
+  domains: GoalDomainBar[];
+  outlineDepthPct?: number | null;
+}) {
   const maxWeight = Math.max(...domains.map((domain) => domain.weightPct), 1);
   return (
     <figure className="mt-6" data-practice-chart="domains">
       <figcaption className="mb-3 flex items-center justify-between">
-        <span className="text-[12px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">Outline depth</span>
+        <span className="text-[12px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+          Outline depth{outlineDepthPct != null ? ` ${outlineDepthPct}%` : ""}
+        </span>
         <InfoTip
           label="About outline depth"
           text="Bar width is how much the exam emphasizes the area. Fill is answered questions versus questions currently served."
@@ -254,6 +262,7 @@ export function PracticeGoalsCharts({
   difficultyMix?: DifficultyMix | null;
 }) {
   const gauges = criteria.filter((row) => row.id !== "exam_sim");
+  const outlineDepthPct = gauges.find((row) => row.id === "coverage")?.progressPct ?? null;
   return (
     <div className="pt-4">
       <div className="grid grid-cols-3 gap-2">
@@ -268,7 +277,7 @@ export function PracticeGoalsCharts({
         ))}
       </div>
       {trend.length > 0 ? <Sparkline points={trend.slice(-30)} /> : null}
-      {domains.length > 0 ? <DomainBars domains={domains} /> : null}
+      {domains.length > 0 ? <DomainBars domains={domains} outlineDepthPct={outlineDepthPct} /> : null}
       {difficultyMix ? <DifficultyBar mix={difficultyMix} /> : null}
     </div>
   );

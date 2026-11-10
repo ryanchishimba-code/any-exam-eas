@@ -3,6 +3,8 @@
  * The same read on Readiness and Analytics. Never a pass prediction.
  */
 
+import { outlineCoveragePct } from "@/lib/learning/practice-measure";
+
 export const PRACTICE_ESTIMATE_LABEL = "A practice measure, not a pass prediction.";
 
 export const PRACTICE_ESTIMATE_EXPLANATION =
@@ -57,4 +59,76 @@ export function practiceEstimateFromHistory(input: {
 function clampPct(value: number): number {
   if (!Number.isFinite(value)) return 0;
   return Math.max(0, Math.min(100, Math.round(value)));
+}
+
+export type OutlineDepthDomain = {
+  seen: number;
+  available: number;
+  weightPct: number;
+};
+
+/**
+ * One outline-depth percent for Dashboard, Analytics, and Readiness.
+ * Delegates to outlineCoveragePct so every surface uses that function.
+ */
+export function outlineDepthPct(domains: OutlineDepthDomain[]): number {
+  return outlineCoveragePct(
+    domains.map((domain) => ({
+      blueprintWeightPct: domain.weightPct,
+      answerCredit: domain.seen,
+      denominator: domain.available,
+    }))
+  );
+}
+
+/** Board overall accuracy: correct answers ÷ saved attempts. */
+export function overallAccuracyPct(correct: number, attempts: number): number | null {
+  if (attempts <= 0) return null;
+  return Math.round((Math.max(0, correct) / attempts) * 100);
+}
+
+/** Reviewed-miss rate. Unknown open count stays 0 so it cannot invent a perfect score. */
+export function remediationRatePct(openIncorrect: number | null, attempts: number): number {
+  if (attempts <= 0 || openIncorrect == null) return 0;
+  const ratio = Math.min(1, Math.max(0, openIncorrect) / attempts);
+  return Math.round((1 - ratio) * 100);
+}
+
+export type RoadmapPracticeSource = {
+  totalAttempts: number;
+  openIncorrectCount: number | null;
+  topics: Array<{
+    attempts: number;
+    correct: number;
+    pushesCompleted: number;
+    pushesAvailable: number;
+    blueprintWeightPct: number;
+  }>;
+};
+
+/** Same accuracy, outline depth, remediation, and estimate on every surface. */
+export function sharedPracticeRead(roadmap: RoadmapPracticeSource) {
+  const topicAttempts = roadmap.topics.reduce((sum, topic) => sum + Math.max(0, topic.attempts), 0);
+  const attempts = topicAttempts > 0 ? topicAttempts : Math.max(0, roadmap.totalAttempts);
+  const correct = roadmap.topics.reduce((sum, topic) => sum + Math.max(0, topic.correct), 0);
+  const accuracyPct = overallAccuracyPct(correct, attempts);
+  const depth = outlineDepthPct(
+    roadmap.topics.map((topic) => ({
+      seen: topic.pushesCompleted,
+      available: topic.pushesAvailable,
+      weightPct: topic.blueprintWeightPct,
+    }))
+  );
+  const remediationPct = remediationRatePct(roadmap.openIncorrectCount, attempts);
+  return {
+    accuracyPct,
+    outlineDepthPct: depth,
+    remediationPct,
+    estimate: practiceEstimateFromHistory({
+      attempts,
+      accuracyPct: accuracyPct ?? 0,
+      coveragePct: depth,
+      remediationPct,
+    }),
+  };
 }

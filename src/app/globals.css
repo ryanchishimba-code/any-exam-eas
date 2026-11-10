@@ -3678,14 +3678,25 @@ body {
   stroke: #ffffff;
 }
 
-.aee-nav.aee-nav--over-photo .aee-avatar-trigger,
-.aee-nav.aee-nav--over-photo .aee-avatar-trigger span,
 .aee-nav.aee-nav--over-photo .aee-nav-wordmark__text,
 .aee-nav.aee-nav--over-photo .aee-nav-link,
 .aee-nav.aee-nav--over-photo .aee-nav-link:hover,
 .aee-nav.aee-nav--over-photo .aee-nav-link--active,
 .aee-nav.aee-nav--over-photo .aee-nav-menu-btn,
 .aee-nav.aee-nav--over-photo .aee-nav-actions > button {
+  color: #ffffff;
+}
+
+.aee-nav.aee-nav--over-photo .aee-avatar-trigger {
+  color: var(--color-ink);
+  background: #ffffff;
+}
+
+.aee-nav.aee-nav--over-photo .aee-avatar-trigger span {
+  color: var(--color-ink);
+}
+
+.aee-nav.aee-nav--over-photo .aee-avatar-circle {
   color: #ffffff;
 }
 

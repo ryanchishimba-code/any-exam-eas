@@ -57,6 +57,7 @@ import {
 import { drugSafetyPathHref, safetyPathLabel } from "@/lib/drugs300/safety-path";
 import {
   buildPracticeMeasure,
+  outlineCoveragePct,
   PRACTICE_MEASURE_DISCLAIMER,
   PRACTICE_MIN_ANSWERS,
   PRACTICE_GOALS_TOTAL,
@@ -821,18 +822,29 @@ export function buildExamDayPlan(input: ExamDayPlanInput): ExamDayPlan {
     readinessCheck: { scored: false },
     servedBank: input.servedBank,
   });
-  const coveragePct = measure.coveragePct;
+  const servedTopics = topics.filter((topic) => (topic.available ?? 0) > 0);
+  const outlineDepth =
+    servedTopics.length > 0
+      ? outlineCoveragePct(
+          servedTopics.map((topic) => ({
+            blueprintWeightPct: topic.blueprintWeightPct,
+            answerCredit: topic.seen ?? 0,
+            denominator: topic.available ?? 0,
+          }))
+        )
+      : null;
+  const coveragePct = outlineDepth ?? measure.coveragePct;
   const remediationPct = measure.remediationPct;
   const visible = true;
   const criteria: ReadinessCriterion[] = measure.criteria.map((goal) => ({
     id: goal.id,
     label: goal.label,
-    valueLabel: goal.valueLabel,
+    valueLabel: goal.id === "coverage" && outlineDepth != null ? `${outlineDepth}%` : goal.valueLabel,
     detail: goal.detail,
     status: (goal.met ? "met" : "below_target") as ReadinessCriterion["status"],
     badge: goal.badge,
     nextStep: goal.nextStep,
-    progressPct: goal.progressPct,
+    progressPct: goal.id === "coverage" && outlineDepth != null ? outlineDepth : goal.progressPct,
   }));
   if (examSim) criteria.push(examSimCriterion(examSim));
 

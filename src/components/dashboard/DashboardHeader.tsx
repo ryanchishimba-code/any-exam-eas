@@ -17,6 +17,10 @@ type Props = {
   dueCount?: number;
   /** Saved attempts on this board. Same total as Today's block and Analytics. */
   boardAttempts?: number;
+  /** Same overall accuracy Analytics shows. */
+  accuracyPct?: number | null;
+  /** Same outline depth Readiness and Analytics show. */
+  outlineDepthPct?: number | null;
 };
 
 export function DashboardHeader({
@@ -25,6 +29,8 @@ export function DashboardHeader({
   streakDays,
   dueCount = 0,
   boardAttempts = 0,
+  accuracyPct = null,
+  outlineDepthPct = null,
 }: Props) {
   const firstName = displayFirstName(userName);
 
@@ -45,6 +51,16 @@ export function DashboardHeader({
           </span>
         ) : null}
         {dueCount > 0 ? <span className={dbUi.statusPillAccent}>{dueCount} due</span> : null}
+        {accuracyPct != null ? (
+          <span className={dbUi.statusPill} aria-label={`Overall accuracy ${accuracyPct} percent`}>
+            {accuracyPct}% accuracy
+          </span>
+        ) : null}
+        {outlineDepthPct != null ? (
+          <span className={dbUi.statusPill} aria-label={`Outline depth ${outlineDepthPct} percent`}>
+            {outlineDepthPct}% outline
+          </span>
+        ) : null}
         {boardAttempts > 0 ? (
           <span
             className={dbUi.statusPill}

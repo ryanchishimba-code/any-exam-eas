@@ -9,6 +9,7 @@ import { loadCoverageInventory } from "@/lib/learning/load-coverage-heatmap";
 import { getCachedPracticeBankStats } from "@/lib/learning/served-bank-stats-cache";
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
+import { sharedPracticeRead, type RoadmapPracticeSource } from "@/lib/learning/practice-estimate";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
@@ -27,6 +28,8 @@ export type AnalyticsSnapshot = {
   domainsLabel: ExamDayPlan["coverage"]["domainsLabel"];
   coverage: ExamDayPlan["coverage"];
   formats: FormatCounts | null;
+  /** Same accuracy, outline depth, and estimate the dashboard and readiness pages use. */
+  practiceRead: ReturnType<typeof sharedPracticeRead> | null;
 };
 
 /** Same reads the analytics page used to await before the first HTML byte. */
@@ -81,5 +84,12 @@ export async function loadAnalyticsSnapshot(
       activeInventory && !activeInventory.degraded
         ? activeInventory.fields[fieldId]?.formats ?? null
         : null,
+    practiceRead: roadmap
+      ? sharedPracticeRead({
+          totalAttempts: roadmap.totalAttempts,
+          openIncorrectCount: roadmap.openIncorrectCount,
+          topics: roadmap.topics satisfies RoadmapPracticeSource["topics"],
+        })
+      : null,
   };
 }

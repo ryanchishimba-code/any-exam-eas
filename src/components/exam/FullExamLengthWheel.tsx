@@ -15,9 +15,9 @@ type Props = {
   fullHint?: string;
 };
 
-function primaryLabel(option: LengthOption): string {
-  if (option.preset === "full") return "Full";
-  return String(option.questionCount);
+/** Every length option, including the 200-question full exam, uses its step label. */
+export function lengthOptionTitle(option: LengthOption): string {
+  return option.label;
 }
 
 /** Tap-to-select exam length — 50 / 100 / full presets. */
@@ -48,11 +48,11 @@ export function FullExamLengthWheel({ options, value, onChange, fullBadge, fullH
           >
             <span
               className={cn(
-                "font-extrabold tabular-nums tracking-tight",
-                active ? "text-xl text-white" : "text-lg text-[var(--color-ink-muted)]"
+                "text-center text-[13px] font-semibold leading-tight tracking-tight",
+                active ? "text-white" : "text-[var(--color-ink-muted)]"
               )}
             >
-              {primaryLabel(option)}
+              {lengthOptionTitle(option)}
             </span>
             {option.preset === "full" ? (
               <span

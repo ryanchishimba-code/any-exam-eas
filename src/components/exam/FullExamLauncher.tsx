@@ -245,7 +245,10 @@ export function FullExamLauncher({
           <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
             {examSlug === "nclex" && preset === "full"
               ? nclexFullPracticeLengthLabel(nclexCat)
-              : `${preview.questionCount} questions`}
+              : examSlug === "usmle"
+                ? (options.find((option) => option.preset === preset)?.label ??
+                  `${preview.questionCount} questions`)
+                : `${preview.questionCount} questions`}
           </p>
           <ExamLoadingProgress
             className="mt-4"
@@ -259,9 +262,12 @@ export function FullExamLauncher({
   }
 
   const nclexFull = examSlug === "nclex" && preset === "full";
+  const selectedLength = options.find((option) => option.preset === preset);
   const lengthLabel = nclexFull
     ? nclexFullPracticeLengthLabel(nclexCat)
-    : `${preview.questionCount} questions`;
+    : examSlug === "usmle" && selectedLength
+      ? selectedLength.label
+      : `${preview.questionCount} questions`;
   const summary = [
     lengthLabel,
     preview.timed ? formatHms(preview.timeLimitSec) : "Untimed",

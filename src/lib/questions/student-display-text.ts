@@ -116,6 +116,32 @@ export function normalizeBowTieInstruction(text: string): string {
   return text.replace(pattern, rewrite).replace(shortPattern, rewrite);
 }
 
+const RATIONALE_LABEL =
+  "Remember|Reviewed|Updated|Revised|Note|Caution|Warning|Trap|Source|In practice|Check";
+
+/**
+ * Student rationale text. Repeated labels collapse. Bold markers stay so the
+ * renderer can draw them, except when the marker is only wrapping a label.
+ */
+export function cleanStudentRationale(text: string): string {
+  if (!text) return "";
+  const unwrapped = text.replace(
+    new RegExp(`\\*\\*(${RATIONALE_LABEL})\\*\\*`, "gi"),
+    "$1"
+  );
+  return collapseRepeatedLabels(unwrapped).trim();
+}
+
+/** Visible rationale copy with markdown markers removed. */
+export function studentRationalePlain(text: string): string {
+  return cleanStudentRationale(text).replace(/\*\*/g, "");
+}
+
+/** Student rationales do not show an AI-assisted badge. */
+export function showAiAssistedRationaleLabel(): boolean {
+  return false;
+}
+
 /** "Remember: Remember" and "Reviewed Reviewed" collapse to one label. */
 export function collapseRepeatedLabels(text: string): string {
   const labeled = new RegExp(`\\b(${REPEATED_LABEL})\\b\\s*[:：]\\s*\\1\\b\\s*[,:]?\\s*`, "gi");

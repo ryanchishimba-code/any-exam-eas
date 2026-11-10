@@ -7,14 +7,16 @@ import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { ExamDayReadiness } from "@/lib/learning/exam-day-plan";
 import { PRACTICE_MEASURE_DISCLAIMER } from "@/lib/learning/practice-measure";
-import { practiceEstimateFromHistory } from "@/lib/learning/practice-estimate";
+import {
+  practiceEstimateFromHistory,
+  sharedPracticeRead,
+} from "@/lib/learning/practice-estimate";
+import { weakAreaPracticeHref } from "@/lib/learning/weak-area-practice-href";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
 import { recentTestHref } from "@/lib/edtech/recent-test-links";
-import { spacedReviewHref, topicRetestHref } from "@/lib/edtech/practice-links";
-import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
-import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
+import { spacedReviewHref } from "@/lib/edtech/practice-links";
 import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { studyUi } from "@/lib/study/study-ui";
@@ -47,6 +49,7 @@ export function StudentAnalyticsDashboard({
   initialData,
   formats = null,
   practice = null,
+  practiceRead = null,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -56,6 +59,8 @@ export function StudentAnalyticsDashboard({
   formats?: FormatCounts | null;
   /** Same practice measure the dashboard ring and proof use. */
   practice?: ExamDayReadiness | null;
+  /** Same accuracy, outline depth, and estimate as Dashboard and Readiness. */
+  practiceRead?: ReturnType<typeof sharedPracticeRead> | null;
 }) {
   const [data, setData] = useState<AnalyticsPayload | null>(initialData ?? null);
   const [loading, setLoading] = useState(!initialData);
@@ -124,14 +129,20 @@ export function StudentAnalyticsDashboard({
   const primaryField = EXAM_CATALOG[examSlug].fieldId;
   const practiceHeadline = practice?.headline ?? "0 of 3 practice goals met";
   const practiceScore = practice?.score ?? 0;
-  const practiceEstimate = practice
-    ? practiceEstimateFromHistory({
-        attempts: practice.totalAttempts,
-        accuracyPct: practice.recentAccuracyPct,
-        coveragePct: practice.coveragePct,
-        remediationPct: practice.remediationPct,
-      })
-    : null;
+  const practiceEstimate =
+    practiceRead?.estimate ??
+    (practice
+      ? practiceEstimateFromHistory({
+          attempts: practice.totalAttempts,
+          accuracyPct: practiceRead?.accuracyPct ?? practice.recentAccuracyPct,
+          coveragePct: practiceRead?.outlineDepthPct ?? practice.coveragePct,
+          remediationPct: practiceRead?.remediationPct ?? practice.remediationPct,
+        })
+      : null);
+  const overallAccuracy =
+    practiceRead?.accuracyPct ??
+    (practice ? practice.recentAccuracyPct : dashboard.headline.overallAccuracy);
+  const outlineDepth = practiceRead?.outlineDepthPct ?? practice?.coveragePct ?? null;
 
   // The API already scopes the payload to this exam; keep a defensive client
   // filter so nothing from another exam can ever leak into the view.
@@ -184,6 +195,13 @@ export function StudentAnalyticsDashboard({
           <p className={studyUi.eyebrow}>Estimated performance</p>
           <p className="mt-1 text-[17px] font-semibold text-[var(--color-ink)]">{practiceEstimate.levelLabel}</p>
           <p className="mt-1 text-[14px] font-medium text-[var(--color-ink)]">{practiceEstimate.label}</p>
+          {overallAccuracy != null || outlineDepth != null ? (
+            <p className="mt-1 text-[14px] font-medium text-[var(--color-ink)]">
+              {overallAccuracy != null ? `${overallAccuracy}% accuracy` : null}
+              {overallAccuracy != null && outlineDepth != null ? " · " : null}
+              {outlineDepth != null ? `${outlineDepth}% outline depth` : null}
+            </p>
+          ) : null}
           <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{practiceEstimate.summary}</p>
           <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{practiceEstimate.explanation}</p>
         </section>
@@ -245,13 +263,7 @@ export function StudentAnalyticsDashboard({
         />
         <MetricCard
           label="Accuracy"
-          value={
-            practice
-              ? `${practice.recentAccuracyPct}%`
-              : dashboard.headline.overallAccuracy != null
-                ? `${dashboard.headline.overallAccuracy}%`
-                : "—"
-          }
+          value={overallAccuracy != null ? `${overallAccuracy}%` : "—"}
           hint={
             practice
               ? `${practice.totalAttempts} attempts · ${PRACTICE_MEASURE_DISCLAIMER}`
@@ -395,11 +407,9 @@ function WeakAreaPracticeLink({
   conceptKey: string;
   fieldId: string;
 }) {
-  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
   const examSlug = examSlugFromFieldId(fieldId);
   if (!examSlug) return <span className="font-medium">{name}</span>;
-  const links = getExamTopicStudyLinks(examSlug, topicKey);
-  const href = topicRetestHref(examSlug, links.topicKey, 25);
+  const href = weakAreaPracticeHref({ examSlug, topicKey: conceptKey, fieldId, count: 25 });
   return (
     <Link href={href} className="font-medium text-[var(--color-ink)] underline-offset-2 hover:underline">
       {name}
@@ -415,11 +425,9 @@ function WeakTopicFixLink({
   conceptKey: string;
   fieldId: string;
 }) {
-  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
   const examSlug = examSlugFromFieldId(fieldId);
   if (!examSlug) return null;
-  const links = getExamTopicStudyLinks(examSlug, topicKey);
-  const href = topicRetestHref(examSlug, links.topicKey, 5);
+  const href = weakAreaPracticeHref({ examSlug, topicKey: conceptKey, fieldId, count: 5 });
 
   return (
     <Link

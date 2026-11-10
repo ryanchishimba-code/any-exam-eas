@@ -13,6 +13,7 @@ import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-ra
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { RationaleVisualPanel } from "./RationaleVisualPanel";
+import { StudentRationaleText } from "./StudentRationaleText";
 import { isUsmleField } from "./UsmleFormats";
 import { cn } from "@/lib/utils";
 import {
@@ -181,7 +182,7 @@ export function ExpertRationalePanel({
   if (!parsed.isStructured && !expertRationale) {
     return (
       <p className="mt-2 whitespace-pre-wrap text-[15px] leading-[1.55] tracking-[-0.015em] text-[var(--color-ink)]">
-        {question.explanation}
+        <StudentRationaleText text={question.explanation ?? ""} />
       </p>
     );
   }

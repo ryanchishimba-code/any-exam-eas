@@ -69,6 +69,7 @@ import {
   countServeBankBySubject,
   getUserExamHistory,
 } from "@/lib/learning/exam-progress";
+import { outlineCoveragePct } from "@/lib/learning/practice-measure";
 
 export type RoadmapReadinessKey = "strong" | "needs_review" | "needs_more_work";
 
@@ -409,12 +410,13 @@ export function computeOverallRoadmapReadiness(topics: RoadmapTopicRow[]): numbe
 }
 
 export function computeOverallPushCoverage(topics: RoadmapTopicRow[]): number {
-  const totalWeight = topics.reduce((s, t) => s + t.blueprintWeightPct, 0) || 1;
-  const weighted = topics.reduce(
-    (s, t) => s + t.pushCoveragePct * t.blueprintWeightPct,
-    0
+  return outlineCoveragePct(
+    topics.map((topic) => ({
+      blueprintWeightPct: topic.blueprintWeightPct,
+      answerCredit: topic.pushesCompleted,
+      denominator: topic.pushesAvailable,
+    }))
   );
-  return Math.round(weighted / totalWeight);
 }
 
 export function selectPriorityTopics(topics: RoadmapTopicRow[], limit = 5): RoadmapTopicRow[] {

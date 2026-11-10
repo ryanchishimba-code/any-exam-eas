@@ -1,10 +1,28 @@
 import { describe, expect, it } from "vitest";
 import { calendarDaysUntil as planDays } from "@/lib/learning/exam-day-plan";
 import { calendarDaysUntil } from "@/lib/edtech/exam-date-utils";
-import { practiceEstimateFromHistory } from "@/lib/learning/practice-estimate";
-import { trendDayKey, weakAreaAccuracyPct } from "@/lib/learning/student-dashboard";
+import { outlineCoveragePct } from "@/lib/learning/practice-measure";
+import {
+  outlineDepthPct,
+  practiceEstimateFromHistory,
+  sharedPracticeRead,
+} from "@/lib/learning/practice-estimate";
+import {
+  accuracyTrendFromInstants,
+  trendDayKey,
+  weakAreaAccuracyPct,
+} from "@/lib/learning/student-dashboard";
 import { specificQuestionReason } from "@/components/study/AdaptiveReasoningChip";
-import { collapseRepeatedLabels } from "@/lib/questions/student-display-text";
+import {
+  cleanStudentRationale,
+  collapseRepeatedLabels,
+  showAiAssistedRationaleLabel,
+  studentRationalePlain,
+} from "@/lib/questions/student-display-text";
+import { lengthOptionTitle } from "@/components/exam/FullExamLengthWheel";
+import { getLengthOptions } from "@/lib/full-exam/config";
+import { weakAreaPracticeHref } from "@/lib/learning/weak-area-practice-href";
+import { initialClientSession } from "@/lib/auth/client-session";
 
 describe("practice estimate", () => {
   it("stays empty until there are answers", () => {
@@ -45,6 +63,81 @@ describe("shared student numbers", () => {
     expect(trendDayKey("2026-11-08")).toBe("2026-11-08");
   });
 
+  it("buckets an evening attempt on the Chicago day and keeps earlier days", () => {
+    const now = new Date("2026-11-10T04:30:00.000Z");
+    expect(trendDayKey(now)).toBe("2026-11-09");
+    const points = accuracyTrendFromInstants(
+      [
+        { createdAt: new Date("2026-11-08T18:00:00.000Z"), correct: true },
+        { createdAt: now, correct: false },
+      ],
+      now
+    );
+    expect(points).toHaveLength(14);
+    expect(points.at(-1)?.date).toBe("2026-11-09");
+    expect(points.find((point) => point.date === "2026-11-08")?.attempts).toBe(1);
+    expect(points.find((point) => point.date === "2026-11-09")?.attempts).toBe(1);
+    expect(points.some((point) => point.date === "2026-11-10")).toBe(false);
+  });
+
+  it("uses one outline depth and one estimate for dashboard, analytics, and readiness", () => {
+    const read = sharedPracticeRead({
+      totalAttempts: 40,
+      openIncorrectCount: 4,
+      topics: [
+        {
+          attempts: 30,
+          correct: 9,
+          pushesCompleted: 4,
+          pushesAvailable: 20,
+          blueprintWeightPct: 50,
+        },
+        {
+          attempts: 10,
+          correct: 1,
+          pushesCompleted: 0,
+          pushesAvailable: 10,
+          blueprintWeightPct: 50,
+        },
+      ],
+    });
+    const depth = outlineDepthPct([
+      { seen: 4, available: 20, weightPct: 50 },
+      { seen: 0, available: 10, weightPct: 50 },
+    ]);
+    expect(read.accuracyPct).toBe(25);
+    expect(read.outlineDepthPct).toBe(depth);
+    expect(depth).toBe(
+      outlineCoveragePct([
+        { blueprintWeightPct: 50, answerCredit: 4, denominator: 20 },
+        { blueprintWeightPct: 50, answerCredit: 0, denominator: 10 },
+      ])
+    );
+    const again = sharedPracticeRead({
+      totalAttempts: 40,
+      openIncorrectCount: 4,
+      topics: [
+        {
+          attempts: 30,
+          correct: 9,
+          pushesCompleted: 4,
+          pushesAvailable: 20,
+          blueprintWeightPct: 50,
+        },
+        {
+          attempts: 10,
+          correct: 1,
+          pushesCompleted: 0,
+          pushesAvailable: 10,
+          blueprintWeightPct: 50,
+        },
+      ],
+    });
+    expect(again.estimate).toEqual(read.estimate);
+    expect(again.outlineDepthPct).toBe(read.outlineDepthPct);
+    expect(again.accuracyPct).toBe(read.accuracyPct);
+  });
+
   it("uses correct answers over a zero mastery score", () => {
     expect(weakAreaAccuracyPct({ attempts: 10, correct: 6, masteryScore: 0 })).toBe(60);
     expect(weakAreaAccuracyPct({ attempts: 0, correct: 0, masteryScore: 0 })).toBeNull();
@@ -66,5 +159,52 @@ describe("student-facing rationale cleanup", () => {
       "In practice: watch the airway."
     );
     expect(collapseRepeatedLabels("Chek the airway.")).toBe("Check the airway.");
+  });
+
+  it("renders markdown markers as text without a doubled practice lead", () => {
+    const raw = "**Airway** first.\nIn practice: In practice, watch the airway.";
+    expect(cleanStudentRationale(raw)).toContain("**Airway**");
+    expect(studentRationalePlain(raw)).toBe("Airway first.\nIn practice: watch the airway.");
+    expect(studentRationalePlain(raw)).not.toContain("**");
+    expect(studentRationalePlain("In practice: In practice, watch.")).not.toMatch(/In practice: In practice/i);
+  });
+
+  it("does not show an AI-assisted label", () => {
+    expect(showAiAssistedRationaleLabel()).toBe(false);
+  });
+});
+
+describe("full exam length labels", () => {
+  it("names the USMLE step on every option, including the 200-question full exam", () => {
+    const options = getLengthOptions("usmle", "usmle-step-3");
+    const full = options.find((option) => option.questionCount === 200);
+    expect(full?.preset).toBe("full");
+    expect(lengthOptionTitle(full!)).toMatch(/Step 3/);
+    expect(options.every((option) => /Step 3/.test(lengthOptionTitle(option)))).toBe(true);
+  });
+});
+
+describe("weak area practice link", () => {
+  it("opens Confidentiality Reporting on Step 3, not a generic Step 2 session", () => {
+    const href = weakAreaPracticeHref({
+      examSlug: "usmle",
+      topicKey: "tag:Confidentiality Reporting",
+      fieldId: "usmle-step-3",
+      count: 25,
+    });
+    const url = new URL(href, "https://anyexameasy.local");
+    expect(url.searchParams.get("field")).toBe("usmle-step-3");
+    expect(url.searchParams.get("field")).not.toBe("usmle-step-2");
+    expect(url.searchParams.get("blueprintTopics")).toBe("confidentiality-reporting");
+    expect(url.searchParams.get("usmleTopic")).toBe("confidentiality-reporting");
+    expect(url.searchParams.get("style")).toBe("standard");
+  });
+});
+
+describe("signed-in header session", () => {
+  it("does not freeze a missing session as logged out", () => {
+    expect(initialClientSession(null)).toBeUndefined();
+    const session = { user: { name: "Dev" } };
+    expect(initialClientSession(session)).toBe(session);
   });
 });
