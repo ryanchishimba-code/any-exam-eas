@@ -34,7 +34,13 @@ export type ParsedRationaleDisplay = {
 };
 
 function stripBold(text: string): string {
-  return text.replace(/\*\*/g, "").trim();
+  return collapseRepeatedLabels(text.replace(/\*\*/g, "")).replace(/\bChek\b/g, "Check").trim();
+}
+
+function withoutPracticePrefix(text: string | undefined): string | undefined {
+  if (!text?.trim()) return undefined;
+  const next = stripBold(text).replace(/^(?:in practice\s*[:,]\s*)+/i, "").trim();
+  return next || undefined;
 }
 
 const SECTION_HEADERS = [
@@ -328,7 +334,7 @@ export function parseRationaleForDisplay(
   const lines = whyBlock.split("\n").map((l) => l.trim()).filter(Boolean);
   let headline = lines.find((l) => !l.startsWith("•") && !l.startsWith("-") && !l.startsWith("**In practice"));
   const inPractice = whyBlock.match(/\*\*In practice:\*\*\s*(.+)/i)?.[1]?.trim();
-  const conceptBullets = parseBullets(whyBlock);
+  const conceptBullets = parseBullets(whyBlock).map((bullet) => stripBold(bullet));
   if (headline && conceptBullets[0]) {
     const bullet = conceptBullets[0];
     const headlineSentence = headline.split(/(?<=[.!?])\s/)[0] ?? headline;
@@ -346,7 +352,7 @@ export function parseRationaleForDisplay(
   let memoryHook: string | undefined;
   const hookMatch = takeawayBlock.match(/\*\*Memory hook:\*\*\s*(.+)/i);
   if (hookMatch) {
-    memoryHook = hookMatch[1]!.trim();
+    memoryHook = stripBold(hookMatch[1]!);
     keyTakeaway = keyTakeaway.replace(/\*\*Memory hook:\*\*[\s\S]*/i, "").replace(/\*\*/g, "").trim();
   }
 
@@ -386,7 +392,7 @@ export function parseRationaleForDisplay(
   return {
     whyCorrectHeadline: headline ? stripBold(headline) : undefined,
     conceptBullets,
-    clinicalContext: inPractice,
+    clinicalContext: withoutPracticePrefix(inPractice),
     wrongOptions: parseWrongOptions(wrongBlock)
       .map((row) => ({ ...row, body: stripGenericPriorityFiller(row.body) }))
       .filter((row) => row.body.length > 0),

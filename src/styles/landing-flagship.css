@@ -605,11 +605,10 @@
   font-size: clamp(1.0625rem, 2.4vw, 1.375rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1.15;
   color: var(--color-ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
 }
 
 .aee-board-picker__item[data-active="true"] .aee-board-picker__name {
@@ -621,9 +620,8 @@
   font-weight: 500;
   line-height: 1.3;
   color: var(--flagship-muted, var(--color-ink-muted));
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
 }
 
 .aee-board-picker__count {

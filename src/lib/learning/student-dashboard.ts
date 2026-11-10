@@ -119,6 +119,40 @@ function fieldWhere(fieldIds: FieldScope) {
   return ids.length > 0 ? { fieldId: { in: ids } } : {};
 }
 
+/**
+ * Day key for the 14-day trend. Postgres DATE values sometimes arrive as a
+ * JS Date at local midnight; `toISOString()` then lands on the previous UTC
+ * day and every bar says "No data".
+ */
+export function trendDayKey(value: Date | string): string {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    const utcMidnight =
+      value.getUTCHours() === 0 &&
+      value.getUTCMinutes() === 0 &&
+      value.getUTCSeconds() === 0 &&
+      value.getUTCMilliseconds() === 0;
+    const year = utcMidnight ? value.getUTCFullYear() : value.getFullYear();
+    const month = (utcMidnight ? value.getUTCMonth() : value.getMonth()) + 1;
+    const day = utcMidnight ? value.getUTCDate() : value.getDate();
+    return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+  }
+  const match = String(value).match(/(\d{4}-\d{2}-\d{2})/);
+  return match?.[1] ?? String(value).slice(0, 10);
+}
+
+/** Same percent the outline and analytics weak list show: correct ÷ attempts. */
+export function weakAreaAccuracyPct(row: {
+  attempts: number;
+  correct: number;
+  masteryScore: number;
+}): number | null {
+  if (row.attempts > 0) {
+    return Math.round((row.correct / row.attempts) * 100);
+  }
+  const score = Math.round(row.masteryScore);
+  return score > 0 ? score : null;
+}
+
 function buildTrendPoints(
   byDay: Map<string, { correct: number; total: number }>
 ): AccuracyTrendPoint[] {
@@ -153,7 +187,7 @@ async function getAccuracyTrendLegacy(
 
   const byDay = new Map<string, { correct: number; total: number }>();
   for (const a of attempts) {
-    const key = a.createdAt.toISOString().slice(0, 10);
+    const key = trendDayKey(a.createdAt);
     const entry = byDay.get(key) ?? { correct: 0, total: 0 };
     entry.total++;
     if (a.correct) entry.correct++;
@@ -178,10 +212,10 @@ async function getAccuracyTrendSql(
       : Prisma.empty;
 
   const rows = await prisma.$queryRaw<
-    { day: Date; total: number; correct: number }[]
+    { day: Date | string; total: number; correct: number }[]
   >(Prisma.sql`
     SELECT
-      (DATE("createdAt" AT TIME ZONE 'UTC')) AS day,
+      to_char(("createdAt" AT TIME ZONE 'UTC'), 'YYYY-MM-DD') AS day,
       COUNT(*)::int AS total,
       SUM(CASE WHEN "correct" THEN 1 ELSE 0 END)::int AS correct
     FROM "QuestionAttempt"
@@ -194,10 +228,7 @@ async function getAccuracyTrendSql(
 
   const byDay = new Map<string, { correct: number; total: number }>();
   for (const row of rows) {
-    const key =
-      row.day instanceof Date
-        ? row.day.toISOString().slice(0, 10)
-        : String(row.day).slice(0, 10);
+    const key = trendDayKey(row.day);
     byDay.set(key, { correct: row.correct, total: row.total });
   }
 
@@ -276,10 +307,12 @@ function mapWeakTopics(
     fieldId: string;
     masteryScore: number;
     attempts: number;
+    correct?: number;
   }[]
 ): WeakTopicRow[] {
   const studentFacing = masteries
     .filter((m) => !isInternalMasteryConceptKey(m.conceptKey))
+    .filter((m) => weakAreaAccuracyPct({ ...m, correct: m.correct ?? 0 }) != null)
     .slice(0, WEAK_TOPIC_DISPLAY);
   const weaknessWeights = studentFacing.map((m) => {
     const gap = Math.max(0, 100 - m.masteryScore);
@@ -296,7 +329,12 @@ function mapWeakTopics(
       id: m.conceptKey,
       name,
       fieldId: m.fieldId,
-      masteryScore: Math.round(m.masteryScore),
+      masteryScore:
+        weakAreaAccuracyPct({
+          attempts: m.attempts,
+          correct: m.correct ?? 0,
+          masteryScore: m.masteryScore,
+        }) ?? 0,
       attempts: m.attempts,
       weight: Math.round((m.weight / totalWeight) * 100),
     };
@@ -506,6 +544,7 @@ async function loadStudentDashboardData(
         fieldId: true,
         masteryScore: true,
         attempts: true,
+        correct: true,
         retentionStrength: true,
         confidenceReliability: true,
         lastAttemptAt: true,

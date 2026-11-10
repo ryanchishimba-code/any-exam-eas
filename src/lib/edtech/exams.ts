@@ -20,7 +20,7 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     shortName: "USMLE",
     fieldId: "usmle-step-2",
     description:
-      "Full USMLE coverage — Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases.",
+      "Step 1, Step 2 CK, and Step 3 are separate banks. A practice set or full exam covers the step you select.",
     accentClass: "from-indigo-500/15 to-violet-600/10 border-indigo-200/70",
     simulatedDurationMin: 240,
     simulatedQuestionCount: 280,

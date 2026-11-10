@@ -12,6 +12,7 @@ import {
 } from "react";
 import { useSession } from "next-auth/react";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { EXAM_SWITCH_EVENT } from "@/lib/client/exam-switch-reset";
 import {
   clearOptimisticExamSlug,
@@ -25,6 +26,8 @@ import type { ExamSlug } from "@/types/edtech";
 
 export type AppPreferences = {
   examSlug: ExamSlug | null;
+  /** Saved USMLE step field, when the account exam is USMLE. */
+  usmleFieldId: string | null;
   mpjeStateCode: string | null;
   loading: boolean;
   refresh: () => Promise<void>;
@@ -37,6 +40,7 @@ const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayout
 
 type PreferencePayload = {
   examSlug: ExamSlug | null;
+  usmleFieldId: string | null;
   mpjeStateCode: string | null;
 };
 
@@ -58,10 +62,12 @@ if (typeof window !== "undefined") {
 
 function readPreferencePayload(data: {
   examSlug?: string | null;
+  usmleFieldId?: string | null;
   mpjeStateCode?: string | null;
 }): PreferencePayload {
   return {
     examSlug: data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null,
+    usmleFieldId: typeof data.usmleFieldId === "string" ? data.usmleFieldId : null,
     mpjeStateCode: data.mpjeStateCode ?? null,
   };
 }
@@ -86,6 +92,7 @@ function publishOptimisticExamSlug(slug: ExamSlug | null) {
   preferenceWriteRevision += 1;
   cachedPreference = {
     examSlug: slug,
+    usmleFieldId: cachedPreference?.usmleFieldId ?? null,
     mpjeStateCode: cachedPreference?.mpjeStateCode ?? null,
   };
 }
@@ -174,6 +181,7 @@ export function AppPreferencesProvider({
     }
     return initialExamSlug;
   });
+  const [usmleFieldId, setUsmleFieldId] = useState<string | null>(null);
   const [mpjeStateCode, setMpjeStateCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(status === "authenticated" && !initialExamSlug);
 
@@ -188,11 +196,13 @@ export function AppPreferencesProvider({
       const payload = await fetchPreference(force);
       if (!payload || revision !== preferenceWriteRevision) return;
       applyFetchedExamSlug(payload, setExamSlugState);
+      setUsmleFieldId(payload.usmleFieldId);
       setMpjeStateCode(payload.mpjeStateCode);
     } catch {
       if (revision !== preferenceWriteRevision) return;
       if (readOptimisticExamSlug()) return;
       setExamSlugState(null);
+      setUsmleFieldId(null);
       setMpjeStateCode(null);
     } finally {
       setLoading(false);
@@ -204,10 +214,15 @@ export function AppPreferencesProvider({
 
   useEffect(() => {
     function onExamSwitch(event: Event) {
-      const slug = (event as CustomEvent<{ examSlug?: string }>).detail?.examSlug;
+      const detail = (event as CustomEvent<{ examSlug?: string; fieldId?: string }>).detail;
+      const slug = detail?.examSlug;
       if (!slug || !isExamSlug(slug)) return;
       publishOptimisticExamSlug(slug);
       setExamSlugState(slug);
+      if (detail.fieldId && isUsmleFieldId(detail.fieldId)) {
+        setUsmleFieldId(detail.fieldId);
+        if (cachedPreference) cachedPreference = { ...cachedPreference, usmleFieldId: detail.fieldId };
+      }
     }
     window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
@@ -232,6 +247,7 @@ export function AppPreferencesProvider({
 
     if (status !== "authenticated") {
       setExamSlugState(null);
+      setUsmleFieldId(null);
       setMpjeStateCode(null);
       setLoading(false);
       return;
@@ -249,8 +265,8 @@ export function AppPreferencesProvider({
   }, [status, initialExamSlug, load]);
 
   const value = useMemo(
-    () => ({ examSlug, mpjeStateCode, loading, refresh, setExamSlug }),
-    [examSlug, mpjeStateCode, loading, refresh, setExamSlug]
+    () => ({ examSlug, usmleFieldId, mpjeStateCode, loading, refresh, setExamSlug }),
+    [examSlug, usmleFieldId, mpjeStateCode, loading, refresh, setExamSlug]
   );
 
   return (
@@ -261,6 +277,7 @@ export function AppPreferencesProvider({
 function useLocalAppPreferences(active: boolean): AppPreferences {
   const { status } = useSession();
   const [examSlug, setExamSlugState] = useState<ExamSlug | null>(null);
+  const [usmleFieldId, setUsmleFieldId] = useState<string | null>(null);
   const [mpjeStateCode, setMpjeStateCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(active && status === "authenticated");
 
@@ -275,11 +292,13 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
       const payload = await fetchPreference(force);
       if (!payload || revision !== preferenceWriteRevision) return;
       applyFetchedExamSlug(payload, setExamSlugState);
+      setUsmleFieldId(payload.usmleFieldId);
       setMpjeStateCode(payload.mpjeStateCode);
     } catch {
       if (revision !== preferenceWriteRevision) return;
       if (readOptimisticExamSlug()) return;
       setExamSlugState(null);
+      setUsmleFieldId(null);
       setMpjeStateCode(null);
     } finally {
       setLoading(false);
@@ -291,10 +310,15 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
   useEffect(() => {
     if (!active) return;
     function onExamSwitch(event: Event) {
-      const slug = (event as CustomEvent<{ examSlug?: string }>).detail?.examSlug;
+      const detail = (event as CustomEvent<{ examSlug?: string; fieldId?: string }>).detail;
+      const slug = detail?.examSlug;
       if (!slug || !isExamSlug(slug)) return;
       publishOptimisticExamSlug(slug);
       setExamSlugState(slug);
+      if (detail.fieldId && isUsmleFieldId(detail.fieldId)) {
+        setUsmleFieldId(detail.fieldId);
+        if (cachedPreference) cachedPreference = { ...cachedPreference, usmleFieldId: detail.fieldId };
+      }
     }
     window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
@@ -306,13 +330,14 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
     if (status !== "authenticated") {
       setLoading(false);
       setExamSlugState(null);
+      setUsmleFieldId(null);
       setMpjeStateCode(null);
       return;
     }
     void load(false);
   }, [active, status, load]);
 
-  return { examSlug, mpjeStateCode, loading, refresh, setExamSlug };
+  return { examSlug, usmleFieldId, mpjeStateCode, loading, refresh, setExamSlug };
 }
 
 export function useAppPreferences(): AppPreferences {

@@ -1,5 +1,6 @@
 "use client";
 
+import type { Session } from "next-auth";
 import { Suspense, type ReactNode } from "react";
 import { BoardIntentBeacon } from "@/components/auth/BoardIntentBeacon";
 import { SessionProvider } from "@/components/SessionProvider";
@@ -15,7 +16,13 @@ import { UserAccessProvider } from "@/lib/client/user-access-context";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 /** Single client boundary for root providers — avoids fragile multi-client imports in layout. */
-export function AppProviders({ children }: { children: ReactNode }) {
+export function AppProviders({
+  children,
+  session = null,
+}: {
+  children: ReactNode;
+  session?: Session | null;
+}) {
   return (
     <ThemeProvider>
       <AppQueryProvider>
@@ -23,7 +30,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
         <Suspense fallback={null}>
           <BoardIntentBeacon />
         </Suspense>
-        <SessionProvider>
+        <SessionProvider session={session}>
           <UserAccessProvider>
             <LoginModalRoot>
               <ClientRecovery />

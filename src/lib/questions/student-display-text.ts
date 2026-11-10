@@ -59,7 +59,7 @@ function collapseQuoteLineBreaks(text: string): string {
     .replace(/"([^"]*?)\s*\n+\s*([^"]*?)"/g, '"$1 $2"');
 }
 
-const REPEATED_LABEL = "Remember|Reviewed|Updated|Revised|Note|Caution|Warning|Trap|Source";
+const REPEATED_LABEL = "Remember|Reviewed|Updated|Revised|Note|Caution|Warning|Trap|Source|In practice|Check";
 
 const REVIEW_MONTH = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec";
 const REVIEW_MONTH_NAME =
@@ -120,7 +120,10 @@ export function normalizeBowTieInstruction(text: string): string {
 export function collapseRepeatedLabels(text: string): string {
   const labeled = new RegExp(`\\b(${REPEATED_LABEL})\\b\\s*[:：]\\s*\\1\\b\\s*[,:]?\\s*`, "gi");
   const doubled = new RegExp(`\\b(${REPEATED_LABEL})\\b(?:\\s+\\1\\b)+`, "gi");
-  return text.replace(labeled, "$1: ").replace(doubled, "$1");
+  return text
+    .replace(labeled, "$1: ")
+    .replace(doubled, "$1")
+    .replace(/\bChek\b/g, "Check");
 }
 
 /**

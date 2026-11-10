@@ -392,7 +392,7 @@ export function ExpertRationalePanel({
             Key takeaway
           </p>
           <p className="mt-1.5 text-sm font-medium leading-relaxed text-[var(--color-ink)]">
-            {parsed.keyTakeaway}
+            {renderInlineBold(parsed.keyTakeaway)}
           </p>
         </div>
       )}
@@ -400,7 +400,7 @@ export function ExpertRationalePanel({
       {parsed.memoryHook && (
         <p className="rounded-lg bg-sky-50 px-3 py-2 text-sm text-sky-900 dark:bg-sky-950/40 dark:text-sky-100">
           <span className="font-semibold">Memory hook: </span>
-          {parsed.memoryHook}
+          {renderInlineBold(parsed.memoryHook)}
         </p>
       )}
     </div>

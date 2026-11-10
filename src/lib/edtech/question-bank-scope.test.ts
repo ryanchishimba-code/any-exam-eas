@@ -121,6 +121,21 @@ describe("question-bank-scope", () => {
     expect(canonicalPracticeFieldId("pance")).toBe("pance");
   });
 
+  it("starts Step 1, Step 2 CK, and Step 3 sessions for a USMLE account", async () => {
+    vi.mocked(getUserExamPreferenceFresh).mockResolvedValue({
+      userId: "user-1",
+      examSlug: "usmle",
+      lastStudiedAt: null,
+    });
+    vi.mocked(getUserEdtechMetadata).mockResolvedValue({ usmleFieldId: "usmle-step-1" });
+
+    for (const field of ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const) {
+      const access = await enforceQuestionBankFieldAccess("user-1", field);
+      expect(access.ok, field).toBe(true);
+      if (access.ok) expect(access.fieldId).toBe(field);
+    }
+  });
+
   it("allows exam-scoped review for a USMLE step that differs from the saved step", async () => {
     vi.mocked(getUserExamPreferenceFresh).mockResolvedValue({
       userId: "user-1",
@@ -128,9 +143,6 @@ describe("question-bank-scope", () => {
       lastStudiedAt: null,
     });
     vi.mocked(getUserEdtechMetadata).mockResolvedValue({ usmleFieldId: "usmle-step-2" });
-
-    const denied = await enforceQuestionBankFieldAccess("user-1", "usmle-step-1");
-    expect(denied.ok).toBe(false);
 
     const allowed = await enforceQuestionBankFieldAccess("user-1", "usmle-step-1", {
       trustedSessionFieldId: "usmle-step-1",

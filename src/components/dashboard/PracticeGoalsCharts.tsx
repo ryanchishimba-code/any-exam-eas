@@ -172,8 +172,8 @@ function DomainBars({ domains }: { domains: GoalDomainBar[] }) {
           return (
             <li key={domain.id}>
               <div className="mb-1 flex items-baseline justify-between gap-3">
-                <p className="min-w-0 truncate text-[13px] font-medium text-[var(--color-ink)]" title={domain.label}>
-                  {words(domain.label)}
+                <p className="min-w-0 text-[13px] font-medium text-[var(--color-ink)]" title={domain.label}>
+                  {domain.label}
                   {domain.gap ? <span className="ml-1.5 text-[11px] font-semibold text-[var(--color-accent)]">Gap</span> : null}
                 </p>
                 <p className="shrink-0 text-[12px] tabular-nums text-[var(--color-ink-muted)]">{fill}%</p>

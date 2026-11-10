@@ -7,6 +7,9 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { remediationCompletionPct } from "@/lib/learning/exam-day-plan";
+import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
+import { practiceEstimateFromHistory } from "@/lib/learning/practice-estimate";
 import { loadReadinessPage } from "@/lib/learning/readiness-check/service";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
@@ -36,14 +39,30 @@ async function ReadinessContent({ userId }: { userId: string }) {
   const access = await requireAppPage(ROUTES.readiness);
   const metadata = pref.examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const fieldId = canonicalPracticeFieldId(pref.examSlug, metadata?.usmleFieldId);
-  const data = await loadReadinessPage({
-    userId,
-    examSlug: pref.examSlug,
-    fieldId,
-    examName: EXAM_CATALOG[pref.examSlug].shortName,
-    hasStudyAccess: access.hasStudyAccess,
-  });
-  return <ReadinessBoard data={data} />;
+  const [data, roadmap] = await Promise.all([
+    loadReadinessPage({
+      userId,
+      examSlug: pref.examSlug,
+      fieldId,
+      examName: EXAM_CATALOG[pref.examSlug].shortName,
+      hasStudyAccess: access.hasStudyAccess,
+    }),
+    getExamRoadmapData(userId, pref.examSlug, {
+      usmleFieldId: pref.examSlug === "usmle" ? fieldId : undefined,
+    }).catch(() => null),
+  ]);
+  const practiceEstimate = roadmap
+    ? practiceEstimateFromHistory({
+        attempts: roadmap.totalAttempts,
+        accuracyPct: roadmap.recentAccuracyWindow?.pct ?? 0,
+        coveragePct: roadmap.overallPushCoveragePct,
+        remediationPct: remediationCompletionPct(
+          roadmap.totalAttempts,
+          roadmap.openIncorrectCount
+        ),
+      })
+    : null;
+  return <ReadinessBoard data={data} practiceEstimate={practiceEstimate} />;
 }
 
 export default async function ReadinessPage() {

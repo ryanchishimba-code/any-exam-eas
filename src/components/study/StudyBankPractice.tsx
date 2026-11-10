@@ -836,7 +836,7 @@ export function StudyBankPractice({
       if (persisted?.count) {
         setQuestionCount(snapToWheel(persisted.count));
       } else if (isUsmleFieldId(fieldId)) {
-        setQuestionCount(40);
+        setQuestionCount(25);
       }
     }
 
@@ -1362,6 +1362,9 @@ export function StudyBankPractice({
     setError("");
     setUpgradeHref(null);
     setQuestions(null);
+    if (isUsmleFieldId(fieldId)) {
+      await persistUsmleStepPreference(fieldId);
+    }
     setClinicalSession(null);
     setAdaptiveMeta(null);
     setSessionEpoch((epoch) => epoch + 1);
@@ -1983,8 +1986,7 @@ export function StudyBankPractice({
         const questionReasoning: Record<string, string> = {};
         raw.forEach((q, i) => {
           questionReasoning[String(q.id)] =
-            data.adaptive?.selectionReasoning?.[i]?.reasoning ??
-            "Adaptive selection based on your weak areas and review schedule.";
+            data.adaptive?.selectionReasoning?.[i]?.reasoning ?? "";
         });
         setAdaptiveMeta({
           sessionRationale: data.adaptive?.rationale,

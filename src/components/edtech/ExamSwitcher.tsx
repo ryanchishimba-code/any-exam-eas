@@ -12,6 +12,7 @@ import {
 } from "@/lib/client/exam-switch-reset";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -30,8 +31,13 @@ export function ExamSwitcher({
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
   const [pending, startTransition] = useTransition();
-  const { setExamSlug, refresh } = useAppPreferences();
+  const { setExamSlug, refresh, usmleFieldId } = useAppPreferences();
   const exam = EXAM_CATALOG[currentExam];
+  const stepLabel =
+    currentExam === "usmle" && usmleFieldId && isUsmleFieldId(usmleFieldId)
+      ? usmleStepDefinition(usmleFieldId)?.shortName
+      : null;
+  const chipLabel = stepLabel ?? exam.shortName;
   const isNav = variant === "nav";
   const isMobile = variant === "mobile";
   const switchHref = `${ROUTES.selectExam}?switch=1`;
@@ -69,11 +75,11 @@ export function ExamSwitcher({
       <Link
         href={switchHref}
         className="inline-flex min-h-9 items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-2.5 text-[13px] font-semibold tracking-tight text-[var(--color-ink)] shadow-sm transition hover:border-[var(--study-accent)]/40 hover:bg-[var(--color-surface)]"
-        aria-label={`Current exam: ${exam.name}. Switch exam`}
+        aria-label={`Current exam: ${chipLabel}. Switch exam`}
         title="Switch exam"
       >
         <GraduationCap className="h-3.5 w-3.5 text-[var(--study-accent)]" aria-hidden />
-        <span className="inline-block min-w-[5.5rem] text-left">{exam.shortName}</span>
+        <span className="inline-block min-w-[5.5rem] text-left">{chipLabel}</span>
         <ChevronDown className="h-3 w-3 text-[var(--color-ink-muted)]" aria-hidden />
       </Link>
     );
@@ -88,10 +94,10 @@ export function ExamSwitcher({
         <Link
           href={switchHref}
           className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white py-2.5 pl-3 pr-3 text-sm font-semibold text-slate-900 transition hover:border-teal-300 hover:bg-teal-50/50"
-          aria-label={`Current exam: ${exam.name}. Switch exam`}
+          aria-label={`Current exam: ${chipLabel}. Switch exam`}
         >
           <GraduationCap className="h-4 w-4 text-[var(--study-accent)]" aria-hidden />
-          <span className="flex-1 text-left">{exam.name}</span>
+          <span className="flex-1 text-left">{stepLabel ? `${chipLabel}` : exam.name}</span>
           <span className="text-xs font-semibold text-teal-700">Switch</span>
         </Link>
       </div>
@@ -116,7 +122,7 @@ export function ExamSwitcher({
           >
             {EXAM_SLUGS.map((slug) => (
               <option key={slug} value={slug}>
-                {EXAM_CATALOG[slug].shortName}
+                {slug === "usmle" && stepLabel ? stepLabel : EXAM_CATALOG[slug].shortName}
               </option>
             ))}
           </select>

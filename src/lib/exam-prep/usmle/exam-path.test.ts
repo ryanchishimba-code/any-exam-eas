@@ -15,16 +15,17 @@ import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 describe("USMLE exam-path phase", () => {
-  it("defaults bank href to timed 40-Q block", () => {
+  it("defaults bank href to the same 25-question timed block as the help text", () => {
     const href = questionBankHref("usmle", "usmle-step-2");
-    expect(href).toContain("count=40");
+    expect(href).toContain("count=25");
     expect(href).toContain("pace=timed");
     expect(href).toContain("field=usmle-step-2");
   });
 
-  it("uses 40/50/80 wheel for USMLE fields", () => {
-    expect(questionBankWheelPresetsForField("usmle-step-1")).toEqual([40, 50, 80]);
-    expect(questionBankCountOptions("usmle-step-2").map((o) => o.value)).toEqual([40, 50, 80]);
+  it("uses 25/50/75 for every USMLE step", () => {
+    expect(questionBankWheelPresetsForField("usmle-step-1")).toEqual([25, 50, 75]);
+    expect(questionBankCountOptions("usmle-step-2").map((o) => o.value)).toEqual([25, 50, 75]);
+    expect(questionBankCountOptions("usmle-step-3").map((o) => o.value)).toEqual([25, 50, 75]);
   });
 
   it("builds CCS drill deep link on question-bank with pace", () => {

@@ -4,6 +4,17 @@ import { useState } from "react";
 import { Brain, ChevronDown } from "lucide-react";
 import { reviewIncorrectPosition } from "@/lib/study/review-incorrect-queue-label";
 
+/** Question-specific reason, or null when the line is generic. */
+export function specificQuestionReason(reasoning: string | null | undefined): string | null {
+  const text = reasoning?.trim() ?? "";
+  if (!text || /adaptive selection based on your weak areas/i.test(text)) return null;
+  if (/missed before|previously missed|answered incorrectly/i.test(text)) return "Missed before";
+  if (/due for review|spaced repetition/i.test(text)) return "Due for review";
+  if (/weak area|topic gap/i.test(text)) return "Weak area";
+  if (/unseen|new topic|broadens coverage/i.test(text)) return "New topic";
+  return null;
+}
+
 type Props = {
   reasoning: string;
   sessionRationale?: string;
@@ -22,7 +33,8 @@ export function AdaptiveReasoningChip({
 }: Props) {
   const [open, setOpen] = useState(false);
 
-  if (!reasoning && !sessionRationale) return null;
+  const specific = specificQuestionReason(reasoning);
+  if (!specific) return null;
 
   const position =
     questionIndex != null && total != null
@@ -56,7 +68,7 @@ export function AdaptiveReasoningChip({
       </button>
       {open && (
         <div className="border-t border-teal-100/80 px-4 py-3 text-sm leading-relaxed text-slate-700">
-          <p>{reasoning}</p>
+          <p>{specific}</p>
           {sessionRationale && (
             <p className="mt-2 text-xs text-slate-500">
               <span className="font-semibold text-teal-700">Session plan: </span>

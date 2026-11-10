@@ -4,6 +4,7 @@ import { respondDbUnavailable } from "@/lib/api-db-error";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { resolveCanonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { getExamSession } from "@/lib/exam-sessions/service";
 import { loadFullExamSessionQuestionsPayload } from "@/lib/full-exam/load-session-questions";
 
@@ -54,14 +55,20 @@ export async function GET(
       pref.examSlug
     );
     if (resolvedFieldId !== canonicalFieldId) {
-      return NextResponse.json(
-        {
-          error: "That session does not match your selected exam step.",
-          code: "USMLE_STEP_MISMATCH",
-          expectedFieldId: canonicalFieldId,
-        },
-        { status: 403 }
-      );
+      const selectedUsmleStep =
+        pref.examSlug === "usmle" &&
+        isUsmleFieldId(resolvedFieldId) &&
+        isUsmleFieldId(canonicalFieldId);
+      if (!selectedUsmleStep) {
+        return NextResponse.json(
+          {
+            error: "That session does not match your selected exam step.",
+            code: "USMLE_STEP_MISMATCH",
+            expectedFieldId: canonicalFieldId,
+          },
+          { status: 403 }
+        );
+      }
     }
 
     const loaded = await loadFullExamSessionQuestionsPayload(premium.userId, sessionId);

@@ -7,6 +7,7 @@ import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { ExamDayReadiness } from "@/lib/learning/exam-day-plan";
 import { PRACTICE_MEASURE_DISCLAIMER } from "@/lib/learning/practice-measure";
+import { practiceEstimateFromHistory } from "@/lib/learning/practice-estimate";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
@@ -123,6 +124,14 @@ export function StudentAnalyticsDashboard({
   const primaryField = EXAM_CATALOG[examSlug].fieldId;
   const practiceHeadline = practice?.headline ?? "0 of 3 practice goals met";
   const practiceScore = practice?.score ?? 0;
+  const practiceEstimate = practice
+    ? practiceEstimateFromHistory({
+        attempts: practice.totalAttempts,
+        accuracyPct: practice.recentAccuracyPct,
+        coveragePct: practice.coveragePct,
+        remediationPct: practice.remediationPct,
+      })
+    : null;
 
   // The API already scopes the payload to this exam; keep a defensive client
   // filter so nothing from another exam can ever leak into the view.
@@ -168,6 +177,16 @@ export function StudentAnalyticsDashboard({
           summary={openRemediation}
           showWhenEmpty={false}
         />
+      ) : null}
+
+      {practiceEstimate ? (
+        <section className={cn(studyUi.panel, "px-3.5 py-3")} data-practice-estimate={practiceEstimate.level}>
+          <p className={studyUi.eyebrow}>Estimated performance</p>
+          <p className="mt-1 text-[17px] font-semibold text-[var(--color-ink)]">{practiceEstimate.levelLabel}</p>
+          <p className="mt-1 text-[14px] font-medium text-[var(--color-ink)]">{practiceEstimate.label}</p>
+          <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{practiceEstimate.summary}</p>
+          <p className="mt-1 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">{practiceEstimate.explanation}</p>
+        </section>
       ) : null}
 
       <section className={cn(studyUi.panel, "px-3.5 py-3")}>
@@ -225,13 +244,19 @@ export function StudentAnalyticsDashboard({
           hint={practiceHeadline}
         />
         <MetricCard
-          label="Overall accuracy"
+          label="Accuracy"
           value={
-            dashboard.headline.overallAccuracy != null
-              ? `${dashboard.headline.overallAccuracy}%`
-              : "—"
+            practice
+              ? `${practice.recentAccuracyPct}%`
+              : dashboard.headline.overallAccuracy != null
+                ? `${dashboard.headline.overallAccuracy}%`
+                : "—"
           }
-          hint={`${dashboard.headline.totalAttempts} attempts`}
+          hint={
+            practice
+              ? `${practice.totalAttempts} attempts · ${PRACTICE_MEASURE_DISCLAIMER}`
+              : `${dashboard.headline.totalAttempts} attempts`
+          }
         />
         <MetricCard
           label="Study streak"
@@ -281,7 +306,7 @@ export function StudentAnalyticsDashboard({
               {weakTopics.slice(0, 6).map((t) => (
                 <li key={t.id}>
                   <div className="flex items-center justify-between gap-2 text-sm">
-                    <span className="font-medium">{t.name}</span>
+                    <WeakAreaPracticeLink name={t.name} conceptKey={t.id} fieldId={t.fieldId} />
                     <span className="flex flex-wrap items-center justify-end gap-2">
                       <WeakTopicFixLink conceptKey={t.id} fieldId={t.fieldId} />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
@@ -357,6 +382,28 @@ export function StudentAnalyticsDashboard({
       </div>
       </PhoneFold>
     </div>
+  );
+}
+
+/** Name links to a practice set for this area. */
+function WeakAreaPracticeLink({
+  name,
+  conceptKey,
+  fieldId,
+}: {
+  name: string;
+  conceptKey: string;
+  fieldId: string;
+}) {
+  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
+  const examSlug = examSlugFromFieldId(fieldId);
+  if (!examSlug) return <span className="font-medium">{name}</span>;
+  const links = getExamTopicStudyLinks(examSlug, topicKey);
+  const href = topicRetestHref(examSlug, links.topicKey, 25);
+  return (
+    <Link href={href} className="font-medium text-[var(--color-ink)] underline-offset-2 hover:underline">
+      {name}
+    </Link>
   );
 }
 

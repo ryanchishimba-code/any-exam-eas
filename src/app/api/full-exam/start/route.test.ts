@@ -36,7 +36,7 @@ describe("POST /api/full-exam/start USMLE step", () => {
     resolveUserUsmleFieldId.mockResolvedValue("usmle-step-2");
   });
 
-  it("refuses a different step before creating a session", async () => {
+  it("does not refuse Step 1 when the saved step is Step 2 CK", async () => {
     const response = await POST(
       new Request("https://example.test/api/full-exam/start", {
         method: "POST",
@@ -48,12 +48,8 @@ describe("POST /api/full-exam/start USMLE step", () => {
         }),
       })
     );
-    expect(response.status).toBe(403);
-    await expect(response.json()).resolves.toEqual({
-      error: "That session does not match your selected exam step.",
-      code: "USMLE_STEP_MISMATCH",
-      expectedFieldId: "usmle-step-2",
-    });
-    expect(createExamInstance).not.toHaveBeenCalled();
+    const body = (await response.json()) as { code?: string };
+    expect(response.status).not.toBe(403);
+    expect(body.code).not.toBe("USMLE_STEP_MISMATCH");
   });
 });
