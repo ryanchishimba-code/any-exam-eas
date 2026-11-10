@@ -82,6 +82,22 @@ export function snapshotsFromAnalysis(analysis: unknown): FullExamSnapshotLike[]
   return out;
 }
 
+/** Time between consecutive saves, capped at 30 minutes. The first item has no prior stamp. */
+export function durationBetweenAnswers(answers: readonly FullExamAnswerLike[]): Map<number, number> {
+  const durations = new Map<number, number>();
+  const ordered = [...answers].sort((a, b) => a.questionIndex - b.questionIndex);
+  for (let i = 1; i < ordered.length; i++) {
+    const current = Date.parse(ordered[i]!.answeredAt);
+    const previous = Date.parse(ordered[i - 1]!.answeredAt);
+    if (!Number.isFinite(current) || !Number.isFinite(previous) || current <= previous) continue;
+    const delta = current - previous;
+    if (delta > 0 && delta <= 30 * 60 * 1000) {
+      durations.set(ordered[i]!.questionIndex, delta);
+    }
+  }
+  return durations;
+}
+
 /** Answered simulation items, in question order, ready for QuestionAttempt. */
 export function draftsFromFullExamAnswers(params: {
   answers: FullExamAnswerLike[];
@@ -91,6 +107,7 @@ export function draftsFromFullExamAnswers(params: {
   const seen = new Set<string>();
   const drafts: SessionAttemptDraft[] = [];
   const ordered = [...params.answers].sort((a, b) => a.questionIndex - b.questionIndex);
+  const durations = durationBetweenAnswers(ordered);
 
   for (const answer of ordered) {
     const questionKey = answer.questionId?.trim() ?? "";
@@ -107,6 +124,7 @@ export function draftsFromFullExamAnswers(params: {
       stemPreview: snap?.question?.slice(0, 200),
       correct: answer.correct === true,
       selectedAnswer: answer.selected,
+      durationMs: durations.get(answer.questionIndex),
     });
   }
 

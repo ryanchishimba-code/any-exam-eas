@@ -17,7 +17,11 @@ import { reviewIncorrectHref } from "@/lib/learning/remediation-loop";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
-import { practiceResultsTotals, practiceScorePercent } from "@/lib/full-exam/administered-score";
+import {
+  administeredReviewLength,
+  practiceResultsTotals,
+  practiceScorePercent,
+} from "@/lib/full-exam/administered-score";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import { practiceFieldIdForExamSession } from "@/lib/full-exam/practice-field-id";
@@ -63,7 +67,7 @@ async function FullExamResultsContent({
     ? examSession.answers
     : []) as ExamAnswerRecord[];
 
-  const questions: FullExamQuestion[] =
+  const storedQuestions: FullExamQuestion[] =
     analysis.questionSnapshots?.length > 0
       ? analysis.questionSnapshots
       : answers.map((a, i) => ({
@@ -75,12 +79,23 @@ async function FullExamResultsContent({
           topicCategory: a.topicCategory,
         }));
 
+  const reviewLength = administeredReviewLength({
+    cat: Boolean(analysis.catOutcome),
+    answeredCount: analysis.answeredCount,
+    snapshotCount: storedQuestions.length,
+    answers,
+  });
+  const questions = storedQuestions.slice(0, reviewLength > 0 ? reviewLength : storedQuestions.length);
+  const reviewAnswers = answers.filter(
+    (answer) => typeof answer.questionIndex === "number" && answer.questionIndex < questions.length
+  );
+
   const exam = EXAM_CATALOG[examSlug];
   const fieldId = practiceFieldIdForExamSession(examSession, examSlug);
-  const correct = answers.filter((a) => a.correct && a.selected?.trim()).length;
+  const correct = reviewAnswers.filter((a) => a.correct && a.selected?.trim()).length;
   const totals = practiceResultsTotals({
     delivered: questions.length,
-    answers,
+    answers: reviewAnswers,
     cat: Boolean(analysis.catOutcome),
   });
   const displayScore =
@@ -98,7 +113,7 @@ async function FullExamResultsContent({
   const analysisForResults: FullExamResultsAnalysis = {
     ...analysis,
     timeUsedSec,
-    topicBreakdown: buildTopicBreakdown(questions, answers, { examSlug }),
+    topicBreakdown: buildTopicBreakdown(questions, reviewAnswers, { examSlug }),
   };
   const treatsAsEndedEarly = fullExamTreatsAsEndedEarly({
     endedEarly: examSession.status === "ended_early",
@@ -107,15 +122,15 @@ async function FullExamResultsContent({
     questionCount: questions.length,
     plannedQuestionCount: analysis.sessionConfig.questionCount,
     catStopReason: analysis.catOutcome?.stopReason,
-    answers,
+    answers: reviewAnswers,
   });
   const passPathPersisted = examPassPathPersisted(analysis);
-  const fromAnswers = answers.filter((answer) => answer.correct === false).length;
+  const fromAnswers = reviewAnswers.filter((answer) => answer.correct === false).length;
   const fromPass = passPathPersisted
     ? countFullExamMisses(
         draftsFromFullExamAnswers({
-          answers,
-          snapshots: analysis.questionSnapshots,
+          answers: reviewAnswers,
+          snapshots: questions,
         })
       )
     : 0;
@@ -136,14 +151,14 @@ async function FullExamResultsContent({
         answeredCount={analysis.answeredCount}
         plannedQuestionCount={analysis.sessionConfig.questionCount}
         catStopReason={analysis.catOutcome?.stopReason}
-        answers={answers}
+        answers={reviewAnswers}
       />
       <FullExamResults
         examSlug={examSlug}
         sessionId={sessionId}
         score={displayScore}
         analysis={analysisForResults}
-        answers={answers}
+        answers={reviewAnswers}
         questions={questions}
         initialReviewOpen={reviewOpen}
         missCount={missCount}

@@ -19,7 +19,7 @@ import { formatAnswerDisplay, storedAnswerIncludesChoice } from "@/lib/full-exam
 import { shouldUseNgnReviewDisplay } from "@/lib/full-exam/ngn-review-display";
 import { NgnReviewAnswerList } from "@/components/exam/NgnReviewAnswerList";
 import { practiceResultsTotals } from "@/lib/full-exam/administered-score";
-import { formatHms } from "@/lib/full-exam/config";
+import { formatExamDuration } from "@/lib/full-exam/config";
 import { fullExamTreatsAsEndedEarly } from "@/lib/full-exam/results-title";
 import { fullExamHref } from "@/lib/routes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
@@ -475,7 +475,7 @@ export function FullExamResults({
       <PhoneFold summary="Score breakdown">
       <div className="space-y-4 sm:space-y-6">
       <div className="grid gap-3 sm:grid-cols-1">
-        <StatCard label="Time used" value={formatHms(analysis.timeUsedSec)} icon={Clock} />
+        <StatCard label="Time used" value={formatExamDuration(analysis.timeUsedSec)} icon={Clock} />
       </div>
 
       {notesPreview.length > 0 ? (

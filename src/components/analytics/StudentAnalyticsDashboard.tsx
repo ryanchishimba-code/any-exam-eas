@@ -235,6 +235,7 @@ export function StudentAnalyticsDashboard({
       <div className="space-y-4 sm:space-y-8">
       <FormatPracticePanel
         stats={dashboard.formatPractice}
+        savedSets={dashboard.savedFormatSets}
         ngnLabel={examSlug === "nclex" ? "NGN" : "NGN-style"}
         fieldId={fieldId}
         formats={formats}
@@ -286,6 +287,11 @@ export function StudentAnalyticsDashboard({
             <BarChart3 className="h-4 w-4 text-[var(--color-ink-muted)]" aria-hidden />
             <h3 className={studyUi.sectionTitle}>Accuracy trend (14 days)</h3>
           </div>
+          {dashboard.accuracyTrend.every((point) => point.attempts === 0) ? (
+            <p className="mt-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+              No attempts in the last 14 days. Older sessions stay in your totals above.
+            </p>
+          ) : null}
           <div className="mt-4 flex h-40 items-end gap-1">
             {dashboard.accuracyTrend.map((p) => (
               <div key={p.date} className="flex flex-1 flex-col items-center gap-1">

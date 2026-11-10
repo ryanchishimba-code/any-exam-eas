@@ -32,7 +32,7 @@ export function DashboardSpacedReview({
           </h2>
         </div>
         <p className={cn(dbUi.sectionHint, "mt-0.5")}>
-          Missed questions resurface on a smart schedule.
+          Spaced-repetition items due to come back. This is not the missed-question count.
         </p>
       </div>
 
@@ -42,7 +42,7 @@ export function DashboardSpacedReview({
       >
         <div className="min-w-0">
           <p className="text-[13px] font-semibold text-[var(--color-ink)]">
-            {dueCount} due now
+            {dueCount} spaced-repetition {dueCount === 1 ? "item" : "items"} due
             {weakDueCount > 0 ? (
               <span className="font-medium text-[var(--color-ink-muted)]">
                 {" "}

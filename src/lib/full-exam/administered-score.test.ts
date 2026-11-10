@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   administeredQuestionCount,
+  administeredReviewLength,
   practiceResultsTotals,
   practiceScorePercent,
 } from "@/lib/full-exam/administered-score";
@@ -57,5 +58,18 @@ describe("full exam score denominator", () => {
     expect(administered).toBe(40);
     expect(practiceScorePercent(30, administered)).toBe(75);
     expect(practiceScorePercent(30, 150)).toBe(20);
+  });
+});
+
+describe("administeredReviewLength", () => {
+  it("uses the CAT stop length instead of the prefetch pool", () => {
+    expect(
+      administeredReviewLength({
+        cat: true,
+        answeredCount: 87,
+        snapshotCount: 150,
+        answers: [{ questionIndex: 86, selected: "A" }],
+      })
+    ).toBe(87);
   });
 });

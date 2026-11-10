@@ -16,11 +16,14 @@ export function ExamOutcomeForm({
   examName,
   examDate,
   compact = false,
+  selected = null,
   onSubmit,
 }: {
   examName: string;
   examDate: string | null;
   compact?: boolean;
+  /** Saved outcome. Nothing is highlighted until the student chooses. */
+  selected?: OutcomeChoice | null;
   onSubmit: (result: OutcomeChoice, examDate: string | null) => Promise<void>;
 }) {
   const [date, setDate] = useState(examDate ?? "");
@@ -64,10 +67,11 @@ export function ExamOutcomeForm({
             type="button"
             disabled={pending != null}
             onClick={() => void choose(choice.id)}
+            aria-pressed={selected === choice.id}
             className={cn(
               "min-h-11 rounded-2xl border px-3 py-3 text-left transition active:scale-[0.99] disabled:opacity-60",
-              choice.id === "passed"
-                ? "border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 hover:border-[var(--color-accent)]"
+              selected === choice.id
+                ? "border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10"
                 : "border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] hover:border-[var(--color-accent)]/40"
             )}
           >

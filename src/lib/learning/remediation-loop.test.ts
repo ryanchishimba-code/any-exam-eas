@@ -106,6 +106,28 @@ describe("groupOpenRemediationLoops", () => {
     expect(pharm?.drug?.kind).toBe("drug");
   });
 
+  it("merges a label and a slug for the same topic and uses client needs when the subject is missing", () => {
+    const summary = groupOpenRemediationLoops({
+      examSlug: "nclex",
+      fieldId: "nursing",
+      attempts: [
+        { bankItemId: "a", questionKey: "a", correct: false, subjectId: "physiological-adaptation" },
+        { bankItemId: "b", questionKey: "b", correct: false, subjectId: "Physiological Adaptation" },
+        {
+          bankItemId: "c",
+          questionKey: "c",
+          correct: false,
+          subjectId: null,
+          clientNeeds: "Safety & Infection Control",
+        },
+      ],
+    });
+    const labels = summary.loops.map((loop) => loop.label);
+    expect(labels.filter((label) => label === "Physiological Adaptation")).toHaveLength(1);
+    expect(summary.unscopedCount).toBe(0);
+    expect(summary.loops.some((loop) => loop.id === "safety-infection")).toBe(true);
+  });
+
   it("drops an item from the open count after spaced re-proof", () => {
     const t0 = Date.parse("2026-09-01T15:00:00.000Z");
     const day = 24 * 60 * 60 * 1000;

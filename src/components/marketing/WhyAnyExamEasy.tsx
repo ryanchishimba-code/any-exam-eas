@@ -6,7 +6,7 @@ import "@/styles/why-anyexameasy.css";
 const FACTS = [
   {
     title: "Six boards on one plan",
-    body: "NCLEX, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT are on one Pro plan.",
+    body: "Six boards: NCLEX, USMLE (Step 1, Step 2 CK, and Step 3), NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
   },
   {
     title: "An explanation with the answer",

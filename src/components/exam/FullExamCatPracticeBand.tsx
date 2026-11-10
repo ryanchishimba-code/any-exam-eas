@@ -51,7 +51,7 @@ export function FullExamCatPracticeBand({ catOutcome }: Props) {
             Length
           </p>
           <p className="mt-0.5 text-sm font-semibold tabular-nums text-[var(--color-ink)]">
-            {answered} answered · {nclexCatQuestionRange()}
+            {answered}{" "}answered · {nclexCatQuestionRange()}
           </p>
         </div>
         <div className="rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-3 py-2.5">

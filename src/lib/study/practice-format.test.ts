@@ -40,6 +40,11 @@ describe("practice format counts", () => {
       expect.objectContaining({ value: 3, description: "Entire published pool" }),
     ]);
     expect(practiceFormatCountOptions(0)).toEqual([]);
+    expect(practiceFormatCountOptions(12, "case").map((option) => option.label)).toEqual([
+      "5 cases",
+      "10 cases",
+    ]);
+    expect(practiceFormatCountOptions(12, "case")[0]?.description).toMatch(/6 scored items/);
   });
 
   it("blocks an empty or unknown pool and accepts an honest size", () => {

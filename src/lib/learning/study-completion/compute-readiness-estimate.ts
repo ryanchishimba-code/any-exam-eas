@@ -7,6 +7,7 @@ import {
   type CompletionRulesV2,
 } from "./completion-rules-v2";
 import type { StudyCompletionExamSlug } from "./completion-rules-v1";
+import { qualifiesAsFullLengthExam } from "./full-length-exam-count";
 
 export type ReadinessEstimateBand = "Building" | "Getting close" | "On track";
 
@@ -172,8 +173,15 @@ export async function computeReadinessEstimate(
       WHERE "userId" = ${userId}
         AND "fieldId" = ${fieldId}
         AND "bankItemId" IS NOT NULL
-        AND "durationMs" IS NOT NULL
-        AND "durationMs" >= ${minDurationMs}
+        AND (
+          ("durationMs" IS NOT NULL AND "durationMs" >= ${minDurationMs})
+          OR EXISTS (
+            SELECT 1 FROM "exam_sessions" es
+            WHERE es.id = "QuestionAttempt"."sessionId"
+              AND es."userId" = "QuestionAttempt"."userId"
+              AND es.status = 'completed'
+          )
+        )
     `,
     prisma.$queryRaw<
       {
@@ -190,23 +198,30 @@ export async function computeReadinessEstimate(
         WHERE "userId" = ${userId}
           AND "fieldId" = ${fieldId}
           AND "bankItemId" IS NOT NULL
-          AND "durationMs" IS NOT NULL
-          AND "durationMs" >= ${minDurationMs}
+          AND (
+            ("durationMs" IS NOT NULL AND "durationMs" >= ${minDurationMs})
+            OR EXISTS (
+              SELECT 1 FROM "exam_sessions" es
+              WHERE es.id = "QuestionAttempt"."sessionId"
+                AND es."userId" = "QuestionAttempt"."userId"
+                AND es.status = 'completed'
+            )
+          )
         ORDER BY "createdAt" DESC
         LIMIT ${attemptLimit}
       ) qa
       LEFT JOIN "QuestionBankItem" qbi ON qbi.id = qa."bankItemId"
     `,
-    prisma.examSession.findFirst({
+    prisma.examSession.findMany({
       where: {
         userId,
         examType: examSlug,
         status: "completed",
-        questionCount: fullLengthQuestionCount,
         score: { not: null },
       },
       orderBy: { completedAt: "desc" },
-      select: { score: true },
+      take: 30,
+      select: { score: true, questionCount: true, analysis: true },
     }),
     prisma.readinessCheck.findFirst({
       where: { userId, examSlug, status: "completed" },
@@ -239,8 +254,11 @@ export async function computeReadinessEstimate(
     areaMap.set(areaId, existing);
   }
 
+  const qualifyingExam = latestExam.find((row) =>
+    qualifiesAsFullLengthExam(row, fullLengthQuestionCount)
+  );
   const fullLengthScorePercent =
-    latestExam?.score != null ? Math.round(latestExam.score) : null;
+    qualifyingExam?.score != null ? Math.round(qualifyingExam.score) : null;
   const readinessCheckScore = levelToScore(latestCheck?.overallLevel);
 
   return buildReadinessEstimateFromSignals({

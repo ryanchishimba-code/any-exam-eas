@@ -16,7 +16,11 @@ import {
 } from "@/lib/learning/concept-labels";
 import { getFieldMeta } from "@/lib/fields";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
-import { loadFormatPracticeStats } from "@/lib/learning/format-practice-stats";
+import {
+  loadFormatPracticeStats,
+  loadSavedFormatSets,
+  type SavedFormatSet,
+} from "@/lib/learning/format-practice-stats";
 import {
   emptyFormatPracticeStats,
   type FormatPracticeStats,
@@ -82,6 +86,7 @@ export type StudentDashboardData = {
   recentTests: RecentTestRow[];
   spacedReview: SpacedReviewSummary;
   formatPractice: FormatPracticeStats;
+  savedFormatSets?: SavedFormatSet[];
 };
 
 const TREND_DAYS = 14;
@@ -515,7 +520,7 @@ export async function getStudentDashboardData(
   // payload is not served in their place.
   const formatKey = opts?.skipFormatPractice ? "no-format" : "format";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v6", userId, scopeKey, trendKey, formatKey]),
+    cacheKey(["student-dashboard-v7", userId, scopeKey, trendKey, formatKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
@@ -654,7 +659,7 @@ async function loadStudentDashboardData(
     },
   });
 
-  const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, subjectAttemptGroups, spacedReview, formatPractice] =
+  const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, subjectAttemptGroups, spacedReview, formatPractice, savedFormatSets] =
     await Promise.all([
     // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
     prisma.learningProfile.findUnique({
@@ -697,6 +702,9 @@ async function loadStudentDashboardData(
     opts?.skipFormatPractice
       ? Promise.resolve(emptyFormatPracticeStats())
       : loadFormatPracticeStats(userId, fieldIds),
+    opts?.skipFormatPractice
+      ? Promise.resolve([] as SavedFormatSet[])
+      : loadSavedFormatSets(userId, fieldIds),
   ]);
 
   const { totalAttempts, correctCount } = sumAttemptCounts(attemptGroups);
@@ -761,7 +769,10 @@ async function loadStudentDashboardData(
 
   const recentTests = mergeRecentTests(
     progressTests,
-    finishedExamSessions.map((row) => recentTestFromExamSession(row)),
+    finishedExamSessions.flatMap((row) => {
+      const test = recentTestFromExamSession(row);
+      return test ? [test] : [];
+    }),
     20
   );
 
@@ -801,5 +812,6 @@ async function loadStudentDashboardData(
     recentTests,
     spacedReview,
     formatPractice,
+    savedFormatSets,
   };
 }

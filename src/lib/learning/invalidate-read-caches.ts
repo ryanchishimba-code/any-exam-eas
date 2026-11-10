@@ -13,6 +13,14 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
   if (fieldId) scopes.add(fieldId);
   const keys: string[] = [];
   for (const scope of scopes) {
+    keys.push(cacheKey(["student-dashboard-v7", userId, scope, "trend", "format"]));
+    keys.push(cacheKey(["student-dashboard-v7", userId, scope, "trend", "no-format"]));
+    keys.push(cacheKey(["student-dashboard-v7", userId, scope, "no-trend", "format"]));
+    keys.push(cacheKey(["student-dashboard-v7", userId, scope, "no-trend", "no-format"]));
+    keys.push(cacheKey(["student-dashboard-v6", userId, scope, "trend", "format"]));
+    keys.push(cacheKey(["student-dashboard-v6", userId, scope, "trend", "no-format"]));
+    keys.push(cacheKey(["student-dashboard-v6", userId, scope, "no-trend", "format"]));
+    keys.push(cacheKey(["student-dashboard-v6", userId, scope, "no-trend", "no-format"]));
     keys.push(cacheKey(["student-dashboard-v5", userId, scope, "trend", "format"]));
     keys.push(cacheKey(["student-dashboard-v5", userId, scope, "trend", "no-format"]));
     keys.push(cacheKey(["student-dashboard-v5", userId, scope, "no-trend", "format"]));
@@ -32,8 +40,11 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
     keys.push(cacheKey(["exam-roadmap-v4", userId, scope]));
     keys.push(cacheKey(["exam-roadmap-v5", userId, scope]));
     keys.push(cacheKey(["exam-roadmap-v6", userId, scope]));
+    keys.push(cacheKey(["exam-roadmap-v10", userId, scope]));
+    keys.push(cacheKey(["exam-roadmap-v9", userId, scope]));
     keys.push(cacheKey(["exam-roadmap-v8", userId, scope]));
     keys.push(cacheKey(["exam-roadmap-v7", userId, scope]));
+    keys.push(cacheKey(["mastery-dashboard-v2", userId, scope]));
     keys.push(cacheKey(["mastery-dashboard", userId, scope]));
     keys.push(cacheKey(["exam-scoped-stats-v2", userId, scope]));
     keys.push(cacheKey(["exam-scoped-stats", userId, scope]));
@@ -48,8 +59,11 @@ export function studentReadCacheKeys(userId: string, fieldId?: string | null): s
       keys.push(cacheKey(["exam-roadmap-v4", userId, slug]));
       keys.push(cacheKey(["exam-roadmap-v5", userId, slug]));
       keys.push(cacheKey(["exam-roadmap-v6", userId, slug]));
+      keys.push(cacheKey(["exam-roadmap-v10", userId, slug]));
+      keys.push(cacheKey(["exam-roadmap-v9", userId, slug]));
       keys.push(cacheKey(["exam-roadmap-v8", userId, slug]));
       keys.push(cacheKey(["exam-roadmap-v7", userId, slug]));
+      keys.push(cacheKey(["mastery-dashboard-v2", userId, slug]));
       keys.push(cacheKey(["mastery-dashboard", userId, slug]));
     }
   }

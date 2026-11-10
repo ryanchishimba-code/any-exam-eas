@@ -236,6 +236,11 @@ export function ClinicalBankSession({ session, reviewQueue = false, onExit }: Pr
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3 max-lg:sticky max-lg:top-[var(--nav-height)] max-lg:z-20 max-lg:mb-0 max-lg:bg-[var(--color-bg)] max-lg:pb-4 max-lg:pt-1">
         {progress}
       </div>
+      {phase === "answer" ? (
+        <p className={`mb-3 text-sm ${ngnMuted}`}>
+          Feedback for each item appears after you submit the whole case.
+        </p>
+      ) : null}
       <CaseStudyPlayer
         key={`${unit.caseDoc.id}:${unit.caseDoc.version}`}
         caseDoc={{ ...unit.caseDoc, references, items }}

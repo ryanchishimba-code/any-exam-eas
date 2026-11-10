@@ -92,7 +92,7 @@ describe("studyProgressNextStep", () => {
   it("prioritizes unanswered unique questions with singular copy", () => {
     const data = buildStudyCompletionResult("nclex", {
       ...baseMetrics,
-      distinctBankItemsAttempted: 849,
+      distinctBankItemsAttempted: 999,
       liveBankCount: 1000,
     });
     const step = studyProgressNextStep(data);
@@ -103,7 +103,7 @@ describe("studyProgressNextStep", () => {
   it("pluralizes full-length exams when more than one remain", () => {
     const data = buildStudyCompletionResult("nclex", {
       ...baseMetrics,
-      distinctBankItemsAttempted: 850,
+      distinctBankItemsAttempted: 1000,
       quickBitesCompleted: 10,
       quickBitesTotal: 10,
       studyGuideChaptersCompleted: 20,
@@ -117,7 +117,7 @@ describe("studyProgressNextStep", () => {
   it("links Quick Bites to the NAPLEX page with singular copy", () => {
     const data = buildStudyCompletionResult("naplex", {
       ...baseMetrics,
-      distinctBankItemsAttempted: 900,
+      distinctBankItemsAttempted: 1000,
       quickBitesCompleted: 9,
       quickBitesTotal: 10,
     });

@@ -366,7 +366,7 @@ function goalFor(
     const detail = !ctx.openKnown
       ? "Questions you missed could not be counted on this load."
       : clear
-        ? "No questions to review. If you miss one, it shows up here."
+        ? "No missed questions are still open. If you miss one, it shows up here."
         : `${questionsToReview(ctx.openIncorrect)}. ${daysOn(ctx.dayCount, "questions you missed")}.`;
     const progress = clear || ctx.incorrectDone
       ? 1
@@ -451,7 +451,9 @@ function countNoun(count: number, singular: string, plural = `${singular}s`): st
 }
 
 function questionsToReview(count: number): string {
-  return count === 1 ? "1 question to review" : `${count} questions to review`;
+  return count === 1
+    ? "1 missed question still open"
+    : `${count} missed questions still open`;
 }
 
 function utcDayIndex(now: Date): number {

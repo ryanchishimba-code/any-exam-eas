@@ -108,27 +108,35 @@ export function practiceFormatPoolCount(
 }
 
 export function practiceFormatCountOptions(
-  available: number | null
+  available: number | null,
+  format: PracticeFormatMode = "all"
 ): PracticeFormatCountOption[] {
   if (available == null) return [];
   const pool = Math.max(0, Math.floor(available));
   if (pool <= 0) return [];
+  const noun = format === "case" ? "case" : "question";
+  const plural = format === "case" ? "cases" : "questions";
+  const caseNote = "Each case is 6 scored items. Feedback comes after you submit the case.";
 
   const fitting = PRACTICE_FORMAT_COUNT_PRESETS.filter((value) => value <= pool);
   if (fitting.length > 0) {
     return fitting.map((value) => ({
       value,
-      label: `${value} questions`,
-      description: value <= 10 ? "Small deliberate set" : "Focused block",
+      label: `${value} ${plural}`,
+      description:
+        format === "case"
+          ? caseNote
+          : value <= 10
+            ? "Small deliberate set"
+            : "Focused block",
     }));
   }
 
-  const noun = pool === 1 ? "question" : "questions";
   return [
     {
       value: pool,
-      label: `${pool} ${noun}`,
-      description: "Entire published pool",
+      label: `${pool} ${pool === 1 ? noun : plural}`,
+      description: format === "case" ? caseNote : "Entire published pool",
     },
   ];
 }

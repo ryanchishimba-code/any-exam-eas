@@ -772,7 +772,7 @@ describe("week countdown plan", () => {
     const open = buildExamDayPlan({ ...shared, openIncorrect: 20 });
     const closed = buildExamDayPlan({ ...shared, openIncorrect: 0 });
     expect(open.weekPlan.goals.find((goal) => goal.id === "remediation")?.detail).toMatch(
-      /20 questions to review/
+      /20 missed questions still open/
     );
     expect(closed.weekPlan.goals.find((goal) => goal.id === "remediation")?.status).toBe("clear");
     expect(open.weekPlan.todayKind).not.toBe(closed.weekPlan.todayKind);

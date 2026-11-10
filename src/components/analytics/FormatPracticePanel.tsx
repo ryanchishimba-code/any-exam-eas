@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
+import type { SavedFormatSet } from "@/lib/learning/format-practice-stats";
 import { offeredDeliberateFormats } from "@/lib/study/offered-formats";
 import { emptyFormatPracticeStats, type FormatPracticeStats } from "@/lib/study/practice-format";
 import { studyUi } from "@/lib/study/study-ui";
@@ -7,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   stats?: FormatPracticeStats | null;
+  savedSets?: SavedFormatSet[] | null;
   ngnLabel: string;
   fieldId?: string;
   /** Student-eligible split for this field. A zero bucket is not shown. */
@@ -26,7 +28,7 @@ function launchHref(fieldId: string, format: "ngn" | "case"): string {
   return `/question-bank?${qs.toString()}`;
 }
 
-export function FormatPracticePanel({ stats, ngnLabel, fieldId, formats }: Props) {
+export function FormatPracticePanel({ stats, savedSets = [], ngnLabel, fieldId, formats }: Props) {
   const practice = stats ?? emptyFormatPracticeStats();
   const cards = offeredDeliberateFormats(formats).map((id) => ({
     id,
@@ -86,6 +88,28 @@ export function FormatPracticePanel({ stats, ngnLabel, fieldId, formats }: Props
           );
         })}
       </div>
+      {savedSets && savedSets.length > 0 ? (
+        <ul className="space-y-2">
+          {savedSets.map((set) => (
+            <li key={set.id}>
+              <Link
+                href={`/analytics/sets/${set.id}`}
+                className="flex items-center justify-between gap-3 rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)] px-4 py-3"
+              >
+                <span className="text-[14px] font-semibold text-[var(--color-ink)]">
+                  {set.format === "case" ? "Case set" : `${ngnLabel} set`}
+                  <span className="ml-2 font-medium text-[var(--color-ink-muted)]">
+                    {set.itemCount} {set.itemCount === 1 ? "item" : "items"}
+                  </span>
+                </span>
+                <span className="text-[14px] font-semibold tabular-nums text-[var(--color-ink)]">
+                  {set.score == null ? "Saved" : `${set.score}%`}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </section>
   );
 }

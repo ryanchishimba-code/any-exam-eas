@@ -11,13 +11,15 @@ type OptionProps = {
   selected: string[];
   revealed: boolean;
   onToggle: (option: string) => void;
+  /** Exam mode uses the desktop width for the choices. */
+  wide?: boolean;
 };
 
-export function McqOptions({ question, selected, revealed, onToggle }: OptionProps) {
+export function McqOptions({ question, selected, revealed, onToggle, wide = false }: OptionProps) {
   const options = Array.isArray(question.options) ? question.options : [];
   const correctAnswers = Array.isArray(question.correctAnswers) ? question.correctAnswers : [];
   return (
-    <ul className="mt-6 space-y-2.5">
+    <ul className={wide ? "mt-6 grid gap-3 xl:grid-cols-2" : "mt-6 space-y-2.5"}>
       {options.map((opt, i) => (
         <OptionRow
           key={i}

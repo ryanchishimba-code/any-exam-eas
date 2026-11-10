@@ -79,7 +79,7 @@ export function FloatingTimer({
         onClick={() => setHidden(false)}
         className={cn(
           feUi.timerPill,
-          "top-[calc(var(--nav-height)+0.5rem)] right-3 sm:right-4",
+          "top-[calc(var(--nav-height)+0.5rem)] right-[max(0.75rem,env(safe-area-inset-right))]",
           "flex h-9 items-center gap-1.5 px-3 text-[12px] font-semibold text-[var(--color-ink-muted)]",
           className
         )}
@@ -98,7 +98,7 @@ export function FloatingTimer({
       animate={{ opacity: 1, y: 0 }}
       className={cn(
         feUi.timerPill,
-        "top-[calc(var(--nav-height)+0.5rem)] right-3 sm:right-4",
+        "top-[calc(var(--nav-height)+0.5rem)] right-[max(0.75rem,env(safe-area-inset-right))]",
         "border",
         visuals.ringClass,
         paused && "opacity-80",

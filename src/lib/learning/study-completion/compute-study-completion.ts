@@ -1,5 +1,7 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { countActiveQuestions } from "@/lib/question-bank-db";
 import { prisma } from "@/lib/prisma";
+import { qualifiesAsFullLengthExam } from "./full-length-exam-count";
 import { quickBiteSlugsForBoard } from "@/lib/quick-bites/board-episodes";
 import { getPublishedGuide } from "@/lib/nclex-study-guide/queries";
 import type { ExamSlug } from "@/types/edtech";
@@ -125,10 +127,10 @@ export function buildStudyCompletionResult(
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   const v2 = isCompletionRulesV2(rules);
   const thresholds = v2 ? rulesForExamV2(examSlug, rules) : rulesForExam(examSlug, rules as CompletionRulesV1);
-  const coverageTarget = coverageTargetQuestionCount(
-    metrics.liveBankCount,
-    thresholds.coveragePercentTarget
-  );
+  // The Questions row uses the served-bank total, the same number as the
+  // question bank and the board page. coveragePercentTarget stays on the
+  // rules for older estimates; it is not the denominator students see.
+  const coverageTarget = metrics.liveBankCount;
   const coveragePercent = computeCoveragePercent(
     metrics.distinctBankItemsAttempted,
     metrics.liveBankCount
@@ -198,6 +200,27 @@ export function buildStudyCompletionResult(
 };
 }
 
+/**
+ * Student-serving gate: active, qaPassed, and STUDENT_ELIGIBLE_SQL
+ * (that predicate already drops code-level hidden ids). Same count the
+ * question bank and board pages show. Falls back to active + qaPassed
+ * only when that read fails, so the card still renders.
+ */
+async function countServedBankQuestions(fieldId: string): Promise<number> {
+  try {
+    const served = await countActiveQuestions(fieldId);
+    if (Number.isFinite(served) && served > 0) return served;
+  } catch (error) {
+    console.warn(
+      "[study-completion] served bank count failed:",
+      error instanceof Error ? error.message : error
+    );
+  }
+  return prisma.questionBankItem.count({
+    where: { fieldId, active: true, qaPassed: true },
+  });
+}
+
 async function loadStudyCompletionMetrics(
   userId: string,
   examSlug: StudyCompletionExamSlug,
@@ -216,23 +239,28 @@ async function loadStudyCompletionMetrics(
     liveBankCount,
     coverageRows,
     fastRows,
-    fullLengthExamsCompleted,
+    completedExams,
     readinessChecksCompleted,
     quickBitesCompleted,
     studyGuideChaptersTotal,
     studyGuideChaptersCompleted,
   ] = await Promise.all([
-    prisma.questionBankItem.count({
-      where: { fieldId, active: true, qaPassed: true }
-}),
+    countServedBankQuestions(fieldId),
     prisma.$queryRaw<{ count: bigint }[]>`
       SELECT COUNT(DISTINCT "bankItemId")::bigint AS count
       FROM "QuestionAttempt"
       WHERE "userId" = ${userId}
         AND "fieldId" = ${fieldId}
         AND "bankItemId" IS NOT NULL
-        AND "durationMs" IS NOT NULL
-        AND "durationMs" >= ${minDurationMs}
+        AND (
+          ("durationMs" IS NOT NULL AND "durationMs" >= ${minDurationMs})
+          OR EXISTS (
+            SELECT 1 FROM "exam_sessions" es
+            WHERE es.id = "QuestionAttempt"."sessionId"
+              AND es."userId" = "QuestionAttempt"."userId"
+              AND es.status = 'completed'
+          )
+        )
     `,
     prisma.$queryRaw<{ count: bigint }[]>`
       SELECT COUNT(*)::bigint AS count
@@ -241,14 +269,10 @@ async function loadStudyCompletionMetrics(
         AND "fieldId" = ${fieldId}
         AND ("durationMs" IS NULL OR "durationMs" < ${minDurationMs})
     `,
-    prisma.examSession.count({
-      where: {
-        userId,
-        examType: examSlug,
-        status: "completed",
-        questionCount: fullLengthQuestionCount
-}
-}),
+    prisma.examSession.findMany({
+      where: { userId, examType: examSlug, status: "completed" },
+      select: { questionCount: true, analysis: true },
+    }),
     prisma.readinessCheck.count({
       where: {
         userId,
@@ -287,7 +311,9 @@ async function loadStudyCompletionMetrics(
     liveBankCount,
     distinctBankItemsAttempted: Number(coverageRows[0]?.count ?? 0),
     fastAttemptsExcluded: Number(fastRows[0]?.count ?? 0),
-    fullLengthExamsCompleted,
+    fullLengthExamsCompleted: completedExams.filter((row) =>
+      qualifiesAsFullLengthExam(row, fullLengthQuestionCount)
+    ).length,
     readinessChecksCompleted,
     quickBitesCompleted,
     quickBitesTotal: quickBiteSlugs.length,

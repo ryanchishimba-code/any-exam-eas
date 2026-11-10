@@ -1,3 +1,4 @@
+import { calcTemplateAsk } from "@/lib/exam-prep/entity-cap";
 import type { BankItem } from "@/lib/question-bank";
 import { stripEncounterBoilerplate } from "@/lib/engine/polish/usmle-polish";
 import { splitUsmleBankItem } from "@/lib/exam-prep/usmle-bank-split";
@@ -80,6 +81,59 @@ function sessionDomainFor(item: BankItem): string {
     item.subjectId?.trim() ||
     "general"
   );
+}
+
+/**
+ * One key per scenario inside a single exam.
+ * Linked case-study items stay (each row is a step, not a second patient).
+ * The same vignette, or the same calculation wording with different numbers,
+ * collapses to one key.
+ */
+export function examScenarioKey(item: BankItem): string {
+  if (isSequentialBlock(item)) return `seq-item:${item.id}`;
+  const calc = calcTemplateAsk(item.question);
+  if (calc) return `calc:${calc}`;
+  return clinicalCaseKey(item);
+}
+
+/**
+ * Drop a repeated scenario and fill the gap from the pool.
+ * When the pool has no unused scenario, the sitting stays shorter rather
+ * than repeating the stem. Callers that require an exact length can still
+ * see a short result.
+ */
+export function replaceRepeatedScenarios(
+  chosen: readonly BankItem[],
+  pool: readonly BankItem[],
+  limit: number
+): BankItem[] {
+  const target = Math.max(0, Math.floor(limit) || 0);
+  const usedKeys = new Set<string>();
+  const usedIds = new Set<string>();
+  const out: BankItem[] = [];
+
+  const take = (item: BankItem): boolean => {
+    const id = item.id?.trim() ?? "";
+    if (id && usedIds.has(id)) return false;
+    const key = examScenarioKey(item);
+    if (usedKeys.has(key)) return false;
+    usedKeys.add(key);
+    if (id) usedIds.add(id);
+    out.push(item);
+    return true;
+  };
+
+  for (const item of chosen) {
+    if (out.length >= target) break;
+    take(item);
+  }
+  if (out.length < target) {
+    for (const item of pool) {
+      if (out.length >= target) break;
+      take(item);
+    }
+  }
+  return out;
 }
 
 /** Stable key for one clinical scenario — collapses same vignette, different stems. */
