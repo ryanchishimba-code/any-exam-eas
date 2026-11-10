@@ -8,6 +8,7 @@ import { cleanOptionText } from "@/lib/question-format";
 import { difficultyChipText } from "@/lib/questions/difficulty-label";
 import {
   repairSplitInstructionQuote,
+  showAiAssistedRationaleLabel,
   studentFacingStem,
   vignetteWithoutRepeatedQuestion,
 } from "@/lib/questions/student-display-text";
@@ -18,6 +19,7 @@ import {
   visibleRationaleRemainder,
 } from "@/lib/study/rationale-disclosure";
 import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
+import { StudentRationaleText } from "./StudentRationaleText";
 import { CollapsibleSources } from "./CollapsibleSources";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
@@ -337,11 +339,9 @@ export const QuestionRenderer = memo(function QuestionRenderer({
   );
 });
 
-const AI_ITEM_TAGS = new Set(["ai", "ai-assisted", "ai-curated", "generated"]);
-
-/** True only when this item's tags say the copy was AI-assisted. Curated items stay unlabeled. */
-export function itemMarkedAiAssisted(question: Pick<StudyQuestion, "tags">): boolean {
-  return (question.tags ?? []).some((tag) => AI_ITEM_TAGS.has(tag.trim().toLowerCase()));
+/** The student rationale does not show an AI-assisted label. */
+export function itemMarkedAiAssisted(_question: Pick<StudyQuestion, "tags">): boolean {
+  return showAiAssistedRationaleLabel();
 }
 
 export function storedSourceLines(references: string[] | undefined): string[] {
@@ -403,7 +403,7 @@ function ExplanationDetail({
               : "whitespace-pre-wrap text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed"
           }
         >
-          {plainBody}
+          <StudentRationaleText text={plainBody} />
         </p>
       ) : plain ? null : (
         <ExpertRationalePanel
@@ -539,7 +539,6 @@ export function ExplanationPanel({
     hasExpert;
 
   const collapsible = whyCorrectLead ? hasDeepContent : shouldCollapseRationale(parts);
-  const showAiAssisted = itemMarkedAiAssisted(question);
 
   const detail = (
     <ExplanationDetail
@@ -564,11 +563,6 @@ export function ExplanationPanel({
             {hasExpert ? (
               <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-400">
                 Expert
-              </span>
-            ) : null}
-            {showAiAssisted ? (
-              <span className="rounded-full bg-[var(--color-surface)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
-                AI-assisted
               </span>
             ) : null}
           </div>

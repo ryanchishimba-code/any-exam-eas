@@ -95,6 +95,7 @@ export function AnalyticsLive({ examSlug }: { examSlug: ExamSlug }) {
           initialData={{ dashboard: snapshot.dashboard, profile: snapshot.profile }}
           formats={snapshot.formats}
           practice={snapshot.readiness}
+          practiceRead={snapshot.practiceRead}
         />
       </div>
     </div>

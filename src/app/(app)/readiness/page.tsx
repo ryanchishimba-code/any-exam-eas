@@ -7,9 +7,8 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
-import { remediationCompletionPct } from "@/lib/learning/exam-day-plan";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import { practiceEstimateFromHistory } from "@/lib/learning/practice-estimate";
+import { sharedPracticeRead } from "@/lib/learning/practice-estimate";
 import { loadReadinessPage } from "@/lib/learning/readiness-check/service";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
@@ -51,18 +50,21 @@ async function ReadinessContent({ userId }: { userId: string }) {
       usmleFieldId: pref.examSlug === "usmle" ? fieldId : undefined,
     }).catch(() => null),
   ]);
-  const practiceEstimate = roadmap
-    ? practiceEstimateFromHistory({
-        attempts: roadmap.totalAttempts,
-        accuracyPct: roadmap.recentAccuracyWindow?.pct ?? 0,
-        coveragePct: roadmap.overallPushCoveragePct,
-        remediationPct: remediationCompletionPct(
-          roadmap.totalAttempts,
-          roadmap.openIncorrectCount
-        ),
+  const practiceRead = roadmap
+    ? sharedPracticeRead({
+        totalAttempts: roadmap.totalAttempts,
+        openIncorrectCount: roadmap.openIncorrectCount,
+        topics: roadmap.topics,
       })
     : null;
-  return <ReadinessBoard data={data} practiceEstimate={practiceEstimate} />;
+  return (
+    <ReadinessBoard
+      data={data}
+      practiceEstimate={practiceRead?.estimate ?? null}
+      accuracyPct={practiceRead?.accuracyPct ?? null}
+      outlineDepthPct={practiceRead?.outlineDepthPct ?? null}
+    />
+  );
 }
 
 export default async function ReadinessPage() {

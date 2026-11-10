@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ngnFocus, ngnMuted } from "@/components/ngn/brand";
 import { SourcesDisclosure } from "@/components/ngn/SourcesDisclosure";
 import { explainPointsLost, score } from "@/lib/assessment/scoring/registry";
+import { StudentRationaleText } from "@/components/study/questions/StudentRationaleText";
 import type { NgnItem, NgnReference, SourceRef } from "@/lib/assessment/types";
 
 type RationalePanelProps = {
@@ -45,7 +46,9 @@ export function RationalePanel({ item, response, sourcesById, caseReferences }: 
   return (
     <section className="rounded-3xl border border-[#e2e8f0] bg-[#f7fbfb] p-5 sm:p-6" aria-label="Rationale">
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0A2540]">Rationale</p>
-      <p className="mt-3 text-[17px] leading-7 text-[#0A2540]">{item.rationale.short}</p>
+      <p className="mt-3 whitespace-pre-wrap text-[17px] leading-7 text-[#0A2540]">
+        <StudentRationaleText text={item.rationale.short} />
+      </p>
       <div className="mt-5">
         <SourcesDisclosure
           itemReferences={item.references}
@@ -73,7 +76,9 @@ export function RationalePanel({ item, response, sourcesById, caseReferences }: 
                       {chip.label}
                     </span>
                   </div>
-                  <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">{entry.text}</p>
+                  <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">
+                    <StudentRationaleText text={entry.text} />
+                  </p>
                 </li>
               );
             })}
@@ -83,7 +88,9 @@ export function RationalePanel({ item, response, sourcesById, caseReferences }: 
             <p className="text-[17px] font-semibold text-[#0A2540]">
               Points: earned {earned} of {item.maxPoints}
             </p>
-            <p className={`mt-1 text-sm leading-6 ${ngnMuted}`}>{item.rationale.expanded.pointsLost}</p>
+            <p className={`mt-1 whitespace-pre-wrap text-sm leading-6 ${ngnMuted}`}>
+              <StudentRationaleText text={item.rationale.expanded.pointsLost} />
+            </p>
             {lines.length > 0 ? (
               <ul className="mt-3 space-y-1 font-mono text-sm leading-6">
                 {lines.map((line) => (
@@ -99,12 +106,16 @@ export function RationalePanel({ item, response, sourcesById, caseReferences }: 
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0A2540]">
               Clinical judgment
             </p>
-            <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">{item.rationale.expanded.cjmmCoaching}</p>
+            <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">
+              <StudentRationaleText text={item.rationale.expanded.cjmmCoaching} />
+            </p>
           </div>
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#0A2540]">Takeaway</p>
-            <p className="mt-2 text-[15px] leading-6 text-[#0A2540]">{item.rationale.expanded.takeaway}</p>
+            <p className="mt-2 whitespace-pre-wrap text-[15px] leading-6 text-[#0A2540]">
+              <StudentRationaleText text={item.rationale.expanded.takeaway} />
+            </p>
           </div>
         </div>
       ) : null}

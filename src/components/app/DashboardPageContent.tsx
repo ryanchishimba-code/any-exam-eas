@@ -15,6 +15,7 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
 import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
+import { sharedPracticeRead } from "@/lib/learning/practice-estimate";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { dbUi } from "@/lib/study/dashboard-ui";
@@ -113,6 +114,13 @@ export function DashboardPageContent({
   const exam = EXAM_CATALOG[examSlug];
   const showRecent = recentTests.length > 0;
   const boardAttempts = examDayPlan?.totalAttempts ?? 0;
+  const practiceRead = roadmap
+    ? sharedPracticeRead({
+        totalAttempts: roadmap.totalAttempts,
+        openIncorrectCount: roadmap.openIncorrectCount,
+        topics: roadmap.topics,
+      })
+    : null;
   const isNewUser = boardAttempts === 0 && !showRecent;
   const studyLocked = !hasPremiumAccess;
   const readinessSummary = roadmap ? buildPracticeReadinessSummary(roadmap) : null;
@@ -142,6 +150,8 @@ export function DashboardPageContent({
         streakDays={stats.streakDays}
         dueCount={spacedReview.dueCount}
         boardAttempts={boardAttempts}
+        accuracyPct={practiceRead?.accuracyPct ?? null}
+        outlineDepthPct={practiceRead?.outlineDepthPct ?? null}
       />
 
       {upgrade && upgrade.variant !== "trial" ? (

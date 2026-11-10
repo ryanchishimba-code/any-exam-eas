@@ -39,7 +39,7 @@ function stripBold(text: string): string {
 
 function withoutPracticePrefix(text: string | undefined): string | undefined {
   if (!text?.trim()) return undefined;
-  const next = stripBold(text).replace(/^(?:in practice\s*[:,]\s*)+/i, "").trim();
+  const next = stripBold(text).replace(/^(?:in practice\b\s*[:,]?\s*)+/i, "").trim();
   return next || undefined;
 }
 

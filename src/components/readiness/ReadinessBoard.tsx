@@ -25,9 +25,15 @@ function levelClass(level: string) {
 export function ReadinessBoard({
   data,
   practiceEstimate = null,
+  accuracyPct = null,
+  outlineDepthPct = null,
 }: {
   data: ReadinessPageData;
   practiceEstimate?: PracticeEstimate | null;
+  /** Same overall accuracy the dashboard and analytics cards show. */
+  accuracyPct?: number | null;
+  /** Same outline depth the dashboard and analytics cards show. */
+  outlineDepthPct?: number | null;
 }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
@@ -168,6 +174,13 @@ export function ReadinessBoard({
             {practiceEstimate.levelLabel}
           </h2>
           <p className="mt-2 text-[15px] font-medium text-[var(--color-ink)]">{practiceEstimate.label}</p>
+          {accuracyPct != null || outlineDepthPct != null ? (
+            <p className="mt-2 text-[15px] font-medium text-[var(--color-ink)]">
+              {accuracyPct != null ? `${accuracyPct}% accuracy` : null}
+              {accuracyPct != null && outlineDepthPct != null ? " · " : null}
+              {outlineDepthPct != null ? `${outlineDepthPct}% outline depth` : null}
+            </p>
+          ) : null}
           <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
             {practiceEstimate.summary}
           </p>

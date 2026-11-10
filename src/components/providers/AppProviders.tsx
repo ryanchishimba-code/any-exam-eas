@@ -4,6 +4,7 @@ import type { Session } from "next-auth";
 import { Suspense, type ReactNode } from "react";
 import { BoardIntentBeacon } from "@/components/auth/BoardIntentBeacon";
 import { SessionProvider } from "@/components/SessionProvider";
+import { initialClientSession } from "@/lib/auth/client-session";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -30,7 +31,7 @@ export function AppProviders({
         <Suspense fallback={null}>
           <BoardIntentBeacon />
         </Suspense>
-        <SessionProvider session={session}>
+        <SessionProvider session={initialClientSession(session)}>
           <UserAccessProvider>
             <LoginModalRoot>
               <ClientRecovery />

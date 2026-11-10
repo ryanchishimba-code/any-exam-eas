@@ -119,25 +119,75 @@ function fieldWhere(fieldIds: FieldScope) {
   return ids.length > 0 ? { fieldId: { in: ids } } : {};
 }
 
-/**
- * Day key for the 14-day trend. Postgres DATE values sometimes arrive as a
- * JS Date at local midnight; `toISOString()` then lands on the previous UTC
- * day and every bar says "No data".
- */
-export function trendDayKey(value: Date | string): string {
-  if (value instanceof Date && !Number.isNaN(value.getTime())) {
-    const utcMidnight =
-      value.getUTCHours() === 0 &&
-      value.getUTCMinutes() === 0 &&
-      value.getUTCSeconds() === 0 &&
-      value.getUTCMilliseconds() === 0;
-    const year = utcMidnight ? value.getUTCFullYear() : value.getFullYear();
-    const month = (utcMidnight ? value.getUTCMonth() : value.getMonth()) + 1;
-    const day = utcMidnight ? value.getUTCDate() : value.getDate();
-    return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+/** Student-facing trend days. Chicago, not UTC, so a late evening does not land on the next calendar day. */
+export const PRACTICE_TREND_TIME_ZONE = "America/Chicago";
+
+function namedCalendarDay(date: Date, utc: boolean): string {
+  const year = utc ? date.getUTCFullYear() : date.getFullYear();
+  const month = (utc ? date.getUTCMonth() : date.getMonth()) + 1;
+  const day = utc ? date.getUTCDate() : date.getDate();
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+function isMidnight(date: Date, utc: boolean): boolean {
+  if (utc) {
+    return (
+      date.getUTCHours() === 0 &&
+      date.getUTCMinutes() === 0 &&
+      date.getUTCSeconds() === 0 &&
+      date.getUTCMilliseconds() === 0
+    );
   }
-  const match = String(value).match(/(\d{4}-\d{2}-\d{2})/);
-  return match?.[1] ?? String(value).slice(0, 10);
+  return (
+    date.getHours() === 0 &&
+    date.getMinutes() === 0 &&
+    date.getSeconds() === 0 &&
+    date.getMilliseconds() === 0
+  );
+}
+
+export function trendDayKey(
+  value: Date | string,
+  timeZone = PRACTICE_TREND_TIME_ZONE
+): string {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value.trim())) {
+    return value.trim();
+  }
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    const match = String(value).match(/(\d{4}-\d{2}-\d{2})/);
+    return match?.[1] ?? String(value).slice(0, 10);
+  }
+  // A SQL date bucket arrives as midnight. Keep the day it names.
+  if (isMidnight(date, false)) return namedCalendarDay(date, false);
+  if (isMidnight(date, true)) return namedCalendarDay(date, true);
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+  const year = parts.find((part) => part.type === "year")?.value ?? "0000";
+  const month = parts.find((part) => part.type === "month")?.value ?? "01";
+  const day = parts.find((part) => part.type === "day")?.value ?? "01";
+  return `${year}-${month}-${day}`;
+}
+
+function shiftDayKey(dayKey: string, delta: number): string {
+  const [year, month, day] = dayKey.split("-").map(Number);
+  const next = new Date(Date.UTC(year, (month ?? 1) - 1, day ?? 1));
+  next.setUTCDate(next.getUTCDate() + delta);
+  return next.toISOString().slice(0, 10);
+}
+
+/** UTC instant of the start of a Chicago calendar day. */
+export function trendWindowStart(now = new Date(), days = TREND_DAYS): Date {
+  const startKey = shiftDayKey(trendDayKey(now), -(days - 1));
+  for (const offset of ["-06:00", "-05:00"]) {
+    const candidate = new Date(`${startKey}T00:00:00${offset}`);
+    if (trendDayKey(candidate) === startKey) return candidate;
+  }
+  return new Date(`${startKey}T06:00:00Z`);
 }
 
 /** Same percent the outline and analytics weak list show: correct ÷ attempts. */
@@ -154,17 +204,23 @@ export function weakAreaAccuracyPct(row: {
 }
 
 function buildTrendPoints(
-  byDay: Map<string, { correct: number; total: number }>
+  byDay: Map<string, { correct: number; total: number }>,
+  now = new Date()
 ): AccuracyTrendPoint[] {
   const points: AccuracyTrendPoint[] = [];
+  const today = trendDayKey(now);
   for (let i = TREND_DAYS - 1; i >= 0; i--) {
-    const d = new Date();
-    d.setUTCDate(d.getUTCDate() - i);
-    const key = d.toISOString().slice(0, 10);
+    const key = shiftDayKey(today, -i);
     const entry = byDay.get(key);
+    const [year, month, day] = key.split("-").map(Number);
+    const labelDate = new Date(Date.UTC(year, (month ?? 1) - 1, day ?? 1, 12));
     points.push({
       date: key,
-      label: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+      label: new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: "UTC",
+      }).format(labelDate),
       accuracy: entry ? Math.round((entry.correct / entry.total) * 100) : null,
       attempts: entry?.total ?? 0,
     });
@@ -172,13 +228,27 @@ function buildTrendPoints(
   return points;
 }
 
+/** Pure 14-day series. Prior Chicago days stay in the list, and an evening attempt does not move to the next UTC day. */
+export function accuracyTrendFromInstants(
+  rows: Array<{ createdAt: Date | string; correct: boolean }>,
+  now = new Date()
+): AccuracyTrendPoint[] {
+  const byDay = new Map<string, { correct: number; total: number }>();
+  for (const row of rows) {
+    const key = trendDayKey(row.createdAt);
+    const entry = byDay.get(key) ?? { correct: 0, total: 0 };
+    entry.total += 1;
+    if (row.correct) entry.correct += 1;
+    byDay.set(key, entry);
+  }
+  return buildTrendPoints(byDay, now);
+}
+
 async function getAccuracyTrendLegacy(
   userId: string,
   fieldIds: FieldScope
 ): Promise<AccuracyTrendPoint[]> {
-  const since = new Date();
-  since.setUTCDate(since.getUTCDate() - (TREND_DAYS - 1));
-  since.setUTCHours(0, 0, 0, 0);
+  const since = trendWindowStart();
 
   const attempts = await prisma.questionAttempt.findMany({
     where: { userId, createdAt: { gte: since }, ...fieldWhere(fieldIds) },
@@ -201,9 +271,7 @@ async function getAccuracyTrendSql(
   userId: string,
   fieldIds: FieldScope
 ): Promise<AccuracyTrendPoint[]> {
-  const since = new Date();
-  since.setUTCDate(since.getUTCDate() - (TREND_DAYS - 1));
-  since.setUTCHours(0, 0, 0, 0);
+  const since = trendWindowStart();
 
   const ids = expandReviewFieldIds(fieldIds);
   const fieldClause =
@@ -215,7 +283,7 @@ async function getAccuracyTrendSql(
     { day: Date | string; total: number; correct: number }[]
   >(Prisma.sql`
     SELECT
-      to_char(("createdAt" AT TIME ZONE 'UTC'), 'YYYY-MM-DD') AS day,
+      to_char(("createdAt" AT TIME ZONE 'America/Chicago'), 'YYYY-MM-DD') AS day,
       COUNT(*)::int AS total,
       SUM(CASE WHEN "correct" THEN 1 ELSE 0 END)::int AS correct
     FROM "QuestionAttempt"
