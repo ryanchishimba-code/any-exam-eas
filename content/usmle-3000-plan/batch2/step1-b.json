@@ -10,7 +10,13 @@
     "examTakeaway": "Hematuria during a sore throat is IgA nephropathy, not the poststreptococcal disease that waits two weeks.",
     "scenario": "A 22-year-old man has tea-colored urine on the second day of a sore throat. Blood pressure is 128/78 mm Hg. ASO titer is normal and C3 is normal. The urine shows red-cell casts. Creatinine is 1.0 mg/dL. He had the same episode once last year, also during a cold.",
     "question": "Which glomerular deposit fits the timing?",
-    "options": ["Subepithelial humps", "Linear IgG", "Mesangial IgA", "Spike-and-dome IgG", "Granular IgG and C3 in all three layers"],
+    "options": [
+      "Granular IgG and C3 in all three layers",
+      "Subepithelial humps",
+      "Linear IgG",
+      "Mesangial IgA",
+      "Spike-and-dome IgG"
+    ],
     "correctAnswer": "Mesangial IgA",
     "explanation": "Hematuria during a sore throat is IgA nephropathy, not the poststreptococcal disease that waits two weeks. Mesangial IgA is the deposit when the urine turns dark in the first days of a mucosal infection and complement stays normal. Subepithelial humps are poststreptococcal and follow pharyngitis by one to two weeks, with a low C3. Linear IgG is anti-GBM disease, which also injures the lung. Spike-and-dome IgG is membranous nephropathy, a nephrotic picture. Granular IgG and C3 in all three layers is membranoproliferative disease, usually with a low C3.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "Sinus, lung, and kidney disease with a positive c-ANCA is granulomatosis with polyangiitis.",
     "scenario": "A 48-year-old man has bloody nasal crusts, a cavitary lung nodule, and a creatinine that rose from 0.9 to 2.4 mg/dL in a week. The urine has red-cell casts. c-ANCA is positive and p-ANCA is negative. He has no hemoptysis of bright blood with a normal sinus exam.",
     "question": "Which antibody target fits?",
-    "options": ["Myeloperoxidase", "Proteinase-3", "Double-stranded DNA", "Phospholipase A2 receptor", "Type IV collagen"],
+    "options": [
+      "Proteinase-3",
+      "Double-stranded DNA",
+      "Phospholipase A2 receptor",
+      "Type IV collagen",
+      "Myeloperoxidase"
+    ],
     "correctAnswer": "Proteinase-3",
     "explanation": "Sinus, lung, and kidney disease with a positive c-ANCA is granulomatosis with polyangiitis. Proteinase-3 is the c-ANCA target in this triad. Myeloperoxidase is the usual p-ANCA target and fits microscopic polyangiitis, which spares the destructive sinus disease. Double-stranded DNA marks SLE, which lowers complement and is not this c-ANCA picture. Phospholipase A2 receptor marks primary membranous nephropathy. Type IV collagen is the Alport and anti-GBM antigen, not an ANCA target.",
     "citation": null
@@ -42,9 +54,15 @@
     "examTakeaway": "Upper-lobe nodules and eggshell hilar nodes in a sandblaster are silicosis, which raises the risk of tuberculosis.",
     "scenario": "A 55-year-old man has cut stone for 30 years. He is short of breath. The film shows small nodules in the upper lobes and hilar nodes with a thin calcified rim. A tuberculosis skin test is now being placed. He has never smoked.",
     "question": "Which dust is in the lung?",
-    "options": ["Asbestos", "Beryllium", "Silica", "Coal only, with no added infection risk", "Cotton"],
+    "options": [
+      "Asbestos",
+      "Beryllium",
+      "Silica",
+      "Coal dust",
+      "Cotton"
+    ],
     "correctAnswer": "Silica",
-    "explanation": "Upper-lobe nodules and eggshell hilar nodes in a sandblaster are silicosis, which raises the risk of tuberculosis. Silica is the dust, and the skin test is being placed because that risk is real. Asbestos causes pleural plaques and lower-lobe fibrosis, not eggshell nodes. Beryllium mimics sarcoidosis with noncaseating granulomas and has no eggshell rim. Coal only, with no added infection risk, is simple coal-worker pneumoconiosis and does not carry the same tuberculosis association. Cotton causes byssinosis, with Monday-morning chest tightness, not these nodes.",
+    "explanation": "Upper-lobe nodules and eggshell hilar nodes in a sandblaster are silicosis, which raises the risk of tuberculosis. Silica is the dust, and the skin test is being placed because that risk is real. Asbestos causes pleural plaques and lower-lobe fibrosis, not eggshell nodes. Beryllium mimics sarcoidosis with noncaseating granulomas and has no eggshell rim. Coal dust causes simple nodules without eggshell calcification. Cotton causes byssinosis, with Monday-morning chest tightness, not these nodes.",
     "citation": null
   },
   {
@@ -58,7 +76,13 @@
     "examTakeaway": "Pneumonia with diarrhea and a low sodium in an older smoker is Legionella, not typical pneumococcus.",
     "scenario": "A 67-year-old man who smokes has fever of 39.4 C, a dry cough, and watery diarrhea. Sodium is 128 mEq/L. The film shows a patchy unilateral infiltrate. He does not produce rusty sputum. He was cleaning a hotel air conditioner last week.",
     "question": "Which organism fits the sodium and the gut?",
-    "options": ["Streptococcus pneumoniae", "Legionella pneumophila", "Mycoplasma pneumoniae", "Pneumocystis jirovecii", "Klebsiella pneumoniae"],
+    "options": [
+      "Legionella pneumophila",
+      "Mycoplasma pneumoniae",
+      "Pneumocystis jirovecii",
+      "Klebsiella pneumoniae",
+      "Streptococcus pneumoniae"
+    ],
     "correctAnswer": "Legionella pneumophila",
     "explanation": "Pneumonia with diarrhea and a low sodium in an older smoker is Legionella, not typical pneumococcus. Legionella pneumophila fits the aerosol exposure, the gut symptoms, and the hyponatremia. Streptococcus pneumoniae causes rusty sputum and lobar consolidation without this diarrhea. Mycoplasma pneumoniae is the walking pneumonia of younger people, often with a cold agglutinin, not this sodium. Pneumocystis jirovecii needs a low CD4 count and causes diffuse ground glass. Klebsiella pneumoniae is currant-jelly sputum in alcohol use, often in an upper lobe.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "Ground-glass pneumonia at a CD4 count under 200 is Pneumocystis, and the silver stain shows the cysts.",
     "scenario": "A 34-year-old man has had a dry cough and fever for two weeks. Oxygen saturation falls from 96 to 86 percent when he walks. CD4 count is 80/mm3. Lactate dehydrogenase is 480 U/L. The film shows bilateral ground glass and no lobar consolidation. He has no diarrhea.",
     "question": "Which stain finds the organism?",
-    "options": ["Gram stain of rusty sputum", "Silver stain", "Acid-fast stain of a cavity", "India ink of spinal fluid", "Tzanck smear"],
+    "options": [
+      "Tzanck smear",
+      "Gram stain of rusty sputum",
+      "Silver stain",
+      "Acid-fast stain of a cavity",
+      "India ink of spinal fluid"
+    ],
     "correctAnswer": "Silver stain",
     "explanation": "Ground-glass pneumonia at a CD4 count under 200 is Pneumocystis, and the silver stain shows the cysts. Silver stain is the one that outlines Pneumocystis, which does not grow on ordinary media. Gram stain of rusty sputum looks for pneumococcus, and he has no lobar consolidation. Acid-fast stain of a cavity looks for tuberculosis, and there is no cavity. India ink of spinal fluid looks for Cryptococcus meningitis, not this lung picture. Tzanck smear looks for herpes virus giant cells in a blister.",
     "citation": null
