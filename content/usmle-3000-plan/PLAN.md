@@ -1,6 +1,6 @@
 # Plan to reach 3,000 solid served questions on each USMLE Step
 
-The 60-item pilot is already live. Batch 1 is inserted hidden and is not live. A batch goes live only after Ryan says so.
+The 60-item pilot is live. Batch 1 has 188 items live and 12 holdouts hidden. Batch 2 has 78 items live and 122 thin items hidden. Batch 3 (200 items) is inserted hidden and is not live. Served counts after the batch-2 activation stay at Step 1 2,091, Step 2 CK 1,851, and Step 3 4,644. A batch goes live only after Ryan says so.
 
 ## Where the bank is now
 

@@ -10,7 +10,13 @@
     "examTakeaway": "Methylene blue needs NADPH, so it is withheld when G6PD deficiency and methemoglobin are both present.",
     "scenario": "A 24-year-old man of Mediterranean ancestry took dapsone. His blood is chocolate brown and the oxygen saturation stays near 85 percent despite oxygen. A smear from last year showed bite cells after primaquine. He is not short of breath at rest today, but the methemoglobin level is 25 percent.",
     "question": "Which antidote is unsafe in him?",
-    "options": ["Methylene blue", "Vitamin C", "Oxygen", "A transfusion of normal red cells", "Stopping dapsone"],
+    "options": [
+      "Vitamin C",
+      "Oxygen",
+      "A transfusion of normal red cells",
+      "Stopping dapsone",
+      "Methylene blue"
+    ],
     "correctAnswer": "Methylene blue",
     "explanation": "Methylene blue needs NADPH, so it is withheld when G6PD deficiency and methemoglobin are both present. Methylene blue is the usual antidote, but his prior bite cells mean he cannot refill NADPH, so the dye can worsen hemolysis. Vitamin C is the slower alternative used when methylene blue is unsafe. Oxygen still helps the remaining normal hemoglobin. A transfusion of normal red cells supplies cells that can carry oxygen. Stopping dapsone removes the oxidant.",
     "citation": null
@@ -26,7 +32,13 @@
     "examTakeaway": "Warfarin blocks vitamin K epoxide reductase, so functional clotting factors fall only after the ones already made are used up.",
     "scenario": "A 60-year-old woman takes her first warfarin tablet at noon. That evening her INR is still 1.1 and a new clot has not yet been bridged with heparin. She asks why the blood test did not change the same day.",
     "question": "Why is the INR still normal this evening?",
-    "options": ["Factors already in the blood have not yet been cleared", "The drug has not been absorbed", "Platelets are the target and they live one day", "Protein C rises on day one", "The liver makes factors faster than the drug works"],
+    "options": [
+      "The drug has not been absorbed",
+      "Platelets are the target and they live one day",
+      "Protein C rises on day one",
+      "The liver makes factors faster than the drug works",
+      "Factors already in the blood have not yet been cleared"
+    ],
     "correctAnswer": "Factors already in the blood have not yet been cleared",
     "explanation": "Warfarin blocks vitamin K epoxide reductase, so functional clotting factors fall only after the ones already made are used up. Factors already in the blood have not yet been cleared, and factor II lasts for days. The drug has not been absorbed is unlikely after an oral dose the same day. Platelets are the target and they live one day describes aspirin, not warfarin. Protein C rises on day one is the opposite; protein C falls early. The liver makes factors faster than the drug works is why a loading confusion happens, not why tonight's INR is unchanged.",
     "citation": null
@@ -42,7 +54,13 @@
     "examTakeaway": "Aspirin acetylates platelet COX for the life of the platelet, so bleeding time stays long after the drug is gone from plasma.",
     "scenario": "A 55-year-old man took one aspirin tablet three days ago and none since. Plasma salicylate is undetectable. He now needs a tooth pulled and the bleeding time is still prolonged. Platelet count is normal. He asks why a drug that is gone from the blood still affects the test.",
     "question": "Why does the bleeding time stay long?",
-    "options": ["The platelet enzyme was permanently acetylated", "Salicylate is still bound to albumin", "Factor VIII was consumed", "The liver cannot make platelets for a week", "Fibrinogen was acetylated"],
+    "options": [
+      "The platelet enzyme was permanently acetylated",
+      "Salicylate is still bound to albumin",
+      "Factor VIII was consumed",
+      "The liver cannot make platelets for a week",
+      "Fibrinogen was acetylated"
+    ],
     "correctAnswer": "The platelet enzyme was permanently acetylated",
     "explanation": "Aspirin acetylates platelet COX for the life of the platelet, so bleeding time stays long after the drug is gone from plasma. The platelet enzyme was permanently acetylated, and platelets cannot make new COX. Salicylate is still bound to albumin contradicts an undetectable level. Factor VIII was consumed would prolong the PTT, not this platelet story. The liver cannot make platelets for a week is wrong; platelets come from marrow and the count is normal. Fibrinogen was acetylated is not the aspirin mechanism.",
     "citation": null
@@ -58,7 +76,13 @@
     "examTakeaway": "Loop diuretics block the triple cotransporter in the thick ascending limb, so the medullary gradient falls and calcium is lost in the urine.",
     "scenario": "A 70-year-old man on furosemide has a low potassium and a new kidney stone workup shows high urine calcium. He is not on a thiazide. Serum calcium is normal. He asks which segment, if blocked, would waste both salt and calcium.",
     "question": "Which transporter was blocked?",
-    "options": ["NKCC2 in the thick ascending limb", "NCC in the distal convoluted tubule", "ENaC in the collecting duct", "Carbonic anhydrase in the proximal tubule", "Aquaporin in the collecting duct"],
+    "options": [
+      "Aquaporin in the collecting duct",
+      "NKCC2 in the thick ascending limb",
+      "NCC in the distal convoluted tubule",
+      "ENaC in the collecting duct",
+      "Carbonic anhydrase in the proximal tubule"
+    ],
     "correctAnswer": "NKCC2 in the thick ascending limb",
     "explanation": "Loop diuretics block the triple cotransporter in the thick ascending limb, so the medullary gradient falls and calcium is lost in the urine. NKCC2 in the thick ascending limb is that transporter, and blocking it increases calcium excretion. NCC in the distal convoluted tubule is the thiazide target, which lowers urine calcium. ENaC in the collecting duct is blocked by amiloride and spares potassium. Carbonic anhydrase in the proximal tubule is acetazolamide. Aquaporin in the collecting duct is the ADH channel, not a diuretic target of furosemide.",
     "citation": null
@@ -74,7 +98,13 @@
     "examTakeaway": "Thiazides lower urine calcium, which is why they are used for calcium stones while loops are not.",
     "scenario": "A 45-year-old woman has recurrent calcium oxalate stones and a high urine calcium. Potassium is normal. She is not volume depleted. A colleague suggests furosemide because it makes more urine. She asks which diuretic would lower the calcium in the urine instead of raising it.",
     "question": "Which diuretic lowers urine calcium?",
-    "options": ["Hydrochlorothiazide", "Furosemide", "Acetazolamide", "Mannitol", "A carbonic anhydrase inhibitor"],
+    "options": [
+      "A carbonic anhydrase inhibitor",
+      "Hydrochlorothiazide",
+      "Furosemide",
+      "Acetazolamide",
+      "Mannitol"
+    ],
     "correctAnswer": "Hydrochlorothiazide",
     "explanation": "Thiazides lower urine calcium, which is why they are used for calcium stones while loops are not. Hydrochlorothiazide increases calcium reabsorption in the distal tubule. Furosemide increases calcium loss. Acetazolamide and a carbonic anhydrase inhibitor waste bicarbonate and do not treat calcium stones. Mannitol is an osmotic diuretic that does not lower urine calcium.",
     "citation": null
