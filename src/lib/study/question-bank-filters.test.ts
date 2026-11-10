@@ -80,7 +80,7 @@ describe("canonicalizeQuestionBankQuery", () => {
       "field=usmle-step-2&subjectId=sepsis-bundles&count=5&autostart=1"
     );
     const next = canonicalizeQuestionBankQuery("usmle-step-2", current);
-    expect(next.get("subjectId")).toBe("sepsis-bundles");
+    expect(next.get("subjectId")).toBe("internal-medicine");
     expect(next.get("field")).toBe("usmle-step-2");
     expect(next.get("blueprintTopics")).toBe("sepsis-bundles");
     expect(next.get("usmleTopic")).toBe("sepsis-bundles");

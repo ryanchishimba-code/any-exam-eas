@@ -5,6 +5,7 @@ import { isBlueprintAreaId } from "@/lib/inventory/blueprint-domain-pool";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/subject-catalog";
 import { usmleBlueprintPracticeSlug } from "@/lib/exam-prep/usmle/blueprint-practice-subject";
+import { usmleWeakAreaServedSubject } from "@/lib/exam-prep/usmle/weak-area-served-subject";
 
 const MIXED_SUBJECT_IDS = new Set([MIXED_SUBJECT_ID, "mixed"]);
 
@@ -39,14 +40,24 @@ export function canonicalizeQuestionBankQuery(
 
   const subjectId = next.get("subjectId");
   const blueprintSubject = subjectId ? usmleBlueprintPracticeSlug(fieldId, subjectId) : null;
-  if (subjectId && !subjectIdBelongsToField(fieldId, subjectId)) {
-    next.delete("subjectId");
-  }
   if (blueprintSubject) {
-    if (!next.get("blueprintTopics")) next.set("blueprintTopics", blueprintSubject);
-    if (!next.get("usmleTopic")) next.set("usmleTopic", blueprintSubject);
-    const style = next.get("style");
-    if (!style || style === "adaptive") next.set("style", "standard");
+    const served = usmleWeakAreaServedSubject({ fieldId, topicKey: blueprintSubject });
+    if (served) {
+      next.set("subjectId", served.subjectId);
+      if (served.blueprintTopics.length) {
+        if (!next.get("blueprintTopics")) next.set("blueprintTopics", served.blueprintTopics.join(","));
+        if (!next.get("usmleTopic")) next.set("usmleTopic", served.blueprintTopics[0]!);
+      } else {
+        if (next.get("blueprintTopics") === blueprintSubject) next.delete("blueprintTopics");
+        if (next.get("usmleTopic") === blueprintSubject) next.delete("usmleTopic");
+      }
+      const style = next.get("style");
+      if (!style || style === "adaptive") next.set("style", "standard");
+    } else if (subjectId) {
+      next.delete("subjectId");
+    }
+  } else if (subjectId && !subjectIdBelongsToField(fieldId, subjectId)) {
+    next.delete("subjectId");
   }
 
   const blueprintArea = next.get("blueprintArea");
@@ -129,7 +140,10 @@ export function resolvePracticeSubjectId(input: PracticeSubjectChoice): string {
 
   const { subjectParam, styleParam } = input;
   if (subjectParam && usmleBlueprintPracticeSlug(input.fieldId, subjectParam)) {
-    return subjectParam;
+    return (
+      usmleWeakAreaServedSubject({ fieldId: input.fieldId, topicKey: subjectParam })?.subjectId ??
+      MIXED_SUBJECT_ID
+    );
   }
   if (
     subjectParam === MIXED_SUBJECT_ID ||
@@ -169,15 +183,18 @@ export function subjectIdForPracticeUrl(input: {
   browserSubjectId: string | null;
   blueprintAreaId: string | null;
 }): string | null {
+  const servedId = (value: string | null): string | null => {
+    if (!value) return null;
+    if (usmleBlueprintPracticeSlug(input.fieldId, value)) {
+      return usmleWeakAreaServedSubject({ fieldId: input.fieldId, topicKey: value })?.subjectId ?? null;
+    }
+    return subjectIdBelongsToField(input.fieldId, value) ? value : null;
+  };
   if (input.blueprintAreaId) return null;
   if (input.overrideProvided) {
-    const value = input.override?.trim() || null;
-    if (!value || !subjectIdBelongsToField(input.fieldId, value)) return null;
-    return value;
+    return servedId(input.override?.trim() || null);
   }
-  const browser = input.browserSubjectId?.trim() || null;
-  if (browser && subjectIdBelongsToField(input.fieldId, browser)) return browser;
-  return null;
+  return servedId(input.browserSubjectId?.trim() || null);
 }
 
 /** Value equality, ignoring parameter order. */

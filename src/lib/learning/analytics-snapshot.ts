@@ -10,6 +10,7 @@ import { getCachedPracticeBankStats } from "@/lib/learning/served-bank-stats-cac
 import { getCachedActiveInventory } from "@/lib/marketing/question-bank-counts";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { sharedPracticeRead, type RoadmapPracticeSource } from "@/lib/learning/practice-estimate";
+import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { OpenRemediationSummary } from "@/lib/learning/remediation-loop";
@@ -30,6 +31,8 @@ export type AnalyticsSnapshot = {
   formats: FormatCounts | null;
   /** Same accuracy, outline depth, and estimate the dashboard and readiness pages use. */
   practiceRead: ReturnType<typeof sharedPracticeRead> | null;
+  /** Serve-ready counts from the same gate as the question bank topic picker. */
+  servedSubjectCounts: Record<string, number> | null;
 };
 
 /** Same reads the analytics page used to await before the first HTML byte. */
@@ -41,7 +44,8 @@ export async function loadAnalyticsSnapshot(
   const metadata = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const fieldId = canonicalPracticeFieldId(examSlug, metadata?.usmleFieldId);
 
-  const [dashboard, profile, roadmap, inventory, activeInventory, servedBank] = await Promise.all([
+  const [dashboard, profile, roadmap, inventory, activeInventory, servedBank, servedSubjectCounts] =
+    await Promise.all([
     getStudentDashboardData(userId, [fieldId]),
     getLearningProfileSnapshot(userId),
     getExamRoadmapData(userId, examSlug, {
@@ -50,6 +54,7 @@ export async function loadAnalyticsSnapshot(
     loadCoverageInventory(fieldId).catch(() => null),
     getCachedActiveInventory().catch(() => null),
     getCachedPracticeBankStats(fieldId).catch(() => null),
+    getSubjectServedCountsWithRetry(fieldId).catch(() => null),
   ]);
 
   const boardCounts = boardStudyCountsFromSources({
@@ -91,5 +96,6 @@ export async function loadAnalyticsSnapshot(
           topics: roadmap.topics satisfies RoadmapPracticeSource["topics"],
         })
       : null,
+    servedSubjectCounts,
   };
 }
