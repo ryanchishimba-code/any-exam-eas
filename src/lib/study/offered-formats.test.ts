@@ -29,12 +29,19 @@ describe("offered practice formats", () => {
     expect(coercePracticeFormat("case", step3)).toBe("case");
     expect(coercePracticeFormat("all", nclex)).toBe("all");
     expect(coercePracticeFormat("ngn", null)).toBe("ngn");
+    expect(coercePracticeFormat("ngn", naplex, "pharmacy")).toBe("all");
+    expect(coercePracticeFormat("ngn", naplex, "nursing")).toBe("ngn");
   });
 
   it("omits the format section when nothing but standard practice is served", () => {
     expect(practiceFormatChooser({ formats: nclex, ngnLabel: "NGN" })).toBeNull();
     expect(practiceFormatChooser({ formats: naplex, lockToAll: true })).toBeNull();
     expect(practiceFormatChooser({ formats: null })).toBeNull();
+    expect(practiceFormatChooser({ formats: naplex, fieldId: "pharmacy" })).toBeNull();
+    expect(practiceFormatChooser({ formats: naplex, fieldId: "nursing", ngnLabel: "NGN" })?.choices).toEqual([
+      "all",
+      "ngn",
+    ]);
   });
 
   it("keeps a two- or three-column chooser for the formats that exist", () => {

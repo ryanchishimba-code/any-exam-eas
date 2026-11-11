@@ -38,15 +38,14 @@ export function parseDeliberatePracticeFormat(
 }
 
 /**
- * Noun used beside the inventory split.
- * Nursing says NGN. Pharmacy says Select all. NGN is a nursing format.
+ * Noun used beside the nursing NGN split.
+ * Nursing says NGN. Pharmacy does not offer that tab.
  */
 export function ngnStyleLabel(
   categoryLabel: string | null | undefined,
   fieldId?: string | null
 ): string {
   if (categoryLabel === "Client Needs" || fieldId === "nursing") return "NGN";
-  if (fieldId === "pharmacy") return "Select all";
   return "Other formats";
 }
 

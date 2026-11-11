@@ -236,7 +236,7 @@ export function StudentAnalyticsDashboard({
       <FormatPracticePanel
         stats={dashboard.formatPractice}
         savedSets={dashboard.savedFormatSets}
-        ngnLabel={examSlug === "nclex" ? "NGN" : examSlug === "naplex" ? "Select all" : "Other formats"}
+        ngnLabel={examSlug === "nclex" ? "NGN" : "Other formats"}
         fieldId={fieldId}
         formats={formats}
       />

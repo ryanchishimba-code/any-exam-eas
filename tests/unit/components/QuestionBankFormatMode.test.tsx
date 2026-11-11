@@ -20,7 +20,7 @@ describe("QuestionBankFormatMode", () => {
     const ngn = screen.getByRole("radio", { name: /NGN/i });
     expect(ngn).toHaveAttribute("data-format-count", "842");
     expect(ngn).toHaveTextContent("842");
-    expect(ngn).toHaveTextContent("Standalone NGN items");
+    expect(ngn).toHaveTextContent("NGN items in this bank");
     expect(screen.getByRole("radio", { name: /All questions/i })).toBeInTheDocument();
     expect(screen.queryByRole("radio", { name: /Cases/i })).not.toBeInTheDocument();
 
@@ -43,6 +43,22 @@ describe("QuestionBankFormatMode", () => {
     expect(screen.getByRole("radio", { name: /NGN/i })).toHaveAttribute("data-format-count", "842");
     expect(screen.queryByText(/Mixed topics is not available/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/Pick one topic/i)).not.toBeInTheDocument();
+  });
+
+  it("hides the nursing format tab on NAPLEX", () => {
+    render(
+      <QuestionBankFormatMode
+        value="all"
+        onChange={() => undefined}
+        formats={{ mcq: 4411, ngn: 41, case: 0 }}
+        fieldId="pharmacy"
+        ngnLabel="NGN"
+      />
+    );
+
+    expect(screen.queryByRole("radio", { name: /NGN/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("radio", { name: /Select all/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("radiogroup")).not.toBeInTheDocument();
   });
 
   it("uses NGN-style for boards that are not Client Needs and hides the chooser while loading", () => {

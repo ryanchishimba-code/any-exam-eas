@@ -208,6 +208,7 @@ export function QuestionBankSetup({
           }
           countsLoading={countsLoading}
           ngnLabel={ngnLabel}
+          fieldId={fieldId}
           subjectId={activeArea ? null : subjectId}
           lockToAll={Boolean(activeArea)}
         />

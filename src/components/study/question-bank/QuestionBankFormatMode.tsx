@@ -18,6 +18,8 @@ type Props = {
   caseItemCount?: number | null;
   countsLoading?: boolean;
   ngnLabel?: string;
+  /** Pharmacy does not show the nursing NGN bucket. */
+  fieldId?: string | null;
   /** Current topic. Blank or mixed means the set draws from the whole bank. */
   subjectId?: string | null;
   /** Blueprint-area practice serves every format in that area. */
@@ -43,12 +45,14 @@ export function QuestionBankFormatMode({
   caseItemCount = null,
   countsLoading = false,
   ngnLabel = "NGN",
+  fieldId = null,
   subjectId = null,
   lockToAll = false,
 }: Props) {
   const chooser = practiceFormatChooser({
     formats: countsLoading ? null : formats,
     ngnLabel,
+    fieldId,
     subjectId,
     lockToAll,
   });

@@ -30,7 +30,7 @@ function launchHref(fieldId: string, format: "ngn" | "case"): string {
 
 export function FormatPracticePanel({ stats, savedSets = [], ngnLabel, fieldId, formats }: Props) {
   const practice = stats ?? emptyFormatPracticeStats();
-  const cards = offeredDeliberateFormats(formats).map((id) => ({
+  const cards = offeredDeliberateFormats(formats, fieldId).map((id) => ({
     id,
     title: id === "ngn" ? ngnLabel : "Cases",
   }));

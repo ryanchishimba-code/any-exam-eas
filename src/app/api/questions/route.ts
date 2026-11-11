@@ -728,9 +728,7 @@ export async function GET(req: Request) {
         : formatBucket === "ngn"
           ? fieldId === "nursing"
             ? "NGN"
-            : fieldId === "pharmacy"
-              ? "Select all"
-              : "other format"
+            : "other format"
           : null;
     return NextResponse.json(
       {
