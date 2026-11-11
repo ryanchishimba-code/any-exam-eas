@@ -23,6 +23,9 @@ describe("isInternalMasteryConceptKey", () => {
     expect(isInternalMasteryConceptKey("Trap Tier")).toBe(true);
     expect(isInternalMasteryConceptKey("Nclex Strategy")).toBe(true);
     expect(isInternalMasteryConceptKey("curated")).toBe(true);
+    expect(isInternalMasteryConceptKey("ai-curated")).toBe(true);
+    expect(isInternalMasteryConceptKey("Aanp Fnp Variant")).toBe(true);
+    expect(isInternalMasteryConceptKey("tag:aanp-fnp-generated")).toBe(true);
   });
 
   it("keeps real topics", () => {

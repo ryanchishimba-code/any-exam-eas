@@ -36,6 +36,7 @@ import {
   recountTodayMix,
   resolveStudyTimeZone,
   resolveTodaySetSize,
+  todaySetAnsweredCount,
   todaySetRandom,
   todayUnseenNeeded,
   type TodayNewCandidate,
@@ -610,11 +611,61 @@ export async function loadTodaySetPreview(params: {
   const usage =
     params.usage ??
     (params.access ? await getStudyUsageSnapshot(params.access, { includeMockCounters: false }) : null);
+  // The query still sends a board-wide done count. The ring uses the assigned set.
+  void params.questionsDone;
   const target = resolveTodaySetSize(params.goals);
   const allowance = questionAllowanceFromUsage(usage);
   const size = applyQuestionAllowance(target, allowance);
-  const questionsDone = Math.max(0, Math.round(params.questionsDone) || 0);
-  const targetMet = target > 0 && questionsDone >= target;
+
+  if (size <= 0) {
+    const streakDays = habitReadable
+      ? computeDailyHabitStreak({
+          days: readDailyHabitDays(metadata, params.examSlug),
+          today,
+        })
+      : null;
+    return {
+      examSlug: params.examSlug,
+      fieldId: params.fieldId,
+      size: 0,
+      target,
+      questionsDone: 0,
+      reviewCount: 0,
+      newCount: 0,
+      mixLine: null,
+      empty: true,
+      limitReached: allowance === 0,
+      streakDays,
+    };
+  }
+
+  const served = await loadServedTodaySet({
+    userId: params.userId,
+    examSlug: params.examSlug,
+    fieldId: params.fieldId,
+    size,
+    goals: params.goals,
+    now,
+    timeZone: params.timeZone,
+  });
+  const todayStart = new Date(now);
+  todayStart.setUTCHours(0, 0, 0, 0);
+  const attemptRows = await prisma.questionAttempt.findMany({
+    where: {
+      userId: params.userId,
+      fieldId: params.fieldId,
+      bankItemId: { in: served.mix.ids },
+      createdAt: { gte: todayStart },
+    },
+    select: { bankItemId: true },
+    distinct: ["bankItemId"],
+  });
+  const questionsDone = todaySetAnsweredCount(
+    served.mix.ids,
+    attemptRows.map((row) => row.bankItemId).filter((id): id is string => Boolean(id))
+  );
+  const servedSize = served.mix.ids.length;
+  const targetMet = servedSize > 0 && questionsDone >= servedSize;
 
   let streakDays: number | null = habitReadable ? 0 : null;
   if (habitReadable) {
@@ -641,42 +692,16 @@ export async function loadTodaySetPreview(params: {
     }
   }
 
-  if (size <= 0) {
-    return {
-      examSlug: params.examSlug,
-      fieldId: params.fieldId,
-      size: 0,
-      target,
-      questionsDone,
-      reviewCount: 0,
-      newCount: 0,
-      mixLine: null,
-      empty: true,
-      limitReached: allowance === 0,
-      streakDays,
-    };
-  }
-
-  const served = await loadServedTodaySet({
-    userId: params.userId,
-    examSlug: params.examSlug,
-    fieldId: params.fieldId,
-    size,
-    goals: params.goals,
-    now,
-    timeZone: params.timeZone,
-  });
-
   return {
     examSlug: params.examSlug,
     fieldId: params.fieldId,
-    size: served.mix.ids.length,
+    size: servedSize,
     target,
     questionsDone,
     reviewCount: served.mix.reviewCount,
     newCount: served.mix.newCount,
     mixLine: served.mix.mixLine,
-    empty: served.mix.ids.length === 0,
+    empty: servedSize === 0,
     limitReached: false,
     streakDays,
   };

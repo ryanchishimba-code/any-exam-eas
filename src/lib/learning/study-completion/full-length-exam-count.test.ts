@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { qualifiesAsFullLengthExam } from "./full-length-exam-count";
+import { qualifiesAsFullLengthExam, readinessChecksFromPractice } from "./full-length-exam-count";
 
 describe("qualifiesAsFullLengthExam", () => {
   it("counts an NCLEX CAT that stopped at 87", () => {
@@ -16,5 +16,27 @@ describe("qualifiesAsFullLengthExam", () => {
 
   it("counts a fixed form that met the board minimum", () => {
     expect(qualifiesAsFullLengthExam({ questionCount: 85, analysis: null }, 85)).toBe(true);
+  });
+});
+
+describe("readinessChecksFromPractice", () => {
+  it("counts one completed AANP FNP exam toward readiness checks", () => {
+    expect(
+      readinessChecksFromPractice({
+        examSlug: "aanp-fnp",
+        recordedChecks: 0,
+        fullLengthExamsCompleted: 1,
+      })
+    ).toBe(1);
+  });
+
+  it("leaves other boards on the recorded check", () => {
+    expect(
+      readinessChecksFromPractice({
+        examSlug: "nclex",
+        recordedChecks: 0,
+        fullLengthExamsCompleted: 1,
+      })
+    ).toBe(0);
   });
 });

@@ -50,7 +50,11 @@ export function DashboardHeader({
             {streakDays}d
           </span>
         ) : null}
-        {dueCount > 0 ? <span className={dbUi.statusPillAccent}>{dueCount} due</span> : null}
+        {dueCount > 0 ? (
+          <span className={dbUi.statusPillAccent} aria-label={`${dueCount} spaced review due`}>
+            {dueCount} spaced review due
+          </span>
+        ) : null}
         {accuracyPct != null ? (
           <span className={dbUi.statusPill} aria-label={`Overall accuracy ${accuracyPct} percent`}>
             {accuracyPct}% accuracy

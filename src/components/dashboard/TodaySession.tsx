@@ -9,6 +9,12 @@ export type ServedTodayPreview = {
   empty: boolean;
   limitReached: boolean;
   streakDays: number | null;
+  /** Answers inside today's assigned set. Not every question answered today. */
+  questionsDone: number;
+  /** Items this sitting will start. */
+  size: number;
+  /** Uncapped daily goal, when the sitting is shorter. */
+  goal: number;
 };
 
 type SessionState =
@@ -22,11 +28,17 @@ const TodaySessionContext = createContext<SessionState>({ phase: "idle" });
 function readPreview(data: unknown): ServedTodayPreview | null {
   if (!data || typeof data !== "object") return null;
   const row = data as Record<string, unknown>;
+  const questionsDone = typeof row.questionsDone === "number" ? Math.max(0, Math.round(row.questionsDone)) : 0;
+  const size = typeof row.size === "number" ? Math.max(0, Math.round(row.size)) : 0;
+  const goal = typeof row.target === "number" ? Math.max(0, Math.round(row.target)) : size;
   return {
     mixLine: typeof row.mixLine === "string" && row.mixLine.trim() ? row.mixLine : null,
     empty: row.empty === true,
     limitReached: row.limitReached === true,
     streakDays: typeof row.streakDays === "number" ? row.streakDays : null,
+    questionsDone,
+    size,
+    goal,
   };
 }
 

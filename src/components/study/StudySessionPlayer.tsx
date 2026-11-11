@@ -55,7 +55,7 @@ import { reviewIncorrectQuestionReason } from "@/lib/study/review-incorrect-queu
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { InsightPanel } from "./InsightPanel";
 import { buildAiTutorRequest } from "./build-ai-tutor-request";
-import { buildInsightPreview } from "@/lib/learning/build-insight-preview";
+import { buildInsightPreview, insightWithoutRepeatedRationale } from "@/lib/learning/build-insight-preview";
 import { AnswerFeedbackLabel } from "@/components/ui/StatusMessage";
 import {
   ExplanationPanel,
@@ -271,9 +271,10 @@ export function StudySessionPlayer({
 
   const displayInsight = useMemo(() => {
     if (!current || !answer?.revealed) return null;
-    if (insight) return insight;
-    return buildInsightPreview(current, answer.correct === true, answer.selected);
-  }, [current, answer, insight]);
+    const preview = insight ?? buildInsightPreview(current, answer.correct === true, answer.selected);
+    if (field !== "aanp-fnp") return preview;
+    return insightWithoutRepeatedRationale(preview, current.explanation);
+  }, [current, answer, insight, field]);
 
   const persist = useCallback(
     (s: StudySessionState) => {

@@ -476,7 +476,7 @@ function ExplanationDetail({
         </CollapsibleSources>
       ) : null}
 
-      {compact ? null : (
+      {compact || examSlug === "aanp-fnp" ? null : (
         <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
           <SocialShareBar
             entityType="question"

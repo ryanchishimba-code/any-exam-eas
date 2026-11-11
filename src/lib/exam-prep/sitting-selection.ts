@@ -5,6 +5,7 @@
  * Eligibility and hidden-item rules stay with the caller — this only chooses
  * among rows already allowed to serve.
  */
+import { assembleAanpFnpSitting } from "@/lib/exam-prep/aanp-fnp/domain-mix";
 import { replaceRepeatedScenarios } from "@/lib/exam-prep/clinical-case-dedupe";
 import type { BankItem } from "@/lib/question-bank";
 import {
@@ -460,7 +461,11 @@ export function finalizeAssembledSitting(params: {
   const uniqueScenarios =
     params.fieldId === "nursing"
       ? replaceRepeatedScenarios(ordered, params.pool, limit)
-      : ordered;
+      : params.fieldId === "aanp-fnp"
+        ? assembleAanpFnpSitting(ordered, params.pool, limit)
+        : ordered;
+  // When the pool cannot fill the length without a repeat, keep the sitting
+  // that already reached the length so the exam still starts.
   const delivered = uniqueScenarios.length >= limit ? uniqueScenarios.slice(0, limit) : ordered;
   capStats.kept = delivered.length;
   capStats.strict = strict ?? { kept: ordered.length, rejections: { ...capStats.rejections } };

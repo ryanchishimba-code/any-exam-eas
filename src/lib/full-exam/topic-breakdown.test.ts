@@ -77,16 +77,16 @@ describe("buildTopicBreakdown", () => {
     ).toBe(true);
   });
 
-  it("maps AANP FNP and NPTE-PT items to board subject labels", () => {
+  it("maps AANP FNP items to one NPCB domain and keeps NPTE on subject labels", () => {
     const fnpQuestions = [
-      { subjectId: "womens-health" },
-      { subjectId: "psychiatry-behavioral" },
+      { subjectId: "womens-health", blueprintDomain: "assess" },
+      { subjectId: "psychiatry-behavioral", blueprintDomain: "plan" },
+      { subjectId: "cardiovascular" },
     ];
-    const fnpAnswers = [answer(0, true), answer(1, false)];
+    const fnpAnswers = [answer(0, true), answer(1, false), answer(2, true)];
     const fnpRows = buildTopicBreakdown(fnpQuestions, fnpAnswers, { examSlug: "aanp-fnp" });
-    expect(fnpRows.map((row) => row.topic).sort()).toEqual(
-      ["Psychiatry & Behavioral Health", "Women's Health"].sort()
-    );
+    expect(fnpRows.map((row) => row.topic).sort()).toEqual(["Assess", "Diagnose", "Plan"]);
+    expect(fnpRows.some((row) => row.topic === "Women's Health")).toBe(false);
 
     const npteQuestions = [
       { subjectId: "musculoskeletal" },

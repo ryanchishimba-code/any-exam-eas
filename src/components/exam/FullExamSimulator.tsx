@@ -983,6 +983,7 @@ export function FullExamSimulator({
             return {
               id: q.bankItemId ?? q.id,
               question: q.stem,
+              ...(q.vignette?.trim() ? { vignette: q.vignette.trim() } : {}),
               options: q.options,
               correctAnswer: serializeCorrectAnswer(q),
               explanation: q.explanation,

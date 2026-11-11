@@ -213,6 +213,11 @@ export function FullExamResults({
             </span>
           </div>
 
+          {examSlug === "aanp-fnp" && current.vignette?.trim() ? (
+            <p className="mb-4 whitespace-pre-wrap text-base leading-relaxed text-slate-700">
+              {current.vignette.trim()}
+            </p>
+          ) : null}
           <p className="whitespace-pre-wrap text-base leading-relaxed text-slate-800">
             <InlineBold text={studentFacingStem(current.question)} />
           </p>
@@ -521,7 +526,11 @@ export function FullExamResults({
       {analysis.topicBreakdown.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>
           <h2 className={feUi.sectionTitle}>
-            {examSlug === "usmle" ? "Organ-system breakdown" : "Topic breakdown"}
+            {examSlug === "aanp-fnp"
+              ? "Domain breakdown"
+              : examSlug === "usmle"
+                ? "Organ-system breakdown"
+                : "Topic breakdown"}
           </h2>
           {examSlug === "usmle" ? (
             <p className="mt-1 text-[12px] text-[var(--color-ink-muted)]">

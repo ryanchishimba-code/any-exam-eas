@@ -26,6 +26,7 @@ import {
   snapshotsFromAnalysis,
 } from "@/lib/learning/full-exam-pass-path";
 import { persistCompletedSessionAttempts } from "@/lib/learning/persist-session-attempts";
+import { invalidateStudentReadCaches } from "@/lib/learning/invalidate-read-caches";
 import { summarySaysEndedEarly } from "@/lib/full-exam/results-title";
 import { preservePresetFormOnAnalysis } from "@/lib/exam-prep/preset-form-progress";
 import { alignAnswersToPrefetched } from "@/lib/exam-sessions/align-administered-items";
@@ -139,6 +140,9 @@ export async function PATCH(
       endedEarly,
       answers,
     });
+    // Persist runs first so the rows exist. Invalidate again after the
+    // session is completed, which is what the Questions count joins on.
+    await invalidateStudentReadCaches(premium.userId, fieldId);
     return NextResponse.json({
       ok: true,
       score,

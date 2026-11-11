@@ -17,9 +17,6 @@ export function BoardHeroFoot({ testimonial, proofFacts, boardName }: BoardHeroF
       <div className="mkt-hero-foot">
         <div className="mkt-hero-foot__slot">
           <figure className="mkt-hero-foot__card">
-            <p className="mkt-hero-foot__stars" aria-label="5 out of 5 stars">
-              <span aria-hidden="true">★★★★★</span>
-            </p>
             <blockquote className="mkt-hero-foot__quote">
               <p>{testimonial.quote}</p>
             </blockquote>

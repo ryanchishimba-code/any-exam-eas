@@ -10,6 +10,11 @@ import {
 import type { NclexClientNeedsDomain } from "@/lib/exam-prep/nclex/topic-registry";
 import { genericJudgmentLabel } from "@/lib/full-exam/nclex-exam-labels";
 import { AANP_FNP_2026_TOPIC_GROUPS } from "@/lib/exam-prep/aanp-fnp/blueprint-topics-2026";
+import {
+  AANP_FNP_DOMAIN_LABELS,
+  type AanpFnpDomainId,
+} from "@/lib/exam-prep/aanp-fnp/types";
+import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { PANCE_KNOWLEDGE_AREAS } from "@/lib/exam-prep/pance/content-outline";
 import { NPTE_PT_2026_TOPIC_GROUPS } from "@/lib/exam-prep/npte-pt/blueprint-topics-2026";
 import { resolveOrganSystemId } from "@/lib/exam-prep/usmle/content-spine";
@@ -298,10 +303,27 @@ function resolveUsmleOrganLabel(q: BreakdownQuestion): string {
   return raw ? displayLabel(raw) : BREAKDOWN_OTHER_LABEL;
 }
 
+/** NPCB domain only. Clinical system names are not mixed into this breakdown. */
+export function resolveAanpFnpDomainLabel(q: BreakdownQuestion): string {
+  const explicit = clean(q.blueprintDomain).toLowerCase();
+  if (explicit && explicit in AANP_FNP_DOMAIN_LABELS) {
+    return AANP_FNP_DOMAIN_LABELS[explicit as AanpFnpDomainId];
+  }
+  const area = blueprintCategoryIdForQuestion("aanp-fnp", {
+    subjectId: clean(q.subjectId) || clean(q.topicCategory) || clean(q.blueprintTopic),
+    clientNeeds: explicit || null,
+  });
+  if (area && area in AANP_FNP_DOMAIN_LABELS) {
+    return AANP_FNP_DOMAIN_LABELS[area as AanpFnpDomainId];
+  }
+  return BREAKDOWN_OTHER_LABEL;
+}
+
 export function resolveExamTopicLabel(examSlug: ExamSlug | undefined, q: BreakdownQuestion): string {
   if (examSlug === "nclex") return resolveNclexClientNeedLabel(q);
   if (examSlug === "naplex") return resolveNaplexBlueprintLabel(q);
   if (examSlug === "usmle") return resolveUsmleOrganLabel(q);
+  if (examSlug === "aanp-fnp") return resolveAanpFnpDomainLabel(q);
   const fieldId = examSlug ? PRACTICE_FIELD_BY_EXAM[examSlug] : undefined;
   if (fieldId) return resolvePracticeBoardTopicLabel(fieldId, q);
   return resolveNclexTopicLabel(q);

@@ -29,7 +29,6 @@ import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { cn } from "@/lib/utils";
-import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import {
   filterStudentFacingWeakTopics,
   formatConceptLabel,
@@ -261,9 +260,9 @@ export function StudentAnalyticsDashboard({
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
-          label={PRACTICE_PROGRESS_LABEL}
+          label="Practice score"
           value={`${practiceScore}`}
-          hint={practiceHeadline}
+          hint={`${practiceHeadline}. Outline coverage, accuracy, and reviewed misses, from 0 to 100.`}
         />
         <MetricCard
           label="Accuracy"

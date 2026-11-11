@@ -174,6 +174,20 @@ export function questionAllowanceFromUsage(snapshot: {
   return Math.min(...caps);
 }
 
+/** How many of today's assigned items the student has already answered. */
+export function todaySetAnsweredCount(
+  setIds: readonly string[],
+  attemptedIds: readonly string[]
+): number {
+  const wanted = new Set(setIds.map((id) => id.trim()).filter(Boolean));
+  const seen = new Set<string>();
+  for (const id of attemptedIds) {
+    const trimmed = id.trim();
+    if (trimmed && wanted.has(trimmed)) seen.add(trimmed);
+  }
+  return seen.size;
+}
+
 export function formatTodayMixLine(reviewCount: number, newCount: number): string | null {
   const review = Math.max(0, Math.floor(Number.isFinite(reviewCount) ? reviewCount : 0));
   const fresh = Math.max(0, Math.floor(Number.isFinite(newCount) ? newCount : 0));

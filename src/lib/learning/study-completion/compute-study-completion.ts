@@ -1,7 +1,7 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { countActiveQuestions } from "@/lib/question-bank-db";
 import { prisma } from "@/lib/prisma";
-import { qualifiesAsFullLengthExam } from "./full-length-exam-count";
+import { qualifiesAsFullLengthExam, readinessChecksFromPractice } from "./full-length-exam-count";
 import { quickBiteSlugsForBoard } from "@/lib/quick-bites/board-episodes";
 import { getPublishedGuide } from "@/lib/nclex-study-guide/queries";
 import type { ExamSlug } from "@/types/edtech";
@@ -307,14 +307,20 @@ async function loadStudyCompletionMetrics(
       : Promise.resolve(0),
   ]);
 
+  const fullLengthExamsCompleted = completedExams.filter((row) =>
+    qualifiesAsFullLengthExam(row, fullLengthQuestionCount)
+  ).length;
+
   return {
     liveBankCount,
     distinctBankItemsAttempted: Number(coverageRows[0]?.count ?? 0),
     fastAttemptsExcluded: Number(fastRows[0]?.count ?? 0),
-    fullLengthExamsCompleted: completedExams.filter((row) =>
-      qualifiesAsFullLengthExam(row, fullLengthQuestionCount)
-    ).length,
-    readinessChecksCompleted,
+    fullLengthExamsCompleted,
+    readinessChecksCompleted: readinessChecksFromPractice({
+      examSlug,
+      recordedChecks: readinessChecksCompleted,
+      fullLengthExamsCompleted,
+    }),
     quickBitesCompleted,
     quickBitesTotal: quickBiteSlugs.length,
     studyGuideChaptersCompleted,
