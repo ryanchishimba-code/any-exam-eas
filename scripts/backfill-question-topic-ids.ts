@@ -62,15 +62,25 @@ async function main() {
         }
       })()
     );
-    const rows = await prisma.questionBankItem.findMany({
-      where: {
-        fieldId,
-        active: true,
-        qaPassed: true,
-        OR: [{ subjectId: null }, { subjectId: "" }],
-      },
-      select: { id: true, subjectId: true, clientNeeds: true, blueprintDomain: true, topicCategory: true },
-    });
+    // subjectId is a required string in the Prisma schema, so a null filter
+    // is rejected before the query runs. This is the same missing-topic set:
+    // null or blank, active, and qaPassed, limited to the requested field.
+    const rows = await prisma.$queryRaw<
+      Array<{
+        id: string;
+        subjectId: string | null;
+        clientNeeds: string | null;
+        blueprintDomain: string | null;
+        topicCategory: string | null;
+      }>
+    >`
+      SELECT id, "subjectId", "clientNeeds", "blueprintDomain", "topicCategory"
+      FROM "QuestionBankItem"
+      WHERE "fieldId" = ${fieldId}
+        AND active = true
+        AND "qaPassed" = true
+        AND ("subjectId" IS NULL OR btrim("subjectId") = '')
+    `;
     const changes: { id: string; from: string | null; to: string }[] = [];
     for (const row of rows) {
       const namedCatalog = [row.topicCategory, row.clientNeeds, row.blueprintDomain].find(

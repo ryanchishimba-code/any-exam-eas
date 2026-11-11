@@ -1,0 +1,2 @@
+nursing: 0 items missing a topic id, 0 can be filled from existing fields.
+Dry-run only. Re-run with --apply --undo-file <path> to write.
