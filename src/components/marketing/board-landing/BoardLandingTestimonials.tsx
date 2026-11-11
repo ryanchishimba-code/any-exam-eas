@@ -34,7 +34,7 @@ export function BoardLandingTestimonials({
       <ul className="bl-testimonials__row">
         {stories.map((story) => (
           <li key={`${story.name}-${story.exam}`} className="bl-testimonials__card">
-            {story.rating ? <TestimonialStars rating={story.rating} /> : null}
+            {stories.length >= 2 && story.rating ? <TestimonialStars rating={story.rating} /> : null}
             <blockquote>
               <p>{story.quote}</p>
             </blockquote>

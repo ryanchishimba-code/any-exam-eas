@@ -10,7 +10,7 @@ if (!panceHeroTestimonialSeed) {
   throw new Error(`Missing consented seed: ${PANCE_HERO_TESTIMONIAL_SEED_ID}`);
 }
 
-export const BOARD_LANDING_HERO_TRIAL_LABEL = "Start 5-day free trial";
+export const BOARD_LANDING_HERO_TRIAL_LABEL = `Start ${TRIAL_DAYS}-day free trial`;
 
 export const BOARD_LANDING_HERO_QUIZ_LABEL = "Try the free quiz";
 

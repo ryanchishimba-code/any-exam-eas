@@ -4,6 +4,26 @@ import { explanatoryRationaleSummary } from "@/lib/study/rationale-disclosure";
 import { pearlsFromQuestion, trapsFromQuestion } from "./insights";
 import type { LearningInsight } from "./types";
 
+function sameText(left: string, right: string): boolean {
+  return left.trim().toLowerCase().replace(/\s+/g, " ") === right.trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+/**
+ * The insight panel should not reprint the rationale that is already on screen.
+ * AANP FNP practice uses this so "Why correct" is a next step, not a second copy.
+ */
+export function insightWithoutRepeatedRationale(
+  insight: LearningInsight,
+  explanation: string | null | undefined
+): LearningInsight {
+  const rationale = explanatoryRationaleSummary(explanation);
+  if (!rationale || !sameText(insight.whyCorrect, rationale)) return insight;
+  return {
+    ...insight,
+    whyCorrect: "The rationale above is the full explanation for this item.",
+  };
+}
+
 /** Instant insight shell so AI Tutor can appear before /api/study/attempt returns. */
 export function buildInsightPreview(
   question: StudyQuestion,

@@ -104,6 +104,29 @@ export function activeBlueprintAreaWhere(fieldId: string, areaId: string) {
   };
 }
 
+/** NPCB domain ids. The question bank and the dashboard both label these. */
+export const AANP_FNP_BLUEPRINT_AREA_IDS = ["assess", "diagnose", "plan", "evaluate"] as const;
+
+/**
+ * One count per NPCB domain for the dashboard and the question-bank topic list.
+ * A stored category total wins. Otherwise the count is the exclusive subject
+ * sum, so Assess is not pediatrics plus the same rows again.
+ */
+export function aanpFnpBlueprintTopicCounts(
+  topicCounts: Record<string, number>,
+  categoryCounts?: Record<string, number> | null
+): Record<string, number> {
+  const next = { ...topicCounts };
+  for (const areaId of AANP_FNP_BLUEPRINT_AREA_IDS) {
+    const fromCategory = categoryCounts?.[areaId];
+    next[areaId] =
+      typeof fromCategory === "number" && Number.isFinite(fromCategory)
+        ? Math.max(0, Math.round(fromCategory))
+        : blueprintAreaCountFromTopics("aanp-fnp", areaId, topicCounts);
+  }
+  return next;
+}
+
 /** Area size from topic counts when every question has a blank clientNeeds. */
 export function blueprintAreaCountFromTopics(
   fieldId: string,

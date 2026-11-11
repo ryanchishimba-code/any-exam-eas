@@ -104,6 +104,7 @@ import {
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { useQuery } from "@tanstack/react-query";
 import {
+  aanpFnpBlueprintTopicCounts,
   blueprintAreaCountFromTopics,
   blueprintAreaLabel,
   isBlueprintAreaId,
@@ -599,6 +600,17 @@ export function StudyBankPractice({
     () => subjectCountPayload?.categories ?? [],
     [subjectCountPayload]
   );
+  const displayedSubjectCounts = useMemo(() => {
+    if (fieldId !== "aanp-fnp" || !subjectCounts) return subjectCounts;
+    const categoryCounts: Record<string, number> = {};
+    for (const category of activeCategories) {
+      if (typeof category.count === "number") categoryCounts[category.id] = category.count;
+    }
+    return aanpFnpBlueprintTopicCounts(
+      subjectCounts,
+      activeCategories.length > 0 ? categoryCounts : null
+    );
+  }, [activeCategories, fieldId, subjectCounts]);
   const activeCategoryLabel = subjectCountPayload?.categoryLabel ?? null;
   const ngnLabel = ngnStyleLabel(activeCategoryLabel, fieldId);
 
@@ -2612,10 +2624,24 @@ export function StudyBankPractice({
             <QuestionBankSetup
               subjects={subjects}
               subjectId={blueprintAreaId ? "" : subjectId || openingSubjectId}
-              subjectCounts={topicLauncherSubjectCounts ?? subjectCounts}
+              subjectCounts={topicLauncherSubjectCounts ?? displayedSubjectCounts ?? subjectCounts}
               fieldId={fieldId}
               examLabel={pageExam?.shortName ?? activeExamOption?.label}
               onSubjectChange={(id) => {
+                if (fieldId === "aanp-fnp" && isBlueprintAreaId(fieldId, id)) {
+                  explicitSubjectRef.current = null;
+                  setBlueprintAreaId(id);
+                  setSubjectId("");
+                  if (bankStyle !== "standard") setBankStyle("standard");
+                  if (practiceFormat !== "all") setPracticeFormat("all");
+                  syncPracticeUrl({
+                    subjectId: null,
+                    blueprintAreaId: id,
+                    style: "standard",
+                    format: "all",
+                  });
+                  return;
+                }
                 explicitSubjectRef.current = id;
                 setBlueprintAreaId(null);
                 setSubjectId(id);

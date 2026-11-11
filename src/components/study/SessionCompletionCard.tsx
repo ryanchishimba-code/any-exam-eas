@@ -205,6 +205,7 @@ export function SessionCompletionCard({
             <li>{weakTopicLine}</li>
           </ul>
           <div className="mt-3 flex flex-col gap-2 sm:mt-4 sm:flex-row">
+            {summary.total > summary.correct ? (
             <Link
               href={receipt.reviewIncorrectHref}
               data-session-primary="true"
@@ -212,6 +213,7 @@ export function SessionCompletionCard({
             >
               Review incorrect
             </Link>
+            ) : null}
             <Link
               href={receipt.analyticsHref}
               className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-[var(--color-border)] px-4 py-2.5 text-[14px] font-semibold tracking-[-0.01em] text-[var(--color-ink)] sm:w-auto sm:text-sm"

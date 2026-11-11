@@ -15,6 +15,24 @@ import { cn } from "@/lib/utils";
 import type { ReadinessPageData } from "@/lib/learning/readiness-check/service";
 import type { ExamAreaScore, PracticeAreaLevel, PracticeEstimate } from "@/lib/learning/practice-estimate";
 
+/** A future exam date means the student has not recorded a result yet. */
+export function displayedExamOutcome(
+  result: string | null | undefined,
+  examDate: string | null | undefined,
+  now = new Date()
+): OutcomeChoice | null {
+  if (result !== "passed" && result !== "not_yet" && result !== "not_taken") return null;
+  if (examDate) {
+    const parsed = new Date(`${examDate.slice(0, 10)}T00:00:00`);
+    if (!Number.isNaN(parsed.getTime())) {
+      const today = new Date(now);
+      today.setHours(0, 0, 0, 0);
+      if (parsed.getTime() > today.getTime()) return null;
+    }
+  }
+  return result;
+}
+
 function levelClass(level: string) {
   if (level === "on_track") return "text-[var(--color-accent)]";
   if (level === "getting_close") return "text-[var(--db-ready-review-text,var(--color-ink))]";
@@ -45,9 +63,7 @@ export function ReadinessBoard({
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [saved, setSaved] = useState<OutcomeChoice | null>(
-    data.outcome?.result === "passed" || data.outcome?.result === "not_yet" || data.outcome?.result === "not_taken"
-      ? data.outcome.result
-      : null
+    displayedExamOutcome(data.outcome?.result, data.examDate)
   );
 
   async function start(restart = false) {
@@ -124,7 +140,7 @@ export function ReadinessBoard({
         </section>
       ) : null}
 
-      {(saved === "passed" || (saved == null && data.outcome?.result === "passed")) ? (
+      {saved === "passed" ? (
         <section className={cn(dbUi.surface, "p-5 sm:p-6")}>
           <h2 className="text-[24px] font-semibold tracking-[-0.03em] text-[var(--color-ink)]">You passed.</h2>
           <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">

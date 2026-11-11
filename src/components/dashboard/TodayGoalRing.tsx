@@ -17,7 +17,7 @@ export function TodayGoalRing({
   const shown = cappedGoalCount(done, target);
   const label =
     progress.target > 0
-      ? `${shown} of ${progress.target} questions today`
+      ? `${shown} of ${progress.target} in today's set`
       : `${progress.done} questions today`;
 
   return (

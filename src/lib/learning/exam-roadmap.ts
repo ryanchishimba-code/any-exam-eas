@@ -16,6 +16,7 @@ import {
   type BlueprintCategory,
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
+import { blueprintAreaCountFromTopics } from "@/lib/inventory/blueprint-domain-pool";
 import { getExamTopicStudyLinks, topicNameToSlug } from "@/lib/library/exam-topic-bridge";
 import {
   topicNodeFromBlueprintCategory,
@@ -383,7 +384,14 @@ export function buildRoadmapTopics(
     const stats = statsByCategory.get(category.id) ?? { attempts: 0, correct: 0 };
     const masteryScores = masteryForSubjects(category.subjectIds, masteryMap);
     const pushesCompleted = seenByCategory.get(category.id) ?? 0;
-    const pushesAvailable = sumServeAvailable(category.subjectIds, serveBySubject);
+    const pushesAvailable =
+      blueprint.fieldId === "aanp-fnp"
+        ? blueprintAreaCountFromTopics(
+            "aanp-fnp",
+            category.id,
+            Object.fromEntries(serveBySubject)
+          )
+        : sumServeAvailable(category.subjectIds, serveBySubject);
     const coverage = {
       pushesCompleted,
       pushesAvailable,

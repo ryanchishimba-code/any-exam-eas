@@ -129,7 +129,7 @@ describe("DashboardTodayBlock review CTA", () => {
     expect(mix).toHaveTextContent("8 to review · 17 new");
     expect(document.querySelectorAll("[data-today-mix]")).toHaveLength(1);
     expect(screen.getByText("3-day streak")).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "8 of 25 questions today" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "8 of 25 in today's set" })).toBeInTheDocument();
 
     expect(screen.queryByText("Not enough practice yet")).toBeNull();
     expect(screen.queryByRole("link", { name: /Start review/ })).toBeNull();

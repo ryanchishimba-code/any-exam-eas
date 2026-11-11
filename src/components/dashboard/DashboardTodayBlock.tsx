@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
-import { TodayMixLine, TodaySessionProvider, TodayStartLive } from "@/components/dashboard/TodaySession";
+import { TodayMixLine, TodaySessionProvider, TodayStartLive, useTodaySession } from "@/components/dashboard/TodaySession";
 import { TodayGoalRing } from "@/components/dashboard/TodayGoalRing";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
@@ -32,8 +32,6 @@ export function DashboardTodayBlock({
   deferMix?: boolean;
 }) {
   const lockedHref = postTrialCheckoutHref();
-  const done = todaySet?.questionsDone ?? plan.questionsToday;
-  const target = todaySet?.target ?? TODAY_SET_DEFAULT_SIZE;
   const mixKnown = todaySet != null;
   const startLabel = todaySet?.limitReached
     ? "Question limit reached"
@@ -53,7 +51,7 @@ export function DashboardTodayBlock({
         className={`${dbUi.heroSurface} space-y-6`}
       >
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-8">
-          <TodayGoalRing done={done} target={target} />
+          <TodaySetRing todaySet={todaySet} />
           <div className="min-w-0 text-center sm:text-left">
             <p className={dbUi.eyebrow}>Today</p>
             <h2
@@ -65,6 +63,10 @@ export function DashboardTodayBlock({
             <p className="mt-1 text-[15px] tracking-[-0.015em] text-[var(--color-ink-muted)]">
               {plan.examName}
               <span className="text-[var(--color-ink-muted)]"> · about 15 min</span>
+            </p>
+            <TodaySetCapNote todaySet={todaySet} />
+            <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
+              This ring is today&apos;s set. Spaced review due is counted separately.
             </p>
             {deferMix ? <TodayMixLine /> : null}
             {!deferMix && mixKnown && todaySet?.mixLine ? (
@@ -111,5 +113,33 @@ export function DashboardTodayBlock({
       </section>
     </div>
     </TodaySessionProvider>
+  );
+}
+
+function todayRingNumbers(todaySet: TodaySetPreviewView | null): {
+  done: number;
+  target: number;
+  goal: number;
+} {
+  const session = useTodaySession();
+  const served = session.phase === "ready" ? session.preview : null;
+  const done = served?.questionsDone ?? todaySet?.questionsDone ?? 0;
+  const target = served?.size || todaySet?.target || TODAY_SET_DEFAULT_SIZE;
+  const goal = served?.goal ?? todaySet?.target ?? target;
+  return { done, target, goal };
+}
+
+function TodaySetRing({ todaySet }: { todaySet: TodaySetPreviewView | null }) {
+  const { done, target } = todayRingNumbers(todaySet);
+  return <TodayGoalRing done={done} target={target} />;
+}
+
+function TodaySetCapNote({ todaySet }: { todaySet: TodaySetPreviewView | null }) {
+  const { target, goal } = todayRingNumbers(todaySet);
+  if (!(goal > target && target > 0)) return null;
+  return (
+    <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
+      Today&apos;s set is {target}. The daily goal is {goal}.
+    </p>
   );
 }

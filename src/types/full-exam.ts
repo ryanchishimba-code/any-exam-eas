@@ -44,6 +44,8 @@ export type FullExamBowTieSnapshot = {
 export type FullExamQuestion = {
   id: string;
   question: string;
+  /** Patient case shown above the prompt. Omitted when the item has no vignette. */
+  vignette?: string;
   options: string[];
   correctAnswer: string;
   explanation: string;
@@ -77,6 +79,7 @@ export type FullExamTopicBreakdown = {
 export type FullExamQuestionSnapshot = {
   id: string;
   question: string;
+  vignette?: string;
   options: string[];
   correctAnswer: string;
   explanation: string;

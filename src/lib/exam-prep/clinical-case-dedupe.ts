@@ -74,11 +74,15 @@ function isSequentialBlock(item: BankItem): boolean {
   return payload?.kind === "sequential" && Boolean(payload.setId?.trim());
 }
 
+function textField(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
 function sessionDomainFor(item: BankItem): string {
   return (
-    item.blueprintDomain?.trim() ||
-    item.topicCategory?.trim() ||
-    item.subjectId?.trim() ||
+    textField(item.blueprintDomain) ||
+    textField(item.topicCategory) ||
+    textField(item.subjectId) ||
     "general"
   );
 }
