@@ -445,6 +445,7 @@ export function StudyBankPractice({
     emptyModeFromLaunchQuery(searchParams.get("launch"))
   );
   const [error, setError] = useState("");
+  const [launchBlock, setLaunchBlock] = useState<string | null>(null);
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
   const [clinicalSession, setClinicalSession] = useState<ClinicalSessionPayload | null>(null);
@@ -638,6 +639,9 @@ export function StudyBankPractice({
   };
   // Cards, preview, pool, and Start all read this. A disabled style cannot stay selected.
   const effectiveBankStyle = effectiveQuestionBankStyle(requestedBankStyle, bankStyleScope);
+  useEffect(() => {
+    setLaunchBlock(null);
+  }, [questionCount, subjectId, effectiveBankStyle]);
   const coverageQuery = useCoverageHeatmap(fieldId, {
     initial: initialCoverage,
     initialFieldId: initialCoverageFieldId,
@@ -1369,7 +1373,6 @@ export function StudyBankPractice({
               allowPartialTopicPractice: topicPracticeLaunch,
             });
       if (!validation.ok) {
-        setError(validation.message ?? "Cannot start this session.");
         return;
       }
     }
@@ -1387,6 +1390,7 @@ export function StudyBankPractice({
       setLoading(true);
     }
     setError("");
+    setLaunchBlock(null);
     setUpgradeHref(null);
     setQuestions(null);
     if (isUsmleFieldId(fieldId)) {
@@ -2097,9 +2101,18 @@ export function StudyBankPractice({
             : "No questions in bank for this topic yet."
         );
       }
-      expectExactSessionCount(raw.length, limit);
+      const delivered = raw.length > limit ? raw.slice(0, limit) : raw;
+      if (delivered.length !== limit) {
+        setLaunchBlock(
+          delivered.length === 0
+            ? "No serve-ready questions are available for this session."
+            : `Only ${delivered.length} serve-ready question${delivered.length === 1 ? "" : "s"} can be served. Choose ${delivered.length} or another topic.`
+        );
+        return;
+      }
+      setLaunchBlock(null);
       if (isStale()) return;
-      setQuestions(raw);
+      setQuestions(delivered);
     } catch (e) {
       if (isStale()) return;
       const message = e instanceof Error ? e.message : "Failed to load";
@@ -2424,6 +2437,7 @@ export function StudyBankPractice({
     !isTimedExam &&
     (launchFormat != null || !!subjectId) &&
     bankSessionValidation.ok &&
+    !launchBlock &&
     !loading &&
     !countsLoading;
   const canStartTimed = isTimedExam && !loading && (!isMpje || mpjeVariant !== "state" || !!mpjeState);
@@ -2847,7 +2861,9 @@ export function StudyBankPractice({
             bankStyle={effectiveBankStyle}
             estimatedMinutes={previewEstimatedMinutes}
             availableCount={previewAvailableCount}
-            validationMessage={bankSessionValidation.ok ? undefined : bankSessionValidation.message}
+            validationMessage={
+              launchBlock ?? (bankSessionValidation.ok ? undefined : bankSessionValidation.message)
+            }
             suggestMixed={Boolean(
               !bankSessionValidation.ok &&
                 "suggestMixed" in bankSessionValidation &&

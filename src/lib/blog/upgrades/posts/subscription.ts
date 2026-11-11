@@ -5,7 +5,7 @@ import type { BlogUpgrade } from "@/lib/blog/upgrades/types";
 
 const content = [
   p(
-    `One Pro subscription covers six licensing exams: NCLEX-RN and NCLEX-PN, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. You do not buy a separate bank for each board. The offer is ${TRIAL_OFFER} ${TRIAL_QUESTION_LIMIT}. After the trial, practice stays locked unless you continue on Pro.`
+    `One Pro subscription covers six boards: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. USMLE includes Step 1, Step 2 CK, and Step 3. You do not buy a separate bank for each board. The offer is ${TRIAL_OFFER} ${TRIAL_QUESTION_LIMIT}. After the trial, practice stays locked unless you continue on Pro.`
   ),
   p(
     `This page is what the product actually includes. It is not a comparison that invents another company’s price, and it is not a claim that you will pass. For how to study, use the ${a("/blog/nclex-study-plan-rn-pn", "NCLEX study plan")}, the ${a("/blog/why", "budget NCLEX guide")}, or the ${a("/blog/okay", "NAPLEX study plan")}.`
@@ -100,7 +100,7 @@ const content = [
     },
     {
       q: "Which exams are included?",
-      a: "NCLEX-RN and NCLEX-PN, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. One subscription covers the six banks.",
+      a: "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. USMLE includes Step 1, Step 2 CK, and Step 3. One subscription covers the six banks.",
     },
     {
       q: "Are the study guides free?",

@@ -36,11 +36,18 @@ export function fullExamTimeUsedSec(input: {
   }
 
   const candidates = [fallback];
+  // A clock about one hour longer than the running timer is a timezone skew,
+  // not a backgrounded tab. A much longer wall clock still wins over a frozen timer.
+  const accept = (candidate: number): boolean => {
+    if (candidate < 0) return false;
+    const extra = candidate - fallback;
+    return !(extra >= 50 * 60 && extra <= 75 * 60);
+  };
   // A start stamp later than the first answer is the short-timer bug.
-  if (fromStart >= 0 && (!Number.isFinite(earliestAnswer) || fromStart + 5 >= fromAnswers)) {
+  if (fromStart >= 0 && (!Number.isFinite(earliestAnswer) || fromStart + 5 >= fromAnswers) && accept(fromStart)) {
     candidates.push(fromStart);
   }
-  if (fromOpen >= 0) candidates.push(fromOpen);
-  if (fromAnswers >= 0) candidates.push(fromAnswers);
+  if (accept(fromOpen)) candidates.push(fromOpen);
+  if (accept(fromAnswers)) candidates.push(fromAnswers);
   return Math.max(...candidates);
 }

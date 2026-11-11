@@ -213,7 +213,7 @@ export function FullExamResults({
             </span>
           </div>
 
-          {examSlug === "aanp-fnp" && current.vignette?.trim() ? (
+          {(examSlug === "aanp-fnp" || examSlug === "pance") && current.vignette?.trim() ? (
             <p className="mb-4 whitespace-pre-wrap text-base leading-relaxed text-slate-700">
               {current.vignette.trim()}
             </p>

@@ -7,11 +7,13 @@ type Props = {
   progress: number;
   status: string;
   showBar: boolean;
+  /** Keep a percent bar instead of switching to a pulse. */
+  determinate?: boolean;
   className?: string;
 };
 
-export function ExamLoadingProgress({ progress, status, showBar, className }: Props) {
-  const stillWorking = progress >= 70;
+export function ExamLoadingProgress({ progress, status, showBar, determinate = false, className }: Props) {
+  const stillWorking = !determinate && progress >= 70;
   return (
     <div className={cn("space-y-3", className)}>
       {showBar && stillWorking ? (

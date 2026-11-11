@@ -9,6 +9,7 @@ import { difficultyChipText } from "@/lib/questions/difficulty-label";
 import {
   repairSplitInstructionQuote,
   showAiAssistedRationaleLabel,
+  fixIndefiniteArticles,
   studentFacingStem,
   vignetteWithoutRepeatedQuestion,
 } from "@/lib/questions/student-display-text";
@@ -142,7 +143,7 @@ export const QuestionRenderer = memo(function QuestionRenderer({
     ? vignetteWithoutRepeatedQuestion(paired.vignette, paired.stem)
     : "";
   const caseTitle = (question.ngnPayload as { caseTitle?: string } | undefined)?.caseTitle;
-  const vignetteText = examMode ? withoutCaseTitle(titled, caseTitle) : titled;
+  const vignetteText = fixIndefiniteArticles(examMode ? withoutCaseTitle(titled, caseTitle) : titled);
   const stemText = studentFacingStem(paired.stem);
 
   return (

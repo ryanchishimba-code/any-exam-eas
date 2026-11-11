@@ -119,7 +119,7 @@ Practice sets live at [anyexameasy.com](https://anyexameasy.com).
 | 1 | Cardio, Pulm | Baseline block on day 1 |
 | 2 | GI, MSK, Renal | Weekly error-log review |
 | 3 | ID, Neuro, Psych | **Mock 1** |
-| 4 | Reproductive, Endocrine, EENT | Tag peds + surgery items |
+| 4 | Reproductive, Endocrine, EENT | Review child and procedure items inside Reproductive, Endocrine, and EENT |
 | 5 | Heme, Derm, GU, Professional Practice | **Mock 2** |
 | 6 | Weak areas + sprint | **Mock 3** on day −7 |
 

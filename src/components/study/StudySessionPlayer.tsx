@@ -38,6 +38,7 @@ import {
 import { SessionCompletionCard, SessionPersistGate } from "./SessionCompletionCard";
 import { TodaySetEndCard } from "@/components/dashboard/TodaySetEndCard";
 import { CONVERSION_EVENTS, trackConversion } from "@/lib/analytics";
+import { studentFacingConceptLabel } from "@/lib/learning/concept-labels";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { browserStudyTimeZone, weakestTopicFromOutcomes } from "@/lib/learning/today-set";
 import { buildSessionDomainBreakdown } from "@/lib/study/session-domain-breakdown";
@@ -115,6 +116,15 @@ type Props = {
   /** NGN or case deliberate practice. Persisted onto each saved attempt. */
   practiceFormat?: "ngn" | "case";
 };
+
+function liveQuestionTopic(question: {
+  topicCategory?: string | null;
+  subjectId?: string | null;
+  blueprintTopic?: string | null;
+}): string {
+  const raw = question.topicCategory || question.blueprintTopic || question.subjectId || "";
+  return studentFacingConceptLabel(raw) ?? "General";
+}
 
 export function StudySessionPlayer({
   field,
@@ -870,6 +880,11 @@ export function StudySessionPlayer({
           ))}
         </p>
       ) : null}
+
+      <p className="text-[13px] font-semibold text-[var(--color-ink)]">
+        Question {sessionState.currentIndex + 1} of {questionList.length}
+        {current ? ` · ${liveQuestionTopic(current)}` : ""}
+      </p>
 
       <div className={studyUi.sessionProgress} role="progressbar" aria-valuenow={Math.round(progressPct)} aria-valuemin={0} aria-valuemax={100} aria-label="Session progress">
         <div

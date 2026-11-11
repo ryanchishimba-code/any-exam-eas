@@ -30,6 +30,16 @@ describe("readinessChecksFromPractice", () => {
     ).toBe(1);
   });
 
+  it("counts one completed PANCE exam toward readiness checks", () => {
+    expect(
+      readinessChecksFromPractice({
+        examSlug: "pance",
+        recordedChecks: 0,
+        fullLengthExamsCompleted: 2,
+      })
+    ).toBe(1);
+  });
+
   it("leaves other boards on the recorded check", () => {
     expect(
       readinessChecksFromPractice({

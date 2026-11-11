@@ -8,8 +8,8 @@ import { examSimAnsweredCount } from "@/lib/learning/full-exam-pass-path";
  * board minimum.
  */
 /**
- * A completed full-length AANP FNP exam counts toward the Readiness checks
- * pillar. The recorded check still counts. Other boards keep the check table.
+ * A completed full-length AANP FNP or PANCE exam counts toward the Readiness
+ * checks pillar. The recorded check still counts. Other boards keep the check table.
  */
 export function readinessChecksFromPractice(input: {
   examSlug: string;
@@ -17,7 +17,10 @@ export function readinessChecksFromPractice(input: {
   fullLengthExamsCompleted: number;
 }): number {
   const recorded = Math.max(0, Math.floor(input.recordedChecks) || 0);
-  if (input.examSlug === "aanp-fnp" && input.fullLengthExamsCompleted > 0) {
+  if (
+    (input.examSlug === "aanp-fnp" || input.examSlug === "pance") &&
+    input.fullLengthExamsCompleted > 0
+  ) {
     return Math.max(recorded, 1);
   }
   return recorded;

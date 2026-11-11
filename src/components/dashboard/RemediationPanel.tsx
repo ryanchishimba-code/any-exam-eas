@@ -104,10 +104,9 @@ export function RemediationPanel({
                   {loop.label}
                 </p>
                 <p className="text-[12px] font-medium tabular-nums text-[var(--color-ink-muted)]">
-                  {loop.openCount} open
                   {loop.pendingCount > 0
-                    ? ` · ${loop.pendingCount} pending re-proof`
-                    : ""}
+                    ? `${loop.openCount} open · ${loop.pendingCount} pending re-proof`
+                    : `${loop.openCount} open`}
                 </p>
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -147,8 +146,7 @@ export function RemediationPanel({
 
       {summary.hiddenLoopCount > 0 ? (
         <p className="text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-          {summary.hiddenLoopCount} more topic{summary.hiddenLoopCount === 1 ? "" : "s"}{" "}
-          {summary.hiddenLoopCount === 1 ? "is" : "are"} in Review incorrect.
+          {`${summary.hiddenLoopCount} more topic${summary.hiddenLoopCount === 1 ? "" : "s"} ${summary.hiddenLoopCount === 1 ? "is" : "are"} in Review incorrect.`}
         </p>
       ) : null}
 

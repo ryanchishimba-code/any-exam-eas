@@ -143,8 +143,8 @@ export function PriceSection({ trialHref = LANDING_TRIAL_HREF }: { trialHref?: s
           {formatMonthlyPrice("pro")}/mo for six boards.
         </h2>
         <p className="mt-6 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-          Six boards on one Pro plan: NCLEX, USMLE (Step 1, Step 2 CK, and Step 3), NAPLEX, PANCE,
-          AANP FNP, and NPTE-PT.
+          Six boards on one Pro plan: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. USMLE
+          includes Step 1, Step 2 CK, and Step 3.
         </p>
         <div className="mt-8 flex justify-center">
           <LandingCta href={trialHref} ctaName="price_trial" location="price">

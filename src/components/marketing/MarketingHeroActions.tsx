@@ -10,6 +10,8 @@ type MarketingHeroActionsProps = {
   /** Trial line under the primary CTA (e.g. live count + no card). */
   trialMicrocopy?: string;
   className?: string;
+  /** Signed-in visitors should not see the logged-out trial button. */
+  signedIn?: boolean;
 };
 
 export function MarketingHeroActions({
@@ -20,14 +22,19 @@ export function MarketingHeroActions({
   showSeeQuestions = true,
   trialMicrocopy,
   className = "bl-actions",
+  signedIn = false,
 }: MarketingHeroActionsProps) {
   return (
     <div className={className}>
       <div className="bl-actions__primary">
-        <LandingCta href={trialHref} ctaName={ctaName} location={ctaLocation}>
-          {HERO_TRIAL_CTA_LABEL}
+        <LandingCta
+          href={signedIn ? "/dashboard" : trialHref}
+          ctaName={signedIn ? "continue_studying" : ctaName}
+          location={ctaLocation}
+        >
+          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
         </LandingCta>
-        {trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
+        {!signedIn && trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
       </div>
       {showSeeQuestions ? (
         <a className="bl-button bl-button-secondary" href={seeQuestionsHref}>

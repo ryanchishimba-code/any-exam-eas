@@ -8,6 +8,7 @@ import {
   splitGluedLeadIn,
   stripInternalDisplayMetadata,
   studentFacingExhibitKind,
+  studentFacingStem,
 } from "./student-display-text";
 
 describe("student display text", () => {
@@ -26,6 +27,15 @@ describe("student display text", () => {
     const text = "The client finished chemotherapy. Which action should the nurse take first?";
     expect(splitGluedLeadIn(text).vignette).toBeUndefined();
     expect(splitGluedLeadIn(text).stem).toBe(text);
+  });
+
+  it("uses an before a vowel-sound age", () => {
+    expect(studentFacingStem("A 80-year-old man has chest pain.")).toBe(
+      "An 80-year-old man has chest pain."
+    );
+    expect(studentFacingStem("A 54-year-old woman has a cough.")).toBe(
+      "A 54-year-old woman has a cough."
+    );
   });
 
   it("strips visit-batch metadata without touching the clinical sentence", () => {

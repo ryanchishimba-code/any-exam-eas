@@ -16,8 +16,12 @@ import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQui
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
 import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
 import { HERO_TRIAL_CTA_LABEL } from "@/lib/marketing/home-cta";
+import { getCachedSession } from "@/lib/auth/session";
+import { ROUTES } from "@/lib/routes";
 
-export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
+export async function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderModel }) {
+  const session = await getCachedSession();
+  const signedIn = Boolean(session?.user);
   const depthChart = model.nclexCompare;
   const stories = storiesBelowHero(model.stories, model.heroTestimonial?.quote);
 
@@ -33,6 +37,7 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         testimonial={model.heroTestimonial}
         proofFacts={boardHeroProofFacts(model.heroOffer)}
         boardName={model.boardName}
+        signedIn={signedIn}
         trail={
           <>
       <div className="bl-band">
@@ -67,7 +72,7 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
         }
       />
 
-      <WhyAnyExamEasy board="nclex" trialHref={model.trialHref} />
+      <WhyAnyExamEasy board="nclex" trialHref={model.trialHref} signedIn={signedIn} />
 
       {model.features.length > 0 ? (
         <div className="bl-band">
@@ -96,8 +101,12 @@ export function NclexBoardLanding({ model }: { model: NclexBoardLandingRenderMod
 
       <section className="bl-final bl-band bl-band--final" aria-labelledby="final-heading">
         <h2 id="final-heading">{model.finalHeading}</h2>
-        <LandingCta href={model.trialHref} ctaName={model.finalCtaName} location={model.finalCtaLocation}>
-          {HERO_TRIAL_CTA_LABEL}
+        <LandingCta
+          href={signedIn ? ROUTES.dashboard : model.trialHref}
+          ctaName={signedIn ? "continue_studying" : model.finalCtaName}
+          location={model.finalCtaLocation}
+        >
+          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
         </LandingCta>
       </section>
 

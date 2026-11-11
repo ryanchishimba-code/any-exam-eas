@@ -271,7 +271,11 @@ export function FullExamLauncher({
   const summary = [
     lengthLabel,
     preview.timed ? formatHms(preview.timeLimitSec) : "Untimed",
-    preview.adaptive ? "Adaptive mix" : "Standard mix",
+    examSlug === "pance" && preset === "full"
+      ? "5 blocks of 60"
+      : preview.adaptive
+        ? "Adaptive mix"
+        : "Standard mix",
   ].join("  ·  ");
 
   return (

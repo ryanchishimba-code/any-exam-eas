@@ -6,7 +6,7 @@ import "@/styles/why-anyexameasy.css";
 const FACTS = [
   {
     title: "Six boards on one plan",
-    body: "Six boards: NCLEX, USMLE (Step 1, Step 2 CK, and Step 3), NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
+    body: "Six boards: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. USMLE includes Step 1, Step 2 CK, and Step 3.",
   },
   {
     title: "An explanation with the answer",
@@ -38,9 +38,11 @@ function quotesForBoard(board?: string) {
 export function WhyAnyExamEasy({
   board,
   trialHref,
+  signedIn = false,
 }: {
   board?: string;
   trialHref: string;
+  signedIn?: boolean;
 }) {
   const quotes = quotesForBoard(board);
   const facts = board === "naplex" ? FACTS.filter((fact) => fact.title !== "NGN case studies") : FACTS;
@@ -72,8 +74,12 @@ export function WhyAnyExamEasy({
             ))}
           </div>
         ) : null}
-        <LandingCta href={trialHref} ctaName="why_trial" location={board ? `why_${board}` : "why_home"}>
-          {HERO_TRIAL_CTA_LABEL}
+        <LandingCta
+          href={signedIn ? "/dashboard" : trialHref}
+          ctaName={signedIn ? "continue_studying" : "why_trial"}
+          location={board ? `why_${board}` : "why_home"}
+        >
+          {signedIn ? "Continue studying" : HERO_TRIAL_CTA_LABEL}
         </LandingCta>
       </div>
     </section>

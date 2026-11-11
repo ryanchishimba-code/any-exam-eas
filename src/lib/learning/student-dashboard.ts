@@ -42,6 +42,12 @@ export type WeakTopicStudyLinks = {
   anatomyStructures: AnatomyStructureLink[];
 };
 
+/** Miss rate shown on Weak lists. Accuracy is 100 minus this number. */
+export function weakTopicMissRate(accuracyPct: number): number {
+  if (!Number.isFinite(accuracyPct)) return 0;
+  return Math.max(0, Math.min(100, Math.round(100 - accuracyPct)));
+}
+
 export type WeakTopicRow = {
   id: string;
   name: string;

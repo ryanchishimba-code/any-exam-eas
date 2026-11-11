@@ -48,7 +48,7 @@ export function DashboardTodayBlock({
       <section
         aria-labelledby="today-block-heading"
         data-tour="today"
-        className={`${dbUi.heroSurface} space-y-6`}
+        className={`${dbUi.heroSurface.replace("apple-animate-in", "").trim()} space-y-6`}
       >
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-8">
           <TodaySetRing todaySet={todaySet} />

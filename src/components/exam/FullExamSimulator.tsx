@@ -44,6 +44,8 @@ import { narrowTopicKey } from "@/lib/exam-prep/narrow-topic";
 import { assignSittingClusters } from "@/lib/exam-prep/sitting-clusters";
 import { fullExamTimeUsedSec } from "@/lib/full-exam/time-used";
 import { naplexBreakLabel, nextNaplexBreakMark } from "@/lib/full-exam/naplex-breaks";
+import { nextPanceBreakMark, panceBlockLabel } from "@/lib/full-exam/pance-breaks";
+import { studentFacingConceptLabel } from "@/lib/learning/concept-labels";
 import { patchCompleteExamSession } from "@/lib/full-exam/complete-exam-client";
 import { restoreCatSessionFromAnswers } from "@/lib/full-exam/restore-cat-session";
 import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
@@ -564,14 +566,20 @@ export function FullExamSimulator({
   }, [isCatMode, loading, questions.length]);
 
   useEffect(() => {
-    if (examSlug !== "naplex" || !config.timed || config.timeLimitSec < 6 * 60 * 60 || loading) return;
+    if (!config.timed || loading || breakMark != null) return;
     const elapsed = Math.max(0, config.timeLimitSec - remainingSec);
-    const mark = nextNaplexBreakMark(elapsed, offeredBreaksRef.current);
-    if (mark == null || breakMark != null) return;
+    const mark =
+      examSlug === "naplex" && config.timeLimitSec >= 6 * 60 * 60
+        ? nextNaplexBreakMark(elapsed, offeredBreaksRef.current)
+        : examSlug === "pance" && config.questionCount >= 300
+          ? nextPanceBreakMark(elapsed, offeredBreaksRef.current)
+          : null;
+    if (mark == null) return;
     offeredBreaksRef.current.add(mark);
+    if (pauseStarted.current == null) pauseStarted.current = Date.now();
     setBreakMark(mark);
     setPaused(true);
-  }, [examSlug, config.timed, config.timeLimitSec, loading, remainingSec, breakMark]);
+  }, [examSlug, config.timed, config.timeLimitSec, config.questionCount, loading, remainingSec, breakMark]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;
@@ -587,10 +595,13 @@ export function FullExamSimulator({
 });
       if (config.timed && config.timeLimitSec > 0) {
         const left = Math.max(0, config.timeLimitSec - used);
-        setRemainingSec(left);
-        if (left <= 0) setTimeUp(true);
+        setRemainingSec((prev) => {
+          const next = Math.min(prev, left);
+          if (next <= 0) setTimeUp(true);
+          return next;
+        });
       } else {
-        setElapsedSec(used);
+        setElapsedSec((prev) => Math.max(prev, used));
       }
     }
 
@@ -1390,17 +1401,16 @@ export function FullExamSimulator({
               className={cn(feUi.footerBtnPrimary, "flex-1")}
             >
               {submitting
-                ? submitPhase === "grading"
-                  ? "Scoring exam…"
-                  : "Preparing submit…"
+                ? `${submitPhase === "grading" ? "Scoring exam" : "Preparing submit"}… ${Math.round(scoreProgress.progress)}%`
                 : "Submit exam"}
             </button>
           </div>
           {submitting ? (
             <ExamLoadingProgress
               progress={scoreProgress.progress}
-              status={scoreProgress.status}
+              status={`${scoreProgress.status} ${Math.round(scoreProgress.progress)}% complete.`}
               showBar
+              determinate
             />
           ) : null}
         </main>
@@ -1416,7 +1426,7 @@ export function FullExamSimulator({
             <p className="truncate text-[14px] font-semibold text-[var(--color-ink)]">{exam.name}</p>
             <p className="truncate text-[12px] text-[var(--color-ink-muted)]">{encouragement}</p>
           </div>
-          <div className="hidden text-right sm:block">
+          <div className="text-right">
             <p className="text-[13px] font-semibold tabular-nums text-[var(--color-ink)]">
               {index + 1}
               <span className="font-normal text-[var(--color-ink-muted)]">
@@ -1424,6 +1434,16 @@ export function FullExamSimulator({
                 / {isCatMode ? nclexCatQuestionRange() : questions.length}
               </span>
             </p>
+            {panceBlockLabel(index, questions.length) ? (
+              <p className="text-[11px] font-medium text-[var(--color-ink-muted)]">
+                {panceBlockLabel(index, questions.length)}
+              </p>
+            ) : null}
+            {current?.topicCategory || current?.subjectId ? (
+              <p className="max-w-[14rem] text-[11px] font-medium text-[var(--color-ink-muted)]">
+                {studentFacingConceptLabel(current.topicCategory || current.subjectId || "") ?? "General"}
+              </p>
+            ) : null}
           </div>
           <div className="w-24 sm:w-40">
             <Progress value={progressPct} className="h-1 rounded-full bg-black/[0.06]" />
@@ -1668,20 +1688,22 @@ export function FullExamSimulator({
       />
       <TimeUpDialog open={timeUp && !submitting} onFinish={() => void submitExam(true)} />
       {breakMark != null ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-labelledby="naplex-break-title">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" role="dialog" aria-labelledby="exam-break-title">
           <div className="max-w-md rounded-2xl bg-white p-6 shadow-xl">
-            <h2 id="naplex-break-title" className="text-[20px] font-semibold text-[var(--color-ink)]">
+            <h2 id="exam-break-title" className="text-[20px] font-semibold text-[var(--color-ink)]">
               Scheduled break
             </h2>
             <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-              You reached the {naplexBreakLabel(breakMark)} in this 6-hour practice exam. The clock is paused. Continue when you are ready. This is practice, not a licensure administration.
+              {examSlug === "pance"
+                ? "This practice exam is 5 blocks of 60 questions. The clock is paused between blocks. Continue when you are ready. This is practice, not a licensure administration."
+                : `You reached the ${naplexBreakLabel(breakMark)} in this 6-hour practice exam. The clock is paused. Continue when you are ready. This is practice, not a licensure administration.`}
             </p>
             <button
               type="button"
               className={cn(feUi.footerBtnPrimary, "mt-4")}
               onClick={() => {
                 setBreakMark(null);
-                setPaused(false);
+                resumeExam();
               }}
             >
               Continue exam
