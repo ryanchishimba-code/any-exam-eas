@@ -24,6 +24,7 @@ export type BoardLandingHeroProps = {
   boardName: string;
   /** Bands that sit on the photo, ending before the features section. */
   trail?: ReactNode;
+  signedIn?: boolean;
 };
 
 export function BoardLandingHero({
@@ -37,6 +38,7 @@ export function BoardLandingHero({
   proofFacts,
   boardName,
   trail,
+  signedIn = false,
 }: BoardLandingHeroProps) {
   return (
     <>
@@ -62,6 +64,7 @@ export function BoardLandingHero({
               ctaLocation={heroCtaLocation}
               seeQuestionsHref={BOARD_LANDING_HERO_QUIZ_HREF}
               className="mkt-photo-hero__actions"
+              signedIn={signedIn}
             />
           }
         />

@@ -38,6 +38,19 @@ describe("fullExamTimeUsedSec", () => {
     expect(used).toBe(6 * 60 + 56);
   });
 
+  it("keeps the running timer when another clock is one hour longer", () => {
+    const started = new Date("2026-11-10T15:00:00.000Z");
+    const now = started.getTime() + (32 * 60 + 16) * 1000;
+    const skewedStart = new Date(started.getTime() - 60 * 60 * 1000);
+    expect(
+      fullExamTimeUsedSec({
+        startedAt: skewedStart,
+        nowMs: now,
+        fallbackSec: 32 * 60 + 16,
+      })
+    ).toBe(32 * 60 + 16);
+  });
+
   it("falls back to the timer when the session has no start", () => {
     expect(fullExamTimeUsedSec({ startedAt: null, nowMs: Date.now(), fallbackSec: 90 })).toBe(90);
   });

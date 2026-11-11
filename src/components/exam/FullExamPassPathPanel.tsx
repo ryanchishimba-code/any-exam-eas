@@ -25,7 +25,7 @@ export function FullExamPassPathPanel({
   return (
     <section
       aria-labelledby="exam-pass-path-heading"
-      className={cn(feUi.panel, "flex flex-col p-4 sm:block sm:p-6")}
+      className="flex flex-col rounded-[22px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-4 shadow-[var(--shadow-apple-sm)] sm:block sm:p-6"
     >
       <div>
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-800">

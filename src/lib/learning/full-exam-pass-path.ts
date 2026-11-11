@@ -244,7 +244,7 @@ export function fullExamPassPathCopy(input: {
       disclaimer: FULL_EXAM_PRACTICE_DISCLAIMER,
       title: "No misses from this simulation",
       detail:
-        "Review incorrect and open remediations stay as they were. Refresh the dashboard to see readiness proof.",
+        "This simulation had no misses, so it does not add a new Review incorrect item. A correct answer here can clear an earlier miss. Open the dashboard to see the updated readiness proof.",
       reviewCta: null,
       proofCta: "Readiness proof",
     };

@@ -26,6 +26,8 @@ describe("isInternalMasteryConceptKey", () => {
     expect(isInternalMasteryConceptKey("ai-curated")).toBe(true);
     expect(isInternalMasteryConceptKey("Aanp Fnp Variant")).toBe(true);
     expect(isInternalMasteryConceptKey("tag:aanp-fnp-generated")).toBe(true);
+    expect(isInternalMasteryConceptKey("pance-generated")).toBe(true);
+    expect(isInternalMasteryConceptKey("physician-educator")).toBe(true);
   });
 
   it("keeps real topics", () => {

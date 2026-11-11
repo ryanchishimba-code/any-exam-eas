@@ -14,7 +14,7 @@ import {
   YAxis,
 } from "recharts";
 import { TrendingUp } from "lucide-react";
-import type { AccuracyTrendPoint, WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicMissRate, type AccuracyTrendPoint, type WeakTopicRow } from "@/lib/learning/student-dashboard";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -140,7 +140,7 @@ export function StudentDashboardCharts({
                           <div className="rounded-xl border border-black/[0.06] bg-white px-3 py-2 text-xs shadow-md">
                             <p className="font-medium text-[var(--color-ink)]">{row.name}</p>
                             <p className="text-[var(--color-ink-muted)]">
-                              {row.masteryScore}% topic progress · {row.attempts} attempts
+                              {row.masteryScore}% accuracy · {weakTopicMissRate(row.masteryScore)}% miss rate · {row.attempts} attempts
                             </p>
                           </div>
                         );
@@ -162,10 +162,10 @@ export function StudentDashboardCharts({
                         {topic.name}
                       </span>
                       <span className="shrink-0 tabular-nums text-[var(--color-ink-muted)]">
-                        {topic.masteryScore}%
+                        {weakTopicMissRate(topic.masteryScore)}% miss rate
                       </span>
                     </div>
-                    <Progress value={topic.masteryScore} className="h-1.5" />
+                    <Progress value={weakTopicMissRate(topic.masteryScore)} className="h-1.5" />
                   </li>
                 ))}
               </ul>

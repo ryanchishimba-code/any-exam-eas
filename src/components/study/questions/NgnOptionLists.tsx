@@ -162,7 +162,7 @@ function OptionRow({
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black/[0.05] text-xs font-semibold">
           {multi && selected ? "✓" : index + 1}
         </span>
-        <span className="min-w-0 flex-1">
+        <span className="min-w-0 flex-1 whitespace-pre-wrap break-words">
           <InlineBold text={cleanOptionText(option)} />
           {revealed && isCorrect && (
             <span className="mt-1 flex items-center gap-1 text-xs font-semibold a11y-correct-text">

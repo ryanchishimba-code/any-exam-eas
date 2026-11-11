@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BarChart3, Layers } from "lucide-react";
 import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
-import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
+import { weakTopicMissRate, type StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { ExamDayReadiness } from "@/lib/learning/exam-day-plan";
 import { PRACTICE_MEASURE_DISCLAIMER } from "@/lib/learning/practice-measure";
 import {
@@ -152,12 +152,18 @@ export function StudentAnalyticsDashboard({
     dashboard.weakTopics.filter((t) => fieldIds.includes(t.fieldId))
   );
 
+  const topicName = (value: string) => value.trim().toLowerCase().replace(/[_-]+/g, " ");
+  const weakNames = weakTopics.map((topic) => topicName(topic.name));
+  const sameTopic = (left: string, right: string) =>
+    left === right || left.startsWith(`${right} `) || right.startsWith(`${left} `);
   const strongTopics =
     profile?.strongestConcepts
-      ?.filter(
-        (c) =>
-          fieldIds.includes(c.fieldId) && !isInternalMasteryConceptKey(c.conceptKey)
-      )
+      ?.filter((c) => {
+        if (!fieldIds.includes(c.fieldId) || isInternalMasteryConceptKey(c.conceptKey)) return false;
+        if (c.masteryScore < 80) return false;
+        const label = topicName(formatConceptLabel(c.conceptKey));
+        return !weakNames.some((name) => sameTopic(name, label));
+      })
       .slice(0, 5)
       .map((c) => c.conceptKey) ?? [];
   const primaryExamSlug = examSlug;
@@ -261,8 +267,8 @@ export function StudentAnalyticsDashboard({
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
           label="Practice score"
-          value={`${practiceScore}`}
-          hint={`${practiceHeadline}. Outline coverage, accuracy, and reviewed misses, from 0 to 100.`}
+          value={`${practiceScore} of 100`}
+          hint={`${practiceHeadline}. Outline coverage, accuracy, and reviewed misses. The score runs from 0 to 100.`}
         />
         <MetricCard
           label="Accuracy"
@@ -354,14 +360,14 @@ export function StudentAnalyticsDashboard({
                         subjectCounts={servedSubjectCounts}
                       />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
-                        {t.masteryScore}%
+                        {weakTopicMissRate(t.masteryScore)}% miss rate
                       </span>
                     </span>
                   </div>
                   <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]">
                     <div
                       className="h-full rounded-full bg-[var(--color-accent)]"
-                      style={{ width: `${t.masteryScore}%` }}
+                      style={{ width: `${weakTopicMissRate(t.masteryScore)}%` }}
                     />
                   </div>
                 </li>

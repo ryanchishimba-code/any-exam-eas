@@ -20,6 +20,10 @@ const INTERNAL_PEDAGOGY_SLUGS = new Set([
   "ai-curated",
   "aanp-fnp-variant",
   "aanp-fnp-generated",
+  "pance-variant",
+  "pance-generated",
+  "pance-seed",
+  "physician-educator",
   "high-yield",
   "bulk-bank",
   "foundation",
@@ -60,6 +64,10 @@ export function isInternalMasteryConceptKey(key: string): boolean {
   if (/^exam-\d+/i.test(slug)) return true;
   if (/^naplex-a-/.test(slug) || slug === "elevate" || /-elevate$/.test(slug)) return true;
   if (slug.startsWith("aanp-fnp-variant") || slug.startsWith("aanp-fnp-generated")) return true;
+  if (slug.startsWith("pance-variant") || slug.startsWith("pance-generated") || slug.startsWith("pance-seed")) {
+    return true;
+  }
+  if (slug === "physician-educator" || slug.endsWith("-physician-educator")) return true;
   if (slug === "ai-curated" || slug.endsWith("-ai-curated")) return true;
   return false;
 }

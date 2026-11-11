@@ -3,7 +3,7 @@ import { Target } from "lucide-react";
 import { weakTopicPracticeHref } from "@/components/dashboard/DashboardGraphicHero";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicMissRate, type WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 
 export function DashboardWeakTopicChips({
@@ -43,12 +43,12 @@ export function DashboardWeakTopicChips({
                   <span
                     className="block h-full rounded-full bg-amber-500"
                     style={{
-                      width: `${Math.max(8, Math.min(100, topic.masteryScore))}%`,
+                      width: `${Math.max(8, weakTopicMissRate(topic.masteryScore))}%`,
                     }}
                   />
                 </span>
                 <span className="tabular-nums text-[var(--color-ink-muted)]">
-                  {topic.masteryScore}%
+                  {weakTopicMissRate(topic.masteryScore)}% miss rate
                 </span>
               </Link>
             </li>

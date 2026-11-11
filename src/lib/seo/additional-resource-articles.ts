@@ -62,7 +62,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         question: "Which board exams are included on one Pro subscription?",
         answer:
-          "NCLEX, USMLE Step 1, Step 2 CK, and Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — each with its own question bank, Roadmap, and blueprint-aligned practice tools on the same account.",
+          "Six boards — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — each with its own question bank, Roadmap, and blueprint-aligned practice tools on the same account. USMLE includes Step 1, Step 2 CK, and Step 3.",
       },
       {
         question: "How much does Pro cost after the trial?",

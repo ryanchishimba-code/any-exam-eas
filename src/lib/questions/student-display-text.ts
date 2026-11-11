@@ -284,8 +284,21 @@ export function splitGluedLeadIn(text: string): { vignette?: string; stem: strin
   return { vignette: `${before}.`, stem: lead };
 }
 
+/** "A 80-year-old" and "A hour" read as "An". Stored text is unchanged. */
+export function fixIndefiniteArticles(text: string): string {
+  return text.replace(/\bA(?=\s+)(\s+)([A-Za-z0-9]+)/g, (match, space: string, word: string) => {
+    const lower = word.toLowerCase();
+    const anNumber = /^(?:8\d*|11|18)(?:\b|$)/.test(lower);
+    const anWord =
+      /^(?:hour|honest|heir)\b/.test(lower) ||
+      (/^[aeiou]/.test(lower) && !/^(?:one|uni|use|user|u[rst])/.test(lower));
+    if (!anNumber && !anWord) return match;
+    return `An${space}${word}`;
+  });
+}
+
 export function studentFacingStem(stem: string): string {
-  return stripInternalDisplayMetadata(stem);
+  return fixIndefiniteArticles(stripInternalDisplayMetadata(stem));
 }
 
 /**

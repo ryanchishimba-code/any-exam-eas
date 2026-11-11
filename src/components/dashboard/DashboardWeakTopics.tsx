@@ -5,7 +5,7 @@ import { analyticsHref, practiceTopicHref } from "@/lib/edtech/practice-links-co
 import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicMissRate, type WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -63,7 +63,7 @@ export function DashboardWeakTopics({
                   <p className="flex items-center gap-2 text-[13px] font-semibold text-[var(--color-ink)]">
                     <span className="truncate">{topic.name}</span>
                     <span className="shrink-0 tabular-nums text-[var(--color-ink-muted)]">
-                      {topic.masteryScore}%
+                      {weakTopicMissRate(topic.masteryScore)}% miss rate
                     </span>
                   </p>
                   <p className={cn(dbUi.sectionHint, "mt-0.5")}>

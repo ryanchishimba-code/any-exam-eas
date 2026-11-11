@@ -116,7 +116,10 @@ export function buildHubBoardDonutSegments(input: HubBoardDonutRenderInput): Hub
     {
       id: "practice-exams",
       label: "Timed mock exams",
-      detail: "Timed sets and full-length practice exams.",
+      detail:
+        input.examKey === "pance"
+          ? "300 questions in 5 blocks of 60, with a break between blocks."
+          : "Timed sets and full-length practice exams.",
     },
     {
       id: "readiness",

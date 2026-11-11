@@ -87,6 +87,29 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
     ];
   }
 
+  if (examSlug === "pance") {
+    return [
+      {
+        preset: "50",
+        label: "50 Questions",
+        description: "One short timed block.",
+        questionCount: 50,
+      },
+      {
+        preset: "100",
+        label: "100 Questions",
+        description: "Extended timed set.",
+        questionCount: 100,
+      },
+      {
+        preset: "full",
+        label: "Full-length PANCE",
+        description: `${full} questions in 5 blocks of 60, with a break between blocks.`,
+        questionCount: full,
+      },
+    ];
+  }
+
   return [
     {
       preset: "50",
@@ -177,7 +200,7 @@ export function buildSessionConfig(
     questionCount,
     timed,
     timeLimitSec,
-    adaptive: (preset === "full" && examSlug !== "nclex") || nclexCat,
+    adaptive: (preset === "full" && examSlug !== "nclex" && examSlug !== "pance") || nclexCat,
     ...(examSlug === "nclex"
       ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat, nclexExamMode, nclexCaseShape }
       : {}),

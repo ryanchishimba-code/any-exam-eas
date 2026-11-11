@@ -8,7 +8,7 @@
 | −6 | Cardio + Pulm weak spots |
 | −5 | GI + MSK + ID |
 | −4 | Neuro + Psych + Reproductive |
-| −3 | Peds and surgery items + Professional Practice |
+| −3 | Child and procedure items in Reproductive, Musculoskeletal, and Gastrointestinal, plus Professional Practice |
 | −2 | Quick refs only |
 | −1 | Light review, logistics, sleep |
 
