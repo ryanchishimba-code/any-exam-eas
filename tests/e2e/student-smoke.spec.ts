@@ -24,28 +24,35 @@ const BOARDS = [
   {
     slug: "nclex",
     fieldId: "nursing",
-    subjectId: "pharmacology-nursing",
+    subjectId: process.env.SMOKE_SUBJECT_NCLEX ?? "pharmacology-nursing",
     marker: /NCLEX/i,
   },
   {
     slug: "naplex",
     fieldId: "pharmacy",
-    subjectId: "patient-counseling",
+    subjectId: process.env.SMOKE_SUBJECT_NAPLEX ?? "patient-counseling",
     marker: /NAPLEX/i,
   },
   {
     slug: "pance",
     fieldId: "pance",
-    subjectId: "cardiovascular",
+    subjectId: process.env.SMOKE_SUBJECT_PANCE ?? "cardiovascular",
     marker: /PANCE/i,
   },
   {
     slug: "aanp-fnp",
     fieldId: "aanp-fnp",
-    subjectId: "cardiovascular",
+    subjectId: process.env.SMOKE_SUBJECT_FNP ?? "cardiovascular",
     marker: /FNP/i,
   },
 ] as const;
+
+const SKIP_SESSION = new Set(
+  (process.env.SMOKE_SKIP_SESSION ?? "")
+    .split(",")
+    .map((slug) => slug.trim())
+    .filter(Boolean)
+);
 
 function assertNoErrorCopy(body: string, where: string) {
   for (const needle of ERROR_TEXT) {
@@ -129,15 +136,21 @@ test.describe("signed-in student", () => {
           await expect(page.locator("#practice-launcher")).toBeVisible({ timeout: 60_000 });
           await assertHealthy(page, `${board.slug} question bank`);
 
-          const sessionPath =
-            `/question-bank?field=${encodeURIComponent(board.fieldId)}` +
-            `&mode=bank&subjectId=${encodeURIComponent(board.subjectId)}` +
-            `&count=5&style=standard&autostart=1`;
-          await gotoApp(page, sessionPath);
-          await expect(page.getByRole("button", { name: /end activity/i })).toBeVisible({
-            timeout: 120_000,
-          });
-          await assertHealthy(page, `${board.slug} practice session`);
+          if (SKIP_SESSION.has(board.slug)) {
+            // Repo seeds cannot fill a 5-question NCLEX session. Production and
+            // preview leave SMOKE_SKIP_SESSION unset and start one anyway.
+            console.log(`Skipping practice start for ${board.slug}`);
+          } else {
+            const sessionPath =
+              `/question-bank?field=${encodeURIComponent(board.fieldId)}` +
+              `&mode=bank&subjectId=${encodeURIComponent(board.subjectId)}` +
+              `&count=5&style=standard&autostart=1`;
+            await gotoApp(page, sessionPath);
+            await expect(page.getByRole("button", { name: /end activity/i })).toBeVisible({
+              timeout: 120_000,
+            });
+            await assertHealthy(page, `${board.slug} practice session`);
+          }
 
           await gotoApp(page, `/full-exam/${board.slug}`);
           await expect(

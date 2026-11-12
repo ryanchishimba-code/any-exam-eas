@@ -22,10 +22,26 @@ const EMAIL_SUFFIX = "@anyexameasy.test";
 const QUESTIONS_PER_SUBJECT = 8;
 
 const SMOKE_SUBJECTS = [
-  { fieldId: "nursing", subjectId: "pharmacology-nursing" },
-  { fieldId: "pharmacy", subjectId: "patient-counseling" },
-  { fieldId: "pance", subjectId: "cardiovascular" },
-  { fieldId: "aanp-fnp", subjectId: "cardiovascular" },
+  {
+    slug: "nclex",
+    fieldId: "nursing",
+    subjectId: process.env.SMOKE_SUBJECT_NCLEX ?? "pharmacology-nursing",
+  },
+  {
+    slug: "naplex",
+    fieldId: "pharmacy",
+    subjectId: process.env.SMOKE_SUBJECT_NAPLEX ?? "pharmaceutics",
+  },
+  {
+    slug: "pance",
+    fieldId: "pance",
+    subjectId: process.env.SMOKE_SUBJECT_PANCE ?? "cardiovascular",
+  },
+  {
+    slug: "aanp-fnp",
+    fieldId: "aanp-fnp",
+    subjectId: process.env.SMOKE_SUBJECT_FNP ?? "assess",
+  },
 ];
 
 const email = (process.env.SMOKE_STUDENT_EMAIL ?? "smoke-student@anyexameasy.test")
@@ -170,7 +186,17 @@ async function seedServeReadyQuestions() {
       .filter((row) => row.fieldId === board.fieldId && row.subjectId === board.subjectId)
       .map((row) => ({ ...row.item, subjectId: row.subjectId }));
     const ready = filterBankItemsForServe(board.fieldId, pool).slice(0, QUESTIONS_PER_SUBJECT);
+    const optional = (process.env.SMOKE_SKIP_SESSION ?? "")
+      .split(",")
+      .map((slug) => slug.trim())
+      .includes(board.slug);
     if (ready.length < 5) {
+      if (optional) {
+        console.log(
+          `Smoke questions skipped for ${board.slug}: ${ready.length} serve-ready ${board.fieldId}/${board.subjectId} seeds.`
+        );
+        continue;
+      }
       fail(
         `Only ${ready.length} serve-ready ${board.fieldId}/${board.subjectId} questions in the repo seeds. The smoke session needs 5.`
       );

@@ -38,6 +38,12 @@ jobs:
       # The production seed refuses this password.
       SMOKE_STUDENT_PASSWORD: ci-smoke-student-password
       SMOKE_SEED_QUESTIONS: "1"
+      # Static NCLEX seeds are too short for the serve gate, so CI starts
+      # practice on the boards the repo can fill. Production smoke does not
+      # set SMOKE_SKIP_SESSION and starts NCLEX too.
+      SMOKE_SKIP_SESSION: nclex
+      SMOKE_SUBJECT_NAPLEX: pharmaceutics
+      SMOKE_SUBJECT_FNP: assess
       PLAYWRIGHT_PORT: "3100"
       CI: "true"
     steps:
