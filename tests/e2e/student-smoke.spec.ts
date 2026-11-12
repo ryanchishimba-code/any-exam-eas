@@ -14,6 +14,7 @@ const ERROR_TEXT = [
   "Dashboard unavailable",
   "Something went wrong",
   "Question bank unavailable",
+  "Exam simulator unavailable",
   "We could not load your study data",
   "Attempted to call",
   "Application error",

@@ -71,13 +71,13 @@ export default defineConfig({
     {
       name: "chromium",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/, /retired-study-surfaces\.spec\.ts/, /board-feeds\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/, /retired-study-surfaces\.spec\.ts/, /board-feeds\.spec\.ts/, /student-smoke\.spec\.ts/],
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "mobile-chrome",
       dependencies: ["setup"],
-      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/, /retired-study-surfaces\.spec\.ts/, /board-feeds\.spec\.ts/],
+      testIgnore: [/auth\.setup\.ts/, /landing\.spec\.ts/, /landing-contrast\.spec\.ts/, /landing-parity\.spec\.ts/, /signup-form\.spec\.ts/, /pance-feed\.spec\.ts/, /retired-study-surfaces\.spec\.ts/, /board-feeds\.spec\.ts/, /student-smoke\.spec\.ts/],
       use: { ...devices["Pixel 7"] },
     },
     // Public marketing ATF — no auth/DB. Covers 390px overflow + board-hub hero.
