@@ -6,7 +6,7 @@ describe("AdaptiveReasoningChip", () => {
   it("shows the full open queue beside a capped Review incorrect sitting", () => {
     render(
       <AdaptiveReasoningChip
-        reasoning="Open remediation — a single correct does not clear this item."
+        reasoning="You previously missed this item."
         sessionRationale="Reviewing 25 of 41 open items."
         questionIndex={0}
         total={25}
@@ -23,7 +23,7 @@ describe("AdaptiveReasoningChip", () => {
   it("leaves the sitting position alone when it already matches the open queue", () => {
     render(
       <AdaptiveReasoningChip
-        reasoning="Queued for today’s focus."
+        reasoning="This item is due for review."
         questionIndex={0}
         total={25}
         openTotal={25}

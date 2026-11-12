@@ -5,9 +5,8 @@
  */
 import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
 import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
-import { drizzle as drizzlePg } from "drizzle-orm/node-postgres";
 import type { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import type { Pool } from "pg";
 import {
   isBuildPlaceholderDatabaseUrl,
   isPostgresDatabaseUrl,
@@ -25,14 +24,31 @@ let localPool: Pool | null = null;
 let localDb: NodePgDatabase<typeof schema> | null = null;
 let localUrl: string | null = null;
 
+/**
+ * `pg` uses Node's net/tls/fs. A static import is pulled into client components
+ * that reach this module and the production build fails. Load it only when a
+ * local database is actually opened.
+ */
+function loadLocalDrizzle(): {
+  Pool: typeof import("pg").Pool;
+  drizzle: typeof import("drizzle-orm/node-postgres").drizzle;
+} {
+  const req = eval("require") as NodeRequire;
+  return {
+    Pool: (req("pg") as typeof import("pg")).Pool,
+    drizzle: (req("drizzle-orm/node-postgres") as typeof import("drizzle-orm/node-postgres")).drizzle,
+  };
+}
+
 /** Low-level Neon SQL tagged-template executor (HTTP) — shared with `@/lib/db`. */
 export { getSql as getNeonSql, sql } from "@/lib/db";
 
 function getLocalDb(url: string): NodePgDatabase<typeof schema> {
   if (!localDb || localUrl !== url) {
     void localPool?.end();
-    localPool = new Pool({ connectionString: url, max: 4 });
-    localDb = drizzlePg(localPool, { schema });
+    const { Pool: PgPool, drizzle } = loadLocalDrizzle();
+    localPool = new PgPool({ connectionString: url, max: 4 });
+    localDb = drizzle(localPool, { schema });
     localUrl = url;
   }
   return localDb;

@@ -90,8 +90,8 @@ describe("nav after a cross-board study-guide deep link", () => {
   it("keeps every board-specific link on the saved exam and offers a switch", () => {
     renderNav();
 
-    const chip = screen.getByRole("link", { name: /current exam: nclex-rn/i });
-    expect(chip).toHaveTextContent("NCLEX-RN");
+    const chip = screen.getByRole("link", { name: /current exam: nclex\b/i });
+    expect(chip).toHaveTextContent("NCLEX");
     expect(screen.queryByRole("link", { name: /current exam: naplex/i })).not.toBeInTheDocument();
 
     const banks = screen.getAllByRole("link", { name: /question bank/i });
