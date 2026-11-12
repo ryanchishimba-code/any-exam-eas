@@ -33,7 +33,7 @@ describe("ReadinessProofPanel", () => {
     );
     expect(screen.queryByText("Ready")).toBeNull();
     expect(screen.queryByText("Almost")).toBeNull();
-    expect(screen.getByText("A practice measure, not a pass prediction.")).toBeInTheDocument();
+    expect(toggle).toHaveAccessibleName(/not a pass prediction/i);
     expect(document.body.textContent).not.toMatch(/you will pass/i);
   });
 
@@ -86,7 +86,7 @@ describe("ReadinessProofPanel", () => {
       "hidden"
     );
     await userEvent.click(toggle);
-    expect(screen.getByText("Outline depth")).toBeInTheDocument();
+    expect(screen.getByText("Coverage")).toBeInTheDocument();
     expect(screen.getByText(/Management of Care/)).toBeInTheDocument();
     expect(screen.getByText("Gap")).toBeInTheDocument();
     expect(plan.items[0]?.detail).toMatch(/Management of Care/);
@@ -149,6 +149,6 @@ describe("ReadinessProofPanel", () => {
     expect(screen.getAllByRole("img", { name: /percent/i }).length).toBeGreaterThanOrEqual(3);
     expect(screen.getByText(/Medication Use Process/)).toBeInTheDocument();
     expect(document.body.textContent).not.toMatch(/you will pass/i);
-    expect(document.body.textContent).toMatch(/not a pass prediction/i);
+    expect(toggle).toHaveAccessibleName(/not a pass prediction/i);
   });
 });

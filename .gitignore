@@ -54,6 +54,7 @@ dev.db-*
 
 # vercel
 .vercel
+smoke-guard.json
 
 # typescript
 *.tsbuildinfo

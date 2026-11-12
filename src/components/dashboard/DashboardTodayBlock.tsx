@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
-import { TodayMixLine, TodaySessionProvider, TodayStartLive, useTodaySession } from "@/components/dashboard/TodaySession";
-import { TodayGoalRing } from "@/components/dashboard/TodayGoalRing";
+import {
+  TodayMixLine,
+  TodaySessionProvider,
+  TodaySetCapNote,
+  TodaySetRing,
+  TodayStartLive,
+} from "@/components/dashboard/TodaySession";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
-import { TODAY_SET_DEFAULT_SIZE } from "@/lib/learning/today-set";
 import { dbUi } from "@/lib/study/dashboard-ui";
 
 export type TodaySetPreviewView = {
@@ -51,6 +55,7 @@ export function DashboardTodayBlock({
         className={`${dbUi.heroSurface.replace("apple-animate-in", "").trim()} space-y-6`}
       >
         <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-8">
+          {/* Client components. This server file must not call into the today-session hook. */}
           <TodaySetRing todaySet={todaySet} />
           <div className="min-w-0 text-center sm:text-left">
             <p className={dbUi.eyebrow}>Today</p>
@@ -113,33 +118,5 @@ export function DashboardTodayBlock({
       </section>
     </div>
     </TodaySessionProvider>
-  );
-}
-
-function todayRingNumbers(todaySet: TodaySetPreviewView | null): {
-  done: number;
-  target: number;
-  goal: number;
-} {
-  const session = useTodaySession();
-  const served = session.phase === "ready" ? session.preview : null;
-  const done = served?.questionsDone ?? todaySet?.questionsDone ?? 0;
-  const target = served?.size || todaySet?.target || TODAY_SET_DEFAULT_SIZE;
-  const goal = served?.goal ?? todaySet?.target ?? target;
-  return { done, target, goal };
-}
-
-function TodaySetRing({ todaySet }: { todaySet: TodaySetPreviewView | null }) {
-  const { done, target } = todayRingNumbers(todaySet);
-  return <TodayGoalRing done={done} target={target} />;
-}
-
-function TodaySetCapNote({ todaySet }: { todaySet: TodaySetPreviewView | null }) {
-  const { target, goal } = todayRingNumbers(todaySet);
-  if (!(goal > target && target > 0)) return null;
-  return (
-    <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
-      Today&apos;s set is {target}. The daily goal is {goal}.
-    </p>
   );
 }

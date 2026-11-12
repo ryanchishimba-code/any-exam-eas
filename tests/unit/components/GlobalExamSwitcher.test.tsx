@@ -77,7 +77,7 @@ describe("GlobalExamSwitcher on study-guide routes", () => {
 
     renderChip();
 
-    const chip = screen.getByRole("link", { name: /current exam: nclex-rn/i });
+    const chip = screen.getByRole("link", { name: /current exam: nclex\b/i });
     expect(chip).toHaveTextContent("NCLEX");
     expect(chip).not.toHaveTextContent("NAPLEX");
     expect(chip).toHaveAttribute("href", "/select-exam?switch=1");
@@ -90,7 +90,7 @@ describe("GlobalExamSwitcher on study-guide routes", () => {
 
     renderChip();
 
-    const chip = screen.getByRole("link", { name: /current exam: nclex-rn/i });
+    const chip = screen.getByRole("link", { name: /current exam: nclex\b/i });
     expect(chip).toHaveTextContent("NCLEX");
     expect(chip).toHaveAttribute("href", "/select-exam?switch=1");
   });
@@ -112,8 +112,8 @@ describe("GlobalExamSwitcher on study-guide routes", () => {
 
     renderChip("mobile");
 
-    expect(screen.getByRole("link", { name: /current exam: nclex-rn/i })).toHaveTextContent(
-      "NCLEX-RN"
+    expect(screen.getByRole("link", { name: /current exam: nclex\b/i })).toHaveTextContent(
+      "NCLEX"
     );
   });
 
@@ -123,7 +123,7 @@ describe("GlobalExamSwitcher on study-guide routes", () => {
 
     renderChip();
 
-    const chip = screen.getByRole("link", { name: /current exam: nclex-rn/i });
+    const chip = screen.getByRole("link", { name: /current exam: nclex\b/i });
     expect(chip).toHaveTextContent("NCLEX");
     expect(chip).toHaveAttribute("href", "/select-exam?switch=1");
   });

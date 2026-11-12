@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
@@ -117,6 +118,14 @@ const todaySet = {
   streakDays: 3,
 };
 
+describe("DashboardTodayBlock server boundary", () => {
+  it("keeps the today-session hook out of the server component", () => {
+    const source = readFileSync("src/components/dashboard/DashboardTodayBlock.tsx", "utf8");
+    expect(source).not.toMatch(/^\s*["']use client["']/m);
+    expect(source).not.toMatch(/\buseTodaySession\s*\(/);
+  });
+});
+
 describe("DashboardTodayBlock review CTA", () => {
   it("makes today's set the primary action and keeps review as a quiet link", () => {
     render(<DashboardTodayBlock plan={plan(items)} todaySet={todaySet} />);
@@ -204,6 +213,32 @@ describe("DashboardTodayBlock review CTA", () => {
     expect(ready?.className).toContain("h-6");
     expect(ready?.querySelector("[data-today-mix]")).toHaveTextContent("15 to review · 10 new");
     expect(document.body.textContent).not.toMatch(/25 to review/);
+    vi.unstubAllGlobals();
+  });
+
+  it("uses the served daily goal when it is longer than the sitting", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () =>
+        new Response(
+          JSON.stringify({
+            mixLine: "4 to review · 6 new",
+            empty: false,
+            limitReached: false,
+            streakDays: 0,
+            size: 10,
+            target: 25,
+            questionsDone: 2,
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } }
+        )
+      )
+    );
+
+    render(<DashboardTodayBlock plan={plan(items)} deferMix />);
+
+    expect(await screen.findByText("Today's set is 10. The daily goal is 25.")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "2 of 10 in today's set" })).toBeInTheDocument();
     vi.unstubAllGlobals();
   });
 

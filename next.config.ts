@@ -88,7 +88,7 @@ const nextConfig: NextConfig = {
       "./content/fnp-feed/**/*",
     ],
   },
-  serverExternalPackages: ["stripe"],
+  serverExternalPackages: ["stripe", "pg"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.
   eslint: { ignoreDuringBuilds: onVercel },
   typescript: { ignoreBuildErrors: onVercel },

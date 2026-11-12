@@ -73,7 +73,7 @@ function resolveQaPassed(fieldId: string, item: BankItem, source: "seed" | "gene
   return bankItemPassesIngestGate(fieldId, item, source);
 }
 
-function rowToCreateData(
+export function rowToCreateData(
   fieldId: string,
   subjectId: string,
   item: BankItem,

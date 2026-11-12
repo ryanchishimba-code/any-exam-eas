@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useLayoutEffect, useState, type ReactNode } from "react";
 import { StartTodaySetButton } from "@/components/dashboard/StartTodaySetButton";
-import { browserStudyTimeZone } from "@/lib/learning/today-set";
+import { TodayGoalRing } from "@/components/dashboard/TodayGoalRing";
+import { browserStudyTimeZone, TODAY_SET_DEFAULT_SIZE } from "@/lib/learning/today-set";
 
 export type ServedTodayPreview = {
   mixLine: string | null;
@@ -95,6 +96,43 @@ export function TodaySessionProvider({
 
 export function useTodaySession(): SessionState {
   return useContext(TodaySessionContext);
+}
+
+export type TodayRingInput = {
+  questionsDone?: number | null;
+  target?: number | null;
+} | null;
+
+/**
+ * Numbers for the ring. A served preview wins once it is ready. A size of 0
+ * is not a sitting, so the fallback target stays in place.
+ */
+export function useTodayRingNumbers(todaySet: TodayRingInput): {
+  done: number;
+  target: number;
+  goal: number;
+} {
+  const session = useTodaySession();
+  const served = session.phase === "ready" ? session.preview : null;
+  const done = served?.questionsDone ?? todaySet?.questionsDone ?? 0;
+  const target = served?.size || todaySet?.target || TODAY_SET_DEFAULT_SIZE;
+  const goal = served?.goal ?? todaySet?.target ?? target;
+  return { done, target, goal };
+}
+
+export function TodaySetRing({ todaySet }: { todaySet: TodayRingInput }) {
+  const { done, target } = useTodayRingNumbers(todaySet);
+  return <TodayGoalRing done={done} target={target} />;
+}
+
+export function TodaySetCapNote({ todaySet }: { todaySet: TodayRingInput }) {
+  const { target, goal } = useTodayRingNumbers(todaySet);
+  if (!(goal > target && target > 0)) return null;
+  return (
+    <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
+      Today&apos;s set is {target}. The daily goal is {goal}.
+    </p>
+  );
 }
 
 /** One line tall, whether the served mix is still loading or already shown. */

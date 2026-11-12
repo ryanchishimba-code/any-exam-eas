@@ -70,8 +70,15 @@ export function resolveClinicalVignetteText(item: BankItem): string {
 }
 
 function isSequentialBlock(item: BankItem): boolean {
-  const payload = item.ngnPayload as { kind?: string; setId?: string } | undefined;
-  return payload?.kind === "sequential" && Boolean(payload.setId?.trim());
+  const payload = item.ngnPayload as
+    | { kind?: string; setId?: string; stepIndex?: number }
+    | undefined;
+  if (!payload || typeof payload !== "object") return false;
+  const setId = payload.setId;
+  if (typeof setId !== "string" || !setId.trim()) return false;
+  // Same rule as sequentialSetId. A step index marks an unfolding case even
+  // when kind is omitted, so scenario dedupe does not collapse the steps.
+  return payload.kind === "sequential" || typeof payload.stepIndex === "number";
 }
 
 function textField(value: unknown): string {
