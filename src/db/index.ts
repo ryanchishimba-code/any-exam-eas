@@ -5,7 +5,6 @@
  */
 import { drizzle as drizzleNeon } from "drizzle-orm/neon-http";
 import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
-import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import type { Pool } from "pg";
 import {
   isBuildPlaceholderDatabaseUrl,
@@ -16,12 +15,12 @@ import {
 import { getSql, getSqlConnectionUrl } from "@/lib/db";
 import * as schema from "./schema";
 
-export type AppDatabase = NeonHttpDatabase<typeof schema> | NodePgDatabase<typeof schema>;
+export type AppDatabase = NeonHttpDatabase<typeof schema>;
 
-let dbInstance: NeonHttpDatabase<typeof schema> | null = null;
+let dbInstance: AppDatabase | null = null;
 let drizzleBoundUrl: string | null = null;
 let localPool: Pool | null = null;
-let localDb: NodePgDatabase<typeof schema> | null = null;
+let localDb: AppDatabase | null = null;
 let localUrl: string | null = null;
 
 /**
@@ -43,12 +42,14 @@ function loadLocalDrizzle(): {
 /** Low-level Neon SQL tagged-template executor (HTTP) — shared with `@/lib/db`. */
 export { getSql as getNeonSql, sql } from "@/lib/db";
 
-function getLocalDb(url: string): NodePgDatabase<typeof schema> {
+function getLocalDb(url: string): AppDatabase {
   if (!localDb || localUrl !== url) {
     void localPool?.end();
     const { Pool: PgPool, drizzle } = loadLocalDrizzle();
     localPool = new PgPool({ connectionString: url, max: 4 });
-    localDb = drizzle(localPool, { schema });
+    // Call sites are typed for the Neon HTTP client. The query builder is the
+    // same; only the transport differs, so the TCP client is cast at the boundary.
+    localDb = drizzle(localPool, { schema }) as unknown as AppDatabase;
     localUrl = url;
   }
   return localDb;
