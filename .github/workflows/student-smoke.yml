@@ -1,0 +1,82 @@
+name: Student smoke
+
+on:
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+# Required check: Settings → Rules → Rulesets (or classic branch protection on main)
+# → Require status checks → "Student smoke / signed-in".
+# This token cannot turn that on. A green run here does not block merges until Ryan adds it.
+
+jobs:
+  signed-in:
+    name: signed-in
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: build
+          POSTGRES_PASSWORD: build
+          POSTGRES_DB: anyexam_smoke
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U build -d anyexam_smoke"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://build:build@127.0.0.1:5432/anyexam_smoke
+      NEXTAUTH_SECRET: ci-student-smoke-secret-min-16
+      AUTH_SECRET: ci-student-smoke-secret-min-16
+      NEXTAUTH_URL: http://127.0.0.1:3100
+      SMOKE_STUDENT_EMAIL: smoke-student@anyexameasy.test
+      # Public on purpose. It only exists in this job's throwaway database.
+      # The production seed refuses this password.
+      SMOKE_STUDENT_PASSWORD: ci-smoke-student-password
+      SMOKE_SEED_QUESTIONS: "1"
+      PLAYWRIGHT_PORT: "3100"
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prisma generate
+        run: npx prisma generate
+
+      - name: Prepare database schema
+        run: npx prisma db push
+
+      - name: Seed smoke student
+        run: npm run db:seed-smoke-student
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Production build
+        run: npm run build
+
+      - name: Signed-in student smoke
+        run: npm run test:student-smoke
+
+      - name: Upload smoke report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: student-smoke-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

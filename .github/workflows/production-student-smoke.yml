@@ -1,0 +1,116 @@
+name: Production student smoke
+
+# Runs after a production deployment is reported ready. If that deployment is
+# the one serving www.anyexameasy.com and the student smoke fails, production
+# is pointed back at the deployment the promote replaced.
+#
+# Disable either way:
+#   - Repository variable PRODUCTION_SMOKE_ROLLBACK=false
+#   - Actions → Production student smoke → Disable workflow
+#
+# Secrets (names only; add them before the next production promote):
+#   VERCEL_TOKEN
+#   SMOKE_STUDENT_EMAIL
+#   SMOKE_STUDENT_PASSWORD
+# Optional, only if the production hostname starts returning a Vercel login wall:
+#   VERCEL_AUTOMATION_BYPASS_SECRET
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: read
+
+concurrency:
+  group: production-student-smoke
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    name: production
+    # Preview builds also emit deployment_status. Only production is in scope.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       (github.event.deployment.environment == 'Production' ||
+        github.event.deployment.environment == 'production'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      should_smoke: ${{ steps.prepare.outputs.should_smoke }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - id: prepare
+        name: Confirm the deployment is live
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PRODUCTION_SMOKE_ROLLBACK: ${{ vars.PRODUCTION_SMOKE_ROLLBACK }}
+        run: node scripts/production-smoke-guard.mjs prepare
+
+      - id: secrets
+        name: Require the smoke student secrets
+        if: steps.prepare.outputs.should_smoke == 'true'
+        env:
+          SMOKE_STUDENT_EMAIL: ${{ secrets.SMOKE_STUDENT_EMAIL }}
+          SMOKE_STUDENT_PASSWORD: ${{ secrets.SMOKE_STUDENT_PASSWORD }}
+        run: |
+          set -euo pipefail
+          missing=0
+          if [ -z "${SMOKE_STUDENT_EMAIL}" ]; then
+            echo "Missing secret SMOKE_STUDENT_EMAIL"
+            missing=1
+          fi
+          if [ -z "${SMOKE_STUDENT_PASSWORD}" ]; then
+            echo "Missing secret SMOKE_STUDENT_PASSWORD"
+            missing=1
+          fi
+          if [ "$missing" -ne 0 ]; then
+            echo "Production was not changed. Add the secrets, seed the student, then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Install Playwright Chromium
+        if: steps.prepare.outputs.should_smoke == 'true' && steps.secrets.outcome == 'success'
+        run: npx playwright install --with-deps chromium
+
+      - id: smoke
+        name: Signed-in student smoke
+        if: steps.prepare.outputs.should_smoke == 'true' && steps.secrets.outcome == 'success'
+        env:
+          PLAYWRIGHT_SKIP_WEBSERVER: "1"
+          PLAYWRIGHT_BASE_URL: https://www.anyexameasy.com
+          SMOKE_STUDENT_EMAIL: ${{ secrets.SMOKE_STUDENT_EMAIL }}
+          SMOKE_STUDENT_PASSWORD: ${{ secrets.SMOKE_STUDENT_PASSWORD }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+          CI: "true"
+        run: npm run test:student-smoke
+
+      - name: Roll back the failed production deployment
+        if: failure() && steps.smoke.outcome == 'failure' && steps.prepare.outputs.should_smoke == 'true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          PRODUCTION_SMOKE_ROLLBACK: ${{ vars.PRODUCTION_SMOKE_ROLLBACK }}
+        run: node scripts/production-smoke-guard.mjs rollback
+
+      - name: Upload smoke report
+        if: failure() && steps.smoke.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-student-smoke-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
