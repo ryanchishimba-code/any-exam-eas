@@ -111,6 +111,10 @@ test.describe("signed-in student", () => {
     if (!PASSWORD) throw new Error("SMOKE_STUDENT_PASSWORD is required");
     const origin = new URL(baseURL).origin;
 
+    if (process.env.VERCEL_SHARE_URL) {
+      await page.goto(process.env.VERCEL_SHARE_URL, { waitUntil: "domcontentloaded" });
+    }
+
     await loginViaApi(page.request, baseURL, EMAIL, PASSWORD);
 
     for (const board of BOARDS) {
@@ -124,16 +128,36 @@ test.describe("signed-in student", () => {
               `exam preference ${board.slug} returned ${preference.status()} ${(await preference.text()).slice(0, 180)}`
             );
           }
+          const saved = (await preference.json()) as { examSlug?: string };
+          if (saved.examSlug !== board.slug) {
+            throw new Error(`exam preference saved ${saved.examSlug ?? "nothing"} for ${board.slug}`);
+          }
 
-          await gotoApp(page, "/dashboard");
-          await expect(page.getByRole("heading", { name: /today'?s set/i })).toBeVisible({
-            timeout: 45_000,
-          });
+          // The preference cache is a few seconds. Reload until this board is on the page.
+          await expect
+            .poll(
+              async () => {
+                await gotoApp(page, "/dashboard");
+                const text = await page.locator("body").innerText();
+                assertNoErrorCopy(text, `${board.slug} dashboard`);
+                return board.marker.test(text) && /today'?s set/i.test(text);
+              },
+              { timeout: 30_000 }
+            )
+            .toBe(true);
           const dashboard = await assertHealthy(page, `${board.slug} dashboard`);
           expect(dashboard).toMatch(board.marker);
+          if (process.env.SMOKE_SCREENSHOTS === "1") {
+            await page.screenshot({
+              path: `/opt/cursor/artifacts/dashboard-${board.slug}.png`,
+              fullPage: false,
+            });
+          }
 
           await gotoApp(page, "/question-bank");
-          await expect(page.locator("#practice-launcher")).toBeVisible({ timeout: 60_000 });
+          await expect(page.getByRole("heading", { name: /practice/i }).first()).toBeVisible({
+            timeout: 60_000,
+          });
           await assertHealthy(page, `${board.slug} question bank`);
 
           if (SKIP_SESSION.has(board.slug)) {
@@ -146,7 +170,7 @@ test.describe("signed-in student", () => {
               `&mode=bank&subjectId=${encodeURIComponent(board.subjectId)}` +
               `&count=5&style=standard&autostart=1`;
             await gotoApp(page, sessionPath);
-            await expect(page.getByRole("button", { name: /end activity/i })).toBeVisible({
+            await expect(page.getByRole("button", { name: /end activity/i }).first()).toBeVisible({
               timeout: 120_000,
             });
             await assertHealthy(page, `${board.slug} practice session`);
@@ -154,12 +178,15 @@ test.describe("signed-in student", () => {
 
           await gotoApp(page, `/full-exam/${board.slug}`);
           await expect(
-            page.getByRole("button", { name: /start/i }).or(page.getByText(/practice test|full-length exam/i)).first()
+            page
+              .getByRole("button", { name: /start/i })
+              .or(page.getByText(/practice test|full-length exam/i))
+              .first()
           ).toBeVisible({ timeout: 45_000 });
           await assertHealthy(page, `${board.slug} exam`);
 
           await gotoApp(page, "/analytics");
-          await expect(page.getByText(/analytics|accuracy|readiness|progress/i).first()).toBeVisible({
+          await expect(page.getByRole("link", { name: /readiness checks/i })).toBeVisible({
             timeout: 45_000,
           });
           await assertHealthy(page, `${board.slug} stats`);

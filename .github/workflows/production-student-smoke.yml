@@ -84,6 +84,8 @@ jobs:
 
       - name: Install Playwright Chromium
         if: steps.prepare.outputs.should_smoke == 'true' && steps.secrets.outcome == 'success'
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: "0"
         run: npx playwright install --with-deps chromium
 
       - id: smoke
