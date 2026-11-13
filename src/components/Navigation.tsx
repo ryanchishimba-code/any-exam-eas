@@ -173,6 +173,9 @@ export function Navigation() {
     ? landingTrialHrefForExam(examFromPath)
     : LANDING_TRIAL_HREF;
   const landingMinimal = isMarketingLandingPath(pathname);
+  // Full guest links plus the long trial label overflow this bar. The actions
+  // column then hangs left and the Log in icon covers About.
+  const crosswordNav = pathname.startsWith("/crossword");
   // The homepage hero already carries the trial button. On a phone the nav
   // copy crowds the logo, Log in, and menu.
   const hideMobileNavTrialCta = landingMinimal && pathname === "/";
@@ -188,7 +191,7 @@ export function Navigation() {
   return (
     <header
       ref={headerRef}
-      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}${overPhoto ? " aee-nav--over-photo" : ""}`}
+      className={`aee-nav apple-glass fixed top-0 z-50 w-full${landingMinimal ? " aee-nav--landing-minimal" : ""}${crosswordNav ? " aee-nav--tool" : ""}${hideMobileNavTrialCta ? " aee-nav--hide-mobile-trial-cta" : ""}${overPhoto ? " aee-nav--over-photo" : ""}`}
     >
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <BrandLogo
@@ -256,7 +259,12 @@ export function Navigation() {
                 className="aee-nav-cta"
                 aria-label={landingMinimal ? HERO_TRIAL_CTA_LABEL : formatTrialCtaLabel()}
               >
-                {landingMinimal ? (
+                {crosswordNav ? (
+                  <>
+                    <span className="min-[1400px]:hidden">Free trial</span>
+                    <span className="hidden min-[1400px]:inline">{formatTrialCtaLabel()}</span>
+                  </>
+                ) : landingMinimal ? (
                   <>
                     <span className="md:hidden">Free trial</span>
                     <span className="hidden md:inline">{HERO_TRIAL_CTA_LABEL}</span>

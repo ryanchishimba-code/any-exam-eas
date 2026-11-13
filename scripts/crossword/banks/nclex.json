@@ -1,0 +1,752 @@
+{
+  "HEPARIN": {
+    "clue": "Anticoagulant monitored with aPTT; reversed by protamine",
+    "rationale": "Heparin is monitored with aPTT (or anti-Xa). Protamine sulfate is the antidote.",
+    "topic": "Pharm / coagulation"
+  },
+  "WARFARIN": {
+    "clue": "Oral anticoagulant monitored by INR; reversed with vitamin K",
+    "rationale": "Warfarin is monitored with INR. Vitamin K (phytonadione) reverses it. Teach consistent vitamin K intake.",
+    "topic": "Pharm / coagulation"
+  },
+  "PROTAMINE": {
+    "clue": "Antidote given to reverse heparin",
+    "rationale": "Protamine sulfate reverses heparin and, partly, low-molecular-weight heparin.",
+    "topic": "Pharm / antidotes"
+  },
+  "NALOXONE": {
+    "clue": "Opioid antagonist given for overdose with respiratory depression",
+    "rationale": "Naloxone reverses opioids. Its half-life is short, so repeat doses may be needed.",
+    "topic": "Pharm / antidotes"
+  },
+  "INSULIN": {
+    "clue": "Hormone that lowers blood glucose; peak action differs by type",
+    "rationale": "Know peaks: lispro 30\u201390 min, regular 2\u20133 h, NPH 4\u201312 h. Glargine has no peak and is not mixed.",
+    "topic": "Pharm / endocrine"
+  },
+  "DIGOXIN": {
+    "clue": "Cardiac glycoside; toxicity risk rises when potassium is low",
+    "rationale": "Check the apical pulse before giving. Hypokalemia increases digoxin toxicity risk.",
+    "topic": "Pharm / cardiac"
+  },
+  "LITHIUM": {
+    "clue": "Mood stabilizer; toxicity risk rises with low sodium or dehydration",
+    "rationale": "Therapeutic level is about 0.6\u20131.2 mEq/L. Low sodium, dehydration, or NSAIDs raise toxicity risk.",
+    "topic": "Pharm / psych"
+  },
+  "FUROSEMIDE": {
+    "clue": "Loop diuretic that wastes potassium and can cause ototoxicity if pushed too fast",
+    "rationale": "Monitor potassium and hearing. Never replace losses with IV-push potassium.",
+    "topic": "Pharm / fluids"
+  },
+  "METFORMIN": {
+    "clue": "Biguanide held around iodinated contrast to lower lactic acidosis risk",
+    "rationale": "Hold metformin for iodinated-contrast studies and restart after renal function is adequate.",
+    "topic": "Pharm / endocrine"
+  },
+  "VANCOMYCIN": {
+    "clue": "Glycopeptide linked to red man syndrome if infused too fast",
+    "rationale": "Infuse slowly, monitor the trough and kidneys, and watch for flushing during the infusion.",
+    "topic": "Pharm / antibiotics"
+  },
+  "GENTAMICIN": {
+    "clue": "Aminoglycoside monitored for ototoxicity and nephrotoxicity",
+    "rationale": "Assess tinnitus, hearing, urine output, and creatinine. Troughs help avoid toxicity.",
+    "topic": "Pharm / antibiotics"
+  },
+  "MAGNESIUM": {
+    "clue": "Electrolyte given for preeclampsia; toxicity brings loss of deep-tendon reflexes",
+    "rationale": "Magnesium sulfate treats preeclampsia and eclampsia. Toxicity: decreased DTRs and respiratory depression; the antidote is calcium gluconate.",
+    "topic": "OB / electrolytes"
+  },
+  "POTASSIUM": {
+    "clue": "Electrolyte never given as an IV push; extremes can cause fatal dysrhythmias",
+    "rationale": "IV potassium is infused slowly on a pump. High or low levels can cause life-threatening arrhythmias.",
+    "topic": "Fluids / electrolytes"
+  },
+  "CALCIUM": {
+    "clue": "Electrolyte whose low level produces Chvostek and Trousseau signs",
+    "rationale": "Hypocalcemia: Chvostek (facial twitch) and Trousseau (carpal spasm with a BP cuff). Calcium gluconate also reverses magnesium toxicity.",
+    "topic": "Fluids / electrolytes"
+  },
+  "TROPONIN": {
+    "clue": "Cardiac biomarker most specific for myocardial injury",
+    "rationale": "Troponin rises after myocardial injury and is the preferred biomarker in an ACS workup.",
+    "topic": "Labs / cardiac"
+  },
+  "CREATININE": {
+    "clue": "Routine lab that best reflects renal filtration",
+    "rationale": "Serum creatinine is the standard bedside marker of GFR. A rise signals worsening kidney function.",
+    "topic": "Labs / renal"
+  },
+  "AIRWAY": {
+    "clue": "First priority in the ABC assessment",
+    "rationale": "Airway comes first unless a scene-safety or massive-hemorrhage exception applies.",
+    "topic": "Priority"
+  },
+  "AIRBORNE": {
+    "clue": "Isolation used for TB, measles, and varicella, requiring an N95",
+    "rationale": "Airborne precautions: negative-pressure room and a fitted N95 or PAPR. Used for TB, measles, and varicella.",
+    "topic": "Infection control"
+  },
+  "DROPLET": {
+    "clue": "Isolation used for influenza, pertussis, and meningococcal disease",
+    "rationale": "Droplet precautions require a surgical mask. Used for influenza, pertussis, and bacterial meningitis, among others.",
+    "topic": "Infection control"
+  },
+  "CONTACT": {
+    "clue": "Isolation used for C. difficile and MRSA; gown and gloves required",
+    "rationale": "Contact precautions: gown and gloves. For C. difficile, use soap and water \u2014 alcohol gel is not enough.",
+    "topic": "Infection control"
+  },
+  "KUSSMAUL": {
+    "clue": "Deep, rapid breathing classically seen in diabetic ketoacidosis",
+    "rationale": "Kussmaul respirations compensate for metabolic acidosis in DKA.",
+    "topic": "Endocrine / respiratory"
+  },
+  "CHVOSTEK": {
+    "clue": "Facial twitch when the facial nerve is tapped; a sign of low calcium",
+    "rationale": "Chvostek sign suggests hypocalcemia. Also watch for tetany and Trousseau sign.",
+    "topic": "Fluids / electrolytes"
+  },
+  "TROUSSEAU": {
+    "clue": "Carpal spasm when a blood-pressure cuff is inflated; a sign of low calcium",
+    "rationale": "Trousseau sign is a classic finding of hypocalcemia and may appear before tetany.",
+    "topic": "Fluids / electrolytes"
+  },
+  "MURPHY": {
+    "clue": "Inspiratory arrest on right-upper-quadrant palpation, suggesting cholecystitis",
+    "rationale": "A positive Murphy sign supports acute cholecystitis. Keep the patient NPO and manage pain.",
+    "topic": "GI assessment"
+  },
+  "CULLEN": {
+    "clue": "Periumbilical bruising associated with acute pancreatitis",
+    "rationale": "Cullen sign is periumbilical ecchymosis seen in hemorrhagic pancreatitis and some intra-abdominal bleeds.",
+    "topic": "GI assessment"
+  },
+  "SEPSIS": {
+    "clue": "Life-threatening organ dysfunction caused by a dysregulated response to infection",
+    "rationale": "Suspect sepsis with infection plus organ dysfunction. Early fluids, cultures, and antibiotics are the priority.",
+    "topic": "Priority / infection"
+  },
+  "STRIDOR": {
+    "clue": "High-pitched inspiratory sound that signals upper-airway obstruction",
+    "rationale": "Stridor means the airway is in danger (croup, epiglottitis, edema). Airway support is the priority.",
+    "topic": "Respiratory / priority"
+  },
+  "ORTHOPNEA": {
+    "clue": "Dyspnea when lying flat, classic in left-sided heart failure",
+    "rationale": "Patients with orthopnea sleep on extra pillows. It reflects pulmonary congestion from left-sided failure.",
+    "topic": "Cardiac / respiratory"
+  },
+  "OLIGURIA": {
+    "clue": "Low urine output, often an early sign of poor renal perfusion",
+    "rationale": "Oliguria in adults is often under 0.5 mL/kg/hr. Assess perfusion, fluid status, and catheter patency.",
+    "topic": "Renal / perfusion"
+  },
+  "ECLAMPSIA": {
+    "clue": "Preeclampsia with seizures; first-line treatment is magnesium sulfate",
+    "rationale": "Protect the airway, give magnesium sulfate, and plan delivery. Watch for magnesium toxicity.",
+    "topic": "OB"
+  },
+  "ADDISON": {
+    "clue": "Adrenal insufficiency with bronze skin, low sodium, and high potassium",
+    "rationale": "Addison disease: hypoglycemia, hyponatremia, hyperkalemia. Crisis needs IV fluids and steroids.",
+    "topic": "Endocrine"
+  },
+  "CUSHING": {
+    "clue": "Cortisol excess with moon face, hyperglycemia, and higher infection risk",
+    "rationale": "Cushing syndrome: central weight gain, moon face, purple striae, hypertension, and infection risk.",
+    "topic": "Endocrine"
+  },
+  "SIADH": {
+    "clue": "Excess ADH causing hyponatremia and concentrated urine",
+    "rationale": "SIADH: low serum osmolality, high urine osmolality, and hyponatremia. Fluid restriction is often first-line when mild.",
+    "topic": "Endocrine / fluids"
+  },
+  "MECONIUM": {
+    "clue": "Newborn's first stool; stained amniotic fluid raises aspiration risk",
+    "rationale": "Meconium-stained fluid can lead to meconium aspiration. Have neonatal resuscitation ready at delivery.",
+    "topic": "OB / newborn"
+  },
+  "APGAR": {
+    "clue": "One- and five-minute newborn score of appearance, pulse, grimace, activity, and respirations",
+    "rationale": "APGAR is taken at 1 and 5 minutes and guides immediate support; it does not predict long-term outcome.",
+    "topic": "OB / newborn"
+  },
+  "TINNITUS": {
+    "clue": "Ringing in the ears; an early sign of aminoglycoside or salicylate toxicity",
+    "rationale": "Tinnitus can warn of ototoxicity from aminoglycosides, loop diuretics, or aspirin. Report it and hold the drug per protocol.",
+    "topic": "Pharm / toxicity"
+  },
+  "PETECHIAE": {
+    "clue": "Pinpoint nonblanching spots that may signal low platelets or meningococcemia",
+    "rationale": "Petechiae do not blanch. New petechiae with fever or meningitis signs are an emergency.",
+    "topic": "Heme / infection"
+  },
+  "CYANOSIS": {
+    "clue": "Bluish skin from late hypoxemia; check the airway and oxygenation first",
+    "rationale": "Cyanosis is a late sign of hypoxemia. Prioritize airway, breathing, and oxygen, then find the cause.",
+    "topic": "Respiratory / priority"
+  },
+  "ANAPHYLAXIS": {
+    "clue": "Severe allergic reaction whose first-line drug is intramuscular epinephrine",
+    "rationale": "Give IM epinephrine in the mid-outer thigh immediately, then support the airway and give fluids.",
+    "topic": "Emergency / priority"
+  },
+  "ASPIRATION": {
+    "clue": "Inhalation of gastric contents; risk rises with a decreased level of consciousness",
+    "rationale": "Raise the head of the bed, confirm tube-feeding placement, and use swallow precautions.",
+    "topic": "Safety / respiratory"
+  },
+  "ATELECTASIS": {
+    "clue": "Alveolar collapse; incentive spirometry helps prevent it after surgery",
+    "rationale": "Atelectasis is a common cause of low-grade fever in the first postoperative day. Encourage spirometry and ambulation.",
+    "topic": "Respiratory / postop"
+  },
+  "AUTONOMY": {
+    "clue": "Ethical principle that the patient has the right to make informed decisions",
+    "rationale": "Autonomy supports informed consent and the right to refuse care, even if the nurse disagrees.",
+    "topic": "Ethics"
+  },
+  "VERACITY": {
+    "clue": "Ethical principle of telling the truth to the patient",
+    "rationale": "Veracity means honest communication, including errors and risks, so the patient can decide.",
+    "topic": "Ethics"
+  },
+  "ADVOCACY": {
+    "clue": "Nurse's role in protecting the patient's rights and safety",
+    "rationale": "Advocacy is speaking up for safety, consent, and the patient's stated goals.",
+    "topic": "Ethics / role"
+  },
+  "RESTRAINT": {
+    "clue": "Last-resort safety device that requires an order and frequent assessment",
+    "rationale": "Use the least-restrictive option first. Restraints need an order, ongoing assessment, and documentation.",
+    "topic": "Safety"
+  },
+  "STEMI": {
+    "clue": "Myocardial infarction with ST elevation that needs urgent reperfusion",
+    "rationale": "STEMI is time-critical. The usual door-to-balloon goal is 90 minutes.",
+    "topic": "Cardiac"
+  },
+  "ALTEPLASE": {
+    "clue": "Thrombolytic used for selected ischemic strokes and some myocardial infarctions",
+    "rationale": "Alteplase (tPA) has a narrow time window and bleeding contraindications, including recent surgery and active bleeding.",
+    "topic": "Pharm / emergency"
+  },
+  "MYXEDEMA": {
+    "clue": "Severe hypothyroidism crisis with hypothermia and decreased consciousness",
+    "rationale": "Myxedema coma: protect the airway, rewarm, and give IV thyroid hormone. It is a medical emergency.",
+    "topic": "Endocrine"
+  },
+  "MENINGITIS": {
+    "clue": "Meningeal infection; use droplet isolation until antibiotics have had time to work",
+    "rationale": "For bacterial meningitis, start droplet precautions and antibiotics promptly. Watch for Kernig and Brudzinski signs.",
+    "topic": "Infection / neuro"
+  },
+  "PHLEBITIS": {
+    "clue": "Inflammation of a vein from an IV; stop the infusion and restart elsewhere",
+    "rationale": "Signs include pain, warmth, and a red streak. Discontinue the IV and restart in a new site.",
+    "topic": "Skills / IV"
+  },
+  "ALBUTEROL": {
+    "clue": "Short-acting beta-2 agonist given for acute asthma or COPD wheeze",
+    "rationale": "Albuterol relaxes bronchial smooth muscle. Expect tachycardia and tremor; it is a rescue drug, not a controller.",
+    "topic": "Pharm / respiratory"
+  },
+  "ATROPINE": {
+    "clue": "Anticholinergic used for symptomatic bradycardia",
+    "rationale": "Atropine is first-line for symptomatic bradycardia. Monitor heart rate and watch for dry mouth and blurred vision.",
+    "topic": "Pharm / cardiac"
+  },
+  "ADENOSINE": {
+    "clue": "First-line drug for stable SVT, given as a rapid IV push",
+    "rationale": "Adenosine is pushed rapidly and followed by a flush. Warn the patient about a brief feeling of asystole.",
+    "topic": "Pharm / cardiac"
+  },
+  "PREDNISONE": {
+    "clue": "Corticosteroid that must not be stopped abruptly and raises infection risk",
+    "rationale": "Taper corticosteroids. Teach infection precautions, hyperglycemia, and mood or sleep changes.",
+    "topic": "Pharm / endocrine"
+  },
+  "OXYTOCIN": {
+    "clue": "Uterine stimulant used for induction or postpartum hemorrhage",
+    "rationale": "Monitor contraction pattern and fetal heart rate. Too-frequent contractions reduce placental perfusion.",
+    "topic": "OB / pharm"
+  },
+  "LOCHIA": {
+    "clue": "Normal postpartum vaginal discharge; saturating a pad in an hour is too much",
+    "rationale": "Lochia progresses from rubra to serosa to alba. Soaking a pad in an hour, large clots, or a boggy uterus suggest hemorrhage.",
+    "topic": "OB"
+  },
+  "FUNDUS": {
+    "clue": "Top of the uterus; after birth it should be firm and near the umbilicus",
+    "rationale": "A boggy fundus needs massage. A fundus displaced to the side often means a full bladder.",
+    "topic": "OB"
+  },
+  "HYPOXEMIA": {
+    "clue": "Low oxygen in arterial blood; treat the cause and support oxygenation",
+    "rationale": "Confirm with pulse oximetry or an ABG, open the airway, give oxygen as indicated, and treat the cause.",
+    "topic": "Respiratory"
+  },
+  "ISOLATION": {
+    "clue": "Precautions that interrupt transmission, such as contact, droplet, or airborne",
+    "rationale": "Choose isolation by organism and route. Standard precautions apply to every patient.",
+    "topic": "Infection control"
+  },
+  "GLUCAGON": {
+    "clue": "Rescue hormone given for severe hypoglycemia when there is no IV access",
+    "rationale": "Give IM or SQ glucagon if the patient cannot swallow and no IV dextrose is available, then give carbs when safe.",
+    "topic": "Pharm / endocrine"
+  },
+  "DEXTROSE": {
+    "clue": "IV glucose used to treat severe hypoglycemia",
+    "rationale": "IV dextrose is the fastest treatment when access is available. Recheck glucose and give longer-acting carbohydrates.",
+    "topic": "Pharm / endocrine"
+  },
+  "THIAMINE": {
+    "clue": "Vitamin given before glucose in suspected alcohol-use disorder to prevent Wernicke encephalopathy",
+    "rationale": "Thiamine (B1) before or with glucose helps prevent Wernicke encephalopathy in at-risk patients.",
+    "topic": "Pharm / neuro"
+  },
+  "LACTULOSE": {
+    "clue": "Osmotic laxative used in hepatic encephalopathy to reduce ammonia",
+    "rationale": "Lactulose traps ammonia in the gut. Titrate to several soft stools a day and watch mental status.",
+    "topic": "Pharm / GI"
+  },
+  "MANNITOL": {
+    "clue": "Osmotic diuretic used to lower intracranial pressure",
+    "rationale": "Mannitol reduces ICP. Use a filter, watch osmolality and urine output, and assess for fluid shifts.",
+    "topic": "Pharm / neuro"
+  },
+  "RIFAMPIN": {
+    "clue": "TB drug that turns body fluids orange and interacts with many medicines",
+    "rationale": "Rifampin can stain tears and urine orange and can lower the effect of oral contraceptives and warfarin.",
+    "topic": "Pharm / TB"
+  },
+  "ISONIAZID": {
+    "clue": "TB drug that can cause peripheral neuropathy; vitamin B6 is given to prevent it",
+    "rationale": "Isoniazid risks include hepatotoxicity and neuropathy. Pyridoxine (B6) prevents the neuropathy.",
+    "topic": "Pharm / TB"
+  },
+  "PHENYTOIN": {
+    "clue": "Antiepileptic linked to gingival hyperplasia; do not stop it suddenly",
+    "rationale": "The usual therapeutic range is about 10\u201320 mcg/mL. Teach oral care and that abrupt withdrawal can trigger seizures.",
+    "topic": "Pharm / neuro"
+  },
+  "TYRAMINE": {
+    "clue": "Compound in aged cheese that can trigger a hypertensive crisis with an MAOI",
+    "rationale": "MAOIs plus tyramine (aged cheese, cured meats, red wine) can cause a hypertensive crisis.",
+    "topic": "Pharm / psych"
+  },
+  "CLOZAPINE": {
+    "clue": "Antipsychotic that requires ANC monitoring because of agranulocytosis risk",
+    "rationale": "Clozapine needs scheduled neutrophil counts. Teach the patient to report fever or sore throat at once.",
+    "topic": "Pharm / psych"
+  },
+  "EPINEPHRINE": {
+    "clue": "First-line intramuscular drug for anaphylaxis, given in the mid-outer thigh",
+    "rationale": "IM epinephrine is the first drug for anaphylaxis. Do not delay it for antihistamines or steroids.",
+    "topic": "Emergency / pharm"
+  },
+  "LISINOPRIL": {
+    "clue": "ACE inhibitor that can cause a dry cough, high potassium, and angioedema",
+    "rationale": "ACE inhibitors are teratogenic and can cause cough, hyperkalemia, and angioedema. Report facial swelling at once.",
+    "topic": "Pharm / cardiac"
+  },
+  "METOPROLOL": {
+    "clue": "Beta blocker often held if the heart rate is under 60; do not stop it abruptly",
+    "rationale": "Hold metoprolol per parameters (often HR under 60). Abrupt withdrawal can cause rebound tachycardia or angina.",
+    "topic": "Pharm / cardiac"
+  },
+  "ASPIRIN": {
+    "clue": "Antiplatelet given in ACS; toxicity may present with tinnitus",
+    "rationale": "Chewable aspirin is part of ACS care unless contraindicated. Tinnitus can signal salicylate toxicity.",
+    "topic": "Pharm / cardiac"
+  },
+  "MORPHINE": {
+    "clue": "Opioid analgesic that can depress respirations; naloxone reverses it",
+    "rationale": "Monitor sedation and respiratory rate. Naloxone is the reversal agent.",
+    "topic": "Pharm / pain"
+  },
+  "FENTANYL": {
+    "clue": "Potent opioid; patches are never cut and are not used for acute pain in opioid-naive patients",
+    "rationale": "Fentanyl patches must not be cut. Heat can increase absorption and cause overdose.",
+    "topic": "Pharm / pain"
+  },
+  "GLARGINE": {
+    "clue": "Long-acting insulin that has no peak and must not be mixed in the same syringe",
+    "rationale": "Insulin glargine provides basal coverage with no peak. Do not mix it with other insulins.",
+    "topic": "Pharm / endocrine"
+  },
+  "LISPRO": {
+    "clue": "Rapid-acting insulin given with meals; peak is about 30 to 90 minutes",
+    "rationale": "Give lispro when the meal is present. The main risk is hypoglycemia at the peak.",
+    "topic": "Pharm / endocrine"
+  },
+  "HELLP": {
+    "clue": "Pregnancy complication: hemolysis, elevated liver enzymes, and low platelets",
+    "rationale": "HELLP is a severe preeclampsia variant. Delivery is definitive treatment; watch for bleeding and liver-capsule rupture.",
+    "topic": "OB"
+  },
+  "KERNIG": {
+    "clue": "Pain or resistance when the knee is extended with the hip flexed; a meningeal sign",
+    "rationale": "A positive Kernig sign supports meningitis. Start precautions and notify the provider.",
+    "topic": "Neuro / infection"
+  },
+  "BATTLE": {
+    "clue": "Mastoid bruising after head trauma that suggests a basilar skull fracture",
+    "rationale": "Battle sign (postauricular ecchymosis) and raccoon eyes suggest a basilar skull fracture. Do not place a nasogastric tube.",
+    "topic": "Neuro / trauma"
+  },
+  "BABINSKI": {
+    "clue": "Upgoing plantar reflex that is abnormal after infancy and suggests an upper-motor-neuron lesion",
+    "rationale": "A positive Babinski after infancy is abnormal and can indicate upper-motor-neuron injury.",
+    "topic": "Neuro"
+  },
+  "WHEEZING": {
+    "clue": "Musical expiratory sound from narrowed lower airways, as in asthma",
+    "rationale": "Wheezing suggests bronchoconstriction. A silent chest in a previously wheezing patient is an ominous sign.",
+    "topic": "Respiratory"
+  },
+  "CRACKLES": {
+    "clue": "Discontinuous lung sounds often heard with fluid, as in heart failure or pneumonia",
+    "rationale": "Crackles can mean pulmonary edema or infiltrates. Interpret them with vital signs and oxygenation.",
+    "topic": "Respiratory"
+  },
+  "POLYURIA": {
+    "clue": "Excessive urine output, a classic finding in diabetes mellitus and diabetes insipidus",
+    "rationale": "Polyuria with polydipsia and polyphagia suggests hyperglycemia. In diabetes insipidus, urine is dilute and high in volume.",
+    "topic": "Endocrine"
+  },
+  "HEMATURIA": {
+    "clue": "Blood in the urine; report it promptly after a percutaneous kidney biopsy",
+    "rationale": "Gross hematuria after renal biopsy, especially with flank pain or hypotension, may signal bleeding.",
+    "topic": "Renal"
+  },
+  "SYNCOPE": {
+    "clue": "Brief loss of consciousness from hypoperfusion; assess for a cardiac cause",
+    "rationale": "Treat syncope as cardiac until proven otherwise in high-risk patients. Protect from falls and obtain an ECG.",
+    "topic": "Cardiac / safety"
+  },
+  "SEIZURE": {
+    "clue": "Protect the head, time the event, and never put anything in the mouth during this event",
+    "rationale": "During a seizure: place the patient side-lying if possible, protect the head, do not restrain, and do not insert objects.",
+    "topic": "Neuro / safety"
+  },
+  "STROKE": {
+    "clue": "Sudden brain ischemia or hemorrhage; time of last known well guides treatment",
+    "rationale": "Use FAST/BE-FAST. Last-known-well time decides thrombolysis eligibility. A CT is used first to rule out bleeding.",
+    "topic": "Neuro / emergency"
+  },
+  "EMBOLISM": {
+    "clue": "A clot or other material that travels and lodges in a vessel, as in a pulmonary embolus",
+    "rationale": "A DVT can become a pulmonary embolism. Sudden dyspnea, chest pain, and hypoxemia are classic.",
+    "topic": "Cardiac / respiratory"
+  },
+  "SHOCK": {
+    "clue": "Inadequate tissue perfusion; early signs include tachycardia and restlessness",
+    "rationale": "Shock types differ, but all need airway-breathing support, perfusion, and treatment of the cause.",
+    "topic": "Emergency / priority"
+  },
+  "HYPOVOLEMIA": {
+    "clue": "Low circulating volume; early signs include tachycardia and delayed capillary refill",
+    "rationale": "Give fluids, control bleeding, and remember that hypotension is often a later sign.",
+    "topic": "Emergency / fluids"
+  },
+  "DEHYDRATION": {
+    "clue": "Fluid-volume deficit with dry mucous membranes, tachycardia, and concentrated urine",
+    "rationale": "Assess skin turgor, mucous membranes, urine specific gravity, and mental status, especially in older adults.",
+    "topic": "Fluids"
+  },
+  "TAMPONADE": {
+    "clue": "Pericardial compression with muffled sounds, jugular distention, and hypotension (Beck's triad)",
+    "rationale": "Cardiac tamponade is an emergency. Beck's triad and pulsus paradoxus are classic findings.",
+    "topic": "Cardiac / emergency"
+  },
+  "HIPAA": {
+    "clue": "Federal law that protects the privacy of patient health information",
+    "rationale": "HIPAA limits who can see protected health information. Do not discuss patients in public or post about them.",
+    "topic": "Legal"
+  },
+  "JUSTICE": {
+    "clue": "Ethical principle of fairness in care and in how resources are given",
+    "rationale": "Justice means equitable treatment \u2014 not giving or withholding care based on bias or personal preference.",
+    "topic": "Ethics"
+  },
+  "FIDELITY": {
+    "clue": "Ethical principle of keeping promises and being loyal to the patient",
+    "rationale": "Fidelity is faithfulness: follow through on what you tell the patient and maintain trust.",
+    "topic": "Ethics"
+  },
+  "BENEFICENCE": {
+    "clue": "Ethical principle of acting in the patient's best interest",
+    "rationale": "Beneficence is doing good \u2014 acting to benefit the patient while weighing risks and benefits.",
+    "topic": "Ethics"
+  },
+  "KETONES": {
+    "clue": "By-product of fat breakdown whose presence in urine or blood supports DKA",
+    "rationale": "In DKA, ketones plus anion-gap acidosis and hyperglycemia confirm the diagnosis.",
+    "topic": "Endocrine / labs"
+  },
+  "ACIDOSIS": {
+    "clue": "pH below 7.35; in DKA it is metabolic and often paired with Kussmaul breathing",
+    "rationale": "Metabolic acidosis in DKA is treated with fluids, insulin, and electrolyte replacement.",
+    "topic": "ABG / endocrine"
+  },
+  "ALKALOSIS": {
+    "clue": "pH above 7.45, as from prolonged vomiting or excess nasogastric suction",
+    "rationale": "Loss of gastric acid causes metabolic alkalosis. Replace fluids and electrolytes and treat the cause.",
+    "topic": "ABG / fluids"
+  },
+  "HYPOXIA": {
+    "clue": "Inadequate oxygen at the tissue level; restlessness can be an early sign",
+    "rationale": "Early hypoxia: restlessness, tachycardia, and tachypnea. Late: cyanosis and bradycardia.",
+    "topic": "Respiratory / priority"
+  },
+  "FALLS": {
+    "clue": "Leading hospital injury risk; bed alarm, nonslip socks, and a clear path lower it",
+    "rationale": "Fall precautions include a call light in reach, a low locked bed, nonslip socks, and timely toileting.",
+    "topic": "Safety"
+  },
+  "TRIAGE": {
+    "clue": "Sorting patients by acuity so the most unstable are treated first",
+    "rationale": "Triage uses acuity, not arrival time. In a disaster, categories protect limited resources.",
+    "topic": "Priority"
+  },
+  "CONSENT": {
+    "clue": "Informed agreement the provider obtains; the nurse witnesses the signature and checks understanding",
+    "rationale": "The provider explains risks and alternatives. The nurse can clarify and advocate, but does not obtain the initial informed consent.",
+    "topic": "Legal"
+  },
+  "PRIVACY": {
+    "clue": "Right to control who sees personal health information and who is in the room",
+    "rationale": "Close doors, close screens, and ask visitors to step out before teaching or procedures when the patient wants privacy.",
+    "topic": "Legal / ethics"
+  },
+  "SUCTION": {
+    "clue": "Airway procedure done only as needed, for 10\u201315 seconds, while withdrawing the catheter",
+    "rationale": "Hyperoxygenate first, suction no longer than 10\u201315 seconds, and stop if the patient decompensates.",
+    "topic": "Skills / airway"
+  },
+  "NSAID": {
+    "clue": "Pain-drug class that can harm the kidneys and stomach and raise bleeding risk",
+    "rationale": "NSAIDs raise GI-bleed and renal-injury risk and can worsen heart failure. Avoid in many pregnancy and CKD cases.",
+    "topic": "Pharm / pain"
+  },
+  "STATIN": {
+    "clue": "Cholesterol-drug class; report unexplained muscle pain because of rhabdomyolysis risk",
+    "rationale": "Unexplained muscle pain or dark urine in a patient on a statin needs a CK and a call to the provider.",
+    "topic": "Pharm / cardiac"
+  },
+  "NITRATE": {
+    "clue": "Vasodilator for angina; never combine with a PDE-5 inhibitor such as sildenafil",
+    "rationale": "Nitrates plus PDE-5 inhibitors can cause profound hypotension. Check blood pressure before each dose.",
+    "topic": "Pharm / cardiac"
+  },
+  "DOPAMINE": {
+    "clue": "Vasoactive infusion used for shock; give it through a central line when possible",
+    "rationale": "Dopamine is titrated to perfusion and blood pressure. Watch for dysrhythmias and extravasation injury.",
+    "topic": "Pharm / critical care"
+  },
+  "LOSARTAN": {
+    "clue": "ARB used when an ACE inhibitor cough is not tolerated; still unsafe in pregnancy",
+    "rationale": "Losartan can cause hyperkalemia and is teratogenic, but it does not usually cause the ACE-inhibitor cough.",
+    "topic": "Pharm / cardiac"
+  },
+  "ATENOLOL": {
+    "clue": "Cardioselective beta blocker used for hypertension and angina",
+    "rationale": "Atenolol lowers heart rate and blood pressure. Hold per parameters and do not stop it suddenly.",
+    "topic": "Pharm / cardiac"
+  },
+  "DKA": {
+    "clue": "Hyperglycemia with ketones and anion-gap acidosis, often with Kussmaul respirations",
+    "rationale": "Treat DKA with fluids, insulin, and electrolyte replacement. Potassium can fall quickly once insulin starts.",
+    "topic": "Endocrine"
+  },
+  "INR": {
+    "clue": "Lab used to monitor warfarin therapy",
+    "rationale": "The typical therapeutic INR for many indications is about 2\u20133 (higher for some valves). Hold warfarin and call for a high INR with bleeding.",
+    "topic": "Labs / coagulation"
+  },
+  "DVT": {
+    "clue": "Clot in a deep vein, often the leg; prevention includes early ambulation and anticoagulation",
+    "rationale": "Unilateral leg swelling and pain suggest DVT. Do not massage the limb. A pulmonary embolus is the feared complication.",
+    "topic": "Cardiac / safety"
+  },
+  "NPO": {
+    "clue": "Order meaning nothing by mouth, used before surgery or when aspiration risk is high",
+    "rationale": "NPO reduces aspiration risk. Confirm the order before giving oral medicines, food, or fluids.",
+    "topic": "Safety / peri-op"
+  },
+  "ANC": {
+    "clue": "Neutrophil count watched closely in patients on clozapine or chemotherapy",
+    "rationale": "A low ANC means neutropenia and infection risk. Teach the patient to report fever immediately.",
+    "topic": "Labs / heme"
+  },
+  "BUN": {
+    "clue": "Nitrogen lab that rises with renal impairment, GI bleeding, or dehydration",
+    "rationale": "BUN is interpreted with creatinine. An isolated rise can also reflect dehydration or a high-protein load.",
+    "topic": "Labs / renal"
+  },
+  "PPE": {
+    "clue": "Barrier equipment chosen according to the isolation type",
+    "rationale": "Select PPE by the transmission route. Don before entry and doff carefully to avoid self-contamination.",
+    "topic": "Infection control"
+  },
+  "ACS": {
+    "clue": "Umbrella term for unstable angina, NSTEMI, and STEMI",
+    "rationale": "Acute coronary syndrome needs an ECG, troponin, aspirin unless contraindicated, and rapid triage for reperfusion.",
+    "topic": "Cardiac"
+  },
+  "UTI": {
+    "clue": "Urinary tract infection; burning, frequency, and urgency are typical in the lower tract",
+    "rationale": "Obtain a clean-catch specimen when possible. In older adults, confusion may be the main sign.",
+    "topic": "Infection / renal"
+  },
+  "ICP": {
+    "clue": "Pressure inside the skull; keep the head midline and the head of the bed about 30 degrees when it is high",
+    "rationale": "Avoid clustering care, coughing, and neck flexion when ICP is high. Report a sudden drop in consciousness.",
+    "topic": "Neuro"
+  },
+  "CBC": {
+    "clue": "Blood panel that includes hemoglobin, white cells, and platelets",
+    "rationale": "A CBC helps detect anemia, infection, and thrombocytopenia before procedures or chemotherapy.",
+    "topic": "Labs"
+  },
+  "SBAR": {
+    "clue": "Handoff framework: situation, background, assessment, and recommendation",
+    "rationale": "SBAR standardizes communication with providers and at shift change so critical information is not missed.",
+    "topic": "Communication"
+  },
+  "MRSA": {
+    "clue": "Drug-resistant staph typically managed with contact precautions",
+    "rationale": "MRSA spreads by contact. Use gown and gloves and clean equipment between patients.",
+    "topic": "Infection control"
+  },
+  "CHF": {
+    "clue": "Heart-failure syndrome with fluid overload; watch daily weights and worsening dyspnea",
+    "rationale": "A sudden weight gain of 2\u20133 pounds in a day can mean fluid retention. Report new orthopnea or crackles.",
+    "topic": "Cardiac"
+  },
+  "COPD": {
+    "clue": "Chronic airflow-limitation disease; pursed-lip breathing helps blow off trapped air",
+    "rationale": "Do not withhold oxygen in hypoxemia; titrate to the ordered saturation target and watch for CO2 retention.",
+    "topic": "Respiratory"
+  },
+  "PEEP": {
+    "clue": "Ventilator pressure that keeps alveoli open at the end of expiration",
+    "rationale": "PEEP improves oxygenation but can drop blood pressure by reducing venous return and can contribute to barotrauma.",
+    "topic": "Critical care"
+  },
+  "ABG": {
+    "clue": "Arterial blood test of pH, PaCO2, and PaO2 used to judge acid-base and oxygenation",
+    "rationale": "Interpret pH first, then PaCO2 and HCO3 to see if the problem is respiratory or metabolic.",
+    "topic": "Labs / respiratory"
+  },
+  "CSF": {
+    "clue": "Fluid around the brain and spinal cord; a leak after trauma may drip as clear drainage from the nose",
+    "rationale": "If a basilar skull fracture is suspected, do not place a nasogastric tube. Test drainage as directed for CSF.",
+    "topic": "Neuro"
+  },
+  "GCS": {
+    "clue": "Coma scale that scores eye, verbal, and motor responses from 3 to 15",
+    "rationale": "A falling Glasgow Coma Scale needs immediate notification. A score of 8 or less often means the airway is at risk.",
+    "topic": "Neuro"
+  },
+  "DNR": {
+    "clue": "Order meaning do not start CPR if the patient's heart or breathing stops",
+    "rationale": "A DNR does not cancel other care. Confirm the order and still treat pain, dyspnea, and reversible problems.",
+    "topic": "Legal / ethics"
+  },
+  "AMA": {
+    "clue": "When a patient leaves against medical advice; the nurse makes sure the risks are explained and documented",
+    "rationale": "A competent adult may leave AMA. Notify the provider, explain risks, and document thoroughly. Do not detain the patient.",
+    "topic": "Legal"
+  },
+  "PICC": {
+    "clue": "Peripherally inserted central catheter used for long-term IV therapy",
+    "rationale": "Measure arm circumference and line length per protocol. Do not take blood pressure on that arm.",
+    "topic": "Skills / IV"
+  },
+  "MAP": {
+    "clue": "Average arterial pressure; a value near 65 mm Hg or higher is a common perfusion target in shock",
+    "rationale": "MAP = (SBP + 2\u00d7DBP) / 3. A low MAP means organs may not be perfused.",
+    "topic": "Critical care"
+  },
+  "ECG": {
+    "clue": "Tracing of the heart's electrical activity; obtain one at once for chest pain",
+    "rationale": "A 12-lead ECG should be done within 10 minutes for suspected ACS. Continuous monitoring catches dysrhythmias.",
+    "topic": "Cardiac"
+  },
+  "EEG": {
+    "clue": "Recording of brain-wave activity used to evaluate seizures",
+    "rationale": "An EEG can support a seizure diagnosis. Teach the patient that it is painless and that hair should be clean and product-free.",
+    "topic": "Neuro"
+  },
+  "MRI": {
+    "clue": "Imaging that uses magnets; metal implants and some pacemakers may be contraindications",
+    "rationale": "Screen for metal, aneurysm clips, and pacemaker compatibility. Remove transdermal patches with foil if required.",
+    "topic": "Safety / imaging"
+  },
+  "HIV": {
+    "clue": "Virus that attacks CD4 cells; standard precautions are used for every patient",
+    "rationale": "HIV is not spread by casual contact. Standard precautions are sufficient; report occupational exposures at once.",
+    "topic": "Infection"
+  },
+  "HPV": {
+    "clue": "Virus that causes many genital warts and most cervical cancers; vaccination prevents many strains",
+    "rationale": "HPV vaccination is prevention. Teach safer sex and age-appropriate Pap and HPV screening.",
+    "topic": "Infection / women's health"
+  },
+  "GBS": {
+    "clue": "Rectovaginal bacteria screened in late pregnancy; treat in labor to protect the newborn",
+    "rationale": "Group B strep screening is usually done near 36\u201337 weeks. Intrapartum antibiotics reduce early-onset neonatal disease.",
+    "topic": "OB"
+  },
+  "FHR": {
+    "clue": "Fetal heart rate; a baseline of 110\u2013160 is expected, and late decelerations are a warning",
+    "rationale": "Late decelerations suggest uteroplacental insufficiency. Reposition, give oxygen per protocol, stop oxytocin, and notify the provider.",
+    "topic": "OB"
+  },
+  "LMP": {
+    "clue": "First day of the last menstrual period; used with Naegele's rule to estimate the due date",
+    "rationale": "Naegele's rule: first day of the LMP, plus 7 days, minus 3 months, and adjust the year.",
+    "topic": "OB"
+  },
+  "IUD": {
+    "clue": "Long-acting intrauterine contraceptive; warn the patient to report severe pain or a missing string",
+    "rationale": "A missing IUD string, severe pain, or fever needs prompt evaluation for expulsion or infection.",
+    "topic": "Women's health"
+  },
+  "PPD": {
+    "clue": "Intradermal TB skin test read at 48\u201372 hours by measuring induration, not redness",
+    "rationale": "A positive PPD means TB exposure, not necessarily active disease. Follow with a symptom review and chest x-ray as indicated.",
+    "topic": "Infection / TB"
+  },
+  "ART": {
+    "clue": "Combination drug therapy used to suppress HIV viral load",
+    "rationale": "Antiretroviral therapy must be taken consistently. Teach adherence and that undetectable viral load greatly lowers transmission risk.",
+    "topic": "Pharm / infection"
+  },
+  "PEP": {
+    "clue": "Antiretroviral medicines started promptly after a possible HIV exposure",
+    "rationale": "Post-exposure prophylaxis should start as soon as possible, ideally within hours, and continue for the prescribed course.",
+    "topic": "Infection / safety"
+  },
+  "NICU": {
+    "clue": "Unit that cares for high-risk and preterm newborns",
+    "rationale": "Parents need orientation, hand hygiene teaching, and support for bonding, feeding, and questions about monitors.",
+    "topic": "Newborn"
+  },
+  "SIDS": {
+    "clue": "Sudden unexplained infant death; risk falls with back-sleeping and a clear crib",
+    "rationale": "Teach ABCs of safe sleep: alone, on the back, in a crib, with no loose bedding, pillows, or stuffed animals.",
+    "topic": "Newborn / safety"
+  },
+  "ROM": {
+    "clue": "Rupture of membranes; note the time, color, and odor, and check fetal heart rate",
+    "rationale": "After rupture, check FHR for cord compression and assess for infection if rupture is prolonged. Meconium-stained fluid is a warning.",
+    "topic": "OB"
+  }
+}

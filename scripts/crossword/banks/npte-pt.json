@@ -1,0 +1,1637 @@
+{
+  "LACHMAN": {
+    "clue": "Knee test for ACL integrity, preferred in the acute setting over the anterior drawer",
+    "rationale": "Lachman is done at about 20 degrees of flexion. A soft end feel suggests an ACL tear.",
+    "topic": "Special tests"
+  },
+  "ANTERIOR": {
+    "clue": "Drawer test of the knee that also stresses the ACL, less sensitive acutely",
+    "rationale": "The anterior drawer is done at 90 degrees. Hamstring guarding can hide an ACL tear.",
+    "topic": "Special tests"
+  },
+  "POSTERIOR": {
+    "clue": "Drawer test that assesses the PCL with the knee flexed",
+    "rationale": "A posterior sag of the tibia at 90 degrees also suggests PCL injury.",
+    "topic": "Special tests"
+  },
+  "MCMURRAY": {
+    "clue": "Rotation test for a meniscus tear, listening for a click with joint-line pain",
+    "rationale": "McMurray combines rotation and extension. It is not perfectly sensitive, so a negative test does not clear the meniscus.",
+    "topic": "Special tests"
+  },
+  "THESSALY": {
+    "clue": "Weight-bearing rotation test for a meniscus tear",
+    "rationale": "The Thessaly test is done on one leg at slight knee flexion. Pain or locking suggests a meniscus lesion.",
+    "topic": "Special tests"
+  },
+  "APLEY": {
+    "clue": "Prone compression-rotation test for the meniscus",
+    "rationale": "Apley compression loads the meniscus. Distraction that hurts more suggests a ligament rather than the meniscus.",
+    "topic": "Special tests"
+  },
+  "VALGUS": {
+    "clue": "Stress test for the medial collateral ligament",
+    "rationale": "Valgus stress at 30 degrees isolates the MCL. Laxity in full extension implies a more complex injury.",
+    "topic": "Special tests"
+  },
+  "VARUS": {
+    "clue": "Stress test for the lateral collateral ligament",
+    "rationale": "Varus stress at 30 degrees tests the LCL. Opening in extension suggests posterolateral corner injury too.",
+    "topic": "Special tests"
+  },
+  "HAWKINS": {
+    "clue": "Impingement test with the arm flexed and internally rotated",
+    "rationale": "Hawkins-Kennedy pain suggests subacromial impingement. It is sensitive and not very specific.",
+    "topic": "Special tests"
+  },
+  "NEER": {
+    "clue": "Impingement test that passively flexes the internally rotated arm",
+    "rationale": "Neer test pain is subacromial. It does not by itself prove a rotator cuff tear.",
+    "topic": "Special tests"
+  },
+  "EMPTYCAN": {
+    "clue": "Supraspinatus test with the thumb down in the scapular plane",
+    "rationale": "The empty-can test loads supraspinatus. Weakness more than pain suggests a tear.",
+    "topic": "Special tests"
+  },
+  "DROPARM": {
+    "clue": "Test in which the patient cannot slowly lower the arm, suggesting a cuff tear",
+    "rationale": "A positive drop-arm test implies a significant supraspinatus or cuff tear.",
+    "topic": "Special tests"
+  },
+  "SPEED": {
+    "clue": "Test for the long head of biceps with the shoulder flexed against resistance",
+    "rationale": "Speed test pain is in the bicipital groove. It is used for biceps tendinopathy.",
+    "topic": "Special tests"
+  },
+  "YERGASONS": {
+    "clue": "Test that resists supination to stress the biceps tendon and transverse ligament",
+    "rationale": "Yergason pain or a pop in the groove suggests biceps instability or tendinopathy.",
+    "topic": "Special tests"
+  },
+  "PHALEN": {
+    "clue": "Wrist flexion test for carpal tunnel syndrome",
+    "rationale": "Phalen holds the wrists flexed. Numbness in the median distribution is a positive test.",
+    "topic": "Special tests"
+  },
+  "TINEL": {
+    "clue": "Percussion over a nerve that reproduces distal tingling",
+    "rationale": "Tinel at the carpal tunnel suggests median nerve irritation. It is also used at the tarsal tunnel and elbow.",
+    "topic": "Special tests"
+  },
+  "FINKELSTEIN": {
+    "clue": "Test for de Quervain tenosynovitis of the thumb tendons",
+    "rationale": "Finkelstein ulnar-deviates the clenched thumb. Pain over the radial styloid is positive.",
+    "topic": "Special tests"
+  },
+  "FABER": {
+    "clue": "Figure-four test for hip or sacroiliac irritation",
+    "rationale": "FABER is flexion, abduction, and external rotation. Groin pain points to the hip; posterior pain can be the SI joint.",
+    "topic": "Special tests"
+  },
+  "FADIR": {
+    "clue": "Flexion, adduction, and internal rotation test for femoroacetabular impingement",
+    "rationale": "FADIR reproduces groin pain in cam or pincer impingement and in many labral tears.",
+    "topic": "Special tests"
+  },
+  "THOMAS": {
+    "clue": "Test for hip flexor tightness with the opposite knee held to the chest",
+    "rationale": "A Thomas test is positive when the thigh rises off the table. A abducted thigh also suggests IT-band tightness.",
+    "topic": "Special tests"
+  },
+  "OBER": {
+    "clue": "Side-lying test for iliotibial band tightness",
+    "rationale": "The Ober test lets the top leg drop into adduction. Failure to drop means a tight IT band.",
+    "topic": "Special tests"
+  },
+  "ELY": {
+    "clue": "Prone knee flexion test for rectus femoris tightness",
+    "rationale": "Ely is positive when the hip flexes as the knee is flexed in prone.",
+    "topic": "Special tests"
+  },
+  "STRAIGHT": {
+    "clue": "Leg-raise test for lumbar nerve root irritation",
+    "rationale": "A straight leg raise that reproduces pain below the knee suggests radiculopathy, often L5 or S1.",
+    "topic": "Special tests"
+  },
+  "SLUMP": {
+    "clue": "Seated neural tension test for the sciatic tract",
+    "rationale": "The slump test adds cervical flexion to a straight leg raise. Symptoms that ease when the neck is extended support neural tension.",
+    "topic": "Special tests"
+  },
+  "SPURLING": {
+    "clue": "Cervical compression with extension and rotation for radiculopathy",
+    "rationale": "Spurling reproduces arm pain when a foramen is narrowed. It is not a screen to do vigorously.",
+    "topic": "Special tests"
+  },
+  "DISTRACTION": {
+    "clue": "Cervical test that relieves radicular pain when positive",
+    "rationale": "Manual distraction that eases arm pain supports a compressive radiculopathy.",
+    "topic": "Special tests"
+  },
+  "ALLEN": {
+    "clue": "Test of radial and ulnar artery patency in the hand",
+    "rationale": "The Allen test occludes both arteries, then releases one. Delayed blush means that artery is not adequate alone.",
+    "topic": "Special tests"
+  },
+  "THOMPSON": {
+    "clue": "Calf squeeze test for Achilles tendon rupture",
+    "rationale": "Thompson is positive when squeezing the calf does not plantarflex the foot.",
+    "topic": "Special tests"
+  },
+  "TALARTILT": {
+    "clue": "Inversion stress of the ankle that tests the calcaneofibular ligament",
+    "rationale": "Talar tilt in plantarflexion stresses the anterior talofibular ligament more; in neutral it stresses the CFL.",
+    "topic": "Special tests"
+  },
+  "ATFL": {
+    "clue": "Ligament injured first in a typical lateral ankle sprain",
+    "rationale": "The anterior talofibular ligament limits anterior translation of the talus. The anterior drawer tests it.",
+    "topic": "Ankle"
+  },
+  "CFL": {
+    "clue": "Lateral ankle ligament stressed by inversion in neutral",
+    "rationale": "The calcaneofibular ligament is injured after the ATFL in more severe inversion sprains.",
+    "topic": "Ankle"
+  },
+  "WINDLASS": {
+    "clue": "Test that extends the great toe to tighten the plantar fascia",
+    "rationale": "The windlass test reproduces heel pain in plantar fasciitis.",
+    "topic": "Special tests"
+  },
+  "NOBLE": {
+    "clue": "Compression of the IT band over the lateral femoral condyle",
+    "rationale": "The Noble test is positive for IT-band friction when pain occurs near 30 degrees of flexion.",
+    "topic": "Special tests"
+  },
+  "SULCUS": {
+    "clue": "Inferior traction test for multidirectional shoulder instability",
+    "rationale": "A sulcus sign is a visible gap under the acromion when the arm is pulled down.",
+    "topic": "Special tests"
+  },
+  "OBRIEN": {
+    "clue": "Active compression test used for SLAP and acromioclavicular pain",
+    "rationale": "O'Brien pain that is worse with the thumb down and better with the palm up is the classic pattern.",
+    "topic": "Special tests"
+  },
+  "CROSSBODY": {
+    "clue": "Horizontal adduction test for the acromioclavicular joint",
+    "rationale": "Cross-body adduction pain at the top of the shoulder suggests AC joint arthropathy.",
+    "topic": "Special tests"
+  },
+  "COZEN": {
+    "clue": "Resisted wrist extension test for lateral epicondylalgia",
+    "rationale": "Cozen reproduces pain at the lateral epicondyle. It loads extensor carpi radialis brevis.",
+    "topic": "Special tests"
+  },
+  "MILL": {
+    "clue": "Passive stretch of the wrist extensors for lateral epicondylalgia",
+    "rationale": "The Mill test pronates the forearm and flexes the wrist. Pain at the lateral epicondyle is positive.",
+    "topic": "Special tests"
+  },
+  "FROMENT": {
+    "clue": "Paper-pinch test for ulnar nerve weakness of adductor pollicis",
+    "rationale": "Froment is positive when the thumb IP joint flexes to hold the paper, substituting flexor pollicis longus.",
+    "topic": "Special tests"
+  },
+  "WARTENBERG": {
+    "clue": "Inability to adduct the little finger, an ulnar nerve sign",
+    "rationale": "Wartenberg sign is a persistently abducted fifth digit from interosseous weakness.",
+    "topic": "Special tests"
+  },
+  "BABINSKI": {
+    "clue": "Upgoing toe with plantar stimulation, a sign of an upper motor neuron lesion",
+    "rationale": "Babinski is normal in infants. In adults it suggests corticospinal tract involvement.",
+    "topic": "Neuro"
+  },
+  "HOFFMAN": {
+    "clue": "Flick of the middle finger that flexes the thumb, a cervical myelopathy sign",
+    "rationale": "A Hoffman sign suggests an upper motor neuron lesion, often cervical cord compression.",
+    "topic": "Neuro"
+  },
+  "CLONUS": {
+    "clue": "Rhythmic beats at the ankle from an upper motor neuron lesion",
+    "rationale": "Sustained clonus is pathologic. A beat or two can be normal if it stops quickly.",
+    "topic": "Neuro"
+  },
+  "ROMBERG": {
+    "clue": "Eyes-closed stance test for proprioception, not the cerebellum",
+    "rationale": "Romberg is positive when balance is lost only after the eyes close. Cerebellar ataxia is present with eyes open too.",
+    "topic": "Neuro"
+  },
+  "STEPPAGE": {
+    "clue": "High-step gait used to clear a foot that cannot dorsiflex",
+    "rationale": "Steppage gait follows foot drop, often from peroneal nerve or L4 root weakness.",
+    "topic": "Gait"
+  },
+  "ANTALGIC": {
+    "clue": "Gait that shortens stance time on the painful limb",
+    "rationale": "An antalgic gait is a limp that unloads pain. The swing of the opposite limb is shortened.",
+    "topic": "Gait"
+  },
+  "FESTINATING": {
+    "clue": "Short accelerating steps of Parkinson disease",
+    "rationale": "Festinating gait has a forward trunk and difficulty stopping. Cueing and larger steps are treatment targets.",
+    "topic": "Gait"
+  },
+  "ATAXIC": {
+    "clue": "Wide-based unsteady gait from cerebellar or sensory loss",
+    "rationale": "Ataxic gait is not the same as weakness. Look for dysmetria or a positive Romberg to sort the cause.",
+    "topic": "Gait"
+  },
+  "VAULTING": {
+    "clue": "Rising on the stance toe to let a longer or stiffer limb swing through",
+    "rationale": "Vaulting is a compensation for a functionally long swing limb, such as a locked knee or a prosthesis.",
+    "topic": "Gait"
+  },
+  "HIPHIKE": {
+    "clue": "Lifting the pelvis to clear a swing foot that will not flex",
+    "rationale": "Hip hiking compensates for weak hip flexors or dorsiflexors.",
+    "topic": "Gait"
+  },
+  "PHRENIC": {
+    "clue": "Nerve from C3 to C5 that innervates the diaphragm",
+    "rationale": "Phrenic nerve injury impairs inspiration. C3 through C5 keep the diaphragm alive is the memory line.",
+    "topic": "Neuroanatomy"
+  },
+  "TERESMINOR": {
+    "clue": "Small external rotator innervated by the axillary nerve",
+    "rationale": "Teres minor shares external rotation with infraspinatus. The axillary nerve also supplies deltoid.",
+    "topic": "Shoulder"
+  },
+  "DELTOID": {
+    "clue": "Abductor innervated by the axillary nerve",
+    "rationale": "Deltoid takes over abduction after supraspinatus starts it. Axillary nerve injury follows shoulder dislocation.",
+    "topic": "Shoulder"
+  },
+  "BICEPS": {
+    "clue": "Elbow flexor and supinator innervated by the musculocutaneous nerve",
+    "rationale": "The long head of biceps also depresses the humeral head. The reflex is C5 to C6.",
+    "topic": "Elbow"
+  },
+  "BRACHIALIS": {
+    "clue": "Primary elbow flexor innervated by the musculocutaneous nerve",
+    "rationale": "Brachialis flexes the elbow in pronation and supination. It is deep to biceps.",
+    "topic": "Elbow"
+  },
+  "TRICEPS": {
+    "clue": "Elbow extensor innervated by the radial nerve",
+    "rationale": "Triceps reflex is C7. Radial nerve injury in the spiral groove spares the triceps if the branch has already left.",
+    "topic": "Elbow"
+  },
+  "BRACHIORAD": {
+    "clue": "Elbow flexor in neutral innervated by the radial nerve",
+    "rationale": "Brachioradialis is the radial nerve elbow flexor. Its reflex is C6.",
+    "topic": "Elbow"
+  },
+  "SUPINATOR": {
+    "clue": "Muscle that supinates with biceps and is pierced by the radial nerve deep branch",
+    "rationale": "The posterior interosseous nerve can be compressed in the supinator arcade of Frohse.",
+    "topic": "Elbow"
+  },
+  "ECRB": {
+    "clue": "Wrist extensor commonly involved in lateral epicondylalgia",
+    "rationale": "Extensor carpi radialis brevis attaches at the lateral epicondyle. It extends and radially deviates the wrist.",
+    "topic": "Elbow"
+  },
+  "FCU": {
+    "clue": "Wrist flexor innervated by the ulnar nerve",
+    "rationale": "Flexor carpi ulnaris is the ulnar wrist flexor. The ulnar nerve enters the forearm through its heads.",
+    "topic": "Wrist"
+  },
+  "FCR": {
+    "clue": "Wrist flexor innervated by the median nerve",
+    "rationale": "Flexor carpi radialis flexes and radially deviates the wrist. It is a median-innervated forearm muscle.",
+    "topic": "Wrist"
+  },
+  "FDS": {
+    "clue": "Finger flexor of the proximal interphalangeal joints, median innervated",
+    "rationale": "Flexor digitorum superficialis flexes the PIP joints. It is tested with the other fingers held extended.",
+    "topic": "Hand"
+  },
+  "FDP": {
+    "clue": "Finger flexor of the distal joints; the lateral half is median and the medial half ulnar",
+    "rationale": "Flexor digitorum profundus to the ring and little fingers is ulnar. The index and middle are anterior interosseous.",
+    "topic": "Hand"
+  },
+  "FPL": {
+    "clue": "Thumb flexor innervated by the anterior interosseous nerve",
+    "rationale": "Flexor pollicis longus flexes the thumb IP joint. Anterior interosseous palsy loses that and the index DIP.",
+    "topic": "Hand"
+  },
+  "APB": {
+    "clue": "Thenar muscle that abducts the thumb and is median innervated",
+    "rationale": "Abductor pollicis brevis is the muscle of thenar wasting in carpal tunnel syndrome.",
+    "topic": "Hand"
+  },
+  "LUMBRICAL": {
+    "clue": "Muscles that flex the MCP joints and extend the IP joints",
+    "rationale": "The lateral two lumbricals are median and the medial two are ulnar. They balance the extrinsic flexors.",
+    "topic": "Hand"
+  },
+  "QUADRICEPS": {
+    "clue": "Knee extensor innervated by the femoral nerve",
+    "rationale": "Quadriceps includes rectus femoris and the vasti. The reflex is L3 to L4.",
+    "topic": "Knee"
+  },
+  "RECTUSFEM": {
+    "clue": "Two-joint quadriceps that also flexes the hip",
+    "rationale": "Rectus femoris is tight on the Ely test. It is the only quadriceps that crosses the hip.",
+    "topic": "Knee"
+  },
+  "VASTUSMED": {
+    "clue": "Medial quadriceps emphasized in patellofemoral rehab",
+    "rationale": "Vastus medialis obliquus helps seat the patella. It does not by itself prove a unique selective strengthening effect.",
+    "topic": "Knee"
+  },
+  "HAMSTRINGS": {
+    "clue": "Knee flexors; most are tibial-nerve innervated",
+    "rationale": "The short head of biceps femoris is the peroneal exception. Hamstrings also extend the hip.",
+    "topic": "Knee"
+  },
+  "SOLEUS": {
+    "clue": "Postural plantarflexor tested with the knee bent",
+    "rationale": "Soleus is deep to gastrocnemius and is tibial innervated. It is the endurance calf muscle.",
+    "topic": "Ankle"
+  },
+  "ILIOPSOAS": {
+    "clue": "Primary hip flexor from the iliacus and psoas",
+    "rationale": "Iliopsoas is femoral and lumbar innervated. It is the muscle of the Thomas test.",
+    "topic": "Hip"
+  },
+  "PIRIFORMIS": {
+    "clue": "External rotator that can irritate the sciatic nerve",
+    "rationale": "Piriformis exits the greater sciatic foramen. The sciatic nerve usually passes beneath it.",
+    "topic": "Hip"
+  },
+  "SARTORIUS": {
+    "clue": "Hip flexor and knee flexor that is the longest muscle",
+    "rationale": "Sartorius is femoral innervated and forms the lateral border of the femoral triangle.",
+    "topic": "Hip"
+  },
+  "GRACILIS": {
+    "clue": "Medial thigh adductor that also flexes the knee",
+    "rationale": "Gracilis is an obturator-nerve muscle and a pes anserinus tendon.",
+    "topic": "Hip"
+  },
+  "ADDUCTOR": {
+    "clue": "Medial thigh group innervated mainly by the obturator nerve",
+    "rationale": "Adductor longus is strained in groin pulls. Adductor magnus also has a tibial-nerve hamstring portion.",
+    "topic": "Hip"
+  },
+  "FEMORAL": {
+    "clue": "Nerve of the anterior thigh that extends the knee and flexes the hip",
+    "rationale": "Femoral nerve injury loses knee extension and the patellar reflex. Sensation is lost on the anterior thigh and medial leg.",
+    "topic": "Nerves"
+  },
+  "OBTURATOR": {
+    "clue": "Nerve of the medial thigh adductors",
+    "rationale": "Obturator nerve injury weakens adduction. It can be irritated by pelvic surgery or a hernia.",
+    "topic": "Nerves"
+  },
+  "SCIATIC": {
+    "clue": "Nerve of the hamstrings that splits into tibial and common fibular divisions",
+    "rationale": "Sciatic injury loses knee flexion and everything below the knee. The hamstring reflex and ankle reflex are tibial.",
+    "topic": "Nerves"
+  },
+  "TIBIAL": {
+    "clue": "Nerve of the plantarflexors and foot intrinsics",
+    "rationale": "Tibial nerve injury loses plantarflexion and toe flexion and sensation on the sole.",
+    "topic": "Nerves"
+  },
+  "PERONEAL": {
+    "clue": "Nerve injured at the fibular head that causes foot drop",
+    "rationale": "Common fibular nerve injury spares inversion if tibialis posterior is intact, and loses eversion and dorsiflexion.",
+    "topic": "Nerves"
+  },
+  "SURAL": {
+    "clue": "Sensory nerve along the lateral foot, often harvested as a graft",
+    "rationale": "The sural nerve is pure sensory. Numbness on the lateral foot follows its injury.",
+    "topic": "Nerves"
+  },
+  "MEDIAN": {
+    "clue": "Nerve compressed in carpal tunnel syndrome",
+    "rationale": "Median nerve injury at the wrist weakens the thenar muscles and sensation of the radial three and a half digits.",
+    "topic": "Nerves"
+  },
+  "ULNAR": {
+    "clue": "Nerve compressed at the cubital tunnel or Guyon canal",
+    "rationale": "Ulnar nerve injury weakens intrinsics and sensation of the ulnar one and a half digits.",
+    "topic": "Nerves"
+  },
+  "RADIAL": {
+    "clue": "Nerve of the extensors, injured in the spiral groove",
+    "rationale": "Radial nerve injury causes wrist drop. Sensation is lost in the dorsal first web space.",
+    "topic": "Nerves"
+  },
+  "AXILLARY": {
+    "clue": "Nerve of deltoid and teres minor, injured in anterior shoulder dislocation",
+    "rationale": "Axillary nerve injury loses abduction and sensation over the lateral shoulder.",
+    "topic": "Nerves"
+  },
+  "SERRATUS": {
+    "clue": "Scapular protractor that prevents winging",
+    "rationale": "Serratus anterior is long thoracic innervated. Winging is more obvious when the arms push forward.",
+    "topic": "Scapula"
+  },
+  "TRAPEZIUS": {
+    "clue": "Scapular elevator and upward rotator innervated by cranial nerve XI",
+    "rationale": "Upper trapezius shrugs the shoulder. Weakness limits upward rotation needed for full flexion.",
+    "topic": "Scapula"
+  },
+  "RHOMBOID": {
+    "clue": "Scapular retractor innervated by the dorsal scapular nerve",
+    "rationale": "Rhomboids retract and downwardly rotate the scapula. They oppose serratus anterior.",
+    "topic": "Scapula"
+  },
+  "LEVATOR": {
+    "clue": "Scapular elevator innervated by the dorsal scapular nerve",
+    "rationale": "Levator scapulae elevates the superior angle. It is often tight with a forward head.",
+    "topic": "Scapula"
+  },
+  "LATISSIMUS": {
+    "clue": "Shoulder extender and internal rotator innervated by the thoracodorsal nerve",
+    "rationale": "Latissimus dorsi is the muscle of a pull-up and of crutch depression. The nerve is C6 to C8.",
+    "topic": "Shoulder"
+  },
+  "PECTORALIS": {
+    "clue": "Horizontal adductor and internal rotator of the shoulder",
+    "rationale": "Pectoralis major is lateral and medial pectoral nerves. Tightness limits external rotation.",
+    "topic": "Shoulder"
+  },
+  "ROTATOR": {
+    "clue": "Cuff group that centers the humeral head",
+    "rationale": "The rotator cuff is supraspinatus, infraspinatus, teres minor, and subscapularis. It balances deltoid.",
+    "topic": "Shoulder"
+  },
+  "LABRUM": {
+    "clue": "Cartilage rim of the glenoid, torn in SLAP and Bankart lesions",
+    "rationale": "A Bankart lesion is an anterior-inferior labral tear with dislocation. A SLAP tear involves the biceps anchor.",
+    "topic": "Shoulder"
+  },
+  "BANKART": {
+    "clue": "Anterior-inferior labral tear associated with anterior dislocation",
+    "rationale": "Bankart repair restores the anterior labrum. The Hill-Sachs lesion is the companion humeral head impression.",
+    "topic": "Shoulder"
+  },
+  "HILLSACHS": {
+    "clue": "Compression fracture of the posterolateral humeral head after anterior dislocation",
+    "rationale": "A Hill-Sachs lesion is seen after the humeral head impacts the glenoid. Large ones affect stability.",
+    "topic": "Shoulder"
+  },
+  "IMPINGEMENT": {
+    "clue": "Painful compression of the subacromial tissues with overhead reach",
+    "rationale": "Subacromial impingement involves the bursa and supraspinatus tendon. Posture and rotator cuff strength are the rehab targets.",
+    "topic": "Shoulder"
+  },
+  "ADHESIVE": {
+    "clue": "Capsulitis that limits external rotation early and then all motions",
+    "rationale": "Adhesive capsulitis has freezing, frozen, and thawing stages. External rotation is often lost first.",
+    "topic": "Shoulder"
+  },
+  "ACJOINT": {
+    "clue": "Joint at the top of the shoulder separated in a fall on the point of the shoulder",
+    "rationale": "Acromioclavicular separations are graded by ligament injury. Cross-body adduction reproduces the pain.",
+    "topic": "Shoulder"
+  },
+  "SUBACROMIAL": {
+    "clue": "Space under the acromion that narrows with impingement",
+    "rationale": "The subacromial bursa and supraspinatus tendon live here. Painful arc is roughly 60 to 120 degrees.",
+    "topic": "Shoulder"
+  },
+  "PAINFULARC": {
+    "clue": "Pain in the middle of abduction that eases near full elevation",
+    "rationale": "A painful arc suggests subacromial compression. Pain only at the end range is more acromioclavicular.",
+    "topic": "Shoulder"
+  },
+  "SCAPTION": {
+    "clue": "Elevation in the plane of the scapula, used for cuff exercise",
+    "rationale": "Scaption is about 30 degrees forward of the frontal plane. It is a comfortable plane for supraspinatus loading.",
+    "topic": "Shoulder"
+  },
+  "CODMMAN": {
+    "clue": "Pendulum exercise used early after shoulder surgery",
+    "rationale": "Codman pendulums use body sway, not active shoulder muscle. They are for mobility, not strengthening.",
+    "topic": "Shoulder"
+  },
+  "ACL": {
+    "clue": "Ligament that stops anterior tibial translation",
+    "rationale": "The anterior cruciate ligament is tested by Lachman. Noncontact pivoting is a common tear mechanism.",
+    "topic": "Knee"
+  },
+  "PCL": {
+    "clue": "Ligament that stops posterior tibial translation",
+    "rationale": "The posterior cruciate ligament is injured by a dashboard blow. Posterior drawer and sag test it.",
+    "topic": "Knee"
+  },
+  "MCL": {
+    "clue": "Medial knee ligament injured by a valgus force",
+    "rationale": "The medial collateral ligament is tested at 30 degrees of flexion. Many isolated tears are treated without surgery.",
+    "topic": "Knee"
+  },
+  "LCL": {
+    "clue": "Lateral knee ligament injured by a varus force",
+    "rationale": "The lateral collateral ligament is less often injured alone. Varus laxity in extension is a complex injury.",
+    "topic": "Knee"
+  },
+  "MENISCUS": {
+    "clue": "Cartilage that loads the knee and tears with twisting",
+    "rationale": "Meniscus tears cause joint-line pain, catching, and swelling. The outer third has a blood supply.",
+    "topic": "Knee"
+  },
+  "PATELLA": {
+    "clue": "Sesamoid in the quadriceps tendon that tracks in the trochlea",
+    "rationale": "Patellar tracking is influenced by the vastus medialis, IT band, and foot pronation.",
+    "topic": "Knee"
+  },
+  "OSGOOD": {
+    "clue": "Tibial tubercle apophysitis in growing athletes",
+    "rationale": "Osgood-Schlatter disease is traction on the tibial tubercle. Activity is modified, not usually operated.",
+    "topic": "Knee"
+  },
+  "PLICA": {
+    "clue": "Synovial fold that can snap at the medial patella",
+    "rationale": "A symptomatic plica is a diagnosis of exclusion. Medial overload and tracking are treated first.",
+    "topic": "Knee"
+  },
+  "BURSA": {
+    "clue": "Fluid sac that inflames in front of the patella or at the pes anserinus",
+    "rationale": "Prepatellar bursitis follows kneeling. It is distinguished from a joint effusion, which is inside the capsule.",
+    "topic": "Knee"
+  },
+  "EFFUSION": {
+    "clue": "Fluid inside the knee, tested by ballotment or a bulge sign",
+    "rationale": "A knee effusion can follow a meniscus tear, arthritis, or infection. A hot swollen knee with fever is urgent.",
+    "topic": "Knee"
+  },
+  "LOCKING": {
+    "clue": "Sudden block to extension, classically from a bucket-handle meniscus tear",
+    "rationale": "True locking is a mechanical block. Pseudolocking from pain is different.",
+    "topic": "Knee"
+  },
+  "GIVINGWAY": {
+    "clue": "Sensation that the knee will buckle, seen with ACL tears and quad inhibition",
+    "rationale": "Giving way after a pivot is an ACL story. Quad shutdown after swelling can feel the same.",
+    "topic": "Knee"
+  },
+  "QANGLE": {
+    "clue": "Angle from the ASIS to the patella to the tibial tubercle",
+    "rationale": "A larger Q angle is discussed in patellofemoral pain. It is not a stand-alone surgical indication.",
+    "topic": "Knee"
+  },
+  "ITBAND": {
+    "clue": "Lateral thigh structure that rubs the femoral condyle in runners",
+    "rationale": "IT-band syndrome is an overuse pain at the lateral knee. The Ober test assesses tightness.",
+    "topic": "Knee"
+  },
+  "COMPARTMENT": {
+    "clue": "Closed muscle space where swelling can stop perfusion",
+    "rationale": "Exertional compartment syndrome causes pain and paresthesia that resolve with rest. Acute compartment syndrome is an emergency.",
+    "topic": "Leg"
+  },
+  "SHINSPLINT": {
+    "clue": "Medial tibial stress pain in runners, a stress injury until proven otherwise",
+    "rationale": "Medial tibial stress syndrome is overuse. Focal bone tenderness raises concern for a stress fracture.",
+    "topic": "Leg"
+  },
+  "ACHILLES": {
+    "clue": "Tendon of gastrocnemius and soleus, ruptured in a push-off injury",
+    "rationale": "Achilles rupture has a positive Thompson test. Tendinopathy is overload, not always inflammation.",
+    "topic": "Ankle"
+  },
+  "MORTON": {
+    "clue": "Pain between the metatarsal heads from an interdigital nerve",
+    "rationale": "Morton neuroma is often between the third and fourth toes. Squeeze of the forefoot reproduces it.",
+    "topic": "Foot"
+  },
+  "HALLUX": {
+    "clue": "Great toe; valgus is a bunion and rigidus is stiff arthritis",
+    "rationale": "Hallux valgus shifts the toe laterally. First MTP extension is needed for gait.",
+    "topic": "Foot"
+  },
+  "PESPLANUS": {
+    "clue": "Flat foot, which may be flexible or from posterior tibial tendon failure",
+    "rationale": "Flexible pes planus forms an arch when non-weight-bearing. Adult acquired flatfoot is a tibialis posterior problem.",
+    "topic": "Foot"
+  },
+  "PESCAVUS": {
+    "clue": "High arch associated with neurologic disease such as Charcot-Marie-Tooth",
+    "rationale": "Pes cavus concentrates pressure on the heel and metatarsal heads. A new high arch needs a neurologic look.",
+    "topic": "Foot"
+  },
+  "CHARCOT": {
+    "clue": "Neuropathic collapse of the foot in diabetes, which is hot and swollen",
+    "rationale": "Charcot foot is offloaded. It is distinguished from infection, which can coexist.",
+    "topic": "Foot"
+  },
+  "PROPRIO": {
+    "clue": "Sense of joint position, lost in dorsal column and peripheral nerve disease",
+    "rationale": "Proprioception is tested by toe position and Romberg. It is required for balance when vision is removed.",
+    "topic": "Neuro"
+  },
+  "CENTRALCORD": {
+    "clue": "Cord syndrome of the older adult with more arm than leg weakness",
+    "rationale": "Central cord syndrome often follows hyperextension in cervical stenosis. Hands are weaker than legs.",
+    "topic": "Neuro"
+  },
+  "CAUDA": {
+    "clue": "Compression of the lumbosacral roots with saddle anesthesia and bladder change",
+    "rationale": "Cauda equina syndrome is an emergency. Saddle sensory loss and urinary retention need urgent imaging.",
+    "topic": "Neuro"
+  },
+  "SCIATICA": {
+    "clue": "Pain along the sciatic distribution, often from a lumbar disc",
+    "rationale": "Sciatica that is only back pain is not radiculopathy. True radicular pain goes below the knee.",
+    "topic": "Neuro"
+  },
+  "MYOTOME": {
+    "clue": "Muscle group served by one nerve root",
+    "rationale": "L4 is ankle dorsiflexion, L5 is great-toe extension, and S1 is ankle plantarflexion.",
+    "topic": "Neuro"
+  },
+  "DERMATOME": {
+    "clue": "Skin region served by one nerve root",
+    "rationale": "Dermatomes guide the sensory exam. C6 is the thumb, C7 the middle finger, and C8 the little finger.",
+    "topic": "Neuro"
+  },
+  "UMNL": {
+    "clue": "Lesion pattern with spasticity, hyperreflexia, and Babinski",
+    "rationale": "An upper motor neuron lesion is the brain or spinal cord. Tone is high and reflexes are brisk.",
+    "topic": "Neuro"
+  },
+  "LMNL": {
+    "clue": "Lesion pattern with flaccid weakness, hyporeflexia, and fasciculations",
+    "rationale": "A lower motor neuron lesion is the root or peripheral nerve. Atrophy and fasciculations point there.",
+    "topic": "Neuro"
+  },
+  "SPASTICITY": {
+    "clue": "Velocity-dependent resistance from an upper motor neuron lesion",
+    "rationale": "Spasticity is not rigidity. It is faster when the limb is moved faster, and it is treated with stretch and sometimes baclofen.",
+    "topic": "Neuro"
+  },
+  "RIGIDITY": {
+    "clue": "Constant resistance through the range, as in Parkinson disease",
+    "rationale": "Lead-pipe or cogwheel rigidity is basal ganglia. It does not depend on the speed of the passive movement the way spasticity does.",
+    "topic": "Neuro"
+  },
+  "FLACCID": {
+    "clue": "Low tone seen in acute spinal shock and lower motor neuron lesions",
+    "rationale": "Flaccid paralysis right after a cord injury may be spinal shock. Tone can become spastic later.",
+    "topic": "Neuro"
+  },
+  "ASHWORTH": {
+    "clue": "Scale that grades spasticity from none to rigid",
+    "rationale": "The Modified Ashworth Scale scores resistance to passive movement. It is used to track tone treatment.",
+    "topic": "Neuro"
+  },
+  "BRUNNSTROM": {
+    "clue": "Stages of motor recovery after stroke, from flaccid to isolated movement",
+    "rationale": "Brunnstrom stages describe synergy and then out-of-synergy movement. They are a description, not a command to strengthen synergy.",
+    "topic": "Neuro"
+  },
+  "BOBATH": {
+    "clue": "Neurodevelopmental approach that emphasizes normal movement and handling",
+    "rationale": "Bobath, or NDT, uses handling to reduce unwanted tone and guide functional movement.",
+    "topic": "Neuro"
+  },
+  "PNF": {
+    "clue": "Diagonal patterns that use stronger muscles to facilitate weaker ones",
+    "rationale": "Proprioceptive neuromuscular facilitation uses spiral patterns, rhythmic stabilization, and contract-relax.",
+    "topic": "Neuro"
+  },
+  "CIMT": {
+    "clue": "Training that restrains the stronger arm to force use of the weaker arm",
+    "rationale": "Constraint-induced therapy requires some residual hand movement. It is intensive and task specific.",
+    "topic": "Neuro"
+  },
+  "PUSHER": {
+    "clue": "Behavior that pushes toward the weaker side after stroke",
+    "rationale": "Pusher syndrome is an altered sense of upright. The patient resists correction toward the strong side.",
+    "topic": "Neuro"
+  },
+  "NEGLECT": {
+    "clue": "Inattention to one side, usually the left after a right hemisphere stroke",
+    "rationale": "Unilateral neglect is not a visual field cut. Cueing and scanning practice are used.",
+    "topic": "Neuro"
+  },
+  "HEMIANOPIA": {
+    "clue": "Loss of half the visual field, often homonymous after a stroke",
+    "rationale": "Homonymous hemianopia is a field cut. Patients turn the head to scan; it is not the same as neglect.",
+    "topic": "Neuro"
+  },
+  "APHASIA": {
+    "clue": "Language impairment; Broca is nonfluent and Wernicke is fluent but empty",
+    "rationale": "Aphasia is cortical. Use yes-no and gestures. Dysarthria is a speech-motor problem, not a language problem.",
+    "topic": "Neuro"
+  },
+  "DYSARTHRIA": {
+    "clue": "Slurred speech from weak or uncoordinated speech muscles",
+    "rationale": "Dysarthria spares language comprehension. It follows cranial nerve or cerebellar lesions.",
+    "topic": "Neuro"
+  },
+  "DYSPHAGIA": {
+    "clue": "Swallowing difficulty that raises aspiration risk after stroke",
+    "rationale": "Dysphagia screening happens before oral intake after stroke. A wet voice or cough with water is a warning.",
+    "topic": "Neuro"
+  },
+  "APRAXIA": {
+    "clue": "Inability to perform a learned movement despite intact strength",
+    "rationale": "Apraxia is a planning problem. Strength and sensation can be normal.",
+    "topic": "Neuro"
+  },
+  "ATAXIA": {
+    "clue": "Coordination deficit from cerebellum or sensory loss",
+    "rationale": "Cerebellar ataxia includes dysmetria and intention tremor. Sensory ataxia worsens with the eyes closed.",
+    "topic": "Neuro"
+  },
+  "DYSMETRIA": {
+    "clue": "Overshoot or undershoot when reaching a target",
+    "rationale": "Dysmetria is tested by finger to nose. It is a cerebellar sign.",
+    "topic": "Neuro"
+  },
+  "INTENTION": {
+    "clue": "Tremor that worsens as the hand nears the target",
+    "rationale": "Intention tremor is cerebellar. A resting tremor is Parkinson disease.",
+    "topic": "Neuro"
+  },
+  "RESTING": {
+    "clue": "Tremor present when the limb is supported, classic in Parkinson disease",
+    "rationale": "A resting pill-rolling tremor improves briefly with voluntary movement. It is not an essential tremor.",
+    "topic": "Neuro"
+  },
+  "FESTINATION": {
+    "clue": "Hurried short steps with difficulty stopping",
+    "rationale": "Festination is a Parkinson gait feature. Visual cues and larger-step training are used.",
+    "topic": "Neuro"
+  },
+  "FOG": {
+    "clue": "Freezing of gait, often in doorways, in Parkinson disease",
+    "rationale": "Freezing of gait responds to cueing, not to being pulled forward. Turns are practiced wide.",
+    "topic": "Neuro"
+  },
+  "BERG": {
+    "clue": "Balance scale scored from sitting and standing tasks",
+    "rationale": "The Berg Balance Scale predicts fall risk. A lower score means more assistance is needed.",
+    "topic": "Outcome"
+  },
+  "TINETTI": {
+    "clue": "Performance test of balance and gait",
+    "rationale": "The Tinetti assessment scores sitting balance through gait. It is used for fall-risk decisions.",
+    "topic": "Outcome"
+  },
+  "TUG": {
+    "clue": "Timed test of rising, walking three meters, and returning",
+    "rationale": "The Timed Up and Go over a community cutoff suggests fall risk. The conditions of the test are kept standard.",
+    "topic": "Outcome"
+  },
+  "SIXMINUTE": {
+    "clue": "Walk test of endurance used in pulmonary and cardiac rehab",
+    "rationale": "The six-minute walk records distance, rests, and oxygen. It is a functional capacity measure.",
+    "topic": "Cardiopulmonary"
+  },
+  "BORG": {
+    "clue": "Scale of perceived exertion from rest to maximal",
+    "rationale": "The Borg scale lets a patient report effort when a heart-rate formula is unreliable, as on a beta blocker.",
+    "topic": "Cardiopulmonary"
+  },
+  "RPE": {
+    "clue": "Rating of perceived exertion used to dose aerobic exercise",
+    "rationale": "RPE is the guide when medications blunt heart rate. Moderate work is the middle of the scale.",
+    "topic": "Cardiopulmonary"
+  },
+  "KARVONEN": {
+    "clue": "Heart-rate reserve method for exercise intensity",
+    "rationale": "Karvonen uses resting heart rate plus a percent of the reserve. Beta blockers make the formula less valid.",
+    "topic": "Cardiopulmonary"
+  },
+  "METS": {
+    "clue": "Metabolic equivalents used to describe the energy cost of a task",
+    "rationale": "One MET is resting oxygen use. Cardiac patients are progressed by MET level and symptoms.",
+    "topic": "Cardiopulmonary"
+  },
+  "PURSEDLIP": {
+    "clue": "Exhalation through pursed lips that slows breathing in COPD",
+    "rationale": "Pursed-lip breathing keeps small airways open longer and reduces air trapping.",
+    "topic": "Cardiopulmonary"
+  },
+  "DIAPHRAGM": {
+    "clue": "Primary muscle of inspiration, innervated by the phrenic nerve",
+    "rationale": "Diaphragmatic breathing emphasizes belly rise and less upper-chest use. The nerve roots are C3 to C5.",
+    "topic": "Cardiopulmonary"
+  },
+  "INCENTIVE": {
+    "clue": "Device that encourages a sustained deep breath after surgery",
+    "rationale": "Incentive spirometry prevents atelectasis. The patient inhales slowly and holds.",
+    "topic": "Cardiopulmonary"
+  },
+  "POSTURAL": {
+    "clue": "Drainage positions that use gravity to move secretions",
+    "rationale": "Postural drainage is paired with percussion only when precautions allow. Trendelenburg is avoided in reflux and some heart disease.",
+    "topic": "Cardiopulmonary"
+  },
+  "HUFFING": {
+    "clue": "Open-glottis forced expiration that moves secretions without a hard cough",
+    "rationale": "Huff coughing is used in COPD and cystic fibrosis. It is less tiring than stacked coughing.",
+    "topic": "Cardiopulmonary"
+  },
+  "ORTHOPNEA": {
+    "clue": "Dyspnea when lying flat, a heart-failure symptom",
+    "rationale": "Orthopnea means the head of the bed stays up. Asking about pillows screens for it.",
+    "topic": "Cardiopulmonary"
+  },
+  "ANGINA": {
+    "clue": "Chest pain from myocardial ischemia that stops exercise",
+    "rationale": "Angina during therapy means stop, rest, and follow the cardiac plan. It is not worked through.",
+    "topic": "Cardiopulmonary"
+  },
+  "STERNAL": {
+    "clue": "Precautions after open heart surgery that limit pushing and pulling",
+    "rationale": "Sternal precautions protect the healing sternum. Transfers avoid a strong unilateral push.",
+    "topic": "Cardiopulmonary"
+  },
+  "PHASEONE": {
+    "clue": "Inpatient cardiac rehab started when the patient is stable",
+    "rationale": "Phase I cardiac rehab is early mobilization and education. Intensity stays low and symptoms are watched.",
+    "topic": "Cardiopulmonary"
+  },
+  "ABI": {
+    "clue": "Ankle-brachial index that screens for peripheral artery disease",
+    "rationale": "An ABI below about 0.9 suggests arterial disease. A very high value can mean calcified, incompressible vessels.",
+    "topic": "Cardiopulmonary"
+  },
+  "EDEMA": {
+    "clue": "Swelling graded by pitting and measured by circumference or weight",
+    "rationale": "Pitting edema is tracked the same way each visit. A sudden increase can be heart failure or a clot.",
+    "topic": "Cardiopulmonary"
+  },
+  "DVT": {
+    "clue": "Deep vein clot suspected with calf swelling, and a reason to hold aggressive massage",
+    "rationale": "Suspected DVT is not massaged or vigorously ranged until it is excluded. Sudden dyspnea suggests embolism.",
+    "topic": "Safety"
+  },
+  "WELLS": {
+    "clue": "Score that estimates the probability of deep vein thrombosis",
+    "rationale": "The Wells criteria sort pretest probability. They do not replace imaging when suspicion is real.",
+    "topic": "Safety"
+  },
+  "HOMANS": {
+    "clue": "Historical calf-pain sign that is not reliable for deep vein thrombosis",
+    "rationale": "Homans sign is not used to rule a clot in or out. Swelling and a risk score matter more.",
+    "topic": "Safety"
+  },
+  "PULMONARY": {
+    "clue": "Embolism that presents with sudden dyspnea after a clot",
+    "rationale": "Pulmonary embolism is an emergency. Sudden shortness of breath and chest pain after immobility are the story.",
+    "topic": "Safety"
+  },
+  "CONTRAIND": {
+    "clue": "A finding that means a modality or exercise is not used",
+    "rationale": "Contraindications are not preferences. Malignancy, pregnancy, and a pacemaker change what energy can be applied.",
+    "topic": "Modalities"
+  },
+  "ULTRASOUND": {
+    "clue": "Acoustic modality that heats deep tissue when set to continuous mode",
+    "rationale": "Continuous ultrasound is thermal. Pulsed ultrasound is used when heating is not wanted. Avoid growth plates and malignancy.",
+    "topic": "Modalities"
+  },
+  "TENS": {
+    "clue": "Sensory electrical stimulation used for pain",
+    "rationale": "Conventional TENS uses a comfortable tingling. It is not a strengthening current.",
+    "topic": "Modalities"
+  },
+  "NMES": {
+    "clue": "Electrical stimulation that produces a muscle contraction",
+    "rationale": "NMES is used for re-education and strengthening. It is not placed over a thrombus or the carotid sinus.",
+    "topic": "Modalities"
+  },
+  "FES": {
+    "clue": "Electrical stimulation timed to a functional task such as a step",
+    "rationale": "Functional electrical stimulation assists a weak muscle during the activity, such as dorsiflexion in swing.",
+    "topic": "Modalities"
+  },
+  "IFC": {
+    "clue": "Intersecting medium-frequency currents used for pain",
+    "rationale": "Interferential current is comfortable for larger areas. The beat frequency is the treatment frequency.",
+    "topic": "Modalities"
+  },
+  "RUSSIAN": {
+    "clue": "Burst alternating current used for strengthening",
+    "rationale": "Russian current is a strengthening protocol. The contraction is dosed like exercise, with rest intervals.",
+    "topic": "Modalities"
+  },
+  "HVPC": {
+    "clue": "High-volt pulsed current used for wound healing polarity protocols",
+    "rationale": "High-voltage current can be set to attract or repel cells in wound care. Polarity protocols differ by wound stage.",
+    "topic": "Modalities"
+  },
+  "CRYOTHERAPY": {
+    "clue": "Cold used to reduce pain and nerve conduction",
+    "rationale": "Cryotherapy is not used over an area with impaired sensation or circulation. Skin is checked so ice does not burn.",
+    "topic": "Modalities"
+  },
+  "ICEBURN": {
+    "clue": "Injury from cold left on too long or over an insensate area",
+    "rationale": "Cold burns look like burns. Limit time and use a layer when sensation is poor.",
+    "topic": "Modalities"
+  },
+  "PARAFFIN": {
+    "clue": "Warm wax bath for hands, often in arthritis",
+    "rationale": "Paraffin is not used over open wounds or in a limb with poor circulation. Temperature is checked.",
+    "topic": "Modalities"
+  },
+  "HOTPACK": {
+    "clue": "Moist heat that is not placed directly on skin",
+    "rationale": "Hot packs need layers. The skin is checked, and the patient is not left unable to remove the pack.",
+    "topic": "Modalities"
+  },
+  "TRACTION": {
+    "clue": "Distraction force used for some cervical and lumbar pain",
+    "rationale": "Traction is contraindicated in instability, infection, and severe osteoporosis. The first session is modest.",
+    "topic": "Modalities"
+  },
+  "CPM": {
+    "clue": "Machine that moves a joint through a set range after some surgeries",
+    "rationale": "Continuous passive motion does not replace active exercise. The range is progressed by the surgeon's limits.",
+    "topic": "Modalities"
+  },
+  "BIOFEEDBACK": {
+    "clue": "Display of muscle activity used to up-train or down-train a muscle",
+    "rationale": "Biofeedback shows the patient the contraction. It is a teaching tool, not a passive treatment.",
+    "topic": "Modalities"
+  },
+  "LASER": {
+    "clue": "Light therapy used for pain and tissue healing in some protocols",
+    "rationale": "Low-level laser is not a thermal ultrasound. Eyes are protected, and it is not used over malignancy.",
+    "topic": "Modalities"
+  },
+  "DIATHERMY": {
+    "clue": "Deep heat from electromagnetic energy, kept away from metal and implants",
+    "rationale": "Short-wave diathermy is contraindicated with pacemakers and metal in the field. It heats large areas.",
+    "topic": "Modalities"
+  },
+  "ULTRAVIOLET": {
+    "clue": "Light used historically for skin conditions, with an erythemal dose",
+    "rationale": "Ultraviolet is photosensitizing with some drugs. Eyes and uninvolved skin are protected.",
+    "topic": "Modalities"
+  },
+  "MASSAGE": {
+    "clue": "Soft-tissue technique that is not performed over a known clot or acute infection",
+    "rationale": "Massage moves fluid and reduces guarding. It does not break up scar in a literal sense and is avoided over DVT.",
+    "topic": "Manual"
+  },
+  "EFFLEURAGE": {
+    "clue": "Gliding massage stroke used to start and finish a session",
+    "rationale": "Effleurage is light and longitudinal. It is not the deep stroke.",
+    "topic": "Manual"
+  },
+  "PETRISSAGE": {
+    "clue": "Kneading massage stroke",
+    "rationale": "Petrissage lifts and kneads muscle. Pressure stays within tolerance and avoids bony prominences.",
+    "topic": "Manual"
+  },
+  "FRICTION": {
+    "clue": "Deep circular or transverse stroke used on tendon and scar",
+    "rationale": "Cross-friction is applied across a tendon. It is uncomfortable and is not used in acute inflammation.",
+    "topic": "Manual"
+  },
+  "TAPOTEMENT": {
+    "clue": "Percussive massage stroke",
+    "rationale": "Tapotement is rhythmic tapping. It is not used over the kidney area or a fresh fracture.",
+    "topic": "Manual"
+  },
+  "MYOFASCIAL": {
+    "clue": "Release technique aimed at fascial restriction",
+    "rationale": "Myofascial release uses sustained pressure. Contraindications include malignancy and anticoagulation caution.",
+    "topic": "Manual"
+  },
+  "JOINTMOB": {
+    "clue": "Passive glide graded to restore accessory motion",
+    "rationale": "Joint mobilization grades I and II are for pain. Grades III and IV stretch the capsule.",
+    "topic": "Manual"
+  },
+  "ENDFEEL": {
+    "clue": "Quality of resistance at the end of passive motion",
+    "rationale": "A bony end feel is hard, a capsular end feel is firm, and a spasm end feel is guarding. An empty end feel is pain before resistance.",
+    "topic": "Manual"
+  },
+  "CAPSULAR": {
+    "clue": "Pattern of restriction typical of arthritis in a joint",
+    "rationale": "The shoulder capsular pattern limits external rotation most, then abduction, then internal rotation.",
+    "topic": "Manual"
+  },
+  "CLOSEDPACK": {
+    "clue": "Joint position of maximal congruency, often avoided early after injury",
+    "rationale": "Closed-pack positions are stable but stressful. Loose-pack positions are used for assessment and early motion.",
+    "topic": "Manual"
+  },
+  "LOOSEPACK": {
+    "clue": "Joint position with the least congruency, used for mobilization",
+    "rationale": "The loose-pack position is the resting position. It is where joint play is assessed.",
+    "topic": "Manual"
+  },
+  "CONCAVE": {
+    "clue": "Joint surface that glides in the same direction as the bone swing",
+    "rationale": "The concave-convex rule says a concave surface glides with the osteokinematic motion.",
+    "topic": "Manual"
+  },
+  "CONVEX": {
+    "clue": "Joint surface that glides opposite the bone swing",
+    "rationale": "A convex surface glides opposite the swing. The glenohumeral head glides inferiorly as the arm abducts.",
+    "topic": "Manual"
+  },
+  "ISOMETRIC": {
+    "clue": "Contraction without joint motion, used when motion is not yet allowed",
+    "rationale": "Isometrics maintain muscle when the joint must stay still. They can raise blood pressure if the breath is held.",
+    "topic": "Exercise"
+  },
+  "ISOTONIC": {
+    "clue": "Contraction through a range with a constant external load",
+    "rationale": "Isotonic exercise includes concentric and eccentric phases. The load is progressed by repetition and weight.",
+    "topic": "Exercise"
+  },
+  "ISOKINETIC": {
+    "clue": "Contraction at a set speed on a dynamometer",
+    "rationale": "Isokinetic devices match resistance to the patient's effort at a chosen speed. They are used for testing and training.",
+    "topic": "Exercise"
+  },
+  "CONCENTRIC": {
+    "clue": "Contraction that shortens the muscle",
+    "rationale": "A concentric quadriceps contraction extends the knee against gravity or a weight.",
+    "topic": "Exercise"
+  },
+  "ECCENTRIC": {
+    "clue": "Contraction that lengthens under load, used for tendinopathy",
+    "rationale": "Eccentric loading is a staple of Achilles and patellar tendinopathy programs. The muscle controls the lowering.",
+    "topic": "Exercise"
+  },
+  "PLYOMETRIC": {
+    "clue": "Quick stretch-shorten exercise introduced late in rehab",
+    "rationale": "Plyometrics require a quiet joint and good strength first. Landings are taught before height is added.",
+    "topic": "Exercise"
+  },
+  "OPENCHAIN": {
+    "clue": "Exercise in which the distal segment is free, such as a seated knee extension",
+    "rationale": "Open-chain knee extension can stress the ACL near terminal extension. It is still useful for isolated strengthening.",
+    "topic": "Exercise"
+  },
+  "CLOSEDCHAIN": {
+    "clue": "Exercise in which the foot or hand is fixed, such as a squat",
+    "rationale": "Closed-chain exercise uses co-contraction. It is often introduced early for the knee when weight bearing is allowed.",
+    "topic": "Exercise"
+  },
+  "SAID": {
+    "clue": "Principle that the body adapts specifically to the demand imposed",
+    "rationale": "SAID means a program must resemble the goal task. Strength on a machine does not automatically become sport skill.",
+    "topic": "Exercise"
+  },
+  "OVERLOAD": {
+    "clue": "Principle that a tissue must be loaded beyond its usual level to adapt",
+    "rationale": "Overload is progressed gradually. Too much too soon is how tendinopathy and stress fractures start.",
+    "topic": "Exercise"
+  },
+  "DOMS": {
+    "clue": "Muscle soreness a day or two after unaccustomed exercise",
+    "rationale": "Delayed-onset soreness is not acute injury. It follows eccentric work and resolves. Sharp joint pain is different.",
+    "topic": "Exercise"
+  },
+  "VALSALVA": {
+    "clue": "Breath hold that spikes blood pressure during a lift",
+    "rationale": "Patients with cardiac disease are taught to exhale on effort so they do not perform a Valsalva maneuver.",
+    "topic": "Exercise"
+  },
+  "ORTHOSTATIC": {
+    "clue": "Drop in pressure on standing that is watched after bed rest",
+    "rationale": "Orthostatic hypotension is managed with slow rises, compression, and fluid when allowed. It is measured, not assumed.",
+    "topic": "Cardiopulmonary"
+  },
+  "VAGUS": {
+    "clue": "Cranial nerve X, motor to the palate and a voice nerve",
+    "rationale": "Vagus injury hoarsens the voice and can cause nasal regurgitation. It is tested with palate elevation.",
+    "topic": "Cranial"
+  },
+  "HYPOGLOSSAL": {
+    "clue": "Cranial nerve XII, motor to the tongue",
+    "rationale": "Hypoglossal injury deviates the tongue to the weak side on protrusion.",
+    "topic": "Cranial"
+  },
+  "TRIGEMINAL": {
+    "clue": "Cranial nerve V, sensation of the face and muscles of mastication",
+    "rationale": "Trigeminal motor loss weakens the jaw. The corneal reflex afferent limb is this nerve.",
+    "topic": "Cranial"
+  },
+  "ACCESSORY": {
+    "clue": "Cranial nerve XI, trapezius and sternocleidomastoid",
+    "rationale": "Accessory nerve testing is a shoulder shrug and head turn. Neck dissection can injure it.",
+    "topic": "Cranial"
+  },
+  "OCULOMOTOR": {
+    "clue": "Cranial nerve III, which opens the eyelid and moves most eye muscles",
+    "rationale": "Oculomotor palsy drops the eyelid and turns the eye down and out. A dilated pupil suggests compression.",
+    "topic": "Cranial"
+  },
+  "TROCHLEAR": {
+    "clue": "Cranial nerve IV, which depresses the adducted eye",
+    "rationale": "Trochlear palsy causes difficulty looking down the stairs. The head tilts away from the weak muscle.",
+    "topic": "Cranial"
+  },
+  "ABDUCENS": {
+    "clue": "Cranial nerve VI, which abducts the eye",
+    "rationale": "Abducens palsy causes a medial resting eye and double vision on lateral gaze. It has a long intracranial course.",
+    "topic": "Cranial"
+  },
+  "DIPLOPIA": {
+    "clue": "Double vision from misaligned eyes",
+    "rationale": "Diplopia that is new is a cranial nerve or neuromuscular problem until sorted out. Covering either eye clears binocular double vision.",
+    "topic": "Cranial"
+  },
+  "NYSTAGMUS": {
+    "clue": "Rhythmic eye movement seen in vestibular disorders",
+    "rationale": "Peripheral nystagmus is often unidirectional and suppressed by fixation. Central nystagmus can be vertical.",
+    "topic": "Vestibular"
+  },
+  "DIXHALPIKE": {
+    "clue": "Positional test for posterior canal benign paroxysmal positional vertigo",
+    "rationale": "The Dix-Hallpike test hangs the head back and rotated. A brief upbeating torsional nystagmus supports posterior-canal BPPV.",
+    "topic": "Vestibular"
+  },
+  "EPLEY": {
+    "clue": "Canalith repositioning maneuver for posterior canal BPPV",
+    "rationale": "The Epley maneuver moves debris out of the posterior canal. It is not the treatment for central vertigo.",
+    "topic": "Vestibular"
+  },
+  "BPPV": {
+    "clue": "Brief positional vertigo from canaliths in a semicircular canal",
+    "rationale": "BPPV lasts seconds, is triggered by rolling or looking up, and is treated with repositioning.",
+    "topic": "Vestibular"
+  },
+  "MENIERE": {
+    "clue": "Inner-ear disease with vertigo, hearing loss, tinnitus, and fullness",
+    "rationale": "Meniere episodes last hours, not seconds. Salt restriction and vestibular rehab are parts of care.",
+    "topic": "Vestibular"
+  },
+  "VESTIBULAR": {
+    "clue": "Rehab that uses habituation, gaze stability, and balance for inner-ear loss",
+    "rationale": "Vestibular rehabilitation is for unilateral hypofunction and BPPV. Gaze stability exercises are dosed so symptoms rise briefly then settle.",
+    "topic": "Vestibular"
+  },
+  "HINTS": {
+    "clue": "Bedside battery that helps sort stroke from peripheral vertigo",
+    "rationale": "A normal head impulse with direction-changing nystagmus or skew suggests a central cause. This is an emergency pattern.",
+    "topic": "Vestibular"
+  },
+  "FRENZEL": {
+    "clue": "Goggles that remove fixation so vestibular nystagmus can be seen",
+    "rationale": "Frenzel or infrared goggles unmask peripheral nystagmus. Fixation can hide it.",
+    "topic": "Vestibular"
+  },
+  "SACCADE": {
+    "clue": "Quick eye movement to a new target",
+    "rationale": "Saccades are tested for accuracy. Overshoot suggests a cerebellar problem.",
+    "topic": "Vestibular"
+  },
+  "PURSUIT": {
+    "clue": "Smooth eye tracking of a moving target",
+    "rationale": "Smooth pursuit is a central eye-movement skill. It is not a test of the peripheral labyrinth.",
+    "topic": "Vestibular"
+  },
+  "VOR": {
+    "clue": "Reflex that keeps the eyes stable when the head turns",
+    "rationale": "The vestibulo-ocular reflex is impaired in vestibular hypofunction. Head-impulse testing checks it.",
+    "topic": "Vestibular"
+  },
+  "HEADIMPULSE": {
+    "clue": "Quick head turn that shows a corrective saccade if the reflex is weak",
+    "rationale": "A positive head impulse suggests peripheral vestibular loss. A normal impulse in acute vertigo raises concern for stroke.",
+    "topic": "Vestibular"
+  },
+  "CANALITH": {
+    "clue": "Debris in a semicircular canal that causes BPPV",
+    "rationale": "Canalithiasis produces a brief nystagmus. Cupulolithiasis lasts longer while the head is held in the provoking position.",
+    "topic": "Vestibular"
+  },
+  "UTRICLE": {
+    "clue": "Otolith organ that senses horizontal linear acceleration",
+    "rationale": "The utricle and saccule sense gravity and linear motion. They are not the spinning sensors.",
+    "topic": "Vestibular"
+  },
+  "SACCULE": {
+    "clue": "Otolith organ that senses vertical linear acceleration",
+    "rationale": "The saccule is an otolith organ. The semicircular canals, not the saccule, sense rotation.",
+    "topic": "Vestibular"
+  },
+  "HABITUATION": {
+    "clue": "Repeated exposure to a provoking motion so the response fades",
+    "rationale": "Habituation exercises are chosen from motions that provoke symptoms. They are not random spinning.",
+    "topic": "Vestibular"
+  },
+  "FIM": {
+    "clue": "Functional independence measure used in rehabilitation settings",
+    "rationale": "The FIM scores burden of care from dependent to independent. It is an outcome, not a diagnosis.",
+    "topic": "Outcome"
+  },
+  "BARTHEL": {
+    "clue": "Index of basic activities of daily living",
+    "rationale": "The Barthel Index scores feeding, bathing, transfers, and mobility. Higher is more independent.",
+    "topic": "Outcome"
+  },
+  "OSWESTRY": {
+    "clue": "Questionnaire of low-back disability",
+    "rationale": "The Oswestry Disability Index turns pain and function into a percent disability. It tracks change, not imaging.",
+    "topic": "Outcome"
+  },
+  "NDI": {
+    "clue": "Neck disability index, the cervical cousin of the Oswestry",
+    "rationale": "The Neck Disability Index is a patient-reported outcome. It does not replace the neurologic exam.",
+    "topic": "Outcome"
+  },
+  "LEFS": {
+    "clue": "Lower extremity functional scale",
+    "rationale": "The LEFS is a patient-reported score for hip, knee, and ankle problems. Higher is better function.",
+    "topic": "Outcome"
+  },
+  "DASH": {
+    "clue": "Disabilities of the arm, shoulder, and hand questionnaire",
+    "rationale": "The DASH captures upper-limb function in daily tasks. It is used across many shoulder and elbow diagnoses.",
+    "topic": "Outcome"
+  },
+  "WOMAC": {
+    "clue": "Osteoarthritis index of pain, stiffness, and function",
+    "rationale": "The WOMAC is common in hip and knee arthritis. It is a patient report, not a strength test.",
+    "topic": "Outcome"
+  },
+  "VAS": {
+    "clue": "Visual or numeric scale of pain intensity",
+    "rationale": "A pain scale is one data point. Function and irritability matter as much as the number.",
+    "topic": "Outcome"
+  },
+  "MMT": {
+    "clue": "Manual muscle test graded from zero to five",
+    "rationale": "Manual muscle testing needs a standardized position. A grade of three is full range against gravity.",
+    "topic": "Exam"
+  },
+  "GONIOMETER": {
+    "clue": "Device that measures joint angle",
+    "rationale": "Goniometry uses bony landmarks and a standard position. The same tester and method improve reliability.",
+    "topic": "Exam"
+  },
+  "POSTURE": {
+    "clue": "Alignment screen of the spine and limbs in standing",
+    "rationale": "Posture findings are correlated with symptoms. A forward head is common and is not itself a diagnosis.",
+    "topic": "Exam"
+  },
+  "SCAPULOHUM": {
+    "clue": "Rhythm of scapula and humerus during elevation",
+    "rationale": "Scapulohumeral rhythm is roughly two degrees of glenohumeral motion for one degree of scapular upward rotation in the higher range.",
+    "topic": "Shoulder"
+  },
+  "WINGING": {
+    "clue": "Medial scapular lift from serratus or trapezius weakness",
+    "rationale": "Serratus winging is worse with forward flexion. Trapezius winging is worse with abduction.",
+    "topic": "Scapula"
+  },
+  "KYPHOSIS": {
+    "clue": "Increased thoracic curve",
+    "rationale": "Excess kyphosis shifts the center of mass forward. Osteoporotic wedge fractures are one cause.",
+    "topic": "Spine"
+  },
+  "LORDOSIS": {
+    "clue": "Inward curve of the cervical or lumbar spine",
+    "rationale": "Excess lumbar lordosis loads the facets. A flat lumbar spine can follow flexion-biased pain.",
+    "topic": "Spine"
+  },
+  "SCOLIOSIS": {
+    "clue": "Lateral spinal curve with rotation",
+    "rationale": "Scoliosis is named by the side of the convexity. The rib hump is seen on forward bend.",
+    "topic": "Spine"
+  },
+  "ADAM": {
+    "clue": "Forward-bend test for a rib hump in scoliosis",
+    "rationale": "The Adams test shows rotation. It is a screen, not a Cobb angle.",
+    "topic": "Spine"
+  },
+  "COBB": {
+    "clue": "Angle measured on a radiograph to grade scoliosis",
+    "rationale": "The Cobb angle is the surgical and bracing language of scoliosis. Therapy does not replace that measurement.",
+    "topic": "Spine"
+  },
+  "STENOSIS": {
+    "clue": "Narrowing of the spinal canal that prefers flexion",
+    "rationale": "Lumbar stenosis symptoms increase with walking and ease with sitting. A shopping-cart posture is classic.",
+    "topic": "Spine"
+  },
+  "HERNIATION": {
+    "clue": "Disc material that can compress a nerve root",
+    "rationale": "A lumbar herniation often hurts more in flexion and sitting. Most improve without surgery.",
+    "topic": "Spine"
+  },
+  "ANKYLOSING": {
+    "clue": "Inflammatory spine disease that fuses the spine in flexion if untreated",
+    "rationale": "Ankylosing spondylitis needs extension exercise and medical care. A fused spine fractures with minor trauma.",
+    "topic": "Spine"
+  },
+  "OSTEOPENIA": {
+    "clue": "Bone density below normal but not yet in the osteoporosis range",
+    "rationale": "Osteopenia is a reason to load bone and to prevent falls, not a reason to stop exercise.",
+    "topic": "Bone"
+  },
+  "DEXA": {
+    "clue": "Scan that measures bone mineral density",
+    "rationale": "DEXA results are reported as T-scores. Therapy still focuses on strength, posture, and fall risk.",
+    "topic": "Bone"
+  },
+  "FRACTURE": {
+    "clue": "Break in a bone that is protected until it can be loaded",
+    "rationale": "Fracture precautions come from the surgeon. Weight bearing status is an order, not a guess.",
+    "topic": "Bone"
+  },
+  "ORIF": {
+    "clue": "Surgical fixation of a fracture with hardware",
+    "rationale": "Open reduction internal fixation has motion and weight-bearing limits. Hardware is not a reason to use diathermy over the site.",
+    "topic": "Bone"
+  },
+  "PRESSFIT": {
+    "clue": "Uncemented fixation that may limit early weight bearing",
+    "rationale": "Press-fit implants rely on bone ingrowth. Weight-bearing status is the surgeon's decision.",
+    "topic": "Joint"
+  },
+  "HETEROTOPIC": {
+    "clue": "Bone forming in soft tissue after trauma or surgery",
+    "rationale": "Heterotopic ossification limits motion. Aggressive passive stretch is not the treatment once it is forming.",
+    "topic": "Bone"
+  },
+  "ALLODYNIA": {
+    "clue": "Pain from a stimulus that should not hurt",
+    "rationale": "Allodynia is a neuropathic feature. Light touch that hurts changes how manual therapy is dosed.",
+    "topic": "Pain"
+  },
+  "CENTRAL": {
+    "clue": "Sensitization in which pain persists after tissues have had time to heal",
+    "rationale": "Central sensitization is a processing problem. Hurt does not always mean fresh harm.",
+    "topic": "Pain"
+  },
+  "GATE": {
+    "clue": "Theory that nonpainful input can reduce transmission of pain",
+    "rationale": "Gate control is one reason TENS and rubbing can help. It is not the only pain mechanism.",
+    "topic": "Pain"
+  },
+  "PLACEBO": {
+    "clue": "Improvement from expectation and context, which is real but not the sole plan",
+    "rationale": "Placebo effects exist. They are not a reason to offer an inert treatment as if it were specific.",
+    "topic": "Pain"
+  },
+  "PACING": {
+    "clue": "Strategy of doing activity in planned amounts rather than boom and bust",
+    "rationale": "Pacing prevents the cycle of overdoing and crashing. The quota is increased gradually.",
+    "topic": "Pain"
+  },
+  "GRADED": {
+    "clue": "Exposure that slowly returns a feared movement",
+    "rationale": "Graded exposure is used when fear limits motion more than tissue status. The steps are agreed, not forced.",
+    "topic": "Pain"
+  },
+  "MCGILL": {
+    "clue": "Pain questionnaire that captures quality, not only intensity",
+    "rationale": "The McGill Pain Questionnaire uses word lists. Burning and shooting language suggests neuropathic pain.",
+    "topic": "Pain"
+  },
+  "NEUROPATHIC": {
+    "clue": "Pain from nerve injury, often burning or electric",
+    "rationale": "Neuropathic pain is treated differently from inflammatory pain. Descriptors and sensory maps guide the exam.",
+    "topic": "Pain"
+  },
+  "NOCICEPTIVE": {
+    "clue": "Pain from tissue threat, such as arthritis or a sprain",
+    "rationale": "Nociceptive pain is more local and mechanical. It usually fits the tissue healing timeline.",
+    "topic": "Pain"
+  },
+  "REFERRED": {
+    "clue": "Pain felt at a distance from the source, such as hip pain felt in the knee",
+    "rationale": "Referred pain does not follow a dermatome the way radicular pain does. Screen the joint above and below.",
+    "topic": "Pain"
+  },
+  "RADICULAR": {
+    "clue": "Pain from a nerve root that travels in a dermatome",
+    "rationale": "Radicular pain often goes below the knee or into the hand. Reflex and strength changes support it.",
+    "topic": "Pain"
+  },
+  "VISCERAL": {
+    "clue": "Pain from an organ that can mimic a musculoskeletal problem",
+    "rationale": "Visceral pain is poorly localized and may come with nausea or a change in bowel or bladder. It is not stretched away.",
+    "topic": "Safety"
+  },
+  "REDFLAG": {
+    "clue": "Finding such as night pain, weight loss, or bowel change that needs medical review",
+    "rationale": "Red flags are not automatic serious disease, but they stop a routine musculoskeletal plan until they are addressed.",
+    "topic": "Safety"
+  },
+  "CAUDAEQ": {
+    "clue": "Emergency cluster of saddle anesthesia and bladder change",
+    "rationale": "Cauda equina is referred the same day. Progressive leg weakness with urinary retention is not a wait-and-see back pain.",
+    "topic": "Safety"
+  },
+  "NIGHTPAIN": {
+    "clue": "Pain that wakes the patient and does not ease with position, a reason to screen further",
+    "rationale": "Unrelenting night pain can be inflammatory, infectious, or malignant. Mechanical pain usually eases with a position change.",
+    "topic": "Safety"
+  },
+  "FEVERPAIN": {
+    "clue": "Pain with fever that raises concern for infection or inflammatory disease",
+    "rationale": "A hot swollen joint with fever is septic until proven otherwise. It is not exercised through.",
+    "topic": "Safety"
+  },
+  "UNEXPLAINED": {
+    "clue": "Weight loss with pain that is a medical red flag",
+    "rationale": "Unexplained weight loss is not a strengthening deficit. The patient is referred.",
+    "topic": "Safety"
+  },
+  "SADDLE": {
+    "clue": "Sensory loss in the perineum, a cauda equina warning",
+    "rationale": "Saddle anesthesia is asked about and, when present with retention, referred urgently.",
+    "topic": "Safety"
+  },
+  "CANCERHX": {
+    "clue": "History that raises the chance back pain is not simple strain",
+    "rationale": "A history of cancer plus new spine pain is imaged according to medical guidance. It is not labeled mechanical by default.",
+    "topic": "Safety"
+  },
+  "STEROIDUSE": {
+    "clue": "History that raises fracture and avascular necrosis risk",
+    "rationale": "Long steroid use weakens bone and can necrose the femoral head. A new groin pain in that patient is taken seriously.",
+    "topic": "Safety"
+  },
+  "AVASCULAR": {
+    "clue": "Bone death from lost blood supply, classically the femoral head",
+    "rationale": "Avascular necrosis causes deep joint pain. Early films can be normal.",
+    "topic": "Bone"
+  },
+  "SCFE": {
+    "clue": "Slip of the femoral epiphysis in an adolescent, often with a limp",
+    "rationale": "Slipped capital femoral epiphysis is an urgent orthopedic problem. The child may have knee pain only.",
+    "topic": "Pediatrics"
+  },
+  "ORTOLANI": {
+    "clue": "Maneuver that reduces a dislocated infant hip",
+    "rationale": "Ortolani is a gentle reduction test. It is not a repeated forceful screen.",
+    "topic": "Pediatrics"
+  },
+  "BARLOW": {
+    "clue": "Maneuver that tests whether an infant hip can be dislocated",
+    "rationale": "Barlow is a provocation test. A clunk is referred, not stretched in therapy.",
+    "topic": "Pediatrics"
+  },
+  "TORTICOLLIS": {
+    "clue": "Infant head tilt from a tight sternocleidomastoid",
+    "rationale": "Congenital torticollis is treated with positioning and stretching. A tumor or ocular cause is considered if it is atypical.",
+    "topic": "Pediatrics"
+  },
+  "SCM": {
+    "clue": "Neck muscle that tilts to the same side and rotates to the opposite side",
+    "rationale": "Sternocleidomastoid is accessory-nerve innervated. A tight left SCM tilts left and rotates right.",
+    "topic": "Neck"
+  },
+  "ERB": {
+    "clue": "Upper trunk brachial plexus injury, waiter's-tip posture",
+    "rationale": "Erb palsy is C5 to C6. The arm hangs internally rotated with the elbow extended.",
+    "topic": "Pediatrics"
+  },
+  "KLUMPKE": {
+    "clue": "Lower trunk plexus injury affecting the hand intrinsics",
+    "rationale": "Klumpke palsy is C8 to T1. A claw hand and sometimes Horner syndrome are associated.",
+    "topic": "Pediatrics"
+  },
+  "HORNER": {
+    "clue": "Ptosis, miosis, and anhidrosis from sympathetic loss",
+    "rationale": "Horner syndrome with arm pain can mean an apical lung tumor. It is not a simple neck strain.",
+    "topic": "Neuro"
+  },
+  "STINGER": {
+    "clue": "Transient burner from a traction or compression injury of the upper trunk",
+    "rationale": "A stinger that clears quickly is observed. Lasting weakness is not returned to play.",
+    "topic": "Sports"
+  },
+  "CONCUSSION": {
+    "clue": "Brain injury managed with relative rest and a graded return",
+    "rationale": "Concussion return follows a stepwise protocol. A second impact before recovery is the danger.",
+    "topic": "Sports"
+  },
+  "PRICE": {
+    "clue": "Protection, rest, ice, compression, and elevation for an acute sprain",
+    "rationale": "PRICE is the acute soft-tissue start. It is not the whole rehab, and ice is not used on insensate skin.",
+    "topic": "Acute"
+  },
+  "PROTECTION": {
+    "clue": "First step after injury so the tissue is not loaded past its tolerance",
+    "rationale": "Protection includes crutches, a brace, or rest. The grade of injury decides how much.",
+    "topic": "Acute"
+  },
+  "COMPRESSION": {
+    "clue": "Wrap used to limit swelling, applied without cutting off pulses",
+    "rationale": "Compression is smooth and not rolled into a tourniquet. Color and sensation are checked distal to it.",
+    "topic": "Acute"
+  },
+  "ELEVATION": {
+    "clue": "Raising a limb above the heart to help swelling",
+    "rationale": "Elevation uses gravity. It is paired with movement of the distal joints when that is allowed.",
+    "topic": "Acute"
+  },
+  "CRUTCHES": {
+    "clue": "Assistive device fitted so the elbows are slightly bent and the axilla is free",
+    "rationale": "Crutches are not leaned on in the axilla. Weight goes through the hands, and the height is two to three fingers below the axilla.",
+    "topic": "Gait aid"
+  },
+  "CANE": {
+    "clue": "Device held in the hand opposite the weak or painful leg",
+    "rationale": "A cane reduces load on the opposite hip. It advances with the involved limb.",
+    "topic": "Gait aid"
+  },
+  "WALKER": {
+    "clue": "Device for patients who need more support than a cane",
+    "rationale": "A walker is fitted to wrist crease height with a slight elbow bend. The patient steps into it, not far behind it.",
+    "topic": "Gait aid"
+  },
+  "LOFTSTRAND": {
+    "clue": "Forearm crutch used for longer-term partial weight bearing",
+    "rationale": "Lofstrand crutches leave the hands freer than axillary crutches. They require more balance.",
+    "topic": "Gait aid"
+  },
+  "TOETOUCH": {
+    "clue": "Order that allows the foot to touch for balance but not to take weight",
+    "rationale": "Toe-touch weight bearing is for balance. A scale can teach the patient what zero to slight pressure feels like.",
+    "topic": "Gait"
+  },
+  "PARTIAL": {
+    "clue": "Order that allows a specified fraction of body weight",
+    "rationale": "Partial weight bearing is taught with a scale. It is not the same as as-tolerated.",
+    "topic": "Gait"
+  },
+  "THREEPOINT": {
+    "clue": "Gait pattern used when one limb is non-weight bearing",
+    "rationale": "A three-point gait advances the device with the involved limb, then the sound limb steps through.",
+    "topic": "Gait"
+  },
+  "TWOPOINT": {
+    "clue": "Gait that moves the device and the opposite leg together",
+    "rationale": "A two-point gait resembles normal reciprocal walking. It is for patients who can take weight on both legs.",
+    "topic": "Gait"
+  },
+  "FOURPOINT": {
+    "clue": "Slow stable gait that moves one crutch or foot at a time",
+    "rationale": "Four-point gait is the most stable crutch pattern. It is used when balance is limited.",
+    "topic": "Gait"
+  },
+  "SWINGTO": {
+    "clue": "Pattern that advances both crutches then brings the feet up to them",
+    "rationale": "Swing-to is used with bilateral devices when the legs cannot step through, as in some spinal cord gaits.",
+    "topic": "Gait"
+  },
+  "RECIPROCAL": {
+    "clue": "Normal opposite arm and leg pattern",
+    "rationale": "Reciprocal gait is the goal when both limbs can accept weight. Devices are weaned toward it.",
+    "topic": "Gait"
+  },
+  "STEPLENGTH": {
+    "clue": "Distance from one heel strike to the next heel strike of the other foot",
+    "rationale": "Step length shortens on the painful side's opposite step in an antalgic gait. Compare left and right.",
+    "topic": "Gait"
+  },
+  "STRIDE": {
+    "clue": "Distance from one heel strike to the next heel strike of the same foot",
+    "rationale": "A stride is two steps. Asymmetry of stride is documented, not just a general limp.",
+    "topic": "Gait"
+  },
+  "DOUBLE": {
+    "clue": "Support time when both feet are on the ground",
+    "rationale": "Double-limb support increases when balance is poor. It shortens as speed increases in healthy gait.",
+    "topic": "Gait"
+  },
+  "HEELSTRIKE": {
+    "clue": "Initial contact, normally with the heel",
+    "rationale": "Heel strike requires dorsiflexion control. A foot slap means the dorsiflexors cannot lower the foot slowly.",
+    "topic": "Gait"
+  },
+  "FOOTFLAT": {
+    "clue": "Loading response after initial contact",
+    "rationale": "Foot flat is when the rest of the foot accepts weight. Knee flexion cushions this phase.",
+    "topic": "Gait"
+  },
+  "MIDSTANCE": {
+    "clue": "Single-limb support as the body moves over the foot",
+    "rationale": "Midstance requires hip abductor control to keep the pelvis level.",
+    "topic": "Gait"
+  },
+  "TOEOFF": {
+    "clue": "End of stance when the foot leaves the ground",
+    "rationale": "Toe-off needs great-toe extension and plantarflexor power. Hallux limitus shortens this phase.",
+    "topic": "Gait"
+  },
+  "SWING": {
+    "clue": "Phase when the foot is off the ground",
+    "rationale": "Swing needs hip flexion, knee flexion, and dorsiflexion to clear the foot.",
+    "topic": "Gait"
+  },
+  "BASE": {
+    "clue": "Distance between the feet",
+    "rationale": "A wide base is a balance compensation. A very narrow base is not stable after vestibular loss.",
+    "topic": "Gait"
+  }
+}

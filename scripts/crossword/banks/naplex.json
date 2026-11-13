@@ -1,0 +1,1717 @@
+{
+  "WARFARIN": {
+    "clue": "Oral anticoagulant monitored by INR and reversed with vitamin K",
+    "rationale": "Warfarin blocks vitamin K epoxide reductase. Keep vitamin K intake steady and review CYP2C9 interactions.",
+    "topic": "Anticoagulation"
+  },
+  "HEPARIN": {
+    "clue": "Parenteral anticoagulant monitored with aPTT and reversed by protamine",
+    "rationale": "Unfractionated heparin potentiates antithrombin. Protamine reverses it; HIT is a platelet-drop emergency.",
+    "topic": "Anticoagulation"
+  },
+  "ENOXAPARIN": {
+    "clue": "Weight-based low-molecular-weight heparin with a lower dose when creatinine clearance falls",
+    "rationale": "Enoxaparin is renally cleared. Anti-Xa monitoring is considered in obesity and kidney disease.",
+    "topic": "Anticoagulation"
+  },
+  "APIXABAN": {
+    "clue": "Factor Xa inhibitor that does not require INR monitoring",
+    "rationale": "Apixaban is a direct oral anticoagulant. Dose is reduced for age, weight, and renal function in atrial fibrillation.",
+    "topic": "Anticoagulation"
+  },
+  "RIVAROXABAN": {
+    "clue": "Factor Xa inhibitor whose treatment doses are taken with food",
+    "rationale": "Rivaroxaban 15 and 20 mg need food for absorption. Renal function limits use.",
+    "topic": "Anticoagulation"
+  },
+  "DABIGATRAN": {
+    "clue": "Direct thrombin inhibitor stored in the original bottle and not crushed",
+    "rationale": "Dabigatran is moisture sensitive. Bleeding risk rises as renal function falls.",
+    "topic": "Anticoagulation"
+  },
+  "CLOPIDOGREL": {
+    "clue": "P2Y12 antiplatelet prodrug used after coronary stenting",
+    "rationale": "Clopidogrel activation depends on CYP2C19. Hold it before elective surgery because of bleeding.",
+    "topic": "Antiplatelet"
+  },
+  "ASPIRIN": {
+    "clue": "Irreversible COX inhibitor used for arterial clot prevention",
+    "rationale": "Low-dose aspirin inhibits platelet thromboxane for the life of the platelet. Bleeding and ulcer risk remain.",
+    "topic": "Antiplatelet"
+  },
+  "PRASUGREL": {
+    "clue": "Potent P2Y12 inhibitor avoided after stroke or TIA",
+    "rationale": "Prasugrel is more potent than clopidogrel and raises bleeding risk, especially in older and low-weight adults.",
+    "topic": "Antiplatelet"
+  },
+  "TICAGRELOR": {
+    "clue": "Reversible P2Y12 inhibitor that can cause dyspnea",
+    "rationale": "Ticagrelor is not a prodrug. Doses of aspirin above 100 mg may reduce its benefit.",
+    "topic": "Antiplatelet"
+  },
+  "ALTEPLASE": {
+    "clue": "Tissue plasminogen activator used in selected stroke and massive pulmonary embolism",
+    "rationale": "Alteplase has a short window and a long list of bleeding exclusions. Blood pressure must be controlled.",
+    "topic": "Thrombolysis"
+  },
+  "PROTAMINE": {
+    "clue": "Basic protein that reverses unfractionated heparin",
+    "rationale": "Protamine is given slowly. Rapid infusion causes hypotension, and it only partly reverses enoxaparin.",
+    "topic": "Antidote"
+  },
+  "ANDEXANET": {
+    "clue": "Reversal agent designed for factor Xa inhibitors",
+    "rationale": "Andexanet alfa is a decoy factor Xa protein used for life-threatening bleeding on apixaban or rivaroxaban.",
+    "topic": "Antidote"
+  },
+  "LISINOPRIL": {
+    "clue": "ACE inhibitor for hypertension and HFrEF that can raise potassium and cause cough",
+    "rationale": "Lisinopril is contraindicated in pregnancy and in bilateral renal artery stenosis. Stop it for angioedema.",
+    "topic": "Cardiology"
+  },
+  "ENALAPRIL": {
+    "clue": "ACE inhibitor prodrug used in heart failure with reduced ejection fraction",
+    "rationale": "Enalapril lowers mortality in HFrEF. Monitor creatinine and potassium after starting.",
+    "topic": "Cardiology"
+  },
+  "CAPTOPRIL": {
+    "clue": "Short-acting ACE inhibitor taken on an empty stomach",
+    "rationale": "Captopril has a short half-life. Food reduces its absorption, and cough or angioedema means stop the class.",
+    "topic": "Cardiology"
+  },
+  "RAMIPRIL": {
+    "clue": "Once-daily ACE inhibitor used after myocardial infarction and in high cardiovascular risk",
+    "rationale": "Ramipril shares ACE inhibitor risks: hyperkalemia, rising creatinine, cough, and pregnancy contraindication.",
+    "topic": "Cardiology"
+  },
+  "LOSARTAN": {
+    "clue": "Angiotensin receptor blocker that does not cause the bradykinin cough",
+    "rationale": "Losartan blocks AT1 receptors. It is still contraindicated in pregnancy and can raise potassium.",
+    "topic": "Cardiology"
+  },
+  "VALSARTAN": {
+    "clue": "ARB used in heart failure and hypertension when an ACE inhibitor is not tolerated",
+    "rationale": "Valsartan is combined with sacubitril in some heart failure regimens, never with an ACE inhibitor.",
+    "topic": "Cardiology"
+  },
+  "SACUBITRIL": {
+    "clue": "Neprilysin inhibitor paired with valsartan for HFrEF",
+    "rationale": "Sacubitril raises natriuretic peptides. A 36-hour washout from an ACE inhibitor is required because of angioedema.",
+    "topic": "Cardiology"
+  },
+  "EPLERENONE": {
+    "clue": "Selective aldosterone antagonist with less gynecomastia than spironolactone",
+    "rationale": "Eplerenone is a potassium-sparing diuretic used in heart failure and after myocardial infarction.",
+    "topic": "Cardiology"
+  },
+  "FUROSEMIDE": {
+    "clue": "Loop diuretic for fluid overload that wastes potassium and can injure hearing if pushed fast",
+    "rationale": "Furosemide works even when GFR is low. Watch electrolytes, volume, and ototoxicity with rapid IV doses.",
+    "topic": "Cardiology"
+  },
+  "BUMETANIDE": {
+    "clue": "Potent loop diuretic used when large furosemide doses are impractical",
+    "rationale": "Bumetanide is about forty times more potent milligram for milligram than furosemide. Potassium losses are similar.",
+    "topic": "Cardiology"
+  },
+  "TORSEMIDE": {
+    "clue": "Longer-acting loop diuretic with more reliable oral absorption than furosemide",
+    "rationale": "Torsemide is used for edema. Monitor weight, electrolytes, and blood pressure.",
+    "topic": "Cardiology"
+  },
+  "HCTZ": {
+    "clue": "Thiazide diuretic that can lower potassium and raise uric acid and glucose",
+    "rationale": "Hydrochlorothiazide is a first-line hypertension option. It is less effective when GFR is very low.",
+    "topic": "Cardiology"
+  },
+  "METOLAZONE": {
+    "clue": "Thiazide-like diuretic added to a loop for diuretic resistance",
+    "rationale": "Metolazone is given before the loop dose in sequential nephron blockade. Electrolytes can fall quickly.",
+    "topic": "Cardiology"
+  },
+  "METOPROLOL": {
+    "clue": "Beta-1 blocker used for heart failure, angina, and rate control",
+    "rationale": "Metoprolol succinate, not the tartrate salt, is the heart-failure evidence formulation. Do not stop abruptly.",
+    "topic": "Cardiology"
+  },
+  "CARVEDILOL": {
+    "clue": "Nonselective beta blocker with alpha blockade used in HFrEF",
+    "rationale": "Carvedilol is started low and titrated. It can worsen decompensated fluid overload if begun too soon.",
+    "topic": "Cardiology"
+  },
+  "BISOPROLOL": {
+    "clue": "Beta-1 selective blocker with a mortality benefit in HFrEF",
+    "rationale": "Bisoprolol is one of the evidence-based beta blockers in systolic heart failure.",
+    "topic": "Cardiology"
+  },
+  "ATENOLOL": {
+    "clue": "Renally cleared beta blocker that is less used as a first hypertension drug",
+    "rationale": "Atenolol is cleared by the kidney. It can mask tachycardia from hypoglycemia.",
+    "topic": "Cardiology"
+  },
+  "PROPRANOLOL": {
+    "clue": "Nonselective beta blocker used for tremor, portal hypertension, and thyroid storm symptoms",
+    "rationale": "Propranolol blocks beta-2 as well, so it can provoke bronchospasm. It is lipophilic and enters the brain.",
+    "topic": "Cardiology"
+  },
+  "LABETALOL": {
+    "clue": "Combined alpha and beta blocker given IV for hypertensive emergency, including in pregnancy",
+    "rationale": "Labetalol lowers pressure without a pure beta-blocker rise in systemic resistance.",
+    "topic": "Cardiology"
+  },
+  "AMLODIPINE": {
+    "clue": "Dihydropyridine calcium blocker whose main nuisance effect is ankle edema",
+    "rationale": "Amlodipine dilates arteries. The edema is from precapillary vasodilation, not heart failure by itself.",
+    "topic": "Cardiology"
+  },
+  "NIFEDIPINE": {
+    "clue": "Dihydropyridine used for hypertension; immediate-release capsules are avoided for emergencies",
+    "rationale": "Immediate-release nifedipine can cause reflex tachycardia and ischemia. Extended release is the outpatient form.",
+    "topic": "Cardiology"
+  },
+  "DILTIAZEM": {
+    "clue": "Non-dihydropyridine calcium blocker used for rate control that is avoided in HFrEF",
+    "rationale": "Diltiazem slows the AV node. It is a CYP3A4 inhibitor and can worsen systolic heart failure.",
+    "topic": "Cardiology"
+  },
+  "VERAPAMIL": {
+    "clue": "Calcium blocker that slows heart rate and commonly causes constipation",
+    "rationale": "Verapamil is a strong CYP3A4 inhibitor. Avoid it with HFrEF and with many simvastatin doses.",
+    "topic": "Cardiology"
+  },
+  "DIGOXIN": {
+    "clue": "Cardiac glycoside for rate control and symptoms whose toxicity rises when potassium is low",
+    "rationale": "Digoxin is renally cleared. Nausea, visual changes, and arrhythmias suggest toxicity.",
+    "topic": "Cardiology"
+  },
+  "AMIODARONE": {
+    "clue": "Iodine-containing antiarrhythmic that can injure lung, thyroid, and liver",
+    "rationale": "Amiodarone has a half-life of many weeks. It inhibits warfarin metabolism and raises digoxin levels.",
+    "topic": "Cardiology"
+  },
+  "SOTALOL": {
+    "clue": "Antiarrhythmic beta blocker that prolongs the QT and is started with monitoring",
+    "rationale": "Sotalol is renally cleared. QT prolongation and torsades are the initiation risk.",
+    "topic": "Cardiology"
+  },
+  "DOFETILIDE": {
+    "clue": "Class III antiarrhythmic started in a monitored setting because of torsades",
+    "rationale": "Dofetilide dose depends on kidney function and the QT interval. Many drugs are contraindicated with it.",
+    "topic": "Cardiology"
+  },
+  "FLECAINIDE": {
+    "clue": "Class Ic antiarrhythmic avoided in structural heart disease",
+    "rationale": "Flecainide can be used for atrial fibrillation in a normal heart. It is proarrhythmic after myocardial infarction.",
+    "topic": "Cardiology"
+  },
+  "ADENOSINE": {
+    "clue": "Very short-acting drug given as a rapid push for stable SVT",
+    "rationale": "Adenosine briefly blocks the AV node. Warn the patient about chest discomfort and a pause.",
+    "topic": "Cardiology"
+  },
+  "ATROPINE": {
+    "clue": "Antimuscarinic first drug for symptomatic bradycardia",
+    "rationale": "Atropine raises heart rate by blocking vagal tone. It does not help a denervated transplanted heart.",
+    "topic": "Cardiology"
+  },
+  "DOPAMINE": {
+    "clue": "Dose-dependent vasopressor and inotrope",
+    "rationale": "Low dopamine doses are not renal-protective. Higher doses raise heart rate and vasoconstriction.",
+    "topic": "Cardiology"
+  },
+  "DOBUTAMINE": {
+    "clue": "Beta-1 inotrope used in cardiogenic shock",
+    "rationale": "Dobutamine increases contractility and can provoke ischemia or arrhythmias.",
+    "topic": "Cardiology"
+  },
+  "MILRINONE": {
+    "clue": "PDE-3 inhibitor that is an inotrope and vasodilator",
+    "rationale": "Milrinone is renally cleared and causes hypotension. It is used in advanced heart failure.",
+    "topic": "Cardiology"
+  },
+  "VASOPRESSIN": {
+    "clue": "Non-catecholamine vasopressor also used to replace ADH",
+    "rationale": "Vasopressin is added in vasodilatory shock and treats central diabetes insipidus.",
+    "topic": "Endocrine"
+  },
+  "HYDRALAZINE": {
+    "clue": "Arterial vasodilator that causes reflex tachycardia and a lupus-like syndrome",
+    "rationale": "Hydralazine is often paired with a nitrate in heart failure when ACE inhibitors cannot be used.",
+    "topic": "Cardiology"
+  },
+  "ISOSORBIDE": {
+    "clue": "Nitrate used for angina and heart failure that requires a nitrate-free interval",
+    "rationale": "Isosorbide tolerance develops without a daily drug-free interval. It is contraindicated with PDE-5 inhibitors.",
+    "topic": "Cardiology"
+  },
+  "SILDENAFIL": {
+    "clue": "PDE-5 inhibitor that is dangerous with nitrates",
+    "rationale": "Sildenafil is used for erectile dysfunction and pulmonary hypertension. Nitrates are contraindicated.",
+    "topic": "Interaction"
+  },
+  "TADALAFIL": {
+    "clue": "Long-acting PDE-5 inhibitor also used for pulmonary hypertension and urinary symptoms",
+    "rationale": "Tadalafil lasts longer than sildenafil. The nitrate interaction window is longer too.",
+    "topic": "Interaction"
+  },
+  "SIMVASTATIN": {
+    "clue": "Statin with a dose cap when combined with amlodipine or certain CYP3A4 inhibitors",
+    "rationale": "Simvastatin myopathy risk rises with strong CYP3A4 inhibitors. High doses are restricted.",
+    "topic": "Lipids"
+  },
+  "PRAVASTATIN": {
+    "clue": "Statin not metabolized by CYP3A4, useful when interactions are a concern",
+    "rationale": "Pravastatin is hydrophilic and has fewer CYP drug interactions than simvastatin.",
+    "topic": "Lipids"
+  },
+  "EZETIMIBE": {
+    "clue": "Cholesterol absorption inhibitor added when statin LDL lowering is not enough",
+    "rationale": "Ezetimibe blocks intestinal cholesterol uptake. It is often combined with a statin.",
+    "topic": "Lipids"
+  },
+  "FENOFIBRATE": {
+    "clue": "Fibrate that lowers triglycerides and is preferred over gemfibrozil with a statin",
+    "rationale": "Fenofibrate has less statin interaction than gemfibrozil, but muscle risk is not zero.",
+    "topic": "Lipids"
+  },
+  "GEMFIBROZIL": {
+    "clue": "Fibrate that should not be combined with simvastatin because of rhabdomyolysis",
+    "rationale": "Gemfibrozil inhibits statin glucuronidation. The combination with simvastatin is contraindicated.",
+    "topic": "Lipids"
+  },
+  "NIACIN": {
+    "clue": "Lipid drug that causes flushing, which can be reduced by taking aspirin before it",
+    "rationale": "Niacin raises HDL and can worsen glucose and uric acid. Flushing is prostaglandin mediated.",
+    "topic": "Lipids"
+  },
+  "COLESEVELAM": {
+    "clue": "Bile acid sequestrant that lowers LDL and can bind other oral drugs",
+    "rationale": "Colesevelam is taken with meals and separated from other medications. It can raise triglycerides.",
+    "topic": "Lipids"
+  },
+  "METFORMIN": {
+    "clue": "First-line biguanide for type 2 diabetes that is held around iodinated contrast",
+    "rationale": "Metformin does not cause hypoglycemia alone. Lactic acidosis risk rises when the kidneys cannot clear it.",
+    "topic": "Diabetes"
+  },
+  "GLIPIZIDE": {
+    "clue": "Sulfonylurea that releases insulin and can cause hypoglycemia",
+    "rationale": "Glipizide must be taken with food. Skip the dose if the patient is not eating.",
+    "topic": "Diabetes"
+  },
+  "GLYBURIDE": {
+    "clue": "Long-acting sulfonylurea generally avoided in older adults",
+    "rationale": "Glyburide causes prolonged hypoglycemia and is on beers-criteria avoidance lists.",
+    "topic": "Diabetes"
+  },
+  "GLIMEPIRIDE": {
+    "clue": "Sulfonylurea taken once daily that still carries hypoglycemia risk",
+    "rationale": "Glimepiride stimulates insulin release. Renal impairment prolongs the effect.",
+    "topic": "Diabetes"
+  },
+  "REPAGLINIDE": {
+    "clue": "Meglitinide taken with meals that is skipped when a meal is skipped",
+    "rationale": "Repaglinide has a short action. Gemfibrozil is contraindicated because it markedly raises levels.",
+    "topic": "Diabetes"
+  },
+  "SITAGLIPTIN": {
+    "clue": "DPP-4 inhibitor that is weight neutral and rarely causes hypoglycemia alone",
+    "rationale": "Sitagliptin dose is reduced in kidney disease. Pancreatitis is a rare warning.",
+    "topic": "Diabetes"
+  },
+  "LINAGLIPTIN": {
+    "clue": "DPP-4 inhibitor that does not need renal dose adjustment",
+    "rationale": "Linagliptin is excreted by the bile. It is an option when creatinine clearance is low.",
+    "topic": "Diabetes"
+  },
+  "LIRAGLUTIDE": {
+    "clue": "Daily GLP-1 agonist that helps weight and has a boxed thyroid C-cell warning",
+    "rationale": "Liraglutide slows gastric emptying. Nausea is common and pancreatitis is a stop-the-drug symptom.",
+    "topic": "Diabetes"
+  },
+  "SEMAGLUTIDE": {
+    "clue": "GLP-1 agonist available as a weekly injection or an oral tablet taken on an empty stomach",
+    "rationale": "Oral semaglutide is taken with a small sip of water and no food for 30 minutes. GI effects are common.",
+    "topic": "Diabetes"
+  },
+  "INSULIN": {
+    "clue": "Hormone replacement that causes hypoglycemia and is a high-alert medication",
+    "rationale": "Insulin doses are double-checked. Rotate sites and match mealtime insulin to carbohydrate intake.",
+    "topic": "Diabetes"
+  },
+  "LISPRO": {
+    "clue": "Rapid-acting insulin given with the meal, not long before the tray arrives",
+    "rationale": "Lispro starts within minutes. Giving it and delaying food causes hypoglycemia.",
+    "topic": "Diabetes"
+  },
+  "GLARGINE": {
+    "clue": "Long-acting insulin with no pronounced peak that is not mixed in the same syringe",
+    "rationale": "Insulin glargine is usually once daily. Do not mix it with other insulins.",
+    "topic": "Diabetes"
+  },
+  "DETEMIR": {
+    "clue": "Long-acting insulin bound to albumin, dosed once or twice daily",
+    "rationale": "Insulin detemir has a relatively flat profile. It is not mixed with other insulins.",
+    "topic": "Diabetes"
+  },
+  "NPH": {
+    "clue": "Cloudy intermediate insulin with a peak that requires a planned snack or meal",
+    "rationale": "NPH is rolled, not shaken. When mixing, it is drawn after the clear short-acting insulin.",
+    "topic": "Diabetes"
+  },
+  "METHIMAZOLE": {
+    "clue": "Antithyroid drug avoided in the first trimester because of teratogenicity",
+    "rationale": "Methimazole can cause agranulocytosis. Fever or sore throat means stop the drug and check a white count.",
+    "topic": "Endocrine"
+  },
+  "PREDNISONE": {
+    "clue": "Corticosteroid that must be tapered after long courses and raises glucose",
+    "rationale": "Prednisone causes infection risk, insomnia, and adrenal suppression. Do not stop a long course abruptly.",
+    "topic": "Endocrine"
+  },
+  "ALENDRONATE": {
+    "clue": "Bisphosphonate taken weekly with a full glass of water, staying upright",
+    "rationale": "Alendronate can cause esophagitis. Separate it from food, calcium, and other drugs by at least 30 minutes.",
+    "topic": "Bone"
+  },
+  "RISEDRONATE": {
+    "clue": "Oral bisphosphonate for osteoporosis with the same upright dosing rules",
+    "rationale": "Risedronate inhibits osteoclasts. Dental exams matter because of rare osteonecrosis of the jaw.",
+    "topic": "Bone"
+  },
+  "ZOLEDRONIC": {
+    "clue": "Yearly IV bisphosphonate that requires adequate hydration and a normal calcium",
+    "rationale": "Zoledronic acid can cause an acute phase reaction. Check creatinine and calcium before each dose.",
+    "topic": "Bone"
+  },
+  "DENOSUMAB": {
+    "clue": "RANKL inhibitor given every six months that can cause hypocalcemia",
+    "rationale": "Denosumab is not a bisphosphonate. Stopping it without a follow-on drug can cause rebound fractures.",
+    "topic": "Bone"
+  },
+  "RALOXIFENE": {
+    "clue": "SERM that reduces vertebral fractures and raises clot risk",
+    "rationale": "Raloxifene is an estrogen agonist in bone and an antagonist in breast. It can cause hot flashes and VTE.",
+    "topic": "Bone"
+  },
+  "CALCITONIN": {
+    "clue": "Nasal or injectable hormone sometimes used for acute pain of vertebral fracture",
+    "rationale": "Calcitonin has a small fracture benefit. Nasal irritation is a common effect.",
+    "topic": "Bone"
+  },
+  "CALCIUM": {
+    "clue": "Mineral supplement separated from levothyroxine, quinolones, and tetracyclines",
+    "rationale": "Calcium binds many drugs in the gut. Citrate is the form that does not need stomach acid.",
+    "topic": "Supplements"
+  },
+  "VITAMIND": {
+    "clue": "Supplement needed for calcium absorption and often low in osteoporosis",
+    "rationale": "Vitamin D deficiency is corrected before judging a calcium or bisphosphonate plan. Toxicity causes hypercalcemia.",
+    "topic": "Supplements"
+  },
+  "FERROUS": {
+    "clue": "Oral iron that causes dark stools and constipation and is best on an empty stomach",
+    "rationale": "Ferrous sulfate absorption falls with food, antacids, and tea. Vitamin C juice can help absorption.",
+    "topic": "Supplements"
+  },
+  "FOLICACID": {
+    "clue": "Vitamin given before conception and with methotrexate rescue plans in some protocols",
+    "rationale": "Folic acid prevents neural tube defects. In methotrexate therapy, folate timing follows the protocol so efficacy is preserved.",
+    "topic": "Supplements"
+  },
+  "PYRIDOXINE": {
+    "clue": "Vitamin B6 given with isoniazid to prevent neuropathy",
+    "rationale": "Pyridoxine is also used for isoniazid overdose seizures. Routine high doses can themselves cause neuropathy.",
+    "topic": "Supplements"
+  },
+  "THIAMINE": {
+    "clue": "Vitamin given before glucose in malnourished patients to prevent Wernicke injury",
+    "rationale": "Thiamine deficiency causes confusion, ataxia, and eye-movement palsy. Replace it in alcohol withdrawal protocols.",
+    "topic": "Supplements"
+  },
+  "POTASSIUM": {
+    "clue": "Electrolyte replacement never given as an IV push",
+    "rationale": "Oral potassium is preferred when the gut works. IV potassium is diluted and infused slowly.",
+    "topic": "Electrolytes"
+  },
+  "MAGNESIUM": {
+    "clue": "Electrolyte replaced when potassium will not stay corrected, and the antidote for torsades",
+    "rationale": "Hypomagnesemia causes refractory hypokalemia. IV magnesium treats torsades de pointes.",
+    "topic": "Electrolytes"
+  },
+  "PHOSPHATE": {
+    "clue": "Electrolyte that falls in refeeding and binds oral calcium",
+    "rationale": "Phosphate replacement is oral when possible. IV phosphate can cause hypocalcemia if given too fast.",
+    "topic": "Electrolytes"
+  },
+  "SEVELAMER": {
+    "clue": "Non-calcium phosphate binder taken with meals in chronic kidney disease",
+    "rationale": "Sevelamer binds dietary phosphate. It does not add to the calcium load the way calcium binders do.",
+    "topic": "Renal"
+  },
+  "KAYEXALATE": {
+    "clue": "Sodium polystyrene resin that removes potassium slowly through the gut",
+    "rationale": "This resin is not the emergency treatment for ECG changes from hyperkalemia. It can cause intestinal injury.",
+    "topic": "Renal"
+  },
+  "PATIROMER": {
+    "clue": "Potassium binder taken with food and separated from other oral drugs",
+    "rationale": "Patiromer exchanges calcium for potassium in the gut. Separate other medications by several hours.",
+    "topic": "Renal"
+  },
+  "EPOETIN": {
+    "clue": "Erythropoiesis-stimulating agent that raises clot and blood pressure risk if hemoglobin is pushed high",
+    "rationale": "Epoetin is used for anemia of chronic kidney disease. Target hemoglobin is not normalized.",
+    "topic": "Renal"
+  },
+  "AMOXICILLIN": {
+    "clue": "Aminopenicillin for otitis, sinusitis, and strep throat",
+    "rationale": "Amoxicillin is a beta-lactam. A rash during mono is common and is not always a true allergy.",
+    "topic": "Infectious disease"
+  },
+  "AMPICILLIN": {
+    "clue": "Aminopenicillin used for enterococcal infection and some meningitis regimens",
+    "rationale": "Ampicillin covers susceptible enterococci. A high IV dose is used when meningitis coverage is intended.",
+    "topic": "Infectious disease"
+  },
+  "PENICILLIN": {
+    "clue": "Beta-lactam of choice for syphilis and many streptococcal infections",
+    "rationale": "Penicillin G remains the treatment for syphilis. Allergy history decides whether a cephalosporin is reasonable.",
+    "topic": "Infectious disease"
+  },
+  "NAFCILLIN": {
+    "clue": "Antistaphylococcal penicillin cleared by the liver, used for serious MSSA",
+    "rationale": "Nafcillin does not need renal adjustment. It can cause interstitial nephritis.",
+    "topic": "Infectious disease"
+  },
+  "OXACILLIN": {
+    "clue": "Penicillinase-resistant penicillin for methicillin-sensitive staph",
+    "rationale": "Oxacillin is used for MSSA. It does not cover MRSA or enterococci.",
+    "topic": "Infectious disease"
+  },
+  "CEFAZOLIN": {
+    "clue": "First-generation cephalosporin used for surgical prophylaxis",
+    "rationale": "Cefazolin covers skin flora including MSSA. It is the usual pre-incision antibiotic.",
+    "topic": "Infectious disease"
+  },
+  "CEPHALEXIN": {
+    "clue": "Oral first-generation cephalosporin for skin and urinary infections",
+    "rationale": "Cephalexin is taken several times a day. It does not cover MRSA.",
+    "topic": "Infectious disease"
+  },
+  "CEFTRIAXONE": {
+    "clue": "Third-generation cephalosporin for meningitis, gonorrhea, and serious gram-negative infection",
+    "rationale": "Ceftriaxone reaches the CSF. It can sludge the gallbladder and is avoided with calcium-containing IV fluids in neonates.",
+    "topic": "Infectious disease"
+  },
+  "CEFEPIME": {
+    "clue": "Fourth-generation cephalosporin with pseudomonas coverage",
+    "rationale": "Cefepime can cause neurotoxicity when the dose is not reduced for kidney function.",
+    "topic": "Infectious disease"
+  },
+  "CEFTAZIDIME": {
+    "clue": "Third-generation cephalosporin used when pseudomonas coverage is needed",
+    "rationale": "Ceftazidime lacks reliable gram-positive coverage. It is a pseudomonas cephalosporin.",
+    "topic": "Infectious disease"
+  },
+  "MEROPENEM": {
+    "clue": "Carbapenem for resistant infection that can lower the seizure threshold",
+    "rationale": "Meropenem covers anaerobes and many resistant gram-negatives. Dose is reduced in renal failure.",
+    "topic": "Infectious disease"
+  },
+  "IMIPENEM": {
+    "clue": "Carbapenem given with cilastatin and known for seizure risk",
+    "rationale": "Imipenem is paired with cilastatin to block renal breakdown. Seizure risk is higher than with meropenem.",
+    "topic": "Infectious disease"
+  },
+  "ERTAPENEM": {
+    "clue": "Once-daily carbapenem that does not cover pseudomonas or acinetobacter",
+    "rationale": "Ertapenem is convenient but is the wrong carbapenem when pseudomonas is a concern.",
+    "topic": "Infectious disease"
+  },
+  "AZTREONAM": {
+    "clue": "Monobactam safe in most penicillin allergies, covering aerobic gram-negatives",
+    "rationale": "Aztreonam has no gram-positive or anaerobic activity. It can be used when a beta-lactam allergy is severe.",
+    "topic": "Infectious disease"
+  },
+  "VANCOMYCIN": {
+    "clue": "Glycopeptide for MRSA that is infused slowly to avoid flushing",
+    "rationale": "Vancomycin flushing is rate related. Trough or AUC monitoring limits kidney injury.",
+    "topic": "Infectious disease"
+  },
+  "DAPTOMYCIN": {
+    "clue": "Lipopeptide for resistant gram-positive infection that is inactivated by lung surfactant",
+    "rationale": "Daptomycin is not used for pneumonia. It can raise CPK, so muscle symptoms are reported.",
+    "topic": "Infectious disease"
+  },
+  "LINEZOLID": {
+    "clue": "Oxazolidinone for MRSA and VRE that can cause serotonin syndrome",
+    "rationale": "Linezolid is a weak MAO inhibitor. Thrombocytopenia rises with courses longer than two weeks.",
+    "topic": "Infectious disease"
+  },
+  "GENTAMICIN": {
+    "clue": "Aminoglycoside monitored for kidney and ear toxicity with peaks and troughs",
+    "rationale": "Gentamicin is often once daily for synergy or traditional dosing. Troughs that stay high predict toxicity.",
+    "topic": "Infectious disease"
+  },
+  "TOBRAMYCIN": {
+    "clue": "Aminoglycoside often chosen for pseudomonas, with the same toxicity profile",
+    "rationale": "Tobramycin needs renal dosing and hearing checks on long courses. It is given with a cell-wall agent for synergy.",
+    "topic": "Infectious disease"
+  },
+  "AMIKACIN": {
+    "clue": "Aminoglycoside reserved for more resistant gram-negative organisms",
+    "rationale": "Amikacin is dosed by kidney function. It shares ototoxicity and nephrotoxicity with the class.",
+    "topic": "Infectious disease"
+  },
+  "DOXYCYCLINE": {
+    "clue": "Tetracycline for Lyme disease, acne, and atypical pneumonia that stains teeth",
+    "rationale": "Doxycycline is avoided in pregnancy and young children. Separate it from iron, calcium, and antacids.",
+    "topic": "Infectious disease"
+  },
+  "MINOCYCLINE": {
+    "clue": "Tetracycline used for acne that can cause vestibular symptoms and blue-gray skin",
+    "rationale": "Minocycline is separated from divalent cations. Drug-induced lupus is a rare effect.",
+    "topic": "Infectious disease"
+  },
+  "CLINDAMYCIN": {
+    "clue": "Lincosamide with anaerobic coverage and a high risk of C. difficile",
+    "rationale": "Clindamycin diarrhea is assumed to be C. difficile until proven otherwise. It also covers some MRSA skin infection.",
+    "topic": "Infectious disease"
+  },
+  "TINIDAZOLE": {
+    "clue": "Nitroimidazole for trichomonas, giardia, and some anaerobic infections",
+    "rationale": "Tinidazole has a disulfiram-like reaction with alcohol, similar to metronidazole.",
+    "topic": "Infectious disease"
+  },
+  "FOSFOMYCIN": {
+    "clue": "Single-dose oral antibiotic for uncomplicated cystitis",
+    "rationale": "Fosfomycin is mixed in water and taken once. It is not the drug for pyelonephritis.",
+    "topic": "Infectious disease"
+  },
+  "FLUCONAZOLE": {
+    "clue": "Azole antifungal for candida that inhibits CYP enzymes",
+    "rationale": "Fluconazole raises levels of warfarin, some statins, and phenytoin. A one-time dose treats uncomplicated vaginal candida.",
+    "topic": "Infectious disease"
+  },
+  "CASPOFUNGIN": {
+    "clue": "Echinocandin for invasive candida that is not absorbed orally",
+    "rationale": "Caspofungin is IV only. It is preferred for unstable candidemia over fluconazole.",
+    "topic": "Infectious disease"
+  },
+  "MICAFUNGIN": {
+    "clue": "Echinocandin alternative for candidemia with few drug interactions",
+    "rationale": "Micafungin covers candida species including many fluconazole-resistant isolates. It does not treat cryptococcus.",
+    "topic": "Infectious disease"
+  },
+  "NYSTATIN": {
+    "clue": "Topical or swish antifungal for thrush that is not systemically absorbed",
+    "rationale": "Nystatin suspension is swished and swallowed. It will not treat invasive fungal disease.",
+    "topic": "Infectious disease"
+  },
+  "TERBINAFINE": {
+    "clue": "Oral antifungal for nail dermatophyte infection that can injure the liver",
+    "rationale": "Terbinafine is taken for weeks for onychomycosis. Check the liver and watch for taste change.",
+    "topic": "Infectious disease"
+  },
+  "ACYCLOVIR": {
+    "clue": "Antiviral for herpes that needs hydration to protect the kidneys",
+    "rationale": "Acyclovir crystals can obstruct tubules. Oral doses are adjusted for creatinine clearance.",
+    "topic": "Infectious disease"
+  },
+  "GANCICLOVIR": {
+    "clue": "Antiviral for cytomegalovirus that causes bone marrow suppression",
+    "rationale": "Ganciclovir is handled as a hazardous drug. Neutropenia is the limiting toxicity.",
+    "topic": "Infectious disease"
+  },
+  "FAMCICLOVIR": {
+    "clue": "Oral prodrug of penciclovir used for herpes zoster and recurrent genital herpes",
+    "rationale": "Famciclovir is started early in a zoster outbreak. Dose is reduced in kidney disease.",
+    "topic": "Infectious disease"
+  },
+  "OSELTAMIVIR": {
+    "clue": "Neuraminidase inhibitor most useful within 48 hours of influenza onset",
+    "rationale": "Oseltamivir shortens flu illness. Neuropsychiatric effects are reported, and the dose is renal.",
+    "topic": "Infectious disease"
+  },
+  "ZANAMIVIR": {
+    "clue": "Inhaled neuraminidase inhibitor avoided in asthma and COPD",
+    "rationale": "Zanamivir can cause bronchospasm. It is not the flu drug for a patient who cannot inhale a powder.",
+    "topic": "Infectious disease"
+  },
+  "BALOXAVIR": {
+    "clue": "Single-dose endonuclease inhibitor for influenza",
+    "rationale": "Baloxavir is one dose. It is not combined casually with polyvalent cations, which bind it.",
+    "topic": "Infectious disease"
+  },
+  "RIBAVIRIN": {
+    "clue": "Antiviral used in some hepatitis C regimens that is teratogenic",
+    "rationale": "Ribavirin requires two forms of contraception during and after therapy because of birth defects.",
+    "topic": "Infectious disease"
+  },
+  "SOFOSBUVIR": {
+    "clue": "NS5B inhibitor used in hepatitis C combinations",
+    "rationale": "Sofosbuvir is the backbone of several hepatitis C regimens. Amiodarone with it can cause severe bradycardia.",
+    "topic": "Infectious disease"
+  },
+  "TENOFOVIR": {
+    "clue": "Nucleotide analog for HIV and hepatitis B that can injure kidneys and bone",
+    "rationale": "Tenofovir disoproxil is the salt linked with Fanconi syndrome. The alafenamide salt has less kidney and bone toxicity.",
+    "topic": "Infectious disease"
+  },
+  "LAMIVUDINE": {
+    "clue": "Cytosine analog for HIV and hepatitis B with a low barrier if used alone for hepatitis B",
+    "rationale": "Lamivudine monotherapy for hepatitis B selects resistance. It is well tolerated.",
+    "topic": "Infectious disease"
+  },
+  "ABACAVIR": {
+    "clue": "Nucleoside analog that requires HLA-B5701 screening because of hypersensitivity",
+    "rationale": "Never rechallenge abacavir after a hypersensitivity reaction. The reaction can include fever, rash, and respiratory symptoms.",
+    "topic": "Infectious disease"
+  },
+  "RALTEGRAVIR": {
+    "clue": "Integrase inhibitor for HIV with few drug interactions",
+    "rationale": "Raltegravir can raise CPK. It is taken with or without food depending on the formulation.",
+    "topic": "Infectious disease"
+  },
+  "EFAVIRENZ": {
+    "clue": "NNRTI that causes vivid dreams and is taken on an empty stomach at bedtime",
+    "rationale": "Efavirenz is teratogenic in animal data and is CNS active. Food increases levels and side effects.",
+    "topic": "Infectious disease"
+  },
+  "RITONAVIR": {
+    "clue": "Strong CYP3A4 inhibitor used as a pharmacokinetic booster",
+    "rationale": "Ritonavir raises levels of many drugs. Review the whole medication list before it is added.",
+    "topic": "Infectious disease"
+  },
+  "COBICISTAT": {
+    "clue": "Pharmacokinetic booster that inhibits CYP3A4 and raises creatinine slightly",
+    "rationale": "Cobicistat blocks tubular creatinine secretion, so the creatinine bump is not always a GFR drop.",
+    "topic": "Infectious disease"
+  },
+  "ATAZANAVIR": {
+    "clue": "Protease inhibitor that needs an acid stomach and can cause jaundice",
+    "rationale": "Atazanavir is not combined with proton pump inhibitors in treatment-experienced patients. Indirect bilirubin rises.",
+    "topic": "Infectious disease"
+  },
+  "DARUNAVIR": {
+    "clue": "Protease inhibitor boosted with ritonavir or cobicistat and used with a sulfa caution",
+    "rationale": "Darunavir contains a sulfa moiety. Rash is possible in sulfa-allergic patients, and it is taken with food.",
+    "topic": "Infectious disease"
+  },
+  "ISONIAZID": {
+    "clue": "Tuberculosis drug that causes neuropathy unless pyridoxine is given",
+    "rationale": "Isoniazid is hepatotoxic and depletes vitamin B6. A positive hepatitis symptom means stop and check enzymes.",
+    "topic": "Infectious disease"
+  },
+  "RIFAMPIN": {
+    "clue": "Potent CYP inducer used for tuberculosis that turns body fluids orange",
+    "rationale": "Rifampin lowers levels of warfarin, oral contraceptives, and many antiretrovirals. Counsel about orange urine.",
+    "topic": "Infectious disease"
+  },
+  "RIFABUTIN": {
+    "clue": "Rifamycin with fewer CYP interactions, used when rifampin cannot be combined",
+    "rationale": "Rifabutin still induces enzymes, but less than rifampin. Uveitis is a toxicity.",
+    "topic": "Infectious disease"
+  },
+  "ETHAMBUTOL": {
+    "clue": "Tuberculosis drug that can cause optic neuritis",
+    "rationale": "Ethambutol toxicity is color-vision loss. Baseline and periodic eye exams are part of safe use.",
+    "topic": "Infectious disease"
+  },
+  "BEDAQUILINE": {
+    "clue": "Drug for resistant tuberculosis that prolongs the QT interval",
+    "rationale": "Bedaquiline is used in multidrug-resistant tuberculosis regimens. ECG monitoring is required.",
+    "topic": "Infectious disease"
+  },
+  "DAPSONE": {
+    "clue": "Drug for leprosy and pneumocystis prevention that causes hemolysis in G6PD deficiency",
+    "rationale": "Dapsone is oxidant stress. Screen for G6PD deficiency before use when possible.",
+    "topic": "Infectious disease"
+  },
+  "ATOVAQUONE": {
+    "clue": "Drug for pneumocystis and with proguanil for malaria, taken with food",
+    "rationale": "Atovaquone absorption needs dietary fat. It is an option when trimethoprim-sulfamethoxazole cannot be used.",
+    "topic": "Infectious disease"
+  },
+  "PRIMAQUINE": {
+    "clue": "Antimalarial that eradicates liver stages and causes hemolysis in G6PD deficiency",
+    "rationale": "Primaquine is the hypnozoite drug for vivax and ovale. Test G6PD before the first dose.",
+    "topic": "Infectious disease"
+  },
+  "CHLOROQUINE": {
+    "clue": "Antimalarial that can cause retinal toxicity with long use",
+    "rationale": "Chloroquine is also used in some autoimmune disease. Eye exams are required for chronic therapy.",
+    "topic": "Infectious disease"
+  },
+  "QUININE": {
+    "clue": "Antimalarial that causes cinchonism: tinnitus, headache, and visual change",
+    "rationale": "Quinine is not a casual leg-cramp drug. It prolongs the QT and causes hypoglycemia.",
+    "topic": "Infectious disease"
+  },
+  "ARTESUNATE": {
+    "clue": "IV artemisinin used for severe malaria",
+    "rationale": "Artesunate is the preferred parenteral treatment for severe malaria. Delayed hemolysis can follow treatment.",
+    "topic": "Infectious disease"
+  },
+  "ALBENDAZOLE": {
+    "clue": "Anthelmintic taken with a fatty meal for tissue parasites",
+    "rationale": "Albendazole is used for neurocysticercosis and some worm infections. Liver enzymes are checked on long courses.",
+    "topic": "Infectious disease"
+  },
+  "IVERMECTIN": {
+    "clue": "Antiparasitic for strongyloides and onchocerciasis, taken on an empty stomach",
+    "rationale": "Ivermectin does not kill adult onchocerca immediately. Mazzotti reactions can follow treatment of onchocerciasis.",
+    "topic": "Infectious disease"
+  },
+  "PERMETHRIN": {
+    "clue": "Topical scabicide applied from neck to toes and washed off after the labeled time",
+    "rationale": "Permethrin 5 percent is the usual scabies treatment. Household contacts are treated at the same time.",
+    "topic": "Infectious disease"
+  },
+  "SERTRALINE": {
+    "clue": "SSRI with fewer CYP interactions than fluoxetine or paroxetine",
+    "rationale": "Sertraline takes weeks for mood. Combining it with MAO inhibitors or linezolid risks serotonin syndrome.",
+    "topic": "Psychiatry"
+  },
+  "FLUOXETINE": {
+    "clue": "Long half-life SSRI that inhibits CYP2D6",
+    "rationale": "Fluoxetine and its metabolite linger for weeks. A long washout is needed before an MAO inhibitor.",
+    "topic": "Psychiatry"
+  },
+  "PAROXETINE": {
+    "clue": "SSRI most associated with withdrawal symptoms and CYP2D6 inhibition",
+    "rationale": "Paroxetine is more anticholinergic than other SSRIs and is avoided in pregnancy when possible.",
+    "topic": "Psychiatry"
+  },
+  "CITALOPRAM": {
+    "clue": "SSRI with a dose cap because of QT prolongation",
+    "rationale": "Citalopram doses above 40 mg are avoided, and above 20 mg in older adults, because of the QT risk.",
+    "topic": "Psychiatry"
+  },
+  "VENLAFAXINE": {
+    "clue": "SNRI that can raise blood pressure as the dose increases",
+    "rationale": "Venlafaxine withdrawal is uncomfortable if it is stopped suddenly. Check blood pressure at higher doses.",
+    "topic": "Psychiatry"
+  },
+  "DULOXETINE": {
+    "clue": "SNRI used for depression and neuropathic or musculoskeletal pain",
+    "rationale": "Duloxetine is avoided in substantial liver disease and in severe kidney disease. It can raise blood pressure.",
+    "topic": "Psychiatry"
+  },
+  "BUPROPION": {
+    "clue": "Antidepressant that lowers the seizure threshold and helps with smoking cessation",
+    "rationale": "Bupropion is avoided in bulimia, anorexia, and seizure disorders. It does not cause SSRI sexual side effects.",
+    "topic": "Psychiatry"
+  },
+  "MIRTAZAPINE": {
+    "clue": "Antidepressant that causes sedation and increased appetite",
+    "rationale": "Mirtazapine is useful when insomnia and poor appetite are problems. Weight gain is expected.",
+    "topic": "Psychiatry"
+  },
+  "TRAZODONE": {
+    "clue": "Sedating antidepressant used for sleep that can cause priapism",
+    "rationale": "Trazodone is not a benzodiazepine. A prolonged erection is an emergency.",
+    "topic": "Psychiatry"
+  },
+  "DOXEPIN": {
+    "clue": "Tricyclic used in low doses for sleep and itching, with anticholinergic effects at higher doses",
+    "rationale": "Doxepin in depression doses prolongs the QT and is dangerous in overdose. Low doses are for insomnia.",
+    "topic": "Psychiatry"
+  },
+  "IMIPRAMINE": {
+    "clue": "Tricyclic antidepressant with anticholinergic effects and cardiac toxicity in overdose",
+    "rationale": "Imipramine overdose causes seizures and wide-complex arrhythmias. It is not a first-line antidepressant.",
+    "topic": "Psychiatry"
+  },
+  "PHENELZINE": {
+    "clue": "Irreversible MAO inhibitor that requires a low-tyramine diet",
+    "rationale": "Phenelzine plus an SSRI, meperidine, or dextromethorphan can cause serotonin syndrome or a hypertensive crisis.",
+    "topic": "Psychiatry"
+  },
+  "SELEGILINE": {
+    "clue": "MAO-B inhibitor for Parkinson disease; the patch can lose selectivity",
+    "rationale": "Dietary tyramine restrictions apply to higher-dose selegiline patch, not always to low oral MAO-B doses.",
+    "topic": "Psychiatry"
+  },
+  "HALOPERIDOL": {
+    "clue": "First-generation antipsychotic that causes dystonia and QT prolongation",
+    "rationale": "Haloperidol is not used IV without caution because of the QT. Acute dystonia is treated with an anticholinergic.",
+    "topic": "Psychiatry"
+  },
+  "RISPERIDONE": {
+    "clue": "Atypical antipsychotic with a relatively high risk of prolactin elevation and EPS",
+    "rationale": "Risperidone causes hyperprolactinemia. Dose-related extrapyramidal symptoms are more common than with quetiapine.",
+    "topic": "Psychiatry"
+  },
+  "OLANZAPINE": {
+    "clue": "Atypical antipsychotic with marked weight gain and metabolic effects",
+    "rationale": "Olanzapine is sedating and anticholinergic. Smoking induces its clearance.",
+    "topic": "Psychiatry"
+  },
+  "QUETIAPINE": {
+    "clue": "Atypical antipsychotic often used for sedation, with metabolic risk and a low EPS risk",
+    "rationale": "Quetiapine is sometimes misused for sleep. It still causes weight gain and QT effects.",
+    "topic": "Psychiatry"
+  },
+  "ZIPRASIDONE": {
+    "clue": "Atypical antipsychotic that must be taken with food and prolongs the QT",
+    "rationale": "Ziprasidone absorption doubles with a meal of adequate calories. It is avoided when the QT is already long.",
+    "topic": "Psychiatry"
+  },
+  "LURASIDONE": {
+    "clue": "Atypical antipsychotic taken with food that has less metabolic effect than olanzapine",
+    "rationale": "Lurasidone is taken with at least 350 calories. It is a CYP3A4 substrate.",
+    "topic": "Psychiatry"
+  },
+  "CLOZAPINE": {
+    "clue": "Most effective antipsychotic, reserved for treatment resistance because of agranulocytosis",
+    "rationale": "Clozapine requires absolute neutrophil count monitoring. Constipation, sialorrhea, and myocarditis are other risks.",
+    "topic": "Psychiatry"
+  },
+  "LITHIUM": {
+    "clue": "Mood stabilizer with a narrow therapeutic index that rises when sodium is lost",
+    "rationale": "Lithium toxicity follows dehydration, NSAIDs, ACE inhibitors, and thiazides. Tremor and confusion are early signs.",
+    "topic": "Psychiatry"
+  },
+  "VALPROATE": {
+    "clue": "Mood stabilizer and antiseizure drug that is teratogenic and hepatotoxic",
+    "rationale": "Valproate is avoided in pregnancy. Ammonia is checked if cognition changes, and platelets can fall.",
+    "topic": "Psychiatry"
+  },
+  "LAMOTRIGINE": {
+    "clue": "Antiseizure and mood drug titrated slowly because of Stevens-Johnson risk",
+    "rationale": "Valproate doubles lamotrigine levels, so the titration is slower. Any rash stops the drug.",
+    "topic": "Psychiatry"
+  },
+  "LORAZEPAM": {
+    "clue": "Benzodiazepine preferred in liver disease because it is glucuronidated",
+    "rationale": "Lorazepam is used for status epilepticus and alcohol withdrawal. It depresses breathing with opioids.",
+    "topic": "Psychiatry"
+  },
+  "DIAZEPAM": {
+    "clue": "Long-acting benzodiazepine for seizures, spasms, and alcohol withdrawal",
+    "rationale": "Diazepam has active metabolites. It accumulates in older adults and in liver disease.",
+    "topic": "Psychiatry"
+  },
+  "ALPRAZOLAM": {
+    "clue": "Short-acting benzodiazepine with a difficult withdrawal",
+    "rationale": "Alprazolam is tapered. Abrupt cessation can cause rebound anxiety and seizures.",
+    "topic": "Psychiatry"
+  },
+  "CLONAZEPAM": {
+    "clue": "Long-acting benzodiazepine used for panic and some seizure types",
+    "rationale": "Clonazepam lasts longer than alprazolam. Sedation and dependence are the counseling points.",
+    "topic": "Psychiatry"
+  },
+  "MIDAZOLAM": {
+    "clue": "Short-acting benzodiazepine used for procedural sedation",
+    "rationale": "Midazolam is reversed with flumazenil only when the airway is protected and chronic use is unlikely.",
+    "topic": "Psychiatry"
+  },
+  "FLUMAZENIL": {
+    "clue": "Benzodiazepine antagonist that can precipitate seizures",
+    "rationale": "Flumazenil is avoided in chronic benzodiazepine use and in mixed overdoses with proconvulsant drugs.",
+    "topic": "Antidote"
+  },
+  "ZOLPIDEM": {
+    "clue": "Non-benzodiazepine hypnotic with complex sleep behaviors",
+    "rationale": "Zolpidem is taken only when ready for bed. Lower doses are used in women and older adults.",
+    "topic": "Psychiatry"
+  },
+  "ESZOPICLONE": {
+    "clue": "Hypnotic that can leave a metallic taste",
+    "rationale": "Eszopiclone is a controlled sleep drug. Next-day impairment is possible.",
+    "topic": "Psychiatry"
+  },
+  "BUSPIRONE": {
+    "clue": "Non-sedating anxiolytic that takes weeks and has no cross-tolerance with benzodiazepines",
+    "rationale": "Buspirone is not a rescue drug for a panic attack. It is a scheduled anxiolytic.",
+    "topic": "Psychiatry"
+  },
+  "AMPHETAMINE": {
+    "clue": "Stimulant for ADHD that raises heart rate and blood pressure and suppresses appetite",
+    "rationale": "Amphetamines are controlled substances. They are avoided in structural heart disease and uncontrolled hypertension.",
+    "topic": "Psychiatry"
+  },
+  "ATOMOXETINE": {
+    "clue": "Non-stimulant ADHD drug that is a CYP2D6 substrate and carries a suicidal-ideation warning",
+    "rationale": "Atomoxetine takes weeks. It can raise blood pressure and is not a controlled stimulant.",
+    "topic": "Psychiatry"
+  },
+  "GUANFACINE": {
+    "clue": "Alpha-2 agonist for ADHD that is not stopped abruptly",
+    "rationale": "Guanfacine extended release can cause hypotension and rebound hypertension if stopped suddenly.",
+    "topic": "Psychiatry"
+  },
+  "CLONIDINE": {
+    "clue": "Central alpha agonist whose sudden stop causes rebound hypertension",
+    "rationale": "Clonidine patches are replaced on schedule. The oral drug is tapered.",
+    "topic": "Cardiology"
+  },
+  "DONEPEZIL": {
+    "clue": "Cholinesterase inhibitor for Alzheimer disease that causes GI upset and bradycardia",
+    "rationale": "Donepezil increases acetylcholine. Diarrhea, vivid dreams, and a slow heart rate are expected effects.",
+    "topic": "Neurology"
+  },
+  "GALANTAMINE": {
+    "clue": "Cholinesterase inhibitor taken with food that needs renal and hepatic dose limits",
+    "rationale": "Galantamine shares the cholinergic side effects of donepezil. Dose is reduced when clearance is low.",
+    "topic": "Neurology"
+  },
+  "MEMANTINE": {
+    "clue": "NMDA antagonist for moderate Alzheimer disease that is renally dosed",
+    "rationale": "Memantine is often added to a cholinesterase inhibitor. Dizziness and confusion can occur.",
+    "topic": "Neurology"
+  },
+  "CARBIDOPA": {
+    "clue": "Decarboxylase inhibitor that lets more levodopa reach the brain",
+    "rationale": "Carbidopa reduces peripheral nausea from levodopa. It does not treat Parkinson disease by itself.",
+    "topic": "Neurology"
+  },
+  "LEVODOPA": {
+    "clue": "Dopamine precursor for Parkinson disease that causes dyskinesias over time",
+    "rationale": "Levodopa is the most effective motor drug. Protein meals can compete with its absorption.",
+    "topic": "Neurology"
+  },
+  "ENTACAPONE": {
+    "clue": "COMT inhibitor that extends levodopa effect and can darken urine",
+    "rationale": "Entacapone is only useful with levodopa. Diarrhea and brown-orange urine are counseling points.",
+    "topic": "Neurology"
+  },
+  "PRAMIPEXOLE": {
+    "clue": "Dopamine agonist that can cause sudden sleep and impulse-control problems",
+    "rationale": "Pramipexole is renally cleared. Warn about gambling, hypersexuality, and falling asleep while driving.",
+    "topic": "Neurology"
+  },
+  "ROPINIROLE": {
+    "clue": "Dopamine agonist also used for restless legs",
+    "rationale": "Ropinirole is metabolized by CYP1A2. Smoking changes its levels, and impulse-control disorders occur.",
+    "topic": "Neurology"
+  },
+  "BENZTROPINE": {
+    "clue": "Anticholinergic for drug-induced parkinsonism and dystonia",
+    "rationale": "Benztropine is avoided in older adults because of confusion, retention, and constipation.",
+    "topic": "Neurology"
+  },
+  "MORPHINE": {
+    "clue": "Full opioid agonist that releases histamine and is renally cleared to an active metabolite",
+    "rationale": "Morphine causes constipation, which is prevented, not waited for. Active metabolites accumulate in kidney failure.",
+    "topic": "Pain"
+  },
+  "OXYCODONE": {
+    "clue": "Oral opioid available alone or with acetaminophen",
+    "rationale": "Oxycodone combination products hide acetaminophen. Total daily acetaminophen must stay within the limit.",
+    "topic": "Pain"
+  },
+  "HYDROCODONE": {
+    "clue": "Opioid usually combined with acetaminophen for short-term pain",
+    "rationale": "Hydrocodone products are controlled. Counsel on constipation, sedation, and the acetaminophen ceiling.",
+    "topic": "Pain"
+  },
+  "FENTANYL": {
+    "clue": "Potent opioid patch that is not for opioid-naive acute pain",
+    "rationale": "Fentanyl patches take about a day to reach effect and linger after removal. Heat increases absorption.",
+    "topic": "Pain"
+  },
+  "METHADONE": {
+    "clue": "Long-acting opioid for pain and opioid use disorder that prolongs the QT",
+    "rationale": "Methadone accumulates for days. Dose changes are made slowly, and interacting drugs raise the QT risk.",
+    "topic": "Pain"
+  },
+  "NALOXONE": {
+    "clue": "Opioid antagonist used for overdose, with a shorter duration than many opioids",
+    "rationale": "Naloxone is repeated because respiratory depression can return. It precipitates withdrawal.",
+    "topic": "Antidote"
+  },
+  "NALTREXONE": {
+    "clue": "Oral or monthly opioid antagonist for alcohol or opioid use disorder",
+    "rationale": "Naltrexone is not started until opioids have cleared, or it will precipitate withdrawal. It is hepatotoxic at high doses.",
+    "topic": "Psychiatry"
+  },
+  "TRAMADOL": {
+    "clue": "Weak opioid that also raises serotonin and lowers the seizure threshold",
+    "rationale": "Tramadol plus an SSRI risks serotonin syndrome. Seizure risk rises with high doses and interacting drugs.",
+    "topic": "Pain"
+  },
+  "MEPERIDINE": {
+    "clue": "Opioid avoided chronically because the metabolite normeperidine causes seizures",
+    "rationale": "Meperidine with an MAO inhibitor is contraindicated. It is not a preferred pain drug.",
+    "topic": "Pain"
+  },
+  "CODEINE": {
+    "clue": "Prodrug of morphine that is dangerous in ultra-rapid CYP2D6 metabolizers",
+    "rationale": "Codeine is avoided in children after tonsillectomy. Breastfeeding ultra-rapid metabolizers can overdose an infant.",
+    "topic": "Pain"
+  },
+  "IBUPROFEN": {
+    "clue": "NSAID that can worsen heart failure, kidneys, and ulcers",
+    "rationale": "Ibuprofen blocks COX. It raises blood pressure and blunts the effect of some antihypertensives.",
+    "topic": "Pain"
+  },
+  "NAPROXEN": {
+    "clue": "Longer-acting NSAID with the same renal and gastrointestinal risks",
+    "rationale": "Naproxen is taken with food. It is avoided in the third trimester because of ductus closure.",
+    "topic": "Pain"
+  },
+  "KETOROLAC": {
+    "clue": "Potent NSAID limited to a few days because of bleeding and kidney injury",
+    "rationale": "Ketorolac is not for chronic pain. The total course, IV plus oral, stays short.",
+    "topic": "Pain"
+  },
+  "CELECOXIB": {
+    "clue": "COX-2 inhibitor with less ulcer risk than nonselective NSAIDs but the same heart caution",
+    "rationale": "Celecoxib is a sulfonamide. Cardiovascular risk still applies, and it is not used in significant heart failure.",
+    "topic": "Pain"
+  },
+  "DICLOFENAC": {
+    "clue": "NSAID available oral and topical, with notable cardiovascular risk",
+    "rationale": "Topical diclofenac still has some systemic absorption. Oral diclofenac is among the higher cardiovascular-risk NSAIDs.",
+    "topic": "Pain"
+  },
+  "MELOXICAM": {
+    "clue": "Once-daily NSAID that is somewhat COX-2 preferring at low doses",
+    "rationale": "Meloxicam is easier to adhere to than ibuprofen. Renal and ulcer warnings remain.",
+    "topic": "Pain"
+  },
+  "GABAPENTIN": {
+    "clue": "Anticonvulsant for neuropathic pain that is renally cleared and sedating",
+    "rationale": "Gabapentin is titrated. Misuse and respiratory depression with opioids are current warnings.",
+    "topic": "Pain"
+  },
+  "PREGABALIN": {
+    "clue": "Gabapentinoid for neuropathic pain and fibromyalgia that causes edema and dizziness",
+    "rationale": "Pregabalin is a controlled substance. Dose is reduced when creatinine clearance falls.",
+    "topic": "Pain"
+  },
+  "BACLOFEN": {
+    "clue": "GABA-B agonist for spasticity that can cause seizures if stopped suddenly",
+    "rationale": "Intrathecal baclofen withdrawal is an emergency. Oral baclofen is tapered.",
+    "topic": "Neurology"
+  },
+  "TIZANIDINE": {
+    "clue": "Alpha-2 agonist muscle relaxant that causes hypotension and is affected by CYP1A2 inhibitors",
+    "rationale": "Tizanidine with ciprofloxacin or fluvoxamine can cause dangerous hypotension. It is hepatotoxic.",
+    "topic": "Pain"
+  },
+  "SUMATRIPTAN": {
+    "clue": "Serotonin agonist for migraine that is contraindicated in coronary disease",
+    "rationale": "Sumatriptan is not used within 24 hours of an ergot. Chest pressure can occur even without ischemia.",
+    "topic": "Neurology"
+  },
+  "RIZATRIPTAN": {
+    "clue": "Oral triptan whose dose is reduced when propranolol is taken",
+    "rationale": "Propranolol raises rizatriptan levels. The migraine dose is lowered in that combination.",
+    "topic": "Neurology"
+  },
+  "ERGOTAMINE": {
+    "clue": "Ergot for migraine that causes severe vasoconstriction with CYP3A4 inhibitors",
+    "rationale": "Ergotamine is contraindicated with macrolides and protease inhibitors. It is also contraindicated in pregnancy.",
+    "topic": "Neurology"
+  },
+  "TOPIRAMATE": {
+    "clue": "Antiseizure drug used for migraine prevention that causes cognitive slowing and kidney stones",
+    "rationale": "Topiramate is a carbonic anhydrase inhibitor. It reduces the effectiveness of estrogen contraceptives at higher doses.",
+    "topic": "Neurology"
+  },
+  "OMEPRAZOLE": {
+    "clue": "Proton pump inhibitor taken before breakfast for ulcer and reflux",
+    "rationale": "Omeprazole can lower magnesium and B12 over time and raises C. difficile risk. It inhibits clopidogrel activation.",
+    "topic": "Gastroenterology"
+  },
+  "RABEPRAZOLE": {
+    "clue": "Proton pump inhibitor with less CYP2C19 dependence than omeprazole",
+    "rationale": "Rabeprazole is an acid-suppression option when a CYP2C19 interaction is a concern.",
+    "topic": "Gastroenterology"
+  },
+  "FAMOTIDINE": {
+    "clue": "H2 blocker adjusted for kidney function",
+    "rationale": "Famotidine does not inhibit CYP enzymes the way cimetidine does. Confusion can occur when the dose is too high for the kidneys.",
+    "topic": "Gastroenterology"
+  },
+  "CIMETIDINE": {
+    "clue": "H2 blocker that inhibits many CYP enzymes and causes antiandrogen effects",
+    "rationale": "Cimetidine raises levels of warfarin, phenytoin, and other drugs. It is rarely a first H2 blocker now.",
+    "topic": "Gastroenterology"
+  },
+  "SUCRALFATE": {
+    "clue": "Ulcer coating agent given on an empty stomach that binds other drugs",
+    "rationale": "Sucralfate needs acid to work, so it is not paired with continuous acid suppression. Separate interacting drugs.",
+    "topic": "Gastroenterology"
+  },
+  "MISOPROSTOL": {
+    "clue": "Prostaglandin that prevents NSAID ulcers and is contraindicated in pregnancy",
+    "rationale": "Misoprostol causes uterine contraction. Diarrhea is the limiting side effect.",
+    "topic": "Gastroenterology"
+  },
+  "BISMUTH": {
+    "clue": "Agent in some ulcer and diarrhea regimens that blackens the stool and tongue",
+    "rationale": "Bismuth subsalicylate contains salicylate. It is avoided in children with viral illness and in salicylate allergy.",
+    "topic": "Gastroenterology"
+  },
+  "ONDANSETRON": {
+    "clue": "5-HT3 antiemetic that prolongs the QT interval",
+    "rationale": "Ondansetron is used for chemotherapy and postoperative nausea. It is not the drug for motion sickness.",
+    "topic": "Gastroenterology"
+  },
+  "GRANISETRON": {
+    "clue": "5-HT3 antagonist available as a patch for chemotherapy nausea",
+    "rationale": "Granisetron shares the QT warning of the class. The patch is applied before chemotherapy.",
+    "topic": "Gastroenterology"
+  },
+  "APREPITANT": {
+    "clue": "NK1 antagonist for delayed chemotherapy nausea that interacts with CYP3A4",
+    "rationale": "Aprepitant can change the dose needs of dexamethasone and hormonal contraceptives.",
+    "topic": "Gastroenterology"
+  },
+  "DOMPERIDONE": {
+    "clue": "Peripheral dopamine antagonist for nausea that prolongs the QT",
+    "rationale": "Domperidone does not cross the blood-brain barrier well, so it causes less central dystonia than metoclopramide.",
+    "topic": "Gastroenterology"
+  },
+  "LOPERAMIDE": {
+    "clue": "Opioid antidiarrheal that does not cross the blood-brain barrier at usual doses",
+    "rationale": "High-dose loperamide abuse causes cardiac arrhythmias. It is not used when fever or bloody stool suggests invasive diarrhea.",
+    "topic": "Gastroenterology"
+  },
+  "DOCUSATE": {
+    "clue": "Stool softener that does not stimulate the colon",
+    "rationale": "Docusate is for prevention of straining. It will not empty a constipated colon by itself.",
+    "topic": "Gastroenterology"
+  },
+  "SENNA": {
+    "clue": "Stimulant laxative used short term or with opioids",
+    "rationale": "Senna causes cramping. Melanosis coli can follow long use and is a marker of chronic stimulant laxatives.",
+    "topic": "Gastroenterology"
+  },
+  "BISACODYL": {
+    "clue": "Stimulant laxative tablet that should not be crushed or taken with antacids",
+    "rationale": "Enteric bisacodyl dissolves in the colon. Antacids can cause it to release early and irritate the stomach.",
+    "topic": "Gastroenterology"
+  },
+  "LACTULOSE": {
+    "clue": "Osmotic laxative that also lowers ammonia in hepatic encephalopathy",
+    "rationale": "Lactulose is titrated to a few soft stools a day in encephalopathy. Too much causes dehydration.",
+    "topic": "Gastroenterology"
+  },
+  "PSYLLIUM": {
+    "clue": "Bulk fiber laxative taken with a full glass of water",
+    "rationale": "Psyllium without enough fluid can swell and obstruct. Separate it from other oral drugs.",
+    "topic": "Gastroenterology"
+  },
+  "MESALAMINE": {
+    "clue": "5-ASA drug for ulcerative colitis, released at different gut sites by formulation",
+    "rationale": "Mesalamine formulations are not interchangeable. Nephrotoxicity is rare but creatinine is checked.",
+    "topic": "Gastroenterology"
+  },
+  "BUDESONIDE": {
+    "clue": "Steroid with high first-pass metabolism used for some inflammatory bowel disease",
+    "rationale": "Oral budesonide acts in the gut with less systemic steroid effect than prednisone, but not zero.",
+    "topic": "Gastroenterology"
+  },
+  "INFLIXIMAB": {
+    "clue": "IV TNF inhibitor that can reactivate tuberculosis",
+    "rationale": "Infliximab requires tuberculosis and hepatitis B screening. Infusion reactions are treated and sometimes premedicated.",
+    "topic": "Gastroenterology"
+  },
+  "ADALIMUMAB": {
+    "clue": "Subcutaneous TNF inhibitor with the same infection warnings as infliximab",
+    "rationale": "Adalimumab is injected at home. Live vaccines are avoided during therapy.",
+    "topic": "Gastroenterology"
+  },
+  "OCTREOTIDE": {
+    "clue": "Somatostatin analog for variceal bleeding and some secretory tumors",
+    "rationale": "Octreotide reduces splanchnic blood flow. It is used with endoscopy, not instead of it, for varices.",
+    "topic": "Gastroenterology"
+  },
+  "URSODIOL": {
+    "clue": "Bile acid used to dissolve some gallstones and to treat primary biliary cholangitis",
+    "rationale": "Ursodiol is taken with food. It does not dissolve calcified or pigment stones well.",
+    "topic": "Gastroenterology"
+  },
+  "ALBUTEROL": {
+    "clue": "Short-acting beta agonist rescue inhaler that causes tremor and tachycardia",
+    "rationale": "Albuterol is not a controller. Rising use means the preventive inhaler needs review.",
+    "topic": "Pulmonary"
+  },
+  "SALMETEROL": {
+    "clue": "Long-acting beta agonist that is never used alone in asthma",
+    "rationale": "Salmeterol without an inhaled corticosteroid increases asthma death risk. It is paired with a steroid.",
+    "topic": "Pulmonary"
+  },
+  "FORMOTEROL": {
+    "clue": "Fast-onset long-acting beta agonist used with an inhaled corticosteroid",
+    "rationale": "Formoterol can be part of a maintenance-and-reliever regimen. It is not a standalone asthma drug.",
+    "topic": "Pulmonary"
+  },
+  "TIOTROPIUM": {
+    "clue": "Long-acting antimuscarinic inhaler for COPD",
+    "rationale": "Tiotropium dries secretions and can cause urinary retention. It is inhaled, not swallowed.",
+    "topic": "Pulmonary"
+  },
+  "IPRATROPIUM": {
+    "clue": "Short-acting antimuscarinic used with albuterol in COPD exacerbations",
+    "rationale": "Ipratropium is a reliever. Closed-angle glaucoma can worsen if the mist gets in the eyes.",
+    "topic": "Pulmonary"
+  },
+  "FLUTICASONE": {
+    "clue": "Inhaled corticosteroid that can cause thrush and hoarseness",
+    "rationale": "Patients rinse and spit after fluticasone. High doses have some systemic steroid effect.",
+    "topic": "Pulmonary"
+  },
+  "MOMETASONE": {
+    "clue": "Inhaled or nasal corticosteroid for asthma or allergic rhinitis",
+    "rationale": "Mometasone is a controller or a nasal steroid, not a rescue inhaler.",
+    "topic": "Pulmonary"
+  },
+  "MONTELUKAST": {
+    "clue": "Leukotriene blocker for asthma and allergic rhinitis with a neuropsychiatric warning",
+    "rationale": "Montelukast is taken in the evening for asthma. Mood and sleep changes are reported.",
+    "topic": "Pulmonary"
+  },
+  "ZAFIRLUKAST": {
+    "clue": "Leukotriene receptor antagonist taken on an empty stomach",
+    "rationale": "Zafirlukast food reduces absorption. Hepatotoxicity is monitored.",
+    "topic": "Pulmonary"
+  },
+  "ZILEUTON": {
+    "clue": "5-lipoxygenase inhibitor for asthma that requires liver monitoring",
+    "rationale": "Zileuton inhibits theophylline metabolism. ALT is checked.",
+    "topic": "Pulmonary"
+  },
+  "OMALIZUMAB": {
+    "clue": "Anti-IgE injection for allergic asthma given in a setting that can treat anaphylaxis",
+    "rationale": "Omalizumab dose depends on weight and IgE level. Patients are observed after injection.",
+    "topic": "Pulmonary"
+  },
+  "ROFLUMILAST": {
+    "clue": "PDE-4 inhibitor for severe COPD that causes weight loss and psychiatric effects",
+    "rationale": "Roflumilast is not a bronchodilator. Diarrhea and weight loss limit its use.",
+    "topic": "Pulmonary"
+  },
+  "DORNASE": {
+    "clue": "Inhaled enzyme that cleaves DNA in cystic fibrosis sputum",
+    "rationale": "Dornase alfa is not mixed with other nebulized drugs in the same cup. It thins infected secretions.",
+    "topic": "Pulmonary"
+  },
+  "GUAIFENESIN": {
+    "clue": "Expectorant taken with water to loosen mucus",
+    "rationale": "Guaifenesin does not suppress cough. Hydration is part of how it is used.",
+    "topic": "Pulmonary"
+  },
+  "BENZONATATE": {
+    "clue": "Prescription cough capsule that must be swallowed whole",
+    "rationale": "Chewing benzonatate can numb the mouth and cause choking. It is dangerous in children.",
+    "topic": "Pulmonary"
+  },
+  "ALLOPURINOL": {
+    "clue": "Xanthine oxidase inhibitor for gout prevention, not the treatment of an acute flare alone",
+    "rationale": "Allopurinol is titrated to the uric acid goal. A rash can be severe, especially with certain HLA types.",
+    "topic": "Rheumatology"
+  },
+  "FEBUXOSTAT": {
+    "clue": "Xanthine oxidase inhibitor reserved when allopurinol cannot be used",
+    "rationale": "Febuxostat carries a cardiovascular warning. It is still a urate-lowering drug, not an acute-flare drug.",
+    "topic": "Rheumatology"
+  },
+  "PROBENECID": {
+    "clue": "Uricosuric that is avoided in kidney stones and during an acute flare",
+    "rationale": "Probenecid blocks penicillin excretion and raises beta-lactam levels. It needs adequate urine flow.",
+    "topic": "Rheumatology"
+  },
+  "COLCHICINE": {
+    "clue": "Anti-inflammatory for early gout flares that causes diarrhea",
+    "rationale": "Colchicine dose is reduced with strong CYP3A4 or P-glycoprotein inhibitors and in kidney disease.",
+    "topic": "Rheumatology"
+  },
+  "PEGLICASE": {
+    "clue": "IV uricase for refractory gout that can cause infusion reactions",
+    "rationale": "Pegloticase is stopped if uric acid rises, because that signals antibody formation and a higher reaction risk.",
+    "topic": "Rheumatology"
+  },
+  "LEFLUNOMIDE": {
+    "clue": "DMARD with a very long half-life that is teratogenic",
+    "rationale": "Leflunomide is washed out with cholestyramine when pregnancy is planned. Liver enzymes are monitored.",
+    "topic": "Rheumatology"
+  },
+  "TACROLIMUS": {
+    "clue": "Calcineurin inhibitor with a narrow index, nephrotoxicity, and CYP3A4 interactions",
+    "rationale": "Tacrolimus levels are troughs. Grapefruit and many antifungals raise the level.",
+    "topic": "Transplant"
+  },
+  "SIROLIMUS": {
+    "clue": "mTOR inhibitor that impairs wound healing and raises lipids",
+    "rationale": "Sirolimus is not started immediately around major surgery if healing is the priority. Mouth ulcers are common.",
+    "topic": "Transplant"
+  },
+  "FILGRASTIM": {
+    "clue": "G-CSF that raises neutrophils and causes bone pain",
+    "rationale": "Filgrastim is timed after chemotherapy so it does not stimulate cells still being killed. It is not a chemotherapy drug.",
+    "topic": "Oncology support"
+  },
+  "MESNA": {
+    "clue": "Uroprotectant given with ifosfamide or high-dose cyclophosphamide",
+    "rationale": "Mesna binds acrolein in the bladder. Hemorrhagic cystitis is the toxicity it prevents.",
+    "topic": "Oncology support"
+  },
+  "LEUCOVORIN": {
+    "clue": "Reduced folate that rescues normal cells after methotrexate",
+    "rationale": "Leucovorin timing matters. It is also given to boost fluorouracil in some colorectal regimens.",
+    "topic": "Oncology support"
+  },
+  "RASBURICASE": {
+    "clue": "Uricase for tumor lysis that is contraindicated in G6PD deficiency",
+    "rationale": "Rasburicase makes uric acid samples fall in the tube. The lab must handle the specimen on ice.",
+    "topic": "Oncology support"
+  },
+  "DEXRAZOXANE": {
+    "clue": "Chelator that reduces anthracycline heart injury and is also an extravasation antidote",
+    "rationale": "Dexrazoxane is not routine for every doxorubicin patient. It is used when the cumulative dose is high or for extravasation.",
+    "topic": "Oncology support"
+  },
+  "TAMOXIFEN": {
+    "clue": "SERM for estrogen-receptor breast cancer that raises clot and endometrial risk",
+    "rationale": "Tamoxifen is a prodrug via CYP2D6. Strong CYP2D6 inhibitors such as paroxetine can reduce its activation.",
+    "topic": "Oncology"
+  },
+  "ANASTROZOLE": {
+    "clue": "Aromatase inhibitor for postmenopausal hormone-receptor breast cancer",
+    "rationale": "Anastrozole causes joint pain and bone loss. It is not the adjuvant endocrine drug for a premenopausal woman alone.",
+    "topic": "Oncology"
+  },
+  "LETROZOLE": {
+    "clue": "Aromatase inhibitor used in postmenopausal breast cancer and some fertility protocols",
+    "rationale": "Letrozole lowers estrogen. Bone density and cholesterol are followed in long adjuvant use.",
+    "topic": "Oncology"
+  },
+  "IMATINIB": {
+    "clue": "BCR-ABL tyrosine kinase inhibitor taken with food and a large glass of water",
+    "rationale": "Imatinib causes edema and muscle cramps. CYP3A4 inducers lower its level.",
+    "topic": "Oncology"
+  },
+  "ERLOTINIB": {
+    "clue": "EGFR inhibitor taken on an empty stomach that causes an acneiform rash",
+    "rationale": "Erlotinib rash is a class effect. Proton pump inhibitors markedly reduce its absorption.",
+    "topic": "Oncology"
+  },
+  "HYDROXYUREA": {
+    "clue": "Ribonucleotide reductase inhibitor for sickle cell disease and some myeloproliferative disease",
+    "rationale": "Hydroxyurea raises fetal hemoglobin in sickle cell disease. Blood counts are followed because it is myelosuppressive.",
+    "topic": "Hematology"
+  },
+  "GRAPEFRUIT": {
+    "clue": "Fruit that inhibits intestinal CYP3A4 and raises levels of many drugs",
+    "rationale": "Grapefruit juice is a one-way interaction: it inhibits, it does not induce. The effect can last more than a day.",
+    "topic": "Interactions"
+  },
+  "TYRAMINE": {
+    "clue": "Dietary amine that causes hypertensive crisis with MAO inhibitors",
+    "rationale": "Aged cheese, cured meats, and tap beer are high in tyramine. Patients on phenelzine need this list.",
+    "topic": "Interactions"
+  },
+  "ALCOHOL": {
+    "clue": "CNS depressant that causes a disulfiram reaction with metronidazole and tinidazole",
+    "rationale": "Alcohol adds sedation to opioids and benzodiazepines and liver risk to acetaminophen in heavy use.",
+    "topic": "Interactions"
+  },
+  "CHARCOAL": {
+    "clue": "Adsorbent used for some recent overdoses that binds other oral drugs",
+    "rationale": "Activated charcoal does not bind iron, lithium, or alcohols well. The airway must be protected.",
+    "topic": "Antidote"
+  },
+  "ANTACID": {
+    "clue": "Magnesium, aluminum, or calcium product that chelates quinolones and tetracyclines",
+    "rationale": "Separate antacids from levothyroxine, quinolones, and tetracyclines by several hours.",
+    "topic": "Interactions"
+  },
+  "CHELATION": {
+    "clue": "Binding of a drug by calcium, iron, or magnesium that blocks absorption",
+    "rationale": "Chelation is why ciprofloxacin and doxycycline are separated from dairy and supplements.",
+    "topic": "Kinetics"
+  },
+  "PRODRUG": {
+    "clue": "Inactive compound that must be converted to the active drug",
+    "rationale": "Clopidogrel and codeine are prodrugs. Poor metabolizers may get little effect.",
+    "topic": "Kinetics"
+  },
+  "FIRSTPASS": {
+    "clue": "Liver metabolism of an oral drug before it reaches the circulation",
+    "rationale": "High first-pass extraction is why some drugs are given IV or as patches. Inhibitors of that path raise levels.",
+    "topic": "Kinetics"
+  },
+  "HALFLIFE": {
+    "clue": "Time for the plasma concentration to fall by half, used to estimate steady state",
+    "rationale": "About four to five half-lives are needed to reach steady state. A long half-life means a long washout.",
+    "topic": "Kinetics"
+  },
+  "CLEARANCE": {
+    "clue": "Volume of plasma cleared of drug per unit time",
+    "rationale": "Clearance falls in the organ that eliminates the drug. Dose rate is clearance times target concentration.",
+    "topic": "Kinetics"
+  },
+  "TROUGH": {
+    "clue": "Concentration drawn just before the next dose",
+    "rationale": "Aminoglycoside and vancomycin troughs, or AUC, are used to limit toxicity.",
+    "topic": "Kinetics"
+  },
+  "PEAK": {
+    "clue": "Concentration drawn after distribution, reflecting the highest level",
+    "rationale": "Peaks are timed after the infusion ends, not during it. They are used for some aminoglycoside regimens.",
+    "topic": "Kinetics"
+  },
+  "BIOEQUIV": {
+    "clue": "Standard showing a generic delivers the same exposure as the reference product",
+    "rationale": "Bioequivalence uses AUC and peak concentration limits. Narrow-therapeutic-index drugs are sometimes debated.",
+    "topic": "Kinetics"
+  },
+  "SUBLINGUAL": {
+    "clue": "Route that bypasses the gut and first-pass liver metabolism",
+    "rationale": "Nitroglycerin tablets are not swallowed. The patient sits, because the blood pressure will fall.",
+    "topic": "Kinetics"
+  },
+  "TRANSDERMAL": {
+    "clue": "Patch route that gives steady absorption and lingers after removal",
+    "rationale": "Fentanyl and clonidine patches are folded and discarded safely. Heat increases absorption.",
+    "topic": "Kinetics"
+  },
+  "ENTERIC": {
+    "clue": "Coating that keeps a tablet from dissolving in the stomach",
+    "rationale": "Enteric tablets are not crushed. Bisacodyl and some aspirin products depend on the coating.",
+    "topic": "Kinetics"
+  },
+  "INDUCER": {
+    "clue": "Drug that increases enzyme activity and lowers substrate levels",
+    "rationale": "Rifampin, carbamazepine, and phenytoin are classic inducers. The effect takes days to appear and to wear off.",
+    "topic": "Kinetics"
+  },
+  "INHIBITOR": {
+    "clue": "Drug that blocks an enzyme and raises substrate levels",
+    "rationale": "Azoles, macrolides, and ritonavir inhibit CYP3A4. The interaction can appear with the first doses.",
+    "topic": "Kinetics"
+  },
+  "SUBSTRATE": {
+    "clue": "Drug that is metabolized by a given enzyme",
+    "rationale": "A substrate's level rises with an inhibitor and falls with an inducer of its enzyme.",
+    "topic": "Kinetics"
+  },
+  "PHENYTOIN": {
+    "clue": "Antiseizure drug with nonlinear kinetics and a high protein binding",
+    "rationale": "Phenytoin small dose changes cause large level changes near the therapeutic range. Low albumin raises the free fraction.",
+    "topic": "Neurology"
+  },
+  "DISULFIRAM": {
+    "clue": "Alcohol-deterrent drug that causes flushing and vomiting if ethanol is consumed",
+    "rationale": "Disulfiram blocks aldehyde dehydrogenase. Hidden alcohol in mouthwash and sauces can trigger the reaction.",
+    "topic": "Psychiatry"
+  },
+  "NALMEFENE": {
+    "clue": "Opioid antagonist related to naloxone with a longer duration in some formulations",
+    "rationale": "Opioid antagonists reverse respiratory depression and can precipitate acute withdrawal.",
+    "topic": "Antidote"
+  },
+  "FOMEPIZOLE": {
+    "clue": "Alcohol dehydrogenase inhibitor for methanol and ethylene glycol poisoning",
+    "rationale": "Fomepizole blocks formation of toxic metabolites. It is preferred over ethanol when available.",
+    "topic": "Antidote"
+  },
+  "GLUCAGON": {
+    "clue": "Hormone used for beta-blocker overdose and for severe hypoglycemia when the patient cannot swallow",
+    "rationale": "Glucagon raises glucose from liver stores. It will not work well if glycogen is depleted.",
+    "topic": "Antidote"
+  },
+  "SUCCIMER": {
+    "clue": "Oral chelator for lead poisoning",
+    "rationale": "Succimer is used when the lead level and the clinical picture meet treatment thresholds. It chelates other metals too.",
+    "topic": "Antidote"
+  },
+  "PRALIDOXIME": {
+    "clue": "Cholinesterase reactivator given with atropine for organophosphate poisoning",
+    "rationale": "Pralidoxime works best before the enzyme ages. Atropine treats the muscarinic symptoms.",
+    "topic": "Antidote"
+  },
+  "DIGIFAB": {
+    "clue": "Antibody fragments that bind digoxin for life-threatening toxicity",
+    "rationale": "Digoxin immune fab is dosed by the amount ingested or the level. The level after treatment is not interpretable.",
+    "topic": "Antidote"
+  },
+  "SUGAMMADEX": {
+    "clue": "Reversal agent that encapsulates rocuronium and vecuronium",
+    "rationale": "Sugammadex can bind hormonal contraceptives for a week. It is not a reversal for succinylcholine.",
+    "topic": "Antidote"
+  },
+  "VITAMINK": {
+    "clue": "Fat-soluble vitamin that reverses warfarin and must be consistent in the diet",
+    "rationale": "Patients do not avoid greens; they keep the intake steady. Pharmaceutical vitamin K is phytonadione.",
+    "topic": "Anticoagulation"
+  },
+  "ORANGEBOOK": {
+    "clue": "FDA reference that rates therapeutic equivalence of generic products",
+    "rationale": "An AB rating means the generic is therapeutically equivalent to the reference. Other codes flag unresolved issues.",
+    "topic": "Dispensing"
+  },
+  "AUXLABEL": {
+    "clue": "Extra sticker that carries a critical counseling point the vial label may not emphasize",
+    "rationale": "Auxiliary labels cover shake well, take with food, and do not crush. They do not replace spoken counseling.",
+    "topic": "Dispensing"
+  },
+  "NDCNUMBER": {
+    "clue": "Identifier on the package used to pick the correct product at the shelf",
+    "rationale": "The NDC is not a substitute for reading the drug name and strength. Look-alike packages are a known error source.",
+    "topic": "Dispensing"
+  },
+  "TALLMAN": {
+    "clue": "Mixed-case lettering that separates look-alike drug names",
+    "rationale": "Tall-man letters highlight the dissimilar part of names such as hydrOXYzine and hydrALAZINE.",
+    "topic": "Safety"
+  },
+  "HIGHALERT": {
+    "clue": "Category that includes insulin, opioids, anticoagulants, and concentrated electrolytes",
+    "rationale": "High-alert drugs need independent checks. A tenfold insulin or heparin error is a classic harm.",
+    "topic": "Safety"
+  },
+  "ISMP": {
+    "clue": "Organization that publishes high-alert lists and error-prevention standards",
+    "rationale": "ISMP recommendations drive tall-man letters, do-not-crush lists, and standard concentrations.",
+    "topic": "Safety"
+  },
+  "BEERS": {
+    "clue": "Criteria that list drugs to avoid or dose-reduce in older adults",
+    "rationale": "The Beers list flags glyburide, many anticholinergics, and sliding-scale insulin as higher risk in older adults.",
+    "topic": "Geriatrics"
+  },
+  "ANTICHOLIN": {
+    "clue": "Effect that causes dry mouth, constipation, retention, and confusion",
+    "rationale": "Anticholinergic burden adds up across drugs. Older adults are especially vulnerable to delirium.",
+    "topic": "Geriatrics"
+  },
+  "QTPROLONG": {
+    "clue": "Effect that raises torsades risk, worsened by low potassium or magnesium",
+    "rationale": "Ondansetron, citalopram, and many antipsychotics prolong the QT. Correct electrolytes and avoid stacking them.",
+    "topic": "Safety"
+  },
+  "SEROTONIN": {
+    "clue": "Syndrome of clonus, hyperreflexia, and agitation from stacked serotonergic drugs",
+    "rationale": "Serotonin syndrome is neuromuscular hyperactivity. It is not the same as neuroleptic malignant syndrome rigidity.",
+    "topic": "Safety"
+  },
+  "NARROWTI": {
+    "clue": "Therapeutic index small enough that levels or close monitoring are required",
+    "rationale": "Narrow therapeutic index drugs include warfarin, lithium, phenytoin, and digoxin.",
+    "topic": "Kinetics"
+  },
+  "CREATININE": {
+    "clue": "Lab used to estimate kidney function for renal dosing",
+    "rationale": "Creatinine clearance equations need a stable creatinine, age, weight, and sex. They overestimate function in frail patients.",
+    "topic": "Renal dosing"
+  },
+  "COCKCROFT": {
+    "clue": "Equation that estimates creatinine clearance from age, weight, sex, and creatinine",
+    "rationale": "The Cockcroft-Gault equation is still used in many drug labels. Use actual, ideal, or adjusted weight as the label directs.",
+    "topic": "Renal dosing"
+  },
+  "IDEALWT": {
+    "clue": "Weight based on height and sex, used in some clearance and dose calculations",
+    "rationale": "Ideal body weight avoids overdosing renally cleared drugs in patients with obesity when the label says to use it.",
+    "topic": "Calculations"
+  },
+  "BSA": {
+    "clue": "Body surface area used to dose many chemotherapy drugs",
+    "rationale": "BSA dosing uses height and weight. Recalculate it; do not copy an old value after a large weight change.",
+    "topic": "Calculations"
+  },
+  "MILLIMOLE": {
+    "clue": "Unit of amount used for electrolytes such as phosphate and some potassium orders",
+    "rationale": "Millimoles and milliequivalents are not identical for divalent ions. Read the phosphate order units carefully.",
+    "topic": "Calculations"
+  },
+  "OSMOLARITY": {
+    "clue": "Concentration term used to judge whether an IV fluid is isotonic",
+    "rationale": "Hyperosmolar infusions through a small vein cause phlebitis. Parenteral nutrition osmolarity limits peripheral use.",
+    "topic": "Calculations"
+  },
+  "ALLIGATION": {
+    "clue": "Method for mixing two concentrations to reach a desired strength",
+    "rationale": "Alligation solves how many parts of each strength to combine. It does not replace checking the final volume.",
+    "topic": "Calculations"
+  },
+  "DROPS": {
+    "clue": "Volume unit for ophthalmic and some oral liquids, which is not exactly a milliliter",
+    "rationale": "A dropper is calibrated to its bottle. Do not substitute a household teaspoon for a measured oral syringe.",
+    "topic": "Calculations"
+  },
+  "INFUSION": {
+    "clue": "Intravenous delivery calculated from concentration, rate, and time",
+    "rationale": "Infusion rate errors are prevented by standard concentrations and an independent check of the pump.",
+    "topic": "Calculations"
+  },
+  "CRUSH": {
+    "clue": "Instruction that is unsafe for extended-release, enteric, and hazardous tablets",
+    "rationale": "Do-not-crush lists include bupropion XL, bisacodyl, and many oncology drugs. Open a capsule only if the label allows it.",
+    "topic": "Dispensing"
+  },
+  "HAZARDOUS": {
+    "clue": "Drug category that includes chemotherapy and requires special handling",
+    "rationale": "Hazardous drugs are not crushed on an open counter. Pregnant staff follow the facility handling policy.",
+    "topic": "Safety"
+  },
+  "REMS": {
+    "clue": "FDA program that restricts distribution of drugs with serious risks",
+    "rationale": "Isotretinoin and clozapine are examples of drugs with required monitoring programs. A prescription alone may not be enough to dispense.",
+    "topic": "Safety"
+  },
+  "TRETINOIN": {
+    "clue": "Topical retinoid for acne that is photosensitizing and not the oral teratogen",
+    "rationale": "Topical tretinoin is not isotretinoin. It still irritates skin and is avoided in pregnancy by many clinicians.",
+    "topic": "Dermatology"
+  },
+  "BENZOYL": {
+    "clue": "Topical antibacterial for acne that bleaches fabric",
+    "rationale": "Benzoyl peroxide can inactivate tretinoin if they are applied at the same moment. Many regimens separate them.",
+    "topic": "Dermatology"
+  },
+  "ADAPALENE": {
+    "clue": "Topical retinoid available over the counter for acne",
+    "rationale": "Adapalene causes dryness and sun sensitivity. Benefit takes weeks.",
+    "topic": "Dermatology"
+  },
+  "HYDROCORT": {
+    "clue": "Low-potency topical steroid safe enough for limited face and fold use",
+    "rationale": "Hydrocortisone is the mild end of the topical steroid ladder. Potent steroids are not used on the face chronically.",
+    "topic": "Dermatology"
+  },
+  "CLOBETASOL": {
+    "clue": "Super-potent topical steroid limited to short courses",
+    "rationale": "Clobetasol can thin skin and suppress the adrenal axis if it is used on large areas for long periods.",
+    "topic": "Dermatology"
+  },
+  "MUPIROCIN": {
+    "clue": "Topical antibiotic for impetigo and nasal decolonization",
+    "rationale": "Mupirocin ointment is applied to lesions. The nasal form is for staph carriage protocols, not routine cuts.",
+    "topic": "Dermatology"
+  },
+  "LIDOCAINE": {
+    "clue": "Local anesthetic patch or gel with a maximum daily dose because of seizures and arrhythmias",
+    "rationale": "Lidocaine patches are worn for 12 hours and off for 12. Do not cover them with heat.",
+    "topic": "Pain"
+  },
+  "CAPSAICIN": {
+    "clue": "Topical chili derivative for neuropathic pain that burns at first",
+    "rationale": "Capsaicin is applied with gloves. Hands are washed so the drug is not transferred to the eyes.",
+    "topic": "Pain"
+  },
+  "MENTHOL": {
+    "clue": "Counterirritant in many topical pain products",
+    "rationale": "Menthol feels cool. Combination patches still count toward the lidocaine or salicylate dose if those are included.",
+    "topic": "Pain"
+  },
+  "VARENICLINE": {
+    "clue": "Partial nicotine agonist for smoking cessation that can change mood",
+    "rationale": "Varenicline is titrated to reduce nausea. Psychiatric history is discussed, and vivid dreams are common.",
+    "topic": "Tobacco"
+  },
+  "NICOTINE": {
+    "clue": "Replacement therapy that is not smoked and is dosed to withdrawal symptoms",
+    "rationale": "Nicotine gum is chewed and parked. The patch is removed at night if insomnia or vivid dreams occur.",
+    "topic": "Tobacco"
+  }
+}

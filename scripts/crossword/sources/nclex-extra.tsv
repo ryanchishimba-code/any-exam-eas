@@ -1,0 +1,477 @@
+# NCLEX additions. Answer, clue, rationale, topic. Tab-separated.
+ONDANSETRON	Antiemetic that blocks serotonin receptors and can prolong the QT interval	Ondansetron is a 5-HT3 blocker used for chemo and postoperative nausea. Watch the QT interval.	Pharm / GI
+LORAZEPAM	Benzodiazepine used for anxiety and status epilepticus that depresses breathing	Lorazepam boosts GABA. Watch sedation and respiratory depression, especially with opioids.	Pharm / neuro
+DIAZEPAM	Longer-acting benzodiazepine used for seizures, spasms, and alcohol withdrawal	Diazepam is a GABA agonist. It treats seizures, muscle spasm, and alcohol withdrawal.	Pharm / neuro
+ALPRAZOLAM	Short-acting benzodiazepine for anxiety whose abrupt stop can cause withdrawal	Alprazolam is habit-forming. Taper it; sudden stops can cause rebound anxiety or seizures.	Pharm / psych
+HALOPERIDOL	First-generation antipsychotic that can cause dystonia and a prolonged QT	Haloperidol treats psychosis and acute agitation. Watch extrapyramidal effects and QT.	Pharm / psych
+SERTRALINE	SSRI antidepressant that raises serotonin and can cause sexual side effects	Sertraline takes weeks for mood effect. Watch for serotonin syndrome if combined with other serotonergic drugs.	Pharm / psych
+FLUOXETINE	Long half-life SSRI often chosen when a weekly washout reduces withdrawal risk	Fluoxetine has a long half-life. It is an SSRI used for depression and some anxiety disorders.	Pharm / psych
+BUPROPION	Antidepressant that lowers the seizure threshold and is avoided in eating disorders	Bupropion does not cause the sexual side effects of SSRIs. Avoid it when seizure risk is high.	Pharm / psych
+TRAZODONE	Antidepressant often used for sleep that can cause priapism	Trazodone is sedating. Teach patients to report a prolonged painful erection.	Pharm / psych
+GABAPENTIN	Anticonvulsant used for neuropathic pain that is cleared by the kidneys	Gabapentin is renally cleared. Doses are reduced when GFR falls, and sedation is common.	Pharm / neuro
+VALPROATE	Antiseizure drug that is teratogenic and can injure the liver and pancreas	Valproate is avoided in pregnancy. Monitor liver enzymes, platelets, and signs of pancreatitis.	Pharm / neuro
+LAMOTRIGINE	Antiseizure drug whose serious rash risk rises if the dose is raised too fast	Lamotrigine is titrated slowly. A rash can signal Stevens-Johnson syndrome and the drug is stopped.	Pharm / neuro
+OMEPRAZOLE	Proton pump inhibitor used for ulcer and reflux that can lower magnesium long term	Omeprazole reduces gastric acid. Long courses are linked with low magnesium and C. difficile risk.	Pharm / GI
+FAMOTIDINE	H2 blocker that reduces stomach acid and is adjusted when the kidneys are weak	Famotidine blocks histamine at the parietal cell. Reduce the dose in renal impairment.	Pharm / GI
+SUCRALFATE	Mucosal coating agent for ulcers that is given on an empty stomach	Sucralfate forms a barrier over ulcers. Separate it from other oral drugs so it does not bind them.	Pharm / GI
+DOCUSATE	Stool softener used to prevent straining after surgery or with painful defecation	Docusate pulls water into stool. It prevents constipation; it does not treat a hard impaction alone.	Pharm / GI
+BISACODYL	Stimulant laxative used for short-term constipation, often at bedtime	Bisacodyl stimulates the colon. Do not use stimulant laxatives as a daily habit.	Pharm / GI
+SENNA	Plant stimulant laxative that increases colonic motility	Senna is a stimulant laxative. Abdominal cramping can occur, and long daily use is discouraged.	Pharm / GI
+ALLOPURINOL	Xanthine oxidase inhibitor that lowers uric acid and is a maintenance gout drug	Allopurinol prevents gout flares over time. It is not the treatment for an acute joint flare.	Pharm / gout
+COLCHICINE	Anti-inflammatory used early in acute gout that causes diarrhea at high doses	Colchicine is most useful when started soon after a gout flare. Diarrhea is the dose-limiting effect.	Pharm / gout
+AMOXICILLIN	Aminopenicillin used for otitis, sinusitis, and some streptococcal infections	Amoxicillin is a beta-lactam. A rash in mono is common, and true allergy is a contraindication.	Pharm / antibiotics
+CEFAZOLIN	First-generation cephalosporin often given before surgery to prevent skin flora infection	Cefazolin is a common perioperative prophylactic antibiotic. It covers many gram-positive skin organisms.	Pharm / antibiotics
+CEFTRIAXONE	Third-generation cephalosporin used for meningitis, gonorrhea, and serious gram-negative infection	Ceftriaxone reaches the meninges. It is a workhorse for community meningitis and gonorrhea regimens.	Pharm / antibiotics
+DOXYCYCLINE	Tetracycline used for Lyme disease, acne, and atypical pneumonia that discolors teeth	Doxycycline is avoided in pregnancy and young children because it stains developing teeth.	Pharm / antibiotics
+CLINDAMYCIN	Lincosamide that covers anaerobes and is strongly linked with C. difficile colitis	Clindamycin treats anaerobic and some gram-positive infections. Diarrhea can mean C. difficile.	Pharm / antibiotics
+LINEZOLID	Oxazolidinone for resistant gram-positive infection that can cause serotonin syndrome	Linezolid covers MRSA and VRE. It is an MAO inhibitor, so combining it with SSRIs is risky.	Pharm / antibiotics
+MEROPENEM	Carbapenem reserved for serious resistant infection and covering many anaerobes	Meropenem is a broad carbapenem. It can lower the seizure threshold, especially in renal failure.	Pharm / antibiotics
+FLUCONAZOLE	Azole antifungal used for candida that inhibits CYP enzymes and raises some drug levels	Fluconazole treats mucosal and systemic candida. It interacts with warfarin and some statins.	Pharm / antifungals
+ACYCLOVIR	Antiviral for herpes that is given with good hydration to protect the kidneys	Acyclovir treats HSV and varicella-zoster. IV doses need hydration because crystals can injure the kidney.	Pharm / antivirals
+OSELTAMIVIR	Neuraminidase inhibitor started early to shorten influenza illness	Oseltamivir works best within about 48 hours of flu symptom onset. It is not a substitute for vaccination.	Pharm / antivirals
+NYSTATIN	Topical or swish antifungal used for oral thrush that is not systemically absorbed	Nystatin suspension is swished and swallowed for oral candida. It acts locally in the gut and mouth.	Pharm / antifungals
+ENOXAPARIN	Low-molecular-weight heparin dosed by weight and used for clot treatment and prevention	Enoxaparin is given subcutaneously. Dose is reduced in renal impairment, and protamine only partly reverses it.	Pharm / coagulation
+CLOPIDOGREL	Antiplatelet prodrug used after stent placement that is stopped before many surgeries	Clopidogrel blocks the P2Y12 receptor. Hold it before elective surgery because of bleeding risk.	Pharm / coagulation
+APIXABAN	Direct oral anticoagulant that inhibits factor Xa and does not need INR checks	Apixaban is used for atrial fibrillation and venous clots. Bleeding is the main risk; INR is not the monitor.	Pharm / coagulation
+RIVAROXABAN	Once-daily factor Xa inhibitor that must be taken with food at the treatment dose	Rivaroxaban 15 and 20 mg doses are taken with food so absorption is adequate.	Pharm / coagulation
+DABIGATRAN	Direct thrombin inhibitor whose capsules must stay in the original bottle	Dabigatran is moisture sensitive. Do not crush the capsules, and bleeding risk rises with poor renal function.	Pharm / coagulation
+METHIMAZOLE	Antithyroid drug for hyperthyroidism that is avoided in the first trimester	Methimazole blocks thyroid hormone synthesis. Agranulocytosis is a rare emergency signaled by fever or sore throat.	Pharm / endocrine
+GLIPIZIDE	Sulfonylurea that stimulates insulin release and can cause hypoglycemia	Glipizide lowers glucose by pushing the pancreas to release insulin. Teach patients to eat when they take it.	Pharm / endocrine
+GLYBURIDE	Longer sulfonylurea more likely to cause prolonged hypoglycemia in older adults	Glyburide is generally avoided in older adults because hypoglycemia can last.	Pharm / endocrine
+SITAGLIPTIN	DPP-4 inhibitor for type 2 diabetes that is weight neutral and rarely causes hypoglycemia alone	Sitagliptin raises incretin effect. By itself it seldom causes low glucose, unlike sulfonylureas.	Pharm / endocrine
+HYDRALAZINE	Direct arterial vasodilator used for hypertension that can cause reflex tachycardia	Hydralazine drops afterload. Reflex tachycardia and a lupus-like syndrome can occur.	Pharm / cardiac
+AMLODIPINE	Dihydropyridine calcium blocker for hypertension and angina that causes ankle edema	Amlodipine relaxes arterial smooth muscle. Peripheral edema is common and is not a reason to add a diuretic first.	Pharm / cardiac
+DILTIAZEM	Non-dihydropyridine calcium blocker that slows the AV node and lowers heart rate	Diltiazem is used for rate control. Avoid it in heart failure with reduced ejection fraction.	Pharm / cardiac
+VERAPAMIL	Calcium blocker that slows heart rate and is constipating	Verapamil blocks cardiac calcium channels. Constipation and bradycardia are classic effects.	Pharm / cardiac
+CLONIDINE	Central alpha agonist for blood pressure whose sudden stop can cause rebound hypertension	Clonidine is tapered. Abrupt withdrawal can spike the blood pressure.	Pharm / cardiac
+CAPTOPRIL	Short-acting ACE inhibitor that can cause cough, high potassium, and angioedema	Captopril blocks angiotensin-converting enzyme. Stop it for angioedema and avoid it in pregnancy.	Pharm / cardiac
+ENALAPRIL	ACE inhibitor prodrug used for hypertension and heart failure with reduced ejection fraction	Enalapril lowers afterload and mortality in HFrEF. Watch potassium, creatinine, and cough.	Pharm / cardiac
+VALSARTAN	Angiotensin receptor blocker used when an ACE inhibitor cough is intolerable	Valsartan blocks the AT1 receptor. It does not cause the bradykinin cough of ACE inhibitors.	Pharm / cardiac
+CARVEDILOL	Nonselective beta blocker with alpha block used in heart failure with reduced ejection fraction	Carvedilol is evidence-based in HFrEF. Start low; it can worsen symptoms if begun during decompensated failure.	Pharm / cardiac
+PROPRANOLOL	Nonselective beta blocker used for tremor, migraine prevention, and thyroid storm symptoms	Propranolol blocks beta-1 and beta-2 receptors. It can worsen asthma and hide hypoglycemia signs.	Pharm / cardiac
+LABETALOL	Combined alpha and beta blocker given IV for severe hypertension in pregnancy	Labetalol lowers blood pressure without the pure beta-blocker rise in systemic resistance. It is used for severe prenatal hypertension.	Pharm / OB
+AMIODARONE	Antiarrhythmic that contains iodine and can injure the lungs, thyroid, and liver	Amiodarone has a huge half-life. Monitor lungs, thyroid, liver, and eyes during long courses.	Pharm / cardiac
+DOBUTAMINE	Inotrope that stimulates beta-1 receptors and is used in cardiogenic shock	Dobutamine raises contractility. It can provoke tachycardia and ischemia.	Pharm / cardiac
+VASOPRESSIN	Antidiuretic hormone analog used in vasodilatory shock and diabetes insipidus	Vasopressin raises blood pressure in shock and replaces ADH in central diabetes insipidus.	Pharm / endocrine
+MILRINONE	PDE inhibitor inotrope and vasodilator used in advanced heart failure	Milrinone increases contractility and dilates vessels. Hypotension is the limiting effect.	Pharm / cardiac
+IPRATROPIUM	Inhaled anticholinergic bronchodilator used with albuterol in COPD exacerbations	Ipratropium blocks muscarinic receptors in the airway. It is a reliever, not an anti-inflammatory controller.	Pharm / respiratory
+MONTELUKAST	Leukotriene receptor blocker used for asthma control and allergic rhinitis	Montelukast is a daily controller. Mood changes have been reported and should be taught.	Pharm / respiratory
+FLUTICASONE	Inhaled corticosteroid controller for asthma that can cause oral thrush	Fluticasone reduces airway inflammation. Rinse the mouth after use to lower candida risk.	Pharm / respiratory
+BUDESONIDE	Inhaled or nebulized steroid used as an asthma controller and in some croup regimens	Budesonide is an inhaled corticosteroid. It prevents symptoms; it does not replace a rescue bronchodilator.	Pharm / respiratory
+OXYCODONE	Oral opioid analgesic that depresses respirations and is reversed by naloxone	Oxycodone is a full opioid agonist. Constipation is expected, and sedation with benzodiazepines is dangerous.	Pharm / pain
+TRAMADOL	Weak opioid that also raises serotonin and lowers the seizure threshold	Tramadol has opioid and serotonergic effects. Seizures and serotonin syndrome are the teaching points.	Pharm / pain
+KETOROLAC	Potent NSAID limited to short courses because of kidney injury and bleeding	Ketorolac is for short-term pain. Avoid it in renal failure, peptic ulcer, and late pregnancy.	Pharm / pain
+IBUPROFEN	NSAID that reduces pain and fever and can worsen heart failure and kidneys	Ibuprofen blocks COX. It can raise blood pressure, retain fluid, and cause gastric bleeding.	Pharm / pain
+NAPROXEN	Longer-acting NSAID used for pain and dysmenorrhea with the usual COX risks	Naproxen shares NSAID risks: gastritis, renal injury, and fluid retention.	Pharm / pain
+DANTROLENE	Muscle relaxant that is the specific treatment for malignant hyperthermia	Dantrolene blocks calcium release from the sarcoplasmic reticulum. It treats malignant hyperthermia.	Pharm / emergency
+HYDROXYUREA	Drug that raises fetal hemoglobin and reduces sickle cell crises	Hydroxyurea lowers the rate of painful sickle crises. It is myelosuppressive, so blood counts are followed.	Pharm / heme
+FILGRASTIM	Growth factor that raises neutrophils after chemotherapy	Filgrastim stimulates neutrophil production. Bone pain is a common effect.	Pharm / heme
+PYRIDOXINE	Vitamin B6 given with isoniazid to prevent neuropathy	Pyridoxine prevents isoniazid neuropathy and is also the antidote for isoniazid overdose seizures.	Pharm / vitamins
+BENZTROPINE	Anticholinergic used for antipsychotic-induced dystonia and parkinsonism	Benztropine treats acute dystonia. It causes dry mouth, retention, and confusion in older adults.	Pharm / neuro
+LEVODOPA	Dopamine precursor for Parkinson disease that is given with carbidopa	Levodopa crosses into the brain and becomes dopamine. Carbidopa blocks peripheral conversion so less is needed.	Pharm / neuro
+CARBIDOPA	Peripheral decarboxylase inhibitor paired with levodopa so more drug reaches the brain	Carbidopa does not cross the blood-brain barrier. It reduces nausea from peripheral dopamine.	Pharm / neuro
+DYSPNEA	Subjective shortness of breath that is assessed before assuming anxiety	Dyspnea is what the patient feels. Measure oxygen, work of breathing, and lung sounds rather than dismissing it.	Respiratory
+TACHYPNEA	Abnormally fast respiratory rate that can signal hypoxia, pain, or acidosis	Tachypnea is a vital-sign finding. In metabolic acidosis it may be compensatory, as in Kussmaul breathing.	Respiratory
+HEMOPTYSIS	Coughing up blood, which can occur with tuberculosis, cancer, or pulmonary embolism	Hemoptysis needs airway protection and a search for the source. Massive bleeding is an emergency.	Respiratory
+MELENA	Black tarry stool from digested blood, usually an upper gastrointestinal bleed	Melena suggests blood has been in the gut long enough to be digested. Assess hemodynamics first.	GI
+REBOUND	Pain when pressure on the abdomen is released, suggesting peritoneal irritation	Rebound tenderness is a peritoneal sign. It supports processes such as perforation or advanced appendicitis.	GI
+GUARDING	Involuntary abdominal muscle tightness over an inflamed peritoneum	Guarding is a peritoneal finding. Pair it with vital signs and a surgical evaluation when it is new.	GI
+ASCITES	Fluid in the peritoneal cavity, classically from portal hypertension in cirrhosis	Ascites is assessed by shifting dullness and a fluid wave. A tense abdomen can impair breathing.	GI
+ASTERIXIS	Flapping tremor of the hands seen in hepatic encephalopathy	Asterixis is elicited by asking the patient to hold the wrists extended. It supports metabolic encephalopathy.	Neuro / GI
+PRURITUS	Itching that can follow cholestasis, opioid use, or uremia	Pruritus in liver disease is from retained bile salts. New itching with a rash also needs a skin and allergy review.	Skin
+ERYTHEMA	Redness of the skin from vasodilation, seen in infection, allergy, or pressure injury	Erythema that does not blanch over a bony prominence is an early pressure injury.	Skin
+PURPURA	Purple nonblanching skin lesions from bleeding under the skin	Purpura does not blanch. It can reflect low platelets, vasculitis, or meningococcemia.	Heme
+ECCHYMOSIS	Bruise from blood in the soft tissue that changes color as it heals	Ecchymosis after minor trauma can signal a clotting problem when it is extensive or unexplained.	Heme
+CLUBBING	Bulbous fingertips associated with chronic lung disease and some heart shunts	Clubbing develops over time with chronic hypoxemia. It is not an acute finding.	Respiratory
+PALLOR	Pale skin or conjunctiva that can reflect anemia or poor perfusion	Pallor of the conjunctiva is a bedside clue to anemia. Pair it with heart rate and hemoglobin.	Heme
+JAUNDICE	Yellow skin from elevated bilirubin, seen in hemolysis or liver and bile disease	Jaundice appears when bilirubin is high. Scleral icterus is often noticed first.	GI / heme
+ICTERUS	Yellow discoloration of the sclera from bilirubin	Icteric sclerae are a sensitive bedside sign of hyperbilirubinemia.	GI / heme
+NYSTAGMUS	Rhythmic eye jerking that can follow vestibular disease or phenytoin toxicity	Nystagmus has many causes. New nystagmus on phenytoin suggests toxicity.	Neuro
+DIPLOPIA	Double vision that can signal cranial nerve or neuromuscular disease	Diplopia that is new needs a neuro exam. In myasthenia it often fluctuates through the day.	Neuro
+PTOSIS	Drooping eyelid seen in cranial nerve III palsy and myasthenia gravis	Ptosis with a dilated pupil suggests a compressive third-nerve lesion and is urgent.	Neuro
+MIOSIS	Constricted pupils classically seen with opioids and cholinergic excess	Miosis with slow breathing supports opioid toxicity. The antidote is naloxone.	Neuro
+MYDRIASIS	Dilated pupils seen with anticholinergic toxicity and sympathetic stimulation	Mydriasis with dry flushed skin and delirium fits anticholinergic toxicity.	Neuro
+ATAXIA	Unsteady gait from cerebellar, sensory, or drug toxicity causes	Ataxia can follow phenytoin toxicity, alcohol, or posterior circulation stroke.	Neuro
+APHASIA	Language impairment, with Broca producing few words and Wernicke producing fluent nonsense	Aphasia is a cortical sign. Broca aphasia is nonfluent; Wernicke aphasia is fluent but empty.	Neuro
+DYSARTHRIA	Slurred speech from weak or uncoordinated speech muscles, not a language problem	Dysarthria is a motor speech problem. The patient understands language, unlike in aphasia.	Neuro
+HEMIPARESIS	Weakness of one side of the body, the classic motor pattern of a hemispheric stroke	Hemiparesis localizes above the spinal cord, often to the contralateral cortex or internal capsule.	Neuro
+PARESTHESIA	Pins-and-needles sensation from nerve or metabolic irritation	Paresthesia around the mouth and in the hands can be an early sign of low calcium or respiratory alkalosis.	Neuro
+CLONUS	Rhythmic muscle contraction from upper motor neuron irritation, tested at the ankle	Sustained clonus is a pyramidal sign. In preeclampsia it warns that eclampsia may be near.	Neuro / OB
+ROMBERG	Balance test that becomes positive when proprioception or dorsal columns fail	A positive Romberg test means the patient sways or falls when the eyes close. It is a sensory, not cerebellar, test.	Neuro
+NEUTROPENIA	Low neutrophil count that turns fever into a possible emergency	Febrile neutropenia needs cultures and prompt antibiotics. Flowers and fresh fruit may be restricted.	Heme
+PLATELETS	Cell fragments required for clotting; a low count raises bleeding risk	Platelets are followed before invasive procedures. Spontaneous bleeding risk rises as the count falls very low.	Heme
+FERRITIN	Storage protein that is low in iron deficiency and high as an acute-phase reactant	A low ferritin supports iron deficiency. Inflammation can raise ferritin even when iron stores are poor.	Heme
+MICROCYTIC	Small red cells, the usual pattern of iron deficiency and thalassemia	Microcytic anemia has a low MCV. Iron deficiency is the common cause; thalassemia is the classic mimic.	Heme
+MACROCYTIC	Large red cells seen with B12 or folate deficiency and some drugs	Macrocytic anemia has a high MCV. B12 deficiency also causes neurologic findings that folate deficiency does not.	Heme
+PERNICIOUS	Autoimmune loss of intrinsic factor that prevents vitamin B12 absorption	Pernicious anemia causes B12 deficiency. Neurologic injury can occur even before severe anemia.	Heme
+APLASTIC	Bone marrow failure causing low red cells, white cells, and platelets together	Aplastic anemia is pancytopenia with a hypocellular marrow. Infection and bleeding are the dangers.	Heme
+HEMOPHILIA	Inherited factor deficiency that causes deep joint and muscle bleeding	Hemophilia A lacks factor VIII and hemophilia B lacks factor IX. Bleeding is treated with factor replacement.	Heme
+HEMOLYTIC	Transfusion reaction with fever, back pain, and hemoglobinuria from ABO mismatch	Acute hemolytic reactions are from incompatible blood. Stop the transfusion and keep the line open with saline.	Transfusion
+TRALI	Transfusion reaction causing noncardiogenic pulmonary edema during or soon after a unit	TRALI presents with acute hypoxemia and bilateral infiltrates. It is not treated like fluid overload.	Transfusion
+TACO	Circulatory overload from transfusion, with hypertension and pulmonary edema	TACO is cardiogenic overload. Slow the blood, give oxygen, and diuretics are often used.	Transfusion
+SICKLE	Hemoglobin disorder in which dehydrated or hypoxic cells sickle and block flow	Sickle cell crisis is treated with oxygen, fluids, and pain control. Hydroxyurea reduces crisis frequency.	Heme
+DYSREFLEXIA	Hypertensive emergency in spinal cord injury above T6, triggered by a full bladder	Autonomic dysreflexia causes headache and high blood pressure. Sit the patient up and empty the bladder.	Neuro / safety
+FASCIOTOMY	Surgical opening of a muscle compartment to save tissue from compartment syndrome	Fasciotomy treats compartment syndrome. The clue before surgery is pain out of proportion and pain on stretch.	Ortho
+TRACTION	Pulling force used to align a fracture that requires the weights to hang freely	Traction weights must hang free. Never lift the weights to move the patient up in bed.	Ortho
+COMPARTMENT	Closed muscle space where swelling can cut off perfusion	Compartment syndrome pain is severe and worse with passive stretch. Pulses can still be present.	Ortho
+ORTHOSTATIC	Drop in blood pressure or rise in pulse when standing, from volume loss or drugs	Orthostatic vital signs compare lying and standing. A large pulse rise or pressure drop suggests hypovolemia.	Cardiac
+TACHYCARDIA	Heart rate above 100 in adults that can mean pain, fever, bleeding, or arrhythmia	Tachycardia is a compensatory sign. In shock it often appears before the blood pressure falls.	Cardiac
+BRADYCARDIA	Slow heart rate that is treated when the patient is hypotensive or symptomatic	Symptomatic bradycardia is treated with atropine first in the usual adult algorithm, then pacing if needed.	Cardiac
+ARRHYTHMIA	Abnormal heart rhythm that may reduce cardiac output	New arrhythmia with chest pain or hypotension is urgent. Check electrolytes, especially potassium and magnesium.	Cardiac
+ANGINA	Chest pain from myocardial ischemia that is typically relieved by rest or nitroglycerin	Stable angina is predictable with exertion. Pain at rest or lasting longer suggests an acute coronary syndrome.	Cardiac
+ISCHEMIA	Tissue oxygen demand that exceeds supply, the mechanism of angina	Ischemia on the ECG may show ST depression or T-wave inversion. Troponin distinguishes injury from ischemia alone.	Cardiac
+EDEMA	Swelling from fluid in the interstitial space, pitting when a fingertip leaves a dent	Pitting edema is graded by depth and how long the pit lasts. In heart failure it is often dependent.	Cardiac
+ANASARCA	Generalized body edema seen in nephrotic syndrome and severe fluid overload	Anasarca is widespread swelling. Daily weights track the fluid better than the scale of a single limb.	Fluids
+ANEMIA	Low red cell mass that causes fatigue, pallor, and tachycardia	Anemia reduces oxygen-carrying capacity. Transfusion decisions use symptoms and the hemoglobin, not a number alone.	Heme
+POLYDIPSIA	Excessive thirst, a classic symptom of hyperglycemia and diabetes insipidus	Polydipsia with polyuria and polyphagia is the classic diabetes triad.	Endocrine
+POLYPHAGIA	Excessive hunger from cells that cannot use glucose in uncontrolled diabetes	Polyphagia occurs when insulin is absent or ineffective and cells are starved despite high blood sugar.	Endocrine
+GLYCOSURIA	Glucose in the urine once the renal threshold is exceeded	Glycosuria appears in hyperglycemia. It pulls water with it and contributes to polyuria.	Endocrine
+ACETONE	Fruity ketone on the breath of a patient in diabetic ketoacidosis	A fruity breath suggests acetone from ketosis. Confirm with glucose, ketones, and an anion gap.	Endocrine
+KETOSIS	Accumulation of ketone bodies when fat is burned because glucose cannot enter cells	Ketosis in type 1 diabetes can progress to ketoacidosis. Insulin and fluids are the treatment.	Endocrine
+RUBELLA	Viral illness that is teratogenic in early pregnancy and prevented by vaccination	Rubella in the first trimester can cause congenital cataracts, heart defects, and deafness.	OB
+TERATOGEN	Any exposure that can malform a fetus, including some drugs and infections	Teratogens are most dangerous in organogenesis. Isotretinoin, warfarin, and valproate are classic drug examples.	OB
+FOLATE	Vitamin whose deficiency causes neural tube defects and a macrocytic anemia	Folate is supplemented before conception to reduce neural tube defects. Deficiency does not cause B12 neuropathy.	OB / heme
+QUICKENING	The first fetal movements the pregnant patient feels	Quickening is usually felt in the second trimester, earlier in people who have been pregnant before.	OB
+LIGHTENING	Descent of the fetus into the pelvis late in pregnancy, easing pressure on the diaphragm	Lightening can make breathing easier and increase pelvic pressure and urinary frequency.	OB
+ENGAGEMENT	When the widest fetal head diameter has passed the pelvic inlet	Engagement is described with station. A floating head is not engaged.	OB
+STATION	How far the fetal presenting part is above or below the ischial spines	Station zero is at the ischial spines. Positive stations are closer to delivery.	OB
+EFFACEMENT	Thinning of the cervix, reported as a percentage	Effacement and dilation are separate. A primigravida often effaces before she dilates much.	OB
+DILATION	Opening of the cervix in centimeters from closed to ten	Full dilation is 10 cm. Pushing is usually delayed until then unless the patient has an urge and is complete.	OB
+CROWNING	When the fetal head remains visible at the vaginal opening between contractions	Crowning means birth is imminent. Support the perineum and prepare to deliver.	OB
+PROLAPSE	Umbilical cord slipping ahead of the presenting part, an obstetric emergency	Cord prolapse cuts off fetal blood flow. Relieve pressure with a hand and deliver urgently.	OB
+ABRUPTION	Premature separation of the placenta with painful bleeding and a tense uterus	Placental abruption is painful. Bleeding may be concealed, so the vital signs can worsen before blood is seen.	OB
+PLACENTA	Organ of fetal gas exchange; its location and separation are emergency concerns	A placenta covering the cervix is previa. Separation before birth is abruption.	OB
+PREVIA	Painless third-trimester bleeding from a placenta that covers the cervix	Placenta previa is painless bleeding. Vaginal exams are avoided until ultrasound locates the placenta.	OB
+PROTEINURIA	Protein in the urine, a criterion of preeclampsia when paired with hypertension	Proteinuria plus new hypertension after 20 weeks defines preeclampsia. Headache and visual change are severe features.	OB
+RHOGAM	Immune globulin given to Rh-negative patients to prevent sensitization	Rh immune globulin is given after sensitizing events and routinely in pregnancy when the patient is Rh negative.	OB
+COOMBS	Test that detects antibodies coating red cells, used in hemolytic disease	A direct Coombs test is positive when antibodies are bound to red cells, as in hemolytic disease of the newborn.	OB / heme
+KERNICTERUS	Brain injury from very high bilirubin in a newborn	Kernicterus is bilirubin toxicity in the basal ganglia. Severe jaundice is treated before it reaches that point.	OB / newborn
+BILIRUBIN	Pigment from heme breakdown that causes jaundice when it accumulates	Unconjugated bilirubin in newborns is treated with feeding and phototherapy when it is high.	OB / newborn
+MORO	Newborn startle reflex with arm extension then flexion	The Moro reflex is normal in newborns and disappears in the first months. Asymmetry suggests a nerve or clavicle injury.	Newborn
+ROOTING	Newborn reflex of turning the head toward a stroked cheek	Rooting helps the newborn find the breast. Absence in a term baby is abnormal.	Newborn
+SUCKING	Newborn reflex of sucking when the palate is touched	A poor suck can signal prematurity, neurologic injury, or maternal drug exposure.	Newborn
+GRASP	Newborn reflex of closing the hand around a finger placed in the palm	The palmar grasp is normal early and later becomes a voluntary reach.	Newborn
+FONTANEL	Soft spot on the infant skull; sunken suggests dehydration and bulging suggests pressure	A sunken fontanel fits dehydration. A bulging fontanel with fever suggests meningitis.	Peds
+BULGING	Fontanel that bows outward, a sign of raised intracranial pressure in infants	A bulging fontanel is an emergency when it comes with fever, lethargy, or a high-pitched cry.	Peds
+CAPUT	Soft scalp swelling from birth pressure that crosses suture lines	Caput succedaneum crosses sutures and resolves. A cephalohematoma does not cross sutures.	Newborn
+MOLDING	Temporary overlapping of fetal skull bones from the birth canal	Molding is expected after a vaginal birth and resolves. It is not a fracture.	Newborn
+LANUGO	Fine fetal hair still seen on premature newborns	Lanugo is more abundant in preterm infants. It sheds as the skin matures.	Newborn
+VERNIX	White cheesy coating that protects fetal skin	Vernix is left on the skin after birth when possible. Preterm infants may have more of it.	Newborn
+MILIA	Tiny white keratin cysts on a newborn face that resolve without treatment	Milia are normal. They are not acne and should not be squeezed.	Newborn
+MASTITIS	Breast infection in a lactating patient, treated with emptying and often antibiotics	Mastitis causes a red, painful wedge of breast and fever. Continued breastfeeding or pumping is encouraged.	OB
+HEMORRHAGE	Postpartum bleeding that soaks a pad quickly or drops the blood pressure	Postpartum hemorrhage is often from uterine atony. Massage the fundus and give a uterotonic.	OB
+BOGGY	Soft uterus after birth that signals atony and bleeding risk	A boggy fundus is massaged until firm. Have the patient empty the bladder if the uterus is displaced.	OB
+MASSAGE	Fundal pressure used to firm an atonic postpartum uterus	Fundal massage expresses clots and stimulates contraction. Support the lower uterus so it is not inverted.	OB
+CARBOPROST	Prostaglandin uterotonic avoided in asthma because it can cause bronchospasm	Carboprost treats uterine atony. Asthma is a contraindication because it can tighten bronchial smooth muscle.	OB / pharm
+MISOPROSTOL	Prostaglandin used for postpartum hemorrhage and cervical ripening	Misoprostol causes uterine contraction. Fever and diarrhea are common effects.	OB / pharm
+INFLUENZA	Respiratory virus prevented by yearly vaccine and treated early with a neuraminidase inhibitor	Influenza is droplet spread. Antivirals are most useful early, and vaccination is the prevention.	Infection
+PERTUSSIS	Whooping cough prevented by vaccination and spread by droplets	Pertussis causes a paroxysmal cough. Close contacts may need prophylaxis, and droplet precautions are used.	Infection
+TETANUS	Toxin-mediated muscle spasm prevented by immunization and a booster after some wounds	Tetanus spores enter dirty wounds. Immunization status decides whether toxoid or immunoglobulin is added.	Infection
+VARICELLA	Chickenpox virus that requires airborne precautions and is dangerous in pregnancy	Varicella is airborne. Pregnant or immunocompromised exposures may need immunoglobulin.	Infection
+MEASLES	Airborne viral illness with cough, conjunctivitis, and a descending rash	Measles is extremely contagious and airborne. Vitamin A is used in children, and isolation is required.	Infection
+MUMPS	Droplet viral illness causing parotid swelling	Mumps is prevented by MMR. Orchitis is a classic complication in adolescents and adults.	Infection
+HEPATITIS	Liver inflammation; B and C are blood-borne and A is fecal-oral	Hepatitis B is prevented by vaccine and immune globulin after some exposures. A is spread by contaminated food.	Infection
+DIFFICILE	Spore-forming colitis after antibiotics that requires soap and water, not alcohol gel	C. difficile causes watery diarrhea. Contact precautions and soap-and-water handwashing are required.	Infection
+NOROVIRUS	Highly contagious vomiting illness spread by contact and requiring soap and water	Norovirus spreads fast in shared living settings. Alcohol gel does not reliably kill it.	Infection
+SCABIES	Mite infestation treated with a skin scabicide and contact precautions	Scabies causes intense itching and burrows. Close contacts are often treated at the same time.	Infection
+PEDICULOSIS	Lice infestation treated with a pediculicide and by cleaning combs and bedding	Pediculosis capitis is head lice. School exclusion rules vary; treatment of the hair is the priority.	Infection
+IMPETIGO	Honey-crusted bacterial skin infection common in children	Impetigo is usually staph or strep. It is contagious until treated, and contact precautions apply in care settings.	Infection
+CELLULITIS	Spreading skin infection with warmth, redness, and fever	Cellulitis is marked so spread can be judged. Elevate the limb and give antibiotics that cover skin flora.	Infection
+CYSTITIS	Bladder infection with dysuria and frequency but usually no fever	Cystitis is a lower UTI. Fever and flank pain suggest the infection has reached the kidney.	Renal
+DYSURIA	Painful urination, a hallmark of urinary tract infection	Dysuria with frequency and urgency suggests cystitis. Rule out vaginitis and sexually transmitted infection when the story differs.	Renal
+URGENCY	Sudden compelling need to void, common in bladder infection and overactive bladder	Urgency with dysuria points to cystitis. New incontinence in an older adult can be the only infection sign.	Renal
+FLANK	Side pain over the kidney, classic for pyelonephritis and stones	Flank pain with fever and urinary symptoms suggests pyelonephritis. Colicky pain radiating to the groin suggests a stone.	Renal
+LACTATE	Lab that rises when tissues are under-perfused, used in sepsis resuscitation	A high lactate supports hypoperfusion. Repeating it shows whether resuscitation is working.	Sepsis
+CULTURES	Specimens drawn before antibiotics when the patient is stable enough to wait a few minutes	Blood cultures before the first antibiotic improve the chance of identifying the organism. Do not delay antibiotics for unstable patients.	Sepsis
+ANTIPYRETIC	Drug such as acetaminophen that lowers fever but does not treat the infection	Antipyretics improve comfort. They do not replace antibiotics when a bacterial source is likely.	Infection
+ASSAULT	Threat of harmful contact, a legal injury even before touching occurs	Assault is the threat. Battery is the unwanted touching. Both are intentional torts.	Legal
+BATTERY	Unwanted touching, including a procedure performed without consent	Battery includes treating a patient who has refused. Consent is the protection.	Legal
+NEGLIGENCE	Failure to meet the standard of care that causes harm	Negligence needs a duty, a breach, causation, and damages. A near miss without injury is not a completed tort.	Legal
+MALPRACTICE	Professional negligence by a clinician that injures a patient	Malpractice is negligence applied to professional duty. Documentation of assessments and responses is part of the defense and the care.	Legal
+DEFAMATION	False statement that harms reputation; spoken is slander and written is libel	Defamation is a false damaging statement shared with others. Chart objective findings, not labels.	Legal
+SLANDER	Spoken defamation	Slander is oral. Discussing a patient in a hallway can also breach privacy even when the words are true.	Legal
+LIBEL	Written defamation	Libel is written. Social media comments about a patient can be both libel and a privacy violation.	Legal
+MANDATED	Legal duty of nurses to report suspected abuse of children, and often of elders	Mandated reporters must report suspected abuse. Certainty is not required; a reasonable suspicion is enough.	Legal
+PATERNALISM	Overriding a patient's choice because the clinician believes it is for their own good	Paternalism conflicts with autonomy. It is rarely justified in a capacitated adult.	Ethics
+NONMALEficence	Duty to avoid harm, balanced against treatments that have necessary risks	Nonmaleficence means do no harm. Benefits and burdens are weighed with the patient, not imposed.	Ethics
+RACE	Fire response order: rescue, alarm, confine, and extinguish	RACE is the fire sequence. Rescue anyone in immediate danger before pulling the alarm and containing the fire.	Safety
+AMBULATION	Walking that prevents clots, atelectasis, and deconditioning after surgery	Early ambulation is a core postoperative intervention. It lowers clot and pneumonia risk.	Safety
+TEDS	Elastic stockings that promote venous return and are checked for fit and skin integrity	Antiembolism stockings must be smooth, not rolled, and removed for skin checks.	Safety
+INCENTIVE	Spirometer device that encourages deep breaths after surgery	Incentive spirometry prevents atelectasis. Teach a slow inhale and hold, with hourly goals while awake.	Respiratory
+SPLINTING	Holding a pillow over an incision during coughing to reduce pain	Splinting an abdominal incision makes coughing tolerable so the patient will clear secretions.	Respiratory
+TURNING	Repositioning at intervals to protect skin and mobilize secretions	Turning at least every two hours is the usual pressure-injury schedule, adjusted to the risk score.	Safety
+FOLEY	Indwelling urinary catheter that is a major source of hospital infection	Foley catheters are removed as soon as they are not needed. Keep the bag below the bladder and the tubing unkinked.	Infection
+CAUTI	Urinary infection caused by an indwelling catheter	CAUTI prevention is fewer catheters, aseptic insertion, a closed system, and daily review of need.	Infection
+CLABSI	Bloodstream infection from a central line	CLABSI prevention uses a checklist, sterile insertion, and daily review of whether the line is still needed.	Infection
+VAP	Pneumonia that develops in a patient on a ventilator	Ventilator-associated pneumonia prevention includes elevating the head of the bed and oral care.	Infection
+SEPSISBUNDLE	Early sepsis actions of lactate, cultures, antibiotics, and fluids	The sepsis bundle is time sensitive. Antibiotics and fluids for hypoperfusion should not wait for a full workup.	Sepsis
+QSOFA	Bedside screen using low pressure, fast breathing, and altered mentation	qSOFA flags patients who may have sepsis. It does not replace a full assessment or lactate.	Sepsis
+ANIONGAP	Difference between measured cations and anions, high in ketoacidosis and lactic acidosis	A high anion gap metabolic acidosis is seen in DKA, lactic acidosis, and some ingestions.	Labs
+OSMOLALITY	Concentration of solute in serum; low in SIADH and high in dehydration	Serum osmolality helps sort hyponatremia. In SIADH it is low while the urine is concentrated.	Labs
+HYPONATREMIA	Low serum sodium that can cause headache, confusion, and seizures	Hyponatremia is corrected carefully. Raising sodium too fast can injure the brain.	Fluids
+HYPERNATREMIA	High serum sodium from water loss, causing thirst and confusion	Hypernatremia is a water deficit. Replace free water gradually and find the loss.	Fluids
+HYPERKALEMIA	High potassium that can peak T waves and stop the heart	Severe hyperkalemia with ECG changes is treated with calcium to protect the heart, then insulin with glucose to shift potassium.	Fluids
+HYPOKALEMIA	Low potassium that causes weakness and U waves and raises digoxin toxicity	Hypokalemia is replaced slowly. IV potassium is never pushed.	Fluids
+HYPOCALCEMIA	Low calcium with tetany, Chvostek sign, and a prolonged QT	Hypocalcemia follows neck surgery and pancreatitis. Calcium is replaced and the airway is watched if tetany is severe.	Fluids
+HYPERCALCEMIA	High calcium that causes stones, bone pain, and psychiatric change	Hypercalcemia is treated with fluids. Malignancy and hyperparathyroidism are classic causes.	Fluids
+HYPOMAGNESEMIA	Low magnesium that makes potassium hard to correct and can cause torsades	Hypomagnesemia often accompanies low potassium. Replace magnesium or the potassium will not stay up.	Fluids
+TORSADES	Polymorphic ventricular tachycardia from a long QT, treated with magnesium	Torsades de pointes is treated with IV magnesium. Stop QT-prolonging drugs.	Cardiac
+DEHISCENCE	Separation of a wound edge, often after a strain such as coughing	Dehiscence is managed by keeping the patient still, covering the wound, and calling surgery.	Wound
+EVISCERATION	Abdominal organs protruding through a separated incision	Evisceration is an emergency. Cover the bowel with sterile saline gauze and keep the patient supine with knees bent.	Wound
+SEROSANGUINEOUS	Pink wound drainage that is a mix of serum and a little blood	Serosanguineous drainage is often normal early. A sudden gush can mean dehiscence.	Wound
+PURULENT	Thick opaque drainage that suggests infection	Purulent drainage is cultured when infection is suspected. It is not the same as normal serous fluid.	Wound
+SANGUINEOUS	Bloody drainage that is concerning when it increases	Bright red drainage that soaks a dressing needs a pressure check and a look for bleeding.	Wound
+GRANULATION	Red bumpy healing tissue that means a wound is filling in	Granulation tissue is beefy red. It is protected, not scrubbed away.	Wound
+ESCHAR	Black dead tissue in a wound that often needs removal before healing	Eschar is necrotic. Stable dry eschar on a heel may be left intact; infected eschar is removed.	Wound
+SLOUGH	Yellow stringy dead tissue in a wound bed	Slough is nonviable tissue. It is debrided when the goal is a clean granulating bed.	Wound
+STAGEONE	Pressure injury with intact skin and nonblanchable redness	Stage 1 pressure injury is nonblanchable erythema. Offload the area before the skin opens.	Skin
+STAGETWO	Pressure injury that is a shallow open blister or partial-thickness loss	Stage 2 pressure injury is partial thickness. It is not skin tears or incontinence dermatitis.	Skin
+DEBRIDEMENT	Removal of dead tissue so a wound can heal	Debridement may be sharp, enzymatic, or autolytic. Pain control and consent matter before sharp removal.	Wound
+OFFLOADING	Removing pressure from a bony prominence or diabetic foot ulcer	Offloading is the treatment of pressure injury. A device that is not worn does not help.	Skin
+BRADEN	Scale that scores pressure-injury risk from sensation, moisture, activity, mobility, nutrition, and friction	A low Braden score means high risk. Turning, moisture control, and nutrition are the response.	Skin
+MORSE	Fall-risk scale using history, secondary diagnosis, ambulatory aid, IV, gait, and mental status	The Morse score guides fall precautions. A high score means a plan, not a restraint.	Safety
+BEDALARM	Device that alerts staff when a high-risk patient tries to get up	A bed alarm does not prevent the fall by itself. Answer it immediately.	Safety
+SITTER	Staff member who stays with a patient who is at immediate risk of harm	A sitter is used for elopement, pulling at lines, or suicide risk when less restrictive options fail.	Safety
+ELASTIC	Bandage or stocking applied without wrinkles to support venous return	Elastic wraps are applied distal to proximal. Check pulses and color after application.	Safety
+SEQUENTIAL	Pneumatic compression devices that squeeze the legs to prevent clots	Sequential compression devices are for patients who are not walking enough. They are not placed on a leg with known acute clot symptoms.	Safety
+HEPARINLOCK	Saline or heparin flush used to keep a peripheral IV patent between doses	A locked IV is flushed on a schedule. Resistance or pain means the site is checked before anything is pushed.	Skills
+INFILTRATION	IV fluid leaking into tissue, causing cool swelling at the site	Infiltration is cool edema. Stop the infusion, elevate the limb, and restart elsewhere.	Skills
+EXTRAVASATION	Leak of a vesicant drug into tissue that can cause necrosis	Extravasation of a vesicant is stopped immediately. The antidote and surgical consult depend on the drug.	Skills
+PHLEBITISGRADE	Red, warm, cordlike vein from an IV that means the catheter comes out	Phlebitis is warm and red along the vein. Remove the catheter and apply warmth.	Skills
+AIRWAYFIRE	Operating-room emergency treated by stopping gas, removing the tube, and extinguishing	An airway fire means stop the oxygen, remove the burning tube, and pour saline.	Safety
+TIMEOUT	Pause before a procedure to confirm patient, site, and procedure	The time-out is done with the team present. It is not skipped because the room is behind.	Safety
+SITE MARK	Surgeon's mark on the operative site done before sedation when possible	Site marking is done while the patient can participate. The mark is visible after draping.	Safety
+ALLERGYBAND	Colored alert so the team does not give a drug the patient cannot receive	An allergy band is checked against the medication record. Ask what the reaction was, not only the drug name.	Safety
+LATEX	Allergy that requires latex-free gloves, catheters, and a careful supply check	Latex allergy can be anaphylaxis. Bananas and kiwis are associated foods, and the room is set up latex free.	Safety
+CONTRAST	Iodinated dye that can injure kidneys and is held around metformin	Contrast nephropathy risk rises with chronic kidney disease. Hydration is the prevention, and metformin is held.	Renal
+SHELLFISH	Historical concern that is not a reliable predictor of contrast allergy	A shellfish allergy is not the same as an iodinated-contrast allergy. Ask about prior contrast reactions instead.	Safety
+ANAPHYLACTOID	Contrast reaction that resembles allergy but is not IgE mediated	Contrast reactions can still cause shock. Treat airway and give epinephrine when the picture is anaphylaxis.	Emergency
+EPIPEN	Autoinjector of epinephrine held against the mid-outer thigh for anaphylaxis	Epinephrine for anaphylaxis is intramuscular in the thigh. Teach the patient to carry the device and to call for help after using it.	Emergency
+GLUCAGONKIT	Emergency kit for severe hypoglycemia when the patient cannot swallow	Glucagon is given when a diabetic patient is unconscious from low glucose and IV dextrose is not available.	Endocrine
+DEXTROSEIV	Concentrated glucose given IV for severe hypoglycemia in a patient with IV access	IV dextrose raises glucose immediately. Recheck the fingerstick and give a longer-acting carbohydrate once the patient can eat.	Endocrine
+THIAMINEFIRST	Vitamin given before glucose in a malnourished patient to prevent Wernicke injury	Thiamine is given before glucose in suspected Wernicke encephalopathy so glucose does not consume the remaining vitamin.	Neuro
+WERNICKE	Triad of confusion, ataxia, and eye-movement palsy from thiamine deficiency	Wernicke encephalopathy is a medical emergency. Give thiamine, especially in alcohol use disorder.	Neuro
+KORSAKOFF	Confabulating amnesia that can follow untreated Wernicke encephalopathy	Korsakoff syndrome is lasting memory loss. Prevention is treating Wernicke early with thiamine.	Neuro
+DELIRIUM	Acute fluctuating confusion that is a medical symptom, not a dementia diagnosis	Delirium is acute and fluctuating. Find infection, drugs, hypoxia, and urinary retention rather than only sedating the patient.	Neuro
+DEMENTIA	Chronic progressive cognitive loss that does not fluctuate hour to hour like delirium	Dementia is chronic. A sudden change in a person with dementia is delirium until proven otherwise.	Neuro
+SUNDDOWN	Evening worsening of confusion in dementia	Sundowning is managed with light, routine, and a calm environment. New evening agitation still needs a medical check.	Neuro
+HALDOLRISK	Antipsychotic use in older adults with dementia that raises mortality	Antipsychotics in dementia have a boxed warning. They are not first-line for sundowning.	Pharm / safety
+RESTRAINTLAST	Devices used only after less restrictive measures fail and an order is obtained	Restraints are a last resort. Assess skin, circulation, and the reason for the device on a schedule, and remove them as soon as it is safe.	Safety
+SIDERAIL	Bed rail that can be a restraint when all rails are up to keep a patient from getting out	A full set of side rails used to prevent exit is a restraint. Two rails for turning are usually a mobility aid.	Safety
+FALLMAT	Cushion beside the bed that reduces injury if a patient rolls out	A fall mat reduces injury. It does not replace a plan to answer alarms and to toilet on a schedule.	Safety
+TOILETING	Scheduled bathroom trips that prevent falls from urgent unassisted walks	Scheduled toileting is a fall intervention. Many falls happen on the way to the bathroom.	Safety
+NONSKID	Footwear that lowers fall risk compared with socks alone	Nonskid socks or shoes are part of fall precautions. Loose slippers are not.	Safety
+GAITBELT	Belt used to guide a patient during transfers	A gait belt gives a place to hold. Do not lift by the arms or the gown.	Safety
+LOGROLLING	Moving a patient with a spinal injury as one unit to protect alignment	Log rolling keeps the spine neutral. It takes more than one person.	Safety
+CCOLLAR	Cervical collar kept on until the spine is cleared	A cervical collar is not removed for comfort before the spine is cleared. The jaw-thrust is used if the airway must be opened.	Safety
+JAWTHRUST	Airway maneuver that avoids extending a possibly injured neck	The jaw thrust opens the airway without a head tilt. It is the choice when spinal injury is possible.	Airway
+HEADTILT	Usual airway opening maneuver when spinal injury is not suspected	The head-tilt chin-lift opens the airway in ordinary collapse. Do not use it when the neck may be injured.	Airway
+OROPHARYNGEAL	Airway adjunct used only in an unconscious patient without a gag reflex	An oropharyngeal airway triggers vomiting if the gag is intact. Measure from the mouth corner to the earlobe angle.	Airway
+NASOPHARYNGEAL	Soft airway tube tolerated by a patient with a gag, avoided in basilar skull fracture	A nasopharyngeal airway is sized from the nostril to the earlobe. Do not place it when a basilar skull fracture is suspected.	Airway
+SUCTIONCATH	Catheter used to clear secretions, applied on the way out and for a short pass	Suctioning is intermittent and brief. Oxygenate before and after, and stop if the heart rate drops.	Airway
+YANKAUER	Rigid suction tip used for the mouth	A Yankauer clears the oropharynx. It is not advanced deep into the trachea.	Airway
+BASILAR	Skull fracture suggested by Battle sign or raccoon eyes and CSF from the ear or nose	Basilar skull fracture clues include mastoid bruising and periorbital bruising. Nothing is inserted into the nose.	Neuro
+RACCOON	Periorbital bruising that suggests a basilar skull fracture	Raccoon eyes develop after injury. They are not an immediate bruise from a simple nasal hit.	Neuro
+BATTLESIGN	Mastoid bruising that suggests a basilar skull fracture	Battle sign is postauricular ecchymosis. It may appear hours after the injury.	Neuro
+HALO Sign	Ring of blood with a yellow center on linen, suggesting cerebrospinal fluid	A halo on the sheet can mean CSF mixed with blood. Do not pack the nose or ear.	Neuro
+CUSHINGTRIAD	Hypertension, bradycardia, and irregular breathing from high intracranial pressure	Cushing triad is a late sign of herniation. Raise the head of the bed and call for help before it appears if pressure is rising.	Neuro
+MANNITOLUSE	Osmotic diuretic that pulls fluid from the brain and is filtered for crystals	Mannitol lowers intracranial pressure. Use a filter and watch serum osmolality and sodium.	Neuro
+HYPERVENT	Brief reduction of carbon dioxide that constricts cerebral vessels in herniation	Short-term hyperventilation is a bridge in herniation. Prolonged low carbon dioxide worsens cerebral ischemia.	Neuro
+SEIZUREPAD	Side-lying position and padded rails during a seizure, without objects in the mouth	During a seizure, protect the head, turn the patient, and do not insert a bite block. Time the event.	Neuro
+STATUS EPI	Continuous seizure activity that is a medical emergency treated with benzodiazepines then a longer antiseizure drug	Status epilepticus is treated immediately with a benzodiazepine, then a drug such as levetiracetam, valproate, or phenytoin.	Neuro
+POSTICTAL	Confused sleepy period after a seizure	The postictal state is expected. A new focal deficit that does not resolve needs stroke evaluation.	Neuro
+AURAPHASE	Warning sensation some patients feel before a seizure	An aura can be a smell, a feeling, or a visual change. Teach patients to get to a safe position.	Neuro
+ABSENCE	Brief staring seizure, often in children, without a convulsion	Absence seizures look like daydreaming. They are not treated like a tantrum.	Neuro
+LEVETIRACETAM	Antiseizure drug with few liver interactions that can cause irritability	Levetiracetam is widely used because it has few drug interactions. Mood changes are the side effect to teach.	Pharm / neuro
+PHENYTOINLVL	Antiseizure level that is interpreted with albumin because the drug is highly protein bound	Phenytoin toxicity causes nystagmus and ataxia. A low albumin raises the free level even if the total looks normal.	Pharm / neuro
+GINGIVAL	Gum overgrowth that is a classic long-term effect of phenytoin	Phenytoin causes gingival hyperplasia. Oral care does not fully prevent it but limits inflammation.	Pharm / neuro
+WARFARININR	Target lab for warfarin that is usually about 2 to 3 for most indications	Warfarin is adjusted to the INR. Vitamin K is the reversal approach for serious bleeding, along with clotting factors when needed.	Pharm / coagulation
+VITAMINK	Fat-soluble vitamin that reverses warfarin and must be consistent in the diet	Vitamin K in food does not have to be avoided; it has to be steady. Sudden binges of greens drop the INR.	Pharm / coagulation
+PHYTONADIONE	Pharmaceutical vitamin K given for excessive warfarin effect	Phytonadione is vitamin K. IV doses are given slowly because rapid injection can cause a severe reaction.	Pharm / coagulation
+PROTAMINES	Basic protein that reverses heparin	Protamine reverses unfractionated heparin. Give it slowly; rapid infusion can cause hypotension.	Pharm / coagulation
+FFP	Plasma product that replaces clotting factors	Fresh frozen plasma replaces factors. It is used for bleeding with a coagulopathy, not as a routine volume expander.	Transfusion
+CRYOPRECIP	Blood product rich in fibrinogen, factor VIII, and von Willebrand factor	Cryoprecipitate is given for low fibrinogen, as in DIC with bleeding.	Transfusion
+PLATELETUNIT	Transfusion used for bleeding or a very low platelet count	Platelets are given for bleeding with thrombocytopenia. They are not useful in TTP, where transfusion can worsen clotting.	Transfusion
+TYPEANDSCREEN	Test that determines blood type and looks for antibodies before a possible transfusion	A type and screen is drawn before surgery when transfusion is possible. It is not the same as crossmatching units.	Transfusion
+CROSSMATCH	Final compatibility test between donor red cells and the recipient	A crossmatch is done before packed red cells are issued when time allows. Emergency blood may be uncrossmatched O negative.	Transfusion
+ONEGATIVE	Universal donor red cells used in life-threatening bleeding before the type is known	O negative red cells are the emergency donor type. Rh-negative patients, especially those who could become pregnant, should not be switched to positive blood casually.	Transfusion
+ABPLASMA	Plasma type that can be given to any recipient in an emergency	AB plasma is the universal plasma donor because it has no anti-A or anti-B antibodies.	Transfusion
+FEBRILE	Common transfusion reaction with a temperature rise and no hemolysis	A febrile reaction still means the transfusion stops until hemolysis is excluded. Acetaminophen may be used once it is safe to continue a different unit.	Transfusion
+URTICARIA	Hives during transfusion that may allow restart after an antihistamine if that is the only finding	Mild urticaria can be an allergic transfusion reaction. Stop, assess, and follow protocol before any restart.	Transfusion
+ANURIA	No urine output, a late and serious sign of renal failure or obstruction	Anuria means almost no urine. Check the catheter for a kink before assuming the kidneys have stopped.	Renal
+POLYURIAOUT	High urine output that can mean diuresis, hyperglycemia, or diabetes insipidus	Polyuria is interpreted with the serum sodium. In diabetes insipidus the urine is dilute and the sodium rises.	Renal
+SPECIFICGRAV	Urine concentration measure that is high when the kidneys conserve water	High specific gravity means concentrated urine, as in dehydration. It is inappropriately high in SIADH.	Renal
+CASTS	Cylindrical urine sediment; red cell casts suggest glomerulonephritis	Red cell casts point to glomerular bleeding. Muddy brown casts suggest acute tubular necrosis.	Renal
+AZOTEMIA	High BUN and creatinine from reduced filtration	Azotemia is the lab picture of reduced GFR. It is prerenal, intrinsic, or postrenal until sorted out.	Renal
+PRERENAL	Kidney injury from poor perfusion, with a high BUN-to-creatinine ratio	Prerenal azotemia improves when perfusion is restored. The kidneys are conserving sodium and water.	Renal
+POSTRENAL	Kidney injury from obstruction, such as a stone or a blocked catheter	Postrenal failure is relieved by removing the blockage. Ultrasound looks for hydronephrosis.	Renal
+HYDRONEPHROSIS	Dilation of the renal collecting system from obstruction	Hydronephrosis on ultrasound supports obstruction. Relieve it before the kidney is permanently injured.	Renal
+CREATININEUP	Rising creatinine that means filtration has fallen	A rising creatinine is a late marker. Urine output often falls first.	Renal
+OLIGURIADEF	Urine output under about 0.5 milliliters per kilogram per hour in an adult	Oliguria is an early perfusion sign. Check volume status, blood pressure, and catheter patency.	Renal
+FLUIDOVERLOAD	Weight gain, crackles, and edema from too much intake or too little output	Fluid overload is treated by stopping extra fluid, giving diuretics when the kidneys respond, and supporting breathing.	Fluids
+DAILYWEIGHT	Best bedside measure of fluid balance, taken at the same time each day	Daily weights use the same scale and clothing. A rapid gain is fluid until proven otherwise.	Fluids
+INTAKEOUTPUT	Running total of fluid in and fluid out, including drains and urine	Intake and output catches trends before the weight does if it is recorded completely. Ice chips and IV flushes count.	Fluids
+THIRDSPACE	Fluid shifted out of the vessels into tissues or cavities, as in burns and pancreatitis	Third spacing causes intravascular depletion despite edema. The patient can be hypovolemic and swollen.	Fluids
+ALBUMINLOW	Low plasma protein that lets fluid leak into tissues	Low albumin contributes to edema. It is seen in liver failure, nephrotic syndrome, and malnutrition.	Fluids
+ONCOTIC	Pressure from plasma proteins that holds fluid inside vessels	Oncotic pressure falls when albumin is low, and edema follows.	Fluids
+HYDROSTATIC	Pressure from the blood column that pushes fluid out of capillaries	High hydrostatic pressure in heart failure pushes fluid into the lungs and legs.	Fluids
+CRACKLESBASE	Inspiratory sounds at the lung bases from fluid or atelectasis	Basilar crackles in heart failure do not clear with a cough the way atelectatic crackles may.	Respiratory
+WHEEZEOUT	Musical expiratory sound from narrowed airways	Wheezing is airway narrowing, as in asthma or COPD. A silent chest after wheezing can mean airflow has nearly stopped.	Respiratory
+STRIDORIN	Inspiratory sound of upper airway obstruction	Inspiratory stridor is an airway emergency. Do not leave the patient to fetch equipment.	Respiratory
+RHONCHI	Coarse sounds from secretions in large airways that may clear with coughing	Rhonchi suggest mucus. Have the patient cough and suction if they cannot clear it.	Respiratory
+FRICTIONRUB	Scratchy sound from inflamed pleura or pericardium	A pleural friction rub is heard with pleuritis. A pericardial rub can mean pericarditis.	Cardiac
+PERICARDITIS	Inflammation of the pericardium with pain that is worse lying flat and better sitting forward	Pericarditis pain is positional. Diffuse ST elevation can be seen, and NSAIDs are typical treatment when it is idiopathic.	Cardiac
+TAMPONADELOW	Compression of the heart by pericardial fluid, with low pressure and distended neck veins	Tamponade is Beck triad: hypotension, distended neck veins, and muffled sounds. Fluids are a bridge to drainage.	Cardiac
+PULSUSPARADOX	Exaggerated drop in systolic pressure during inspiration, seen in tamponade	Pulsus paradoxus supports tamponade and severe asthma. It is an exaggerated inspiratory pressure drop.	Cardiac
+JVD	Visible jugular veins from high right-sided pressure	Jugular venous distention is assessed with the head of the bed raised. It fits heart failure, tamponade, and tension pneumothorax.	Cardiac
+HEAVE	Sustained lift of the chest wall from an enlarged ventricle	A precordial heave suggests ventricular enlargement. It is a palpation finding, not a murmur.	Cardiac
+THRILL	Palpable vibration from turbulent flow, often over a stenotic valve or a dialysis fistula	A thrill is turbulent flow you can feel. A new loss of a fistula thrill is an emergency.	Cardiac
+BRUIT	Whooshing sound of turbulent flow heard with the bell or diaphragm	A carotid bruit suggests stenosis. A fistula bruit is expected; its absence is not.	Cardiac
+FISTULA	Surgically joined artery and vein for dialysis that must not be used for routine blood pressures	A dialysis fistula is assessed for thrill and bruit. No blood pressures or venipunctures on that arm.	Renal
+GRAFTSTEAL	Ischemia of the hand distal to a dialysis access	Dialysis access can steal arterial flow. A cold painful hand is reported immediately.	Renal
+DIALYSISDISEQ	Neurologic symptoms during hemodialysis from a rapid solute shift	Dialysis disequilibrium causes headache and confusion. The treatment is to slow the shift, not to ignore it.	Renal
+DRYWEIGHT	Target weight after dialysis, used to judge fluid removal	Dry weight is the edema-free weight. Removing far below it causes cramps and hypotension.	Renal
+PERITONITISPD	Cloudy dialysate and abdominal pain in a patient on peritoneal dialysis	Peritonitis in peritoneal dialysis shows cloudy fluid. The fluid is cultured and antibiotics are added to the exchanges.	Renal
+KAYEXALATE	Sodium polystyrene resin that removes potassium through the gut, slowly	Sodium polystyrene sulfonate lowers potassium over hours. It is not the emergency treatment for ECG changes.	Pharm / renal
+INSULINGLU	Insulin with glucose that shifts potassium into cells	Insulin drives potassium intracellularly. Glucose is given with it unless the patient is already hyperglycemic.	Fluids
+CALCIUMGLU	Intravenous calcium that stabilizes the heart in severe hyperkalemia	Calcium gluconate protects the myocardium from high potassium. It does not lower the potassium.	Fluids
+ALBUTEROLK	High-dose inhaled beta agonist that also shifts potassium into cells	Nebulized albuterol can lower potassium temporarily. It is an adjunct, not the only treatment.	Fluids
+KAYLIMIT	Dietary teaching to avoid salt substitutes and some fruits when potassium is high	Salt substitutes are often potassium chloride. Patients with high potassium are taught which foods and substitutes to limit.	Diet
+DASHDIET	Eating pattern rich in produce and low in sodium that lowers blood pressure	The DASH pattern emphasizes vegetables, fruit, and low-fat dairy and limits sodium. It is a blood pressure intervention.	Diet
+FLUIDRESTRICT	Limit on daily intake used in hyponatremia from SIADH and in some heart failure	Fluid restriction is a first treatment for mild SIADH. The patient needs to know that ice and soup count.	Diet
+SODIUMRESTRICT	Limit on salt used in hypertension and heart failure	Sodium restriction reduces fluid retention. Teach label reading, not only the salt shaker.	Diet
+CARBCOUNT	Matching insulin to the grams of carbohydrate in a meal	Carbohydrate counting lets mealtime insulin match intake. The nurse confirms the patient can do the arithmetic.	Endocrine
+SICKDAY	Diabetes plan to keep taking insulin, check glucose often, and drink fluids during illness	Sick-day rules prevent ketoacidosis. Illness raises glucose even when the patient is not eating, so insulin is not simply skipped.	Endocrine
+FOOTCHECK	Daily inspection of diabetic feet for sores the patient may not feel	Daily foot checks prevent amputation. Patients with neuropathy cannot rely on pain to find a wound.	Endocrine
+MONOFILAMENT	Nylon fiber used to test protective sensation on the sole	A 10-gram monofilament that is not felt means loss of protective sensation and a high ulcer risk.	Endocrine
+INSULINMIX	Rule that clear rapid or regular insulin is drawn before cloudy NPH	When mixing, draw the clear insulin first so the NPH vial is not contaminated with a long-acting suspension error. NPH is the cloudy one.	Skills
+GLARGINEALONE	Long-acting insulin that is not mixed with other insulins	Insulin glargine has no peak and is not mixed in the same syringe with other insulins.	Pharm / endocrine
+LISPROMEAL	Rapid insulin given with the meal because it starts working within minutes	Lispro is a mealtime insulin. Giving it and then delaying the tray causes hypoglycemia.	Pharm / endocrine
+NPHPEAK	Intermediate insulin with a pronounced peak that requires a food plan	NPH peaks several hours after injection. A bedtime dose can cause overnight hypoglycemia.	Pharm / endocrine
+HYPOGLYCEMIA	Low glucose treated with 15 grams of fast carbohydrate if the patient can swallow	The rule of 15 is juice or glucose tabs, a recheck, and a repeat if still low. Unconscious patients get glucagon or IV dextrose.	Endocrine
+DAWNPHENOM	Early-morning hyperglycemia from growth hormone and cortisol	The dawn phenomenon is a morning rise in glucose. It is not the same as rebound hyperglycemia after an overnight low.	Endocrine
+SOMOGYI	Morning hyperglycemia that follows an unnoticed overnight low	The Somogyi effect is rebound high glucose after nocturnal hypoglycemia. A 3 a.m. check separates it from the dawn phenomenon.	Endocrine
+HBA1CWORD	Lab that reflects average glucose over about three months	Hemoglobin A1C tracks long-term glucose. It is less reliable in anemia and hemoglobin variants.	Endocrine
+METFORMINHOLD	Biguanide paused around iodinated contrast and in severe kidney disease	Metformin is held when the kidneys cannot clear it, including around contrast, because of lactic acidosis risk.	Pharm / endocrine
+LACTICACID	Acidosis from metformin, shock, or ischemia, with a high lactate and no ketones required	Lactic acidosis has a high anion gap and a high lactate. Treat the cause and support perfusion.	Endocrine
+DKATREAT	Diabetic emergency treated with fluids first, then insulin, and potassium replacement	DKA treatment starts with isotonic fluid. Insulin is started after potassium is known, because insulin drives potassium down.	Endocrine
+HHSDIFF	Hyperosmolar state in type 2 diabetes with very high glucose and little ketoacidosis	HHS has extreme glucose and dehydration without major ketones. Fluid replacement is the core treatment.	Endocrine
+THYROIDSTORM	Life-threatening hyperthyroidism with fever, tachycardia, and agitation	Thyroid storm is treated with a beta blocker, a thionamide, iodine after the thionamide, and steroids.	Endocrine
+MYXEDEMCOMA	Severe hypothyroidism with hypothermia and falling consciousness	Myxedema coma needs airway support, warming, and IV thyroid hormone. It is precipitated by infection or cold.	Endocrine
+ADDISONCRISIS	Acute adrenal failure with shock, low sodium, and high potassium	Adrenal crisis is treated with IV hydrocortisone and fluids. It can follow abrupt steroid withdrawal.	Endocrine
+STEROIDTAPER	Slow reduction of corticosteroids so the adrenal glands can recover	Long steroid courses are tapered. Stopping suddenly can cause adrenal crisis.	Pharm / endocrine
+CUSHINGSIGN	Moon face, truncal obesity, and high glucose from cortisol excess	Cushing syndrome raises infection risk and glucose. It can be from steroids or from the body making too much cortisol.	Endocrine
+PHEOCHROMO	Adrenal tumor that releases bursts of catecholamines and causes paroxysmal hypertension	Pheochromocytoma causes headache, palpitations, and sweating. Beta blockade is not started before alpha blockade.	Endocrine
+SIADHFLUID	Excess ADH treated first with fluid restriction when symptoms are mild	SIADH has low sodium, low serum osmolality, and concentrated urine. Severe symptoms may need hypertonic saline.	Endocrine
+DIABETESINSP	Lack of ADH effect causing huge volumes of dilute urine and a rising sodium	Diabetes insipidus produces dilute urine. Central disease is treated with desmopressin; nephrogenic disease is not.	Endocrine
+DESMOPRESSIN	ADH analog used for central diabetes insipidus and some bleeding disorders	Desmopressin replaces ADH in central diabetes insipidus. Too much causes water retention and low sodium.	Pharm / endocrine
+OXYTOCINRISK	Uterotonic that can cause water intoxication and too-frequent contractions	Oxytocin is titrated to contractions. Tachysystole reduces fetal oxygen and the infusion is slowed.	OB / pharm
+MAGTOXICITY	Loss of reflexes, low respirations, and a magnesium level that is too high	Magnesium toxicity is treated by stopping the infusion and giving calcium gluconate. Reflexes are checked on a schedule.	OB
+CALCIUMANTI	Antidote for magnesium toxicity	Calcium gluconate reverses magnesium toxicity. It is kept at the bedside during magnesium infusions for preeclampsia.	OB
+TERBUTALINE	Beta agonist tocolytic that can cause maternal tachycardia	Terbutaline relaxes the uterus. Hold it for a high maternal heart rate or pulmonary edema.	OB / pharm
+NIFEDIPINEOB	Calcium blocker sometimes used to relax the uterus	Nifedipine is a tocolytic option. Blood pressure is watched because it is a vasodilator.	OB / pharm
+BETAMETHASONE	Steroid given to the mother to speed fetal lung maturity	Betamethasone is given when preterm birth is likely. It reduces neonatal respiratory distress.	OB
+TOCOLYSIS	Medications used to delay preterm labor long enough to give steroids	Tocolysis buys time. It is not used when the mother or fetus is unstable or the cervix is far advanced in some protocols.	OB
+FETALHEART	Monitoring strip interpreted for baseline, variability, and decelerations	Fetal heart rate variability is reassuring. Late decelerations suggest uteroplacental insufficiency.	OB
+LATEDECEL	Deceleration that starts after the contraction peak and signals poor placental perfusion	Late decelerations are treated by position change, oxygen, stopping oxytocin, and fluids, then delivery if they persist.	OB
+VARIABLEDEC	Abrupt deceleration from cord compression	Variable decelerations are often relieved by position change. Deep prolonged ones can mean cord prolapse.	OB
+EARLYDECEL	Deceleration that mirrors the contraction and is caused by head compression	Early decelerations are usually benign. They start and end with the contraction.	OB
+ACCELERATION	Rise in fetal heart rate that is reassuring	Accelerations mean the fetus is oxygenated and neurologically responsive. Their absence needs context, not panic by itself.	OB
+NONSTRESST	Antepartum test in which accelerations are the desired finding	A reactive nonstress test has accelerations. A nonreactive test leads to further evaluation, not an automatic diagnosis of distress.	OB
+BIOPHYSICAL	Ultrasound score of fetal movement, tone, breathing, fluid, plus the nonstress test	The biophysical profile scores fetal well-being. Low amniotic fluid is a concerning component.	OB
+AMNIOTICFLUID	Fluid around the fetus; too little suggests placental problems or rupture	Oligohydramnios is low fluid. It can follow rupture of membranes or poor placental function.	OB
+MECONIUMASP	Fetal stool in the fluid that can be inhaled and cause respiratory distress	Meconium-stained fluid means the resuscitation team is ready. Routine deep suction of a vigorous newborn is not required.	OB
+SHOULDERDYS	Delivery emergency in which the anterior shoulder is stuck behind the pubic bone	Shoulder dystocia maneuvers include McRoberts flexion of the maternal thighs and suprapubic pressure. Fundal pressure is not used.	OB
+MCROBERTS	Maternal thigh flexion that opens the pelvis during shoulder dystocia	McRoberts position is the first maneuver for shoulder dystocia. It is paired with suprapubic, not fundal, pressure.	OB
+APGARLOW	Newborn score that guides resuscitation and is repeated if it is low	A low Apgar score prompts support of airway and breathing. It does not by itself predict long-term development.	Newborn
+THERMOREG	Keeping a newborn warm because cold stress raises oxygen and glucose use	Newborns lose heat quickly. Dry, hat, and skin-to-skin or a warmer prevent cold stress.	Newborn
+HYPOGLYNEO	Low glucose in a newborn, especially infants of diabetic mothers and preterm infants	Neonatal hypoglycemia is treated with feeding or IV glucose. Jitteriness and a weak cry are clues.	Newborn
+VITAMINKSHOT	Injection given to newborns to prevent hemorrhagic disease	Newborns have low vitamin K. An IM dose prevents bleeding.	Newborn
+ERYTHROMYCIN	Eye ointment given to newborns to prevent gonococcal conjunctivitis	Erythromycin eye prophylaxis prevents ophthalmia neonatorum. It does not treat an established infection by itself.	Newborn
+HEARINGSCREEN	Newborn test done before discharge because hearing loss is invisible	Universal hearing screening finds loss before speech is delayed. A referral is not a final diagnosis.	Newborn
+PKUTEST	Newborn screen for phenylketonuria, drawn after feeding has started	The metabolic screen includes phenylketonuria. It is collected after protein feeding so metabolites are present.	Newborn
+CIRCUMCISION	Procedure after which bleeding and first void are checked	After circumcision, the site is checked for bleeding and the infant must void. Petroleum gauze is used with the Gomco or Mogen method teaching.	Newborn
+CORDCARE	Keeping the umbilical stump clean and dry until it falls off	Cord care is fold the diaper below the stump and report redness or drainage. Alcohol routines vary; dryness is the goal.	Newborn
+JAUNDICEPATH	Bilirubin rise that appears in the first day and is not a normal pattern	Jaundice in the first 24 hours is pathologic. It needs a bilirubin level and a cause, not watchful waiting.	Newborn
+PHYSIOLOGICJ	Jaundice that appears after the first day and peaks in the typical newborn pattern	Physiologic jaundice is later and milder than pathologic jaundice. It still needs a level if it looks significant.	Newborn
+PHOTOTHERAPYTX	Blue-green light that converts bilirubin into a form the newborn can excrete	Phototherapy protects the eyes and monitors temperature and hydration. Lights are not stopped for long feeding breaks if the level is high.	Newborn
+EXCHANGE TR	Procedure that replaces newborn blood when bilirubin is dangerously high	Exchange transfusion is for severe hyperbilirubinemia not controlled by phototherapy. It is done in a neonatal unit.	Newborn
+GAVAGE	Feeding through a tube when a newborn cannot safely suck and swallow	Gavage feeding checks tube placement before each feed. Residual volume is assessed per unit policy.	Newborn
+CLEFTPALATE	Opening in the palate that affects feeding and later speech	Cleft palate feeding uses special nipples. Surgery is planned with a team; feeding is the newborn priority.	Peds
+TRACHEOESOPH	Congenital connection that causes choking with feeds and requires surgery	Tracheoesophageal fistula presents with coughing during feeds and a prenatal polyhydramnios history. The infant is kept NPO.	Peds
+PYLORICSTEN	Infantile gastric outlet obstruction with projectile nonbilious vomiting	Pyloric stenosis causes projectile vomiting and an olive-like mass. Electrolytes are corrected before surgery.	Peds
+INTUSSUSCEPT	Telescoping bowel causing intermittent pain and currant-jelly stool	Intussusception causes episodic pain and a sausage mass. An air enema is often both diagnostic and therapeutic.	Peds
+HIRSCHSPRUNG	Missing ganglion cells causing failure to pass meconium and a tight rectal segment	Hirschsprung disease presents with delayed meconium and a distended abdomen. A rectal biopsy confirms it.	Peds
+CELIAC	Gluten-sensitive enteropathy with foul stools and poor growth	Celiac disease is treated with a strict gluten-free diet. Diagnosis is confirmed before the diet is started when possible.	GI
+CYSTICFIB	Genetic disease with thick mucus, salty sweat, and malabsorption	Cystic fibrosis affects lungs and pancreas. Airway clearance and pancreatic enzymes are daily care.	Peds
+SWEATCHLOR	Test that is high in cystic fibrosis	A high sweat chloride supports cystic fibrosis. Genetic testing confirms the mutations.	Peds
+PANCREATICENZ	Replacement capsules taken with meals in cystic fibrosis and chronic pancreatitis	Pancreatic enzymes are taken with food so fat is absorbed. They are not crushed into a formula that will be heated.	GI
+KAWASAKI	Childhood vasculitis with fever, rash, strawberry tongue, and coronary risk	Kawasaki disease is treated with IV immunoglobulin and aspirin. The coronary arteries are the concern.	Peds
+STRAWBERRY	Red tongue with prominent papillae seen in Kawasaki disease and scarlet fever	A strawberry tongue is a clue, not a diagnosis. Fever pattern and the rest of the exam decide the illness.	Peds
+SCARLET	Sandpaper rash and strawberry tongue after group A strep	Scarlet fever is treated as streptococcal infection. The rash does not mean the antibiotics can wait.	Peds
+RHEUMATIC	Immune sequela of strep throat that can scar heart valves	Rheumatic fever follows untreated strep. Prevention is treating streptococcal pharyngitis.	Peds
+OTITISMEDIA	Middle-ear infection with a bulging tympanic membrane	Acute otitis media is common after a cold. Treatment depends on age and severity; pain control is always part of it.	Peds
+EPIGLOTTITIS	Drooling, tripod position, and a thumbprint epiglottis; do not examine the throat	Epiglottitis is an airway emergency. Keep the child calm and do not use a tongue blade.	Airway
+CROUP	Barking cough and steeple sign treated with humidified air, steroid, and racemic epinephrine if severe	Croup is viral subglottic swelling. Stridor at rest is more serious than a bark alone.	Airway
+BRONCHIOLITIS	Infant wheezing illness, usually from RSV, managed with support and oxygen	Bronchiolitis is suction and oxygen. Routine bronchodilators and steroids are not the main treatment.	Respiratory
+RSVSEASON	Viral bronchiolitis that spreads by contact and requires precautions	RSV is contact spread. High-risk infants may receive preventive antibody during the season.	Infection
+ASTHMAACTION	Written plan that tells a family when to step up inhalers	An asthma action plan uses symptoms and peak flow zones. Families should be able to teach it back.	Respiratory
+PEAKFLOW	Home device that shows airway narrowing before symptoms are severe	Peak flow is compared with the patient's personal best. A drop into the red zone means the rescue plan.	Respiratory
+SPACER	Chamber that improves inhaled steroid and bronchodilator delivery	A spacer with a mask or mouthpiece gets more drug into the lungs. It is especially important for children.	Respiratory
+STATUSASTH	Severe asthma that does not respond to initial treatment	Status asthmaticus needs continuous bronchodilators, steroids, and careful monitoring. A silent chest is a warning.	Respiratory
+SILENTCHEST	Absence of wheeze in severe asthma because almost no air is moving	A silent chest is not improvement. It can mean respiratory failure is imminent.	Respiratory
+PURSEDLIP	Breathing technique that keeps small airways open longer in COPD	Pursed-lip breathing slows exhalation and reduces air trapping. Teach it before exertion.	Respiratory
+TRIPODPOS	Sitting forward braced on the hands, a position of severe respiratory distress	The tripod position means the work of breathing is high. Stay with the patient and support oxygenation.	Respiratory
+ORTHOPNEAPIL	Extra pillows used by patients who cannot breathe flat	Asking how many pillows a patient uses screens for orthopnea from heart failure.	Cardiac
+PAROXYSMAL	Nighttime awakening with shortness of breath from heart failure	Paroxysmal nocturnal dyspnea is a classic heart failure symptom. The patient wakes gasping.	Cardiac
+PINKEDEMA	Frothy blood-tinged sputum of acute pulmonary edema	Pink frothy sputum means fluid in the alveoli. Sit the patient up, give oxygen, and treat the failure.	Cardiac
+LASIXPUSH	Loop diuretic given IV for fluid overload, watching potassium and blood pressure	IV loop diuretics reduce preload. Ototoxicity rises if they are pushed too fast, and potassium falls.	Pharm / cardiac
+DIGTOXICITY	Nausea, vision changes, and arrhythmias from too much digoxin, worse when potassium is low	Digoxin toxicity is more likely in hypokalemia and renal failure. Hold the drug and check a level and the potassium.	Pharm / cardiac
+APICALPULSE	Heart rate counted at the apex for a full minute before some cardiac drugs	The apical pulse is checked before digoxin. The drug is held when the rate is below the ordered limit.	Skills
+HOLDDIG	Action when the apical rate is too low or the patient has signs of toxicity	Digoxin is held for a low apical rate or new toxicity symptoms, and the prescriber is called.	Pharm / cardiac
+NITROTEACH	Sublingual tablet for chest pain; call for help if pain persists after the ordered doses	Nitroglycerin is taken sitting down because it drops blood pressure. It is not used with drugs for erectile dysfunction.	Pharm / cardiac
+PDE5RISK	Erectile dysfunction drugs that cause severe hypotension if combined with nitrates	Sildenafil and similar drugs are withheld when nitrates are needed. Ask before giving nitroglycerin.	Pharm / cardiac
+MORPHINEHF	Opioid sometimes used in pulmonary edema for anxiety and preload reduction	Morphine can reduce anxiety and preload. Respiratory depression is the risk, and it is not required in every heart failure protocol.	Pharm / cardiac
+ACECOUGH	Dry cough from bradykinin that may require a switch to an angiotensin receptor blocker	An ACE inhibitor cough is dry and persistent. Switching to an ARB often solves it.	Pharm / cardiac
+ANGIOEDEMA	Swelling of the face or airway from ACE inhibitors that is not treated like ordinary hives	ACE inhibitor angioedema can threaten the airway. The drug is stopped permanently.	Emergency
+HYPERKALEMIAACE	High potassium caused by ACE inhibitors, ARBs, and potassium-sparing diuretics	ACE inhibitors raise potassium. A rising potassium or creatinine after a new start is reported.	Pharm / cardiac
+SPIRONOLACT	Potassium-sparing diuretic used in heart failure that can cause gynecomastia	Spironolactone blocks aldosterone. Potassium is monitored, and breast tenderness can occur.	Pharm / cardiac
+HCTZ	Thiazide diuretic that wastes potassium and can raise glucose and uric acid	Hydrochlorothiazide is used for hypertension. It can worsen gout and lower potassium.	Pharm / cardiac
+LOOPDIURETIC	Potent diuretic that wastes potassium and works even when GFR is low	Loop diuretics are the choice in heart failure with a low GFR. Thiazides work less well then.	Pharm / cardiac
+OTOTOXIC	Hearing damage from drugs such as aminoglycosides and rapid IV loop diuretics	Ototoxicity is taught as ringing or hearing loss. Peak and trough levels limit aminoglycoside injury.	Pharm
+NEPHROTOXIC	Kidney injury from drugs such as aminoglycosides, vancomycin, and NSAIDs	Nephrotoxic drugs need a creatinine check and hydration. Combining several of them multiplies the risk.	Pharm
+PEAKTROUGH	Levels drawn to keep aminoglycosides effective without toxicity	Peaks reflect efficacy and troughs reflect clearance. Troughs are drawn just before the next dose.	Pharm
+RED MAN	Flushing from infusing vancomycin too quickly, slowed rather than always labeled an allergy	Vancomycin flushing is rate related. Slow the infusion; it is not the same as anaphylaxis.	Pharm
+STEVENJOHNSON	Severe drug rash with mucosal involvement that means the drug is stopped	Stevens-Johnson syndrome starts as a rash and involves the mouth and eyes. The offending drug is stopped and the patient is treated as a burn risk.	Pharm
+ANAPHYLAXISRX	Intramuscular epinephrine as the first drug, then airway and fluids	Anaphylaxis treatment is IM epinephrine in the thigh immediately. Antihistamines do not replace it.	Emergency
+EPI PEN TEACH	Teaching to inject the mid-outer thigh through clothing if needed and to get emergency care after	Epinephrine autoinjectors are held in place for the time on the device. Emergency care follows every use.	Emergency
+BROSELOW	Color-coded tape that estimates pediatric drug doses from length	The Broselow tape estimates weight from length in an emergency. It is a starting point, not a substitute for a scale when there is time.	Peds
+WEIGHTBASED	Pediatric doses calculated from kilograms, with a second nurse check for high-alert drugs	Pediatric doses are mg per kg. A decimal error is a tenfold error, so a second check is standard for high-alert drugs.	Safety
+HIGHALERT	Drugs such as insulin, heparin, and opioids that require an independent double check	High-alert medications cause serious harm when given wrong. Read-back and a second check are the safeguards.	Safety
+TALLMAN	Mixed-case lettering that separates look-alike drug names	Tall-man letters highlight the different part of similar names, such as DOPamine and DOBUTamine.	Safety
+READBACK	Repeating a verbal order to the prescriber before acting	Read-back confirms verbal and telephone orders. The prescriber confirms what was heard.	Safety
+SBARFULL	Communication frame of situation, background, assessment, and recommendation	SBAR structures a call to a prescriber. The recommendation is a specific request, not only a list of problems.	Communication
+HANDOFF	Shift report that includes current status, recent changes, and what to watch	A handoff includes lines, wounds, pending tests, and the family's concerns. Bedside report lets the next nurse see the patient.	Communication
+TIMEOUTID	Identifying the patient with two identifiers before a medication or blood	Two identifiers are name and date of birth or medical record number, not the room number.	Safety
+BARCODE	Scan of the patient band and the drug that catches wrong-patient and wrong-drug errors	Barcode administration is not bypassed for convenience. A failed scan is a stop, not a workaround.	Safety
+RIGHTS	Medication checks of patient, drug, dose, route, time, and documentation	The rights are a habit at the bedside, not only at the medication room. The patient is asked about allergies again.	Safety
+INDEPENDCHK	Second clinician who calculates a high-alert dose without looking at the first result	An independent double check means two separate calculations. Looking together at one calculation is not independent.	Safety
+NEARMISS	Error caught before it reached the patient, still reported so the system can change	Near misses are reported. They show where the next injury will happen if the system stays the same.	Safety
+JUSTCULTURE	Response to errors that looks at the system and at reckless behavior separately	Just culture does not punish human error the same way it responds to reckless violation. Reporting is safer when that distinction is real.	Safety
+INCIDENTRPT	Factual report of an event that is not copied into the chart as a blame note	An incident report is an internal quality tool. The chart records the clinical facts and the response, not "incident report filed."	Legal
+CHARTFACT	Documentation of what was seen, done, and the patient's response	Chart objective facts and the response to treatment. Do not chart ahead, and do not alter a prior note without an appropriate addendum.	Legal
+LATEENTRY	Addendum that is labeled with the time it is actually written	A late entry is dated when it is written and describes when the care occurred. It is not squeezed into looking like it was on time.	Legal
+DELEGATION	Giving a task to assistive personnel while keeping the accountability for the outcome	Nurses delegate tasks, not the nursing process. Unstable assessment and teaching are not delegated.	Leadership
+UAPSCOPE	Assistive role that can obtain vital signs and help with hygiene on stable patients	Unlicensed assistive personnel do not assess, teach, or give medications in the usual model. The nurse follows up on what was delegated.	Leadership
+LPNSCOPE	Licensed practical nurse role that varies by state and usually includes stable medication administration	LPN scope is defined by the state and the facility. New unstable admissions and complex teaching stay with the registered nurse.	Leadership
+RNACCOUNT	Principle that the registered nurse remains responsible for delegated care	Accountability for the patient's plan stays with the registered nurse even when tasks are delegated.	Leadership
+PRIORITIZE	Seeing the patient with an airway or circulation threat before the patient who needs routine care	Priority goes to airway, breathing, circulation, then safety. A new sudden change outranks a scheduled task.	Priority
+UNSTABLE	Patient whose assessment is changing and who cannot be delegated for first assessment	Unstable patients are seen by the registered nurse. A stable chronic finding is not the same as a new change.	Priority
+MASLOWNEED	Hierarchy that places physiologic survival before belonging and self-esteem	Maslow is used on exams to put oxygen and perfusion before psychosocial needs when both are in the options.	Priority
+ABCPRIORITY	Order of airway, breathing, and circulation for emergency assessment	ABC is the emergency order unless massive hemorrhage requires immediate pressure as part of circulation.	Priority
+EXPECTOUT	Actual problem that is happening now, ranked ahead of a risk when both are acute	An actual impaired gas exchange outranks a risk for infection when the patient is hypoxic now.	Priority
+RISKDIAG	Nursing problem that has not happened yet and is prevented by the plan	A risk diagnosis guides prevention. It does not outrank an actual life-threatening problem.	Priority
+GOALSMART	Outcome that is specific, measurable, and timed	A useful goal names what the patient will do and by when, such as oxygen saturation at a stated level.	Priority
+EVALUATE	Step that asks whether the goal was met and changes the plan if it was not	Evaluation compares the outcome with the goal. If the goal was missed, the plan changes rather than being repeated unchanged.	Priority
+ADPIE	Nursing process of assessment, diagnosis, planning, implementation, and evaluation	ADPIE is the exam frame. Assessment comes before a new action unless the patient is in immediate danger.	Priority
+ASSESSFIRST	Rule that new data are collected before a routine intervention when the question gives a change	When a symptom is new, assess before calling it anxiety or giving a prn drug. The exception is an obvious emergency action.	Priority

@@ -1,5 +1,12 @@
 import type { MetadataRoute } from "next";
 import { listPublishedBlogPosts } from "@/lib/blog/public";
+import { CROSSWORD_BOARDS } from "@/lib/crossword/boards";
+import {
+  crosswordBoardPath,
+  crosswordDatedPath,
+  crosswordHubPath,
+  recentArchiveDates,
+} from "@/lib/crossword/schedule";
 import { qotdPath, todayIsoCentral } from "@/lib/demo/qotd";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { getSiteUrl } from "@/lib/seo";
@@ -45,6 +52,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "weekly" as const,
     priority: path === "/nclex" || path === "/naplex" ? 0.95 : 0.9,
   }));
+
+  const crosswordEntries = [
+    {
+      url: `${base}${crosswordHubPath()}`,
+      lastModified: now,
+      changeFrequency: "daily" as const,
+      priority: 0.84,
+    },
+    ...CROSSWORD_BOARDS.flatMap((board) => [
+      {
+        url: `${base}${crosswordBoardPath(board)}`,
+        lastModified: now,
+        changeFrequency: "daily" as const,
+        priority: 0.82,
+      },
+      ...recentArchiveDates(30).map((date) => ({
+        url: `${base}${crosswordDatedPath(board, date)}`,
+        lastModified: now,
+        changeFrequency: "daily" as const,
+        priority: date === today ? 0.8 : 0.6,
+      })),
+    ]),
+  ];
 
   const qotdEntries = EXAM_SLUGS.flatMap((exam) => [
     {
@@ -94,6 +124,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticEntries,
     ...examEntries,
     ...qotdEntries,
+    ...crosswordEntries,
     ...resourceEntries,
     ...blogEntries,
   ].filter((entry) => !isGatedStudyGuidePath(entry.url));

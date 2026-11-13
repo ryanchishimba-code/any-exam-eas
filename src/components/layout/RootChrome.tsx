@@ -48,6 +48,7 @@ const FOLD_HIDDEN_PREFIXES = [
   "/about",
   "/contact",
   "/daily",
+  "/crossword",
   "/how-to-pass",
   "/free-practice-questions",
 ];
