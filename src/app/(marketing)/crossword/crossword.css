@@ -1,3 +1,32 @@
+/* Crossword uses the full guest nav. Size the bar as brand | links | actions
+   so the trial cluster cannot shrink over About. The short CTA below 1400px
+   leaves the link row enough room from a 1024px desktop up. */
+@media (min-width: 1024px) {
+  .aee-nav--tool .aee-nav-inner {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
+  }
+
+  .aee-nav--tool .aee-nav-links {
+    gap: 0.7rem;
+    min-width: 0;
+  }
+
+  .aee-nav--tool .aee-nav-actions {
+    min-width: max-content;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .aee-nav--tool .aee-nav-links {
+    gap: 0.5rem;
+  }
+
+  .aee-nav--tool .aee-nav-links a {
+    font-size: 0.75rem;
+  }
+}
+
 .xw-page {
   --xw-teal: #0f766e;
   --xw-teal-hover: #115e59;
