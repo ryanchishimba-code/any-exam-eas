@@ -17,6 +17,10 @@ import {
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
+import {
+  bankPaceSessionSeconds,
+  sessionIncludesNclexAllNgn,
+} from "@/lib/assessment/nclex-all-ngn-slot";
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
@@ -2414,7 +2418,12 @@ export function StudyBankPractice({
           reviewQueue={effectiveBankStyle === "review_incorrect"}
           title={title}
           adaptiveMeta={adaptiveMeta ?? undefined}
-          timedSessionSeconds={timedSessionSeconds}
+          timedSessionSeconds={
+            timedSessionSeconds ??
+            (bankPace === "timed" && questions && sessionIncludesNclexAllNgn(questions)
+              ? bankPaceSessionSeconds(questions.length)
+              : undefined)
+          }
           returnTo={topicReturnTo ?? undefined}
         />
       </div>

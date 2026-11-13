@@ -9,9 +9,21 @@ import {
   getQuestionByIndex,
   isSessionComplete,
   recordSessionAnswer,
+  recordSessionGrade,
   summarizeSession,
 } from "@/lib/questions/session-engine";
 import { fetchRevealedAnswer } from "@/lib/client/fetch-revealed-answer";
+import { revealPublishedNgnItem } from "@/lib/client/reveal-nclex-all-ngn";
+import { gradeWithheldNclexAllSession } from "@/lib/client/grade-nclex-all-session";
+import { NgnAllQuestionsStep } from "./NgnAllQuestionsStep";
+import {
+  caseQuestionsForSet,
+  encodeNgnStoredResponse,
+  nclexAllNgnCommitKind,
+  readNclexAllNgnSlot,
+  sessionIncludesNclexAllNgn,
+} from "@/lib/assessment/nclex-all-ngn-slot";
+import type { NgnItem } from "@/lib/assessment/types";
 import { applyRevealedAnswer } from "@/lib/questions/apply-revealed-answer";
 import { serializeStudySelectedAnswer } from "@/lib/learning/attempt-selection";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
@@ -201,6 +213,10 @@ export function StudySessionPlayer({
   const [inReview, setInReview] = useState(false);
   const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => new Set());
   const [reportOpen, setReportOpen] = useState(false);
+  const [ngnResponses, setNgnResponses] = useState<Record<string, unknown>>({});
+  const [revealedNgn, setRevealedNgn] = useState<Record<string, NgnItem>>({});
+  const ngnResponsesRef = useRef(ngnResponses);
+  ngnResponsesRef.current = ngnResponses;
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
   const flushInflight = useRef<Promise<SessionPersistReceipt> | null>(null);
@@ -210,6 +226,12 @@ export function StudySessionPlayer({
   const touchStart = useRef<number | null>(null);
 
   const current = getQuestionByIndex(questionList, sessionState, sessionState.currentIndex);
+  const currentSlot = current ? readNclexAllNgnSlot(current) : null;
+  const withholdReveal =
+    sessionState.mode === "timed" &&
+    usesSessionTimer &&
+    sessionIncludesNclexAllNgn(questionList);
+  const commitKind = nclexAllNgnCommitKind({ slot: currentSlot, withholdReveal });
   const answer = current ? sessionState.answers[current.id] : undefined;
   const sequentialContext = useMemo(
     () =>
@@ -303,10 +325,32 @@ export function StudySessionPlayer({
       if (flushInflight.current) return flushInflight.current;
       setSaveState("saving");
       setSaveError(null);
-      const partial = summarizeSession(sessionState, questionList);
+      let sessionForSave = sessionState;
+      let questionsForSave = questionList;
+      if (
+        sessionState.mode === "timed" &&
+        sessionState.timedSessionSeconds &&
+        sessionIncludesNclexAllNgn(questionList)
+      ) {
+        const graded = await gradeWithheldNclexAllSession({
+          session: sessionState,
+          questions: questionList,
+          responses: ngnResponsesRef.current,
+          revealNgn: revealPublishedNgnItem,
+          revealBank: fetchRevealedAnswer,
+        });
+        sessionForSave = graded.session;
+        questionsForSave = graded.questions;
+        setSessionState(graded.session);
+        setQuestionList(graded.questions);
+        if (Object.keys(graded.revealed).length > 0) {
+          setRevealedNgn((currentRevealed) => ({ ...currentRevealed, ...graded.revealed }));
+        }
+      }
+      const partial = summarizeSession(sessionForSave, questionsForSave);
       const work = persistCompletedStudySession({
-        session: sessionState,
-        questions: questionList,
+        session: sessionForSave,
+        questions: questionsForSave,
         completed: opts.completed,
         endedEarly: opts.endedEarly,
       })
@@ -530,6 +574,7 @@ export function StudySessionPlayer({
   }
 
   const goNextRef = useRef<(from?: StudySessionState) => void>(() => undefined);
+  const revealNgnRef = useRef<() => void>(() => undefined);
   const goPrevRef = useRef<() => void>(() => undefined);
   const toggleSelectRef = useRef<(option: string) => void>(() => undefined);
 
@@ -547,8 +592,25 @@ export function StudySessionPlayer({
   }
 
   function goNext(from?: StudySessionState) {
-    const base = from ?? sessionState;
-    const next = advanceSession(withUnansweredFlag(base), 1);
+    let base = from ?? sessionState;
+    if (current && commitKind === "advance") {
+      const response = currentSlot ? ngnResponsesRef.current[currentSlot.item.id] : undefined;
+      const hasAnswer = currentSlot ? response != null : selected.length > 0;
+      base = recordSessionGrade(base, current.id, {
+        selected: currentSlot ? [encodeNgnStoredResponse(response ?? null)] : selected,
+        correct: null,
+        revealed: false,
+        unanswered: !hasAnswer,
+      });
+      if (withholdReveal && sessionState.currentIndex >= questionList.length - 1) {
+        setSessionState(base);
+        setTimeUp(true);
+        return;
+      }
+    } else {
+      base = withUnansweredFlag(base);
+    }
+    const next = advanceSession(base, 1);
     setSessionState(next);
     persist(next);
   }
@@ -651,15 +713,54 @@ export function StudySessionPlayer({
     });
     setSessionState(next);
     setShowConfidence(false);
-    void submitAttempt(
-      current,
-      answer.correct === true,
-      answer.selected,
-      answer.durationMs ?? 0,
-      level
-    );
+    if (!readNclexAllNgnSlot(current)) {
+      void submitAttempt(
+        current,
+        answer.correct === true,
+        answer.selected,
+        answer.durationMs ?? 0,
+        level
+      );
+    }
     persist(next);
   }
+
+  async function revealCurrentNgn() {
+    if (!current || !currentSlot) return;
+    setScoreError(null);
+    const targets =
+      currentSlot.role === "case" ? caseQuestionsForSet(questionList, currentSlot.setId) : [current];
+    try {
+      const graded = await gradeWithheldNclexAllSession({
+        session: sessionState,
+        questions: targets.length > 0 ? targets : [current],
+        responses: ngnResponsesRef.current,
+        revealNgn: revealPublishedNgnItem,
+        revealBank: async () => null,
+      });
+      if (Object.keys(graded.revealed).length === 0) {
+        setScoreError("Could not score this item. Try again.");
+        return;
+      }
+      setRevealedNgn((currentRevealed) => ({ ...currentRevealed, ...graded.revealed }));
+      setSessionState(graded.session);
+      persist(graded.session);
+      if (
+        sessionState.mode === "practice" ||
+        sessionState.mode === "adaptive" ||
+        sessionState.mode === "weak_area" ||
+        sessionState.mode === "review_incorrect" ||
+        sessionState.mode === "tutor"
+      ) {
+        setShowConfidence(true);
+      }
+    } catch {
+      setScoreError("Could not score this item. Try again.");
+    }
+  }
+  revealNgnRef.current = () => {
+    void revealCurrentNgn();
+  };
 
   useEffect(() => {
     function isEditableTarget(target: EventTarget | null) {
@@ -695,13 +796,19 @@ export function StudySessionPlayer({
       if (num >= 1 && num <= optionCount) {
         toggleSelectRef.current(current.options[num - 1]);
       }
-      if (e.key === "Enter" && selected.length > 0) {
-        void revealAnswer(selected);
+      if (e.key === "Enter" && (currentSlot || selected.length > 0)) {
+        if (commitKind === "reveal-item" || commitKind === "reveal-case") {
+          revealNgnRef.current();
+        } else if (commitKind === "advance") {
+          goNextRef.current();
+        } else {
+          void revealAnswer(selected);
+        }
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [answer?.revealed, current, revealAnswer, selected, sessionState.currentIndex]);
+  }, [answer?.revealed, commitKind, current, currentSlot, revealAnswer, selected, sessionState.currentIndex]);
 
   const runFlushRef = useRef(runFlush);
   runFlushRef.current = runFlush;
@@ -951,6 +1058,28 @@ export function StudySessionPlayer({
               </span>
             </p>
           ) : null}
+          {currentSlot ? (
+            <NgnAllQuestionsStep
+              slot={currentSlot}
+              seed={`${sessionState.sessionId}:${current.id}`}
+              responses={ngnResponses}
+              revealedItem={revealedNgn[current.id] ?? null}
+              revealed={!!answer?.revealed}
+              hint={
+                currentSlot.role === "case" && !answer?.revealed
+                  ? withholdReveal
+                    ? "Answers stay hidden until the timer ends."
+                    : currentSlot.stepIndex < currentSlot.totalSteps
+                      ? "Feedback for this case appears after the last question."
+                      : null
+                  : null
+              }
+              onResponsesChange={(next) => {
+                ngnResponsesRef.current = next;
+                setNgnResponses(next);
+              }}
+            />
+          ) : (
           <QuestionRenderer
             question={current}
             selected={selected}
@@ -958,6 +1087,7 @@ export function StudySessionPlayer({
             onToggle={toggleSelect}
             sequentialContext={sequentialContext}
           />
+          )}
 
           {scoreError && !answer?.revealed ? (
             <p className="mt-4 text-sm text-red-700" role="alert">
@@ -965,11 +1095,13 @@ export function StudySessionPlayer({
             </p>
           ) : null}
 
-          {!answer?.revealed && sessionState.mode !== "rapid" && (
+          {!answer?.revealed && sessionState.mode !== "rapid" && commitKind !== "advance" && (
             <button
               type="button"
-              disabled={!canSubmitSelection()}
-              onClick={() => void revealAnswer(selected)}
+              disabled={currentSlot ? false : !canSubmitSelection()}
+              onClick={() =>
+                void (commitKind === "qbi" ? revealAnswer(selected) : revealCurrentNgn())
+              }
               className={`mt-8 w-full sm:w-auto sm:px-10 ${studyUi.sessionPrimaryBtn}`}
             >
               {current.type === "ordered_response" &&
@@ -1039,6 +1171,8 @@ export function StudySessionPlayer({
                 bankItemId={current.bankItemId}
                 reviewQueue={reviewQueue}
               />
+              {currentSlot ? null : (
+                <>
               <MasteryMissAttachments
                 missed={answer.correct !== true}
                 examSlug={examSlug}
@@ -1064,6 +1198,8 @@ export function StudySessionPlayer({
                   aiTutor={aiTutorRequest}
                   autoFetchOnMiss={false}
                 />
+              )}
+                </>
               )}
             </div>
           )}
