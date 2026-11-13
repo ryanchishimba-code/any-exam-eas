@@ -1,0 +1,2 @@
+id	step	key	why
+cmr8nml3900xo1ygixoovb4e8	step-3	Administer intravenous thrombolytics	MedlinePlus states thrombolytics for ischemic stroke are given within 3 hours of the first symptoms. This item uses a 4.5-hour window.

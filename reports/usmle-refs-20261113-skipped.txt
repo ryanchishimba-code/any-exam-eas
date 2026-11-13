@@ -1,6 +1,5 @@
 id	step	key	why
 cmr88s01100t81yr97a1ksfnw	step-2	Sedatives	no source checked for this key
-cmrpw57dt002i1yrt71mq3vkb	step-1	Acute hepatitis C	no source checked for this key
 cmrvwm8hz00011ye87nwnvyxn	step-3	The new drug is significantly more effective than placebo.	no source checked for this key
 cmrvwm8kv00021ye8gq11kyx2	step-3	Confounding bias	no source checked for this key
 cmrvwmwt1000e1ye8aviiitwr	step-3	Intention-to-treat analysis	no source checked for this key
@@ -52,10 +51,8 @@ cmr4cbwlr00kx1ykyl04a2m54	step-3	Administer intravenous fluids	no source checked
 cmrvm5zfq001ujw04kcy2xzp6	step-3	Initiate magnesium sulfate therapy and monitor fetal heart rate	no source checked for this key
 cmr4d3x8b00vo1yky5g79sruo	step-3	Give controlled supplemental oxygen to a target saturation of 88% to 92%	no source checked for this key
 cmr4dbca100xx1ykygjjlz0f9	step-3	Start a potassium binder	no source checked for this key
-cmr4dbe5m00ye1yky3podjd1n	step-3	Hashimoto's thyroiditis	no source checked for this key
 cmr4dqqo701481ykyq86cgyc8	step-3	Provide nebulized albuterol	no source checked for this key
 cmr4e6i4x01b41ykygru431zd	step-3	Administer systemic corticosteroids	no source checked for this key
-cmr4gkdq0029r1ykyb6tdyr34	step-3	Chronic hepatitis C infection	no source checked for this key
 cmrw9zjqg00031ynhxld29djm	step-3	Order chest X-ray	no source checked for this key
 cmrwa0kq1000u1ynhymnt1du6	step-3	CT scan of the head without contrast	no source checked for this key
 cmrwa354t002k1ynh7mo3ipfj	step-3	Perform a pelvic exam and obtain cultures	no source checked for this key
@@ -65,7 +62,6 @@ cmr8h1hl201xv1ylohuqal6jb	step-3	Provide a nebulized bronchodilator	no source ch
 cmr8juhjl00041ygiuhu13y7o	step-3	Give nebulized albuterol	no source checked for this key
 cmr8m9bc400k11ygi4tsdre4a	step-3	Start basal insulin while continuing metformin	no source checked for this key
 cmr8m9dtu00kk1ygiwcnnf24g	step-3	Administer intravenous dextrose	no source checked for this key
-cmr8q40is01iu1ygi6k502fe4	step-3	Administer the influenza vaccine	no source checked for this key
 cmruymmav00551y2y3lddhrs8	step-3	Start doxycycline	no source checked for this key
 b7x51fe4d8157ded25449ba19a7	step-1	An antibody needs time and warmth to disable factor VIII	no source checked for this key
 cmr98djlh00gx1ywydd41wiwk	step-3	Start noninvasive ventilation	no source checked for this key
@@ -104,7 +100,6 @@ cmruyiuyr002s1y2y0bk2sa4h	step-3	Administer albuterol nebulizer	no source checke
 b7x1d4d230eb1b0cd05ac1807c1	step-1	The kidney enzyme that this hormone activates has been lost with the scarred tissue	no source checked for this key
 cmr8ei0oj01ar1ylo2j4qcs59	step-3	Start insulin therapy	no source checked for this key
 cmruifomq001n1ycet0dsj0bt	step-3	Switch to intravenous bisphosphonate	no source checked for this key
-cmr4nxsmk00gq1y1etflxxxt4	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 b7xd4095fabf370cbcfab1d48ba	step-1	The signal for lateral gaze must cross in a tract that convergence does not use	no source checked for this key
 cmr8jia3102o81ylon2qjv4um	step-3	Alcohol withdrawal	no source checked for this key
 b7x7285b2c0675d1ec826096eca	step-1	Understanding is already gone, which the frontal speech area would have left intact	no source checked for this key
@@ -227,20 +222,16 @@ b7xdb9a33dbf2c0a95258112b5f	step-2	Its interval still includes large harm, so th
 cmr89p1ge00n31yw2rqo8r0j9	step-1	Start a statin medication	no source checked for this key
 cmr89p24d00nb1yw2dp1cbdre	step-1	Increased renin secretion	no source checked for this key
 cmrsew99i00041y55yfxfiufa	step-1	Inhibition of thrombin	no source checked for this key
-cmrpvdpub00251yncmxaza7m2	step-1	Acute hepatitis A	no source checked for this key
 cmr88g5ne00dh1yw2n6usq6ea	step-1	Polymyositis	no source checked for this key
 cmrpvuyqs00111yh5tvn9nlst	step-1	Cytomegalovirus infection	no source checked for this key
 cmrpvyvet00091yrt6ef859mr	step-1	Abscess formation	no source checked for this key
 cmrpvyvz9000g1yrt99xizetx	step-1	Osteolytic metastasis	no source checked for this key
 cmrpvywdn000l1yrtr448rtu5	step-1	Acute cellular rejection	no source checked for this key
 cmrpvyx6b000v1yrtdh22zr40	step-1	Invasion of surrounding tissues by malignant cells	no source checked for this key
-cmrpw19bm00311yh5rkpq9zuj	step-1	Acute hepatitis A	no source checked for this key
 b8x5ddf5d84f5f2345d18db6c73	step-1	Beta chains are present in the usual amount, so no extra A2 forms, and the missing chains are alpha	no source checked for this key
-cmr4e6lhm01bt1ykyu9fjye67	step-3	Pyelonephritis	no source checked for this key
 b8x3ce188de736f34d7cda844f9	step-1	A toxin from that infection damages the vessel lining, and the adult without diarrhea is the one missing the enzyme	no source checked for this key
 cmr4f6d8p01pr1yky1edx4gvt	step-3	Advise lifestyle modifications	no source checked for this key
 b8x6c9ddb8106eedc2b62807622	step-1	The air that arrives still equilibrates, so the low oxygen is too little ventilation rather than a bad match	negated key
-cmrr4y92800281y6pvb1udkvi	step-1	Acute hepatitis A	no source checked for this key
 cmrr4ycn3002l1y6pxpiby1u0	step-1	Aortic dissection	no source checked for this key
 cmrr4ycyx002o1y6p2yq44ej3	step-1	Administer calcium gluconate	no source checked for this key
 cmrr4yetz002z1y6pkoad5h3f	step-1	Decreased renal excretion of hydrogen ions	no source checked for this key
@@ -261,7 +252,6 @@ cmrvwmwnj000c1ye8fsh3ey94	step-3	Drug Y is superior.	no source checked for this 
 cmrvwmwq9000d1ye81h2izckq	step-3	High-sugar diets increase diabetes risk.	no source checked for this key
 cmrpvuxc3000k1yh5jd0fsx52	step-1	Autoantibody and immune complex deposition with complement consumption and glomerular inflammation	no source checked for this key
 cmrvwndgy000i1ye8i58hf9k4	step-3	Gemfibrozil	no source checked for this key
-cmrpwfg6t00761yh5rs6cgacl	step-1	Hashimoto's thyroiditis	no source checked for this key
 cmrvwndjv000j1ye83wghw9xi	step-3	Previous angioedema	no source checked for this key
 cmr8i0akz026x1ylo1hnnkyhc	step-3	Wound infection	no source checked for this key
 cmrr4t2h1000s1y6pxcrl18rg	step-1	Acute myeloid leukemia	no source checked for this key
@@ -297,7 +287,6 @@ cmr9a12ti01161ywyrtfr7tc9	step-3	Provide analgesia for pain management	no source
 cmr9aeovj014n1ywyfs8d7wz7	step-3	Obtain a thyroid function test	no source checked for this key
 cmrthhq8600741yaxkbz5djsb	step-1	Obstruction of the pancreatic duct by gallstones	no source checked for this key
 cmrvwqxjb00221ye8okdkqxww	step-3	Start supplemental oxygen and order CT pulmonary angiogram	no source checked for this key
-cmr9buy1201jz1ywyv6qhkj6a	step-3	Chronic kidney disease	no source checked for this key
 cmrr4t30t000z1y6ppojfnpvl	step-1	Folate deficiency anemia	no source checked for this key
 cmru8hz7500ax1yd63ujkgwnk	step-3	Obtain a surgical consult	no source checked for this key
 cmru8hze300az1yd6a1vcy2cy	step-3	Give calcium gluconate	no source checked for this key
@@ -313,7 +302,6 @@ cmr8att6o00021yloxtz7w8wm	step-3	Surgical site infection	no source checked for t
 cmrvwu6t6003y1ye8li4hgv4d	step-3	Order non-stress test	no source checked for this key
 cmr8cnckf00ok1ylo6si1kh3n	step-3	Order a CT scan of the chest	no source checked for this key
 cmr8cn9oz00nm1ylo4noh9hsu	step-3	Broad-spectrum intravenous antibiotics	no source checked for this key
-cmr8e5zny01811yloi8647ajy	step-3	Administer thrombolytics	no source checked for this key
 cmrvwulgu00471ye8yc47tav9	step-3	Administer naloxone	no source checked for this key
 cmr8dq8x001011ylop6d3uhcc	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmr8esnky01ds1yloo6imcs24	step-3	Add a GLP-1 receptor agonist	no source checked for this key
@@ -336,7 +324,6 @@ b8x53cc4eac02e3a72ff69caeac	step-1	His antidiuretic hormone is suppressed by the
 b8xfd317356ed257644f56c7413	step-1	His kidneys have retained bicarbonate over days, which a seizure does not give time to do	no source checked for this key
 b8x38ff3d7a42e426a18f190111	step-1	Transit through the capillary shortens, so equilibration across the thick membrane fails	no source checked for this key
 b8xd7d40e6e99a64d92fc73c78e	step-1	That segment saves calcium when it is blocked, and his urine is wasting calcium the way a loop block does	no source checked for this key
-cmru3gdzs00b81y7wzdmq8je8	step-3	Chronic kidney disease	no source checked for this key
 b8x36d64b70378b51f0b373a4df	step-1	Chloride replaced it, so no unmeasured anion was added	no source checked for this key
 b8x21750208951ea7939b561054	step-1	Fetal hemoglobin binds the phosphate poorly, so the curve stays shifted toward holding oxygen	no source checked for this key
 cmrrtm5uv004i1y8wu1uvae9e	step-1	Increased venous stasis due to immobility	no source checked for this key
@@ -352,15 +339,11 @@ cmr4bnxbm00aw1yky0iuuuye4	step-3	Impaired fasting glucose	no source checked for 
 b8x5313a396bec81ccba9695344	step-1	His pituitary is pouring out the hormone that shares a pigment precursor, and the pale patient’s pituitary is silent	no source checked for this key
 cmr4cnsnr00nw1ykyxi4jzg4v	step-3	Administer nitroglycerin	no source checked for this key
 b8xb5edbe3652c596a1e4122ecc	step-1	Androgen action clearly worked, so the missing piece is formation of the uterus itself	no source checked for this key
-cmr4fdk6301sa1ykymoo10xjy	step-3	Acute pyelonephritis	no source checked for this key
 cmr8ccffd00kd1ylo5r5eisvg	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmr8alb4f01ac1yr9hbl5whuj	step-2	Start oral antibiotics	no source checked for this key
 cmr4mo9sj009t1y1eo3gubk02	step-1	Uric acid underexcretion	no source checked for this key
 cmr4lnk1g003c1y1e8jj7vhnw	step-1	Decreased renal excretion of uric acid	no source checked for this key
-cmr4nxpmd00ft1y1e487pewgu	step-1	Formation of monosodium urate crystals	no source checked for this key
 cmrruac4y00cy1y8wwsnci0fq	step-1	Diabetic nephropathy	no source checked for this key
-cmr8d6gfj000t1yazetsabpcb	step-1	Deposition of monosodium urate crystals	no source checked for this key
-cmrvwwj3k00581ye87i5pk8qn	step-3	Start intravenous thrombolytics	no source checked for this key
 cmqxf0nup00191yf15ldpir38	step-3	Acetaminophen	no source checked for this key
 cmruyfhua00131y2ydbkfv01q	step-3	Statins reduce cardiovascular risk	no source checked for this key
 cmrvwq4cz001r1ye84x2cz2uy	step-3	Apply cold compresses	no source checked for this key
@@ -372,7 +355,6 @@ cmrr4t04j00001y6poubhxy2u	step-1	Chronic blood loss leading to iron deficiency	n
 cmru8hxbn00ae1yd6dw9iq1pl	step-3	Increase her antihypertensive medication	no source checked for this key
 b8xfbcdc88eea29769258dd55dd	step-1	Adipose tissue aromatizes androgen to estrogen, which the lean man does not do at that rate	no source checked for this key
 cmqxe00kl00ds1yma3451n2t6	step-3	Add a long-acting beta-agonist	no source checked for this key
-cmqxe01x500e91ymaaeoj7831	step-3	Testicular torsion	no source checked for this key
 b8x6d0be038ab7194cf9b20879f	step-1	The milk was made, and the posterior-pituitary hormone that ejects it is missing	no source checked for this key
 b8xae1a14150a5ab7f00d33930a	step-1	The receptor that should hear thyroxine is resistant, so the pituitary keeps releasing its hormone	no source checked for this key
 b8xa33560f07e99b38b28512a2f	step-1	Enough enzyme remains to make mineralocorticoid, while androgen production is still increased	no source checked for this key
@@ -441,7 +423,6 @@ b8x81438c4e1a27ac519364d664	step-1	Collateral arteries running under the ribs en
 cmrx1luhf001ol7057gkr09tb	step-3	Report to child protective services per state law; document; full trauma survey; consider skeletal survey	no source checked for this key
 b8x387db5e430bff1e5c14d718e	step-1	The pause made the next repolarization even longer, which let an early afterdepolarization trigger the rhythm	no source checked for this key
 b8x38354f6b00c06673bdefd1d3	step-1	That block sits in the node, where vagal tone matters, and the sudden drops sit below the node	no source checked for this key
-cmrrvnj31006s1yl8qgckptpm	step-2	Administer diuretics	no source checked for this key
 b8x4d57f0775c2e68077475e8c3	step-1	The gradient is aortic diastolic pressure minus the filling pressure, and 35 mm Hg ate most of it	no source checked for this key
 b8xfff94dddaa19aeafd6034810	step-1	Aortic closure was already late, so the usual delay of pulmonary closure brought the two sounds together	no source checked for this key
 b8xa766f7151a59cb036d0d8cbd	step-1	The organisms live upstream and raise the acid that lands on the duodenum	no source checked for this key
@@ -537,7 +518,6 @@ b8x015169d77351374502d80891	step-2	The movements are from the blockade, and more
 cmr8bxxuq00do1ylo9r451m19	step-3	Mammogram	no source checked for this key
 b8x73870f751e5097f21621228c	step-2	The belief is a delusion, so he cannot apply the information to himself	no source checked for this key
 b8xd5d5b33dc9f8c2742868cf3a	step-2	He stopped a drug that produces this withdrawal, and he does not drink	no source checked for this key
-cmr8bxzxt00e91yloyuylz9eo	step-3	Increase diuretic dosage	no source checked for this key
 b8x7334f59c86f8eed1c2582e16	step-2	The gas and the depolarizing drug triggered it, and he is not on a dopamine blocker	no source checked for this key
 cmrpw16bq00251yh5gjk4q2ok	step-1	Hepatocellular injury from alcohol toxicity	no source checked for this key
 b8x5f3748c6a9748af9b54a8342	step-2	They will be consumed into the same microvascular clots, and the missing piece is the cleaving enzyme in plasma	no source checked for this key
@@ -643,13 +623,10 @@ cmr8dyp30014s1ylovoa8zumu	step-3	Aneurysmal rupture	no source checked for this k
 cmpnjgx1b001t1ymxdcrs99j7	step-2	Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutrition when tolerated	no source checked for this key
 cmtpvxyn1000a1ylc78dq2819	step-2	Thoracentesis	no source checked for this key
 cmtpw0pva00341ylciqvu7w60	step-2	Stable angina	no source checked for this key
-cmtpwsniy003y1y6h0mshpx3m	step-2	Administer diuretics	no source checked for this key
 cmtpwzxx6006q1y6h6at28nni	step-2	Pulmonology for thoracentesis	no source checked for this key
 cmr4e6kcf01bp1ykyvcvpbdsg	step-3	Start insulin therapy	no source checked for this key
-cmr8fhgyj01kj1yloj35i8s6q	step-3	Measles	no source checked for this key
 cmr8gr3av01tf1yloypgi8o2o	step-3	Initiate benzodiazepine therapy	no source checked for this key
 cmr8gr7mn01ue1ylob3vb7ft2	step-3	Serotonin syndrome	no source checked for this key
-cmtpx3f0z00b21y6hkhbr5tas	step-2	Increase diuretic dosage	no source checked for this key
 cmtpx6boq00001ymu94d9ueuu	step-3	Start methotrexate therapy	no source checked for this key
 cmtpx6crr000d1ymuc504akz9	step-3	Septic arthritis	no source checked for this key
 cmr8g7bmy01r01yloyg9js5ps	step-3	Order a renal ultrasound	no source checked for this key
@@ -662,15 +639,12 @@ cmr8esq4001em1yloveed3mxd	step-3	Start intravenous fluids	no source checked for 
 cmtpxgqnj006q1ymuagpk5dwl	step-3	Provide psychoeducation on medication adherence	no source checked for this key
 cmtpxgqys006u1ymumxooba1v	step-3	Panic attack	no source checked for this key
 cmtpxgs4o00791ymu83miryb0	step-3	Start oral antibiotics	no source checked for this key
-cmtpxgt63007m1ymu40nyqbi8	step-3	Hashimoto's thyroiditis	no source checked for this key
-cmtpxgtbp007o1ymupvp4hblu	step-3	Hepatitis A infection	no source checked for this key
 cmqxd0opn00671ymaexrjcogp	step-2	Insulin	no source checked for this key
 cmqxdeqp600an1ymata96p5ym	step-2	Malignant hypertension	no source checked for this key
 cmqxderqn00ay1ymajbm35hs0	step-2	Immune thrombocytopenic purpura (ITP)	no source checked for this key
 b9xdbfd0b2c682325ccaac4f794	step-2	Uric acid precipitates in acid urine and is not seen on a plain film, unlike most calcium stones	no source checked for this key
 cmqxdy817001c1y79ywqo1cby	step-2	Viral upper respiratory infection	no source checked for this key
 cmqxee92z003z1y795oxcxtcb	step-2	Nonsteroidal anti-inflammatory drugs	no source checked for this key
-cmqxee9xl00481y793d83cfjv	step-2	Increase diuretic dosage	no source checked for this key
 cmqxeebry004r1y795food0ad	step-2	Consult surgery for possible appendectomy	no source checked for this key
 cmr31dlog00cdjs04mxofce08	step-2	Honor the valid advance directive and use noninvasive treatments aligned with his documented goals	no source checked for this key
 b9xb0284844bfd5bc105744032c	step-2	Folate can repair the blood while the cord still lacks the vitamin the posterior columns need	no source checked for this key
@@ -693,7 +667,6 @@ cmtpx6cxd000f1ymuqtewjxsg	step-3	Femoral neck fracture	no source checked for thi
 cmtpx6dgk000m1ymu0xqsvvjv	step-3	Initiate nebulized albuterol	no source checked for this key
 cmr4hnh6b006l1ydet4ymhjur	step-2	90 mL/min	no source checked for this key
 cmr4hnjyq00741ydewrjeno8f	step-2	Provide supportive care	no source checked for this key
-cmtpx8ran002u1ymu6rk8thvs	step-3	Chronic kidney disease	no source checked for this key
 b9x1b5c73838ef66a288e20d177	step-1	His swelling is driven by bradykinin, and the low C4 marks a complement pathway his cousin’s histamine reaction does not use	no source checked for this key
 cmr4hzy9700b51yde0r0eye2u	step-2	Hib vaccination	no source checked for this key
 b9x5598b7f29e59ecdd2dfcbac2	step-1	The granules trigger clotting throughout the blood, consuming fibrinogen the liver is still able to make	no source checked for this key
@@ -702,7 +675,6 @@ b9xd45cad57d9e20b2f56694c09	step-1	New red cells stopped coming out, so the usua
 cmrsewaf8000j1y55lkfcgajw	step-1	Acute respiratory distress syndrome	no source checked for this key
 b9x3316590e0c911400a7b33ea4	step-1	Antibody and antigen had to form complexes, which a minute-scale histamine release does not require	no source checked for this key
 b9xf1b3d5235afa86ab40563a37	step-1	The ACTH is made by the tumor, which does not have the pituitary’s feedback brake	no source checked for this key
-cmrsewbqf00101y55d854olg6	step-1	Chronic kidney disease progression	no source checked for this key
 cmr4iy8qw00h81yde5li374cz	step-2	100 mL/min	no source checked for this key
 b9x96646ce521a8dbdb4f4be229	step-1	Those segments spend the most ATP on transport and sit where oxygen is already scarce	no source checked for this key
 cmr4j8oqa00k51ydea9825zbf	step-2	60 mL/min	no source checked for this key
@@ -725,10 +697,8 @@ b9x7280c0f1521a9f835448e0c0	step-1	Enough insulin remains to restrain ketogenesi
 b9x9db076e65335ad7a0282ec70	step-1	The pituitary is seeing enough T4, and the low T3 is a peripheral conversion change of illness	no source checked for this key
 b9xff1e4eeadaa9399681ee9f95	step-1	Both adrenals were destroyed by hemorrhage in hours, which a slow pituitary failure does not do	no source checked for this key
 cmr87iz9600gc1yr9wg40mwln	step-2	Diabetes Mellitus Type 1	no source checked for this key
-cmr87izgi00ge1yr9756c04uz	step-2	Administer diuretics	no source checked for this key
 b9xccd86aa6f969ddecffd599e7	step-1	Sperm could not cross the thickened mucus, so an egg was not enough	no source checked for this key
 b9x5f1465b057a2c93a1111cfeb	step-1	Inflammation first spilled stored hormone and then killed the cells that make it	no source checked for this key
-cmrru3q4s00b81y8wny9sw56h	step-1	Nephrotic syndrome	no source checked for this key
 cmr886cej00mp1yr9iy66ncd6	step-2	Start inhaled corticosteroids	no source checked for this key
 cmr886efu00ne1yr9oj9xjp0e	step-2	Echocardiogram	no source checked for this key
 cmrsf3hzs002l1y55lx4on2dp	step-1	Decreased erythropoietin production	no source checked for this key
@@ -755,7 +725,6 @@ cmr4hb2rd004e1yde9fnyvxmt	step-2	Viral bronchiolitis	no source checked for this 
 cmr4hb49e004t1ydexnbuo9x0	step-2	Start intravenous fluids	no source checked for this key
 cmr4hzvqr00ao1yde5ttpyspc	step-2	Formal audiologic evaluation	no source checked for this key
 cmrrt9lf6000p1y8wuqyd85wp	step-1	Inhibition of dihydrofolate reductase	no source checked for this key
-cmr4ievf700e01ydem355jqgk	step-2	Measles	no source checked for this key
 b9x29925f4dfeffe57dca086a01	step-2	The filter is being lost now, and waiting a week leaves little kidney to save	no source checked for this key
 b9x6fa6e7926f5b705a8158b17f	step-2	The fall was acute and he is seizing, so the sodium has to rise faster than isotonic saline will raise it	no source checked for this key
 cmr4j8nsf00ju1ydeoa01edtg	step-2	Prescribe amoxicillin	no source checked for this key
@@ -811,9 +780,7 @@ cmrru3pdm00b01y8w6d9kjo60	step-1	Inhibition of factor Xa	no source checked for t
 cmrrbwb120013l1044hk2f7tr	step-2	Threatened abortion	no source checked for this key
 cmrrbwbjd0017l104amnjyf2z	step-2	Respect confidentiality and discuss contraception with the patient alone	no source checked for this key
 cmrrbwbts001al104hxpedq4t	step-2	Honor the valid advance directive and use noninvasive treatments aligned with his documented goals	no source checked for this key
-cmrrvb5me00031yl8l5tii6p9	step-2	Administer diuretics	no source checked for this key
 cmqasnv40002w1ycy4xzgz73z	step-1	Inhibition of CYP3A4 leading to increased statin levels and rhabdomyolysis	no source checked for this key
-cmrrvfhyh002a1yl8ji64m5qc	step-2	Increase diuretic dose	no source checked for this key
 cmqd1mytz00b81ychjx1wrhcv	step-1	Primary biliary cholangitis	no source checked for this key
 cmr4c4uqx00hw1yky6ttc21ps	step-3	Administer a short-acting beta-agonist	no source checked for this key
 cmr4fdh3v01rq1yky9wcpgvkv	step-3	Vascular dementia	no source checked for this key
@@ -822,7 +789,6 @@ cmr88igl700r81yr9pmkc9ga4	step-2	Insulin	no source checked for this key
 cmr31dlaj00c1js04c0smuort	step-2	CT pulmonary angiography	no source checked for this key
 cmr88s0we00tg1yr990tdhbao	step-2	Prepare for immediate laparotomy	no source checked for this key
 cmr8bajc1004d1yloruiqpq01	step-3	Specific language impairment	no source checked for this key
-cmr8918tp00wk1yr9375h3l1f	step-2	Administer furosemide	no source checked for this key
 cmr891ate00x41yr9j0pv0vo1	step-2	Beta-blocker initiation	no source checked for this key
 cmr8atteh00041ylofmrz2bg5	step-3	Initiate thrombolytic therapy	no source checked for this key
 cmr89lusm01021yr9dgmlypgf	step-2	Acetaminophen	no source checked for this key
@@ -852,14 +818,11 @@ cmrtq0v51001p1yqc6txevwah	step-2	Lumbar puncture	no source checked for this key
 cmrtq0v7s001q1yqcygdc32zd	step-2	Diphtheria, tetanus, and pertussis (DTaP) vaccine	no source checked for this key
 cmr86ybcm00ae1yr9lew1syv8	step-2	Immediate exploratory laparotomy	no source checked for this key
 cmrtq47k000221yqc08kksb3x	step-2	Provide supplemental oxygen	no source checked for this key
-cmru6qyk3002cl104swmjj0t3	step-2	Pyloric stenosis	no source checked for this key
 cmrsrb305001dl404aojxadyz	step-2	Respect confidentiality and discuss contraception with the patient alone	no source checked for this key
 cmrrvjjip00531yl8f4y33juk	step-2	Add a long-acting beta-agonist	no source checked for this key
 cmra6luoa001eic04i5v4vczp	step-2	Reduce GFR via efferent arteriole dilation	no source checked for this key
 cmrpvq7h200001ylu58nxamn5	step-2	Administer IV fluids	no source checked for this key
-cmrrvfjrr002x1yl8sfp03w8t	step-2	Acute pyelonephritis	no source checked for this key
 cmrrvvjq800bd1yl86d6hkhhi	step-2	HPV testing	no source checked for this key
-cmrsfd1lh002j1ynydp8fa39s	step-2	Increase diuretic dosage	no source checked for this key
 cmrsrb3bf001fl40496r73pg8	step-2	Honor the valid advance directive and use noninvasive treatments aligned with his documented goals	no source checked for this key
 cmrpwiwe3006r1yrt3m37iy8z	step-1	Inhibition of platelet aggregation	no source checked for this key
 cmr8pvhk101gy1ygih4rimal5	step-3	Administer a short-acting beta-agonist	no source checked for this key
@@ -916,7 +879,6 @@ cmrtffjmn000h1yx281fkdh7b	step-1	Increased preload due to fluid overload	no sour
 cmr8cceqn00k51ylor4buejml	step-3	Perform a non-stress test	no source checked for this key
 cmr8dq90k01021ylojdti2kqi	step-3	Pre-renal azotemia	no source checked for this key
 cmrrum8h000i01y8w19d6w2nt	step-1	Intrapulmonary shunting	no source checked for this key
-cmr8br4xv00a61ylo3sv9bi07	step-3	Start oral antibiotics	no source checked for this key
 cmr8bhj0j007j1yloapovfok2	step-3	Add a thiazide diuretic	no source checked for this key
 cmr869lpd004f1yr9zh5d07qr	step-2	Prescribe oral corticosteroids	no source checked for this key
 cmr4eeise01ei1ykylr9zpzjb	step-3	Chronic hyperglycemia	no source checked for this key
@@ -928,7 +890,6 @@ cmrtfrs1500161yx2wl4ynxe5	step-1	Rupture of an atherosclerotic plaque leading to
 cmr8m99rf00jh1ygikk0bv9jx	step-3	Obtain a urine culture	no source checked for this key
 cmr8f2k1j01gj1yloit40zae5	step-3	Obtain a surgical consult	no source checked for this key
 cmru96p3600481y0sfq3wdxuz	step-3	Initiate continuous fetal monitoring	no source checked for this key
-cmr8h1fxk01xf1ylo9gvzcyij	step-3	Administer diuretics	no source checked for this key
 cmr99rgtu00xy1ywywdyodrb4	step-3	Prostatitis	no source checked for this key
 cmrtg0vk000181yx2a5t0s73k	step-1	Increased placental production of anti-angiogenic factors	no source checked for this key
 cmr9c9pk801rf1ywytl8chh4a	step-3	Add a second antihypertensive medication	no source checked for this key
@@ -995,7 +956,6 @@ cmqxcjw30004e1ymagpp9ruyz	step-1	Type IV hypersensitivity reaction	no source che
 cmr8h1eql01x31ylokjmxz9lx	step-3	Lumbar puncture	no source checked for this key
 cmrpw5y3h00701ylunrwsc9v1	step-2	Immediate laparotomy	no source checked for this key
 cmr88s2ys00u01yr9omx3g3zw	step-2	Immediate laparotomy	no source checked for this key
-cmrtg5xye000o1ydwta55xrce	step-2	Acute pyelonephritis	no source checked for this key
 cmr8pveyz01g81ygitnk9fy0o	step-3	Controlled oxygen by Venturi mask titrated to SpO2 88%-92%	no source checked for this key
 cmr8ei2c701bb1ylo8ch2qh9f	step-3	Prepare for exploratory laparotomy	no source checked for this key
 cmr8om9xz01731ygibdfaafw3	step-3	Administer intravenous fluids and continue monitoring	no source checked for this key
@@ -1012,32 +972,25 @@ cmr4hzvwr00aq1ydej0741bkr	step-2	Tetralogy of Fallot	no source checked for this 
 cmrtf2ok0000s1y30t2jptqxz	step-2	Acute lymphoblastic leukemia (ALL)	no source checked for this key
 cmr4bnyc100b91yky2q1kbwzq	step-3	Recommend lifestyle modifications only	no source checked for this key
 cmr8j9r9t02kd1yloj44dqg23	step-3	Advise lifestyle modifications only	no source checked for this key
-cmr8ie5y4029z1yloe8qo7dnb	step-3	Active labor	no source checked for this key
 cmr99ilfg00v61ywys9q24bx7	step-3	Invasive ductal carcinoma	no source checked for this key
 cmru9d007007o1y0s01umbrfa	step-3	Order an HbA1c test	no source checked for this key
 cmrtggafo004j1ydw7lyot374	step-2	Administer furosemide	no source checked for this key
 cmr8ie5ct029t1ylogotp14ga	step-3	Administer IV fluids	no source checked for this key
 cmpnjgv7x001g1ymxv1tadxpu	step-1	Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and third-spacing	no source checked for this key
-cmrtggbxa00521ydwwpri7tas	step-2	Start diuretics	no source checked for this key
 cmrtggbzy00531ydwpehiqon2	step-2	Bile Duct Injury	no source checked for this key
 cmr8fz8bn01nh1yloqqntessa	step-3	Provide nebulized albuterol	no source checked for this key
 cmr8ie6j902a51yloza1qohm0	step-3	Missed abortion	no source checked for this key
-cmr8hggqh020o1yloh10kmfen	step-3	Measles	no source checked for this key
 cmr8j9s7702km1ylopktp76xr	step-3	Give nebulized albuterol	no source checked for this key
 cmrpwiw3h006o1yrt3ki1ksx3	step-1	Bile duct	no source checked for this key
 cmrtfrrxy00151yx2kttvtcdg	step-1	Viral pharyngitis	no source checked for this key
-cmrpwiw70006p1yrtkn1u2yjl	step-1	Nephrotic syndrome	no source checked for this key
 cmr8isc0902d91yloou1b6ltc	step-3	Initiate intravenous lorazepam	no source checked for this key
 cmr8n3qdk00q51ygiqs2pj8cg	step-3	Normal growth and development	no source checked for this key
 cmr8lqjvc00dx1ygihxualxcc	step-3	Refer for genetic counseling	no source checked for this key
 cmr8lc5z600a01ygievl1yrcx	step-3	Initiate insulin therapy	no source checked for this key
 cmr8kib11004g1ygieqk8ndwe	step-3	Add a long-acting beta-agonist (LABA)	no source checked for this key
-cmr8kibis004l1ygi8613sdiz	step-3	Measles	no source checked for this key
 cmr8hghc4020u1ylotmn40xd3	step-3	Viral upper respiratory infection	no source checked for this key
 cmr8hghty020z1ylo5tdrtbuh	step-3	Case-control study	no source checked for this key
-cmr8hgil102131ylopzyjdaoy	step-3	Measles	no source checked for this key
 cmr8hgioo02141yloyxrvzih5	step-3	Order an upper endoscopy with biopsy	no source checked for this key
-cmr8hgj4z02151ylomr4zizq7	step-3	Intussusception	no source checked for this key
 cmr8m9b3n00jy1ygid7u2u8z2	step-3	Administer intravenous antibiotics	no source checked for this key
 cmr8ie61r02a01yloguhrjolc	step-3	Initiate broad-spectrum antibiotics	no source checked for this key
 cmr8mlvmq00nm1ygi7va8vl3p	step-3	400 mg	no source checked for this key
@@ -1045,7 +998,6 @@ cmr8mlvv900np1ygi8rrb8yxp	step-3	Administer IV fluids	no source checked for this
 cmr8ny2o000zg1ygi4ztlgfh4	step-3	Start a diuretic	no source checked for this key
 cmr8ny5v2010b1ygiuy1pxn5b	step-3	Administer bronchodilators	no source checked for this key
 cmrtgrhxy000x1yaxwftp5935	step-1	Start a GLP-1 receptor agonist	no source checked for this key
-cmr8ie9ou02b11ylon7yhaix2	step-3	Active labor	no source checked for this key
 cmr8iscex02de1ylo0nwbdp7f	step-3	Bipolar II disorder	no source checked for this key
 cmr8nclkn00su1ygi6ogjaqib	step-3	Administer IV fluids	no source checked for this key
 cmr8nco3t00tk1ygifm48huu6	step-3	Start intravenous antibiotics	no source checked for this key
@@ -1082,7 +1034,6 @@ cmrpwah1g009i1ylukp7kjmmh	step-2	Perform an urgent laparotomy	no source checked 
 cmruye60z00041y2yyufvqs3n	step-3	Confounding bias	no source checked for this key
 cmr8bhkhu007y1ylo2244cpu1	step-3	Initiate bronchodilator therapy	no source checked for this key
 cmtpx3djm00aj1y6hbw34n7zp	step-2	Start iron supplementation	no source checked for this key
-cmr8pgw9p01dh1ygity7tdlws	step-3	Measles	no source checked for this key
 cmr4gwk6x001d1ydefy227rep	step-2	Start intravenous antibiotics	no source checked for this key
 cmr8pgv7101d41ygip3c9wlou	step-3	Start intravenous antibiotics	no source checked for this key
 cmrrtm7sm00511y8wrw9jsu04	step-1	Chronic (compensated) respiratory acidosis	no source checked for this key
@@ -1097,8 +1048,6 @@ cmr8fhf2101k01ylod7fgbvrt	step-3	Prescribe oral amoxicillin and arrange outpatie
 cmrpvyx3g000u1yrty9xypz1g	step-1	Hypochromic microcytic red blood cells	no source checked for this key
 cmrsf3iav002o1y550u450ied	step-1	Diabetic nephropathy	no source checked for this key
 cmr8qfq5901n81ygifv42ll6z	step-3	Refer to nephrology	no source checked for this key
-cmr8om97m016u1ygiq5gxj8dd	step-3	Active labor	no source checked for this key
-cmr8qv0cj01qj1ygi3ftmsxbl	step-3	Active labor	no source checked for this key
 cmr8bhghu006t1ylolcs1twlz	step-3	Start aspirin	no source checked for this key
 cmr9buymy01k61ywyabtzlal8	step-3	Thiazide diuretic use	no source checked for this key
 cmruyevs5000k1y2ytsp63bgg	step-3	The p-value shows that the drug definitely has no effect.	no source checked for this key
@@ -1116,8 +1065,6 @@ cmr8omb4q017i1ygi4apzqv2n	step-3	Start intravenous antibiotics	no source checked
 cmr8omaw4017f1ygioghxt0t4	step-3	Cohort study	no source checked for this key
 cmr8oma0t01741ygi2l3zr06d	step-3	Endometritis	no source checked for this key
 cmr8om7w2016d1ygiiyohm1ry	step-3	400 mg	no source checked for this key
-cmr8quzsu01qc1ygictnub1en	step-3	Active labor	no source checked for this key
-cmr8quwq701pb1ygioc6loma5	step-3	Active labor	no source checked for this key
 cmr4kily800sv1ydeinyjicla	step-2	Schedule a follow-up appointment for routine vaccinations	no source checked for this key
 cmr8p27sb01a41ygiyk6038sa	step-3	Administer thiamine	no source checked for this key
 cmr8p25vo019g1ygico0nals7	step-3	Administer lorazepam	no source checked for this key
@@ -1182,7 +1129,6 @@ cmr31dlbc00c2js04v6o8khhd	step-1	Copper-transporting ATPase dysfunction	no sourc
 cmra6lzeg003qic041ipf2m26	step-2	Dexamethasone ± nebulized epinephrine if moderate-severe	epinephrine without an anaphylaxis presentation
 cmr8ei0rd01as1ylozqed0qox	step-3	Transfusion of packed red blood cells	no source checked for this key
 cmrvwwjh1005c1ye8pen84tar	step-3	Immediate ophthalmology consultation	no source checked for this key
-cmr4nxpp700fu1y1e7w1rlmxs	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 cmr8h1d2a01wn1ylons7y2yqg	step-3	Intramuscular epinephrine 0.5 mg into the anterolateral thigh	epinephrine without an anaphylaxis presentation
 b7x6684782824734a34163aa3a5	step-2	Retention plus saddle numbness is compression that can become permanent in hours	no source checked for this key
 b7xc952a4eb84cc57545db77cf8	step-2	There is no bleeding to stop, so a volume of clotting factors is not required	no source checked for this key
@@ -1191,7 +1137,6 @@ cmru96m5t003k1y0suj40qwxs	step-3	Next screening in 4 years (5 years after the ne
 cmr4nxrw700gh1y1e3qrso7z6	step-1	Decreased renal excretion of uric acid	no source checked for this key
 cmr4ouqcj00m81y1efneq6bj1	step-1	Autoimmune destruction of muscle fibers	no source checked for this key
 cmr4qbs1c00va1y1ex4ddog6h	step-1	Alcoholic steatosis	no source checked for this key
-cmr4dbf9700yo1yky5ku23s6e	step-3	Initiate intravenous thrombolysis	no source checked for this key
 cmr8lc4ed009g1ygii2gmjkae	step-3	Start metformin	no source checked for this key
 cmr9bnxs801h61ywy9jvep9wx	step-3	Febrile seizure	no source checked for this key
 cmr8q43oo01jy1ygiye0nxvxf	step-3	Initiate lifestyle modifications	no source checked for this key
@@ -1225,13 +1170,11 @@ cmqxcjux500401ymape315498	step-1	Decreased contractility of the myocardium	no so
 cmr31dl0d00bujs04f8llovqz	step-1	Hold methotrexate and obtain hepatitis serologies	no source checked for this key
 cmr8m9d0m00kh1ygie4q0v58t	step-3	Atelectasis	no source checked for this key
 cmr4mo8wf009i1y1e2booq08j	step-1	Decreased uric acid excretion	no source checked for this key
-cmr4mobo600ag1y1e8ke4u1tu	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 cmr4n514b00ct1y1eyhogfjf8	step-1	Adrenal gland destruction	no source checked for this key
 cmr4n53uf00dr1y1eve8qy5vq	step-1	Decreased hepatic fat oxidation	no source checked for this key
 b7xc89b5f03ce0bb00018ee51e2	step-2	The membrane is already unstable, and that instability will not wait for the number to decline	no source checked for this key
 cmr886ckh00mr1yr9k8us6bw0	step-2	Administer prophylactic antibiotics	no source checked for this key
 cmr9bnz8x01hj1ywyc7bi7y8t	step-3	Cohort study	no source checked for this key
-cmr4ouq5e00m61y1eux3389bp	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 cmr4ouqr000md1y1e4h3jn06w	step-1	Immune complex deposition	no source checked for this key
 cmr886fkw00ns1yr9pag2zhbt	step-2	Administer antibiotics immediately	no source checked for this key
 cmr8mlskv00mk1ygiyaxhh16p	step-3	400 mg	no source checked for this key
@@ -1251,7 +1194,6 @@ cmr9aue3a017x1ywybr9dyim8	step-3	Ovarian cyst rupture	no source checked for this
 b7xd460b4ab815d264529fc1fc8	step-2	Nothing swallowed or parked in the cheek reaches the brain in time	no source checked for this key
 b7xc03361cea1f5166d30c7c532	step-2	The mass is driving a water-retaining hormone while the veins are empty	no source checked for this key
 b7xfa4b7db4ebe9cf13531ce19e	step-2	The drug is still forcing insulin release after the dextrose has been driven into cells	no source checked for this key
-cmr89p1ph00n61yw29u8h60y5	step-1	Start intravenous antibiotics	no source checked for this key
 cmr9bnxvs01h71ywydjbjcvr4	step-3	Start insulin therapy	no source checked for this key
 cmqxc0tha000j1ymarlim36xz	step-1	Ischemic necrosis due to embolism	no source checked for this key
 cmr8cnagj00nv1ylot62r9yc8	step-3	Start broad-spectrum antibiotics	no source checked for this key
@@ -1266,7 +1208,6 @@ cmr9c9qub01rr1ywykr3mk76u	step-3	Administer thrombolytics	no source checked for 
 cmr85ugjc000a1yw2vfox5h7v	step-1	Ovarian torsion	no source checked for this key
 cmr9aueeu01811ywyxxsixcvl	step-3	100 mg	no source checked for this key
 cmrpw58dj002s1yrtdryq9pfg	step-1	Acute alcoholic hepatitis	no source checked for this key
-cmr9aueo001841ywy9966urjl	step-3	Measles	no source checked for this key
 cmr86gvg700411yw2pf87c0nc	step-1	Increased vasopressin secretion causing water retention	no source checked for this key
 cmrr4ybbv002h1y6pnzcxl8c9	step-1	Acute cholangitis	no source checked for this key
 cmr89p1dc00n21yw2wndzogmk	step-1	Obstruction of the common bile duct	no source checked for this key
@@ -1285,7 +1226,6 @@ cmrvwp4rq001d1ye8q7dgfbj8	step-3	Serious infections	no source checked for this k
 cmr88v4ip00gm1yw2n3t6yvwv	step-1	Increased risk of breast and ovarian cancer	no source checked for this key
 cmr88v4uc00gq1yw2f5mtrvkh	step-1	Microvascular damage due to chronic hyperglycemia	no source checked for this key
 cmr9c9rjb01ry1ywyjxyshvcn	step-3	Add a GLP-1 receptor agonist	no source checked for this key
-cmr89ozga00mf1yw2mrekd5f0	step-1	Hepatitis A	no source checked for this key
 cmru96pop004d1y0szyrxpvff	step-3	Chronic hypertension with superimposed preeclampsia	no source checked for this key
 cmr89ozmj00mh1yw283mncns4	step-1	Tobacco carcinogen-induced DNA damage	no source checked for this key
 cmrubf2e700001yu7wky1hsey	step-3	Non-inferiority demonstrated; superiority claim not supported	no source checked for this key
@@ -1294,12 +1234,10 @@ cmrtqq4vs00101yx3fxybkpr5	step-1	Adrenal adenoma secreting cortisol	no source ch
 cmrtqq4zd00111yx3ybsuo7m5	step-1	Acute respiratory acidosis	no source checked for this key
 cmr4pz7nf00tc1y1eg59h9kzk	step-1	Autoantibody formation against nuclear antigens	no source checked for this key
 cmrvm6axe0028jw04axs8jra3	step-1	Acute coronary thrombosis → transmural ischemia and myocyte necrosis in the inferior wall (RCA territory)	no source checked for this key
-cmrvwu6fk003u1ye8x8ffhid0	step-3	Administer intravenous thrombolytics	no source checked for this key
 cmr8dyk03013e1ylosftrqndr	step-3	Provide diabetes education and counseling	no source checked for this key
 cmr8dyltc013w1ylow32bez0r	step-3	B. Intra-abdominal abscess	no source checked for this key
 b8x81ff5e0dcf780e33aef2eaa6	step-1	Prostaglandin was keeping the afferent arteriole open once volume fell, and the drug removed it	no source checked for this key
 b8xcdb6e3ca03df86a8a3f680c6	step-1	He did not hyperventilate, so a respiratory acidosis sits on top of the metabolic one	no source checked for this key
-cmr4qv92n00zl1y1eqcdlhvi3	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 b8x1a10e26f0b380c1e748a6689	step-1	Alpha constriction continued, and the beta-mediated widening of vessels was removed	no source checked for this key
 cmrrtm6xc004s1y8wshf8wbvg	step-1	Acute glomerulonephritis	no source checked for this key
 cmrpv8fch00011yncwu37tavx	step-1	Glucose-6-phosphate dehydrogenase deficiency	no source checked for this key
@@ -1362,7 +1300,6 @@ cmrpvdq3400281ync2s2aj4mx	step-1	Increase the dose of lisinopril	no source check
 cmrpvdqka002e1yncru1gtuh6	step-1	Cholangitis	no source checked for this key
 cmrpvds4b002y1yncf84dkwmc	step-1	Alcoholic hepatitis	no source checked for this key
 cmrpvdsb300301ync92udms85	step-1	Cushing's disease	no source checked for this key
-cmrrvnldt007m1yl82l9l0bto	step-2	Increase the dose of furosemide	no source checked for this key
 cmruymc7z004w1y2yzweshtax	step-3	Order pulmonary function tests	no source checked for this key
 cmrpvuwht000a1yh5hpsv4vqw	step-1	Impaired apoptosis of lymphocytes	no source checked for this key
 cmrpvuwwm000f1yh5pqd687ex	step-1	Viral infection causing aseptic meningitis	no source checked for this key
@@ -1395,7 +1332,6 @@ cmra6lufn0012ic04q2tcksan	step-1	Immune complex deposition	no source checked for
 cmr8qfqvj01nh1ygi69snvlmn	step-3	Wound infection	no source checked for this key
 cmruifyyw001r1ycehv9pqnmg	step-3	Perform non-contrast CT of the head	no source checked for this key
 cmr8q420x01jd1ygipltsw3mf	step-3	Administer diuretics	no source checked for this key
-cmr99ihkl00u21ywyduh2dlos	step-3	Lung cancer	no source checked for this key
 cmr8pguv701d01ygib516zbd2	step-3	Start a lactose-free diet	no source checked for this key
 cmr8pgwci01di1ygiyr5tsigi	step-3	Start inhaled corticosteroids	no source checked for this key
 cmra6ltpq0005ic04hv3c8g05	step-1	Brown-Séquard syndrome (hemisection)	no source checked for this key
@@ -1419,7 +1355,6 @@ cmr8atw9y000w1yloqjo20w1e	step-3	Lifestyle modification and antihypertensive med
 cmr9c9nno01qw1ywyc32216c1	step-3	Proceed with delivery	no source checked for this key
 cmr8bhk01007t1yloq09k6kjw	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmr8fhhv701ks1ylo4nts9vgi	step-3	Formal audiologic evaluation and referral for speech-language evaluation	no source checked for this key
-cmruyiv1h002t1y2yxyosnwso	step-3	Increase furosemide dosage	no source checked for this key
 cmr4d3x1v00vm1ykyml8x9wiz	step-3	Administer fibrinolytic therapy	no source checked for this key
 cmr9c9ojw01r51ywyfncmyw4f	step-3	Add a sodium-glucose cotransporter 2 (SGLT2) inhibitor	no source checked for this key
 cmru3gdx300b71y7wia6jj1v2	step-3	Follow-up visit within 7 days of discharge	no source checked for this key
@@ -1465,7 +1400,6 @@ cmrvwwj6y00591ye83y9d81vz	step-3	Administer albuterol nebulizer	no source checke
 cmr8m9axx00jw1ygiepk8vh3w	step-3	Obtain a voided urine culture, then start antibiotics	no source checked for this key
 b8x3543037f3d4c87f68d25006e	step-2	A tumor would release C-peptide along with insulin, and here the C-peptide is shut off	no source checked for this key
 cmrpw17zl002o1yh5hqitmqxc	step-1	Primary biliary cholangitis	no source checked for this key
-cmr8ny5dn01051ygi3d5skzvf	step-3	Hashimoto thyroiditis	no source checked for this key
 cmr8ny6hr010j1ygidjc997s5	step-3	Add a dihydropyridine calcium channel blocker	no source checked for this key
 cmr97hzdz003o1ywy8qq1qi38	step-3	Start antiretroviral therapy now	no source checked for this key
 cmr98mk2f00k21ywy2k8zoa6p	step-3	Broad-spectrum IV antibiotics now	no source checked for this key
@@ -1500,7 +1434,6 @@ cmr86gvub00461yw2i9jddbln	step-1	Inhibition of norepinephrine reuptake	no source
 cmru9cxv2007a1y0shoqlq386	step-3	Confirm the blood pressure with home blood pressure monitoring	no source checked for this key
 cmrpw7bw900501yh510ztwx1u	step-1	Immune thrombocytopenic purpura (ITP)	no source checked for this key
 cmruyfhj5000z1y2ysz2hfuwz	step-3	The corticosteroid produced a statistically significant reduction in exacerbations	no source checked for this key
-cmtpx3db100ag1y6h4w42kl2a	step-2	Increase the dose of furosemide	no source checked for this key
 cmrpw7ce000561yh5m5av9lea	step-1	Defective hematopoietic stem cells	no source checked for this key
 cmr97c4hx000l1ywy7ox9fyr3	step-3	Administer intravenous fluids	no source checked for this key
 cmrpw7cns00591yh5x4x5jmdx	step-1	Lactate dehydrogenase (LDH)	no source checked for this key
@@ -1518,22 +1451,17 @@ b9xc550089045335717350230ae	step-1	The kidney excreted bicarbonate over days to 
 b9xd7fe470aa5102b4aed8a7982	step-1	That drug closes the beta-cell potassium channel and releases insulin even without a meal	no source checked for this key
 cmrpw5xsg006x1ylu0k495vi9	step-2	Ruptured ovarian cyst	no source checked for this key
 cmr9c9qjp01ro1ywywilv67r7	step-3	Administer bronchodilators	no source checked for this key
-cmr4jrakj00n11yde1ivbclau	step-2	MMR (measles, mumps, rubella) vaccine	no source checked for this key
 b9xce6bc3744a7cd878ac5badcd	step-2	He is in active congestion with a low output, and the drug will worsen both right now	no source checked for this key
 b9x04078f94bca5d2faf988e4cf	step-2	The short-lived anticoagulant protein has already fallen, so more warfarin deepens the clot in the skin	no source checked for this key
 b9xd3f0423cf291e30a94a1f3f4	step-2	Dark skin means ACTH is high, so the pituitary is signaling and the adrenal is not responding	no source checked for this key
-cmr869jnv003u1yr9stlhsip3	step-2	Initiate intravenous antibiotics	no source checked for this key
 cmr877i8q00cz1yr9lldyan3e	step-2	Chronic alcohol use	no source checked for this key
 cmrrbw62u0008l104l6579ged	step-2	Compensated respiratory acidosis	no source checked for this key
-cmr87j1a200gv1yr9utfznb8d	step-2	Increase the dose of diuretics	no source checked for this key
-cmrruacam00cz1y8wl8mvpsw2	step-1	Hashimoto's thyroiditis	no source checked for this key
 cmrrvb5tm00051yl8g0fctnke	step-2	Intracerebral hemorrhage	no source checked for this key
 cmrpwfeds006o1yh5xwu9bshs	step-1	Obtain an abdominal ultrasound	no source checked for this key
 cmrpwfg3800751yh5atl1owmc	step-1	Decreased contractility of the heart muscle	no source checked for this key
 cmr8cn9sd00nn1ylokatc5kvv	step-3	Administer intravenous fluids	no source checked for this key
 cmrsrb2jy001bl404u34judyn	step-2	Transvaginal ultrasound and serial β-hCG	no source checked for this key
 cmrpwfe69006m1yh5amhqxits	step-1	Elevated alkaline phosphatase	no source checked for this key
-cmrtprxt0000j1yqcs7pxirfp	step-2	Administer the measles, mumps, and rubella (MMR) vaccine	no source checked for this key
 cmrtq0tnf00161yqcwaxsnmsj	step-2	Start intravenous fluids and initiate broad-spectrum antibiotics	no source checked for this key
 cmrpvvgg3002k1ylujmx8kcxb	step-2	Perform an exploratory laparotomy	no source checked for this key
 cmr86y9pd009u1yr9e2pyt2a5	step-2	Perform an exploratory laparotomy	no source checked for this key
@@ -1594,16 +1522,13 @@ cmr8by2ie012i1yw22proiw5q	step-1	Osteoporotic vertebral compression fracture	no 
 cmr88v2el00fw1yw2z96xn69t	step-1	Administer systemic corticosteroids	no source checked for this key
 cmr88v6ml00hc1yw209nvj6ze	step-1	Increased intraluminal pressure due to gallstone obstruction	no source checked for this key
 cmr89zxiv00qx1yw2fstl6tib	step-1	Calcific degeneration of the aortic valve	no source checked for this key
-cmr8clqus019i1yw26cv2sdwt	step-1	Hashimoto's thyroiditis	no source checked for this key
 cmr8ei4iz00aj1yaz91gimrei	step-1	Increased release of antidiuretic hormone	no source checked for this key
-cmr98vp4d00o71ywy34nw96v8	step-3	Acute hepatitis B	no source checked for this key
 cmra6lz1k0039ic04hrqik0pt	step-1	Small cell lung carcinoma	no source checked for this key
 cmr98605e00df1ywyydpg8uq8	step-3	Initiate intravenous antibiotics	no source checked for this key
 cmrpvvh5x002t1yluqdknj3ih	step-2	Administer IV fluids and initiate broad-spectrum antibiotics	no source checked for this key
 cmr9863xk00er1ywyz91mvu5k	step-3	Administer intravenous dextrose	no source checked for this key
 cmr996lwh00rx1ywyy5zg4hgi	step-3	Bipolar I disorder	no source checked for this key
 cmrr4y8wf00271y6p6btbtqp9	step-1	Hepatic steatosis due to alcohol metabolism	no source checked for this key
-cmr98vq4f00oj1ywyehaivvb8	step-3	Administer intravenous thrombolytics	no source checked for this key
 cmr8dn2ia003g1yazc25kz6uu	step-1	Coronary artery thrombosis	no source checked for this key
 cmr8dn3m6003r1yaz0jt6ditp	step-1	Non-compliance with antiepileptic medication leading to breakthrough seizures	no source checked for this key
 cmr8c3mwq00h81ylo94cpmwyw	step-3	Initiate insulin therapy	no source checked for this key
@@ -1617,7 +1542,6 @@ cmr8dn23m003c1yazr39zl2l5	step-1	Drug-induced hypersensitivity syndrome	no sourc
 cmr8c3nar00hc1yloutlysqtd	step-3	Hypothalamic amenorrhea	no source checked for this key
 cmrpvdrbz002o1yncabmz0fpy	step-1	Hepatic parenchyma	no source checked for this key
 cmra6lyzb0036ic04rhk09zzi	step-1	High-altitude cerebral edema	no source checked for this key
-cmr9bv0fn01ks1ywym6i5vzl7	step-3	Hashimoto's thyroiditis	no source checked for this key
 cmrsf3im5002r1y55wcnywamx	step-1	Rifampin-induced increase in hepatic metabolism of warfarin	no source checked for this key
 cmrtprxyy000l1yqc3pmh6wc0	step-2	Acute coronary syndrome (STEMI)	no source checked for this key
 cmr9c9oux01r81ywy8n81a61t	step-3	Start lifestyle modifications and metformin	no source checked for this key
@@ -1641,14 +1565,12 @@ cmr4dz75u017w1ykynropszjb	step-3	Oral trimethoprim-sulfamethoxazole	no source ch
 cmr9bbvhe01en1ywy46cstqkl	step-3	Atelectasis	no source checked for this key
 cmr9bbvl801eo1ywy897ipx4z	step-3	Administer intravenous fluids	no source checked for this key
 cmrpw186a002p1yh5k5zg6k06	step-1	Gilbert's syndrome	no source checked for this key
-cmr9a1008010e1ywydh1enonk	step-3	Active labor	no source checked for this key
 cmr99ijsv00up1ywypyu74nqe	step-3	Oral trimethoprim-sulfamethoxazole for 3 days	no source checked for this key
 cmrpw57h9002j1yrt9v7wtusz	step-1	Acute alcoholic hepatitis	no source checked for this key
 cmrrtqy1h006w1y8wplvohggi	step-1	Initiate intravenous antihypertensives	no source checked for this key
 cmr9c9or701r71ywy34t65fj3	step-3	Perforation of the gallbladder	no source checked for this key
 cmrpw58h5002t1yrt01uznn4h	step-1	Autoimmune hemolytic anemia	no source checked for this key
 cmrpw79ta004a1yh5zzo612a2	step-1	Autoimmune destruction of red blood cells	no source checked for this key
-cmr9a13q8011f1ywygahnn7g9	step-3	Active labor	no source checked for this key
 cmr9a15bk011v1ywyg8994203	step-3	Normal pregnancy	no source checked for this key
 cmrtq0syd000x1yqcxuaxeuwp	step-2	Pleural fluid analysis	no source checked for this key
 cmr97c4e9000k1ywy2gsvvh2a	step-3	Postoperative fever due to atelectasis	no source checked for this key
@@ -1665,7 +1587,6 @@ cmr9aucsd017h1ywy4wvmur6t	step-3	Healthy child requiring preventive care	no sour
 cmrpw5ye600731yluj9pklh5z	step-2	Ultrasound of the abdomen	no source checked for this key
 cmrtq0vwr001y1yqclr8wnbki	step-2	Ultrasound of the abdomen	no source checked for this key
 cmr97z04200aq1ywy1du1rk35	step-3	Administer intravenous fluids and initiate broad-spectrum intravenous antibiotics	no source checked for this key
-cmr8nmky000xm1ygi5k3ymcep	step-3	Acute pyelonephritis	no source checked for this key
 cmr4bny8x00b81yky2afz7u2w	step-3	Surgical site infection	no source checked for this key
 cmrrutd6w00jl1y8wwkt1y4nu	step-1	Chronic lymphocytic leukemia	no source checked for this key
 cmrpw0qe7005b1yluz7lpp14n	step-2	Perform an exploratory laparotomy	no source checked for this key
@@ -1712,7 +1633,6 @@ cmr97hz6x003m1ywycvpzd38n	step-3	Add a thiazide diuretic	no source checked for t
 cmr8ny7az010t1ygi3vocpywp	step-3	Administer intravenous fluids and insulin	no source checked for this key
 cmrvm5yei000ujw040dexibqi	step-1	Small cell lung carcinoma	no source checked for this key
 cmrth89xe00521yaxasw0nbse	step-1	Autoimmune stimulation of thyroid hormone production	no source checked for this key
-cmrthhr11007e1yax4ubni2zj	step-1	Chronic kidney disease-related anemia	no source checked for this key
 cmru6qxqk001jl104ucmymp65	step-1	Primary biliary cholangitis	no source checked for this key
 cmr9bv07101kp1ywyvvf0jn3u	step-3	Initiate insulin therapy	no source checked for this key
 cmr8g7cgn01ra1ylovpft4wgw	step-3	Administer aspirin and nitroglycerin	no source checked for this key
@@ -1721,8 +1641,6 @@ cmrpwcip5004h1yrtbas6b6yc	step-1	Osteolytic metastasis	no source checked for thi
 cmr8dynnr014e1ylop6l4108b	step-3	Start broad-spectrum antibiotics	no source checked for this key
 cmrpwckao00501yrt0onvh4oh	step-1	Clonal expansion of hematopoietic stem cells	no source checked for this key
 cmr8cna1l00nq1ylojb49avhj	step-3	Discontinue lisinopril and monitor renal function	no source checked for this key
-cmr8e5vtd016p1yloe89571zw	step-3	Initiate intravenous thrombolysis	no source checked for this key
-cmr8dyo2f014i1yloagqqj81w	step-3	Administer intravenous thrombolytics	no source checked for this key
 cmr8lz1br00h61ygij1q0mvgd	step-3	Start oral corticosteroids	no source checked for this key
 cmra6lzic003vic045vg3w06m	step-2	Lumbar puncture to look for xanthochromia	no source checked for this key
 cmr86ybll00ah1yr9nux2ccal	step-2	Spirometry with a bronchodilator	no source checked for this key
@@ -1730,7 +1648,6 @@ cmrpwg4u000ba1yluhvbkwftf	step-2	Emergency surgical evacuation of the hematoma	n
 cmtpwle6d000l1y6h486250ur	step-2	Sublingual nitroglycerin as needed	no source checked for this key
 cmru2q9h5000v1y7wy0po9irr	step-3	Administer intravenous antibiotics	no source checked for this key
 cmru32o3y004t1y7wx0d75k0l	step-3	Administer prothrombin complex concentrate	no source checked for this key
-cmr4b30d9000c1ykyr2h5ps0n	step-3	Increase furosemide dosage	no source checked for this key
 cmr4enjxr01ij1yky2j2413qd	step-3	Obtain a neurosurgical consultation	no source checked for this key
 cmr4bvdkm00dy1ykypx6rz093	step-3	Add a thiazide diuretic to her regimen	no source checked for this key
 cmr97i22q004f1ywyryz70oww	step-3	Add a GLP-1 receptor agonist	no source checked for this key
@@ -1754,7 +1671,6 @@ cmru8589n004q1yd67c734l2t	step-3	Perform an urgent cholecystectomy	no source che
 cmru8bggr007t1yd6at7ans57	step-3	Obtain a 24-hour urine collection for protein	no source checked for this key
 cmru9cun4006j1y0sxebbirqf	step-3	Increase the dose of atorvastatin	no source checked for this key
 cmru9cw2q006v1y0sm6yku5ej	step-3	Pulmonary infection	no source checked for this key
-cmru9czah007m1y0sbizqwj2y	step-3	Administer intravenous thrombolytics	no source checked for this key
 cmru9irqq00a51y0sbial3q1n	step-3	Perform early laparoscopic cholecystectomy	no source checked for this key
 cmr891di900xv1yr9iu4vzmvb	step-2	Administer intravenous fluids	no source checked for this key
 cmru9iwb200b71y0sci9ys6ov	step-3	Switch to a GLP-1 receptor agonist	no source checked for this key
@@ -1812,7 +1728,6 @@ b6x9b5a2425596071c1addd26be	step-2	It lengthens repolarization when both are alr
 b6x366873453262162d2a3b237a	step-2	Walking is the function he is about to lose	no source checked for this key
 b6xb729aeb5c1b391423145379f	step-2	The drug can drive glucose down while he cannot eat	no source checked for this key
 cmr877kv600dv1yr9l6vcqkjt	step-2	Initiate beta-blocker therapy	no source checked for this key
-cmr877m3a00ea1yr9arn7wmqi	step-2	Increase the dose of furosemide	no source checked for this key
 cmr88s4p500uh1yr9wxfri8et	step-2	Perforated peptic ulcer	no source checked for this key
 cmr8al9h2019s1yr9xhv2awnq	step-2	Calcium channel blockers	no source checked for this key
 cmrpvq88b00071yluxeqsqg1a	step-2	Small bowel obstruction	no source checked for this key
@@ -1835,7 +1750,6 @@ cmr4dqt5u01521yky8w13dc32	step-3	Recommend lifestyle modifications	no source che
 cmr4f6bcq01p31ykylw1u8zkl	step-3	Start a GLP-1 receptor agonist	no source checked for this key
 cmr4fdgii01rn1yky26i47c62	step-3	Add a second oral hypoglycemic agent	no source checked for this key
 cmr4cvbyz00r61ykyyjdhye6t	step-3	Autoimmune thyroiditis	no source checked for this key
-cmrpw17a8002h1yh56v5dk5x2	step-1	Hashimoto's thyroiditis	no source checked for this key
 cmr4gkdt1029s1ykykwpicuko	step-3	Administer supplemental oxygen	no source checked for this key
 cmrpw17vn002n1yh5zgz0rj2z	step-1	Increased hepatic lipid peroxidation due to alcohol metabolism	no source checked for this key
 cmrqh919c00021ypxh0aj0dce	step-2	Benzodiazepine withdrawal	no source checked for this key
@@ -1852,7 +1766,6 @@ cmtpxgsd4007c1ymuuhvq43bq	step-3	Administer intravenous furosemide	no source che
 cmr8atx3i00141ylobz265i3v	step-3	Postoperative fever due to atelectasis	no source checked for this key
 cmrpw58v9002x1yrtixijujg3	step-1	Vascular remodeling	no source checked for this key
 cmr8ei1eg01b01ylolbx499uo	step-3	Start an oral antibiotic such as doxycycline	no source checked for this key
-cmr8nmjg100x21ygi5bdrm3ke	step-3	Acute pyelonephritis	no source checked for this key
 cmruymm4600531y2yvg4w4rtl	step-3	Start vitamin B6 and doxylamine	no source checked for this key
 cmrpw79w5004b1yh5uj9nosfa	step-1	Hypercalcemia	no source checked for this key
 cmrwa2lo600231ynhxpyvb44z	step-3	Give controlled oxygen titrated to a saturation of 88%-92%	no source checked for this key
@@ -1869,12 +1782,10 @@ cmr8f2nh601hp1ylom53i79lu	step-3	Randomized controlled trial	no source checked f
 cmrpwckpj00551yrt29yvb6zh	step-1	Adenosine deaminase	no source checked for this key
 cmr8g7deb01rl1yloct3j7nnu	step-3	Gestational hypertension	no source checked for this key
 cmr8fzag801o71yloes4q4r2p	step-3	Administer intravenous labetalol	no source checked for this key
-cmr8fhgv001ki1ylo4ndz9v6d	step-3	Influenza virus infection	no source checked for this key
 cmr8i0czt027r1ylokhuq1p63	step-3	Start broad-spectrum antibiotics	no source checked for this key
 cmr8nmilg00wr1ygijdl97ilx	step-3	Administer magnesium sulfate	no source checked for this key
 cmr8ji5rv02mr1yloeqjyehbu	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmr8ie4zu029q1ylo6td87305	step-3	Randomized controlled trial	no source checked for this key
-cmr8jukue00181ygirs0jnpl3	step-3	Acute pyelonephritis	no source checked for this key
 cmr8juhmj00051ygiqby5qjxv	step-3	Administer calcium gluconate	no source checked for this key
 cmrpwiwoj006u1yrtbqnlv34t	step-1	Wernicke's encephalopathy	no source checked for this key
 cmrpw59ro00361yrt8z5vi5er	step-1	Anemia of chronic disease	no source checked for this key
@@ -1892,12 +1803,8 @@ cmr98mk9i00k41ywyieqd2r6m	step-3	Perform laparoscopic cholecystectomy	no source 
 cmr9862wi00ee1ywy4a9fm733	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmrthhprd006y1yax687yd75r	step-1	Ruptured abdominal aortic aneurysm	no source checked for this key
 cmr97qhak007v1ywyexflteow	step-3	Coronary artery disease	no source checked for this key
-cmr97qgbu007l1ywy6t3dfstl	step-3	Administer intravenous thrombolytics	no source checked for this key
-cmr98638500ei1ywyx4nzce7z	step-3	Start intravenous thrombolysis	no source checked for this key
 cmr99ihuz00u51ywytbrnuprd	step-3	Add an SGLT2 inhibitor	no source checked for this key
-cmr985zx600dc1ywyygyavt5e	step-3	Lung cancer with paraneoplastic hypercalcemia	no source checked for this key
 cmr97qfuh007g1ywymf2ybise	step-3	Administer intravenous dextrose	no source checked for this key
-cmr97qf5e00791ywyhtewny3h	step-3	Administer intravenous thrombolytics	no source checked for this key
 cmr8nmhbr00wb1ygi61uhg5zj	step-3	Initiate reversal of anticoagulation with prothrombin complex concentrate	no source checked for this key
 cmr99rfh300xh1ywyauleyp2i	step-3	Perform an urgent cholecystectomy	no source checked for this key
 cmr9bnxop01h51ywy33adrang	step-3	Start intravenous antibiotics	no source checked for this key
@@ -2028,7 +1935,6 @@ cmrrv651n00o71y8wwe9xb6k4	step-1	Administer calcium gluconate	no source checked 
 cmrwa2vhb00271ynhxs1do3jh	step-3	HbA1c	no source checked for this key
 cmr9c38ba01oc1ywymka8o6b1	step-3	Add a long-acting beta-agonist	no source checked for this key
 cmrru3res00bm1y8wi8qy5324	step-1	Rupture of an atherosclerotic plaque with acute coronary thrombosis	no source checked for this key
-cmr9c38mj01og1ywyl5yxxcg3	step-3	Administer diuretics	no source checked for this key
 cmr8cls90019z1yw2togogv8u	step-1	Increased preload due to fluid retention	no source checked for this key
 cmr8ei4mj00ak1yaztbwgzm84	step-1	Occlusion of the right middle cerebral artery	no source checked for this key
 cmrrum5dl00hn1y8wcgi5h48s	step-1	Inhibition of vitamin K epoxide reductase	no source checked for this key
@@ -2177,16 +2083,12 @@ cmrtqq5de00151yx3zx8eplpi	step-1	Facial nerve (CN VII)	no source checked for thi
 cmrtqfzrh000f1yx3jgrvs6nb	step-1	Increased preload due to fluid retention	no source checked for this key
 cmrtqq62g001c1yx3g4t8ito4	step-1	Infiltration of lymphocytes and plasma cells into the synovial membrane	no source checked for this key
 cmr8d1wb500qr1ylosmluonn4	step-3	200 mg	no source checked for this key
-cmr8d1xfo00r21ylo7fqpkxsw	step-3	Measles	no source checked for this key
 cmr8difqz00wz1ylonh5vkyx9	step-3	Perform a lumbar puncture	no source checked for this key
 cmr8dyl0l013o1ylo3g57iw4e	step-3	Administer IV fluids	no source checked for this key
-cmr8dykm5013k1ylobt7312gj	step-3	Administer diuretics	no source checked for this key
 cmr8dykpr013l1yloewiwb87x	step-3	Begin screening now with any recommended test (e.g., colonoscopy every 10 years or annual FIT)	no source checked for this key
 cmr8dyl7q013q1yloml93frqe	step-3	Wound infection	no source checked for this key
 cmr4c4qvq00gv1ykyumspudez	step-3	Dehydration	no source checked for this key
 cmr8dymug01461ylon0qjnmx2	step-3	Perform a thoracentesis	no source checked for this key
-cmr8dyn1y01481yloq5h1e4so	step-3	Administer diuretics	no source checked for this key
-cmr4eekdb01ey1yky88kapwh9	step-3	Chronic kidney disease	no source checked for this key
 cmr8esmzv01dl1ylofua4whzg	step-3	Administer a bronchodilator	no source checked for this key
 cmr8bafuf003f1yloetrhz1si	step-3	Add a long-acting beta-agonist	no source checked for this key
 cmr4fte5501yo1yky4wqjzi42	step-3	Start insulin therapy	no source checked for this key
@@ -2194,7 +2096,6 @@ cmr8dym4b013z1ylod0zpw9om	step-3	Obtain a CT pulmonary angiogram	no source check
 cmr8d1xqk00r51ylokb3nmj75	step-3	Acute gastroenteritis	no source checked for this key
 cmr8d1y1p00r81ylonx7kby71	step-3	Gastroenteritis	no source checked for this key
 cmr8d1z9d00rj1ylo1x73ium5	step-3	Normal developmental behavior	no source checked for this key
-cmr8dqe9r011g1ylo1hjbmnc3	step-3	Start diuretics	no source checked for this key
 cmr8fhfyj01k91ylof68k2icm	step-3	Normal growth and development	no source checked for this key
 cmr8fhgka01kf1ylogp2lcgln	step-3	Cholecystectomy	no source checked for this key
 cmr8fhi9x01kw1ylogpdfue3z	step-3	Intravenous fluid resuscitation with isotonic saline	no source checked for this key
@@ -2206,7 +2107,6 @@ cmtpwzzxu007f1y6hn1ogu7c4	step-2	Cervical cancer	no source checked for this key
 cmra6lzza004aic0485zifyec	step-2	Stable angina	no source checked for this key
 cmr877ml900eg1yr922do4rst	step-2	12-lead electrocardiogram	no source checked for this key
 cmr87j1h700gx1yr90l7a2pvo	step-2	Vagal maneuvers	no source checked for this key
-cmr89vdla013u1yr9a8ecpemz	step-2	Increase the loop diuretic dose	no source checked for this key
 cmrrvrqp100961yl8s9wmmglj	step-2	Alcohol-associated hepatitis	no source checked for this key
 cmrrvrs4c009o1yl88swzb7zp	step-2	Start a potassium binder (sodium zirconium cyclosilicate or patiromer), reinforce a low-potassium diet, and recheck potassium	no source checked for this key
 cmrpvviem00391yluu0wltlya	step-2	Laparoscopic cholecystectomy	no source checked for this key
@@ -2218,7 +2118,6 @@ cmr4hnkw6007a1ydev2azjoto	step-2	Laboratory evaluation for von Willebrand diseas
 cmr869hpp003a1yr9qs9ojy9m	step-2	Administer pneumococcal conjugate vaccine	no source checked for this key
 cmr85sv29000a1yr90c8x96dh	step-2	Provide supportive care with attention to feeding and hydration	no source checked for this key
 cmrtexhvk000b1y30op74prcf	step-2	Tetralogy of Fallot	no source checked for this key
-cmrtq0ur3001k1yqcnrr64d0w	step-2	Measles, mumps, and rubella (MMR) vaccine	no source checked for this key
 cmqxdy46g00001y79vb6o7cx3	step-2	Start iron therapy	no source checked for this key
 cmqxdy76800111y79cngwgrd8	step-2	Measure serum ferritin and transferrin saturation	no source checked for this key
 cmqxdy65l000o1y792i38ywpy	step-2	Blood cultures	no source checked for this key
@@ -2281,7 +2180,6 @@ cmr8gr7t201ug1yloeghteyy4	step-3	Initiate a benzodiazepine	no source checked for
 cmr8gr83h01uj1ylo20g5q4vo	step-3	Delirium	no source checked for this key
 cmru3ucda00gz1y7wp2qm6tu0	step-3	Administer a nebulized bronchodilator	no source checked for this key
 cmru3uck200h11y7w34eqemxg	step-3	Start levothyroxine	no source checked for this key
-cmru3ucqs00h31y7w554bfsgk	step-3	Pyelonephritis	no source checked for this key
 cmru3udba00h91y7wqjp7ub93	step-3	Start levothyroxine therapy.	no source checked for this key
 cmru3udi300hb1y7w1sx2741s	step-3	Start metformin therapy.	no source checked for this key
 cmru3uejf00hm1y7weivugh7i	step-3	Administer intravenous fluids	no source checked for this key
@@ -2293,7 +2191,6 @@ cmr4badt0003t1yky1yn3dufu	step-3	Administer a nebulized bronchodilator	no source
 cmr4enkl601ir1ykyo4qy9p16	step-3	Administer intravenous fluids	no source checked for this key
 cmr4een7a01fq1ykyyd6k4rtw	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmr4eems001fm1yky8mhrhayj	step-3	Primary hypertension	no source checked for this key
-cmr4eehzi01ea1ykyh1vge5is	step-3	Administer diuretics	no source checked for this key
 cmr4cvf2u00s71yky61apuz7b	step-3	Start insulin therapy	no source checked for this key
 cmr4d3tl200uh1ykypdrk7x3l	step-3	Give a nebulized beta-agonist	no source checked for this key
 cmr4exstf01le1ykyshotg81l	step-3	Start oral antibiotics	no source checked for this key
@@ -2326,13 +2223,10 @@ cmr8e5wat016v1ylosf5q1qfo	step-3	Start controlled supplemental oxygen and transf
 cmr8e5x5r01761yloafzlsu6j	step-3	Obtain an abdominal ultrasound	no source checked for this key
 cmr8ny6ex010i1ygil5zdhqa0	step-3	Delirium due to substance intoxication	no source checked for this key
 cmr8hghfn020v1ylokpxs6bfr	step-3	Abdominal ultrasonography	no source checked for this key
-cmru7tiw500001yd6af90q0cm	step-3	Lung cancer	no source checked for this key
 cmru7tj3800021yd6asnzljjp	step-3	Confirm the blood pressure with home blood pressure monitoring	no source checked for this key
 cmru7tjc000051yd6rh79q66k	step-3	Administer thrombolytics	no source checked for this key
-cmru7tjyz000d1yd6zz33jv7p	step-3	Increase diuretic dose	no source checked for this key
 cmr8ise3s02dy1ylo1zwwd08f	step-3	Start an ACE inhibitor	no source checked for this key
 cmru7tlhw000w1yd66utu1ab7	step-3	Air trapping due to loss of elastic recoil	no source checked for this key
-cmru7tlnj000y1yd6n9mzv2xl	step-3	Increase the dose of diuretics	no source checked for this key
 cmr8j0q1k02hn1ylosgrd8dem	step-3	Initiate a GLP-1 receptor agonist	no source checked for this key
 cmru7tmzw001f1yd6i572o3r4	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmru85531003m1yd681w911ya	step-3	Severe dehydration	no source checked for this key
@@ -2348,20 +2242,15 @@ cmru8bfzd007n1yd6d2mzpa2q	step-3	Cushing's syndrome	no source checked for this k
 cmru8v366000f1y0snny6vif0	step-3	Gastroenteritis	no source checked for this key
 cmru8v3kq000k1y0s3yol19lz	step-3	Provide a nebulized bronchodilator	no source checked for this key
 cmru8v5x4001d1y0synjrs6xx	step-3	Cohort study	no source checked for this key
-cmru96lfg003e1y0sscp4w6q8	step-3	Active labor	no source checked for this key
 cmru96pbv004a1y0s378r86ch	step-3	Increase the dose of labetalol	no source checked for this key
-cmru96qa9004i1y0swkyke6yw	step-3	Active labor	no source checked for this key
 cmru9cuis006i1y0s8t8ls01o	step-3	Intravenous ceftriaxone plus azithromycin	no source checked for this key
 cmru9cvpt006s1y0s41hrpf0m	step-3	Administer thiamine IV	no source checked for this key
-cmru9czep007n1y0sas7sgxre	step-3	Administer diuretics	no source checked for this key
-cmru9d0rz007u1y0sorvbsop1	step-3	Hashimoto's thyroiditis	no source checked for this key
 cmru9d196007y1y0swb243exy	step-3	Initiate lifestyle modifications	no source checked for this key
 cmru9irv400a61y0s0hlo6f9a	step-3	Increase atorvastatin to 40 mg	no source checked for this key
 cmru9iuzg00aw1y0shvzybumw	step-3	Cardiovascular disease	no source checked for this key
 cmru9iwfb00b81y0sihtwph7y	step-3	Bile duct injury	no source checked for this key
 cmru9iwjn00b91y0sqdr095tk	step-3	Thoracentesis	no source checked for this key
 cmr8fz88t01ng1yloxa44djcz	step-3	Add chlorthalidone 12.5 mg daily	no source checked for this key
-cmr8fz8ej01ni1yloq2jt2907	step-3	Hepatitis A	no source checked for this key
 cmr8fz9pb01ny1ylozq6irsk6	step-3	Initiate diuretics	no source checked for this key
 cmr8fz7fk01n61ylorn92lugq	step-3	Start an ACE inhibitor and titrate to the highest tolerated dose	no source checked for this key
 cmr8j0ppu02hj1yloy9kl4tkt	step-3	Add a long-acting beta-agonist	no source checked for this key
@@ -2371,7 +2260,6 @@ cmr8ji8a502nm1ylofr0y3fg8	step-3	Start intravenous antibiotics	no source checked
 cmr8ji84a02nk1ylo1fv315q2	step-3	Add a thiazide diuretic	no source checked for this key
 cmr8lqjad00dq1ygi8lkj3vwh	step-3	Refer for genetic counseling	no source checked for this key
 cmr8lqfs800cr1ygi8gw2llnq	step-3	Order a renal ultrasound	no source checked for this key
-cmr8lqfkf00cq1ygi03ibd4wd	step-3	Acute pyelonephritis	no source checked for this key
 cmr8lc8a400as1yginvusptsm	step-3	Start oral antibiotics	no source checked for this key
 cmr8lc5tn009y1ygio9489fv4	step-3	Initiate a diuretic	no source checked for this key
 cmr8lc547009p1ygikvl3lysp	step-3	Administer a short-acting beta-agonist	no source checked for this key
@@ -2765,7 +2653,6 @@ b4x91adb4f3df6747834ba7991f	step-2	It constricts vessels while weakness may be i
 b4x69b426a27d31ab85745f8d6b	step-2	She is already overstimulated, and more drug deepens the weakness	no source checked for this key
 b4x2986e7e9fc4732457ae38db7	step-2	The temporal lobe is compressing the third nerve and the cerebral peduncle now	no source checked for this key
 b4x78254351df46ae98015e1b88	step-2	His remaining drive was hypoxic and the mask removed it	no source checked for this key
-b4x5c541adc784d99efeb0514e8	step-2	He has reserve, the pneumothorax is small, and he is stable	no source checked for this key
 b4x4f63fe44fba8548b7a879def	step-2	Upsetting him can close the airway before a tube is ready	no source checked for this key
 b4xd87e2547d6bd0a6355a2a1aa	step-2	It can tighten the airways that are already constricted	no source checked for this key
 b4xdfeda636f6a26395de88a9d5	step-2	That segment is dependent when he is lying flat	no source checked for this key
@@ -2966,10 +2853,8 @@ b6x3d8dbdcdfeaef48e0e504c1c	step-2	The enroller could choose who got the drug	no
 b6x0bcc35f12ee8111c9a990a24	step-2	Sensitivity is about people who have the disease, not how many of them there are	no source checked for this key
 b6xafab0dcd2b445401b9d2926f	step-2	The heart, face, and limbs are still forming, and this drug can harm them	no source checked for this key
 cmr85uhe9000j1yw2av5juuyn	step-1	Adrenal adenoma secreting cortisol	no source checked for this key
-cmr4lnlsm003t1y1e0sb2yb34	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 cmr4nxtfa00h01y1e9dnclaac	step-1	Decreased renal clearance of uric acid	no source checked for this key
 cmr4pz5gj00sq1y1e8rbcnyfi	step-1	Decreased uric acid excretion	no source checked for this key
-cmr88g6nr00dr1yw2sa9kb476	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
 cmpnjhbrz00291ymxnf9xho4e	step-2	Penicillin V or amoxicillin for 10 days	no source checked for this key
 cmpnjjcsd09cy1ymxf8b2sydj	step-2	Administer IV loop diuretic, supplemental oxygen, and assess perfusion; consider afterload reduction and treat precipitants	no source checked for this key
 cmpnjjlxf0awj1ymxqx4p6knk	step-2	Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable	negated key
@@ -2989,11 +2874,9 @@ cmqxdeo4j009x1ymabnduvmhk	step-2	Acute coronary syndrome	no source checked for t
 cmqxdeqsm00ao1ymahf9prh4t	step-2	Nitrofurantoin	no source checked for this key
 cmqxdy52w000a1y79agqtgugh	step-2	Nephrology	no source checked for this key
 cmqxdy7ha00151y79slfi841c	step-2	Observation and follow-up in one week	no source checked for this key
-cmqxdeo7y009y1yma8dfh7bqf	step-2	Increase diuretic dose	no source checked for this key
 cmqxdepsq00ae1ymayvonhif4	step-2	Malignant hypertension	no source checked for this key
 cmqxderua00az1ymaz92nt3wb	step-2	Provide supportive care	no source checked for this key
 cmqxdes5n00b21ymayfj23tq9	step-2	Cecal perforation	no source checked for this key
-cmqxdy7ei00141y79llwnxk2q	step-2	Measles	no source checked for this key
 cmqiy342w000r1yugw5a64deq	step-2	Delirium	no source checked for this key
 cmr4k4ar100qo1yde3a2g0bjw	step-2	Echocardiogram	no source checked for this key
 cmr4kilgu00sp1ydekkgxudlk	step-2	90 mL/min	no source checked for this key
@@ -3004,10 +2887,8 @@ cmr4hngrk006i1yde3n152jpd	step-2	Prescribe a bronchodilator	no source checked fo
 cmr4hnhi5006o1yde26taw318	step-2	Administer acetaminophen	no source checked for this key
 cmr4hnmwx007r1yden35o8x1n	step-2	Administer the MMR vaccine	no source checked for this key
 cmr4hzujp00ab1yde0rbkx27h	step-2	90 mL/min	no source checked for this key
-cmr4iy62e00ge1ydeyx4wmdlj	step-2	Live attenuated measles vaccine	no source checked for this key
 cmr4j8o1c00jx1ydep01gn6fe	step-2	Ultrasound of the abdomen	no source checked for this key
 cmr4jrbzf00ni1ydebg0mky5g	step-2	Von Willebrand disease	no source checked for this key
-cmr31dll600cajs045jgolta2	step-2	Intussusception	no source checked for this key
 cmr4gwhst000q1ydefvjtj6c5	step-2	Administer intravenous fluids and initiate broad-spectrum antibiotics	no source checked for this key
 cmr4ievie00e11ydetvco4zz6	step-2	Normal development	no source checked for this key
 cmr31djmj00a8js04dt5c8dh2	step-2	High anion gap metabolic acidosis with hyperkalemia	no source checked for this key
@@ -3016,13 +2897,11 @@ cmr88s1u300tp1yr96q83v2ry	step-2	Ultrasound of the abdomen	no source checked for
 cmr8919pr00wt1yr9cgx9jzod	step-2	90 mL/min	no source checked for this key
 cmr4kimu100t61yde1z9b1447	step-2	Amoxicillin	no source checked for this key
 cmr89lw80010j1yr917tv1w5l	step-2	Developmental delay	no source checked for this key
-cmr89lwvs010r1yr9d6u31w1z	step-2	Measles, mumps, and rubella (MMR) vaccine	no source checked for this key
 cmr89lx4n010u1yr9y0wv9gnb	step-2	Administer a short-acting beta-agonist	no source checked for this key
 cmr89vb3w01301yr9iu40zc13	step-2	Graves' disease	no source checked for this key
 cmr89vbxr013a1yr940jrl9jp	step-2	Initiate fluid resuscitation with normal saline	no source checked for this key
 cmr8abe2r016g1yr913r0gvpq	step-2	Provide a nebulized bronchodilator	no source checked for this key
 cmr8abg8201761yr9r0om31ga	step-2	Hospitalize the patient for stabilization and further evaluation	no source checked for this key
-cmr4kip0u00tx1yde6sx1wbr7	step-2	Measles, mumps, rubella (MMR) vaccine	no source checked for this key
 cmr85svuh000i1yr9il031vt3	step-2	Initiate broad-spectrum intravenous antibiotics	no source checked for this key
 cmr85sxt100121yr9glel6tn0	step-2	Initiate nebulized albuterol	no source checked for this key
 cmr869ihr003i1yr9voxjj9kw	step-2	Administer oral amoxicillin	no source checked for this key
@@ -3036,7 +2915,6 @@ cmr87sjhc00je1yr94kggxded	step-2	Administer intravenous furosemide	no source che
 cmr87sjx000ji1yr9tpmqh2k2	step-2	Insulin deficiency	no source checked for this key
 cmr886c5o00mm1yr9lfpeaxih	step-2	Live attenuated vaccine	no source checked for this key
 cmr88ibnm00pw1yr9h3frzf2b	step-2	Obtain a CT pulmonary angiogram	no source checked for this key
-cmr85sy7a00161yr91wddyfao	step-2	Haemophilus influenzae type b vaccine	no source checked for this key
 cmr891bpm00xd1yr9mbov44gl	step-2	Start insulin therapy	no source checked for this key
 cmr89lvqa010d1yr926w1wpp2	step-2	Idiopathic thrombocytopenic purpura	no source checked for this key
 cmr869i7a003f1yr9x7ilq0in	step-2	125 mL/hr	no source checked for this key
@@ -3047,12 +2925,10 @@ cmr87j2pm00h91yr9ztzivpmt	step-2	Hydroxychloroquine	no source checked for this k
 cmr87j2wy00hb1yr9t3naouqh	step-2	Propranolol	no source checked for this key
 cmr886g5h00nz1yr9g1roe4lm	step-2	Administer a short-acting beta-agonist	no source checked for this key
 cmr88ieuh00qr1yr9cjt8a0ms	step-2	Perform thoracentesis	no source checked for this key
-cmr88s0ca00tb1yr9hyyffd40	step-2	Increase diuretic dosage	no source checked for this key
 cmr8918l000wi1yr9b576zyo0	step-2	Start atorvastatin 20 mg daily	no source checked for this key
 cmr89lv1901051yr9l24lhmj5	step-2	Referral to a pediatric pulmonologist for asthma management	no source checked for this key
 cmr87j09f00gl1yr9oidj999k	step-2	Discontinue lisinopril	no source checked for this key
 cmr88rztl00t61yr9397o68d3	step-2	Immediate laparotomy	no source checked for this key
-cmr89va9j012q1yr9ap4iqvzh	step-2	Increase diuretic dosage	no source checked for this key
 cmr89vb11012z1yr9vsbg3akw	step-2	Provide nebulized albuterol	no source checked for this key
 cmr89vb6t01311yr9ptdu6l07	step-2	Start intravenous antibiotics	no source checked for this key
 cmr87smh000kd1yr9m4iu7ec1	step-2	Aspirin	no source checked for this key
@@ -3064,18 +2940,15 @@ cmra6lukq0019ic046te6klg5	step-2	Bronchial hyperreactivity and inflammation	no s
 cmra6lup0001fic04093sc6e1	step-2	Internuclear ophthalmoplegia	no source checked for this key
 cmrpvq8iw000a1yluhxephip7	step-2	Immediate exploratory laparotomy	no source checked for this key
 cmrpw0qhb005c1yluzg4xwk4f	step-2	Cholecystectomy	no source checked for this key
-cmrpw0qvy005h1yluagx4i47k	step-2	Initiate broad-spectrum intravenous antibiotics	no source checked for this key
 cmrpw60fx007n1ylucvh4xvmh	step-2	Observation	no source checked for this key
 cmra6lzhg003uic0499iiqrzg	step-2	Surgical site infection	no source checked for this key
 cmrpw5xar006s1ylulwcdwjes	step-2	Intravenous fluids	no source checked for this key
 cmra6lv1e001vic04t7qbxyt8	step-2	Needle decompression	no source checked for this key
-cmra6lzns0041ic0497olnf6y	step-2	Pyloric stenosis	no source checked for this key
 cmra6lzyj0049ic04psryj293	step-2	Transvaginal ultrasound and serial β-hCG	no source checked for this key
 cmrpvq7mw00011ylupvl7beif	step-2	Start oral antibiotics	no source checked for this key
 cmrpw5xzk006z1yluaklrl3mc	step-2	Small bowel obstruction	no source checked for this key
 cmrpwaggl009c1yluxfkqtro1	step-2	Refer to general surgery	no source checked for this key
 cmrpwg55e00be1yludnxtxb9f	step-2	Administer intravenous fluids	no source checked for this key
-cmrpwg6fu00bv1yluan5n8lz5	step-2	Chronic kidney disease	no source checked for this key
 cmrpwg6wg00c11ylu03pponx4	step-2	Provide supplemental oxygen	no source checked for this key
 cmrpvq7ud00031ylu8djws1da	step-2	Apply a splint to the leg	no source checked for this key
 cmrpvvhe3002w1ylucz0xqypu	step-2	Observation and monitoring	no source checked for this key
@@ -3090,37 +2963,25 @@ cmrqhwkmm006x1ypxujxbshiy	step-2	Administer lorazepam	no source checked for this
 cmrrvfkh000361yl8mg5no5x1	step-2	Start a statin	no source checked for this key
 cmrrw4xqv00g41yl8gxdom0w7	step-2	Calcium gluconate	no source checked for this key
 cmrrbwajp000pl104hctum61z	step-2	Minimal change disease	no source checked for this key
-cmrrbware000xl104h3f036j9	step-2	Pyloric stenosis	no source checked for this key
-cmrrvfiys002n1yl8ss1b6wtw	step-2	Chronic Hepatitis C Infection	no source checked for this key
 cmrrvfjuj002y1yl8bdwmmd4n	step-2	Gestational hypertension	no source checked for this key
 cmrrvvki100bl1yl8i5a9q481	step-2	Add a long-acting beta-agonist	no source checked for this key
-cmrrvvll100bw1yl8rl2jhxf4	step-2	Administer intravenous thrombolytics	no source checked for this key
 cmrrw4x6i00fx1yl81imni67z	step-2	Order a full lipid panel	no source checked for this key
 cmrrw4yjc00ge1yl8qay5ggxn	step-2	Administer diuretics	no source checked for this key
 cmrsfd2ns002w1yny7ht10z3w	step-2	Administer magnesium sulfate for seizure prophylaxis	no source checked for this key
 cmrsrb22f000vl404hxmqp537	step-2	Minimal change disease	no source checked for this key
 cmrtexh6p00021y30rjatkdz2	step-2	Administer intravenous furosemide	no source checked for this key
-cmrtg5vxq00031ydwolyc2stt	step-2	Administer furosemide	no source checked for this key
-cmrtg5wwb000d1ydw0jue2ojw	step-2	Administer intravenous thrombolytics	no source checked for this key
 cmrrvzu6r00dt1yl8gte4vprm	step-2	Increase bronchodilator therapy	no source checked for this key
 cmrrbwb2h0015l104ot4ug6r8	step-2	Unstable angina / NSTEMI pathway	no source checked for this key
 cmrrbw60t0005l104m110udxq	step-2	Metabolic acidosis	no source checked for this key
 cmrrbwapn000vl104byt5qw08	step-2	C. difficile colitis	no source checked for this key
 cmrtg5wpd000b1ydweg5928v8	step-2	Start oral antibiotics	no source checked for this key
-cmrrvrrvh009l1yl8sk1x77xc	step-2	Increase the dose of furosemide	no source checked for this key
-cmrrvrsnt009v1yl85hzikeod	step-2	Increase diuretic dosage	no source checked for this key
-cmrrvvkei00bk1yl8x6g19c6q	step-2	Administer diuretics	no source checked for this key
-cmrsfgln8004i1yny3eqfrhuk	step-2	Administer diuretics	no source checked for this key
 cmrsraybn000fl40401miajzo	step-2	Initiate treatment with penicillin	no source checked for this key
 cmrsrb245000xl404erz23ngp	step-2	Surgical site infection	no source checked for this key
 cmrsrb2hq0018l404mjy4c0xn	step-2	High anion gap metabolic acidosis	no source checked for this key
-cmrtexhpw00091y30lrny3y97	step-2	Increase the dose of her diuretic	no source checked for this key
 cmrtf2o3l000m1y309oe4wpvk	step-2	Vascular dementia	no source checked for this key
 cmrtf2oef000q1y300bpv7zvf	step-2	Administer nebulized albuterol	no source checked for this key
 cmr8j9s0302kk1ylon9v0kk9m	step-3	Immediate laparotomy	no source checked for this key
-cmru6qthu0017l1041lu7ljvd	step-2	Epiglottitis	no source checked for this key
 cmr8jui48000b1ygi97bo71ev	step-3	Initiate diuretic therapy	no source checked for this key
-cmrvm5yx5001fjw04azx8x16l	step-2	Pyloric stenosis	no source checked for this key
 cmrtprwe200011yqcvod3cq4s	step-2	Prepare for immediate coronary angiography	no source checked for this key
 cmrtprwjo00031yqcwpoxcrgi	step-2	Administer furosemide	no source checked for this key
 cmrtprxq3000i1yqc6xy0obc2	step-2	Give albuterol by metered-dose inhaler with a spacer	no source checked for this key
@@ -3135,10 +2996,8 @@ cmrvm5uo50009jw04ncfhqvp6	step-2	Bronchial hyperreactivity and inflammation	no s
 cmrvm5yqz0017jw04bgcjs51j	step-2	Lumbar puncture to evaluate for subarachnoid hemorrhage	no source checked for this key
 cmrvm5yvn001djw047pxli6sr	step-2	C. difficile colitis	no source checked for this key
 cmrvm5yz4001ijw049n92tmhu	step-2	Optic neuritis	no source checked for this key
-cmrtprx6e000b1yqc537ydo77	step-2	Increase diuretic dosage	no source checked for this key
 cmrtpry9m000o1yqc7vq9a29q	step-2	Immune thrombocytopenic purpura (ITP)	no source checked for this key
 cmrtq0spb000v1yqcocxo694w	step-2	Thyroid storm	no source checked for this key
-cmrtq0ul6001i1yqco371u3tc	step-2	Administer furosemide intravenously	no source checked for this key
 cmpnjgvbh001h1ymxexc9z235	step-1	Absolute insulin deficiency → unrestrained lipolysis and hepatic ketogenesis → anion-gap metabolic acidosis and osmotic diuresis	no source checked for this key
 cmru6qyyv002rl104ccm52bcu	step-2	Transvaginal ultrasound and serial β-hCG	no source checked for this key
 cmru6qzlx0031l1044rxkc2pn	step-2	Respect confidentiality and discuss contraception with the patient alone	no source checked for this key
@@ -3148,7 +3007,6 @@ cmrtgb1xj002b1ydw22d99ycq	step-2	Add insulin therapy	no source checked for this 
 cmrtgb2k1002j1ydwvocnkzq1	step-2	Insulin deficiency leading to hyperglycemia	no source checked for this key
 cmrtprw7t00001yqcnic91y3b	step-2	Thrombolytic therapy	no source checked for this key
 cmrtprxew000e1yqck74ewaob	step-2	Biliary obstruction due to gallstones	no source checked for this key
-cmrtq0uwm001m1yqc5xhgr8j9	step-2	Measles	no source checked for this key
 cmrtq0v28001o1yqcpt7mbpau	step-2	Start a short-acting beta-agonist (SABA)	no source checked for this key
 cmrtq47sb00251yqc9009nuai	step-2	Initiate non-invasive positive pressure ventilation	no source checked for this key
 cmru6qt6b000tl1041cy9c4bd	step-2	Metabolic acidosis	no source checked for this key
@@ -3162,13 +3020,10 @@ cmtps7wdo00101y1qb7j94rlf	step-2	Hormonal therapy	no source checked for this key
 cmtpsb0ks002u1y1q5r50z01i	step-2	Administer supplemental oxygen	no source checked for this key
 cmtpsb0v9002x1y1qwjztf0mg	step-2	Prepare for immediate surgical intervention	no source checked for this key
 cmtpsb1bu00331y1qj2562uc0	step-2	Autoimmune destruction of synovial tissue	no source checked for this key
-cmtpw0myp002a1ylcrm0jazst	step-2	Increase diuretic dosage	no source checked for this key
 cmtpw0n98002e1ylcr5nrzce0	step-2	Immediate exploratory laparotomy	no source checked for this key
 cmtpwleg4000o1y6hlijg3bcy	step-2	Administer diuretics	no source checked for this key
 cmtpwlg7k001a1y6hjyv8x49w	step-2	Perform exploratory laparotomy	no source checked for this key
 cmtpwzy72006t1y6h0yxg4xcj	step-2	90 mL/min	no source checked for this key
-cmr4our2g00mh1y1e01r7frg8	step-1	Deposition of monosodium urate crystals in the joint	no source checked for this key
-cmtpx3e3700aq1y6h99e98vtz	step-2	Increase the dose of diuretics	no source checked for this key
 cmr4pbhhj00q91y1ewssm1xz1	step-1	Measure plasma free metanephrines	no source checked for this key
 cmr85uk1p001a1yw2c0lo2i36	step-1	Administer calcium gluconate	no source checked for this key
 cmr8ayub900xf1yw29nec1wus	step-1	Thrombosis due to atherosclerosis	no source checked for this key
@@ -3188,23 +3043,16 @@ cmqxegaem00h61ymar4dl6ppx	step-3	Hearing loss	no source checked for this key
 cmr31dkd400b3js047wbojq6e	step-3	Mechanical mitral valve requires warfarin; DOACs contraindicated — reinforce adherence and INR follow-up	negated key
 cmr4c4qk100gs1yky0eubl13s	step-3	Initiate diuretics	no source checked for this key
 cmr31djye00aljs04bxy0r40b	step-3	30 mL/kg IV crystalloid, blood cultures, broad-spectrum antibiotics within 1 hour, monitor lactate	no source checked for this key
-cmqxdzxp200cs1ymad88el3l9	step-3	Increase the dose of furosemide	no source checked for this key
-cmqxdzz5200da1ymalk9yrl0m	step-3	Initiate diuretics	no source checked for this key
-cmqxdzzuf00dj1ymabks3j254	step-3	Administer furosemide	no source checked for this key
-cmr4bggem00711ykyc0be6qna	step-3	Administer diuretics	no source checked for this key
 cmr4bnwtj00aq1yky41uf8jr2	step-3	Give intravenous dextrose	no source checked for this key
 cmr4b336f00151ykyfqiy83sn	step-3	Add a GLP-1 receptor agonist	no source checked for this key
 cmr31dkfl00b6js047iiy0rrw	step-3	Treat latent TB per guidelines, then start biologic with infection monitoring	no source checked for this key
 cmr4bvc5g00dh1ykyniza4kc8	step-3	Cigarette smoking	no source checked for this key
-cmr4b2z7i00031ykynqxmzu82	step-3	Administer diuretics	no source checked for this key
 cmr4b33g700181ykyq4lu9s8h	step-3	Provide nebulized albuterol	no source checked for this key
 cmqxf0k6d00001yf1sxafige1	step-3	Insulin	no source checked for this key
 cmr4cbu4900k31ykyt9bjalum	step-3	Start insulin therapy	no source checked for this key
-cmr4cbyej00li1ykyodf8ab66	step-3	Increase furosemide dosage	no source checked for this key
 cmr4e6p4t01ca1yky5dajmp7j	step-3	Administer intravenous antibiotics	no source checked for this key
 cmr4ftfn801z71ykyixvm4ccc	step-3	Provide supportive care and observation	no source checked for this key
 cmr4g0wa8022u1ykymfc586cg	step-3	Cushing's syndrome	no source checked for this key
-cmr4g0wfy022w1ykyin8mddk5	step-3	Administer diuretics	no source checked for this key
 cmr4cnsgi00nu1yky9wggetxa	step-3	Administer 150 mL of 3% hypertonic saline over 20 minutes	no source checked for this key
 cmr4dbed000yg1yky6mngtrul	step-3	Perform an exploratory laparotomy	no source checked for this key
 cmr4e6pj101ce1ykyr95i85c3	step-3	Start iron supplementation	no source checked for this key
@@ -3214,8 +3062,6 @@ cmr4g0trc021y1ykyo7nbjb9h	step-3	Postoperative infection	no source checked for t
 cmr4ftgo501zk1yky2s7nekz4	step-3	Bone metastases	no source checked for this key
 cmr4dj85f010y1yky0ihpuhnl	step-3	Start aspirin therapy	no source checked for this key
 cmr4e6igo01b71ykydr7w92p2	step-3	Initiate metformin therapy	no source checked for this key
-cmr4dj81j010x1yky258y1dap	step-3	Chronic kidney disease	no source checked for this key
-cmr4eema701fh1ykyft1s5jqc	step-3	Chronic kidney disease	no source checked for this key
 cmr4fdjh101s71ykywjqux0ox	step-3	Address the barriers to adherence, such as cost and forgetting doses, before intensifying therapy	no source checked for this key
 cmr4eeids01ee1ykyd0oxrb8j	step-3	Hypertensive encephalopathy	no source checked for this key
 cmr4eelr001fc1ykyqxoszojb	step-3	Start insulin therapy	no source checked for this key
@@ -3266,7 +3112,6 @@ cmr8cnbn700o91yloap334hvo	step-3	Adjust her diabetes medication regimen	no sourc
 cmr8dq9or01081ylo5mf7k4b7	step-3	Administer intravenous fluids	no source checked for this key
 cmr8dqdvc011c1yloi27jbca8	step-3	Start low-dose aspirin	no source checked for this key
 cmr8d1u6n00q81ylo57srioke	step-3	Order a renal ultrasound	no source checked for this key
-cmr8c3pb000hw1ylo1jgx0eh8	step-3	Acute pyelonephritis	no source checked for this key
 cmr8dylij013t1ylokf29oc4b	step-3	Obtain blood cultures	no source checked for this key
 cmr8db7kq00tq1ylo0ehlnjw4	step-3	Chronic hypertension	no source checked for this key
 cmr8dbb7d00uq1ylottx4ziom	step-3	Add insulin therapy	no source checked for this key
@@ -3305,7 +3150,6 @@ cmr8j9px402k01yloljca94fq	step-3	Administer IV fluids and initiate broad-spectru
 cmr8hgjg302181ylor4piufzp	step-3	Initiate nebulized albuterol	no source checked for this key
 cmr8j0mm402gh1ylo5xrlyc9g	step-3	Increase atorvastatin dosage	no source checked for this key
 cmr8i08x0026d1yloqip8yhj7	step-3	Obtain an abdominal ultrasound	no source checked for this key
-cmr8j0pvl02hl1ylojllglvju	step-3	Increase the dose of diuretics	no source checked for this key
 cmr8ji60r02mu1ylohk4o3og1	step-3	Administer calcium gluconate	no source checked for this key
 cmr8j0o3102gz1yloxq3dz4cr	step-3	Recommend lifestyle modifications	no source checked for this key
 cmr8i09cx026i1yloewxor346	step-3	Obtain a mammogram	no source checked for this key
@@ -3332,7 +3176,6 @@ cmr8lc8uj00az1ygi9n8yhl4m	step-3	Administer furosemide	no source checked for thi
 cmr8lc7qi00am1ygiqn826ueu	step-3	Increase atorvastatin dosage	no source checked for this key
 cmr8lc62400a11ygiw8pb8ggm	step-3	Lumbar puncture	no source checked for this key
 cmr8ji8xh02nu1ylov6dodlru	step-3	Add a thiazide diuretic	no source checked for this key
-cmr8mlsgk00mj1ygikjazwhho	step-3	Active labor	no source checked for this key
 cmr8lc7nn00al1ygi3etrjxgi	step-3	Bile leak	no source checked for this key
 cmr8lqh3j00d71ygiuyqqv7pi	step-3	Administer hypertonic saline	no source checked for this key
 cmr8lyzqq00gq1ygi6bk3sbot	step-3	Start potassium binders	no source checked for this key
@@ -3344,21 +3187,15 @@ cmr8ncoz100tt1ygi1q9q7t4a	step-3	Perform a lumbar puncture	no source checked for
 cmr8ny4r200zy1ygi9d34cx99	step-3	Acute pulmonary edema	no source checked for this key
 cmr8ny4ee00zu1ygij3t3s40b	step-3	Long-acting insulin at bedtime	no source checked for this key
 cmr8ncmr900t61ygin88hs08t	step-3	Administer intravenous fluids	no source checked for this key
-cmr8n3tof00r31ygiymd1dy3p	step-3	Measles	no source checked for this key
 cmr8mlttv00n01ygijtrxp5ba	step-3	Administer oxytocin to augment labor	no source checked for this key
-cmr8mltwu00n11ygi9dhlzrh3	step-3	Active labor	no source checked for this key
 cmr8mluvw00nd1yginl2pje0v	step-3	Perform dilation and curettage (D&C)	no source checked for this key
-cmr8ncqt700uc1ygiqtlsy96g	step-3	Start broad-spectrum antibiotics	no source checked for this key
 cmr8ny42n00zq1ygirrdhdp4k	step-3	Provide a nebulized beta-agonist	no source checked for this key
 cmr8n3qva00qa1ygio436iqre	step-3	Acute otitis media	no source checked for this key
 cmr8n3qys00qb1ygigbf143zr	step-3	Initiate iron supplementation	no source checked for this key
-cmr8n3pw800q01ygita18d8mz	step-3	Measles	no source checked for this key
 cmr8mltzv00n21ygif0baq3h5	step-3	Start intravenous antibiotics	no source checked for this key
 cmr8mluq200nb1ygifq77wkur	step-3	Administer epidural analgesia	no source checked for this key
-cmr8mluym00ne1ygid9y4x64p	step-3	HIV screening	no source checked for this key
 cmr8o9hgk01361ygiu3bkyn1s	step-3	Administer oral glucose	no source checked for this key
 cmr8nmj7r00wz1ygirixsqvj1	step-3	Start an ACE inhibitor	no source checked for this key
-cmr8nml3900xo1ygixoovb4e8	step-3	Administer intravenous thrombolytics	no source checked for this key
 cmr8nmkvf00xl1ygi9hoew8sh	step-3	Start metformin	no source checked for this key
 cmr8nmhek00wc1ygigk8881nw	step-3	Between 24 and 28 weeks of gestation	no source checked for this key
 cmr8nmh9200wa1ygi1mbmvnq0	step-3	Administer calcium gluconate	no source checked for this key
@@ -3371,7 +3208,6 @@ cmr8p27dr019z1ygi3m25sd8j	step-3	Initiate benzodiazepine therapy	no source check
 cmr8nmj2300wx1ygi29olj6t8	step-3	Bile duct injury	no source checked for this key
 cmr8pgssc01ca1ygii5k03133	step-3	250 mg	no source checked for this key
 cmr8pvhgk01gx1ygihqncjgms	step-3	Initiate diuretics	no source checked for this key
-cmr8pvfk901ge1ygi5gwz8g2x	step-3	Chronic kidney disease	no source checked for this key
 cmr8quzvn01qd1ygi5p7l7vyi	step-3	Initiate IV antibiotics	no source checked for this key
 cmr8q43lt01jx1ygibvpvfamr	step-3	Administer diuretics	no source checked for this key
 cmr8pvhrd01h01ygio67k3oc5	step-3	Lumbar puncture	no source checked for this key
@@ -3390,11 +3226,9 @@ cmr98ml5m00kd1ywyiuc5wr5g	step-3	Initiate nebulized albuterol	no source checked 
 cmr98mjyv00k11ywy287v434h	step-3	Graves' disease	no source checked for this key
 cmr98dlzi00hl1ywyady7dsv5	step-3	Cohort study	no source checked for this key
 cmr98mkrd00k91ywyqd9m0yw2	step-3	Administer furosemide	no source checked for this key
-cmr98dnqp00i31ywyi2zvehc6	step-3	Start broad-spectrum intravenous antibiotics	no source checked for this key
 cmr98mjv600k01ywy701jdrdm	step-3	Administer diuretics	no source checked for this key
 cmr98mmx300kv1ywy65mhs1fr	step-3	Perform an ultrasound-guided drainage	no source checked for this key
 cmr98do1900i61ywyo6pen8n7	step-3	Schedule a mammogram	no source checked for this key
-cmr98disl00gp1ywyxcshmobd	step-3	Administer diuretics	no source checked for this key
 cmr985zrk00da1ywykji3ycop	step-3	Start insulin therapy	no source checked for this key
 cmr98629o00e61ywyenu9luvj	step-3	Increase the statin dose	no source checked for this key
 cmr9863m500en1ywy53w8cwfl	step-3	Add a second antihypertensive medication	no source checked for this key
@@ -3402,10 +3236,8 @@ cmr9860mb00dl1ywyymmjv4f2	step-3	Provide a nebulized bronchodilator	no source ch
 cmr99ij4a00ui1ywyo96w27zq	step-3	Biopsy of the enlarged paratracheal node by endobronchial ultrasound-guided needle aspiration	no source checked for this key
 cmr97yxnf00a11ywyf8wy1588	step-3	Initiate intravenous thrombolysis	no source checked for this key
 cmr99iiu100uf1ywyubetoief	step-3	Thoracentesis	no source checked for this key
-cmr99ii2200u71ywy3w13ptqc	step-3	Increase furosemide dosage	no source checked for this key
 cmr9862cj00e71ywy2n64pk5g	step-3	Acute blood loss	no source checked for this key
 cmr9860ur00do1ywyy6xg434s	step-3	Close observation	no source checked for this key
-cmr9860ry00dn1ywyzi1svtn0	step-3	Autoimmune thyroiditis (Hashimoto's thyroiditis)	no source checked for this key
 cmr99igzj00tw1ywy2us9y29b	step-3	Administer diuretics	no source checked for this key
 cmr97qg1h007i1ywydwu0arzf	step-3	Measure serum creatinine with eGFR and a urine albumin-to-creatinine ratio	no source checked for this key
 cmr97qh0d007s1ywyy7xpybtf	step-3	Administer albuterol	no source checked for this key
@@ -3417,7 +3249,6 @@ cmr98vps800of1ywy6vta9vue	step-3	Administer intravenous dextrose	no source check
 cmr98vpv500og1ywy27dt9b7q	step-3	Graves' disease	no source checked for this key
 cmr9863rq00ep1ywy6uwji8qs	step-3	Perform an abdominal ultrasound	no source checked for this key
 cmr98mmtb00ku1ywyen67ve3c	step-3	Cohort study	no source checked for this key
-cmr97qgwq007r1ywypilx1xdx	step-3	Increase furosemide dosage	no source checked for this key
 cmr97yxqy00a21ywybg9qlinf	step-3	Cholangitis	no source checked for this key
 cmr97yyfi00a91ywyne7kyjne	step-3	Start a loop diuretic	no source checked for this key
 cmr97z1fa00b31ywyxdv9jody	step-3	Obtain a lumbar puncture	no source checked for this key
@@ -3425,7 +3256,6 @@ cmr98dmoa00hs1ywy6eg4iq36	step-3	Start intravenous antibiotics	no source checked
 cmr98mo0b00l61ywy6coy9gpx	step-3	Start metformin	no source checked for this key
 cmr98mo7a00l81ywyhq113kyp	step-3	Change antibiotics	no source checked for this key
 cmr97qe2f006y1ywyi3wwugp3	step-3	Increase bronchodilator therapy	no source checked for this key
-cmr97qh75007u1ywyg7khltmv	step-3	Start intravenous antibiotics	no source checked for this key
 cmr97z11900az1ywyov4k1tlp	step-3	Administer benzodiazepines	no source checked for this key
 cmr99igw300tv1ywygfercb5t	step-3	Schedule a colonoscopy	no source checked for this key
 cmr99iji500um1ywy129j2oio	step-3	Administer systemic corticosteroids	no source checked for this key
@@ -3440,9 +3270,7 @@ cmr99rgqz00xx1ywy0xpgwgew	step-3	Administer intravenous labetalol	no source chec
 cmr99rfpl00xk1ywya8vyrdh8	step-3	Stop nitrofurantoin and start oral ciprofloxacin	no source checked for this key
 cmr99rg6o00xq1ywyrze6jdq1	step-3	Start intravenous fluids	no source checked for this key
 cmr99rgcf00xs1ywyk3ips9qt	step-3	Order a mammogram	no source checked for this key
-cmr99rioa00yl1ywyzv5aobn7	step-3	Chronic hepatitis C infection	no source checked for this key
 cmru3gbcg00aa1y7whlnf7syv	step-3	Obtain an abdominal ultrasound	no source checked for this key
-cmru3gd5w00ax1y7wridawkph	step-3	Administer diuretics	no source checked for this key
 cmru3gelt00bg1y7wjff2uw3m	step-3	Start dietary potassium restriction	no source checked for this key
 cmr9c37x101o71ywynpogncqa	step-3	Prepare for immediate surgery	no source checked for this key
 cmr9c9ngl01qu1ywye3d3sx2e	step-3	Immediate surgical consultation	no source checked for this key
@@ -3456,9 +3284,7 @@ cmr9bv0ik01kt1ywy163z1hhp	step-3	Start aspirin therapy	no source checked for thi
 cmr9bv16201l11ywyrln2d9ad	step-3	Provide supplemental oxygen	no source checked for this key
 cmr9bv1tq01l91ywybxku216j	step-3	Add insulin therapy	no source checked for this key
 cmr9c9mux01qo1ywyvl8jbjxx	step-3	Perform laparoscopic cholecystectomy	no source checked for this key
-cmr9c9nya01qz1ywy3hbutlhy	step-3	Administer diuretics	no source checked for this key
 cmru2qa5300131y7w3v0vdr94	step-3	Increase atorvastatin dosage.	no source checked for this key
-cmru32lvh00411y7w1hpmw7or	step-3	Administer diuretics	no source checked for this key
 cmru2q6py00001y7w1sav1u1z	step-3	Start a systemic corticosteroid	no source checked for this key
 cmru3n3fd00db1y7wzbabfm79	step-3	Increase atorvastatin to a high-intensity dose	no source checked for this key
 cmru8hyaw00ao1yd6ig1prjqq	step-3	Alcoholic hepatitis	no source checked for this key
@@ -3468,7 +3294,6 @@ cmru8i0dw00b91yd6m6nkc3yk	step-3	Consult neurosurgery for possible evacuation	no
 cmru3uc9v00gy1y7wu80eovb2	step-3	Add a thiazide diuretic	no source checked for this key
 cmru3ue9700hj1y7wosrt2b7w	step-3	Administer intravenous fluids	no source checked for this key
 cmru3ufvi00i01y7wwo9s3jh5	step-3	Autonomy	no source checked for this key
-cmru7tn5k001h1yd687q6yhxn	step-3	Hepatitis A	no source checked for this key
 cmru8v65p001g1y0sstwa9b5r	step-3	Administer nebulized albuterol	no source checked for this key
 cmru7tjtc000b1yd635apqwl9	step-3	Increase atorvastatin to 20 mg daily	no source checked for this key
 cmru7tkxx000p1yd6iuemmxy0	step-3	Insulin overdose	no source checked for this key
@@ -3518,8 +3343,6 @@ cmruyh0ww001w1y2yebi0z0z7	step-3	Pulmonary fibrosis	no source checked for this k
 cmruyjy8t003i1y2y9en2hu5y	step-3	Order a CT pulmonary angiogram	no source checked for this key
 cmruykk5g003y1y2ysdf1qbjn	step-3	Order a chest X-ray	no source checked for this key
 cmruykjzu003w1y2ypey0edms	step-3	Order complete blood count with differential	no source checked for this key
-cmruymlqu004z1y2ylhtep7az	step-3	Administer tPA	thrombolysis without a stroke presentation
-cmruymm7j00541y2ycpw04gro	step-3	Administer IV diuretics	no source checked for this key
 cmruyjxyx003g1y2y2a8ezxjn	step-3	Start an ACE inhibitor	no source checked for this key
 cmruyg6oe001d1y2y6l0zhayh	step-3	Add spironolactone to his regimen.	no source checked for this key
 cmruif6fy001d1ycewcdbmle7	step-3	Hypokalemia	no source checked for this key
@@ -3647,7 +3470,6 @@ cmrvwrcig002a1ye8b04e2nur	step-3	Order a pregnancy test	no source checked for th
 cmrvwrwm8002l1ye80uzc9ls7	step-3	Order non-contrast CT head	no source checked for this key
 cmrvwrcfr00291ye8mvc1ruas	step-3	Order a renal ultrasound	no source checked for this key
 cmrvwrwjj002k1ye8lo83u7d0	step-3	Review medication list	no source checked for this key
-cmrvwq44k001o1ye8916hjse7	step-3	Hemochromatosis	no source checked for this key
 cmrvwq3w2001l1ye8o9wy0ltw	step-3	CT scan of the head without contrast	no source checked for this key
 cmrvwq47b001p1ye81cg7l4q6	step-3	Ultrasound of the abdomen	no source checked for this key
 cmrvwt0e500381ye8lwppxegq	step-3	Start IV antibiotics and admit to hospital	no source checked for this key
@@ -3737,7 +3559,6 @@ cmpnjhcau002f1ymxty8q5eqc	step-2	Administer intravenous fluids and insulin thera
 cmpnjhb2900221ymxlz4v3t94	step-2	Ceftriaxone plus vancomycin (add ampicillin if Listeria risk); dexamethasone before or with first antibiotic dose	no source checked for this key
 cmq0g7h4y003d1y4fwwod5dxx	step-1	Placental malperfusion → systemic endothelial dysfunction → hypertension, proteinuria, and end-organ ischemia	no source checked for this key
 cmqd1n0g800bm1ychr8drjwnk	step-1	Aplastic anemia	no source checked for this key
-cmqxdep7700a81ymahupmepn7	step-2	Increase the dose of furosemide	no source checked for this key
 cmqxdeq3k00ah1yma21xk0ftv	step-2	Administer intravenous furosemide	no source checked for this key
 cmqxd0pi4006g1ymawxa4sk18	step-2	Primary hypertension	no source checked for this key
 cmqxdesk200b61yma4mxg8puf	step-2	Combined oral contraceptive pills	no source checked for this key
@@ -3747,4 +3568,3 @@ cmqxee8p7003v1y79gp4vmphw	step-2	Seizures	no source checked for this key
 cmq33a2dp007e1yiurzvru5c0	step-3	Embolic or thrombotic occlusion of cerebral artery (often cardioembolic from AF) → focal ischemia in MCA territory	no source checked for this key
 cmqasnulo002q1ycy2zf3kppx	step-2	Stop spironolactone	no source checked for this key
 cmqd1lq1d00001ychdmrsx7ce	step-1	Upper trunk brachial plexus injury (Erb-Duchenne palsy)	no source checked for this key
-cmqxeg7hy00gc1yma9vv2jdn0	step-3	Increase furosemide dose	no source checked for this key
