@@ -1,1432 +1,1262 @@
 {
-  "ONDANSETRON": {
-    "clue": "Antiemetic that blocks serotonin receptors and can prolong the QT interval",
-    "rationale": "Ondansetron is a 5-HT3 blocker used for chemo and postoperative nausea. Watch the QT interval.",
-    "topic": "Pharm / GI"
-  },
-  "LORAZEPAM": {
-    "clue": "Benzodiazepine used for anxiety and status epilepticus that depresses breathing",
-    "rationale": "Lorazepam boosts GABA. Watch sedation and respiratory depression, especially with opioids.",
-    "topic": "Pharm / neuro"
-  },
-  "DIAZEPAM": {
-    "clue": "Longer-acting benzodiazepine used for seizures, spasms, and alcohol withdrawal",
-    "rationale": "Diazepam is a GABA agonist. It treats seizures, muscle spasm, and alcohol withdrawal.",
-    "topic": "Pharm / neuro"
-  },
-  "ALPRAZOLAM": {
-    "clue": "Short-acting benzodiazepine for anxiety whose abrupt stop can cause withdrawal",
-    "rationale": "Alprazolam is habit-forming. Taper it; sudden stops can cause rebound anxiety or seizures.",
-    "topic": "Pharm / psych"
-  },
-  "HALOPERIDOL": {
-    "clue": "First-generation antipsychotic that can cause dystonia and a prolonged QT",
-    "rationale": "Haloperidol treats psychosis and acute agitation. Watch extrapyramidal effects and QT.",
-    "topic": "Pharm / psych"
-  },
-  "SERTRALINE": {
-    "clue": "SSRI antidepressant that raises serotonin and can cause sexual side effects",
-    "rationale": "Sertraline takes weeks for mood effect. Watch for serotonin syndrome if combined with other serotonergic drugs.",
-    "topic": "Pharm / psych"
-  },
-  "FLUOXETINE": {
-    "clue": "Long half-life SSRI often chosen when a weekly washout reduces withdrawal risk",
-    "rationale": "Fluoxetine has a long half-life. It is an SSRI used for depression and some anxiety disorders.",
-    "topic": "Pharm / psych"
-  },
-  "BUPROPION": {
-    "clue": "Antidepressant that lowers the seizure threshold and is avoided in eating disorders",
-    "rationale": "Bupropion does not cause the sexual side effects of SSRIs. Avoid it when seizure risk is high.",
-    "topic": "Pharm / psych"
-  },
-  "TRAZODONE": {
-    "clue": "Antidepressant often used for sleep that can cause priapism",
-    "rationale": "Trazodone is sedating. Teach patients to report a prolonged painful erection.",
-    "topic": "Pharm / psych"
-  },
-  "GABAPENTIN": {
-    "clue": "Anticonvulsant used for neuropathic pain that is cleared by the kidneys",
-    "rationale": "Gabapentin is renally cleared. Doses are reduced when GFR falls, and sedation is common.",
-    "topic": "Pharm / neuro"
-  },
-  "VALPROATE": {
-    "clue": "Antiseizure drug that is teratogenic and can injure the liver and pancreas",
-    "rationale": "Valproate is avoided in pregnancy. Monitor liver enzymes, platelets, and signs of pancreatitis.",
-    "topic": "Pharm / neuro"
-  },
-  "LAMOTRIGINE": {
-    "clue": "Antiseizure drug whose serious rash risk rises if the dose is raised too fast",
-    "rationale": "Lamotrigine is titrated slowly. A rash can signal Stevens-Johnson syndrome and the drug is stopped.",
-    "topic": "Pharm / neuro"
-  },
-  "OMEPRAZOLE": {
-    "clue": "Proton pump inhibitor used for ulcer and reflux that can lower magnesium long term",
-    "rationale": "Omeprazole reduces gastric acid. Long courses are linked with low magnesium and C. difficile risk.",
-    "topic": "Pharm / GI"
-  },
-  "FAMOTIDINE": {
-    "clue": "H2 blocker that reduces stomach acid and is adjusted when the kidneys are weak",
-    "rationale": "Famotidine blocks histamine at the parietal cell. Reduce the dose in renal impairment.",
-    "topic": "Pharm / GI"
-  },
-  "SUCRALFATE": {
-    "clue": "Mucosal coating agent for ulcers that is given on an empty stomach",
-    "rationale": "Sucralfate forms a barrier over ulcers. Separate it from other oral drugs so it does not bind them.",
-    "topic": "Pharm / GI"
-  },
-  "DOCUSATE": {
-    "clue": "Stool softener used to prevent straining after surgery or with painful defecation",
-    "rationale": "Docusate pulls water into stool. It prevents constipation; it does not treat a hard impaction alone.",
-    "topic": "Pharm / GI"
-  },
-  "BISACODYL": {
-    "clue": "Stimulant laxative used for short-term constipation, often at bedtime",
-    "rationale": "Bisacodyl stimulates the colon. Do not use stimulant laxatives as a daily habit.",
-    "topic": "Pharm / GI"
-  },
-  "SENNA": {
-    "clue": "Plant stimulant laxative that increases colonic motility",
-    "rationale": "Senna is a stimulant laxative. Abdominal cramping can occur, and long daily use is discouraged.",
-    "topic": "Pharm / GI"
-  },
-  "ALLOPURINOL": {
-    "clue": "Xanthine oxidase inhibitor that lowers uric acid and is a maintenance gout drug",
-    "rationale": "Allopurinol prevents gout flares over time. It is not the treatment for an acute joint flare.",
-    "topic": "Pharm / gout"
-  },
-  "COLCHICINE": {
-    "clue": "Anti-inflammatory used early in acute gout that causes diarrhea at high doses",
-    "rationale": "Colchicine is most useful when started soon after a gout flare. Diarrhea is the dose-limiting effect.",
-    "topic": "Pharm / gout"
-  },
-  "AMOXICILLIN": {
-    "clue": "Aminopenicillin used for otitis, sinusitis, and some streptococcal infections",
-    "rationale": "Amoxicillin is a beta-lactam. A rash in mono is common, and true allergy is a contraindication.",
-    "topic": "Pharm / antibiotics"
-  },
-  "CEFAZOLIN": {
-    "clue": "First-generation cephalosporin often given before surgery to prevent skin flora infection",
-    "rationale": "Cefazolin is a common perioperative prophylactic antibiotic. It covers many gram-positive skin organisms.",
-    "topic": "Pharm / antibiotics"
-  },
-  "CEFTRIAXONE": {
-    "clue": "Third-generation cephalosporin used for meningitis, gonorrhea, and serious gram-negative infection",
-    "rationale": "Ceftriaxone reaches the meninges. It is a workhorse for community meningitis and gonorrhea regimens.",
-    "topic": "Pharm / antibiotics"
-  },
-  "DOXYCYCLINE": {
-    "clue": "Tetracycline used for Lyme disease, acne, and atypical pneumonia that discolors teeth",
-    "rationale": "Doxycycline is avoided in pregnancy and young children because it stains developing teeth.",
-    "topic": "Pharm / antibiotics"
-  },
-  "CLINDAMYCIN": {
-    "clue": "Lincosamide that covers anaerobes and is strongly linked with C. difficile colitis",
-    "rationale": "Clindamycin treats anaerobic and some gram-positive infections. Diarrhea can mean C. difficile.",
-    "topic": "Pharm / antibiotics"
-  },
-  "LINEZOLID": {
-    "clue": "Oxazolidinone for resistant gram-positive infection that can cause serotonin syndrome",
-    "rationale": "Linezolid covers MRSA and VRE. It is an MAO inhibitor, so combining it with SSRIs is risky.",
-    "topic": "Pharm / antibiotics"
-  },
-  "MEROPENEM": {
-    "clue": "Carbapenem reserved for serious resistant infection and covering many anaerobes",
-    "rationale": "Meropenem is a broad carbapenem. It can lower the seizure threshold, especially in renal failure.",
-    "topic": "Pharm / antibiotics"
-  },
-  "FLUCONAZOLE": {
-    "clue": "Azole antifungal used for candida that inhibits CYP enzymes and raises some drug levels",
-    "rationale": "Fluconazole treats mucosal and systemic candida. It interacts with warfarin and some statins.",
-    "topic": "Pharm / antifungals"
-  },
-  "ACYCLOVIR": {
-    "clue": "Antiviral for herpes that is given with good hydration to protect the kidneys",
-    "rationale": "Acyclovir treats HSV and varicella-zoster. IV doses need hydration because crystals can injure the kidney.",
-    "topic": "Pharm / antivirals"
-  },
-  "OSELTAMIVIR": {
-    "clue": "Neuraminidase inhibitor started early to shorten influenza illness",
-    "rationale": "Oseltamivir works best within about 48 hours of flu symptom onset. It is not a substitute for vaccination.",
-    "topic": "Pharm / antivirals"
-  },
-  "NYSTATIN": {
-    "clue": "Topical or swish antifungal used for oral thrush that is not systemically absorbed",
-    "rationale": "Nystatin suspension is swished and swallowed for oral candida. It acts locally in the gut and mouth.",
-    "topic": "Pharm / antifungals"
-  },
-  "ENOXAPARIN": {
-    "clue": "Low-molecular-weight heparin dosed by weight and used for clot treatment and prevention",
-    "rationale": "Enoxaparin is given subcutaneously. Dose is reduced in renal impairment, and protamine only partly reverses it.",
-    "topic": "Pharm / coagulation"
-  },
-  "CLOPIDOGREL": {
-    "clue": "Antiplatelet prodrug used after stent placement that is stopped before many surgeries",
-    "rationale": "Clopidogrel blocks the P2Y12 receptor. Hold it before elective surgery because of bleeding risk.",
-    "topic": "Pharm / coagulation"
-  },
-  "APIXABAN": {
-    "clue": "Direct oral anticoagulant that inhibits factor Xa and does not need INR checks",
-    "rationale": "Apixaban is used for atrial fibrillation and venous clots. Bleeding is the main risk; INR is not the monitor.",
-    "topic": "Pharm / coagulation"
-  },
-  "RIVAROXABAN": {
-    "clue": "Once-daily factor Xa inhibitor that must be taken with food at the treatment dose",
-    "rationale": "Rivaroxaban 15 and 20 mg doses are taken with food so absorption is adequate.",
-    "topic": "Pharm / coagulation"
-  },
-  "DABIGATRAN": {
-    "clue": "Direct thrombin inhibitor whose capsules must stay in the original bottle",
-    "rationale": "Dabigatran is moisture sensitive. Do not crush the capsules, and bleeding risk rises with poor renal function.",
-    "topic": "Pharm / coagulation"
-  },
-  "METHIMAZOLE": {
-    "clue": "Antithyroid drug for hyperthyroidism that is avoided in the first trimester",
-    "rationale": "Methimazole blocks thyroid hormone synthesis. Agranulocytosis is a rare emergency signaled by fever or sore throat.",
-    "topic": "Pharm / endocrine"
-  },
-  "GLIPIZIDE": {
-    "clue": "Sulfonylurea that stimulates insulin release and can cause hypoglycemia",
-    "rationale": "Glipizide lowers glucose by pushing the pancreas to release insulin. Teach patients to eat when they take it.",
-    "topic": "Pharm / endocrine"
-  },
-  "GLYBURIDE": {
-    "clue": "Longer sulfonylurea more likely to cause prolonged hypoglycemia in older adults",
-    "rationale": "Glyburide is generally avoided in older adults because hypoglycemia can last.",
-    "topic": "Pharm / endocrine"
-  },
-  "SITAGLIPTIN": {
-    "clue": "DPP-4 inhibitor for type 2 diabetes that is weight neutral and rarely causes hypoglycemia alone",
-    "rationale": "Sitagliptin raises incretin effect. By itself it seldom causes low glucose, unlike sulfonylureas.",
-    "topic": "Pharm / endocrine"
-  },
-  "HYDRALAZINE": {
-    "clue": "Direct arterial vasodilator used for hypertension that can cause reflex tachycardia",
-    "rationale": "Hydralazine drops afterload. Reflex tachycardia and a lupus-like syndrome can occur.",
+  "CAPTOPRIL": {
+    "clue": "ACE inhibitor taken on an empty stomach; cough, high potassium, and airway swelling are reasons to stop and call",
+    "rationale": "Captopril lowers blood pressure but can cause a dry cough, hyperkalemia, first-dose hypotension, and angioedema. ACE inhibitors are teratogenic and are stopped in pregnancy.",
     "topic": "Pharm / cardiac"
   },
   "AMLODIPINE": {
-    "clue": "Dihydropyridine calcium blocker for hypertension and angina that causes ankle edema",
-    "rationale": "Amlodipine relaxes arterial smooth muscle. Peripheral edema is common and is not a reason to add a diuretic first.",
+    "clue": "Calcium-channel blocker whose common bothersome effect is ankle swelling; do not stop blood-pressure medicine abruptly",
+    "rationale": "Amlodipine dilates arteries and can cause peripheral edema and flushing. Hold it and notify the provider if blood pressure is below the ordered limit.",
     "topic": "Pharm / cardiac"
   },
-  "DILTIAZEM": {
-    "clue": "Non-dihydropyridine calcium blocker that slows the AV node and lowers heart rate",
-    "rationale": "Diltiazem is used for rate control. Avoid it in heart failure with reduced ejection fraction.",
+  "AMIODARONE": {
+    "clue": "Antiarrhythmic that can scar the lungs and disturb the thyroid; report cough or dyspnea and avoid grapefruit",
+    "rationale": "Amiodarone has a very long half-life and also affects the liver, skin, and corneas. It can raise digoxin and warfarin effect, so those doses often need review.",
     "topic": "Pharm / cardiac"
   },
-  "VERAPAMIL": {
-    "clue": "Calcium blocker that slows heart rate and is constipating",
-    "rationale": "Verapamil blocks cardiac calcium channels. Constipation and bradycardia are classic effects.",
+  "LIDOCAINE": {
+    "clue": "Drug for ventricular dysrhythmias whose toxicity looks neurologic: confusion, mouth numbness, and seizures",
+    "rationale": "Lidocaine is cleared by the liver, so heart failure and liver disease raise toxicity risk. As a local anesthetic, the form with epinephrine is not used on fingers, toes, the nose, ears, or penis.",
+    "topic": "Pharm / cardiac"
+  },
+  "ISOSORBIDE": {
+    "clue": "Long-acting nitrate for angina; headache is expected, and it must never be combined with an erectile-dysfunction drug",
+    "rationale": "Isosorbide and nitroglycerin dilate veins and can drop blood pressure. Sit before rapid nitroglycerin, and allow a nitrate-free interval so tolerance does not develop.",
+    "topic": "Pharm / cardiac"
+  },
+  "SILDENAFIL": {
+    "clue": "Erectile-dysfunction drug that can cause a fatal blood-pressure drop if a nitrate is given",
+    "rationale": "Ask about sildenafil, tadalafil, and vardenafil before every nitrate. Some of these drugs last more than a day, so a recent dose still counts.",
+    "topic": "Pharm / cardiac"
+  },
+  "CLOPIDOGREL": {
+    "clue": "Antiplatelet used after a coronary stent; do not stop it on your own, and expect it to be held before elective surgery",
+    "rationale": "Clopidogrel irreversibly inhibits platelets, so bleeding risk lasts for days. Sudden stopping soon after stent placement can thrombose the stent.",
+    "topic": "Pharm / coagulation"
+  },
+  "DABIGATRAN": {
+    "clue": "Oral thrombin inhibitor kept in its original bottle; do not open or crush the capsules because bleeding risk rises",
+    "rationale": "Dabigatran is sensitive to moisture, so it stays in the original container and the capsules are not opened. Idarucizumab reverses it, and it is not used with a mechanical heart valve.",
+    "topic": "Pharm / coagulation"
+  },
+  "BUBBLE": {
+    "clue": "Do not expel this from a prefilled enoxaparin syringe; inject into the abdomen and do not rub the site",
+    "rationale": "The air bubble in a prefilled enoxaparin syringe delivers the full dose and helps seal the track. Give it subcutaneously at 90 degrees, at least 2 inches from the umbilicus, and do not aspirate.",
+    "topic": "Pharm / coagulation"
+  },
+  "HIT": {
+    "clue": "Falling platelets plus new clots after heparin; stop every form of heparin, including flushes",
+    "rationale": "Heparin-induced thrombocytopenia is a clotting emergency, not a bleeding disorder. Warfarin is not started alone while the platelet count is still low; a non-heparin anticoagulant is used instead.",
+    "topic": "Pharm / coagulation"
+  },
+  "HCTZ": {
+    "clue": "Thiazide diuretic abbreviation; it lowers potassium and can raise glucose, uric acid, and calcium",
+    "rationale": "Hydrochlorothiazide is used for hypertension and mild fluid retention. Give it in the morning, watch for gout and hyperglycemia, and remember that thiazides raise lithium levels.",
+    "topic": "Pharm / fluids"
+  },
+  "LABETALOL": {
+    "clue": "Alpha and beta blocker used for severe hypertension, including in pregnancy; watch heart rate and blood pressure",
+    "rationale": "Labetalol can cause bradycardia, bronchospasm, and a drop in blood pressure. The patient should stay lying down until the pressure is stable after an intravenous dose.",
     "topic": "Pharm / cardiac"
   },
   "CLONIDINE": {
-    "clue": "Central alpha agonist for blood pressure whose sudden stop can cause rebound hypertension",
-    "rationale": "Clonidine is tapered. Abrupt withdrawal can spike the blood pressure.",
-    "topic": "Pharm / cardiac"
-  },
-  "CAPTOPRIL": {
-    "clue": "Short-acting ACE inhibitor that can cause cough, high potassium, and angioedema",
-    "rationale": "Captopril blocks angiotensin-converting enzyme. Stop it for angioedema and avoid it in pregnancy.",
-    "topic": "Pharm / cardiac"
-  },
-  "ENALAPRIL": {
-    "clue": "ACE inhibitor prodrug used for hypertension and heart failure with reduced ejection fraction",
-    "rationale": "Enalapril lowers afterload and mortality in HFrEF. Watch potassium, creatinine, and cough.",
-    "topic": "Pharm / cardiac"
-  },
-  "VALSARTAN": {
-    "clue": "Angiotensin receptor blocker used when an ACE inhibitor cough is intolerable",
-    "rationale": "Valsartan blocks the AT1 receptor. It does not cause the bradykinin cough of ACE inhibitors.",
-    "topic": "Pharm / cardiac"
-  },
-  "CARVEDILOL": {
-    "clue": "Nonselective beta blocker with alpha block used in heart failure with reduced ejection fraction",
-    "rationale": "Carvedilol is evidence-based in HFrEF. Start low; it can worsen symptoms if begun during decompensated failure.",
+    "clue": "Blood-pressure drug that can cause a dangerous rebound rise if it is stopped suddenly",
+    "rationale": "Clonidine is a central alpha-2 agonist that also causes dry mouth and sedation. Taper it, and do not skip patch changes or oral doses.",
     "topic": "Pharm / cardiac"
   },
   "PROPRANOLOL": {
-    "clue": "Nonselective beta blocker used for tremor, migraine prevention, and thyroid storm symptoms",
-    "rationale": "Propranolol blocks beta-1 and beta-2 receptors. It can worsen asthma and hide hypoglycemia signs.",
+    "clue": "Nonselective beta blocker used for tremor and fast heart rate in hyperthyroidism; it can wheeze a patient with asthma",
+    "rationale": "Propranolol blocks beta receptors in the lungs as well as the heart. Do not stop it abruptly, and remember that beta blockers hide the rapid heartbeat of low blood sugar.",
     "topic": "Pharm / cardiac"
   },
-  "LABETALOL": {
-    "clue": "Combined alpha and beta blocker given IV for severe hypertension in pregnancy",
-    "rationale": "Labetalol lowers blood pressure without the pure beta-blocker rise in systemic resistance. It is used for severe prenatal hypertension.",
-    "topic": "Pharm / OB"
-  },
-  "AMIODARONE": {
-    "clue": "Antiarrhythmic that contains iodine and can injure the lungs, thyroid, and liver",
-    "rationale": "Amiodarone has a huge half-life. Monitor lungs, thyroid, liver, and eyes during long courses.",
-    "topic": "Pharm / cardiac"
-  },
-  "DOBUTAMINE": {
-    "clue": "Inotrope that stimulates beta-1 receptors and is used in cardiogenic shock",
-    "rationale": "Dobutamine raises contractility. It can provoke tachycardia and ischemia.",
-    "topic": "Pharm / cardiac"
-  },
-  "VASOPRESSIN": {
-    "clue": "Antidiuretic hormone analog used in vasodilatory shock and diabetes insipidus",
-    "rationale": "Vasopressin raises blood pressure in shock and replaces ADH in central diabetes insipidus.",
+  "MASK": {
+    "clue": "What a beta blocker does to the fast-heartbeat warning of low blood sugar; sweating may still occur",
+    "rationale": "Patients with diabetes on a beta blocker can become hypoglycemic without tachycardia. Teach them to check glucose and to treat sweating, hunger, or confusion as possible low sugar.",
     "topic": "Pharm / endocrine"
   },
-  "MILRINONE": {
-    "clue": "PDE inhibitor inotrope and vasodilator used in advanced heart failure",
-    "rationale": "Milrinone increases contractility and dilates vessels. Hypotension is the limiting effect.",
+  "ANGIOEDEMA": {
+    "clue": "Face, lip, or airway swelling from an ACE inhibitor; stop the drug and protect the airway",
+    "rationale": "Angioedema can progress to obstruction and is not the same as a dry cough. Do not give that ACE inhibitor again, and use epinephrine if breathing is threatened.",
     "topic": "Pharm / cardiac"
   },
-  "IPRATROPIUM": {
-    "clue": "Inhaled anticholinergic bronchodilator used with albuterol in COPD exacerbations",
-    "rationale": "Ipratropium blocks muscarinic receptors in the airway. It is a reliever, not an anti-inflammatory controller.",
-    "topic": "Pharm / respiratory"
-  },
-  "MONTELUKAST": {
-    "clue": "Leukotriene receptor blocker used for asthma control and allergic rhinitis",
-    "rationale": "Montelukast is a daily controller. Mood changes have been reported and should be taught.",
-    "topic": "Pharm / respiratory"
-  },
-  "FLUTICASONE": {
-    "clue": "Inhaled corticosteroid controller for asthma that can cause oral thrush",
-    "rationale": "Fluticasone reduces airway inflammation. Rinse the mouth after use to lower candida risk.",
-    "topic": "Pharm / respiratory"
-  },
-  "BUDESONIDE": {
-    "clue": "Inhaled or nebulized steroid used as an asthma controller and in some croup regimens",
-    "rationale": "Budesonide is an inhaled corticosteroid. It prevents symptoms; it does not replace a rescue bronchodilator.",
-    "topic": "Pharm / respiratory"
-  },
-  "OXYCODONE": {
-    "clue": "Oral opioid analgesic that depresses respirations and is reversed by naloxone",
-    "rationale": "Oxycodone is a full opioid agonist. Constipation is expected, and sedation with benzodiazepines is dangerous.",
-    "topic": "Pharm / pain"
-  },
-  "TRAMADOL": {
-    "clue": "Weak opioid that also raises serotonin and lowers the seizure threshold",
-    "rationale": "Tramadol has opioid and serotonergic effects. Seizures and serotonin syndrome are the teaching points.",
+  "IBUPROFEN": {
+    "clue": "NSAID taken with food; it threatens kidneys and stomach and is avoided late in pregnancy",
+    "rationale": "Ibuprofen can cause bleeding, fluid retention, and kidney injury, especially with dehydration or other anti-inflammatories. Near term it can close the fetal ductus arteriosus.",
     "topic": "Pharm / pain"
   },
   "KETOROLAC": {
-    "clue": "Potent NSAID limited to short courses because of kidney injury and bleeding",
-    "rationale": "Ketorolac is for short-term pain. Avoid it in renal failure, peptic ulcer, and late pregnancy.",
+    "clue": "Potent injectable NSAID limited to a few days, typically no more than five; do not combine it with other NSAIDs",
+    "rationale": "Ketorolac is for short-term pain and carries a high risk of bleeding and kidney injury. It is avoided in advanced kidney disease, active ulcers, and labor.",
     "topic": "Pharm / pain"
   },
-  "IBUPROFEN": {
-    "clue": "NSAID that reduces pain and fever and can worsen heart failure and kidneys",
-    "rationale": "Ibuprofen blocks COX. It can raise blood pressure, retain fluid, and cause gastric bleeding.",
+  "MEPERIDINE": {
+    "clue": "Opioid avoided in sickle cell disease and in older adults because a toxic metabolite can cause seizures",
+    "rationale": "Normeperidine accumulates, especially with kidney disease or repeated doses, and lowers the seizure threshold. Meperidine is also dangerous with MAOIs.",
     "topic": "Pharm / pain"
   },
-  "NAPROXEN": {
-    "clue": "Longer-acting NSAID used for pain and dysmenorrhea with the usual COX risks",
-    "rationale": "Naproxen shares NSAID risks: gastritis, renal injury, and fluid retention.",
+  "TRAMADOL": {
+    "clue": "Pain drug that lowers the seizure threshold and can trigger serotonin syndrome when combined with an SSRI",
+    "rationale": "Tramadol has opioid effects, so it still depresses breathing, especially with other sedatives. A taper is safer than an abrupt stop after regular use.",
     "topic": "Pharm / pain"
   },
-  "DANTROLENE": {
-    "clue": "Muscle relaxant that is the specific treatment for malignant hyperthermia",
-    "rationale": "Dantrolene blocks calcium release from the sarcoplasmic reticulum. It treats malignant hyperthermia.",
-    "topic": "Pharm / emergency"
+  "PCA": {
+    "clue": "Pump that lets the patient dose opioid pain medicine; family members must not press the button",
+    "rationale": "Only the patient uses patient-controlled analgesia, because a sleeping patient who is too sedated will not press it. Monitor sedation and respirations, since sedation comes before respiratory arrest.",
+    "topic": "Pharm / pain"
   },
-  "HYDROXYUREA": {
-    "clue": "Drug that raises fetal hemoglobin and reduces sickle cell crises",
-    "rationale": "Hydroxyurea lowers the rate of painful sickle crises. It is myelosuppressive, so blood counts are followed.",
-    "topic": "Pharm / heme"
+  "SEDATION": {
+    "clue": "The warning that comes before opioid respiratory arrest; stimulate the patient and be ready to support breathing",
+    "rationale": "Increasing drowsiness on an opioid means the next dose may stop breathing. Naloxone is titrated if depression occurs, and it can wear off before the opioid does.",
+    "topic": "Pharm / pain"
   },
-  "FILGRASTIM": {
-    "clue": "Growth factor that raises neutrophils after chemotherapy",
-    "rationale": "Filgrastim stimulates neutrophil production. Bone pain is a common effect.",
-    "topic": "Pharm / heme"
+  "SENNA": {
+    "clue": "Stimulant laxative scheduled with opioids, because a softener alone often does not produce a bowel movement",
+    "rationale": "Opioid constipation is expected and is prevented, not waited for. Fluids, fiber, and walking help, and the bowel regimen continues as long as the opioid does.",
+    "topic": "Pharm / GI"
   },
-  "PYRIDOXINE": {
-    "clue": "Vitamin B6 given with isoniazid to prevent neuropathy",
-    "rationale": "Pyridoxine prevents isoniazid neuropathy and is also the antidote for isoniazid overdose seizures.",
-    "topic": "Pharm / vitamins"
+  "ALLOPURINOL": {
+    "clue": "Gout preventive that does not stop a flare already in progress; a new rash can be a severe reaction, so fluids are increased",
+    "rationale": "Allopurinol lowers uric acid, is taken after meals, and is also used during tumor lysis. Stop it and report a rash, fever, or mouth sores.",
+    "topic": "Pharm / musculoskeletal"
   },
-  "BENZTROPINE": {
-    "clue": "Anticholinergic used for antipsychotic-induced dystonia and parkinsonism",
-    "rationale": "Benztropine treats acute dystonia. It causes dry mouth, retention, and confusion in older adults.",
+  "COLCHICINE": {
+    "clue": "Acute-gout drug whose dose-limiting toxicity is diarrhea; stop it if diarrhea becomes severe",
+    "rationale": "Colchicine is used for gout flares and can also cause bone-marrow suppression with longer use. It does not replace fluids or a preventive uric-acid plan.",
+    "topic": "Pharm / musculoskeletal"
+  },
+  "FLUMAZENIL": {
+    "clue": "Benzodiazepine reversal drug that can precipitate seizures in a patient who takes those sedatives chronically",
+    "rationale": "Airway support comes before flumazenil. Its effect is short, so sedation can return, and it is avoided in mixed overdoses that may include a tricyclic antidepressant.",
+    "topic": "Pharm / antidotes"
+  },
+  "LORAZEPAM": {
+    "clue": "Benzodiazepine used first for status epilepticus and for alcohol-withdrawal seizures; watch respirations",
+    "rationale": "Lorazepam stops seizures and treats alcohol withdrawal, but combined with opioids it can stop breathing. Do not stop long-term benzodiazepines abruptly.",
     "topic": "Pharm / neuro"
   },
-  "LEVODOPA": {
-    "clue": "Dopamine precursor for Parkinson disease that is given with carbidopa",
-    "rationale": "Levodopa crosses into the brain and becomes dopamine. Carbidopa blocks peripheral conversion so less is needed.",
-    "topic": "Pharm / neuro"
-  },
-  "CARBIDOPA": {
-    "clue": "Peripheral decarboxylase inhibitor paired with levodopa so more drug reaches the brain",
-    "rationale": "Carbidopa does not cross the blood-brain barrier. It reduces nausea from peripheral dopamine.",
-    "topic": "Pharm / neuro"
-  },
-  "DYSPNEA": {
-    "clue": "Subjective shortness of breath that is assessed before assuming anxiety",
-    "rationale": "Dyspnea is what the patient feels. Measure oxygen, work of breathing, and lung sounds rather than dismissing it.",
-    "topic": "Respiratory"
-  },
-  "TACHYPNEA": {
-    "clue": "Abnormally fast respiratory rate that can signal hypoxia, pain, or acidosis",
-    "rationale": "Tachypnea is a vital-sign finding. In metabolic acidosis it may be compensatory, as in Kussmaul breathing.",
-    "topic": "Respiratory"
-  },
-  "HEMOPTYSIS": {
-    "clue": "Coughing up blood, which can occur with tuberculosis, cancer, or pulmonary embolism",
-    "rationale": "Hemoptysis needs airway protection and a search for the source. Massive bleeding is an emergency.",
-    "topic": "Respiratory"
-  },
-  "MELENA": {
-    "clue": "Black tarry stool from digested blood, usually an upper gastrointestinal bleed",
-    "rationale": "Melena suggests blood has been in the gut long enough to be digested. Assess hemodynamics first.",
-    "topic": "GI"
-  },
-  "REBOUND": {
-    "clue": "Pain when pressure on the abdomen is released, suggesting peritoneal irritation",
-    "rationale": "Rebound tenderness is a peritoneal sign. It supports processes such as perforation or advanced appendicitis.",
-    "topic": "GI"
-  },
-  "GUARDING": {
-    "clue": "Involuntary abdominal muscle tightness over an inflamed peritoneum",
-    "rationale": "Guarding is a peritoneal finding. Pair it with vital signs and a surgical evaluation when it is new.",
-    "topic": "GI"
-  },
-  "ASCITES": {
-    "clue": "Fluid in the peritoneal cavity, classically from portal hypertension in cirrhosis",
-    "rationale": "Ascites is assessed by shifting dullness and a fluid wave. A tense abdomen can impair breathing.",
-    "topic": "GI"
-  },
-  "ASTERIXIS": {
-    "clue": "Flapping tremor of the hands seen in hepatic encephalopathy",
-    "rationale": "Asterixis is elicited by asking the patient to hold the wrists extended. It supports metabolic encephalopathy.",
-    "topic": "Neuro / GI"
-  },
-  "PRURITUS": {
-    "clue": "Itching that can follow cholestasis, opioid use, or uremia",
-    "rationale": "Pruritus in liver disease is from retained bile salts. New itching with a rash also needs a skin and allergy review.",
-    "topic": "Skin"
-  },
-  "ERYTHEMA": {
-    "clue": "Redness of the skin from vasodilation, seen in infection, allergy, or pressure injury",
-    "rationale": "Erythema that does not blanch over a bony prominence is an early pressure injury.",
-    "topic": "Skin"
-  },
-  "PURPURA": {
-    "clue": "Purple nonblanching skin lesions from bleeding under the skin",
-    "rationale": "Purpura does not blanch. It can reflect low platelets, vasculitis, or meningococcemia.",
-    "topic": "Heme"
-  },
-  "ECCHYMOSIS": {
-    "clue": "Bruise from blood in the soft tissue that changes color as it heals",
-    "rationale": "Ecchymosis after minor trauma can signal a clotting problem when it is extensive or unexplained.",
-    "topic": "Heme"
-  },
-  "CLUBBING": {
-    "clue": "Bulbous fingertips associated with chronic lung disease and some heart shunts",
-    "rationale": "Clubbing develops over time with chronic hypoxemia. It is not an acute finding.",
-    "topic": "Respiratory"
-  },
-  "PALLOR": {
-    "clue": "Pale skin or conjunctiva that can reflect anemia or poor perfusion",
-    "rationale": "Pallor of the conjunctiva is a bedside clue to anemia. Pair it with heart rate and hemoglobin.",
-    "topic": "Heme"
-  },
-  "JAUNDICE": {
-    "clue": "Yellow skin from elevated bilirubin, seen in hemolysis or liver and bile disease",
-    "rationale": "Jaundice appears when bilirubin is high. Scleral icterus is often noticed first.",
-    "topic": "GI / heme"
-  },
-  "ICTERUS": {
-    "clue": "Yellow discoloration of the sclera from bilirubin",
-    "rationale": "Icteric sclerae are a sensitive bedside sign of hyperbilirubinemia.",
-    "topic": "GI / heme"
-  },
-  "NYSTAGMUS": {
-    "clue": "Rhythmic eye jerking that can follow vestibular disease or phenytoin toxicity",
-    "rationale": "Nystagmus has many causes. New nystagmus on phenytoin suggests toxicity.",
-    "topic": "Neuro"
-  },
-  "DIPLOPIA": {
-    "clue": "Double vision that can signal cranial nerve or neuromuscular disease",
-    "rationale": "Diplopia that is new needs a neuro exam. In myasthenia it often fluctuates through the day.",
-    "topic": "Neuro"
-  },
-  "PTOSIS": {
-    "clue": "Drooping eyelid seen in cranial nerve III palsy and myasthenia gravis",
-    "rationale": "Ptosis with a dilated pupil suggests a compressive third-nerve lesion and is urgent.",
-    "topic": "Neuro"
-  },
-  "MIOSIS": {
-    "clue": "Constricted pupils classically seen with opioids and cholinergic excess",
-    "rationale": "Miosis with slow breathing supports opioid toxicity. The antidote is naloxone.",
-    "topic": "Neuro"
-  },
-  "MYDRIASIS": {
-    "clue": "Dilated pupils seen with anticholinergic toxicity and sympathetic stimulation",
-    "rationale": "Mydriasis with dry flushed skin and delirium fits anticholinergic toxicity.",
-    "topic": "Neuro"
-  },
-  "ATAXIA": {
-    "clue": "Unsteady gait from cerebellar, sensory, or drug toxicity causes",
-    "rationale": "Ataxia can follow phenytoin toxicity, alcohol, or posterior circulation stroke.",
-    "topic": "Neuro"
-  },
-  "APHASIA": {
-    "clue": "Language impairment, with Broca producing few words and Wernicke producing fluent nonsense",
-    "rationale": "Aphasia is a cortical sign. Broca aphasia is nonfluent; Wernicke aphasia is fluent but empty.",
-    "topic": "Neuro"
-  },
-  "DYSARTHRIA": {
-    "clue": "Slurred speech from weak or uncoordinated speech muscles, not a language problem",
-    "rationale": "Dysarthria is a motor speech problem. The patient understands language, unlike in aphasia.",
-    "topic": "Neuro"
-  },
-  "HEMIPARESIS": {
-    "clue": "Weakness of one side of the body, the classic motor pattern of a hemispheric stroke",
-    "rationale": "Hemiparesis localizes above the spinal cord, often to the contralateral cortex or internal capsule.",
-    "topic": "Neuro"
-  },
-  "PARESTHESIA": {
-    "clue": "Pins-and-needles sensation from nerve or metabolic irritation",
-    "rationale": "Paresthesia around the mouth and in the hands can be an early sign of low calcium or respiratory alkalosis.",
-    "topic": "Neuro"
-  },
-  "CLONUS": {
-    "clue": "Rhythmic muscle contraction from upper motor neuron irritation, tested at the ankle",
-    "rationale": "Sustained clonus is a pyramidal sign. In preeclampsia it warns that eclampsia may be near.",
-    "topic": "Neuro / OB"
-  },
-  "ROMBERG": {
-    "clue": "Balance test that becomes positive when proprioception or dorsal columns fail",
-    "rationale": "A positive Romberg test means the patient sways or falls when the eyes close. It is a sensory, not cerebellar, test.",
-    "topic": "Neuro"
-  },
-  "NEUTROPENIA": {
-    "clue": "Low neutrophil count that turns fever into a possible emergency",
-    "rationale": "Febrile neutropenia needs cultures and prompt antibiotics. Flowers and fresh fruit may be restricted.",
-    "topic": "Heme"
-  },
-  "PLATELETS": {
-    "clue": "Cell fragments required for clotting; a low count raises bleeding risk",
-    "rationale": "Platelets are followed before invasive procedures. Spontaneous bleeding risk rises as the count falls very low.",
-    "topic": "Heme"
-  },
-  "FERRITIN": {
-    "clue": "Storage protein that is low in iron deficiency and high as an acute-phase reactant",
-    "rationale": "A low ferritin supports iron deficiency. Inflammation can raise ferritin even when iron stores are poor.",
-    "topic": "Heme"
-  },
-  "MICROCYTIC": {
-    "clue": "Small red cells, the usual pattern of iron deficiency and thalassemia",
-    "rationale": "Microcytic anemia has a low MCV. Iron deficiency is the common cause; thalassemia is the classic mimic.",
-    "topic": "Heme"
-  },
-  "MACROCYTIC": {
-    "clue": "Large red cells seen with B12 or folate deficiency and some drugs",
-    "rationale": "Macrocytic anemia has a high MCV. B12 deficiency also causes neurologic findings that folate deficiency does not.",
-    "topic": "Heme"
-  },
-  "PERNICIOUS": {
-    "clue": "Autoimmune loss of intrinsic factor that prevents vitamin B12 absorption",
-    "rationale": "Pernicious anemia causes B12 deficiency. Neurologic injury can occur even before severe anemia.",
-    "topic": "Heme"
-  },
-  "APLASTIC": {
-    "clue": "Bone marrow failure causing low red cells, white cells, and platelets together",
-    "rationale": "Aplastic anemia is pancytopenia with a hypocellular marrow. Infection and bleeding are the dangers.",
-    "topic": "Heme"
-  },
-  "HEMOPHILIA": {
-    "clue": "Inherited factor deficiency that causes deep joint and muscle bleeding",
-    "rationale": "Hemophilia A lacks factor VIII and hemophilia B lacks factor IX. Bleeding is treated with factor replacement.",
-    "topic": "Heme"
-  },
-  "HEMOLYTIC": {
-    "clue": "Transfusion reaction with fever, back pain, and hemoglobinuria from ABO mismatch",
-    "rationale": "Acute hemolytic reactions are from incompatible blood. Stop the transfusion and keep the line open with saline.",
-    "topic": "Transfusion"
-  },
-  "TRALI": {
-    "clue": "Transfusion reaction causing noncardiogenic pulmonary edema during or soon after a unit",
-    "rationale": "TRALI presents with acute hypoxemia and bilateral infiltrates. It is not treated like fluid overload.",
-    "topic": "Transfusion"
-  },
-  "TACO": {
-    "clue": "Circulatory overload from transfusion, with hypertension and pulmonary edema",
-    "rationale": "TACO is cardiogenic overload. Slow the blood, give oxygen, and diuretics are often used.",
-    "topic": "Transfusion"
-  },
-  "DYSREFLEXIA": {
-    "clue": "Hypertensive emergency in spinal cord injury above T6, triggered by a full bladder",
-    "rationale": "Autonomic dysreflexia causes headache and high blood pressure. Sit the patient up and empty the bladder.",
-    "topic": "Neuro / safety"
-  },
-  "FASCIOTOMY": {
-    "clue": "Surgical opening of a muscle compartment to save tissue from compartment syndrome",
-    "rationale": "Fasciotomy treats compartment syndrome. The clue before surgery is pain out of proportion and pain on stretch.",
-    "topic": "Ortho"
-  },
-  "TRACTION": {
-    "clue": "Pulling force used to align a fracture that requires the weights to hang freely",
-    "rationale": "Traction weights must hang free. Never lift the weights to move the patient up in bed.",
-    "topic": "Ortho"
-  },
-  "COMPARTMENT": {
-    "clue": "Closed muscle space where swelling can cut off perfusion",
-    "rationale": "Compartment syndrome pain is severe and worse with passive stretch. Pulses can still be present.",
-    "topic": "Ortho"
-  },
-  "ORTHOSTATIC": {
-    "clue": "Drop in blood pressure or rise in pulse when standing, from volume loss or drugs",
-    "rationale": "Orthostatic vital signs compare lying and standing. A large pulse rise or pressure drop suggests hypovolemia.",
-    "topic": "Cardiac"
-  },
-  "TACHYCARDIA": {
-    "clue": "Heart rate above 100 in adults that can mean pain, fever, bleeding, or arrhythmia",
-    "rationale": "Tachycardia is a compensatory sign. In shock it often appears before the blood pressure falls.",
-    "topic": "Cardiac"
-  },
-  "BRADYCARDIA": {
-    "clue": "Slow heart rate that is treated when the patient is hypotensive or symptomatic",
-    "rationale": "Symptomatic bradycardia is treated with atropine first in the usual adult algorithm, then pacing if needed.",
-    "topic": "Cardiac"
-  },
-  "ARRHYTHMIA": {
-    "clue": "Abnormal heart rhythm that may reduce cardiac output",
-    "rationale": "New arrhythmia with chest pain or hypotension is urgent. Check electrolytes, especially potassium and magnesium.",
-    "topic": "Cardiac"
-  },
-  "ANGINA": {
-    "clue": "Chest pain from myocardial ischemia that is typically relieved by rest or nitroglycerin",
-    "rationale": "Stable angina is predictable with exertion. Pain at rest or lasting longer suggests an acute coronary syndrome.",
-    "topic": "Cardiac"
-  },
-  "ISCHEMIA": {
-    "clue": "Tissue oxygen demand that exceeds supply, the mechanism of angina",
-    "rationale": "Ischemia on the ECG may show ST depression or T-wave inversion. Troponin distinguishes injury from ischemia alone.",
-    "topic": "Cardiac"
-  },
-  "EDEMA": {
-    "clue": "Swelling from fluid in the interstitial space, pitting when a fingertip leaves a dent",
-    "rationale": "Pitting edema is graded by depth and how long the pit lasts. In heart failure it is often dependent.",
-    "topic": "Cardiac"
-  },
-  "ANASARCA": {
-    "clue": "Generalized body edema seen in nephrotic syndrome and severe fluid overload",
-    "rationale": "Anasarca is widespread swelling. Daily weights track the fluid better than the scale of a single limb.",
-    "topic": "Fluids"
-  },
-  "ANEMIA": {
-    "clue": "Low red cell mass that causes fatigue, pallor, and tachycardia",
-    "rationale": "Anemia reduces oxygen-carrying capacity. Transfusion decisions use symptoms and the hemoglobin, not a number alone.",
-    "topic": "Heme"
-  },
-  "POLYDIPSIA": {
-    "clue": "Excessive thirst, a classic symptom of hyperglycemia and diabetes insipidus",
-    "rationale": "Polydipsia with polyuria and polyphagia is the classic diabetes triad.",
-    "topic": "Endocrine"
-  },
-  "POLYPHAGIA": {
-    "clue": "Excessive hunger from cells that cannot use glucose in uncontrolled diabetes",
-    "rationale": "Polyphagia occurs when insulin is absent or ineffective and cells are starved despite high blood sugar.",
-    "topic": "Endocrine"
-  },
-  "GLYCOSURIA": {
-    "clue": "Glucose in the urine once the renal threshold is exceeded",
-    "rationale": "Glycosuria appears in hyperglycemia. It pulls water with it and contributes to polyuria.",
-    "topic": "Endocrine"
-  },
-  "ACETONE": {
-    "clue": "Fruity ketone on the breath of a patient in diabetic ketoacidosis",
-    "rationale": "A fruity breath suggests acetone from ketosis. Confirm with glucose, ketones, and an anion gap.",
-    "topic": "Endocrine"
-  },
-  "KETOSIS": {
-    "clue": "Accumulation of ketone bodies when fat is burned because glucose cannot enter cells",
-    "rationale": "Ketosis in type 1 diabetes can progress to ketoacidosis. Insulin and fluids are the treatment.",
-    "topic": "Endocrine"
-  },
-  "RUBELLA": {
-    "clue": "Viral illness that is teratogenic in early pregnancy and prevented by vaccination",
-    "rationale": "Rubella in the first trimester can cause congenital cataracts, heart defects, and deafness.",
-    "topic": "OB"
-  },
-  "TERATOGEN": {
-    "clue": "Any exposure that can malform a fetus, including some drugs and infections",
-    "rationale": "Teratogens are most dangerous in organogenesis. Isotretinoin, warfarin, and valproate are classic drug examples.",
-    "topic": "OB"
-  },
-  "FOLATE": {
-    "clue": "Vitamin whose deficiency causes neural tube defects and a macrocytic anemia",
-    "rationale": "Folate is supplemented before conception to reduce neural tube defects. Deficiency does not cause B12 neuropathy.",
-    "topic": "OB / heme"
-  },
-  "QUICKENING": {
-    "clue": "The first fetal movements the pregnant patient feels",
-    "rationale": "Quickening is usually felt in the second trimester, earlier in people who have been pregnant before.",
-    "topic": "OB"
-  },
-  "LIGHTENING": {
-    "clue": "Descent of the fetus into the pelvis late in pregnancy, easing pressure on the diaphragm",
-    "rationale": "Lightening can make breathing easier and increase pelvic pressure and urinary frequency.",
-    "topic": "OB"
-  },
-  "ENGAGEMENT": {
-    "clue": "When the widest fetal head diameter has passed the pelvic inlet",
-    "rationale": "Engagement is described with station. A floating head is not engaged.",
-    "topic": "OB"
-  },
-  "STATION": {
-    "clue": "How far the fetal presenting part is above or below the ischial spines",
-    "rationale": "Station zero is at the ischial spines. Positive stations are closer to delivery.",
-    "topic": "OB"
-  },
-  "EFFACEMENT": {
-    "clue": "Thinning of the cervix, reported as a percentage",
-    "rationale": "Effacement and dilation are separate. A primigravida often effaces before she dilates much.",
-    "topic": "OB"
-  },
-  "DILATION": {
-    "clue": "Opening of the cervix in centimeters from closed to ten",
-    "rationale": "Full dilation is 10 cm. Pushing is usually delayed until then unless the patient has an urge and is complete.",
-    "topic": "OB"
-  },
-  "CROWNING": {
-    "clue": "When the fetal head remains visible at the vaginal opening between contractions",
-    "rationale": "Crowning means birth is imminent. Support the perineum and prepare to deliver.",
-    "topic": "OB"
-  },
-  "PROLAPSE": {
-    "clue": "Umbilical cord slipping ahead of the presenting part, an obstetric emergency",
-    "rationale": "Cord prolapse cuts off fetal blood flow. Relieve pressure with a hand and deliver urgently.",
-    "topic": "OB"
-  },
-  "ABRUPTION": {
-    "clue": "Premature separation of the placenta with painful bleeding and a tense uterus",
-    "rationale": "Placental abruption is painful. Bleeding may be concealed, so the vital signs can worsen before blood is seen.",
-    "topic": "OB"
-  },
-  "PLACENTA": {
-    "clue": "Organ of fetal gas exchange; its location and separation are emergency concerns",
-    "rationale": "A placenta covering the cervix is previa. Separation before birth is abruption.",
-    "topic": "OB"
-  },
-  "PREVIA": {
-    "clue": "Painless third-trimester bleeding from a placenta that covers the cervix",
-    "rationale": "Placenta previa is painless bleeding. Vaginal exams are avoided until ultrasound locates the placenta.",
-    "topic": "OB"
-  },
-  "PROTEINURIA": {
-    "clue": "Protein in the urine, a criterion of preeclampsia when paired with hypertension",
-    "rationale": "Proteinuria plus new hypertension after 20 weeks defines preeclampsia. Headache and visual change are severe features.",
-    "topic": "OB"
-  },
-  "RHOGAM": {
-    "clue": "Immune globulin given to Rh-negative patients to prevent sensitization",
-    "rationale": "Rh immune globulin is given after sensitizing events and routinely in pregnancy when the patient is Rh negative.",
-    "topic": "OB"
-  },
-  "COOMBS": {
-    "clue": "Test that detects antibodies coating red cells, used in hemolytic disease",
-    "rationale": "A direct Coombs test is positive when antibodies are bound to red cells, as in hemolytic disease of the newborn.",
-    "topic": "OB / heme"
-  },
-  "KERNICTERUS": {
-    "clue": "Brain injury from very high bilirubin in a newborn",
-    "rationale": "Kernicterus is bilirubin toxicity in the basal ganglia. Severe jaundice is treated before it reaches that point.",
-    "topic": "OB / newborn"
-  },
-  "BILIRUBIN": {
-    "clue": "Pigment from heme breakdown that causes jaundice when it accumulates",
-    "rationale": "Unconjugated bilirubin in newborns is treated with feeding and phototherapy when it is high.",
-    "topic": "OB / newborn"
-  },
-  "MORO": {
-    "clue": "Newborn startle reflex with arm extension then flexion",
-    "rationale": "The Moro reflex is normal in newborns and disappears in the first months. Asymmetry suggests a nerve or clavicle injury.",
-    "topic": "Newborn"
-  },
-  "ROOTING": {
-    "clue": "Newborn reflex of turning the head toward a stroked cheek",
-    "rationale": "Rooting helps the newborn find the breast. Absence in a term baby is abnormal.",
-    "topic": "Newborn"
-  },
-  "GRASP": {
-    "clue": "Newborn reflex of closing the hand around a finger placed in the palm",
-    "rationale": "The palmar grasp is normal early and later becomes a voluntary reach.",
-    "topic": "Newborn"
-  },
-  "FONTANEL": {
-    "clue": "Soft spot on the infant skull; sunken suggests dehydration and bulging suggests pressure",
-    "rationale": "A sunken fontanel fits dehydration. A bulging fontanel with fever suggests meningitis.",
-    "topic": "Peds"
-  },
-  "BULGING": {
-    "clue": "Fontanel that bows outward, a sign of raised intracranial pressure in infants",
-    "rationale": "A bulging fontanel is an emergency when it comes with fever, lethargy, or a high-pitched cry.",
-    "topic": "Peds"
-  },
-  "CAPUT": {
-    "clue": "Soft scalp swelling from birth pressure that crosses suture lines",
-    "rationale": "Caput succedaneum crosses sutures and resolves. A cephalohematoma does not cross sutures.",
-    "topic": "Newborn"
-  },
-  "MOLDING": {
-    "clue": "Temporary overlapping of fetal skull bones from the birth canal",
-    "rationale": "Molding is expected after a vaginal birth and resolves. It is not a fracture.",
-    "topic": "Newborn"
-  },
-  "LANUGO": {
-    "clue": "Fine fetal hair still seen on premature newborns",
-    "rationale": "Lanugo is more abundant in preterm infants. It sheds as the skin matures.",
-    "topic": "Newborn"
-  },
-  "VERNIX": {
-    "clue": "White cheesy coating that protects fetal skin",
-    "rationale": "Vernix is left on the skin after birth when possible. Preterm infants may have more of it.",
-    "topic": "Newborn"
-  },
-  "MILIA": {
-    "clue": "Tiny white keratin cysts on a newborn face that resolve without treatment",
-    "rationale": "Milia are normal. They are not acne and should not be squeezed.",
-    "topic": "Newborn"
-  },
-  "MASTITIS": {
-    "clue": "Breast infection in a lactating patient, treated with emptying and often antibiotics",
-    "rationale": "Mastitis causes a red, painful wedge of breast and fever. Continued breastfeeding or pumping is encouraged.",
-    "topic": "OB"
-  },
-  "HEMORRHAGE": {
-    "clue": "Postpartum bleeding that soaks a pad quickly or drops the blood pressure",
-    "rationale": "Postpartum hemorrhage is often from uterine atony. Massage the fundus and give a uterotonic.",
-    "topic": "OB"
-  },
-  "BOGGY": {
-    "clue": "Soft uterus after birth that signals atony and bleeding risk",
-    "rationale": "A boggy fundus is massaged until firm. Have the patient empty the bladder if the uterus is displaced.",
-    "topic": "OB"
-  },
-  "MASSAGE": {
-    "clue": "Fundal pressure used to firm an atonic postpartum uterus",
-    "rationale": "Fundal massage expresses clots and stimulates contraction. Support the lower uterus so it is not inverted.",
-    "topic": "OB"
-  },
-  "CARBOPROST": {
-    "clue": "Prostaglandin uterotonic avoided in asthma because it can cause bronchospasm",
-    "rationale": "Carboprost treats uterine atony. Asthma is a contraindication because it can tighten bronchial smooth muscle.",
-    "topic": "OB / pharm"
-  },
-  "MISOPROSTOL": {
-    "clue": "Prostaglandin used for postpartum hemorrhage and cervical ripening",
-    "rationale": "Misoprostol causes uterine contraction. Fever and diarrhea are common effects.",
-    "topic": "OB / pharm"
-  },
-  "INFLUENZA": {
-    "clue": "Respiratory virus prevented by yearly vaccine and treated early with a neuraminidase inhibitor",
-    "rationale": "Influenza is droplet spread. Antivirals are most useful early, and vaccination is the prevention.",
-    "topic": "Infection"
-  },
-  "PERTUSSIS": {
-    "clue": "Whooping cough prevented by vaccination and spread by droplets",
-    "rationale": "Pertussis causes a paroxysmal cough. Close contacts may need prophylaxis, and droplet precautions are used.",
-    "topic": "Infection"
-  },
-  "TETANUS": {
-    "clue": "Toxin-mediated muscle spasm prevented by immunization and a booster after some wounds",
-    "rationale": "Tetanus spores enter dirty wounds. Immunization status decides whether toxoid or immunoglobulin is added.",
-    "topic": "Infection"
-  },
-  "VARICELLA": {
-    "clue": "Chickenpox virus that requires airborne precautions and is dangerous in pregnancy",
-    "rationale": "Varicella is airborne. Pregnant or immunocompromised exposures may need immunoglobulin.",
-    "topic": "Infection"
-  },
-  "MEASLES": {
-    "clue": "Airborne viral illness with cough, conjunctivitis, and a descending rash",
-    "rationale": "Measles is extremely contagious and airborne. Vitamin A is used in children, and isolation is required.",
-    "topic": "Infection"
-  },
-  "MUMPS": {
-    "clue": "Droplet viral illness causing parotid swelling",
-    "rationale": "Mumps is prevented by MMR. Orchitis is a classic complication in adolescents and adults.",
-    "topic": "Infection"
-  },
-  "HEPATITIS": {
-    "clue": "Liver inflammation; B and C are blood-borne and A is fecal-oral",
-    "rationale": "Hepatitis B is prevented by vaccine and immune globulin after some exposures. A is spread by contaminated food.",
-    "topic": "Infection"
-  },
-  "DIFFICILE": {
-    "clue": "Spore-forming colitis after antibiotics that requires soap and water, not alcohol gel",
-    "rationale": "C. difficile causes watery diarrhea. Contact precautions and soap-and-water handwashing are required.",
-    "topic": "Infection"
-  },
-  "NOROVIRUS": {
-    "clue": "Highly contagious vomiting illness spread by contact and requiring soap and water",
-    "rationale": "Norovirus spreads fast in shared living settings. Alcohol gel does not reliably kill it.",
-    "topic": "Infection"
-  },
-  "SCABIES": {
-    "clue": "Mite infestation treated with a skin scabicide and contact precautions",
-    "rationale": "Scabies causes intense itching and burrows. Close contacts are often treated at the same time.",
-    "topic": "Infection"
-  },
-  "PEDICULOSIS": {
-    "clue": "Lice infestation treated with a pediculicide and by cleaning combs and bedding",
-    "rationale": "Pediculosis capitis is head lice. School exclusion rules vary; treatment of the hair is the priority.",
-    "topic": "Infection"
-  },
-  "IMPETIGO": {
-    "clue": "Honey-crusted bacterial skin infection common in children",
-    "rationale": "Impetigo is usually staph or strep. It is contagious until treated, and contact precautions apply in care settings.",
-    "topic": "Infection"
-  },
-  "CELLULITIS": {
-    "clue": "Spreading skin infection with warmth, redness, and fever",
-    "rationale": "Cellulitis is marked so spread can be judged. Elevate the limb and give antibiotics that cover skin flora.",
-    "topic": "Infection"
-  },
-  "CYSTITIS": {
-    "clue": "Bladder infection with dysuria and frequency but usually no fever",
-    "rationale": "Cystitis is a lower UTI. Fever and flank pain suggest the infection has reached the kidney.",
-    "topic": "Renal"
-  },
-  "DYSURIA": {
-    "clue": "Painful urination, a hallmark of urinary tract infection",
-    "rationale": "Dysuria with frequency and urgency suggests cystitis. Rule out vaginitis and sexually transmitted infection when the story differs.",
-    "topic": "Renal"
-  },
-  "URGENCY": {
-    "clue": "Sudden compelling need to void, common in bladder infection and overactive bladder",
-    "rationale": "Urgency with dysuria points to cystitis. New incontinence in an older adult can be the only infection sign.",
-    "topic": "Renal"
-  },
-  "FLANK": {
-    "clue": "Side pain over the kidney, classic for pyelonephritis and stones",
-    "rationale": "Flank pain with fever and urinary symptoms suggests pyelonephritis. Colicky pain radiating to the groin suggests a stone.",
-    "topic": "Renal"
-  },
-  "LACTATE": {
-    "clue": "Lab that rises when tissues are under-perfused, used in sepsis resuscitation",
-    "rationale": "A high lactate supports hypoperfusion. Repeating it shows whether resuscitation is working.",
-    "topic": "Sepsis"
-  },
-  "CULTURES": {
-    "clue": "Specimens drawn before antibiotics when the patient is stable enough to wait a few minutes",
-    "rationale": "Blood cultures before the first antibiotic improve the chance of identifying the organism. Do not delay antibiotics for unstable patients.",
-    "topic": "Sepsis"
-  },
-  "ANTIPYRETIC": {
-    "clue": "Drug such as acetaminophen that lowers fever but does not treat the infection",
-    "rationale": "Antipyretics improve comfort. They do not replace antibiotics when a bacterial source is likely.",
-    "topic": "Infection"
-  },
-  "ASSAULT": {
-    "clue": "Threat of harmful contact, a legal injury even before touching occurs",
-    "rationale": "Assault is the threat. Battery is the unwanted touching. Both are intentional torts.",
-    "topic": "Legal"
-  },
-  "BATTERY": {
-    "clue": "Unwanted touching, including a procedure performed without consent",
-    "rationale": "Battery includes treating a patient who has refused. Consent is the protection.",
-    "topic": "Legal"
-  },
-  "NEGLIGENCE": {
-    "clue": "Failure to meet the standard of care that causes harm",
-    "rationale": "Negligence needs a duty, a breach, causation, and damages. A near miss without injury is not a completed tort.",
-    "topic": "Legal"
-  },
-  "MALPRACTICE": {
-    "clue": "Professional negligence by a clinician that injures a patient",
-    "rationale": "Malpractice is negligence applied to professional duty. Documentation of assessments and responses is part of the defense and the care.",
-    "topic": "Legal"
-  },
-  "DEFAMATION": {
-    "clue": "False statement that harms reputation; spoken is slander and written is libel",
-    "rationale": "Defamation is a false damaging statement shared with others. Chart objective findings, not labels.",
-    "topic": "Legal"
-  },
-  "MANDATED": {
-    "clue": "Legal duty of nurses to report suspected abuse of children, and often of elders",
-    "rationale": "Mandated reporters must report suspected abuse. Certainty is not required; a reasonable suspicion is enough.",
-    "topic": "Legal"
-  },
-  "PATERNALISM": {
-    "clue": "Overriding a patient's choice because the clinician believes it is for their own good",
-    "rationale": "Paternalism conflicts with autonomy. It is rarely justified in a capacitated adult.",
-    "topic": "Ethics"
-  },
-  "RACE": {
-    "clue": "Fire response order: rescue, alarm, confine, and extinguish",
-    "rationale": "RACE is the fire sequence. Rescue anyone in immediate danger before pulling the alarm and containing the fire.",
-    "topic": "Safety"
-  },
-  "AMBULATION": {
-    "clue": "Walking that prevents clots, atelectasis, and deconditioning after surgery",
-    "rationale": "Early ambulation is a core postoperative intervention. It lowers clot and pneumonia risk.",
-    "topic": "Safety"
-  },
-  "TEDS": {
-    "clue": "Elastic stockings that promote venous return and are checked for fit and skin integrity",
-    "rationale": "Antiembolism stockings must be smooth, not rolled, and removed for skin checks.",
-    "topic": "Safety"
-  },
-  "INCENTIVE": {
-    "clue": "Spirometer device that encourages deep breaths after surgery",
-    "rationale": "Incentive spirometry prevents atelectasis. Teach a slow inhale and hold, with hourly goals while awake.",
-    "topic": "Respiratory"
-  },
-  "TURNING": {
-    "clue": "Repositioning at intervals to protect skin and mobilize secretions",
-    "rationale": "Turning at least every two hours is the usual pressure-injury schedule, adjusted to the risk score.",
-    "topic": "Safety"
-  },
-  "FOLEY": {
-    "clue": "Indwelling urinary catheter that is a major source of hospital infection",
-    "rationale": "Foley catheters are removed as soon as they are not needed. Keep the bag below the bladder and the tubing unkinked.",
-    "topic": "Infection"
-  },
-  "CAUTI": {
-    "clue": "Urinary infection caused by an indwelling catheter",
-    "rationale": "CAUTI prevention is fewer catheters, aseptic insertion, a closed system, and daily review of need.",
-    "topic": "Infection"
-  },
-  "CLABSI": {
-    "clue": "Bloodstream infection from a central line",
-    "rationale": "CLABSI prevention uses a checklist, sterile insertion, and daily review of whether the line is still needed.",
-    "topic": "Infection"
-  },
-  "VAP": {
-    "clue": "Pneumonia that develops in a patient on a ventilator",
-    "rationale": "Ventilator-associated pneumonia prevention includes elevating the head of the bed and oral care.",
-    "topic": "Infection"
-  },
-  "QSOFA": {
-    "clue": "Bedside screen using low pressure, fast breathing, and altered mentation",
-    "rationale": "qSOFA flags patients who may have sepsis. It does not replace a full assessment or lactate.",
-    "topic": "Sepsis"
-  },
-  "ANIONGAP": {
-    "clue": "Difference between measured cations and anions, high in ketoacidosis and lactic acidosis",
-    "rationale": "A high anion gap metabolic acidosis is seen in DKA, lactic acidosis, and some ingestions.",
-    "topic": "Labs"
-  },
-  "OSMOLALITY": {
-    "clue": "Concentration of solute in serum; low in SIADH and high in dehydration",
-    "rationale": "Serum osmolality helps sort hyponatremia. In SIADH it is low while the urine is concentrated.",
-    "topic": "Labs"
-  },
-  "HYPOKALEMIA": {
-    "clue": "Low potassium that causes weakness and U waves and raises digoxin toxicity",
-    "rationale": "Hypokalemia is replaced slowly. IV potassium is never pushed.",
-    "topic": "Fluids"
-  },
-  "TORSADES": {
-    "clue": "Polymorphic ventricular tachycardia from a long QT, treated with magnesium",
-    "rationale": "Torsades de pointes is treated with IV magnesium. Stop QT-prolonging drugs.",
-    "topic": "Cardiac"
-  },
-  "DEHISCENCE": {
-    "clue": "Separation of a wound edge, often after a strain such as coughing",
-    "rationale": "Dehiscence is managed by keeping the patient still, covering the wound, and calling surgery.",
-    "topic": "Wound"
-  },
-  "PURULENT": {
-    "clue": "Thick opaque drainage that suggests infection",
-    "rationale": "Purulent drainage is cultured when infection is suspected. It is not the same as normal serous fluid.",
-    "topic": "Wound"
-  },
-  "SANGUINEOUS": {
-    "clue": "Bloody drainage that is concerning when it increases",
-    "rationale": "Bright red drainage that soaks a dressing needs a pressure check and a look for bleeding.",
-    "topic": "Wound"
-  },
-  "GRANULATION": {
-    "clue": "Red bumpy healing tissue that means a wound is filling in",
-    "rationale": "Granulation tissue is beefy red. It is protected, not scrubbed away.",
-    "topic": "Wound"
-  },
-  "ESCHAR": {
-    "clue": "Black dead tissue in a wound that often needs removal before healing",
-    "rationale": "Eschar is necrotic. Stable dry eschar on a heel may be left intact; infected eschar is removed.",
-    "topic": "Wound"
-  },
-  "SLOUGH": {
-    "clue": "Yellow stringy dead tissue in a wound bed",
-    "rationale": "Slough is nonviable tissue. It is debrided when the goal is a clean granulating bed.",
-    "topic": "Wound"
-  },
-  "DEBRIDEMENT": {
-    "clue": "Removal of dead tissue so a wound can heal",
-    "rationale": "Debridement may be sharp, enzymatic, or autolytic. Pain control and consent matter before sharp removal.",
-    "topic": "Wound"
-  },
-  "OFFLOADING": {
-    "clue": "Removing pressure from a bony prominence or diabetic foot ulcer",
-    "rationale": "Offloading is the treatment of pressure injury. A device that is not worn does not help.",
-    "topic": "Skin"
-  },
-  "BRADEN": {
-    "clue": "Scale that scores pressure-injury risk from sensation, moisture, activity, mobility, nutrition, and friction",
-    "rationale": "A low Braden score means high risk. Turning, moisture control, and nutrition are the response.",
-    "topic": "Skin"
-  },
-  "MORSE": {
-    "clue": "Fall-risk scale using history, secondary diagnosis, ambulatory aid, IV, gait, and mental status",
-    "rationale": "The Morse score guides fall precautions. A high score means a plan, not a restraint.",
-    "topic": "Safety"
-  },
-  "SITTER": {
-    "clue": "Staff member who stays with a patient who is at immediate risk of harm",
-    "rationale": "A sitter is used for elopement, pulling at lines, or suicide risk when less restrictive options fail.",
-    "topic": "Safety"
-  },
-  "SEQUENTIAL": {
-    "clue": "Pneumatic compression devices that squeeze the legs to prevent clots",
-    "rationale": "Sequential compression devices are for patients who are not walking enough. They are not placed on a leg with known acute clot symptoms.",
-    "topic": "Safety"
-  },
-  "CONTRAST": {
-    "clue": "Iodinated dye that can injure kidneys and is held around metformin",
-    "rationale": "Contrast nephropathy risk rises with chronic kidney disease. Hydration is the prevention, and metformin is held.",
-    "topic": "Renal"
-  },
-  "WERNICKE": {
-    "clue": "Triad of confusion, ataxia, and eye-movement palsy from thiamine deficiency",
-    "rationale": "Wernicke encephalopathy is a medical emergency. Give thiamine, especially in alcohol use disorder.",
-    "topic": "Neuro"
-  },
-  "KORSAKOFF": {
-    "clue": "Confabulating amnesia that can follow untreated Wernicke encephalopathy",
-    "rationale": "Korsakoff syndrome is lasting memory loss. Prevention is treating Wernicke early with thiamine.",
-    "topic": "Neuro"
-  },
-  "DELIRIUM": {
-    "clue": "Acute fluctuating confusion that is a medical symptom, not a dementia diagnosis",
-    "rationale": "Delirium is acute and fluctuating. Find infection, drugs, hypoxia, and urinary retention rather than only sedating the patient.",
-    "topic": "Neuro"
-  },
-  "DEMENTIA": {
-    "clue": "Chronic progressive cognitive loss that does not fluctuate hour to hour like delirium",
-    "rationale": "Dementia is chronic. A sudden change in a person with dementia is delirium until proven otherwise.",
-    "topic": "Neuro"
-  },
-  "SUNDDOWN": {
-    "clue": "Evening worsening of confusion in dementia",
-    "rationale": "Sundowning is managed with light, routine, and a calm environment. New evening agitation still needs a medical check.",
-    "topic": "Neuro"
-  },
-  "GAITBELT": {
-    "clue": "Belt used to guide a patient during transfers",
-    "rationale": "A gait belt gives a place to hold. Do not lift by the arms or the gown.",
-    "topic": "Safety"
-  },
-  "LOGROLLING": {
-    "clue": "Moving a patient with a spinal injury as one unit to protect alignment",
-    "rationale": "Log rolling keeps the spine neutral. It takes more than one person.",
-    "topic": "Safety"
-  },
-  "CCOLLAR": {
-    "clue": "Cervical collar kept on until the spine is cleared",
-    "rationale": "A cervical collar is not removed for comfort before the spine is cleared. The jaw-thrust is used if the airway must be opened.",
-    "topic": "Safety"
-  },
-  "JAWTHRUST": {
-    "clue": "Airway maneuver that avoids extending a possibly injured neck",
-    "rationale": "The jaw thrust opens the airway without a head tilt. It is the choice when spinal injury is possible.",
-    "topic": "Airway"
-  },
-  "YANKAUER": {
-    "clue": "Rigid suction tip used for the mouth",
-    "rationale": "A Yankauer clears the oropharynx. It is not advanced deep into the trachea.",
-    "topic": "Airway"
-  },
-  "BASILAR": {
-    "clue": "Skull fracture suggested by Battle sign or raccoon eyes and CSF from the ear or nose",
-    "rationale": "Basilar skull fracture clues include mastoid bruising and periorbital bruising. Nothing is inserted into the nose.",
-    "topic": "Neuro"
-  },
-  "RACCOON": {
-    "clue": "Periorbital bruising that suggests a basilar skull fracture",
-    "rationale": "Raccoon eyes develop after injury. They are not an immediate bruise from a simple nasal hit.",
-    "topic": "Neuro"
-  },
-  "BATTLESIGN": {
-    "clue": "Mastoid bruising that suggests a basilar skull fracture",
-    "rationale": "Battle sign is postauricular ecchymosis. It may appear hours after the injury.",
-    "topic": "Neuro"
-  },
-  "POSTICTAL": {
-    "clue": "Confused sleepy period after a seizure",
-    "rationale": "The postictal state is expected. A new focal deficit that does not resolve needs stroke evaluation.",
-    "topic": "Neuro"
-  },
-  "ABSENCE": {
-    "clue": "Brief staring seizure, often in children, without a convulsion",
-    "rationale": "Absence seizures look like daydreaming. They are not treated like a tantrum.",
-    "topic": "Neuro"
-  },
-  "GINGIVAL": {
-    "clue": "Gum overgrowth that is a classic long-term effect of phenytoin",
-    "rationale": "Phenytoin causes gingival hyperplasia. Oral care does not fully prevent it but limits inflammation.",
-    "topic": "Pharm / neuro"
-  },
-  "FFP": {
-    "clue": "Plasma product that replaces clotting factors",
-    "rationale": "Fresh frozen plasma replaces factors. It is used for bleeding with a coagulopathy, not as a routine volume expander.",
-    "topic": "Transfusion"
-  },
-  "CROSSMATCH": {
-    "clue": "Final compatibility test between donor red cells and the recipient",
-    "rationale": "A crossmatch is done before packed red cells are issued when time allows. Emergency blood may be uncrossmatched O negative.",
-    "topic": "Transfusion"
-  },
-  "FEBRILE": {
-    "clue": "Common transfusion reaction with a temperature rise and no hemolysis",
-    "rationale": "A febrile reaction still means the transfusion stops until hemolysis is excluded. Acetaminophen may be used once it is safe to continue a different unit.",
-    "topic": "Transfusion"
-  },
-  "URTICARIA": {
-    "clue": "Hives during transfusion that may allow restart after an antihistamine if that is the only finding",
-    "rationale": "Mild urticaria can be an allergic transfusion reaction. Stop, assess, and follow protocol before any restart.",
-    "topic": "Transfusion"
-  },
-  "ANURIA": {
-    "clue": "No urine output, a late and serious sign of renal failure or obstruction",
-    "rationale": "Anuria means almost no urine. Check the catheter for a kink before assuming the kidneys have stopped.",
-    "topic": "Renal"
-  },
-  "AZOTEMIA": {
-    "clue": "High BUN and creatinine from reduced filtration",
-    "rationale": "Azotemia is the lab picture of reduced GFR. It is prerenal, intrinsic, or postrenal until sorted out.",
-    "topic": "Renal"
-  },
-  "PRERENAL": {
-    "clue": "Kidney injury from poor perfusion, with a high BUN-to-creatinine ratio",
-    "rationale": "Prerenal azotemia improves when perfusion is restored. The kidneys are conserving sodium and water.",
-    "topic": "Renal"
-  },
-  "POSTRENAL": {
-    "clue": "Kidney injury from obstruction, such as a stone or a blocked catheter",
-    "rationale": "Postrenal failure is relieved by removing the blockage. Ultrasound looks for hydronephrosis.",
-    "topic": "Renal"
-  },
-  "THIRDSPACE": {
-    "clue": "Fluid shifted out of the vessels into tissues or cavities, as in burns and pancreatitis",
-    "rationale": "Third spacing causes intravascular depletion despite edema. The patient can be hypovolemic and swollen.",
-    "topic": "Fluids"
-  },
-  "ONCOTIC": {
-    "clue": "Pressure from plasma proteins that holds fluid inside vessels",
-    "rationale": "Oncotic pressure falls when albumin is low, and edema follows.",
-    "topic": "Fluids"
-  },
-  "HYDROSTATIC": {
-    "clue": "Pressure from the blood column that pushes fluid out of capillaries",
-    "rationale": "High hydrostatic pressure in heart failure pushes fluid into the lungs and legs.",
-    "topic": "Fluids"
-  },
-  "RHONCHI": {
-    "clue": "Coarse sounds from secretions in large airways that may clear with coughing",
-    "rationale": "Rhonchi suggest mucus. Have the patient cough and suction if they cannot clear it.",
-    "topic": "Respiratory"
-  },
-  "JVD": {
-    "clue": "Visible jugular veins from high right-sided pressure",
-    "rationale": "Jugular venous distention is assessed with the head of the bed raised. It fits heart failure, tamponade, and tension pneumothorax.",
-    "topic": "Cardiac"
-  },
-  "HEAVE": {
-    "clue": "Sustained lift of the chest wall from an enlarged ventricle",
-    "rationale": "A precordial heave suggests ventricular enlargement. It is a palpation finding, not a murmur.",
-    "topic": "Cardiac"
-  },
-  "THRILL": {
-    "clue": "Palpable vibration from turbulent flow, often over a stenotic valve or a dialysis fistula",
-    "rationale": "A thrill is turbulent flow you can feel. A new loss of a fistula thrill is an emergency.",
-    "topic": "Cardiac"
-  },
-  "BRUIT": {
-    "clue": "Whooshing sound of turbulent flow heard with the bell or diaphragm",
-    "rationale": "A carotid bruit suggests stenosis. A fistula bruit is expected; its absence is not.",
-    "topic": "Cardiac"
-  },
-  "FISTULA": {
-    "clue": "Surgically joined artery and vein for dialysis that must not be used for routine blood pressures",
-    "rationale": "A dialysis fistula is assessed for thrill and bruit. No blood pressures or venipunctures on that arm.",
-    "topic": "Renal"
-  },
-  "DRYWEIGHT": {
-    "clue": "Target weight after dialysis, used to judge fluid removal",
-    "rationale": "Dry weight is the edema-free weight. Removing far below it causes cramps and hypotension.",
-    "topic": "Renal"
-  },
-  "CALCIUMGLU": {
-    "clue": "Intravenous calcium that stabilizes the heart in severe hyperkalemia",
-    "rationale": "Calcium gluconate protects the myocardium from high potassium. It does not lower the potassium.",
-    "topic": "Fluids"
-  },
-  "DASHDIET": {
-    "clue": "Eating pattern rich in produce and low in sodium that lowers blood pressure",
-    "rationale": "The DASH pattern emphasizes vegetables, fruit, and low-fat dairy and limits sodium. It is a blood pressure intervention.",
-    "topic": "Diet"
-  },
-  "NPHPEAK": {
-    "clue": "Intermediate insulin with a pronounced peak that requires a food plan",
-    "rationale": "NPH peaks several hours after injection. A bedtime dose can cause overnight hypoglycemia.",
+  "NAC": {
+    "clue": "Abbreviation for the acetaminophen antidote, best when started early; the same drug is inhaled as a mucolytic",
+    "rationale": "N-acetylcysteine replenishes glutathione and limits liver injury after acetaminophen overdose. The usual adult ceiling for acetaminophen is 4 grams a day, and less if the liver is already harmed or alcohol use is heavy.",
+    "topic": "Pharm / antidotes"
+  },
+  "GLUCONATE": {
+    "clue": "Calcium salt that reverses magnesium toxicity and stabilizes the heart in severe hyperkalemia",
+    "rationale": "Calcium gluconate is given slowly intravenously for magnesium toxicity and for dangerous hyperkalemia, where it protects the heart but does not remove potassium. Extravasation can damage tissue.",
+    "topic": "Pharm / antidotes"
+  },
+  "PPI": {
+    "clue": "Acid-suppressing drug class taken before breakfast; long-term use is linked to low magnesium, fractures, and C. difficile",
+    "rationale": "Proton pump inhibitors such as omeprazole are not instant antacids. Report black stools, and review any plan to stop one suddenly after an ulcer or a stent.",
+    "topic": "Pharm / GI"
+  },
+  "TSH": {
+    "clue": "Pituitary lab that is high in primary hypothyroidism and is used to adjust thyroid hormone replacement",
+    "rationale": "A rising TSH usually means the levothyroxine dose is too low, if the problem is in the thyroid itself. Take the history of empty-stomach dosing before changing the dose.",
+    "topic": "Labs / endocrine"
+  },
+  "PTU": {
+    "clue": "Antithyroid abbreviation preferred in the first trimester; watch for liver injury and a sudden sore throat",
+    "rationale": "Propylthiouracil and methimazole can both cause agranulocytosis, so fever or pharyngitis means stop the drug and check the white count. After the first trimester, methimazole is usually preferred because propylthiouracil is harder on the liver.",
     "topic": "Pharm / endocrine"
   },
-  "DAWNPHENOM": {
-    "clue": "Early-morning hyperglycemia from growth hormone and cortisol",
-    "rationale": "The dawn phenomenon is a morning rise in glucose. It is not the same as rebound hyperglycemia after an overnight low.",
+  "STORM": {
+    "clue": "Life-threatening surge of thyroid hormone with high fever, tachycardia, and agitation after stress or surgery",
+    "rationale": "Thyroid storm is cooled with a blanket and acetaminophen, slowed with a beta blocker, and blocked with an antithyroid drug. Aspirin is avoided because it can raise free hormone.",
+    "topic": "Endocrine"
+  },
+  "GRAVES": {
+    "clue": "Autoimmune cause of hyperthyroidism with bulging eyes, heat intolerance, and a rapid heart rate",
+    "rationale": "Graves disease is treated with antithyroid drugs, radioactive iodine, or surgery. Eye protection and a high-calorie diet matter while the metabolic rate is high.",
+    "topic": "Endocrine"
+  },
+  "TINGLING": {
+    "clue": "Early sign of low calcium around the mouth and in the fingers after thyroid or parathyroid surgery",
+    "rationale": "Tingling, muscle spasm, and a positive Chvostek or Trousseau sign mean hypocalcemia from parathyroid injury. Keep calcium gluconate available and protect the airway if tetany starts.",
+    "topic": "Endocrine"
+  },
+  "HHS": {
+    "clue": "Hyperosmolar hyperglycemic state: extreme glucose and dehydration in type 2 diabetes, with little or no ketoacidosis",
+    "rationale": "HHS patients are often older and neurologically impaired from dehydration. Fluids come first, then insulin, and glucose is not driven down faster than the brain can tolerate.",
+    "topic": "Endocrine"
+  },
+  "SICKDAY": {
+    "clue": "Illness plan in which insulin is continued even if the person is not eating, and glucose and ketones are checked more often",
+    "rationale": "Skipping insulin on a sick day is a common path to ketoacidosis. Sip sugar-containing fluids if food is not possible, and call for vomiting, large ketones, or rising glucose.",
     "topic": "Endocrine"
   },
   "SOMOGYI": {
-    "clue": "Morning hyperglycemia that follows an unnoticed overnight low",
-    "rationale": "The Somogyi effect is rebound high glucose after nocturnal hypoglycemia. A 3 a.m. check separates it from the dawn phenomenon.",
+    "clue": "Rebound morning high glucose caused by unrecognized nighttime hypoglycemia; check a 2 or 3 a.m. reading",
+    "rationale": "If the middle-of-the-night glucose is low, the bedtime insulin may be too much or a snack is needed. This is the opposite of a dawn rise, which is high all night.",
     "topic": "Endocrine"
   },
-  "LACTICACID": {
-    "clue": "Acidosis from metformin, shock, or ischemia, with a high lactate and no ketones required",
-    "rationale": "Lactic acidosis has a high anion gap and a high lactate. Treat the cause and support perfusion.",
+  "DAWN": {
+    "clue": "Early-morning high glucose from growth hormone and cortisol, without a low reading in the middle of the night",
+    "rationale": "The dawn phenomenon is managed by adjusting the evening insulin, not by assuming the patient went low. A 2 or 3 a.m. glucose tells it apart from rebound hyperglycemia.",
     "topic": "Endocrine"
   },
-  "MYXEDEMCOMA": {
-    "clue": "Severe hypothyroidism with hypothermia and falling consciousness",
-    "rationale": "Myxedema coma needs airway support, warming, and IV thyroid hormone. It is precipitated by infection or cold.",
+  "REGULAR": {
+    "clue": "Short-acting insulin used for intravenous infusions; when mixing, draw it before NPH",
+    "rationale": "Regular insulin is clear, peaks in about 2 to 3 hours, and is the insulin used intravenously. Inject air into NPH first, then into regular, draw regular, then draw NPH.",
+    "topic": "Pharm / endocrine"
+  },
+  "NPH": {
+    "clue": "Intermediate insulin abbreviation; it looks milky, is rolled not shaken, and is never given intravenously",
+    "rationale": "NPH peaks roughly 4 to 12 hours later, so hypoglycemia can come in the afternoon or evening. It is not mixed with glargine or detemir.",
+    "topic": "Pharm / endocrine"
+  },
+  "GLUCOSE": {
+    "clue": "Fifteen grams of this fast carbohydrate are given to an awake patient with low blood sugar who can swallow, then the level is rechecked in 15 minutes",
+    "rationale": "Juice, glucose tablets, or gel treat mild hypoglycemia. Recheck in 15 minutes and repeat if still low, then give a longer-acting snack if the next meal is far off.",
     "topic": "Endocrine"
   },
-  "PHEOCHROMO": {
-    "clue": "Adrenal tumor that releases bursts of catecholamines and causes paroxysmal hypertension",
-    "rationale": "Pheochromocytoma causes headache, palpitations, and sweating. Beta blockade is not started before alpha blockade.",
+  "UNCONSCIOUS": {
+    "clue": "State in which nothing is given by mouth for low blood sugar; use intramuscular glucagon or intravenous dextrose",
+    "rationale": "Oral carbohydrate in an unresponsive patient causes aspiration. Glucagon can fail if liver glycogen is gone, as in starvation or heavy alcohol use, so intravenous dextrose is then required.",
     "topic": "Endocrine"
   },
-  "TERBUTALINE": {
-    "clue": "Beta agonist tocolytic that can cause maternal tachycardia",
-    "rationale": "Terbutaline relaxes the uterus. Hold it for a high maternal heart rate or pulmonary edema.",
-    "topic": "OB / pharm"
+  "PEAK": {
+    "clue": "Time after an insulin dose when hypoglycemia is most likely; it is soon for lispro, a few hours for regular, and many hours for NPH",
+    "rationale": "Glargine and detemir have no pronounced peak. Schedule snacks and monitoring around the peak of the insulin that was given.",
+    "topic": "Pharm / endocrine"
   },
-  "TOCOLYSIS": {
-    "clue": "Medications used to delay preterm labor long enough to give steroids",
-    "rationale": "Tocolysis buys time. It is not used when the mother or fetus is unstable or the cervix is far advanced in some protocols.",
+  "FOOTCARE": {
+    "clue": "Daily inspection, shoes indoors and out, and no heating pads for a patient with diabetic nerve damage",
+    "rationale": "Neuropathy means a foot injury is not felt. Nails are cut straight, lotion is kept out from between the toes, and calluses are not self-trimmed.",
+    "topic": "Endocrine"
+  },
+  "INSIPIDUS": {
+    "clue": "ADH deficiency with huge volumes of dilute urine and rising sodium; do not fluid-restrict the way you would in SIADH",
+    "rationale": "Diabetes insipidus causes dehydration and hypernatremia. Desmopressin replaces the missing hormone, and too much of it causes water intoxication and a low sodium.",
+    "topic": "Endocrine"
+  },
+  "PIGMENT": {
+    "clue": "Skin darkening in primary adrenal failure, together with salt craving, low blood pressure, and high potassium",
+    "rationale": "Addison disease can cause shock if steroids are stopped or illness adds stress. Give intravenous glucocorticoid and fluid, and increase the steroid dose for surgery or fever.",
+    "topic": "Endocrine"
+  },
+  "SERTRALINE": {
+    "clue": "SSRI that can increase suicidal thinking in the first weeks and can cause serotonin syndrome if combined with an MAOI",
+    "rationale": "Sertraline takes weeks to lift mood and can cause sexual dysfunction, nausea, and insomnia. Do not stop it abruptly, and avoid St. John's wort and tramadol.",
+    "topic": "Pharm / psych"
+  },
+  "BUPROPION": {
+    "clue": "Antidepressant also used to stop smoking; it is avoided in seizure disorders and eating disorders",
+    "rationale": "Bupropion lowers the seizure threshold and is more activating than sedating, so it is not a bedtime drug. It has fewer sexual side effects than SSRIs.",
+    "topic": "Pharm / psych"
+  },
+  "BUSPIRONE": {
+    "clue": "Anti-anxiety drug that is not a benzodiazepine, takes weeks to work, and is not used as a rescue pill",
+    "rationale": "Buspirone does not sedate or cause dependence the way benzodiazepines do. Grapefruit juice raises its level, and it will not stop a panic attack that is happening now.",
+    "topic": "Pharm / psych"
+  },
+  "HALOPERIDOL": {
+    "clue": "High-potency typical antipsychotic that causes movement side effects, a malignant high-fever syndrome, and QT prolongation",
+    "rationale": "Haloperidol is used for psychosis and acute agitation. Acute dystonia is treated with benztropine or diphenhydramine, and rigid high fever may be neuroleptic malignant syndrome.",
+    "topic": "Pharm / psych"
+  },
+  "OLANZAPINE": {
+    "clue": "Atypical antipsychotic with heavy weight gain, high glucose, and sedation; metabolic labs are part of follow-up",
+    "rationale": "Olanzapine is used in schizophrenia and bipolar disorder. Antipsychotics raise death risk in dementia-related psychosis and are not a routine sedative for older adults.",
+    "topic": "Pharm / psych"
+  },
+  "PHENELZINE": {
+    "clue": "MAOI antidepressant that can cause a hypertensive crisis with aged cheese, cured meats, or an SSRI",
+    "rationale": "Phenelzine requires a tyramine-restricted diet and a washout before other antidepressants. A sudden occipital headache and stiff neck are an emergency; phentolamine is the classic antidote.",
+    "topic": "Pharm / psych"
+  },
+  "WASHOUT": {
+    "clue": "Waiting period of about two weeks between an MAOI and an SSRI; fluoxetine needs about five weeks because it lasts so long",
+    "rationale": "Skipping the washout can cause serotonin syndrome. The same gap applies to meperidine and many other serotonergic drugs.",
+    "topic": "Pharm / psych"
+  },
+  "JOHNSWORT": {
+    "clue": "Herbal antidepressant that induces liver enzymes and can cause serotonin syndrome with an SSRI",
+    "rationale": "St. John's wort lowers levels of cyclosporine, oral contraceptives, warfarin, and some HIV drugs. Patients should tell every prescriber they are taking it.",
+    "topic": "Pharm / psych"
+  },
+  "NMS": {
+    "clue": "Malignant syndrome from antipsychotics: lead-pipe rigidity, very high fever, and unstable vital signs developing over days",
+    "rationale": "Neuroleptic malignant syndrome is treated by stopping the drug, cooling, hydrating, and often giving dantrolene or bromocriptine. It is slower and more rigid than serotonin syndrome.",
+    "topic": "Psych"
+  },
+  "EPS": {
+    "clue": "Movement effects of antipsychotics, including acute muscle spasm, restlessness, and parkinsonism",
+    "rationale": "Extrapyramidal symptoms are more common with high-potency typical antipsychotics. Acute dystonia is an emergency if the airway is involved and is treated with benztropine or diphenhydramine.",
+    "topic": "Psych"
+  },
+  "DYSTONIA": {
+    "clue": "Sudden muscle spasm from an antipsychotic, including neck twisting or an eye crisis; laryngeal spasm can close the airway",
+    "rationale": "Acute dystonia is reversed with intravenous diphenhydramine or benztropine. Stay with the patient until the airway is clearly safe.",
+    "topic": "Psych"
+  },
+  "SEROTONIN": {
+    "clue": "Syndrome of clonus, hyperreflexia, diarrhea, shivering, and fever from combining serotonergic drugs; onset is hours, not days",
+    "rationale": "Serotonin syndrome is different from neuroleptic malignant syndrome, which has lead-pipe rigidity and a slower onset. Stop the offending drugs, support vital signs, and use cyproheptadine when ordered.",
+    "topic": "Psych"
+  },
+  "CLONUS": {
+    "clue": "Rhythmic ankle beats when the foot is pushed up; in preeclampsia this warns that a seizure may be close",
+    "rationale": "Clonus with hyperreflexia in a pregnant patient with hypertension is a severe feature. Keep the environment quiet, have suction and calcium gluconate ready, and do not leave the patient.",
     "topic": "OB"
   },
-  "BIOPHYSICAL": {
-    "clue": "Ultrasound score of fetal movement, tone, breathing, fluid, plus the nonstress test",
-    "rationale": "The biophysical profile scores fetal well-being. Low amniotic fluid is a concerning component.",
+  "CIWA": {
+    "clue": "Scale that scores alcohol-withdrawal symptoms and guides benzodiazepine doses",
+    "rationale": "The Clinical Institute Withdrawal Assessment looks at tremor, sweating, anxiety, agitation, and vital signs. A rising score means more medication and closer monitoring, not a wait-and-see approach.",
+    "topic": "Psych"
+  },
+  "WERNICKE": {
+    "clue": "Receptive aphasia: speech is fluent but does not make sense, and the patient does not understand you",
+    "rationale": "Wernicke aphasia is a temporal-lobe injury. Use simple gestures and a calm manner, and do not rely on spoken teaching alone.",
+    "topic": "Neuro"
+  },
+  "COARSE": {
+    "clue": "Large tremor, with vomiting or confusion, that means lithium toxicity rather than the expected fine tremor",
+    "rationale": "A fine tremor can be a side effect at a therapeutic lithium level of about 0.6 to 1.2 mEq/L. Dehydration, low sodium, thiazides, and NSAIDs push the level into the toxic range.",
+    "topic": "Pharm / psych"
+  },
+  "SUICIDE": {
+    "clue": "Ask about this directly, remove belts and cords, and use one-to-one observation when the risk is high; a contract is not enough",
+    "rationale": "Asking does not plant the idea. The danger is greatest with a plan, means, and intent, and also when energy returns in the first weeks of an antidepressant.",
+    "topic": "Psych"
+  },
+  "MANIA": {
+    "clue": "Elevated, sleepless, risky state in bipolar disorder; offer high-calorie finger foods and set consistent limits",
+    "rationale": "A manic patient will not sit for a meal and can become dehydrated. Reduce stimulation, do not argue grandiose ideas, and watch lithium levels if that drug is used.",
+    "topic": "Psych"
+  },
+  "REFEEDING": {
+    "clue": "Danger when nutrition restarts in a starved patient; the hallmark lab change is a falling phosphate",
+    "rationale": "Refeeding syndrome also drops potassium and magnesium and can cause edema and heart failure. Feed low and slow, and replace electrolytes before they bottom out.",
+    "topic": "Psych"
+  },
+  "BULIMIA": {
+    "clue": "Binge-purge illness, often at a normal weight, that causes low potassium, dental erosion, and enlarged salivary glands",
+    "rationale": "Vomiting produces metabolic alkalosis and a callused knuckle. Supervise after meals, watch the heart for potassium effects, and do not dismiss the illness because the weight looks normal.",
+    "topic": "Psych"
+  },
+  "ALCOHOL": {
+    "clue": "No safe amount in pregnancy; withdrawal can progress to seizures and delirium tremens, so use a benzodiazepine scale and give thiamine",
+    "rationale": "Alcohol is teratogenic at any amount. In the hospital, thiamine comes before glucose, and a disulfiram-like reaction occurs if alcohol is taken with metronidazole.",
+    "topic": "Psych"
+  },
+  "OXYGEN": {
+    "clue": "A drug that supports combustion; no smoking or oil-based products near it, and the flow is shut off if a fire starts and the patient can be moved",
+    "rationale": "Oxygen is titrated to the ordered saturation, often about 88 to 92 percent in chronic carbon-dioxide retainers, and is never withheld from a hypoxic patient. Humidify higher cannula flows, and use water-based lubricant on the nares.",
+    "topic": "Respiratory"
+  },
+  "VENTURI": {
+    "clue": "Mask that delivers a precise oxygen percentage and is preferred when a patient with COPD needs a set concentration",
+    "rationale": "A Venturi mask uses color-coded adapters for a known FiO2. It is a better choice than guessing with a nasal cannula when carbon-dioxide retention is a concern.",
+    "topic": "Respiratory"
+  },
+  "SILENT": {
+    "clue": "Chest with no wheeze in a severe asthma attack, which can mean no air is moving; this is worse, not better",
+    "rationale": "A silent chest, inability to speak, and falling oxygen mean impending respiratory failure. Give oxygen, a short-acting bronchodilator, and steroids, and prepare to ventilate.",
+    "topic": "Respiratory"
+  },
+  "CROUP": {
+    "clue": "Barking cough and inspiratory stridor from viral airway swelling; cool mist and a steroid help, and racemic epinephrine is for worse cases",
+    "rationale": "Croup is usually worse at night and shows a steeple sign if filmed. It is not epiglottitis: the child with croup can cough and is not typically drooling in a toxic tripod.",
+    "topic": "Peds"
+  },
+  "DROOLING": {
+    "clue": "Sign of epiglottitis in a child sitting forward; do not use a tongue blade, and do not leave the child",
+    "rationale": "Epiglottitis can close the airway in minutes, so keep the child calm on a parent's lap and prepare for a controlled airway. The Hib vaccine prevents many cases.",
+    "topic": "Peds"
+  },
+  "MONTELUKAST": {
+    "clue": "Leukotriene blocker taken in the evening for asthma control; mood and suicidal thoughts are reported, and it does not stop an acute attack",
+    "rationale": "Montelukast is prevention, not rescue. Parents are taught to report behavior changes, nightmares, or depression.",
+    "topic": "Pharm / respiratory"
+  },
+  "TENDON": {
+    "clue": "Structure a fluoroquinolone can rupture; stop the drug and report calf or heel pain, and avoid this class in pregnancy and children",
+    "rationale": "Fluoroquinolones also prolong the QT interval and cause photosensitivity. Older adults and patients on steroids are at higher risk of tendon injury.",
+    "topic": "Pharm / antibiotics"
+  },
+  "ETHAMBUTOL": {
+    "clue": "Tuberculosis drug that can inflame the optic nerve; report blurred vision or a change in color vision and stop the drug",
+    "rationale": "Ethambutol toxicity is detected with baseline and periodic eye exams. It is one of several TB drugs, and the liver is still watched because companion drugs injure it.",
+    "topic": "Pharm / antibiotics"
+  },
+  "ORANGE": {
+    "clue": "Color that body fluids turn on rifampin; contact lenses can stain, and this is expected rather than bleeding",
+    "rationale": "Rifampin also induces liver enzymes, so hormonal contraceptives fail and warfarin effect falls. Teach a backup birth-control method and watch for jaundice.",
+    "topic": "Pharm / antibiotics"
+  },
+  "DOT": {
+    "clue": "Watching a patient swallow each tuberculosis dose so resistance does not develop",
+    "rationale": "Directly observed therapy is a public-health tool, not a punishment. Incomplete treatment breeds multidrug-resistant tuberculosis, which is harder to cure and still requires airborne precautions.",
+    "topic": "Infection control"
+  },
+  "TIDALING": {
+    "clue": "Rise and fall of the water-seal level with breathing; it stops when the lung has reexpanded or the tube is kinked",
+    "rationale": "Tidaling in a chest-drainage system is expected while the lung is still down. Sudden stop plus respiratory distress suggests obstruction, not recovery, until breath sounds and the tubing are checked.",
+    "topic": "Respiratory"
+  },
+  "BUBBLING": {
+    "clue": "Continuous air movement in the water-seal chamber means a leak; gentle air movement in a wet suction-control chamber is expected",
+    "rationale": "Intermittent air in the water seal can occur while a pneumothorax is evacuating. New continuous air in that chamber means check the connections and the dressing before assuming the lung has worsened.",
+    "topic": "Respiratory"
+  },
+  "OCCLUSIVE": {
+    "clue": "If a chest tube pulls out of the chest, cover the site with a sterile dressing taped on three sides so air can escape",
+    "rationale": "A fully sealed dressing over a fresh chest-tube site can trap air and cause tension pneumothorax. Stay with the patient, give oxygen, and call for a new tube.",
+    "topic": "Respiratory"
+  },
+  "HEMOTHORAX": {
+    "clue": "Blood in the pleural space; a sudden large volume of bloody chest-tube output with low blood pressure is reported immediately",
+    "rationale": "Hemothorax is drained with a chest tube, and output is measured often. Clamping the tube to stop the drainage can cause tension and hidden blood loss.",
+    "topic": "Respiratory"
+  },
+  "OBTURATOR": {
+    "clue": "Guide kept at the bedside with a spare tracheostomy tube; it is used only to insert the tube and is then removed so air can pass",
+    "rationale": "If a mature tracheostomy tube comes out, the obturator helps replace it. A fresh tract can close quickly, so call for help and do not force a false passage.",
+    "topic": "Respiratory"
+  },
+  "INFLUENZA": {
+    "clue": "Droplet-precaution illness with an annual vaccine; an egg allergy alone is not a reason to skip the vaccine, and antivirals work best within 48 hours",
+    "rationale": "Influenza can lead to pneumonia and is especially dangerous in pregnancy, in older adults, and in chronic disease. The injectable vaccine is inactivated; the nasal vaccine is live.",
+    "topic": "Infection control"
+  },
+  "PENICILLIN": {
+    "clue": "Antibiotic class that can cause anaphylaxis; observe after a first dose and do not leave a wheezing patient",
+    "rationale": "A true penicillin allergy is hives, swelling, or breathing trouble, not simple nausea. Give it on an empty stomach when the product requires that, and teach the patient to finish every dose.",
+    "topic": "Pharm / antibiotics"
+  },
+  "CLINDAMYCIN": {
+    "clue": "Antibiotic strongly linked to C. difficile; report watery diarrhea and do not take an antidiarrheal until that is ruled out",
+    "rationale": "Clindamycin colitis can start during treatment or weeks later. Stools are tested, and treatment is oral vancomycin or fidaxomicin, not intravenous vancomycin.",
+    "topic": "Pharm / antibiotics"
+  },
+  "VARICELLA": {
+    "clue": "Chickenpox, which needs airborne and contact precautions until lesions crust; pregnant staff who are not immune do not enter",
+    "rationale": "Varicella is contagious before the rash and until every lesion is crusted. The vaccine is live and is not given in pregnancy, and shingles is the later reactivation.",
+    "topic": "Infection control"
+  },
+  "MMR": {
+    "clue": "Live vaccine against measles, mumps, and rubella; do not give it in pregnancy, and avoid conceiving for about a month afterward",
+    "rationale": "If a postpartum patient is not immune to rubella, give MMR before discharge. It is also withheld in severe immunosuppression.",
+    "topic": "Pharm / immune"
+  },
+  "LIVE": {
+    "clue": "Vaccine type, including MMR, varicella, and nasal influenza, that is contraindicated in pregnancy and in severe immunosuppression",
+    "rationale": "Inactivated vaccines such as the injectable flu shot and Tdap are given in pregnancy. A live vaccine is delayed until after birth.",
+    "topic": "Pharm / immune"
+  },
+  "NEEDLESTICK": {
+    "clue": "Wash with soap and water and report at once so HIV prophylaxis can start within hours; mucous membranes are flushed instead",
+    "rationale": "Do not recap the needle. Occupational health tests the source when possible and starts post-exposure prophylaxis as soon as it is indicated, ideally within hours.",
+    "topic": "Safety"
+  },
+  "SPORES": {
+    "clue": "Form that lets C. difficile survive alcohol gel; use soap and water, and treat with oral vancomycin or fidaxomicin rather than the intravenous form",
+    "rationale": "Intravenous vancomycin does not reach the colon in useful amounts. Antidiarrheal drugs are avoided, and contact precautions continue per policy.",
+    "topic": "Infection control"
+  },
+  "BLEACH": {
+    "clue": "Surface disinfectant that kills C. difficile spores; ordinary alcohol wipes do not",
+    "rationale": "Rooms of patients with C. difficile are cleaned with a sporicidal product such as bleach. Hand washing with soap and water is required on the way out.",
+    "topic": "Infection control"
+  },
+  "NEGATIVE": {
+    "clue": "Air-pressure room for tuberculosis, measles, and chickenpox; the door stays closed and staff wear a fitted respirator",
+    "rationale": "Negative pressure keeps infectious droplet nuclei inside the room. A surgical mask on the staff member is not enough for airborne disease.",
+    "topic": "Infection control"
+  },
+  "NEUTROPENIC": {
+    "clue": "Low neutrophil state in which fever is an emergency, rectal temperatures are avoided, and sick visitors stay out",
+    "rationale": "A neutropenic patient may have infection with only a small temperature rise and no pus. Blood cultures and antibiotics are not delayed for a full workup if the patient is unstable.",
+    "topic": "Oncology"
+  },
+  "PURPURA": {
+    "clue": "Purple nonblanching lesions with fever that mean meningococcemia until proved otherwise; start droplet precautions and antibiotics immediately",
+    "rationale": "Meningococcal sepsis can kill within hours. Close contacts need prophylaxis, and a lumbar puncture must not delay antibiotics if the patient is unstable.",
+    "topic": "Infection control"
+  },
+  "ISOTONIC": {
+    "clue": "Fluid that stays in the vessels, such as normal saline or lactated Ringer, used for volume loss and shock",
+    "rationale": "Isotonic crystalloid expands intravascular volume. Only normal saline is run with blood, because lactated Ringer contains calcium and can clot the product.",
+    "topic": "Fluids / electrolytes"
+  },
+  "OVERLOAD": {
+    "clue": "Crackles, neck-vein distention, and dyspnea from fluid given too fast; stop the infusion, raise the head, and notify the provider",
+    "rationale": "Infants, older adults, and patients with heart or kidney failure overload easily. Daily weights and intake and output catch the problem before pulmonary edema.",
+    "topic": "Fluids / electrolytes"
+  },
+  "HYPOKALEMIA": {
+    "clue": "Low potassium with muscle weakness, ileus, flat T waves, and U waves; it makes digoxin toxicity much more likely",
+    "rationale": "Loops, thiazides, vomiting, and diarrhea waste potassium. Replace it orally or by a slow pump infusion, never by IV push, and only if the patient is making urine.",
+    "topic": "Fluids / electrolytes"
+  },
+  "PEAKED": {
+    "clue": "T-wave shape of dangerous hyperkalemia; stop potassium, protect the heart with calcium, and shift potassium with insulin plus dextrose",
+    "rationale": "Peaked T waves can widen the QRS and stop the heart. Kidney failure, ACE inhibitors, and potassium-sparing diuretics are common causes.",
+    "topic": "Fluids / electrolytes"
+  },
+  "LOWSODIUM": {
+    "clue": "Low sodium that causes confusion and seizures; restrict fluid in SIADH, and do not correct a chronic deficit too fast",
+    "rationale": "Severe hyponatremia is a seizure risk. Correcting chronic hyponatremia too quickly can cause osmotic demyelination.",
+    "topic": "Fluids / electrolytes"
+  },
+  "VERIFY": {
+    "clue": "Two clinicians check the blood product, the patient identifiers, the type, and the expiration before it is hung",
+    "rationale": "Most deadly transfusion reactions are clerical. Stay with the patient for the first 15 minutes, use only normal saline, and finish the unit within 4 hours.",
+    "topic": "Safety"
+  },
+  "TRANSFUSION": {
+    "clue": "Stop the blood at the first sign of a reaction, keep the vein open with new tubing and normal saline, and send the bag back to the lab",
+    "rationale": "Do not discard the product. Fever, back pain, dyspnea, hives, or a feeling of doom during a transfusion is a reaction until proved otherwise.",
+    "topic": "Safety"
+  },
+  "HEMOLYTIC": {
+    "clue": "Transfusion reaction from ABO incompatibility, with fever, back or flank pain, hypotension, and dark urine",
+    "rationale": "A hemolytic reaction can cause shock and disseminated intravascular coagulation. Stop the blood immediately, support blood pressure, and do not restart that unit.",
+    "topic": "Safety"
+  },
+  "TACO": {
+    "clue": "Transfusion overload with dyspnea and high blood pressure; slow the rate, sit the patient up, and expect a diuretic",
+    "rationale": "Transfusion-associated circulatory overload looks like heart failure. It differs from TRALI, which causes noncardiogenic lung edema with hypotension and fever.",
+    "topic": "Safety"
+  },
+  "TRALI": {
+    "clue": "Transfusion lung injury with acute dyspnea, fever, and low blood pressure, unlike volume overload which raises blood pressure",
+    "rationale": "TRALI is treated with oxygen and ventilatory support, not with aggressive diuresis as the first move. The blood bank is notified so the donor can be investigated.",
+    "topic": "Safety"
+  },
+  "CONSISTENT": {
+    "clue": "How vitamin K intake should stay on warfarin; a sudden binge of leafy greens drops the INR",
+    "rationale": "Patients may eat greens, but the amount should not swing wildly. Report bleeding, keep follow-up INRs, and avoid adding aspirin or a new antibiotic without asking.",
+    "topic": "Pharm / coagulation"
+  },
+  "LACTATE": {
+    "clue": "Lab that rises when tissues are underperfused, as in sepsis and shock; a falling value suggests resuscitation is working",
+    "rationale": "Lactate is a marker of hypoperfusion, not a diagnosis by itself. In sepsis, rapid crystalloid, often about 30 mL/kg when pressure is low or lactate is high, is given with antibiotics.",
+    "topic": "Labs"
+  },
+  "CARDIOGENIC": {
+    "clue": "Shock from pump failure, with crackles, cool skin, and a high filling pressure; extra fluid can drown the lungs",
+    "rationale": "Cardiogenic shock needs inotropes and treatment of the cause, often a myocardial infarction, not a large fluid bolus. Blood pressure may be low while the lungs are overloaded.",
+    "topic": "Cardiac"
+  },
+  "NEUROGENIC": {
+    "clue": "Shock from lost sympathetic tone, with low blood pressure and a slow heart rate and warm dry skin",
+    "rationale": "Neurogenic shock differs from hypovolemic shock, which has a fast heart rate and cool clammy skin. It occurs with high spinal cord injury and is treated with fluids and vasopressors.",
+    "topic": "Neuro"
+  },
+  "AFIB": {
+    "clue": "Irregularly irregular rhythm with no P waves; control the rate and anticoagulate to cut stroke risk unless the patient is unstable",
+    "rationale": "Unstable atrial fibrillation with hypotension or ischemia gets immediate synchronized cardioversion. If the rhythm has lasted more than about 48 hours, cardioversion can throw a clot unless anticoagulation or a clot check is done.",
+    "topic": "Cardiac"
+  },
+  "APICAL": {
+    "clue": "Pulse listened to for a full minute before digoxin; hold the dose if it is below the ordered rate, often 60 in adults and 90 in infants",
+    "rationale": "The apical impulse is normally at the fifth intercostal space, midclavicular line. Yellow halos, nausea, and bradycardia suggest digoxin toxicity, especially if potassium is low.",
+    "topic": "Cardiac"
+  },
+  "HALOS": {
+    "clue": "Yellow or green visual rings that suggest digoxin toxicity; hold the drug and check the level and the potassium",
+    "rationale": "Digoxin toxicity also causes anorexia, nausea, and slow or irregular rhythms. Low potassium, low magnesium, and kidney disease make it more likely.",
+    "topic": "Pharm / cardiac"
+  },
+  "SVT": {
+    "clue": "Very fast regular narrow-complex rhythm; adenosine is a rapid push, and a stable patient may try a vagal maneuver first",
+    "rationale": "Supraventricular tachycardia is cardioverted if the patient is unstable. Adenosine is given fast with a flush and can cause a brief pause, so a monitor and crash cart are in the room.",
+    "topic": "Cardiac"
+  },
+  "DEFIB": {
+    "clue": "Unsynchronized shock for pulseless ventricular tachycardia or ventricular fibrillation; clear the bed before discharging",
+    "rationale": "Asystole and pulseless electrical activity are not shockable. Resume compressions immediately after the shock, and remove medication patches first so the skin is not burned.",
+    "topic": "Cardiac"
+  },
+  "ASYSTOLE": {
+    "clue": "Flatline rhythm that is not shocked; confirm the leads, start compressions, and give epinephrine",
+    "rationale": "Asystole is treated like pulseless electrical activity: CPR, epinephrine, and a search for reversible causes. A fine ventricular fibrillation can look flat, so check a second lead.",
+    "topic": "Cardiac"
+  },
+  "PEA": {
+    "clue": "Organized rhythm on the monitor with no pulse; compress, give epinephrine, and look for causes such as hypovolemia, hypoxia, and tension pneumothorax",
+    "rationale": "Pulseless electrical activity is not defibrillated. Hs and Ts include potassium problems, hydrogen ion, hypothermia, tamponade, thrombosis, and toxins.",
+    "topic": "Cardiac"
+  },
+  "PACING": {
+    "clue": "External pads for symptomatic bradycardia that does not respond to atropine, or for high-grade heart block; it hurts, so sedate if the patient is awake",
+    "rationale": "Capture means each pacemaker spike is followed by a QRS and a pulse. Failure to capture means check connections and increase output as ordered while supporting the airway.",
+    "topic": "Cardiac"
+  },
+  "CHEWED": {
+    "clue": "How aspirin is taken in suspected acute coronary syndrome so it absorbs faster, unless there is a true allergy or another contraindication",
+    "rationale": "Chewed aspirin inhibits platelets quickly. Oxygen is added for low saturation, not automatically for every chest-pain patient, and opening a blocked artery is the priority in ST-elevation infarction.",
+    "topic": "Cardiac"
+  },
+  "REPERFUSION": {
+    "clue": "Opening the blocked coronary artery, which is the priority in ST-elevation myocardial infarction rather than a fixed drug ritual",
+    "rationale": "The cath lab is preferred when it can be reached promptly. Thrombolytics are considered when timely PCI is impossible and bleeding risk is acceptable, after a bleed has been judged unlikely.",
+    "topic": "Cardiac"
+  },
+  "MURMUR": {
+    "clue": "Sound of turbulent flow; a new one plus fever suggests endocarditis until proved otherwise",
+    "rationale": "Endocarditis vegetations embolize to brain, kidney, spleen, or lung. Draw cultures before antibiotics, and reserve dental prophylaxis for the highest-risk hearts, such as a prosthetic valve or prior endocarditis.",
+    "topic": "Cardiac"
+  },
+  "PRELOAD": {
+    "clue": "Stretch on the heart at the end of filling; diuretics and venodilators such as nitroglycerin reduce it",
+    "rationale": "High preload causes congestion and edema. Low preload, as in bleeding, drops cardiac output and is treated with volume, not with more diuretic.",
+    "topic": "Cardiac"
+  },
+  "BNP": {
+    "clue": "Hormone lab that rises when the ventricles are stretched by heart failure and helps explain unexplained dyspnea",
+    "rationale": "B-type natriuretic peptide is higher in decompensated heart failure and lower when the cause of dyspnea is purely lung disease. Kidney failure can also raise it.",
+    "topic": "Labs / cardiac"
+  },
+  "JVD": {
+    "clue": "Neck-vein distention seen in fluid overload, right-sided heart failure, and cardiac tamponade",
+    "rationale": "Jugular venous distention with crackles suggests the patient will not tolerate more fluid. With muffled sounds and hypotension it is part of tamponade.",
+    "topic": "Cardiac"
+  },
+  "BECK": {
+    "clue": "Triad of low blood pressure, distended neck veins, and muffled heart sounds in cardiac tamponade",
+    "rationale": "Beck triad is a late, classic picture. After cardiac surgery, a sudden stop in chest-tube drainage plus this picture means clot is compressing the heart and needs immediate drainage.",
+    "topic": "Cardiac"
+  },
+  "VENOUS": {
+    "clue": "Insufficiency with brown lower-leg staining, edema, and wet ulcers near the medial ankle, eased by elevation",
+    "rationale": "Compression stockings are applied in the morning before edema forms, but only if arterial pulses and the ankle-brachial index are adequate. A sudden one-leg swell is a clot until proved otherwise.",
+    "topic": "Cardiac"
+  },
+  "FAST": {
+    "clue": "Face, arm, speech, and time: the screen for stroke, and the clock starts at last known well",
+    "rationale": "A positive FAST screen is an emergency activation, not a wait for the next set of vitals. Nothing is given by mouth until a swallow screen is done, and a CT is done before any thrombolytic.",
+    "topic": "Neuro"
+  },
+  "BLEED": {
+    "clue": "What a CT must exclude before a thrombolytic is given for stroke, because a hemorrhagic stroke would be made worse",
+    "rationale": "Ischemic stroke may be eligible for alteplase if timing and exclusions are met. Hemorrhagic stroke is managed for pressure and blood pressure, not with anticoagulants or thrombolytics.",
+    "topic": "Neuro"
+  },
+  "SWALLOW": {
+    "clue": "Screen that must be passed before a stroke patient gets any oral intake, including pills",
+    "rationale": "Aspiration pneumonia is a leading killer after stroke. Thickened liquids and a chin tuck are used only after a therapist confirms they help that patient.",
+    "topic": "Neuro"
+  },
+  "BROCA": {
+    "clue": "Expressive aphasia: the patient understands and knows what to say but cannot get the words out",
+    "rationale": "Broca aphasia is a frontal-lobe injury. Give time, accept gestures, and do not finish every sentence or pretend not to understand the frustration.",
+    "topic": "Neuro"
+  },
+  "HEMIPARESIS": {
+    "clue": "Weakness on one side after stroke; dress that side first, and transfer toward the stronger side",
+    "rationale": "The nurse stands on the weak side to support the patient while the patient pivots on the strong leg. Neglect of one side requires cues to scan that side during meals and walking.",
+    "topic": "Neuro"
+  },
+  "MYASTHENIA": {
+    "clue": "Weakness that worsens with use; give the cholinesterase inhibitor on time, and keep suction ready because of aspiration",
+    "rationale": "A myasthenic crisis is too little medication, often triggered by infection, while a cholinergic crisis is too much medication and is treated with atropine. Both can stop breathing.",
+    "topic": "Neuro"
+  },
+  "GUILLAIN": {
+    "clue": "Ascending paralysis after an infection, often Campylobacter; the emergency is respiratory failure, treated with IVIG or plasma exchange",
+    "rationale": "Guillain-Barre syndrome is monitored with vital capacity, not just oxygen saturation, because ventilation can fail while saturation still looks acceptable. Autonomic swings in heart rate and blood pressure are common.",
+    "topic": "Neuro"
+  },
+  "PARKINSON": {
+    "clue": "Disease of resting tremor, rigidity, slow movement, and fall risk; do not stop levodopa abruptly",
+    "rationale": "Parkinson disease also impairs swallowing. Give levodopa on time, watch orthostatic blood pressure, and keep protein-heavy meals from competing with absorption if the prescriber has so advised.",
+    "topic": "Neuro"
+  },
+  "LEVODOPA": {
+    "clue": "Parkinson drug that competes with protein for absorption; stopping it suddenly can mimic neuroleptic malignant syndrome",
+    "rationale": "Levodopa causes nausea, orthostatic hypotension, and dyskinesias at higher doses. Carbidopa is combined with it so more drug reaches the brain and nausea is less.",
+    "topic": "Pharm / neuro"
+  },
+  "VALPROATE": {
+    "clue": "Anticonvulsant and mood stabilizer that is teratogenic, hepatotoxic, and can drop platelets",
+    "rationale": "Valproate causes neural-tube defects, so pregnancy prevention is required. Report abdominal pain, because pancreatitis is another serious effect, and do not stop it abruptly.",
+    "topic": "Pharm / neuro"
+  },
+  "PERRLA": {
+    "clue": "Pupils equal, round, reactive to light and accommodation; a new unilateral dilated pupil is an emergency",
+    "rationale": "PERRLA is part of every neuro check. Pinpoint pupils suggest opioids or a pontine lesion, and fixed dilated pupils suggest severe hypoxia or herniation.",
+    "topic": "Neuro"
+  },
+  "HERNIATION": {
+    "clue": "Brain tissue forced downward by pressure; a unilateral dilated pupil, posturing, and a widening pulse pressure are late signs",
+    "rationale": "Herniation is prevented by treating intracranial pressure early: head up about 30 degrees, neck midline, no clustering of care, and no hypotonic fluids. Mannitol or hypertonic saline may be ordered.",
+    "topic": "Neuro"
+  },
+  "DECEREBRATE": {
+    "clue": "Rigid extension posturing, which is worse than flexion posturing and points to the brainstem",
+    "rationale": "Decerebrate posturing with a falling Glasgow score means the airway and intracranial pressure are immediate priorities. Note the time and the stimulus that provoked it.",
+    "topic": "Neuro"
+  },
+  "STATUS": {
+    "clue": "Seizure lasting more than about 5 minutes, or repeated seizures without recovery; this is an emergency treated with a benzodiazepine and airway support",
+    "rationale": "Status epilepticus is no longer defined as 30 minutes. Check glucose, give intravenous lorazepam, and follow with a longer-acting anticonvulsant so seizures do not recur.",
+    "topic": "Neuro"
+  },
+  "MOUTH": {
+    "clue": "Never place an object or a finger here during a seizure; turn the person on the side afterward and suction if secretions pool",
+    "rationale": "Forcing the jaw causes injury and does not prevent tongue swallowing, which is a myth. Time the seizure, loosen tight clothing, and do not restrain the limbs.",
+    "topic": "Neuro"
+  },
+  "AUTONOMIC": {
+    "clue": "Crisis above a T6 spinal injury with pounding headache and high blood pressure; sit the patient up and remove the trigger",
+    "rationale": "Autonomic dysreflexia is usually a full bladder, stool impaction, or tight clothing. Sitting upright lowers the pressure at once, and an untreated episode can cause a stroke.",
+    "topic": "Neuro"
+  },
+  "PYLORI": {
+    "clue": "Bacterium that causes most peptic ulcers; finish the antibiotics plus acid suppression, and confirm eradication when ordered",
+    "rationale": "Treatment fails if the antibiotic course is shortened. Patients also stop NSAIDs and smoking, and sudden severe pain can mean perforation.",
+    "topic": "GI"
+  },
+  "PERFORATION": {
+    "clue": "A hole in a hollow organ causing sudden severe pain and a rigid abdomen; keep the patient NPO and call surgery",
+    "rationale": "Perforation can follow an ulcer, diverticulitis, or appendicitis. Do not give laxatives or a bedside enema, and watch for shock.",
+    "topic": "GI"
+  },
+  "RLQ": {
+    "clue": "Quadrant pain at McBurney point that suggests appendicitis; sudden relief can mean rupture, and heat or laxatives are forbidden",
+    "rationale": "Right-lower-quadrant pain with rebound, low fever, and anorexia is appendicitis until proved otherwise. Keep the patient NPO for possible surgery.",
+    "topic": "GI"
+  },
+  "LLQ": {
+    "clue": "Usual quadrant for diverticulitis pain; during the acute infection, rest the bowel and do not do a colonoscopy",
+    "rationale": "Left-lower-quadrant pain with fever suggests diverticulitis. A colonoscopy is delayed until inflammation settles because of perforation risk, and the old ban on seeds and nuts is not required.",
+    "topic": "GI"
+  },
+  "RUQ": {
+    "clue": "Quadrant pain after a fatty meal that suggests gallbladder disease and may radiate to the right shoulder",
+    "rationale": "Right-upper-quadrant pain with fever and a positive Murphy sign fits cholecystitis. Jaundice and clay-colored stools mean a stone is blocking the common duct.",
+    "topic": "GI"
+  },
+  "LIPASE": {
+    "clue": "Enzyme more specific for pancreatitis than amylase; the patient is kept NPO, and pain often eases when leaning forward",
+    "rationale": "Pancreatitis causes epigastric pain radiating to the back, often from alcohol or gallstones. Watch calcium, glucose, and breathing, because hypocalcemia and lung injury occur.",
+    "topic": "GI"
+  },
+  "MELENA": {
+    "clue": "Black, tarry, foul stool from digested blood, usually an upper gastrointestinal bleed",
+    "rationale": "Melena is an emergency when it is new, especially with dizziness or a low blood pressure. Upper endoscopy is typical, and iron also darkens stool but does not make it tarry and foul in the same way.",
+    "topic": "GI"
+  },
+  "CIRRHOSIS": {
+    "clue": "Scarred liver with poor clotting, low albumin, varices, and a risk of confusion from ammonia",
+    "rationale": "Cirrhosis care is sodium restriction, no alcohol, bleeding precautions, and lactulose for encephalopathy. A falling blood pressure with a tense abdomen can be bleeding or infection of ascites.",
+    "topic": "GI"
+  },
+  "AMMONIA": {
+    "clue": "Toxin that rises in hepatic encephalopathy and causes confusion plus a flapping hand tremor; lactulose traps it in the gut",
+    "rationale": "Lactulose is titrated to a few soft stools a day, and that diarrhea is the desired effect. Gastrointestinal bleeding and infection are common triggers, and severe protein restriction is not the modern mainstay.",
+    "topic": "GI"
+  },
+  "JAUNDICE": {
+    "clue": "Yellow skin and sclera from high bilirubin; in a newborn during the first 24 hours it is abnormal and suggests hemolysis",
+    "rationale": "Jaundice is checked in natural light, including the sclera. Adult causes include hepatitis, obstruction, and hemolysis, and clay stools point to obstruction.",
+    "topic": "GI"
+  },
+  "XRAY": {
+    "clue": "Study required to confirm a new feeding tube or central line before it is used",
+    "rationale": "Auscultation of an air bolus does not prove a feeding tube is in the stomach. A central line is also imaged so a pneumothorax or a malpositioned tip is found before infusion.",
+    "topic": "Safety"
+  },
+  "FISTULA": {
+    "clue": "Dialysis access in the arm; feel the thrill, hear the bruit, and never take blood pressure or a stick in that arm",
+    "rationale": "An arteriovenous fistula takes weeks to mature and is not used early for routine labs. No tight clothing or sleeping on that arm, and absence of a thrill is reported immediately.",
+    "topic": "Renal"
+  },
+  "THRILL": {
+    "clue": "Palpable vibration over a patent dialysis fistula; its absence is reported before the next dialysis",
+    "rationale": "A thrill is expected and means blood is flowing. No blood pressures, venipunctures, or tourniquets go on that arm.",
+    "topic": "Renal"
+  },
+  "DIALYSIS": {
+    "clue": "Treatment that pulls fluid and waste; weigh before and after, and often hold antihypertensives so the patient does not crash",
+    "rationale": "Hypotension and cramps during hemodialysis are treated by slowing the removal and giving fluid as ordered. A headache and restlessness can be disequilibrium from removing solute too fast.",
+    "topic": "Renal"
+  },
+  "STOMA": {
+    "clue": "Ostomy opening that should be pink or red and moist; dusky, purple, or black means ischemia and is an emergency",
+    "rationale": "A new stoma is edematous, and a little bleeding with cleaning is expected. Report separation from the skin, or a marked increase in output that dehydrates the patient.",
+    "topic": "GI"
+  },
+  "ILEOSTOMY": {
+    "clue": "Ostomy of the small bowel with liquid output and a high risk of dehydration; it is not irrigated",
+    "rationale": "Ileostomy effluent is rich in enzymes and destroys skin, so the wafer must fit closely. Empty the pouch when it is about a third full, and increase fluids and electrolytes in hot weather.",
+    "topic": "GI"
+  },
+  "DUMPING": {
+    "clue": "Sweating, tachycardia, and diarrhea soon after eating in a patient with gastric surgery; lie down after meals and do not drink with them",
+    "rationale": "Dumping syndrome is limited by small, dry, high-protein, low-simple-sugar meals. Fluids are taken between meals, not with them.",
+    "topic": "GI"
+  },
+  "CAUTI": {
+    "clue": "Catheter-associated urinary tract infection, prevented by sterile insertion, a bag below the bladder, and removal as soon as possible",
+    "rationale": "CAUTI prevention is a daily question: does this catheter still need to be there? Irrigating a catheter to make it drain is not a substitute for fixing a kink or removing it.",
+    "topic": "Infection control"
+  },
+  "QUICKENING": {
+    "clue": "First fetal movements felt by the mother, usually around 16 to 20 weeks, later in a first pregnancy",
+    "rationale": "Quickening is a milestone, not a complete well-being test. A clear decrease in movement later in pregnancy is evaluated the same day.",
+    "topic": "OB"
+  },
+  "GTPAL": {
+    "clue": "Obstetric history code for pregnancies, term births, preterm births, abortions, and living children",
+    "rationale": "GTPAL counts a current pregnancy in gravida. Twins delivered at term are one para event, not two, because parity counts pregnancies that reached viability, not the number of babies.",
+    "topic": "OB"
+  },
+  "FOLIC": {
+    "clue": "Vitamin started before conception to lower neural-tube defect risk, commonly 400 micrograms a day",
+    "rationale": "Folic acid must be present when the neural tube closes, often before the first missed period. A higher dose is used when a prior pregnancy had a neural-tube defect.",
+    "topic": "OB"
+  },
+  "GDM": {
+    "clue": "Diabetes first recognized in pregnancy, screened around 24 to 28 weeks; the newborn is at risk for low blood sugar",
+    "rationale": "Gestational diabetes is managed with diet and, when needed, insulin, which does not cross the placenta. Macrosomia raises the risk of shoulder dystocia.",
+    "topic": "OB"
+  },
+  "PROTEINURIA": {
+    "clue": "Protein in the urine that, with new hypertension after 20 weeks, supports preeclampsia; severe features can be present even when protein is absent",
+    "rationale": "Headache, visual changes, epigastric pain, low platelets, and rising creatinine are severe features. Magnesium prevents seizures, and delivery is the cure.",
+    "topic": "OB"
+  },
+  "REFLEX": {
+    "clue": "Deep-tendon response that disappears early in magnesium toxicity; the drug is then held",
+    "rationale": "Magnesium for preeclampsia is held for absent reflexes, respirations often below 12 per minute, or urine output under about 30 mL per hour. Calcium gluconate is the antidote.",
+    "topic": "OB"
+  },
+  "TERBUTALINE": {
+    "clue": "Beta-agonist that slows preterm contractions; hold it if the mother's heart rate is above about 120, and watch for pulmonary edema",
+    "rationale": "Terbutaline causes hyperglycemia, low potassium, and a racing heart. It is not continued if chest pain or fluid in the lungs appears.",
+    "topic": "Pharm / OB"
+  },
+  "PREVIA": {
+    "clue": "Placenta covering the cervix, causing painless bright-red bleeding; no vaginal exams",
+    "rationale": "Placenta previa is confirmed by ultrasound, and delivery is often by cesarean. Digital examination can cause catastrophic bleeding.",
+    "topic": "OB"
+  },
+  "ABRUPTION": {
+    "clue": "Placenta separating early, with painful dark bleeding and a rigid uterus; the bleed can be hidden",
+    "rationale": "Abruption is an emergency for mother and fetus, and the risk rises with hypertension, trauma, and cocaine. Prepare for delivery and for blood replacement.",
+    "topic": "OB"
+  },
+  "PROLAPSE": {
+    "clue": "Umbilical cord slipping ahead of the baby; lift the presenting part with a gloved hand and do not take the hand away",
+    "rationale": "Cord prolapse uses knee-chest or Trendelenburg position, oxygen, and emergency cesarean. Do not push the cord back in, and stop oxytocin.",
+    "topic": "OB"
+  },
+  "KNEECHEST": {
+    "clue": "Position that uses gravity to take the baby's weight off a prolapsed cord",
+    "rationale": "Knee-chest or a steep Trendelenburg position is used while a hand lifts the presenting part. Oxygen is given and the operating room is called.",
+    "topic": "OB"
+  },
+  "VEALCHOP": {
+    "clue": "Memory aid: variable decelerations mean cord, early mean head, accelerations are reassuring, and late mean placental insufficiency",
+    "rationale": "Variable decelerations are treated by repositioning to relieve cord pressure. Late decelerations get position change, oxygen, fluids, and oxytocin stopped.",
+    "topic": "OB"
+  },
+  "LATE": {
+    "clue": "Decelerations that begin after the contraction starts and mean uteroplacental insufficiency; turn, give oxygen and fluids, and stop oxytocin",
+    "rationale": "Late decelerations are a nonreassuring pattern. Left side, oxygen, an intravenous fluid bolus, and stopping the uterotonic come before waiting for the next tracing.",
+    "topic": "OB"
+  },
+  "VARIABLE": {
+    "clue": "Abrupt decelerations from cord compression; reposition the mother, and an amnioinfusion may be ordered",
+    "rationale": "Variable decelerations look like V shapes and change with position. Prolapse is considered if they are sudden and severe after membrane rupture.",
     "topic": "OB"
   },
   "MCROBERTS": {
-    "clue": "Maternal thigh flexion that opens the pelvis during shoulder dystocia",
-    "rationale": "McRoberts position is the first maneuver for shoulder dystocia. It is paired with suprapubic, not fundal, pressure.",
+    "clue": "Maneuver that flexes the mother's thighs onto her abdomen to free a stuck shoulder",
+    "rationale": "McRoberts maneuver plus suprapubic pressure is the first response to shoulder dystocia. Fundal pressure is not used, because it wedges the shoulder harder.",
     "topic": "OB"
   },
-  "PKUTEST": {
-    "clue": "Newborn screen for phenylketonuria, drawn after feeding has started",
-    "rationale": "The metabolic screen includes phenylketonuria. It is collected after protein feeding so metabolites are present.",
+  "SUPRAPUBIC": {
+    "clue": "Pressure just above the pubic bone used to dislodge a stuck anterior shoulder; fundal pressure is the wrong place",
+    "rationale": "Suprapubic pressure is directed to rotate the shoulder under the pubic bone. Fundal pressure worsens the impaction and is not part of shoulder-dystocia relief.",
+    "topic": "OB"
+  },
+  "ATONY": {
+    "clue": "Failure of the uterus to contract, the most common cause of postpartum hemorrhage; the fundus is boggy",
+    "rationale": "Uterine atony is treated with fundal massage, an empty bladder, and uterotonics such as oxytocin. It is more likely after a long labor, multiple gestation, or magnesium.",
+    "topic": "OB"
+  },
+  "PPH": {
+    "clue": "Postpartum hemorrhage, a leading cause of maternal death; massage a boggy fundus, call for help, and start the hemorrhage protocol",
+    "rationale": "Soaking a pad in about 15 minutes, or more than one pad an hour, with clots or a soft uterus, is excessive. Causes include atony, laceration, retained tissue, and hematoma.",
+    "topic": "OB"
+  },
+  "REEDA": {
+    "clue": "Perineal assessment: redness, edema, ecchymosis, discharge, and approximation of the edges",
+    "rationale": "REEDA is used after an episiotomy or laceration. Ice is used in the first day, then warmth such as a sitz bath, and separation or pus is reported.",
+    "topic": "OB"
+  },
+  "MASTITIS": {
+    "clue": "Breast infection with a flu-like fever and a wedge of red, painful breast; keep emptying the breast, and start antibiotics",
+    "rationale": "Mastitis is not a reason to stop breastfeeding. Stasis from a missed feed is a common trigger, and an abscess is suspected if a mass does not improve.",
+    "topic": "OB"
+  },
+  "RHNEGATIVE": {
+    "clue": "Mother who, if unsensitized, receives Rho(D) immune globulin at 28 weeks and again within 72 hours after an Rh-positive birth",
+    "rationale": "Immune globulin is also given after miscarriage, trauma, amniocentesis, or bleeding. It does not help a mother who is already sensitized, which is why the antibody screen is checked.",
+    "topic": "OB"
+  },
+  "ECTOPIC": {
+    "clue": "Pregnancy outside the uterus, usually in a tube; one-sided pain, bleeding, and shoulder pain with dizziness mean rupture",
+    "rationale": "A ruptured ectopic pregnancy is hemorrhagic shock. Methotrexate is only for a stable, unruptured ectopic that meets criteria; shoulder pain and a falling blood pressure mean surgery.",
+    "topic": "OB"
+  },
+  "HERPES": {
+    "clue": "Active genital lesions at the start of labor are a reason for cesarean birth so the newborn does not pass through them",
+    "rationale": "Herpes is suppressed with acyclovir in late pregnancy when prescribed. If no lesions are present at labor, vaginal birth is not automatically ruled out.",
+    "topic": "OB"
+  },
+  "CESAREAN": {
+    "clue": "Birth route used for active genital herpes lesions, placenta previa, cord prolapse, and a transverse lie",
+    "rationale": "A prior low-transverse cesarean does not always require another; a classical uterine scar usually does. Recovery includes incision care, early walking, and the same fundal and lochia checks.",
+    "topic": "OB"
+  },
+  "PSYCHOSIS": {
+    "clue": "Postpartum emergency with hallucinations or delusions and a risk of harm to the infant; do not leave the mother alone with the baby",
+    "rationale": "Postpartum psychosis is not the baby blues. It needs immediate psychiatric treatment, while the blues are transient mood swings in the first two weeks in a mother who can still care for the infant.",
+    "topic": "Psych"
+  },
+  "PPV": {
+    "clue": "Positive-pressure breaths, the key step when a newborn is not breathing or the heart rate stays under 100 after drying and stimulation",
+    "rationale": "Most newborns respond to drying and stimulation. If the heart rate remains under 60 despite effective ventilation, chest compressions are added at a 3-to-1 ratio with oxygen.",
     "topic": "Newborn"
   },
-  "GAVAGE": {
-    "clue": "Feeding through a tube when a newborn cannot safely suck and swallow",
-    "rationale": "Gavage feeding checks tube placement before each feed. Residual volume is assessed per unit policy.",
+  "BULB": {
+    "clue": "Suction device used on a newborn's mouth first, then the nose, so a gasp does not inhale secretions",
+    "rationale": "Mouth-before-nose suction is remembered as M before N. Deep, vigorous suctioning is avoided because it causes bradycardia, and routine suction of a vigorous infant is not needed.",
     "topic": "Newborn"
   },
-  "CELIAC": {
-    "clue": "Gluten-sensitive enteropathy with foul stools and poor growth",
-    "rationale": "Celiac disease is treated with a strict gluten-free diet. Diagnosis is confirmed before the diet is started when possible.",
-    "topic": "GI"
+  "VITAMINK": {
+    "clue": "Injection given in the newborn's thigh soon after birth to prevent bleeding, because the gut is sterile and cannot yet make it",
+    "rationale": "Vitamin K, phytonadione, is intramuscular in the vastus lateralis, not a cord treatment. Refusal is documented after teaching about hemorrhagic disease.",
+    "topic": "Newborn"
   },
-  "CYSTICFIB": {
-    "clue": "Genetic disease with thick mucus, salty sweat, and malabsorption",
-    "rationale": "Cystic fibrosis affects lungs and pancreas. Airway clearance and pancreatic enzymes are daily care.",
+  "PKU": {
+    "clue": "Newborn screen for phenylketonuria; the infant needs a special low-phenylalanine formula to prevent intellectual disability",
+    "rationale": "PKU testing is done after feeding has started so metabolites are present, and abnormal results are followed quickly. Ordinary formula or milk is not used.",
+    "topic": "Newborn"
+  },
+  "COLDSTRESS": {
+    "clue": "Newborn hypothermia that burns glucose and oxygen and can cause respiratory distress and low blood sugar",
+    "rationale": "Newborns do not shiver well and use brown fat instead. Dry them, put on a hat, and use skin-to-skin or a radiant warmer so cold stress does not start a downward spiral.",
+    "topic": "Newborn"
+  },
+  "FONTANEL": {
+    "clue": "Soft spot that is sunken in dehydration and bulging at rest when pressure is high; the anterior one closes around 12 to 18 months",
+    "rationale": "The posterior fontanel closes by about 2 to 3 months. Bulging while crying can be normal; bulging at rest, with vomiting or a high-pitched cry, is not.",
+    "topic": "Newborn"
+  },
+  "HONEY": {
+    "clue": "Food withheld until 12 months because it can cause infant botulism",
+    "rationale": "Honey, including in baked goods and on a pacifier, is unsafe for infants. Botulism causes a weak cry, constipation, and descending paralysis that can stop breathing.",
+    "topic": "Peds"
+  },
+  "CARSEAT": {
+    "clue": "Rear-facing seat in the back, used from the first ride home, for as long as the seat's limits allow",
+    "rationale": "Harnesses are snug, at or below the shoulders when rear-facing, and thick coats are not worn under the straps. The front seat with an airbag is never used for an infant.",
+    "topic": "Safety"
+  },
+  "WILMS": {
+    "clue": "Childhood kidney tumor; do not palpate the abdomen, because handling can rupture it and spread it",
+    "rationale": "Wilms tumor may present as a flank mass and sometimes hypertension. A sign is posted on the bed that the abdomen is not to be palpated.",
     "topic": "Peds"
   },
   "KAWASAKI": {
-    "clue": "Childhood vasculitis with fever, rash, strawberry tongue, and coronary risk",
-    "rationale": "Kawasaki disease is treated with IV immunoglobulin and aspirin. The coronary arteries are the concern.",
+    "clue": "At least 5 days of fever plus several signs such as rash, red eyes, strawberry tongue, or swollen hands; treat with immune globulin and aspirin",
+    "rationale": "Kawasaki disease needs prolonged fever plus several classic mucocutaneous signs, and it can inflame the coronary arteries. Aspirin is used here despite the usual ban in children, and echocardiograms follow the vessels.",
     "topic": "Peds"
   },
-  "STRAWBERRY": {
-    "clue": "Red tongue with prominent papillae seen in Kawasaki disease and scarlet fever",
-    "rationale": "A strawberry tongue is a clue, not a diagnosis. Fever pattern and the rest of the exam decide the illness.",
+  "REYE": {
+    "clue": "Liver failure and encephalopathy in a child given aspirin during a viral illness such as influenza or chickenpox",
+    "rationale": "Reye syndrome is why aspirin is not used for routine pediatric fever. Exceptions such as Kawasaki disease are specific prescriber decisions, not home use.",
     "topic": "Peds"
   },
-  "SCARLET": {
-    "clue": "Sandpaper rash and strawberry tongue after group A strep",
-    "rationale": "Scarlet fever is treated as streptococcal infection. The rash does not mean the antibiotics can wait.",
+  "PROJECTILE": {
+    "clue": "Forceful nonbilious vomiting in a young infant that suggests pyloric stenosis, especially if the infant is hungry afterward",
+    "rationale": "Pyloric stenosis causes an olive-shaped mass and metabolic alkalosis from acid loss. Electrolytes are corrected before surgical repair.",
     "topic": "Peds"
   },
-  "RHEUMATIC": {
-    "clue": "Immune sequela of strep throat that can scar heart valves",
-    "rationale": "Rheumatic fever follows untreated strep. Prevention is treating streptococcal pharyngitis.",
+  "HYPOSPADIAS": {
+    "clue": "Urethral opening on the underside of the penis; circumcision is delayed because the foreskin is used in the repair",
+    "rationale": "Hypospadias is documented and the infant still voids, but the foreskin is left intact. Parents are told why the usual newborn circumcision is postponed.",
+    "topic": "Newborn"
+  },
+  "PINNA": {
+    "clue": "Outer ear pulled down and back for drops in a child under 3 years, and up and back in older children and adults",
+    "rationale": "Warm ear drops so they do not cause dizziness, and keep the child on the side briefly afterward. Cold drops against the eardrum cause pain and a vagal response.",
     "topic": "Peds"
   },
-  "OTITISMEDIA": {
-    "clue": "Middle-ear infection with a bulging tympanic membrane",
-    "rationale": "Acute otitis media is common after a cold. Treatment depends on age and severity; pain control is always part of it.",
+  "SHAKEN": {
+    "clue": "Abusive head trauma from shaking an infant, causing retinal hemorrhages and subdural bleeding, often with no outer bruise",
+    "rationale": "Teach caregivers to put the baby down and walk away when crying is unbearable. Vomiting, irritability, seizures, and a bulging fontanel after shaking are an emergency.",
     "topic": "Peds"
   },
-  "CROUP": {
-    "clue": "Barking cough and steeple sign treated with humidified air, steroid, and racemic epinephrine if severe",
-    "rationale": "Croup is viral subglottic swelling. Stridor at rest is more serious than a bark alone.",
-    "topic": "Airway"
+  "MANDATORY": {
+    "clue": "The nurse's duty to report suspected child or elder abuse; certainty is not required, and good-faith reports are protected",
+    "rationale": "Mandatory reporting is to the appropriate agency, with objective documentation. Do not investigate like a detective or warn the suspected abuser in a way that increases danger.",
+    "topic": "Ethics / legal"
   },
-  "PEAKFLOW": {
-    "clue": "Home device that shows airway narrowing before symptoms are severe",
-    "rationale": "Peak flow is compared with the patient's personal best. A drop into the red zone means the rescue plan.",
-    "topic": "Respiratory"
+  "COARCTATION": {
+    "clue": "Narrowed aorta with stronger pulses and higher blood pressure in the arms than in the legs",
+    "rationale": "Coarctation is suspected when femoral pulses are weak in an infant. Older children may have nosebleeds, leg cramps, and rib notching, and the defect is repaired to prevent hypertension and heart failure.",
+    "topic": "Peds"
   },
-  "SPACER": {
-    "clue": "Chamber that improves inhaled steroid and bronchodilator delivery",
-    "rationale": "A spacer with a mask or mouthpiece gets more drug into the lungs. It is especially important for children.",
-    "topic": "Respiratory"
-  },
-  "PAROXYSMAL": {
-    "clue": "Nighttime awakening with shortness of breath from heart failure",
-    "rationale": "Paroxysmal nocturnal dyspnea is a classic heart failure symptom. The patient wakes gasping.",
-    "topic": "Cardiac"
-  },
-  "ANGIOEDEMA": {
-    "clue": "Swelling of the face or airway from ACE inhibitors that is not treated like ordinary hives",
-    "rationale": "ACE inhibitor angioedema can threaten the airway. The drug is stopped permanently.",
-    "topic": "Emergency"
-  },
-  "HCTZ": {
-    "clue": "Thiazide diuretic that wastes potassium and can raise glucose and uric acid",
-    "rationale": "Hydrochlorothiazide is used for hypertension. It can worsen gout and lower potassium.",
+  "ALPROSTADIL": {
+    "clue": "Prostaglandin infusion that keeps the ductus arteriosus open in duct-dependent congenital heart disease; apnea is a key risk",
+    "rationale": "Alprostadil is the opposite of indomethacin, which is used to close a patent ductus in a preterm infant. The infant on alprostadil is monitored for apnea and hypotension.",
     "topic": "Pharm / cardiac"
   },
-  "OTOTOXIC": {
-    "clue": "Hearing damage from drugs such as aminoglycosides and rapid IV loop diuretics",
-    "rationale": "Ototoxicity is taught as ringing or hearing loss. Peak and trough levels limit aminoglycoside injury.",
-    "topic": "Pharm"
+  "SHORTENED": {
+    "clue": "Appearance of a leg with a hip fracture, which is also externally rotated",
+    "rationale": "A shortened, externally rotated leg is a hip fracture until proved otherwise. Neurovascular checks are repeated, and Buck traction may be used before surgery.",
+    "topic": "Musculoskeletal"
   },
-  "NEPHROTOXIC": {
-    "clue": "Kidney injury from drugs such as aminoglycosides, vancomycin, and NSAIDs",
-    "rationale": "Nephrotoxic drugs need a creatinine check and hydration. Combining several of them multiplies the risk.",
-    "topic": "Pharm"
+  "COMPARTMENT": {
+    "clue": "Syndrome of pain out of proportion, pain on passive stretch, and later pulselessness; loosen the cast and do not elevate or ice",
+    "rationale": "Compartment syndrome is a fasciotomy emergency. The first sign is severe pain, not a lost pulse, and elevation or ice reduces the remaining blood flow.",
+    "topic": "Musculoskeletal"
   },
-  "BROSELOW": {
-    "clue": "Color-coded tape that estimates pediatric drug doses from length",
-    "rationale": "The Broselow tape estimates weight from length in an emergency. It is a starting point, not a substitute for a scale when there is time.",
-    "topic": "Peds"
+  "PHANTOM": {
+    "clue": "Pain felt in a limb that has been amputated; it is real and is treated with analgesics",
+    "rationale": "Phantom limb pain is not imaginary and is not the same as incisional pain, though both are treated. Do not tell the patient the limb is gone so the pain cannot exist.",
+    "topic": "Musculoskeletal"
   },
-  "HANDOFF": {
-    "clue": "Shift report that includes current status, recent changes, and what to watch",
-    "rationale": "A handoff includes lines, wounds, pending tests, and the family's concerns. Bedside report lets the next nurse see the patient.",
-    "topic": "Communication"
+  "ABDUCTION": {
+    "clue": "Pillow position after a posterior hip replacement that keeps the legs apart so the hip does not dislocate",
+    "rationale": "Posterior approach precautions are no adduction past midline, no flexion past 90 degrees, and no internal rotation. The patient does not cross the legs or bend to tie shoes.",
+    "topic": "Musculoskeletal"
   },
-  "JUSTCULTURE": {
-    "clue": "Response to errors that looks at the system and at reckless behavior separately",
-    "rationale": "Just culture does not punish human error the same way it responds to reckless violation. Reporting is safer when that distinction is real.",
+  "ALENDRONATE": {
+    "clue": "Bisphosphonate taken in the morning with a full glass of water, then the patient stays upright for 30 minutes and eats nothing else yet",
+    "rationale": "Alendronate prevents esophageal burns only if the patient does not lie down. Report jaw pain, and do not take it with coffee, juice, or other pills.",
+    "topic": "Pharm / musculoskeletal"
+  },
+  "DEHISCENCE": {
+    "clue": "Separation of a wound edge; cover it with a sterile moist dressing, have the patient flex the knees slightly, and call the surgeon",
+    "rationale": "Dehiscence often follows a pop after coughing in an obese or malnourished patient. If organs protrude, do not push them back, keep the patient NPO, and stay at the bedside.",
+    "topic": "Perioperative"
+  },
+  "EVISCERATE": {
+    "clue": "Organs protruding through a separated wound; cover them with sterile saline gauze, do not push them back, and keep the knees bent",
+    "rationale": "Evisceration is a surgical emergency. Low Fowler position with knees flexed reduces strain, and the patient is kept NPO for the operating room.",
+    "topic": "Perioperative"
+  },
+  "DANTROLENE": {
+    "clue": "Antidote for malignant hyperthermia, a crisis of high carbon dioxide, rigidity, and then high fever triggered by certain anesthetics",
+    "rationale": "Dantrolene is given as soon as malignant hyperthermia is suspected, the triggering gas is stopped, and 100 percent oxygen is given. Fever is late; a rising end-tidal carbon dioxide is early.",
+    "topic": "Pharm / peri-op"
+  },
+  "STERILE": {
+    "clue": "Technique in which a 1-inch border, anything below the waist, and a wet field are considered contaminated",
+    "rationale": "Sterile gloves are used for invasive procedures such as a Foley insertion. Do not turn your back on the field, and do not reach over it.",
     "topic": "Safety"
   },
+  "TIMEOUT": {
+    "clue": "Pause immediately before incision to confirm the right patient, procedure, and site, plus allergies and antibiotics",
+    "rationale": "Any team member can stop a time-out. The site marking is checked with the consent, and the procedure does not start until the pause is complete.",
+    "topic": "Perioperative"
+  },
+  "INFORMED": {
+    "clue": "Consent in which the provider explains risks, benefits, and alternatives, and the nurse verifies understanding and witnesses the signature",
+    "rationale": "The nurse does not obtain consent by explaining the surgery in the provider's place. A sedated or confused patient cannot sign, and the nurse does not witness a signature the patient does not understand.",
+    "topic": "Ethics / legal"
+  },
+  "PARKLAND": {
+    "clue": "Burn fluid formula using lactated Ringer: 4 mL times weight in kilograms times percent burned, with half given in the first 8 hours from the time of injury",
+    "rationale": "The Parkland clock starts at the burn, not at arrival, so delayed care means a faster initial rate. Urine output, about 0.5 mL/kg per hour in adults, shows whether the volume is enough.",
+    "topic": "Integument"
+  },
+  "LATEX": {
+    "clue": "Allergy more common after many surgeries and in spina bifida, and linked to banana, avocado, kiwi, and chestnut",
+    "rationale": "A latex-allergic patient is first on the schedule in a latex-reduced room, with latex-free gloves and catheters. Balloons and powdered gloves do not enter.",
+    "topic": "Safety"
+  },
+  "ELECTRICAL": {
+    "clue": "Burn that can have a small skin wound and huge internal damage; monitor the heart and the urine for muscle pigment",
+    "rationale": "Electrical injury causes dysrhythmias and rhabdomyolysis. Cervical spine precautions are used if the patient fell, and urine output targets are higher to flush myoglobin.",
+    "topic": "Integument"
+  },
+  "THERMAL": {
+    "clue": "Heat burn; cool with water, not ice, remove jewelry, and cover with a clean dry sheet",
+    "rationale": "Ice worsens thermal injury by constricting vessels. Do not apply butter or ointments to a major burn, and treat airway smoke exposure first.",
+    "topic": "Integument"
+  },
+  "UAP": {
+    "clue": "Assistive personnel who may take routine vital signs on a stable patient, help with hygiene and walking, and record intake and output, but do not assess or teach",
+    "rationale": "Unlicensed assistive personnel do not give medications, perform sterile procedures, or take a newly unstable patient. The nurse follows up on any abnormal value they report.",
+    "topic": "Delegation"
+  },
   "DELEGATION": {
-    "clue": "Giving a task to assistive personnel while keeping the accountability for the outcome",
-    "rationale": "Nurses delegate tasks, not the nursing process. Unstable assessment and teaching are not delegated.",
-    "topic": "Leadership"
+    "clue": "Transfer of a task using the right task, circumstance, person, direction, and supervision; assessment, teaching, and evaluation stay with the RN",
+    "rationale": "The nurse who delegates remains accountable for the outcome and must say what to report back and when.",
+    "topic": "Delegation"
   },
-  "PRIORITIZE": {
-    "clue": "Seeing the patient with an airway or circulation threat before the patient who needs routine care",
-    "rationale": "Priority goes to airway, breathing, circulation, then safety. A new sudden change outranks a scheduled task.",
-    "topic": "Priority"
+  "ASSESSMENT": {
+    "clue": "The initial and ongoing comprehensive judgment that the RN does not delegate",
+    "rationale": "Collecting a vital sign can be delegated; interpreting a new change and examining the patient cannot. If the status changes, the RN takes the patient back.",
+    "topic": "Delegation"
   },
-  "EVALUATE": {
-    "clue": "Step that asks whether the goal was met and changes the plan if it was not",
-    "rationale": "Evaluation compares the outcome with the goal. If the goal was missed, the plan changes rather than being repeated unchanged.",
-    "topic": "Priority"
+  "RACE": {
+    "clue": "Fire response order: rescue the patient, activate the alarm, contain the fire, then extinguish or evacuate",
+    "rationale": "Rescue comes before the extinguisher. Oxygen is shut off if it can be done safely, doors are closed to contain smoke, and ambulatory patients are moved past the fire doors.",
+    "topic": "Safety"
+  },
+  "PASS": {
+    "clue": "Extinguisher steps: pull the pin, aim at the base, squeeze, and sweep",
+    "rationale": "Aim at the base of the fire, not the flames. PASS is used only after RACE has started and if the fire is small and the exit is at your back.",
+    "topic": "Safety"
+  },
+  "PRN": {
+    "clue": "An as-needed order, which is never acceptable as the only order for a restraint",
+    "rationale": "Restraint orders are time-limited and based on a current assessment, not written 'PRN restraint.' Pain medicine and laxatives can be PRN; tying a patient cannot.",
+    "topic": "Safety"
+  },
+  "INCIDENT": {
+    "clue": "Internal safety report after an error or a near miss; it is not mentioned in the medical record and does not replace factual charting",
+    "rationale": "The chart states what happened and what was done for the patient. It does not say that an incident report was filed, and the report is not copied into the chart.",
+    "topic": "Ethics / legal"
+  },
+  "TEACHBACK": {
+    "clue": "Asking the patient to explain or demonstrate, which confirms understanding better than a nod or a yes",
+    "rationale": "Teach-back is 'show me how you will take this,' not 'do you understand?' Reteach in a different way if the explanation is wrong, and do it when pain and anxiety are controlled.",
+    "topic": "Safety"
+  },
+  "INTERPRETER": {
+    "clue": "Qualified language professional required for consent and teaching; do not use a child or an untrained family member",
+    "rationale": "Speak to the patient, not to the interpreter, and use teach-back. A bilingual staff member is used only if that person is an approved interpreter.",
+    "topic": "Ethics / legal"
+  },
+  "DOXORUBICIN": {
+    "clue": "Chemotherapy that can cause heart failure as the lifetime dose adds up, and that turns urine red, which is expected and not blood",
+    "rationale": "Doxorubicin is a vesicant, so extravasation is treated immediately and the infusion is not flushed blindly. Ejection fraction is checked, and the cumulative dose is tracked.",
+    "topic": "Pharm / oncology"
+  },
+  "VINCRISTINE": {
+    "clue": "Chemotherapy that causes nerve damage and severe constipation and is fatal if given into the spinal fluid",
+    "rationale": "Vincristine is intravenous only and is fatal if given into the spinal fluid. Start a bowel regimen early, report numbness, and remember that it causes little marrow suppression.",
+    "topic": "Pharm / oncology"
+  },
+  "NADIR": {
+    "clue": "Lowest blood counts after chemotherapy, often 7 to 14 days later, when infection and bleeding risk peak",
+    "rationale": "The nadir is when neutropenic precautions and bleeding precautions are strictest. A fever at nadir is an emergency, not a symptom to mention at the next visit.",
+    "topic": "Oncology"
+  },
+  "TLS": {
+    "clue": "Tumor lysis syndrome: after chemotherapy, uric acid, potassium, and phosphate rise and calcium falls; hydrate and monitor the heart",
+    "rationale": "Tumor lysis can cause fatal arrhythmias from hyperkalemia. Allopurinol or a similar drug plus fluids limit uric acid, and the patient is on a cardiac monitor.",
+    "topic": "Oncology"
+  },
+  "IRON": {
+    "clue": "Mineral taken with vitamin C, not with milk or antacids; liquid doses use a straw so teeth do not stain, and stools turn dark",
+    "rationale": "Iron is best on an empty stomach if it is tolerated, and constipation is expected. It does not fix anemia from B12 deficiency, and children can be fatally poisoned by adult tablets.",
+    "topic": "Pharm / heme"
+  },
+  "COBALAMIN": {
+    "clue": "Vitamin B12, missing in pernicious anemia because intrinsic factor is absent; nerve damage can become permanent if replacement is delayed",
+    "rationale": "B12 deficiency causes megaloblastic anemia plus paresthesias and ataxia. Folate alone can fix the anemia and hide the deficiency while the nerves keep dying.",
+    "topic": "Pharm / heme"
+  },
+  "FOLATE": {
+    "clue": "Vitamin whose deficiency causes megaloblastic anemia without the nerve damage of B12 deficiency, and whose use before conception lowers neural-tube defect risk",
+    "rationale": "Folate is started before pregnancy, commonly 400 micrograms daily, because the neural tube closes very early. Alcohol use and methotrexate interfere with folate.",
+    "topic": "Pharm / heme"
+  },
+  "SICKLING": {
+    "clue": "Red cells crescent under low oxygen, dehydration, or cold; prevention is fluids, warmth, and infection control",
+    "rationale": "Sickle cell crisis pain is treated with opioids other than meperidine, plus fluids and oxygen if saturation is low. Fever is an emergency because the spleen does not clear encapsulated bacteria.",
+    "topic": "Heme"
+  },
+  "FACTOR": {
+    "clue": "Replacement that stops bleeding in hemophilia; do not give aspirin or intramuscular injections",
+    "rationale": "Hemophilia A lacks factor VIII and hemophilia B lacks factor IX. Joint bleeding is rested, iced, compressed, and elevated, and the missing factor is given promptly.",
+    "topic": "Heme"
+  },
+  "EPOETIN": {
+    "clue": "Injection that stimulates red-cell production in chronic kidney disease; it can raise blood pressure and clot risk, and the vial is not shaken",
+    "rationale": "Epoetin is not titrated to a normal hemoglobin, because higher targets increase stroke and thrombosis. Check blood pressure before the dose.",
+    "topic": "Pharm / heme"
+  },
+  "REJECTION": {
+    "clue": "Fever, graft tenderness, and rising creatinine after a kidney transplant; immunosuppressants are lifelong and doses are not skipped",
+    "rationale": "Rejection is reported the same day. The tradeoff of tacrolimus and similar drugs is infection and nephrotoxicity, and grapefruit is avoided.",
+    "topic": "Renal"
+  },
+  "JACKSON": {
+    "clue": "Closed drain whose bulb is compressed to restore suction; a sudden increase or foul odor is reported",
+    "rationale": "A Jackson-Pratt drain is emptied and measured, and the bulb is recollapsed. It is not stripped routinely, and it is not advanced or removed without an order.",
+    "topic": "Perioperative"
+  },
+  "CONTRAST": {
+    "clue": "Iodinated dye that can injure kidneys; hold metformin around the study, hydrate, and ask about prior dye reactions rather than about shellfish",
+    "rationale": "A shellfish allergy does not predict contrast reaction. Metformin is held because of lactic acidosis risk if the kidneys are injured, and creatinine is checked.",
+    "topic": "Safety"
+  },
+  "VESICANT": {
+    "clue": "Chemotherapy that blisters tissue if it extravasates; stop the infusion for burning, and do not flush the line blindly",
+    "rationale": "A vesicant protocol usually leaves the catheter in place so the drug can be aspirated and an antidote given. Apply the ordered compress, not a random heat or ice pack.",
+    "topic": "Oncology"
+  },
+  "ONDANSETRON": {
+    "clue": "Antiemetic given before chemotherapy, not after vomiting is severe; it prolongs the QT interval and causes headache",
+    "rationale": "Ondansetron is a serotonin blocker and can constipate. It is less useful for nausea from vestibular causes or from a full bowel obstruction.",
+    "topic": "Pharm / GI"
+  },
+  "BLEOMYCIN": {
+    "clue": "Chemotherapy that scars the lungs; high oxygen concentrations are avoided when possible because they worsen the injury",
+    "rationale": "Bleomycin toxicity shows as cough, dyspnea, and a falling diffusion capacity. Pulmonary function is followed, and fever during infusion can occur.",
+    "topic": "Pharm / oncology"
+  },
+  "CEPHALIC": {
+    "clue": "Head-down fetal presentation, the favorable position for a vaginal birth",
+    "rationale": "A flexed head-down presentation is the most favorable. Breech and transverse lies raise the risk of cord prolapse and usually need a cesarean plan.",
+    "topic": "OB"
+  },
+  "SHAVER": {
+    "clue": "Use an electric one rather than a blade when platelets are low or the patient is anticoagulated",
+    "rationale": "Bleeding precautions also include a soft toothbrush, no intramuscular injections, no rectal temperatures, and prolonged pressure on puncture sites.",
+    "topic": "Safety"
+  },
+  "TAMPON": {
+    "clue": "Item that, if left in too long, can cause sudden fever, rash, and low blood pressure; a diaphragm left in too long can do the same",
+    "rationale": "Toxic shock is treated as sepsis: remove the device, give fluids and antibiotics, and teach patients to change tampons every few hours.",
+    "topic": "Infection control"
+  },
+  "RSV": {
+    "clue": "Virus that causes bronchiolitis in infants; use contact precautions, suction, and oxygen, not routine antibiotics",
+    "rationale": "Respiratory syncytial virus is most dangerous in young infants. Palivizumab can prevent severe disease in high-risk infants and is not a treatment for an active infection.",
+    "topic": "Peds"
+  },
+  "HOB": {
+    "clue": "Head of the bed, raised at least 30 degrees during tube feeding and for about an hour afterward to prevent aspiration",
+    "rationale": "HOB elevation is also the position for dyspnea and for intracranial-pressure control around 30 degrees. Supine feeding is an aspiration setup.",
+    "topic": "Safety"
+  },
+  "NST": {
+    "clue": "Abbreviation for the fetal nonstress test; reactive means two accelerations in 20 minutes",
+    "rationale": "The NST uses an external monitor and does not use contractions. Vibroacoustic stimulation may be used to wake a sleeping fetus before calling the test nonreactive.",
+    "topic": "OB"
+  },
+  "AKI": {
+    "clue": "Acute kidney injury, sorted as poor perfusion, kidney damage, or obstruction; potassium and fluid are restricted when urine output is very low",
+    "rationale": "Prerenal injury from dehydration can reverse with careful fluids. Intrarenal injury such as acute tubular necrosis and postrenal obstruction need different treatment, and contrast and NSAIDs are common toxins.",
+    "topic": "Renal"
+  },
+  "NEC": {
+    "clue": "Necrotizing enterocolitis of preterm infants: feeding intolerance, a distended belly, and bloody stool; stop feeds",
+    "rationale": "NEC is a bowel emergency with a risk of perforation. The infant is made NPO, an abdominal film is done, and antibiotics and surgical consultation follow.",
+    "topic": "Newborn"
+  },
+  "TPN": {
+    "clue": "Intravenous nutrition through a central line; if the bag runs out, hang a dextrose infusion so blood sugar does not crash",
+    "rationale": "Total parenteral nutrition is a high infection risk and needs strict asepsis and glucose checks. Lipids are given on their own schedule, and the line is not used casually for blood draws and incompatible drugs.",
+    "topic": "GI"
+  },
+  "DIC": {
+    "clue": "Consumptive clotting that uses up factors and platelets, so the patient both clots and bleeds; it complicates sepsis, abruption, and trauma",
+    "rationale": "Disseminated intravascular coagulation is treated by fixing the cause, such as delivering the placenta or treating sepsis, and by replacing blood products. Heparin is sometimes used but is not the first nursing action.",
+    "topic": "Heme"
   }
 }
