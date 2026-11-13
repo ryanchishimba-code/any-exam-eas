@@ -1,0 +1,1722 @@
+{
+  "JANEWAY": {
+    "clue": "Painless macular lesions on palms or soles in infective endocarditis",
+    "rationale": "Janeway lesions are painless erythematous macules on the palms or soles from septic microemboli. They are a vascular phenomenon of infective endocarditis.",
+    "topic": "Cardiology"
+  },
+  "DIGOXIN": {
+    "clue": "Cardiac glycoside for rate control; toxicity brings yellow vision and arrhythmias when potassium is low",
+    "rationale": "Digoxin slows the ventricular rate in atrial fibrillation and can help symptoms in systolic heart failure. Hypokalemia potentiates toxicity, which causes gastrointestinal symptoms, xanthopsia, and arrhythmias; digoxin-specific antibody is the antidote for severe toxicity.",
+    "topic": "Cardiology"
+  },
+  "QUINIDINE": {
+    "clue": "Class Ia antiarrhythmic that causes cinchonism and can trigger a twisting polymorphic ventricular rhythm",
+    "rationale": "Quinidine is a class Ia sodium-channel blocker. Cinchonism (tinnitus, headache, visual change) and QT prolongation with torsades are classic toxicities, and it can raise digoxin levels.",
+    "topic": "Cardiology"
+  },
+  "ENOXAPARIN": {
+    "clue": "Low-molecular-weight heparin preferred for many clots in pregnancy; dose it to kidney function",
+    "rationale": "Enoxaparin is a low-molecular-weight heparin monitored with anti-Xa when monitoring is needed, not with aPTT. It is preferred for many venous clots in pregnancy and needs dose adjustment or avoidance when kidney function is poor.",
+    "topic": "Cardiology"
+  },
+  "HYDRALAZINE": {
+    "clue": "Arterial vasodilator for pregnancy hypertension and, with a nitrate, for some heart failure; it can cause a lupus-like syndrome",
+    "rationale": "Hydralazine dilates arterioles. It is used for hypertension in pregnancy and, combined with a nitrate, for HFrEF when an ACE inhibitor or ARB cannot be used; drug-induced lupus is a classic adverse effect.",
+    "topic": "Cardiology"
+  },
+  "SQUATTING": {
+    "clue": "Posture that softens the murmur of hypertrophic obstructive cardiomyopathy and can ease tet spells",
+    "rationale": "Squatting increases preload and afterload, which reduces dynamic left-ventricular outflow obstruction and softens the hypertrophic-cardiomyopathy murmur. Children with tetralogy spells may instinctively squat, which raises systemic resistance and improves pulmonary flow.",
+    "topic": "Cardiology"
+  },
+  "PJP": {
+    "clue": "Fungal pneumonia of advanced HIV with hypoxia and ground-glass infiltrates; treat and prevent with trimethoprim-sulfa",
+    "rationale": "Pneumocystis jirovecii pneumonia occurs when the CD4 count is below about 200. It causes dry cough, fever, hypoxia, high LDH, and ground-glass infiltrates; trimethoprim-sulfamethoxazole treats and prevents it; steroids are added when oxygenation is poor.",
+    "topic": "Pulmonology"
+  },
+  "ISONIAZID": {
+    "clue": "Tuberculosis drug that causes hepatitis and neuropathy prevented by vitamin B6",
+    "rationale": "Isoniazid kills mycobacteria and can cause hepatitis and peripheral neuropathy. Pyridoxine prevents the neuropathy; it also causes drug-induced lupus and can trigger seizures in overdose, which are treated with intravenous pyridoxine.",
+    "topic": "Pulmonology"
+  },
+  "PYRIDOXINE": {
+    "clue": "Vitamin B6 coadministered with isoniazid to prevent peripheral neuropathy",
+    "rationale": "Pyridoxine prevents isoniazid neuropathy and is the antidote for isoniazid-induced seizures. Deficiency also causes sideroblastic anemia and is a cofactor in niacin synthesis.",
+    "topic": "Pulmonology"
+  },
+  "SQUAMOUS": {
+    "clue": "Keratin-pearl carcinoma; in the lung it is central, cavitates, and can raise calcium",
+    "rationale": "Squamous cell lung cancer is central, linked to smoking, may cavitate, and can secrete PTHrP to raise calcium. The same histology arises in sun-damaged skin and in a chronic burn scar or nonhealing wound.",
+    "topic": "Pulmonology"
+  },
+  "OMEPRAZOLE": {
+    "clue": "Proton-pump inhibitor for reflux and ulcer disease; long-term use raises C. difficile risk",
+    "rationale": "Omeprazole blocks the parietal-cell proton pump and heals erosive esophagitis and peptic ulcers. Long-term use is associated with C. difficile infection, hypomagnesemia, B12 deficiency, and fracture risk, so the indication should stay current.",
+    "topic": "GI"
+  },
+  "FLAPPING": {
+    "clue": "Irregular lapse of posture of the outstretched hands in hepatic encephalopathy",
+    "rationale": "Asterixis is a negative myoclonus seen in hepatic encephalopathy, and also in uremia and hypercapnia. It is not specific for liver failure but is a classic bedside finding.",
+    "topic": "GI"
+  },
+  "JAUNDICE": {
+    "clue": "Yellow skin from bilirubin; pale stools and dark urine suggest obstruction",
+    "rationale": "Jaundice is visible bilirubin in the skin. Unconjugated pigment does not darken the urine; conjugated pigment from obstruction or hepatitis darkens urine and, if the duct is blocked, pales the stool.",
+    "topic": "GI"
+  },
+  "METHIMAZOLE": {
+    "clue": "First-line antithyroid drug except in the first trimester; it can cause agranulocytosis",
+    "rationale": "Methimazole is the preferred thionamide outside the first trimester of pregnancy. Fever and sore throat suggest agranulocytosis, and the drug is stopped immediately; in the first trimester, propylthiouracil is preferred because of methimazole teratogenicity.",
+    "topic": "Endocrine"
+  },
+  "STORM": {
+    "clue": "Life-threatening hyperthyroid crisis with fever and tachycardia; give a beta blocker, a thionamide, then iodine, and steroids",
+    "rationale": "Thyroid storm is exaggerated thyrotoxicosis with fever, tachycardia, and altered mentation. Give a beta blocker, a thionamide before iodine so new hormone is not fueled, glucocorticoids, and supportive care; do not use aspirin, which can raise free hormone.",
+    "topic": "Endocrine"
+  },
+  "WHITEMATTER": {
+    "clue": "White-matter lesions separated in time and space in a young adult, often after optic neuritis",
+    "rationale": "Multiple sclerosis requires lesions disseminated in time and space. Optic neuritis, internuclear ophthalmoplegia, and periventricular white-matter plaques are classic; acute relapses are treated with steroids; disease-modifying therapy is separate.",
+    "topic": "Neuro"
+  },
+  "PYOGENIC": {
+    "clue": "Ring-enhancing brain lesion after sinus or dental infection; many lesions in advanced HIV suggest toxoplasma",
+    "rationale": "A pyogenic brain abscess is usually a ring-enhancing lesion from contiguous sinus, ear, or dental infection, or from hematogenous seeding. In advanced HIV, multiple ring-enhancing lesions are toxoplasmosis until proven otherwise.",
+    "topic": "Neuro"
+  },
+  "GONDI": {
+    "clue": "Species name paired with Toxoplasma; it causes multiple ring-enhancing brain lesions in advanced HIV",
+    "rationale": "Toxoplasma gondii causes multiple ring-enhancing brain lesions when the CD4 count is below about 100, and prophylaxis is trimethoprim-sulfamethoxazole. Congenital infection causes chorioretinitis, hydrocephalus, and intracranial calcifications.",
+    "topic": "Neuro"
+  },
+  "CLOZAPINE": {
+    "clue": "Most effective antipsychotic, reserved for treatment resistance; it requires neutrophil monitoring",
+    "rationale": "Clozapine is the most effective antipsychotic and is used for treatment-resistant schizophrenia and for suicide risk. Agranulocytosis requires absolute-neutrophil monitoring; seizures, myocarditis, severe constipation, and metabolic syndrome are other risks.",
+    "topic": "Psych"
+  },
+  "GAD": {
+    "clue": "Excessive worry on most days for six months; buspirone is a non-sedating option that takes weeks to work",
+    "rationale": "Generalized anxiety disorder is excessive, hard-to-control worry for at least six months with physical symptoms. SSRIs, SNRIs, and cognitive behavioral therapy are first-line; buspirone is a nonaddictive adjunct that does not treat acute panic.",
+    "topic": "Psych"
+  },
+  "REFEEDING": {
+    "clue": "Restrictive eating with a very low body weight; watch phosphate when nutrition is restarted",
+    "rationale": "Anorexia nervosa is restriction leading to significantly low body weight plus fear of weight gain or behavior that prevents gain. Bradycardia, lanugo, and bone loss are medical complications; refeeding can drop phosphate, potassium, and magnesium and must be monitored.",
+    "topic": "Psych"
+  },
+  "NALOXONE": {
+    "clue": "Opioid antagonist for overdose with slowed breathing; repeat it because it wears off before many opioids do",
+    "rationale": "Naloxone reverses opioid-induced respiratory depression. Its duration is shorter than that of many opioids, including methadone and some fentanyl exposures, so patients are observed and redosed; it can precipitate withdrawal.",
+    "topic": "Psych"
+  },
+  "LORAZEPAM": {
+    "clue": "Benzodiazepine preferred when the liver is impaired and for the first dose in status epilepticus",
+    "rationale": "Lorazepam is conjugated directly and has no active metabolites, so it is preferred in liver disease. Intravenous lorazepam is the initial drug for status epilepticus, and it is also used for alcohol withdrawal.",
+    "topic": "Psych"
+  },
+  "SJOGREN": {
+    "clue": "Dry eyes and dry mouth with anti-Ro and anti-La antibodies; lymphoma risk is increased",
+    "rationale": "Sjogren syndrome is lymphocytic destruction of salivary and lacrimal glands causing keratoconjunctivitis sicca and xerostomia, with anti-SSA/Ro and anti-SSB/La. Dental caries and parotid enlargement occur; the lymphoma risk, especially MALT, is increased; anti-Ro can cause neonatal heart block.",
+    "topic": "MSK"
+  },
+  "METACARPAL": {
+    "clue": "Fracture of the neck of the fifth hand bone after a punch against a hard surface",
+    "rationale": "A boxer's fracture is a fracture of the fifth metacarpal neck, usually from a closed-fist blow. Look for a fight bite if a tooth lacerated the knuckle, because that wound is infected until proven otherwise and needs antibiotics, not simple closure.",
+    "topic": "MSK"
+  },
+  "DENSITY": {
+    "clue": "Measurement of bone mineral; a T-score of -2.5 or lower defines osteoporosis",
+    "rationale": "DXA measures bone mineral density. A T-score at or below -2.5 is osteoporosis, and between -1 and -2.5 is osteopenia; women 65 and older are screened, and younger postmenopausal women are screened when risk is high.",
+    "topic": "MSK"
+  },
+  "OXYTOCIN": {
+    "clue": "Hormone used to induce labor and to contract the uterus after delivery",
+    "rationale": "Oxytocin induces or augments labor and is first-line for postpartum uterine atony. Prolonged infusion has an antidiuretic effect and can cause water intoxication; fetal monitoring is continuous during induction.",
+    "topic": "OB/GYN"
+  },
+  "JARISCH": {
+    "clue": "Fever and rigors within hours of the first antibiotic dose for syphilis; it is not a drug allergy",
+    "rationale": "The Jarisch-Herxheimer reaction is fever, rigors, and sometimes hypotension hours after antibiotics are started for spirochetes, from release of bacterial products. It is self-limited and is not an allergy, so treatment is not abandoned.",
+    "topic": "ID"
+  },
+  "JONES": {
+    "clue": "Mnemonic for the major rheumatic-fever findings: joints, heart, nodules, a migrating rash, and chorea",
+    "rationale": "The Jones criteria are the major manifestations of acute rheumatic fever: migratory polyarthritis, carditis, subcutaneous nodules, erythema marginatum, and Sydenham chorea, plus evidence of preceding strep. Penicillin treats the strep and is then used for prophylaxis.",
+    "topic": "ID"
+  },
+  "AMOXICILLIN": {
+    "clue": "Aminopenicillin that is first-line for strep throat and for many cases of acute middle-ear infection",
+    "rationale": "Amoxicillin covers streptococci and some gram-negative organisms and is first-line for streptococcal pharyngitis and for acute otitis media. It does not cover methicillin-resistant staph or beta-lactamase producers unless clavulanate is added; a rash with mononucleosis is common and is not a true allergy.",
+    "topic": "ID"
+  },
+  "NOSEBLEED": {
+    "clue": "Bleeding from the nose, usually from the front of the septum; pinch the nose and lean forward",
+    "rationale": "Most nosebleeds arise from the anterior septal plexus and stop with pressure and a topical vasoconstrictor. Posterior bleeds in older adults with hypertension or anticoagulation can be severe and need packing and airway attention.",
+    "topic": "ENT"
+  },
+  "DERMATITIS": {
+    "clue": "Itchy flexural rash in a patient with allergies; moisturizers and topical steroids are the base of care",
+    "rationale": "Atopic dermatitis is a chronic itchy rash in flexures, associated with asthma and allergic rhinitis and with a filaggrin barrier defect. Emollients and topical corticosteroids are the foundation; face and folds may use a calcineurin inhibitor.",
+    "topic": "Derm"
+  },
+  "SJS": {
+    "clue": "Severe drug reaction with mucosal erosions and limited epidermal detachment; stop the drug and treat as a burn",
+    "rationale": "Stevens-Johnson syndrome is a drug reaction, often to sulfa, allopurinol, certain antiseizure drugs, or an NSAID, with mucosal involvement and epidermal necrosis of a limited body-surface area. Stop the drug; care is supportive in a burn setting.",
+    "topic": "Derm"
+  },
+  "EPINEPHRINE": {
+    "clue": "First drug for allergic airway compromise or shock, given into the thigh muscle ahead of an antihistamine",
+    "rationale": "Anaphylaxis is IgE-mediated airway, breathing, or circulation compromise, often with urticaria, after a trigger such as food, drug, or venom. Intramuscular epinephrine in the anterolateral thigh is the first drug; antihistamines and steroids are adjuncts, not substitutes.",
+    "topic": "Derm"
+  },
+  "JEJUNUM": {
+    "clue": "Mid-small-bowel segment that absorbs folate; iron is absorbed upstream and vitamin B12 downstream",
+    "rationale": "The jejunum absorbs most nutrients, including folate. Iron is absorbed in the duodenum and proximal jejunum, and vitamin B12 is absorbed in the terminal ileum, which is why ileal Crohn disease causes B12 deficiency.",
+    "topic": "GI"
+  },
+  "HELPER": {
+    "clue": "T-lymphocyte count that guides opportunistic-infection risk and prophylaxis in HIV",
+    "rationale": "The CD4 count predicts opportunistic infections: Pneumocystis below about 200, toxoplasmosis below about 100, and Mycobacterium avium and CMV retinitis below about 50. Prophylaxis and the urgency of therapy follow these thresholds.",
+    "topic": "ID"
+  },
+  "LINEZOLID": {
+    "clue": "Oxazolidinone for MRSA and vancomycin-resistant enterococcus; watch platelets and serotonin toxicity",
+    "rationale": "Linezolid covers MRSA and VRE, including pneumonia. It is a weak MAOI, so serotonin syndrome can occur with SSRIs; thrombocytopenia appears after about two weeks, and long courses risk neuropathy.",
+    "topic": "ID"
+  },
+  "CEFTRIAXONE": {
+    "clue": "Third-generation cephalosporin for gonorrhea, meningitis, and many serious gram-negative infections",
+    "rationale": "Ceftriaxone covers many gram-negative organisms and sensitive streptococci and is used for gonorrhea, meningitis, and pyelonephritis. It does not cover MRSA, Listeria, or atypical organisms; biliary sludging can occur.",
+    "topic": "ID"
+  },
+  "AZTREONAM": {
+    "clue": "Monobactam active against aerobic gram-negative rods, including Pseudomonas, and used in penicillin allergy",
+    "rationale": "Aztreonam covers aerobic gram-negative bacteria, including many Pseudomonas, and has no useful gram-positive or anaerobic activity. It is generally safe in penicillin allergy, except for possible cross-reaction with ceftazidime, which shares a side chain.",
+    "topic": "ID"
+  },
+  "DOXYCYCLINE": {
+    "clue": "Tetracycline used for Lyme disease, Rocky Mountain spotted fever, and chlamydia",
+    "rationale": "Doxycycline treats early Lyme disease, Rocky Mountain spotted fever, chlamydia, and some MRSA skin infections. It causes photosensitivity and pill esophagitis; it is still the drug of choice for suspected tickborne rickettsial disease in children.",
+    "topic": "ID"
+  },
+  "TMP": {
+    "clue": "Folate-pathway antibiotic paired with a sulfa drug for Pneumocystis, some urinary infections, and nocardia",
+    "rationale": "Trimethoprim-sulfamethoxazole treats Pneumocystis, nocardiosis, and many urinary and skin infections. Rash, Stevens-Johnson syndrome, hyperkalemia, and creatinine rise are adverse effects; it is avoided late in pregnancy and in significant G6PD deficiency.",
+    "topic": "ID"
+  },
+  "QUINOLONE": {
+    "clue": "Antibiotic class that can rupture tendons, prolong the QT interval, and is avoided in pregnancy",
+    "rationale": "Fluoroquinolones cover many gram-negative organisms and some atypicals and are used for complicated urinary infection and for pyelonephritis. Tendon rupture, QT prolongation, C. difficile, and CNS effects limit them; they are avoided in pregnancy and in myasthenia.",
+    "topic": "ID"
+  },
+  "QUININE": {
+    "clue": "Antimalarial also paired with clindamycin for severe babesiosis; toxicity includes ringing in the ears",
+    "rationale": "Quinine treats severe babesiosis together with clindamycin, and it has antimalarial activity. Cinchonism, with tinnitus, headache, and visual change, is the classic toxicity; hypoglycemia can occur.",
+    "topic": "ID"
+  },
+  "DKA": {
+    "clue": "Anion-gap acidosis with hyperglycemia and ketones; start fluids and replace potassium",
+    "rationale": "Diabetic ketoacidosis is insulin deficiency with ketoacidosis, usually in type 1 diabetes. Give intravenous fluids first; insulin is started after potassium is known to be safe, because total-body potassium is depleted even if the serum level is high.",
+    "topic": "Endocrine"
+  },
+  "BNP": {
+    "clue": "Peptide released by stretched ventricles; a high level supports heart failure as the cause of dyspnea",
+    "rationale": "B-type natriuretic peptide rises when the ventricles are stretched. It helps distinguish heart-failure dyspnea from pulmonary causes, but kidney failure, pulmonary embolism, and age also raise it.",
+    "topic": "Cardiology"
+  },
+  "TIA": {
+    "clue": "Transient focal neurologic deficit without infarction; stroke risk is highest over the following days",
+    "rationale": "A TIA is transient neurologic dysfunction without infarction on imaging. The risk of stroke is highest in the first days; start antiplatelet therapy, often a short course of dual therapy when risk is high, and look for carotid stenosis and atrial fibrillation.",
+    "topic": "Neuro"
+  },
+  "TSH": {
+    "clue": "Pituitary hormone that is high in primary hypothyroidism and low in thyrotoxicosis",
+    "rationale": "TSH is the initial test for suspected thyroid dysfunction. It is high in primary hypothyroidism and suppressed in primary hyperthyroidism; if the TSH is abnormal, free T4 distinguishes overt from subclinical disease.",
+    "topic": "Endocrine"
+  },
+  "PTH": {
+    "clue": "Hormone high with high calcium in a parathyroid adenoma and high with low calcium in kidney failure",
+    "rationale": "PTH raises calcium and lowers phosphate. In primary hyperparathyroidism both calcium and PTH are high; in CKD, phosphate retention and low vitamin D drive secondary hyperparathyroidism with a low or normal calcium.",
+    "topic": "Endocrine"
+  },
+  "INR": {
+    "clue": "Ratio used to monitor warfarin and to gauge the liver's ability to make clotting factors",
+    "rationale": "The INR standardizes the prothrombin time and is the monitoring test for warfarin. It also reflects hepatic synthetic function and vitamin K deficiency, because factor VII has a short half-life.",
+    "topic": "Heme"
+  },
+  "HIV": {
+    "clue": "Retrovirus that depletes helper T cells; start combination therapy regardless of the count",
+    "rationale": "HIV infects CD4 cells. Antiretroviral therapy is recommended for every person with HIV, both for individual health and to prevent transmission; opportunistic-infection prophylaxis is added based on the CD4 count.",
+    "topic": "ID"
+  },
+  "HPV": {
+    "clue": "Virus behind cervical cancer and genital warts; types 16 and 18 drive most cancers",
+    "rationale": "Human papillomavirus types 6 and 11 cause most genital warts, and types 16 and 18 cause most cervical cancers. Vaccination is preventive; pap and HPV testing find precancer so it can be treated before invasion.",
+    "topic": "OB/GYN"
+  },
+  "EBV": {
+    "clue": "Herpesvirus of heterophile-positive mononucleosis, a jaw lymphoma, and hairy leukoplakia",
+    "rationale": "Epstein-Barr virus causes heterophile-positive mononucleosis, oral hairy leukoplakia, and is linked to Burkitt lymphoma, nasopharyngeal carcinoma, and some Hodgkin lymphoma. It also drives post-transplant lymphoproliferative disease.",
+    "topic": "ID"
+  },
+  "CMV": {
+    "clue": "Herpesvirus with owl-eye inclusions; congenital infection is a leading cause of hearing loss",
+    "rationale": "CMV shows large cells with owl-eye intranuclear inclusions. Congenital infection is the leading infectious cause of sensorineural hearing loss; in advanced HIV it causes retinitis and colitis when the CD4 count is very low, treated with ganciclovir.",
+    "topic": "ID"
+  },
+  "SLE": {
+    "clue": "Multisystem disease with a malar rash, photosensitivity, and antibodies to nuclear antigens",
+    "rationale": "SLE is a multisystem autoimmune disease. ANA is sensitive but not specific; anti-dsDNA and anti-Smith are specific, and dsDNA plus falling complements tracks nephritis; hydroxychloroquine is used in essentially every patient who can take it; avoid sun.",
+    "topic": "MSK"
+  },
+  "GBS": {
+    "clue": "Ascending paralysis and areflexia after an infection; spinal-fluid protein is high with few cells",
+    "rationale": "Guillain-Barre syndrome is an acute ascending demyelinating polyneuropathy, often after Campylobacter or a viral illness. Areflexia and albuminocytologic dissociation are classic; monitor vital capacity; IVIG or plasma exchange is treatment; steroids are not.",
+    "topic": "Neuro"
+  },
+  "DIC": {
+    "clue": "Consumptive coagulopathy with oozing, low fibrinogen, and a high D-dimer",
+    "rationale": "DIC is widespread microvascular clotting that consumes platelets and factors, so patients both clot and bleed. PT and PTT are prolonged, fibrinogen is low, and D-dimer is high; treat the cause, such as sepsis, trauma, or abruption.",
+    "topic": "Heme"
+  },
+  "ITP": {
+    "clue": "Isolated low platelets; steroids are used when adults need treatment, and children often recover after a virus",
+    "rationale": "Immune thrombocytopenia is isolated thrombocytopenia from platelet antibodies. Children often remit after a viral illness; adults are treated with steroids or IVIG when bleeding or the count is very low; it is a diagnosis of exclusion.",
+    "topic": "Heme"
+  },
+  "TTP": {
+    "clue": "Microangiopathic hemolysis, low platelets, and neurologic change; start plasma exchange and do not transfuse platelets routinely",
+    "rationale": "TTP is a pentad of microangiopathic hemolysis, thrombocytopenia, neurologic change, kidney injury, and fever, but the pentad is not required. ADAMTS13 is deficient; plasma exchange is urgent; platelet transfusion is avoided unless there is life-threatening bleeding.",
+    "topic": "Heme"
+  },
+  "HUS": {
+    "clue": "Microangiopathic hemolysis and kidney failure in a child after bloody diarrhea from undercooked beef",
+    "rationale": "Typical HUS follows Shiga-toxin E. coli, often O157:H7, with bloody diarrhea, then hemolysis, thrombocytopenia, and acute kidney injury. Antibiotics and antimotility agents are avoided because they may increase toxin release; care is supportive.",
+    "topic": "Heme"
+  },
+  "HIT": {
+    "clue": "Platelet drop and new clot days after heparin; stop every heparin product",
+    "rationale": "Heparin-induced thrombocytopenia is an antibody to platelet factor 4 that activates platelets, so the count falls and thrombosis occurs, usually 5 to 10 days after exposure. Stop all heparin, and start a non-heparin anticoagulant such as argatroban; do not give warfarin alone in the acute phase.",
+    "topic": "Heme"
+  },
+  "ALL": {
+    "clue": "Most common childhood leukemia; blasts can hide in the central nervous system and the testes",
+    "rationale": "ALL is the most common childhood cancer and presents with bone pain, fever, and cytopenias as blasts replace marrow. Sanctuary sites are the CNS and testes, so treatment addresses them; prognosis in children is generally favorable.",
+    "topic": "Heme"
+  },
+  "AML": {
+    "clue": "Adult acute leukemia with needle-like inclusions in blasts; the promyelocytic subtype triggers disseminated clotting",
+    "rationale": "AML is the common acute leukemia of adults. Myeloperoxidase-positive blasts and Auer rods define myeloid lineage; the promyelocytic subtype causes DIC and is treated with a differentiating agent plus arsenic.",
+    "topic": "Heme"
+  },
+  "CLL": {
+    "clue": "Indolent leukemia of older adults with fragile lymphocytes that smear on the film",
+    "rationale": "CLL is a disease of older adults with a high lymphocyte count and smudge cells. Many patients are observed if asymptomatic; transformation and autoimmune hemolysis are complications.",
+    "topic": "Heme"
+  },
+  "CML": {
+    "clue": "Very high leukocyte count and splenomegaly driven by a 9;22 fusion; a kinase inhibitor is first-line",
+    "rationale": "CML presents with leukocytosis, a left shift, low leukocyte alkaline phosphatase, and splenomegaly. The Philadelphia chromosome, t(9;22), produces BCR-ABL; a tyrosine-kinase inhibitor such as imatinib is first-line.",
+    "topic": "Heme"
+  },
+  "UTI": {
+    "clue": "Dysuria and frequency, usually from E. coli; treat asymptomatic bacteriuria in pregnancy",
+    "rationale": "Most urinary tract infections are E. coli. Asymptomatic bacteriuria is treated in pregnancy and before urologic procedures that will bleed, and otherwise is not treated; men, pregnancy, and structural disease make an infection complicated.",
+    "topic": "Renal"
+  },
+  "PID": {
+    "clue": "Upper genital infection with cervical motion tenderness; cover gonorrhea, chlamydia, and anaerobes",
+    "rationale": "Pelvic inflammatory disease is uterine, tubal, or ovarian infection, with cervical motion tenderness the classic exam finding. Outpatient therapy covers gonorrhea, chlamydia, and anaerobes; pregnancy, abscess, and severe illness are admitted; Fitz-Hugh-Curtis is the perihepatitis.",
+    "topic": "OB/GYN"
+  },
+  "BPH": {
+    "clue": "Older-man urinary hesitancy and nocturia from a smooth enlarged prostate; an alpha blocker relaxes the outlet",
+    "rationale": "Benign prostatic hyperplasia causes obstructive and irritative urinary symptoms with a smooth, enlarged prostate. Alpha blockers relax prostatic smooth muscle; a 5-alpha-reductase inhibitor shrinks the gland over months and halves the PSA.",
+    "topic": "Renal"
+  },
+  "RSV": {
+    "clue": "Virus of winter bronchiolitis in infants; most care is supportive hydration and oxygen",
+    "rationale": "Respiratory syncytial virus is the usual cause of bronchiolitis in infants: wheeze, crackles, and feeding difficulty. Care is supportive; palivizumab is reserved for selected high-risk infants.",
+    "topic": "Pulmonology"
+  },
+  "DVT": {
+    "clue": "Clot in a deep leg vein causing unilateral swelling; treat it to prevent embolization",
+    "rationale": "Deep-vein thrombosis causes unilateral leg swelling and pain. Compression ultrasound confirms it; anticoagulation, usually a direct oral anticoagulant, prevents pulmonary embolism and extension.",
+    "topic": "Pulmonology"
+  },
+  "AKI": {
+    "clue": "Abrupt drop in filtration; muddy-brown casts suggest tubular necrosis and hydronephrosis suggests obstruction",
+    "rationale": "Acute kidney injury is a rapid rise in creatinine or fall in urine output. Prerenal states have a bland sediment and avid sodium retention; muddy-brown casts indicate acute tubular necrosis, and hydronephrosis indicates obstruction.",
+    "topic": "Renal"
+  },
+  "CKD": {
+    "clue": "Kidney damage or filtration below 60 for at least three months",
+    "rationale": "Chronic kidney disease is decreased GFR or markers of kidney damage lasting at least three months. Complications include anemia, high phosphate with secondary hyperparathyroidism, acidosis, and volume overload; an ACE inhibitor or ARB and an SGLT2 inhibitor slow progression when albuminuria is present.",
+    "topic": "Renal"
+  },
+  "AAA": {
+    "clue": "Abdominal arterial dilation; screen once in older men who have smoked, and repair if large or symptomatic",
+    "rationale": "A one-time ultrasound is recommended for men aged 65 to 75 who have ever smoked. Repair is considered for symptoms, rapid growth, or diameter generally at or above 5.5 cm in men.",
+    "topic": "Cardiology"
+  },
+  "PDA": {
+    "clue": "Persistent fetal vessel with a continuous machinery murmur; a prostaglandin keeps it open when circulation depends on it",
+    "rationale": "A patent ductus arteriosus causes a continuous machinery murmur and a wide pulse pressure. Indomethacin or ibuprofen may close a preterm ductus; prostaglandin E1 keeps a ductus open in ductal-dependent lesions; congenital rubella is a classic association.",
+    "topic": "Cardiology"
+  },
+  "VSD": {
+    "clue": "Most common congenital heart defect; a holosystolic murmur is heard at the left lower sternal border",
+    "rationale": "A ventricular septal defect causes a holosystolic murmur at the left lower sternal border. Small muscular defects often close; large defects cause heart failure and later pulmonary hypertension if unrepaired.",
+    "topic": "Cardiology"
+  },
+  "ASD": {
+    "clue": "Atrial septal opening with fixed splitting of the second heart sound",
+    "rationale": "An atrial septal defect causes fixed splitting of S2 because the right ventricle is volume overloaded throughout the respiratory cycle. Paradoxical emboli and later atrial arrhythmias can occur.",
+    "topic": "Cardiology"
+  },
+  "TOF": {
+    "clue": "Cyanotic congenital lesion whose spell is eased by knee-chest positioning",
+    "rationale": "Tetralogy of Fallot comprises right-ventricular outflow obstruction, right ventricular hypertrophy, an overriding aorta, and a ventricular septal defect. A boot-shaped heart and tet spells are classic.",
+    "topic": "Cardiology"
+  },
+  "EKG": {
+    "clue": "Surface electrical tracing; ST elevation with symptoms calls for an immediate reperfusion decision",
+    "rationale": "The ECG is the first test in chest pain because ST-elevation infarction is a time-critical diagnosis. A normal tracing does not exclude ischemia; compare with a prior tracing when one exists.",
+    "topic": "Cardiology"
+  },
+  "PCI": {
+    "clue": "Catheter reopening of a coronary artery; it is preferred over a clot-dissolving drug when it can be done promptly",
+    "rationale": "Primary percutaneous coronary intervention is the preferred reperfusion method for ST-elevation infarction when the time from first medical contact to device is within the accepted window. It also treats complicated non-ST-elevation syndromes.",
+    "topic": "Cardiology"
+  },
+  "WPW": {
+    "clue": "Short PR interval and a delta wave from an accessory pathway; avoid nodal blockers if atrial fibrillation occurs",
+    "rationale": "Wolff-Parkinson-White pattern is a short PR interval and delta wave from an accessory pathway. If atrial fibrillation conducts over the pathway, AV-nodal blockers can accelerate the ventricular rate; procainamide or cardioversion is preferred.",
+    "topic": "Cardiology"
+  },
+  "ART": {
+    "clue": "Combination antiretroviral therapy started for every person with HIV",
+    "rationale": "Antiretroviral therapy uses drugs from more than one class and is started in all people with HIV. Adherence prevents resistance; an undetectable viral load prevents sexual transmission.",
+    "topic": "ID"
+  },
+  "PEP": {
+    "clue": "Antiretroviral course started as soon as possible after a possible HIV exposure",
+    "rationale": "Post-exposure prophylaxis is a 28-day antiretroviral course started as soon as possible after a significant HIV exposure, ideally within hours. It is not a substitute for prevention, and baseline HIV testing is done.",
+    "topic": "ID"
+  },
+  "SAH": {
+    "clue": "Thunderclap headache from aneurysmal bleeding; nimodipine reduces vasospasm",
+    "rationale": "Subarachnoid hemorrhage presents as a sudden worst headache. CT is done first; if negative and suspicion remains, lumbar puncture looks for xanthochromia; secure the aneurysm, and give nimodipine to reduce delayed ischemia from vasospasm.",
+    "topic": "Neuro"
+  },
+  "NPH": {
+    "clue": "Gait apraxia, urinary incontinence, and dementia with large ventricles; a high-volume tap can predict shunt response",
+    "rationale": "Normal-pressure hydrocephalus causes a magnetic gait, urinary incontinence, and dementia, with ventricles enlarged out of proportion to atrophy. Improvement after a large-volume lumbar puncture predicts benefit from a shunt.",
+    "topic": "Neuro"
+  },
+  "PTU": {
+    "clue": "Antithyroid drug preferred in the first trimester and in storm because it blocks peripheral conversion; it can injure the liver",
+    "rationale": "Propylthiouracil blocks thyroid hormone synthesis and peripheral T4-to-T3 conversion, so it is used in thyroid storm and in the first trimester. Severe hepatotoxicity and ANCA vasculitis limit its long-term use.",
+    "topic": "Endocrine"
+  },
+  "VIP": {
+    "clue": "Hormone of a pancreatic tumor that causes watery diarrhea, hypokalemia, and acidosis",
+    "rationale": "VIPoma causes WDHA syndrome: watery diarrhea, hypokalemia, and acidosis, from vasoactive intestinal peptide. Octreotide controls the diarrhea, and the tumor is localized for resection.",
+    "topic": "Endocrine"
+  },
+  "SNAP": {
+    "clue": "Early diastolic sound just after the second heart sound in rheumatic mitral narrowing",
+    "rationale": "An opening snap is heard in mitral stenosis when a still-pliable valve opens under high left atrial pressure. It is earlier and the rumble is longer as the stenosis becomes tighter.",
+    "topic": "Cardiology"
+  },
+  "ACNE": {
+    "clue": "Comedones and inflammatory follicles; nodulocystic disease may need oral isotretinoin",
+    "rationale": "Acne is pilosebaceous inflammation with comedones. Topical retinoids and benzoyl peroxide are the base; inflammatory disease may need an oral antibiotic such as doxycycline; isotretinoin is for nodulocystic or scarring acne and is strictly teratogenic.",
+    "topic": "Derm"
+  },
+  "OGTT": {
+    "clue": "Two-hour glucose challenge used to diagnose diabetes and gestational diabetes",
+    "rationale": "A 75-gram oral glucose tolerance test diagnoses diabetes when the 2-hour value is 200 mg/dL or higher. Glucose challenge testing is also how gestational diabetes is found, typically at 24 to 28 weeks.",
+    "topic": "Endocrine"
+  },
+  "GERD": {
+    "clue": "Heartburn from reflux; weight loss, bleeding, or dysphagia are alarms that need endoscopy",
+    "rationale": "Gastroesophageal reflux causes heartburn and regurgitation. A proton-pump inhibitor trial is reasonable without alarms; dysphagia, weight loss, bleeding, anemia, or new symptoms in an older adult require endoscopy.",
+    "topic": "GI"
+  },
+  "IRON": {
+    "clue": "Deficiency anemia with low ferritin, high binding capacity, ice craving, and spoon nails",
+    "rationale": "Iron deficiency is the most common anemia and is microcytic, with low ferritin, low transferrin saturation, and high TIBC. Look for blood loss; pica and koilonychia are classic; do not replete iron without asking where the iron went.",
+    "topic": "Heme"
+  },
+  "MONO": {
+    "clue": "Sore throat, posterior nodes, and splenomegaly; avoid contact sports and ampicillin",
+    "rationale": "Infectious mononucleosis from EBV causes fever, pharyngitis, posterior cervical lymphadenopathy, and splenomegaly, with atypical lymphocytes. Contact sports are avoided while the spleen is enlarged; ampicillin causes a rash that is not a lifelong penicillin allergy.",
+    "topic": "ID"
+  },
+  "SCFE": {
+    "clue": "Slip of the femoral head in an obese adolescent; knee pain may be the only complaint",
+    "rationale": "Slipped capital femoral epiphysis affects obese adolescents in early puberty. The hip is externally rotated, and pain may be referred to the knee; it is pinned surgically; check the other hip; endocrine disease is considered when the patient is young or thin.",
+    "topic": "MSK"
+  },
+  "BELL": {
+    "clue": "Idiopathic facial palsy that includes the forehead; protect the eye and start steroids early",
+    "rationale": "Bell palsy is an idiopathic peripheral facial-nerve lesion, so the forehead is weak, unlike a central lesion. Start corticosteroids within 72 hours and protect the cornea; Lyme disease can cause bilateral facial palsy.",
+    "topic": "Neuro"
+  },
+  "PEAU": {
+    "clue": "Orange-peel skin of inflammatory breast cancer from blocked dermal lymphatics",
+    "rationale": "Peau d'orange is dermal edema from tumor in lymphatics and is a sign of inflammatory breast cancer, along with rapid erythema and warmth. It is not an infection that fails antibiotics; it is a clinical diagnosis confirmed by biopsy.",
+    "topic": "OB/GYN"
+  },
+  "SSRI": {
+    "clue": "First-line antidepressant class; watch for low sodium, sexual dysfunction, and serotonin syndrome",
+    "rationale": "SSRIs are first-line for depression, generalized anxiety, panic, PTSD, and OCD. They take weeks to work; hyponatremia in older adults, sexual dysfunction, bleeding risk with anticoagulants, and serotonin syndrome are the main cautions.",
+    "topic": "Psych"
+  },
+  "COPD": {
+    "clue": "Airflow obstruction, usually from smoking, with FEV1/FVC below 0.70 after a bronchodilator",
+    "rationale": "COPD is not fully reversible airflow limitation, most often from smoking. Bronchodilators treat symptoms, steroids are for exacerbations and selected maintenance, and smoking cessation plus oxygen in hypoxemic patients change the course.",
+    "topic": "Pulmonology"
+  },
+  "FENA": {
+    "clue": "Excreted sodium fraction below 1 percent that suggests a prerenal cause of kidney injury",
+    "rationale": "The fractional excretion of sodium is below 1 percent when tubules are sodium-avid, as in prerenal states, and above 2 percent in typical acute tubular necrosis. Diuretics invalidate the sodium version; the urea fraction is then used.",
+    "topic": "Renal"
+  },
+  "BECK": {
+    "clue": "Triad of hypotension, jugular distention, and muffled sounds in pericardial tamponade",
+    "rationale": "Beck triad is hypotension, elevated jugular venous pressure, and muffled heart sounds. It is a late finding of tamponade; pulsus paradoxus and electrical alternans are other clues.",
+    "topic": "Cardiology"
+  },
+  "RAIU": {
+    "clue": "Iodine uptake that is high in Graves disease and low in thyroiditis",
+    "rationale": "Radioactive iodine uptake distinguishes hormone overproduction from destructive release. Uptake is high and diffuse in Graves disease, high and nodular in toxic nodular disease, and low in thyroiditis and exogenous hormone.",
+    "topic": "Endocrine"
+  },
+  "ERCP": {
+    "clue": "Endoscopic procedure that drains an infected bile duct and can retrieve a stone",
+    "rationale": "ERCP visualizes and can treat the bile and pancreatic ducts. It is therapeutic for cholangitis and for persistent biliary obstruction; it can cause pancreatitis, so it is not a routine diagnostic test when MRCP or ultrasound will answer the question.",
+    "topic": "GI"
+  },
+  "TIBC": {
+    "clue": "Iron-binding capacity that is high in iron deficiency and low in anemia of chronic disease",
+    "rationale": "TIBC rises in iron deficiency as the body makes more transferrin, and it falls in anemia of chronic disease. Ferritin is low in iron deficiency and normal or high in anemia of chronic disease.",
+    "topic": "Heme"
+  },
+  "REYE": {
+    "clue": "Child with brain swelling and liver failure after aspirin during influenza or chickenpox",
+    "rationale": "Reye syndrome is acute encephalopathy and hepatic failure, with microvesicular fatty change, in a child given aspirin during a viral illness, classically influenza or varicella. Aspirin is avoided in children with viral infections.",
+    "topic": "ID"
+  },
+  "LEWY": {
+    "clue": "Dementia with visual hallucinations, fluctuation, and parkinsonism; antipsychotics can cause severe reactions",
+    "rationale": "Dementia with Lewy bodies features fluctuating cognition, well-formed visual hallucinations, REM sleep behavior disorder, and parkinsonism. Patients are exquisitely sensitive to antipsychotic drugs, which can cause profound rigidity.",
+    "topic": "Neuro"
+  },
+  "BRCA": {
+    "clue": "Inherited mutation that raises breast and ovarian cancer risk and changes screening",
+    "rationale": "Pathogenic BRCA1 and BRCA2 variants markedly raise breast and ovarian cancer risk and also affect prostate and pancreatic risk. They change the age and modality of screening and the discussion of risk-reducing surgery.",
+    "topic": "OB/GYN"
+  },
+  "SNRI": {
+    "clue": "Antidepressant class that also treats neuropathic pain; high doses can raise blood pressure",
+    "rationale": "SNRIs such as venlafaxine and duloxetine treat depression and neuropathic or musculoskeletal pain. Venlafaxine raises blood pressure at higher doses, and both have a discontinuation syndrome if stopped abruptly.",
+    "topic": "Psych"
+  },
+  "RUST": {
+    "clue": "Reddish-brown sputum color classically produced by pneumococcal lobar infection",
+    "rationale": "Rust-colored sputum is the classic description of pneumococcal pneumonia. It is not required for the diagnosis, which rests on the clinical syndrome plus imaging.",
+    "topic": "Pulmonology"
+  },
+  "PSGN": {
+    "clue": "Cola-colored urine, hypertension, and periorbital edema weeks after strep; complements are low",
+    "rationale": "Poststreptococcal glomerulonephritis occurs one to three weeks after pharyngitis or later after skin infection. The urine is cola-colored, complements are low, and ASO or anti-DNase B supports recent strep; children usually recover with supportive care.",
+    "topic": "Renal"
+  },
+  "DUKE": {
+    "clue": "Criteria combining microbiologic and echocardiographic findings to diagnose valve infection",
+    "rationale": "The modified Duke criteria use major findings (typical blood cultures and endocardial involvement) and minor findings (predisposition, fever, vascular and immunologic phenomena). They structure the diagnosis of infective endocarditis.",
+    "topic": "Cardiology"
+  },
+  "PHEO": {
+    "clue": "Catecholamine-secreting adrenal tumor: episodic headache, palpitations, and sweating",
+    "rationale": "Pheochromocytoma causes paroxysmal hypertension with headache, palpitations, and diaphoresis. Screen with plasma or urine metanephrines; start alpha blockade before beta blockade; it is associated with MEN2, VHL, and NF1.",
+    "topic": "Endocrine"
+  },
+  "PICA": {
+    "clue": "Craving for ice or clay that suggests iron deficiency",
+    "rationale": "Pica, including pagophagia or ice craving, is a classic clue to iron deficiency. It resolves with iron repletion; it is also seen in pregnancy.",
+    "topic": "Heme"
+  },
+  "PREP": {
+    "clue": "Antiretroviral medicine taken before exposure to prevent HIV in a person at ongoing risk",
+    "rationale": "Pre-exposure prophylaxis is a daily or event-driven antiretroviral regimen for people at substantial risk of HIV. HIV testing is required before each start and on a schedule, because treating undiagnosed HIV with a prevention regimen can breed resistance.",
+    "topic": "ID"
+  },
+  "PICK": {
+    "clue": "Frontotemporal dementia subtype with early personality change",
+    "rationale": "Pick disease is a frontotemporal dementia with personality and behavior change before memory loss, and Pick bodies pathologically. It presents younger than typical Alzheimer disease and can look psychiatric.",
+    "topic": "Neuro"
+  },
+  "MAOI": {
+    "clue": "Antidepressant class that can cause hypertensive crisis with tyramine and serotonin syndrome with other serotonergic drugs",
+    "rationale": "MAOIs block monoamine breakdown. Tyramine-rich foods can cause a hypertensive crisis, and combining them with SSRIs, meperidine, or other serotonergic drugs can cause serotonin syndrome; a washout period is required when switching.",
+    "topic": "Psych"
+  },
+  "IGRA": {
+    "clue": "Blood tuberculosis test that is not affected by prior BCG vaccination",
+    "rationale": "Interferon-gamma release assays measure lymphocyte response to tuberculosis antigens and are not boosted by BCG. Like the skin test, they do not separate latent infection from active disease.",
+    "topic": "Pulmonology"
+  },
+  "RPGN": {
+    "clue": "Rapid kidney failure with crescents on biopsy; treat it as an emergency",
+    "rationale": "Rapidly progressive glomerulonephritis is a rapid fall in GFR with crescentic glomerulonephritis. Anti-GBM disease, ANCA vasculitis, and immune-complex disease are the categories; delay in immunosuppression loses the kidneys.",
+    "topic": "Renal"
+  },
+  "ROTH": {
+    "clue": "Retinal hemorrhage with a pale center, an immune finding in infective endocarditis",
+    "rationale": "Roth spots are retinal hemorrhages with pale centers. They are classically linked to endocarditis but are not specific.",
+    "topic": "Cardiology"
+  },
+  "CONN": {
+    "clue": "Primary aldosterone excess: resistant hypertension, low potassium, and metabolic alkalosis",
+    "rationale": "Primary hyperaldosteronism causes hypertension and often spontaneous hypokalemia with metabolic alkalosis, though potassium can be normal. The aldosterone-renin ratio is high; a unilateral adenoma is removed; bilateral hyperplasia is treated with a mineralocorticoid antagonist.",
+    "topic": "Endocrine"
+  },
+  "CLICK": {
+    "clue": "Midsystolic sound of mitral valve prolapse that moves earlier when preload falls",
+    "rationale": "Mitral valve prolapse causes a midsystolic click and a late systolic murmur. Standing or the Valsalva maneuver moves the click closer to the first heart sound.",
+    "topic": "Cardiology"
+  },
+  "BASAL": {
+    "clue": "Most common skin cancer: a pearly papule with visible vessels that can ulcerate",
+    "rationale": "Basal cell carcinoma is the most common skin cancer, a pearly papule with telangiectasias on sun-exposed skin that can form a rodent ulcer. Metastasis is rare; excision or Mohs surgery on the face is curative in typical cases.",
+    "topic": "Derm"
+  },
+  "UVULA": {
+    "clue": "Structure that deviates away from a peritonsillar abscess, which also causes a muffled voice",
+    "rationale": "A peritonsillar abscess causes trismus, a hot-potato voice, and deviation of the uvula away from the abscess. Drainage plus antibiotics is treatment; airway compromise is the danger.",
+    "topic": "ENT"
+  },
+  "SIADH": {
+    "clue": "Euvolemic hyponatremia with concentrated urine, classically from small-cell lung cancer",
+    "rationale": "SIADH is inappropriate ADH with euvolemia, low plasma osmolality, inappropriately concentrated urine, and high urine sodium, after excluding hypothyroidism and adrenal insufficiency. Small cell lung cancer, pulmonary and CNS disease, SSRIs, and carbamazepine are causes; fluid restriction is first-line.",
+    "topic": "Endocrine"
+  },
+  "CROHN": {
+    "clue": "Transmural skip lesions and fistulas anywhere in the gut; smoking worsens it",
+    "rationale": "Crohn disease can affect any part of the gastrointestinal tract, with skip lesions, transmural inflammation, noncaseating granulomas, and fistulas. The terminal ileum is often involved, causing B12 deficiency; smoking worsens disease.",
+    "topic": "GI"
+  },
+  "MUMPS": {
+    "clue": "Paramyxovirus causing parotid swelling and, after puberty, testicular inflammation",
+    "rationale": "Mumps causes parotitis and can cause orchitis, oophoritis, meningitis, and pancreatitis. Orchitis after puberty can impair fertility; vaccination prevents it; there is no specific antiviral.",
+    "topic": "ID"
+  },
+  "FELTY": {
+    "clue": "Longstanding symmetric arthritis plus splenomegaly and a low neutrophil count",
+    "rationale": "Felty syndrome is rheumatoid arthritis with splenomegaly and neutropenia. Recurrent infections and leg ulcers occur; it is a late complication of seropositive, nodular disease.",
+    "topic": "MSK"
+  },
+  "CAUDA": {
+    "clue": "Saddle anesthesia and urinary retention from compression of the lower spinal nerve roots; this is a surgical emergency",
+    "rationale": "Cauda equina syndrome is compression of the lumbosacral nerve roots causing saddle anesthesia, bowel or bladder dysfunction, and often bilateral leg weakness. Emergency MRI and decompression are required.",
+    "topic": "Neuro"
+  },
+  "MOLAR": {
+    "clue": "Snowstorm uterus and a very high pregnancy hormone; the complete form has no fetal tissue",
+    "rationale": "A complete hydatidiform mole is diploid and paternal, with a snowstorm ultrasound, very high hCG, theca-lutein cysts, hyperemesis, and sometimes hyperthyroidism. Suction curettage is treatment, and hCG is followed to zero.",
+    "topic": "OB/GYN"
+  },
+  "PANIC": {
+    "clue": "Abrupt surge of fear with palpitations that peaks within minutes; an SSRI plus therapy is maintenance treatment",
+    "rationale": "A panic attack peaks within minutes with palpitations, chest pain, dyspnea, and fear of dying. Medical mimics include arrhythmia, pulmonary embolism, hyperthyroidism, and pheochromocytoma; SSRIs and cognitive behavioral therapy are maintenance treatment.",
+    "topic": "Psych"
+  },
+  "CROUP": {
+    "clue": "Barking cough and steeple sign in a toddler; dexamethasone is first-line",
+    "rationale": "Croup is viral laryngotracheobronchitis, usually parainfluenza, with a barking cough and inspiratory stridor. Dexamethasone is given to essentially all children; nebulized epinephrine is added for significant distress.",
+    "topic": "Pulmonology"
+  },
+  "FOCAL": {
+    "clue": "Nephrotic lesion of adults, especially with HIV, heroin, or obesity, that often responds poorly to steroids",
+    "rationale": "Focal segmental glomerulosclerosis is a common adult nephrotic syndrome, associated with HIV, heroin, obesity, and reduced renal mass. It frequently does not fully remit with steroids and can progress to kidney failure.",
+    "topic": "Renal"
+  },
+  "OSLER": {
+    "clue": "Painful fingertip nodules of infective endocarditis from immune-complex deposition",
+    "rationale": "Osler nodes are tender nodules on the fingers or toes in endocarditis and are attributed to immune phenomena. They differ from painless Janeway lesions, which are embolic.",
+    "topic": "Cardiology"
+  },
+  "TINEA": {
+    "clue": "Dermatophyte infection; scalp disease in children needs an oral antifungal, not a cream alone",
+    "rationale": "Tinea is a dermatophyte infection. Corporis, cruris, and pedis are treated topically; capitis and nail disease need oral therapy because creams do not reach hair or nail; KOH shows branching hyphae.",
+    "topic": "Derm"
+  },
+  "DDAVP": {
+    "clue": "Synthetic antidiuretic hormone for central diabetes insipidus and for mild hemophilia A or von Willebrand disease",
+    "rationale": "Desmopressin treats central diabetes insipidus and releases von Willebrand factor and factor VIII, so it is used in type 1 von Willebrand disease and mild hemophilia A. Hyponatremia is the main risk.",
+    "topic": "Endocrine"
+  },
+  "PSOAS": {
+    "clue": "Pain on hip extension from an inflamed appendix irritating the iliopsoas",
+    "rationale": "The psoas sign is right-lower-quadrant pain when the hip is extended, suggesting an inflamed retrocecal appendix against the psoas. A psoas abscess can cause the same finding.",
+    "topic": "GI"
+  },
+  "MUCOR": {
+    "clue": "Black nasal eschar in diabetic ketoacidosis; broad nonseptate hyphae invade vessels",
+    "rationale": "Mucormycosis is a rapidly invasive fungal sinus and orbital infection in diabetic ketoacidosis or in neutropenic or deferoxamine-treated patients. Hyphae are broad, nonseptate, and branch at right angles; surgery plus amphotericin is required.",
+    "topic": "ID"
+  },
+  "SMITH": {
+    "clue": "Antibody highly specific for lupus that does not track disease activity",
+    "rationale": "Anti-Smith antibody is highly specific for SLE and does not fluctuate with flares. Anti-dsDNA, by contrast, rises with lupus nephritis as complements fall.",
+    "topic": "MSK"
+  },
+  "TABES": {
+    "clue": "Tertiary syphilis of the dorsal columns causing ataxia, lightning pains, and a pupil that accommodates but does not react",
+    "rationale": "Tabes dorsalis is late neurosyphilis affecting the posterior columns. Sensory ataxia, lancinating pains, and Argyll Robertson pupils are classic; penicillin treats the infection but does not reverse destroyed cord.",
+    "topic": "Neuro"
+  },
+  "HELLP": {
+    "clue": "Hemolysis, elevated liver enzymes, and low platelets as a severe feature of pregnancy hypertension",
+    "rationale": "HELLP syndrome is a severe form of preeclampsia with microangiopathic hemolysis, elevated liver enzymes, and thrombocytopenia. Delivery is the treatment; magnesium is given for seizure prophylaxis.",
+    "topic": "OB/GYN"
+  },
+  "LIGHT": {
+    "clue": "Criteria that separate pleural fluid into an inflammatory exudate versus a hydrostatic transudate",
+    "rationale": "Light criteria use pleural and serum protein and LDH. Meeting any one criterion classifies the fluid as an exudate; heart failure, cirrhosis, and nephrotic syndrome are typical transudates.",
+    "topic": "Pulmonology"
+  },
+  "ADPKD": {
+    "clue": "Autosomal-dominant cystic kidneys with berry aneurysms and liver cysts",
+    "rationale": "Autosomal-dominant polycystic kidney disease presents in adulthood with flank pain, hematuria, hypertension, and enlarged cystic kidneys, plus liver cysts and intracranial berry aneurysms. PKD1 on chromosome 16 is the common gene; tolvaptan slows progression in selected patients.",
+    "topic": "Renal"
+  },
+  "VTACH": {
+    "clue": "Wide-complex regular tachycardia; a pulseless patient needs defibrillation",
+    "rationale": "Ventricular tachycardia is a wide-complex rhythm. Pulseless ventricular tachycardia is treated like ventricular fibrillation with defibrillation; a stable patient with a pulse may receive antiarrhythmic therapy and elective cardioversion.",
+    "topic": "Cardiology"
+  },
+  "UWAVE": {
+    "clue": "Small deflection after the T wave that appears when potassium is low",
+    "rationale": "A U wave after the T wave is a classic electrocardiographic sign of hypokalemia. Hypokalemia also causes muscle weakness, ileus, and potentiation of digoxin toxicity, and it is hard to correct until magnesium is replaced.",
+    "topic": "Endocrine"
+  },
+  "DUBIN": {
+    "clue": "Benign conjugated hyperbilirubinemia with a grossly black liver",
+    "rationale": "Dubin-Johnson syndrome is benign conjugated hyperbilirubinemia from a canalicular transport defect. The liver is grossly black, and patients are otherwise well; rotor syndrome is similar but the liver is not black.",
+    "topic": "GI"
+  },
+  "DSDNA": {
+    "clue": "Double-stranded DNA antibody that rises as lupus nephritis flares and complements fall",
+    "rationale": "Anti-dsDNA is specific for SLE and is followed, with C3 and C4, as a marker of renal disease activity. A rising titer with falling complements suggests a flare even before the creatinine moves.",
+    "topic": "MSK"
+  },
+  "ATONY": {
+    "clue": "Most common cause of postpartum hemorrhage; massage the uterus and give oxytocin",
+    "rationale": "Uterine atony is a soft, boggy uterus that will not contract and is the most common cause of postpartum hemorrhage. Massage and oxytocin come first; methylergonovine is avoided in hypertension, and carboprost is avoided in asthma.",
+    "topic": "OB/GYN"
+  },
+  "WELLS": {
+    "clue": "Pretest score that estimates the probability of pulmonary embolism or deep-vein thrombosis before testing",
+    "rationale": "The Wells scores combine signs and risk factors into a pretest probability for pulmonary embolism or for deep-vein thrombosis. That probability decides whether D-dimer alone can exclude disease or imaging is required.",
+    "topic": "Pulmonology"
+  },
+  "ARPKD": {
+    "clue": "Recessive cystic kidney disease of infancy that is tied to congenital hepatic fibrosis",
+    "rationale": "Autosomal-recessive polycystic kidney disease presents in infancy with enlarged echogenic kidneys and is associated with congenital hepatic fibrosis and portal hypertension. Severe oligohydramnios causes pulmonary hypoplasia.",
+    "topic": "Renal"
+  },
+  "STEMI": {
+    "clue": "ST-elevation infarction; reopen the artery with a catheter immediately when it can be done in time",
+    "rationale": "ST-elevation myocardial infarction is a complete coronary occlusion until proven otherwise. Primary percutaneous coronary intervention is preferred when it can be performed promptly; fibrinolysis is the alternative when that timeline cannot be met.",
+    "topic": "Cardiology"
+  },
+  "SHAWL": {
+    "clue": "Photosensitive rash across the upper back and shoulders in dermatomyositis",
+    "rationale": "The shawl sign is a violaceous or poikilodermatous rash over the shoulders and upper back in dermatomyositis. The related V sign is on the anterior chest; both are photosensitive.",
+    "topic": "MSK"
+  },
+  "APGAR": {
+    "clue": "Newborn score of color, pulse, reflex, tone, and breathing at one and five minutes",
+    "rationale": "The Apgar score summarizes heart rate, respiratory effort, tone, reflex irritability, and color at 1 and 5 minutes. It does not decide whether resuscitation starts, and a low score is not by itself a diagnosis of asphyxia.",
+    "topic": "OB/GYN"
+  },
+  "STONE": {
+    "clue": "Colicky flank pain radiating to the groin; calcium oxalate is the most common composition",
+    "rationale": "Nephrolithiasis causes abrupt colicky flank pain radiating to the groin, with hematuria. Noncontrast CT is the usual test outside pregnancy; calcium oxalate is most common; hydration is the prevention shared by all types.",
+    "topic": "Renal"
+  },
+  "MURMUR": {
+    "clue": "Turbulent-flow heart sound; timing, location, and maneuvers identify the valve lesion",
+    "rationale": "A murmur is turbulent flow across a valve or defect. Systolic, diastolic, or continuous timing plus radiation and dynamic maneuvers narrows the lesion.",
+    "topic": "Cardiology"
+  },
+  "KAPOSI": {
+    "clue": "Purple skin lesions of advanced HIV caused by human herpesvirus 8",
+    "rationale": "Kaposi sarcoma is a vascular tumor caused by HHV-8, presenting as purple plaques in advanced HIV and in some transplant patients. Antiretroviral therapy is the cornerstone in AIDS; it must be distinguished from bacillary angiomatosis.",
+    "topic": "Derm"
+  },
+  "OTITIS": {
+    "clue": "Middle-ear infection with a bulging drum; amoxicillin is first-line when antibiotics are chosen",
+    "rationale": "Acute otitis media is a bulging, immobile tympanic membrane with acute symptoms. High-dose amoxicillin is first-line when antibiotics are indicated; watchful waiting is appropriate for selected older children with mild disease.",
+    "topic": "ENT"
+  },
+  "GRAVES": {
+    "clue": "Hyperthyroidism with diffuse uptake, ophthalmopathy, and stimulating receptor antibodies",
+    "rationale": "Graves disease is TSH-receptor antibody stimulation of the thyroid, with a diffuse high radioiodine uptake, a bruit, and sometimes ophthalmopathy or pretibial myxedema. A beta blocker treats symptoms; methimazole, radioiodine, or surgery is definitive; eye disease needs its own treatment.",
+    "topic": "Endocrine"
+  },
+  "CELIAC": {
+    "clue": "Gluten enteropathy with villous atrophy and dermatitis herpetiformis",
+    "rationale": "Celiac disease is an immune response to gluten causing villous atrophy in the small bowel. Tissue-transglutaminase IgA, with a total IgA level, is the usual screen, confirmed by biopsy; dermatitis herpetiformis is the classic skin finding.",
+    "topic": "GI"
+  },
+  "SICKLE": {
+    "clue": "Hemoglobinopathy with vaso-occlusive pain, dactylitis, and nuclear remnants in red cells after the spleen infarcts",
+    "rationale": "Sickle cell disease is HbS polymerization under hypoxia, causing vaso-occlusive pain, acute chest syndrome, dactylitis, and functional asplenia with Howell-Jolly bodies. Salmonella osteomyelitis and parvovirus aplastic crisis are classic; hydroxyurea raises fetal hemoglobin.",
+    "topic": "Heme"
+  },
+  "CENTOR": {
+    "clue": "Score for strep throat using fever, tonsillar exudate, tender anterior nodes, and lack of cough",
+    "rationale": "The Centor score counts fever, tonsillar exudate, tender anterior cervical nodes, and absence of cough. A low score can avoid testing; a positive rapid test or culture is treated with penicillin or amoxicillin.",
+    "topic": "ID"
+  },
+  "SEPTIC": {
+    "clue": "A single hot joint is infection until aspiration proves otherwise; staph is the usual organism",
+    "rationale": "Septic arthritis is a surgical emergency of a hot, swollen joint. Staphylococcus aureus is the most common organism; gonococcus causes a migratory tenosynovitis with pustules in a sexually active adult; aspirate before antibiotics when it will not delay care.",
+    "topic": "MSK"
+  },
+  "STROKE": {
+    "clue": "Acute focal brain ischemia; exclude hemorrhage on imaging before considering a clot-dissolving drug",
+    "rationale": "Ischemic stroke is a sudden focal deficit. Noncontrast CT excludes hemorrhage before thrombolysis, which is considered within 4.5 hours in eligible patients; selected large-vessel occlusions are taken for thrombectomy on a longer timeline.",
+    "topic": "Neuro"
+  },
+  "PREVIA": {
+    "clue": "Painless third-trimester bleeding from a placenta covering the cervix; do not do a digital exam",
+    "rationale": "Placenta previa is a placenta over the internal os and causes painless bleeding. Digital cervical examination is contraindicated; delivery is by cesarean; prior cesarean plus previa raises the risk of invasion into the wall.",
+    "topic": "OB/GYN"
+  },
+  "CHERRY": {
+    "clue": "Red macular spot against a pale retina in central retinal artery occlusion",
+    "rationale": "A cherry-red spot is the intact foveal circulation standing out against an ischemic pale retina in central retinal artery occlusion, an ocular stroke. The same description in an infant with neurodegeneration suggests a storage disease such as Tay-Sachs.",
+    "topic": "Ophtho"
+  },
+  "CLONUS": {
+    "clue": "Rhythmic contractions with hyperreflexia that separate serotonin toxicity from neuroleptic malignant syndrome",
+    "rationale": "Serotonin syndrome is clonus, hyperreflexia, mydriasis, and diarrhea after serotonergic drugs, often in combination. Stop the drugs, give benzodiazepines, and use cyproheptadine for moderate or severe cases; lead-pipe rigidity points instead to neuroleptic malignant syndrome.",
+    "topic": "Psych"
+  },
+  "ASTHMA": {
+    "clue": "Reversible airway obstruction with wheeze; an inhaled corticosteroid is the controller",
+    "rationale": "Asthma is episodic, reversible bronchoconstriction, often with atopy. A short-acting beta agonist relieves attacks, and an inhaled corticosteroid is the foundation of control; aspirin sensitivity with nasal polyps is a classic triad.",
+    "topic": "Pulmonology"
+  },
+  "ALPORT": {
+    "clue": "Hereditary nephritis with sensorineural deafness from a collagen type IV defect",
+    "rationale": "Alport syndrome is usually X-linked collagen IV disease. Hematuria progresses to kidney failure, with sensorineural hearing loss and ocular findings such as anterior lenticonus; the basement membrane looks basket-woven.",
+    "topic": "Renal"
+  },
+  "SLUDGE": {
+    "clue": "Mnemonic for cholinergic excess: secretions, urination, diarrhea, and a slow heart rate",
+    "rationale": "SLUDGE summarizes cholinergic toxicity from organophosphates or nerve agents: salivation, lacrimation, urination, diarrhea, gastrointestinal cramps, and emesis, plus bradycardia and bronchorrhea. Atropine treats the muscarinic effects, and pralidoxime regenerates the enzyme.",
+    "topic": "Toxicology"
+  },
+  "MITRAL": {
+    "clue": "Valve whose stenosis follows rheumatic fever and produces an opening snap and diastolic rumble",
+    "rationale": "Mitral stenosis is usually rheumatic. The opening snap is earlier, and the rumble longer, as stenosis worsens; left atrial pressure rises and atrial fibrillation is common.",
+    "topic": "Cardiology"
+  },
+  "TRAGUS": {
+    "clue": "Cartilage tenderness that points to infection of the ear canal rather than the middle ear",
+    "rationale": "Pain when the tragus is pushed or the pinna is pulled indicates otitis externa, often after swimming and often Pseudomonas. Topical antibiotic drops are treatment; a diabetic with granulation tissue and severe pain may have malignant otitis externa.",
+    "topic": "ENT"
+  },
+  "NODULE": {
+    "clue": "A cold one on uptake scanning is more likely cancer than a hot one; sample based on ultrasound features",
+    "rationale": "Most thyroid nodules are benign. A hot nodule that suppresses TSH is rarely malignant; cold nodules and those with suspicious ultrasound features are selected for fine-needle aspiration.",
+    "topic": "Endocrine"
+  },
+  "MURPHY": {
+    "clue": "Inspiratory arrest during right-upper-quadrant palpation, classic for acute cholecystitis",
+    "rationale": "Murphy sign is sudden inspiratory arrest when the inflamed gallbladder descends onto the examiner's hand. It supports acute cholecystitis; ultrasound may show stones, wall thickening, and pericholecystic fluid.",
+    "topic": "GI"
+  },
+  "FOLATE": {
+    "clue": "Megaloblastic deficiency without neuropathy; body stores last only months",
+    "rationale": "Folate deficiency causes megaloblastic anemia and hypersegmented neutrophils without the dorsal-column neuropathy of B12 deficiency. Stores last months, not years; homocysteine is high and methylmalonic acid is normal.",
+    "topic": "Heme"
+  },
+  "KOPLIK": {
+    "clue": "White spots on the buccal mucosa that appear before the descending rash of measles",
+    "rationale": "Koplik spots are blue-white grains on an erythematous buccal mucosa and are pathognomonic for measles. They appear in the prodrome, before the exanthem, and fade as the rash blooms.",
+    "topic": "ID"
+  },
+  "CARPAL": {
+    "clue": "Median-nerve compression with nighttime tingling of the thumb side of the hand; a wrist splint is first-line",
+    "rationale": "Carpal tunnel syndrome is median-nerve entrapment at the wrist, with nocturnal paresthesias and, later, thenar wasting. Phalen and Tinel tests support it; splinting is first-line; pregnancy, hypothyroidism, diabetes, and rheumatoid arthritis predispose.",
+    "topic": "MSK"
+  },
+  "TREMOR": {
+    "clue": "Action shaking of the hands and head that improves with a small amount of alcohol; a beta blocker is first-line",
+    "rationale": "Essential tremor is a postural and kinetic tremor, often familial, that can involve the head and voice and improves transiently with alcohol. Propranolol or primidone is first-line; it is not a resting tremor.",
+    "topic": "Neuro"
+  },
+  "RHOGAM": {
+    "clue": "Anti-D immune globulin given to an Rh-negative mother to prevent sensitization",
+    "rationale": "Rho(D) immune globulin is given to Rh-negative pregnant patients at about 28 weeks and again within 72 hours of delivery of an Rh-positive infant, and after bleeding or procedures that may mix fetal blood. It prevents hemolytic disease in the next pregnancy.",
+    "topic": "OB/GYN"
+  },
+  "DRUSEN": {
+    "clue": "Yellow deposits of dry age-related macular degeneration, which steals central vision",
+    "rationale": "Drusen are yellow extracellular deposits under the retina and mark dry age-related macular degeneration, the common cause of central vision loss in older adults. Wet disease, with new vessels, is treated with injections that block vascular endothelial growth factor.",
+    "topic": "Ophtho"
+  },
+  "OPIOID": {
+    "clue": "Withdrawal causes gooseflesh and diarrhea but is rarely lethal; overdose reversal is naloxone",
+    "rationale": "Opioid withdrawal is miserable, with piloerection, yawning, diarrhea, and mydriasis, but is not life-threatening the way alcohol or benzodiazepine withdrawal is. Overdose causes respiratory depression and pinpoint pupils and is reversed with naloxone.",
+    "topic": "Psych"
+  },
+  "LATENT": {
+    "clue": "Tuberculosis infection without symptoms or radiographic disease; treat to prevent reactivation",
+    "rationale": "Latent tuberculosis is a positive skin test or interferon-gamma release assay with a normal chest radiograph and no symptoms. Treating it, commonly with a rifamycin-based short regimen or isoniazid, prevents active disease.",
+    "topic": "Pulmonology"
+  },
+  "POTTER": {
+    "clue": "Sequence of pulmonary hypoplasia and compressed facies from severe oligohydramnios",
+    "rationale": "Potter sequence is the result of severe oligohydramnios, classically from bilateral renal agenesis: pulmonary hypoplasia, characteristic facies, and limb deformities. The lung hypoplasia, not the kidneys alone, is what limits survival.",
+    "topic": "Renal"
+  },
+  "AORTIC": {
+    "clue": "Valve whose narrowing causes syncope, angina, dyspnea, and a murmur radiating to the carotids",
+    "rationale": "Severe aortic stenosis presents with syncope, angina, or heart failure, and the carotid upstroke is slow and weak. Valve replacement is the definitive treatment once symptoms appear.",
+    "topic": "Cardiology"
+  },
+  "SODIUM": {
+    "clue": "Low serum level from inappropriate antidiuretic hormone must be corrected slowly to avoid osmotic demyelination",
+    "rationale": "Chronic hyponatremia is corrected slowly, generally by no more than 8 mEq/L in 24 hours, to prevent osmotic demyelination. Severe symptoms such as seizures are treated with hypertonic saline, still with a limit on the total rise.",
+    "topic": "Endocrine"
+  },
+  "TARGET": {
+    "clue": "Sonographic sign of intussusception, which also produces currant-jelly stool in a toddler",
+    "rationale": "Intussusception, usually ileocolic in toddlers, causes intermittent severe pain, currant-jelly stool, and a target or doughnut sign on ultrasound. Air-contrast enema is often both diagnostic and therapeutic; an adult needs a search for a lead point.",
+    "topic": "GI"
+  },
+  "HOWELL": {
+    "clue": "Nuclear remnants in red cells after splenectomy or in sickle-cell autosplenectomy",
+    "rationale": "Howell-Jolly bodies are DNA remnants normally pitted by the spleen. Their presence means the spleen is absent or nonfunctional, as after splenectomy or in sickle cell disease.",
+    "topic": "Heme"
+  },
+  "RAMSAY": {
+    "clue": "Facial palsy plus vesicles in the ear from reactivation in the geniculate ganglion",
+    "rationale": "Ramsay Hunt syndrome is herpes zoster of the geniculate ganglion: facial palsy, ear pain, and vesicles in the canal. It is treated with an antiviral and a corticosteroid; recovery of the face is less certain than in Bell palsy.",
+    "topic": "ID"
+  },
+  "PHALEN": {
+    "clue": "Wrist flexion that reproduces tingling in median-nerve compression",
+    "rationale": "Phalen test holds the wrists in flexion. Reproduction of median-distribution paresthesias within a minute supports carpal tunnel syndrome; it does not replace nerve-conduction studies when surgery is planned.",
+    "topic": "MSK"
+  },
+  "KERNIG": {
+    "clue": "Meningeal sign: pain when the knee is extended with the hip already flexed",
+    "rationale": "Kernig sign is resistance or pain on knee extension with the hip flexed, from meningeal irritation. Brudzinski sign, hip flexion when the neck is flexed, is the companion finding; both support meningitis but do not replace LP.",
+    "topic": "Neuro"
+  },
+  "GROOVE": {
+    "clue": "Inguinal-ligament depression between node groups in lymphogranuloma venereum",
+    "rationale": "The groove sign is nodes above and below the inguinal ligament in lymphogranuloma venereum, caused by L serovars of Chlamydia. A transient painless ulcer is followed by painful nodes; doxycycline is treatment.",
+    "topic": "OB/GYN"
+  },
+  "FARMER": {
+    "clue": "Hypersensitivity pneumonitis from moldy hay; the treatment is to remove the antigen",
+    "rationale": "Farmer's lung is a hypersensitivity pneumonitis from thermophilic actinomycetes in moldy hay. Acute episodes are flu-like hours after exposure; chronic exposure causes fibrosis; antigen avoidance is essential.",
+    "topic": "Pulmonology"
+  },
+  "RHABDO": {
+    "clue": "Muscle breakdown with a very high creatine kinase and dipstick blood without many red cells",
+    "rationale": "Rhabdomyolysis releases myoglobin and potassium. The dipstick is positive for blood but microscopy shows few red cells, and CK is in the thousands; aggressive fluids prevent kidney failure; statins, prolonged immobility, and seizures are common causes.",
+    "topic": "Renal"
+  },
+  "GALLOP": {
+    "clue": "Extra heart sound; the third suggests volume overload and the fourth a stiff ventricle",
+    "rationale": "A third heart sound is an early diastolic gallop of volume overload or systolic heart failure. A fourth heart sound is a late diastolic gallop of a noncompliant ventricle, as in hypertrophy or ischemia.",
+    "topic": "Cardiology"
+  },
+  "PORTAL": {
+    "clue": "High pressure in the venous bed that drains the intestines, producing varices and an enlarged spleen",
+    "rationale": "Portal hypertension is most often from cirrhosis. It produces gastroesophageal varices, ascites, and splenomegaly with thrombocytopenia; a hepatic venous pressure gradient defines it when measured.",
+    "topic": "GI"
+  },
+  "SMUDGE": {
+    "clue": "Fragile lymphocytes crushed on the film of chronic lymphocytic leukemia",
+    "rationale": "Smudge cells are ruptured fragile lymphocytes and are the classic smear finding of CLL. The clinical picture is an older adult with an isolated lymphocytosis who may feel well.",
+    "topic": "Heme"
+  },
+  "LEANING": {
+    "clue": "Posture that eases pericardial pain; the tracing shows diffuse ST elevation and PR depression",
+    "rationale": "Acute pericarditis causes pleuritic pain better when leaning forward, a friction rub, diffuse ST elevation, and PR-segment depression. NSAIDs plus colchicine are usual first-line therapy when infection and infarction are excluded.",
+    "topic": "Cardiology"
+  },
+  "NODOSUM": {
+    "clue": "Tender pretibial nodules that are a reaction to strep, sarcoidosis, inflammatory bowel disease, or drugs",
+    "rationale": "Erythema nodosum is septal panniculitis, tender red nodules on the shins. Causes include streptococcal infection, sarcoidosis, inflammatory bowel disease, coccidioidomycosis, tuberculosis, and oral contraceptives; treat the cause; the lesions do not scar.",
+    "topic": "Derm"
+  },
+  "ADDISON": {
+    "clue": "Primary adrenal failure with hyperpigmentation, low sodium, high potassium, and low cortisol",
+    "rationale": "Primary adrenal insufficiency destroys the adrenal cortex, so cortisol and aldosterone are low and ACTH is high, causing hyperpigmentation. Hyponatremia, hyperkalemia, and hypotension are typical; hydrocortisone and fludrocortisone replace both hormones.",
+    "topic": "Endocrine"
+  },
+  "BARRETT": {
+    "clue": "Columnar metaplasia of the distal esophagus from chronic reflux; it can progress to adenocarcinoma",
+    "rationale": "Barrett esophagus is replacement of squamous mucosa by columnar intestinal metaplasia from chronic reflux. It is a precursor of esophageal adenocarcinoma and is surveyed endoscopically.",
+    "topic": "GI"
+  },
+  "PLUMMER": {
+    "clue": "Syndrome of esophageal webs, iron deficiency, and dysphagia",
+    "rationale": "Plummer-Vinson syndrome is esophageal webs, dysphagia, and iron deficiency, usually in older women, and it raises the risk of esophageal squamous cell cancer. Iron repletion can improve the webs; Plummer disease is a separate toxic nodular goiter.",
+    "topic": "Heme"
+  },
+  "SCARLET": {
+    "clue": "Sandpaper rash and a strawberry tongue from a streptococcal toxin",
+    "rationale": "Scarlet fever is group A strep pharyngitis plus an erythrogenic-toxin rash: sandpaper texture, Pastia lines, and a strawberry tongue. Penicillin treats it and prevents rheumatic fever.",
+    "topic": "ID"
+  },
+  "RAYNAUD": {
+    "clue": "White-then-blue-then-red fingers in the cold; a calcium-channel blocker is used when it is severe",
+    "rationale": "Raynaud phenomenon is episodic digital ischemia from cold or stress. Primary disease is benign; secondary disease, especially with systemic sclerosis, can cause digital ulcers; a dihydropyridine calcium-channel blocker is the usual drug.",
+    "topic": "MSK"
+  },
+  "CLUSTER": {
+    "clue": "Severe periorbital headaches in clusters with tearing and a drooping lid; oxygen aborts an attack",
+    "rationale": "Cluster headache is a severe unilateral periorbital pain with ipsilateral autonomic features, often at night, in clusters. High-flow oxygen and a subcutaneous triptan abort attacks; verapamil is the usual preventive.",
+    "topic": "Neuro"
+  },
+  "ECTOPIC": {
+    "clue": "Pregnancy outside the uterus, usually tubal; methotrexate if stable, surgery if ruptured",
+    "rationale": "Ectopic pregnancy presents with pain, bleeding, and a positive pregnancy test, often with an adnexal mass. Serial hCG and transvaginal ultrasound locate it; methotrexate is for selected stable patients; rupture requires surgery.",
+    "topic": "OB/GYN"
+  },
+  "LITHIUM": {
+    "clue": "Mood stabilizer with a narrow index; toxicity rises with dehydration, thiazides, NSAIDs, or ACE inhibitors",
+    "rationale": "Lithium treats bipolar disorder and reduces suicide risk. The therapeutic index is narrow; levels rise with volume depletion, thiazides, NSAIDs, and ACE inhibitors; long-term effects include nephrogenic diabetes insipidus, hypothyroidism, and tremor, and it is teratogenic.",
+    "topic": "Psych"
+  },
+  "STRIDOR": {
+    "clue": "Inspiratory upper-airway sound; think croup, epiglottitis, or a lodged foreign body",
+    "rationale": "Stridor is a high-pitched inspiratory sound from extrathoracic airway narrowing. It is an emergency when associated with drooling, tripoding, or hypoxia.",
+    "topic": "Pulmonology"
+  },
+  "MINIMAL": {
+    "clue": "Most common nephrotic syndrome in children; light microscopy is normal and steroids usually work",
+    "rationale": "Minimal change disease is the most common nephrotic syndrome in children. Light microscopy is normal and electron microscopy shows foot-process effacement; corticosteroids induce remission in most children; Hodgkin lymphoma is an adult association.",
+    "topic": "Renal"
+  },
+  "CYANIDE": {
+    "clue": "Poison of smoke and of prolonged nitroprusside, with lactic acidosis; hydroxocobalamin is the antidote",
+    "rationale": "Cyanide stops cellular respiration and causes lactic acidosis out of proportion to findings, classically after smoke inhalation or prolonged nitroprusside. Hydroxocobalamin is the antidote; the bitter-almond odor is not always detectable.",
+    "topic": "Toxicology"
+  },
+  "HOLIDAY": {
+    "clue": "Atrial fibrillation that follows a binge of alcohol",
+    "rationale": "Holiday heart is atrial fibrillation triggered by an alcohol binge in a person without ongoing heart disease. The rhythm often converts after abstinence; still assess stroke risk and exclude other causes.",
+    "topic": "Cardiology"
+  },
+  "KOEBNER": {
+    "clue": "New lesions appearing in a site of skin trauma, classic for psoriasis",
+    "rationale": "The Koebner phenomenon is the appearance of new skin lesions at sites of trauma. It is classic for psoriasis and also occurs in lichen planus and vitiligo.",
+    "topic": "Derm"
+  },
+  "CUSHING": {
+    "clue": "Syndrome of excess cortisol: central weight, wide striae, hypertension, and hyperglycemia",
+    "rationale": "Cushing syndrome is pathologic cortisol excess; exogenous steroids are the most common cause. Screening uses a dexamethasone suppression test, 24-hour urine cortisol, or late-night salivary cortisol; ACTH then separates adrenal, pituitary, and ectopic sources.",
+    "topic": "Endocrine"
+  },
+  "MALLORY": {
+    "clue": "Mucosal tear at the gastroesophageal junction after retching; bleeding usually stops",
+    "rationale": "A Mallory-Weiss tear is a longitudinal mucosal laceration at the gastroesophageal junction after vomiting. Hematemesis often stops on its own; it is not a full-thickness rupture.",
+    "topic": "GI"
+  },
+  "HODGKIN": {
+    "clue": "Lymphoma with owl-eye binucleate cells and contiguous spread from one node group to the next",
+    "rationale": "Hodgkin lymphoma has a bimodal age peak, often presents with cervical lymphadenopathy and B symptoms, and spreads to adjacent node groups. It is highly curable; Epstein-Barr virus is associated with some cases.",
+    "topic": "Heme"
+  },
+  "TETANUS": {
+    "clue": "Toxin-mediated lockjaw and muscle spasms after a contaminated wound",
+    "rationale": "Tetanus toxin blocks inhibitory neurotransmitters and causes trismus, risus sardonicus, and spasms. Wound care, metronidazole, tetanus immune globulin, and immunization are the management; the toxin, not the bacteria in the nerve, is the disease.",
+    "topic": "ID"
+  },
+  "GOTTRON": {
+    "clue": "Violaceous flat papules over the knuckles in inflammatory muscle disease with skin findings",
+    "rationale": "Gottron papules are violaceous papules over the MCP, PIP, and DIP joints and are pathognomonic for dermatomyositis. They are distinct from the scaly plaques of psoriasis and from lupus rashes.",
+    "topic": "MSK"
+  },
+  "TENSION": {
+    "clue": "Bilateral band-like headache without nausea or aura",
+    "rationale": "Tension-type headache is bilateral, pressing, mild to moderate, and without nausea or aura. NSAIDs and addressing stress and posture are first-line; new or thunderclap features are not tension headache.",
+    "topic": "Neuro"
+  },
+  "ACCRETA": {
+    "clue": "Placenta that invades the uterine wall, especially after cesarean birth when the placenta also covers the cervix",
+    "rationale": "Placenta accreta spectrum is abnormal placental attachment. The major risk is prior cesarean delivery combined with placenta previa; delivery is planned cesarean, often with hysterectomy, because of life-threatening hemorrhage.",
+    "topic": "OB/GYN"
+  },
+  "BIPOLAR": {
+    "clue": "Disorder requiring a manic episode for type I; antidepressant monotherapy can precipitate mania",
+    "rationale": "Bipolar I requires at least one manic episode. Type II is hypomania plus major depression; lithium, certain anticonvulsants, and atypical antipsychotics are mood stabilizers; an antidepressant alone can switch a patient into mania.",
+    "topic": "Psych"
+  },
+  "STEEPLE": {
+    "clue": "Subglottic narrowing on the frontal neck film in viral laryngotracheitis",
+    "rationale": "The steeple sign is tapering of the subglottic trachea on an anteroposterior neck radiograph in croup. The diagnosis is clinical; films are not required in typical cases.",
+    "topic": "Pulmonology"
+  },
+  "CYSTINE": {
+    "clue": "Hexagonal kidney stone of an inherited transport defect, often presenting in childhood",
+    "rationale": "Cystine stones result from an inherited defect in dibasic amino-acid reabsorption. Crystals are hexagonal; stones begin in childhood, are radiopaque, and are managed with high fluid intake and urine alkalinization.",
+    "topic": "Renal"
+  },
+  "SOTALOL": {
+    "clue": "Class III agent that prolongs the QT interval and can provoke a twisting ventricular rhythm",
+    "rationale": "Sotalol blocks potassium channels and beta receptors and is used for atrial fibrillation. It prolongs QT and is usually started where the rhythm can be monitored because of torsades risk; it is renally cleared.",
+    "topic": "Cardiology"
+  },
+  "ABSCESS": {
+    "clue": "Walled-off collection of pus whose primary treatment is incision and drainage",
+    "rationale": "An abscess is treated by incision and drainage. Antibiotics are added for surrounding cellulitis, systemic illness, or immunocompromise, and they should cover MRSA when that risk is present; packing and follow-up depend on the size.",
+    "topic": "Derm"
+  },
+  "CALCIUM": {
+    "clue": "Electrolyte given intravenously to stabilize the cardiac membrane in severe hyperkalemia",
+    "rationale": "Intravenous calcium gluconate does not lower potassium; it antagonizes the cardiac membrane effect while other treatments shift or remove potassium. Calcium is also the antidote for magnesium toxicity and is used in calcium-channel blocker overdose.",
+    "topic": "Endocrine"
+  },
+  "VARICES": {
+    "clue": "Dilated esophageal veins in portal hypertension; bleeding care includes octreotide and banding",
+    "rationale": "Esophageal varices form from portal hypertension. Acute bleeding is managed with resuscitation, a vasoactive drug such as octreotide, antibiotic prophylaxis, and endoscopic band ligation; a nonselective beta blocker prevents recurrent bleeding.",
+    "topic": "GI"
+  },
+  "BURKITT": {
+    "clue": "Starry-sky lymphoma with a myc translocation, linked to Epstein-Barr virus",
+    "rationale": "Burkitt lymphoma is a mature B-cell lymphoma with t(8;14) and a starry-sky pattern of macrophages among rapidly dividing cells. The endemic form involves the jaw and is linked to EBV; tumor lysis is a major risk when treatment starts.",
+    "topic": "Heme"
+  },
+  "ROSEOLA": {
+    "clue": "High fever in a toddler that breaks, and then a trunk rash appears",
+    "rationale": "Roseola is HHV-6 infection of infants and toddlers: several days of high fever, defervescence, then a rash that starts on the trunk. Febrile seizures can occur; care is supportive.",
+    "topic": "ID"
+  },
+  "BUERGER": {
+    "clue": "Clotting vasculitis of distal vessels in a young smoker; the only effective treatment is to stop tobacco",
+    "rationale": "Buerger disease, thromboangiitis obliterans, affects young tobacco users with claudication, superficial thrombophlebitis, and distal ischemia that can lead to autoamputation. Smoking cessation is the disease-modifying treatment.",
+    "topic": "MSK"
+  },
+  "UHTHOFF": {
+    "clue": "Worsening of neurologic symptoms when body temperature rises, classic in demyelinating disease",
+    "rationale": "Uhthoff phenomenon is transient worsening of prior neurologic deficits with heat or fever. It is characteristic of multiple sclerosis and does not by itself mean a new relapse.",
+    "topic": "Neuro"
+  },
+  "NAEGELE": {
+    "clue": "Rule that estimates the due date from the first day of the last menstrual period",
+    "rationale": "Naegele rule estimates the due date as the first day of the last menstrual period plus 7 days minus 3 months, adjusting the year. Ultrasound in the first trimester is more accurate when dates are uncertain.",
+    "topic": "OB/GYN"
+  },
+  "TARDIVE": {
+    "clue": "Late orofacial movements after prolonged antipsychotics; they may persist after the drug is stopped",
+    "rationale": "Tardive dyskinesia is choreiform orofacial movements after months to years of dopamine blockade, especially typical antipsychotics. It can be irreversible; VMAT2 inhibitors treat it, and a switch to clozapine is considered.",
+    "topic": "Psych"
+  },
+  "CURRANT": {
+    "clue": "Jelly sputum color of Klebsiella pneumonia in a patient with alcohol use disorder",
+    "rationale": "Currant-jelly sputum is the classic description of Klebsiella pneumonia, often upper-lobe, in a person who drinks heavily. Currant-jelly stool is a separate clue to intussusception.",
+    "topic": "Pulmonology"
+  },
+  "TORSION": {
+    "clue": "Sudden testicular pain with a high-riding testis and loss of the cremasteric reflex; do not wait for imaging",
+    "rationale": "Testicular torsion is a surgical emergency, ideally within six hours. Sudden pain, nausea, a high-riding testis, and an absent cremasteric reflex are enough to go to the operating room; doppler ultrasound is for uncertain cases only.",
+    "topic": "Renal"
+  },
+  "ASPIRIN": {
+    "clue": "Antiplatelet given early in acute coronary syndromes; avoid it in children with viral illness",
+    "rationale": "Aspirin irreversibly inhibits cyclooxygenase and is given immediately in suspected acute coronary syndrome unless contraindicated. In children with influenza or varicella it is linked to Reye syndrome.",
+    "topic": "Cardiology"
+  },
+  "ROSACEA": {
+    "clue": "Central facial redness and visible vessels without comedones; topical metronidazole is used",
+    "rationale": "Rosacea is central facial erythema, telangiectasias, and papules without comedones, and it can progress to rhinophyma. Triggers include alcohol, heat, and spice; topical metronidazole or azelaic acid is used; steroids worsen it.",
+    "topic": "Derm"
+  },
+  "SHEEHAN": {
+    "clue": "Pituitary ischemia after postpartum hemorrhage, presenting with failure to lactate",
+    "rationale": "Sheehan syndrome is ischemic necrosis of the enlarged pituitary after severe postpartum bleeding. Failure to lactate and persistent amenorrhea are early clues, followed by other anterior-pituitary deficiencies including adrenal failure.",
+    "topic": "Endocrine"
+  },
+  "GASTRIC": {
+    "clue": "Ulcer worsened by food; biopsy it because carcinoma can look the same",
+    "rationale": "Gastric ulcers often hurt with eating. Unlike duodenal ulcers, they must be biopsied to exclude malignancy; NSAIDs and H. pylori are the usual benign causes.",
+    "topic": "GI"
+  },
+  "PULMONIC": {
+    "clue": "Right-sided semilunar valve; congenital narrowing causes a systolic murmur at the upper left sternal border",
+    "rationale": "Pulmonic stenosis is usually congenital. The murmur is a crescendo-decrescendo systolic ejection murmur, and wide splitting of the second heart sound may occur.",
+    "topic": "Cardiology"
+  },
+  "IMPETIGO": {
+    "clue": "Honey-crusted lesions from staph or strep; kidney inflammation can follow, rheumatic fever does not",
+    "rationale": "Impetigo is a honey-crusted superficial infection from Staphylococcus aureus or Streptococcus pyogenes. Limited disease is treated with topical mupirocin; poststreptococcal glomerulonephritis can follow skin infection; rheumatic fever follows pharyngitis, not impetigo.",
+    "topic": "Derm"
+  },
+  "DIABETES": {
+    "clue": "Hyperglycemia disease diagnosed by fasting glucose, a two-hour challenge, a symptomatic random glucose, or A1C",
+    "rationale": "Diabetes is diagnosed by fasting glucose at least 126, a 2-hour glucose at least 200, a random glucose at least 200 with symptoms, or A1C at least 6.5 percent, confirmed unless the presentation is unequivocal. Metformin is first-line when kidney function allows, with additional agents chosen for heart, kidney, and weight outcomes.",
+    "topic": "Endocrine"
+  },
+  "DUODENAL": {
+    "clue": "Ulcer that typically hurts when the stomach is empty and is strongly linked to H. pylori",
+    "rationale": "Duodenal ulcers usually cause pain that improves with food and returns when the stomach empties. Helicobacter pylori and NSAIDs are the main causes; perforation produces sudden pain and free air.",
+    "topic": "GI"
+  },
+  "FERRITIN": {
+    "clue": "Storage marker that is very low in iron deficiency and very high, with a high transferrin saturation, in hereditary iron overload",
+    "rationale": "Ferritin reflects iron stores and is also an acute-phase reactant, so a normal value does not fully exclude iron deficiency during inflammation. A very high ferritin with high transferrin saturation suggests hemochromatosis.",
+    "topic": "Heme"
+  },
+  "SYPHILIS": {
+    "clue": "Painless chancre, then a rash that includes palms and soles; penicillin is the only reliable cure",
+    "rationale": "Syphilis begins with a painless chancre, then a disseminated rash often involving palms and soles, and can end in gummas, aortitis, or neurosyphilis. Nontreponemal tests screen and titers follow treatment; a treponemal test confirms; penicillin is required, with desensitization if the patient is allergic, especially in pregnancy.",
+    "topic": "ID"
+  },
+  "HEBERDEN": {
+    "clue": "Bony nodes of the distal finger joints in osteoarthritis",
+    "rationale": "Heberden nodes are bony enlargement of the DIP joints in osteoarthritis. They are not inflammatory synovitis; osteoarthritis worsens with use, spares the MCP joints, and shows joint-space narrowing and osteophytes.",
+    "topic": "MSK"
+  },
+  "EPIDURAL": {
+    "clue": "Lens-shaped arterial bleed, often after a temporal blow with a lucid interval",
+    "rationale": "Epidural hematoma is usually arterial, from the middle meningeal artery, and is lens-shaped because sutures limit it. A lucid interval after head trauma is classic; it is a neurosurgical emergency.",
+    "topic": "Neuro"
+  },
+  "CHADWICK": {
+    "clue": "Bluish cervix and vagina that is an early sign of pregnancy",
+    "rationale": "Chadwick sign is venous congestion that turns the cervix and vaginal mucosa bluish in early pregnancy. It is a presumptive sign, not proof of an intrauterine pregnancy.",
+    "topic": "OB/GYN"
+  },
+  "GLAUCOMA": {
+    "clue": "Acute angle closure has a mid-dilated pupil and a rock-hard eye; the open-angle form is silent",
+    "rationale": "Acute angle-closure glaucoma is an emergency: a painful red eye, halos, a mid-dilated pupil, nausea, and a rock-hard globe. Pressure is lowered medically and then with a laser iridotomy; open-angle glaucoma is silent cupping found on screening.",
+    "topic": "Ophtho"
+  },
+  "DYSTONIA": {
+    "clue": "Sustained muscle contraction from an antipsychotic; treat with benztropine or diphenhydramine",
+    "rationale": "Acute dystonia is a sustained contraction, such as torticollis or an oculogyric crisis, hours to days after a dopamine blocker. Intramuscular benztropine or diphenhydramine reverses it; young men on high-potency typical antipsychotics are at highest risk.",
+    "topic": "Psych"
+  },
+  "RIFAMPIN": {
+    "clue": "Tuberculosis drug that turns body fluids orange and induces many liver enzymes",
+    "rationale": "Rifampin is a key tuberculosis drug and is also used for some meningococcal and Haemophilus contacts. It stains fluids orange, is hepatotoxic, and is a potent CYP inducer that lowers levels of many drugs, including warfarin and oral contraceptives.",
+    "topic": "Pulmonology"
+  },
+  "PRERENAL": {
+    "clue": "Kidney injury from poor perfusion; sodium retention is avid and the sediment is bland",
+    "rationale": "Prerenal azotemia is inadequate renal perfusion with intact tubules, so the urine is concentrated and sodium-poor. The fraction of excreted sodium is typically below 1 percent; restoring volume reverses it if ischemia has not yet injured tubules.",
+    "topic": "Renal"
+  },
+  "ETHYLENE": {
+    "clue": "Antifreeze alcohol that causes an anion-gap acidosis, oxalate crystals, and kidney failure",
+    "rationale": "Ethylene glycol causes intoxication, then an anion-gap acidosis, hypocalcemia, calcium-oxalate crystals, and acute kidney injury. Fluorescence of the urine is unreliable; fomepizole and, when severe, hemodialysis are the treatment.",
+    "topic": "Toxicology"
+  },
+  "STENOSIS": {
+    "clue": "Fixed valve narrowing; the aortic form radiates to the carotids and limits cardiac output when severe",
+    "rationale": "Valve stenosis obstructs forward flow. Aortic stenosis radiates to the carotids; mitral stenosis causes a diastolic rumble after an opening snap.",
+    "topic": "Cardiology"
+  },
+  "FURUNCLE": {
+    "clue": "A boil: a staphylococcal abscess centered on a hair follicle",
+    "rationale": "A furuncle is a staphylococcal abscess of a hair follicle. Warm compresses may drain a small one; larger ones are incised; recurrent boils prompt a search for colonization and for diabetes.",
+    "topic": "Derm"
+  },
+  "ACARBOSE": {
+    "clue": "Alpha-glucosidase inhibitor whose hypoglycemia must be treated with glucose, not table sugar",
+    "rationale": "Acarbose delays carbohydrate absorption and causes gas and diarrhea. If hypoglycemia occurs, give glucose itself; sucrose and complex sugars will not be absorbed quickly enough to help.",
+    "topic": "Endocrine"
+  },
+  "LEADPIPE": {
+    "clue": "Loss of colonic haustra on a contrast study in chronic ulcerative colitis",
+    "rationale": "The lead-pipe colon is a featureless, shortened colon from chronic ulcerative colitis with loss of haustral folds. It is a radiographic description, not an acute finding.",
+    "topic": "GI"
+  },
+  "CODOCYTE": {
+    "clue": "Target-shaped red cell of thalassemia, hemoglobinopathy, liver disease, and asplenia",
+    "rationale": "Codocytes, or target cells, have a central hemoglobin bump. They are seen in thalassemia, hemoglobin C and sickle disease, obstructive liver disease, and after splenectomy.",
+    "topic": "Heme"
+  },
+  "BOTULISM": {
+    "clue": "Descending flaccid paralysis and double vision after home-canned food, or after honey in an infant",
+    "rationale": "Botulinum toxin blocks acetylcholine release and causes descending paralysis, diplopia, and a dry mouth, without fever. Sources include home-canned food, honey in infants, and contaminated wounds; antitoxin is given; antibiotics are not used for infant botulism.",
+    "topic": "ID"
+  },
+  "BOUCHARD": {
+    "clue": "Bony nodes of the proximal finger joints in osteoarthritis",
+    "rationale": "Bouchard nodes are bony swelling of the PIP joints in osteoarthritis. Rheumatoid arthritis also involves the PIP joints but is inflammatory, symmetric, and spares the DIP joints while involving the MCPs.",
+    "topic": "MSK"
+  },
+  "SUBDURAL": {
+    "clue": "Crescent-shaped venous bleed in an older adult or a person with brain atrophy",
+    "rationale": "Subdural hematoma is bleeding from bridging veins and spreads in a crescent along the hemisphere. Older adults and people with alcohol use disorder are at risk because atrophy stretches those veins; symptoms can fluctuate.",
+    "topic": "Neuro"
+  },
+  "MASTITIS": {
+    "clue": "Breast infection during nursing, usually staph; keep emptying the breast and give an antistaphylococcal antibiotic",
+    "rationale": "Lactational mastitis is a painful wedge of erythema, usually Staphylococcus aureus, and sometimes MRSA. The parent continues breastfeeding or pumping; dicloxacillin or cephalexin is typical, with MRSA coverage if risk is high; a fluctuant abscess is drained.",
+    "topic": "OB/GYN"
+  },
+  "FLOATERS": {
+    "clue": "New specks plus flashes and a curtain over vision mean the retina may be detaching",
+    "rationale": "Sudden floaters and flashes, especially with a curtain of vision loss, suggest retinal tear or detachment and need same-day ophthalmology. A slowly increasing single floater in an older adult is often a benign vitreous change, but new showers are not.",
+    "topic": "Ophtho"
+  },
+  "PRIAPISM": {
+    "clue": "Prolonged painful erection; a classic adverse effect of trazodone and a complication of sickle cell disease",
+    "rationale": "Priapism is an erection lasting more than about four hours and is a urologic emergency. Trazodone and other alpha blockers, sickle cell disease, and intracavernosal injections are classic causes; ischemic priapism is aspirated and injected with a sympathomimetic.",
+    "topic": "Psych"
+  },
+  "ASBESTOS": {
+    "clue": "Fiber exposure causing pleural plaques and mesothelioma; it multiplies smoking-related lung cancer risk",
+    "rationale": "Asbestos causes pleural plaques, interstitial fibrosis that is often basilar, mesothelioma, and lung cancer. Smoking multiplies the lung-cancer risk but is not required for mesothelioma; latency is measured in decades.",
+    "topic": "Pulmonology"
+  },
+  "STRUVITE": {
+    "clue": "Staghorn stone from a urease-positive organism such as Proteus; the urine is alkaline",
+    "rationale": "Struvite stones form when urease-producing bacteria, such as Proteus, alkalinize the urine and precipitate magnesium ammonium phosphate. They can fill the pelvis as a staghorn calculus and must be removed, not just treated with antibiotics.",
+    "topic": "Renal"
+  },
+  "METHANOL": {
+    "clue": "Wood alcohol that causes visual loss and injury to the putamen; block its metabolism",
+    "rationale": "Methanol causes an anion-gap acidosis and visual snow or blindness from formic acid, with putaminal injury. Fomepizole blocks formation of the toxic metabolite; folate is often given because it helps clear formate.",
+    "topic": "Toxicology"
+  },
+  "FRICTION": {
+    "clue": "Scratchy three-component rub heard when the inflamed pericardial surfaces rub",
+    "rationale": "A pericardial friction rub is scratchy and may have systolic and diastolic components. It supports pericarditis along with pain that eases leaning forward and diffuse ST elevation.",
+    "topic": "Cardiology"
+  },
+  "MELANOMA": {
+    "clue": "Pigmented malignancy judged by asymmetry, border, color, diameter, and change; thickness drives prognosis",
+    "rationale": "Melanoma is assessed with the ABCDE rule, and Breslow thickness is the key prognostic measure. Any changing or ugly-duckling lesion is excised, not frozen or watched indefinitely; sun and tanning beds are the modifiable risks.",
+    "topic": "Derm"
+  },
+  "INCRETIN": {
+    "clue": "Gut-hormone pathway mimicked by drugs that raise insulin, slow the stomach, and reduce weight",
+    "rationale": "GLP-1 receptor agonists increase glucose-dependent insulin release, slow gastric emptying, and cause weight loss, with benefit in atherosclerotic disease. Nausea is common; they are avoided with a personal or family history of medullary thyroid carcinoma or MEN2.",
+    "topic": "Endocrine"
+  },
+  "PANCREAS": {
+    "clue": "Epigastric pain boring to the back with a high lipase; gallstones and alcohol are the leading causes",
+    "rationale": "Acute pancreatitis is epigastric pain radiating to the back with lipase at least three times normal. Gallstones and alcohol are the most common causes; early fluid resuscitation is the priority; antibiotics are for infected necrosis, not routine use.",
+    "topic": "GI"
+  },
+  "TEARDROP": {
+    "clue": "Red-cell shape on the smear of primary myelofibrosis",
+    "rationale": "Dacrocytes, or teardrop cells, are classic for primary myelofibrosis, in which marrow is replaced by fibrosis and the spleen becomes the site of blood production. A dry tap and a huge spleen support the diagnosis.",
+    "topic": "Heme"
+  },
+  "SHINGLES": {
+    "clue": "Painful vesicles in one dermatome; a lesion on the nasal tip threatens the eye",
+    "rationale": "Herpes zoster is reactivation of varicella in a single dermatome, with pain that may precede the rash. Hutchinson sign, a vesicle on the nasal tip, means nasociliary involvement and risk to the eye; antiviral therapy is most useful when started early.",
+    "topic": "ID"
+  },
+  "REACTIVE": {
+    "clue": "Arthritis, eye inflammation, and urethritis after chlamydia or a bacterial diarrheal illness",
+    "rationale": "Reactive arthritis follows Chlamydia or invasive bacterial gastroenteritis and classically combines arthritis, uveitis or conjunctivitis, and urethritis. HLA-B27 is often present; treat the triggering infection if it is still present, and use NSAIDs for the joints.",
+    "topic": "MSK"
+  },
+  "MIGRAINE": {
+    "clue": "Pulsatile unilateral headache with nausea and light sensitivity; aura means avoid estrogen-containing contraceptives",
+    "rationale": "Migraine is a recurrent pulsatile headache with nausea or photo- and phonophobia, with or without aura. Treat early with an NSAID or a triptan; aura is a reason to avoid combined hormonal contraceptives because of stroke risk.",
+    "topic": "Neuro"
+  },
+  "ASHERMAN": {
+    "clue": "Uterine synechiae after curettage causing amenorrhea",
+    "rationale": "Asherman syndrome is intrauterine adhesions, usually after curettage, causing amenorrhea, infertility, and cyclic pain if endometrium is trapped. Hysteroscopy both diagnoses and treats it.",
+    "topic": "OB/GYN"
+  },
+  "DELUSION": {
+    "clue": "Fixed false belief held despite evidence, a positive symptom of a primary psychotic disorder",
+    "rationale": "A delusion is a fixed false belief not shared by the person's culture. With hallucinations and disorganized speech it defines psychosis; duration and mood symptoms separate schizophrenia, schizophreniform disorder, and schizoaffective disorder.",
+    "topic": "Psych"
+  },
+  "PANCOAST": {
+    "clue": "Apical lung tumor causing shoulder pain, hand weakness, and a small pupil with a drooping lid",
+    "rationale": "A Pancoast tumor at the lung apex invades the brachial plexus and cervical sympathetic chain. Shoulder or arm pain, intrinsic hand wasting, and Horner syndrome are the classic cluster; non-small cell lung cancer is the usual histology.",
+    "topic": "Pulmonology"
+  },
+  "PROSTATE": {
+    "clue": "Gland whose cancer presents with a hard nodule and osteoblastic spine metastases",
+    "rationale": "Prostate cancer is a disease of older men. A hard nodule on rectal exam or a rising PSA prompts biopsy discussion; metastases are osteoblastic and cause high alkaline phosphatase and back pain; screening is a shared decision.",
+    "topic": "Renal"
+  },
+  "TRICUSPID": {
+    "clue": "Right-sided atrioventricular valve; its regurgitant murmur grows louder on inspiration",
+    "rationale": "Tricuspid regurgitation is often functional from pulmonary hypertension or right ventricular dilation. Inspiration increases venous return and makes right-sided murmurs louder.",
+    "topic": "Cardiology"
+  },
+  "PSORIASIS": {
+    "clue": "Well-demarcated salmon plaques with silvery scale on the extensor surfaces",
+    "rationale": "Psoriasis is well-demarcated salmon plaques with silvery scale on extensor surfaces. Pinpoint bleeding under a lifted scale, new lesions at sites of trauma, nail pitting, and arthritis are classic companions.",
+    "topic": "Derm"
+  },
+  "SINUSITIS": {
+    "clue": "Most facial pain with a cold is viral; use an antibiotic if symptoms are severe, double-worsening, or last past ten days",
+    "rationale": "Acute rhinosinusitis is usually viral. Antibiotics, typically amoxicillin-clavulanate, are reserved for symptoms lasting beyond 10 days, severe symptoms, or double worsening; chronic disease looks for allergy, anatomy, and, in selected patients, immunodeficiency.",
+    "topic": "ENT"
+  },
+  "METFORMIN": {
+    "clue": "First-line biguanide that lowers hepatic glucose output and does not cause hypoglycemia by itself",
+    "rationale": "Metformin decreases hepatic gluconeogenesis. It does not cause hypoglycemia when used alone and often causes diarrhea; it is avoided when eGFR is below 30 because of lactic acidosis risk, and it is held around iodinated contrast when kidney function is reduced or unstable.",
+    "topic": "Endocrine"
+  },
+  "ESOPHAGUS": {
+    "clue": "Tube whose distal adenocarcinoma follows Barrett metaplasia and whose proximal squamous cancer follows smoking and alcohol",
+    "rationale": "Esophageal adenocarcinoma arises distally from Barrett esophagus. Squamous cell carcinoma arises more proximally and is linked to smoking and alcohol; progressive dysphagia, solids then liquids, is the classic symptom.",
+    "topic": "GI"
+  },
+  "COBALAMIN": {
+    "clue": "Deficiency causing megaloblastic anemia plus dorsal-column and corticospinal neuropathy",
+    "rationale": "Vitamin B12 deficiency causes megaloblastic anemia and subacute combined degeneration of the cord. Both homocysteine and methylmalonic acid are high; causes include pernicious anemia, terminal-ileum disease, vegan diet, and metformin.",
+    "topic": "Heme"
+  },
+  "ACYCLOVIR": {
+    "clue": "Nucleoside analog for herpes simplex and zoster; keep the patient hydrated to protect the kidney",
+    "rationale": "Acyclovir treats HSV and varicella-zoster. Intravenous doses can crystallize in the kidney if the patient is not hydrated; empiric intravenous therapy is started for suspected herpes encephalitis before PCR returns.",
+    "topic": "ID"
+  },
+  "PSORIATIC": {
+    "clue": "Sausage digits and pencil-in-cup joints with nail pitting; the rash may hide in the scalp or the gluteal cleft",
+    "rationale": "Psoriatic arthritis can involve the DIP joints, cause dactylitis and nail pitting, and show pencil-in-cup erosions. The skin disease may be modest or hidden; NSAIDs, methotrexate, and TNF or IL-17 inhibitors are used.",
+    "topic": "MSK"
+  },
+  "AMAUROSIS": {
+    "clue": "Curtain-like monocular vision loss that resolves, a vascular warning from the carotid or from giant-cell arteritis",
+    "rationale": "Amaurosis fugax is a transient monocular curtain of vision loss from ipsilateral carotid embolism or, in an older adult with headache, from giant cell arteritis. It is a stroke-equivalent and needs urgent evaluation.",
+    "topic": "Neuro"
+  },
+  "ABRUPTION": {
+    "clue": "Painful third-trimester bleeding with a firm, tender uterus; clotting factors can be consumed",
+    "rationale": "Placental abruption is premature separation causing painful bleeding, a hypertonic uterus, and fetal distress. Hemorrhage may be concealed; hypertension, trauma, and cocaine are risks; DIC is the coagulation complication.",
+    "topic": "OB/GYN"
+  },
+  "BUPROPION": {
+    "clue": "Antidepressant that helps smoking cessation and spares sexual function; avoid it in seizure and eating disorders",
+    "rationale": "Bupropion inhibits norepinephrine and dopamine reuptake. It does not cause sexual dysfunction and aids smoking cessation; it lowers the seizure threshold and is contraindicated in bulimia, anorexia, and seizure disorders.",
+    "topic": "Psych"
+  },
+  "EMPHYSEMA": {
+    "clue": "Alveolar destruction with a low diffusing capacity; smoking favors the upper lobes",
+    "rationale": "Emphysema destroys alveolar walls and reduces elastic recoil and DLCO. Smoking-related disease is centrilobular and upper-lobe; alpha-1 antitrypsin deficiency is panacinar and basilar.",
+    "topic": "Pulmonology"
+  },
+  "POSTRENAL": {
+    "clue": "Kidney injury from obstruction; ultrasound looks for hydronephrosis",
+    "rationale": "Postrenal injury requires obstruction of both kidneys or of a solitary kidney, or urethral obstruction. Ultrasound shows hydronephrosis unless the obstruction is extremely early or the patient is profoundly volume depleted; relieve the blockage.",
+    "topic": "Renal"
+  },
+  "METHYLENE": {
+    "clue": "Blue dye that treats methemoglobinemia from benzocaine or dapsone; avoid it in G6PD deficiency",
+    "rationale": "Methylene blue reduces methemoglobin via an NADPH-dependent pathway. It is the antidote for symptomatic methemoglobinemia from local anesthetics or dapsone; it does not work, and can hemolyze, in G6PD deficiency.",
+    "topic": "Toxicology"
+  },
+  "TAMPONADE": {
+    "clue": "Pericardial fluid under pressure that equalizes diastolic filling and drops cardiac output",
+    "rationale": "Tamponade causes hypotension, jugular venous distention, and an exaggerated inspiratory drop in systolic pressure. Echocardiography shows chamber collapse, and drainage is the treatment.",
+    "topic": "Cardiology"
+  },
+  "FASCIITIS": {
+    "clue": "Rapidly spreading deep soft-tissue infection with pain out of proportion; this is a surgical emergency",
+    "rationale": "Necrotizing fasciitis causes pain out of proportion, systemic toxicity, and rapid spread along fascia, sometimes with crepitus. Group A strep and polymicrobial infection are typical; immediate surgical debridement plus broad antibiotics, including clindamycin for toxin suppression, are required.",
+    "topic": "Derm"
+  },
+  "GLYBURIDE": {
+    "clue": "Sulfonylurea that stimulates insulin release and can cause hypoglycemia; avoid it when kidney function is poor",
+    "rationale": "Glyburide closes potassium channels on beta cells and forces insulin release, so hypoglycemia is the main risk. Active metabolites accumulate in kidney disease, so it is a poor choice in older adults and in CKD.",
+    "topic": "Endocrine"
+  },
+  "ACHALASIA": {
+    "clue": "Bird-beak esophagus with failure of the lower sphincter to relax; Chagas disease can mimic it",
+    "rationale": "Achalasia is loss of inhibitory neurons in the esophageal myenteric plexus, so the lower sphincter fails to relax and peristalsis is absent. Dysphagia is to solids and liquids; trypanosoma cruzi can produce the same picture.",
+    "topic": "GI"
+  },
+  "LEUKEMOID": {
+    "clue": "Reactive extreme leukocytosis with a high leukocyte alkaline phosphatase, unlike chronic myeloid leukemia",
+    "rationale": "A leukemoid reaction is a benign extreme neutrophilia from infection or inflammation. Toxic granulation and a high leukocyte alkaline phosphatase separate it from CML, in which the alkaline phosphatase is low.",
+    "topic": "Heme"
+  },
+  "RHEUMATIC": {
+    "clue": "Immune disease after strep throat, with carditis and migratory arthritis; it does not follow skin infection",
+    "rationale": "Acute rheumatic fever follows group A streptococcal pharyngitis, not impetigo. Carditis, especially mitral valvulitis, is the morbidity; treatment is antibiotics plus anti-inflammatory therapy, then long-term penicillin prophylaxis.",
+    "topic": "ID"
+  },
+  "NURSEMAID": {
+    "clue": "Radial-head subluxation in a toddler pulled by the arm; reduce it by supinating and flexing",
+    "rationale": "Nursemaid's elbow is radial-head subluxation from longitudinal traction on a pronated toddler arm. The child will not use the arm; supination and flexion, or hyperpronation, reduces it; films are normal.",
+    "topic": "MSK"
+  },
+  "LHERMITTE": {
+    "clue": "Electric sensation down the spine when the neck is flexed, a sign of cervical cord demyelination",
+    "rationale": "Lhermitte sign is an electric shock down the spine with neck flexion. It indicates a cervical spinal cord lesion, classically multiple sclerosis, but it is not specific.",
+    "topic": "Neuro"
+  },
+  "ECLAMPSIA": {
+    "clue": "New seizure in pregnancy hypertension; magnesium is the anticonvulsant and delivery is definitive",
+    "rationale": "Eclampsia is a seizure in a patient with preeclampsia, not explained by another neurologic disease. Magnesium sulfate treats and prevents the seizure; delivery is the definitive treatment of the underlying disease.",
+    "topic": "OB/GYN"
+  },
+  "AKATHISIA": {
+    "clue": "Inner restlessness from antipsychotics; a beta blocker can help",
+    "rationale": "Akathisia is a subjective urge to move and is an extrapyramidal effect of antipsychotics and some antiemetics. Lowering the dose, a beta blocker, or a benzodiazepine is used; it is a risk factor for agitation and self-harm.",
+    "topic": "Psych"
+  },
+  "PERTUSSIS": {
+    "clue": "Whooping cough with post-tussive emesis; treat the patient and close contacts with a macrolide",
+    "rationale": "Pertussis has a catarrhal phase then paroxysmal cough with a whoop and post-tussive vomiting, plus marked lymphocytosis. A macrolide is given to the patient and close contacts; the cough can persist after the organism is cleared.",
+    "topic": "Pulmonology"
+  },
+  "NEPHROTIC": {
+    "clue": "Proteinuria above 3.5 grams a day with edema, low albumin, and high lipids",
+    "rationale": "Nephrotic syndrome is heavy proteinuria, hypoalbuminemia, edema, and hyperlipidemia. Urine may show oval fat bodies; thrombosis risk is high; causes include minimal change, FSGS, membranous nephropathy, diabetes, and amyloid.",
+    "topic": "Renal"
+  },
+  "ALTERNANS": {
+    "clue": "Beat-to-beat change in QRS amplitude, a clue to a large pericardial effusion with tamponade",
+    "rationale": "Electrical alternans is beat-to-beat variation in QRS amplitude from the heart swinging in a large pericardial effusion. It supports tamponade when the clinical picture fits.",
+    "topic": "Cardiology"
+  },
+  "PEMPHIGUS": {
+    "clue": "Flaccid blisters and oral erosions from antibodies to the protein that holds keratinocytes together",
+    "rationale": "Pemphigus vulgaris is IgG against desmoglein, so keratinocytes separate and blisters are flaccid, with oral erosions often first. Nikolsky sign is positive; immunofluorescence shows a net-like IgG pattern; steroids and rituximab are used.",
+    "topic": "Derm"
+  },
+  "HASHIMOTO": {
+    "clue": "Most common hypothyroidism where iodine is sufficient; antiperoxidase antibodies and a firm goiter",
+    "rationale": "Hashimoto thyroiditis is autoimmune thyroid destruction with antiperoxidase antibodies, causing hypothyroidism and a firm goiter. Severe decompensation with hypothermia is treated with intravenous thyroid hormone plus steroids until adrenal failure is excluded.",
+    "topic": "Endocrine"
+  },
+  "CORKSCREW": {
+    "clue": "Barium pattern of diffuse esophageal spasm",
+    "rationale": "Diffuse esophageal spasm produces a corkscrew esophagus on barium swallow and chest pain with intermittent dysphagia. Calcium-channel blockers or nitrates are used for symptoms.",
+    "topic": "GI"
+  },
+  "AMIODARONE": {
+    "clue": "Class III antiarrhythmic that can injure lung, thyroid, and liver and deposits in the cornea and skin",
+    "rationale": "Amiodarone is used for atrial and ventricular arrhythmias. Before and during therapy, monitor pulmonary, thyroid, and liver function because of pulmonary toxicity, hypo- or hyperthyroidism, and hepatitis.",
+    "topic": "Cardiology"
+  },
+  "MULTIFORME": {
+    "clue": "Target lesions, often after herpes simplex; this is distinct from widespread drug-related skin necrosis",
+    "rationale": "Erythema multiforme is target lesions, often acral, usually triggered by herpes simplex and sometimes by Mycoplasma. Mucosal involvement can occur; it is separated from Stevens-Johnson syndrome, which is a more severe drug reaction.",
+    "topic": "Derm"
+  },
+  "EUGLYCEMIC": {
+    "clue": "Ketoacidosis with a near-normal glucose, a risk of sodium-glucose cotransporter inhibitor drugs",
+    "rationale": "SGLT2 inhibitors can cause diabetic ketoacidosis with glucose that is not very high. Stop the drug during illness and before surgery, and do not be reassured by a near-normal glucose if the patient is acidotic.",
+    "topic": "Endocrine"
+  },
+  "OCTREOTIDE": {
+    "clue": "Somatostatin analog used for variceal bleeding and for acromegaly or a carcinoid syndrome",
+    "rationale": "Octreotide reduces splanchnic blood flow and is given in acute variceal hemorrhage. It also treats acromegaly and the secretory symptoms of carcinoid syndrome.",
+    "topic": "GI"
+  },
+  "PERNICIOUS": {
+    "clue": "Autoimmune loss of intrinsic factor leading to vitamin B12 deficiency",
+    "rationale": "Pernicious anemia is autoimmune destruction of gastric parietal cells with intrinsic-factor antibodies, causing B12 deficiency. There is an increased risk of gastric carcinoma; parenteral or high-dose oral B12 replaces the vitamin.",
+    "topic": "Heme"
+  },
+  "DIPHTHERIA": {
+    "clue": "Pharyngeal gray pseudomembrane and a bull neck; give antitoxin plus an antibiotic",
+    "rationale": "Corynebacterium diphtheriae produces a toxin and an adherent gray pharyngeal membrane that bleeds when peeled, with a bull neck. Airway obstruction and myocarditis kill; antitoxin is given as soon as the disease is suspected, plus an antibiotic.",
+    "topic": "ID"
+  },
+  "RHEUMATOID": {
+    "clue": "Symmetric synovitis of the small joints of the hands that spares the furthest knuckles; methotrexate is the anchor drug",
+    "rationale": "Rheumatoid arthritis is symmetric inflammatory polyarthritis of the MCP and PIP joints with prolonged morning stiffness, sparing the DIPs. Anti-CCP antibody is specific; methotrexate is the anchor disease-modifying drug unless contraindicated.",
+    "topic": "MSK"
+  },
+  "CONCUSSION": {
+    "clue": "Mild traumatic brain injury with transient neurologic change; image only when red flags are present",
+    "rationale": "Concussion is a functional brain injury with headache, confusion, or amnesia, usually without a lesion on CT. Red flags such as worsening consciousness, repeated vomiting, or focal signs prompt imaging; return to activity is graded.",
+    "topic": "Neuro"
+  },
+  "CARBOPROST": {
+    "clue": "Prostaglandin for postpartum hemorrhage that is contraindicated in asthma",
+    "rationale": "Carboprost is a prostaglandin F2-alpha analog used for uterine atony after oxytocin. It can cause bronchospasm and is contraindicated in asthma; diarrhea and fever are common.",
+    "topic": "OB/GYN"
+  },
+  "ADENOVIRUS": {
+    "clue": "Virus of watery pink eye with a node in front of the ear",
+    "rationale": "Adenovirus causes highly contagious conjunctivitis with watery discharge and a preauricular node, and pharyngoconjunctival fever. It is supportive care; bacterial conjunctivitis is purulent; allergic conjunctivitis itches.",
+    "topic": "Ophtho"
+  },
+  "DEPRESSION": {
+    "clue": "Low mood or anhedonia for two weeks with sleep, energy, or concentration change; an SSRI is first-line",
+    "rationale": "Major depression requires at least two weeks of depressed mood or anhedonia plus additional symptoms that impair function. SSRIs are first-line medication; screen for bipolar history so antidepressant monotherapy is not started in unrecognized mania.",
+    "topic": "Psych"
+  },
+  "BRONCHITIS": {
+    "clue": "Productive cough for three months in two consecutive years, the blue-bloater pattern",
+    "rationale": "Chronic bronchitis is a clinical diagnosis: productive cough at least three months a year for two years, without another cause. Patients are often hypoxemic and hypercapnic.",
+    "topic": "Pulmonology"
+  },
+  "MEMBRANOUS": {
+    "clue": "Nephrotic syndrome of adults linked to solid tumors, hepatitis B, and a phospholipase-receptor antibody",
+    "rationale": "Membranous nephropathy presents as nephrotic syndrome. It is associated with solid tumors, hepatitis B, lupus, and PLA2R antibodies in the primary form; renal-vein thrombosis is a particular risk.",
+    "topic": "Renal"
+  },
+  "SALICYLATE": {
+    "clue": "Overdose causing ringing in the ears and a respiratory alkalosis mixed with an anion-gap acidosis",
+    "rationale": "Salicylate overdose causes tinnitus, fever, and an early respiratory alkalosis plus an anion-gap metabolic acidosis. Alkalinization with bicarbonate traps the drug, and hemodialysis is used for severe levels, kidney failure, or altered mentation.",
+    "topic": "Toxicology"
+  },
+  "FLECAINIDE": {
+    "clue": "Class Ic antiarrhythmic for atrial fibrillation in a structurally normal heart; avoid it after infarction",
+    "rationale": "Flecainide is a potent sodium-channel blocker used for atrial fibrillation in patients without structural heart disease or coronary disease. The CAST trial showed harm when this drug class was used after myocardial infarction.",
+    "topic": "Cardiology"
+  },
+  "MARGINATUM": {
+    "clue": "Evanescent serpiginous rash that is a major finding of acute rheumatic fever",
+    "rationale": "Erythema marginatum is a fleeting, serpiginous, nonpruritic rash of acute rheumatic fever and is one of the major Jones criteria. It is easy to miss because it comes and goes.",
+    "topic": "Derm"
+  },
+  "POSTPARTUM": {
+    "clue": "Painless thyroid inflammation after delivery that can swing from high to low hormone",
+    "rationale": "Postpartum thyroiditis is a painless autoimmune inflammation with low radioiodine uptake, a hyperthyroid phase, then hypothyroidism. Many recover, but some remain permanently hypothyroid and need levothyroxine.",
+    "topic": "Endocrine"
+  },
+  "GASTRINOMA": {
+    "clue": "Gastrin-secreting tumor causing refractory ulcers and diarrhea; screen for MEN1",
+    "rationale": "A gastrinoma causes Zollinger-Ellison syndrome: multiple or refractory peptic ulcers and diarrhea from acid inactivation of enzymes. Measure fasting gastrin, and evaluate for MEN1.",
+    "topic": "GI"
+  },
+  "SPHEROCYTE": {
+    "clue": "Round red cell of hereditary membrane defects and of immune hemolysis",
+    "rationale": "Spherocytes are seen in hereditary spherocytosis and in immune hemolysis. Hereditary spherocytosis has a high MCHC, a positive osmotic-fragility test, pigment gallstones, and an aplastic crisis from parvovirus; splenectomy after vaccines is definitive for severe disease.",
+    "topic": "Heme"
+  },
+  "PARVOVIRUS": {
+    "clue": "Virus of slapped-cheek rash in children and of aplastic crisis in sickle cell disease",
+    "rationale": "Parvovirus B19 causes fifth disease, a slapped-cheek rash, and can cause an aplastic crisis in sickle cell disease or other hemolytic anemias because it infects red-cell precursors. In pregnancy it can cause hydrops.",
+    "topic": "ID"
+  },
+  "ANKYLOSING": {
+    "clue": "Young man with sacroiliitis and morning back stiffness that improves with activity; the spine can look like bamboo",
+    "rationale": "Ankylosing spondylitis is an HLA-B27-associated inflammatory back disease of young men, with sacroiliitis, reduced chest expansion, and a bamboo spine. Pain improves with activity; an NSAID is first-line; uveitis and aortitis are extra-articular features.",
+    "topic": "MSK"
+  },
+  "TRIGEMINAL": {
+    "clue": "Cranial nerve whose neuralgia causes electric facial pain; carbamazepine is first-line",
+    "rationale": "Trigeminal neuralgia is lancinating pain in a trigeminal distribution, triggered by light touch. Carbamazepine or oxcarbazepine is first-line; in a young patient, think of multiple sclerosis.",
+    "topic": "Neuro"
+  },
+  "AGALACTIAE": {
+    "clue": "Group B organism screened by rectovaginal culture late in pregnancy and treated during labor",
+    "rationale": "Streptococcus agalactiae is group B streptococcus. Rectovaginal culture is done at about 36 to 37 weeks, and intrapartum penicillin is given to carriers to prevent early-onset neonatal sepsis; a penicillin-allergic patient at high anaphylaxis risk receives a susceptibility-guided alternative.",
+    "topic": "OB/GYN"
+  },
+  "SERTRALINE": {
+    "clue": "SSRI often chosen when depression coexists with heart disease; it still needs weeks to work",
+    "rationale": "Sertraline has fewer CYP interactions than some other SSRIs and is commonly chosen in patients with cardiac disease and in breastfeeding. Like other SSRIs it has a delayed onset and can cause sexual dysfunction and hyponatremia.",
+    "topic": "Psych"
+  },
+  "THUMBPRINT": {
+    "clue": "Lateral neck-film sign of epiglottitis in a drooling, tripoding patient",
+    "rationale": "The thumbprint sign is a swollen epiglottis on a lateral neck radiograph. Do not agitate the patient or examine the throat; secure the airway in a controlled setting and give an antibiotic that covers Haemophilus influenzae.",
+    "topic": "Pulmonology"
+  },
+  "MYOCARDITIS": {
+    "clue": "Inflammation of heart muscle, often viral, with chest pain, troponin rise, and reduced function",
+    "rationale": "Myocarditis often follows a viral illness such as coxsackievirus, with chest pain, elevated troponin, and reduced pump function. It can mimic infarction and can present as a new cardiomyopathy.",
+    "topic": "Cardiology"
+  },
+  "INFECTIOSUM": {
+    "clue": "Slapped-cheek illness of school-age children caused by parvovirus",
+    "rationale": "Erythema infectiosum, fifth disease, is parvovirus B19: a slapped cheek then a lacy trunk rash. The child is usually no longer infectious once the rash appears; the danger is to the fetus and to patients with hemolytic anemia.",
+    "topic": "Derm"
+  },
+  "KIESSELBACH": {
+    "clue": "Anterior septal vascular plexus that is the usual source of a nosebleed",
+    "rationale": "Kiesselbach plexus is the anastomotic area on the anterior nasal septum and the source of most epistaxis. Local trauma, dry air, and nose picking are the usual precipitants.",
+    "topic": "ENT"
+  },
+  "PARATHYROID": {
+    "clue": "Gland whose adenoma raises calcium and lowers phosphate, causing stones, bone pain, and constipation",
+    "rationale": "Primary hyperparathyroidism, usually a single adenoma, causes high calcium, low phosphate, and a high or inappropriately normal PTH. Stones, bone pain, constipation, and psychiatric symptoms are the classic effects; surgery is definitive for those who meet criteria.",
+    "topic": "Endocrine"
+  },
+  "COBBLESTONE": {
+    "clue": "Mucosal pattern of deep linear ulcers separated by swollen islands in Crohn disease",
+    "rationale": "Cobblestoning is the endoscopic look of intersecting linear ulcers in Crohn disease. It reflects transmural, discontinuous inflammation rather than the continuous mucosal disease of ulcerative colitis.",
+    "topic": "GI"
+  },
+  "THALASSEMIA": {
+    "clue": "Microcytic anemia with normal iron stores; the major form shows a crew-cut skull",
+    "rationale": "Thalassemia is impaired globin-chain synthesis. The trait is microcytic with a normal or high red-cell count and normal iron studies, unlike iron deficiency; beta major causes severe anemia, chipmunk facies, and a crew-cut skull from marrow expansion.",
+    "topic": "Heme"
+  },
+  "PHARYNGITIS": {
+    "clue": "Sore throat; test and treat group A strep to prevent rheumatic fever, not to prevent glomerulonephritis",
+    "rationale": "Most pharyngitis is viral. The Centor criteria guide testing for group A strep; treating strep pharyngitis prevents rheumatic fever but does not reliably prevent poststreptococcal glomerulonephritis.",
+    "topic": "ID"
+  },
+  "SCLERODERMA": {
+    "clue": "Skin-thickening disease; the diffuse form risks lung fibrosis and a renal crisis treated with an ACE inhibitor",
+    "rationale": "Systemic sclerosis thickens skin. Diffuse disease is associated with anti-Scl-70 and with interstitial lung disease and scleroderma renal crisis, which is treated with an ACE inhibitor; limited disease has anticentromere antibody and the CREST features.",
+    "topic": "MSK"
+  },
+  "PSEUDOTUMOR": {
+    "clue": "Obese young woman with headache and papilledema but normal imaging; opening pressure is high",
+    "rationale": "Idiopathic intracranial hypertension causes headache and papilledema with normal imaging and an elevated opening pressure. It affects young women with obesity and is linked to vitamin A and tetracyclines; acetazolamide and weight loss are first-line; vision is the endpoint.",
+    "topic": "Neuro"
+  },
+  "TROPHOBLAST": {
+    "clue": "Gestational tissue that, when malignant, spreads to the lungs and is followed with the pregnancy hormone",
+    "rationale": "Gestational trophoblastic neoplasia, including choriocarcinoma, follows a mole, abortion, or pregnancy and spreads hematogenously, often to the lung. hCG is the marker. These tumors are highly sensitive to chemotherapy.",
+    "topic": "OB/GYN"
+  },
+  "NEOVASCULAR": {
+    "clue": "Fragile new retinal vessels of proliferative diabetic eye disease that bleed and scar",
+    "rationale": "Proliferative diabetic retinopathy grows neovascular vessels that bleed into the vitreous and cause traction detachment. Tight glucose and blood-pressure control prevent it; laser or anti-VEGF injections treat high-risk disease; an annual dilated exam is the screen.",
+    "topic": "Ophtho"
+  },
+  "HALOPERIDOL": {
+    "clue": "High-potency typical antipsychotic with a high risk of extrapyramidal effects and QT prolongation",
+    "rationale": "Haloperidol strongly blocks D2 receptors, so extrapyramidal symptoms are common and anticholinergic effects are fewer than with low-potency agents. It prolongs QT; all antipsychotics carry a mortality warning in dementia-related psychosis.",
+    "topic": "Psych"
+  },
+  "ANTITRYPSIN": {
+    "clue": "Protein deficiency causing early basilar emphysema and liver disease",
+    "rationale": "Alpha-1 antitrypsin deficiency causes panacinar emphysema, classically basal, in younger adults, including nonsmokers, plus liver disease from retained protein. A low serum level and genotyping confirm it.",
+    "topic": "Pulmonology"
+  },
+  "GOODPASTURE": {
+    "clue": "Lung hemorrhage plus glomerulonephritis with linear basement-membrane antibody; plasmapheresis is required",
+    "rationale": "Goodpasture syndrome is anti-GBM antibody disease attacking lung and kidney, with linear IgG on biopsy. Young men who smoke are classic; treatment is plasmapheresis plus cyclophosphamide and steroids.",
+    "topic": "Renal"
+  },
+  "ISOPROPANOL": {
+    "clue": "Rubbing alcohol that causes ketosis without an anion-gap acidosis",
+    "rationale": "Isopropanol is metabolized to acetone, so patients are intoxicated and ketotic without an acidosis, unlike methanol and ethylene glycol. Fomepizole is not indicated; supportive care is usual, with dialysis only for severe hemodynamic compromise.",
+    "topic": "Toxicology"
+  },
+  "CLOPIDOGREL": {
+    "clue": "P2Y12 inhibitor added to aspirin after coronary stenting and in selected acute coronary syndromes",
+    "rationale": "Clopidogrel blocks the platelet P2Y12 receptor. It is used with aspirin after stent placement and in many acute coronary syndromes; it is a prodrug and is held before major surgery when possible.",
+    "topic": "Cardiology"
+  },
+  "TERBINAFINE": {
+    "clue": "Oral antifungal used for nail dermatophyte infection; check the liver",
+    "rationale": "Oral terbinafine is first-line for many cases of onychomycosis and is also used for some scalp dermatophyte infections. Hepatotoxicity is the monitoring issue; it is not the treatment for yeast bloodstream infection.",
+    "topic": "Derm"
+  }
+}
