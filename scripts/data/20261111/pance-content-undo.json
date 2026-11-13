@@ -1,0 +1,18 @@
+{
+  "joke": {
+    "id": "89a3ce02-18c0-498b-b3c4-3d4eb5d86ba2",
+    "options": "{\"options\":[\"Another dose of ibuprofen\",\"Urgent dialysis\",\"Oral kayexalate as the only further treatment\",\"Observation overnight\",\"A 2-liter saline bolus\"],\"blueprintSystem\":\"renal\",\"taskCategory\":\"intervention\",\"blueprintTopic\":\"Indications for urgent dialysis\",\"kind\":\"vignette\"}",
+    "explanation": "Urgent dialysis is correct. Refractory hyperkalemia with QRS widening, anuria, acidosis, and altered mentation is an indication for urgent kidney replacement. Temporizing drugs have already been used. Incorrect alternatives: An NSAID, saline in an anuric patient, overnight observation, and a resin as the only step do not treat membrane toxicity that is not resolving.",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38490803/",
+        "label": "KDIGO CKD Work Group. KDIGO 2024 Clinical Practice Guideline for CKD. Kidney Int 2024"
+      }
+    ],
+    "manualCorrection": true
+  },
+  "hidden": {
+    "id": "cmvxd2zua0000l308gmnj7fwd",
+    "active": true
+  }
+}
