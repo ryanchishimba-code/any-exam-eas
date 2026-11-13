@@ -25,9 +25,19 @@ test.describe("Authentication", () => {
   test("forgot password page submits reset request", async ({ page }) => {
     await page.goto("/auth/forgot-password", { waitUntil: "domcontentloaded" });
     const email = page.getByLabel(/email address/i);
+    // Typing before hydration leaves the controlled value empty and the submit
+    // reports "Enter your email address" without calling the API.
+    await page.waitForFunction(() => {
+      const input = document.querySelector('input[type="email"]');
+      if (!(input instanceof HTMLInputElement)) return false;
+      return Object.keys(input).some(
+        (key) => key.startsWith("__reactProps") || key.startsWith("__reactFiber")
+      );
+    });
     await fillControlledInput(email, "recover@example.com");
     const send = page.getByRole("button", { name: /send reset link/i });
     await expect(send).toBeEnabled();
+    await expect(email).toHaveValue("recover@example.com");
     const submitted = page.waitForResponse(
       (res) => res.url().includes("/api/auth/forgot-password") && res.request().method() === "POST",
       { timeout: 30_000 }

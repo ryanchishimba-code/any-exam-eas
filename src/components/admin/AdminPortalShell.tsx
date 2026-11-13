@@ -20,6 +20,7 @@ import {
   Quote,
   Share2,
   Stethoscope,
+  Trophy,
 } from "lucide-react";
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
@@ -35,6 +36,7 @@ const navItems = [
   { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/social", label: "Social & community", icon: Share2 },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/leaderboard", label: "Leaderboard", icon: Trophy },
   { href: "/admin/employees", label: "Employees", icon: UserCog },
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },
   { href: "/admin/support", label: "Customer Service", icon: Headphones },

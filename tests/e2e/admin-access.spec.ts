@@ -30,6 +30,11 @@ test.describe("Admin access control (unauthenticated)", () => {
     await expect(page).toHaveURL(/\/admin\/login/);
   });
 
+  test("redirects /admin/leaderboard to the admin login", async ({ page }) => {
+    await page.goto("/admin/leaderboard", { waitUntil: "domcontentloaded" });
+    await expect(page).toHaveURL(/\/admin\/login/);
+  });
+
   test("admin login page renders a sign-in form", async ({ page }) => {
     await page.goto("/admin/login", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("button", { name: /sign in|log in/i }).first()).toBeVisible();
