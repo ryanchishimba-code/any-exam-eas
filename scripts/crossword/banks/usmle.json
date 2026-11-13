@@ -1,0 +1,1667 @@
+{
+  "ATP": {
+    "clue": "Nucleotide that drives the sodium-potassium pump and is exhausted early in ischemia",
+    "rationale": "Oxidative phosphorylation supplies most of this nucleotide. Ischemia stops the pump, sodium enters, and cells swell.",
+    "topic": "Biochem / energetics"
+  },
+  "PCR": {
+    "clue": "Method that copies a chosen nucleic-acid sequence with a heat-stable polymerase",
+    "rationale": "Taq polymerase survives the denaturation step. The test amplifies DNA or, after reverse transcription, RNA.",
+    "topic": "Biochem / lab"
+  },
+  "GFR": {
+    "clue": "Filtration rate measured exactly with inulin and estimated from creatinine",
+    "rationale": "Inulin is freely filtered and neither reabsorbed nor secreted. Creatinine slightly overestimates the rate because tubules secrete it.",
+    "topic": "Renal / physiology"
+  },
+  "DNA": {
+    "clue": "Genetic polymer whose ultraviolet thymine dimers are removed by nucleotide excision repair",
+    "rationale": "Xeroderma pigmentosum is a failure of that repair and leads to skin cancers. Mismatch repair failure is the Lynch pathway instead.",
+    "topic": "Biochem / repair"
+  },
+  "RNA": {
+    "clue": "Genome type of influenza, HIV, and poliovirus, unlike herpesviruses",
+    "rationale": "Positive-sense RNA can act as a message. Retroviruses reverse-transcribe their RNA before integrating.",
+    "topic": "Micro / virology"
+  },
+  "TSH": {
+    "clue": "Pituitary signal that is the first blood test when thyroid function is in doubt",
+    "rationale": "High levels with low thyroid hormone mean primary hypothyroidism. Low levels with high thyroid hormone suggest pituitary failure or exogenous hormone.",
+    "topic": "Endocrine / thyroid"
+  },
+  "ACTH": {
+    "clue": "Pituitary peptide that drives cortisol and is high when the adrenal glands fail",
+    "rationale": "Primary adrenal failure has high levels and hyperpigmentation. Exogenous glucocorticoids suppress it, so stopping them suddenly can cause crisis.",
+    "topic": "Endocrine / adrenal"
+  },
+  "ADH": {
+    "clue": "Posterior pituitary hormone that inserts water channels when plasma osmolality rises",
+    "rationale": "It acts on V2 receptors of principal cells and also raises urea permeability in the inner medulla. Very low blood volume overrides osmolality and still triggers release.",
+    "topic": "Renal / physiology"
+  },
+  "PTH": {
+    "clue": "Hormone that raises serum calcium, lowers phosphate, and is anabolic only in pulses",
+    "rationale": "Continuous excess resorbs bone. Once-daily analog therapy builds bone because of that timing difference.",
+    "topic": "Endocrine / bone"
+  },
+  "ACE": {
+    "clue": "Lung-endothelium enzyme that makes angiotensin II and breaks down bradykinin",
+    "rationale": "Inhibitors raise bradykinin, which explains cough and angioedema. Macrophages in sarcoidosis also express the enzyme, so the serum level can rise.",
+    "topic": "Physio / RAAS"
+  },
+  "EPO": {
+    "clue": "Kidney hormone increased by hypoxia and secreted by some renal cell carcinomas",
+    "rationale": "It drives red-cell production. Inappropriate secretion also occurs with cerebellar hemangioblastoma and hepatocellular carcinoma.",
+    "topic": "Renal / heme"
+  },
+  "TNF": {
+    "clue": "Macrophage cytokine of fever, cachexia, and septic shock, and the target of several biologics",
+    "rationale": "It also maintains granulomas, so blockers can reactivate tuberculosis. Screen for latent TB before starting those drugs.",
+    "topic": "Immuno / cytokines"
+  },
+  "HIV": {
+    "clue": "Retrovirus that enters CD4 cells through CD4 plus CCR5 or CXCR4",
+    "rationale": "Reverse transcriptase, integrase, and protease are drug targets. The CD4 count falls and opportunistic infections follow.",
+    "topic": "Micro / HIV"
+  },
+  "CMV": {
+    "clue": "Herpesvirus with owl-eye inclusions and the most common congenital viral infection",
+    "rationale": "Congenital disease causes periventricular calcifications, hearing loss, and blueberry-muffin rash. In advanced HIV it causes retinitis and linear esophageal ulcers.",
+    "topic": "Micro / herpes"
+  },
+  "EBV": {
+    "clue": "Herpesvirus that binds CD21 and drives heterophile-positive mononucleosis",
+    "rationale": "It is linked to Burkitt lymphoma, Hodgkin lymphoma, and nasopharyngeal carcinoma. Cytotoxic T cells are the atypical lymphocytes, and the spleen can rupture.",
+    "topic": "Micro / herpes"
+  },
+  "HPV": {
+    "clue": "Nonenveloped DNA virus whose E6 and E7 proteins disable p53 and Rb",
+    "rationale": "Types 16 and 18 cause cervical, anal, and oropharyngeal cancers. Types 6 and 11 cause warts and recurrent respiratory papillomas.",
+    "topic": "Micro / DNA virus"
+  },
+  "HSV": {
+    "clue": "Virus latent in sensory ganglia that causes hemorrhagic temporal-lobe encephalitis",
+    "rationale": "Cowdry inclusions and multinucleated giant cells are histologic clues. Acyclovir must be activated by viral thymidine kinase.",
+    "topic": "Micro / herpes"
+  },
+  "DKA": {
+    "clue": "Anion-gap acidosis with hyperglycemia and ketones, mostly in insulin deficiency",
+    "rationale": "Total-body potassium is low even when the serum level is high. Insulin drives potassium inward, so potassium is replaced as treatment proceeds.",
+    "topic": "Endocrine / diabetes"
+  },
+  "TTP": {
+    "clue": "Pentad of thrombocytopenia, microangiopathic hemolysis, neurologic change, fever, and renal injury from ultra-large von Willebrand multimers",
+    "rationale": "ADAMTS13 is deficient, often from an autoantibody. Plasma exchange is the treatment, and platelets are not routinely transfused.",
+    "topic": "Heme / MAHA"
+  },
+  "DIC": {
+    "clue": "Consumptive coagulopathy with low fibrinogen, high D-dimer, prolonged clotting times, and schistocytes",
+    "rationale": "Triggers include sepsis, trauma, amniotic-fluid embolus, and acute promyelocytic leukemia. Replace fibrinogen and treat the cause.",
+    "topic": "Heme / coagulation"
+  },
+  "PNH": {
+    "clue": "Acquired loss of the GPI anchor so red cells lack CD55 and CD59 and lyse",
+    "rationale": "A PIGA mutation in a stem cell is the cause. Thrombosis in unusual veins is the leading threat, and a C5 inhibitor raises Neisseria risk.",
+    "topic": "Heme / hemolysis"
+  },
+  "RAS": {
+    "clue": "Proto-oncogene GTPase stuck active in many pancreatic and colon cancers",
+    "rationale": "It normally turns itself off by hydrolyzing GTP. A point mutation blocks that hydrolysis and locks growth signaling on.",
+    "topic": "Path / oncogene"
+  },
+  "MYC": {
+    "clue": "Transcription-factor oncogene translocated next to immunoglobulin genes in Burkitt lymphoma",
+    "rationale": "The classic translocation is t(8;14). The tumor has a starry-sky pattern of macrophages among dark lymphocytes.",
+    "topic": "Path / oncogene"
+  },
+  "APC": {
+    "clue": "Tumor suppressor that holds beta-catenin for destruction and is lost in familial polyposis",
+    "rationale": "Hundreds of colorectal adenomas follow, and cancer is nearly certain without colectomy. The gene sits on chromosome 5.",
+    "topic": "Path / colon"
+  },
+  "VHL": {
+    "clue": "Tumor suppressor that normally lets HIF be degraded, lost in cerebellar and renal tumors",
+    "rationale": "Clear-cell renal carcinoma, pheochromocytoma, and hemangioblastomas define the syndrome. HIF-driven VEGF explains the vascular tumors.",
+    "topic": "Path / oncogene"
+  },
+  "PKU": {
+    "clue": "Deficiency of phenylalanine hydroxylase causing musty odor and intellectual disability if untreated",
+    "rationale": "Tyrosine becomes essential. A strict diet is required, including during pregnancy to prevent fetal injury.",
+    "topic": "Biochem / amino acid"
+  },
+  "NPH": {
+    "clue": "Gait apraxia, urinary incontinence, and dementia with intermittently high ventricular pressure",
+    "rationale": "Arachnoid granulations fail to absorb CSF. Large-volume tap or shunting can improve gait.",
+    "topic": "Neuro / CSF"
+  },
+  "LPS": {
+    "clue": "Gram-negative outer-membrane lipid that triggers macrophages to release TNF and IL-1",
+    "rationale": "Lipid A is the toxic moiety. The result is fever, hypotension, and disseminated coagulation, classically in meningococcemia.",
+    "topic": "Micro / toxin"
+  },
+  "NAC": {
+    "clue": "Antidote that restores glutathione so the toxic acetaminophen metabolite can be conjugated",
+    "rationale": "The liver injury is centrilobular because that zone is richest in CYP2E1. Give the antidote as early as possible, and it still helps later.",
+    "topic": "Pharm / antidote"
+  },
+  "PTU": {
+    "clue": "Thionamide that blocks thyroid peroxidase and also peripheral conversion of T4 to T3",
+    "rationale": "It is preferred in thyroid storm and in the first trimester. Severe hepatitis and agranulocytosis are the dangerous adverse effects.",
+    "topic": "Endocrine / thyroid"
+  },
+  "IGA": {
+    "clue": "Mucosal antibody missing in the most common primary immunodeficiency",
+    "rationale": "Many people are asymptomatic. Anti-IgA antibodies can cause anaphylaxis during transfusion, and IgA deficiency can make celiac serology falsely negative.",
+    "topic": "Immuno / antibody"
+  },
+  "CCK": {
+    "clue": "Duodenal hormone released by fat and protein that contracts the gallbladder and relaxes the sphincter of Oddi",
+    "rationale": "It also slows gastric emptying and stimulates pancreatic enzyme secretion. I cells are the source.",
+    "topic": "GI / hormone"
+  },
+  "SHH": {
+    "clue": "Signaling protein whose failure causes holoprosencephaly and cyclopia",
+    "rationale": "The same pathway is involved in patterning of the limbs and neural tube. Patau syndrome is a classic association of the brain defect.",
+    "topic": "Embryo / signaling"
+  },
+  "ALS": {
+    "clue": "Combined upper and lower motor neuron loss without sensory loss",
+    "rationale": "Anterior horn cells and the corticospinal tract both degenerate. Riluzole decreases glutamate excitotoxicity.",
+    "topic": "Neuro / motor"
+  },
+  "CFTR": {
+    "clue": "Chloride channel lost in the chromosome 7 disease of thick mucus and salty sweat",
+    "rationale": "The common folding mutation is degraded in the endoplasmic reticulum. Lungs grow Pseudomonas, the pancreas fails, and the vas deferens may be absent.",
+    "topic": "Genetics / CF"
+  },
+  "BRCA": {
+    "clue": "Homologous-recombination genes whose loss raises breast, ovarian, prostate, and pancreatic cancer risk",
+    "rationale": "PARP inhibitors exploit the repair failure. Prophylactic surgery is considered for high-risk carriers.",
+    "topic": "Path / cancer"
+  },
+  "DOWN": {
+    "clue": "Trisomy 21 pattern of endocardial cushion defects, duodenal atresia, and early Alzheimer disease",
+    "rationale": "Brushfield spots, a single palmar crease, and Hirschsprung disease are associated. Acute lymphoblastic leukemia risk is increased.",
+    "topic": "Genetics / trisomy"
+  },
+  "AUER": {
+    "clue": "Needle crystals of fused granules in myeloid blasts, especially the promyelocytic subtype",
+    "rationale": "They are myeloperoxidase positive. The promyelocytic leukemia can present with disseminated coagulation and responds to all-trans retinoic acid.",
+    "topic": "Heme / AML"
+  },
+  "LEWY": {
+    "clue": "Alpha-synuclein inclusion of Parkinson disease and a dementia with visual hallucinations",
+    "rationale": "The substantia nigra pars compacta loses pigmented neurons. Typical antipsychotics worsen the motor disease.",
+    "topic": "Neuro / movement"
+  },
+  "PICK": {
+    "clue": "Frontotemporal dementia with round tau inclusions and early personality change",
+    "rationale": "Knife-edge frontal and temporal atrophy is the gross clue. Memory is relatively spared at the start, unlike typical Alzheimer disease.",
+    "topic": "Neuro / dementia"
+  },
+  "RETT": {
+    "clue": "MECP2 disorder of girls who regress, wring their hands, and lose purposeful movement",
+    "rationale": "It is X-linked dominant and usually lethal in boys. Development is normal for the first months.",
+    "topic": "Genetics / neuro"
+  },
+  "CORI": {
+    "clue": "Debranching-enzyme glycogenosis with limit-dextrin accumulation and milder hypoglycemia",
+    "rationale": "Hepatomegaly and hypotonia occur. The liver cannot fully dismantle glycogen branches.",
+    "topic": "Biochem / glycogen"
+  },
+  "BITE": {
+    "clue": "Red-cell shape left when the spleen pits out denatured hemoglobin in oxidative hemolysis",
+    "rationale": "The trigger is often infection, sulfa, primaquine, dapsone, or fava beans. The enzyme assay can look normal during the acute hemolysis.",
+    "topic": "Heme / G6PD"
+  },
+  "CONN": {
+    "clue": "Aldosterone-secreting adenoma with hypertension, hypokalemia, and low renin",
+    "rationale": "Metabolic alkalosis accompanies the potassium loss. The aldosterone-renin ratio is high, unlike secondary hyperaldosteronism.",
+    "topic": "Endocrine / adrenal"
+  },
+  "POTT": {
+    "clue": "Tuberculous osteomyelitis of the spine that can collapse a vertebra and form a cold abscess",
+    "rationale": "Hematogenous spread reaches the vertebral body. Cord compression is the feared complication.",
+    "topic": "Micro / TB"
+  },
+  "GHON": {
+    "clue": "Calcified focus of primary tuberculosis plus its hilar node",
+    "rationale": "Primary infection usually sits in the mid or lower lobe. Secondary reactivation prefers the apex, where oxygen tension is higher.",
+    "topic": "Micro / TB"
+  },
+  "LYME": {
+    "clue": "Ixodes-borne spirochete illness with erythema migrans, AV block, facial palsy, and a late knee arthritis",
+    "rationale": "Borrelia burgdorferi does not stain well on Gram stain. Doxycycline is usual early treatment; meningitis or carditis needs a cephalosporin.",
+    "topic": "Micro / spirochete"
+  },
+  "AIRE": {
+    "clue": "Thymic transcription factor required to show self-antigens during negative selection",
+    "rationale": "Mutation causes chronic mucocutaneous candidiasis, hypoparathyroidism, and adrenal failure. That triad is autoimmune polyendocrine syndrome type 1.",
+    "topic": "Immuno / tolerance"
+  },
+  "COAL": {
+    "clue": "Upper-lobe pneumoconiosis of miners, with black pigment and a risk of massive fibrosis",
+    "rationale": "Rheumatoid nodules in this dust disease are Caplan syndrome. Simple anthracosis is the milder macrophage pigment load.",
+    "topic": "Pulm / dust"
+  },
+  "BOHR": {
+    "clue": "Right shift of the oxygen curve when carbon dioxide and hydrogen ions rise in working tissue",
+    "rationale": "Unloading of oxygen is easier. Fetal hemoglobin and carbon monoxide shift the curve the other way.",
+    "topic": "Physio / blood"
+  },
+  "FICK": {
+    "clue": "Cardiac-output calculation from oxygen consumption divided by the arteriovenous oxygen difference",
+    "rationale": "It is the physiologic basis of some thermodilution concepts. Output rises when tissues extract more oxygen for a given arterial content.",
+    "topic": "Cardio / physiology"
+  },
+  "DLCO": {
+    "clue": "Gas-transfer measurement that falls in emphysema and fibrosis but stays normal in asthma",
+    "rationale": "It also falls in anemia and rises in pulmonary hemorrhage and polycythemia. Chronic bronchitis alone does not destroy alveolar surface the way emphysema does.",
+    "topic": "Pulm / physiology"
+  },
+  "VASA": {
+    "clue": "Fetal vessels crossing the internal os that rupture when the membranes break",
+    "rationale": "Bleeding is painless and the fetal heart rate falls. The blood is fetal, unlike maternal bleeding in placenta previa.",
+    "topic": "OB / placenta"
+  },
+  "BUDD": {
+    "clue": "Hepatic-vein thrombosis with tender hepatomegaly, ascites, and a hypercoagulable source",
+    "rationale": "Polycythemia, pregnancy, and hepatocellular carcinoma are classic causes. Centrilobular congestion is the histologic result.",
+    "topic": "GI / liver"
+  },
+  "WEST": {
+    "clue": "Model in which the lung base is continuously perfused and the apex is intermittent",
+    "rationale": "Both blood flow and ventilation are higher at the base, but flow increases more, so the ventilation-perfusion ratio is higher at the apex.",
+    "topic": "Pulm / physiology"
+  },
+  "KEHR": {
+    "clue": "Referred shoulder pain from blood or pus irritating the diaphragm",
+    "rationale": "Splenic rupture and hemoperitoneum are classic causes. The phrenic nerve shares cervical roots with shoulder sensation.",
+    "topic": "Anat / referred"
+  },
+  "PEAU": {
+    "clue": "Dimpled breast skin from dermal lymphatic blockage by inflammatory carcinoma",
+    "rationale": "This is a clinical diagnosis of locally advanced cancer, not an infection. It needs urgent systemic therapy rather than drainage.",
+    "topic": "Path / breast"
+  },
+  "PICA": {
+    "clue": "Appetite for ice, clay, or starch that often signals iron deficiency",
+    "rationale": "In adults, iron deficiency means blood loss until proven otherwise. Hookworm and celiac disease are other causes.",
+    "topic": "Heme / iron"
+  },
+  "REID": {
+    "clue": "Ratio of bronchial gland thickness to wall thickness that exceeds one half in chronic bronchitis",
+    "rationale": "The clinical definition is a productive cough for three months in two successive years. Hypoxemia and cor pulmonale come earlier than in pure emphysema.",
+    "topic": "Pulm / COPD"
+  },
+  "GVHD": {
+    "clue": "Donor T cells attacking host skin, liver, and gut after a marrow transplant",
+    "rationale": "Irradiating cellular blood products prevents a similar reaction in immunocompromised recipients. It is a type IV process.",
+    "topic": "Immuno / transplant"
+  },
+  "CVID": {
+    "clue": "Later-onset hypogammaglobulinemia with normal B-cell counts, sinopulmonary infections, and lymphoma risk",
+    "rationale": "Both sexes are affected, unlike Bruton disease. Autoimmunity and granulomatous disease are common.",
+    "topic": "Immuno / antibody"
+  },
+  "COPD": {
+    "clue": "Airflow obstruction from smoking that combines small-airway disease and alveolar destruction",
+    "rationale": "The FEV1/FVC ratio is low. Long-term supplemental oxygen improves survival when resting hypoxemia persists.",
+    "topic": "Pulm / COPD"
+  },
+  "ARDS": {
+    "clue": "Noncardiogenic edema with hyaline membranes and a normal pulmonary-capillary wedge pressure",
+    "rationale": "Sepsis, aspiration, trauma, and pancreatitis are triggers. Low-tidal-volume ventilation reduces further lung injury.",
+    "topic": "Pulm / acute"
+  },
+  "AIDS": {
+    "clue": "CD4 count below 200 or an opportunistic illness that defines advanced HIV, such as esophageal candidiasis or pneumocystis pneumonia",
+    "rationale": "Combination antiretroviral therapy suppresses viral load and restores immune function. Prophylaxis is chosen according to the CD4 threshold.",
+    "topic": "Micro / HIV"
+  },
+  "LCIS": {
+    "clue": "Incidental lobular proliferation that marks bilateral breast-cancer risk but is not itself invasive",
+    "rationale": "E-cadherin is lost, as in invasive lobular carcinoma. It usually does not calcify and is not a surgical emergency.",
+    "topic": "Path / breast"
+  },
+  "DCIS": {
+    "clue": "Malignant cells inside breast ducts that have not crossed the basement membrane",
+    "rationale": "Comedo necrosis and microcalcifications mark higher-grade lesions. Nipple Paget disease is this process reaching the epidermis.",
+    "topic": "Path / breast"
+  },
+  "MRKH": {
+    "clue": "46,XX absence of the uterus with normal ovaries, normal pubic hair, and a blind vagina",
+    "rationale": "Androgen action is intact, which separates it from androgen-insensitivity syndrome. Ovaries are present, so secondary sexual characteristics develop.",
+    "topic": "Repro / development"
+  },
+  "GOLGI": {
+    "clue": "Organelle that packages proteins and is the site of mannose-6-phosphate tagging for lysosomes",
+    "rationale": "I-cell disease fails that tagging step, so lysosomal enzymes are secreted. N-linked glycosylation begins in the endoplasmic reticulum and is finished here.",
+    "topic": "Cell bio"
+  },
+  "FABRY": {
+    "clue": "X-linked alpha-galactosidase A deficiency with angiokeratomas, neuropathic pain, and renal failure",
+    "rationale": "Ceramide trihexoside accumulates. Heart, kidney, and early stroke are the life-limiting problems.",
+    "topic": "Biochem / storage"
+  },
+  "POMPE": {
+    "clue": "Lysosomal acid maltase deficiency with cardiomegaly and severe hypotonia",
+    "rationale": "Glycogen is trapped inside lysosomes, including in cardiac muscle. It is the glycogenosis that behaves like a lysosomal storage disease.",
+    "topic": "Biochem / glycogen"
+  },
+  "TARUI": {
+    "clue": "Muscle phosphofructokinase deficiency with cramps, myoglobinuria, and hemolysis",
+    "rationale": "Exercise does not raise venous lactate, as in McArdle disease. Red cells also need this enzyme, so they hemolyze.",
+    "topic": "Biochem / glycogen"
+  },
+  "ICELL": {
+    "clue": "Storage disease in which lysosomal enzymes lack mannose-6-phosphate and spill into the blood",
+    "rationale": "Inclusion bodies fill fibroblasts. Coarse facies, gingival hyperplasia, and restricted joints appear in infancy.",
+    "topic": "Biochem / lysosome"
+  },
+  "HGPRT": {
+    "clue": "Purine-salvage enzyme lost in the X-linked syndrome of self-mutilation and gout",
+    "rationale": "Hypoxanthine and guanine cannot be recycled, so uric acid rises. Allopurinol lowers urate but does not fix the neurologic disease.",
+    "topic": "Biochem / purine"
+  },
+  "WILMS": {
+    "clue": "Childhood kidney tumor of the WT1 gene that does not cross the midline",
+    "rationale": "Aniridia, genitourinary malformations, and hemihypertrophy are associated. Hypertension and hematuria are clinical clues.",
+    "topic": "Path / peds"
+  },
+  "PATAU": {
+    "clue": "Trisomy 13 with holoprosencephaly, cleft lip, polydactyly, and cutis aplasia",
+    "rationale": "Rock-bottom feet belong more to trisomy 18. Survival beyond infancy is uncommon.",
+    "topic": "Genetics / trisomy"
+  },
+  "PRION": {
+    "clue": "Misfolded protein that templates more misfolding and leaves spongiform brain tissue",
+    "rationale": "Creutzfeldt-Jakob disease causes rapidly progressive dementia and startle myoclonus. Standard sterilization does not reliably destroy the agent.",
+    "topic": "Neuro / infectious"
+  },
+  "NEGRI": {
+    "clue": "Eosinophilic cytoplasmic inclusions of rabies in hippocampal and cerebellar neurons",
+    "rationale": "The virus travels retrograde along axons. Once hydrophobia and spasms begin, the disease is almost always fatal.",
+    "topic": "Micro / virus"
+  },
+  "GUMMA": {
+    "clue": "Soft granuloma of tertiary syphilis in skin, bone, or liver",
+    "rationale": "It is not highly infectious. Aortitis and tabes dorsalis are the other tertiary patterns.",
+    "topic": "Micro / syphilis"
+  },
+  "TABES": {
+    "clue": "Dorsal-column degeneration of tertiary syphilis with ataxia and lightning pains",
+    "rationale": "Argyll Robertson pupils accommodate but do not react to light. Charcot joints follow loss of position sense.",
+    "topic": "Micro / syphilis"
+  },
+  "AVIUM": {
+    "clue": "Mycobacterium of disseminated disease when the CD4 count falls below 50",
+    "rationale": "Azithromycin prevents it at that threshold. Older adults with structural lung disease can get a more limited pulmonary form.",
+    "topic": "Micro / HIV"
+  },
+  "MUCOR": {
+    "clue": "Broad nonseptate hyphae at right angles that invade vessels in diabetic ketoacidosis",
+    "rationale": "A black necrotic palate or nasal turbinate is the bedside clue. Surgery plus amphotericin and reversal of the acidosis are required.",
+    "topic": "Micro / fungus"
+  },
+  "TINEA": {
+    "clue": "Dermatophyte infection of keratin that shows branching septate hyphae on potassium hydroxide prep",
+    "rationale": "Capitis in children needs an oral agent because topicals do not reach the hair shaft. Corporis, cruris, and pedis are the other patterns.",
+    "topic": "Micro / fungus"
+  },
+  "EBOLA": {
+    "clue": "Filovirus hemorrhagic fever transmitted by body fluids, with a fruit-bat reservoir",
+    "rationale": "Care is supportive and barrier precautions are essential. It is distinct from the flavivirus hemorrhagic fevers.",
+    "topic": "Micro / virus"
+  },
+  "POLIO": {
+    "clue": "Picornavirus that destroys anterior horn cells and causes asymmetric flaccid paralysis without sensory loss",
+    "rationale": "The killed vaccine induces circulating antibody. The oral vaccine also induces gut immunity but can rarely revert.",
+    "topic": "Micro / virus"
+  },
+  "MUMPS": {
+    "clue": "Paramyxovirus parotitis that can inflame testes, meninges, and the pancreas",
+    "rationale": "Postpubertal orchitis can impair fertility if bilateral. The virus is a classic cause of aseptic meningitis.",
+    "topic": "Micro / virus"
+  },
+  "CREST": {
+    "clue": "Limited systemic sclerosis with centromere antibodies, calcinosis, and esophageal dysmotility",
+    "rationale": "Raynaud phenomenon, sclerodactyly, and telangiectasias complete the name. Pulmonary hypertension is the serious visceral risk.",
+    "topic": "Rheum / sclerosis"
+  },
+  "PAGET": {
+    "clue": "Phases of lytic then sclerotic bone with a mosaic cement-line pattern and an isolated high alkaline phosphatase",
+    "rationale": "Calcium and phosphate stay normal. High-output heart failure, hearing loss, and later osteosarcoma are complications.",
+    "topic": "MSK / bone"
+  },
+  "EWING": {
+    "clue": "Diaphyseal small round blue-cell tumor of children with an 11;22 translocation and onion-skin periosteum",
+    "rationale": "Glycogen makes the cells PAS positive. It can mimic osteomyelitis clinically.",
+    "topic": "MSK / tumor"
+  },
+  "RENIN": {
+    "clue": "Juxtaglomerular enzyme released when afferent pressure or distal sodium chloride falls",
+    "rationale": "It cleaves angiotensinogen. Beta-1 blockade and high sodium at the macula densa suppress it.",
+    "topic": "Renal / RAAS"
+  },
+  "CAPUT": {
+    "clue": "Portal-hypertension veins radiating from the umbilicus",
+    "rationale": "They reflect recanalized umbilical flow. Esophageal varices and splenomegaly share the same pressure problem.",
+    "topic": "GI / portal"
+  },
+  "LYNCH": {
+    "clue": "Mismatch-repair loss with right-sided colon cancer, endometrial cancer, and microsatellite instability",
+    "rationale": "MSH2 and MLH1 are the common genes. The polyps are few, unlike familial adenomatous polyposis.",
+    "topic": "Path / colon"
+  },
+  "HUMPS": {
+    "clue": "Subepithelial immune deposits of poststreptococcal glomerulonephritis",
+    "rationale": "Immunofluorescence is granular, and C3 is low. The latency is weeks after pharyngitis, not days.",
+    "topic": "Renal / GN"
+  },
+  "BENCE": {
+    "clue": "Urinary light chains of plasma-cell myeloma that a routine dipstick can miss",
+    "rationale": "Urine protein electrophoresis or immunofixation finds them. They injure tubules as cast nephropathy.",
+    "topic": "Heme / myeloma"
+  },
+  "MUDDY": {
+    "clue": "Brown granular casts of acute tubular necrosis",
+    "rationale": "Ischemia or toxins such as aminoglycosides, contrast, and myoglobin are causes. The sediment is dirty rather than filled with cells.",
+    "topic": "Renal / ATN"
+  },
+  "FELTY": {
+    "clue": "Long-standing rheumatoid arthritis with splenomegaly and neutropenia",
+    "rationale": "Leg ulcers and infections follow the low neutrophil count. It is not a separate joint disease.",
+    "topic": "Rheum / RA"
+  },
+  "ROSEA": {
+    "clue": "Herald patch followed by a Christmas-tree trunk rash that resolves on its own",
+    "rationale": "It affects adolescents and young adults. Secondary syphilis is the important look-alike when palms and soles are involved.",
+    "topic": "Derm / rash"
+  },
+  "ACTIN": {
+    "clue": "Thin filament that myosin pulls during contraction and that some bacterial toxins ADP-ribosylate",
+    "rationale": "Clostridioides difficile toxin B depolymerizes it. Cytochalasins also block its polymerization.",
+    "topic": "Cell bio / muscle"
+  },
+  "TITIN": {
+    "clue": "Giant sarcomere protein that anchors myosin and provides passive elasticity",
+    "rationale": "It spans half the sarcomere. Mutations can cause dilated cardiomyopathy and some muscular dystrophies.",
+    "topic": "Cell bio / muscle"
+  },
+  "SHUNT": {
+    "clue": "Perfusion without ventilation that does not fully correct when the patient breathes pure oxygen",
+    "rationale": "ARDS and right-to-left cardiac lesions are examples. The alveolar-arterial oxygen gradient is increased.",
+    "topic": "Pulm / gas exchange"
+  },
+  "BERRY": {
+    "clue": "Saccular outpouching at a circle-of-Willis branch point whose rupture causes the worst headache of life",
+    "rationale": "Anterior communicating and posterior communicating arteries are typical sites. Polycystic kidney disease and Ehlers-Danlos raise the risk.",
+    "topic": "Neuro / vascular"
+  },
+  "MEIGS": {
+    "clue": "Ovarian fibroma with ascites and a pleural effusion that resolve when the benign tumor is removed",
+    "rationale": "CA-125 can be elevated and mimic carcinoma. The syndrome is a diagnosis after the effusion disappears postoperatively.",
+    "topic": "Repro / tumor"
+  },
+  "GOWER": {
+    "clue": "Using the hands to walk up the thighs when standing, a sign of proximal weakness",
+    "rationale": "Duchenne muscular dystrophy is the classic setting. Calf pseudohypertrophy and a high creatine kinase accompany it.",
+    "topic": "Neuro / muscle"
+  },
+  "LEBER": {
+    "clue": "Mitochondrial optic neuropathy with painless vision loss in young adults, often men",
+    "rationale": "Maternal inheritance is the pedigree clue. It is not the same disorder as congenital amaurosis.",
+    "topic": "Genetics / mito"
+  },
+  "BROCA": {
+    "clue": "Nonfluent aphasia with preserved comprehension from a dominant inferior frontal lesion",
+    "rationale": "Nearby motor cortex often adds right face and arm weakness. Repetition is impaired.",
+    "topic": "Neuro / cortex"
+  },
+  "CROHN": {
+    "clue": "Transmural skip lesions from mouth to anus with noncaseating granulomas and fistulas",
+    "rationale": "The terminal ileum is typical, so B12 deficiency and oxalate kidney stones occur. Smoking worsens it, and anti-TNF drugs are a mainstay.",
+    "topic": "GI / IBD"
+  },
+  "ILEUM": {
+    "clue": "Bowel segment that absorbs the B12-intrinsic factor complex and reclaims bile salts",
+    "rationale": "Crohn disease and resection here cause megaloblastic anemia and fat-soluble vitamin loss. Bile-acid diarrhea can follow.",
+    "topic": "GI / physiology"
+  },
+  "FOAMY": {
+    "clue": "Lipid-laden macrophages of Niemann-Pick disease after sphingomyelinase fails",
+    "rationale": "Hepatosplenomegaly and neurodegeneration occur in the infantile form. A cherry-red macula can be seen, as in Tay-Sachs.",
+    "topic": "Biochem / storage"
+  },
+  "LISCH": {
+    "clue": "Pigmented iris hamartomas that support neurofibromatosis type 1",
+    "rationale": "Cafe-au-lait spots, neurofibromas, and optic gliomas are the other clues. The gene product normally restrains RAS.",
+    "topic": "Genetics / NF"
+  },
+  "LUPUS": {
+    "clue": "Multisystem disease with anti-Smith and anti-double-stranded-DNA antibodies and low complement",
+    "rationale": "Immune-complex injury hits kidneys, serosa, and joints. Drug-induced lupus, by contrast, has antihistone antibodies and spares the kidney.",
+    "topic": "Rheum / SLE"
+  },
+  "ROCKY": {
+    "clue": "Tick-borne rickettsial vasculitis whose rash starts on wrists and ankles and then involves palms and soles",
+    "rationale": "The organism invades endothelium. Doxycycline is indicated even in children, and the disease is most common in the south-central United States.",
+    "topic": "Micro / rickettsia"
+  },
+  "WEISS": {
+    "clue": "Mucosal tear at the gastroesophageal junction after retching, with hematemesis but no transmural hole",
+    "rationale": "Alcohol use and bulimia are settings. A full-thickness rupture into the pleura is a different, surgical emergency.",
+    "topic": "GI / esophagus"
+  },
+  "DANDY": {
+    "clue": "Cystic fourth ventricle, absent cerebellar vermis, and hydrocephalus",
+    "rationale": "It presents in infancy with a large posterior fossa. It is distinct from Chiari malformations.",
+    "topic": "Neuro / development"
+  },
+  "HAIRY": {
+    "clue": "Indolent B-cell leukemia with a fried-egg appearance and tartrate-resistant acid phosphatase",
+    "rationale": "Massive splenomegaly and pancytopenia occur, and lymph nodes are usually spared. Cladribine is a classic therapy.",
+    "topic": "Heme / leukemia"
+  },
+  "MARFAN": {
+    "clue": "Fibrillin defect with upward lens dislocation, aortic root aneurysm, and long fingers",
+    "rationale": "TGF-beta signaling is excessive. Spontaneous pneumothorax and mitral-valve prolapse are part of the same connective-tissue failure.",
+    "topic": "Genetics / connective"
+  },
+  "WILSON": {
+    "clue": "ATP7B disease with low ceruloplasmin, Kayser-Fleischer rings, and basal-ganglia injury",
+    "rationale": "Copper cannot enter bile or ceruloplasmin. Liver failure, psychiatric change, and hemolysis follow, and penicillamine or trientine chelates the metal.",
+    "topic": "Path / copper"
+  },
+  "HURLER": {
+    "clue": "Alpha-L-iduronidase deficiency with corneal clouding, gargoyle facies, and airway obstruction",
+    "rationale": "Heparan and dermatan sulfate accumulate. It is autosomal recessive, unlike the related enzyme defect that spares the cornea.",
+    "topic": "Biochem / storage"
+  },
+  "HUNTER": {
+    "clue": "Iduronate-sulfatase deficiency that is X-linked and lacks corneal clouding",
+    "rationale": "Behavior is aggressive, and the same two glycosaminoglycans accumulate as in Hurler disease. Enzyme replacement or transplant is used.",
+    "topic": "Biochem / storage"
+  },
+  "KRABBE": {
+    "clue": "Galactocerebrosidase deficiency with globoid cells, optic atrophy, and peripheral neuropathy",
+    "rationale": "Psychosine kills oligodendrocytes. Infants become irritable and lose milestones.",
+    "topic": "Biochem / storage"
+  },
+  "GIERKE": {
+    "clue": "Glucose-6-phosphatase deficiency with severe fasting hypoglycemia, lactic acidosis, and gout",
+    "rationale": "The liver cannot release free glucose or complete gluconeogenesis. Hepatomegaly, hyperlipidemia, and doll-like facies are classic.",
+    "topic": "Biochem / glycogen"
+  },
+  "MENKES": {
+    "clue": "ATP7A defect with kinky hair, hypotonia, and low copper",
+    "rationale": "Copper cannot leave enterocytes, so lysyl oxidase fails and collagen is weak. It is the absorption-side opposite of Wilson disease.",
+    "topic": "Path / copper"
+  },
+  "ALPORT": {
+    "clue": "Type IV collagen mutation with hematuria, hearing loss, and eye disease",
+    "rationale": "The usual inheritance is X-linked. The glomerular basement membrane splits on electron microscopy.",
+    "topic": "Renal / genetic"
+  },
+  "TURNER": {
+    "clue": "45,X pattern of streak ovaries, coarctation, horseshoe kidney, and cystic hygroma",
+    "rationale": "There is no Barr body. Short stature, webbed neck, and lymphedema complete the picture, and fertility is usually absent.",
+    "topic": "Genetics / sex"
+  },
+  "OROTIC": {
+    "clue": "UMP-synthase deficiency with urinary crystals of a pyrimidine intermediate and megaloblastic anemia not fixed by folate or B12",
+    "rationale": "There is no hyperammonemia, which separates it from ornithine transcarbamylase deficiency. Uridine treats it by feedback on carbamoyl phosphate.",
+    "topic": "Biochem / nucleotide"
+  },
+  "MECKEL": {
+    "clue": "Persistent vitelline duct with ectopic gastric mucosa and painless bleeding in a child",
+    "rationale": "The rule of twos describes length, location, and age. A technetium scan finds the gastric mucosa.",
+    "topic": "GI / congenital"
+  },
+  "CELIAC": {
+    "clue": "Gluten enteropathy with duodenal villous atrophy and tissue-transglutaminase antibodies",
+    "rationale": "Dermatitis herpetiformis is the skin form. HLA-DQ2 or DQ8 is required, and T-cell lymphoma is a late risk.",
+    "topic": "GI / malabsorption"
+  },
+  "SIGNET": {
+    "clue": "Diffuse gastric carcinoma cells whose mucin pushes the nucleus aside",
+    "rationale": "E-cadherin loss lets cells infiltrate as linitis plastica. Ovarian metastases of this pattern are Krukenberg tumors.",
+    "topic": "Path / stomach"
+  },
+  "SODIUM": {
+    "clue": "Cation whose serum fall must be corrected slowly to avoid osmotic demyelination",
+    "rationale": "The brain has adapted to hypotonicity by losing osmolytes. A rise faster than about 8 to 10 mEq in a day can injure the pons.",
+    "topic": "Renal / sodium"
+  },
+  "TETANY": {
+    "clue": "Muscle spasm of low ionized calcium, unmasked by Chvostek and Trousseau signs",
+    "rationale": "Respiratory alkalosis can trigger it by binding calcium to albumin. Hypoparathyroidism and vitamin D deficiency are sustained causes.",
+    "topic": "Endocrine / calcium"
+  },
+  "PORTAL": {
+    "clue": "Venous system whose hypertension produces varices, splenomegaly, and ascites",
+    "rationale": "Cirrhosis is the usual cause. A beta blocker or band ligation prevents first variceal bleeding.",
+    "topic": "GI / liver"
+  },
+  "RABIES": {
+    "clue": "Bullet-shaped virus that reaches the brain by retrograde axonal transport",
+    "rationale": "Bats, raccoons, skunks, and foxes are reservoirs. After exposure, vaccine plus immunoglobulin infiltrated at the wound is preventive; symptoms mean the disease is fatal.",
+    "topic": "Micro / virus"
+  },
+  "STATUS": {
+    "clue": "Seizure activity that does not stop, treated first with a benzodiazepine",
+    "rationale": "Lorazepam or diazepam is immediate, then a longer-acting agent such as phenytoin, valproate, or levetiracetam. Ongoing activity injures neurons.",
+    "topic": "Neuro / seizure"
+  },
+  "ANEMIA": {
+    "clue": "Low red-cell mass whose microcytic, macrocytic, or hemolytic pattern narrows the cause",
+    "rationale": "Iron deficiency lowers ferritin and raises transferrin. B12 deficiency adds dorsal-column injury that folate deficiency does not.",
+    "topic": "Heme / approach"
+  },
+  "TARGET": {
+    "clue": "Erythrocyte with a bull's-eye of hemoglobin, seen in thalassemia, hemoglobin C, and asplenia",
+    "rationale": "Extra membrane relative to hemoglobin creates the shape. Liver disease can produce the same film.",
+    "topic": "Heme / smear"
+  },
+  "SMUDGE": {
+    "clue": "Fragile lymphocytes crushed on the film in chronic lymphocytic leukemia",
+    "rationale": "The disease is a CD5-positive B-cell neoplasm of older adults. Hypogammaglobulinemia and autoimmune hemolysis are complications.",
+    "topic": "Heme / CLL"
+  },
+  "LANCET": {
+    "clue": "Gram-positive diplococcus shape of the organism that is optochin sensitive and bile soluble",
+    "rationale": "It is the common cause of lobar pneumonia, otitis, sinusitis, and adult meningitis. A capsule is the virulence factor, and asplenia is a major risk.",
+    "topic": "Micro / strep"
+  },
+  "MORULA": {
+    "clue": "Mulberry inclusion of anaplasma or ehrlichia inside white cells",
+    "rationale": "Ixodes ticks carry anaplasma inside granulocytes, and the lone-star tick carries ehrlichia inside monocytes. Doxycycline treats both.",
+    "topic": "Micro / tick"
+  },
+  "CHAGAS": {
+    "clue": "Trypanosoma cruzi disease with dilated cardiomyopathy, megaesophagus, and megacolon",
+    "rationale": "The reduviid bug transmits it in Latin America. Romana sign is unilateral periorbital swelling at the entry site.",
+    "topic": "Micro / parasite"
+  },
+  "TAENIA": {
+    "clue": "Tapeworm whose eggs, if swallowed, seed the brain and cause seizures",
+    "rationale": "That cysticercosis route is the pork species. Eating cyst-containing meat causes intestinal tapeworm instead.",
+    "topic": "Micro / parasite"
+  },
+  "CEREUS": {
+    "clue": "Spore-forming rod of reheated rice that causes vomiting from a preformed toxin",
+    "rationale": "A separate heat-labile toxin causes a later diarrheal illness. The spores survive boiling.",
+    "topic": "Micro / toxin"
+  },
+  "TETANI": {
+    "clue": "Toxin that cleaves SNARE proteins in inhibitory interneurons and produces lockjaw",
+    "rationale": "Glycine and GABA release fails, so muscles spasm. The toxoid vaccine prevents disease; immunoglobulin neutralizes unbound toxin.",
+    "topic": "Micro / toxin"
+  },
+  "UREASE": {
+    "clue": "Enzyme that lets gastric spiral bacteria buffer acid, detected by a breath test",
+    "rationale": "The same activity in Proteus generates struvite stones. Eradication of the gastric organism lowers ulcer and MALT-lymphoma risk.",
+    "topic": "Micro / GI"
+  },
+  "PLAGUE": {
+    "clue": "Yersinia infection of fleas and rodents with buboes and bipolar safety-pin staining",
+    "rationale": "Pneumonic form spreads person to person. Streptomycin or gentamicin is traditional therapy.",
+    "topic": "Micro / zoonosis"
+  },
+  "TYPHUS": {
+    "clue": "Louse-borne rickettsial fever whose rash starts on the trunk and spares the palms",
+    "rationale": "Epidemic disease is Rickettsia prowazekii. It spreads outward, the opposite direction of Rocky Mountain spotted fever.",
+    "topic": "Micro / rickettsia"
+  },
+  "CULLEN": {
+    "clue": "Periumbilical ecchymosis of hemorrhagic pancreatitis",
+    "rationale": "Retroperitoneal blood tracks to the abdominal wall. Flank ecchymosis is the companion sign.",
+    "topic": "GI / pancreas"
+  },
+  "BEHCET": {
+    "clue": "Oral and genital ulcers with uveitis and a pathergy test, along the Silk Road",
+    "rationale": "It can inflame vessels of any size and cause thrombosis. HLA-B51 is associated.",
+    "topic": "Rheum / vasculitis"
+  },
+  "HENOCH": {
+    "clue": "IgA vasculitis of children with palpable purpura, arthralgia, and abdominal pain",
+    "rationale": "Renal involvement is an IgA nephropathy. It often follows an upper-respiratory infection.",
+    "topic": "Rheum / vasculitis"
+  },
+  "NIACIN": {
+    "clue": "Vitamin B3 used for NAD, whose deficiency is pellagra and whose drug use causes prostaglandin flushing",
+    "rationale": "Carcinoid and isoniazid can deplete it. Hartnup disease wastes tryptophan, the precursor.",
+    "topic": "Biochem / vitamin"
+  },
+  "BIOTIN": {
+    "clue": "Vitamin required by carboxylases and depleted by raw egg-white avidin",
+    "rationale": "Propionyl-CoA carboxylase and pyruvate carboxylase need it. Deficiency causes dermatitis, alopecia, and acidosis.",
+    "topic": "Biochem / vitamin"
+  },
+  "FOLATE": {
+    "clue": "One-carbon vitamin whose deficiency causes megaloblastic anemia without neuropathy",
+    "rationale": "Neural-tube closure needs it before conception. Methotrexate, trimethoprim, and phenytoin interfere with its pathway.",
+    "topic": "Biochem / vitamin"
+  },
+  "MALATE": {
+    "clue": "Shuttle metabolite that carries reducing equivalents from cytosol into mitochondria",
+    "rationale": "The malate-aspartate shuttle feeds NADH to the electron-transport chain. Cytosolic NADH from glycolysis cannot cross the inner membrane directly.",
+    "topic": "Biochem / TCA"
+  },
+  "LEPTIN": {
+    "clue": "Adipocyte hormone that signals satiety at the hypothalamus",
+    "rationale": "Deficiency or receptor defects cause rare obesity with hyperphagia. Ordinary obesity usually has high levels and resistance.",
+    "topic": "Endocrine / appetite"
+  },
+  "PEPSIN": {
+    "clue": "Chief-cell protease secreted as a zymogen and activated by gastric acid",
+    "rationale": "It starts protein digestion. It is not the pancreatic enzyme activated by enterokinase.",
+    "topic": "GI / enzyme"
+  },
+  "LIPASE": {
+    "clue": "Pancreatic enzyme more specific than amylase for acute pancreatitis",
+    "rationale": "It stays elevated longer. Hypertriglyceridemia, gallstones, and alcohol are leading causes of the illness.",
+    "topic": "GI / pancreas"
+  },
+  "DYNEIN": {
+    "clue": "Motor that walks cargo and cilia toward the minus end of microtubules",
+    "rationale": "A defective arm causes immotile cilia, sinusitis, bronchiectasis, and situs inversus. Kinesin walks the other direction.",
+    "topic": "Cell bio / cilia"
+  },
+  "LIGASE": {
+    "clue": "Enzyme that seals nicks in the DNA backbone during replication and repair",
+    "rationale": "It joins Okazaki fragments. Defects contribute to some radiation-sensitivity syndromes.",
+    "topic": "Biochem / DNA"
+  },
+  "GYRASE": {
+    "clue": "Bacterial type II topoisomerase blocked by fluoroquinolones",
+    "rationale": "It introduces negative supercoils so the chromosome can unwind. Eukaryotic topoisomerase II is a different drug target.",
+    "topic": "Micro / pharm"
+  },
+  "SCURVY": {
+    "clue": "Vitamin C deficiency with bleeding gums, perifollicular hemorrhage, and poor wound healing",
+    "rationale": "Prolyl and lysyl hydroxylases cannot stabilize collagen without ascorbate. Corkscrew hairs are a bedside clue.",
+    "topic": "Biochem / vitamin"
+  },
+  "ANERGY": {
+    "clue": "T-cell unresponsiveness when antigen is seen without a costimulatory second signal",
+    "rationale": "The same word describes failure of delayed-type skin tests. Either way, the lymphocyte does not respond.",
+    "topic": "Immuno / T cell"
+  },
+  "THYMUS": {
+    "clue": "Organ of positive and negative T-cell selection, absent in DiGeorge syndrome",
+    "rationale": "Hassall corpuscles mark the medulla. The third pharyngeal pouch also supplies the inferior parathyroids.",
+    "topic": "Immuno / development"
+  },
+  "GRAVES": {
+    "clue": "TSH-receptor-stimulating antibodies with diffuse uptake, ophthalmopathy, and pretibial myxedema",
+    "rationale": "The eye disease is fibroblast and glycosaminoglycan driven and may not track the hormone level. Methimazole, radioiodine, or surgery treats the gland.",
+    "topic": "Endocrine / thyroid"
+  },
+  "LIDDLE": {
+    "clue": "Gain-of-function sodium channel with hypertension, low aldosterone, and low renin",
+    "rationale": "It mimics hyperaldosteronism but the hormone is suppressed. Amiloride blocks the overactive channel.",
+    "topic": "Renal / genetic"
+  },
+  "HORNER": {
+    "clue": "Ptosis, miosis, and anhidrosis from interrupted sympathetic supply to the eye",
+    "rationale": "A Pancoast tumor, carotid dissection, and lateral medullary stroke are causes. Anhidrosis depends on which neuron is hit.",
+    "topic": "Neuro / autonomic"
+  },
+  "ARGYLL": {
+    "clue": "Pupil that accommodates but does not react, classically in neurosyphilis",
+    "rationale": "The midbrain light reflex is interrupted while the near pathway is spared. Diabetic neuropathy can mimic it.",
+    "topic": "Neuro / pupil"
+  },
+  "AUREUS": {
+    "clue": "Coagulase-positive gram-positive coccus that binds IgG backward with protein A",
+    "rationale": "It causes abscesses, acute endocarditis, and toxic shock. The superantigen toxin cross-links MHC II and the T-cell receptor outside the groove.",
+    "topic": "Micro / staph"
+  },
+  "STATIN": {
+    "clue": "HMG-CoA reductase inhibitor that lowers LDL and stabilizes plaque",
+    "rationale": "Myopathy rises when CYP3A4 inhibitors or fibrates are added. The drugs are teratogenic and can inflame the liver.",
+    "topic": "Pharm / lipid"
+  },
+  "KETONE": {
+    "clue": "Fuel made in liver mitochondria from fatty acids when insulin is low",
+    "rationale": "Acetone causes the fruity breath of ketoacidosis. The nitroprusside test detects acetoacetate better than beta-hydroxybutyrate.",
+    "topic": "Biochem / diabetes"
+  },
+  "MYOSIN": {
+    "clue": "Thick filament ATPase that forms the cross-bridge",
+    "rationale": "Calcium binding to troponin C exposes the actin site. Beta-myosin heavy-chain mutations cause hypertrophic cardiomyopathy.",
+    "topic": "Physio / muscle"
+  },
+  "MANTLE": {
+    "clue": "Lymphoma of cyclin D1 overexpression from t(11;14), CD5 positive like CLL",
+    "rationale": "It arises from the mantle zone around follicles. The course is usually more aggressive than follicular lymphoma.",
+    "topic": "Heme / lymphoma"
+  },
+  "KAPOSI": {
+    "clue": "HHV-8 spindle-cell vascular tumor of advanced HIV, with slit-like spaces",
+    "rationale": "Classic Mediterranean disease in older men is a separate, indolent form. Treating the underlying HIV often shrinks the lesions.",
+    "topic": "Micro / HIV"
+  },
+  "DENGUE": {
+    "clue": "Aedes-borne flavivirus of breakbone fever that can cause shock on a second infection",
+    "rationale": "Antibody-dependent enhancement is the proposed mechanism of severe disease. Platelets fall and plasma leaks.",
+    "topic": "Micro / virus"
+  },
+  "HERPES": {
+    "clue": "Family of enveloped double-stranded DNA viruses that establish lifelong latency",
+    "rationale": "HSV, VZV, EBV, and CMV are the high-yield members. Acyclovir needs a viral kinase that CMV does not rely on in the same way.",
+    "topic": "Micro / virus"
+  },
+  "LIBMAN": {
+    "clue": "Sterile vegetations on both sides of a valve leaflet in lupus",
+    "rationale": "They are not infective. Antiphospholipid antibodies raise the embolic risk.",
+    "topic": "Cardio / valve"
+  },
+  "FIBRATE": {
+    "clue": "PPAR-alpha agonist that lowers triglycerides and can cause gallstones",
+    "rationale": "It induces lipoprotein lipase. Combined with a statin, especially gemfibrozil, the myopathy risk climbs.",
+    "topic": "Pharm / lipid"
+  },
+  "ACETONE": {
+    "clue": "Volatile ketone responsible for the fruity breath of ketoacidosis",
+    "rationale": "It is not an acid and does not drive the anion gap. Acetoacetate and beta-hydroxybutyrate do.",
+    "topic": "Biochem / diabetes"
+  },
+  "GLYCINE": {
+    "clue": "Inhibitory spinal transmitter that tetanus toxin prevents from being released",
+    "rationale": "It is also a heme precursor and is conjugated to bile acids. Nonketotic hyperglycinemia is a rare seizure disorder of infants.",
+    "topic": "Biochem / neurotransmitter"
+  },
+  "PROLINE": {
+    "clue": "Imino acid abundant in collagen and hydroxylated with the help of vitamin C",
+    "rationale": "Hydroxyproline stabilizes the triple helix. Scurvy fails that step and vessels become fragile.",
+    "topic": "Biochem / collagen"
+  },
+  "HISTONE": {
+    "clue": "Protein octamer that DNA wraps, and whose acetylation loosens chromatin",
+    "rationale": "Acetylation favors transcription. Deacetylase inhibitors are used in some T-cell lymphomas.",
+    "topic": "Biochem / chromatin"
+  },
+  "PRIMASE": {
+    "clue": "Enzyme that lays down the RNA primer DNA polymerase needs",
+    "rationale": "DNA polymerases can only extend a strand. The primer is later removed and the gap filled.",
+    "topic": "Biochem / replication"
+  },
+  "ATROPHY": {
+    "clue": "Shrinkage of an organ from disuse, denervation, loss of hormone, or reduced blood supply",
+    "rationale": "The cell number or cell size falls. It is reversible early, unlike the point of no return in necrosis.",
+    "topic": "Path / adaptation"
+  },
+  "ADENOMA": {
+    "clue": "Benign glandular tumor that can secrete hormone or become a carcinoma",
+    "rationale": "Colonic, pituitary, parathyroid, and hepatic examples behave differently. A hepatic one is linked to oral contraceptives and can rupture.",
+    "topic": "Path / neoplasia"
+  },
+  "SARCOMA": {
+    "clue": "Malignant mesenchymal tumor that usually spreads in blood rather than lymph",
+    "rationale": "Osteosarcoma, liposarcoma, and rhabdomyosarcoma are examples. Hematogenous lung metastases are typical.",
+    "topic": "Path / neoplasia"
+  },
+  "AMYLOID": {
+    "clue": "Misfolded protein that stains Congo red and glows apple green under polarized light",
+    "rationale": "AL comes from light chains, AA from chronic inflammation, and ATTR from transthyretin. The kidney and heart are frequent targets.",
+    "topic": "Path / amyloid"
+  },
+  "CASEOUS": {
+    "clue": "Cheese-like necrosis inside granulomas of secondary tuberculosis",
+    "rationale": "It is a mix of coagulative and liquefactive patterns. Noncaseating granulomas suggest sarcoidosis or Crohn disease instead.",
+    "topic": "Path / inflammation"
+  },
+  "HODGKIN": {
+    "clue": "Lymphoma with Reed-Sternberg cells, contiguous node spread, and often a good response to therapy",
+    "rationale": "The malignant cell is a crippled B cell that is CD15 and CD30 positive. Nodular-sclerosis type brings collagen bands and lacunar cells.",
+    "topic": "Heme / lymphoma"
+  },
+  "BURKITT": {
+    "clue": "Starry-sky lymphoma of c-myc translocation, EBV, and a very high proliferation rate",
+    "rationale": "Endemic disease presents in the jaw. Sporadic disease often presents as an ileocecal mass.",
+    "topic": "Heme / lymphoma"
+  },
+  "MYELOMA": {
+    "clue": "Plasma-cell cancer with CRAB findings: calcium, renal failure, anemia, and bone lesions",
+    "rationale": "Clock-face chromatin and rouleaux are smear clues. Light chains, not just albumin, must be sought in the urine.",
+    "topic": "Heme / myeloma"
+  },
+  "VIRCHOW": {
+    "clue": "Triad of stasis, endothelial injury, and hypercoagulability that explains thrombosis",
+    "rationale": "The same eponym also names a left supraclavicular node seeded by abdominal, especially gastric, cancer.",
+    "topic": "Path / thrombosis"
+  },
+  "LINITIS": {
+    "clue": "Leather-bottle stomach of diffuse signet-ring gastric carcinoma",
+    "rationale": "The wall is thickened and stiff rather than mass-forming. Prognosis is poor because the tumor infiltrates early.",
+    "topic": "Path / stomach"
+  },
+  "BARRETT": {
+    "clue": "Intestinal metaplasia of the distal esophagus after chronic reflux, with goblet cells",
+    "rationale": "It is the precursor of esophageal adenocarcinoma. Squamous carcinoma of the esophagus is the smoking and alcohol disease instead.",
+    "topic": "GI / esophagus"
+  },
+  "WHIPPLE": {
+    "clue": "PAS-positive macrophages packing the lamina propria after infection by Tropheryma",
+    "rationale": "Malabsorption, arthritis, and neurologic or cardiac disease occur together. It is not a celiac mimic that responds to gluten withdrawal.",
+    "topic": "GI / malabsorption"
+  },
+  "PYLORIC": {
+    "clue": "Infantile gastric-outlet obstruction with an olive mass and hypochloremic metabolic alkalosis",
+    "rationale": "Vomiting is projectile and nonbilious, usually in the first weeks of life. Erythromycin exposure is a risk factor.",
+    "topic": "GI / peds"
+  },
+  "ANNULAR": {
+    "clue": "Ring of pancreatic tissue around the duodenum that can obstruct it",
+    "rationale": "The presentation is bilious vomiting. It is a rotation and fusion anomaly, not an atresia.",
+    "topic": "GI / congenital"
+  },
+  "BILIOUS": {
+    "clue": "Green vomitus that means the obstruction is distal to the ampulla of Vater",
+    "rationale": "Duodenal atresia, malrotation with volvulus, and annular pancreas are causes. Nonbilious vomiting points above the ampulla, as in pyloric stenosis.",
+    "topic": "GI / peds"
+  },
+  "CURRANT": {
+    "clue": "Jelly stool of intussusception in a toddler",
+    "rationale": "A lead point such as a Meckel diverticulum or lymphoid hyperplasia may start it. Air or contrast enema can be both diagnostic and therapeutic.",
+    "topic": "GI / peds"
+  },
+  "NODOSUM": {
+    "clue": "Tender pretibial panniculitis associated with strep, sarcoid, inflammatory bowel disease, and endemic fungi",
+    "rationale": "The nodules do not ulcerate. It is a reactive septal process, not a vasculitis that needs immediate immunosuppression in every case.",
+    "topic": "Derm / reactive"
+  },
+  "BUERGER": {
+    "clue": "Segmental thrombosing vasculitis of smokers that can autoamputate digits",
+    "rationale": "Superficial thrombophlebitis and claudication occur. The only effective treatment is to stop tobacco completely.",
+    "topic": "Rheum / vasculitis"
+  },
+  "RAYNAUD": {
+    "clue": "Cold-induced white-blue-red color change of digits from vasospasm",
+    "rationale": "Connective-tissue disease is suspected when it is severe or unilateral-sparing and begins later in life. Calcium-channel blockers relax the spasm.",
+    "topic": "Rheum / vascular"
+  },
+  "WEGENER": {
+    "clue": "c-ANCA vasculitis of upper airway, lung, and kidney, now called granulomatosis with polyangiitis",
+    "rationale": "The antigen is proteinase 3. Nodules cavitate, and the glomerulonephritis is pauci-immune.",
+    "topic": "Rheum / vasculitis"
+  },
+  "BABESIA": {
+    "clue": "Intraerythrocyte parasite that forms a Maltese cross and causes severe hemolysis after splenectomy",
+    "rationale": "Ixodes is the tick, so Lyme coinfection occurs. Atovaquone plus azithromycin is usual treatment.",
+    "topic": "Micro / parasite"
+  },
+  "CHOLERA": {
+    "clue": "Toxin that ADP-ribosylates Gs, locks adenylate cyclase on, and causes rice-water stool",
+    "rationale": "The mucosa is not invaded, so fecal leukocytes are absent. Oral rehydration replaces the bicarbonate-rich fluid.",
+    "topic": "Micro / toxin"
+  },
+  "HYDATID": {
+    "clue": "Sheep-dog tapeworm cyst in the liver that can cause anaphylaxis if it ruptures",
+    "rationale": "Echinococcus is the organism. Surgery or aspiration is done carefully, with albendazole cover.",
+    "topic": "Micro / parasite"
+  },
+  "ASCARIS": {
+    "clue": "Large roundworm that migrates through the lung and can obstruct the intestine",
+    "rationale": "Eggs must mature in soil before they are infectious. A bolus of worms is a cause of bowel obstruction and biliary colic.",
+    "topic": "Micro / parasite"
+  },
+  "SCABIES": {
+    "clue": "Mite that burrows in finger webs and causes pruritus worse at night",
+    "rationale": "Permethrin treats ordinary infestation, and close contacts are treated too. Crusted disease in immunosuppression may need ivermectin.",
+    "topic": "Micro / ectoparasite"
+  },
+  "VARICES": {
+    "clue": "Dilated submucosal esophageal veins of portal hypertension that can bleed massively",
+    "rationale": "Octreotide and band ligation are acute measures. A nonselective beta blocker is used for prevention.",
+    "topic": "GI / portal"
+  },
+  "ASCITES": {
+    "clue": "Peritoneal fluid of portal hypertension that can become infected without a surgical abdomen",
+    "rationale": "A neutrophil count above 250 in the fluid diagnoses spontaneous bacterial peritonitis. Third-generation cephalosporins cover the usual gram-negative rods.",
+    "topic": "GI / liver"
+  },
+  "CHANCRE": {
+    "clue": "Painless genital ulcer of primary syphilis",
+    "rationale": "The organism is too thin to see on Gram stain and is found on darkfield microscopy. A painful ulcer suggests chancroid instead.",
+    "topic": "Micro / syphilis"
+  },
+  "LEPROSY": {
+    "clue": "Mycobacterium that cannot be cultured on artificial media and prefers cool skin",
+    "rationale": "Tuberculoid disease is Th1 and paucibacillary. Lepromatous disease is Th2, with leonine facies and a negative lepromin test.",
+    "topic": "Micro / mycobacteria"
+  },
+  "MILIARY": {
+    "clue": "Millet-seed hematogenous dissemination of tuberculosis",
+    "rationale": "Innumerable small nodules appear in lung, liver, and marrow. It is a form of progressive primary or reactivated disease.",
+    "topic": "Micro / TB"
+  },
+  "GIARDIA": {
+    "clue": "Flagellate that causes foul fatty diarrhea after camping and in IgA deficiency",
+    "rationale": "It does not invade, so the stool is not bloody. Trophozoites attach in the duodenum and metronidazole is the usual drug.",
+    "topic": "Micro / parasite"
+  },
+  "MALTESE": {
+    "clue": "Cross formed by Babesia inside a red cell",
+    "rationale": "The same tick transmits Lyme disease. Severe disease strikes people without a spleen.",
+    "topic": "Micro / parasite"
+  },
+  "MEASLES": {
+    "clue": "Paramyxovirus with cough, coryza, conjunctivitis, and Koplik spots before a descending rash",
+    "rationale": "Subacute sclerosing panencephalitis can appear years later. Vitamin A lowers morbidity in deficiency.",
+    "topic": "Micro / virus"
+  },
+  "RUBELLA": {
+    "clue": "Togavirus whose congenital form causes cataracts, deafness, and a patent ductus",
+    "rationale": "The postnatal rash is milder than measles and lymphadenopathy is postauricular. The vaccine is live and contraindicated in pregnancy.",
+    "topic": "Micro / virus"
+  },
+  "ROSEOLA": {
+    "clue": "HHV-6 illness of high fever that defervesces as a trunk rash appears",
+    "rationale": "Febrile seizures are the main acute risk. It is the sixth childhood exanthem.",
+    "topic": "Micro / virus"
+  },
+  "MARBURG": {
+    "clue": "Filovirus cousin of Ebola that also causes hemorrhagic fever",
+    "rationale": "Fruit bats are the reservoir. Management is supportive and isolation is strict.",
+    "topic": "Micro / virus"
+  },
+  "EPSTEIN": {
+    "clue": "Surname linked to the herpesvirus of mononucleosis, Burkitt lymphoma, and nasopharyngeal carcinoma",
+    "rationale": "The virus immortalizes B cells through CD21. A heterophile antibody is the classic screening test.",
+    "topic": "Micro / herpes"
+  },
+  "QUININE": {
+    "clue": "Cinchona alkaloid used for malaria that causes tinnitus, headache, and visual change",
+    "rationale": "That symptom cluster is cinchonism. It can also trigger hemolysis in G6PD deficiency and hypoglycemia by releasing insulin.",
+    "topic": "Pharm / malaria"
+  },
+  "DIGOXIN": {
+    "clue": "Cardiac glycoside that inhibits the sodium-potassium pump and increases vagal tone",
+    "rationale": "Intracellular calcium rises, so contractility increases. Hypokalemia promotes toxicity, which includes yellow vision and atrial tachycardia with block.",
+    "topic": "Pharm / cardiac"
+  },
+  "ANTHRAX": {
+    "clue": "Spore-forming rod with a polyglutamate capsule, a black eschar, and a widened mediastinum",
+    "rationale": "Edema factor is an adenylate cyclase and lethal factor cuts MAP kinase. The pulmonary form comes from spores, not person-to-person spread.",
+    "topic": "Micro / toxin"
+  },
+  "SJOGREN": {
+    "clue": "Lymphocytic destruction of salivary and lacrimal glands with anti-Ro and anti-La antibodies",
+    "rationale": "Dental caries and corneal injury follow the dryness. B-cell lymphoma risk is increased, and anti-Ro can cause neonatal heart block.",
+    "topic": "Rheum / autoimmune"
+  },
+  "JEJUNUM": {
+    "clue": "Small-bowel segment that absorbs most folate, just distal to the iron-absorbing duodenum",
+    "rationale": "Celiac disease hits the duodenum and proximal bowel hardest. Tropical sprue involves a longer stretch and responds to antibiotics and folate.",
+    "topic": "GI / physiology"
+  },
+  "JARISCH": {
+    "clue": "Fever and hypotension hours after antibiotics kill spirochetes, from a cytokine surge",
+    "rationale": "It is not a penicillin allergy. Syphilis and Lyme treatment are the classic settings, and the drug is not stopped for this reaction alone.",
+    "topic": "Micro / syphilis"
+  },
+  "GAUCHER": {
+    "clue": "Most common lysosomal storage disease, with crumpled-paper macrophages and bone crises",
+    "rationale": "Glucocerebrosidase is deficient and glucocerebroside accumulates. Avascular necrosis of the femur and hepatosplenomegaly are typical of type 1.",
+    "topic": "Biochem / storage"
+  },
+  "MCARDLE": {
+    "clue": "Muscle glycogen phosphorylase deficiency with exercise cramps and a flat venous lactate curve",
+    "rationale": "A second wind can appear as blood-borne fuel arrives. Myoglobinuria may follow a hard bout of exercise.",
+    "topic": "Biochem / glycogen"
+  },
+  "STEROID": {
+    "clue": "Drug class that inhibits NF-kB, causes neutrophilia by demargination, and suppresses fever",
+    "rationale": "Long use thins bone, raises glucose, and suppresses the adrenal axis. Stop gradually after prolonged therapy.",
+    "topic": "Pharm / immune"
+  },
+  "INSULIN": {
+    "clue": "Tyrosine-kinase hormone that moves GLUT4 to muscle and fat membrane and drives potassium inward",
+    "rationale": "It does not gate glucose entry into the liver, brain, or red cells. Deficiency allows lipolysis and ketoacidosis.",
+    "topic": "Endocrine / diabetes"
+  },
+  "TRYPSIN": {
+    "clue": "Pancreatic protease activated in the gut by enterokinase, which then activates the other zymogens",
+    "rationale": "Premature activation inside the pancreas starts autodigestion. It is the key that turns on the enzyme cascade.",
+    "topic": "GI / enzyme"
+  },
+  "AMYLASE": {
+    "clue": "Starch-splitting enzyme that rises in pancreatitis but also in salivary disease and bowel perforation",
+    "rationale": "Lipase is more specific for the pancreas. Levels do not predict severity.",
+    "topic": "GI / pancreas"
+  },
+  "LACTASE": {
+    "clue": "Brush-border enzyme whose loss after infection or with age causes osmotic diarrhea and gas",
+    "rationale": "Undigested lactose is fermented by colonic bacteria. Stool osmotic gap is high and the diarrhea stops when milk stops.",
+    "topic": "GI / enzyme"
+  },
+  "SUCRASE": {
+    "clue": "Brush-border enzyme whose congenital deficiency causes diarrhea when sucrose is introduced",
+    "rationale": "Glucose remains tolerable because the sodium-glucose transporter is intact. The diarrhea is osmotic.",
+    "topic": "GI / enzyme"
+  },
+  "ALBUMIN": {
+    "clue": "Plasma protein that sets oncotic pressure and carries unconjugated bilirubin, calcium, and many drugs",
+    "rationale": "Low levels from liver failure or nephrotic syndrome cause edema. Corrected calcium rises when this carrier is low.",
+    "topic": "Biochem / protein"
+  },
+  "PLASMIN": {
+    "clue": "Fibrin-cleaving enzyme generated by tissue plasminogen activator",
+    "rationale": "Alpha-2 antiplasmin and PAI-1 restrain it. Unchecked activity, as in thrombolysis, raises bleeding risk.",
+    "topic": "Heme / coagulation"
+  },
+  "KERATIN": {
+    "clue": "Intermediate filament of epithelium and the pearl-forming protein of squamous cancers",
+    "rationale": "Anti-cytokeratin stains mark carcinomas. Molluscum and HPV lesions are epithelial but not defined by keratin pearls.",
+    "topic": "Path / cell"
+  },
+  "ELASTIN": {
+    "clue": "Stretch protein destroyed in emphysema when alpha-1 antitrypsin is missing or overwhelmed",
+    "rationale": "Smoking brings neutrophils and their protease. Panacinar basal emphysema is the inherited pattern.",
+    "topic": "Path / lung"
+  },
+  "CALCIUM": {
+    "clue": "Divalent cation of bone, coagulation, and muscle, low in the saponification of pancreatitis",
+    "rationale": "Albumin binds part of the measured total. Tetany, prolonged QT, and Chvostek sign mark the ionized deficit.",
+    "topic": "Endocrine / mineral"
+  },
+  "GASTRIN": {
+    "clue": "Antral hormone that raises acid through ECL histamine and directly on parietal cells",
+    "rationale": "A gastrinoma causes ulcers beyond the bulb and diarrhea. High gastrin with low pH separates it from ordinary achlorhydria.",
+    "topic": "GI / hormone"
+  },
+  "MOTILIN": {
+    "clue": "Hormone of the migrating motor complex that erythromycin can mimic",
+    "rationale": "It sweeps the fasting gut. Macrolide agonism explains both prokinetic use and some of the cramping.",
+    "topic": "GI / hormone"
+  },
+  "GHRELIN": {
+    "clue": "Stomach hormone that stimulates appetite and growth-hormone release",
+    "rationale": "Levels rise before meals and in fasting, and fall after bypass surgery. It opposes leptin at the hypothalamus.",
+    "topic": "Endocrine / appetite"
+  },
+  "RETINOL": {
+    "clue": "Vitamin A alcohol needed for night vision and epithelial differentiation",
+    "rationale": "Deficiency causes night blindness and squamous metaplasia. Excess and the acne retinoids are teratogenic.",
+    "topic": "Biochem / vitamin"
+  },
+  "RICKETS": {
+    "clue": "Childhood failure of growth-plate mineralization from vitamin D deficiency",
+    "rationale": "Rachitic rosary, bowed legs, and craniotabes are findings. Adults with the same deficit get osteomalacia instead.",
+    "topic": "Endocrine / bone"
+  },
+  "CITRATE": {
+    "clue": "TCA intermediate that also signals the cell has enough energy by inhibiting phosphofructokinase-1",
+    "rationale": "It is the product of acetyl-CoA plus oxaloacetate. In urine it binds calcium and protects against stones.",
+    "topic": "Biochem / TCA"
+  },
+  "LACTATE": {
+    "clue": "End product of anaerobic glycolysis that accumulates when mitochondria cannot reoxidize NADH",
+    "rationale": "Shock, ischemia, and mitochondrial toxins raise it and open an anion gap. The Cori cycle lets the liver remake glucose from it.",
+    "topic": "Biochem / glycolysis"
+  },
+  "ALANINE": {
+    "clue": "Amino acid that ferries amino groups from muscle pyruvate to the liver for gluconeogenesis",
+    "rationale": "Transamination pairs this carrier with pyruvate. The liver uses the carbon skeleton to remake glucose during a fast.",
+    "topic": "Biochem / metabolism"
+  },
+  "LEUCINE": {
+    "clue": "Strictly ketogenic branched-chain amino acid accumulated in maple-syrup urine disease",
+    "rationale": "The branched-chain ketoacid dehydrogenase is the deficient enzyme. Thiamine is a cofactor, and the odor is sweet.",
+    "topic": "Biochem / amino acid"
+  },
+  "ACETATE": {
+    "clue": "Two-carbon product of ethanol metabolism and a building block of acetyl-CoA",
+    "rationale": "Ethanol oxidation consumes NAD+ and stalls gluconeogenesis, so fasting drinkers become hypoglycemic.",
+    "topic": "Biochem / ethanol"
+  },
+  "KETONES": {
+    "clue": "Alternative fuels the brain can use in starvation, absent when insulin is present",
+    "rationale": "They appear in diabetic ketoacidosis and in prolonged fasting. Oxaloacetate shortage diverts acetyl-CoA into their synthesis.",
+    "topic": "Biochem / starvation"
+  },
+  "ANKYRIN": {
+    "clue": "Red-cell membrane protein mutated, along with spectrin, in hereditary spherocytosis",
+    "rationale": "Vertical interactions fail and membrane is lost. Osmotic fragility, pigment stones, and an aplastic crisis from parvovirus follow.",
+    "topic": "Heme / membrane"
+  },
+  "NEPHRIN": {
+    "clue": "Slit-diaphragm protein whose mutation causes congenital nephrotic syndrome of the Finnish type",
+    "rationale": "Massive albuminuria begins in utero. The glomerular filtration barrier fails at the podocyte.",
+    "topic": "Renal / genetic"
+  },
+  "TUBULIN": {
+    "clue": "Microtubule subunit bound by colchicine, vinca alkaloids, and benzimidazoles",
+    "rationale": "Polymerization is blocked by those drugs. Taxanes do the opposite and stabilize the polymer.",
+    "topic": "Cell bio / cytoskeleton"
+  },
+  "KINESIN": {
+    "clue": "Motor that carries cargo toward the plus end of microtubules, away from the cell body",
+    "rationale": "It is anterograde axonal transport. Dynein is retrograde, which is how rabies and herpes travel toward the soma.",
+    "topic": "Cell bio / transport"
+  },
+  "WARFARIN": {
+    "clue": "Oral anticoagulant that blocks vitamin K epoxide reductase and is followed with INR",
+    "rationale": "Factor VII falls first, and protein C falls just as fast, so skin necrosis can occur at the start. It is teratogenic and reversed with vitamin K or clotting-factor replacement.",
+    "topic": "Pharm / coagulation"
+  },
+  "RIFAMPIN": {
+    "clue": "Drug that inhibits bacterial RNA polymerase, turns body fluids orange, and induces many CYP enzymes",
+    "rationale": "It is used for tuberculosis and meningococcal prophylaxis. Resistance emerges if it is given alone.",
+    "topic": "Pharm / TB"
+  },
+  "CEFEPIME": {
+    "clue": "Fourth-generation cephalosporin with reliable activity against Pseudomonas",
+    "rationale": "It covers many gram-positive and gram-negative organisms but not MRSA or anaerobes well. Neurotoxicity rises if the dose is not reduced in kidney failure.",
+    "topic": "Pharm / antibiotic"
+  },
+  "IMIPENEM": {
+    "clue": "Carbapenem paired with cilastatin so a renal enzyme does not destroy it",
+    "rationale": "The spectrum includes anaerobes and Pseudomonas. Seizures are the dose-limiting risk, especially when GFR is low.",
+    "topic": "Pharm / antibiotic"
+  },
+  "GLARGINE": {
+    "clue": "Long-acting insulin formulation with no pronounced peak and no mixing with other insulins",
+    "rationale": "It precipitates at body pH and is absorbed slowly. Nocturnal hypoglycemia is less than with intermediate protamine insulin.",
+    "topic": "Endocrine / diabetes"
+  },
+  "ACARBOSE": {
+    "clue": "Alpha-glucosidase inhibitor that delays carbohydrate absorption and causes gas",
+    "rationale": "Hypoglycemia on this drug must be treated with glucose, not table sugar, because sucrose cleavage is blocked. It does not cause insulin release.",
+    "topic": "Endocrine / diabetes"
+  },
+  "KUSSMAUL": {
+    "clue": "Neck veins that rise on inspiration, the classic sign of constrictive pericarditis",
+    "rationale": "The sign reflects a heart that cannot accept the inspiratory rise in venous return. The same eponym is used for the deep, rapid breathing of metabolic acidosis.",
+    "topic": "Cardio / pericardium"
+  },
+  "MANNITOL": {
+    "clue": "Osmotic diuretic used to lower intracranial pressure, and dangerous in heart failure",
+    "rationale": "It is filtered and not reabsorbed, so water stays in the tubule. Pulmonary edema is the reason to avoid it when the heart cannot handle the volume.",
+    "topic": "Pharm / diuretic"
+  },
+  "LOSARTAN": {
+    "clue": "Angiotensin-receptor blocker that does not raise bradykinin and also lowers uric acid",
+    "rationale": "Cough is uncommon, but hyperkalemia, a rise in creatinine in renal-artery stenosis, and pregnancy risk remain. It blocks AT1 receptors.",
+    "topic": "Pharm / HTN"
+  },
+  "ATENOLOL": {
+    "clue": "Renally cleared beta-1 blocker that can hide the tachycardia of hypoglycemia",
+    "rationale": "It enters the brain less than lipophilic beta blockers. Sweating from low glucose can still occur.",
+    "topic": "Pharm / cardiac"
+  },
+  "ADENOSINE": {
+    "clue": "Very short-acting nucleoside that opens potassium channels at the AV node to stop SVT",
+    "rationale": "The half-life is seconds. Caffeine and theophylline block it, and it can cause bronchospasm and a brief pause.",
+    "topic": "Pharm / arrhythmia"
+  },
+  "IMATINIB": {
+    "clue": "Tyrosine-kinase inhibitor of BCR-ABL and of c-KIT",
+    "rationale": "It turned chronic myeloid leukemia into a chronic disease and also treats gastrointestinal stromal tumor. Fluid retention is a common effect.",
+    "topic": "Pharm / cancer"
+  },
+  "MORPHINE": {
+    "clue": "Full mu agonist that releases histamine and causes miosis, constipation, and respiratory depression",
+    "rationale": "Tolerance develops to sedation but not fully to constipation or pinpoint pupils. It can spasm the sphincter of Oddi.",
+    "topic": "Pharm / opioid"
+  },
+  "FENTANYL": {
+    "clue": "Potent mu agonist that does not release histamine and is given as patches only to opioid-tolerant patients",
+    "rationale": "Chest-wall rigidity can follow a rapid IV dose. Heat on a patch increases absorption.",
+    "topic": "Pharm / opioid"
+  },
+  "KETAMINE": {
+    "clue": "NMDA-antagonist anesthetic that raises blood pressure and dilates bronchi",
+    "rationale": "Dissociation and emergence reactions are expected. It is useful when hypotension or bronchospasm makes other induction drugs risky.",
+    "topic": "Pharm / anesthesia"
+  },
+  "PROPOFOL": {
+    "clue": "GABA-potentiating anesthetic in a lipid emulsion that drops blood pressure",
+    "rationale": "Prolonged high-dose infusion can cause metabolic acidosis, rhabdomyolysis, and bradycardia. The urine may turn green.",
+    "topic": "Pharm / anesthesia"
+  },
+  "LEVODOPA": {
+    "clue": "Dopamine precursor that crosses the blood-brain barrier and is paired with a peripheral decarboxylase inhibitor",
+    "rationale": "The partner drug reduces nausea and lets more precursor reach the brain. Long-term use brings wearing-off and dyskinesias.",
+    "topic": "Pharm / neuro"
+  },
+  "ATROPINE": {
+    "clue": "Muscarinic antagonist used for bradycardia and for the cholinergic toxidrome of organophosphates",
+    "rationale": "It dries secretions and dilates pupils but does not reverse nicotinic muscle weakness. An oxime is added to regenerate the enzyme.",
+    "topic": "Pharm / autonomic"
+  },
+  "COLLAGEN": {
+    "clue": "Triple-helix protein: type I in bone, type II in cartilage, type III in vessels, type IV in basement membrane",
+    "rationale": "Vitamin C is required for hydroxylation. Defects cause osteogenesis imperfecta, Ehlers-Danlos features, and Alport syndrome depending on the chain.",
+    "topic": "Biochem / matrix"
+  },
+  "SPECTRIN": {
+    "clue": "Red-cell scaffold protein whose loss, with ankyrin, causes hereditary spherocytosis",
+    "rationale": "Membrane sheds, the MCHC rises, and pigment gallstones form. Splenectomy helps after vaccines against encapsulated organisms.",
+    "topic": "Heme / membrane"
+  },
+  "TROPONIN": {
+    "clue": "Cardiac regulatory protein that is the preferred blood marker of myocardial injury",
+    "rationale": "It rises within hours and stays up for days. It is more specific than CK-MB for heart muscle.",
+    "topic": "Cardio / lab"
+  },
+  "GLYCOGEN": {
+    "clue": "Branched glucose store of liver and muscle; muscle cannot release it as free blood glucose",
+    "rationale": "Muscle lacks glucose-6-phosphatase. Liver glycogen maintains blood glucose during a short fast.",
+    "topic": "Biochem / glycogen"
+  },
+  "SYPHILIS": {
+    "clue": "Spirochete stages of a painless chancre, a palm-and-sole rash, then aortitis or dorsal-column loss",
+    "rationale": "Nontreponemal tests screen and treponemal tests confirm. Penicillin is the treatment, and a cytokine surge after the first dose is not an allergy.",
+    "topic": "Micro / spirochete"
+  },
+  "DIGEORGE": {
+    "clue": "22q11 failure of the third and fourth pouches, with no thymus, no parathyroids, and conotruncal heart defects",
+    "rationale": "Hypocalcemia and viral or fungal infections follow. The face is often dysmorphic and the thymic shadow is absent.",
+    "topic": "Genetics / development"
+  },
+  "SQUAMOUS": {
+    "clue": "Central lung cancer with keratin pearls, cavitation, and PTHrP-driven hypercalcemia",
+    "rationale": "Smoking is the dominant risk. Intercellular bridges on histology separate it from small-cell carcinoma, which is also central.",
+    "topic": "Path / lung"
+  },
+  "XANTHOMA": {
+    "clue": "Lipid-laden skin or tendon deposit, Achilles in familial hypercholesterolemia and eruptive when triglycerides are very high",
+    "rationale": "Xanthelasma on the eyelids is the softer cousin. The finding points to a lipoprotein disorder, not a primary skin tumor.",
+    "topic": "Path / lipid"
+  },
+  "NALOXONE": {
+    "clue": "Short-acting opioid antagonist that reverses respiratory depression and can precipitate withdrawal",
+    "rationale": "Repeat doses are often needed because the agonist outlasts it. It does not reverse benzodiazepines.",
+    "topic": "Pharm / antidote"
+  },
+  "JAUNDICE": {
+    "clue": "Yellow sclera and skin that appear once bilirubin is high enough to see",
+    "rationale": "The sclera shows it first because elastin binds the pigment. Unconjugated pigment does not darken the urine; the water-soluble fraction does.",
+    "topic": "GI / bilirubin"
+  },
+  "FUROSEMIDE": {
+    "clue": "Loop diuretic that blocks the triple cotransporter in the thick ascending limb",
+    "rationale": "Calcium and magnesium are lost with sodium, unlike the distal-tubule diuretic that raises serum calcium. Hearing can be injured by a fast IV push, and a contraction alkalosis follows.",
+    "topic": "Pharm / diuretic"
+  },
+  "VERAPAMIL": {
+    "clue": "Non-dihydropyridine calcium blocker that slows the AV node and often constipates",
+    "rationale": "It is a negative inotrope and should not be combined with a beta blocker. It raises digoxin levels.",
+    "topic": "Pharm / cardiac"
+  },
+  "METFORMIN": {
+    "clue": "Biguanide that activates AMPK, lowers hepatic glucose output, and does not cause hypoglycemia alone",
+    "rationale": "Lactic acidosis is the rare danger when GFR is low or contrast is given. Long-term use can lower B12.",
+    "topic": "Endocrine / diabetes"
+  },
+  "BOTULINUM": {
+    "clue": "Toxin that cleaves SNARE proteins at the neuromuscular junction and causes descending flaccid paralysis",
+    "rationale": "Acetylcholine release fails, the opposite of the tetanus pattern in inhibitory interneurons. Honey spores cause the infant form; preformed toxin in canned food causes the food-borne form.",
+    "topic": "Micro / toxin"
+  },
+  "MACROLIDE": {
+    "clue": "50S antibiotic class that also stimulates motilin receptors and can prolong QT",
+    "rationale": "Some members strongly inhibit CYP3A4. The class covers atypical pneumonia and is an alternative in penicillin allergy for strep throat.",
+    "topic": "Pharm / antibiotic"
+  },
+  "ALBUTEROL": {
+    "clue": "Short-acting beta-2 agonist that relaxes bronchial smooth muscle and drives potassium into cells",
+    "rationale": "Tremor and tachycardia are expected. It is rescue therapy, not the anti-inflammatory treatment of persistent asthma.",
+    "topic": "Pharm / pulmonary"
+  },
+  "AROMATASE": {
+    "clue": "Adipose enzyme that converts androgens to estrogens and is blocked in postmenopausal hormone-positive breast cancer",
+    "rationale": "Inhibitors lower estrogen after menopause and speed bone loss. A selective receptor modulator used in the same cancers blocks the breast but can stimulate the endometrium.",
+    "topic": "Pharm / cancer"
+  },
+  "BLEOMYCIN": {
+    "clue": "Free-radical anticancer drug that scars the lung and spares the marrow",
+    "rationale": "Hydrolase that inactivates it is low in skin and lung, so those tissues are hit. High inspired oxygen adds to the lung injury.",
+    "topic": "Pharm / cancer"
+  },
+  "CISPLATIN": {
+    "clue": "Platinum agent that cross-links DNA and is toxic to kidney, ear, and the vomiting center",
+    "rationale": "Chloride diuresis and amifostine limit the renal injury. Magnesium wasting and severe nausea are expected.",
+    "topic": "Pharm / cancer"
+  },
+  "VALPROATE": {
+    "clue": "Broad anticonvulsant that is hepatotoxic, teratogenic for the neural tube, and can raise ammonia",
+    "rationale": "It inhibits CYP enzymes and causes tremor and weight gain. It is avoided in pregnancy and in young children with mitochondrial disease.",
+    "topic": "Pharm / seizure"
+  },
+  "PHENYTOIN": {
+    "clue": "Sodium-channel anticonvulsant with zero-order kinetics, gingival overgrowth, and fetal anomalies",
+    "rationale": "It induces CYP enzymes and vitamin D metabolism. Stevens-Johnson syndrome and ataxia at high levels are classic.",
+    "topic": "Pharm / seizure"
+  },
+  "LIDOCAINE": {
+    "clue": "Class Ib sodium-channel blocker used for ischemic ventricular arrhythmias",
+    "rationale": "It prefers inactivated channels in depolarized tissue. Toxicity is neurologic, with perioral numbness and seizures.",
+    "topic": "Pharm / arrhythmia"
+  },
+  "CIRRHOSIS": {
+    "clue": "Bridging fibrosis and regenerative nodules that raise portal pressure and lower synthetic function",
+    "rationale": "Albumin falls and the INR rises. Spider angiomas and gynecomastia reflect estrogen that the liver no longer clears.",
+    "topic": "GI / liver"
+  },
+  "EMPHYSEMA": {
+    "clue": "Alveolar-wall destruction with high compliance and low diffusing capacity",
+    "rationale": "Smoking causes centriacinar disease at the apex. Alpha-1 antitrypsin deficiency causes panacinar disease at the base.",
+    "topic": "Pulm / COPD"
+  },
+  "NEPHROTIC": {
+    "clue": "Protein loss above 3.5 grams per day with edema, low albumin, and high lipids",
+    "rationale": "Antithrombin III is also lost, so renal-vein thrombosis occurs. Infection rises because immunoglobulins leak.",
+    "topic": "Renal / syndrome"
+  },
+  "ACHALASIA": {
+    "clue": "Failure of the lower esophageal sphincter to relax because inhibitory neurons in the myenteric plexus are gone",
+    "rationale": "The barium column narrows like a bird's beak. Chagas disease can cause the same picture, and cancer risk is increased.",
+    "topic": "GI / esophagus"
+  },
+  "TAMPONADE": {
+    "clue": "Compression of the heart with hypotension, distended neck veins, and muffled sounds",
+    "rationale": "Pulsus paradoxus and electrical alternans support the diagnosis. Diastolic pressures equalize, and drainage is the treatment.",
+    "topic": "Cardio / pericardium"
+  },
+  "PARKINSON": {
+    "clue": "Resting tremor, rigidity, and bradykinesia from loss of pigmented substantia nigra neurons",
+    "rationale": "Lewy bodies of alpha-synuclein are the inclusion. Dopamine replacement helps motor symptoms; typical antipsychotics worsen them.",
+    "topic": "Neuro / movement"
+  },
+  "GONORRHEA": {
+    "clue": "Gram-negative diplococcus that ferments glucose only and causes purulent arthritis and neonatal eye infection",
+    "rationale": "It grows on Thayer-Martin agar and has no polysaccharide capsule. Treat partners, and cover possible chlamydial coinfection.",
+    "topic": "Micro / STI"
+  },
+  "COBALAMIN": {
+    "clue": "Vitamin whose lack causes megaloblastic anemia plus dorsal-column and corticospinal injury",
+    "rationale": "Intrinsic factor from parietal cells and an intact terminal ileum are required for absorption. Methylmalonic acid is high, unlike in folate deficiency.",
+    "topic": "Biochem / vitamin"
+  },
+  "AQUAPORIN": {
+    "clue": "Water channel inserted into the collecting-duct membrane when vasopressin raises cAMP",
+    "rationale": "The V2 receptor drives that insertion. Nephrogenic diabetes insipidus can be a mutant channel or a mutant receptor.",
+    "topic": "Renal / physiology"
+  },
+  "XERODERMA": {
+    "clue": "Nucleotide-excision-repair failure that leaves ultraviolet dimers and causes early skin cancers",
+    "rationale": "It is autosomal recessive. The cells cannot remove thymine dimers the way normal skin does.",
+    "topic": "Genetics / repair"
+  },
+  "LORAZEPAM": {
+    "clue": "Benzodiazepine preferred in liver disease because it is glucuronidated and has no active metabolite",
+    "rationale": "It increases how often the GABA-A chloride channel opens. It is a first drug for status epilepticus and alcohol withdrawal.",
+    "topic": "Pharm / benzo"
+  },
+  "ISONIAZID": {
+    "clue": "Antitubercular drug that blocks mycolic acid synthesis and depletes vitamin B6",
+    "rationale": "Hepatitis, peripheral neuropathy, and a lupus-like reaction are the classic toxicities. Pyridoxine is given to protect the nerves.",
+    "topic": "Pharm / TB"
+  },
+  "CLOZAPINE": {
+    "clue": "Antipsychotic reserved for treatment-resistant schizophrenia because it can wipe out neutrophils",
+    "rationale": "Seizures, myocarditis, severe constipation, and metabolic syndrome are other risks. The neutrophil count is monitored on a registry.",
+    "topic": "Pharm / psych"
+  },
+  "LINEZOLID": {
+    "clue": "50S antibiotic for MRSA and VRE that can cause serotonin syndrome and thrombocytopenia",
+    "rationale": "It weakly blocks monoamine oxidase. The platelet drop usually appears after about two weeks.",
+    "topic": "Pharm / antibiotic"
+  },
+  "REJECTION": {
+    "clue": "Hyperacute graft failure from preformed antibody, versus later T-cell injury and chronic fibrosis",
+    "rationale": "The hyperacute form thromboses the organ on the table. Acute cellular injury can respond to immunosuppression; chronic scarring does not.",
+    "topic": "Immuno / transplant"
+  },
+  "UBIQUITIN": {
+    "clue": "Small tag that marks cytosolic proteins for destruction by the proteasome",
+    "rationale": "The chain is built on lysine residues. Proteasome inhibitors used in myeloma block the disposal step.",
+    "topic": "Biochem / protein"
+  },
+  "PENICILLIN": {
+    "clue": "Beta-lactam that binds the transpeptidase proteins of the cell wall and blocks the final cross-link of peptidoglycan",
+    "rationale": "It mimics D-ala-D-ala. Hypersensitivity and, for some members, interstitial nephritis are the immune toxicities.",
+    "topic": "Pharm / antibiotic"
+  },
+  "VANCOMYCIN": {
+    "clue": "Glycopeptide that binds D-ala-D-ala and is given orally only when the target is in the gut lumen",
+    "rationale": "Too-rapid infusion releases histamine. It covers MRSA, and enterococci that swap in D-ala-D-lac are resistant.",
+    "topic": "Pharm / antibiotic"
+  },
+  "GENTAMICIN": {
+    "clue": "Aminoglycoside that misreads the 30S subunit and is toxic to ear and kidney",
+    "rationale": "Killing is concentration dependent and needs oxygen, so anaerobes are not covered. A beta-lactam plus this drug is synergistic for enterococcal endocarditis.",
+    "topic": "Pharm / antibiotic"
+  },
+  "AMIODARONE": {
+    "clue": "Multichannel antiarrhythmic that contains iodine and can scar the lung, inflame the liver, or swing the thyroid",
+    "rationale": "Corneal microdeposits are nearly universal. The half-life is weeks, and it interacts with warfarin and digoxin.",
+    "topic": "Pharm / arrhythmia"
+  },
+  "KARTAGENER": {
+    "clue": "Dynein-arm defect with situs inversus, chronic sinusitis, and bronchiectasis",
+    "rationale": "Primary ciliary dyskinesia also causes infertility because sperm and fallopian cilia do not beat. The chest infections are with the usual airway organisms.",
+    "topic": "Path / cilia"
+  },
+  "DYSTROPHIN": {
+    "clue": "Sarcolemmal protein lost in frameshift deletions that cause early calf pseudohypertrophy and cardiomyopathy",
+    "rationale": "In-frame deletions of the same gene cause a later, milder phenotype. Inheritance is X-linked and the creatine kinase is very high.",
+    "topic": "Genetics / muscle"
+  },
+  "PLASMODIUM": {
+    "clue": "Intraerythrocytic protozoon transmitted by the Anopheles mosquito",
+    "rationale": "Falciparum makes multiple rings, high parasitemia, and cerebral disease. Vivax and ovale leave liver hypnozoites that primaquine eradicates after G6PD is checked.",
+    "topic": "Micro / parasite"
+  },
+  "DIPHTHERIA": {
+    "clue": "Phage-encoded toxin that ADP-ribosylates elongation factor 2 and creates a pharyngeal pseudomembrane",
+    "rationale": "The heart and nerves are injured by the toxin, not by invasion. Antitoxin plus antibiotic is the treatment, and the vaccine is a toxoid.",
+    "topic": "Micro / toxin"
+  },
+  "COLCHICINE": {
+    "clue": "Microtubule inhibitor used for acute gout and familial Mediterranean fever",
+    "rationale": "Diarrhea is the dose limit. Neutropenia and myopathy occur, especially if CYP3A4 inhibitors or kidney failure raise the level.",
+    "topic": "Pharm / gout"
+  },
+  "MYASTHENIA": {
+    "clue": "Fatigable ptosis and proximal weakness from antibodies against the postsynaptic acetylcholine receptor",
+    "rationale": "A thymoma or thymic hyperplasia is often present. Strength improves with an acetylcholinesterase inhibitor and worsens with use, the opposite of the Lambert-Eaton pattern.",
+    "topic": "Neuro / NMJ"
+  },
+  "SEQUESTRUM": {
+    "clue": "Island of dead bone inside chronic osteomyelitis",
+    "rationale": "Periosteal new bone forms a shell around it. Staph aureus is the usual organism unless a special host, such as sickle cell disease, points elsewhere.",
+    "topic": "MSK / infection"
+  },
+  "TOXOPLASMA": {
+    "clue": "Cat-associated protozoon that causes multiple ring-enhancing brain lesions when CD4 cells are very low",
+    "rationale": "Congenital infection produces chorioretinitis, hydrocephalus, and intracranial calcifications. Treatment is pyrimethamine, sulfadiazine, and leucovorin.",
+    "topic": "Micro / parasite"
+  },
+  "PEROXISOME": {
+    "clue": "Organelle that oxidizes very-long-chain fatty acids and synthesizes plasmalogens",
+    "rationale": "Zellweger syndrome is a biogenesis failure with hypotonia and a large liver. X-linked adrenoleukodystrophy stores the same fatty acids and adds adrenal failure.",
+    "topic": "Cell bio / organelle"
+  },
+  "FLUMAZENIL": {
+    "clue": "Competitive antagonist at the benzodiazepine site that can precipitate seizures",
+    "rationale": "It does not reverse barbiturates or alcohol. Re-sedation follows because it is short acting, and it is avoided when a benzodiazepine was treating convulsions.",
+    "topic": "Pharm / antidote"
+  },
+  "OMEPRAZOLE": {
+    "clue": "Irreversible blocker of the parietal-cell hydrogen-potassium pump",
+    "rationale": "It is a prodrug activated in the acid canaliculus and is taken before meals. Long use is linked to low magnesium, low B12, and Clostridioides difficile.",
+    "topic": "Pharm / GI"
+  },
+  "CONJUGATED": {
+    "clue": "Water-soluble bilirubin fraction that enters urine and rises when bile cannot leave the liver",
+    "rationale": "The direct assay measures it. Dubin-Johnson and Rotor syndromes and extrahepatic obstruction raise it; hemolysis raises the insoluble fraction instead.",
+    "topic": "GI / bilirubin"
+  },
+  "EPINEPHRINE": {
+    "clue": "Catecholamine of anaphylaxis that tightens vessels through alpha receptors and opens airways through beta-2",
+    "rationale": "Intramuscular injection in the thigh is the first drug for anaphylaxis. Low doses favor beta-2 vasodilation; high doses favor alpha constriction.",
+    "topic": "Pharm / autonomic"
+  },
+  "VASOPRESSIN": {
+    "clue": "Posterior pituitary peptide that constricts vessels at V1 and inserts water channels at V2",
+    "rationale": "V2 stimulation also releases von Willebrand factor from endothelium. Deficiency causes central diabetes insipidus; excess causes the syndrome of inappropriate secretion.",
+    "topic": "Endocrine / pituitary"
+  },
+  "SARCOIDOSIS": {
+    "clue": "Noncaseating granulomas with bilateral hilar adenopathy and hypercalcemia",
+    "rationale": "Macrophages in the granulomas express 1-alpha hydroxylase, so calcium rises. ACE can be elevated, and the lungs, eyes, and skin are commonly involved.",
+    "topic": "Path / granuloma"
+  },
+  "KLINEFELTER": {
+    "clue": "47,XXY primary hypogonadism with tall stature, gynecomastia, and azoospermia",
+    "rationale": "A Barr body is present. Testosterone is low, FSH and LH are high, and breast cancer risk is higher than in other men.",
+    "topic": "Genetics / sex"
+  },
+  "GOODPASTURE": {
+    "clue": "Autoantibody against glomerular and alveolar basement membrane with linear IgG",
+    "rationale": "The antigen is a type IV collagen chain. Lung hemorrhage plus rapidly progressive glomerulonephritis in a young smoker is the picture, and treatment is plasmapheresis plus immunosuppression.",
+    "topic": "Renal / lung"
+  },
+  "CLINDAMYCIN": {
+    "clue": "50S lincosamide used for anaerobes above the diaphragm and to shut off streptococcal toxin",
+    "rationale": "It covers many MRSA skin infections. The classic adverse association is Clostridioides difficile colitis.",
+    "topic": "Pharm / antibiotic"
+  },
+  "PSEUDOMONAS": {
+    "clue": "Obligate aerobe whose exotoxin A ADP-ribosylates EF-2, seen in burns, cystic fibrosis, and puncture wounds through a shoe",
+    "rationale": "Pyocyanin makes the blue-green pigment and generates oxidants. Ecthyma gangrenosum marks bacteremia in neutropenia.",
+    "topic": "Micro / gram neg"
+  },
+  "SCHISTOSOMA": {
+    "clue": "Blood fluke whose eggs, not the adult worm, drive portal hypertension or bladder squamous cancer",
+    "rationale": "Mansoni and japonicum eggs embolize to the liver, while haematobium eggs scar the bladder. Snails are the intermediate host, and praziquantel is the drug.",
+    "topic": "Micro / parasite"
+  },
+  "ALLOPURINOL": {
+    "clue": "Xanthine oxidase inhibitor used to prevent gout and tumor-lysis urate nephropathy",
+    "rationale": "It raises azathioprine and mercaptopurine levels because those drugs share the enzyme. Severe rash is associated with HLA-B*5801.",
+    "topic": "Pharm / gout"
+  },
+  "DOXORUBICIN": {
+    "clue": "Anthracycline that generates oxygen radicals and causes dose-dependent dilated cardiomyopathy",
+    "rationale": "It intercalates DNA and inhibits topoisomerase II. An iron chelator can limit the heart injury, and the urine may turn red.",
+    "topic": "Pharm / cancer"
+  },
+  "HYDRALAZINE": {
+    "clue": "Arteriolar vasodilator that causes reflex tachycardia and a lupus-like syndrome in slow acetylators",
+    "rationale": "It is used for hypertension in pregnancy and, with a nitrate, in some patients with systolic heart failure. The drug-induced lupus has antihistone antibodies.",
+    "topic": "Pharm / HTN"
+  },
+  "FLUCONAZOLE": {
+    "clue": "Azole that blocks fungal 14-alpha demethylase and is used for Candida and cryptococcal maintenance",
+    "rationale": "It inhibits CYP enzymes. It does not treat Aspergillus or Candida krusei, and voriconazole is the mold drug instead.",
+    "topic": "Pharm / antifungal"
+  }
+}
