@@ -11,6 +11,7 @@ import { PracticeReviewPassFlow } from "@/components/marketing/board-landing/Pra
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import { hubLiveBarChartHeading } from "@/lib/marketing/board-landing/hub-live-bar-chart";
 import type { HubBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { BoardCrosswordPromo } from "@/components/marketing/board-landing/BoardCrosswordPromo";
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import type { FreeQuizBoardSlug } from "@/lib/marketing/free-quiz";
@@ -48,6 +49,9 @@ export async function HubBoardLanding({
           <>
       <div className="bl-band">
         <FreePracticeLink board={freeQuizBoard} prominent />
+      </div>
+      <div className="bl-band">
+        <BoardCrosswordPromo board={freeQuizBoard} />
       </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />

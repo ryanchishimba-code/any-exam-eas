@@ -9,6 +9,7 @@ import { formatTrialLabel, MARKETING_DISCLAIMER } from "@/lib/site";
 const EXPLORE_LINKS = [
   { href: "/free-practice-questions", label: "Free practice questions" },
   { href: "/daily", label: "Question of the Day" },
+  { href: "/crossword", label: "Daily crossword" },
   { href: ROUTES.blog, label: "Blog" },
   { href: ROUTES.freeGuides, label: "Free Guides" },
   { href: ROUTES.pricing, label: "Pricing" },

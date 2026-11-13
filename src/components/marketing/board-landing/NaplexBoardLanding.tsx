@@ -9,6 +9,7 @@ import { WhyAnyExamEasy } from "@/components/marketing/WhyAnyExamEasy";
 import { BoardStatStrip } from "@/components/marketing/board-landing/BoardStatStrip";
 import { HomeSamplePlayer } from "@/components/marketing/elevation/HomeSamplePlayer";
 import type { NaplexBoardLandingRenderModel } from "@/lib/marketing/board-landing/render-payload";
+import { BoardCrosswordPromo } from "@/components/marketing/board-landing/BoardCrosswordPromo";
 import { FreePracticeLink } from "@/components/marketing/free-practice/FreePracticeLink";
 import { BoardFreeQuizLazy } from "@/components/marketing/free-quiz/BoardFreeQuizLazy";
 import { boardHeroProofFacts, storiesBelowHero } from "@/lib/marketing/board-landing/board-hero-marketing";
@@ -39,6 +40,9 @@ export async function NaplexBoardLanding({ model }: { model: NaplexBoardLandingR
           <>
       <div className="bl-band">
         <FreePracticeLink board="naplex" prominent />
+      </div>
+      <div className="bl-band">
+        <BoardCrosswordPromo board="naplex" />
       </div>
       <div className="bl-band bl-band--stats">
         <BoardStatStrip stats={model.stats} label={model.statsLabel} />
