@@ -1,0 +1,724 @@
+id,step,field,before,after,source URL
+cmru6qzpx0032l104c7m72n39,step-1,options,"{""options"":[""25"",""50"",""100"",""200"",""400""],""distractorRationale"":{""25"":""This option assumes an ARR of 4%, which is incorrect; the actual ARR is 2% (4% - 2%). (This highlights the importance of correctly calculating ARR to determine NNT.)"",""100"":""This overestimates the NNT, suggesting that 100 patients need treatment to prevent one stroke, which does not match the calculated ARR of 2%. (Understanding the correct ARR is crucial for accurate NNT calculations.)"",""200"":""This option also overestimates the NNT, indicating a misunderstanding of the event rates in both groups. (Accurate event rate assessment is essential for determining the true NNT.)"",""400"":""This option significantly overestimates the NNT and does not reflect the actual ARR of 2%. (A clear grasp of ARR is necessary to avoid such miscalculations.)""},""clinicalReasoning"":""The NNT for Drug X to prevent one stroke is 50. **Absolute Risk Reduction (ARR)** is calculated as the difference in event rates between the placebo and treatment groups. In this case, the **treatment group** had a stroke rate of 2%, while the **placebo group** had a stroke rate of 4%."",""keyTakeaways"":[""When calculating NNT, always determine the ARR first to ensure accurate treatment effectiveness assessment.""]}","{""options"":[""25"",""50"",""100"",""200"",""400""],""distractorRationale"":{""50"":""This is the NNT for a 2% absolute risk reduction. The stem is 0/2,000 versus 80/2,000, an absolute risk reduction of 4%, so the NNT is 25."",""100"":""An NNT of 100 would require an absolute risk reduction of 1%, not the 4% reduction in the stem."",""200"":""An NNT of 200 would require an absolute risk reduction of 0.5%. The placebo rate is 4% and the treatment rate is 0%."",""400"":""An NNT of 400 would require an absolute risk reduction of 0.25%. That is not the difference between 80/2,000 and 0/2,000.""},""clinicalReasoning"":""The treatment arm had 0 strokes in 2,000 patients and the placebo arm had 80 strokes in 2,000 patients. Absolute risk reduction is 0.04 (4%). NNT = 1/ARR = 25."",""keyTakeaways"":[""NNT = 1/ARR. Here ARR is 80/2,000 minus 0/2,000, which is 0.04, so the NNT is 25.""]}",https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmru6qzpx0032l104c7m72n39,step-1,correctAnswer,50,25,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmru6qzpx0032l104c7m72n39,step-1,explanation,"## Why this answer is correct
+The NNT for Drug X to prevent one stroke is 50.
+• **Absolute Risk Reduction (ARR)** is calculated as the difference in event rates between the placebo and treatment groups.
+• In this case, the **treatment group** had a stroke rate of 2%, while the **placebo group** had a stroke rate of 4%.
+• The NNT is derived from the formula **NNT = 1/ARR**, which in this scenario equals 50.
+**In practice:** Understanding NNT helps clinicians communicate treatment effectiveness to patients. On the unit, this means you can explain how many patients need to be treated to prevent one stroke, aiding in informed decision-making.
+## Why the other options are wrong
+
+
+
+**25**
+• Trap: Students may think that a smaller NNT indicates a more effective treatment without calculating ARR accurately.
+• Why it fails here: This option assumes an ARR of 4%, which is incorrect; the actual ARR is 2% (4% - 2%).
+• Remember: This highlights the importance of correctly calculating ARR to determine NNT.
+
+**100**
+• Trap: This option may be chosen by those who misunderstand the relationship between ARR and NNT.
+• Why it fails here: This overestimates the NNT, suggesting that 100 patients need treatment to prevent one stroke, which does not match the calculated ARR of 2%.
+• Remember: Understanding the correct ARR is crucial for accurate NNT calculations.
+
+**200**
+• Trap: Some students might confuse the event rates and miscalculate the NNT.
+• Why it fails here: This option also overestimates the NNT, indicating a misunderstanding of the event rates in both groups.
+• Remember: Accurate event rate assessment is essential for determining the true NNT.
+
+**400**
+• Trap: This option may appeal to those who believe that a higher number indicates a less effective treatment.
+• Why it fails here: This option significantly overestimates the NNT and does not reflect the actual ARR of 2%.
+• Remember: A clear grasp of ARR is necessary to avoid such miscalculations.
+## Key takeaway
+**When calculating NNT, always determine the ARR first to ensure accurate treatment effectiveness assessment.**
+
+**Memory hook:** Remember: **NNT = 1/ARR**; if ARR is 2%, NNT is 50!","## Why this answer is correct
+The NNT for Drug X to prevent one stroke is 25.
+• **Absolute risk reduction (ARR)** is the placebo event rate minus the treatment event rate.
+• The treatment group had **0 strokes in 2,000** patients (0%). The placebo group had **80 strokes in 2,000** patients (4%).
+• ARR = 0.04. **NNT = 1/ARR = 25.**
+**In practice:** NNT tells a patient how many people must be treated, over the same period, to prevent one stroke. An NNT of 25 is the figure that matches these trial counts.
+## Why the other options are wrong
+
+**50**
+• Trap: Using event rates of 2% and 4% instead of the counts in the stem.
+• Why it fails here: 50 is 1/0.02. The stem's absolute risk reduction is 80/2,000, which is 0.04, not 0.02.
+• Remember: Read the numerators. Zero events is not a 2% rate.
+
+**100**
+• Trap: Taking 1 divided by the placebo rate's complement, or halving the reduction twice.
+• Why it fails here: An NNT of 100 needs an absolute risk reduction of 1%. The reduction here is 4%.
+• Remember: NNT = 1/ARR, and ARR is a difference in rates, not a head count.
+
+**200**
+• Trap: Dividing 2,000 by something other than the 80 prevented events, or using 0.5% as the reduction.
+• Why it fails here: 200 would be the NNT only if ARR were 0.5%.
+• Remember: 80 prevented events in 2,000 patients is 4 per 100, so 25 patients per event prevented.
+
+**400**
+• Trap: Treating 80/2,000 as 0.25% instead of 4%.
+• Why it fails here: 80/2,000 is 0.04, and 1/0.04 is 25.
+• Remember: Move the decimal before taking the reciprocal.
+## Key takeaway
+**NNT = 1/ARR. Zero versus 80 strokes in equal groups of 2,000 is an ARR of 4% and an NNT of 25.**
+
+**Memory hook:** 80 prevented strokes in 2,000 people is 1 in 25.
+",https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmru6qzpx0032l104c7m72n39,step-1,references,,"[{""label"": ""NNT = 1/ARR. AAPD evidence-based medicine calculation sheet."", ""url"": ""https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf""}]",https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmru6qzpx0032l104c7m72n39,step-1,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmrsewbf7000w1y55u7iov3y7,step-1,scenario,"A 65-year-old woman with a history of hypertension and diabetes presents to the emergency department with sudden onset of right-sided weakness and slurred speech. Her blood pressure is 180/100 mmHg, and a CT scan of the head shows an ischemic stroke.","A 65-year-old woman with a history of hypertension and diabetes presents to the emergency department with sudden onset of right-sided weakness and slurred speech. Her blood pressure is 180/100 mmHg, and a CT scan of the head shows an ischemic stroke. She was last known well 80 minutes ago, takes no anticoagulant, and the fingerstick glucose is 118 mg/dL.",https://www.ahajournals.org/doi/10.1161/STR.0000000000000211
+cmrsewbf7000w1y55u7iov3y7,step-1,explanation,"## Why this answer is correct
+Starting intravenous thrombolysis is the best immediate treatment for acute ischemic stroke.
+• **Intravenous thrombolysis** with tissue plasminogen activator (tPA) is the most effective treatment for eligible patients within the time window.
+• This therapy works by **dissolving** the clot that is obstructing blood flow to the brain.
+• Timely intervention can significantly improve **neurological outcomes** and reduce long-term disability.
+**In practice:** On the unit, administering tPA within the appropriate time frame can drastically change a patient's recovery trajectory and quality of life after a stroke.
+## Why the other options are wrong
+
+
+
+**Administer aspirin**
+• Trap: Students may think aspirin is appropriate for immediate stroke management.
+• Why it fails here: Aspirin is typically used for **secondary prevention** of stroke, not for the acute treatment of ischemic stroke.
+• Remember: Understanding the role of medications in acute versus chronic management is crucial.
+
+**Obtain a carotid ultrasound**
+• Trap: There may be a belief that imaging studies should be prioritized in acute settings.
+• Why it fails here: While a carotid ultrasound is important for evaluating stroke risk factors, it is not an **immediate management step** in acute stroke treatment.
+• Remember: Recognizing the difference between diagnostic workup and urgent treatment is essential.
+
+**Initiate anticoagulation therapy**
+• Trap: Some may confuse anticoagulation with thrombolysis as both are used in stroke management.
+• Why it fails here: Anticoagulation is not indicated in acute ischemic stroke unless there is evidence of **atrial fibrillation** or other specific indications.
+• Remember: It's important to differentiate between types of strokes and their appropriate treatments.
+## Key takeaway
+**When faced with an acute ischemic stroke, prioritize intravenous thrombolysis within the treatment window.**
+
+**Memory hook:** Think 'tPA for the win' when you see acute ischemic stroke.","## Why this answer is correct
+Starting intravenous thrombolysis is the best immediate treatment for this acute ischemic stroke. She was last known well 80 minutes ago, inside the 4.5-hour window in the 2019 AHA/ASA guideline. The CT shows ischemia rather than hemorrhage, she takes no anticoagulant, the glucose is 118 mg/dL, and her blood pressure of 180/100 mm Hg is already below 185/110 mm Hg, so alteplase does not need to be delayed for blood-pressure lowering.
+• **Intravenous thrombolysis** with tissue plasminogen activator (tPA) is the most effective treatment for eligible patients within the time window.
+• This therapy works by **dissolving** the clot that is obstructing blood flow to the brain.
+• Timely intervention can significantly improve **neurological outcomes** and reduce long-term disability.
+**In practice:** On the unit, administering tPA within the appropriate time frame can drastically change a patient's recovery trajectory and quality of life after a stroke.
+## Why the other options are wrong
+
+
+
+**Administer aspirin**
+• Trap: Students may think aspirin is appropriate for immediate stroke management.
+• Why it fails here: Aspirin is typically used for **secondary prevention** of stroke, not for the acute treatment of ischemic stroke.
+• Remember: Understanding the role of medications in acute versus chronic management is crucial.
+
+**Obtain a carotid ultrasound**
+• Trap: There may be a belief that imaging studies should be prioritized in acute settings.
+• Why it fails here: While a carotid ultrasound is important for evaluating stroke risk factors, it is not an **immediate management step** in acute stroke treatment.
+• Remember: Recognizing the difference between diagnostic workup and urgent treatment is essential.
+
+**Initiate anticoagulation therapy**
+• Trap: Some may confuse anticoagulation with thrombolysis as both are used in stroke management.
+• Why it fails here: Anticoagulation is not indicated in acute ischemic stroke unless there is evidence of **atrial fibrillation** or other specific indications.
+• Remember: It's important to differentiate between types of strokes and their appropriate treatments.
+## Key takeaway
+**When faced with an acute ischemic stroke, prioritize intravenous thrombolysis within the treatment window.**
+
+**Memory hook:** Think 'tPA for the win' when you see acute ischemic stroke.",https://www.ahajournals.org/doi/10.1161/STR.0000000000000211
+cmrsewbf7000w1y55u7iov3y7,step-1,references,"[{""label"": ""USMLE Content Outline 2026""}]","[{""label"": ""2019 AHA/ASA guideline for the early management of acute ischemic stroke. IV alteplase within 4.5 hours of last known well; lower blood pressure below 185/110 mm Hg before treatment if it is higher."", ""url"": ""https://www.ahajournals.org/doi/10.1161/STR.0000000000000211""}]",https://www.ahajournals.org/doi/10.1161/STR.0000000000000211
+cmrsewbf7000w1y55u7iov3y7,step-1,contentHash,6f71790fc10cfa2df77147c51af01742b3a647b227163aebb330b437b22c730f,9f9b98ebe9ea47048c7eb804f4a3f252514d9f52f24ec6e5482de5fe23765099,https://www.ahajournals.org/doi/10.1161/STR.0000000000000211
+cmrsewbf7000w1y55u7iov3y7,step-1,manual_correction,false,true,https://www.ahajournals.org/doi/10.1161/STR.0000000000000211
+cmr4gwg1d00091ydepsq9s7sx,step-2,scenario,"A 72-year-old woman presents to the emergency department with acute shortness of breath that started two hours ago. She has a history of hypertension and heart failure, and her medications include lisinopril and furosemide. On examination, her blood pressure is 90/60 mm Hg, heart rate is 110 bpm, and she has bilateral crackles on auscultation. A chest X-ray shows pulmonary edema.","A 72-year-old woman presents to the emergency department with acute shortness of breath that started two hours ago. She has a history of hypertension and heart failure, and her medications include lisinopril and furosemide. On examination, her blood pressure is 128/78 mm Hg, heart rate is 110 bpm, and she has bilateral crackles on auscultation. A chest X-ray shows pulmonary edema.",https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063
+cmr4gwg1d00091ydepsq9s7sx,step-2,options,"{""kind"":""image_based"",""stepLevel"":""step2"",""blueprintSystem"":""pediatrics"",""blueprintTopic"":""developmental-milestones"",""physicianTask"":""communication"",""generationMeta"":{""model"":""gpt-4o-mini"",""batchId"":""usmle-gap-usmle-step-2-1783054430164"",""qcScore"":8.2,""slotIndex"":9,""stepLevel"":""step2"",""examNumber"":9201,""generatedAt"":""2026-07-03T04:56:18.016Z"",""pipelineVersion"":""gpt-4o-mini-usmle-full-exam-v1""},""options"":[""Administer intravenous furosemide"",""Initiate nitroglycerin infusion"",""Perform endotracheal intubation"",""Start intravenous fluids""],""taskCategory"":""communication""}","{""kind"":""image_based"",""stepLevel"":""step2"",""blueprintSystem"":""pediatrics"",""blueprintTopic"":""developmental-milestones"",""physicianTask"":""communication"",""generationMeta"":{""model"":""gpt-4o-mini"",""batchId"":""usmle-gap-usmle-step-2-1783054430164"",""qcScore"":8.2,""slotIndex"":9,""stepLevel"":""step2"",""examNumber"":9201,""generatedAt"":""2026-07-03T04:56:18.016Z"",""pipelineVersion"":""gpt-4o-mini-usmle-full-exam-v1""},""options"":[""Administer intravenous furosemide"",""Initiate nitroglycerin infusion"",""Perform urgent endotracheal intubation"",""Start intravenous fluids""],""taskCategory"":""communication""}",https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063
+cmr4gwg1d00091ydepsq9s7sx,step-2,explanation,"## Why this answer is correct
+Administering intravenous furosemide is the best immediate step to relieve pulmonary edema in this patient.
+• **Furosemide** is a loop diuretic that promotes diuresis, helping to reduce fluid overload.
+• The patient shows signs of **acute heart failure** with pulmonary edema, requiring urgent management.
+• Immediate treatment focuses on **relieving congestion** and improving hemodynamics.
+**In practice:** On the unit, administering furosemide can quickly alleviate symptoms of heart failure, improving the patient's respiratory status and overall stability.
+## Why the other options are wrong
+
+
+
+**Initiate nitroglycerin infusion**
+• Trap: Students may think nitroglycerin is a go-to for all heart-related issues.
+• Why it fails here: While nitroglycerin can help with angina by reducing myocardial oxygen demand, it does not address the fluid overload causing pulmonary edema in this case.
+• Remember: This highlights the importance of targeting the underlying cause of acute heart failure rather than just alleviating symptoms.
+
+**Perform endotracheal intubation**
+• Trap: There may be a tendency to assume that intubation is necessary for any patient with respiratory distress.
+• Why it fails here: Intubation is only indicated if the patient is in respiratory failure or unable to protect their airway, which is not the case here as the primary issue is fluid overload.
+• Remember: This emphasizes the need to assess the cause of respiratory distress before resorting to invasive measures.
+
+**Start intravenous fluids**
+• Trap: Some may incorrectly believe that fluids are always beneficial in cases of hypotension.
+• Why it fails here: In this patient, administering IV fluids would exacerbate her fluid overload and worsen her hypotension, counteracting the goal of treatment.
+• Remember: This underlines the critical concept that in heart failure, managing fluid status is paramount.
+## Key takeaway
+**When managing acute heart failure with pulmonary edema, prioritize diuretics to relieve fluid overload.**
+
+**Memory hook:** Remember: In heart failure, **diuretics first**, fluids last!","## Why this answer is correct
+Administering intravenous furosemide is the best immediate step. Her blood pressure is 128/78 mm Hg, so she is not hypotensive, and the chest radiograph shows pulmonary edema. The 2022 AHA/ACC/HFSA guideline recommends prompt intravenous loop diuretics for heart failure with significant fluid overload.
+• **Furosemide** is a loop diuretic that promotes diuresis, helping to reduce fluid overload.
+• The patient shows signs of **acute heart failure** with pulmonary edema, requiring urgent management.
+• Immediate treatment focuses on **relieving congestion** and improving hemodynamics.
+**In practice:** On the unit, administering furosemide can quickly alleviate symptoms of heart failure, improving the patient's respiratory status and overall stability.
+## Why the other options are wrong
+
+
+
+**Initiate nitroglycerin infusion**
+• Trap: Students may think nitroglycerin is a go-to for all heart-related issues.
+• Why it fails here: The 2022 AHA/ACC/HFSA guideline says intravenous nitroglycerin may be considered as an adjunct for dyspnea only when the patient does not have systemic hypotension. Her blood pressure is 128/78 mm Hg, not a hypertensive emergency, and the treatment for pulmonary edema with fluid overload is an intravenous loop diuretic. Nitroglycerin is not a substitute for that diuretic.
+• Remember: This highlights the importance of targeting the underlying cause of acute heart failure rather than just alleviating symptoms.
+
+**Perform urgent endotracheal intubation**
+• Trap: There may be a tendency to assume that intubation is necessary for any patient with respiratory distress.
+• Why it fails here: Intubation is only indicated if the patient is in respiratory failure or unable to protect their airway, which is not the case here as the primary issue is fluid overload.
+• Remember: This emphasizes the need to assess the cause of respiratory distress before resorting to invasive measures.
+
+**Start intravenous fluids**
+• Trap: Some may incorrectly believe that fluids are always beneficial in cases of hypotension.
+• Why it fails here: Her blood pressure is 128/78 mm Hg, so she is not in shock, but she has pulmonary edema. Intravenous fluid would add volume and worsen the edema.
+• Remember: This underlines the critical concept that in heart failure, managing fluid status is paramount.
+## Key takeaway
+**When managing acute heart failure with pulmonary edema, prioritize diuretics to relieve fluid overload.**
+
+**Memory hook:** Remember: In heart failure, **diuretics first**, fluids last!",https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063
+cmr4gwg1d00091ydepsq9s7sx,step-2,references,"[{""label"": ""American College of Cardiology/American Heart Association Guidelines for the Management of Heart Failure""}]","[{""label"": ""2022 AHA/ACC/HFSA heart failure guideline. Intravenous loop diuretics for significant fluid overload. Intravenous nitroglycerin only as an adjunct in the absence of systemic hypotension."", ""url"": ""https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063""}]",https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063
+cmr4gwg1d00091ydepsq9s7sx,step-2,contentHash,ab3cd4658bfd93840a8b4fe003473aae572250788d85b6f0db9f84696dfc4350,3530dabb77295eb8ad1029d68cbeb6620aec55da929e923eccfc059719f32188,https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063
+cmr4gwg1d00091ydepsq9s7sx,step-2,manual_correction,false,true,https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063
+cmr8alc1l01an1yr9v6vasbta,step-2,scenario,A 58-year-old man presents to the emergency department with hematemesis and melena. He has a history of chronic alcohol use and was recently diagnosed with cirrhosis. His vital signs show a blood pressure of 100/60 mm Hg and a heart rate of 110 bpm. Laboratory tests reveal a hemoglobin level of 8 g/dL and an elevated INR of 2.5.,A 58-year-old man presents to the emergency department with hematemesis and melena. He has a history of chronic alcohol use and was recently diagnosed with cirrhosis. His vital signs show a blood pressure of 100/60 mm Hg and a heart rate of 110 bpm. Laboratory tests reveal a hemoglobin level of 8 g/dL and an elevated INR of 2.5. He weighs 58 kg.,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8alc1l01an1yr9v6vasbta,step-2,explanation,"## Why this answer is correct
+The correct maintenance IV fluid rate for this patient is 100 mL/hr.
+• **Fluid resuscitation** is critical in acute gastrointestinal bleeding.
+• The **4-2-1 rule** helps calculate the maintenance fluid rate based on body weight.
+• This patient, weighing approximately 58 kg, requires adequate hydration to manage his **cirrhosis** and blood loss.
+**In practice:** On the unit, this means ensuring the patient receives enough fluids to prevent complications from dehydration and to support recovery from the bleeding episode.
+## Why the other options are wrong
+
+
+
+**50 mL/hr**
+• Trap: Students may think this lower rate is sufficient for hydration.
+• Why it fails here: This rate is inadequate for a patient experiencing significant blood loss, risking further complications such as shock.
+• Remember: Fluid resuscitation must be aggressive in cases of acute bleeding to maintain hemodynamic stability.
+
+**75 mL/hr**
+• Trap: Some may believe this is a reasonable compromise for maintenance fluids.
+• Why it fails here: This rate is still below the calculated maintenance requirement and may not provide enough support for the patient's needs.
+• Remember: Proper fluid management is essential in patients with significant blood loss to prevent deterioration.
+
+**125 mL/hr**
+• Trap: Students might think that higher fluid rates are always better for resuscitation.
+• Why it fails here: This rate risks fluid overload, particularly in a patient with cirrhosis, which can lead to complications such as pulmonary edema.
+• Remember: Fluid balance is crucial in cirrhotic patients to avoid exacerbating their condition.
+## Key takeaway
+**When calculating maintenance IV fluid rates, use the 4-2-1 rule to ensure adequate hydration, especially in cases of acute bleeding.**
+
+**Memory hook:** Remember: 4-2-1 for fluid rates — it’s your guide to keeping patients hydrated!","## Why this answer is correct
+The maintenance rate for 58 kg by the 4-2-1 rule is 98 mL/hr, and 100 mL/hr is the closest listed option. Calculation: 4 mL/kg/hour for the first 10 kg (40) plus 2 mL/kg/hour for the next 10 kg (20) plus 1 mL/kg/hour for the remaining 38 kg (38) = 98 mL/hour. This is the maintenance rate the question asks for. Hypotensive gastrointestinal bleeding also needs volume resuscitation and blood; a maintenance rate is not that resuscitation.
+• **Fluid resuscitation** is critical in acute gastrointestinal bleeding.
+• The **4-2-1 rule** helps calculate the maintenance fluid rate based on body weight.
+• This patient, weighing approximately 58 kg, requires adequate hydration to manage his **cirrhosis** and blood loss.
+**In practice:** On the unit, this means ensuring the patient receives enough fluids to prevent complications from dehydration and to support recovery from the bleeding episode.
+## Why the other options are wrong
+
+
+
+**50 mL/hr**
+• Trap: Students may think this lower rate is sufficient for hydration.
+• Why it fails here: This rate is inadequate for a patient experiencing significant blood loss, risking further complications such as shock.
+• Remember: Fluid resuscitation must be aggressive in cases of acute bleeding to maintain hemodynamic stability.
+
+**75 mL/hr**
+• Trap: Some may believe this is a reasonable compromise for maintenance fluids.
+• Why it fails here: This rate is still below the calculated maintenance requirement and may not provide enough support for the patient's needs.
+• Remember: Proper fluid management is essential in patients with significant blood loss to prevent deterioration.
+
+**125 mL/hr**
+• Trap: Students might think that higher fluid rates are always better for resuscitation.
+• Why it fails here: This rate risks fluid overload, particularly in a patient with cirrhosis, which can lead to complications such as pulmonary edema.
+• Remember: Fluid balance is crucial in cirrhotic patients to avoid exacerbating their condition.
+## Key takeaway
+**When calculating maintenance IV fluid rates, use the 4-2-1 rule to ensure adequate hydration, especially in cases of acute bleeding.**
+
+**Memory hook:** Remember: 4-2-1 for fluid rates — it’s your guide to keeping patients hydrated!",https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8alc1l01an1yr9v6vasbta,step-2,references,"[{""label"": ""USMLE Step 2 CK Content Outline 2026""}]","[{""label"": ""UCSF pediatric IV fluid consensus: 4 mL/kg/hour for the first 10 kg, 2 mL/kg/hour for the next 10 kg, and 1 mL/kg/hour above 20 kg (Holliday-Segar 4-2-1 rule)."", ""url"": ""https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid""}]",https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8alc1l01an1yr9v6vasbta,step-2,contentHash,ff9f0e310c319e99ea8309506059bf8a38ad4e4a10d27cf8bf226bad12c79c98,433ea2d66165110e5cf2c6d667db36140d552c6622293a8befe7b9080ec37221,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8alc1l01an1yr9v6vasbta,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+53985f0e-5441-49a7-acfa-dc279c2282ef,step-2,options,"{""options"":[""Intravenous lorazepam"",""Dantrolene as the only seizure drug"",""Another dose of ibuprofen"",""Oral lithium with a sip of water during the convulsion"",""Succinylcholine without airway control""],""blueprintSystem"":""behavioral-nervous"",""taskCategory"":""pharmacotherapy"",""blueprintTopic"":""Lithium toxicity after ibuprofen and volume loss"",""kind"":""vignette""}","{""options"":[""Intravenous lorazepam"",""Dantrolene as the only seizure drug"",""Intravenous phenytoin"",""Oral lithium with a sip of water during the convulsion"",""Succinylcholine without airway control""],""blueprintSystem"":""behavioral-nervous"",""taskCategory"":""pharmacotherapy"",""blueprintTopic"":""Lithium toxicity after ibuprofen and volume loss"",""kind"":""vignette""}",https://www.acep.org/siteassets/uploads/uploaded-files/acep/clinical-and-practice-management/clinical-policies/aesconvulsivestatusepilepticus.pdf
+53985f0e-5441-49a7-acfa-dc279c2282ef,step-2,explanation,"Nonsteroidal anti-inflammatory drugs reduce lithium clearance, and vomiting without salt and water replacement raises the level further. Together they explain new confusion, hyperreflexia, and a seizure in a previously stable patient. The immediate drug for the convulsion is intravenous lorazepam, not another dose of the precipitant and not a swallowed lithium tablet. Dantrolene is the specific treatment for malignant hyperthermia, which occurs during or just after a volatile anesthetic or succinylcholine and features a rising end-tidal carbon dioxide and mixed acidosis. She has had no anesthetic exposure, so stiffness and a seizure do not make this malignant hyperthermia. Succinylcholine would paralyze the body without treating the brain seizure and is itself a trigger for malignant hyperthermia in susceptible people. Hold lithium and ibuprofen, give isotonic fluid, and check a lithium level, but do those things while lorazepam is given, not instead of it. Serotonin syndrome is unlikely without a serotonergic drug combination; neuroleptic malignant syndrome is unlikely without a dopamine blocker. The precipitant is pharmacokinetic, and the first pharmacologic act is still the benzodiazepine.","Nonsteroidal anti-inflammatory drugs reduce lithium clearance, and vomiting without salt and water replacement raises the level further. Together they explain new confusion, hyperreflexia, and a seizure in a previously stable patient. The immediate drug for the convulsion is intravenous lorazepam, not another dose of the precipitant and not a swallowed lithium tablet. Dantrolene is the specific treatment for malignant hyperthermia, which occurs during or just after a volatile anesthetic or succinylcholine and features a rising end-tidal carbon dioxide and mixed acidosis. She has had no anesthetic exposure, so stiffness and a seizure do not make this malignant hyperthermia. Succinylcholine would paralyze the body without treating the brain seizure and is itself a trigger for malignant hyperthermia in susceptible people. Hold lithium and ibuprofen, give isotonic fluid, and check a lithium level, but do those things while lorazepam is given, not instead of it. Serotonin syndrome is unlikely without a serotonergic drug combination; neuroleptic malignant syndrome is unlikely without a dopamine blocker. The precipitant is pharmacokinetic, and the first pharmacologic act is still the benzodiazepine. Intravenous phenytoin is not the immediate drug: the American Epilepsy Society recommends a benzodiazepine (intravenous lorazepam when intravenous access is already present) for a convulsion that has continued past 5 minutes. Phenytoin or fosphenytoin is a later option if the seizure continues after a benzodiazepine.",https://www.acep.org/siteassets/uploads/uploaded-files/acep/clinical-and-practice-management/clinical-policies/aesconvulsivestatusepilepticus.pdf
+53985f0e-5441-49a7-acfa-dc279c2282ef,step-2,references,"[{""url"": ""https://pubmed.ncbi.nlm.nih.gov/26900382/"", ""label"": ""Glauser T et al. Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults. Epilepsy Currents 2016""}]","[{""label"": ""American Epilepsy Society guideline for convulsive status epilepticus. A benzodiazepine, including intravenous lorazepam, is initial therapy. Fosphenytoin is a second-line option."", ""url"": ""https://www.acep.org/siteassets/uploads/uploaded-files/acep/clinical-and-practice-management/clinical-policies/aesconvulsivestatusepilepticus.pdf""}]",https://www.acep.org/siteassets/uploads/uploaded-files/acep/clinical-and-practice-management/clinical-policies/aesconvulsivestatusepilepticus.pdf
+53985f0e-5441-49a7-acfa-dc279c2282ef,step-2,contentHash,0fb45a6c96fede2ec5e6a26c91b80bfcc61c60bcea362113660da049518e624e,72b2612abdbf19ec0a603081db3222d6d52972b28717dbe15a26d109df1b6898,https://www.acep.org/siteassets/uploads/uploaded-files/acep/clinical-and-practice-management/clinical-policies/aesconvulsivestatusepilepticus.pdf
+53985f0e-5441-49a7-acfa-dc279c2282ef,step-2,manual_correction,true,true,https://www.acep.org/siteassets/uploads/uploaded-files/acep/clinical-and-practice-management/clinical-policies/aesconvulsivestatusepilepticus.pdf
+b2xb40e4ce223dccf0c005a6993,step-2,options,"[""Trendelenburg"",""Sitting only, with the bleeding side up as the goal"",""Right side down"",""Left side down"",""Flat on his back with no plan""]","[""Trendelenburg"",""Sitting only, with the bleeding side up as the goal"",""Right side down"",""Left side down"",""Supine with the head of the bed flat""]",https://pmc.ncbi.nlm.nih.gov/articles/PMC5696556/
+b2xb40e4ce223dccf0c005a6993,step-2,explanation,"Massive hemoptysis is managed by protecting the airway and keeping the bleeding lung down, not by lying on the good side. Right side down keeps blood from flooding the better left lung. Left side down puts the good lung down, where blood will run. Flat on his back with no plan does not protect either side. Trendelenburg is not the hemoptysis position. Sitting only, with the bleeding side up as the goal, is the opposite of keeping the bleeding side dependent. This approach has been standard care since 2018.","Massive hemoptysis is managed by protecting the airway and keeping the bleeding lung down, not by lying on the good side. Right side down keeps blood from flooding the better left lung. Left side down puts the good lung down, where blood will run. Supine with the head of the bed flat lets blood spill into both lungs, including the better left lung. Trendelenburg is not the hemoptysis position. Sitting only, with the bleeding side up as the goal, is the opposite of keeping the bleeding side dependent. This approach has been standard care since 2018.",https://pmc.ncbi.nlm.nih.gov/articles/PMC5696556/
+b2xb40e4ce223dccf0c005a6993,step-2,references,"[{""label"": ""2018""}]","[{""label"": ""Massive hemoptysis review: position the bleeding side down so blood does not flood the better lung."", ""url"": ""https://pmc.ncbi.nlm.nih.gov/articles/PMC5696556/""}]",https://pmc.ncbi.nlm.nih.gov/articles/PMC5696556/
+b2xb40e4ce223dccf0c005a6993,step-2,manual_correction,true,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC5696556/
+b6x900c4681b7a5d8cdf015310b,step-2,options,"[""A failed trial means the dose was homeopathic"",""Sodium of 150 mEq/L means the duct is sensitive"",""Lithium causes only a missing hormone, not a resistant kidney"",""Eight liters means the hormone is working"",""The kidney did not respond, so more hormone will not either""]","[""The desmopressin dose in the trial was subtherapeutic"",""Sodium of 150 mEq/L means the duct is sensitive"",""Lithium causes only a missing hormone, not a resistant kidney"",""Eight liters means the hormone is working"",""The kidney did not respond, so more hormone will not either""]",https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b6x900c4681b7a5d8cdf015310b,step-2,explanation,"A failed desmopressin trial on lithium means more hormone will not work, so a higher dose is the wrong drug. The kidney did not respond, so more hormone will not either. A failed trial means the dose was homeopathic ignores an adequate trial. Sodium of 150 mEq/L means the duct is sensitive is the water loss. Lithium causes only a missing hormone, not a resistant kidney is usually a resistant kidney. Eight liters means the hormone is working would be a small volume of concentrated urine.","A failed desmopressin trial on lithium means more hormone will not work, so a higher dose is the wrong drug. The kidney did not respond, so more hormone will not either. The desmopressin dose in the trial was subtherapeutic ignores an adequate trial. Sodium of 150 mEq/L means the duct is sensitive is the water loss. Lithium causes only a missing hormone, not a resistant kidney is usually a resistant kidney. Eight liters means the hormone is working would be a small volume of concentrated urine.",https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b6x900c4681b7a5d8cdf015310b,step-2,references,,"[{""label"": ""Lithium nephrogenic diabetes insipidus. Desmopressin is not accepted treatment once the kidney has failed to respond; the usual treatments are amiloride, a thiazide, and stopping lithium when possible."", ""url"": ""https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/""}]",https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b6x900c4681b7a5d8cdf015310b,step-2,manual_correction,true,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+cmru2q8z4000p1y7wxv2kbivc,step-3,scenario,"A 65-year-old woman presents to the emergency department with a 3-day history of worsening shortness of breath and cough. She has a history of COPD and is currently on a tiotropium inhaler. On examination, her respiratory rate is 24 breaths/min, oxygen saturation is 88% on room air, and she has bilateral wheezing. A chest X-ray shows hyperinflation but no infiltrates. Arterial blood gas analysis reveals a pH of 7.32, PaCO2 of 60 mmHg, and PaO2 of 55 mmHg.","A 65-year-old woman presents to the emergency department with a 3-day history of worsening shortness of breath and cough. She has a history of COPD and is currently on a tiotropium inhaler. On examination, her respiratory rate is 24 breaths/min, oxygen saturation is 88% on room air, and she has bilateral wheezing. A chest X-ray shows hyperinflation but no infiltrates. Arterial blood gas analysis reveals a pH of 7.32, PaCO2 of 60 mmHg, and PaO2 of 55 mmHg. These gas values persist after one hour of nebulized bronchodilators, systemic corticosteroids, and oxygen targeted to a saturation of 88% to 92%.",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmru2q8z4000p1y7wxv2kbivc,step-3,explanation,"The correct answer is to initiate non-invasive ventilation (NIV) for this patient with acute exacerbation of COPD and respiratory acidosis. NIV can improve gas exchange and reduce the work of breathing. Administering systemic corticosteroids is important, but it is not the immediate next step in this acute setting. Starting intravenous antibiotics is not indicated unless there is evidence of infection, which is not present here. Providing supplemental oxygen alone is insufficient given her severe respiratory acidosis and hypoxemia; NIV is necessary to support her respiratory function.
+
+Clinical reasoning: Assess the patient's respiratory status and arterial blood gas results, which indicate acute respiratory failure. Analyze the need for immediate intervention to improve ventilation and oxygenation. Integrate the use of non-invasive ventilation to manage her exacerbation effectively.
+
+Why other options are incorrect:
+• Administer systemic corticosteroids: While corticosteroids are beneficial in COPD exacerbations, they do not address the immediate respiratory failure.
+• Start intravenous antibiotics: This patient does not show signs of infection, making antibiotics unnecessary at this stage.
+• Provide supplemental oxygen only: Oxygen alone does not address the underlying respiratory acidosis and may not be sufficient for her condition.","The pH of 7.32 with an elevated PaCO2 is still present after an hour of nebulized bronchodilators, corticosteroids, and controlled oxygen. GOLD recommends noninvasive ventilation as the first mode of ventilation for this degree of acute hypercapnic failure, and the BTS/ICS threshold for starting it is a persisting pH below 7.35 with PaCO2 at least 6.5 kPa (about 49 mm Hg) and a respiratory rate above 23. Intubation is not the next step at a pH of 7.32.
+
+The correct answer is to initiate non-invasive ventilation (NIV) for this patient with acute exacerbation of COPD and respiratory acidosis. NIV can improve gas exchange and reduce the work of breathing. Administering systemic corticosteroids is important, but it is not the immediate next step in this acute setting. Starting intravenous antibiotics is not indicated unless there is evidence of infection, which is not present here. Providing supplemental oxygen alone is insufficient given her severe respiratory acidosis and hypoxemia; NIV is necessary to support her respiratory function.
+
+Clinical reasoning: Assess the patient's respiratory status and arterial blood gas results, which indicate acute respiratory failure. Analyze the need for immediate intervention to improve ventilation and oxygenation. Integrate the use of non-invasive ventilation to manage her exacerbation effectively.
+
+Why other options are incorrect:
+• Administer systemic corticosteroids: While corticosteroids are beneficial in COPD exacerbations, they do not address the immediate respiratory failure.
+• Start intravenous antibiotics: This patient does not show signs of infection, making antibiotics unnecessary at this stage.
+• Provide supplemental oxygen only: Oxygen alone does not address the underlying respiratory acidosis and may not be sufficient for her condition.",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmru2q8z4000p1y7wxv2kbivc,step-3,references,"[{""label"": ""GOLD Guidelines for COPD Management""}]","[{""label"": ""BTS/ICS adult NIV algorithm: start NIV for COPD when pH < 7.35 and PaCO2 ≥ 6.5 kPa persist after medical therapy, with respiratory rate > 23."", ""url"": ""https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/""}, {""label"": ""GOLD 2024 pocket guide: noninvasive ventilation is the first mode of ventilation for a COPD exacerbation with acute respiratory failure and no contraindication."", ""url"": ""https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf""}]",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmru2q8z4000p1y7wxv2kbivc,step-3,contentHash,9787e1df986e69df1de0221256ebd8a7a75285f16bf8b17421e647eb4ed25b9a,d56b934549c0fd02941686d4346b747fbfd6d60aa3cdb5644b37db2222608ef1,https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmru2q8z4000p1y7wxv2kbivc,step-3,manual_correction,false,true,https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8nco0g00tj1ygiz9knfoxf,step-3,scenario,"A 62-year-old woman presents to the emergency department with a 2-day history of worsening shortness of breath and a productive cough. She has a history of chronic obstructive pulmonary disease (COPD) and is currently on a long-acting beta-agonist and a corticosteroid. On examination, her respiratory rate is 24 breaths per minute, oxygen saturation is 88% on room air, and she has bilateral wheezing. A chest X-ray shows hyperinflation but no infiltrates. Her arterial blood gas reveals pH 7.32, PaCO2 58 mmHg, and PaO2 55 mmHg.","A 62-year-old woman presents to the emergency department with a 2-day history of worsening shortness of breath and a productive cough. She has a history of chronic obstructive pulmonary disease (COPD) and is currently on a long-acting beta-agonist and a corticosteroid. On examination, her respiratory rate is 24 breaths per minute, oxygen saturation is 88% on room air, and she has bilateral wheezing. A chest X-ray shows hyperinflation but no infiltrates. Her arterial blood gas reveals pH 7.32, PaCO2 58 mmHg, and PaO2 55 mmHg. These gas values persist after one hour of nebulized bronchodilators, systemic corticosteroids, and oxygen targeted to a saturation of 88% to 92%.",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8nco0g00tj1ygiz9knfoxf,step-3,explanation,"The correct answer is to initiate non-invasive ventilation (NIV) for this patient with acute exacerbation of COPD and respiratory acidosis. NIV can improve gas exchange and reduce the work of breathing, which is critical given her elevated PaCO2 and low pH. Administering intravenous corticosteroids is important but should follow the initiation of NIV in this acute setting. Starting intravenous antibiotics is unnecessary as there is no evidence of pneumonia on the chest X-ray. Intubation is a more invasive option that should be reserved for patients who do not respond to NIV or have severe respiratory failure. This case illustrates the importance of recognizing acute exacerbations of COPD and the role of NIV in management (USMLE Content Outline 2026).
+
+Clinical reasoning: The patient presents with acute respiratory distress due to COPD exacerbation, evidenced by hypoxemia and hypercapnia. The arterial blood gas results indicate respiratory acidosis, necessitating immediate intervention to improve ventilation. Non-invasive ventilation is the most appropriate next step to address her respiratory failure effectively.
+
+Why other options are incorrect:
+• Administer intravenous corticosteroids: While corticosteroids are beneficial in managing COPD exacerbations, they are not the immediate next step in this case where respiratory failure is present.
+• Start intravenous antibiotics: There is no evidence of infection or pneumonia, making antibiotics unnecessary at this time.
+• Perform intubation: Intubation is invasive and should only be considered if non-invasive ventilation fails or the patient is unable to protect their airway.","The pH of 7.32 with an elevated PaCO2 is still present after an hour of nebulized bronchodilators, corticosteroids, and controlled oxygen. GOLD recommends noninvasive ventilation as the first mode of ventilation for this degree of acute hypercapnic failure, and the BTS/ICS threshold for starting it is a persisting pH below 7.35 with PaCO2 at least 6.5 kPa (about 49 mm Hg) and a respiratory rate above 23. Intubation is not the next step at a pH of 7.32.
+
+The correct answer is to initiate non-invasive ventilation (NIV) for this patient with acute exacerbation of COPD and respiratory acidosis. NIV can improve gas exchange and reduce the work of breathing, which is critical given her elevated PaCO2 and low pH. Administering intravenous corticosteroids is important but should follow the initiation of NIV in this acute setting. Starting intravenous antibiotics is unnecessary as there is no evidence of pneumonia on the chest X-ray. Intubation is a more invasive option that should be reserved for patients who do not respond to NIV or have severe respiratory failure. This case illustrates the importance of recognizing acute exacerbations of COPD and the role of NIV in management (USMLE Content Outline 2026).
+
+Clinical reasoning: The patient presents with acute respiratory distress due to COPD exacerbation, evidenced by hypoxemia and hypercapnia. The arterial blood gas results indicate respiratory acidosis, necessitating immediate intervention to improve ventilation. Non-invasive ventilation is the most appropriate next step to address her respiratory failure effectively.
+
+Why other options are incorrect:
+• Administer intravenous corticosteroids: While corticosteroids are beneficial in managing COPD exacerbations, they are not the immediate next step in this case where respiratory failure is present.
+• Start intravenous antibiotics: There is no evidence of infection or pneumonia, making antibiotics unnecessary at this time.
+• Perform intubation: Intubation is invasive and should only be considered if non-invasive ventilation fails or the patient is unable to protect their airway.",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8nco0g00tj1ygiz9knfoxf,step-3,references,"[{""label"": ""USMLE Content Outline 2026""}]","[{""label"": ""BTS/ICS adult NIV algorithm: start NIV for COPD when pH < 7.35 and PaCO2 ≥ 6.5 kPa persist after medical therapy, with respiratory rate > 23."", ""url"": ""https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/""}, {""label"": ""GOLD 2024 pocket guide: noninvasive ventilation is the first mode of ventilation for a COPD exacerbation with acute respiratory failure and no contraindication."", ""url"": ""https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf""}]",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8nco0g00tj1ygiz9knfoxf,step-3,contentHash,ccfb49ffa6a75739f7910f7b9435428a2c31fda4fd7dbb98909c683ad352b97f,d37b4d1fd3a21bdb1c45ae269ba9a64c601b21caa629485e7af28070d80e4a66,https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8nco0g00tj1ygiz9knfoxf,step-3,manual_correction,false,true,https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8o9gw4012z1ygiiwjm6pc4,step-3,scenario,"A 62-year-old woman presents to the emergency department with a 2-day history of worsening shortness of breath and productive cough. She has a history of COPD and is currently on tiotropium and albuterol. On examination, her respiratory rate is 24 breaths/min, oxygen saturation is 88% on room air, and she has bilateral wheezing. A chest X-ray shows hyperinflation but no infiltrates. Her arterial blood gas reveals a pH of 7.32, PaCO2 of 55 mm Hg, and PaO2 of 60 mm Hg.","A 62-year-old woman presents to the emergency department with a 2-day history of worsening shortness of breath and productive cough. She has a history of COPD and is currently on tiotropium and albuterol. On examination, her respiratory rate is 24 breaths/min, oxygen saturation is 88% on room air, and she has bilateral wheezing. A chest X-ray shows hyperinflation but no infiltrates. Her arterial blood gas reveals a pH of 7.32, PaCO2 of 55 mm Hg, and PaO2 of 60 mm Hg. These gas values persist after one hour of nebulized bronchodilators, systemic corticosteroids, and oxygen targeted to a saturation of 88% to 92%.",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8o9gw4012z1ygiiwjm6pc4,step-3,explanation,"The correct answer is to initiate non-invasive ventilation (NIV) for this patient with acute respiratory failure due to COPD exacerbation. NIV can improve oxygenation and reduce the work of breathing, which is critical given her elevated PaCO2 and low pH indicating respiratory acidosis. Administering systemic corticosteroids is important but is not the immediate next step in acute management. Starting intravenous antibiotics is inappropriate as there is no evidence of pneumonia on the chest X-ray. Providing nebulized saline may offer some symptomatic relief but does not address the underlying respiratory failure.
+
+Clinical reasoning: Assess the patient's clinical status, noting the signs of respiratory distress and hypoxemia. Analyze the arterial blood gas results to confirm respiratory acidosis and the need for intervention. Integrate knowledge of COPD management to determine that non-invasive ventilation is the most effective immediate step.
+
+Why other options are incorrect:
+• Administer systemic corticosteroids: While corticosteroids are beneficial in COPD exacerbations, they do not address the acute respiratory failure directly and should follow stabilization.
+• Start intravenous antibiotics: This option is incorrect as the patient does not show signs of pneumonia or infection requiring antibiotics.
+• Provide nebulized saline: Nebulized saline does not provide significant therapeutic benefit in acute exacerbations and does not address respiratory failure.","The pH of 7.32 with an elevated PaCO2 is still present after an hour of nebulized bronchodilators, corticosteroids, and controlled oxygen. GOLD recommends noninvasive ventilation as the first mode of ventilation for this degree of acute hypercapnic failure, and the BTS/ICS threshold for starting it is a persisting pH below 7.35 with PaCO2 at least 6.5 kPa (about 49 mm Hg) and a respiratory rate above 23. Intubation is not the next step at a pH of 7.32.
+
+The correct answer is to initiate non-invasive ventilation (NIV) for this patient with acute respiratory failure due to COPD exacerbation. NIV can improve oxygenation and reduce the work of breathing, which is critical given her elevated PaCO2 and low pH indicating respiratory acidosis. Administering systemic corticosteroids is important but is not the immediate next step in acute management. Starting intravenous antibiotics is inappropriate as there is no evidence of pneumonia on the chest X-ray. Providing nebulized saline may offer some symptomatic relief but does not address the underlying respiratory failure.
+
+Clinical reasoning: Assess the patient's clinical status, noting the signs of respiratory distress and hypoxemia. Analyze the arterial blood gas results to confirm respiratory acidosis and the need for intervention. Integrate knowledge of COPD management to determine that non-invasive ventilation is the most effective immediate step.
+
+Why other options are incorrect:
+• Administer systemic corticosteroids: While corticosteroids are beneficial in COPD exacerbations, they do not address the acute respiratory failure directly and should follow stabilization.
+• Start intravenous antibiotics: This option is incorrect as the patient does not show signs of pneumonia or infection requiring antibiotics.
+• Provide nebulized saline: Nebulized saline does not provide significant therapeutic benefit in acute exacerbations and does not address respiratory failure.",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8o9gw4012z1ygiiwjm6pc4,step-3,references,"[{""label"": ""Global Initiative for Chronic Obstructive Lung Disease (GOLD) guidelines""}]","[{""label"": ""BTS/ICS adult NIV algorithm: start NIV for COPD when pH < 7.35 and PaCO2 ≥ 6.5 kPa persist after medical therapy, with respiratory rate > 23."", ""url"": ""https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/""}, {""label"": ""GOLD 2024 pocket guide: noninvasive ventilation is the first mode of ventilation for a COPD exacerbation with acute respiratory failure and no contraindication."", ""url"": ""https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf""}]",https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8o9gw4012z1ygiiwjm6pc4,step-3,contentHash,210309fe42ea49e63c173dd4324e582f3e794ffa1fba323b8af92df601123ecf,b7d140083302bf848b0c23622835c78f562e5824e1d51ba049eae64aea2c4ad0,https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8o9gw4012z1ygiiwjm6pc4,step-3,manual_correction,false,true,https://www.brit-thoracic.org.uk/document-library/quality-improvement/niv/appendix-4b-niv-algorithm-icht/
+cmr8ie7u502ai1ylofpnd9ky6,step-3,scenario,"A 28-year-old woman presents to the labor and delivery unit at 39 weeks of gestation with regular contractions and a cervical exam showing 4 cm dilation. Her vital signs are stable, with a blood pressure of 120/80 mm Hg and a heart rate of 80 bpm. The fetal heart rate tracing shows a reassuring pattern. She has no significant medical history and is not on any medications.","A 28-year-old woman presents to the labor and delivery unit at 39 weeks of gestation with regular contractions and a cervical exam showing 4 cm dilation. Her vital signs are stable, with a blood pressure of 120/80 mm Hg and a heart rate of 80 bpm. The fetal heart rate tracing shows a reassuring pattern. She has no significant medical history and is not on any medications. A test under consideration has a sensitivity of 80% and a false-positive rate of 40%.",https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie7u502ai1ylofpnd9ky6,step-3,explanation,"The positive likelihood ratio (LR+) is calculated by dividing the sensitivity of the test by the false positive rate. In this case, with a sensitivity of 80% and a false positive rate of 40%, the LR+ is 2.0. This indicates that a positive test result is twice as likely to occur in patients with the condition compared to those without it. The other options represent common miscalculations or misunderstandings of the LR+ formula. Understanding how to calculate and interpret LR+ is crucial for assessing diagnostic tests in obstetric care. (USMLE Content Outline 2026, Section 3: Obstetrics and Gynecology)
+
+Clinical reasoning: Assess the patient's labor status and fetal heart rate tracing. Analyze the sensitivity and specificity of the test being evaluated. Integrate this information to calculate the LR+ accurately.
+
+Why other options are incorrect:
+• 1.5: This option reflects a miscalculation of sensitivity and specificity, leading to an underestimation of the LR+. Common trap: confusing sensitivity with specificity.
+• 3.0: This option suggests a higher LR+ than calculated, which may stem from misunderstanding the relationship between sensitivity and specificity. Common trap: assuming a higher LR+ indicates better test performance without proper calculation.
+• 4.0: This option indicates a significant overestimation of the LR+, likely due to incorrect sensitivity or specificity values being used. Common trap: misapplying the LR+ formula.","Positive likelihood ratio = sensitivity / (1 − specificity). The stem now includes the sensitivity and the false-positive rate or specificity used below.
+
+The positive likelihood ratio (LR+) is calculated by dividing the sensitivity of the test by the false positive rate. In this case, with a sensitivity of 80% and a false positive rate of 40%, the LR+ is 2.0. This indicates that a positive test result is twice as likely to occur in patients with the condition compared to those without it. The other options represent common miscalculations or misunderstandings of the LR+ formula. Understanding how to calculate and interpret LR+ is crucial for assessing diagnostic tests in obstetric care. (USMLE Content Outline 2026, Section 3: Obstetrics and Gynecology)
+
+Clinical reasoning: Assess the patient's labor status and fetal heart rate tracing. Analyze the sensitivity and specificity of the test being evaluated. Integrate this information to calculate the LR+ accurately.
+
+Why other options are incorrect:
+• 1.5: This option reflects a miscalculation of sensitivity and specificity, leading to an underestimation of the LR+. Common trap: confusing sensitivity with specificity.
+• 3.0: This option suggests a higher LR+ than calculated, which may stem from misunderstanding the relationship between sensitivity and specificity. Common trap: assuming a higher LR+ indicates better test performance without proper calculation.
+• 4.0: This option indicates a significant overestimation of the LR+, likely due to incorrect sensitivity or specificity values being used. Common trap: misapplying the LR+ formula.",https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie7u502ai1ylofpnd9ky6,step-3,references,"[{""label"": ""USMLE Content Outline 2026, Section 3: Obstetrics and Gynecology""}]","[{""label"": ""Positive likelihood ratio = sensitivity / (1 − specificity). Akobeng, Acta Paediatrica, 2007."", ""url"": ""https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/""}]",https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie7u502ai1ylofpnd9ky6,step-3,contentHash,9e2825f47e477d1bf24881a81d894966be72f7633b946caa6aad7115f7d7ed4a,8a914960e5abe59d42ed7ceadc5a03324bb2317bd7a70efe5338151e898c00bd,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie7u502ai1ylofpnd9ky6,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlw3u00ns1ygibi1tll69,step-3,scenario,"A 36-year-old woman presents to the clinic for a routine follow-up after a recent delivery. She reports persistent fatigue and mood swings. On examination, her blood pressure is 110/70 mm Hg, and her heart rate is 75 bpm. The physician is considering the implications of her symptoms and the need for further evaluation.","A 36-year-old woman presents to the clinic for a routine follow-up after a recent delivery. She reports persistent fatigue and mood swings. On examination, her blood pressure is 110/70 mm Hg, and her heart rate is 75 bpm. The physician is considering the implications of her symptoms and the need for further evaluation. A test under consideration has a sensitivity of 80% and a specificity of 60%.",https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlw3u00ns1ygibi1tll69,step-3,explanation,"The positive likelihood ratio (LR+) is calculated as the sensitivity of a test divided by the false positive rate. In this case, if the sensitivity is 80% and the specificity is 60%, the LR+ would be 0.8 / (1 - 0.6) = 2.0. Each distractor represents a common misunderstanding of LR+. For instance, 1.5 underestimates the LR+ based on the calculated values, while 2.5 and 3.0 overestimate it, which could mislead clinical decisions.
+
+Clinical reasoning: Assess the sensitivity and specificity of the test to determine the LR+. Analyze the values to calculate the LR+. Integrate the results to select the most accurate LR+.
+
+Why other options are incorrect:
+• 1.5: Underestimates the true LR+ based on sensitivity and specificity.
+• 2.5: Overestimates the LR+, leading to misinterpretation of test accuracy.
+• 3.0: Significantly overestimates the LR+, which could mislead clinical decisions.","Positive likelihood ratio = sensitivity / (1 − specificity). The stem now includes the sensitivity and the false-positive rate or specificity used below.
+
+The positive likelihood ratio (LR+) is calculated as the sensitivity of a test divided by the false positive rate. In this case, if the sensitivity is 80% and the specificity is 60%, the LR+ would be 0.8 / (1 - 0.6) = 2.0. Each distractor represents a common misunderstanding of LR+. For instance, 1.5 underestimates the LR+ based on the calculated values, while 2.5 and 3.0 overestimate it, which could mislead clinical decisions.
+
+Clinical reasoning: Assess the sensitivity and specificity of the test to determine the LR+. Analyze the values to calculate the LR+. Integrate the results to select the most accurate LR+.
+
+Why other options are incorrect:
+• 1.5: Underestimates the true LR+ based on sensitivity and specificity.
+• 2.5: Overestimates the LR+, leading to misinterpretation of test accuracy.
+• 3.0: Significantly overestimates the LR+, which could mislead clinical decisions.",https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlw3u00ns1ygibi1tll69,step-3,references,"[{""label"": ""USMLE Content Outline 2026""}]","[{""label"": ""Positive likelihood ratio = sensitivity / (1 − specificity). Akobeng, Acta Paediatrica, 2007."", ""url"": ""https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/""}]",https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlw3u00ns1ygibi1tll69,step-3,contentHash,4faf80f0743978a06c96fa95d50d8027cbf91860a1049417a1c902fdd78b44a6,043792456de4795de759660cb205c785ffb264ecb96bc2df7edc137dee171aa8,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlw3u00ns1ygibi1tll69,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlvy300nq1ygiwg7k9nnm,step-3,scenario,"A 40-year-old woman presents to the emergency department with severe abdominal pain and vomiting. She has a history of endometriosis and recently underwent a hysterectomy. On examination, she has a fever of 101°F, and laboratory tests show elevated white blood cell count and CRP. The physician is considering the next steps in management.","A 40-year-old woman presents to the emergency department with severe abdominal pain and vomiting. She has a history of endometriosis and recently underwent a hysterectomy. On examination, she has a fever of 101°F, and laboratory tests show elevated white blood cell count and CRP. The physician is considering the next steps in management. A treatment being considered has an absolute risk reduction of 10%.",https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8mlvy300nq1ygiwg7k9nnm,step-3,explanation,"The number needed to treat (NNT) is a measure of how many patients need to be treated to prevent one additional bad outcome. In this scenario, if the treatment has an absolute risk reduction of 10%, the NNT would be calculated as 1/0.1 = 10. Each distractor represents a common miscalculation of NNT. For example, 5 underestimates the number of patients needed, while 15 and 20 overestimate it, leading to potential misallocation of resources.
+
+Clinical reasoning: Assess the treatment's efficacy and its impact on patient outcomes. Analyze the absolute risk reduction to calculate the NNT accurately. Integrate this information to select the correct NNT.
+
+Why other options are incorrect:
+• 5: Underestimates the NNT, suggesting overly optimistic treatment efficacy.
+• 15: Overestimates the NNT, which could mislead treatment decisions.
+• 20: Significantly overestimates the NNT, risking unnecessary treatment.","NNT = 1/ARR. An absolute risk reduction of 10% (0.10) gives NNT = 1/0.10 = 10. The stem states that reduction.
+
+The number needed to treat (NNT) is a measure of how many patients need to be treated to prevent one additional bad outcome. In this scenario, if the treatment has an absolute risk reduction of 10%, the NNT would be calculated as 1/0.1 = 10. Each distractor represents a common miscalculation of NNT. For example, 5 underestimates the number of patients needed, while 15 and 20 overestimate it, leading to potential misallocation of resources.
+
+Clinical reasoning: Assess the treatment's efficacy and its impact on patient outcomes. Analyze the absolute risk reduction to calculate the NNT accurately. Integrate this information to select the correct NNT.
+
+Why other options are incorrect:
+• 5: Underestimates the NNT, suggesting overly optimistic treatment efficacy.
+• 15: Overestimates the NNT, which could mislead treatment decisions.
+• 20: Significantly overestimates the NNT, risking unnecessary treatment.",https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8mlvy300nq1ygiwg7k9nnm,step-3,references,"[{""label"": ""USMLE Content Outline 2026""}]","[{""label"": ""NNT = 1/ARR. AAPD evidence-based medicine calculation sheet."", ""url"": ""https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf""}]",https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8mlvy300nq1ygiwg7k9nnm,step-3,contentHash,1430a2217fc06513c421429087ffb2ac33bb0d9b1e8b018b70bd153a4d1fa9f8,cf1e9659fb487963f6ba5e95b368699ffc517f64e99c111017e3cbb58697526e,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8mlvy300nq1ygiwg7k9nnm,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8nmhsu00wh1ygi2w1k5pvk,step-3,explanation,"## Why this answer is correct
+Adding a thiazide diuretic is the best next step for managing this patient's stage 2 hypertension.
+• **Stage 2 hypertension** requires more aggressive treatment.
+• Thiazide diuretics are **first-line** agents for hypertension management.
+• Combining a thiazide with lisinopril can enhance **blood pressure control**.
+**In practice:** In practice, this means we need to effectively manage blood pressure to reduce the risk of cardiovascular events. Adding a thiazide diuretic can help achieve target blood pressure levels.
+## Why the other options are wrong
+
+
+
+**Increase the dose of lisinopril**
+• Trap: Students might think that simply increasing the dose of the current medication is sufficient.
+• Why it fails here: While increasing lisinopril may lower blood pressure, it is often not enough alone for stage 2 hypertension, and a combination therapy is more effective.
+• Remember: This highlights the importance of using a multi-drug approach for managing higher stages of hypertension.
+
+**Start a beta-blocker**
+• Trap: There is a common belief that beta-blockers are a go-to option for hypertension management.
+• Why it fails here: Beta-blockers are not first-line agents for hypertension unless there are specific indications, such as heart disease or heart failure.
+• Remember: This reinforces the guideline that thiazide diuretics are preferred for uncomplicated hypertension.
+
+**Initiate lifestyle modifications only**
+• Trap: Some may think that lifestyle changes alone can adequately manage high blood pressure.
+• Why it fails here: Given the patient's current blood pressure of 160/95 mmHg, lifestyle modifications alone are insufficient and should be combined with pharmacotherapy.
+• Remember: This emphasizes the need for a comprehensive approach to managing hypertension, especially at higher stages.
+## Key takeaway
+**When managing stage 2 hypertension, always consider adding a thiazide diuretic to enhance blood pressure control.**
+
+**Memory hook:** Think 'Thiazide for Two' when you see stage 2 hypertension!","## Why this answer is correct
+Adding a thiazide diuretic is the best next step for managing this patient's stage 2 hypertension.
+• **Stage 2 hypertension** requires more aggressive treatment.
+• The 2017 ACC/AHA guideline defines stage 2 hypertension as a systolic pressure of at least 140 mm Hg or a diastolic pressure of at least 90 mm Hg. Thiazide diuretics, calcium-channel blockers, ACE inhibitors, and ARBs are the first-line classes. This patient is already taking lisinopril and his pressure is 160/95 mm Hg, so adding a thiazide from a different first-line class is appropriate.
+• Combining a thiazide with lisinopril can enhance **blood pressure control**.
+**In practice:** In practice, this means we need to effectively manage blood pressure to reduce the risk of cardiovascular events. Adding a thiazide diuretic can help achieve target blood pressure levels.
+## Why the other options are wrong
+
+
+
+**Increase the dose of lisinopril**
+• Trap: Students might think that simply increasing the dose of the current medication is sufficient.
+• Why it fails here: While increasing lisinopril may lower blood pressure, it is often not enough alone for stage 2 hypertension, and a combination therapy is more effective.
+• Remember: This highlights the importance of using a multi-drug approach for managing higher stages of hypertension.
+
+**Start a beta-blocker**
+• Trap: There is a common belief that beta-blockers are a go-to option for hypertension management.
+• Why it fails here: Beta-blockers are not first-line agents for hypertension unless there are specific indications, such as heart disease or heart failure.
+• Remember: A beta-blocker is not a first-line drug for hypertension unless there is a compelling cardiac indication, and this history does not give one.
+
+**Initiate lifestyle modifications only**
+• Trap: Some may think that lifestyle changes alone can adequately manage high blood pressure.
+• Why it fails here: Given the patient's current blood pressure of 160/95 mmHg, lifestyle modifications alone are insufficient and should be combined with pharmacotherapy.
+• Remember: This emphasizes the need for a comprehensive approach to managing hypertension, especially at higher stages.
+## Key takeaway
+**When managing stage 2 hypertension, always consider adding a thiazide diuretic to enhance blood pressure control.**
+
+**Memory hook:** Think 'Thiazide for Two' when you see stage 2 hypertension!",https://www.ahajournals.org/doi/10.1161/HYP.0000000000000065
+cmr8nmhsu00wh1ygi2w1k5pvk,step-3,references,"[{""label"": ""JNC 8 Hypertension Guidelines""}]","[{""label"": ""2017 ACC/AHA high blood pressure guideline. Stage 2 is ≥140/90 mm Hg. First-line classes are thiazide diuretics, dihydropyridine calcium-channel blockers, ACE inhibitors, and ARBs."", ""url"": ""https://www.ahajournals.org/doi/10.1161/HYP.0000000000000065""}]",https://www.ahajournals.org/doi/10.1161/HYP.0000000000000065
+cmr8nmhsu00wh1ygi2w1k5pvk,step-3,manual_correction,false,true,https://www.ahajournals.org/doi/10.1161/HYP.0000000000000065
+cmr4bnwqs00ap1ykywn6udyuk,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4bnwqs00ap1ykywn6udyuk,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4bvedd00e71yky16oh2607,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4bvedd00e71yky16oh2607,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4cbuxw00kd1yky72d16q6e,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4cbuxw00kd1yky72d16q6e,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4enig901i11ykye64c89yp,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4enig901i11ykye64c89yp,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4exvl001mc1ykycxgwcq9n,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr4exvl001mc1ykycxgwcq9n,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8baitk00481yloc0iu1tdh,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8baitk00481yloc0iu1tdh,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8baka0004m1ylon4cgrz2f,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8baka0004m1ylon4cgrz2f,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ccire00kx1yloyjdnsjo7,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ccire00kx1yloyjdnsjo7,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8d1wto00qw1ylo7i2oryaa,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8d1wto00qw1ylo7i2oryaa,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ei26j01b91ylopexb0u64,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ei26j01b91ylopexb0u64,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8f2k5z01gk1ylo0tjbeboa,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8f2k5z01gk1ylo0tjbeboa,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8fheco01jt1ylor1yvtmwq,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8fheco01jt1ylor1yvtmwq,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8h1fiw01xb1ylo3j5qscla,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8h1fiw01xb1ylo3j5qscla,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8hgj8w02161ylon8g0wyfd,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8hgj8w02161ylon8g0wyfd,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8i0ci7027l1ylo702nt7w0,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8i0ci7027l1ylo702nt7w0,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ie5g9029u1ylo129cyqg6,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ie5g9029u1ylo129cyqg6,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ie7mv02ag1ylowryvi57b,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8ie7mv02ag1ylowryvi57b,step-3,manual_correction,true,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8m9f2n00kq1ygi9aar76bb,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8m9f2n00kq1ygi9aar76bb,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8n3trt00r41ygi8goafjt2,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8n3trt00r41ygi8goafjt2,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8q44kf01k91ygiqpy6xo8t,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8q44kf01k91ygiqpy6xo8t,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8qv0ic01ql1ygifvfvsyuw,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8qv0ic01ql1ygifvfvsyuw,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9a14pq011p1ywy150mw2g1,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9a14pq011p1ywy150mw2g1,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9aueqx01851ywyy7r7dazj,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9aueqx01851ywyy7r7dazj,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9b2et901aw1ywyo2lklr0c,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9b2et901aw1ywyo2lklr0c,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9b2g3u01bc1ywylsajcejm,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9b2g3u01bc1ywylsajcejm,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9bnwg201gt1ywyofm8z38h,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9bnwg201gt1ywyofm8z38h,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9bnyw601hg1ywymtdgwzi8,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr9bnyw601hg1ywymtdgwzi8,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmtpx8qlr002l1ymuna0zclql,step-3,active,true,false,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmtpx8qlr002l1ymuna0zclql,step-3,manual_correction,false,true,https://www.aapd.org/globalassets/ebmcheatsheet__1_-1.pdf
+cmr8bag1x003h1ylo94rfom7i,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8bag1x003h1ylo94rfom7i,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8bai6r00421ylo7mzb02os,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8bai6r00421ylo7mzb02os,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8bajv8004i1ylo023anbrc,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8bajv8004i1ylo023anbrc,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1umn00qb1ylolm4ebev9,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1umn00qb1ylolm4ebev9,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1w7e00qq1ylolkvri23p,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1w7e00qq1ylolkvri23p,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1x0v00qy1ylojav6pkwa,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1x0v00qy1ylojav6pkwa,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1zru00ro1ylo4bj14gr5,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8d1zru00ro1ylo4bj14gr5,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8dqd0q01141ylo9yauf1s0,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8dqd0q01141ylo9yauf1s0,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8fheg801ju1yloi30ung13,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8fheg801ju1yloi30ung13,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8fhidi01kx1ylot702h9um,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8fhidi01kx1ylot702h9um,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8gr93w01ut1ylonn8ypp24,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8gr93w01ut1ylonn8ypp24,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8gr9be01uu1ylok953i7km,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8gr9be01uu1ylok953i7km,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hgell02021ylog9tfq6xr,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hgell02021ylog9tfq6xr,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hgg5s020i1yloujoua6zr,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hgg5s020i1yloujoua6zr,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hggxo020q1ylo6suvatut,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hggxo020q1ylo6suvatut,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hghmp020x1yloju35zktq,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8hghmp020x1yloju35zktq,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8i0b4s02741ylob1t11l2f,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8i0b4s02741ylob1t11l2f,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie74c02ab1ylozoshvyqp,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie74c02ab1ylozoshvyqp,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie9ax02ax1ylof1ulgd76,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ie9ax02ax1ylof1ulgd76,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8iea2n02b51ylolcaj0xia,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8iea2n02b51ylolcaj0xia,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8j9pi402jw1yloahdp7u1v,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8j9pi402jw1yloahdp7u1v,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8juklm00151ygiuetp6tkq,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8juklm00151ygiuetp6tkq,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ki7qh003j1ygi746a2783,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ki7qh003j1ygi746a2783,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ki8fv003q1ygi3d7yrdn7,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ki8fv003q1ygi3d7yrdn7,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8kiajd004b1ygipquj7kj4,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8kiajd004b1ygipquj7kj4,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8kiamu004c1ygi35l2halk,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8kiamu004c1ygi35l2halk,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8m9f5f00kr1ygiclak0bnn,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8m9f5f00kr1ygiclak0bnn,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlu8w00n51ygi0frv50d7,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlu8w00n51ygi0frv50d7,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlwnq00nz1ygiypxhkusc,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8mlwnq00nz1ygiypxhkusc,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8n3ppf00py1ygiqolo87vf,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8n3ppf00py1ygiqolo87vf,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8n3tah00qz1ygied5ptqbb,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8n3tah00qz1ygied5ptqbb,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8om7t7016c1ygimo5fmby4,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8om7t7016c1ygimo5fmby4,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8om8d0016j1ygi7uf3myh4,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8om8d0016j1ygi7uf3myh4,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8omb7g017j1ygiju8m2g74,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8omb7g017j1ygiju8m2g74,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ombaa017k1ygiby62ld1j,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ombaa017k1ygiby62ld1j,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ombd2017l1ygi1ttll7gj,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8ombd2017l1ygi1ttll7gj,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8pgx6d01ds1ygi3i75a3yf,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8pgx6d01ds1ygi3i75a3yf,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qfour01ms1ygi7e24fw0n,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qfour01ms1ygi7e24fw0n,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qfpfa01mz1ygiokjb1zuj,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qfpfa01mz1ygiokjb1zuj,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qux3a01pf1ygi82n8w16f,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qux3a01pf1ygi82n8w16f,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quxo801pm1ygiqr7yul96,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quxo801pm1ygiqr7yul96,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quxr301pn1ygi5r7p7cnd,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quxr301pn1ygi5r7p7cnd,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quyxg01q11ygip82eea6b,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quyxg01q11ygip82eea6b,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quzen01q71ygihu0wikpv,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quzen01q71ygihu0wikpv,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quzhk01q81ygi7o03f7h4,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8quzhk01q81ygi7o03f7h4,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qv0l701qm1ygi670jcuc4,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr8qv0l701qm1ygi670jcuc4,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr97c2pa00031ywyx7jvqokg,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr97c2pa00031ywyx7jvqokg,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9a118l010q1ywyg6wkcbq3,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9a118l010q1ywyg6wkcbq3,step-3,manual_correction,true,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9a11xj010x1ywyotra8t9l,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9a11xj010x1ywyotra8t9l,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9a13ff011c1ywyu3j70zp5,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9a13ff011c1ywyu3j70zp5,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9aemta013y1ywy3wia09n7,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9aemta013y1ywy3wia09n7,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9aud3z017l1ywy2sy90ev1,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9aud3z017l1ywy2sy90ev1,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9aueyk01871ywytxqhijzr,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9aueyk01871ywytxqhijzr,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9b2cck01a21ywykdc59skc,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9b2cck01a21ywykdc59skc,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9b2ebl01aq1ywy3fsg5icr,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9b2ebl01aq1ywy3fsg5icr,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9b2ez701ay1ywy8uc5yew2,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9b2ez701ay1ywy8uc5yew2,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bbv9y01el1ywy5lg42652,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bbv9y01el1ywy5lg42652,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bnwnk01gv1ywymwr18csw,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bnwnk01gv1ywymwr18csw,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bnxd101h21ywy4gpqtv48,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bnxd101h21ywy4gpqtv48,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bnzzp01hq1ywy3b2j9ieq,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bnzzp01hq1ywy3b2j9ieq,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bo0sy01hy1ywyts1gcmcw,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr9bo0sy01hy1ywyts1gcmcw,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru3gany00a11y7wv83tnc2i,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru3gany00a11y7wv83tnc2i,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v4gp000v1y0svrsu3lnl,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v4gp000v1y0svrsu3lnl,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v4jo000w1y0sjihk0cr0,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v4jo000w1y0sjihk0cr0,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v54100131y0sgwnet876,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v54100131y0sgwnet876,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v5od001a1y0sm19ajs2h,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v5od001a1y0sm19ajs2h,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v6ea001j1y0svuussfsk,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru8v6ea001j1y0svuussfsk,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru96lx2003i1y0snf7tmcjg,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru96lx2003i1y0snf7tmcjg,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru96ouh00461y0sots29ol2,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmru96ouh00461y0sots29ol2,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpx8qra002n1ymu1351nxox,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpx8qra002n1ymu1351nxox,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpxc53u004r1ymuc2v1o63h,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpxc53u004r1ymuc2v1o63h,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpxgrz100771ymuxbcx66w3,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpxgrz100771ymuxbcx66w3,step-3,manual_correction,true,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpxgsmc007f1ymuy6naq5r5,step-3,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmtpxgsmc007f1ymuy6naq5r5,step-3,manual_correction,false,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC2556590/
+cmr4gwfc100021ydeddg6pdrg,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4gwfc100021ydeddg6pdrg,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4hb1ia00461ydeb4dxzw2z,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4hb1ia00461ydeb4dxzw2z,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4hzumi00ac1yde2df5k1mp,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4hzumi00ac1yde2df5k1mp,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4iesos00d21yde06jp5had,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4iesos00d21yde06jp5had,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4ietnh00de1ydekkly2qqt,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4ietnh00de1ydekkly2qqt,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4iy8u800h91yde3gmvb1xq,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4iy8u800h91yde3gmvb1xq,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4j8otf00k61ydehc9pcry8,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4j8otf00k61ydehc9pcry8,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4j8pwp00ki1ydeygqco6j1,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4j8pwp00ki1ydeygqco6j1,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4kip6m00tz1yde3m0cro19,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr4kip6m00tz1yde3m0cro19,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr86ydou00b61yr9u9b5bftj,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr86ydou00b61yr9u9b5bftj,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr886d8100mz1yr97ld6z77i,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr886d8100mz1yr97ld6z77i,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr891b0f00x61yr9rxyq21qn,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr891b0f00x61yr9rxyq21qn,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8al90m019n1yr9km667f03,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8al90m019n1yr9km667f03,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrpw0q7v00591ylu7yo99sly,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrpw0q7v00591ylu7yo99sly,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrtf2nn5000g1y30nzs5jg39,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrtf2nn5000g1y30nzs5jg39,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrtf2o93000o1y30i0mlrhbl,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrtf2o93000o1y30i0mlrhbl,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrtq0vn0001v1yqcbbhgf594,step-2,active,true,false,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmrtq0vn0001v1yqcbbhgf594,step-2,manual_correction,false,true,https://medconnection.ucsfbenioffchildrens.org/maintenance-iv-fluid
+cmr8bhfpn006l1yloz894dma6,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhfpn006l1yloz894dma6,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhgsa006w1ylohrq7pphc,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhgsa006w1ylohrq7pphc,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhhur00771ylo4ueaiaxl,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhhur00771ylo4ueaiaxl,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhjpe007q1ylozivosopo,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8bhjpe007q1ylozivosopo,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8esnr001du1ylo7ktky0pe,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8esnr001du1ylo7ktky0pe,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8j0ohh02h41ylosenaoxmq,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8j0ohh02h41ylosenaoxmq,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8lc7td00an1ygifdm8y4nm,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8lc7td00an1ygifdm8y4nm,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8ncn5400ta1ygip9cvdhtf,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8ncn5400ta1ygip9cvdhtf,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8ncqwp00ud1ygiyqjvwn3o,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr8ncqwp00ud1ygiyqjvwn3o,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr97i1s1004c1ywy4pnpk7sg,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr97i1s1004c1ywy4pnpk7sg,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr98645x00eu1ywysaf2wtsc,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr98645x00eu1ywysaf2wtsc,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr99imao00vf1ywyj9rsl1wx,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr99imao00vf1ywyj9rsl1wx,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr9bv0on01kv1ywyvsdkt5fd,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmr9bv0on01kv1ywyvsdkt5fd,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru2q926000q1y7w5xrf7tzm,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru2q926000q1y7w5xrf7tzm,step-3,manual_correction,true,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru2q9q1000y1y7w9q3jb0nn,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru2q9q1000y1y7w9q3jb0nn,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9cwbb006x1y0sazysv7e5,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9cwbb006x1y0sazysv7e5,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9d0f3007r1y0sr2i3xcno,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9d0f3007r1y0sr2i3xcno,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9d1dh007z1y0szvu6y9zl,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9d1dh007z1y0szvu6y9zl,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9is8400a91y0s6fphaloi,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmru9is8400a91y0s6fphaloi,step-3,manual_correction,true,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmtpx8qwq002p1ymuu22n2270,step-3,active,true,false,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+cmtpx8qwq002p1ymuu22n2270,step-3,manual_correction,false,true,https://goldcopd.org/wp-content/uploads/2024/02/POCKET-GUIDE-GOLD-2024-ver-1.2-11Jan2024_WMV.pdf
+b5x9374e60d47b4da21177036e0,step-2,active,true,false,https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b5x9374e60d47b4da21177036e0,step-2,manual_correction,true,true,https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b5x9374e60d47b4da21177036e0,step-2,options,"[""The kidney did not respond, so more hormone will not either"",""A failed trial means the dose was homeopathic"",""Sodium of 150 mEq/L means the duct is sensitive"",""Lithium causes central diabetes insipidus only"",""Eight liters means the hormone is working""]","[""The kidney did not respond, so more hormone will not either"",""The desmopressin dose in the trial was subtherapeutic"",""Sodium of 150 mEq/L means the duct is sensitive"",""Lithium causes central diabetes insipidus only"",""Eight liters means the hormone is working""]",https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b5x9374e60d47b4da21177036e0,step-2,explanation,"Desmopressin does not work in nephrogenic diabetes insipidus, so repeating it is the wrong drug once a trial has failed. The kidney did not respond, so more hormone will not either. A failed trial means the dose was homeopathic ignores an adequate trial. Sodium of 150 mEq/L means the duct is sensitive is the water loss. Lithium causes central diabetes insipidus only is usually nephrogenic. Eight liters means the hormone is working would be a small volume of concentrated urine.","Desmopressin does not work in nephrogenic diabetes insipidus, so repeating it is the wrong drug once a trial has failed. The kidney did not respond, so more hormone will not either. The desmopressin dose in the trial was subtherapeutic ignores an adequate trial. Sodium of 150 mEq/L means the duct is sensitive is the water loss. Lithium causes central diabetes insipidus only is usually nephrogenic. Eight liters means the hormone is working would be a small volume of concentrated urine.",https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/
+b5x9374e60d47b4da21177036e0,step-2,references,,"[{""url"": ""https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/"", ""label"": ""Lithium nephrogenic diabetes insipidus. Desmopressin is not accepted treatment once the kidney has failed to respond.""}]",https://pmc.ncbi.nlm.nih.gov/articles/PMC6711641/

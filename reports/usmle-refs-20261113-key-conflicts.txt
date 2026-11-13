@@ -1,0 +1,22 @@
+id	step	key	why
+cmr8h1gq901xn1ylo7pyfc1iv	step-3	Hypertensive crisis	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr8qfod601mm1ygibae4ubhf	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr98dmv200hu1ywyj0rd85ht	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr4bgfgs006u1ykyvoe9k7dn	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 210/120.
+cmr4g0vnr022m1ykyhzipr2r7	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 200/120.
+cmr8f2m0j01h71ylouisnoii9	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmrx1lubr001il705c00n8cs0	step-3	IV alteplase if within 4.5 h and eligibility met; admit stroke unit; BP control per protocol	MedlinePlus states tPA for ischemic stroke is given within 4 hours of symptom onset. This item uses a 4.5-hour window.
+cmrtffj2m000a1yx2lgots2dp	step-1	Hypertensive crisis	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr8ji8g002no1yloys6f3q2j	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr8dij5k00y41ylorl9njrdw	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 220/120.
+cmr8lyzk100gp1ygi589f3gj9	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmrr4y98h002a1y6puwpsklsz	step-1	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 200/120.
+cmr8br7mg00b31ylorxxs5sqs	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr8nclz000sy1ygibdstf3e1	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 200/120.
+cmrpvqbbw00131yluukg604cm	step-2	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmrrvztm300dn1yl8tolzjhb4	step-2	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 220/120.
+cmr4djebs012b1ykyknl3xq5t	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr8g79cp01q81ylotciqpxd7	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmr8i0b1y02731yloo2gy9h2t	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmru3n79700ei1y7wi292rg7x	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 180/110.
+cmru9cygg007f1y0sbq674zyj	step-3	Hypertensive emergency	MedlinePlus defines hypertensive crisis as higher than 180 and higher than 120. The stem shows 190/110.
