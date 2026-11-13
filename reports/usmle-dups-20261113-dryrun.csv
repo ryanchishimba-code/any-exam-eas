@@ -1,0 +1,517 @@
+id,step,field,before,after,source URL
+cmqkgnt020fv7l304rey8s1a4,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt020fv7l304rey8s1a4,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt1y0fxkl3047lq7q5s4,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt1y0fxkl3047lq7q5s4,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt2u0fxzl304966vcsz4,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt2u0fxzl304966vcsz4,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt4o0g0ql304tu6mo7w7,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt4o0g0ql304tu6mo7w7,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt4o0g0yl304nem6cu9h,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt4o0g0yl304nem6cu9h,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt5l0g1xl304vo3zlhjk,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt5l0g1xl304vo3zlhjk,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt7e0g3ml304jkp41p12,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt7e0g3ml304jkp41p12,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnt980g6bl304b2vfl57z,step-1,active,true,false,kept:cmqkgntqh0gpvl304vixfbfdp
+cmqkgnt980g6bl304b2vfl57z,step-1,manual_correction,false,true,kept:cmqkgntqh0gpvl304vixfbfdp
+cmqkgnt990g6el304bz2xi24j,step-1,active,true,false,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgnt990g6el304bz2xi24j,step-1,manual_correction,false,true,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgnta40g7il304sqoycwxh,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnta40g7il304sqoycwxh,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntaz0g85l304zp2y4pj2,step-1,active,true,false,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgntaz0g85l304zp2y4pj2,step-1,manual_correction,false,true,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgntb00g8kl304a7fo44o1,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntb00g8kl304a7fo44o1,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntb10g8sl304ridyrwfm,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntb10g8sl304ridyrwfm,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntd80ga8l304b0fonzzy,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntd80ga8l304b0fonzzy,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntf60gd1l304vprvaiie,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntf60gd1l304vprvaiie,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnth40gf8l304uvtk7ho2,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnth40gf8l304uvtk7ho2,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntjz0giol304rzs433lp,step-1,active,true,false,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgntjz0giol304rzs433lp,step-1,manual_correction,false,true,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgntlz0gk9l304rt87hz0u,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntlz0gk9l304rt87hz0u,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntm00gkvl304dswpqpt5,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntm00gkvl304dswpqpt5,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntns0gmtl304zwk1jsk7,step-1,active,true,false,kept:cmqkgnt6k0g36l304f3ojegq0
+cmqkgntns0gmtl304zwk1jsk7,step-1,manual_correction,false,true,kept:cmqkgnt6k0g36l304f3ojegq0
+cmqkgntqf0gp9l304gy5ihyvx,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntqf0gp9l304gy5ihyvx,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnts30gr8l304ctcejbig,step-1,active,true,false,kept:cmqkgntqh0gpvl304vixfbfdp
+cmqkgnts30gr8l304ctcejbig,step-1,manual_correction,false,true,kept:cmqkgntqh0gpvl304vixfbfdp
+cmqkgnts40grjl30478y8j3mo,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgnts40grjl30478y8j3mo,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntus0gtql3043tlr0d5e,step-1,active,true,false,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgntus0gtql3043tlr0d5e,step-1,manual_correction,false,true,kept:cmqkgnt4n0g08l3048nk6vvei
+cmqkgntut0gttl304uvee19x3,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntut0gttl304uvee19x3,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntuu0gucl304vcqhlctp,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntuu0gucl304vcqhlctp,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntvt0gurl304zdcd95rh,step-1,active,true,false,kept:cmqkgnt020fvcl304hrqp308d
+cmqkgntvt0gurl304zdcd95rh,step-1,manual_correction,false,true,kept:cmqkgnt020fvcl304hrqp308d
+cmr4qbvvm00wl1y1e46a1fbex,step-1,active,true,false,kept:cmr87j34200b21yw2fmxa5qvg
+cmr4qbvvm00wl1y1e46a1fbex,step-1,manual_correction,false,true,kept:cmr87j34200b21yw2fmxa5qvg
+cmr85ugcl00081yw2kvq76p3b,step-1,active,true,false,kept:cmr4qbuvr00w91y1egvmcawhd
+cmr85ugcl00081yw2kvq76p3b,step-1,manual_correction,false,true,kept:cmr4qbuvr00w91y1egvmcawhd
+cmr87j18a00ag1yw2sbb7ddun,step-1,active,true,false,kept:cmr4qbs4500vb1y1etbfnaa1k
+cmr87j18a00ag1yw2sbb7ddun,step-1,manual_correction,false,true,kept:cmr4qbs4500vb1y1etbfnaa1k
+cmr89b2o400jz1yw2ikzxd81l,step-1,active,true,false,kept:cmr87j34200b21yw2fmxa5qvg
+cmr89b2o400jz1yw2ikzxd81l,step-1,manual_correction,false,true,kept:cmr87j34200b21yw2fmxa5qvg
+cmr8adyiw00tf1yw2ktvz39ps,step-1,active,true,false,kept:cmr4kx9pq00121y1e3kdhyy0f
+cmr8adyiw00tf1yw2ktvz39ps,step-1,manual_correction,false,true,kept:cmr4kx9pq00121y1e3kdhyy0f
+cmr8clszu01a81yw2cspuwh7p,step-1,active,true,false,kept:cmr8cls05019w1yw2635m8ssp
+cmr8clszu01a81yw2cspuwh7p,step-1,manual_correction,false,true,kept:cmr8cls05019w1yw2635m8ssp
+cmr8f0lfg00d61yazyiw68rbp,step-1,active,true,false,kept:cmr87j34200b21yw2fmxa5qvg
+cmr8f0lfg00d61yazyiw68rbp,step-1,manual_correction,false,true,kept:cmr87j34200b21yw2fmxa5qvg
+cmra6lu9w000uic04nlqhbm0w,step-1,active,true,false,kept:cmrrbw5t70001l104fipphbha
+cmra6lu9w000uic04nlqhbm0w,step-1,manual_correction,false,true,kept:cmrrbw5t70001l104fipphbha
+cmrpv8gsc000j1yncj6h2dise,step-1,active,true,false,kept:cmrpw7add004h1yh5a2zumi89
+cmrpv8gsc000j1yncj6h2dise,step-1,manual_correction,false,true,kept:cmrpw7add004h1yh5a2zumi89
+cmrpvyxbx000x1yrtq5xg3gzm,step-1,active,true,false,kept:cmrtqfzrh000f1yx3jgrvs6nb
+cmrpvyxbx000x1yrtq5xg3gzm,step-1,manual_correction,false,true,kept:cmrtqfzrh000f1yx3jgrvs6nb
+cmrpw174a002f1yh5hw66tymr,step-1,active,true,false,kept:cmrpwci97004c1yrtr47t3ju5
+cmrpw174a002f1yh5hw66tymr,step-1,manual_correction,false,true,kept:cmrpwci97004c1yrtr47t3ju5
+cmrpwfezi006u1yh5tqksyf2x,step-1,active,true,false,kept:cmrruakye00dp1y8wxboyh90x
+cmrpwfezi006u1yh5tqksyf2x,step-1,manual_correction,false,true,kept:cmrruakye00dp1y8wxboyh90x
+cmrr4t0ef00021y6phbi250oy,step-1,active,true,false,kept:cmqkgntqh0gpvl304vixfbfdp
+cmrr4t0ef00021y6phbi250oy,step-1,manual_correction,false,true,kept:cmqkgntqh0gpvl304vixfbfdp
+cmrrbwa8l000el104hgyi49wb,step-1,active,true,false,kept:cmra6lz020037ic049e76vs4n
+cmrrbwa8l000el104hgyi49wb,step-1,manual_correction,false,true,kept:cmra6lz020037ic049e76vs4n
+cmrrutkoy00k41y8wgil2duhu,step-1,active,true,false,kept:cmrtgri1k000y1yaxn709l6to
+cmrrutkoy00k41y8wgil2duhu,step-1,manual_correction,false,true,kept:cmrtgri1k000y1yaxn709l6to
+cmrsew9hx00071y5569fig6ap,step-1,active,true,false,kept:cmrrum8u200i21y8wua6g4q0k
+cmrsew9hx00071y5569fig6ap,step-1,manual_correction,false,true,kept:cmrrum8u200i21y8wua6g4q0k
+cmrsf3jsr00321y5567ybsgqd,step-1,active,true,false,kept:cmrru3sbk00bw1y8w7jzldqo4
+cmrsf3jsr00321y5567ybsgqd,step-1,manual_correction,false,true,kept:cmrru3sbk00bw1y8w7jzldqo4
+cmrtffitz00071yx289o6pp0g,step-1,active,true,false,kept:cmr86gu9n003m1yw20bxlnshi
+cmrtffitz00071yx289o6pp0g,step-1,manual_correction,false,true,kept:cmr86gu9n003m1yw20bxlnshi
+cmrtqq56e00131yx3h6ejgzhy,step-1,active,true,false,kept:cmrtqfyyu00051yx3uqubb3u7
+cmrtqq56e00131yx3h6ejgzhy,step-1,manual_correction,false,true,kept:cmrtqfyyu00051yx3uqubb3u7
+cmqxdeqlj00am1ymatehtfnit,step-2,active,true,false,kept:cmqxdy52w000a1y79agqtgugh
+cmqxdeqlj00am1ymatehtfnit,step-2,manual_correction,false,true,kept:cmqxdy52w000a1y79agqtgugh
+cmqxee8f3003s1y79qdv471w6,step-2,active,true,false,kept:cmr87so3s00kx1yr9zuib8pln
+cmqxee8f3003s1y79qdv471w6,step-2,manual_correction,false,true,kept:cmr87so3s00kx1yr9zuib8pln
+cmqxee99r00411y79a5ucmwja,step-2,active,true,false,kept:cmr87so3s00kx1yr9zuib8pln
+cmqxee99r00411y79a5ucmwja,step-2,manual_correction,false,true,kept:cmr87so3s00kx1yr9zuib8pln
+cmr4gwgg6000d1yde020bm66v,step-2,active,true,false,kept:cmr89lxd9010x1yr90t9v8ey2
+cmr4gwgg6000d1yde020bm66v,step-2,manual_correction,false,true,kept:cmr89lxd9010x1yr90t9v8ey2
+cmr4iy77h00gr1ydeco9i3tqh,step-2,active,true,false,kept:cmr4hb39p004j1ydeib8sf94x
+cmr4iy77h00gr1ydeco9i3tqh,step-2,manual_correction,false,true,kept:cmr4hb39p004j1ydeib8sf94x
+cmr877mi700ef1yr9npx6aiqq,step-2,active,true,false,kept:cmr87so3s00kx1yr9zuib8pln
+cmr877mi700ef1yr9npx6aiqq,step-2,manual_correction,false,true,kept:cmr87so3s00kx1yr9zuib8pln
+cmr87j1dm00gw1yr9rftxpdme,step-2,active,true,false,kept:cmqxd0qqp006s1yman6p86zhj
+cmr87j1dm00gw1yr9rftxpdme,step-2,manual_correction,false,true,kept:cmqxd0qqp006s1yman6p86zhj
+cmr89vccq013f1yr9pqj1izq1,step-2,active,true,false,kept:cmr89vapb012v1yr9sfmxfeti
+cmr89vccq013f1yr9pqj1izq1,step-2,manual_correction,false,true,kept:cmr89vapb012v1yr9sfmxfeti
+cmr89vd0e013n1yr9ymd8aukx,step-2,active,true,false,kept:cmtpvy17800131ylc1x840cve
+cmr89vd0e013n1yr9ymd8aukx,step-2,manual_correction,false,true,kept:cmtpvy17800131ylc1x840cve
+cmra6lzpm0043ic04jxh6a0g8,step-2,active,true,false,kept:cmrrbwath000zl104qyhhqlna
+cmra6lzpm0043ic04jxh6a0g8,step-2,manual_correction,false,true,kept:cmrrbwath000zl104qyhhqlna
+cmrpvq8fe00091yluo059nu3a,step-2,active,true,false,kept:cmr87so3s00kx1yr9zuib8pln
+cmrpvq8fe00091yluo059nu3a,step-2,manual_correction,false,true,kept:cmr87so3s00kx1yr9zuib8pln
+cmrpvqa9d000s1yluwdmbh1a1,step-2,active,true,false,kept:cmr88s5es00uo1yr9lw5utq6a
+cmrpvqa9d000s1yluwdmbh1a1,step-2,manual_correction,false,true,kept:cmr88s5es00uo1yr9lw5utq6a
+cmrqhnzi8005d1ypxg0l16k05,step-2,active,true,false,kept:cmrqhnwzl004j1ypx9ecy59of
+cmrqhnzi8005d1ypxg0l16k05,step-2,manual_correction,false,true,kept:cmrqhnwzl004j1ypx9ecy59of
+cmrrbw64j0009l104wg2eespo,step-2,active,true,false,kept:cmrvm5use000fjw0489tlls25
+cmrrbw64j0009l104wg2eespo,step-2,manual_correction,false,true,kept:cmrvm5use000fjw0489tlls25
+cmrrbwaks000ql104zc5f7zbm,step-2,active,true,false,kept:cmra6lzgp003tic0419pg629q
+cmrrbwaks000ql104zc5f7zbm,step-2,manual_correction,false,true,kept:cmra6lzgp003tic0419pg629q
+cmrrbwaym0010l104ulpdh2ng,step-2,active,true,false,kept:cmrvm5z58001ljw04yfpwleqr
+cmrrbwaym0010l104ulpdh2ng,step-2,manual_correction,false,true,kept:cmrvm5z58001ljw04yfpwleqr
+cmrrbwb1s0014l104xtbm71j4,step-2,active,true,false,kept:cmrsrb2jy001bl404u34judyn
+cmrrbwb1s0014l104xtbm71j4,step-2,manual_correction,false,true,kept:cmrsrb2jy001bl404u34judyn
+cmrrvjk4p005b1yl8naz62opt,step-2,active,true,false,kept:cmtpwlgg8001d1y6hl2rtzhku
+cmrrvjk4p005b1yl8naz62opt,step-2,manual_correction,false,true,kept:cmtpwlgg8001d1y6hl2rtzhku
+cmrsf7fbc00121yny3pm8tfmg,step-2,active,true,false,kept:cmrrvjjwd00581yl8e8rrx6vk
+cmrsf7fbc00121yny3pm8tfmg,step-2,manual_correction,false,true,kept:cmrrvjjwd00581yl8e8rrx6vk
+cmrsfglk5004h1ynyf920bghw,step-2,active,true,false,kept:cmrrvztbr00dk1yl81szgft31
+cmrsfglk5004h1ynyf920bghw,step-2,manual_correction,false,true,kept:cmrrvztbr00dk1yl81szgft31
+cmrtexh2o00011y304jarvmrh,step-2,active,true,false,kept:cmrtprwgv00021yqc9v8uul6x
+cmrtexh2o00011y304jarvmrh,step-2,manual_correction,false,true,kept:cmrtprwgv00021yqc9v8uul6x
+cmrtggbcm004v1ydwicjnma9v,step-2,active,true,false,kept:cmrrvzxdq00ej1yl8pwp69jll
+cmrtggbcm004v1ydwicjnma9v,step-2,manual_correction,false,true,kept:cmrrvzxdq00ej1yl8pwp69jll
+cmrtpryfj000p1yqcm6cfcz4d,step-2,active,true,false,kept:cmtpx3fca00b61y6higsxmhrh
+cmrtpryfj000p1yqcm6cfcz4d,step-2,manual_correction,false,true,kept:cmtpx3fca00b61y6higsxmhrh
+cmrtq0t44000z1yqcn0upwu4p,step-2,active,true,false,kept:cmr891ear00y31yr94zleo1ar
+cmrtq0t44000z1yqcn0upwu4p,step-2,manual_correction,false,true,kept:cmr891ear00y31yr94zleo1ar
+cmrtq0ufp001g1yqcueju4pmv,step-2,active,true,false,kept:cmrtq0uzg001n1yqc74q5vva1
+cmrtq0ufp001g1yqcueju4pmv,step-2,manual_correction,false,true,kept:cmrtq0uzg001n1yqc74q5vva1
+cmru6qy8s0020l104ttv45479,step-2,active,true,false,kept:cmrsrb22f000vl404hxmqp537
+cmru6qy8s0020l104ttv45479,step-2,manual_correction,false,true,kept:cmrsrb22f000vl404hxmqp537
+cmtpsb1sm00391y1qjz9vg4jz,step-2,active,true,false,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpsb1sm00391y1qjz9vg4jz,step-2,manual_correction,false,true,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpvxyeg00071ylcxmc6wtwv,step-2,active,true,false,kept:cmtpx00y0007s1y6h02bn6ip4
+cmtpvxyeg00071ylcxmc6wtwv,step-2,manual_correction,false,true,kept:cmtpx00y0007s1y6h02bn6ip4
+cmtpvy0wj000z1ylcasgiul55,step-2,active,true,false,kept:cmtpx01t600831y6hacnxjn9q
+cmtpvy0wj000z1ylcasgiul55,step-2,manual_correction,false,true,kept:cmtpx01t600831y6hacnxjn9q
+cmtpwle9p000m1y6he153pjex,step-2,active,true,false,kept:cmrtggcmf005b1ydwl40cjzda
+cmtpwle9p000m1y6he153pjex,step-2,manual_correction,false,true,kept:cmrtggcmf005b1ydwl40cjzda
+cmtpwlex7000u1y6h8uum4zx3,step-2,active,true,false,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpwlex7000u1y6h8uum4zx3,step-2,manual_correction,false,true,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpwzyfi006w1y6hqm107hhz,step-2,active,true,false,kept:cmtpvxy6f00041ylcjzsuizcf
+cmtpwzyfi006w1y6hqm107hhz,step-2,manual_correction,false,true,kept:cmtpvxy6f00041ylcjzsuizcf
+cmtpx3cws00ab1y6hfdxn5ubz,step-2,active,true,false,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpx3cws00ab1y6hfdxn5ubz,step-2,manual_correction,false,true,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpx3e0d00ap1y6h3jqs58ri,step-2,active,true,false,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpx3e0d00ap1y6h3jqs58ri,step-2,manual_correction,false,true,kept:cmrtq0uzg001n1yqc74q5vva1
+cmtpx3esg00az1y6hav9ohb5r,step-2,active,true,false,kept:cmrtprxki000g1yqc4gvp8uiw
+cmtpx3esg00az1y6hav9ohb5r,step-2,manual_correction,false,true,kept:cmrtprxki000g1yqc4gvp8uiw
+cmtpx3fkx00b91y6hsk9gk5vw,step-2,active,true,false,kept:cmrtq0vdb001s1yqc558pnwzp
+cmtpx3fkx00b91y6hsk9gk5vw,step-2,manual_correction,false,true,kept:cmrtq0vdb001s1yqc558pnwzp
+cmr4b31nx000n1ykyjcyw35lm,step-3,active,true,false,kept:cmr97i3jw004u1ywyil8ik9ec
+cmr4b31nx000n1ykyjcyw35lm,step-3,manual_correction,false,true,kept:cmr97i3jw004u1ywyil8ik9ec
+cmr4bad31003m1yky7th0n4th,step-3,active,true,false,kept:cmr8br8cx00bc1yloyhlyfm1x
+cmr4bad31003m1yky7th0n4th,step-3,manual_correction,false,true,kept:cmr8br8cx00bc1yloyhlyfm1x
+cmr4bnwch00ak1ykyqblyz1jk,step-3,active,true,false,none kept; every copy keys diuresis at 90/60 mm Hg
+cmr4bnwch00ak1ykyqblyz1jk,step-3,manual_correction,false,true,none kept; every copy keys diuresis at 90/60 mm Hg
+cmr4cbus100kb1ykyr22e2us7,step-3,active,true,false,kept:cmr8bhk79007v1yloprgme839
+cmr4cbus100kb1ykyr22e2us7,step-3,manual_correction,false,true,kept:cmr8bhk79007v1yloprgme839
+cmr4cbyt900ln1yky2px5rong,step-3,active,true,false,kept:cmr97i3jw004u1ywyil8ik9ec
+cmr4cbyt900ln1yky2px5rong,step-3,manual_correction,false,true,kept:cmr97i3jw004u1ywyil8ik9ec
+cmr4cbyw600lo1ykyms2z9liu,step-3,active,true,false,kept:cmru9cwfn006y1y0s2v1zz355
+cmr4cbyw600lo1ykyms2z9liu,step-3,manual_correction,false,true,kept:cmru9cwfn006y1y0s2v1zz355
+cmr4cnrjy00nl1yky734ffqqd,step-3,active,true,false,kept:cmr8esn8w01do1yloikv83hhh
+cmr4cnrjy00nl1yky734ffqqd,step-3,manual_correction,false,true,kept:cmr8esn8w01do1yloikv83hhh
+cmr4cnwiz00ox1ykyw4u6rxob,step-3,active,true,false,kept:cmr8esn8w01do1yloikv83hhh
+cmr4cnwiz00ox1ykyw4u6rxob,step-3,manual_correction,false,true,kept:cmr8esn8w01do1yloikv83hhh
+cmr4cveoa00s21yky9wz75kg4,step-3,active,true,false,kept:cmr9bv1hx01l51ywy0z5w9i49
+cmr4cveoa00s21yky9wz75kg4,step-3,manual_correction,false,true,kept:cmr9bv1hx01l51ywy0z5w9i49
+cmr4dbbqr00xs1ykyz6xm9d31,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr4dbbqr00xs1ykyz6xm9d31,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr4eeml101fk1ykysprszley,step-3,active,true,false,none kept; every copy keys diuresis at 90/60 mm Hg
+cmr4eeml101fk1ykysprszley,step-3,manual_correction,false,true,none kept; every copy keys diuresis at 90/60 mm Hg
+cmr4eenea01fs1ykyvi0sxzeu,step-3,active,true,false,none kept; every copy keys diuresis at 90/60 mm Hg
+cmr4eenea01fs1ykyvi0sxzeu,step-3,manual_correction,false,true,none kept; every copy keys diuresis at 90/60 mm Hg
+cmr4enhqp01hs1yky63oshvtu,step-3,active,true,false,kept:cmqxf0n03000y1yf1w4x4rgdl
+cmr4enhqp01hs1yky63oshvtu,step-3,manual_correction,false,true,kept:cmqxf0n03000y1yf1w4x4rgdl
+cmr4f6c7t01pe1ykyviy6ijtk,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr4f6c7t01pe1ykyviy6ijtk,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr4fl3g601w11ykyywm25i6v,step-3,active,true,false,kept:cmr99im3p00vd1ywycgcwvjn1
+cmr4fl3g601w11ykyywm25i6v,step-3,manual_correction,false,true,kept:cmr99im3p00vd1ywycgcwvjn1
+cmr4g0ujo02281yky1rp7r61v,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr4g0ujo02281yky1rp7r61v,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8atybq001g1ylobkd8yjvi,step-3,active,true,false,kept:cmr97c7kk001g1ywyi1cup4ny
+cmr8atybq001g1ylobkd8yjvi,step-3,manual_correction,false,true,kept:cmr97c7kk001g1ywyi1cup4ny
+cmr8bhez0006e1ylo35wrey9o,step-3,active,true,false,kept:cmru9d0nq007t1y0s8c5vnfwk
+cmr8bhez0006e1ylo35wrey9o,step-3,manual_correction,false,true,kept:cmru9d0nq007t1y0s8c5vnfwk
+cmr8bhg04006o1ylolxrc7h91,step-3,active,true,false,kept:cmru9d0nq007t1y0s8c5vnfwk
+cmr8bhg04006o1ylolxrc7h91,step-3,manual_correction,false,true,kept:cmru9d0nq007t1y0s8c5vnfwk
+cmr8bhhrb00761ylo6nn04mil,step-3,active,true,false,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr8bhhrb00761ylo6nn04mil,step-3,manual_correction,false,true,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr8bhjic007o1yloq4ihj0zz,step-3,active,true,false,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr8bhjic007o1yloq4ihj0zz,step-3,manual_correction,false,true,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr8bhk3o007u1ylo661uk180,step-3,active,true,false,kept:cmr8lqfkf00cq1ygi03ibd4wd
+cmr8bhk3o007u1ylo661uk180,step-3,manual_correction,false,true,kept:cmr8lqfkf00cq1ygi03ibd4wd
+cmr8c3kkf00gl1yloh397ma8y,step-3,active,true,false,kept:cmr4f6dh701pu1yky397pr5qx
+cmr8c3kkf00gl1yloh397ma8y,step-3,manual_correction,false,true,kept:cmr4f6dh701pu1yky397pr5qx
+cmr8c3kv300go1yloe4goomgq,step-3,active,true,false,kept:cmr4cbvrd00kn1ykyhd2sl9rs
+cmr8c3kv300go1yloe4goomgq,step-3,manual_correction,false,true,kept:cmr4cbvrd00kn1ykyhd2sl9rs
+cmr8c3n0600h91yloxx172fzs,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8c3n0600h91yloxx172fzs,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8c3p0900ht1ylorhqassvw,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8c3p0900ht1ylorhqassvw,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8ccj9400l31ylotgn1jihz,step-3,active,true,false,kept:cmr98mpdv00lk1ywyi9snmhle
+cmr8ccj9400l31ylotgn1jihz,step-3,manual_correction,false,true,kept:cmr98mpdv00lk1ywyi9snmhle
+cmr8cn8ix00n81ylon2rt1937,step-3,active,true,false,kept:cmr8i0cr3027o1ylo5b35v4ar
+cmr8cn8ix00n81ylon2rt1937,step-3,manual_correction,false,true,kept:cmr8i0cr3027o1ylo5b35v4ar
+cmr8cnb5k00o31ylo8bpvych5,step-3,active,true,false,kept:cmr8i0aca026u1ylofxgi9if0
+cmr8cnb5k00o31ylo8bpvych5,step-3,manual_correction,false,true,kept:cmr8i0aca026u1ylofxgi9if0
+cmr8db8a100tx1ylo8sb5wt7m,step-3,active,true,false,kept:cmr8nmjak00x01ygix3irjnf7
+cmr8db8a100tx1ylo8sb5wt7m,step-3,manual_correction,false,true,kept:cmr8nmjak00x01ygix3irjnf7
+cmr8dbab300uh1yloeepm3vob,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8dbab300uh1yloeepm3vob,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8dbbtd00uw1yloctkyi0hn,step-3,active,true,false,kept:cmr8nmj2300wx1ygi29olj6t8
+cmr8dbbtd00uw1yloctkyi0hn,step-3,manual_correction,false,true,kept:cmr8nmj2300wx1ygi29olj6t8
+cmr8dig0600x21ylos2a48gnh,step-3,active,true,false,kept:cmr4f6dh701pu1yky397pr5qx
+cmr8dig0600x21ylos2a48gnh,step-3,manual_correction,false,true,kept:cmr4f6dh701pu1yky397pr5qx
+cmr8dqaog010h1ylol9u7dbmc,step-3,active,true,false,kept:cmr9c9qjp01ro1ywywilv67r7
+cmr8dqaog010h1ylol9u7dbmc,step-3,manual_correction,false,true,kept:cmr9c9qjp01ro1ywywilv67r7
+cmr8e5vw9016q1ylolwum57qh,step-3,active,true,false,kept:cmr8ncn8m00tb1ygi09kii0wi
+cmr8e5vw9016q1ylolwum57qh,step-3,manual_correction,false,true,kept:cmr8ncn8m00tb1ygi09kii0wi
+cmr8e5wui01721ylo0c83s3cu,step-3,active,true,false,kept:cmr4f6dh701pu1yky397pr5qx
+cmr8e5wui01721ylo0c83s3cu,step-3,manual_correction,false,true,kept:cmr4f6dh701pu1yky397pr5qx
+cmr8e5z0l017t1ylotj2kxbe9,step-3,active,true,false,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmr8e5z0l017t1ylotj2kxbe9,step-3,manual_correction,false,true,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmr8e5z3g017u1ylols5nccew,step-3,active,true,false,kept:cmr8hrqma02341ylo7zuar89k
+cmr8e5z3g017u1ylols5nccew,step-3,manual_correction,false,true,kept:cmr8hrqma02341ylo7zuar89k
+cmr8ehylk01a11ylo5e2wf4xo,step-3,active,true,false,kept:cmr4fdlny01sk1ykyh82bc80b
+cmr8ehylk01a11ylo5e2wf4xo,step-3,manual_correction,false,true,kept:cmr4fdlny01sk1ykyh82bc80b
+cmr8ei1rx01b41yloxzrxrh52,step-3,active,true,false,kept:cmtpxc5wf00511ymux0w84hfl
+cmr8ei1rx01b41yloxzrxrh52,step-3,manual_correction,false,true,kept:cmtpxc5wf00511ymux0w84hfl
+cmr8eslyd01d91ylouchel4nd,step-3,active,true,false,kept:cmr8ny7mm010x1ygid18pjfpa
+cmr8eslyd01d91ylouchel4nd,step-3,manual_correction,false,true,kept:cmr8ny7mm010x1ygid18pjfpa
+cmr8eso3h01dy1ylok0u8x0ga,step-3,active,true,false,kept:cmr8hrqma02341ylo7zuar89k
+cmr8eso3h01dy1ylok0u8x0ga,step-3,manual_correction,false,true,kept:cmr8hrqma02341ylo7zuar89k
+cmr8esph601ef1ylom2f4fo6l,step-3,active,true,false,kept:cmr8dbaig00uj1yloibrm4gwx
+cmr8esph601ef1ylom2f4fo6l,step-3,manual_correction,false,true,kept:cmr8dbaig00uj1yloibrm4gwx
+cmr8espxp01ek1ylogg3jtgfk,step-3,active,true,false,kept:cmr98dn5h00hx1ywyljcko4f2
+cmr8espxp01ek1ylogg3jtgfk,step-3,manual_correction,false,true,kept:cmr98dn5h00hx1ywyljcko4f2
+cmr8f2kt401gs1ylok95kdki9,step-3,active,true,false,kept:cmr97c2zx00061ywyb0leyzbp
+cmr8f2kt401gs1ylok95kdki9,step-3,manual_correction,false,true,kept:cmr97c2zx00061ywyb0leyzbp
+cmr8f2nvs01hu1ylob5fysdav,step-3,active,true,false,kept:cmr8i09ri026n1ylo3az1g35m
+cmr8f2nvs01hu1ylob5fysdav,step-3,manual_correction,false,true,kept:cmr8i09ri026n1ylo3az1g35m
+cmr8fz9s801nz1yloiomrhp2k,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8fz9s801nz1yloiomrhp2k,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8fzaj601o81yloql81m74x,step-3,active,true,false,kept:cmr8j0n9k02gp1ylo9pe1ge59
+cmr8fzaj601o81yloql81m74x,step-3,manual_correction,false,true,kept:cmr8j0n9k02gp1ylo9pe1ge59
+cmr8g7b2x01qt1ylo594kshhj,step-3,active,true,false,kept:cmr8j0pb302he1ylofzo37pb5
+cmr8g7b2x01qt1ylo594kshhj,step-3,manual_correction,false,true,kept:cmr8j0pb302he1ylofzo37pb5
+cmr8h1cj401wi1yloaelhdr06,step-3,active,true,false,kept:cmr8i09ri026n1ylo3az1g35m
+cmr8h1cj401wi1yloaelhdr06,step-3,manual_correction,false,true,kept:cmr8i09ri026n1ylo3az1g35m
+cmr8h1ecc01wz1ylop3sz3ah6,step-3,active,true,false,kept:cmr8dqeog011j1ylorapbl1th
+cmr8h1ecc01wz1ylop3sz3ah6,step-3,manual_correction,false,true,kept:cmr8dqeog011j1ylorapbl1th
+cmr8h1gmr01xm1ylopecey1bn,step-3,active,true,false,kept:cmr4bnwi500am1yky1tkk1cvy
+cmr8h1gmr01xm1ylopecey1bn,step-3,manual_correction,false,true,kept:cmr4bnwi500am1yky1tkk1cvy
+cmr8hgfo7020d1yloerdheud8,step-3,active,true,false,kept:cmr8bafhy003c1ylojn8wyc1f
+cmr8hgfo7020d1yloerdheud8,step-3,manual_correction,false,true,kept:cmr8bafhy003c1ylojn8wyc1f
+cmr8hrr0u02391ylol5mrtwdn,step-3,active,true,false,kept:cmr8esn8w01do1yloikv83hhh
+cmr8hrr0u02391ylol5mrtwdn,step-3,manual_correction,false,true,kept:cmr8esn8w01do1yloikv83hhh
+cmr8hrr3p023a1ylo4sdgnl8n,step-3,active,true,false,kept:cmr98dn5h00hx1ywyljcko4f2
+cmr8hrr3p023a1ylo4sdgnl8n,step-3,manual_correction,false,true,kept:cmr98dn5h00hx1ywyljcko4f2
+cmr8ie599029s1ylopavanpwd,step-3,active,true,false,kept:cmr8ie7f002ae1yloo2tqhc6l
+cmr8ie599029s1ylopavanpwd,step-3,manual_correction,false,true,kept:cmr8ie7f002ae1yloo2tqhc6l
+cmr8j0oni02h61ylohsnpfer6,step-3,active,true,false,kept:cmr8esn8w01do1yloikv83hhh
+cmr8j0oni02h61ylohsnpfer6,step-3,manual_correction,false,true,kept:cmr8esn8w01do1yloikv83hhh
+cmr8j9t4d02kv1ylo5v7grwao,step-3,active,true,false,kept:cmr4f6d8p01pr1yky1edx4gvt
+cmr8j9t4d02kv1ylo5v7grwao,step-3,manual_correction,false,true,kept:cmr4f6d8p01pr1yky1edx4gvt
+cmr8ji6qr02n31ylodynl6dil,step-3,active,true,false,kept:cmr8qfqdz01nb1ygin9j57cbm
+cmr8ji6qr02n31ylodynl6dil,step-3,manual_correction,false,true,kept:cmr8qfqdz01nb1ygin9j57cbm
+cmr8ji97s02nx1ylof4cg6gea,step-3,active,true,false,kept:cmru3n3pd00de1y7w20ke12f4
+cmr8ji97s02nx1ylof4cg6gea,step-3,manual_correction,false,true,kept:cmru3n3pd00de1y7w20ke12f4
+cmr8ji9ly02o21ylorn7w7z82,step-3,active,true,false,kept:cmr8br8cx00bc1yloyhlyfm1x
+cmr8ji9ly02o21ylorn7w7z82,step-3,manual_correction,false,true,kept:cmr8br8cx00bc1yloyhlyfm1x
+cmr8jia0702o71ylo1awfia40,step-3,active,true,false,kept:cmtpxgsfv007d1ymutyvo6121
+cmr8jia0702o71ylo1awfia40,step-3,manual_correction,false,true,kept:cmtpxgsfv007d1ymutyvo6121
+cmr8jui17000a1ygihh0loo0g,step-3,active,true,false,kept:cmr8i09ri026n1ylo3az1g35m
+cmr8jui17000a1ygihh0loo0g,step-3,manual_correction,false,true,kept:cmr8i09ri026n1ylo3az1g35m
+cmr8l1nwl007j1ygih58wd13w,step-3,active,true,false,kept:cmr8p28uc01ah1ygi05vyeq5u
+cmr8l1nwl007j1ygih58wd13w,step-3,manual_correction,false,true,kept:cmr8p28uc01ah1ygi05vyeq5u
+cmr8lc6mj00a81ygija3e3hit,step-3,active,true,false,kept:cmr8g7aoa01qo1ylo908sjdeb
+cmr8lc6mj00a81ygija3e3hit,step-3,manual_correction,false,true,kept:cmr8g7aoa01qo1ylo908sjdeb
+cmr8lc70v00ad1ygixlc5onqr,step-3,active,true,false,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr8lc70v00ad1ygixlc5onqr,step-3,manual_correction,false,true,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr8lc79g00ag1ygihehklvno,step-3,active,true,false,kept:cmr9862qr00ec1ywyo4vrtuck
+cmr8lc79g00ag1ygihehklvno,step-3,manual_correction,false,true,kept:cmr9862qr00ec1ywyo4vrtuck
+cmr8lqg0y00cu1ygin47z5xvz,step-3,active,true,false,kept:cmr8qfqdz01nb1ygin9j57cbm
+cmr8lqg0y00cu1ygin47z5xvz,step-3,manual_correction,false,true,kept:cmr8qfqdz01nb1ygin9j57cbm
+cmr8lqj4u00do1ygirer2g12q,step-3,active,true,false,kept:cmr8hrunm024i1yloxjbyaeon
+cmr8lqj4u00do1ygirer2g12q,step-3,manual_correction,false,true,kept:cmr8hrunm024i1yloxjbyaeon
+cmr8lyxae00g61ygidrkd7u42,step-3,active,true,false,kept:cmr8lz0jg00gy1ygi37698epf
+cmr8lyxae00g61ygidrkd7u42,step-3,manual_correction,false,true,kept:cmr8lz0jg00gy1ygi37698epf
+cmr8m9fgr00kv1ygifalc2sxq,step-3,active,true,false,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr8m9fgr00kv1ygifalc2sxq,step-3,manual_correction,false,true,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr8mlvg800nk1ygiyvriieck,step-3,active,true,false,kept:cmru96l6l003c1y0sa2arb3o5
+cmr8mlvg800nk1ygiyvriieck,step-3,manual_correction,false,true,kept:cmru96l6l003c1y0sa2arb3o5
+cmr8ncoar00tm1ygicj680zsh,step-3,active,true,false,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr8ncoar00tm1ygicj680zsh,step-3,manual_correction,false,true,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr8ncp6700tv1ygixprlstyo,step-3,active,true,false,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr8ncp6700tv1ygixprlstyo,step-3,manual_correction,false,true,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr8nmiqu00wt1ygi81yk5e19,step-3,active,true,false,kept:cmr99rf8k00xe1ywysa9exa7l
+cmr8nmiqu00wt1ygi81yk5e19,step-3,manual_correction,false,true,kept:cmr99rf8k00xe1ywysa9exa7l
+cmr8nmiwh00wv1ygipnyc920v,step-3,active,true,false,kept:cmru38zz9006z1y7w6ruoebuz
+cmr8nmiwh00wv1ygipnyc920v,step-3,manual_correction,false,true,kept:cmru38zz9006z1y7w6ruoebuz
+cmr8nmiz900ww1ygid05eznkd,step-3,active,true,false,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmr8nmiz900ww1ygid05eznkd,step-3,manual_correction,false,true,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmr8nmj4y00wy1ygi3r8ywdvi,step-3,active,true,false,kept:cmr8ji8uj02nt1ylo5i5q9lhp
+cmr8nmj4y00wy1ygi3r8ywdvi,step-3,manual_correction,false,true,kept:cmr8ji8uj02nt1ylo5i5q9lhp
+cmr8ny32400zh1ygin3l67dc1,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8ny32400zh1ygin3l67dc1,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8ny7dw010u1ygiwl6of1vm,step-3,active,true,false,kept:cmr8dbaig00uj1yloibrm4gwx
+cmr8ny7dw010u1ygiwl6of1vm,step-3,manual_correction,false,true,kept:cmr8dbaig00uj1yloibrm4gwx
+cmr8o9h5401321ygi2ykkkf70,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8o9h5401321ygi2ykkkf70,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8omaf901791ygiais9endn,step-3,active,true,false,kept:cmr9a130s01181ywywk8z0vrg
+cmr8omaf901791ygiais9endn,step-3,manual_correction,false,true,kept:cmr9a130s01181ywywk8z0vrg
+cmr8pgvcr01d61ygijf59g247,step-3,active,true,false,kept:cmr8d1xxz00r71yloua86cxe3
+cmr8pgvcr01d61ygijf59g247,step-3,manual_correction,false,true,kept:cmr8d1xxz00r71yloua86cxe3
+cmr8pveo801g51ygimpmv13ig,step-3,active,true,false,kept:cmru9cwsn00711y0s9ypdqyb4
+cmr8pveo801g51ygimpmv13ig,step-3,manual_correction,false,true,kept:cmru9cwsn00711y0s9ypdqyb4
+cmr8qfnps01me1ygi7wxs8kua,step-3,active,true,false,kept:cmr8qfo7d01mk1ygigusidthf
+cmr8qfnps01me1ygi7wxs8kua,step-3,manual_correction,false,true,kept:cmr8qfo7d01mk1ygigusidthf
+cmr8qfnyb01mh1ygifgdz8zpw,step-3,active,true,false,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr8qfnyb01mh1ygifgdz8zpw,step-3,manual_correction,false,true,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr8qfo4j01mj1ygixk412uls,step-3,active,true,false,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmr8qfo4j01mj1ygixk412uls,step-3,manual_correction,false,true,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmr8qfq8301n91ygimpei199r,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8qfq8301n91ygimpei199r,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr8quwxb01pd1ygi70su8n01,step-3,active,true,false,kept:cmr8quxkj01pl1ygifx8tkqct
+cmr8quwxb01pd1ygi70su8n01,step-3,manual_correction,false,true,kept:cmr8quxkj01pl1ygifx8tkqct
+cmr8quxhf01pk1ygicc06hi7s,step-3,active,true,false,kept:cmr9b2goi01bj1ywy4pcxeo9m
+cmr8quxhf01pk1ygicc06hi7s,step-3,manual_correction,false,true,kept:cmr9b2goi01bj1ywy4pcxeo9m
+cmr8qv17x01qu1ygiffvcgz4j,step-3,active,true,false,kept:cmr9a147t011k1ywyfrrxdo1b
+cmr8qv17x01qu1ygiffvcgz4j,step-3,manual_correction,false,true,kept:cmr9a147t011k1ywyfrrxdo1b
+cmr97c33d00071ywyv2319at1,step-3,active,true,false,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr97c33d00071ywyv2319at1,step-3,manual_correction,false,true,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr97c3ag00091ywybqrp1mm4,step-3,active,true,false,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr97c3ag00091ywybqrp1mm4,step-3,manual_correction,false,true,kept:cmr8cnc8q00og1ylo6skd70vp
+cmr97c6ht00151ywy18qm2826,step-3,active,true,false,kept:cmr8juhph00061ygi74c59ylv
+cmr97c6ht00151ywy18qm2826,step-3,manual_correction,false,true,kept:cmr8juhph00061ygi74c59ylv
+cmr97c7v8001j1ywy43uud3kg,step-3,active,true,false,kept:cmr8dbaig00uj1yloibrm4gwx
+cmr97c7v8001j1ywy43uud3kg,step-3,manual_correction,false,true,kept:cmr8dbaig00uj1yloibrm4gwx
+cmr97hyp6003h1ywy5jri8qv2,step-3,active,true,false,kept:cmr8ncn8m00tb1ygi09kii0wi
+cmr97hyp6003h1ywy5jri8qv2,step-3,manual_correction,false,true,kept:cmr8ncn8m00tb1ygi09kii0wi
+cmr97i26c004g1ywyv0uwnryx,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmr97i26c004g1ywyv0uwnryx,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmr97i2gx004j1ywyln2ryyf3,step-3,active,true,false,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr97i2gx004j1ywyln2ryyf3,step-3,manual_correction,false,true,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr97i2re004m1ywyxwlq9rhj,step-3,active,true,false,kept:cmr4dbed000yg1yky6mngtrul
+cmr97i2re004m1ywyxwlq9rhj,step-3,manual_correction,false,true,kept:cmr4dbed000yg1yky6mngtrul
+cmr97yyj000aa1ywyc3x56j84,step-3,active,true,false,kept:cmr4dza98018y1ykybocd7x5i
+cmr97yyj000aa1ywyc3x56j84,step-3,manual_correction,false,true,kept:cmr4dza98018y1ykybocd7x5i
+cmr97z0ud00ax1ywyiwyv29t6,step-3,active,true,false,kept:cmr4fdlny01sk1ykyh82bc80b
+cmr97z0ud00ax1ywyiwyv29t6,step-3,manual_correction,false,true,kept:cmr4fdlny01sk1ykyh82bc80b
+cmr97z2ds00bd1ywytj7m6ulk,step-3,active,true,false,kept:cmr4dza98018y1ykybocd7x5i
+cmr97z2ds00bd1ywytj7m6ulk,step-3,manual_correction,false,true,kept:cmr4dza98018y1ykybocd7x5i
+cmr9861yh00e21ywym4dh56j9,step-3,active,true,false,kept:cmr8q44q201kb1ygi3yue6u58
+cmr9861yh00e21ywym4dh56j9,step-3,manual_correction,false,true,kept:cmr8q44q201kb1ygi3yue6u58
+cmr9862i800e91ywy7o49idzt,step-3,active,true,false,kept:cmr8c3phz00hy1ylokxjr30tw
+cmr9862i800e91ywy7o49idzt,step-3,manual_correction,false,true,kept:cmr8c3phz00hy1ylokxjr30tw
+cmr98dm3100hm1ywy3ciwgj3n,step-3,active,true,false,kept:cmr8lc83q00aq1ygierr2rcbx
+cmr98dm3100hm1ywy3ciwgj3n,step-3,manual_correction,false,true,kept:cmr8lc83q00aq1ygierr2rcbx
+cmr98mmiz00kr1ywy6mvpn69x,step-3,active,true,false,kept:cmru9cwfn006y1y0s2v1zz355
+cmr98mmiz00kr1ywy6mvpn69x,step-3,manual_correction,false,true,kept:cmru9cwfn006y1y0s2v1zz355
+cmr98vnsb00nr1ywys13tfkz2,step-3,active,true,false,kept:cmr8esol901e41ylo4qv2ya8n
+cmr98vnsb00nr1ywys13tfkz2,step-3,manual_correction,false,true,kept:cmr8esol901e41ylo4qv2ya8n
+cmr98vod100ny1ywybnrrc66r,step-3,active,true,false,kept:cmr8atuqd000h1ylo325xpopv
+cmr98vod100ny1ywybnrrc66r,step-3,manual_correction,false,true,kept:cmr8atuqd000h1ylo325xpopv
+cmr98vqd700om1ywya3j8enoh,step-3,active,true,false,kept:cmr8i0cr3027o1ylo5b35v4ar
+cmr98vqd700om1ywya3j8enoh,step-3,manual_correction,false,true,kept:cmr8i0cr3027o1ylo5b35v4ar
+cmr99ij7r00uj1ywyf0w23awk,step-3,active,true,false,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr99ij7r00uj1ywyf0w23awk,step-3,manual_correction,false,true,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr9a10ug010m1ywyqkop06bs,step-3,active,true,false,kept:cmr8ie7f002ae1yloo2tqhc6l
+cmr9a10ug010m1ywyqkop06bs,step-3,manual_correction,false,true,kept:cmr8ie7f002ae1yloo2tqhc6l
+cmr9aual5016r1ywy5x6idh9x,step-3,active,true,false,kept:cmr8bafhy003c1ylojn8wyc1f
+cmr9aual5016r1ywy5x6idh9x,step-3,manual_correction,false,true,kept:cmr8bafhy003c1ylojn8wyc1f
+cmr9aubv501761ywysyq4t36q,step-3,active,true,false,kept:cmr9bo13o01i11ywyrurstet7
+cmr9aubv501761ywysyq4t36q,step-3,manual_correction,false,true,kept:cmr9bo13o01i11ywyrurstet7
+cmr9b2crc01a71ywyz7plgtw6,step-3,active,true,false,kept:cmr9b2goi01bj1ywy4pcxeo9m
+cmr9b2crc01a71ywyz7plgtw6,step-3,manual_correction,false,true,kept:cmr9b2goi01bj1ywy4pcxeo9m
+cmr9b2e2v01an1ywypbvvymop,step-3,active,true,false,kept:cmr8esol901e41ylo4qv2ya8n
+cmr9b2e2v01an1ywypbvvymop,step-3,manual_correction,false,true,kept:cmr8esol901e41ylo4qv2ya8n
+cmr9bbv6a01ek1ywya1j6frty,step-3,active,true,false,kept:cmr8atuqd000h1ylo325xpopv
+cmr9bbv6a01ek1ywya1j6frty,step-3,manual_correction,false,true,kept:cmr8atuqd000h1ylo325xpopv
+cmr9bnzh201hl1ywy3tccaevx,step-3,active,true,false,kept:cmru8v3ti000n1y0sngq0kuss
+cmr9bnzh201hl1ywy3tccaevx,step-3,manual_correction,false,true,kept:cmru8v3ti000n1y0sngq0kuss
+cmr9buydy01k31ywyghcoj0oi,step-3,active,true,false,kept:cmqxf0n03000y1yf1w4x4rgdl
+cmr9buydy01k31ywyghcoj0oi,step-3,manual_correction,false,true,kept:cmqxf0n03000y1yf1w4x4rgdl
+cmr9c39s101ou1ywytkefnl4z,step-3,active,true,false,kept:cmr9c9s8p01s51ywyeevpga0f
+cmr9c39s101ou1ywytkefnl4z,step-3,manual_correction,false,true,kept:cmr9c9s8p01s51ywyeevpga0f
+cmr9c9p5p01rb1ywyl24ls45v,step-3,active,true,false,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr9c9p5p01rb1ywyl24ls45v,step-3,manual_correction,false,true,kept:cmru2q9b4000t1y7wgq17dlcy
+cmr9c9q7c01rl1ywy0rvs54um,step-3,active,true,false,kept:cmr9c9s8p01s51ywyeevpga0f
+cmr9c9q7c01rl1ywy0rvs54um,step-3,manual_correction,false,true,kept:cmr9c9s8p01s51ywyeevpga0f
+cmr9c9r1k01rt1ywyjelnbjym,step-3,active,true,false,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmr9c9r1k01rt1ywyjelnbjym,step-3,manual_correction,false,true,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmru2q7ol000a1y7ww9jtwcn6,step-3,active,true,false,kept:cmru2qa5300131y7w3v0vdr94
+cmru2q7ol000a1y7ww9jtwcn6,step-3,manual_correction,false,true,kept:cmru2qa5300131y7w3v0vdr94
+cmru2q89w000h1y7wceys3p64,step-3,active,true,false,kept:cmr9bv1hx01l51ywy0z5w9i49
+cmru2q89w000h1y7wceys3p64,step-3,manual_correction,false,true,kept:cmr9bv1hx01l51ywy0z5w9i49
+cmru32lgs003w1y7wll3g9fun,step-3,active,true,false,kept:cmr8ji8uj02nt1ylo5i5q9lhp
+cmru32lgs003w1y7wll3g9fun,step-3,manual_correction,false,true,kept:cmr8ji8uj02nt1ylo5i5q9lhp
+cmru32mft00481y7wuvcacumf,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmru32mft00481y7wuvcacumf,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmru32mzt004f1y7wf5vphs4o,step-3,active,true,false,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmru32mzt004f1y7wf5vphs4o,step-3,manual_correction,false,true,kept:cmr8nmjtg00x71ygiyfurk1sh
+cmru32o9n004v1y7wydjntie2,step-3,active,true,false,kept:cmr8juj9x000p1ygisem270rj
+cmru32o9n004v1y7wydjntie2,step-3,manual_correction,false,true,kept:cmr8juj9x000p1ygisem270rj
+cmru38zru006x1y7w6om65253,step-3,active,true,false,kept:cmru7tn2o001g1yd6flymj1p0
+cmru38zru006x1y7w6om65253,step-3,manual_correction,false,true,kept:cmru7tn2o001g1yd6flymj1p0
+cmru3gayv00a51y7wm02ruti0,step-3,active,true,false,kept:cmru9cwfn006y1y0s2v1zz355
+cmru3gayv00a51y7wm02ruti0,step-3,manual_correction,false,true,kept:cmru9cwfn006y1y0s2v1zz355
+cmru3gbhz00ac1y7w4qrtzfdc,step-3,active,true,false,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmru3gbhz00ac1y7w4qrtzfdc,step-3,manual_correction,false,true,kept:cmr8cnaqf00ny1ylo1p3pxxt4
+cmru7tkpk000m1yd61m6xjphu,step-3,active,true,false,kept:cmr8atw27000u1yloxt4nulc6
+cmru7tkpk000m1yd61m6xjphu,step-3,manual_correction,false,true,kept:cmr8atw27000u1yloxt4nulc6
+cmru7tm4n00141yd61dond6v0,step-3,active,true,false,kept:cmru3n53v00du1y7wnpy3a34d
+cmru7tm4n00141yd61dond6v0,step-3,manual_correction,false,true,kept:cmru3n53v00du1y7wnpy3a34d
+cmru855yc003x1yd6ipnhya2e,step-3,active,true,false,kept:cmr4dza98018y1ykybocd7x5i
+cmru855yc003x1yd6ipnhya2e,step-3,manual_correction,false,true,kept:cmr4dza98018y1ykybocd7x5i
+cmru856o800461yd69puv4d0e,step-3,active,true,false,kept:cmr4d3tl200uh1ykypdrk7x3l
+cmru856o800461yd69puv4d0e,step-3,manual_correction,false,true,kept:cmr4d3tl200uh1ykypdrk7x3l
+cmru8578a004d1yd6mo8os6sc,step-3,active,true,false,kept:cmr8bhgoq006v1ylosu0xhau8
+cmru8578a004d1yd6mo8os6sc,step-3,manual_correction,false,true,kept:cmr8bhgoq006v1ylosu0xhau8
+cmru8huzk009r1yd6z2qvymvi,step-3,active,true,false,kept:cmr98dlhl00hg1ywy2ioud8g8
+cmru8huzk009r1yd6z2qvymvi,step-3,manual_correction,false,true,kept:cmr98dlhl00hg1ywy2ioud8g8
+cmru8hxt800aj1yd6adlxasat,step-3,active,true,false,none kept; every copy keys diuresis at 90/60 mm Hg
+cmru8hxt800aj1yd6adlxasat,step-3,manual_correction,false,true,none kept; every copy keys diuresis at 90/60 mm Hg
+cmru8hzw700b41yd6ak4rl0nf,step-3,active,true,false,kept:cmr8dqdkh01191ylonsextjvo
+cmru8hzw700b41yd6ak4rl0nf,step-3,manual_correction,false,true,kept:cmr8dqdkh01191ylonsextjvo
+cmru8v5im00181y0srz42oz30,step-3,active,true,false,kept:cmru8v3ti000n1y0sngq0kuss
+cmru8v5im00181y0srz42oz30,step-3,manual_correction,false,true,kept:cmru8v3ti000n1y0sngq0kuss
+cmru9cwk0006z1y0s5w9d2qeb,step-3,active,true,false,kept:cmr8pvhd101gw1ygisk3o0y1d
+cmru9cwk0006z1y0s5w9d2qeb,step-3,manual_correction,false,true,kept:cmr8pvhd101gw1ygisk3o0y1d
+cmru9cx5b00741y0s09wt1a90,step-3,active,true,false,kept:cmr8dbaig00uj1yloibrm4gwx
+cmru9cx5b00741y0s09wt1a90,step-3,manual_correction,false,true,kept:cmr8dbaig00uj1yloibrm4gwx
+cmru9cyp2007h1y0smxuf5m5n,step-3,active,true,false,kept:cmr98dn5h00hx1ywyljcko4f2
+cmru9cyp2007h1y0smxuf5m5n,step-3,manual_correction,false,true,kept:cmr98dn5h00hx1ywyljcko4f2
+cmru9d0ar007q1y0s1534q1gz,step-3,active,true,false,kept:cmr4bve7n00e51ykyu48h1bsk
+cmru9d0ar007q1y0s1534q1gz,step-3,manual_correction,false,true,kept:cmr4bve7n00e51ykyu48h1bsk
+cmru9iudu00ar1y0s1ekkp3ud,step-3,active,true,false,kept:cmr97qegj00721ywyzy3pdyjx
+cmru9iudu00ar1y0s1ekkp3ud,step-3,manual_correction,false,true,kept:cmr97qegj00721ywyzy3pdyjx
+cmru9iuv300av1y0siims7yw7,step-3,active,true,false,kept:cmr4bagvn004o1ykyepyxsgbq
+cmru9iuv300av1y0siims7yw7,step-3,manual_correction,false,true,kept:cmr4bagvn004o1ykyepyxsgbq
+cmr86y3pn006k1yw25ko3dtoh,step-1,scenario,"A 32-year-old woman presents to the emergency department with severe abdominal pain and jaundice. Her vital signs are stable, but she has scleral icterus and a palpable gallbladder. Laboratory tests reveal elevated bilirubin levels (total bilirubin 5.2 mg/dL) and alkaline phosphatase (ALP 300 U/L). She has a history of gallstones and recent weight loss.","A 68-year-old man has had painless jaundice, dark urine, and pale stools for 10 days. He has lost 8 kg. He has no fever and no history of gallstones or biliary colic. Examination shows a nontender palpable gallbladder. Total bilirubin is 8.4 mg/dL and alkaline phosphatase is 410 U/L.",https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
+cmr86y3pn006k1yw25ko3dtoh,step-1,options,"{""kind"":""image_based"",""stepLevel"":""step1"",""blueprintSystem"":""biochemistry-genetics"",""blueprintTopic"":""dna-repair-genetics"",""physicianTask"":""professionalism"",""generationMeta"":{""model"":""gpt-4o-mini"",""batchId"":""usmle-gap-usmle-step-1-1783279330907"",""qcScore"":8.1,""slotIndex"":10,""stepLevel"":""step1"",""examNumber"":9103,""generatedAt"":""2026-07-05T19:23:14.839Z"",""pipelineVersion"":""gpt-4o-mini-usmle-full-exam-v1""},""options"":[""Cholecystitis"",""Choledocholithiasis"",""Pancreatitis"",""Hepatitis""],""taskCategory"":""professionalism""}","{""kind"":""image_based"",""stepLevel"":""step1"",""blueprintSystem"":""biochemistry-genetics"",""blueprintTopic"":""dna-repair-genetics"",""physicianTask"":""professionalism"",""generationMeta"":{""model"":""gpt-4o-mini"",""batchId"":""usmle-gap-usmle-step-1-1783279330907"",""qcScore"":8.1,""slotIndex"":10,""stepLevel"":""step1"",""examNumber"":9103,""generatedAt"":""2026-07-05T19:23:14.839Z"",""pipelineVersion"":""gpt-4o-mini-usmle-full-exam-v1""},""options"":[""Acute cholecystitis"",""Choledocholithiasis from chronic stones"",""Pancreatic head carcinoma"",""Acute viral hepatitis""],""taskCategory"":""professionalism""}",https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
+cmr86y3pn006k1yw25ko3dtoh,step-1,correctAnswer,Choledocholithiasis,Pancreatic head carcinoma,https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
+cmr86y3pn006k1yw25ko3dtoh,step-1,explanation,"## Why this answer is correct
+The most likely diagnosis is choledocholithiasis due to bile duct obstruction from gallstones.
+• **Jaundice** indicates elevated bilirubin levels, often due to obstruction.
+• **Palpable gallbladder** suggests a blockage in the bile duct, leading to bile accumulation.
+• **Elevated alkaline phosphatase (ALP)** points to cholestasis, which is consistent with choledocholithiasis.
+**In practice:** In practice, recognizing these signs helps prioritize interventions to relieve the obstruction and prevent complications like pancreatitis or cholangitis.
+## Why the other options are wrong
+
+
+
+**Cholecystitis**
+• Trap: Students often confuse gallbladder inflammation with bile duct obstruction.
+• Why it fails here: Cholecystitis typically presents with localized pain and fever, not jaundice or elevated ALP.
+• Remember: This highlights the importance of differentiating between gallbladder and bile duct issues.
+
+**Pancreatitis**
+• Trap: There is a common belief that abdominal pain alone is sufficient for diagnosing pancreatitis.
+• Why it fails here: While pancreatitis can cause abdominal pain, it does not explain the jaundice or isolated ALP elevation seen in this patient.
+• Remember: Understanding the specific lab findings is crucial for accurate diagnosis.
+
+**Hepatitis**
+• Trap: Students may misinterpret liver function tests, thinking elevated bilirubin alone indicates hepatitis.
+• Why it fails here: Hepatitis usually presents with elevated transaminases (AST/ALT), not just ALP, which is more indicative of biliary obstruction.
+• Remember: This reinforces the need to analyze lab results in the context of clinical symptoms.
+## Key takeaway
+**When you see jaundice and a palpable gallbladder, think choledocholithiasis first.**
+
+**Memory hook:** Remember: Jaundice + Palpable Gallbladder = Choledocholithiasis.","## Why this answer is correct
+Pancreatic head carcinoma is the most likely diagnosis.
+• Painless jaundice, pale stools, dark urine, and a high alkaline phosphatase mean extrahepatic biliary obstruction.
+• A nontender palpable gallbladder with that picture is Courvoisier's sign. Stone obstruction usually leaves a fibrotic gallbladder that does not distend, so a palpable gallbladder points away from gallstones.
+• Weight loss, no fever, and no stone history fit a malignant block distal to the cystic duct, most often a carcinoma in the head of the pancreas.
+**In practice:** Do not call painless jaundice with a palpable gallbladder a duct stone. Image the pancreas and the distal bile duct.
+## Why the other options are wrong
+
+**Acute cholecystitis**
+• Trap: Any gallbladder finding is read as cholecystitis.
+• Why it fails here: Cholecystitis is painful and febrile, and the gallbladder is tender. This jaundice is painless and there is no fever.
+• Remember: Courvoisier's gallbladder is nontender.
+
+**Choledocholithiasis from chronic stones**
+• Trap: Jaundice plus a gallbladder finding is called a common-duct stone.
+• Why it fails here: Courvoisier found that stone obstruction of the duct usually does not leave a distended, palpable gallbladder. This patient also has no history of stones.
+• Remember: A palpable gallbladder in painless jaundice argues against stones.
+
+**Acute viral hepatitis**
+• Trap: Jaundice is read as hepatitis.
+• Why it fails here: Hepatitis does not produce a palpable, distended gallbladder or this extrahepatic obstructive pattern.
+• Remember: Pale stools with a palpable gallbladder are a downstream block.
+## Key takeaway
+**Painless jaundice plus a nontender palpable gallbladder is Courvoisier's sign: think a malignant distal block, not choledocholithiasis.**
+
+**Memory hook:** Palpable gallbladder and painless jaundice = not the stone.
+",https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
+cmr86y3pn006k1yw25ko3dtoh,step-1,references,"[{""label"": ""USMLE Content Outline 2026""}]","[{""label"": ""Cleveland Clinic Journal of Medicine: The Courvoisier sign. A palpable gallbladder in obstructive jaundice is often a noncalculus obstruction, such as pancreatic cancer."", ""url"": ""https://www.ccjm.org/content/ccjom/77/4/265.full.pdf""}, {""label"": ""Radiopaedia: Courvoisier sign. Painless jaundice with an enlarged gallbladder is unlikely to be gallstones."", ""url"": ""https://radiopaedia.org/articles/courvoisier-sign-hepatobiliary""}]",https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
+cmr86y3pn006k1yw25ko3dtoh,step-1,contentHash,57ce765cd990824093eac486a695c5427cbc68a22372ea907f6b37e302cecc1c,30583da1589c260a0b69e3a7880d5ce6bd723b5bf365e1037bb0acf3ba7636df,https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
+cmr86y3pn006k1yw25ko3dtoh,step-1,manual_correction,false,true,https://www.ccjm.org/content/ccjom/77/4/265.full.pdf
