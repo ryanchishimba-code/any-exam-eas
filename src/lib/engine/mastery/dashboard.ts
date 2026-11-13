@@ -12,8 +12,11 @@ import {
   statesWithAttemptedDomains,
   type DomainAttemptTally,
 } from "@/lib/engine/mastery/attempt-progress";
-import { resolveBlueprintCategoryIdForAttempt } from "@/lib/learning/attempt-blueprint-attribution";
 import { prisma } from "@/lib/prisma";
+import {
+  domainTalliesFromAttemptGroups,
+  ngnAttemptClientNeedJoin,
+} from "@/lib/engine/mastery/nclex-ngn-attempt-tally";
 import {
   isTodayEngineEnabled,
   isTodayEngineNaplexEnabled,
@@ -112,19 +115,16 @@ export async function loadNclexMasteryDashboard(userId: string): Promise<{
   });
 }
 
-async function loadFieldAttemptTallies(
-  userId: string,
-  fieldId: "nursing" | "pharmacy"
-): Promise<DomainAttemptTally[]> {
-  const rows = await prisma.$queryRaw<
-    {
-      subjectId: string | null;
-      clientNeeds: string | null;
-      blueprintDomain: string | null;
-      answered: number;
-      correct: number;
-    }[]
-  >`
+type AttemptGroupRow = {
+  subjectId: string | null;
+  clientNeeds: string | null;
+  blueprintDomain: string | null;
+  answered: number;
+  correct: number;
+};
+
+function queryBankAttemptGroups(userId: string, fieldId: "nursing" | "pharmacy") {
+  return prisma.$queryRaw<AttemptGroupRow[]>`
     SELECT
       COALESCE(NULLIF(BTRIM(qa."subjectId"), ''), qbi."subjectId") AS "subjectId",
       COALESCE(NULLIF(BTRIM(qbi."clientNeeds"), ''), '') AS "clientNeeds",
@@ -137,20 +137,48 @@ async function loadFieldAttemptTallies(
       AND qa."fieldId" = ${fieldId}
     GROUP BY 1, 2, 3
   `;
-  const totals = new Map<string, DomainAttemptTally>();
-  for (const row of rows) {
-    const domainId = resolveBlueprintCategoryIdForAttempt(fieldId, {
-      subjectId: row.subjectId,
-      clientNeeds: row.clientNeeds,
-      blueprintDomain: row.blueprintDomain,
-    });
-    if (!domainId) continue;
-    const current = totals.get(domainId) ?? { domainId, answered: 0, correct: 0 };
-    current.answered += Number(row.answered) || 0;
-    current.correct += Number(row.correct) || 0;
-    totals.set(domainId, current);
+}
+
+function queryNursingAttemptGroups(userId: string) {
+  return prisma.$queryRaw<AttemptGroupRow[]>`
+    SELECT
+      COALESCE(NULLIF(BTRIM(qa."subjectId"), ''), qbi."subjectId") AS "subjectId",
+      COALESCE(
+        NULLIF(BTRIM(qbi."clientNeeds"), ''),
+        NULLIF(BTRIM(ngn.client_need), ''),
+        ''
+      ) AS "clientNeeds",
+      COALESCE(NULLIF(BTRIM(qbi."blueprintDomain"), ''), '') AS "blueprintDomain",
+      COUNT(*)::int AS answered,
+      COALESCE(SUM(CASE WHEN qa.correct THEN 1 ELSE 0 END), 0)::int AS correct
+    FROM "QuestionAttempt" qa
+    LEFT JOIN "QuestionBankItem" qbi ON qbi.id = qa."bankItemId"
+    ${ngnAttemptClientNeedJoin("nursing")}
+    WHERE qa."userId" = ${userId}
+      AND qa."fieldId" = ${"nursing"}
+    GROUP BY 1, 2, 3
+  `;
+}
+
+async function loadFieldAttemptTallies(
+  userId: string,
+  fieldId: "nursing" | "pharmacy"
+): Promise<DomainAttemptTally[]> {
+  let rows: AttemptGroupRow[];
+  if (fieldId === "nursing") {
+    try {
+      rows = await queryNursingAttemptGroups(userId);
+    } catch (error) {
+      console.warn(
+        "[mastery] NGN client-need tally failed; counting bank rows only",
+        error instanceof Error ? error.message : error
+      );
+      rows = await queryBankAttemptGroups(userId, fieldId);
+    }
+  } else {
+    rows = await queryBankAttemptGroups(userId, fieldId);
   }
-  return [...totals.values()];
+  return domainTalliesFromAttemptGroups(fieldId, rows);
 }
 
 async function loadNclexAttemptTallies(userId: string): Promise<DomainAttemptTally[]> {

@@ -25,6 +25,12 @@ type CaseStudyPlayerProps = {
   /** Disables Submit case while the session is scoring. */
   busy?: boolean;
   rationaleVisible?: boolean;
+  /**
+   * All-questions player owns Check / Next / the session timer.
+   * The case still renders the chart and the official item.
+   */
+  externalNavigation?: boolean;
+  onResponsesChange?: (responses: Record<string, unknown>) => void;
   /** Internal review only. Students do not see clinical-judgment step names. */
   showStepNames?: boolean;
 };
@@ -41,6 +47,8 @@ export function CaseStudyPlayer({
   busy = false,
   rationaleVisible = false,
   showStepNames = false,
+  externalNavigation = false,
+  onResponsesChange,
 }: CaseStudyPlayerProps) {
   const ordered = sortNgnItemsByCaseStep(items ?? caseDoc.items);
   const [step, setStep] = useState(() => Math.min(Math.max(initialStep, 0), Math.max(ordered.length - 1, 0)));
@@ -133,7 +141,14 @@ export function CaseStudyPlayer({
               item={item}
               seed={`${attemptSeed}:${item.id}`}
               response={responses[item.id]}
-              onChange={(next) => setResponses((current) => ({ ...current, [item.id]: next }))}
+              onChange={(next) =>
+                setResponses((current) => {
+                  const updated = { ...current, [item.id]: next };
+                  onResponsesChange?.(updated);
+                  return updated;
+                })
+              }
+              disabled={externalNavigation && mode === "review"}
               showRationale={mode === "review" && (rationaleVisible || showRationale)}
               sourcesById={sourcesById}
               caseReferences={caseDoc.references}
@@ -150,7 +165,7 @@ export function CaseStudyPlayer({
                 {showRationale ? "Hide rationale" : "Show rationale"}
               </button>
             ) : null}
-            {mode === "exam" && step < ordered.length - 1 ? (
+            {externalNavigation ? null : mode === "exam" && step < ordered.length - 1 ? (
               <button
                 type="button"
                 className={`min-h-11 rounded-full bg-[#0A2540] px-4 text-sm font-medium text-white ${ngnFocus}`}
@@ -159,7 +174,7 @@ export function CaseStudyPlayer({
                 Next
               </button>
             ) : null}
-            {mode === "exam" && step === ordered.length - 1 && onSubmit ? (
+            {externalNavigation ? null : mode === "exam" && step === ordered.length - 1 && onSubmit ? (
               <button
                 type="button"
                 disabled={busy}
@@ -171,10 +186,10 @@ export function CaseStudyPlayer({
                 {busy ? "Scoring…" : "Submit case"}
               </button>
             ) : null}
-            {mode === "exam" && step === ordered.length - 1 && !onSubmit ? (
+            {externalNavigation ? null : mode === "exam" && step === ordered.length - 1 && !onSubmit ? (
               <p className={`text-sm ${ngnMuted}`}>Last question in this case. Earlier questions stay closed.</p>
             ) : null}
-            {mode === "exam" && step > 0 ? (
+            {externalNavigation ? null : mode === "exam" && step > 0 ? (
               <p className={`text-sm ${ngnMuted}`}>You cannot go back.</p>
             ) : null}
           </div>

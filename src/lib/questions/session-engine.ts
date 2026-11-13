@@ -116,6 +116,35 @@ export function flagUnansweredQuestion(
   };
 }
 
+/** Record a grade the scorer already decided. Used for official NGN partial credit. */
+export function recordSessionGrade(
+  session: StudySessionState,
+  questionId: string,
+  grade: {
+    selected: string[];
+    correct: boolean | null;
+    revealed: boolean;
+    durationMs?: number;
+    unanswered?: boolean;
+  }
+): StudySessionState {
+  return {
+    ...session,
+    answers: {
+      ...session.answers,
+      [questionId]: {
+        selected: grade.selected,
+        revealed: grade.revealed,
+        correct: grade.correct,
+        unanswered: grade.unanswered ?? false,
+        durationMs: grade.durationMs,
+        confidence: session.answers[questionId]?.confidence,
+      },
+    },
+    updatedAt: new Date().toISOString(),
+  };
+}
+
 export function advanceSession(
   session: StudySessionState,
   direction: 1 | -1 = 1

@@ -44,6 +44,8 @@ jobs:
       SMOKE_SKIP_SESSION: nclex
       SMOKE_SUBJECT_NAPLEX: pharmaceutics
       SMOKE_SUBJECT_FNP: assess
+      # Off in production. This job's server reads it at request time.
+      NCLEX_ALL_NGN_MIX: "true"
       PLAYWRIGHT_PORT: "3100"
       CI: "true"
     steps:

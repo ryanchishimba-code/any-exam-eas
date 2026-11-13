@@ -875,6 +875,44 @@ export async function GET(req: Request) {
     }
   }
 
+  if (prepared.length === limit) {
+    const mixFlag = (
+      process.env.NEXT_PUBLIC_NCLEX_ALL_NGN_MIX ??
+      process.env.NCLEX_ALL_NGN_MIX ??
+      ""
+    )
+      .trim()
+      .toLowerCase();
+    if (
+      (mixFlag === "true" || mixFlag === "1") &&
+      fieldId === "nursing" &&
+      questionBank &&
+      !timedExam &&
+      !formatBucket &&
+      !weakArea &&
+      !nclexPresetConfig &&
+      !difficultyTier &&
+      !blueprintTopics?.length
+    ) {
+      const { maybeMixNclexAllNgn } = await import("@/lib/assessment/nclex-all-ngn-mix");
+      const mixedWithNgn = await maybeMixNclexAllNgn({
+        fieldId,
+        questionBank,
+        timedExam,
+        format: formatBucket,
+        weakArea,
+        topicNarrowed: false,
+        subjectId: mixed ? null : subjectId,
+        blueprintAreaId: blueprintAreaId || null,
+        userId,
+        field,
+        prepared,
+        limit,
+      });
+      if (mixedWithNgn) prepared = mixedWithNgn;
+    }
+  }
+
   const delivered = sealStudentFacingIds(
     studyQuestionsToExamQuestions(prepared),
     prepared.map((item) => item.bankItemId)

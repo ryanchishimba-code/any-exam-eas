@@ -175,6 +175,25 @@ test.describe("signed-in student", () => {
               timeout: 120_000,
             });
             await assertHealthy(page, `${board.slug} practice session`);
+
+            if (board.slug === "nclex") {
+              // NCLEX_ALL_NGN_MIX is on for this job. A 25-item All-questions
+              // session mixes published NGN when the catalog has it, and stays
+              // a normal bank session when it does not.
+              await gotoApp(page, "/dashboard");
+              await assertHealthy(page, "nclex dashboard before mixed session");
+              const mixedPath =
+                `/question-bank?field=${encodeURIComponent(board.fieldId)}` +
+                `&mode=bank&subjectId=${encodeURIComponent(board.subjectId)}` +
+                `&count=25&style=standard&format=all&autostart=1`;
+              await gotoApp(page, mixedPath);
+              await expect(page.getByRole("button", { name: /end activity/i }).first()).toBeVisible({
+                timeout: 120_000,
+              });
+              await assertHealthy(page, "nclex mixed 25 all-questions");
+              await gotoApp(page, "/dashboard");
+              await assertHealthy(page, "nclex dashboard after mixed session");
+            }
           }
 
           await gotoApp(page, `/full-exam/${board.slug}`);
