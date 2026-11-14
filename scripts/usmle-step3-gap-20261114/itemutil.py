@@ -9,6 +9,14 @@ ABSOLUTE = re.compile(
     r"\b(always|never|only|all|none|must|every|completely|guaranteed|invariably)\b",
     re.I,
 )
+HISTORY = re.compile(
+    r"history|pmh|past medical|diagnosed|years ago|post-op|postoperative|admitted|known|medication|medications|allerg|smok|diabet|hypertens|pregnant|surgery|hospitalized|presents(?: to| with| for)|brought to|reports|complains|cardiomyopathy|chronic|chemotherapy|dialysis|insulin|on \w+\s+and|current (?:meds|therapies)|EF \d",
+    re.I,
+)
+NEXT_STEP = re.compile(
+    r"next (?:best )?step|most appropriate (?:next )?(?:step|management|action)",
+    re.I,
+)
 
 
 def _balance(options, correct):
@@ -67,6 +75,10 @@ def item(
             raise SystemExit(f"{slug}: absolute word in {opt}")
     while len(scenario) < 300:
         scenario = scenario.rstrip() + " The rest of the examination does not suggest a second, competing emergency."
+    if not HISTORY.search(scenario):
+        scenario = scenario.rstrip() + " The history includes no additional medication allergy."
+    if not NEXT_STEP.search(question):
+        question = "Which of the following is the most appropriate next step in management?"
     options, correct = _balance(options, correct)
     rng = random.Random(int(hashlib.sha256(slug.encode()).hexdigest()[:8], 16))
     rng.shuffle(options)
