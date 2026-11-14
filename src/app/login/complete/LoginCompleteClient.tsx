@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
+import { syncCrosswordProgress } from "@/lib/crossword/sync-progress";
 
 export function LoginCompleteClient() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export function LoginCompleteClient() {
 
     started.current = true;
     void (async () => {
+      await syncCrosswordProgress();
       const result = await completeLoginFlow({
         router,
         callbackUrl,

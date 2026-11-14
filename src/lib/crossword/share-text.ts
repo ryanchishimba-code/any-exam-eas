@@ -37,9 +37,3 @@ export function challengeText(input: {
 }): string {
   return `Can you solve the ${input.boardLabel} daily crossword for ${input.dateLabel}? Same puzzle, no spoilers.\n${input.challengeUrl}`;
 }
-
-/** Labeled preview only. Not a live ranking. */
-export function demoPercentile(elapsedMs: number): number {
-  const seconds = elapsedMs / 1000;
-  return Math.max(8, Math.min(97, Math.round(96 - (seconds - 70) * 0.18)));
-}

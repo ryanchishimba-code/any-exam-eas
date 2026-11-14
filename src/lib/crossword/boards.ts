@@ -1,3 +1,4 @@
+import { landingTrialHrefForExam } from "@/lib/landing/trial-href";
 import { freePracticeHref } from "@/lib/marketing/free-practice/paths";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -17,6 +18,10 @@ export const CROSSWORD_PRACTICE_NOTE = "Practice, not a promise you'll pass.";
 type BoardProfile = {
   slug: CrosswordBoard;
   shortName: string;
+  /** Title-case name for metadata, such as Pharmacy. */
+  titleName: string;
+  /** Spelled-out name for sentences, such as pharmacy boards. */
+  spokenName: string;
   examName: string;
   focus: string;
   lede: string;
@@ -27,6 +32,8 @@ const PROFILES: Record<CrosswordBoard, BoardProfile> = {
   nclex: {
     slug: "nclex",
     shortName: "NCLEX",
+    titleName: "Nursing",
+    spokenName: "nursing boards",
     examName: "NCLEX-RN",
     focus: "High-yield clues on drugs, labs, isolation, and nursing priorities.",
     lede: "Drugs, labs, isolation, and the priorities nurses are tested on.",
@@ -39,6 +46,8 @@ const PROFILES: Record<CrosswordBoard, BoardProfile> = {
   usmle: {
     slug: "usmle",
     shortName: "USMLE",
+    titleName: "Medical",
+    spokenName: "medical boards",
     examName: "USMLE",
     focus: "High-yield clues on mechanisms, classic findings, and pathophysiology.",
     lede: "Mechanisms, microbes, and the classic findings Step exams repeat.",
@@ -51,6 +60,8 @@ const PROFILES: Record<CrosswordBoard, BoardProfile> = {
   naplex: {
     slug: "naplex",
     shortName: "NAPLEX",
+    titleName: "Pharmacy",
+    spokenName: "pharmacy boards",
     examName: "NAPLEX",
     focus: "High-yield clues on drugs, interactions, monitoring, and counseling.",
     lede: "Drug therapy, interactions, monitoring, and the counseling points pharmacists use.",
@@ -63,6 +74,8 @@ const PROFILES: Record<CrosswordBoard, BoardProfile> = {
   pance: {
     slug: "pance",
     shortName: "PANCE",
+    titleName: "Physician Assistant",
+    spokenName: "physician assistant boards",
     examName: "PANCE",
     focus: "High-yield clues on classic findings, diagnoses, and first-line care.",
     lede: "Classic presentations and first-line choices across the PANCE blueprint.",
@@ -75,6 +88,8 @@ const PROFILES: Record<CrosswordBoard, BoardProfile> = {
   "aanp-fnp": {
     slug: "aanp-fnp",
     shortName: "AANP FNP",
+    titleName: "Nurse Practitioner",
+    spokenName: "nurse practitioner",
     examName: "AANP FNP",
     focus: "High-yield primary care clues on common conditions and prevention.",
     lede: "Primary care across the lifespan: common diagnoses, prevention, and first-line plans.",
@@ -87,6 +102,8 @@ const PROFILES: Record<CrosswordBoard, BoardProfile> = {
   "npte-pt": {
     slug: "npte-pt",
     shortName: "NPTE-PT",
+    titleName: "Physical Therapy",
+    spokenName: "physical therapy boards",
     examName: "NPTE-PT",
     focus: "High-yield clues on anatomy, special tests, gait, and rehab.",
     lede: "Anatomy, special tests, gait, and the rehab decisions the NPTE-PT emphasizes.",
@@ -113,6 +130,11 @@ export function quizHref(board: CrosswordBoard): string {
 export function signupHref(board: CrosswordBoard): string {
   const slug = encodeURIComponent(board);
   return `/signup?exam=${slug}&board=${slug}`;
+}
+
+/** Same trial signup the nav uses, with this board kept on the URL. */
+export function trialHref(board: CrosswordBoard): string {
+  return landingTrialHrefForExam(board);
 }
 
 export function boardHomeHref(board: CrosswordBoard): string {

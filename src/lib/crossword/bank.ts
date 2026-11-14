@@ -3,7 +3,8 @@
  * client component — the letters live here, not in the page HTML for today.
  */
 
-import { boardProfile, isCrosswordBoard, quizHref, signupHref } from "@/lib/crossword/boards";
+import { boardProfile, isCrosswordBoard, quizHref, signupHref, trialHref } from "@/lib/crossword/boards";
+import { formatTrialLabel } from "@/lib/site";
 import {
   crosswordDatedPath,
   dayIndexFromIso,
@@ -72,7 +73,10 @@ export function toPublicPuzzle(board: ExamSlug, dateIso: string, now = new Date(
     shareUrl: `${getSiteUrl()}${crosswordDatedPath(board, dateIso)}`,
     quizHref: quizHref(board),
     signupHref: signupHref(board),
+    trialHref: trialHref(board),
+    trialLabel: `Start a ${formatTrialLabel()}`,
     boardLabel: profile.shortName,
+    spokenName: profile.spokenName,
     examName: profile.examName,
     archive: dateIso !== todayIsoCentral(now),
   };

@@ -69,9 +69,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
       ...recentArchiveDates(30).map((date) => ({
         url: `${base}${crosswordDatedPath(board, date)}`,
-        lastModified: now,
+        lastModified: date === today ? now : new Date(`${date}T12:00:00.000Z`),
         changeFrequency: "daily" as const,
-        priority: date === today ? 0.8 : 0.6,
+        priority: date === today ? 0.86 : 0.64,
       })),
     ]),
   ];
