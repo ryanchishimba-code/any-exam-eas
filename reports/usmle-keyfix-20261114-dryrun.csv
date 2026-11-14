@@ -1,0 +1,7 @@
+id,step,field,before,after,source URL
+cmqxdeovw00a51ymasqxrjtgu,step-2,scenario,blood pressure 180/110 mm Hg,blood pressure 210/130 mm Hg; retinal or kidney injury unchanged,https://pmc.ncbi.nlm.nih.gov/articles/PMC9075423/
+cmqxdepsq00ae1ymayvonhif4,step-2,scenario,blood pressure 180/110 mm Hg,blood pressure 210/130 mm Hg; retinal or kidney injury unchanged,https://pmc.ncbi.nlm.nih.gov/articles/PMC9075423/
+cmqxdeqp600an1ymata96p5ym,step-2,scenario,blood pressure 180/110 mm Hg,blood pressure 210/130 mm Hg; retinal or kidney injury unchanged,https://pmc.ncbi.nlm.nih.gov/articles/PMC9075423/
+cmrrtw84q009o1y8wf8l3trr9,step-1,scenario,blood pressure 180/110 mm Hg,blood pressure 210/130 mm Hg; retinal or kidney injury unchanged,https://pmc.ncbi.nlm.nih.gov/articles/PMC9075423/
+cmqxf0knf00051yf16gxaj63n,step-3,question,Which of the following is contraindicated in this patient? | Administering high-flow oxygen therapy,What is the appropriate oxygen saturation target? | Target oxygen saturation 88–92%,https://pmc.ncbi.nlm.nih.gov/articles/PMC5531304/
+cmr4djbw3011o1ykyaabvjr4l,step-3,scenario,glucose 350 mg/dL; no osmolality,glucose 720 mg/dL; effective osmolality 336 mOsm/kg; ketones negative,
