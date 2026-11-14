@@ -5,7 +5,8 @@ import { analyticsHref, practiceTopicHref } from "@/lib/edtech/practice-links-co
 import { studyFeedForExam } from "@/lib/study-feed/catalog";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import { weakTopicMissRate, type WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { listedWeakTopics, weakTopicMissLabel, type WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicSessionHref } from "@/lib/learning/weak-area-practice-href";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +17,7 @@ export function DashboardWeakTopics({
   examSlug: ExamSlug;
   weakTopics: WeakTopicRow[];
 }) {
-  const facing = filterStudentFacingWeakTopics(weakTopics).slice(0, 5);
+  const facing = listedWeakTopics(filterStudentFacingWeakTopics(weakTopics)).slice(0, 5);
   if (facing.length === 0) return null;
 
   return (
@@ -60,10 +61,12 @@ export function DashboardWeakTopics({
             <li key={topic.id} className="px-4 py-3.5">
               <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
-                  <p className="flex items-center gap-2 text-[13px] font-semibold text-[var(--color-ink)]">
-                    <span className="truncate">{topic.name}</span>
+                  <p className="flex flex-wrap items-center gap-2 text-[13px] font-semibold text-[var(--color-ink)]">
+                    <span className="break-words" title={topic.name}>
+                      {topic.name}
+                    </span>
                     <span className="shrink-0 tabular-nums text-[var(--color-ink-muted)]">
-                      {weakTopicMissRate(topic.masteryScore)}% miss rate
+                      {weakTopicMissLabel(topic)}
                     </span>
                   </p>
                   <p className={cn(dbUi.sectionHint, "mt-0.5")}>
@@ -72,13 +75,24 @@ export function DashboardWeakTopics({
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  <Link
-                    href={links?.practiceHref ?? practiceTopicHref(examSlug, slug, 10)}
-                    className={dbUi.ghostBtn}
-                  >
-                    Practice
-                    <ArrowRight className="h-3 w-3" aria-hidden />
-                  </Link>
+                  {(() => {
+                    const href = weakTopicSessionHref({
+                      examSlug,
+                      topicId: topic.id,
+                      fieldId: topic.fieldId,
+                      fallbackHref:
+                        examSlug === "usmle"
+                          ? null
+                          : (links?.practiceHref ?? practiceTopicHref(examSlug, slug, 10)),
+                    });
+                    if (!href) return null;
+                    return (
+                      <Link href={href} className={dbUi.ghostBtn}>
+                        Practice
+                        <ArrowRight className="h-3 w-3" aria-hidden />
+                      </Link>
+                    );
+                  })()}
                   {links?.anatomyStructures?.length ? (
                     <RelatedAnatomyLinks
                       examSlug={examSlug}

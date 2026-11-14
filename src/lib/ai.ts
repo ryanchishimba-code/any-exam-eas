@@ -27,6 +27,8 @@ export type ExamQuestion = {
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   references?: string[];
+  /** Title and link kept together. `references` stays the title list. */
+  citations?: import("@/lib/questions/study-citations").StudyCitation[];
   /** Citation shown on the item when the bank has one. Not a pipeline tag. */
   sourceLabel?: string;
   sourceUrl?: string;

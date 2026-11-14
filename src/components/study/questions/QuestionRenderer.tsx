@@ -15,14 +15,12 @@ import {
 } from "@/lib/questions/student-display-text";
 import { parseRationaleForDisplay, type ParsedRationaleDisplay } from "@/lib/engine/rationale/parse-rationale-display";
 import { alignRationaleToDisplayedOptions } from "@/lib/study/displayed-option-labels";
-import {
-  shouldCollapseRationale,
-  uniqueRationaleParts,
-  visibleRationaleRemainder,
-} from "@/lib/study/rationale-disclosure";
-import { CollapsibleRationale, rationaleLeadForQuestion } from "./CollapsibleRationale";
+import { visibleRationaleRemainder } from "@/lib/study/rationale-disclosure";
+import { rationaleLeadForQuestion } from "./CollapsibleRationale";
 import { StudentRationaleText } from "./StudentRationaleText";
 import { CollapsibleSources } from "./CollapsibleSources";
+import { RationaleSources } from "./RationaleSources";
+import { visibleStudyCitations } from "@/lib/questions/study-citations";
 import { QuestionIssueFooter } from "@/components/study/QuestionIssueFooter";
 import { buildReportContext } from "@/components/study/ReportQuestionDialog";
 import { InlineBold } from "@/components/ngn/InlineBold";
@@ -65,7 +63,6 @@ import { ItemProvenanceNote } from "./ItemProvenanceNote";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import { useUserAccess } from "@/lib/client/use-user-access";
-import { analytics } from "@/lib/analytics";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 
 const ExpertRationalePanel = dynamic(
@@ -351,26 +348,6 @@ export function storedSourceLines(references: string[] | undefined): string[] {
   return (references ?? []).map((row) => row.trim()).filter((row) => row.length > 0);
 }
 
-function visibleRationaleParts(question: StudyQuestion, parsed: ParsedRationaleDisplay): string[] {
-  const distractors = question.distractorRationale
-    ? Object.values(question.distractorRationale)
-    : [];
-  const wrong = (parsed.wrongOptions ?? []).map((entry) => `${entry.option} ${entry.body}`);
-  return uniqueRationaleParts(question.explanation, [
-    question.clinicalReasoning,
-    ...distractors,
-    ...(question.solutionSteps ?? []),
-    ...(question.references ?? []),
-    ...(parsed.conceptBullets ?? []),
-    ...wrong,
-    parsed.clinicalContext,
-    ...(parsed.stepByStepReasoning ?? []),
-    parsed.clinicalPearl,
-    ...(parsed.highYieldFacts ?? []),
-    parsed.keyTakeaway,
-  ]);
-}
-
 function ExplanationDetail({
   question,
   parsed,
@@ -467,15 +444,7 @@ function ExplanationDetail({
         </>
       )}
 
-      {storedSourceLines(question.references).length > 0 ? (
-        <CollapsibleSources count={storedSourceLines(question.references).length} resetKey={question.id}>
-          <ul className="list-inside list-disc space-y-1 text-[13px] leading-relaxed tracking-[-0.01em] text-[var(--color-ink-muted)]">
-            {storedSourceLines(question.references).map((reference) => (
-              <li key={reference}>{reference}</li>
-            ))}
-          </ul>
-        </CollapsibleSources>
-      ) : null}
+      <RationaleSources citations={visibleStudyCitations(question)} />
 
       {compact || examSlug === "aanp-fnp" ? null : (
         <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
@@ -523,7 +492,6 @@ export function ExplanationPanel({
 
   const parsed = parseRationaleForDisplay(explanation, question.expertRationale);
   const hasExpert = Boolean(question.expertRationale || parsed.isExpert);
-  const parts = visibleRationaleParts(labeledQuestion, parsed);
   const whyCorrectLead = [parsed.whyCorrectHeadline, ...(parsed.conceptBullets ?? [])]
     .map((part) => part?.trim())
     .filter((part): part is string => Boolean(part))
@@ -549,14 +517,14 @@ export function ExplanationPanel({
         Object.keys(question.distractorRationale).length > 0
     ) || (parsed.wrongOptions?.length ?? 0) > 0;
 
+  const citations = visibleStudyCitations(labeledQuestion);
   const hasDeepContent =
     Boolean(question.clinicalReasoning && !parsed.isStructured) ||
     hasDistractors ||
     Boolean(question.solutionSteps?.length && !parsed.keyTakeaway) ||
-    storedSourceLines(question.references).length > 0 ||
+    citations.length > 0 ||
     hasExpert;
-
-  const collapsible = whyCorrectLead ? hasDeepContent : shouldCollapseRationale(parts);
+  const showLead = Boolean(lead) && !parsed.isStructured && !question.expertRationale;
 
   const detail = (
     <ExplanationDetail
@@ -565,8 +533,8 @@ export function ExplanationPanel({
       examSlug={examSlug}
       incorrect={incorrect}
       hasExpert={hasExpert}
-      leadToOmit={undefined}
-      compact={!collapsible}
+      leadToOmit={showLead ? lead : undefined}
+      compact={false}
     />
   );
 
@@ -587,22 +555,7 @@ export function ExplanationPanel({
         </div>
 
         <div className="mt-3.5">
-          {collapsible && !conciseOnly ? (
-            <CollapsibleRationale
-              resetKey={question.id}
-              lead={lead}
-              onExpandedChange={(open) => {
-                if (open) {
-                  analytics.ctaClicked(
-                    hasExpert ? "rationale_open_expert" : "rationale_open",
-                    "explanation_panel"
-                  );
-                }
-              }}
-            >
-              {detail}
-            </CollapsibleRationale>
-          ) : collapsible && conciseOnly ? (
+          {conciseOnly ? (
             <>
               <p className="text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed">
                 {lead}
@@ -613,12 +566,15 @@ export function ExplanationPanel({
                 </p>
               ) : null}
             </>
-          ) : parts.length === 0 ? (
-            <p className="text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed">
-              {lead}
-            </p>
           ) : (
-            detail
+            <>
+              {showLead ? (
+                <p className="text-[16px] font-medium leading-snug tracking-[-0.02em] text-[var(--color-ink)] sm:text-[17px] sm:leading-relaxed">
+                  {lead}
+                </p>
+              ) : null}
+              <div className={showLead ? "mt-4" : undefined}>{detail}</div>
+            </>
           )}
         </div>
       </div>

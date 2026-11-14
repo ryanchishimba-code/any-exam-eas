@@ -6,7 +6,6 @@ import {
   RationaleDisclosureText,
 } from "@/components/study/questions/CollapsibleRationale";
 import { ExplanationPanel } from "@/components/study/questions/QuestionRenderer";
-import { sourcesToggleLabel } from "@/components/study/questions/CollapsibleSources";
 import { sampleNclexQuestion } from "../../fixtures/questions";
 
 const access = vi.hoisted(() => ({ role: null as string | null }));
@@ -69,15 +68,12 @@ describe("CollapsibleRationale", () => {
     expect(screen.queryByRole("button", { name: "Show more" })).not.toBeInTheDocument();
   });
 
-  it("collapses a long plain rationale behind Show more", async () => {
-    const user = userEvent.setup();
+  it("shows a long plain rationale in full", () => {
     render(<RationaleDisclosureText text={longExplanation} resetKey="q1" />);
 
-    expect(screen.getByText("Airway comes before any other action.")).toBeInTheDocument();
-    expect(screen.queryByText(/Later steps include documentation/)).not.toBeInTheDocument();
-
-    await user.click(screen.getByRole("button", { name: "Show more" }));
+    expect(screen.getByText(/Airway comes before any other action/)).toBeInTheDocument();
     expect(screen.getByText(/Later steps include documentation/)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Show more" })).not.toBeInTheDocument();
   });
 });
 
@@ -91,9 +87,8 @@ describe("ExplanationPanel", () => {
     expect(screen.queryByRole("button", { name: "View explanation" })).not.toBeInTheDocument();
   });
 
-  it("keeps the principle visible and hides why-wrong until Show more", async () => {
+  it("shows the full rationale and source titles without Show more", () => {
     access.role = null;
-    const user = userEvent.setup();
     const question = {
       ...sampleNclexQuestion,
       explanation: longExplanation,
@@ -108,6 +103,7 @@ describe("ExplanationPanel", () => {
         "Call the physician": "Calling waits until the immediate threat to breathing is handled.",
       },
       references: ["Open RN — priority setting"],
+      citations: [{ title: "Open RN — priority setting", url: "https://example.com/priority" }],
     };
 
     const { rerender } = render(
@@ -115,54 +111,46 @@ describe("ExplanationPanel", () => {
     );
 
     expect(screen.getByText("Airway before paperwork.")).toBeInTheDocument();
-    expect(screen.queryByText(/Charting is not the first action/)).not.toBeInTheDocument();
-    expect(screen.queryByText("Open RN — priority setting")).not.toBeInTheDocument();
-
-    await user.click(screen.getByRole("button", { name: "Show more" }));
-
+    expect(screen.getByText(/Later steps include documentation/)).toBeInTheDocument();
     expect(screen.getByText(/Charting is not the first action/)).toBeInTheDocument();
     expect(screen.getByText(/Why each distractor fails/)).toBeInTheDocument();
-    const sources = screen.getByRole("button", { name: sourcesToggleLabel(1) });
-    expect(sources).toHaveAttribute("aria-expanded", "false");
-    expect(screen.queryByText("Open RN — priority setting")).not.toBeInTheDocument();
-
-    await user.click(sources);
-    expect(sources).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText("Open RN — priority setting")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Show more" })).not.toBeInTheDocument();
+    const source = screen.getByRole("link", { name: /Open RN — priority setting/ });
+    expect(source).toHaveAttribute("href", "https://example.com/priority");
+    expect(source).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("region", { name: "Sources" })).toBeInTheDocument();
 
     rerender(
       <ExplanationPanel
-        question={{ ...question, id: "next-item" }}
+        question={{ ...question, id: "next-item", references: ["Next source"], citations: [{ title: "Next source" }] }}
         field="nursing"
         incorrect
       />
     );
-    expect(screen.getByRole("button", { name: "Show more" })).toHaveAttribute("aria-expanded", "false");
-    expect(screen.queryByText(/Charting is not the first action/)).not.toBeInTheDocument();
+    expect(screen.getByText("Next source")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /Open RN — priority setting/ })).not.toBeInTheDocument();
   });
 
-  it("keeps citations collapsed under a short rationale", async () => {
+  it("shows citation titles under a short rationale", () => {
     access.role = null;
-    const user = userEvent.setup();
     render(
       <ExplanationPanel
         question={{
           ...sampleNclexQuestion,
           references: ["ADA Standards of Care", "FDA labeling"],
+          citations: [
+            { title: "ADA Standards of Care", url: "https://diabetesjournals.org/care" },
+            { title: "FDA labeling" },
+          ],
         }}
         field="nursing"
       />
     );
 
     expect(screen.getByText("ABCs take priority in acute assessment.")).toBeInTheDocument();
-    const sources = screen.getByRole("button", { name: sourcesToggleLabel(2) });
-    expect(sources).toHaveAttribute("aria-expanded", "false");
-    expect(screen.queryByText("ADA Standards of Care")).not.toBeInTheDocument();
-
-    sources.focus();
-    await user.keyboard(" ");
-    expect(sources).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText("ADA Standards of Care")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Show more" })).not.toBeInTheDocument();
+    const ada = screen.getByRole("link", { name: /ADA Standards of Care/ });
+    expect(ada).toHaveAttribute("href", "https://diabetesjournals.org/care");
     expect(screen.getByText("FDA labeling")).toBeInTheDocument();
   });
 

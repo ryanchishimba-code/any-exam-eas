@@ -4,14 +4,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BarChart3, Layers } from "lucide-react";
 import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
-import { weakTopicMissRate, type StudentDashboardData } from "@/lib/learning/student-dashboard";
+import {
+  listedWeakTopics,
+  trendAxisDay,
+  weakTopicMissLabel,
+  weakTopicMissed,
+  type StudentDashboardData,
+} from "@/lib/learning/student-dashboard";
 import type { ExamDayReadiness } from "@/lib/learning/exam-day-plan";
 import { PRACTICE_MEASURE_DISCLAIMER } from "@/lib/learning/practice-measure";
 import {
   practiceEstimateFromHistory,
   sharedPracticeRead,
 } from "@/lib/learning/practice-estimate";
-import { weakAreaPracticeHref } from "@/lib/learning/weak-area-practice-href";
+import { weakTopicSessionHref } from "@/lib/learning/weak-area-practice-href";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { expandReviewFieldIds } from "@/lib/learning/review-queue-launch";
@@ -148,8 +154,10 @@ export function StudentAnalyticsDashboard({
 
   // The API already scopes the payload to this exam; keep a defensive client
   // filter so nothing from another exam can ever leak into the view.
-  const weakTopics = filterStudentFacingWeakTopics(
-    dashboard.weakTopics.filter((t) => fieldIds.includes(t.fieldId))
+  const weakTopics = listedWeakTopics(
+    filterStudentFacingWeakTopics(
+      dashboard.weakTopics.filter((t) => fieldIds.includes(t.fieldId))
+    )
   );
 
   const topicName = (value: string) => value.trim().toLowerCase().replace(/[_-]+/g, " ");
@@ -297,20 +305,32 @@ export function StudentAnalyticsDashboard({
               No attempts in the last 14 days. Older sessions stay in your totals above.
             </p>
           ) : null}
-          <div className="mt-4 flex h-40 items-end gap-1">
-            {dashboard.accuracyTrend.map((p) => (
-              <div key={p.date} className="flex flex-1 flex-col items-center gap-1">
-                <div
-                  className="w-full rounded-t bg-[var(--color-accent)]/70 transition-all"
-                  style={{
-                    height: p.accuracy != null ? `${Math.max(8, p.accuracy)}%` : "4px",
-                    opacity: p.attempts ? 1 : 0.25,
-                  }}
-                  title={p.accuracy != null ? `${p.accuracy}%` : "No data"}
-                />
-                <span className="text-[9px] text-[var(--color-ink-muted)]">{p.label}</span>
-              </div>
-            ))}
+          <div className="mt-4 flex h-40 items-end gap-1" role="img" aria-label="Accuracy for each of the last 14 days">
+            {dashboard.accuracyTrend.map((p) => {
+              const hasAnswers = p.attempts > 0 && p.accuracy != null;
+              const pct = hasAnswers ? Math.max(0, Math.min(100, p.accuracy ?? 0)) : 0;
+              return (
+                <div key={p.date} className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-1">
+                  <span className="text-[10px] font-semibold tabular-nums leading-none text-[var(--color-ink)]">
+                    {hasAnswers ? `${pct}%` : ""}
+                  </span>
+                  <div className="flex w-full flex-1 items-end">
+                    <div
+                      className="w-full rounded-t bg-[var(--color-accent)]/70"
+                      style={{
+                        height: hasAnswers ? `${pct}%` : "0%",
+                        minHeight: hasAnswers ? 2 : 0,
+                        opacity: hasAnswers ? 1 : 0.2,
+                      }}
+                      title={hasAnswers ? `${p.label}: ${pct}% from ${p.attempts} attempts` : `${p.label}: no attempts`}
+                    />
+                  </div>
+                  <span className="text-[10px] leading-none text-[var(--color-ink-muted)]" title={p.label}>
+                    {trendAxisDay(p.date)}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -360,14 +380,16 @@ export function StudentAnalyticsDashboard({
                         subjectCounts={servedSubjectCounts}
                       />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
-                        {weakTopicMissRate(t.masteryScore)}% miss rate
+                        {weakTopicMissLabel(t)}
                       </span>
                     </span>
                   </div>
                   <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]">
                     <div
                       className="h-full rounded-full bg-[var(--color-accent)]"
-                      style={{ width: `${weakTopicMissRate(t.masteryScore)}%` }}
+                      style={{
+                        width: `${Math.round(((weakTopicMissed(t)?.missed ?? 0) / Math.max(t.attempts, 1)) * 100)}%`,
+                      }}
                     />
                   </div>
                 </li>
@@ -448,17 +470,16 @@ function WeakAreaPracticeLink({
   subjectCounts?: Record<string, number> | null;
 }) {
   const examSlug = examSlugFromFieldId(fieldId);
-  if (!examSlug) return <span className="font-medium">{name}</span>;
-  const href = weakAreaPracticeHref({
+  if (!examSlug) return <span className="break-words font-medium">{name}</span>;
+  const href = weakTopicSessionHref({
     examSlug,
-    topicKey: conceptKey,
+    topicId: conceptKey,
     fieldId,
-    count: 25,
     subjectCounts,
   });
-  if (!href) return <span className="font-medium">{name}</span>;
+  if (!href) return <span className="break-words font-medium">{name}</span>;
   return (
-    <Link href={href} className="font-medium text-[var(--color-ink)] underline-offset-2 hover:underline">
+    <Link href={href} className="break-words font-medium text-[var(--color-ink)] underline-offset-2 hover:underline">
       {name}
     </Link>
   );
@@ -476,11 +497,10 @@ function WeakTopicFixLink({
 }) {
   const examSlug = examSlugFromFieldId(fieldId);
   if (!examSlug) return null;
-  const href = weakAreaPracticeHref({
+  const href = weakTopicSessionHref({
     examSlug,
-    topicKey: conceptKey,
+    topicId: conceptKey,
     fieldId,
-    count: 5,
     subjectCounts,
   });
   if (!href) return null;

@@ -1,6 +1,6 @@
 import { canonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { studentFacingExamName } from "@/lib/edtech/exams";
 import { getLearningProfileSnapshot } from "@/lib/learning/profile-service";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { boardStudyCountsFromSources } from "@/lib/learning/board-study-counts";
@@ -41,9 +41,9 @@ export async function loadAnalyticsSnapshot(
   userId: string,
   examSlug: ExamSlug
 ): Promise<AnalyticsSnapshot> {
-  const examName = EXAM_CATALOG[examSlug].shortName;
   const metadata = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const fieldId = canonicalPracticeFieldId(examSlug, metadata?.usmleFieldId);
+  const examName = studentFacingExamName(examSlug, fieldId);
 
   const [dashboard, profile, roadmap, inventory, activeInventory, servedBank, servedSubjectCounts] =
     await Promise.all([

@@ -1,6 +1,11 @@
 import type { ExamDefinition, ExamSlug } from "@/types/edtech";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
-import { isUsmleFieldId, USMLE_COMBINED_TARGET, USMLE_STEPS } from "@/lib/exam-prep/usmle/steps";
+import {
+  isUsmleFieldId,
+  USMLE_COMBINED_TARGET,
+  USMLE_STEPS,
+  usmleStepDefinition,
+} from "@/lib/exam-prep/usmle/steps";
 
 /** Static reference for supported exams (mirrors `exams` DB table). */
 export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
@@ -95,6 +100,18 @@ export function examSlugFromFieldId(fieldId: string): ExamSlug | null {
 export function examFieldIds(examSlug: ExamSlug): string[] {
   if (examSlug === "usmle") return USMLE_STEPS.map((s) => s.fieldId);
   return [EXAM_CATALOG[examSlug].fieldId];
+}
+
+/**
+ * Name of the board the student is actually studying.
+ * USMLE uses the saved step. Other boards keep their catalog name.
+ */
+export function studentFacingExamName(examSlug: ExamSlug, fieldId?: string | null): string {
+  if (examSlug === "usmle") {
+    const step = fieldId ? usmleStepDefinition(fieldId) : undefined;
+    if (step?.name) return step.name;
+  }
+  return EXAM_CATALOG[examSlug].name;
 }
 
 export { USMLE_STEPS, USMLE_COMBINED_TARGET };

@@ -61,6 +61,8 @@ export type StudyQuestion = {
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   references?: string[];
+  /** Title plus link. Shown under the rationale when the item has them. */
+  citations?: import("@/lib/questions/study-citations").StudyCitation[];
   /** Citation shown on the item when the bank has one. */
   sourceLabel?: string;
   sourceUrl?: string;

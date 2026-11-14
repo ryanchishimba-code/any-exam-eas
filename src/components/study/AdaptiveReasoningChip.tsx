@@ -49,9 +49,10 @@ export function AdaptiveReasoningChip({
         className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
         aria-expanded={open}
       >
-        <span className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5 text-sm font-semibold text-teal-800">
+        <span className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-0.5 text-left text-sm font-semibold text-teal-800">
           <Brain className="h-4 w-4 shrink-0" aria-hidden />
-          Why this question?
+          <span className="whitespace-normal">Why this question</span>
+          <span className="whitespace-normal font-medium text-teal-900">{reasoning.trim()}</span>
           {position ? (
             <span className="inline-flex items-center gap-1.5 font-normal tabular-nums">
               <span className="text-teal-600/80">{position.sitting}</span>
@@ -68,7 +69,7 @@ export function AdaptiveReasoningChip({
       </button>
       {open && (
         <div className="border-t border-teal-100/80 px-4 py-3 text-sm leading-relaxed text-slate-700">
-          <p>{specific}</p>
+          <p className="whitespace-normal">{reasoning.trim()}</p>
           {sessionRationale && (
             <p className="mt-2 text-xs text-slate-500">
               <span className="font-semibold text-teal-700">Session plan: </span>
