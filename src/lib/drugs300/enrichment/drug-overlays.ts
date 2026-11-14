@@ -5,7 +5,7 @@ export const DRUG_ENRICHMENT_OVERLAYS: Record<string, Partial<DrugEnrichment>> =
   semaglutide: {
     pearls: [
       "Ozempic SQ weekly (T2DM); Wegovy higher dose (obesity); Rybelsus oral daily — take on empty stomach with ≤4 oz water.",
-      "SELECT trial: semaglutide reduces MACE in T2DM with established ASCVD.",
+      "SELECT (NEJM 2023): semaglutide 2.4 mg reduced MACE in overweight or obesity with established CVD and without diabetes.",
       "Start 0.25 mg weekly × 4 weeks before titrating — reduces GI dropout.",
     ],
     counseling: "Rotate injection sites; oral form: wait 30 min before food/drink/other meds.",
@@ -49,7 +49,7 @@ export const DRUG_ENRICHMENT_OVERLAYS: Record<string, Partial<DrugEnrichment>> =
   metformin: {
     pearls: [
       "Extended-release may improve GI tolerance; take with food.",
-      "Safe in many CKD stages at reduced dose — do not use if eGFR <30.",
+      "FDA label: do not use if eGFR <30; do not start if eGFR 30–45.",
     ],
   },
   empagliflozin: {
@@ -243,6 +243,16 @@ export const DRUG_ENRICHMENT_OVERLAYS: Record<string, Partial<DrugEnrichment>> =
     pearls: [
       "Anaerobic coverage, C. diff, trichomoniasis, H. pylori — disulfiram-like reaction with alcohol.",
       "Metallic taste common; avoid alcohol during and 48 h after course.",
+    ],
+  },
+  vancomycin: {
+    pearls: [
+      "2020 ASHP/IDSA/PIDS/SIDP: for serious MRSA, target AUC/MIC 400–600 (MIC assumed 1 mg/L). Trough-only 15–20 mg/L monitoring is no longer recommended.",
+    ],
+  },
+  "aspirin-low-dose": {
+    pearls: [
+      "USPSTF 2022: do not start aspirin for primary prevention at age ≥60. Ages 40–59 with ≥10% 10-year CVD risk: individual decision. Secondary prevention is unchanged.",
     ],
   },
   warfarin: {

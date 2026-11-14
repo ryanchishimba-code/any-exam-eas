@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "source": "ClinCalc Top 500 (AnyExamEasy)",
-  "updatedAt": "2026-06-25T04:26:08.805Z",
+  "updatedAt": "2026-11-14T14:35:56.170Z",
   "count": 509,
   "drugs": [
     {
@@ -90,9 +90,9 @@
       "generic": "Metoprolol",
       "brand": "Lopressor, Toprol-XL",
       "class": "Beta-1 selective blocker",
-      "indications": "Hypertension, angina, heart failure, post-MI, arrhythmias",
+      "indications": "Hypertension, angina, HFrEF (succinate/Toprol-XL only), post-MI, arrhythmias",
       "sideEffects": "Bradycardia, fatigue, bronchospasm (less with β1-selective), mask hypoglycemia",
-      "mnemonic": "Meto-PROLOL slows PRO athletes — bradycardia & fatigue",
+      "mnemonic": "Meto-PROLOL slows PRO athletes — HFrEF uses succinate, not tartrate",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -586,9 +586,9 @@
       "generic": "Carvedilol",
       "brand": "Coreg",
       "class": "Non-selective β-blocker + α1 block",
-      "indications": "Heart failure, hypertension, post-MI",
+      "indications": "HFrEF (evidence-based beta blocker), hypertension, post-MI",
       "sideEffects": "Bradycardia, hypotension, bronchospasm, mask hypoglycemia",
-      "mnemonic": "Carvedilol = CORE heart drug — blocks β AND α (HF benefit)",
+      "mnemonic": "Carvedilol = CORE heart drug — one of three HFrEF beta blockers",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -714,7 +714,7 @@
       "generic": "Spironolactone",
       "brand": "Aldactone",
       "class": "Potassium-sparing diuretic / aldosterone antagonist",
-      "indications": "Heart failure, ascites, hyperaldosteronism, hirsutism/PCOS",
+      "indications": "HFrEF (MRA pillar), ascites, hyperaldosteronism, hirsutism/PCOS",
       "sideEffects": "Hyperkalemia, gynecomastia, menstrual irregularities",
       "mnemonic": "Spiro = saves K+ but grows moobs (gynecomastia)",
       "examRelevance": {
@@ -4538,7 +4538,7 @@
       "generic": "Sacubitril/valsartan",
       "brand": "Entresto",
       "class": "ARNI (neprilysin inhibitor + ARB)",
-      "indications": "HFrEF (replaces ACE-I/ARB)",
+      "indications": "HFrEF GDMT pillar (2022); preferred over ACE-I/ARB",
       "sideEffects": "Hypotension, hyperkalemia, angioedema; contraindicated with ACE-I",
       "mnemonic": "Entresto = ENTer heart failure success — PARADIGM-HF game changer",
       "examRelevance": {
@@ -6492,7 +6492,7 @@
       "class": "Glycopeptide antibiotic",
       "indications": "MRSA, C. diff (oral), serious gram-positive infections",
       "sideEffects": "Nephrotoxicity, vancomycin infusion reaction (rapid infusion), ototoxicity",
-      "mnemonic": "Vancocin = VANcomycin MRSA — trough 15–20, slow IV infusion",
+      "mnemonic": "Vancocin = VANcomycin MRSA — AUC 400–600, slow IV infusion",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -6714,7 +6714,7 @@
       "generic": "Aspirin (low-dose)",
       "brand": "Baby aspirin",
       "class": "Antiplatelet (COX-1 inhibitor)",
-      "indications": "ASCVD primary/secondary prevention, antiplatelet post-PCI",
+      "indications": "Secondary ASCVD prevention and post-PCI. USPSTF 2022 primary prevention: individual decision at ages 40–59 if 10-year CVD risk ≥10%; do not start at age ≥60",
       "sideEffects": "GI bleed, tinnitus (high dose), Reye syndrome (children viral illness)",
       "mnemonic": "Baby aspirin = 81mg platelet — never kids with flu/chickenpox Reye",
       "examRelevance": {
