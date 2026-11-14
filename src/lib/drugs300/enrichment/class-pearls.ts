@@ -132,7 +132,7 @@ const CLASS_RULES: ClassRule[] = [
     merge: {
       pearls: [
         "Target INR 2–3 for most AF/DVT indications; 2.5–3.5 for mechanical mitral valves.",
-        "Teratogenic (pregnancy Category X) — use LMWH in pregnancy instead.",
+        "Contraindicated in pregnancy except mechanical valves; fetal harm — use LMWH instead.",
         "Many drug/food interactions (vitamin K, CYP2C9); bridged when transitioning to/from DOAC.",
       ],
       guidelines: [ACC_AHA_CV, FDA_LABELING],
