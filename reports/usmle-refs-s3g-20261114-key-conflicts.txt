@@ -1,0 +1,47 @@
+id	step	key	why
+cmruyej1v00091y2ykl9q38cd	step-3	There is no significant difference in efficacy between the new drug and metformin.	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmruiea8b000x1ycejanthjbe	step-3	Switch to insulin therapy	Keyed as a switch to insulin for kidney failure on metformin. NICE NG28 says for an eGFR under 20, consider a DPP-4 inhibitor, and insulin only if that is unsuitable.
+cmr8ncos200tr1ygi2zkwaknr	step-3	Initiate lifestyle modifications	Keyed as lifestyle modification, but the blood pressure is below the NICE threshold for hypertension and the stem is not a young adult with elevated cholesterol.
+cmr4gbmx5025b1ykyrr0zx2nl	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8baj8d004c1ylou2fqehvf	step-3	Administer oral antibiotics	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmrvwvb2q004k1ye8zszh626t	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmtpxgs4o00791ymu83miryb0	step-3	Start oral antibiotics	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr8ncm2c00sz1ygi714atty2	step-3	Start an oral antibiotic such as doxycycline	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr8ny3j300zj1ygi3kmeara5	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8qfrio01np1ygiz8b96oyg	step-3	Administer broad-spectrum intravenous antibiotics	Keyed as intravenous antibiotics for pneumonia, but NICE NG250 says give oral antibiotics first line when the person can take them and the illness is not severe.
+cmr8pvf2j01g91ygi5htonftf	step-3	Start metformin along with lifestyle changes	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr9bnyr901hf1ywy0su9xf0f	step-3	Metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr97i16p00461ywyv4yzbfdz	step-3	Oral antibiotic for 5 days	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmruyly7l004o1y2yxoudeyiz	step-3	Start insulin therapy	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmr4e6izn01bc1ykyrfm4yzpy	step-3	Start an oral antibiotic	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr97i047003v1ywykc24gmc1	step-3	Start oral antibiotics	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr9861vq00e11ywyel53ttu5	step-3	Start oral antibiotics	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr8lc4ed009g1ygii2gmjkae	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8diemr00wl1ylomtp120hg	step-3	A 5-day course of an oral antibiotic	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr98635d00eh1ywylwuuqdl7	step-3	Initiate metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8c3mbh00h21ylodz19ws1n	step-3	Start oral antibiotics	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr9c9oux01r81ywy8n81a61t	step-3	Start lifestyle modifications and metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr9b2dzx01am1ywyqzlecqyk	step-3	Start insulin therapy	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmru7tkmv000l1yd6dx0kf0fn	step-3	Initiate lifestyle modifications	Keyed as lifestyle modification, but the blood pressure is below the NICE threshold for hypertension and the stem is not a young adult with elevated cholesterol.
+cmr8ei1eg01b01ylolbx499uo	step-3	Start an oral antibiotic such as doxycycline	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmru393pf007a1y7wuj2wuqpc	step-3	Add insulin therapy	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmru398ai007k1y7wp93qq20i	step-3	Encourage lifestyle modifications	Keyed as lifestyle modification, but the blood pressure is below the NICE threshold for hypertension and the stem is not a young adult with elevated cholesterol.
+cmru3udi300hb1y7w1sx2741s	step-3	Start metformin therapy.	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8ji7mm02ne1ylo88zrps26	step-3	Start metformin therapy.	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8lc8a400as1yginvusptsm	step-3	Start oral antibiotics	Keyed as oral antibiotics, but hypoxia or shock means NICE NG250 uses intravenous antibiotics for severe community-acquired pneumonia.
+cmr8bhgee006s1ylocz3i0qiq	step-3	Initiate lifestyle modifications	Keyed as lifestyle modification, but the blood pressure is below the NICE threshold for hypertension and the stem is not a young adult with elevated cholesterol.
+cmru9d196007y1y0swb243exy	step-3	Initiate lifestyle modifications	Keyed as lifestyle modification, but the blood pressure is below the NICE threshold for hypertension and the stem is not a young adult with elevated cholesterol.
+cmr8o9k8u01451ygilr50k4pl	step-3	Initiate metformin therapy	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr4b32gg000w1yky0kqkkfut	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr4e6igo01b71ykydr7w92p2	step-3	Initiate metformin therapy	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr4cvc4x00r81yky3kykmc06	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr8bajjb004f1ylo27o01ugp	step-3	Increase the dose of insulin glargine	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmr8kibmb004m1ygibm4uwa36	step-3	Initiate insulin therapy	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmr8ny4ee00zu1ygij3t3s40b	step-3	Long-acting insulin at bedtime	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmr8nmkvf00xl1ygi9hoew8sh	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmr98mo0b00l61ywy6coy9gpx	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmru7tkxx000p1yd6iuemmxy0	step-3	Insulin overdose	Keyed as insulin, but the stem does not show ketoacidosis or symptomatic hyperglycemia in type 2 diabetes.
+cmru854g4003e1yd6kvyqt998	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmruifo9f001j1yceqbm6i20h	step-3	Adjust the dose of Metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmrvwpp4w001j1ye8mhqaibxn	step-3	Reduce metformin dose	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
+cmrvwvpto004v1ye8tgfgjlwu	step-3	Start metformin	Keyed as metformin without an SGLT2 inhibitor. NICE NG28 says offer modified-release metformin and an SGLT2 inhibitor when the eGFR is 30 or more.
