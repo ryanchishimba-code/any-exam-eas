@@ -70,6 +70,17 @@ export function formatCrosswordDate(iso: string): string {
   });
 }
 
+export function formatCrosswordDateShort(iso: string): string {
+  const parsed = utcMidnightFromIso(iso);
+  if (!parsed) return iso;
+  return parsed.toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export function formatCrosswordDateLong(iso: string): string {
   const parsed = utcMidnightFromIso(iso);
   if (!parsed) return iso;

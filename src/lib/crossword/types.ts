@@ -56,7 +56,12 @@ export type PublicPuzzle = {
   shareUrl: string;
   quizHref: string;
   signupHref: string;
+  /** Nav/footer trial signup, with this board's exam and board params. */
+  trialHref: string;
+  trialLabel: string;
   boardLabel: string;
+  /** Spelled-out board, such as pharmacy boards. */
+  spokenName: string;
   examName: string;
   /** Past archive days do not change the daily streak. */
   archive: boolean;

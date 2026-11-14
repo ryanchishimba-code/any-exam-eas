@@ -8,6 +8,7 @@ import {
   boardHomeHref,
   boardProfile,
 } from "@/lib/crossword/boards";
+import { formatTrialLabel } from "@/lib/site";
 import { dayJsonLd } from "@/lib/crossword/metadata";
 import {
   crosswordBoardPath,
@@ -38,6 +39,10 @@ export function CrosswordDay({ board, date }: { board: CrosswordBoard; date: str
         {formatCrosswordDateLong(date)} · {puzzle.slots.length} high-yield clues · {profile.lede}{" "}
         {CROSSWORD_PRACTICE_NOTE} A new puzzle unlocks at midnight, America/Chicago.
       </p>
+      <p className="xw-trial-line">
+        <Link href={puzzle.trialHref}>Start a {formatTrialLabel()}</Link>
+        <span>No card needed. The same puzzle is here for a friend.</span>
+      </p>
       <CrosswordPlayer puzzle={puzzle} />
       <div className="xw-below">
         <section className="xw-study" aria-label="Keep studying">
@@ -45,10 +50,10 @@ export function CrosswordDay({ board, date }: { board: CrosswordBoard; date: str
           <p className="xw-note">The crossword is a warm-up. The free questions are the next step.</p>
           <ul className="xw-links">
             <li>
-              <Link href={puzzle.quizHref}>Try 10 free {profile.shortName} questions</Link>
+              <Link href={puzzle.trialHref}>Start a {formatTrialLabel()} — no card needed</Link>
             </li>
             <li>
-              <Link href={puzzle.signupHref}>Create a free account</Link>
+              <Link href={puzzle.quizHref}>Try 10 free questions for the {profile.spokenName}</Link>
             </li>
             <li>
               <Link href={boardHomeHref(board)}>{profile.examName} overview</Link>

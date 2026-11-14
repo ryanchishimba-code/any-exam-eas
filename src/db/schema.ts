@@ -252,6 +252,25 @@ export const highYieldTopics = pgTable(
   ]
 );
 
+/** Daily crossword streak and saved grids. One row per person and board. */
+export const crosswordProgress = pgTable(
+  "CrosswordProgress",
+  {
+    id: text("id").primaryKey(),
+    userId: text("userId").notNull(),
+    board: text("board").notNull(),
+    lastDate: text("lastDate"),
+    streak: integer("streak").default(0).notNull(),
+    games: jsonb("games").notNull(),
+    createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
+  },
+  (t) => [
+    uniqueIndex("CrosswordProgress_userId_board_key").on(t.userId, t.board),
+    index("CrosswordProgress_userId_idx").on(t.userId),
+  ]
+);
+
 export const userTopicProgress = pgTable(
   "UserTopicProgress",
   {
