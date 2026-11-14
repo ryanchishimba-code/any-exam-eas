@@ -27,6 +27,7 @@ import {
 } from "@/lib/study/practice-format";
 import { mergeRecentTests, recentTestFromExamSession } from "@/lib/learning/recent-tests";
 import { weakAreasFromAttempts, type AttemptSubjectRow } from "@/lib/learning/weak-areas-from-attempts";
+import { WEAK_TOPIC_MIN_ATTEMPTS } from "@/lib/study/remediation-launch";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -54,11 +55,46 @@ export type WeakTopicRow = {
   fieldId: string;
   masteryScore: number;
   attempts: number;
+  /** Questions missed. Omitted on older payloads; the label derives it. */
+  misses?: number;
   /** Share of total weakness weight (for pie chart). */
   weight: number;
   /** Precomputed on the server so client cards avoid importing seed bundles. */
   studyLinks?: WeakTopicStudyLinks;
 };
+
+/** Missed count once a topic has enough attempts to list. */
+export function weakTopicMissed(topic: {
+  attempts: number;
+  masteryScore: number;
+  misses?: number;
+}): { missed: number; attempts: number } | null {
+  const attempts = Math.max(0, Math.round(topic.attempts) || 0);
+  if (attempts < WEAK_TOPIC_MIN_ATTEMPTS) return null;
+  const missed =
+    topic.misses != null && Number.isFinite(topic.misses)
+      ? Math.max(0, Math.round(topic.misses))
+      : Math.round((attempts * weakTopicMissRate(topic.masteryScore)) / 100);
+  if (missed <= 0) return null;
+  return { missed, attempts };
+}
+
+/** "3 of 5 missed". Null until the topic has the minimum attempts and a miss. */
+export function weakTopicMissLabel(topic: {
+  attempts: number;
+  masteryScore: number;
+  misses?: number;
+}): string | null {
+  const row = weakTopicMissed(topic);
+  if (!row) return null;
+  return `${row.missed} of ${row.attempts} missed`;
+}
+
+export function listedWeakTopics<T extends { attempts: number; masteryScore: number; misses?: number }>(
+  topics: T[]
+): T[] {
+  return topics.filter((topic) => weakTopicMissLabel(topic) != null);
+}
 
 export type RecentTestRow = {
   id: string;
@@ -257,6 +293,12 @@ function buildTrendPoints(
   return points;
 }
 
+/** Day number for a narrow 14-column axis. The full month stays on `label`. */
+export function trendAxisDay(date: string): string {
+  const day = Number(date.slice(8, 10));
+  return Number.isFinite(day) && day > 0 ? String(day) : date;
+}
+
 /** Pure 14-day series. Prior Chicago days stay in the list, and an evening attempt does not move to the next UTC day. */
 export function accuracyTrendFromInstants(
   rows: Array<{ createdAt: Date | string; correct: boolean }>,
@@ -422,6 +464,15 @@ function attemptSubjectRows(
   return [...map.values()];
 }
 
+function masteryMisses(row: { attempts: number; correct?: number; masteryScore: number }): number {
+  const attempts = Math.max(0, Math.round(row.attempts) || 0);
+  if (attempts <= 0) return 0;
+  if (typeof row.correct === "number" && Number.isFinite(row.correct)) {
+    return Math.max(0, attempts - Math.max(0, Math.round(row.correct)));
+  }
+  return Math.round((attempts * weakTopicMissRate(row.masteryScore)) / 100);
+}
+
 function mapWeakTopics(
   masteries: {
     conceptKey: string;
@@ -433,6 +484,7 @@ function mapWeakTopics(
 ): WeakTopicRow[] {
   const studentFacing = masteries
     .filter((m) => !isInternalMasteryConceptKey(m.conceptKey))
+    .filter((m) => m.attempts >= WEAK_TOPIC_MIN_ATTEMPTS && masteryMisses(m) > 0)
     .filter((m) => weakAreaAccuracyPct({ ...m, correct: m.correct ?? 0 }) != null)
     .slice(0, WEAK_TOPIC_DISPLAY);
   const weaknessWeights = studentFacing.map((m) => {
@@ -457,6 +509,7 @@ function mapWeakTopics(
           masteryScore: m.masteryScore,
         }) ?? 0,
       attempts: m.attempts,
+      misses: masteryMisses(m),
       weight: Math.round((m.weight / totalWeight) * 100),
     };
   });
@@ -473,7 +526,7 @@ export async function getStudentWeakTopics(
     return await withDbRetry(
       () =>
         cacheGetOrSet(
-          cacheKey(["weak-topics-v4", userId, scopeKey]),
+          cacheKey(["weak-topics-v5", userId, scopeKey]),
           CACHE_TTL.learningDashboard,
           async () => {
             if (fieldIds?.length !== 1) {
@@ -500,6 +553,7 @@ export async function getStudentWeakTopics(
               fieldId,
               masteryScore: Math.round((row.correct / row.attempts) * 100),
               attempts: row.attempts,
+              misses: row.misses,
               weight: row.misses,
             }));
           }
@@ -526,7 +580,7 @@ export async function getStudentDashboardData(
   // payload is not served in their place.
   const formatKey = opts?.skipFormatPractice ? "no-format" : "format";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v7", userId, scopeKey, trendKey, formatKey]),
+    cacheKey(["student-dashboard-v8", userId, scopeKey, trendKey, formatKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
@@ -738,6 +792,7 @@ async function loadStudentDashboardData(
           fieldId: fieldIds[0]!,
           masteryScore: Math.round((row.correct / row.attempts) * 100),
           attempts: row.attempts,
+          misses: row.misses,
           weight: row.misses,
         }))
       : mapWeakTopics(masteries);

@@ -10,6 +10,7 @@ import { normalizeStem } from "./stem";
 import { numericValueInSlot, planDualNumericAnswer } from "./dual-numeric-answer";
 import { gradeNumericAnswer } from "./numeric-grade";
 import { sourceLabelForPracticeField } from "@/lib/exam-prep/usmle/source-label";
+import { studyCitationsFromList, type StudyCitation } from "@/lib/questions/study-citations";
 import { citationFitsQuestion, splitGluedLeadIn, stripInternalDisplayMetadata } from "./student-display-text";
 import {
   resolveNclexStem,
@@ -55,6 +56,18 @@ function toCorrectAnswers(type: StudyQuestionType, correct: string, options: str
     return splitStoredCorrectAnswers(correct, options);
   }
   return [cleanOptionText(correct)];
+}
+
+function studentCitations(q: RawQuestionInput): StudyCitation[] | undefined {
+  const citations: StudyCitation[] = [];
+  for (const citation of studyCitationsFromList([...(q.citations ?? []), ...(q.references ?? [])])) {
+    const title = stripInternalDisplayMetadata(
+      sourceLabelForPracticeField(citation.title, q.field) ?? citation.title
+    ).trim();
+    if (!title) continue;
+    citations.push(citation.url ? { title, url: citation.url } : { title });
+  }
+  return citations.length > 0 ? citations : undefined;
 }
 
 function displayText(value: unknown): string {
@@ -269,6 +282,7 @@ export function examQuestionToStudy(
         )
       )
       .filter((reference) => reference.length > 0 && !/^references:?$/i.test(reference)),
+    citations: studentCitations(q),
     sourceLabel: studentFacingSourceLabel(
       q.sourceLabel,
       [q.vignette, q.question].filter(Boolean).join("\n"),
@@ -374,6 +388,7 @@ export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import
       clinicalReasoning: p.clinicalReasoning,
       distractorRationale: p.distractorRationale,
       references: p.references,
+      citations: p.citations,
       sourceLabel: p.sourceLabel,
       sourceUrl: p.sourceUrl,
       reviewedAt: p.reviewedAt,

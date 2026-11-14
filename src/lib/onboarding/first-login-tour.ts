@@ -26,7 +26,7 @@ export function firstLoginTourSteps(boardName: string): TourStepDef[] {
     {
       id: "bank",
       title: "Practice by topic, then fix misses",
-      body: `Every ${board} question you miss lands in Review incorrect, with a short rationale and Show more when you want depth.`,
+      body: `Every ${board} question you miss lands in Review incorrect, with the rationale open and sources when the item has them.`,
       anchor: "bank",
       extraAnchors: ["review-incorrect"],
     },

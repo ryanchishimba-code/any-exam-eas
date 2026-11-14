@@ -12,8 +12,6 @@ import {
 import {
   rationaleFragmentShownInLead,
   selectRationaleLead,
-  shortRationaleLead,
-  shouldCollapseRationale,
   stripLeadingSectionTitles,
   stripRationaleMarkup,
   visibleRationaleRemainder,
@@ -293,19 +291,13 @@ export function RationaleDisclosureText({
 
   const board = practiceBoardFromExam(examSlug);
   const prepared = adaptBoardPracticeWording(explanation, board);
-  const lead = shortRationaleLead(prepared) || stripLeadingSectionTitles(stripRationaleMarkup(prepared));
-  const collapsed = shouldCollapseRationale([prepared]);
   const body = (
     <StructuredRationaleText text={prepared} tone={tone} examSlug={examSlug} />
   );
-  if (!collapsed) {
-    return <div className={className}>{body}</div>;
-  }
-
   return (
-    <CollapsibleRationale resetKey={resetKey} tone={tone} lead={lead} className={className}>
+    <div className={className} data-rationale-key={resetKey}>
       {body}
-    </CollapsibleRationale>
+    </div>
   );
 }
 

@@ -144,8 +144,16 @@ function Sparkline({ points }: { points: GoalTrendPoint[] }) {
   if (segment) segments.push(segment);
   const line = segments.join(" ");
   const windowLabel = points.length > 14 ? "30-day trend" : "14-day trend";
-  const answeredLabel =
-    answeredDays === 1 ? "1 day with answers" : `${answeredDays} days with answers`;
+  const answered = coords.filter((point) => point.value != null);
+  const latest = answered.at(-1);
+  const answeredLabel = latest
+    ? `${latest.label || "Latest day"} · ${latest.value}%`
+    : answeredDays === 1
+      ? "1 day with answers"
+      : `${answeredDays} days with answers`;
+  const valueSummary = answered
+    .map((point) => `${point.label || "Day"} ${point.value}%`)
+    .join(", ");
   return (
     <figure className="mt-6" data-practice-chart="trend">
       <figcaption className="mb-2 flex items-center justify-between gap-3">
@@ -153,7 +161,7 @@ function Sparkline({ points }: { points: GoalTrendPoint[] }) {
         <span className="text-[12px] text-[var(--color-ink-muted)]">{answeredLabel}</span>
         <InfoTip label="About the trend" text="Each point is that day's accuracy. Days with no answers are gaps, not 0%." />
       </figcaption>
-      <svg viewBox={`0 0 ${width} ${height}`} className="h-16 w-full" role="img" aria-label={`${windowLabel}. ${answeredLabel}.`}>
+      <svg viewBox={`0 0 ${width} ${height}`} className="h-16 w-full" role="img" aria-label={`${windowLabel}. ${answeredLabel}. ${valueSummary}`}>
         <path
           d={line}
           fill="none"

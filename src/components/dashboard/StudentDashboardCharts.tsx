@@ -14,7 +14,7 @@ import {
   YAxis,
 } from "recharts";
 import { TrendingUp } from "lucide-react";
-import { weakTopicMissRate, type AccuracyTrendPoint, type WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicMissLabel, weakTopicMissed, type AccuracyTrendPoint, type WeakTopicRow } from "@/lib/learning/student-dashboard";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -140,7 +140,7 @@ export function StudentDashboardCharts({
                           <div className="rounded-xl border border-black/[0.06] bg-white px-3 py-2 text-xs shadow-md">
                             <p className="font-medium text-[var(--color-ink)]">{row.name}</p>
                             <p className="text-[var(--color-ink-muted)]">
-                              {row.masteryScore}% accuracy · {weakTopicMissRate(row.masteryScore)}% miss rate · {row.attempts} attempts
+                              {weakTopicMissLabel(row) ?? `${row.attempts} attempts`}
                             </p>
                           </div>
                         );
@@ -154,7 +154,7 @@ export function StudentDashboardCharts({
                 {weakTopics.slice(0, 5).map((topic, i) => (
                   <li key={topic.id}>
                     <div className="mb-1 flex items-center justify-between gap-2 text-xs">
-                      <span className="flex items-center gap-2 truncate font-medium text-[var(--color-ink)]">
+                      <span className="flex min-w-0 items-center gap-2 break-words font-medium text-[var(--color-ink)]">
                         <span
                           className="h-2 w-2 shrink-0 rounded-full"
                           style={{ backgroundColor: WEAK_COLORS[i % WEAK_COLORS.length] }}
@@ -162,10 +162,15 @@ export function StudentDashboardCharts({
                         {topic.name}
                       </span>
                       <span className="shrink-0 tabular-nums text-[var(--color-ink-muted)]">
-                        {weakTopicMissRate(topic.masteryScore)}% miss rate
+                        {weakTopicMissLabel(topic)}
                       </span>
                     </div>
-                    <Progress value={weakTopicMissRate(topic.masteryScore)} className="h-1.5" />
+                    <Progress
+                      value={Math.round(
+                        ((weakTopicMissed(topic)?.missed ?? 0) / Math.max(topic.attempts, 1)) * 100
+                      )}
+                      className="h-1.5"
+                    />
                   </li>
                 ))}
               </ul>

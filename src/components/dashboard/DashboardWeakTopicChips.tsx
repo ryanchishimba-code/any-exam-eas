@@ -3,7 +3,8 @@ import { Target } from "lucide-react";
 import { weakTopicPracticeHref } from "@/components/dashboard/DashboardGraphicHero";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import { weakTopicMissRate, type WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { listedWeakTopics, weakTopicMissLabel, weakTopicMissed, type WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicSessionHref } from "@/lib/learning/weak-area-practice-href";
 import type { ExamSlug } from "@/types/edtech";
 
 export function DashboardWeakTopicChips({
@@ -15,7 +16,7 @@ export function DashboardWeakTopicChips({
   weakTopics: WeakTopicRow[];
   practiceFieldId?: string;
 }) {
-  const facing = filterStudentFacingWeakTopics(weakTopics).slice(0, 3);
+  const facing = listedWeakTopics(filterStudentFacingWeakTopics(weakTopics)).slice(0, 3);
   if (facing.length === 0) return null;
 
   return (
@@ -29,28 +30,45 @@ export function DashboardWeakTopicChips({
       <ul className="flex flex-wrap gap-2" role="list">
         {facing.map((topic) => {
           const slug = topic.id.replace(/^(tag|subject):/, "");
-          const href =
-            topic.studyLinks?.practiceHref ??
-            weakTopicPracticeHref(examSlug, slug, practiceFieldId);
+          const href = weakTopicSessionHref({
+            examSlug,
+            topicId: topic.id,
+            fieldId: topic.fieldId || practiceFieldId || "",
+            fallbackHref:
+              topic.studyLinks?.practiceHref ||
+              weakTopicPracticeHref(examSlug, slug, practiceFieldId),
+          });
+          const missed = weakTopicMissed(topic);
+          const label = (
+            <>
+              <span className="break-words" title={topic.name}>
+                {topic.name}
+              </span>
+              <span
+                className="h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-[var(--color-border)]/70"
+                aria-hidden
+              >
+                <span
+                  className="block h-full rounded-full bg-amber-500"
+                  style={{
+                    width: `${Math.round(((missed?.missed ?? 0) / Math.max(topic.attempts, 1)) * 100)}%`,
+                  }}
+                />
+              </span>
+              <span className="shrink-0 tabular-nums text-[var(--color-ink-muted)]">
+                {weakTopicMissLabel(topic)}
+              </span>
+            </>
+          );
           return (
             <li key={topic.id}>
-              <Link href={href} className={dbUi.weakChip}>
-                <span className="max-w-[10rem] truncate sm:max-w-[14rem]">{topic.name}</span>
-                <span
-                  className="h-1.5 w-10 shrink-0 overflow-hidden rounded-full bg-[var(--color-border)]/70"
-                  aria-hidden
-                >
-                  <span
-                    className="block h-full rounded-full bg-amber-500"
-                    style={{
-                      width: `${Math.max(8, weakTopicMissRate(topic.masteryScore))}%`,
-                    }}
-                  />
-                </span>
-                <span className="tabular-nums text-[var(--color-ink-muted)]">
-                  {weakTopicMissRate(topic.masteryScore)}% miss rate
-                </span>
-              </Link>
+              {href ? (
+                <Link href={href} className={dbUi.weakChip}>
+                  {label}
+                </Link>
+              ) : (
+                <span className={dbUi.weakChip}>{label}</span>
+              )}
             </li>
           );
         })}

@@ -11,7 +11,7 @@ import {
 } from "@/components/dashboard/DashboardGraphicHero";
 import { DashboardWeakTopicChips } from "@/components/dashboard/DashboardWeakTopicChips";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, studentFacingExamName } from "@/lib/edtech/exams";
 import { DashboardTodayBlock } from "@/components/dashboard/DashboardTodayBlock";
 import { RemediationPanel } from "@/components/dashboard/RemediationPanel";
 import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
@@ -22,6 +22,8 @@ import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { AccuracyTrendPoint, RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
+import { listedWeakTopics } from "@/lib/learning/student-dashboard";
+import { weakTopicSessionHref } from "@/lib/learning/weak-area-practice-href";
 import { MasteryReadinessStrip } from "@/components/dashboard/MasteryReadinessStrip";
 import { NaplexMasteryPanel } from "@/components/dashboard/NaplexMasteryPanel";
 import { UsmleExamPathPanel } from "@/components/dashboard/UsmleExamPathPanel";
@@ -43,15 +45,20 @@ function topWeakFocus(
   weakTopics: WeakTopicRow[],
   practiceFieldId?: string
 ): DashboardWeakFocus | null {
-  const topic = filterStudentFacingWeakTopics(weakTopics)[0];
+  const topic = listedWeakTopics(filterStudentFacingWeakTopics(weakTopics))[0];
   if (!topic) return null;
   const slug = topic.id.replace(/^(tag|subject):/, "");
-  return {
-    name: topic.name,
-    href:
-      topic.studyLinks?.practiceHref ??
-      weakTopicPracticeHref(examSlug, slug, practiceFieldId),
-  };
+  const href = weakTopicSessionHref({
+    examSlug,
+    topicId: topic.id,
+    fieldId: topic.fieldId || practiceFieldId || "",
+    fallbackHref:
+      examSlug === "usmle"
+        ? null
+        : (topic.studyLinks?.practiceHref || weakTopicPracticeHref(examSlug, slug, practiceFieldId)),
+  });
+  if (!href) return null;
+  return { name: topic.name, href };
 }
 
 export function DashboardPageContent({
@@ -111,6 +118,8 @@ export function DashboardPageContent({
   accuracyTrend?: AccuracyTrendPoint[];
 }) {
   const exam = EXAM_CATALOG[examSlug];
+  const fieldId = practiceFieldId ?? exam.fieldId;
+  const boardName = studentFacingExamName(examSlug, fieldId);
   const showRecent = recentTests.length > 0;
   const boardAttempts = examDayPlan?.totalAttempts ?? 0;
   const practiceRead = roadmap
@@ -131,7 +140,6 @@ export function DashboardPageContent({
         : examSlug === "usmle"
           ? "Your organ systems"
           : "Your blueprint";
-  const fieldId = practiceFieldId ?? exam.fieldId;
   const showNaplexPanel = examSlug === "naplex" && isTodayEngineNaplexEnabled();
   const showUsmlePath = examSlug === "usmle" && isTodayEngineUsmleEnabled();
   const incorrect = examDayPlan?.items.find((item) => item.id === "incorrect") ?? null;
@@ -144,7 +152,7 @@ export function DashboardPageContent({
   return (
     <div className={dbUi.page}>
       <DashboardHeader
-        examName={exam.name}
+        examName={boardName}
         userName={userName}
         streakDays={stats.streakDays}
         dueCount={spacedReview.dueCount}
@@ -160,7 +168,7 @@ export function DashboardPageContent({
       {trialStartHere?.show ? (
         <TrialStartHerePath
           examSlug={examSlug}
-          boardName={exam.shortName}
+          boardName={boardName}
           fieldId={fieldId}
           record={trialStartHere.record}
           step={trialStartHere.step}
@@ -174,14 +182,14 @@ export function DashboardPageContent({
         data-dashboard-secondary
         className="flex flex-wrap items-center gap-x-3 gap-y-1 px-0.5 text-[13px] leading-snug text-[var(--color-ink-muted)]"
       >
-        <DashboardExamCountdown compact examSlug={examSlug} examName={exam.name} testDate={testDate} />
+        <DashboardExamCountdown compact examSlug={examSlug} examName={boardName} testDate={testDate} />
         <span aria-hidden className="text-[var(--color-border)]">
           ·
         </span>
         <ReadinessDashboardCard
           compact
           examSlug={examSlug}
-          examName={exam.shortName}
+          examName={boardName}
           hasStudyAccess={hasStudyAccess}
         />
         {incorrectHref ? (
@@ -229,7 +237,7 @@ export function DashboardPageContent({
 
       <DashboardProgressFold plan={examDayPlan} studyLocked={studyLocked}>
         <RemediationPanel
-          examName={exam.name}
+          examName={boardName}
           fieldId={fieldId}
           summary={roadmap?.openRemediation}
           studyLocked={studyLocked}
@@ -237,7 +245,7 @@ export function DashboardPageContent({
 
         <DashboardGraphicHero
           examSlug={examSlug}
-          examName={exam.name}
+          examName={boardName}
           readinessScore={examDayPlan?.readiness.score ?? 0}
           readinessSummary={readinessSummary}
           categoriesLabel={categoriesLabel}
@@ -276,7 +284,7 @@ export function DashboardPageContent({
         />
       </DashboardProgressFold>
       <FirstLoginTour
-        boardName={exam.shortName}
+        boardName={boardName}
         seen={tourSeen}
         attemptCount={accountAttemptCount}
       />

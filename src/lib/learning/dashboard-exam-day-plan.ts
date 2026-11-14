@@ -4,7 +4,7 @@
  */
 
 import { top500Href } from "@/lib/edtech/practice-links-core";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { studentFacingExamName } from "@/lib/edtech/exams";
 import type { CoverageInventoryCategory } from "@/lib/learning/coverage-heatmap";
 import { buildExamDayPlan, type ExamDayPlan, type ExamDayTopicInput } from "@/lib/learning/exam-day-plan";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -50,7 +50,7 @@ export function buildDashboardExamDayPlan(input: {
 
   return buildExamDayPlan({
     examSlug: input.examSlug,
-    examName: input.roadmap?.examName ?? EXAM_CATALOG[input.examSlug].name,
+    examName: input.roadmap?.examName ?? studentFacingExamName(input.examSlug, input.fieldId),
     fieldId: input.fieldId,
     testDate: input.testDate,
     totalAttempts: input.totalAttempts,

@@ -6,6 +6,37 @@ import {
 import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
 import type { ExamSlug } from "@/types/edtech";
 
+/** One practice-set size for every weak-area link on a topic. */
+export const WEAK_AREA_SESSION_COUNT = 10;
+
+/** Practice session for one weak area. USMLE never falls through to a different topic. */
+export function weakTopicSessionHref(input: {
+  examSlug: ExamSlug;
+  topicId: string;
+  fieldId: string;
+  subjectCounts?: Record<string, number> | null;
+  /** Non-USMLE boards keep their existing topic session. */
+  fallbackHref?: string | null;
+}): string | null {
+  if (input.examSlug === "usmle" || input.fieldId.startsWith("usmle-")) {
+    return weakAreaPracticeHref({
+      examSlug: "usmle",
+      topicKey: input.topicId,
+      fieldId: input.fieldId,
+      count: WEAK_AREA_SESSION_COUNT,
+      subjectCounts: input.subjectCounts,
+    });
+  }
+  if (input.fallbackHref) return input.fallbackHref;
+  return weakAreaPracticeHref({
+    examSlug: input.examSlug,
+    topicKey: input.topicId,
+    fieldId: input.fieldId,
+    count: WEAK_AREA_SESSION_COUNT,
+    subjectCounts: input.subjectCounts,
+  });
+}
+
 function practiceTopicSlug(topicKey: string): string {
   return normalizeWeakAreaTopicKey(topicKey)
     .replace(/[^a-z0-9]+/g, "-")

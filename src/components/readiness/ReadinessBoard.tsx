@@ -4,6 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ExamOutcomeForm, type OutcomeChoice } from "@/components/readiness/ExamOutcomeForm";
+import { PracticeGoalsMenu } from "@/components/dashboard/PracticeGoalsMenu";
+import type { GoalDomainBar, GoalTrendPoint } from "@/components/dashboard/PracticeGoalsCharts";
+import type { DifficultyMix } from "@/lib/learning/served-bank-stats";
+import type { ReadinessCriterion } from "@/lib/learning/exam-day-plan";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import {
   READINESS_LEVEL_LABEL,
@@ -40,9 +44,23 @@ function levelClass(level: string) {
   return "text-[var(--color-ink-muted)]";
 }
 
+export type ReadinessPracticeProof = {
+  /** Same "n of 3 practice goals met" line as the dashboard. */
+  headline: string;
+  score: number;
+  disclaimer: string;
+  criteria: ReadinessCriterion[];
+  accuracyPct: number | null;
+  outlineDepthPct: number | null;
+  trend: GoalTrendPoint[];
+  domains?: GoalDomainBar[];
+  difficultyMix?: DifficultyMix | null;
+};
+
 export function ReadinessBoard({
   data,
   practiceEstimate = null,
+  practiceProof = null,
   accuracyPct = null,
   outlineDepthPct = null,
   practiceAreas = [],
@@ -50,6 +68,8 @@ export function ReadinessBoard({
 }: {
   data: ReadinessPageData;
   practiceEstimate?: PracticeEstimate | null;
+  /** Same practice goals, accuracy, and outline depth as the dashboard. */
+  practiceProof?: ReadinessPracticeProof | null;
   /** Same overall accuracy the dashboard and analytics cards show. */
   accuracyPct?: number | null;
   /** Same outline depth the dashboard and analytics cards show. */
@@ -103,11 +123,18 @@ export function ReadinessBoard({
       <header className="space-y-2">
         <p className={dbUi.eyebrow}>{data.examName} readiness</p>
         <h1 className="text-[32px] font-semibold tracking-[-0.04em] text-[var(--color-ink)] sm:text-[40px]">
-          {data.result?.summaryLine ?? "A baseline, then proof you're moving"}
+          {practiceProof?.headline ?? data.result?.summaryLine ?? "A baseline, then proof you're moving"}
         </h1>
         <p className="max-w-2xl text-[16px] leading-relaxed text-[var(--color-ink-muted)]">
-          The overall level is the read that matters. Area names follow the tags on the {data.length}-question check of standard multiple-choice items, so each area level is provisional. Fewer than 2 answers stays “Not enough data yet.” This is not a prediction of passing.
+          {practiceProof
+            ? `${practiceProof.disclaimer} The ${data.length}-question baseline is a separate check. Area names follow the tags on that check, so each area level is provisional. Fewer than 2 answers stays “Not enough data yet.”`
+            : `The overall level is the read that matters. Area names follow the tags on the ${data.length}-question check of standard multiple-choice items, so each area level is provisional. Fewer than 2 answers stays “Not enough data yet.” This is not a prediction of passing.`}
         </p>
+        {practiceProof && data.result?.summaryLine ? (
+          <p className="max-w-2xl text-[15px] font-medium text-[var(--color-ink)]">
+            Baseline: {data.result.summaryLine}
+          </p>
+        ) : null}
         {data.areas.some((area) => area.thinBank) ? (
           <p className="max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
             Some tags don&apos;t have enough clean questions to score. Those stay unlabeled. Flagged and non-MCQ items are not used to fill them.
@@ -167,7 +194,7 @@ export function ReadinessBoard({
               return (
                 <li key={area.areaId} className="flex items-center gap-3 px-4 py-3.5">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">
+                    <p className="break-words text-[15px] font-semibold tracking-tight text-[var(--color-ink)]" title={area.label}>
                       {area.label}
                     </p>
                     <p className={cn("mt-0.5 text-[13px]", levelClass(area.level))}>
@@ -186,6 +213,40 @@ export function ReadinessBoard({
               );
             })}
           </ul>
+        </section>
+      ) : practiceProof ? (
+        <section className={cn(dbUi.surface, "p-5 sm:p-6")} data-practice-proof="readiness">
+          <PracticeGoalsMenu
+            surface="proof"
+            headline={practiceProof.headline}
+            score={practiceProof.score}
+            disclaimer={practiceProof.disclaimer}
+            criteria={practiceProof.criteria}
+            trend={practiceProof.trend}
+            domains={practiceProof.domains}
+            difficultyMix={practiceProof.difficultyMix}
+          />
+          {accuracyPct != null || outlineDepthPct != null ? (
+            <p className="mt-3 text-[15px] font-medium text-[var(--color-ink)]">
+              {accuracyPct != null ? `${accuracyPct}% accuracy` : null}
+              {accuracyPct != null && outlineDepthPct != null ? " · " : null}
+              {outlineDepthPct != null ? `${outlineDepthPct}% outline depth` : null}
+            </p>
+          ) : null}
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+            {practiceProof.disclaimer}
+          </p>
+          <p className="mt-2 max-w-2xl text-[15px] font-medium text-[var(--color-ink)]">
+            {data.result ? "Baseline check on file." : "Your readiness baseline isn't set yet."}
+          </p>
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+            The baseline is a separate {data.length}-question check. It is not a prediction of passing.
+          </p>
+          {data.hasStudyAccess ? (
+            <button type="button" className={cn(dbUi.ghostBtn, "mt-4 min-h-11")} disabled={pending} onClick={() => void start(false)}>
+              {pending ? "Building your check…" : data.result ? "Start a separate 24-question check" : `Start the ${data.length}-question baseline`}
+            </button>
+          ) : null}
         </section>
       ) : practiceEstimate ? (
         <section className={cn(dbUi.surface, "p-5 sm:p-6")} data-practice-estimate={practiceEstimate.level}>

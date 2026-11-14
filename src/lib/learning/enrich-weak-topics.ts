@@ -1,6 +1,7 @@
 import type { ExamSlug } from "@/types/edtech";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { weakTopicSessionHref } from "@/lib/learning/weak-area-practice-href";
 import {
   topicNodeFromConceptKey,
   topicNodePracticeHref,
@@ -21,7 +22,14 @@ export function enrichWeakTopicsWithStudyLinks(
       fieldId: options?.fieldId,
       label: topic.name,
     });
-    const practiceHref = topicNodePracticeHref(node, 15);
+    const topicPractice = topicNodePracticeHref(node, 15);
+    const practiceHref =
+      weakTopicSessionHref({
+        examSlug,
+        topicId: topic.id,
+        fieldId: options?.fieldId ?? topic.fieldId,
+        fallbackHref: examSlug === "usmle" ? null : topicPractice,
+      }) ?? "";
     return {
       ...topic,
       studyLinks: {
