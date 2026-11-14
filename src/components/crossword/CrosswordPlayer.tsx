@@ -16,6 +16,7 @@ import {
   spoilerFreeShareText,
   type ShareMark,
 } from "@/lib/crossword/share-text";
+import { canReplaceSavedGame, gameToOpen } from "@/lib/crossword/shared-open";
 import { nextStreak, visibleStreak } from "@/lib/crossword/streak";
 import { syncCrosswordProgress } from "@/lib/crossword/sync-progress";
 import type { CrosswordDirection, CrosswordKey, PublicPuzzle, PublicSlot } from "@/lib/crossword/types";
@@ -82,7 +83,9 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
     (store: ReturnType<typeof loadCrosswordStore>) => {
       const today = todayIsoCentral();
       setStreak(visibleStreak(store.streaks[puzzle.board], today));
-      const saved = store.games[gameKey];
+      const locationSearch =
+        typeof window === "undefined" ? "" : `${window.location.search}${window.location.hash}`;
+      const saved = gameToOpen(store.games[gameKey], locationSearch);
       setFills(saved?.fills ?? {});
       setHints(saved?.hints ?? {});
       setElapsed(saved?.elapsed ?? 0);
@@ -156,7 +159,9 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
   useEffect(() => {
     if (!ready) return;
     const store = loadCrosswordStore();
-    store.games[gameKey] = { fills, hints, elapsed, started: running || elapsed > 0, complete, hinted };
+    const next = { fills, hints, elapsed, started: running || elapsed > 0, complete, hinted };
+    if (!canReplaceSavedGame(store.games[gameKey], next)) return;
+    store.games[gameKey] = next;
     saveCrosswordStore(store);
     if (status !== "authenticated") return;
     if (syncTimer.current) window.clearTimeout(syncTimer.current);
