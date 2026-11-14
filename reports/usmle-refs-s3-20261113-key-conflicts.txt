@@ -1,0 +1,3 @@
+id	step	key	why
+cmqxf0knf00051yf16gxaj63n	step-3	Administering high-flow oxygen therapy	BTS oxygen guideline suggests a target saturation of 88-92% for most patients with known COPD pending blood gas results. This key aims at a higher oxygen target.
+cmr4djbw3011o1ykyaabvjr4l	step-3	Hyperglycemic hyperosmolar state	The 2024 hyperglycemic-crisis consensus describes HHS as severe hyperglycemia with hyperosmolality and dehydration, without significant ketosis. This stem does not give hyperosmolality.
