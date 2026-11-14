@@ -1,0 +1,7 @@
+USMLE Step 1 gap batch blind read, 2026-11-14.
+
+A reader who had not seen the keys answered all 100 items from the stem and options alone.
+Agreement: 100/100 (100%).
+No item was replaced after the read.
+
+Closest existing Step 1 stem (token overlap) after rewrite: 0.34, a different question on hereditary spherocytosis. Median overlap 0.20.
