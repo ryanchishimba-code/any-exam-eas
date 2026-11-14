@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "source": "ClinCalc Top 500 (AnyExamEasy)",
-  "updatedAt": "2026-11-14T14:17:21.833Z",
+  "updatedAt": "2026-11-14T14:34:11.361Z",
   "count": 509,
   "drugs": [
     {
@@ -2586,7 +2586,7 @@
       "generic": "Exenatide",
       "brand": "Byetta, Bydureon (withdrawn US)",
       "class": "GLP-1 receptor agonist (historical)",
-      "indications": "Type 2 diabetes (Byetta BID, Bydureon weekly ER; US approvals withdrawn 2025)",
+      "indications": "Type 2 diabetes (Byetta BID, Bydureon weekly ER). Brand products and the Amneal generic are discontinued in the US",
       "sideEffects": "Nausea, vomiting, pancreatitis (rare), weight loss; CI MEN2/medullary thyroid carcinoma; renal dose limits for Byetta",
       "mnemonic": "Byetta = BYE appetite BID — Bydureon weekly ER; both withdrawn US",
       "examRelevance": {
@@ -5018,7 +5018,7 @@
       "generic": "Chloramphenicol",
       "brand": "Chloromycetin (withdrawn US)",
       "class": "Broad-spectrum antibiotic (historical)",
-      "indications": "Serious resistant infections (meningitis, typhoid; historical US products)",
+      "indications": "Serious resistant infections (meningitis, typhoid). Brand and sodium succinate IV are discontinued in the US",
       "sideEffects": "Gray baby syndrome, aplastic anemia, bone marrow suppression",
       "mnemonic": "Chloromycetin = GRAY baby if neonates — withdrawn US; fatal marrow aplasia",
       "examRelevance": {

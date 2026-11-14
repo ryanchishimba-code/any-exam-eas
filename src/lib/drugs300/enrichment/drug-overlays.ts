@@ -31,7 +31,7 @@ export const DRUG_ENRICHMENT_OVERLAYS: Record<string, Partial<DrugEnrichment>> =
   },
   exenatide: {
     pearls: [
-      "Byetta and Bydureon US approvals withdrawn effective Sept 3, 2025. Byetta was BID; Bydureon weekly ER — renal limits for Byetta (eGFR <30 avoid).",
+      "Byetta, Bydureon, Bydureon BCise, and the Amneal generic are discontinued in the US. Byetta was BID; Bydureon weekly ER — renal limits for Byetta (eGFR <30 avoid).",
       "First GLP-1 RA class prototype — know short- vs long-acting formulations.",
     ],
   },
