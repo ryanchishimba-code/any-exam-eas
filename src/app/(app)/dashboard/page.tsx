@@ -95,7 +95,11 @@ async function DashboardContent({
   // dashboard returned left the second connection idle and held the HTML
   // stream open for both round trips. Format buckets are an analytics chart;
   // the dashboard does not render them.
-  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday, servedBank] =
+  const studyCompletionPromise = studyCompletionSupportedForExam(examSlug)
+    ? settled(computeStudyCompletion(userId, examSlug), null, "study completion")
+    : Promise.resolve(null);
+
+  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday, servedBank, studyCompletion] =
     await runPageDb(() => {
       const masteryPromise =
         examSlug === "nclex"
@@ -147,6 +151,7 @@ async function DashboardContent({
         masteryPromise,
         settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
         settled(getCachedPracticeBankStats(fieldId), null, "served bank"),
+        studyCompletionPromise,
       ]);
     });
 
@@ -191,10 +196,6 @@ async function DashboardContent({
     record: startHereRecord,
     accountAttemptCount,
   });
-
-  const studyCompletion = studyCompletionSupportedForExam(examSlug)
-    ? await settled(computeStudyCompletion(userId, examSlug), null, "study completion")
-    : null;
 
   return (
     <DashboardPageContent

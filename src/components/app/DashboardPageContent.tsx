@@ -224,6 +224,14 @@ export function DashboardPageContent({
         />
       ) : null}
 
+      {recentTests[0] &&
+      Date.now() - Date.parse(recentTests[0].completedAt) < 36 * 60 * 60 * 1000 ? (
+        <p className="max-w-2xl px-0.5 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+          The practice snapshot counts every saved answer, including the exam you just finished.
+          A lower exam score moves it down. It is not a pass prediction.
+        </p>
+      ) : null}
+
       {examDayPlan ? (
         <DashboardTodayBlock
           plan={examDayPlan}

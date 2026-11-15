@@ -19,11 +19,21 @@ export function entityShareCap(sittingLength: number): number {
   return Math.max(2, Math.round(length * 0.04));
 }
 
-/** NCLEX dosage items stay near 8–10% of the sitting. */
+/**
+ * NCLEX dose and rate items. A CAT sitting stays at 4 even when it runs long,
+ * so one exam cannot fill with calculation stems.
+ */
 export function nursingDosageShareCap(sittingLength: number): number {
   const length = Math.max(0, Math.floor(sittingLength) || 0);
-  if (length <= 0) return 2;
-  return Math.max(2, Math.round(length * 0.09));
+  if (length <= 0) return 1;
+  return Math.min(4, Math.max(2, Math.round(length * 0.04)));
+}
+
+/** Diabetes, DKA, and gestational diabetes count as one topic family. */
+export function nursingDiabetesFamilyCap(sittingLength: number): number {
+  const length = Math.max(0, Math.floor(sittingLength) || 0);
+  if (length <= 40) return 2;
+  return 3;
 }
 
 const DRUGS = [
@@ -213,6 +223,7 @@ const CONDITIONS: { key: string; re: RegExp }[] = [
   { key: "copd", re: /\bcopd\b|\bchronic obstructive\b/i },
   { key: "asthma", re: /\basthma(?:tic)?\b/i },
   { key: "dka", re: /\bdka\b|\bdiabetic ketoacidosis\b/i },
+  { key: "diabetes", re: /\bdiabet(?:es|ic)\b/i },
   {
     key: "type-2-diabetes",
     re: /\btype\s*(?:2|ii|two)\s+diabet(?:es|ic)\b|\bt2dm\b|\bniddm\b|\bdiabetes mellitus type\s*(?:2|ii)\b/i,
@@ -1378,6 +1389,8 @@ export function enforceEntityAndDosageCap(
 ): BankItem[] {
   const entityCap = entityShareCap(limit);
   const dosageMax = isNursingSittingField(fieldId) ? nursingDosageShareCap(limit) : Number.POSITIVE_INFINITY;
+  const diabetesMax = isNursingSittingField(fieldId) ? nursingDiabetesFamilyCap(limit) : Number.POSITIVE_INFINITY;
+  const diabetesKeys = new Set(["diabetes", "dka", "type-2-diabetes", "gestational-diabetes"]);
   const calcMax = fieldId === "pharmacy" ? pharmacyCalculationQuota(limit) : Number.POSITIVE_INFINITY;
   const narrowCap = limits.narrowCap;
   const subjectDrugCap = limits.subjectDrugCap;
@@ -1393,6 +1406,7 @@ export function enforceEntityAndDosageCap(
   const narrowCounts = new Map<string, number>();
   const repeatCounts = new Map<string, number>();
   let dosage = 0;
+  let diabetes = 0;
   let calcs = 0;
   let lawOnly = 0;
   const lawCeiling = fieldId === "pharmacy" ? naplexLawItemCeiling(limit) : Number.POSITIVE_INFINITY;
@@ -1474,6 +1488,11 @@ export function enforceEntityAndDosageCap(
       noteRejection(item, "condition");
       return false;
     }
+    const diabetesHit = conditions.some((condition) => diabetesKeys.has(condition));
+    if (diabetesHit && diabetes >= diabetesMax) {
+      noteRejection(item, "condition");
+      return false;
+    }
     const repeatHit = repeats.find((key) => (repeatCounts.get(key) ?? 0) >= repeatAllowance(key, limits));
     if (repeatHit) {
       noteRejection(item, `repeat:${repeatHit.split(":")[0]}`);
@@ -1509,6 +1528,7 @@ export function enforceEntityAndDosageCap(
     if (entity && ask) askCounts.set(`${entity}:${ask}`, 1);
     if (template) templateCounts.set(template, (templateCounts.get(template) ?? 0) + 1);
     if (dose) dosage += 1;
+    if (diabetesHit) diabetes += 1;
     if (numeric) calcs += 1;
     if (narrow) narrowCounts.set(narrow, (narrowCounts.get(narrow) ?? 0) + 1);
     if (lawItem) lawOnly += 1;

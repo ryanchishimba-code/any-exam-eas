@@ -10,8 +10,13 @@
  */
 
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
-import { resolveBlueprintCategoryIdForAttempt } from "@/lib/learning/attempt-blueprint-attribution";
+import {
+  NURSING_PHARMACOLOGY_LABEL,
+  canonicalNursingSubjectId,
+  resolveBlueprintCategoryIdForAttempt,
+} from "@/lib/learning/attempt-blueprint-attribution";
 import { getSubjectArea } from "@/lib/subjects/subject-catalog";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import {
   drugSafetyPathHref,
   drugStudyHref,
@@ -381,6 +386,8 @@ export type OpenLoopAttempt = {
 
 /** One catalog id per topic, whether the attempt stored the slug or the label. */
 export function canonicalOpenSubjectId(fieldId: string, subjectId: string): string {
+  const nursing = canonicalNursingSubjectId(subjectId);
+  if (normalizeFieldId(fieldId) === "nursing" && nursing) return nursing;
   const area = getSubjectArea(fieldId, subjectId);
   return area?.id ?? subjectId.trim();
 }
@@ -470,7 +477,10 @@ export function groupOpenRemediationLoops(params: {
       const cards = resolveRelatedCards(params.examSlug, [subjectId]);
       return {
         id: subjectId,
-        label: formatConceptLabel(subjectId),
+        label:
+          subjectId === "pharmacology-nursing"
+            ? NURSING_PHARMACOLOGY_LABEL
+            : getSubjectArea(params.fieldId, subjectId)?.label ?? formatConceptLabel(subjectId),
         openCount: group.ids.size,
         pendingCount: group.pending,
         guide: guide ? { title: guide.title, href: guide.href } : null,

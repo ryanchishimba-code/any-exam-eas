@@ -30,6 +30,51 @@ describe("NGN question preparation", () => {
     expect(bowTieSelectionValid(selected, layout)).toBe(true);
   });
 
+  it("does not call a bow-tie complete when its condition column is empty", () => {
+    const layout = parseBowTieLayout({
+      type: "bow_tie",
+      question: "Complete the bow-tie for this breastfeeding client.",
+      options: [],
+      correctAnswer: "Latch support",
+      chartData: {
+        kind: "bow_tie",
+        condition: "Ineffective latch",
+        conditionOptions: [],
+        actions: ["Help with the latch", "Offer formula first"],
+        monitors: ["Audible swallows", "Nipple pain"],
+        actionPickCount: 1,
+        monitorPickCount: 2,
+      },
+    });
+    expect(layout.conditionOptions).toEqual([]);
+    expect(layout.conditionChoicesListed).toBe(true);
+    expect(
+      bowTieSelectionValid(["Help with the latch", "Audible swallows", "Nipple pain"], layout)
+    ).toBe(false);
+  });
+
+  it("reads condition choices stored as text objects", () => {
+    const layout = parseBowTieLayout({
+      type: "bow_tie",
+      question: "Complete the bow-tie.",
+      options: [],
+      correctAnswer: "Ineffective latch",
+      ngnPayload: {
+        kind: "bow_tie",
+        actions: ["Help with the latch"],
+        monitors: ["Audible swallows", "Nipple pain"],
+        conditions: [{ text: "Ineffective latch" }, { text: "Normal engorgement" }],
+      },
+    });
+    expect(layout.conditionOptions).toEqual(["Ineffective latch", "Normal engorgement"]);
+    expect(
+      bowTieSelectionValid(
+        ["Help with the latch", "Ineffective latch", "Audible swallows", "Nipple pain"],
+        layout
+      )
+    ).toBe(true);
+  });
+
   it("grades bow-tie selections", () => {
     const q = examQuestionToStudy(NGN_DEMO_QUESTIONS[0], 0);
     expect(isAnswerCorrect(q, q.correctAnswers)).toBe(true);

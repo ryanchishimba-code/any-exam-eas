@@ -78,7 +78,7 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
           id: "ngn",
           shortLabel: "NGN feels new",
           worry: "NGN item types feel unfamiliar",
-          fix: "Practice matrix, bow-tie, highlight, and drag-drop items that are live in your bank.",
+          fix: "Practice the live NGN types: case studies, bow-tie items, and trend items.",
         },
         {
           id: "cat",
@@ -203,15 +203,11 @@ export function boardPainPoints(slug: BoardSlug): BoardPainPoint[] {
   }
 }
 
-function nclexQuestionTypes(bankTypes: Record<string, number>): BoardQuestionTypeIcon[] {
-  const has = (types: string[]) =>
-    types.some((type) => (bankTypes[type.toLowerCase()] ?? 0) > 0);
+function nclexQuestionTypes(_bankTypes: Record<string, number>): BoardQuestionTypeIcon[] {
   return [
-    { id: "matrix", label: "Matrix", live: has(["ngn_matrix", "matrix"]) },
-    { id: "bowtie", label: "Bow-tie", live: has(["ngn_bowtie", "bow_tie", "bowtie"]) },
-    { id: "highlight", label: "Highlight", live: has(["ngn_highlight", "highlight"]) },
-    { id: "drag", label: "Drag-drop", live: has(["drag_drop"]) },
-    { id: "sata", label: "SATA", live: has(["select_all", "sata"]) },
+    { id: "case", label: "Case study", live: true },
+    { id: "bowtie", label: "Bow-tie", live: true },
+    { id: "trend", label: "Trend", live: true },
   ].filter((row) => row.live);
 }
 

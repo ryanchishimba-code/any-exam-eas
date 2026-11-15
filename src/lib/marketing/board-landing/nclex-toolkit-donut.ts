@@ -41,7 +41,7 @@ export function buildNclexToolkitDonutSegments(input: {
     segments.push({
       id: "ngn",
       label: "NGN formats",
-      detail: "Matrix, bow-tie, SATA, and case studies in the live bank.",
+      detail: "Case studies, bow-tie items, and trend items in the live bank.",
     });
   }
 

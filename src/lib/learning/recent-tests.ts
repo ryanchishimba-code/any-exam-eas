@@ -8,7 +8,8 @@ export type FinishedExamSessionRow = {
   score: number | null;
   questionCount: number;
   completedAt: Date | null;
-  answers: unknown;
+  answers?: unknown;
+  answeredCount?: number | null;
 };
 
 function scoredCounts(answers: unknown): { correct: number; total: number } {
@@ -30,7 +31,17 @@ function scoredCounts(answers: unknown): { correct: number; total: number } {
 
 /** One finished full-exam sitting, in the same shape as a generated-exam progress row. */
 export function recentTestFromExamSession(row: FinishedExamSessionRow): RecentTestRow | null {
-  const counts = scoredCounts(row.answers);
+  const fromAnswers = scoredCounts(row.answers);
+  const counts =
+    fromAnswers.total > 0
+      ? fromAnswers
+      : {
+          correct:
+            row.answeredCount && row.score != null
+              ? Math.round((Math.max(0, Math.min(100, row.score)) / 100) * row.answeredCount)
+              : 0,
+          total: row.answeredCount ?? 0,
+        };
   if (counts.total <= 0 && (row.score ?? 0) <= 0) return null;
   const field = row.fieldId?.trim() || row.examType;
   const total = counts.total > 0 ? counts.total : row.questionCount > 0 ? row.questionCount : null;

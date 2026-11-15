@@ -260,7 +260,7 @@ export function validatePracticeFormatSession(params: {
   if (!options.some((option) => option.value === questionCount)) {
     return {
       ok: false,
-      message: `Choose ${options.map((option) => option.value).join(", ")} questions for this ${noun} set.`,
+      message: `Choose ${options.map((option) => option.value).join(", ")} ${format === "case" ? "cases" : "questions"} for this ${noun} set.`,
       maxAvailable,
     };
   }
@@ -296,4 +296,31 @@ export function formatPracticeStatsFromRows(
     };
   }
   return stats;
+}
+
+/**
+ * NGN practice includes scored case sets. A case study is an NGN set even
+ * when its attempts were tagged as cases, so the NGN card cannot stay at zero
+ * while those sets are listed.
+ */
+export function includeScoredCaseSetsInNgn(
+  stats: FormatPracticeStats,
+  sets: readonly { format: "ngn" | "case"; score: number | null; itemCount: number }[]
+): FormatPracticeStats {
+  const caseSets = sets.filter((set) => set.format === "case" && set.itemCount > 0);
+  if (caseSets.length === 0) return stats;
+  let attempts = stats.ngn.attempts;
+  let correct =
+    stats.ngn.accuracy == null ? 0 : Math.round((stats.ngn.accuracy / 100) * stats.ngn.attempts);
+  for (const set of caseSets) {
+    attempts += set.itemCount;
+    if (set.score != null) correct += Math.round((set.score / 100) * set.itemCount);
+  }
+  return {
+    ...stats,
+    ngn: {
+      attempts,
+      accuracy: attempts > 0 ? Math.round((correct / attempts) * 100) : null,
+    },
+  };
 }

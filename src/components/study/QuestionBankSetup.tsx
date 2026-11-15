@@ -71,6 +71,8 @@ type QuestionBankSetupProps = {
   /** Bank-item topic counts for the standard session wheel. */
   sessionCounts?: Record<string, number> | null;
   caseItemCount?: number | null;
+  standaloneNgn?: number | null;
+  caseStudies?: number | null;
   ngnLabel?: string;
 };
 
@@ -106,6 +108,8 @@ export function QuestionBankSetup({
   scoredTotal = null,
   sessionCounts = null,
   caseItemCount = null,
+  standaloneNgn = null,
+  caseStudies = null,
   ngnLabel = "NGN",
 }: QuestionBankSetupProps) {
   const formatMode = practiceFormat === "ngn" || practiceFormat === "case";
@@ -206,6 +210,10 @@ export function QuestionBankSetup({
           caseItemCount={
             !subjectId || isMixedSubjectId(subjectId) ? caseItemCount : null
           }
+          standaloneNgn={
+            !subjectId || isMixedSubjectId(subjectId) ? standaloneNgn : null
+          }
+          caseStudies={!subjectId || isMixedSubjectId(subjectId) ? caseStudies : null}
           countsLoading={countsLoading}
           ngnLabel={ngnLabel}
           fieldId={fieldId}
@@ -232,7 +240,9 @@ export function QuestionBankSetup({
       <QuestionBankSection title="Session">
         <div className="space-y-5">
           <div>
-            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Questions</p>
+            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>
+              {practiceFormat === "case" ? "Cases" : "Questions"}
+            </p>
             {countOptions.length === 0 ? (
               countsLoading ? (
                 <p className="px-0.5 text-[15px] leading-relaxed text-[var(--color-ink-muted)]" role="status">
