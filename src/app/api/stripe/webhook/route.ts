@@ -31,6 +31,10 @@ import {
   applyOneTimePurchase,
   revokeOneTimePurchase,
 } from "@/lib/billing/one-time-purchase";
+import {
+  redeemTrialUpgradeOffer,
+  upgradeOfferIdFromMetadata,
+} from "@/lib/billing/trial-upgrade-offer-db";
 
 export const runtime = "nodejs";
 
@@ -208,6 +212,12 @@ export async function POST(req: Request) {
         if (oneTimePromo) {
           void import("@/lib/promo").then((m) => m.redeemPromoCode(userId, oneTimePromo));
         }
+        const oneTimeOfferId = upgradeOfferIdFromMetadata(session.metadata);
+        if (oneTimeOfferId) {
+          void redeemTrialUpgradeOffer(oneTimeOfferId, userId).catch((err) => {
+            console.error("[stripe/webhook] trial upgrade offer redeem failed", err);
+          });
+        }
         break;
       }
 
@@ -289,6 +299,15 @@ export async function POST(req: Request) {
           stripeSub.metadata?.promoCode?.trim();
         if (promoCode) {
           void import("@/lib/promo").then((m) => m.redeemPromoCode(userId, promoCode));
+        }
+
+        const subscriptionOfferId =
+          upgradeOfferIdFromMetadata(session.metadata) ||
+          upgradeOfferIdFromMetadata(stripeSub.metadata);
+        if (subscriptionOfferId && stripeSub.status === "active") {
+          void redeemTrialUpgradeOffer(subscriptionOfferId, userId).catch((err) => {
+            console.error("[stripe/webhook] trial upgrade offer redeem failed", err);
+          });
         }
 
         if (isInitialStripeTrial(session.metadata?.plan, stripeSub.status)) {
@@ -391,6 +410,12 @@ export async function POST(req: Request) {
           invalidateSubscriptionStatusCache(userId);
 
           const amountPaid = invoice.amount_paid ?? 0;
+          const paidOfferId = upgradeOfferIdFromMetadata(stripeSub.metadata);
+          if (paidOfferId && amountPaid > 0) {
+            void redeemTrialUpgradeOffer(paidOfferId, userId).catch((err) => {
+              console.error("[stripe/webhook] trial upgrade offer redeem failed", err);
+            });
+          }
           if (invoice.billing_reason === "subscription_cycle" && amountPaid > 0) {
             const receiptRow = await prisma.subscription.findUnique({
               where: { userId },

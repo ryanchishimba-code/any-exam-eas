@@ -57,6 +57,7 @@
     "db:audit-credentials": "npx tsx scripts/audit-user-credentials.mts",
     "db:repair-credentials": "npx tsx scripts/audit-user-credentials.mts --repair",
     "db:reset-user-password": "npx tsx scripts/reset-user-password.mts",
+    "offer:trial-upgrade": "npx tsx scripts/trial-upgrade-offer.mts",
     "db:seed-admin": "DEV_USER_ROLE=super_admin npx tsx scripts/seed-dev-user.mjs",
     "db:seed-user-regular": "DEV_USER_ROLE=user npx tsx scripts/seed-dev-user.mjs",
     "db:seed-edtech": "npx tsx scripts/seed-edtech.ts",

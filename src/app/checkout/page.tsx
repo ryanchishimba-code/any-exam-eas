@@ -14,6 +14,8 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { PurchaseTrustNotes } from "@/components/marketing/PurchaseTrustNotes";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { getSubscriptionAccess } from "@/lib/subscription-access";
+import { OFFER_PUBLIC_MESSAGE, type TrialUpgradeOfferView } from "@/lib/billing/trial-upgrade-offer";
+import { readTrialUpgradeOffer } from "@/lib/billing/trial-upgrade-offer-db";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -92,6 +94,25 @@ export default async function CheckoutPage({
   }
 
   const isReactivate = reactivate === "1";
+  const offerToken = firstSearchValue(params.offer)?.trim() ?? "";
+  let offer: TrialUpgradeOfferView | null = null;
+  if (offerToken && session.user.id) {
+    try {
+      offer = await readTrialUpgradeOffer(session.user.id, offerToken);
+    } catch (error) {
+      console.error(
+        "[checkout] offer lookup failed",
+        error instanceof Error ? error.message : error
+      );
+      offer = {
+        status: "unavailable",
+        message: OFFER_PUBLIC_MESSAGE.unavailable,
+        expiresAt: null,
+        token: null,
+        percentOff: null,
+      };
+    }
+  }
 
   return (
     <PageShell
@@ -107,7 +128,7 @@ export default async function CheckoutPage({
       <CheckoutStartBeacon />
       <PurchaseTrustNotes className="mt-4" showTrialOffer={false} />
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-        <EmbeddedStripeCheckout />
+        <EmbeddedStripeCheckout offer={offer} />
       </Suspense>
     </PageShell>
   );
