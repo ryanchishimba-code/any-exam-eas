@@ -1,6 +1,6 @@
 "use client";
 
-import { formatPublishedNgnSentence } from "@/lib/counts";
+import { formatPublishedNgnSentence } from "@/lib/published-ngn-sentence";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { practiceFormatChooser } from "@/lib/study/offered-formats";
 import {
