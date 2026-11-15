@@ -72,6 +72,30 @@ export function isInternalMasteryConceptKey(key: string): boolean {
   return false;
 }
 
+export const NURSING_PHARMACOLOGY_LABEL = "Pharmacological and Parenteral Therapies";
+
+/** One id for the official pharmacological and parenteral therapies category. */
+export function canonicalNursingSubjectId(value: string | null | undefined): string | null {
+  const key = (value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!key) return null;
+  if (
+    key === "pharmacological therapies" ||
+    key === "pharmacological and parenteral therapies" ||
+    key === "pharmacology" ||
+    key === "pharmacology nursing" ||
+    key === "pharmacology nursing therapies"
+  ) {
+    return "pharmacology-nursing";
+  }
+  return null;
+}
+
 /** Title-case a slug/key for display (assumes student-facing). */
 export function formatConceptLabel(key: string): string {
   const raw = key
@@ -92,6 +116,9 @@ export function studentFacingConceptLabel(
   options?: { subjectLabel?: string | null }
 ): string | null {
   if (isInternalMasteryConceptKey(key)) return null;
+  if (canonicalNursingSubjectId(key) || canonicalNursingSubjectId(options?.subjectLabel)) {
+    return NURSING_PHARMACOLOGY_LABEL;
+  }
   const subject = options?.subjectLabel?.trim();
   if (subject) return subject;
   return formatConceptLabel(key);

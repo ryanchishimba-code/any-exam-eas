@@ -2718,6 +2718,8 @@ export function StudyBankPractice({
               scoredTotal={launcherScoredTotal}
               sessionCounts={topicLauncherSubjectCounts ?? subjectCountPayload?.sessionCounts}
               caseItemCount={subjectCountPayload?.caseItems}
+              standaloneNgn={subjectCountPayload?.standaloneNgn}
+              caseStudies={subjectCountPayload?.caseStudies}
               ngnLabel={ngnLabel}
               onPracticeFormatChange={(next) => {
                 const pool = practiceFormatPoolCount(next, scopeFormats);

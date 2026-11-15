@@ -247,13 +247,17 @@ async function loadStudyCompletionMetrics(
   ] = await Promise.all([
     countServedBankQuestions(fieldId),
     prisma.$queryRaw<{ count: bigint }[]>`
-      SELECT COUNT(DISTINCT "bankItemId")::bigint AS count
+      SELECT COUNT(DISTINCT COALESCE(NULLIF("bankItemId", ''), "questionKey"))::bigint AS count
       FROM "QuestionAttempt"
       WHERE "userId" = ${userId}
         AND "fieldId" = ${fieldId}
-        AND "bankItemId" IS NOT NULL
+        AND COALESCE(NULLIF("bankItemId", ''), NULLIF("questionKey", '')) IS NOT NULL
         AND (
           ("durationMs" IS NOT NULL AND "durationMs" >= ${minDurationMs})
+          OR "tagsJson" ILIKE '%practice-format:case%'
+          OR "tagsJson" ILIKE '%practice-format:ngn%'
+          OR "questionKey" LIKE 'ngn:%'
+          OR "bankItemId" LIKE 'ngn:%'
           OR EXISTS (
             SELECT 1 FROM "exam_sessions" es
             WHERE es.id = "QuestionAttempt"."sessionId"

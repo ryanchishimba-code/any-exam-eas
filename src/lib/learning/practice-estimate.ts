@@ -3,6 +3,7 @@
  * The same read on Readiness and Analytics. Never a pass prediction.
  */
 
+import { NURSING_PHARMACOLOGY_LABEL, canonicalNursingSubjectId } from "@/lib/learning/concept-labels";
 import { outlineCoveragePct } from "@/lib/learning/practice-measure";
 
 export const PRACTICE_ESTIMATE_LABEL = "A practice measure, not a pass prediction.";
@@ -69,7 +70,8 @@ export function examAreaScoresFromAnswers(answers: unknown): ExamAreaScore[] {
     const chosen = typeof selected === "string" ? selected.trim() : Array.isArray(selected) ? selected.join("") : "";
     if (!chosen) continue;
     const topic = (row as { topicCategory?: unknown }).topicCategory;
-    const label = typeof topic === "string" && topic.trim() ? topic.trim() : "General";
+    const raw = typeof topic === "string" && topic.trim() ? topic.trim() : "General";
+    const label = canonicalNursingSubjectId(raw) ? NURSING_PHARMACOLOGY_LABEL : raw;
     const bucket = totals.get(label) ?? { correct: 0, total: 0 };
     bucket.total += 1;
     if ((row as { correct?: unknown }).correct === true) bucket.correct += 1;

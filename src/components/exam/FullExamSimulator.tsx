@@ -1310,21 +1310,22 @@ export function FullExamSimulator({
     return (
       <div className={feUi.pageBg}>
         <header className={feUi.glassHeader}>
-          <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6">
-            <h1 className="text-[17px] font-semibold text-[var(--color-ink)]">Review before submit</h1>
-            <p className="text-[13px] text-[var(--color-ink-muted)]">{exam.name}</p>
+          <div className="mx-auto flex max-w-2xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+            <div className="min-w-0">
+              <h1 className="text-[17px] font-semibold text-[var(--color-ink)]">Review before submit</h1>
+              <p className="text-[13px] text-[var(--color-ink-muted)]">{exam.name}</p>
+            </div>
+            <FloatingTimer
+              totalSec={config.timeLimitSec}
+              remainingSec={remainingSec}
+              elapsedSec={elapsedSec}
+              timed={config.timed}
+              paused={paused}
+              questionsCompleted={displayAnsweredCount}
+              questionsTotal={isCatMode ? CAT_MAX_QUESTIONS : questions.length}
+            />
           </div>
         </header>
-
-        <FloatingTimer
-          totalSec={config.timeLimitSec}
-          remainingSec={remainingSec}
-          elapsedSec={elapsedSec}
-          timed={config.timed}
-          paused={paused}
-          questionsCompleted={displayAnsweredCount}
-          questionsTotal={isCatMode ? CAT_MAX_QUESTIONS : questions.length}
-        />
 
         <main className="mx-auto max-w-2xl space-y-5 px-4 py-6 pb-36 sm:px-6">
           {isCatMode ? (
@@ -1445,21 +1446,20 @@ export function FullExamSimulator({
               </p>
             ) : null}
           </div>
-          <div className="w-24 sm:w-40">
+          <div className="hidden w-24 sm:block sm:w-40">
             <Progress value={progressPct} className="h-1 rounded-full bg-black/[0.06]" />
           </div>
+          <FloatingTimer
+            totalSec={config.timeLimitSec}
+            remainingSec={remainingSec}
+            elapsedSec={elapsedSec}
+            timed={config.timed}
+            paused={paused}
+            questionsCompleted={displayAnsweredCount}
+            questionsTotal={displayTotal}
+          />
         </div>
       </header>
-
-      <FloatingTimer
-        totalSec={config.timeLimitSec}
-        remainingSec={remainingSec}
-        elapsedSec={elapsedSec}
-        timed={config.timed}
-        paused={paused}
-        questionsCompleted={displayAnsweredCount}
-        questionsTotal={displayTotal}
-      />
 
       <div className="mx-auto flex max-w-[1400px] gap-0 lg:gap-6">
         <aside className={cn("hidden w-56 shrink-0 p-4 xl:w-64", examMode ? "" : "lg:block")}>

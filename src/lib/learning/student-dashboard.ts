@@ -23,6 +23,7 @@ import {
 } from "@/lib/learning/format-practice-stats";
 import {
   emptyFormatPracticeStats,
+  includeScoredCaseSetsInNgn,
   type FormatPracticeStats,
 } from "@/lib/study/practice-format";
 import { mergeRecentTests, recentTestFromExamSession } from "@/lib/learning/recent-tests";
@@ -198,8 +199,11 @@ export function trendDayKey(
   value: Date | string,
   timeZone = PRACTICE_TREND_TIME_ZONE
 ): string {
-  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value.trim())) {
-    return value.trim();
+  if (typeof value === "string") {
+    const named = value.trim().match(/^(\d{4}-\d{2}-\d{2})/);
+    if (named && (/^\d{4}-\d{2}-\d{2}$/.test(value.trim()) || /T00:00:00/.test(value))) {
+      return named[1]!;
+    }
   }
   const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) {
@@ -367,11 +371,86 @@ async function getAccuracyTrendSql(
 
   const byDay = new Map<string, { correct: number; total: number }>();
   for (const row of rows) {
-    const key = trendDayKey(row.day);
+    const key = sqlTrendDay(row.day);
     byDay.set(key, { correct: row.correct, total: row.total });
   }
 
   return buildTrendPoints(byDay);
+}
+
+/** A date-only SQL value keeps the calendar day it names, including UTC midnight. */
+export function sqlTrendDay(value: Date | string): string {
+  if (typeof value === "string") {
+    const named = value.trim().match(/^(\d{4}-\d{2}-\d{2})/);
+    if (named) return named[1]!;
+  }
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    const utcMidnight =
+      value.getUTCHours() === 0 &&
+      value.getUTCMinutes() === 0 &&
+      value.getUTCSeconds() === 0 &&
+      value.getUTCMilliseconds() === 0;
+    if (utcMidnight) return namedCalendarDay(value, true);
+  }
+  return trendDayKey(value);
+}
+
+async function examCompletionDays(
+  userId: string,
+  fieldIds: FieldScope
+): Promise<Map<string, { correct: number; total: number }>> {
+  const since = trendWindowStart();
+  const ids = expandReviewFieldIds(fieldIds);
+  const fieldClause =
+    ids.length > 0
+      ? Prisma.sql`AND (
+          "fieldId" IN (${Prisma.join(ids)})
+          OR ("fieldId" IS NULL AND "examType" IN (${Prisma.join(ids)}))
+        )`
+      : Prisma.empty;
+  const rows = await prisma.$queryRaw<
+    { day: Date | string; total: number; score: number | null }[]
+  >(Prisma.sql`
+    SELECT
+      to_char(("completedAt" AT TIME ZONE 'America/Chicago'), 'YYYY-MM-DD') AS day,
+      COALESCE(NULLIF(("analysis"->>'answeredCount')::int, 0), "questionCount")::int AS total,
+      score
+    FROM "exam_sessions"
+    WHERE "userId" = ${userId}
+      AND status IN ('completed', 'ended_early')
+      AND "completedAt" IS NOT NULL
+      AND "completedAt" >= ${since}
+      ${fieldClause}
+  `);
+  const byDay = new Map<string, { correct: number; total: number }>();
+  for (const row of rows) {
+    const key = sqlTrendDay(row.day);
+    const total = Math.max(0, Number(row.total) || 0);
+    if (total <= 0) continue;
+    const pct = row.score == null ? null : Math.max(0, Math.min(100, Number(row.score)));
+    const correct = pct == null ? 0 : Math.round((pct / 100) * total);
+    const entry = byDay.get(key) ?? { correct: 0, total: 0 };
+    entry.total += total;
+    entry.correct += correct;
+    byDay.set(key, entry);
+  }
+  return byDay;
+}
+
+function fillEmptyTrendDays(
+  points: AccuracyTrendPoint[],
+  exams: Map<string, { correct: number; total: number }>
+): AccuracyTrendPoint[] {
+  return points.map((point) => {
+    if (point.attempts > 0) return point;
+    const exam = exams.get(point.date);
+    if (!exam || exam.total <= 0) return point;
+    return {
+      ...point,
+      attempts: exam.total,
+      accuracy: Math.round((exam.correct / exam.total) * 100),
+    };
+  });
 }
 
 async function getAccuracyTrend(
@@ -379,10 +458,13 @@ async function getAccuracyTrend(
   fieldIds: FieldScope
 ): Promise<AccuracyTrendPoint[]> {
   const url = resolveDatabaseUrl();
-  if (isPostgresDatabaseUrl(url)) {
-    return getAccuracyTrendSql(userId, fieldIds);
-  }
-  return getAccuracyTrendLegacy(userId, fieldIds);
+  const [points, exams] = await Promise.all([
+    isPostgresDatabaseUrl(url)
+      ? getAccuracyTrendSql(userId, fieldIds)
+      : getAccuracyTrendLegacy(userId, fieldIds),
+    examCompletionDays(userId, fieldIds).catch(() => new Map<string, { correct: number; total: number }>()),
+  ]);
+  return fillEmptyTrendDays(points, exams);
 }
 
 function sumAttemptCounts(
@@ -580,7 +662,7 @@ export async function getStudentDashboardData(
   // payload is not served in their place.
   const formatKey = opts?.skipFormatPractice ? "no-format" : "format";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v8", userId, scopeKey, trendKey, formatKey]),
+    cacheKey(["student-dashboard-v9", userId, scopeKey, trendKey, formatKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds, opts),
     { staleTtlMs: CACHE_STALE.learningDashboard, skipFreshL1: true }
@@ -692,32 +774,41 @@ async function loadStudentDashboardData(
     LIMIT ${recentLimit}
   `;
 
-  const finishedExamSessionsPromise = prisma.examSession.findMany({
-    where: {
-      userId,
-      status: { in: ["completed", "ended_early"] },
-      ...(scoped && fieldIds
-        ? {
-            OR: [
-              { fieldId: { in: fieldIds } },
-              ...(scopeSlug ? [{ fieldId: null, examType: scopeSlug }] : []),
-            ],
-          }
-        : {}),
-    },
-    orderBy: { completedAt: "desc" },
-    take: 20,
-    select: {
-      id: true,
-      examType: true,
-      fieldId: true,
-      title: true,
-      score: true,
-      questionCount: true,
-      completedAt: true,
-      answers: true,
-    },
-  });
+  const finishedExamSessionsPromise = prisma.$queryRaw<
+    {
+      id: string;
+      examType: string;
+      fieldId: string | null;
+      title: string | null;
+      score: number | null;
+      questionCount: number;
+      completedAt: Date | null;
+      answeredCount: number;
+    }[]
+  >(Prisma.sql`
+    SELECT
+      id,
+      "examType",
+      "fieldId",
+      title,
+      score,
+      "questionCount",
+      "completedAt",
+      COALESCE(NULLIF(("analysis"->>'answeredCount')::int, 0), "questionCount")::int AS "answeredCount"
+    FROM "exam_sessions"
+    WHERE "userId" = ${userId}
+      AND status IN ('completed', 'ended_early')
+      ${
+        scoped && fieldIds
+          ? Prisma.sql`AND (
+              "fieldId" IN (${Prisma.join(fieldIds)})
+              ${scopeSlug ? Prisma.sql`OR ("fieldId" IS NULL AND "examType" = ${scopeSlug})` : Prisma.empty}
+            )`
+          : Prisma.empty
+      }
+    ORDER BY "completedAt" DESC NULLS LAST
+    LIMIT 20
+  `);
 
   const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, subjectAttemptGroups, spacedReview, formatPractice, savedFormatSets] =
     await Promise.all([
@@ -872,7 +963,7 @@ async function loadStudentDashboardData(
     weakTopics,
     recentTests,
     spacedReview,
-    formatPractice,
+    formatPractice: includeScoredCaseSetsInNgn(formatPractice, savedFormatSets),
     savedFormatSets,
   };
 }

@@ -4,6 +4,12 @@
  * nursing subject slugs that predate Client Needs alignment.
  */
 
+import {
+  NURSING_PHARMACOLOGY_LABEL,
+  canonicalNursingSubjectId,
+} from "@/lib/learning/concept-labels";
+
+export { NURSING_PHARMACOLOGY_LABEL, canonicalNursingSubjectId };
 import { SUBJECT_TO_BLUEPRINT_DOMAIN } from "@/lib/exam-prep/nclex/infer-blueprint-topic";
 import { blueprintCategoryIdForQuestion } from "@/lib/inventory/blueprint-domain-pool";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
@@ -73,15 +79,18 @@ export function resolveBlueprintCategoryIdForAttempt(
   }
 
   const rawSubject = clean(source.subjectId);
+  const nursingAlias = canonical === "nursing" ? canonicalNursingSubjectId(rawSubject) : null;
   const alias =
-    rawSubject && PRACTICE_SUBJECT_ALIASES[canonical]?.[rawSubject.toLowerCase()];
+    nursingAlias ??
+    (rawSubject && PRACTICE_SUBJECT_ALIASES[canonical]?.[rawSubject.toLowerCase()]);
   const subjectId = alias ?? rawSubject;
 
   const candidates = [
     subjectId,
+    canonical === "nursing" ? canonicalNursingSubjectId(source.topicCategory) : null,
     clean(source.topicCategory),
     clean(source.blueprintDomain),
-  ].filter((value) => value && isUsableSubject(value));
+  ].filter((value): value is string => typeof value === "string" && value.length > 0 && isUsableSubject(value));
 
   for (const candidate of candidates) {
     const fromBlueprint = blueprintCategoryIdForQuestion(canonical, {

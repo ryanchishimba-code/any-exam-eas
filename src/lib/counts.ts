@@ -74,6 +74,29 @@ export function publishedNgnItemCount(
   return Math.max(0, units.standaloneNgn) + Math.max(0, units.caseItems);
 }
 
+/**
+ * One published NGN total for the board page and the question bank.
+ * Scored case-study items plus standalone catalog items. Bank SATA rows
+ * stay inside the question total and are not added here.
+ */
+export function publishedNgnBreakdown(
+  units: Pick<BoardQuestionUnits, "standaloneNgn" | "caseItems" | "caseStudies">
+): { total: number; caseItems: number; caseStudies: number; standalone: number } {
+  const caseItems = Math.max(0, Math.floor(units.caseItems));
+  const caseStudies = Math.max(0, Math.floor(units.caseStudies));
+  const standalone = Math.max(0, Math.floor(units.standaloneNgn));
+  return { total: caseItems + standalone, caseItems, caseStudies, standalone };
+}
+
+/** Same sentence on every page that states the published NGN total. */
+export function formatPublishedNgnSentence(
+  units: Pick<BoardQuestionUnits, "standaloneNgn" | "caseItems" | "caseStudies">
+): string {
+  const breakdown = publishedNgnBreakdown(units);
+  if (breakdown.total <= 0) return "";
+  return `${formatExactQuestionCount(breakdown.total)} published NGN items (${formatExactQuestionCount(breakdown.caseItems)} scored case items + ${formatExactQuestionCount(breakdown.standalone)} standalone)`;
+}
+
 export function formatExactQuestionCount(count: number): string {
   return Math.max(0, Math.floor(count)).toLocaleString("en-US");
 }

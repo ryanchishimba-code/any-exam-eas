@@ -1,5 +1,6 @@
 "use client";
 
+import { formatPublishedNgnSentence } from "@/lib/counts";
 import type { FormatCounts } from "@/lib/inventory/active-questions";
 import { practiceFormatChooser } from "@/lib/study/offered-formats";
 import {
@@ -16,6 +17,9 @@ type Props = {
   scoredTotal?: number | null;
   /** Scored items inside the case studies, when the card is the whole bank. */
   caseItemCount?: number | null;
+  /** Published standalone NGN items. Bank SATA rows are not added to this. */
+  standaloneNgn?: number | null;
+  caseStudies?: number | null;
   countsLoading?: boolean;
   ngnLabel?: string;
   /** Pharmacy does not show the nursing NGN bucket. */
@@ -29,9 +33,12 @@ type Props = {
 function countFor(
   id: PracticeFormatMode,
   formats: FormatCounts,
-  scoredTotal?: number | null
+  scoredTotal?: number | null,
+  standaloneNgn?: number | null
 ): number {
-  if (id === "ngn") return formats.ngn;
+  if (id === "ngn") {
+    return typeof standaloneNgn === "number" && standaloneNgn > 0 ? standaloneNgn : formats.ngn;
+  }
   if (id === "case") return formats.case;
   if (typeof scoredTotal === "number") return scoredTotal;
   return formats.mcq + formats.ngn + formats.case;
@@ -43,6 +50,8 @@ export function QuestionBankFormatMode({
   formats,
   scoredTotal = null,
   caseItemCount = null,
+  standaloneNgn = null,
+  caseStudies = null,
   countsLoading = false,
   ngnLabel = "NGN",
   fieldId = null,
@@ -80,10 +89,21 @@ export function QuestionBankFormatMode({
       >
         {chooser.choices.map((id) => {
           const active = selected === id;
-          const count = countFor(id, formats, id === "all" ? scoredTotal : null);
+          const count = countFor(id, formats, id === "all" ? scoredTotal : null, standaloneNgn);
+          const publishedLine =
+            id === "ngn" &&
+            typeof standaloneNgn === "number" &&
+            typeof caseItemCount === "number" &&
+            typeof caseStudies === "number"
+              ? formatPublishedNgnSentence({
+                  standaloneNgn,
+                  caseItems: caseItemCount,
+                  caseStudies,
+                })
+              : "";
           const hint =
             id === "ngn"
-              ? `${ngnLabel} items in this bank`
+              ? publishedLine || `${ngnLabel} items in this bank`
               : id === "case"
                 ? typeof caseItemCount === "number" && caseItemCount > 0
                   ? `${caseItemCount.toLocaleString("en-US")} scored items inside`
