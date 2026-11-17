@@ -76,6 +76,13 @@ export function resolveDashboardUpgradeContext(
   return null;
 }
 
+/** In-app trial-end offer. Checkout reads the same token from /upgrade. */
+export function dashboardTrialEndOfferHref(token: string): string {
+  const params = new URLSearchParams();
+  params.set("offer", token.trim());
+  return `/upgrade?${params.toString()}`;
+}
+
 export function dashboardUpgradePricingHref(variant: DashboardUpgradeVariant): string {
   if (variant === "free") {
     return postTrialCheckoutHref("/dashboard");

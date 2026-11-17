@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
+import {
+  DashboardUpgradeBanner,
+  type DashboardTrialEndOfferView,
+  type DashboardUpgradeProps,
+} from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardProgressFold } from "@/components/dashboard/DashboardProgressFold";
@@ -18,6 +22,7 @@ import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { sharedPracticeRead } from "@/lib/learning/practice-estimate";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
+import { formatOfferDeadline } from "@/lib/billing/trial-upgrade-offer";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { AccuracyTrendPoint, RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
@@ -39,6 +44,12 @@ import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel"
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
+
+function offerDeadlineLabel(expiresAt: string): string | null {
+  const date = new Date(expiresAt);
+  if (Number.isNaN(date.getTime())) return null;
+  return formatOfferDeadline(date);
+}
 
 function topWeakFocus(
   examSlug: ExamSlug,
@@ -71,6 +82,7 @@ export function DashboardPageContent({
   userName,
   testDate = null,
   upgrade,
+  trialEndOffer = null,
   hasPremiumAccess = true,
   hasStudyAccess = true,
   practiceFieldId,
@@ -94,6 +106,8 @@ export function DashboardPageContent({
   userName?: string | null;
   testDate?: string | null;
   upgrade?: DashboardUpgradeProps | null;
+  /** Live 25% offer for the post-trial banner. Null keeps the Subscribe banner. */
+  trialEndOffer?: { token: string; expiresAt: string } | null;
   hasPremiumAccess?: boolean;
   /** Trial or paid. The readiness invite uses this before its own fetch returns. */
   hasStudyAccess?: boolean;
@@ -148,6 +162,14 @@ export function DashboardPageContent({
       ? postTrialCheckoutHref()
       : incorrect.href
     : null;
+  const offerView: DashboardTrialEndOfferView | null =
+    upgrade?.variant === "free" && trialEndOffer?.token
+      ? {
+          token: trialEndOffer.token,
+          boardName,
+          deadlineLabel: offerDeadlineLabel(trialEndOffer.expiresAt),
+        }
+      : null;
 
   return (
     <div className={dbUi.page}>
@@ -162,7 +184,7 @@ export function DashboardPageContent({
       />
 
       {upgrade && upgrade.variant !== "trial" ? (
-        <DashboardUpgradeBanner {...upgrade} />
+        <DashboardUpgradeBanner {...upgrade} trialEndOffer={offerView} />
       ) : null}
 
       {trialStartHere?.show ? (
