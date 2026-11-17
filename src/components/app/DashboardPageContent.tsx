@@ -22,7 +22,6 @@ import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { sharedPracticeRead } from "@/lib/learning/practice-estimate";
 import type { ExamDayPlan } from "@/lib/learning/exam-day-plan";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
-import { formatOfferDeadline } from "@/lib/billing/trial-upgrade-offer";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { AccuracyTrendPoint, RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
@@ -44,12 +43,6 @@ import { ReadinessProofPanel } from "@/components/dashboard/ReadinessProofPanel"
 import type { TodaySetPreviewView } from "@/components/dashboard/DashboardTodayBlock";
 import { StudyProgressCard } from "@/components/dashboard/StudyProgressCard";
 import type { StudyCompletionResult } from "@/lib/learning/study-completion/compute-study-completion";
-
-function offerDeadlineLabel(expiresAt: string): string | null {
-  const date = new Date(expiresAt);
-  if (Number.isNaN(date.getTime())) return null;
-  return formatOfferDeadline(date);
-}
 
 function topWeakFocus(
   examSlug: ExamSlug,
@@ -167,7 +160,7 @@ export function DashboardPageContent({
       ? {
           token: trialEndOffer.token,
           boardName,
-          deadlineLabel: offerDeadlineLabel(trialEndOffer.expiresAt),
+          expiresAt: trialEndOffer.expiresAt,
         }
       : null;
 

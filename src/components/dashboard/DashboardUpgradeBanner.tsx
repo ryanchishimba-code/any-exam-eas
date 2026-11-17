@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Crown, Gift, Sparkles } from "lucide-react";
+import { ArrowRight, Clock, Crown, Sparkles } from "lucide-react";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { formatPlanUsd } from "@/lib/billing-plans";
 import { TRIAL_UPGRADE_OFFER_PERCENT } from "@/lib/billing/trial-upgrade-offer";
@@ -10,9 +11,11 @@ import { applyDiscount } from "@/lib/promo-pricing";
 import {
   dashboardTrialEndOfferHref,
   dashboardUpgradePricingHref,
+  formatOfferCountdown,
   type DashboardUpgradeContext,
 } from "@/lib/dashboard/upgrade-banner";
 import { cn } from "@/lib/utils";
+import "./gift-offer-banner.css";
 
 export type DashboardUpgradeProps = DashboardUpgradeContext;
 
@@ -20,8 +23,8 @@ export type DashboardUpgradeProps = DashboardUpgradeContext;
 export type DashboardTrialEndOfferView = {
   token: string;
   boardName: string;
-  /** Preformatted on the server so the client does not format a clock. */
-  deadlineLabel?: string | null;
+  /** ISO end time. The chip counts this down in local minutes, never UTC. */
+  expiresAt?: string | null;
 };
 
 function offerPrices(): { original: string; first: string } {
@@ -58,90 +61,100 @@ function trialProgressPct(daysRemaining: number | null): number | null {
   return Math.min(100, Math.max(0, Math.round(((TRIAL_DAYS - daysRemaining) / TRIAL_DAYS) * 100)));
 }
 
-function TrialEndGiftBanner({
-  offer,
-}: {
-  offer: DashboardTrialEndOfferView;
-}) {
-  const { original, first } = offerPrices();
-  const deadline = offer.deadlineLabel?.trim();
-  const href = dashboardTrialEndOfferHref(offer.token);
+function GiftBow() {
+  return (
+    <svg className="gift-offer__bow" viewBox="0 0 72 52" aria-hidden>
+      <path d="M36 24c0 0-7-17-20-16-8 .6-12 8-9.5 13 2.4 5 13 7 29.5 3z" fill="var(--color-accent)" />
+      <path d="M36 24c0 0 7-17 20-16 8 .6 12 8 9.5 13-2.4 5-13 7-29.5 3z" fill="var(--color-accent)" />
+      <path
+        d="M33.5 26c-1.5 6-7 15-13 19"
+        fill="none"
+        stroke="var(--color-accent)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M38.5 26c1.5 6 7 15 13 19"
+        fill="none"
+        stroke="var(--color-accent)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+      />
+      <ellipse cx="24" cy="16" rx="7" ry="2.6" fill="white" opacity="0.32" transform="rotate(-32 24 16)" />
+      <ellipse cx="50" cy="15.5" rx="6" ry="2.2" fill="white" opacity="0.24" transform="rotate(28 50 15.5)" />
+      <circle cx="36" cy="24" r="4.4" fill="var(--color-accent)" />
+      <circle cx="34.8" cy="22.8" r="1.45" fill="#e7d3a1" />
+    </svg>
+  );
+}
+
+function OfferCountdown({ expiresAt }: { expiresAt: string }) {
+  const [label, setLabel] = useState(() => formatOfferCountdown(expiresAt));
+
+  useEffect(() => {
+    const tick = () => setLabel(formatOfferCountdown(expiresAt));
+    tick();
+    const delay = 60_000 - (Date.now() % 60_000);
+    let interval = 0;
+    const timeout = window.setTimeout(() => {
+      tick();
+      interval = window.setInterval(tick, 60_000);
+    }, delay);
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearInterval(interval);
+    };
+  }, [expiresAt]);
+
+  if (!label) return null;
 
   return (
-    <section
-      className={cn(
-        "relative overflow-hidden rounded-2xl border",
-        "border-[color-mix(in_srgb,var(--color-accent)_34%,transparent)]",
-        "bg-[linear-gradient(165deg,color-mix(in_srgb,var(--color-accent)_11%,var(--color-surface-elevated)),var(--color-surface-elevated)_46%,color-mix(in_srgb,var(--color-accent)_6%,var(--color-surface-elevated)))]",
-        "shadow-[var(--shadow-apple-md)] ring-1 ring-[color-mix(in_srgb,var(--color-accent)_16%,transparent)]"
-      )}
-    >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-0 w-2 bg-[linear-gradient(180deg,color-mix(in_srgb,white_42%,var(--color-accent)),var(--color-accent)_46%,color-mix(in_srgb,black_14%,var(--color-accent)))]"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-y-2 left-[3px] w-px bg-white/45 dark:bg-white/25"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_80%_at_100%_0%,color-mix(in_srgb,var(--color-accent)_18%,transparent),transparent_58%)]"
-      />
-      <div className="relative flex flex-col gap-5 py-5 pr-5 pl-7 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-6 sm:pr-6 sm:pl-8">
-        <div className="min-w-0 flex-1 space-y-3">
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]">
-              <Gift className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
-              A gift for you
-            </p>
-            {deadline ? (
-              <p className="inline-flex items-center rounded-full border border-[color-mix(in_srgb,var(--color-accent)_28%,transparent)] bg-[color-mix(in_srgb,var(--color-surface-elevated)_72%,transparent)] px-2.5 py-0.5 text-[11px] font-medium tabular-nums tracking-wide text-[var(--color-ink-muted)]">
-                Ends {deadline}
-              </p>
-            ) : null}
-          </div>
-          <div className="space-y-1">
-            <p className="text-[1.75rem] font-semibold leading-none tracking-tight text-[var(--color-accent)] tabular-nums">
-              25% off
-            </p>
-            <p className="text-[15px] font-medium text-[var(--color-ink)]">your first payment</p>
-          </div>
-          <p className="max-w-xl text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-            Your {offer.boardName} trial has ended. As a thank-you for practicing, take 25% off
-            your first payment if you upgrade in the next 48 hours.
+    <p className="gift-offer__chip" suppressHydrationWarning>
+      <Clock className="h-3 w-3" strokeWidth={1.75} aria-hidden />
+      {label}
+    </p>
+  );
+}
+
+function TrialEndGiftBanner({ offer }: { offer: DashboardTrialEndOfferView }) {
+  const { original, first } = offerPrices();
+  const href = dashboardTrialEndOfferHref(offer.token);
+  const expiresAt = offer.expiresAt?.trim();
+
+  return (
+    <section className="gift-offer font-sans antialiased" aria-label="A gift for you">
+      <span className="gift-offer__ribbon-x" aria-hidden />
+      <span className="gift-offer__ribbon-y" aria-hidden />
+      <GiftBow />
+      <div className="gift-offer__layout">
+        <div className="gift-offer__copy">
+          <p className="gift-offer__eyebrow">
+            <span className="gift-offer__gold" aria-hidden />
+            A gift for you
           </p>
-          <p className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-            <span className="sr-only">Regular price </span>
-            <span className="text-[13px] tabular-nums text-[var(--color-ink-muted)] line-through decoration-[color-mix(in_srgb,var(--color-ink-muted)_45%,transparent)]">
-              {original}
-            </span>
-            <span className="sr-only">Discounted first payment </span>
-            <span className="text-[1.35rem] font-semibold leading-none tabular-nums text-[var(--color-ink)]">
-              {first}
-            </span>
-            <span className="text-[12px] text-[var(--color-ink-muted)]">
-              first payment · Then {original}/mo.
-            </span>
+          <h2 className="gift-offer__title">
+            <span className="gift-offer__title-accent">25% off</span> your first month
+          </h2>
+          <p className="gift-offer__body">
+            Thanks for practicing {offer.boardName} with us. This gift is yours for the next 48
+            hours.
           </p>
         </div>
-        <Link
-          href={href}
-          className={cn(
-            "group inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-xl",
-            "bg-[var(--color-accent)] px-5 py-2.5 text-[13px] font-semibold text-white dark:text-[#071a2c]",
-            "shadow-[var(--shadow-apple-btn)] transition-[transform,box-shadow] duration-200",
-            "hover:-translate-y-px hover:shadow-[var(--shadow-apple-btn-hover)]",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]",
-            "sm:w-auto"
-          )}
-        >
-          Unwrap 25% off
-          <ArrowRight
-            className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-            aria-hidden
-          />
-        </Link>
+        <aside className="gift-offer__tag">
+          <span className="gift-offer__hole" aria-hidden />
+          {expiresAt ? <OfferCountdown expiresAt={expiresAt} /> : null}
+          <p className="gift-offer__price">
+            <span className="sr-only">Regular price </span>
+            <span className="gift-offer__was line-through">{original}</span>
+            <span className="sr-only">Discounted first month </span>
+            <span className="gift-offer__now">{first}</span>
+            <span className="gift-offer__then">first month, then {original}/mo</span>
+          </p>
+          <Link href={href} className="gift-offer__cta">
+            Claim your gift
+            <ArrowRight aria-hidden />
+          </Link>
+        </aside>
       </div>
     </section>
   );
