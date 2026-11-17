@@ -4,6 +4,7 @@ import { getCachedSession } from "@/lib/auth/session";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
+import { loadDashboardTrialEndOffer } from "@/lib/dashboard/load-trial-end-upgrade-offer";
 import { QuickBitesDashboardRedirect } from "@/components/app/QuickBitesDashboardRedirect";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
@@ -197,6 +198,23 @@ async function DashboardContent({
     accountAttemptCount,
   });
 
+  const upgrade = usage ? resolveDashboardUpgradeContext(access, usage) : null;
+  // A failed offer lookup keeps the regular Subscribe banner and the rest of the page.
+  const trialEndOffer =
+    upgrade?.variant === "free"
+      ? await settled(
+          loadDashboardTrialEndOffer({
+            userId,
+            role: access.role,
+            subscriptionStatus: access.subscription.status,
+            trialEndsAt: access.subscription.trialEndsAt,
+            questionsAnswered: stats.questionsAnswered,
+          }),
+          null,
+          "trial upgrade offer"
+        )
+      : null;
+
   return (
     <DashboardPageContent
       examSlug={examSlug}
@@ -209,7 +227,8 @@ async function DashboardContent({
       testDate={testDate}
       hasPremiumAccess={access.hasPremiumAccess}
       hasStudyAccess={access.hasStudyAccess}
-      upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
+      upgrade={upgrade}
+      trialEndOffer={trialEndOffer}
       practiceFieldId={fieldId}
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}

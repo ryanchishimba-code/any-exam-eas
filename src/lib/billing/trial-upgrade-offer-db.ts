@@ -113,31 +113,28 @@ export function upgradeOfferIdFromMetadata(
   return id || null;
 }
 
-export async function issueTrialUpgradeOfferForEmail(input: {
-  email: string;
-  rotate?: boolean;
-  origin?: string;
-  now?: Date;
-}): Promise<
+type IssuedTrialUpgradeOffer =
   | {
       ok: true;
       action: "create" | "reuse";
       email: string;
+      token: string;
+      offerId: string;
       expiresAt: Date;
       link: string;
     }
-  | { ok: false; message: string }
-> {
-  const email = normalizeEmail(input.email);
-  const now = input.now ?? new Date();
-  const user = await prisma.user.findUnique({
-    where: { email },
-    select: { id: true, email: true },
-  });
-  if (!user) {
-    return { ok: false, message: `No account for ${email}.` };
-  }
+  | { ok: false; reason: "paid" | "not_trial" | "used" };
 
+/**
+ * One row per user. A live unused offer is returned as-is.
+ * rotate replaces that row and starts a new 48 hours. An expired row is
+ * replaced without rotate. Paid and already-used accounts are refused.
+ */
+async function issueTrialUpgradeOfferForUserRecord(
+  user: { id: string; email: string },
+  input: { rotate?: boolean; origin?: string; now?: Date }
+): Promise<IssuedTrialUpgradeOffer> {
+  const now = input.now ?? new Date();
   const [subscription, existing] = await Promise.all([
     prisma.subscription.findUnique({ where: { userId: user.id } }),
     prisma.trialUpgradeOffer.findUnique({ where: { userId: user.id } }),
@@ -152,19 +149,7 @@ export async function issueTrialUpgradeOfferForEmail(input: {
   });
 
   if (decision.action === "refuse") {
-    if (decision.reason === "paid") {
-      return {
-        ok: false,
-        message: `${user.email} has already paid. The offer is only for a first payment.`,
-      };
-    }
-    if (decision.reason === "used") {
-      return { ok: false, message: `${user.email} already used this offer.` };
-    }
-    return {
-      ok: false,
-      message: `${user.email} has no trial on file, so the offer cannot be issued.`,
-    };
+    return { ok: false, reason: decision.reason };
   }
 
   if (decision.action === "reuse" && existing) {
@@ -172,6 +157,8 @@ export async function issueTrialUpgradeOfferForEmail(input: {
       ok: true,
       action: "reuse",
       email: user.email,
+      token: existing.token,
+      offerId: existing.id,
       expiresAt: existing.expiresAt,
       link: trialUpgradeOfferLink(existing.token, input.origin),
     };
@@ -179,7 +166,7 @@ export async function issueTrialUpgradeOfferForEmail(input: {
 
   const token = createOfferToken();
   const expiresAt = offerExpiresAt(now);
-  await prisma.trialUpgradeOffer.upsert({
+  const row = await prisma.trialUpgradeOffer.upsert({
     where: { userId: user.id },
     create: {
       userId: user.id,
@@ -199,8 +186,97 @@ export async function issueTrialUpgradeOfferForEmail(input: {
     ok: true,
     action: "create",
     email: user.email,
-    expiresAt,
-    link: trialUpgradeOfferLink(token, input.origin),
+    token: row.token,
+    offerId: row.id,
+    expiresAt: row.expiresAt,
+    link: trialUpgradeOfferLink(row.token, input.origin),
+  };
+}
+
+export async function issueTrialUpgradeOfferForEmail(input: {
+  email: string;
+  rotate?: boolean;
+  origin?: string;
+  now?: Date;
+}): Promise<
+  | {
+      ok: true;
+      action: "create" | "reuse";
+      email: string;
+      expiresAt: Date;
+      link: string;
+    }
+  | { ok: false; message: string }
+> {
+  const email = normalizeEmail(input.email);
+  const user = await prisma.user.findUnique({
+    where: { email },
+    select: { id: true, email: true },
+  });
+  if (!user) {
+    return { ok: false, message: `No account for ${email}.` };
+  }
+
+  const issued = await issueTrialUpgradeOfferForUserRecord(user, input);
+  if (!issued.ok) {
+    if (issued.reason === "paid") {
+      return {
+        ok: false,
+        message: `${user.email} has already paid. The offer is only for a first payment.`,
+      };
+    }
+    if (issued.reason === "used") {
+      return { ok: false, message: `${user.email} already used this offer.` };
+    }
+    return {
+      ok: false,
+      message: `${user.email} has no trial on file, so the offer cannot be issued.`,
+    };
+  }
+
+  return {
+    ok: true,
+    action: issued.action,
+    email: issued.email,
+    expiresAt: issued.expiresAt,
+    link: issued.link,
+  };
+}
+
+/**
+ * Dashboard path. Reuses a live unused offer and does not move its clock.
+ * Email and the banner share the token because both go through the same row.
+ */
+export async function ensureTrialUpgradeOfferForUser(input: {
+  userId: string;
+  now?: Date;
+}): Promise<
+  | {
+      ok: true;
+      action: "create" | "reuse";
+      token: string;
+      offerId: string;
+      expiresAt: Date;
+    }
+  | { ok: false; reason: "missing_user" | "paid" | "not_trial" | "used" }
+> {
+  const user = await prisma.user.findUnique({
+    where: { id: input.userId },
+    select: { id: true, email: true },
+  });
+  if (!user) return { ok: false, reason: "missing_user" };
+
+  const issued = await issueTrialUpgradeOfferForUserRecord(user, {
+    now: input.now,
+    rotate: false,
+  });
+  if (!issued.ok) return issued;
+  return {
+    ok: true,
+    action: issued.action,
+    token: issued.token,
+    offerId: issued.offerId,
+    expiresAt: issued.expiresAt,
   };
 }
 
