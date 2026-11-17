@@ -61,29 +61,49 @@ function trialProgressPct(daysRemaining: number | null): number | null {
   return Math.min(100, Math.max(0, Math.round(((TRIAL_DAYS - daysRemaining) / TRIAL_DAYS) * 100)));
 }
 
-function GiftBow() {
+function GiftBow({ className }: { className?: string }) {
   return (
-    <svg className="gift-offer__bow" viewBox="0 0 72 52" aria-hidden>
-      <path d="M36 24c0 0-7-17-20-16-8 .6-12 8-9.5 13 2.4 5 13 7 29.5 3z" fill="var(--color-accent)" />
-      <path d="M36 24c0 0 7-17 20-16 8 .6 12 8 9.5 13-2.4 5-13 7-29.5 3z" fill="var(--color-accent)" />
+    <svg className={cn("gift-offer__bow", className)} viewBox="0 0 80 58" aria-hidden>
       <path
-        d="M33.5 26c-1.5 6-7 15-13 19"
+        d="M40 27C34 20 28 8 20 8 10 8 8 18 14 24 22 30 34 29 40 27Z"
+        fill="var(--color-accent)"
+      />
+      <path
+        d="M40 27C46 20 52 8 60 8 70 8 72 18 66 24 58 30 46 29 40 27Z"
+        fill="var(--color-accent)"
+      />
+      <path
+        d="M37 29C30 40 22 50 16 56"
         fill="none"
         stroke="var(--color-accent)"
-        strokeWidth="3.2"
+        strokeWidth="3.4"
         strokeLinecap="round"
       />
       <path
-        d="M38.5 26c1.5 6 7 15 13 19"
+        d="M43 29C50 40 58 50 64 56"
         fill="none"
         stroke="var(--color-accent)"
-        strokeWidth="3.2"
+        strokeWidth="3.4"
         strokeLinecap="round"
       />
-      <ellipse cx="24" cy="16" rx="7" ry="2.6" fill="white" opacity="0.32" transform="rotate(-32 24 16)" />
-      <ellipse cx="50" cy="15.5" rx="6" ry="2.2" fill="white" opacity="0.24" transform="rotate(28 50 15.5)" />
-      <circle cx="36" cy="24" r="4.4" fill="var(--color-accent)" />
-      <circle cx="34.8" cy="22.8" r="1.45" fill="#e7d3a1" />
+      <path
+        d="M24 14C20 16 16 18 14 21"
+        fill="none"
+        stroke="white"
+        strokeOpacity="0.55"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M56 14C60 16 64 18 66 21"
+        fill="none"
+        stroke="white"
+        strokeOpacity="0.4"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+      <circle cx="40" cy="27" r="4.6" fill="var(--color-accent)" />
+      <circle cx="38.6" cy="25.6" r="1.5" fill="#e7d3a1" />
     </svg>
   );
 }
@@ -136,11 +156,23 @@ function TrialEndGiftBanner({ offer }: { offer: DashboardTrialEndOfferView }) {
             <span className="gift-offer__title-accent">25% off</span> your first month
           </h2>
           <p className="gift-offer__body">
-            Thanks for practicing {offer.boardName} with us. This gift is yours for the next 48
-            hours.
+            Thanks for practicing {offer.boardName} with us. Here&apos;s a little something to keep
+            your momentum going.
           </p>
         </div>
         <aside className="gift-offer__tag">
+          <GiftBow className="gift-offer__bow--tag" />
+          <svg className="gift-offer__string gift-offer__string--desk" viewBox="0 0 200 80" aria-hidden>
+            <path d="M100 78C100 46 28 34 10 2" />
+          </svg>
+          <svg
+            className="gift-offer__string gift-offer__string--mobile"
+            viewBox="0 0 100 24"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path d="M1 14C30 14 70 8 99 2" />
+          </svg>
           <span className="gift-offer__hole" aria-hidden />
           {expiresAt ? <OfferCountdown expiresAt={expiresAt} /> : null}
           <p className="gift-offer__price">

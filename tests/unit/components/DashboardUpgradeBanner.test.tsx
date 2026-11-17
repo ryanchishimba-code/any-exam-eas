@@ -65,7 +65,7 @@ describe("DashboardUpgradeBanner trial-end offer", () => {
     const text = section?.textContent ?? "";
     expect(screen.getByRole("heading", { name: /25% off your first month/i })).toBeTruthy();
     expect(text).toContain(
-      "Thanks for practicing NCLEX-RN with us. This gift is yours for the next 48 hours."
+      "Thanks for practicing NCLEX-RN with us. Here's a little something to keep your momentum going."
     );
     expect(text.match(/25%/g)).toHaveLength(1);
     expect(text).toContain("Ends in 23h 14m");
