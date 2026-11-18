@@ -1,17 +1,23 @@
 name: Production student smoke
 
-# Runs after a production deployment is reported ready. If that deployment is
-# the one serving www.anyexameasy.com and the student smoke fails, production
-# is pointed back at the deployment the promote replaced.
+# Runs after GitHub reports a production deployment_status from Vercel.
+# The job polls https://www.anyexameasy.com/api/build until that host serves
+# the deployed commit, then runs the signed-in student smoke.
+# It does not need VERCEL_TOKEN to decide the deploy is live.
+#
+# If the smoke fails and the last alias change was a promote, production is
+# pointed back at the deployment it replaced. That rollback needs VERCEL_TOKEN.
+# Without the token the job fails loudly and leaves production as-is.
 #
 # Disable either way:
 #   - Repository variable PRODUCTION_SMOKE_ROLLBACK=false
 #   - Actions → Production student smoke → Disable workflow
 #
-# Secrets (names only; add them before the next production promote):
-#   VERCEL_TOKEN
+# Secrets still required to run the signed-in browser smoke (names only):
 #   SMOKE_STUDENT_EMAIL
 #   SMOKE_STUDENT_PASSWORD
+# Secret required only to roll back (name only):
+#   VERCEL_TOKEN
 # Optional, only if the production hostname starts returning a Vercel login wall:
 #   VERCEL_AUTOMATION_BYPASS_SECRET
 
@@ -56,6 +62,7 @@ jobs:
       - id: prepare
         name: Confirm the deployment is live
         env:
+          EXPECTED_SHA: ${{ github.event.deployment.sha || github.sha }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           PRODUCTION_SMOKE_ROLLBACK: ${{ vars.PRODUCTION_SMOKE_ROLLBACK }}
         run: node scripts/production-smoke-guard.mjs prepare
