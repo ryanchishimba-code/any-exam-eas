@@ -198,7 +198,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(.*\\.(?:ico|png|jpg|jpeg|gif|svg|webp|woff2|txt|xml|mp4|webm))",
+        source: "/(.*\\.(?:ico|png|jpg|jpeg|gif|svg|webp|avif|woff2|txt|xml|mp4|webm))",
         headers: [
           {
             key: "Cache-Control",
