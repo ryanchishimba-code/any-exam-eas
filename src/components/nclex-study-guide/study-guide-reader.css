@@ -739,9 +739,36 @@
   }
 }
 
+/* USMLE step switcher. Other books do not render this nav. */
+.sg-step-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.55rem 0.85rem 0.65rem;
+  background: #102636;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sg-step-nav a {
+  border-radius: 999px;
+  padding: 0.32rem 0.8rem;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  text-decoration: none;
+}
+.sg-step-nav a.is-on {
+  background: #2ec4b6;
+  color: #06221e;
+  border-color: transparent;
+}
+
 @media print {
   .sg-reader > header,
   .sg-reader aside,
+  .sg-step-nav,
   .sg-reader nav[aria-label="Chapter navigation"],
   .sg-reader [role="progressbar"],
   .sg-edge-nav,

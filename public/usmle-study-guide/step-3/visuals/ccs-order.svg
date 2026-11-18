@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="340" viewBox="0 0 640 340" role="img" aria-label="CCS order of operations">
+<title>CCS order</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#102027">CCS: do the safe thing early</text>
+<g font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="15" fill="#1C2830">
+  <rect x="24" y="56" width="592" height="34" rx="8" fill="#0F766E"/>
+  <text x="36" y="78" fill="#FFFFFF">1. Location. Unstable patients do not stay in the office.</text>
+  <rect x="24" y="98" width="592" height="34" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="120">2. Brief exam and the monitors you would actually start.</text>
+  <rect x="24" y="140" width="592" height="34" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="162">3. Treatment that cannot wait for a full diagnosis.</text>
+  <rect x="24" y="182" width="592" height="34" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="204">4. Focused tests. Advance the clock. Read the new results.</text>
+  <rect x="24" y="224" width="592" height="34" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="246">5. Specific therapy, counseling, and the follow-up you would schedule.</text>
+</g>
+<text x="28" y="300" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">A practice order, not a scoring key. CCS scoring is described by USMLE, not by this book.</text>
+</svg>

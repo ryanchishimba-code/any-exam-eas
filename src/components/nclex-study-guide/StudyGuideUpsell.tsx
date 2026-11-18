@@ -12,13 +12,20 @@ import { formatMonthlyPrice } from "@/lib/site";
 export function StudyGuideUpsell({
   exam,
   signedIn,
+  book,
 }: {
   exam: StudyGuideExam;
   signedIn: boolean;
+  /** USMLE passes its own book so the offer does not borrow another exam's title. */
+  book?: {
+    title: string;
+    routeBase: string;
+    legal: { examName: string };
+  };
 }) {
-  const config = STUDY_GUIDES[exam];
+  const config = book ?? STUDY_GUIDES[exam];
   const offer = studyGuideTrialLine();
-  const trialHref = landingTrialHrefForExam(exam);
+  const trialHref = landingTrialHrefForExam(book ? "usmle" : exam);
   const signInHref = `/login?callbackUrl=${encodeURIComponent(config.routeBase)}`;
 
   return (

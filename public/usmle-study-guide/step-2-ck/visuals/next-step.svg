@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img" aria-label="Step 2 CK next-step order">
+<title>Next step on Step 2 CK</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#102027">The next step, in order</text>
+<g font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="15" fill="#1C2830">
+  <rect x="24" y="58" width="592" height="36" rx="8" fill="#0F766E"/>
+  <text x="36" y="82" fill="#FFFFFF">1. Is anyone unstable? Stabilize before the clever test.</text>
+  <rect x="24" y="104" width="592" height="36" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="128">2. What is the single most likely diagnosis?</text>
+  <rect x="24" y="150" width="592" height="36" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="174">3. Which test would change management? Skip the test that cannot.</text>
+  <rect x="24" y="196" width="592" height="36" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="220">4. Treatment that matches the current named guideline, including prevention.</text>
+</g>
+<text x="28" y="268" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">USMLE Step 2 CK physician tasks: diagnosis, studies, management, prevention</text>
+</svg>
