@@ -3,7 +3,9 @@
 S1 = "https://www.usmle.org/prepare-your-exam/step-1-materials"
 OUTLINE = "USMLE Content Outline"
 
-def c(system, task, front, bottom, clue, treat, trap, note, guideline=OUTLINE, year="2024", url=S1):
+def c(system, task, front, bottom, clue, treat, trap, note, guideline=None, year="2024", url=S1):
+    if guideline is None:
+        guideline = f"First Aid-level consensus: {task}"
     return dict(system=system, task=task, front=front, bottom=bottom, clue=clue, treat=treat, trap=trap, note=note, guideline=guideline, year=year, url=url)
 
 CARDS = [

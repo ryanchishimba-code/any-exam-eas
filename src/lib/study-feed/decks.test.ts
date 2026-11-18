@@ -37,7 +37,7 @@ describe("board feed decks", () => {
     }
   });
 
-  it.each(USMLE_FEED_STEP_EXAMS)("loads 80 hidden %s cards with outline tags and no pass promise", (exam) => {
+  it.each(USMLE_FEED_STEP_EXAMS)("loads 240 hidden %s cards with outline tags and no pass promise", (exam) => {
     resetPanceFeedCardCache();
     const board = USMLE_STEP_FEEDS[exam];
     const dir = path.join(process.cwd(), "content", board.contentDir, "cards");
@@ -46,9 +46,9 @@ describe("board feed decks", () => {
       .filter((name) => /^cards(?:-.+)?\.json$/.test(name))
       .flatMap((name) => JSON.parse(fs.readFileSync(path.join(dir, name), "utf8")) as Record<string, unknown>[]);
     const cards = loadStudyFeedCards(exam);
-    expect(cards).toHaveLength(80);
+    expect(cards).toHaveLength(240);
     expect(cards[0]?.id).toBe(`${board.idPrefix}-001`);
-    expect(cards.at(-1)?.id).toBe(`${board.idPrefix}-080`);
+    expect(cards.at(-1)?.id).toBe(`${board.idPrefix}-240`);
     const promise = /guaranteed|you will pass|pass the (?:exam|step|usmle)|pass rate/i;
     for (const card of cards) {
       const source = raw.find((row) => row.id === card.id);
