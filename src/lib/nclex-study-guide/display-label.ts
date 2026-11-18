@@ -4,7 +4,7 @@
  * contents list shows the published chapter title only.
  */
 const NOT_A_BOOK_SECTION =
-  /^(why (this chapter|it) matters|study-aid disclaimer|faq)\b/i;
+  /^(why (this chapter|it) matters|what this chapter covers|study-aid disclaimer|faq)\b/i;
 
 const PLACEHOLDER =
   /(^|[\s_-])(pending|placeholder|tbd|todo|lorem)([\s_-]|$)/i;

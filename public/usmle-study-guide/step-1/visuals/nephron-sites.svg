@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320" role="img" aria-label="Nephron sites and the drugs that act there">
+<title>Nephron sites</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#102027">Where the nephron works</text>
+<g font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="15" fill="#1C2830">
+  <rect x="24" y="56" width="592" height="44" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="84">Proximal tubule — most reabsorption. Carbonic anhydrase. SGLT2. Acetazolamide.</text>
+  <rect x="24" y="110" width="592" height="44" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="138">Thick ascending limb — NKCC2. Diluting segment. Loop diuretics. Impermeable to water.</text>
+  <rect x="24" y="164" width="592" height="44" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="192">Distal convoluted tubule — NCC. Thiazides. Calcium reabsorption rises.</text>
+  <rect x="24" y="218" width="592" height="44" rx="8" fill="#0F766E"/>
+  <text x="36" y="246" fill="#FFFFFF">Collecting duct — ENaC and aldosterone, aquaporins and ADH, acid secretion.</text>
+</g>
+<text x="28" y="292" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">Mechanism map. Doses and when to start a drug are Step 2 and Step 3 decisions.</text>
+</svg>

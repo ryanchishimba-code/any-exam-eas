@@ -5,6 +5,7 @@ describe("visibleBookSection", () => {
   it("hides intro headings and placeholders", () => {
     expect(visibleBookSection("Why it matters on NCLEX")).toBeNull();
     expect(visibleBookSection("Why this chapter matters")).toBeNull();
+    expect(visibleBookSection("What this chapter covers")).toBeNull();
     expect(visibleBookSection("Study-aid disclaimer (read this)")).toBeNull();
     expect(visibleBookSection("FAQ")).toBeNull();
     expect(visibleBookSection("Chapter title pending")).toBeNull();
