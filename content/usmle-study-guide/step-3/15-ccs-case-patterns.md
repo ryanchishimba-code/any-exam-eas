@@ -27,6 +27,42 @@ Counseling that belongs on a stable case: tobacco, the medicine they must not st
 
 When the case advances and the person improves, de-escalate. Stop oxygen that is no longer needed. Narrow antibiotics if a culture returns. Convert intravenous medicine to oral. Move them down a level of care. Continuing the emergency orders into day three is a different kind of error.
 
+## High-yield atlas
+
+The first minutes of the complaints that recur. Site, the treatment that cannot wait, the test that changes the next hour, then disposition.
+
+The vignette withholds the name. The reasoning earns it.
+
+**Vignette 1.** Office. Pressure in the chest for twenty minutes, sweat, a normal oxygen. You have not ordered an ECG.
+**Reasoning.** Emergency department. ECG and aspirin before a long history. A normal first troponin does not send them home. The trap is a proton-pump inhibitor trial for a twenty-minute pressure.
+
+**Vignette 2.** Emergency department. Wheezing, speaking in words, a normal CO2, and a quiet chest.
+**Reasoning.** A normal CO2 in a severe asthma attack is a warning. Oxygen, repeated bronchodilator, steroid, and a monitored bed. The trap is a prescription and a discharge because the number looks normal.
+
+**Vignette 3.** Known COPD, sleepy, a low pH, a high CO2.
+**Reasoning.** Noninvasive ventilation if nothing contraindicates it, in a monitored bed. High-flow oxygen as comfort can make the CO2 worse. The trap is intubating before a trial of noninvasive ventilation when the airway is still protected, or the opposite trap of leaving them on a cannula.
+
+**Vignette 4.** Fever, neck stiffness, and a CT scanner that is busy.
+**Reasoning.** Antibiotics before a delayed lumbar puncture. The trap is a perfect cerebrospinal fluid that arrives after the hour you lost. Dexamethasone timing follows the current IDSA file.
+
+**Vignette 5.** Third-trimester headache and a blood pressure of 170/110. Vision is blurred.
+**Reasoning.** Hospital. Magnesium. This is not the adult PREVENT threshold. Delivery planning is ACOG. The trap is a clinic recheck tomorrow.
+
+**Vignette 6.** A child with green vomit.
+**Reasoning.** Surgical emergency until malrotation with volvulus is excluded. The trap is a formula change. Pyloric stenosis is non-bilious and a slightly older infant.
+
+**Vignette 7.** Postoperative day one, a fever of 39, and a wound that is bronze.
+**Reasoning.** Open the wound. This can be clostridial or streptococcal. The trap is a new antibiotic and a dressing.
+
+**Vignette 8.** A glucose of 500, an anion gap, and ketones. The patient is on an SGLT2 inhibitor and the glucose is only 180 in a second stem.
+**Reasoning.** Fluids, potassium plan, insulin for ketoacidosis, and hold the SGLT2 inhibitor. Euglycemic ketoacidosis still counts. The trap is a normal glucose used to exclude ketosis.
+
+**Vignette 9.** A suicidal patient with a plan and a means, in the office at 4 p.m.
+**Reasoning.** Emergency evaluation. You do not contract for safety and send them to a clinic next week. Ask directly. The trap is a bus pass.
+
+**Vignette 10.** A stable migraine, no red flags, three attacks a week, and daily as-needed pills.
+**Reasoning.** A preventive and a stop to medication overuse. No CT to be kind. The trap is imaging a chronic headache that has no flag, or refilling the as-needed drug that is now the disease.
+
 ## Checklist
 
 - [ ] Pregnancy test before imaging when pregnancy would change the test or the drug.

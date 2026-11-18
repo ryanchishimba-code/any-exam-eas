@@ -153,6 +153,24 @@ Capacity versus competence, professional interpreters, disclosure of harmful err
 
 If a later editor adds any of those, the addition needs its own source line and a new row in this file.
 
+## Depth pass (added with the system atlases)
+
+These claims were added when the system chapters were expanded. Check them before the books go live.
+
+| Claim | What to check |
+| --- | --- |
+| Mechanical complications of myocardial infarction follow a calendar: arrhythmia early, rupture when the wall is soft, aneurysm after a scar, autoimmune pericarditis later | A current pathology reference. The order is the teaching point. Do not freeze a day-count as a law |
+| ECG territories: V1–V4 anterior (LAD), II/III/aVF inferior (usually RCA), I/aVL/V5–V6 lateral (circumflex) | Standard teaching. Confirm a dominant-circumflex inferior variant is still the right caveat |
+| Winter’s formula is described as about 1.5 times bicarbonate plus 8 | Standard compensation estimate. Confirm before anyone uses the arithmetic on a ward |
+| G6PD enzyme level can be normal during an acute hemolysis because the deficient cells have already lysed | Standard hematology. The chapter says to repeat the assay later |
+| Leukocyte alkaline phosphatase is low in CML and high in a leukemoid reaction | Classic. Confirm it is still the contrast your trainees are taught |
+| Von Gierke is glucose-6-phosphatase (hypoglycemia, liver). Pompe is lysosomal acid maltase (heart). McArdle is muscle phosphorylase (no lactate rise with sprint) | Confirm enzyme names |
+| Tay-Sachs has a cherry-red spot without hepatosplenomegaly. Niemann-Pick has the spot and organomegaly | Standard lysosomal contrast |
+| 21-hydroxylase deficiency wastes salt. 11-hydroxylase deficiency virilizes and raises blood pressure | Confirm the precursor story |
+| Do not start a beta blocker on the morning of surgery in a beta-blocker-naive patient. Continue one they already take | ACC/AHA perioperative guideline |
+| Home or ambulatory readings outrank a single office cuff | 2025 blood-pressure guideline |
+| Cilostazol is not for claudication when heart failure is present | Peripheral-artery guideline. Confirm the contraindication is still absolute |
+
 ## Independence
 
 The books name the FSMB and the NBME as the organizations behind the USMLE program and state that AnyExamEasy is not affiliated with or endorsed by them. That sentence should stay in the reader footer and in the front chapters.
