@@ -15,7 +15,7 @@ import {
   loadPublishedUsmleChapter,
   loadPublishedUsmleFirstSlug,
 } from "@/lib/nclex-study-guide/load-published";
-import { isUsmleGuideFileFallback, usmleStudyGuideVisibility } from "@/lib/nclex-study-guide/usmle-guide-access";
+import { isUsmleGuideFileFallback } from "@/lib/nclex-study-guide/usmle-guide-flags";
 import {
   loadUsmleChaptersFromFiles,
   loadUsmleTocFromFiles,
@@ -85,6 +85,11 @@ export async function StudyGuideChapterScreen({
   );
 }
 
+async function usmleVisibility() {
+  const { usmleStudyGuideVisibility } = await import("@/lib/nclex-study-guide/usmle-guide-access");
+  return usmleStudyGuideVisibility();
+}
+
 function usmleStepNav(current: UsmleStudyBook["readerKey"]) {
   return USMLE_STUDY_STEPS.map((step) => {
     const book = usmleStudyBook(step);
@@ -94,7 +99,7 @@ function usmleStepNav(current: UsmleStudyBook["readerKey"]) {
 
 /** Index for one USMLE book. Hidden books 404 for students. Admins preview. */
 export async function UsmleStudyGuideIndexScreen({ book }: { book: UsmleStudyBook }) {
-  const visibility = await usmleStudyGuideVisibility();
+  const visibility = await usmleVisibility();
   if (visibility === "hidden") notFound();
   if (visibility === "open" && !isUsmleGuideFileFallback()) {
     const gate = await resolveStudyGuideAccess(book.routeBase);
@@ -131,7 +136,7 @@ export async function UsmleStudyGuideChapterScreen({
   book: UsmleStudyBook;
   chapterSlug: string;
 }) {
-  const visibility = await usmleStudyGuideVisibility();
+  const visibility = await usmleVisibility();
   if (visibility === "hidden") notFound();
   if (visibility === "open" && !isUsmleGuideFileFallback()) {
     const gate = await resolveStudyGuideAccess(`${book.routeBase}/${chapterSlug}`);
