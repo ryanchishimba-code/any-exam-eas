@@ -34,6 +34,7 @@ import {
 import { QUICK_BITE_BOARDS, QUICK_BITE_EXAMS } from "@/lib/quick-bites/boards";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
+import { isUsmleStudyFeedPublic, USMLE_FEED_PATH } from "@/lib/study-feed/usmle-feed";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -127,6 +128,17 @@ const NAV_SECTIONS: NavSection[] = [
         icon: Layers,
         exams: ["aanp-fnp"],
       },
+      ...(isUsmleStudyFeedPublic()
+        ? [
+            {
+              id: "usmle-feed",
+              href: USMLE_FEED_PATH,
+              label: "USMLE Feed",
+              icon: Layers,
+              exams: ["usmle"],
+            },
+          ]
+        : []),
     ],
   },
   {

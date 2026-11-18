@@ -1,11 +1,20 @@
 import type { ExamSlug } from "@/types/edtech";
+import {
+  isUsmleFeedStep,
+  isUsmleStudyFeedPublic,
+  USMLE_FEED_PATH,
+  USMLE_STEP_FEEDS,
+  usmlePublicFeedBoard,
+  type UsmleFeedStepExam,
+} from "@/lib/study-feed/usmle-feed";
 
-/** Boards that have a paid flashcard feed. USMLE and NPTE do not. */
+/** Boards with a public paid flashcard feed. NPTE does not have one. USMLE stays hidden until its flag is on. */
 export const STUDY_FEED_EXAMS = ["pance", "nclex", "naplex", "aanp-fnp"] as const;
 export type StudyFeedExam = (typeof STUDY_FEED_EXAMS)[number];
+export type FeedCatalogExam = StudyFeedExam | UsmleFeedStepExam;
 
 export type StudyFeedBoard = {
-  exam: StudyFeedExam;
+  exam: FeedCatalogExam;
   /** Directory under content/. */
   contentDir: string;
   /** Card id prefix. FNP cards are `fnp-*` even though the exam slug is `aanp-fnp`. */
@@ -65,21 +74,36 @@ export function isStudyFeedExam(exam: string | null | undefined): exam is StudyF
   return Boolean(exam && Object.prototype.hasOwnProperty.call(STUDY_FEEDS, exam));
 }
 
+export function resolveFeedBoard(exam: string | null | undefined): StudyFeedBoard | null {
+  if (!exam) return null;
+  if (isStudyFeedExam(exam)) return STUDY_FEEDS[exam];
+  if (isUsmleFeedStep(exam)) return USMLE_STEP_FEEDS[exam];
+  return null;
+}
+
+/**
+ * Student-facing link for a preference slug. USMLE returns a board only after
+ * the public flag is on, so homepages and the board page stay unchanged until then.
+ */
 export function studyFeedForExam(exam: ExamSlug | string | null | undefined): StudyFeedBoard | null {
+  if (exam === "usmle") {
+    return isUsmleStudyFeedPublic() ? usmlePublicFeedBoard() : null;
+  }
   if (!isStudyFeedExam(exam)) return null;
   return STUDY_FEEDS[exam];
 }
 
 /** Boards whose card JSON is served by /api/study-feed. PANCE stays on /api/pance-feed. */
 export function studyFeedApiBoard(exam: string | null | undefined): StudyFeedBoard | null {
-  const board = studyFeedForExam(exam);
+  const board = resolveFeedBoard(exam);
   if (!board || board.exam === "pance") return null;
   return board;
 }
 
 export function isStudyFeedPath(pathname: string): boolean {
   const path = pathname.split("?")[0] ?? pathname;
-  return Object.values(STUDY_FEEDS).some((board) => path === board.href);
+  if (Object.values(STUDY_FEEDS).some((board) => path === board.href)) return true;
+  return isUsmleStudyFeedPublic() && path === USMLE_FEED_PATH;
 }
 
 export function isStudyFeedCardId(prefix: string, id: string): boolean {

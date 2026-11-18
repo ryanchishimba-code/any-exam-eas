@@ -3,6 +3,7 @@ import { privateFeedHeaders, requireFlashcardFeedRead } from "@/lib/pance-feed/a
 import { getStudyFeedCard, loadStudyFeedCards, loadStudyFeedSvg } from "@/lib/pance-feed/load-cards";
 import { isTrialFlashcardAllowed } from "@/lib/pance-feed/trial-slice";
 import { isStudyFeedCardId, studyFeedApiBoard } from "@/lib/study-feed/catalog";
+import { isUsmleFeedStep } from "@/lib/study-feed/usmle-feed";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -15,6 +16,12 @@ export async function GET(
   const board = studyFeedApiBoard(exam);
   if (!board || !isStudyFeedCardId(board.idPrefix, id)) {
     return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
+  }
+  if (isUsmleFeedStep(board.exam)) {
+    const { usmleFeedGate } = await import("@/lib/study-feed/usmle-feed-access");
+    if ((await usmleFeedGate(board.exam)) === "hidden") {
+      return NextResponse.json({ error: "Card not found" }, { status: 404, headers: privateFeedHeaders });
+    }
   }
   const authResult = await requireFlashcardFeedRead();
   if (!authResult.ok) return authResult.response;

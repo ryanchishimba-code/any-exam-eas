@@ -3,7 +3,7 @@ import {
   sanitizeProgress,
   type PanceFeedProgressInput,
 } from "@/lib/pance-feed/format";
-import type { StudyFeedExam } from "@/lib/study-feed/catalog";
+import type { FeedCatalogExam } from "@/lib/study-feed/catalog";
 
 export type PanceFeedProgressState = PanceFeedProgressInput & {
   lastSeenAt: string | null;
@@ -60,7 +60,7 @@ export async function writePanceFeedProgress(
 }
 
 export async function readExamFeedProgress(
-  exam: Exclude<StudyFeedExam, "pance">,
+  exam: Exclude<FeedCatalogExam, "pance">,
   userId: string,
   known: ReadonlySet<string>
 ): Promise<PanceFeedProgressState> {
@@ -80,7 +80,7 @@ export async function readExamFeedProgress(
 }
 
 export async function writeExamFeedProgress(
-  exam: Exclude<StudyFeedExam, "pance">,
+  exam: Exclude<FeedCatalogExam, "pance">,
   userId: string,
   known: ReadonlySet<string>,
   input: unknown
