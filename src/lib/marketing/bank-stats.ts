@@ -139,10 +139,15 @@ export const FALLBACK_QUESTION_COUNTS = {
  */
 export const MARKETING_QUESTION_COUNTS = FALLBACK_QUESTION_COUNTS;
 
-/** Keep in sync with `TOP_500_DRUGS.length` in drugs300 catalog — leaf constant for client. */
-export const TOP_500_DRUGS_COUNT = 500;
+/**
+ * Deck-size copy. The curated catalog is larger than 500 (`TOP_500_COUNT`).
+ * "500+" stays honest without renaming the Top 500 product. Leaf string so
+ * client marketing does not import the catalog module. bank-stats.test.ts
+ * fails if the catalog is no longer above 500.
+ */
+export const TOP_500_DRUGS_COUNT = "500+";
 
-/** User-facing deck name — product is branded Top 500; catalog count tracks curated cards. */
+/** User-facing deck name. Count copy is 500+; nav labels stay Top 500. */
 export const DRUGS_DECK_MARKETING_TITLE = `Top ${TOP_500_DRUGS_COUNT} Drugs`;
 
 export function formatMarketingDrugCount(count: number): string {

@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "source": "ClinCalc Top 500 (AnyExamEasy)",
-  "updatedAt": "2026-06-25T04:26:08.805Z",
+  "updatedAt": "2026-11-14T14:34:11.361Z",
   "count": 509,
   "drugs": [
     {
@@ -43,7 +43,7 @@
       "brand": "Prinivil, Zestril",
       "class": "ACE inhibitor",
       "indications": "Hypertension, heart failure, post-MI, diabetic nephropathy",
-      "sideEffects": "Dry cough, hyperkalemia, angioedema, teratogenic (D)",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema; fetal toxicity (boxed warning); stop if pregnancy detected",
       "mnemonic": "Lisinopril Lisin' the cough away — ACE = Angioedema Cough Elevated K+",
       "examRelevance": {
         "NCLEX": true,
@@ -139,7 +139,7 @@
       "brand": "Cozaar",
       "class": "Angiotensin II receptor blocker (ARB)",
       "indications": "Hypertension, diabetic nephropathy, heart failure",
-      "sideEffects": "Hyperkalemia, dizziness, teratogenic (D); no cough vs ACE-I",
+      "sideEffects": "Hyperkalemia, dizziness; fetal toxicity (boxed warning); stop if pregnancy detected; no cough vs ACE-I",
       "mnemonic": "LOsartan LOses the pressure without the ACE cough",
       "examRelevance": {
         "NCLEX": true,
@@ -1035,8 +1035,8 @@
       "brand": "Trexall, Rheumatrex",
       "class": "Antimetabolite (folate antagonist)",
       "indications": "RA, psoriasis, cancer, ectopic pregnancy",
-      "sideEffects": "Hepatotoxicity, myelosuppression, pulmonary fibrosis, teratogenic",
-      "mnemonic": "MethoTREXate = TREX on folate — give folic acid, pregnancy X",
+      "sideEffects": "Hepatotoxicity, myelosuppression, pulmonary fibrosis; embryo-fetal toxicity (boxed warning)",
+      "mnemonic": "MethoTREXate = TREX on folate — give folic acid; contraindicated in pregnancy for non-cancer use",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -1464,15 +1464,15 @@
       "id": "insulin-detemir",
       "rank": 92,
       "generic": "Insulin detemir",
-      "brand": "Levemir",
-      "class": "Long-acting basal insulin analog",
-      "indications": "Basal glucose control in diabetes",
+      "brand": "Levemir (withdrawn US)",
+      "class": "Long-acting basal insulin analog (historical)",
+      "indications": "Basal glucose control (US product discontinued; supply ended 2024)",
       "sideEffects": "Hypoglycemia, weight gain",
-      "mnemonic": "Detemir = DEtermine basal level — Levemir long acting",
+      "mnemonic": "Detemir = DEtermine basal level — Levemir withdrawn US long-acting",
       "examRelevance": {
-        "NCLEX": true,
-        "USMLE": true,
-        "NAPLEX": true
+        "NCLEX": false,
+        "USMLE": false,
+        "NAPLEX": false
       },
       "category": "endocrine"
     },
@@ -1996,7 +1996,7 @@
       "class": "Antiepileptic / mood stabilizer",
       "indications": "Epilepsy, bipolar mania, migraine prophylaxis",
       "sideEffects": "Hepatotoxicity, teratogenic (neural tube defects), thrombocytopenia, weight gain",
-      "mnemonic": "Depakote = DEPosit weight & liver — pregnancy category X (teratogen)",
+      "mnemonic": "Depakote = DEPosit weight & liver — fetal risk (boxed warning); contraindicated for migraine prophylaxis in pregnancy",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -2584,11 +2584,11 @@
       "id": "exenatide",
       "rank": 162,
       "generic": "Exenatide",
-      "brand": "Byetta, Bydureon",
-      "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes (Byetta BID, Bydureon weekly ER)",
+      "brand": "Byetta, Bydureon (withdrawn US)",
+      "class": "GLP-1 receptor agonist (historical)",
+      "indications": "Type 2 diabetes (Byetta BID, Bydureon weekly ER). Brand products and the Amneal generic are discontinued in the US",
       "sideEffects": "Nausea, vomiting, pancreatitis (rare), weight loss; CI MEN2/medullary thyroid carcinoma; renal dose limits for Byetta",
-      "mnemonic": "Byetta = BYE appetite BID — Bydureon is weekly ER exenatide",
+      "mnemonic": "Byetta = BYE appetite BID — Bydureon weekly ER; both withdrawn US",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -3627,8 +3627,8 @@
       "brand": "CellCept, Myfortic",
       "class": "Immunosuppressant (IMPDH inhibitor)",
       "indications": "Transplant rejection prophylaxis, autoimmune (lupus nephritis)",
-      "sideEffects": "GI upset, myelosuppression, teratogenic (pregnancy X)",
-      "mnemonic": "CellCept = CELL rejection Cept — pregnancy X teratogen",
+      "sideEffects": "GI upset, myelosuppression; embryofetal toxicity (boxed warning); avoid if safer options",
+      "mnemonic": "CellCept = CELL rejection Cept — embryofetal toxicity (boxed warning)",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -4888,11 +4888,11 @@
       "id": "elbasvir",
       "rank": 306,
       "generic": "Elbasvir",
-      "brand": "Zepatier component",
-      "class": "NS5A inhibitor (HCV)",
-      "indications": "Hepatitis C (combination with grazoprevir)",
+      "brand": "Zepatier (withdrawn US)",
+      "class": "NS5A inhibitor (HCV) (historical)",
+      "indications": "Hepatitis C with grazoprevir (Zepatier discontinued US)",
       "sideEffects": "Headache, fatigue, anemia; many drug interactions",
-      "mnemonic": "Elbasvir = ELbasvir HCV NS5A — genotype 1/4 combo therapy",
+      "mnemonic": "Elbasvir = ELbasvir HCV NS5A — Zepatier withdrawn; genotype 1/4 combo",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -5016,11 +5016,11 @@
       "id": "chloramphenicol",
       "rank": 314,
       "generic": "Chloramphenicol",
-      "brand": "Chloromycetin",
-      "class": "Broad-spectrum antibiotic",
-      "indications": "Serious resistant infections (meningitis, typhoid)",
+      "brand": "Chloromycetin (withdrawn US)",
+      "class": "Broad-spectrum antibiotic (historical)",
+      "indications": "Serious resistant infections (meningitis, typhoid). Brand and sodium succinate IV are discontinued in the US",
       "sideEffects": "Gray baby syndrome, aplastic anemia, bone marrow suppression",
-      "mnemonic": "Chloromycetin = GRAY baby if neonates — rare but fatal marrow aplasia",
+      "mnemonic": "Chloromycetin = GRAY baby if neonates — withdrawn US; fatal marrow aplasia",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -5192,11 +5192,11 @@
       "id": "edrophonium",
       "rank": 325,
       "generic": "Edrophonium",
-      "brand": "Tensilon",
-      "class": "Acetylcholinesterase inhibitor (short)",
-      "indications": "Myasthenia gravis diagnosis (Tensilon test)",
+      "brand": "Tensilon (withdrawn US)",
+      "class": "Acetylcholinesterase inhibitor (historical, short-acting)",
+      "indications": "Myasthenia gravis diagnosis (Tensilon test; product withdrawn US)",
       "sideEffects": "Bradycardia, bronchospasm, cholinergic crisis overlap",
-      "mnemonic": "Tensilon = TEN seconds MG test — short-acting cholinesterase block",
+      "mnemonic": "Tensilon = TEN seconds MG test — withdrawn US; short-acting cholinesterase block",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -6696,17 +6696,17 @@
       "id": "betrixaban",
       "rank": 419,
       "generic": "Betrixaban",
-      "brand": "Bevyxxa",
-      "class": "Factor Xa inhibitor (DOAC)",
-      "indications": "Extended VTE prophylaxis post-hospital (medically ill)",
+      "brand": "Bevyxxa (withdrawn US)",
+      "class": "Factor Xa inhibitor (historical)",
+      "indications": "Extended VTE prophylaxis post-hospital (removed from US market 2020)",
       "sideEffects": "Bleeding; long half-life, no routine monitoring",
-      "mnemonic": "Bevyxxa = BEVyxxa extended prophylaxis — betrixaban post-discharge VTE",
+      "mnemonic": "Bevyxxa = BEVyxxa extended prophylaxis — withdrawn US; betrixaban post-discharge VTE",
       "examRelevance": {
-        "NCLEX": true,
-        "USMLE": true,
-        "NAPLEX": true
+        "NCLEX": false,
+        "USMLE": false,
+        "NAPLEX": false
       },
-      "category": "cardiovascular"
+      "category": "immunologic-other"
     },
     {
       "id": "aspirin-low-dose",
@@ -6811,8 +6811,8 @@
       "brand": "Tracleer",
       "class": "Endothelin receptor antagonist",
       "indications": "Pulmonary arterial hypertension",
-      "sideEffects": "Hepatotoxicity (monthly LFTs), teratogenic (pregnancy X)",
-      "mnemonic": "Tracleer = TRACleer PAH — endothelin blocker pregnancy X",
+      "sideEffects": "Hepatotoxicity (monthly LFTs); contraindicated in pregnancy; embryo-fetal toxicity (boxed warning)",
+      "mnemonic": "Tracleer = TRACleer PAH — endothelin blocker; contraindicated in pregnancy",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -8024,15 +8024,15 @@
       "id": "lixisenatide",
       "rank": 502,
       "generic": "Lixisenatide",
-      "brand": "Adlyxin",
-      "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes (often add-on to basal insulin)",
+      "brand": "Adlyxin (withdrawn US)",
+      "class": "GLP-1 receptor agonist (historical)",
+      "indications": "Type 2 diabetes (Adlyxin discontinued US; class comparison)",
       "sideEffects": "Nausea, vomiting, headache; CI MEN2/medullary thyroid carcinoma; hypoglycemia risk with insulin/sulfonylurea",
-      "mnemonic": "Adlyxin = ADLyxin before meals — once-daily GLP-1 injectable",
+      "mnemonic": "Adlyxin = ADLyxin before meals — withdrawn US; once-daily GLP-1",
       "examRelevance": {
-        "NCLEX": true,
-        "USMLE": true,
-        "NAPLEX": true
+        "NCLEX": false,
+        "USMLE": false,
+        "NAPLEX": false
       },
       "category": "endocrine"
     },
@@ -8040,9 +8040,9 @@
       "id": "albiglutide",
       "rank": 503,
       "generic": "Albiglutide",
-      "brand": "Tanzeum",
-      "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes (product withdrawn US 2018; class comparison)",
+      "brand": "Tanzeum (withdrawn US)",
+      "class": "GLP-1 receptor agonist (historical)",
+      "indications": "Type 2 diabetes (withdrawn US 2018; still tested for class comparison)",
       "sideEffects": "Nausea, diarrhea, injection-site reactions, pancreatitis (rare); CI MEN2/medullary thyroid carcinoma",
       "mnemonic": "Tanzeum = TANzeum weekly GLP-1 — withdrawn but classic fusion-protein GLP-1 RA",
       "examRelevance": {

@@ -5,8 +5,17 @@ export function inferExamRelevance(therapeuticClass: string, generic: string): E
   const t = therapeuticClass.toLowerCase();
   const g = generic.toLowerCase();
 
-  // Withdrawn or historical — exclude from active exam prep
-  if (g.includes("propoxyphene") || g.includes("ranitidine")) {
+  // Withdrawn products kept off active exam-prep flags (same as ranitidine
+  // and propoxyphene). Albiglutide is withdrawn but still tested on NCLEX,
+  // USMLE, and NAPLEX, so it is not listed here. Exenatide, chloramphenicol,
+  // edrophonium, and elbasvir stay flagged because they remain commonly tested.
+  if (
+    g.includes("propoxyphene") ||
+    g.includes("ranitidine") ||
+    g.includes("lixisenatide") ||
+    g.includes("betrixaban") ||
+    g.includes("insulin detemir")
+  ) {
     return { NCLEX: false, USMLE: false, NAPLEX: false };
   }
 
