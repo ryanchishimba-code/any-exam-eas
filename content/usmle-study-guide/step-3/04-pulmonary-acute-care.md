@@ -334,20 +334,6 @@ Monitoring: repeat the gas. Reexamine. Advance the clock to that result with a r
 
 The case fails in predictable ways. A complete physical exam while the saturation is unread. High-flow oxygen and a nap. A beautiful panel of send-out labs and no nebulizer. Discharge while the pH is still falling. A dietary lecture during the resuscitation, or, on the other end, an end to the case the moment the oxygen looks better, with no quit medicine and no follow-up. Both ends are graded as medicine, because both are medicine.
 
-### What tomorrow should look like, by disease
-
-Asthma that went home: a controller, a burst if you gave one, a peak-flow plan, follow-up in days, return precautions. Asthma that stayed: the same list waiting at discharge, plus a review of why this attack was life-threatening.
-
-COPD that went home: long-acting bronchodilator, a short steroid course with an end date, an antibiotic only if the features were met, cessation medicine, vaccines, rehabilitation referral, follow-up in days. COPD that stayed: a daily question about whether the mask, the oxygen, and the steroid route can step down.
-
-Pneumonia that went home: the oral drug, a number of days you confirmed, return precautions, vaccines when he can take them. Pneumonia that stayed: narrow the drug when the culture allows, look for an effusion that needs a tube, a five-day-style minimum you confirm rather than an open-ended intravenous habit.
-
-A clot: the anticoagulant he will actually take, bleeding precautions, a duration conversation on the calendar, a filter-retrieval date if one was placed, no discharge while hypotensive.
-
-A nodule: the comparison film and the Fleischner or Lung-RADS interval written as an order, not as advice. A screening-eligible smoker: the annual low-dose CT and the cessation drug.
-
-Every one of them: tobacco, if it is in the story, is a medicine you offer. Every one of them: a sentence about when to come back. That is the Step 3 pulmonary case.
-
 ## Sources for this atlas
 
 Source: [GINA strategy report](https://ginasthma.org/). No short-acting beta agonist as sole maintenance. Severe attack: oxygen, repeated short-acting beta agonist, ipratropium, systemic corticosteroid. Adult oxygen target commonly 93 to 95 percent; confirm the current line. A normal carbon dioxide in a severe attack is a warning.

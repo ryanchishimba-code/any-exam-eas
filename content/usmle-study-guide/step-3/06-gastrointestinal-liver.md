@@ -316,22 +316,6 @@ Tests that change management: a diagnostic tap, a hemoglobin, a set of cultures 
 
 Monitoring: mental status, pressure, urine, a repeat examination. Counseling when he can hear it: alcohol treatment as a medicine, salt, no nonsteroidal drugs, no raw shellfish, vaccines, return precautions for fever, confusion, black stool, and vomiting blood. Disposition tonight is the hospital. Tomorrow you ask whether the diuretic can restart, whether the antibiotic can narrow, and whether a transplant conversation belongs in the chart. A dietary lecture during the resuscitation does not. An end to the case the moment the fever falls, with no alcohol plan and no surveillance, also does not.
 
-### What tomorrow should look like
-
-Dyspepsia that went home: a stop date on the acid blocker, or a finished Helicobacter pylori regimen and a test of cure on the calendar. Alarms that were scoped: the biopsy result and the drug that was stopped.
-
-A bleed that stayed: endoscopy done, the drug narrowed to an oral acid blocker if the lesion allows, Helicobacter pylori testing, the nonsteroidal drug stopped, a transfusion target you are no longer chasing. A varix: the antibiotic course, the beta blocker only after the pressure allows, a band-ligation plan, a tap if ascites is present.
-
-Colic that went home: surgical follow-up if attacks recur, return precautions. Cholangitis: the duct actually drained, then the gallbladder plan when it is safe. Cholecystitis: the operation this admission if he is a candidate.
-
-Pancreatitis that is mild: eating, a gallbladder plan if a stone caused it, no lingering antibiotic. New ascites: the tap already done, diuretics only after the neutrophil count, salt, a stop rule if the kidney or the sodium moves.
-
-A cirrhosis clinic: the six-month surveillance you confirmed, the varices plan, the vaccines, the alcohol medicine. A symptom: not filed under the next surveillance date.
-
-Irritable bowel: the diagnosis said out loud and a treatment, plus the alarms that should bring them back. Inflammatory bowel: a maintenance drug that is not a steroid, a C. difficile test if they flare, vaccines before immunosuppression.
-
-Every one of them, when they can hear it: tobacco if it is in the story, alcohol if the liver is in the story, the medicine they must not stop or must not restart, and the sentence about black stool, vomiting blood, fever, jaundice, confusion, and the inability to drink. That is the Step 3 gastrointestinal case.
-
 ## Sources for this atlas
 
 Source: ACG guidelines on dyspepsia, GERD, Helicobacter pylori, gastrointestinal bleeding, acute pancreatitis, and irritable bowel syndrome. Confirm at [gi.org](https://gi.org/). Do not invent an endoscopy age. Stable dyspepsia without alarms: test for Helicobacter pylori or a short acid trial. A GERD trial is commonly about eight weeks. Confirm. Bismuth quadruple therapy is the common first Helicobacter regimen where clarithromycin resistance is high. Prove cure with a breath test or a stool antigen, off the acid blocker, at least four weeks after antibiotics. Confirm the hold interval, commonly about two weeks.

@@ -365,26 +365,6 @@ Treatment: the antibiotic for the source you found, or a broad drug if he is in 
 
 Monitoring: a repeat pressure, a urine output, a repeat lactate, a mental status. Advance the clock to those, not to a thyroid panel. When he turns, narrow the antibiotic to the culture. Stop the fluid when the lungs get wet or the perfusion is restored. Convert to an oral drug when he is drinking and the organism allows it. Counseling, once he can hear it: the drug he must finish, the line or the catheter that has to stay out, vaccines he is missing, return precautions for a fever that returns or a border that spreads. Disposition for tonight was the monitored bed. Disposition for day three might be home. Those are different orders. Copying day-one orders into day three is the error.
 
-### What tomorrow should look like
-
-Sepsis that turned: a narrower drug, a source that has been drained, a pressor that is off, a conversation about prevention. Sepsis that did not turn: the same bed, a search for the source you missed, a fungal question if the days are piling up in a vulnerable host.
-
-Cellulitis that went home: the mark, the oral drug, a next-day look. An abscess: a wound check, not a longer vancomycin. Necrotizing infection: the operating room again if the margin is still dying. The antibiotic is the adjunct.
-
-Pyelonephritis that went home: the oral drug that reaches the kidney, a culture you will read, return precautions for vomiting and for fever that worsens. Pregnancy: still in the hospital until she is clearly turning.
-
-Neutropenic fever: the antipseudomonal drug continues until the current IDSA duration and the neutrophil recovery say otherwise. You add vancomycin or a mold drug only when a criterion appears. You do not add them on a schedule.
-
-Meningitis: narrow to the organism and the duration the IDSA file prints. Contacts of meningococcus already have their prophylaxis. You do not remember them on day five.
-
-C. difficile: the culprit stays stopped. The oral drug is finished. A recurrence gets the recurrence regimen, not metronidazole.
-
-HIV: the antiretroviral drug continues. You do not pause it for a routine hospitalization. Prophylaxis is whatever the current table says when the count returns. You still do not invent the cutoff.
-
-A microangiopathy: exchange continues until the hematologist says the response is real. Platelets are still not the plan. Anticoagulant reversal: the original indication is readdressed before the drug restarts. Sickle cell: hydroxyurea continues, spirometry continues, fever precautions are written down. A transfusion reaction: the blood bank has the report, and the next unit is a new decision, not a restart.
-
-Every one of these, when the person is stable enough to hear it: the medicine they must not stop early, the warning that brings them back, and the vaccine or the exposure counseling the case put in front of you. That is the independent-practice version of infection and blood.
-
 ## Sources for this atlas
 
 Source: [Surviving Sepsis Campaign](https://www.sccm.org/survivingsepsiscampaign). Culture, an antibiotic for the source, fluid for hypoperfusion with reassessment, a vasopressor if fluid is not enough, source control, a monitored bed. The 30 mL/kg crystalloid figure is a starting discussion, not a quota in florid heart failure.
