@@ -38,7 +38,7 @@ These are consensus physiology and pathology. A physician should still spot-chec
 - Cord hemisection tract crossings.
 - Pemphigus versus bullous pemphigoid level of the split.
 - Osteomyelitis: Staphylococcus is the common organism; Salmonella is the sickle-cell classic and must not replace the common one.
-- Refeeding hypophosphatemia. Thiamine before glucose in a depleted person.
+- Refeeding hypophosphatemia. Thiamine in a depleted person. The Step 2 neurology chapter tells the reader not to delay glucose for a low fingerstick; give thiamine alongside. Those two sentences should stay consistent.
 - Warfarin’s early drop in protein C. Confirm this stays in the mechanism chapter and does not grow a dose.
 
 No drug doses are intended as orders on Step 1. If a dose appears, remove it or move it to a Step 2 or Step 3 chapter with a source.
@@ -53,7 +53,7 @@ No drug doses are intended as orders on Step 1. If a dose appears, remove it or 
 | Stage 2: combination therapy is the usual start | Same |
 | No race-based drug choice. No ACE inhibitor plus ARB | Same |
 | ACE inhibitor or ARB when hypertension coexists with diabetes and CKD defined as eGFR under 60 or albuminuria at least 30 mg/g | Same, and KDIGO |
-| Intracerebral hemorrhage pressure note in the 2025 guideline | The guideline’s ICH paragraph. The neurology chapter points at it and does not invent a target |
+| Intracerebral hemorrhage pressure | 2022 AHA/ASA ICH guideline: for systolic pressure 150–220, lowering toward 140 is the stated approach, and going below 130 can be harmful. The 2025 multisociety blood-pressure guideline’s ICH note should be read beside it. The Step 2 neurology chapter prints the 2022 figures and tells the reader to confirm them |
 | Heart-failure pillars for reduced ejection fraction | 2022 AHA/ACC/HFSA plus any focused update since. Confirm ARNI / evidence-based beta blocker / MRA / SGLT2, and that diuretics are for congestion |
 | High-intensity statin for clinical atherosclerotic disease | Current ACC/AHA cholesterol guideline. This book deliberately does not print an LDL number. If you add one, cite the line |
 | Pregnancy blood pressure is not the adult PREVENT rule | ACOG hypertensive-disorders bulletin |
@@ -102,7 +102,8 @@ No drug doses are intended as orders on Step 1. If a dose appears, remove it or 
 | --- | --- |
 | Last known well, glucose, non-contrast CT first | AHA/ASA early management |
 | Thrombolysis window and a longer imaging-selected window. Thrombectomy can outlast the drug window | Current AHA/ASA. Hours were intentionally not printed as a single number |
-| Do not drop ischemic-stroke blood pressure into a “normal” range unless a thrombolytic ceiling or an extreme value applies | AHA/ASA |
+| Do not drop ischemic-stroke blood pressure into a “normal” range unless a thrombolytic ceiling or an extreme value applies | AHA/ASA. The Step 2 atlas prints the commonly taught ceilings: treat above 220/120 when no thrombolytic is planned, bring the pressure under 185/110 before a thrombolytic, and keep it under 180/105 afterward. Confirm those three pairs against the current early-management guideline before the books go live |
+| Guillain-Barré respiratory prompt: vital capacity falling toward 20 mL/kg | A classic neuromuscular threshold, not a substitute for the current criteria. The chapter says to confirm it |
 | Temporal arteritis: do not wait for biopsy if vision is threatened | ACR / AAN / specialty guidance |
 | Guillain-Barré is IVIG or exchange, not steroids as the disease treatment | AAN |
 | Sudden painless vision loss treated as an emergency, including central retinal artery occlusion as a stroke equivalent | Confirm current AAO/AHA pathway. This phrase is easy to overstate |
@@ -170,6 +171,16 @@ These claims were added when the system chapters were expanded. Check them befor
 | Do not start a beta blocker on the morning of surgery in a beta-blocker-naive patient. Continue one they already take | ACC/AHA perioperative guideline |
 | Home or ambulatory readings outrank a single office cuff | 2025 blood-pressure guideline |
 | Cilostazol is not for claudication when heart failure is present | Peripheral-artery guideline. Confirm the contraindication is still absolute |
+| Asthma exacerbation oxygen target printed as about 93–95%. COPD exacerbation target printed as 88–92% | GINA and the British Thoracic Society oxygen guideline. These are different patients. Do not let one range replace the other |
+| Long-term oxygen: resting saturation at or below 88%, or PaO2 at or below 55 mm Hg, measured while stable | CMS and GOLD. The chapter says to confirm. Pulmonary hypertension or erythrocytosis can qualify a slightly higher value |
+| COPD inhaled corticosteroid favored around 300 eosinophils per microliter | Current GOLD. The chapter says to confirm the count |
+| CURB-65 elements: confusion, BUN greater than 19 mg/dL, respiratory rate at least 30, systolic under 90 or diastolic at or under 60, age at least 65. One IDSA/ATS major criterion (mechanical ventilation or vasopressor shock) marks severe disease | IDSA/ATS. The score supports disposition. It does not override a patient who cannot drink |
+| PERC items listed: age under 50, heart rate under 100, saturation at least 95%, no hemoptysis, no estrogen, no prior clot, no unilateral leg swelling, no recent surgery or trauma. Pregnancy is not a PERC population | ACEP. Every item must be negative, and only after gestalt is already low |
+| Pleural fluid pH under 7.2 is drained. Light criteria: protein ratio over 0.5, LDH ratio over 0.6, or pleural LDH over two-thirds the serum upper limit | BTS pleural guideline |
+| ARDS tidal volume about 6 mL/kg predicted body weight, plateau pressure at or under 30 cm H2O | ARDSNet and ATS/ESICM. Predicted weight, not actual weight |
+| Fleischner 2017: a solid nodule under 6 mm in a low-risk adult does not need routine follow-up. Screening scans use Lung-RADS, not Fleischner | Fleischner Society and USPSTF lung screening (ages 50–80, at least 20 pack-years) |
+| Life-threatening warfarin bleeding: a factor product plus vitamin K. Vitamin K does not reverse a direct oral anticoagulant. Enoxaparin is a protamine conversation, not vitamin K | ASH / anticoagulant reversal pathways. Confirm the product for each drug |
+| Ischemic-stroke pressure ceilings and the 2022 intracerebral-hemorrhage target are listed in the Neurology section above | Do not add a third set of numbers in a later edit |
 
 ## Independence
 

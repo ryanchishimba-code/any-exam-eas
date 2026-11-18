@@ -26,6 +26,204 @@ Anticoagulation choice is indication plus kidney plus bleeding risk. Do not stac
 
 Cancer screening that belongs in this neighborhood: colorectal cancer screening for adults 45 to 75 (USPSTF; grade A from 50 to 75, grade B from 45 to 49), and lung cancer screening as in the pulmonary chapter. Breast and cervix are in the women’s health chapter so they are next to the exam that finds them. Cervical screening is not “oncology clinic.” It is primary care.
 
+## High-yield atlas
+
+Bleeding and clotting items ask which limb of hemostasis failed, and whether this is an emergency. Cancer items ask which complication cannot wait.
+
+| Presentation and findings | Next best step | First-line management and the source |
+| --- | --- | --- |
+| Microangiopathic hemolysis, low platelets, neurologic or renal injury. Coagulation times are normal. | Plasma exchange. Do not transfuse platelets as the plan. Do not wait for ADAMTS13 to start the call. | ASH. Platelets can make the thrombi worse. The clotting times stay normal, which is how you split this from DIC. |
+| Low platelets, long PT and PTT, low fibrinogen, high D-dimer, and a trigger. | Treat the trigger. Replace blood products if he is bleeding. Do not chase a number in a patient who is not bleeding. | ASH and obstetric or sepsis pathways. The trigger is sepsis, trauma, cancer, or an obstetric catastrophe. |
+| A head bleed on warfarin or a DOAC. | Reverse the drug if the bleed is life-threatening. A stable nosebleed is not the same order. | Reversal depends on the drug. Warfarin is vitamin K and a factor product. Each DOAC has its own reversal or a nonspecific product. Confirm the current ASH or trauma pathway. Do not memorize a dead dose. |
+| Back pain and a neurologic deficit, or back pain in a person with known cancer. | Steroid, MRI, and a same-day radiation or surgical plan. | Do not send cancer-related back pain to physical therapy. The steroid is a bridge, not the treatment of the tumor. |
+| High calcium, a suppressed PTH, weight loss or a known cancer. | Fluids. A bisphosphonate or denosumab for the ongoing release. Calcitonin is a bridge. | Oncology pathways. Fluids first if he is dry. Do not start with a diuretic. |
+| Fever after chemotherapy. The count may not be back. | Antipseudomonal antibiotics now. | IDSA. This is also in the infection chapter because it is one disease. |
+| Fever, back pain, or shortness of breath during a unit. | Stop the blood. Check the identity. Pink plasma is hemolysis. Lung injury with a normal pressure is TRALI. High pressure is volume. | AABB. Do not restart the unit until the clerical check is done. |
+| A man or a postmenopausal woman with a low ferritin. | Find the bleed. Colonoscopy. Do not stop at iron tablets. | ACG. Screening age does not apply. This is diagnostic. |
+| A confirmed DVT or pulmonary embolism. He is stable. | Anticoagulate unless bleeding forbids it. Provoked distal clots are a conversation. A proximal clot is treatment. | CHEST. Thrombolysis is for the hypotensive embolus. Cancer-associated clot may prefer a specific agent. Confirm. Do not invent the drug. |
+| A falling platelet count and a new clot, days after heparin. | Stop all heparin, including flushes. Do not start warfarin alone. Use a non-heparin anticoagulant. | ASH. Warfarin early drops protein C and can cause limb gangrene. Platelets are not the treatment. |
+| A chronic disease. Low iron. Low transferrin. Ferritin normal or high. | Treat the disease. Do not pour iron in unless iron is actually low. | Iron deficiency has a low ferritin and a high transferrin. The labs split them. |
+| Sickle cell disease, chest pain, fever, hypoxia, or a new infiltrate. | Oxygen, cultures, antibiotics, pain control, and a real evaluation. Not a pain protocol only. | NHLBI sickle cell guideline. Acute chest is a leading cause of death. Incentive spirometry and transfusion decisions are specialist. Do not send him home on a pain plan. |
+| A trauma patient receiving blood as fast as you can hang it. | A balanced protocol, not red cells alone. Watch calcium and temperature. | Trauma pathways. Red cells without plasma and platelets recreate a coagulopathy. Confirm the local ratio. Do not invent one. |
+| Mucosal bleeding or petechiae and a very low platelet count. The other lines are normal. He is well or just had a virus. | If he is bleeding or the count is dangerously low, treat. If he is well with a moderate count, you may observe. | ASH ITP guideline. Steroids or IVIG for the patient who needs a rise. Platelets are for life-threatening bleeding, not for a number. Do not transfuse platelets into TTP. |
+
+| Pair | How you tell them apart |
+| --- | --- |
+| TTP versus the neighbor | DIC drops fibrinogen and prolongs the PT. HUS is more renal and often follows a diarrheal illness in a child. |
+| DIC versus the neighbor | TTP has a normal PT. |
+| Anticoagulated intracranial bleed versus the neighbor | A DOAC bleed is not fixed by vitamin K. |
+| Spinal cord compression versus the neighbor | Mechanical back pain has no deficit, no cancer, and no fever. |
+| Hypercalcemia of malignancy versus the neighbor | Primary hyperparathyroidism has a high PTH. |
+| Neutropenic fever as a heme emergency versus the neighbor | A solid tumor with a normal count is not this pathway. |
+| Transfusion reaction versus the neighbor | TRALI is hypoxia and a normal pressure. Overload responds to a diuretic and has a high pressure. |
+| Iron deficiency as a cancer clue versus the neighbor | A young woman with heavy periods can still be iron deficient from the uterus, but you still ask about the gut if the story does not close. |
+| Venous clot, the decision to anticoagulate versus the neighbor | A filter is for a patient who cannot be anticoagulated, or who is bleeding, not for a routine clot. |
+| HIT versus the neighbor | A platelet fall on day 1 is usually not HIT. It is perioperative consumption. |
+| Anemia of inflammation versus iron deficiency versus the neighbor | A ferritin of 8 is iron deficiency even if he also has a chronic disease. |
+| Sickle cell, acute chest versus the neighbor | An uncomplicated pain crisis has no fever and no hypoxia. |
+| Massive transfusion idea versus the neighbor | A stable GI bleed uses a restrictive threshold. This is not that patient. |
+| ITP versus the neighbor | TTP has schistocytes and is sick. ITP has a normal smear except the platelets and he may look well. |
+
+### TTP
+
+Platelet thrombi from uncleaved von Willebrand multimers.
+
+**Vignette.** Fever, confusion, platelets 12,000, schistocytes, a normal PT.
+**Reasoning.** Normal clotting times mean this is not DIC. Plasma exchange now. The diagnosis is TTP.
+**NBME trap.** A platelet transfusion because the count is low.
+**Hook.** Normal PT, schistocytes: exchange, not platelets.
+
+### DIC
+
+Consumption of factors and platelets.
+
+**Vignette.** Septic and oozing from the IV site. Fibrinogen is low. PT is long.
+**Reasoning.** DIC. Treat the sepsis and replace if he is bleeding. The trap is heparin as the first idea, or plasma exchange. The diagnosis is DIC.
+**NBME trap.** Plasma exchange for a long PT.
+**Hook.** Long PT and low fibrinogen: the trigger, not exchange.
+
+### Anticoagulated intracranial bleed
+
+The drug is doing what it was designed to do, in the wrong place.
+
+**Vignette.** Warfarin, INR 4, and a sudden severe headache with a CT that shows blood.
+**Reasoning.** Reverse now. The trap is vitamin K alone, which is too slow, or the same reversal for a nosebleed that has stopped. The diagnosis is Anticoagulated intracranial bleed.
+**NBME trap.** One reversal recipe for every anticoagulant.
+**Hook.** Life-threatening bleed: reverse the specific drug.
+
+### Spinal cord compression
+
+The cord is being crushed. Hours matter for function.
+
+**Vignette.** Known breast cancer. New back pain and weak legs. She can still walk.
+**Reasoning.** MRI today. The trap is a clinic appointment next week because she is still walking. The diagnosis is Spinal cord compression.
+**NBME trap.** NSAIDs and a return visit.
+**Hook.** Cancer plus a new back: MRI today.
+
+### Hypercalcemia of malignancy
+
+Local bone destruction or a PTH-related peptide.
+
+**Vignette.** Calcium 14. PTH is low. He has a lung mass.
+**Reasoning.** Humoral or osteolytic hypercalcemia. The trap is a parathyroidectomy. The diagnosis is Hypercalcemia of malignancy.
+**NBME trap.** Furosemide before he is volume replete.
+**Hook.** Suppressed PTH and a mass: fluids, then a bone drug.
+
+### Neutropenic fever as a heme emergency
+
+No neutrophils.
+
+**Vignette.** Day 10 after induction. Temperature 38.5. He looks well.
+**Reasoning.** Treat. The trap is waiting for the printed neutrophil count. The diagnosis is Neutropenic fever as a heme emergency.
+**NBME trap.** Oral amoxicillin and a callback.
+**Hook.** Fever after chemotherapy does not wait for the reprint.
+
+### Transfusion reaction
+
+The wrong blood, donor antibodies, or too much volume.
+
+**Vignette.** Ten minutes into the unit he has back pain and the plasma is pink.
+**Reasoning.** Acute hemolysis. Stop. The trap is acetaminophen and a faster rate. The diagnosis is Transfusion reaction.
+**NBME trap.** Continuing a unit that turned the plasma pink.
+**Hook.** Pink plasma stops the transfusion.
+
+### Iron deficiency as a cancer clue
+
+Iron left the body.
+
+**Vignette.** A 44-year-old man. Ferritin is 8. He feels tired. No pain.
+**Reasoning.** The colon until proven otherwise. The trap is iron and a screening colonoscopy at 45. The diagnosis is Iron deficiency as a cancer clue.
+**NBME trap.** Age under 45 used to skip the scope.
+**Hook.** Low ferritin in a man is a scope.
+
+### Venous clot, the decision to anticoagulate
+
+Virchow. The clot is the disease.
+
+**Vignette.** A proximal femoral clot. He is walking. No bleeding history.
+**Reasoning.** Anticoagulate. The trap is an IVC filter as the first idea in a patient who can take a drug. The diagnosis is Venous clot, the decision to anticoagulate.
+**NBME trap.** A filter because the clot was large.
+**Hook.** If he can take a drug, he takes a drug.
+
+### HIT
+
+An antibody activates platelets. The count falls and the clots form.
+
+**Vignette.** Day 7 of heparin. Platelets fell by half. A new leg clot.
+**Reasoning.** HIT. Stop every heparin. The trap is warfarin alone or a platelet transfusion. The diagnosis is HIT.
+**NBME trap.** More heparin because he clotted.
+**Hook.** Clot plus falling platelets on heparin: stop all of it.
+
+### Anemia of inflammation versus iron deficiency
+
+The body hides iron from bacteria and from the marrow.
+
+**Vignette.** Rheumatoid arthritis. Ferritin 200. Transferrin saturation is low. Hemoglobin 10.
+**Reasoning.** Anemia of inflammation. The trap is intravenous iron because the serum iron is low. The diagnosis is Anemia of inflammation versus iron deficiency.
+**NBME trap.** Iron infusions for a ferritin of 200.
+**Hook.** Low ferritin is iron loss. A normal ferritin with a chronic disease is inflammation.
+
+### Sickle cell, acute chest
+
+Vaso-occlusion and often infection in the lung.
+
+**Vignette.** Sickle cell. Fever, chest pain, oxygen 90%.
+**Reasoning.** Acute chest until proven otherwise. The trap is a pain shot and discharge. The diagnosis is Sickle cell, acute chest.
+**NBME trap.** Hydroxyurea started in the emergency department as the acute treatment.
+**Hook.** Fever and hypoxia in sickle cell is more than pain.
+
+### Massive transfusion idea
+
+He is bleeding out and the clotting factors are being diluted.
+
+**Vignette.** Four units of red cells and he is still oozing. No plasma has been given.
+**Reasoning.** He needs a balanced resuscitation. The trap is more red cells only. The diagnosis is Massive transfusion idea.
+**NBME trap.** A single calcium channel blocker thought, or forgetting calcium when he is citrated.
+**Hook.** Massive bleeding is a protocol, not red cells alone.
+
+### ITP
+
+Antibodies on platelets. The marrow is making them. The spleen is eating them.
+
+**Vignette.** A child after a virus. Petechiae. Platelets 8,000. Hemoglobin and white count are normal. He is playing.
+**Reasoning.** ITP. Many children are observed if bleeding is only skin. The trap is a platelet transfusion for petechiae, or a leukemia workup that ignores a single-line drop... leukemia usually hits more than one line. Still look at the smear. The diagnosis is ITP.
+**NBME trap.** Platelets for skin-only ITP.
+**Hook.** Isolated low platelets and a well patient: ITP until the smear says otherwise.
+
+## Sources for this atlas
+
+Source: ASH guidance on TTP, ITP, HIT, and transfusion. AABB for transfusion reactions.
+
+Source: [USPSTF colorectal screening](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening) does not replace a diagnostic colonoscopy for iron deficiency.
+
+Source: NHLBI sickle cell guidance and IDSA febrile neutropenia.
+
+Source: [Step 2 CK blood and immune range](https://www.usmle.org/exam-resources/step-2-ck-materials/step-2-ck-content-outline-specifications).
+
+## Stem craft
+
+More stems. The name stays out of the vignette.
+
+The vignette withholds the name. The reasoning earns it.
+
+**Vignette 1.** Schistocytes, platelets 10,000, confusion, normal PT.
+**Reasoning.** TTP. Plasma exchange. Not platelets. DIC would prolong the PT.
+
+**Vignette 2.** Cancer, new back pain, still walking.
+**Reasoning.** MRI today. Walking is not reassurance. The cord can still be compressed.
+
+**Vignette 3.** Warfarin, a sudden headache, blood on the CT.
+**Reasoning.** Reverse with a factor product and vitamin K. Vitamin K alone is too slow. A DOAC is not fixed by vitamin K.
+
+**Vignette 4.** Day 7 of heparin, platelets fell by half, a new clot.
+**Reasoning.** HIT. Stop all heparin. Do not start warfarin alone.
+
+**Vignette 5.** Ferritin of 8 in a 50-year-old man.
+**Reasoning.** Colonoscopy. Iron tablets are not the workup.
+
+**Vignette 6.** Sickle cell, fever, oxygen 91%.
+**Reasoning.** Acute chest. Not a pain-only visit.
+
 ## Checklist
 
 - [ ] Suspected TTP gets plasma exchange, not platelets as the plan.
