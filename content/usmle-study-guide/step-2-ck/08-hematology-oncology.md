@@ -224,6 +224,70 @@ The vignette withholds the name. The reasoning earns it.
 **Vignette 6.** Sickle cell, fever, oxygen 91%.
 **Reasoning.** Acute chest. Not a pain-only visit.
 
+## Another pass on the stems
+
+### von Willebrand disease and hemophilia are different bleeding
+
+Mucosal bleeding, a heavy period, and a normal platelet count point at von Willebrand disease. The PTT may be normal or long, because factor VIII rides with von Willebrand factor. Hemophilia is deep bleeding, joints and muscle, in a person with a family pattern, and a long PTT with a normal PT. Desmopressin can raise von Willebrand factor in the common type. It is not the treatment of a factor VIII deficiency that is severe, and it is the wrong drug in the type of von Willebrand disease that already has too-active platelets. Confirm the type before you give it. A platelet transfusion does not fix a clotting-factor deficiency.
+
+**Vignette.** She has soaked through a pad every hour since menarche. Platelets are 210,000. The PT is normal. The PTT is at the top of normal. Her father had nosebleeds.
+**Reasoning.** This is a platelet-function or von Willebrand problem, not immune thrombocytopenia. The diagnosis is von Willebrand disease until the assay says otherwise. The trap is a platelet transfusion for a normal count, or factor VIII concentrate as the first reflex before the assay.
+**NBME trap.** They call a hemarthrosis in a boy “von Willebrand” because both are bleeding disorders. Deep joint bleeding is hemophilia until the factor level says otherwise.
+**Hook.** Mucosa and periods: von Willebrand. Joints and muscle: hemophilia. Read the site.
+
+### B12 deficiency hits the cord. Folate does not.
+
+A high mean cell volume, oval macrocytes, and hypersegmented neutrophils. Folate deficiency is diet, pregnancy, or a drug that blocks folate. B12 deficiency is pernicious anemia, a gastric or ileal problem, or a long vegan diet, and it adds numbness, ataxia, and a positive Romberg. Giving folate can fix the anemia of B12 deficiency and leave the cord injured. Check B12 before you commit to folate alone. Methylmalonic acid is high in B12 deficiency and not in folate deficiency. Both raise homocysteine.
+
+**Vignette.** A vegan for ten years. Tingling in the feet. Hemoglobin 9. Mean cell volume 112. Someone starts folic acid only.
+**Reasoning.** Check and replace B12. The diagnosis is B12 deficiency until the level says otherwise. Folate alone is the trap. The neurologic findings are the clue that this is not a pure folate problem.
+**NBME trap.** They replete folate, the hemoglobin rises, and they call him cured while the gait gets worse.
+**Hook.** Macrocytic and numb: B12. Macrocytic and pregnant or not eating vegetables: think folate, and still check B12.
+
+### Tumor lysis is a laboratory emergency after treatment starts
+
+A bulky, fast cancer. After chemotherapy: high potassium, high phosphate, low calcium, high uric acid, and a rising creatinine. The phosphate binds the calcium. The uric acid clogs the tubules. Hydration before the drug. Allopurinol prevents new uric acid. Rasburicase breaks down uric acid that is already there. Do not give calcium unless the low calcium is causing symptoms, because you are feeding the precipitation. Do not invent a dose. Confirm the current oncology order set. A high potassium with ECG changes is still treated as hyperkalemia.
+
+**Vignette.** Burkitt lymphoma. The morning after the first chemotherapy the potassium is 6.4, the phosphate is high, the calcium is low, and the creatinine has doubled. He feels “a bit crampy.”
+**Reasoning.** Tumor lysis. Hydrate, treat the potassium if the ECG cares, and use a uric-acid strategy that matches whether the uric acid is already high. The diagnosis is tumor lysis syndrome. The trap is a calcium infusion for a number, or waiting for oncology rounds while the potassium climbs.
+**NBME trap.** They give calcium gluconate because the calcium is low and the ECG is normal. Asymptomatic hypocalcemia in tumor lysis is not a calcium order.
+**Hook.** After the first dose, in a bulky cancer: potassium, phosphate, calcium, uric acid, creatinine. Hydrate before you are surprised.
+
+### Acute promyelocytic leukemia brings its own DIC
+
+Auer rods, a low blood count, and bleeding out of proportion. The DIC of acute promyelocytic leukemia is treated by treating the leukemia, with all-trans retinoic acid started as soon as the diagnosis is suspected, plus the arsenic or chemotherapy the current protocol names. Do not wait for a perfect karyotype to start the differentiating agent if the smear is telling you. Confirm the current protocol. Support the bleeding. This is not ordinary DIC from sepsis, and it is not a reason to delay the specific drug.
+
+**Vignette.** Pancytopenia, bleeding gums, and cells with granules and Auer rods. The fibrinogen is low. The team wants to wait for cytogenetics before any leukemia drug.
+**Reasoning.** Start all-trans retinoic acid while the confirmatory test runs. The diagnosis is suspected acute promyelocytic leukemia with DIC. The trap is treating only the coagulopathy, or waiting a weekend for a karyotype.
+**NBME trap.** Heparin as the main plan for this DIC. The differentiating agent is the treatment. Support the bleeding.
+**Hook.** Auer rods and bleeding: the differentiating agent now, not after the karyotype comes back.
+
+### Superior vena cava syndrome is a cancer emergency
+
+Face and arm swelling, dilated chest veins, and a lung mass or lymphoma. The next step is a tissue diagnosis if he is stable, because the treatment depends on the cancer. A threatened airway is radiation or a stent before a leisurely biopsy. Do not start steroids as a reflex in a possible lymphoma if they will blur the diagnosis, unless the airway forces your hand. Confirm the oncology pathway. Elevate the head. This is not an allergic facial swelling and it is not a diuretic problem.
+
+**Vignette.** A smoker. Two weeks of facial fullness that is worse in the morning. The chest film shows a right upper-lobe mass. He is breathing comfortably.
+**Reasoning.** Tissue diagnosis, urgently, before empiric radiation. The diagnosis is superior vena cava syndrome from a lung mass. The trap is radiation this hour in a stable patient, which can ruin the biopsy, or furosemide as the treatment.
+**NBME trap.** They radiate first because the face is swollen, and the later biopsy is nondiagnostic. Stable airway: get tissue. Stridor: the airway wins.
+**Hook.** Facial swelling and a mass: diagnose the cancer if he can breathe. If he cannot, open the airway first.
+
+### A stable patient does not need a hemoglobin of 10
+
+AABB and the gastrointestinal-bleed trials support a restrictive transfusion threshold around 7 g/dL for a stable patient without ischemia. Do not withhold blood from a person who is crashing, actively bleeding and hypotensive, or having an acute coronary syndrome. One unit, then reassess. Do not chase a normal number. Iron deficiency still needs a source, not only a transfusion.
+
+**Vignette.** Hemoglobin 7.4. He is sitting up, talking, chest-pain free, and the bleed has stopped. Someone orders two units to “get him over 9.”
+**Reasoning.** He does not need the blood. The diagnosis is a stable anemia above a restrictive threshold. The trap is the habit of 10. If he were dizzy, hypotensive, or having ischemic chest pain, the same number would be a transfusion.
+**NBME trap.** They apply the restrictive threshold to a man with an ST-elevation myocardial infarction and a hemoglobin of 8. Ischemia changes the threshold. Confirm the current coronary guidance rather than inventing 10 as a law.
+**Hook.** Stable and not ischemic: restrictive. Crashing or ischemic: transfuse. Then find out why he was low.
+
+## Sources for this pass
+
+Source: ASH guidance on von Willebrand disease, transfusion, and acute promyelocytic leukemia. AABB supports a restrictive threshold near 7 g/dL for many stable patients. Do not apply it to shock or active ischemia.
+
+Source: Standard tumor-lysis physiology. Rasburicase is for uric acid already formed. Allopurinol prevents new uric acid. Confirm the current oncology order set. Do not give calcium for an asymptomatic low calcium in this setting.
+
+Source: [Step 2 CK content outline](https://www.usmle.org/exam-resources/step-2-ck-materials/step-2-ck-content-outline-specifications).
+
 ## Checklist
 
 - [ ] Suspected TTP gets plasma exchange, not platelets as the plan.

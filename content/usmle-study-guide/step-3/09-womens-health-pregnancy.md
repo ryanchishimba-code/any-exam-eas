@@ -163,6 +163,66 @@ Source: FDA labels distinguish emergency contraception from medication abortion.
 
 Source: [Step 3 content outline](https://www.usmle.org/exam-resources/step-3-materials/step-3-content-outline-specifications).
 
+## Another pass on the stems
+
+Step 3 obstetrics is the visit you finish and the bleed you do not send home. These cases are the ones the first atlas named in a table and did not play out.
+
+### Postpartum hemorrhage is four causes, and the drug has a contraindication
+
+Cumulative loss of at least 1,000 mL, or any loss with hypovolemia, inside 24 hours, is a postpartum hemorrhage. ACOG does not change that sentence for the route of birth. A vaginal loss above 500 mL is already abnormal. Do not wait for the definition while she pales. Tone is a soft uterus: massage and oxytocin. The next uterotonic is chosen around the disease she already has. Methylergonovine raises blood pressure and is the wrong choice when she is hypertensive. Carboprost constricts bronchi and is the wrong choice when she has asthma. Trauma is a laceration, a hematoma, or an inverted uterus, and the fundus of a pure laceration is firm. Tissue is a missing piece of placenta. Thrombin is a clotting failure, including abruption. Look at the placenta. An inverted uterus is replaced. You do not keep pulling on the cord, and you hold the uterotonic until the uterus is back.
+
+**Vignette.** Minutes after delivery the pad is soaking and the uterus is soft. She had preeclampsia. The pressure is still severe. The first order is methylergonovine. Nobody has looked at the cervix.
+**Reasoning.** Massage and oxytocin. Methylergonovine will push the pressure higher. Then look for a laceration, because tone and trauma coexist. The diagnosis is uterine atony in a hypertensive patient.
+**NBME trap.** Carboprost in a woman whose history is asthma, or more traction on a cord when the fundus has disappeared into the vagina.
+**Hook.** Soft uterus: massage and oxytocin. Pick the next drug around the disease she already has. Firm uterus and bleeding: look for a tear.
+**CCS.** Two lines, uterotonic massage, the drug her pressure and lungs allow, inspect the cervix and the placenta, blood if she is hypovolemic. Do not end the case on one drug.
+
+### Shoulder dystocia is a sequence, not fundal pressure
+
+The head delivers and sucks back. Call for help. Flatten the bed. McRoberts flexes the thighs hard onto the abdomen. Suprapubic pressure is from the side of the fetal back. Fundal pressure makes the impaction worse. If the shoulder is still stuck, deliver the posterior arm or rotate the shoulders. An episiotomy only makes room for the hand. Breaking a clavicle or pushing the head back is what you do when the sequence has failed, not what you do second. A limp arm in the nursery is examined and followed. Many palsies recover. It is not an emergency reconstruction in the first minute.
+
+**Vignette.** The head is out and then retracts. A teammate pushes hard on the fundus.
+**Reasoning.** Stop the fundal pressure. McRoberts and suprapubic pressure. The diagnosis is shoulder dystocia. The trap is more force from above.
+**NBME trap.** They cut an episiotomy and call that the treatment, without a maneuver. The episiotomy does not rotate the shoulder.
+**Hook.** Thighs up, pressure above the pubis, then a hand inside. Never fundal pressure.
+
+### Fever has an address
+
+Fever in labor plus fetal tachycardia, uterine tenderness, or purulent fluid is intraamniotic infection. Antibiotics and delivery. Do not tocolyze to buy time. The fetus is in the infected fluid. Confirm the temperature definition in the current ACOG bulletin rather than importing a surgical-floor number. After a cesarean, fever and a tender uterus with foul lochia is endometritis, polymicrobial, and an intravenous regimen that covers the vaginal flora. A clean incision can stay closed. A urinary infection has a uterus that is not the tender organ. A patient who stays febrile after the right antibiotics, with a uterus that is less tender than you expected, may have septic pelvic thrombophlebitis. That is imaging and a conversation about anticoagulation, not another random antibiotic.
+
+**Vignette.** Eighteen hours after a cesarean. High fever. The fundus is markedly tender. The lochia smells foul. The incision is not red. The order is observation for atelectasis.
+**Reasoning.** Endometritis. The polymicrobial intravenous regimen. The diagnosis is postpartum endometritis. Atelectasis does not make the fundus hurt.
+**NBME trap.** A urinary antibiotic with no uterine coverage, or opening a clean incision because the mnemonic said “wound.”
+**Hook.** Tender uterus after a cesarean: treat the uterus. Tender uterus in labor: antibiotics and delivery.
+
+### The breast lump and the stripe are not reassurance
+
+A palpable mass gets imaging that matches age. Ultrasound is the usual first image under 30. Diagnostic mammography leads at 40 and older. A normal report does not erase a lump you can feel. Postmenopausal bleeding, twelve months after the final period, is endometrial cancer until it is sampled. A thin stripe can let some women skip a biopsy only in a narrow situation: one episode, a lining that was fully seen, no strong risk, and prompt follow-up. Confirm that exception. Do not apply it to a woman who keeps bleeding or whose lining was not seen.
+
+**Vignette.** She is 58. One week of spotting after six years of silence. The ultrasound did not see the whole lining. She is told the amount was small, so she can return if it happens again.
+**Reasoning.** Sample the endometrium. The diagnosis is postmenopausal bleeding. An unseen lining is not a thin-stripe clearance.
+**NBME trap.** They order a screening mammogram for a palpable lump and accept a normal film. The lump is still a diagnostic problem.
+**Hook.** Spotting after menopause: sample, unless a fully seen thin stripe and a single episode meet the exception you confirmed. A lump survives a normal film.
+
+### Contraception numbers you can say, and the ones you do not mix up
+
+No estrogen for migraine with aura, smoking over 35, a clot history, or the early postpartum days. The CDC chart is the authority. Emergency contraception is not medication abortion. It is time-sensitive, strongest early, and a copper IUD is an option within the window on the label. Confirm the day limit rather than inventing a sixth day. A long-acting method remains available when estrogen is not. Typical-use failure is highest for the methods that depend on a daily behavior. Say that. Do not quote a perfect-use percentage as what your patient will achieve.
+
+**Vignette.** She is 36, smokes a pack a day, and wants the combined pill her sister uses. She has no aura and no clot.
+**Reasoning.** Smoking over 35 is enough. Offer a progestin or nonhormonal method, including a long-acting one. The diagnosis is medical ineligibility for estrogen. The trap is “she is careful.”
+**NBME trap.** They describe a copper IUD placed for emergency contraception as an abortion. It is not.
+**Hook.** One chart prohibition is enough. Emergency contraception is not an abortion.
+
+## Sources for this pass
+
+Source: [ACOG](https://www.acog.org/) postpartum hemorrhage: at least 1,000 mL, or any loss with hypovolemia, within 24 hours. Vaginal loss above 500 mL is already abnormal. Methylergonovine is a poor choice in hypertension. Carboprost is a poor choice in asthma.
+
+Source: [CDC Medical Eligibility Criteria](https://www.cdc.gov/contraception/hcp/usmec/index.html) and the FDA distinction between emergency contraception and medication abortion.
+
+Source: [USPSTF breast cancer screening](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening) does not clear a palpable mass.
+
+Source: [Step 3 content outline](https://www.usmle.org/exam-resources/step-3-materials/step-3-content-outline-specifications).
+
 ## Checklist
 
 - [ ] Preeclampsia symptoms are asked, not assumed absent.

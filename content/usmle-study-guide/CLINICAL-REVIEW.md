@@ -201,6 +201,12 @@ These claims were added while the Step 3 chapters were brought to the same depth
 | Endocarditis prophylaxis limited to a prosthetic valve, prior endocarditis, some congenital heart disease, and cardiac transplant valvulopathy | AHA. A murmur is not on the list |
 | CCS weight is not given a finer percent than the Bulletin’s “no greater than its share of time” | Do not add one |
 | No CD4 cutoff, no SGLT2 inhibitor eGFR floor, no GOLD letter, no door-to-balloon minute, no preeclampsia millimeter cutoff, no gestational-diabetes number | Those omissions are intentional |
+| Asymptomatic bacteriuria is treated in pregnancy and not in other asymptomatic adults | IDSA and ACOG |
+| Syphilis in pregnancy is penicillin, including desensitization if she reports allergy. Neurosyphilis is intravenous penicillin, not one intramuscular dose | CDC STI guidelines |
+| Postpartum hemorrhage: at least 1,000 mL, or any loss with hypovolemia, within 24 hours. Vaginal loss above 500 mL is already abnormal | ACOG. Methylergonovine is a poor choice in hypertension. Carboprost is a poor choice in asthma |
+| Do not give calcium for asymptomatic hypocalcemia in tumor lysis | Oncology order sets. Symptomatic hypocalcemia and ECG changes from hyperkalemia are different orders |
+| Folate alone can correct the anemia of B12 deficiency and leave the cord injured | Check B12 when there are neurologic findings |
+| A simple febrile seizure is short, generalized, and back to baseline. The age band should be confirmed against the current AAP statement | Do not apply the label to a child who is still lethargic or has a stiff neck |
 
 ## Independence
 

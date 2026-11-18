@@ -160,6 +160,65 @@ Source: CDC developmental milestones. Loss of skill is a referral. Exact months 
 
 Source: [Step 3 content outline](https://www.usmle.org/exam-resources/step-3-materials/step-3-content-outline-specifications). Adolescent confidentiality is jurisdiction-specific and is not stated as a national age.
 
+## Another pass on the stems
+
+### A febrile seizure is not meningitis until you have looked
+
+A short generalized seizure with a fever, in a child who returns to baseline, between about 6 months and 5 years, is often a simple febrile seizure. The work is the source of the fever and a history that the seizure was short and generalized. A seizure that is focal, lasts a long time, or recurs in the same illness is complex, and the evaluation is larger. A child who does not return to baseline, has a stiff neck, or looks toxic is meningitis until the evaluation says otherwise. Do not call every fever-plus-shaking a febrile seizure and skip the exam. Confirm the age band against the current AAP statement rather than tattooing it.
+
+**Vignette.** A 2-year-old had one minute of whole-body shaking during a fever. He is playing. The neck is supple. The ears are red.
+**Reasoning.** Treat the otitis if that is the source. Counsel the family. The diagnosis is a simple febrile seizure with a source. The trap is a lumbar puncture because a fever and a seizure were in the same sentence, or a missed stiff neck because you were reassured by the word simple.
+**NBME trap.** They send home a child who is still postictal and lethargic as “post-ictal from a febrile seizure.” Baseline means baseline.
+**Hook.** Back to baseline, short, generalized, a source: counsel. Not back to baseline, or a stiff neck: this is not the simple row.
+**CCS.** Glucose, the fever source, observation until he is himself, no routine imaging for a simple febrile seizure. Do not end the case on a lethargic child.
+
+### Diabetic ketoacidosis in a new child is fluids, insulin, and potassium you watch
+
+A thin child, vomiting, deep breathing, and a glucose that is high. The first orders are fluid, a careful insulin plan, and a potassium you measure before and during the insulin, because insulin drives potassium in and the total body potassium is already low. Do not bolus insulin. Cerebral edema is the complication: headache, a falling heart rate, a rising pressure, or a change in mentation. That is mannitol or hypertonic saline and a reduced fluid rate, and a pediatric intensive-care conversation. Confirm the current protocol. This page does not list a dose or a milliliter-per-kilogram rule.
+
+**Vignette.** A 7-year-old with two weeks of thirst and a day of vomiting. Glucose is 480. He is breathing deeply. Potassium is 5.2 before treatment. Someone wants a large intravenous insulin bolus.
+**Reasoning.** Fluid and a controlled insulin infusion. The potassium will fall. Recheck it. The diagnosis is diabetic ketoacidosis, often new type 1 diabetes. The trap is the bolus, or forgetting potassium because the first value was normal-high.
+**NBME trap.** They give bicarbonate because the pH is low. Bicarbonate is not routine. It is a special case you confirm, not the first order.
+**Hook.** High glucose, deep breathing, vomiting: fluids and insulin you control. Watch the potassium and the mental status.
+
+### A limp with a fever is a septic hip until a tap says otherwise
+
+Refusal to bear weight, fever, and a hip held still. The tap and orthopedics are the action. Do not send him home on ibuprofen because the film is normal. Films are late for osteomyelitis and useless for an early septic joint. A painless limp without fever in an older child can be a different afternoon, including a slipped capital femoral epiphysis in an adolescent, which is a surgical hip, not a sprain. Knee pain can be the hip. Examine the hip when the knee film is normal.
+
+**Vignette.** An 8-year-old will not walk. Fever of 39. The hip is held flexed and still. The plain film is normal.
+**Reasoning.** Tap the hip. The diagnosis is a septic hip until the fluid says otherwise. The trap is ibuprofen and a next-day clinic because the radiograph was clean.
+**NBME trap.** They ultrasound a classic slipped capital femoral epiphysis in a 13-year-old with a limp and no fever, then send him to physical therapy. That hip is non-weight-bearing and a surgical referral the same day. Knee films that are normal do not clear it.
+**Hook.** Fever and a hip that will not move: tap. An adolescent limp: examine the hip, and do not walk him on a slip.
+
+### The iron-deficient toddler and the lead question
+
+A toddler on a milk-heavy diet with a low hemoglobin and a low mean cell volume is iron deficiency until proven otherwise. Limit the milk, add iron, and confirm the response. A lead level belongs in the workup when the history or the local guideline says so. Do not invent a capillary cutoff. Open the current CDC or AAP chart. Pica and an old house are the clues. Iron and lead can coexist. Treating iron does not replace a lead level the guideline wants.
+
+**Vignette.** A 2-year-old drinks a quart of milk a day. Hemoglobin 9. Mean cell volume is low. He lives in a house built in 1920 and mouths the windowsills.
+**Reasoning.** Iron, less milk, and a lead level. The diagnosis is iron deficiency, with lead exposure that has to be measured. The trap is iron alone and a speech about vegetables.
+**NBME trap.** They diagnose thalassemia trait from one low mean cell volume and never ask about milk or the house. Trait is a later thought, after iron and the smear.
+**Hook.** Too much milk: iron. An old house and mouthing: a lead level on the current chart.
+
+### Asthma at home and asthma that stays
+
+A child who speaks, saturates well, and turns around after a bronchodilator and a steroid can go home with a controller plan if he is using a reliever every day. A child who is tiring, hypoxic, or too breathless to speak stays. Work of breathing outranks one saturation number. Teach the inhaler with a spacer. A parent who cannot say the plan back does not have the plan yet.
+
+**Vignette.** A 6-year-old uses albuterol every day. Today he speaks in sentences and the oxygen saturation is 96 percent after two treatments. The peak flow has climbed. He has a ride home.
+**Reasoning.** Discharge with a steroid burst if you gave the attack one, and an inhaled corticosteroid. The diagnosis is an asthma exacerbation that has turned, on top of untreated persistent asthma. The trap is another albuterol canister.
+**NBME trap.** They discharge a child who is still retracting because one saturation read 94 percent. Look at the work.
+**Hook.** Sentences and a rising peak flow: home, with a controller. Retracting or tiring: he stays.
+**CCS.** The treatment, reassessment, the controller, teach-back, return precautions. No routine antibiotic.
+
+## Sources for this pass
+
+Source: [AAP](https://www.aap.org/) on simple febrile seizures and on bronchiolitis and asthma disposition in children. Confirm the febrile-seizure age band. This chapter does not list a diabetic-ketoacidosis dose or a fluid rate.
+
+Source: [CDC](https://www.cdc.gov/) lead guidance. Do not invent a capillary cutoff. Open the current chart.
+
+Source: [GINA](https://ginasthma.org/) for no reliever-only maintenance. The same rule applies to a child.
+
+Source: [Step 3 content outline](https://www.usmle.org/exam-resources/step-3-materials/step-3-content-outline-specifications).
+
 ## Checklist
 
 - [ ] Bilious vomiting is an emergency.

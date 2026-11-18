@@ -222,6 +222,72 @@ Source: Surviving Sepsis Campaign for the resuscitation principle.
 
 Source: [Step 2 CK specifications](https://www.usmle.org/exam-resources/step-2-ck-materials/step-2-ck-content-outline-specifications).
 
+## Another pass on the stems
+
+The atlas named the emergencies. These are the office and the pregnancy forks it did not finish.
+
+### Asymptomatic bacteriuria is a pregnancy problem
+
+A positive culture and no symptoms in a man, or in a nonpregnant woman, is not an antibiotic. In pregnancy it is treatment, because it becomes pyelonephritis. Confirm the current obstetric regimen. Do not use a drug that is wrong for the trimester because it was the cystitis drug you memorized for everyone else. Nitrofurantoin does not treat pyelonephritis. It can treat a bladder infection, including bacteriuria, when the trimester allows it. Confirm.
+
+**Vignette.** She is 16 weeks. A screening culture grows more than 100,000 colonies of E. coli. She has no dysuria and no fever.
+**Reasoning.** Treat. The diagnosis is asymptomatic bacteriuria of pregnancy. The trap is the adult rule, “no symptoms, no drug,” applied to a pregnant patient, or nitrofurantoin continued after she develops a fever and flank pain.
+**NBME trap.** They treat the same culture in a 70-year-old woman who feels well and has no pregnancy. That culture is not an indication.
+**Hook.** Pregnancy plus a positive culture: treat. Everyone else without symptoms: do not.
+
+### Syphilis in pregnancy is penicillin
+
+Primary is a painless ulcer. Secondary is a rash that includes the palms and soles. Late disease is years later. Neurosyphilis is a cerebrospinal-fluid problem and needs intravenous penicillin, not a single intramuscular dose. In pregnancy the drug is penicillin. If she reports a penicillin allergy, the path is desensitization, not a switch to doxycycline. Doxycycline is not the pregnancy regimen. Confirm the current CDC stage table rather than inventing the number of doses.
+
+**Vignette.** She is pregnant. The treponemal test is positive. She says penicillin “makes her throat close.”
+**Reasoning.** Desensitize and give penicillin. The diagnosis is syphilis in pregnancy. The trap is doxycycline because it treats nonpregnant adults with a penicillin allergy.
+**NBME trap.** One intramuscular dose for a person with a positive cerebrospinal fluid and ocular symptoms. That is neurosyphilis. Intravenous therapy.
+**Hook.** Pregnancy: penicillin, even if you have to desensitize. Eyes or a positive spinal fluid: intravenous, not one shot.
+
+### Lyme disease is the rash, then the drug the host can take
+
+Erythema migrans after a tick in an endemic area is Lyme disease. Do not wait for a titer to treat the classic rash. Doxycycline is the usual adult drug. Pregnancy and early childhood are the amoxicillin conversation. Confirm the current IDSA choice. A facial palsy after a tick is still Lyme until proven otherwise, and doxycycline treats the infection. Steroids are not the substitute. A later swollen knee can be Lyme arthritis. Early disseminated disease with a heart block is admission, not a clinic refill.
+
+**Vignette.** A circular expanding rash with central clearing, a week after a hike. She is pregnant. No titer is back.
+**Reasoning.** Treat now with the pregnancy-appropriate drug. The diagnosis is erythema migrans. The trap is waiting for the serology, or doxycycline because that is the nonpregnant default.
+**NBME trap.** They give a steroid for a tick-associated facial palsy and no antibiotic. The palsy is the infection.
+**Hook.** Classic rash: treat. Do not wait for the lab. Pregnancy changes the drug, not the decision to treat.
+
+### Acute HIV can look like mono, and the antibody test can be negative
+
+Fever, rash, sore throat, and a recent exposure. The antigen-antibody test can be negative in the first days. The RNA test is the one that catches it. Do not diagnose streptococcal pharyngitis and stop. Do not start chronic antiretroviral therapy from one symptom and no test. If the RNA is positive, start therapy and look at the current DHHS regimen. This chapter still does not print a CD4 cutoff.
+
+**Vignette.** Two weeks after a new sexual partner. Fever, a maculopapular rash, and a sore throat. The antibody test is negative. A rapid strep test is negative.
+**Reasoning.** Order the viral load. The diagnosis is possible acute HIV. The trap is amoxicillin for pharyngitis, which also risks a rash if this is Epstein-Barr virus, and a closed case because the antibody was negative.
+**NBME trap.** Amoxicillin for a mono-like illness. If it is EBV, the drug causes a rash that gets called a penicillin allergy. If it is acute HIV, the antibody was the wrong test.
+**Hook.** Mono-like illness and a new exposure: RNA, not only an antibody. Do not give amoxicillin for a sore throat you have not explained.
+
+### A bite is a specific organism and a specific wound
+
+A cat or dog bite is Pasteurella until proven otherwise. Amoxicillin-clavulanate is the usual oral drug when the person can go home. Confirm. Do not use a drug that misses Pasteurella because it was the cellulitis drug. A bite on the hand, a closed-fist injury, or a wound that already looks infected stays for a surgical look. Rabies prophylaxis is a protocol with a clock and a wound wash. Open the CDC page for the animal and the region. Do not invent the vaccine schedule.
+
+**Vignette.** A cat bite to the hand this morning. The hand is swelling. He is otherwise well. Someone prescribes cephalexin.
+**Reasoning.** Change the drug to one that covers Pasteurella, and have a low threshold to explore a hand. The diagnosis is a cat bite. The trap is the cellulitis cephalosporin, which misses the organism the cat carries.
+**NBME trap.** They suture a grossly contaminated bite closed as if it were a clean laceration, and they forget to wash it.
+**Hook.** Cat or dog: a drug that covers Pasteurella. Hand: someone who operates should see it. Wash first.
+
+### Epstein-Barr virus, the spleen, and the drug rash
+
+Fever, pharyngitis, posterior cervical nodes, and fatigue. The heterophile antibody supports it after the first days. No contact sport until the spleen is no longer at risk. Confirm the interval rather than inventing a week. Amoxicillin causes a rash and is not the treatment. A strep test can be positive and still not be the whole story. Airway obstruction or severe thrombocytopenia is the admission. Most adolescents go home.
+
+**Vignette.** A teenager with a week of sore throat and fatigue. Posterior nodes. You start amoxicillin. The next day he has a diffuse rash.
+**Reasoning.** Stop the amoxicillin. This is the EBV drug rash, not a lifelong penicillin allergy, until you have thought it through. The diagnosis is infectious mononucleosis. The trap is labeling him penicillin-allergic and clearing him for Saturday’s rugby match.
+**NBME trap.** They clear contact sports because he feels a little better. The spleen is the reason he sits out.
+**Hook.** Posterior nodes and fatigue: do not give amoxicillin. Do not clear contact sports.
+
+## Sources for this pass
+
+Source: [IDSA](https://www.idsociety.org/practice-guideline/practice-guidelines/) and [CDC STI guidelines](https://www.cdc.gov/std/treatment-guidelines/default.htm). Pregnancy syphilis is penicillin, including desensitization if needed. Neurosyphilis is intravenous therapy.
+
+Source: [CDC](https://www.cdc.gov/) for Lyme disease, rabies, and acute HIV testing. A negative antibody test does not clear a very recent exposure. This chapter does not print a CD4 cutoff or a rabies-dose schedule.
+
+Source: [Step 2 CK content outline](https://www.usmle.org/exam-resources/step-2-ck-materials/step-2-ck-content-outline-specifications).
+
 ## Checklist
 
 - [ ] Source, severity, then drug.
