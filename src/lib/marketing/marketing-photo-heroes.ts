@@ -82,6 +82,16 @@ export const MARKETING_PHOTO_HERO_MOBILE_WIDTH = { x1: 360, x2: 720, x3: 1080 } 
 /** Phones only. Desktop keeps the single 1280-wide file. */
 export const MARKETING_PHOTO_HERO_MOBILE_MEDIA = "(max-width: 767px)";
 
+/** One 1280-wide file. AVIF first, then the existing WebP when AVIF cannot be decoded. */
+export function marketingPhotoHeroDesktopImageSet(id: MarketingPhotoHeroId): string {
+  const avif = marketingPhotoHeroSrc(id, "desktop", "avif");
+  const webp = marketingPhotoHeroSrc(id, "desktop", "webp");
+  return `image-set(${[
+    `url("${avif}") type("image/avif")`,
+    `url("${webp}") type("image/webp")`,
+  ].join(", ")})`;
+}
+
 export function marketingPhotoHeroMobileImageSet(id: MarketingPhotoHeroId): string {
   const avif1 = marketingPhotoHeroSrc(id, "mobile", "avif");
   const avif2 = marketingPhotoHeroSrc(id, "mobile2x", "avif");

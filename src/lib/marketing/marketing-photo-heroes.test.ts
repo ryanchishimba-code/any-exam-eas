@@ -7,6 +7,7 @@ import {
   MARKETING_PHOTO_HERO_BOX_ASPECT,
   MARKETING_PHOTO_HERO_IMAGE_ASPECT,
   MARKETING_PHOTO_HERO_MOBILE_FOCAL,
+  marketingPhotoHeroDesktopImageSet,
   marketingPhotoHeroMobileImageSet,
   marketingPhotoHeroSlice,
   marketingPhotoHeroSrc,
@@ -23,6 +24,12 @@ describe("marketingPhotoHeroSrc", () => {
     );
     expect(marketingPhotoHeroSrc("usmle", "mobile2x", "avif")).toBe(
       "/images/marketing/heroes/usmle-mobile-2x.avif"
+    );
+  });
+
+  it("serves desktop AVIF first and the existing WebP after it", () => {
+    expect(marketingPhotoHeroDesktopImageSet("home")).toBe(
+      'image-set(url("/images/marketing/heroes/home-desktop.avif") type("image/avif"), url("/images/marketing/heroes/home-desktop.webp") type("image/webp"))'
     );
   });
 
