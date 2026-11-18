@@ -25,197 +25,219 @@ Inflammatory bowel disease items want the complication: toxic megacolon, primary
 
 ## High-yield atlas
 
-Gastrointestinal items are alarms versus no alarms, and whether the duct, the colon, or the vessel is under pressure. Resuscitate bleeding before you locate it.
+Gastrointestinal and liver items on Step 2 CK are resuscitation first, then the closed space that needs drainage, then the test that would not change today. A soft abdomen does not exclude dead bowel. A normal-looking cirrhotic belly still gets a tap when the fluid is new. The framework above is the map. This atlas is the set.
 
 | Presentation and findings | Next best step | First-line management and the source |
 | --- | --- | --- |
-| Melena or hematemesis. Blood pressure is holding. Heart rate is up a little. | Two large-bore lines, type and screen, a restrictive transfusion stance if stable, a proton-pump inhibitor, and endoscopy. | ACG bleeding guideline. A threshold near 7 g/dL is for the stable patient. Transfuse sooner for shock or ischemia. Do not quote 7 as a law for a crashing patient. |
-| Cirrhosis and hematemesis. A known varix or a large spleen. | Resuscitation, octreotide, an antibiotic, and urgent endoscopy. Not a beta blocker during the bleed. | AASLD. Nonselective beta blocker is prevention after the bleed is controlled, in the right patient. |
-| Fever, jaundice, and right-upper pain. The triad is often incomplete. The patient looks ill. | Resuscitation, antibiotics, and biliary drainage. Not a clinic antibiotic and a visit next week. | Tokyo and ACG/ASGE style guidance: an infected duct under pressure gets drained. Confirm the current antibiotic with local resistance. |
-| Persistent right-upper pain, fever, a thickened gallbladder wall. | Antibiotics and an early surgical plan. Not weeks of cooling off as the default. | ACG and surgical guidance. Early cholecystectomy for a surgical candidate. Pregnant patients follow an obstetric and surgical plan, not a different disease. |
-| Biliary pain plus a rising bilirubin and alkaline phosphatase, or a stone seen in the duct. | The duct needs to be cleared. ERCP if the probability is high. Do not stop at an ultrasound that only sees the gallbladder. | ASGE probability and clearance. Ultrasound is a start. It misses many duct stones. |
-| Epigastric pain to the back, a high lipase, often alcohol or a stone. | Fluids, pain control, and the cause. Early oral feeding when they can eat. Antibiotics are not routine. | ACG pancreatitis guideline. A stone that is blocking, with cholangitis, still needs the duct cleared. CT is for the patient who is not improving, not for hour one. |
-| Cirrhosis, new ascites, or a cirrhotic patient who just feels worse. Fever may be absent. | Tap before you assume. Neutrophils at or above 250 cells/mm³: treat. | AASLD. Albumin in the selected patient. Confirm the current antibiotic. Do not skip the tap because it looks like cirrhosis. |
-| Confusion in a patient with cirrhosis. Asterixis. A trigger: bleed, infection, constipation, a sedative, low potassium. | Find the trigger. Lactulose. Do not start with rifaximin as the only move for a first episode you have not investigated. | AASLD. Rifaximin is add-on for recurrence. The search for blood and infection comes first. |
-| Known cirrhosis, compensated, here for a visit. | Varices plan, hepatocellular carcinoma surveillance on the AASLD interval you confirm, vaccines, alcohol treatment, salt, and the diuretic that matches the ascites. | AASLD. Surveillance is ultrasound with or without alpha-fetoprotein on a schedule. Do not invent the months. A new symptom is not the surveillance slot. |
-| Epigastric pain. Alarms are bleeding, anemia, dysphagia, a mass, persistent vomiting, weight loss. | Alarms go to endoscopy. No alarms, young, low risk: test for Helicobacter pylori or a short acid-suppression trial, per ACG. Do not invent an age cutoff. | ACG dyspepsia guideline. The age for routine endoscopy has moved. Open the current file. A failed trial or an alarm is a scope. |
-| An ulcer and a positive test. | Eradicate. Confirm cure when the guideline says to, especially after a complicated ulcer. | ACG. A proton-pump inhibitor plus antibiotics. Confirm the current regimen. Resistance moved the old triple therapy. Do not memorize a dead regimen. |
-| Known ulcerative colitis, many bloody stools, a fever, a dilated colon on the film. | Hospital. Steroids. A surgical consult. Stool studies so you are not missing infection. Not an outpatient biologic start. | ACG. Toxic megacolon is an emergency. Opioids and anticholinergics make it worse. Surgery if it does not turn. |
-| Left-lower pain and fever in an older adult. Tenderness. Not painless bleeding. | The uncomplicated patient who can eat may be treated without antibiotics in selected cases, per current guidance. Confirm. Abscess and perforation are drainage and surgery. | AGA/ASCRS. Imaging when the diagnosis is uncertain or the patient is ill. Colonoscopy later, not during the acute inflammation, to exclude cancer. |
-| Iron deficiency, a change in bowel habit, or bleeding. Any age. | Diagnostic colonoscopy. Do not wait for the next screening year. | ACG and USPSTF. Screening is for the well. Symptoms are diagnostic. USPSTF screening starts at 45 in the well adult. |
-| Iron deficiency, bloating, a blistering itchy rash, or a family history. Diarrhea is not required. | Serology while they are still eating gluten, then a biopsy if the test is positive. Do not start the diet before the test. | ACG. Dermatitis herpetiformis is the skin. The diet is the treatment after the diagnosis is made. |
-| Pain out of proportion, a soft abdomen, a high lactate, atrial fibrillation or a low-flow state. | Surgical and vascular emergency. Do not send them home because the abdomen is soft. | Resuscitation, antibiotics, and reperfusion or resection. CTA if it will not delay a crashing patient. |
+| Hematemesis or melena, blood pressure holding, heart rate up a little, hemoglobin low, no coronary ischemia. | Two large-bore lines, a type and screen, a proton-pump inhibitor, and endoscopy within 24 hours after resuscitation. | ACG upper gastrointestinal bleeding guideline. A restrictive threshold near 7 g/dL is for the stable patient. A threshold near 8 g/dL is reasonable if cardiovascular disease is present. Do not withhold blood from a crashing patient to honor 7. A Glasgow-Blatchford score of 0 or 1 may be outpatient. A low hemoglobin and a rising heart rate are not that score. |
+| Cirrhosis, hematemesis, often hypotension, and splenomegaly or known varices. | Resuscitate, start a vasoactive drug such as octreotide, give an intravenous antibiotic, and arrange urgent endoscopy. Do not start a nonselective beta blocker in the shock bay. | AASLD portal hypertension guidance. Band ligation is the endoscopic therapy. Overtransfusion raises portal pressure. A nonselective beta blocker is secondary prevention after hemostasis, in a patient whose pressure can tolerate it. |
+| An ulcer at endoscopy, no NSAID, and no test for the organism yet. | Test and treat. Confirm eradication after a complicated ulcer. Do not use serology as a test of cure. | ACG Helicobacter pylori guideline. When susceptibility is unknown, bismuth quadruple therapy is a preferred first-line regimen. Do not reach for clarithromycin triple by habit. Hold the proton-pump inhibitor before a breath test or a stool antigen if you are confirming cure. |
+| Episodic postprandial right-upper pain, often to the scapula, normal labs between attacks, stones, a thin gallbladder wall, and no fever. | Elective cholecystectomy if attacks recur and he is a surgical candidate. Not a midnight operation for pain that has resolved. Not an ERCP. | Tokyo Guidelines separate colic from cholecystitis. Ursodeoxycholic acid is not the default in a patient fit for surgery. |
+| Persistent right-upper pain, fever, a Murphy sign, wall thickening, and pericholecystic fluid. | Antibiotics and early laparoscopic cholecystectomy during this admission if he is a surgical candidate. A HIDA scan only if ultrasound is equivocal. | Tokyo Guidelines 2018. Early surgery is preferred to weeks of cooling off in a fit patient. A patient too sick for the operating room may need a percutaneous cholecystostomy. Do not order a HIDA when ultrasound is already diagnostic. |
+| Fever, jaundice, and right-upper pain. Hypotension or confusion means severe disease. The triad is often incomplete. | Resuscitate, give antibiotics that cover enteric gram-negatives and anaerobes, and drain the duct urgently. A cholecystectomy is not how you decompress the duct today. | Tokyo Guidelines 2018. Organ dysfunction needs urgent ERCP. Do not send him home on an oral antibiotic. The gallbladder operation waits until the duct is safe. |
+| A stone seen in the duct, or intermediate signals such as a cholestatic lab and a borderline duct, without cholangitis. | A seen stone or cholangitis goes to ERCP. Intermediate probability gets MRCP or endoscopic ultrasound, not a reflexive ERCP. | ASGE choledocholithiasis guideline. ERCP can cause pancreatitis. Gallstone pancreatitis without cholangitis and without persistent obstruction does not get an automatic ERCP. |
+| A new fluid wave or shifting dullness, usually with known or suspected cirrhosis. | Diagnostic paracentesis before you intensify diuretics. Send a cell count, inoculate culture bottles at the bedside, and measure albumin and protein. | AASLD ascites guidance. SAAG at or above 1.1 g/dL is portal hypertension. A high SAAG with high protein suggests cardiac ascites. Restrict sodium. A mineralocorticoid antagonist is the diuretic base, with a loop added if needed. Large-volume removal for tense fluid uses albumin as AASLD directs. |
+| Cirrhosis with ascites and a clinical change. Fever and marked pain may both be absent. | Tap. If the neutrophil count is at or above 250 cells/mm³, treat immediately. Do not wait for the culture. | AASLD. A third-generation cephalosporin is the usual initial antibiotic. Confirm the current file. Albumin is for selected patients, classically creatinine above 1 mg/dL, BUN above 30 mg/dL, or bilirubin above 4 mg/dL. Secondary peritonitis is polymicrobial, with protein above 1 g/dL, glucose under 50 mg/dL, or a very high LDH, and it needs a surgeon. |
+| Cirrhosis, confusion, asterixis, and a trigger such as bleeding, infection, constipation, hypokalemia, or a sedative. | Find the trigger, including bleeding and a tap if ascites is present. Start lactulose. Do not give a benzodiazepine for the agitation. | AASLD. Titrate lactulose to about two or three soft stools a day. Rifaximin is add-on therapy to prevent recurrence. It is not the only action in a first episode you have not investigated. Do not restrict protein. |
+| Epigastric pain to the back and a lipase at least three times the upper limit, often after alcohol or a stone. | If pain and lipase already make the diagnosis, do not CT on hour one. Give goal-directed lactated Ringer's. Feed early when pain is improving. No prophylactic antibiotic. | ACG acute pancreatitis guideline. Unchecked aggressive fluid caused harm in the WATERFALL trial. ERCP is for cholangitis or a stone that is still obstructing. Mild gallstone disease: cholecystectomy before discharge. Antibiotics are for infected necrosis, which is a later diagnosis. |
+| Many bloody stools a day plus toxicity: fever, tachycardia, or anemia. Colonic dilation is megacolon. | Admit. Send stool studies including Clostridioides difficile. Start intravenous corticosteroids. Call a surgeon on admission. Do a flexible sigmoidoscopy, not a full colonoscopy. Do not give loperamide. | ACG ulcerative colitis guideline. Truelove and Witts severe disease is at least six bloody stools a day plus systemic toxicity. If he does not turn in about three days, use rescue therapy or colectomy. Perforation, megacolon that does not turn, or no improvement is an operation. Opioids and anticholinergics worsen dilation. |
+| Pain out of proportion to a soft abdomen, atrial fibrillation or vascular disease, and gut emptying. Lactate rises late. | Resuscitate, call surgery and vascular, and obtain a CT angiogram if he can travel. Do not wait for the lactate. Do not colonoscopy first. | WSES acute mesenteric ischemia guidance. Arterial embolism is a reperfusion emergency. Venous thrombosis without peritonitis is anticoagulation. Peritonitis means dead bowel and an operation. Colon ischemia is the neighbor: bloody diarrhea and watershed pain, often supportive, and colonoscopy can diagnose that one. |
+| Left-lower pain and fever, localized tenderness, and a CT with fat stranding but no abscess, perforation, or obstruction, in a patient who can drink. | If he is immunocompetent and stable, antibiotics may be omitted. Colonoscopy after recovery, not tomorrow. Do not operate for fat stranding. | AGA and ACP. A large abscess is drained. Free perforation is an operation. Colonoscopy about six to eight weeks later excludes cancer. One uncomplicated episode is not an automatic sigmoid colectomy. |
+| Recent heavy drinking, jaundice, AST greater than ALT, both usually under 400, and a high bilirubin. | Calculate a severity score. Exclude infection before any corticosteroid. Feed him and treat the alcohol use. Do not give pentoxifylline. | AASLD alcohol-associated liver disease guidance. A Maddrey discriminant function at or above 32 is the classic line for severe disease. A corticosteroid may be considered if infection, bleeding, and renal failure are absent. Reassess response. An ALT in the thousands is ischemic, toxic, or viral injury, not this pattern. |
+| Compensated cirrhosis at a routine visit. No bleeding, no new confusion, no fever. | Hepatocellular carcinoma surveillance and a variceal plan. Ultrasound, with or without alpha-fetoprotein, every 6 months. Screen for varices unless noninvasive criteria spare the endoscopy. | AASLD. Baveno criteria spare a screening endoscopy when platelets are above 150,000 and liver stiffness is under 20 kPa. Low platelets do not qualify. A nonselective beta blocker is for high-risk varices, not a substitute for finding out whether varices exist, and not for refractory ascites with hypotension. Restrict sodium. Treat alcohol use. A new symptom is a sick visit, not a surveillance slot. |
+| A middle-aged woman, fatigue and pruritus, a high alkaline phosphatase, a positive antimitochondrial antibody, and a nondilated duct. | Start ursodeoxycholic acid. Do not biopsy when the antibody and the cholestatic pattern already fit. Do not ERCP a nondilated duct. | AASLD primary biliary cholangitis guidance. Ursodeoxycholic acid is first-line disease-modifying therapy. Add second-line therapy if the alkaline phosphatase does not fall adequately. Check fat-soluble vitamins. Primary sclerosing cholangitis is the neighbor: often a man, often ulcerative colitis, beading on MRCP, antibody negative. |
+| Iron deficiency, bloating, or a blistering itchy rash. Diarrhea is not required. He is still eating gluten. | IgA tissue transglutaminase plus a total IgA, while he is eating gluten. If IgA is deficient, use IgG-based tests. In adults, confirm with duodenal biopsy before a lifelong diet. | ACG celiac guideline. Do not start a gluten-free diet before the test. The diet is the treatment after the diagnosis is secured. Iron will not stay corrected until the bowel heals. Dermatitis herpetiformis is the skin clue. |
 
 | Pair | How you tell them apart |
 | --- | --- |
-| Upper gastrointestinal bleeding, stable versus the neighbor | Hypotension and ongoing vomiting of blood is resuscitation first, not a clinic hemoglobin debate. |
-| Variceal bleed versus the neighbor | An ulcer bleed gets a proton-pump inhibitor and endoscopy, not octreotide as the key drug. |
-| Cholangitis versus the neighbor | Biliary colic has pain and no fever and no persistent jaundice. Cholecystitis is the gallbladder wall, not a pus-filled duct. |
-| Acute cholecystitis versus the neighbor | Biliary colic comes and goes and has no fever. It is an elective operation if it recurs. |
-| Choledocholithiasis versus the neighbor | Cholecystitis does not dilate the common duct as its main finding. |
-| Acute pancreatitis versus the neighbor | A perforated ulcer can also cause a rigid abdomen. Lipase and the calcium point at the pancreas. |
-| Spontaneous bacterial peritonitis versus the neighbor | Cardiac ascites is a transudate from the heart. The neck veins and the heart exam point there. Still tap a new unexplained fluid. |
-| Hepatic encephalopathy versus the neighbor | Alcohol withdrawal is a tremor and a sympathetic storm. Encephalopathy is quiet and asterixis. They can coexist. |
-| Cirrhosis clinic bundle versus the neighbor | Decompensated cirrhosis with a new confusion is the emergency pathway, not this visit. |
-| Dyspepsia and alarms versus the neighbor | Weight loss and vomiting in a 60-year-old is a scope, not a trial. |
-| Helicobacter pylori ulcer versus the neighbor | An NSAID ulcer needs the drug stopped and acid suppression. Test for H. pylori anyway when the guideline says both can coexist. |
-| Inflammatory bowel disease emergency versus the neighbor | Crohn flare without dilation is a different pace. Fistula and skip lesions are Crohn. Continuous bloody mucosa from the rectum is ulcerative colitis. |
-| Diverticulitis versus the neighbor | Painless maroon blood is diverticular bleeding, not diverticulitis. |
-| Colorectal cancer symptom versus the neighbor | A well 47-year-old is a screening offer, not a diagnostic rush. |
-| Celiac disease versus the neighbor | Irritable bowel syndrome does not cause iron deficiency. A deficiency is an alarm. |
-| Acute mesenteric ischemia versus the neighbor | Ischemic colitis is usually the watershed colon, with bloody stool, and is often a lower-flow older adult rather than an embolus to the small bowel. |
+| Stable nonvariceal upper gastrointestinal bleeding versus the neighbor | Ongoing vomiting of blood with a pressure of 80 is resuscitation and urgent endoscopy, not a debate about 7 g/dL. |
+| Variceal hemorrhage versus the neighbor | A stable ulcer bleed gets a proton-pump inhibitor and endoscopy on the nonvariceal clock. Octreotide is not its key drug. |
+| Helicobacter pylori peptic ulcer versus the neighbor | An NSAID ulcer needs the drug stopped, and you still test because both causes coexist. A gastric ulcer is biopsied to exclude cancer. A duodenal ulcer usually is not. |
+| Biliary colic versus the neighbor | Pain that does not remit, with fever and a thick wall, is gallbladder inflammation. Jaundice plus fever is the duct. |
+| Acute cholecystitis versus the neighbor | Colic has already resolved and the wall is thin. Cholangitis adds jaundice and a sick duct. Acalculous disease is the same wall in a fasting ICU patient without stones. |
+| Acute cholangitis versus the neighbor | Cholecystitis has wall inflammation and a normal bilirubin. Colic has no fever and no jaundice. Pancreatitis points through to the back and the lipase is high. One stone can cause more than one of these. |
+| Choledocholithiasis versus the neighbor | A visualized duct stone, or fever with jaundice and shock, goes straight to ERCP. Resolved pain, normal labs, and a thin wall do not need a duct study. |
+| New ascites versus the neighbor | Cardiac ascites has high neck veins and high ascitic protein with a high SAAG. Nephrotic fluid has a low SAAG. Both still get a tap when the fluid is new. |
+| Spontaneous bacterial peritonitis versus the neighbor | Secondary peritonitis needs imaging and an operation, not a five-day medical course. A count under 250 in a patient who looks well does not get an automatic antibiotic. |
+| Overt hepatic encephalopathy versus the neighbor | Alcohol withdrawal is sweaty, tachycardic, and tremulous. This picture is quiet. They can coexist. A focal deficit is imaged, not treated with lactulose alone. |
+| Acute pancreatitis versus the neighbor | A rigid abdomen and free air is a perforation. Cholangitis still needs the duct drained. Pain out of proportion, a soft abdomen, and atrial fibrillation is mesenteric ischemia, and the lipase is not the story. |
+| Acute severe ulcerative colitis versus the neighbor | A few bloody stools and no toxicity can be outpatient care. Skip lesions and fistulas are a different disease and a different operation. Toxic dilation from C. difficile can look identical, which is why the stool study is first. |
+| Acute mesenteric ischemia versus the neighbor | Colon ischemia is bloody diarrhea and left-sided tenderness after a low-flow state, and it is often watched. This is midgut, and the abdomen stays soft until the bowel dies. |
+| Uncomplicated diverticulitis versus the neighbor | Painless maroon blood is diverticular bleeding, not this illness. Free air or peritonitis is an operation. A large abscess needs a drain. |
+| Alcohol-associated hepatitis versus the neighbor | Acetaminophen and ischemic injury push the ALT into the thousands. Obstruction dilates the duct and raises the alkaline phosphatase. Compensated cirrhosis without this jaundice is the outpatient bundle. |
+| Cirrhosis surveillance versus the neighbor | Hematemesis is the acute variceal pathway. A new liver lesion on surveillance ultrasound is a diagnostic multiphase study, not another ultrasound in six months. |
+| Primary biliary cholangitis versus the neighbor | A dilated duct is a stone or a mass. Sclerosing cholangitis needs cholangiography and is tied to colitis. A statin injury is usually an ALT rise, not an isolated alkaline phosphatase of this degree. |
+| Celiac disease versus the neighbor | Inflammatory bowel disease bleeds or raises calprotectin. Wheat avoidance without this antibody and with a normal biopsy is not this disease. |
 
-### Upper gastrointestinal bleeding, stable
+### Stable nonvariceal upper gastrointestinal bleeding
 
-Blood in the upper tract. Resuscitation before the clever diagnosis.
+The bleed is proximal to the ligament of Treitz. Resuscitation and a disposition come before the label.
 
-**Vignette.** Black stool for a day. Pressure 118/70. Hemoglobin 8.1. He is alert.
-**Reasoning.** Stable. Restrictive transfusion and endoscopy. The trap is four units because the number is 8. The diagnosis is Upper gastrointestinal bleeding, stable.
-**NBME trap.** A normal hemoglobin used to send home a patient who is still vomiting blood.
-**Hook.** Stable can wait for a threshold. Shock cannot.
+**Vignette.** A 55-year-old vomited dark blood once. Blood pressure is 118/74. Heart rate is 104. Hemoglobin is 6.9 g/dL. He has no chest pain. He is awake and perfusing.
+**Reasoning.** He is stable enough for a restrictive transfusion strategy and endoscopy on this admission. He is not stable enough to go home, and he does not need a hemoglobin of 10. The diagnosis is Stable nonvariceal upper gastrointestinal bleeding.
+**NBME trap.** Transfusion to a hemoglobin of 10, discharge because the vomiting stopped, or endoscopy before he has access and a type and screen.
+**Hook.** Stable bleed: restrict the transfusion, then scope.
 
-### Variceal bleed
+### Variceal hemorrhage
 
-Portal pressure in a thin vein.
+Portal pressure opened a varix. Infection and the bleed feed each other, which is why the antibiotic is part of resuscitation.
 
-**Vignette.** He has cirrhosis and vomits blood. Pressure is 90. The spleen is palpable.
-**Reasoning.** This is a varix until endoscopy says otherwise. The trap is starting propranolol while he is hypotensive. The diagnosis is Variceal bleed.
-**NBME trap.** A beta blocker in the resuscitation bay.
-**Hook.** Octreotide and an antibiotic now. Beta blocker later.
+**Vignette.** A 59-year-old with known cirrhosis vomits bright red blood. Blood pressure is 84/50. The spleen is large.
+**Reasoning.** Cirrhosis, hematemesis, and shock are treated as a variceal bleed until the endoscope says otherwise. A beta blocker now would drop the pressure he is using to perfuse. The diagnosis is Variceal hemorrhage.
+**NBME trap.** Propranolol during the bleed, or a routine screening endoscopy appointment while he is hypotensive.
+**Hook.** During the bleed: vasoactive drug, antibiotic, band. The beta blocker is for later.
 
-### Cholangitis
+### Helicobacter pylori peptic ulcer
 
-Obstruction plus bacteria.
+The organism drives most duodenal ulcers and many gastric ulcers. Eradication, not lifelong acid suppression alone, is the disease-modifying step.
 
-**Vignette.** Fever and jaundice. The duct is dilated. Blood pressure is soft.
-**Reasoning.** This is cholangitis. The trap is oral antibiotics and a surgical clinic appointment. The diagnosis is Cholangitis.
-**NBME trap.** Waiting for a complete Charcot triad.
-**Hook.** A sick, jaundiced duct gets drained.
+**Vignette.** Endoscopy for epigastric pain shows a clean duodenal ulcer. He takes no NSAID. No one tested for the organism. He is hemodynamically stable.
+**Reasoning.** An ulcer without a test leaves the cause in place. Serology stays positive after cure, so it cannot prove eradication. Quadruple therapy is the modern first line when susceptibility is unknown. The diagnosis is Helicobacter pylori peptic ulcer.
+**NBME trap.** Clarithromycin triple from an old card, a repeat serology as proof of cure, or a proton-pump inhibitor forever with no test.
+**Hook.** Ulcer found: test, treat, and prove cure when it was complicated.
+
+### Biliary colic
+
+A stone transiently blocks the cystic duct and falls back. The wall is not inflamed and the duct is not infected.
+
+**Vignette.** A 40-year-old woman has had three attacks of right-upper pain after fatty meals. Each lasted about two hours. Today she is comfortable, afebrile, and her bilirubin and alkaline phosphatase are normal. Ultrasound shows stones and a thin wall.
+**Reasoning.** Pain that resolves, normal labs, and a thin wall are colic. The operation is elective. An emergency duct procedure misreads a gallbladder that is quiet today. The diagnosis is Biliary colic.
+**NBME trap.** ERCP for simple colic, an emergent operation for resolved pain, or stone dissolution as the plan in a fit surgical candidate.
+**Hook.** Comes and goes, thin wall, normal labs: elective surgery.
 
 ### Acute cholecystitis
 
-An obstructed, inflamed gallbladder.
+A stone is impacted in the cystic duct and the wall is inflamed. The common duct is not the main problem.
 
-**Vignette.** Pain for 12 hours, fever, and a wall that is thick on ultrasound. He can tolerate an operation.
-**Reasoning.** Early surgery. The trap is antibiotics for a month because the pain eased a little. The diagnosis is Acute cholecystitis.
-**NBME trap.** A HIDA scan before you believe a sick patient with a classic ultrasound.
-**Hook.** Persistent pain and fever: early surgery.
+**Vignette.** A 45-year-old has had unremitting right-upper pain for 12 hours. Temperature is 38.6. Inspiration stops in the right upper quadrant. Ultrasound shows a thick wall, stones, and fluid around the gallbladder. Bilirubin is normal.
+**Reasoning.** Persistent pain, fever, and a thick wall are the gallbladder, and he is fit for an early operation. A routine six-week delay is the outdated plan. The diagnosis is Acute cholecystitis.
+**NBME trap.** A HIDA scan that delays surgery when ultrasound is classic, or oral antibiotics and a clinic date in six weeks.
+**Hook.** Thick wall and fever: antibiotics and an early operation.
+
+### Acute cholangitis
+
+A blocked infected duct is a closed space under pressure. Antibiotics do not drain it.
+
+**Vignette.** A 70-year-old is jaundiced, febrile, and confused. Blood pressure is 82/48. Bilirubin and alkaline phosphatase are high. Ultrasound shows a dilated duct and gallbladder stones.
+**Reasoning.** Fever, jaundice, shock, and a dilated duct need drainage now. Removing the gallbladder tonight does not reliably decompress the duct. An oral antibiotic misses the closed space. The diagnosis is Acute cholangitis.
+**NBME trap.** A CT that delays ERCP in a septic patient, a cholecystectomy as the emergency drainage, or a clinic prescription.
+**Hook.** Infected duct: antibiotics and ERCP, not a delayed gallbladder operation.
 
 ### Choledocholithiasis
 
-A stone has left the gallbladder and blocked the duct.
+The probability of a duct stone, not the mere presence of gallbladder stones, decides the next image.
 
-**Vignette.** Pain, bilirubin 4, alkaline phosphatase twice normal. Ultrasound shows stones in the gallbladder and a dilated duct, no stone seen in the duct.
-**Reasoning.** The labs and the dilated duct are the stone you cannot see. The trap is a normal ultrasound report of the duct used to cancel ERCP. The diagnosis is Choledocholithiasis.
-**NBME trap.** Ultrasound as the last test.
-**Hook.** Dilated duct and a high bilirubin: clear the duct.
+**Vignette.** Biliary pain, bilirubin 2.4 mg/dL, and an elevated alkaline phosphatase. Ultrasound shows gallbladder stones and a duct at the upper limit of normal. No duct stone is seen. He is afebrile, normotensive, and the lipase is normal.
+**Reasoning.** This is intermediate probability. MRCP or endoscopic ultrasound is next. ERCP now risks pancreatitis to find a stone that may not be there. The diagnosis is Choledocholithiasis.
+**NBME trap.** ERCP for every gallstone and a mildly abnormal lab, or stopping after an ultrasound that never answered a rising bilirubin.
+**Hook.** Seen stone or cholangitis: ERCP. Intermediate: MRCP or endoscopic ultrasound.
 
-### Acute pancreatitis
+### New ascites
 
-The gland is digesting itself. Calcium can fall as fat is saponified.
+New fluid has a cause and a cell count. You cannot see neutrophils through the abdominal wall.
 
-**Vignette.** Pain to the back, lipase five times normal, no fever. He is hungry on day two.
-**Reasoning.** Feed him. The trap is nothing by mouth for a week and a CT on arrival. The diagnosis is Acute pancreatitis.
-**NBME trap.** Prophylactic antibiotics for every pancreatitis.
-**Hook.** Lipase, fluids, feed early. No routine antibiotic.
+**Vignette.** A 57-year-old with heavy alcohol use has a newly tense abdomen and shifting dullness. He is afebrile. The chart says to start a diuretic and see him in a week. No one has sampled the fluid.
+**Reasoning.** New fluid is tapped first. Diuretics treat portal-hypertensive fluid after infection is excluded. They do not replace the tap. The diagnosis is New ascites.
+**NBME trap.** A diuretic with no tap, or liters removed with no cell count sent.
+**Hook.** New fluid gets a needle before a diuretic increase.
 
 ### Spontaneous bacterial peritonitis
 
-Infected ascites. The neutrophil count is the decision.
+Bacteria seeded the ascites. A perforation is a different fluid and a different operation.
 
-**Vignette.** A patient with cirrhosis is confused. The belly is more distended. No fever. You have not tapped.
-**Reasoning.** Encephalopathy has a trigger. Infection is one. Tap. The trap is lactulose only. The diagnosis is Spontaneous bacterial peritonitis.
-**NBME trap.** A diuretic for new ascites you have not sampled.
-**Hook.** New or worse ascites gets a needle.
+**Vignette.** A patient with cirrhosis is more confused. Temperature is 37.8. The tap shows 800 neutrophils/mm³. Gram stain is negative so far. Creatinine is 1.6 mg/dL. There is no free air.
+**Reasoning.** A neutrophil count at or above 250 is enough to treat, even if the culture stays negative. The creatinine makes him an albumin candidate. Free air or several organisms would be surgical. The diagnosis is Spontaneous bacterial peritonitis.
+**NBME trap.** Waiting for the culture, or treating free air with the medical antibiotic and no surgeon.
+**Hook.** Neutrophils at or above 250: treat. Do not wait on the culture.
 
-### Hepatic encephalopathy
+### Overt hepatic encephalopathy
 
-The liver is not clearing nitrogenous compounds.
+Nitrogenous compounds were not cleared. A trigger is present more often than the episode is random.
 
-**Vignette.** He is confused. He had a black stool yesterday. Someone orders rifaximin and stops.
-**Reasoning.** The trigger is the bleed. Lactulose and the bleed, not a new chronic drug as the whole plan. The diagnosis is Hepatic encephalopathy.
-**NBME trap.** A sedative for agitation in a cirrhotic patient.
-**Hook.** Find the trigger. Then lactulose.
+**Vignette.** A man with cirrhosis is sleepy and has asterixis. An opioid was started after a fall. He has stopped stooling. The abdomen is distended.
+**Reasoning.** The opioid and the constipation are triggers, and a new change still needs infection and bleeding excluded. Lactulose is the drug. A benzodiazepine would deepen this. Rifaximin does not replace the search. The diagnosis is Overt hepatic encephalopathy.
+**NBME trap.** Rifaximin as the only order, protein restriction, or a benzodiazepine.
+**Hook.** Asterixis: find the trigger, then lactulose.
 
-### Cirrhosis clinic bundle
+### Acute pancreatitis
 
-Outpatient cirrhosis is a bundle, not a diuretic.
+Autodigestion and inflammation. Necrosis is not infected on arrival.
 
-**Vignette.** He feels well. Last ultrasound was three years ago. He still drinks.
-**Reasoning.** Surveillance lapsed and the alcohol is untreated. The trap is a refill of spironolactone and a one-year return. The diagnosis is Cirrhosis clinic bundle.
-**NBME trap.** A normal visit with no imaging and no alcohol plan.
-**Hook.** Screen, vaccinate, and treat the drink.
+**Vignette.** A 44-year-old has epigastric pain through to the back after a fatty meal. Lipase is five times the upper limit. He is tender, not rigid, and afebrile. Blood pressure is normal. Ultrasound shows gallstones. Bilirubin is normal.
+**Reasoning.** Two diagnostic features are already met, so a CT today adds nothing. Feed him when he can eat, give goal-directed fluid, and take the gallbladder out this admission if the course stays mild. The diagnosis is Acute pancreatitis.
+**NBME trap.** CT on arrival, a week of nothing by mouth, prophylactic carbapenem, or ERCP for every gallstone case.
+**Hook.** Clear diagnosis: no hour-one CT, no prophylactic antibiotic, feed early.
 
-### Dyspepsia and alarms
+### Acute severe ulcerative colitis
 
-Most dyspepsia is functional or acid or H. pylori. Alarms are cancer or ulcer until looked at.
+Inflammation can dilate and perforate the colon. Antidiarrheals hide the count and raise the pressure.
 
-**Vignette.** A 28-year-old has burning pain, no weight loss, a normal hemoglobin, and no vomiting.
-**Reasoning.** No alarm. Test and treat or a short trial. The trap is an immediate endoscopy because the pain is annoying. The diagnosis is Dyspepsia and alarms.
-**NBME trap.** A proton-pump inhibitor forever with no stop date and no test for H. pylori.
-**Hook.** Alarms get a scope. No alarms get a test or a short trial.
-
-### Helicobacter pylori ulcer
-
-The organism causes most duodenal ulcers that are not from NSAIDs.
-
-**Vignette.** A duodenal ulcer. The stool antigen is positive. He is not on an NSAID.
-**Reasoning.** Eradicate. The trap is a proton-pump inhibitor alone for life. The diagnosis is Helicobacter pylori ulcer.
-**NBME trap.** A three-drug recipe from a decade ago.
-**Hook.** An ulcer gets a test. A positive test gets treated.
-
-### Inflammatory bowel disease emergency
-
-The colon is dilating and the wall can perforate.
-
-**Vignette.** Ten bloody stools, fever, and a colon that is wide on the film.
-**Reasoning.** Toxic megacolon. The trap is loperamide and a clinic visit. The diagnosis is Inflammatory bowel disease emergency.
-**NBME trap.** An antidiarrheal in a toxic colon.
-**Hook.** A wide colon and fever: hospital, not loperamide.
-
-### Diverticulitis
-
-A perforated diverticulum. Bleeding diverticulosis is a different presentation: painless blood.
-
-**Vignette.** Left-lower pain and fever. He can drink. No peritonitis.
-**Reasoning.** Uncomplicated diverticulitis. The trap is an emergency colectomy, or the opposite trap of ignoring a patient who is peritonitic. The diagnosis is Diverticulitis.
-**NBME trap.** A colonoscopy tomorrow in an acutely inflamed colon.
-**Hook.** Pain and fever versus painless blood.
-
-### Colorectal cancer symptom
-
-A symptom is not a screening interval.
-
-**Vignette.** A 42-year-old man has a new iron deficiency. No pain. He is not due for screening.
-**Reasoning.** Iron deficiency in a man is a colon until proven otherwise. The trap is iron tablets and a screening colonoscopy at 45. The diagnosis is Colorectal cancer symptom.
-**NBME trap.** Age under 45 used to skip the scope when iron is low.
-**Hook.** Symptoms diagnose. Age screens.
-
-### Celiac disease
-
-Gluten-driven injury to the villi.
-
-**Vignette.** Iron deficiency. She already stopped gluten last week because a friend suggested it. The serology is negative.
-**Reasoning.** The test needs gluten on board. The trap is a negative test on a gluten-free diet used to clear the disease. Put the gluten back and retest, or biopsy if the suspicion stays high. The diagnosis is Celiac disease.
-**NBME trap.** A gluten-free trial before the blood draw.
-**Hook.** Test while they are still eating gluten.
+**Vignette.** A 29-year-old with continuous mucosal disease from the rectum is having ten bloody stools a day. Temperature is 38.5. Heart rate is 114. Hemoglobin is 9 g/dL. The abdomen is tender without peritonitis. There is no free air.
+**Reasoning.** The stool count plus toxicity is severe disease. He needs the hospital, intravenous steroids, exclusion of infection, and a surgeon who already knows his name. More oral mesalamine at home is the miss. The diagnosis is Acute severe ulcerative colitis.
+**NBME trap.** Loperamide, a full colonoscopy, or starting a biologic as an outpatient while he is tachycardic and bleeding ten times a day.
+**Hook.** Many bloody stools plus toxicity: admit, steroid, surgeon. No antidiarrheal.
 
 ### Acute mesenteric ischemia
 
-The bowel is ischemic before the peritoneum is irritated.
+Small bowel is ischemic and the peritoneum is not yet inflamed, so the abdomen stays soft.
 
-**Vignette.** Severe pain. The belly is soft. Lactate is high. He has atrial fibrillation.
-**Reasoning.** Pain out of proportion. The trap is gastroenteritis because the exam is soft. The diagnosis is Acute mesenteric ischemia.
-**NBME trap.** A soft abdomen used as reassurance.
-**Hook.** Terrible pain, soft belly, high lactate.
+**Vignette.** A 76-year-old in atrial fibrillation has sudden severe abdominal pain and one episode of vomiting. The abdomen is soft. Lactate is normal. There is no peritonitis.
+**Reasoning.** Pain out of proportion and a soft abdomen in atrial fibrillation is arterial ischemia until a CT angiogram says otherwise. A normal lactate is early, not reassuring. The diagnosis is Acute mesenteric ischemia.
+**NBME trap.** A normal lactate used to send him home, colonoscopy as the first test, or analgesia and a clinic appointment.
+**Hook.** Soft abdomen, terrible pain: CT angiogram. Lactate is late.
+
+### Uncomplicated diverticulitis
+
+A diverticulum microperforated and walled off. Free air and an abscess are a different class.
+
+**Vignette.** A 62-year-old has left-lower pain and a temperature of 38.1. He is eating. CT shows sigmoid diverticula and local fat stranding, no abscess, and no free air. He is not immunosuppressed.
+**Reasoning.** Uncomplicated disease in a patient who can eat does not need an emergency resection. Antibiotics are selective. He still needs a colonoscopy after the inflammation cools, because cancer can look like this. The diagnosis is Uncomplicated diverticulitis.
+**NBME trap.** Colonoscopy tomorrow, emergent resection for fat stranding, or antibiotics as a law in a well immunocompetent patient. The opposite error is sending a septic or abscess patient home with nothing.
+**Hook.** Uncomplicated and eating: no emergency resection. Scope later.
+
+### Alcohol-associated hepatitis
+
+Inflammatory injury from alcohol. The enzymes stay modest while the bilirubin climbs.
+
+**Vignette.** A 48-year-old drinking a pint of spirits daily is jaundiced. AST is 160, ALT is 70, bilirubin is 14 mg/dL, and INR is 2.0. He is not bleeding. Infection has not been excluded.
+**Reasoning.** The enzyme ratio and the jaundice after heavy drinking are this injury. Score it, and do not start a corticosteroid until infection is out. Pentoxifylline does not substitute. The diagnosis is Alcohol-associated hepatitis.
+**NBME trap.** Pentoxifylline, prednisolone before infection is excluded, or calling an ALT of several thousand this disease.
+**Hook.** AST over ALT, both under 400, still drinking: score it and exclude infection.
+
+### Cirrhosis surveillance
+
+Compensation is when you prevent the bleed and find a small cancer. Decompensation changes the hour.
+
+**Vignette.** A 60-year-old with compensated cirrhosis feels well. Platelets are 90,000. He has never had an endoscopy. The last ultrasound was a year ago. Blood pressure is 128/70. There is no ascites.
+**Reasoning.** Platelets of 90,000 do not meet the Baveno spare, so he needs a variceal screen. The ultrasound is overdue. Six months is the AASLD interval. A beta blocker does not replace either step. The diagnosis is Cirrhosis surveillance.
+**NBME trap.** Alpha-fetoprotein alone, a beta blocker instead of endoscopy when platelets are 90,000, or a two-year imaging interval.
+**Hook.** Every 6 months for the cancer. Endoscopy unless Baveno spares it.
+
+### Primary biliary cholangitis
+
+Autoimmune loss of small ducts. The antibody makes the diagnosis when the enzymes agree.
+
+**Vignette.** A 52-year-old woman itches and is tired. Alkaline phosphatase is four times the upper limit. Bilirubin is normal. The antimitochondrial antibody is positive. Ultrasound shows no dilated duct and no stone.
+**Reasoning.** Cholestasis, the antibody, and a nondilated duct are enough to start ursodeoxycholic acid. Biopsy and ERCP would not change that decision. The diagnosis is Primary biliary cholangitis.
+**NBME trap.** ERCP, or a liver biopsy, before the disease-modifying drug, when the antibody and the ultrasound already decided it.
+**Hook.** Itch, alkaline phosphatase, the antibody: ursodeoxycholic acid. No ERCP.
+
+### Celiac disease
+
+Gluten-driven small-bowel injury. Serology goes negative if he has already stopped gluten, which is a false reassurance.
+
+**Vignette.** A 34-year-old has iron deficiency that did not correct with tablets, plus bloating. A cousin has the same illness. He eats bread daily. Hemoglobin is 10 g/dL. The stool is not grossly bloody.
+**Reasoning.** Iron deficiency that failed tablets, while he is still eating gluten, is a serology now. A gluten-free trial first can silence the antibody. Irritable bowel syndrome does not cause iron deficiency. The diagnosis is Celiac disease.
+**NBME trap.** A gluten-free diet before the blood test, an IgG-only panel when IgA is normal, or iron tablets forever with no diagnosis.
+**Hook.** Still eating gluten: draw the IgA antibody, then biopsy before a lifelong diet.
 
 ## Sources for this atlas
 
-Source: ACG and AGA guidelines at [gi.org](https://gi.org/) and [gastro.org](https://gastro.org/).
+Source: ACG guidelines for upper gastrointestinal bleeding, Helicobacter pylori, acute pancreatitis, ulcerative colitis, and celiac disease. Confirm the current file at [gi.org](https://gi.org/).
 
-Source: [AASLD](https://www.aasld.org/) for varices, ascites, encephalopathy, and cancer surveillance.
+Source: AASLD guidance for portal hypertension, ascites and spontaneous bacterial peritonitis, hepatic encephalopathy, alcohol-associated liver disease, hepatocellular carcinoma surveillance, and primary biliary cholangitis. Confirm at [aasld.org](https://www.aasld.org/).
 
-Source: [USPSTF colorectal screening](https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening).
+Source: Tokyo Guidelines 2018 for cholecystitis and cholangitis. ASGE choledocholithiasis guideline. AGA and ACP guidance on uncomplicated diverticulitis. WSES guidance on acute mesenteric ischemia.
 
 Source: [Step 2 CK gastrointestinal range](https://www.usmle.org/exam-resources/step-2-ck-materials/step-2-ck-content-outline-specifications).
 
