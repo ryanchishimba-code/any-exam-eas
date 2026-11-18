@@ -3,7 +3,7 @@ import { anatomyHref } from "@/lib/edtech/practice-links-core";
 import { getHighYieldTopic } from "@/lib/edtech/seeds";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { getTopicSlugsForChapter } from "./chapter-topics";
-import type { StudyGuideExam } from "./guide-registry";
+import type { StudyGuideBookExam } from "./guide-registry";
 import type { SgRelatedTopic } from "./types";
 
 function humanize(slug: string): string {
@@ -16,7 +16,7 @@ function humanize(slug: string): string {
  * reader only ever offers a link that actually leads somewhere.
  */
 export function getChapterRelatedTopics(
-  exam: StudyGuideExam,
+  exam: StudyGuideBookExam,
   chapterSlug: string
 ): SgRelatedTopic[] {
   const related: SgRelatedTopic[] = [];

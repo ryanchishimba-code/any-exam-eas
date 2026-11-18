@@ -30,7 +30,12 @@ import {
   prefetchChapter,
   seedChapterCache,
 } from "@/lib/nclex-study-guide/client-cache";
-import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import {
+  STUDY_GUIDES,
+  USMLE_STUDY_GUIDES,
+  type AnyGuideConfig,
+  type StudyGuideBookExam,
+} from "@/lib/nclex-study-guide/guide-registry";
 import { visibleBookSection } from "@/lib/nclex-study-guide/display-label";
 import { presentChapterCitations } from "@/lib/nclex-study-guide/chapter-citations";
 import { stripRenderedPremiumMarkers } from "@/lib/nclex-study-guide/markdown";
@@ -169,12 +174,24 @@ function useStableCallback<A extends unknown[], R>(fn: (...args: A) => R) {
   return useCallback((...args: A) => ref.current(...args), []);
 }
 
+export type StudyGuideStepLink = {
+  label: string;
+  href: string;
+  current: boolean;
+};
+
 type Props = {
-  exam: StudyGuideExam;
+  exam: StudyGuideBookExam;
   guideId: string;
   guideTitle: string;
   chapters: SgTocChapter[];
   chapter: SgChapterDto;
+  /** Required for the USMLE books. Other exams keep the registry lookup. */
+  book?: AnyGuideConfig;
+  /** Step switcher. Omitted on the single-book exams. */
+  steps?: StudyGuideStepLink[];
+  /** Shown only while an admin is previewing a hidden book. */
+  notice?: string;
 };
 
 function bindImageErrors(node: HTMLElement | null) {
@@ -227,8 +244,13 @@ export function StudyGuideReader({
   guideTitle,
   chapters,
   chapter: initialChapter,
+  book,
+  steps,
+  notice,
 }: Props) {
-  const config = STUDY_GUIDES[exam];
+  const config =
+    book ?? (exam === "usmle" ? USMLE_STUDY_GUIDES.step1 : STUDY_GUIDES[exam]);
+  const step = exam === "usmle" ? (book?.track ?? "step1") : undefined;
   const reduceMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
   const paperRef = useRef<HTMLElement>(null);
@@ -343,14 +365,14 @@ export function StudyGuideReader({
 
   // Sync if the server page remounts with a different slug (rare).
   useEffect(() => {
-    seedChapterCache(exam, initialChapter);
+    seedChapterCache(exam, initialChapter, step);
     if (initialChapter.slug !== chapterRef.current.slug) {
       setChapter(initialChapter);
       setSearch("");
       setSelectionInfo(null);
       paintProgress(0);
     }
-  }, [exam, initialChapter, paintProgress]);
+  }, [exam, initialChapter, paintProgress, step]);
   const persistToc = useStableCallback((open: boolean) => {
     try {
       localStorage.setItem(TOC_KEY, open ? "1" : "0");
@@ -537,9 +559,9 @@ export function StudyGuideReader({
 
   // Prefetch neighbors whenever chapter changes.
   useEffect(() => {
-    prefetchChapter(exam, chapter.prevSlug);
-    prefetchChapter(exam, chapter.nextSlug);
-  }, [exam, chapter.nextSlug, chapter.prevSlug]);
+    prefetchChapter(exam, chapter.prevSlug, step);
+    prefetchChapter(exam, chapter.nextSlug, step);
+  }, [exam, chapter.nextSlug, chapter.prevSlug, step]);
 
   useEffect(() => {
     tocActiveRef.current?.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
@@ -554,7 +576,7 @@ export function StudyGuideReader({
       setAuthAction(null);
       flushProgress();
       try {
-        const next = getCachedChapter(exam, slug) ?? (await fetchChapter(exam, slug));
+        const next = getCachedChapter(exam, slug, step) ?? (await fetchChapter(exam, slug, step));
         startTransition(() => {
           setChapter(next);
           setSearch("");
@@ -569,8 +591,8 @@ export function StudyGuideReader({
           window.history.replaceState({ sgChapter: slug }, "", url);
         }
         document.title = `${next.title} — ${guideTitle}`;
-        prefetchChapter(exam, next.prevSlug);
-        prefetchChapter(exam, next.nextSlug);
+        prefetchChapter(exam, next.prevSlug, step);
+        prefetchChapter(exam, next.nextSlug, step);
       } catch (err) {
         const status = err instanceof ChapterLoadError ? err.status : 0;
         if (status === 401 || status === 403) {
@@ -587,7 +609,7 @@ export function StudyGuideReader({
         setNavPending(false);
       }
     },
-    [config.routeBase, exam, flushProgress, guideTitle, paintProgress]
+    [config.routeBase, exam, flushProgress, guideTitle, paintProgress, step]
   );
 
   // Browser back/forward within the reader shell.
@@ -595,12 +617,12 @@ export function StudyGuideReader({
     const onPop = () => {
       const parts = window.location.pathname.split("/").filter(Boolean);
       const slug = parts[parts.length - 1];
-      if (!slug || slug === "study-guide") return;
+      if (!slug || !chapters.some((item) => item.slug === slug)) return;
       void goToSlug(slug, { historyMode: "none" });
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
-  }, [goToSlug]);
+  }, [chapters, goToSlug]);
 
   const filteredHtml = useMemo(() => {
     // Shape the opening spread before search marks, so a query can't split the
@@ -858,8 +880,8 @@ export function StudyGuideReader({
                   type="button"
                   ref={active ? tocActiveRef : undefined}
                   aria-current={active ? "page" : undefined}
-                  onMouseEnter={() => prefetchChapter(exam, c.slug)}
-                  onFocus={() => prefetchChapter(exam, c.slug)}
+                  onMouseEnter={() => prefetchChapter(exam, c.slug, step)}
+                  onFocus={() => prefetchChapter(exam, c.slug, step)}
                   onClick={() => {
                     toggleToc(false);
                     void goToSlug(c.slug);
@@ -1022,6 +1044,24 @@ export function StudyGuideReader({
         </button>
       </header>
 
+      {steps && steps.length > 0 ? (
+        <nav className="sg-step-nav" aria-label="USMLE Step" data-testid="usmle-step-nav">
+          {notice ? <p className="sg-step-nav__note">{notice}</p> : null}
+          <div className="sg-step-nav__tabs">
+            {steps.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={item.current ? "page" : undefined}
+                className={cn("sg-step-nav__tab", item.current && "is-on")}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      ) : null}
+
       <div
         ref={progressBarRef}
         className="h-[3px] w-full bg-white/10"
@@ -1085,7 +1125,7 @@ export function StudyGuideReader({
               className="sg-edge-nav sg-edge-nav--prev"
               aria-label="Previous chapter"
               title="Previous (k)"
-              onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug)}
+              onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug, step)}
               onClick={() => void goToSlug(chapter.prevSlug!)}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -1097,7 +1137,7 @@ export function StudyGuideReader({
               className="sg-edge-nav sg-edge-nav--next"
               aria-label="Next chapter"
               title="Next (j)"
-              onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug)}
+              onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug, step)}
               onClick={() => void goToSlug(chapter.nextSlug!)}
             >
               <ChevronRight className="h-5 w-5" />
@@ -1281,7 +1321,7 @@ export function StudyGuideReader({
             {chapter.prevSlug ? (
               <button
                 type="button"
-                onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug)}
+                onMouseEnter={() => prefetchChapter(exam, chapter.prevSlug, step)}
                 onClick={() => void goToSlug(chapter.prevSlug!)}
                 className="sg-chapter-jump"
               >
@@ -1296,7 +1336,7 @@ export function StudyGuideReader({
             {chapter.nextSlug ? (
               <button
                 type="button"
-                onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug)}
+                onMouseEnter={() => prefetchChapter(exam, chapter.nextSlug, step)}
                 onClick={() => void goToSlug(chapter.nextSlug!)}
                 className="sg-chapter-jump"
               >

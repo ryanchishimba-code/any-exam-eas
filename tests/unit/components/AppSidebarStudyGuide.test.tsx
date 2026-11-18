@@ -130,8 +130,22 @@ describe("Study Guide in Study Tools", () => {
 
   it("hides for an exam with no book", () => {
     // Linking here would open a reader with nothing to read.
+    // USMLE books exist but stay hidden until the public flag is on.
     renderFor("usmle");
     expect(studyGuideLink()).not.toBeInTheDocument();
+  });
+
+  it("shows the USMLE book when its public flag is on", () => {
+    vi.stubEnv("NEXT_PUBLIC_USMLE_STUDY_GUIDE_PUBLIC", "1");
+    try {
+      renderFor("usmle");
+      const link = studyGuideLink();
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute("href", "/usmle/study-guide");
+    } finally {
+      cleanup();
+      vi.unstubAllEnvs();
+    }
   });
 
   it("hides until the exam resolves, rather than guessing NCLEX", () => {

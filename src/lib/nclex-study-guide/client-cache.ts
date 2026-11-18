@@ -1,4 +1,4 @@
-import type { StudyGuideExam } from "./guide-registry";
+import type { StudyGuideBookExam } from "./guide-registry";
 import type { SgChapterDto } from "./types";
 
 /**
@@ -12,7 +12,8 @@ import type { SgChapterDto } from "./types";
 const cache = new Map<string, SgChapterDto>();
 const inflight = new Map<string, Promise<SgChapterDto>>();
 
-const keyOf = (exam: StudyGuideExam, slug: string) => `${exam}:${slug}`;
+const keyOf = (exam: StudyGuideBookExam, slug: string, step?: string) =>
+  step ? `${exam}:${step}:${slug}` : `${exam}:${slug}`;
 
 export class ChapterLoadError extends Error {
   status: number;
@@ -23,22 +24,28 @@ export class ChapterLoadError extends Error {
   }
 }
 
-export function seedChapterCache(exam: StudyGuideExam, chapter: SgChapterDto) {
-  cache.set(keyOf(exam, chapter.slug), chapter);
+export function seedChapterCache(
+  exam: StudyGuideBookExam,
+  chapter: SgChapterDto,
+  step?: string
+) {
+  cache.set(keyOf(exam, chapter.slug, step), chapter);
 }
 
 export function getCachedChapter(
-  exam: StudyGuideExam,
-  slug: string
+  exam: StudyGuideBookExam,
+  slug: string,
+  step?: string
 ): SgChapterDto | undefined {
-  return cache.get(keyOf(exam, slug));
+  return cache.get(keyOf(exam, slug, step));
 }
 
 export async function fetchChapter(
-  exam: StudyGuideExam,
-  slug: string
+  exam: StudyGuideBookExam,
+  slug: string,
+  step?: string
 ): Promise<SgChapterDto> {
-  const key = keyOf(exam, slug);
+  const key = keyOf(exam, slug, step);
 
   const cached = cache.get(key);
   if (cached) return cached;
@@ -47,8 +54,9 @@ export async function fetchChapter(
   if (existing) return existing;
 
   const promise = (async () => {
+    const stepQuery = step ? `&step=${encodeURIComponent(step)}` : "";
     const res = await fetch(
-      `/api/nclex-study-guide/chapters/${encodeURIComponent(slug)}?exam=${exam}`
+      `/api/nclex-study-guide/chapters/${encodeURIComponent(slug)}?exam=${exam}${stepQuery}`
     );
     if (!res.ok) {
       throw new ChapterLoadError(res.status);
@@ -68,11 +76,15 @@ export async function fetchChapter(
 }
 
 /** Warm neighbor chapters without blocking UI. */
-export function prefetchChapter(exam: StudyGuideExam, slug: string | null | undefined) {
+export function prefetchChapter(
+  exam: StudyGuideBookExam,
+  slug: string | null | undefined,
+  step?: string
+) {
   if (!slug) return;
-  const key = keyOf(exam, slug);
+  const key = keyOf(exam, slug, step);
   if (cache.has(key) || inflight.has(key)) return;
-  void fetchChapter(exam, slug).catch(() => {
+  void fetchChapter(exam, slug, step).catch(() => {
     /* ignore prefetch errors */
   });
 }
