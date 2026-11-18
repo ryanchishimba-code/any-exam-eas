@@ -54,6 +54,8 @@ describe("app-shell routes", () => {
     expect(isMinimalChromeRoute("/study-tools/naplex/feed")).toBe(true);
     expect(isMinimalChromeRoute("/study-tools/aanp-fnp/feed")).toBe(true);
     expect(hideMarketingChrome("/study-tools/aanp-fnp/feed")).toBe(true);
+    expect(isMinimalChromeRoute("/study-tools/usmle/feed")).toBe(true);
+    expect(hideMarketingChrome("/study-tools/usmle/feed")).toBe(true);
   });
 
   it("treats every exam's reader the same, not just NCLEX", () => {

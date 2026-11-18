@@ -1,0 +1,1762 @@
+[
+  {
+    "id": "usmle3-001",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A patient with type 1 diabetes is made nil by mouth for surgery at noon. The admission order says to hold all insulin.",
+    "bottom": "Keep basal insulin. Never stop it in type 1 diabetes.",
+    "bullets": {
+      "clue": "Mealtime insulin can be held while the patient is not eating. The background need does not disappear.",
+      "treat": "Give most of the basal dose, with dextrose if needed, and check glucose often.",
+      "trap": "Holding every insulin because the patient is not eating."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes",
+      "year": "2026",
+      "url": "https://diabetesjournals.org/care",
+      "recommendation": "Type 1 diabetes still needs basal insulin during fasting. Stopping it produces ketoacidosis."
+    },
+    "diagram": {
+      "file": "svg/usmle3-001.svg",
+      "alt": "Text card. Keep basal insulin. Never stop it in type 1 diabetes."
+    }
+  },
+  {
+    "id": "usmle3-002",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A patient on a sodium-glucose cotransporter-2 inhibitor is booked for elective surgery in two days. The medicine is still on the list for the morning of surgery.",
+    "bottom": "Stop that medicine three days before surgery.",
+    "bullets": {
+      "clue": "Ertugliflozin needs four days. The others need three. The risk is ketoacidosis with a near-normal glucose.",
+      "treat": "Hold the drug, operate, and restart when the patient is eating and the acute illness is over.",
+      "trap": "Continuing the tablet the morning of surgery because the glucose has been excellent."
+    },
+    "source": {
+      "guideline": "FDA safety communication on SGLT2 inhibitors and surgery",
+      "year": "2022",
+      "url": "https://www.fda.gov/",
+      "recommendation": "SGLT2 inhibitors are stopped about three days before surgery to reduce euglycemic diabetic ketoacidosis."
+    },
+    "diagram": {
+      "file": "svg/usmle3-002.svg",
+      "alt": "Text card. Stop that medicine three days before surgery."
+    }
+  },
+  {
+    "id": "usmle3-003",
+    "system": "Cardiovascular",
+    "task_area": "Foundations of independent practice: perioperative care",
+    "front": "A patient who has never taken a beta blocker is given one for the first time on the morning of major surgery, to make the numbers look calm.",
+    "bottom": "Do not start a beta blocker on the day of surgery.",
+    "bullets": {
+      "clue": "A large perioperative trial showed more stroke and death when blockers were started immediately before surgery.",
+      "treat": "Continue a beta blocker the patient already takes. Do not invent a new one on the morning of the operation.",
+      "trap": "A new perioperative beta blocker as a routine clearance step."
+    },
+    "source": {
+      "guideline": "ACC/AHA perioperative cardiovascular guideline",
+      "year": "2024",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Beta blockers already in use are continued. Starting one on the day of surgery causes harm."
+    },
+    "diagram": {
+      "file": "svg/usmle3-003.svg",
+      "alt": "Text card. Do not start a beta blocker on the day of surgery."
+    }
+  },
+  {
+    "id": "usmle3-004",
+    "system": "Cardiovascular",
+    "task_area": "Foundations of independent practice: perioperative care",
+    "front": "A patient who can climb a flight of stairs is scheduled for cataract surgery. A preoperative stress test has been ordered to clear them.",
+    "bottom": "Cancel the stress test. This surgery does not need it.",
+    "bullets": {
+      "clue": "Adequate functional capacity and a low-risk operation do not get ischemia testing.",
+      "treat": "Proceed. Reserve testing for poor capacity plus a higher-risk operation when the result would change management.",
+      "trap": "A stress test before every anesthetic."
+    },
+    "source": {
+      "guideline": "ACC/AHA perioperative cardiovascular guideline",
+      "year": "2024",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Patients who can climb a flight of stairs and are having low-risk surgery do not need preoperative stress testing."
+    },
+    "diagram": {
+      "file": "svg/usmle3-004.svg",
+      "alt": "Text card. Cancel the stress test. This surgery does not need it."
+    }
+  },
+  {
+    "id": "usmle3-005",
+    "system": "Cardiovascular",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "A patient is scheduled for cataract extraction next week and takes aspirin for a prior stent. The eye team asks whether to stop it.",
+    "bottom": "Continue the aspirin.",
+    "bullets": {
+      "clue": "Cataract surgery is very low bleeding risk. A stent is a high clotting risk if both antiplatelet drugs disappear.",
+      "treat": "Continue aspirin. Do not stop a P2Y12 inhibitor early after a stent for this operation.",
+      "trap": "Holding all blood thinners for a week before a cataract."
+    },
+    "source": {
+      "guideline": "ACC/AHA perioperative and dual antiplatelet guidance",
+      "year": "2024",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Aspirin is continued for cataract surgery. Dual therapy after a recent stent is not stopped for a low-bleeding-risk procedure."
+    },
+    "diagram": {
+      "file": "svg/usmle3-005.svg",
+      "alt": "Text card. Continue the aspirin."
+    }
+  },
+  {
+    "id": "usmle3-006",
+    "system": "Pharmacology",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "A statin is on the list to hold for the week before elective surgery because the family wants fewer pills.",
+    "bottom": "Continue the statin.",
+    "bullets": {
+      "clue": "Perioperative statin withdrawal is not helpful, and continuation is reasonable.",
+      "treat": "Take the statin through the surgical window unless there is a separate reason to stop it, such as a high creatine kinase with pain.",
+      "trap": "A routine week off the statin before the operating room."
+    },
+    "source": {
+      "guideline": "ACC/AHA perioperative cardiovascular guideline",
+      "year": "2024",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Statins are continued around noncardiac surgery. They are not a routine hold."
+    },
+    "diagram": {
+      "file": "svg/usmle3-006.svg",
+      "alt": "Text card. Continue the statin."
+    }
+  },
+  {
+    "id": "usmle3-007",
+    "system": "Emergency",
+    "task_area": "Advanced clinical medicine: perioperative care",
+    "front": "During anesthesia the end-tidal carbon dioxide rises, the jaw is rigid, and the temperature starts to climb after a volatile agent.",
+    "bottom": "This is malignant hyperthermia. Give dantrolene.",
+    "bullets": {
+      "clue": "The trigger is a volatile anesthetic or succinylcholine. The first number to move is often carbon dioxide, not temperature.",
+      "treat": "Stop the trigger, hyperventilate with oxygen, and give dantrolene. Call for the cart.",
+      "trap": "Assuming a postoperative fever and ordering a culture."
+    },
+    "source": {
+      "guideline": "Malignant Hyperthermia Association of the United States",
+      "year": "2024",
+      "url": "https://www.mhaus.org/",
+      "recommendation": "Malignant hyperthermia is rising carbon dioxide, rigidity, and hyperthermia during anesthesia. Dantrolene is the antidote."
+    },
+    "diagram": {
+      "file": "svg/usmle3-007.svg",
+      "alt": "Text card. This is malignant hyperthermia. Give dantrolene."
+    }
+  },
+  {
+    "id": "usmle3-008",
+    "system": "Emergency",
+    "task_area": "Advanced clinical medicine: perioperative care",
+    "front": "During a nerve block the patient reports a metallic taste and ringing, then has a seizure.",
+    "bottom": "Local anesthetic toxicity. Give lipid emulsion.",
+    "bullets": {
+      "clue": "Neurologic symptoms come first. Cardiac collapse can follow.",
+      "treat": "Stop the injection, support the airway, benzodiazepine for the seizure, and intravenous lipid emulsion.",
+      "trap": "Treating the seizure as epilepsy and never naming the anesthetic."
+    },
+    "source": {
+      "guideline": "ASRA local anesthetic systemic toxicity checklist",
+      "year": "2020",
+      "url": "https://www.asra.com/",
+      "recommendation": "Local anesthetic systemic toxicity begins with neurologic warning symptoms and is treated with lipid emulsion."
+    },
+    "diagram": {
+      "file": "svg/usmle3-008.svg",
+      "alt": "Do and do not. Local anesthetic toxicity. Give lipid emulsion."
+    }
+  },
+  {
+    "id": "usmle3-009",
+    "system": "Renal",
+    "task_area": "Advanced clinical medicine: perioperative care",
+    "front": "On the evening of surgery the temperature is 38.0, the incision is dry, the lungs are clear, and the patient is drinking.",
+    "bottom": "Do not start broad antibiotics for this number.",
+    "bullets": {
+      "clue": "A low fever in the first hours is usually inflammatory. Atelectasis is an old explanation and not a reason for a drug.",
+      "treat": "Examine the patient. Culture and treat when there is a source or the patient looks ill.",
+      "trap": "A sepsis bundle for every first-night temperature of 38."
+    },
+    "source": {
+      "guideline": "ACS surgical infection principles",
+      "year": "2016",
+      "url": "https://www.facs.org/",
+      "recommendation": "Immediate postoperative low-grade fever with a normal exam is observed. Antibiotics follow a source."
+    },
+    "diagram": {
+      "file": "svg/usmle3-009.svg",
+      "alt": "Text card. Do not start broad antibiotics for this number."
+    }
+  },
+  {
+    "id": "usmle3-010",
+    "system": "Renal",
+    "task_area": "Advanced clinical medicine: perioperative care",
+    "front": "A patient cannot void eight hours after pelvic surgery. The bladder scan shows 700 milliliters. The abdomen is uncomfortable.",
+    "bottom": "Drain the bladder. Do not give a fluid bolus.",
+    "bullets": {
+      "clue": "The bladder is already full. More fluid makes it fuller.",
+      "treat": "Catheterize, record the volume, and look for the medicine or the pain that caused the retention.",
+      "trap": "A liter of saline for low urine output when the bladder is distended."
+    },
+    "source": {
+      "guideline": "AUA postoperative urinary retention standard",
+      "year": "2018",
+      "url": "https://www.auanet.org/",
+      "recommendation": "Postoperative urinary retention is diagnosed with a bladder volume and treated by drainage."
+    },
+    "diagram": {
+      "file": "svg/usmle3-010.svg",
+      "alt": "Text card. Drain the bladder. Do not give a fluid bolus."
+    }
+  },
+  {
+    "id": "usmle3-011",
+    "system": "Geriatrics",
+    "task_area": "Advanced clinical medicine: behavioral health",
+    "front": "An older adult is suddenly confused on hospital night two. Someone orders a restraint and a benzodiazepine to help them sleep.",
+    "bottom": "Find the cause of the delirium. Do not lead with a restraint or a benzodiazepine.",
+    "bullets": {
+      "clue": "Infection, drugs, urine retention, constipation, pain, and withdrawal are the usual causes.",
+      "treat": "Treat the cause, restore sleep and glasses and hearing, and use an antipsychotic only if the patient is in danger.",
+      "trap": "A benzodiazepine as a sleeper for new confusion."
+    },
+    "source": {
+      "guideline": "AGS delirium guidance",
+      "year": "2015",
+      "url": "https://www.americangeriatrics.org/",
+      "recommendation": "Delirium is a medical emergency of attention. Benzodiazepines worsen it unless the cause is withdrawal."
+    },
+    "diagram": {
+      "file": "svg/usmle3-011.svg",
+      "alt": "Text card. Find the cause of the delirium. Do not lead with a restraint or a benzodiazepine."
+    }
+  },
+  {
+    "id": "usmle3-012",
+    "system": "Geriatrics",
+    "task_area": "Advanced clinical medicine: musculoskeletal system",
+    "front": "An 82-year-old has fallen twice. The medicine list includes a nightly benzodiazepine. Blood pressure drops 25 points on standing.",
+    "bottom": "Stop the sedative and treat the blood pressure drop.",
+    "bullets": {
+      "clue": "Falls are usually many small risks added together. A head CT is for a head strike or a blood thinner, not the whole plan.",
+      "treat": "Orthostatic vitals, medication review, vision, and strength. Taper the benzodiazepine. Do not stop it tonight.",
+      "trap": "A normal head CT and a discharge with the same pill bottle."
+    },
+    "source": {
+      "guideline": "AGS Beers Criteria",
+      "year": "2023",
+      "url": "https://www.americangeriatrics.org/",
+      "recommendation": "Benzodiazepines and orthostasis are modifiable fall risks. A sudden stop of a chronic benzodiazepine can cause withdrawal."
+    },
+    "diagram": {
+      "file": "svg/usmle3-012.svg",
+      "alt": "Text card. Stop the sedative and treat the blood pressure drop."
+    }
+  },
+  {
+    "id": "usmle3-013",
+    "system": "Geriatrics",
+    "task_area": "Advanced clinical medicine: genitourinary system",
+    "front": "Constant dribbling, a weak stream, and a post-void residual of 400 milliliters. An anticholinergic is being considered for the wetness.",
+    "bottom": "This is overflow. An anticholinergic will make it worse.",
+    "bullets": {
+      "clue": "Urge incontinence wants the bladder to calm down. Overflow wants the bladder to empty.",
+      "treat": "Relieve the obstruction or catheterize. Do not give a bladder-relaxing drug to a bladder that cannot empty.",
+      "trap": "Oxybutynin for every wet older man."
+    },
+    "source": {
+      "guideline": "AUA male lower urinary tract symptoms guideline",
+      "year": "2021",
+      "url": "https://www.auanet.org/",
+      "recommendation": "A high post-void residual means overflow. Antimuscarinic drugs are for urge incontinence and worsen retention."
+    },
+    "diagram": {
+      "file": "svg/usmle3-013.svg",
+      "alt": "Text card. This is overflow. An anticholinergic will make it worse."
+    }
+  },
+  {
+    "id": "usmle3-014",
+    "system": "Geriatrics",
+    "task_area": "Advanced clinical medicine: skin and subcutaneous tissue",
+    "front": "A pressure injury was stage 3. After two weeks of offloading the base is filling with tissue and is now more shallow.",
+    "bottom": "Do not renumber it as a stage 2.",
+    "bullets": {
+      "clue": "Pressure injuries are not reverse-staged as they heal. The original depth stays in the record.",
+      "treat": "Keep offloading and nutrition. Describe the healing wound. Do not call it a lower stage.",
+      "trap": "Charting stage 2 because the hole looks smaller."
+    },
+    "source": {
+      "guideline": "NPIAP pressure injury staging",
+      "year": "2016",
+      "url": "https://npiap.com/",
+      "recommendation": "Pressure injuries are not reverse staged. A healing stage 3 injury remains a healing stage 3."
+    },
+    "diagram": {
+      "file": "svg/usmle3-014.svg",
+      "alt": "Text card. Do not renumber it as a stage 2."
+    }
+  },
+  {
+    "id": "usmle3-015",
+    "system": "Geriatrics",
+    "task_area": "Advanced clinical medicine: musculoskeletal system",
+    "front": "An 84-year-old with a creatinine of 2.1 has a hot toe. Indomethacin is prescribed for ten days.",
+    "bottom": "Do not use a full-dose anti-inflammatory in this kidney.",
+    "bullets": {
+      "clue": "Older adults with chronic kidney disease bleed and worsen their creatinine on chronic nonsteroidal drugs.",
+      "treat": "A short course of a steroid, or a carefully dosed alternative, plus the kidney in view. Not indomethacin.",
+      "trap": "A ten-day nonsteroidal drug for gout in chronic kidney disease."
+    },
+    "source": {
+      "guideline": "AGS Beers Criteria",
+      "year": "2023",
+      "url": "https://www.americangeriatrics.org/",
+      "recommendation": "Chronic or high-dose nonsteroidal drugs are inappropriate in older adults with chronic kidney disease."
+    },
+    "diagram": {
+      "file": "svg/usmle3-015.svg",
+      "alt": "Text card. Do not use a full-dose anti-inflammatory in this kidney."
+    }
+  },
+  {
+    "id": "usmle3-016",
+    "system": "Geriatrics",
+    "task_area": "Foundations of independent practice: prognosis",
+    "front": "A patient with advanced dementia has recurrent aspiration and is losing weight. The family asks for a permanent feeding tube so the pneumonias will stop.",
+    "bottom": "A tube does not stop aspiration and does not lengthen life here.",
+    "bullets": {
+      "clue": "Careful hand feeding is the option that matches the evidence in advanced dementia.",
+      "treat": "Explain the limit of the tube, treat comfort, and offer assisted oral feeding.",
+      "trap": "A percutaneous tube as the way to prevent aspiration."
+    },
+    "source": {
+      "guideline": "AGS feeding tubes in advanced dementia",
+      "year": "2014",
+      "url": "https://www.americangeriatrics.org/",
+      "recommendation": "Feeding tubes in advanced dementia do not improve survival or prevent aspiration. Hand feeding is preferred."
+    },
+    "diagram": {
+      "file": "svg/usmle3-016.svg",
+      "alt": "Text card. A tube does not stop aspiration and does not lengthen life here."
+    }
+  },
+  {
+    "id": "usmle3-017",
+    "system": "Ethics",
+    "task_area": "Foundations of independent practice: prognosis",
+    "front": "A patient with metastatic cancer that has stopped responding wants to know whether another round of chemotherapy is the only choice.",
+    "bottom": "Name the prognosis, and offer care that is aimed at comfort.",
+    "bullets": {
+      "clue": "Hospice is for a prognosis of about six months if the disease runs its usual course, and it forgoes disease-directed treatment.",
+      "treat": "Palliative care can start earlier, alongside treatment. Hospice is the choice when disease-directed treatment is no longer the goal.",
+      "trap": "Offering another regimen without saying what it can and cannot do."
+    },
+    "source": {
+      "guideline": "NHPCO hospice eligibility standards",
+      "year": "2020",
+      "url": "https://www.nhpco.org/",
+      "recommendation": "Hospice requires a limited prognosis and a goal of comfort. Palliative care is broader and can accompany disease treatment."
+    },
+    "diagram": {
+      "file": "svg/usmle3-017.svg",
+      "alt": "Text card. Name the prognosis, and offer care that is aimed at comfort."
+    }
+  },
+  {
+    "id": "usmle3-018",
+    "system": "Cardiovascular",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "A patient goes home after a heart-failure admission on a Friday. The next lab and visit are booked for six weeks.",
+    "bottom": "See them within seven days.",
+    "bullets": {
+      "clue": "The week after discharge is when weight, kidneys, and potassium go wrong.",
+      "treat": "A visit or a structured call within seven days, daily weights, and the medicines continued unless a number forces a hold.",
+      "trap": "A six-week primary care visit as the only follow-up."
+    },
+    "source": {
+      "guideline": "ACC/AHA heart failure guideline",
+      "year": "2022",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Heart-failure discharge includes early follow-up, within about seven days, because that is when decompensation recurs."
+    },
+    "diagram": {
+      "file": "svg/usmle3-018.svg",
+      "alt": "Text card. See them within seven days."
+    }
+  },
+  {
+    "id": "usmle3-019",
+    "system": "Cardiovascular",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "A patient on an ACE inhibitor develops a dry cough and the medicine is stopped. Nothing replaces it. The ejection fraction is 30 percent.",
+    "bottom": "Switch to an angiotensin receptor blocker. Do not leave the pathway untreated.",
+    "bullets": {
+      "clue": "The cough is a reason to change the drug, not a reason to abandon afterload reduction.",
+      "treat": "An angiotensin receptor blocker, or an angiotensin receptor-neprilysin inhibitor when that is the right next step.",
+      "trap": "Stopping the class and substituting nothing."
+    },
+    "source": {
+      "guideline": "ACC/AHA heart failure guideline",
+      "year": "2022",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "ACE-inhibitor cough is managed by switching to an angiotensin receptor blocker, not by stopping neurohormonal blockade."
+    },
+    "diagram": {
+      "file": "svg/usmle3-019.svg",
+      "alt": "Text card. Switch to an angiotensin receptor blocker. Do not leave the pathway untreated."
+    }
+  },
+  {
+    "id": "usmle3-020",
+    "system": "Cardiovascular",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "Spironolactone was started last month. Today's potassium is 5.6 and the creatinine has risen sharply.",
+    "bottom": "Hold the drug and recheck. Do not refill the same dose.",
+    "bullets": {
+      "clue": "A small creatinine rise after an ACE inhibitor can be tolerated. A potassium of 5.6 on spironolactone is not.",
+      "treat": "Stop or reduce the mineralocorticoid antagonist, review salt substitutes and kidney function, and recheck soon.",
+      "trap": "Continuing the same dose because the patient feels well."
+    },
+    "source": {
+      "guideline": "ACC/AHA heart failure guideline",
+      "year": "2022",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Mineralocorticoid antagonists are stopped or reduced for significant hyperkalemia. Symptoms are a late clue."
+    },
+    "diagram": {
+      "file": "svg/usmle3-020.svg",
+      "alt": "Text card. Hold the drug and recheck. Do not refill the same dose."
+    }
+  },
+  {
+    "id": "usmle3-021",
+    "system": "Cardiovascular",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "New atrial fibrillation is found on a routine exam. The patient feels fine, the pressure is normal, and the rate is 110.",
+    "bottom": "Do not cardiovert this afternoon.",
+    "bullets": {
+      "clue": "Elective cardioversion needs a plan for thrombus: three weeks of anticoagulation or a clear transesophageal echo, then anticoagulation after.",
+      "treat": "Control the rate, decide on stroke prevention, and get an echocardiogram. Cardioversion is a scheduled plan, not a same-hour convenience.",
+      "trap": "A same-day shock in clinic because the patient is stable and busy."
+    },
+    "source": {
+      "guideline": "ACC/AHA atrial fibrillation guideline",
+      "year": "2023",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Stable new atrial fibrillation is not cardioverted without a thrombus plan. Rate control and stroke prevention come first."
+    },
+    "diagram": {
+      "file": "svg/usmle3-021.svg",
+      "alt": "Text card. Do not cardiovert this afternoon."
+    }
+  },
+  {
+    "id": "usmle3-022",
+    "system": "Cardiovascular",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "A 72-year-old loses consciousness while sitting and talking. There was no warning. A monitor later shows a long pause.",
+    "bottom": "This syncope is cardiac. Do not send the patient home with a hydration sheet.",
+    "bullets": {
+      "clue": "No prodrome, occurrence while seated, and a pause are high-risk features.",
+      "treat": "Monitor and refer for the conduction problem. Vasovagal syncope has a trigger and a warning.",
+      "trap": "Oral fluids and primary care next month."
+    },
+    "source": {
+      "guideline": "ESC syncope guideline",
+      "year": "2018",
+      "url": "https://www.escardio.org/",
+      "recommendation": "Syncope while seated, without a prodrome, or with a documented pause is cardiac until proven otherwise."
+    },
+    "diagram": {
+      "file": "svg/usmle3-022.svg",
+      "alt": "Text card. This syncope is cardiac. Do not send the patient home with a hydration sheet."
+    }
+  },
+  {
+    "id": "usmle3-023",
+    "system": "Hematologic",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "An anticoagulated patient hits their head, is awake, and has a normal neurologic exam in triage.",
+    "bottom": "Image the head now, and watch afterward.",
+    "bullets": {
+      "clue": "A normal exam does not exclude a bleed that declares itself hours later.",
+      "treat": "CT, a period of observation, and a plan to return. Do not discharge from triage.",
+      "trap": "Reassurance and a ride home because the patient is talking."
+    },
+    "source": {
+      "guideline": "ACEP mild traumatic brain injury guideline",
+      "year": "2023",
+      "url": "https://www.acep.org/",
+      "recommendation": "Anticoagulated patients with head trauma are imaged even when the exam is normal, and delayed bleeding is anticipated."
+    },
+    "diagram": {
+      "file": "svg/usmle3-023.svg",
+      "alt": "Text card. Image the head now, and watch afterward."
+    }
+  },
+  {
+    "id": "usmle3-024",
+    "system": "Pharmacology",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "A patient on amiodarone develops tremor and weight loss. The thyroid was not checked when the drug was started.",
+    "bottom": "Check the thyroid. Amiodarone can push it either way.",
+    "bullets": {
+      "clue": "The drug blocks conversion and also loads the gland with iodine, so both low and high thyroid states occur.",
+      "treat": "A TSH now, and a TSH before the next patient starts the drug. Treat the thyroid disorder you find.",
+      "trap": "A beta blocker for the tremor and no thyroid test."
+    },
+    "source": {
+      "guideline": "ATA thyroid and amiodarone guidance",
+      "year": "2016",
+      "url": "https://www.thyroid.org/",
+      "recommendation": "Amiodarone causes both hypothyroidism and hyperthyroidism. TSH is checked before treatment and during it."
+    },
+    "diagram": {
+      "file": "svg/usmle3-024.svg",
+      "alt": "Steps. Check the thyroid. Amiodarone can push it either way."
+    }
+  },
+  {
+    "id": "usmle3-025",
+    "system": "Pharmacology",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "A patient on digoxin is prescribed clarithromycin for a respiratory infection. Three days later they are nauseated and seeing yellow.",
+    "bottom": "The antibiotic raised the digoxin level.",
+    "bullets": {
+      "clue": "Clarithromycin and some other drugs reduce digoxin clearance.",
+      "treat": "Stop the interacting antibiotic, check the level, and treat toxicity if it is present.",
+      "trap": "A second antibiotic from the same interacting class and a higher digoxin dose for the nausea."
+    },
+    "source": {
+      "guideline": "AHA digoxin monitoring principles",
+      "year": "2019",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Macrolides such as clarithromycin can raise digoxin levels into the toxic range."
+    },
+    "diagram": {
+      "file": "svg/usmle3-025.svg",
+      "alt": "Text card. The antibiotic raised the digoxin level."
+    }
+  },
+  {
+    "id": "usmle3-026",
+    "system": "Pharmacology",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "A patient on lithium starts a thiazide for blood pressure and a week later is confused and shaky.",
+    "bottom": "The diuretic raised the lithium.",
+    "bullets": {
+      "clue": "Thiazides and nonsteroidal drugs both raise lithium. Dehydration does the same.",
+      "treat": "Check the level, hold the lithium, hydrate, and pick a different blood pressure drug.",
+      "trap": "Adding a nonsteroidal drug on top for the headache of toxicity."
+    },
+    "source": {
+      "guideline": "APA lithium monitoring",
+      "year": "2021",
+      "url": "https://www.psychiatry.org/",
+      "recommendation": "Thiazides and NSAIDs raise lithium levels. A new prescription is a reason to recheck the level."
+    },
+    "diagram": {
+      "file": "svg/usmle3-026.svg",
+      "alt": "Text card. The diuretic raised the lithium."
+    }
+  },
+  {
+    "id": "usmle3-027",
+    "system": "Pharmacology",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "Estimated glomerular filtration rate is 25. Metformin is still on the list at full dose.",
+    "bottom": "Stop the metformin.",
+    "bullets": {
+      "clue": "Below 30 the drug is contraindicated because lactic acidosis becomes a real risk if the drug accumulates.",
+      "treat": "Stop it under 30. Do not start it under 45. Between 30 and 45, if it is already in use, the dose is reduced and the kidney is watched.",
+      "trap": "A full dose at a filtration rate of 25 because the A1c is good."
+    },
+    "source": {
+      "guideline": "FDA metformin labeling",
+      "year": "2016",
+      "url": "https://www.fda.gov/",
+      "recommendation": "Metformin is contraindicated when eGFR is below 30 mL/min/1.73 m2 and is not started below 45."
+    },
+    "diagram": {
+      "file": "svg/usmle3-027.svg",
+      "alt": "Text card. Stop the metformin."
+    }
+  },
+  {
+    "id": "usmle3-028",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A patient with longstanding diabetes has an A1c of 6.2 and describes sweating and confusion at 3 in the morning several nights a week.",
+    "bottom": "Loosen the target. The nights are dangerous.",
+    "bullets": {
+      "clue": "A low A1c with hypoglycemia unawareness is harm, not success.",
+      "treat": "Reduce the insulin that covers the night and set a higher target. Ask about driving.",
+      "trap": "Congratulating the A1c and refilling the same doses."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes",
+      "year": "2026",
+      "url": "https://diabetesjournals.org/care",
+      "recommendation": "Nocturnal hypoglycemia with a very low A1c means the goal is too tight and the regimen should be relaxed."
+    },
+    "diagram": {
+      "file": "svg/usmle3-028.svg",
+      "alt": "Text card. Loosen the target. The nights are dangerous."
+    }
+  },
+  {
+    "id": "usmle3-029",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A patient with type 1 diabetes has a fever and is not hungry. A family member stopped the basal insulin because the patient was not eating.",
+    "bottom": "Restart the basal insulin and check for ketones.",
+    "bullets": {
+      "clue": "Illness raises insulin need. Fasting does not remove it in type 1 diabetes.",
+      "treat": "Sick-day rules: fluids, frequent glucose and ketone checks, basal insulin on board, and a threshold to be seen.",
+      "trap": "Holding all insulin until the appetite returns."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes",
+      "year": "2026",
+      "url": "https://diabetesjournals.org/care",
+      "recommendation": "Sick-day rules for type 1 diabetes keep basal insulin running and add ketone checks."
+    },
+    "diagram": {
+      "file": "svg/usmle3-029.svg",
+      "alt": "Text card. Restart the basal insulin and check for ketones."
+    }
+  },
+  {
+    "id": "usmle3-030",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A five-day prednisone burst is planned for asthma. The family asks whether this means a lifelong diabetes pill, because last time the glucose hit 220.",
+    "bottom": "Expect a temporary rise. Do not start a lifelong sulfonylurea for five days.",
+    "bullets": {
+      "clue": "Steroids raise glucose while they are present. The rise ends when the burst ends in a patient without diabetes.",
+      "treat": "A short monitoring plan. A patient who already has diabetes may need a temporary insulin adjustment.",
+      "trap": "A new chronic diabetes medicine for a five-day steroid."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes",
+      "year": "2026",
+      "url": "https://diabetesjournals.org/care",
+      "recommendation": "Short glucocorticoid bursts raise glucose temporarily. They are not an indication for a new chronic oral diabetes drug."
+    },
+    "diagram": {
+      "file": "svg/usmle3-030.svg",
+      "alt": "Text card. Expect a temporary rise. Do not start a lifelong sulfonylurea for five days."
+    }
+  },
+  {
+    "id": "usmle3-031",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "Kidney disease is established, the A1c is 6.9, and the patient is not on a drug that protects the kidney.",
+    "bottom": "Add a kidney-outcome drug even though the A1c is close to goal.",
+    "bullets": {
+      "clue": "An SGLT2 inhibitor slows kidney disease independent of how much it moves the A1c.",
+      "treat": "Start the kidney-protective agent unless it is unsafe, and keep the A1c conversation separate.",
+      "trap": "Withholding the drug because the A1c does not need help."
+    },
+    "source": {
+      "guideline": "ADA and KDIGO diabetes in chronic kidney disease",
+      "year": "2022",
+      "url": "https://kdigo.org/",
+      "recommendation": "SGLT2 inhibitors are used for kidney protection in diabetic kidney disease, not only for glucose lowering."
+    },
+    "diagram": {
+      "file": "svg/usmle3-031.svg",
+      "alt": "Text card. Add a kidney-outcome drug even though the A1c is close to goal."
+    }
+  },
+  {
+    "id": "usmle3-032",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "An 80-year-old feels well. TSH is 6.2 on two checks, free hormone is normal, and antibodies are negative.",
+    "bottom": "Do not start a full replacement dose for this number.",
+    "bullets": {
+      "clue": "Treat a TSH of 10 or more. A mild rise in an asymptomatic older adult is watched.",
+      "treat": "Recheck and explain. A young patient who is pregnant or trying to conceive is a different threshold.",
+      "trap": "A full weight-based dose of levothyroxine for a TSH of 6 in an older adult."
+    },
+    "source": {
+      "guideline": "ATA hypothyroidism guideline",
+      "year": "2014",
+      "url": "https://www.thyroid.org/",
+      "recommendation": "Asymptomatic older adults with TSH below 10 are often observed. Treatment is usual once TSH is 10 or higher."
+    },
+    "diagram": {
+      "file": "svg/usmle3-032.svg",
+      "alt": "Text card. Do not start a full replacement dose for this number."
+    }
+  },
+  {
+    "id": "usmle3-033",
+    "system": "Endocrine",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A frail 78-year-old has a TSH of 24 and needs levothyroxine. The calculated full replacement would be about 110 micrograms.",
+    "bottom": "Start low, near 25 micrograms, and titrate.",
+    "bullets": {
+      "clue": "Full replacement is for young healthy adults. Older and cardiac patients are started low.",
+      "treat": "A low starting dose, repeat TSH in six to eight weeks, and a slow climb.",
+      "trap": "The full calculated dose on day one."
+    },
+    "source": {
+      "guideline": "ATA hypothyroidism guideline",
+      "year": "2014",
+      "url": "https://www.thyroid.org/",
+      "recommendation": "Older adults and patients with heart disease start levothyroxine at a low dose, often about 25 micrograms."
+    },
+    "diagram": {
+      "file": "svg/usmle3-033.svg",
+      "alt": "Text card. Start low, near 25 micrograms, and titrate."
+    }
+  },
+  {
+    "id": "usmle3-034",
+    "system": "Pharmacology",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "Two weeks after a statin increase the patient has severe muscle pain. Creatine kinase is 2,400. Another patient has no pain and a kinase of 280.",
+    "bottom": "Stop the statin in the patient who hurts. Do not stop it for a trivial enzyme bump.",
+    "bullets": {
+      "clue": "Symptoms plus a clearly high kinase mean stop. A small asymptomatic rise does not.",
+      "treat": "Stop, hydrate if the kinase is very high, and revisit a statin later at a lower dose or a different drug.",
+      "trap": "Stopping every statin forever because one kinase was slightly above the reference range."
+    },
+    "source": {
+      "guideline": "AHA/ACC cholesterol guideline",
+      "year": "2018",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Statin muscle symptoms with a substantially elevated creatine kinase require stopping the drug. Asymptomatic mild elevations do not."
+    },
+    "diagram": {
+      "file": "svg/usmle3-034.svg",
+      "alt": "Text card. Stop the statin in the patient who hurts. Do not stop it for a trivial enzyme bump."
+    }
+  },
+  {
+    "id": "usmle3-035",
+    "system": "Pharmacology",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "A patient has taken a statin for a year with no muscle symptoms. A baseline liver panel was normal. An annual liver panel is ordered out of habit.",
+    "bottom": "Do not order routine liver tests in an asymptomatic patient.",
+    "bullets": {
+      "clue": "Check enzymes if symptoms suggest liver injury. Do not schedule them yearly without a reason.",
+      "treat": "Leave the statin. Test the liver if jaundice, severe fatigue, or pain appears.",
+      "trap": "A yearly liver panel as a condition of the refill."
+    },
+    "source": {
+      "guideline": "AHA/ACC cholesterol guideline",
+      "year": "2018",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "After a normal baseline, routine monitoring of liver enzymes on a statin is not recommended in asymptomatic patients."
+    },
+    "diagram": {
+      "file": "svg/usmle3-035.svg",
+      "alt": "Text card. Do not order routine liver tests in an asymptomatic patient."
+    }
+  },
+  {
+    "id": "usmle3-036",
+    "system": "Pharmacology",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "A hospital proton-pump inhibitor is still being refilled three months after discharge. The patient never had a bleed, an ulcer, or reflux.",
+    "bottom": "Stop it and ask why it was started.",
+    "bullets": {
+      "clue": "Many inpatient acid-suppression orders have no outpatient indication.",
+      "treat": "Deprescribe and warn about rebound heartburn for a few days. Continue only if there is a real indication.",
+      "trap": "A permanent refill because it was on the discharge list."
+    },
+    "source": {
+      "guideline": "AGA proton pump inhibitor de-prescribing",
+      "year": "2022",
+      "url": "https://gastro.org/",
+      "recommendation": "Proton-pump inhibitors without an ongoing indication should be stopped. Discharge lists are not indications."
+    },
+    "diagram": {
+      "file": "svg/usmle3-036.svg",
+      "alt": "Text card. Stop it and ask why it was started."
+    }
+  },
+  {
+    "id": "usmle3-037",
+    "system": "GI",
+    "task_area": "Advanced clinical medicine: gastrointestinal system",
+    "front": "A patient with heart failure needs a colonoscopy. The prep offered is a sodium phosphate bottle.",
+    "bottom": "Use a polyethylene glycol prep. Phosphate can injure the kidney.",
+    "bullets": {
+      "clue": "Phosphate preps cause phosphate nephropathy, especially in older patients and those with kidney disease or heart failure.",
+      "treat": "A large-volume polyethylene glycol prep, with attention to the heart-failure volume.",
+      "trap": "A phosphate prep because it is smaller and more convenient."
+    },
+    "source": {
+      "guideline": "FDA sodium phosphate bowel prep warning",
+      "year": "2014",
+      "url": "https://www.fda.gov/",
+      "recommendation": "Sodium phosphate bowel preparations can cause acute phosphate nephropathy and are a poor choice in heart failure and kidney disease."
+    },
+    "diagram": {
+      "file": "svg/usmle3-037.svg",
+      "alt": "Text card. Use a polyethylene glycol prep. Phosphate can injure the kidney."
+    }
+  },
+  {
+    "id": "usmle3-038",
+    "system": "GI",
+    "task_area": "Advanced clinical medicine: gastrointestinal system",
+    "front": "A screening stool test is positive. The hemoglobin is a little low. Iron is started and a blood count is planned in a month. No scope is booked.",
+    "bottom": "The positive screen still needs a colonoscopy.",
+    "bullets": {
+      "clue": "Iron can fix the number and hide the cancer that the screen was meant to find.",
+      "treat": "Schedule the colonoscopy. Iron can accompany it. Iron does not replace it.",
+      "trap": "Rechecking the blood count after iron and calling the screen resolved."
+    },
+    "source": {
+      "guideline": "USPSTF colorectal cancer screening",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "A positive fecal immunochemical test requires colonoscopy. Treating iron deficiency does not complete the evaluation."
+    },
+    "diagram": {
+      "file": "svg/usmle3-038.svg",
+      "alt": "Text card. The positive screen still needs a colonoscopy."
+    }
+  },
+  {
+    "id": "usmle3-039",
+    "system": "Pulmonary",
+    "task_area": "Advanced clinical medicine: respiratory system",
+    "front": "A patient leaves after a chronic obstructive exacerbation and can walk only across the room. No rehabilitation is offered.",
+    "bottom": "Refer to pulmonary rehabilitation after the hospitalization.",
+    "bullets": {
+      "clue": "Rehabilitation after an exacerbation reduces the chance of coming back and improves walking.",
+      "treat": "A referral, inhaler teaching, and a follow-up. The five-day steroid course is already the right length. Do not stretch it to two weeks by habit.",
+      "trap": "A refill of the rescue inhaler as the whole discharge plan."
+    },
+    "source": {
+      "guideline": "GOLD report",
+      "year": "2025",
+      "url": "https://goldcopd.org/",
+      "recommendation": "Pulmonary rehabilitation is indicated after a COPD hospitalization. Steroid bursts for exacerbations are about five days."
+    },
+    "diagram": {
+      "file": "svg/usmle3-039.svg",
+      "alt": "Text card. Refer to pulmonary rehabilitation after the hospitalization."
+    }
+  },
+  {
+    "id": "usmle3-040",
+    "system": "Pulmonary",
+    "task_area": "Advanced clinical medicine: respiratory system",
+    "front": "A 30-year-old is well six weeks after an ordinary pneumonia. A routine follow-up chest film is scheduled because that is the clinic habit.",
+    "bottom": "A recovered young nonsmoker does not need the film.",
+    "bullets": {
+      "clue": "Follow-up imaging is for symptoms that persist or for a smoking and age risk of cancer.",
+      "treat": "Skip the film when recovery is complete and cancer risk is low. Order it when symptoms remain or the smoking history demands it.",
+      "trap": "A film for every pneumonia at six weeks."
+    },
+    "source": {
+      "guideline": "IDSA/ATS community-acquired pneumonia guideline",
+      "year": "2019",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "Routine follow-up radiographs after pneumonia are not required when the patient has recovered and cancer is unlikely."
+    },
+    "diagram": {
+      "file": "svg/usmle3-040.svg",
+      "alt": "Text card. A recovered young nonsmoker does not need the film."
+    }
+  },
+  {
+    "id": "usmle3-041",
+    "system": "Respiratory",
+    "task_area": "Advanced clinical medicine: respiratory system",
+    "front": "A patient uses a rescue inhaler every day and wakes at night twice a week. The only refill request is for the rescue inhaler.",
+    "bottom": "Add an inhaled corticosteroid. A rescue inhaler is not a controller.",
+    "bullets": {
+      "clue": "Daily rescue use means the airway inflammation is untreated.",
+      "treat": "Start an inhaled corticosteroid, teach the device, and review triggers. Do not refill albuterol alone.",
+      "trap": "Another rescue inhaler and a visit in six months."
+    },
+    "source": {
+      "guideline": "GINA strategy",
+      "year": "2025",
+      "url": "https://ginasthma.org/",
+      "recommendation": "Frequent rescue use means the patient needs an inhaled corticosteroid. Reliever-only care is not appropriate."
+    },
+    "diagram": {
+      "file": "svg/usmle3-041.svg",
+      "alt": "Text card. Add an inhaled corticosteroid. A rescue inhaler is not a controller."
+    }
+  },
+  {
+    "id": "usmle3-042",
+    "system": "Behavioral",
+    "task_area": "Foundations of independent practice: population health",
+    "front": "A patient who smokes is told to quit and handed a pamphlet. No medicine and no follow-up are offered.",
+    "bottom": "Combine counseling with a medicine. A pamphlet is not the treatment.",
+    "bullets": {
+      "clue": "Varenicline, nicotine replacement, or bupropion plus counseling beats advice alone.",
+      "treat": "Offer a drug and at least a brief counseling plan, and arrange follow-up. The patient can decline.",
+      "trap": "Advice alone recorded as cessation counseling."
+    },
+    "source": {
+      "guideline": "USPSTF tobacco cessation",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "The USPSTF recommends behavioral counseling plus pharmacotherapy for tobacco cessation in adults."
+    },
+    "diagram": {
+      "file": "svg/usmle3-042.svg",
+      "alt": "Text card. Combine counseling with a medicine. A pamphlet is not the treatment."
+    }
+  },
+  {
+    "id": "usmle3-043",
+    "system": "Behavioral",
+    "task_area": "Advanced clinical medicine: behavioral health",
+    "front": "A patient drinks most days, has tried to cut down, and is annoyed by questions about it. Liver tests are only mildly off. They want help.",
+    "bottom": "Offer naltrexone or acamprosate, not disulfiram as a casual first drug.",
+    "bullets": {
+      "clue": "A short screen that is positive deserves a treatment offer, not a lecture.",
+      "treat": "Naltrexone if opioids are absent and the liver allows it, or acamprosate. Add counseling.",
+      "trap": "Disulfiram on the first visit because it sounds decisive."
+    },
+    "source": {
+      "guideline": "APA alcohol use disorder guideline",
+      "year": "2018",
+      "url": "https://www.psychiatry.org/",
+      "recommendation": "Naltrexone and acamprosate are first-line medications for alcohol use disorder. Disulfiram is not the casual first choice."
+    },
+    "diagram": {
+      "file": "svg/usmle3-043.svg",
+      "alt": "Text card. Offer naltrexone or acamprosate, not disulfiram as a casual first drug."
+    }
+  },
+  {
+    "id": "usmle3-044",
+    "system": "Behavioral",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "Acute back pain with no red flags. A long-acting opioid is offered as the first prescription.",
+    "bottom": "Do not start a long-acting opioid for acute pain.",
+    "bullets": {
+      "clue": "If an opioid is truly needed, it is immediate release, at a low dose, for a short time, with naloxone in the house.",
+      "treat": "Stay active, use nonopioid treatments first, and check the prescription database before any opioid.",
+      "trap": "A fentanyl patch for a three-day strain."
+    },
+    "source": {
+      "guideline": "CDC opioid prescribing guideline",
+      "year": "2022",
+      "url": "https://www.cdc.gov/opioids/",
+      "recommendation": "Acute pain is not treated with a long-acting opioid. Nonopioid care comes first, and any opioid is short and immediate release."
+    },
+    "diagram": {
+      "file": "svg/usmle3-044.svg",
+      "alt": "Text card. Do not start a long-acting opioid for acute pain."
+    }
+  },
+  {
+    "id": "usmle3-045",
+    "system": "Geriatrics",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "An older adult has taken a benzodiazepine every night for eight years and is asked to stop it tomorrow because it is on a warning list.",
+    "bottom": "Taper over weeks to months. Do not stop tomorrow.",
+    "bullets": {
+      "clue": "An abrupt stop can cause withdrawal seizures. The goal is still to come off.",
+      "treat": "A slow taper, sleep counseling, and a warning about what withdrawal feels like.",
+      "trap": "A cold stop on Monday because the drug is inappropriate."
+    },
+    "source": {
+      "guideline": "AGS Beers Criteria",
+      "year": "2023",
+      "url": "https://www.americangeriatrics.org/",
+      "recommendation": "Chronic benzodiazepines in older adults should be tapered, not stopped abruptly."
+    },
+    "diagram": {
+      "file": "svg/usmle3-045.svg",
+      "alt": "Text card. Taper over weeks to months. Do not stop tomorrow."
+    }
+  },
+  {
+    "id": "usmle3-046",
+    "system": "Behavioral",
+    "task_area": "Advanced clinical medicine: behavioral health",
+    "front": "A patient has struggled to sleep for three months. The request is for a nightly controlled sleep drug.",
+    "bottom": "Start with insomnia therapy, not a nightly controlled substance.",
+    "bullets": {
+      "clue": "Cognitive behavioral therapy for insomnia is the first-line treatment and outlasts a pill.",
+      "treat": "Refer for that therapy. Use a drug only as a short bridge if you must, with an exit plan.",
+      "trap": "A monthly refill of a Z-drug as the plan."
+    },
+    "source": {
+      "guideline": "ACP insomnia guideline",
+      "year": "2016",
+      "url": "https://www.acponline.org/",
+      "recommendation": "Chronic insomnia is treated first with cognitive behavioral therapy, not with a standing hypnotic."
+    },
+    "diagram": {
+      "file": "svg/usmle3-046.svg",
+      "alt": "Text card. Start with insomnia therapy, not a nightly controlled substance."
+    }
+  },
+  {
+    "id": "usmle3-047",
+    "system": "Behavioral",
+    "task_area": "Advanced clinical medicine: behavioral health",
+    "front": "Three weeks after a spouse's death, a patient has waves of sadness, is eating with family, and has no wish to die. Self-worth is intact.",
+    "bottom": "This is grief. Do not start an antidepressant at the funeral.",
+    "bullets": {
+      "clue": "Grief comes in waves and keeps self-worth. Depression is pervasive, with worthlessness and loss of function.",
+      "treat": "Support and a planned revisit. Treat if function collapses, worthlessness appears, or the patient is unsafe.",
+      "trap": "An antidepressant on day three of bereavement, or ignoring a patient who cannot function two months later."
+    },
+    "source": {
+      "guideline": "APA depression guideline",
+      "year": "2010",
+      "url": "https://www.psychiatry.org/",
+      "recommendation": "Ordinary grief is supported, not medicated at once. Depression is a different syndrome and is treated when it is present."
+    },
+    "diagram": {
+      "file": "svg/usmle3-047.svg",
+      "alt": "Text card. This is grief. Do not start an antidepressant at the funeral."
+    }
+  },
+  {
+    "id": "usmle3-048",
+    "system": "Behavioral",
+    "task_area": "Foundations of independent practice: population health",
+    "front": "A clinic screen for depression scores in the severe range. The patient has no plan for suicide. The next open therapy visit is in three months.",
+    "bottom": "Do not leave a severe score for three months.",
+    "bullets": {
+      "clue": "A positive screen is an action, not a number to file.",
+      "treat": "Same-week assessment, start treatment, and a safety check. Referral alone with a long wait is not enough.",
+      "trap": "A pamphlet and a seasonal visit."
+    },
+    "source": {
+      "guideline": "USPSTF depression screening",
+      "year": "2023",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "Adults should be screened for depression when systems exist to treat it. A severe score needs prompt treatment, not a distant referral."
+    },
+    "diagram": {
+      "file": "svg/usmle3-048.svg",
+      "alt": "Text card. Do not leave a severe score for three months."
+    }
+  },
+  {
+    "id": "usmle3-049",
+    "system": "Musculoskeletal",
+    "task_area": "Advanced clinical medicine: musculoskeletal system",
+    "front": "Acute low back pain for four days. No fever, no cancer history, no weakness, no bladder symptoms. An MRI and an opioid are ordered.",
+    "bottom": "Neither is the first move.",
+    "bullets": {
+      "clue": "Red flags are missing. Imaging does not speed recovery and finds irrelevant changes.",
+      "treat": "Stay active, use nonopioid pain care, and explain the course. Image if a red flag appears or the pain is not following the usual path.",
+      "trap": "An MRI on day four and a long-acting opioid."
+    },
+    "source": {
+      "guideline": "ACP low back pain guideline",
+      "year": "2017",
+      "url": "https://www.acponline.org/",
+      "recommendation": "Acute low back pain without red flags is treated with activity and nonopioid care. Routine early MRI is not indicated."
+    },
+    "diagram": {
+      "file": "svg/usmle3-049.svg",
+      "alt": "Text card. Neither is the first move."
+    }
+  },
+  {
+    "id": "usmle3-050",
+    "system": "Musculoskeletal",
+    "task_area": "Advanced clinical medicine: musculoskeletal system",
+    "front": "Knee pain for years, worse with stairs, no hot joint and no injury. The film shows joint-space loss. Surgery is the first offer.",
+    "bottom": "Exercise and weight loss come before a replacement conversation.",
+    "bullets": {
+      "clue": "A topical anti-inflammatory is kinder to an older stomach than a standing oral one.",
+      "treat": "A strengthening program, weight loss if needed, and a topical anti-inflammatory. Replacement is for function that remains unacceptable.",
+      "trap": "Scheduling a replacement from the first film."
+    },
+    "source": {
+      "guideline": "ACR/AF osteoarthritis guideline",
+      "year": "2019",
+      "url": "https://rheumatology.org/",
+      "recommendation": "Knee osteoarthritis starts with exercise, weight loss, and topical anti-inflammatory therapy. Replacement is later."
+    },
+    "diagram": {
+      "file": "svg/usmle3-050.svg",
+      "alt": "Text card. Exercise and weight loss come before a replacement conversation."
+    }
+  },
+  {
+    "id": "usmle3-051",
+    "system": "Neurologic",
+    "task_area": "Advanced clinical medicine: nervous system and special senses",
+    "front": "Brief spinning only when rolling over in bed, lasting under a minute, with no hearing loss and no neurologic deficit.",
+    "bottom": "This is loose crystal in the canal. Do the repositioning maneuver.",
+    "bullets": {
+      "clue": "The Dix-Hallpike test reproduces it. An Epley maneuver treats the common canal.",
+      "treat": "Reposition the crystal. Do not order a head CT for a classic positional story.",
+      "trap": "Meclizine for a month and a CT."
+    },
+    "source": {
+      "guideline": "AAN benign paroxysmal positional vertigo guideline",
+      "year": "2017",
+      "url": "https://www.aan.com/",
+      "recommendation": "Brief positional vertigo is treated with a canalith repositioning maneuver. Imaging is not the first step."
+    },
+    "diagram": {
+      "file": "svg/usmle3-051.svg",
+      "alt": "Text card. This is loose crystal in the canal. Do the repositioning maneuver."
+    }
+  },
+  {
+    "id": "usmle3-052",
+    "system": "Neurologic",
+    "task_area": "Advanced clinical medicine: nervous system and special senses",
+    "front": "Headache days have climbed past four a month and the patient is missing work. The only prescription is a triptan. The patient also has coronary disease.",
+    "bottom": "Add prevention, and do not use a triptan in coronary disease.",
+    "bullets": {
+      "clue": "Frequent or disabling migraine deserves a preventive drug. Triptans constrict vessels.",
+      "treat": "Start a preventive and choose an acute drug that is safe for the heart.",
+      "trap": "A triptan refill as the whole plan in a patient with coronary disease."
+    },
+    "source": {
+      "guideline": "AHS migraine guidance",
+      "year": "2021",
+      "url": "https://americanheadachesociety.org/",
+      "recommendation": "Frequent disabling migraine needs prevention. Triptans are avoided in coronary artery disease."
+    },
+    "diagram": {
+      "file": "svg/usmle3-052.svg",
+      "alt": "Text card. Add prevention, and do not use a triptan in coronary disease."
+    }
+  },
+  {
+    "id": "usmle3-053",
+    "system": "Neurologic",
+    "task_area": "Advanced clinical medicine: nervous system and special senses",
+    "front": "Sudden painless loss of vision in one eye. The retina is pale and the macula looks like a cherry-red spot.",
+    "bottom": "Treat this as a stroke of the eye, today.",
+    "bullets": {
+      "clue": "A central retinal artery occlusion is an ischemic stroke equivalent.",
+      "treat": "Emergency stroke evaluation, not an eye clinic next month.",
+      "trap": "An outpatient ophthalmology appointment next week."
+    },
+    "source": {
+      "guideline": "AHA scientific statement on retinal artery occlusion",
+      "year": "2021",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Central retinal artery occlusion is evaluated as a stroke equivalent in an emergency setting."
+    },
+    "diagram": {
+      "file": "svg/usmle3-053.svg",
+      "alt": "Text card. Treat this as a stroke of the eye, today."
+    }
+  },
+  {
+    "id": "usmle3-054",
+    "system": "Ophthalmology",
+    "task_area": "Advanced clinical medicine: nervous system and special senses",
+    "front": "A red eye hurts, the pupil is small, and light makes the pain much worse. Vision is blurred.",
+    "bottom": "This is not conjunctivitis. Same-day eye care.",
+    "bullets": {
+      "clue": "Pain, photophobia, and a small pupil suggest uveitis, ulcer, or acute glaucoma. Itch and discharge suggest conjunctivitis.",
+      "treat": "Urgent ophthalmology. Do not send an antibiotic drop and a week of waiting.",
+      "trap": "Erythromycin ointment for every red eye."
+    },
+    "source": {
+      "guideline": "AAO red eye guidance",
+      "year": "2018",
+      "url": "https://www.aao.org/",
+      "recommendation": "A painful red eye with photophobia or blurred vision needs same-day ophthalmology, not routine conjunctivitis care."
+    },
+    "diagram": {
+      "file": "svg/usmle3-054.svg",
+      "alt": "Text card. This is not conjunctivitis. Same-day eye care."
+    }
+  },
+  {
+    "id": "usmle3-055",
+    "system": "Musculoskeletal",
+    "task_area": "Advanced clinical medicine: endocrine system",
+    "front": "A 70-year-old breaks a hip after tripping on a rug. A density test has never been done. The discharge summary mentions the hardware and not the bone.",
+    "bottom": "Treat the fragility fracture. Do not wait for a density score to call it osteoporosis.",
+    "bullets": {
+      "clue": "A hip fracture from standing height is the diagnosis of fragility.",
+      "treat": "Start osteoporosis therapy and fall prevention around the admission. A density test can refine the choice. It should not delay the recognition.",
+      "trap": "A plan to discuss the bone at the annual visit next year."
+    },
+    "source": {
+      "guideline": "AACE/ACE osteoporosis guideline",
+      "year": "2020",
+      "url": "https://www.aace.com/",
+      "recommendation": "A fragility hip fracture is treated as osteoporosis. Waiting a year for a density test misses the indication."
+    },
+    "diagram": {
+      "file": "svg/usmle3-055.svg",
+      "alt": "Text card. Treat the fragility fracture. Do not wait for a density score to call it osteoporosis."
+    }
+  },
+  {
+    "id": "usmle3-056",
+    "system": "Reproductive",
+    "task_area": "Advanced clinical medicine: female reproductive system",
+    "front": "A 32-year-old with migraine that includes aura asks for a combined estrogen pill.",
+    "bottom": "Do not use estrogen. The aura is the contraindication.",
+    "bullets": {
+      "clue": "Aura plus estrogen raises stroke risk. A progestin-only method or a nonhormonal method is appropriate.",
+      "treat": "Offer a progestin-only pill, an implant, an injection, or a device. Document the aura.",
+      "trap": "A combined pill because the migraines are infrequent."
+    },
+    "source": {
+      "guideline": "CDC Medical Eligibility Criteria for contraception",
+      "year": "2024",
+      "url": "https://www.cdc.gov/contraception/",
+      "recommendation": "Migraine with aura is a contraindication to combined hormonal contraception because of stroke risk."
+    },
+    "diagram": {
+      "file": "svg/usmle3-056.svg",
+      "alt": "Text card. Do not use estrogen. The aura is the contraindication."
+    }
+  },
+  {
+    "id": "usmle3-057",
+    "system": "Reproductive",
+    "task_area": "Advanced clinical medicine: female reproductive system",
+    "front": "Unprotected intercourse was four days ago. The patient wants to prevent a pregnancy and was told it is too late for anything.",
+    "bottom": "It is not too late for every method.",
+    "bullets": {
+      "clue": "A copper intrauterine device is the most effective option and works later than the pills. Ulipristal reaches further than levonorgestrel.",
+      "treat": "Offer the method that still fits the interval, ideally the device if the patient wants it.",
+      "trap": "Sending the patient away at 96 hours with no options."
+    },
+    "source": {
+      "guideline": "CDC emergency contraception",
+      "year": "2024",
+      "url": "https://www.cdc.gov/contraception/",
+      "recommendation": "Emergency contraception options depend on the interval. A copper IUD remains effective later than oral levonorgestrel."
+    },
+    "diagram": {
+      "file": "svg/usmle3-057.svg",
+      "alt": "Text card. It is not too late for every method."
+    }
+  },
+  {
+    "id": "usmle3-058",
+    "system": "Reproductive",
+    "task_area": "Advanced clinical medicine: pregnancy, childbirth, and the puerperium",
+    "front": "A patient had a negative HIV and syphilis test in a prior pregnancy three years ago. This is a new pregnancy. No labs are drawn because the old ones were fine.",
+    "bottom": "Test again. Every pregnancy is tested.",
+    "bullets": {
+      "clue": "Incidence during the interval is the point of repeating the tests.",
+      "treat": "HIV, syphilis, hepatitis B, blood type, and antibody screen in this pregnancy.",
+      "trap": "Carrying forward a three-year-old negative result."
+    },
+    "source": {
+      "guideline": "CDC and ACOG prenatal laboratory guidance",
+      "year": "2024",
+      "url": "https://www.cdc.gov/hiv/",
+      "recommendation": "HIV and syphilis testing are recommended in every pregnancy, not only the first one."
+    },
+    "diagram": {
+      "file": "svg/usmle3-058.svg",
+      "alt": "Text card. Test again. Every pregnancy is tested."
+    }
+  },
+  {
+    "id": "usmle3-059",
+    "system": "Reproductive",
+    "task_area": "Advanced clinical medicine: pregnancy, childbirth, and the puerperium",
+    "front": "A patient delivers and wants an intrauterine device. She is told to wait six weeks even though the delivery was uncomplicated and there is no infection.",
+    "bottom": "It can be placed before she leaves, if she wants that.",
+    "bullets": {
+      "clue": "Immediate postpartum placement is safe and prevents the gap when contraception is missing.",
+      "treat": "Offer immediate placement or a planned interval placement. Do not invent a mandatory six-week wait.",
+      "trap": "A blanket six-week delay."
+    },
+    "source": {
+      "guideline": "ACOG postpartum contraception",
+      "year": "2016",
+      "url": "https://www.acog.org/clinical",
+      "recommendation": "An intrauterine device may be placed immediately after birth when infection and other contraindications are absent."
+    },
+    "diagram": {
+      "file": "svg/usmle3-059.svg",
+      "alt": "Text card. It can be placed before she leaves, if she wants that."
+    }
+  },
+  {
+    "id": "usmle3-060",
+    "system": "Reproductive",
+    "task_area": "Advanced clinical medicine: female reproductive system",
+    "front": "A breastfeeding patient has a tender, red, wedge-shaped area on one breast and a fever. She is told to stop nursing on that side until the antibiotic is done.",
+    "bottom": "Keep emptying the breast, including by nursing.",
+    "bullets": {
+      "clue": "Stopping leads to a worse obstruction. An antibiotic is added when infection is present. The infant can keep feeding.",
+      "treat": "Effective milk removal, rest, and an antibiotic compatible with nursing if there are infectious signs.",
+      "trap": "Binding the breast and discarding the milk."
+    },
+    "source": {
+      "guideline": "Academy of Breastfeeding Medicine mastitis protocol",
+      "year": "2022",
+      "url": "https://www.bfmed.org/",
+      "recommendation": "Mastitis is treated with continued milk removal. Nursing does not stop."
+    },
+    "diagram": {
+      "file": "svg/usmle3-060.svg",
+      "alt": "Text card. Keep emptying the breast, including by nursing."
+    }
+  },
+  {
+    "id": "usmle3-061",
+    "system": "Pediatrics",
+    "task_area": "Advanced clinical medicine: multisystem processes",
+    "front": "A 3-day-old is yellow, feeding well, and otherwise normal. The bilirubin number is handed to you without the age in hours.",
+    "bottom": "Plot it against hours of age. A bare number is not a decision.",
+    "bullets": {
+      "clue": "Treatment lines depend on age in hours and gestational age. A 3-day-old is not a 3-hour-old.",
+      "treat": "Use the hour-specific threshold. Feed frequently and recheck. Do not jump to exchange transfusion for a number below the line.",
+      "trap": "Treating every bilirubin over 10 the same way."
+    },
+    "source": {
+      "guideline": "AAP neonatal hyperbilirubinemia guideline",
+      "year": "2022",
+      "url": "https://www.aap.org/",
+      "recommendation": "Phototherapy thresholds are hour-specific and gestation-specific. A bilirubin value without age cannot be interpreted."
+    },
+    "diagram": {
+      "file": "svg/usmle3-061.svg",
+      "alt": "Text card. Plot it against hours of age. A bare number is not a decision."
+    }
+  },
+  {
+    "id": "usmle3-062",
+    "system": "Pediatrics",
+    "task_area": "Foundations of independent practice: population health",
+    "front": "A newborn screen is reported as positive for a metabolic disease. The infant looks well. The family is about to be told the child has the disease.",
+    "bottom": "A positive screen is not a diagnosis.",
+    "bullets": {
+      "clue": "Screens are set to be sensitive. Confirmatory testing decides.",
+      "treat": "Tell the family it is a screen, expedite the confirmatory test, and do not label the child yet.",
+      "trap": "A definitive diagnosis from the screening card."
+    },
+    "source": {
+      "guideline": "ACMG newborn screening principles",
+      "year": "2022",
+      "url": "https://www.acmg.net/",
+      "recommendation": "Newborn screening positives require confirmatory testing. They are not diagnoses."
+    },
+    "diagram": {
+      "file": "svg/usmle3-062.svg",
+      "alt": "Text card. A positive screen is not a diagnosis."
+    }
+  },
+  {
+    "id": "usmle3-063",
+    "system": "Pediatrics",
+    "task_area": "Foundations of independent practice: population health",
+    "front": "An 18-month-old is in clinic for a viral cold. No developmental screen has been done at this visit or the last.",
+    "bottom": "Screen development at 18 months, including autism, even though the visit was for a cold.",
+    "bullets": {
+      "clue": "The 18-month and 24-month visits are the autism-screening points.",
+      "treat": "Do the screen at this visit or book it within days. A cold is not a reason to skip it for a year.",
+      "trap": "Waiting until kindergarten."
+    },
+    "source": {
+      "guideline": "AAP developmental surveillance",
+      "year": "2020",
+      "url": "https://www.aap.org/",
+      "recommendation": "Autism-specific screening is recommended at 18 and 24 months, including at visits that start with another complaint."
+    },
+    "diagram": {
+      "file": "svg/usmle3-063.svg",
+      "alt": "Text card. Screen development at 18 months, including autism, even though the visit was for a cold."
+    }
+  },
+  {
+    "id": "usmle3-064",
+    "system": "Pediatrics",
+    "task_area": "Advanced clinical medicine: behavioral health",
+    "front": "A 7-year-old is fidgety in the office. A stimulant is prescribed at the first visit. No teacher report and no home criteria are documented.",
+    "bottom": "Do not start a stimulant on one observation.",
+    "bullets": {
+      "clue": "The diagnosis needs symptoms in more than one setting, impairment, and the criteria. The office snapshot is not that.",
+      "treat": "Collect home and school reports, rule out sleep and learning problems, and then decide.",
+      "trap": "A stimulant because the child would not sit still for the exam."
+    },
+    "source": {
+      "guideline": "AAP ADHD guideline",
+      "year": "2019",
+      "url": "https://www.aap.org/",
+      "recommendation": "ADHD is diagnosed from criteria across more than one setting. A single office observation is not enough to start a stimulant."
+    },
+    "diagram": {
+      "file": "svg/usmle3-064.svg",
+      "alt": "Text card. Do not start a stimulant on one observation."
+    }
+  },
+  {
+    "id": "usmle3-065",
+    "system": "Pediatrics",
+    "task_area": "Foundations of independent practice: communication",
+    "front": "A 16-year-old is seen with a parent for a sports form. The whole interview happens with the parent in the room, including questions about sex and substances.",
+    "bottom": "Spend part of the visit with the adolescent alone.",
+    "bullets": {
+      "clue": "Confidential care for sensitive services is what makes the history true. Safety issues are still shared.",
+      "treat": "Ask the parent to step out for a portion. Explain what will and will not be kept private.",
+      "trap": "A complete interview conducted only in front of the parent."
+    },
+    "source": {
+      "guideline": "AAP adolescent confidential care",
+      "year": "2016",
+      "url": "https://www.aap.org/",
+      "recommendation": "Adolescents should be interviewed alone for part of each visit so sensitive care can be delivered safely."
+    },
+    "diagram": {
+      "file": "svg/usmle3-065.svg",
+      "alt": "Text card. Spend part of the visit with the adolescent alone."
+    }
+  },
+  {
+    "id": "usmle3-066",
+    "system": "Emergency",
+    "task_area": "Advanced clinical medicine: immune system",
+    "front": "A child has a fever and a rash that does not blanch. They are limp and cold at the edges.",
+    "bottom": "Treat meningococcal disease now. Do not wait for the rash to look classic.",
+    "bullets": {
+      "clue": "Non-blanching rash plus toxicity is enough. The lumbar puncture must not delay the antibiotic.",
+      "treat": "Antibiotics, resuscitation, and then the confirmatory studies.",
+      "trap": "A viral-illness handout for a non-blanching rash in a toxic child."
+    },
+    "source": {
+      "guideline": "CDC meningococcal disease guidance",
+      "year": "2024",
+      "url": "https://www.cdc.gov/meningococcal/",
+      "recommendation": "Fever, a non-blanching rash, and toxicity are treated immediately as invasive meningococcal disease."
+    },
+    "diagram": {
+      "file": "svg/usmle3-066.svg",
+      "alt": "Steps. Treat meningococcal disease now. Do not wait for the rash to look classic."
+    }
+  },
+  {
+    "id": "usmle3-067",
+    "system": "Ethics",
+    "task_area": "Foundations of independent practice: systems-based practice",
+    "front": "A colleague is seeing patients while visibly impaired. The schedule is full, and covering the impairment would keep the clinic moving.",
+    "bottom": "Act to protect the patients. Do not quietly cover the shift.",
+    "bullets": {
+      "clue": "The duty is to the patients in front of an impaired colleague, and to a process that gets the colleague help.",
+      "treat": "Remove them from patient care and report through the institutional path.",
+      "trap": "Seeing their patients for them and telling no one."
+    },
+    "source": {
+      "guideline": "AMA Code of Medical Ethics on physician impairment",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/",
+      "recommendation": "Physicians must intervene when a colleague's impairment threatens patients. Quiet coverage is not the duty."
+    },
+    "diagram": {
+      "file": "svg/usmle3-067.svg",
+      "alt": "Text card. Act to protect the patients. Do not quietly cover the shift."
+    }
+  },
+  {
+    "id": "usmle3-068",
+    "system": "Ethics",
+    "task_area": "Foundations of independent practice: communication",
+    "front": "A patient asks you to sign a disability form stating they cannot work, when your exam and the records show they can.",
+    "bottom": "Decline. The form has to be true.",
+    "bullets": {
+      "clue": "Advocacy does not include a false statement. You can describe what you actually found.",
+      "treat": "Explain what you can certify, offer appropriate care, and do not sign a statement you know is false.",
+      "trap": "Signing so the patient will not be upset."
+    },
+    "source": {
+      "guideline": "AMA Code of Medical Ethics on honesty",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/",
+      "recommendation": "Physicians do not certify facts they know to be false, including disability statements."
+    },
+    "diagram": {
+      "file": "svg/usmle3-068.svg",
+      "alt": "Text card. Decline. The form has to be true."
+    }
+  },
+  {
+    "id": "usmle3-069",
+    "system": "Pharmacology",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "An older adult takes an SSRI and asks for a standing nonsteroidal drug for osteoarthritis. They have already had one stomach bleed.",
+    "bottom": "Do not add that combination.",
+    "bullets": {
+      "clue": "Age, an SSRI, a prior bleed, and a nonsteroidal drug multiply the bleeding risk.",
+      "treat": "Use a topical anti-inflammatory, acetaminophen, or another plan. If a nonsteroidal drug is unavoidable, protect the stomach and limit the time.",
+      "trap": "Ibuprofen around the clock on top of the SSRI after a prior bleed."
+    },
+    "source": {
+      "guideline": "AGS Beers Criteria",
+      "year": "2023",
+      "url": "https://www.americangeriatrics.org/",
+      "recommendation": "Nonsteroidal drugs plus SSRIs in older adults raise gastrointestinal bleeding risk, especially after a prior bleed."
+    },
+    "diagram": {
+      "file": "svg/usmle3-069.svg",
+      "alt": "Text card. Do not add that combination."
+    }
+  },
+  {
+    "id": "usmle3-070",
+    "system": "Hematologic",
+    "task_area": "Advanced clinical medicine: cardiovascular system",
+    "front": "Ten days after a coronary stent the patient wants both antiplatelet drugs stopped for a dental cleaning.",
+    "bottom": "Do not stop both. The stent is young.",
+    "bullets": {
+      "clue": "Aspirin continues. Elective procedures wait until the minimum dual-therapy window has passed. A cleaning rarely needs both drugs off.",
+      "treat": "Talk to cardiology before any interruption. Continue aspirin.",
+      "trap": "Holding aspirin and the P2Y12 inhibitor on day 10."
+    },
+    "source": {
+      "guideline": "ACC/AHA coronary revascularization guideline",
+      "year": "2021",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Dual antiplatelet therapy is not stopped in the early weeks after a stent for a routine dental cleaning."
+    },
+    "diagram": {
+      "file": "svg/usmle3-070.svg",
+      "alt": "Text card. Do not stop both. The stent is young."
+    }
+  },
+  {
+    "id": "usmle3-071",
+    "system": "Hematologic",
+    "task_area": "Advanced clinical medicine: hematologic system",
+    "front": "The INR is 12. The patient feels well, the gums are not bleeding, and there is no head injury.",
+    "bottom": "Hold warfarin and give oral vitamin K. Do not transfuse plasma for a number.",
+    "bullets": {
+      "clue": "Plasma is for serious bleeding. A high INR without bleeding is reversed more gently.",
+      "treat": "Oral vitamin K and a recheck. Resume warfarin at a lower dose when the INR is back in range.",
+      "trap": "Fresh frozen plasma because the INR looks extreme and the patient feels fine."
+    },
+    "source": {
+      "guideline": "ASH warfarin reversal guideline",
+      "year": "2018",
+      "url": "https://www.hematology.org/",
+      "recommendation": "For an INR above 10 without bleeding, oral vitamin K is suggested. Plasma is reserved for major bleeding."
+    },
+    "diagram": {
+      "file": "svg/usmle3-071.svg",
+      "alt": "Text card. Hold warfarin and give oral vitamin K. Do not transfuse plasma for a number."
+    }
+  },
+  {
+    "id": "usmle3-072",
+    "system": "Pharmacology",
+    "task_area": "Foundations of independent practice: medication use",
+    "front": "A patient on a twice-daily direct oral anticoagulant remembers the morning dose at dinner time, an hour before the evening dose.",
+    "bottom": "Skip the missed morning dose. Do not double up.",
+    "bullets": {
+      "clue": "If the miss is noticed well before the next dose, it can be taken. Close to the next dose, skip it.",
+      "treat": "Take the evening dose on time. Never take two doses at once to catch up.",
+      "trap": "Two tablets tonight to make up the morning."
+    },
+    "source": {
+      "guideline": "ACC expert consensus on direct oral anticoagulants",
+      "year": "2020",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "A missed direct oral anticoagulant dose is taken when remembered unless it is close to the next dose. Doses are not doubled."
+    },
+    "diagram": {
+      "file": "svg/usmle3-072.svg",
+      "alt": "Text card. Skip the missed morning dose. Do not double up."
+    }
+  },
+  {
+    "id": "usmle3-073",
+    "system": "Cardiovascular",
+    "task_area": "Foundations of independent practice: perioperative care",
+    "front": "An ACE inhibitor for uncomplicated hypertension is written as take on the morning of surgery with a sip of water.",
+    "bottom": "Hold it that morning.",
+    "bullets": {
+      "clue": "These drugs raise the chance of low pressure after induction. A beta blocker the patient already takes is the drug you continue.",
+      "treat": "Hold the ACE inhibitor or angiotensin receptor blocker the morning of surgery unless heart failure makes the team decide otherwise.",
+      "trap": "Giving every blood pressure pill on the morning of surgery, including the ACE inhibitor."
+    },
+    "source": {
+      "guideline": "ACC/AHA perioperative cardiovascular guideline",
+      "year": "2024",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "ACE inhibitors and angiotensin receptor blockers are often held the morning of surgery because of intraoperative hypotension."
+    },
+    "diagram": {
+      "file": "svg/usmle3-073.svg",
+      "alt": "Text card. Hold it that morning."
+    }
+  },
+  {
+    "id": "usmle3-074",
+    "system": "Prevention",
+    "task_area": "Foundations of independent practice: population health",
+    "front": "A healthy 52-year-old has never received a pneumococcal vaccine and is in clinic for a blood pressure check.",
+    "bottom": "Give a pneumococcal conjugate vaccine. Fifty is the age.",
+    "bullets": {
+      "clue": "The adult schedule lowered the routine age to 50. A visit for something else is still a vaccine visit.",
+      "treat": "One conjugate vaccine per the current schedule, and document it. Do not wait for the 65th birthday.",
+      "trap": "Telling the patient to come back at 65."
+    },
+    "source": {
+      "guideline": "CDC adult immunization schedule",
+      "year": "2025",
+      "url": "https://www.cdc.gov/vaccines/",
+      "recommendation": "ACIP recommends a pneumococcal conjugate vaccine for adults 50 and older. Confirm the current schedule before the feed is shown to students."
+    },
+    "diagram": {
+      "file": "svg/usmle3-074.svg",
+      "alt": "Text card. Give a pneumococcal conjugate vaccine. Fifty is the age."
+    }
+  },
+  {
+    "id": "usmle3-075",
+    "system": "Prevention",
+    "task_area": "Foundations of independent practice: population health",
+    "front": "A patient with hives after eating eggs asks whether they can receive the influenza vaccine.",
+    "bottom": "Yes. Egg allergy is not a contraindication.",
+    "bullets": {
+      "clue": "Any age-appropriate influenza vaccine can be used. A history of hives, or even a more severe egg reaction, is not a reason to skip it.",
+      "treat": "Vaccinate with the usual vaccine and observe as you would any patient. The only refusal is a severe reaction to a prior dose of the vaccine itself.",
+      "trap": "Sending the patient away every autumn because of an egg allergy."
+    },
+    "source": {
+      "guideline": "CDC influenza vaccine guidance",
+      "year": "2025",
+      "url": "https://www.cdc.gov/flu/",
+      "recommendation": "Egg allergy of any severity is not a contraindication to influenza vaccination."
+    },
+    "diagram": {
+      "file": "svg/usmle3-075.svg",
+      "alt": "Text card. Yes. Egg allergy is not a contraindication."
+    }
+  },
+  {
+    "id": "usmle3-076",
+    "system": "Neurologic",
+    "task_area": "Foundations of independent practice: systems-based practice",
+    "front": "A patient had a seizure yesterday. They ask if they may drive to work tomorrow and whether you will keep the seizure off any report.",
+    "bottom": "They may not drive. Follow your state's reporting rule.",
+    "bullets": {
+      "clue": "The seizure-free interval is set by the state. Some states require the physician to report. Some put the duty on the driver.",
+      "treat": "Tell the patient not to drive, document the advice, and report if your state requires it. Do not promise secrecy you cannot keep.",
+      "trap": "A private suggestion to be careful, with no mention of the law."
+    },
+    "source": {
+      "guideline": "AAN and state driver-licensing principles",
+      "year": "2017",
+      "url": "https://www.aan.com/",
+      "recommendation": "After a seizure the patient does not drive until the legal seizure-free interval is met, and state reporting rules are followed."
+    },
+    "diagram": {
+      "file": "svg/usmle3-076.svg",
+      "alt": "Text card. They may not drive. Follow your state's reporting rule."
+    }
+  },
+  {
+    "id": "usmle3-077",
+    "system": "Ethics",
+    "task_area": "Foundations of independent practice: systems-based practice",
+    "front": "An older adult has bruises in different stages and flinches when the caregiver is asked to step out. The caregiver says the patient falls a lot.",
+    "bottom": "Report suspected abuse. Do not investigate it yourself first.",
+    "bullets": {
+      "clue": "A vulnerable adult with an inconsistent story is reported to adult protective services.",
+      "treat": "Make the report, treat the injuries, and document the findings. You do not need proof.",
+      "trap": "Waiting until you are sure, or confronting the caregiver as your only action."
+    },
+    "source": {
+      "guideline": "Elder Justice and APS reporting standards",
+      "year": "2020",
+      "url": "https://www.cdc.gov/elder-abuse/",
+      "recommendation": "Suspected abuse of a vulnerable adult is reported. Certainty is not required."
+    },
+    "diagram": {
+      "file": "svg/usmle3-077.svg",
+      "alt": "Text card. Report suspected abuse. Do not investigate it yourself first."
+    }
+  },
+  {
+    "id": "usmle3-078",
+    "system": "Pediatrics",
+    "task_area": "Foundations of independent practice: systems-based practice",
+    "front": "A toddler has a spiral fracture of the femur. The story is that the child rolled off a couch. The exam shows older bruises the story does not explain.",
+    "bottom": "Report suspected abuse.",
+    "bullets": {
+      "clue": "The fracture and the story do not match, and there are older injuries.",
+      "treat": "Treat the fracture, report to child protective services, and do not send the child home to the same unexplained risk.",
+      "trap": "Accepting the couch story because spiral fractures can sometimes be accidental."
+    },
+    "source": {
+      "guideline": "AAP child abuse pediatrics guidance",
+      "year": "2015",
+      "url": "https://www.aap.org/",
+      "recommendation": "Injuries that do not match the developmental story, especially with older unexplained bruises, are reported as suspected abuse."
+    },
+    "diagram": {
+      "file": "svg/usmle3-078.svg",
+      "alt": "Text card. Report suspected abuse."
+    }
+  },
+  {
+    "id": "usmle3-079",
+    "system": "Perioperative",
+    "task_area": "Foundations of independent practice: perioperative care",
+    "front": "A person who can become pregnant is scheduled for elective surgery next week. The last menstrual period is not in the chart. No pregnancy test is ordered.",
+    "bottom": "Test before the operation.",
+    "bullets": {
+      "clue": "Elective surgery and anesthesia in an unrecognized pregnancy are avoidable.",
+      "treat": "A pregnancy test after consent, or a documented reason it was declined. Do not discover the pregnancy in the operating room.",
+      "trap": "Proceeding because the patient says they are probably not pregnant."
+    },
+    "source": {
+      "guideline": "ASA pregnancy testing before anesthesia",
+      "year": "2021",
+      "url": "https://www.asahq.org/",
+      "recommendation": "Patients who could be pregnant are offered pregnancy testing before elective anesthesia."
+    },
+    "diagram": {
+      "file": "svg/usmle3-079.svg",
+      "alt": "Text card. Test before the operation."
+    }
+  },
+  {
+    "id": "usmle3-080",
+    "system": "Pulmonary",
+    "task_area": "Foundations of independent practice: perioperative care",
+    "front": "A patient with known obstructive sleep apnea is coming for surgery. Their machine is at home. The recovery order says oxygen by nasal cannula only.",
+    "bottom": "Bring the machine and use it after surgery.",
+    "bullets": {
+      "clue": "The danger is the hours after anesthesia, when sedatives and opioids meet an untreated airway.",
+      "treat": "Have the patient bring their device, use it in recovery, and limit the sedatives.",
+      "trap": "Discovering the apnea after a desaturation in the recovery room."
+    },
+    "source": {
+      "guideline": "ASA obstructive sleep apnea perioperative guideline",
+      "year": "2014",
+      "url": "https://www.asahq.org/",
+      "recommendation": "Patients with obstructive sleep apnea should use their positive-airway-pressure device in the perioperative period."
+    },
+    "diagram": {
+      "file": "svg/usmle3-080.svg",
+      "alt": "Text card. Bring the machine and use it after surgery."
+    }
+  }
+]

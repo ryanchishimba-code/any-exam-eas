@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { loadStudyFeedCards, loadStudyFeedSvg, resetPanceFeedCardCache } from "@/lib/pance-feed/load-cards";
 import { STUDY_FEEDS, type StudyFeedExam } from "./catalog";
+import { USMLE_FEED_STEP_EXAMS, USMLE_STEP_FEEDS } from "./usmle-feed";
 
 const boards: StudyFeedExam[] = ["nclex", "naplex", "aanp-fnp"];
 
@@ -33,6 +34,32 @@ describe("board feed decks", () => {
       expect(card).not.toHaveProperty("topic");
       expect(card).not.toHaveProperty("verified");
       expect(card).not.toHaveProperty("recheck_note");
+    }
+  });
+
+  it.each(USMLE_FEED_STEP_EXAMS)("loads 80 hidden %s cards with outline tags and no pass promise", (exam) => {
+    resetPanceFeedCardCache();
+    const board = USMLE_STEP_FEEDS[exam];
+    const dir = path.join(process.cwd(), "content", board.contentDir, "cards");
+    const raw = fs
+      .readdirSync(dir)
+      .filter((name) => /^cards(?:-.+)?\.json$/.test(name))
+      .flatMap((name) => JSON.parse(fs.readFileSync(path.join(dir, name), "utf8")) as Record<string, unknown>[]);
+    const cards = loadStudyFeedCards(exam);
+    expect(cards).toHaveLength(80);
+    expect(cards[0]?.id).toBe(`${board.idPrefix}-001`);
+    expect(cards.at(-1)?.id).toBe(`${board.idPrefix}-080`);
+    const promise = /guaranteed|you will pass|pass the (?:exam|step|usmle)|pass rate/i;
+    for (const card of cards) {
+      const source = raw.find((row) => row.id === card.id);
+      expect(source).toBeTruthy();
+      expect(typeof source?.task_area).toBe("string");
+      expect((source?.task_area as string).length).toBeGreaterThan(8);
+      const citation = source?.source as { guideline: string; year: string; url: string; recommendation: string };
+      expect(citation.url).toMatch(/^https:\/\//);
+      expect(citation.recommendation.length).toBeGreaterThan(20);
+      expect(promise.test(`${card.front} ${card.bottom} ${card.bullets.clue}`)).toBe(false);
+      expect(loadStudyFeedSvg(exam, card.id)).toContain("<svg");
     }
   });
 

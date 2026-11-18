@@ -1,0 +1,1762 @@
+[
+  {
+    "id": "usmle2-001",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Crushing chest pain, and the tracing shows ST elevation in two neighboring leads. The first troponin has not come back.",
+    "bottom": "Reperfuse. Do not wait for the troponin.",
+    "bullets": {
+      "clue": "Contiguous ST elevation is already the decision. Troponin can still be normal in the first hour.",
+      "treat": "Give aspirin unless it is unsafe, and activate the reperfusion path.",
+      "trap": "Holding the patient in the emergency department for a second biomarker."
+    },
+    "source": {
+      "guideline": "AHA/ACC acute coronary syndrome guidance",
+      "year": "2025",
+      "url": "https://www.heart.org/",
+      "recommendation": "ST elevation in two contiguous leads is a reperfusion diagnosis. Biomarkers confirm injury later. They do not delay the first hour."
+    },
+    "diagram": {
+      "file": "svg/usmle2-001.svg",
+      "alt": "Text card. Reperfuse. Do not wait for the troponin."
+    }
+  },
+  {
+    "id": "usmle2-002",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "A patient in atrial fibrillation is hypotensive, cold, and having ischemic pain. The rate is very fast.",
+    "bottom": "Cardiovert. This rhythm is unstable.",
+    "bullets": {
+      "clue": "Instability means hypotension, ischemia, or pulmonary edema, not a number on the monitor alone.",
+      "treat": "Synchronized cardioversion is the immediate move. Rate-control pills are for the stable patient.",
+      "trap": "Starting a beta blocker and rechecking in an hour while the pressure is falling."
+    },
+    "source": {
+      "guideline": "ACC/AHA atrial fibrillation guideline",
+      "year": "2023",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Unstable atrial fibrillation is an electrical problem first. The 2023 guideline keeps cardioversion for instability."
+    },
+    "diagram": {
+      "file": "svg/usmle2-002.svg",
+      "alt": "Text card. Cardiovert. This rhythm is unstable."
+    }
+  },
+  {
+    "id": "usmle2-003",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Sudden tearing pain to the back, a missing pulse on one side, and a wide mediastinum. The tracing has no ST elevation.",
+    "bottom": "Control the heart rate, then the pressure, and repair an ascending tear.",
+    "bullets": {
+      "clue": "A beta blocker comes before a pure vasodilator so the heart does not race against a falling pressure.",
+      "treat": "Ascending aorta involvement is a surgical emergency. Do not give a clot-busting drug for the pain.",
+      "trap": "Treating the pain as a clot and thrombolysing a dissection."
+    },
+    "source": {
+      "guideline": "ACC/AHA aortic disease guideline",
+      "year": "2022",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Acute aortic syndrome is a pulse deficit and a mediastinum, not an ST-elevation equivalent. Rate control precedes vasodilation."
+    },
+    "diagram": {
+      "file": "svg/usmle2-003.svg",
+      "alt": "Text card. Control the heart rate, then the pressure, and repair an ascending tear."
+    }
+  },
+  {
+    "id": "usmle2-004",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Chest pain is better sitting and leaning forward. The tracing has ST elevation in many leads and depression of the PR segment.",
+    "bottom": "This is pericardial inflammation, not an occluded artery.",
+    "bullets": {
+      "clue": "The pain is positional. The ST elevation is widespread, and the PR segment is depressed.",
+      "treat": "An anti-inflammatory plus colchicine is the usual first plan when the story fits and the coronaries are not the question.",
+      "trap": "Sending a clot-busting drug for widespread ST elevation."
+    },
+    "source": {
+      "guideline": "ESC pericardial diseases guideline",
+      "year": "2015",
+      "url": "https://www.escardio.org/",
+      "recommendation": "Diffuse ST elevation with PR depression and positional pain is pericarditis. Colchicine reduces recurrence."
+    },
+    "diagram": {
+      "file": "svg/usmle2-004.svg",
+      "alt": "Text card. This is pericardial inflammation, not an occluded artery."
+    }
+  },
+  {
+    "id": "usmle2-005",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "A patient with a soft innocent murmur is scheduled for a dental cleaning and asks for an antibiotic.",
+    "bottom": "Most murmurs do not get prophylaxis.",
+    "bullets": {
+      "clue": "Prophylaxis is for the highest-risk hearts: a prosthetic valve, a prior infection of the valve, certain congenital repairs, and a transplant heart with valvulopathy.",
+      "treat": "Use it only for dental work that breaks gum or the tooth root in those patients. Ordinary gastrointestinal procedures do not qualify.",
+      "trap": "Prescribing a dental antibiotic for every click or murmur."
+    },
+    "source": {
+      "guideline": "AHA infective endocarditis prophylaxis",
+      "year": "2021",
+      "url": "https://www.heart.org/",
+      "recommendation": "The AHA limited prophylaxis to the highest-risk cardiac conditions and to procedures that manipulate gingival tissue."
+    },
+    "diagram": {
+      "file": "svg/usmle2-005.svg",
+      "alt": "Text card. Most murmurs do not get prophylaxis."
+    }
+  },
+  {
+    "id": "usmle2-006",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Calf pain comes on with walking and stops with rest. The foot is warm and intact. The ankle pressure is lower than the arm pressure.",
+    "bottom": "Treat the risk and walk, before you stent a stable leg.",
+    "bullets": {
+      "clue": "A low ankle-brachial index confirms the limited blood flow. The skin is not threatened.",
+      "treat": "Stop smoking, start a statin and an antiplatelet, and use a supervised walking program.",
+      "trap": "Stenting lifestyle-limiting claudication before risk-factor care and exercise."
+    },
+    "source": {
+      "guideline": "ACC/AHA lower extremity peripheral artery disease guideline",
+      "year": "2024",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Stable claudication is a medical and exercise disease first. Revascularization is for failure of that care or for a threatened limb."
+    },
+    "diagram": {
+      "file": "svg/usmle2-006.svg",
+      "alt": "Text card. Treat the risk and walk, before you stent a stable leg."
+    }
+  },
+  {
+    "id": "usmle2-007",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Blood pressure is 210 over 120. The patient has a headache but a normal exam, a normal creatinine, a normal tracing, and no chest pain.",
+    "bottom": "This is severe hypertension without acute organ injury.",
+    "bullets": {
+      "clue": "Emergency means acute damage: brain, heart, aorta, kidney, or eye ischemia. A number alone is not that.",
+      "treat": "Lower the pressure over hours to days with oral medicine and follow-up. Do not drop it in the parking lot.",
+      "trap": "Intravenous drips and a same-hour normalization because the number looks frightening."
+    },
+    "source": {
+      "guideline": "ACC/AHA high blood pressure guideline",
+      "year": "2025",
+      "url": "https://www.heart.org/",
+      "recommendation": "Hypertensive emergency is defined by acute target-organ injury. Severe pressure without injury is not treated with an immediate intravenous drop."
+    },
+    "diagram": {
+      "file": "svg/usmle2-007.svg",
+      "alt": "Text card. This is severe hypertension without acute organ injury."
+    }
+  },
+  {
+    "id": "usmle2-008",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "An older adult has exertional syncope, chest tightness, and a slow weak carotid upstroke. The valve area is critically small.",
+    "bottom": "Replace the valve. Medicine will not fix the opening.",
+    "bullets": {
+      "clue": "Syncope, angina, or heart-failure symptoms with severe stenosis mark a short horizon if the valve is left alone.",
+      "treat": "Refer for replacement or a transcatheter valve. Blood pressure pills do not open the orifice.",
+      "trap": "Watching a symptomatic severe stenosis for another year of medical therapy."
+    },
+    "source": {
+      "guideline": "ACC/AHA valvular heart disease guideline",
+      "year": "2020",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Symptomatic severe aortic stenosis is a valve problem. Afterload reduction does not replace opening the valve."
+    },
+    "diagram": {
+      "file": "svg/usmle2-008.svg",
+      "alt": "Text card. Replace the valve. Medicine will not fix the opening."
+    }
+  },
+  {
+    "id": "usmle2-009",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A patient who usually retains carbon dioxide is drowsy after an hour on a non-rebreather mask. The oxygen saturation is 100 percent.",
+    "bottom": "Turn the oxygen down and support the ventilation.",
+    "bullets": {
+      "clue": "The drive and the ventilation-perfusion match both change when a retainer is flooded with oxygen.",
+      "treat": "Aim the saturation near 88 to 92 percent and use noninvasive ventilation if carbon dioxide and pH are failing.",
+      "trap": "Leaving the mask on because the saturation looks perfect."
+    },
+    "source": {
+      "guideline": "GOLD report",
+      "year": "2025",
+      "url": "https://goldcopd.org/",
+      "recommendation": "Oxygen for a chronic retainer is titrated, not maximized. A normal saturation with a rising carbon dioxide is harm."
+    },
+    "diagram": {
+      "file": "svg/usmle2-009.svg",
+      "alt": "Text card. Turn the oxygen down and support the ventilation."
+    }
+  },
+  {
+    "id": "usmle2-010",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A well-appearing adult has a fever, a focal infiltrate, and a normal blood pressure, mental status, and respiratory rate. Age is under 65 and there is no confusion or high urea.",
+    "bottom": "Treat this pneumonia at home.",
+    "bullets": {
+      "clue": "A low CURB-65 or a low-risk severity class supports outpatient care.",
+      "treat": "Oral antibiotics and follow-up. Admission is for higher scores, hypoxia, or a social situation that cannot support care.",
+      "trap": "Admitting every infiltrate."
+    },
+    "source": {
+      "guideline": "IDSA/ATS community-acquired pneumonia guideline",
+      "year": "2019",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "Site of care follows severity, not the mere presence of an infiltrate. Low-risk patients are treated as outpatients."
+    },
+    "diagram": {
+      "file": "svg/usmle2-010.svg",
+      "alt": "Text card. Treat this pneumonia at home."
+    }
+  },
+  {
+    "id": "usmle2-011",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "Weeks of cough, night sweats, and a cavity in an upper lobe. The sputum stain is not back.",
+    "bottom": "Isolate for airborne spread now.",
+    "bullets": {
+      "clue": "The picture is enough to protect the next patient. The stain confirms later.",
+      "treat": "Airborne room, mask, and a public-health report. Do not wait on a negative rapid test to start isolation.",
+      "trap": "Leaving the patient in an open bay until the laboratory calls."
+    },
+    "source": {
+      "guideline": "CDC tuberculosis infection control",
+      "year": "2019",
+      "url": "https://www.cdc.gov/tb/",
+      "recommendation": "Suspected pulmonary tuberculosis is isolated on clinical grounds. Confirmation does not come before the mask."
+    },
+    "diagram": {
+      "file": "svg/usmle2-011.svg",
+      "alt": "Text card. Isolate for airborne spread now."
+    }
+  },
+  {
+    "id": "usmle2-012",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A tall thin young adult has sudden pleuritic pain and a small rim of air on the film. Speech is full sentences and the pressure is normal.",
+    "bottom": "Watch a small, stable primary pneumothorax.",
+    "bullets": {
+      "clue": "Oxygen speeds resorption. A large or breathless pneumothorax needs a drain.",
+      "treat": "Observation is for the small stable leak. A shifting trachea and shock is a different emergency.",
+      "trap": "Putting a chest tube in every visible line of air."
+    },
+    "source": {
+      "guideline": "British Thoracic Society pleural disease guideline",
+      "year": "2023",
+      "url": "https://www.brit-thoracic.org.uk/",
+      "recommendation": "Primary spontaneous pneumothorax that is small and stable can be observed. Size and physiology decide the drain."
+    },
+    "diagram": {
+      "file": "svg/usmle2-012.svg",
+      "alt": "Text card. Watch a small, stable primary pneumothorax."
+    }
+  },
+  {
+    "id": "usmle2-013",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "Pleural fluid protein is more than half the serum protein, and the fluid LDH is more than three-fifths of the serum LDH.",
+    "bottom": "The fluid is an exudate.",
+    "bullets": {
+      "clue": "An exudate means local pleural disease: infection, cancer, clot, or inflammation. A transudate means pressure or protein failure.",
+      "treat": "Look in the chest for the cause of an exudate. Do not stop at a diuretic for heart failure when the criteria say exudate.",
+      "trap": "Calling every effusion heart failure."
+    },
+    "source": {
+      "guideline": "Light criteria, as used in ATS pleural guidance",
+      "year": "2018",
+      "url": "https://www.thoracic.org/",
+      "recommendation": "Light criteria separate exudate from transudate. Protein ratio above 0.5, LDH ratio above 0.6, or pleural LDH above two-thirds the serum upper limit."
+    },
+    "diagram": {
+      "file": "svg/usmle2-013.svg",
+      "alt": "Text card. The fluid is an exudate."
+    }
+  },
+  {
+    "id": "usmle2-014",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "Fever, right-upper-quadrant pain, and jaundice. The pressure is falling.",
+    "bottom": "Drain the bile duct. Antibiotics alone will not empty it.",
+    "bullets": {
+      "clue": "The triad is cholangitis. Shock or confusion means the severe form.",
+      "treat": "Blood cultures, broad antibiotics, and urgent biliary decompression.",
+      "trap": "Admitting for antibiotics and planning a clinic endoscopy next week."
+    },
+    "source": {
+      "guideline": "ASGE biliary infection guidance",
+      "year": "2021",
+      "url": "https://www.asge.org/",
+      "recommendation": "Obstructive cholangitis needs source control of the duct, not antibiotics alone."
+    },
+    "diagram": {
+      "file": "svg/usmle2-014.svg",
+      "alt": "Text card. Drain the bile duct. Antibiotics alone will not empty it."
+    }
+  },
+  {
+    "id": "usmle2-015",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "Severe abdominal pain and a soft belly in a patient with atrial fibrillation. Lactate is rising.",
+    "bottom": "The bowel may be ischemic. Image the vessels.",
+    "bullets": {
+      "clue": "Pain out of proportion to the exam is the clue. Peritonitis is late.",
+      "treat": "CT angiography and surgical or endovascular rescue. Do not wait for guarding.",
+      "trap": "Reassuring a soft abdomen and sending the patient home."
+    },
+    "source": {
+      "guideline": "ACG and vascular surgical guidance on mesenteric ischemia",
+      "year": "2022",
+      "url": "https://gi.org/",
+      "recommendation": "Acute mesenteric ischemia presents before the belly becomes rigid. Lactate and atrial fibrillation raise the stakes."
+    },
+    "diagram": {
+      "file": "svg/usmle2-015.svg",
+      "alt": "Text card. The bowel may be ischemic. Image the vessels."
+    }
+  },
+  {
+    "id": "usmle2-016",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "Epigastric pain boring to the back, with lipase several times normal. The patient is not in shock and the diagnosis is not in doubt.",
+    "bottom": "Do not order a CT to prove what the lipase already showed.",
+    "bullets": {
+      "clue": "Early feeding as pain allows is better than days of nothing by mouth. Fluids are given, not drowned.",
+      "treat": "Save imaging for diagnostic doubt, deterioration, or a later complication.",
+      "trap": "Routine admission CT and a week of fasting."
+    },
+    "source": {
+      "guideline": "ACG acute pancreatitis guideline",
+      "year": "2024",
+      "url": "https://gi.org/",
+      "recommendation": "Lipase and the story diagnose uncomplicated pancreatitis. CT is for uncertainty or complications, and feeding starts early."
+    },
+    "diagram": {
+      "file": "svg/usmle2-016.svg",
+      "alt": "Text card. Do not order a CT to prove what the lipase already showed."
+    }
+  },
+  {
+    "id": "usmle2-017",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "More than six bloody stools a day, a fast heart, and a known history of continuous colonic inflammation from the rectum up.",
+    "bottom": "This severe flare needs the hospital, not a bigger outpatient dose.",
+    "bullets": {
+      "clue": "Exclude Clostridioides and cytomegalovirus before you blame the disease alone. Watch for a widening colon.",
+      "treat": "Intravenous steroid, stool studies, and a surgical conversation if the colon dilates or the patient does not turn.",
+      "trap": "Adding an outpatient mesalamine and reviewing in a week."
+    },
+    "source": {
+      "guideline": "ACG ulcerative colitis guideline",
+      "year": "2019",
+      "url": "https://gi.org/",
+      "recommendation": "Severe ulcerative colitis is an inpatient disease. Infection must be excluded, and toxic dilation is a surgical problem."
+    },
+    "diagram": {
+      "file": "svg/usmle2-017.svg",
+      "alt": "Text card. This severe flare needs the hospital, not a bigger outpatient dose."
+    }
+  },
+  {
+    "id": "usmle2-018",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "A pregnant patient has a very high hepatitis B viral load in the third trimester. The infant is not yet born.",
+    "bottom": "Lower the mother's virus before delivery, and protect the infant at birth.",
+    "bullets": {
+      "clue": "Antiviral therapy late in pregnancy cuts transmission when the load is high.",
+      "treat": "The newborn still needs vaccine and immunoglobulin. The maternal medicine does not replace that.",
+      "trap": "Waiting until delivery and treating only the infant."
+    },
+    "source": {
+      "guideline": "AASLD hepatitis B guidance",
+      "year": "2018",
+      "url": "https://www.aasld.org/",
+      "recommendation": "A high third-trimester viral load is treated to reduce perinatal transmission, and the infant still receives active and passive immunization."
+    },
+    "diagram": {
+      "file": "svg/usmle2-018.svg",
+      "alt": "Text card. Lower the mother's virus before delivery, and protect the infant at birth."
+    }
+  },
+  {
+    "id": "usmle2-019",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "A patient with known ascites has fever and a tender belly. The fluid has more than 250 neutrophils per microliter. The culture is pending.",
+    "bottom": "Treat infected ascites now.",
+    "bullets": {
+      "clue": "The neutrophil count is the decision. Culture is often still negative when you must start.",
+      "treat": "Antibiotics immediately, and albumin for the patients at highest kidney risk. Look for a cause such as a variceal bleed.",
+      "trap": "Waiting overnight for the culture before the first dose."
+    },
+    "source": {
+      "guideline": "AASLD ascites and spontaneous bacterial peritonitis guidance",
+      "year": "2021",
+      "url": "https://www.aasld.org/",
+      "recommendation": "Spontaneous bacterial peritonitis is diagnosed at 250 neutrophils and treated before culture returns."
+    },
+    "diagram": {
+      "file": "svg/usmle2-019.svg",
+      "alt": "Text card. Treat infected ascites now."
+    }
+  },
+  {
+    "id": "usmle2-020",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "Potassium is 7 with a wide QRS, and a dose of insulin and calcium has not held. Another patient is drowning in pulmonary edema that diuretics will not move.",
+    "bottom": "Dialyze for the complication, not for a creatinine target.",
+    "bullets": {
+      "clue": "Acid that will not clear, a toxic alcohol, uremic pericarditis, refractory potassium, and refractory fluid are the triggers.",
+      "treat": "Call renal replacement for those threats. A stable high creatinine can wait.",
+      "trap": "Dialyzing every doubled creatinine in a patient who is making urine and breathing easily."
+    },
+    "source": {
+      "guideline": "KDIGO acute kidney injury guideline",
+      "year": "2012",
+      "url": "https://kdigo.org/",
+      "recommendation": "Urgent dialysis follows complications: refractory hyperkalemia, overload, acidosis, certain toxins, and uremic emergencies."
+    },
+    "diagram": {
+      "file": "svg/usmle2-020.svg",
+      "alt": "Text card. Dialyze for the complication, not for a creatinine target."
+    }
+  },
+  {
+    "id": "usmle2-021",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "Heavy protein loss from membranous disease, an albumin that is very low, then sudden flank pain and blood in the urine.",
+    "bottom": "The renal vein may have clotted.",
+    "bullets": {
+      "clue": "Nephrotic syndrome, especially membranous, is a clotting state. The pain is the clot, not a new stone by default.",
+      "treat": "Image the vein and anticoagulate a clot. Prevent further dehydration.",
+      "trap": "Treating the pain as a ureteral stone and forgetting the protein loss."
+    },
+    "source": {
+      "guideline": "KDIGO glomerular diseases guideline",
+      "year": "2021",
+      "url": "https://kdigo.org/",
+      "recommendation": "Membranous nephropathy with severe hypoalbuminemia predisposes to renal vein thrombosis."
+    },
+    "diagram": {
+      "file": "svg/usmle2-021.svg",
+      "alt": "Text card. The renal vein may have clotted."
+    }
+  },
+  {
+    "id": "usmle2-022",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "Creatinine is up. Urine sodium is under 20, osmolality is high, and the sediment is bland. The patient has been vomiting for two days.",
+    "bottom": "The kidney is thirsty, not dead.",
+    "bullets": {
+      "clue": "A low fraction of excreted sodium and concentrated urine mean the tubules are working and holding salt.",
+      "treat": "Give volume and stop the offense. Muddy casts and a urine sodium over 40 point at tubular injury instead.",
+      "trap": "Starting dialysis for a dry patient with a bland sediment."
+    },
+    "source": {
+      "guideline": "KDIGO acute kidney injury guideline",
+      "year": "2012",
+      "url": "https://kdigo.org/",
+      "recommendation": "A low urine sodium and high osmolality with a bland sediment is prerenal physiology. Tubular injury wastes sodium."
+    },
+    "diagram": {
+      "file": "svg/usmle2-022.svg",
+      "alt": "Text card. The kidney is thirsty, not dead."
+    }
+  },
+  {
+    "id": "usmle2-023",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "Fever, a white count, and an obstructing ureteral stone on the scan. The patient is vomiting.",
+    "bottom": "Decompress the kidney. Do not trial passage.",
+    "bullets": {
+      "clue": "Infection behind an obstruction is a closed space. Antibiotics cannot drain it.",
+      "treat": "Urgent stent or nephrostomy, plus antibiotics. A comfortable patient with a small sterile stone is the one who may pass it.",
+      "trap": "Sending an infected obstructed kidney home with a strainer."
+    },
+    "source": {
+      "guideline": "AUA surgical management of stones",
+      "year": "2016",
+      "url": "https://www.auanet.org/",
+      "recommendation": "An obstructing stone plus infection is a drainage emergency. Passage is for the sterile, stable stone."
+    },
+    "diagram": {
+      "file": "svg/usmle2-023.svg",
+      "alt": "Text card. Decompress the kidney. Do not trial passage."
+    }
+  },
+  {
+    "id": "usmle2-024",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "A stable patient needs a contrast study that would change management tonight. The creatinine is only mildly above the old baseline.",
+    "bottom": "Do the study. Do not cancel a needed answer for a modest creatinine.",
+    "bullets": {
+      "clue": "Risk is reduced with volume in the patients who need it. The diagnosis can be more dangerous than the dye.",
+      "treat": "Proceed when the result matters. A purely elective study in severe kidney failure is a different conversation.",
+      "trap": "Refusing every contrast study once the creatinine is not perfect."
+    },
+    "source": {
+      "guideline": "ACR contrast media manual",
+      "year": "2024",
+      "url": "https://www.acr.org/",
+      "recommendation": "Needed iodinated contrast is not withheld for mild, stable kidney disease. The clinical question outweighs a small risk."
+    },
+    "diagram": {
+      "file": "svg/usmle2-024.svg",
+      "alt": "Text card. Do the study. Do not cancel a needed answer for a modest creatinine."
+    }
+  },
+  {
+    "id": "usmle2-025",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "Glucose is 480, bicarbonate is 10, and the patient is breathing deeply. Potassium on arrival is 3.0.",
+    "bottom": "Replace potassium before you start insulin.",
+    "bullets": {
+      "clue": "Insulin will drive potassium into cells and can stop the heart if you start from 3.0.",
+      "treat": "Fluids first, potassium repletion, then insulin once potassium is safe. Find the trigger.",
+      "trap": "A bolus of insulin while the potassium is still 3.0."
+    },
+    "source": {
+      "guideline": "ADA Standards of Care in Diabetes",
+      "year": "2026",
+      "url": "https://diabetesjournals.org/care",
+      "recommendation": "In diabetic ketoacidosis, insulin is held when potassium is below 3.3 mEq/L until potassium is replaced."
+    },
+    "diagram": {
+      "file": "svg/usmle2-025.svg",
+      "alt": "Steps. Replace potassium before you start insulin."
+    }
+  },
+  {
+    "id": "usmle2-026",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "Fever, agitation, and a fast irregular heart in a patient who stopped a thionamide. The gland is not the only organ in trouble.",
+    "bottom": "Block hormone release, but not with iodine first.",
+    "bullets": {
+      "clue": "A beta blocker protects the heart. A thionamide blocks new hormone. Iodine comes after, so the gland is not fueled.",
+      "treat": "Give a steroid as well. Do not lead with iodine.",
+      "trap": "Iodine on arrival, before the thionamide."
+    },
+    "source": {
+      "guideline": "ATA hyperthyroidism guideline",
+      "year": "2016",
+      "url": "https://www.thyroid.org/",
+      "recommendation": "Thyroid storm treatment is a beta blocker, a thionamide, then iodine, plus a glucocorticoid. Iodine first can load the gland."
+    },
+    "diagram": {
+      "file": "svg/usmle2-026.svg",
+      "alt": "Text card. Block hormone release, but not with iodine first."
+    }
+  },
+  {
+    "id": "usmle2-027",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "An older adult is hypothermic and slow, with a puffy face, a low sodium, and a high TSH. A trigger infection is present.",
+    "bottom": "Give thyroid hormone and cover the adrenal until you know it is safe.",
+    "bullets": {
+      "clue": "Severe hypothyroidism can hide adrenal failure. Warming alone does not replace hormone.",
+      "treat": "Intravenous thyroid hormone and stress-dose steroid, plus the trigger. Avoid aggressive external heat.",
+      "trap": "Warming blankets as the only treatment."
+    },
+    "source": {
+      "guideline": "ATA hypothyroidism guideline",
+      "year": "2014",
+      "url": "https://www.thyroid.org/",
+      "recommendation": "Myxedema crisis is treated with intravenous thyroid hormone and empiric glucocorticoid until adrenal insufficiency is excluded."
+    },
+    "diagram": {
+      "file": "svg/usmle2-027.svg",
+      "alt": "Text card. Give thyroid hormone and cover the adrenal until you know it is safe."
+    }
+  },
+  {
+    "id": "usmle2-028",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "Calcium is 14, the patient is confused, and the QT is short. The jugular vein is flat.",
+    "bottom": "Salt water first, then a drug that will hold the calcium down.",
+    "bullets": {
+      "clue": "Volume restores excretion. Calcitonin is a bridge. A bisphosphonate lasts longer.",
+      "treat": "Isotonic saline, then the longer-acting drug. Find the cause after the number is moving.",
+      "trap": "A loop diuretic in a dry patient as the first order."
+    },
+    "source": {
+      "guideline": "Endocrine Society hypercalcemia guidance",
+      "year": "2023",
+      "url": "https://www.endocrine.org/",
+      "recommendation": "Severe hypercalcemia starts with intravenous saline. A loop diuretic is not the first move in a volume-depleted patient."
+    },
+    "diagram": {
+      "file": "svg/usmle2-028.svg",
+      "alt": "Steps. Salt water first, then a drug that will hold the calcium down."
+    }
+  },
+  {
+    "id": "usmle2-029",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "A woman has missed periods and galactorrhea. Prolactin is several hundred. Vision is intact. MRI shows a pituitary mass.",
+    "bottom": "A dopamine agonist is first, even for many large tumors.",
+    "bullets": {
+      "clue": "Very high prolactin means the mass is making it. A mild rise can be stalk effect from a nonfunctioning mass.",
+      "treat": "Cabergoline or bromocriptine, and vision checks. Surgery is for threat to vision or failure of the drug.",
+      "trap": "Sending every pituitary mass to surgery the week it is found."
+    },
+    "source": {
+      "guideline": "Endocrine Society hyperprolactinemia guideline",
+      "year": "2011",
+      "url": "https://www.endocrine.org/",
+      "recommendation": "Prolactinomas are treated first with a dopamine agonist unless vision is acutely threatened or the drug fails."
+    },
+    "diagram": {
+      "file": "svg/usmle2-029.svg",
+      "alt": "Text card. A dopamine agonist is first, even for many large tumors."
+    }
+  },
+  {
+    "id": "usmle2-030",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "After a vomiting illness the patient is hypotensive, potassium is high, and sodium is low. A cosyntropin test has been ordered but not drawn.",
+    "bottom": "Give the steroid. Do not wait for the test.",
+    "bullets": {
+      "clue": "The picture is adrenal crisis until proven otherwise. The test can be drawn just before the dose if it does not delay care.",
+      "treat": "Intravenous glucocorticoid and saline. Look for the trigger.",
+      "trap": "Holding hydrocortisone until the stimulation result posts tomorrow."
+    },
+    "source": {
+      "guideline": "Endocrine Society adrenal insufficiency guideline",
+      "year": "2016",
+      "url": "https://www.endocrine.org/",
+      "recommendation": "Suspected adrenal crisis is treated immediately. Diagnostic testing must not delay the steroid."
+    },
+    "diagram": {
+      "file": "svg/usmle2-030.svg",
+      "alt": "Text card. Give the steroid. Do not wait for the test."
+    }
+  },
+  {
+    "id": "usmle2-031",
+    "system": "Infectious Diseases",
+    "task_area": "Immune system",
+    "front": "A pregnant patient has bacteria in the urine and no symptoms. A nonpregnant healthy woman has the same culture and feels well.",
+    "bottom": "Treat the pregnancy. Do not treat the other patient.",
+    "bullets": {
+      "clue": "Asymptomatic bacteriuria matters in pregnancy and before some urologic procedures. It does not matter in a well nonpregnant adult.",
+      "treat": "A short antibiotic course in pregnancy. No antibiotic for the well nonpregnant adult.",
+      "trap": "Treating every positive culture."
+    },
+    "source": {
+      "guideline": "IDSA asymptomatic bacteriuria guideline",
+      "year": "2019",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "Screen and treat asymptomatic bacteriuria in pregnancy. Do not treat it in nonpregnant adults without a urologic indication."
+    },
+    "diagram": {
+      "file": "svg/usmle2-031.svg",
+      "alt": "Text card. Treat the pregnancy. Do not treat the other patient."
+    }
+  },
+  {
+    "id": "usmle2-032",
+    "system": "Infectious Diseases",
+    "task_area": "Multisystem processes and disorders",
+    "front": "A positive interferon-gamma release assay, a normal chest film, and no cough, fever, or sweats.",
+    "bottom": "Treat latent infection. Do not start four drugs.",
+    "bullets": {
+      "clue": "The film and the symptoms separate latent infection from disease.",
+      "treat": "A latent regimen, and public-health follow-up. Four drugs are for active disease.",
+      "trap": "Nine months of four-drug therapy because the blood test was positive."
+    },
+    "source": {
+      "guideline": "CDC latent tuberculosis treatment",
+      "year": "2020",
+      "url": "https://www.cdc.gov/tb/",
+      "recommendation": "A positive release assay with a normal film and no symptoms is latent tuberculosis, treated with a latent regimen."
+    },
+    "diagram": {
+      "file": "svg/usmle2-032.svg",
+      "alt": "Text card. Treat latent infection. Do not start four drugs."
+    }
+  },
+  {
+    "id": "usmle2-033",
+    "system": "Infectious Diseases",
+    "task_area": "Immune system",
+    "front": "Fever, a rash, and a sore throat two weeks after a new sexual exposure. The antibody test is negative.",
+    "bottom": "This can still be acute HIV. Order the virus itself.",
+    "bullets": {
+      "clue": "Antibody tests miss the window. RNA or an antigen test does not.",
+      "treat": "Counsel, confirm with nucleic acid, and link to treatment. Do not clear the patient on a negative antibody.",
+      "trap": "Telling the patient the negative antibody ends the question."
+    },
+    "source": {
+      "guideline": "CDC HIV testing guidance",
+      "year": "2018",
+      "url": "https://www.cdc.gov/hiv/",
+      "recommendation": "Acute HIV is a viral-load diagnosis. Antibody-only tests are negative in the window."
+    },
+    "diagram": {
+      "file": "svg/usmle2-033.svg",
+      "alt": "Text card. This can still be acute HIV. Order the virus itself."
+    }
+  },
+  {
+    "id": "usmle2-034",
+    "system": "Infectious Diseases",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "A red, warm, fluctuant, and exquisitely tender lump on the thigh. The center is pointing.",
+    "bottom": "Drain it. An antibiotic will not empty a collection.",
+    "bullets": {
+      "clue": "Cellulitis without a collection is a drug. A collection is a knife or a needle.",
+      "treat": "Incise and drain. Add an antibiotic when there is severe disease, immunosuppression, or surrounding cellulitis that needs it.",
+      "trap": "Oral antibiotics and a recheck next week for a drainable abscess."
+    },
+    "source": {
+      "guideline": "IDSA skin and soft tissue guideline",
+      "year": "2014",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "A fluctuant abscess is treated by drainage. Antibiotics are adjuncts, not a substitute."
+    },
+    "diagram": {
+      "file": "svg/usmle2-034.svg",
+      "alt": "Text card. Drain it. An antibiotic will not empty a collection."
+    }
+  },
+  {
+    "id": "usmle2-035",
+    "system": "Infectious Diseases",
+    "task_area": "Gastrointestinal system",
+    "front": "Watery diarrhea and a positive Clostridioides toxin, in a patient still taking the antibiotic that started it.",
+    "bottom": "Stop the offending drug and treat with vancomycin by mouth or with fidaxomicin.",
+    "bullets": {
+      "clue": "Metronidazole is no longer the preferred first drug for an initial episode.",
+      "treat": "Oral vancomycin or fidaxomicin, and stop the trigger antibiotic when you can.",
+      "trap": "Intravenous metronidazole as the only agent for a routine first episode."
+    },
+    "source": {
+      "guideline": "IDSA/SHEA Clostridioides difficile guideline",
+      "year": "2021",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "Initial C. difficile infection is treated with oral vancomycin or fidaxomicin, and the inciting antibiotic is stopped."
+    },
+    "diagram": {
+      "file": "svg/usmle2-035.svg",
+      "alt": "Text card. Stop the offending drug and treat with vancomycin by mouth or with fidaxomicin."
+    }
+  },
+  {
+    "id": "usmle2-036",
+    "system": "Infectious Diseases",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "A tick from an endemic county was attached for two days and was removed this morning. There is no rash.",
+    "bottom": "One dose of doxycycline is enough, and only because the rules are met.",
+    "bullets": {
+      "clue": "Prophylaxis needs the right tick, enough attachment time, a high local rate, and a start within 72 hours. A tick brushed off in an hour does not qualify.",
+      "treat": "A single doxycycline dose when every condition is met. Otherwise watch the skin.",
+      "trap": "Three weeks of doxycycline for every tick bite."
+    },
+    "source": {
+      "guideline": "IDSA Lyme disease guideline",
+      "year": "2020",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "Lyme prophylaxis is a single dose of doxycycline within 72 hours, and only when attachment, species, and local risk all qualify."
+    },
+    "diagram": {
+      "file": "svg/usmle2-036.svg",
+      "alt": "Text card. One dose of doxycycline is enough, and only because the rules are met."
+    }
+  },
+  {
+    "id": "usmle2-037",
+    "system": "Infectious Diseases",
+    "task_area": "Multisystem processes and disorders",
+    "front": "A traveler returns with fever, confusion, and a parasite load on the smear. Oral chloroquine is what the clinic has.",
+    "bottom": "Severe malaria needs intravenous artesunate.",
+    "bullets": {
+      "clue": "Species and region matter for oral therapy. Severe disease, including confusion or high parasite burden, is not an oral-drug problem.",
+      "treat": "Artesunate now, and specialist and public-health help. Do not start with oral chloroquine.",
+      "trap": "Sending the patient home with chloroquine because the smear is positive."
+    },
+    "source": {
+      "guideline": "CDC malaria treatment",
+      "year": "2024",
+      "url": "https://www.cdc.gov/malaria/",
+      "recommendation": "Severe malaria is treated with intravenous artesunate. Oral chloroquine is not the drug for severe disease."
+    },
+    "diagram": {
+      "file": "svg/usmle2-037.svg",
+      "alt": "Text card. Severe malaria needs intravenous artesunate."
+    }
+  },
+  {
+    "id": "usmle2-038",
+    "system": "Reproductive",
+    "task_area": "Female reproductive system and breast",
+    "front": "A routine swab at 36 weeks grows group B streptococcus. The patient feels well and is not in labor.",
+    "bottom": "Do not treat the colonization now. Treat in labor.",
+    "bullets": {
+      "clue": "Antepartum antibiotics do not reliably clear carriage by the time of birth.",
+      "treat": "Intrapartum penicillin if the screen is positive, if a prior infant was infected, or if status is unknown and risk is present.",
+      "trap": "A week of oral antibiotics at 36 weeks and a belief that labor will be safe."
+    },
+    "source": {
+      "guideline": "ACOG group B streptococcus guidance",
+      "year": "2020",
+      "url": "https://www.acog.org/clinical",
+      "recommendation": "Group B streptococcus colonization is treated during labor, not with antepartum antibiotics aimed at clearing the swab."
+    },
+    "diagram": {
+      "file": "svg/usmle2-038.svg",
+      "alt": "Text card. Do not treat the colonization now. Treat in labor."
+    }
+  },
+  {
+    "id": "usmle2-039",
+    "system": "Reproductive",
+    "task_area": "Pregnancy, childbirth, and the puerperium",
+    "front": "A patient is 30 weeks pregnant and had a tetanus booster four years ago, before this pregnancy.",
+    "bottom": "Give tetanus, diphtheria, and pertussis vaccine in this pregnancy anyway.",
+    "bullets": {
+      "clue": "Each pregnancy gets a dose between 27 and 36 weeks so antibody reaches the infant.",
+      "treat": "Vaccinate in the window even if a recent tetanus shot was given for another reason before pregnancy.",
+      "trap": "Skipping the dose because a tetanus booster is still in date."
+    },
+    "source": {
+      "guideline": "CDC maternal vaccination",
+      "year": "2024",
+      "url": "https://www.cdc.gov/vaccines/pregnancy/",
+      "recommendation": "Tdap is recommended in every pregnancy, preferably at 27 to 36 weeks, regardless of the prior tetanus interval."
+    },
+    "diagram": {
+      "file": "svg/usmle2-039.svg",
+      "alt": "Text card. Give tetanus, diphtheria, and pertussis vaccine in this pregnancy anyway."
+    }
+  },
+  {
+    "id": "usmle2-040",
+    "system": "Reproductive",
+    "task_area": "Pregnancy, childbirth, and the puerperium",
+    "front": "An unsensitized Rh-negative patient is at 28 weeks. The antibody screen is negative. There has been no bleeding.",
+    "bottom": "Give Rh immune globulin now, and again if the baby is Rh positive.",
+    "bullets": {
+      "clue": "A negative screen means she has not made her own antibody yet. The globulin prevents that.",
+      "treat": "Routine dose at 28 weeks, and a dose after bleeding, procedures, or birth of an Rh-positive infant.",
+      "trap": "Waiting until delivery for the only dose."
+    },
+    "source": {
+      "guideline": "ACOG Rh alloimmunization guidance",
+      "year": "2017",
+      "url": "https://www.acog.org/clinical",
+      "recommendation": "Unsensitized Rh-negative patients receive anti-D immune globulin at 28 weeks and after potential fetomaternal hemorrhage."
+    },
+    "diagram": {
+      "file": "svg/usmle2-040.svg",
+      "alt": "Text card. Give Rh immune globulin now, and again if the baby is Rh positive."
+    }
+  },
+  {
+    "id": "usmle2-041",
+    "system": "Reproductive",
+    "task_area": "Pregnancy, childbirth, and the puerperium",
+    "front": "A pregnant patient has unilateral pain and a positive pregnancy test. She is hypotensive and the belly is rigid.",
+    "bottom": "Operate. This is rupture until proven otherwise.",
+    "bullets": {
+      "clue": "Methotrexate is only for a stable patient who can return for serial hormone checks and has no rupture.",
+      "treat": "Resuscitation and surgery. Do not send a shocky patient for a methotrexate injection.",
+      "trap": "Methotrexate in the emergency department for a peritonitic patient."
+    },
+    "source": {
+      "guideline": "ACOG tubal ectopic pregnancy guidance",
+      "year": "2018",
+      "url": "https://www.acog.org/clinical",
+      "recommendation": "A ruptured ectopic pregnancy is a surgical emergency. Methotrexate is reserved for selected stable patients."
+    },
+    "diagram": {
+      "file": "svg/usmle2-041.svg",
+      "alt": "Text card. Operate. This is rupture until proven otherwise."
+    }
+  },
+  {
+    "id": "usmle2-042",
+    "system": "Reproductive",
+    "task_area": "Pregnancy, childbirth, and the puerperium",
+    "front": "A patient at 26 weeks has no diabetes history. The one-hour glucose screen has not been done.",
+    "bottom": "Screen now, in the 24-to-28-week window.",
+    "bullets": {
+      "clue": "Earlier screening is for patients with risk. Universal screening is this window.",
+      "treat": "Do the glucose screen. Treat gestational diabetes with diet first and insulin when targets are missed.",
+      "trap": "Waiting until 36 weeks because the patient feels well."
+    },
+    "source": {
+      "guideline": "ACOG gestational diabetes guidance",
+      "year": "2018",
+      "url": "https://www.acog.org/clinical",
+      "recommendation": "Universal gestational diabetes screening is at 24 to 28 weeks. Earlier testing is added for high-risk patients."
+    },
+    "diagram": {
+      "file": "svg/usmle2-042.svg",
+      "alt": "Text card. Screen now, in the 24-to-28-week window."
+    }
+  },
+  {
+    "id": "usmle2-043",
+    "system": "Endocrine",
+    "task_area": "Female reproductive system and breast",
+    "front": "Two months after delivery a patient has a fast heart and anxiety, then a few weeks later is exhausted with a high TSH. The gland is not tender. Antibodies of Graves disease are absent.",
+    "bottom": "This is a postpartum leak of stored hormone, not a gland that needs to be blocked.",
+    "bullets": {
+      "clue": "The toxic phase is release of preformed hormone. Antithyroid drugs do not stop a leak.",
+      "treat": "A beta blocker if the toxic phase bothers her, then watch for the low phase, which may need replacement.",
+      "trap": "Starting methimazole for a self-limited thyroiditis."
+    },
+    "source": {
+      "guideline": "ATA postpartum thyroiditis guidance",
+      "year": "2017",
+      "url": "https://www.thyroid.org/",
+      "recommendation": "Postpartum thyroiditis is a destructive leak followed by hypothyroidism. The toxic phase is not treated with a thionamide."
+    },
+    "diagram": {
+      "file": "svg/usmle2-043.svg",
+      "alt": "Steps. This is a postpartum leak of stored hormone, not a gland that needs to be blocked."
+    }
+  },
+  {
+    "id": "usmle2-044",
+    "system": "Pediatrics",
+    "task_area": "Nervous system and special senses",
+    "front": "A toddler has waves of screaming and drawing up the legs, then calm periods. Later there is dark red mucus in the stool. Ultrasound shows a target.",
+    "bottom": "The bowel has telescoped. Reduce it with air if the belly is not peritonitic.",
+    "bullets": {
+      "clue": "Currant-jelly stool is late. The waves of pain are earlier.",
+      "treat": "Air or contrast enema when there is no perforation. Surgery if the belly is peritonitic or reduction fails.",
+      "trap": "A laxative and a next-day clinic visit."
+    },
+    "source": {
+      "guideline": "AAP and pediatric surgical standard for intussusception",
+      "year": "2018",
+      "url": "https://www.aap.org/",
+      "recommendation": "Ileocolic intussusception in a stable child is reduced with an air enema. Peritonitis or perforation goes to the operating room."
+    },
+    "diagram": {
+      "file": "svg/usmle2-044.svg",
+      "alt": "Text card. The bowel has telescoped. Reduce it with air if the belly is not peritonitic."
+    }
+  },
+  {
+    "id": "usmle2-045",
+    "system": "Pediatrics",
+    "task_area": "Musculoskeletal system",
+    "front": "A newborn hip clunks on the Ortolani maneuver. The family asks for an x-ray today.",
+    "bottom": "Ultrasound, not a plain film, at this age.",
+    "bullets": {
+      "clue": "The femoral head is cartilage. A film is useful later, when bone has formed.",
+      "treat": "Refer and image with ultrasound. A Pavlik harness is the usual first treatment when the hip is unstable.",
+      "trap": "A frog-leg x-ray in the nursery as the deciding test."
+    },
+    "source": {
+      "guideline": "AAP developmental dysplasia of the hip guidance",
+      "year": "2016",
+      "url": "https://www.aap.org/",
+      "recommendation": "Neonatal hip instability is evaluated with ultrasound. Radiographs become useful after the femoral head ossifies."
+    },
+    "diagram": {
+      "file": "svg/usmle2-045.svg",
+      "alt": "Text card. Ultrasound, not a plain film, at this age."
+    }
+  },
+  {
+    "id": "usmle2-046",
+    "system": "Pediatrics",
+    "task_area": "Multisystem processes and disorders",
+    "front": "An infant has a weak cry, constipation, and descending weakness. The family has been dipping the pacifier in honey.",
+    "bottom": "This is botulism from ingested spores, not a stroke.",
+    "bullets": {
+      "clue": "Honey is a classic exposure under one year. The toxin blocks acetylcholine release.",
+      "treat": "Support the airway and get botulism antitoxin through public health. Do not wait for a stool result to protect the breathing.",
+      "trap": "A course of antibiotics as the main treatment."
+    },
+    "source": {
+      "guideline": "CDC infant botulism",
+      "year": "2024",
+      "url": "https://www.cdc.gov/botulism/",
+      "recommendation": "Infant botulism follows honey or soil exposure. Airway support and antitoxin matter more than the confirmatory stool test."
+    },
+    "diagram": {
+      "file": "svg/usmle2-046.svg",
+      "alt": "Text card. This is botulism from ingested spores, not a stroke."
+    }
+  },
+  {
+    "id": "usmle2-047",
+    "system": "Pediatrics",
+    "task_area": "Behavioral health",
+    "front": "A comfortable three-year-old has one red eardrum, a low fever, and a parent who can return tomorrow. Pain is mild.",
+    "bottom": "You may watch this ear rather than start an antibiotic today.",
+    "bullets": {
+      "clue": "Age under six months, a severe picture, or otorrhea is not an observation case.",
+      "treat": "Pain control and a firm follow-up. Treat if the child is an infant, looks ill, or cannot be rechecked.",
+      "trap": "Observation for a two-month-old."
+    },
+    "source": {
+      "guideline": "AAP acute otitis media guideline",
+      "year": "2013",
+      "url": "https://www.aap.org/",
+      "recommendation": "Observation is an option for selected older children with mild unilateral acute otitis media when follow-up is certain."
+    },
+    "diagram": {
+      "file": "svg/usmle2-047.svg",
+      "alt": "Text card. You may watch this ear rather than start an antibiotic today."
+    }
+  },
+  {
+    "id": "usmle2-048",
+    "system": "Pediatrics",
+    "task_area": "Multisystem processes and disorders",
+    "front": "A fingerstick lead level is high. The child looks well. A parent asks about chelation today.",
+    "bottom": "Confirm with a venous sample before you chelate.",
+    "bullets": {
+      "clue": "Capillary tests are contaminated easily. Venous blood is the decision.",
+      "treat": "Confirm, remove the exposure, and chelate only at the venous thresholds that call for it.",
+      "trap": "Chelating a fingerstick result the same day."
+    },
+    "source": {
+      "guideline": "CDC childhood lead poisoning prevention",
+      "year": "2024",
+      "url": "https://www.cdc.gov/lead-prevention/",
+      "recommendation": "An elevated capillary lead level is confirmed with venous blood before chelation."
+    },
+    "diagram": {
+      "file": "svg/usmle2-048.svg",
+      "alt": "Text card. Confirm with a venous sample before you chelate."
+    }
+  },
+  {
+    "id": "usmle2-049",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "A patient suddenly cannot speak or lift an arm. The last moment anyone knows they were well was 90 minutes ago. The head CT shows no blood.",
+    "bottom": "This is a reperfusion decision. Do not wait for an MRI.",
+    "bullets": {
+      "clue": "A noncontrast CT excludes hemorrhage. MRI is better for ischemia and too slow to lead.",
+      "treat": "Treat within the time and imaging rules, and involve stroke neurology. Glucose and the story still matter.",
+      "trap": "Waiting for diffusion MRI before calling the stroke team."
+    },
+    "source": {
+      "guideline": "AHA/ASA early stroke management",
+      "year": "2019",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Disabling stroke with a known last-well time and a CT without hemorrhage is evaluated for reperfusion immediately."
+    },
+    "diagram": {
+      "file": "svg/usmle2-049.svg",
+      "alt": "Text card. This is a reperfusion decision. Do not wait for an MRI."
+    }
+  },
+  {
+    "id": "usmle2-050",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "A first seizure happened while the sodium was 118. The sodium is now normal, the exam is normal, and the electroencephalogram is pending.",
+    "bottom": "Do not commit this patient to years of a seizure drug tonight.",
+    "bullets": {
+      "clue": "A provoked seizure is treated by fixing the provocation. Recurrence risk is not the same as an unprovoked seizure.",
+      "treat": "Correct the sodium, look for other triggers, and decide on a drug only if the workup shows an ongoing epileptic tendency.",
+      "trap": "Loading a lifelong antiseizure drug for a sodium of 118."
+    },
+    "source": {
+      "guideline": "AAN first-seizure guideline",
+      "year": "2015",
+      "url": "https://www.aan.com/",
+      "recommendation": "A clearly provoked seizure is managed by removing the provocation. Long-term medication is not automatic."
+    },
+    "diagram": {
+      "file": "svg/usmle2-050.svg",
+      "alt": "Text card. Do not commit this patient to years of a seizure drug tonight."
+    }
+  },
+  {
+    "id": "usmle2-051",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "A 74-year-old has a new headache, scalp tenderness, and pain in the jaw while chewing. One eye has just dimmed.",
+    "bottom": "Start a steroid now. Do not wait for the biopsy.",
+    "bullets": {
+      "clue": "Vision loss in giant cell arteritis is a same-hour problem. The sedimentation rate supports the story and must not delay treatment.",
+      "treat": "High-dose glucocorticoid, then a prompt temporal-artery biopsy. The biopsy can still be read after the first doses.",
+      "trap": "Scheduling a biopsy next week and withholding steroid until then."
+    },
+    "source": {
+      "guideline": "ACR/VF giant cell arteritis guideline",
+      "year": "2021",
+      "url": "https://rheumatology.org/",
+      "recommendation": "Suspected giant cell arteritis with visual symptoms is treated with immediate glucocorticoid. Biopsy follows and is not a reason to wait."
+    },
+    "diagram": {
+      "file": "svg/usmle2-051.svg",
+      "alt": "Text card. Start a steroid now. Do not wait for the biopsy."
+    }
+  },
+  {
+    "id": "usmle2-052",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "The worst headache of a patient's life peaks in one second. The exam is now normal. CT was not done.",
+    "bottom": "Image before anyone says this is a migraine.",
+    "bullets": {
+      "clue": "A thunderclap headache is subarachnoid blood until the workup says otherwise.",
+      "treat": "Noncontrast CT now. If the CT is negative and the story remains classic, the spinal fluid is next.",
+      "trap": "A triptan and discharge without imaging."
+    },
+    "source": {
+      "guideline": "AHA/ASA aneurysmal subarachnoid hemorrhage guideline",
+      "year": "2023",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Thunderclap headache is imaged immediately. A negative CT does not end a classic story. Lumbar puncture is the next step."
+    },
+    "diagram": {
+      "file": "svg/usmle2-052.svg",
+      "alt": "Text card. Image before anyone says this is a migraine."
+    }
+  },
+  {
+    "id": "usmle2-053",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "A patient has been shaking for six minutes and is still shaking. A home drug level has been ordered.",
+    "bottom": "Give a benzodiazepine now. Do not wait for the level.",
+    "bullets": {
+      "clue": "Five minutes of seizure is status. The level can be drawn, but it does not lead.",
+      "treat": "Benzodiazepine, then a longer-acting antiseizure drug, then airway support. Look for glucose and other triggers.",
+      "trap": "Waiting for the phenytoin level before the first dose."
+    },
+    "source": {
+      "guideline": "Neurocritical Care Society status epilepticus guideline",
+      "year": "2012",
+      "url": "https://www.neurocriticalcare.org/",
+      "recommendation": "Ongoing seizure activity is treated immediately with a benzodiazepine. Drug levels do not delay the first dose."
+    },
+    "diagram": {
+      "file": "svg/usmle2-053.svg",
+      "alt": "Steps. Give a benzodiazepine now. Do not wait for the level."
+    }
+  },
+  {
+    "id": "usmle2-054",
+    "system": "Psychiatry",
+    "task_area": "Behavioral health",
+    "front": "Two days after the last drink: tremor, a fast heart, and sweating. The patient then has a seizure.",
+    "bottom": "This is withdrawal. A benzodiazepine treats it.",
+    "bullets": {
+      "clue": "Alcohol withdrawal seizures are not epilepsy. An antipsychotic does not replace the GABA drug.",
+      "treat": "Benzodiazepines, thiamine, and a monitored setting. Phenobarbital is an alternative protocol, not an antipsychotic.",
+      "trap": "Haloperidol as the only drug for a withdrawing patient."
+    },
+    "source": {
+      "guideline": "ASAM alcohol withdrawal guideline",
+      "year": "2020",
+      "url": "https://www.asam.org/",
+      "recommendation": "Alcohol withdrawal, including seizures, is treated with a benzodiazepine. Antipsychotics do not treat the withdrawal state."
+    },
+    "diagram": {
+      "file": "svg/usmle2-054.svg",
+      "alt": "Text card. This is withdrawal. A benzodiazepine treats it."
+    }
+  },
+  {
+    "id": "usmle2-055",
+    "system": "Psychiatry",
+    "task_area": "Behavioral health",
+    "front": "A patient is mute, holds odd postures, and has waxy flexibility. An antipsychotic was recently increased.",
+    "bottom": "This can be catatonia. A benzodiazepine is the test and the treatment.",
+    "bullets": {
+      "clue": "More antipsychotic can worsen catatonia and can hide malignant catatonia.",
+      "treat": "Lorazepam challenge and hold the antipsychotic. Look for the medical cause.",
+      "trap": "Raising the antipsychotic because the patient looks withdrawn."
+    },
+    "source": {
+      "guideline": "APA schizophrenia and catatonia practice",
+      "year": "2021",
+      "url": "https://www.psychiatry.org/",
+      "recommendation": "Catatonia is treated with a benzodiazepine, not with a higher antipsychotic dose."
+    },
+    "diagram": {
+      "file": "svg/usmle2-055.svg",
+      "alt": "Text card. This can be catatonia. A benzodiazepine is the test and the treatment."
+    }
+  },
+  {
+    "id": "usmle2-056",
+    "system": "Psychiatry",
+    "task_area": "Behavioral health",
+    "front": "A teenager with very low weight has a heart rate of 38 overnight, a temperature of 35 degrees, and a potassium of 2.8.",
+    "bottom": "Admit for medical danger. Outpatient therapy is not the first step.",
+    "bullets": {
+      "clue": "Bradycardia, hypothermia, and electrolyte collapse are admission criteria, not motivational problems.",
+      "treat": "Monitored refeeding, electrolyte replacement, and then the eating-disorder treatment.",
+      "trap": "A therapy referral slip from the emergency department."
+    },
+    "source": {
+      "guideline": "APA eating disorders guideline",
+      "year": "2023",
+      "url": "https://www.psychiatry.org/",
+      "recommendation": "Medical instability in anorexia nervosa is an indication for admission, before outpatient psychotherapy."
+    },
+    "diagram": {
+      "file": "svg/usmle2-056.svg",
+      "alt": "Steps. Admit for medical danger. Outpatient therapy is not the first step."
+    }
+  },
+  {
+    "id": "usmle2-057",
+    "system": "Psychiatry",
+    "task_area": "Behavioral health",
+    "front": "Ten days after birth a parent cannot sleep even when the infant sleeps, cannot bond, and describes thoughts of harming the infant.",
+    "bottom": "This is not the baby blues. Treat it as an emergency.",
+    "bullets": {
+      "clue": "Blues fade inside two weeks and do not include harm thoughts or loss of function.",
+      "treat": "Same-day psychiatric and pediatric safety assessment. Do not send the pair home on reassurance.",
+      "trap": "A handout about baby blues and a six-week postpartum visit."
+    },
+    "source": {
+      "guideline": "ACOG perinatal mental health guidance",
+      "year": "2023",
+      "url": "https://www.acog.org/clinical",
+      "recommendation": "Postpartum depression with impaired function or infant-harm thoughts is urgent. Baby blues are mild and self-limited."
+    },
+    "diagram": {
+      "file": "svg/usmle2-057.svg",
+      "alt": "Text card. This is not the baby blues. Treat it as an emergency."
+    }
+  },
+  {
+    "id": "usmle2-058",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "A hot swollen knee and a fever. No one has put a needle in it. Antibiotics have been ordered.",
+    "bottom": "Tap the joint before the antibiotic, unless the delay would be dangerous.",
+    "bullets": {
+      "clue": "The fluid white count and the culture decide septic arthritis. Antibiotics first can sterilize the only sample.",
+      "treat": "Aspirate, then antibiotics, and orthopedic drainage if the joint is septic.",
+      "trap": "Three days of antibiotics with no synovial fluid."
+    },
+    "source": {
+      "guideline": "IDSA and orthopedic standard for septic arthritis",
+      "year": "2019",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "A suspected septic joint is aspirated before antibiotics when that does not meaningfully delay treatment."
+    },
+    "diagram": {
+      "file": "svg/usmle2-058.svg",
+      "alt": "Steps. Tap the joint before the antibiotic, unless the delay would be dangerous."
+    }
+  },
+  {
+    "id": "usmle2-059",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "A leg bone is through the skin after a crash. Pulses are present. Tetanus status is unknown.",
+    "bottom": "Antibiotics, tetanus protection, and the operating room. Not a clinic splint.",
+    "bullets": {
+      "clue": "An open fracture is contaminated. Time to irrigation matters.",
+      "treat": "Intravenous antibiotic, tetanus update, and urgent debridement.",
+      "trap": "A sugar-tong splint and orthopedic clinic next week."
+    },
+    "source": {
+      "guideline": "EAST open fracture antibiotic guidance",
+      "year": "2022",
+      "url": "https://www.east.org/",
+      "recommendation": "Open fractures need immediate antibiotics, tetanus prophylaxis, and urgent operative irrigation."
+    },
+    "diagram": {
+      "file": "svg/usmle2-059.svg",
+      "alt": "Text card. Antibiotics, tetanus protection, and the operating room. Not a clinic splint."
+    }
+  },
+  {
+    "id": "usmle2-060",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "After a tibial fracture the calf is wooden and the pain spikes when the toes are stretched. The foot still has a pulse.",
+    "bottom": "This is a compartment syndrome. A pulse does not clear it.",
+    "bullets": {
+      "clue": "Pain on passive stretch and a tense compartment come before pulselessness, which is late.",
+      "treat": "Measure the pressure if the exam is uncertain, or go straight to fasciotomy when the exam is clear.",
+      "trap": "Reassurance because the dorsalis pedis is palpable."
+    },
+    "source": {
+      "guideline": "Orthopedic trauma standard for compartment syndrome",
+      "year": "2018",
+      "url": "https://www.aaos.org/",
+      "recommendation": "Compartment syndrome is a clinical diagnosis. Palpable pulses do not exclude it."
+    },
+    "diagram": {
+      "file": "svg/usmle2-060.svg",
+      "alt": "Text card. This is a compartment syndrome. A pulse does not clear it."
+    }
+  },
+  {
+    "id": "usmle2-061",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "Low back pain, numbness in the saddle, and a bladder that will not empty. Both legs are weak.",
+    "bottom": "Image the cauda equina and decompress it. This is not a therapy referral.",
+    "bullets": {
+      "clue": "Urinary retention and saddle anesthesia are the red flags. Unilateral sciatica without them is not this.",
+      "treat": "Emergency MRI and surgical decompression.",
+      "trap": "Ibuprofen and physical therapy next month."
+    },
+    "source": {
+      "guideline": "AANS cauda equina standard",
+      "year": "2020",
+      "url": "https://www.aans.org/",
+      "recommendation": "Cauda equina syndrome with retention or saddle anesthesia is an emergency MRI and decompression."
+    },
+    "diagram": {
+      "file": "svg/usmle2-061.svg",
+      "alt": "Text card. Image the cauda equina and decompress it. This is not a therapy referral."
+    }
+  },
+  {
+    "id": "usmle2-062",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "Platelets are 12,000, hemoglobin is falling, the smear shows broken red cells, and the patient is confused. Coagulation times are normal.",
+    "bottom": "This is thrombotic thrombocytopenic purpura. Exchange the plasma.",
+    "bullets": {
+      "clue": "Normal coagulation times separate it from disseminated intravascular coagulation. Platelets will be consumed.",
+      "treat": "Plasma exchange and the disease-specific therapy. Do not transfuse platelets for the number alone.",
+      "trap": "A platelet transfusion to make the count look better."
+    },
+    "source": {
+      "guideline": "ISTH thrombotic thrombocytopenic purpura guidance",
+      "year": "2020",
+      "url": "https://www.isth.org/",
+      "recommendation": "TTP is microangiopathic hemolysis and thrombocytopenia with relatively normal coagulation. Platelet transfusion can worsen thrombosis."
+    },
+    "diagram": {
+      "file": "svg/usmle2-062.svg",
+      "alt": "Text card. This is thrombotic thrombocytopenic purpura. Exchange the plasma."
+    }
+  },
+  {
+    "id": "usmle2-063",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "A well child has bruises and a platelet count of 20,000 a week after a viral illness. Hemoglobin and white cells are normal. There is no wet bleeding.",
+    "bottom": "Watch. Do not transfuse platelets for the number.",
+    "bullets": {
+      "clue": "Typical immune thrombocytopenia after a virus in a well child often recovers.",
+      "treat": "Observation when there is no significant bleeding. Treat bleeding, not the integer.",
+      "trap": "A platelet transfusion and a bone marrow biopsy the same day in a well child."
+    },
+    "source": {
+      "guideline": "ASH immune thrombocytopenia guideline",
+      "year": "2019",
+      "url": "https://www.hematology.org/",
+      "recommendation": "Children with newly diagnosed immune thrombocytopenia and no or mild bleeding are observed."
+    },
+    "diagram": {
+      "file": "svg/usmle2-063.svg",
+      "alt": "Text card. Watch. Do not transfuse platelets for the number."
+    }
+  },
+  {
+    "id": "usmle2-064",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "A patient with atrial fibrillation and a remote stroke risk, on a blood thinner, needs a tooth extracted. Kidney function is normal and the stroke was three years ago.",
+    "bottom": "Do not bridge with heparin.",
+    "bullets": {
+      "clue": "Bridging adds bleeding. It is for the rare very high thrombotic risk, such as a mechanical mitral valve or a very recent clot.",
+      "treat": "Hold the thinner for the shortest safe window and restart. No low-molecular-weight heparin in the gap for ordinary atrial fibrillation.",
+      "trap": "A heparin bridge for every patient who misses a dose of warfarin or a direct oral anticoagulant."
+    },
+    "source": {
+      "guideline": "ACC periprocedural anticoagulation, BRIDGE trial",
+      "year": "2017",
+      "url": "https://www.ahajournals.org/",
+      "recommendation": "Most patients with atrial fibrillation should not receive heparin bridging around a procedure. Bridging increases major bleeding."
+    },
+    "diagram": {
+      "file": "svg/usmle2-064.svg",
+      "alt": "Text card. Do not bridge with heparin."
+    }
+  },
+  {
+    "id": "usmle2-065",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "Platelets fall by half on day 7 of heparin, and a leg is swollen. Yesterday's count was normal on day 2.",
+    "bottom": "Stop every heparin and start a different anticoagulant.",
+    "bullets": {
+      "clue": "The timing, five to ten days, or sooner on re-exposure, plus thrombosis, is the disease.",
+      "treat": "A non-heparin anticoagulant. Do not start warfarin alone while the platelet count is still low.",
+      "trap": "Holding heparin and waiting with no anticoagulant while a clot is present."
+    },
+    "source": {
+      "guideline": "ASH heparin-induced thrombocytopenia guideline",
+      "year": "2018",
+      "url": "https://www.hematology.org/",
+      "recommendation": "Suspected HIT means all heparin stops and a non-heparin anticoagulant starts. Warfarin monotherapy in the acute phase is harmful."
+    },
+    "diagram": {
+      "file": "svg/usmle2-065.svg",
+      "alt": "Text card. Stop every heparin and start a different anticoagulant."
+    }
+  },
+  {
+    "id": "usmle2-066",
+    "system": "Dermatologic",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "A painful rash with skin that shears off, plus mouth and eye erosions, starting two weeks after a new seizure drug.",
+    "bottom": "Stop the drug. This is a severe cutaneous reaction.",
+    "bullets": {
+      "clue": "One to three weeks after the drug is the usual window. Mucosa separates this from a simple morbilliform rash.",
+      "treat": "Stop the culprit, supportive care as for a burn, and do not restart the drug. A short steroid burst is not a reason to continue it.",
+      "trap": "Diphenhydramine and one more week of the same drug."
+    },
+    "source": {
+      "guideline": "AAD guidance on severe cutaneous drug reactions",
+      "year": "2016",
+      "url": "https://www.aad.org/",
+      "recommendation": "Stevens-Johnson syndrome and toxic epidermal necrolysis are drug emergencies. The culprit stops immediately."
+    },
+    "diagram": {
+      "file": "svg/usmle2-066.svg",
+      "alt": "Text card. Stop the drug. This is a severe cutaneous reaction."
+    }
+  },
+  {
+    "id": "usmle2-067",
+    "system": "Dermatologic",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "Limb pain far beyond the redness, bullae, and a patient who is becoming toxic over a few hours.",
+    "bottom": "This is a necrotizing infection. The treatment is the operating room.",
+    "bullets": {
+      "clue": "Pain out of proportion, rapid spread, bullae, or crepitus are late enough. Do not wait for crepitus.",
+      "treat": "Urgent surgical exploration, broad antibiotics, and resuscitation.",
+      "trap": "Another day of intravenous antibiotics and a marked border."
+    },
+    "source": {
+      "guideline": "IDSA necrotizing soft tissue guidance",
+      "year": "2014",
+      "url": "https://www.idsociety.org/",
+      "recommendation": "Necrotizing soft-tissue infection is a surgical diagnosis. Antibiotics without debridement are not sufficient."
+    },
+    "diagram": {
+      "file": "svg/usmle2-067.svg",
+      "alt": "Text card. This is a necrotizing infection. The treatment is the operating room."
+    }
+  },
+  {
+    "id": "usmle2-068",
+    "system": "Dermatologic",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "A pigmented lesion on the back has changed color and shape over two months. A clinic offers to freeze it today.",
+    "bottom": "Excise it so a pathologist can see the depth. Do not destroy it.",
+    "bullets": {
+      "clue": "Frozen destruction leaves no specimen and no thickness.",
+      "treat": "Full-thickness excisional biopsy with a narrow margin. Depth decides the rest of the operation.",
+      "trap": "Cryotherapy of a changing pigmented lesion."
+    },
+    "source": {
+      "guideline": "AAD melanoma guideline",
+      "year": "2019",
+      "url": "https://www.aad.org/",
+      "recommendation": "A suspected melanoma is removed with an excisional biopsy so Breslow thickness can be measured."
+    },
+    "diagram": {
+      "file": "svg/usmle2-068.svg",
+      "alt": "Text card. Excise it so a pathologist can see the depth. Do not destroy it."
+    }
+  },
+  {
+    "id": "usmle2-069",
+    "system": "Prevention",
+    "task_area": "Multisystem processes and disorders",
+    "front": "A healthy 46-year-old has never been screened for colorectal cancer and has no symptoms.",
+    "bottom": "Start screening. Forty-five is the age, not fifty.",
+    "bullets": {
+      "clue": "Stool testing or a visual exam are both acceptable when the patient will complete one of them.",
+      "treat": "Offer a screening test now and repeat on the correct interval. Do not wait for symptoms.",
+      "trap": "Reassurance that screening starts at 50."
+    },
+    "source": {
+      "guideline": "USPSTF colorectal cancer screening",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "The USPSTF recommends colorectal cancer screening from age 45 to 75."
+    },
+    "diagram": {
+      "file": "svg/usmle2-069.svg",
+      "alt": "Text card. Start screening. Forty-five is the age, not fifty."
+    }
+  },
+  {
+    "id": "usmle2-070",
+    "system": "Prevention",
+    "task_area": "Respiratory system",
+    "front": "A 62-year-old smoked a pack a day for 30 years and quit 10 years ago. No symptoms.",
+    "bottom": "Offer a yearly low-dose chest CT.",
+    "bullets": {
+      "clue": "The window is age 50 to 80, at least 20 pack-years, and current smoking or quitting within 15 years.",
+      "treat": "Annual low-dose CT while the patient still meets the rule. A chest x-ray is not the screening test.",
+      "trap": "A plain film every year, or no screen because the patient already quit."
+    },
+    "source": {
+      "guideline": "USPSTF lung cancer screening",
+      "year": "2021",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "Annual low-dose CT is recommended for adults 50 to 80 with a 20 pack-year history who smoke or quit within 15 years."
+    },
+    "diagram": {
+      "file": "svg/usmle2-070.svg",
+      "alt": "Text card. Offer a yearly low-dose chest CT."
+    }
+  },
+  {
+    "id": "usmle2-071",
+    "system": "Prevention",
+    "task_area": "Female reproductive system and breast",
+    "front": "A 42-year-old woman with average risk has never had a mammogram and feels well.",
+    "bottom": "Start mammography. The recommended rhythm is every other year.",
+    "bullets": {
+      "clue": "The current preventive range for average risk is 40 through 74.",
+      "treat": "Biennial screening mammography. Do not promise that a normal film rules out every cancer.",
+      "trap": "Waiting until 50 because an older guideline said so."
+    },
+    "source": {
+      "guideline": "USPSTF breast cancer screening",
+      "year": "2024",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "The 2024 USPSTF recommends biennial screening mammography for women aged 40 to 74 at average risk."
+    },
+    "diagram": {
+      "file": "svg/usmle2-071.svg",
+      "alt": "Text card. Start mammography. The recommended rhythm is every other year."
+    }
+  },
+  {
+    "id": "usmle2-072",
+    "system": "Prevention",
+    "task_area": "Cardiovascular system",
+    "front": "A 68-year-old man smoked for twenty years and quit at 60. He has no abdominal symptoms.",
+    "bottom": "One ultrasound of the aorta. He does not need it repeated every year.",
+    "bullets": {
+      "clue": "Men 65 to 75 who have ever smoked get a one-time screen. A never-smoker is a different, weaker case.",
+      "treat": "One abdominal ultrasound.",
+      "trap": "Yearly ultrasounds for life because he once smoked."
+    },
+    "source": {
+      "guideline": "USPSTF abdominal aortic aneurysm screening",
+      "year": "2019",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "One-time ultrasound screening for abdominal aortic aneurysm is recommended in men 65 to 75 who have ever smoked."
+    },
+    "diagram": {
+      "file": "svg/usmle2-072.svg",
+      "alt": "Text card. One ultrasound of the aorta. He does not need it repeated every year."
+    }
+  },
+  {
+    "id": "usmle2-073",
+    "system": "Prevention",
+    "task_area": "Cardiovascular system",
+    "front": "A healthy 68-year-old with no vascular disease asks for a daily aspirin to stay healthy.",
+    "bottom": "Do not start aspirin for primary prevention at this age.",
+    "bullets": {
+      "clue": "Bleeding outweighs the gain for most adults 60 and older who have never had vascular disease.",
+      "treat": "Talk about pressure, lipids, and smoking instead. Aspirin for someone who already has vascular disease is a different question.",
+      "trap": "A baby aspirin for every older adult."
+    },
+    "source": {
+      "guideline": "USPSTF aspirin for cardiovascular prevention",
+      "year": "2022",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "The USPSTF recommends against starting aspirin for primary prevention in adults 60 and older."
+    },
+    "diagram": {
+      "file": "svg/usmle2-073.svg",
+      "alt": "Text card. Do not start aspirin for primary prevention at this age."
+    }
+  },
+  {
+    "id": "usmle2-074",
+    "system": "Prevention",
+    "task_area": "Musculoskeletal system",
+    "front": "A 66-year-old woman has never broken a bone and has never had a bone-density test.",
+    "bottom": "Offer a density test. Sixty-five is the age for women.",
+    "bullets": {
+      "clue": "Earlier testing is for risk that equals a 65-year-old, not for every perimenopausal patient.",
+      "treat": "DEXA now. Treat based on the score and fracture risk, not on the test alone.",
+      "trap": "Waiting until the first fracture."
+    },
+    "source": {
+      "guideline": "USPSTF osteoporosis screening",
+      "year": "2018",
+      "url": "https://www.uspreventiveservicestaskforce.org/",
+      "recommendation": "The USPSTF recommends osteoporosis screening in women 65 and older. Confirm the statement is still current before the feed is shown to students."
+    },
+    "diagram": {
+      "file": "svg/usmle2-074.svg",
+      "alt": "Text card. Offer a density test. Sixty-five is the age for women."
+    }
+  },
+  {
+    "id": "usmle2-075",
+    "system": "Emergency",
+    "task_area": "Multisystem processes and disorders",
+    "front": "A friend is unconscious, breathing four times a minute, with pinpoint pupils. A syringe was in the room.",
+    "bottom": "Give naloxone and breathe for the patient.",
+    "bullets": {
+      "clue": "The urine drug screen does not arrive in time and does not reverse the receptor.",
+      "treat": "Naloxone, airway support, and a watch period because the drug can outlast the antidote.",
+      "trap": "Waiting for a toxicology panel before the antidote."
+    },
+    "source": {
+      "guideline": "AHA opioid overdose guidance",
+      "year": "2020",
+      "url": "https://www.heart.org/",
+      "recommendation": "Opioid overdose with respiratory depression is treated with naloxone and ventilation immediately."
+    },
+    "diagram": {
+      "file": "svg/usmle2-075.svg",
+      "alt": "Text card. Give naloxone and breathe for the patient."
+    }
+  },
+  {
+    "id": "usmle2-076",
+    "system": "Emergency",
+    "task_area": "Multisystem processes and disorders",
+    "front": "A patient swallowed a bottle of acetaminophen six hours ago and feels fine. Liver enzymes are still normal.",
+    "bottom": "Plot the level and start the antidote if it is above the line. Do not wait for the enzymes.",
+    "bullets": {
+      "clue": "Injury shows up after the enzymes do. A normal ALT at six hours is expected and useless as reassurance.",
+      "treat": "N-acetylcysteine when the treatment line is crossed, the time is unknown, or the history is large.",
+      "trap": "Discharge because the liver tests are normal tonight."
+    },
+    "source": {
+      "guideline": "ACMT acetaminophen treatment",
+      "year": "2023",
+      "url": "https://www.acmt.net/",
+      "recommendation": "Acetaminophen toxicity is decided with a timed level and the Rumack-Matthew line. Normal early liver enzymes do not clear the patient."
+    },
+    "diagram": {
+      "file": "svg/usmle2-076.svg",
+      "alt": "Text card. Plot the level and start the antidote if it is above the line. Do not wait for the enzymes."
+    }
+  },
+  {
+    "id": "usmle2-077",
+    "system": "Emergency",
+    "task_area": "Respiratory system",
+    "front": "Headache and nausea in a family whose heater has been running. The pulse oximeter reads 99 percent. They look pink.",
+    "bottom": "The oximeter cannot see this poisoning. Send co-oximetry.",
+    "bullets": {
+      "clue": "Carbon monoxide binds hemoglobin and shifts the curve. Standard pulse oximetry stays falsely normal.",
+      "treat": "High-flow oxygen, a co-oximeter level, and hyperbaric consideration for severe cases.",
+      "trap": "Reassurance from a normal pulse oximeter."
+    },
+    "source": {
+      "guideline": "CDC carbon monoxide guidance",
+      "year": "2023",
+      "url": "https://www.cdc.gov/carbon-monoxide/",
+      "recommendation": "Carbon monoxide poisoning is diagnosed with co-oximetry. Standard pulse oximetry does not detect it."
+    },
+    "diagram": {
+      "file": "svg/usmle2-077.svg",
+      "alt": "Text card. The oximeter cannot see this poisoning. Send co-oximetry."
+    }
+  },
+  {
+    "id": "usmle2-078",
+    "system": "Reproductive",
+    "task_area": "Multisystem processes and disorders",
+    "front": "Sudden severe testicular pain, a high-riding testis, and no cremasteric reflex. Onset was one hour ago.",
+    "bottom": "Go to the operating room. Do not wait on an ultrasound if it will delay the knife.",
+    "bullets": {
+      "clue": "The other side is fixed at the same operation. Ultrasound is for the doubtful exam, not for a clear one.",
+      "treat": "Immediate urology exploration.",
+      "trap": "Scheduled outpatient ultrasound tomorrow."
+    },
+    "source": {
+      "guideline": "AUA acute scrotum standard",
+      "year": "2018",
+      "url": "https://www.auanet.org/",
+      "recommendation": "A classic torsion exam goes to immediate exploration. Imaging is only allowed if it does not delay surgery."
+    },
+    "diagram": {
+      "file": "svg/usmle2-078.svg",
+      "alt": "Text card. Go to the operating room. Do not wait on an ultrasound if it will delay the knife."
+    }
+  },
+  {
+    "id": "usmle2-079",
+    "system": "Ethics",
+    "task_area": "Behavioral health",
+    "front": "A patient speaks only Spanish. The consent for surgery is about to be done by the patient's eight-year-old child.",
+    "bottom": "Use a professional interpreter. A child is not the interpreter.",
+    "bullets": {
+      "clue": "Family may stay for support. They do not replace a qualified interpreter for consent.",
+      "treat": "A professional interpreter, in person or by video, before the signature.",
+      "trap": "Letting the child translate the risks to save time."
+    },
+    "source": {
+      "guideline": "Joint Commission patient rights on communication",
+      "year": "2022",
+      "url": "https://www.jointcommission.org/",
+      "recommendation": "Informed consent requires a qualified interpreter when you and the patient do not share a language. Children should not interpret."
+    },
+    "diagram": {
+      "file": "svg/usmle2-079.svg",
+      "alt": "Text card. Use a professional interpreter. A child is not the interpreter."
+    }
+  },
+  {
+    "id": "usmle2-080",
+    "system": "Ethics",
+    "task_area": "Behavioral health",
+    "front": "A medication error reached the patient and caused harm. The chart can be written so the error is hard to see.",
+    "bottom": "Tell the patient what happened.",
+    "bullets": {
+      "clue": "Disclosure includes what is known, what it means, and what will be done. Blame of a colleague is not the script.",
+      "treat": "An honest conversation, care for the harm, and a report through the safety system.",
+      "trap": "Hiding the event in vague chart language."
+    },
+    "source": {
+      "guideline": "AMA Code of Medical Ethics on disclosure",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/",
+      "recommendation": "Physicians disclose harmful errors to patients. Concealment is an ethics failure and a safety failure."
+    },
+    "diagram": {
+      "file": "svg/usmle2-080.svg",
+      "alt": "Text card. Tell the patient what happened."
+    }
+  }
+]

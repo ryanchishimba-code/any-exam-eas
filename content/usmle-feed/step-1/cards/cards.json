@@ -1,0 +1,1762 @@
+[
+  {
+    "id": "usmle1-001",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "After a carbohydrate meal, liver glycolysis speeds up. Which step is committed, and what slows it when energy is already high?",
+    "bottom": "Phosphofructokinase-1. ATP and citrate slow it.",
+    "bullets": {
+      "clue": "Fructose-6-phosphate becomes fructose-1,6-bisphosphate at this step.",
+      "treat": "AMP and fructose-2,6-bisphosphate speed the enzyme. ATP and citrate slow it.",
+      "trap": "Naming hexokinase. It is regulated, but it is not the committed step."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The content outline places pathway regulation in general principles. PFK-1 is the committed step of glycolysis."
+    },
+    "diagram": {
+      "file": "svg/usmle1-001.svg",
+      "alt": "Text card. Phosphofructokinase-1. ATP and citrate slow it."
+    }
+  },
+  {
+    "id": "usmle1-002",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "During a long fast the liver makes glucose. Which enzymes does glycolysis refuse to run in reverse?",
+    "bottom": "Pyruvate carboxylase, PEPCK, fructose-1,6-bisphosphatase, and glucose-6-phosphatase.",
+    "bullets": {
+      "clue": "These four steps are the irreversible ones. The rest of the pathway is shared.",
+      "treat": "Biotin is required for pyruvate carboxylase. Glucagon raises fructose-2,6-bisphosphatase activity by lowering fructose-2,6-bisphosphate.",
+      "trap": "Saying the whole pathway simply reverses when insulin falls."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Gluconeogenesis is a general-principles pathway. Only the irreversible enzymes are unique to it."
+    },
+    "diagram": {
+      "file": "svg/usmle1-002.svg",
+      "alt": "Text card. Pyruvate carboxylase, PEPCK, fructose-1,6-bisphosphatase, and glucose-6-phosphatase."
+    }
+  },
+  {
+    "id": "usmle1-003",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "A toddler has lactic acidosis and neurologic injury after carbohydrate loads. Pyruvate, lactate, and alanine are all high.",
+    "bottom": "Pyruvate dehydrogenase is blocked. Use ketogenic fuel, not more glucose.",
+    "bullets": {
+      "clue": "Pyruvate, lactate, and alanine rise together because they share one pool.",
+      "treat": "Thiamine is a cofactor. A ketogenic diet bypasses the block.",
+      "trap": "Giving more glucose, which only makes more pyruvate that cannot be oxidized."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "PDH links glycolysis to the citric acid cycle. Carbohydrate loading worsens the lactic acidosis."
+    },
+    "diagram": {
+      "file": "svg/usmle1-003.svg",
+      "alt": "Text card. Pyruvate dehydrogenase is blocked. Use ketogenic fuel, not more glucose."
+    }
+  },
+  {
+    "id": "usmle1-004",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "A poison makes the inner mitochondrial membrane leak protons. Oxygen use rises, ATP falls, and the patient is hot.",
+    "bottom": "This is an uncoupler. The chain runs, but the gradient makes heat.",
+    "bullets": {
+      "clue": "Oxygen consumption is high while ATP is low.",
+      "treat": "Separate this from a chain blocker, which stops oxygen use and ATP together.",
+      "trap": "Calling every mitochondrial poison a chain inhibitor."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Uncoupling is a core oxidative-phosphorylation concept. Thermogenin, high-dose aspirin, and dinitrophenol are the classic examples."
+    },
+    "diagram": {
+      "file": "svg/usmle1-004.svg",
+      "alt": "Text card. This is an uncoupler. The chain runs, but the gradient makes heat."
+    }
+  },
+  {
+    "id": "usmle1-005",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "A man develops dark urine two days after a sulfa drug. The smear shows bite cells and denatured hemoglobin precipitates.",
+    "bottom": "Glucose-6-phosphate dehydrogenase cannot refill NADPH.",
+    "bullets": {
+      "clue": "The inheritance is X-linked. Oxidative stress denatures hemoglobin, and the spleen bites the precipitates out.",
+      "treat": "Stop the oxidant. An enzyme assay during the hemolysis can look normal, because the oldest cells are already gone.",
+      "trap": "Trusting a normal enzyme level drawn on the day of the hemolysis."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The pentose phosphate pathway is the source of NADPH in red cells. Infection, sulfa drugs, primaquine, and fava beans are typical triggers."
+    },
+    "diagram": {
+      "file": "svg/usmle1-005.svg",
+      "alt": "Text card. Glucose-6-phosphate dehydrogenase cannot refill NADPH."
+    }
+  },
+  {
+    "id": "usmle1-006",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "Bleeding gums, poor wound healing, and corkscrew hairs. The vessels are fragile and collagen will not cross-link.",
+    "bottom": "Vitamin C is missing. Prolyl and lysyl hydroxylases need it.",
+    "bullets": {
+      "clue": "Hydroxylation of proline and lysine lets collagen form stable triple helices.",
+      "treat": "Replace vitamin C. The bleeding is from vessels, not from a missing clotting factor.",
+      "trap": "Treating this as vitamin K deficiency because the patient is bleeding."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Ascorbate is required for collagen hydroxylation. Scurvy is the clinical picture of that missing step."
+    },
+    "diagram": {
+      "file": "svg/usmle1-006.svg",
+      "alt": "Text card. Vitamin C is missing. Prolyl and lysyl hydroxylases need it."
+    }
+  },
+  {
+    "id": "usmle1-007",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "A megaloblastic anemia comes with loss of vibration sense. Methylmalonic acid is high and homocysteine is high.",
+    "bottom": "This is cobalamin deficiency, not folate deficiency alone.",
+    "bullets": {
+      "clue": "Both deficiencies stall DNA synthesis. Only cobalamin handles methylmalonyl-CoA.",
+      "treat": "Replace B12. Folate alone can improve the anemia and leave the cord injury going.",
+      "trap": "Treating a high mean corpuscular volume with folate before the methylmalonic acid is known."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Methylmalonic acid separates B12 deficiency from folate deficiency. Subacute combined degeneration is the cord finding."
+    },
+    "diagram": {
+      "file": "svg/usmle1-007.svg",
+      "alt": "Text card. This is cobalamin deficiency, not folate deficiency alone."
+    }
+  },
+  {
+    "id": "usmle1-008",
+    "system": "Biochemistry",
+    "task_area": "General principles: biochemistry and molecular biology",
+    "front": "A child has a musty body odor, fair skin, and developmental delay. Phenylalanine is high and tyrosine is low.",
+    "bottom": "Phenylalanine hydroxylase is deficient. Tyrosine is now essential.",
+    "bullets": {
+      "clue": "Phenylalanine cannot become tyrosine, so pigment and neurotransmitter precursors fall.",
+      "treat": "Restrict phenylalanine and avoid aspartame. Tetrahydrobiopterin deficiency is the variant that also needs neurotransmitter precursors.",
+      "trap": "Calling every fair-haired infant with delay a storage disease and missing the diet."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Phenylketonuria is a core amino-acid pathway. The diet is the treatment that prevents further injury."
+    },
+    "diagram": {
+      "file": "svg/usmle1-008.svg",
+      "alt": "Text card. Phenylalanine hydroxylase is deficient. Tyrosine is now essential."
+    }
+  },
+  {
+    "id": "usmle1-009",
+    "system": "Genetics",
+    "task_area": "General principles: human development and genetics",
+    "front": "An autosomal recessive disease affects 1 in 10,000 newborns. About how common are carriers?",
+    "bottom": "About 1 in 50. The carrier frequency is 2pq.",
+    "bullets": {
+      "clue": "Incidence is q squared, so q is 1 in 100. When p is near 1, 2pq is about 1 in 50.",
+      "treat": "Use this for counseling in a large population that mates at random and is not under selection.",
+      "trap": "Reporting the allele frequency as if it were the carrier frequency."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hardy-Weinberg is the quantitative-methods tool the outline expects for carrier estimates."
+    },
+    "diagram": {
+      "file": "svg/usmle1-009.svg",
+      "alt": "Text card. About 1 in 50. The carrier frequency is 2pq."
+    }
+  },
+  {
+    "id": "usmle1-010",
+    "system": "Genetics",
+    "task_area": "General principles: human development and genetics",
+    "front": "A trait shows up in males across generations. Affected men have unaffected sons and carrier daughters.",
+    "bottom": "X-linked recessive. There is no male-to-male transmission.",
+    "bullets": {
+      "clue": "Daughters of affected men are obligate carriers.",
+      "treat": "Draw the pedigree before choosing autosomal recessive, which can pass from father to son.",
+      "trap": "Calling it autosomal dominant only because more than one generation is affected."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Transmission pattern is a genetics general principle. Absence of father-to-son transmission is the key."
+    },
+    "diagram": {
+      "file": "svg/usmle1-010.svg",
+      "alt": "Text card. X-linked recessive. There is no male-to-male transmission."
+    }
+  },
+  {
+    "id": "usmle1-011",
+    "system": "Genetics",
+    "task_area": "General principles: human development and genetics",
+    "front": "A child is profoundly hypotonic, then develops insatiable hunger. The paternal copy of 15q is missing or silent.",
+    "bottom": "Prader-Willi syndrome. The maternal copy of that region is silent.",
+    "bullets": {
+      "clue": "The same band from the other parent causes ataxia, inappropriate laughter, and almost no speech.",
+      "treat": "Name the parent of origin. The chromosome number alone does not separate the two syndromes.",
+      "trap": "Swapping the syndromes because both involve chromosome 15."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Imprinting is a genetics principle. Prader-Willi needs the paternal contribution. Angelman needs maternal UBE3A."
+    },
+    "diagram": {
+      "file": "svg/usmle1-011.svg",
+      "alt": "Text card. Prader-Willi syndrome. The maternal copy of that region is silent."
+    }
+  },
+  {
+    "id": "usmle1-012",
+    "system": "Genetics",
+    "task_area": "General principles: human development and genetics",
+    "front": "A family has colon cancer and endometrial cancer at young ages. Tumor microsatellites are unstable lengths.",
+    "bottom": "Lynch syndrome. DNA mismatch repair has failed.",
+    "bullets": {
+      "clue": "Microsatellite instability is the footprint of mismatch-repair loss.",
+      "treat": "This is not the pathway with hundreds of polyps. That pathway is APC.",
+      "trap": "Calling every inherited colon cancer familial adenomatous polyposis."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Mismatch repair fixes replication errors. Lynch syndrome is the clinical consequence, with colon and endometrial cancer."
+    },
+    "diagram": {
+      "file": "svg/usmle1-012.svg",
+      "alt": "Text card. Lynch syndrome. DNA mismatch repair has failed."
+    }
+  },
+  {
+    "id": "usmle1-013",
+    "system": "Genetics",
+    "task_area": "General principles: human development and genetics",
+    "front": "A child burns after minutes in the sun and develops skin cancers. Cells cannot clear ultraviolet dimers.",
+    "bottom": "Nucleotide excision repair has failed.",
+    "bullets": {
+      "clue": "Thymine dimers are the lesion. The pathway cuts out a short damaged oligonucleotide.",
+      "treat": "Strict sun avoidance follows from the mechanism.",
+      "trap": "Confusing this with mismatch repair, which fixes copy errors rather than ultraviolet dimers."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Xeroderma pigmentosum is the disease of failed nucleotide excision repair."
+    },
+    "diagram": {
+      "file": "svg/usmle1-013.svg",
+      "alt": "Text card. Nucleotide excision repair has failed."
+    }
+  },
+  {
+    "id": "usmle1-014",
+    "system": "Pathology",
+    "task_area": "General principles: biology of tissue response to disease",
+    "front": "Heart muscle and kidney after a blocked artery show preserved architecture with ghost cells. Brain after ischemia turns to liquid.",
+    "bottom": "Coagulative necrosis in solid organs. Liquefactive necrosis in the brain.",
+    "bullets": {
+      "clue": "Enzymes from the tissue itself digest the brain. Ischemia in heart and kidney denatures those enzymes.",
+      "treat": "Name the pattern from the organ. Do not treat every infarct as the same histology.",
+      "trap": "Calling brain infarcts coagulative because the cause was ischemia."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Necrosis patterns are tissue response to injury. Organ of origin predicts the pattern."
+    },
+    "diagram": {
+      "file": "svg/usmle1-014.svg",
+      "alt": "Text card. Coagulative necrosis in solid organs. Liquefactive necrosis in the brain."
+    }
+  },
+  {
+    "id": "usmle1-015",
+    "system": "Pathology",
+    "task_area": "General principles: biology of tissue response to disease",
+    "front": "A squamous lung cancer presents with severe hypercalcemia. Parathyroid hormone itself is low.",
+    "bottom": "The tumor is secreting parathyroid hormone-related peptide.",
+    "bullets": {
+      "clue": "The peptide mimics the hormone at bone and kidney, so calcium rises and the gland shuts down.",
+      "treat": "Treat the calcium and the cancer. Do not operate on a normal parathyroid.",
+      "trap": "Sending the patient for parathyroidectomy because the calcium is high."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Paraneoplastic PTHrP is a classic squamous-cell product. Suppressed native PTH separates it from primary hyperparathyroidism."
+    },
+    "diagram": {
+      "file": "svg/usmle1-015.svg",
+      "alt": "Text card. The tumor is secreting parathyroid hormone-related peptide."
+    }
+  },
+  {
+    "id": "usmle1-016",
+    "system": "Pharmacology",
+    "task_area": "General principles: pharmacodynamic and pharmacokinetic processes",
+    "front": "A drug binds the same pocket as the substrate. More substrate restores the maximum velocity. Apparent Km rises.",
+    "bottom": "Competitive inhibition. Vmax is unchanged.",
+    "bullets": {
+      "clue": "On a double-reciprocal plot the lines meet on the y-axis, because 1 over Vmax is the same.",
+      "treat": "A noncompetitive inhibitor lowers Vmax and does not yield to more substrate.",
+      "trap": "Saying every inhibitor lowers the maximum velocity."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Competitive versus noncompetitive inhibition is a pharmacodynamics principle on the outline."
+    },
+    "diagram": {
+      "file": "svg/usmle1-016.svg",
+      "alt": "Text card. Competitive inhibition. Vmax is unchanged."
+    }
+  },
+  {
+    "id": "usmle1-017",
+    "system": "Pharmacology",
+    "task_area": "General principles: pharmacodynamic and pharmacokinetic processes",
+    "front": "A patient in status epilepticus needs a therapeutic level now. Maintenance dosing would take many half-lives.",
+    "bottom": "Give a loading dose. It depends on volume of distribution, not clearance.",
+    "bullets": {
+      "clue": "Loading dose is target concentration times volume, divided by bioavailability.",
+      "treat": "Clearance sets the maintenance rate. Volume sets the size of the first dose.",
+      "trap": "Raising the drip and waiting. Steady state still takes about four half-lives."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Loading versus maintenance dose is a core pharmacokinetic distinction."
+    },
+    "diagram": {
+      "file": "svg/usmle1-017.svg",
+      "alt": "Text card. Give a loading dose. It depends on volume of distribution, not clearance."
+    }
+  },
+  {
+    "id": "usmle1-018",
+    "system": "Pharmacology",
+    "task_area": "General principles: pharmacodynamic and pharmacokinetic processes",
+    "front": "A drug's half-life grows longer as the level rises. A constant amount, not a constant fraction, leaves each hour.",
+    "bottom": "Elimination is zero order. The enzymes are saturated.",
+    "bullets": {
+      "clue": "Phenytoin, ethanol, and high-dose aspirin are the usual examples.",
+      "treat": "Small dose changes can cause large level changes once the pathway is full.",
+      "trap": "Using one fixed half-life to time the next blood level."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Zero-order kinetics is a pharmacokinetics principle. Saturated enzymes remove a fixed amount per unit time."
+    },
+    "diagram": {
+      "file": "svg/usmle1-018.svg",
+      "alt": "Text card. Elimination is zero order. The enzymes are saturated."
+    }
+  },
+  {
+    "id": "usmle1-019",
+    "system": "Cell biology",
+    "task_area": "General principles: biology of cells",
+    "front": "Damaged DNA should stop a cell before it copies that DNA. One protein halts G1. Another holds the transcription factor until it is phosphorylated.",
+    "bottom": "p53 halts G1. Hypophosphorylated Rb holds E2F.",
+    "bullets": {
+      "clue": "p53 raises p21, which keeps the kinase from phosphorylating Rb.",
+      "treat": "Loss of either brake allows a damaged cell to divide. Rb loss is shared by retinoblastoma and osteosarcoma.",
+      "trap": "Saying p53 directly phosphorylates Rb."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Cell-cycle checkpoints are general cell biology. p53 and Rb are the two brakes tested most often."
+    },
+    "diagram": {
+      "file": "svg/usmle1-019.svg",
+      "alt": "Text card. p53 halts G1. Hypophosphorylated Rb holds E2F."
+    }
+  },
+  {
+    "id": "usmle1-020",
+    "system": "Microbiology",
+    "task_area": "General principles: microbial biology",
+    "front": "A secreted bacterial protein causes disease at very low dose, may be encoded by a phage, and is destroyed by heat. The wall lipid does the opposite.",
+    "bottom": "Exotoxin versus endotoxin.",
+    "bullets": {
+      "clue": "Endotoxin is lipopolysaccharide. It is heat stable and drives fever through interleukin-1 and tumor necrosis factor.",
+      "treat": "Exotoxins are proteins with specific mechanisms. Endotoxin is the gram-negative wall.",
+      "trap": "Calling every fever-producing bacterial product an exotoxin."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The outline separates toxin biology from the organism list. Heat stability and chemistry tell them apart."
+    },
+    "diagram": {
+      "file": "svg/usmle1-020.svg",
+      "alt": "Contrast. Exotoxin versus endotoxin."
+    }
+  },
+  {
+    "id": "usmle1-021",
+    "system": "Microbiology",
+    "task_area": "General principles: microbial biology",
+    "front": "An enveloped virus uses one surface protein to find CD4 and a chemokine receptor, and a second protein to fuse.",
+    "bottom": "gp120 binds. gp41 fuses.",
+    "bullets": {
+      "clue": "The chemokine receptor is CCR5 early and CXCR4 later.",
+      "treat": "A fusion inhibitor targets gp41. A receptor blocker targets CCR5. They are not the same drug.",
+      "trap": "Swapping the two proteins, or treating every HIV drug as a reverse-transcriptase inhibitor."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "HIV entry is a microbial-biology and pharmacology junction. Binding and fusion are different steps."
+    },
+    "diagram": {
+      "file": "svg/usmle1-021.svg",
+      "alt": "Text card. gp120 binds. gp41 fuses."
+    }
+  },
+  {
+    "id": "usmle1-022",
+    "system": "Immunology",
+    "task_area": "General principles: immune responses",
+    "front": "A child has repeated infections with staphylococci and aspergillus, and a test of oxidative burst does not turn blue.",
+    "bottom": "NADPH oxidase is missing. Catalase-positive organisms survive inside the phagocyte.",
+    "bullets": {
+      "clue": "The burst is what kills organisms that bring their own catalase.",
+      "treat": "Protect against those organisms. The nitroblue tetrazolium or dihydrorhodamine test shows the missing burst.",
+      "trap": "Blaming antibodies. B cells are intact. The phagocyte cannot finish the kill."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Chronic granulomatous disease is failed NADPH oxidase. Catalase-positive organisms are the clinical clue."
+    },
+    "diagram": {
+      "file": "svg/usmle1-022.svg",
+      "alt": "Text card. NADPH oxidase is missing. Catalase-positive organisms survive inside the phagocyte."
+    }
+  },
+  {
+    "id": "usmle1-023",
+    "system": "Immunology",
+    "task_area": "General principles: immune responses",
+    "front": "Recurrent Neisseria infections start in adolescence. The membrane-attack complex cannot form.",
+    "bottom": "Terminal complement, C5 through C9, is missing.",
+    "bullets": {
+      "clue": "The same risk appears in a patient treated with a C5 inhibitor.",
+      "treat": "Vaccinate against meningococcus and treat infections promptly. Earlier complement defects look different and often include immune-complex disease.",
+      "trap": "Calling every complement problem a terminal-complex problem."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The membrane-attack complex is the shared defense against Neisseria. That is the immune-response fact."
+    },
+    "diagram": {
+      "file": "svg/usmle1-023.svg",
+      "alt": "Text card. Terminal complement, C5 through C9, is missing."
+    }
+  },
+  {
+    "id": "usmle1-024",
+    "system": "Immunology",
+    "task_area": "Immune system",
+    "front": "A boy has very high IgM, almost no IgG or IgA, and Pneumocystis. His T cells cannot signal B cells to switch class.",
+    "bottom": "CD40 ligand is missing.",
+    "bullets": {
+      "clue": "Without that signal, B cells stay on IgM.",
+      "treat": "This is cell-mediated failure as well as antibody failure, which is why Pneumocystis appears.",
+      "trap": "Calling it isolated agammaglobulinemia. Those patients lack B cells and do not have this opportunistic pattern."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hyper-IgM syndrome is failed class switching from a missing CD40 ligand, usually X-linked."
+    },
+    "diagram": {
+      "file": "svg/usmle1-024.svg",
+      "alt": "Do and do not. CD40 ligand is missing."
+    }
+  },
+  {
+    "id": "usmle1-025",
+    "system": "Immunology",
+    "task_area": "Immune system",
+    "front": "After six months of age a boy has recurrent bacterial infections, no tonsils, and no B cells. Viral infections are handled normally.",
+    "bottom": "Bruton tyrosine kinase is missing. B cells never mature.",
+    "bullets": {
+      "clue": "T cells are intact, so viruses and fungi are less of the story.",
+      "treat": "Give immunoglobulin. Do not expect lymphoid tissue on exam.",
+      "trap": "Confusing this with a combined deficiency, which loses T-cell function too."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "X-linked agammaglobulinemia presents after maternal IgG fades. The missing tissue is B-cell tissue."
+    },
+    "diagram": {
+      "file": "svg/usmle1-025.svg",
+      "alt": "Text card. Bruton tyrosine kinase is missing. B cells never mature."
+    }
+  },
+  {
+    "id": "usmle1-026",
+    "system": "Immunology",
+    "task_area": "Immune system",
+    "front": "An infant has low calcium, no thymic shadow, and a conotruncal heart defect.",
+    "bottom": "The third and fourth pharyngeal pouches did not form.",
+    "bullets": {
+      "clue": "Those pouches make the inferior parathyroids and the thymus. Neural-crest cells also fail the outflow tract.",
+      "treat": "Protect from live vaccines and irradiated blood until the immune defect is defined. Calcium and the heart need their own care.",
+      "trap": "Calling this a pharyngeal-arch cartilage problem. The pouches, not the arch cartilages, are the missing parts."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "DiGeorge syndrome is a third-and-fourth pouch field defect. Hypocalcemia, no thymus, and outflow-tract defects travel together."
+    },
+    "diagram": {
+      "file": "svg/usmle1-026.svg",
+      "alt": "Text card. The third and fourth pharyngeal pouches did not form."
+    }
+  },
+  {
+    "id": "usmle1-027",
+    "system": "Immunology",
+    "task_area": "Immune system",
+    "front": "Sudden swelling of the face and airway with no urticaria, often after a dental procedure. Complement C4 is low all the time.",
+    "bottom": "C1 inhibitor is missing or not working.",
+    "bullets": {
+      "clue": "The pathway that makes bradykinin is unchecked. Histamine is not the mediator.",
+      "treat": "Airway threats need a bradykinin-pathway drug, not the allergy algorithm alone.",
+      "trap": "Giving epinephrine and antihistamines and considering the problem solved."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hereditary angioedema is a complement regulatory disease. Low C4 between attacks is the screening clue."
+    },
+    "diagram": {
+      "file": "svg/usmle1-027.svg",
+      "alt": "Text card. C1 inhibitor is missing or not working."
+    }
+  },
+  {
+    "id": "usmle1-028",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "A tired patient has a low ferritin, a high iron-binding capacity, and a low serum iron. Another anemic patient has low iron but a low binding capacity and a normal or high ferritin.",
+    "bottom": "The first is iron deficiency. The second is anemia of chronic disease.",
+    "bullets": {
+      "clue": "Ferritin is the storage marker that separates them. Binding capacity rises only when stores are empty.",
+      "treat": "Replace iron when stores are empty. Treat the underlying disease when stores are locked away.",
+      "trap": "Giving iron to every low serum iron. Chronic disease already has iron the marrow cannot use."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Iron studies separate deficiency from anemia of inflammation. That pairing is a blood-system essential."
+    },
+    "diagram": {
+      "file": "svg/usmle1-028.svg",
+      "alt": "Text card. The first is iron deficiency. The second is anemia of chronic disease."
+    }
+  },
+  {
+    "id": "usmle1-029",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "Red cells sickle when oxygen falls. Acid, dehydration, and a high cell hemoglobin concentration make it worse.",
+    "bottom": "Deoxyhemoglobin S polymerizes.",
+    "bullets": {
+      "clue": "The polymer distorts the cell, which then occludes small vessels and hemolyzes.",
+      "treat": "Oxygen, fluids, and pain control for a crisis. Hydroxyurea raises hemoglobin F over time.",
+      "trap": "Treating the shape change as an antibody problem."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Sickling is a hemoglobin polymerization disease. Hypoxia, acidosis, and high mean corpuscular hemoglobin concentration favor the polymer."
+    },
+    "diagram": {
+      "file": "svg/usmle1-029.svg",
+      "alt": "Text card. Deoxyhemoglobin S polymerizes."
+    }
+  },
+  {
+    "id": "usmle1-030",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "A family has anemia, spherical red cells, and a spleen that is doing too much. After the spleen is removed the anemia improves and encapsulated bacteria become the risk.",
+    "bottom": "The membrane scaffold, often ankyrin or spectrin, is weak.",
+    "bullets": {
+      "clue": "The spleen traps the poorly deformable spheres. Parvovirus can suddenly stop red-cell production.",
+      "treat": "Folate supports the high turnover. Splenectomy helps the anemia and then requires vaccine protection.",
+      "trap": "Removing the spleen and forgetting the infection risk that follows."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hereditary spherocytosis is a red-cell membrane disease. Splenectomy trades hemolysis for encapsulated-organism risk."
+    },
+    "diagram": {
+      "file": "svg/usmle1-030.svg",
+      "alt": "Steps. The membrane scaffold, often ankyrin or spectrin, is weak."
+    }
+  },
+  {
+    "id": "usmle1-031",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "Mild mucosal bleeding, a normal platelet count, and a normal or slightly long PTT. The factor VIII carrier protein is low.",
+    "bottom": "von Willebrand factor is low or not working.",
+    "bullets": {
+      "clue": "It carries factor VIII and sticks platelets to collagen. The platelet count itself is normal.",
+      "treat": "Desmopressin helps many patients with type 1 disease. It is the wrong drug when the factor binds platelets too tightly.",
+      "trap": "Transfusing platelets for a normal count."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "von Willebrand disease is the common inherited mucocutaneous bleeding disorder. The count is not the defect."
+    },
+    "diagram": {
+      "file": "svg/usmle1-031.svg",
+      "alt": "Text card. von Willebrand factor is low or not working."
+    }
+  },
+  {
+    "id": "usmle1-032",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "A boy has hemarthroses. PTT is long, PT is normal, and the bleeding corrects when factor VIII is added.",
+    "bottom": "Factor VIII is missing.",
+    "bullets": {
+      "clue": "The inheritance is X-linked. Factor IX deficiency looks similar and does not correct with factor VIII.",
+      "treat": "Replace the missing factor. Desmopressin can help mild factor VIII deficiency, not factor IX deficiency.",
+      "trap": "Giving vitamin K for an intrinsic-pathway bleeding disorder."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hemophilia A is factor VIII. The joint bleeding and the isolated PTT prolongation are the picture."
+    },
+    "diagram": {
+      "file": "svg/usmle1-032.svg",
+      "alt": "Text card. Factor VIII is missing."
+    }
+  },
+  {
+    "id": "usmle1-033",
+    "system": "Hematologic",
+    "task_area": "Blood and lymphoreticular system",
+    "front": "A middle-aged adult has a very high neutrophil count, a low leukocyte alkaline phosphatase, and a chromosome swap between 9 and 22.",
+    "bottom": "BCR-ABL is driving the marrow.",
+    "bullets": {
+      "clue": "A reactive neutrophil count has a high alkaline phosphatase and no Philadelphia chromosome.",
+      "treat": "A tyrosine kinase inhibitor targets the fusion. Blast crisis means the disease has left the chronic phase.",
+      "trap": "Calling every extreme neutrophil count a leukemia."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Chronic myeloid leukemia is defined by BCR-ABL. The alkaline phosphatase separates it from a leukemoid reaction."
+    },
+    "diagram": {
+      "file": "svg/usmle1-033.svg",
+      "alt": "Text card. BCR-ABL is driving the marrow."
+    }
+  },
+  {
+    "id": "usmle1-034",
+    "system": "Behavioral",
+    "task_area": "Behavioral health",
+    "front": "A patient treats the physician as if the physician were a critical parent. The feeling belongs to an earlier relationship.",
+    "bottom": "This is transference.",
+    "bullets": {
+      "clue": "Countertransference is the physician's feeling about the patient.",
+      "treat": "Notice it and keep the boundary. Do not act out the old relationship.",
+      "trap": "Using the two words for the same direction of feeling."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Transference and countertransference are communication concepts on the behavioral-health outline."
+    },
+    "diagram": {
+      "file": "svg/usmle1-034.svg",
+      "alt": "Text card. This is transference."
+    }
+  },
+  {
+    "id": "usmle1-035",
+    "system": "Behavioral",
+    "task_area": "Behavioral health",
+    "front": "A patient drinks heavily, agrees it is a problem, and has not decided to change.",
+    "bottom": "This is contemplation, not action.",
+    "bullets": {
+      "clue": "Precontemplation does not yet see a problem. Preparation has a plan. Action has started the change.",
+      "treat": "Match the conversation to the stage. Arguing with someone who does not see a problem hardens it.",
+      "trap": "Handing a quit plan to a person who does not believe there is anything to quit."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Stages of change are a behavioral principle. The intervention has to match the stage."
+    },
+    "diagram": {
+      "file": "svg/usmle1-035.svg",
+      "alt": "Text card. This is contemplation, not action."
+    }
+  },
+  {
+    "id": "usmle1-036",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "One weak limb is stiff, with brisk reflexes and an upgoing toe. Another is flaccid, wasted, and fasciculating, with quiet reflexes.",
+    "bottom": "The first is an upper motor neuron. The second is a lower motor neuron.",
+    "bullets": {
+      "clue": "Upper motor neurons inhibit the reflex arc. Their loss releases it.",
+      "treat": "Localize before you image. A mixed picture can be both, as in amyotrophic lateral sclerosis.",
+      "trap": "Calling every weak limb a stroke."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The motor-neuron signs are a nervous-system localization rule used throughout the outline."
+    },
+    "diagram": {
+      "file": "svg/usmle1-036.svg",
+      "alt": "Text card. The first is an upper motor neuron. The second is a lower motor neuron."
+    }
+  },
+  {
+    "id": "usmle1-037",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "Sudden weakness of the face and arm, with little leg weakness, and the patient cannot find words. The other pattern is a weak leg with preserved speech.",
+    "bottom": "The first is the middle cerebral artery. The second is the anterior cerebral artery.",
+    "bullets": {
+      "clue": "The middle cerebral artery supplies the lateral cortex. The anterior cerebral artery supplies the medial leg area.",
+      "treat": "A visual-field cut with little weakness points at the posterior cerebral artery instead.",
+      "trap": "Treating every hemiparesis as the same arterial territory."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Arterial territories are nervous-system anatomy. Face and arm versus leg is the bedside split."
+    },
+    "diagram": {
+      "file": "svg/usmle1-037.svg",
+      "alt": "Text card. The first is the middle cerebral artery. The second is the anterior cerebral artery."
+    }
+  },
+  {
+    "id": "usmle1-038",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "One side of the body is weak and has lost vibration. Pain and temperature are lost on the other side, a level below the injury.",
+    "bottom": "Half of the cord is cut.",
+    "bullets": {
+      "clue": "The spinothalamic fibers have already crossed. The corticospinal and dorsal columns have not.",
+      "treat": "Image the cord. A one-sided cord lesion is not a brain lesion.",
+      "trap": "Sending the patient for a head scan only, because the findings are on both sides of the body."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Brown-Sequard physiology follows from which tracts have crossed. That is spinal cord anatomy."
+    },
+    "diagram": {
+      "file": "svg/usmle1-038.svg",
+      "alt": "Text card. Half of the cord is cut."
+    }
+  },
+  {
+    "id": "usmle1-039",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "A patient loses pain and temperature on one side of the face and the opposite side of the body, with a small pupil, a drooping lid, and ataxia. Strength is spared.",
+    "bottom": "The lateral medulla is infarcted.",
+    "bullets": {
+      "clue": "The spinal trigeminal nucleus, the spinothalamic tract, sympathetic fibers, and the inferior cerebellar peduncle sit there.",
+      "treat": "The usual vessel is the vertebral artery or its posterior inferior cerebellar branch.",
+      "trap": "Calling it a capsular stroke because the face and body are both involved. Power is spared here."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Lateral medullary syndrome is a brainstem localization. Crossed sensory loss plus Horner syndrome is the pattern."
+    },
+    "diagram": {
+      "file": "svg/usmle1-039.svg",
+      "alt": "Text card. The lateral medulla is infarcted."
+    }
+  },
+  {
+    "id": "usmle1-040",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "Speech is fluent, full of wrong words, and the patient does not understand what is said. There is no arm weakness.",
+    "bottom": "The posterior superior temporal lobe is injured.",
+    "bullets": {
+      "clue": "Comprehension and repetition fail. The nearby motor cortex is spared, so the arm is strong.",
+      "treat": "The nonfluent pattern, with intact comprehension and a weak arm, sits in the frontal lobe instead.",
+      "trap": "Calling every aphasia a frontal lesion."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Wernicke aphasia is a dominant temporal lesion. Fluency with failed comprehension is the bedside split."
+    },
+    "diagram": {
+      "file": "svg/usmle1-040.svg",
+      "alt": "Text card. The posterior superior temporal lobe is injured."
+    }
+  },
+  {
+    "id": "usmle1-041",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "Resting tremor, rigidity, and slow movement. Pigmented cells in the midbrain are gone, and the protein aggregates are alpha-synuclein.",
+    "bottom": "The nigrostriatal dopamine projection has died.",
+    "bullets": {
+      "clue": "Those cells live in the substantia nigra pars compacta and project to the striatum.",
+      "treat": "Replacing dopamine effect helps movement. It does not rebuild the cells.",
+      "trap": "Localizing the loss to the striatum itself. The striatum is the target, not the source."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Parkinson disease is loss of substantia nigra pars compacta neurons. Lewy bodies contain alpha-synuclein."
+    },
+    "diagram": {
+      "file": "svg/usmle1-041.svg",
+      "alt": "Text card. The nigrostriatal dopamine projection has died."
+    }
+  },
+  {
+    "id": "usmle1-042",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "A young adult has neurologic symptoms separated in time and place. Spinal fluid has unmatched oligoclonal bands, and the cells that make central myelin are the ones injured.",
+    "bottom": "Oligodendrocytes are being attacked.",
+    "bullets": {
+      "clue": "Oligoclonal bands are antibodies made inside the nervous system, not a copy of the serum.",
+      "treat": "Separate this from a peripheral myelin disease, which is Schwann cells and has no oligoclonal bands of this kind.",
+      "trap": "Blaming Schwann cells because the problem is myelin."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Multiple sclerosis targets oligodendrocytes. Oligoclonal bands support an immune process inside the central nervous system."
+    },
+    "diagram": {
+      "file": "svg/usmle1-042.svg",
+      "alt": "Text card. Oligodendrocytes are being attacked."
+    }
+  },
+  {
+    "id": "usmle1-043",
+    "system": "Neurologic",
+    "task_area": "Nervous system and special senses",
+    "front": "After a temple blow the patient wakes, then declines. The bleed on the scan is lens shaped and does not cross suture lines.",
+    "bottom": "The middle meningeal artery has torn.",
+    "bullets": {
+      "clue": "That artery runs under the pterion in the epidural space. The dura is stuck at the sutures.",
+      "treat": "This is a surgical emergency. A crescent that crosses sutures is bridging-vein blood in the subdural space instead.",
+      "trap": "Calling every post-traumatic bleed a subdural hematoma."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Epidural hematoma is arterial blood from the middle meningeal artery. The lens shape and the lucid interval are the classic clues."
+    },
+    "diagram": {
+      "file": "svg/usmle1-043.svg",
+      "alt": "Text card. The middle meningeal artery has torn."
+    }
+  },
+  {
+    "id": "usmle1-044",
+    "system": "Dermatologic",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "A pigmented spot is asymmetric, has an irregular border, more than one color, and has been growing.",
+    "bottom": "This is melanoma, and thickness is the main local prognostic number.",
+    "bullets": {
+      "clue": "Depth of invasion, not the width of the spot, dominates prognosis for a localized lesion.",
+      "treat": "Excise with a margin guided by that thickness. Do not shave it and lose the depth.",
+      "trap": "Reassuring the patient from the diameter alone."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Melanoma recognition uses the asymmetry, border, color, and change. Breslow thickness guides prognosis."
+    },
+    "diagram": {
+      "file": "svg/usmle1-044.svg",
+      "alt": "Text card. This is melanoma, and thickness is the main local prognostic number."
+    }
+  },
+  {
+    "id": "usmle1-045",
+    "system": "Dermatologic",
+    "task_area": "Skin and subcutaneous tissue",
+    "front": "Flaccid blisters and oral erosions. A rubbing finger shears the skin. Antibody light surrounds each keratinocyte.",
+    "bottom": "Desmoglein is the target. The split is inside the epidermis.",
+    "bullets": {
+      "clue": "The cells lose their attachments to each other and look like a row of tombstones.",
+      "treat": "The tense, intact blisters of an older adult, with a line of antibody along the basement membrane, are a different disease.",
+      "trap": "Using one treatment plan for every blistering rash."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Pemphigus vulgaris is an intraepidermal, desmoglein disease. Nikolsky sign and the net-like antibody pattern are the clues."
+    },
+    "diagram": {
+      "file": "svg/usmle1-045.svg",
+      "alt": "Text card. Desmoglein is the target. The split is inside the epidermis."
+    }
+  },
+  {
+    "id": "usmle1-046",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "Pain and bony enlargement of the farthest finger joints, worse with use, with no prolonged morning stiffness and no hot swollen wrists.",
+    "bottom": "This is osteoarthritis.",
+    "bullets": {
+      "clue": "The cartilage is worn. Osteophytes at the distal joints are Heberden nodes.",
+      "treat": "The pattern that hits the knuckles and proximal finger joints, with more than an hour of morning stiffness, is inflammatory instead.",
+      "trap": "Starting a disease-modifying drug for mechanical joint wear."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Osteoarthritis favors distal finger joints and use-related pain. That distribution separates it from rheumatoid arthritis."
+    },
+    "diagram": {
+      "file": "svg/usmle1-046.svg",
+      "alt": "Text card. This is osteoarthritis."
+    }
+  },
+  {
+    "id": "usmle1-047",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "A teenager has night pain in a long bone, relieved a little by anti-inflammatory drugs. The film shows a sunburst at the metaphysis and a lifted periosteum.",
+    "bottom": "This is osteosarcoma.",
+    "bullets": {
+      "clue": "The tumor makes bone. Loss of the Rb brake is a recognized association.",
+      "treat": "A diaphyseal tumor with onion-skin periosteum in the same age group is a different small round cell tumor.",
+      "trap": "Calling every pediatric bone tumor a cyst because the patient is young."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Osteosarcoma arises at the metaphysis of long bones. Sunburst periosteal reaction and Codman triangle are the film clues."
+    },
+    "diagram": {
+      "file": "svg/usmle1-047.svg",
+      "alt": "Text card. This is osteosarcoma."
+    }
+  },
+  {
+    "id": "usmle1-048",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "Needle-shaped crystals from a hot joint are yellow when they lie parallel to the compensator.",
+    "bottom": "The crystal is monosodium urate, and the birefringence is negative.",
+    "bullets": {
+      "clue": "Rhomboid crystals that are blue when parallel are calcium pyrophosphate.",
+      "treat": "The color depends on orientation. Read it against the compensator, not from the shape alone.",
+      "trap": "Calling every crystal in a joint gout."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Gout crystals are negatively birefringent needles. Pseudogout crystals are positively birefringent rhomboids."
+    },
+    "diagram": {
+      "file": "svg/usmle1-048.svg",
+      "alt": "Text card. The crystal is monosodium urate, and the birefringence is negative."
+    }
+  },
+  {
+    "id": "usmle1-049",
+    "system": "Musculoskeletal",
+    "task_area": "Musculoskeletal system",
+    "front": "A boy uses his hands to walk up his own legs, has large calves that are not strong, and an X-linked frameshift that erases a membrane protein.",
+    "bottom": "Dystrophin is absent.",
+    "bullets": {
+      "clue": "The calves are pseudohypertrophy from fat and fibrosis. A truncated protein, rather than none, is the milder allelic disease.",
+      "treat": "Supportive care and the newer genetic therapies depend on whether any reading frame remains.",
+      "trap": "Calling the calves true muscle hypertrophy."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Duchenne muscular dystrophy is an X-linked frameshift of dystrophin. Gowers sign and calf pseudohypertrophy are the clues."
+    },
+    "diagram": {
+      "file": "svg/usmle1-049.svg",
+      "alt": "Text card. Dystrophin is absent."
+    }
+  },
+  {
+    "id": "usmle1-050",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "A cyanotic infant has a boot-shaped heart, a ventricular septal defect, right ventricular thickening, an overriding aorta, and a narrowed pulmonary outflow.",
+    "bottom": "These four lesions are the tetralogy.",
+    "bullets": {
+      "clue": "Squatting raises systemic resistance and sends more blood to the lungs.",
+      "treat": "The outflow-tract mistake is a neural-crest problem, which is why the lesions travel with other crest defects.",
+      "trap": "Treating the cyanosis as a lung disease and missing the shunt."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Tetralogy of Fallot is pulmonary stenosis, right ventricular hypertrophy, overriding aorta, and a ventricular septal defect."
+    },
+    "diagram": {
+      "file": "svg/usmle1-050.svg",
+      "alt": "Text card. These four lesions are the tetralogy."
+    }
+  },
+  {
+    "id": "usmle1-051",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "A preterm infant has a continuous murmur and bounding pulses. The vessel that should have closed is being held open by a prostaglandin.",
+    "bottom": "Close a patent ductus arteriosus with a prostaglandin inhibitor.",
+    "bullets": {
+      "clue": "Indomethacin or ibuprofen reduces the prostaglandin that keeps the duct open.",
+      "treat": "The opposite move, a prostaglandin infusion, is for a duct-dependent lesion that needs the vessel open.",
+      "trap": "Closing every ductus. Some cyanotic lesions die if you do."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "A preterm patent ductus is kept open by prostaglandin E. Inhibiting that synthesis closes it."
+    },
+    "diagram": {
+      "file": "svg/usmle1-051.svg",
+      "alt": "Text card. Close a patent ductus arteriosus with a prostaglandin inhibitor."
+    }
+  },
+  {
+    "id": "usmle1-052",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "A crescendo-decrescendo systolic murmur at the right upper sternal border radiates to the carotids. The carotid upstroke is slow and weak.",
+    "bottom": "The aortic valve is stenotic.",
+    "bullets": {
+      "clue": "The three late symptoms are angina, syncope, and dyspnea from the failed left ventricle.",
+      "treat": "A holosystolic murmur at the apex radiating to the axilla is mitral regurgitation instead.",
+      "trap": "Calling every systolic murmur aortic stenosis."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Aortic stenosis is heard at the right upper sternal border and radiates to the carotids, with pulsus parvus et tardus."
+    },
+    "diagram": {
+      "file": "svg/usmle1-052.svg",
+      "alt": "Text card. The aortic valve is stenotic."
+    }
+  },
+  {
+    "id": "usmle1-053",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Several days after a myocardial infarction the patient suddenly dies. Macrophages have cleared dead muscle and the wall is soft.",
+    "bottom": "Rupture is most likely from about day 3 to day 7.",
+    "bullets": {
+      "clue": "Neutrophils arrive in the first days. Macrophages follow and remove debris before a scar exists.",
+      "treat": "A new holosystolic murmur in that window can be a ruptured papillary muscle or a septal defect, not only free-wall rupture.",
+      "trap": "Expecting a histologic change in the first hour. The first hours show nothing on light microscopy."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The infarction timeline is cardiovascular pathology. The soft wall of days 3 to 7 is when rupture occurs."
+    },
+    "diagram": {
+      "file": "svg/usmle1-053.svg",
+      "alt": "Text card. Rupture is most likely from about day 3 to day 7."
+    }
+  },
+  {
+    "id": "usmle1-054",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "Hypotension, distended neck veins, and quiet heart sounds after trauma. Diastolic pressures in the heart chambers equalize, and the arterial pressure falls more than expected on inspiration.",
+    "bottom": "Fluid under pressure is compressing the heart.",
+    "bullets": {
+      "clue": "The y descent is lost. The electrocardiogram may alternate in voltage.",
+      "treat": "Drain the pericardium. More preload helps only as a bridge.",
+      "trap": "Giving a diuretic because the neck veins are up."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Tamponade is equalization of diastolic pressures, pulsus paradoxus, and Beck's triad of hypotension, distended veins, and muffled sounds."
+    },
+    "diagram": {
+      "file": "svg/usmle1-054.svg",
+      "alt": "Text card. Fluid under pressure is compressing the heart."
+    }
+  },
+  {
+    "id": "usmle1-055",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "One calcium-channel blocker swells the ankles and can speed the heart. Another slows the heart and should not be stacked on a beta blocker.",
+    "bottom": "The first is a dihydropyridine. The second acts on the heart.",
+    "bullets": {
+      "clue": "Amlodipine and nifedipine prefer vessels. Verapamil and diltiazem prefer the node and the myocardium.",
+      "treat": "Do not combine a heart-rate-lowering calcium blocker with a beta blocker.",
+      "trap": "Using a short-acting dihydropyridine alone in an acute coronary syndrome."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Dihydropyridines vasodilate. Non-dihydropyridines slow the heart. That split prevents a dangerous combination."
+    },
+    "diagram": {
+      "file": "svg/usmle1-055.svg",
+      "alt": "Text card. The first is a dihydropyridine. The second acts on the heart."
+    }
+  },
+  {
+    "id": "usmle1-056",
+    "system": "Cardiovascular",
+    "task_area": "Cardiovascular system",
+    "front": "A drug blocks the sodium-potassium pump, raises vagal tone, and in excess causes yellow vision and almost any arrhythmia. A low potassium makes binding easier.",
+    "bottom": "This is digoxin toxicity.",
+    "bullets": {
+      "clue": "The same pump block is the therapeutic effect at a lower level.",
+      "treat": "Give the specific antibody fragment for serious toxicity. Correct potassium carefully.",
+      "trap": "Treating the visual change as an eye disease."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Digoxin inhibits the sodium-potassium ATPase. Hypokalemia increases binding and toxicity."
+    },
+    "diagram": {
+      "file": "svg/usmle1-056.svg",
+      "alt": "Text card. This is digoxin toxicity."
+    }
+  },
+  {
+    "id": "usmle1-057",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A clot stops blood flow to ventilated lung. Another disease fills alveoli so blood passes them with no air. Extra oxygen barely helps the second one.",
+    "bottom": "The clot is dead space. The filled alveoli are shunt.",
+    "bullets": {
+      "clue": "Dead space is ventilation without perfusion. Shunt is perfusion without ventilation.",
+      "treat": "Oxygen helps a high ventilation-perfusion mismatch more than it helps a true shunt.",
+      "trap": "Turning up oxygen and expecting a shunt to correct fully."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Pulmonary physiology separates dead space from shunt by whether oxygen can reach the blood."
+    },
+    "diagram": {
+      "file": "svg/usmle1-057.svg",
+      "alt": "Text card. The clot is dead space. The filled alveoli are shunt."
+    }
+  },
+  {
+    "id": "usmle1-058",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A rise in carbon dioxide, acid, temperature, or 2,3-bisphosphoglycerate shifts the oxygen curve.",
+    "bottom": "The shift is to the right, and hemoglobin unloads oxygen.",
+    "bullets": {
+      "clue": "A right shift raises the partial pressure needed for a given saturation.",
+      "treat": "Fetal hemoglobin and a left shift hold oxygen tighter, which is useful before birth and costly in tissue.",
+      "trap": "Saying a right shift means hemoglobin binds oxygen more tightly."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "The oxyhemoglobin curve shifts right when tissues need oxygen. Carbon dioxide, acid, heat, and 2,3-bisphosphoglycerate do that."
+    },
+    "diagram": {
+      "file": "svg/usmle1-058.svg",
+      "alt": "Text card. The shift is to the right, and hemoglobin unloads oxygen."
+    }
+  },
+  {
+    "id": "usmle1-059",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A premature infant grunts and retracts. The cells that make the surface-tension film are immature, and the lecithin-to-sphingomyelin ratio is low.",
+    "bottom": "Surfactant is missing.",
+    "bullets": {
+      "clue": "Type II cells make dipalmitoyl phosphatidylcholine, which lowers surface tension so alveoli stay open.",
+      "treat": "Maternal corticosteroids before a preterm birth speed that film. After birth the infant needs support and often replacement.",
+      "trap": "Treating the retractions as infection only and missing the lung mechanics."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Neonatal respiratory distress syndrome is surfactant deficiency. The lecithin-to-sphingomyelin ratio estimates lung maturity."
+    },
+    "diagram": {
+      "file": "svg/usmle1-059.svg",
+      "alt": "Text card. Surfactant is missing."
+    }
+  },
+  {
+    "id": "usmle1-060",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "A nonsmoking adult has basilar emphysema and liver disease. The protein that should inhibit elastase is low, and the liver is holding an abnormal form of it.",
+    "bottom": "Alpha-1 antitrypsin is deficient and trapped in hepatocytes.",
+    "bullets": {
+      "clue": "Unopposed elastase destroys alveolar walls, worse at the bases.",
+      "treat": "Smoking accelerates the lung injury and is worth stopping for that reason alone.",
+      "trap": "Attributing every early emphysema to tobacco without asking about the liver."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Alpha-1 antitrypsin deficiency causes panacinar emphysema and liver retention of the misfolded protein."
+    },
+    "diagram": {
+      "file": "svg/usmle1-060.svg",
+      "alt": "Text card. Alpha-1 antitrypsin is deficient and trapped in hepatocytes."
+    }
+  },
+  {
+    "id": "usmle1-061",
+    "system": "Pulmonary",
+    "task_area": "Respiratory system",
+    "front": "Low oxygen in a region of lung constricts the local arterioles. Years of that constriction raise the pressure the right heart must pump against.",
+    "bottom": "Hypoxic pulmonary vasoconstriction.",
+    "bullets": {
+      "clue": "The reflex sends blood toward better-ventilated lung. Chronic hypoxia makes the vessels remodel.",
+      "treat": "Oxygen is the treatment that relaxes those vessels. A left-heart cause of pulmonary hypertension will not respond the same way.",
+      "trap": "Giving a systemic vasodilator and expecting only the lung vessels to relax."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hypoxic vasoconstriction is protective in one region and a cause of right-heart strain when the whole lung is hypoxic."
+    },
+    "diagram": {
+      "file": "svg/usmle1-061.svg",
+      "alt": "Text card. Hypoxic pulmonary vasoconstriction."
+    }
+  },
+  {
+    "id": "usmle1-062",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "A curved gastric organism splits urea and alkalinizes its niche. It is linked to duodenal ulcer, a lymphoma of mucosa-associated tissue, and gastric adenocarcinoma.",
+    "bottom": "The organism makes urease.",
+    "bullets": {
+      "clue": "Ammonia from urea buffers the acid so the organism can live.",
+      "treat": "Eradication treats the ulcer and can regress the low-grade lymphoma. It does not reverse an invasive adenocarcinoma.",
+      "trap": "Treating the lymphoma with eradication after it has already transformed and invaded."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Helicobacter pylori urease is both the survival trick and the basis of the breath test."
+    },
+    "diagram": {
+      "file": "svg/usmle1-062.svg",
+      "alt": "Text card. The organism makes urease."
+    }
+  },
+  {
+    "id": "usmle1-063",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "Mild unconjugated bilirubin rises during a fast or a viral illness, with no hemolysis and a normal exam. The enzyme is reduced, not absent.",
+    "bottom": "This is the mild glucuronosyltransferase deficiency.",
+    "bullets": {
+      "clue": "Complete absence of the enzyme in an infant causes severe unconjugated jaundice and the risk of kernicterus.",
+      "treat": "Reassure the mild adult form. The severe infant form needs a different plan, including light and transplant consideration.",
+      "trap": "Starting a hemolysis workup for every unconjugated rise and never asking about fasting."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Gilbert syndrome is a partial bilirubin-conjugation defect that shows up under stress. Crigler-Najjar type I is absence of the enzyme."
+    },
+    "diagram": {
+      "file": "svg/usmle1-063.svg",
+      "alt": "Do and do not. This is the mild glucuronosyltransferase deficiency."
+    }
+  },
+  {
+    "id": "usmle1-064",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "Portal pressure rises. Veins that should have been separate now meet at the lower esophagus, around the umbilicus, and in the rectum.",
+    "bottom": "Those meetings are the portosystemic anastomoses.",
+    "bullets": {
+      "clue": "Left gastric meets azygos at the esophagus. Paraumbilical veins meet the abdominal wall. Superior rectal meets the middle and inferior rectal veins.",
+      "treat": "Bleeding from the esophageal meeting is the one that kills. The others explain the physical findings.",
+      "trap": "Calling hemorrhoids a sign of portal hypertension in every patient. Most hemorrhoids are not."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Portal hypertension opens embryologic connections between portal and systemic veins. Esophageal varices are the dangerous one."
+    },
+    "diagram": {
+      "file": "svg/usmle1-064.svg",
+      "alt": "Text card. Those meetings are the portosystemic anastomoses."
+    }
+  },
+  {
+    "id": "usmle1-065",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "Chronic diarrhea, iron deficiency, and an intensely itchy blistering rash. The flattened villi are worst in the distal duodenum, and the antibody is against tissue transglutaminase.",
+    "bottom": "Gluten is driving an immune injury in a person with HLA-DQ2 or HLA-DQ8.",
+    "bullets": {
+      "clue": "The rash is dermatitis herpetiformis, IgA at the dermal papillae.",
+      "treat": "Confirm while the patient is still eating gluten. A gluten-free diet started first can make the tests go quiet.",
+      "trap": "Diagnosing from symptoms and stopping gluten before the tests."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Celiac disease injures proximal small bowel in people with HLA-DQ2 or DQ8. Tissue-transglutaminase IgA is the serology."
+    },
+    "diagram": {
+      "file": "svg/usmle1-065.svg",
+      "alt": "Text card. Gluten is driving an immune injury in a person with HLA-DQ2 or HLA-DQ8."
+    }
+  },
+  {
+    "id": "usmle1-066",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "A newborn does not pass meconium. The distal bowel has no ganglion cells, and a finger exam is followed by a squirt of stool.",
+    "bottom": "Neural crest cells never reached the distal colon.",
+    "bullets": {
+      "clue": "The aganglionic segment stays contracted. The normal bowel upstream dilates.",
+      "treat": "The association with Down syndrome is real, but most affected infants do not have it.",
+      "trap": "Calling every delayed meconium cystic fibrosis. That disease plugs the lumen. The wall here has no neurons."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Hirschsprung disease is failed neural-crest migration. The biopsy shows no ganglion cells in the distal bowel."
+    },
+    "diagram": {
+      "file": "svg/usmle1-066.svg",
+      "alt": "Text card. Neural crest cells never reached the distal colon."
+    }
+  },
+  {
+    "id": "usmle1-067",
+    "system": "GI",
+    "task_area": "Gastrointestinal system",
+    "front": "A young adult has liver disease, a movement disorder, and a brown ring at the edge of the cornea. Ceruloplasmin is low.",
+    "bottom": "Copper cannot be excreted into bile.",
+    "bullets": {
+      "clue": "The transporter is ATP7B. Copper deposits in liver, basal ganglia, and Descemet membrane.",
+      "treat": "Chelation or zinc is the medical treatment. A low ceruloplasmin supports the diagnosis and is not itself the disease.",
+      "trap": "Treating the tremor as primary Parkinson disease."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Wilson disease is ATP7B failure. Kayser-Fleischer rings, a low ceruloplasmin, and liver disease are the triad."
+    },
+    "diagram": {
+      "file": "svg/usmle1-067.svg",
+      "alt": "Text card. Copper cannot be excreted into bile."
+    }
+  },
+  {
+    "id": "usmle1-068",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "Low kidney perfusion releases renin. A lung enzyme makes angiotensin II, which prefers the efferent arteriole and asks the adrenal for aldosterone.",
+    "bottom": "This is the renin-angiotensin-aldosterone sequence.",
+    "bullets": {
+      "clue": "Juxtaglomerular cells make renin. The liver makes angiotensinogen. Aldosterone saves sodium and spills potassium in the principal cell.",
+      "treat": "Blocking the converting enzyme lowers the glomerular pressure behind a soft efferent arteriole, which is why creatinine can rise.",
+      "trap": "Putting antidiuretic hormone in this sequence. It is a different axis."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Renin, angiotensin-converting enzyme, angiotensin II, and aldosterone are the volume axis. Each step has its own drug."
+    },
+    "diagram": {
+      "file": "svg/usmle1-068.svg",
+      "alt": "Text card. This is the renin-angiotensin-aldosterone sequence."
+    }
+  },
+  {
+    "id": "usmle1-069",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "The urine cannot be acidified below 5.5, potassium is low, and kidney stones form. A different acidosis has a high potassium and a low renin or a low aldosterone effect.",
+    "bottom": "The first is distal renal tubular acidosis. The second is the low-aldosterone type.",
+    "bullets": {
+      "clue": "Distal cells fail to secrete hydrogen. The hyperkalemic type fails because aldosterone is missing or blocked.",
+      "treat": "Potassium tells them apart. Do not replace potassium blindly without knowing which acidosis you have.",
+      "trap": "Calling every normal-anion-gap acidosis diarrhea. Diarrhea can acidify the urine."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Type 1 renal tubular acidosis cannot acidify the urine and wastes potassium. Type 4 retains potassium."
+    },
+    "diagram": {
+      "file": "svg/usmle1-069.svg",
+      "alt": "Text card. The first is distal renal tubular acidosis. The second is the low-aldosterone type."
+    }
+  },
+  {
+    "id": "usmle1-070",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "Muddy brown casts in the urine. In another patient, white-cell casts. In a third, red-cell casts.",
+    "bottom": "Tubular injury, interstitial or pyelonephritis, and glomerulonephritis, in that order.",
+    "bullets": {
+      "clue": "The cast is a mold of the nephron, so its contents point at the compartment.",
+      "treat": "Fatty casts and heavy protein point at the nephrotic pattern instead.",
+      "trap": "Treating every cast as infection."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Urine microscopy localizes kidney injury. The cast contents name the compartment."
+    },
+    "diagram": {
+      "file": "svg/usmle1-070.svg",
+      "alt": "Text card. Tubular injury, interstitial or pyelonephritis, and glomerulonephritis, in that order."
+    }
+  },
+  {
+    "id": "usmle1-071",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "A child has sudden swelling and urine that is mostly albumin. Light microscopy is nearly normal. Electron microscopy shows flattened foot processes.",
+    "bottom": "The podocyte feet have effaced, and steroids usually restore them.",
+    "bullets": {
+      "clue": "Selective albumin loss with bland light microscopy is the pattern.",
+      "treat": "A similar adult picture can follow anti-inflammatory drugs. Hodgkin lymphoma is a classic association in some patients.",
+      "trap": "Starting cyclophosphamide before a steroid trial in a typical child."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Minimal change disease is selective proteinuria with foot-process effacement. Children usually respond to steroids."
+    },
+    "diagram": {
+      "file": "svg/usmle1-071.svg",
+      "alt": "Text card. The podocyte feet have effaced, and steroids usually restore them."
+    }
+  },
+  {
+    "id": "usmle1-072",
+    "system": "Renal",
+    "task_area": "Renal and urinary system",
+    "front": "A diuretic that blocks the triple cotransporter in the thick ascending limb also makes the kidney waste calcium. A different diuretic, acting farther along, saves calcium.",
+    "bottom": "Loop diuretics waste calcium. Thiazides save it.",
+    "bullets": {
+      "clue": "The loop blocks the sodium-potassium-2-chloride transporter and knocks out the drive for paracellular calcium reabsorption.",
+      "treat": "Use a loop when calcium is dangerously high. Use a thiazide when calcium stones keep forming.",
+      "trap": "Giving a loop diuretic to a patient with recurrent calcium stones and wondering why they continue."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Loop diuretics inhibit the thick-ascending-limb transporter and increase calcium excretion. Thiazides do the opposite for calcium."
+    },
+    "diagram": {
+      "file": "svg/usmle1-072.svg",
+      "alt": "Text card. Loop diuretics waste calcium. Thiazides save it."
+    }
+  },
+  {
+    "id": "usmle1-073",
+    "system": "Embryology",
+    "task_area": "Pregnancy, childbirth, and the puerperium",
+    "front": "An infant has a cleft lip and a malformed ear, and the mother took a vitamin A derivative in the first trimester.",
+    "bottom": "Neural crest migration into the face and ear was disrupted.",
+    "bullets": {
+      "clue": "Isotretinoin is the usual drug. The sensitive window is early, often before a pregnancy is recognized.",
+      "treat": "Stop the drug before conception. A pregnancy test and contraception are part of prescribing it.",
+      "trap": "Reassuring a patient that a skin drug cannot affect an embryo."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Isotretinoin is a potent teratogen for neural-crest structures of the face and ear."
+    },
+    "diagram": {
+      "file": "svg/usmle1-073.svg",
+      "alt": "Text card. Neural crest migration into the face and ear was disrupted."
+    }
+  },
+  {
+    "id": "usmle1-074",
+    "system": "Reproductive",
+    "task_area": "Female reproductive system and breast",
+    "front": "A tall adolescent has a webbed neck, a coarctation, and streak gonads. The karyotype has one X and no second sex chromosome.",
+    "bottom": "Turner syndrome, 45,X.",
+    "bullets": {
+      "clue": "The lymphatic swelling in fetal life explains the neck and the swollen hands. The ovaries do not develop.",
+      "treat": "The extra-X karyotype with small testes, tall stature, and azoospermia is Klinefelter, not this.",
+      "trap": "Promising fertility. The streak gonads do not produce eggs."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Turner syndrome is 45,X. Short stature, webbed neck, coarctation, and streak gonads are the picture. Klinefelter is 47,XXY."
+    },
+    "diagram": {
+      "file": "svg/usmle1-074.svg",
+      "alt": "Do and do not. Turner syndrome, 45,X."
+    }
+  },
+  {
+    "id": "usmle1-075",
+    "system": "Reproductive",
+    "task_area": "Female reproductive system and breast",
+    "front": "No sense of smell, and puberty that never starts. The neurons that should have released the puberty hormone never migrated from the olfactory placode.",
+    "bottom": "Gonadotropin-releasing hormone neurons did not arrive.",
+    "bullets": {
+      "clue": "Luteinizing hormone and follicle-stimulating hormone are low, and the gonads are quiet because the signal never came.",
+      "treat": "This is central. A high gonadotropin with quiet gonads is gonadal failure instead.",
+      "trap": "Giving testosterone or estrogen without asking where the signal failed."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Kallmann syndrome is failed migration of GnRH neurons with the olfactory neurons. Anosmia plus absent puberty is the clue."
+    },
+    "diagram": {
+      "file": "svg/usmle1-075.svg",
+      "alt": "Text card. Gonadotropin-releasing hormone neurons did not arrive."
+    }
+  },
+  {
+    "id": "usmle1-076",
+    "system": "Reproductive",
+    "task_area": "Female reproductive system and breast",
+    "front": "A newborn is virilized and crashing with low sodium and high potassium. The steroid step just before cortisol and aldosterone is blocked, and androgens are overflowing.",
+    "bottom": "21-hydroxylase is deficient.",
+    "bullets": {
+      "clue": "Cortisol and aldosterone fall. ACTH rises and drives adrenal androgens.",
+      "treat": "The salt-wasting form needs both glucocorticoid and mineralocorticoid. A mild nonclassic form presents later with androgen excess only.",
+      "trap": "Treating the potassium and missing the missing cortisol."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "21-hydroxylase deficiency is the common congenital adrenal hyperplasia. Salt wasting plus virilization is the severe form."
+    },
+    "diagram": {
+      "file": "svg/usmle1-076.svg",
+      "alt": "Text card. 21-hydroxylase is deficient."
+    }
+  },
+  {
+    "id": "usmle1-077",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "Insulin is present, but glucose transporters do not move to the muscle membrane. The transporter that is already in the liver membrane does not need that move.",
+    "bottom": "GLUT4 needs insulin to reach the muscle and fat membrane. GLUT2 in the liver does not.",
+    "bullets": {
+      "clue": "Exercise can move GLUT4 without insulin, which is why muscle still takes up some glucose.",
+      "treat": "A drug that raises insulin does nothing useful if the receptor itself is missing, as in severe insulin resistance.",
+      "trap": "Saying every glucose transporter waits for insulin."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "GLUT4 is the insulin-responsive transporter of muscle and adipose tissue. Liver GLUT2 is constitutive."
+    },
+    "diagram": {
+      "file": "svg/usmle1-077.svg",
+      "alt": "Text card. GLUT4 needs insulin to reach the muscle and fat membrane. GLUT2 in the liver does not."
+    }
+  },
+  {
+    "id": "usmle1-078",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "One hormone raises calcium by bone resorption and kidney reabsorption and activates vitamin D. A second hormone, from the thyroid C cells, lowers calcium.",
+    "bottom": "Parathyroid hormone raises calcium. Calcitonin lowers it.",
+    "bullets": {
+      "clue": "Vitamin D increases gut absorption. Parathyroid hormone's own gut effect is mostly through that activation.",
+      "treat": "A high calcium with a high parathyroid hormone is the gland. A high calcium with a low hormone is somewhere else.",
+      "trap": "Treating every high calcium as a parathyroid problem."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Parathyroid hormone and calcitonin move calcium in opposite directions. Vitamin D is the absorption partner."
+    },
+    "diagram": {
+      "file": "svg/usmle1-078.svg",
+      "alt": "Text card. Parathyroid hormone raises calcium. Calcitonin lowers it."
+    }
+  },
+  {
+    "id": "usmle1-079",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "A patient keeps making dilute urine even after hours without water. Giving a vasopressin analogue then concentrates the urine. In another patient the analogue does nothing.",
+    "bottom": "The first lacks the hormone. The second lacks the kidney response.",
+    "bullets": {
+      "clue": "Water deprivation should concentrate urine if the axis is intact. Failure that corrects with the analogue is central.",
+      "treat": "Lithium and high calcium are classic reasons the kidney stops listening.",
+      "trap": "Pouring fluids into a patient who is already losing free water without measuring the urine."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "Central diabetes insipidus responds to desmopressin. Nephrogenic diabetes insipidus does not."
+    },
+    "diagram": {
+      "file": "svg/usmle1-079.svg",
+      "alt": "Text card. The first lacks the hormone. The second lacks the kidney response."
+    }
+  },
+  {
+    "id": "usmle1-080",
+    "system": "Endocrine",
+    "task_area": "Endocrine system",
+    "front": "A patient has high calcium, a pituitary tumor, and a pancreatic endocrine tumor. A different patient has medullary thyroid cancer, a pheochromocytoma, and high calcium from a different gland.",
+    "bottom": "The first is MEN1. The second is MEN2.",
+    "bullets": {
+      "clue": "Menin tumors are parathyroid, pituitary, and pancreas. The ret syndromes add medullary thyroid cancer and pheochromocytoma.",
+      "treat": "A pheochromocytoma is removed before any other operation that would stir it. The thyroid cancer in the ret syndromes is medullary, from C cells.",
+      "trap": "Mixing the two syndromes and missing the thyroid cancer that has to come out."
+    },
+    "source": {
+      "guideline": "USMLE Content Outline",
+      "year": "2024",
+      "url": "https://www.usmle.org/prepare-your-exam/step-1-materials",
+      "recommendation": "MEN1 is parathyroid, pituitary, and pancreas. MEN2 adds medullary thyroid carcinoma and pheochromocytoma."
+    },
+    "diagram": {
+      "file": "svg/usmle1-080.svg",
+      "alt": "Text card. The first is MEN1. The second is MEN2."
+    }
+  }
+]

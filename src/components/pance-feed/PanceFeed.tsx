@@ -8,6 +8,7 @@ import { feedOrder, REVIEW_GAP, sourceLine } from "@/lib/pance-feed/format";
 import type { PanceFeedCard } from "@/lib/pance-feed/load-cards";
 import { ROUTES } from "@/lib/routes";
 import { STUDY_FEEDS, type StudyFeedBoard } from "@/lib/study-feed/catalog";
+import type { UsmleFeedStepChoice } from "@/lib/study-feed/usmle-feed";
 import { classifyFeedSwipe, feedHintStorageKey } from "@/lib/study-feed/gesture";
 import { feedIndexFromOffsets, feedMountedRange, isFeedSlideMounted } from "@/lib/study-feed/mount";
 import "./pance-feed.css";
@@ -41,6 +42,7 @@ const TINT: Record<string, string> = {
   Geriatrics: "#7c3aed",
   Professional: "#475569",
   Safety: "#b45309",
+  Ethics: "#4338ca",
   "Legal and ethical": "#4338ca",
   "Infection control": "#047857",
   "Mental health": "#9333ea",
@@ -54,6 +56,19 @@ const TINT: Record<string, string> = {
   "Foundational Knowledge": "#1d4ed8",
   "Medication Use Process": "#047857",
   "Pharmacy Management & Leadership": "#475569",
+  Biochemistry: "#1d4ed8",
+  Genetics: "#6d28d9",
+  Pharmacology: "#0e7490",
+  Microbiology: "#047857",
+  Immunology: "#047857",
+  Biostatistics: "#475569",
+  Embryology: "#c026d3",
+  Multisystem: "#b45309",
+  Prevention: "#4d7c0f",
+  Emergency: "#b91c1c",
+  Ophthalmology: "#7c3aed",
+  Perioperative: "#0369a1",
+  Behavioral: "#9333ea",
 };
 
 type Slide = { key: string; id: string; again: boolean };
@@ -94,7 +109,17 @@ function SvgFrame({
   return <div className="pf-dia" ref={ref} />;
 }
 
-export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoard }) {
+export function PanceFeed({
+  board = STUDY_FEEDS.pance,
+  steps,
+  readOnly = false,
+  notice,
+}: {
+  board?: StudyFeedBoard;
+  steps?: UsmleFeedStepChoice[];
+  readOnly?: boolean;
+  notice?: string;
+}) {
   const feedRef = useRef<HTMLElement>(null);
   const [cards, setCards] = useState<PanceFeedCard[]>([]);
   const [slides, setSlides] = useState<Slide[]>([]);
@@ -132,7 +157,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
 
   const publish = useCallback((next: ProgressBody) => {
     progressRef.current = next;
-    if (trialRef.current) return;
+    if (trialRef.current || readOnly) return;
     if (saveTimer.current) window.clearTimeout(saveTimer.current);
     saveTimer.current = window.setTimeout(() => {
       saveAbort.current?.abort();
@@ -146,7 +171,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
         signal: ctrl.signal,
       }).catch(() => undefined);
     }, 250);
-  }, [board.apiBase]);
+  }, [board.apiBase, readOnly]);
 
   const ensureSvg = useCallback(async (id: string) => {
     if (!retainIds.current.has(id)) return;
@@ -174,10 +199,8 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
     let cancel = false;
     void (async () => {
       try {
-        const [cardRes, progRes] = await Promise.all([
-          fetch(`${board.apiBase}/cards`),
-          fetch(`${board.apiBase}/progress`),
-        ]);
+        const cardRes = await fetch(`${board.apiBase}/cards`);
+        const progRes = readOnly ? null : await fetch(`${board.apiBase}/progress`);
         if (cancel) return;
         if (cardRes.status === 401) {
           window.location.assign(`/login?callbackUrl=${encodeURIComponent(board.href)}`);
@@ -200,9 +223,9 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
           reviewQueue: [],
           lastSeenCardId: null,
         };
-        if (progRes.ok) {
+        if (progRes?.ok) {
           prog = (await progRes.json()) as ProgressBody & { lastSeenAt?: string | null };
-        } else if (!limited) {
+        } else if (progRes && !limited) {
           setStatus(progRes.status === 403 ? "A paid plan is required." : "The feed could not load.");
           return;
         }
@@ -238,7 +261,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
       document.body.style.overflow = prev;
       if (saveTimer.current) window.clearTimeout(saveTimer.current);
     };
-  }, [board.apiBase, board.exam, board.href]);
+  }, [board.apiBase, board.exam, board.href, readOnly]);
 
   useEffect(() => {
     if (!ready || restored.current) return;
@@ -535,8 +558,14 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
     dismissHint();
   }
 
+  const hasSteps = Boolean(steps && steps.length > 0);
+
   return (
-    <div className="pance-feed" data-testid={board.testId} onClick={onClick}>
+    <div
+      className={`pance-feed${hasSteps ? " has-steps" : ""}`}
+      data-testid={board.testId}
+      onClick={onClick}
+    >
       <header className="pf-top">
         <Link className="pf-back-link" href={ROUTES.dashboard} aria-label="Back to dashboard">
           ←
@@ -558,6 +587,7 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
         <div className="pf-ttl">
           <b>{board.label}</b>
           <small>
+            {notice ? <span className="pf-preview">{notice}</span> : null}
             {masteredCount} of {total} mastered
           </small>
         </div>
@@ -565,6 +595,20 @@ export function PanceFeed({ board = STUDY_FEEDS.pance }: { board?: StudyFeedBoar
           <span aria-hidden>🔥</span> <span>{streak}</span>
         </div>
       </header>
+      {hasSteps ? (
+        <nav className="pf-steps" aria-label="USMLE Step">
+          {steps!.map((step) => (
+            <Link
+              key={step.id}
+              href={step.href}
+              aria-current={step.id === board.exam ? "true" : undefined}
+              data-testid={`usmle-feed-step-${step.id}`}
+            >
+              {step.label}
+            </Link>
+          ))}
+        </nav>
+      ) : null}
       {status ? <p className="pf-status">{status}</p> : null}
       <main
         ref={feedRef}
