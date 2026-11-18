@@ -11,8 +11,17 @@
  * Adding an exam should mean adding one entry here plus a route folder.
  */
 
-/** Exams that ship a study guide book. A subset of `ExamSlug`. */
+/** Exams that ship a study guide book on the public nav. A subset of `ExamSlug`. */
 export type StudyGuideExam = "nclex" | "naplex" | "aanp-fnp" | "pance";
+
+/**
+ * USMLE is step-aware: one book per Step, not one book for the whole exam.
+ * It stays out of `StudyGuideExam` so homepages and offer cards do not grow a
+ * link until the public flag is turned on in the sidebar.
+ */
+export type UsmleGuideStep = "step1" | "step2" | "step3";
+
+export type StudyGuideBookExam = StudyGuideExam | "usmle";
 
 export type StudyGuideConfig = {
   exam: StudyGuideExam;
@@ -49,6 +58,11 @@ export type StudyGuideConfig = {
     programNoun: string;
   };
 };
+
+/** Same book fields, with the USMLE exam slug. Kept off `StudyGuideConfig` so existing boards stay typed. */
+export type UsmleStudyGuideConfig = Omit<StudyGuideConfig, "exam"> & { exam: "usmle" };
+
+export type AnyGuideConfig = StudyGuideConfig | UsmleStudyGuideConfig;
 
 export const STUDY_GUIDES: Record<StudyGuideExam, StudyGuideConfig> = {
   nclex: {
@@ -120,6 +134,83 @@ export const STUDY_GUIDES: Record<StudyGuideExam, StudyGuideConfig> = {
   },
 };
 
+const USMLE_LEGAL = {
+  examName: "USMLE",
+  owner: "NBME and FSMB",
+  programNoun: "medical school",
+} as const;
+
+/** One book per Step. Tracks are step1, step2, and step3 in `sg_guides`. */
+export const USMLE_STUDY_GUIDES: Record<UsmleGuideStep, UsmleStudyGuideConfig> = {
+  step1: {
+    exam: "usmle",
+    track: "step1",
+    guideId: "sg_guide_usmle_step1",
+    title: "USMLE Step 1 Study Guide",
+    bookTitle: "AnyExamEasy USMLE Step 1 Reference Book",
+    routeBase: "/usmle/study-guide/step-1",
+    hubHref: "/usmle",
+    contentDir: "usmle-study-guide/step-1",
+    visualsPrefix: "/usmle-study-guide/step-1/visuals/",
+    legal: USMLE_LEGAL,
+  },
+  step2: {
+    exam: "usmle",
+    track: "step2",
+    guideId: "sg_guide_usmle_step2",
+    title: "USMLE Step 2 CK Study Guide",
+    bookTitle: "AnyExamEasy USMLE Step 2 CK Reference Book",
+    routeBase: "/usmle/study-guide/step-2-ck",
+    hubHref: "/usmle",
+    contentDir: "usmle-study-guide/step-2-ck",
+    visualsPrefix: "/usmle-study-guide/step-2-ck/visuals/",
+    legal: USMLE_LEGAL,
+  },
+  step3: {
+    exam: "usmle",
+    track: "step3",
+    guideId: "sg_guide_usmle_step3",
+    title: "USMLE Step 3 Study Guide",
+    bookTitle: "AnyExamEasy USMLE Step 3 Reference Book",
+    routeBase: "/usmle/study-guide/step-3",
+    hubHref: "/usmle",
+    contentDir: "usmle-study-guide/step-3",
+    visualsPrefix: "/usmle-study-guide/step-3/visuals/",
+    legal: USMLE_LEGAL,
+  },
+};
+
+export const USMLE_GUIDE_STEPS = Object.keys(USMLE_STUDY_GUIDES) as UsmleGuideStep[];
+
+const USMLE_ROUTE_STEP: Record<UsmleGuideStep, string> = {
+  step1: "step-1",
+  step2: "step-2-ck",
+  step3: "step-3",
+};
+
+export const USMLE_GUIDE_STEP_LABEL: Record<UsmleGuideStep, string> = {
+  step1: "Step 1",
+  step2: "Step 2 CK",
+  step3: "Step 3",
+};
+
+/** Index opens on Step 1. The reader switcher moves between books. */
+export const USMLE_GUIDE_INDEX_PATH = "/usmle/study-guide";
+
+export function usmleGuideStepFromRoute(routeStep: string | null | undefined): UsmleGuideStep | undefined {
+  const match = USMLE_GUIDE_STEPS.find((step) => USMLE_ROUTE_STEP[step] === (routeStep ?? "").trim());
+  return match;
+}
+
+export function usmleGuideStepFromTrack(track: string | null | undefined): UsmleGuideStep | undefined {
+  if (track === "step1" || track === "step2" || track === "step3") return track;
+  return undefined;
+}
+
+export function allStudyGuideBooks(): AnyGuideConfig[] {
+  return [...Object.values(STUDY_GUIDES), ...Object.values(USMLE_STUDY_GUIDES)];
+}
+
 export const STUDY_GUIDE_EXAMS = Object.keys(STUDY_GUIDES) as StudyGuideExam[];
 
 export function isStudyGuideExam(value: unknown): value is StudyGuideExam {
@@ -131,17 +222,17 @@ export function getStudyGuideConfig(exam: string): StudyGuideConfig | undefined 
   return isStudyGuideExam(exam) ? STUDY_GUIDES[exam] : undefined;
 }
 
-/** Route bases for every guide, for premium gating and middleware matchers. */
+/** Route bases for every guide, including the hidden USMLE books. */
 export function studyGuideRouteBases(): string[] {
-  return STUDY_GUIDE_EXAMS.map((e) => STUDY_GUIDES[e].routeBase);
+  return allStudyGuideBooks().map((book) => book.routeBase);
 }
 
 /**
  * The guide whose reader owns this pathname, if any. Used by the app shell to
  * decide whether to collapse into immersive mode.
  */
-export function studyGuideForPathname(pathname: string): StudyGuideConfig | undefined {
-  return STUDY_GUIDE_EXAMS.map((e) => STUDY_GUIDES[e]).find(
+export function studyGuideForPathname(pathname: string): AnyGuideConfig | undefined {
+  return allStudyGuideBooks().find(
     (g) => pathname === g.routeBase || pathname.startsWith(`${g.routeBase}/`)
   );
 }

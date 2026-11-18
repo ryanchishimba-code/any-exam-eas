@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { landingTrialHrefForExam } from "@/lib/landing/content";
-import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import {
+  STUDY_GUIDES,
+  type AnyGuideConfig,
+  type StudyGuideBookExam,
+} from "@/lib/nclex-study-guide/guide-registry";
 import { studyGuideTrialLine } from "@/lib/marketing/study-guide-offer";
 import { ROUTES } from "@/lib/routes";
 import { formatMonthlyPrice } from "@/lib/site";
@@ -12,13 +16,17 @@ import { formatMonthlyPrice } from "@/lib/site";
 export function StudyGuideUpsell({
   exam,
   signedIn,
+  book,
 }: {
-  exam: StudyGuideExam;
+  exam: StudyGuideBookExam;
   signedIn: boolean;
+  book?: AnyGuideConfig;
 }) {
-  const config = STUDY_GUIDES[exam];
+  const config = book ?? (exam === "usmle" ? undefined : STUDY_GUIDES[exam]);
+  if (!config) return null;
   const offer = studyGuideTrialLine();
-  const trialHref = landingTrialHrefForExam(exam);
+  const trialExam = exam === "usmle" ? "usmle" : exam;
+  const trialHref = landingTrialHrefForExam(trialExam);
   const signInHref = `/login?callbackUrl=${encodeURIComponent(config.routeBase)}`;
 
   return (

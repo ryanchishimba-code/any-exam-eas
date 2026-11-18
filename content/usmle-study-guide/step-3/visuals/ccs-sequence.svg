@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="460" viewBox="0 0 720 460" role="img" aria-label="CCS sequence. Stabilize, test what changes treatment, treat, recheck, then prevent and disposition.">
+  <title>CCS sequence</title>
+  <rect width="720" height="460" rx="18" fill="#f7f4ee"/>
+  <rect width="720" height="56" fill="#0b1c2c"/>
+  <text x="24" y="34" fill="#f7f4ee" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">CCS: orders that move the case</text>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="15" fill="#1c2b39">
+    <rect x="36" y="84" width="120" height="64" rx="12" fill="#0b1c2c"/>
+    <text x="96" y="122" text-anchor="middle" fill="#f7f4ee" font-weight="700">Stabilize</text>
+    <text x="168" y="122" fill="#2ec4b6" font-size="22">→</text>
+    <rect x="196" y="84" width="120" height="64" rx="12" fill="#123044"/>
+    <text x="256" y="122" text-anchor="middle" fill="#f7f4ee" font-weight="700">Focus</text>
+    <text x="328" y="122" fill="#2ec4b6" font-size="22">→</text>
+    <rect x="356" y="84" width="140" height="64" rx="12" fill="#123044"/>
+    <text x="426" y="122" text-anchor="middle" fill="#f7f4ee" font-weight="700">Test</text>
+    <text x="508" y="122" fill="#2ec4b6" font-size="22">→</text>
+    <rect x="536" y="84" width="148" height="64" rx="12" fill="#123044"/>
+    <text x="610" y="122" text-anchor="middle" fill="#f7f4ee" font-weight="700">Treat</text>
+    <rect x="36" y="180" width="648" height="248" rx="14" fill="#ffffff" stroke="#d9e2ea"/>
+    <text x="56" y="214" font-weight="700">Stabilize</text>
+    <text x="180" y="214">Airway, oxygen if hypoxic, access, monitor, fingerstick glucose.</text>
+    <text x="56" y="250" font-weight="700">Focus</text>
+    <text x="180" y="250">History and exam aimed at the danger, not a full review of systems.</text>
+    <text x="56" y="286" font-weight="700">Test</text>
+    <text x="180" y="286">Only studies that change the next order. Do not wait on a result you will not use.</text>
+    <text x="56" y="322" font-weight="700">Treat</text>
+    <text x="180" y="322">The disease-specific order, then advance the clock and recheck.</text>
+    <text x="56" y="358" font-weight="700">Close</text>
+    <text x="180" y="358">Counseling, prevention, and the right location: home, floor, or ICU.</text>
+    <text x="56" y="400">This is a map for case orders. It is not a CCS simulator and not a promise of a score.</text>
+  </g>
+</svg>

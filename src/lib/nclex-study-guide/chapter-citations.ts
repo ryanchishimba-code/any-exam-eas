@@ -4,7 +4,7 @@
  */
 
 const AUTHORITY_HOST =
-  /(?:^|\.)(?:ncsbn\.org|cdc\.gov|heart\.org|aha\.org|nabp\.pharmacy|nih\.gov|fda\.gov|who\.int|ncbi\.nlm\.nih\.gov|uspreventiveservicestask\.org|fsbpt\.org|nccpa\.net|aanpcert\.org)$/i;
+  /(?:^|\.)(?:ncsbn\.org|cdc\.gov|heart\.org|aha\.org|ahajournals\.org|nabp\.pharmacy|nih\.gov|fda\.gov|who\.int|ncbi\.nlm\.nih\.gov|uspreventiveservicestask\.org|uspreventiveservicestaskforce\.org|fsbpt\.org|nccpa\.net|aanpcert\.org|usmle\.org|nbme\.org|fsmb\.org|diabetesjournals\.org|kdigo\.org|idsociety\.org|acog\.org|goldcopd\.org|ginasthma\.org|aap\.org)$/i;
 
 function hostOf(href: string): string | null {
   try {

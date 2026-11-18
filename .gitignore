@@ -65,4 +65,5 @@ next-env.d.ts
 /prisma/*.db-journal
 /prisma/*.db-shm
 /prisma/*.db-wal
+scripts/data/usmle-guide-backups/
 .env*

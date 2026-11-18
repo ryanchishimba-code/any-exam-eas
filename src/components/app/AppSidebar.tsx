@@ -31,6 +31,7 @@ import {
   STUDY_GUIDE_EXAMS,
   getStudyGuideConfig,
 } from "@/lib/nclex-study-guide/guide-registry";
+import { isUsmleStudyGuidePublic } from "@/lib/nclex-study-guide/usmle-guide-public";
 import { QUICK_BITE_BOARDS, QUICK_BITE_EXAMS } from "@/lib/quick-bites/boards";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
@@ -89,6 +90,13 @@ const NAV_SECTIONS: NavSection[] = [
         label: "Study Guide",
         icon: BookMarked,
         exams: STUDY_GUIDE_EXAMS,
+      },
+      {
+        id: "usmle-study-guide",
+        href: "/usmle/study-guide",
+        label: "Study Guide",
+        icon: BookMarked,
+        exams: ["usmle"],
       },
       ...QUICK_BITE_EXAMS.map((exam) => {
         const board = QUICK_BITE_BOARDS[exam];
@@ -295,6 +303,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
         items: section.items
           .filter((item) => {
             if (item.clinicalOnly && !clinical) return false;
+            if (item.id === "usmle-study-guide" && !isUsmleStudyGuidePublic()) return false;
             // Without a resolved exam the item cannot be shown to apply, and
             // linking anyway would open a book the learner has no access to.
             if (item.exams && !(examSlug && item.exams.includes(examSlug))) return false;

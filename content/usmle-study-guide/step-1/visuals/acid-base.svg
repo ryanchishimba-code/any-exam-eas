@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" role="img" aria-label="Acid-base map. Read pH, then the carbon dioxide, then the bicarbonate.">
+  <title>Acid-base map</title>
+  <rect width="720" height="420" rx="18" fill="#f7f4ee"/>
+  <rect x="0" y="0" width="720" height="56" rx="18" fill="#0b1c2c"/>
+  <rect x="0" y="38" width="720" height="18" fill="#0b1c2c"/>
+  <text x="24" y="34" fill="#f7f4ee" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">Acid-base: which number moved first?</text>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#1c2b39">
+    <rect x="24" y="80" width="200" height="64" rx="12" fill="#0b1c2c"/>
+    <text x="124" y="116" text-anchor="middle" fill="#f7f4ee" font-weight="700">pH</text>
+    <rect x="260" y="80" width="200" height="64" rx="12" fill="#123044"/>
+    <text x="360" y="108" text-anchor="middle" fill="#f7f4ee" font-weight="700">PaCO2</text>
+    <text x="360" y="128" text-anchor="middle" fill="#9fe8df" font-size="12">respiratory</text>
+    <rect x="496" y="80" width="200" height="64" rx="12" fill="#123044"/>
+    <text x="596" y="108" text-anchor="middle" fill="#f7f4ee" font-weight="700">HCO3</text>
+    <text x="596" y="128" text-anchor="middle" fill="#9fe8df" font-size="12">metabolic</text>
+    <text x="234" y="116" fill="#2ec4b6" font-size="20">→</text>
+    <text x="470" y="116" fill="#2ec4b6" font-size="20">→</text>
+    <rect x="24" y="172" width="672" height="92" rx="12" fill="#ffffff" stroke="#d9e2ea"/>
+    <text x="40" y="200" font-weight="700">Same direction as the pH</text>
+    <text x="40" y="224">That number is the cause. The other number, if it moved, is the compensation.</text>
+    <text x="40" y="246">Compensation moves the partner back toward 7.40. It does not overshoot a normal pH.</text>
+    <rect x="24" y="280" width="328" height="112" rx="12" fill="#ffffff" stroke="#d9e2ea"/>
+    <text x="40" y="308" font-weight="700">Low pH</text>
+    <text x="40" y="332">High CO2: respiratory acidosis</text>
+    <text x="40" y="354">Low HCO3: metabolic acidosis</text>
+    <text x="40" y="376">Then compute the anion gap.</text>
+    <rect x="368" y="280" width="328" height="112" rx="12" fill="#ffffff" stroke="#d9e2ea"/>
+    <text x="384" y="308" font-weight="700">High pH</text>
+    <text x="384" y="332">Low CO2: respiratory alkalosis</text>
+    <text x="384" y="354">High HCO3: metabolic alkalosis</text>
+    <text x="384" y="376">Ask what the lungs or kidneys should do.</text>
+  </g>
+</svg>

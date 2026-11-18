@@ -66,6 +66,19 @@ describe("study guide premium API gate", () => {
     expect(getGuideToc).not.toHaveBeenCalled();
   });
 
+  it("returns 404 for a USMLE chapter while the guide flags are off", async () => {
+    vi.stubEnv("NEXT_PUBLIC_USMLE_STUDY_GUIDE_PUBLIC", "");
+    vi.stubEnv("USMLE_STUDY_GUIDE_PUBLIC", "");
+    const chapter = await chapterGet(
+      new Request(
+        "https://www.anyexameasy.com/api/nclex-study-guide/chapters/front-matter?exam=usmle&step=step1"
+      ),
+      { params: Promise.resolve({ slug: "front-matter" }) }
+    );
+    expect(chapter.status).toBe(404);
+    expect(getPublishedGuide).not.toHaveBeenCalled();
+  });
+
   it("refuses bookmark, highlight, and note writes without a session", async () => {
     const bookmark = await bookmarkPost(
       new Request("https://www.anyexameasy.com/api/nclex-study-guide/bookmarks", {

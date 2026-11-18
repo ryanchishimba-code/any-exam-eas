@@ -45,6 +45,8 @@ describe("presentChapterCitations", () => {
   it("recognizes board and public-health hosts only", () => {
     expect(isAuthorityCitationHref("https://www.ncsbn.org/exams")).toBe(true);
     expect(isAuthorityCitationHref("https://www.heart.org/aha")).toBe(true);
+    expect(isAuthorityCitationHref("https://www.usmle.org/exam-resources")).toBe(true);
+    expect(isAuthorityCitationHref("https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356")).toBe(true);
     expect(isAuthorityCitationHref("https://anyexameasy.com/nclex")).toBe(false);
     expect(isAuthorityCitationHref("not a url")).toBe(false);
   });

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="440" viewBox="0 0 720 440" role="img" aria-label="Chest pain next step. Electrocardiogram first, then reperfusion if ST elevation is present.">
+  <title>Chest pain next step</title>
+  <rect width="720" height="440" rx="18" fill="#f7f4ee"/>
+  <rect width="720" height="56" fill="#0b1c2c"/>
+  <text x="24" y="34" fill="#f7f4ee" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700">Chest pain: the first branch is the ECG</text>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#1c2b39">
+    <rect x="230" y="76" width="260" height="52" rx="12" fill="#0b1c2c"/>
+    <text x="360" y="108" text-anchor="middle" fill="#f7f4ee" font-weight="700">12-lead ECG</text>
+    <rect x="40" y="168" width="280" height="88" rx="12" fill="#ffffff" stroke="#d9e2ea"/>
+    <text x="56" y="196" font-weight="700">ST elevation</text>
+    <text x="56" y="218">Reperfusion. Prefer the cath lab</text>
+    <text x="56" y="238">when it can meet the window.</text>
+    <rect x="400" y="168" width="280" height="88" rx="12" fill="#ffffff" stroke="#d9e2ea"/>
+    <text x="416" y="196" font-weight="700">No ST elevation</text>
+    <text x="416" y="218">Aspirin, anticoagulation if ACS,</text>
+    <text x="416" y="238">and risk — not a fibrinolytic.</text>
+    <rect x="40" y="284" width="640" height="128" rx="12" fill="#123044"/>
+    <text x="56" y="316" fill="#9fe8df" font-weight="700">Do not skip</text>
+    <text x="56" y="342" fill="#f7f4ee">Posterior leads when V1–V3 show ST depression.</text>
+    <text x="56" y="366" fill="#f7f4ee">Aortic dissection and esophageal rupture are not “rule out MI” stops.</text>
+    <text x="56" y="390" fill="#f7f4ee">Confirm the current reperfusion intervals on the ACS guideline.</text>
+  </g>
+</svg>

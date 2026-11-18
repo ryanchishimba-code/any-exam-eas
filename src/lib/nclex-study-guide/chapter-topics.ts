@@ -14,7 +14,7 @@
  * so a renamed or retired topic fails the suite instead of rendering a dead link.
  */
 
-import type { StudyGuideExam } from "./guide-registry";
+import type { StudyGuideBookExam, StudyGuideExam } from "./guide-registry";
 
 /** Chapter slug (from `slugFromFilename` at ingest) → topic slugs, most relevant first. */
 type ChapterTopicMap = Record<string, readonly string[]>;
@@ -204,8 +204,9 @@ export const CHAPTER_TOPICS_BY_EXAM: Record<StudyGuideExam, ChapterTopicMap> = {
 };
 
 export function getTopicSlugsForChapter(
-  exam: StudyGuideExam,
+  exam: StudyGuideBookExam,
   chapterSlug: string
 ): readonly string[] {
+  if (exam === "usmle") return [];
   return CHAPTER_TOPICS_BY_EXAM[exam]?.[chapterSlug] ?? [];
 }

@@ -1,13 +1,24 @@
 import Link from "next/link";
-import { STUDY_GUIDES, type StudyGuideExam } from "@/lib/nclex-study-guide/guide-registry";
+import {
+  STUDY_GUIDES,
+  type AnyGuideConfig,
+  type StudyGuideBookExam,
+} from "@/lib/nclex-study-guide/guide-registry";
 
 /**
  * Shown when the Study Guide cannot be reached — a Neon wake, a dropped
  * connection, or (locally) missing `sg_*` tables. Deliberately calmer than the
  * app error boundary, since the usual cause clears on its own.
  */
-export function StudyGuideUnavailable({ exam }: { exam: StudyGuideExam }) {
-  const config = STUDY_GUIDES[exam];
+export function StudyGuideUnavailable({
+  exam,
+  book,
+}: {
+  exam: StudyGuideBookExam;
+  book?: AnyGuideConfig;
+}) {
+  const config = book ?? (exam === "usmle" ? undefined : STUDY_GUIDES[exam]);
+  if (!config) return null;
   return (
     <main
       className="flex min-h-[60dvh] flex-col items-center justify-center gap-4 px-6 text-center"

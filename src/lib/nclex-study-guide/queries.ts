@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { STUDY_GUIDES, type StudyGuideExam } from "./guide-registry";
+import { STUDY_GUIDES, type StudyGuideBookExam, type StudyGuideExam } from "./guide-registry";
 import { getChapterRelatedTopics } from "./related-topics";
 import type { SgChapterDto, SgTocChapter } from "./types";
 
@@ -123,7 +123,7 @@ const loadChapterRow = unstable_cache(
 export async function getChapterBySlug(
   guideId: string,
   slug: string,
-  exam: StudyGuideExam
+  exam: StudyGuideBookExam
 ): Promise<SgChapterDto | null> {
   // Topic links stay outside the cache: they are a pure in-memory lookup, so
   // caching them would only pin the mapping to a stale deploy.
