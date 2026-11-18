@@ -62,6 +62,112 @@ The vignette withholds the name. The reasoning earns it.
 **Vignette 10.** You placed twenty orders including a TSH and a cortisol for an ankle sprain, because a forum said CCS rewards completeness.
 **Reasoning.** Orders you would not sign are not strategy. Shotgun orders are the wrong medicine. The trap is confusing a scavenger hunt with care. Order what this complaint needs, advance the clock, and read the result.
 
+## Second atlas
+
+The first pass was the order. This pass is the case you will actually see, played to the end. The Bulletin says CCS affects the result and that its weight is no greater than its share of the day. There is no finer percent in this book. Play the case as care you would sign.
+
+### Chest pain that might be a coronary occlusion
+
+Move him if you are in the office. Monitor, access, aspirin if there is no contraindication, and an ECG before the troponin comes back. Oxygen if he is hypoxic, not because chest pain is a habit. A statin and an anticoagulant come when the syndrome is a real acute coronary syndrome, on the current pathway. Do not advance the clock to a stress test while the ST segments are up. The reperfusion decision is a cardiologist and a clock. Do not invent a door-to-balloon minute. If the ECG is nondiagnostic and he is stable, the troponin and a repeat ECG are the next results you wait for, not a thyroid panel.
+
+**Vignette.** Office. Sweaty. Pain for 40 minutes. You still have him in the office chair while you finish the family history.
+**Reasoning.** Emergency department now. Aspirin, ECG, monitor. The diagnosis is a possible acute coronary syndrome until the ECG and the course say otherwise. The trap is a complete history in the wrong building.
+**NBME trap.** They give oxygen to a saturation of 99 percent and call it the treatment. Oxygen is for hypoxia. Aspirin and the ECG are the treatment of the delay.
+**Hook.** Wrong building first. Then aspirin and the tracing. Then you are allowed to be clever.
+**CCS.** Change location, monitor, intravenous line, aspirin, ECG, oxygen only if low, serial ECG and troponin if the first tracing is not a reperfusion tracing. Counsel smoking later, not before the ECG.
+
+### Sepsis that you keep rechecking
+
+Cultures, an antibiotic that matches the source, a lactate, a fluid plan you reassess, a catheter if he cannot protect the airway or you need the urine and he cannot give it. Advance the clock a short distance and read the pressure again. If it is still low, a vasopressor and a monitored bed. Do not order the 30 mL/kg as a single unwatched bag in florid heart failure. Do not end the case while the pressure is 80.
+
+**Vignette.** Fever, a cough, pressure 86/40 after a modest fluid challenge. You order a CT of the chest and advance six hours.
+**Reasoning.** The antibiotic and the circulation come before the CT, and six hours is how he arrests off-screen. The diagnosis is septic shock. Reassess in minutes, not in half a shift.
+**Hook.** Treat, advance a little, read the pressure, treat again. A big clock jump is a way to miss the death.
+
+### The belly that belongs to a surgeon
+
+Peritonitis, a rigid abdomen, free air, a pulsatile mass with hypotension, or pain out of proportion with a quiet belly: the operating room or the vascular suite, antibiotics when infection is the reason, fluid, and a surgeon. A partial small-bowel obstruction from adhesions, with no fever and no peritonitis, can be decompression and a watch. A hernia that will not reduce does not get that watch. Advance the clock only after the surgical consult exists as an order.
+
+**Vignette.** Office. A groin mass that used to reduce. Now it does not, and he is vomiting. You schedule an ultrasound for tomorrow.
+**Reasoning.** Emergency department and a surgeon today. The diagnosis is an incarcerated hernia. Tomorrow is the trap.
+**Hook.** Nonreducible and vomiting: move the patient. Do not image your way out of a surgical abdomen you already recognize.
+
+### Altered mental status, in order
+
+Glucose before you blame the brain. Oxygen. Naloxone if the pupils and the breathing say opioid, and then watch because the opioid may outlast it. Thiamine with the glucose if he is malnourished. Do not delay the glucose. A focused neurologic exam. CT if the story is a bleed, a trauma, or a focal sign. Lumbar puncture if the story is meningitis, with antibiotics first if the tap will be delayed. A benzodiazepine if he is seizing or withdrawing from alcohol. Advance the clock to the glucose result immediately. It is a fingerstick, not a send-out.
+
+**Vignette.** Unresponsive. You order a full metabolic panel, a CT, and a neurology consult, and you advance two hours. The glucose, which you did not order, would have been 28.
+**Reasoning.** The fingerstick is the first result. The diagnosis is hypoglycemia until that number exists. Everything else can still happen. It happens after the sugar.
+**Hook.** Glucose, oxygen, a look at the pupils. Then the expensive tests.
+
+### Pregnancy on CCS
+
+Blood pressure at every visit. The lab that is due. Treat HIV and syphilis when the test is positive. Do not calendar them for postpartum. Severe features of preeclampsia are magnesium and a hospital, including after birth. No digital exam for painless third-trimester bleeding. A pregnancy test before a teratogenic drug or an abdominal radiograph in a person who could be pregnant. That single order is the one examinees skip.
+
+**Vignette.** Abdominal pain in a 27-year-old. You order a CT before a pregnancy test. The pain is one-sided and she is dizzy.
+**Reasoning.** Pregnancy test, then the ectopic pathway if it is positive and the uterus is empty. The diagnosis might be an ectopic pregnancy. A CT was not the first radiation. The trap is a complete abdominal protocol in a person who might be pregnant and unstable.
+**Hook.** Pregnancy test before radiation and before a teratogenic drug. Bleeding in pregnancy follows the obstetric chapter, not a generic abdominal pain order set.
+
+### The well visit you do not decorate
+
+A stable adult here for prevention gets the grade A and B services that match the age, a tobacco offer with a drug if he is ready, a depression question, and vaccines that are due. He does not get a full-body CT. He does not get antibiotics. Advance the clock to the next visit after the counseling is ordered. A crashing patient does not get a zoster vaccine as the first order. The vaccine can be the last order on a different case.
+
+**Vignette.** A 55-year-old man who smokes, here for a physical. You order a chemistry panel, a thyroid test, and a chest radiograph, and you advise him to quit.
+**Reasoning.** The radiograph is not screening. The advice without a drug is half the tobacco recommendation. Lung cancer screening is a low-dose CT if he has the pack-years. Colorectal screening is due. The diagnosis of the error is a decorative workup and a lecture.
+**Hook.** Grade A and B, a cessation drug, and the vaccine that is due. Not a panel for its own sake.
+
+### The child
+
+Weight is on the order if you will dose a drug, and this book still will not list the dose. Bilious vomiting moves to a surgeon. Fever in a neonate is a real evaluation. Bronchiolitis does not get routine albuterol, a steroid, and an antibiotic. A nonaccidental injury is a report, typed as an order in the case, not a thought. Advance the clock only when the child is in the right place and the antibiotic or the surgeon exists if one was needed.
+
+**Vignette.** A febrile 12-day-old. You diagnose a virus, counsel on nasal suction, and end the case.
+**Reasoning.** The case ends on a missed neonatal fever. The diagnosis is fever in a neonate. The evaluation and the admission are the orders. Ending is the trap.
+**Hook.** Do not end a case on an unstable or unevaluated child. The end button is not a treatment.
+
+### How the clock actually fails
+
+You fail by advancing past an untreated hypotension, by staying in the office with a surgical abdomen, by ordering a test that cannot change the drug, and by ending before counseling on a stable case where counseling was the point. You also fail by ordering every test you have ever heard of, because the case is not a scavenger hunt and a harmful test is still harmful. The middle path is the one you would sign at 2 a.m.: the location, the monitor, the drug that cannot wait, the one test that changes the next order, a short advance, a reread, and the counseling when the person is safe.
+
+## Sources for this atlas
+
+Source: [USMLE Step 3 CCS materials](https://www.usmle.org/step-3-exam-content/step-3-computer-based-case-simulations) for the interface. This chapter does not invent a point value. The Bulletin’s statement stands: CCS affects the result, and its weight is no greater than its share of time.
+
+Source: The disease sources are the ones named in the system chapters. CCS does not have a second, looser standard.
+
+## One more hour of cases
+
+**Vignette.** Asthma in the office. She is speaking in words. You prescribe an inhaler and end the case.
+**Reasoning.** Move her. Oxygen, bronchodilator, steroid, and a watch. The diagnosis is a severe asthma exacerbation. Ending in the office is the miss. A normal carbon dioxide, if you had checked a gas, would not have reassured you.
+**Hook.** Words, not sentences: she is not an office patient.
+
+**Vignette.** Diarrhea after antibiotics. He is well. You start metronidazole because you remember an old card, and you continue the cephalosporin.
+**Reasoning.** Stop the cephalosporin. Use the current first-line drug. The diagnosis is nonfulminant C. difficile. The trap is the old drug and the culprit left running.
+**Hook.** Stop the cause. Then the current drug. Then decide if he can go home.
+
+**Vignette.** A positive screening HIV test comes back on a case you had advanced two weeks. You end because the original complaint is resolved.
+**Reasoning.** Treat, or at least start the pathway and counsel. The diagnosis is a new HIV result you were about to ignore. The original complaint ending does not retire a positive confirmatory pathway.
+**Hook.** Read every result that arrives before you end. A result you did not expect is still yours.
+
+**Vignette.** Warfarin and a head strike. You order a CT and advance four hours without reversing anything, and the scan then shows blood.
+**Reasoning.** The reversal starts when the bleed is life-threatening, and a deteriorating anticoagulated head is not a four-hour wait. The diagnosis is an anticoagulated head injury. Vitamin K alone is too slow if the scan shows blood. A factor product is the fast part.
+**Hook.** Do not advance a long clock on an anticoagulated head.
+
+**Vignette.** You treated the pneumonia correctly and the patient is ready for home. You end without a vaccine, a follow-up, or a smoking order.
+**Reasoning.** On a stable discharge, those are the points. The diagnosis is a medically correct case with the counseling left on the table. Add them, then end.
+**Hook.** The end of a stable case is counseling and a follow-up that exists. The end of an unstable case is a mistake.
+
+**Vignette.** Chest pain is clearly pleuritic, the person is hypoxic, and the leg is swollen. You give aspirin and advance to a stress test.
+**Reasoning.** This is a pulmonary embolism pathway, not a coronary stress test. Anticoagulate when the diagnosis is confirmed or when the probability is high enough that the guideline says not to wait. The diagnosis is a suspected pulmonary embolism. Aspirin was the wrong anti-thrombotic.
+**Hook.** Match the syndrome. A stress test is not the treatment of a clot.
+
+**Vignette.** The location is the inpatient ward. The nurse says the patient is unresponsive. You order morning labs and advance to 8 a.m.
+**Reasoning.** See the patient now. Glucose, airway, naloxone if the picture fits. The diagnosis is an acute change in mental status. Morning is the trap.
+**Hook.** A change in condition cancels the clock you were about to advance.
+
+**Vignette.** You are offered a consultant for a straightforward cellulitis in a well patient. You consult surgery, medicine, and infectious disease.
+**Reasoning.** Mark it, treat it, and follow it. The diagnosis is uncomplicated cellulitis. Consultants are for the decision you cannot make, not for anxiety. A necrotizing picture is the opposite case, and then surgery is the whole point.
+**Hook.** Consult when you would call. Do not consult to avoid an oral antibiotic.
+
 ## Checklist
 
 - [ ] Site of care matches how sick they are.

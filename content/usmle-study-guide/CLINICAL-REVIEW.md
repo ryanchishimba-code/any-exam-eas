@@ -182,6 +182,26 @@ These claims were added when the system chapters were expanded. Check them befor
 | Life-threatening warfarin bleeding: a factor product plus vitamin K. Vitamin K does not reverse a direct oral anticoagulant. Enoxaparin is a protamine conversation, not vitamin K | ASH / anticoagulant reversal pathways. Confirm the product for each drug |
 | Ischemic-stroke pressure ceilings and the 2022 intracerebral-hemorrhage target are listed in the Neurology section above | Do not add a third set of numbers in a later edit |
 
+## Step 3 depth pass
+
+These claims were added while the Step 3 chapters were brought to the same depth as Step 1. Confirm them before the books are shown to students.
+
+| Claim | What to check |
+| --- | --- |
+| Ischemic-stroke ceilings repeated in the Step 3 neurology chapter: leave the pressure alone under about 220/120 when no thrombolytic is planned; under 185/110 before a thrombolytic; under 180/105 afterward | Current AHA/ASA early-management guideline. The same three pairs are in the Neurology section above |
+| 2022 intracerebral hemorrhage: systolic 150–220 lowered toward 140, and a warning against going below 130 | 2022 AHA/ASA ICH guideline, also listed above |
+| COPD exacerbation oxygen target about 88–92 percent. Long-term oxygen at a resting saturation at or below 88 percent or PaO2 at or below 55 mm Hg, measured while stable | GOLD and CMS. Already listed under Lung. The Step 3 chapter repeats them and says to confirm |
+| CURB-65 is a memory aid, not a law. Shock or a ventilator is the intensive-care split | IDSA/ATS |
+| Spontaneous bacterial peritonitis at or above 250 neutrophils per cubic millimeter | AASLD |
+| Hepatocellular carcinoma surveillance described as commonly every 6 months | AASLD. The chapter says to confirm the interval |
+| Orthostatic hypotension: a drop of at least 20 mm Hg systolic or 10 mm Hg diastolic within 3 minutes of standing | Standard measurement definition |
+| Pressure injury: stage 1 intact nonblanchable, stage 2 partial thickness, stage 3 full thickness, stage 4 to bone, unstageable if eschar hides the base | Current wound-care staging. Do not stage through eschar |
+| About 4 METs, taught as climbing a flight of stairs, as the functional example in the perioperative chapter | 2024 AHA/ACC perioperative guideline. Confirm the functional-capacity example before quoting 4 METs as a cutoff |
+| Zoster antiviral timing taught as within 72 hours of rash onset | CDC. The chapter says to confirm the window |
+| Endocarditis prophylaxis limited to a prosthetic valve, prior endocarditis, some congenital heart disease, and cardiac transplant valvulopathy | AHA. A murmur is not on the list |
+| CCS weight is not given a finer percent than the Bulletin’s “no greater than its share of time” | Do not add one |
+| No CD4 cutoff, no SGLT2 inhibitor eGFR floor, no GOLD letter, no door-to-balloon minute, no preeclampsia millimeter cutoff, no gestational-diabetes number | Those omissions are intentional |
+
 ## Independence
 
 The books name the FSMB and the NBME as the organizations behind the USMLE program and state that AnyExamEasy is not affiliated with or endorsed by them. That sentence should stay in the reader footer and in the front chapters.
