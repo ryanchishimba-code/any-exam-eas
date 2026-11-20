@@ -1,0 +1,7 @@
+{
+  "batchId": "judgment10-2026-10-25",
+  "neonProjectId": "lively-silence-56893462",
+  "backupTable": "qbi_judgment10_backup_20261025",
+  "appliedAt": "2026-10-25T14:28:20.280Z",
+  "note": "Full row snapshots live in Neon table qbi_judgment10_backup_20261025 (LIKE QuestionBankItem). undo.json lists inserted ids for scripted rollback."
+}

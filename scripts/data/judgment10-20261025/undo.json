@@ -1,0 +1,79 @@
+{
+  "batchId": "judgment10-2026-10-25",
+  "appliedAt": "2026-10-25T14:28:20.280Z",
+  "insertedIds": [
+    "cmvnxagpj0000jsv9v98bbpoo",
+    "cmvnxagpu0001jsv90u57yw7a",
+    "cmvnxagq00002jsv9eih9go7a",
+    "cmvnxagq60003jsv9rgtnk2ok",
+    "cmvnxagqb0004jsv98dt92zud",
+    "cmvnxagqh0005jsv93123imo4",
+    "cmvnxagql0006jsv9chse9ejf",
+    "cmvnxagqr0007jsv9qdgjk6al",
+    "cmvnxagqw0008jsv97i1ivdxy",
+    "cmvnxagr10009jsv97gnh8661"
+  ],
+  "backupTable": "qbi_judgment10_backup_20261025",
+  "rows": [
+    {
+      "id": "cmvnxagpj0000jsv9v98bbpoo",
+      "pilotId": "NCLEX-01",
+      "fieldId": "nursing",
+      "contentHash": "afa73e21787a083af20d72dfd96379a189b05721559de33bd66fdda3aa6042b8"
+    },
+    {
+      "id": "cmvnxagpu0001jsv90u57yw7a",
+      "pilotId": "NCLEX-02",
+      "fieldId": "nursing",
+      "contentHash": "68f35730ec7dfa87f2baf0803118884e0fd5cec35bfd2976ef195ee6e8fd3444"
+    },
+    {
+      "id": "cmvnxagq00002jsv9eih9go7a",
+      "pilotId": "NCLEX-03",
+      "fieldId": "nursing",
+      "contentHash": "5dde8af3c4e0886d53059b29bec325e2b19aa7e1c49d5b92f2769260adb2d828"
+    },
+    {
+      "id": "cmvnxagq60003jsv9rgtnk2ok",
+      "pilotId": "NCLEX-04",
+      "fieldId": "nursing",
+      "contentHash": "ecf20f5aedf42586aa9738958cecc1e5e83b004e27be819bda21a016614d14bd"
+    },
+    {
+      "id": "cmvnxagqb0004jsv98dt92zud",
+      "pilotId": "NCLEX-05",
+      "fieldId": "nursing",
+      "contentHash": "3213609884e051303fbf6e60e696b8c358345aa71df9743c700428f348ed504c"
+    },
+    {
+      "id": "cmvnxagqh0005jsv93123imo4",
+      "pilotId": "NAPLEX-01",
+      "fieldId": "pharmacy",
+      "contentHash": "6ea1f5a5e1bf38ecd05dcf95278f8e57baed81a1e89a79c8f33211285ccf95fb"
+    },
+    {
+      "id": "cmvnxagql0006jsv9chse9ejf",
+      "pilotId": "NAPLEX-02",
+      "fieldId": "pharmacy",
+      "contentHash": "d1f33d62d08c0fc961deb59738b9e4ec33348a4c9e689d1e50a9522fe77c792f"
+    },
+    {
+      "id": "cmvnxagqr0007jsv9qdgjk6al",
+      "pilotId": "NAPLEX-03",
+      "fieldId": "pharmacy",
+      "contentHash": "8d2b065f6544c55a343acb5b6e596c9407f2dd29878e24684432f5f4d35a8529"
+    },
+    {
+      "id": "cmvnxagqw0008jsv97i1ivdxy",
+      "pilotId": "NAPLEX-04",
+      "fieldId": "pharmacy",
+      "contentHash": "20171260b3a211b133f1e1f34692b17cf9977543a5f7791f03325892c1aa3c22"
+    },
+    {
+      "id": "cmvnxagr10009jsv97gnh8661",
+      "pilotId": "NAPLEX-05",
+      "fieldId": "pharmacy",
+      "contentHash": "96985b90097098b7d58cda1484363bb6c70c3cb9fc77ffb49b33bc68a375635f"
+    }
+  ]
+}
