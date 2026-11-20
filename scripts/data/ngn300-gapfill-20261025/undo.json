@@ -1,0 +1,101 @@
+{
+  "batch_id": "ngn300-gapfill-2026-10-25",
+  "created_at": "2026-10-25T14:08:10.874Z",
+  "neon_snapshot": "snap-wandering-band-apwe2ay7",
+  "cases": [
+    {
+      "id": "NX101",
+      "version": 1
+    },
+    {
+      "id": "NX102",
+      "version": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "NX101-S1",
+      "version": 1
+    },
+    {
+      "id": "NX101-S2",
+      "version": 1
+    },
+    {
+      "id": "NX101-S3",
+      "version": 1
+    },
+    {
+      "id": "NX101-S4",
+      "version": 1
+    },
+    {
+      "id": "NX101-S5",
+      "version": 1
+    },
+    {
+      "id": "NX101-S6",
+      "version": 1
+    },
+    {
+      "id": "NX102-S1",
+      "version": 1
+    },
+    {
+      "id": "NX102-S2",
+      "version": 1
+    },
+    {
+      "id": "NX102-S3",
+      "version": 1
+    },
+    {
+      "id": "NX102-S4",
+      "version": 1
+    },
+    {
+      "id": "NX102-S5",
+      "version": 1
+    },
+    {
+      "id": "NX102-S6",
+      "version": 1
+    },
+    {
+      "id": "NB201",
+      "version": 1
+    },
+    {
+      "id": "NB202",
+      "version": 1
+    },
+    {
+      "id": "NB203",
+      "version": 1
+    },
+    {
+      "id": "NB204",
+      "version": 1
+    },
+    {
+      "id": "NB205",
+      "version": 1
+    },
+    {
+      "id": "NT201",
+      "version": 1
+    },
+    {
+      "id": "NT202",
+      "version": 1
+    },
+    {
+      "id": "NT203",
+      "version": 1
+    },
+    {
+      "id": "NT204",
+      "version": 1
+    }
+  ]
+}

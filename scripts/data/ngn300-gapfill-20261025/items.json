@@ -1,0 +1,3713 @@
+{
+ "batch_id": "ngn300-gapfill-2026-10-25",
+ "generated": "2026-10-25",
+ "status_note": "NOT inserted; status=draft pending RN review",
+ "cases": [
+  {
+   "id": "NX101",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "board_profile": "nclex-rn-2026",
+   "status": "draft",
+   "title": "Emergency department to step-down: hyperglycemic crisis in a young adult",
+   "primary_client_need": "Physiological Adaptation",
+   "setting": "Emergency department, then step-down unit",
+   "patient": {
+    "age": 24,
+    "sex": "female",
+    "history": "Type 1 diabetes since age 11 (insulin glargine 20 units nightly, insulin lispro with meals). No other conditions.",
+    "weightKg": 58,
+    "allergies": "No known allergies",
+    "displayName": "M. Okafor"
+   },
+   "timepoints": [
+    {
+     "id": "T0",
+     "label": "ED, 1400"
+    },
+    {
+     "id": "T1",
+     "label": "ED, 1440"
+    },
+    {
+     "id": "T2",
+     "label": "Step-down, 2000"
+    },
+    {
+     "id": "T3",
+     "label": "Hospital day 2, 0700"
+    }
+   ],
+   "chart": {
+    "tabs": [
+     {
+      "id": "notes",
+      "label": "Nurses' Notes",
+      "entries": [
+       {
+        "text": "Health history: Type 1 diabetes since age 11 (insulin glargine 20 units nightly, insulin lispro with meals). No other conditions. Last menstrual period 2 weeks ago.",
+        "time": "baseline"
+       },
+       {
+        "text": "1400: Vomiting since last night; unable to keep fluids down. Abdominal pain 6/10, diffuse. Drowsy but oriented x3; answers slowly. Respirations deep and rapid. Fruity odor to breath. Mucous membranes dry; skin warm. Capillary refill 3 seconds. Lungs clear bilaterally. Pupils equal and reactive. States she has skipped her glargine for 3 days because she could not afford the refill.",
+        "time": "T0"
+       },
+       {
+        "text": "1440: 12-lead ECG: sinus tachycardia 122/min with flattened T waves and prominent U waves. Hand grips weak bilaterally. Insulin infusion bag prepared by pharmacy and at bedside; not yet started. First liter of lactated Ringer's infusing.",
+        "time": "T1"
+       },
+       {
+        "text": "2000: Transferred to step-down at 1830. Alert, oriented, conversing in full sentences. Nausea resolved; sipping water. Insulin infusion running at 5.8 units/h since 1610. IV fluid: lactated Ringer's with KCl 20 mEq/L at 250 mL/h. Hourly point-of-care glucose: 1800 286, 1900 241, 2000 236 mg/dL.",
+        "time": "T2"
+       },
+       {
+        "text": "0700: Ate half of breakfast tray without nausea. Insulin glargine 17 units subcut given at 0700 per transition order. Insulin infusion continues at 2.9 units/h with dextrose 5% in IV fluid.",
+        "time": "T3"
+       }
+      ]
+     },
+     {
+      "id": "vitals",
+      "label": "Vital Signs",
+      "columns": [
+       "Time",
+       "T",
+       "HR",
+       "RR",
+       "BP",
+       "SpO2"
+      ],
+      "rows": [
+       [
+        "ED 1400",
+        "37.2 °C",
+        "124/min",
+        "30/min",
+        "96/58 mm Hg",
+        "98% RA"
+       ],
+       [
+        "Step-down 2000",
+        "36.9 °C",
+        "102/min",
+        "22/min",
+        "112/68 mm Hg",
+        "98% RA"
+       ],
+       [
+        "Day 2 0700",
+        "36.8 °C",
+        "84/min",
+        "16/min",
+        "118/72 mm Hg",
+        "99% RA"
+       ]
+      ],
+      "rowTimepoints": [
+       "T0",
+       "T2",
+       "T3"
+      ],
+      "columnTimepoints": [
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline"
+      ]
+     },
+     {
+      "id": "labs",
+      "label": "Laboratory Results",
+      "columns": [
+       "Test",
+       "ED 1410",
+       "1900",
+       "Day 2 0600",
+       "Reference"
+      ],
+      "rows": [
+       [
+        "Glucose",
+        "486",
+        "238",
+        "168",
+        "70-99 mg/dL (fasting)"
+       ],
+       [
+        "Beta-hydroxybutyrate",
+        "5.4",
+        "3.1",
+        "0.4",
+        "<0.6 mmol/L"
+       ],
+       [
+        "Venous pH",
+        "7.14",
+        "7.24",
+        "7.33",
+        "7.32-7.43"
+       ],
+       [
+        "Bicarbonate",
+        "11",
+        "14",
+        "19",
+        "22-29 mEq/L"
+       ],
+       [
+        "Potassium",
+        "3.2",
+        "4.1",
+        "4.2",
+        "3.5-5.0 mEq/L"
+       ],
+       [
+        "Sodium",
+        "131",
+        "136",
+        "139",
+        "135-145 mEq/L"
+       ],
+       [
+        "Chloride",
+        "97",
+        "104",
+        "110",
+        "98-107 mEq/L"
+       ],
+       [
+        "Anion gap",
+        "23",
+        "18",
+        "10",
+        "4-12 mEq/L"
+       ],
+       [
+        "Creatinine",
+        "1.4",
+        "1.1",
+        "0.9",
+        "0.6-1.1 mg/dL (baseline 0.8)"
+       ],
+       [
+        "Urine ketones",
+        "Large",
+        "-",
+        "Moderate",
+        "Negative"
+       ]
+      ],
+      "rowTimepoints": [
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline"
+      ],
+      "columnTimepoints": [
+       "baseline",
+       "T1",
+       "T2",
+       "T3",
+       "baseline"
+      ]
+     },
+     {
+      "id": "orders",
+      "label": "Orders",
+      "entries": [
+       {
+        "text": "1405: Lactated Ringer's 1,000 mL/h IV for 2 h, then reassess",
+        "time": "T0"
+       },
+       {
+        "text": "1405: Regular insulin IV infusion 0.1 units/kg/h (5.8 units/h); no bolus",
+        "time": "T0"
+       },
+       {
+        "text": "1405: Potassium per DKA protocol: K <3.5 mEq/L give KCl 10 mEq/h IV and do not start insulin until K is >3.5; K 3.5-5.0 add KCl 20-30 mEq to each liter of IV fluid; K >5.0 no potassium, recheck in 2 h",
+        "time": "T0"
+       },
+       {
+        "text": "1405: Point-of-care glucose every 1 h; BMP, venous blood gas, and beta-hydroxybutyrate every 4 h; continuous cardiac monitoring",
+        "time": "T0"
+       },
+       {
+        "text": "1405: When glucose is <250 mg/dL, add dextrose 5% to IV fluid and decrease insulin infusion to 0.05 units/kg/h (2.9 units/h); target glucose about 200 mg/dL until DKA resolves",
+        "time": "T0"
+       },
+       {
+        "text": "Day 2 0630: Insulin glargine 17 units subcut at 0700; stop insulin infusion 2 h after glargine if DKA resolution criteria met",
+        "time": "T3"
+       }
+      ]
+     }
+    ]
+   },
+   "reveal_rule": "Chart content tagged with a time point is shown only when the student reaches an item at or after that time point; 'baseline' is shown from the start. Tables use rowTimepoints or columnTimepoints (the latest applicable tag wins).",
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "locator": "DKA diagnostic criteria; fluid, insulin and potassium protocol; resolution and transition criteria"
+    }
+   ],
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "board_profile": "nclex-rn-2026",
+   "status": "draft",
+   "title": "Sickle cell pain crisis: comfort, complications, and opioid safety",
+   "primary_client_need": "Basic Care and Comfort",
+   "setting": "Emergency department, then adult medical unit",
+   "patient": {
+    "age": 22,
+    "sex": "male",
+    "history": "Sickle cell anemia (HbSS). Hydroxyurea daily. Home morphine extended-release 15 mg PO every 12 h and oxycodone 10 mg PO every 4 h as needed for pain crises. Individualized pain plan on file from hematology. Baseline hemoglobin 8.2 g/dL.",
+    "weightKg": 70,
+    "allergies": "No known allergies",
+    "displayName": "D. Mensah"
+   },
+   "timepoints": [
+    {
+     "id": "T0",
+     "label": "ED, 0910"
+    },
+    {
+     "id": "T1",
+     "label": "Hospital day 2, 1400"
+    },
+    {
+     "id": "T2",
+     "label": "Hospital day 3, 1000"
+    }
+   ],
+   "chart": {
+    "tabs": [
+     {
+      "id": "notes",
+      "label": "Nurses' Notes",
+      "entries": [
+       {
+        "text": "Health history: Sickle cell anemia (HbSS). Hydroxyurea daily. Home morphine extended-release 15 mg PO every 12 h and oxycodone 10 mg PO every 4 h as needed for pain crises. Individualized pain plan on file from hematology. Baseline hemoglobin 8.2 g/dL.",
+        "time": "baseline"
+       },
+       {
+        "text": "0910 (arrived 0850, triaged 0855): Pain 9/10 in lower back and both thighs since last night, 'like my usual crises.' Took oxycodone 10 mg at 0300 and 0600 without relief. Grimacing and lying very still. Sclerae mildly icteric; client states 'my eyes are always like this.' Lungs clear; no cough. SpO2 94% on room air. Drinking water from his bottle; mucous membranes moist. Capillary refill less than 3 seconds.",
+        "time": "T0"
+       },
+       {
+        "text": "Day 2, 1400: Hydromorphone PCA (demand doses only) since admission. Reports new right-sided chest pain, worse with deep breaths, and a dry cough since 1100. Has used the incentive spirometer twice since last evening. Crackles at right base. Awake and alert (POSS 1). Chest x-ray 1330: new right lower lobe infiltrate. Hematology notified; at bedside 1355.",
+        "time": "T1"
+       },
+       {
+        "text": "Day 3, 1000: Red blood cells 10 mL/kg (700 mL) transfused day 2, 1700-2030, without reaction. Ceftriaxone and azithromycin continuing. Oxygen 2 L/min by nasal cannula. PCA continuous (basal) infusion added at 0200 for uncontrolled pain; home extended-release morphine was not held. 0950: drowsy, drifts off to sleep mid-conversation but easy to arouse (POSS 3). Pain 3/10.",
+        "time": "T2"
+       }
+      ]
+     },
+     {
+      "id": "vitals",
+      "label": "Vital Signs",
+      "columns": [
+       "Time",
+       "T",
+       "HR",
+       "RR",
+       "BP",
+       "SpO2",
+       "Pain"
+      ],
+      "rows": [
+       [
+        "ED 0855",
+        "37.4 °C",
+        "112/min",
+        "20/min",
+        "128/76 mm Hg",
+        "94% RA",
+        "9/10"
+       ],
+       [
+        "Day 2 1400",
+        "38.4 °C",
+        "118/min",
+        "28/min",
+        "122/70 mm Hg",
+        "91% RA",
+        "7/10"
+       ],
+       [
+        "Day 3 1000",
+        "37.0 °C",
+        "88/min",
+        "10/min",
+        "116/68 mm Hg",
+        "97% on 2 L/min",
+        "3/10"
+       ]
+      ],
+      "rowTimepoints": [
+       "T0",
+       "T1",
+       "T2"
+      ],
+      "columnTimepoints": [
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline"
+      ]
+     },
+     {
+      "id": "labs",
+      "label": "Laboratory Results",
+      "columns": [
+       "Test",
+       "Clinic baseline",
+       "ED 0900",
+       "Day 2 1330",
+       "Day 3 0600",
+       "Reference"
+      ],
+      "rows": [
+       [
+        "Hemoglobin",
+        "8.2",
+        "8.0",
+        "6.8",
+        "9.1",
+        "13.8-17.2 g/dL"
+       ],
+       [
+        "Reticulocytes",
+        "9",
+        "10",
+        "9",
+        "-",
+        "0.5-2.5%"
+       ],
+       [
+        "Total bilirubin",
+        "3.1",
+        "3.4",
+        "3.8",
+        "3.0",
+        "0.1-1.2 mg/dL"
+       ],
+       [
+        "WBC",
+        "11.0",
+        "13.2",
+        "18.5",
+        "14.0",
+        "4.5-11.0 ×10⁹/L"
+       ],
+       [
+        "Creatinine",
+        "0.6",
+        "0.6",
+        "0.7",
+        "0.7",
+        "0.7-1.3 mg/dL"
+       ]
+      ],
+      "rowTimepoints": [
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline",
+       "baseline"
+      ],
+      "columnTimepoints": [
+       "baseline",
+       "baseline",
+       "T0",
+       "T1",
+       "T2",
+       "baseline"
+      ]
+     },
+     {
+      "id": "orders",
+      "label": "Orders",
+      "entries": [
+       {
+        "text": "0905: Analgesia per individualized SCD pain plan: IV hydromorphone now; reassess pain every 15-30 min and repeat per plan until pain controlled",
+        "time": "T0"
+       },
+       {
+        "text": "0905: Oxygen if SpO2 <95% on room air; continuous pulse oximetry; sedation assessment (POSS) with every opioid reassessment",
+        "time": "T0"
+       },
+       {
+        "text": "Admission: Hydromorphone PCA per plan; incentive spirometry while awake; ambulate as tolerated; local heat to painful areas as requested",
+        "time": "T0"
+       },
+       {
+        "text": "Day 2, 1400: Ceftriaxone IV and azithromycin PO (doses per pharmacy); oxygen to keep SpO2 above 95%; type and crossmatch; transfuse RBCs 10 mL/kg; notify hematology immediately if SpO2 <90% despite oxygen or respiratory distress increases",
+        "time": "T1"
+       }
+      ]
+     }
+    ]
+   },
+   "reveal_rule": "Chart content tagged with a time point is shown only when the student reaches an item at or after that time point; 'baseline' is shown from the start. Tables use rowTimepoints or columnTimepoints (the latest applicable tag wins).",
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "locator": "Ch. 3 Managing acute complications: VOC recommendations; acute chest syndrome recommendations"
+    }
+   ],
+   "supersedes_id": null,
+   "manual_correction": false
+  }
+ ],
+ "items": [
+  {
+   "id": "NX101-S1",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX101",
+   "case_version": 1,
+   "case_step": 1,
+   "item_type": "case_item",
+   "cjmm_function": "recognize_cues",
+   "timepoint": "T0",
+   "response_format": "highlight_text",
+   "scoring_rule": "plus_minus",
+   "max_points": 6,
+   "stem": "The nurse reviews the 1400 nurses' note. Highlight the findings that require immediate follow-up.",
+   "payload": {
+    "keys": [
+     "t2",
+     "t4",
+     "t8",
+     "t10",
+     "t12",
+     "t20"
+    ],
+    "tokens": [
+     {
+      "id": "t1",
+      "text": "1400: ",
+      "selectable": false
+     },
+     {
+      "id": "t2",
+      "text": "Vomiting since last night; unable to keep fluids down.",
+      "selectable": true
+     },
+     {
+      "id": "t3",
+      "text": " Abdominal pain 6/10, diffuse. ",
+      "selectable": false
+     },
+     {
+      "id": "t4",
+      "text": "Drowsy",
+      "selectable": true
+     },
+     {
+      "id": "t5",
+      "text": " but ",
+      "selectable": false
+     },
+     {
+      "id": "t6",
+      "text": "oriented x3",
+      "selectable": true
+     },
+     {
+      "id": "t7",
+      "text": "; answers slowly. ",
+      "selectable": false
+     },
+     {
+      "id": "t8",
+      "text": "Respirations deep and rapid.",
+      "selectable": true
+     },
+     {
+      "id": "t9",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t10",
+      "text": "Fruity odor to breath.",
+      "selectable": true
+     },
+     {
+      "id": "t11",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t12",
+      "text": "Mucous membranes dry",
+      "selectable": true
+     },
+     {
+      "id": "t13",
+      "text": "; ",
+      "selectable": false
+     },
+     {
+      "id": "t14",
+      "text": "skin warm.",
+      "selectable": true
+     },
+     {
+      "id": "t15",
+      "text": " Capillary refill 3 seconds. ",
+      "selectable": false
+     },
+     {
+      "id": "t16",
+      "text": "Lungs clear bilaterally.",
+      "selectable": true
+     },
+     {
+      "id": "t17",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t18",
+      "text": "Pupils equal and reactive.",
+      "selectable": true
+     },
+     {
+      "id": "t19",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t20",
+      "text": "States she has skipped her glargine for 3 days",
+      "selectable": true
+     },
+     {
+      "id": "t21",
+      "text": " because she could not afford the refill.",
+      "selectable": false
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Missed basal insulin, vomiting, Kussmaul breathing, ketotic breath, dehydration and drowsiness point to a hyperglycemic crisis with volume loss.",
+    "expanded": {
+     "perOption": {
+      "t2": {
+       "text": "Ongoing losses; no oral intake.",
+       "verdict": "key"
+      },
+      "t8": {
+       "text": "Kussmaul respirations compensate for metabolic acidosis.",
+       "verdict": "key"
+      },
+      "t20": {
+       "text": "No basal insulin: the usual trigger of DKA in type 1 diabetes.",
+       "verdict": "key"
+      },
+      "t6": {
+       "text": "Orientation is preserved; drowsiness is the concern.",
+       "verdict": "distractor"
+      },
+      "t14": {
+       "text": "Warm skin is nonspecific.",
+       "verdict": "distractor"
+      },
+      "t16": {
+       "text": "Clear lungs argue against pneumonia as a trigger.",
+       "verdict": "distractor"
+      },
+      "t18": {
+       "text": "Normal neuro finding.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Missed basal insulin + deep, rapid breathing + vomiting = suspect DKA; check ketones, pH and potassium first.",
+     "pointsLost": "+/- scoring: +1 per correct selection, -1 per incorrect selection; item score cannot go below 0."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Recognize signs and symptoms of client complications and intervene",
+    "code": "PA"
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "DKA clinical presentation and precipitating causes (insulin omission)",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX101-S2",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX101",
+   "case_version": 1,
+   "case_step": 2,
+   "item_type": "case_item",
+   "cjmm_function": "analyze_cues",
+   "timepoint": "T1",
+   "response_format": "matrix_mc",
+   "scoring_rule": "zero_one",
+   "max_points": 6,
+   "stem": "The 1410 laboratory results are available. For each finding, specify how it relates to the client's care at this time.",
+   "payload": {
+    "rows": [
+     {
+      "id": "r1",
+      "key": "dka",
+      "text": "Glucose 486 mg/dL"
+     },
+     {
+      "id": "r2",
+      "key": "pre",
+      "text": "Potassium 3.2 mEq/L"
+     },
+     {
+      "id": "r3",
+      "key": "dka",
+      "text": "Bicarbonate 11 mEq/L"
+     },
+     {
+      "id": "r4",
+      "key": "nr",
+      "text": "Sodium 131 mEq/L"
+     },
+     {
+      "id": "r5",
+      "key": "dka",
+      "text": "Beta-hydroxybutyrate 5.4 mmol/L"
+     },
+     {
+      "id": "r6",
+      "key": "dka",
+      "text": "Venous pH 7.14"
+     }
+    ],
+    "columns": [
+     {
+      "id": "dka",
+      "label": "Confirms or grades DKA"
+     },
+     {
+      "id": "pre",
+      "label": "Must be corrected before insulin is started"
+     },
+     {
+      "id": "nr",
+      "label": "Abnormal, but expected to correct as glucose falls"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Glucose, ketones, pH and bicarbonate meet DKA criteria (pH 7.0-7.25 and HCO3 10-<15 = moderate). K 3.2 must be corrected before insulin. Na 131 is dilutional from hyperglycemia.",
+    "expanded": {
+     "perOption": {
+      "r6": {
+       "text": "pH <7.3 is a diagnostic criterion; 7.14 = moderate.",
+       "verdict": "dka"
+      },
+      "r5": {
+       "text": "BHB >=3.0 mmol/L confirms ketonemia.",
+       "verdict": "dka"
+      },
+      "r3": {
+       "text": "HCO3 <18; 11 = moderate band.",
+       "verdict": "dka"
+      },
+      "r1": {
+       "text": "Glucose >=200 or known diabetes.",
+       "verdict": "dka"
+      },
+      "r2": {
+       "text": "Insulin drives K into cells; consensus delays insulin until K >3.5 while giving K 10 mmol/h.",
+       "verdict": "pre"
+      },
+      "r4": {
+       "text": "Hyperglycemia pulls water into plasma; Na rises about 1.6 per 100 mg/dL glucose fall. No sodium replacement is needed.",
+       "verdict": "nr"
+      }
+     },
+     "takeaway": "Check potassium before every DKA insulin start; a low K turns insulin into the most dangerous order.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Manage the care of a client with a fluid and electrolyte imbalance",
+    "code": "PA",
+    "secondary": {
+     "subcategory": "Reduction of Risk Potential"
+    }
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "Table: DKA diagnostic criteria and severity; potassium replacement; sodium shift with glucose",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX101-S3",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX101",
+   "case_version": 1,
+   "case_step": 3,
+   "item_type": "case_item",
+   "cjmm_function": "prioritize_hypotheses",
+   "timepoint": "T1",
+   "response_format": "dropdown_rationale",
+   "scoring_rule": "rationale",
+   "max_points": 2,
+   "stem": "Complete the following sentence by choosing from the lists of options.",
+   "payload": {
+    "kind": "triad",
+    "template": "Before insulin is started, the client is at highest risk for {{cause}}, as evidenced by the {{e1}} and the {{e2}}.",
+    "dropdowns": [
+     {
+      "id": "cause",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "a life-threatening dysrhythmia from worsening hypokalemia"
+       },
+       {
+        "id": "b",
+        "text": "hypoglycemia from the planned insulin infusion"
+       },
+       {
+        "id": "c",
+        "text": "cerebral edema from rapid fluid resuscitation"
+       },
+       {
+        "id": "d",
+        "text": "fluid overload from crystalloid at 1,000 mL/h"
+       }
+      ],
+      "role": "cause"
+     },
+     {
+      "id": "e1",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "potassium of 3.2 mEq/L"
+       },
+       {
+        "id": "b",
+        "text": "creatinine of 1.4 mg/dL"
+       },
+       {
+        "id": "c",
+        "text": "sodium of 131 mEq/L"
+       },
+       {
+        "id": "d",
+        "text": "glucose of 486 mg/dL"
+       }
+      ],
+      "role": "effect"
+     },
+     {
+      "id": "e2",
+      "key": "c",
+      "options": [
+       {
+        "id": "a",
+        "text": "clear lung sounds"
+       },
+       {
+        "id": "b",
+        "text": "deep, rapid respirations"
+       },
+       {
+        "id": "c",
+        "text": "U waves on the 12-lead ECG"
+       },
+       {
+        "id": "d",
+        "text": "drowsiness at 1400"
+       }
+      ],
+      "role": "effect"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "K 3.2 with U waves and weak grips shows hypokalemia already affecting muscle and conduction; insulin will lower K further.",
+    "expanded": {
+     "perOption": {
+      "cause": {
+       "text": "Cerebral edema is rare in adults and nothing shows it now; glucose 486 makes hypoglycemia unlikely before insulin; clear lungs and BP 96/58 argue against overload.",
+       "verdict": "a"
+      },
+      "e1": {
+       "text": "K 3.2 is below the 3.5 threshold. Glucose, sodium and creatinine reflect DKA and volume loss, not dysrhythmia risk.",
+       "verdict": "a"
+      },
+      "e2": {
+       "text": "U waves = hypokalemic conduction change. Drowsiness and Kussmaul breathing reflect acidosis; clear lungs are normal.",
+       "verdict": "c"
+      }
+     },
+     "takeaway": "In DKA, total-body K is depleted even when serum K looks normal. A low serum K is an emergency once insulin starts.",
+     "pointsLost": "Rationale scoring: cause must be correct to earn any points, then 1 point per correct linked effect (max 2)."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Manage the care of a client with a fluid and electrolyte imbalance",
+    "code": "PA",
+    "secondary": {
+     "subcategory": "Reduction of Risk Potential"
+    }
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "Potassium: if K <3.5 mmol/L, delay insulin and give K replacement",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX101-S4",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX101",
+   "case_version": 1,
+   "case_step": 4,
+   "item_type": "case_item",
+   "cjmm_function": "generate_solutions",
+   "timepoint": "T1",
+   "response_format": "mr_sata",
+   "scoring_rule": "plus_minus",
+   "max_points": 5,
+   "stem": "The nurse reviews the 1410 results, the 1440 note, and the ED orders. Which actions should the nurse take now? Select all that apply.",
+   "payload": {
+    "keys": [
+     "o9",
+     "o4",
+     "o6",
+     "o5",
+     "o2"
+    ],
+    "options": [
+     {
+      "id": "o1",
+      "text": "Give regular insulin 0.1 units/kg IV push before the infusion"
+     },
+     {
+      "id": "o2",
+      "text": "Check point-of-care glucose every hour"
+     },
+     {
+      "id": "o3",
+      "text": "Give oral potassium chloride with sips of clear liquids"
+     },
+     {
+      "id": "o4",
+      "text": "Start KCl 10 mEq/h IV on an infusion pump"
+     },
+     {
+      "id": "o5",
+      "text": "Maintain continuous cardiac monitoring"
+     },
+     {
+      "id": "o6",
+      "text": "Keep the insulin infusion on hold until potassium is above 3.5 mEq/L"
+     },
+     {
+      "id": "o7",
+      "text": "Start the insulin infusion at 5.8 units/h now because glucose is 486 mg/dL"
+     },
+     {
+      "id": "o8",
+      "text": "Request IV sodium bicarbonate for the pH of 7.14"
+     },
+     {
+      "id": "o9",
+      "text": "Continue lactated Ringer's at 1,000 mL/h"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Fluids and potassium first; insulin waits until K >3.5. Monitor rhythm and glucose closely.",
+    "expanded": {
+     "perOption": {
+      "o9": {
+       "text": "Isotonic fluid 500-1,000 mL/h for the first 2-4 h.",
+       "verdict": "key"
+      },
+      "o4": {
+       "text": "Protocol: K <3.5, give 10 mEq/h.",
+       "verdict": "key"
+      },
+      "o6": {
+       "text": "Insulin with K 3.2 risks dysrhythmia.",
+       "verdict": "key"
+      },
+      "o5": {
+       "text": "U waves already present.",
+       "verdict": "key"
+      },
+      "o2": {
+       "text": "Glucose every 1-2 h during IV insulin.",
+       "verdict": "key"
+      },
+      "o7": {
+       "text": "Unsafe with K 3.2; glucose is not the priority.",
+       "verdict": "distractor"
+      },
+      "o1": {
+       "text": "No bolus ordered; it would lower K further.",
+       "verdict": "distractor"
+      },
+      "o8": {
+       "text": "Bicarbonate is not routine unless pH <7.0.",
+       "verdict": "distractor"
+      },
+      "o3": {
+       "text": "She is vomiting; the protocol calls for IV K.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Order of DKA care: fluids, then potassium check, then insulin.",
+     "pointsLost": "+/- scoring: +1 per correct selection, -1 per incorrect selection; item score cannot go below 0."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Review pertinent data prior to medication administration (e.g., contraindications, lab results, allergies, potential interactions)",
+    "code": "PHA",
+    "secondary": {
+     "subcategory": "Physiological Adaptation"
+    }
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "Fluids 500-1,000 mL/h; insulin 0.1 U/kg/h; potassium rules; bicarbonate only if pH <7.0; glucose every 1-2 h",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX101-S5",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX101",
+   "case_version": 1,
+   "case_step": 5,
+   "item_type": "case_item",
+   "cjmm_function": "take_action",
+   "timepoint": "T2",
+   "response_format": "dropdown_cloze",
+   "scoring_rule": "zero_one",
+   "max_points": 3,
+   "stem": "The nurse reviews the 1900 results and the 2000 note. Complete the following sentence by choosing from the lists of options.",
+   "payload": {
+    "template": "At 2000, the nurse should {{d1}}, {{d2}}, and {{d3}}.",
+    "dropdowns": [
+     {
+      "id": "d1",
+      "key": "b",
+      "options": [
+       {
+        "id": "a",
+        "text": "decrease the insulin infusion to 1.5 units/h"
+       },
+       {
+        "id": "b",
+        "text": "decrease the insulin infusion to 2.9 units/h"
+       },
+       {
+        "id": "c",
+        "text": "stop the insulin infusion"
+       },
+       {
+        "id": "d",
+        "text": "continue the insulin infusion at 5.8 units/h"
+       }
+      ]
+     },
+     {
+      "id": "d2",
+      "key": "c",
+      "options": [
+       {
+        "id": "a",
+        "text": "stop IV fluids because she is drinking"
+       },
+       {
+        "id": "b",
+        "text": "change to 0.45% sodium chloride without dextrose"
+       },
+       {
+        "id": "c",
+        "text": "add dextrose 5% to the IV fluid"
+       },
+       {
+        "id": "d",
+        "text": "give dextrose 50% 50 mL IV push"
+       }
+      ]
+     },
+     {
+      "id": "d3",
+      "key": "d",
+      "options": [
+       {
+        "id": "a",
+        "text": "stop potassium because the level is normal"
+       },
+       {
+        "id": "b",
+        "text": "give KCl 40 mEq IV over 1 hour"
+       },
+       {
+        "id": "c",
+        "text": "add sodium bicarbonate to the IV fluid"
+       },
+       {
+        "id": "d",
+        "text": "continue KCl 20 mEq in each liter of IV fluid"
+       }
+      ]
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Glucose 241 then 236 is <250 while pH 7.24, HCO3 14 and BHB 3.1 show ongoing ketoacidosis. Per order: add dextrose and halve insulin to 0.05 U/kg/h (2.9 units/h).",
+    "expanded": {
+     "perOption": {
+      "d1": {
+       "text": "Stopping insulin would let ketosis rebound; 5.8 risks hypoglycemia; 1.5 is not ordered.",
+       "verdict": "b"
+      },
+      "d2": {
+       "text": "Stopping fluids is premature; D50 is for hypoglycemia; fluid without dextrose cannot carry ongoing insulin.",
+       "verdict": "c"
+      },
+      "d3": {
+       "text": "K 4.1 is in the 3.5-5.0 band, so keep 20-30 mEq/L. Stopping risks hypokalemia; a 40 mEq bolus is not ordered; pH 7.24 does not need bicarbonate.",
+       "verdict": "d"
+      }
+     },
+     "takeaway": "Glucose falls faster than ketones clear. Keep insulin going and add dextrose until DKA has resolved.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Titrate dosage of medication based on assessment and ordered parameters",
+    "code": "PHA"
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "When glucose <250 mg/dL add 5-10% dextrose and reduce insulin to 0.05 U/kg/h; K 20-30 mmol/L when <5.0",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX101-S6",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX101",
+   "case_version": 1,
+   "case_step": 6,
+   "item_type": "case_item",
+   "cjmm_function": "evaluate_outcomes",
+   "timepoint": "T3",
+   "response_format": "matrix_mc",
+   "scoring_rule": "zero_one",
+   "max_points": 6,
+   "stem": "It is 0700 on hospital day 2. The nurse decides whether the insulin infusion can be stopped as ordered. For each finding, specify whether it is valid evidence that DKA has resolved.",
+   "payload": {
+    "rows": [
+     {
+      "id": "r1",
+      "key": "v",
+      "text": "Beta-hydroxybutyrate 0.4 mmol/L"
+     },
+     {
+      "id": "r2",
+      "key": "n",
+      "text": "Potassium 4.2 mEq/L"
+     },
+     {
+      "id": "r3",
+      "key": "n",
+      "text": "Chloride 110 mEq/L"
+     },
+     {
+      "id": "r4",
+      "key": "v",
+      "text": "Bicarbonate 19 mEq/L"
+     },
+     {
+      "id": "r5",
+      "key": "v",
+      "text": "Venous pH 7.33"
+     },
+     {
+      "id": "r6",
+      "key": "n",
+      "text": "Urine ketones moderate"
+     }
+    ],
+    "columns": [
+     {
+      "id": "v",
+      "label": "Valid evidence of DKA resolution"
+     },
+     {
+      "id": "n",
+      "label": "Not a valid basis for judging resolution"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Resolution = ketones <0.6 mmol/L plus pH >=7.3 or HCO3 >=18. All are met, so with glargine given at 0700 the infusion can stop as ordered.",
+    "expanded": {
+     "perOption": {
+      "r1": {
+       "text": "Below 0.6 mmol/L.",
+       "verdict": "v"
+      },
+      "r5": {
+       "text": "At least 7.3.",
+       "verdict": "v"
+      },
+      "r4": {
+       "text": "At least 18.",
+       "verdict": "v"
+      },
+      "r6": {
+       "text": "Urine tests mainly acetoacetate, can stay positive after ketonemia clears, and the consensus says not to use it.",
+       "verdict": "n"
+      },
+      "r2": {
+       "text": "Potassium is not a resolution criterion; it guides replacement, not when to stop insulin.",
+       "verdict": "n"
+      },
+      "r3": {
+       "text": "Chloride is not a criterion; mild hyperchloremia is common in recovery.",
+       "verdict": "n"
+      }
+     },
+     "takeaway": "Judge DKA resolution by blood ketones and pH/bicarbonate, not urine ketones, potassium or chloride.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Evaluate the effectiveness of the treatment plan for a client with an acute or chronic diagnosis",
+    "code": "PA"
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "DKA resolution criteria; do not use urine ketones or anion gap; potassium and chloride are not criteria; basal insulin 1-2 h before stopping IV insulin",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102-S1",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX102",
+   "case_version": 1,
+   "case_step": 1,
+   "item_type": "case_item",
+   "cjmm_function": "recognize_cues",
+   "timepoint": "T0",
+   "response_format": "highlight_text",
+   "scoring_rule": "plus_minus",
+   "max_points": 4,
+   "stem": "The nurse reviews the triage note. Highlight the findings that require immediate follow-up.",
+   "payload": {
+    "keys": [
+     "t2",
+     "t4",
+     "t6",
+     "t12"
+    ],
+    "tokens": [
+     {
+      "id": "t1",
+      "text": "0910 (arrived 0850, triaged 0855): ",
+      "selectable": false
+     },
+     {
+      "id": "t2",
+      "text": "Pain 9/10 in lower back and both thighs",
+      "selectable": true
+     },
+     {
+      "id": "t3",
+      "text": " since last night, 'like my usual crises.' ",
+      "selectable": false
+     },
+     {
+      "id": "t4",
+      "text": "Took oxycodone 10 mg at 0300 and 0600 without relief.",
+      "selectable": true
+     },
+     {
+      "id": "t5",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t6",
+      "text": "Grimacing and lying very still.",
+      "selectable": true
+     },
+     {
+      "id": "t7",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t8",
+      "text": "Sclerae mildly icteric",
+      "selectable": true
+     },
+     {
+      "id": "t9",
+      "text": "; client states 'my eyes are always like this.' ",
+      "selectable": false
+     },
+     {
+      "id": "t10",
+      "text": "Lungs clear; no cough.",
+      "selectable": true
+     },
+     {
+      "id": "t11",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t12",
+      "text": "SpO2 94% on room air.",
+      "selectable": true
+     },
+     {
+      "id": "t13",
+      "text": " Drinking water from his bottle; ",
+      "selectable": false
+     },
+     {
+      "id": "t14",
+      "text": "mucous membranes moist.",
+      "selectable": true
+     },
+     {
+      "id": "t15",
+      "text": " ",
+      "selectable": false
+     },
+     {
+      "id": "t16",
+      "text": "Capillary refill less than 3 seconds.",
+      "selectable": true
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Severe pain unrelieved by home opioid and SpO2 below 95% need action now. Icterus, clear lungs, moist membranes and brisk refill are baseline or reassuring.",
+    "expanded": {
+     "perOption": {
+      "t2": {
+       "text": "Severe VOC pain: start analgesia within 30 min of triage.",
+       "verdict": "key"
+      },
+      "t4": {
+       "text": "Home dose failed; recent opioid use guides the IV dose.",
+       "verdict": "key"
+      },
+      "t6": {
+       "text": "Behavioral signs confirm severe pain.",
+       "verdict": "key"
+      },
+      "t12": {
+       "text": "Oxygen is indicated for SpO2 <95% on room air.",
+       "verdict": "key"
+      },
+      "t8": {
+       "text": "Chronic hemolysis; client confirms it is baseline.",
+       "verdict": "distractor"
+      },
+      "t10": {
+       "text": "No current sign of acute chest syndrome.",
+       "verdict": "distractor"
+      },
+      "t14": {
+       "text": "Euvolemic and drinking.",
+       "verdict": "distractor"
+      },
+      "t16": {
+       "text": "Normal perfusion.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "In VOC, believe the pain report, check recent opioid use, and treat fast.",
+     "pointsLost": "+/- scoring: +1 per correct selection, -1 per incorrect selection; item score cannot go below 0."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Basic Care and Comfort",
+    "activityStatement": "Assess client for pain and intervene as appropriate",
+    "code": "BCC"
+   },
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "url": "https://www.nhlbi.nih.gov/sites/default/files/media/docs/sickle-cell-disease-report%20020816_0.pdf",
+     "locator": "VOC recs 2, 5, 6, 17: rapid analgesia, parenteral opioids, oxygen if SpO2 <95%",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102-S2",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX102",
+   "case_version": 1,
+   "case_step": 2,
+   "item_type": "case_item",
+   "cjmm_function": "analyze_cues",
+   "timepoint": "T0",
+   "response_format": "matrix_mc",
+   "scoring_rule": "zero_one",
+   "max_points": 6,
+   "stem": "For each finding at 0910, specify whether it is consistent with the client's chronic baseline or requires intervention now.",
+   "payload": {
+    "rows": [
+     {
+      "id": "r1",
+      "key": "b",
+      "text": "Hemoglobin 8.0 g/dL"
+     },
+     {
+      "id": "r2",
+      "key": "b",
+      "text": "Total bilirubin 3.4 mg/dL"
+     },
+     {
+      "id": "r3",
+      "key": "b",
+      "text": "Reticulocytes 10%"
+     },
+     {
+      "id": "r4",
+      "key": "a",
+      "text": "SpO2 94% on room air"
+     },
+     {
+      "id": "r5",
+      "key": "a",
+      "text": "Pain 9/10 after two home oxycodone doses"
+     },
+     {
+      "id": "r6",
+      "key": "b",
+      "text": "Mildly icteric sclerae"
+     }
+    ],
+    "columns": [
+     {
+      "id": "b",
+      "label": "Consistent with chronic sickle cell baseline"
+     },
+     {
+      "id": "a",
+      "label": "Requires intervention now"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Compare with the client's own baseline. Chronic hemolysis explains the anemia, reticulocytosis, hyperbilirubinemia and icterus. Low SpO2 and uncontrolled pain need action.",
+    "expanded": {
+     "perOption": {
+      "r1": {
+       "text": "Within 1 g/dL of baseline 8.2; transfusion is not indicated for VOC alone.",
+       "verdict": "b"
+      },
+      "r3": {
+       "text": "Ongoing marrow compensation for hemolysis.",
+       "verdict": "b"
+      },
+      "r2": {
+       "text": "Close to the clinic value of 3.1.",
+       "verdict": "b"
+      },
+      "r6": {
+       "text": "Baseline per client and labs.",
+       "verdict": "b"
+      },
+      "r4": {
+       "text": "Below 95%: give oxygen.",
+       "verdict": "a"
+      },
+      "r5": {
+       "text": "Needs parenteral opioid now.",
+       "verdict": "a"
+      }
+     },
+     "takeaway": "Abnormal is not the same as acute in SCD. Trend against the client's own baseline.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Reduction of Risk Potential",
+    "activityStatement": "Monitor the results of diagnostic testing and intervene as needed",
+    "code": "RRP",
+    "secondary": {
+     "subcategory": "Basic Care and Comfort"
+    }
+   },
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "url": "https://www.nhlbi.nih.gov/sites/default/files/media/docs/sickle-cell-disease-report%20020816_0.pdf",
+     "locator": "VOC rec 16: no transfusion for uncomplicated VOC; rec 17 oxygen <95%",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102-S3",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX102",
+   "case_version": 1,
+   "case_step": 3,
+   "item_type": "case_item",
+   "cjmm_function": "prioritize_hypotheses",
+   "timepoint": "T1",
+   "response_format": "dropdown_rationale",
+   "scoring_rule": "rationale",
+   "max_points": 2,
+   "stem": "Complete the following sentence by choosing from the lists of options.",
+   "payload": {
+    "kind": "triad",
+    "template": "On hospital day 2, the client is most likely developing {{cause}}, as evidenced by the {{e1}} and the {{e2}}.",
+    "dropdowns": [
+     {
+      "id": "cause",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "acute chest syndrome"
+       },
+       {
+        "id": "b",
+        "text": "splinting from vaso-occlusive back pain"
+       },
+       {
+        "id": "c",
+        "text": "opioid-induced respiratory depression"
+       },
+       {
+        "id": "d",
+        "text": "pulmonary embolism"
+       }
+      ],
+      "role": "cause"
+     },
+     {
+      "id": "e1",
+      "key": "d",
+      "options": [
+       {
+        "id": "a",
+        "text": "pain score of 7/10"
+       },
+       {
+        "id": "b",
+        "text": "POSS score of 1"
+       },
+       {
+        "id": "c",
+        "text": "hemoglobin of 8.0 g/dL on admission"
+       },
+       {
+        "id": "d",
+        "text": "new right lower lobe infiltrate"
+       }
+      ],
+      "role": "effect"
+     },
+     {
+      "id": "e2",
+      "key": "c",
+      "options": [
+       {
+        "id": "a",
+        "text": "PCA set to demand doses only"
+       },
+       {
+        "id": "b",
+        "text": "bilirubin of 3.8 mg/dL"
+       },
+       {
+        "id": "c",
+        "text": "temperature of 38.4 °C with new cough"
+       },
+       {
+        "id": "d",
+        "text": "creatinine of 0.7 mg/dL"
+       }
+      ],
+      "role": "effect"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "New infiltrate with fever, cough, pleuritic pain and hypoxemia during a VOC admission is acute chest syndrome.",
+    "expanded": {
+     "perOption": {
+      "cause": {
+       "text": "POSS 1 and RR 28 rule out opioid respiratory depression. A new infiltrate with fever fits ACS better than PE. Splinting does not cause fever or an infiltrate.",
+       "verdict": "a"
+      },
+      "e1": {
+       "text": "Infiltrate is the defining finding. Pain 7/10 is nonspecific; POSS 1 shows the client is alert; admission Hgb was baseline.",
+       "verdict": "d"
+      },
+      "e2": {
+       "text": "Fever and cough are lower respiratory signs. Demand-only PCA lowers sedation risk; bilirubin and creatinine are near baseline.",
+       "verdict": "c"
+      }
+     },
+     "takeaway": "Any new respiratory sign during VOC = evaluate for ACS with chest x-ray and SpO2.",
+     "pointsLost": "Rationale scoring: cause must be correct to earn any points, then 1 point per correct linked effect (max 2)."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Recognize signs and symptoms of client complications and intervene",
+    "code": "PA"
+   },
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "url": "https://www.nhlbi.nih.gov/sites/default/files/media/docs/sickle-cell-disease-report%20020816_0.pdf",
+     "locator": "ACS rec 1: evaluate new lower respiratory signs with chest x-ray and pulse oximetry",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102-S4",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX102",
+   "case_version": 1,
+   "case_step": 4,
+   "item_type": "case_item",
+   "cjmm_function": "generate_solutions",
+   "timepoint": "T1",
+   "response_format": "mr_sata",
+   "scoring_rule": "plus_minus",
+   "max_points": 4,
+   "stem": "Which orders should the nurse anticipate for the client at 1400 on day 2? Select all that apply.",
+   "payload": {
+    "keys": [
+     "o7",
+     "o2",
+     "o6",
+     "o8"
+    ],
+    "options": [
+     {
+      "id": "o1",
+      "text": "Discontinuation of the PCA to protect respiratory drive"
+     },
+     {
+      "id": "o2",
+      "text": "Simple red blood cell transfusion of 10 mL/kg"
+     },
+     {
+      "id": "o3",
+      "text": "Strict bed rest until the infiltrate clears"
+     },
+     {
+      "id": "o4",
+      "text": "Immediate exchange transfusion"
+     },
+     {
+      "id": "o5",
+      "text": "IV fluid at twice the maintenance rate"
+     },
+     {
+      "id": "o6",
+      "text": "Oxygen titrated to keep SpO2 above 95%"
+     },
+     {
+      "id": "o7",
+      "text": "IV cephalosporin plus an oral macrolide"
+     },
+     {
+      "id": "o8",
+      "text": "Continued opioid analgesia with sedation and SpO2 monitoring"
+     },
+     {
+      "id": "o9",
+      "text": "Meperidine for breakthrough pain"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "ACS: antibiotics, oxygen >95%, simple transfusion when Hgb is >1 g/dL below baseline (6.8 vs 8.2), and continued analgesia with monitoring.",
+    "expanded": {
+     "perOption": {
+      "o7": {
+       "text": "NHLBI ACS rec 3.",
+       "verdict": "key"
+      },
+      "o2": {
+       "text": "ACS rec 4: 10 mL/kg if Hgb >1 g/dL below baseline.",
+       "verdict": "key"
+      },
+      "o6": {
+       "text": "ACS rec 3 target.",
+       "verdict": "key"
+      },
+      "o8": {
+       "text": "Pain still 7/10; splinting worsens ACS; monitor sedation.",
+       "verdict": "key"
+      },
+      "o1": {
+       "text": "Untreated pain worsens splinting; POSS 1 shows no oversedation.",
+       "verdict": "distractor"
+      },
+      "o9": {
+       "text": "Avoid meperidine unless it is the only effective opioid.",
+       "verdict": "distractor"
+      },
+      "o4": {
+       "text": "Reserved for rapid progression, e.g. SpO2 <90% despite oxygen.",
+       "verdict": "distractor"
+      },
+      "o5": {
+       "text": "IV hydration no more than maintenance in euvolemic clients.",
+       "verdict": "distractor"
+      },
+      "o3": {
+       "text": "Ambulation and activity are encouraged.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Simple transfusion vs exchange depends on the trajectory. Know the escalation triggers.",
+     "pointsLost": "+/- scoring: +1 per correct selection, -1 per incorrect selection; item score cannot go below 0."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Manage the care of a client with impaired ventilation/oxygenation",
+    "code": "PA"
+   },
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "url": "https://www.nhlbi.nih.gov/sites/default/files/media/docs/sickle-cell-disease-report%20020816_0.pdf",
+     "locator": "ACS recs 3, 4, 6; VOC recs 8, 11, 13",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102-S5",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX102",
+   "case_version": 1,
+   "case_step": 5,
+   "item_type": "case_item",
+   "cjmm_function": "take_action",
+   "timepoint": "T1",
+   "response_format": "matrix_mc",
+   "scoring_rule": "zero_one",
+   "max_points": 6,
+   "stem": "For each nursing action on day 2, specify whether it is indicated or not indicated for the client at this time.",
+   "payload": {
+    "rows": [
+     {
+      "id": "r1",
+      "key": "i",
+      "text": "Coach incentive spirometry while awake"
+     },
+     {
+      "id": "r2",
+      "key": "n",
+      "text": "Give IV diphenhydramine with each PCA dose to prevent itching"
+     },
+     {
+      "id": "r3",
+      "key": "i",
+      "text": "Apply oxygen and titrate to keep SpO2 above 95%"
+     },
+     {
+      "id": "r4",
+      "key": "i",
+      "text": "Call hematology at once if SpO2 falls below 90% despite oxygen"
+     },
+     {
+      "id": "r5",
+      "key": "i",
+      "text": "Apply local heat to the painful thighs as requested"
+     },
+     {
+      "id": "r6",
+      "key": "n",
+      "text": "Withhold PCA doses until the cough resolves"
+     }
+    ],
+    "columns": [
+     {
+      "id": "i",
+      "label": "Indicated"
+     },
+     {
+      "id": "n",
+      "label": "Not indicated"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "Support oxygenation, lung expansion and comfort, keep analgesia going, and know the escalation trigger.",
+    "expanded": {
+     "perOption": {
+      "r3": {
+       "text": "Ordered target; ACS rec 3.",
+       "verdict": "i"
+      },
+      "r2": {
+       "text": "If needed, antihistamines are given orally and not with each opioid dose.",
+       "verdict": "n"
+      },
+      "r1": {
+       "text": "Strong recommendation; he used it only twice.",
+       "verdict": "i"
+      },
+      "r5": {
+       "text": "Local heat and distraction are recommended adjuncts.",
+       "verdict": "i"
+      },
+      "r6": {
+       "text": "Undertreated pain increases splinting; he is alert.",
+       "verdict": "n"
+      },
+      "r4": {
+       "text": "Trigger for urgent exchange transfusion.",
+       "verdict": "i"
+      }
+     },
+     "takeaway": "Comfort measures (heat, spirometry, mobility) are active treatment in SCD, not extras.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Basic Care and Comfort",
+    "activityStatement": "Provide nonpharmacological comfort measures",
+    "code": "BCC",
+    "secondary": {
+     "subcategory": "Physiological Adaptation"
+    }
+   },
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "url": "https://www.nhlbi.nih.gov/sites/default/files/media/docs/sickle-cell-disease-report%20020816_0.pdf",
+     "locator": "VOC recs 10, 11, 12; ACS recs 3, 6, 7",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NX102-S6",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": "NX102",
+   "case_version": 1,
+   "case_step": 6,
+   "item_type": "case_item",
+   "cjmm_function": "evaluate_outcomes",
+   "timepoint": "T2",
+   "response_format": "matrix_mc",
+   "scoring_rule": "zero_one",
+   "max_points": 6,
+   "stem": "It is day 3, 1000. For each finding, specify whether it indicates improvement or requires immediate action.",
+   "payload": {
+    "rows": [
+     {
+      "id": "r1",
+      "key": "x",
+      "text": "POSS 3: drifts off mid-conversation"
+     },
+     {
+      "id": "r2",
+      "key": "x",
+      "text": "Respiratory rate 10/min"
+     },
+     {
+      "id": "r3",
+      "key": "g",
+      "text": "Hemoglobin 9.1 g/dL"
+     },
+     {
+      "id": "r4",
+      "key": "g",
+      "text": "Pain 3/10"
+     },
+     {
+      "id": "r5",
+      "key": "g",
+      "text": "SpO2 97% on 2 L/min"
+     },
+     {
+      "id": "r6",
+      "key": "g",
+      "text": "Temperature 37.0 °C"
+     }
+    ],
+    "columns": [
+     {
+      "id": "g",
+      "label": "Indicates improvement"
+     },
+     {
+      "id": "x",
+      "label": "Requires immediate action"
+     }
+    ]
+   },
+   "exhibit": null,
+   "rationale": {
+    "short": "ACS is responding, but a PCA basal rate added without holding the long-acting opioid has caused oversedation. POSS 3 with RR 10 needs immediate action.",
+    "expanded": {
+     "perOption": {
+      "r5": {
+       "text": "At target on low-flow oxygen.",
+       "verdict": "g"
+      },
+      "r3": {
+       "text": "Up from 6.8 after transfusion.",
+       "verdict": "g"
+      },
+      "r6": {
+       "text": "Afebrile.",
+       "verdict": "g"
+      },
+      "r4": {
+       "text": "Controlled.",
+       "verdict": "g"
+      },
+      "r1": {
+       "text": "Objective sedation scale shows excessive sedation.",
+       "verdict": "x"
+      },
+      "r2": {
+       "text": "Down from 28; with sedation this signals opioid-induced hypoventilation.",
+       "verdict": "x"
+      }
+     },
+     "takeaway": "Good SpO2 on oxygen can hide hypoventilation. Score sedation with every reassessment.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Evaluate client response to medication",
+    "code": "PHA",
+    "secondary": {
+     "subcategory": "Basic Care and Comfort"
+    }
+   },
+   "references": [
+    {
+     "src": "NHLBI_SCD14",
+     "url": "https://www.nhlbi.nih.gov/sites/default/files/media/docs/sickle-cell-disease-report%20020816_0.pdf",
+     "locator": "VOC recs 7 and 14: consider withholding long-acting opioids with continuous PCA; monitor sedation with an objective scale",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NB201",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "bowtie",
+   "cjmm_function": [
+    "analyze_cues",
+    "prioritize_hypotheses",
+    "generate_solutions",
+    "take_action",
+    "evaluate_outcomes"
+   ],
+   "timepoint": null,
+   "response_format": "bowtie",
+   "scoring_rule": "zero_one",
+   "max_points": 5,
+   "stem": "A client taking an antidepressant reports feeling unwell. Complete the diagram: choose the condition the client is **most** likely experiencing, 2 actions to take, and 2 parameters to monitor.",
+   "payload": {
+    "condition": {
+     "keys": [
+      "c3"
+     ],
+     "options": [
+      {
+       "id": "c1",
+       "text": "Anticholinergic toxicity"
+      },
+      {
+       "id": "c2",
+       "text": "Opioid withdrawal"
+      },
+      {
+       "id": "c3",
+       "text": "Serotonin syndrome"
+      },
+      {
+       "id": "c4",
+       "text": "Neuroleptic malignant syndrome"
+      }
+     ]
+    },
+    "actions": {
+     "keys": [
+      "a3",
+      "a5"
+     ],
+     "options": [
+      {
+       "id": "a1",
+       "text": "Give the scheduled tramadol dose for back pain"
+      },
+      {
+       "id": "a2",
+       "text": "Encourage oral fluids and reassess in 4 hours"
+      },
+      {
+       "id": "a3",
+       "text": "Hold the next sertraline and tramadol doses"
+      },
+      {
+       "id": "a4",
+       "text": "Give oral diphenhydramine for the agitation"
+      },
+      {
+       "id": "a5",
+       "text": "Notify the provider of suspected serotonin toxicity"
+      }
+     ]
+    },
+    "monitor": {
+     "keys": [
+      "m3",
+      "m4"
+     ],
+     "options": [
+      {
+       "id": "m1",
+       "text": "Fingerstick glucose before meals"
+      },
+      {
+       "id": "m2",
+       "text": "Peak expiratory flow"
+      },
+      {
+       "id": "m3",
+       "text": "Temperature"
+      },
+      {
+       "id": "m4",
+       "text": "Heart rate and blood pressure"
+      },
+      {
+       "id": "m5",
+       "text": "Serum lithium level"
+      }
+     ]
+    }
+   },
+   "exhibit": {
+    "title": "Nurses' Notes, 1530",
+    "text": "Client, 58 years old, takes sertraline 150 mg PO daily for major depressive disorder. Tramadol 50 mg PO every 6 h started 2 days ago for back pain. Now restless and agitated, diaphoretic, with 3 loose stools since noon. Fine tremor of both hands; reflexes 3+ with inducible ankle clonus. Skin flushed and moist. T 38.6 °C, HR 122/min, BP 162/94 mm Hg, RR 22/min."
+   },
+   "rationale": {
+    "short": "Sertraline plus tramadol, then mental-status change, autonomic instability and neuromuscular hyperactivity (clonus, hyperreflexia): serotonin syndrome.",
+    "expanded": {
+     "perOption": {
+      "c3": {
+       "text": "Label lists agitation, tachycardia, labile BP, diaphoresis, hyperthermia, tremor, hyperreflexia and diarrhea.",
+       "verdict": "key"
+      },
+      "c4": {
+       "text": "Needs an antipsychotic; rigidity rather than clonus.",
+       "verdict": "distractor"
+      },
+      "c1": {
+       "text": "Skin would be dry and hot, not diaphoretic.",
+       "verdict": "distractor"
+      },
+      "c2": {
+       "text": "He is taking an opioid, not stopping one.",
+       "verdict": "distractor"
+      },
+      "a3": {
+       "text": "Label: discontinue the SSRI and concomitant serotonergic agents immediately.",
+       "verdict": "key"
+      },
+      "a5": {
+       "text": "Needs supportive treatment.",
+       "verdict": "key"
+      },
+      "a1": {
+       "text": "Tramadol is a listed serotonergic precipitant.",
+       "verdict": "distractor"
+      },
+      "a4": {
+       "text": "Anticholinergic; does not treat the cause.",
+       "verdict": "distractor"
+      },
+      "a2": {
+       "text": "Delays care of a potentially life-threatening reaction.",
+       "verdict": "distractor"
+      },
+      "m3": {
+       "text": "Hyperthermia marks severity.",
+       "verdict": "key"
+      },
+      "m4": {
+       "text": "Autonomic instability.",
+       "verdict": "key"
+      },
+      "m5": {
+       "text": "He is not on lithium.",
+       "verdict": "distractor"
+      },
+      "m2": {
+       "text": "Not a respiratory problem.",
+       "verdict": "distractor"
+      },
+      "m1": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Clonus + hyperreflexia + a new serotonergic drug = stop the serotonergic drugs and escalate.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Assess client for actual and potential side effects and adverse effects of medications (e.g., prescribed, over-thecounter, herbal supplements, preexisting condition)",
+    "code": "PHA",
+    "secondary": {
+     "subcategory": "Psychosocial Integrity"
+    }
+   },
+   "references": [
+    {
+     "src": "FDA_ZOLOFT",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fda754f6-d0f3-4dce-a17a-927d64f912f7",
+     "locator": "Warnings and Precautions 5.2 Serotonin Syndrome",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NB202",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "bowtie",
+   "cjmm_function": [
+    "analyze_cues",
+    "prioritize_hypotheses",
+    "generate_solutions",
+    "take_action",
+    "evaluate_outcomes"
+   ],
+   "timepoint": null,
+   "response_format": "bowtie",
+   "scoring_rule": "zero_one",
+   "max_points": 5,
+   "stem": "A client with a chronic endocrine disorder arrives after 2 days of vomiting. Complete the diagram: choose the condition the client is **most** likely experiencing, 2 actions to take, and 2 parameters to monitor.",
+   "payload": {
+    "condition": {
+     "keys": [
+      "c2"
+     ],
+     "options": [
+      {
+       "id": "c1",
+       "text": "Syndrome of inappropriate antidiuretic hormone"
+      },
+      {
+       "id": "c2",
+       "text": "Adrenal crisis"
+      },
+      {
+       "id": "c3",
+       "text": "Diabetic ketoacidosis"
+      },
+      {
+       "id": "c4",
+       "text": "Hypovolemia from gastroenteritis alone"
+      }
+     ]
+    },
+    "actions": {
+     "keys": [
+      "a2",
+      "a1"
+     ],
+     "options": [
+      {
+       "id": "a1",
+       "text": "Infuse 0.9% sodium chloride 1,000 mL over the first hour"
+      },
+      {
+       "id": "a2",
+       "text": "Give hydrocortisone 100 mg IV now"
+      },
+      {
+       "id": "a3",
+       "text": "Wait for the cortisol result before giving a steroid"
+      },
+      {
+       "id": "a4",
+       "text": "Give the usual oral hydrocortisone dose with an antiemetic"
+      },
+      {
+       "id": "a5",
+       "text": "Restrict fluids to 1,000 mL per day"
+      }
+     ]
+    },
+    "monitor": {
+     "keys": [
+      "m5",
+      "m1"
+     ],
+     "options": [
+      {
+       "id": "m1",
+       "text": "Serum sodium, potassium and glucose"
+      },
+      {
+       "id": "m2",
+       "text": "Serum lithium level"
+      },
+      {
+       "id": "m3",
+       "text": "INR"
+      },
+      {
+       "id": "m4",
+       "text": "Peak expiratory flow"
+      },
+      {
+       "id": "m5",
+       "text": "Blood pressure and heart rate"
+      }
+     ]
+    }
+   },
+   "exhibit": {
+    "title": "Emergency Department, 0640",
+    "text": "Client, 34 years old, primary adrenal insufficiency, takes hydrocortisone 10 mg PO each morning and 5 mg each afternoon plus fludrocortisone. Vomiting for 2 days; has not kept any doses down. Diffuse abdominal pain, confused to time. BP 78/44 mm Hg, HR 128/min, T 37.9 °C. Na 126 mEq/L, K 5.8 mEq/L, glucose 62 mg/dL. Cortisol and ACTH drawn 0635; results pending."
+   },
+   "rationale": {
+    "short": "Known adrenal insufficiency, missed doses, hypotension, hyponatremia, hyperkalemia and hypoglycemia mean adrenal crisis. Treat immediately with parenteral hydrocortisone and isotonic saline.",
+    "expanded": {
+     "perOption": {
+      "c2": {
+       "text": "Classic crisis: hypotension, abdominal pain, Na down, K up, glucose down.",
+       "verdict": "key"
+      },
+      "c4": {
+       "text": "Does not explain the hyperkalemia and hypoglycemia.",
+       "verdict": "distractor"
+      },
+      "c3": {
+       "text": "Glucose is 62.",
+       "verdict": "distractor"
+      },
+      "c1": {
+       "text": "Euvolemic with low Na, not shock.",
+       "verdict": "distractor"
+      },
+      "a2": {
+       "text": "Endocrine Society: hydrocortisone 100 mg parenterally immediately.",
+       "verdict": "key"
+      },
+      "a1": {
+       "text": "Isotonic saline 1,000 mL within the first hour.",
+       "verdict": "key"
+      },
+      "a3": {
+       "text": "Never delay steroids for test results; samples are already drawn.",
+       "verdict": "distractor"
+      },
+      "a4": {
+       "text": "Oral route fails with vomiting and shock.",
+       "verdict": "distractor"
+      },
+      "a5": {
+       "text": "She is volume depleted.",
+       "verdict": "distractor"
+      },
+      "m5": {
+       "text": "Response to steroid and fluid.",
+       "verdict": "key"
+      },
+      "m1": {
+       "text": "Electrolytes and hypoglycemia correct with treatment.",
+       "verdict": "key"
+      },
+      "m2": {
+       "text": "Not relevant.",
+       "verdict": "distractor"
+      },
+      "m4": {
+       "text": "Not relevant.",
+       "verdict": "distractor"
+      },
+      "m3": {
+       "text": "Not relevant.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Suspected adrenal crisis: give stress-dose hydrocortisone first. Labs can wait.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Recognize signs and symptoms of client complications and intervene",
+    "code": "PA",
+    "secondary": {
+     "subcategory": "Pharmacological and Parenteral Therapies"
+    }
+   },
+   "references": [
+    {
+     "src": "ES_PAI16",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4880116/",
+     "locator": "Rec 1.3 (do not delay steroids for testing); Rec 4.1 (hydrocortisone 100 mg then fluids); Table 3 (adrenal crisis management)",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NB203",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "bowtie",
+   "cjmm_function": [
+    "analyze_cues",
+    "prioritize_hypotheses",
+    "generate_solutions",
+    "take_action",
+    "evaluate_outcomes"
+   ],
+   "timepoint": null,
+   "response_format": "bowtie",
+   "scoring_rule": "zero_one",
+   "max_points": 5,
+   "stem": "A client receiving an IV antibiotic develops new symptoms. Complete the diagram: choose the condition the client is **most** likely experiencing, 2 actions to take, and 2 parameters to monitor.",
+   "payload": {
+    "condition": {
+     "keys": [
+      "c3"
+     ],
+     "options": [
+      {
+       "id": "c1",
+       "text": "Anaphylaxis"
+      },
+      {
+       "id": "c2",
+       "text": "Stevens-Johnson syndrome"
+      },
+      {
+       "id": "c3",
+       "text": "Vancomycin infusion reaction"
+      },
+      {
+       "id": "c4",
+       "text": "Septic shock"
+      }
+     ]
+    },
+    "actions": {
+     "keys": [
+      "a5",
+      "a1"
+     ],
+     "options": [
+      {
+       "id": "a1",
+       "text": "When restarted per prescriber, infuse over at least 150 minutes"
+      },
+      {
+       "id": "a2",
+       "text": "Record a permanent vancomycin allergy and request a different antibiotic"
+      },
+      {
+       "id": "a3",
+       "text": "When restarted per prescriber, infuse over 60 minutes"
+      },
+      {
+       "id": "a4",
+       "text": "Give the remaining dose at the current rate after the itching settles"
+      },
+      {
+       "id": "a5",
+       "text": "Stop the infusion"
+      }
+     ]
+    },
+    "monitor": {
+     "keys": [
+      "m2",
+      "m1"
+     ],
+     "options": [
+      {
+       "id": "m1",
+       "text": "Extent of flushing and itching"
+      },
+      {
+       "id": "m2",
+       "text": "Blood pressure and heart rate"
+      },
+      {
+       "id": "m3",
+       "text": "Blood glucose"
+      },
+      {
+       "id": "m4",
+       "text": "Pupil size"
+      },
+      {
+       "id": "m5",
+       "text": "Urine color"
+      }
+     ]
+    }
+   },
+   "exhibit": {
+    "title": "Nurses' Notes, 1035",
+    "text": "Client, 46 years old, 80 kg. Vancomycin 1,500 mg in 300 mL 0.9% NaCl started 1020; pump found running at 600 mL/h. At 1035: intense itching and erythematous flushing of face, neck and upper chest. Speaking in full sentences; no wheeze or stridor; lips and tongue normal. BP 104/64 mm Hg (128/78 at 1015), HR 104/min, SpO2 98% on room air. Tolerated vancomycin on a previous admission."
+   },
+   "rationale": {
+    "short": "Flushing and pruritus of the upper body with mild hypotension during a too-fast vancomycin infusion, with no airway signs and prior tolerance, is a rapid-infusion reaction.",
+    "expanded": {
+     "perOption": {
+      "c3": {
+       "text": "Label links rapid infusion to flushing, pruritus and hypotension.",
+       "verdict": "key"
+      },
+      "c1": {
+       "text": "No airway, wheeze, or shock; prior tolerance.",
+       "verdict": "distractor"
+      },
+      "c2": {
+       "text": "No mucosal or blistering lesions.",
+       "verdict": "distractor"
+      },
+      "c4": {
+       "text": "Onset tied to the infusion.",
+       "verdict": "distractor"
+      },
+      "a5": {
+       "text": "Label: stopping usually ends the reaction promptly.",
+       "verdict": "key"
+      },
+      "a1": {
+       "text": "No faster than 10 mg/min and at least 60 min: 1,500 mg needs at least 150 min.",
+       "verdict": "key"
+      },
+      "a3": {
+       "text": "60 min would be 25 mg/min.",
+       "verdict": "distractor"
+      },
+      "a4": {
+       "text": "The rate caused the reaction.",
+       "verdict": "distractor"
+      },
+      "a2": {
+       "text": "Rate-related, not an allergy.",
+       "verdict": "distractor"
+      },
+      "m2": {
+       "text": "Hypotension can progress with rapid infusion.",
+       "verdict": "key"
+      },
+      "m1": {
+       "text": "Resolution confirms the diagnosis.",
+       "verdict": "key"
+      },
+      "m3": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      },
+      "m4": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      },
+      "m5": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Vancomycin time = the longer of 60 min or dose divided by 10 mg/min.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Monitor intravenous infusion and maintain site",
+    "code": "PHA",
+    "secondary": {
+     "subcategory": "Safety and Infection Prevention and Control"
+    }
+   },
+   "references": [
+    {
+     "src": "FDA_VANCO",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00946db3-d6c5-4534-a870-1ec6e63eda43",
+     "locator": "Warnings: Infusion Reactions; Dosage and Administration: rate no more than 10 mg/min",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NB204",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "bowtie",
+   "cjmm_function": [
+    "analyze_cues",
+    "prioritize_hypotheses",
+    "generate_solutions",
+    "take_action",
+    "evaluate_outcomes"
+   ],
+   "timepoint": null,
+   "response_format": "bowtie",
+   "scoring_rule": "zero_one",
+   "max_points": 5,
+   "stem": "A client in septic shock has a change at the IV site. Complete the diagram: choose the condition the client is **most** likely experiencing, 2 actions to take, and 2 parameters to monitor.",
+   "payload": {
+    "condition": {
+     "keys": [
+      "c2"
+     ],
+     "options": [
+      {
+       "id": "c1",
+       "text": "Phlebitis"
+      },
+      {
+       "id": "c2",
+       "text": "Norepinephrine extravasation"
+      },
+      {
+       "id": "c3",
+       "text": "Infiltration of a non-vesicant fluid"
+      },
+      {
+       "id": "c4",
+       "text": "Deep vein thrombosis of the arm"
+      }
+     ]
+    },
+    "actions": {
+     "keys": [
+      "a1",
+      "a2"
+     ],
+     "options": [
+      {
+       "id": "a1",
+       "text": "Stop the norepinephrine infusion at the infiltrated right forearm site, then promptly restart it through the left antecubital IV"
+      },
+      {
+       "id": "a2",
+       "text": "Prepare phentolamine 5-10 mg in 10-15 mL 0.9% NaCl for infiltration of the area as prescribed"
+      },
+      {
+       "id": "a3",
+       "text": "Flush the right forearm cannula with saline to clear the drug"
+      },
+      {
+       "id": "a4",
+       "text": "Continue the infusion at the same site with hourly checks"
+      },
+      {
+       "id": "a5",
+       "text": "Stop norepinephrine until a central line is placed"
+      }
+     ]
+    },
+    "monitor": {
+     "keys": [
+      "m4",
+      "m3"
+     ],
+     "options": [
+      {
+       "id": "m1",
+       "text": "Blood glucose"
+      },
+      {
+       "id": "m2",
+       "text": "Pupil size"
+      },
+      {
+       "id": "m3",
+       "text": "Color, temperature and capillary refill of the affected area"
+      },
+      {
+       "id": "m4",
+       "text": "Mean arterial pressure"
+      },
+      {
+       "id": "m5",
+       "text": "Serum magnesium level"
+      }
+     ]
+    }
+   },
+   "exhibit": {
+    "title": "ICU Flowsheet, 0215",
+    "text": "Client, 67 years old, septic shock. Norepinephrine 8 mcg/min infusing through a 20-gauge right forearm peripheral IV; central line placement scheduled for 0700. A second 18-gauge IV in the left antecubital vein has 0.9% NaCl at 30 mL/h. At 0215: skin over the right forearm IV is pale, cool and swollen along the vein; client reports burning. MAP 66 mm Hg."
+   },
+   "rationale": {
+    "short": "Blanched, cool, swollen tissue along a norepinephrine IV is extravasation with vasoconstrictive ischemia. Stop the infusion at the infiltrated site, promptly restart the vasopressor through another vein, and treat the site with phentolamine.",
+    "expanded": {
+     "perOption": {
+      "c2": {
+       "text": "Blanching and cold skin reflect local vasoconstriction.",
+       "verdict": "key"
+      },
+      "c1": {
+       "text": "Phlebitis is red and warm.",
+       "verdict": "distractor"
+      },
+      "c3": {
+       "text": "Norepinephrine causes ischemia; not a simple infiltrate.",
+       "verdict": "distractor"
+      },
+      "c4": {
+       "text": "Local blanching at the IV site.",
+       "verdict": "distractor"
+      },
+      "a1": {
+       "text": "Stop flow into tissue; label: infuse into a large vein and avoid abrupt discontinuation, so restart promptly.",
+       "verdict": "key"
+      },
+      "a2": {
+       "text": "Label dose; most effective within 12 h.",
+       "verdict": "key"
+      },
+      "a5": {
+       "text": "Hours off pressor: abrupt cessation causes marked hypotension.",
+       "verdict": "distractor"
+      },
+      "a3": {
+       "text": "Pushes more drug into tissue.",
+       "verdict": "distractor"
+      },
+      "a4": {
+       "text": "Ongoing ischemic injury.",
+       "verdict": "distractor"
+      },
+      "m4": {
+       "text": "Confirms perfusion during the line change.",
+       "verdict": "key"
+      },
+      "m3": {
+       "text": "Tracks ischemia and phentolamine response.",
+       "verdict": "key"
+      },
+      "m5": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      },
+      "m2": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      },
+      "m1": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "Vasopressor extravasation: stop at the bad site, restart promptly in a good vein, antidote the tissue.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Safe and Effective Care Environment",
+    "subcategory": "Safety and Infection Prevention and Control",
+    "activityStatement": "Protect client from injury",
+    "code": "SAF",
+    "secondary": {
+     "subcategory": "Pharmacological and Parenteral Therapies"
+    }
+   },
+   "references": [
+    {
+     "src": "FDA_NOREPI",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0ea48ab6-e166-df31-b132-70ef982a2d02",
+     "locator": "Warnings and Precautions 5.1 Tissue Ischemia (extravasation, phentolamine) and 5.2 Hypotension after Abrupt Discontinuation",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NB205",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "bowtie",
+   "cjmm_function": [
+    "analyze_cues",
+    "prioritize_hypotheses",
+    "generate_solutions",
+    "take_action",
+    "evaluate_outcomes"
+   ],
+   "timepoint": null,
+   "response_format": "bowtie",
+   "scoring_rule": "zero_one",
+   "max_points": 5,
+   "stem": "A client with type 2 diabetes is admitted with confusion. The unit's hyperglycemic crisis protocol follows the 2024 ADA/EASD consensus report. Complete the diagram: choose the condition the client is **most** likely experiencing, 2 actions to take, and 2 parameters to monitor.",
+   "payload": {
+    "condition": {
+     "keys": [
+      "c3"
+     ],
+     "options": [
+      {
+       "id": "c1",
+       "text": "Mixed DKA and hyperosmolar state"
+      },
+      {
+       "id": "c2",
+       "text": "Euglycemic ketoacidosis"
+      },
+      {
+       "id": "c3",
+       "text": "Hyperglycemic hyperosmolar state"
+      },
+      {
+       "id": "c4",
+       "text": "Diabetic ketoacidosis"
+      }
+     ]
+    },
+    "actions": {
+     "keys": [
+      "a3",
+      "a4"
+     ],
+     "options": [
+      {
+       "id": "a1",
+       "text": "Give subcutaneous rapid-acting insulin every 1-2 hours instead of an IV infusion"
+      },
+      {
+       "id": "a2",
+       "text": "Give IV sodium bicarbonate"
+      },
+      {
+       "id": "a3",
+       "text": "Infuse isotonic crystalloid at 500-1,000 mL/h initially"
+      },
+      {
+       "id": "a4",
+       "text": "After initial fluid resuscitation, start a fixed-rate IV insulin infusion at 0.05 units/kg/h"
+      },
+      {
+       "id": "a5",
+       "text": "Begin with 0.45% sodium chloride because of hyperosmolality"
+      }
+     ]
+    },
+    "monitor": {
+     "keys": [
+      "m5",
+      "m1"
+     ],
+     "options": [
+      {
+       "id": "m1",
+       "text": "Capillary glucose every 1-2 hours, aiming for a decline that does not exceed 90-120 mg/dL/h"
+      },
+      {
+       "id": "m2",
+       "text": "Serum amylase"
+      },
+      {
+       "id": "m3",
+       "text": "INR"
+      },
+      {
+       "id": "m4",
+       "text": "Urine ketones every 2 hours"
+      },
+      {
+       "id": "m5",
+       "text": "Serum osmolality, aiming for a fall of no greater than 3.0-8.0 mOsm/kg/h"
+      }
+     ]
+    }
+   },
+   "exhibit": {
+    "title": "Admission Data, 2210",
+    "text": "Client, 61 years old, 80 kg, type 2 diabetes (metformin), no heart or kidney disease history. Poor intake and urinary frequency for 5 days; confused today. Mucous membranes dry. BP 98/60 mm Hg, HR 116/min. Glucose 948 mg/dL, calculated serum osmolality 338 mOsm/kg, venous pH 7.35, bicarbonate 21 mEq/L, beta-hydroxybutyrate 0.6 mmol/L, Na 132 mEq/L, K 4.4 mEq/L, creatinine 1.9 mg/dL."
+   },
+   "rationale": {
+    "short": "Severe hyperglycemia and hyperosmolality without significant ketonemia or acidosis is HHS. Use isotonic fluids, low-dose insulin, and slow correction.",
+    "expanded": {
+     "perOption": {
+      "c3": {
+       "text": "BHB <1.0, pH >=7.3, HCO3 >=18.",
+       "verdict": "key"
+      },
+      "c4": {
+       "text": "No acidosis or ketonemia.",
+       "verdict": "distractor"
+      },
+      "c1": {
+       "text": "Needs BHB >=3.0 or pH <7.3.",
+       "verdict": "distractor"
+      },
+      "c2": {
+       "text": "Glucose is 948.",
+       "verdict": "distractor"
+      },
+      "a3": {
+       "text": "500-1,000 mL/h for 2-4 h; no cardiac or renal disease.",
+       "verdict": "key"
+      },
+      "a4": {
+       "text": "After fluids; no significant ketosis or acidosis: 0.05 units/kg/h (4 units/h).",
+       "verdict": "key"
+      },
+      "a1": {
+       "text": "Consensus: SC rapid-acting analogs are not recommended in HHS.",
+       "verdict": "distractor"
+      },
+      "a5": {
+       "text": "Hypotonic fluid only if osmolality is not falling.",
+       "verdict": "distractor"
+      },
+      "a2": {
+       "text": "No acidosis.",
+       "verdict": "distractor"
+      },
+      "m5": {
+       "text": "Slow fall limits neurologic complications.",
+       "verdict": "key"
+      },
+      "m1": {
+       "text": "Glucose every 1-2 h; decline >90-120 mg/dL/h risks cerebral edema.",
+       "verdict": "key"
+      },
+      "m4": {
+       "text": "Ketones are not the problem; urine tests are unreliable.",
+       "verdict": "distractor"
+      },
+      "m2": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      },
+      "m3": {
+       "text": "Unrelated.",
+       "verdict": "distractor"
+      }
+     },
+     "takeaway": "HHS: fluids first, half-dose insulin, and correct slowly.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Physiological Adaptation",
+    "activityStatement": "Manage the care of a client with a fluid and electrolyte imbalance",
+    "code": "PA",
+    "secondary": {
+     "subcategory": "Pharmacological and Parenteral Therapies"
+    }
+   },
+   "references": [
+    {
+     "src": "ADA_HC24",
+     "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
+     "locator": "Section 4: fluid therapy 500-1,000 mL/h; HHS insulin 0.05 U/kg/h without significant ketonemia; SC analogs not for HHS; glucose every 1-2 h, decline not >90-120 mg/dL/h; osmolality fall not >3.0-8.0 mOsm/kg/h",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NT201",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "trend",
+   "cjmm_function": [
+    "recognize_cues",
+    "analyze_cues",
+    "take_action"
+   ],
+   "timepoint": null,
+   "response_format": "dropdown_cloze",
+   "scoring_rule": "zero_one",
+   "max_points": 3,
+   "stem": "Complete the following sentences by choosing from the lists of options.",
+   "payload": {
+    "template": "The trend is most consistent with {{d1}}. The total phenytoin level is misleading because {{d2}}. The nurse should {{d3}}.",
+    "dropdowns": [
+     {
+      "id": "d1",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "phenytoin toxicity"
+       },
+       {
+        "id": "b",
+        "text": "an expected effect at a therapeutic level"
+       },
+       {
+        "id": "c",
+        "text": "a new posterior circulation stroke"
+       },
+       {
+        "id": "d",
+        "text": "subtherapeutic phenytoin"
+       }
+      ]
+     },
+     {
+      "id": "d2",
+      "key": "d",
+      "options": [
+       {
+        "id": "a",
+        "text": "the level is within 10-20 mcg/mL"
+       },
+       {
+        "id": "b",
+        "text": "creatinine is within the reference range"
+       },
+       {
+        "id": "c",
+        "text": "the sample was drawn as a trough"
+       },
+       {
+        "id": "d",
+        "text": "falling albumin increases the unbound (active) fraction"
+       }
+      ]
+     },
+     {
+      "id": "d3",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "hold the next dose, notify the provider, and request an unbound phenytoin level"
+       },
+       {
+        "id": "b",
+        "text": "give the dose with food to slow absorption"
+       },
+       {
+        "id": "c",
+        "text": "give the dose and request a dose increase"
+       },
+       {
+        "id": "d",
+        "text": "give the dose and recheck the total level in 1 week"
+       }
+      ]
+     }
+    ]
+   },
+   "exhibit": {
+    "title": "Client, 74 years old, hospitalized for aspiration pneumonia with poor oral intake. Phenytoin 100 mg IV every 8 h for a seizure disorder.",
+    "text": "\nLaboratory Results and Assessments\n| | Day 1 | Day 5 | Day 9 |\n| Total phenytoin (10-20 mcg/mL) | 12 mcg/mL | 15 mcg/mL | 16 mcg/mL |\n| Albumin (3.5-5.0 g/dL) | 3.6 g/dL | 2.6 g/dL | 2.0 g/dL |\n| Creatinine (0.6-1.1 mg/dL) | 0.8 mg/dL | 0.8 mg/dL | 0.9 mg/dL |\n| Assessment | Alert, steady gait | Mild dizziness | Horizontal nystagmus, unsteady wide-based gait, slurred speech, somnolent |"
+   },
+   "rationale": {
+    "short": "Dose-related neurotoxicity (nystagmus, ataxia, slurred speech, somnolence) despite a 'therapeutic' total level. Albumin fell from 3.6 to 2.0, raising the free fraction.",
+    "expanded": {
+     "perOption": {
+      "d1": {
+       "text": "Label lists these as dose-related reactions. A stroke would be focal and sudden; signs of toxicity rule out subtherapeutic or expected.",
+       "verdict": "a"
+      },
+      "d2": {
+       "text": "Label: with hypoalbuminemia, unbound concentration is more relevant. Trough timing and normal creatinine do not explain toxicity; a normal total level is the trap.",
+       "verdict": "d"
+      },
+      "d3": {
+       "text": "Hold and escalate with a free level. Giving the dose continues toxicity; food does not apply to IV.",
+       "verdict": "a"
+      }
+     },
+     "takeaway": "Low albumin + phenytoin: trust the free level and the neuro exam, not the total level.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Assess client for actual and potential side effects and adverse effects of medications (e.g., prescribed, over-thecounter, herbal supplements, preexisting condition)",
+    "code": "PHA",
+    "secondary": {
+     "subcategory": "Reduction of Risk Potential"
+    }
+   },
+   "references": [
+    {
+     "src": "FDA_PHENYTOIN",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=035a8d4e-2063-4240-83cb-d7eebcabe301",
+     "locator": "Dosage and Administration: total 10-20 mcg/mL, unbound 1-2 mcg/mL; monitor unbound levels in hypoalbuminemia; Adverse Reactions: nervous system",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NT202",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "trend",
+   "cjmm_function": [
+    "recognize_cues",
+    "analyze_cues",
+    "take_action"
+   ],
+   "timepoint": null,
+   "response_format": "matrix_mc",
+   "scoring_rule": "zero_one",
+   "max_points": 5,
+   "stem": "For each finding, specify whether it is an expected response to therapy or requires immediate report and intervention.",
+   "payload": {
+    "rows": [
+     {
+      "id": "r1",
+      "key": "e",
+      "text": "Weight up 1.5 kg since week 0"
+     },
+     {
+      "id": "r2",
+      "key": "e",
+      "text": "Free T4 falling toward the reference range"
+     },
+     {
+      "id": "r3",
+      "key": "e",
+      "text": "Heart rate 112/min to 80/min"
+     },
+     {
+      "id": "r4",
+      "key": "x",
+      "text": "Sore throat and temperature 38.3 °C (week 7)"
+     },
+     {
+      "id": "r5",
+      "key": "x",
+      "text": "Absolute neutrophil count 400/mm³ (week 7)"
+     }
+    ],
+    "columns": [
+     {
+      "id": "e",
+      "label": "Expected response to therapy"
+     },
+     {
+      "id": "x",
+      "label": "Requires immediate report and intervention"
+     }
+    ]
+   },
+   "exhibit": {
+    "title": "Client, 29 years old, Graves disease. Methimazole 10 mg PO every 8 h started at week 0. Telehealth follow-up.",
+    "text": "\nFindings\n| | Week 0 | Week 4 | Week 7 |\n| Heart rate | 112/min | 92/min | 80/min |\n| Free T4 (0.8-1.8 ng/dL) | 4.6 | 2.4 | 1.9 |\n| Weight | 58.0 kg | 58.8 kg | 59.5 kg |\n| ANC (1,500-8,000/mm³) | 3,900 | 3,100 | 400 |\n| Symptoms | Heat intolerance, tremor | Less tremor | Sore throat since yesterday, T 38.3 °C |"
+   },
+   "rationale": {
+    "short": "Thyroid control is improving, but fever, sore throat and ANC 400 at week 7 signal agranulocytosis, a life-threatening reaction.",
+    "expanded": {
+     "perOption": {
+      "r4": {
+       "text": "Label: report fever or sore throat immediately.",
+       "verdict": "x"
+      },
+      "r5": {
+       "text": "Severe neutropenia; label says stop the drug if agranulocytosis develops.",
+       "verdict": "x"
+      },
+      "r3": {
+       "text": "Less adrenergic drive as the client becomes euthyroid.",
+       "verdict": "e"
+      },
+      "r2": {
+       "text": "Therapeutic effect.",
+       "verdict": "e"
+      },
+      "r1": {
+       "text": "Weight regain as hypermetabolism resolves.",
+       "verdict": "e"
+      }
+     },
+     "takeaway": "On methimazole, fever or sore throat = hold, get a CBC with differential, and escalate the same day.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Assess client for actual and potential side effects and adverse effects of medications (e.g., prescribed, over-thecounter, herbal supplements, preexisting condition)",
+    "code": "PHA"
+   },
+   "references": [
+    {
+     "src": "FDA_METHIMAZOLE",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=05a8fed7-f805-4c59-8840-630174b6d130",
+     "locator": "Warnings: Agranulocytosis; Dosage and Administration: adult initial 30-40 mg/day for moderately severe disease",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NT203",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "trend",
+   "cjmm_function": [
+    "recognize_cues",
+    "analyze_cues",
+    "take_action"
+   ],
+   "timepoint": null,
+   "response_format": "dropdown_cloze",
+   "scoring_rule": "zero_one",
+   "max_points": 3,
+   "stem": "Complete the following sentences by choosing from the lists of options.",
+   "payload": {
+    "template": "The trend is most consistent with {{d1}}. The nurse should first {{d2}}. The nurse should also monitor {{d3}}.",
+    "dropdowns": [
+     {
+      "id": "d1",
+      "key": "d",
+      "options": [
+       {
+        "id": "a",
+        "text": "serotonin syndrome"
+       },
+       {
+        "id": "b",
+        "text": "worsening catatonic schizophrenia"
+       },
+       {
+        "id": "c",
+        "text": "acute dystonic reaction"
+       },
+       {
+        "id": "d",
+        "text": "neuroleptic malignant syndrome"
+       }
+      ]
+     },
+     {
+      "id": "d2",
+      "key": "c",
+      "options": [
+       {
+        "id": "a",
+        "text": "give benztropine and continue haloperidol"
+       },
+       {
+        "id": "b",
+        "text": "place the client in seclusion to reduce stimulation"
+       },
+       {
+        "id": "c",
+        "text": "hold haloperidol and notify the provider immediately"
+       },
+       {
+        "id": "d",
+        "text": "give the PRN haloperidol dose for agitation"
+       }
+      ]
+     },
+     {
+      "id": "d3",
+      "key": "c",
+      "options": [
+       {
+        "id": "a",
+        "text": "fasting lipid levels"
+       },
+       {
+        "id": "b",
+        "text": "serum lithium levels"
+       },
+       {
+        "id": "c",
+        "text": "urine output and renal function"
+       },
+       {
+        "id": "d",
+        "text": "peak expiratory flow"
+       }
+      ]
+     }
+    ]
+   },
+   "exhibit": {
+    "title": "Client, 31 years old, acute psychosis, admitted to the inpatient psychiatric unit. Haloperidol started day 1; dose increased day 3. No other medications.",
+    "text": "\nFlowsheet\n| | Day 1 | Day 3 | Day 4 |\n| Temperature | 37.0 °C | 38.1 °C | 39.6 °C |\n| HR / BP | 80/min, 124/78 | 104/min, 148/96 | 128/min, 176/102 then 98/60 |\n| Muscle tone | Normal | Stiff arms | Generalized rigidity; reflexes diminished |\n| Mental status | Guarded | Withdrawn, slow to respond | Mute, confused, staring |\n| CK (30-200 units/L) | 150 | 2,400 | 18,600 |\n| Urine | Clear yellow | Clear yellow | Tea-colored, 20 mL/h |"
+   },
+   "rationale": {
+    "short": "Rising fever, rigidity, altered mental status and labile BP after a haloperidol increase, with CK 18,600 and tea-colored urine, is NMS with rhabdomyolysis.",
+    "expanded": {
+     "perOption": {
+      "d1": {
+       "text": "Label: NMS = hyperpyrexia, muscle rigidity, altered mental status, autonomic instability, raised CK. Serotonin syndrome has clonus and hyperreflexia, not reduced reflexes. Dystonia has no fever or CK rise. Catatonia does not explain fever or CK.",
+       "verdict": "d"
+      },
+      "d2": {
+       "text": "Label: immediately stop antipsychotics. More haloperidol worsens NMS; benztropine with continued drug is wrong; seclusion delays medical care.",
+       "verdict": "c"
+      },
+      "d3": {
+       "text": "Myoglobinuria and acute renal failure can follow. Lithium, peak flow and lipids are unrelated.",
+       "verdict": "c"
+      }
+     },
+     "takeaway": "Fever + rigidity + high CK on an antipsychotic = NMS: stop the drug and treat it as a medical emergency.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Physiological Integrity",
+    "subcategory": "Pharmacological and Parenteral Therapies",
+    "activityStatement": "Assess client for actual and potential side effects and adverse effects of medications (e.g., prescribed, over-thecounter, herbal supplements, preexisting condition)",
+    "code": "PHA",
+    "secondary": {
+     "subcategory": "Psychosocial Integrity"
+    }
+   },
+   "references": [
+    {
+     "src": "FDA_HALOPERIDOL",
+     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00bb61c8-db35-4c04-9ef7-47d447d2496b",
+     "locator": "Warnings: Neuroleptic Malignant Syndrome (NMS) clinical manifestations and management",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  },
+  {
+   "id": "NT204",
+   "version": 1,
+   "batch_id": "ngn300-gapfill-2026-10-25",
+   "case_id": null,
+   "case_version": null,
+   "case_step": null,
+   "item_type": "trend",
+   "cjmm_function": [
+    "analyze_cues",
+    "generate_solutions"
+   ],
+   "timepoint": null,
+   "response_format": "dropdown_cloze",
+   "scoring_rule": "zero_one",
+   "max_points": 3,
+   "stem": "Complete the following sentences by choosing from the lists of options.",
+   "payload": {
+    "template": "The log shows {{d1}}. The nurse anticipates {{d2}}. The nurse reinforces that the fasting goal is {{d3}}.",
+    "dropdowns": [
+     {
+      "id": "d1",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "fasting values above goal with 1-hour postprandial values at goal"
+       },
+       {
+        "id": "b",
+        "text": "values too low to continue nutrition therapy"
+       },
+       {
+        "id": "c",
+        "text": "all values at goal"
+       },
+       {
+        "id": "d",
+        "text": "postprandial values above goal with fasting values at goal"
+       }
+      ]
+     },
+     {
+      "id": "d2",
+      "key": "d",
+      "options": [
+       {
+        "id": "a",
+        "text": "starting metformin as the first-line agent"
+       },
+       {
+        "id": "b",
+        "text": "starting glyburide as the first-line agent"
+       },
+       {
+        "id": "c",
+        "text": "continuing nutrition therapy alone with a recheck in 4 weeks"
+       },
+       {
+        "id": "d",
+        "text": "starting insulin"
+       }
+      ]
+     },
+     {
+      "id": "d3",
+      "key": "a",
+      "options": [
+       {
+        "id": "a",
+        "text": "less than 95 mg/dL"
+       },
+       {
+        "id": "b",
+        "text": "70-130 mg/dL"
+       },
+       {
+        "id": "c",
+        "text": "less than 120 mg/dL"
+       },
+       {
+        "id": "d",
+        "text": "less than 105 mg/dL"
+       }
+      ]
+     }
+    ]
+   },
+   "exhibit": {
+    "title": "Client, 31 years old, G2P1 at 30 weeks, gestational diabetes diagnosed at 26 weeks. Medical nutrition therapy and walking after meals for 3 weeks. Glucose log reviewed at a prenatal visit.",
+    "text": "\nSelf-monitored glucose (mg/dL), weekly averages\n| | Week 1 | Week 2 | Week 3 |\n| Fasting | 99 | 101 | 104 |\n| 1 h after breakfast | 136 | 132 | 129 |\n| 1 h after lunch | 131 | 128 | 126 |\n| 1 h after dinner | 138 | 134 | 133 |"
+   },
+   "rationale": {
+    "short": "Every fasting average is >=95 and rising, while all 1-hour postprandial values are below 140. Nutrition therapy is not meeting the fasting goal, so insulin is the preferred agent.",
+    "expanded": {
+     "perOption": {
+      "d1": {
+       "text": "Fasting 99-104 vs goal <95; 1-h values 126-138 vs goal <140.",
+       "verdict": "a"
+      },
+      "d2": {
+       "text": "ADA 15.15/15.17: add insulin if goals are not met; it is preferred. Metformin and glyburide should not be first-line (15.21). Waiting 4 more weeks prolongs fetal exposure.",
+       "verdict": "d"
+      },
+      "d3": {
+       "text": "ADA 15.8: fasting <95 mg/dL. 105, 120 and 70-130 are not pregnancy fasting goals.",
+       "verdict": "a"
+      }
+     },
+     "takeaway": "GDM targets: fasting <95; 1-h <140 or 2-h <120. If they are not met with lifestyle changes, start insulin.",
+     "pointsLost": "0/1 scoring: 1 point for each correct response; no deduction for incorrect responses."
+    }
+   },
+   "client_needs": {
+    "source": "NCSBN 2026 NCLEX-RN Test Plan, activity statements",
+    "category": "Health Promotion and Maintenance",
+    "subcategory": "Health Promotion and Maintenance",
+    "activityStatement": "Provide prenatal care and education",
+    "code": "HPM",
+    "secondary": {
+     "subcategory": "Pharmacological and Parenteral Therapies"
+    }
+   },
+   "references": [
+    {
+     "src": "ADA_SOC26_S15",
+     "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S321/163918/15-Management-of-Diabetes-in-Pregnancy-Standards",
+     "locator": "Recs 15.8, 15.15, 15.17, 15.21; Table 15.2",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    },
+    {
+     "src": "NCSBN_TP26",
+     "url": "https://www.nclex.com/files/2026_RN_Test%20Plan_English-F.pdf",
+     "locator": "Client Needs activity statements",
+     "method": "fetched_full_text",
+     "opened_this_run": true
+    }
+   ],
+   "rn_flags": [],
+   "status": "draft",
+   "supersedes_id": null,
+   "manual_correction": false
+  }
+ ]
+}
