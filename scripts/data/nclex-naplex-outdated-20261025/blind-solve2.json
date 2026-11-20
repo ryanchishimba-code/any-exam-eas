@@ -1,0 +1,65 @@
+{
+  "note": "Keyless stems for a second independent blind solve. No correct answers and no rationales are in this file.",
+  "items": [
+    {
+      "id": "cmroigcz3000j1y7n1rmsnzr4",
+      "board": "NAPLEX",
+      "scenario": "A 30-year-old man takes phenytoin 300 mg by mouth daily, as 100 mg three times daily, for epilepsy. Seizures have increased. The total phenytoin level is 8 mcg/mL and albumin is 4.2 g/dL. He started omeprazole 20 mg daily for GERD one week ago.",
+      "question": "Which action best addresses the increased seizures?",
+      "options": [
+        "Increase phenytoin to 330 mg daily and recheck the level in about 2 weeks",
+        "Switch omeprazole to famotidine 20 mg twice daily and keep phenytoin at 300 mg daily",
+        "Add levetiracetam 500 mg twice daily and keep phenytoin at 300 mg daily",
+        "Stop omeprazole and keep phenytoin at 300 mg daily"
+      ]
+    },
+    {
+      "id": "cmrovw8ya000m1yu3299ty2aj",
+      "board": "NAPLEX",
+      "scenario": "A 40-year-old woman has heartburn at least 3 days a week for 2 months. She had taken OTC ranitidine until products containing it were removed from the market. She has no trouble swallowing, bleeding, weight loss, or vomiting, and she is not pregnant. She asks whether she should buy another OTC acid reducer.",
+      "question": "Which recommendation is most appropriate now?",
+      "options": [
+        "A prescription for omeprazole 20 mg by mouth once daily before breakfast for 8 weeks",
+        "Recommend OTC omeprazole 20 mg daily for 14 days of self-care, then stop",
+        "Ask her to restart ranitidine 150 mg by mouth twice daily",
+        "Calcium carbonate 750 mg by mouth only after meals"
+      ]
+    },
+    {
+      "id": "cmqxaus7p001f1ypr2elqbs2e",
+      "board": "NAPLEX",
+      "scenario": "A 42-year-old man has taken lisinopril 20 mg by mouth daily for 6 weeks and atorvastatin 20 mg daily. A persistent dry cough began in week 3 and is still present. Home blood pressure is 124/76 mm Hg. He has no known drug allergies.",
+      "question": "Which change is most appropriate?",
+      "options": [
+        "Stop atorvastatin 20 mg daily and continue lisinopril 20 mg daily",
+        "Stop lisinopril and start losartan 50 mg by mouth daily",
+        "Continue lisinopril 20 mg daily and add dextromethorphan 30 mg at bedtime",
+        "Raise lisinopril to 40 mg daily"
+      ]
+    },
+    {
+      "id": "cmr7tqqg2001n1yivy4gi52qz",
+      "board": "NAPLEX",
+      "scenario": "A 50-year-old man takes lisinopril 10 mg by mouth daily and atorvastatin 40 mg daily. He has no cough, no dizziness, and no known drug allergies. Blood pressure today is 130/85 mm Hg. LDL cholesterol is 90 mg/dL.",
+      "question": "Which statement about this blood pressure is correct?",
+      "options": [
+        "130/85 mm Hg is normal, so stop lisinopril",
+        "LDL cholesterol of 90 mg/dL shows the blood pressure is controlled",
+        "130/85 mm Hg is already at the 2025 treatment goal, so make no blood-pressure change",
+        "130/85 mm Hg is stage 1 hypertension and above the goal of below 130/80"
+      ]
+    },
+    {
+      "id": "cmr7xthmz001n1yikcwuott43",
+      "board": "NAPLEX",
+      "scenario": "A 45-year-old woman has taken lisinopril 20 mg by mouth daily for 6 weeks. She had no cough before the first dose. A persistent dry cough began in week 3. Blood pressure today is 136/86 mm Hg. Her father has hypertension, and her body mass index is 27 kg/m². She takes no other medicines.",
+      "question": "Which history best supports an ACE-inhibitor cough?",
+      "options": [
+        "A body mass index of 27 kg/m² explains the cough",
+        "Blood pressure of 136/86 mm Hg shows the cough is from lisinopril",
+        "The cough was already present on the day lisinopril was first prescribed",
+        "She had no cough before the first dose, and the cough began in week 3"
+      ]
+    }
+  ]
+}
