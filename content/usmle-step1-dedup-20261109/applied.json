@@ -1,0 +1,15 @@
+{
+  "servedBefore": 3072,
+  "servedAfter": 2041,
+  "exactStep1After": 2011,
+  "blankStepAfter": 30,
+  "families": 39,
+  "confirmedExtrasHidden": 1031,
+  "held": 0,
+  "keepersUnchanged": 39,
+  "clinicalWrites": 0,
+  "snapshotId": "snap-empty-resonance-ap1ab1rh",
+  "backupTable": "qbi_usmle_step1_duphide_20261109",
+  "backupRows": 1031,
+  "dryRun": "Updated 1031, served 2041, then ROLLBACK restored 3072."
+}
