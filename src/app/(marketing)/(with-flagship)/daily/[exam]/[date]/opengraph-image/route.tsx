@@ -10,17 +10,24 @@ const size = { width: 1200, height: 630 };
 
 type Props = { params: Promise<{ exam: string; date: string }> };
 
+/**
+ * Same calendar gate as the dated page. This handler is dynamic so a future
+ * date is a fresh 404 in America/Chicago, not a cached image of that item.
+ */
+export const dynamic = "force-dynamic";
+
 export async function GET(_request: Request, { params }: Props) {
   const { exam, date } = await params;
+  const now = new Date();
 
-  if (!isQotdExamSlug(exam) || !parseQotdDate(date)) {
+  if (!isQotdExamSlug(exam) || !parseQotdDate(date, now)) {
     return new Response(null, {
       status: 404,
       headers: { "Cache-Control": "no-store" },
     });
   }
 
-  const item = getQotdForExam(exam, date);
+  const item = getQotdForExam(exam, date, now);
   if (!item) {
     return new Response(null, {
       status: 404,

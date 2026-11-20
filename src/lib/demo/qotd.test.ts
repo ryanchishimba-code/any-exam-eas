@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { isValidElement, type ReactNode } from "react";
+import { describe, expect, it, vi } from "vitest";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { revealQotdAnswer } from "@/lib/demo/qotd-reveal";
 import {
@@ -10,6 +11,21 @@ import {
   todayIsoCentral,
   toPublicQotd,
 } from "@/lib/demo/qotd";
+import { GET as qotdOpenGraph } from "@/app/(marketing)/(with-flagship)/daily/[exam]/[date]/opengraph-image/route";
+import DailyExamDatedPage, {
+  generateMetadata as dailyDatedMetadata,
+} from "@/app/(marketing)/(with-flagship)/daily/[exam]/[date]/page";
+
+vi.mock("next/og", () => ({
+  ImageResponse: class ImageResponse extends Response {
+    constructor(element: unknown) {
+      super("image", { status: 200, headers: { "content-type": "image/png" } });
+      const bag = globalThis as { __qotdOg?: unknown[] };
+      bag.__qotdOg ??= [];
+      bag.__qotdOg.push(element);
+    }
+  },
+}));
 
 const REVIEW_NOW = new Date("2026-10-11T18:00:00.000Z");
 
@@ -170,7 +186,9 @@ describe("question of the day items", () => {
     );
     expect(dated).toContain("toPublicQotd(");
     expect(dated).toContain("notFound(");
-    expect(dated).toContain("connection(");
+    expect(dated).toContain('dynamic = "force-dynamic"');
+    expect(dated).not.toContain("connection(");
+    expect(dated).not.toContain("export const revalidate");
     expect(dated).not.toContain("todayIsoUtc");
     expect(today).toContain("toPublicQotd(");
     expect(today).toContain("todayIsoCentral(");
@@ -179,6 +197,135 @@ describe("question of the day items", () => {
     expect(hub).not.toContain(".rationale");
     expect(og).not.toContain("item.correct");
     expect(og).not.toContain("item.rationale");
+    expect(og).toContain('dynamic = "force-dynamic"');
+    expect(og).not.toContain("connection(");
+    expect(og).toContain('"Cache-Control": "no-store"');
     expect(readFileSync("src/app/sitemap.ts", "utf8")).toContain("todayIsoCentral(");
+  });
+});
+
+const NOT_FOUND_DIGEST = "NEXT_HTTP_ERROR_FALLBACK;404";
+
+function addUtcDays(iso: string, days: number): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(Date.UTC(y!, m! - 1, d! + days)).toISOString().slice(0, 10);
+}
+
+async function expectDatedNotFound(exam: string, date: string) {
+  await expect(
+    DailyExamDatedPage({ params: Promise.resolve({ exam, date }) })
+  ).rejects.toMatchObject({ digest: NOT_FOUND_DIGEST });
+}
+
+function practiceItem(node: ReactNode): { stem: string; rationale?: string; correct?: string } {
+  if (!isValidElement(node)) throw new Error("expected a page element");
+  const props = node.props as { item?: { stem: string }; children?: ReactNode };
+  if (props.item && "stem" in props.item) return props.item;
+  return practiceItem(props.children);
+}
+
+describe("dated question route", () => {
+  it("404s a future or invalid date and still renders today and the past", async () => {
+    const today = todayIsoCentral();
+    const tomorrow = addUtcDays(today, 1);
+    const dayAfter = addUtcDays(today, 2);
+    const todayItem = getQotdForExam("nclex", today);
+    const pastItem = getQotdForExam("naplex", "2024-01-03");
+    expect(todayItem).not.toBeNull();
+    expect(pastItem?.id).toBe("naplex-03");
+
+    await expectDatedNotFound("nclex", tomorrow);
+    await expectDatedNotFound("nclex", dayAfter);
+    await expectDatedNotFound("nclex", "2099-01-01");
+    await expectDatedNotFound("nclex", "2024-02-31");
+    await expectDatedNotFound("not-a-board", today);
+
+    const futureMeta = await dailyDatedMetadata({
+      params: Promise.resolve({ exam: "nclex", date: tomorrow }),
+    });
+    expect(futureMeta).toEqual({});
+    const farMeta = await dailyDatedMetadata({
+      params: Promise.resolve({ exam: "nclex", date: "2099-01-01" }),
+    });
+    expect(JSON.stringify(farMeta)).not.toContain("tunneled central line");
+
+    const pastView = await DailyExamDatedPage({
+      params: Promise.resolve({ exam: "naplex", date: "2024-01-03" }),
+    });
+    const pastProps = practiceItem(pastView);
+    expect(pastProps.stem).toBe(pastItem!.stem);
+    expect(pastProps).not.toHaveProperty("rationale");
+    expect(pastProps).not.toHaveProperty("correct");
+    expect(JSON.stringify(pastView)).not.toContain(pastItem!.rationale);
+
+    const todayView = await DailyExamDatedPage({
+      params: Promise.resolve({ exam: "nclex", date: today }),
+    });
+    const todayProps = practiceItem(todayView);
+    expect(todayProps.stem).toBe(todayItem!.stem);
+    expect(JSON.stringify(todayView)).not.toContain(todayItem!.rationale);
+
+    const pastMeta = await dailyDatedMetadata({
+      params: Promise.resolve({ exam: "naplex", date: "2024-01-03" }),
+    });
+    expect(pastMeta.description).toContain(pastItem!.stem.slice(0, 40));
+    expect(JSON.stringify(pastMeta)).not.toContain(pastItem!.rationale);
+  });
+
+  it("keeps the Chicago day through 7:01 PM CT and rejects the next calendar day", async () => {
+    const six59 = new Date("2026-10-11T23:59:00.000Z");
+    const seven01 = new Date("2026-10-12T00:01:00.000Z");
+    const afterMidnight = new Date("2026-10-12T05:01:00.000Z");
+    expect(chicagoClock(six59)).toBe("18:59");
+    expect(chicagoClock(seven01)).toBe("19:01");
+
+    vi.useFakeTimers();
+    try {
+      vi.setSystemTime(six59);
+      const evening = await DailyExamDatedPage({
+        params: Promise.resolve({ exam: "nclex", date: "2026-10-11" }),
+      });
+      expect(practiceItem(evening).stem).toContain("INR 5.8");
+      await expectDatedNotFound("nclex", "2026-10-12");
+
+      vi.setSystemTime(seven01);
+      const stillEvening = await DailyExamDatedPage({
+        params: Promise.resolve({ exam: "nclex", date: "2026-10-11" }),
+      });
+      expect(practiceItem(stillEvening).stem).toBe(practiceItem(evening).stem);
+      await expectDatedNotFound("nclex", "2026-10-12");
+
+      vi.setSystemTime(afterMidnight);
+      const nextDay = await DailyExamDatedPage({
+        params: Promise.resolve({ exam: "nclex", date: "2026-10-12" }),
+      });
+      expect(practiceItem(nextDay).stem).not.toBe(practiceItem(evening).stem);
+      expect(JSON.stringify(nextDay)).not.toContain("An elevated INR");
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("returns a no-store 404 image for a future date and no answer in a past image", async () => {
+    const bag = globalThis as { __qotdOg?: unknown[] };
+    bag.__qotdOg = [];
+    const past = getQotdForExam("naplex", "2024-01-03");
+    expect(past).not.toBeNull();
+
+    const missing = await qotdOpenGraph(new Request("http://localhost/og"), {
+      params: Promise.resolve({ exam: "naplex", date: "2099-06-01" }),
+    });
+    expect(missing.status).toBe(404);
+    expect(missing.headers.get("Cache-Control")).toBe("no-store");
+    expect(await missing.text()).toBe("");
+    expect(bag.__qotdOg).toHaveLength(0);
+
+    const image = await qotdOpenGraph(new Request("http://localhost/og"), {
+      params: Promise.resolve({ exam: "naplex", date: "2024-01-03" }),
+    });
+    expect(image.status).toBe(200);
+    expect(JSON.stringify(bag.__qotdOg)).toContain(past!.stem.slice(0, 40));
+    expect(JSON.stringify(bag.__qotdOg)).not.toContain(past!.rationale);
+    expect(JSON.stringify(bag.__qotdOg)).not.toContain(past!.correct);
   });
 });
