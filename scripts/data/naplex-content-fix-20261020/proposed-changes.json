@@ -1,0 +1,61 @@
+{
+  "cmshfh02g00011y4nphbw7995": {
+    "label": "Q71 Cockcroft-Gault",
+    "set_correctAnswer": "52 mL/min",
+    "set_options": [
+      "52 mL/min",
+      "61 mL/min",
+      "56 mL/min",
+      "66 mL/min"
+    ],
+    "set_scenario": "A 65-year-old female patient with hypertension and type 2 diabetes is prescribed vancomycin. Her serum creatinine is 1.2 mg/dL, and she weighs 70 kg.",
+    "set_question": "Using the Cockcroft-Gault equation with actual body weight, what is her estimated creatinine clearance? Round to the nearest whole number.",
+    "set_explanation": "## Why 52 mL/min is correct\nFemale Cockcroft-Gault with the values in this stem:\n1. (140 − age) × weight = (140 − 65) × 70 = 5,250\n2. Divide by (72 × SCr) = 72 × 1.2 = 86.4 → 5,250 ÷ 86.4 = 60.8 mL/min\n3. Multiply by **0.85** for female → 60.8 × 0.85 = **51.6 mL/min** → **52 mL/min** (nearest whole number)\n\n## Why the other options are wrong\n**1. 61 mL/min** — Omits the 0.85 female factor (60.8 rounded up).\n**2. 56 mL/min** — Not the nearest whole number to 51.6 mL/min.\n**3. 66 mL/min** — Overestimates clearance; risks under-dosing a renally cleared drug.\n\n*Renal estimate for drug dosing; unstable SCr or extremes of weight require clinical judgment (not NABP outline).*"
+  },
+  "cmqvk1ii000111yvd18azdtnn": {
+    "label": "Q26 diabetes GLP-1",
+    "set_correctAnswer": "Suggest adding a GLP-1 receptor agonist.",
+    "set_scenario": "M.T., 58 y/o man | Type 2 diabetes | Metformin 1,000 mg BID × 6 months | HbA1c 8.4% (goal <7%) | Established ASCVD (prior MI) | eGFR 75 mL/min/1.73 m² | BMI 34 kg/m² | No hypoglycemia on current regimen",
+    "set_question": "Which action should the pharmacist take first?",
+    "set_explanation": "## Why this answer is correct\nWith **HbA1c 8.4%** on metformin and **established ASCVD**, ADA Standards of Care recommend adding a **GLP-1 RA with proven cardiovascular benefit** (or an SGLT2 inhibitor with CV benefit) rather than sulfonylurea or TZD-first intensification.\n\n## Why the other options are wrong\n*(Options follow the item’s live list at apply time — renumber in rationale if options change.)*\n- **Continue metformin only / defer intensification** — A1c remains above goal with high CV risk.\n- **Add sulfonylurea or TZD first** — Does not prioritize agents with proven ASCVD benefit.\n- **Stop metformin / insulin-only leap** — Metformin remains appropriate at eGFR 75; stepwise intensification is preferred.\n\n*ADA Standards of Care in Diabetes — pharmacotherapy and cardiovascular risk reduction.*"
+  },
+  "cmqvlwbg7001r1yd78mtrdr54": {
+    "label": "Q4 osteoporosis",
+    "set_correctAnswer": "Bone mineral density T-score of -2.5",
+    "set_options": [
+      "Calcium level of 9.0 mg/dL",
+      "Serum 25-hydroxyvitamin D of 18 ng/mL",
+      "Serum creatinine of 0.9 mg/dL",
+      "Bone mineral density T-score of -2.5"
+    ],
+    "set_scenario": "L.K., 68 y/o postmenopausal woman | Alendronate 70 mg weekly | Calcium/vitamin D supplementation | DEXA today",
+    "set_question": "Which laboratory or diagnostic finding warrants a therapeutic change?",
+    "set_explanation": "## Why T-score ≤ -2.5 is correct\nA **T-score of -2.5** meets WHO criteria for **osteoporosis** and supports reassessing bisphosphonate therapy, adherence, calcium/vitamin D, and fracture risk (BHOF / Endocrine Society guidance).\n\n## Why the other options are wrong\n**1. Calcium 9.0 mg/dL** — Within typical reference range; not a primary trigger to change osteoporosis therapy alone.\n**2. Vitamin D 18 ng/mL** — Suggests insufficiency and may warrant repletion, but **does not by itself define osteoporosis** the way a T-score ≤ -2.5 does in this stem.\n**3. Serum creatinine 0.9 mg/dL** — Normal renal function; not the finding that defines disease severity here.\n\n*National Osteoporosis Foundation / Bone Health & Osteoporosis Foundation and Endocrine Society osteoporosis guidance.*"
+  },
+  "cmshdzo0400181y1il9udravj": {
+    "label": "Q19 MRSA SSTI",
+    "set_correctAnswer": "IV vancomycin",
+    "set_options": [
+      "Oral linezolid 600 mg BID",
+      "IV vancomycin",
+      "Oral cephalexin 500 mg QID",
+      "Oral doxycycline 100 mg BID"
+    ],
+    "set_scenario": "R.J., 52 y/o man | Purulent cellulitis of the left lower extremity | Temp 38.6 °C, HR 112, WBC 15,000/µL | Admitted for IV antibiotics | No β-lactam anaphylaxis | Blood cultures pending",
+    "set_question": "Which antibiotic regimen is most appropriate for initial therapy?",
+    "set_explanation": "## Why IV vancomycin is correct\n**Purulent cellulitis** with **systemic inflammatory response** and **hospitalization** warrants **parenteral therapy** with **MRSA coverage**. IDSA SSTI guidance supports **IV vancomycin** (or other IV anti-MRSA agent per local susceptibility) for severe purulent SSTI requiring admission.\n\n## Why the other options are wrong\n**1. Oral linezolid** — May be used for selected MRSA SSTI, but **severe purulent infection with SIRS and admission** favors initial **IV** anti-MRSA therapy.\n**2. Oral cephalexin** — Inadequate MRSA coverage for purulent SSTI.\n**3. Oral doxycycline** — Outpatient mild purulent MRSA option; not best for hospitalized severe purulent cellulitis.\n\n*IDSA practice guidelines for skin and soft-tissue infections.*"
+  },
+  "cmqvn3qr400101yvveafntelj": {
+    "label": "Q38 sertraline activation",
+    "set_correctAnswer": "Counsel that restlessness or increased anxiety can occur in the first 1–2 weeks; report worsening mood or suicidal thoughts immediately.",
+    "set_options": [
+      "Stop sertraline today if she feels more anxious.",
+      "Counsel that restlessness or increased anxiety can occur in the first 1–2 weeks; report worsening mood or suicidal thoughts immediately.",
+      "Increase sertraline to 100 mg now to overcome activation.",
+      "Add a benzodiazepine indefinitely to prevent all activation symptoms."
+    ],
+    "set_scenario": "S.P., 34 y/o woman | New sertraline 50 mg daily — day 5 | Reports restlessness, insomnia, and feeling \"more on edge\" | No suicidal ideation | No mania history | Prior SSRI trial stopped for cost",
+    "set_question": "Which counseling point is most important at this visit?",
+    "set_explanation": "## Why this answer is correct\n**Early activation** (anxiety, insomnia, restlessness) can occur in the **first 1–2 weeks** of SSRI therapy while antidepressant effect lags. Counseling on expected timing, monitoring, and **urgent reporting of suicidal ideation** aligns with FDA labeling and APA guidance.\n\n## Why the other options are wrong\n**1. Stop sertraline today** — Premature for mild early activation without suicidality; often improves with time/support.\n**2. Increase to 100 mg now** — Escalation can worsen activation before benefit.\n**3. Indefinite benzodiazepine** — Not first-line for SSRI activation; dependency and sedation risks.\n\n*Sertraline prescribing information; APA depression treatment guidance.*"
+  }
+}
