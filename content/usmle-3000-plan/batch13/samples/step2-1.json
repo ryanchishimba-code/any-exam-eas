@@ -1,0 +1,24 @@
+{
+  "id": "b13-s2-01",
+  "fieldId": "usmle-step-2",
+  "stepLevel": "step2",
+  "outlineSystem": "gastrointestinal",
+  "outlineWeight": 8,
+  "blueprintTopic": "ulcer-hemostasis",
+  "blueprintDomain": "gastrointestinal",
+  "difficulty": 3,
+  "subjectId": "gastroenterology",
+  "examTakeaway": "After an ulcer is controlled, aspirin taken for coronary disease is restarted, not stopped for the long term.",
+  "scenario": "A 68-year-old man had a bleeding duodenal ulcer clipped yesterday. The bleeding has stopped and his hemoglobin is stable at 9.4 g/dL. He had a myocardial infarction three years ago and has taken aspirin 81 mg daily since then. His blood pressure is 128/74 mm Hg. A colleague cancels the aspirin for the next six months so the ulcer can heal.",
+  "question": "What should happen to the aspirin he takes for his coronary disease?",
+  "options": [
+    "Restart it once hemostasis is secure, rather than withholding it for months",
+    "Stop it for six months so the mucosa can heal",
+    "Replace it with a second antiplatelet drug and never resume it",
+    "Continue it only if a new troponin is elevated",
+    "Double the dose for one week, then stop"
+  ],
+  "correctAnswer": "Restart it once hemostasis is secure, rather than withholding it for months",
+  "explanation": "After an ulcer is controlled, aspirin taken for coronary disease is restarted, not stopped for the long term. He already has hemostasis, a stable hemoglobin, and a secondary-prevention reason for the drug. Stopping it for six months trades a controlled ulcer for a coronary risk the 2021 guideline tells clinicians not to accept. American College of Gastroenterology Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding, 2021.\n\nRestart it once hemostasis is secure, rather than withholding it for months\nStop it for six months so the mucosa can heal \u2014 A long hold removes the coronary protection after the bleeding is already controlled.\nReplace it with a second antiplatelet drug and never resume it \u2014 The coronary indication is the existing aspirin. A substitute antiplatelet drug is not the instruction.\nContinue it only if a new troponin is elevated \u2014 He does not need a new infarct to justify a drug he already takes for an old one.\nDouble the dose for one week, then stop \u2014 The dose stays at the prevention dose. Raising it does not treat the ulcer.",
+  "citation": "American College of Gastroenterology Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding, 2021."
+}

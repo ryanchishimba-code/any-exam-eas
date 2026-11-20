@@ -1,0 +1,24 @@
+{
+  "id": "b13-s1-01",
+  "fieldId": "usmle-step-1",
+  "stepLevel": "step1",
+  "outlineSystem": "respiratory-renal",
+  "outlineWeight": 13,
+  "blueprintTopic": "diuretics",
+  "blueprintDomain": "respiratory-renal",
+  "difficulty": 2,
+  "subjectId": "pharmacology",
+  "examTakeaway": "Loop diuretics inhibit the Na-K-2Cl cotransporter and increase calcium loss in urine.",
+  "scenario": "A 58-year-old man starts furosemide for edema. His urine calcium rises and his serum calcium falls slightly. He is not taking a thiazide.",
+  "question": "Which transporter explains the calcium loss?",
+  "options": [
+    "The Na-K-2Cl cotransporter in the thick ascending limb",
+    "The distal convoluted-tubule sodium-chloride cotransporter",
+    "The collecting-duct sodium channel",
+    "The proximal-tubule carbonic anhydrase",
+    "The glomerular basement membrane"
+  ],
+  "correctAnswer": "The Na-K-2Cl cotransporter in the thick ascending limb",
+  "explanation": "Loop diuretics inhibit the Na-K-2Cl cotransporter and increase calcium loss in urine. Blocking that transporter abolishes the lumen-positive charge that normally drives calcium reabsorption, so calcium is wasted. FDA prescribing information, 2024 labels, for the named drug's mechanism.\n\nThe Na-K-2Cl cotransporter in the thick ascending limb\nThe distal convoluted-tubule sodium-chloride cotransporter \u2014 That is the thiazide target, and thiazides lower urine calcium.\nThe collecting-duct sodium channel \u2014 That is the amiloride target and does not explain this calcium wasting.\nThe proximal-tubule carbonic anhydrase \u2014 That is the acetazolamide target.\nThe glomerular basement membrane \u2014 Filtration of calcium is not the step this drug changes.",
+  "citation": "FDA prescribing information, 2024 labels, for the named drug's mechanism."
+}
