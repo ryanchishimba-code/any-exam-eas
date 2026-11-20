@@ -1,0 +1,535 @@
+id,field,before,after,source URL
+cmqgtrgg2000w1yfhodcyljmq,correctAnswer,Stress test,Coronary angiography,https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001309
+cmqgtrgg2000w1yfhodcyljmq,explanation,"In this patient with stable angina symptoms and ST-segment depression on ECG, a stress test is the most appropriate initial diagnostic study to assess for inducible ischemia. An echocardiogram may be useful later, but it is not the first step. Coronary angiography is more invasive and not indicated at this stage. A chest X-ray may provide some information but does not assess cardiac function directly.
+
+Clinical reasoning: Assess: The patient presents with chest pain and has risk factors for coronary artery disease. Diagnose: Likely stable angina. Plan: Order a stress test to evaluate for ischemia. Evaluate: Review stress test results to guide further management.
+
+Why other options are incorrect:
+• Echocardiogram: Incorrect because while it can assess heart function, it is not the first-line test for this presentation.
+• Coronary angiography: Incorrect because it is an invasive procedure and not appropriate as an initial diagnostic step for stable angina.
+• Chest X-ray: Incorrect because it does not provide information on cardiac ischemia or function.",Pressure-like chest pain radiating to the arm with ST-segment depression is a non-ST-elevation acute coronary syndrome. The 2025 ACC/AHA/ACEP/NAEMSP/SCAI acute coronary syndromes guideline describes ST-segment depression as an electrocardiographic finding in this syndrome and recommends a routine invasive approach for patients at intermediate or high risk: coronary angiography with revascularization when the anatomy warrants it. Treadmill stress testing is used for low-risk patients after an acute coronary syndrome is no longer suspected. A bedside echocardiogram and a portable chest radiograph do not show the coronary anatomy that guides that decision.,https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001309
+cmqgtrgg2000w1yfhodcyljmq,options,Echocardiogram | Stress test | Coronary angiography | Chest X-ray,Bedside echocardiogram | Treadmill stress testing | Coronary angiography | Portable chest radiograph,https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001309
+cmqgtrgg2000w1yfhodcyljmq,references,,"[{""label"": ""2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Circulation. 2025. ST-segment depression is an NSTE-ACS finding; a routine invasive approach is coronary angiography."", ""url"": ""https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001309"", ""citation"": ""2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Circulation. 2025. ST-segment depression is an NSTE-ACS finding; a routine invasive approach is coronary angiography.""}]",https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001309
+cmqgtrgg2000w1yfhodcyljmq,manual_correction,true,true,https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001309
+cmqgtpdyy00021yfjenh3ca9f,correctAnswer,Language delay,Autism spectrum disorder,https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf
+cmqgtpdyy00021yfjenh3ca9f,explanation,"The child's inability to speak in full sentences and lack of pretend play are indicative of a language delay rather than a cognitive impairment or autism spectrum disorder. Normal variation in development is less likely given the specific concerns raised by the parents.
+
+Incorrect because: 
+- Autism spectrum disorder: While some symptoms overlap, the primary concern is language, not social interaction. 
+- Cognitive impairment: There is no evidence of overall cognitive deficits based on the history provided. 
+- Normal variation in development: The specific concerns about language skills suggest a delay rather than normal development. 
+
+Clinical guidelines recommend early intervention for language delays to improve outcomes.","This 3-year-old does not speak in sentences, does not play pretend, makes limited eye contact, and does not respond when his name is called. The 2020 American Academy of Pediatrics clinical report lists failure to respond to one's name by 12 months, lack of pretend play by 18 months, avoidance of eye contact, and delayed speech as red flags for autism spectrum disorder. Those social findings are more than an isolated language delay. Several missed social milestones are not a normal variation, and this history alone does not establish a separate cognitive impairment.",https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf
+cmqgtpdyy00021yfjenh3ca9f,references,,"[{""label"": ""Hyman SL, Levy SE, Myers SM, AAP Council on Children With Disabilities, Section on Developmental and Behavioral Pediatrics. Identification, Evaluation, and Management of Children With Autism Spectrum Disorder. Pediatrics. 2020;145(1):e20193447. Table 4 red flags."", ""url"": ""https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf"", ""citation"": ""Hyman SL, Levy SE, Myers SM, AAP Council on Children With Disabilities, Section on Developmental and Behavioral Pediatrics. Identification, Evaluation, and Management of Children With Autism Spectrum Disorder. Pediatrics. 2020;145(1):e20193447. Table 4 red flags.""}]",https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf
+cmqgtpdyy00021yfjenh3ca9f,manual_correction,false,true,https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf
+cmr856o3s002h1y9i4ersmcc8,correctAnswer,Annual mammogram starting at age 40,Screening mammogram every 2 years,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening
+cmr856o3s002h1y9i4ersmcc8,explanation,"Current guidelines recommend that women at average risk begin annual mammograms at age 40. Given her family history, she should be counseled on this screening. 
+
+- Incorrect because clinical breast exams are no longer recommended as a standalone screening tool. 
+- Incorrect because breast MRI is typically reserved for high-risk patients. 
+- Incorrect because genetic testing is not indicated without a personal history of breast cancer or significant family history. 
+
+Key takeaway: Understand current breast cancer screening guidelines for women with family history.
+
+Clinical reasoning: Assess: Woman with family history of breast cancer. Diagnose: Need for breast cancer screening. Plan: Recommend annual mammogram starting at age 40. Evaluate: Discuss results and follow-up.
+
+Why other options are incorrect:
+• Clinical breast exam every year: Incorrect as this is not recommended as a standalone screening.
+• Breast MRI every year: Incorrect because MRI is for high-risk patients.
+• Genetic testing for BRCA mutations: Incorrect without significant family history or personal history.","This 45-year-old woman is asking about breast cancer screening and has no personal history of breast cancer. The US Preventive Services Task Force recommends biennial screening mammography for women aged 40 to 74 years. A yearly clinical breast exam is not the recommended screening test. Yearly breast MRI and BRCA testing are for selected high-risk patterns, which this history does not specify. The preventive step supported by the recommendation is a screening mammogram every 2 years.",https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening
+cmr856o3s002h1y9i4ersmcc8,options,Annual mammogram starting at age 40 | Clinical breast exam every year | Breast MRI every year | Genetic testing for BRCA mutations,Screening mammogram every 2 years | Clinical breast exam every year | Breast MRI every year | Genetic testing for BRCA mutations,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening
+cmr856o3s002h1y9i4ersmcc8,references,,"[{""label"": ""US Preventive Services Task Force. Screening for Breast Cancer: US Preventive Services Task Force Recommendation Statement. Recommends biennial screening mammography for women aged 40 to 74 years."", ""url"": ""https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening"", ""citation"": ""US Preventive Services Task Force. Screening for Breast Cancer: US Preventive Services Task Force Recommendation Statement. Recommends biennial screening mammography for women aged 40 to 74 years.""}]",https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening
+cmr856o3s002h1y9i4ersmcc8,manual_correction,false,true,https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening
+cmqgtwy05002q1yfj0068jmkf,correctAnswer,Vaccine-related rash,Immunization-related rash,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgtwy05002q1yfj0068jmkf,explanation,"The child's mild rash after the previous MMR vaccine is likely a benign vaccine-related rash, which can occur after live vaccines. It is not indicative of an allergic reaction or a viral exanthem. An atopic dermatitis flare is also unlikely given the timing and nature of the rash.
+
+Incorrect because: 
+- Atopic dermatitis flare: This is unlikely due to the timing and characteristics of the rash. 
+- Viral exanthem: The rash's timing post-vaccination suggests it is not viral. 
+- Allergic reaction to vaccine: The absence of systemic symptoms makes this diagnosis less likely. 
+
+Reference: Vaccine-related rashes are common and typically benign, as noted in CDC guidelines.","A mild maculopapular rash on the trunk and arms, without fever, five days after MMR is the expected mild reaction described on the CDC MMR vaccine information statement: fever and a mild rash can occur after vaccination. An immediate allergic rash appears within minutes, with hives or breathing difficulty, which is not this pattern. An atopic dermatitis flare is possible in a child with eczema, but the timing after MMR is the specific clue. An unrelated viral exanthem is less likely when the rash follows the immunization and the child is otherwise afebrile and well.",https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgtwy05002q1yfj0068jmkf,options,Vaccine-related rash | Atopic dermatitis flare | Viral exanthem | Allergic reaction to vaccine,Immunization-related rash | Flare of atopic dermatitis | Unrelated viral exanthem | Immediate allergic rash,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgtwy05002q1yfj0068jmkf,references,,"[{""label"": ""CDC. MMR Vaccine VIS, current edition January 31, 2025. Fever and a mild rash can happen after MMR vaccination."", ""url"": ""https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html"", ""citation"": ""CDC. MMR Vaccine VIS, current edition January 31, 2025. Fever and a mild rash can happen after MMR vaccination.""}]",https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgtwy05002q1yfj0068jmkf,manual_correction,false,true,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqguenqy000z1yz74jzm60c2,correctAnswer,Vaccine-related rash,Immunization-related rash,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqguenqy000z1yz74jzm60c2,explanation,"The timing and characteristics of the rash following immunizations suggest a vaccine-related rash, which is a common and benign reaction to certain vaccines. Incorrect because Chickenpox would typically present with vesicular lesions and fever. Incorrect because Scarlet fever would present with a distinct rash and fever. Incorrect because Eczema is not typically associated with recent vaccinations.","A maculopapular rash of the trunk and extremities three days after MMR, with normal vital signs and no fever, matches the mild rash the CDC MMR vaccine information statement lists as a possible reaction. Primary varicella produces vesicles and usually fever. Scarlet fever produces fever and a sandpaper rash with pharyngitis, which are absent. An eczema flare is not tied to the immunization the way this timed maculopapular rash is.",https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqguenqy000z1yz74jzm60c2,options,Vaccine-related rash | Chickenpox | Scarlet fever | Eczema,Immunization-related rash | Primary varicella infection | Scarlet fever eruption | Eczema flare on the trunk,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqguenqy000z1yz74jzm60c2,references,,"[{""label"": ""CDC. MMR Vaccine VIS, current edition January 31, 2025. Fever and a mild rash can happen after MMR vaccination."", ""url"": ""https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html"", ""citation"": ""CDC. MMR Vaccine VIS, current edition January 31, 2025. Fever and a mild rash can happen after MMR vaccination.""}]",https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqguenqy000z1yz74jzm60c2,manual_correction,false,true,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgss4ie003c1ydhrw8z9l0n,correctAnswer,Vaccine-related rash,Post-immunization rash,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgss4ie003c1ydhrw8z9l0n,explanation,"## Why this answer is correct
+Vaccine-related rash is the most likely diagnosis.
+• The MMR vaccine can cause a mild maculopapular rash and fever 7-12 days post-vaccination.
+• This rash is typically self-limited and resolves without treatment.
+• The child's symptoms align with the expected side effects of the MMR vaccine.
+**In practice:** In young children, especially after receiving live attenuated vaccines like MMR, vaccine-related rashes are common and should be distinguished from actual infections.
+## Clinical pearl
+In young children, especially after receiving live attenuated vaccines like MMR, vaccine-related rashes are common and should be distinguished from actual infections.
+## Why the other options are wrong
+
+
+
+**Measles**
+• Trap: Students may confuse vaccine-related rashes with actual measles infection.
+• Why it fails here: Measles typically presents with a high fever, cough, coryza, conjunctivitis, and a characteristic rash that appears later than the rash seen after vaccination.
+• Remember: Differentiating between vaccine effects and actual disease symptoms is crucial.
+
+**Rubella**
+• Trap: Rubella may be thought to cause a similar rash, leading to confusion.
+• Why it fails here: Rubella infection would present with additional systemic symptoms and is not typically associated with recent vaccination history.
+• Remember: Understanding the clinical presentation of rubella versus vaccine effects is important.
+
+**Scarlet fever**
+• Trap: Scarlet fever may be considered due to the rash and fever.
+• Why it fails here: Scarlet fever is characterized by a distinct sandpaper-like rash, sore throat, and is caused by group A Streptococcus, which is not indicated in this case.
+• Remember: Recognizing the specific features of scarlet fever helps avoid misdiagnosis.
+## Key takeaway
+**Recognize and differentiate vaccine-related rashes from infectious diseases to provide appropriate reassurance and care.**
+
+**Memory hook:** Remember: MMR vaccine can cause mild rash and fever, typically resolving without treatment.
+
+## NP clinical pathway (Assess → Diagnose → Plan → Evaluate)
+
+1. Assess: The child is a 3-year-old boy presenting for routine immunizations with recent fever and rash.
+2. Diagnose: The timing of the rash and fever following the MMR vaccine suggests a vaccine-related rash rather than an active infection.
+3. Plan: Educate the mother about the expected side effects of the MMR vaccine, including the mild rash and fever, and reassure her that these symptoms are normal.
+4. Evaluate: Monitor the child for resolution of symptoms and advise follow-up if symptoms worsen or do not improve within a few days.
+
+## Clinical pearl
+
+Always consider the timing of symptoms in relation to vaccinations to differentiate between vaccine-related effects and actual infections.
+
+## High-yield facts
+
+• The MMR vaccine can cause a mild rash and fever 7-12 days post-vaccination.
+• Vaccine-related rashes are typically self-limited and resolve without intervention.
+• Measles and rubella infections present with more severe symptoms and systemic involvement.
+
+## Common pitfalls
+
+• Confusing vaccine-related symptoms with actual infectious diseases.
+• Overlooking the importance of vaccination history in assessing rashes in children.
+• Failing to reassure parents about common vaccine side effects.
+
+## Next step in care
+
+Monitor the child for symptom resolution and provide reassurance to the mother about the benign nature of vaccine-related rashes.
+
+## Test-taking tip
+
+Look for clues in the vignette that indicate a recent vaccination when considering vaccine-related diagnoses.
+
+## Real-world NP practice
+
+Educate parents on the expected side effects of vaccines and when to seek further medical advice.
+
+## Layered depth
+
+**Basic:** Vaccine-related rashes can occur after immunizations and are usually mild.
+
+**Intermediate:** Understanding the timeline of vaccine side effects helps differentiate them from actual infections.
+
+**Advanced:** Consider comorbidities or other underlying conditions that may complicate the clinical picture, especially in children with complex medical histories.
+
+## Related topics
+
+• **NCLEX — Pediatric immunizations:** Understanding vaccine side effects is crucial for safe pediatric care.","Fever and a mild maculopapular rash after MMR are listed on the CDC MMR vaccine information statement as reactions that can follow the live vaccine. Wild-type measles and rubella are the illnesses the vaccine prevents; they are unlikely in a child receiving routine immunizations whose illness fits the expected mild reaction. Scarlet fever adds pharyngitis and a sandpaper rash, which this examination does not describe.",https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgss4ie003c1ydhrw8z9l0n,options,Vaccine-related rash | Measles | Rubella | Scarlet fever,Post-immunization rash | Wild-type measles illness | Wild-type rubella illness | Scarlet fever eruption,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgss4ie003c1ydhrw8z9l0n,references,,"[{""label"": ""CDC. MMR Vaccine VIS, current edition January 31, 2025. Fever and a mild rash can happen after MMR vaccination."", ""url"": ""https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html"", ""citation"": ""CDC. MMR Vaccine VIS, current edition January 31, 2025. Fever and a mild rash can happen after MMR vaccination.""}]",https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgss4ie003c1ydhrw8z9l0n,manual_correction,false,true,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
+cmqgwfb6x002q1yjx0kxndogv,correctAnswer,Vaccine-related fever,Fever after immunization,https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgwfb6x002q1yjx0kxndogv,explanation,"The infant's fever and irritability following the DTaP vaccine are consistent with a vaccine-related reaction, which is a common and expected response. Incorrect because bacterial and viral infections would present with additional signs of illness. An allergic reaction would typically present with rash or respiratory symptoms, which are not noted here.
+
+Clinical reasoning: Assess: Infant with fever after vaccination. Diagnose: Likely vaccine-related fever. Plan: Educate parents about expected vaccine reactions and monitor. Evaluate: Ensure follow-up for future vaccinations.
+
+Why other options are incorrect:
+• Bacterial infection: Incorrect because there are no signs of a bacterial infection such as localized symptoms or systemic illness.
+• Viral infection: Incorrect because the presentation does not suggest a viral illness; the timing is closely related to vaccination.
+• Allergic reaction: Incorrect because there are no symptoms indicative of an allergic reaction, such as rash or difficulty breathing.","Fever to 101°F and irritability after a prior DTaP dose, in an infant who is now alert and well, is the common reaction on the CDC DTaP vaccine information statement: fever and fussiness sometimes happen after DTaP. A serious bacterial illness would leave the infant ill, not feeding and playing normally at this visit. An intercurrent viral illness is not required to explain a fever that followed the dose and then resolved. Anaphylaxis is an immediate reaction with hives or breathing difficulty, which was not described.",https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgwfb6x002q1yjx0kxndogv,options,Vaccine-related fever | Bacterial infection | Viral infection | Allergic reaction,Fever after immunization | Serious bacterial illness | Intercurrent viral illness | Anaphylaxis after the dose,https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgwfb6x002q1yjx0kxndogv,references,,"[{""label"": ""CDC. DTaP Vaccine VIS, current edition August 6, 2021. Fever and fussiness sometimes happen after DTaP vaccination."", ""url"": ""https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html"", ""citation"": ""CDC. DTaP Vaccine VIS, current edition August 6, 2021. Fever and fussiness sometimes happen after DTaP vaccination.""}]",https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgwfb6x002q1yjx0kxndogv,manual_correction,false,true,https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgu5x5v001r1y4o7m5cg2fy,correctAnswer,Vaccine-related fever,Fever after immunization,https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgu5x5v001r1y4o7m5cg2fy,explanation,"The infant's mild fever and irritability following the DTaP vaccine are consistent with a vaccine-related fever, which is a common and expected reaction to immunizations. 
+- Incorrect because a bacterial infection would typically present with more severe symptoms, such as high fever or lethargy. 
+- Incorrect because a viral infection would likely have additional symptoms beyond mild fever, such as cough or runny nose. 
+- Incorrect because an allergic reaction would present with more acute symptoms like hives or difficulty breathing.","A temperature of 100.5°F and irritability after the last DTaP dose, with continued feeding and no distress, fits the CDC DTaP vaccine information statement: fever and fussiness sometimes happen after vaccination. Serious bacterial illness would include a toxic or poorly feeding infant. An intercurrent viral illness is a weaker fit when the fever followed the immunization and the examination is otherwise benign. Anaphylaxis presents immediately with hives or respiratory symptoms, which are absent.",https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgu5x5v001r1y4o7m5cg2fy,options,Vaccine-related fever | Bacterial infection | Viral infection | Allergic reaction,Fever after immunization | Serious bacterial illness | Intercurrent viral illness | Anaphylaxis after the dose,https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgu5x5v001r1y4o7m5cg2fy,references,,"[{""label"": ""CDC. DTaP Vaccine VIS, current edition August 6, 2021. Fever and fussiness sometimes happen after DTaP vaccination."", ""url"": ""https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html"", ""citation"": ""CDC. DTaP Vaccine VIS, current edition August 6, 2021. Fever and fussiness sometimes happen after DTaP vaccination.""}]",https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqgu5x5v001r1y4o7m5cg2fy,manual_correction,false,true,https://www.cdc.gov/vaccines/hcp/current-vis/dtap.html
+cmqguk61w002k1yz9cpao4vxb,active,true,false,unverified
+cmqguk61w002k1yz9cpao4vxb,manual_correction,true,true,unverified
+cmqgtpg9q000n1yfga9vbkxpx,active,true,false,unverified
+cmqgtpg9q000n1yfga9vbkxpx,manual_correction,false,true,unverified
+cmtwf0trj004r1y2nb5m0bv7x,active,true,false,unverified
+cmtwf0trj004r1y2nb5m0bv7x,manual_correction,false,true,unverified
+cmqgra7tk00041ya10u1uipgj,active,true,false,unverified
+cmqgra7tk00041ya10u1uipgj,manual_correction,false,true,unverified
+cmqgss41f00361ydhjp0atpkk,active,true,false,unverified
+cmqgss41f00361ydhjp0atpkk,manual_correction,false,true,unverified
+cmr1dfce2000h1yuuzoroxwyc,active,true,false,unverified
+cmr1dfce2000h1yuuzoroxwyc,manual_correction,false,true,unverified
+cmtweysnf00151y2nohrg8iyl,active,true,false,unverified
+cmtweysnf00151y2nohrg8iyl,manual_correction,false,true,unverified
+cmtweyt9u001b1y2nmdlh5qjk,active,true,false,unverified
+cmtweyt9u001b1y2nmdlh5qjk,manual_correction,false,true,unverified
+cmqgtpdhn00001yfgeq775k8n,active,true,false,unverified
+cmqgtpdhn00001yfgeq775k8n,manual_correction,false,true,unverified
+cmqgtrz2g00151yfiypcrs8th,active,true,false,unverified
+cmqgtrz2g00151yfiypcrs8th,manual_correction,false,true,unverified
+cmqgtljk500321y51gsrgetry,active,true,false,unverified
+cmqgtljk500321y51gsrgetry,manual_correction,false,true,unverified
+cmtwf0wlb005k1y2nlrt0muzb,active,true,false,unverified
+cmtwf0wlb005k1y2nlrt0muzb,manual_correction,false,true,unverified
+cmtwf0wp2005l1y2n7sq6b1fs,active,true,false,unverified
+cmtwf0wp2005l1y2n7sq6b1fs,manual_correction,false,true,unverified
+cmtwf0ws8005m1y2nh5wf0uoa,active,true,false,unverified
+cmtwf0ws8005m1y2nh5wf0uoa,manual_correction,false,true,unverified
+cmqgtj6ph002r1y51wx3gqrhe,active,true,false,unverified
+cmqgtj6ph002r1y51wx3gqrhe,manual_correction,false,true,unverified
+cmtwf1j7s005z1y2nhyabnv0s,active,true,false,unverified
+cmtwf1j7s005z1y2nhyabnv0s,manual_correction,false,true,unverified
+cmqgtwo9u002k1yfge4hb8h2l,active,true,false,unverified
+cmqgtwo9u002k1yfge4hb8h2l,manual_correction,false,true,unverified
+cmtwf287x007b1y2nupb3sz41,active,true,false,unverified
+cmtwf287x007b1y2nupb3sz41,manual_correction,false,true,unverified
+cmtwf2a8s007x1y2nrmf1qqu4,active,true,false,unverified
+cmtwf2a8s007x1y2nrmf1qqu4,manual_correction,false,true,unverified
+cmtwf2wku008b1y2nfpgn8ogc,active,true,false,unverified
+cmtwf2wku008b1y2nfpgn8ogc,manual_correction,false,true,unverified
+cmtwf2x0c008g1y2nfjwmw1ei,active,true,false,unverified
+cmtwf2x0c008g1y2nfjwmw1ei,manual_correction,false,true,unverified
+cmtwf2xtc008p1y2np6pryl9i,active,true,false,unverified
+cmtwf2xtc008p1y2np6pryl9i,manual_correction,false,true,unverified
+cmtwf4laa00181yfso0sw3rlm,active,true,false,unverified
+cmtwf4laa00181yfso0sw3rlm,manual_correction,false,true,unverified
+cmtwf4lnk001c1yfsuzuplydu,active,true,false,unverified
+cmtwf4lnk001c1yfsuzuplydu,manual_correction,false,true,unverified
+cmtwf4lq9001d1yfsqln280zi,active,true,false,unverified
+cmtwf4lq9001d1yfsqln280zi,manual_correction,false,true,unverified
+cmtwf4omx00281yfssudpbedo,active,true,false,unverified
+cmtwf4omx00281yfssudpbedo,manual_correction,false,true,unverified
+cmtwf5ehu002v1yfst3ywm67a,active,true,false,unverified
+cmtwf5ehu002v1yfst3ywm67a,manual_correction,false,true,unverified
+cmtwf6vs700561yfs3qw5bqdt,active,true,false,unverified
+cmtwf6vs700561yfs3qw5bqdt,manual_correction,false,true,unverified
+cmtwf6x18005k1yfstchnapc7,active,true,false,unverified
+cmtwf6x18005k1yfstchnapc7,manual_correction,false,true,unverified
+cmtwf6x6q005m1yfssuoamwj8,active,true,false,unverified
+cmtwf6x6q005m1yfssuoamwj8,manual_correction,false,true,unverified
+cmtwf6xju005q1yfsgcy09gxw,active,true,false,unverified
+cmtwf6xju005q1yfsgcy09gxw,manual_correction,false,true,unverified
+cmtwf8wua008u1yfske6r4mbe,active,true,false,unverified
+cmtwf8wua008u1yfske6r4mbe,manual_correction,false,true,unverified
+cmtwf9sz8000g1yso3xolrkai,active,true,false,unverified
+cmtwf9sz8000g1yso3xolrkai,manual_correction,false,true,unverified
+cmtwf9v1t000z1ysoa0nc6416,active,true,false,unverified
+cmtwf9v1t000z1ysoa0nc6416,manual_correction,false,true,unverified
+cmtwfahm000171ysobyokbpns,active,true,false,unverified
+cmtwfahm000171ysobyokbpns,manual_correction,false,true,unverified
+cmtwfaizb001i1ysouc7jo33n,active,true,false,unverified
+cmtwfaizb001i1ysouc7jo33n,manual_correction,false,true,unverified
+cmtwfalxe002b1ysoz4rf33io,active,true,false,unverified
+cmtwfalxe002b1ysoz4rf33io,manual_correction,false,true,unverified
+cmqgumwhp00041y0tgxu1vepr,active,true,false,unverified
+cmqgumwhp00041y0tgxu1vepr,manual_correction,false,true,unverified
+cmtwfbkyz002l1ysozqhriv0e,active,true,false,unverified
+cmtwfbkyz002l1ysozqhriv0e,manual_correction,false,true,unverified
+cmtwfblds002o1yso1qjwwbb1,active,true,false,unverified
+cmtwfblds002o1yso1qjwwbb1,manual_correction,false,true,unverified
+cmqguwaet00331y0w1pj4rt5l,active,true,false,unverified
+cmqguwaet00331y0w1pj4rt5l,manual_correction,false,true,unverified
+cmtwfbo1m00371ysohwus6kj0,active,true,false,unverified
+cmtwfbo1m00371ysohwus6kj0,manual_correction,false,true,unverified
+cmtwfch26004i1ysoij8j6wkg,active,true,false,unverified
+cmtwfch26004i1ysoij8j6wkg,manual_correction,false,true,unverified
+cmtwfdh2d004t1ysoqz5vueq0,active,true,false,unverified
+cmtwfdh2d004t1ysoqz5vueq0,manual_correction,false,true,unverified
+cmtwfdkaw005m1yso5c363zfn,active,true,false,unverified
+cmtwfdkaw005m1yso5c363zfn,manual_correction,false,true,unverified
+cmtwfe861006g1ysozm0hsepz,active,true,false,unverified
+cmtwfe861006g1ysozm0hsepz,manual_correction,false,true,unverified
+cmqxays9n000o1y7rset1406u,active,true,false,unverified
+cmqxays9n000o1y7rset1406u,manual_correction,false,true,unverified
+cmtwfey69007j1ysontaqrp4q,active,true,false,unverified
+cmtwfey69007j1ysontaqrp4q,manual_correction,false,true,unverified
+cmqgvvbm0002t1ytisvfh8i2e,active,true,false,unverified
+cmqgvvbm0002t1ytisvfh8i2e,manual_correction,false,true,unverified
+cmtwffl8d008l1ysoewgb46ib,active,true,false,unverified
+cmtwffl8d008l1ysoewgb46ib,manual_correction,false,true,unverified
+cmtwffmka00901yso6slnwem1,active,true,false,unverified
+cmtwffmka00901yso6slnwem1,manual_correction,false,true,unverified
+cmqgsn5hp001j1ydhovq4ydgv,active,true,false,unverified
+cmqgsn5hp001j1ydhovq4ydgv,manual_correction,false,true,unverified
+cmtwffn6g00971ysocbqe8k4s,active,true,false,unverified
+cmtwffn6g00971ysocbqe8k4s,manual_correction,false,true,unverified
+cmtwfgj9a000h1y1oeja3cqxo,active,true,false,unverified
+cmtwfgj9a000h1y1oeja3cqxo,manual_correction,false,true,unverified
+cmtwfgku9000v1y1o9mc9ys2q,active,true,false,unverified
+cmtwfgku9000v1y1o9mc9ys2q,manual_correction,false,true,unverified
+cmtwfgl2z000x1y1ocw6lt1uc,active,true,false,unverified
+cmtwfgl2z000x1y1ocw6lt1uc,manual_correction,false,true,unverified
+cmqgmokay00051y8q367xtbpz,active,true,false,unverified
+cmqgmokay00051y8q367xtbpz,manual_correction,false,true,unverified
+cmtwfh83m001n1y1o0nyaxybj,active,true,false,unverified
+cmtwfh83m001n1y1o0nyaxybj,manual_correction,false,true,unverified
+cmtwfhxkt002l1y1ovl8avxoy,active,true,false,unverified
+cmtwfhxkt002l1y1ovl8avxoy,manual_correction,false,true,unverified
+cmtwfhzpi00351y1oduzzx9kz,active,true,false,unverified
+cmtwfhzpi00351y1oduzzx9kz,manual_correction,false,true,unverified
+cmtwfjjcc004e1y1ow0lewdzf,active,true,false,unverified
+cmtwfjjcc004e1y1ow0lewdzf,manual_correction,false,true,unverified
+cmtwfk8jj00521y1ocx9idziv,active,true,false,unverified
+cmtwfk8jj00521y1ocx9idziv,manual_correction,false,true,unverified
+cmtwfka5s005h1y1od2578p8y,active,true,false,unverified
+cmtwfka5s005h1y1od2578p8y,manual_correction,false,true,unverified
+cmqgtcwwk000v1y51rqycpgbg,active,true,false,unverified
+cmqgtcwwk000v1y51rqycpgbg,manual_correction,false,true,unverified
+cmr82cl0z000p1yfv8zxjmkbb,active,true,false,unverified
+cmr82cl0z000p1yfv8zxjmkbb,manual_correction,false,true,unverified
+cmqgtj5b300081ynyovb8lwuc,active,true,false,unverified
+cmqgtj5b300081ynyovb8lwuc,manual_correction,false,true,unverified
+cmtwfkxha005x1y1ooubef4fn,active,true,false,unverified
+cmtwfkxha005x1y1ooubef4fn,manual_correction,false,true,unverified
+cmr82evba001m1yfvzfii4pho,active,true,false,unverified
+cmr82evba001m1yfvzfii4pho,manual_correction,false,true,unverified
+cmr82ewq500231yfviued8e5z,active,true,false,unverified
+cmr82ewq500231yfviued8e5z,manual_correction,false,true,unverified
+cmtwflocj007c1y1omijv7wu3,active,true,false,unverified
+cmtwflocj007c1y1omijv7wu3,manual_correction,false,true,unverified
+cmr82l1rx005h1yfvxwpm3m4l,active,true,false,unverified
+cmr82l1rx005h1yfvxwpm3m4l,manual_correction,false,true,unverified
+cmr82mxhx006u1yfvsu0fuyf3,active,true,false,unverified
+cmr82mxhx006u1yfvsu0fuyf3,manual_correction,false,true,unverified
+cmr82p1x5007d1yfvaq4414sv,active,true,false,unverified
+cmr82p1x5007d1yfvaq4414sv,manual_correction,false,true,unverified
+cmr82r2hj00841yfvygev410r,active,true,false,unverified
+cmr82r2hj00841yfvygev410r,manual_correction,false,true,unverified
+cmr82r3bq008c1yfv2utijund,active,true,false,unverified
+cmr82r3bq008c1yfv2utijund,manual_correction,false,true,unverified
+cmqgspp8r00281ydhs2crbek0,active,true,false,unverified
+cmqgspp8r00281ydhs2crbek0,manual_correction,false,true,unverified
+cmqgsxb0z00501ydh1x7gh73l,active,true,false,unverified
+cmqgsxb0z00501ydh1x7gh73l,manual_correction,false,true,unverified
+cmr82v9dc00am1yfvfk8jxv9r,active,true,false,unverified
+cmr82v9dc00am1yfvfk8jxv9r,manual_correction,false,true,unverified
+cmr82xewq000f1ykz5ux2kwbg,active,true,false,unverified
+cmr82xewq000f1ykz5ux2kwbg,manual_correction,false,true,unverified
+cmr82xfb7000j1ykz48nouzxv,active,true,false,unverified
+cmr82xfb7000j1ykz48nouzxv,manual_correction,false,true,unverified
+cmr82z5bh00191ykzvg2qbr23,active,true,false,unverified
+cmr82z5bh00191ykzvg2qbr23,manual_correction,false,true,unverified
+cmr82z7lb001w1ykzr0ted06n,active,true,false,unverified
+cmr82z7lb001w1ykzr0ted06n,manual_correction,false,true,unverified
+cmr82z8dg00241ykz26bk71cb,active,true,false,unverified
+cmr82z8dg00241ykz26bk71cb,manual_correction,false,true,unverified
+cmr830ycg002k1ykz9i5gubr3,active,true,false,unverified
+cmr830ycg002k1ykz9i5gubr3,manual_correction,false,true,unverified
+cmqgtgjgp00261y51udq0967i,active,true,false,unverified
+cmqgtgjgp00261y51udq0967i,manual_correction,false,true,unverified
+cmr832wz700421ykzcwc41dw4,active,true,false,unverified
+cmr832wz700421ykzcwc41dw4,manual_correction,false,true,unverified
+cmr834k0u005a1ykzzy1xzdpe,active,true,false,unverified
+cmr834k0u005a1ykzzy1xzdpe,manual_correction,false,true,unverified
+cmr834k7r005c1ykz5do5wikw,active,true,false,unverified
+cmr834k7r005c1ykz5do5wikw,manual_correction,false,true,unverified
+cmr834lhk005p1ykzazpys24c,active,true,false,unverified
+cmr834lhk005p1ykzazpys24c,manual_correction,false,true,unverified
+cmr836lks006z1ykzsnkarex2,active,true,false,unverified
+cmr836lks006z1ykzsnkarex2,manual_correction,false,true,unverified
+cmr837mgj007e1ykzo0rpt0ra,active,true,false,unverified
+cmr837mgj007e1ykzo0rpt0ra,manual_correction,false,true,unverified
+cmr837mr4007h1ykza35d1qkm,active,true,false,unverified
+cmr837mr4007h1ykza35d1qkm,manual_correction,false,true,unverified
+cmr839c6n008f1ykz5c1y7dbd,active,true,false,unverified
+cmr839c6n008f1ykz5c1y7dbd,manual_correction,false,true,unverified
+cmr83axvu00a41ykzivkw9yjv,active,true,false,unverified
+cmr83axvu00a41ykzivkw9yjv,manual_correction,false,true,unverified
+cmr83ed90000e1yq50ba4weq5,active,true,false,unverified
+cmr83ed90000e1yq50ba4weq5,manual_correction,false,true,unverified
+cmr83gf0r002d1yq5iyt3ydkl,active,true,false,unverified
+cmr83gf0r002d1yq5iyt3ydkl,manual_correction,false,true,unverified
+cmr83i2si002m1yq55psq8ghj,active,true,false,unverified
+cmr83i2si002m1yq55psq8ghj,manual_correction,false,true,unverified
+cmr83i3iw002t1yq5v24lxmi4,active,true,false,unverified
+cmr83i3iw002t1yq5v24lxmi4,manual_correction,false,true,unverified
+cmqgvkxye002o1ystshvp9uen,active,true,false,unverified
+cmqgvkxye002o1ystshvp9uen,manual_correction,false,true,unverified
+cmqgw05fa001b1ydfsmf8w3be,active,true,false,unverified
+cmqgw05fa001b1ydfsmf8w3be,manual_correction,false,true,unverified
+cmqgw22kn001q1ydgi4df2atw,active,true,false,unverified
+cmqgw22kn001q1ydgi4df2atw,manual_correction,false,true,unverified
+cmr83k0ca004e1yq5itmwm4y1,active,true,false,unverified
+cmr83k0ca004e1yq5itmwm4y1,manual_correction,false,true,unverified
+cmr83lsu800561yq5d3xbfnf9,active,true,false,unverified
+cmr83lsu800561yq5d3xbfnf9,manual_correction,false,true,unverified
+cmr83nlll006b1yq5n2cmj7al,active,true,false,unverified
+cmr83nlll006b1yq5n2cmj7al,manual_correction,false,true,unverified
+cmqgukdlb00251yz8j6mi6yzr,active,true,false,unverified
+cmqgukdlb00251yz8j6mi6yzr,manual_correction,false,true,unverified
+cmr83pcut00791yq5w9upgmnh,active,true,false,unverified
+cmr83pcut00791yq5w9upgmnh,manual_correction,false,true,unverified
+cmr83pggb008a1yq5tt3kkhz5,active,true,false,unverified
+cmr83pggb008a1yq5tt3kkhz5,manual_correction,false,true,unverified
+cmr83rsa1008p1yq5oltdti74,active,true,false,unverified
+cmr83rsa1008p1yq5oltdti74,manual_correction,false,true,unverified
+cmr83rtr400981yq5x5tt729l,active,true,false,unverified
+cmr83rtr400981yq5x5tt729l,manual_correction,false,true,unverified
+cmr83ru21009c1yq5b6s9buxa,active,true,false,unverified
+cmr83ru21009c1yq5b6s9buxa,manual_correction,false,true,unverified
+cmr83ruu9009m1yq5y5h0km1m,active,true,false,unverified
+cmr83ruu9009m1yq5y5h0km1m,manual_correction,false,true,unverified
+cmr83u0ru00a41yq5k6g6xf29,active,true,false,unverified
+cmr83u0ru00a41yq5k6g6xf29,manual_correction,false,true,unverified
+cmr83w6id00ay1yq5jxjndtx4,active,true,false,unverified
+cmr83w6id00ay1yq5jxjndtx4,manual_correction,false,true,unverified
+cmr83w77800b21yq5pxgslhk6,active,true,false,unverified
+cmr83w77800b21yq5pxgslhk6,manual_correction,false,true,unverified
+cmr83w8og00bi1yq5ykqw46mb,active,true,false,unverified
+cmr83w8og00bi1yq5ykqw46mb,manual_correction,false,true,unverified
+cmr83y65s000e1yzb4zobzong,active,true,false,unverified
+cmr83y65s000e1yzb4zobzong,manual_correction,false,true,unverified
+cmr83y7qv000y1yzbvyrpy6am,active,true,false,unverified
+cmr83y7qv000y1yzbvyrpy6am,manual_correction,false,true,unverified
+cmr83y7wc00101yzbzowwkvwh,active,true,false,unverified
+cmr83y7wc00101yzbzowwkvwh,manual_correction,false,true,unverified
+cmr83y7z700111yzbiuleopg0,active,true,false,unverified
+cmr83y7z700111yzbiuleopg0,manual_correction,false,true,unverified
+cmr8409qy00161yzbyo0dy03c,active,true,false,unverified
+cmr8409qy00161yzbyo0dy03c,manual_correction,false,true,unverified
+cmr840bmt001u1yzbwluruez7,active,true,false,unverified
+cmr840bmt001u1yzbwluruez7,manual_correction,false,true,unverified
+cmr840cfa00241yzba48251mp,active,true,false,unverified
+cmr840cfa00241yzba48251mp,manual_correction,false,true,unverified
+cmr840ddq002c1yzbqhdmct59,active,true,false,unverified
+cmr840ddq002c1yzbqhdmct59,manual_correction,false,true,unverified
+cmr842ga6002r1yzbwge0ryjj,active,true,false,unverified
+cmr842ga6002r1yzbwge0ryjj,manual_correction,false,true,unverified
+cmr845vjx00571yzblb0q5kqt,active,true,false,unverified
+cmr845vjx00571yzblb0q5kqt,manual_correction,false,true,unverified
+cmr845wn7005l1yzb62du8vj1,active,true,false,unverified
+cmr845wn7005l1yzb62du8vj1,manual_correction,false,true,unverified
+cmr845wq3005m1yzb9wstkn1a,active,true,false,unverified
+cmr845wq3005m1yzb9wstkn1a,manual_correction,false,true,unverified
+cmr847q8s006d1yzbgjcxvhtp,active,true,false,unverified
+cmr847q8s006d1yzbgjcxvhtp,manual_correction,false,true,unverified
+cmr847rit006t1yzbt0mh1vel,active,true,false,unverified
+cmr847rit006t1yzbt0mh1vel,manual_correction,false,true,unverified
+cmr849ejh00731yzbafiix0a8,active,true,false,unverified
+cmr849ejh00731yzbafiix0a8,manual_correction,false,true,unverified
+cmr84bhip008b1yzb7ws5vjgw,active,true,false,unverified
+cmr84bhip008b1yzb7ws5vjgw,manual_correction,false,true,unverified
+cmr84bhrn008d1yzbo0uswy70,active,true,false,unverified
+cmr84bhrn008d1yzbo0uswy70,manual_correction,false,true,unverified
+cmr84df90009r1yzbrnubu7i6,active,true,false,unverified
+cmr84df90009r1yzbrnubu7i6,manual_correction,false,true,unverified
+cmr84dgvo00a61yzbo7bp592o,active,true,false,unverified
+cmr84dgvo00a61yzbo7bp592o,manual_correction,false,true,unverified
+cmr84ku7j000g1y5t19bs0som,active,true,false,unverified
+cmr84ku7j000g1y5t19bs0som,manual_correction,false,true,unverified
+cmr84oqn300351y5tsgxdd0y4,active,true,false,unverified
+cmr84oqn300351y5tsgxdd0y4,manual_correction,false,true,unverified
+cmr84sg38005q1y5tsw9s2dfw,active,true,false,unverified
+cmr84sg38005q1y5tsw9s2dfw,manual_correction,false,true,unverified
+cmr84sg8r005s1y5t0joe4dnl,active,true,false,unverified
+cmr84sg8r005s1y5t0joe4dnl,manual_correction,false,true,unverified
+cmr84u1ua006x1y5t01t1bizu,active,true,false,unverified
+cmr84u1ua006x1y5t01t1bizu,manual_correction,false,true,unverified
+cmr84vttt007f1y5tdig3q2i8,active,true,false,unverified
+cmr84vttt007f1y5tdig3q2i8,manual_correction,false,true,unverified
+cmr84xsai008d1y5tzu8nwxn0,active,true,false,unverified
+cmr84xsai008d1y5tzu8nwxn0,manual_correction,false,true,unverified
+cmr84xtgi008p1y5tbddqbhuc,active,true,false,unverified
+cmr84xtgi008p1y5tbddqbhuc,manual_correction,false,true,unverified
+cmr84xu8n008x1y5til6heu96,active,true,false,unverified
+cmr84xu8n008x1y5til6heu96,manual_correction,false,true,unverified
+cmr8515tv00an1y5ta6lt4kfk,active,true,false,unverified
+cmr8515tv00an1y5ta6lt4kfk,manual_correction,false,true,unverified
+cmr8532zg000t1y9i102asmu7,active,true,false,unverified
+cmr8532zg000t1y9i102asmu7,manual_correction,false,true,unverified
+cmr854yop00181y9igf0puhpw,active,true,false,unverified
+cmr854yop00181y9igf0puhpw,manual_correction,false,true,unverified
+cmr854zff001h1y9imruwnkgx,active,true,false,unverified
+cmr854zff001h1y9imruwnkgx,manual_correction,false,true,unverified
+cmr8591rh003o1y9ivh77zcm5,active,true,false,unverified
+cmr8591rh003o1y9ivh77zcm5,manual_correction,false,true,unverified
+cmr85cebx006y1y9icikve22j,active,true,false,unverified
+cmr85cebx006y1y9icikve22j,manual_correction,false,true,unverified
+cmr85e3pz007g1y9indgkcbtf,active,true,false,unverified
+cmr85e3pz007g1y9indgkcbtf,manual_correction,false,true,unverified
+cmr85fvnc008e1y9i69iyolah,active,true,false,unverified
+cmr85fvnc008e1y9i69iyolah,manual_correction,false,true,unverified
+cmr85fyke008p1y9i6dgln2zq,active,true,false,unverified
+cmr85fyke008p1y9i6dgln2zq,manual_correction,false,true,unverified
+cmr85g2t200901y9i8oamx9tn,active,true,false,unverified
+cmr85g2t200901y9i8oamx9tn,manual_correction,false,true,unverified
+cmr85l7qu000f1yz6zz9136ha,active,true,false,unverified
+cmr85l7qu000f1yz6zz9136ha,manual_correction,false,true,unverified
+cmr85l990000y1yz6y4d23y61,active,true,false,unverified
+cmr85l990000y1yz6y4d23y61,manual_correction,false,true,unverified
+cmr85n19j00261yz6hr4zwy9r,active,true,false,unverified
+cmr85n19j00261yz6hr4zwy9r,manual_correction,false,true,unverified
+cmr85p5ct003a1yz6g5i6bl5v,active,true,false,unverified
+cmr85p5ct003a1yz6g5i6bl5v,manual_correction,false,true,unverified
+cmr85xc3t00771yz6kwi4nrjz,active,true,false,unverified
+cmr85xc3t00771yz6kwi4nrjz,manual_correction,false,true,unverified
+cmr85s13w004a1yz6zil94aq9,active,true,false,unverified
+cmr85s13w004a1yz6zil94aq9,manual_correction,false,true,unverified
+cmr85tv0g005t1yz69pnn2la0,active,true,false,unverified
+cmr85tv0g005t1yz69pnn2la0,manual_correction,false,true,unverified
+cmr85tv40005u1yz626hx5peo,active,true,false,unverified
+cmr85tv40005u1yz626hx5peo,manual_correction,false,true,unverified
+cmr85tv7g005v1yz6yy1eyytc,active,true,false,unverified
+cmr85tv7g005v1yz6yy1eyytc,manual_correction,false,true,unverified
+cmr85vhsf00651yz6tw19atk7,active,true,false,unverified
+cmr85vhsf00651yz6tw19atk7,manual_correction,false,true,unverified
+cmr85vlbh00751yz6oc1inmj2,active,true,false,unverified
+cmr85vlbh00751yz6oc1inmj2,manual_correction,false,true,unverified
+cmr85zmci00921yz607gyp3yd,active,true,false,unverified
+cmr85zmci00921yz607gyp3yd,manual_correction,false,true,unverified
+cmr85znmd009f1yz6dao4052l,active,true,false,unverified
+cmr85znmd009f1yz6dao4052l,manual_correction,false,true,unverified
+cmr861lh2009g1yz6qp4n77an,active,true,false,unverified
+cmr861lh2009g1yz6qp4n77an,manual_correction,false,true,unverified
+cmr861o3300a61yz6ywiq3z1w,active,true,false,unverified
+cmr861o3300a61yz6ywiq3z1w,manual_correction,false,true,unverified
+cmr861oz500af1yz6dv4it3tb,active,true,false,unverified
+cmr861oz500af1yz6dv4it3tb,manual_correction,false,true,unverified
+cmr863n2q00b41yz6yvmo0sv0,active,true,false,unverified
+cmr863n2q00b41yz6yvmo0sv0,manual_correction,false,true,unverified
+cmr863nz900bd1yz6j3x05j29,active,true,false,unverified
+cmr863nz900bd1yz6j3x05j29,manual_correction,false,true,unverified
+cmqgvnocc000l1ytj8fdk7t8r,active,true,false,unverified
+cmqgvnocc000l1ytj8fdk7t8r,manual_correction,true,true,unverified
+cmqgtrh85001a1yfjffaw573v,active,true,false,unverified
+cmqgtrh85001a1yfjffaw573v,manual_correction,false,true,unverified
+cmqgtpe4g00041yfjba8o3cbx,active,true,false,unverified
+cmqgtpe4g00041yfjba8o3cbx,manual_correction,false,true,unverified
+cmqgukios002p1yz7jg21nd8n,active,true,false,unverified
+cmqgukios002p1yz7jg21nd8n,manual_correction,false,true,unverified
+cmqgvnql200021ytgt8raliz6,active,true,false,unverified
+cmqgvnql200021ytgt8raliz6,manual_correction,false,true,unverified
+cmqgvss83001m1ytil19h721e,active,true,false,unverified
+cmqgvss83001m1ytil19h721e,manual_correction,false,true,unverified
+cmr1dfap600001yuuplnlsv5a,active,true,false,unverified
+cmr1dfap600001yuuplnlsv5a,manual_correction,false,true,unverified
+cmr1dfchk000i1yuuidnc1p8n,active,true,false,unverified
+cmr1dfchk000i1yuuidnc1p8n,manual_correction,false,true,unverified
+cmr1dfczi000n1yuue5oqp4wl,active,true,false,unverified
+cmr1dfczi000n1yuue5oqp4wl,manual_correction,false,true,unverified
+cmr1dfd31000o1yuu6tqp6wlf,active,true,false,unverified
+cmr1dfd31000o1yuu6tqp6wlf,manual_correction,false,true,unverified
+cmr1dfgna001o1yuu7xxqgm2l,active,true,false,unverified
+cmr1dfgna001o1yuu7xxqgm2l,manual_correction,false,true,unverified
+cmr1dfh4w001t1yuu3qfb8pfl,active,true,false,unverified
+cmr1dfh4w001t1yuu3qfb8pfl,manual_correction,false,true,unverified
+cmr1dfhio001x1yuu4qze6qr1,active,true,false,unverified
+cmr1dfhio001x1yuu4qze6qr1,manual_correction,false,true,unverified
+cmr1dfjjm002i1yuuxcgzsbqj,active,true,false,unverified
+cmr1dfjjm002i1yuuxcgzsbqj,manual_correction,false,true,unverified
+cmr1dfjqp002k1yuuklqt6hy7,active,true,false,unverified
+cmr1dfjqp002k1yuuklqt6hy7,manual_correction,false,true,unverified
+cmqgtpdyy00021yfjenh3ca9f,options.clinicalReasoning,Assess: Parents report concerns about language and social engagement. Diagnose: Language delay is consistent with the child's current abilities. Plan: Refer for speech therapy and developmental support. Evaluate: Monitor progress over time.,,https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf
+cmqgtpdyy00021yfjenh3ca9f,options.distractorRationale,"{""Normal variation in development"": ""Incorrect because the specific concerns indicate a delay rather than normal variation."", ""Autism spectrum disorder"": ""Incorrect as the child does not exhibit other signs typically associated with autism."", ""Cognitive impairment"": ""Incorrect since the child has met physical milestones and there are no signs of cognitive deficits.""}",,https://depts.washington.edu/dbpeds/ID.Eval.Mgt.Children.ASD(AAP.2020).pdf
+cmqgss4ie003c1ydhrw8z9l0n,options.keyTakeaways,"[""Recognize and differentiate vaccine-related rashes from infectious diseases to provide appropriate reassurance and care.""]",,https://www.cdc.gov/vaccines/hcp/current-vis/mmr.html
