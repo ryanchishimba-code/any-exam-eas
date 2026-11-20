@@ -1,0 +1,20 @@
+{
+  "id": "b14-s2-05",
+  "stepLevel": "step2",
+  "outlineSystem": "blood-lymph-immune",
+  "subjectId": "hematology",
+  "difficulty": 4,
+  "blueprintTopic": "hit",
+  "scenario": "A 68-year-old man has been on unfractionated heparin for 7 days. Platelets fell from 240,000 to 70,000 and a new foot clot appeared. He has no bleeding. A classmate starts warfarin alone and continues a low heparin flush.",
+  "question": "What must be stopped, and why is warfarin alone unsafe right now?",
+  "options": [
+    "Continue heparin flushes and start warfarin",
+    "Platelet transfusion as the main step, then resume heparin",
+    "Observation, because 70,000 is not low enough to matter",
+    "Aspirin instead of anticoagulation, because the clots are platelet clumps",
+    "Stop all heparin and anticoagulate with a thrombin inhibitor"
+  ],
+  "correctAnswer": "Stop all heparin and anticoagulate with a thrombin inhibitor",
+  "citation": "Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022.",
+  "examTakeaway": "Heparin-induced thrombocytopenia is an antibody against platelet factor 4. Stop all heparin and start a direct thrombin inhibitor. Do not start warfarin alone."
+}
