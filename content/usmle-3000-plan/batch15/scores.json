@@ -1,0 +1,38 @@
+{
+  "step1": {
+    "n": 100,
+    "meanScore": 8.4,
+    "difficulty": {"3": 80, "4": 20},
+    "pharmacology": 20,
+    "systems": {
+      "human-development": 5,
+      "blood-lymph-immune": 6,
+      "behavioral-nervous": 12,
+      "msk-skin": 11,
+      "reproductive-endocrine": 16,
+      "multisystem": 30,
+      "biostats-epi": 11,
+      "social-sciences": 5,
+      "respiratory-renal": 4
+    }
+  },
+  "step2": {
+    "n": 100,
+    "meanScore": 8.4,
+    "difficulty": {"3": 80, "4": 20},
+    "systems": {
+      "human-development": 8,
+      "blood-lymph-immune": 7,
+      "behavioral-nervous": 18,
+      "multisystem": 14,
+      "biostats-epi": 11,
+      "reproductive-endocrine": 7,
+      "msk-skin": 6,
+      "respiratory-renal": 6,
+      "social-sciences": 23
+    }
+  },
+  "clueFlags": 0,
+  "citationFlags": 0,
+  "served": {"step1": 2603, "step2ck": 2388}
+}

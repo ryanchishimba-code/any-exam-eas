@@ -1,0 +1,20 @@
+{
+  "id": "b15-s2-78",
+  "stepLevel": "step2",
+  "outlineSystem": "social-sciences",
+  "subjectId": "ethics",
+  "difficulty": 3,
+  "blueprintTopic": "child-abuse",
+  "scenario": "A 4-year-old girl has bruises in a pattern of a hand and a story that does not match. She is quiet. A classmate will not report until the parents agree the story is false.",
+  "question": "What is the duty, and why is parental agreement not required?",
+  "options": [
+    "Wait for the parents to agree",
+    "Report only after a criminal conviction",
+    "Report now. Do not wait for the parents",
+    "Tell only the parents and no agency",
+    "Ignore patterned bruises if the child is quiet"
+  ],
+  "correctAnswer": "Report now. Do not wait for the parents",
+  "citation": "American Medical Association. Code of Medical Ethics. Chicago: AMA; 2017.",
+  "examTakeaway": "A clinician who suspects child abuse must report it. Certainty is not required, and parental permission is not required."
+}
