@@ -16,9 +16,12 @@ function humanize(slug: string): string {
  * reader only ever offers a link that actually leads somewhere.
  */
 export function getChapterRelatedTopics(
-  exam: StudyGuideExam,
+  exam: StudyGuideExam | "usmle",
   chapterSlug: string
 ): SgRelatedTopic[] {
+  // USMLE chapters point at the question bank in the manuscript. They do not
+  // reuse another board's topic map.
+  if (exam === "usmle") return [];
   const related: SgRelatedTopic[] = [];
 
   for (const slug of getTopicSlugsForChapter(exam, chapterSlug)) {

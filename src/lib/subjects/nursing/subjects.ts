@@ -39,7 +39,7 @@ export const NURSING_SUBJECTS: SubjectArea[] = [
     },
     {
       id: "pharmacology-nursing",
-      label: "Pharmacological Therapies",
+      label: "Pharmacological and Parenteral Therapies",
       contentArea: "NCLEX — Pharmacological & Parenteral Therapies",
       textbookRefs: "Open RN Pharmacology",
       examHints: "medication rights, insulin, anticoagulants, pain meds, adverse reactions",

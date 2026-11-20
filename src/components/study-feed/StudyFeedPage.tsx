@@ -8,6 +8,7 @@ import { getUserAccess } from "@/lib/access-control";
 import { redirectIfDbUnavailable } from "@/lib/page-access-error";
 import { flashcardFeedLevel } from "@/lib/pance-feed/access";
 import { type StudyFeedBoard } from "@/lib/study-feed/catalog";
+import type { UsmleFeedStepChoice } from "@/lib/study-feed/usmle-feed";
 
 export function studyFeedMetadata(board: StudyFeedBoard): Metadata {
   return {
@@ -18,7 +19,18 @@ export function studyFeedMetadata(board: StudyFeedBoard): Metadata {
 }
 
 /** Paid flashcard feed. Signed-out learners return here after sign-in. */
-export async function StudyFeedPage({ board }: { board: StudyFeedBoard }) {
+export async function StudyFeedPage({
+  board,
+  steps,
+  readOnly = false,
+  notice,
+}: {
+  board: StudyFeedBoard;
+  steps?: UsmleFeedStepChoice[];
+  /** Admin preview does not read or write feed progress. */
+  readOnly?: boolean;
+  notice?: string;
+}) {
   const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`/login?callbackUrl=${encodeURIComponent(board.href)}`);
@@ -43,5 +55,5 @@ export async function StudyFeedPage({ board }: { board: StudyFeedBoard }) {
     return <PanceFeedUpgrade board={board} />;
   }
 
-  return <PanceFeed board={board} />;
+  return <PanceFeed key={board.exam} board={board} steps={steps} readOnly={readOnly} notice={notice} />;
 }

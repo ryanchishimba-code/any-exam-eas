@@ -194,6 +194,29 @@ function rationaleCallsKeyedIncorrect(explanation: string, keyed: string[]): boo
   return keyed.some((choice) => choice.trim().length >= 8 && wrong.includes(choice.trim().toLowerCase()));
 }
 
+function bowtieChoiceCount(value: unknown): number {
+  if (!Array.isArray(value)) return 0;
+  return value.filter((entry) => {
+    if (typeof entry === "string") return entry.trim().length > 0;
+    if (!entry || typeof entry !== "object") return false;
+    const text = (entry as { text?: unknown; label?: unknown }).text ?? (entry as { label?: unknown }).label;
+    return typeof text === "string" && text.trim().length > 0;
+  }).length;
+}
+
+/** A listed condition column with fewer than two choices cannot be answered. */
+function readBowtieConditionColumn(payload: Record<string, unknown>): { listed: boolean; count: number } {
+  const keys = ["conditionOptions", "conditions", "conditionChoices", "potentialConditions"] as const;
+  let listed = false;
+  let count = 0;
+  for (const key of keys) {
+    if (!Object.prototype.hasOwnProperty.call(payload, key)) continue;
+    listed = true;
+    count = Math.max(count, bowtieChoiceCount(payload[key]));
+  }
+  return { listed, count };
+}
+
 function bowtieKeyedChoices(payload: Record<string, unknown> | null, answer: string): string[] {
   const choices = [
     ...stringList(payload?.actions),
@@ -264,7 +287,8 @@ export function assessStudentEligibility(
     const conditionIsStem =
       condition.trim().length > 0 &&
       (norm(condition) === norm(question) || (scenario.trim() && norm(condition) === norm(scenario)));
-    if (actions.length < 1 || monitors.length < 1 || conditionIsStem) {
+    const conditionColumn = payload ? readBowtieConditionColumn(payload) : { listed: false, count: 0 };
+    if (actions.length < 1 || monitors.length < 1 || conditionIsStem || (conditionColumn.listed && conditionColumn.count < 2)) {
       push(reasons, "bowtie_invalid_structure");
     }
     const keyed = bowtieKeyedChoices(payload, answer);

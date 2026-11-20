@@ -3,8 +3,9 @@ import path from "node:path";
 import { isPanceFeedCardId, shortSystemName } from "@/lib/pance-feed/format";
 import {
   isStudyFeedCardId,
+  resolveFeedBoard,
   STUDY_FEEDS,
-  type StudyFeedExam,
+  type FeedCatalogExam,
 } from "@/lib/study-feed/catalog";
 
 /**
@@ -16,8 +17,9 @@ import {
 const CARD_FILE = /^cards(?:-.+)?\.json$/;
 const DEFAULT_ROOT = path.join(process.cwd(), "content", "pance-feed");
 
-function contentRoot(exam: StudyFeedExam, root?: string): string {
-  return root ?? path.join(process.cwd(), "content", STUDY_FEEDS[exam].contentDir);
+function contentRoot(exam: FeedCatalogExam, root?: string): string {
+  const board = resolveFeedBoard(exam);
+  return root ?? path.join(process.cwd(), "content", board?.contentDir ?? STUDY_FEEDS.pance.contentDir);
 }
 
 export type PanceFeedCard = {
@@ -45,11 +47,11 @@ export function resetPanceFeedCardCache(): void {
   caches.clear();
 }
 
-export function loadStudyFeedCards(exam: StudyFeedExam, root?: string): PanceFeedCard[] {
+export function loadStudyFeedCards(exam: FeedCatalogExam, root?: string): PanceFeedCard[] {
   const resolved = contentRoot(exam, root);
   const hit = caches.get(resolved);
   if (hit) return hit.cards;
-  const prefix = STUDY_FEEDS[exam].idPrefix;
+  const prefix = resolveFeedBoard(exam)?.idPrefix ?? "";
   const dir = path.join(resolved, "cards");
   const files = fs
     .readdirSync(dir)
@@ -77,7 +79,7 @@ export function loadPanceFeedCards(root = DEFAULT_ROOT): PanceFeedCard[] {
 }
 
 export function getStudyFeedCard(
-  exam: StudyFeedExam,
+  exam: FeedCatalogExam,
   id: string,
   root?: string
 ): PanceFeedCard | null {
@@ -90,8 +92,8 @@ export function getPanceFeedCard(id: string, root = DEFAULT_ROOT): PanceFeedCard
   return getStudyFeedCard("pance", id, root);
 }
 
-export function loadStudyFeedSvg(exam: StudyFeedExam, id: string, root?: string): string | null {
-  const prefix = STUDY_FEEDS[exam].idPrefix;
+export function loadStudyFeedSvg(exam: FeedCatalogExam, id: string, root?: string): string | null {
+  const prefix = resolveFeedBoard(exam)?.idPrefix ?? "";
   if (!isStudyFeedCardId(prefix, id) || !getStudyFeedCard(exam, id, root)) return null;
   const file = path.join(contentRoot(exam, root), "svg", `${id}.svg`);
   if (!fs.existsSync(file)) return null;

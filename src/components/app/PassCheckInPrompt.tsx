@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { PASS_CHECK_IN_RESULT, type PassCheckInResult } from "@/lib/learning/pass-check-in";
 import { passCheckInSubtitle, quoteShareConsentLabel } from "@/lib/marketing/legal-copy";
-import { isImmersiveAppRoute } from "@/lib/navigation/app-shell";
+import { isFullExamSessionRoute, isImmersiveAppRoute } from "@/lib/navigation/app-shell";
 
 const CHOICES: { id: Exclude<PassCheckInResult, "dismissed">; label: string }[] = [
   { id: "passed", label: "Passed" },
@@ -27,7 +27,8 @@ export function PassCheckInPrompt({
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
 
-  if (done || isImmersiveAppRoute(pathname)) return null;
+  const onFullExam = pathname === "/full-exam" || pathname.startsWith("/full-exam/");
+  if (done || isImmersiveAppRoute(pathname) || onFullExam || isFullExamSessionRoute(pathname)) return null;
 
   async function save(result: PassCheckInResult, withQuote: boolean) {
     setError("");

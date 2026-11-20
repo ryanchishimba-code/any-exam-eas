@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { examQuestionToStudy, studyQuestionsToExamQuestions } from "./prepare";
-import { difficultyChipText, storedDifficultyValue } from "./difficulty-label";
+import { difficultyChipText, observedDifficultyLabel, storedDifficultyValue } from "./difficulty-label";
 
 describe("stored difficulty label", () => {
   it("shows the stored number and hides a missing field", () => {
-    expect(difficultyChipText(3)).toBe("Difficulty 3");
+    expect(difficultyChipText(3)).toBe("Bank tag 3");
+    expect(observedDifficultyLabel(18, 20)).toBe("Easy for most students");
+    expect(observedDifficultyLabel(4, 20)).toBe("Hard for most students");
+    expect(difficultyChipText(5, { correct: 16, attempts: 20 })).toBe("Easy for most students");
     expect(difficultyChipText(null)).toBeNull();
     expect(difficultyChipText(undefined)).toBeNull();
     expect(storedDifficultyValue("medium")).toBeUndefined();
@@ -25,7 +28,7 @@ describe("stored difficulty label", () => {
       { shuffleOptions: false }
     );
     expect(withDifficulty.storedDifficulty).toBe(4);
-    expect(difficultyChipText(withDifficulty.storedDifficulty)).toBe("Difficulty 4");
+    expect(difficultyChipText(withDifficulty.storedDifficulty)).toBe("Bank tag 4");
     const [delivered] = studyQuestionsToExamQuestions([withDifficulty]);
     expect(delivered?.difficulty).toBe(4);
 

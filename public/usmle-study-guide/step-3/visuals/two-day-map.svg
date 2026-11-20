@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="260" viewBox="0 0 640 260" role="img" aria-label="Step 3 two-day map">
+<title>Step 3 two days</title>
+<rect width="100%" height="100%" fill="#F6F3EE"/>
+<rect width="8" height="100%" fill="#0F766E"/>
+<text x="28" y="36" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#102027">Two days, two jobs</text>
+<g font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="15" fill="#1C2830">
+  <rect x="24" y="58" width="290" height="130" rx="8" fill="#FFFFFF" stroke="#E4DDD2"/>
+  <text x="36" y="86" font-weight="700">Day 1 — FIP</text>
+  <text x="36" y="112">Foundations of Independent Practice.</text>
+  <text x="36" y="134">Multiple choice only.</text>
+  <text x="36" y="156">Science, evidence, ethics, diagnosis.</text>
+  <rect x="326" y="58" width="290" height="130" rx="8" fill="#0F766E"/>
+  <text x="338" y="86" fill="#FFFFFF" font-weight="700">Day 2 — ACM</text>
+  <text x="338" y="112" fill="#FFFFFF">Advanced Clinical Medicine.</text>
+  <text x="338" y="134" fill="#FFFFFF">Multiple choice, then CCS cases.</text>
+  <text x="338" y="156" fill="#D1FAF4">Management and evolving illness.</text>
+</g>
+<text x="28" y="226" font-family="'Source Sans 3', 'Segoe UI', sans-serif" font-size="13" fill="#5C6B73">Session lengths are published by USMLE and can change. See the exam-day chapter.</text>
+</svg>

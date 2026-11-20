@@ -99,6 +99,10 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
                   );
                 })}
               </ul>
+            ) : layout.conditionChoicesListed ? (
+              <p className="mt-2 text-center text-sm leading-snug text-[var(--color-ink-muted)]">
+                Condition choices did not load for this item. It cannot be marked complete.
+              </p>
             ) : (
               <p className="mt-2 text-center text-sm font-semibold leading-snug text-[var(--color-ink)]">
                 <InlineBold text={revealed && layout.condition ? layout.condition : "—"} />
@@ -136,9 +140,11 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
 
       {!revealed && (
         <p className="text-xs text-[var(--color-ink-muted)]">
-          {valid
-            ? "Selection complete — submit when ready."
-            : `${bowTiePickInstruction(layout)}.`}
+          {layout.conditionChoicesListed && layout.conditionOptions.length === 0
+            ? "Condition choices are missing, so this item is not complete."
+            : valid
+              ? "Selection complete — submit when ready."
+              : `${bowTiePickInstruction(layout)}.`}
         </p>
       )}
     </div>

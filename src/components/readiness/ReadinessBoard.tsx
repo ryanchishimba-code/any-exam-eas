@@ -27,12 +27,17 @@ export function displayedExamOutcome(
 ): OutcomeChoice | null {
   if (result !== "passed" && result !== "not_yet" && result !== "not_taken") return null;
   if (examDate) {
-    const parsed = new Date(`${examDate.slice(0, 10)}T00:00:00`);
-    if (!Number.isNaN(parsed.getTime())) {
-      const today = new Date(now);
-      today.setHours(0, 0, 0, 0);
-      if (parsed.getTime() > today.getTime()) return null;
-    }
+    const iso = examDate.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    const us = examDate.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    const parsed = iso
+      ? new Date(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]))
+      : us
+        ? new Date(Number(us[3]), Number(us[1]) - 1, Number(us[2]))
+        : new Date(NaN);
+    if (Number.isNaN(parsed.getTime())) return null;
+    const today = new Date(now);
+    today.setHours(0, 0, 0, 0);
+    if (parsed.getTime() > today.getTime()) return null;
   }
   return result;
 }

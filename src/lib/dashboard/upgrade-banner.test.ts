@@ -7,6 +7,7 @@ import {
   shouldShowDashboardUpgradeBanner,
   dashboardUpgradePricingHref,
   trialUpgradeCheckoutHref,
+  formatOfferCountdown,
 } from "@/lib/dashboard/upgrade-banner";
 
 function mockAccess(partial: Partial<UserAccess>): UserAccess {
@@ -138,6 +139,18 @@ describe("dashboardUpgradePricingHref", () => {
     const href = dashboardUpgradePricingHref("free");
     expect(href).toContain("/checkout?");
     expect(href).toContain("reactivate=1");
+  });
+
+  it("counts down in hours and minutes, then minutes only", () => {
+    const end = "2026-11-17T13:39:00.000Z";
+    expect(formatOfferCountdown(end, Date.parse("2026-11-16T14:25:00.000Z"))).toBe(
+      "Ends in 23h 14m"
+    );
+    expect(formatOfferCountdown(end, Date.parse("2026-11-17T12:57:00.000Z"))).toBe(
+      "Ends in 42m"
+    );
+    expect(formatOfferCountdown(end, Date.parse("2026-11-17T13:39:00.000Z"))).toBe("Ended");
+    expect(formatOfferCountdown(end, Date.parse("2026-11-16T14:25:00.000Z"))).not.toMatch(/UTC/);
   });
 
   it("trialUpgradeCheckoutHref defaults to monthly Pro", () => {

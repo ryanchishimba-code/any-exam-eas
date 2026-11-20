@@ -38,6 +38,7 @@ export const MINIMAL_CHROME_PREFIXES = [
   "/study-tools/nclex/feed",
   "/study-tools/naplex/feed",
   "/study-tools/aanp-fnp/feed",
+  "/study-tools/usmle/feed",
 ] as const;
 
 export function isAppShellRoute(pathname: string): boolean {

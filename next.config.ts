@@ -81,11 +81,19 @@ const nextConfig: NextConfig = {
       "./content/nclex-feed/**/*",
       "./content/naplex-feed/**/*",
       "./content/fnp-feed/**/*",
+      "./content/usmle-feed/**/*",
     ],
     "/api/study-feed/[exam]/cards/[id]": [
       "./content/nclex-feed/**/*",
       "./content/naplex-feed/**/*",
       "./content/fnp-feed/**/*",
+      "./content/usmle-feed/**/*",
+    ],
+    "/api/study-feed/[exam]/progress": [
+      "./content/nclex-feed/**/*",
+      "./content/naplex-feed/**/*",
+      "./content/fnp-feed/**/*",
+      "./content/usmle-feed/**/*",
     ],
   },
   serverExternalPackages: ["stripe", "pg"],
@@ -190,7 +198,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(.*\\.(?:ico|png|jpg|jpeg|gif|svg|webp|woff2|txt|xml|mp4|webm))",
+        source: "/(.*\\.(?:ico|png|jpg|jpeg|gif|svg|webp|avif|woff2|txt|xml|mp4|webm))",
         headers: [
           {
             key: "Cache-Control",

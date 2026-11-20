@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
+import {
+  DashboardUpgradeBanner,
+  type DashboardTrialEndOfferView,
+  type DashboardUpgradeProps,
+} from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardProgressFold } from "@/components/dashboard/DashboardProgressFold";
@@ -71,6 +75,7 @@ export function DashboardPageContent({
   userName,
   testDate = null,
   upgrade,
+  trialEndOffer = null,
   hasPremiumAccess = true,
   hasStudyAccess = true,
   practiceFieldId,
@@ -94,6 +99,8 @@ export function DashboardPageContent({
   userName?: string | null;
   testDate?: string | null;
   upgrade?: DashboardUpgradeProps | null;
+  /** Live 25% offer for the post-trial banner. Null keeps the Subscribe banner. */
+  trialEndOffer?: { token: string; expiresAt: string } | null;
   hasPremiumAccess?: boolean;
   /** Trial or paid. The readiness invite uses this before its own fetch returns. */
   hasStudyAccess?: boolean;
@@ -148,6 +155,14 @@ export function DashboardPageContent({
       ? postTrialCheckoutHref()
       : incorrect.href
     : null;
+  const offerView: DashboardTrialEndOfferView | null =
+    upgrade?.variant === "free" && trialEndOffer?.token
+      ? {
+          token: trialEndOffer.token,
+          boardName,
+          expiresAt: trialEndOffer.expiresAt,
+        }
+      : null;
 
   return (
     <div className={dbUi.page}>
@@ -162,7 +177,7 @@ export function DashboardPageContent({
       />
 
       {upgrade && upgrade.variant !== "trial" ? (
-        <DashboardUpgradeBanner {...upgrade} />
+        <DashboardUpgradeBanner {...upgrade} trialEndOffer={offerView} />
       ) : null}
 
       {trialStartHere?.show ? (
@@ -222,6 +237,14 @@ export function DashboardPageContent({
           showLeadReason={false}
           trend={accuracyTrend}
         />
+      ) : null}
+
+      {recentTests[0] &&
+      Date.now() - Date.parse(recentTests[0].completedAt) < 36 * 60 * 60 * 1000 ? (
+        <p className="max-w-2xl px-0.5 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+          The practice snapshot counts every saved answer, including the exam you just finished.
+          A lower exam score moves it down. It is not a pass prediction.
+        </p>
       ) : null}
 
       {examDayPlan ? (

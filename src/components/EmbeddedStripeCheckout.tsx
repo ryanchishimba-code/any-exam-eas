@@ -13,6 +13,7 @@ import {
   parsePaymentMode,
   type PaymentMode,
 } from "@/lib/billing-payment-mode";
+import type { TrialUpgradeOfferView } from "@/lib/billing/trial-upgrade-offer";
 import type { DiscountValidation } from "@/lib/discount/types";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
@@ -25,7 +26,11 @@ import type { SignupPlan } from "@/lib/validators/auth";
  * (and Google Pay) whenever the shopper's device supports them, which is what
  * "easy checkout" needs.
  */
-export function EmbeddedStripeCheckout() {
+export function EmbeddedStripeCheckout({
+  offer = null,
+}: {
+  offer?: TrialUpgradeOfferView | null;
+}) {
   const searchParams = useSearchParams();
   // Trials never collect a card here. A stale plan=trial query is ignored.
   const plan: SignupPlan = "subscribe";
@@ -42,6 +47,7 @@ export function EmbeddedStripeCheckout() {
     [searchParams]
   );
   const initialPromo = searchParams.get("promo") ?? "";
+  const offerIsLive = offer?.status === "valid" && Boolean(offer.token);
   const reactivating = searchParams.get("reactivate") === "1";
 
   const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
@@ -86,7 +92,8 @@ export function EmbeddedStripeCheckout() {
     nextTier: SubscriptionTier,
     nextInterval: BillingInterval,
     nextPaymentMode: PaymentMode,
-    renewalConsent: boolean
+    renewalConsent: boolean,
+    offerToken: string | null
   ) {
     if (nextPlan === "trial") {
       setError("Free trials start from signup and do not collect a card.");
@@ -99,6 +106,7 @@ export function EmbeddedStripeCheckout() {
     const qs = new URLSearchParams({ plan: "subscribe", tier: nextTier, interval: nextInterval });
     if (isPaymentModeChoiceEnabled()) qs.set("mode", nextPaymentMode);
     if (discount?.code) qs.set("promo", discount.code);
+    if (offerToken) qs.set("offer", offerToken);
     if (reactivating) qs.set("reactivate", "1");
     const returnPath = searchParams.get("return");
     if (returnPath) qs.set("return", returnPath);
@@ -119,7 +127,8 @@ export function EmbeddedStripeCheckout() {
           tier: nextTier,
           interval: nextInterval,
           paymentMode: nextPaymentMode,
-          promoCode: discount?.valid ? discount.code : undefined,
+          promoCode: offerToken ? undefined : discount?.valid ? discount.code : undefined,
+          offerToken: offerToken || undefined,
           reactivate: reactivating || undefined,
           renewalConsent: renewalConsent || undefined,
         }),
@@ -187,7 +196,8 @@ export function EmbeddedStripeCheckout() {
         initialInterval={interval}
         initialPaymentMode={paymentMode}
         oneTimeAvailable={oneTimeAvailable}
-        initialPromo={initialPromo}
+        initialPromo={offerIsLive ? "" : initialPromo}
+        offer={offer}
         onContinue={handleContinueToPayment}
         continueBusy={upgradeBusy}
       />

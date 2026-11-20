@@ -54,6 +54,8 @@ describe("app-shell routes", () => {
     expect(isMinimalChromeRoute("/study-tools/naplex/feed")).toBe(true);
     expect(isMinimalChromeRoute("/study-tools/aanp-fnp/feed")).toBe(true);
     expect(hideMarketingChrome("/study-tools/aanp-fnp/feed")).toBe(true);
+    expect(isMinimalChromeRoute("/study-tools/usmle/feed")).toBe(true);
+    expect(hideMarketingChrome("/study-tools/usmle/feed")).toBe(true);
   });
 
   it("treats every exam's reader the same, not just NCLEX", () => {
@@ -70,8 +72,13 @@ describe("app-shell routes", () => {
     expect(isAppShellRoute("/pance/study-guide")).toBe(true);
     expect(hideMarketingChrome("/pance/study-guide/cardiovascular")).toBe(true);
 
-    // An exam without a book must not pick up reader chrome.
+    // A path that is not one of the three Step books stays out of reader chrome.
     expect(isStudyGuideReaderRoute("/usmle/study-guide/anything")).toBe(false);
+    expect(isStudyGuideReaderRoute("/usmle/study-guide/step-1")).toBe(false);
+    expect(isStudyGuideReaderRoute("/usmle/study-guide/step-1/cardiovascular-mechanisms")).toBe(true);
+    expect(isAppShellRoute("/usmle/study-guide/step-1")).toBe(true);
+    expect(isImmersiveAppRoute("/usmle/study-guide/step-2-ck/cardiovascular-disease")).toBe(true);
+    expect(hideMarketingChrome("/usmle/study-guide/step-3/exam-day")).toBe(true);
   });
 });
 

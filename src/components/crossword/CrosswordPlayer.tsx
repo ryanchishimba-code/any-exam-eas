@@ -1,58 +1,28 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
+import { loadCrosswordStore, saveCrosswordStore } from "@/lib/crossword/browser-store";
 import {
-  addIsoDays,
   formatClock,
   formatCountdown,
   formatCrosswordDate,
   nextChicagoMidnight,
   todayIsoCentral,
 } from "@/lib/crossword/schedule";
+import { drawShareCard } from "@/lib/crossword/share-card";
 import {
   challengeText,
-  demoPercentile,
   spoilerFreeShareText,
   type ShareMark,
 } from "@/lib/crossword/share-text";
+import { canReplaceSavedGame, gameToOpen } from "@/lib/crossword/shared-open";
+import { nextStreak, visibleStreak } from "@/lib/crossword/streak";
+import { syncCrosswordProgress } from "@/lib/crossword/sync-progress";
 import type { CrosswordDirection, CrosswordKey, PublicPuzzle, PublicSlot } from "@/lib/crossword/types";
-
-const STORE_KEY = "aee-crossword-v1";
-
-type GameSave = {
-  fills: Record<string, string>;
-  hints: Record<string, boolean>;
-  elapsed: number;
-  started: boolean;
-  complete: boolean;
-  hinted: boolean;
-};
-
-type Store = {
-  streaks: Record<string, { last: string; streak: number }>;
-  games: Record<string, GameSave>;
-};
-
-const EMPTY_STORE: Store = { streaks: {}, games: {} };
 
 function cellKey(r: number, c: number): string {
   return `${r},${c}`;
-}
-
-function loadStore(): Store {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(STORE_KEY) || "") as Store;
-    return {
-      streaks: parsed.streaks ?? {},
-      games: parsed.games ?? {},
-    };
-  } catch {
-    return EMPTY_STORE;
-  }
-}
-
-function saveStore(store: Store) {
-  localStorage.setItem(STORE_KEY, JSON.stringify(store));
 }
 
 function covers(slot: PublicSlot, r: number, c: number): boolean {
@@ -67,22 +37,12 @@ function slotIndexAt(slots: PublicSlot[], r: number, c: number, dir: CrosswordDi
   return any >= 0 ? any : 0;
 }
 
-function readStreak(board: string, today: string): number {
-  const record = loadStore().streaks[board];
-  if (!record) return 0;
-  if (record.last === today || addIsoDays(record.last, 1) === today) return record.streak;
-  return 0;
-}
-
 function commitStreak(board: string, today: string): number {
-  const store = loadStore();
-  const record = store.streaks[board];
-  if (record?.last === today) return record.streak;
-  const alive = record && addIsoDays(record.last, 1) === today ? record.streak : 0;
-  const streak = alive + 1;
-  store.streaks[board] = { last: today, streak };
-  saveStore(store);
-  return streak;
+  const store = loadCrosswordStore();
+  const next = nextStreak(store.streaks[board], today);
+  store.streaks[board] = next;
+  saveCrosswordStore(store);
+  return next.streak;
 }
 
 const KEY_ROWS = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"] as const;
@@ -104,33 +64,67 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
   const [toast, setToast] = useState("");
   const [countdown, setCountdown] = useState("—:—:—");
   const [ready, setReady] = useState(false);
+  const [previewReady, setPreviewReady] = useState(false);
+  const { status } = useSession();
   const [key, setKey] = useState<CrosswordKey | null>(null);
   const [keyError, setKeyError] = useState(false);
   const startedAt = useRef<number | null>(null);
   const doneRef = useRef<HTMLHeadingElement>(null);
   const fillsRef = useRef(fills);
   const hintsRef = useRef(hints);
+  const syncTimer = useRef<number | null>(null);
+  const previewRef = useRef<HTMLCanvasElement>(null);
+  const boardRef = useRef(puzzle.board);
   fillsRef.current = fills;
   hintsRef.current = hints;
+  boardRef.current = puzzle.board;
 
-  useEffect(() => {
-    const today = todayIsoCentral();
-    setStreak(readStreak(puzzle.board, today));
-    const saved = loadStore().games[gameKey];
-    if (saved) {
-      setFills(saved.fills);
-      setHints(saved.hints);
-      setElapsed(saved.elapsed);
-      setComplete(saved.complete);
-      setHinted(saved.hinted);
-      setShowDone(saved.complete);
-      if (saved.started && !saved.complete) {
+  const applySaved = useCallback(
+    (store: ReturnType<typeof loadCrosswordStore>) => {
+      const today = todayIsoCentral();
+      setStreak(visibleStreak(store.streaks[puzzle.board], today));
+      const locationSearch =
+        typeof window === "undefined" ? "" : `${window.location.search}${window.location.hash}`;
+      const saved = gameToOpen(store.games[gameKey], locationSearch);
+      setFills(saved?.fills ?? {});
+      setHints(saved?.hints ?? {});
+      setElapsed(saved?.elapsed ?? 0);
+      setComplete(Boolean(saved?.complete));
+      setHinted(Boolean(saved?.hinted));
+      setShowDone(Boolean(saved?.complete));
+      if (saved?.started && !saved.complete) {
         startedAt.current = Date.now() - saved.elapsed;
         setRunning(true);
+      } else {
+        startedAt.current = null;
+        setRunning(false);
       }
+    },
+    [gameKey, puzzle.board],
+  );
+
+  useEffect(() => {
+    let cancel = false;
+    applySaved(loadCrosswordStore());
+    if (status === "loading") return () => {
+      cancel = true;
+    };
+    if (status !== "authenticated") {
+      setReady(true);
+      return () => {
+        cancel = true;
+      };
     }
-    setReady(true);
-  }, [gameKey, puzzle.board]);
+    setReady(false);
+    void syncCrosswordProgress(8000).then((merged) => {
+      if (cancel) return;
+      if (merged) applySaved(merged);
+      setReady(true);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [applySaved, status]);
 
   useEffect(() => {
     const tick = () => setCountdown(formatCountdown(nextChicagoMidnight() - Date.now()));
@@ -164,10 +158,26 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
 
   useEffect(() => {
     if (!ready) return;
-    const store = loadStore();
-    store.games[gameKey] = { fills, hints, elapsed, started: running || elapsed > 0, complete, hinted };
-    saveStore(store);
-  }, [ready, gameKey, fills, hints, elapsed, running, complete, hinted]);
+    const store = loadCrosswordStore();
+    const next = { fills, hints, elapsed, started: running || elapsed > 0, complete, hinted };
+    if (!canReplaceSavedGame(store.games[gameKey], next)) return;
+    store.games[gameKey] = next;
+    saveCrosswordStore(store);
+    if (status !== "authenticated") return;
+    if (syncTimer.current) window.clearTimeout(syncTimer.current);
+    syncTimer.current = window.setTimeout(() => {
+      void syncCrosswordProgress(8000).then((merged) => {
+        if (!merged) return;
+        setStreak(visibleStreak(merged.streaks[boardRef.current], todayIsoCentral()));
+      });
+    }, 700);
+  }, [ready, gameKey, fills, hints, elapsed, running, complete, hinted, status]);
+
+  useEffect(() => {
+    return () => {
+      if (syncTimer.current) window.clearTimeout(syncTimer.current);
+    };
+  }, []);
 
   const slotPos = slotIndexAt(puzzle.slots, active.r, active.c, dir);
   const slot = puzzle.slots[slotPos] ?? puzzle.slots[0];
@@ -223,7 +233,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
 
   const typeLetter = useCallback(
     (letter: string) => {
-      if (complete || !slot) return;
+      if (!ready || complete || !slot) return;
       const keyName = cellKey(active.r, active.c);
       if (hints[keyName]) return;
       startTimer();
@@ -238,11 +248,11 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
       if (covers(slot, nextCell.r, nextCell.c)) setActive(nextCell);
       finish(next, hints);
     },
-    [active, complete, fills, finish, hints, slot, startTimer],
+    [active, complete, fills, finish, hints, ready, slot, startTimer],
   );
 
   const backspace = useCallback(() => {
-    if (complete || !slot) return;
+    if (!ready || complete || !slot) return;
     const keyName = cellKey(active.r, active.c);
     if (fills[keyName] && !hints[keyName]) {
       const next = { ...fills };
@@ -256,7 +266,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
     const next = { ...fills };
     delete next[cellKey(prev.r, prev.c)];
     setFills(next);
-  }, [active, complete, fills, hints, slot]);
+  }, [active, complete, fills, hints, ready, slot]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -268,7 +278,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
         setShowDone(false);
         return;
       }
-      if (showDone) return;
+      if (!ready || showDone) return;
       if (event.metaKey || event.ctrlKey || event.altKey) return;
       if (/^[a-zA-Z]$/.test(event.key)) {
         event.preventDefault();
@@ -299,7 +309,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, backspace, puzzle.cells, puzzle.cols, puzzle.rows, showDone, showHelp, typeLetter]);
+  }, [active, backspace, puzzle.cells, puzzle.cols, puzzle.rows, ready, showDone, showHelp, typeLetter]);
 
   useEffect(() => {
     if (showDone) doneRef.current?.focus();
@@ -369,7 +379,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
   });
 
   const sharePayload = spoilerFreeShareText({
-    boardLabel: puzzle.boardLabel,
+    boardLabel: puzzle.spokenName,
     dateLabel: formatCrosswordDate(puzzle.date),
     elapsedLabel: formatClock(elapsed),
     streak,
@@ -379,10 +389,36 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
     challengeUrl: puzzle.shareUrl,
   });
 
-  const copyText = async (text: string, message: string) => {
+  const shareInput = useMemo(
+    () => ({
+      spokenName: puzzle.spokenName,
+      examName: puzzle.examName,
+      dateLabel: formatCrosswordDate(puzzle.date),
+      elapsedLabel: formatClock(elapsed),
+      streak,
+      hinted,
+      complete,
+      cells: puzzle.cells,
+      hints,
+    }),
+    [complete, elapsed, hinted, hints, puzzle.cells, puzzle.date, puzzle.examName, puzzle.spokenName, streak],
+  );
+
+  const copyText = async (text: string, message: string, withImage = false) => {
+    const title = `AnyExamEasy ${puzzle.spokenName} crossword`;
     try {
+      if (withImage) {
+        const canvas = drawShareCard(shareInput);
+        const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob((value) => resolve(value), "image/png"));
+        const file = blob ? new File([blob], `anyexameasy-${puzzle.board}-crossword.png`, { type: "image/png" }) : null;
+        if (file && navigator.canShare?.({ files: [file] })) {
+          await navigator.share({ title, text, url: puzzle.shareUrl, files: [file] });
+          setToast("Share sheet opened.");
+          return;
+        }
+      }
       if (navigator.share) {
-        await navigator.share({ title: `${puzzle.boardLabel} crossword`, text, url: puzzle.shareUrl });
+        await navigator.share({ title, text, url: puzzle.shareUrl });
         setToast("Share sheet opened.");
         return;
       }
@@ -398,25 +434,36 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
     }
   };
 
-  const downloadCard = () => {
-    const canvas = drawShareCard({
-      board: puzzle.boardLabel,
-      date: puzzle.date,
-      elapsed: formatClock(elapsed),
-      streak,
-      hinted,
-      cells: puzzle.cells,
-      hints,
-    });
+  const downloadCard = (shape: "wide" | "square") => {
+    const canvas = drawShareCard(shareInput, shape);
     const link = document.createElement("a");
-    link.download = `anyexameasy-${puzzle.board}-crossword-${puzzle.date}.png`;
+    const suffix = shape === "square" ? "-square" : "";
+    link.download = `anyexameasy-${puzzle.board}-crossword-${puzzle.date}${suffix}.png`;
     link.href = canvas.toDataURL("image/png");
     link.click();
   };
 
+  useEffect(() => {
+    if (!showDone) return;
+    let cancel = false;
+    setPreviewReady(false);
+    void document.fonts.ready.then(() => {
+      if (cancel) return;
+      const source = drawShareCard(shareInput);
+      const target = previewRef.current;
+      if (!target) return;
+      target.width = source.width;
+      target.height = source.height;
+      target.getContext("2d")?.drawImage(source, 0, 0);
+      setPreviewReady(true);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [showDone, shareInput]);
+
   const across = puzzle.slots.filter((entry) => entry.dir === "across");
   const down = puzzle.slots.filter((entry) => entry.dir === "down");
-  const percent = demoPercentile(elapsed);
 
   return (
     <div className="xw-play">
@@ -572,7 +619,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
                 <li>Check the grid, or reveal a letter or word if you are stuck. Hints show on your share card.</li>
                 <li>Finish to read a one-line rationale, then try free questions. This is practice, not a promise you&apos;ll pass.</li>
               </ol>
-              <p className="xw-fine">A new puzzle unlocks at midnight, America/Chicago. Streaks stay in this browser.</p>
+              <p className="xw-fine">A new puzzle unlocks at midnight, America/Chicago. A streak stays on this device until you create a free account.</p>
               <button type="button" className="xw-btn xw-btn-primary" onClick={() => setShowHelp(false)}>
                 Back to the grid
               </button>
@@ -589,7 +636,8 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
                 Puzzle complete
               </h2>
               <p className="xw-lede">
-                You finished the {puzzle.boardLabel} crossword. Review the rationales, share a spoiler-free result, then try free questions.
+                You finished the {puzzle.spokenName} crossword in {formatClock(elapsed)}
+                {streak > 0 ? ` with a ${streak}-day streak` : ""}. Review the rationales and share a spoiler-free result. {puzzle.trialLabel}. No card needed.
               </p>
               <div className="xw-stats">
                 <div className="xw-stat">
@@ -600,14 +648,12 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
                   <b>{streak}</b>
                   <span>Day streak</span>
                 </div>
-                <div className="xw-stat">
-                  <b>{percent}%</b>
-                  <span>Preview percentile</span>
-                </div>
               </div>
-              <p className="xw-demo">
-                Faster than {percent}% of solvers today is a demo preview, not a live ranking.
-              </p>
+              {status === "unauthenticated" && streak >= 1 ? (
+                <p className="xw-streak-note">
+                  Your streak lives only on this device. <a href={puzzle.trialHref}>Create a free account</a> to keep it.
+                </p>
+              ) : null}
               {puzzle.archive ? <p className="xw-fine">Archive puzzle. Today&apos;s streak is unchanged.</p> : null}
               <p className="xw-fine">Next puzzle in {countdown} (midnight, America/Chicago).</p>
               <ol className="xw-answer-list">
@@ -620,18 +666,30 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
                   </li>
                 ))}
               </ol>
+              <canvas
+                ref={previewRef}
+                className="xw-share-preview"
+                data-ready={previewReady ? "true" : "false"}
+                role="img"
+                aria-label={`Spoiler-free AnyExamEasy share card. ${formatClock(elapsed)} solve time, ${streak}-day streak. No answers.`}
+              />
               <div className="xw-cta-row" style={{ marginTop: "0.9rem" }}>
-                <a className="xw-btn xw-btn-primary" href={puzzle.quizHref}>
-                  Try 10 free {puzzle.boardLabel} questions
+                {status === "authenticated" ? null : (
+                  <a className="xw-btn xw-btn-primary" href={puzzle.trialHref}>
+                    {puzzle.trialLabel} — no card needed
+                  </a>
+                )}
+                <a className={status === "authenticated" ? "xw-btn xw-btn-primary" : "xw-btn"} href={puzzle.quizHref}>
+                  Try 10 free questions
                 </a>
-                <a className="xw-btn" href={puzzle.signupHref}>
-                  Create a free account
-                </a>
-                <button type="button" className="xw-btn" onClick={() => void copyText(sharePayload, "Copied a spoiler-free result.")}>
+                <button type="button" className="xw-btn" onClick={() => void copyText(sharePayload, "Copied a spoiler-free result.", true)}>
                   Share result
                 </button>
-                <button type="button" className="xw-btn" onClick={downloadCard}>
+                <button type="button" className="xw-btn" onClick={() => downloadCard("wide")}>
                   Download share image
+                </button>
+                <button type="button" className="xw-btn" onClick={() => downloadCard("square")}>
+                  Square image
                 </button>
                 <button
                   type="button"
@@ -639,7 +697,7 @@ export function CrosswordPlayer({ puzzle }: { puzzle: PublicPuzzle }) {
                   onClick={() =>
                     void copyText(
                       challengeText({
-                        boardLabel: puzzle.boardLabel,
+                        boardLabel: puzzle.spokenName,
                         dateLabel: formatCrosswordDate(puzzle.date),
                         challengeUrl: puzzle.shareUrl,
                       }),
@@ -751,81 +809,3 @@ function wordSolved(
   return true;
 }
 
-function drawShareCard(input: {
-  board: string;
-  date: string;
-  elapsed: string;
-  streak: number;
-  hinted: boolean;
-  cells: PublicPuzzle["cells"];
-  hints: Record<string, boolean>;
-}) {
-  const width = 1200;
-  const height = 630;
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return canvas;
-  const gradient = ctx.createLinearGradient(0, 0, width, height);
-  gradient.addColorStop(0, "#f8fffd");
-  gradient.addColorStop(1, "#e6fffb");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, width, height);
-  ctx.fillStyle = "#0f766e";
-  roundRect(ctx, 64, 48, 64, 64, 16);
-  ctx.fill();
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "800 36px sans-serif";
-  ctx.fillText("A", 82, 92);
-  ctx.fillStyle = "#0a2540";
-  ctx.font = "800 42px sans-serif";
-  ctx.fillText("AnyExamEasy", 148, 94);
-  ctx.fillStyle = "#0f766e";
-  ctx.font = "700 24px sans-serif";
-  ctx.fillText(`${input.board.toUpperCase()} DAILY CROSSWORD`, 64, 156);
-  ctx.fillStyle = "#475569";
-  ctx.font = "600 28px sans-serif";
-  ctx.fillText(input.date, 64, 198);
-  ctx.fillStyle = "#0a2540";
-  ctx.font = "800 40px sans-serif";
-  ctx.fillText(`Completed in ${input.elapsed}`, 64, 520);
-  ctx.fillStyle = "#0f766e";
-  ctx.font = "700 26px sans-serif";
-  ctx.fillText(`${input.hinted ? "Used hints" : "No hints"} · ${input.streak}-day streak`, 64, 564);
-  ctx.fillStyle = "#0a2540";
-  ctx.fillRect(0, height - 56, width, 56);
-  ctx.fillStyle = "#99f6e4";
-  ctx.font = "700 22px sans-serif";
-  ctx.fillText("Practice, not a promise you'll pass · anyexameasy.com/crossword", 64, height - 22);
-
-  const rows = input.cells.length;
-  const cols = input.cells[0]?.length ?? 1;
-  const board = 360;
-  const gap = 4;
-  const cell = (board - gap * (Math.max(rows, cols) - 1)) / Math.max(rows, cols);
-  const gridW = cols * cell + (cols - 1) * gap;
-  const gridH = rows * cell + (rows - 1) * gap;
-  const x0 = width - gridW - 72;
-  const y0 = (height - 56 - gridH) / 2;
-  input.cells.forEach((row, r) => {
-    row.forEach((cellInfo, c) => {
-      const x = x0 + c * (cell + gap);
-      const y = y0 + r * (cell + gap);
-      ctx.fillStyle = cellInfo.block ? "#0a2540" : input.hints[`${r},${c}`] ? "#fbbf24" : "#0f766e";
-      roundRect(ctx, x, y, cell, cell, 6);
-      ctx.fill();
-    });
-  });
-  return canvas;
-}
-
-function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, radius: number) {
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.arcTo(x + w, y, x + w, y + h, radius);
-  ctx.arcTo(x + w, y + h, x, y + h, radius);
-  ctx.arcTo(x, y + h, x, y, radius);
-  ctx.arcTo(x, y, x + w, y, radius);
-  ctx.closePath();
-}

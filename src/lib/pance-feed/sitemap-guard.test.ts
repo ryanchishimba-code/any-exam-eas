@@ -11,6 +11,7 @@ describe("PANCE feed is not a public listing", () => {
     expect(sitemap).not.toContain("/study-tools/nclex/feed");
     expect(sitemap).not.toContain("/study-tools/naplex/feed");
     expect(sitemap).not.toContain("/study-tools/aanp-fnp/feed");
+    expect(sitemap).not.toContain("/study-tools/usmle/feed");
     expect(robots).toContain("/study-tools/");
     expect(fs.existsSync(path.join(root, "public", "pance-feed"))).toBe(false);
   });

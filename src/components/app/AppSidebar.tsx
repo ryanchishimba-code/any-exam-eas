@@ -29,11 +29,14 @@ import { STUDY_NAV_COLOR } from "@/lib/layout/nav-motion";
 import { isExamPracticeLockedRoute } from "@/lib/navigation/app-shell";
 import {
   STUDY_GUIDE_EXAMS,
+  USMLE_STUDY_GUIDE,
   getStudyGuideConfig,
 } from "@/lib/nclex-study-guide/guide-registry";
+import { isUsmleStudyGuidePublic } from "@/lib/nclex-study-guide/usmle-guide-flags";
 import { QUICK_BITE_BOARDS, QUICK_BITE_EXAMS } from "@/lib/quick-bites/boards";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
+import { isUsmleStudyFeedPublic, USMLE_FEED_PATH } from "@/lib/study-feed/usmle-feed";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -89,6 +92,17 @@ const NAV_SECTIONS: NavSection[] = [
         icon: BookMarked,
         exams: STUDY_GUIDE_EXAMS,
       },
+      ...(isUsmleStudyGuidePublic()
+        ? [
+            {
+              id: "usmle-study-guide",
+              href: USMLE_STUDY_GUIDE.hubHref,
+              label: "Study Guide",
+              icon: BookMarked,
+              exams: ["usmle" as const],
+            },
+          ]
+        : []),
       ...QUICK_BITE_EXAMS.map((exam) => {
         const board = QUICK_BITE_BOARDS[exam];
         return {
@@ -127,6 +141,17 @@ const NAV_SECTIONS: NavSection[] = [
         icon: Layers,
         exams: ["aanp-fnp"],
       },
+      ...(isUsmleStudyFeedPublic()
+        ? [
+            {
+              id: "usmle-feed",
+              href: USMLE_FEED_PATH,
+              label: "USMLE Feed",
+              icon: Layers,
+              exams: ["usmle"],
+            },
+          ]
+        : []),
     ],
   },
   {

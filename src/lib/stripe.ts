@@ -59,6 +59,8 @@ type CheckoutBaseParams = {
   stripeCouponId?: string | null;
   /** App promo code string — stored in metadata and redeemed after successful checkout */
   promoCode?: string | null;
+  /** Per-user trial upgrade offer. Redeemed after a successful charge. Never a promo code. */
+  upgradeOfferId?: string | null;
   /** auto = recurring subscription; manual = charge once, no renewal. */
   paymentMode?: PaymentMode;
   /**
@@ -100,6 +102,8 @@ function sessionMetadata(
   };
   const promo = params.promoCode?.trim();
   if (promo) metadata.promoCode = promo.toUpperCase();
+  const upgradeOfferId = params.upgradeOfferId?.trim();
+  if (upgradeOfferId) metadata.upgradeOfferId = upgradeOfferId;
   applyRenewalConsentMetadata(metadata, params.renewalConsent);
   return metadata;
 }
@@ -172,6 +176,8 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   };
   const promo = params.promoCode?.trim();
   if (promo) subscriptionMetadata.promoCode = promo.toUpperCase();
+  const upgradeOfferId = params.upgradeOfferId?.trim();
+  if (upgradeOfferId) subscriptionMetadata.upgradeOfferId = upgradeOfferId;
   applyRenewalConsentMetadata(subscriptionMetadata, params.renewalConsent);
 
   const subscriptionData: Stripe.Checkout.SessionCreateParams.SubscriptionData = {
@@ -515,6 +521,7 @@ export async function convertTrialSubscriptionToPaid(params: {
   interval: BillingInterval;
   stripeCouponId?: string | null;
   promoCode?: string | null;
+  upgradeOfferId?: string | null;
   renewalConsent?: CheckoutBaseParams["renewalConsent"];
 }): Promise<{ status: string; stripeSubscriptionId: string }> {
   if (!stripe) throw new Error("Stripe is not configured");
@@ -568,6 +575,8 @@ export async function convertTrialSubscriptionToPaid(params: {
   };
   const promo = params.promoCode?.trim();
   if (promo) updateMetadata.promoCode = promo.toUpperCase();
+  const upgradeOfferId = params.upgradeOfferId?.trim();
+  if (upgradeOfferId) updateMetadata.upgradeOfferId = upgradeOfferId;
   applyRenewalConsentMetadata(updateMetadata, params.renewalConsent);
   const updateParams: Stripe.SubscriptionUpdateParams = {
     items: [{ id: item.id, price: newPriceId }],
@@ -597,6 +606,12 @@ export async function convertTrialSubscriptionToPaid(params: {
   if (params.promoCode?.trim()) {
     void import("@/lib/promo").then((m) =>
       m.redeemPromoCode(params.userId, params.promoCode!.trim())
+    );
+  }
+
+  if (upgradeOfferId && updated.status === "active") {
+    void import("@/lib/billing/trial-upgrade-offer-db").then((m) =>
+      m.redeemTrialUpgradeOffer(upgradeOfferId, params.userId)
     );
   }
 

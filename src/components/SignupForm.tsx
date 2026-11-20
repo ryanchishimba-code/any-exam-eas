@@ -38,6 +38,7 @@ import {
 } from "@/lib/auth-client";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
+import { syncCrosswordProgress } from "@/lib/crossword/sync-progress";
 import { analytics } from "@/lib/analytics";
 import {
   VERCEL_FUNNEL_EVENTS,
@@ -252,6 +253,8 @@ export function SignupForm({
       if (signInRes?.error) {
         throw new Error(resolveSignInFailure(signInRes));
       }
+
+      await syncCrosswordProgress();
 
       saveReturningUserHint({
         email: trimmedEmail,

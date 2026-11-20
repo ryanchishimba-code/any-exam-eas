@@ -55,6 +55,12 @@ export type BowTieLayout = {
   condition: string;
   /** Choices for the center column. Empty when the item has no condition bank. */
   conditionOptions: string[];
+  /**
+   * True when the item listed a condition column, including an empty one.
+   * A narrative center label with no column stays false so action-and-monitor
+   * items can still be completed.
+   */
+  conditionChoicesListed: boolean;
   actions: string[];
   monitors: string[];
   /** How many actions the learner must pick. Bank bow-ties stay at 1. */
@@ -90,18 +96,37 @@ function isRecord(v: unknown): v is Record<string, unknown> {
   return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
-function stringList(value: unknown): string[] {
-  if (!Array.isArray(value)) return [];
-  return value.filter((entry): entry is string => typeof entry === "string" && entry.trim().length > 0);
+function choiceText(value: unknown): string {
+  if (typeof value === "string") return cleanOptionText(value);
+  if (!isRecord(value)) return "";
+  const text = value.text ?? value.label ?? value.name;
+  return typeof text === "string" ? cleanOptionText(text) : "";
 }
 
-function conditionChoices(
+function choiceList(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  const texts = value.map(choiceText).filter((text) => text.length > 0);
+  return [...new Set(texts)];
+}
+
+/** Condition choices from either a string list or `{ text }` rows. */
+export function readConditionChoices(
   chart: Record<string, unknown> | undefined,
   payload: Record<string, unknown> | undefined
-): string[] {
-  const fromChart = stringList(chart?.conditionOptions);
-  if (fromChart.length > 0) return fromChart.map(cleanOptionText);
-  return stringList(payload?.conditionOptions).map(cleanOptionText);
+): { options: string[]; listed: boolean } {
+  const sources = [chart, payload];
+  const keys = ["conditionOptions", "conditions", "conditionChoices", "potentialConditions"];
+  let listed = false;
+  for (const source of sources) {
+    if (!source) continue;
+    for (const key of keys) {
+      if (!Object.prototype.hasOwnProperty.call(source, key)) continue;
+      listed = true;
+      const options = choiceList(source[key]);
+      if (options.length > 0) return { options, listed: true };
+    }
+  }
+  return { options: [], listed };
 }
 
 function stripRolePrefix(opt: string): { role: "action" | "monitor" | "neutral"; text: string } {
@@ -116,9 +141,11 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
   const input = toLayoutInput(q);
   const chart = input.chartData;
   if (isRecord(chart) && chart.kind === "bow_tie") {
+    const conditions = readConditionChoices(chart, input.ngnPayload);
     return {
       condition: String(chart.condition ?? "Clinical condition"),
-      conditionOptions: conditionChoices(chart, input.ngnPayload),
+      conditionOptions: conditions.options,
+      conditionChoicesListed: conditions.listed,
       actions: (chart.actions as string[]) ?? [],
       monitors: (chart.monitors as string[]) ?? [],
       actionPickCount: Number(chart.actionPickCount ?? 1) || 1,
@@ -138,9 +165,11 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
 
   if (actions.length === 0 && monitors.length === 0) {
     const mid = Math.ceil(options.length / 2);
+    const conditions = readConditionChoices(undefined, input.ngnPayload);
     return {
       condition: input.vignette?.split(/[.!?]/)[0]?.trim() || "Patient presentation",
-      conditionOptions: [],
+      conditionOptions: conditions.options,
+      conditionChoicesListed: conditions.listed,
       actions: options.slice(0, mid),
       monitors: options.slice(mid),
       actionPickCount: 1,
@@ -160,9 +189,11 @@ export function parseBowTieLayout(q: NgnLayoutInput | StudyQuestion): BowTieLayo
     }
   }
 
+  const conditions = readConditionChoices(isRecord(chart) ? chart : undefined, input.ngnPayload);
   return {
     condition: input.vignette?.split(/[.!?]/)[0]?.trim() || "Patient presentation",
-    conditionOptions: conditionChoices(isRecord(chart) ? chart : undefined, input.ngnPayload),
+    conditionOptions: conditions.options,
+    conditionChoicesListed: conditions.listed,
     actions,
     monitors,
     actionPickCount: 1,
@@ -267,7 +298,10 @@ export function bowTieSelectionValid(
   const actionPick = layout.actionPickCount ?? 1;
   const conditionOptions = layout.conditionOptions ?? [];
   const conditionCount = selected.filter((s) => conditionOptions.includes(s)).length;
-  const conditionOk = conditionOptions.length === 0 || conditionCount === 1;
+  const conditionMissing = layout.conditionChoicesListed === true && conditionOptions.length === 0;
+  const conditionOk = conditionMissing
+    ? false
+    : conditionOptions.length === 0 || conditionCount === 1;
   return actionCount === actionPick && monitorCount === layout.monitorPickCount && conditionOk;
 }
 

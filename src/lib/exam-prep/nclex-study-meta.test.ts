@@ -29,7 +29,7 @@ describe("nclex-study-meta", () => {
         "Why other options are incorrect: Norepinephrine requires arterial line monitoring per guidelines. Incorrect — delaying pressor risks organ hypoperfusion.",
     });
     expect(patch.subjectId).toBe("pharmacology-nursing");
-    expect(patch.topicCategory).toBe("Pharmacological Therapies");
+    expect(patch.topicCategory).toBe("Pharmacological and Parenteral Therapies");
     expect(Array.isArray(patch.ngnPayload.top500Drugs)).toBe(true);
     expect((patch.ngnPayload.top500Drugs as string[]).some((d) => /norepinephrine/i.test(d))).toBe(
       true

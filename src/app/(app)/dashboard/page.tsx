@@ -4,6 +4,7 @@ import { getCachedSession } from "@/lib/auth/session";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
+import { loadDashboardTrialEndOffer } from "@/lib/dashboard/load-trial-end-upgrade-offer";
 import { QuickBitesDashboardRedirect } from "@/components/app/QuickBitesDashboardRedirect";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
@@ -95,7 +96,11 @@ async function DashboardContent({
   // dashboard returned left the second connection idle and held the HTML
   // stream open for both round trips. Format buckets are an analytics chart;
   // the dashboard does not render them.
-  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday, servedBank] =
+  const studyCompletionPromise = studyCompletionSupportedForExam(examSlug)
+    ? settled(computeStudyCompletion(userId, examSlug), null, "study completion")
+    : Promise.resolve(null);
+
+  const [stats, dashboard, inventory, roadmap, metadata, usage, mastery, drugsCompletedToday, servedBank, studyCompletion] =
     await runPageDb(() => {
       const masteryPromise =
         examSlug === "nclex"
@@ -147,6 +152,7 @@ async function DashboardContent({
         masteryPromise,
         settled(isDrugSafetyPathComplete(userId, examSlug), false, "drug safety path"),
         settled(getCachedPracticeBankStats(fieldId), null, "served bank"),
+        studyCompletionPromise,
       ]);
     });
 
@@ -192,9 +198,22 @@ async function DashboardContent({
     accountAttemptCount,
   });
 
-  const studyCompletion = studyCompletionSupportedForExam(examSlug)
-    ? await settled(computeStudyCompletion(userId, examSlug), null, "study completion")
-    : null;
+  const upgrade = usage ? resolveDashboardUpgradeContext(access, usage) : null;
+  // A failed offer lookup keeps the regular Subscribe banner and the rest of the page.
+  const trialEndOffer =
+    upgrade?.variant === "free"
+      ? await settled(
+          loadDashboardTrialEndOffer({
+            userId,
+            role: access.role,
+            subscriptionStatus: access.subscription.status,
+            trialEndsAt: access.subscription.trialEndsAt,
+            questionsAnswered: stats.questionsAnswered,
+          }),
+          null,
+          "trial upgrade offer"
+        )
+      : null;
 
   return (
     <DashboardPageContent
@@ -208,7 +227,8 @@ async function DashboardContent({
       testDate={testDate}
       hasPremiumAccess={access.hasPremiumAccess}
       hasStudyAccess={access.hasStudyAccess}
-      upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
+      upgrade={upgrade}
+      trialEndOffer={trialEndOffer}
       practiceFieldId={fieldId}
       masteryRollup={mastery?.rollup ?? null}
       masteryMapTiles={mastery?.mapTiles ?? null}

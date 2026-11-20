@@ -116,9 +116,7 @@ export function examQuestionToStudy(
     const layout = parseBowTieLayout({ ...q, options, correctAnswer });
     let actions = layout.actions;
     let monitors = layout.monitors;
-    const conditionOptions = Array.isArray(q.ngnPayload?.conditionOptions)
-      ? (q.ngnPayload.conditionOptions as unknown[]).filter((entry): entry is string => typeof entry === "string")
-      : [];
+    const conditionOptions = layout.conditionOptions;
     let shuffledConditions = conditionOptions;
     if (opts?.shuffleOptions !== false && (actions.length > 1 || monitors.length > 1 || conditionOptions.length > 1)) {
       const seed = mixShuffleSeed(
@@ -146,12 +144,16 @@ export function examQuestionToStudy(
       ...(q.chartData && typeof q.chartData === "object" ? q.chartData : {}),
       kind: "bow_tie",
       condition: layout.condition,
-      conditionOptions: shuffledConditions,
       actions,
       monitors,
       actionPickCount: layout.actionPickCount,
       monitorPickCount: layout.monitorPickCount,
     };
+    if (layout.conditionChoicesListed || shuffledConditions.length > 0) {
+      bowTieChart.conditionOptions = shuffledConditions;
+    } else {
+      delete bowTieChart.conditionOptions;
+    }
     q = {
       ...q,
       chartData: bowTieChart,

@@ -12,6 +12,11 @@ import {
 } from "@/lib/billing-payment-mode";
 import { buildPlanPricing, hasDiscount } from "@/lib/promo-pricing";
 import {
+  OFFER_PUBLIC_MESSAGE,
+  TRIAL_UPGRADE_OFFER_PERCENT,
+  type TrialUpgradeOfferView,
+} from "@/lib/billing/trial-upgrade-offer";
+import {
   clearCheckoutDiscount,
   loadCheckoutDiscount,
   saveCheckoutDiscount,
@@ -42,9 +47,12 @@ type CheckoutReviewProps = {
     tier: SubscriptionTier,
     interval: BillingInterval,
     paymentMode: PaymentMode,
-    renewalConsent: boolean
+    renewalConsent: boolean,
+    offerToken: string | null
   ) => void | Promise<void>;
   initialPromo?: string;
+  /** Resolved on the server from `?offer=`. Null when the visit has no offer. */
+  offer?: TrialUpgradeOfferView | null;
   continueBusy?: boolean;
 };
 
@@ -56,6 +64,7 @@ export function CheckoutReview({
   oneTimeAvailable = true,
   onContinue,
   initialPromo = "",
+  offer = null,
   continueBusy = false,
 }: CheckoutReviewProps) {
   const router = useRouter();
@@ -66,6 +75,7 @@ export function CheckoutReview({
   const [paymentMode, setPaymentMode] = useState<PaymentMode>(initialPaymentMode);
   const [discount, setDiscount] = useState<DiscountValidation | null>(null);
   const [renewalConsent, setRenewalConsent] = useState(false);
+  const initialOffer = offer?.token ?? "";
 
   const isUpgrade = plan === "subscribe";
   const showPaymentMode = isPaymentModeChoiceEnabled() && oneTimeAvailable;
@@ -98,9 +108,10 @@ export function CheckoutReview({
   }, [initialPaymentMode]);
 
   useEffect(() => {
+    if (initialOffer) return;
     const stored = loadCheckoutDiscount(plan);
     if (stored?.validation) setDiscount(stored.validation);
-  }, [plan]);
+  }, [plan, initialOffer]);
 
   const syncUrl = useCallback(
     (
@@ -112,6 +123,7 @@ export function CheckoutReview({
       const promo = searchParams.get("promo");
       const reactivate = searchParams.get("reactivate");
       const returnPath = searchParams.get("return");
+      const offer = searchParams.get("offer");
       const qs = new URLSearchParams({
         plan: nextPlan,
         tier: nextTier,
@@ -119,6 +131,7 @@ export function CheckoutReview({
       });
       if (isPaymentModeChoiceEnabled()) qs.set("mode", nextMode);
       if (promo) qs.set("promo", promo);
+      if (offer) qs.set("offer", offer);
       if (reactivate) qs.set("reactivate", reactivate);
       if (returnPath) qs.set("return", returnPath);
       router.replace(`/checkout?${qs.toString()}`, { scroll: false });
@@ -158,11 +171,36 @@ export function CheckoutReview({
     setDiscount(null);
   };
 
+  const offerView = offer;
+  const offerValid = offerView?.status === "valid" && Boolean(offerView.token);
+  const offerPricing = offerValid
+    ? buildPlanPricing(
+        plan,
+        tier,
+        interval,
+        offerView.percentOff ?? TRIAL_UPGRADE_OFFER_PERCENT,
+        null
+      )
+    : null;
   const basePricing = buildPlanPricing(plan, tier, interval);
-  const pricing =
-    discount?.valid && discount.pricing ? discount.pricing : basePricing;
-  const discounted = discount?.valid && hasDiscount(pricing);
-  const appliedCode = discounted ? discount?.code : null;
+  const pricing = offerPricing
+    ? offerPricing
+    : discount?.valid && discount.pricing
+      ? discount.pricing
+      : basePricing;
+  const summaryDiscount: DiscountValidation | null = offerValid
+    ? {
+        valid: true,
+        code: `${TRIAL_UPGRADE_OFFER_PERCENT}% off first payment`,
+        message: offerView?.message ?? OFFER_PUBLIC_MESSAGE.valid,
+        discountPercent: offerView?.percentOff ?? TRIAL_UPGRADE_OFFER_PERCENT,
+        pricing,
+        fullAccessIncluded: true,
+      }
+    : discount;
+  const discounted = Boolean(summaryDiscount?.valid && hasDiscount(pricing));
+  const appliedCode = !offerValid && discounted ? discount?.code : null;
+  const offerTokenForCheckout = offerValid ? initialOffer : null;
 
   const continueButton = (
     <div className="space-y-3">
@@ -183,12 +221,13 @@ export function CheckoutReview({
         disabled={continueBusy || (needsRenewalConsent && !renewalConsent)}
         onClick={() =>
           void onContinue(
-            discount?.valid ? discount : null,
+            offerValid ? null : discount?.valid ? discount : null,
             plan,
             tier,
             interval,
             effectivePaymentMode,
-            needsRenewalConsent && renewalConsent
+            needsRenewalConsent && renewalConsent,
+            offerTokenForCheckout
           )
         }
       >
@@ -224,22 +263,32 @@ export function CheckoutReview({
           />
         )}
 
+        {offerView && !offerValid ? (
+          <p className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm leading-snug text-[var(--color-ink-muted)]">
+            {offerView.message}
+          </p>
+        ) : null}
         <CheckoutOrderSummary
           pricing={pricing}
-          discount={discount}
+          discount={summaryDiscount}
           interval={interval}
           tier={tier}
           paymentMode={effectivePaymentMode}
         />
-
-        <CheckoutDiscountSection
-          plan={plan}
-          interval={interval}
-          initialCode={initialPromo}
-          onValidationChange={handleValidationChange}
-          appliedCode={appliedCode}
-          onRemove={appliedCode ? handleRemoveDiscount : undefined}
-        />
+        {offerValid ? (
+          <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+            {TRIAL_UPGRADE_OFFER_PERCENT}% off this first payment only. It can’t be combined with another code.
+          </p>
+        ) : (
+          <CheckoutDiscountSection
+            plan={plan}
+            interval={interval}
+            initialCode={initialPromo}
+            onValidationChange={handleValidationChange}
+            appliedCode={appliedCode}
+            onRemove={appliedCode ? handleRemoveDiscount : undefined}
+          />
+        )}
 
         {continueButton}
       </div>
@@ -252,21 +301,31 @@ export function CheckoutReview({
     <div className="mx-auto max-w-lg space-y-5">
       <UpgradeIntervalChoice value={interval} onChange={handleIntervalChange} tier={tier} />
 
+      {offerView && !offerValid ? (
+        <p className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm leading-snug text-[var(--color-ink-muted)]">
+          {offerView.message}
+        </p>
+      ) : null}
       <CheckoutOrderSummary
         pricing={pricing}
-        discount={discount}
+        discount={summaryDiscount}
         interval={interval}
         tier={tier}
       />
-
-      <CheckoutDiscountSection
-        plan={plan}
-        interval={interval}
-        initialCode={initialPromo}
-        onValidationChange={handleValidationChange}
-        appliedCode={appliedCode}
-        onRemove={appliedCode ? handleRemoveDiscount : undefined}
-      />
+      {offerValid ? (
+        <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+          {TRIAL_UPGRADE_OFFER_PERCENT}% off this first payment only. It can’t be combined with another code.
+        </p>
+      ) : (
+        <CheckoutDiscountSection
+          plan={plan}
+          interval={interval}
+          initialCode={initialPromo}
+          onValidationChange={handleValidationChange}
+          appliedCode={appliedCode}
+          onRemove={appliedCode ? handleRemoveDiscount : undefined}
+        />
+      )}
 
       {continueButton}
     </div>

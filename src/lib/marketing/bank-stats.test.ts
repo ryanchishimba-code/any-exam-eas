@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
 import {
   getPublishedQuestionStats,
   MARKETING_QUESTION_COUNTS,
@@ -41,6 +42,7 @@ describe("marketing bank stats", () => {
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("2,801");
     expect(MARKETING_QUESTION_COUNTS.aanpFnp).toBe("4,781");
     expect(MARKETING_QUESTION_COUNTS.nptePt).toBe("4,240");
-    expect(TOP_500_DRUGS_COUNT).toBeGreaterThanOrEqual(500);
+    expect(TOP_500_COUNT).toBeGreaterThan(500);
+    expect(TOP_500_DRUGS_COUNT).toBe("500+");
   });
 });

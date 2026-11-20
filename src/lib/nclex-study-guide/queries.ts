@@ -1,6 +1,10 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
-import { STUDY_GUIDES, type StudyGuideExam } from "./guide-registry";
+import {
+  STUDY_GUIDES,
+  type StudyGuideExam,
+  type UsmleStudyBook,
+} from "./guide-registry";
 import { getChapterRelatedTopics } from "./related-topics";
 import type { SgChapterDto, SgTocChapter } from "./types";
 
@@ -63,6 +67,34 @@ export async function getPublishedGuide(exam: StudyGuideExam = "nclex") {
   return loadPublishedGuide(exam);
 }
 
+const loadPublishedGuideByTrack = unstable_cache(
+  async (examSlug: string, examTrack: string, guideId: string) => {
+    return prisma.sgGuide.findFirst({
+      where: {
+        examSlug,
+        examTrack,
+        OR: [{ publishedAt: { not: null } }, { id: guideId }],
+      },
+      orderBy: { publishedAt: "desc" },
+      select: {
+        id: true,
+        title: true,
+        examSlug: true,
+        examTrack: true,
+        edition: true,
+        version: true,
+      },
+    });
+  },
+  ["sg-published-guide-track"],
+  { revalidate: STUDY_GUIDE_CACHE_TTL, tags: [STUDY_GUIDE_CACHE_TAG] }
+);
+
+/** One USMLE Step book. Track keeps the three books from resolving to each other. */
+export async function getPublishedUsmleGuide(book: UsmleStudyBook) {
+  return loadPublishedGuideByTrack(book.exam, book.track, book.guideId);
+}
+
 const loadGuideToc = unstable_cache(
   async (guideId: string): Promise<SgTocChapter[]> =>
     prisma.sgChapter.findMany({
@@ -123,7 +155,7 @@ const loadChapterRow = unstable_cache(
 export async function getChapterBySlug(
   guideId: string,
   slug: string,
-  exam: StudyGuideExam
+  exam: StudyGuideExam | "usmle"
 ): Promise<SgChapterDto | null> {
   // Topic links stay outside the cache: they are a pure in-memory lookup, so
   // caching them would only pin the mapping to a stale deploy.

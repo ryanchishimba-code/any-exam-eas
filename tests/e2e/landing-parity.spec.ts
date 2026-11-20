@@ -71,6 +71,7 @@ type Shot = {
   border: string | null;
   preload: string | null;
   preloadMedia: string | null;
+  imagePreloads: { href: string | null; media: string | null; type: string | null; srcset: string | null }[];
   sectionH: number | null;
   photoEndsWithHero: boolean;
   joinGap: number | null;
@@ -138,6 +139,12 @@ async function readLanding(page: Page): Promise<Shot> {
     const heroBottom = hero ? hero.getBoundingClientRect().bottom + window.scrollY : null;
     const nextTop = next ? next.getBoundingClientRect().top + window.scrollY : null;
     const preload = document.querySelector('link[rel="preload"][as="image"]');
+    const imagePreloads = [...document.querySelectorAll('link[rel="preload"][as="image"]')].map((el) => ({
+      href: el.getAttribute("href"),
+      media: el.getAttribute("media"),
+      type: el.getAttribute("type"),
+      srcset: el.getAttribute("imagesrcset"),
+    }));
     const photoStyle = photo ? getComputedStyle(photo) : null;
     const nextStyle = next ? getComputedStyle(next) : null;
     return {
@@ -164,6 +171,7 @@ async function readLanding(page: Page): Promise<Shot> {
       border: photoStyle?.borderImageSource ?? null,
       preload: preload?.getAttribute("href") ?? null,
       preloadMedia: preload?.getAttribute("media") ?? null,
+      imagePreloads,
       photoEndsWithHero:
         photo != null &&
         hero != null &&
@@ -228,7 +236,20 @@ function expectPageIdentity(entry: Landing, shot: Shot) {
   expect(shot.primaryHref, entry.path).toBe(href);
   expect(shot.navHref, entry.path).toBe(href);
   expect(shot.secondaryHref, entry.path).toBe(entry.see);
-  expect(shot.preload, entry.path).toBeNull();
+  if (entry.hero === "home") {
+    expect(shot.imagePreloads, entry.path).toHaveLength(2);
+    expect(
+      shot.imagePreloads.find((link) => (link.href ?? "").endsWith("home-desktop.avif")),
+      entry.path
+    ).toMatchObject({ media: "(min-width: 768px)", type: "image/avif" });
+    const mobilePreload = shot.imagePreloads.find((link) => link.media === "(max-width: 767px)");
+    expect(mobilePreload, entry.path).toMatchObject({ type: "image/avif" });
+    expect(mobilePreload?.srcset ?? "", entry.path).toContain("home-mobile.avif");
+    expect(mobilePreload?.srcset ?? "", entry.path).toContain("home-mobile-2x.avif");
+    expect(mobilePreload?.srcset ?? "", entry.path).toContain("home-mobile-3x.avif");
+  } else {
+    expect(shot.preload, entry.path).toBeNull();
+  }
   expect(shot.border ?? "", entry.path).toContain(`/images/marketing/heroes/${entry.hero}-`);
   expect(shot.photoH, entry.path).toBe(shot.svh);
   expect(shot.sectionH, entry.path).toBe(shot.svh);
