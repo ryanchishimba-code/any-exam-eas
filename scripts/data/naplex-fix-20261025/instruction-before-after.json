@@ -1,0 +1,215 @@
+[
+  {
+    "id": "cmqvos4p1001s1ylrcit5xmx2",
+    "scenario": "A 55-year-old man with a history of heart failure and diabetes presents to the clinic for a routine check-up. He is currently taking lisinopril, metformin, and furosemide. His blood pressure is 130/80 mmHg, and his blood glucose is well-controlled. He mentions experiencing frequent leg cramps.",
+    "question": "Which laboratory value warrants a therapeutic change?",
+    "options": [
+      "Potassium level of 3.0 mEq/L",
+      "Sodium level of 140 mEq/L",
+      "Creatinine level of 1.2 mg/dL",
+      "Blood glucose level of 90 mg/dL"
+    ],
+    "correctAnswer": "Potassium level of 3.0 mEq/L",
+    "explanation": "## Why this answer is correct\nA potassium level of 3.0 mEq/L is critically low and requires immediate intervention.\n• **Hypokalemia** (low potassium) can lead to serious **cardiac arrhythmias**.\n• Furosemide, a **diuretic**, can cause potassium loss, increasing the risk of hypokalemia.\n• Monitoring **electrolyte levels** is essential in patients on diuretics, especially those with heart failure.\n**In practice:** On the unit, this means that we must address the patient's low potassium to prevent potential heart complications. Regular monitoring and dietary counseling are essential to manage his condition safely.\n## Why the other options are wrong\n\n\n\n**Sodium level of 140 mEq/L**\n• Trap: Students may think any abnormal lab value requires a change in therapy.\n• Why it fails here: This sodium level is within the normal range (135-145 mEq/L) and does not necessitate any therapeutic change.\n• Remember: Understanding normal lab values is crucial for determining when intervention is needed.\n\n**Creatinine level of 1.2 mg/dL**\n• Trap: There may be a belief that any creatinine level above 1.0 mg/dL indicates renal impairment.\n• Why it fails here: A creatinine level of 1.2 mg/dL is still within acceptable limits for many patients and does not indicate a need for therapeutic change.\n• Remember: Recognizing what constitutes normal renal function is key in managing patients on diuretics.\n\n**Blood glucose level of 90 mg/dL**\n• Trap: Students might assume that any glucose level requires adjustment, especially in diabetic patients.\n• Why it fails here: This blood glucose level is well-controlled and falls within the target range (70-130 mg/dL) for diabetic patients, so no change is needed.\n• Remember: Understanding target glucose levels helps in assessing the adequacy of diabetes management.\n## Key takeaway\n**When evaluating lab values, prioritize critical abnormalities like hypokalemia that can lead to serious complications.**\n\n**Memory hook:** Remember: 'Low potassium, high risk' — always check potassium levels in patients on diuretics.",
+    "references": [
+      {
+        "label": "American College of Cardiology/American Heart Association Guidelines for Heart Failure"
+      }
+    ],
+    "after": {
+      "scenario": "A 55-year-old man with a history of heart failure and diabetes presents to the clinic for a routine check-up. He is currently taking lisinopril, metformin, and furosemide. His blood pressure is 130/80 mmHg, and his blood glucose is well-controlled. He mentions experiencing frequent leg cramps. Today's labs: K 3.0 mEq/L, Na 140 mEq/L, SCr 1.2 mg/dL, glucose 90 mg/dL.",
+      "question": "Which laboratory value warrants a therapeutic change?",
+      "options": [
+        "Potassium level of 3.0 mEq/L",
+        "Sodium level of 140 mEq/L",
+        "Creatinine level of 1.2 mg/dL",
+        "Blood glucose level of 90 mg/dL"
+      ],
+      "correctAnswer": "Potassium level of 3.0 mEq/L",
+      "explanation": "Highlight item had no labs in the case; adding them makes K 3.0 (hypokalemia on furosemide, symptomatic cramps) the only abnormal value.",
+      "references": [
+        {
+          "label": "Furosemide label (DailyMed): hypokalemia; monitor electrolytes: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2c9b4d8f-0770-482d-a9e6-9c616a440b1a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cmqvqnkwa000j1y5qcqjty2nb",
+    "scenario": "A 5-year-old girl presents to the pharmacy with her mother, who is seeking advice for her daughter's persistent cough and runny nose. The mother reports that the cough worsens at night and that the child has been experiencing difficulty sleeping. The child has no known drug allergies and is currently taking no medications. Her vital signs are stable, and she has no fever.",
+    "question": "Which counseling point is most important for the mother regarding over-the-counter cough medications?",
+    "options": [
+      "Avoid using cough suppressants in children under 6 years old.",
+      "It is safe to combine multiple cough medications.",
+      "Cough medications can be used to treat the underlying infection.",
+      "Dosing should be based on the child's weight, not age."
+    ],
+    "correctAnswer": "Avoid using cough suppressants in children under 6 years old.",
+    "explanation": "## Why this answer is correct\nOTC cough and cold products should not be used in young children; manufacturers label them against use under age 4, and AAP advises avoiding them under age 6.\n• FDA advises against OTC cough/cold medicines under age 2, and labeling was changed to state 'do not use' under age 4.\n• Evidence of benefit in children is lacking, while overdose and serious adverse events have been reported.\n• Honey (for children over 1 year), fluids, and saline are preferred for symptom relief.\n**In practice:** Advise supportive care (honey for children 1 year or older, fluids, saline, humidified air) and to seek care for fever, breathing difficulty, or cough lasting more than 10-14 days.\n## Clinical pearl\nMany combination products contain the same ingredients, so combining products risks duplicate dosing.\n## Why the other options are wrong\n\n**It is safe to combine multiple cough medications.**\n• Trap: Combining products seems to treat more symptoms.\n• Why it fails here: Combination products often share ingredients (acetaminophen, antihistamines), risking overdose.\n• Remember: Never stack combination cold products.\n\n**Cough medications can be used to treat the underlying infection.**\n• Trap: Parents often expect medicine to cure the illness.\n• Why it fails here: This statement is false; cough medicines only treat symptoms and do not treat infection.\n• Remember: Symptom relief is not cure.\n\n**Dosing should be based on the child's weight, not age.**\n• Trap: Weight-based dosing is usually preferred in pediatrics.\n• Why it fails here: The key issue is that these products should not be used in this age group at all.\n• Remember: Avoid first, dose second.\n\n## Key takeaway\nAvoid OTC cough suppressants in young children and use supportive care instead.\n\n**Memory hook:** Under 6: honey (if over 1), not DM.",
+    "references": [
+      {
+        "label": "FDA Guidelines on Cough and Cold Medications in Children"
+      }
+    ],
+    "after": {
+      "scenario": "A 3-year-old girl presents to the pharmacy with her mother, who is seeking advice for her daughter's persistent cough and runny nose. The mother reports that the cough worsens at night and that the child has been experiencing difficulty sleeping. The child has no known drug allergies and is currently taking no medications. Her vital signs are stable, and she has no fever.",
+      "question": "Which counseling point is most important for the mother regarding over-the-counter cough medications?",
+      "options": [
+        "Avoid OTC cough and cold medicines in children under 4 years old.",
+        "It is safe to combine multiple cough medications.",
+        "Cough medications can be used to treat the underlying infection.",
+        "Dosing should be based on the child's weight, not age."
+      ],
+      "correctAnswer": "Avoid OTC cough and cold medicines in children under 4 years old.",
+      "explanation": "## Why this answer is correct\nFDA does not recommend OTC cough/cold medicines under age 2, and manufacturers label them 'Do not use in children under 4 years of age.'\n• FDA advises against OTC cough/cold medicines under age 2, and labeling was changed to state 'do not use' under age 4.\n• Evidence of benefit in children is lacking, while overdose and serious adverse events have been reported.\n• Honey (for children over 1 year), fluids, and saline are preferred for symptom relief.\n**In practice:** Advise supportive care (honey for children 1 year or older, fluids, saline, humidified air) and to seek care for fever, breathing difficulty, or cough lasting more than 10-14 days.\n## Clinical pearl\nMany combination products contain the same ingredients, so combining products risks duplicate dosing.\n## Why the other options are wrong\n\n**It is safe to combine multiple cough medications.**\n• Trap: Combining products seems to treat more symptoms.\n• Why it fails here: Combination products often share ingredients (acetaminophen, antihistamines), risking overdose.\n• Remember: Never stack combination cold products.\n\n**Cough medications can be used to treat the underlying infection.**\n• Trap: Parents often expect medicine to cure the illness.\n• Why it fails here: This statement is false; cough medicines only treat symptoms and do not treat infection.\n• Remember: Symptom relief is not cure.\n\n**Dosing should be based on the child's weight, not age.**\n• Trap: Weight-based dosing is usually preferred in pediatrics.\n• Why it fails here: The key issue is that these products should not be used in this age group at all.\n• Remember: Avoid first, dose second.\n\n## Key takeaway\nAvoid OTC cough suppressants in young children and use supportive care instead.\n\n**Memory hook:** Under 6: honey (if over 1), not DM.",
+      "references": [
+        {
+          "label": "FDA, Should You Give Kids Medicine for Coughs and Colds? (current 11/07/2024): https://www.fda.gov/consumers/consumer-updates/should-you-give-kids-medicine-coughs-and-colds"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cmqvv55nt001c1y3yyctjmzlj",
+    "scenario": "A 55-year-old female patient with a history of diabetes and hypertension is prescribed glipizide 5 mg daily. She is concerned about the potential for hypoglycemia and asks how to manage it if it occurs.",
+    "question": "Which finding requires immediate follow-up?",
+    "options": [
+      "Blood glucose level of 50 mg/dL.",
+      "Weight loss of 5 pounds in one month.",
+      "Increased thirst and urination.",
+      "Blood pressure of 140/90 mm Hg."
+    ],
+    "correctAnswer": "Blood glucose level of 50 mg/dL.",
+    "explanation": "## Why this answer is correct\nA blood glucose level of 50 mg/dL indicates a critical need for immediate follow-up.\n• **Hypoglycemia** is a serious condition that can lead to severe complications if not treated quickly.\n• A blood glucose level below **70 mg/dL** is concerning, and 50 mg/dL is particularly urgent.\n• Patients taking **glipizide** are at increased risk for hypoglycemia, making this finding a top priority.\n**In practice:** On the unit, recognizing and addressing hypoglycemia quickly can prevent serious complications, such as loss of consciousness or seizures. Educating patients on how to manage low blood sugar is essential for their safety.\n## Clinical pearl\nOn the unit, recognizing and addressing hypoglycemia quickly can prevent serious complications, such as loss of consciousness or seizures. Educating patients on how to manage low blood sugar is essential for their safety.\n## Why the other options are wrong\n\n\n\n**Weight loss of 5 pounds in one month.**\n• Trap: Students may think any weight loss is urgent and needs immediate attention.\n• Why it fails here: While weight loss can be concerning, it does not require immediate follow-up unless it is significant or accompanied by other alarming symptoms, such as fatigue or changes in appetite.\n• Remember: This highlights the importance of prioritizing findings based on urgency, with hypoglycemia taking precedence.\n\n**Increased thirst and urination.**\n• Trap: Some may confuse these symptoms as urgent without considering the context of diabetes management.\n• Why it fails here: Increased thirst and urination can indicate hyperglycemia or dehydration, but they do not require immediate follow-up unless they are severe or accompanied by other symptoms like confusion or lethargy.\n• Remember: Understanding the context of diabetes helps prioritize symptoms, with hypoglycemia being more critical.\n\n**Blood pressure of 140/90 mm Hg.**\n• Trap: Students might think that any elevated blood pressure reading is an emergency.\n• Why it fails here: While a blood pressure of 140/90 mm Hg indicates hypertension, it does not require immediate follow-up unless the patient is experiencing acute symptoms like chest pain or severe headache.\n• Remember: Recognizing that not all elevated readings are urgent helps in prioritizing patient care effectively.\n## Key takeaway\n**When assessing a patient on glipizide, prioritize hypoglycemia as the most urgent concern.**\n\n**Memory hook:** Remember: **Low blood sugar = urgent care; other symptoms can often wait.**",
+    "references": [
+      {
+        "label": "NABP NAPLEX 2026"
+      }
+    ],
+    "after": {
+      "scenario": "A 55-year-old female patient with a history of diabetes and hypertension is prescribed glipizide 5 mg daily. She is concerned about the potential for hypoglycemia and asks how to manage it if it occurs. At today's visit she reports a fingerstick glucose of 50 mg/dL this morning with sweating and shakiness, a 5-lb weight loss over the past month, occasional thirst, and BP today is 140/90 mm Hg.",
+      "question": "Which finding requires immediate follow-up?",
+      "options": [
+        "Blood glucose level of 50 mg/dL.",
+        "Weight loss of 5 pounds in one month.",
+        "Increased thirst and urination.",
+        "Blood pressure of 140/90 mm Hg."
+      ],
+      "correctAnswer": "Blood glucose level of 50 mg/dL.",
+      "explanation": "Level 2 hypoglycemia (<54 mg/dL) on a sulfonylurea requires immediate action and regimen review.",
+      "references": [
+        {
+          "label": "ADA Standards of Care 2026, Section 6 (Table 6.4): https://diabetesjournals.org/care/article/49/Supplement_1/S132/163927/6-Glycemic-Goals-Hypoglycemia-and-Hyperglycemic"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cmqvw7w1300171yuw7h37luyn",
+    "scenario": "A 55-year-old male patient with a history of heart failure presents to the pharmacy with a prescription for furosemide (Lasix) 40 mg daily. He is also taking lisinopril and carvedilol. His current weight is 220 lbs, and he reports swelling in his legs.",
+    "question": "Which laboratory value warrants a therapeutic change?",
+    "options": [
+      "Potassium level of 3.0 mEq/L",
+      "Creatinine level of 1.5 mg/dL",
+      "Sodium level of 135 mEq/L",
+      "BUN level of 20 mg/dL"
+    ],
+    "correctAnswer": "Potassium level of 3.0 mEq/L",
+    "explanation": "## Why this answer is correct\nA potassium level of 3.0 mEq/L indicates hypokalemia, necessitating a therapeutic change.\n• **Hypokalemia** (low potassium) can lead to serious **cardiac complications**, especially in patients on diuretics like furosemide.\n• Patients with heart failure require careful **monitoring** of electrolytes to prevent adverse effects.\n• Therapeutic changes may include **potassium supplementation** or adjustments to the diuretic regimen.\n**In practice:** On the unit, recognizing and addressing electrolyte imbalances is crucial to prevent complications in patients with heart failure. Monitoring potassium levels can help avoid arrhythmias and other serious issues.\n## Clinical pearl\nOn the unit, recognizing and addressing electrolyte imbalances is crucial to prevent complications in patients with heart failure. Monitoring potassium levels can help avoid arrhythmias and other serious issues.\n## Why the other options are wrong\n\n\n\n**Creatinine level of 1.5 mg/dL**\n• Trap: Students may think any elevation in creatinine requires immediate action.\n• Why it fails here: While a creatinine level of 1.5 mg/dL is slightly elevated, it is not critical enough to necessitate a change in therapy at this time, especially in the context of heart failure management.\n• Remember: Understanding the significance of creatinine levels is important, but they must be interpreted in conjunction with the overall clinical picture.\n\n**Sodium level of 135 mEq/L**\n• Trap: Some may believe that a sodium level at the lower end of normal indicates a need for intervention.\n• Why it fails here: A sodium level of 135 mEq/L is within the normal range (135-145 mEq/L) and does not warrant a therapeutic change in this patient.\n• Remember: Normal sodium levels do not require adjustments in therapy unless accompanied by symptoms or other abnormal lab values.\n\n**BUN level of 20 mg/dL**\n• Trap: Students might assume that any elevation in BUN indicates a need for immediate therapeutic changes.\n• Why it fails here: A BUN level of 20 mg/dL is only mildly elevated and can be influenced by factors such as hydration status, not necessarily requiring a change in therapy.\n• Remember: BUN levels should be interpreted in the context of hydration and renal function, not as standalone indicators for therapy adjustments.\n## Key takeaway\n**When evaluating lab values, prioritize critical electrolyte imbalances like potassium over mild elevations in creatinine, sodium, or BUN.**\n\n**Memory hook:** Remember: 'K for critical' — potassium levels can signal urgent changes, while other values may be less pressing.",
+    "references": [
+      {
+        "label": "Heart Failure Society of America Guidelines"
+      }
+    ],
+    "after": {
+      "scenario": "A 55-year-old male patient with a history of heart failure presents to the pharmacy with a prescription for furosemide (Lasix) 40 mg daily. He is also taking lisinopril and carvedilol. His current weight is 220 lbs, and he reports swelling in his legs. Today's labs: K 3.0 mEq/L, SCr 1.5 mg/dL (baseline 1.4), Na 135 mEq/L, BUN 20 mg/dL.",
+      "question": "Which laboratory value warrants a therapeutic change?",
+      "options": [
+        "Potassium level of 3.0 mEq/L",
+        "Creatinine level of 1.5 mg/dL",
+        "Sodium level of 135 mEq/L",
+        "BUN level of 20 mg/dL"
+      ],
+      "correctAnswer": "Potassium level of 3.0 mEq/L",
+      "explanation": "Labs added to the case; stable SCr removes the creatinine distractor ambiguity.",
+      "references": [
+        {
+          "label": "Furosemide label (DailyMed): https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2c9b4d8f-0770-482d-a9e6-9c616a440b1a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cmqwb32np001r1y49rf5qydfd",
+    "scenario": "A 40-year-old male presents to the pharmacy with a prescription for atorvastatin 40 mg daily. He has a history of hyperlipidemia and is currently taking lisinopril for hypertension. He mentions that he has been experiencing muscle pain and weakness since starting the atorvastatin. His current medications include no other statins or muscle-related medications.",
+    "question": "Which laboratory value warrants a therapeutic change?",
+    "options": [
+      "Creatine kinase (CK) levels greater than 10 times the upper limit of normal.",
+      "Liver function tests (LFTs) showing elevated AST and ALT.",
+      "Lipid panel showing LDL greater than 130 mg/dL.",
+      "Thyroid-stimulating hormone (TSH) levels indicating hypothyroidism."
+    ],
+    "correctAnswer": "Creatine kinase (CK) levels greater than 10 times the upper limit of normal.",
+    "explanation": "## Why this answer is correct\nElevated creatine kinase (CK) levels greater than 10 times the upper limit of normal indicate a serious risk for statin-induced myopathy.\n• **CK levels** are a marker for muscle damage, and significant elevations suggest potential **rhabdomyolysis**.\n• In this patient, muscle pain and weakness alongside high CK levels necessitate a **therapeutic change**.\n• Monitoring CK levels is crucial for patients on **statins** to prevent severe complications.\n**In practice:** On the unit, recognizing elevated CK levels allows for timely intervention to prevent serious muscle damage, ensuring patient safety and effective management of hyperlipidemia.\n## Clinical pearl\nOn the unit, recognizing elevated CK levels allows for timely intervention to prevent serious muscle damage, ensuring patient safety and effective management of hyperlipidemia.\n## Why the other options are wrong\n\n\n\n**Liver function tests (LFTs) showing elevated AST and ALT.**\n• Trap: Students may think that any elevation in liver enzymes requires immediate action.\n• Why it fails here: While elevated LFTs are important to monitor, they do not necessitate an immediate change in therapy unless significantly elevated or symptomatic.\n• Remember: This highlights the need to prioritize muscle-related side effects over mild liver enzyme elevations.\n\n**Lipid panel showing LDL greater than 130 mg/dL.**\n• Trap: There is a common belief that any increase in LDL levels requires an urgent adjustment in statin therapy.\n• Why it fails here: In this scenario, the patient's muscle symptoms and CK levels are more critical than LDL levels, which can be managed with lifestyle changes or adjustments at a later time.\n• Remember: This emphasizes the importance of addressing acute side effects over chronic lipid management.\n\n**Thyroid-stimulating hormone (TSH) levels indicating hypothyroidism.**\n• Trap: Students might assume that hypothyroidism is a direct cause of muscle pain and should prompt immediate treatment changes.\n• Why it fails here: While hypothyroidism can contribute to muscle symptoms, it is not the immediate concern in this patient with significantly elevated CK levels due to atorvastatin.\n• Remember: This reinforces the need to focus on the most pressing issue of potential statin-induced myopathy.\n## Key takeaway\n**When evaluating a patient on statins, prioritize muscle-related symptoms and CK levels over other lab values.**\n\n**Memory hook:** Think 'CK first, then LFTs and LDLs' when assessing statin therapy.",
+    "references": [
+      {
+        "label": "NABP NAPLEX 2026"
+      },
+      {
+        "label": "AHA/ACC Guidelines for the Management of Blood Cholesterol"
+      }
+    ],
+    "after": {
+      "scenario": "A 40-year-old male presents to the pharmacy with a prescription for atorvastatin 40 mg daily. He has a history of hyperlipidemia and is currently taking lisinopril for hypertension. He mentions that he has been experiencing muscle pain and weakness since starting the atorvastatin. His current medications include no other statins or muscle-related medications. Today's labs: CK 12 times ULN, AST/ALT 1.5 times ULN, LDL 135 mg/dL, TSH 2.1 mIU/L.",
+      "question": "Which laboratory value warrants a therapeutic change?",
+      "options": [
+        "Creatine kinase (CK) levels greater than 10 times the upper limit of normal.",
+        "Liver function tests (LFTs) showing elevated AST and ALT.",
+        "Lipid panel showing LDL greater than 130 mg/dL.",
+        "TSH of 2.1 mIU/L."
+      ],
+      "correctAnswer": "Creatine kinase (CK) levels greater than 10 times the upper limit of normal.",
+      "explanation": "Symptomatic myopathy with markedly elevated CK: discontinue statin per label.",
+      "references": [
+        {
+          "label": "Lipitor PI 5.1: https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/020702s081lbl.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cmqw5q4kn00161ygpow5i3p69",
+    "scenario": "A 45-year-old female with a history of anxiety is prescribed sertraline 50 mg daily. She reports feeling better but is concerned about possible side effects. She is currently taking no other medications and has no known allergies.",
+    "question": "Which monitoring parameter is most critical?",
+    "options": [
+      "Liver function tests.",
+      "Blood pressure.",
+      "Serum sodium levels.",
+      "Suicidal thoughts or behaviors."
+    ],
+    "correctAnswer": "Suicidal thoughts or behaviors.",
+    "explanation": "## Why this answer is correct\nMonitoring for suicidal thoughts or behaviors is essential for patients starting sertraline.\n• **Suicidal thoughts** can increase when initiating antidepressants, especially in younger patients.\n• Early **mental health assessment** is crucial to ensure patient safety.\n• Regular monitoring helps identify any **adverse effects** early in treatment.\n**In practice:** In practice, this means that as a pharmacist, you should engage with patients about their mental health and provide resources for recognizing warning signs. Regular follow-ups can help ensure they feel supported during their treatment.\n## Why the other options are wrong\n\n\n\n**Liver function tests.**\n• Trap: Students may think liver function tests are critical because sertraline is metabolized in the liver.\n• Why it fails here: While liver function tests are important for medications that have significant hepatic metabolism, they are not the primary concern in the context of sertraline, especially when the patient has no history of liver issues.\n• Remember: This highlights the importance of prioritizing mental health monitoring over routine lab tests in this scenario.\n\n**Blood pressure.**\n• Trap: Some may assume that blood pressure monitoring is essential for all medications, including antidepressants.\n• Why it fails here: Although blood pressure can be affected by some antidepressants, sertraline is not typically associated with significant blood pressure changes, making it a lower priority in this case.\n• Remember: This reinforces the need to focus on mental health parameters rather than general physical health metrics.\n\n**Serum sodium levels.**\n• Trap: There may be a belief that serum sodium levels should always be monitored with SSRIs due to the risk of SIADH (Syndrome of Inappropriate Antidiuretic Hormone secretion).\n• Why it fails here: While monitoring serum sodium can be relevant, especially in specific populations, it is not the most critical parameter for this patient who is otherwise healthy and not on other medications.\n• Remember: This illustrates the importance of tailoring monitoring to the individual patient's context rather than applying a one-size-fits-all approach.\n## Key takeaway\n**When prescribing sertraline, prioritize monitoring for suicidal thoughts or behaviors to ensure patient safety.**\n\n**Memory hook:** Think 'S' for **Sertraline** and **Suicidality**—they go hand in hand in monitoring.",
+    "references": [
+      {
+        "label": "FDA Guidelines on Antidepressants"
+      }
+    ],
+    "after": {
+      "scenario": "A 22-year-old female with a history of anxiety started sertraline 50 mg daily 2 weeks ago. She reports feeling somewhat better but is concerned about possible side effects. She is currently taking no other medications and has no known allergies.",
+      "question": "Which monitoring parameter is most critical?",
+      "options": [
+        "Liver function tests.",
+        "Blood pressure.",
+        "Serum sodium levels.",
+        "Suicidal thoughts or behaviors."
+      ],
+      "correctAnswer": "Suicidal thoughts or behaviors.",
+      "explanation": "Boxed warning: higher risk in patients <=24, greatest early in therapy; hyponatremia mainly elderly. Removes ambiguity.",
+      "references": [
+        {
+          "label": "Zoloft PI boxed warning: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fda754f6-d0f3-4dce-a17a-927d64f912f7"
+        }
+      ]
+    }
+  }
+]
