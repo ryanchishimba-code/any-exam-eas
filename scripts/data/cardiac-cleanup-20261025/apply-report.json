@@ -1,0 +1,13 @@
+{
+  "appliedAt": "2026-10-25T16:17:20.590Z",
+  "before": {
+    "liveNursingQaPassed": 4515,
+    "liveCardiacEmergenciesTagOnly": 152
+  },
+  "after": {
+    "liveNursingQaPassed": 4440,
+    "liveCardiacEmergenciesTagOnly": 29
+  },
+  "undoRowCount": 123,
+  "slugMappings": []
+}
