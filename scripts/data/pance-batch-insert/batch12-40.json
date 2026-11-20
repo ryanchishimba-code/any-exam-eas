@@ -1,0 +1,1210 @@
+[
+  {
+    "fieldId": "pance",
+    "subjectId": "cardiovascular",
+    "itemType": "vignette",
+    "scenario": "A 78-year-old man with severe COPD is admitted with a COPD exacerbation. He is receiving nebulized albuterol and ipratropium. Pulse is 124/min and irregular, blood pressure is 134/80 mm Hg, and oxygen saturation is 89% on 2 L/min nasal cannula. A 12-lead ECG shows an irregular rhythm with a discrete P wave before every QRS complex; the P waves have at least three distinct morphologies, and the PR intervals vary.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Atrial fibrillation with rapid ventricular response\", \"Wandering atrial pacemaker\", \"Atrial flutter with variable block\", \"Multifocal atrial tachycardia\", \"Sinus tachycardia with frequent premature atrial complexes\"], \"blueprintSystem\": \"cardiovascular\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"multifocal atrial tachycardia during a COPD exacerbation\", \"keyTakeaway\": \"Rate above 100/min plus 3 or more P-wave morphologies with variable PR intervals in a patient with lung disease is MAT.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Multifocal atrial tachycardia",
+    "explanation": "Multifocal atrial tachycardia is correct. The 2015 ACC/AHA/HRS SVT guideline describes MAT as an irregular rhythm above 100/min with at least 3 P-wave morphologies and variable PR intervals, most often triggered by pulmonary disease such as a COPD exacerbation; treatment targets the underlying illness, with IV metoprolol or verapamil reasonable for rate control, and cardioversion is ineffective. Atrial fibrillation has no organized P waves. Atrial flutter shows sawtooth flutter waves. Wandering atrial pacemaker has the same multiple P-wave morphologies but a rate below 100/min. Sinus tachycardia with premature atrial complexes has one dominant sinus P-wave morphology. Takeaway: irregular tachycardia, 3 or more P-wave shapes, lung disease: MAT; treat the cause, do not cardiovert.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"cardiovascular\", \"diagnosis\", \"multifocal-atrial-tachycardia-during-a-copd-exacerbation\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "cardiovascular",
+    "blueprintDomain": "cardiovascular",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "multifocal atrial tachycardia during a COPD exacerbation",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26409259/",
+        "label": "Page RL et al. 2015 ACC/AHA/HRS Guideline for the Management of Adult Patients With Supraventricular Tachycardia. J Am Coll Cardiol 2016"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "c454c8f1efd623da4ff5a066a2711fde67e5a37bacc8a8d50601b7ed70b875f6"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "cardiovascular",
+    "itemType": "vignette",
+    "scenario": "A 76-year-old woman has 6 months of progressive exertional dyspnea and ankle swelling. She has hypertension, obesity (BMI 34), and type 2 diabetes. Blood pressure is 158/88 mm Hg. Jugular venous pressure is 10 cm H2O, there are bibasilar crackles, and 2+ pitting edema is present at both ankles. NT-proBNP is 1,480 pg/mL. Echocardiography shows a left ventricular ejection fraction of 62%, concentric left ventricular hypertrophy, an enlarged left atrium, and an elevated E/e' ratio; valves are normal and there is no pericardial thickening.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Heart failure with preserved ejection fraction\", \"Heart failure with mildly reduced ejection fraction\", \"Severe primary mitral regurgitation\", \"Heart failure with improved ejection fraction\", \"Constrictive pericarditis\"], \"blueprintSystem\": \"cardiovascular\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"heart failure with preserved ejection fraction in an older woman\", \"keyTakeaway\": \"Symptomatic HF with LVEF of at least 50% and objective evidence of raised filling pressures is HFpEF.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Heart failure with preserved ejection fraction",
+    "explanation": "HFpEF is correct. The 2022 AHA/ACC/HFSA heart failure guideline classifies heart failure by LVEF: HFpEF is LVEF 50% or higher with clinical heart failure plus evidence of elevated filling pressure, such as raised natriuretic peptide or diastolic dysfunction on echocardiography. She has symptoms and signs of congestion, a high NT-proBNP, LVH, left atrial enlargement, and high E/e'. Mildly reduced EF is 41% to 49%. Improved EF requires a prior LVEF of 40% or less that has risen above 40%. Constrictive pericarditis would show pericardial thickening and septal bounce. Severe primary mitral regurgitation requires a valve lesion, and her valves are normal. Takeaway: HF symptoms plus LVEF 50% or higher plus evidence of high filling pressure = HFpEF; an SGLT2 inhibitor and diuretics are core therapy.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"cardiovascular\", \"diagnosis\", \"heart-failure-with-preserved-ejection-fraction-in-an-older-woman\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "cardiovascular",
+    "blueprintDomain": "cardiovascular",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "heart failure with preserved ejection fraction in an older woman",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
+        "label": "Heidenreich PA et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure. Circulation 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "ed553ef73ee8919bfe2b30a02f8b614814c911aa44f1862c7ba28a403463c936"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "cardiovascular",
+    "itemType": "vignette",
+    "scenario": "A 66-year-old man with ischemic cardiomyopathy (LVEF 30%) and NYHA class II to III symptoms takes sacubitril-valsartan, metoprolol succinate, spironolactone, and dapagliflozin at target or maximally tolerated doses. He still tires walking one block. Hemoglobin is 12.4 g/dL, MCV is 84 fL, ferritin is 62 ng/mL, and transferrin saturation is 14%. Colonoscopy 1 year ago was normal, and stool testing is negative for blood.",
+    "question": "Which of the following is the most appropriate next step to improve his symptoms?",
+    "options": "{\"options\": [\"Subcutaneous darbepoetin alfa\", \"No therapy because he is not anemic\", \"Oral ferrous sulfate 325 mg daily\", \"Transfusion of 1 unit of packed red blood cells\", \"IV ferric carboxymaltose\"], \"blueprintSystem\": \"cardiovascular\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"IV iron for iron deficiency in HFrEF\", \"keyTakeaway\": \"In HFrEF, define iron deficiency as ferritin below 100, or 100-299 with TSAT below 20%, and replace it IV.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "IV ferric carboxymaltose",
+    "explanation": "IV iron is correct. The 2022 AHA/ACC/HFSA heart failure guideline states that in HFrEF with iron deficiency (ferritin below 100 ng/mL, or 100 to 299 ng/mL with transferrin saturation below 20%), with or without anemia, IV iron replacement is reasonable to improve functional status and quality of life. He meets the definition, and a GI source has been addressed. Oral iron did not improve exercise capacity in HFrEF and is poorly absorbed. Erythropoiesis-stimulating agents did not improve outcomes and raised thromboembolic risk, so they are not recommended to treat anemia in HF. Transfusion is not indicated at a hemoglobin of 12.4 g/dL. Iron deficiency matters even without anemia. Takeaway: HFrEF with ferritin under 100, or 100-299 with TSAT under 20%: give IV iron, not oral iron or ESAs.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"cardiovascular\", \"pharmacotherapy\", \"iv-iron-for-iron-deficiency-in-hfref\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "cardiovascular",
+    "blueprintDomain": "cardiovascular",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "IV iron for iron deficiency in HFrEF",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
+        "label": "Heidenreich PA et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure. Circulation 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "bb26971aa1f083c461811fc9cb79171b57adc9a39bf8b2fbd5e1f3ad49a4a415"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "cardiovascular",
+    "itemType": "vignette",
+    "scenario": "A 64-year-old man had an anterior myocardial infarction treated with PCI 8 months ago. He has NYHA class II symptoms on 4 months of optimized guideline-directed therapy: sacubitril-valsartan, carvedilol, eplerenone, and empagliflozin. Repeat echocardiography shows an LVEF of 30%. ECG shows sinus rhythm with a QRS duration of 104 ms. He has no history of syncope or ventricular arrhythmia, works full time, and has no serious noncardiac illness.",
+    "question": "Which of the following is the most appropriate next step?",
+    "options": "{\"options\": [\"Wearable cardioverter-defibrillator for 3 months\", \"Cardiac resynchronization therapy with defibrillator\", \"Repeat echocardiography in 12 months before any device decision\", \"Prophylactic oral amiodarone\", \"Implantable cardioverter-defibrillator\"], \"blueprintSystem\": \"cardiovascular\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"primary prevention ICD for ischemic cardiomyopathy with LVEF 35% or less on GDMT\", \"keyTakeaway\": \"Ischemic LVEF of 35% or less, NYHA II-III, on GDMT, more than 40 days after MI, and good expected survival: implant an ICD.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Implantable cardioverter-defibrillator",
+    "explanation": "An ICD is correct. The 2022 AHA/ACC/HFSA heart failure guideline recommends an ICD for primary prevention of sudden cardiac death in patients with ischemic cardiomyopathy at least 40 days after MI with LVEF 35% or less and NYHA class II or III symptoms on chronic GDMT, when meaningful survival of more than 1 year is expected. He meets every criterion. CRT requires a wide QRS, especially LBBB with QRS 150 ms or more; his QRS is 104 ms. A wearable defibrillator is a temporary bridge early after MI, not a substitute here. Prophylactic amiodarone does not reduce mortality the way an ICD does. Delaying another year leaves him at risk of sudden death. Takeaway: LVEF 35% or less with NYHA II-III after at least 3 months of GDMT and 40 days after MI = primary prevention ICD.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"cardiovascular\", \"intervention\", \"primary-prevention-icd-for-ischemic-cardiomyopathy-with-lvef-35-or-less-on-gdmt\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "cardiovascular",
+    "blueprintDomain": "cardiovascular",
+    "taskCategory": "intervention",
+    "blueprintTopic": "primary prevention ICD for ischemic cardiomyopathy with LVEF 35% or less on GDMT",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35363499/",
+        "label": "Heidenreich PA et al. 2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure. Circulation 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "60791ff2ab53bf38c60456ba88ae819c59fb15afbf8ca653a759c8263ffca429"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "pulmonary",
+    "itemType": "vignette",
+    "scenario": "A 68-year-old woman with COPD (post-bronchodilator FEV1 58% of predicted) quit smoking 6 years ago. Despite correct inhaler technique and adherence to tiotropium, olodaterol, and fluticasone furoate, she has had 2 exacerbations requiring prednisone in the past year. She has no daily sputum production. Blood eosinophil count is 80/microL. Resting ECG shows a QTc of 420 ms, a recent audiogram is normal, and sputum culture shows no nontuberculous mycobacteria.",
+    "question": "Which of the following is the most appropriate addition to her regimen?",
+    "options": "{\"options\": [\"Prednisone 10 mg orally daily\", \"A second long-acting muscarinic antagonist\", \"Azithromycin 250 mg orally daily\", \"Roflumilast 500 mcg orally daily\", \"Montelukast 10 mg orally daily\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"chronic azithromycin to prevent COPD exacerbations in a former smoker\", \"keyTakeaway\": \"Former smoker with exacerbations on triple therapy: consider azithromycin 250 mg daily after a QTc, hearing check, and NTM screen.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Azithromycin 250 mg orally daily",
+    "explanation": "Azithromycin is correct. The 2026 GOLD report recommends considering azithromycin 250 mg daily or 500 mg three times weekly for patients who still have exacerbations on LABA plus LAMA with ICS, with the greatest benefit in former smokers; baseline QTc, hearing, and screening for nontuberculous mycobacteria are advised. Roflumilast is reserved for FEV1 below 50% with chronic bronchitis, which she lacks. Long-term oral glucocorticoids cause harm without benefit and are not recommended. Montelukast has no role in COPD. Adding a second LAMA duplicates tiotropium. Her low eosinophil count also argues against intensifying ICS. Takeaway: exacerbations despite triple therapy in a former smoker: add azithromycin after checking QTc and hearing.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"pharmacotherapy\", \"chronic-azithromycin-to-prevent-copd-exacerbations-in-a-former-smoker\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "pulmonary",
+    "blueprintDomain": "pulmonary",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "chronic azithromycin to prevent COPD exacerbations in a former smoker",
+    "references": [
+      {
+        "url": "https://goldcopd.org/2026-gold-report/",
+        "label": "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2026 Report"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "321a808f181981a72e21cff9a2d994467fb2ff91cc8b8c9fc8379d6d47d360cf"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "pulmonary",
+    "itemType": "vignette",
+    "scenario": "A 71-year-old man with COPD is brought to the emergency department with 2 days of worsening dyspnea and purulent sputum. He is awake, follows commands, and protects his airway. Respiratory rate is 30/min and he uses accessory muscles. Oxygen saturation is 88% on 2 L/min. Arterial blood gas shows pH 7.28, PaCO2 68 mm Hg, and PaO2 58 mm Hg. He has received nebulized bronchodilators and IV methylprednisolone.",
+    "question": "Which of the following is the most appropriate next step?",
+    "options": "{\"options\": [\"Observe and repeat the blood gas in 4 hours\", \"Endotracheal intubation and mechanical ventilation\", \"Nonrebreather mask at 15 L/min\", \"Bilevel noninvasive positive-pressure ventilation\", \"High-flow nasal cannula as first-line support\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"bilevel noninvasive ventilation for hypercapnic COPD exacerbation\", \"keyTakeaway\": \"Hypercapnic acidosis (pH 7.35 or less) in a COPD exacerbation with an intact airway: start bilevel NIV.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Bilevel noninvasive positive-pressure ventilation",
+    "explanation": "Bilevel NIV is correct. The 2017 ERS/ATS NIV guideline strongly recommends bilevel NIV for COPD exacerbations with acute or acute-on-chronic respiratory acidosis (pH 7.35 or less); it lowers intubation and mortality. He is alert and protects his airway, so he is a good candidate. Intubation is for NIV failure, coma, inability to protect the airway, or hemodynamic instability. A nonrebreather at high flow can worsen hypercapnia; oxygen should target 88% to 92%. High-flow nasal cannula is not first-line for hypercapnic acidosis when NIV is tolerated. Watching a pH of 7.28 without ventilatory support risks worsening acidosis. Takeaway: COPD exacerbation with pH 7.35 or less and high PaCO2 in an alert patient = bilevel NIV.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"intervention\", \"bilevel-noninvasive-ventilation-for-hypercapnic-copd-exacerbation\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "pulmonary",
+    "blueprintDomain": "pulmonary",
+    "taskCategory": "intervention",
+    "blueprintTopic": "bilevel noninvasive ventilation for hypercapnic COPD exacerbation",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28860265/",
+        "label": "Rochwerg B et al. Official ERS/ATS Clinical Practice Guidelines: Noninvasive Ventilation for Acute Respiratory Failure. Eur Respir J 2017"
+      },
+      {
+        "url": "https://goldcopd.org/2026-gold-report/",
+        "label": "Global Initiative for Chronic Obstructive Lung Disease (GOLD) 2026 Report"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "43dd1af3cc3c8147fa003dc889b75c065911c813a53a03baf1820065a7268b64"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "pulmonary",
+    "itemType": "vignette",
+    "scenario": "A 58-year-old woman has sudden pleuritic chest pain and dyspnea 10 days after a total knee arthroplasty. Pulse is 112/min, blood pressure is 128/76 mm Hg, and oxygen saturation is 91% on room air. Her left calf is swollen and tender. She has no other diagnosis that explains her symptoms. Creatinine is normal. Her Wells score places her in the high clinical probability (PE likely) group.",
+    "question": "Which of the following is the most appropriate next diagnostic step?",
+    "options": "{\"options\": [\"CT pulmonary angiography\", \"Ventilation-perfusion scan as the initial test\", \"Apply the PERC rule\", \"Chest radiograph and discharge if normal\", \"High-sensitivity D-dimer, with imaging only if positive\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"labs\", \"blueprintTopic\": \"CT pulmonary angiography without D-dimer when PE is likely\", \"keyTakeaway\": \"High pretest probability of PE: go straight to CTPA; D-dimer cannot safely exclude PE in this group.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "CT pulmonary angiography",
+    "explanation": "CT pulmonary angiography is correct. The 2015 ACP best practice advice on suspected PE states that patients with high pretest probability should go directly to CTPA, and that D-dimer should not be measured in this group because a negative result would not exclude PE. She has recent surgery, DVT signs, tachycardia, and no alternative diagnosis. D-dimer first is the strategy for low or intermediate probability. PERC applies only to low-risk patients and she fails several criteria. V/Q scanning is reserved for patients who cannot receive iodinated contrast; her creatinine is normal. A normal chest radiograph does not rule out PE. Takeaway: high pretest probability of PE: skip the D-dimer and go straight to CTPA.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"labs\", \"ct-pulmonary-angiography-without-d-dimer-when-pe-is-likely\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "pulmonary",
+    "blueprintDomain": "pulmonary",
+    "taskCategory": "labs",
+    "blueprintTopic": "CT pulmonary angiography without D-dimer when PE is likely",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26414967/",
+        "label": "Raja AS et al. Evaluation of Patients With Suspected Acute Pulmonary Embolism: Best Practice Advice From the Clinical Guidelines Committee of the ACP. Ann Intern Med 2015"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "a2e35834bc05b8f0275768ee937f05730dc9b52c1b9e14ec031cd3ba7e0c0d46"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "pulmonary",
+    "itemType": "vignette",
+    "scenario": "A 77-year-old man with hypertension comes for a fall wellness visit. He has never received an RSV vaccine. He received the current season's influenza and COVID-19 vaccines last week. He asks whether he needs an RSV vaccine and, if so, whether he will need it every year like the influenza vaccine.",
+    "question": "Which of the following is the most appropriate recommendation?",
+    "options": "{\"options\": [\"RSV vaccine is not indicated unless he has chronic lung or heart disease\", \"Give one dose of RSV vaccine now; it is not repeated annually\", \"Give a 2-dose RSV vaccine series 1 month apart\", \"Wait until he is 80 years old to vaccinate\", \"Give an RSV vaccine every fall like influenza vaccine\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"prevention\", \"blueprintTopic\": \"single-dose RSV vaccine for an adult aged 75 or older\", \"keyTakeaway\": \"All adults 75 or older (and 50 to 74 at increased risk) get a single RSV vaccine dose; it is not repeated yearly.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Give one dose of RSV vaccine now; it is not repeated annually",
+    "explanation": "A single RSV dose now is correct. Current ACIP/CDC guidance (2024, expanded to age 50 in 2025) recommends a single dose of RSV vaccine for all adults aged 75 years or older and for adults aged 50 to 74 at increased risk of severe RSV disease, ideally given in late summer or early fall; additional doses are not currently recommended, so it is not an annual vaccine. It may be coadministered with other vaccines. Annual revaccination is not recommended. Risk conditions are required only for ages 50 to 74, not 75 and older. RSV vaccine is a single dose, not a 2-dose series. There is no reason to wait until 80. Takeaway: every adult 75 or older gets one lifetime RSV vaccine dose; 50 to 74 only with risk factors.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"prevention\", \"single-dose-rsv-vaccine-for-an-adult-aged-75-or-older\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 1,
+    "topicCategory": "pulmonary",
+    "blueprintDomain": "pulmonary",
+    "taskCategory": "prevention",
+    "blueprintTopic": "single-dose RSV vaccine for an adult aged 75 or older",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39146277/",
+        "label": "Britton A et al. Use of Respiratory Syncytial Virus Vaccines in Adults Aged >=60 Years: Updated Recommendations of the ACIP, United States, 2024. MMWR 2024"
+      },
+      {
+        "url": "https://www.cdc.gov/rsv/hcp/vaccine-clinical-guidance/adults.html",
+        "label": "CDC. RSV Vaccine Guidance for Adults (updated 2026)"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "b200bad0da9614db145ce43a4d55a9da5b3dfd1c39b245395699cf99f5612afa"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "renal",
+    "itemType": "vignette",
+    "scenario": "An 81-year-old woman is brought to the emergency department with 2 days of confusion, vomiting, and ringing in her ears. She has knee osteoarthritis and has been taking increasing amounts of an over-the-counter aspirin-containing pain reliever. Temperature is 37.9 C (100.2 F), pulse is 108/min, and respiratory rate is 28/min. Arterial blood gas shows pH 7.45, PaCO2 22 mm Hg, and bicarbonate 15 mEq/L. Sodium is 140 mEq/L, chloride 103 mEq/L, glucose 104 mg/dL, and lactate 1.6 mmol/L. Serum ketones are negative and the osmolal gap is normal.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Diabetic ketoacidosis\", \"Ethylene glycol poisoning\", \"Sepsis with lactic acidosis\", \"Anxiety-related primary respiratory alkalosis\", \"Chronic salicylate toxicity\"], \"blueprintSystem\": \"renal\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"chronic salicylate toxicity in an older adult with mixed acid-base disorder\", \"keyTakeaway\": \"Mixed respiratory alkalosis and anion gap acidosis with tinnitus and confusion in an aspirin user is salicylate toxicity.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Chronic salicylate toxicity",
+    "explanation": "Chronic salicylate toxicity is correct. Tinnitus, vomiting, tachypnea, low-grade fever, and confusion in an older adult taking aspirin fit salicylism, which classically causes a primary respiratory alkalosis plus an anion gap metabolic acidosis (gap 22). The EXTRIP salicylate recommendations list altered mental status, impaired kidney function, new hypoxemia, refractory acidemia, or a very high level as indications for extracorporeal removal; urine alkalinization is standard care. DKA needs hyperglycemia and ketones. Ethylene glycol causes a high osmolal gap and does not cause tinnitus. Sepsis with lactic acidosis is unlikely with a normal lactate. Primary respiratory alkalosis alone would not produce an anion gap acidosis. Takeaway: respiratory alkalosis plus AG acidosis with tinnitus = salicylates; confusion pushes toward dialysis.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"renal\", \"diagnosis\", \"chronic-salicylate-toxicity-in-an-older-adult-with-mixed-acid-base-disorder\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "renal",
+    "blueprintDomain": "renal",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "chronic salicylate toxicity in an older adult with mixed acid-base disorder",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25986310/",
+        "label": "Juurlink DN et al. Extracorporeal Treatment for Salicylate Poisoning: Systematic Review and Recommendations From the EXTRIP Workgroup. Ann Emerg Med 2015"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "0185b5589c142dcd94673562784afb19e78fc3a8d165a03277c6cc24c7149246"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "genitourinary",
+    "itemType": "vignette",
+    "scenario": "A 63-year-old woman with poorly controlled type 2 diabetes (HbA1c 11.2%) has 3 days of fever, right flank pain, and vomiting. Temperature is 39.4 C (103 F), pulse is 122/min, and blood pressure is 88/54 mm Hg after 2 L of IV crystalloid. She has right costovertebral angle tenderness. Urinalysis shows pyuria and bacteriuria; urine culture later grows Escherichia coli. Noncontrast CT of the abdomen shows gas within the right renal parenchyma extending into the perinephric space; there is no stone or hydronephrosis.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Emphysematous cystitis\", \"Emphysematous pyelonephritis\", \"Xanthogranulomatous pyelonephritis\", \"Obstructed infected kidney from a ureteral stone\", \"Uncomplicated acute pyelonephritis\"], \"blueprintSystem\": \"genitourinary\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"emphysematous pyelonephritis in a patient with diabetes\", \"keyTakeaway\": \"Gas in the renal parenchyma on CT in a septic patient with diabetes is emphysematous pyelonephritis.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Emphysematous pyelonephritis",
+    "explanation": "Emphysematous pyelonephritis is correct. The ACR Appropriateness Criteria for acute pyelonephritis (2022) identify diabetes as a high-risk feature warranting imaging and describe CT as the best test to detect gas-forming infection; gas within the renal parenchyma in a septic diabetic patient defines emphysematous pyelonephritis, which needs IV antibiotics plus urgent urology input for percutaneous drainage or nephrectomy. Uncomplicated pyelonephritis does not produce gas. Xanthogranulomatous pyelonephritis is a chronic process with an enlarged nonfunctioning kidney, usually with a staghorn calculus. An obstructed infected kidney needs a stone with hydronephrosis, which are absent. Emphysematous cystitis puts gas in the bladder wall, not the kidney. Takeaway: diabetic, septic, gas in the renal parenchyma on CT = emphysematous pyelonephritis; drain or remove urgently.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"genitourinary\", \"diagnosis\", \"emphysematous-pyelonephritis-in-a-patient-with-diabetes\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "genitourinary",
+    "blueprintDomain": "genitourinary",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "emphysematous pyelonephritis in a patient with diabetes",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36436954/",
+        "label": "Expert Panel on Urological Imaging. ACR Appropriateness Criteria Acute Pyelonephritis: 2022 Update. J Am Coll Radiol 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "1a9d8931b1b2611afe15c4ef83ab5cc4d112fa16133d299fa382a7435af9bf71"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "genitourinary",
+    "itemType": "vignette",
+    "scenario": "A 26-year-old man has persistent dysuria and a clear urethral discharge. Three weeks ago he was treated empirically for urethritis with ceftriaxone 500 mg IM once and doxycycline 100 mg orally twice daily for 7 days, which he completed. Nucleic acid amplification testing is now negative for Neisseria gonorrhoeae, Chlamydia trachomatis, and Trichomonas vaginalis, and positive for Mycoplasma genitalium. Macrolide resistance testing is not available. He has no history of tendon disorders or QT prolongation.",
+    "question": "Which of the following is the most appropriate treatment?",
+    "options": "{\"options\": [\"Metronidazole 2 g orally as a single dose\", \"Azithromycin 1 g orally as a single dose\", \"Another 7-day course of doxycycline alone\", \"Moxifloxacin 400 mg orally once daily for 7 days\", \"Repeat ceftriaxone 500 mg IM once\"], \"blueprintSystem\": \"genitourinary\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"moxifloxacin after doxycycline for Mycoplasma genitalium urethritis\", \"keyTakeaway\": \"M. genitalium without resistance testing: doxycycline for 7 days, then moxifloxacin 400 mg daily for 7 days.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Moxifloxacin 400 mg orally once daily for 7 days",
+    "explanation": "Moxifloxacin is correct. The CDC 2021 STI treatment guidelines recommend, when resistance testing is unavailable, doxycycline 100 mg twice daily for 7 days followed by moxifloxacin 400 mg once daily for 7 days. Doxycycline lowers the organism load but rarely cures M. genitalium; he has completed it, so moxifloxacin completes the sequence. Single-dose azithromycin is not recommended because macrolide resistance is common in the United States. Ceftriaxone treats gonorrhea, which is negative, and has no activity against Mycoplasma, which lacks a cell wall. Metronidazole treats trichomoniasis. Repeating doxycycline alone has a low cure rate. Partners should be tested, and a test of cure is not routinely needed if symptoms resolve. Takeaway: M. genitalium without resistance testing: doxycycline 7 days, then moxifloxacin 400 mg daily for 7 days.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"genitourinary\", \"pharmacotherapy\", \"moxifloxacin-after-doxycycline-for-mycoplasma-genitalium-urethritis\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "genitourinary",
+    "blueprintDomain": "genitourinary",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "moxifloxacin after doxycycline for Mycoplasma genitalium urethritis",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
+        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep 2021"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "650c801deab02792a4981f8ad14f2314e69284cc9cceeecc28a018034d947402"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "gastrointestinal",
+    "itemType": "vignette",
+    "scenario": "A 34-year-old woman has 3 weeks of right upper quadrant pain and increasing abdominal girth. She has no alcohol use or liver disease history. Abdomen shows tender hepatomegaly and shifting dullness. Hemoglobin is 17.9 g/dL, platelets are 610,000/mm3, ALT is 142 U/L, and bilirubin is 1.6 mg/dL. Ascitic fluid shows a serum-ascites albumin gradient of 1.6 g/dL and total protein of 3.1 g/dL. Doppler ultrasonography shows absent flow in the hepatic veins with an enlarged caudate lobe; the portal vein is patent. Echocardiography is normal.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Portal vein thrombosis\", \"Sinusoidal obstruction syndrome\", \"Alcohol-associated cirrhosis\", \"Constrictive pericarditis\", \"Budd-Chiari syndrome\"], \"blueprintSystem\": \"gastrointestinal\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"Budd-Chiari syndrome from hepatic vein thrombosis in polycythemia vera\", \"keyTakeaway\": \"Absent hepatic vein flow with painful hepatomegaly and high-protein ascites is Budd-Chiari syndrome; test for JAK2.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Budd-Chiari syndrome",
+    "explanation": "Budd-Chiari syndrome is correct. The 2020 AASLD vascular liver disorders guidance describes Budd-Chiari syndrome as hepatic venous outflow obstruction causing pain, hepatomegaly, and high-SAAG, high-protein ascites, names Doppler ultrasonography as the first-line test, and advises testing for an underlying myeloproliferative neoplasm (for example JAK2 V617F), which her high hemoglobin and platelets suggest; anticoagulation is first-line therapy. Portal vein thrombosis would show an occluded portal vein and usually little ascites. Cirrhosis lacks hepatic vein occlusion and she has no risk factors. Constrictive pericarditis also gives high-protein ascites but her echocardiogram is normal. Sinusoidal obstruction syndrome follows stem cell transplant or toxins with patent hepatic veins. Takeaway: hepatomegaly, pain, high-SAAG high-protein ascites, absent hepatic vein flow = Budd-Chiari; look for a myeloproliferative neoplasm.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"gastrointestinal\", \"diagnosis\", \"budd-chiari-syndrome-from-hepatic-vein-thrombosis-in-polycythemia-vera\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "gastrointestinal",
+    "blueprintDomain": "gastrointestinal",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "Budd-Chiari syndrome from hepatic vein thrombosis in polycythemia vera",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33219529/",
+        "label": "Northup PG et al. Vascular Liver Disorders, Portal Vein Thrombosis, and Procedural Bleeding in Patients With Liver Disease: 2020 Practice Guidance by AASLD. Hepatology 2021"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "b8a2591a0e701c167f5ff3f4e8c3cc36f31de870e0e3cbc9750a407320f75dfa"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "gastrointestinal",
+    "itemType": "vignette",
+    "scenario": "A 41-year-old man has a newly resected adenocarcinoma of the ascending colon. Colonoscopy showed 2 adenomas besides the cancer. His mother had endometrial cancer at age 48, and his maternal uncle had colon cancer at age 45. Immunohistochemistry of the tumor shows loss of MSH2 and MSH6 protein expression with intact MLH1 and PMS2.",
+    "question": "Which of the following is the most likely underlying diagnosis?",
+    "options": "{\"options\": [\"Familial adenomatous polyposis\", \"MUTYH-associated polyposis\", \"Peutz-Jeghers syndrome\", \"Lynch syndrome\", \"Sporadic colon cancer from MLH1 promoter hypermethylation\"], \"blueprintSystem\": \"gastrointestinal\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"Lynch syndrome suggested by MSH2/MSH6 loss in early-onset colon cancer\", \"keyTakeaway\": \"Loss of MSH2/MSH6 on tumor IHC with early-onset CRC and endometrial cancer in the family is Lynch syndrome.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Lynch syndrome",
+    "explanation": "Lynch syndrome is correct. The ACG hereditary GI cancer syndromes guideline recommends mismatch repair testing of all colorectal cancers and germline testing when it suggests Lynch syndrome; loss of MSH2 and MSH6 points to a germline MSH2 variant. Early-onset right-sided colon cancer with relatives who had endometrial and colon cancer before 50 fits. Carriers need colonoscopy every 1 to 2 years. Familial adenomatous polyposis causes hundreds to thousands of adenomas. MUTYH polyposis is recessive with multiple adenomas, usually 10 to 100. Peutz-Jeghers causes hamartomatous polyps and mucocutaneous pigmentation. MLH1 hypermethylation explains sporadic MLH1/PMS2 loss in older patients, not MSH2/MSH6 loss. Takeaway: early CRC, family endometrial and colon cancer, MSH2/MSH6 loss on IHC = Lynch; refer for germline testing.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"gastrointestinal\", \"diagnosis\", \"lynch-syndrome-suggested-by-msh2-msh6-loss-in-early-onset-colon-cancer\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "gastrointestinal",
+    "blueprintDomain": "gastrointestinal",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "Lynch syndrome suggested by MSH2/MSH6 loss in early-onset colon cancer",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25645574/",
+        "label": "Syngal S et al. ACG Clinical Guideline: Genetic Testing and Management of Hereditary Gastrointestinal Cancer Syndromes. Am J Gastroenterol 2015"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "0c439f1d4f67021843297f064573ce7a3a095b3360ee5256454f425252bd770a"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "gastrointestinal",
+    "itemType": "vignette",
+    "scenario": "A 34-year-old woman has 2 years of recurrent abdominal pain that improves after defecation, associated with hard, infrequent stools on most days; she has no rectal bleeding, weight loss, anemia, or family history of colon cancer or IBD. CBC and celiac serology are normal. Eight weeks of daily polyethylene glycol softened her stools but did not relieve her pain or bloating. She is not pregnant.",
+    "question": "Which of the following is the most appropriate next pharmacotherapy?",
+    "options": "{\"options\": [\"Loperamide 2 mg orally as needed\", \"Linaclotide 290 mcg orally once daily\", \"Rifaximin 550 mg orally three times daily for 14 days\", \"Alosetron 0.5 mg orally twice daily\", \"Eluxadoline 100 mg orally twice daily\"], \"blueprintSystem\": \"gastrointestinal\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"linaclotide for IBS with constipation after polyethylene glycol failure\", \"keyTakeaway\": \"IBS-C with pain despite PEG: linaclotide 290 mcg daily; avoid IBS-D agents.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Linaclotide 290 mcg orally once daily",
+    "explanation": "Linaclotide is correct. The 2022 AGA guideline on IBS with constipation strongly recommends linaclotide, a guanylate cyclase-C agonist, and notes that polyethylene glycol improves stool frequency but not abdominal pain. The IBS-C dose is 290 mcg once daily on an empty stomach at least 30 minutes before the first meal; diarrhea is the main side effect. Loperamide slows transit and would worsen constipation. Alosetron is for women with severe IBS with diarrhea and can cause ischemic colitis and severe constipation. Rifaximin is approved for IBS with diarrhea. Eluxadoline is also for IBS with diarrhea and is constipating. Takeaway: IBS-C with persistent pain despite PEG: add a secretagogue such as linaclotide 290 mcg daily.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"gastrointestinal\", \"pharmacotherapy\", \"linaclotide-for-ibs-with-constipation-after-polyethylene-glycol-failure\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "gastrointestinal",
+    "blueprintDomain": "gastrointestinal",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "linaclotide for IBS with constipation after polyethylene glycol failure",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35738724/",
+        "label": "Chang L et al. AGA Clinical Practice Guideline on the Pharmacological Management of Irritable Bowel Syndrome With Constipation. Gastroenterology 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "e9c98628e8de97738750ab9aa6dcb4ab75ab02cad0b2d4b8247d859ea6f0848e"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "gastrointestinal",
+    "itemType": "vignette",
+    "scenario": "A 58-year-old man with alcohol-associated cirrhosis has tense ascites causing dyspnea and early satiety despite sodium restriction and diuretics. Diagnostic fluid analysis last week showed no spontaneous bacterial peritonitis. Blood pressure is 106/64 mm Hg. Therapeutic paracentesis removes 8 L of ascitic fluid without complication.",
+    "question": "Which of the following is the most appropriate management at the time of this paracentesis?",
+    "options": "{\"options\": [\"Fresh frozen plasma before and after the procedure\", \"IV albumin about 6 to 8 g per liter of fluid removed\", \"IV terlipressin for 3 days\", \"No volume expander because more than 5 L was removed\", \"IV normal saline 1 L bolus\"], \"blueprintSystem\": \"gastrointestinal\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"albumin 6 to 8 g per liter after large-volume paracentesis\", \"keyTakeaway\": \"Large-volume paracentesis over 5 L: give IV albumin 6 to 8 g per liter removed.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "IV albumin about 6 to 8 g per liter of fluid removed",
+    "explanation": "IV albumin is correct. The 2021 AASLD ascites guidance recommends albumin at about 6 to 8 g per liter of fluid removed when more than 5 L is drained, to prevent post-paracentesis circulatory dysfunction, which can cause hyponatremia, kidney injury, and death. For 8 L, that is roughly 50 to 64 g, usually given as 25% albumin. Omitting volume expansion after more than 5 L is incorrect; that is when albumin is needed. Saline is a less effective expander. Routine fresh frozen plasma is not recommended before paracentesis, because bleeding is rare even with an elevated INR. Terlipressin is used for hepatorenal syndrome-AKI, not for routine paracentesis. Takeaway: paracentesis over 5 L in cirrhosis: give 6 to 8 g of albumin per liter removed.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"gastrointestinal\", \"intervention\", \"albumin-6-to-8-g-per-liter-after-large-volume-paracentesis\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "gastrointestinal",
+    "blueprintDomain": "gastrointestinal",
+    "taskCategory": "intervention",
+    "blueprintTopic": "albumin 6 to 8 g per liter after large-volume paracentesis",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33942342/",
+        "label": "Biggins SW et al. Diagnosis, Evaluation, and Management of Ascites, SBP and Hepatorenal Syndrome: 2021 AASLD Practice Guidance. Hepatology 2021"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "ce6e989613a744627353a88e4e73ba78cd3e0f517ea99e62712b91303a7b31e2"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "gastrointestinal",
+    "itemType": "vignette",
+    "scenario": "A 5-day-old full-term boy has had 3 episodes of green vomiting since this morning after feeding normally for 4 days. He passed meconium on day 1. He is irritable. Temperature is 37.1 C (98.8 F), pulse is 168/min, and capillary refill is 3 seconds. The abdomen is mildly distended and tender. An abdominal radiograph shows a nonspecific bowel gas pattern without free air. IV access is obtained, and a surgeon is notified.",
+    "question": "Which of the following is the most appropriate next imaging study?",
+    "options": "{\"options\": [\"Upper gastrointestinal contrast series\", \"Ultrasonography of the pylorus\", \"Outpatient abdominal CT in 1 week\", \"Contrast enema\", \"Hepatobiliary iminodiacetic acid scan\"], \"blueprintSystem\": \"gastrointestinal\", \"taskCategory\": \"labs\", \"blueprintTopic\": \"upper GI series for bilious vomiting to exclude malrotation with midgut volvulus\", \"keyTakeaway\": \"Bilious vomiting in a neonate: emergency upper GI series for malrotation with midgut volvulus.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Upper gastrointestinal contrast series",
+    "explanation": "An upper GI series is correct. The ACR Appropriateness Criteria for vomiting in infants rate the fluoroscopic upper GI series as usually appropriate for bilious vomiting, the warning sign of malrotation with midgut volvulus; it shows an abnormal duodenojejunal junction position or a corkscrew duodenum, and volvulus needs emergency surgery. Pyloric ultrasonography evaluates nonbilious projectile vomiting at 3 to 6 weeks, typical of pyloric stenosis. A contrast enema looks for distal obstruction such as Hirschsprung disease or meconium ileus; he passed meconium and the obstruction is proximal. A HIDA scan evaluates biliary atresia or cholecystitis. Delaying imaging risks bowel necrosis. Takeaway: bilious vomiting in a newborn is malrotation with volvulus until an emergency upper GI series proves otherwise.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"gastrointestinal\", \"labs\", \"upper-gi-series-for-bilious-vomiting-to-exclude-malrotation-with-midgut-volvulus\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "gastrointestinal",
+    "blueprintDomain": "gastrointestinal",
+    "taskCategory": "labs",
+    "blueprintTopic": "upper GI series for bilious vomiting to exclude malrotation with midgut volvulus",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33153561/",
+        "label": "Expert Panel on Pediatric Imaging. ACR Appropriateness Criteria Vomiting in Infants. J Am Coll Radiol 2020"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "3d3a77a940120655f27d6786761c1868fe66a045461998e061f3e74156d7b041"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "endocrine",
+    "itemType": "vignette",
+    "scenario": "A 45-year-old woman has 6 months of episodes of confusion, sweating, and palpitations before breakfast or after missed meals, relieved by eating. She has gained 6 kg. She does not have diabetes and has no access to diabetes medications. During a supervised fast she becomes confused at 30 hours. Simultaneous results: glucose 42 mg/dL, insulin 14 microU/mL, C-peptide 1.1 ng/mL, proinsulin 22 pmol/L, beta-hydroxybutyrate 0.6 mmol/L, and a negative oral hypoglycemic agent screen. Glucose rises by 40 mg/dL after IV glucagon. Morning cortisol is normal.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Surreptitious use of exogenous insulin\", \"Sulfonylurea ingestion\", \"Insulinoma\", \"Primary adrenal insufficiency\", \"Non-islet cell tumor hypoglycemia from IGF-II\"], \"blueprintSystem\": \"endocrine\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"insulinoma diagnosed by endogenous hyperinsulinemic hypoglycemia\", \"keyTakeaway\": \"High insulin, C-peptide, and proinsulin during fasting hypoglycemia with a negative drug screen means insulinoma.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Insulinoma",
+    "explanation": "Insulinoma is correct. The Endocrine Society guideline on adult hypoglycemic disorders defines endogenous hyperinsulinism during symptomatic hypoglycemia (glucose below 55 mg/dL) as insulin at least 3 microU/mL, C-peptide at least 0.6 ng/mL, proinsulin at least 5 pmol/L, beta-hydroxybutyrate 2.7 mmol/L or less, and a glucose rise of 25 mg/dL or more after glucagon. Her results meet all of these with a negative sulfonylurea screen, the pattern of insulinoma; localization comes next. Exogenous insulin raises insulin while suppressing C-peptide and proinsulin. Sulfonylureas mimic insulinoma biochemically but the drug screen is negative. Adrenal insufficiency causes hypoglycemia with low insulin and an abnormal cortisol. IGF-II-mediated hypoglycemia suppresses insulin and C-peptide. Takeaway: fasting hypoglycemia with high insulin, C-peptide, and proinsulin and a negative drug screen = insulinoma.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"endocrine\", \"diagnosis\", \"insulinoma-diagnosed-by-endogenous-hyperinsulinemic-hypoglycemia\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "endocrine",
+    "blueprintDomain": "endocrine",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "insulinoma diagnosed by endogenous hyperinsulinemic hypoglycemia",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19088155/",
+        "label": "Cryer PE et al. Evaluation and Management of Adult Hypoglycemic Disorders: An Endocrine Society Clinical Practice Guideline. J Clin Endocrinol Metab 2009"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "2de36ebc412664c1523ed8d4837a0f956df1ee5dd1368493a73f599c04286181"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "endocrine",
+    "itemType": "vignette",
+    "scenario": "A 38-year-old man has a serum calcium of 10.9 mg/dL found on routine testing. He has no symptoms, kidney stones, or fractures. His father had the same finding and underwent neck exploration years ago without lowering his calcium. Intact PTH is 64 pg/mL (reference 15-65), 25-hydroxyvitamin D is 32 ng/mL, creatinine is normal, and he takes no medications. A 24-hour urine collection shows calcium 42 mg/day, with a calcium-to-creatinine clearance ratio of 0.004.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Familial hypocalciuric hypercalcemia\", \"Vitamin D intoxication\", \"Primary hyperparathyroidism\", \"Humoral hypercalcemia of malignancy\", \"Lithium-associated hypercalcemia\"], \"blueprintSystem\": \"endocrine\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"familial hypocalciuric hypercalcemia shown by a low urinary calcium-to-creatinine clearance ratio\", \"keyTakeaway\": \"Hypercalcemia with nonsuppressed PTH and a calcium/creatinine clearance ratio below 0.01 suggests FHH, not a surgical disease.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Familial hypocalciuric hypercalcemia",
+    "explanation": "FHH is correct. The Fifth International Workshop on primary hyperparathyroidism advises measuring 24-hour urine calcium and the calcium-to-creatinine clearance ratio to distinguish FHH; a ratio below 0.01 suggests FHH (usually from an inactivating CASR variant), and genetic testing can confirm it. FHH is benign and parathyroidectomy does not correct it, as his father's unsuccessful neck surgery shows. Primary hyperparathyroidism usually has a ratio above 0.02 with normal or high urine calcium. Vitamin D intoxication suppresses PTH and raises 25-hydroxyvitamin D. Lithium can mimic FHH but he takes no lithium. Malignancy-related hypercalcemia suppresses PTH and is usually symptomatic. Takeaway: mild hypercalcemia, normal-high PTH, family history, and a calcium/creatinine clearance ratio below 0.01 = FHH; avoid surgery.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"endocrine\", \"diagnosis\", \"familial-hypocalciuric-hypercalcemia-shown-by-a-low-urinary-calcium-to-creatinine-clearance-ratio\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "endocrine",
+    "blueprintDomain": "endocrine",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "familial hypocalciuric hypercalcemia shown by a low urinary calcium-to-creatinine clearance ratio",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36245251/",
+        "label": "Bilezikian JP et al. Evaluation and Management of Primary Hyperparathyroidism: Summary Statement and Guidelines from the Fifth International Workshop. J Bone Miner Res 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "4feb0ea88c4d6a75460969fe13372a986a004c6e773ea2a9734ee288a38c4695"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "endocrine",
+    "itemType": "vignette",
+    "scenario": "A 13-year-old girl comes for a sports physical. Her BMI is at the 97th percentile for age and sex. Her mother has type 2 diabetes. She reports no polyuria or polydipsia. Puberty began 1 year ago. You are deciding whether she meets criteria for risk-based screening for type 2 diabetes and are completing the skin examination.",
+    "question": "Examination of which of the following is most likely to reveal a finding of insulin resistance that supports screening?",
+    "options": "{\"options\": [\"The face for a malar erythematous rash\", \"The trunk for coast-of-Maine cafe-au-lait macules\", \"The palms for pitting and nail ridging\", \"The shins for waxy yellow-brown plaques\", \"The posterior neck and axillae for velvety hyperpigmented plaques\"], \"blueprintSystem\": \"endocrine\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"examining the neck and axillae for acanthosis nigricans in an adolescent with obesity\", \"keyTakeaway\": \"Acanthosis nigricans on the neck and axillae is a physical sign of insulin resistance that adds to type 2 diabetes screening criteria in youth.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "The posterior neck and axillae for velvety hyperpigmented plaques",
+    "explanation": "The posterior neck and axillae are correct. The ADA Standards of Care 2026 children and adolescents section recommends risk-based screening for type 2 diabetes after puberty onset or age 10 in youth with overweight or obesity and one or more risk factors, which include family history, maternal gestational diabetes, high-risk race or ethnicity, and signs of insulin resistance such as acanthosis nigricans, the velvety hyperpigmented plaques of the neck and flexures. Palmar pitting and nail ridging are not insulin-resistance signs. Waxy shin plaques describe necrobiosis lipoidica, which occurs in established diabetes. A malar rash suggests lupus. Coast-of-Maine cafe-au-lait macules suggest McCune-Albright syndrome. Takeaway: obese youth plus acanthosis nigricans on the neck or axillae signals insulin resistance and supports type 2 diabetes screening.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"endocrine\", \"history-physical\", \"examining-the-neck-and-axillae-for-acanthosis-nigricans-in-an-adolescent-with-obesity\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 1,
+    "topicCategory": "endocrine",
+    "blueprintDomain": "endocrine",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "examining the neck and axillae for acanthosis nigricans in an adolescent with obesity",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41358890/",
+        "label": "American Diabetes Association Professional Practice Committee. 14. Children and Adolescents: Standards of Care in Diabetes-2026. Diabetes Care 2026"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "79d646b12efae8cca55bb6636cf011668b5acf54a21329ebbb4263b0b4916601"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "endocrine",
+    "itemType": "vignette",
+    "scenario": "A 72-year-old woman with postmenopausal osteoporosis has received denosumab 60 mg subcutaneously every 6 months for 5 years. Her last injection was 5 months ago. Her T-score has improved from -3.0 to -2.2 at the lumbar spine, and she has had no fractures. She wants to stop denosumab. Creatinine clearance is 68 mL/min, calcium and 25-hydroxyvitamin D are normal, and a recent dental examination was unremarkable.",
+    "question": "Which of the following is the most appropriate plan?",
+    "options": "{\"options\": [\"Give a bisphosphonate such as zoledronic acid when the next denosumab dose would be due\", \"Stop denosumab and begin a drug holiday with DXA in 2 years\", \"Stop denosumab and continue calcium and vitamin D alone\", \"Lengthen the denosumab interval to once yearly\", \"Stop denosumab and start calcitonin nasal spray\"], \"blueprintSystem\": \"endocrine\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"transition to a bisphosphonate when stopping denosumab\", \"keyTakeaway\": \"Stopping denosumab causes rebound vertebral fractures; follow it with a bisphosphonate at the next due date.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Give a bisphosphonate such as zoledronic acid when the next denosumab dose would be due",
+    "explanation": "A bisphosphonate transition is correct. The 2020 Endocrine Society osteoporosis guideline update advises that denosumab should not be stopped without subsequent antiresorptive therapy, because stopping it causes rapid bone loss and a rebound increase in multiple vertebral fractures; a bisphosphonate, such as zoledronic acid or oral alendronate, should be started around the time the next dose is due. A drug holiday is a bisphosphonate concept; denosumab has no residual skeletal effect. Calcitonin is a weak antiresorptive with no proven protection after denosumab. A yearly interval lets the drug wear off and invites rebound. Calcium and vitamin D alone do not prevent rebound. Takeaway: never stop denosumab cold; follow it with a bisphosphonate when the next dose would be due.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"endocrine\", \"pharmacotherapy\", \"transition-to-a-bisphosphonate-when-stopping-denosumab\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "endocrine",
+    "blueprintDomain": "endocrine",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "transition to a bisphosphonate when stopping denosumab",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32068863/",
+        "label": "Shoback D et al. Pharmacological Management of Osteoporosis in Postmenopausal Women: An Endocrine Society Guideline Update. J Clin Endocrinol Metab 2020"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "4cac2888502e5fdb40f6e4176384022a98a7f120c06fd9dffcd4610f67e8c4cb"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "endocrine",
+    "itemType": "vignette",
+    "scenario": "A 36-year-old man with sickle cell disease (HbSS) has polyuria and a fasting plasma glucose of 131 mg/dL on a routine panel. He had a transfusion 6 weeks ago for acute chest syndrome. HbA1c measured today is 5.1%. He has no symptoms of hyperglycemic crisis.",
+    "question": "Which of the following is the most appropriate next step to evaluate for diabetes?",
+    "options": "{\"options\": [\"Repeat fasting plasma glucose or perform a 75-g oral glucose tolerance test\", \"Measure fructosamine and diagnose diabetes if elevated\", \"Repeat HbA1c in 3 months\", \"Measure C-peptide to classify diabetes type\", \"Conclude that he does not have diabetes on the basis of the HbA1c\"], \"blueprintSystem\": \"endocrine\", \"taskCategory\": \"labs\", \"blueprintTopic\": \"using glucose criteria instead of HbA1c in sickle cell disease\", \"keyTakeaway\": \"In sickle cell disease or after transfusion, diagnose diabetes with plasma glucose criteria, not HbA1c.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Repeat fasting plasma glucose or perform a 75-g oral glucose tolerance test",
+    "explanation": "Glucose-based testing is correct. The ADA Standards of Care 2026 diagnosis section states that in conditions that alter red cell turnover, such as sickle cell disease, recent blood loss or transfusion, hemodialysis, erythropoietin therapy, and the second and third trimesters of pregnancy, only plasma glucose criteria should be used to diagnose diabetes. His shortened red cell survival and recent transfusion make the HbA1c of 5.1% falsely low, and his fasting glucose of 131 mg/dL needs confirmation with a second abnormal glucose-based test. A normal HbA1c cannot exclude diabetes here, and repeating it is also unreliable. Fructosamine is not a diagnostic criterion. C-peptide helps classify diabetes only after it is diagnosed. Takeaway: altered red cell turnover makes HbA1c unreliable; diagnose diabetes with plasma glucose criteria.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"endocrine\", \"labs\", \"using-glucose-criteria-instead-of-hba1c-in-sickle-cell-disease\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "endocrine",
+    "blueprintDomain": "endocrine",
+    "taskCategory": "labs",
+    "blueprintTopic": "using glucose criteria instead of HbA1c in sickle cell disease",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41358893/",
+        "label": "American Diabetes Association Professional Practice Committee. 2. Diagnosis and Classification of Diabetes: Standards of Care in Diabetes-2026. Diabetes Care 2026"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "b3f9bd156ceb058e10613dcee0f73a69ae517a23cf0e79a536102df4245af5b6"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "hematologic",
+    "itemType": "vignette",
+    "scenario": "A 67-year-old man has 3 weeks of fatigue, exertional dyspnea, gum bleeding, and a fever. He has pallor and scattered petechiae; there is no lymphadenopathy or splenomegaly. WBC count is 38,000/mm3 with 61% blasts, hemoglobin is 7.8 g/dL, and platelets are 22,000/mm3. PT, aPTT, and fibrinogen are normal. Bone marrow aspirate shows 68% myeloperoxidase-positive blasts, some containing Auer rods. RT-PCR for PML::RARA is negative.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Chronic myeloid leukemia in chronic phase\", \"Myelodysplastic syndrome with low blasts\", \"Acute promyelocytic leukemia\", \"Acute myeloid leukemia\", \"Acute lymphoblastic leukemia\"], \"blueprintSystem\": \"hematologic\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"acute myeloid leukemia with Auer rods in an older adult\", \"keyTakeaway\": \"At least 20% MPO-positive myeloid blasts with Auer rods and no PML::RARA is AML.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Acute myeloid leukemia",
+    "explanation": "AML is correct. The 2022 ELN recommendations diagnose AML from bone marrow showing at least 20% myeloid blasts (lower thresholds apply only with specific defining genetic changes) and recommend genetic testing to guide risk and therapy. Myeloperoxidase-positive blasts with Auer rods confirm myeloid lineage, and he has cytopenias from marrow failure. Acute promyelocytic leukemia also shows Auer rods but carries PML::RARA and usually DIC; both are absent. ALL blasts are myeloperoxidase-negative lymphoblasts. Chronic-phase CML has a left-shifted granulocytosis with few blasts, usually splenomegaly, and BCR::ABL1. MDS with low blasts has fewer than 5% marrow blasts. Takeaway: 20% or more MPO-positive myeloid blasts with Auer rods and no PML::RARA = AML; send genetics for ELN risk.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"hematologic\", \"diagnosis\", \"acute-myeloid-leukemia-with-auer-rods-in-an-older-adult\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "hematologic",
+    "blueprintDomain": "hematologic",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "acute myeloid leukemia with Auer rods in an older adult",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35797463/",
+        "label": "Dohner H et al. Diagnosis and Management of AML in Adults: 2022 Recommendations From an International Expert Panel on Behalf of the ELN. Blood 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "c1608ba278d50cbf342e783865a55dba589ec8ad0222bdff9ec931ac5e171de2"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 6-year-old boy has 2 days of fever, sore throat, headache, and abdominal pain, followed by a rash. Temperature is 39.0 C (102.2 F). He has tonsillar exudate, tender anterior cervical nodes, a red tongue with prominent papillae, and circumoral pallor. A diffuse, fine, sandpaper-textured erythematous rash is most intense in the axillary and antecubital creases, where it forms linear petechial lines. He has no cough, conjunctivitis, or rhinorrhea. A rapid antigen detection test is positive.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Measles\", \"Scarlet fever\", \"Staphylococcal scalded skin syndrome\", \"Kawasaki disease\", \"Roseola infantum\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"scarlet fever from group A streptococcal pharyngitis\", \"keyTakeaway\": \"Sandpaper rash with Pastia lines, strawberry tongue, and GAS pharyngitis is scarlet fever.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Scarlet fever",
+    "explanation": "Scarlet fever is correct. The IDSA group A streptococcal pharyngitis guideline lists a scarlatiniform rash as a feature that suggests GAS, and a positive rapid antigen test confirms GAS pharyngitis in a child. The sandpaper rash accentuated in skin folds (Pastia lines), strawberry tongue, and circumoral pallor are classic. First-line therapy is amoxicillin or penicillin for 10 days. Kawasaki disease requires fever of 5 days or more with features such as conjunctivitis and extremity changes, and pharyngeal exudate is unusual. Measles has cough, coryza, conjunctivitis, Koplik spots, and a cephalocaudal maculopapular rash. Staphylococcal scalded skin syndrome causes tender skin with superficial blistering and a positive Nikolsky sign. Roseola causes high fever followed by rash after defervescence in infants. Takeaway: GAS pharyngitis plus sandpaper rash, Pastia lines, strawberry tongue = scarlet fever.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"scarlet-fever-from-group-a-streptococcal-pharyngitis\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 1,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "scarlet fever from group A streptococcal pharyngitis",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22965026/",
+        "label": "Shulman ST et al. Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by IDSA. Clin Infect Dis 2012"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "d530c7e40d67eb44806014f30930338cc39d68148cab06a1017e5aed4c0e63ce"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 32-year-old man returns from 6 months of work in Papua New Guinea with a slowly enlarging genital lesion for 5 weeks. It is painless. Examination shows a 2-cm, beefy-red, highly vascular ulcer on the penile shaft with rolled edges that bleeds easily when touched. There is no inguinal lymphadenopathy. Syphilis serology and HSV PCR are negative. A crush preparation from the lesion shows dark-staining intracytoplasmic inclusions within mononuclear cells.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Lymphogranuloma venereum\", \"Chancroid\", \"Primary syphilis\", \"Genital herpes\", \"Granuloma inguinale (donovanosis)\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"granuloma inguinale (donovanosis) with a painless beefy-red ulcer\", \"keyTakeaway\": \"Painless beefy-red ulcer that bleeds easily, no adenopathy, Donovan bodies: granuloma inguinale.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Granuloma inguinale (donovanosis)",
+    "explanation": "Granuloma inguinale is correct. The CDC 2021 STI treatment guidelines describe donovanosis, caused by Klebsiella granulomatis, as painless, slowly progressive ulcerative lesions without regional lymphadenopathy that are highly vascular, beefy red, and bleed easily; diagnosis requires visualizing Donovan bodies on crush preparation or biopsy, and it is rare in the United States but endemic in areas such as Papua New Guinea. Treatment is azithromycin 1 g weekly or 500 mg daily for at least 3 weeks and until lesions heal. Chancroid causes painful ulcers with tender suppurative nodes. Primary syphilis gives a clean-based indurated chancre and positive serology. LGV causes a transient ulcer followed by painful inguinal buboes. Herpes causes painful grouped vesicles and a positive PCR. Takeaway: painless, beefy-red, friable genital ulcer, no nodes, Donovan bodies = granuloma inguinale.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"granuloma-inguinale-donovanosis-with-a-painless-beefy-red-ulcer\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "granuloma inguinale (donovanosis) with a painless beefy-red ulcer",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
+        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep 2021"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "7c13ef48d615ad0da8aabef0ce7f0318a2fdb5545291c4c59a750729cc15c37c"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "An 18-year-old woman will move into a college residence hall next month. Her immunization record shows one dose of MenACWY at age 11 and no doses since. She is healthy, has a functioning spleen, and has no complement deficiency. She received all other routine adolescent vaccines.",
+    "question": "Which of the following is the most appropriate recommendation regarding meningococcal vaccination?",
+    "options": "{\"options\": [\"Give PPSV23 instead of a meningococcal vaccine\", \"Give one dose of MenACWY now\", \"No vaccine is needed because she received MenACWY at age 11\", \"Vaccinate only if a campus outbreak occurs\", \"Give MenB only, because MenACWY does not cover college outbreaks\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"prevention\", \"blueprintTopic\": \"MenACWY booster for a first-year college student vaccinated only before age 16\", \"keyTakeaway\": \"A dorm-bound first-year college student whose last MenACWY dose was before 16 needs a MenACWY dose now.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Give one dose of MenACWY now",
+    "explanation": "One dose of MenACWY now is correct. The 2020 ACIP meningococcal recommendations call for MenACWY at 11 to 12 years with a booster at 16, and specifically recommend that first-year college students living in residence halls receive MenACWY if their most recent dose was before age 16 or they were never vaccinated. Protection wanes within about 5 years, so her dose at 11 is not enough. MenB is offered to persons aged 16 to 23 on the basis of shared clinical decision-making, but it does not replace MenACWY. PPSV23 protects against pneumococcus, not meningococcus. Waiting for an outbreak leaves her unprotected during the highest-risk period. Takeaway: MenACWY at 11-12 plus a booster at 16; a college freshman in a dorm with no dose at 16 or older gets one now.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"prevention\", \"menacwy-booster-for-a-first-year-college-student-vaccinated-only-before-age-16\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "prevention",
+    "blueprintTopic": "MenACWY booster for a first-year college student vaccinated only before age 16",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33417592/",
+        "label": "Mbaeyi SA et al. Meningococcal Vaccination: Recommendations of the ACIP, United States, 2020. MMWR Recomm Rep 2020"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "c3249d7d0c238d4e102eea67fab851a320d7052cd41f78812f1285dc0378c36b"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "dermatologic",
+    "itemType": "vignette",
+    "scenario": "A 24-year-old man has 4 months of intensely itchy, grouped papules and small vesicles on his elbows, knees, and buttocks, many excoriated. He has occasional bloating and loose stools. Punch biopsy of perilesional normal-appearing skin shows granular IgA deposits in the dermal papillae on direct immunofluorescence. Tissue transglutaminase IgA is elevated with a normal total IgA.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Bullous pemphigoid\", \"Pemphigus vulgaris\", \"Dermatitis herpetiformis\", \"Linear IgA bullous dermatosis\", \"Scabies\"], \"blueprintSystem\": \"dermatologic\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"dermatitis herpetiformis with granular IgA deposits indicating celiac disease\", \"keyTakeaway\": \"Granular IgA in the dermal papillae with itchy extensor vesicles is dermatitis herpetiformis, a celiac disease marker.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Dermatitis herpetiformis",
+    "explanation": "Dermatitis herpetiformis is correct. The 2023 ACG celiac disease guideline describes dermatitis herpetiformis as the skin manifestation of celiac disease, diagnosed by perilesional skin biopsy showing granular IgA in the dermal papillae; patients have celiac disease and need a lifelong gluten-free diet, with dapsone for symptom control after G6PD testing. Grouped, intensely itchy vesicles on the extensor surfaces and buttocks are typical. Bullous pemphigoid causes tense bullae in older adults with linear IgG and C3 along the basement membrane. Pemphigus vulgaris causes flaccid bullae and oral erosions with intercellular IgG. Linear IgA dermatosis shows linear, not granular, IgA. Scabies causes burrows and itchy papules in web spaces without IgA deposits. Takeaway: itchy grouped extensor vesicles plus granular IgA in dermal papillae = dermatitis herpetiformis = celiac disease.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"dermatologic\", \"diagnosis\", \"dermatitis-herpetiformis-with-granular-iga-deposits-indicating-celiac-disease\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "dermatologic",
+    "blueprintDomain": "dermatologic",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "dermatitis herpetiformis with granular IgA deposits indicating celiac disease",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36602836/",
+        "label": "Rubio-Tapia A et al. ACG Guidelines Update: Diagnosis and Management of Celiac Disease. Am J Gastroenterol 2023"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "2cd74fd10e1c408f5ecf570f189b2b4ae181aa5a7f5a6116189a4448a61c342f"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "neurologic",
+    "itemType": "vignette",
+    "scenario": "A 24-year-old woman is admitted after 2 weeks of anxiety, insomnia, paranoid delusions, and disorganized speech, followed by a generalized seizure. Over the next days she develops decreased responsiveness, orofacial dyskinesias, and fluctuating blood pressure and heart rate. Temperature is 37.6 C (99.7 F). She takes no medications or drugs. Brain MRI is normal. CSF shows 32 lymphocytes/mm3, normal glucose, and oligoclonal bands; HSV PCR is negative. EEG shows diffuse slowing. Pelvic ultrasonography shows a 4-cm complex left ovarian mass with fat and calcification.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Neuroleptic malignant syndrome\", \"First-episode schizophrenia\", \"Sporadic Creutzfeldt-Jakob disease\", \"Anti-NMDA receptor encephalitis\", \"Herpes simplex encephalitis\"], \"blueprintSystem\": \"neurologic\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"anti-NMDA receptor encephalitis with an ovarian teratoma\", \"keyTakeaway\": \"Psychosis then seizures, dyskinesias, and autonomic instability in a young woman with a teratoma is anti-NMDAR encephalitis.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Anti-NMDA receptor encephalitis",
+    "explanation": "Anti-NMDA receptor encephalitis is correct. The Graus clinical approach to autoimmune encephalitis defines probable anti-NMDAR encephalitis as rapid onset of at least 4 of 6 symptom groups (psychiatric or cognitive change, speech disturbance, seizures, dyskinesias, reduced consciousness, autonomic instability) plus abnormal EEG or CSF, or 3 groups with a systemic teratoma; CSF GluN1 IgG confirms it. Treatment is immunotherapy and tumor removal. HSV encephalitis is excluded by a negative PCR and usually has temporal lobe MRI changes. NMS requires antipsychotic exposure, rigidity, and hyperthermia. Schizophrenia does not cause seizures, dyskinesias, autonomic instability, or CSF pleocytosis. CJD occurs in older adults with myoclonus and progresses over months. Takeaway: young woman with psychosis, seizures, dyskinesias, autonomic swings, and an ovarian teratoma = anti-NMDAR encephalitis.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"neurologic\", \"diagnosis\", \"anti-nmda-receptor-encephalitis-with-an-ovarian-teratoma\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "neurologic",
+    "blueprintDomain": "neurologic",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "anti-NMDA receptor encephalitis with an ovarian teratoma",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26906964/",
+        "label": "Graus F et al. A Clinical Approach to Diagnosis of Autoimmune Encephalitis. Lancet Neurol 2016"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "2a06cadeb0414b957fd854d17426fe00dc728dc5c968ecbdc0563a488611e9de"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "neurologic",
+    "itemType": "vignette",
+    "scenario": "A 35-year-old woman has 1 week of progressive bilateral leg weakness, numbness below the umbilicus, and urinary retention. Three months ago she had 10 days of intractable hiccups and vomiting with no GI cause. Two years ago she had severe left optic neuritis that left her with 20/200 vision. Spinal MRI shows a T2 lesion extending continuously from T2 to T9. Brain MRI shows no typical ovoid periventricular lesions. Serum aquaporin-4 IgG is positive by cell-based assay.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"MOG antibody-associated disease\", \"Acute disseminated encephalomyelitis\", \"Neuromyelitis optica spectrum disorder\", \"Relapsing-remitting multiple sclerosis\", \"Spinal cord infarction\"], \"blueprintSystem\": \"neurologic\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"AQP4-IgG-positive neuromyelitis optica spectrum disorder\", \"keyTakeaway\": \"AQP4-IgG plus a core feature (optic neuritis, longitudinal myelitis, area postrema syndrome) is NMOSD.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Neuromyelitis optica spectrum disorder",
+    "explanation": "NMOSD is correct. The 2015 international consensus criteria diagnose NMOSD with AQP4-IgG by a positive cell-based assay plus at least 1 core clinical characteristic, such as optic neuritis, acute myelitis, or area postrema syndrome (unexplained hiccups or vomiting), once alternatives are excluded. She has all three, and her myelitis spans more than 3 vertebral segments (longitudinally extensive), which is typical. Long-term immunosuppression is needed to prevent relapse. MS lesions are usually short cord segments with periventricular ovoid brain lesions, and AQP4-IgG is negative. MOGAD requires MOG-IgG. ADEM is usually monophasic with encephalopathy, often after infection in children. Cord infarction is sudden and is not preceded by hiccups or optic neuritis. Takeaway: optic neuritis plus longitudinally extensive myelitis plus area postrema hiccups with AQP4-IgG = NMOSD.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"neurologic\", \"diagnosis\", \"aqp4-igg-positive-neuromyelitis-optica-spectrum-disorder\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "neurologic",
+    "blueprintDomain": "neurologic",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "AQP4-IgG-positive neuromyelitis optica spectrum disorder",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26092914/",
+        "label": "Wingerchuk DM et al. International Consensus Diagnostic Criteria for Neuromyelitis Optica Spectrum Disorders. Neurology 2015"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "836dcaacd83d4756c2e434d8157b795a123b5e1c379578ca154e6ac27d93d536"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "musculoskeletal",
+    "itemType": "vignette",
+    "scenario": "A 46-year-old woman with systemic lupus erythematosus has taken prednisone 20 mg daily for 14 months. She has 6 weeks of deep right groin pain that worsens with weight bearing and limits internal rotation. She has no fever or trauma. Anteroposterior and frog-leg lateral radiographs of the right hip are normal. Inflammatory markers are unchanged from baseline.",
+    "question": "Which of the following is the most appropriate next imaging study?",
+    "options": "{\"options\": [\"CT of the pelvis with IV contrast\", \"MRI of the hips without IV contrast\", \"Repeat hip radiographs in 6 months\", \"Technetium-99m bone scan\", \"Ultrasonography of the hip\"], \"blueprintSystem\": \"musculoskeletal\", \"taskCategory\": \"labs\", \"blueprintTopic\": \"MRI for suspected osteonecrosis of the femoral head with normal radiographs\", \"keyTakeaway\": \"Glucocorticoid user with groin pain and normal radiographs: noncontrast MRI of both hips for osteonecrosis.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "MRI of the hips without IV contrast",
+    "explanation": "MRI without contrast is correct. The ACR Appropriateness Criteria for osteonecrosis (2022) rate MRI without IV contrast as usually appropriate when osteonecrosis is suspected and radiographs are normal or equivocal; MRI is the most sensitive test for early disease and should image both hips because disease is often bilateral. Long-term glucocorticoids and SLE are major risk factors, and groin pain with limited internal rotation fits. Repeating radiographs in 6 months delays diagnosis until collapse may have occurred. Bone scintigraphy is less sensitive and less specific than MRI. CT can show subchondral collapse in later disease but misses early marrow changes. Ultrasonography cannot assess the femoral head marrow. Takeaway: suspected femoral head osteonecrosis with normal radiographs: get noncontrast MRI of both hips.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"musculoskeletal\", \"labs\", \"mri-for-suspected-osteonecrosis-of-the-femoral-head-with-normal-radiographs\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "musculoskeletal",
+    "blueprintDomain": "musculoskeletal",
+    "taskCategory": "labs",
+    "blueprintTopic": "MRI for suspected osteonecrosis of the femoral head with normal radiographs",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36436966/",
+        "label": "Expert Panel on Musculoskeletal Imaging. ACR Appropriateness Criteria Osteonecrosis: 2022 Update. J Am Coll Radiol 2022"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "aeffa0abe5f025f334aaf860c6134d5784361dd8a1f1a208c04f366e7b54888c"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "musculoskeletal",
+    "itemType": "vignette",
+    "scenario": "A 74-year-old woman has a 3-week flare of right knee pain from radiographically confirmed osteoarthritis. She does daily exercise and has used topical diclofenac with little relief. She has stage 3b CKD (eGFR 38 mL/min/1.73 m2) and atrial fibrillation treated with apixaban. She does not have diabetes. The knee has a small effusion, bony enlargement, and no warmth or erythema. Arthrocentesis yields noninflammatory fluid without crystals.",
+    "question": "Which of the following is the most appropriate treatment?",
+    "options": "{\"options\": [\"Platelet-rich plasma injection\", \"Glucosamine sulfate 1,500 mg orally daily\", \"Intra-articular triamcinolone acetonide injection\", \"Intra-articular hyaluronic acid injection\", \"Naproxen 500 mg orally twice daily\"], \"blueprintSystem\": \"musculoskeletal\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"intra-articular glucocorticoid for knee osteoarthritis in an older adult with CKD on apixaban\", \"keyTakeaway\": \"Knee OA flare with CKD or anticoagulation: intra-articular glucocorticoid; skip PRP, glucosamine, and hyaluronic acid.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Intra-articular triamcinolone acetonide injection",
+    "explanation": "Intra-articular glucocorticoid is correct. The 2019 ACR/Arthritis Foundation osteoarthritis guideline strongly recommends intra-articular glucocorticoid injection for knee osteoarthritis and supports it when other options are unsafe; it gives short-term relief, and arthrocentesis has excluded infection and crystals. Oral naproxen is a poor choice with CKD stage 3b and anticoagulation because of kidney injury and bleeding risk. The guideline conditionally recommends against hyaluronic acid injection for the knee and strongly recommends against platelet-rich plasma and glucosamine. Exercise and topical NSAIDs should continue. Takeaway: knee OA flare when oral NSAIDs are unsafe: intra-articular glucocorticoid, not hyaluronic acid, PRP, or glucosamine.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"musculoskeletal\", \"pharmacotherapy\", \"intra-articular-glucocorticoid-for-knee-osteoarthritis-in-an-older-adult-with-ckd-on-apixaban\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "musculoskeletal",
+    "blueprintDomain": "musculoskeletal",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "intra-articular glucocorticoid for knee osteoarthritis in an older adult with CKD on apixaban",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31908163/",
+        "label": "Kolasinski SL et al. 2019 ACR/Arthritis Foundation Guideline for the Management of Osteoarthritis of the Hand, Hip, and Knee. Arthritis Rheumatol 2020"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "c75cd86c139b1b8a46f8c5074511bb7e2bf820a388fb37a3624a615ef368fa2e"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "reproductive",
+    "itemType": "vignette",
+    "scenario": "A 29-year-old woman, gravida 1 para 0, at 32 weeks of gestation has 6 hours of epigastric and right upper quadrant pain with nausea. Blood pressure is 152/98 mm Hg and 154/100 mm Hg 4 hours apart. Urine protein-to-creatinine ratio is 0.5. Hemoglobin is 10.1 g/dL with schistocytes on peripheral smear, platelets are 78,000/mm3, AST is 214 U/L (reference 10-40), ALT is 188 U/L, LDH is 720 U/L, and glucose is 92 mg/dL. PT and fibrinogen are normal.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Acute fatty liver of pregnancy\", \"HELLP syndrome\", \"Acute viral hepatitis\", \"Thrombotic thrombocytopenic purpura\", \"Intrahepatic cholestasis of pregnancy\"], \"blueprintSystem\": \"reproductive\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"HELLP syndrome in the third trimester\", \"keyTakeaway\": \"LDH 600 or more, AST/ALT over twice normal, and platelets below 100,000 in preeclampsia is HELLP syndrome.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "HELLP syndrome",
+    "explanation": "HELLP syndrome is correct. ACOG Practice Bulletin 222 defines HELLP as LDH of 600 IU/L or more, AST and ALT more than twice the upper limit of normal, and platelets below 100,000/mm3; it is a severe form of preeclampsia that often presents with RUQ or epigastric pain. She meets all three with hypertension, proteinuria, and schistocytes. Management is magnesium sulfate, severe-range BP control, and delivery after maternal stabilization. Acute fatty liver of pregnancy causes hypoglycemia and coagulopathy with high PT and low fibrinogen, which are absent. Cholestasis causes pruritus and high bile acids without hemolysis or thrombocytopenia. TTP rarely has this degree of transaminase elevation and is not tied to hypertension of pregnancy. Viral hepatitis does not cause hemolysis and low platelets. Takeaway: hemolysis, AST/ALT over twice normal, platelets under 100,000 in a hypertensive pregnant patient = HELLP.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"reproductive\", \"diagnosis\", \"hellp-syndrome-in-the-third-trimester\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "reproductive",
+    "blueprintDomain": "reproductive",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "HELLP syndrome in the third trimester",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32443079/",
+        "label": "Gestational Hypertension and Preeclampsia: ACOG Practice Bulletin No. 222. Obstet Gynecol 2020"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "f7771b991cee33e89e6f2ebf1e616e3c63060c081bed1f669da7ca1aba6fa9b8"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "reproductive",
+    "itemType": "vignette",
+    "scenario": "A 19-year-old sexually active woman has 4 days of lower abdominal pain. She uses condoms inconsistently. Temperature is 37.4 C (99.3 F). Urine hCG is negative. There is no vomiting, peritoneal sign, or palpable mass. Her examination is otherwise being completed, and nucleic acid amplification tests for gonorrhea and chlamydia are sent; results will take 2 days. No other cause of her pain is identified.",
+    "question": "Which of the following findings on pelvic examination is, by itself, sufficient to begin empiric treatment for pelvic inflammatory disease?",
+    "options": "{\"options\": [\"A palpable tender adnexal mass\", \"Oral temperature above 38.3 C (101 F)\", \"Cervical motion, uterine, or adnexal tenderness on bimanual examination\", \"Mucopurulent cervical discharge\", \"Abundant white blood cells on saline microscopy of vaginal fluid\"], \"blueprintSystem\": \"reproductive\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"minimum clinical criteria to start empiric PID treatment\", \"keyTakeaway\": \"Cervical motion, uterine, or adnexal tenderness alone, in a young woman with pelvic pain and no other cause, is enough to start PID treatment.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Cervical motion, uterine, or adnexal tenderness on bimanual examination",
+    "explanation": "Pelvic organ tenderness is correct. The CDC 2021 STI treatment guidelines recommend empiric PID treatment for sexually active young women with pelvic or lower abdominal pain, when no other cause is found, if 1 or more minimum clinical criteria is present on pelvic examination: cervical motion tenderness, uterine tenderness, or adnexal tenderness. A low threshold is used because untreated PID causes infertility, ectopic pregnancy, and chronic pain. Fever above 38.3 C, mucopurulent discharge, and abundant vaginal fluid WBCs are additional criteria that increase specificity but are not required. A palpable adnexal mass suggests a tubo-ovarian abscess and needs ultrasonography and usually admission. Treatment should not wait for NAAT results. Takeaway: pelvic pain plus cervical motion, uterine, or adnexal tenderness = treat for PID now.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"reproductive\", \"history-physical\", \"minimum-clinical-criteria-to-start-empiric-pid-treatment\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "reproductive",
+    "blueprintDomain": "reproductive",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "minimum clinical criteria to start empiric PID treatment",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
+        "label": "Workowski KA et al. Sexually Transmitted Infections Treatment Guidelines, 2021. MMWR Recomm Rep 2021"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "0a9895bf51c302e5177a030fe9ebd42778486593b3e585600d3123bd439c619e"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "reproductive",
+    "itemType": "vignette",
+    "scenario": "A 27-year-old woman with polycystic ovary syndrome (oligomenorrhea, clinical hyperandrogenism, and polycystic ovarian morphology) has been trying to conceive for 14 months. BMI is 31 and she is working on lifestyle changes. TSH and prolactin are normal. Hysterosalpingography shows patent tubes, and her partner's semen analysis is normal. A pregnancy test is negative.",
+    "question": "Which of the following is the most appropriate first-line pharmacologic treatment for infertility?",
+    "options": "{\"options\": [\"Letrozole\", \"Combined oral contraceptive pill\", \"Metformin alone\", \"Clomiphene citrate\", \"Injectable gonadotropins\"], \"blueprintSystem\": \"reproductive\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"letrozole as first-line ovulation induction in polycystic ovary syndrome\", \"keyTakeaway\": \"Letrozole is first-line ovulation induction for anovulatory infertility in PCOS.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Letrozole",
+    "explanation": "Letrozole is correct. The 2023 international evidence-based PCOS guideline recommends letrozole as the first-line pharmacologic treatment for ovulation induction in anovulatory infertility with PCOS, because it yields higher ovulation, pregnancy, and live birth rates than clomiphene; it is usually given as 2.5 mg daily for 5 days early in the cycle, titrated to response, after pregnancy is excluded. Clomiphene, alone or with metformin, is an alternative when letrozole is unavailable or not tolerated. Metformin alone is less effective for live birth. Gonadotropins are second-line because of cost, monitoring, and multiple pregnancy risk. Combined oral contraceptives treat irregular cycles and hyperandrogenism but prevent pregnancy. Takeaway: PCOS with anovulatory infertility and open tubes: letrozole is first-line ovulation induction.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"reproductive\", \"pharmacotherapy\", \"letrozole-as-first-line-ovulation-induction-in-polycystic-ovary-syndrome\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "reproductive",
+    "blueprintDomain": "reproductive",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "letrozole as first-line ovulation induction in polycystic ovary syndrome",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37580861/",
+        "label": "Teede HJ et al. Recommendations From the 2023 International Evidence-based Guideline for the Assessment and Management of Polycystic Ovary Syndrome. Eur J Endocrinol 2023"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "0f516a37084b2146d2d10e7c3f9ccff6427a47cf25d97274e7d7fd0d2b0031bc"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "psychiatry",
+    "itemType": "vignette",
+    "scenario": "A 22-year-old college student has had 14 months of intense fear that she will say something foolish and be judged when she must speak in seminars, eat in the dining hall, or meet new classmates. She blushes and trembles in these situations, avoids them when she can, and has dropped 2 courses that require presentations. She is comfortable with 2 close friends and her family. She has no panic attacks outside social situations, no fear of crowds or public transport when alone, and no substance use or medical illness.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Panic disorder\", \"Generalized anxiety disorder\", \"Social anxiety disorder\", \"Schizoid personality disorder\", \"Agoraphobia\"], \"blueprintSystem\": \"psychiatry\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"social anxiety disorder in a young adult\", \"keyTakeaway\": \"Persistent fear of scrutiny and negative evaluation in social situations, with avoidance for 6 months or more, is social anxiety disorder.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Social anxiety disorder",
+    "explanation": "Social anxiety disorder is correct. DSM-5-TR criteria require marked fear or anxiety about social situations involving possible scrutiny, fear of acting in a way that will be negatively evaluated, situations that almost always provoke fear and are avoided or endured with distress, a duration of 6 months or more, and impairment. She fears judgment while speaking, eating, and meeting people, and she has dropped courses. Panic disorder requires recurrent unexpected attacks; hers are cued only by social scrutiny. Agoraphobia involves fear of places where escape is difficult, such as crowds or transport, not evaluation. Generalized anxiety disorder is worry about many everyday domains. Schizoid personality disorder involves indifference to relationships, whereas she wants and keeps close friendships. First-line treatment is CBT or an SSRI. Takeaway: fear of negative evaluation in social or performance situations for 6 months or more = social anxiety disorder.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"psychiatry\", \"diagnosis\", \"social-anxiety-disorder-in-a-young-adult\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 1,
+    "topicCategory": "psychiatry",
+    "blueprintDomain": "psychiatry",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "social anxiety disorder in a young adult",
+    "references": [
+      {
+        "url": "https://www.psychiatry.org/psychiatrists/practice/dsm",
+        "label": "American Psychiatric Association. Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision (DSM-5-TR)"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "3e1336df94dfb85f7decfabdb1cd5b8eba962386b3cc6ca7a6a9aa9b7f5a1ded"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "psychiatry",
+    "itemType": "vignette",
+    "scenario": "A 31-year-old man is brought by his sister, who worries that he is isolated. Since his late teens he has believed he can sense other people's thoughts and that license plate numbers carry special messages meant for him, though he concedes these might be coincidences. He wears mismatched, unusual clothing, speaks in vague, overelaborate phrases, and has no close friends apart from his sister. He is anxious around others even after knowing them for years, mainly because he suspects they mean him harm. He has never had hallucinations or fixed delusions, and he works as a night security guard.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Schizoid personality disorder\", \"Avoidant personality disorder\", \"Schizotypal personality disorder\", \"Paranoid personality disorder\", \"Schizophrenia\"], \"blueprintSystem\": \"psychiatry\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"schizotypal personality disorder\", \"keyTakeaway\": \"Eccentric appearance, magical thinking, ideas of reference, and social anxiety without psychosis is schizotypal personality disorder.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Schizotypal personality disorder",
+    "explanation": "Schizotypal personality disorder is correct. DSM-5-TR describes a pervasive pattern, beginning by early adulthood, of social deficits and discomfort with close relationships plus cognitive or perceptual distortions and eccentric behavior, including ideas of reference, magical thinking, odd speech, odd appearance, lack of close friends, and social anxiety that does not lessen with familiarity and is tied to paranoid fears. He has these features without sustained psychosis. Schizoid personality disorder shows detachment and restricted affect without odd beliefs or eccentricity. Schizophrenia requires psychotic symptoms with at least 6 months of illness. Paranoid personality disorder involves distrust without magical thinking or eccentric speech and dress. Avoidant personality disorder is driven by fear of rejection, and patients desire relationships. Takeaway: odd beliefs, magical thinking, eccentric speech and dress, no close friends, no psychosis = schizotypal.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"psychiatry\", \"diagnosis\", \"schizotypal-personality-disorder\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "psychiatry",
+    "blueprintDomain": "psychiatry",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "schizotypal personality disorder",
+    "references": [
+      {
+        "url": "https://www.psychiatry.org/psychiatrists/practice/dsm",
+        "label": "American Psychiatric Association. Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision (DSM-5-TR)"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "536cdb4c158ecf81434fc7a031630aaba60bfc7274656815bc99ff15e975e049"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "psychiatry",
+    "itemType": "vignette",
+    "scenario": "A 26-year-old man is brought to the emergency department by friends after smoking methamphetamine at a party 2 hours ago. He is agitated, talking rapidly, and pacing, and says his heart is racing. He has taken no other drugs or medications, per his friends. The clinician examines him to confirm a toxidrome before choosing initial management.",
+    "question": "Which of the following sets of findings is most consistent with his presentation?",
+    "options": "{\"options\": [\"Miosis, salivation, bronchorrhea, bradycardia, and diarrhea\", \"Mydriasis, dry flushed skin, urinary retention, and absent bowel sounds\", \"Normal pupils, slurred speech, ataxia, and normal vital signs\", \"Mydriasis, diaphoresis, tachycardia, hypertension, and hyperthermia\", \"Lead-pipe rigidity, bradykinesia, and hyperthermia\"], \"blueprintSystem\": \"psychiatry\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"physical findings of sympathomimetic (methamphetamine) intoxication\", \"keyTakeaway\": \"Sympathomimetic toxidrome: mydriasis, diaphoresis, tachycardia, hypertension, hyperthermia; sweating separates it from anticholinergic toxicity.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Mydriasis, diaphoresis, tachycardia, hypertension, and hyperthermia",
+    "explanation": "Mydriasis, diaphoresis, tachycardia, hypertension, and hyperthermia are correct. The 2024 ASAM/AAAP stimulant use disorder guideline describes stimulant intoxication as a sympathomimetic syndrome of agitation, tachycardia, hypertension, hyperthermia, and dilated pupils, managed first with benzodiazepines, cooling, and a calm setting. Dilated pupils with dry flushed skin, urinary retention, and absent bowel sounds are anticholinergic; sweating distinguishes sympathomimetic toxicity. Miosis with salivation, bronchorrhea, bradycardia, and diarrhea is cholinergic. Slurred speech and ataxia with normal pupils and vital signs suggest sedative-hypnotic or alcohol intoxication. Lead-pipe rigidity with bradykinesia is neuroleptic malignant syndrome after dopamine blockade. Takeaway: methamphetamine or cocaine = big pupils plus sweating, tachycardia, hypertension, and hyperthermia; moist skin separates it from anticholinergic toxicity.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"psychiatry\", \"history-physical\", \"physical-findings-of-sympathomimetic-methamphetamine-intoxication\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "psychiatry",
+    "blueprintDomain": "psychiatry",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "physical findings of sympathomimetic (methamphetamine) intoxication",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38669101/",
+        "label": "ASAM/AAAP Clinical Practice Guideline on the Management of Stimulant Use Disorder. J Addict Med 2024"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "2e3e354d262a4af78cbf06367765b53532144a82d7398c12fd4293d4f7e90d39"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "psychiatry",
+    "itemType": "vignette",
+    "scenario": "A 28-year-old man with schizophrenia is brought in by his family after 4 days of not speaking, eating, or drinking. He holds his arms raised in odd postures for long periods, resists passive movement with equal force, and keeps a fixed stare. Temperature is 37.2 C (99 F), pulse is 92/min, blood pressure is 128/80 mm Hg, and creatine kinase is normal. He has had no antipsychotic dose change in 6 months. Toxicology screen and basic metabolic panel are unremarkable except for mild hypernatremia, which is being corrected with IV fluids.",
+    "question": "Which of the following is the most appropriate initial pharmacotherapy?",
+    "options": "{\"options\": [\"Ziprasidone 20 mg IM\", \"Haloperidol 5 mg IM\", \"Benztropine 2 mg IV\", \"Sertraline 50 mg orally daily\", \"Lorazepam 1 to 2 mg IV\"], \"blueprintSystem\": \"psychiatry\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"lorazepam for catatonia in schizophrenia\", \"keyTakeaway\": \"Catatonia: IV lorazepam 1 to 2 mg first, ECT if no response; avoid adding high-potency antipsychotics.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Lorazepam 1 to 2 mg IV",
+    "explanation": "Lorazepam is correct. The 2020 APA schizophrenia practice guideline notes that catatonia should be treated with a benzodiazepine, typically lorazepam, with ECT if there is no prompt response; an IV lorazepam challenge of 1 to 2 mg often produces rapid improvement and supports the diagnosis. He has mutism, posturing, negativism, and staring, with stable vital signs and normal CK, which argues against NMS. High-potency antipsychotics such as haloperidol can worsen catatonia and increase the risk of NMS, so they should be held during acute catatonia. Ziprasidone carries the same concern. Sertraline does not treat acute catatonia and cannot be taken by mouth. Benztropine treats acute dystonia, not catatonia. Takeaway: catatonia (mutism, posturing, negativism, staring): give IV lorazepam first and avoid adding antipsychotics; ECT if no response.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"psychiatry\", \"pharmacotherapy\", \"lorazepam-for-catatonia-in-schizophrenia\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "psychiatry",
+    "blueprintDomain": "psychiatry",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "lorazepam for catatonia in schizophrenia",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32867516/",
+        "label": "Keepers GA et al. The APA Practice Guideline for the Treatment of Patients With Schizophrenia, 3rd ed. Am J Psychiatry 2020"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "7ae2f6f0a023a2bf8b73fde858fad1870dbf7fae28573401aa6b7e475a5f0b87"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "eent",
+    "itemType": "vignette",
+    "scenario": "A 52-year-old man, a lifelong nonsmoker, has a painless lump on the left side of his neck for 6 weeks. He had no recent upper respiratory infection, and a course of antibiotics from an urgent care clinic did not shrink it. Examination shows a 3-cm, mobile, nontender, fluctuant mass deep to the sternocleidomastoid at level II. The left palatine tonsil is mildly enlarged and firm. Ultrasonography shows a cystic node.",
+    "question": "Which of the following is the most likely diagnosis?",
+    "options": "{\"options\": [\"Thyroglossal duct cyst\", \"Reactive lymphadenitis\", \"Second branchial cleft cyst\", \"Lipoma\", \"Metastatic HPV-associated oropharyngeal squamous cell carcinoma\"], \"blueprintSystem\": \"eent\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"cystic lateral neck mass in an adult as metastatic HPV-associated oropharyngeal carcinoma\", \"keyTakeaway\": \"A persistent cystic level II neck mass in an adult is metastatic HPV-related oropharyngeal SCC until proven otherwise.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Metastatic HPV-associated oropharyngeal squamous cell carcinoma",
+    "explanation": "Metastatic HPV-associated oropharyngeal SCC is correct. The 2017 AAO-HNS guideline on the adult neck mass warns that a neck mass persisting 2 weeks or more without clear infection is at increased risk of malignancy, that cystic neck masses in adults should not be presumed benign, and that empiric antibiotics should not delay workup; it recommends fine-needle aspiration rather than open biopsy and a targeted examination of the upper aerodigestive tract. HPV-related oropharyngeal cancer often affects middle-aged nonsmokers and presents as a cystic level II node from a small tonsil or tongue-base primary. A branchial cleft cyst is a diagnosis of exclusion in an adult older than 40. Reactive nodes follow infection and shrink. A thyroglossal duct cyst is midline and moves with swallowing. A lipoma is soft and subcutaneous. Takeaway: cystic lateral neck mass in an adult over 40 = metastatic oropharyngeal cancer until proven otherwise; FNA, not antibiotics.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"eent\", \"diagnosis\", \"cystic-lateral-neck-mass-in-an-adult-as-metastatic-hpv-associated-oropharyngeal-carcinoma\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "eent",
+    "blueprintDomain": "eent",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "cystic lateral neck mass in an adult as metastatic HPV-associated oropharyngeal carcinoma",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28891406/",
+        "label": "Pynnonen MA et al. Clinical Practice Guideline: Evaluation of the Neck Mass in Adults. Otolaryngol Head Neck Surg 2017"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "1a89e4ab4cd920f5e06f75408bf7c5f68dde5681fdddf0b29259beb4bc14e2fc"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "eent",
+    "itemType": "vignette",
+    "scenario": "A 28-year-old woman has 2 days of sore throat. She reports subjective fever and fatigue. She asks for a strep test and antibiotics because her coworker had strep throat last month. You are completing her history and examination to decide whether group A streptococcal testing is warranted.",
+    "question": "Which of the following findings most strongly argues against testing for group A streptococcal pharyngitis?",
+    "options": "{\"options\": [\"Cough, rhinorrhea, and hoarseness\", \"Tender anterior cervical lymphadenopathy\", \"Tonsillar exudate\", \"Palatal petechiae\", \"Temperature of 38.6 C (101.5 F)\"], \"blueprintSystem\": \"eent\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"viral features that argue against testing for group A streptococcal pharyngitis\", \"keyTakeaway\": \"Sore throat with cough, rhinorrhea, and hoarseness suggests a virus; GAS testing is not indicated.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Cough, rhinorrhea, and hoarseness",
+    "explanation": "Cough, rhinorrhea, and hoarseness are correct. The IDSA 2012 group A streptococcal pharyngitis guideline recommends against testing patients with sore throat whose clinical features, such as cough, rhinorrhea, hoarseness, and oral ulcers, strongly suggest a viral cause, because such patients are unlikely to have GAS and testing leads to treatment of carriers. In adults, a negative rapid antigen test needs no backup culture. Tonsillar exudate, tender anterior cervical nodes, fever, and palatal petechiae are features that increase the likelihood of GAS and support testing with a rapid antigen test or culture. Exposure alone does not justify antibiotics without a positive test. Takeaway: sore throat with cough, runny nose, and hoarseness is viral; do not test for GAS and do not give antibiotics.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"eent\", \"history-physical\", \"viral-features-that-argue-against-testing-for-group-a-streptococcal-pharyngitis\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 1,
+    "topicCategory": "eent",
+    "blueprintDomain": "eent",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "viral features that argue against testing for group A streptococcal pharyngitis",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22965026/",
+        "label": "Shulman ST et al. Clinical Practice Guideline for the Diagnosis and Management of Group A Streptococcal Pharyngitis: 2012 Update by IDSA. Clin Infect Dis 2012"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "94fee4f958c7fcc228a32599946eb27857a1fbf6a9fcad1030bc43b1234b18fa"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "eent",
+    "itemType": "vignette",
+    "scenario": "A 15-month-old boy is seen for a well-child visit. He has 8 erupted primary teeth without visible caries or white-spot lesions. He drinks from a bottle at bedtime. The family's home water supply comes from a private well that has never been tested for fluoride. He has not yet seen a dentist.",
+    "question": "In addition to anticipatory guidance, which of the following is the most appropriate preventive intervention at this visit?",
+    "options": "{\"options\": [\"Recommend fluoride-free training toothpaste until age 3\", \"Wait to apply fluoride until his first dental visit at age 3\", \"Prescribe chlorhexidine mouth rinse\", \"Apply fluoride varnish to his primary teeth\", \"Place dental sealants on the primary molars\"], \"blueprintSystem\": \"eent\", \"taskCategory\": \"prevention\", \"blueprintTopic\": \"fluoride varnish for primary teeth in a toddler\", \"keyTakeaway\": \"Apply fluoride varnish to primary teeth starting at eruption; supplement oral fluoride from 6 months if water is deficient.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Apply fluoride varnish to his primary teeth",
+    "explanation": "Fluoride varnish is correct. The 2021 USPSTF dental caries recommendation (grade B) advises primary care clinicians to apply fluoride varnish to the primary teeth of all infants and children starting at primary tooth eruption, and to prescribe oral fluoride supplementation starting at age 6 months for children whose water supply is deficient in fluoride; his well water should be tested. Bottle use at bedtime adds caries risk. Delaying until a dental visit misses the benefit from eruption onward. A smear (rice-grain amount) of fluoride toothpaste is recommended once teeth erupt, not a fluoride-free product. Chlorhexidine rinse is not recommended for toddlers, who cannot spit. Sealants are used on permanent molars in school-aged children. Takeaway: from the first tooth, apply fluoride varnish in primary care; add oral fluoride from 6 months if water is fluoride-deficient.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"eent\", \"prevention\", \"fluoride-varnish-for-primary-teeth-in-a-toddler\", \"clinical-vignette\", \"pance-batch12-2026-10\"]",
+    "source": "generated",
+    "difficulty": 1,
+    "topicCategory": "eent",
+    "blueprintDomain": "eent",
+    "taskCategory": "prevention",
+    "blueprintTopic": "fluoride varnish for primary teeth in a toddler",
+    "references": [
+      {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34874412/",
+        "label": "US Preventive Services Task Force. Screening and Interventions to Prevent Dental Caries in Children Younger Than 5 Years: Recommendation Statement. JAMA 2021"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-batch12-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "9f1ff73cc54f20589fe1224ff2c7b0501dab6958718c24307c95852372e9baad"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "mode": "apply",
+  "inputFile": "scripts/data/pance-batch-insert/audit-fixes-citations.json",
+  "fixes": 5,
+  "matched": 5,
+  "skips": [],
+  "notes": [],
+  "validationErrors": [],
+  "hashChanges": [],
+  "countsBefore": {
+    "live": 3795,
+    "eligible": 3795,
+    "total": 4324
+  },
+  "liveAfterInTransaction": 3795,
+  "eligibleAfterInTransaction": 3795,
+  "liveAfter": 3795,
+  "eligibleAfter": 3795,
+  "sample": [
+    {
+      "itemId": "b7-q21",
+      "id": "cmvmrsz1c000kjsco4rlwgedk",
+      "ok": true
+    },
+    {
+      "itemId": "b8-q51",
+      "id": "cmvmswbms001ejsrz7o73gg7e",
+      "ok": true
+    },
+    {
+      "itemId": "b10-q75",
+      "id": "cmvmypux70022jshqtitdwx6c",
+      "ok": true
+    },
+    {
+      "itemId": "b1-q77",
+      "id": "cmvmjhkks0024jsaeypj57lyj",
+      "ok": true
+    },
+    {
+      "itemId": "b6-q19",
+      "id": "cmvmq1db1000ijs214r273c82",
+      "ok": true
+    }
+  ]
+}

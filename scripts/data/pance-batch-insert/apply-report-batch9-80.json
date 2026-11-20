@@ -1,0 +1,652 @@
+{
+  "mode": "apply",
+  "inputFile": "scripts/data/pance-batch-insert/batch9-80.json",
+  "rowsInFile": 80,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "acute posterior STEMI shown by anterior ST depression and posterior leads",
+      "contentHash": "de2611f520e521b0c7c44154894b2ad46cea7cb726750a471f9196ff352096c0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "papillary muscle rupture after inferior myocardial infarction",
+      "contentHash": "5bf10754a1a58b6cd785c2cabda1d1e3780d9fb0b31d752415e07e0f891728e0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "fixed splitting of S2 in an adult with secundum atrial septal defect",
+      "contentHash": "145411e45203c72953b02077d221a2ed9b34943ee2772af38204da9aba50d346",
+      "stem": "Which of the following auscultatory findings is most likely in this patient?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "tetralogy of Fallot with hypercyanotic spells in an infant",
+      "contentHash": "d52be2e3846143b901b239912ed6e6fb8b4759e4457537bb87d8bdfdec626092",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "IV procainamide for stable pre-excited atrial fibrillation",
+      "contentHash": "6a23a3a98446c6373996b9b6d66af2f92be1f1eeb22a1d19073ca27f60c75906",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "atropine 1 mg for symptomatic sinus bradycardia",
+      "contentHash": "8e68da49a2194d61d928ab111f83e1284b99a9090619614e990265cdbc957e23",
+      "stem": "Which of the following is the most appropriate initial pharmacotherapy?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "vagal maneuver as initial therapy for stable regular narrow-complex tachycardia",
+      "contentHash": "b4be485ec49249a25e494892868689c11a4d83de4c325905b7f01b21ad7928e3",
+      "stem": "Which of the following is the most appropriate initial management?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "high-intensity statin for severe primary hypercholesterolemia (LDL-C at least 190 mg/dL)",
+      "contentHash": "bffa76cdfb3686a36c1a879816a80d1dc39e3406569d96aea9ee096f119db4a5",
+      "stem": "In addition to lifestyle therapy, which of the following is the most appropriate management?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "ruptured abdominal aortic aneurysm in an older smoker",
+      "contentHash": "0620ab1f16437d54dfb185d7bebc3f7aec9fd443efbbb03ffafd9f91fe833dc4",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "repeat high-sensitivity troponin 1 to 3 hours after a nondiagnostic early result",
+      "contentHash": "2c2e31c937f9d76cb09ce214597199bf6c6e6ae9728307bd109063008c121de6",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "congenital long QT syndrome with auditory-triggered syncope",
+      "contentHash": "9e7519271ba0fc1c0bd64a4e89fc2853bcc9dd378552c87bbcd31f81e267aa8a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "squamous cell lung carcinoma with PTHrP-mediated hypercalcemia",
+      "contentHash": "695f2b2704bbcd97e49d94f419575ac2acc45439ea5f410d1253f7ae1faf305b",
+      "stem": "Which of the following is the most likely type of lung cancer?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "Pneumocystis pneumonia in advanced HIV",
+      "contentHash": "41ed509a3daf643a3e4b67229a7b0dff7096f1ce4ef19d927a2e45a5ae70c366",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "aspirated bronchial foreign body in a toddler",
+      "contentHash": "bcbbd77b2e97f9769d507c67476ad199fa473000aea35258ba5b7ebf091a9dfe",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "CPAP as initial treatment for moderate obstructive sleep apnea with sleepiness",
+      "contentHash": "6f135b68fdcf5dcc6a8f9bb58dc6496fd375e631739fcc7ca2e687cbb1f8274e",
+      "stem": "In addition to weight-loss counseling, which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "IV magnesium sulfate for severe asthma exacerbation unresponsive to initial therapy",
+      "contentHash": "074981626167dcc7d13f35590d4dc2286e00e27b8bbfbc299470016c69662538",
+      "stem": "Which of the following is the most appropriate additional pharmacotherapy?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "high-dose amoxicillin for outpatient pneumonia in a preschool child",
+      "contentHash": "6fcacd077ee2af602e001be8d4ebb36274fddcd3e7bbca5dfc5c0991c4619ec9",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "reduced DLCO distinguishing emphysema from asthma",
+      "contentHash": "a40dd6e3563e1ac74a2c05feacdf08ca3a09960ad789aa2e65cc7a79b456537b",
+      "stem": "Which of the following additional pulmonary function findings is most likely and best supports emphysema rather than chronic asthma?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "broad molecular biomarker testing before first-line therapy for metastatic lung adenocarcinoma",
+      "contentHash": "3766e588029194f877c7be972fd7b7eaf3eeeb59868eff0ee29ce93a41ba5b75",
+      "stem": "Before first-line systemic therapy is selected, which of the following is the most appropriate testing?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "drowsiness with a silent chest signaling life-threatening asthma",
+      "contentHash": "21d2ce89cdc2ca52d05565a33cf474ad750acac4dcc1f88b37e7583139eba0bc",
+      "stem": "Which of the following findings most strongly indicates a life-threatening exacerbation?"
+    },
+    {
+      "index": 20,
+      "blueprintTopic": "pancreatic head adenocarcinoma with painless jaundice and Courvoisier sign",
+      "contentHash": "08c9ef4dde0db03e6b38a2291c0c728fb38a302105e2424a52caedd502ed84ab",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 21,
+      "blueprintTopic": "hepatorenal syndrome-acute kidney injury in decompensated cirrhosis",
+      "contentHash": "3124e0783214c7009b369bab9e6ca73cd30a123021464bf33638b9c5c81bf4d6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 22,
+      "blueprintTopic": "biliary atresia in an infant with persistent conjugated hyperbilirubinemia",
+      "contentHash": "cb0228095383643da6fc3e92d73274ec30fd00bb9ea0f723a23ce59895eb7246",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 23,
+      "blueprintTopic": "Gilbert syndrome with isolated unconjugated hyperbilirubinemia",
+      "contentHash": "0ffbf650eaa915802a1f36fecb8a70d949c848d4c14390c7b9a8d106f6076f68",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 24,
+      "blueprintTopic": "sigmoid volvulus in an older nursing home resident",
+      "contentHash": "f3639665f8eb3c96c00d912f01d15e93f09ca6d75646228b083db9f90c0a7a3f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 25,
+      "blueprintTopic": "semiannual ultrasonography with AFP for HCC surveillance in cirrhosis after HCV cure",
+      "contentHash": "a94a18635d84fefa2430bfaf7d702468bd9976ccade76a83cecea7893e767d60",
+      "stem": "Which of the following is the most appropriate hepatocellular carcinoma surveillance strategy?"
+    },
+    {
+      "index": 26,
+      "blueprintTopic": "ondansetron then oral rehydration for vomiting child with mild-to-moderate dehydration",
+      "contentHash": "3cb002e4ca5e9c0001c7bb9813ffb517084f11f12645f9f510d5a8efe76f5749",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 27,
+      "blueprintTopic": "age 60 or older as the indication for endoscopy in dyspepsia",
+      "contentHash": "59d7655b7aa9356bb050325fd7389faa7c7db67f884e14cfb00d47a936279fb4",
+      "stem": "Which feature of this patient's history is the main indication for upper endoscopy rather than noninvasive H. pylori test-and-treat?"
+    },
+    {
+      "index": 28,
+      "blueprintTopic": "incision and drainage of an uncomplicated perianal abscess",
+      "contentHash": "13f8b14c81906a911c70f2da33b05740e7fadf83cd5b9efe753075e4ec542326",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 29,
+      "blueprintTopic": "diffuse cutaneous systemic sclerosis with anti-Scl-70 antibodies",
+      "contentHash": "73be1024569a43d35ca624d6dffdf703b6a40105ad9e65e79527931c425b730b",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 30,
+      "blueprintTopic": "Ewing sarcoma of the femoral diaphysis in a child",
+      "contentHash": "bbdbbbaf584bb074a2b63e186b85fa52192947acd558f27ca816dfbfb42af91f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 31,
+      "blueprintTopic": "oligoarticular juvenile idiopathic arthritis in an ANA-positive preschool girl",
+      "contentHash": "a9427ae83d964e9772a6de1f6bc58d778e1d3ddbe3328c22dd8852f75f1518a2",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 32,
+      "blueprintTopic": "plantar fasciitis with first-step heel pain",
+      "contentHash": "57b8b1c7e4eeb81f9efd8ab8319aab602ab98fe2ec3241d214c8320dc9f76e25",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 33,
+      "blueprintTopic": "McMurray test for a medial meniscal tear",
+      "contentHash": "11287788c22dd8d26804dcb06b4a2d85b65f1e8412504b804e553e2f2cc61650",
+      "stem": "Which of the following examination maneuvers is most likely to be positive?"
+    },
+    {
+      "index": 34,
+      "blueprintTopic": "serum urate target below 6 mg/dL when titrating urate-lowering therapy",
+      "contentHash": "b3e60544fc41ec87d98437a93eab68df1bb5f8f7988a0e26124b34b1e94afdd4",
+      "stem": "Which of the following serum urate levels should guide titration of his allopurinol dose?"
+    },
+    {
+      "index": 35,
+      "blueprintTopic": "oral bisphosphonate for high-risk glucocorticoid-induced osteoporosis",
+      "contentHash": "c976ad7b508d6ce274f60af0bfcb9dd64ae5b834b6d8ebc038a30c073f18eeb1",
+      "stem": "Which of the following is the most appropriate additional treatment?"
+    },
+    {
+      "index": 36,
+      "blueprintTopic": "nonoperative treatment of a reduced distal radius fracture in an older adult",
+      "contentHash": "a2b8ad5c85042b4481981da0b38e884ee2439184d5d5ecfbb7b5f83bd5c3baad",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 37,
+      "blueprintTopic": "epithelial ovarian cancer presenting with a complex adnexal mass and ascites",
+      "contentHash": "6b8a4cda29f8e88c6bcaaf85971dab1681134c595bd79b241fb1edce5aa5ff01",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 38,
+      "blueprintTopic": "intraductal papilloma causing unilateral bloody nipple discharge",
+      "contentHash": "ea8a65b6ca8e7605ef6c2eddf2793d00bd1352e70bd74dfff55c0552edfd59e0",
+      "stem": "Which of the following is the most likely cause?"
+    },
+    {
+      "index": 39,
+      "blueprintTopic": "primary ovarian insufficiency in a woman in her early thirties",
+      "contentHash": "b54c6ed7a38a000a459464d3db90f4ccc755fc0ec291775d223a74017d8094e0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 40,
+      "blueprintTopic": "uterine rupture during trial of labor after cesarean",
+      "contentHash": "4024689962304fe854a22ab31ec2cbecb645eaffdaf7e7db84e69197f981a310",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 41,
+      "blueprintTopic": "NSAIDs for primary dysmenorrhea in an adolescent",
+      "contentHash": "fd4b874c3934fad93b95eb5cb205e905b1bb0edc2d59a9b7217b09fafafd6cef",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 42,
+      "blueprintTopic": "estrogen plus progestogen for vasomotor symptoms in a woman with a uterus",
+      "contentHash": "0edd71e80a8c27a467e94f2479b90f1bfc84fcb101f9ef1b5825a54a576b08ac",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 43,
+      "blueprintTopic": "sterile speculum examination confirming prelabor rupture of membranes",
+      "contentHash": "743115092aae54b074f71aa61ecdff134f0d0acad23a0ae94eb985e4e2f4d6e5",
+      "stem": "Which of the following findings best confirms rupture of membranes?"
+    },
+    {
+      "index": 44,
+      "blueprintTopic": "myxedema coma in an older woman who stopped levothyroxine",
+      "contentHash": "978fed0fe6f4a071383abc49bb40dc020ddfde9ef4f07e77eba1f0be405b0592",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 45,
+      "blueprintTopic": "IV hydrocortisone 100 mg for adrenal crisis in known primary adrenal insufficiency",
+      "contentHash": "902a48e1004ac7f145573b6c8bd8bfcd14888b0c9796a8dcdaa08bafdadefacb",
+      "stem": "Which of the following is the most appropriate immediate pharmacotherapy?"
+    },
+    {
+      "index": 46,
+      "blueprintTopic": "medullary thyroid carcinoma in a patient with MEN2 family history",
+      "contentHash": "11f24297e6309dd159fe754d39a8fd05129a5bc32837e0df83a33ad7026d5535",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 47,
+      "blueprintTopic": "factitious hypoglycemia from exogenous insulin",
+      "contentHash": "483211f97c4ac8640c420b918623786ca7611c93751193706018ac1fa2cbe53a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 48,
+      "blueprintTopic": "salt-wasting classic congenital adrenal hyperplasia in a newborn boy",
+      "contentHash": "b7b094563642087dbc459f5dcff422131d09f5fc375abc62f178b58cc7e7518e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 49,
+      "blueprintTopic": "GLP-1 receptor agonist with proven cardiovascular benefit in type 2 diabetes with ASCVD",
+      "contentHash": "87a71d0a4b3deb04ced203ed22d993b7072f918b0465a242f3632ba4b531c5a4",
+      "stem": "Which of the following is the most appropriate addition to his regimen?"
+    },
+    {
+      "index": 50,
+      "blueprintTopic": "propylthiouracil for Graves hyperthyroidism in the first trimester",
+      "contentHash": "c238ca37d4829e8e4fa30e5387b93c2b068ad98f80dc8b5e3260ba3687ec6d4f",
+      "stem": "In addition to a beta blocker for symptoms, which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 51,
+      "blueprintTopic": "postseptal orbital cellulitis complicating sinusitis in a child",
+      "contentHash": "c8133c2f9f556cd8a49aa590e000a033cac5648278f1ffed8e8cbd25853622f1",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 52,
+      "blueprintTopic": "Hutchinson sign predicting ocular involvement in herpes zoster ophthalmicus",
+      "contentHash": "e4f424e938e8ccc46aff1f361874a98e931bae2874a9085bf68777a3adc1c726",
+      "stem": "Which of the following examination findings most strongly predicts ocular involvement?"
+    },
+    {
+      "index": 53,
+      "blueprintTopic": "first-line amoxicillin for confirmed group A streptococcal pharyngitis in a child",
+      "contentHash": "c549f7d1f8b8d383eae9aa382284d2096fe1e2e3e70d8d2ac5d01760a5d7fa2f",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 54,
+      "blueprintTopic": "systemic ceftriaxone for gonococcal ophthalmia neonatorum",
+      "contentHash": "99699c4beb9f7879088accdb74ab733b357667d9344d6a59f5a99cd833f78680",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 55,
+      "blueprintTopic": "tonsillectomy for frequent documented recurrent throat infection meeting Paradise criteria",
+      "contentHash": "1d658e48bfb200d4e9cc4bc817a839bad1d44598dc535978a8e37e1fe18daf02",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 56,
+      "blueprintTopic": "central retinal vein occlusion in an older hypertensive man",
+      "contentHash": "2d10dd79e7e405cb8904c89f519c7ff9b8416184feda32c26807979a2dd0c718",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 57,
+      "blueprintTopic": "focal impaired awareness seizure of temporal lobe origin",
+      "contentHash": "fa54978f1913caf4286201b57ce27ef7ed6fb82f9c80f264507e39c84fee6c04",
+      "stem": "Which of the following best classifies this event?"
+    },
+    {
+      "index": 58,
+      "blueprintTopic": "self-limited epilepsy with centrotemporal spikes in a school-age child",
+      "contentHash": "f1a8d31452d4e908a88dcdb6257f71dce0502a4f8d586f6c543ca90d901dc05a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 59,
+      "blueprintTopic": "hypsarrhythmia on EEG in infantile spasms",
+      "contentHash": "bd2130952c45fb852eb433b072cbd0b9988027d66f6da2adc74c1175156cc085",
+      "stem": "Which of the following EEG findings is most expected?"
+    },
+    {
+      "index": 60,
+      "blueprintTopic": "acute traumatic central cord syndrome after hyperextension in an older adult",
+      "contentHash": "3ff5085f7d4508dc8d2d13953ef45fa6987c7c4681af1aca57423170d171676e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 61,
+      "blueprintTopic": "pure motor hemiparesis localizing to a lacunar infarct in the internal capsule",
+      "contentHash": "d0dfca9a17126bf6b3c5ff2b31c562dffdc584a0397476eea85431b0244bdd00",
+      "stem": "These findings best localize to which of the following?"
+    },
+    {
+      "index": 62,
+      "blueprintTopic": "high-intensity statin with LDL target below 70 after atherosclerotic ischemic stroke",
+      "contentHash": "5d78d20e2abe7a6b3e1a19c0931e800663e949b8f7aeb67ecb97b28a9c8d3bb8",
+      "stem": "Which of the following is the most appropriate lipid therapy?"
+    },
+    {
+      "index": 63,
+      "blueprintTopic": "panic disorder with recurrent unexpected attacks",
+      "contentHash": "837624d6e00eca03472bd057bdb363f6377b18c2b85280e0398f0ff659aa47c5",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 64,
+      "blueprintTopic": "hoarding disorder in an older adult",
+      "contentHash": "76673919a704f34a411073ea24f1b2a5e200935334c1658e357216254f19f2c1",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 65,
+      "blueprintTopic": "conduct disorder in an adolescent",
+      "contentHash": "947f5d3017e6f0d455389c8596423d5f798ee3bb1d982b045b8e381eaf507314",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 66,
+      "blueprintTopic": "sertraline as a first-line antidepressant for late-life depression",
+      "contentHash": "7242cdda99a458e3c55f1d7e3d3e74f0da513d024680d53327aadfe8653a070b",
+      "stem": "Which of the following is the most appropriate medication?"
+    },
+    {
+      "index": 67,
+      "blueprintTopic": "antisocial personality disorder in an adult with a history of conduct problems",
+      "contentHash": "03f20ed51d31fc78a02a45a20d0392c3c375cbdfb97327cc04dfb76bdfd41e46",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 68,
+      "blueprintTopic": "somatic symptom disorder with excessive health-related anxiety",
+      "contentHash": "fe91d34298ede8f9b444ec0e48e7b4b380bfc33f4a2f4e1713d31411c44c781f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 69,
+      "blueprintTopic": "lithium-induced arginine vasopressin resistance (nephrogenic diabetes insipidus)",
+      "contentHash": "67e29ffbbcfc858e244f0e32ce72178892dc8e173145214c6942a216cfa03397",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 70,
+      "blueprintTopic": "cystatin C-based eGFR to confirm CKD in a muscular adult",
+      "contentHash": "c2e51549b2dac3fc7b3301e6580c1c936c5a7afcd4033d1c35df3fad939d6fe3",
+      "stem": "Which of the following is the most appropriate next test to assess his kidney function?"
+    },
+    {
+      "index": 71,
+      "blueprintTopic": "lupus nephritis presenting with nephritic urine sediment and low complement",
+      "contentHash": "7200bfdd04ee7f1e780a39a9d883808ec3a96200b1b914d2129d4cefb386a51b",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 72,
+      "blueprintTopic": "exertional rhabdomyolysis after an extreme workout",
+      "contentHash": "d5d211ccf7a53a6229e697451593afc053f9b46b87a6cf2f152b6e793dd0800e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 73,
+      "blueprintTopic": "active surveillance for low-risk grade group 1 prostate cancer",
+      "contentHash": "4a56cd926aada3a8543d69a43ccc2be6f8673629543d8de65d9d8046eec7cc90",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 74,
+      "blueprintTopic": "PSA failing to fall by half on long-term finasteride as a prostate cancer warning sign",
+      "contentHash": "12962c9005be8194a13224f8340bf357f573b8a9848fc5e548e57487643c604c",
+      "stem": "Which of the following is the most appropriate interpretation of this PSA result?"
+    },
+    {
+      "index": 75,
+      "blueprintTopic": "transillumination of a noncommunicating scrotal hydrocele in an infant",
+      "contentHash": "d71e64c8f8a6a2367b35dfd8e03e0010f29bb989465be607ca134d6d66798cf2",
+      "stem": "Which of the following examination findings best supports a noncommunicating hydrocele rather than an inguinal hernia?"
+    },
+    {
+      "index": 76,
+      "blueprintTopic": "direct antiglobulin test confirming warm autoimmune hemolytic anemia",
+      "contentHash": "35cdaf365a02f6dd3e0f0dd376e2b2cbe59417543cb850ae856b07a3e1d2da9c",
+      "stem": "Which of the following tests is most likely to confirm the cause of her anemia?"
+    },
+    {
+      "index": 77,
+      "blueprintTopic": "diffuse large B-cell lymphoma presenting with a rapidly enlarging mass and B symptoms",
+      "contentHash": "dcf93c2a480d59d928db32e98bdb57a409936f4b8e8d4ecd3f5e2feaa9d43af4",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 78,
+      "blueprintTopic": "lymphogranuloma venereum causing a painful inguinal bubo",
+      "contentHash": "b56ba41e9ce40de74dc1c3b240de6b3c27c30ec61a0cb231b3aaa7f8bb0d14a8",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 79,
+      "blueprintTopic": "valacyclovir for a first clinical episode of genital herpes",
+      "contentHash": "d1a1250c5ad9d9be94d210f5ea54504f5c1dc700c215b37e7e19a3f14725a645",
+      "stem": "Which of the following is the most appropriate treatment?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which of the following is the most likely diagnosis?",
+      "topics": [
+        "acute posterior STEMI shown by anterior ST depression and posterior leads",
+        "papillary muscle rupture after inferior myocardial infarction",
+        "tetralogy of Fallot with hypercyanotic spells in an infant",
+        "ruptured abdominal aortic aneurysm in an older smoker",
+        "congenital long QT syndrome with auditory-triggered syncope",
+        "Pneumocystis pneumonia in advanced HIV",
+        "aspirated bronchial foreign body in a toddler",
+        "pancreatic head adenocarcinoma with painless jaundice and Courvoisier sign",
+        "hepatorenal syndrome-acute kidney injury in decompensated cirrhosis",
+        "biliary atresia in an infant with persistent conjugated hyperbilirubinemia",
+        "Gilbert syndrome with isolated unconjugated hyperbilirubinemia",
+        "sigmoid volvulus in an older nursing home resident",
+        "diffuse cutaneous systemic sclerosis with anti-Scl-70 antibodies",
+        "Ewing sarcoma of the femoral diaphysis in a child",
+        "oligoarticular juvenile idiopathic arthritis in an ANA-positive preschool girl",
+        "plantar fasciitis with first-step heel pain",
+        "epithelial ovarian cancer presenting with a complex adnexal mass and ascites",
+        "primary ovarian insufficiency in a woman in her early thirties",
+        "uterine rupture during trial of labor after cesarean",
+        "myxedema coma in an older woman who stopped levothyroxine",
+        "medullary thyroid carcinoma in a patient with MEN2 family history",
+        "factitious hypoglycemia from exogenous insulin",
+        "salt-wasting classic congenital adrenal hyperplasia in a newborn boy",
+        "postseptal orbital cellulitis complicating sinusitis in a child",
+        "central retinal vein occlusion in an older hypertensive man",
+        "self-limited epilepsy with centrotemporal spikes in a school-age child",
+        "acute traumatic central cord syndrome after hyperextension in an older adult",
+        "panic disorder with recurrent unexpected attacks",
+        "hoarding disorder in an older adult",
+        "conduct disorder in an adolescent",
+        "antisocial personality disorder in an adult with a history of conduct problems",
+        "somatic symptom disorder with excessive health-related anxiety",
+        "lithium-induced arginine vasopressin resistance (nephrogenic diabetes insipidus)",
+        "lupus nephritis presenting with nephritic urine sediment and low complement",
+        "exertional rhabdomyolysis after an extreme workout",
+        "diffuse large B-cell lymphoma presenting with a rapidly enlarging mass and B symptoms",
+        "lymphogranuloma venereum causing a painful inguinal bubo"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate pharmacotherapy?",
+      "topics": [
+        "IV procainamide for stable pre-excited atrial fibrillation",
+        "estrogen plus progestogen for vasomotor symptoms in a woman with a uterus"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate treatment?",
+      "topics": [
+        "high-dose amoxicillin for outpatient pneumonia in a preschool child",
+        "first-line amoxicillin for confirmed group A streptococcal pharyngitis in a child",
+        "systemic ceftriaxone for gonococcal ophthalmia neonatorum",
+        "valacyclovir for a first clinical episode of genital herpes"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate management?",
+      "topics": [
+        "ondansetron then oral rehydration for vomiting child with mild-to-moderate dehydration",
+        "incision and drainage of an uncomplicated perianal abscess",
+        "nonoperative treatment of a reduced distal radius fracture in an older adult",
+        "tonsillectomy for frequent documented recurrent throat infection meeting Paradise criteria",
+        "active surveillance for low-risk grade group 1 prostate cancer"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 80,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 4044,
+    "live": 3515,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 3595,
+  "liveAfter": 3595,
+  "insertedIds": [
+    "cmvmtveog0000js4ci4b2le5r",
+    "cmvmtveon0001js4cfk1n9eyn",
+    "cmvmtveor0002js4c6gjtilte",
+    "cmvmtveou0003js4clphj22b9",
+    "cmvmtveoy0004js4cc1eaj8ik",
+    "cmvmtvep20005js4c0a47goy6",
+    "cmvmtvep60006js4c14cobmhw",
+    "cmvmtvepc0007js4cq9xyjrm8",
+    "cmvmtvepg0008js4c5v8p34l3",
+    "cmvmtvepj0009js4cxykdje23",
+    "cmvmtvepn000ajs4c71lh1f2c",
+    "cmvmtvepq000bjs4cr73vv9my",
+    "cmvmtvepu000cjs4czxc5x4uq",
+    "cmvmtvepy000djs4ca5cnrnnz",
+    "cmvmtveq1000ejs4czto0irip",
+    "cmvmtveq5000fjs4cn59xf2fg",
+    "cmvmtveq8000gjs4cexvyggj5",
+    "cmvmtveqb000hjs4cfgntfk67",
+    "cmvmtveqf000ijs4ccvefoezt",
+    "cmvmtveqi000jjs4cbjyhvom8",
+    "cmvmtveqm000kjs4cvbha1py2",
+    "cmvmtveqq000ljs4c4xthydi6",
+    "cmvmtveqt000mjs4cor8oy2lz",
+    "cmvmtveqx000njs4c4covr20i",
+    "cmvmtver1000ojs4cvol1ghj6",
+    "cmvmtver4000pjs4ctcpunlk5",
+    "cmvmtver7000qjs4cd7aq3o8x",
+    "cmvmtverb000rjs4cdqeb06e8",
+    "cmvmtvere000sjs4cv7rgn8c7",
+    "cmvmtveri000tjs4cj8td2zjy",
+    "cmvmtverm000ujs4crq5t33ui",
+    "cmvmtverq000vjs4c4x00hhp3",
+    "cmvmtveru000wjs4c6615i4yh",
+    "cmvmtverx000xjs4cye3hdhet",
+    "cmvmtves1000yjs4cy4hrozay",
+    "cmvmtves5000zjs4c516zkdv4",
+    "cmvmtves80010js4c6imh86un",
+    "cmvmtvesb0011js4cleszq19d",
+    "cmvmtvese0012js4cz8ttwazd",
+    "cmvmtvesh0013js4ce4sfng1r",
+    "cmvmtvesl0014js4c9c8n9txp",
+    "cmvmtvesp0015js4c9s9m8s0h",
+    "cmvmtvest0016js4c5ezs4kzn",
+    "cmvmtvesx0017js4cyslyz9ft",
+    "cmvmtvet00018js4cm6zmz0cn",
+    "cmvmtvet40019js4ck31626x5",
+    "cmvmtvet7001ajs4cx5bualet",
+    "cmvmtveta001bjs4comu8xklp",
+    "cmvmtvete001cjs4ci41rkv8d",
+    "cmvmtveth001djs4cnyl6cq9t",
+    "cmvmtvetk001ejs4c22dc99ug",
+    "cmvmtvetn001fjs4cxkxi2jcq",
+    "cmvmtvetr001gjs4crwpbgu5v",
+    "cmvmtvetu001hjs4cy977toc6",
+    "cmvmtvetx001ijs4cjvx41he9",
+    "cmvmtveu0001jjs4cbg1wg53j",
+    "cmvmtveu3001kjs4c7h28lw2u",
+    "cmvmtveu6001ljs4cxczag80f",
+    "cmvmtveua001mjs4cwr6v2tmw",
+    "cmvmtveud001njs4cgey4m7oh",
+    "cmvmtveuh001ojs4ce1jk434n",
+    "cmvmtveul001pjs4cam1h814w",
+    "cmvmtveuo001qjs4c81y789es",
+    "cmvmtveus001rjs4cp6udn283",
+    "cmvmtveuv001sjs4cvgbcft95",
+    "cmvmtveuz001tjs4cutf3sz08",
+    "cmvmtvev2001ujs4cdnor3y28",
+    "cmvmtvev5001vjs4cm5qf2kt9",
+    "cmvmtvev9001wjs4c824sqsat",
+    "cmvmtveve001xjs4cfw2islqr",
+    "cmvmtvevi001yjs4c88ou78xt",
+    "cmvmtvevm001zjs4cygvkdxpp",
+    "cmvmtvevp0020js4c5xwkwn6o",
+    "cmvmtvevt0021js4c29pdw4dq",
+    "cmvmtvevy0022js4ccpzh06eg",
+    "cmvmtvew10023js4cr7mplrh1",
+    "cmvmtvew50024js4c2p65o08y",
+    "cmvmtvew80025js4cejak29qd",
+    "cmvmtvewc0026js4c0vmbth5v",
+    "cmvmtvewg0027js4cqji8d9u2"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup-batch9-80.json"
+}

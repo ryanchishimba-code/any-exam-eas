@@ -1,0 +1,680 @@
+{
+  "mode": "dry-run",
+  "inputFile": "scripts/data/pance-batch-insert/batch7-80.json",
+  "rowsInFile": 80,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "vasospastic (Prinzmetal) angina",
+      "contentHash": "86bd63bc68c14281a1efdd26223d57c8956668cc7db748e4f808f75207b18f4b",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "Mobitz type II second-degree AV block",
+      "contentHash": "af31ed648203c4a580c99dbf9f268993ffa2ec09dc245e6192c3ec07ca101750",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "type 1 Brugada pattern with arrhythmic syncope",
+      "contentHash": "0e058c167a95a469c194429fe7decdc6ef44fde1b496b672a488cd04901c5fba",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "magnesium for torsades de pointes",
+      "contentHash": "573c429edd927fc43c6fb00d2340bcd2fe14714d4b9b5fc702afdf0e3313e006",
+      "stem": "Which of the following is the most appropriate next pharmacotherapy?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "IV loop diuretic dosing in acute decompensated heart failure",
+      "contentHash": "aefd501ceb2ce8a5c26d89d1d6b7eb3c51c366552599289ef581394d209c01dc",
+      "stem": "Which of the following is the most appropriate initial management?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "adding ezetimibe to reach the LDL-C goal after myocardial infarction",
+      "contentHash": "ee2a1fd0fe9f746605cff680ba6214e6734b56b45cefa4d075aff415e66989af",
+      "stem": "Which of the following is the most appropriate next step in lipid management?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "dental antibiotic prophylaxis for a prosthetic heart valve",
+      "contentHash": "9d281ce5e04f01cba560e0b08527107eee945065fa4d2fc81a10cc301373668c",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "medication-related orthostatic hypotension in an older adult",
+      "contentHash": "6fc874b7ef09384bee7dd3156a273b73ba5cdab5bd84235650f323185dd5dc38",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "acute viral myocarditis",
+      "contentHash": "ff4957434cacdaf2643446c71b5797acbd8956b8f7a796afec1faa8bc08c5d60",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "acute rheumatic fever by revised Jones criteria",
+      "contentHash": "401bcf38afaadb4b4f674e30845e87204f8d15124c055a22ba1a9a3b57a93342",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "surveillance interval for a small asymptomatic abdominal aortic aneurysm",
+      "contentHash": "093a690cc474f4243ff520b6908489095599423fecbbdf5f7739ec79bf11731c",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "chronic venous insufficiency",
+      "contentHash": "27bafe6bca48a990c1a39b197e3702b87905e1cd4774b6588334fd92bee83ac6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "coronary CT angiography for stable chest pain at intermediate risk",
+      "contentHash": "d9d4d8cbdf8a94ebc90c50e3ed2edab005ce953458c674475e1e5ac970c664f2",
+      "stem": "Which of the following is the most appropriate diagnostic test?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "viral croup in a toddler",
+      "contentHash": "bce8ff09586452ed0c6d9995c43418416179bcefda4983f6499af555960a3328",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "superior sulcus (Pancoast) tumor",
+      "contentHash": "bc70f127a3f1fb73d73aae03a389fc577cda7950def74d021434f4a606af57f5",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "asbestosis with pleural plaques",
+      "contentHash": "763c872409a064f54810a989a74a681052fec74cf9082f71e856adf05b52d578",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "allergic bronchopulmonary aspergillosis",
+      "contentHash": "f072f98cf0e6eab75f5959e3a246fdaf07aa29a0aab3f0062811cc4098072c61",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "obesity hypoventilation syndrome",
+      "contentHash": "d50844b1196548074cb3ecdfa9c64ebafccaa240d272ec405906cfe8c5a403d9",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "pulmonary arterial hypertension by hemodynamic definition",
+      "contentHash": "7a0ab2ca88e974851492651f56378b1131ca4d19b84d20f64ad66cbdcb4eb2f6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "long-term oxygen therapy for COPD with severe resting hypoxemia",
+      "contentHash": "b82d333587f4c4a35c3ff9ebf9a390714af0144bf290078bc31d8e1612a3302a",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 20,
+      "blueprintTopic": "initial maintenance therapy for symptomatic COPD with few exacerbations",
+      "contentHash": "b6557176f4a6e79ccfd5d0e430d900f0d61b96f0941174d3ab0f8075f70392ec",
+      "stem": "Which of the following is the most appropriate maintenance pharmacotherapy?"
+    },
+    {
+      "index": 21,
+      "blueprintTopic": "nirsevimab RSV immunoprophylaxis for an infant",
+      "contentHash": "e9a268ed36a27bf08d98636f88b0b88a3b291aa680c36cd7704ae080997689cb",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 22,
+      "blueprintTopic": "bronchodilator reversibility confirming asthma",
+      "contentHash": "6861800b1b222fee9c995e2fd5b6d1cb3c4405fc5e3df86d2c1e07d1ab40260f",
+      "stem": "Which of the following is the most accurate interpretation of these results?"
+    },
+    {
+      "index": 23,
+      "blueprintTopic": "simplified HCV treatment in a treatment-naive adult without cirrhosis",
+      "contentHash": "94be36b53669b210a190e3a6c4fb70843056df4d00d8070b6242599cd6fc0dde",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 24,
+      "blueprintTopic": "infantile hypertrophic pyloric stenosis",
+      "contentHash": "47389d0a79515ee44398c702e75689ab85487a43ac74a99f0cc64106d4981724",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 25,
+      "blueprintTopic": "ileocolic intussusception in a toddler",
+      "contentHash": "907f396fd1948e34f436150415cc8c90a3985ff24fa5b73f502a494aa95ca70f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 26,
+      "blueprintTopic": "acute mesenteric arterial embolism in an older adult",
+      "contentHash": "1bd0fac069cc66d1f777fd988641a7c2f28631110622ec284bf38340260e0e22",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 27,
+      "blueprintTopic": "goal-directed fluid resuscitation in acute pancreatitis",
+      "contentHash": "b2df56f4e88a61fae11e1d4fca14313d2f2b022db318cf95b0e032e24a519134",
+      "stem": "Which of the following is the most appropriate initial fluid management?"
+    },
+    {
+      "index": 28,
+      "blueprintTopic": "corticosteroids for severe alcohol-associated hepatitis",
+      "contentHash": "a06d4c515dc5b1280be5b57de06cdb624aaee53d9dcafdfcf78bacba9437dce3",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 29,
+      "blueprintTopic": "Glasgow-Blatchford score of 0 in upper GI bleeding",
+      "contentHash": "3c167c0a19f3e1949fd1733797093a2a78c4ffc67ca90e3741d26f1a379db42d",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 30,
+      "blueprintTopic": "adhesive small bowel obstruction",
+      "contentHash": "8d815f659df90683d7ba22d5a8cd77c771e23b774b6fc079e365c89a16362dc2",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 31,
+      "blueprintTopic": "acute cholangitis from choledocholithiasis",
+      "contentHash": "ada5938ca09730fce9151bd03b21e2eb1dd388421e5bb1a41a9abca63c88ba0e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 32,
+      "blueprintTopic": "polyethylene glycol for chronic constipation in an older adult with CKD",
+      "contentHash": "83795c83ab01c3a1d5f97a8606db0c2ec08b6476895ced8174b0d49fd5b80ca6",
+      "stem": "Which of the following is the most appropriate next pharmacotherapy?"
+    },
+    {
+      "index": 33,
+      "blueprintTopic": "hip ultrasonography for an infant at risk for DDH",
+      "contentHash": "76db6e3d5bac81058cf574cab8eadad5838fe29fbb56e15ab05dca003abee31b",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 34,
+      "blueprintTopic": "timing and type of surgery for displaced femoral neck fracture in an older adult",
+      "contentHash": "abaa67eb57ad2b32d422acfb219ba9661f40b150896fb6a0e0342ec6e2f42032",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 35,
+      "blueprintTopic": "septic arthritis of the hip in a child",
+      "contentHash": "0a099df2c6f6681465e9a2dfd55d66c4f87fddf28f3a56a68c798fb2c2138755",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 36,
+      "blueprintTopic": "examination findings of L5 radiculopathy",
+      "contentHash": "7c3088df7ae1820bbec8a9a8110b3b02c58973e5ed0f36abd1e82628ba2ffeeb",
+      "stem": "Which of the following examination findings is most consistent with this lesion?"
+    },
+    {
+      "index": 37,
+      "blueprintTopic": "acute compartment syndrome after tibial shaft fracture",
+      "contentHash": "3805120f4616e9af22235e4b63584c419110e0fb7f23962462f49a2a73d440b5",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 38,
+      "blueprintTopic": "native vertebral osteomyelitis",
+      "contentHash": "11a307d5ff4503620943db80409a58c6785b906963297e648caa0e8d4674553e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 39,
+      "blueprintTopic": "Paget disease of bone",
+      "contentHash": "70482dbb910341e5160beb668def1e5af0e0dad7987f4808f768558ac978e0c3",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 40,
+      "blueprintTopic": "initial management of acute low back pain without red flags",
+      "contentHash": "de322fe2db510ae16df3d3022048a00816c698c88d8c3447c62660d03f96d2fb",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 41,
+      "blueprintTopic": "anti-inflammatory prophylaxis when starting urate-lowering therapy",
+      "contentHash": "71b9e22329fbf2049c83f430c887492624f90ab8d3937e0cffdba67d7c7d790c",
+      "stem": "Which of the following is the most appropriate additional pharmacotherapy?"
+    },
+    {
+      "index": 42,
+      "blueprintTopic": "placenta previa",
+      "contentHash": "57595260a6379b11894a64ab3be3e1f5987d3f82f80e40f2902c326fb2cf8dbf",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 43,
+      "blueprintTopic": "antenatal corticosteroids for threatened preterm birth",
+      "contentHash": "fb04f919a47aa100b9fc28a3b720e7b34bfdc272ebd1e61391b9564d7aee8c4c",
+      "stem": "Which of the following is the most appropriate regimen to improve neonatal respiratory outcomes?"
+    },
+    {
+      "index": 44,
+      "blueprintTopic": "transvaginal ultrasonography for postmenopausal bleeding",
+      "contentHash": "370b7dc4cd9b8486df7c90aeebbf5a97bac46fc196c4b35c3ed82d1a76b60ae7",
+      "stem": "Which of the following is the most appropriate initial diagnostic test?"
+    },
+    {
+      "index": 45,
+      "blueprintTopic": "complete hydatidiform mole",
+      "contentHash": "176e15522542fa3863ec38d37fed995fbf32534007d97c793d837aa49aa7e405",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 46,
+      "blueprintTopic": "endometriosis in an adolescent with refractory dysmenorrhea",
+      "contentHash": "d9a8810f4c064c3f0b32cd47277de5c3745c0bd114c16ce8ec7ebbae4b77c9a0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 47,
+      "blueprintTopic": "copper IUD as the most effective emergency contraception",
+      "contentHash": "5b461de4437b2970ef2f943008c1b4f55e8411f7b702b27c24e78efde6077a17",
+      "stem": "Which of the following is the most effective option for her?"
+    },
+    {
+      "index": 48,
+      "blueprintTopic": "inevitable abortion",
+      "contentHash": "ca3d66618ac232cc8f6ffb6544e68f83bce38b423abdea5f0ac664152da96945",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 49,
+      "blueprintTopic": "low-dose aspirin for preeclampsia prevention in chronic hypertension",
+      "contentHash": "3e3a5383571a0362c7b3d46a75d54851bba5bc910febf02fce64788f0d7311e8",
+      "stem": "Which of the following is the most appropriate recommendation to reduce her risk of preeclampsia?"
+    },
+    {
+      "index": 50,
+      "blueprintTopic": "intrapartum GBS prophylaxis dosing",
+      "contentHash": "3787685be7ec03f4d8d51aac970b52aa317ee129ba8741af64bdeaabec73acad",
+      "stem": "Which of the following is the most appropriate intrapartum regimen?"
+    },
+    {
+      "index": 51,
+      "blueprintTopic": "anisometropic amblyopia",
+      "contentHash": "35fc3686188b21826e8ae2e23733b04e62aafef28fee8d42590133d816c628c2",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 52,
+      "blueprintTopic": "age-related hearing loss (presbycusis)",
+      "contentHash": "7dd580c9ff0bd14ca91f9fd38e3a57e707b44bab4a2e63f2584308c886e2b122",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 53,
+      "blueprintTopic": "cerumen removal with a nonintact tympanic membrane",
+      "contentHash": "48f6169105adfa6356a0f2df14121fb7dbf146c9d882a57bd8ab3c1481d1c219",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 54,
+      "blueprintTopic": "retinopathy screening at type 2 diabetes diagnosis",
+      "contentHash": "e4a25a64361a924bf1dbfa4fb36938a9557e9852f586c1de963acb2a7d2722d9",
+      "stem": "Which of the following is the most appropriate recommendation regarding retinopathy screening?"
+    },
+    {
+      "index": 55,
+      "blueprintTopic": "contact lens-associated bacterial keratitis",
+      "contentHash": "47446ab15a4dfa6fad9bf7e13b298307d9b7d4479bdc2a2849392791eeaacf20",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 56,
+      "blueprintTopic": "nuclear sclerotic cataract",
+      "contentHash": "681d03605b582010ec63be15d02aba018618667ec80fddaf5c60c515dd7b0bc9",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 57,
+      "blueprintTopic": "chronic rhinosinusitis without nasal polyps",
+      "contentHash": "b26d2cc3872af874349c61428383ee11bbb452b2039364a3e4817224a0e2aa9d",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 58,
+      "blueprintTopic": "cautious levothyroxine initiation in an older adult with coronary disease",
+      "contentHash": "ce25527b55bf5cb602d4ef7092b6afdc06d06f04a185f68ec9a23ffd7f11b10b",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 59,
+      "blueprintTopic": "FNA for a high-suspicion thyroid nodule",
+      "contentHash": "8bd1720dc4a047dded65a0d37e3530264997484258017bb8d992e61a4b15324c",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 60,
+      "blueprintTopic": "deintensifying sulfonylurea therapy in an older adult with hypoglycemia",
+      "contentHash": "905524d990b4e32f4f02f577eab502d0322ef2557b9dfec437252c1412e6c5b9",
+      "stem": "Which of the following is the most appropriate change to her diabetes regimen?"
+    },
+    {
+      "index": 61,
+      "blueprintTopic": "acute hypoparathyroidism after total thyroidectomy",
+      "contentHash": "eac70fa8c88bbccba6d3a4669f945b8c77410ed7fbafb25de852af93d232f398",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 62,
+      "blueprintTopic": "immediate treatment of congenital hypothyroidism after abnormal newborn screen",
+      "contentHash": "b20235da55e5c79ce88fc1547c7985eae3c38373f40ec6d003635b8c6acc6ad0",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 63,
+      "blueprintTopic": "postpartum thyroiditis, hypothyroid phase",
+      "contentHash": "e8bfe85472d11ff6efa42621b9e99898bc66913ce5176667294dbed74d1dcc37",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 64,
+      "blueprintTopic": "postoperative delirium in an older adult",
+      "contentHash": "f1a84c37d66aa6439c0c83f721f8eade6a650f294cc8fd405e20bb08aa240fe6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 65,
+      "blueprintTopic": "neurofibromatosis type 1 by revised diagnostic criteria",
+      "contentHash": "b68178afc7212853ea29cb40f0446c1955c4e4332c4282af353390c0ef36a9aa",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 66,
+      "blueprintTopic": "vestibular neuritis identified with HINTS examination",
+      "contentHash": "f66f46bda44bb6cd4ca742977e84e83214e2126535af8b6789d9e6be78d498a5",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 67,
+      "blueprintTopic": "Canadian CT Head Rule in minor head injury of an older adult",
+      "contentHash": "fcd236af87e92af4292372b45657290059a479c4f49183159f4d69195a485f02",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 68,
+      "blueprintTopic": "ibuprofen for acute migraine in a child",
+      "contentHash": "1110c49b1639dd8d4e6035bbb45a30124d686ca8c1b3756fffa44994d89d38a1",
+      "stem": "Which of the following is the most appropriate acute treatment?"
+    },
+    {
+      "index": 69,
+      "blueprintTopic": "fluoxetine plus CBT for moderate adolescent depression",
+      "contentHash": "440446e66eb618469ad5bb22c3751c42aadde0575de0afa50ba719a0f41c1c2d",
+      "stem": "Which of the following is the most appropriate pharmacotherapy to start along with cognitive behavioral therapy?"
+    },
+    {
+      "index": 70,
+      "blueprintTopic": "initial approach to agitation in dementia",
+      "contentHash": "6b0b47c9ee731625bd36ef976211daf951872ab7a1cd308303053d0d15d8b37a",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 71,
+      "blueprintTopic": "separation anxiety disorder",
+      "contentHash": "771f9af02c9bcaebc75e22516be61a461e542887b68a75266bcb56534f0a5d3e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 72,
+      "blueprintTopic": "ADHD, combined presentation",
+      "contentHash": "684fa69e657342b8fc19c9aa9121276dc1a5bc61434e0533f1c6a628f5617b2a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 73,
+      "blueprintTopic": "anorexia nervosa, restricting type",
+      "contentHash": "ac4a274f7971756df63e3f5226219c5c08259cbeabe6c58a6ad4ec27dc8ce691",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 74,
+      "blueprintTopic": "thiazide for recurrent calcium stones with hypercalciuria",
+      "contentHash": "1562aef7b8876be9fe4c3407acef75fc7e3493ec80e9f32bc9d0adc6db0e42c3",
+      "stem": "Which of the following is the most appropriate pharmacotherapy?"
+    },
+    {
+      "index": 75,
+      "blueprintTopic": "renal and bladder ultrasonography after first febrile UTI in an infant",
+      "contentHash": "c17ad8b272943330e1bf86bee557b8b2c87ba929ea88dd08dca3a50619cf070f",
+      "stem": "Which of the following is the most appropriate imaging?"
+    },
+    {
+      "index": 76,
+      "blueprintTopic": "PPI-induced acute interstitial nephritis in an older adult",
+      "contentHash": "d6e28ce347691b4ccb17b42817fa41dc9c44e59378744238d2e09b0af567061f",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 77,
+      "blueprintTopic": "acute lymphoblastic leukemia in a child",
+      "contentHash": "0d9e05a7acc3aa7b6ce5c5622964a68787322f5c76be82f1ec670d784c5ba24b",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 78,
+      "blueprintTopic": "supratherapeutic INR without bleeding",
+      "contentHash": "a7c8cedc043e43f4e7d86cb22c5c3baaaa1fcb8b42bff5c9a6d02c9884f08147",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 79,
+      "blueprintTopic": "hydroxyurea for infants with sickle cell anemia",
+      "contentHash": "859d99e2288b612adfe4ed14ade7fe4906c853b12d3a8fcdcfa309862655e958",
+      "stem": "Which of the following is the most appropriate additional pharmacotherapy?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which of the following is the most likely diagnosis?",
+      "topics": [
+        "vasospastic (Prinzmetal) angina",
+        "Mobitz type II second-degree AV block",
+        "type 1 Brugada pattern with arrhythmic syncope",
+        "medication-related orthostatic hypotension in an older adult",
+        "acute viral myocarditis",
+        "acute rheumatic fever by revised Jones criteria",
+        "chronic venous insufficiency",
+        "viral croup in a toddler",
+        "superior sulcus (Pancoast) tumor",
+        "asbestosis with pleural plaques",
+        "allergic bronchopulmonary aspergillosis",
+        "obesity hypoventilation syndrome",
+        "pulmonary arterial hypertension by hemodynamic definition",
+        "infantile hypertrophic pyloric stenosis",
+        "ileocolic intussusception in a toddler",
+        "acute mesenteric arterial embolism in an older adult",
+        "adhesive small bowel obstruction",
+        "acute cholangitis from choledocholithiasis",
+        "septic arthritis of the hip in a child",
+        "acute compartment syndrome after tibial shaft fracture",
+        "native vertebral osteomyelitis",
+        "Paget disease of bone",
+        "placenta previa",
+        "complete hydatidiform mole",
+        "endometriosis in an adolescent with refractory dysmenorrhea",
+        "inevitable abortion",
+        "anisometropic amblyopia",
+        "age-related hearing loss (presbycusis)",
+        "contact lens-associated bacterial keratitis",
+        "nuclear sclerotic cataract",
+        "chronic rhinosinusitis without nasal polyps",
+        "acute hypoparathyroidism after total thyroidectomy",
+        "postpartum thyroiditis, hypothyroid phase",
+        "postoperative delirium in an older adult",
+        "neurofibromatosis type 1 by revised diagnostic criteria",
+        "vestibular neuritis identified with HINTS examination",
+        "separation anxiety disorder",
+        "ADHD, combined presentation",
+        "anorexia nervosa, restricting type",
+        "PPI-induced acute interstitial nephritis in an older adult",
+        "acute lymphoblastic leukemia in a child"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next pharmacotherapy?",
+      "topics": [
+        "magnesium for torsades de pointes",
+        "polyethylene glycol for chronic constipation in an older adult with CKD"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate recommendation?",
+      "topics": [
+        "dental antibiotic prophylaxis for a prosthetic heart valve",
+        "nirsevimab RSV immunoprophylaxis for an infant"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate management?",
+      "topics": [
+        "surveillance interval for a small asymptomatic abdominal aortic aneurysm",
+        "long-term oxygen therapy for COPD with severe resting hypoxemia",
+        "Glasgow-Blatchford score of 0 in upper GI bleeding",
+        "timing and type of surgery for displaced femoral neck fracture in an older adult",
+        "initial management of acute low back pain without red flags",
+        "cerumen removal with a nonintact tympanic membrane",
+        "supratherapeutic INR without bleeding"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate pharmacotherapy?",
+      "topics": [
+        "corticosteroids for severe alcohol-associated hepatitis",
+        "thiazide for recurrent calcium stones with hypercalciuria"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step?",
+      "topics": [
+        "hip ultrasonography for an infant at risk for DDH",
+        "FNA for a high-suspicion thyroid nodule",
+        "immediate treatment of congenital hypothyroidism after abnormal newborn screen",
+        "Canadian CT Head Rule in minor head injury of an older adult",
+        "initial approach to agitation in dementia"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate additional pharmacotherapy?",
+      "topics": [
+        "anti-inflammatory prophylaxis when starting urate-lowering therapy",
+        "hydroxyurea for infants with sickle cell anemia"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 80,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 3884,
+    "live": 3355,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 3435,
+  "liveAfter": 3355,
+  "insertedIds": [
+    "cmvmrsupr0000jsb1gsfybghv",
+    "cmvmrsupy0001jsb1csd2oh9d",
+    "cmvmrsuq10002jsb1fpfwc8dc",
+    "cmvmrsuq50003jsb1j3xpr54w",
+    "cmvmrsuq80004jsb1o08nratu",
+    "cmvmrsuqc0005jsb1ax5sjxq4",
+    "cmvmrsuqf0006jsb1kzz85szn",
+    "cmvmrsuqj0007jsb1briag9ir",
+    "cmvmrsuqn0008jsb1ry2zwgjr",
+    "cmvmrsuqq0009jsb1mxx0hwtn",
+    "cmvmrsuqt000ajsb1vjtqt3f5",
+    "cmvmrsuqx000bjsb1faafhirk",
+    "cmvmrsur0000cjsb1ysz9vtua",
+    "cmvmrsur3000djsb1asuurs5a",
+    "cmvmrsur7000ejsb1tbyi3vx2",
+    "cmvmrsura000fjsb191tn4zdt",
+    "cmvmrsurd000gjsb18ix2rtqi",
+    "cmvmrsuri000hjsb17u14vo9h",
+    "cmvmrsurl000ijsb124v6k9zn",
+    "cmvmrsuro000jjsb1ksp9y0vp",
+    "cmvmrsurs000kjsb1yz4uhgdq",
+    "cmvmrsurv000ljsb1jv7fr0k8",
+    "cmvmrsurz000mjsb1hkm3kh0i",
+    "cmvmrsus2000njsb19ccnj7wk",
+    "cmvmrsus6000ojsb18a9b1y46",
+    "cmvmrsus8000pjsb1whf2c4wu",
+    "cmvmrsusb000qjsb1cg5ozm4e",
+    "cmvmrsuse000rjsb1cb81u0qe",
+    "cmvmrsusi000sjsb1v8l8pmqm",
+    "cmvmrsusl000tjsb1u1x2npes",
+    "cmvmrsusp000ujsb14b7bnojy",
+    "cmvmrsuss000vjsb1swfktq27",
+    "cmvmrsusv000wjsb1xnhmu5sx",
+    "cmvmrsusz000xjsb1ie8ccta8",
+    "cmvmrsut2000yjsb1qsbqbh3n",
+    "cmvmrsut5000zjsb160ga7wat",
+    "cmvmrsut80010jsb1faci6ula",
+    "cmvmrsutb0011jsb1gkuzyc4v",
+    "cmvmrsutf0012jsb1r6cjrngh",
+    "cmvmrsuti0013jsb1jmgqt0x7",
+    "cmvmrsutn0014jsb1x4phitiy",
+    "cmvmrsutq0015jsb100lkdc9n",
+    "cmvmrsutu0016jsb15vwvg7zo",
+    "cmvmrsuty0017jsb10xk6croz",
+    "cmvmrsuu10018jsb1lrzqzk3d",
+    "cmvmrsuu50019jsb1r1uneqko",
+    "cmvmrsuu9001ajsb1wp4ga8tj",
+    "cmvmrsuuc001bjsb19cj650vf",
+    "cmvmrsuuf001cjsb1jvwfyso3",
+    "cmvmrsuui001djsb1wyb0as5e",
+    "cmvmrsuum001ejsb18sraf141",
+    "cmvmrsuus001fjsb1oouzr2fg",
+    "cmvmrsuuw001gjsb1mueavdif",
+    "cmvmrsuuz001hjsb1wlndyusa",
+    "cmvmrsuv3001ijsb1l8ps78q7",
+    "cmvmrsuv6001jjsb1ou2m3usm",
+    "cmvmrsuva001kjsb1ug6z6jt4",
+    "cmvmrsuvi001ljsb1qs6h9a0w",
+    "cmvmrsuvl001mjsb19ybjybj8",
+    "cmvmrsuvo001njsb1kqppxj73",
+    "cmvmrsuvr001ojsb1vxodw7he",
+    "cmvmrsuvu001pjsb1wr8qhcmo",
+    "cmvmrsuvx001qjsb1gufyakgt",
+    "cmvmrsuw1001rjsb1pa7rq9dg",
+    "cmvmrsuw4001sjsb19ril93xh",
+    "cmvmrsuw7001tjsb1j9o48ll4",
+    "cmvmrsuwb001ujsb188py0b8m",
+    "cmvmrsuwe001vjsb16m9ju9xr",
+    "cmvmrsuwh001wjsb1qavd4zmi",
+    "cmvmrsuwl001xjsb1f60og58h",
+    "cmvmrsuwo001yjsb128wikt76",
+    "cmvmrsuwr001zjsb1k6spqkyv",
+    "cmvmrsuwv0020jsb1r2537b04",
+    "cmvmrsuwy0021jsb1nuoa8zwt",
+    "cmvmrsux10022jsb1n82pc62r",
+    "cmvmrsux40023jsb1h2ft86l9",
+    "cmvmrsux60024jsb1cthdp5ki",
+    "cmvmrsux90025jsb1n9xaknef",
+    "cmvmrsuxe0026jsb142rm5406",
+    "cmvmrsuxi0027jsb1ynzqd8m1"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup-batch7-80.json"
+}

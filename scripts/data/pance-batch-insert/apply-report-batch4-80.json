@@ -1,0 +1,652 @@
+{
+  "mode": "apply",
+  "inputFile": "scripts/data/pance-batch-insert/batch4-80.json",
+  "rowsInFile": 80,
+  "validationErrors": [],
+  "duplicates": [],
+  "wouldInsert": [
+    {
+      "index": 0,
+      "blueprintTopic": "iron deficiency anemia laboratory profile",
+      "contentHash": "e37faf10306b36dc9aabfaa950c0b70b07655f371b06f59c054992f951cd0cac",
+      "stem": "Which of the following sets of iron studies is most consistent with this patient's condition?"
+    },
+    {
+      "index": 1,
+      "blueprintTopic": "beta-thalassemia minor",
+      "contentHash": "8d0802bf8dac95b860a19e79827409a65e9c6c2f7e4e1678d024ecb50de638f6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 2,
+      "blueprintTopic": "G6PD deficiency hemolysis",
+      "contentHash": "414f29e4fbbb0cbe66d4db7fafee5a52a5b0733101d3a5770117bb782e7dc8e0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 3,
+      "blueprintTopic": "hereditary spherocytosis",
+      "contentHash": "869d3ec0c457d3991baf49187380995540c8ffeebaa177875206f79732f345b6",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 4,
+      "blueprintTopic": "sickle cell vaso-occlusive pain in the emergency department",
+      "contentHash": "dee18845238f116142cc234f01a24aaa8bc2a7dc7c3787d5d5c18579ffef8e16",
+      "stem": "Which of the following is the most appropriate initial management?"
+    },
+    {
+      "index": 5,
+      "blueprintTopic": "immune thrombotic thrombocytopenic purpura",
+      "contentHash": "a1c960853cbddcaf62c3394d14e6daab00fb1a76dc65f0262716122e6250712e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 6,
+      "blueprintTopic": "heparin-induced thrombocytopenia management",
+      "contentHash": "1028c8b0df6f487332cb05af9fa124971f8d0acf88485269d828cad4daf6c02a",
+      "stem": "In addition to sending a heparin-PF4 antibody immunoassay, which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 7,
+      "blueprintTopic": "newly diagnosed immune thrombocytopenia in adults",
+      "contentHash": "0c3d7f192e17753c35178aa0715826c4927917fd17a98dad42d3e2afcc0ef55a",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 8,
+      "blueprintTopic": "type 1 von Willebrand disease",
+      "contentHash": "85533fe69ea737a8c1f8214a46dd6a55540dbfe2e7b68582a9a3056cd7fe0d7d",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 9,
+      "blueprintTopic": "hemophilia A",
+      "contentHash": "ab5dda158564571c0e1b24f00113939afe1e7a7e3dd8040894ca5a83f9193895",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 10,
+      "blueprintTopic": "disseminated intravascular coagulation",
+      "contentHash": "7924dcd79f1a6c4b9189f8c3fe7205011e38dad9d592eab7d261fa2029fa1a15",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 11,
+      "blueprintTopic": "chronic lymphocytic leukemia",
+      "contentHash": "1bb7ac2040370c54831d8446d2e53dff8f2e99a222c6a95cc77c8b7d6411bf64",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 12,
+      "blueprintTopic": "chronic myeloid leukemia",
+      "contentHash": "a2b618fbd8b9307634544a267d426dbbabaac7212b0ef673a05c997d8c939a7c",
+      "stem": "Which of the following findings is most likely to confirm the diagnosis?"
+    },
+    {
+      "index": 13,
+      "blueprintTopic": "classic Hodgkin lymphoma",
+      "contentHash": "e637707f90797208dfefdb84ced2b9fc548d5a79f5149103cbe0d73dd91450f0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 14,
+      "blueprintTopic": "multiple myeloma diagnostic criteria",
+      "contentHash": "96d8ce69507d34d653ad491626173118f10002f6959349bd4e54a66b9a2210a1",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 15,
+      "blueprintTopic": "polycythemia vera",
+      "contentHash": "09f1a48a0749fbee938dfe60e9dbeee89758cbf93fbb54ea0190d3223ca91fb8",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 16,
+      "blueprintTopic": "hereditary hemochromatosis",
+      "contentHash": "b6525ab8bb5d6ceb73ad197826e4341e34463268428eb018fb55655756780e56",
+      "stem": "Which of the following is the most likely underlying diagnosis?"
+    },
+    {
+      "index": 17,
+      "blueprintTopic": "extended anticoagulation after unprovoked pulmonary embolism",
+      "contentHash": "92dd9e852ac321f453fb65db794bd5d443d1e0e0764d8a39307b67099ba00e0b",
+      "stem": "Which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 18,
+      "blueprintTopic": "low-risk febrile neutropenia outpatient therapy",
+      "contentHash": "87cd121542a76ece93ea9df2d9fab5aa69b0444c6135a20b1d22b28b87c98be1",
+      "stem": "After obtaining blood cultures, which of the following is the most appropriate management?"
+    },
+    {
+      "index": 19,
+      "blueprintTopic": "restrictive red cell transfusion threshold",
+      "contentHash": "4f9dd60e404740ee54f60c0435d472c8505aadc370f10b8786d8e47547031199",
+      "stem": "Which of the following is the most appropriate management of her anemia?"
+    },
+    {
+      "index": 20,
+      "blueprintTopic": "biopsy of a lesion suspicious for melanoma",
+      "contentHash": "d87cfa2649ffcc85d3678626e0840e9228df77be79bb85f7b1ad827bc893fb59",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 21,
+      "blueprintTopic": "nodular basal cell carcinoma",
+      "contentHash": "99b6294d5b5a774b01a327f5f89fff8931ebf414acc3ec0147814736ae4d9fe0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 22,
+      "blueprintTopic": "actinic keratosis",
+      "contentHash": "3c597fbbd27d0f74705ac52a04a0b7c5105b2b5551a677c5efec9ebc609e14f0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 23,
+      "blueprintTopic": "guttate psoriasis",
+      "contentHash": "fd856cc8aab1b7cfe9d309f251007f58ddefc35ee9f3d7b0e5f7c4a71f4cf27e",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 24,
+      "blueprintTopic": "atopic dermatitis of the eyelids",
+      "contentHash": "f70f269efeb8bc39230c7d37d108d66815b2294792fb1a96b075766572086897",
+      "stem": "Which of the following is the most appropriate treatment for the eyelid dermatitis?"
+    },
+    {
+      "index": 25,
+      "blueprintTopic": "moderate inflammatory acne initial therapy",
+      "contentHash": "decf4f1aba56ded2631e768103760e2c5a1d505f8b2d984143b74610aaad2b5b",
+      "stem": "Which of the following is the most appropriate initial regimen?"
+    },
+    {
+      "index": 26,
+      "blueprintTopic": "papulopustular rosacea",
+      "contentHash": "a13724808e599a6417a7578ad34c00e1e32eac197a7a254a5e4b3ab8257079c7",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 27,
+      "blueprintTopic": "pityriasis (tinea) versicolor",
+      "contentHash": "0aee1fa17cb178684db4d4049e59573a876d2f753b77258f6ebd1f1a46a8508a",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 28,
+      "blueprintTopic": "tinea capitis treatment",
+      "contentHash": "210277baa7af3bbedc38ddb21506086c7e76c11d6a022b49cc7fd07c129cf702",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 29,
+      "blueprintTopic": "classic scabies treatment",
+      "contentHash": "538b415f9b644cc72a55f11714a2d27c48acf8c675bdb41b1dca46d9b0405d4a",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 30,
+      "blueprintTopic": "localized impetigo treatment",
+      "contentHash": "ccef847380475e895e5e62893abe356b44f830b719ea4c52ff83fc72468ffb21",
+      "stem": "Which of the following is the most appropriate treatment?"
+    },
+    {
+      "index": 31,
+      "blueprintTopic": "confirming onychomycosis before systemic therapy",
+      "contentHash": "fa8aebbedfd3ea20928edf8220bf4feae4c0c918c3995c52d5b612925c06f99b",
+      "stem": "Which of the following is the most appropriate next step before prescribing oral terbinafine?"
+    },
+    {
+      "index": 32,
+      "blueprintTopic": "Stevens-Johnson syndrome",
+      "contentHash": "0593a2f9c57ed3884c3abdfdab0d0c49970d092c538174801b6bacd404adbbd3",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 33,
+      "blueprintTopic": "hidradenitis suppurativa",
+      "contentHash": "19deeeb50ff119b779d28c3642b011dc3368bfbfee8e6c4fe66c3d8a54030c3b",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 34,
+      "blueprintTopic": "bullous pemphigoid",
+      "contentHash": "c6a5b15b73beed65fe2e8593e03cfc321c274f88b79eede070d78675af8f1070",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 35,
+      "blueprintTopic": "pityriasis rosea",
+      "contentHash": "8b7b6e2bef66da8573369f232bdeabb8c0bc242869947b9bdf351b830056b57c",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 36,
+      "blueprintTopic": "erythema multiforme after herpes simplex",
+      "contentHash": "4a28e46670ecb1c681f72877b8d020f7796be9628a991057526bba039f9ad8ce",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 37,
+      "blueprintTopic": "cutaneous lichen planus examination",
+      "contentHash": "18c1d31429644e815fb51a70ea57414eac213907a69364db1434fec00c7fd08d",
+      "stem": "Examination of which of the following is most likely to reveal an additional characteristic finding of this condition?"
+    },
+    {
+      "index": 38,
+      "blueprintTopic": "Graves disease versus thyroiditis by radioactive iodine uptake",
+      "contentHash": "f3bae50467e44991b5c0de7328fcac6eee93d46832ae3c355a969241f41f4c74",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 39,
+      "blueprintTopic": "subclinical hypothyroidism with TSH above 10",
+      "contentHash": "01d4b73c9a430ad226d251af41f21ae8fc8c220c819f542fcb5ae4b4f1ca0d6a",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 40,
+      "blueprintTopic": "thyroid nodule with suppressed TSH",
+      "contentHash": "7ca053b151cc063f50acffff15b3161c097f1c9bcb329e69d4181eedfc40f8be",
+      "stem": "Which of the following is the most appropriate next step in evaluation?"
+    },
+    {
+      "index": 41,
+      "blueprintTopic": "primary aldosteronism",
+      "contentHash": "cb42f9e570364caa7a53247ffd4ffca877055f0389152139ced49d3225284de0",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 42,
+      "blueprintTopic": "initial testing for Cushing syndrome",
+      "contentHash": "8c5536928bb900b932c2e6f2eed83dcaf197cefcfddc8c4a6de7a70be36f5fac",
+      "stem": "Which of the following is the most appropriate initial test?"
+    },
+    {
+      "index": 43,
+      "blueprintTopic": "primary adrenal insufficiency",
+      "contentHash": "b0952ec41d04aef00c1c1cd3b4ce53c9779a601234d32db1dd1d6824d5e15b94",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 44,
+      "blueprintTopic": "pheochromocytoma",
+      "contentHash": "9214dd1e9495e7fb3c3ed63a1297eadf00d8947061afc6c39cf3d61fa3719f26",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 45,
+      "blueprintTopic": "potassium replacement before insulin in DKA",
+      "contentHash": "22f23c60277ff45af431f3d86661741d12bf223d94efd1bba49d38324338b195",
+      "stem": "Which of the following is the most appropriate next step?"
+    },
+    {
+      "index": 46,
+      "blueprintTopic": "confirming a diagnosis of type 2 diabetes",
+      "contentHash": "db7b023a6ad796ce79ac0d175c954b116dc10ec9edb367444c8e8c040979af24",
+      "stem": "Which of the following is the most accurate interpretation?"
+    },
+    {
+      "index": 47,
+      "blueprintTopic": "type 2 diabetes with heart failure with reduced ejection fraction",
+      "contentHash": "fb8dd10849e6460b3350680c7c1c7a28c664fb09fffbe15346bea1a3c838f47f",
+      "stem": "Which of the following is the most appropriate addition to his regimen?"
+    },
+    {
+      "index": 48,
+      "blueprintTopic": "prolactinoma first-line therapy",
+      "contentHash": "e70592566350efa7df2693ba0d03d463138ad6305bbe8b4e4bab920737e963fb",
+      "stem": "Which of the following is the most appropriate initial treatment?"
+    },
+    {
+      "index": 49,
+      "blueprintTopic": "acromegaly",
+      "contentHash": "3fc1c1cc356a10d4a0d3a9ac8361ef4d3544d31e5cadd1d14d22b1fc9ffdaf04",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 50,
+      "blueprintTopic": "osteoporosis screening in postmenopausal women younger than 65",
+      "contentHash": "77cdfadc85a1059f53ec641f43b56ed19ba0584a6703fceb9d0ea512ed3b638d",
+      "stem": "According to current USPSTF recommendations, which of the following is the most appropriate approach to osteoporosis screening?"
+    },
+    {
+      "index": 51,
+      "blueprintTopic": "indications for parathyroidectomy in asymptomatic primary hyperparathyroidism",
+      "contentHash": "7ab216308676c384e8044588d2e6125944872582adda26dfbcb52df25feee64b",
+      "stem": "Which of the following is the most appropriate management?"
+    },
+    {
+      "index": 52,
+      "blueprintTopic": "sequence of therapy in thyroid storm",
+      "contentHash": "88ffd6f705d7f7ff141a5660b7670a04f74e4fef8bff5a077140556dc0301361",
+      "stem": "Which of the following is the most appropriate sequence for the remaining antithyroid therapy?"
+    },
+    {
+      "index": 53,
+      "blueprintTopic": "arginine vasopressin deficiency (central diabetes insipidus)",
+      "contentHash": "05df01fb58f565c3201f4a6ea9884bd9edeed6eb4120b7efffab4df0a837ebf3",
+      "stem": "Which of the following is the most likely diagnosis?"
+    },
+    {
+      "index": 54,
+      "blueprintTopic": "calculating negative predictive value",
+      "contentHash": "7202b6de9964ef82761e86928bccade8c5a8b17cb8065edb6c016eb0dedf3ade",
+      "stem": "Which of the following is closest to the negative predictive value of the test in this population?"
+    },
+    {
+      "index": 55,
+      "blueprintTopic": "relative risk reduction",
+      "contentHash": "cdbfb0d3ce3879f40de1c48b1fa0813936618078e0d7fa7258620becf1145328",
+      "stem": "Which of the following is the relative risk reduction with the new drug?"
+    },
+    {
+      "index": 56,
+      "blueprintTopic": "type II error and statistical power",
+      "contentHash": "3d60505dcdef0759847c115b5019c73d0e1f87783dcb4c31f1c100bd85645d06",
+      "stem": "Which of the following best explains the result of the first trial?"
+    },
+    {
+      "index": 57,
+      "blueprintTopic": "healthy worker effect",
+      "contentHash": "17543d1dbe15b29f0527c428b8eab72a89ac80b849f335c9a1eaa7e282011ec6",
+      "stem": "Which of the following best explains why this conclusion may be invalid?"
+    },
+    {
+      "index": 58,
+      "blueprintTopic": "recall bias in a case-control study",
+      "contentHash": "502871e7e317d3dc24c6b26cc2822836ced696203dc2ff967d741f0f6ef9be83",
+      "stem": "Which of the following biases most threatens the validity of this finding?"
+    },
+    {
+      "index": 59,
+      "blueprintTopic": "confounding",
+      "contentHash": "1bb1cc925e299d5d3ae214e3adef446d688f3b9758de0b825e268089e9c537b5",
+      "stem": "Which of the following best explains the original association?"
+    },
+    {
+      "index": 60,
+      "blueprintTopic": "cross-sectional study design",
+      "contentHash": "65dfa3735bfb0a2b863c9aa58ee6c4a23f5019860800ec6bae745fb6e746e587",
+      "stem": "Which of the following best describes this study design?"
+    },
+    {
+      "index": 61,
+      "blueprintTopic": "changing a test cutoff on an ROC curve",
+      "contentHash": "4a4e97b79c1167af20a93ed7432e2842e78e906d669cea506ef9b0184828558b",
+      "stem": "Which of the following changes in test performance is most likely if the cutoff is lowered?"
+    },
+    {
+      "index": 62,
+      "blueprintTopic": "blinding of outcome assessors to prevent observer bias",
+      "contentHash": "23ecde14f0e6556e6dfd7f84080270b5a5f120d0d1fee182afa9c47f878fda6e",
+      "stem": "Which of the following design changes would best reduce the most important source of bias in this trial?"
+    },
+    {
+      "index": 63,
+      "blueprintTopic": "colorectal cancer screening start age",
+      "contentHash": "7b5da32bb2343c0eb9eb8a7f78f1f426f57dc5bb40f35965b8453ea362c0f2e6",
+      "stem": "Which of the following is the most appropriate recommendation regarding colorectal cancer screening?"
+    },
+    {
+      "index": 64,
+      "blueprintTopic": "hepatitis C screening in adults",
+      "contentHash": "46ee7dcb516d0a0e47189bbfbc749107e911474d78be464137ce0c947d3c8322",
+      "stem": "Which of the following is the most appropriate recommendation regarding hepatitis C screening?"
+    },
+    {
+      "index": 65,
+      "blueprintTopic": "statin use for primary prevention",
+      "contentHash": "4d9ddb720502762f5daaf6b5d262bd04273fc3df5130532bbc2756efccb85715",
+      "stem": "According to the USPSTF, which of the following is the most appropriate recommendation?"
+    },
+    {
+      "index": 66,
+      "blueprintTopic": "fall prevention in community-dwelling older adults",
+      "contentHash": "56ebb3dec776d5492397e74c2b66e25a8353793b86a76c0136218fe07280d098",
+      "stem": "According to the USPSTF, which intervention is most appropriate to prevent future falls?"
+    },
+    {
+      "index": 67,
+      "blueprintTopic": "POLST medical orders",
+      "contentHash": "1314149b194014bae1ac783b18e719d9e007902163f15020706273a06dbffab1",
+      "stem": "Which of the following is the most appropriate action to ensure these wishes are followed across care settings?"
+    },
+    {
+      "index": 68,
+      "blueprintTopic": "patient request to withdraw life-sustaining treatment",
+      "contentHash": "1722d7036bc95d85e7cfe100ec0b0a21ef983831e24b245ea8b41d45ffceeb4c",
+      "stem": "Which of the following is the most appropriate course of action?"
+    },
+    {
+      "index": 69,
+      "blueprintTopic": "Stark law physician self-referral",
+      "contentHash": "5713cab508dddcf937c9706f6b39b55b93006d459751e45d400c076e667cbd6f",
+      "stem": "Which federal law most directly prohibits this referral arrangement?"
+    },
+    {
+      "index": 70,
+      "blueprintTopic": "colleague impaired by alcohol at work",
+      "contentHash": "2f1ac2ba304b1f74c264fb8b2cb5ce9f3f17bb2e0dfe990b5e0b8493e17c12ec",
+      "stem": "Which of the following is the most appropriate immediate action by the PA?"
+    },
+    {
+      "index": 71,
+      "blueprintTopic": "romantic relationship with a current patient",
+      "contentHash": "0cbbcd79d86548002bc72b7f313c52d96b7593093ba432dd5e5d12b87fad566e",
+      "stem": "Which of the following is the most appropriate response?"
+    },
+    {
+      "index": 72,
+      "blueprintTopic": "prescribing for a family member",
+      "contentHash": "99b5263c25aedb485ac04351c36fb5567350f48ea1e64f258a6e385546a78302",
+      "stem": "Which of the following is the most appropriate response?"
+    },
+    {
+      "index": 73,
+      "blueprintTopic": "prescription drug monitoring program before opioid prescribing",
+      "contentHash": "b43706a8b4322c756b772bf316b525b5c9895e9b79c55c29247b56b841444c65",
+      "stem": "Before prescribing an opioid, which of the following is the most appropriate step?"
+    },
+    {
+      "index": 74,
+      "blueprintTopic": "reporting a notifiable disease to public health",
+      "contentHash": "bafce2e5763940353803a812e6c3a98d70dfe085703863e45ac7d64a077863d1",
+      "stem": "Which of the following is the most appropriate action regarding disclosure?"
+    },
+    {
+      "index": 75,
+      "blueprintTopic": "essential elements of informed consent",
+      "contentHash": "c2c1d51ee5db0e3a25cf2b6c63ada3843a80b0278af9a864b8e8103c4d3529f1",
+      "stem": "Which of the following additional elements must be discussed for consent to be valid?"
+    },
+    {
+      "index": 76,
+      "blueprintTopic": "HIPAA disclosure to family present at the visit",
+      "contentHash": "24188a362afc9805afaa1aa3d2a5dbc339d4e1f3d833032ec5d247987efdddbb",
+      "stem": "Under the HIPAA Privacy Rule, which of the following is the most appropriate approach?"
+    },
+    {
+      "index": 77,
+      "blueprintTopic": "telehealth licensure across state lines",
+      "contentHash": "821f28066bdff389c70f5ec873d2e6c28077ac3af3e3b43682aad0b5777b2f0c",
+      "stem": "Which of the following best describes the licensure requirement for these visits?"
+    },
+    {
+      "index": 78,
+      "blueprintTopic": "elements of medical negligence",
+      "contentHash": "64aad1c083810c7249b53301445d5947666d9049eaf69d2c4c6a100c6f852676",
+      "stem": "In addition to duty, breach, and damages, which element must the plaintiff establish to prevail?"
+    },
+    {
+      "index": 79,
+      "blueprintTopic": "teach-back to confirm understanding",
+      "contentHash": "c7912e8ef8cb073ba4d5a0641574e08983b2c3fcacd37f32836156c01e1a8257",
+      "stem": "Which of the following is the most effective way to confirm his understanding?"
+    }
+  ],
+  "sharedLeadInsInBatch": [
+    {
+      "stem": "Which of the following is the most likely diagnosis?",
+      "topics": [
+        "beta-thalassemia minor",
+        "G6PD deficiency hemolysis",
+        "hereditary spherocytosis",
+        "immune thrombotic thrombocytopenic purpura",
+        "type 1 von Willebrand disease",
+        "hemophilia A",
+        "disseminated intravascular coagulation",
+        "chronic lymphocytic leukemia",
+        "classic Hodgkin lymphoma",
+        "multiple myeloma diagnostic criteria",
+        "polycythemia vera",
+        "nodular basal cell carcinoma",
+        "actinic keratosis",
+        "guttate psoriasis",
+        "papulopustular rosacea",
+        "pityriasis (tinea) versicolor",
+        "Stevens-Johnson syndrome",
+        "hidradenitis suppurativa",
+        "bullous pemphigoid",
+        "pityriasis rosea",
+        "erythema multiforme after herpes simplex",
+        "Graves disease versus thyroiditis by radioactive iodine uptake",
+        "primary aldosteronism",
+        "primary adrenal insufficiency",
+        "pheochromocytoma",
+        "acromegaly",
+        "arginine vasopressin deficiency (central diabetes insipidus)"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate initial treatment?",
+      "topics": [
+        "newly diagnosed immune thrombocytopenia in adults",
+        "prolactinoma first-line therapy"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate next step?",
+      "topics": [
+        "biopsy of a lesion suspicious for melanoma",
+        "potassium replacement before insulin in DKA"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate treatment?",
+      "topics": [
+        "tinea capitis treatment",
+        "classic scabies treatment",
+        "localized impetigo treatment"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate management?",
+      "topics": [
+        "subclinical hypothyroidism with TSH above 10",
+        "indications for parathyroidectomy in asymptomatic primary hyperparathyroidism"
+      ]
+    },
+    {
+      "stem": "Which of the following is the most appropriate response?",
+      "topics": [
+        "romantic relationship with a current patient",
+        "prescribing for a family member"
+      ]
+    }
+  ],
+  "inputContentHashRecomputed": 80,
+  "schemaErrors": [],
+  "countsBefore": {
+    "total": 3645,
+    "live": 3116,
+    "activeNotQa": 31,
+    "inactive": 498
+  },
+  "liveAfterInTransaction": 3196,
+  "liveAfter": 3196,
+  "insertedIds": [
+    "cmvmmni2l0000jsh8ybs0wy1e",
+    "cmvmmni2s0001jsh8qq4jgh0a",
+    "cmvmmni2w0002jsh8hd88c6ax",
+    "cmvmmni310003jsh8dzqvie9v",
+    "cmvmmni350004jsh8xf3800rr",
+    "cmvmmni390005jsh81hfmlphf",
+    "cmvmmni3c0006jsh8wf81msjp",
+    "cmvmmni3g0007jsh8odxtbtdx",
+    "cmvmmni3k0008jsh8icgh7s8o",
+    "cmvmmni3o0009jsh8w05f18vs",
+    "cmvmmni3s000ajsh83mmoqvy3",
+    "cmvmmni3v000bjsh88s8ivpbv",
+    "cmvmmni3y000cjsh8408bt20e",
+    "cmvmmni42000djsh8ebxslg4p",
+    "cmvmmni45000ejsh8x8u8m12d",
+    "cmvmmni49000fjsh82t1x7oz6",
+    "cmvmmni4c000gjsh8xtztnmbq",
+    "cmvmmni4g000hjsh88endwxo9",
+    "cmvmmni4j000ijsh8p15zw5cl",
+    "cmvmmni4n000jjsh86z1kwvr6",
+    "cmvmmni4r000kjsh89g900ja7",
+    "cmvmmni4u000ljsh8eowxqskd",
+    "cmvmmni4y000mjsh83wwcw3t7",
+    "cmvmmni51000njsh8vzt96swt",
+    "cmvmmni55000ojsh85xqzb3ri",
+    "cmvmmni5a000pjsh8mjl0pepw",
+    "cmvmmni5d000qjsh8nrttkzz1",
+    "cmvmmni5h000rjsh81r2p03g4",
+    "cmvmmni5l000sjsh876dq8lvk",
+    "cmvmmni5p000tjsh8exhv2k4w",
+    "cmvmmni5s000ujsh8n1l1cofc",
+    "cmvmmni5w000vjsh8j4nx8art",
+    "cmvmmni60000wjsh8rwhubu26",
+    "cmvmmni64000xjsh8mw2i7e0e",
+    "cmvmmni68000yjsh8s8dew1e7",
+    "cmvmmni6b000zjsh8z77q46b6",
+    "cmvmmni6f0010jsh8nrm74109",
+    "cmvmmni6i0011jsh8hscita55",
+    "cmvmmni6m0012jsh8o56v3t8w",
+    "cmvmmni6p0013jsh8t2pw5ctj",
+    "cmvmmni6t0014jsh8et3vkqu5",
+    "cmvmmni6w0015jsh8j819ys06",
+    "cmvmmni700016jsh83y5kcmhu",
+    "cmvmmni740017jsh8c909snpb",
+    "cmvmmni770018jsh828q0nrbq",
+    "cmvmmni7a0019jsh8q7mi1m6f",
+    "cmvmmni7e001ajsh8q1z6g48o",
+    "cmvmmni7i001bjsh8yf6fbfj9",
+    "cmvmmni7n001cjsh85a93j5xa",
+    "cmvmmni7r001djsh817j5mraz",
+    "cmvmmni7u001ejsh8q6fn6ojz",
+    "cmvmmni7y001fjsh8leld0z9e",
+    "cmvmmni82001gjsh80lx7y42s",
+    "cmvmmni86001hjsh82lfqlh2p",
+    "cmvmmni89001ijsh8o4ighvac",
+    "cmvmmni8d001jjsh836jc99j4",
+    "cmvmmni8h001kjsh8klsbhqbn",
+    "cmvmmni8k001ljsh8wxbsbo07",
+    "cmvmmni8o001mjsh863zy4ztm",
+    "cmvmmni8s001njsh8p22srzak",
+    "cmvmmni8v001ojsh8al6gcvpz",
+    "cmvmmni8z001pjsh8ddys51vl",
+    "cmvmmni93001qjsh8ebjdwrrc",
+    "cmvmmni97001rjsh89p5va13y",
+    "cmvmmni9a001sjsh8e3eb68nw",
+    "cmvmmni9e001tjsh8qq5vlbpy",
+    "cmvmmni9h001ujsh8a15s3zzy",
+    "cmvmmni9l001vjsh8x8fwpsjn",
+    "cmvmmni9o001wjsh8s4ushigk",
+    "cmvmmni9s001xjsh8s6nmmlvo",
+    "cmvmmni9w001yjsh8579e4db9",
+    "cmvmmnia0001zjsh88sid79ui",
+    "cmvmmnia40020jsh8faiqnoyz",
+    "cmvmmnia70021jsh8k60l4fv9",
+    "cmvmmniab0022jsh8wrvowzbf",
+    "cmvmmniaf0023jsh8q4m9qsam",
+    "cmvmmniaj0024jsh8m5vvyctn",
+    "cmvmmnian0025jsh8pveger22",
+    "cmvmmniar0026jsh8ujt9r93m",
+    "cmvmmniav0027jsh8q7h0y4ov"
+  ],
+  "backup": "scripts/data/pance-batch-insert/pance-pre-insert-backup-batch4-80.json"
+}

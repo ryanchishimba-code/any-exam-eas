@@ -1,0 +1,651 @@
+{
+  "appliedAt": "2026-10-24T22:47:21.143Z",
+  "inputFile": "scripts/data/pance-batch-insert/batch11-80.json",
+  "fieldId": "pance",
+  "source": "generated",
+  "reviewStatus": "approved",
+  "liveBefore": 3675,
+  "liveAfter": 3755,
+  "rows": [
+    {
+      "id": "cmvmzocfg0000jsva60wjaz9f",
+      "fieldId": "pance",
+      "contentHash": "4af9e7b8d5a419d8ed855b65af2ed1ab2b9c5e9360a868aba04cffb38a7b1039",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "takotsubo (stress) cardiomyopathy with apical ballooning",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocfp0001jsvabdf5prht",
+      "fieldId": "pance",
+      "contentHash": "9390eb603c96dfac3bcffba4c52972d21555b4f0780601af2c755ecfa8d637ab",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "stopping the statin and checking CK for severe statin-associated muscle symptoms",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocft0002jsvarr9gzwjx",
+      "fieldId": "pance",
+      "contentHash": "9124482ee485d0e48b282b25817683b7e1508f7f54937112345f5e54731182b1",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "digoxin-specific immune Fab for life-threatening digoxin toxicity",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocfy0003jsvaxbyhhz5x",
+      "fieldId": "pance",
+      "contentHash": "d16a255d211fc862e30858a1d2c97a8d5a031cbf5ed21bd65c1459f610f18361",
+      "question": "Which of the following is the most appropriate approach to cardioversion?",
+      "blueprintTopic": "3 weeks of anticoagulation or TEE before cardioversion of atrial fibrillation lasting longer than 48 hours",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocg20004jsvackiik06t",
+      "fieldId": "pance",
+      "contentHash": "710a46530d7080ae0e0ed629d8e26bd99e673c54b5ad8743a0ae9b43ad9a6dc8",
+      "question": "Which of the following is the recommended approach to blood pressure screening in this child?",
+      "blueprintTopic": "annual blood pressure measurement starting at age 3 in healthy children",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocg50005jsvaef6hi0j1",
+      "fieldId": "pance",
+      "contentHash": "4e1e28960723c8ddd053e92387bef64e6e5b4c9bba4cd30125b793cf0e8bda82",
+      "question": "Which of the following additional physical examination findings is most likely in this patient?",
+      "blueprintTopic": "elevated jugular venous pressure with S3 in decompensated heart failure",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocg90006jsvarb2eyrl5",
+      "fieldId": "pance",
+      "contentHash": "9041c6545706c9c4cb9109b072ac232df30a5c8c9d7591b2cdc305c8622696cc",
+      "question": "Which of the following is the most appropriate anticoagulation plan?",
+      "blueprintTopic": "3 months of a DOAC for proximal DVT provoked by recent surgery",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgd0007jsvav2uf2x98",
+      "fieldId": "pance",
+      "contentHash": "f3b0b95c645bbb8b2aef65b955564ef5a7092bf873b5c15d1b8dbf2a2b78fe2a",
+      "question": "Which of the following is the most appropriate initial management?",
+      "blueprintTopic": "IV beta-blocker before vasodilator in acute type B aortic dissection",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgh0008jsvaudzr2pbv",
+      "fieldId": "pance",
+      "contentHash": "88bc7e54092052a4be92ebe74e1343a0c553c9d2fe53d2ac49bdb3acb2b876de",
+      "question": "Which of the following is the most appropriate initial pharmacotherapy?",
+      "blueprintTopic": "nonvasodilating beta-blocker for symptomatic obstructive hypertrophic cardiomyopathy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgk0009jsvagqc4zkua",
+      "fieldId": "pance",
+      "contentHash": "c24eb68d9d0772373bff60928790b4c020d012a54a33db0946394e97df10fc6f",
+      "question": "Which of the following auscultatory findings is most consistent with a small restrictive perimembranous ventricular septal defect?",
+      "blueprintTopic": "harsh holosystolic murmur with thrill of a small restrictive ventricular septal defect",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgo000ajsvaxn51ytf0",
+      "fieldId": "pance",
+      "contentHash": "5e59fd9db150c31fbb86a3599bd58faa8374a567ca8e8419ed5f94a4c40ee6d2",
+      "question": "Which of the following is the most appropriate next diagnostic study?",
+      "blueprintTopic": "ventilation-perfusion scan for suspected pulmonary embolism in pregnancy with a normal chest radiograph",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgt000bjsvanzk7x2gd",
+      "fieldId": "pance",
+      "contentHash": "3ea05078c28e4e2cc5b6f4e2997da25eeb3e5c6112282ed65799fdf54e18294f",
+      "question": "Which of the following is the most appropriate next intervention?",
+      "blueprintTopic": "pulmonary rehabilitation within 4 weeks after a COPD exacerbation hospitalization",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgw000cjsva497za6y0",
+      "fieldId": "pance",
+      "contentHash": "c0d1642d5855b1bc082eb4a5ce6a79931b16ad154ddea2549122402f2cc9a51d",
+      "question": "Which of the following is the most appropriate test to confirm a restrictive ventilatory defect?",
+      "blueprintTopic": "measuring total lung capacity to confirm restriction suggested by spirometry",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocgz000djsva3qq9icxe",
+      "fieldId": "pance",
+      "contentHash": "a21776ebee884505322294127a70afaf6901e68aed350d65c542ccb0101b368b",
+      "question": "Which of the following is the most appropriate empiric antibiotic regimen?",
+      "blueprintTopic": "piperacillin-tazobactam monotherapy for hospital-acquired pneumonia without MRSA or high-mortality risk factors",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoch3000ejsval6oipfzt",
+      "fieldId": "pance",
+      "contentHash": "ee2905cf3a33b35a79b40f5298ecdcae91038a69e651b89d45b072313ced698f",
+      "question": "Which of the following pleural fluid results would best confirm a chylothorax?",
+      "blueprintTopic": "pleural fluid triglycerides confirming chylothorax",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoch7000fjsvaanij5k3j",
+      "fieldId": "pance",
+      "contentHash": "79e415e9b6698ea66a2bb85a37978cca94152bd2ae54c7542ad26c9ff8522693",
+      "question": "Which of the following is the preferred inhaler delivery method for this child?",
+      "blueprintTopic": "pressurized metered-dose inhaler with valved spacer and face mask for a toddler",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzochb000gjsva4puap58y",
+      "fieldId": "pance",
+      "contentHash": "ab575a85a31243e66a0b2fbdbd5263fa9dba4ccbea4299ac10068af86bba2075",
+      "question": "Which of the following is the most appropriate change in therapy?",
+      "blueprintTopic": "replacing LABA monotherapy with an ICS-containing regimen in asthma",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoche000hjsvazicqwhtx",
+      "fieldId": "pance",
+      "contentHash": "dab7848d3949387b465cf9394ab3d6b7575321b95a1ef7da02a20b8821322a54",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "e-cigarette or vaping product use-associated lung injury (EVALI)",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzochi000ijsvat8adiujj",
+      "fieldId": "pance",
+      "contentHash": "a19b1330f17f415e1f0bf21598feda1ae93e5bbec376909db8588cb731a3053d",
+      "question": "Which of the following is the most appropriate acid-suppression plan?",
+      "blueprintTopic": "high-dose PPI for 3 days after endoscopic hemostasis of a high-risk peptic ulcer",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzochm000jjsvaz3jkx0k5",
+      "fieldId": "pance",
+      "contentHash": "29b39c6755d217c4b52c36a47646cf2ab0e307a9e1f6c962e860ccb8fa6f292f",
+      "question": "Which of the following is the most appropriate initial treatment?",
+      "blueprintTopic": "oral polyethylene glycol disimpaction for functional constipation in a child",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzochr000kjsva2rk477pb",
+      "fieldId": "pance",
+      "contentHash": "089d07d2464f6d7277ce6ad2735c074693ef36a6f805f8848833ebae84b4ec83",
+      "question": "Which of the following is the most appropriate test to confirm the diagnosis?",
+      "blueprintTopic": "4-hour solid-meal gastric emptying scintigraphy for suspected diabetic gastroparesis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzochu000ljsva54ycekf8",
+      "fieldId": "pance",
+      "contentHash": "9a13151179c51c504eaac7b7c0de936c3a282226dc93af955b428f5de8bc9870",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "collagenous microscopic colitis diagnosed by biopsy of normal-appearing colon",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzochz000mjsva6x4mcl9p",
+      "fieldId": "pance",
+      "contentHash": "606fe94a6aca34a425b7d2ad5a2ad0e09a59da8a5b31b5f7386e87ec3fa65e92",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "emergency repair of a strangulated incarcerated inguinal hernia without manual reduction",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoci3000njsvajxi5mysb",
+      "fieldId": "pance",
+      "contentHash": "dd63ed80668cf80d59655a97a1cbd9ec99b89a52ff094c353a006fff14d41073",
+      "question": "Which of the following is the most appropriate recommendation?",
+      "blueprintTopic": "deprescribing a long-term PPI without a definite ongoing indication",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoci7000ojsva1nbujlgs",
+      "fieldId": "pance",
+      "contentHash": "a228e47ba1f87c3ac69c9cf380e9ba42c5deb6c9630a2c2e4eb42773e5bc795a",
+      "question": "Which of the following is the most appropriate test to confirm exocrine pancreatic insufficiency?",
+      "blueprintTopic": "fecal elastase to diagnose exocrine pancreatic insufficiency in chronic pancreatitis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocib000pjsvaw2k0btna",
+      "fieldId": "pance",
+      "contentHash": "a33d2caef352257f4ce83456b84a96f1faf13b16441bb9215700ab7dd87c550f",
+      "question": "Which of the following examination findings most strongly supports the most likely diagnosis?",
+      "blueprintTopic": "squat-provoked retropatellar pain in patellofemoral pain syndrome",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocie000qjsva65jn715n",
+      "fieldId": "pance",
+      "contentHash": "29c3df9d2b7a472af596978c58c00b4e3a73dc6512de10f678bd4c59b60e694b",
+      "question": "Which of the following is the most appropriate recommendation?",
+      "blueprintTopic": "structured exercise as core therapy for hip osteoarthritis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocih000rjsvarp8n85sq",
+      "fieldId": "pance",
+      "contentHash": "478d8ba6effb52b61a0a686f4974bea087a0b84fbea2a2167a891fedf5dc008d",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "bisphosphonate drug holiday after 5 years of alendronate in a lower-risk woman",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocil000sjsvaiegns1jf",
+      "fieldId": "pance",
+      "contentHash": "50abf468a6d7c2c7eedd066145757f415b2336b4b706b26f2400e5c8999e069d",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "Ottawa knee rule to avoid radiographs after a twisting knee injury",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzociq000tjsva3hbov73u",
+      "fieldId": "pance",
+      "contentHash": "7f422127861864670ec1a9b5c53d3c7b01119d190d412a66ef8271ffb76bbf81",
+      "question": "Which of the following is the most appropriate recommendation?",
+      "blueprintTopic": "vitamin D 400 IU daily for an exclusively breastfed infant",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocit000ujsva888yci9c",
+      "fieldId": "pance",
+      "contentHash": "b1643fd64bd93782724ea11f73b46551ba9712a642dd86017aaf31f12006f4f1",
+      "question": "Which of the following is the most appropriate long-term therapy?",
+      "blueprintTopic": "hydroxychloroquine at no more than 5 mg/kg actual body weight for all patients with SLE",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocix000vjsvajibrreiz",
+      "fieldId": "pance",
+      "contentHash": "2788478cdc819f80c1a32a75dc368d6434877db3ce1a922a04004ea242bed81b",
+      "question": "Which of the following is the most appropriate contraceptive to start today?",
+      "blueprintTopic": "progestin-only pill for a breastfeeding woman 10 days postpartum",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocj1000wjsvaem3sci8s",
+      "fieldId": "pance",
+      "contentHash": "ff65e945d24098f83af27cd2fe50e9a8a1ff838a52dd896b5080cefe81bdaa25",
+      "question": "In addition to a CBC with platelet count, ferritin, PT, and aPTT, which of the following tests is most appropriate?",
+      "blueprintTopic": "von Willebrand testing in an adolescent with heavy menstrual bleeding since menarche",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocj5000xjsvahi18ycjr",
+      "fieldId": "pance",
+      "contentHash": "9965c9e3258517b7eb637ae3a4b2cbed79ef12c42603ae4186ad6388f1eae74e",
+      "question": "Which of the following findings on external genital examination is most likely?",
+      "blueprintTopic": "bulging bluish membrane of an imperforate hymen with hematocolpos",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocj9000yjsvawy6e4p1x",
+      "fieldId": "pance",
+      "contentHash": "b6b0514ea077f38c739e5f902c662c703ec259f179fa359e017fe2337c058902",
+      "question": "Which of the following is the most appropriate approach to screening for asymptomatic bacteriuria?",
+      "blueprintTopic": "urine culture screening for asymptomatic bacteriuria in early pregnancy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjd000zjsva5z7rgt3q",
+      "fieldId": "pance",
+      "contentHash": "827432d4a4eb0cfaf822e33acebd422dec4dcfc804d7811176dd42ed9496f499",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "induction of labor for an uncomplicated pregnancy at 42 weeks",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjh0010jsvaxj4cd8qv",
+      "fieldId": "pance",
+      "contentHash": "3547aea27b26663ded1dd38c105502590ac4cf3f8de94d25670bc3733022bd70",
+      "question": "Which of the following is the most appropriate HPV vaccination plan?",
+      "blueprintTopic": "3-dose HPV vaccine series for a young adult with HIV",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjk0011jsvavnpg3geh",
+      "fieldId": "pance",
+      "contentHash": "123a14d07cdcf3bab30360da26c184f4ffc07b4e058857367ac2ea70517a5a6c",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "oral corticosteroids within 72 hours for Bell palsy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjo0012jsvaidq31nk0",
+      "fieldId": "pance",
+      "contentHash": "361563469780ce172ff02d3117a797a37c180c2342936b769b10c2e03450d5cb",
+      "question": "Which of the following tests should be done before starting carbamazepine?",
+      "blueprintTopic": "HLA-B*15:02 testing before carbamazepine in a patient of Southeast Asian ancestry",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjs0013jsva767te2tw",
+      "fieldId": "pance",
+      "contentHash": "db0e021a0eb4d370bf1b1410bfde979888cba7bd9d86c862ca78c8f9d1f4af1f",
+      "question": "Which of the following is the most appropriate initial pharmacotherapy?",
+      "blueprintTopic": "pyridostigmine as initial symptomatic therapy for mild generalized myasthenia gravis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjw0014jsvanlcbb645",
+      "fieldId": "pance",
+      "contentHash": "bd8eb64e89a0e5d23d52808d685da035ddfba83dd76c0698b4be68730ddd0991",
+      "question": "Which of the following is this patient's Glasgow Coma Scale score?",
+      "blueprintTopic": "calculating the Glasgow Coma Scale score after head trauma",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocjz0015jsva75uz5r3f",
+      "fieldId": "pance",
+      "contentHash": "5fa03a3a718c658476d93527e2f26116a8ec4c72cfd8d30cfd377c2f30eb7e1c",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "blood glucose as the only laboratory result required before IV thrombolysis in acute ischemic stroke",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzock30016jsva5mujxb4t",
+      "fieldId": "pance",
+      "contentHash": "ff261ba497c5ad25d7ee033c12f78b44201e00d58faa87f3c614ef37039c28e7",
+      "question": "Which of the following sets of tests has the highest yield for the cause of his neuropathy?",
+      "blueprintTopic": "glucose tolerance test, B12 with methylmalonic acid, and serum immunofixation for distal symmetric polyneuropathy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzock60017jsvadmqh3vn7",
+      "fieldId": "pance",
+      "contentHash": "40707f0a486e3aba05762d9394f306f2a464a9771c4b372bde0e3270195827bf",
+      "question": "In addition to rinsing his mouth after each inhaler use, which of the following is the most appropriate treatment?",
+      "blueprintTopic": "clotrimazole troches for mild oropharyngeal candidiasis in an inhaled corticosteroid user",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzock90018jsvar8fw24cb",
+      "fieldId": "pance",
+      "contentHash": "73c453601973bda088608ba8ab7cb68594db7de6ece07919cfcd7b84fcf1af85",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "immediate replantation of an avulsed permanent incisor",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzockd0019jsvao26ijjy2",
+      "fieldId": "pance",
+      "contentHash": "639bb06add845596074af68cff8c63279cca79dcde85af11e850007731967bdd",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "cognitive behavioral therapy rather than imaging or drugs for bothersome bilateral tinnitus",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzockh001ajsvaftftn58r",
+      "fieldId": "pance",
+      "contentHash": "8011b73ef8c89ca804efcff8dd7e6a333770eaf3250ed8ed2fa076b2220d3447",
+      "question": "Which of the following cover test findings would confirm strabismus in this child?",
+      "blueprintTopic": "cover test showing refixation movement in childhood esotropia",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzockl001bjsvazxuw5zxk",
+      "fieldId": "pance",
+      "contentHash": "5f19f3e701446c3723efc57c30f624396e5bbe344ad4994057eb15f8593e5af5",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "single-day high-dose valacyclovir at prodrome for recurrent herpes labialis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzockp001cjsvat6yp2r21",
+      "fieldId": "pance",
+      "contentHash": "f848c51b82586cdb70f05af6b05b6418137607846832afc14d7271554afaadeb",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "euglycemic diabetic ketoacidosis associated with an SGLT2 inhibitor",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocks001djsva5yad37du",
+      "fieldId": "pance",
+      "contentHash": "eb5d023235c0ead623c9fd492df0fbd4bacfdd5eb6b3bd00b50f2081af708df4",
+      "question": "Which of the following is the most appropriate next test?",
+      "blueprintTopic": "vitamin B12 measurement in long-term metformin therapy with neuropathy and macrocytosis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzockw001ejsvaus5l91fk",
+      "fieldId": "pance",
+      "contentHash": "4ed9663b10e4beed4e0bae609709435555e75e5747e9a40f5aa1983bf94fb1a7",
+      "question": "Which of the following is the most appropriate management of her levothyroxine?",
+      "blueprintTopic": "increasing levothyroxine by about 30% at confirmation of pregnancy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzockz001fjsvawf2bjnha",
+      "fieldId": "pance",
+      "contentHash": "500173e52c3bf80ae721a43272176974e37d2e4fabece3589d5b084f559bbe41",
+      "question": "Which of the following is recommended at least annually to identify loss of protective sensation in her feet?",
+      "blueprintTopic": "annual 10-g monofilament plus one other sensory test for diabetic foot screening",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocl2001gjsvaljmji1xl",
+      "fieldId": "pance",
+      "contentHash": "dff13843ba2af051e3a140c13817f84db623e9b53dbe454d3a1f2202f67b9290",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "withholding testosterone therapy when hematocrit exceeds 54%",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocl5001hjsva0e1vwbdl",
+      "fieldId": "pance",
+      "contentHash": "e9126d087bfe11402c92c5bce7411e12946a549f5260db0dc35da6d40f9e86e0",
+      "question": "Which of the following baseline assessments is most appropriate before starting olanzapine?",
+      "blueprintTopic": "baseline metabolic monitoring before starting a second-generation antipsychotic",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocl9001ijsvas0h0kxow",
+      "fieldId": "pance",
+      "contentHash": "d1ab85e83d98cd51112f14e2ad4c8a0750cacdc1bc8ae1b79ad1ac0e3023bdbf",
+      "question": "Which of the following is the recommended approach to identifying unhealthy alcohol use in this patient?",
+      "blueprintTopic": "brief validated screening for unhealthy alcohol use in adults",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocld001jjsvaaldiauzz",
+      "fieldId": "pance",
+      "contentHash": "f9bc425037a5a3ac7ed124ec60fe61b4afe9a04e3ba9cc4da4fd4e328fdc3e07",
+      "question": "Which of the following is the most appropriate initial pharmacotherapy?",
+      "blueprintTopic": "quetiapine monotherapy for acute mania",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoclg001kjsvacqqsgvgh",
+      "fieldId": "pance",
+      "contentHash": "a29bcdccf6b1065fe17a28fe15069782234e7ad785490c8c2170e9a7be84362e",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "disruptive mood dysregulation disorder in a school-age child",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoclk001ljsvap0xabfk5",
+      "fieldId": "pance",
+      "contentHash": "d89318a5ea22eada1ca58462f7b3ce38d181a39b82dec0aa998d9854652dbfc7",
+      "question": "Which of the following findings is most consistent with opioid poisoning?",
+      "blueprintTopic": "physical findings of the opioid toxidrome",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoclo001mjsvay7fhycua",
+      "fieldId": "pance",
+      "contentHash": "051e0efee16568392c55158cbd3e60d800f31c29e5db887b5203bb47d9c423e9",
+      "question": "Which of the following is the most appropriate approach to contrast for her MRI?",
+      "blueprintTopic": "group II gadolinium-based contrast without delay in advanced CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocls001njsvajlh2iham",
+      "fieldId": "pance",
+      "contentHash": "b01a60ceb7420404e93e80ed558cffce02f3852e49361f63ad7afd4c583e4f47",
+      "question": "Which of the following is the most appropriate venous access?",
+      "blueprintTopic": "avoiding PICC lines to preserve veins for future dialysis access in advanced CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoclv001ojsvaszscm2cy",
+      "fieldId": "pance",
+      "contentHash": "7eced49245307b6f90b335bc1415a81e72f2fa202d63433f45e7f5fd09bca798",
+      "question": "Which of the following is the most appropriate oral analgesic?",
+      "blueprintTopic": "acetaminophen instead of NSAIDs for osteoarthritis pain in stage 4 CKD",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzoclz001pjsvajvsof8mu",
+      "fieldId": "pance",
+      "contentHash": "2dd1c4dd2f940859f5cae88b1912b3fa6f92d801c06933094e8e52c2c0b11d50",
+      "question": "Which of the following is the most appropriate change to her antihypertensive therapy?",
+      "blueprintTopic": "switching an ACE inhibitor to nifedipine before conception in chronic hypertension",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocm2001qjsvaeusj6uc5",
+      "fieldId": "pance",
+      "contentHash": "7418bee059ac2917847f526aa20e9396008fa13acbdfd739df979dec4524bb04",
+      "question": "Which of the following is the most appropriate agent to reverse anticoagulation?",
+      "blueprintTopic": "4-factor prothrombin complex concentrate for intracranial hemorrhage on apixaban",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocm6001rjsvaphtib95k",
+      "fieldId": "pance",
+      "contentHash": "429b2c0dd80955cbec2fa6d30c25d6b00c06bc463c0351e90cb181134abc505e",
+      "question": "Which of the following is the most appropriate measure to prevent invasive pneumococcal infection?",
+      "blueprintTopic": "oral penicillin prophylaxis from infancy to age 5 in sickle cell anemia",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocm9001sjsvazbxm7kgk",
+      "fieldId": "pance",
+      "contentHash": "a4d0beb6a14d1157c86c036834dcd8fef2a90cd6ab7c58007cd0b6ca457e8556",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "low-risk IgG MGUS without end-organ damage",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocmc001tjsva5t302mnp",
+      "fieldId": "pance",
+      "contentHash": "462f4475518d0b4cb2b6368ed7170cf4c2074739087532483d79f89bb3713818",
+      "question": "Which of the following is the most appropriate perioperative anticoagulation plan?",
+      "blueprintTopic": "no heparin bridging when interrupting warfarin for elective surgery in atrial fibrillation",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocmg001ujsvayt5e79x1",
+      "fieldId": "pance",
+      "contentHash": "4d4d0c0368370b358c402f5684c3c9dfb5738075e1c25af730242dfd0617054d",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "same-day antiretroviral therapy start after a new HIV diagnosis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocml001vjsvai7euksih",
+      "fieldId": "pance",
+      "contentHash": "78571a44885ca84904688638872c73018c722697548253b68b8a8b02bebc52a5",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "single-dose doxycycline prophylaxis after a high-risk Ixodes tick bite",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocmo001wjsvat4sh98i0",
+      "fieldId": "pance",
+      "contentHash": "9b58f9ab8d3bbf4f5de47890066b19d54dc424d4954cc9fc559f8ff717231eb1",
+      "question": "Which of the following is the most appropriate management?",
+      "blueprintTopic": "incision and drainage plus TMP-SMX for a skin abscess with systemic signs",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocms001xjsvay9eakwg8",
+      "fieldId": "pance",
+      "contentHash": "5ad9e3152117bc60e300882095194dc27467c58ebb627af535a9e323f01efd51",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "itraconazole for lymphocutaneous sporotrichosis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocmv001yjsvac497fp60",
+      "fieldId": "pance",
+      "contentHash": "7fbd32324701b9bdbf8b931b21b2644854a65abce62b1d12abe5aa14b4e7ca64",
+      "question": "Which of the following should be included in his initial evaluation to quantify symptom severity and guide treatment?",
+      "blueprintTopic": "International Prostate Symptom Score in the initial evaluation of LUTS",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocmz001zjsvayc1lkblu",
+      "fieldId": "pance",
+      "contentHash": "68b17c4d0c10077e674a9109ebc1cb35e80a29d9d34d8843eab896799e4ca5d1",
+      "question": "Which of the following is the most appropriate response regarding testicular cancer screening?",
+      "blueprintTopic": "no routine testicular cancer screening in asymptomatic young men",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocn30020jsvaenag3qhg",
+      "fieldId": "pance",
+      "contentHash": "f0e51b3d9cb44d20946280be563b500840e8bef45ac5e26f63e9b66736bcec4d",
+      "question": "Which of the following is the most appropriate initial management?",
+      "blueprintTopic": "behavioral therapy as first-line treatment for overactive bladder in an older woman",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocn60021jsvaa8drq3bn",
+      "fieldId": "pance",
+      "contentHash": "079fbfba243ada6641d8b22dffec55cab85ca590e01c31f1ea679753817cc3b4",
+      "question": "Which of the following is the most appropriate preventive intervention?",
+      "blueprintTopic": "counseling fair-skinned adolescents to minimize UV exposure",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocn90022jsvav2nzmfz0",
+      "fieldId": "pance",
+      "contentHash": "23fae8282767ccdf742e78955840bdc268adb7a67a31019fe6a537cf81ef47f7",
+      "question": "Which of the following testing is required for this patient in connection with isotretinoin?",
+      "blueprintTopic": "pregnancy testing before and during isotretinoin therapy",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocng0023jsva61hnnh1u",
+      "fieldId": "pance",
+      "contentHash": "c442a1d91d3369140280c986a0c82eafaf7d4efd2c45c4c0661e8a6131d3f71c",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "pemphigus vulgaris with oral erosions and a positive Nikolsky sign",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocnl0024jsvayt5j7uyk",
+      "fieldId": "pance",
+      "contentHash": "56fe36a7ef7317cb8e8c8cb9de6f0654c8c1e4dc80c2f0cab1138bea4650097d",
+      "question": "Which of the following is the most appropriate initial treatment of his hands?",
+      "blueprintTopic": "rapid rewarming in 37 to 39 C water for frostbite",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocnp0025jsvamkhwsuwg",
+      "fieldId": "pance",
+      "contentHash": "7f19fcfae5a2b5fe858ff0e9d19eb2da9fa996622d734e35e1b70e3146c9745c",
+      "question": "Which of the following is the most appropriate approach to screening for intimate partner violence?",
+      "blueprintTopic": "screening women of reproductive age for intimate partner violence",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocnt0026jsvarlgduy5u",
+      "fieldId": "pance",
+      "contentHash": "3cf2e4d359371cdbfcf6907acf1864a72cff20330f59b2b9c0d1f837e6063695",
+      "question": "Which of the following best describes this study design?",
+      "blueprintTopic": "identifying a randomized crossover trial design",
+      "source": "generated"
+    },
+    {
+      "id": "cmvmzocnw0027jsvaaackof2o",
+      "fieldId": "pance",
+      "contentHash": "53aeed65cb01fa039a4db3fb69be14a4e216470b1161e8c39bfeed3cce011e03",
+      "question": "Which of the following prescriptions best follows current guidance?",
+      "blueprintTopic": "immediate-release opioid for no longer than the expected duration of severe acute pain",
+      "source": "generated"
+    }
+  ]
+}

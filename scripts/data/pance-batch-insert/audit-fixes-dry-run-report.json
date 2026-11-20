@@ -1,0 +1,39 @@
+{
+  "mode": "dry-run",
+  "inputFile": "scripts/data/pance-batch-insert/audit-fixes.json",
+  "fixes": 212,
+  "matched": 212,
+  "skips": [],
+  "notes": [
+    "b6-q69 index is 69; inserted 6 file position is 68. Fingerprint matched.",
+    "b6-q78 index is 78; inserted 6 file position is 77. Fingerprint matched."
+  ],
+  "validationErrors": [],
+  "hashChanges": [
+    {
+      "itemId": "b3-q80",
+      "id": "cmvmloix70027js416zj8nyop"
+    },
+    {
+      "itemId": "b5-q10",
+      "id": "cmvmou1ys0009jsr5ydim8k0f"
+    },
+    {
+      "itemId": "b5-q77",
+      "id": "cmvmou26b0024jsr56fx2qcyn"
+    },
+    {
+      "itemId": "b8-q49",
+      "id": "cmvmswbm8001cjsrzsd60t658"
+    }
+  ],
+  "countsBefore": {
+    "live": 3795,
+    "eligible": 3795,
+    "total": 4324
+  },
+  "liveAfterInTransaction": 3795,
+  "eligibleAfterInTransaction": 3795,
+  "liveAfter": 3795,
+  "eligibleAfter": 3795
+}

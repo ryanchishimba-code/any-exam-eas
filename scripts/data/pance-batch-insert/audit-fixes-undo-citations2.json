@@ -1,0 +1,98 @@
+{
+  "backedUpAt": "2026-10-25T00:48:34.196Z",
+  "fieldId": "pance",
+  "inputFile": "scripts/data/pance-batch-insert/audit-fixes-citations2.json",
+  "liveBefore": 3795,
+  "eligibleBefore": 3795,
+  "rows": [
+    {
+      "itemId": "b6-q13",
+      "fingerprint": "ad3f19ef739c21b9d1c57f1d56d0636e235187faedf8cd56031de086860e26ac",
+      "id": "cmvmq1dag000cjs21xwzkexjt",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "c8bcf4d29f6ad9b383c474bb38c77d290c78d4c2fb374e15ae1efa2a527c8592",
+        "scenario": "A 61-year-old man becomes acutely dyspneic 2 days after returning from a 14-hour flight. CT pulmonary angiography shows bilateral main pulmonary artery emboli and a right-to-left ventricular diameter ratio of 1.4. Blood pressure has remained 80/52 mm Hg for 30 minutes despite a 500-mL crystalloid bolus; pulse is 124/min and oxygen saturation 88% on 6 L/min oxygen. He has no history of bleeding, stroke, recent surgery, or trauma, and his platelet count and coagulation tests are normal. Heparin infusion has been started.",
+        "question": "Which of the following is the most appropriate next step?",
+        "options": "{\"options\": [\"Placement of an inferior vena cava filter\", \"Administer an additional 3 L of crystalloid\", \"Systemic alteplase 100 mg IV over 2 hours via a peripheral vein\", \"Switch to oral apixaban 10 mg twice daily\", \"Continue unfractionated heparin alone and reassess in 24 hours\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"systemic thrombolysis for high-risk pulmonary embolism\", \"keyTakeaway\": \"High-risk PE (SBP <90 for 15 min) without high bleeding risk: systemic thrombolysis (alteplase 100 mg over 2 h); avoid large fluid loads.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Systemic alteplase 100 mg IV over 2 hours via a peripheral vein",
+        "explanation": "Systemic alteplase 100 mg over 2 hours is correct: sustained hypotension (systolic BP under 90 mm Hg for at least 15 minutes) defines high-risk (massive) PE (category E in the 2026 AHA/ACC PE guideline, which calls for emergent reperfusion), and the 2021 CHEST VTE guideline suggests systemically administered thrombolytic therapy in patients with hypotension who lack a high bleeding risk, given through a peripheral vein rather than by catheter-directed therapy as first choice; anticoagulation continues afterward. An IVC filter is for patients who cannot be anticoagulated and does not treat RV failure. Oral apixaban is appropriate for hemodynamically stable PE, not shock. Heparin alone does not rapidly relieve the obstruction causing obstructive shock. Large-volume fluid can overdistend the failing RV and worsen septal shift and output; only a cautious bolus is reasonable. Takeaway: PE with sustained hypotension and no high bleeding risk = systemic thrombolysis.",
+        "references": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41712677/",
+            "label": "Creager MA et al. 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults. Circulation 2026"
+          },
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34352278/",
+            "label": "Stevens SM et al. Antithrombotic Therapy for VTE Disease: Second Update of the CHEST Guideline and Expert Panel Report. Chest 2021"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"intervention\", \"systemic-thrombolysis-for-high-risk-pulmonary-embolism\", \"clinical-vignette\", \"pance-batch6-2026-10\"]",
+        "difficulty": 3,
+        "manualCorrection": false,
+        "blueprintTopic": "systemic thrombolysis for high-risk pulmonary embolism",
+        "keyTakeaway": "High-risk PE (SBP <90 for 15 min) without high bleeding risk: systemic thrombolysis (alteplase 100 mg over 2 h); avoid large fluid loads."
+      },
+      "afterContentHash": "c8bcf4d29f6ad9b383c474bb38c77d290c78d4c2fb374e15ae1efa2a527c8592",
+      "afterKeyTakeaway": "High-risk PE (SBP <90 for 15 min) without high bleeding risk: systemic thrombolysis (alteplase 100 mg over 2 h); avoid large fluid loads."
+    },
+    {
+      "itemId": "b9-q08",
+      "fingerprint": "6b0afd5329ec1ca390e791680ac96eb6900182f00d9a6a5f07d56b80819e5749",
+      "id": "cmvmtvepc0007js4cq9xyjrm8",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "bffa76cdfb3686a36c1a879816a80d1dc39e3406569d96aea9ee096f119db4a5",
+        "scenario": "A 34-year-old man is seen for a routine visit. His father had a myocardial infarction at age 46. He does not smoke and has no diabetes or hypertension. There are firm nodules on both Achilles tendons. Fasting LDL cholesterol level is 232 mg/dL on two occasions; TSH, glucose, liver enzymes, and urinalysis are normal.",
+        "question": "In addition to lifestyle therapy, which of the following is the most appropriate management?",
+        "options": "{\"options\": [\"Recheck the lipid panel in 1 year with no drug therapy\", \"Start a high-intensity statin such as atorvastatin 40 to 80 mg daily\", \"Start ezetimibe monotherapy\", \"Calculate his 10-year cardiovascular risk before deciding on statin therapy\", \"Start fenofibrate\"], \"blueprintSystem\": \"cardiovascular\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"high-intensity statin for severe primary hypercholesterolemia (LDL-C at least 190 mg/dL)\", \"keyTakeaway\": \"LDL-C >=190 mg/dL (suspect FH): high-intensity statin without risk calculation; add ezetimibe/PCSK9 agent if needed; screen relatives.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Start a high-intensity statin such as atorvastatin 40 to 80 mg daily",
+        "explanation": "A high-intensity statin is correct: an LDL-C of at least 190 mg/dL, especially with tendon xanthomas and premature family CAD (probable heterozygous familial hypercholesterolemia), carries high lifetime risk. The ACC/AHA cholesterol guideline (2018, replaced by the 2026 ACC/AHA dyslipidemia guideline, which keeps this recommendation) recommends high-intensity statin therapy without first calculating 10-year risk, aiming for at least a 50% LDL reduction, adding ezetimibe and then a PCSK9-directed agent if LDL remains high. Risk calculators underestimate risk in severe hypercholesterolemia and are not used to decide therapy here. Ezetimibe alone lowers LDL only about 20-25%. Fenofibrate targets triglycerides. Waiting a year ignores very high cumulative exposure. Cascade screening of first-degree relatives is advised. Takeaway: LDL >=190 mg/dL: high-intensity statin, no risk calculator needed.",
+        "references": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/41824552/",
+            "label": "Blumenthal RS et al. 2026 ACC/AHA/AACVPR/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Dyslipidemia. Circulation 2026"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"cardiovascular\", \"pharmacotherapy\", \"high-intensity-statin-for-severe-primary-hypercholesterolemia-ldl-c-at-least-190-mg-dl\", \"clinical-vignette\", \"pance-batch9-2026-10\"]",
+        "difficulty": 2,
+        "manualCorrection": false,
+        "blueprintTopic": "high-intensity statin for severe primary hypercholesterolemia (LDL-C at least 190 mg/dL)",
+        "keyTakeaway": "LDL-C >=190 mg/dL (suspect FH): high-intensity statin without risk calculation; add ezetimibe/PCSK9 agent if needed; screen relatives."
+      },
+      "afterContentHash": "bffa76cdfb3686a36c1a879816a80d1dc39e3406569d96aea9ee096f119db4a5",
+      "afterKeyTakeaway": "LDL-C >=190 mg/dL (suspect FH): high-intensity statin without risk calculation; with HeFH add ezetimibe/PCSK9 mAb/bempedoic acid to LDL-C <70, non-HDL <100; screen relatives."
+    },
+    {
+      "itemId": "b6-q21",
+      "fingerprint": "283789868e91b3c9799d1f815b443cc64aab9fed5d42ee949ae3422307d03d94",
+      "id": "cmvmq1db8000kjs215r9fnyvu",
+      "fieldId": "pance",
+      "before": {
+        "contentHash": "38913f3b3fb52ea728791932792ad8f7b28479bed997bf06e68269f816131487",
+        "scenario": "A 69-year-old woman with hypertension has 3 days of fever, productive cough, and pleuritic right-sided chest pain. Temperature is 38.8 C (101.8 F), respiratory rate 22/min, blood pressure 128/74 mm Hg, and oxygen saturation 91% on room air. Chest radiograph shows right lower lobe consolidation. She is alert, BUN is 18 mg/dL, and she does not meet severe CAP criteria. She has had no hospitalization or IV antibiotics in the past 90 days and no prior MRSA or Pseudomonas isolates. She is admitted to a medical ward.",
+        "question": "Which of the following is the most appropriate empiric antibiotic regimen?",
+        "options": "{\"options\": [\"Doxycycline 100 mg orally twice daily alone\", \"Ceftriaxone 1-2 g IV daily plus azithromycin 500 mg daily\", \"Vancomycin plus piperacillin-tazobactam\", \"Amoxicillin 1 g orally three times daily alone\", \"Ceftriaxone plus metronidazole\"], \"blueprintSystem\": \"pulmonary\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"empiric therapy for nonsevere inpatient community-acquired pneumonia\", \"keyTakeaway\": \"Nonsevere inpatient CAP: beta-lactam + macrolide or respiratory FQ; MRSA/Pseudomonas coverage only with prior isolation or recent hospitalization + IV antibiotics.\", \"kind\": \"vignette\"}",
+        "correctAnswer": "Ceftriaxone 1-2 g IV daily plus azithromycin 500 mg daily",
+        "explanation": "Ceftriaxone plus azithromycin is correct: the 2019 ATS/IDSA CAP guideline recommends a beta-lactam (ampicillin-sulbactam 1.5-3 g every 6 hours, cefotaxime 1-2 g every 8 hours, ceftriaxone 1-2 g daily, or ceftaroline 600 mg every 12 hours) plus a macrolide (azithromycin 500 mg daily or clarithromycin 500 mg twice daily), or a respiratory fluoroquinolone alone, for nonsevere inpatient CAP without MRSA or Pseudomonas risk factors; the 2026 ATS update addresses duration and adjuncts but not this empiric choice. Vancomycin plus piperacillin-tazobactam is reserved for prior respiratory MRSA or Pseudomonas isolation or recent hospitalization with IV antibiotics and local validation. Routine anaerobic coverage with metronidazole is not recommended for suspected aspiration unless lung abscess or empyema is present. Oral amoxicillin or doxycycline alone are outpatient regimens for healthy adults. Takeaway: ward CAP without resistant-pathogen risk = beta-lactam + macrolide (or respiratory FQ).",
+        "references": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/31573350/",
+            "label": "Metlay JP et al. Diagnosis and Treatment of Adults with Community-acquired Pneumonia. An Official Clinical Practice Guideline of the ATS and IDSA. Am J Respir Crit Care Med 2019"
+          },
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/40679934/",
+            "label": "Jones BE et al. Diagnosis and Management of Community-acquired Pneumonia: An Official ATS Clinical Practice Guideline. Am J Respir Crit Care Med 2026"
+          }
+        ],
+        "tags": "[\"pance\", \"PANCE-2025\", \"pulmonary\", \"pharmacotherapy\", \"empiric-therapy-for-nonsevere-inpatient-community-acquired-pneumonia\", \"clinical-vignette\", \"pance-batch6-2026-10\"]",
+        "difficulty": 2,
+        "manualCorrection": false,
+        "blueprintTopic": "empiric therapy for nonsevere inpatient community-acquired pneumonia",
+        "keyTakeaway": "Nonsevere inpatient CAP: beta-lactam + macrolide or respiratory FQ; MRSA/Pseudomonas coverage only with prior isolation or recent hospitalization + IV antibiotics."
+      },
+      "afterContentHash": "38913f3b3fb52ea728791932792ad8f7b28479bed997bf06e68269f816131487",
+      "afterKeyTakeaway": "Nonsevere inpatient CAP: beta-lactam + macrolide or respiratory FQ; MRSA/Pseudomonas coverage only with prior isolation or recent hospitalization + IV antibiotics."
+    }
+  ]
+}

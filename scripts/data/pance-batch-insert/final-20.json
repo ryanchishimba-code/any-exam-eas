@@ -1,0 +1,682 @@
+[
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 3-year-old girl is brought to an urgent care clinic with 4 days of fever, cough, runny nose, and red, watery eyes. Yesterday a red rash appeared at her hairline and behind her ears and has since spread to her face, neck, and upper trunk. She has received no vaccines because of parental preference. Two weeks ago the family returned from an international trip. Temperature is 39.8°C (103.6°F), pulse 138/min, respiratory rate 28/min, SpO2 97% on room air. She is irritable with bilateral nonpurulent conjunctival injection. Several tiny bluish-white spots on an erythematous base are seen on the buccal mucosa opposite the lower molars. A blanching, confluent erythematous maculopapular rash involves the face, neck, and upper trunk; the palms and soles are spared. Lungs are clear.",
+    "question": "Which infection best accounts for this child's presentation?",
+    "options": "{\"options\": [\"Rubella\", \"Scarlet fever\", \"Kawasaki disease\", \"Roseola infantum\", \"Measles (rubeola)\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"measles\", \"keyTakeaway\": \"Koplik spots + cough/coryza/conjunctivitis + cephalocaudal rash = measles; airborne isolation and immediate public health report.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Measles (rubeola)",
+    "explanation": "Measles is correct: a prodrome of high fever with the 3 Cs (cough, coryza, conjunctivitis), Koplik spots on the buccal mucosa, and a maculopapular rash that starts at the hairline and spreads cephalocaudally in an unvaccinated child with recent international travel is classic per CDC clinical guidance. Rubella is incorrect because it is milder, with low-grade fever and postauricular/suboccipital lymphadenopathy, and lacks Koplik spots. Roseola is incorrect because the rash appears after the fever breaks and typically affects infants 6-24 months. Scarlet fever is incorrect because it causes a sandpaper-like rash with pharyngitis and strawberry tongue, not a 3 C prodrome. Kawasaki disease is incorrect because it requires ≥5 days of fever with extremity changes and oral changes (cracked lips), not Koplik spots or cough/coryza. Takeaway: Koplik spots + 3 Cs + cephalocaudal rash = measles; isolate (airborne) and notify public health immediately.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"measles\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "measles",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/measles/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Measles (for Healthcare Providers), updated 2025"
+      },
+      {
+        "url": "https://www.cdc.gov/acip-recs/hcp/vaccine-specific/mmr.html",
+        "label": "CDC/ACIP. MMR Vaccine Recommendations"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "5d80bfbc396231f85292b40c995105dbf578a6037d4dc28f93fdff2a9a1198e3"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 27-year-old man presents to the emergency department in late June with 5 days of fever, severe frontal headache, and myalgias. He went camping in western North Carolina 10 days ago. On day 3 of illness he noticed small pink spots on his wrists and ankles that have since spread to his trunk, palms, and soles. Temperature is 39.4°C (102.9°F), pulse 112/min, BP 104/66 mmHg. He is alert and oriented without neck stiffness. Exam shows blanching and nonblanching macules and petechiae on the wrists, ankles, palms, soles, and trunk. Labs: WBC 4,800/µL, platelets 78,000/µL, sodium 129 mEq/L, AST 96 U/L, ALT 88 U/L.",
+    "question": "Which infection is most likely responsible for these findings?",
+    "options": "{\"options\": [\"Human monocytic ehrlichiosis\", \"Rocky Mountain spotted fever\", \"Lyme disease\", \"Meningococcemia\", \"Secondary syphilis\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"Rocky Mountain spotted fever\", \"keyTakeaway\": \"Wrist/ankle rash spreading centrally to palms/soles + low platelets + low Na after tick exposure = RMSF; start doxycycline without waiting for tests.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Rocky Mountain spotted fever",
+    "explanation": "Rocky Mountain spotted fever (Rickettsia rickettsii) is correct: fever, headache, and myalgias after outdoor exposure in the southeastern US, followed on day 2-5 by a rash that begins on the wrists and ankles, spreads centripetally, involves the palms and soles, and becomes petechial, with thrombocytopenia, hyponatremia, and elevated transaminases, matches CDC clinical guidance. Ehrlichiosis is incorrect because rash occurs in only about one-third of adults and rarely involves the palms and soles; leukopenia is prominent. Lyme disease is incorrect because erythema migrans is an expanding annular lesion, not petechiae, and labs are usually normal. Meningococcemia is incorrect because it causes rapid-onset (hours) petechiae/purpura with shock rather than a rash appearing days into illness. Secondary syphilis is incorrect because its palm/sole rash lacks acute high fever. Takeaway: suspected RMSF requires doxycycline immediately; do not wait for serology.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"rocky-mountain-spotted-fever\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "Rocky Mountain spotted fever",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/rocky-mountain-spotted-fever/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Signs and Symptoms of Rocky Mountain Spotted Fever"
+      },
+      {
+        "url": "https://www.cdc.gov/mmwr/volumes/65/rr/rr6502a1.htm",
+        "label": "Biggs HM, et al. Diagnosis and Management of Tickborne Rickettsial Diseases. MMWR Recomm Rep 2016;65(2)"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "bf7111f17064ee3a1c348438a6b6c31d995b787ca23b7adff62e975cab161b94"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 52-year-old woman is brought to the emergency department with 1 day of double vision, difficulty swallowing, and slurred speech. Over the past several hours she has developed weakness of both arms. Two days ago she ate home-canned green beans at a family gathering; her brother has similar symptoms. She denies fever, numbness, or recent diarrheal illness. Temperature is 36.8°C (98.2°F), pulse 88/min, BP 128/78 mmHg, respiratory rate 20/min. She is alert and fully oriented. Exam shows bilateral ptosis, dilated pupils sluggishly reactive to light, and bilateral facial weakness. Strength is 4/5 symmetrically in the upper extremities and 5/5 in the lower extremities. Sensation is intact throughout. Forced vital capacity is 2.1 L (60% predicted).",
+    "question": "Which condition is the most likely cause of her neurologic findings?",
+    "options": "{\"options\": [\"Miller Fisher variant of Guillain-Barré syndrome\", \"Foodborne botulism\", \"Brainstem ischemic stroke\", \"Myasthenic crisis\", \"Tick paralysis\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"botulism\", \"keyTakeaway\": \"Afebrile, alert patient with symmetric cranial nerve palsies and descending paralysis after home-canned food = botulism; get antitoxin through the health department and monitor FVC.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Foodborne botulism",
+    "explanation": "Foodborne botulism is correct: CDC clinical guidance describes acute, symmetric cranial neuropathies (diplopia, ptosis, dysphagia, dysarthria) followed by descending flaccid paralysis in an afebrile, alert patient with intact sensation, often with dilated or sluggish pupils; home-canned vegetables and a clustered case strongly support it. Miller Fisher syndrome is incorrect because it presents with ophthalmoplegia, ataxia, and areflexia, typically after an infection, and would not cluster after a shared meal. Myasthenic crisis is incorrect because pupils are spared and there is no history of myasthenia. Tick paralysis is incorrect because it typically causes ascending paralysis and an attached tick is found. Brainstem stroke is incorrect because it is usually asymmetric with long-tract or sensory signs. Takeaway: suspected botulism - call the state health department/CDC for antitoxin and monitor vital capacity closely.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"botulism\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "botulism",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/botulism/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Botulism"
+      },
+      {
+        "url": "https://www.cdc.gov/mmwr/volumes/70/rr/rr7002a1.htm",
+        "label": "Rao AK, et al. Clinical Guidelines for Diagnosis and Treatment of Botulism, 2021. MMWR Recomm Rep 2021;70(2)"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "98bb0f80b121116c5abdf043b651f912426a3ddc8ecb268d522552c4cb9802e3"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 31-year-old man presents to a primary care clinic with 9 days of fever that has risen in a stepwise pattern, along with headache, malaise, abdominal discomfort, and constipation. He returned 2 weeks ago from a 1-month visit to relatives in Lahore, Pakistan, and received no pretravel vaccines. Temperature is 39.6°C (103.3°F), pulse 76/min, BP 112/70 mmHg. He appears ill but alert. Several faint 2-3 mm salmon-colored blanching macules are present on the anterior abdomen. The abdomen is mildly tender diffusely, and the spleen tip is palpable. Labs: WBC 3,900/µL, hemoglobin 12.8 g/dL, platelets 132,000/µL, AST 84 U/L, ALT 79 U/L. A malaria rapid antigen test and thick and thin smears are negative.",
+    "question": "These findings are most consistent with which infection?",
+    "options": "{\"options\": [\"Acute viral hepatitis A\", \"Amebic liver abscess\", \"Enteric (typhoid) fever\", \"Dengue\", \"Brucellosis\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"typhoid fever\", \"keyTakeaway\": \"Stepwise fever + relative bradycardia + rose spots after South Asia travel = typhoid; blood cultures first, and consider XDR strains from Pakistan.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Enteric (typhoid) fever",
+    "explanation": "Enteric (typhoid) fever caused by Salmonella Typhi is correct: CDC Yellow Book describes insidious, stepwise fever, headache, abdominal pain, and constipation 1-3 weeks after travel to South Asia, with relative bradycardia (pulse 76 at 39.6°C), rose spots on the trunk, splenomegaly, leukopenia, and mild transaminase elevation. Unvaccinated travelers to Pakistan are at highest risk. Dengue is incorrect because it causes abrupt fever with retro-orbital pain and severe myalgia that usually resolves within a week, not a 9-day stepwise course with rose spots. Hepatitis A is incorrect because transaminases would be far higher and jaundice is typical. Brucellosis is incorrect because it follows unpasteurized dairy or animal exposure and causes undulant fever with arthralgia. Amebic liver abscess is incorrect because it causes right upper quadrant pain with hepatomegaly, not rose spots. Takeaway: obtain blood cultures before antibiotics and treat Pakistan-acquired typhoid as possibly XDR.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"typhoid-fever\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 4,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "typhoid fever",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/yellow-book/hcp/travel-associated-infections-diseases/typhoid-and-paratyphoid-fever.html",
+        "label": "CDC Yellow Book 2026. Typhoid and Paratyphoid Fever"
+      },
+      {
+        "url": "https://www.cdc.gov/typhoid-fever/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Typhoid Fever"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "876893bdab35417ea04f4d29e2e853be530ba386b068b95d0dfcc8ef6fb12675"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 68-year-old woman is on postoperative day 6 after an open reduction and internal fixation of a hip fracture. She received perioperative cefazolin and then a 5-day course of ceftriaxone for hospital-onset pneumonia, completed yesterday. Over the past 24 hours she has had 6 episodes of watery, foul-smelling, nonbloody diarrhea with crampy lower abdominal pain. She has no nausea or vomiting and is passing flatus. Temperature is 38.3°C (100.9°F), pulse 102/min, BP 124/72 mmHg. The abdomen is soft and mildly distended with diffuse lower quadrant tenderness, no rebound, and hyperactive bowel sounds. The surgical incision is clean and dry. Labs: WBC 19,200/µL, creatinine 1.0 mg/dL (baseline 0.9), lactate 1.4 mmol/L.",
+    "question": "Which diagnosis best explains her diarrhea?",
+    "options": "{\"options\": [\"Ischemic colitis\", \"Clostridioides difficile infection\", \"Norovirus gastroenteritis\", \"Postoperative ileus\", \"Fecal impaction with overflow diarrhea\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"Clostridioides difficile infection\", \"keyTakeaway\": \"≥3 unformed stools/24 h after antibiotics in a hospitalized patient = test for C. difficile; WBC ≥15,000 or Cr >1.5 = severe.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Clostridioides difficile infection",
+    "explanation": "Clostridioides difficile infection is correct: IDSA/SHEA guidelines define CDI as ≥3 unformed stools in 24 hours in a patient with risk factors; this patient has recent cephalosporin exposure (a high-risk class), hospitalization, older age, fever, and marked leukocytosis (WBC ≥15,000/µL or creatinine >1.5 mg/dL defines severe CDI, treated with fidaxomicin or oral vancomycin per IDSA/SHEA 2021). Postoperative ileus is incorrect because it causes reduced or absent stool output and distention, not frequent watery stools. Ischemic colitis is incorrect because it usually causes sudden pain with bloody diarrhea. Norovirus is incorrect because vomiting is prominent. Fecal impaction is incorrect because it occurs in immobile, opioid-treated patients with small-volume leakage and a hard rectal mass, without fever and leukocytosis. Takeaway: diarrhea after antibiotics + WBC ≥15,000/µL = severe CDI.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"clostridioides-difficile-infection\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "Clostridioides difficile infection",
+    "references": [
+      {
+        "url": "https://www.idsociety.org/practice-guideline/clostridioides-difficile-2021-focused-update/",
+        "label": "IDSA/SHEA 2021 Focused Update: Management of Clostridioides difficile Infection in Adults"
+      },
+      {
+        "url": "https://www.idsociety.org/practice-guideline/clostridium-difficile/",
+        "label": "IDSA/SHEA 2017 Clinical Practice Guidelines for C. difficile Infection"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "c97fe928986988bf2356ae47ab957d7a38d460ed3d8289534d7e380a5252714d"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 38-year-old man from rural Kentucky presents to a primary care clinic with 2 weeks of fever, dry cough, fatigue, and pleuritic chest discomfort. Symptoms began about 12 days after he spent a weekend tearing down an old chicken coop and clearing bird droppings without a mask. He has no travel outside the Ohio River Valley, no HIV risk factors, and no skin lesions. Temperature is 38.4°C (101.1°F), pulse 96/min, respiratory rate 18/min, SpO2 96% on room air. Scattered crackles are heard bilaterally. Several tender, red nodules are present on both anterior shins. Chest radiograph shows bilateral hilar lymphadenopathy with patchy reticulonodular infiltrates. WBC is 8,600/µL. A rapid HIV antigen/antibody test is negative.",
+    "question": "Which infection is most likely responsible for his illness?",
+    "options": "{\"options\": [\"Coccidioidomycosis\", \"Blastomycosis\", \"Acute pulmonary histoplasmosis\", \"Invasive pulmonary aspergillosis\", \"Primary pulmonary tuberculosis\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"histoplasmosis\", \"keyTakeaway\": \"Bird or bat droppings + Ohio/Mississippi River Valley + hilar adenopathy = histoplasmosis.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Acute pulmonary histoplasmosis",
+    "explanation": "Acute pulmonary histoplasmosis is correct: Histoplasma capsulatum is endemic to the Ohio and Mississippi River Valleys and is acquired by inhaling spores from soil contaminated with bird or bat droppings (chicken coops, caves). CDC and IDSA describe a flu-like illness 3-17 days after exposure with hilar/mediastinal adenopathy, patchy infiltrates, and sometimes erythema nodosum, which can occur in acute pulmonary histoplasmosis, not only coccidioidomycosis. Blastomycosis is incorrect because it is linked to decaying wood near waterways and causes lobar consolidation or verrucous skin lesions. Coccidioidomycosis is incorrect because it is endemic to the desert Southwest. Primary TB is incorrect because there is no exposure history and the timing after a point-source dust exposure favors a fungal cause. Aspergillosis is incorrect because invasive disease occurs in severely immunocompromised patients. Takeaway: bird/bat droppings + Ohio Valley + hilar adenopathy = histoplasmosis.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"histoplasmosis\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 4,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "histoplasmosis",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/histoplasmosis/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Histoplasmosis"
+      },
+      {
+        "url": "https://www.idsociety.org/practice-guideline/histoplasmosis/",
+        "label": "IDSA. Clinical Practice Guidelines for the Management of Patients with Histoplasmosis"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "d84b9aa8ccc01e810d5c889f4265927d4dde466c03f3d3fefd42cf23ee6e941e"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 34-year-old woman who works at a daycare center presents to an urgent care clinic with a cough that has lasted 3 weeks. It began with mild rhinorrhea and a low-grade fever for about a week. The cough now comes in violent spells, worse at night, that sometimes end with a high-pitched gasp and vomiting. Between spells she feels well. She had childhood vaccines but does not recall any adult boosters. She does not smoke and has no history of asthma or reflux. Temperature is 37.0°C (98.6°F), pulse 84/min, respiratory rate 16/min, SpO2 98% on room air. Subconjunctival hemorrhage is present in the right eye. Lungs are clear between coughing spells. Chest radiograph is normal. WBC is 14,800/µL with 68% lymphocytes.",
+    "question": "Which condition best explains her cough?",
+    "options": "{\"options\": [\"Mycoplasma pneumoniae infection\", \"Acute bronchitis\", \"Gastroesophageal reflux disease\", \"Cough-variant asthma\", \"Pertussis\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"pertussis\", \"keyTakeaway\": \"Cough ≥2 weeks with paroxysms, whoop, or post-tussive vomiting = pertussis; NP PCR, azithromycin, and prophylaxis for close contacts.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Pertussis",
+    "explanation": "Pertussis is correct: CDC describes a catarrhal stage of 1-2 weeks followed by a paroxysmal stage with coughing fits, inspiratory whoop, post-tussive vomiting, and feeling well between spells; adults often have waning immunity, and lymphocytosis supports Bordetella pertussis. Acute bronchitis is incorrect because it does not cause whoop or post-tussive emesis and lymphocytosis is not expected. Cough-variant asthma is incorrect because there is no atopic history, and it does not cause paroxysms ending in whoop and emesis. Mycoplasma infection is incorrect because it usually causes fever, headache, and infiltrates or wheezing, without inspiratory whoop. GERD is incorrect because it causes chronic cough with heartburn, not an acute illness starting with coryza. Takeaway: paroxysmal cough ≥2 weeks with whoop or post-tussive vomiting = pertussis; confirm by nasopharyngeal PCR, treat with azithromycin, and give prophylaxis to close contacts.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"pertussis\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "pertussis",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/pertussis/hcp/clinical-signs/index.html",
+        "label": "CDC. Clinical Features of Pertussis"
+      },
+      {
+        "url": "https://www.cdc.gov/pertussis/hcp/clinical-care/index.html",
+        "label": "CDC. Clinical Care of Pertussis"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "19e4a22ee104b4fe3dbd23c9a7c51be1a189872e07b9d02ea23262780a4d9bd4"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 45-year-old man presents to a primary care clinic in July with 1 day of drooping of the left side of his face. He also reports 10 days of fatigue, headache, and diffuse muscle aches. He lives in rural Wisconsin and does yard work frequently; he does not recall a tick bite. Temperature is 37.9°C (100.2°F), pulse 78/min, BP 126/80 mmHg. He cannot wrinkle his left forehead or fully close his left eye, and the left nasolabial fold is flattened. No vesicles are seen in the ear canal or on the palate. On the right posterior thigh there is a 14-cm oval erythematous patch with central clearing; two smaller annular patches are on the back. The remaining neurologic exam is normal. ECG shows normal sinus rhythm with a PR interval of 0.18 seconds.",
+    "question": "Which diagnosis accounts for this patient's facial weakness?",
+    "options": "{\"options\": [\"Ramsay Hunt syndrome\", \"Acute ischemic stroke\", \"Idiopathic Bell palsy\", \"Neurosarcoidosis\", \"Early disseminated Lyme disease\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"diagnosis\", \"blueprintTopic\": \"Lyme disease\", \"keyTakeaway\": \"Facial palsy + multiple erythema migrans in an endemic area = early disseminated Lyme; oral doxycycline 14 days, ECG for heart block.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Early disseminated Lyme disease",
+    "explanation": "Early disseminated Lyme disease is correct: per the IDSA/AAN/ACR 2020 guideline, multiple erythema migrans lesions plus a cranial neuropathy (most often facial nerve palsy) in a patient from an endemic area in summer indicates early disseminated Borrelia burgdorferi infection. Erythema migrans is diagnostic on its own, so serology is not needed when it is present. Bell palsy is incorrect because it is a diagnosis of exclusion and does not explain the multiple annular lesions and systemic symptoms. Ramsay Hunt syndrome is incorrect because it causes ear pain with vesicles in the ear canal or on the palate. Neurosarcoidosis is incorrect because it is rare and would not cause erythema migrans. Stroke is incorrect because the forehead is involved, indicating a peripheral (lower motor neuron) lesion. Takeaway: facial palsy + erythema migrans = early disseminated Lyme; treat with oral doxycycline for 14 days and check an ECG for carditis.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"diagnosis\", \"lyme-disease\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "diagnosis",
+    "blueprintTopic": "Lyme disease",
+    "references": [
+      {
+        "url": "https://www.idsociety.org/practice-guideline/lyme-disease/",
+        "label": "IDSA/AAN/ACR 2020 Guidelines for the Prevention, Diagnosis and Treatment of Lyme Disease"
+      },
+      {
+        "url": "https://www.cdc.gov/lyme/hcp/clinical-care/index.html",
+        "label": "CDC. Clinical Care and Treatment of Lyme Disease"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "abe7668ce41ec664a3f6d72c9edf3d7c0ff029a659fb0e6dbe6a322fbfd8ae5d"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 26-year-old woman at 14 weeks' gestation presents for her first prenatal visit. She reports a nonpruritic rash on her trunk, palms, and soles for 2 weeks. She recalls a painless genital sore about 2 months ago that healed on its own. She reports a history of hives and wheezing after taking amoxicillin as a child. Temperature is 37.2°C (99.0°F), BP 112/68 mmHg. Exam shows copper-colored macules on the palms and soles, a diffuse maculopapular rash on the trunk, and painless generalized lymphadenopathy. Rapid plasma reagin is reactive at 1:64, and a Treponema pallidum particle agglutination test is positive. HIV testing is negative.",
+    "question": "Which treatment approach is most appropriate for this patient's infection?",
+    "options": "{\"options\": [\"Doxycycline 100 mg orally twice daily for 14 days\", \"Penicillin desensitization followed by benzathine penicillin G 2.4 million units IM once\", \"Erythromycin 500 mg orally four times daily for 14 days\", \"Azithromycin 2 g orally once\", \"Ceftriaxone 1 g IM daily for 10 days\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"syphilis\", \"keyTakeaway\": \"Syphilis in pregnancy = penicillin only; desensitize allergic patients first.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Penicillin desensitization followed by benzathine penicillin G 2.4 million units IM once",
+    "explanation": "Penicillin desensitization followed by benzathine penicillin G 2.4 million units IM once is correct: this is secondary syphilis, and the CDC 2021 STI Treatment Guidelines state that penicillin is the only proven therapy for syphilis in pregnancy; pregnant patients with penicillin allergy should be desensitized and then treated with penicillin. Doxycycline is incorrect because tetracyclines are avoided in pregnancy (fetal tooth and bone effects). Azithromycin is incorrect because macrolide-resistant T. pallidum is widespread and it is not recommended. Ceftriaxone is incorrect because it is an alternative only for nonpregnant patients and its efficacy for preventing congenital syphilis is not established. Erythromycin is incorrect because it does not reliably cross the placenta and does not treat the fetus. Takeaway: syphilis in pregnancy with penicillin allergy = desensitize, then give penicillin; there is no alternative.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"pharmacotherapy\", \"syphilis\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 4,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "syphilis",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/std/treatment-guidelines/syphilis-pregnancy.htm",
+        "label": "CDC STI Treatment Guidelines 2021. Syphilis During Pregnancy"
+      },
+      {
+        "url": "https://www.cdc.gov/std/treatment-guidelines/penicillin-allergy.htm",
+        "label": "CDC STI Treatment Guidelines 2021. Management of Persons Who Have a History of Penicillin Allergy"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "d351a6bf575a248feb57282bb0d1cc811e7e41af967e895832a87193b3d487c0"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 23-year-old man presents to an urgent care clinic with 3 days of dysuria and a yellow penile discharge. He reports a new female sexual partner 1 week ago with inconsistent condom use. He has no known drug allergies and weighs 80 kg. Temperature is 37.1°C (98.8°F). Exam shows purulent urethral discharge without testicular tenderness, rash, or joint swelling. Urine nucleic acid amplification testing, which returns before treatment is chosen, is positive for Neisseria gonorrhoeae and negative for Chlamydia trachomatis. Pharyngeal and rectal screening are negative. HIV and syphilis screening are pending.",
+    "question": "Which antimicrobial regimen is recommended for this patient?",
+    "options": "{\"options\": [\"Azithromycin 2 g orally as a single dose\", \"Cefixime 800 mg orally as a single dose\", \"Ciprofloxacin 500 mg orally as a single dose\", \"Ceftriaxone 500 mg IM as a single dose\", \"Ceftriaxone 250 mg IM plus azithromycin 1 g orally once\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"gonorrhea\", \"keyTakeaway\": \"Gonorrhea = ceftriaxone 500 mg IM once (1 g if ≥150 kg); add doxycycline only if chlamydia is not excluded.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Ceftriaxone 500 mg IM as a single dose",
+    "explanation": "Ceftriaxone 500 mg IM once is correct: the CDC 2021 STI Treatment Guidelines recommend ceftriaxone 500 mg IM as a single dose for uncomplicated urogenital gonorrhea in persons weighing <150 kg (1 g if ≥150 kg). Because chlamydia was tested and excluded, adding doxycycline is not required. Ceftriaxone 250 mg plus azithromycin is incorrect because this was the 2015 regimen; dual therapy with azithromycin was dropped because of resistance and antimicrobial stewardship. Cefixime 800 mg is incorrect because it is an alternative only when ceftriaxone is unavailable. Azithromycin 2 g is incorrect because monotherapy is reserved for cephalosporin allergy combined with gentamicin, and resistance is rising. Ciprofloxacin is incorrect because fluoroquinolone resistance is widespread and it is no longer recommended. Takeaway: uncomplicated gonorrhea = ceftriaxone 500 mg IM once; add doxycycline 100 mg twice daily for 7 days only if chlamydia has not been excluded.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"pharmacotherapy\", \"gonorrhea\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "gonorrhea",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/std/treatment-guidelines/gonorrhea-adults.htm",
+        "label": "CDC STI Treatment Guidelines 2021. Gonococcal Infections Among Adolescents and Adults"
+      },
+      {
+        "url": "https://www.cdc.gov/mmwr/volumes/69/wr/mm6950a6.htm",
+        "label": "St. Cyr S, et al. Update to CDC's Treatment Guidelines for Gonococcal Infection, 2020. MMWR 2020;69:1911-1916"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "cd6cf3667d54876158dc5be9661ab3b4ee378c1ace85d28f3c62cee46e0a5729"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 72-year-old woman with COPD is admitted from the emergency department in January with 4 days of fever, myalgias, headache, and worsening cough and dyspnea. She received an influenza vaccine in October. Temperature is 38.9°C (102.0°F), pulse 108/min, respiratory rate 24/min, BP 118/70 mmHg, SpO2 89% on room air, improving to 93% on 2 L nasal cannula. Diffuse expiratory wheezes are heard without focal consolidation. Chest radiograph shows hyperinflation without infiltrate. A nasopharyngeal multiplex PCR is positive for influenza A and negative for SARS-CoV-2 and RSV. Creatinine is 0.9 mg/dL (estimated creatinine clearance 62 mL/min). Procalcitonin is low.",
+    "question": "In addition to bronchodilators and supportive care, which antiviral therapy should be started?",
+    "options": "{\"options\": [\"Oral oseltamivir 75 mg twice daily for 5 days\", \"Oral baloxavir as a single weight-based dose\", \"Oral amantadine 100 mg twice daily for 5 days\", \"No antiviral, because symptoms began more than 48 hours ago\", \"Inhaled zanamivir 10 mg twice daily for 5 days\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"influenza\", \"keyTakeaway\": \"Any hospitalized influenza patient = oseltamivir as soon as possible, regardless of symptom duration or vaccination.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Oral oseltamivir 75 mg twice daily for 5 days",
+    "explanation": "Oral oseltamivir 75 mg twice daily for 5 days is correct: CDC and IDSA 2018 guidance recommend starting antiviral treatment as soon as possible for any patient hospitalized with influenza, regardless of illness duration or vaccination status, and oseltamivir is the preferred agent for hospitalized patients. Withholding antivirals is incorrect because the 48-hour window applies to otherwise healthy outpatients; hospitalized and high-risk patients still benefit after 48 hours. Inhaled zanamivir is incorrect because it is not recommended for hospitalized patients and can cause bronchospasm in COPD or asthma. Baloxavir is incorrect because data are insufficient to recommend it as monotherapy in hospitalized patients. Amantadine is incorrect because circulating influenza A viruses are resistant to adamantanes. Takeaway: hospitalized with influenza = oseltamivir now, no matter how many days since symptom onset.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"pharmacotherapy\", \"influenza\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 4,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "influenza",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html",
+        "label": "CDC. Influenza Antiviral Medications: Summary for Clinicians"
+      },
+      {
+        "url": "https://www.idsociety.org/practice-guideline/influenza/",
+        "label": "IDSA 2018 Clinical Practice Guidelines: Seasonal Influenza in Adults and Children"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "17818e586dad6bd6768ea33fa3cfbf7845b344fd4dea4e1e506789ebe556ea1d"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 67-year-old man presents to a primary care clinic with a painful rash on the right side of his chest. Three days ago he felt burning pain in the area, and 36 hours ago small blisters appeared. He has hypertension treated with lisinopril and has no history of immunosuppression. He has not received any zoster vaccine. Temperature is 37.3°C (99.1°F), BP 134/82 mmHg. Exam shows grouped vesicles on an erythematous base in a band from the right mid-back to the right side of the chest along the T5 dermatome, not crossing the midline. No lesions are on the face or elsewhere. Creatinine is 1.0 mg/dL.",
+    "question": "Which medication regimen is most appropriate to treat this rash?",
+    "options": "{\"options\": [\"Valacyclovir 1 g orally three times daily for 7 days\", \"Valacyclovir 500 mg orally twice daily for 3 days\", \"Acyclovir 400 mg orally three times daily for 5 days\", \"Prednisone 60 mg orally daily for 7 days\", \"Recombinant zoster vaccine, first dose today\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"pharmacotherapy\", \"blueprintTopic\": \"herpes zoster\", \"keyTakeaway\": \"Zoster within 72 h of rash = valacyclovir 1 g three times daily x 7 days (or acyclovir 800 mg 5x/day); give RZV after recovery.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Valacyclovir 1 g orally three times daily for 7 days",
+    "explanation": "Valacyclovir 1 g three times daily for 7 days is correct: CDC clinical guidance recommends starting acyclovir, valacyclovir, or famciclovir as soon as possible for herpes zoster, ideally within 72 hours of rash onset, to shorten the illness and reduce pain. Valacyclovir 1 g three times daily for 7 days is a standard regimen. Acyclovir 400 mg three times daily is incorrect because that is an HSV dose; zoster requires acyclovir 800 mg five times daily. Valacyclovir 500 mg twice daily for 3 days is incorrect because it is a recurrent genital herpes regimen. Prednisone alone is incorrect because corticosteroids are not antiviral and are not recommended as monotherapy. The recombinant zoster vaccine is incorrect because it is for prevention, not treatment of active zoster; it is given after the acute episode resolves. Takeaway: zoster within 72 hours = valacyclovir 1 g three times daily for 7 days; vaccinate after recovery.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"pharmacotherapy\", \"herpes-zoster\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "pharmacotherapy",
+    "blueprintTopic": "herpes zoster",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/shingles/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Shingles (Herpes Zoster)"
+      },
+      {
+        "url": "https://www.cdc.gov/mmwr/volumes/71/wr/mm7103a2.htm",
+        "label": "Anderson TC, et al. Use of Recombinant Zoster Vaccine in Immunocompromised Adults: ACIP 2022. MMWR 2022;71:80-84"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "5d419ba8a6def8a215db7f852192dfdaec8ca1978c41ecdf592ba6a2cd42b736"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 4-year-old boy is brought to a pediatric clinic with 2 days of an itchy rash and low-grade fever. The rash started as red spots on his chest and back and has spread to his face and scalp. He has not received any vaccines. His daycare reported several similar cases 2 weeks ago. He is eating and drinking normally. Temperature is 38.1°C (100.6°F), pulse 112/min, respiratory rate 22/min. He appears well and is scratching. Lungs are clear. There is no lymphadenopathy or hepatosplenomegaly.",
+    "question": "Which skin finding is expected on examination in this child?",
+    "options": "{\"options\": [\"Target lesions with dusky centers on the extremities\", \"Rash that began on the palms and soles before spreading centrally\", \"Macules, papules, vesicles, and crusted lesions present at the same time\", \"Sandpaper-like rash accentuated in the skin folds\", \"Deep, firm vesicles all at the same stage of development\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"varicella\", \"keyTakeaway\": \"Itchy central rash with lesions in multiple stages = varicella; no aspirin, exclude from daycare until all lesions crust.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Macules, papules, vesicles, and crusted lesions present at the same time",
+    "explanation": "Lesions in multiple stages at the same time is correct: CDC and the AAP Red Book describe the varicella rash as pruritic and beginning on the trunk, scalp, and face, progressing over 3-7 days through macules, papules, vesicles on an erythematous base ('dewdrop on a rose petal'), and crusts, so lesions in all stages coexist. Deep, firm vesicles at the same stage is incorrect because that pattern is characteristic of smallpox. A rash starting on the palms and soles is incorrect because that pattern suggests Rocky Mountain spotted fever or hand-foot-and-mouth disease. A sandpaper-like rash in skin folds (Pastia lines) is incorrect because it indicates scarlet fever. Target lesions are incorrect because they suggest erythema multiforme. Takeaway: centrally distributed, itchy rash with lesions in different stages = varicella; avoid aspirin (Reye syndrome) and keep the child out of daycare until all lesions crust.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"history-physical\", \"varicella\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 2,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "varicella",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/chickenpox/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Chickenpox (Varicella)"
+      },
+      {
+        "url": "https://publications.aap.org/redbook",
+        "label": "AAP. Red Book 2024-2027: Report of the Committee on Infectious Diseases - Varicella-Zoster Virus Infections"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "86fe902cbc89fd4618f99dff50aae22a1f20821d7db8b0960d95a78feb919e01"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 13-year-old boy is brought to an urgent care clinic with 2 days of painful swelling in front of both ears and pain when chewing. He had low-grade fever, headache, and malaise for 2 days before the swelling began. He has not been vaccinated because of parental exemption. Several classmates have had similar illnesses this month. Temperature is 38.3°C (100.9°F), pulse 96/min. There is tender, doughy swelling of both parotid glands that obscures the angles of the mandible and pushes the earlobes up and out. The testes are nontender. There is no rash.",
+    "question": "Which additional exam finding would most support the suspected diagnosis?",
+    "options": "{\"options\": [\"Posterior cervical lymphadenopathy with splenomegaly\", \"Purulent drainage expressed from the Stensen duct\", \"A palpable stone in the floor of the mouth\", \"Erythema and swelling at the opening of the Stensen duct\", \"Bluish-white spots on the buccal mucosa near the molars\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"mumps\", \"keyTakeaway\": \"Bilateral parotitis + red Stensen duct orifice in an unvaccinated child = mumps; buccal swab RT-PCR and isolate 5 days.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Erythema and swelling at the opening of the Stensen duct",
+    "explanation": "Erythema and swelling at the opening of the Stensen duct is correct: CDC and the AAP Red Book describe mumps as a prodrome of fever, headache, and malaise followed by acute, tender, usually bilateral parotitis; redness and swelling at the Stensen duct orifice opposite the upper second molar supports viral parotitis; per CDC, the buccal swab for RT-PCR is collected near the Stensen duct after parotid massage. Purulent drainage from the duct is incorrect because it indicates acute bacterial (usually S. aureus) suppurative parotitis, which is typically unilateral. Bluish-white buccal spots are incorrect because Koplik spots indicate measles. Posterior cervical adenopathy with splenomegaly is incorrect because it suggests infectious mononucleosis. A stone in the floor of the mouth is incorrect because it suggests submandibular (Wharton duct) sialolithiasis. Takeaway: bilateral parotitis in an unvaccinated child = mumps; buccal swab RT-PCR, isolate 5 days after swelling begins.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"history-physical\", \"mumps\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "mumps",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/mumps/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Mumps"
+      },
+      {
+        "url": "https://publications.aap.org/redbook",
+        "label": "AAP. Red Book 2024-2027: Report of the Committee on Infectious Diseases - Mumps"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "b0c21ea66f933ad7bdef57cd4a9d18a5013fef8a5ce05e2db07026715b2eb4af"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 41-year-old man presents to the emergency department 2 days after an outpatient septoplasty, with bilateral nasal packing still in place. Over the past 12 hours he has developed high fever, vomiting, watery diarrhea, diffuse muscle aches, and lightheadedness. Temperature is 39.8°C (103.6°F), pulse 128/min, BP 78/44 mmHg, respiratory rate 24/min. He appears confused. There is diffuse, blanching, sunburn-like erythema over the trunk and extremities, including the palms, and bilateral conjunctival hyperemia. Labs: WBC 17,500/µL, platelets 88,000/µL, creatinine 2.4 mg/dL, total bilirubin 2.6 mg/dL, creatine kinase 2,900 U/L. Nasal packing is removed and blood cultures are drawn.",
+    "question": "If this patient survives the acute illness, which skin finding is most characteristic later in the course?",
+    "options": "{\"options\": [\"Crops of vesicles in a dermatomal distribution\", \"Purpura progressing to symmetric peripheral gangrene\", \"Erythema nodosum on the anterior shins\", \"Desquamation of the palms and soles 1-2 weeks after onset\", \"A black eschar at the site of an insect bite\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"history-physical\", \"blueprintTopic\": \"toxic shock syndrome\", \"keyTakeaway\": \"Fever + diffuse erythroderma + hypotension + multiorgan involvement after packing = TSS; late palm/sole desquamation; remove source, vancomycin + clindamycin.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Desquamation of the palms and soles 1-2 weeks after onset",
+    "explanation": "Desquamation of the palms and soles 1-2 weeks after onset is correct: the CDC case definition for staphylococcal toxic shock syndrome includes fever ≥38.9°C, diffuse macular erythroderma, hypotension, involvement of ≥3 organ systems, and desquamation (particularly palms and soles) 1-2 weeks after illness onset. Nasal packing after septoplasty is a recognized nonmenstrual source. A black eschar is incorrect because it suggests cutaneous anthrax or rickettsialpox. Dermatomal vesicles are incorrect because they indicate herpes zoster. Purpura with symmetric peripheral gangrene is incorrect because it suggests purpura fulminans, as in meningococcemia, not the diffuse erythroderma of TSS. Erythema nodosum is incorrect because it is a panniculitis seen with sarcoidosis, histoplasmosis, or streptococcal pharyngitis. Takeaway: post-packing fever + erythroderma + shock = TSS; remove the source and give vancomycin plus clindamycin.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"history-physical\", \"toxic-shock-syndrome\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 4,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "history-physical",
+    "blueprintTopic": "toxic shock syndrome",
+    "references": [
+      {
+        "url": "https://ndc.services.cdc.gov/case-definitions/toxic-shock-syndrome-2011/",
+        "label": "CDC NNDSS. Toxic Shock Syndrome (Other Than Streptococcal) 2011 Case Definition"
+      },
+      {
+        "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+        "label": "IDSA 2014 Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "63bf1b7fd5fe2c1e15c50e5ad73372dfef64a370adae169739546f6fc27ae218"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 29-year-old woman presents to an urgent care clinic the morning after waking to find a bat flying in her bedroom. Her husband chased it out an open window, so it cannot be captured or tested. She does not recall being bitten and has no visible wounds. She is healthy, takes no medications, is not pregnant, and has never received rabies vaccine. Temperature is 36.9°C (98.4°F), pulse 72/min, BP 116/74 mmHg. A careful skin exam, including the scalp, face, and hands, shows no bites, scratches, or abrasions. Neurologic exam is normal.",
+    "question": "Which management is recommended for this patient?",
+    "options": "{\"options\": [\"Rabies immune globulin plus rabies vaccine on days 0, 3, 7, and 14\", \"Observation only, because no bite wound is found\", \"Rabies immune globulin alone, with no vaccine series\", \"Rabies vaccine alone on days 0, 3, 7, and 14\", \"Rabies vaccine on days 0, 3, 7, 14, and 28 without immune globulin\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"rabies\", \"keyTakeaway\": \"Bat in a room with a sleeping person and bat unavailable for testing = RIG + vaccine days 0, 3, 7, 14 (unvaccinated, immunocompetent).\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Rabies immune globulin plus rabies vaccine on days 0, 3, 7, and 14",
+    "explanation": "Rabies immune globulin (RIG) plus vaccine on days 0, 3, 7, and 14 is correct: CDC and ACIP recommend post-exposure prophylaxis (PEP) when a bat is found in a room with a sleeping person and the bat cannot be tested, because bat bites can be tiny and go unnoticed. For a previously unvaccinated, immunocompetent person, PEP is human RIG 20 IU/kg (infiltrated into any wound, with the rest given IM at a distant site) plus 4 vaccine doses on days 0, 3, 7, and 14. Vaccine alone is incorrect because unvaccinated patients also need RIG for immediate passive immunity. RIG alone is incorrect because active immunization is required for lasting protection. Observation is incorrect because the lack of a visible wound does not exclude a bat exposure. A 5-dose series without RIG is incorrect because the fifth dose is only for immunocompromised patients and RIG is still needed. Takeaway: bat in the room of a sleeping person = full PEP unless the bat tests negative.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"intervention\", \"rabies\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "intervention",
+    "blueprintTopic": "rabies",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/rabies/hcp/prevention-recommendations/post-exposure-prophylaxis.html",
+        "label": "CDC. Rabies Post-Exposure Prophylaxis (PEP) - Clinician Guidance"
+      },
+      {
+        "url": "https://www.cdc.gov/mmwr/preview/mmwrhtml/rr5902a1.htm",
+        "label": "Rupprecht CE, et al. Use of a Reduced (4-Dose) Vaccine Schedule for Postexposure Prophylaxis to Prevent Human Rabies: ACIP. MMWR Recomm Rep 2010;59(RR-2)"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "eee071c624cc4916363ddff0bbea22d0fc177651131c1937b693650bc919c3d0"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 46-year-old man presents to the emergency department 3 hours after stepping on a rusty nail while working barefoot in a barnyard. The nail went through his sole. He grew up abroad, is unsure whether he ever received childhood vaccines, and cannot recall ever receiving a tetanus shot. He has no drug allergies. Temperature is 36.8°C (98.2°F), pulse 80/min, BP 130/84 mmHg. There is a 4-mm puncture wound on the plantar forefoot contaminated with soil and manure, without erythema, foreign body on radiograph, or neurovascular deficit. The wound is irrigated and debrided.",
+    "question": "Which tetanus prophylaxis is recommended for this patient today?",
+    "options": "{\"options\": [\"Td vaccine alone, with a booster in 10 years\", \"No tetanus prophylaxis is needed if the wound is cleaned\", \"Tdap vaccine alone\", \"Tetanus immune globulin 250 units IM alone\", \"Tdap vaccine plus tetanus immune globulin 250 units IM\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"tetanus\", \"keyTakeaway\": \"Dirty wound + unknown or <3 prior tetanus doses = Tdap/Td + TIG; ≥3 doses = vaccine only if last dose ≥5 years ago.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Tdap vaccine plus tetanus immune globulin 250 units IM",
+    "explanation": "Tdap plus tetanus immune globulin (TIG) 250 units IM is correct: ACIP wound-management guidance states that for a contaminated (dirty) wound, including punctures with soil or manure, patients with an unknown history or fewer than 3 prior tetanus toxoid doses should receive both a tetanus toxoid-containing vaccine and TIG. Tdap is preferred because this adult has no documented Tdap; he should then complete a 3-dose primary series. Tdap alone is incorrect because active immunization takes weeks, so passive protection from TIG is needed now. TIG alone is incorrect because it gives no lasting immunity and the primary series must be started. No prophylaxis is incorrect because cleaning does not remove the risk of Clostridium tetani spores in a dirty puncture wound. Td alone is incorrect because it omits TIG and pertussis protection. Takeaway: dirty wound + unknown or <3 tetanus doses = vaccine plus TIG; clean minor wound = vaccine only.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"intervention\", \"tetanus\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "intervention",
+    "blueprintTopic": "tetanus",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/mmwr/volumes/67/rr/rr6702a1.htm",
+        "label": "Liang JL, et al. Prevention of Pertussis, Tetanus, and Diphtheria with Vaccines: ACIP Recommendations. MMWR Recomm Rep 2018;67(2) - Tetanus wound management"
+      },
+      {
+        "url": "https://www.cdc.gov/mmwr/volumes/69/wr/mm6903a5.htm",
+        "label": "Havers FP, et al. Use of Tdap and Td Vaccines: Updated ACIP Recommendations, 2019. MMWR 2020;69:77-83"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "2e45528b495ec4e96f99bd91aafb9b7d4d707789a3abd3cce10511157793f58d"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 33-year-old woman presents to an urgent care clinic in Texas 4 days after returning from a 2-week trip to Puerto Rico. She has had 3 days of high fever, severe headache, pain behind the eyes, and diffuse muscle and joint aches. She is drinking fluids well and urinating normally. She has not taken any medication. Temperature is 39.2°C (102.6°F), pulse 98/min, BP 118/76 mmHg with no orthostatic change, SpO2 99% on room air. A tourniquet test is positive. She has no abdominal tenderness, hepatomegaly, mucosal bleeding, or pleural effusion, and she is not lethargic. Labs: WBC 2,900/µL, hematocrit 39% (baseline 38%), platelets 118,000/µL. Dengue NS1 antigen is positive.",
+    "question": "Which management plan is most appropriate at this time?",
+    "options": "{\"options\": [\"Ibuprofen around the clock for fever and myalgias, with follow-up as needed\", \"Hospital admission for IV crystalloid boluses\", \"Outpatient care with oral fluids, acetaminophen, warning-sign education, and daily reassessment with a CBC\", \"Empiric oral doxycycline for presumed rickettsial co-infection\", \"Prophylactic platelet transfusion to prevent bleeding\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"intervention\", \"blueprintTopic\": \"dengue\", \"keyTakeaway\": \"Dengue without warning signs, tolerating fluids = outpatient oral fluids + acetaminophen, avoid NSAIDs, daily CBC through the critical phase.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Outpatient care with oral fluids, acetaminophen, warning-sign education, and daily reassessment with a CBC",
+    "explanation": "Outpatient care with oral fluids, acetaminophen, warning-sign education, and daily reassessment with a CBC is correct: CDC and WHO 2025 arboviral guidelines classify this as dengue without warning signs in a patient who tolerates oral fluids, so home care is appropriate, with daily follow-up through the critical phase to monitor hematocrit and platelets. Admission for IV boluses is incorrect because there are no warning signs such as abdominal pain, vomiting, mucosal bleeding, or lethargy or shock. Ibuprofen is incorrect because NSAIDs and aspirin increase bleeding risk in dengue. Empiric doxycycline is incorrect because a positive NS1 antigen confirms dengue and nothing suggests rickettsial disease. Platelet transfusion is incorrect because prophylactic transfusion is not recommended in stable patients without bleeding. Takeaway: dengue without warning signs = home with fluids and acetaminophen, no NSAIDs, and daily checks.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"intervention\", \"dengue\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 5,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "intervention",
+    "blueprintTopic": "dengue",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/dengue/hcp/clinical-care/index.html",
+        "label": "CDC. Clinical Care of Dengue"
+      },
+      {
+        "url": "https://www.who.int/publications/i/item/9789240111110",
+        "label": "WHO 2025. Guidelines for the Clinical Management of Arboviral Diseases: Dengue, Chikungunya, Zika and Yellow Fever"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "bf54d93582dcea331276c2bceaae98a0e85148ebce0e26130d8cb0339dca1413"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 68-year-old man from Cape Cod, Massachusetts, presents in August with 1 week of fever, drenching sweats, fatigue, and dark urine. He had a splenectomy 10 years ago after a motor vehicle collision and gardens daily. He has not traveled outside New England. Temperature is 39.0°C (102.2°F), pulse 104/min, BP 112/68 mmHg. He has mild scleral icterus and no rash. Labs: hemoglobin 9.1 g/dL (baseline 14), platelets 74,000/µL, WBC 5,200/µL, LDH 680 U/L, haptoglobin <10 mg/dL, total bilirubin 3.1 mg/dL (indirect 2.6), AST 88 U/L, creatinine 1.3 mg/dL. Urinalysis shows hemoglobin without red blood cells.",
+    "question": "Which test is most appropriate to confirm the suspected diagnosis?",
+    "options": "{\"options\": [\"Giemsa-stained thin peripheral blood smear\", \"Babesia IgG antibody titer\", \"Two-tier Lyme serologic testing\", \"Direct antiglobulin (Coombs) test\", \"Blood cultures from two separate sites\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"labs\", \"blueprintTopic\": \"babesiosis\", \"keyTakeaway\": \"Fever + hemolytic anemia + thrombocytopenia after Northeast tick exposure, especially in asplenia = thin blood smear (or PCR) for Babesia.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Giemsa-stained thin peripheral blood smear",
+    "explanation": "A Giemsa-stained thin peripheral blood smear is correct: the IDSA 2020 babesiosis guideline recommends diagnosing active Babesia microti infection by identifying intraerythrocytic parasites (ring forms, occasionally tetrads or 'Maltese cross') on a Giemsa- or Wright-stained thin smear, or by blood PCR, which also confirms infection and is more sensitive when parasitemia is low (IDSA 2020). This patient's asplenia, Northeast summer exposure, fever, hemolytic anemia, and thrombocytopenia are typical. Babesia IgG is incorrect because serology cannot distinguish active from past infection and is not recommended for diagnosis alone. Lyme serology is incorrect because Lyme does not cause hemolysis. Blood cultures are incorrect because Babesia is a protozoan that does not grow in culture. The Coombs test is incorrect because it evaluates autoimmune hemolysis but does not identify the parasite. Takeaway: fever + hemolysis + Northeast tick exposure (worse if asplenic) = smear or PCR.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"labs\", \"babesiosis\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 4,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "labs",
+    "blueprintTopic": "babesiosis",
+    "references": [
+      {
+        "url": "https://www.idsociety.org/practice-guideline/babesiosis/",
+        "label": "IDSA/SHEA 2020 Clinical Practice Guideline for Diagnosis and Management of Babesiosis"
+      },
+      {
+        "url": "https://www.cdc.gov/babesiosis/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Babesiosis"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "a46b6c68944be80b5d8e500ab3b94045f4adeadf9af52c9efb97121707c70d64"
+  },
+  {
+    "fieldId": "pance",
+    "subjectId": "infectious-diseases",
+    "itemType": "vignette",
+    "scenario": "A 24-year-old woman presents to a primary care clinic with a tender lump in her right armpit for 2 weeks. About 3 weeks ago she adopted a kitten that frequently scratches her hands. She recalls a small, painless red bump on her right forearm that appeared about 10 days before the lump and is now fading. She reports mild fatigue and low-grade fevers, without night sweats or weight loss. Temperature is 37.8°C (100.0°F). Exam shows a healing 4-mm crusted papule on the right forearm and a single 3-cm tender, mobile, nonfluctuant right axillary lymph node. There is no other lymphadenopathy, splenomegaly, or rash. CBC is normal.",
+    "question": "Which test is most appropriate to confirm the suspected diagnosis?",
+    "options": "{\"options\": [\"Blood cultures from two separate sites\", \"Toxoplasma gondii IgM and IgG serology\", \"Heterophile antibody (Monospot) test\", \"Bartonella henselae antibody testing by indirect fluorescent assay\", \"Excisional biopsy of the axillary lymph node\"], \"blueprintSystem\": \"infectious-diseases\", \"taskCategory\": \"labs\", \"blueprintTopic\": \"cat-scratch disease\", \"keyTakeaway\": \"Kitten scratch + inoculation papule + tender regional node = cat-scratch disease; confirm with B. henselae serology.\", \"kind\": \"vignette\"}",
+    "correctAnswer": "Bartonella henselae antibody testing by indirect fluorescent assay",
+    "explanation": "Bartonella henselae antibody testing by indirect fluorescent assay (IFA) is correct: CDC and the AAP Red Book state that the diagnosis of cat-scratch disease is usually confirmed by serology, with a high IgG titer supporting recent infection, in a patient with kitten exposure, a primary inoculation papule, and regional lymphadenopathy 1-3 weeks later. Excisional biopsy is incorrect because it is reserved for atypical or persistent nodes or suspected malignancy. Blood cultures are incorrect because Bartonella is fastidious and rarely grows in routine cultures. The heterophile test is incorrect because infectious mononucleosis causes generalized, posterior cervical adenopathy with pharyngitis, not a single node draining an inoculation site. Toxoplasma serology is incorrect because toxoplasmosis causes nontender cervical adenopathy without an inoculation papule. Takeaway: kitten scratch + papule + regional node = check Bartonella serology; azithromycin may hasten resolution.",
+    "solutionSteps": null,
+    "tags": "[\"pance\", \"PANCE-2025\", \"infectious-diseases\", \"labs\", \"cat-scratch-disease\", \"clinical-vignette\", \"pance-pilot-id-2026-10\"]",
+    "source": "generated",
+    "difficulty": 3,
+    "topicCategory": "infectious-diseases",
+    "blueprintDomain": "infectious-diseases",
+    "taskCategory": "labs",
+    "blueprintTopic": "cat-scratch disease",
+    "references": [
+      {
+        "url": "https://www.cdc.gov/bartonella/hcp/clinical-overview/index.html",
+        "label": "CDC. Clinical Overview of Bartonella Infection (Cat Scratch Disease)"
+      },
+      {
+        "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+        "label": "IDSA 2014 Practice Guidelines for Skin and Soft Tissue Infections - Cat-scratch disease"
+      }
+    ],
+    "patientAgeGroup": null,
+    "generationVersion": "pance-pilot-id-v1",
+    "reviewStatus": "pending",
+    "active": true,
+    "qaPassed": false,
+    "contentHash": "a871e5b674bd59226cfa755fb81bab70715bc4b96877928b114642320d2b199b"
+  }
+]

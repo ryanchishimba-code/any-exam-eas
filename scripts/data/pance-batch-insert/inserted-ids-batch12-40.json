@@ -1,0 +1,331 @@
+{
+  "appliedAt": "2026-10-24T23:03:59.029Z",
+  "inputFile": "scripts/data/pance-batch-insert/batch12-40.json",
+  "fieldId": "pance",
+  "source": "generated",
+  "reviewStatus": "approved",
+  "liveBefore": 3755,
+  "liveAfter": 3795,
+  "rows": [
+    {
+      "id": "cmvn09qj40000js8biiqqsmqr",
+      "fieldId": "pance",
+      "contentHash": "146b37700c52ec7861258bafd750c59ff73b8d7f54fdbaf79a0763b5013243f8",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "multifocal atrial tachycardia during a COPD exacerbation",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjb0001js8bl7c5lqnt",
+      "fieldId": "pance",
+      "contentHash": "15b1d656e3767c52a0cbdffa49d412335b156677ae8a2ec6aeba1d083243ce5c",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "heart failure with preserved ejection fraction in an older woman",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjf0002js8bw2qjmfsk",
+      "fieldId": "pance",
+      "contentHash": "3a1dd2e240f89f5003441fb44c49c31621be2cbf61642704efac8a491e61a91c",
+      "question": "Which of the following is the most appropriate next step to improve his symptoms?",
+      "blueprintTopic": "IV iron for iron deficiency in HFrEF",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qji0003js8b7zpxfgro",
+      "fieldId": "pance",
+      "contentHash": "ebc586af24cf2afb404dd67796f8914b25c38d49766ddb8ff3f705489b2da41d",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "primary prevention ICD for ischemic cardiomyopathy with LVEF 35% or less on GDMT",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjm0004js8btpf01jn5",
+      "fieldId": "pance",
+      "contentHash": "f5816614ae3916f43c13f64de9b1e6df80672d2faae49b114a95ad9c2a4142b5",
+      "question": "Which of the following is the most appropriate addition to her regimen?",
+      "blueprintTopic": "chronic azithromycin to prevent COPD exacerbations in a former smoker",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjp0005js8btla4xzr7",
+      "fieldId": "pance",
+      "contentHash": "8d94a25e3795036100d39a9e1d76654d83621c81fbb54e8cabedf4af4c7d4dcf",
+      "question": "Which of the following is the most appropriate next step?",
+      "blueprintTopic": "bilevel noninvasive ventilation for hypercapnic COPD exacerbation",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjt0006js8bnwr27yji",
+      "fieldId": "pance",
+      "contentHash": "4010f8954d6067514553c898a26ff69432a3ce21088dc48e27f2139afb7ae9c1",
+      "question": "Which of the following is the most appropriate next diagnostic step?",
+      "blueprintTopic": "CT pulmonary angiography without D-dimer when PE is likely",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjw0007js8bpe4xytbb",
+      "fieldId": "pance",
+      "contentHash": "336016bd5b090afad6f47593e3f7d11947d8f3dfac943923a8a81ad5e452351b",
+      "question": "Which of the following is the most appropriate recommendation?",
+      "blueprintTopic": "single-dose RSV vaccine for an adult aged 75 or older",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qjz0008js8b01qsz8u9",
+      "fieldId": "pance",
+      "contentHash": "d677bde2ef22dcdb09cf8df0b1d7b7b82d82803d5f351285a748f639140588b5",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "chronic salicylate toxicity in an older adult with mixed acid-base disorder",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qk30009js8bsczt5xa1",
+      "fieldId": "pance",
+      "contentHash": "eacb37be9eea92134de5931f0a081e6fb4c1c738297b751c50aa0e67a701cd42",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "emphysematous pyelonephritis in a patient with diabetes",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qk6000ajs8bhil4aj6k",
+      "fieldId": "pance",
+      "contentHash": "0ed2c970ca709601420e14f6dfd86e684b8afca21043268b2cb8444be863eba6",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "moxifloxacin after doxycycline for Mycoplasma genitalium urethritis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qk9000bjs8b0vjj4ezq",
+      "fieldId": "pance",
+      "contentHash": "7be2e4c8ae14f7b978fee334b125365780c48fee6016e6db2c15f891fa71ea9b",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "Budd-Chiari syndrome from hepatic vein thrombosis in polycythemia vera",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qkd000cjs8bohe59nr3",
+      "fieldId": "pance",
+      "contentHash": "1b837fd8409a9a691f445696e4ce4e4958865b6b45aef9623409aec22844bc26",
+      "question": "Which of the following is the most likely underlying diagnosis?",
+      "blueprintTopic": "Lynch syndrome suggested by MSH2/MSH6 loss in early-onset colon cancer",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qkg000djs8bk52qfi32",
+      "fieldId": "pance",
+      "contentHash": "74d6e83acdba6217b6e97f79b204b9afa98df69a574592754e4ff8f3a60bf358",
+      "question": "Which of the following is the most appropriate next pharmacotherapy?",
+      "blueprintTopic": "linaclotide for IBS with constipation after polyethylene glycol failure",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qkj000ejs8b0h4areuz",
+      "fieldId": "pance",
+      "contentHash": "cdccad114591fa1c0bac246efd25137a662c5498f00319a41e6e1538fdb51a09",
+      "question": "Which of the following is the most appropriate management at the time of this paracentesis?",
+      "blueprintTopic": "albumin 6 to 8 g per liter after large-volume paracentesis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qkn000fjs8bu5rat36f",
+      "fieldId": "pance",
+      "contentHash": "6a05f53ab3cffecfdeeb7dc54f56f884e0ef231054c67f84673032ee3e2a0d55",
+      "question": "Which of the following is the most appropriate next imaging study?",
+      "blueprintTopic": "upper GI series for bilious vomiting to exclude malrotation with midgut volvulus",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qkp000gjs8bc8zaozxz",
+      "fieldId": "pance",
+      "contentHash": "b9c4ab6a65d2dae0c5de8481741d91157185eb9c5cfb40c52d36e9759582814a",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "insulinoma diagnosed by endogenous hyperinsulinemic hypoglycemia",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qks000hjs8beixswcfm",
+      "fieldId": "pance",
+      "contentHash": "e5b2e9c7ad0c6a63e38acb1d90894eb4f965da16a771ef91ef4ba868503fedd9",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "familial hypocalciuric hypercalcemia shown by a low urinary calcium-to-creatinine clearance ratio",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qkv000ijs8b06jqh9rp",
+      "fieldId": "pance",
+      "contentHash": "d1fd8632c821536531f690158da4c384827f676453a3fe74c48bf5e5f5f59c37",
+      "question": "Examination of which of the following is most likely to reveal a finding of insulin resistance that supports screening?",
+      "blueprintTopic": "examining the neck and axillae for acanthosis nigricans in an adolescent with obesity",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09ql2000jjs8b2ma4na3q",
+      "fieldId": "pance",
+      "contentHash": "04ae8aa4231ed8ab36152d60ef935d37a1fb34b9b75c2b9c71bf519d6e615cb8",
+      "question": "Which of the following is the most appropriate plan?",
+      "blueprintTopic": "transition to a bisphosphonate when stopping denosumab",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09ql5000kjs8bkeu4tg9e",
+      "fieldId": "pance",
+      "contentHash": "1158582ba31a411aaffcd78435d12418ce1d5860d114eb4b543e915f0a46dc3e",
+      "question": "Which of the following is the most appropriate next step to evaluate for diabetes?",
+      "blueprintTopic": "using glucose criteria instead of HbA1c in sickle cell disease",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09ql9000ljs8bhl1wo4fc",
+      "fieldId": "pance",
+      "contentHash": "33609464ba4ba8c67c70bb6176bf92d2e96d02f4bce5984f798a0faec825f9f1",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "acute myeloid leukemia with Auer rods in an older adult",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qlc000mjs8bvwkb3z0n",
+      "fieldId": "pance",
+      "contentHash": "d485a61df62a7c5948ef8d07102f3f5e6990674748611bec0561d7c70b717a7b",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "scarlet fever from group A streptococcal pharyngitis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qlf000njs8b6sfrp3d4",
+      "fieldId": "pance",
+      "contentHash": "97d34a35b213ae0c0365a3699b7da5b2c6148ab088b466204d2f8cfc88af7213",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "granuloma inguinale (donovanosis) with a painless beefy-red ulcer",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qli000ojs8b5lu3qg5q",
+      "fieldId": "pance",
+      "contentHash": "9ad38804994024b4441f238312c06315a399690266b3cc052e14d77efe7cb079",
+      "question": "Which of the following is the most appropriate recommendation regarding meningococcal vaccination?",
+      "blueprintTopic": "MenACWY booster for a first-year college student vaccinated only before age 16",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qll000pjs8brdoj1uhe",
+      "fieldId": "pance",
+      "contentHash": "062752b3bc92d7a6c1eea8174dcc6aea9cf827d2df4d81b4ba84a52098b3c563",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "dermatitis herpetiformis with granular IgA deposits indicating celiac disease",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qlp000qjs8bp40bjj7u",
+      "fieldId": "pance",
+      "contentHash": "bae26dad45f6802535dde8ac73d92cef0b74a411cf8fa14c58d83e9b6adc0b10",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "anti-NMDA receptor encephalitis with an ovarian teratoma",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qls000rjs8bnwpkje7f",
+      "fieldId": "pance",
+      "contentHash": "a080056657ee01ccf5209975c2bba56b61c1c74fc88ad400f36d9e50fbf87052",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "AQP4-IgG-positive neuromyelitis optica spectrum disorder",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qlv000sjs8baztkxhxq",
+      "fieldId": "pance",
+      "contentHash": "add33f755de25b89e28e9c020ffb20047c0a36cfe4fc5f6fd6c0d2c09653f00f",
+      "question": "Which of the following is the most appropriate next imaging study?",
+      "blueprintTopic": "MRI for suspected osteonecrosis of the femoral head with normal radiographs",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qly000tjs8bpl1hvaok",
+      "fieldId": "pance",
+      "contentHash": "12197757b49fdf8dce0bae907305e80513b2c3a3212af55154c30e2ebfe8236f",
+      "question": "Which of the following is the most appropriate treatment?",
+      "blueprintTopic": "intra-articular glucocorticoid for knee osteoarthritis in an older adult with CKD on apixaban",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qm2000ujs8bjlw13ee2",
+      "fieldId": "pance",
+      "contentHash": "f2821d3f75e96fd1d3c13d9945ef730481ce8ea0b0ae179c0289124b522e86d5",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "HELLP syndrome in the third trimester",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qm5000vjs8bsqxb1k9o",
+      "fieldId": "pance",
+      "contentHash": "02ab04d5ff19ffbfa516b5b1100558fa8809f19d07eee7d617939ee27af06cd2",
+      "question": "Which of the following findings on pelvic examination is, by itself, sufficient to begin empiric treatment for pelvic inflammatory disease?",
+      "blueprintTopic": "minimum clinical criteria to start empiric PID treatment",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qm9000wjs8bqqzuyljw",
+      "fieldId": "pance",
+      "contentHash": "d32c7a0367fd869b45f98e454d0b234d3b09dfefc5018d0e44b247e6b80aac8e",
+      "question": "Which of the following is the most appropriate first-line pharmacologic treatment for infertility?",
+      "blueprintTopic": "letrozole as first-line ovulation induction in polycystic ovary syndrome",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmc000xjs8b307br92y",
+      "fieldId": "pance",
+      "contentHash": "eb8234f379648d9ab8df48034bbf613983ab167b2ba80ec655beaaf442b3c2b6",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "social anxiety disorder in a young adult",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmg000yjs8bkc1vyajd",
+      "fieldId": "pance",
+      "contentHash": "9bd6887eda1223ab9e0c08f4520ba93fcf8ba3b1d9c07425aefe99596d4b5a49",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "schizotypal personality disorder",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmk000zjs8b64ccnkvf",
+      "fieldId": "pance",
+      "contentHash": "e42725741d1ca78d7e7c2810bd1b0f62f2442ff1b6385a84077ddee76b2e06dd",
+      "question": "Which of the following sets of findings is most consistent with his presentation?",
+      "blueprintTopic": "physical findings of sympathomimetic (methamphetamine) intoxication",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmn0010js8bjmptzo20",
+      "fieldId": "pance",
+      "contentHash": "daf59762afb40779fbda80153dd9f0d98fe85cbb63fda31066aee1831625fefe",
+      "question": "Which of the following is the most appropriate initial pharmacotherapy?",
+      "blueprintTopic": "lorazepam for catatonia in schizophrenia",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmr0011js8bzgqfa76u",
+      "fieldId": "pance",
+      "contentHash": "6fb430d372831e643cefd90b0da288d230c0db9a768135226d8d944705d28b1c",
+      "question": "Which of the following is the most likely diagnosis?",
+      "blueprintTopic": "cystic lateral neck mass in an adult as metastatic HPV-associated oropharyngeal carcinoma",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmu0012js8b5144dfeq",
+      "fieldId": "pance",
+      "contentHash": "67868a3bfcde18af3421ae0e8e8e28c718fae0e83670e24000e04d0b35c278a2",
+      "question": "Which of the following findings most strongly argues against testing for group A streptococcal pharyngitis?",
+      "blueprintTopic": "viral features that argue against testing for group A streptococcal pharyngitis",
+      "source": "generated"
+    },
+    {
+      "id": "cmvn09qmx0013js8bdfxplu1e",
+      "fieldId": "pance",
+      "contentHash": "56250ca85435a387b87029fd5d0963521433a13ab0714a927899664907c85c48",
+      "question": "In addition to anticipatory guidance, which of the following is the most appropriate preventive intervention at this visit?",
+      "blueprintTopic": "fluoride varnish for primary teeth in a toddler",
+      "source": "generated"
+    }
+  ]
+}
