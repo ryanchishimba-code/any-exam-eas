@@ -1,0 +1,27 @@
+{
+  "count": 200,
+  "hard": 152,
+  "byArea": {
+    "dermatologic": 28,
+    "genitourinary": 23,
+    "renal": 23,
+    "cardiovascular": 16,
+    "pulmonary": 14,
+    "gastrointestinal": 12,
+    "musculoskeletal": 12,
+    "neurologic": 10,
+    "infectious-diseases": 10,
+    "endocrine": 10,
+    "eent": 10,
+    "hematologic": 8,
+    "reproductive": 8,
+    "psychiatry": 8,
+    "professional-practice": 8
+  },
+  "byDiff": {
+    "3": 48,
+    "4": 94,
+    "5": 58
+  },
+  "version": "pance-200-20261108-v1"
+}
