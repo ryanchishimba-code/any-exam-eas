@@ -33,6 +33,7 @@ loadtests/k6/reports/*
 
 # scratch output from local audits (figure previews, one-off reports)
 /tmp-*
+/tmp/
 
 *.pem
 
