@@ -1,0 +1,1109 @@
+[
+ {
+  "id": "cmqgw241l00011ytk4apqg38w",
+  "changes": {
+   "options.taskCategory": [
+    "intervention",
+    "pharmacotherapy"
+   ]
+  }
+ },
+ {
+  "id": "cmqgz4cbj003p1ybcx24qxtyc",
+  "changes": {
+   "blueprintTopic": [
+    "pleural effusion",
+    "PE"
+   ],
+   "options.blueprintTopic": [
+    "pleural effusion",
+    "PE"
+   ]
+  }
+ },
+ {
+  "id": "cmqgz1dfo00241ybcr2qym6pq",
+  "changes": {
+   "blueprintTopic": [
+    "pneumonia",
+    "PE"
+   ],
+   "options.taskCategory": [
+    "history-physical",
+    "intervention"
+   ],
+   "options.blueprintTopic": [
+    "pneumonia",
+    "PE"
+   ]
+  }
+ },
+ {
+  "id": "cmqgz018u001c1ybcdbar2z31",
+  "changes": {
+   "blueprintTopic": [
+    "pneumonia",
+    "pneumothorax"
+   ],
+   "options.taskCategory": [
+    "pharmacotherapy",
+    "intervention"
+   ],
+   "options.blueprintTopic": [
+    "pneumonia",
+    "pneumothorax"
+   ]
+  }
+ },
+ {
+  "id": "cmqgyyq5h00011ybcsid9x589",
+  "changes": {
+   "blueprintTopic": [
+    "PE",
+    "asthma"
+   ],
+   "options.taskCategory": [
+    "prevention",
+    "diagnosis"
+   ],
+   "options.blueprintTopic": [
+    "PE",
+    "asthma"
+   ]
+  }
+ },
+ {
+  "id": "cmqgz4bj8003l1ybco6itmim0",
+  "changes": {
+   "options.taskCategory": [
+    "intervention",
+    "labs"
+   ]
+  }
+ },
+ {
+  "id": "cmqgz7eov00381yqyaiakmxpo",
+  "changes": {
+   "blueprintTopic": [
+    "pneumonia",
+    "asthma"
+   ],
+   "options.taskCategory": [
+    "intervention",
+    "diagnosis"
+   ],
+   "options.blueprintTopic": [
+    "pneumonia",
+    "asthma"
+   ]
+  }
+ },
+ {
+  "id": "cmqgzadag007a1yqyf6awdb17",
+  "changes": {
+   "blueprintTopic": [
+    "COPD",
+    "lung cancer"
+   ],
+   "options.blueprintTopic": [
+    "COPD",
+    "lung cancer"
+   ]
+  }
+ },
+ {
+  "id": "cmr820hh0004p1y54fetlgicb",
+  "changes": {
+   "options.taskCategory": [
+    "intervention",
+    "labs"
+   ]
+  }
+ },
+ {
+  "id": "cmr82isu0004e1yfv25kzk8py",
+  "changes": {
+   "subjectId": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr83k0jf004g1yq553ehci2i",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr83u0mf00a21yq5y9ywa836",
+  "changes": {
+   "subjectId": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr836igf00631ykznqgr78ao",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "vaccinations-lifespan-cdc",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "vaccinations-lifespan-cdc",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr85vi3a00681yz6wc9syw1h",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "endocrine"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "endocrine"
+   ],
+   "blueprintTopic": [
+    "vaccinations-lifespan-cdc",
+    "thyroid-disorders"
+   ],
+   "options.blueprintTopic": [
+    "vaccinations-lifespan-cdc",
+    "thyroid-disorders"
+   ]
+  }
+ },
+ {
+  "id": "cmr85xfl000831yz60gat737c",
+  "changes": {
+   "blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr85zm5g00901yz6uzqff3c2",
+  "changes": {
+   "subjectId": [
+    "neurology",
+    "gastrointestinal"
+   ],
+   "topicCategory": [
+    "neurology",
+    "gastrointestinal"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "diagnose"
+   ],
+   "blueprintTopic": [
+    "stroke-tia",
+    "hepatitis-liver-disease"
+   ],
+   "options.blueprintTopic": [
+    "stroke-tia",
+    "hepatitis-liver-disease"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "diagnose"
+   ]
+  }
+ },
+ {
+  "id": "cmr85hvmy009s1y9iodll0e2o",
+  "changes": {
+   "subjectId": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr84df1s009p1yzb0zvhpdoz",
+  "changes": {
+   "subjectId": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr84vv84007w1y5tsgnjl2b1",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "diagnose"
+   ],
+   "blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "diagnose"
+   ]
+  }
+ },
+ {
+  "id": "cmr85p5lq003d1yz6p4dd7gy3",
+  "changes": {
+   "subjectId": [
+    "cardiovascular",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "cardiovascular",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "hypertension-jnc-acc",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "hypertension-jnc-acc",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr856npe002c1y9ir9n8z5ab",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "sexually-transmitted-infections",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "sexually-transmitted-infections",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr85e5gm007z1y9iec6it7bm",
+  "changes": {
+   "blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr85s1b4004c1yz6szsfoauv",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "well-child-developmental-milestones",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmtwf3z2r000h1yfsmbdjpppk",
+  "changes": {
+   "subjectId": [
+    "geriatrics",
+    "gastrointestinal"
+   ],
+   "topicCategory": [
+    "geriatrics",
+    "gastrointestinal"
+   ],
+   "blueprintTopic": [
+    "falls-frailty-polypharmacy",
+    "hepatitis-liver-disease"
+   ],
+   "options.blueprintTopic": [
+    "falls-frailty-polypharmacy",
+    "hepatitis-liver-disease"
+   ]
+  }
+ },
+ {
+  "id": "cmr83i2be002h1yq5y6j2cb12",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "diagnose"
+   ],
+   "blueprintTopic": [
+    "sexually-transmitted-infections",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "sexually-transmitted-infections",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "diagnose"
+   ]
+  }
+ },
+ {
+  "id": "cmr847p7600601yzbtcmyq07m",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "vaccinations-lifespan-cdc",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "vaccinations-lifespan-cdc",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr84ony3002d1y5tdi57djvx",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "sexually-transmitted-infections",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "sexually-transmitted-infections",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr861n43009w1yz6dd9o52lr",
+  "changes": {
+   "subjectId": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "endocrine",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "diabetes-ada-guidelines",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr84mu9x001e1y5t1gkqbiaq",
+  "changes": {
+   "subjectId": [
+    "psychiatry-behavioral",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "psychiatry-behavioral",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "diagnose"
+   ],
+   "blueprintTopic": [
+    "depression-anxiety-disorders",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "depression-anxiety-disorders",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "diagnose"
+   ]
+  }
+ },
+ {
+  "id": "cmr849gof007q1yzbqx298law",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "evaluate"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "evaluate"
+   ]
+  }
+ },
+ {
+  "id": "cmr8551fi00261y9iu5xcd35t",
+  "changes": {
+   "subjectId": [
+    "cardiovascular",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "cardiovascular",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "dyslipidemia-statin-therapy",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "dyslipidemia-statin-therapy",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr85xew7007w1yz61kvy4rt3",
+  "changes": {
+   "subjectId": [
+    "gastrointestinal",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "gastrointestinal",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "hepatitis-liver-disease",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "hepatitis-liver-disease",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmqgtlq5500111ynyt9ch9on2",
+  "changes": {
+   "subjectId": [
+    "geriatrics",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "geriatrics",
+    "pediatrics"
+   ],
+   "blueprintDomain": [
+    "diagnose",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "delirium",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "delirium",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmqgv37lh000r1ycb252a7rrp",
+  "changes": {
+   "subjectId": [
+    "psychiatry-behavioral",
+    "gastrointestinal"
+   ],
+   "topicCategory": [
+    "psychiatry-behavioral",
+    "gastrointestinal"
+   ],
+   "blueprintTopic": [
+    "SSRI monitoring",
+    "constipation-diarrhea-hemorrhoids"
+   ],
+   "options.blueprintTopic": [
+    "SSRI monitoring",
+    "constipation-diarrhea-hemorrhoids"
+   ]
+  }
+ },
+ {
+  "id": "cmr84dhdd00ab1yzbpudlukbx",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "gastrointestinal"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "gastrointestinal"
+   ],
+   "blueprintDomain": [
+    "diagnose",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "common-infections-uri-uti-cellulitis",
+    "constipation-diarrhea-hemorrhoids"
+   ],
+   "patientAgeGroup": [
+    "infant",
+    "toddler"
+   ],
+   "options.blueprintTopic": [
+    "common-infections-uri-uti-cellulitis",
+    "constipation-diarrhea-hemorrhoids"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr861ph500ak1yz6p2egyg99",
+  "changes": {
+   "subjectId": [
+    "infectious-disease",
+    "gastrointestinal"
+   ],
+   "topicCategory": [
+    "infectious-disease",
+    "gastrointestinal"
+   ],
+   "blueprintDomain": [
+    "diagnose",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "common-infections-uri-uti-cellulitis",
+    "constipation-diarrhea-hemorrhoids"
+   ],
+   "patientAgeGroup": [
+    "infant",
+    "toddler"
+   ],
+   "options.blueprintTopic": [
+    "common-infections-uri-uti-cellulitis",
+    "constipation-diarrhea-hemorrhoids"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmqgu3l8900181y4r1sjp3gsq",
+  "changes": {
+   "subjectId": [
+    "pediatrics",
+    "infectious-disease"
+   ],
+   "topicCategory": [
+    "pediatrics",
+    "infectious-disease"
+   ],
+   "blueprintDomain": [
+    "diagnose",
+    "assess"
+   ],
+   "blueprintTopic": [
+    "febrile infant",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "options.blueprintTopic": [
+    "febrile infant",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "assess"
+   ]
+  }
+ },
+ {
+  "id": "cmr830zzc00301ykzcrbyxbo2",
+  "changes": {
+   "blueprintDomain": [
+    "diagnose",
+    "plan"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr84bid7008j1yzbrj8mcgyl",
+  "changes": {
+   "subjectId": [
+    "geriatrics",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "geriatrics",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "geriatric-delirium-dementia",
+    "common-pediatric-illnesses"
+   ],
+   "patientAgeGroup": [
+    "toddler",
+    "child"
+   ],
+   "options.blueprintTopic": [
+    "geriatric-delirium-dementia",
+    "common-pediatric-illnesses"
+   ]
+  }
+ },
+ {
+  "id": "cmr85ttg7005d1yz6ur3gwafi",
+  "changes": {
+   "subjectId": [
+    "neurology",
+    "infectious-disease"
+   ],
+   "topicCategory": [
+    "neurology",
+    "infectious-disease"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "parkinsons-disease",
+    "sexually-transmitted-infections"
+   ],
+   "options.blueprintTopic": [
+    "parkinsons-disease",
+    "sexually-transmitted-infections"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmtwezhb5002b1y2n1libe9s5",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "patientAgeGroup": [
+    "infant",
+    "newborn"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmtweyx3w002a1y2n5zxwyu4t",
+  "changes": {
+   "subjectId": [
+    "endocrine",
+    "infectious-disease"
+   ],
+   "topicCategory": [
+    "endocrine",
+    "infectious-disease"
+   ],
+   "blueprintTopic": [
+    "osteoporosis-metabolic-bone",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "patientAgeGroup": [
+    "young-adult",
+    "newborn"
+   ],
+   "options.blueprintTopic": [
+    "osteoporosis-metabolic-bone",
+    "common-infections-uri-uti-cellulitis"
+   ]
+  }
+ },
+ {
+  "id": "cmqgtwym5002u1yfjkpvjf1av",
+  "changes": {
+   "subjectId": [
+    "psychiatry-behavioral",
+    "infectious-disease"
+   ],
+   "topicCategory": [
+    "psychiatry-behavioral",
+    "infectious-disease"
+   ],
+   "blueprintDomain": [
+    "diagnose",
+    "assess"
+   ],
+   "blueprintTopic": [
+    "suicide risk",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "options.blueprintTopic": [
+    "suicide risk",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "assess"
+   ]
+  }
+ },
+ {
+  "id": "cmqgwasng000w1yk0laky7wk0",
+  "changes": {
+   "subjectId": [
+    "pediatrics",
+    "infectious-disease"
+   ],
+   "topicCategory": [
+    "pediatrics",
+    "infectious-disease"
+   ],
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "febrile infant",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "patientAgeGroup": [
+    "newborn",
+    "infant"
+   ],
+   "options.blueprintTopic": [
+    "febrile infant",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmqgun92v00081y0uljgizpsd",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "ADHD",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintTopic": [
+    "ADHD",
+    "common-pediatric-illnesses"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr832vgg003n1ykzn54kw9z3",
+  "changes": {
+   "patientAgeGroup": [
+    "child",
+    "toddler"
+   ]
+  }
+ },
+ {
+  "id": "cmr83u2bq00ao1yq5j21vcvpr",
+  "changes": {
+   "blueprintDomain": [
+    "assess",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "antibiotic-selection-stewardship",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "patientAgeGroup": [
+    "newborn",
+    "infant"
+   ],
+   "options.blueprintTopic": [
+    "antibiotic-selection-stewardship",
+    "common-infections-uri-uti-cellulitis"
+   ],
+   "options.blueprintSystem": [
+    "assess",
+    "plan"
+   ]
+  }
+ },
+ {
+  "id": "cmr85168o00ar1y5tidkufo4p",
+  "changes": {
+   "subjectId": [
+    "cardiovascular",
+    "pediatrics"
+   ],
+   "topicCategory": [
+    "cardiovascular",
+    "pediatrics"
+   ],
+   "blueprintTopic": [
+    "valvular-disease-murmurs",
+    "well-child-developmental-milestones"
+   ],
+   "options.blueprintTopic": [
+    "valvular-disease-murmurs",
+    "well-child-developmental-milestones"
+   ]
+  }
+ },
+ {
+  "id": "cmtwfflra008r1ysoyje8xlir",
+  "changes": {
+   "subjectId": [
+    "geriatrics",
+    "dermatology-ent"
+   ],
+   "topicCategory": [
+    "geriatrics",
+    "dermatology-ent"
+   ],
+   "blueprintDomain": [
+    "plan",
+    "assess"
+   ],
+   "blueprintTopic": [
+    "geriatric-delirium-dementia",
+    "conjunctivitis-glaucoma-macular"
+   ],
+   "patientAgeGroup": [
+    "child",
+    "adolescent"
+   ],
+   "options.blueprintTopic": [
+    "geriatric-delirium-dementia",
+    "conjunctivitis-glaucoma-macular"
+   ],
+   "options.blueprintSystem": [
+    "plan",
+    "assess"
+   ]
+  }
+ },
+ {
+  "id": "cmtwfhwpx002e1y1ozizvjh97",
+  "changes": {
+   "blueprintDomain": [
+    "plan",
+    "diagnose"
+   ],
+   "options.blueprintSystem": [
+    "plan",
+    "diagnose"
+   ]
+  }
+ },
+ {
+  "id": "cmr83pewf007u1yq5h4e9aw78",
+  "changes": {
+   "blueprintDomain": [
+    "diagnose",
+    "plan"
+   ],
+   "blueprintTopic": [
+    "copd-gold-inhalers",
+    "pneumonia-cap-hap"
+   ],
+   "patientAgeGroup": [
+    "infant",
+    "toddler"
+   ],
+   "options.blueprintTopic": [
+    "copd-gold-inhalers",
+    "pneumonia-cap-hap"
+   ],
+   "options.blueprintSystem": [
+    "diagnose",
+    "plan"
+   ]
+  }
+ }
+]
