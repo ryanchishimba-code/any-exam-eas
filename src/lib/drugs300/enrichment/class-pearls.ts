@@ -25,7 +25,7 @@ const GLP1_SHARED: Partial<DrugEnrichment> = {
     "Titrate slowly over weeks to limit nausea; counsel on injection technique and rotation.",
     "Contraindicated with personal/family history of MEN2 or medullary thyroid carcinoma.",
     "Hold or discuss perioperatively when delayed gastric emptying is a concern (ileus/gastroparesis).",
-    "ADA: prefer GLP-1 RA or SGLT2i with proven CV/renal benefit when ASCVD, HF, or CKD comorbidity.",
+    "ADA 2026: with ASCVD, HF, or CKD, use a GLP-1 RA with proven benefit with or without metformin, independent of A1C.",
   ],
   guidelines: [ADA_STANDARDS, FDA_LABELING],
   counseling:
@@ -56,7 +56,7 @@ const CLASS_RULES: ClassRule[] = [
     merge: {
       mechanism: "Inhibits SGLT2 in proximal tubule → glucosuria, osmotic diuresis, modest weight loss.",
       pearls: [
-        "ADA: first-line add-on for T2DM with ASCVD, HF, or CKD (empagliflozin, dapagliflozin evidence).",
+        "ADA 2026: with ASCVD, HF, or CKD, use an SGLT2i with proven benefit with or without metformin, independent of A1C.",
         "Counsel on genital mycotic infections and volume depletion; hold before major surgery.",
         "Euglycemic DKA risk — especially if insulin withheld or during illness.",
       ],
@@ -70,7 +70,7 @@ const CLASS_RULES: ClassRule[] = [
     merge: {
       mechanism: "Activates AMPK → ↓ hepatic gluconeogenesis; improves peripheral insulin sensitivity.",
       pearls: [
-        "First-line T2DM per ADA unless contraindicated; hold if eGFR <30; caution eGFR 30–45.",
+        "ADA 2026: metformin is a common first agent when ASCVD, HF, and CKD are absent. With those comorbidities, use a GLP-1 RA or SGLT2i with proven benefit with or without metformin. Do not use if eGFR <30; do not start if eGFR 30–45.",
         "Hold before iodinated contrast if AKI risk; resume when renal function stable.",
         "B12 deficiency with long-term use — periodic monitoring.",
       ],
@@ -94,7 +94,8 @@ const CLASS_RULES: ClassRule[] = [
     match: (d) => /ace inhibitor|arb\b/i.test(d.therapeuticClass),
     merge: {
       pearls: [
-        "First-line HTN/HFrEF per ACC/AHA; ACE-I cough → switch to ARB.",
+        "2025 AHA/ACC HTN: ACE-I or ARB is first-line with a thiazide or DHP CCB. Start medication at ≥130/80 mm Hg with CVD, diabetes, CKD, or PREVENT 10-year risk ≥7.5%. ACE-I cough → ARB.",
+        "HFrEF (2022 AHA/ACC/HFSA): four pillars are ARNI (preferred over ACE-I/ARB), an evidence-based beta blocker, an MRA, and an SGLT2i.",
         "Contraindicated in pregnancy; monitor K+ and creatinine after initiation.",
         "Never combine ACE-I + ARB (hyperkalemia/AKI risk).",
       ],
@@ -119,7 +120,7 @@ const CLASS_RULES: ClassRule[] = [
     match: (d) => /factor x|doac|direct oral anticoag/i.test(d.therapeuticClass) || /apixaban|rivaroxaban|edoxaban|dabigatran/i.test(d.generic),
     merge: {
       pearls: [
-        "DOACs preferred over warfarin for non-valvular AF in eligible patients (ACC/AHA).",
+        "2023 ACC/AHA AF guideline: prefer a DOAC over warfarin unless there is a mechanical valve or moderate-to-severe mitral stenosis.",
         "Renal dose adjustment required; avoid with mechanical heart valves.",
         "Bleeding reversal agents differ by agent (andexanet, idarucizumab, PCC).",
       ],
