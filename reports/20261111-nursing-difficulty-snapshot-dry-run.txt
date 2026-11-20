@@ -1,0 +1,5 @@
+DRY RUN
+backup: qbi_nursing_difficulty_20261111_backup
+nursing difficulty rows to snapshot: 1
+QuestionBankItem is not updated.
+Would commit 1 rows, then roll back.

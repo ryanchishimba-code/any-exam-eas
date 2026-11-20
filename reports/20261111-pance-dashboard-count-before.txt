@@ -1,0 +1,7 @@
+pance active+qaPassed: 2760
+pance served gate (active, qaPassed, STUDENT_ELIGIBLE_SQL): 2760
+dashboard study-progress Questions target uses countActiveQuestions('pance'), which is that served gate: 2760
+dashboard practice-goal servedCount uses the same predicate via loadPracticeBankStats: 2760
+stored ActiveInventoryCount for pance (question-bank header snapshot, not the study-progress target): 2760 refreshed 2026-11-11T05:00:41.173Z
+equal: study-progress target 2760 vs served gate 2760 vs practice-goal 2760
+The live dashboard page requires sign-in. This script did not open it.

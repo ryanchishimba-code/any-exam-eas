@@ -1,0 +1,20 @@
+APPLY
+backup: qbi_within_board_dups_20261111_backup
+KEEP fnp-dup-1 cmqgdi1id001p1yr82oul54ej
+HIDE fnp-dup-1 cmqgryvia000i1yi4gp12cm1f
+WHY Same hypothyroidism stem, options, key, and rationale. The hidden copy adds a vital-sign table (blood pressure and heart rate) that is not in the vignette.
+KEEP fnp-dup-2 cmqgttvhj001k1yfjjya9rgzh
+HIDE fnp-dup-2 cmqgsn5kg001k1ydhc10e0e8w
+WHY Same ADHD stem, options, key, and rationale. The kept copy is filed under pediatrics. The hidden copy is filed under geriatrics with a Beers Criteria topic.
+KEEP fnp-dup-3 cmqgnpuny001r1ywqdtfbej6n
+HIDE fnp-dup-3 cmr1dfaxu00021yuulg0ftaod cmr1dfc0b000d1yuugd32bgph cmr1dfdkm000s1yuuquvvkitz cmr1dfdye000w1yuuwgsgsvd9 cmr1dfe8s000z1yuu1nbb5y0j
+WHY Same STEMI stem, key, and rationale. The kept copy is cardiovascular / ACS. The hidden copies are the same item filed under pulmonary, pediatrics, women's health, infectious disease, and endocrine.
+KEEP nclex-dup-1 cmr1d6mdo00091ydf0iphrjx8
+HIDE nclex-dup-1 cmr1d6lic00031ydfwu8mnzu2 cmr1d6m7k00081ydf0ewprz33 cmr1d6mvu000c1ydfnt12fsz3
+WHY Same charge-nurse lead-in. The kept copy has the structured why-correct and why-each-option rationale. The hidden copies are shorter, and one has a failed rationale enrichment.
+KEEP usmle-step-cross-1 cmrrvnlrj007r1yl8d989w5lr
+HIDE usmle-step-cross-1 cmr9861n300dy1ywym0a4x5q9
+WHY Same preeclampsia stem and key on Step 2 and Step 3. The kept Step 2 copy has the full distractor rationale. The hidden Step 3 copy is shorter and tagged as biostatistics.
+rows to hide: 11
+Hid 11 rows. Undo file: scripts/data/20261111/within-board-dups-undo.json
+Undo: npx tsx scripts/undo-within-board-duplicates-20261111.ts --apply

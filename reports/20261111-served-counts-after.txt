@@ -1,0 +1,9 @@
+nursing	4244
+usmle-step-1	2557
+usmle-step-2	2345
+usmle-step-3	4643
+pharmacy	4411
+pance	2759
+aanp-fnp	5129
+npte-pt	1748
+total	27836

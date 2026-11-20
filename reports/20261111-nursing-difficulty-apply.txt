@@ -1,0 +1,3 @@
+nursing: 798 items with attempts, 1 difficulty changes proposed.
+cmr1d6l4h00001ydfkr6pb1j0  3 -> 5  (2/22)
+Applied 1 updates. Undo file: scripts/data/20261111/nursing-difficulty-undo.json

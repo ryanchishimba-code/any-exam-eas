@@ -1,0 +1,10 @@
+DRY RUN
+backup: qbi_pance_content_20261111_backup
+JOKE 89a3ce02-18c0-498b-b3c4-3d4eb5d86ba2
+  replace option: Another dose of ibuprofen
+  with: Repeat insulin with dextrose and recheck the potassium in 4 hours
+  cite: https://kdigo.org/wp-content/uploads/2019/01/KDIGO-2012-AKI-Guideline-English.pdf
+HIDE cmvxd2zua0000l308gmnj7fwd
+WHY same acute HFrEF congestion vignette. The kept item keys intravenous furosemide and explains each distractor. The hidden item keys spironolactone, which does not relieve this acute overload, and its rationale is shorter.
+KEEP cmqgdhw0r00051yr8ap2l03oh
+No table created and no row updated.

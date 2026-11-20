@@ -1,0 +1,6 @@
+DRY RUN
+field: nursing
+backup: qbi_nursing_topic_ids_20261111_backup
+topic-id rows to snapshot: 0
+QuestionBankItem is not updated.
+No rows would change. Backup table not created.
