@@ -1,0 +1,16 @@
+{
+  "generationVersion": "usmle-step1-300-20261108-v1",
+  "fieldId": "usmle-step-1",
+  "count": 300,
+  "difficulty": { "4": 190, "5": 110 },
+  "domains": {
+    "behavioral-nervous": 68,
+    "reproductive-endocrine": 71,
+    "multisystem": 62,
+    "msk-skin": 53,
+    "social-sciences": 28,
+    "human-development": 18
+  },
+  "blindRead": { "answered": 300, "matched": 300, "ambiguous": 0 },
+  "inserted": false
+}
