@@ -1,0 +1,24 @@
+{
+  "id": "b12-s2-01",
+  "fieldId": "usmle-step-2",
+  "stepLevel": "step2",
+  "outlineSystem": "cardiovascular",
+  "outlineWeight": 9,
+  "blueprintTopic": "acs-management",
+  "blueprintDomain": "cardiovascular",
+  "difficulty": 3,
+  "subjectId": "cardiology",
+  "examTakeaway": "When pain began under 12 hours ago and a catheter cannot open the artery within 120 minutes, give a fibrin-specific fibrinolytic and transfer immediately, unless a contraindication is present.",
+  "scenario": "A 54-year-old patient has had pressure-like chest pain and sweating for 40 minutes. Pulse is 96/min, blood pressure is 142/86 mm Hg, and the lungs are clear. The electrocardiogram shows 2 mm of ST-segment elevation in leads II, III, and aVF, plus 1 mm of ST-segment elevation in right-sided lead V4R. This hospital has no catheterization laboratory. The nearest laboratory can open the artery about 150 minutes after first medical contact. He has never bled into the brain, never had a stroke, and takes no anticoagulant.",
+  "question": "Which reperfusion plan fits a 150-minute device time and this tracing?",
+  "options": [
+    "Give a fibrin-specific fibrinolytic now and transfer immediately",
+    "Transfer and withhold a fibrinolytic because 150 minutes is an acceptable device time",
+    "Give nitroglycerin until the pain stops, then decide about reperfusion",
+    "Observe for 6 hours because inferior ST elevation can wait for a troponin",
+    "Wait until 12 hours after onset before any reperfusion drug"
+  ],
+  "correctAnswer": "Give a fibrin-specific fibrinolytic now and transfer immediately",
+  "explanation": "When pain began under 12 hours ago and a catheter cannot open the artery within 120 minutes, give a fibrin-specific fibrinolytic and transfer immediately, unless a contraindication is present. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Give a fibrin-specific fibrinolytic now and transfer immediately. Onset is under 12 hours, 150 minutes exceeds the 120-minute transfer limit, and no absolute contraindication is present. The 2025 ACS guideline recommends fibrinolysis in that setting, then immediate transfer. Right-sided ST elevation is a reason to avoid a nitrate, not a reason to skip reperfusion. Transfer and withhold a fibrinolytic because 150 minutes is an acceptable device time. A 150-minute delay is longer than 120 minutes. Transfer without a fibrinolytic leaves the artery closed while a drug is indicated. Give nitroglycerin until the pain stops, then decide about reperfusion. ST elevation in V4R means right-ventricular infarction is suspected. The same guideline says to avoid nitroglycerin in that setting. Observe for 6 hours because inferior ST elevation can wait for a troponin. Inferior ST elevation with ongoing pain is an acute occlusion pattern. A troponin is not required before reperfusion. Wait until 12 hours after onset before any reperfusion drug. He is already inside the window. Waiting until the window closes removes the option the guideline is using.",
+  "citation": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes."
+}

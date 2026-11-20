@@ -1,0 +1,24 @@
+{
+  "id": "b12-s2-40",
+  "fieldId": "usmle-step-2",
+  "stepLevel": "step2",
+  "outlineSystem": "reproductive-endocrine",
+  "outlineWeight": 10,
+  "blueprintTopic": "preeclampsia-eclampsia",
+  "blueprintDomain": "reproductive-endocrine",
+  "difficulty": 3,
+  "subjectId": "obstetrics",
+  "examTakeaway": "At or after 34 weeks, severe-range pressure or platelets below 100,000 are delivered after the mother is stabilized. Steroids do not delay that delivery, and magnesium is used to prevent seizures.",
+  "scenario": "A 27-year-old patient is at 35 weeks and 0 days. Blood pressure is 170/112 mm Hg and remains 166/110 mm Hg 20 minutes later. Platelets are 90,000 per microliter. She is alert, the lungs are clear, and the fetal tracing is reassuring. A colleague wants to wait 48 hours so a steroid course for the fetus can finish before any delivery.",
+  "question": "What is done with delivery and with seizure prevention?",
+  "options": [
+    "Delay delivery for 48 hours so the steroid course can be completed",
+    "Discharge on oral labetalol and recheck in a week",
+    "Magnesium only, with delivery postponed until 37 weeks",
+    "Platelet transfusion as the only therapy, because the pressure can wait",
+    "Stabilize her, start magnesium, and deliver without waiting for steroids to finish"
+  ],
+  "correctAnswer": "Stabilize her, start magnesium, and deliver without waiting for steroids to finish",
+  "explanation": "At or after 34 weeks, severe-range pressure or platelets below 100,000 are delivered after the mother is stabilized. Steroids do not delay that delivery, and magnesium is used to prevent seizures. ACOG Practice Bulletin No. 222, Gestational Hypertension and Preeclampsia, 2020, the current ACOG bulletin on this topic. Stabilize her, start magnesium, and deliver without waiting for steroids to finish. She is past 34 0/7 weeks with severe-range pressure and platelets below 100,000. ACOG recommends delivery after stabilization and says not to delay for steroids in the late preterm period. Magnesium is for seizure prevention. Delay delivery for 48 hours so the steroid course can be completed. The bulletin specifically says delivery is not delayed for steroids once severe features are present at or after 34 weeks. Discharge on oral labetalol and recheck in a week. Severe-range pressure and thrombocytopenia are not an outpatient plan. Magnesium only, with delivery postponed until 37 weeks. Magnesium is indicated, but expectant care until 37 weeks is not the plan at 35 weeks with severe features. Platelet transfusion as the only therapy, because the pressure can wait. Transfusion alone does not replace stabilization, magnesium, and delivery.",
+  "citation": "ACOG Practice Bulletin No. 222, Gestational Hypertension and Preeclampsia, 2020, the current ACOG bulletin on this topic."
+}
