@@ -1,0 +1,222 @@
+[
+  {
+    "id": "b1-s1-61",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "immunology",
+    "examTakeaway": "Fever, urticaria, and joint pain 10 days after a drug are immune complexes, type III hypersensitivity.",
+    "scenario": "A 40-year-old woman develops fever, urticaria, and painful knees 10 days after starting a new antibiotic. Complement is low. The urine shows a little protein. She had no reaction in the first hour after the first dose.",
+    "question": "Which immune mechanism is this?",
+    "options": [
+      "IgE on mast cells",
+      "Cytotoxic antibody against red cells",
+      "Delayed T-cell response in the skin",
+      "Antibody against a hormone receptor",
+      "Immune-complex deposition"
+    ],
+    "correctAnswer": "Immune-complex deposition",
+    "explanation": "Fever, urticaria, and joint pain 10 days after a drug are immune complexes, type III hypersensitivity. Immune-complex deposition fixes complement and inflames joints, skin, and glomeruli days after antigen exposure. IgE on mast cells causes a reaction within minutes of re-exposure. Cytotoxic antibody against red cells is type II hemolysis. Delayed T-cell response in the skin is contact dermatitis at 48 hours, not fever and hypocomplementemia. Antibody against a hormone receptor is a type II disease such as Graves or myasthenia, not this serum-sickness timing.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-62",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "immunology",
+    "examTakeaway": "Rash, diarrhea, and liver injury weeks after an allogeneic transplant are donor T cells attacking host tissues.",
+    "scenario": "A 46-year-old man is day 28 after an allogeneic bone-marrow transplant. He has a maculopapular rash on the palms, watery diarrhea, and a rising bilirubin. He had been well on day 10. The graft had been only partly matched.",
+    "question": "Which cells are injuring him?",
+    "options": [
+      "Donor T cells",
+      "Host T cells rejecting the graft",
+      "Donor B cells making isohemagglutinins",
+      "Host neutrophils in a transfusion reaction",
+      "Donor plasma cells making a paraprotein"
+    ],
+    "correctAnswer": "Donor T cells",
+    "explanation": "Rash, diarrhea, and liver injury weeks after an allogeneic transplant are donor T cells attacking host tissues. Donor T cells recognize host minor antigens and cause acute graft-versus-host disease in skin, gut, and liver. Host T cells rejecting the graft would destroy the marrow and drop the counts, which is graft failure, not this triad. Donor B cells making isohemagglutinins cause hemolysis, not palm rash and diarrhea. Host neutrophils in a transfusion reaction are an immediate event. Donor plasma cells making a paraprotein are a late plasma-cell neoplasm, not day-28 enteritis.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-63",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "immunology",
+    "examTakeaway": "Recurrent swelling without urticaria, often after dental work, is C1-inhibitor deficiency.",
+    "scenario": "A 24-year-old woman has had episodes of painless swelling of the hand and, once, of the tongue, lasting two days. There is no urticaria. One episode followed a dental extraction. Her father had the same swelling. C4 is low between attacks.",
+    "question": "Which protein is deficient or not working?",
+    "options": [
+      "IgE",
+      "C1q of the classical pathway only, with a normal inhibitor",
+      "C1 inhibitor",
+      "C3",
+      "C5"
+    ],
+    "correctAnswer": "C1 inhibitor",
+    "explanation": "Recurrent swelling without urticaria, often after dental work, is C1-inhibitor deficiency. C1 inhibitor normally brakes the classical pathway and kallikrein; without it bradykinin swells tissues and C4 is consumed. C3 deficiency causes severe pyogenic infection, not angioedema. C5 deficiency predisposes to Neisseria. IgE mediates urticaria and anaphylaxis, which she does not have. C1q of the classical pathway only, with a normal inhibitor, is an early-complement deficiency with lupus-like disease, not bradykinin swelling.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-64",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "microbiology",
+    "examTakeaway": "A sandpaper rash after pharyngitis is a streptococcal pyrogenic exotoxin acting as a superantigen.",
+    "scenario": "An 8-year-old boy has a sore throat and fever of 39 C. A fine red rash is darker in the skin folds and blanches. The tongue is red with prominent papillae. There is no gray membrane, no lockjaw, and no descending weakness. Blood pressure is 100/60 mm Hg.",
+    "question": "Which bacterial product caused the rash?",
+    "options": [
+      "Lipid A",
+      "Tetanus toxin",
+      "Botulinum toxin",
+      "Diphtheria toxin",
+      "Pyrogenic exotoxin"
+    ],
+    "correctAnswer": "Pyrogenic exotoxin",
+    "explanation": "A sandpaper rash after pharyngitis is a streptococcal pyrogenic exotoxin acting as a superantigen. Pyrogenic exotoxin from Streptococcus pyogenes activates many T cells and produces scarlet fever. Lipid A is the toxic moiety of gram-negative endotoxin and causes shock without this rash. Tetanus toxin blocks inhibitory neurons and causes lockjaw. Botulinum toxin blocks acetylcholine release. Diphtheria toxin inhibits elongation factor 2 and makes a pharyngeal membrane, not a sandpaper rash.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-65",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "microbiology",
+    "examTakeaway": "Shock, a sunburn rash, and desquamation in a young person using tampons is a staphylococcal superantigen.",
+    "scenario": "A 19-year-old woman has vomiting, watery diarrhea, and a blood pressure of 78/46 mm Hg. A diffuse sunburn-like rash covers the trunk. She is menstruating and has left a tampon in place for two days. Creatinine is rising. Blood cultures are negative.",
+    "question": "Which immune effect does the toxin have?",
+    "options": [
+      "It links MHC II to a T-cell receptor V-beta chain outside the antigen groove",
+      "It ADP-ribosylates elongation factor 2",
+      "It blocks glycine release in the spinal cord",
+      "It increases cAMP in enterocytes only",
+      "It forms pores in red-cell membranes"
+    ],
+    "correctAnswer": "It links MHC II to a T-cell receptor V-beta chain outside the antigen groove",
+    "explanation": "Shock, a sunburn rash, and desquamation in a young person using tampons is a staphylococcal superantigen. It links MHC II to a T-cell receptor V-beta chain outside the antigen groove, dumping cytokines and causing toxic shock even when blood cultures are negative. It ADP-ribosylates elongation factor 2 is diphtheria toxin. It blocks glycine release in the spinal cord is tetanus. It increases cAMP in enterocytes only is cholera or heat-labile E. coli toxin, causing watery diarrhea without shock and a sunburn rash. It forms pores in red-cell membranes is a hemolysin, not this superantigen syndrome.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-66",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "Fever and chills during a transfusion, with a stable blood pressure and no hemoglobinuria, are cytokines from donor leukocytes.",
+    "scenario": "A 60-year-old man develops a fever of 38.6 C and rigors 30 minutes into a unit of red cells. Blood pressure stays 128/76 mm Hg. Plasma is not pink. Direct antiglobulin test is unchanged. He has been transfused many times before.",
+    "question": "Which mechanism caused the fever?",
+    "options": [
+      "Donor anti-leukocyte antibodies injuring his lungs",
+      "Bacterial contamination with shock",
+      "IgA deficiency anaphylaxis",
+      "Cytokines from leukocytes in the unit",
+      "ABO incompatibility"
+    ],
+    "correctAnswer": "Cytokines from leukocytes in the unit",
+    "explanation": "Fever and chills during a transfusion, with a stable blood pressure and no hemoglobinuria, are cytokines from donor leukocytes. Cytokines from leukocytes in the unit cause a febrile nonhemolytic reaction, more common after many prior transfusions. ABO incompatibility causes fever plus hypotension, back pain, and pink plasma. Donor anti-leukocyte antibodies injuring his lungs cause transfusion-related acute lung injury, with hypoxemia and bilateral infiltrates. Bacterial contamination with shock drops the blood pressure. IgA deficiency anaphylaxis causes bronchospasm and hypotension in an IgA-deficient recipient.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-67",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "hematology",
+    "examTakeaway": "Acute hypoxemia and bilateral infiltrates during a transfusion, with a normal heart size, are donor antibodies against recipient neutrophils.",
+    "scenario": "A 55-year-old woman becomes short of breath 20 minutes into a platelet transfusion. Oxygen saturation is 84% on room air. Blood pressure is 130/80 mm Hg. The chest film shows bilateral infiltrates and a normal heart size. There is no pink plasma.",
+    "question": "Which donor product injured her lungs?",
+    "options": [
+      "Excess citrate binding her calcium",
+      "Antibodies against her leukocytes",
+      "Anti-A isohemagglutinins",
+      "Bacterial endotoxin in a contaminated unit",
+      "IgA in the unit reacting with her anti-IgA"
+    ],
+    "correctAnswer": "Antibodies against her leukocytes",
+    "explanation": "Acute hypoxemia and bilateral infiltrates during a transfusion, with a normal heart size, are donor antibodies against recipient neutrophils. Antibodies against her leukocytes activate neutrophils in the pulmonary capillaries and cause transfusion-related acute lung injury. Anti-A isohemagglutinins cause acute hemolysis with pink plasma and shock. Bacterial endotoxin in a contaminated unit causes septic shock. IgA in the unit reacting with her anti-IgA causes anaphylaxis. Excess citrate binding her calcium causes perioral tingling and a low ionized calcium, not pulmonary infiltrates.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-68",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 3,
+    "subjectId": "hematology",
+    "examTakeaway": "Fever, flank pain, and pink plasma minutes after a transfusion are preformed ABO antibodies lysing donor red cells.",
+    "scenario": "A 50-year-old man develops fever, back pain, and a blood pressure of 80/50 mm Hg ten minutes after a unit of red cells is started. The plasma in a spun tube is pink. The direct antiglobulin test is newly positive.",
+    "question": "Which incompatibility is this?",
+    "options": [
+      "Febrile cytokine reaction",
+      "TRALI",
+      "Allergic urticaria",
+      "ABO",
+      "Rh only, in a patient never before transfused"
+    ],
+    "correctAnswer": "ABO",
+    "explanation": "Fever, flank pain, and pink plasma minutes after a transfusion are preformed ABO antibodies lysing donor red cells. ABO antibodies are already present and fix complement, so hemolysis is immediate and intravascular. Rh only, in a patient never before transfused, cannot hemolyze on a first exposure because anti-D is not preformed. Febrile cytokine reaction does not turn plasma pink or drop the pressure this way. TRALI causes hypoxemia and infiltrates without hemoglobinuria. Allergic urticaria is itching and hives with stable vital signs.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-69",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "immunology",
+    "examTakeaway": "Coarse facies, retained baby teeth, and cold abscesses of staphylococci are hyper-IgE syndrome from STAT3.",
+    "scenario": "A 10-year-old boy has had two cold staphylococcal abscesses and a pneumonia that left a pneumatocele. His face is coarse, and two primary teeth are still present. Serum IgE is extremely high. Eosinophils are increased.",
+    "question": "Which signaling protein is defective?",
+    "options": [
+      "C1 inhibitor",
+      "RAG1",
+      "STAT3",
+      "BTK",
+      "NADPH oxidase"
+    ],
+    "correctAnswer": "STAT3",
+    "explanation": "Coarse facies, retained baby teeth, and cold abscesses of staphylococci are hyper-IgE syndrome from STAT3. STAT3 mutations impair Th17 responses and produce this Job syndrome. BTK mutations are X-linked agammaglobulinemia, with absent B cells and no tonsils, not high IgE and retained teeth. NADPH oxidase mutations are chronic granulomatous disease, with catalase-positive infections and a normal or low IgE. C1 inhibitor deficiency causes angioedema. RAG1 mutations cause severe combined immunodeficiency in infancy.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-70",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "multisystem",
+    "outlineWeight": 10,
+    "difficulty": 4,
+    "subjectId": "immunology",
+    "examTakeaway": "Recurrent catalase-positive infections and a negative nitroblue tetrazolium test are chronic granulomatous disease.",
+    "scenario": "A 4-year-old boy has had pneumonia from Aspergillus and abscesses from Staphylococcus aureus. A lymph-node biopsy shows granulomas. Lymphocyte counts are normal. His mother has two neutrophil populations, and only one of them makes superoxide.",
+    "question": "Which enzyme is missing?",
+    "options": [
+      "Sphingomyelinase",
+      "NADPH oxidase",
+      "Adenosine deaminase",
+      "Myeloperoxidase",
+      "C3"
+    ],
+    "correctAnswer": "NADPH oxidase",
+    "explanation": "Recurrent catalase-positive infections and a negative nitroblue tetrazolium test are chronic granulomatous disease. NADPH oxidase makes the superoxide that turns the dye blue and kills catalase-positive organisms. Adenosine deaminase deficiency empties lymphocytes and presents in infancy with opportunistic infection, not granulomas and normal lymphocyte counts. Myeloperoxidase deficiency usually leaves the nitroblue test intact because the oxidase still works, and it does not cause this granuloma pattern. C3 deficiency causes severe pyogenic infection without granulomas. Sphingomyelinase deficiency is Niemann-Pick disease.",
+    "citation": null
+  }
+]

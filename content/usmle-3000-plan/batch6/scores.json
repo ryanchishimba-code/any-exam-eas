@@ -1,0 +1,16 @@
+{
+  "batch": "usmle-batch6-200-20261110",
+  "active": false,
+  "scoring": { "sound": 9, "thin": 6, "fail": 3 },
+  "bar": 9.6,
+  "letters": { "step1": { "A": 20, "B": 20, "C": 20, "D": 20, "E": 20 }, "step2": { "A": 20, "B": 20, "C": 20, "D": 20, "E": 20 } },
+  "step1": { "sound": 31, "thin": 69, "fail": 0, "mean": 6.93 },
+  "step2": { "sound": 64, "thin": 36, "fail": 0, "mean": 7.92 },
+  "fixed": [
+    {
+      "id": "b6-s2-68",
+      "was": "Keyed a neural-tube defect at 7 weeks, after the tube has closed.",
+      "now": "Heart, face, and limbs are still forming. Re-read letter E, sound."
+    }
+  ]
+}

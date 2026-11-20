@@ -1,0 +1,112 @@
+[
+  {
+    "id": "b1-s1-16",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pathology",
+    "examTakeaway": "An abdominal bruit, a small kidney, and a rising creatinine after an ACE inhibitor are renovascular hypertension from reduced afferent flow.",
+    "scenario": "A 67-year-old man with atherosclerosis starts lisinopril for a blood pressure of 168/94 mm Hg. Two weeks later creatinine has risen from 1.1 to 2.4 mg/dL. A bruit is heard beside the umbilicus. The right kidney is 8 cm and the left is 11 cm.",
+    "question": "Which change in glomerular hemodynamics explains the creatinine rise?",
+    "options": [
+      "Loss of angiotensin-II constriction of the efferent arteriole",
+      "Loss of afferent arteriolar dilation from prostaglandins",
+      "Immune-complex injury of the glomerulus",
+      "Acute tubular necrosis from an ischemic insult hours ago",
+      "Obstruction of both ureters"
+    ],
+    "correctAnswer": "Loss of angiotensin-II constriction of the efferent arteriole",
+    "explanation": "An abdominal bruit, a small kidney, and a rising creatinine after an ACE inhibitor are renovascular hypertension from reduced afferent flow. Loss of angiotensin-II constriction of the efferent arteriole drops filtration pressure when the afferent artery is already stenosed. Loss of afferent arteriolar dilation from prostaglandins is the mechanism of NSAID kidney injury in a low-flow state, and he was not given an NSAID. Immune-complex injury of the glomerulus would show an active urine sediment, not a unilateral small kidney. Acute tubular necrosis from an ischemic insult hours ago does not develop over two weeks after a new antihypertensive. Obstruction of both ureters would hydronephrose both kidneys, not shrink one.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-17",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pathology",
+    "examTakeaway": "Muddy brown casts after a period of hypotension are acute tubular necrosis, with the injury in the straight proximal tubule and thick ascending limb.",
+    "scenario": "A 70-year-old woman was hypotensive for an hour during surgery for a ruptured aortic aneurysm. The next day urine output is 15 mL/hour. Creatinine is 3.1 mg/dL. The urine shows muddy brown granular casts. The bladder scan is empty.",
+    "question": "Which tubular segment is most vulnerable in this injury?",
+    "options": [
+      "Glomerular endothelial fenestrations",
+      "Straight portion of the proximal tubule and the thick ascending limb",
+      "Macula densa",
+      "Collecting-duct principal cells",
+      "Podocyte foot processes"
+    ],
+    "correctAnswer": "Straight portion of the proximal tubule and the thick ascending limb",
+    "explanation": "Muddy brown casts after a period of hypotension are acute tubular necrosis, with the injury in the straight proximal tubule and thick ascending limb. Straight portion of the proximal tubule and the thick ascending limb sit in the outer medulla, where oxygen delivery is already marginal. Macula densa senses chloride and is not the necrotic segment that sheds these casts. Collecting-duct principal cells are the vasopressin target, not the ischemic tubule. Podocyte foot processes are injured in nephrotic disease. Glomerular endothelial fenestrations are not the source of muddy brown casts.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-18",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pathology",
+    "examTakeaway": "Fever, rash, eosinophiluria, and a rising creatinine days after a new drug are acute interstitial nephritis.",
+    "scenario": "A 55-year-old woman started a beta-lactam antibiotic 9 days ago for cellulitis. She now has a fever of 38.4 C, a morbilliform rash, and a creatinine of 2.8 mg/dL from a baseline of 0.8. The urine shows white cells, white-cell casts, and eosinophils. No red-cell casts are seen.",
+    "question": "Which renal compartment is inflamed?",
+    "options": [
+      "Glomerular capillary wall",
+      "Renal artery media",
+      "Collecting-duct principal cells only",
+      "Podocytes",
+      "Tubulointerstitium"
+    ],
+    "correctAnswer": "Tubulointerstitium",
+    "explanation": "Fever, rash, eosinophiluria, and a rising creatinine days after a new drug are acute interstitial nephritis. Tubulointerstitium is the compartment infiltrated by lymphocytes and eosinophils in this hypersensitivity reaction. Glomerular capillary wall injury would produce red-cell casts and proteinuria out of proportion to white cells. Renal artery media is the site of fibromuscular dysplasia or vasculitis of the vessel, not a drug rash with urinary eosinophils. Collecting-duct principal cells only are a channel defect, not an inflammatory infiltrate. Podocytes are the target in minimal change and membranous disease.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-19",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pathology",
+    "examTakeaway": "Nephrotic syndrome in an adult with spike-and-dome deposits is membranous nephropathy.",
+    "scenario": "A 52-year-old man has had swelling of the legs for a month. Serum albumin is 2.1 g/dL and urine protein is 7 g/day. There is no blood on dipstick. Light microscopy shows thickened capillary walls, and silver stain shows spikes. Electron microscopy shows subepithelial deposits.",
+    "question": "Which glomerular disease is this?",
+    "options": [
+      "Minimal change disease",
+      "Poststreptococcal glomerulonephritis",
+      "Thin basement membrane disease",
+      "Alport syndrome",
+      "Membranous nephropathy"
+    ],
+    "correctAnswer": "Membranous nephropathy",
+    "explanation": "Nephrotic syndrome in an adult with spike-and-dome deposits is membranous nephropathy. Membranous nephropathy places IgG under the epithelium and the basement membrane grows spikes between the deposits. Minimal change disease has foot-process effacement and no deposits or spikes. Poststreptococcal glomerulonephritis is nephritic, with humps and a low C3, not 7 g of protein and no blood. Thin basement membrane disease causes isolated hematuria with a thin membrane, not nephrotic syndrome. Alport syndrome shows a basket-weave membrane, hearing loss, and hematuria.",
+    "citation": null
+  },
+  {
+    "id": "b1-s1-20",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "respiratory-renal",
+    "outlineWeight": 13,
+    "difficulty": 4,
+    "subjectId": "pathology",
+    "examTakeaway": "A creatinine that doubles over days, with red-cell casts and crescents, is rapidly progressive glomerulonephritis.",
+    "scenario": "A 60-year-old man feels ill for two weeks. Creatinine was 1.0 mg/dL last month and is 4.6 mg/dL today. The urine shows red-cell casts. A biopsy shows more than half of the glomeruli compressed by crescents of proliferating cells in Bowman space.",
+    "question": "Which process produced the crescents?",
+    "options": [
+      "Crystal deposition in the collecting duct",
+      "Proliferation of parietal epithelial cells after severe glomerular injury",
+      "Hyaline arteriolosclerosis from long-standing hypertension alone",
+      "Selective podocyte foot-process effacement",
+      "Ischemic necrosis limited to the straight proximal tubule"
+    ],
+    "correctAnswer": "Proliferation of parietal epithelial cells after severe glomerular injury",
+    "explanation": "A creatinine that doubles over days, with red-cell casts and crescents, is rapidly progressive glomerulonephritis. Proliferation of parietal epithelial cells after severe glomerular injury fills Bowman space and forms the crescent. Hyaline arteriolosclerosis from long-standing hypertension alone narrows arterioles over years and does not make crescents. Selective podocyte foot-process effacement is minimal change disease. Ischemic necrosis limited to the straight proximal tubule is acute tubular necrosis, with muddy brown casts rather than red-cell casts. Crystal deposition in the collecting duct is acute urate or oxalate nephropathy.",
+    "citation": null
+  }
+]

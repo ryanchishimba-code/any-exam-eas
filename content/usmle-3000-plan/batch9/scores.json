@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "b9-s1-01",
+    "rating": "thin",
+    "note": "The stem already gives a low factor IX level with a normal factor VIII level, so the long PTT is the unmeasured intrinsic factor rather than a second inference."
+  },
+  {
+    "id": "b9-s1-02",
+    "rating": "sound",
+    "note": "Angioedema without urticaria plus a very low C4 is bradykinin from complement-regulator failure, which is why antihistamine and epinephrine that treat his cousin’s histamine reaction do nothing."
+  },
+  {
+    "id": "b9-s1-03",
+    "rating": "thin",
+    "note": "Undetectable IgA plus anaphylaxis on transfusion is the one-look anti-IgA antibody picture, and a normal total IgG does not rule out that specific antibody."
+  },
+  {
+    "id": "b9-s1-04",
+    "rating": "thin",
+    "note": "The stem already says the host immune system was ablated and the graft is producing blood, which is enough to reject host-versus-graft without a further mechanism."
+  },
+  {
+    "id": "b9-s1-05",
+    "rating": "thin",
+    "note": "A colorless oxidative-burst dye with catalase-positive staphylococcal and fungal infection is the one-look chronic granulomatous disease peroxide explanation."
+  },
+  {
+    "id": "b9-s1-06",
+    "rating": "thin",
+    "note": "A cord still attached at three weeks, no pus, and a high neutrophil count is the one-look adhesion-defect picture of cells that cannot leave the vessels."
+  },
+  {
+    "id": "b9-s1-07",
+    "rating": "sound",
+    "note": "Needle-shaped granules in blasts with hypofibrinogenemia and long clotting times indicate consumptive coagulation, and normal liver enzymes eliminate failed hepatic synthesis."
+  },
+  {
+    "id": "b9-s1-08",
+    "rating": "sound",
+    "note": "The hemoglobin crash with a reticulocyte count of 0.2 percent and a falling bilirubin is arrested production, not faster hemolysis, which would have raised both retics and bilirubin."
+  },
+  {
+    "id": "b9-s1-09",
+    "rating": "sound",
+    "note": "Missing vitamin K depletes factor VII as well as factors II, IX, and X, so both times prolong, whereas the boy’s intrinsic-only deficiency is invisible to the prothrombin time."
+  },
+  {
+    "id": "b9-s1-10",
+    "rating": "sound",
+    "note": "Fever, rash, arthralgia, and low complement ten days later require new antibody-antigen complexes, which a minute-scale preformed-histamine reaction does not."
+  },
+  {
+    "id": "b9-s1-11",
+    "rating": "sound",
+    "note": "High ACTH with a central lung mass that ignores high-dose dexamethasone is tumor ACTH lacking pituitary feedback, unlike the comparison patient who suppresses."
+  },
+  {
+    "id": "b9-s1-12",
+    "rating": "sound",
+    "note": "The deep cortex and outer medulla combine high transport ATP use with the lowest oxygen tension, so those segments die after hypotension while the better-oxygenated superficial cortex is spared."
+  },
+  {
+    "id": "b9-s1-13",
+    "rating": "sound",
+    "note": "IgG is large enough that a charge-selective leak would retain it, so its appearance in the urine means a size-barrier defect rather than the child’s albumin-only charge lesion."
+  },
+  {
+    "id": "b9-s1-14",
+    "rating": "sound",
+    "note": "A still-alkaline pH with chronically low carbon dioxide means the kidney has lowered bicarbonate, whereas the acute comparison patient keeps a normal bicarbonate and a higher pH."
+  },
+  {
+    "id": "b9-s1-15",
+    "rating": "sound",
+    "note": "Refractory hypoxemia with a wedge pressure of 8 mm Hg is a leaking capillary membrane, while the comparison wedge of 24 mm Hg is the hydrostatic pattern this patient does not have."
+  },
+  {
+    "id": "b9-s1-16",
+    "rating": "sound",
+    "note": "The 20-minute response is muscle spasm reversible by a bronchodilator, and the eight-hour eosinophilic recurrence is airway inflammation that the same drug cannot reverse."
+  },
+  {
+    "id": "b9-s1-17",
+    "rating": "sound",
+    "note": "Myoglobin without red cells injures tubules mainly when acidic urine precipitates it, so keeping the urine at pH 7 limits the creatinine rise seen at pH 5."
+  },
+  {
+    "id": "b9-s1-18",
+    "rating": "thin",
+    "note": "The stem already supplies the gap excess, the expected bicarbonate of 16, vomiting, and lactate, so the mixed disorder is stated rather than inferred."
+  },
+  {
+    "id": "b9-s1-19",
+    "rating": "sound",
+    "note": "Antithrombin is small enough to be lost in heavy proteinuria while larger procoagulants stay and are still being made, which reverses the expectation of bleeding."
+  },
+  {
+    "id": "b9-s1-20",
+    "rating": "sound",
+    "note": "Glucose spill at a serum glucose of 80 mg/dL plus amino acids and phosphate means the whole proximal tubule has failed, which no single transporter or overflow diabetes would do."
+  },
+  {
+    "id": "b9-s1-21",
+    "rating": "sound",
+    "note": "Uneven hypoxic constriction diverts the cardiac output through unprotected units that leak despite normal left-heart pressures, so uniform hypoxia would not flood every unit equally."
+  },
+  {
+    "id": "b9-s1-22",
+    "rating": "thin",
+    "note": "The stem already says high chloride at the macula densa narrows the incoming arteriole and lowers filtration, which is the tubuloglomerular-feedback answer."
+  },
+  {
+    "id": "b9-s1-23",
+    "rating": "thin",
+    "note": "The stem already states that alveolar pressure at the apex exceeds capillary pressure, so the low apex flow is that stated relationship rather than a new inference."
+  },
+  {
+    "id": "b9-s1-24",
+    "rating": "sound",
+    "note": "Ammonium is the unmeasured urine cation that would have carried chloride and made the gap negative, and its absence separates this patient from the diarrhea comparison."
+  },
+  {
+    "id": "b9-s1-25",
+    "rating": "sound",
+    "note": "Detectable C-peptide means residual insulin is still restraining ketogenesis, so this is not the absolute insulin absence that produces ketoacidosis."
+  },
+  {
+    "id": "b9-s1-26",
+    "rating": "sound",
+    "note": "A normal TSH with low T3 during pneumonia is reduced peripheral conversion while T4 feedback remains adequate, confirmed by recovery without thyroid hormone."
+  },
+  {
+    "id": "b9-s1-27",
+    "rating": "sound",
+    "note": "Purpura, shock, low cortisol, and hyperkalemia over hours mean both adrenals were destroyed, which a slow pituitary failure would not do and which would spare aldosterone."
+  },
+  {
+    "id": "b9-s1-28",
+    "rating": "sound",
+    "note": "A midcycle progesterone rise proves ovulation occurred, and the thickened cervical mucus still kept sperm from reaching that egg."
+  },
+  {
+    "id": "b9-s1-29",
+    "rating": "sound",
+    "note": "Peroxidase antibodies explain an early hormone spill followed by destruction of the gland, so the later high TSH is primary failure rather than a permanent pituitary shutdown."
+  },
+  {
+    "id": "b9-s1-30",
+    "rating": "sound",
+    "note": "A sulfonylurea closes the beta-cell potassium channel and releases insulin without a meal, whereas metformin does not force insulin and so did not drop the fasting glucose."
+  },
+  {
+    "id": "b9-s1-31",
+    "rating": "sound",
+    "note": "Pressure and proteinuria that resolve after the placenta is delivered mean the placenta was the source of the endothelial injury, not fixed maternal vascular disease."
+  },
+  {
+    "id": "b9-s1-32",
+    "rating": "sound",
+    "note": "With a similar luteinizing-hormone pattern, the extra insulin adds theca-cell androgen drive, which is why only the insulin-resistant patient has marked testosterone excess."
+  },
+  {
+    "id": "b9-s1-33",
+    "rating": "thin",
+    "note": "The stem already gives a 3 am glucose of 140 mg/dL, so the absence of a preceding low that a rebound would require is stated outright."
+  },
+  {
+    "id": "b9-s1-34",
+    "rating": "thin",
+    "note": "The stem already gives a high binding globulin with a normal free T4 and TSH, which is the entire explanation for the high total hormone."
+  },
+  {
+    "id": "b9-s1-35",
+    "rating": "sound",
+    "note": "Blocking the last cortisol step drops cortisol in both, and ACTH rises only in the patient whose pituitary can still answer that fall."
+  },
+  {
+    "id": "b9-s1-36",
+    "rating": "sound",
+    "note": "Normal TSH and free T4 exclude thyroid-hormone excess, while the high calcitonin is coming from C cells that TSH does not regulate."
+  },
+  {
+    "id": "b9-s1-37",
+    "rating": "sound",
+    "note": "Low FSH and LH mean the hypothalamus stopped driving the pituitary, whereas ovarian failure would raise FSH as it does in the comparison woman."
+  },
+  {
+    "id": "b9-s1-38",
+    "rating": "sound",
+    "note": "Bands present in spinal fluid and absent from serum are made inside the nervous system, because a leak of serum antibody would show the same bands in serum."
+  },
+  {
+    "id": "b9-s1-39",
+    "rating": "thin",
+    "note": "The stem already assigns alpha-synuclein to the tremor patient and a different protein with amyloid plaques to the memory-loss patient."
+  },
+  {
+    "id": "b9-s1-40",
+    "rating": "sound",
+    "note": "A 30-second march up one limb with preserved speech recruits adjacent motor cortex in order, so the discharge did not start across the whole brain."
+  },
+  {
+    "id": "b9-s1-41",
+    "rating": "thin",
+    "note": "The stem already says the weak muscle depresses the adducted eye, so looking down stairs simply applies that stated action."
+  },
+  {
+    "id": "b9-s1-42",
+    "rating": "sound",
+    "note": "Platelet studies show the transporter is blocked on day one, but mood waits on downstream receptor adaptation, so an unchanged mood on day two does not mean the drug failed."
+  },
+  {
+    "id": "b9-s1-43",
+    "rating": "sound",
+    "note": "Equal face, arm, and leg weakness with intact language means the motor fibers are packed together below the cortex, where a cortical language lesion is not."
+  },
+  {
+    "id": "b9-s1-44",
+    "rating": "sound",
+    "note": "Heat temporarily blocks conduction through the old demyelinated segment and cooling restores it, and the unchanged MRI excludes a new plaque."
+  },
+  {
+    "id": "b9-s1-45",
+    "rating": "sound",
+    "note": "An isolated abducens palsy with papilledema and a distant mass is stretch of a long intracranial nerve by raised pressure, not direct contact by the mass."
+  },
+  {
+    "id": "b9-s1-46",
+    "rating": "sound",
+    "note": "Fasciculations mark a dying lower motor neuron and the upgoing toe a dying corticospinal axon, and neither finding plus spared sensation can be supplied by one of those sites alone."
+  },
+  {
+    "id": "b9-s1-47",
+    "rating": "sound",
+    "note": "Ventral pontine fibers to the limbs and mouth are out while blinking, vertical gaze, and reported sensation show the activating system is still working."
+  },
+  {
+    "id": "b9-s1-48",
+    "rating": "thin",
+    "note": "The stem already places one mass at the shared exit of the gag, voice, and shoulder nerves, with the midline tongue showing the hypoglossal nerve is spared."
+  },
+  {
+    "id": "b9-s1-49",
+    "rating": "thin",
+    "note": "The stem already says the pyruvate-dehydrogenase cofactor is depleted and that glucose deepened the confusion, which is the thiamine-before-glucose cue."
+  },
+  {
+    "id": "b9-s1-50",
+    "rating": "sound",
+    "note": "Neutrophil precursors in the marrow exclude an empty marrow, so the enlarged spleen is sequestering cells that are still being made."
+  },
+  {
+    "id": "b9-s1-51",
+    "rating": "thin",
+    "note": "Anti-DNA disease with low complement and proteinuria versus hydralazine with anti-histone antibodies is the textbook lupus-versus-drug-induced contrast, so the kidney difference is recognized in one look."
+  },
+  {
+    "id": "b9-s1-52",
+    "rating": "thin",
+    "note": "The stem already says the drug blocks microtubules while the uric acid and the crystal remain, so the only step left is the single recall that neutrophils need microtubules to reach the crystal."
+  },
+  {
+    "id": "b9-s1-53",
+    "rating": "thin",
+    "note": "The stem already says the osteoclast-activating ligand is increased and the serum calcium is normal, and the answer restates those two facts."
+  },
+  {
+    "id": "b9-s1-54",
+    "rating": "thin",
+    "note": "Older age, weakest finger flexors and quadriceps, a moderate creatine kinase, and months of failed steroids is the opening picture of inclusion-body myositis."
+  },
+  {
+    "id": "b9-s1-55",
+    "rating": "thin",
+    "note": "Skin that stretches and scars poorly versus a dilated aortic root whose skin does not stretch is the textbook collagen-versus-fibrillin contrast."
+  },
+  {
+    "id": "b9-s1-56",
+    "rating": "thin",
+    "note": "Dense bone, osteoclasts that do not resorb, marrow filled with unresorbed bone, and fractures already state the brittle unremodeled-bone mechanism."
+  },
+  {
+    "id": "b9-s1-57",
+    "rating": "thin",
+    "note": "The stem already says the enzyme that reattaches purines is absent, so shunting of those purines to uric acid is immediate, and the lip-biting boy is Lesch-Nyhan."
+  },
+  {
+    "id": "b9-s1-58",
+    "rating": "thin",
+    "note": "A long partial-thromboplastin time that does not correct, a venous clot, and a late pregnancy loss is the textbook lupus-anticoagulant picture."
+  },
+  {
+    "id": "b9-s1-59",
+    "rating": "sound",
+    "note": "Same DMD gene, two alleles: absent protein with loss of ambulation by 12 is an out-of-frame null (Duchenne); residual membrane protein and walking at 20 is an in-frame change that still yields truncated dystrophin (Becker). Only C states that mechanism. A assigns the frame-preserving change to the nonambulatory brother; B, D, and E contradict the stem."
+  },
+  {
+    "id": "b9-s1-60",
+    "rating": "thin",
+    "note": "The stem already says the rhythm drug contains a large iodine load, which is the thyroid explanation."
+  },
+  {
+    "id": "b9-s1-61",
+    "rating": "thin",
+    "note": "The stem already says sweat glands are cholinergic and the heart-rate warning is beta-mediated."
+  },
+  {
+    "id": "b9-s1-62",
+    "rating": "thin",
+    "note": "Flushing only during a fast infusion, clearing with an antihistamine, and not returning at a slow rate is the textbook rate-dependent histamine-release picture."
+  },
+  {
+    "id": "b9-s1-63",
+    "rating": "thin",
+    "note": "The stem already says the drug only blocks release of new virus, so day-4 failure is the single recall that the early release window has passed."
+  },
+  {
+    "id": "b9-s1-64",
+    "rating": "thin",
+    "note": "A sterile joint three weeks after pharyngitis, a high antistreptolysin titer, and a new murmur is the textbook post-streptococcal mimicry picture."
+  },
+  {
+    "id": "b9-s1-65",
+    "rating": "thin",
+    "note": "The stem already says the wall fragment that triggers the cytokine surge is released as the cells break."
+  },
+  {
+    "id": "b9-s1-66",
+    "rating": "thin",
+    "note": "The stem already says the enzyme that makes the toxic metabolite is induced and that glutathione is low."
+  },
+  {
+    "id": "b9-s1-67",
+    "rating": "thin",
+    "note": "The stem already says the wall drug punches holes and the aminoglycoside must reach the inside of the cell."
+  },
+  {
+    "id": "b9-s1-68",
+    "rating": "thin",
+    "note": "Success of the reactivator at six hours and failure of the same drug on day 3 is the one-look picture of organophosphate aging."
+  },
+  {
+    "id": "b9-s1-69",
+    "rating": "thin",
+    "note": "The stem already says the toxin modifies the GTPase that keeps the cell skeleton intact and that the mucosa is barely invaded."
+  },
+  {
+    "id": "b9-s1-70",
+    "rating": "thin",
+    "note": "A short PR, a slurred QRS upstroke, and an extra muscle bridge from atrium to ventricle already give the bypass that skips the node."
+  },
+  {
+    "id": "b9-s1-71",
+    "rating": "thin",
+    "note": "A thick wall, an ejection fraction of 60 percent, and high filling pressure is the textbook stiff-ventricle picture."
+  },
+  {
+    "id": "b9-s1-72",
+    "rating": "thin",
+    "note": "The stem already says the thin cap tore, thrombus sits on that tear, and the thick calcified plaque did not rupture."
+  },
+  {
+    "id": "b9-s1-73",
+    "rating": "thin",
+    "note": "The stem already says the artery is only narrowed, pain stops with rest, and the inner wall is the layer that suffers first."
+  },
+  {
+    "id": "b9-s1-74",
+    "rating": "thin",
+    "note": "A lower-sternal murmur that grows louder on inspiration and an axillary murmur that softens is the single recall that inspiration fills the right heart and slightly unloads the left."
+  },
+  {
+    "id": "b9-s1-75",
+    "rating": "thin",
+    "note": "The stem already gives a slow path, a fast path, and a premature beat arriving while the fast path is still recovering, so the circuit is the immediate completion."
+  },
+  {
+    "id": "b9-s1-76",
+    "rating": "thin",
+    "note": "The stem already says resting flow is normal because the arterioles beyond the narrowing are already dilated."
+  },
+  {
+    "id": "b9-s1-77",
+    "rating": "thin",
+    "note": "The stem already says the set point has moved and that firing at the high pressure matches a normal person's firing at 120."
+  },
+  {
+    "id": "b9-s1-78",
+    "rating": "thin",
+    "note": "Sawtooth atrial activity at 300 with a ventricular rate of 150 is the textbook two-to-one atrial-flutter picture."
+  },
+  {
+    "id": "b9-s1-79",
+    "rating": "thin",
+    "note": "The stem already says the enzyme that forms the toxic metabolite is richest near the central vein and that oxygen is lowest there."
+  },
+  {
+    "id": "b9-s1-80",
+    "rating": "thin",
+    "note": "Negative surface antigen, negative surface antibody, and positive core IgM is the textbook hepatitis B window pattern."
+  },
+  {
+    "id": "b9-s1-81",
+    "rating": "thin",
+    "note": "The stem already says the patchy disease goes through the full wall and the continuous rectal disease stops at the mucosa."
+  },
+  {
+    "id": "b9-s1-82",
+    "rating": "thin",
+    "note": "A normal amylase on day 3 with lipase still three times normal is the single recall that lipase remains detectable longer."
+  },
+  {
+    "id": "b9-s1-83",
+    "rating": "thin",
+    "note": "A spurting artery surrounded by normal mucosa and no ulcer crater is the textbook superficial-artery bleed."
+  },
+  {
+    "id": "b9-s1-84",
+    "rating": "thin",
+    "note": "The stem already calls the virus defective, shows the helper virus is absent, and shows the liver tests are normal."
+  },
+  {
+    "id": "b9-s1-85",
+    "rating": "thin",
+    "note": "The stem already shows the diffuse tropical injury improving on antibiotics and the duodenal injury improving only when wheat is removed."
+  },
+  {
+    "id": "b9-s1-86",
+    "rating": "thin",
+    "note": "Repeated pancreatitis, gland-wide calcifications, greasy stools, and a new fasting glucose of 180 are the textbook picture of exocrine and islet loss together."
+  },
+  {
+    "id": "b9-s1-87",
+    "rating": "thin",
+    "note": "The stem already gives a specific plan and pills he intends to take tonight, which is the imminent-harm exception to confidentiality."
+  },
+  {
+    "id": "b9-s1-88",
+    "rating": "thin",
+    "note": "The stem already says the patient feels he cannot refuse and still receive good care, which is the coercion."
+  },
+  {
+    "id": "b9-s1-89",
+    "rating": "thin",
+    "note": "The stem already says he is not treating the patient, not covering that panel, and not in an emergency."
+  },
+  {
+    "id": "b9-s1-90",
+    "rating": "thin",
+    "note": "The stem already says he missed medication changes and that a professional interpreter was available for a nonemergency visit."
+  },
+  {
+    "id": "b9-s1-91",
+    "rating": "thin",
+    "note": "The stem already separates a desk-job employer form from a chart his clinicians need in order to treat him."
+  },
+  {
+    "id": "b9-s1-92",
+    "rating": "thin",
+    "note": "A sexual proposal the day after the last visit is the one-look rule that the treatment relationship's influence has not ended."
+  },
+  {
+    "id": "b9-s1-93",
+    "rating": "thin",
+    "note": "The stem already says the law requires a report of the gunshot wound and that the therapy notes describe no plan to harm a named person."
+  },
+  {
+    "id": "b9-s1-94",
+    "rating": "thin",
+    "note": "The stem already gives post-test odds of 10 to 1, and converting 10/11 to about 91 percent is the single arithmetic step."
+  },
+  {
+    "id": "b9-s1-95",
+    "rating": "thin",
+    "note": "The stem already says enrollment was by exposure, disease was absent at the start, and new cases were counted over time."
+  },
+  {
+    "id": "b9-s1-96",
+    "rating": "thin",
+    "note": "The stem already says obesity and arthritis were asked about on the same day and that nobody was followed forward."
+  },
+  {
+    "id": "b9-s1-97",
+    "rating": "thin",
+    "note": "The stem already says the association disappears within summer and that temperature is high in the months when both are high."
+  },
+  {
+    "id": "b9-s1-98",
+    "rating": "thin",
+    "note": "The stem already says disease is rare at the fair, sensitivity is unchanged, and a negative result there is almost always a true negative."
+  },
+  {
+    "id": "b9-s1-99",
+    "rating": "sound",
+    "note": "The stem never says the neuron needs thyroid hormone rather than TSH, and the cousin's delay with a low T4 kills the plan that a low TSH means the brain is safe."
+  },
+  {
+    "id": "b9-s1-100",
+    "rating": "thin",
+    "note": "Delay, fair hair, and musty urine on a normal diet is the textbook phenylketonuria picture, and the diet rule is the next sentence of that picture."
+  },
+  {
+    "id": "b9-s2-01",
+    "rating": "thin",
+    "note": "Decoupling the donation request from death notification is one-look ethics, and the stem already places the ask in the same breath while the family is still absorbing the news."
+  },
+  {
+    "id": "b9-s2-02",
+    "rating": "thin",
+    "note": "The stem already supplies the unique combination of a rare disease, named hospital, admission date, and a single case that week, so the reidentification conclusion is stated rather than inferred."
+  },
+  {
+    "id": "b9-s2-03",
+    "rating": "thin",
+    "note": "The vignette already says a wrong dose occurred and that he asked directly, so absence of injury does not require a second inference to reject a denial."
+  },
+  {
+    "id": "b9-s2-04",
+    "rating": "thin",
+    "note": "The stem already says he cannot repeat any surgical risk or benefit after several explanations, which is the capacity failure, while lunch is a simpler choice."
+  },
+  {
+    "id": "b9-s2-05",
+    "rating": "thin",
+    "note": "A current treatment relationship making consent to dating non-voluntary is a single ethics rule, and the stem already says no one else has taken over the care."
+  },
+  {
+    "id": "b9-s2-06",
+    "rating": "thin",
+    "note": "Mature-minor therapy confidentiality without a safety exception is one-look once the stem has already excluded a self-harm plan and abuse."
+  },
+  {
+    "id": "b9-s2-07",
+    "rating": "thin",
+    "note": "The stem already limits the original consent to one named study and calls the later question unrelated, so the answer restates the vignette."
+  },
+  {
+    "id": "b9-s2-08",
+    "rating": "thin",
+    "note": "Conflict disclosure has to reach the person being influenced, and the pocket-card visit is a one-look application of that rule."
+  },
+  {
+    "id": "b9-s2-09",
+    "rating": "thin",
+    "note": "The stem already says a capacitated, awake patient repeated his request to hear the result himself, so the family in the hall does not change the audience."
+  },
+  {
+    "id": "b9-s2-10",
+    "rating": "thin",
+    "note": "Speaking up when a patient is mocked is one-look professionalism, and the evaluation conflict is already the stated reason for silence."
+  },
+  {
+    "id": "b9-s2-11",
+    "rating": "thin",
+    "note": "The stem already gives an hour-scale lethal emergency, no available surrogate, and no refusal, which is the emergency-consent rule restated."
+  },
+  {
+    "id": "b9-s2-12",
+    "rating": "thin",
+    "note": "The cupboard is already labeled for clinic patients and the relative is not one of them, so the wrong destination is stated in the stem."
+  },
+  {
+    "id": "b9-s2-13",
+    "rating": "thin",
+    "note": "The stem already separates volume-depleted low urine chloride from high-aldosterone high urine chloride, which is the one-look chloride-responsive alkalosis table."
+  },
+  {
+    "id": "b9-s2-14",
+    "rating": "sound",
+    "note": "Dry mouth implies concentrated tubular urine that makes contrast more injurious, and the afternoon study means tomorrow’s creatinine is after the exposure."
+  },
+  {
+    "id": "b9-s2-15",
+    "rating": "sound",
+    "note": "Red-cell casts plus a creatinine rise from 1 to 3 in five days mean active glomerular destruction now, so residual urine output does not justify waiting a week."
+  },
+  {
+    "id": "b9-s2-16",
+    "rating": "sound",
+    "note": "Hours-long water intoxication with seizures needs a faster sodium rise than isotonic saline can produce, and the acute time course removes the reason to correct slowly."
+  },
+  {
+    "id": "b9-s2-17",
+    "rating": "thin",
+    "note": "The stem already says the calcium-phosphate product is high, a non-calcium binder exists, and he is not hypocalcemic, so avoiding a calcium binder is one-look."
+  },
+  {
+    "id": "b9-s2-18",
+    "rating": "sound",
+    "note": "An ACE inhibitor’s expected hemodynamic creatinine rise of about 20 percent that then plateaus, with a normal potassium and no bruit, is not ongoing ischemic injury."
+  },
+  {
+    "id": "b9-s2-19",
+    "rating": "sound",
+    "note": "Acid urine plus a stone seen on CT but not on plain film identifies radiolucent uric acid, which defeats the base-rate assumption that the stone is calcium."
+  },
+  {
+    "id": "b9-s2-20",
+    "rating": "thin",
+    "note": "Tubular viral inclusions, a positive viral stain, and no lymphocyte attack are viral nephropathy from over-immunosuppression, so more drug favors the virus. C is the only correct option, but the stem already gives virus-not-rejection plus heavy immunosuppression, so the conclusion is a single step."
+  },
+  {
+    "id": "b9-s2-21",
+    "rating": "sound",
+    "note": "High urine sodium after subarachnoid hemorrhage plus a high urine output and flat neck veins is salt wasting with hypovolemia, so fluid restriction worsens the volume loss."
+  },
+  {
+    "id": "b9-s2-22",
+    "rating": "sound",
+    "note": "Hypokalemia lets the same digoxin dose bind more sodium-potassium pumps, which is the best option, although the high serum level also fits reduced renal clearance after diarrhea."
+  },
+  {
+    "id": "b9-s2-23",
+    "rating": "sound",
+    "note": "Rest pain with ST depression and a rising troponin is a non-occlusive pattern that fibrinolysis does not treat, and lack of a contraindication does not create the indication."
+  },
+  {
+    "id": "b9-s2-24",
+    "rating": "sound",
+    "note": "Hypotension, cool hands, and flooding lungs are low output plus congestion, so a new beta blocker’s negative inotropy worsens both despite its chronic survival benefit."
+  },
+  {
+    "id": "b9-s2-25",
+    "rating": "sound",
+    "note": "A valve area of 0.6 cm2 with a delayed carotid upstroke is critical fixed obstruction, so nitrate-reduced venous return cannot be matched by a higher stroke volume."
+  },
+  {
+    "id": "b9-s2-26",
+    "rating": "thin",
+    "note": "Pain relieved by sitting forward, a rub, diffuse ST elevation, and PR depression are the one-look pericarditis picture for which anticoagulation risks bleeding into the sac."
+  },
+  {
+    "id": "b9-s2-27",
+    "rating": "sound",
+    "note": "An anterior infarct with a wide escape and atrioventricular dissociation is infranodal block, so further atropine will not restore conduction in an unstable patient."
+  },
+  {
+    "id": "b9-s2-28",
+    "rating": "thin",
+    "note": "Spironolactone retaining potassium when the level is already 5.4 is one-look, and the stem adds that he is not even on a loop diuretic."
+  },
+  {
+    "id": "b9-s2-29",
+    "rating": "sound",
+    "note": "Fever, a new diastolic murmur, and shock in someone well last week mean acute regurgitation into a ventricle that has not had time to dilate, so a normal heart size is the danger."
+  },
+  {
+    "id": "b9-s2-30",
+    "rating": "sound",
+    "note": "An intermediate QRS when a dissociated P wave lands is a fusion beat, proving a ventricular focus rather than supraventricular tachycardia with bundle branch block."
+  },
+  {
+    "id": "b9-s2-31",
+    "rating": "sound",
+    "note": "A murmur that grows on standing with a thick noncalcified septum is dynamic obstruction, and digoxin’s stronger contraction in a smaller cavity worsens it."
+  },
+  {
+    "id": "b9-s2-32",
+    "rating": "thin",
+    "note": "Snuffbox tenderness after a fall on an outstretched hand with a normal film is the one-look occult scaphoid fracture that should not go back to play."
+  },
+  {
+    "id": "b9-s2-33",
+    "rating": "sound",
+    "note": "An unstable pelvis with hypotension and no other bleeding source is pelvic hemorrhage, and moving the ring before binding it increases the bleeding volume."
+  },
+  {
+    "id": "b9-s2-34",
+    "rating": "thin",
+    "note": "Headache, jaw claudication, monocular curtain, tender temple, and a sedimentation rate of 90 are the one-look giant-cell arteritis picture that gets steroids before the biopsy returns."
+  },
+  {
+    "id": "b9-s2-35",
+    "rating": "thin",
+    "note": "Metaphyseal corner fractures are the named one-look injury from traction and torsion, and a nonwalking infant’s couch fall does not produce them."
+  },
+  {
+    "id": "b9-s2-36",
+    "rating": "thin",
+    "note": "A circumferential leathery forearm burn with a cold numb hand and fading pulses is the one-look constricting eschar that cream and elevation will not release."
+  },
+  {
+    "id": "b9-s2-37",
+    "rating": "sound",
+    "note": "Cartilage calcification can explain pseudogout, but fever still requires culture because crystals and septic arthritis coexist in the same joint."
+  },
+  {
+    "id": "b9-s2-38",
+    "rating": "sound",
+    "note": "A cold pulseless foot after an obvious knee dislocation is acute popliteal kinking that reduction can restore, although a lacerated artery may still need repair if the pulse stays absent."
+  },
+  {
+    "id": "b9-s2-39",
+    "rating": "sound",
+    "note": "Activity-responsive back stiffness with early fusion links the photophobic blurring eye to uveitis of the same disease, so surface antibiotic drops miss the intraocular inflammation."
+  },
+  {
+    "id": "b9-s2-40",
+    "rating": "thin",
+    "note": "The stem already says the hip-fracture clot risk remains high, and a few assisted steps the next day do not add a new inference."
+  },
+  {
+    "id": "b9-s2-41",
+    "rating": "sound",
+    "note": "Nihilistic voices plus seven days without food are psychotic depression with starvation, so another six-week antidepressant trial cannot act before serious medical harm."
+  },
+  {
+    "id": "b9-s2-42",
+    "rating": "thin",
+    "note": "Yawning, goose flesh, dilated pupils, and a last opioid dose yesterday are the one-look withdrawal picture, and a respiratory rate of 18 already excludes overdose."
+  },
+  {
+    "id": "b9-s2-43",
+    "rating": "thin",
+    "note": "The stem already gives three days of voices, fever, a urinary infection, fluctuating attention, and a recently clear elderly patient, which restates delirium."
+  },
+  {
+    "id": "b9-s2-44",
+    "rating": "thin",
+    "note": "The stem already lists a written plan, a firearm, giving possessions away, living alone, and doubt about the dog, so the inadequate safety plan is stated."
+  },
+  {
+    "id": "b9-s2-45",
+    "rating": "thin",
+    "note": "The stem already says overbreathing reproduces the spell and that the ECG and troponin are normal, which is the answer rather than a second inference."
+  },
+  {
+    "id": "b9-s2-46",
+    "rating": "thin",
+    "note": "Clozapine with an absolute neutrophil count of 400 and fever is the one-look agranulocytosis emergency, and prior benefit does not change the stop rule."
+  },
+  {
+    "id": "b9-s2-47",
+    "rating": "thin",
+    "note": "The stem already contrasts a voice about the baby with the sister’s tearfulness without voices, which is the one-look distinction from baby blues."
+  },
+  {
+    "id": "b9-s2-48",
+    "rating": "thin",
+    "note": "Daily cannabis, cyclic vomiting, and relief in a hot shower are the one-look hyperemesis picture, and the soft abdomen with a normal film is already given."
+  },
+  {
+    "id": "b9-s2-49",
+    "rating": "sound",
+    "note": "Hypoxia and bilateral infiltrates during a platelet transfusion with a wedge pressure of 10 and a multiparous donor are antibody-mediated capillary leak, not hydrostatic edema for a diuretic."
+  },
+  {
+    "id": "b9-s2-50",
+    "rating": "sound",
+    "note": "New blasts at 120,000 with hypoxia and confusion mean leukostasis in the lungs and brain today, so outpatient hematology tomorrow leaves ongoing organ ischemia."
+  },
+  {
+    "id": "b9-s2-51",
+    "rating": "thin",
+    "note": "Seven days of heparin, a fall of more than half, and a new clot are the textbook picture of immune heparin-induced thrombocytopenia."
+  },
+  {
+    "id": "b9-s2-52",
+    "rating": "sound",
+    "note": "A normal ferritin, a high red-cell count, and a normal distribution width indicate a thalassemia trait, so iron cannot raise the hemoglobin."
+  },
+  {
+    "id": "b9-s2-53",
+    "rating": "thin",
+    "note": "Schistocytes with normal clotting studies, fever, and renal injury name a thrombotic microangiopathy, and platelet transfusion is the paired one-look error."
+  },
+  {
+    "id": "b9-s2-54",
+    "rating": "thin",
+    "note": "A hemoglobin crash, a reticulocyte count of 0.1 percent, and a viral illness in sickle cell disease are the textbook aplastic crisis, and the normal ferritin already excludes iron deficiency."
+  },
+  {
+    "id": "b9-s2-55",
+    "rating": "sound",
+    "note": "Protein C falls in the first days, before the INR reflects full anticoagulation, so a higher warfarin dose extends dermal thrombosis."
+  },
+  {
+    "id": "b9-s2-56",
+    "rating": "thin",
+    "note": "The potassium is already 6.2 with the phosphate, uric acid, and calcium pattern of tumor lysis, so adding potassium does not survive the stated number."
+  },
+  {
+    "id": "b9-s2-57",
+    "rating": "sound",
+    "note": "Four hundred neutrophils in ascites already define spontaneous bacterial peritonitis, and cultures are often still negative so treatment cannot wait."
+  },
+  {
+    "id": "b9-s2-58",
+    "rating": "sound",
+    "note": "Biliary air without prior biliary surgery means a gallstone has entered the bowel through a fistula, which adhesions do not produce."
+  },
+  {
+    "id": "b9-s2-59",
+    "rating": "thin",
+    "note": "Sudden severe pain, a soft abdomen, atrial fibrillation, and a lactate of 6 are the textbook opening of acute mesenteric ischemia."
+  },
+  {
+    "id": "b9-s2-60",
+    "rating": "sound",
+    "note": "Melena and the hemoglobin drop identify intraluminal blood as the nitrogen load, so removing the meal leaves that load in the gut."
+  },
+  {
+    "id": "b9-s2-61",
+    "rating": "thin",
+    "note": "The stem already states that the Clostridioides difficile toxin is positive, so the infection is given rather than inferred."
+  },
+  {
+    "id": "b9-s2-62",
+    "rating": "sound",
+    "note": "Neck air and a pleural effusion after vomiting mean the esophageal wall is open, so banding a mucosal tear leaves the perforation untreated."
+  },
+  {
+    "id": "b9-s2-63",
+    "rating": "sound",
+    "note": "A soft abdomen and a normal lactate after perioperative hypotension indicate mucosal ischemia that can recover without immediate resection."
+  },
+  {
+    "id": "b9-s2-64",
+    "rating": "thin",
+    "note": "A lucid interval after a temporal blow, then a dilating pupil, is the textbook epidural hematoma with uncal herniation."
+  },
+  {
+    "id": "b9-s2-65",
+    "rating": "thin",
+    "note": "Forehead weakness with a strong arm and leg is the one-look peripheral facial-nerve pattern and excludes a hemispheric stroke."
+  },
+  {
+    "id": "b9-s2-66",
+    "rating": "thin",
+    "note": "An olfactory warning, shirt-picking, and confusion afterward are the textbook temporal-lobe seizure and are restated by the correct option."
+  },
+  {
+    "id": "b9-s2-67",
+    "rating": "thin",
+    "note": "The stem already says the gait was faster the same day spinal fluid was removed, which is the content of the correct option."
+  },
+  {
+    "id": "b9-s2-68",
+    "rating": "thin",
+    "note": "Pain with eye movement and washed-out color name optic neuritis immediately, and the harm of oral steroid alone is a single memorized trial fact."
+  },
+  {
+    "id": "b9-s2-69",
+    "rating": "sound",
+    "note": "Days of fluctuating alertness without return to baseline or a territorial deficit, on a supratherapeutic INR, fit an expanding intracranial collection."
+  },
+  {
+    "id": "b9-s2-70",
+    "rating": "sound",
+    "note": "Folate can repair the anemia of cobalamin deficiency while the posterior columns stay deficient, matching the gait change and the animal-product-free diet."
+  },
+  {
+    "id": "b9-s2-71",
+    "rating": "sound",
+    "note": "A clear film and one swollen calf place the sudden hypoxia in the pulmonary arteries, and a fever of 38.0 C does not create a consolidation."
+  },
+  {
+    "id": "b9-s2-72",
+    "rating": "sound",
+    "note": "High oxygen also releases hypoxic pulmonary vasoconstriction and sends blood to poorly ventilated lung, so loss of respiratory drive does not explain the whole carbon-dioxide rise in a patient who is still awake."
+  },
+  {
+    "id": "b9-s2-73",
+    "rating": "sound",
+    "note": "The peak-flow rise from 20 to 50 percent shows that the louder wheeze is air moving through reopening airways, which the quiet chest lacked."
+  },
+  {
+    "id": "b9-s2-74",
+    "rating": "thin",
+    "note": "The stem already states that this segment is dependent when the patient lies flat, and the correct option repeats that fact."
+  },
+  {
+    "id": "b9-s2-75",
+    "rating": "sound",
+    "note": "Any single Light criterion makes an exudate, and an LDH ratio of 0.7 already exceeds the 0.6 cutoff despite a protein ratio of 0.4."
+  },
+  {
+    "id": "b9-s2-76",
+    "rating": "thin",
+    "note": "A pH of 7.15 and a carbon dioxide of 90 mm Hg already show that he is not ventilating, so the saturation cannot justify continuing the mask."
+  },
+  {
+    "id": "b9-s2-77",
+    "rating": "sound",
+    "note": "Acid-fast bacilli with night sweats, weight loss, and an abnormal film are active tuberculosis, and one drug selects resistant organisms."
+  },
+  {
+    "id": "b9-s2-78",
+    "rating": "thin",
+    "note": "Peanut exposure with hives, wheezing, and a pressure of 70/40 mm Hg is the textbook anaphylaxis vignette, and epinephrine is the one-look drug."
+  },
+  {
+    "id": "b9-s2-79",
+    "rating": "thin",
+    "note": "Fever, a pressure of 82/48 mm Hg, confusion, and a lactate of 5 already define septic shock, so the stated numbers exclude waiting for culture growth."
+  },
+  {
+    "id": "b9-s2-80",
+    "rating": "sound",
+    "note": "Daily prednisone suppresses pituitary ACTH, so he cannot raise cortisol for surgery, and a normal potassium does not mean the axis is intact."
+  },
+  {
+    "id": "b9-s2-81",
+    "rating": "sound",
+    "note": "Clonus and hyperreflexia after linezolid is added to an SSRI indicate serotonin excess, whereas the dopamine-blocker syndrome has lead-pipe tone and slow reflexes."
+  },
+  {
+    "id": "b9-s2-82",
+    "rating": "thin",
+    "note": "The stem already lists no focal deficit, seizure, or immune defect, and the correct option repeats those absences as the reason not to wait."
+  },
+  {
+    "id": "b9-s2-83",
+    "rating": "sound",
+    "note": "Pain beyond the visible skin, a sodium of 128, a bulla, and tachycardia indicate necrotizing infection before the skin turns black."
+  },
+  {
+    "id": "b9-s2-84",
+    "rating": "sound",
+    "note": "A high glucose-corrected sodium and dry membranes show free-water and salt depletion, and insulin before volume repletion can drop the blood pressure further."
+  },
+  {
+    "id": "b9-s2-85",
+    "rating": "sound",
+    "note": "Very low thyroid hormone slows opioid clearance and deepens sedation, so an ordinary fracture dose suppresses ventilation."
+  },
+  {
+    "id": "b9-s2-86",
+    "rating": "sound",
+    "note": "Propranolol blocks the effect of hormone already released, while the enlarged gland keeps synthesizing more, which fits the persistent fever and delirium."
+  },
+  {
+    "id": "b9-s2-87",
+    "rating": "sound",
+    "note": "A long-acting sulfonylurea keeps stimulating insulin after one correction, so the glucose falls again once the juice is gone."
+  },
+  {
+    "id": "b9-s2-88",
+    "rating": "sound",
+    "note": "Pigmentation in the creases means ACTH is high, so the pituitary is signaling and the adrenal is the gland that has failed."
+  },
+  {
+    "id": "b9-s2-89",
+    "rating": "sound",
+    "note": "A beta-hCG of 3500 should already show an intrauterine sac on transvaginal ultrasound, so an empty uterus with unilateral pain is managed as an ectopic pregnancy."
+  },
+  {
+    "id": "b9-s2-90",
+    "rating": "thin",
+    "note": "Absent reflexes and a respiratory rate of 8 during a magnesium infusion are the one-look signs of magnesium toxicity."
+  },
+  {
+    "id": "b9-s2-91",
+    "rating": "thin",
+    "note": "Painful bleeding, a woody uterus, maternal shock, and a falling fetal heart rate are the textbook picture of abruption and do not wait on ultrasound."
+  },
+  {
+    "id": "b9-s2-92",
+    "rating": "sound",
+    "note": "Fetal tachycardia, a tender uterus, and cloudy fluid indicate intrauterine infection, which an epidural fever does not include."
+  },
+  {
+    "id": "b9-s2-93",
+    "rating": "sound",
+    "note": "A nonpalpable fundus and a dark introital mass that appeared as the cord was pulled mean the uterus is inverted, and harder traction worsens it."
+  },
+  {
+    "id": "b9-s2-94",
+    "rating": "thin",
+    "note": "The stem already states that both groups die at the same age and that the screened diagnosis was earlier."
+  },
+  {
+    "id": "b9-s2-95",
+    "rating": "sound",
+    "note": "The patients who stopped were the sickest, so analyzing only finishers leaves a healthier group than randomization created."
+  },
+  {
+    "id": "b9-s2-96",
+    "rating": "thin",
+    "note": "The stem already gives an absolute difference of one percentage point, so the number needed to treat is the one-step reciprocal, 100."
+  },
+  {
+    "id": "b9-s2-97",
+    "rating": "thin",
+    "note": "The stem already states that negative tests were never examined and so never had the chance to be shown false."
+  },
+  {
+    "id": "b9-s2-98",
+    "rating": "thin",
+    "note": "A diamond is a later drawing milestone and a square is the shape expected at age 4, which is single-fact recall."
+  },
+  {
+    "id": "b9-s2-99",
+    "rating": "thin",
+    "note": "Distress with a stranger and comfort with the parent at 9 months, with preserved eye contact and babbling, is the textbook age for stranger anxiety."
+  },
+  {
+    "id": "b9-s2-100",
+    "rating": "thin",
+    "note": "Independent steps are a single 18-month milestone, and on-time sitting does not extend that limit."
+  }
+]

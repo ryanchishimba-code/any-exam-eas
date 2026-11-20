@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "b11-s1-01",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Segmented cells plus bands are 40 percent of 1,500/µL, an absolute neutrophil count of 600, which is too low to give chemotherapy."
+  },
+  {
+    "id": "b11-s1-02",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Scaling the 3 percent reticulocyte count by 18/45 brings it to about 1.2 percent, so production is not brisk."
+  },
+  {
+    "id": "b11-s1-03",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "MCV divided by the red-cell count is 10, and a count of 6.4 million is the high-count pattern of thalassemia trait rather than empty iron stores."
+  },
+  {
+    "id": "b11-s1-04",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Saturation is 45/450, or 10 percent, which is low because the binding capacity is high."
+  },
+  {
+    "id": "b11-s1-05",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Lymphocytes are 20 percent of 5,000, or 1,000, and 8 percent of those lymphocytes is an absolute subset count of 80."
+  },
+  {
+    "id": "b11-s1-06",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "The gap from 6 to 8 g/dL is about 2 g, and each unit raises hemoglobin by about 1 g/dL, so four units overshoot the aim."
+  },
+  {
+    "id": "b11-s1-07",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Content is almost all hemoglobin-bound, and 1.34 times 7 g/dL is only about 9 mL/dL even when saturation is nearly complete."
+  },
+  {
+    "id": "b11-s1-08",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A missing factor stays corrected after normal plasma is added, and this mixture lengthened again from 35 seconds to 75 seconds."
+  },
+  {
+    "id": "b11-s1-09",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Ethanol of 184 mg/dL contributes 184/4.6, about 40 mOsm, which accounts for the entire stated gap."
+  },
+  {
+    "id": "b11-s1-10",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Homocysteine rises with either missing vitamin, while a methylmalonic acid of 900 nmol/L rises only when cobalamin is missing."
+  },
+  {
+    "id": "b11-s1-11",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "The newborn's long prothrombin and partial thromboplastin times are several unfinished vitamin K factors, while one long partial thromboplastin time is a single protein."
+  },
+  {
+    "id": "b11-s1-12",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Winter's formula for a bicarbonate of 10 predicts a carbon dioxide in the low 20s, and 40 has not fallen."
+  },
+  {
+    "id": "b11-s1-13",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Albumin of 2.0 lowers the expected gap by about 2.5 to 3 per gram, or 5 to 6, so an observed gap of 16 is high."
+  },
+  {
+    "id": "b11-s1-14",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Predicted osmolality is 2×140 plus glucose/18 plus urea/2.8, about 290, and 320 leaves a gap of 30."
+  },
+  {
+    "id": "b11-s1-15",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "A carbon dioxide of 40 leaves alveolar oxygen near 100 on room air, so an arterial oxygen of 60 is a wide gradient rather than hypoventilation."
+  },
+  {
+    "id": "b11-s1-16",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Six points of bicarbonate above 24 predict a carbon dioxide rise of about 4, to near 44, and 55 is higher."
+  },
+  {
+    "id": "b11-s1-17",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "The gap of 16 is only about 4 above a normal gap, while bicarbonate fell by about 12 and chloride is 112."
+  },
+  {
+    "id": "b11-s1-18",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Urine sodium plus potassium minus chloride is +55, so the kidney is not excreting the ammonium a gut bicarbonate loss would require."
+  },
+  {
+    "id": "b11-s1-19",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "FENa is (40×3)/(140×30), about 3 percent, so the tubules are not conserving sodium."
+  },
+  {
+    "id": "b11-s1-20",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Usual weight 76 kg and current weight 70 kg match a 6 L water deficit. One liter is far short. Re-read after the contradictory equal weights were removed."
+  },
+  {
+    "id": "b11-s1-21",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Glucose 700 mg/dL above 100 adds about 1.6×7, or 11, to the measured sodium, correcting 126 to about 137."
+  },
+  {
+    "id": "b11-s1-22",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Cockcroft-Gault with age 80, weight 70, creatinine 2, and the 0.85 factor is about 25 mL/min."
+  },
+  {
+    "id": "b11-s1-23",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Fourteen points of bicarbonate above 24 predict a carbon dioxide rise of about 0.7×14, near 50, which matches compensation."
+  },
+  {
+    "id": "b11-s1-24",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Urine sodium of 90 in 300 mL per hour plus a 2 kg weight loss is salt and volume loss, and water restriction removes more volume."
+  },
+  {
+    "id": "b11-s1-25",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Each gram of albumin below 4 adds about 0.8, so 2 grams add 1.6 and the corrected calcium is about 9.4."
+  },
+  {
+    "id": "b11-s1-26",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "0.5 units/kg is about 40 units for the whole day, and the basal share of a basal-bolus start is about half of that."
+  },
+  {
+    "id": "b11-s1-27",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "An A1c of 10 percent estimates an average glucose near 240 mg/dL, and one fasting value of 140 is not that average."
+  },
+  {
+    "id": "b11-s1-28",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Twice 140 is 280 and 900/18 is 50, so osmolality is about 330 before urea despite a sodium of 140."
+  },
+  {
+    "id": "b11-s1-29",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "A calcium of 11.4 should suppress PTH near the floor, so a value of 70 is not an appropriate normal result."
+  },
+  {
+    "id": "b11-s1-30",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "On the 100 g thresholds, 190 exceeds the one-hour cut of 180 and 156 exceeds the two-hour cut of 155."
+  },
+  {
+    "id": "b11-s1-31",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The stem already says free T4 is inside the reference range, and the option repeats that the free hormone and TSH are in range."
+  },
+  {
+    "id": "b11-s1-32",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A day-21 progesterone of 0.4 ng/mL is far below the luteal level that follows ovulation, so the LH-to-FSH ratio does not show it."
+  },
+  {
+    "id": "b11-s1-33",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "A 3 a.m. glucose of 150 means there was no overnight low, so cutting night insulin lets the morning glucose rise further."
+  },
+  {
+    "id": "b11-s1-34",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "TSH of 2 with a high reverse T3 is not gland failure, unlike the cousin's TSH of 40 and free T4 of 0.4."
+  },
+  {
+    "id": "b11-s1-35",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "ACTH rose from 20 to 80 when the pituitary could respond, and it stayed at 8 after postpartum failure to lactate."
+  },
+  {
+    "id": "b11-s1-36",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "TSH of 1.4 and free T4 of 1.1 are in range, and a calcitonin of 800 is a different product from thyroid hormone."
+  },
+  {
+    "id": "b11-s1-37",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "An FSH of 2 means the drive has stopped, and an FSH of 45 means the ovary is not answering."
+  },
+  {
+    "id": "b11-s1-38",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Measured level divided by (0.2×albumin + 0.1) is 8/0.5, or 16, which sits inside 10 to 20."
+  },
+  {
+    "id": "b11-s1-39",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Mean pressure is 60 plus one third of 30, or 70, and 70 minus an intracranial pressure of 25 is a perfusion pressure of 45."
+  },
+  {
+    "id": "b11-s1-40",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Bazett correction is 400 divided by the square root of 0.5, about 565 ms, which is prolonged."
+  },
+  {
+    "id": "b11-s1-41",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Failure to depress the adducted eye is the superior oblique nerve, while lid, pupil, and inward pull travel on the oculomotor nerve."
+  },
+  {
+    "id": "b11-s1-42",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "The blood level is already in range on day 1, and the mood effect waits on slower receptor changes."
+  },
+  {
+    "id": "b11-s1-43",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Equal face, arm, and leg weakness with spared naming and fields is a packed tract, while cortex separates the arm from the leg."
+  },
+  {
+    "id": "b11-s1-44",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Bands absent from a same-hour serum were secreted on the nervous-system side of the barrier, unlike the brother's matched serum bands."
+  },
+  {
+    "id": "b11-s1-45",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Large ventricles with an empty canal mean raised pressure is stretching the abducens nerve, and the cousin's fracture is the local hit."
+  },
+  {
+    "id": "b11-s1-46",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Fasciculations are dying motor neurons and an upgoing toe is a tract sign, and the brother's kinase of 3000 has neither."
+  },
+  {
+    "id": "b11-s1-47",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Ventral fibers to the limbs are out, while the dorsal paths that keep him awake still let him blink answers."
+  },
+  {
+    "id": "b11-s1-48",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Voice, palate, and shoulder leave together through the jugular foramen, and the face and front-of-tongue taste leave through the facial canal."
+  },
+  {
+    "id": "b11-s1-49",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Glucose drove carbohydrate metabolism that consumed the last thiamine cofactor, which the brother who had been eating still had."
+  },
+  {
+    "id": "b11-s1-50",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "A T-score of -2.6 is already past -2.5, and a calcium of 9.5 means the bone loss is not a missing serum calcium."
+  },
+  {
+    "id": "b11-s1-51",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "Urate is already given as 9.5 after the pain stopped, so the option mostly repeats that contrast and adds one fact: the pain drug does not move the number."
+  },
+  {
+    "id": "b11-s1-52",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "One cutoff check: drug treatment is copied from a score past -2.5, and -1.5 has not crossed that line."
+  },
+  {
+    "id": "b11-s1-53",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Low C3, anti-DNA, and proteinuria mean immune complexes are consuming complement; hydralazine anti-histone disease with a normal C3 does not."
+  },
+  {
+    "id": "b11-s1-54",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "A visible lighter band already falsifies 'protein erased'; the frame comment only labels the empty blot the stem already showed."
+  },
+  {
+    "id": "b11-s1-55",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "A 6 cm pinch is a collagen-fibril disorder, while a 4.6 cm root plus an upward lens is fibrillin; height alone does not make them one protein."
+  },
+  {
+    "id": "b11-s1-56",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Dense bone, narrow marrow, anemia, and nerve compression mean mineral is retained because resorption failed; the pale film is the low-bone opposite."
+  },
+  {
+    "id": "b11-s1-57",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Activity of 0 forces purine bases into urate, and the brother's normal activity salvages them, so the shared meals are not the difference."
+  },
+  {
+    "id": "b11-s1-58",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "A PTT that stays long is an inhibitor and here clots; a PTT that falls to 32 is a missing factor and here bleeds into the joint."
+  },
+  {
+    "id": "b11-s1-59",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already pairs the enlarged spleen with 800 and the normal spleen with 4500; the option restates that tracking."
+  },
+  {
+    "id": "b11-s1-60",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "16 to 8 to 4 fixes a four-hour half-life, and the time to plateau is a set number of half-lives, so dose does not move it earlier."
+  },
+  {
+    "id": "b11-s1-61",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Sweat is cholinergic, so it persists, while the blocker removes the adrenergic tremor and keeps the rate at 60."
+  },
+  {
+    "id": "b11-s1-62",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already shows that slowing stops his redness and does not stop the brother's collapse on 1 mg."
+  },
+  {
+    "id": "b11-s1-63",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "The drug blocks viral exit rather than killing intracellular virus, and by day 4 that release has already happened."
+  },
+  {
+    "id": "b11-s1-64",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "No growth is already in the stem, so 'bacteria in the joint' fails at a glance; the titer only names the immune reaction."
+  },
+  {
+    "id": "b11-s1-65",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The stem already says only the first drug opens the wall; endotoxin is a single added link."
+  },
+  {
+    "id": "b11-s1-66",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Daily drinking induces the enzyme that forms the toxic metabolite, so the same hour-4 antidote meets a larger load and the INR still rises."
+  },
+  {
+    "id": "b11-s1-67",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Penicillin opens the wall so the aminoglycoside can reach the ribosome; each drug alone leaves the enterococcus alive."
+  },
+  {
+    "id": "b11-s1-68",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "The enzyme-poison bond ages by day 3 and the reactivator can no longer split it, while atropine only blocks the receptor."
+  },
+  {
+    "id": "b11-s1-69",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "Toxin without tissue organisms versus organisms inside the mucosa is already the stem's contrast."
+  },
+  {
+    "id": "b11-s1-70",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "PR 90 plus a slur is early ventricular activation down an extra path; PR 160 with a narrow QRS is nodal conduction."
+  },
+  {
+    "id": "b11-s1-71",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The stem already gives an end-diastolic pressure of 22 with an ejection fraction of 60; the option repeats both."
+  },
+  {
+    "id": "b11-s1-72",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "The stem already shows the 60 micrometer cap clotted and the 300 micrometer cap did not."
+  },
+  {
+    "id": "b11-s1-73",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Depression means residual flow and inner-wall injury; elevation means the injury spans the wall thickness."
+  },
+  {
+    "id": "b11-s1-74",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Inspiration increases venous return to the right heart and briefly decreases return to the left, so one grade rises and the other falls."
+  },
+  {
+    "id": "b11-s1-75",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "The early beat travels down the slow path while the fast path is refractory and returns up the fast path; exercise only speeds the node."
+  },
+  {
+    "id": "b11-s1-76",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already says resting flow is using nearly all a 90 percent narrowing can deliver."
+  },
+  {
+    "id": "b11-s1-77",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "New hypertension still triggers the reflex that slows the rate to 48; a year at 170 resets the set point so the rate stays 72."
+  },
+  {
+    "id": "b11-s1-78",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "The node cannot recover fast enough for 300 atrial waves, so it conducts every other beat and the ventricle sits at 150."
+  },
+  {
+    "id": "b11-s1-79",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "The central-vein zone is last in line for oxygen and is also where the drug's metabolite is made, so both injuries land there."
+  },
+  {
+    "id": "b11-s1-80",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Surface antigen has cleared before surface antibody appears, and core IgM means the infection is still current."
+  },
+  {
+    "id": "b11-s1-81",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The stem already pairs a full-thickness biopsy with a tract and a mucosa-only biopsy with no tract."
+  },
+  {
+    "id": "b11-s1-82",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "Day-3 amylase is already normal while lipase is still three times the limit; the option repeats that pair."
+  },
+  {
+    "id": "b11-s1-83",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A pumping vessel without a crater is a large vessel under intact mucosa; the brother's crater is an ulcer that reached a vessel."
+  },
+  {
+    "id": "b11-s1-84",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "The second virus must borrow the surface coat, so a negative surface antigen leaves it unable to package."
+  },
+  {
+    "id": "b11-s1-85",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "Antibiotic recovery versus wheat-triggered diarrhea and a wheat antibody is already drawn in the stem."
+  },
+  {
+    "id": "b11-s1-86",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Repeated pancreatic injury removes enzyme tissue and later islets; a flat small-bowel biopsy causes fat loss without sitting in the pancreas."
+  },
+  {
+    "id": "b11-s1-87",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "A method and means for suicide tonight identify a person in immediate danger, so the secrecy request does not hold."
+  },
+  {
+    "id": "b11-s1-88",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "The operating physician controls tomorrow's operation, so the research signature can be given to protect that care."
+  },
+  {
+    "id": "b11-s1-89",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already says he is not on the care team and was not asked to look; friendship is the same missing role."
+  },
+  {
+    "id": "b11-s1-90",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "He already missed sentences, an interpreter is available the same day, and the operation is not an emergency."
+  },
+  {
+    "id": "b11-s1-91",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already says the form is not a public-health report and that he is not hiding the result from his physicians."
+  },
+  {
+    "id": "b11-s1-92",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "A year of weekly care leaves a power difference that does not disappear the day after the chart is closed."
+  },
+  {
+    "id": "b11-s1-93",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "A weapon and a plan against a named person tonight require a warning; anger without a plan stays private."
+  },
+  {
+    "id": "b11-s1-94",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Of 1,000 people, about 10 have the disease and about 99 false positives outnumber the true positives, so 90 percent is not the chance he is affected."
+  },
+  {
+    "id": "b11-s1-95",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The stem already says people were enrolled by exposure, free of disease at the start, and followed for new cases."
+  },
+  {
+    "id": "b11-s1-96",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The stem already says the interval includes 1; the option only translates 1 into no difference."
+  },
+  {
+    "id": "b11-s1-97",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "The stem already says smokers drink more coffee and that the link disappears in people who have never smoked."
+  },
+  {
+    "id": "b11-s1-98",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already says the two markers rise and fall together, so the second result is not a separate ratio to multiply."
+  },
+  {
+    "id": "b11-s1-99",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "The brain depends on T4, which is low in both infants, so a TSH of 1 does not mean the cousin's neurons are supplied."
+  },
+  {
+    "id": "b11-s1-100",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "With cycle activity at 0, the steak's nitrogen cannot be cleared and ammonia rises; the rice meal does not supply that load."
+  },
+  {
+    "id": "b11-s2-01",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "Decoupling is the right idea, but the stem already contrasts the treating physician in the same conversation with an off-team coordinator, and A mostly repeats that split."
+  },
+  {
+    "id": "b11-s2-02",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "D is the only true choice, but it restates age, town, and a three-person disease and adds only the one-step conclusion that he is still identifiable."
+  },
+  {
+    "id": "b11-s2-03",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "Disclosure without injury is correct, yet the stem already says the wrong dose was given and the condition did not change, which C repeats."
+  },
+  {
+    "id": "b11-s2-04",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "Decision-specific capacity is right, but B repeats the stem's own contrast: he names lunch, cannot repeat a risk, and calls the operation a haircut."
+  },
+  {
+    "id": "b11-s2-05",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "A year of monthly care not ending yesterday is a single ethics rule, and A paraphrases the timeline the stem already gives."
+  },
+  {
+    "id": "b11-s2-06",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "Privacy stands without a danger exception, but E restates the stem's no plan, no means, and request to keep the notes private."
+  },
+  {
+    "id": "b11-s2-07",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "Scope of consent is correct, and the stem already says the form names only the diabetes study while the new test is a different question."
+  },
+  {
+    "id": "b11-s2-08",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The journal disclosure never reached the patient; that is one look from a journal note versus a bedside card he was not told about."
+  },
+  {
+    "id": "b11-s2-09",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "A repeats the stem: he has capacity, has not refused information, and is asking what the scan showed."
+  },
+  {
+    "id": "b11-s2-10",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "The stem already says the humiliation is happening now and that the attending grades the student; A restates both."
+  },
+  {
+    "id": "b11-s2-11",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Bleeding plus 80/50 is shock, and no directive or available surrogate means implied consent; the stem does not name either step."
+  },
+  {
+    "id": "b11-s2-12",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "B repeats the stem's contrast: the samples are for patients who cannot pay, and the brother is not a clinic patient."
+  },
+  {
+    "id": "b11-s2-13",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Urine chloride 12 after vomiting is saline-responsive volume loss; 45 plus 160/100 is not, which is why only the first bicarbonate falls."
+  },
+  {
+    "id": "b11-s2-14",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Dry mouth and creatinine 1.8 mean he is already depleted and at risk, and volume after a contrast exposure in three hours is too late."
+  },
+  {
+    "id": "b11-s2-15",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "B is a one-look reading of 1.0 to 3.4 in five days versus a visit in seven days; the casts are not needed to pick it."
+  },
+  {
+    "id": "b11-s2-16",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A fall from 138 to 116 with ongoing seizures is acute and severe, so isotonic saline will not raise the sodium fast enough."
+  },
+  {
+    "id": "b11-s2-17",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Calcium 10.8 times phosphate 8 is already a high product with calcified vessels, so a calcium binder adds more calcium."
+  },
+  {
+    "id": "b11-s2-18",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A rise from 1.0 to 1.3 that plateaus with potassium 4.5 is the expected hemodynamic effect, not a reason to stop the drug."
+  },
+  {
+    "id": "b11-s2-19",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "C is the only defensible choice, but it repeats the blank film, ultrasound shadow, brightness, and both pH values without naming stone composition."
+  },
+  {
+    "id": "b11-s2-20",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The stem already gives viral inclusions, a positive viral stain, and no lymphocytes; D adds only that more immunosuppression helps the virus."
+  },
+  {
+    "id": "b11-s2-21",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Urine sodium 80, output 250 mL/h, flat veins, and 92/58 are salt loss with volume depletion, so restriction worsens both."
+  },
+  {
+    "id": "b11-s2-22",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Halos and a slow irregular pulse at a high-normal level are toxicity because potassium 2.8 increases digoxin binding at the pump."
+  },
+  {
+    "id": "b11-s2-23",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Depression with a rising troponin is partial flow, and lysis is for ST elevation from a fully closed artery."
+  },
+  {
+    "id": "b11-s2-24",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Rales, edema, and pressure 86/54 mean output is sympathetically supported, so starting a beta blocker can drop it further."
+  },
+  {
+    "id": "b11-s2-25",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "A fixed 0.6 cm2 valve cannot maintain output when nitrate cuts preload; a 2.2 cm2 valve can."
+  },
+  {
+    "id": "b11-s2-26",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Positional pain, diffuse ST elevation, PR depression, and a rub are pericarditis, and anticoagulation can bleed into the sac."
+  },
+  {
+    "id": "b11-s2-27",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A 160 ms escape with AV dissociation is infranodal block, so vagolysis with atropine will not restore conduction."
+  },
+  {
+    "id": "b11-s2-28",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Trimethoprim blocks distal sodium reabsorption and retains potassium on top of spironolactone; a creatinine rise to 1.3 does not explain 6.0."
+  },
+  {
+    "id": "b11-s2-29",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "A new diastolic murmur with pressure 86/40 is acute regurgitation, so the ventricle has not had time to enlarge."
+  },
+  {
+    "id": "b11-s2-30",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "A halfway QRS when a P wave lands is fusion from simultaneous supraventricular and ventricular activation, which makes the wide rhythm ventricular."
+  },
+  {
+    "id": "b11-s2-31",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Squatting increases venous return and ventricular size, so the leaflet billows later and the click moves toward the second sound."
+  },
+  {
+    "id": "b11-s2-32",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Snuffbox tenderness after a fall is a scaphoid injury often missed on the day-of film, and playing can displace it."
+  },
+  {
+    "id": "b11-s2-33",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A rocking pelvis with pressure 78/46 is an unstable bleeding ring; movement enlarges the volume and the binder should close it first."
+  },
+  {
+    "id": "b11-s2-34",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Headache, jaw pain, a tender temple artery, ESR 92, and new monocular vision loss threaten the other eye, and biopsy remains readable after steroids."
+  },
+  {
+    "id": "b11-s2-35",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Multilayer retinal hemorrhages plus a subdural collection require acceleration that a sofa-to-carpet roll does not generate."
+  },
+  {
+    "id": "b11-s2-36",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Closed-space soot and hoarseness are an airway injury that can close later; a 2 percent burn, talking, and saturation 96 percent do not predict that."
+  },
+  {
+    "id": "b11-s2-37",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Cartilage calcium suggests crystals, but crystals and infection coexist, so fever of 38.6 C still requires culture of the fluid."
+  },
+  {
+    "id": "b11-s2-38",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "A cold pulseless foot with a dislocated knee is a kinked artery now, and reduction is what restores the pulse."
+  },
+  {
+    "id": "b11-s2-39",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Nail pits, a scaly elbow, and whole-digit swelling are a different disease from the father's single-joint crystal attack."
+  },
+  {
+    "id": "b11-s2-40",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "D repeats a fracture less than a day old and a few assisted steps, with only the one-line conclusion that the clot risk remains."
+  },
+  {
+    "id": "b11-s2-41",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The stem already says a faster option is available; E restates that seven days without food and current psychosis will not wait six weeks."
+  },
+  {
+    "id": "b11-s2-42",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Pupils of 7 mm, yawning, goose flesh, and a respiratory rate of 18 are withdrawal, and naloxone blocks receptors further."
+  },
+  {
+    "id": "b11-s2-43",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Leg restlessness that started on day 3 while the voices got quieter is drug restlessness, so a higher dose worsens it."
+  },
+  {
+    "id": "b11-s2-44",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "B restates the attempt two days ago and the pills still at home; the signature-versus-means contrast is already in the stem."
+  },
+  {
+    "id": "b11-s2-45",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "A spell reproduced by fast breathing with troponin 0.01 and no exertional pain is not unstable coronary disease."
+  },
+  {
+    "id": "b11-s2-46",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Nighttime figures, fluctuating attention, and a new shuffling gait are one illness, and an antipsychotic worsens the movements."
+  },
+  {
+    "id": "b11-s2-47",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Three hours of sleep and unfunded spending after a manic admission are a rising mood, which an antidepressant can worsen."
+  },
+  {
+    "id": "b11-s2-48",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Tremor, heart rate 120, and a prior withdrawal seizure two days after the last drink are withdrawal, and haloperidol lowers the seizure threshold."
+  },
+  {
+    "id": "b11-s2-49",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "She is walking at 118/72 with ferritin 8, so the deficiency is replaced with iron rather than two units for a hemoglobin of 8."
+  },
+  {
+    "id": "b11-s2-50",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Fever, 4 kg of weight, and new infiltrates on day 2 of a differentiating agent are a maturation leak, which antibiotics alone do not treat."
+  },
+  {
+    "id": "b11-s2-51",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Day-6 fall plus a new clot is consumptive thrombosis, so added platelets feed the clot; the day-2 count excludes dilution."
+  },
+  {
+    "id": "b11-s2-52",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "Reticulocytes of 12 percent and undetectable haptoglobin are already the definition of hemolysis, so iron is excluded in one look."
+  },
+  {
+    "id": "b11-s2-53",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "The stem already contrasts the child with bloody diarrhea against the adult without it; A repeats that exchange belongs to the adult."
+  },
+  {
+    "id": "b11-s2-54",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "No bleeding and a cleaning seven days away make full reversal the wrong scale, and a large reversal leaves the mechanical valve unprotected."
+  },
+  {
+    "id": "b11-s2-55",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The option repeats that he is running, hemoglobin is 13, and schistocytes are absent, which the stem already lists."
+  },
+  {
+    "id": "b11-s2-56",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "The stroke tracks the 85 percent sickle fraction, and simple transfusion to 13 adds cells and viscosity without removing them."
+  },
+  {
+    "id": "b11-s2-57",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "Fever, jaundice, and shock are one-look ascending cholangitis; the option restates those findings."
+  },
+  {
+    "id": "b11-s2-58",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The stem and the question already say gas fills the colon with no cutoff; C only renames that as slow rather than blocked."
+  },
+  {
+    "id": "b11-s2-59",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The option repeats pressure 78 and continued bleeding and adds only that volume comes before a clean colon."
+  },
+  {
+    "id": "b11-s2-60",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Calcifications plus glucose 210 mean burned-out acini, which is why a normal amylase does not clear a pancreatic source."
+  },
+  {
+    "id": "b11-s2-61",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already says the illness followed wheat, barley, and rye and that rice had caused no symptoms."
+  },
+  {
+    "id": "b11-s2-62",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "Bile without blood is a single rule that the source is past the duodenum."
+  },
+  {
+    "id": "b11-s2-63",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "No cutoff means an adynamic colon, and more opioid slows motility further; neither step is named in the stem."
+  },
+  {
+    "id": "b11-s2-64",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "Yellow supernatant means hours of in-vivo breakdown, and a flat red-cell count from tube 1 to tube 4 is not a traumatic tap."
+  },
+  {
+    "id": "b11-s2-65",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "An abnormal head impulse and unidirectional nystagmus are separate peripheral signs, and the ability to walk fits that lesion."
+  },
+  {
+    "id": "b11-s2-66",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "The option repeats hyperventilation-provoked pauses and amnesia already stated in the stem."
+  },
+  {
+    "id": "b11-s2-67",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The stem already sets six weeks and new startle jerks against a decade of slow decline; C repeats that contrast."
+  },
+  {
+    "id": "b11-s2-68",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "One rule: the plain scan has already excluded blood and an hour of MRI spends scarce time; the option echoes both facts."
+  },
+  {
+    "id": "b11-s2-69",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The option restates weakness that followed a convulsion and is already improving."
+  },
+  {
+    "id": "b11-s2-70",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The option repeats opening pressure 32, small ventricles, and no mass, then calls a second scan redundant."
+  },
+  {
+    "id": "b11-s2-71",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "Shifted trachea, a silent chest, and pressure 70 are already the clinical diagnosis in the stem."
+  },
+  {
+    "id": "b11-s2-72",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The option repeats the pH rise from 7.22 to 7.35 and that 58 matches last month's 56."
+  },
+  {
+    "id": "b11-s2-73",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Pulse 70 at 39 C is relative bradycardia; with sodium 128 and diarrhea that organism is outside beta-lactam coverage."
+  },
+  {
+    "id": "b11-s2-74",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The option repeats a teaspoon that stopped, a normal film, and saturation 98 and labels it not massive."
+  },
+  {
+    "id": "b11-s2-75",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "A normal film and no symptoms are already in the stem; A only says that pattern is not active disease."
+  },
+  {
+    "id": "b11-s2-76",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Carbon dioxide 72 with a falling pH is hypoventilation, and oxygen can raise saturation while drive falls and carbon dioxide climbs."
+  },
+  {
+    "id": "b11-s2-77",
+    "letter": "C",
+    "verdict": "thin",
+    "note": "The stem already says the segment is not dependent and the swallow is intact."
+  },
+  {
+    "id": "b11-s2-78",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "A peanut meal an hour ago is still being absorbed, so a second pressure drop can follow the first recovery."
+  },
+  {
+    "id": "b11-s2-79",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The stem already shows pressure recovered to 112 with fluid and that he is off vasopressors."
+  },
+  {
+    "id": "b11-s2-80",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Rigid jaw, end-tidal carbon dioxide rising from 40 to 70, and a rising temperature are the reaction to the first dose, so a second dose adds trigger."
+  },
+  {
+    "id": "b11-s2-81",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Clonus and brisk reflexes are serotonin excess; the dopamine-blocker syndrome is lead-pipe tone with slow reflexes, so haloperidol is the wrong class."
+  },
+  {
+    "id": "b11-s2-82",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The stem already says the scan appropriately precedes the puncture; D only adds that the antibiotic should not wait."
+  },
+  {
+    "id": "b11-s2-83",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Spread on the oral drug plus pain beyond the skin and sodium 128 means a deeper infection that another oral day will not reach."
+  },
+  {
+    "id": "b11-s2-84",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Each 100 mg/dL above 100 adds about 1.6; glucose 800 adds about 11, correcting 126 to roughly 137, so hypertonic saline is not indicated."
+  },
+  {
+    "id": "b11-s2-85",
+    "letter": "B",
+    "verdict": "sound",
+    "note": "The rhythm drug blocks T4-to-T3 conversion, so high free T4, low T3, and TSH 1.8 are not excess production."
+  },
+  {
+    "id": "b11-s2-86",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Iodine given before synthesis is blocked can be organified into more hormone, so the order is reversed."
+  },
+  {
+    "id": "b11-s2-87",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already says the full mealtime dose dropped glucose to 48 when a meal was missed."
+  },
+  {
+    "id": "b11-s2-88",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The stem already says a primary adrenal source would suppress ACTH; D repeats that 80 is drive from above."
+  },
+  {
+    "id": "b11-s2-89",
+    "letter": "A",
+    "verdict": "sound",
+    "note": "Snowstorm ultrasound with no fetus is a mole, and that tissue can invade, so routine prenatal visits are the wrong plan."
+  },
+  {
+    "id": "b11-s2-90",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The stem already says headache and clonus remain after the cuff fell to 128/78."
+  },
+  {
+    "id": "b11-s2-91",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "One rule: placenta across the os, so a finger can open bleeding that the dilation number does not require."
+  },
+  {
+    "id": "b11-s2-92",
+    "letter": "E",
+    "verdict": "sound",
+    "note": "Handling the prolapsed cord makes it spasm, and the presenting part has to be lifted off it rather than the cord replaced."
+  },
+  {
+    "id": "b11-s2-93",
+    "letter": "D",
+    "verdict": "thin",
+    "note": "The option repeats the seizure and the pressure fall before bleeding, plus blood that would not clot."
+  },
+  {
+    "id": "b11-s2-94",
+    "letter": "A",
+    "verdict": "thin",
+    "note": "The stem already says the scan finds slow tumors and that aggressive ones appear between scans and miss the screened group."
+  },
+  {
+    "id": "b11-s2-95",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The stem already says the comparison includes people too ill to work; E restates that employment selects healthier people."
+  },
+  {
+    "id": "b11-s2-96",
+    "letter": "B",
+    "verdict": "thin",
+    "note": "The stem already contrasts intensive-care patients versus healthy volunteers with the mild cases seen in clinic."
+  },
+  {
+    "id": "b11-s2-97",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "The absolute drop is 1 per 100, so 100 people are treated to prevent one event; 2 comes from inverting the relative reduction."
+  },
+  {
+    "id": "b11-s2-98",
+    "letter": "D",
+    "verdict": "sound",
+    "note": "Birth at 28 weeks is 12 weeks early, so corrected age is about 3 months, when sitting is not expected."
+  },
+  {
+    "id": "b11-s2-99",
+    "letter": "E",
+    "verdict": "thin",
+    "note": "The option restates that he had words at 15 months and then lost them."
+  },
+  {
+    "id": "b11-s2-100",
+    "letter": "C",
+    "verdict": "sound",
+    "note": "Pointing, showing, and turning to a name are joint attention; exposure to two languages does not remove those behaviors."
+  }
+]

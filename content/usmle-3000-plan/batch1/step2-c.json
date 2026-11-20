@@ -1,0 +1,117 @@
+[
+  {
+    "id": "b1-s2-08",
+    "fieldId": "usmle-step-2",
+    "stepLevel": "step2",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 9,
+    "difficulty": 4,
+    "subjectId": "cardiology",
+    "nutrition": false,
+    "examTakeaway": "ST elevation with a laboratory ready within 30 minutes is treated with primary PCI, not a fibrinolytic.",
+    "scenario": "A 57-year-old man has crushing chest pain that began 35 minutes ago. The ECG shows 2 mm of ST elevation in II, III, and aVF. The catheterization laboratory can accept him in 25 minutes. Blood pressure is 138/80 mm Hg. He has no bleeding history.",
+    "question": "Which reperfusion plan is the most appropriate next step?",
+    "options": [
+      "Schedule a treadmill test tomorrow",
+      "Heparin for 24 hours before any reperfusion",
+      "Activate the catheterization laboratory",
+      "Give tenecteplase now",
+      "Observe and repeat the ECG in the morning"
+    ],
+    "correctAnswer": "Activate the catheterization laboratory",
+    "explanation": "ST elevation with a laboratory ready within 30 minutes is treated with primary PCI, not a fibrinolytic. Activate the catheterization laboratory. The AHA 2013 STEMI guideline prefers primary percutaneous coronary intervention when the device time will be short. Give tenecteplase now is for patients who cannot reach timely PCI. Observe and repeat the ECG in the morning loses myocardium. Schedule a treadmill test tomorrow is for a stable patient without ST elevation. Heparin for 24 hours before any reperfusion is not reperfusion.",
+    "citation": "AHA 2013"
+  },
+  {
+    "id": "b1-s2-09",
+    "fieldId": "usmle-step-2",
+    "stepLevel": "step2",
+    "outlineSystem": "cardiovascular",
+    "outlineWeight": 9,
+    "difficulty": 4,
+    "subjectId": "cardiology",
+    "nutrition": false,
+    "examTakeaway": "New atrial fibrillation with a rapid rate and stable blood pressure is treated with rate control, not immediate cardioversion.",
+    "scenario": "A 64-year-old woman feels palpitations but speaks in full sentences. Blood pressure is 136/82 mm Hg. The ECG shows atrial fibrillation at 142 bpm and no ST elevation. She has hypertension and is already taking apixaban. Symptoms began four hours ago. The lungs are clear.",
+    "question": "Which drug is the most appropriate next step for the rate?",
+    "options": [
+      "Intravenous metoprolol",
+      "Immediate synchronized cardioversion",
+      "Aspirin alone",
+      "Adenosine",
+      "Digoxin as the only drug with no further plan"
+    ],
+    "correctAnswer": "Intravenous metoprolol",
+    "explanation": "New atrial fibrillation with a rapid rate and stable blood pressure is treated with rate control, not immediate cardioversion. Intravenous metoprolol is an AHA 2023 option when she is stable and already anticoagulated. Immediate synchronized cardioversion is for instability she does not have. Aspirin alone does not slow the rate or replace her anticoagulant. Adenosine is for a regular reentrant tachycardia. Digoxin as the only drug with no further plan is a slow and incomplete acute rate-control choice.",
+    "citation": "AHA 2023"
+  },
+  {
+    "id": "b1-s2-10",
+    "fieldId": "usmle-step-2",
+    "stepLevel": "step2",
+    "outlineSystem": "respiratory",
+    "outlineWeight": 7.5,
+    "difficulty": 4,
+    "subjectId": "pulmonology",
+    "nutrition": false,
+    "examTakeaway": "Acidemic COPD exacerbation in a patient who protects his airway is treated first with noninvasive ventilation.",
+    "scenario": "A 71-year-old man with home oxygen speaks two words at a time and uses neck muscles. Sputum is yellow. On oxygen, pH is 7.28, PaCO2 is 64 mm Hg, and PaO2 is 58 mm Hg. He is awake and has not vomited. Blood pressure is 146/84 mm Hg. The film shows no pneumothorax.",
+    "question": "Which support is the most appropriate next step?",
+    "options": [
+      "A chest tube",
+      "High-flow oxygen with no pressure support",
+      "Noninvasive ventilation",
+      "Immediate intubation as the first strategy",
+      "Nasal cannula alone"
+    ],
+    "correctAnswer": "Noninvasive ventilation",
+    "explanation": "Acidemic COPD exacerbation in a patient who protects his airway is treated first with noninvasive ventilation. Noninvasive ventilation is the GOLD 2024 recommendation for this pH and PaCO2. Immediate intubation as the first strategy skips a trial that often avoids a tube. Nasal cannula alone does not unload the muscles of breathing. A chest tube treats a pneumothorax that is not present. High-flow oxygen with no pressure support does not ventilate off the carbon dioxide.",
+    "citation": "GOLD 2024"
+  },
+  {
+    "id": "b1-s2-11",
+    "fieldId": "usmle-step-2",
+    "stepLevel": "step2",
+    "outlineSystem": "pregnancy",
+    "outlineWeight": 5,
+    "difficulty": 4,
+    "subjectId": "obgyn",
+    "nutrition": false,
+    "examTakeaway": "Severe-range blood pressure at 37 weeks with headache and a low platelet count is preeclampsia with severe features and is delivered after magnesium.",
+    "scenario": "A 31-year-old woman at 37 weeks has a blood pressure of 170/110 mm Hg on repeat measurement, a persistent headache, and spots in her vision. Platelets are 90,000/mm3. The fetal tracing is reassuring. She has no chronic hypertension.",
+    "question": "Which plan is the most appropriate next step?",
+    "options": [
+      "Home blood-pressure checks next week",
+      "Oral labetalol and induction at 39 weeks",
+      "Cesarean without magnesium because the tracing is reassuring",
+      "A 24-hour urine before any treatment",
+      "Magnesium sulfate and delivery"
+    ],
+    "correctAnswer": "Magnesium sulfate and delivery",
+    "explanation": "Severe-range blood pressure at 37 weeks with headache and a low platelet count is preeclampsia with severe features and is delivered after magnesium. Magnesium sulfate and delivery follows ACOG guidance at this gestational age. Home blood-pressure checks next week delays care of severe features. Oral labetalol and induction at 39 weeks is expectant management that is not appropriate here. Cesarean without magnesium because the tracing is reassuring skips seizure prophylaxis and chooses a route the tracing does not require. A 24-hour urine before any treatment postpones magnesium and delivery for a test she does not need first.",
+    "citation": "ACOG"
+  },
+  {
+    "id": "b1-s2-12",
+    "fieldId": "usmle-step-2",
+    "stepLevel": "step2",
+    "outlineSystem": "endocrine",
+    "outlineWeight": 5,
+    "difficulty": 4,
+    "subjectId": "endocrinology",
+    "nutrition": true,
+    "examTakeaway": "Diabetic ketoacidosis is treated with intravenous saline and insulin; bicarbonate is not routine when the pH is above 6.9.",
+    "scenario": "A 19-year-old man with type 1 diabetes has vomited for a day. Glucose is 480 mg/dL, bicarbonate is 10 mEq/L, anion gap is 24, and urine ketones are large. pH is 7.18. He is breathing deeply. Blood pressure is 110/70 mm Hg.",
+    "question": "Which plan is the most appropriate next step?",
+    "options": [
+      "Metformin",
+      "Free water by mouth alone",
+      "Intravenous saline and an insulin infusion",
+      "Subcutaneous insulin only",
+      "Sodium bicarbonate as the first drug"
+    ],
+    "correctAnswer": "Intravenous saline and an insulin infusion",
+    "explanation": "Diabetic ketoacidosis is treated with intravenous saline and insulin; bicarbonate is not routine when the pH is above 6.9. Intravenous saline and an insulin infusion is the ADA 2024 sequence for this gap and this pH. Subcutaneous insulin only does not replace volume. Sodium bicarbonate as the first drug is not routine at a pH of 7.18. Metformin has no role in ketoacidosis and risks lactic acidosis if the creatinine rises. Free water by mouth alone is unsafe while he is vomiting.",
+    "citation": "ADA 2024"
+  }
+]

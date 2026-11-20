@@ -1,0 +1,112 @@
+[
+  {
+    "id": "b2-s1-01",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 4,
+    "subjectId": "endocrinology",
+    "examTakeaway": "Euvolemic hyponatremia with urine that is not dilute is inappropriate ADH, not psychogenic water drinking.",
+    "scenario": "A 62-year-old man with a new lung mass is confused. Sodium is 122 mEq/L, serum osmolality is 255 mOsm/kg, and urine osmolality is 480 mOsm/kg. He has no edema and no orthostasis. Urine sodium is 40 mEq/L. Glucose and thyroid tests are normal.",
+    "question": "Which drive explains the sodium?",
+    "options": [
+      "Primary polydipsia",
+      "Aldosterone-producing adenoma",
+      "Cerebral salt wasting",
+      "Inappropriate antidiuretic hormone",
+      "Addison disease"
+    ],
+    "correctAnswer": "Inappropriate antidiuretic hormone",
+    "explanation": "Euvolemic hyponatremia with urine that is not dilute is inappropriate ADH, not psychogenic water drinking. Inappropriate antidiuretic hormone fits a concentrated urine, a high urine sodium, and no volume loss in a patient with a lung mass. Primary polydipsia dilutes the urine below 100 mOsm/kg. Aldosterone-producing adenoma causes hypertension and hypokalemia, not hyponatremia. Cerebral salt wasting needs a brain injury and visible volume loss, and he has neither. Addison disease usually shows hyperkalemia and hypotension.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-02",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 5,
+    "subjectId": "endocrinology",
+    "examTakeaway": "Cortisol that suppresses only on the high-dose dexamethasone test comes from a pituitary adenoma.",
+    "scenario": "A 36-year-old woman has a round face, a dorsal fat pad, and new hypertension. A 24-hour urine cortisol is high and plasma ACTH is detectable. Low-dose dexamethasone does not lower the morning cortisol. High-dose dexamethasone lowers it by more than half. A chest CT is normal.",
+    "question": "Which lesion fits both suppression tests?",
+    "options": [
+      "Adrenal cortisol-secreting adenoma",
+      "Ectopic ACTH from the lung",
+      "Pituitary adenoma",
+      "Exogenous glucocorticoid use",
+      "Primary adrenal carcinoma"
+    ],
+    "correctAnswer": "Pituitary adenoma",
+    "explanation": "Cortisol that suppresses only on the high-dose dexamethasone test comes from a pituitary adenoma. Pituitary adenoma still responds to a large steroid dose, and ACTH is present, so the source is not the adrenal. Adrenal cortisol-secreting adenoma suppresses ACTH and does not fall with dexamethasone. Ectopic ACTH from the lung usually ignores even the high dose, and the chest CT is normal. Exogenous glucocorticoid use suppresses ACTH and would not raise urine cortisol from the patient's own adrenal in this pattern. Primary adrenal carcinoma also suppresses ACTH and ignores dexamethasone.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-03",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 4,
+    "subjectId": "endocrinology",
+    "examTakeaway": "Failure to lactate plus hyponatremia after postpartum hemorrhage is loss of anterior-pituitary prolactin and ACTH together.",
+    "scenario": "A 28-year-old woman needed a transfusion for hemorrhage at delivery. Two weeks later she cannot lactate, is dizzy on standing, and has a sodium of 128 mEq/L and a glucose of 58 mg/dL. She is not polyuric. MRI shows an empty sella and no mass.",
+    "question": "Which losses explain the milk and the sodium together?",
+    "options": [
+      "ADH only",
+      "Cortisol made in the adrenal medulla",
+      "Thyroxine only",
+      "Prolactin and ACTH together",
+      "Insulin"
+    ],
+    "correctAnswer": "Prolactin and ACTH together",
+    "explanation": "Failure to lactate plus hyponatremia after postpartum hemorrhage is loss of anterior-pituitary prolactin and ACTH together. Prolactin and ACTH together explains absent milk plus low sodium and low glucose. ADH only would cause polyuria, and she is not polyuric. Cortisol made in the adrenal medulla is the wrong gland; the medulla makes catecholamines. Thyroxine only does not stop lactation this fast or drop the glucose. Insulin deficiency would raise the glucose, not lower it.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-04",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 4,
+    "subjectId": "endocrinology",
+    "examTakeaway": "Resistant hypertension, hypokalemia, a low renin, and an adrenal nodule are volume expansion from aldosterone, not a high-renin renal artery lesion.",
+    "scenario": "A 45-year-old man has a blood pressure of 168/100 mm Hg on three drugs and is not on a beta blocker. Potassium is 3.0 mEq/L. Plasma renin is below the reference range. CT shows a 1.2 cm adrenal nodule. Plasma metanephrines are normal and he has no pounding spells.",
+    "question": "Which hormone expanded his volume and suppressed renin?",
+    "options": [
+      "Cortisol from a pituitary source",
+      "Catecholamines",
+      "Renin itself from a renal artery stenosis",
+      "Parathyroid hormone",
+      "Aldosterone"
+    ],
+    "correctAnswer": "Aldosterone",
+    "explanation": "Resistant hypertension, hypokalemia, a low renin, and an adrenal nodule are volume expansion from aldosterone, not a high-renin renal artery lesion. Aldosterone wastes potassium and expands volume enough to switch renin off. Cortisol from a pituitary source adds weight gain and striae, which are absent. Catecholamines would raise metanephrines and cause spells, which he does not have. Renin itself from a renal artery stenosis would be high, not suppressed. Parathyroid hormone raises calcium, not this pressure.",
+    "citation": null
+  },
+  {
+    "id": "b2-s1-05",
+    "fieldId": "usmle-step-1",
+    "stepLevel": "step1",
+    "outlineSystem": "reproductive-endocrine",
+    "outlineWeight": 14,
+    "difficulty": 5,
+    "subjectId": "endocrinology",
+    "examTakeaway": "A pheochromocytoma is blocked with an alpha antagonist before any beta blocker, or the pressure can rise.",
+    "scenario": "A 40-year-old woman has pounding headaches and palpitations. Blood pressure during a spell is 210/120 mm Hg. Plasma metanephrines are several times normal. CT shows a 3 cm adrenal mass. A colleague suggests starting propranolol today for the heart rate of 120 bpm. She is not yet on any blocker.",
+    "question": "Which drug must come first?",
+    "options": [
+      "Propranolol alone",
+      "Phenoxybenzamine",
+      "Hydrochlorothiazide",
+      "Levothyroxine",
+      "Insulin"
+    ],
+    "correctAnswer": "Phenoxybenzamine",
+    "explanation": "A pheochromocytoma is blocked with an alpha antagonist before any beta blocker, or the pressure can rise. Phenoxybenzamine blocks the alpha-mediated squeeze first, which is the 2014 sequence before a beta blocker is added for the rate. Propranolol alone leaves alpha constriction unopposed and can raise the pressure further. Hydrochlorothiazide does not block the catecholamine surge. Levothyroxine treats hypothyroidism. Insulin treats hyperglycemia and is not the first blocker.",
+    "citation": "2014"
+  }
+]

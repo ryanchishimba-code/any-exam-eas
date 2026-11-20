@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "b8-s1-01",
+    "rating": "sound",
+    "note": "He fails ristocetin even after normal plasma is added, so the missing piece is on his platelets (GPIb). The cousin aggregates once normal plasma is supplied, so she lacks the plasma ligand that receptor binds (vWF). ADP aggregation in both keeps GPIIb/IIIa intact and leaves only that receptor-versus-ligand split."
+  },
+  {
+    "id": "b8-s1-02",
+    "rating": "sound",
+    "note": "Normal A2 with microcytosis and a normal ferritin means alpha chains are missing, while the cousin’s high A2 is beta-chain loss."
+  },
+  {
+    "id": "b8-s1-03",
+    "rating": "sound",
+    "note": "Aquagenic pruritus, splenomegaly, and a higher hematocrit mean autonomous marrow production has suppressed erythropoietin."
+  },
+  {
+    "id": "b8-s1-04",
+    "rating": "thin",
+    "note": "The stem already states antithrombin is missing, and the answer restates that heparin inhibits clotting enzymes only through that cofactor."
+  },
+  {
+    "id": "b8-s1-05",
+    "rating": "sound",
+    "note": "A urea-soluble clot with normal clotting times means those assays stop at the first fibrin strand and never test factor XIII crosslinking."
+  },
+  {
+    "id": "b8-s1-06",
+    "rating": "sound",
+    "note": "Bloody diarrhea a week earlier places the child’s schistocytes on Shiga-toxin endothelial injury, and the adult without diarrhea is the enzyme deficiency."
+  },
+  {
+    "id": "b8-s1-07",
+    "rating": "sound",
+    "note": "Ringed sideroblasts with a high ferritin mean iron arrived but piled up in mitochondria because it could not enter heme."
+  },
+  {
+    "id": "b8-s1-08",
+    "rating": "sound",
+    "note": "The well man with the higher count has a neoplastic neutrophil clone that lacks the phosphatase stressed marrow raises."
+  },
+  {
+    "id": "b8-s1-09",
+    "rating": "sound",
+    "note": "Hemolysis only after cooling then rewarming means antibody bound in the cold and complement lysed the cell when it was warmed."
+  },
+  {
+    "id": "b8-s1-10",
+    "rating": "sound",
+    "note": "A year of feeling well with smudge cells and preserved counts is a slow mature-lymphocyte clone, not blasts that empty marrow."
+  },
+  {
+    "id": "b8-s1-100",
+    "rating": "sound",
+    "note": "Side-by-side play is normal at age 2, and bringing toys while watching a parent shows joint attention is intact."
+  },
+  {
+    "id": "b8-s1-11",
+    "rating": "sound",
+    "note": "Rouleaux comes from a circulating paraprotein that coats red cells, which an albumin urine dipstick barely detects."
+  },
+  {
+    "id": "b8-s1-12",
+    "rating": "sound",
+    "note": "Desmopressin concentrates only the younger man’s urine, so his duct lacked hormone while the lithium-treated kidney cannot respond."
+  },
+  {
+    "id": "b8-s1-13",
+    "rating": "sound",
+    "note": "Urine osmolality of 80 means water load suppressed antidiuretic hormone, while 600 with a lung mass means that hormone stays on."
+  },
+  {
+    "id": "b8-s1-14",
+    "rating": "sound",
+    "note": "Bicarbonate of 34 is renal compensation over days of hypercapnia, which a brief seizure does not allow."
+  },
+  {
+    "id": "b8-s1-15",
+    "rating": "sound",
+    "note": "Walking shortens red-cell transit, so oxygen no longer equilibrates across a membrane with low diffusing capacity."
+  },
+  {
+    "id": "b8-s1-16",
+    "rating": "sound",
+    "note": "Hypercalciuria matches a loop block, whereas distal-convoluted blockade would increase calcium reabsorption."
+  },
+  {
+    "id": "b8-s1-17",
+    "rating": "sound",
+    "note": "Once volume fell, prostaglandin was keeping the afferent arteriole open, and ibuprofen removed that dilation."
+  },
+  {
+    "id": "b8-s1-18",
+    "rating": "sound",
+    "note": "Bicarbonate of 10 should lower carbon dioxide near 23, so a value of 40 adds respiratory acidosis from the sedative."
+  },
+  {
+    "id": "b8-s1-19",
+    "rating": "sound",
+    "note": "A gap of 10 with rising chloride means bicarbonate was lost and replaced by chloride, not by lactate."
+  },
+  {
+    "id": "b8-s1-20",
+    "rating": "sound",
+    "note": "Fetal hemoglobin binds 2,3-bisphosphoglycerate poorly, so its curve stays shifted toward holding oxygen."
+  },
+  {
+    "id": "b8-s1-21",
+    "rating": "sound",
+    "note": "A normal alveolar-arterial gradient with hypercapnia means alveolar air still equilibrates and ventilation is simply too low."
+  },
+  {
+    "id": "b8-s1-22",
+    "rating": "sound",
+    "note": "Aldosterone from the adrenal expands volume and shuts off renin, unlike the high-renin renal-artery patient."
+  },
+  {
+    "id": "b8-s1-23",
+    "rating": "sound",
+    "note": "He can hyperventilate open units enough to lower carbon dioxide while unmatched blood flow still widens the oxygen gap."
+  },
+  {
+    "id": "b8-s1-24",
+    "rating": "sound",
+    "note": "Efferent constriction slows outflow, raises glomerular capillary pressure, and filters a larger share of the remaining flow."
+  },
+  {
+    "id": "b8-s1-25",
+    "rating": "sound",
+    "note": "Alpha constriction continued after beta blockade removed beta-mediated vasodilation, so the pressure rose."
+  },
+  {
+    "id": "b8-s1-26",
+    "rating": "sound",
+    "note": "Only the tanned patient has high ACTH, whose precursor drives pigment, while the pale patient’s pituitary is silent."
+  },
+  {
+    "id": "b8-s1-27",
+    "rating": "sound",
+    "note": "Normal pubic hair and female-range testosterone show androgen action worked, so the uterus itself failed to form."
+  },
+  {
+    "id": "b8-s1-28",
+    "rating": "sound",
+    "note": "A sharp luteinizing-hormone rise means the pituitary still answers the hypothalamus, which autonomous ovarian estrogen would suppress."
+  },
+  {
+    "id": "b8-s1-29",
+    "rating": "sound",
+    "note": "The tumor hormone that resembles luteinizing hormone cross-reacts at the thyroid receptor and the resulting thyroxine suppresses TSH."
+  },
+  {
+    "id": "b8-s1-30",
+    "rating": "sound",
+    "note": "Adipose aromatase converts a normal male testosterone level to estradiol, which the lean man does not do at that rate."
+  },
+  {
+    "id": "b8-s1-31",
+    "rating": "sound",
+    "note": "The lung mass releases a parathyroid-related peptide that raises calcium and then suppresses native parathyroid hormone."
+  },
+  {
+    "id": "b8-s1-32",
+    "rating": "sound",
+    "note": "Full breasts and hand expression show milk was produced, while suckling fails because the posterior-pituitary ejection hormone is missing."
+  },
+  {
+    "id": "b8-s1-33",
+    "rating": "sound",
+    "note": "High thyroxine without thyrotoxicosis means the receptor cannot sense it, so the pituitary keeps releasing TSH."
+  },
+  {
+    "id": "b8-s1-34",
+    "rating": "sound",
+    "note": "A partial block still makes enough mineralocorticoid to hold sodium normal while androgen production remains increased."
+  },
+  {
+    "id": "b8-s1-35",
+    "rating": "sound",
+    "note": "Prolactin loses a constant hypothalamic brake when the stalk is cut, while the other axes lose their releasing signals."
+  },
+  {
+    "id": "b8-s1-36",
+    "rating": "sound",
+    "note": "A very high testosterone with a low luteinizing hormone and one enlarged ovary is autonomous ovarian androgen suppressing the pituitary."
+  },
+  {
+    "id": "b8-s1-37",
+    "rating": "sound",
+    "note": "Glucose should engage the hypothalamic brake on growth hormone, and the adenoma ignores that signal."
+  },
+  {
+    "id": "b8-s1-38",
+    "rating": "sound",
+    "note": "The nucleus under the thalamus normally drives inhibition of the thalamus, so losing it releases contralateral movement without weakness."
+  },
+  {
+    "id": "b8-s1-39",
+    "rating": "sound",
+    "note": "The tremor that worsens near the target is failed cerebellar smoothing, unlike the lap tremor that quiets on reaching."
+  },
+  {
+    "id": "b8-s1-40",
+    "rating": "sound",
+    "note": "An upgoing toe means the cortical brake is gone, and absent flickers mean the anterior horn cell mediating that reflex is still alive."
+  },
+  {
+    "id": "b8-s1-41",
+    "rating": "sound",
+    "note": "Bacteria would bring white cells into the fluid, whereas this protein leaked from inflamed roots without a cellular response."
+  },
+  {
+    "id": "b8-s1-42",
+    "rating": "sound",
+    "note": "Fluent speech with intact comprehension but failed repetition means the connection between those areas is cut."
+  },
+  {
+    "id": "b8-s1-43",
+    "rating": "sound",
+    "note": "He can see the left field when forced to look, so the clock error is a missing map of that side of space."
+  },
+  {
+    "id": "b8-s1-44",
+    "rating": "sound",
+    "note": "Arterial blood outside the dura is stopped by dural attachments at the sutures, while venous blood beneath the dura is not."
+  },
+  {
+    "id": "b8-s1-45",
+    "rating": "sound",
+    "note": "Day-1 flaccidity was spinal shock, and the upgoing toe appeared once the stunned upper-motor reflexes returned."
+  },
+  {
+    "id": "b8-s1-46",
+    "rating": "sound",
+    "note": "The dopamine blocker that quieted the voices also blocked dopamine in the nigrostriatal movement pathway."
+  },
+  {
+    "id": "b8-s1-47",
+    "rating": "sound",
+    "note": "A bilateral cape of pain loss with wasted hand muscles is the cord center, where crossing pain fibers and hand motor cells both sit."
+  },
+  {
+    "id": "b8-s1-48",
+    "rating": "sound",
+    "note": "The herniating temporal lobe compresses the third nerve before it compresses the cerebral peduncle."
+  },
+  {
+    "id": "b8-s1-49",
+    "rating": "sound",
+    "note": "He still understands his own errors, while the neighbor’s comprehension area does not."
+  },
+  {
+    "id": "b8-s1-50",
+    "rating": "sound",
+    "note": "Sunburst bone is periosteum lifted off the metaphysis with new bone laid along the stretched perpendicular vessels."
+  },
+  {
+    "id": "b8-s1-51",
+    "rating": "sound",
+    "note": "Strong active flexion shows the flexor tendon is intact, so the cord is shortened palmar fascia."
+  },
+  {
+    "id": "b8-s1-52",
+    "rating": "sound",
+    "note": "Sluggish metaphyseal loops trap bacteria and the open growth plate blocks spread into the joint."
+  },
+  {
+    "id": "b8-s1-53",
+    "rating": "sound",
+    "note": "Present pulses exclude ischemia, and lost sensation lets him keep injuring the joint."
+  },
+  {
+    "id": "b8-s1-54",
+    "rating": "sound",
+    "note": "Drug bound to bone mineral keeps suppressing resorption because osteoclasts take it up only when they resorb that mineral."
+  },
+  {
+    "id": "b8-s1-55",
+    "rating": "sound",
+    "note": "The proximal fragment collapses because its only blood supply enters from the distal side and was cut off."
+  },
+  {
+    "id": "b8-s1-56",
+    "rating": "sound",
+    "note": "The intra-articular ligament bleeds into the joint at once, while the medial ligament bleeds outside the capsule."
+  },
+  {
+    "id": "b8-s1-57",
+    "rating": "sound",
+    "note": "The whole digit is swollen because the tendon sheath, enthesis, and distal joint are inflamed together."
+  },
+  {
+    "id": "b8-s1-58",
+    "rating": "sound",
+    "note": "Downward lens plus clot is accumulated homocysteine injuring endothelium, unlike the fibrillin pathway."
+  },
+  {
+    "id": "b8-s1-59",
+    "rating": "sound",
+    "note": "Normal creatine kinase means the muscle fibers are not leaking and the stiffness is periarticular."
+  },
+  {
+    "id": "b8-s1-60",
+    "rating": "thin",
+    "note": "The beer reaction is the standard block of acetaldehyde clearance, and the stem already gives the high aldehyde."
+  },
+  {
+    "id": "b8-s1-61",
+    "rating": "sound",
+    "note": "This gout drug is not a xanthine-oxidase inhibitor and instead blocks renal secretion of penicillin."
+  },
+  {
+    "id": "b8-s1-62",
+    "rating": "thin",
+    "note": "A low dibucaine number is the textbook label for deficient plasma cholinesterase."
+  },
+  {
+    "id": "b8-s1-63",
+    "rating": "thin",
+    "note": "Aged cheese plus a drug that blocks amine breakdown is the standard tyramine release of stored transmitter."
+  },
+  {
+    "id": "b8-s1-64",
+    "rating": "thin",
+    "note": "A calcium-binding antibiotic stains only enamel that is still being mineralized."
+  },
+  {
+    "id": "b8-s1-65",
+    "rating": "thin",
+    "note": "The stem already says hair cells trap the drug, so toxicity is the usual cumulative store."
+  },
+  {
+    "id": "b8-s1-66",
+    "rating": "thin",
+    "note": "The stem already says both drugs raise the same vessel-relaxing messenger."
+  },
+  {
+    "id": "b8-s1-67",
+    "rating": "thin",
+    "note": "The stem already says the clearing enzyme is at maximum rate, so added drug accumulates."
+  },
+  {
+    "id": "b8-s1-68",
+    "rating": "thin",
+    "note": "The stem already says the newborn glucuronidating enzyme is immature."
+  },
+  {
+    "id": "b8-s1-69",
+    "rating": "sound",
+    "note": "Thiazide volume loss increases proximal lithium reabsorption even though the lithium dose is unchanged."
+  },
+  {
+    "id": "b8-s1-70",
+    "rating": "sound",
+    "note": "Huge intermittent neck waves are atrial contraction against a closed tricuspid valve."
+  },
+  {
+    "id": "b8-s1-71",
+    "rating": "sound",
+    "note": "Dilating beds that can still dilate steals flow away from the fixed stenosis."
+  },
+  {
+    "id": "b8-s1-72",
+    "rating": "sound",
+    "note": "Only the ventricle still on the ascending Starling curve raises stroke volume with the same bolus."
+  },
+  {
+    "id": "b8-s1-73",
+    "rating": "sound",
+    "note": "Enlarged intercostal collaterals bypass the narrow segment and erode the lower rib borders."
+  },
+  {
+    "id": "b8-s1-74",
+    "rating": "sound",
+    "note": "The pause further delays the next repolarization and lets an early afterdepolarization start the twisting rhythm."
+  },
+  {
+    "id": "b8-s1-75",
+    "rating": "sound",
+    "note": "Atropine helps only the nodal lengthening-PR block, not the sudden drops below the node."
+  },
+  {
+    "id": "b8-s1-76",
+    "rating": "thin",
+    "note": "The stem already says the rhythm node and the inferior wall share one vessel."
+  },
+  {
+    "id": "b8-s1-77",
+    "rating": "sound",
+    "note": "Inner-wall flow is driven by aortic diastolic pressure minus the high ventricular filling pressure."
+  },
+  {
+    "id": "b8-s1-78",
+    "rating": "sound",
+    "note": "Aortic closure is already late, so the usual inspiratory delay of pulmonary closure narrows the split."
+  },
+  {
+    "id": "b8-s1-79",
+    "rating": "thin",
+    "note": "The stem already says the bile duct passes through the pancreatic head and not the tail."
+  },
+  {
+    "id": "b8-s1-80",
+    "rating": "sound",
+    "note": "The organisms live in the antrum and raise the acid that ulcerates the duodenum."
+  },
+  {
+    "id": "b8-s1-81",
+    "rating": "sound",
+    "note": "The mitochondrial antibody marks small-duct injury inside the liver, so the extrahepatic duct stays undilated."
+  },
+  {
+    "id": "b8-s1-82",
+    "rating": "sound",
+    "note": "The lung clears the mediator, so left-sided valves are reached only when the source is in the lung."
+  },
+  {
+    "id": "b8-s1-83",
+    "rating": "sound",
+    "note": "The splenic flexure is a watershed between two arterial trunks, while the rectum has its own pelvic supply."
+  },
+  {
+    "id": "b8-s1-84",
+    "rating": "sound",
+    "note": "A scarred narrowing leaves peristalsis above it, whereas here the esophageal waves are absent."
+  },
+  {
+    "id": "b8-s1-85",
+    "rating": "sound",
+    "note": "Blood in the gut is a protein load that raises ammonia without a perforated viscus."
+  },
+  {
+    "id": "b8-s1-86",
+    "rating": "sound",
+    "note": "Unrecycled bile acids eventually fall too low to solubilize fat even though the colon is intact."
+  },
+  {
+    "id": "b8-s1-87",
+    "rating": "sound",
+    "note": "Loyalty does not require a letter that would put the bus passengers at known risk."
+  },
+  {
+    "id": "b8-s1-88",
+    "rating": "sound",
+    "note": "She is the pregnant patient and has demonstrated capacity for this delivery decision."
+  },
+  {
+    "id": "b8-s1-89",
+    "rating": "sound",
+    "note": "Equal chance of survival gives an equal claim, and public role is not a medical criterion."
+  },
+  {
+    "id": "b8-s1-90",
+    "rating": "sound",
+    "note": "The hopeful sentence asserts waking after a completed exam that has already excluded it."
+  },
+  {
+    "id": "b8-s1-91",
+    "rating": "sound",
+    "note": "A named victim plus an immediate plan and means is a duty to warn, unlike vague dislike."
+  },
+  {
+    "id": "b8-s1-92",
+    "rating": "sound",
+    "note": "A four-year-old cannot hold that religious refusal, and withholding blood would be fatal."
+  },
+  {
+    "id": "b8-s1-93",
+    "rating": "sound",
+    "note": "A large undisclosed stake can bias the choice between two equivalent drugs."
+  },
+  {
+    "id": "b8-s1-94",
+    "rating": "sound",
+    "note": "When the outcome is common, the odds ratio of 3 pulls away from the risk ratio of 1.5."
+  },
+  {
+    "id": "b8-s1-95",
+    "rating": "sound",
+    "note": "Sicker patients were given the drug, so baseline severity was mixed into the crude death rates."
+  },
+  {
+    "id": "b8-s1-96",
+    "rating": "sound",
+    "note": "Handwashing rose only while it was being watched and fell once the observers left."
+  },
+  {
+    "id": "b8-s1-97",
+    "rating": "sound",
+    "note": "A trial built to detect only a huge benefit, with an interval spanning harm and benefit, does not exclude smaller effects."
+  },
+  {
+    "id": "b8-s1-98",
+    "rating": "sound",
+    "note": "Censoring the sickest drops them without counting deaths, so the remaining curve looks healthier."
+  },
+  {
+    "id": "b8-s1-99",
+    "rating": "thin",
+    "note": "Three-word sentences understood by strangers are the expected three-year-old skill, and reading comes later."
+  },
+  {
+    "id": "b8-s2-01",
+    "rating": "sound",
+    "note": "A capacitated patient who asked cannot have a result withheld because the family fears he will be upset."
+  },
+  {
+    "id": "b8-s2-02",
+    "rating": "sound",
+    "note": "Names and room numbers on an unencrypted personal phone are identifiers that leave on a device the hospital does not control."
+  },
+  {
+    "id": "b8-s2-03",
+    "rating": "sound",
+    "note": "Consent to watch does not authorize the resident to perform the critical step in a nonemergent case."
+  },
+  {
+    "id": "b8-s2-04",
+    "rating": "sound",
+    "note": "A refusal is invalid because the open shelter bed was never offered before he left."
+  },
+  {
+    "id": "b8-s2-05",
+    "rating": "sound",
+    "note": "A controlled stimulant still requires a treatment relationship and an examination, which a colleague's word does not create."
+  },
+  {
+    "id": "b8-s2-06",
+    "rating": "sound",
+    "note": "Payment is not authorization, and this capacitated adult repeated a refusal that does not affect the parents' own urgent care."
+  },
+  {
+    "id": "b8-s2-07",
+    "rating": "sound",
+    "note": "An interpreter who is not used leaves the explanation with the son, so the patient has not consented."
+  },
+  {
+    "id": "b8-s2-08",
+    "rating": "sound",
+    "note": "Chart consent does not cover identifiable publication of the face in a textbook."
+  },
+  {
+    "id": "b8-s2-09",
+    "rating": "sound",
+    "note": "The documented refusal of antibiotics for future infections already covers this fever, so the family cannot reopen it."
+  },
+  {
+    "id": "b8-s2-10",
+    "rating": "sound",
+    "note": "A parent should not operate on a stable child when a qualified colleague is available, because judgment is compromised."
+  },
+  {
+    "id": "b8-s2-100",
+    "rating": "sound",
+    "note": "A reliable rake at 9 months is expected, and a neat fingertip pincer is a later, near-one-year skill."
+  },
+  {
+    "id": "b8-s2-11",
+    "rating": "sound",
+    "note": "Repeating an unchanged request hourly to exhaust a capacitated refusal is pressure, not shared decision-making."
+  },
+  {
+    "id": "b8-s2-12",
+    "rating": "sound",
+    "note": "Backdating the onset would record a history that did not occur, even though the symptoms and the drug are real."
+  },
+  {
+    "id": "b8-s2-13",
+    "rating": "sound",
+    "note": "Recovered pressure with muddy brown casts and a fractional excretion of sodium of 3 percent is established tubular injury wasting sodium, not ongoing underfilling."
+  },
+  {
+    "id": "b8-s2-14",
+    "rating": "sound",
+    "note": "Contrast injury appears within a day or two, whereas a delayed rise with blue toes, livedo, and urinary eosinophils is a cholesterol-crystal shower."
+  },
+  {
+    "id": "b8-s2-15",
+    "rating": "sound",
+    "note": "A year of stability was maintained by immunosuppression, so stopping it allowed acute rejection."
+  },
+  {
+    "id": "b8-s2-16",
+    "rating": "sound",
+    "note": "Heavy proteinuria creates a clot risk, and unilateral pain, swelling, and gross hematuria are renal-vein thrombosis."
+  },
+  {
+    "id": "b8-s2-17",
+    "rating": "sound",
+    "note": "Low urine sodium, dry membranes, and flat neck veins mean volume-triggered antidiuretic hormone that saline will shut off, unlike the euvolemic patient."
+  },
+  {
+    "id": "b8-s2-18",
+    "rating": "sound",
+    "note": "Output that starts at the moment of drainage with a falling creatinine is post-obstructive diuresis from a working kidney."
+  },
+  {
+    "id": "b8-s2-19",
+    "rating": "sound",
+    "note": "Glucose in the urine at a serum glucose of 90 with new hypophosphatemia is failed proximal reabsorption, not diabetes."
+  },
+  {
+    "id": "b8-s2-20",
+    "rating": "sound",
+    "note": "After vomiting stops, volume depletion with very low urine chloride keeps the kidney reclaiming bicarbonate."
+  },
+  {
+    "id": "b8-s2-21",
+    "rating": "sound",
+    "note": "Rash, fever, and white-cell casts a week after a new antibiotic are interstitial nephritis; month-old dye would have been earlier and blander."
+  },
+  {
+    "id": "b8-s2-22",
+    "rating": "sound",
+    "note": "Hereditary hematuria with deafness is a shared collagen defect of cochlea and glomerular basement membrane, not stones."
+  },
+  {
+    "id": "b8-s2-23",
+    "rating": "sound",
+    "note": "Inferior infarction with right-sided elevation, clear lungs, and elevated neck veins is a preload-dependent right ventricle that nitrate empties."
+  },
+  {
+    "id": "b8-s2-24",
+    "rating": "sound",
+    "note": "Tearing back pain, a wide mediastinum, and unequal pulses are aortic dissection, which anticoagulation can extend."
+  },
+  {
+    "id": "b8-s2-25",
+    "rating": "sound",
+    "note": "In preexcited atrial fibrillation, blocking the node sends more impulses down the accessory pathway and can accelerate the ventricle."
+  },
+  {
+    "id": "b8-s2-26",
+    "rating": "sound",
+    "note": "Free-wall rupture fills the pericardium without an audible intracardiac jet, so the missing murmur is expected."
+  },
+  {
+    "id": "b8-s2-27",
+    "rating": "sound",
+    "note": "Beta blockade leaves cocaine-driven alpha constriction unopposed, which worsened the pressure and the ischemia."
+  },
+  {
+    "id": "b8-s2-28",
+    "rating": "sound",
+    "note": "Atrial fibrillation plus a prior stroke outweighs one unhurt fall as a reason to stop anticoagulation."
+  },
+  {
+    "id": "b8-s2-29",
+    "rating": "sound",
+    "note": "Wet lungs without an oxygen step-up mean the jet enters the left atrium, whereas the septal jet enters the right ventricle."
+  },
+  {
+    "id": "b8-s2-30",
+    "rating": "sound",
+    "note": "A newly soft murmur with a delayed carotid, narrow pulse pressure, and a tiny valve area means flow fell across critical stenosis."
+  },
+  {
+    "id": "b8-s2-31",
+    "rating": "sound",
+    "note": "Chronic hypertension had shifted cerebral autoregulation upward, so a drop to 120/70 in one hour left the brain underperfused."
+  },
+  {
+    "id": "b8-s2-32",
+    "rating": "sound",
+    "note": "Early septic arthritis is a frozen, exquisitely painful hip with fever, and the pus is not yet visible on a plain film."
+  },
+  {
+    "id": "b8-s2-33",
+    "rating": "sound",
+    "note": "Pain beyond a small patch, crepitus, hyponatremia, and shock mean fascial necrosis that the skin surface hides."
+  },
+  {
+    "id": "b8-s2-34",
+    "rating": "sound",
+    "note": "Seizure with an adducted, internally rotated arm is a posterior dislocation, the opposite of the anterior position."
+  },
+  {
+    "id": "b8-s2-35",
+    "rating": "sound",
+    "note": "Confusion, hypoxia, and chest petechiae a day and a half after a femur fracture are fat emboli, not a clot from the moment of injury."
+  },
+  {
+    "id": "b8-s2-36",
+    "rating": "sound",
+    "note": "A full passive arc with a drop and weak external rotation means the cuff tendon, not the joint, has failed."
+  },
+  {
+    "id": "b8-s2-37",
+    "rating": "sound",
+    "note": "A fused spine can crack like a chalk stick after minor trauma, the film often misses it, and numb legs mean the cord is involved."
+  },
+  {
+    "id": "b8-s2-38",
+    "rating": "sound",
+    "note": "A tense septic knee still needs drainage and a culture even though an antibiotic was started an hour earlier."
+  },
+  {
+    "id": "b8-s2-39",
+    "rating": "sound",
+    "note": "Posterior rib fractures of two ages come from squeezing, not from repeated falls off a bed."
+  },
+  {
+    "id": "b8-s2-40",
+    "rating": "sound",
+    "note": "Focal tibial pain reproduced by hopping can be a stress fracture that an early normal film does not exclude."
+  },
+  {
+    "id": "b8-s2-41",
+    "rating": "sound",
+    "note": "Lead-pipe rigidity, slow reflexes, and a high creatine kinase after a dopamine blocker are malignant neuroleptic syndrome, not hyperreflexic serotonin excess."
+  },
+  {
+    "id": "b8-s2-42",
+    "rating": "sound",
+    "note": "A large meal releases insulin that drives phosphate into already depleted cells, so a normal level today will fall."
+  },
+  {
+    "id": "b8-s2-43",
+    "rating": "sound",
+    "note": "One opioid-positive urine during otherwise effective methadone treatment is a lapse, and stopping the drug returns the patient to daily use."
+  },
+  {
+    "id": "b8-s2-44",
+    "rating": "sound",
+    "note": "Oculogyric crisis and neck twisting after a first dose of haloperidol are dystonia from blockade, which a higher dose deepens."
+  },
+  {
+    "id": "b8-s2-45",
+    "rating": "sound",
+    "note": "A fixed belief that he is already dead is a delusion, so a clear refusal does not show he can apply the facts to himself."
+  },
+  {
+    "id": "b8-s2-46",
+    "rating": "sound",
+    "note": "Tremor, tachycardia, and a seizure two days after the last lorazepam are sedative withdrawal, and he does not drink."
+  },
+  {
+    "id": "b8-s2-47",
+    "rating": "sound",
+    "note": "Parotids, enamel loss, hand scars, and hypokalemia are purging, which wastes potassium at a normal weight."
+  },
+  {
+    "id": "b8-s2-48",
+    "rating": "sound",
+    "note": "Rigidity and a sky-high creatine kinase minutes after a volatile anesthetic and succinylcholine are malignant hyperthermia, and he takes no dopamine blocker."
+  },
+  {
+    "id": "b8-s2-49",
+    "rating": "sound",
+    "note": "Schistocytes, renal failure, and normal clotting studies are thrombotic thrombocytopenic purpura, so platelets feed the clots and plasma must replace the cleaving enzyme."
+  },
+  {
+    "id": "b8-s2-50",
+    "rating": "sound",
+    "note": "A low distribution width with normal ferritin means every cell was made small, unlike iron deficiency, which widens the distribution as stores fall."
+  },
+  {
+    "id": "b8-s2-51",
+    "rating": "thin",
+    "note": "Fever, back pain, and dark urine during a transfusion are hemolysis, so any more of the unit continues it."
+  },
+  {
+    "id": "b8-s2-52",
+    "rating": "sound",
+    "note": "Intact red cells and white cells plus one new drug point to peripheral platelet destruction rather than marrow production failure."
+  },
+  {
+    "id": "b8-s2-53",
+    "rating": "sound",
+    "note": "Mucosal bleeding, a long bleeding time, and a mild PTT are von Willebrand factor loss, not her brother's hemophilia A."
+  },
+  {
+    "id": "b8-s2-54",
+    "rating": "thin",
+    "note": "A new infiltrate with hypoxia, fever, and tachypnea is acute chest syndrome, which analgesia alone misses."
+  },
+  {
+    "id": "b8-s2-55",
+    "rating": "sound",
+    "note": "A therapeutic INR does not prevent intracranial bleeding, and new sleepiness after the fall is the warning."
+  },
+  {
+    "id": "b8-s2-56",
+    "rating": "sound",
+    "note": "Folate can repair the megaloblastic marrow while missing B12 leaves the cord and the vibration sense unrepaired."
+  },
+  {
+    "id": "b8-s2-57",
+    "rating": "sound",
+    "note": "Food buffers acid in an empty stomach, which is the opposite of a gallbladder that contracts after fat."
+  },
+  {
+    "id": "b8-s2-58",
+    "rating": "thin",
+    "note": "Free air, a rigid abdomen, and hypotension already mean perforation and an unstable patient."
+  },
+  {
+    "id": "b8-s2-59",
+    "rating": "sound",
+    "note": "Jaundice, a dilated duct, fever, and enzyme rise mean the stone is in the duct, which a later cholecystectomy does not open."
+  },
+  {
+    "id": "b8-s2-60",
+    "rating": "sound",
+    "note": "A normal upper endoscopy and a clear lavage with ongoing hematochezia place a brisk bleed below the ligament."
+  },
+  {
+    "id": "b8-s2-61",
+    "rating": "sound",
+    "note": "Raising hemoglobin from 8 to 12 expands volume, raises portal pressure, and can reopen the varix."
+  },
+  {
+    "id": "b8-s2-62",
+    "rating": "thin",
+    "note": "Pain that starts midline and localizes to McBurney point with rebound is appendicitis, not gastroenteritis."
+  },
+  {
+    "id": "b8-s2-63",
+    "rating": "sound",
+    "note": "Atrial fibrillation, pain far beyond a soft abdomen, and a high lactate indicate ischemic bowel rather than pancreatitis."
+  },
+  {
+    "id": "b8-s2-64",
+    "rating": "thin",
+    "note": "Ipsilateral neck pain and ptosis with contralateral face-and-arm weakness after manipulation is the classic cervical internal-carotid dissection pattern, so only B is correct: the injured vessel is extracranial and a brain scan misses it. A flips the side of the carotid, C misreads Horner as a brainstem bleed that CT alone would settle, D reverses the epidemiology, and E cannot explain face weakness or ptosis. The laterality and ptosis are parts of that single memorized picture rather than a second fact that forces a separate mechanism."
+  },
+  {
+    "id": "b8-s2-65",
+    "rating": "thin",
+    "note": "A headache worse when flat, with papilledema, is raised intracranial pressure rather than migraine."
+  },
+  {
+    "id": "b8-s2-66",
+    "rating": "thin",
+    "note": "Cancer, a climbing sensory level, leg weakness, and new retention are cord compression that cannot wait until tomorrow."
+  },
+  {
+    "id": "b8-s2-67",
+    "rating": "thin",
+    "note": "Jerking at a glucose of 40 is hypoglycemia, and an antiepileptic drug does not raise the glucose."
+  },
+  {
+    "id": "b8-s2-68",
+    "rating": "sound",
+    "note": "A spared pupil in a diabetic third-nerve palsy fits microvascular ischemia, because compression hits the peripheral pupillary fibers."
+  },
+  {
+    "id": "b8-s2-69",
+    "rating": "sound",
+    "note": "Spinning for under a minute only when rolling over is canalithiasis, not a continuous brainstem syndrome."
+  },
+  {
+    "id": "b8-s2-70",
+    "rating": "sound",
+    "note": "Wrist drop with a small dorsal-hand sensory patch after chair compression is a radial nerve injury, and the face is spared."
+  },
+  {
+    "id": "b8-s2-71",
+    "rating": "sound",
+    "note": "Sitting raises saturation because the collapsed bases are no longer the dependent lung receiving the shunt flow."
+  },
+  {
+    "id": "b8-s2-72",
+    "rating": "sound",
+    "note": "A one-sided effusion beside the infiltrate, with a normal heart and no edema, is parapneumonic fluid rather than overload."
+  },
+  {
+    "id": "b8-s2-73",
+    "rating": "thin",
+    "note": "A tongue blade in suspected epiglottitis can convert partial obstruction into complete airway closure."
+  },
+  {
+    "id": "b8-s2-74",
+    "rating": "sound",
+    "note": "Pulmonary arteriovenous blood takes up extra carbon monoxide, whereas a scarred membrane would lower the diffusing capacity."
+  },
+  {
+    "id": "b8-s2-75",
+    "rating": "sound",
+    "note": "A unilateral wheeze starting at extraction can be a nonopaque fragment in the right bronchus, and asthma is not one-sided."
+  },
+  {
+    "id": "b8-s2-76",
+    "rating": "sound",
+    "note": "A pH of 7.25 with carbon dioxide of 70 means he is failing to ventilate, and oxygen does not clear carbon dioxide."
+  },
+  {
+    "id": "b8-s2-77",
+    "rating": "sound",
+    "note": "Hyponatremia, diarrhea, confusion, and relative bradycardia point to Legionella, which a beta-lactam does not cover."
+  },
+  {
+    "id": "b8-s2-78",
+    "rating": "sound",
+    "note": "Early salicylate toxicity drives ventilation before the anion-gap metabolic acidosis has arrived."
+  },
+  {
+    "id": "b8-s2-79",
+    "rating": "sound",
+    "note": "Flank pain and calcium oxalate crystals mean ethylene glycol, which does not cause the blindness of methanol."
+  },
+  {
+    "id": "b8-s2-80",
+    "rating": "sound",
+    "note": "The beta agonist fails because the blocker already occupies the receptors that agonist would need."
+  },
+  {
+    "id": "b8-s2-81",
+    "rating": "sound",
+    "note": "A sodium-channel antiarrhythmic adds block to the same channel the tricyclic overdose is already blocking."
+  },
+  {
+    "id": "b8-s2-82",
+    "rating": "thin",
+    "note": "Charcoal does not bind iron, so the radio-opaque tablets remain in the stomach."
+  },
+  {
+    "id": "b8-s2-83",
+    "rating": "sound",
+    "note": "Sweat and present bowel sounds mean cholinergic synapses are working, so an anticholinergic antidote is the wrong drug."
+  },
+  {
+    "id": "b8-s2-84",
+    "rating": "sound",
+    "note": "The danger is free-water loss from osmotic diuresis, and absent ketoacidosis does not justify insulin before volume."
+  },
+  {
+    "id": "b8-s2-85",
+    "rating": "sound",
+    "note": "Until synthesis is blocked, the gland uses a load of iodine as substrate and makes more hormone."
+  },
+  {
+    "id": "b8-s2-86",
+    "rating": "thin",
+    "note": "The sleep study already shows obstruction from bulky airway tissue, which a stimulant does not open."
+  },
+  {
+    "id": "b8-s2-87",
+    "rating": "sound",
+    "note": "The stopped pump removed overnight basal insulin and ketones were already present, so a larger breakfast dose misses that gap."
+  },
+  {
+    "id": "b8-s2-88",
+    "rating": "sound",
+    "note": "An insulin-secreting tumor releases C-peptide with insulin, and a suppressed C-peptide means the insulin was injected."
+  },
+  {
+    "id": "b8-s2-89",
+    "rating": "thin",
+    "note": "A placenta covering the cervix can be disrupted by a digital exam."
+  },
+  {
+    "id": "b8-s2-90",
+    "rating": "sound",
+    "note": "Pain, a uterus that does not relax, and a falling fetal heart rate are abruption, not the painless previa pathway."
+  },
+  {
+    "id": "b8-s2-91",
+    "rating": "sound",
+    "note": "Absent reflexes and eight breaths a minute are magnesium toxicity, so the blood pressure needs a different drug."
+  },
+  {
+    "id": "b8-s2-92",
+    "rating": "sound",
+    "note": "A tender uterus and foul lochia two days after cesarean are polymicrobial endometritis, not simple cystitis."
+  },
+  {
+    "id": "b8-s2-93",
+    "rating": "thin",
+    "note": "Harder traction on an impacted shoulder stretches the brachial plexus while the shoulder stays stuck."
+  },
+  {
+    "id": "b8-s2-94",
+    "rating": "sound",
+    "note": "The five-year gap is 10 deaths per 100, and a hazard ratio of 0.5 is not that absolute count."
+  },
+  {
+    "id": "b8-s2-95",
+    "rating": "sound",
+    "note": "False negatives were never verified, so they were left out of the sensitivity calculation and the 98 percent can be inflated."
+  },
+  {
+    "id": "b8-s2-96",
+    "rating": "sound",
+    "note": "Hospital controls were sick enough to share the exposure and were not the less-exposed well population."
+  },
+  {
+    "id": "b8-s2-97",
+    "rating": "sound",
+    "note": "The new drug was concentrated in milder patients, so the pooled table mixes severity with treatment."
+  },
+  {
+    "id": "b8-s2-98",
+    "rating": "sound",
+    "note": "Daytime dryness and a normal stream mean the anatomy works, and night-only wetting at age six is common."
+  },
+  {
+    "id": "b8-s2-99",
+    "rating": "sound",
+    "note": "Mild brief repetitions in a social, unfrustrated four-year-old usually settle without intensive therapy this week."
+  }
+]

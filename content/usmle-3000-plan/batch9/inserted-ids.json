@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "b9x17cc77b6d3b7507bf0d31c0d",
+    "batchItemId": "b9-s1-01",
+    "blueprintTopic": "coagulation-cascade",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x1b5c73838ef66a288e20d177",
+    "batchItemId": "b9-s1-02",
+    "blueprintTopic": "hypersensitivity",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xdf3d12b9fc230ff61c3ca4bd",
+    "batchItemId": "b9-s1-03",
+    "blueprintTopic": "hypersensitivity",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x156bb41cd0a664652cbb4163",
+    "batchItemId": "b9-s1-04",
+    "blueprintTopic": "transplant-immunology",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xe00edc1f44e9c9c2cee404e1",
+    "batchItemId": "b9-s1-05",
+    "blueprintTopic": "hypersensitivity",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xa0d5c5fe527f7a3c67920ba0",
+    "batchItemId": "b9-s1-06",
+    "blueprintTopic": "hypersensitivity",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x5598b7f29e59ecdd2dfcbac2",
+    "batchItemId": "b9-s1-07",
+    "blueprintTopic": "leukemia-classification",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xd45cad57d9e20b2f56694c09",
+    "batchItemId": "b9-s1-08",
+    "blueprintTopic": "anemia-workup",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x6ce5c05f56b5f6a485edb2da",
+    "batchItemId": "b9-s1-09",
+    "blueprintTopic": "coagulation-cascade",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x3316590e0c911400a7b33ea4",
+    "batchItemId": "b9-s1-10",
+    "blueprintTopic": "hypersensitivity",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xf1b3d5235afa86ab40563a37",
+    "batchItemId": "b9-s1-11",
+    "blueprintTopic": "tumor-markers",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x96646ce521a8dbdb4f4be229",
+    "batchItemId": "b9-s1-12",
+    "blueprintTopic": "aki-mechanisms",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x514c52ed89abcc8d5d1bc20c",
+    "batchItemId": "b9-s1-13",
+    "blueprintTopic": "glomerular-diseases",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9xc550089045335717350230ae",
+    "batchItemId": "b9-s1-14",
+    "blueprintTopic": "acid-base-physiology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x3300bab63c379c8f85e35d5a",
+    "batchItemId": "b9-s1-15",
+    "blueprintTopic": "ards-pathology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x58be86b213851c0aba822996",
+    "batchItemId": "b9-s1-16",
+    "blueprintTopic": "asthma-copd-pathology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x132217960b8f71ddec9585bb",
+    "batchItemId": "b9-s1-17",
+    "blueprintTopic": "aki-mechanisms",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x032e9500b82c1fd57f99abe6",
+    "batchItemId": "b9-s1-18",
+    "blueprintTopic": "acid-base-physiology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x06d15a68d6c0ca38cfb8e374",
+    "batchItemId": "b9-s1-19",
+    "blueprintTopic": "glomerular-diseases",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9xab9c7873d3e2a876abb14223",
+    "batchItemId": "b9-s1-20",
+    "blueprintTopic": "aki-mechanisms",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x9fd483bd3f986a477dfd1cdc",
+    "batchItemId": "b9-s1-21",
+    "blueprintTopic": "ards-pathology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x195faad1b49d600bb68e492f",
+    "batchItemId": "b9-s1-22",
+    "blueprintTopic": "aki-mechanisms",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x7332b61735a9742af847e007",
+    "batchItemId": "b9-s1-23",
+    "blueprintTopic": "pe-pathophysiology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x2ce7a7975145e5de79f47782",
+    "batchItemId": "b9-s1-24",
+    "blueprintTopic": "acid-base-physiology",
+    "blueprintDomain": "respiratory-renal"
+  },
+  {
+    "id": "b9x7280c0f1521a9f835448e0c0",
+    "batchItemId": "b9-s1-25",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x9db076e65335ad7a0282ec70",
+    "batchItemId": "b9-s1-26",
+    "blueprintTopic": "thyroid-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9xff1e4eeadaa9399681ee9f95",
+    "batchItemId": "b9-s1-27",
+    "blueprintTopic": "adrenal-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9xccd86aa6f969ddecffd599e7",
+    "batchItemId": "b9-s1-28",
+    "blueprintTopic": "contraception-pharmacology",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x5f1465b057a2c93a1111cfeb",
+    "batchItemId": "b9-s1-29",
+    "blueprintTopic": "thyroid-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9xd7fe470aa5102b4aed8a7982",
+    "batchItemId": "b9-s1-30",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x169070b410c4f70e9db8b0d7",
+    "batchItemId": "b9-s1-31",
+    "blueprintTopic": "preeclampsia-mechanism",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x7c5b67995eeb13e1c4891bd5",
+    "batchItemId": "b9-s1-32",
+    "blueprintTopic": "pcos-endocrine",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x058e8584f57a5c0a35b28f8f",
+    "batchItemId": "b9-s1-33",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9xa3da44b3e860d693192e89ea",
+    "batchItemId": "b9-s1-34",
+    "blueprintTopic": "thyroid-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x4da2e9ac97369dc55562900a",
+    "batchItemId": "b9-s1-35",
+    "blueprintTopic": "adrenal-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9xe2f081aba9f0ee06cd7abb0e",
+    "batchItemId": "b9-s1-36",
+    "blueprintTopic": "thyroid-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x7760df63dfc5223f688fdf8a",
+    "batchItemId": "b9-s1-37",
+    "blueprintTopic": "pcos-endocrine",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x9a163c285bf9ff87da6daf52",
+    "batchItemId": "b9-s1-38",
+    "blueprintTopic": "ms-pathology",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xabb3906c4f379553c2f74227",
+    "batchItemId": "b9-s1-39",
+    "blueprintTopic": "neurodegenerative",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xe4babfd1a255d8123753f23b",
+    "batchItemId": "b9-s1-40",
+    "blueprintTopic": "seizure-mechanisms",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9x37574ce8990c175bb6176d29",
+    "batchItemId": "b9-s1-41",
+    "blueprintTopic": "cranial-nerve-lesions",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9x08c35c715aad0520e7fe4280",
+    "batchItemId": "b9-s1-42",
+    "blueprintTopic": "psychiatric-pharmacology",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xaec4614b5d227a3cfae2bc44",
+    "batchItemId": "b9-s1-43",
+    "blueprintTopic": "stroke-localization",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9x6686b2f119d972f2c219708e",
+    "batchItemId": "b9-s1-44",
+    "blueprintTopic": "ms-pathology",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xee46f4ae0d077870f443bc1e",
+    "batchItemId": "b9-s1-45",
+    "blueprintTopic": "cranial-nerve-lesions",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xf859e2559998f28f8bb91271",
+    "batchItemId": "b9-s1-46",
+    "blueprintTopic": "neurodegenerative",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xc4c968d67bcf35d908ca784b",
+    "batchItemId": "b9-s1-47",
+    "blueprintTopic": "stroke-localization",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xde272aac3b4f0e75451026fd",
+    "batchItemId": "b9-s1-48",
+    "blueprintTopic": "cranial-nerve-lesions",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9x985b270205469af01d55c4b7",
+    "batchItemId": "b9-s1-49",
+    "blueprintTopic": "metabolic-pathways",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9xfe780466d7e8ea0f64a66e65",
+    "batchItemId": "b9-s1-50",
+    "blueprintTopic": "rheumatoid-arthritis",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9xabe7574aa3343e319b33c6b8",
+    "batchItemId": "b9-s1-51",
+    "blueprintTopic": "lupus-pathology",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9x4c125d3ce39448dadf24b551",
+    "batchItemId": "b9-s1-52",
+    "blueprintTopic": "gout-crystals",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9xb1986c9733865db344c34b69",
+    "batchItemId": "b9-s1-53",
+    "blueprintTopic": "osteoporosis-bone",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9x2faf667d1e4d43886f75e781",
+    "batchItemId": "b9-s1-54",
+    "blueprintTopic": "myopathies",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9xae7f898571cead3896b4a67c",
+    "batchItemId": "b9-s1-55",
+    "blueprintTopic": "collagen-disorders",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9x419ce6489ded494b7287bb1c",
+    "batchItemId": "b9-s1-56",
+    "blueprintTopic": "osteoporosis-bone",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9xcb7813c054a1fbbf5060fb2b",
+    "batchItemId": "b9-s1-57",
+    "blueprintTopic": "gout-crystals",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9x7bc24c2cef2e081d750840dd",
+    "batchItemId": "b9-s1-58",
+    "blueprintTopic": "lupus-pathology",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9x14dbd6031f0091cfb866ec68",
+    "batchItemId": "b9-s1-59",
+    "blueprintTopic": "myopathies",
+    "blueprintDomain": "musculoskeletal"
+  },
+  {
+    "id": "b9xe66869350cd98b91746194cc",
+    "batchItemId": "b9-s1-60",
+    "blueprintTopic": "drug-moa-side-effects",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x855daf4e0a0e6b68e02adb6f",
+    "batchItemId": "b9-s1-61",
+    "blueprintTopic": "autonomic-pharmacology",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x37a555148c28b25a9ad56ebe",
+    "batchItemId": "b9-s1-62",
+    "blueprintTopic": "antibiotic-mechanisms",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x1bc8dcec9bffd5d2fda14bd6",
+    "batchItemId": "b9-s1-63",
+    "blueprintTopic": "antiviral-agents",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x93d9115ced474d219f950fa2",
+    "batchItemId": "b9-s1-64",
+    "blueprintTopic": "gram-positive-organisms",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x8c4ade88dde7ae9946b6d7af",
+    "batchItemId": "b9-s1-65",
+    "blueprintTopic": "gram-negative-fungi-parasites",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9xff714ed5b4df175a84bec753",
+    "batchItemId": "b9-s1-66",
+    "blueprintTopic": "drug-moa-side-effects",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x85e104310fefa144e0038593",
+    "batchItemId": "b9-s1-67",
+    "blueprintTopic": "antibiotic-mechanisms",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x9e117e07726d6cb2da13caa4",
+    "batchItemId": "b9-s1-68",
+    "blueprintTopic": "autonomic-pharmacology",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9x4826d5d716ccaa12678ced5b",
+    "batchItemId": "b9-s1-69",
+    "blueprintTopic": "gram-positive-organisms",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9xd6c01b9c81acc30cbae7609d",
+    "batchItemId": "b9-s1-70",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9xb54b9ca777c6ce1015b50c6a",
+    "batchItemId": "b9-s1-71",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9xad705bfa3b99ea2459ac413d",
+    "batchItemId": "b9-s1-72",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9xea6f79eff3f3b52ba31f161e",
+    "batchItemId": "b9-s1-73",
+    "blueprintTopic": "acs-pathophysiology",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9xe72b58e321605819de749d8f",
+    "batchItemId": "b9-s1-74",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9xb69ef2c176b6682876bd231f",
+    "batchItemId": "b9-s1-75",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9x752a04221091203960951c66",
+    "batchItemId": "b9-s1-76",
+    "blueprintTopic": "acs-pathophysiology",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9x4271ebf16ca8f120d58ea223",
+    "batchItemId": "b9-s1-77",
+    "blueprintTopic": "hypertension-mechanisms",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9x87687b89884863f146d0fa84",
+    "batchItemId": "b9-s1-78",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "blueprintDomain": "cardiovascular"
+  },
+  {
+    "id": "b9x4fc356ace9e79d046a40af10",
+    "batchItemId": "b9-s1-79",
+    "blueprintTopic": "liver-pathology",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9x823a617c56821315871a3a5d",
+    "batchItemId": "b9-s1-80",
+    "blueprintTopic": "hepatitis-serology",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9xa37ad8f56a47ec0bbd9a8da8",
+    "batchItemId": "b9-s1-81",
+    "blueprintTopic": "ibd-mechanisms",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9x388f708cd99f644f0f3e577e",
+    "batchItemId": "b9-s1-82",
+    "blueprintTopic": "pancreatitis-enzymes",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9xe45f74a350d4d3875914d7ba",
+    "batchItemId": "b9-s1-83",
+    "blueprintTopic": "gi-bleeding-sources",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9x698921757eef464666664a77",
+    "batchItemId": "b9-s1-84",
+    "blueprintTopic": "hepatitis-serology",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9xa1fd030d3d7a6c080a78f61a",
+    "batchItemId": "b9-s1-85",
+    "blueprintTopic": "malabsorption",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9xddef318dab2c49bf94d03796",
+    "batchItemId": "b9-s1-86",
+    "blueprintTopic": "pancreatitis-enzymes",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9x5622cea17d21f48cb3ace83b",
+    "batchItemId": "b9-s1-87",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x9ee14ad2b31539a7393818a0",
+    "batchItemId": "b9-s1-88",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xa2fcdb29f8e9038585b5666e",
+    "batchItemId": "b9-s1-89",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xd9a005d89b555b1d7d2590dd",
+    "batchItemId": "b9-s1-90",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xccd4358b96af47a18655af4f",
+    "batchItemId": "b9-s1-91",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x9e1949476bd65a38f780cc03",
+    "batchItemId": "b9-s1-92",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x4551963e5794ea0413d5a285",
+    "batchItemId": "b9-s1-93",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x074019a0bb5953f34cebd2eb",
+    "batchItemId": "b9-s1-94",
+    "blueprintTopic": "sensitivity-specificity",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9x4663610b8b9e5536e646effc",
+    "batchItemId": "b9-s1-95",
+    "blueprintTopic": "study-designs",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9xf8b779a758f5dbdcad697fe9",
+    "batchItemId": "b9-s1-96",
+    "blueprintTopic": "study-designs",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9x354379a1885029cd4d738e75",
+    "batchItemId": "b9-s1-97",
+    "blueprintTopic": "study-designs",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9x2180fd3895ee43936e0faee9",
+    "batchItemId": "b9-s1-98",
+    "blueprintTopic": "sensitivity-specificity",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9xf234b5b0b812d6956a63f742",
+    "batchItemId": "b9-s1-99",
+    "blueprintTopic": "thyroid-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9xd1e5c98e9232bbac45c132b7",
+    "batchItemId": "b9-s1-100",
+    "blueprintTopic": "inborn-errors",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9x4627d14c60d7340a30f6516d",
+    "batchItemId": "b9-s2-01",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xa9cb148db5ce0a1f544ad536",
+    "batchItemId": "b9-s2-02",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x3a06ac0a981e9af0e9a29bd3",
+    "batchItemId": "b9-s2-03",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x76b042ced94fd4cc3feebdfd",
+    "batchItemId": "b9-s2-04",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xa22f5be1b58bc077b34f50ef",
+    "batchItemId": "b9-s2-05",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x8fa77924b875f4123c6686c6",
+    "batchItemId": "b9-s2-06",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xa8cbf8ca41779c2f96aa2b48",
+    "batchItemId": "b9-s2-07",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x1eb24fcf31101e1ec3bafa5c",
+    "batchItemId": "b9-s2-08",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x174a24a262aa78ff69f0004b",
+    "batchItemId": "b9-s2-09",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xf4e9072b821dd27e4a9cb17e",
+    "batchItemId": "b9-s2-10",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x30dcabed6f67b5c839a3a36d",
+    "batchItemId": "b9-s2-11",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9x8c15630afe91d80f3d54ac41",
+    "batchItemId": "b9-s2-12",
+    "blueprintTopic": "ethics-professionalism",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xc82450faeffce2b3f3187662",
+    "batchItemId": "b9-s2-13",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xe13c9e5bcf3e2b406fecf63f",
+    "batchItemId": "b9-s2-14",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x29925f4dfeffe57dca086a01",
+    "batchItemId": "b9-s2-15",
+    "blueprintTopic": "nephrotic-nephritic",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x6fa6e7926f5b705a8158b17f",
+    "batchItemId": "b9-s2-16",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x1c6961d9d05945bd28edab66",
+    "batchItemId": "b9-s2-17",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xe7d9e6dfa04b9f378a991576",
+    "batchItemId": "b9-s2-18",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xdbfd0b2c682325ccaac4f794",
+    "batchItemId": "b9-s2-19",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x296fd039ae201f51508585b3",
+    "batchItemId": "b9-s2-20",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xde488e2dfeaa8361da89ea02",
+    "batchItemId": "b9-s2-21",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x5d384ccb04cfe08ad220bfea",
+    "batchItemId": "b9-s2-22",
+    "blueprintTopic": "aki-ckd-electrolytes",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xfbee0eabab1970161c192ede",
+    "batchItemId": "b9-s2-23",
+    "blueprintTopic": "acs-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xce6bc3744a7cd878ac5badcd",
+    "batchItemId": "b9-s2-24",
+    "blueprintTopic": "chf-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xaa7bcac6db71a2ca3bdfb4f8",
+    "batchItemId": "b9-s2-25",
+    "blueprintTopic": "valvular-disease-clinical",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x521f8b36569583dc496464d6",
+    "batchItemId": "b9-s2-26",
+    "blueprintTopic": "acs-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x57df9029e857b62b645e405b",
+    "batchItemId": "b9-s2-27",
+    "blueprintTopic": "arrhythmias-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xa6c40488c19a654390d5400b",
+    "batchItemId": "b9-s2-28",
+    "blueprintTopic": "chf-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xb321427100af2ac2536a4978",
+    "batchItemId": "b9-s2-29",
+    "blueprintTopic": "valvular-disease-clinical",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xdde55ebbb76bcca8177d932d",
+    "batchItemId": "b9-s2-30",
+    "blueprintTopic": "arrhythmias-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x0b1b6d22eefd09e1474ae47d",
+    "batchItemId": "b9-s2-31",
+    "blueprintTopic": "chf-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xc116ef112e56977d28d34ea2",
+    "batchItemId": "b9-s2-32",
+    "blueprintTopic": "trauma-atls",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9xc8e7e2eb96d2494b9e7a452b",
+    "batchItemId": "b9-s2-33",
+    "blueprintTopic": "trauma-atls",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9xf24983513186da6de886238b",
+    "batchItemId": "b9-s2-34",
+    "blueprintTopic": "rheumatology-autoimmune",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x1bbed8ae4a0dac16d3700c36",
+    "batchItemId": "b9-s2-35",
+    "blueprintTopic": "child-abuse-red-flags",
+    "blueprintDomain": "pediatrics"
+  },
+  {
+    "id": "b9xfc2ebd1c7f80b33ec649050c",
+    "batchItemId": "b9-s2-36",
+    "blueprintTopic": "burns-management",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9x15d840cf68c3549afc9718b2",
+    "batchItemId": "b9-s2-37",
+    "blueprintTopic": "rheumatology-autoimmune",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xb5fb67976aa889b2806457b4",
+    "batchItemId": "b9-s2-38",
+    "blueprintTopic": "trauma-atls",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9xb6c4f1f9fdf68056d7c2f976",
+    "batchItemId": "b9-s2-39",
+    "blueprintTopic": "rheumatology-autoimmune",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x2d2f700745a7fa3b2df2f407",
+    "batchItemId": "b9-s2-40",
+    "blueprintTopic": "pre-post-op-care",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9xaf47d523179b6498fa0d5f0d",
+    "batchItemId": "b9-s2-41",
+    "blueprintTopic": "depression-bipolar",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9x735887be58380608e7df6450",
+    "batchItemId": "b9-s2-42",
+    "blueprintTopic": "substance-use-disorders",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9x207e8794c8b8628e7342d088",
+    "batchItemId": "b9-s2-43",
+    "blueprintTopic": "schizophrenia-psychosis",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9xd27367544c002626bb728f26",
+    "batchItemId": "b9-s2-44",
+    "blueprintTopic": "suicide-risk",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9x22ac30172f4dad9a3f20ac95",
+    "batchItemId": "b9-s2-45",
+    "blueprintTopic": "anxiety-disorders",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9xc1647c7760e15c534dc4e6c1",
+    "batchItemId": "b9-s2-46",
+    "blueprintTopic": "schizophrenia-psychosis",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9x7779c5ba395f8744b79f6a42",
+    "batchItemId": "b9-s2-47",
+    "blueprintTopic": "depression-bipolar",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9x2e444b5d66ab2f8ac99d82f4",
+    "batchItemId": "b9-s2-48",
+    "blueprintTopic": "substance-use-disorders",
+    "blueprintDomain": "psychiatry"
+  },
+  {
+    "id": "b9xc910a9d2f022f153e9c0f330",
+    "batchItemId": "b9-s2-49",
+    "blueprintTopic": "anemia-workup",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x4751f350d519872a9305f6cf",
+    "batchItemId": "b9-s2-50",
+    "blueprintTopic": "leukemia-classification",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x5667872c50e01e5a22717fca",
+    "batchItemId": "b9-s2-51",
+    "blueprintTopic": "coagulation-cascade",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x64c801ff3a8fb91cd4706111",
+    "batchItemId": "b9-s2-52",
+    "blueprintTopic": "anemia-workup",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xaca50ace59e4edef39f6036c",
+    "batchItemId": "b9-s2-53",
+    "blueprintTopic": "coagulation-cascade",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xaaa393755e9795b44aca7e4c",
+    "batchItemId": "b9-s2-54",
+    "blueprintTopic": "anemia-workup",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x04078f94bca5d2faf988e4cf",
+    "batchItemId": "b9-s2-55",
+    "blueprintTopic": "coagulation-cascade",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9xab3870e0d544d8266eeb1f84",
+    "batchItemId": "b9-s2-56",
+    "blueprintTopic": "leukemia-classification",
+    "blueprintDomain": "hematology-immunology"
+  },
+  {
+    "id": "b9x63127408dae6a72006100a59",
+    "batchItemId": "b9-s2-57",
+    "blueprintTopic": "pancreatitis-hepatitis",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x8b1bbe8c9326d32aff9f738c",
+    "batchItemId": "b9-s2-58",
+    "blueprintTopic": "bowel-obstruction",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9xa9765562e9a62fea6e72ad18",
+    "batchItemId": "b9-s2-59",
+    "blueprintTopic": "bowel-obstruction",
+    "blueprintDomain": "surgery-acute-care"
+  },
+  {
+    "id": "b9x39fa21c43beaeb230b09be7d",
+    "batchItemId": "b9-s2-60",
+    "blueprintTopic": "pancreatitis-hepatitis",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xb41ce44e6ec1cacf61f6a071",
+    "batchItemId": "b9-s2-61",
+    "blueprintTopic": "ibd-mechanisms",
+    "blueprintDomain": "gastrointestinal"
+  },
+  {
+    "id": "b9x1fbff0abe57252aaf6ade243",
+    "batchItemId": "b9-s2-62",
+    "blueprintTopic": "gi-bleed-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x76b7fab105232628fab4b428",
+    "batchItemId": "b9-s2-63",
+    "blueprintTopic": "gi-bleed-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x4a6e8b73fe31d5c9994c50c9",
+    "batchItemId": "b9-s2-64",
+    "blueprintTopic": "stroke-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x8a97174ceb142032c6bf3f34",
+    "batchItemId": "b9-s2-65",
+    "blueprintTopic": "stroke-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x87e5b72ed52448ad804e3ce2",
+    "batchItemId": "b9-s2-66",
+    "blueprintTopic": "seizures-headaches",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xa2a29a6039151e848dd07f85",
+    "batchItemId": "b9-s2-67",
+    "blueprintTopic": "dementia-workup",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xa194ded76880159a8d273369",
+    "batchItemId": "b9-s2-68",
+    "blueprintTopic": "ms-pathology",
+    "blueprintDomain": "behavioral-nervous"
+  },
+  {
+    "id": "b9xedc546613927bb7bfec588c3",
+    "batchItemId": "b9-s2-69",
+    "blueprintTopic": "stroke-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xb0284844bfd5bc105744032c",
+    "batchItemId": "b9-s2-70",
+    "blueprintTopic": "dementia-workup",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x67c85c2f0979b5f311bf173e",
+    "batchItemId": "b9-s2-71",
+    "blueprintTopic": "pe-workup",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x9d5be2c12cabaf2e520c87d3",
+    "batchItemId": "b9-s2-72",
+    "blueprintTopic": "copd-asthma-exacerbation",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xe8b82447057378eacc5c3734",
+    "batchItemId": "b9-s2-73",
+    "blueprintTopic": "copd-asthma-exacerbation",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x13f0f76755251bb1a481e131",
+    "batchItemId": "b9-s2-74",
+    "blueprintTopic": "pneumonia-workup",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x785c25005f05c39a78be60e7",
+    "batchItemId": "b9-s2-75",
+    "blueprintTopic": "pneumonia-workup",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x1624480b5335da28e0d55a93",
+    "batchItemId": "b9-s2-76",
+    "blueprintTopic": "copd-asthma-exacerbation",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xb1cb6aff70ba4dd0b0d799b0",
+    "batchItemId": "b9-s2-77",
+    "blueprintTopic": "pneumonia-workup",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x8e5e8b29f7e2b4613be9803b",
+    "batchItemId": "b9-s2-78",
+    "blueprintTopic": "drug-moa-side-effects",
+    "blueprintDomain": "pharmacology-microbiology"
+  },
+  {
+    "id": "b9xf7a3bd43acc93dc08786c563",
+    "batchItemId": "b9-s2-79",
+    "blueprintTopic": "sepsis-bundles",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x3bc9ea85728bdfebfe695cf2",
+    "batchItemId": "b9-s2-80",
+    "blueprintTopic": "adrenal-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x85ca72b65b2508f4a8c9f87b",
+    "batchItemId": "b9-s2-81",
+    "blueprintTopic": "pharmacology-interactions",
+    "blueprintDomain": "cross-cutting"
+  },
+  {
+    "id": "b9xd2d9bb09bb0d463daf2a3645",
+    "batchItemId": "b9-s2-82",
+    "blueprintTopic": "sepsis-bundles",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x28a5d906c281bf3d3a14e3db",
+    "batchItemId": "b9-s2-83",
+    "blueprintTopic": "sepsis-bundles",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x8608afae58a835c597109694",
+    "batchItemId": "b9-s2-84",
+    "blueprintTopic": "diabetes-dka-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x08eef0a62b9d0649adcfea20",
+    "batchItemId": "b9-s2-85",
+    "blueprintTopic": "thyroid-storm",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x631fbbc5b360429d6350fb04",
+    "batchItemId": "b9-s2-86",
+    "blueprintTopic": "thyroid-storm",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9x1115f001e3e883df5847be6f",
+    "batchItemId": "b9-s2-87",
+    "blueprintTopic": "diabetes-dka-management",
+    "blueprintDomain": "internal-medicine"
+  },
+  {
+    "id": "b9xd3f0423cf291e30a94a1f3f4",
+    "batchItemId": "b9-s2-88",
+    "blueprintTopic": "adrenal-disorders",
+    "blueprintDomain": "reproductive-endocrine"
+  },
+  {
+    "id": "b9x096b5f4fb2f9a6d7cb9b9861",
+    "batchItemId": "b9-s2-89",
+    "blueprintTopic": "prenatal-care",
+    "blueprintDomain": "obgyn"
+  },
+  {
+    "id": "b9x8147a6b8f4e5bb4b1eb0a6e7",
+    "batchItemId": "b9-s2-90",
+    "blueprintTopic": "preeclampsia-eclampsia",
+    "blueprintDomain": "obgyn"
+  },
+  {
+    "id": "b9xd53f0c2f3729b98b23e7ee27",
+    "batchItemId": "b9-s2-91",
+    "blueprintTopic": "labor-delivery",
+    "blueprintDomain": "obgyn"
+  },
+  {
+    "id": "b9x67471bf7398a3289bfc0d69e",
+    "batchItemId": "b9-s2-92",
+    "blueprintTopic": "labor-delivery",
+    "blueprintDomain": "obgyn"
+  },
+  {
+    "id": "b9x23feb1ffa1f4d0993d76a21a",
+    "batchItemId": "b9-s2-93",
+    "blueprintTopic": "labor-delivery",
+    "blueprintDomain": "obgyn"
+  },
+  {
+    "id": "b9x3fc5c721b0f7a8cf252e9243",
+    "batchItemId": "b9-s2-94",
+    "blueprintTopic": "study-designs",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9xed678030a90644e2ae945b7a",
+    "batchItemId": "b9-s2-95",
+    "blueprintTopic": "study-designs",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9x3d16d3907ec275e36d4e8d34",
+    "batchItemId": "b9-s2-96",
+    "blueprintTopic": "study-designs",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9xb98330155ffddf719e573ad8",
+    "batchItemId": "b9-s2-97",
+    "blueprintTopic": "sensitivity-specificity",
+    "blueprintDomain": "biochemistry-genetics"
+  },
+  {
+    "id": "b9x5b51e675f542fc40a036b763",
+    "batchItemId": "b9-s2-98",
+    "blueprintTopic": "developmental-milestones",
+    "blueprintDomain": "pediatrics"
+  },
+  {
+    "id": "b9xafc02c34089db67c355c066c",
+    "batchItemId": "b9-s2-99",
+    "blueprintTopic": "developmental-milestones",
+    "blueprintDomain": "pediatrics"
+  },
+  {
+    "id": "b9x4ac3bf7cdfccc114492bbc8f",
+    "batchItemId": "b9-s2-100",
+    "blueprintTopic": "developmental-milestones",
+    "blueprintDomain": "pediatrics"
+  }
+]

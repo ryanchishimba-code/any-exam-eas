@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "b3-s1-01",
+    "rating": "sound",
+    "note": "G6PD makes methylene blue the unsafe antidote"
+  },
+  {
+    "id": "b3-s1-02",
+    "rating": "sound",
+    "note": "Preformed factors have not yet been cleared"
+  },
+  {
+    "id": "b3-s1-03",
+    "rating": "thin",
+    "note": "Irreversible platelet acetylation is one-look aspirin recognition"
+  },
+  {
+    "id": "b3-s1-04",
+    "rating": "thin",
+    "note": "Named furosemide points straight at NKCC2"
+  },
+  {
+    "id": "b3-s1-05",
+    "rating": "thin",
+    "note": "Question asks the thiazide urine-calcium fact directly"
+  },
+  {
+    "id": "b3-s1-06",
+    "rating": "sound",
+    "note": "Near-normal level still toxic from pump competition"
+  },
+  {
+    "id": "b3-s1-07",
+    "rating": "thin",
+    "note": "Named glipizide points straight at the KATP channel"
+  },
+  {
+    "id": "b3-s1-08",
+    "rating": "thin",
+    "note": "Named metformin; absence of insulin release is the card"
+  },
+  {
+    "id": "b3-s1-09",
+    "rating": "thin",
+    "note": "Named gentamicin points straight at the 30S subunit"
+  },
+  {
+    "id": "b3-s1-10",
+    "rating": "thin",
+    "note": "Stem already says the drug cannot reach the target"
+  },
+  {
+    "id": "b3-s1-11",
+    "rating": "thin",
+    "note": "Desmopressin response is the aquaporin-2 association"
+  },
+  {
+    "id": "b3-s1-12",
+    "rating": "thin",
+    "note": "Sodium retention and potassium loss restate the labs"
+  },
+  {
+    "id": "b3-s1-13",
+    "rating": "sound",
+    "note": "Must assemble bone, kidney, and vitamin D actions"
+  },
+  {
+    "id": "b3-s1-14",
+    "rating": "thin",
+    "note": "High PTHrP is already stated in the stem"
+  },
+  {
+    "id": "b3-s1-15",
+    "rating": "thin",
+    "note": "Intracellular vesicles already imply GLUT4 translocation"
+  },
+  {
+    "id": "b3-s1-16",
+    "rating": "sound",
+    "note": "Steroid withdrawal removes the permit for gluconeogenesis"
+  },
+  {
+    "id": "b3-s1-17",
+    "rating": "thin",
+    "note": "Attaching iodine to thyroglobulin defines peroxidase"
+  },
+  {
+    "id": "b3-s1-18",
+    "rating": "thin",
+    "note": "Cirrhosis already identifies the liver as the organ"
+  },
+  {
+    "id": "b3-s1-19",
+    "rating": "sound",
+    "note": "Normal TSH leaves dopamine inhibition as the brake"
+  },
+  {
+    "id": "b3-s1-20",
+    "rating": "sound",
+    "note": "Early plate closure here is from estrogen"
+  },
+  {
+    "id": "b3-s1-21",
+    "rating": "thin",
+    "note": "Luteal temperature rise is the progesterone association"
+  },
+  {
+    "id": "b3-s1-22",
+    "rating": "thin",
+    "note": "Fallen lobar flow already means arteriolar constriction"
+  },
+  {
+    "id": "b3-s1-23",
+    "rating": "sound",
+    "note": "Acidosis and heat move the curve rightward"
+  },
+  {
+    "id": "b3-s1-24",
+    "rating": "sound",
+    "note": "Poor BPG binding holds the fetal curve left"
+  },
+  {
+    "id": "b3-s1-25",
+    "rating": "sound",
+    "note": "Efferent tone was holding glomerular filtration pressure up"
+  },
+  {
+    "id": "b3-s1-26",
+    "rating": "sound",
+    "note": "High salt delivery constricts the afferent arteriole"
+  },
+  {
+    "id": "b3-s1-27",
+    "rating": "thin",
+    "note": "Low EPO in CKD is the fibroblast flashcard"
+  },
+  {
+    "id": "b3-s1-28",
+    "rating": "sound",
+    "note": "Surface tension falls further as alveolar radius shrinks"
+  },
+  {
+    "id": "b3-s1-29",
+    "rating": "thin",
+    "note": "Chloride entry is already paired with bicarbonate exit"
+  },
+  {
+    "id": "b3-s1-30",
+    "rating": "thin",
+    "note": "Unperfused ventilated apex is the zone 1 label"
+  },
+  {
+    "id": "b3-s1-31",
+    "rating": "thin",
+    "note": "Elevated BNP already means chamber-wall stretch"
+  },
+  {
+    "id": "b3-s1-32",
+    "rating": "sound",
+    "note": "Failure to acidify localizes to the alpha-intercalated cell"
+  },
+  {
+    "id": "b3-s1-33",
+    "rating": "thin",
+    "note": "Stem restates coincidence detection, the NMDA definition"
+  },
+  {
+    "id": "b3-s1-34",
+    "rating": "sound",
+    "note": "Heat speeds channel closure in a demyelinated axon"
+  },
+  {
+    "id": "b3-s1-35",
+    "rating": "thin",
+    "note": "Distal breakdown is already described in the stem"
+  },
+  {
+    "id": "b3-s1-36",
+    "rating": "sound",
+    "note": "Right tract carries left-field fibers from both eyes"
+  },
+  {
+    "id": "b3-s1-37",
+    "rating": "thin",
+    "note": "Direct synapse without an interneuron is already stated"
+  },
+  {
+    "id": "b3-s1-38",
+    "rating": "thin",
+    "note": "Vivid dreams with absent atonia label REM"
+  },
+  {
+    "id": "b3-s1-39",
+    "rating": "sound",
+    "note": "Diaphragm and shoulder skin share C3 to C5"
+  },
+  {
+    "id": "b3-s1-40",
+    "rating": "thin",
+    "note": "Named accumbens dopamine is the VTA flashcard"
+  },
+  {
+    "id": "b3-s1-41",
+    "rating": "thin",
+    "note": "Polar drug excluded from CSF is the tight-junction card"
+  },
+  {
+    "id": "b3-s1-42",
+    "rating": "thin",
+    "note": "Stem already identifies a serotonin nucleus"
+  },
+  {
+    "id": "b3-s1-43",
+    "rating": "sound",
+    "note": "Norepinephrine-driven wakefulness maps to locus ceruleus"
+  },
+  {
+    "id": "b3-s1-44",
+    "rating": "thin",
+    "note": "Same-muscle inhibition is already stated in the stem"
+  },
+  {
+    "id": "b3-s1-45",
+    "rating": "thin",
+    "note": "Named sickle cell plus hypoxia is deoxy polymerization"
+  },
+  {
+    "id": "b3-s1-46",
+    "rating": "thin",
+    "note": "Adding von Willebrand factor names the missing bridge"
+  },
+  {
+    "id": "b3-s1-47",
+    "rating": "thin",
+    "note": "Tissue factor reagent is the extrinsic pathway"
+  },
+  {
+    "id": "b3-s1-48",
+    "rating": "thin",
+    "note": "A clot-dissolving drug means plasmin"
+  },
+  {
+    "id": "b3-s1-49",
+    "rating": "thin",
+    "note": "MHC I recognition is the CD8 association"
+  },
+  {
+    "id": "b3-s1-50",
+    "rating": "thin",
+    "note": "Same specificity already says the binding site stayed"
+  },
+  {
+    "id": "b3-s1-51",
+    "rating": "thin",
+    "note": "Tighter binding simply restates binding-site fit."
+  },
+  {
+    "id": "b3-s1-52",
+    "rating": "thin",
+    "note": "Helper T cell readout is MHC II."
+  },
+  {
+    "id": "b3-s1-53",
+    "rating": "thin",
+    "note": "Preformed noncrossing hemolysin is IgM."
+  },
+  {
+    "id": "b3-s1-54",
+    "rating": "thin",
+    "note": "RANKL activation means the osteoclast."
+  },
+  {
+    "id": "b3-s1-55",
+    "rating": "sound",
+    "note": "Rickets leaves osteoid unmineralized without absorbed mineral."
+  },
+  {
+    "id": "b3-s1-56",
+    "rating": "sound",
+    "note": "Calcium binds troponin; tropomyosin only moves."
+  },
+  {
+    "id": "b3-s1-57",
+    "rating": "thin",
+    "note": "Thick filament clue selects myosin light chain."
+  },
+  {
+    "id": "b3-s1-58",
+    "rating": "thin",
+    "note": "Tendon collagen named is type I."
+  },
+  {
+    "id": "b3-s1-59",
+    "rating": "thin",
+    "note": "Growth plate description is endochondral ossification."
+  },
+  {
+    "id": "b3-s1-60",
+    "rating": "thin",
+    "note": "Stem already states cartilage lacks vessels."
+  },
+  {
+    "id": "b3-s1-61",
+    "rating": "sound",
+    "note": "Unloading slows osteoblasts so density falls."
+  },
+  {
+    "id": "b3-s1-62",
+    "rating": "thin",
+    "note": "Lost plantarflexion is the Achilles tendon."
+  },
+  {
+    "id": "b3-s1-63",
+    "rating": "sound",
+    "note": "Avascular cartilage depends on synovial nutrients."
+  },
+  {
+    "id": "b3-s1-64",
+    "rating": "thin",
+    "note": "Isoniazid foot burning is vitamin B6."
+  },
+  {
+    "id": "b3-s1-65",
+    "rating": "thin",
+    "note": "Rifampin plus treatment failure is enzyme induction."
+  },
+  {
+    "id": "b3-s1-66",
+    "rating": "thin",
+    "note": "Stem says virus cannot phosphorylate drug."
+  },
+  {
+    "id": "b3-s1-67",
+    "rating": "thin",
+    "note": "Trimethoprim is dihydrofolate reductase blockade."
+  },
+  {
+    "id": "b3-s1-68",
+    "rating": "thin",
+    "note": "Acetaminophen glutathione rescue is N-acetylcysteine."
+  },
+  {
+    "id": "b3-s1-69",
+    "rating": "sound",
+    "note": "Parent alcohol metabolism stops at alcohol dehydrogenase."
+  },
+  {
+    "id": "b3-s1-70",
+    "rating": "sound",
+    "note": "Pralidoxime removes phosphate before enzyme aging."
+  },
+  {
+    "id": "b3-s1-71",
+    "rating": "sound",
+    "note": "Alkaline urine traps ionized weak acid."
+  },
+  {
+    "id": "b3-s1-72",
+    "rating": "sound",
+    "note": "Venodilation lowers preload and oxygen demand."
+  },
+  {
+    "id": "b3-s1-73",
+    "rating": "thin",
+    "note": "Sildenafil's blocked enzyme is PDE-5."
+  },
+  {
+    "id": "b3-s1-74",
+    "rating": "thin",
+    "note": "Beta blockade slows rate and weakens contraction."
+  },
+  {
+    "id": "b3-s1-75",
+    "rating": "sound",
+    "note": "Statin block upregulates hepatic LDL receptors."
+  },
+  {
+    "id": "b3-s1-76",
+    "rating": "sound",
+    "note": "Pressure drop fires baroreceptor reflex tachycardia."
+  },
+  {
+    "id": "b3-s1-77",
+    "rating": "sound",
+    "note": "Adenosine disappears through rapid red-cell uptake."
+  },
+  {
+    "id": "b3-s1-78",
+    "rating": "sound",
+    "note": "Preload stretches sarcomeres toward optimal overlap."
+  },
+  {
+    "id": "b3-s1-79",
+    "rating": "thin",
+    "note": "Stem already names the parietal cell."
+  },
+  {
+    "id": "b3-s1-80",
+    "rating": "thin",
+    "note": "Ileal resection cuts bile-salt recycling."
+  },
+  {
+    "id": "b3-s1-81",
+    "rating": "thin",
+    "note": "Acid-triggered bicarbonate release is secretin."
+  },
+  {
+    "id": "b3-s1-82",
+    "rating": "thin",
+    "note": "Fatty-meal gallbladder contraction is cholecystokinin."
+  },
+  {
+    "id": "b3-s1-83",
+    "rating": "sound",
+    "note": "Conjugation makes bilirubin soluble for urine."
+  },
+  {
+    "id": "b3-s1-84",
+    "rating": "thin",
+    "note": "Fasting interdigestive sweep is motilin."
+  },
+  {
+    "id": "b3-s1-85",
+    "rating": "thin",
+    "note": "Swallowed nitrate fails from hepatic first pass."
+  },
+  {
+    "id": "b3-s1-86",
+    "rating": "thin",
+    "note": "High portal pressure opens those anastomoses."
+  },
+  {
+    "id": "b3-s1-87",
+    "rating": "thin",
+    "note": "Proven capacity makes the patient's decision bind."
+  },
+  {
+    "id": "b3-s1-88",
+    "rating": "thin",
+    "note": "Named imminent threat requires warning."
+  },
+  {
+    "id": "b3-s1-89",
+    "rating": "thin",
+    "note": "Student must disclose the student role."
+  },
+  {
+    "id": "b3-s1-90",
+    "rating": "sound",
+    "note": "Error disclosure stands despite no lasting harm."
+  },
+  {
+    "id": "b3-s1-91",
+    "rating": "sound",
+    "note": "Confidential contraception for a consenting minor."
+  },
+  {
+    "id": "b3-s1-92",
+    "rating": "sound",
+    "note": "Transfuse the minor despite parental refusal."
+  },
+  {
+    "id": "b3-s1-93",
+    "rating": "sound",
+    "note": "Surgical consent needs a professional interpreter."
+  },
+  {
+    "id": "b3-s1-94",
+    "rating": "sound",
+    "note": "Specificity is 190 divided by 200."
+  },
+  {
+    "id": "b3-s1-95",
+    "rating": "sound",
+    "note": "Higher prevalence makes positives more predictive."
+  },
+  {
+    "id": "b3-s1-96",
+    "rating": "sound",
+    "note": "Confidence interval includes one, null allowed."
+  },
+  {
+    "id": "b3-s1-97",
+    "rating": "sound",
+    "note": "Case-control design estimates the odds ratio."
+  },
+  {
+    "id": "b3-s1-98",
+    "rating": "sound",
+    "note": "Five percent absolute reduction means NNT 20."
+  },
+  {
+    "id": "b3-s1-99",
+    "rating": "sound",
+    "note": "Absent tracking needs hearing and vision checks."
+  },
+  {
+    "id": "b3-s1-100",
+    "rating": "thin",
+    "note": "Stranger protest at nine months is expected."
+  },
+  {
+    "id": "b3-s2-01",
+    "rating": "thin",
+    "note": "Written refusal is given; family distress does not override."
+  },
+  {
+    "id": "b3-s2-02",
+    "rating": "thin",
+    "note": "Stem lists capacity facts; depression does not cancel them."
+  },
+  {
+    "id": "b3-s2-03",
+    "rating": "thin",
+    "note": "Honest plan is simply refusing the secret placebo."
+  },
+  {
+    "id": "b3-s2-04",
+    "rating": "thin",
+    "note": "Stem lists missing notice, coverage, and referral."
+  },
+  {
+    "id": "b3-s2-05",
+    "rating": "thin",
+    "note": "Morphine already eases the gasping she wants treated."
+  },
+  {
+    "id": "b3-s2-06",
+    "rating": "thin",
+    "note": "Capacitated refusal is stated; do not force surgery."
+  },
+  {
+    "id": "b3-s2-07",
+    "rating": "thin",
+    "note": "Partner service is named; other choices are absurd."
+  },
+  {
+    "id": "b3-s2-08",
+    "rating": "thin",
+    "note": "Pneumonia resolved and a shelter bed is ready."
+  },
+  {
+    "id": "b3-s2-09",
+    "rating": "thin",
+    "note": "Option repeats the stem judgment about compressions."
+  },
+  {
+    "id": "b3-s2-10",
+    "rating": "sound",
+    "note": "Unprovoked recurrent seizures in a bus driver require reporting."
+  },
+  {
+    "id": "b3-s2-11",
+    "rating": "thin",
+    "note": "A resort gift before a contract vote is declined."
+  },
+  {
+    "id": "b3-s2-12",
+    "rating": "thin",
+    "note": "Stem says the tattoo lets classmates recognize him."
+  },
+  {
+    "id": "b3-s2-13",
+    "rating": "thin",
+    "note": "Question demands treatment of both infection and obstruction."
+  },
+  {
+    "id": "b3-s2-14",
+    "rating": "thin",
+    "note": "Small afebrile stone without blockage passes with fluids."
+  },
+  {
+    "id": "b3-s2-15",
+    "rating": "sound",
+    "note": "Too-fast sodium correction causes demyelination, not cerebral edema."
+  },
+  {
+    "id": "b3-s2-16",
+    "rating": "thin",
+    "note": "Rhabdomyolysis picture; only isotonic saline is sensible."
+  },
+  {
+    "id": "b3-s2-17",
+    "rating": "thin",
+    "note": "Livedo, blue toe, and delay are cholesterol emboli."
+  },
+  {
+    "id": "b3-s2-18",
+    "rating": "thin",
+    "note": "String-of-beads artery is treated with balloon angioplasty."
+  },
+  {
+    "id": "b3-s2-19",
+    "rating": "thin",
+    "note": "Salted diet and edema call for salt restriction."
+  },
+  {
+    "id": "b3-s2-20",
+    "rating": "thin",
+    "note": "Only a catheter empties this painful full bladder."
+  },
+  {
+    "id": "b3-s2-21",
+    "rating": "thin",
+    "note": "Stem already calls it active nephritis needing immunosuppression."
+  },
+  {
+    "id": "b3-s2-22",
+    "rating": "thin",
+    "note": "Overnight obstruction is postrenal azotemia by definition."
+  },
+  {
+    "id": "b3-s2-23",
+    "rating": "sound",
+    "note": "Unknown-duration fibrillation may hide a left-atrial clot."
+  },
+  {
+    "id": "b3-s2-24",
+    "rating": "thin",
+    "note": "Inferior infarct, clear lungs, and JVD need saline."
+  },
+  {
+    "id": "b3-s2-25",
+    "rating": "sound",
+    "note": "Encephalopathy needs titrated intravenous therapy, not oral clonidine."
+  },
+  {
+    "id": "b3-s2-26",
+    "rating": "sound",
+    "note": "Recent infarct gets a high-intensity statin despite LDL 105."
+  },
+  {
+    "id": "b3-s2-27",
+    "rating": "sound",
+    "note": "Cocaine chest pain gets a benzodiazepine before any beta blocker."
+  },
+  {
+    "id": "b3-s2-28",
+    "rating": "thin",
+    "note": "Cold pulseless foot and fibrillation need heparin plus vascular."
+  },
+  {
+    "id": "b3-s2-29",
+    "rating": "sound",
+    "note": "Postinfarct pericarditis is not treated by adding heparin."
+  },
+  {
+    "id": "b3-s2-30",
+    "rating": "sound",
+    "note": "Treadmill can reproduce syncope in symptomatic severe stenosis."
+  },
+  {
+    "id": "b3-s2-31",
+    "rating": "thin",
+    "note": "Treats and reveals is the adenosine slogan."
+  },
+  {
+    "id": "b3-s2-32",
+    "rating": "thin",
+    "note": "Snuffbox pain with a normal film is occult scaphoid."
+  },
+  {
+    "id": "b3-s2-33",
+    "rating": "thin",
+    "note": "Obese teen, hip rotation, and knee pain are SCFE."
+  },
+  {
+    "id": "b3-s2-34",
+    "rating": "thin",
+    "note": "Petechiae after a femur fracture are fat emboli."
+  },
+  {
+    "id": "b3-s2-35",
+    "rating": "sound",
+    "note": "Normal CK and no weakness mean this is not myositis."
+  },
+  {
+    "id": "b3-s2-36",
+    "rating": "thin",
+    "note": "Finkelstein maneuver means splint the thumb, not surgery."
+  },
+  {
+    "id": "b3-s2-37",
+    "rating": "thin",
+    "note": "Untreated inflammatory back pain starts with an NSAID."
+  },
+  {
+    "id": "b3-s2-38",
+    "rating": "sound",
+    "note": "A warm foot with a pulse can still hide arterial injury."
+  },
+  {
+    "id": "b3-s2-39",
+    "rating": "thin",
+    "note": "Toddler tibial tenderness can be an occult spiral fracture."
+  },
+  {
+    "id": "b3-s2-40",
+    "rating": "thin",
+    "note": "Stable hot joint is tapped before antibiotics for culture."
+  },
+  {
+    "id": "b3-s2-41",
+    "rating": "sound",
+    "note": "Antidepressant monotherapy can worsen an unrecognized manic episode."
+  },
+  {
+    "id": "b3-s2-42",
+    "rating": "thin",
+    "note": "Unexpected panic attacks get an SSRI or cognitive therapy."
+  },
+  {
+    "id": "b3-s2-43",
+    "rating": "sound",
+    "note": "Maintenance buprenorphine beats a short taper without follow-up."
+  },
+  {
+    "id": "b3-s2-44",
+    "rating": "thin",
+    "note": "Stem flags phosphate; refeeding makes it fall."
+  },
+  {
+    "id": "b3-s2-45",
+    "rating": "sound",
+    "note": "A plan to die is depression, not ordinary grief."
+  },
+  {
+    "id": "b3-s2-46",
+    "rating": "thin",
+    "note": "Ego-dystonic checking is OCD treated with SSRI plus exposure."
+  },
+  {
+    "id": "b3-s2-47",
+    "rating": "thin",
+    "note": "Missed pills that worked before call for a long-acting injection."
+  },
+  {
+    "id": "b3-s2-48",
+    "rating": "thin",
+    "note": "Avoidance after assault is treated with trauma-focused therapy."
+  },
+  {
+    "id": "b3-s2-49",
+    "rating": "sound",
+    "note": "Platelets can worsen thrombotic microangiopathy clot formation."
+  },
+  {
+    "id": "b3-s2-50",
+    "rating": "thin",
+    "note": "IgG-positive warm hemolysis is treated first with prednisone."
+  },
+  {
+    "id": "b3-s2-51",
+    "rating": "sound",
+    "note": "Treat sepsis and replace consumed factors"
+  },
+  {
+    "id": "b3-s2-52",
+    "rating": "thin",
+    "note": "Stem names massive transfusion; products are one look"
+  },
+  {
+    "id": "b3-s2-53",
+    "rating": "thin",
+    "note": "Auer rods and bleeding already mean retinoic acid"
+  },
+  {
+    "id": "b3-s2-54",
+    "rating": "sound",
+    "note": "Mechanical mitral valve needs heparin bridging"
+  },
+  {
+    "id": "b3-s2-55",
+    "rating": "sound",
+    "note": "Acute sickle stroke needs exchange transfusion"
+  },
+  {
+    "id": "b3-s2-56",
+    "rating": "thin",
+    "note": "Hematocrit of 58 already answers why"
+  },
+  {
+    "id": "b3-s2-57",
+    "rating": "sound",
+    "note": "Symptoms fade while infection can persist"
+  },
+  {
+    "id": "b3-s2-58",
+    "rating": "sound",
+    "note": "No dysplasia means survey, not ablate"
+  },
+  {
+    "id": "b3-s2-59",
+    "rating": "sound",
+    "note": "No peritonitis so decompress, do not open"
+  },
+  {
+    "id": "b3-s2-60",
+    "rating": "sound",
+    "note": "Mild diverticulitis can skip routine antibiotics"
+  },
+  {
+    "id": "b3-s2-61",
+    "rating": "sound",
+    "note": "Easing mild pancreatitis can eat now"
+  },
+  {
+    "id": "b3-s2-62",
+    "rating": "sound",
+    "note": "Steroids do not close Crohn fistulas"
+  },
+  {
+    "id": "b3-s2-63",
+    "rating": "sound",
+    "note": "Zero protein starves; lactulose treats encephalopathy"
+  },
+  {
+    "id": "b3-s2-64",
+    "rating": "thin",
+    "note": "Every thrombolysis criterion is already listed"
+  },
+  {
+    "id": "b3-s2-65",
+    "rating": "sound",
+    "note": "Carbamazepine can worsen absence seizures"
+  },
+  {
+    "id": "b3-s2-66",
+    "rating": "sound",
+    "note": "Older failing gait gets levodopa"
+  },
+  {
+    "id": "b3-s2-67",
+    "rating": "thin",
+    "note": "Chewing-triggered electric cheek pain is one look"
+  },
+  {
+    "id": "b3-s2-68",
+    "rating": "thin",
+    "note": "Alcohol-responsive action tremor is one look"
+  },
+  {
+    "id": "b3-s2-69",
+    "rating": "sound",
+    "note": "Shift plus decline means evacuate the subdural"
+  },
+  {
+    "id": "b3-s2-70",
+    "rating": "sound",
+    "note": "Eight migraine days need prevention, not opioids"
+  },
+  {
+    "id": "b3-s2-71",
+    "rating": "sound",
+    "note": "Low-pH pus will not clear without drainage"
+  },
+  {
+    "id": "b3-s2-72",
+    "rating": "sound",
+    "note": "Single-drug therapy selects resistant tuberculosis"
+  },
+  {
+    "id": "b3-s2-73",
+    "rating": "sound",
+    "note": "Pregnancy embolus is treated with heparin"
+  },
+  {
+    "id": "b3-s2-74",
+    "rating": "sound",
+    "note": "Severe apnea needs pressure, not diet alone"
+  },
+  {
+    "id": "b3-s2-75",
+    "rating": "sound",
+    "note": "Limited COPD reserve makes even small leak unsafe"
+  },
+  {
+    "id": "b3-s2-76",
+    "rating": "sound",
+    "note": "Descend and give oxygen before any diuretic"
+  },
+  {
+    "id": "b3-s2-77",
+    "rating": "thin",
+    "note": "Hypotension and confusion make admission obvious"
+  },
+  {
+    "id": "b3-s2-78",
+    "rating": "sound",
+    "note": "Oximetry cannot separate carboxyhemoglobin from oxyhemoglobin"
+  },
+  {
+    "id": "b3-s2-79",
+    "rating": "sound",
+    "note": "Cool first; dantrolene is the wrong assumption"
+  },
+  {
+    "id": "b3-s2-80",
+    "rating": "sound",
+    "note": "Soot and high lactate indicate cyanide"
+  },
+  {
+    "id": "b3-s2-81",
+    "rating": "sound",
+    "note": "Atropine is the drug that dries secretions"
+  },
+  {
+    "id": "b3-s2-82",
+    "rating": "sound",
+    "note": "Methanol metabolite formation is blocked by fomepizole"
+  },
+  {
+    "id": "b3-s2-83",
+    "rating": "sound",
+    "note": "Narrow QRS still starts with benzos and support"
+  },
+  {
+    "id": "b3-s2-84",
+    "rating": "sound",
+    "note": "Iodine first can fuel more hormone synthesis"
+  },
+  {
+    "id": "b3-s2-85",
+    "rating": "thin",
+    "note": "Question already names a prolactin-secreting mass"
+  },
+  {
+    "id": "b3-s2-86",
+    "rating": "sound",
+    "note": "Benign nonfunctional nodule is reimaged, not removed"
+  },
+  {
+    "id": "b3-s2-87",
+    "rating": "sound",
+    "note": "Give levothyroxine rather than liothyronine alone"
+  },
+  {
+    "id": "b3-s2-88",
+    "rating": "sound",
+    "note": "Fibrate plus very-low-fat diet for 1800"
+  },
+  {
+    "id": "b3-s2-89",
+    "rating": "sound",
+    "note": "Folate must precede neural-tube closure"
+  },
+  {
+    "id": "b3-s2-90",
+    "rating": "sound",
+    "note": "Stable unruptured ectopic can get methotrexate"
+  },
+  {
+    "id": "b3-s2-91",
+    "rating": "sound",
+    "note": "A digital exam can provoke previa hemorrhage"
+  },
+  {
+    "id": "b3-s2-92",
+    "rating": "sound",
+    "note": "Diet and glucose checks come before insulin"
+  },
+  {
+    "id": "b3-s2-93",
+    "rating": "sound",
+    "note": "Fundal pressure impacts the shoulder on bone"
+  },
+  {
+    "id": "b3-s2-94",
+    "rating": "sound",
+    "note": "High sensitivity makes a negative result reassuring"
+  },
+  {
+    "id": "b3-s2-95",
+    "rating": "sound",
+    "note": "Earlier diagnosis with the same death date"
+  },
+  {
+    "id": "b3-s2-96",
+    "rating": "sound",
+    "note": "Four percent absolute drop means NNT 25"
+  },
+  {
+    "id": "b3-s2-97",
+    "rating": "sound",
+    "note": "Keep nonadherent patients in the assigned arm"
+  },
+  {
+    "id": "b3-s2-98",
+    "rating": "sound",
+    "note": "Test hearing before reassuring late speech"
+  },
+  {
+    "id": "b3-s2-99",
+    "rating": "sound",
+    "note": "Complete head lag at five months is delayed"
+  },
+  {
+    "id": "b3-s2-100",
+    "rating": "sound",
+    "note": "Absent breasts at fourteen need evaluation now"
+  }
+]
