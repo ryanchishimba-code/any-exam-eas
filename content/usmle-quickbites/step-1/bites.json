@@ -1384,7 +1384,7 @@
       "name": "StatPearls. Polymyalgia Rheumatica.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537274/",
-      "says": "Polymyalgia rheumatica (PMR) is a rheumatic disorder characterized by pain and stiffness around the neck, shoulder, and hip area that significantly impacts quality of life."
+      "says": "Polymyalgia rheumatica (PMR) is a rheumatic disorder characterized by pain and stiffness around the neck, shoulder, and hip area It is an inflammatory condition associated with an elevation of erythrocyte sedimentation rate (ESR) and C-reactive protein (CRP), being the common findings. Although the patient might complain of nonspecific weakness, muscle strength is usually intact on a more thorough examination."
     },
     "number": 50,
     "id": "usmle-qb-s1-050"
@@ -1410,7 +1410,7 @@
       "name": "StatPearls. Psoriatic Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547710/",
-      "says": "Psoriatic arthritis is a chronic inflammatory arthritis associated with psoriasis, with an estimated pooled prevalence of 19.7% (95% CI, 18.5% to 20.9%) amongst adults with psoriasis."
+      "says": "Distal interphalangeal joints are frequently involved in psoriatic arthritis but not rheumatoid arthritis because these joints have many entheses but very little synovial tissue. including peripheral arthritis, enthesitis, dactylitis, axial disease, nail disease, and uveitis presence of nail pitting"
     },
     "number": 51,
     "id": "usmle-qb-s1-051"
@@ -1462,7 +1462,7 @@
       "name": "StatPearls. Marfan Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
-      "says": "The defect is in the FBN1 gene, which produces fibrillin. Decreased life expectancy is mainly from aortic root dilatation and dissection."
+      "says": "The defect is in the FBN1 gene of chromosome 15, which produces fibrillin, a connective tissue protein. Decreased life expectancy occurs primarily due to aortic complications, including aortic root dilatation and dissection. Ocular findings include lens dislocation, cataracts, myopia, and retinal detachment."
     },
     "number": 53,
     "id": "usmle-qb-s1-053"
@@ -1489,7 +1489,7 @@
       "name": "StatPearls. Osteogenesis Imperfecta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK536957/",
-      "says": "Osteogenesis imperfecta is a genetic disorder of connective tissues caused by an abnormality in the synthesis or processing of type I collagen."
+      "says": "Osteogenesis imperfecta is a genetic disorder of connective tissues caused by an abnormality in the synthesis or processing of type I collagen. Clinical features include generalized osteoporosis, increased bone fragility with fractures typically occurring during ambulatory childhood years, blue sclera, conductive hearing loss, and mild short stature."
     },
     "number": 54,
     "id": "usmle-qb-s1-054"
@@ -1515,7 +1515,7 @@
       "name": "StatPearls. Pemphigus Vulgaris.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
-      "says": "Pemphigus vulgaris (PV) is an autoimmune disease that results in blisters on cutaneous and mucosal surfaces and is characterized primarily by acantholysis."
+      "says": "In patients with PV, autoantibodies against desmoglein 1 (Dsg 1) and desmoglein 3 (Dsg 3) is the purported cause. Acantholysis is seen as a result of the autoantibodies destroying the intracellular connections, leading to bullae that can easily rupture (known clinically as the Nikolsky sign)."
     },
     "number": 55,
     "id": "usmle-qb-s1-055"
@@ -1529,7 +1529,6 @@
     "open": false,
     "lead": "Necrotizing fasciitis is pain out of proportion, a systemically sick patient, and tissue death under skin that can still look almost normal.",
     "lines": [
-      "Necrotizing fasciitis is a life-threatening skin and soft tissue infection in the 2014 IDSA guideline.",
       "The recommendation is prompt diagnosis and timely effective treatment, not a day of antibiotics to see if the skin improves.",
       "Pain beyond the visible skin, toxicity, and a rising lactate are the clinical clues. Crepitus is not required.",
       "Pain beyond the skin you can see, with toxicity, goes to the operating room the same day. Antibiotics alone are not the plan."
@@ -1538,10 +1537,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "IDSA 2014 guideline for skin and soft tissue infections.",
+      "name": "IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update.",
       "year": "2014",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24973422/",
-      "says": "Necrotizing fasciitis is in the scope of this guideline as a life-threatening skin and soft tissue infection. The guideline stresses prompt diagnosis and timely effective treatment."
+      "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+      "says": "Prompt surgical consultation is recommended for aggressive infections with systemic toxicity or suspected necrotizing fasciitis or gas gangrene (strong). Empiric antibiotics should be broad, e.g., vancomycin or linezolid plus piperacillin-tazobactam or a carbapenem."
     },
     "number": 56,
     "id": "usmle-qb-s1-056"
@@ -1567,7 +1566,7 @@
       "name": "StatPearls. Cellulitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK549770/",
-      "says": "Common bacterial pathogens include Streptococcus spp, Staphylococcus aureus, and anaerobic organisms; the microbiology may be polymicrobial, especially in older adults and patients with chronic sinusitis, trauma, or abscess formation."
+      "says": "Compared with erysipelas, which has sharply defined borders and superficial involvement, cellulitis affects deeper tissues and is less clearly defined. Cellulitis is an acute bacterial infection causing inflammation of the deep dermis and surrounding subcutaneous tissue."
     },
     "number": 57,
     "id": "usmle-qb-s1-057"
@@ -1593,7 +1592,7 @@
       "name": "StatPearls. Physiology, Cardiovascular Murmurs.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK525958/",
-      "says": "Cardiac auscultation is an essential physical exam tool for providers."
+      "says": "Valsalva : Decreases preload. Valsalva increases the strength of murmurs due to hypertrophic obstructive cardiomyopathy and mitral valve prolapse. Squatting increases the intensity of aortic stenosis, mitral stenosis, aortic regurgitation, and mitral regurgitation."
     },
     "open": false
   },
@@ -1643,7 +1642,7 @@
       "name": "StatPearls. Acute Myocardial Infarction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459269/",
-      "says": "Acute myocardial infarction is one of the leading causes of death in the developed world."
+      "says": "At 12 to 24 hours, the gross specimen appears dark and mottled, with contraction band necrosis and neutrophil predominance observed on histopathology. Subsequently, nuclei reduction occurs between 1 to 3 days, and then, within the next 3 to 7 days, macrophages emerge to clear apoptotic cells."
     },
     "open": false
   },
@@ -1668,7 +1667,7 @@
       "name": "StatPearls. Cardiac Tamponade.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/",
-      "says": "Cardiac tamponade is a medical or traumatic emergency that happens when enough fluid accumulates in the pericardial sac compressing the heart and leading to a decrease in cardiac output and shock."
+      "says": "Patients present with dyspnea, chest discomfort, hypotension, elevated jugular venous pressure, muffled heart sounds, and pulsus paradoxus. The presence of pulsus paradoxus, defined as a decrease in systolic blood pressure exceeding 10 mm Hg during inspiration, supports the diagnosis of cardiac tamponade."
     },
     "number": 61,
     "id": "usmle-qb-s1-061"
@@ -1692,10 +1691,16 @@
     "diagram": "dissection-hr",
     "diagramAlt": "Ascending dissection. Beta blocker before a pure vasodilator Type A: operating room No fibrinolytic",
     "source": {
-      "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
-      "year": "2022",
-      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106",
-      "says": "Acute aortic syndrome involving the ascending aorta is a surgical emergency. Control heart rate with a beta blocker before adding a vasodilator."
+      "name": "StatPearls. Aortic Dissection.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441963/",
+      "says": "While the classic presentation of acute aortic dissection involves sudden, severe, \u201ctearing\u201d chest pain, subtle presentations often lead to missed diagnoses. Blood pressure discrepancies greater than 20 mm Hg between arms, a pulse deficit, or wide pulse pressure are red flags in the physical exam.",
+      "more": [
+        {
+          "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106"
+        }
+      ]
     },
     "number": 62,
     "id": "usmle-qb-s1-062"
@@ -1719,10 +1724,16 @@
     "diagram": "aaa-screen",
     "diagramAlt": "Who gets one AAA ultrasound. Men 65\u201375 who have ever smoked One ultrasound, not yearly Rupture: back pain + hypotension, not a clinic scan",
     "source": {
-      "name": "USPSTF. Abdominal aortic aneurysm: screening.",
-      "year": "2019",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening",
-      "says": "One-time ultrasound screening for AAA in men aged 65 to 75 years who have ever smoked, which is the recommendation in USPSTF. Abdominal aortic aneurysm: screening."
+      "name": "StatPearls. Abdominal Aortic Aneurysm.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470237/",
+      "says": "Risk factors for AAAs include atherosclerosis (the most common), smoking, advanced age, male sex, White race, family history of AAA, hypertension, hypercholesterolemia, and prior history of aortic dissection. Palpation of the abdomen usually reveals a nontender, pulsatile abdominal mass.",
+      "more": [
+        {
+          "name": "USPSTF. Abdominal Aortic Aneurysm: Screening.",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/abdominal-aortic-aneurysm-screening"
+        }
+      ]
     },
     "number": 63,
     "id": "usmle-qb-s1-063"
@@ -1748,7 +1759,7 @@
       "name": "StatPearls. Dilated Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441911/",
-      "says": "Dilated cardiomyopathy (DCM) is a disease of the heart muscle characterized by enlargement and dilation of one or both ventricles, along with impaired contractility, defined as a left ventricular ejection fraction (LVEF) less than 40%."
+      "says": "By definition, patients have systolic dysfunction and may or may not have overt symptoms of heart failure. Findings include crackles in the lung fields, elevated jugular venous pressures, peripheral edema, and an S3 gallop."
     },
     "number": 64,
     "id": "usmle-qb-s1-064"
@@ -1775,7 +1786,7 @@
       "name": "StatPearls. Restrictive Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "Restrictive cardiomyopathy (RCM) is distinguished by diastolic dysfunction in a non-dilated ventricle."
+      "says": "Cardiac amyloidosis is the most common cause of restrictive cardiomyopathy in developed countries. It is important to suspect RCM in any patient with a normal or close to normal systolic function and evidence of diastolic dysfunction with a restrictive filling pattern on echocardiogram."
     },
     "number": 65,
     "id": "usmle-qb-s1-065"
@@ -1798,10 +1809,16 @@
     "diagram": "ie-cultures",
     "diagramAlt": "Endocarditis cultures. Three sets, separate sticks Before antibiotics if the patient can wait Prophylaxis only for the highest-risk hearts",
     "source": {
-      "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
-      "year": "2015",
-      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296",
-      "says": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions."
+      "name": "StatPearls. Infective Endocarditis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557641/",
+      "says": "Notably, S aureus demonstrates a predilection for infecting structurally normal native valves, particularly the tricuspid valve. Collectively, these groups account for 80% to 90% of all cases, with Staphylococcus aureus alone responsible for about 30% of cases in developed countries. viridans group streptococci account for approximately 20% of community-acquired cases.",
+      "more": [
+        {
+          "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296"
+        }
+      ]
     },
     "number": 66,
     "id": "usmle-qb-s1-066"
@@ -1826,7 +1843,7 @@
       "name": "StatPearls. Rheumatic Heart Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "Rheumatic heart disease is a systemic immune process that is sequelae to a beta-hemolytic streptococcal infection of the pharynx."
+      "says": "Identify the aberrant immune response to Streptococcus pyogenes infection in the pathophysiology of rheumatic heart disease. In chronic rheumatic heart disease, the mitral valve alone is the most commonly affected valve in an estimated 50% to 60% of cases."
     },
     "number": 67,
     "id": "usmle-qb-s1-067"
@@ -1877,7 +1894,7 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "Coarctation narrows the aortic lumen and raises the blood pressure above the narrowing compared with the legs."
+      "says": "The hallmark of aortic coarctation is a significant difference in blood pressure between the upper and lower extremities; therefore, a physical examination will often reveal elevated blood pressure in the upper extremities and diminished or delayed femoral pulses compared to brachial or radial pulses, known as brachiofemoral delay."
     },
     "number": 69,
     "id": "usmle-qb-s1-069"
@@ -1904,7 +1921,7 @@
       "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
       "year": "2022",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
-      "says": "Heart failure with preserved ejection fraction is an ejection fraction of 50% or higher. An SGLT2 inhibitor has a recommendation to reduce hospitalization in this group."
+      "says": "HFpEF (HF with preserved EF): LVEF \u226550%, with evidence of spontaneous or provokable increased LV filling pressures (e.g., elevated natriuretic peptide, noninvasive and invasive hemodynamic measurement)."
     },
     "number": 70,
     "id": "usmle-qb-s1-070"
@@ -1927,10 +1944,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
-      "year": "2023",
-      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
-      "says": "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve."
+      "name": "StatPearls. Atrial Flutter.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK540985/",
+      "says": "Typical or cavotricuspid isthmus (CTI) dependent is the most common type of atrial flutter; this rhythm originates in the right atrium at the level of the tricuspid valve annulus. In inferior leads, typical flutter waves resemble a picket fence or sawtooth because the P waves are negative due to the direction of the vector.",
+      "more": [
+        {
+          "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
+          "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017"
+        }
+      ]
     },
     "number": 71,
     "id": "usmle-qb-s1-071"
@@ -1953,10 +1976,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2022 ESC guidelines for ventricular arrhythmias and the prevention of sudden cardiac death.",
-      "year": "2022",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36017572/",
-      "says": "Pause-dependent polymorphic ventricular tachycardia with a long QT is treated with intravenous magnesium, potassium repletion, and withdrawal of QT-prolonging drugs. The 2025 AHA advanced life support guideline is the US resuscitation document for the same arrest rhythm."
+      "name": "StatPearls. Torsade de Pointes.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459388/",
+      "says": "Torsades de pointes is a form of polymorphic ventricular tachycardia characterized on an electrocardiogram by gradual changes in QRS-complex amplitude and a twisting pattern around the isoelectric line. The onset of Torsades de Pointes is often preceded by a run of short-long-short R-R intervals.",
+      "more": [
+        {
+          "name": "2022 ESC guidelines for ventricular arrhythmias and the prevention of sudden cardiac death.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36017572/"
+        }
+      ]
     },
     "number": 72,
     "id": "usmle-qb-s1-072"
@@ -1983,7 +2012,7 @@
       "name": "StatPearls. Mitral Valve Prolapse.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470288/",
-      "says": "Mitral valve prolapse is systolic displacement of a thickened leaflet into the left atrium, also called systolic click-murmur syndrome."
+      "says": "The classic auscultated murmur in MVP is a mid-systolic click followed by a late-systolic murmur."
     },
     "number": 73,
     "id": "usmle-qb-s1-073"
@@ -2010,7 +2039,7 @@
       "name": "StatPearls. Anion Gap and Non-Anion Gap Metabolic Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448090/",
-      "says": "A normal anion gap is 8 to 12 (if potassium is included, normal values are 12 to 16)."
+      "says": "In nonanion gap metabolic acidosis, gastrointestinal and renal losses of bicarbonate can be distinguished via urine anion gap analysis: Urine anion gap = Urine Na + Urine K \u2013 Urine Cl, if urine pH is <6.5 The urine anion gap can help estimate the urinary ammonium."
     }
   },
   {
@@ -2034,7 +2063,7 @@
       "name": "StatPearls. IgA Nephropathy (Berger Disease). Minimal Change Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538214/",
-      "says": "Immunoglobulin A (IgA) nephropathy, or IgAN, is one of the leading causes of glomerulonephritis and renal failure.",
+      "says": "The presence of red cells and red cell casts indicates glomerular injury and potential active disease. as is a 24-hour urine collection that reveals a total protein greater than 3 to 3.5 g/24hour in adults.",
       "more": [
         {
           "name": "StatPearls. Minimal Change Disease.",
@@ -2065,7 +2094,7 @@
       "name": "StatPearls. Loop Diuretics. Thiazide Diuretics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK546656/",
-      "says": "Loop diuretics are medications used in the management and treatment of fluid overload conditions such as heart failure, nephrotic syndrome or cirrhosis, and hypertension, in addition to edema.",
+      "says": "Loop diuretics induce its effect by competing with chloride to bind to the Na-K-2Cl (NKCC2) cotransporter at the apical membrane of the thick ascending limb of the loop of Henle which results in the loss of calcium and magnesium ions. Thiazide diuretics are FDA-approved medications that inhibit the reabsorption of 3% to 5% of sodium in the distal convoluted tubule Thiazides reduce urine calcium levels and increase blood calcium by increasing calcium reabsorption from the luminal membrane into the interstitium in exchange for sodium.",
       "more": [
         {
           "name": "StatPearls. Thiazide Diuretics.",
@@ -2093,14 +2122,14 @@
     "diagram": "hypoxemia",
     "diagramAlt": "Hypoxemia split. Normal A-a gradient: low inspired oxygen or hypoventilation. High A-a gradient: V/Q mismatch, diffusion limitation, or shunt. Shunt does not correct on 100 percent oxygen.",
     "source": {
-      "name": "StatPearls. Physiology, Oxygen Transport. Physiology, Oxyhemoglobin Dissociation Curve.",
+      "name": "StatPearls. Physiology, Alveolar to Arterial Oxygen Gradient; Hypoxia and Hypoxemia.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538336/",
-      "says": "It is important to differentiate between pO2 (mm Hg, the dissolved fraction), oxygen saturation (% of hemoglobin occupied), and O2 content (expressed as a volume percentage).",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK545153/",
+      "says": "Thus patients with hypoxemia due to hypoventilation will have an A-a gradient within normal limits. Thus patients with hypoxemia due to pneumonia will have an inappropriately elevated A-a gradient Failure of PaO2 to normalize despite administration of 100% oxygen is the defining physiologic feature distinguishing true shunting from V/Q mismatch.",
       "more": [
         {
-          "name": "StatPearls. Physiology, Oxyhemoglobin Dissociation Curve.",
-          "url": "https://www.ncbi.nlm.nih.gov/books/NBK499818/"
+          "name": "StatPearls. Hypoxia and Hypoxemia.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK482316/"
         }
       ]
     },
@@ -2124,10 +2153,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "GOLD 2026 Report.",
-      "year": "2026",
-      "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/",
-      "says": "GOLD uses post-bronchodilator spirometry, FEV1/FVC below 0.70, to confirm COPD, and reserves long-term oxygen for resting PaO2 at or under 55 mm Hg or saturation at or under 88%."
+      "name": "GOLD 2027 Report. Global Strategy for Prevention, Diagnosis and Management of COPD.",
+      "year": "2027",
+      "url": "https://goldcopd.org/wp-content/uploads/2026/11/GOLD-Report-2027-FINAL-v1.1-20Nov2026_WMV.pdf",
+      "says": "The presence of non-fully reversible airflow obstruction (FEV1/FVC < 0.7 post-bronchodilation) measured by spirometry confirms the diagnosis of COPD. Long-term oxygen is indicated for stable COPD with PaO2 at or below 55 mmHg (7.3 kPa) or SaO2 at or below 88%."
     },
     "number": 78,
     "id": "usmle-qb-s1-078"
@@ -2152,7 +2181,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Pneumothorax is air within the pleural space, causing lung collapse due to positive pleural pressure."
+      "says": "Tension pneumothorax arises when air accumulation becomes sufficient to compress the mediastinum and shift it contralaterally Tracheal deviation and mediastinal shift toward the contralateral side may be evident. Clinical diagnosis hinges on signs like hypotension, unilateral breath sounds, distended neck veins, and tracheal deviation."
     },
     "number": 79,
     "id": "usmle-qb-s1-079"
@@ -2176,10 +2205,16 @@
     "diagram": "ards-tv",
     "diagramAlt": "ARDS tidal volume. 6 mL/kg predicted body weight Use height and sex, not the scale Plateau pressure \u226430 cm H2O",
     "source": {
-      "name": "Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes. N Engl J Med.",
-      "year": "2000",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005043421801",
-      "says": "Tidal volume of 6 mL/kg predicted body weight and plateau pressure at or under 30 cm H2O reduced mortality compared with 12 mL/kg."
+      "name": "StatPearls. Acute Respiratory Distress Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK436002/",
+      "says": "According to the Berlin definition, ARDS is defined by acute onset, bilateral lung infiltrates on chest radiography or CT scan of a non-cardiac origin, and a PaO2/FiO2 ratio of less than 300 mm Hg.",
+      "more": [
+        {
+          "name": "ARDS Network. Ventilation with lower tidal volumes. N Engl J Med (2000).",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005043421801"
+        }
+      ]
     },
     "number": 80,
     "id": "usmle-qb-s1-080"
@@ -2202,10 +2237,16 @@
     "diagram": "ipf-drug",
     "diagramAlt": "IPF drug. Nintedanib or pirfenidone Not long-term prednisone as the disease drug Oxygen if hypoxemic",
     "source": {
-      "name": "ATS/ERS/JRS/ALAT Clinical Practice Guideline. Idiopathic pulmonary fibrosis. Update.",
-      "year": "2022",
-      "url": "https://www.atsjournals.org/doi/10.1164/rccm.202202-0399ST",
-      "says": "Nintedanib or pirfenidone is suggested for idiopathic pulmonary fibrosis. The guideline recommends against a steroid-containing regimen as disease-modifying therapy."
+      "name": "StatPearls. Idiopathic Pulmonary Fibrosis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448162/",
+      "says": "Classic pulmonary findings include fine bibasilar velcro crackles heard during inspiration. Differentiating usual interstitial pneumonia (UIP), a radiologic and histopathologic pattern, from IPF is essential. Bronchoscopic biopsy yields are typically low as the pathologic changes start subpleurally",
+      "more": [
+        {
+          "name": "ATS/ERS/JRS/ALAT Clinical Practice Guideline. Idiopathic Pulmonary Fibrosis (2022).",
+          "url": "https://www.atsjournals.org/doi/10.1164/rccm.202202-0399ST"
+        }
+      ]
     },
     "number": 81,
     "id": "usmle-qb-s1-081"
@@ -2227,10 +2268,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ERS clinical practice guideline for the management of adult bronchiectasis.",
-      "year": "2025",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41016738/",
-      "says": "Airway clearance is the daily treatment of bronchiectasis. Antibiotics treat an exacerbation, not the dilated airway itself."
+      "name": "StatPearls. Bronchiectasis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430810/",
+      "says": "Bronchial dilation, the cardinal sign of bronchiectasis Cough: 98%, sputum: 78% (sputum is typically mucoid and relatively odorless), dyspnea: 62%",
+      "more": [
+        {
+          "name": "ERS clinical practice guideline for the management of adult bronchiectasis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41016738/"
+        }
+      ]
     },
     "number": 82,
     "id": "usmle-qb-s1-082"
@@ -2252,10 +2299,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ATS/JRS/ALAT guideline. Diagnosis of hypersensitivity pneumonitis in adults.",
-      "year": "2020",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32706311/",
-      "says": "A thorough history and a validated questionnaire are required to identify the inhaled exposure. Serum IgG testing against likely antigens is suggested."
+      "name": "StatPearls. Hypersensitivity Pneumonitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499918/",
+      "says": "Hypersensitivity pneumonitis is an immune-mediated interstitial lung disease that develops in susceptible individuals after inhalation of one or more inciting antigens. These include agriculture, animal care, manufacturing, woodworking, gardening, using hot tubs, and contact with mold, birds, feathers, or contaminated water systems.",
+      "more": [
+        {
+          "name": "ATS/JRS/ALAT guideline. Diagnosis of hypersensitivity pneumonitis in adults (2020).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32706311/"
+        }
+      ]
     },
     "number": 83,
     "id": "usmle-qb-s1-083"
@@ -2280,7 +2333,7 @@
       "name": "StatPearls. Renal Tubular Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519044/",
-      "says": "Renal disorders due to the removal of HCO3 or acid handling in the presence of relatively preserved GFR are collectively referred to as renal tubular acidosis."
+      "says": "This raises the pH of urine due to an inability to excrete acid and generate acidic urine in the distal tubule, even in states of metabolic acidosis. It is associated with hypokalemia due to the failure of H/K ATPase. These patients can develop hypercalciuria, hypocitraturia, and nephrolithiasis"
     },
     "number": 84,
     "id": "usmle-qb-s1-084"
@@ -2306,7 +2359,7 @@
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
-      "says": "The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response."
+      "says": "The basic mechanisms of hypernatremia are water deficit and excess solute. The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response."
     },
     "number": 85,
     "id": "usmle-qb-s1-085"
@@ -2331,7 +2384,7 @@
       "name": "StatPearls. Hypokalemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482465/",
-      "says": "An acceptable lower limit for normal serum potassium is 3.5 mmol/L. A level under 2.5 mmol/L is classified as severe."
+      "says": "Although variation exists, an acceptable lower limit for normal serum potassium is 3.5 mmol/L. Serum potassium levels less than 2.5 mmol/L are classified as severe."
     },
     "number": 86,
     "id": "usmle-qb-s1-086"
@@ -2357,7 +2410,7 @@
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "Common causes include disorders of parathyroid glands, vitamin D deficiency, chronic kidney disease (CKD), or disturbances in magnesium balance."
+      "says": "QTc prolongation: A cardiac manifestation that may predispose to torsades de pointes Chvostek sign: Another manifestation of increased neuromuscular excitability, elicited by tapping over the facial nerve anterior to the ear Carpopedal spasm (Trousseau sign): Reflects increased neuromuscular excitability"
     },
     "number": 87,
     "id": "usmle-qb-s1-087"
@@ -2383,7 +2436,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "A decrease in pH below this range is acidosis; an increase over this range is alkalosis."
+      "says": "Therefore, the large volume loss of gastric secretions will correlate with a loss of hydrogen chloride, an acidic substance, leading to a relative increase in bicarbonate in the blood, thus driving alkalosis. Metabolic alkalosis is split into 2 main categories: Chloride responsive with urine chloride less than 10 mEq/L and chloride resistant with urine chloride greater than 20 mEq/L."
     },
     "number": 88,
     "id": "usmle-qb-s1-088"
@@ -2408,7 +2461,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "Respiratory acidosis is a state in which there is usually a failure of ventilation and an accumulation of carbon dioxide."
+      "says": "In the presence of alveolar hypoventilation, 2 features commonly seen are respiratory acidosis and hypercapnia. In chronic respiratory acidosis, renal compensation occurs gradually over the course of days."
     },
     "number": 89,
     "id": "usmle-qb-s1-089"
@@ -2434,7 +2487,7 @@
       "name": "StatPearls. Syndrome of Inappropriate Antidiuretic Hormone Secretion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK507777/",
-      "says": "Syndrome of inappropriate antidiuretic hormone (SIADH) release is a condition defined by the unsuppressed release of antidiuretic hormone (ADH) from the pituitary gland or nonpituitary sources or its continued action on vasopressin receptors."
+      "says": "SIADH is characterized by impaired water excretion leading to hyponatremia with hypervolemia or euvolemia. Urine osmolality greater than 100 mOsm/kg"
     },
     "number": 90,
     "id": "usmle-qb-s1-090"
@@ -2459,7 +2512,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst with the intake of up to 20 L/day fluid intake."
+      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst After water deprivation, studies have demonstrated that desmopressin can increase urine osmolality by greater than 100% in complete central DI and up to 50% in partial central DI."
     },
     "number": 91,
     "id": "usmle-qb-s1-091"
@@ -2484,7 +2537,7 @@
       "name": "StatPearls. Renal Artery Stenosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
-      "says": "The most common causes of hypertension are atherosclerosis or, in young women, fibromuscular dysplasia; less common causes include extrinsic compression, vasculitis, neurofibromatosis, congenital bands, and radiation."
+      "says": "In patients with renal artery stenosis, chronic ischemia from renal blood flow obstruction leads to adaptive changes in the kidney, including the formation of collateral blood vessels and renin secretion by the juxtaglomerular apparatus. Atherosclerotic disease accounts for the vast majority of cases, typically affecting older adults with generalized vascular disease, whereas fibromuscular dysplasia more commonly affects younger individuals."
     },
     "number": 92,
     "id": "usmle-qb-s1-092"
@@ -2511,7 +2564,7 @@
       "name": "StatPearls. Autosomal Dominant Polycystic Kidney Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532934/",
-      "says": "Autosomal dominant polycystic kidney disease (ADPKD) is the most common genetic cause of renal failure worldwide."
+      "says": "Hypertension is the most universal and earliest clinical presentation in most patients with ADPKD. A ruptured cerebral aneurysm is the most serious extrarenal complication of ADPKD and has a four times higher prevalence in ADPKD patients compared to the general population."
     },
     "number": 93,
     "id": "usmle-qb-s1-093"
