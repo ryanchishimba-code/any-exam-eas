@@ -19,7 +19,7 @@
       "name": "AAP Clinical Practice Guideline. Evaluation and Management of Well-Appearing Febrile Infants 8 to 60 Days Old.",
       "year": "2021",
       "url": "https://publications.aap.org/pediatrics/article/148/2/e2021052228/179783/Evaluation-and-Management-of-Well-Appearing-Febrile",
-      "says": "Infants 8 to 21 days old are hospitalized for a full culture evaluation and parenteral antibiotics, which is the recommendation in AAP Clinical Practice Guideline. Evaluation and Management of Well-Appearing Febrile Infants 8 to 60 Days Old."
+      "says": "This guideline addresses the evaluation and management of well-appearing, term infants, 8 to 60 days of age, with fever \u226538.0\u00b0C. Three algorithms summarize the recommendations for infants 8 to 21 days of age, 22 to 28 days of age, and 29 to 60 days of age."
     },
     "number": 1,
     "id": "usmle-qb-s3-001"
@@ -41,10 +41,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AAP clinical report. Postnatal glucose homeostasis in late-preterm and term infants.",
+      "name": "AAP Clinical Report. Postnatal Glucose Homeostasis in Late-Preterm and Term Infants.",
       "year": "2011",
       "url": "https://pubmed.ncbi.nlm.nih.gov/21357346/",
-      "says": "Infants of diabetic mothers are fed early and have glucose checked. Jitteriness is hypoglycemia until a glucose is back."
+      "says": "Current evidence does not support a specific glucose concentration that discriminates normal from abnormal. Early identification of the at-risk infant and institution of prophylactic measures to prevent neonatal hypoglycemia are recommended as a pragmatic approach."
     },
     "number": 2,
     "id": "usmle-qb-s3-002"
@@ -69,7 +69,7 @@
       "name": "Clinical practice guidelines for the care of girls and women with Turner syndrome.",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/38748847/",
-      "says": "Girls and women with Turner syndrome need cardiac evaluation for coarctation and a bicuspid aortic valve, including an arm and a leg blood pressure."
+      "says": "R 4.5: where postnatal TTE is not available, clinical cardiac evaluation with 4-extremity blood pressure, pulse oximetry, palpation of femoral pulses, cardiac auscultation, and ECG before discharge. R 4.17: annual assessment of blood pressure for all individuals with TS. R 7.21: a renal ultrasound at time of diagnosis."
     },
     "number": 3,
     "id": "usmle-qb-s3-003"
@@ -92,10 +92,10 @@
     "diagram": "cah-salt",
     "diagramAlt": "Salt-wasting 21-hydroxylase. Week 1\u20133: Na low, K over 6 17-hydroxyprogesterone very high Hydrocortisone + saline, then fludrocortisone",
     "source": {
-      "name": "Endocrine Society guideline. Congenital adrenal hyperplasia due to 21-hydroxylase deficiency.",
+      "name": "Endocrine Society Clinical Practice Guideline. Congenital Adrenal Hyperplasia Due to Steroid 21-Hydroxylase Deficiency.",
       "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30272171/",
-      "says": "This is the Endocrine Society clinical practice guideline for the management of congenital adrenal hyperplasia caused by steroid 21-hydroxylase deficiency, including the salt-wasting form."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6456929/",
+      "says": "Missed diagnosis of salt-losing CAH is associated with increased risk for early neonatal morbidity and mortality. 4.3 In the newborn and in early infancy, we recommend using fludrocortisone and sodium chloride supplements to the treatment regimen."
     },
     "number": 4,
     "id": "usmle-qb-s3-004"
@@ -118,10 +118,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "BSH guideline on acute chest syndrome in sickle cell disease.",
-      "year": "2015",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25824256/",
-      "says": "Incentive spirometry is used on sickle-cell pain admissions, and a new infiltrate with hypoxia is acute chest syndrome."
+      "name": "NHLBI Expert Panel Report. Evidence-Based Management of Sickle Cell Disease.",
+      "year": "2014",
+      "url": "https://www.nhlbi.nih.gov/health-topics/evidence-based-management-sickle-cell-disease",
+      "says": "To reduce the risk of acute chest syndrome in adults and children hospitalized for a VOC, encourage use of incentive spirometry while awake. Perform urgent exchange transfusion when there is rapid progression of ACS, such as oxygen saturation below 90 percent despite supplemental oxygen.",
+      "more": [
+        {
+          "name": "BSH guideline on acute chest syndrome in sickle cell disease (2015).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25824256/"
+        }
+      ]
     },
     "number": 5,
     "id": "usmle-qb-s3-005"
@@ -144,10 +150,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ASH 2020 guidelines for sickle cell disease: transfusion support.",
+      "name": "American Society of Hematology 2020 guidelines for sickle cell disease: prevention, diagnosis, and treatment of cerebrovascular disease.",
       "year": "2020",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31985807/",
-      "says": "Exchange transfusion is used for severe acute chest syndrome and for acute ischemic stroke in sickle cell disease, which is the recommendation in ASH 2020 guidelines for sickle cell disease: transfusion support."
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32298430/",
+      "says": "Recommendation 4.1: for acute neurological deficits including TIA, prompt blood transfusion, given without delay beyond 2 hours. Recommendation 4.2: exchange transfusion is suggested over simple transfusion. NHLBI 2014: urgent exchange transfusion for rapidly progressing acute chest syndrome.",
+      "more": [
+        {
+          "name": "NHLBI Expert Panel Report. Evidence-Based Management of Sickle Cell Disease (2014): urgent exchange transfusion for rapidly progressing acute chest syndrome; simple transfusion for symptomatic anemia.",
+          "url": "https://www.nhlbi.nih.gov/health-topics/evidence-based-management-sickle-cell-disease"
+        }
+      ]
     },
     "number": 6,
     "id": "usmle-qb-s3-006"
@@ -170,10 +182,10 @@
     "diagram": "ttp-itp",
     "diagramAlt": "TTP versus ITP. TTP: schistocytes, hemolysis, exchange now ITP: isolated low platelets, no fragments Platelets in TTP only for life-threatening bleed",
     "source": {
-      "name": "ISTH guidelines for the diagnosis and treatment of thrombotic thrombocytopenic purpura.",
+      "name": "ISTH guidelines for the diagnosis of thrombotic thrombocytopenic purpura.",
       "year": "2020",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32914582/",
-      "says": "When suspicion is high, draw ADAMTS13 before plasma exchange, then start plasma exchange and corticosteroids without waiting for the result. The treatment guideline strongly recommends corticosteroids added to plasma exchange for a first episode or a relapse."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+      "says": "If the pretest probability of TTP is high, start TPE and corticosteroids, and collect plasma samples for ADAMTS13 testing before therapy. Acquire a plasma sample for ADAMTS13 testing before an initiation of TPE or use of any blood product."
     },
     "number": 7,
     "id": "usmle-qb-s3-007"
@@ -188,7 +200,6 @@
     "lead": "Write the antipseudomonal antibiotic as a stat order. Add vancomycin only for instability, a line infection, severe mucositis, or known resistant gram-positive colonization.",
     "lines": [
       "Fever plus neutropenia is treated at once with broad empiric antibiotics. Do not wait for a culture to grow.",
-      "The IDSA 2010 update states that immediate empiric therapy has not changed: cover gram-positive and gram-negative pathogens.",
       "Risk stratification decides the setting. It does not delay the first dose.",
       "A narrow oral drug chosen before that first broad dose is the miss."
     ],
@@ -196,10 +207,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "IDSA 2010 update. Antimicrobial agents in neutropenic patients with cancer.",
-      "year": "2010",
+      "name": "IDSA Clinical Practice Guideline for the Use of Antimicrobial Agents in Neutropenic Patients With Cancer: 2010 Update.",
+      "year": "2011",
       "url": "https://pubmed.ncbi.nlm.nih.gov/21258094/",
-      "says": "All patients who present with fever and neutropenia should be treated swiftly and broadly with empiric antibiotics. Immediate treatment is the standing recommendation of this guideline."
+      "says": "What has not changed is the indication for immediate empirical antibiotic therapy. It remains true that all patients who present with fever and neutropenia should be treated swiftly and broadly with antibiotics to treat both gram-positive and gram-negative pathogens.",
+      "more": [
+        {
+          "name": "ASCO/IDSA 2018 update. Outpatient Management of Fever and Neutropenia (antipseudomonal beta-lactam monotherapy within 1 hour).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29461916/"
+        }
+      ]
     },
     "number": 8,
     "id": "usmle-qb-s3-008"
@@ -221,10 +238,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Hemophilia A.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
-      "says": "The natural history of untreated hemophilia A is marked by progressive joint damage and increased morbidity; however, advances in factor replacement therapy and prophylactic treatment have significantly improved life expectancy and quality of life."
+      "name": "WFH Guidelines for the Management of Hemophilia, 3rd edition.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32744769/",
+      "says": "In the event of significant head trauma or clinical suspicion of central nervous system and/or intracranial hemorrhage, immediate treatment with CFC infusion is required without waiting for further symptoms to develop or for laboratory or radiologic evaluation.",
+      "more": [
+        {
+          "name": "StatPearls. Hemophilia A (mixing study, inhibitors).",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/"
+        }
+      ]
     },
     "number": 9,
     "id": "usmle-qb-s3-009"
@@ -247,10 +270,10 @@
     "diagram": "hit-days",
     "diagramAlt": "HIT, day 5 to 10. Platelets fall >=50% at day 5-10 With or without thrombosis Stop heparin. No warfarin before recovery",
     "source": {
-      "name": "ASH 2018 guideline for heparin-induced thrombocytopenia.",
+      "name": "ASH 2018 guidelines for management of venous thromboembolism: heparin-induced thrombocytopenia.",
       "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30482768/",
-      "says": "Use the 4Ts score rather than gestalt. Do not treat empirically when the score is low. For an intermediate or high score, stop heparin and start a non-heparin anticoagulant. Do not start a vitamin K antagonist before the platelet count recovers, usually to at least 150 \u00d7 10^9/L."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6258919/",
+      "says": "Strong recommendations include use of the 4Ts score rather than a gestalt approach and avoidance of empiric treatment of HIT with a low-probability 4Ts score. The panel suggests argatroban, bivalirudin, danaparoid, fondaparinux, or a DOAC, and recommends against a VKA before platelet count recovery (usually \u2265150 \u00d7 10^9/L)."
     },
     "number": 10,
     "id": "usmle-qb-s3-010"
@@ -273,10 +296,10 @@
     "diagram": "dic-fib",
     "diagramAlt": "DIC labs. Low fibrinogen, high D-dimer PT and PTT both prolong Cryoprecipitate if bleeding and fibrinogen is low",
     "source": {
-      "name": "BSH practical guideline for the haematological management of major haemorrhage.",
-      "year": "2015",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/26147359/",
-      "says": "In major bleeding, give cryoprecipitate or fibrinogen concentrate when fibrinogen is under 1.5 g/L. ISTH DIC guidance likewise reserves component transfusion for the patient who is bleeding and treats the underlying cause first."
+      "name": "ISTH SSC guidance. Diagnosis and treatment of DIC, harmonized from three guidelines.",
+      "year": "2013",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23379279/",
+      "says": "The cornerstone of DIC treatment is the treatment of the underlying condition. In general, transfusion of platelets or plasma (components) in patients with DIC should be reserved for patients who are bleeding. Prophylactic doses of unfractionated heparin or low molecular weight heparin is recommended in critically ill and non-bleeding patients with DIC."
     },
     "number": 11,
     "id": "usmle-qb-s3-011"
@@ -300,10 +323,10 @@
     "diagram": "tls-ions",
     "diagramAlt": "Tumor lysis ions. K up, phosphate up, uric acid up Calcium down (binds phosphate) Rasburicase clears uric acid already made",
     "source": {
-      "name": "BSH guideline for tumour lysis syndrome.",
-      "year": "2015",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25876990/",
-      "says": "Established tumor lysis with a high uric acid is treated with rasburicase, after fluids, and calcium falls as phosphate rises."
+      "name": "British Society for Haematology updated guidelines for the diagnosis and management of tumour lysis syndrome in adults and children with haematological malignancies.",
+      "year": "2025",
+      "url": "https://doi.org/10.1111/bjh.70092",
+      "says": "Patients with established TLS should be treated with rasburicase 0.2 mg/kg/day. Allopurinol should be stopped when rasburicase is commenced. Patients who may receive rasburicase should be tested for G6PD deficiency, as rasburicase can cause haemolytic anaemia or methaemoglobinaemia. Patients with TLS should have vigorous intravenous hydration."
     },
     "number": 12,
     "id": "usmle-qb-s3-012"
@@ -326,10 +349,10 @@
     "diagram": "pv-hct",
     "diagramAlt": "Polycythemia vera target. JAK2. EPO is low Phlebotomy toward hematocrit <45% Do not phlebotomize hypoxic high-EPO disease",
     "source": {
-      "name": "ELN revised management recommendations for myeloproliferative neoplasms.",
+      "name": "ELN revised management recommendations for Philadelphia chromosome-negative classical myeloproliferative neoplasms.",
       "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29515238/",
-      "says": "Phlebotomy in polycythemia vera targets a hematocrit below 45%, which is the recommendation in ELN revised management recommendations for myeloproliferative neoplasms."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5986069/",
+      "says": "The Panel strongly recommended that all patients with PV should be managed with phlebotomy to maintain the hematocrit below 45%, together with daily low-dose acetyl salicylic acid."
     },
     "number": 13,
     "id": "usmle-qb-s3-013"
@@ -352,10 +375,10 @@
     "diagram": "atra",
     "diagramAlt": "APL, do not wait. Auer rods. t(15;17) ATRA when the smear fits Bleeding is the early death. Follow fibrinogen",
     "source": {
-      "name": "ELN expert-panel recommendations for acute promyelocytic leukemia.",
+      "name": "ELN expert-panel recommendations for the management of acute promyelocytic leukemia.",
       "year": "2019",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30803991/",
-      "says": "Start all-trans retinoic acid as soon as acute promyelocytic leukemia is suspected, and follow fibrinogen because the early death is bleeding."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6509567/",
+      "says": "ATRA should be initiated immediately once APL is suspected. Transfusions of fibrinogen and/or cryoprecipitate, platelets, and fresh-frozen plasma should be given to maintain the fibrinogen concentration above 100 to 150 mg/dL and the platelet count above 30 to 50 \u00d7 10^9/L."
     },
     "number": 14,
     "id": "usmle-qb-s3-014"
@@ -377,10 +400,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACIP recommendations on meningococcal vaccination.",
+      "name": "Meningococcal Vaccination: Recommendations of the Advisory Committee on Immunization Practices, United States, 2020.",
       "year": "2020",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33417592/",
-      "says": "Vaccinate against meningococcus before or when starting a complement inhibitor."
+      "says": "MenACWY and MenB are recommended for persons receiving a complement inhibitor (e.g., eculizumab or ravulizumab). Persons using complement inhibitor should be vaccinated at least 2 weeks before complement inhibitor initiation unless the risks for delaying treatment outweigh the risks for developing meningococcal disease."
     },
     "number": 15,
     "id": "usmle-qb-s3-015"
@@ -404,10 +427,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Hemolytic Transfusion Reaction.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR)."
+      "name": "BSH Guideline on the investigation and management of acute transfusion reactions.",
+      "year": "2023",
+      "url": "https://doi.org/10.1111/bjh.18789",
+      "says": "If a patient develops new symptoms or signs during a transfusion, this should be stopped temporarily but venous access should be maintained, and identification details checked against the component. If febrile symptoms are sustained, a haemolytic reaction should be considered, the unit returned, and samples taken for repeat compatibility testing.",
+      "more": [
+        {
+          "name": "StatPearls. Hemolytic Transfusion Reaction.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/"
+        }
+      ]
     },
     "number": 16,
     "id": "usmle-qb-s3-016"
@@ -433,7 +462,7 @@
       "name": "StatPearls. Multiple Myeloma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534764/",
-      "says": "Multiple myeloma is a malignant plasma-cell disorder that causes end-organ damage, and most patients eventually relapse."
+      "says": "Multiple myeloma is a clonal plasma cell proliferative disorder characterized by the abnormal increase of monoclonal paraprotein leading to evidence of specific end-organ damage. Most commonly this is hypercalcemia, renal dysfunction, anemia, or bone pain with lytic lesions."
     },
     "number": 17,
     "id": "usmle-qb-s3-017"
@@ -459,7 +488,7 @@
       "name": "StatPearls. Aplastic Anemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
-      "says": "Aplastic anemia is a rare but serious hematologic disorder characterized by the failure of bone marrow to produce enough blood cells, leading to pancytopenia and causing significant morbidity and mortality."
+      "says": "Patients with severe aplastic anemia (SAA) or very severe aplastic anemia (vSAA) require prompt treatment to reduce the risk of life-threatening infections and limit complications from ongoing transfusions and medications."
     },
     "number": 18,
     "id": "usmle-qb-s3-018"
@@ -481,10 +510,10 @@
     "diagram": "stroke-window",
     "diagramAlt": "Thrombolysis inside 4.5 hours. Tenecteplase 0.25 mg/kg max 25 mg, or alteplase 0.9 mg/kg max 90 mg. Pressure under 185/110 first.",
     "source": {
-      "name": "2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke.",
+      "name": "2026 AHA/ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke.",
       "year": "2026",
       "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
-      "says": "Trial protocols required pressure under 185/110 before thrombolysis. Without reperfusion, lowering pressure under 220/120 in the first 48 to 72 hours does not help."
+      "says": "The guideline endorses either alteplase or tenecteplase in the 4.5-hour window: tenecteplase 0.25 mg/kg (max 25 mg) or alteplase 0.9 mg/kg (max 90 mg); a 0.4 mg/kg tenecteplase dose is not recommended. Disabling deficits are treated regardless of NIHSS score, without advanced imaging selection; BP is brought below 185/110 first."
     },
     "number": 19,
     "id": "usmle-qb-s3-019"
@@ -507,10 +536,10 @@
     "diagram": "stroke-window",
     "diagramAlt": "Thrombolysis inside 4.5 hours. Tenecteplase 0.25 mg/kg max 25 mg, or alteplase 0.9 mg/kg max 90 mg. Pressure under 185/110 first.",
     "source": {
-      "name": "2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke.",
+      "name": "2026 AHA/ASA Guideline for the Early Management of Patients With Acute Ischemic Stroke.",
       "year": "2026",
       "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000513",
-      "says": "Glucose and noncontrast CT precede thrombolysis. MRI is not required inside the standard window, which is the recommendation in 2026 AHA/ASA Guideline for the Early Management of Acute Ischemic Stroke."
+      "says": "The guideline endorses either alteplase or tenecteplase in the 4.5-hour window: tenecteplase 0.25 mg/kg (max 25 mg) or alteplase 0.9 mg/kg (max 90 mg); a 0.4 mg/kg tenecteplase dose is not recommended. Disabling deficits are treated regardless of NIHSS score, without advanced imaging selection; BP is brought below 185/110 first."
     },
     "number": 20,
     "id": "usmle-qb-s3-020"
@@ -534,10 +563,16 @@
     "diagram": "status-rx",
     "diagramAlt": "Status epilepticus drugs. Glucose, then a benzodiazepine Then one full second drug Levetiracetam, fosphenytoin, or valproate",
     "source": {
-      "name": "Kapur et al. Randomized Trial of Three Anticonvulsant Medications for Status Epilepticus. N Engl J Med.",
-      "year": "2019",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1905795",
-      "says": "Levetiracetam, fosphenytoin, and valproate were equivalent as the second intravenous drug after a benzodiazepine."
+      "name": "AES Evidence-Based Guideline: Treatment of Convulsive Status Epilepticus in Children and Adults.",
+      "year": "2016",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4749120/",
+      "says": "A benzodiazepine (specifically IM midazolam, IV lorazepam, or IV diazepam) is recommended as the initial therapy of choice (level A). Compared to the first therapy, the second therapy is less effective (level A).",
+      "more": [
+        {
+          "name": "ESETT (Kapur, NEJM 2019): levetiracetam 60 mg/kg (max 4500 mg), fosphenytoin 20 mg PE/kg (max 1500), valproate 40 mg/kg (max 3000) after benzodiazepines; similar efficacy.",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1905795"
+        }
+      ]
     },
     "number": 21,
     "id": "usmle-qb-s3-021"
@@ -560,10 +595,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2023 AHA/ASA guideline for aneurysmal subarachnoid hemorrhage.",
+      "name": "2023 AHA/ASA Guideline for the Management of Patients With Aneurysmal Subarachnoid Hemorrhage.",
       "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37212182/",
-      "says": "A thunderclap headache is imaged with noncontrast CT immediately. A negative early CT does not end the evaluation. ACEP 2019 is the emergency-department policy for the next test."
+      "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000436",
+      "says": "Noncontrast head CT remains the mainstay of SAH diagnosis. For patients presenting within 6 hours of headache onset who have no new neurological deficits, the lack of SAH on a noncontrast head CT is likely sufficient to exclude aSAH; otherwise LP for xanthochromia or CTA is the next study after a negative or nondiagnostic CT."
     },
     "number": 22,
     "id": "usmle-qb-s3-022"
@@ -586,10 +621,16 @@
     "diagram": "mening-dex",
     "diagramAlt": "Adult bacterial meningitis. Dexamethasone before or with dose 1 If CT is required, drug still goes in first Stop steroid if pneumococcus is excluded",
     "source": {
-      "name": "IDSA Practice Guidelines for the Management of Bacterial Meningitis.",
-      "year": "2004",
-      "url": "https://academic.oup.com/cid/article/39/9/1267/402080",
-      "says": "Antibiotics and dexamethasone are not delayed for imaging. The lumbar puncture follows the scan when a scan is required, which is the recommendation in IDSA Practice Guidelines for the Management of Bacterial Meningitis."
+      "name": "NICE guideline NG240. Meningitis (bacterial) and meningococcal disease: recognition, diagnosis and management.",
+      "year": "2024",
+      "url": "https://www.nice.org.uk/guidance/ng240/chapter/Recommendations",
+      "says": "Antibiotics start within 1 hour of arrival; blood tests and lumbar puncture are performed before antibiotics only if safe and without clinically significant delay. Give dexamethasone with or before the first antibiotic dose if possible.",
+      "more": [
+        {
+          "name": "IDSA Practice Guidelines for the Management of Bacterial Meningitis (2004, archived).",
+          "url": "https://academic.oup.com/cid/article/39/9/1267/402080"
+        }
+      ]
     },
     "number": 23,
     "id": "usmle-qb-s3-023"
@@ -615,7 +656,7 @@
       "name": "EAN/PNS guideline on diagnosis and treatment of Guillain-Barr\u00e9 syndrome.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37814552/",
-      "says": "IVIg 0.4 g/kg for 5 days is recommended within 2 weeks of onset if the patient cannot walk unaided, or plasma exchange of 12\u201315 L in four to five exchanges if within 4 weeks. Oral corticosteroids are recommended against. The mEGRIS score estimates the need for ventilation."
+      "says": "The task force recommends IVIg 0.4 g/kg for 5 days within 2 weeks (GPP also within 2-4 weeks) after onset of weakness if unable to walk unaided, or plasma exchange 12-15 L in four to five exchanges over 1-2 weeks within 4 weeks; it recommends against oral corticosteroids and advises the mEGRIS score for ventilation risk."
     },
     "number": 24,
     "id": "usmle-qb-s3-024"
@@ -638,10 +679,16 @@
     "diagram": "ms-steroid",
     "diagramAlt": "MS flare versus infection. New deficit: high-dose steroid Old deficit plus fever: find the infection Disease-modifying drug is a separate order",
     "source": {
-      "name": "AAN practice guideline. Disease-modifying therapies for adults with multiple sclerosis.",
-      "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30617176/",
-      "says": "The American Academy of Neurology recommends disease-modifying therapy for adults with relapsing multiple sclerosis."
+      "name": "NICE guideline NG220. Multiple sclerosis in adults: management.",
+      "year": "2022",
+      "url": "https://www.nice.org.uk/guidance/ng220/chapter/Recommendations",
+      "says": "Explain to people with MS that the possible causes of symptom changes include another illness such as an infection, further relapse, or change of disease status. Not all relapses need treating with steroids.",
+      "more": [
+        {
+          "name": "AAN practice guideline. Disease-modifying therapies for adults with multiple sclerosis (2018).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29686116/"
+        }
+      ]
     },
     "number": 25,
     "id": "usmle-qb-s3-025"
@@ -668,7 +715,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "PD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations."
+      "says": "Oral levodopa is the most effective treatment for the motor symptoms of PD. Levodopa, absorbed from the gut, is converted to dopamine; carbidopa, a dopa decarboxylase inhibitor, is co-administered."
     },
     "number": 26,
     "id": "usmle-qb-s3-026"
@@ -691,10 +738,10 @@
     "diagram": "cord-dex",
     "diagramAlt": "Cord compression. Dexamethasone immediately MRI today, not plain films Decompress. Do not wait for full staging",
     "source": {
-      "name": "NICE guideline NG234. Spinal metastases and metastatic spinal cord compression.",
+      "name": "NICE NG234. Spinal metastases and metastatic spinal cord compression.",
       "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37852656/",
-      "says": "Suspected metastatic spinal cord compression is treated with corticosteroids and urgent MRI, not with plain films as the clearance test, which is the recommendation in NICE guideline NG234. Spinal metastases and metastatic spinal cord compression."
+      "url": "https://www.nice.org.uk/guidance/ng234",
+      "says": "Offer MRI to people with suspected MSCC and do not use plain X-ray of the spine to diagnose or rule it out. Offer 16 mg of oral dexamethasone as soon as possible and continue it daily while awaiting surgery or radiotherapy."
     },
     "number": 27,
     "id": "usmle-qb-s3-027"
@@ -716,10 +763,10 @@
     "diagram": "tia-plan",
     "diagramAlt": "TIA before discharge. Antithrombotic today AF found: anticoagulant, not aspirin Carotid imaging, not a visit in 3 months",
     "source": {
-      "name": "2021 AHA/ASA guideline for the prevention of stroke in patients with stroke and TIA.",
+      "name": "2021 AHA/ASA Guideline for the Prevention of Stroke in Patients With Stroke and Transient Ischemic Attack.",
       "year": "2021",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/34024117/",
-      "says": "A transient ischemic attack is treated under the stroke-prevention guideline, with a drug and a follow-up plan rather than reassurance that the deficit cleared."
+      "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000375",
+      "says": "Diagnostic tests for the cause of a TIA should be completed within 48 hours when possible. Prescribe antithrombotic therapy; screen for atrial fibrillation and anticoagulate if found; consider endarterectomy or stenting for severe ipsilateral carotid stenosis."
     },
     "number": 28,
     "id": "usmle-qb-s3-028"
@@ -743,10 +790,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACR Appropriateness Criteria. Cranial neuropathy: 2022 update.",
-      "year": "2022",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36436957/",
-      "says": "Acute painful Horner syndrome is imaged for carotid dissection. Vascular imaging is appropriate rather than reassurance."
+      "name": "ACR Appropriateness Criteria. Horner Syndrome.",
+      "year": "2025",
+      "url": "https://gravitas.acr.org/ACPortal/GetDataForOneScenario?senarioId=8351",
+      "says": "For acute painful Horner syndrome, and for nonacute nonlocalizable Horner syndrome, CTA head and neck with IV contrast is rated usually appropriate as initial imaging."
     },
     "number": 29,
     "id": "usmle-qb-s3-029"
@@ -768,10 +815,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "International Classification of Headache Disorders, 3rd edition. Medication-overuse headache.",
+      "name": "International Classification of Headache Disorders, 3rd edition (ICHD-3). 8.2.2 Triptan-overuse headache.",
       "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29368949/",
-      "says": "Medication-overuse headache is headache on 15 or more days a month for more than 3 months, from regular overuse of acute medicine. Triptans, ergots, opioids, and combination analgesics count at 10 or more days a month. Simple analgesics count at 15 or more days a month."
+      "url": "https://ichd-3.org/8-headache-attributed-to-a-substance-or-its-withdrawal/8-2-medication-overuse-headache-moh/8-2-2-triptan-overuse-headache/",
+      "says": "Triptan-overuse headache is headache occurring on 15 or more days/month in a patient with a pre-existing primary headache, developing as a consequence of regular use of one or more triptans on 10 or more days/month for more than 3 months."
     },
     "number": 30,
     "id": "usmle-qb-s3-030"
