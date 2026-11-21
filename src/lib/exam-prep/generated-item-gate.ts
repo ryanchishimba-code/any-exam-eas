@@ -7,6 +7,36 @@
 const GENERIC_RATIONALE =
   /USMLE Step\s+\d|Step\s+\d(?:\s+CK)?\s+reasoning|1\.\s*(?:Identify|Recognize cues)/i;
 
+const CUTOFF_LAST =
+  /^(the|a|an|of|to|for|and|or|with|without|because|while|from|into|than|this|that|by|at|in|on|is|are|was|were|be|been|being|which|who|when|if|but|rather|though|over|as)$/i;
+
+const GARBLED_LINE = /\ba the\b|\bthe the\b|\ban an\b|\blung an operation\b|\bthe nutrient\b|\ban seeded\b/i;
+
+/** A choice that stops mid-phrase, or a line with a broken article. */
+export function optionLineProblem(option: string): "cutoff" | "garble" | null {
+  if (GARBLED_LINE.test(option)) return "garble";
+  const last = option
+    .trim()
+    .replace(/[.!?]+$/, "")
+    .split(/\s+/)
+    .pop()
+    ?.replace(/[^A-Za-z]/g, "");
+  if (option.trim().toLowerCase().endsWith("cared for")) return null;
+  if (last && CUTOFF_LAST.test(last)) return "cutoff";
+  return null;
+}
+
+/**
+ * Key letters should be spread across the choice slots.
+ * Counts may differ by one when the set size is not a multiple of the slot count.
+ */
+export function reviewKeySlotBalance(slotCounts: readonly number[]): boolean {
+  if (slotCounts.length === 0) return true;
+  const max = Math.max(...slotCounts);
+  const min = Math.min(...slotCounts);
+  return max - min <= 1;
+}
+
 const MANAGEMENT_ASK =
   /\b(next step|most appropriate|administer|start|give|treat|management|priority)\b/i;
 
@@ -105,6 +135,10 @@ export function reviewGeneratedItem(
   const keyed = options.filter((option) => option === item.correctAnswer.trim());
   if (keyed.length !== 1 || item.correctAnswer.includes("|||")) {
     failures.push("Needs one defensible best answer that matches exactly one option.");
+  }
+
+  if (options.some((option) => optionLineProblem(option))) {
+    failures.push("Choice lines must be complete and must not be garbled.");
   }
 
   const expectedStep = STEP_FOR_FIELD[item.fieldId];

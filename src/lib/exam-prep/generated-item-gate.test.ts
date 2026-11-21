@@ -3,7 +3,9 @@ import { buildBulkQuestion } from "../bulk-question-generator";
 import { getSubjectsForFieldId } from "../subjects/registry";
 import {
   generatedItemFromBankItem,
+  optionLineProblem,
   reviewGeneratedItem,
+  reviewKeySlotBalance,
   stemFamilyFingerprint,
   withGeneratedItemGate,
   type GeneratedItemForGate,
@@ -34,6 +36,34 @@ function readyItem(overrides: Partial<GeneratedItemForGate> = {}): GeneratedItem
 }
 
 describe("generated item gate", () => {
+  it("rejects a cutoff or garbled choice line", () => {
+    expect(optionLineProblem("HMG-CoA reductase, the target of a")).toBe("cutoff");
+    expect(optionLineProblem("An antibiotic that penetrates the cyst, such as")).toBe("cutoff");
+    expect(optionLineProblem("He cannot undergo curative lung an operation")).toBe("garble");
+    expect(optionLineProblem("The plate is still open. The missing the nutrient is D")).toBe("garble");
+    expect(optionLineProblem("Stop spironolactone. The other three drugs can stay")).toBe(null);
+    expect(optionLineProblem("Inpatient monitoring where a preterm newborn can be cared for")).toBe(null);
+    const cutoff = reviewGeneratedItem(
+      readyItem({
+        options: [
+          "Administer the scheduled vaccines today",
+          "Defer the vaccines until the",
+          "Record a permanent contraindication to MMR",
+        ],
+        explanation:
+          "Mild fever is not a reason to delay MMR; give the vaccines due today. Administer the scheduled vaccines today. Defer the vaccines until the illness resolves. Record a permanent contraindication to MMR only after anaphylaxis.",
+      }),
+      new Set()
+    );
+    expect(cutoff.activate).toBe(false);
+    expect(cutoff.failures.join(" ")).toMatch(/complete and must not be garbled/);
+  });
+
+  it("requires key letters to be spread across slots", () => {
+    expect(reviewKeySlotBalance([105, 104, 104, 104, 104])).toBe(true);
+    expect(reviewKeySlotBalance([521, 0, 0, 0, 0])).toBe(false);
+  });
+
   it("activates only when every rule passes", () => {
     expect(reviewGeneratedItem(readyItem(), new Set()).activate).toBe(true);
   });
