@@ -1241,6 +1241,11 @@ export function StudyGuideReader({
                       {...chapterMotion}
                       transition={{ duration: reduceMotion ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
                     >
+                      <p className="sg-ai-disclosure" role="note">
+                        <strong>AI disclosure.</strong> Portions are AI-generated. Where this
+                        chapter names a guideline and year, that citation is the source for the
+                        point.
+                      </p>
                       {visibleBookSection(chapter.sectionLabel) ? (
                         <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.14em] opacity-60">
                           {visibleBookSection(chapter.sectionLabel)}
@@ -1348,11 +1353,7 @@ export function StudyGuideReader({
           {/* The global site footer is suppressed on reader routes, so the
               study-aid disclaimer and legal links live here instead. */}
           <div className="shrink-0 border-t border-white/10 px-3 py-3 sm:px-4">
-            <p className="sg-ai-disclosure" role="note">
-              <strong>AI disclosure.</strong> Portions are AI-generated. Where this chapter
-              names a guideline and year, that citation is the source for the point.
-            </p>
-            <p className="mt-2 text-[11px] leading-relaxed text-white/45">
+            <p className="text-[11px] leading-relaxed text-white/45">
               Study aid only — not medical advice or a substitute for your{" "}
               {config.legal.programNoun}, facility policy, or official board documents.{" "}
               {config.legal.examName}® is a registered trademark of{" "}
