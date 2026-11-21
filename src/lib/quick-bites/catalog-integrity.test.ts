@@ -32,6 +32,7 @@ import {
   USMLE_VIDEO_QUICK_BITE_EPISODES,
   USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION,
   USMLE_VIDEO_WAVE2_MEDIA_VERSION,
+  USMLE_VIDEO_WAVE3_MEDIA_VERSION,
   usmleVideoQuickBiteCaptionsPath,
   usmleVideoQuickBitePoster,
   usmleVideoQuickBiteVideoPath,
@@ -122,7 +123,10 @@ describe("Quick Bites catalog integrity", () => {
     expect(usmleVideoQuickBiteVideoPath(USMLE_VIDEO_QUICK_BITE_EPISODES[0]!.slug)).toBe(
       `quick-bites-usmle/${USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION}/${USMLE_VIDEO_QUICK_BITE_EPISODES[0]!.slug}-web.mp4`
     );
-    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(20);
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(30);
+    expect(usmleVideoQuickBiteVideoPath("quick-bites-usmle-ep30-safety-ethics-practice")).toBe(
+      `quick-bites-usmle/${USMLE_VIDEO_WAVE3_MEDIA_VERSION}/quick-bites-usmle-ep30-safety-ethics-practice-web.mp4`
+    );
     expect(usmleVideoQuickBiteVideoPath("quick-bites-usmle-ep20-acs-afib")).toBe(
       `quick-bites-usmle/${USMLE_VIDEO_WAVE2_MEDIA_VERSION}/quick-bites-usmle-ep20-acs-afib-web.mp4`
     );

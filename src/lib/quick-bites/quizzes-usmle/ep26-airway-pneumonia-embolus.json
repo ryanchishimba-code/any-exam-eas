@@ -1,0 +1,287 @@
+{
+  "episode": "ep26-airway-pneumonia-embolus",
+  "title": "The Inhaler, the Pneumonia, and a Clot in the Lung",
+  "video": "quick-bites-usmle-ep26-airway-pneumonia-embolus-web.mp4",
+  "questions": [
+    {
+      "id": "ep26-airway-pneumonia-embolus-q01",
+      "type": "single_best_answer",
+      "stem": "An adolescent or adult with asthma. As-needed rescue medicine alone:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is a complete plan"
+        },
+        {
+          "id": "B",
+          "text": "Is not a plan; an inhaled corticosteroid belongs in the regimen"
+        },
+        {
+          "id": "C",
+          "text": "Replaces a bronchodilator in chronic obstructive disease"
+        },
+        {
+          "id": "D",
+          "text": "Is preferred to any steroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Every adolescent and adult with asthma gets a steroid in the inhaler.",
+      "videoTimestamp": "0:25"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q02",
+      "type": "single_best_answer",
+      "stem": "Mild chronic obstructive disease, few symptoms, no hospital exacerbation. Start with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "An inhaled corticosteroid as the first and only drug"
+        },
+        {
+          "id": "B",
+          "text": "A long-acting bronchodilator, muscarinic type preferred, not an inhaled steroid first"
+        },
+        {
+          "id": "C",
+          "text": "A systemic steroid for life"
+        },
+        {
+          "id": "D",
+          "text": "Thrombolysis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "This group starts a long-acting bronchodilator. The long-acting muscarinic type is preferred, not an inhaled corticosteroid.",
+      "videoTimestamp": "2:59"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q03",
+      "type": "single_best_answer",
+      "stem": "A chronic obstructive exacerbation typically gets:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A short systemic steroid; antibiotics only when they are indicated"
+        },
+        {
+          "id": "B",
+          "text": "Lifelong high-dose inhaled steroid only"
+        },
+        {
+          "id": "C",
+          "text": "No medicine if the x-ray is clear"
+        },
+        {
+          "id": "D",
+          "text": "A lytic, always"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A flare gets a short steroid course. Antibiotics are selective.",
+      "videoTimestamp": "0:45"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q04",
+      "type": "single_best_answer",
+      "stem": "The first pneumonia decision is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The antibiotic color"
+        },
+        {
+          "id": "B",
+          "text": "Where to treat, using severity, not a single lab"
+        },
+        {
+          "id": "C",
+          "text": "Whether to start a sugar-spilling diabetes pill"
+        },
+        {
+          "id": "D",
+          "text": "Whether to give a lytic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Site of care comes first.",
+      "videoTimestamp": "0:58"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q05",
+      "type": "single_best_answer",
+      "stem": "Severe community pneumonia is treated with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A single narrow drug, always"
+        },
+        {
+          "id": "B",
+          "text": "Two drugs: a beta-lactam plus a macrolide, or a beta-lactam plus a fluoroquinolone"
+        },
+        {
+          "id": "C",
+          "text": "Anaerobic coverage in every mild case"
+        },
+        {
+          "id": "D",
+          "text": "Oxygen only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Severe disease is two-drug coverage.",
+      "videoTimestamp": "1:08"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q06",
+      "type": "single_best_answer",
+      "stem": "Straightforward aspiration pneumonia. Routine anaerobic coverage is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Required in every case"
+        },
+        {
+          "id": "B",
+          "text": "Not routine"
+        },
+        {
+          "id": "C",
+          "text": "The same as a lytic"
+        },
+        {
+          "id": "D",
+          "text": "A reason to skip site-of-care decisions"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Anaerobic coverage is not automatic for straightforward aspiration.",
+      "videoTimestamp": "1:14"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q07",
+      "type": "single_best_answer",
+      "stem": "A pulmonary embolus with a normal blood pressure. Treatment is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Systemic thrombolysis first"
+        },
+        {
+          "id": "B",
+          "text": "Anticoagulation"
+        },
+        {
+          "id": "C",
+          "text": "No treatment if the x-ray is clear"
+        },
+        {
+          "id": "D",
+          "text": "An inhaled steroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A stable embolus is treated with anticoagulation. Do not lyse a stable embolus.",
+      "videoTimestamp": "1:41"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q08",
+      "type": "single_best_answer",
+      "stem": "Systemic thrombolysis for pulmonary embolism is for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every embolus, including a normal blood pressure"
+        },
+        {
+          "id": "B",
+          "text": "Hypotension or shock"
+        },
+        {
+          "id": "C",
+          "text": "Mild asthma"
+        },
+        {
+          "id": "D",
+          "text": "A small early drop in filtration"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A lytic is for shock, not for a normal pressure.",
+      "videoTimestamp": "1:41"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q09",
+      "type": "single_best_answer",
+      "stem": "The diabetes medicine that spills sugar in the urine should be held when the patient is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stable in clinic with a small early drop in filtration, forever"
+        },
+        {
+          "id": "B",
+          "text": "Fasting, in surgery, or critically ill"
+        },
+        {
+          "id": "C",
+          "text": "On a bronchodilator"
+        },
+        {
+          "id": "D",
+          "text": "On anticoagulation"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Hold it for fasting, surgery, or critical illness because of ketoacidosis risk.",
+      "videoTimestamp": "1:59"
+    },
+    {
+      "id": "ep26-airway-pneumonia-embolus-q10",
+      "type": "single_best_answer",
+      "stem": "A small early drop in filtration after starting that sugar-spilling medicine:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Means the drug must be stopped forever"
+        },
+        {
+          "id": "B",
+          "text": "Is not, by itself, a reason to stop it forever"
+        },
+        {
+          "id": "C",
+          "text": "Is an indication for a lytic"
+        },
+        {
+          "id": "D",
+          "text": "Means pneumonia is severe"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That early dip is not an automatic lifelong stop.",
+      "videoTimestamp": "2:14"
+    }
+  ]
+}

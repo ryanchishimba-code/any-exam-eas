@@ -8,18 +8,19 @@ import {
 } from "@/lib/quick-bites/usmle-video-catalog";
 
 describe("USMLE video steps", () => {
-  it("tags every episode and leaves Step 3 empty", () => {
+  it("tags every episode, including Step 3", () => {
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(30);
     expect(USMLE_VIDEO_QUICK_BITE_EPISODES.every((episode) => episode.examStep)).toBe(true);
-    expect(usmleVideoEpisodesForStep("step-1").map((episode) => episode.number)).toEqual([
-      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17,
+    expect(usmleVideoEpisodesForStep("step-1")).toHaveLength(18);
+    expect(usmleVideoEpisodesForStep("step-2-ck")).toHaveLength(8);
+    expect(usmleVideoEpisodesForStep("step-3").map((episode) => episode.number)).toEqual([
+      23, 28, 29, 30,
     ]);
-    expect(usmleVideoEpisodesForStep("step-2-ck").map((episode) => episode.slug)).toEqual([
-      "quick-bites-usmle-ep16-poisons-fat-embolus",
-      "quick-bites-usmle-ep18-consent-decisions",
-      "quick-bites-usmle-ep19-minutes-in-the-head",
-      "quick-bites-usmle-ep20-acs-afib",
-    ]);
-    expect(usmleVideoEpisodesForStep("step-3")).toEqual([]);
+    expect(usmleVideoEpisodesForStep("step-1").map((episode) => episode.number)).toContain(21);
+    expect(usmleVideoEpisodesForStep("step-1").map((episode) => episode.number)).toContain(22);
+    expect(usmleVideoEpisodesForStep("step-2-ck").map((episode) => episode.number)).toEqual(
+      expect.arrayContaining([16, 18, 19, 20, 24, 25, 26, 27])
+    );
   });
 
   it("reads the step query and remembers a saved choice", () => {

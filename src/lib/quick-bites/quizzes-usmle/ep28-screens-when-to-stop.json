@@ -1,0 +1,287 @@
+{
+  "episode": "ep28-screens-when-to-stop",
+  "title": "Screens You Order \u2014 and When You Stop",
+  "video": "quick-bites-usmle-ep28-screens-when-to-stop-web.mp4",
+  "questions": [
+    {
+      "id": "ep28-screens-when-to-stop-q01",
+      "type": "single_best_answer",
+      "stem": "Before the first low-dose lung-cancer scan, the record should include:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only the appointment time"
+        },
+        {
+          "id": "B",
+          "text": "The shared-decision conversation: benefit, harm, and false positives"
+        },
+        {
+          "id": "C",
+          "text": "A signed refusal of all future care"
+        },
+        {
+          "id": "D",
+          "text": "A colonoscopy referral"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Document the shared decision before the first scan.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q02",
+      "type": "single_best_answer",
+      "stem": "Lung-cancer screening is typically stopped:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The day after the first normal scan"
+        },
+        {
+          "id": "B",
+          "text": "Fifteen years after the last cigarette, or earlier if the patient would not act on a finding"
+        },
+        {
+          "id": "C",
+          "text": "Never, even after three decades of abstinence"
+        },
+        {
+          "id": "D",
+          "text": "Only on the patient's birthday"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stopping is tied to fifteen years after the last cigarette, and to whether the patient would act on a finding.",
+      "videoTimestamp": "0:07"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q03",
+      "type": "single_best_answer",
+      "stem": "Cervical screening may stop at sixty-five only when:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The patient turns sixty-five, regardless of records"
+        },
+        {
+          "id": "B",
+          "text": "Recent tests were adequate and negative"
+        },
+        {
+          "id": "C",
+          "text": "The patient asks once"
+        },
+        {
+          "id": "D",
+          "text": "There is a single missing Pap from twenty years ago"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Age alone does not stop the screen. Missing records are not a reason to stop.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q04",
+      "type": "single_best_answer",
+      "stem": "A 65-year-old with no cervical-screening records. The next step is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop because of age"
+        },
+        {
+          "id": "B",
+          "text": "Do not stop on age alone; get the tests or the records first"
+        },
+        {
+          "id": "C",
+          "text": "Order mammography instead"
+        },
+        {
+          "id": "D",
+          "text": "Start high-risk virus testing alone and discharge"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A patient with no records is not stopped.",
+      "videoTimestamp": "0:55"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q05",
+      "type": "single_best_answer",
+      "stem": "High-risk virus testing alone for cervical screening, before age thirty:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is the preferred stand-alone test"
+        },
+        {
+          "id": "B",
+          "text": "Should not be ordered alone in that age band"
+        },
+        {
+          "id": "C",
+          "text": "Replaces shared decision for lung screening"
+        },
+        {
+          "id": "D",
+          "text": "Is required at seventy-five"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not order high-risk virus testing alone before age thirty.",
+      "videoTimestamp": "0:55"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q06",
+      "type": "single_best_answer",
+      "stem": "Mammography at seventy-five and older is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "An automatic yearly order for everyone"
+        },
+        {
+          "id": "B",
+          "text": "A decision, not an automatic order"
+        },
+        {
+          "id": "C",
+          "text": "Forbidden in all cases"
+        },
+        {
+          "id": "D",
+          "text": "Replaced by lung screening"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The evidence is not automatic at that age. It is a conversation.",
+      "videoTimestamp": "2:48"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q07",
+      "type": "single_best_answer",
+      "stem": "Colon screening from seventy-six to eighty-five is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Automatic in every healthy and every frail patient alike"
+        },
+        {
+          "id": "B",
+          "text": "Selective, not automatic"
+        },
+        {
+          "id": "C",
+          "text": "Never considered"
+        },
+        {
+          "id": "D",
+          "text": "The same as a therapeutic colonoscopy required by law"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "In that age band, screening is a decision, not a standing order.",
+      "videoTimestamp": "1:18"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q08",
+      "type": "single_best_answer",
+      "stem": "A screening test the patient would not act on (no biopsy, no treatment) should be:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ordered anyway, for completeness"
+        },
+        {
+          "id": "B",
+          "text": "Not ordered"
+        },
+        {
+          "id": "C",
+          "text": "Replaced with three other screening tests"
+        },
+        {
+          "id": "D",
+          "text": "Hidden from the record"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not order a screening test if the patient would not accept the next step.",
+      "videoTimestamp": "1:40"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q09",
+      "type": "single_best_answer",
+      "stem": "The lung-screening stop rule taught here is tied most tightly to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The last normal chest film only"
+        },
+        {
+          "id": "B",
+          "text": "Fifteen years after the last cigarette"
+        },
+        {
+          "id": "C",
+          "text": "A single episode of bronchitis"
+        },
+        {
+          "id": "D",
+          "text": "The date of the last colon exam"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The fifteen-year clock after the last cigarette is the stop rule that was taught.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep28-screens-when-to-stop-q10",
+      "type": "single_best_answer",
+      "stem": "At seventy-five, a clinician orders a screening mammogram without a conversation because 'that is the protocol.' That approach is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Required"
+        },
+        {
+          "id": "B",
+          "text": "Not supported; it is a decision, not an automatic order"
+        },
+        {
+          "id": "C",
+          "text": "The same as cervical screening at twenty-one"
+        },
+        {
+          "id": "D",
+          "text": "The same as a therapeutic biopsy"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Mammography at seventy-five and older is a decision, not an automatic order.",
+      "videoTimestamp": "0:43"
+    }
+  ]
+}
