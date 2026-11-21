@@ -1,0 +1,752 @@
+[
+  {
+    "batchItemId": "b18-s1-001",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "pancreatitis-enzymes",
+    "scenario": "A 52-year-old man has greasy stools and has lost 9 kg in 4 months. He drinks whiskey daily. Fecal elastase is 80 micrograms per gram. CT shows calcifications throughout the pancreas.",
+    "question": "Which digestive failure explains the stools, and why is that the call?",
+    "options": [
+      "Exocrine enzyme output has failed, so dietary fat is not digested",
+      "Bile-salt synthesis has stopped, so micelles cannot form, instead of n added drug",
+      "Terminal-ileum uptake of cobalamin has failed",
+      "Gastric acid is absent, so iron stays ferric",
+      "A colonic infection is the only cause of the fat loss"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-002",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 58-year-old man has a tense abdomen. Serum albumin is 2.1 g/dL and ascitic albumin is 0.6 g/dL. He has spider angiomas and a palpable spleen. He has no fever and the ascitic neutrophils are 40 per microliter.",
+    "question": "What does the albumin gradient mean, and why is that the call?",
+    "options": [
+      "The gradient is low, so peritoneal carcinomatosis is proved",
+      "The gradient is high, so portal pressure, not the peritoneum, is driving the fluid",
+      "Spontaneous bacterial peritonitis is present because the neutrophil count is 40, holding the morning panel",
+      "The low serum albumin alone creates a high gradient",
+      "Heart failure is excluded because the spleen is enlarged"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-003",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 49-year-old man has a tender liver. AST is 280 U/L and ALT is 90 U/L. He has drunk a fifth of vodka daily for years. Mean cell volume is 104 fL. He has no travel history.",
+    "question": "Which enzyme pattern fits the history, and why is that the call?",
+    "options": [
+      "ALT above 1000 U/L would be required before alcohol is considered",
+      "ALT higher than AST is required for any toxic liver injury",
+      "AST is more than twice ALT, the pattern of long alcohol injury",
+      "A ratio under 1 excludes alcohol when the cells are large",
+      "The pattern is diagnostic of bile-duct obstruction"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-004",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 23-year-old man returned from a camping trip 3 weeks ago. He is jaundiced. ALT is 1800 U/L. IgM antibody to hepatitis A virus is positive. Hepatitis B surface antigen is negative.",
+    "question": "How did he acquire this infection, and why is that the call?",
+    "options": [
+      "Blood-borne hepatitis C, because the ALT is above 1000",
+      "Sexual hepatitis B, because any jaundice with a high ALT is surface-antigen negative",
+      "Mosquito-borne yellow fever, because he camped outdoors",
+      "Fecal-oral spread of hepatitis A, marked by IgM during the acute illness",
+      "Hepatitis D, because surface antigen is negative"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-005",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 34-year-old man has had fatigue for 8 months. Hepatitis B surface antigen has been positive on tests 7 months apart. IgM antibody to core antigen is negative. ALT is 78 U/L. He has no other acute complaint.",
+    "question": "Which phase of hepatitis B is this, and why is that the call?",
+    "options": [
+      "Acute infection, because any surface antigen means the illness is under 6 weeks",
+      "Resolved infection, because IgM core antibody is negative",
+      "Vaccine immunity, because surface antigen is the vaccine marker",
+      "Hepatitis D alone, because the acute core marker is negative",
+      "Chronic infection, because surface antigen has stayed positive past 6 months"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-006",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 29-year-old man is asymptomatic. Hepatitis B surface antigen is negative, surface antibody is negative, and IgM antibody to core antigen is positive. ALT is 22 U/L. He has no other acute complaint.",
+    "question": "Which serologic window is this, and why is that the call?",
+    "options": [
+      "The core window, after surface antigen clears and before surface antibody appears",
+      "Successful vaccination, because core antibody is the vaccine marker",
+      "Chronic infection, because the long-lived core marker means the outer protein is present on that reading",
+      "Acute infection, because core antibody of any class means IgM",
+      "No exposure, because surface antigen is negative"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-007",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 19-year-old man finished a hepatitis B vaccine series last year. He has not been jaundiced. Surface antibody is positive. Surface antigen and core antibody are negative.",
+    "question": "What do these markers mean, and why is that the call?",
+    "options": [
+      "Natural infection that has resolved",
+      "Vaccine immunity, because surface antibody is present without core antibody",
+      "Chronic carriage, because surface antibody means the virus is integrated",
+      "Acute infection, because surface antibody appears only in the first week",
+      "Vaccine failure, because core antibody must also be positive after the series"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-008",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 41-year-old man with known chronic hepatitis B develops a sudden ALT of 1400 U/L. A second virus that can replicate only when surface antigen is present is detected in serum. He has no other acute complaint.",
+    "question": "Which virus is the second agent, and why is that the call?",
+    "options": [
+      "Hepatitis A, which needs surface antigen to enter hepatocytes",
+      "Hepatitis C, which is a DNA virus that uses the B surface coat, and no added drug",
+      "Hepatitis D, which needs hepatitis B surface antigen as its coat",
+      "Hepatitis E, which replicates only inside B virions",
+      "A DNA bacteriophage unrelated to surface antigen"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-009",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 36-year-old man who injected drugs has chronic fatigue. Antibody to hepatitis C is positive and HCV RNA is detectable. He asks about a vaccine.",
+    "question": "Which prevention fact is true, and why is that the call?",
+    "options": [
+      "A routine hepatitis C vaccine prevents reinfection after RNA clears",
+      "The virus is spread by the fecal-oral route, like hepatitis A virus",
+      "RNA in serum means the antibody is a false positive and he is immune, and no extra culture",
+      "No hepatitis C vaccine exists. Infection is blood-borne, and RNA means ongoing viremia",
+      "Hepatitis C is a DNA virus cleared by the B vaccine"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-010",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "hepatitis-serology",
+    "scenario": "A 28-year-old woman is 32 weeks pregnant and returned from South Asia a month ago. She is jaundiced, ALT is 2200 U/L, and she develops confusion. IgM to hepatitis E is positive. Hepatitis A IgM is negative.",
+    "question": "Why is this virus dangerous in her, and why is that the call?",
+    "options": [
+      "Hepatitis E is blood-borne and spares pregnant patients",
+      "The illness is hepatitis A, because only A is severe in pregnancy",
+      "The virus is prevented by the hepatitis B vaccine",
+      "Confusion means hepatic encephalopathy is unrelated to the virus",
+      "Hepatitis E causes fulminant disease more often in pregnant women and spreads fecal-orally"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-011",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 26-year-old woman has foul stools and iron deficiency. IgA antibody to tissue transglutaminase is high. Duodenal biopsy shows flat villi and increased intraepithelial lymphocytes. She eats wheat daily.",
+    "question": "Which immune injury explains the biopsy, and why is that the call?",
+    "options": [
+      "Gluten-driven injury to the proximal small bowel, with villous atrophy",
+      "Bacterial invasion of macrophages throughout the body",
+      "Transmural granulomas that skip segments of ileum",
+      "Loss of islet cells with preserved villi",
+      "Bile-duct destruction with a high alkaline phosphatase"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-012",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 44-year-old man has joint pain, watery diarrhea, and weight loss. Small-bowel biopsy shows foamy macrophages stuffed with periodic acid-Schiff positive material. The organism is a gram-positive actinomycete. He has no other acute complaint.",
+    "question": "Which organism class fits the macrophages, and why is that the call?",
+    "options": [
+      "Mycobacterium tuberculosis, which is PAS negative and caseating",
+      "Tropheryma, an actinomycete that fills macrophages and is PAS positive",
+      "Giardia, which attaches to villi and does not fill macrophages",
+      "Clostridioides, which toxins the colon rather than the small bowel",
+      "Helicobacter, which lives on gastric mucosa"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-013",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "ibd-mechanisms",
+    "scenario": "A 24-year-old man has bloody diarrhea for 6 weeks. Colonoscopy shows continuous inflammation from the rectum to the splenic flexure and no skip areas. Biopsy shows crypt abscesses limited to the mucosa. He has no other acute complaint.",
+    "question": "Which distribution fits, and why is that the call?",
+    "options": [
+      "Transmural skip lesions with fistulas to the bladder",
+      "Celiac injury confined to the duodenum",
+      "Mucosal disease beginning in the rectum and extending continuously",
+      "Ischemic injury at the splenic flexure only, with a normal rectum",
+      "Pseudomembranes from toxin throughout a normal mucosa"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-014",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "ibd-mechanisms",
+    "scenario": "A 22-year-old woman has abdominal pain and nonbloody diarrhea. Imaging shows skip lesions in the ileum and a fistula to the bladder. Biopsy from a skip area shows a noncaseating granuloma through the wall. She has no other acute complaint.",
+    "question": "Which depth of injury fits, and why is that the call?",
+    "options": [
+      "Mucosal-only disease that begins in the rectum and does not fistulize",
+      "Villous atrophy limited to the duodenum",
+      "Full-thickness necrosis from an occluded mesenteric artery",
+      "Transmural granulomatous injury with skip areas and a fistula",
+      "Caseating granulomas of secondary tuberculosis only"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-015",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 19-year-old man becomes mildly jaundiced after a 24-hour fast. Unconjugated bilirubin is 3.1 mg/dL and conjugated bilirubin is 0.3 mg/dL. Hemoglobin, haptoglobin, and AST are normal. The episode fades when he eats.",
+    "question": "Which bilirubin handling defect is this, and why is that the call?",
+    "options": [
+      "Complete absence of conjugation, as in a newborn who needs phototherapy for life",
+      "Blocked canalicular export of conjugated bilirubin, with a black liver",
+      "Hemolysis, because unconjugated bilirubin cannot rise unless red cells break",
+      "Extrahepatic bile-duct obstruction, because the stool would be pale",
+      "Reduced glucuronidation that shows up under fasting, with no hemolysis"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-016",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 3-month-old boy has been jaundiced since the first week of life. He feeds poorly. Unconjugated bilirubin is 28 mg/dL. Conjugated bilirubin is 0.2 mg/dL. Stools are pale. Liver enzymes are nearly normal. Phototherapy has not controlled the level.",
+    "question": "Which enzyme failure is this, and why is that the call?",
+    "options": [
+      "Near-total loss of bilirubin conjugation from birth, so unconjugated pigment accumulates",
+      "Canalicular export failure, which raises conjugated bilirubin",
+      "Bile-duct atresia, which raises conjugated bilirubin and pales the stool, and no added drug",
+      "Physiologic jaundice, which resolves in the first week",
+      "Gilbert physiology, which stays under about 4 mg/dL"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-017",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 25-year-old man has mild conjugated hyperbilirubinemia. Total bilirubin is 3.4 mg/dL and most of it is conjugated. ALT and ALP are normal. A liver biopsy is grossly black. The canalicular export protein for conjugated bilirubin is missing. He has no other acute complaint.",
+    "question": "Which export failure is this, and why is that the call?",
+    "options": [
+      "Unconjugated bilirubin cannot be formed, so the liver is pale",
+      "Conjugated bilirubin cannot leave the hepatocyte, and the liver stores a dark pigment",
+      "Extrahepatic duct obstruction, which raises ALP and pales the stool",
+      "Hemolysis, which raises unconjugated bilirubin and does not blacken the liver, and no repeat draw",
+      "Vaccine immunity to hepatitis B"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-018",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 21-year-old man has tremor and new psychiatric symptoms. Slit-lamp examination shows a brown ring at the rim of the cornea. Serum ceruloplasmin is low and hepatic copper is high. AST is 90 U/L. He has no other acute complaint.",
+    "question": "Which metal is trapped in the liver, and why is that the call?",
+    "options": [
+      "Iron, because ferritin and transferrin saturation define this ring",
+      "Lead, because basophilic stippling is the corneal finding",
+      "Copper, because ceruloplasmin is low and a corneal ring is present",
+      "Zinc, because taste changes darken the cornea",
+      "Manganese, because it deposits in the globus pallidus only"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-019",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 48-year-old man has bronze skin, diabetes, and arthropathy. Ferritin is 1600 ng/mL and transferrin saturation is 78 percent. A liver biopsy shows iron in hepatocytes. He has no other acute complaint.",
+    "question": "Which metal overload is this, and why is that the call?",
+    "options": [
+      "Copper overload, because ceruloplasmin would be low",
+      "Cholesterol overload, because the skin bronzes in familial hypercholesterolemia, without a night review",
+      "Glycogen storage, because diabetes means hepatic glycogen is trapped",
+      "Iron overload, marked by transferrin saturation above 45 percent and a high ferritin",
+      "Amyloid, because the liver is the only organ that stores iron"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-020",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 40-year-old man has early emphysema and cirrhosis. He has smoked little. Serum alpha-1 antitrypsin is low. Liver cells contain periodic acid-Schiff positive globules that resist diastase.",
+    "question": "Why do the globules form, and why is that the call?",
+    "options": [
+      "Copper is polymerized inside lysosomes",
+      "Iron stains with Prussian blue, which is the PAS globule",
+      "Fat fills the hepatocyte and is PAS positive",
+      "Glycogen nuclei of diabetes are diastase resistant",
+      "A misfolded protease inhibitor is trapped in the endoplasmic reticulum of hepatocytes"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-021",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 52-year-old woman has months of itching. She is otherwise stable. Alkaline phosphatase is 410 U/L and ALT is 48 U/L. Antimitochondrial antibody is positive. Bilirubin is 1.4 mg/dL. The extrahepatic ducts are not dilated.",
+    "question": "Which duct injury fits, and why is that the call?",
+    "options": [
+      "Destruction of intrahepatic bile ducts, marked by antimitochondrial antibody",
+      "Extrahepatic stone disease, because ALP rises only when a stone is seen",
+      "Autoimmune hepatitis, because that disease is antimitochondrial and ALP-predominant",
+      "Alcohol injury, because the AST:ALT ratio must exceed 2 here",
+      "Portal vein thrombosis, which raises ALP and the mitochondrial antibody"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-022",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 38-year-old man with bloody diarrhea and continuous colonic inflammation has a rising ALP. Cholangiography shows beading and strictures of intrahepatic and extrahepatic ducts. Antimitochondrial antibody is negative. He has no other acute complaint.",
+    "question": "Which duct pattern is this, and why is that the call?",
+    "options": [
+      "Antimitochondrial duct destruction with a normal cholangiogram",
+      "Fibrosing inflammation of bile ducts inside and outside the liver, with a beaded cholangiogram",
+      "Gallbladder sludge only, because beading is a stone on ultrasound, before any late consult, ahead of any added drug",
+      "Viral hepatitis, because ALT would dominate and ducts bead",
+      "Pancreatic enzyme failure, because elastase tracks the ALP"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-023",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 70-year-old woman has painless jaundice and a palpable nontender gallbladder. She has lost 6 kg. Ultrasound shows a dilated common bile duct and no gallstones. ALP is 520 U/L.",
+    "question": "Where is the obstruction likely to sit, and why is that the call?",
+    "options": [
+      "A stone in the cystic duct, which dilates the gallbladder and jaundices the patient, holding the extra lab",
+      "Intrahepatic duct loss with a collapsed gallbladder",
+      "Distal to the cystic duct, often a head-of-pancreas mass, so the gallbladder can distend",
+      "Esophageal varices, because painless jaundice is a bleeding varix",
+      "A duodenal ulcer that raises ALP only"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-024",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 46-year-old man vomits bright red blood after several days of repeated retching. He has no stigmata of chronic liver disease. Endoscopy shows a longitudinal tear at the gastroesophageal junction.",
+    "question": "Which lesion bled, and why is that the call?",
+    "options": [
+      "Esophageal varices from portal hypertension",
+      "A full-thickness esophageal rupture into the mediastinum",
+      "An duodenal ulcer on the posterior wall eroding the gastroduodenal artery",
+      "A mucosal tear from retching at the gastroesophageal junction",
+      "Gastric varices from splenic vein thrombosis only"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-025",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 55-year-old man with a long alcohol history vomits a large volume of blood. He has ascites and spider angiomas. The spleen is enlarged. Endoscopy is pending.",
+    "question": "Which vessel is the likely source, and why is that the call?",
+    "options": [
+      "A Mallory-Weiss tear, because ascites is required for that tear",
+      "The gastroduodenal artery from a posterior duodenal ulcer, because spiders mark ulcer disease",
+      "Hemorrhoidal veins, because portal pressure bleeds only from the rectum",
+      "A colonic diverticulum, because painless blood is colonic",
+      "Left gastric venous collaterals in the distal esophagus, driven by portal pressure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-026",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 40-year-old woman has fasting glucose of 42 mg/dL, sweating, and confusion that resolves with glucose. She has no access to injectable insulin. During a spell, insulin is high and C-peptide is high. A sulfonylurea screen is negative. CT shows a small pancreatic mass.",
+    "question": "Which tumor secretes the hormone, and why is that the call?",
+    "options": [
+      "An islet beta-cell tumor, because both insulin and C-peptide are high",
+      "Factitious insulin use, because that raises insulin and C-peptide together",
+      "A glucagon tumor, because glucagon lowers glucose and raises C-peptide",
+      "An adrenal pheochromocytoma, because catecholamines cause hypoglycemia",
+      "A gastrin tumor, because gastrin drives insulin release"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-027",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 33-year-old woman has spells of glucose 38 mg/dL. Plasma insulin is high and C-peptide is suppressed. She works in a clinic and can obtain injectable insulin. A pancreatic mass is not seen.",
+    "question": "Which exposure fits the labs, and why is that the call?",
+    "options": [
+      "An islet tumor, because tumors suppress C-peptide",
+      "Injected insulin, which raises insulin while the beta cell shuts off C-peptide",
+      "A sulfonylurea, because those drugs suppress C-peptide",
+      "Glucagon excess, because glucagon lowers insulin",
+      "Liver failure, because the liver clears C-peptide and leaves insulin high, instead of n extra culture"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-028",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 47-year-old man has watery diarrhea of 4 liters a day, weakness, and potassium of 2.4 mEq/L. Gastric acid output is low. A pancreatic neuroendocrine mass is seen. Vasoactive intestinal peptide is markedly elevated. He has no other acute complaint.",
+    "question": "Which peptide explains the diarrhea, and why is that the call?",
+    "options": [
+      "Gastrin, which causes multiple duodenal ulcers and high acid",
+      "Insulin, which causes fasting hypoglycemia",
+      "Vasoactive intestinal peptide, which drives watery diarrhea and potassium loss and shuts off acid",
+      "Glucagon, which causes a rash and hyperglycemia",
+      "Somatostatin, which causes gallstones and steatorrhea without this volume of watery stool, with no second test"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-029",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 54-year-old man has episodes of flushing and watery diarrhea. He has a new holosystolic murmur at the left lower sternal border that increases with inspiration. Urinary 5-hydroxyindoleacetic acid is high. A small-bowel mass is seen.",
+    "question": "Which product reaches the heart, and why is that the call?",
+    "options": [
+      "Gastrin, which scars the aortic valve",
+      "Bradykinin from a lung carcinoid, which hits the left-sided valves first when no lung mass is present",
+      "Histamine from a gastric mass, which causes a diastolic rumble",
+      "Serotonin from a small-bowel tumor, which the liver fails to clear once metastases exist, injuring right-sided valves",
+      "Vasoactive intestinal peptide, which raises 5-hydroxyindoleacetic acid"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-030",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 61-year-old man with long heartburn has an endoscopy. The distal esophageal mucosa looks salmon-colored. Biopsy shows intestinal-type columnar epithelium with goblet cells where stratified squamous epithelium should be. He has no other acute complaint.",
+    "question": "Which mucosal change is this, and why is that the call?",
+    "options": [
+      "Squamous dysplasia from human papillomavirus",
+      "Gastric adenocarcinoma invading upward with no goblet cells required, instead of a bedside study",
+      "Esophageal varices, which are epithelial metaplasia",
+      "A Candida membrane, which is columnar metaplasia",
+      "Columnar metaplasia of the distal esophagus from chronic acid exposure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-031",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 37-year-old man has progressive trouble swallowing both solids and liquids. Barium shows a dilated esophagus tapering to a beak. Manometry shows absent peristalsis and a lower sphincter that does not relax. He has no other acute complaint.",
+    "question": "Which motility failure is this, and why is that the call?",
+    "options": [
+      "Loss of inhibitory neurons, so the lower sphincter stays tight and peristalsis is absent",
+      "A mechanical ring that blocks solids only and leaves peristalsis normal",
+      "Diffuse esophageal spasm, which has high-amplitude coordinated waves",
+      "Scleroderma, which lowers sphincter pressure and weakens the body",
+      "A Zenker outpouching, which is a motility tracing of the sphincter"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-032",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 72-year-old man has halitosis and regurgitates food he ate hours earlier. A barium swallow shows a posterior outpouching just above the cricopharyngeus.",
+    "question": "Which wall defect is this, and why is that the call?",
+    "options": [
+      "A true diverticulum of the mid esophagus from traction, with no bedside study",
+      "A false diverticulum through Killian triangle above the cricopharyngeus",
+      "A paraesophageal hernia of the fundus",
+      "An epiphrenic diverticulum just above the diaphragm",
+      "A tracheoesophageal fistula from the trachea"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-033",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 4-year-old boy has painless rectal bleeding. A technetium scan that tags gastric mucosa lights up in the right lower quadrant. The remnant is on the antimesenteric border of the ileum. He has no other acute complaint.",
+    "question": "Which embryonic remnant is this, and why is that the call?",
+    "options": [
+      "A urachal cyst at the dome of the bladder",
+      "An omphalocele with the liver outside the abdomen",
+      "A vitelline-duct remnant that can contain gastric mucosa and bleed",
+      "A Meckel remnant on the mesenteric border only",
+      "An appendix, which concentrates the gastric-mucosa tracer"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-034",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 7-month-old boy has sudden colicky pain and currant-jelly stool. A sausage-shaped mass is felt in the right abdomen. Ultrasound shows a target sign. A lead point is suspected. He has no other acute complaint.",
+    "question": "Which telescoping event is this, and why is that the call?",
+    "options": [
+      "Midgut volvulus around an unfixed superior mesenteric artery",
+      "Pyloric muscle hypertrophy with a nonbilious vomit",
+      "Intussusception of the sigmoid only, in an older adult pattern as the infant disease, and no night review",
+      "Ileum telescoping into colon, often over a lead point, with ischemia of the inner bowel",
+      "Hirschsprung dilation of the aganglionic segment"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-035",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 6-day-old boy vomits green fluid. He is the patient. The abdomen is scaphoid at first and then distends. An upper gastrointestinal study shows the duodenum and proximal jejunum coiled on the right, and the ligament of Treitz is absent.",
+    "question": "Which fixation failure is this, and why is that the call?",
+    "options": [
+      "Duodenal atresia, which shows a double bubble and no twist of the jejunum",
+      "Pyloric stenosis, which causes nonbilious vomiting at 3 to 6 weeks",
+      "Hirschsprung disease, which fails to pass meconium but does not malrotate",
+      "Annular pancreas, which encases the duodenum without moving the ligament of Treitz, instead of a morning panel",
+      "The midgut did not complete its rotation, so the bowel can twist on a narrow mesenteric pedicle"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-036",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A newborn boy with trisomy 21 is the patient and has bilious vomiting. A plain film shows a double bubble and no distal gas. The rest of the bowel was not twisted on contrast. He has no other acute complaint.",
+    "question": "Which developmental block is this, and why is that the call?",
+    "options": [
+      "Failure of the duodenum to recanalize, so nothing passes the second part",
+      "Midgut volvulus, which leaves distal gas and an abnormal ligament of Treitz",
+      "Hypertrophic pyloric stenosis, which is nonbilious and appears later",
+      "Meconium ileus, which plugs the ileum and is linked to a chloride channel",
+      "A tracheoesophageal fistula, which shows a gasless abdomen only in the isolated form"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-037",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 4-week-old boy, the patient, vomits milk forcefully and he is hungry afterward. The vomit is not green. A firm olive is felt in the epigastrium. Electrolytes show chloride 82 mEq/L, potassium 3.0 mEq/L, and a high bicarbonate.",
+    "question": "Which acid-base pattern is this, and why is that the call?",
+    "options": [
+      "Normal-anion-gap acidosis from loss of bicarbonate in green vomit, holding the added drug",
+      "Hypochloremic metabolic alkalosis from loss of gastric acid in the vomit",
+      "Respiratory alkalosis from hyperventilation of a hungry infant",
+      "Hyperchloremic acidosis from vomiting gastric acid",
+      "Metabolic acidosis because pyloric obstruction retains acid"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-038",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A newborn boy born at 28 weeks, the patient, is 10 days old and was fed formula. He is ill, the abdomen is distended, and a film shows gas in the bowel wall. Blood cultures are pending. He was born after prolonged rupture of membranes.",
+    "question": "Which bowel injury is this, and why is that the call?",
+    "options": [
+      "Physiologic jaundice, which produces pneumatosis",
+      "Duodenal atresia, which presents with a double bubble at birth",
+      "Transmural ischemic and infectious injury of the premature bowel, seen as pneumatosis",
+      "Midgut volvulus, which is a rotation defect rather than wall gas in a premie",
+      "Hirschsprung enterocolitis, which requires a proven aganglionic segment first, and no second test"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-039",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 3-day-old boy born at term is mildly yellow. He is feeding well. Total bilirubin is 8 mg/dL and almost all unconjugated. Direct bilirubin is 0.2 mg/dL. Hemoglobin is normal. By day 7 the color has faded.",
+    "question": "Why did the yellow color appear, and why is that the call?",
+    "options": [
+      "Biliary atresia, which raises conjugated bilirubin and does not fade in a week, before any late consult",
+      "Hemolysis from ABO incompatibility, which drops the hemoglobin",
+      "Crigler-Najjar type I, which keeps unconjugated bilirubin extremely high",
+      "Immature conjugation in a term newborn, peaking after the first day and fading in a week",
+      "Breast-milk failure, which is colorless rather than yellow"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-040",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 5-week-old girl has jaundice, pale stools, and dark urine. Direct bilirubin is 6 mg/dL. ALT is 80 U/L and GGT is high. Ultrasound does not show a gallbladder after a fast. She was not premature.",
+    "question": "Which duct problem is this, and why is that the call?",
+    "options": [
+      "Physiologic unconjugated jaundice of the first week",
+      "Gilbert physiology, which is unconjugated and appears with fasting in older children, ahead of any repeat draw",
+      "Alpha-1 antitrypsin only, which is the sole cause of pale stools",
+      "Choledochal cyst, which is the same finding as a missing gallbladder",
+      "Obliteration of the extrahepatic bile ducts, so conjugated bilirubin cannot reach the gut"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-041",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A newborn boy, the patient, does not pass meconium. The abdomen distends. A sweat chloride later is 80 mmol/L. The ileum is plugged with inspissated pellets. He has a sibling with the same salt finding.",
+    "question": "Which epithelial channel failed, and why is that the call?",
+    "options": [
+      "A chloride channel in the apical membrane, so secretions are thick and the ileum plugs",
+      "A sodium channel in the collecting duct, so meconium is liquid",
+      "The bilirubin conjugating enzyme, so stool is pale from birth",
+      "Ganglion cells of the rectum, which is a different cause of no meconium, instead of a further image",
+      "The pyloric muscle, which blocks nonbilious milk later"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-042",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 2-year-old boy has steatorrhea and ataxia. The blood film shows acanthocytes. Serum cholesterol is very low and chylomicrons are absent after a fatty meal. Villi are present. He has no other acute complaint.",
+    "question": "Which lipoprotein step failed, and why is that the call?",
+    "options": [
+      "Lactase is absent, which produces acanthocytes and no chylomicrons",
+      "Microsomal transfer protein cannot load fat onto apoB, so chylomicrons are not made",
+      "Bile acids are missing, which spikes cholesterol after a meal",
+      "Pancreatic lipase is missing, which removes apoB from the blood film, with no further image",
+      "Terminal-ileum bile-salt uptake, which raises chylomicrons"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-043",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 30-year-old woman had the terminal ileum removed after trauma. She now has watery diarrhea that worsens after fatty meals, and a Schilling test does not correct with intrinsic factor. Hemoglobin is 9 g/dL with a high mean cell volume.",
+    "question": "Which absorption site was lost, and why is that the call?",
+    "options": [
+      "The duodenum, which is the only site for bile salts",
+      "The stomach, because intrinsic factor loss is proved when intrinsic factor fails to correct the Schilling test",
+      "The terminal ileum, which is the only site for bile salts and cobalamin",
+      "The colon, which absorbs cobalamin",
+      "The jejunum, which is required for bile-salt reabsorption"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-044",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 60-year-old man had a gastrectomy. He has tingling in his feet and a hemoglobin of 9 g/dL with a mean cell volume of 112 fL. Methylmalonic acid is high. Folate is normal.",
+    "question": "Which factor is missing, and why is that the call?",
+    "options": [
+      "Iron, because iron deficiency raises the mean cell volume",
+      "Folate, because a high methylmalonic acid is the folate marker, before any further image",
+      "Bile salts, because the stomach reabsorbs bile salts",
+      "Intrinsic factor from parietal cells, so cobalamin is not absorbed",
+      "Pancreatic lipase, because lipase carries cobalamin"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-045",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 50-year-old man has spider angiomas and gynecomastia. He has drunk heavily for decades. Estradiol is high relative to testosterone. The liver is small and nodular on imaging.",
+    "question": "Why did the estrogen effect appear, and why is that the call?",
+    "options": [
+      "A pituitary adenoma secreting prolactin, which is the cause of spiders",
+      "Aromatase loss, so androgens cannot become estrogens and the breast change would not occur",
+      "Extrahepatic bile-duct block, which is the usual cause of gynecomastia",
+      "Hepatitis A, which chronically raises estradiol",
+      "A failing liver no longer clears estrogen, and testicular testosterone falls"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-046",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "pancreatitis-enzymes",
+    "scenario": "A 44-year-old man has severe epigastric pain radiating to the back after a fatty meal. Lipase is 1200 U/L with an upper reference of 60 U/L. He drinks little. Ultrasound shows gallstones and a dilated common duct.",
+    "question": "Which enzyme leak marks the injury, and why is that the call?",
+    "options": [
+      "Lipase above three times the upper limit, from pancreatic acinar injury, here with a biliary block",
+      "Amylase from the salivary gland, because lipase is not a salivary enzyme, with no added drug, instead of n extra culture",
+      "Troponin, because pain to the back is myocardial",
+      "Alkaline phosphatase alone, which diagnoses necrosis of acini",
+      "Elastase in stool, which rises in acute necrotic pain"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-047",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 63-year-old man with known cirrhosis has oliguria. Creatinine rose from 0.9 to 2.4 mg/dL over 5 days. Urine sodium is 8 mEq/L. There is no blood, no shock, and nephrotoxins were stopped. The kidneys look normal on ultrasound. He has no other acute complaint.",
+    "question": "Which renal state is this, and why is that the call?",
+    "options": [
+      "Acute tubular necrosis, which shows a high urine sodium and muddy casts, without a late consult, and no extra lab",
+      "Functional renal failure from splanchnic vasodilation, with avid sodium retention and normal kidneys",
+      "Glomerulonephritis, which needs red-cell casts",
+      "Obstruction, which dilates the collecting system",
+      "Interstitial nephritis from a drug still being given"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-048",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 68-year-old man has massive painless maroon stool. He has no liver disease. Colonoscopy shows a pulsatile bleeding point in a colonic outpouching. He has had similar smaller bleeds.",
+    "question": "Which vessel relationship explains the bleed, and why is that the call?",
+    "options": [
+      "Esophageal varices, because painless blood is portal",
+      "A duodenal ulcer of the posterior bulb",
+      "A colonic outpouching where a penetrating artery meets the mucosa and can erode",
+      "Internal hemorrhoids, which cause massive maroon blood",
+      "Angiodysplasia is excluded by a visible outpouching"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-049",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 29-year-old man has greasy stools after a course of antibiotics. The stool is positive for a toxin. He has no blood in the stool. The colon shows yellow-white plaques.",
+    "question": "Which toxin injury is this, and why is that the call?",
+    "options": [
+      "An invasive dysentery that is bloody from the start and has no plaques, with no added drug",
+      "A virus that flattens duodenal villi",
+      "A parasite that attaches to duodenal mucosa and does not make plaques",
+      "A toxin that glycosylates Rho and lifts yellow plaques off colonic mucosa",
+      "A preformed food toxin that lasts 6 hours and spares the colon"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-050",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 17-year-old girl took a large number of acetaminophen tablets 8 hours ago. She is still comfortable. ALT is 40 U/L. The serum level plots above the treatment line. The antidote is available.",
+    "question": "What is the toxic metabolite, and why is that the call?",
+    "options": [
+      "A salicylate anion, which is the acetaminophen metabolite",
+      "Acetaldehyde, which is the alcohol metabolite treated with fomepizole",
+      "Oxalate, which is the ethylene glycol metabolite",
+      "A preformed toxin that does not use cytochrome enzymes",
+      "NAPQI, formed when glutathione is overwhelmed, so the antidote restores glutathione"
+    ]
+  }
+]

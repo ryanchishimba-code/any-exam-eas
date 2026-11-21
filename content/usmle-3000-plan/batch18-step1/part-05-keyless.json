@@ -1,0 +1,752 @@
+[
+  {
+    "batchItemId": "b18-s1-201",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "rheumatoid-arthritis",
+    "scenario": "A 60-year-old man has pain at the base of the thumb and the knees. Stiffness lasts 10 minutes. Films show joint-space narrowing and osteophytes. Inflammatory markers are normal. He has no other acute complaint.",
+    "question": "Which cartilage wear is this, and why is that the call?",
+    "options": [
+      "Mechanical cartilage loss with osteophytes, not a primary synovial inflammatory disease",
+      "Rheumatoid arthritis, because the thumb base is involved and stiffness is 10 minutes, ahead of any repeat draw",
+      "Gout, because osteophytes are urate",
+      "Septic arthritis of many joints over years with normal inflammatory markers",
+      "Psoriatic arthritis, which is osteophytes without skin disease as the definition"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-202",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "lupus-pathology",
+    "scenario": "A 27-year-old woman with lupus is on procainamide for a rhythm problem and develops a positive ANA and joint pain. Anti-histone antibody is positive. She is the patient.",
+    "question": "Which drug pattern is this, and why is that the call?",
+    "options": [
+      "Native SLE, which is specifically anti-histone and caused by procainamide",
+      "Drug-induced lupus, often anti-histone, from a drug such as procainamide",
+      "Drug-induced disease, which is anti-dsDNA and spares histone",
+      "Serum sickness, which is anti-histone",
+      "Rheumatoid arthritis, which procainamide causes via anti-histone"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-203",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "myopathies",
+    "scenario": "A 55-year-old man with lung cancer has weak legs that improve briefly after he contracts the muscle. Antibody to a presynaptic calcium channel is found.",
+    "question": "Which junction lesion is this, and why is that the call?",
+    "options": [
+      "Postsynaptic acetylcholine-receptor block, which improves after use in this cancer pattern",
+      "A sodium-channel myotonia",
+      "Antibody against presynaptic calcium channels, so acetylcholine release fails until use facilitates it",
+      "Botulinum toxin, which is an antibody to calcium channels",
+      "Lambert-Eaton physiology from a postsynaptic antibody"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-204",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "collagen-disorders",
+    "scenario": "A 22-year-old man has stretchy skin, easy bruising, and a hypermobile thumb. A collagen type V gene is mutant. Arteries are not the main problem. He has no other acute complaint.",
+    "question": "Which collagen disease is this, and why is that the call?",
+    "options": [
+      "Fibrillin disease, which is type V collagen and spares the aorta as the rule",
+      "Type I collagen osteogenesis imperfecta, which is the hypermobile-skin gene",
+      "Type IV collagen, which is the skin-stretch disease",
+      "Defective type V collagen, so skin is hyperextensible and joints are loose",
+      "Elastin disease of supravalvular aorta, which is type V collagen"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-205",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "osteoporosis-bone",
+    "scenario": "A 78-year-old woman has a femoral-neck fracture. Histology would show thin trabeculae and normal mineralization of the remaining bone. Calcium, phosphate, and PTH are normal. She is the patient.",
+    "question": "How does this differ from soft bone, and why is that the call?",
+    "options": [
+      "Osteomalacia, which has normal mineralization and low bone volume as the same lesion",
+      "Paget disease, which is thin trabeculae with normal mineralization as its definition",
+      "Osteopetrosis, which is a femoral-neck fracture from too little bone",
+      "Hyperparathyroidism, which has a normal PTH here",
+      "The remaining bone is normally mineralized but there is too little of it"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-206",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "gout-crystals",
+    "scenario": "A 49-year-old man has tophi on the ear. Under polarized light the tophus material is needle shaped and negatively birefringent. He has chronic kidney disease.",
+    "question": "What is stored in the tophus, and why is that the call?",
+    "options": [
+      "Aggregates of monosodium urate from long hyperuricemia",
+      "Calcium pyrophosphate, which forms ear tophi of negative needles",
+      "Cholesterol, which is the ear tophus",
+      "Amyloid, which is negatively birefringent needles",
+      "Hydroxyapatite, which is the polarized tophus"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-207",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "rheumatoid-arthritis",
+    "scenario": "A 52-year-old man with rheumatoid arthritis has a swollen calf and foot drop. A vasculitic rash is present. The nerve is ischemic rather than compressed. He has no other acute complaint.",
+    "question": "Which vessel injury caused the foot drop, and why is that the call?",
+    "options": [
+      "A disk herniation, which causes a vasculitic rash",
+      "Inflammation of the vasa nervorum, so the nerve infarcts",
+      "Carpal-tunnel compression, which drops the foot",
+      "A common peroneal compression at the fibular head as the rash lesion",
+      "Steroid myopathy, which is a vasculitic foot drop"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-208",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "myopathies",
+    "scenario": "A 8-year-old boy cannot rise from the floor without pushing on his thighs. Calves look large but are weak. A dystrophin gene is deleted. He is the patient.",
+    "question": "Which protein is missing, and why is that the call?",
+    "options": [
+      "Merosin only, which is the Duchenne gene",
+      "Acetylcholine receptor, which enlarges the calves",
+      "Dystrophin, which links actin to the extracellular matrix in muscle",
+      "Titin, which is the X-linked calf-hypertrophy gene as the usual answer",
+      "Myostatin, which is absent in Duchenne"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-209",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "lupus-pathology",
+    "scenario": "A 24-year-old woman with lupus nephritis is started on hydroxychloroquine. She is told it is a long-term disease-modifying drug and that her eyes need monitoring. She is the patient.",
+    "question": "Why is the eye checked, and why is that the call?",
+    "options": [
+      "The drug causes cataracts in the first week as the reason for eye visits",
+      "Eye checks are for the lupus rash, not the drug",
+      "The drug raises intraocular pressure like a steroid",
+      "The drug can deposit in the retina, so screening looks for toxicity",
+      "Retinal toxicity is not a feature of this drug"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-210",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "collagen-disorders",
+    "scenario": "A newborn boy has many fractures. The sclerae are blue. Hearing is at risk later. A type I collagen gene is mutant. He is the patient.",
+    "question": "Which collagen failed, and why is that the call?",
+    "options": [
+      "Type II collagen, which is the brittle-bone gene",
+      "Type IV collagen, which blues the sclerae and fractures bone, holding the late consult",
+      "Fibrillin, which is type I collagen",
+      "Type V collagen, which is osteogenesis imperfecta",
+      "Type I collagen, the main collagen of bone, so bone is brittle"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-211",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "stroke-localization",
+    "scenario": "A 68-year-old man suddenly cannot speak in sentences and is weak in the right arm and face. The leg is relatively spared. He understands some commands. Eyes may look toward the left.",
+    "question": "Which vascular territory is this, and why is that the call?",
+    "options": [
+      "The left middle cerebral artery, superior division, hitting face and arm language areas",
+      "The left anterior cerebral artery, which hits the arm and face and spares the leg",
+      "The right middle cerebral artery, which causes right-arm weakness and aphasia",
+      "A lacunar capsule lesion, which causes aphasia and an arm-face pattern",
+      "The posterior cerebral artery, which causes this aphasia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-212",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "stroke-localization",
+    "scenario": "A 70-year-old man has sudden weakness of the right leg more than the arm. He is abulic. Grasp reflex is present. Speech is relatively spared.",
+    "question": "Which artery is this, and why is that the call?",
+    "options": [
+      "The left middle cerebral artery, which is a leg-more-than-arm stroke, skipping the bedside study",
+      "The left anterior cerebral artery, which supplies the medial leg cortex",
+      "The anterior spinal artery, which causes abulia and a grasp reflex",
+      "A cerebellar artery, which weakens one leg",
+      "The ophthalmic artery, which supplies the medial frontal lobe"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-213",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "stroke-localization",
+    "scenario": "A 66-year-old man has vertigo, vomiting, and a Horner syndrome on the left. Pain and temperature are lost on the left face and the right body. He cannot walk without falling to the left.",
+    "question": "Which brainstem territory is this, and why is that the call?",
+    "options": [
+      "The left medial medulla, which causes a Horner syndrome and contralateral pain loss",
+      "The right lateral medulla, which causes a left Horner syndrome",
+      "The left lateral medulla, in the posterior inferior cerebellar artery territory",
+      "A left internal capsule lacune, which causes crossed sensory loss",
+      "The midbrain basis, which causes a Horner syndrome and limb ataxia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-214",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "ms-pathology",
+    "scenario": "A 28-year-old woman has optic neuritis, then months later numbness below the chest. MRI shows lesions in the white matter of the brain and spinal cord, separated in time and place. CSF shows oligoclonal bands. She is the patient.",
+    "question": "Which immune target is this, and why is that the call?",
+    "options": [
+      "Peripheral myelin, which shows oligoclonal bands and optic neuritis",
+      "A single stroke, which relapses months later in a new site as the definition",
+      "A vitamin deficiency, which is oligoclonal bands",
+      "Immune injury of central myelin, disseminated in time and space",
+      "An infectious abscess, which is disseminated in time and space on MRI"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-215",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "neurodegenerative",
+    "scenario": "A 74-year-old man has a slow rest tremor, rigid limbs, and a shuffling gait. Neurons in the substantia nigra are pale. Lewy bodies are seen. He has no other acute complaint.",
+    "question": "Which transmitter fell, and why is that the call?",
+    "options": [
+      "Acetylcholine from the nucleus basalis as the rest-tremor transmitter",
+      "Serotonin from the raphe, which is the Lewy-body gait transmitter",
+      "GABA from the striatum as the lost pigment",
+      "Norepinephrine from the locus ceruleus as the only lost transmitter in this tremor",
+      "Dopamine from the substantia nigra to the striatum"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-216",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "seizure-mechanisms",
+    "scenario": "A 16-year-old boy has brief staring spells many times a day. The electroencephalogram shows 3 Hz spike and wave. He returns to baseline immediately. He is the patient.",
+    "question": "Which seizure type is this, and why is that the call?",
+    "options": [
+      "Absence, a generalized seizure with 3 Hz spike and wave",
+      "A temporal-lobe spell, which does not show that tracing",
+      "An infantile flexor spasm, which is not this teenage pattern",
+      "Myoclonic status, which is a stare with immediate recovery as the EEG",
+      "Drop attacks without a stare"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-217",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "cranial-nerve-lesions",
+    "scenario": "A 60-year-old man has the worst headache of his life. CT shows blood in the basal cisterns. He then cannot abduct the left eye.",
+    "question": "Which nerve is compressed, and why is that the call?",
+    "options": [
+      "The left oculomotor nerve, which abducts the eye, skipping the extra culture, holding the second test",
+      "The left abducens nerve, which runs a long course and fails when pressure rises",
+      "The left trochlear nerve, which abducts the eye",
+      "The optic nerve, which limits abduction",
+      "The facial nerve, which abducts the eye"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-218",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "psychiatric-pharmacology",
+    "scenario": "A 35-year-old man with schizophrenia starts haloperidol. Days later he has twisting of the neck and upward eye deviation. The reaction is acute.",
+    "question": "Which receptor block caused the twist, and why is that the call?",
+    "options": [
+      "Serotonin 5HT2A blockade, which is the acute dystonia of haloperidol, before any night review",
+      "Histamine blockade, which twists the neck",
+      "Dopamine D2 blockade in the nigrostriatal path, causing an acute dystonia",
+      "Muscarinic blockade, which is the dystonia",
+      "NMDA blockade, which is the first-generation antipsychotic dystonia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-219",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "stroke-localization",
+    "scenario": "A 72-year-old man has a pure left-arm and left-leg weakness with no sensory loss, no aphasia, and no visual field cut. The internal capsule is the suspected site. He has no other acute complaint.",
+    "question": "Which small-vessel stroke is this, and why is that the call?",
+    "options": [
+      "A cortical middle-cerebral infarct, which is pure motor",
+      "A thalamic sensory lacune, which is pure motor",
+      "A cerebellar infarct, which is pure hemiparesis",
+      "A lacunar infarct in the posterior limb of the internal capsule, motor fibers only",
+      "A medullary pyramid lesion is excluded by a capsular story, but the pattern is still a small deep motor infarct"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-220",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "ms-pathology",
+    "scenario": "A 30-year-old woman has bilateral leg weakness and a sensory level at T8 after a week of numbness. MRI of the cord shows a short lesion. The brain MRI is normal. She is the patient.",
+    "question": "Which cord process is possible, and why is that the call?",
+    "options": [
+      "An anterior spinal artery infarct, which evolves over a week of numbness then a sensory level as the usual tempo",
+      "A peripheral neuropathy, which causes a sensory level",
+      "A muscle dystrophy, which has a sensory level",
+      "A neuromuscular junction disease, which localizes to T8",
+      "Inflammatory demyelination of the cord, which can be the first central event"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-221",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "neurodegenerative",
+    "scenario": "A 76-year-old man has progressive memory loss. Neurofibrillary tangles and extracellular plaques are in the cortex. Acetylcholine neurons in the basal nucleus are depleted. He has no other acute complaint.",
+    "question": "Which proteins define the plaques and tangles, and why is that the call?",
+    "options": [
+      "Amyloid-beta in plaques and tau in tangles, with loss of basal cholinergic neurons",
+      "Alpha-synuclein plaques and tau-negative tangles as the memory disease",
+      "Prion protein as the common sporadic memory plaque",
+      "Huntingtin in the cortex as the memory tangle",
+      "TDP-43 as the plaque of this common dementia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-222",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "seizure-mechanisms",
+    "scenario": "A 18-year-old boy with absence seizures is treated with a drug that blocks T-type calcium channels in the thalamus. He is the patient.",
+    "question": "Which drug class action is this, and why is that the call?",
+    "options": [
+      "Phenytoin, which is the T-type calcium drug for absence",
+      "Ethosuximide blocks thalamic T-type calcium channels that pace absence seizures",
+      "Carbamazepine, which is first-line for 3 Hz spike and wave",
+      "A benzodiazepine as the channel named here",
+      "Levetiracetam, which blocks T-type channels as its main absence action"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-223",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "cranial-nerve-lesions",
+    "scenario": "A 45-year-old man has a dilated pupil, the eye is down and out, and the eyelid droops. A posterior communicating artery aneurysm is seen. He has no other acute complaint.",
+    "question": "Which nerve is compressed, and why is that the call?",
+    "options": [
+      "The abducens nerve, which dilates the pupil and drops the lid, holding the rescue drug",
+      "The trochlear nerve, which puts the eye down and out",
+      "The oculomotor nerve, whose parasympathetic fibers are affected early by compression",
+      "The optic nerve, which moves the eye",
+      "The facial nerve, which dilates the pupil"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-224",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "psychiatric-pharmacology",
+    "scenario": "A 40-year-old man on haloperidol has a high fever, rigid muscles, and a CK of 20,000 U/L. He is not anesthetized and has not received succinylcholine.",
+    "question": "Which drug reaction is this, and why is that the call?",
+    "options": [
+      "The anesthetic crisis from a volatile gas",
+      "Serotonin syndrome",
+      "Neuroleptic malignant syndrome is excluded by rigidity",
+      "Dopamine blockade causing rigidity, fever, and muscle breakdown",
+      "A dystonic reaction"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-225",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "stroke-localization",
+    "scenario": "A 64-year-old man has left face and arm numbness and cannot read the right side of space. He ignores the left side of a clock. The right parietal lobe is injured.",
+    "question": "Which cortical deficit is this, and why is that the call?",
+    "options": [
+      "Dominant parietal injury, which causes left neglect",
+      "Occipital injury alone, which causes hemispatial neglect",
+      "A frontal language injury, which causes neglect of a clock, ahead of any dose change for this reading",
+      "A pure motor capsule lesion, which causes neglect",
+      "Nondominant parietal injury, so he neglects the left side of space"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-226",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "ms-pathology",
+    "scenario": "A 26-year-old woman notes that vision in one eye dims when she gets overheated after a known demyelinating attack. Symptoms return to baseline when she cools. She is the patient.",
+    "question": "Why does heat worsen the symptom, and why is that the call?",
+    "options": [
+      "Demyelinated axons conduct worse when temperature rises, and the block can reverse",
+      "Heat destroys axons permanently in this setting",
+      "The phenomenon is a new plaque each time she warms",
+      "Cooling causes the conduction block",
+      "Heat raises intraocular pressure as the dimming mechanism, instead of n extra culture on this film"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-227",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "neurodegenerative",
+    "scenario": "A 58-year-old man has personality change and then weakness. A sibling died of a similar disease. The caudate is atrophic. A CAG repeat is expanded on chromosome 4. He has no other acute complaint.",
+    "question": "Which protein is expanded, and why is that the call?",
+    "options": [
+      "Amyloid precursor protein, which is the CAG caudate disease",
+      "Huntingtin, with a CAG repeat, causing caudate atrophy",
+      "Alpha-synuclein, which is chromosome 4 CAG",
+      "Tau, which is the CAG repeat of this disease",
+      "Prion protein, which atrophies the caudate via CAG"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-228",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "seizure-mechanisms",
+    "scenario": "A 30-year-old man with focal seizures is given a drug that blocks voltage-gated sodium channels and can cause gingival overgrowth. He is the patient.",
+    "question": "Which channel is blocked, and why is that the call?",
+    "options": [
+      "T-type calcium channels, which cause gingival overgrowth",
+      "GABA reuptake, which is the gum effect",
+      "Voltage-gated sodium channels, the phenytoin action, with gum overgrowth as a chronic effect",
+      "Carbonic anhydrase, which is the sodium-channel gum drug",
+      "AMPA receptors, which cause gingival hyperplasia as the classic effect"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-229",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "cranial-nerve-lesions",
+    "scenario": "A 50-year-old man has hearing loss on the right, unsteadiness, and a numb right face. MRI shows a mass in the cerebellopontine angle. He has no other acute complaint.",
+    "question": "Which nerve sheath tumor is typical here, and why is that the call?",
+    "options": [
+      "An optic glioma, which sits in the cerebellopontine angle",
+      "A meningioma is unlikely to be the first mass in this angle, so the mass must be a metastasis",
+      "A facial schwannoma as the most common angle mass before VIII",
+      "A vestibular schwannoma, compressing VIII and nearby V and the cerebellum",
+      "A pituitary adenoma, which grows into this angle first"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-230",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "psychiatric-pharmacology",
+    "scenario": "A 45-year-old man on an SSRI and a triptan becomes agitated, febrile, and hyperreflexic with clonus. He has diarrhea.",
+    "question": "Which excess transmitter state is this, and why is that the call?",
+    "options": [
+      "Dopamine blockade, which causes clonus and diarrhea",
+      "Anticholinergic toxicity, which causes hyperreflexia and clonus as the key sign",
+      "Malignant hyperthermia, which is from an SSRI and a triptan",
+      "Neuroleptic malignant syndrome, which features clonus and diarrhea",
+      "Too much serotonin, with clonus, fever, and agitation"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-231",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "stroke-localization",
+    "scenario": "A 69-year-old man cannot see the right half of space in both eyes. Motor power is intact. The left occipital lobe is infarcted. He has no other acute complaint.",
+    "question": "Which field cut is this, and why is that the call?",
+    "options": [
+      "A right homonymous hemianopia from the left visual cortex",
+      "Left eye blindness, because the left occipital lobe sees only the left eye",
+      "Bitemporal hemianopia, which is an occipital infarct",
+      "Right nasal loss only, from the left cortex",
+      "A monocular loss, which is the cortical field cut"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-232",
+    "stepLevel": "step1",
+    "blueprintDomain": "behavioral-nervous",
+    "blueprintTopic": "neurodegenerative",
+    "scenario": "A 62-year-old man has a weak hand with fasciculations and brisk reflexes. Sensation is normal. There is no sensory level. The tongue fasciculates. He has no other acute complaint.",
+    "question": "Which motor neuron pattern is this, and why is that the call?",
+    "options": [
+      "A peripheral neuropathy, which is brisk reflexes and a normal sensory exam",
+      "Both upper and lower motor neurons, with no sensory loss",
+      "A myopathy, which fasciculates the tongue and briskens reflexes",
+      "A neuromuscular junction disease, which fasciculates",
+      "A dorsal-column disease, which spares sensation"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-233",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "informed-consent-capacity",
+    "scenario": "A 70-year-old man needs a colectomy. He can describe the operation, the risks, the alternatives, and why he wants it. He has mild memory loss but his reasoning is stable today.",
+    "question": "Does he have capacity for this decision, and why is that the call?",
+    "options": [
+      "No, because any memory loss removes capacity for surgery",
+      "Yes for all future decisions for life, because he has it today",
+      "Yes for this decision, because he understands, appreciates, reasons, and states a choice",
+      "No, because the surgeon decides once the patient is over 65",
+      "Yes, but only if a family member signs as the legal decision maker despite his understanding"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-234",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "confidentiality-reporting",
+    "scenario": "A 32-year-old man has a positive HIV test. He asks that his brother, who called the clinic, not be told. He is competent.",
+    "question": "What is said to the brother, and why is that the call?",
+    "options": [
+      "The result, because a sibling is family",
+      "The result, if the brother promises not to repeat it, with no extra culture, with no repeat draw for this reading",
+      "The employer must be told the same day",
+      "Nothing about the result, because the patient has not authorized disclosure",
+      "The result goes in a waiting-room board"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-235",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "end-of-life-ethics",
+    "scenario": "A 80-year-old woman with metastatic cancer and capacity refuses further chemotherapy. Her adult children demand the drug. She is short of breath but clear. She is the patient.",
+    "question": "Whose decision controls, and why is that the call?",
+    "options": [
+      "The children's, because the children outnumber her",
+      "The oncologist's, because prognosis removes her choice",
+      "The hospital lawyer must order the drug",
+      "She may refuse only if two physicians agree the drug would cure her, ahead of any repeat draw",
+      "Hers, because a capacitated patient may refuse treatment even if the family disagrees"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-236",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "informed-consent-capacity",
+    "scenario": "A 45-year-old man is unconscious after trauma. No surrogate is available. He is bleeding and will die without laparotomy. He had no prior refusal of surgery.",
+    "question": "What is done about consent, and why is that the call?",
+    "options": [
+      "Emergency treatment proceeds under implied consent because delay would cause serious harm",
+      "Surgery waits until he wakes, even if he exsanguinates",
+      "A nurse signs as the surrogate",
+      "Treatment is given only if a court order arrives first",
+      "Implied consent covers elective procedures the next week, skipping the second test, holding the extra culture"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-237",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "confidentiality-reporting",
+    "scenario": "A 16-year-old boy tells the physician he is going to shoot a named classmate tomorrow and has a gun at home. He is calm and specific.",
+    "question": "What duty follows, and why is that the call?",
+    "options": [
+      "Keep the secret, because all adolescent statements are confidential, and no bedside study, ahead of any late consult",
+      "Warn the intended target and notify authorities, because a specific credible threat is not confidential",
+      "Tell only the parents and not the school or police",
+      "Hospitalize him only if he agrees",
+      "Document and do nothing else"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-238",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "end-of-life-ethics",
+    "scenario": "A 78-year-old man is dying of refractory cancer pain. Opioid doses are increased to relieve pain. A foreseeable risk is slower breathing. The intent recorded is pain relief, not death. He is the patient.",
+    "question": "Which ethical distinction is this, and why is that the call?",
+    "options": [
+      "Any opioid that could slow breathing is prohibited near death",
+      "The dose is permitted only if it cannot possibly affect breathing",
+      "The intent is relief of pain, and a foreseen but unintended risk does not make the dose a killing act",
+      "Intent does not matter if death follows",
+      "The family must request death before pain drugs are increased"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-239",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "informed-consent-capacity",
+    "scenario": "A 60-year-old woman speaks only through an interpreter. The surgeon explains the procedure in English and asks her to sign. She nods but cannot repeat the risks. She is the patient.",
+    "question": "Is consent valid, and why is that the call?",
+    "options": [
+      "Yes, because a nod is consent",
+      "Yes, if the form is in English and she signed",
+      "Yes, because surgery is routine",
+      "No, because she cannot show understanding in a language she speaks",
+      "No, unless a family member consents instead of informing her, and no added drug for this reading"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-240",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "confidentiality-reporting",
+    "scenario": "A 40-year-old man is the patient. A physician wants to post a photo of his unusual rash on a public site. The face is visible. He was not asked.",
+    "question": "Is the post allowed, and why is that the call?",
+    "options": [
+      "Yes, if the physician thinks it is educational",
+      "Yes, if the name is omitted but the face is shown",
+      "Yes, after the patient leaves the clinic",
+      "No, unless the hospital marketing office posts it without asking, and no late consult",
+      "No, because identifiable clinical images need the patient's authorization"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-241",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "end-of-life-ethics",
+    "scenario": "A 82-year-old man with capacity asks for a do-not-resuscitate order. He understands CPR and its low chance of success in his metastatic disease. His wife disagrees.",
+    "question": "What is written, and why is that the call?",
+    "options": [
+      "The order he requests, because his capacitated refusal of CPR controls",
+      "No order, because a spouse can veto",
+      "The order only if the wife signs",
+      "Full resuscitation, because metastasis removes his right to refuse",
+      "The order, but only for the next hour"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-242",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "informed-consent-capacity",
+    "scenario": "A 50-year-old man agrees to a hernia repair. During surgery the surgeon sees an unexpected ovarian-type mass in a remnant and removes it without prior discussion. He is stable and the mass was not an emergency.",
+    "question": "Was the extra procedure justified, and why is that the call?",
+    "options": [
+      "Yes, because consent for any surgery covers any organ, with no second test, holding the extra culture",
+      "No, because a nonemergent extra procedure needs consent for that procedure",
+      "Yes, if the mass looks interesting",
+      "Yes, because he is asleep and cannot object",
+      "No, even if it were rupturing and killing him"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-243",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "confidentiality-reporting",
+    "scenario": "A 4-year-old boy has bruises in a pattern of a belt and a spiral fracture. The caregiver's story changes. The physician suspects abuse. He has no other acute complaint.",
+    "question": "What report is required, and why is that the call?",
+    "options": [
+      "No report, unless the caregiver confesses",
+      "A report only if the child asks for one",
+      "A report to child-protective authorities, because suspected abuse is a mandated report",
+      "A report to the caregiver's employer instead",
+      "No report, because the physician is not certain beyond all doubt, before any extra culture"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-244",
+    "stepLevel": "step1",
+    "blueprintDomain": "social-sciences",
+    "blueprintTopic": "sdoh-health-equity",
+    "scenario": "A 58-year-old man misses dialysis twice because the bus does not run to the clinic. He understands his disease and wants treatment. The team labels him nonadherent.",
+    "question": "What should be addressed first, and why is that the call?",
+    "options": [
+      "Discharge from the practice for nonadherence",
+      "A capacity evaluation, because missing dialysis means he lacks capacity",
+      "A court order for forced dialysis today",
+      "The transportation barrier, because access, not refusal, is why he missed treatment",
+      "Ignoring the bus problem because adherence is a character trait"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-245",
+    "stepLevel": "step1",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "scenario": "A newborn boy has a flat face, a single palmar crease, and atrioventricular canal defect. Cognition is expected to be affected. Chromosome 21 material is extra. He is the patient.",
+    "question": "Which chromosome finding is this, and why is that the call?",
+    "options": [
+      "Trisomy 18, which is the AV canal and single crease as its classic pair, ahead of any late consult, instead of a second test",
+      "Trisomy 13, which is the AV canal lesion",
+      "45,X, which is an extra 21",
+      "Klinefelter syndrome, which is trisomy 21",
+      "Trisomy 21, which links the facial features, the crease, the heart canal, and cognitive disability"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-246",
+    "stepLevel": "step1",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "scenario": "A newborn girl has a webbed neck, lymphedema of the hands, and a coarctation. Karyotype is 45,X. She is the patient.",
+    "question": "Which chromosomal pattern is this, and why is that the call?",
+    "options": [
+      "A single X chromosome, with streak gonads and aortic coarctation",
+      "Trisomy 21, which is 45,X",
+      "47,XXY, which webs the neck",
+      "Trisomy 18, which is a webbed neck and coarctation as the classic pair",
+      "46,XX with a deleted Y, which is Turner syndrome"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-247",
+    "stepLevel": "step1",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "scenario": "A 2-week-old boy has a bulging membrane in the midline of the lower back and leg weakness. The neural tube failed to close. Folate intake in pregnancy was low. He is the patient.",
+    "question": "Which closure failed, and why is that the call?",
+    "options": [
+      "Anterior neuropore failure, which is a lumbar sac",
+      "Caudal neural tube closure, so meninges and often cord sit outside the canal",
+      "A branchial cleft, which is a lumbar neural sac",
+      "An omphalocele, which is neural tissue on the back",
+      "Gastroschisis, which is a covered neural tube on the spine, skipping the extra lab"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-248",
+    "stepLevel": "step1",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "scenario": "A newborn boy chokes when he feeds. A tube passed from the mouth coils. The mother had extra amniotic fluid. There is air in the stomach. He is the patient.",
+    "question": "Which foregut error is this, and why is that the call?",
+    "options": [
+      "Isolated esophageal atresia with no fistula, which puts air in the stomach",
+      "A duodenal atresia, which coils an oral tube",
+      "The esophagus ends in a blind pouch and a distal fistula connects the airway to the stomach",
+      "A tracheoesophageal fistula without atresia is the polyhydramnios and coiled-tube lesion as the only form",
+      "Pyloric stenosis, which presents at birth with polyhydramnios"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-249",
+    "stepLevel": "step1",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "scenario": "A newborn boy has urine draining from the umbilicus. The allantois did not close. He is otherwise well. He is the patient.",
+    "question": "Which remnant is patent, and why is that the call?",
+    "options": [
+      "A patent vitelline duct, which drains urine",
+      "A gastroschisis, which drains urine from the umbilicus",
+      "An omphalocele, which is a urine fistula",
+      "A patent urachus, so the bladder communicates with the umbilicus",
+      "A bladder exstrophy, which is a small wet umbilicus in an otherwise closed abdomen as the only lesion"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-250",
+    "stepLevel": "step1",
+    "blueprintDomain": "human-development",
+    "blueprintTopic": "developmental-milestones",
+    "scenario": "A 1-year-old boy was born with the intestines outside the abdomen, to the right of the umbilical cord, with no covering sac. The cord itself inserted normally. He is the patient.",
+    "question": "Which abdominal-wall defect was that, and why is that the call?",
+    "options": [
+      "Omphalocele, which has no sac and sits beside a normal cord",
+      "Umbilical hernia, which presents with bowel outside at birth without a sac, with no extra culture",
+      "Cloacal exstrophy, which is the usual isolated right-sided defect",
+      "A patent urachus, which herniates the intestines",
+      "Gastroschisis, a full-thickness defect beside the cord, without a peritoneal sac"
+    ]
+  }
+]

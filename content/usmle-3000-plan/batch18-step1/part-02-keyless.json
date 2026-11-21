@@ -1,0 +1,752 @@
+[
+  {
+    "batchItemId": "b18-s1-051",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "gi-bleeding-sources",
+    "scenario": "A 74-year-old woman has episodic small-bowel obstruction and air in the biliary tree. She has gallstones. There is no prior biliary surgery. A fistula is suspected from the gallbladder into the gut.",
+    "question": "Which stone path is this, and why is that the call?",
+    "options": [
+      "A large stone eroded into the gut and lodged, while air entered the bile ducts through the fistula",
+      "A common-duct stone, which puts air in the biliary tree without a fistula",
+      "Emphysematous cholecystitis, which is air in the gallbladder wall and no obstruction",
+      "Portal venous gas from mesenteric ischemia, which is the same as biliary air",
+      "A duodenal atresia double bubble in an adult"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-052",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 45-year-old man has duodenal ulcers in the bulb and beyond, plus a jejunal ulcer. Fasting gastrin is 900 pg/mL. After secretin, gastrin rises further. A pancreatic mass is seen. He has no other acute complaint.",
+    "question": "Which hormone paradox is this, and why is that the call?",
+    "options": [
+      "Insulin rises after secretin and causes the ulcers",
+      "Gastrin from a tumor rises after secretin, instead of falling as it does in ordinary ulcers",
+      "Vasoactive intestinal peptide falls after secretin and causes ulcers, with no night review, with no extra lab",
+      "Somatostatin rises and drives acid",
+      "Glucagon is the secretin target and scars the jejunum"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-053",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "liver-pathology",
+    "scenario": "A 59-year-old man has a hard nodular liver and a serum alpha-fetoprotein of 8000 ng/mL. He has had hepatitis B surface antigen for 15 years. He has lost weight.",
+    "question": "Which tumor marker fits this liver, and why is that the call?",
+    "options": [
+      "Carcinoembryonic antigen, which is the primary marker of this liver tumor",
+      "CA 19-9, which marks hepatocellular carcinoma rather than pancreas and bile duct, skipping the second test",
+      "Alpha-fetoprotein from a hepatocellular carcinoma arising in a chronically infected liver",
+      "Chromogranin, which is the hepatocyte tumor marker",
+      "PSA, which rises in cirrhosis"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-054",
+    "stepLevel": "step1",
+    "blueprintDomain": "gastrointestinal",
+    "blueprintTopic": "malabsorption",
+    "scenario": "A 27-year-old man has bloating and foul stools for 2 weeks after a hiking trip. Stool microscopy shows pear-shaped trophozoites with two nuclei. He has no blood in the stool. Villi are not flat.",
+    "question": "Which parasite explains the stools, and why is that the call?",
+    "options": [
+      "Entamoeba, which causes bloody colitis and flask-shaped ulcers",
+      "Cryptosporidium, which is an acid-fast oocyte in immunocompromised hosts as the only host",
+      "Ascaris, which is a large worm and not a binucleate trophozoite",
+      "Giardia, a duodenal flagellate that causes fat malabsorption without invading the mucosa",
+      "Tropheryma, which fills macrophages and is PAS positive"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-055",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 64-year-old man has dyspnea walking up stairs. He has a prior anterior infarct. Ejection fraction is 30 percent. The left ventricle is dilated. He has no fever.",
+    "question": "Which pump problem is this, and why is that the call?",
+    "options": [
+      "A thick stiff ventricle with a normal ejection fraction and a small cavity, skipping the rescue drug",
+      "A high-output state from a large arteriovenous fistula",
+      "Isolated right-ventricular failure from a pulmonary embolus today",
+      "Tamponade, which enlarges the ejection fraction",
+      "A dilated ventricle with a low ejection fraction, so stroke volume falls despite a large chamber"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-056",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 72-year-old woman has dyspnea and ankle swelling. She has long hypertension. Ejection fraction is 60 percent. The left ventricular wall is thick and the cavity is small. She has no murmur of a valve leak.",
+    "question": "Which filling problem is this, and why is that the call?",
+    "options": [
+      "A stiff thick ventricle that fills poorly even though the ejection fraction is preserved",
+      "A dilated weak ventricle, because an ejection fraction of 60 percent is systolic failure",
+      "Cardiac tamponade, because hypertension thickens the pericardium",
+      "High-output failure from thyrotoxicosis, proved by a thick wall",
+      "Isolated mitral stenosis, because the wall thickens in that lesion"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-057",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "scenario": "A 58-year-old man has sudden chest pain and dies within an hour. The pathologist finds a ruptured fibrous cap over a lipid core in the proximal coronary artery, with an occlusive platelet thrombus. He has no other acute complaint.",
+    "question": "Which plaque event caused the occlusion, and why is that the call?",
+    "options": [
+      "Slow growth of a stable calcified cap that does not rupture and still occludes in one hour, before any extra culture",
+      "Rupture of a thin cap over a lipid core, exposing tissue factor and building a platelet thrombus",
+      "Spasm of a normal artery with no plaque",
+      "Embolus from a leg vein into a coronary artery",
+      "Rupture of the ventricular free wall as the first event"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-058",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 60-year-old man has 40 minutes of chest pressure. The electrocardiogram shows 3 mm of ST elevation in leads II, III, and aVF. He is sweaty. Blood pressure is 130/80 mm Hg.",
+    "question": "Which wall is ischemic, and why is that the call?",
+    "options": [
+      "The anterior wall, because those leads are V2 through V4",
+      "The lateral wall, because those leads are I and aVL",
+      "The inferior wall, because leads II, III, and aVF overlie that surface",
+      "The posterior wall only, because ST elevation in II, III, and aVF is posterior",
+      "The right atrium, because limb leads do not see the ventricle"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-059",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 57-year-old man has an inferior infarct. Blood pressure falls to 80/50 mm Hg when nitroglycerin is given. Jugular veins are distended and the lungs are clear. ST elevation is also present in lead V4R. He has no other acute complaint.",
+    "question": "Which chamber is infarcted, and why is that the call?",
+    "options": [
+      "The left ventricle only, because clear lungs exclude the right heart",
+      "The atrial septum, because V4R is an atrial lead",
+      "Cardiac tamponade, because nitrates cause pulsus paradoxus",
+      "The right ventricle, which is preload dependent, so a nitrate drops the pressure",
+      "Aortic dissection, because V4R is the dissection lead"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-060",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "hypertension-mechanisms",
+    "scenario": "A 48-year-old man has blood pressure 158/96 mm Hg on two visits. He has no chest pain. Serum potassium is 4.2 mEq/L and creatinine is 0.9 mg/dL. The examination shows no abdominal bruit.",
+    "question": "Which pressure category is this, and why is that the call?",
+    "options": [
+      "Normal pressure, because 158 is under 160",
+      "Elevated pressure only, because diastolic 96 is still stage 1",
+      "Stage 1, because stage 2 requires 180",
+      "A hypertensive emergency, because any reading above 140 with no symptoms is an emergency",
+      "Stage 2 hypertension, because the systolic value is at least 140 or the diastolic value is at least 90"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-061",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "scenario": "A 70-year-old man has chest pain on exertion. A harsh systolic murmur radiates to the carotids. The carotid upstroke is slow. The valve is calcified and does not open fully. He has no other acute complaint.",
+    "question": "Which valve lesion is this, and why is that the call?",
+    "options": [
+      "Outflow obstruction from a stiff aortic valve, so the carotid pulse rises slowly",
+      "Mitral regurgitation, which radiates to the carotids and slows the carotid",
+      "Aortic regurgitation, which is a diastolic murmur",
+      "Mitral stenosis, which is a diastolic rumble at the apex",
+      "Hypertrophic septal hypertrophy, which is a calcified three-cusp valve"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-062",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "scenario": "A 28-year-old woman has a diastolic rumble at the apex and an opening snap. She had rheumatic fever as a child. She is short of breath when she lies flat. The left atrium is enlarged.",
+    "question": "Which valve lesion is this, and why is that the call?",
+    "options": [
+      "Aortic regurgitation, which is an apical rumble with an opening snap",
+      "A narrowed mitral valve, so the left atrium empties slowly in diastole",
+      "Mitral regurgitation, which is a diastolic murmur",
+      "Aortic stenosis, which is a diastolic rumble",
+      "Tricuspid stenosis, which is heard best at the apex with an opening snap as the usual site"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-063",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "scenario": "A 67-year-old man has an irregularly irregular pulse at 140 beats per minute. No P waves are seen. He is dizzy but blood pressure is 120/70 mm Hg. He has had palpitations for a year.",
+    "question": "Which rhythm is this, and why is that the call?",
+    "options": [
+      "Ventricular tachycardia, which is irregularly irregular and has no P waves as its definition, with no second test",
+      "Sinus tachycardia, which is irregularly irregular",
+      "Atrial fibrillation, because the ventricular response is irregular and organized P waves are absent",
+      "Atrial flutter with fixed 4 to 1 block, which is irregular",
+      "Complete heart block, which is a fast irregular ventricular rhythm"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-064",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "scenario": "A 72-year-old man feels faint. The pulse is 34 beats per minute. P waves march through at 80 per minute and have no fixed relation to the wide QRS complexes. Blood pressure is 88/50 mm Hg. He has no other acute complaint.",
+    "question": "Which conduction failure is this, and why is that the call?",
+    "options": [
+      "Sinus bradycardia, because P waves and QRS stay locked one to one",
+      "Atrial fibrillation with a slow response, because P waves are absent in that rhythm",
+      "First-degree block, which drops the pulse to 34",
+      "Complete atrioventricular block, so a slow ventricular escape drives the pulse",
+      "Type 1 second-degree block, which is a constant PR and a pulse of 34"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-065",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 66-year-old man with ejection fraction 25 percent is on a loop diuretic. A drug that blocks neprilysin and the angiotensin receptor is started. Potassium and creatinine are acceptable. He has no other acute complaint.",
+    "question": "Which dual action is this, and why is that the call?",
+    "options": [
+      "Beta blockade plus a calcium-channel block",
+      "Aldosterone blockade alone, which is the neprilysin action",
+      "Digoxin sensitization of the sodium pump as the neprilysin effect, ahead of any dose change",
+      "A pure arterial dilator with no effect on peptides",
+      "More natriuretic peptide from neprilysin blockade, plus angiotensin-receptor blockade"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-066",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "hypertension-mechanisms",
+    "scenario": "A 55-year-old man starts lisinopril. Two weeks later creatinine has risen from 1.0 to 1.7 mg/dL. A renal duplex shows a high velocity at the left renal artery origin. Potassium is 5.4 mEq/L. He has no other acute complaint.",
+    "question": "Why did the filtration rate fall, and why is that the call?",
+    "options": [
+      "The stenotic kidney depended on angiotensin-driven efferent constriction, which the drug removed",
+      "The drug is directly toxic to tubules, so any creatinine rise means acute tubular necrosis, before any dose change",
+      "Bilateral cortical necrosis is the usual effect of one dose of an ACE inhibitor",
+      "The rise means the drug failed and the dose should be doubled",
+      "Potassium of 5.4 proves primary adrenal failure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-067",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "scenario": "A 50-year-old man has a low-density lipoprotein cholesterol of 226 mg/dL and tendon xanthomas. His father had a heart attack at 42. The receptor that clears low-density lipoprotein from blood is defective.",
+    "question": "Which receptor failed, and why is that the call?",
+    "options": [
+      "The scavenger receptor on macrophages",
+      "The low-density lipoprotein receptor, so hepatic clearance of that particle is reduced",
+      "The high-density lipoprotein receptor",
+      "A bile-acid receptor, which is the xanthoma lesion",
+      "The insulin receptor, which sets the low-density lipoprotein level at 226"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-068",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 63-year-old man has chest pain at rest that lasts 20 minutes and then resolves. Troponin stays normal. The electrocardiogram shows ST depression during pain that later normalizes. He is pain-free now.",
+    "question": "Which syndrome is this pattern, and why is that the call?",
+    "options": [
+      "ST-elevation infarction, because pain at rest defines that entity",
+      "A myocardial contusion, because troponin is normal in contusion only",
+      "Ischemia at rest without myocyte necrosis, because troponin stayed normal",
+      "Pericarditis, because pain with transient ST depression is pericarditis",
+      "Aortic dissection, because a normal troponin excludes dissection and proves ischemia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-069",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "scenario": "A 24-year-old man has a systolic murmur that gets louder when he stands. The carotid upstroke is brisk and bifid. The septum is thick. His father died suddenly at 30 while running.",
+    "question": "Which outflow problem is this, and why is that the call?",
+    "options": [
+      "Fixed aortic stenosis, which gets louder on standing and has a slow carotid",
+      "Mitral valve prolapse only, which has a bifid carotid from the septum",
+      "A ventricular septal defect, which is louder when standing and runs in families as sudden death",
+      "Dynamic obstruction from a thick septum that worsens when the ventricle is smaller",
+      "Pulmonic stenosis, which is a left-sided septum"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-070",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 70-year-old man with ejection fraction 35 percent and type 2 diabetes starts a drug that blocks the sodium-glucose cotransporter in the proximal tubule. He is euvolemic.",
+    "question": "Why does this class help the failing heart, and why is that the call?",
+    "options": [
+      "It is contraindicated once the ejection fraction is under 40",
+      "It replaces the need for any diuretic because glucose in the urine is the only action",
+      "It raises afterload as its cardiac benefit",
+      "It is a pure beta blocker labeled as a glucose drug",
+      "It lowers heart-failure events in low-ejection-fraction disease beyond the glucose effect"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-071",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "scenario": "A 19-year-old man collapses while sprinting. He is resuscitated. The electrocardiogram shows a coved ST elevation in V1 and V2. A sodium-channel gene in the family is mutant. His brother has the same tracing.",
+    "question": "Which channelopathy is this, and why is that the call?",
+    "options": [
+      "A cardiac sodium-channel loss that produces the coved precordial pattern and sudden death with exertion or fever",
+      "A potassium-channel gain that prolongs QT and has no coved ST segment",
+      "Preexcitation through an accessory pathway, which is the coved ST pattern",
+      "A calcium-channel block from verapamil, which is inherited as this tracing, holding the dose change, ahead of any night review",
+      "Commotio cordis, which leaves a lasting coved ST elevation"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-072",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "hypertension-mechanisms",
+    "scenario": "A 32-year-old woman has blood pressure 176/104 mm Hg. Potassium is 2.9 mEq/L and she is not on a diuretic. Plasma aldosterone is high and renin is suppressed. A CT shows a 1 cm adrenal nodule.",
+    "question": "Which hormone excess is this, and why is that the call?",
+    "options": [
+      "Cortisol excess, which suppresses aldosterone and raises renin, and no added drug",
+      "Aldosterone from an adrenal adenoma, which wastes potassium and suppresses renin",
+      "Renin from a juxtaglomerular tumor, which raises renin",
+      "Pheochromocytoma, which lowers potassium as the primary lesion",
+      "Licorice ingestion, which raises aldosterone"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-073",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 66-year-old man has chest pain that is worse when he lies flat and better sitting forward. A scratchy sound is heard at the left sternal border. ST segments are elevated in many leads with PR depression. Troponin is normal.",
+    "question": "Which lining is inflamed, and why is that the call?",
+    "options": [
+      "A regional infarct",
+      "A pneumothorax, which causes a rub and PR depression",
+      "The pericardium, because pain changes with posture and a rub is present across many leads",
+      "Esophageal spasm, which elevates ST across the whole tracing",
+      "Myocarditis only, because a rub excludes the pericardium"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-074",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 45-year-old man has hypotension after a recent viral illness. The lungs are clear. Neck veins are up. Blood pressure falls further on inspiration. Heart sounds are faint. A tracing shows electrical alternans. He has no other acute complaint.",
+    "question": "Which compressive problem is this, and why is that the call?",
+    "options": [
+      "Cardiogenic shock from a large left-ventricular infarct, which leaves the lungs clear",
+      "Tension pneumothorax, which causes electrical alternans",
+      "Massive pulmonary embolism without right-heart strain as the alternans lesion",
+      "Fluid around the heart equalizing chamber pressures, with pulsus paradoxus and electrical alternans",
+      "Septic shock, which raises neck veins and alternates the QRS"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-075",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 68-year-old man with ejection fraction 28 percent starts spironolactone. A week later potassium is 5.6 mEq/L and creatinine is 1.4 mg/dL, up from 1.1. He is not volume depleted on examination.",
+    "question": "Why did the potassium rise, and why is that the call?",
+    "options": [
+      "A loop diuretic effect, which raises potassium",
+      "Insulin deficiency from the drug, which shifts potassium out",
+      "Rhabdomyolysis from the first dose",
+      "A laboratory error, because the drug lowers potassium",
+      "Aldosterone blockade in the collecting duct reduces potassium secretion"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-076",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "scenario": "A 62-year-old man has calf pain after walking two blocks. The pain stops when he stands still. Ankle pulses are weak. The ankle-brachial index is 0.6.",
+    "question": "Which flow problem is this, and why is that the call?",
+    "options": [
+      "Fixed atherosclerotic narrowing, so demand exceeds supply when he walks",
+      "Venous valvular failure, which drops the ankle-brachial index below 0.9",
+      "Acute arterial embolism, which is pain that stops at rest after two blocks for months",
+      "Spinal stenosis, which leaves the ankle-brachial index at 0.6",
+      "Diabetic neuropathy, which is a vascular index of 0.6"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-077",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "scenario": "A 30-year-old man has a wide pulse pressure of 140/50 mm Hg. A diastolic murmur is heard along the left sternal border. The left ventricle is dilated. He had a bicuspid aortic valve repaired years ago.",
+    "question": "Which leak is this, and why is that the call?",
+    "options": [
+      "Mitral stenosis, which widens the pulse pressure",
+      "Aortic valve leak in diastole, so the pulse pressure widens and the ventricle dilates",
+      "Aortic stenosis, which is a diastolic murmur",
+      "Mitral regurgitation, which is heard along the left sternal border in diastole, holding the bedside study",
+      "Pulmonic regurgitation is the usual cause of a wide systemic pulse pressure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-078",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "scenario": "A 16-year-old boy faints during a swimming race. The corrected QT interval is 520 ms. A potassium-channel gene is mutant in the family. Hearing is normal. He has no other acute complaint.",
+    "question": "Which repolarization defect is this, and why is that the call?",
+    "options": [
+      "A sodium-channel coved ST pattern, which prolongs the QT to 520 ms as its only finding",
+      "Preexcitation, which lengthens the QT",
+      "Delayed ventricular repolarization from a potassium-channel variant, so the QT is long",
+      "Hypercalcemia, which lengthens the QT",
+      "A short QT syndrome, because 520 ms is short"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-079",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "hypertension-mechanisms",
+    "scenario": "A 44-year-old man has blood pressure 168/100 mm Hg in the arms and 110/70 mm Hg in the legs. Femoral pulses are delayed. A chest film shows rib notching. He has no other acute complaint.",
+    "question": "Which congenital narrowing is this, and why is that the call?",
+    "options": [
+      "Aortic regurgitation, which delays the femoral pulse and notches ribs",
+      "Coarctation of the pulmonary artery, which raises arm pressure over leg pressure",
+      "Renal artery stenosis on both sides, which notches the ribs",
+      "Aortic narrowing near the ductus, so arm pressure exceeds leg pressure",
+      "Aortic dissection, which is the rib-notch lesion in a 44-year-old"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-080",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 59-year-old man has chest pain and a new diastolic murmur three days after an anterior infarct. He is in shock. A thrill is felt at the left sternal border.",
+    "question": "Which postinfarct rupture is this, and why is that the call?",
+    "options": [
+      "Rupture of a papillary muscle, which causes a thrill at the left sternal border as the usual finding",
+      "Free-wall rupture, which produces a loud murmur and a thrill",
+      "Aortic dissection starting at the infarct",
+      "Ventricular aneurysm, which ruptures on day 3 with a thrill",
+      "Rupture of the interventricular septum, so a left-to-right shunt appears with a thrill"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-081",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 50-year-old man has dyspnea. The pulmonary capillary wedge pressure is 24 mm Hg. Cardiac output is 3.2 L/min. Systemic vascular resistance is high. He has no fever.",
+    "question": "Which hemodynamic profile is this, and why is that the call?",
+    "options": [
+      "Congestion with a low output and high resistance, the cold and wet profile",
+      "Warm and dry, because the wedge is 24 mm Hg",
+      "Distributive shock, because resistance is high",
+      "Hypovolemic shock, because the wedge is high",
+      "Isolated right failure, because the wedge pressure is a left-sided number, with no repeat draw"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-082",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "scenario": "A 54-year-old man has a low-density lipoprotein of 190 mg/dL. A drug that inhibits HMG-CoA reductase is started at night. Four weeks later the low-density lipoprotein is 110 mg/dL. He has no other acute complaint.",
+    "question": "Which enzyme is blocked, and why is that the call?",
+    "options": [
+      "Pancreatic lipase, which sets the low-density lipoprotein level",
+      "HMG-CoA reductase, the rate-limiting step of hepatic cholesterol synthesis",
+      "PCSK9 as the direct target of this first drug",
+      "Cholesterol ester transfer protein as the statin target",
+      "Thyroid peroxidase, which lowers low-density lipoprotein when blocked, and no night review"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-083",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "scenario": "A 26-year-old woman has a mid-systolic click and a late systolic murmur at the apex. The murmur gets longer when she stands. She has no fever. The leaflets billow on echocardiography.",
+    "question": "Which leaflet problem is this, and why is that the call?",
+    "options": [
+      "Aortic stenosis, which is a mid-systolic click at the apex",
+      "Mitral stenosis, which lengthens on standing",
+      "Mitral leaflets billow into the atrium, and a smaller ventricle makes the leak longer",
+      "A ventricular septal defect, which has a click and billowing leaflets",
+      "Tricuspid regurgitation, which is an apical click"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-084",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "scenario": "A 22-year-old man has sudden palpitations at 180 beats per minute. The electrocardiogram in sinus rhythm shows a short PR interval and a delta wave. He is otherwise well.",
+    "question": "Which extra path is this, and why is that the call?",
+    "options": [
+      "A dual atrioventricular node only, which shows a delta wave",
+      "Ventricular tachycardia, which has a delta wave in sinus rhythm",
+      "Sinus node reentry, which shortens the PR and adds a delta wave",
+      "An accessory atrioventricular pathway that preexcites the ventricle and can reenter",
+      "Atrial flutter, which is a delta wave"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-085",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "hypertension-mechanisms",
+    "scenario": "A 36-year-old woman has spells of headache, palpitations, and pressure of 210/120 mm Hg. Plasma metanephrines are high. A CT shows an adrenal mass. Potassium is normal. She has no other acute complaint.",
+    "question": "Which tumor product is this, and why is that the call?",
+    "options": [
+      "Aldosterone, which raises metanephrines and causes spells, instead of a second test",
+      "Cortisol, which is measured as metanephrine",
+      "Renin, which is the adrenal medulla product",
+      "Serotonin, which is the metanephrine pathway",
+      "Catecholamines from an adrenal medulla tumor, marked by metanephrines"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-086",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 61-year-old man has chest pain. Troponin is elevated. The electrocardiogram has no ST elevation. He is treated with antiplatelet drugs and anticoagulation rather than immediate fibrinolysis.",
+    "question": "Why is fibrinolysis not the first move, and why is that the call?",
+    "options": [
+      "Without ST elevation there is no closed artery to reopen with a lytic drug",
+      "Fibrinolysis is preferred whenever troponin rises",
+      "A normal electrocardiogram with a high troponin is an ST-elevation infarct",
+      "Lytic drugs are the treatment of unstable angina with no troponin",
+      "Anticoagulation is contraindicated once troponin rises"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-087",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 58-year-old man has an S3 gallop and crackles halfway up both lungs. Brain natriuretic peptide is 1400 pg/mL. Ejection fraction is 32 percent. He sleeps on three pillows.",
+    "question": "Which peptide rose, and why is that the call?",
+    "options": [
+      "Atrial natriuretic peptide falls when the ventricle stretches",
+      "Ventricular stretch released natriuretic peptide, matching congestion and a low ejection fraction",
+      "Troponin is the peptide measured at 1400 pg/mL in this assay",
+      "A low peptide would be expected with crackles and an S3",
+      "The peptide comes from the adrenal and marks aldosterone excess, with no night review, skipping the further image"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-088",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "scenario": "A 48-year-old man has a deep calf-vein thrombus and a pulmonary embolus. He has a family history of clots. Activated protein C resistance is present. The factor V gene has the Leiden change.",
+    "question": "Which clot control failed, and why is that the call?",
+    "options": [
+      "Antithrombin is increased, so heparin cannot work",
+      "Protein C is overactive, so clots form",
+      "Factor V resists activated protein C, so factor Va keeps generating thrombin",
+      "Factor VIII is absent, so clots form",
+      "Platelets lack glycoprotein Ib, so venous clots form"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-089",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "valvular-disease-mechanisms",
+    "scenario": "A 78-year-old man has a holosystolic murmur at the apex radiating to the axilla. The left atrium is large. He had an inferior infarct last year that damaged a papillary muscle region.",
+    "question": "Which valve leak is this, and why is that the call?",
+    "options": [
+      "Aortic stenosis, which radiates to the axilla",
+      "Tricuspid regurgitation, which is heard at the apex radiating to the axilla, before any further image",
+      "Aortic regurgitation, which is holosystolic at the apex",
+      "Mitral regurgitation from poor leaflet coaptation after papillary muscle injury",
+      "Pulmonic stenosis, which enlarges the left atrium"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-090",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "arrhythmia-electrophysiology",
+    "scenario": "A 70-year-old man in atrial fibrillation with a rapid rate is given a drug that blocks atrioventricular nodal calcium current. The ventricular rate falls from 150 to 80. Blood pressure stays 124/76 mm Hg. He has no other acute complaint.",
+    "question": "Which node effect was used, and why is that the call?",
+    "options": [
+      "A sodium-channel block in atrial muscle that is the usual rate-control drug, with no further image",
+      "A potassium-channel block that is adenosine's lasting effect",
+      "Vagal blockade, which slows the node",
+      "A beta agonist, which slows the ventricular response",
+      "Calcium-channel blockade in the node slowed conduction so fewer impulses reached the ventricle"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-091",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "hypertension-mechanisms",
+    "scenario": "A 29-year-old woman has blood pressure 164/98 mm Hg. A continuous bruit is heard over the abdomen. Duplex shows turbulent flow at a renal artery. She has fibromuscular ridges on angiography.",
+    "question": "Which artery lesion is this, and why is that the call?",
+    "options": [
+      "Fibromuscular dysplasia of a renal artery, driving renin release from the affected kidney",
+      "Atherosclerotic stenosis, which is the usual lesion at age 29 in a woman, before any extra culture",
+      "Aortic coarctation, which is a renal-artery bruit",
+      "Pheochromocytoma, which shows fibromuscular ridges",
+      "Page kidney from a subcapsular hematoma as the angiogram"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-092",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "acs-pathophysiology",
+    "scenario": "A 55-year-old man collapses. The monitor shows a chaotic irregular waveform and no pulse. Chest compressions start and a shock is delivered. He has no other acute complaint.",
+    "question": "Which rhythm was shocked, and why is that the call?",
+    "options": [
+      "Asystole, which is shocked as the first step",
+      "Ventricular fibrillation, a pulseless chaotic rhythm that is treated with defibrillation",
+      "Sinus tachycardia, which is a chaotic waveform",
+      "Atrial fibrillation with a pulse, which is defibrillated in the field, instead of a second test",
+      "Pulseless electrical activity, which is a shockable chaotic waveform"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-093",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "heart-failure-pathophysiology",
+    "scenario": "A 64-year-old man with ejection fraction 30 percent is on an ACE inhibitor, a beta blocker, a mineralocorticoid antagonist, and an SGLT2 inhibitor. He is still short of breath in class II. The next evidence-based add-on for a sinus rhythm and a wide QRS is discussed.",
+    "question": "Which device or drug class is the add-on being weighed, and why is that the call?",
+    "options": [
+      "An implantable loop recorder as the mortality device for a wide QRS",
+      "Digoxin as the drug that replaces resynchronization",
+      "Cardiac resynchronization when the QRS is wide, because dyssynchrony wastes the weak ventricle",
+      "A calcium-channel blocker, which is first-line in low ejection fraction",
+      "Ivabradine, which is the treatment of a wide QRS"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-094",
+    "stepLevel": "step1",
+    "blueprintDomain": "cardiovascular",
+    "blueprintTopic": "atherosclerosis-mechanisms",
+    "scenario": "A 60-year-old man has a transient loss of vision in the left eye lasting two minutes. A bruit is heard over the left carotid. Ultrasound shows a 90 percent narrowing at the bifurcation. He has no other acute complaint.",
+    "question": "Which territory was starved, and why is that the call?",
+    "options": [
+      "The right carotid, because visual loss is contralateral to the bruit, skipping the extra culture",
+      "The vertebrobasilar system, which supplies one retina",
+      "A venous clot in the cavernous sinus",
+      "The retinal artery on the same side, from an ipsilateral carotid plaque",
+      "The external carotid, which is the retinal supply"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-095",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "ards-pathology",
+    "scenario": "A 46-year-old man with sepsis is on a ventilator. PaO2 is 60 mm Hg on 80 percent oxygen. Chest imaging shows bilateral infiltrates. Wedge pressure is 12 mm Hg. He has no heart-failure history.",
+    "question": "Which lung injury is this, and why is that the call?",
+    "options": [
+      "Cardiogenic edema, because the wedge pressure is 12 mm Hg",
+      "Lobar pneumonia of one lobe as the bilateral pattern",
+      "Pneumothorax, which drops the wedge pressure to 12",
+      "Pulmonary hemorrhage, which is the definition when the wedge is normal, without n added drug",
+      "Noncardiogenic edema from leaky alveolar capillaries, with a normal wedge pressure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-096",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "ards-pathology",
+    "scenario": "A 50-year-old man with diffuse lung opacities is ventilated. Predicted body weight is 70 kg. Tidal volume is set at 420 mL. Plateau pressure is kept at or under 30 cm H2O. He has no other acute complaint.",
+    "question": "Why is the tidal volume limited, and why is that the call?",
+    "options": [
+      "About 6 mL/kg predicted weight limits overdistention of the remaining open lung",
+      "12 mL/kg is the protective target in this injury",
+      "Plateau pressure is ignored if tidal volume is 420 mL",
+      "High tidal volume recruits fluid and is the goal",
+      "The limit applies only when the wedge pressure is above 18 mm Hg, without a late consult"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-097",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "asthma-copd-pathology",
+    "scenario": "A 22-year-old man wheezes. FEV1 is 60 percent of predicted and rises 18 percent after a bronchodilator. He is worse at night and with cold air. The diffusion capacity is normal.",
+    "question": "Which airway pattern is this, and why is that the call?",
+    "options": [
+      "Emphysema, because diffusion is normal and FEV1 rises 18 percent",
+      "Reversible airway narrowing, shown by a large FEV1 rise after a bronchodilator",
+      "Fibrosis, which raises FEV1 after a bronchodilator",
+      "Vocal-cord dysfunction, which is an FEV1 response of 18 percent",
+      "Pneumonia, which is a reversible FEV1"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-098",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "asthma-copd-pathology",
+    "scenario": "A 66-year-old man who smoked 40 pack-years has dyspnea. FEV1/FVC is 0.58 after a bronchodilator. Diffusion capacity is low. The chest film shows flat diaphragms. He has no other acute complaint.",
+    "question": "Which parenchymal loss is this, and why is that the call?",
+    "options": [
+      "Asthma, because the ratio stays low after a bronchodilator and diffusion falls",
+      "Pulmonary fibrosis, which lowers the FEV1/FVC ratio",
+      "Destruction of alveolar walls, so elastic recoil and diffusion fall and the ratio stays low",
+      "A large pleural effusion, which drops diffusion and the ratio together as emphysema does, with no late consult",
+      "Neuromuscular weakness, which lowers the ratio below 0.7"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-099",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "pe-pathophysiology",
+    "scenario": "A 34-year-old woman has sudden dyspnea a week after pelvic surgery. She is on no anticoagulation. Heart rate is 110 beats per minute. The electrocardiogram shows right-heart strain. CT angiography shows a filling defect in a pulmonary artery.",
+    "question": "Which vessel is blocked, and why is that the call?",
+    "options": [
+      "A bronchial artery, which is the filling defect on CT angiography",
+      "A coronary artery, which shows right-heart strain as the first sign",
+      "A pulmonary vein, which is the usual embolus site",
+      "A pulmonary artery branch, so dead space rises and the right ventricle faces a sudden pressure load",
+      "The superior vena cava, which appears as a pulmonary-artery filling defect, ahead of any extra culture"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-100",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "acid-base-physiology",
+    "scenario": "A 28-year-old man is anxious and breathing 30 times a minute. pH is 7.50, PaCO2 is 24 mm Hg, and bicarbonate is 22 mEq/L. The anion gap is normal. He has no vomiting.",
+    "question": "Which primary acid-base change is this, and why is that the call?",
+    "options": [
+      "Metabolic alkalosis, because bicarbonate is 22 mEq/L",
+      "Respiratory acidosis, because the rate is 30",
+      "Metabolic acidosis, because pH is 7.50",
+      "A mixed acidosis, because the anion gap is normal",
+      "Respiratory alkalosis from hyperventilation, with a low PaCO2 and a high pH"
+    ]
+  }
+]

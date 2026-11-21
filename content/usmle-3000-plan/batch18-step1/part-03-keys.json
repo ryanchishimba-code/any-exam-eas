@@ -1,0 +1,402 @@
+[
+  {
+    "batchItemId": "b18-s1-101",
+    "correctAnswer": "Chronic respiratory acidosis with renal retention of bicarbonate, so pH is nearly normal",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "When PaCO2 stays high for days, the kidney retains bicarbonate. pH returns toward normal. That is compensated chronic respiratory acidosis, not an acute change.",
+    "explanation": "When PaCO2 stays high for days, the kidney retains bicarbonate. pH returns toward normal. That is compensated chronic respiratory acidosis, not an acute change. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nChronic respiratory acidosis with renal retention of bicarbonate, so pH is nearly normal\nAcute respiratory acidosis, because bicarbonate is already 32 \u2014 A different action is the one this situation requires.\nMetabolic alkalosis as the primary event, because bicarbonate is 32, skipping the extra culture \u2014 A different action is the one this situation requires.\nRespiratory alkalosis, because PaCO2 is 58 \u2014 A different action is the one this situation requires.\nA laboratory mismatch, because pH cannot be 7.36 with PaCO2 of 58 \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-102",
+    "correctAnswer": "The tubules are intact and avidly retain sodium because perfusion is low",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Low urine sodium and concentrated urine mean the tubules still work and are responding to low perfusion. Muddy casts and a high urine sodium would suggest tubular injury.",
+    "explanation": "Low urine sodium and concentrated urine mean the tubules still work and are responding to low perfusion. Muddy casts and a high urine sodium would suggest tubular injury. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nThe tubules are intact and avidly retain sodium because perfusion is low\nAcute tubular necrosis, which shows urine sodium under 10 \u2014 A different action is the one this situation requires.\nGlomerulonephritis, which shows a bland urine and low urine sodium \u2014 A different action is the one this situation requires.\nObstruction, which concentrates the urine to 600 after the bladder is empty \u2014 A different action is the one this situation requires.\nInterstitial nephritis, which is a sodium of 8 mEq/L \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-103",
+    "correctAnswer": "Tubular cells have sloughed, so the kidney cannot concentrate or hold sodium",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Muddy brown casts, urine sodium above 40 mEq/L, and isosthenuria are acute tubular injury. The concentrating gradient is lost.",
+    "explanation": "Muddy brown casts, urine sodium above 40 mEq/L, and isosthenuria are acute tubular injury. The concentrating gradient is lost. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nTubular cells have sloughed, so the kidney cannot concentrate or hold sodium\nPrerenal azotemia, because urine sodium is 48 \u2014 A different action is the one this situation requires.\nGlomerular inflammation, because muddy casts are red-cell casts \u2014 A different action is the one this situation requires.\nPostrenal obstruction, because casts of this type fill the ureter, skipping the extra lab \u2014 A different action is the one this situation requires.\nAtheroemboli, which are the muddy brown cast \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-104",
+    "correctAnswer": "Immune complexes after a streptococcal infection, with low C3 and an active urine sediment",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Dark urine with red-cell casts, low C3, and a high ASO titer one to two weeks after pharyngitis is poststreptococcal glomerulonephritis. IgA disease is during or just after the infection and C3 is usually normal.",
+    "explanation": "Dark urine with red-cell casts, low C3, and a high ASO titer one to two weeks after pharyngitis is poststreptococcal glomerulonephritis. IgA disease is during or just after the infection and C3 is usually normal. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nImmune complexes after a streptococcal infection, with low C3 and an active urine sediment\nMinimal change disease, which drops C3 and causes red-cell casts \u2014 A different action is the one this situation requires.\nAnti-GBM disease, which follows pharyngitis with a low C3 \u2014 A different action is the one this situation requires.\nIgA nephropathy, which is two weeks later and lowers C3 \u2014 A different action is the one this situation requires.\nMembranous nephropathy, which is the poststreptococcal lesion in children \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-105",
+    "correctAnswer": "Effacement of foot processes with normal light microscopy, the common childhood nephrotic lesion",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "A child with nephrotic syndrome and normal light microscopy plus diffuse foot-process effacement has the minimal-change pattern. It is the most common childhood cause of this presentation.",
+    "explanation": "A child with nephrotic syndrome and normal light microscopy plus diffuse foot-process effacement has the minimal-change pattern. It is the most common childhood cause of this presentation. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nEffacement of foot processes with normal light microscopy, the common childhood nephrotic lesion\nMembranous spikes on silver stain, which are normal on light microscopy \u2014 A different action is the one this situation requires.\nPoststreptococcal humps, which cause nephrotic-range protein with normal light microscopy as the usual child lesion \u2014 A different action is the one this situation requires.\nLinear basement-membrane antibody, which is a nephrotic picture \u2014 A different action is the one this situation requires.\nAmyloid, which is normal on electron microscopy \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-106",
+    "correctAnswer": "Antibody against basement-membrane collagen, binding lung and glomerulus in a linear pattern",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Linear IgG along the glomerular basement membrane plus lung hemorrhage is antibody to type IV collagen. The same antigen sits in alveolar basement membrane.",
+    "explanation": "Linear IgG along the glomerular basement membrane plus lung hemorrhage is antibody to type IV collagen. The same antigen sits in alveolar basement membrane. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nAntibody against basement-membrane collagen, binding lung and glomerulus in a linear pattern\nImmune-complex lupus, which is linear IgG \u2014 A different action is the one this situation requires.\nANCA vasculitis, which is linear IgG on the biopsy \u2014 A different action is the one this situation requires.\nAnti-PLA2R membranous disease, which causes hemoptysis, holding the late consult, instead of a bedside study \u2014 A different action is the one this situation requires.\nPoststreptococcal disease, which is linear IgG \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-107",
+    "correctAnswer": "Below the bladder, so both upper tracts dilate behind a full bladder",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "A full bladder plus bilateral hydronephrosis means the obstruction is at the bladder outlet or urethra. One ureteral stone dilates only one side.",
+    "explanation": "A full bladder plus bilateral hydronephrosis means the obstruction is at the bladder outlet or urethra. One ureteral stone dilates only one side. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nBelow the bladder, so both upper tracts dilate behind a full bladder\nA single ureteral stone, which dilates both pelves and the bladder, without n extra lab \u2014 A different action is the one this situation requires.\nRenal artery stenosis, which dilates the pelvis \u2014 A different action is the one this situation requires.\nAcute tubular necrosis, which dilates the collecting system \u2014 A different action is the one this situation requires.\nGlomerulonephritis, which fills the bladder \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-108",
+    "correctAnswer": "Ketoacids from insulin deficiency, widening the anion gap and lowering bicarbonate",
+    "difficulty": 3,
+    "citation": "Dhatariya KK, Glaser NS, Codner E, Umpierrez GE. Diabetic ketoacidosis. Nature Reviews Disease Primers. 2020.",
+    "examTakeaway": "Hyperglycemia, ketones, and a high anion gap are ketoacidosis from insulin deficiency. Bicarbonate is consumed buffering the ketoacids.",
+    "explanation": "Hyperglycemia, ketones, and a high anion gap are ketoacidosis from insulin deficiency. Bicarbonate is consumed buffering the ketoacids. Dhatariya KK, Glaser NS, Codner E, Umpierrez GE. Diabetic ketoacidosis. Nature Reviews Disease Primers. 2020.\n\nKetoacids from insulin deficiency, widening the anion gap and lowering bicarbonate\nLactic acid only, because glucose of 420 defines lactate, instead of a dose change, skipping the dose change \u2014 A different action is the one this situation requires.\nA normal-gap diarrhea loss, because the gap is 22 \u2014 A different action is the one this situation requires.\nRespiratory acidosis, because bicarbonate is 12 \u2014 A different action is the one this situation requires.\nToxic alcohol is required before ketones appear \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-109",
+    "correctAnswer": "Subepithelial immune deposits along the capillary wall, the membranous pattern",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Nephrotic syndrome with thickened membranes, subepithelial deposits, and anti-PLA2R antibody is membranous nephropathy. The deposits sit on the outer side of the basement membrane.",
+    "explanation": "Nephrotic syndrome with thickened membranes, subepithelial deposits, and anti-PLA2R antibody is membranous nephropathy. The deposits sit on the outer side of the basement membrane. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nSubepithelial immune deposits along the capillary wall, the membranous pattern\nSubendothelial deposits of lupus, which are anti-PLA2R \u2014 A different action is the one this situation requires.\nFoot-process effacement only, which thickens the membrane on light microscopy, instead of a morning panel \u2014 A different action is the one this situation requires.\nLinear basement-membrane staining, which is the receptor antibody \u2014 A different action is the one this situation requires.\nMesangial immunoglobulin A, which is the nephrotic receptor-antibody lesion \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-110",
+    "correctAnswer": "Hypoxemia with a low PaCO2 from hyperventilation, and a high alveolar-arterial oxygen gap",
+    "difficulty": 3,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Acute pulmonary embolism causes hypoxemia and stimulates ventilation, so PaCO2 falls and pH rises. Dead space and low mixed venous oxygen widen the A-a gradient.",
+    "explanation": "Acute pulmonary embolism causes hypoxemia and stimulates ventilation, so PaCO2 falls and pH rises. Dead space and low mixed venous oxygen widen the A-a gradient. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nHypoxemia with a low PaCO2 from hyperventilation, and a high alveolar-arterial oxygen gap\nCO2 retention as the first gas change of an acute embolus \u2014 A different action is the one this situation requires.\nMetabolic acidosis as the usual acute embolus gas \u2014 A different action is the one this situation requires.\nHypoxemia with a high carbon dioxide because ventilation stops \u2014 A different action is the one this situation requires.\nA normal A-a gradient, because dead space does not affect oxygen, instead of a bedside study \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-111",
+    "correctAnswer": "He is no longer hyperventilating, so CO2 retention means the airway attack is failing",
+    "difficulty": 2,
+    "citation": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention. 2024.",
+    "examTakeaway": "Early in an asthma attack, hyperventilation lowers PaCO2. A normal or high PaCO2 means the patient is tiring and ventilation is failing. That is a sign to support breathing.",
+    "explanation": "Early in an asthma attack, hyperventilation lowers PaCO2. A normal or high PaCO2 means the patient is tiring and ventilation is failing. That is a sign to support breathing. Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention. 2024.\n\nHe is no longer hyperventilating, so CO2 retention means the airway attack is failing\nA PaCO2 of 50 is the expected healthy response to wheeze \u2014 A different action is the one this situation requires.\nOxygen of 90 percent means the attack is mild regardless of CO2, without n extra lab, instead of a morning panel \u2014 A different action is the one this situation requires.\npH of 7.28 is respiratory alkalosis \u2014 A different action is the one this situation requires.\nCO2 of 50 means the attack has ended \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-112",
+    "correctAnswer": "Afferent constriction from the NSAID plus loss of efferent tone from the ACE inhibitor, in a dry patient",
+    "difficulty": 2,
+    "citation": "Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.",
+    "examTakeaway": "NSAIDs block prostaglandins that dilate the afferent arteriole. ACE inhibitors block angiotensin II that constricts the efferent arteriole. Together, in a volume-contracted patient, glomerular pressure collapses.",
+    "explanation": "NSAIDs block prostaglandins that dilate the afferent arteriole. ACE inhibitors block angiotensin II that constricts the efferent arteriole. Together, in a volume-contracted patient, glomerular pressure collapses. Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.\n\nAfferent constriction from the NSAID plus loss of efferent tone from the ACE inhibitor, in a dry patient\nThe NSAID dilates the afferent arteriole and raises filtration \u2014 A different action is the one this situation requires.\nThe ACE inhibitor raises angiotensin II and protects filtration here, instead of a bedside study, with no added drug \u2014 A different action is the one this situation requires.\nIbuprofen causes glomerular basement-membrane antibody \u2014 A different action is the one this situation requires.\nThe combination causes obstruction of both ureters \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-113",
+    "correctAnswer": "Gut loss of bicarbonate, replaced by chloride, so the gap stays normal",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Diarrhea wastes bicarbonate. The kidneys retain chloride, so the anion gap stays normal. This is hyperchloremic metabolic acidosis.",
+    "explanation": "Diarrhea wastes bicarbonate. The kidneys retain chloride, so the anion gap stays normal. This is hyperchloremic metabolic acidosis. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nGut loss of bicarbonate, replaced by chloride, so the gap stays normal\nKetoacidosis, because diarrhea raises the anion gap, skipping the rescue drug \u2014 A different action is the one this situation requires.\nLactic acidosis, because the gap is 10 \u2014 A different action is the one this situation requires.\nRespiratory alkalosis, because bicarbonate is 14 \u2014 A different action is the one this situation requires.\nRenal tubular acidosis is excluded by diarrhea \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-114",
+    "correctAnswer": "Synpharyngitic hematuria with mesangial IgA, not the delayed poststreptococcal pattern",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Visible hematuria during a mucosal infection, normal complement, and mesangial IgA is IgA nephropathy. Poststreptococcal disease waits one to two weeks and lowers C3.",
+    "explanation": "Visible hematuria during a mucosal infection, normal complement, and mesangial IgA is IgA nephropathy. Poststreptococcal disease waits one to two weeks and lowers C3. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nSynpharyngitic hematuria with mesangial IgA, not the delayed poststreptococcal pattern\nPoststreptococcal disease, which is the same day as pharyngitis and shows IgA \u2014 A different action is the one this situation requires.\nAnti-GBM disease, which is mesangial IgA \u2014 A different action is the one this situation requires.\nMembranous disease, which presents with gross hematuria the day of a virus \u2014 A different action is the one this situation requires.\nMinimal change, which is mesangial IgA \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-115",
+    "correctAnswer": "The pressure-loaded right ventricle bows the septum and underfills the left ventricle",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Acute pressure overload dilates the right ventricle. The septum shifts left, left-ventricular filling falls, and systemic output drops.",
+    "explanation": "Acute pressure overload dilates the right ventricle. The septum shifts left, left-ventricular filling falls, and systemic output drops. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nThe pressure-loaded right ventricle bows the septum and underfills the left ventricle\nThe embolus blocks the mitral valve \u2014 A different action is the one this situation requires.\nLeft-ventricular contractility is the primary failure, instead of n extra lab, holding the further image \u2014 A different action is the one this situation requires.\nSystemic vasodilation is the cause of the low output \u2014 A different action is the one this situation requires.\nThe lungs overfill the left atrium \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-116",
+    "correctAnswer": "Chemical injury of alveolar epithelium and capillaries, producing noncardiogenic edema",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Acid aspiration injures the alveolar-capillary membrane within hours. Leak of protein-rich fluid with a normal wedge pressure is chemical acute lung injury.",
+    "explanation": "Acid aspiration injures the alveolar-capillary membrane within hours. Leak of protein-rich fluid with a normal wedge pressure is chemical acute lung injury. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nChemical injury of alveolar epithelium and capillaries, producing noncardiogenic edema\nImmediate bacterial lobar consolidation as the first-hour picture, and no bedside study \u2014 A different action is the one this situation requires.\nCardiogenic edema from the seizure \u2014 A different action is the one this situation requires.\nA pneumothorax from acid \u2014 A different action is the one this situation requires.\nDiffuse alveolar hemorrhage as the only aspiration result \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-117",
+    "correctAnswer": "Myoglobin from muscle necrosis, which precipitates in tubules and releases potassium",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Crush injury releases myoglobin and potassium from muscle. Myoglobin is toxic to tubules and the urine is dark without many red cells.",
+    "explanation": "Crush injury releases myoglobin and potassium from muscle. Myoglobin is toxic to tubules and the urine is dark without many red cells. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nMyoglobin from muscle necrosis, which precipitates in tubules and releases potassium\nHemoglobin from hemolysis, which is the crush pigment, holding the further image, ahead of any bedside study \u2014 A different action is the one this situation requires.\nBilirubin casts from liver injury during a crush \u2014 A different action is the one this situation requires.\nBence Jones protein, which raises creatine kinase \u2014 A different action is the one this situation requires.\nMyoglobin, which lowers potassium \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-118",
+    "correctAnswer": "Ethylene glycol, metabolized to acids and oxalate",
+    "difficulty": 3,
+    "citation": "Kraut JA, Mullins ME. Toxic alcohols. New England Journal of Medicine. 2018.",
+    "examTakeaway": "A high anion gap, a high osmolar gap, and calcium oxalate crystals point to ethylene glycol. The parent alcohol raises the osmolar gap. Acid metabolites raise the anion gap. Oxalate comes from the metabolism.",
+    "explanation": "A high anion gap, a high osmolar gap, and calcium oxalate crystals point to ethylene glycol. The parent alcohol raises the osmolar gap. Acid metabolites raise the anion gap. Oxalate comes from the metabolism. Kraut JA, Mullins ME. Toxic alcohols. New England Journal of Medicine. 2018.\n\nEthylene glycol, metabolized to acids and oxalate\nIsopropanol, which causes a high anion gap and oxalate crystals \u2014 A different action is the one this situation requires.\nEthanol alone, which produces oxalate \u2014 A different action is the one this situation requires.\nMethanol, which produces oxalate crystals as its hallmark \u2014 A different action is the one this situation requires.\nDiabetic ketoacidosis, which raises the osmolar gap to 30 and makes oxalate \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-119",
+    "correctAnswer": "A nonsteroidal drug can cause foot-process effacement and nephrotic syndrome",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Nonsteroidal drugs are a classic cause of minimal-change nephrotic syndrome. Light microscopy is normal and electron microscopy shows foot-process effacement.",
+    "explanation": "Nonsteroidal drugs are a classic cause of minimal-change nephrotic syndrome. Light microscopy is normal and electron microscopy shows foot-process effacement. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA nonsteroidal drug can cause foot-process effacement and nephrotic syndrome\nA nonsteroidal drug causes linear IgG as the usual nephrotic lesion \u2014 A different action is the one this situation requires.\nAntibiotics cause this biopsy, whereas a nonsteroidal drug does not \u2014 A different action is the one this situation requires.\nThe biopsy is membranous spikes from one week of a nonsteroidal drug \u2014 A different action is the one this situation requires.\nNormal light microscopy excludes drug-related podocyte injury \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-120",
+    "correctAnswer": "Uncontrolled oxygen removed his hypoxic drive and worsened ventilation-perfusion matching",
+    "difficulty": 2,
+    "citation": "Global Initiative for Chronic Obstructive Lung Disease. GOLD 2024 report.",
+    "examTakeaway": "Some patients with chronic CO2 retention hypoventilate when high oxygen removes hypoxic respiratory drive and releases hypoxic vasoconstriction. Controlled oxygen is used instead.",
+    "explanation": "Some patients with chronic CO2 retention hypoventilate when high oxygen removes hypoxic respiratory drive and releases hypoxic vasoconstriction. Controlled oxygen is used instead. Global Initiative for Chronic Obstructive Lung Disease. GOLD 2024 report.\n\nUncontrolled oxygen removed his hypoxic drive and worsened ventilation-perfusion matching\nOxygen directly generates CO2 in the blood \u2014 A different action is the one this situation requires.\nThe rise means the oxygen cured the obstruction \u2014 A different action is the one this situation requires.\nA PaCO2 rise on oxygen is expected and harmless at pH 7.25 \u2014 A different action is the one this situation requires.\nOxygen lowers CO2 by raising the respiratory rate in chronic retainers, instead of n extra culture \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-121",
+    "correctAnswer": "It stabilized the cardiac membrane and did not shift potassium into cells",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Intravenous calcium antagonizes the electrical effect of high potassium on the heart within minutes. It does not lower the potassium. Insulin and glucose, or removal, do that.",
+    "explanation": "Intravenous calcium antagonizes the electrical effect of high potassium on the heart within minutes. It does not lower the potassium. Insulin and glucose, or removal, do that. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nIt stabilized the cardiac membrane and did not shift potassium into cells\nIt lowered the serum potassium by driving it into cells within one minute \u2014 A different action is the one this situation requires.\nIt is the definitive removal of potassium from the body \u2014 A different action is the one this situation requires.\nIt is given after insulin because membrane stabilization is slow \u2014 A different action is the one this situation requires.\nIt is contraindicated when T waves are peaked \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-122",
+    "correctAnswer": "Amyloid from a light chain, with apple-green birefringence on Congo red",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Apple-green birefringence with Congo red is amyloid. A monoclonal light chain and nephrotic syndrome point to light-chain amyloid in the kidney.",
+    "explanation": "Apple-green birefringence with Congo red is amyloid. A monoclonal light chain and nephrotic syndrome point to light-chain amyloid in the kidney. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nAmyloid from a light chain, with apple-green birefringence on Congo red\nImmune-complex membranous deposits, which are Congo-red positive \u2014 A different action is the one this situation requires.\nAnti-GBM antibody, which is apple-green \u2014 A different action is the one this situation requires.\nDiabetic mesangial sclerosis, which is Congo-red positive \u2014 A different action is the one this situation requires.\nMyeloma cast nephropathy, which is apple-green birefringence \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-123",
+    "correctAnswer": "Ventilated lung that is not perfused adds air with little CO2 to the exhaled gas",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Embolism creates alveolar dead space. That air dilutes exhaled CO2, so end-tidal CO2 falls and the arterial-to-end-tidal gap widens.",
+    "explanation": "Embolism creates alveolar dead space. That air dilutes exhaled CO2, so end-tidal CO2 falls and the arterial-to-end-tidal gap widens. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nVentilated lung that is not perfused adds air with little CO2 to the exhaled gas\nThe embolus increases CO2 delivery to the alveoli \u2014 A different action is the one this situation requires.\nDead space lowers arterial CO2 below the end-tidal value \u2014 A different action is the one this situation requires.\nShunt, not dead space, is the embolus gas lesion \u2014 A different action is the one this situation requires.\nEnd-tidal CO2 rises in dead space \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-124",
+    "correctAnswer": "Loss of gastric acid, leaving a hypochloremic metabolic alkalosis",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Vomiting loses hydrochloric acid. Bicarbonate rises and chloride falls. Volume depletion maintains the alkalosis because the kidney reabsorbs sodium with bicarbonate.",
+    "explanation": "Vomiting loses hydrochloric acid. Bicarbonate rises and chloride falls. Volume depletion maintains the alkalosis because the kidney reabsorbs sodium with bicarbonate. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nLoss of gastric acid, leaving a hypochloremic metabolic alkalosis\nDiarrhea, which raises bicarbonate \u2014 A different action is the one this situation requires.\nRespiratory alkalosis, because chloride is 88 \u2014 A different action is the one this situation requires.\nNormal-gap acidosis from vomiting \u2014 A different action is the one this situation requires.\nRenal tubular acidosis, which raises bicarbonate, before any dose change \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-125",
+    "correctAnswer": "Proximal and distal tubular injury from cisplatin, wasting magnesium and potassium",
+    "difficulty": 3,
+    "citation": "Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.",
+    "examTakeaway": "Cisplatin is directly toxic to renal tubules. Magnesium wasting, potassium wasting, and a falling filtration rate are the expected pattern.",
+    "explanation": "Cisplatin is directly toxic to renal tubules. Magnesium wasting, potassium wasting, and a falling filtration rate are the expected pattern. Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.\n\nProximal and distal tubular injury from cisplatin, wasting magnesium and potassium\nGlomerular injury only, which wastes magnesium as the first sign \u2014 A different action is the one this situation requires.\nCollecting-duct aldosterone block, which is the cisplatin lesion \u2014 A different action is the one this situation requires.\nUreteral obstruction from the drug crystals of cisplatin as the usual toxicity \u2014 A different action is the one this situation requires.\nA loop diuretic effect that persists a week after one cisplatin dose as the labeled action \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-126",
+    "correctAnswer": "Injury and fluid leak after aspiration, with noncardiogenic edema",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Aspiration of water injures alveoli. Bilateral opacities with a normal wedge pressure are noncardiogenic edema, the same final pattern as other causes of acute lung injury.",
+    "explanation": "Aspiration of water injures alveoli. Bilateral opacities with a normal wedge pressure are noncardiogenic edema, the same final pattern as other causes of acute lung injury. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nInjury and fluid leak after aspiration, with noncardiogenic edema\nLeft-ventricular failure, because the heart size is normal and the wedge is 11 \u2014 A different action is the one this situation requires.\nFresh-water hemolysis as the cause of the opacities alone \u2014 A different action is the one this situation requires.\nPneumothorax from the immersion \u2014 A different action is the one this situation requires.\nOil from the water, as in lipoid pneumonia \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-127",
+    "correctAnswer": "Mesangial expansion and basement-membrane thickening from long hyperglycemia",
+    "difficulty": 2,
+    "citation": "Kidney Disease: Improving Global Outcomes. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney International. 2024.",
+    "examTakeaway": "Longstanding diabetes with albuminuria and retinopathy points to diabetic glomerular disease: thickened membranes and expanded mesangium. Red-cell casts are not required.",
+    "explanation": "Longstanding diabetes with albuminuria and retinopathy points to diabetic glomerular disease: thickened membranes and expanded mesangium. Red-cell casts are not required. Kidney Disease: Improving Global Outcomes. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney International. 2024.\n\nMesangial expansion and basement-membrane thickening from long hyperglycemia\nMinimal-change disease, which follows 20 years of diabetes as the usual lesion \u2014 A different action is the one this situation requires.\nAnti-GBM disease, which enlarges the kidneys and follows retinopathy \u2014 A different action is the one this situation requires.\nAmyloid is required before diabetic kidneys leak albumin \u2014 A different action is the one this situation requires.\nPoststreptococcal disease, which is the 20-year diabetic lesion \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-128",
+    "correctAnswer": "It reduces airway inflammation, which is the controller, while albuterol is the reliever",
+    "difficulty": 2,
+    "citation": "Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention. 2024.",
+    "examTakeaway": "Inhaled corticosteroids treat the inflammatory driver of asthma and are the daily controller. Short-acting beta agonists relieve bronchospasm but do not treat the inflammation.",
+    "explanation": "Inhaled corticosteroids treat the inflammatory driver of asthma and are the daily controller. Short-acting beta agonists relieve bronchospasm but do not treat the inflammation. Global Initiative for Asthma. Global Strategy for Asthma Management and Prevention. 2024.\n\nIt reduces airway inflammation, which is the controller, while albuterol is the reliever\nIt replaces albuterol as the rescue bronchodilator for acute spells \u2014 A different action is the one this situation requires.\nIt is an antibiotic for nocturnal wheeze \u2014 A different action is the one this situation requires.\nIt is used only after oral steroids have failed for a year \u2014 A different action is the one this situation requires.\nIt raises airway eosinophils as its benefit \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-129",
+    "correctAnswer": "Autoimmune loss of beta cells, so insulin and C-peptide are both low and ketones form",
+    "difficulty": 2,
+    "citation": "American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.",
+    "examTakeaway": "Low insulin and low C-peptide with ketoacidosis is beta-cell failure. Type 1 diabetes presents this way. Resistance states have high insulin.",
+    "explanation": "Low insulin and low C-peptide with ketoacidosis is beta-cell failure. Type 1 diabetes presents this way. Resistance states have high insulin. American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.\n\nAutoimmune loss of beta cells, so insulin and C-peptide are both low and ketones form\nInsulin resistance with a high C-peptide \u2014 A different action is the one this situation requires.\nA glucagonoma, which lowers C-peptide and causes ketones \u2014 A different action is the one this situation requires.\nFactitious insulin, which lowers glucose to 430 \u2014 A different action is the one this situation requires.\nA sulfonylurea overdose, which suppresses insulin \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-130",
+    "correctAnswer": "Resistance to insulin, so the beta cell makes extra insulin and ketones do not appear",
+    "difficulty": 2,
+    "citation": "American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.",
+    "examTakeaway": "High glucose with high insulin and no ketones is insulin resistance. The beta cell is still working, unlike autoimmune beta-cell loss.",
+    "explanation": "High glucose with high insulin and no ketones is insulin resistance. The beta cell is still working, unlike autoimmune beta-cell loss. American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.\n\nResistance to insulin, so the beta cell makes extra insulin and ketones do not appear\nAbsolute insulin deficiency, because the glucose is 210 \u2014 A different action is the one this situation requires.\nBeta-cell aplasia, because insulin is high \u2014 A different action is the one this situation requires.\nGlucagon deficiency, because A1c is 8.2 \u2014 A different action is the one this situation requires.\nExogenous insulin use, because C-peptide would be the high signal here \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-131",
+    "correctAnswer": "The thyroid is driven by antibodies, so T4 is high and TSH is suppressed",
+    "difficulty": 2,
+    "citation": "Ross DS, Burch HB, Cooper DS, et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism. Thyroid. 2016.",
+    "examTakeaway": "Low TSH with high free T4 means the thyroid is producing hormone outside pituitary control. Diffuse goiter and eye disease point to stimulating antibodies.",
+    "explanation": "Low TSH with high free T4 means the thyroid is producing hormone outside pituitary control. Diffuse goiter and eye disease point to stimulating antibodies. Ross DS, Burch HB, Cooper DS, et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism. Thyroid. 2016.\n\nThe thyroid is driven by antibodies, so T4 is high and TSH is suppressed\nA pituitary tumor secreting TSH, which suppresses TSH \u2014 A different action is the one this situation requires.\nIodine deficiency, which raises T4 and suppresses TSH \u2014 A different action is the one this situation requires.\nThyroid hormone resistance, which lowers T4 \u2014 A different action is the one this situation requires.\nFactitious T3, which enlarges the gland and protrudes the eyes, ahead of any second test \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-132",
+    "correctAnswer": "The thyroid itself has failed, so T4 is low and TSH rises",
+    "difficulty": 2,
+    "citation": "Garber JR, Cobin RH, Gharib H, et al. Clinical practice guidelines for hypothyroidism in adults. Endocrine Practice. 2012.",
+    "examTakeaway": "High TSH with low free T4 is primary hypothyroidism. Antibodies to thyroid peroxidase mark autoimmune destruction of the gland.",
+    "explanation": "High TSH with low free T4 is primary hypothyroidism. Antibodies to thyroid peroxidase mark autoimmune destruction of the gland. Garber JR, Cobin RH, Gharib H, et al. Clinical practice guidelines for hypothyroidism in adults. Endocrine Practice. 2012.\n\nThe thyroid itself has failed, so T4 is low and TSH rises\nA pituitary failure, which raises TSH when T4 is low \u2014 A different action is the one this situation requires.\nIodine excess, which lowers TSH and T4 together in this pattern \u2014 A different action is the one this situation requires.\nGraves disease, which raises TSH \u2014 A different action is the one this situation requires.\nA TSH-secreting adenoma, which lowers T4 \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-133",
+    "correctAnswer": "The adrenal cortex, so cortisol and aldosterone fall and ACTH rises",
+    "difficulty": 3,
+    "citation": "Bornstein SR, Allolio B, Arlt W, et al. Diagnosis and Treatment of Primary Adrenal Insufficiency: An Endocrine Society Clinical Practice Guideline. Journal of Clinical Endocrinology and Metabolism. 2016.",
+    "examTakeaway": "Low cortisol, high ACTH, hyperkalemia, hyponatremia, and hyperpigmentation are primary adrenal failure. ACTH comes from POMC, which also raises melanocyte activity.",
+    "explanation": "Low cortisol, high ACTH, hyperkalemia, hyponatremia, and hyperpigmentation are primary adrenal failure. ACTH comes from POMC, which also raises melanocyte activity. Bornstein SR, Allolio B, Arlt W, et al. Diagnosis and Treatment of Primary Adrenal Insufficiency: An Endocrine Society Clinical Practice Guideline. Journal of Clinical Endocrinology and Metabolism. 2016.\n\nThe adrenal cortex, so cortisol and aldosterone fall and ACTH rises\nThe pituitary, which raises ACTH when cortisol is low and tans the skin as the usual central lesion \u2014 A different action is the one this situation requires.\nThe thyroid, which causes this electrolyte pair \u2014 A different action is the one this situation requires.\nThe parathyroid, which raises ACTH \u2014 A different action is the one this situation requires.\nA cortisol-secreting tumor, which raises ACTH \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-134",
+    "correctAnswer": "An adrenal tumor, because cortisol is high and ACTH is suppressed",
+    "difficulty": 2,
+    "citation": "Nieman LK, Biller BM, Findling JW, et al. Treatment of Cushing's Syndrome: An Endocrine Society Clinical Practice Guideline. Journal of Clinical Endocrinology and Metabolism. 2015.",
+    "examTakeaway": "Cortisol that does not suppress, with low ACTH and an adrenal mass, is ACTH-independent cortisol secretion from the adrenal.",
+    "explanation": "Cortisol that does not suppress, with low ACTH and an adrenal mass, is ACTH-independent cortisol secretion from the adrenal. Nieman LK, Biller BM, Findling JW, et al. Treatment of Cushing's Syndrome: An Endocrine Society Clinical Practice Guideline. Journal of Clinical Endocrinology and Metabolism. 2015.\n\nAn adrenal tumor, because cortisol is high and ACTH is suppressed\nA pituitary adenoma, which suppresses ACTH \u2014 A different action is the one this situation requires.\nEctopic ACTH, which lowers ACTH \u2014 A different action is the one this situation requires.\nAdrenal insufficiency, which fails the dexamethasone test this way \u2014 A different action is the one this situation requires.\nFactitious ACTH use, which enlarges one adrenal \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-135",
+    "correctAnswer": "High LH drive of theca cells, so androgens rise and cycles are anovulatory",
+    "difficulty": 2,
+    "citation": "Teede HJ, Misso ML, Costello MF, et al. International evidence-based guideline for the assessment and management of polycystic ovary syndrome. Human Reproduction. 2018.",
+    "examTakeaway": "Irregular cycles, androgen excess, and many small follicles reflect high LH stimulation of androgen production and failed ovulation.",
+    "explanation": "Irregular cycles, androgen excess, and many small follicles reflect high LH stimulation of androgen production and failed ovulation. Teede HJ, Misso ML, Costello MF, et al. International evidence-based guideline for the assessment and management of polycystic ovary syndrome. Human Reproduction. 2018.\n\nHigh LH drive of theca cells, so androgens rise and cycles are anovulatory\nOvarian failure, which raises LH and grows many follicles \u2014 A different action is the one this situation requires.\nA prolactinoma, which is the many-follicle ovary \u2014 A different action is the one this situation requires.\nAdrenal insufficiency, which causes chin hair and many follicles \u2014 A different action is the one this situation requires.\nTurner syndrome, which enlarges the ovaries \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-136",
+    "correctAnswer": "Stimulating antibody crosses the placenta and can drive the fetal thyroid",
+    "difficulty": 3,
+    "citation": "Ross DS, Burch HB, Cooper DS, et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism. Thyroid. 2016.",
+    "examTakeaway": "IgG thyroid-stimulating antibody crosses the placenta. The fetal thyroid can be stimulated. Maternal free T4 also needs control because excess hormone harms the pregnancy.",
+    "explanation": "IgG thyroid-stimulating antibody crosses the placenta. The fetal thyroid can be stimulated. Maternal free T4 also needs control because excess hormone harms the pregnancy. Ross DS, Burch HB, Cooper DS, et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism. Thyroid. 2016.\n\nStimulating antibody crosses the placenta and can drive the fetal thyroid\nTSH crosses the placenta and suppresses the fetus \u2014 A different action is the one this situation requires.\nThe antibody stays in the mother because IgG does not cross, instead of a night review \u2014 A different action is the one this situation requires.\nPregnancy cures stimulating antibody disease \u2014 A different action is the one this situation requires.\nFree T4 does not affect the fetus \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-137",
+    "correctAnswer": "11-beta hydroxylase, so deoxycorticosterone builds up and causes hypertension with virilization",
+    "difficulty": 3,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "11-beta hydroxylase block piles up deoxycorticosterone, a mineralocorticoid, so blood pressure is high and potassium is low, and androgen precursors virilize. Classic 21-hydroxylase instead causes salt wasting.",
+    "explanation": "11-beta hydroxylase block piles up deoxycorticosterone, a mineralocorticoid, so blood pressure is high and potassium is low, and androgen precursors virilize. Classic 21-hydroxylase instead causes salt wasting. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\n11-beta hydroxylase, so deoxycorticosterone builds up and causes hypertension with virilization\n21-hydroxylase, which causes hypertension and low potassium, without a bedside study, skipping the rescue drug \u2014 A different action is the one this situation requires.\n17-alpha hydroxylase, which virilizes \u2014 A different action is the one this situation requires.\nAromatase, which causes hypertension \u2014 A different action is the one this situation requires.\n5-alpha reductase, which raises blood pressure \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-138",
+    "correctAnswer": "Insulin deficiency and acidosis shift potassium out of cells, hiding a body deficit",
+    "difficulty": 2,
+    "citation": "American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.",
+    "examTakeaway": "Without insulin, potassium leaves cells. Acidosis adds to the shift. The serum number looks high while urinary losses have depleted total body potassium. Insulin will drive potassium back in.",
+    "explanation": "Without insulin, potassium leaves cells. Acidosis adds to the shift. The serum number looks high while urinary losses have depleted total body potassium. Insulin will drive potassium back in. American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.\n\nInsulin deficiency and acidosis shift potassium out of cells, hiding a body deficit\nThe kidneys have stopped all potassium excretion for days as the only reason, skipping the further image \u2014 A different action is the one this situation requires.\nHe ate a potassium load equal to the deficit \u2014 A different action is the one this situation requires.\nAldosterone is absent, which is required for ketoacidosis \u2014 A different action is the one this situation requires.\nThe high value means replacement is contraindicated once insulin starts \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-139",
+    "correctAnswer": "Organification of iodide by thyroid peroxidase",
+    "difficulty": 2,
+    "citation": "Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.",
+    "examTakeaway": "Thionamides inhibit thyroid peroxidase, so iodide is not organified onto thyroglobulin. Stored hormone still releases for days, which is why the effect is not instant.",
+    "explanation": "Thionamides inhibit thyroid peroxidase, so iodide is not organified onto thyroglobulin. Stored hormone still releases for days, which is why the effect is not instant. Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.\n\nOrganification of iodide by thyroid peroxidase\nRelease of stored hormone within one hour, which is the methimazole action \u2014 A different action is the one this situation requires.\nPeripheral conversion of T4 to T3 as the only methimazole effect \u2014 A different action is the one this situation requires.\nTSH secretion from the pituitary \u2014 A different action is the one this situation requires.\nIodide uptake by the sodium-iodide symporter as the methimazole target \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-140",
+    "correctAnswer": "Chronic glucocorticoid use suppressed ACTH, so his own cortisol cannot rise under stress",
+    "difficulty": 2,
+    "citation": "Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.",
+    "examTakeaway": "Exogenous glucocorticoid feeds back on ACTH. The zona fasciculata atrophies. Sudden withdrawal leaves no cortisol for surgical stress. A stress dose is required.",
+    "explanation": "Exogenous glucocorticoid feeds back on ACTH. The zona fasciculata atrophies. Sudden withdrawal leaves no cortisol for surgical stress. A stress dose is required. Katzung BG, Trevor AJ. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.\n\nChronic glucocorticoid use suppressed ACTH, so his own cortisol cannot rise under stress\nPrednisone causes permanent adrenal destruction like autoimmune adrenalitis \u2014 A different action is the one this situation requires.\nThe hypotension is from mineralocorticoid excess \u2014 A different action is the one this situation requires.\nStopping prednisone raises cortisol the next day \u2014 A different action is the one this situation requires.\nAldosterone is the hormone prednisone replaces \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-141",
+    "correctAnswer": "Less insulin resistance lowers ovarian androgen drive and allows FSH to mature a follicle",
+    "difficulty": 2,
+    "citation": "Teede HJ, Misso ML, Costello MF, et al. International evidence-based guideline for the assessment and management of polycystic ovary syndrome. Human Reproduction. 2018.",
+    "examTakeaway": "Insulin resistance raises ovarian androgens and disrupts FSH-driven follicle growth. Lower weight improves insulin sensitivity and can restart ovulation.",
+    "explanation": "Insulin resistance raises ovarian androgens and disrupts FSH-driven follicle growth. Lower weight improves insulin sensitivity and can restart ovulation. Teede HJ, Misso ML, Costello MF, et al. International evidence-based guideline for the assessment and management of polycystic ovary syndrome. Human Reproduction. 2018.\n\nLess insulin resistance lowers ovarian androgen drive and allows FSH to mature a follicle\nWeight loss raises LH further, which is the benefit, before any extra lab, without n extra culture \u2014 A different action is the one this situation requires.\nWeight loss removes the need for a uterus \u2014 A different action is the one this situation requires.\nOvulation in this state is independent of insulin \u2014 A different action is the one this situation requires.\nWeight loss blocks FSH and that starts ovulation \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-142",
+    "correctAnswer": "Parafollicular C cells, which make calcitonin and can form a medullary carcinoma",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Calcitonin comes from C cells. A high level with a medullary mass is C-cell tumor. Follicular cells make thyroglobulin, not calcitonin.",
+    "explanation": "Calcitonin comes from C cells. A high level with a medullary mass is C-cell tumor. Follicular cells make thyroglobulin, not calcitonin. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nParafollicular C cells, which make calcitonin and can form a medullary carcinoma\nFollicular cells, which secrete calcitonin \u2014 A different action is the one this situation requires.\nParathyroid chief cells, which sit in the thyroid medulla, without n extra culture \u2014 A different action is the one this situation requires.\nBeta cells, which make calcitonin \u2014 A different action is the one this situation requires.\nC cells, which make thyroglobulin as the tumor marker \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-143",
+    "correctAnswer": "Prediabetes, because fasting glucose is 100 to 125 or the 2-hour value is 140 to 199",
+    "difficulty": 2,
+    "citation": "American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.",
+    "examTakeaway": "Diabetes requires fasting glucose of 126 or higher, a 2-hour value of 200 or higher, or A1c of 6.5 percent or higher. His numbers sit in the prediabetes band.",
+    "explanation": "Diabetes requires fasting glucose of 126 or higher, a 2-hour value of 200 or higher, or A1c of 6.5 percent or higher. His numbers sit in the prediabetes band. American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.\n\nPrediabetes, because fasting glucose is 100 to 125 or the 2-hour value is 140 to 199\nDiabetes, because 118 fasting meets the 126 cutoff \u2014 A different action is the one this situation requires.\nNormal glucose, because A1c is 6.0 \u2014 A different action is the one this situation requires.\nDiabetes, because a 2-hour value above 140 is diabetes \u2014 A different action is the one this situation requires.\nHypoglycemia, because the 2-hour value fell from a higher peak, skipping the late consult \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-144",
+    "correctAnswer": "Failure of salt loading to suppress aldosterone confirms primary aldosterone excess",
+    "difficulty": 2,
+    "citation": "Funder JW, Carey RM, Mantero F, et al. The Management of Primary Aldosteronism. Journal of Clinical Endocrinology and Metabolism. 2016.",
+    "examTakeaway": "In primary aldosteronism, aldosterone stays high after a salt load and renin stays low. Secondary hyperaldosteronism has high renin.",
+    "explanation": "In primary aldosteronism, aldosterone stays high after a salt load and renin stays low. Secondary hyperaldosteronism has high renin. Funder JW, Carey RM, Mantero F, et al. The Management of Primary Aldosteronism. Journal of Clinical Endocrinology and Metabolism. 2016.\n\nFailure of salt loading to suppress aldosterone confirms primary aldosterone excess\nA high renin confirms primary aldosteronism \u2014 A different action is the one this situation requires.\nSalt loading should raise aldosterone in this disease \u2014 A different action is the one this situation requires.\nLow aldosterone with low renin is the confirmatory pattern, instead of a morning panel for this reading \u2014 A different action is the one this situation requires.\nThe test diagnoses renovascular hypertension \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-145",
+    "correctAnswer": "Exogenous hormone suppresses TSH, so the gland is quiet and does not take up iodine",
+    "difficulty": 2,
+    "citation": "Ross DS, Burch HB, Cooper DS, et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism. Thyroid. 2016.",
+    "examTakeaway": "Taken thyroid hormone raises T4 and suppresses TSH. Without TSH the gland does not organify iodine, so uptake is low. Graves disease has a high uptake.",
+    "explanation": "Taken thyroid hormone raises T4 and suppresses TSH. Without TSH the gland does not organify iodine, so uptake is low. Graves disease has a high uptake. Ross DS, Burch HB, Cooper DS, et al. 2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism. Thyroid. 2016.\n\nExogenous hormone suppresses TSH, so the gland is quiet and does not take up iodine\nGraves disease, which has a near-zero uptake \u2014 A different action is the one this situation requires.\nThyroiditis is excluded by a low uptake \u2014 A different action is the one this situation requires.\nIodine deficiency, which suppresses TSH and raises T4 \u2014 A different action is the one this situation requires.\nA TSH-secreting tumor, which lowers uptake and raises T4 with a low TSH, skipping the late consult \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-146",
+    "correctAnswer": "Enough insulin remains to block ketones, but not enough to control glucose, so osmolality rises",
+    "difficulty": 3,
+    "citation": "American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.",
+    "examTakeaway": "Hyperosmolar hyperglycemia has very high glucose, high osmolality, and little ketoacidosis because a small amount of insulin still suppresses ketogenesis.",
+    "explanation": "Hyperosmolar hyperglycemia has very high glucose, high osmolality, and little ketoacidosis because a small amount of insulin still suppresses ketogenesis. American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.\n\nEnough insulin remains to block ketones, but not enough to control glucose, so osmolality rises\nDiabetic ketoacidosis, because osmolality is 330 and bicarbonate is 22, holding the second test, ahead of any extra lab \u2014 A different action is the one this situation requires.\nHypoglycemia, because glucose is 280 \u2014 A different action is the one this situation requires.\nHyperosmolar coma requires ketones \u2014 A different action is the one this situation requires.\nA pure water deficit with a glucose of 90 \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-147",
+    "correctAnswer": "21-hydroxylase, so cortisol and aldosterone fall and androgen precursors rise",
+    "difficulty": 3,
+    "citation": "Speiser PW, Arlt W, Auchus RJ, et al. Congenital Adrenal Hyperplasia Due to Steroid 21-Hydroxylase Deficiency: An Endocrine Society Clinical Practice Guideline. Journal of Clinical Endocrinology and Metabolism. 2018.",
+    "examTakeaway": "The common congenital adrenal lesion is 21-hydroxylase deficiency. Cortisol and aldosterone are low, so infants lose salt, and androgen buildup virilizes.",
+    "explanation": "The common congenital adrenal lesion is 21-hydroxylase deficiency. Cortisol and aldosterone are low, so infants lose salt, and androgen buildup virilizes. Speiser PW, Arlt W, Auchus RJ, et al. Congenital Adrenal Hyperplasia Due to Steroid 21-Hydroxylase Deficiency: An Endocrine Society Clinical Practice Guideline. Journal of Clinical Endocrinology and Metabolism. 2018.\n\n21-hydroxylase, so cortisol and aldosterone fall and androgen precursors rise\n11-beta hydroxylase, which causes a salt-losing crisis \u2014 A different action is the one this situation requires.\n17-alpha hydroxylase, which virilizes and loses salt \u2014 A different action is the one this situation requires.\nAromatase excess, which raises 17-hydroxyprogesterone \u2014 A different action is the one this situation requires.\n5-alpha reductase deficiency, which is the salt-losing enzyme, with no night review \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-148",
+    "correctAnswer": "Endothelial dysfunction with high pressure and organ injury after 20 weeks",
+    "difficulty": 3,
+    "citation": "Gestational Hypertension and Preeclampsia. ACOG Practice Bulletin No. 222. Obstetrics and Gynecology. 2020.",
+    "examTakeaway": "New hypertension after 20 weeks with headache, visual change, low platelets, and a rising creatinine is preeclampsia with severe features. The placenta drives widespread endothelial injury.",
+    "explanation": "New hypertension after 20 weeks with headache, visual change, low platelets, and a rising creatinine is preeclampsia with severe features. The placenta drives widespread endothelial injury. Gestational Hypertension and Preeclampsia. ACOG Practice Bulletin No. 222. Obstetrics and Gynecology. 2020.\n\nEndothelial dysfunction with high pressure and organ injury after 20 weeks\nChronic hypertension, which starts with seizures at 34 weeks as a new disease \u2014 A different action is the one this situation requires.\nNormal third-trimester pressure, because 168/110 can be physiologic \u2014 A different action is the one this situation requires.\nPrimary aldosteronism of pregnancy, which drops platelets \u2014 A different action is the one this situation requires.\nPulmonary embolism, which raises blood pressure and drops platelets this way \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-149",
+    "correctAnswer": "One parathyroid adenoma secreting PTH, raising calcium and lowering phosphate",
+    "difficulty": 2,
+    "citation": "Bilezikian JP, Brandi ML, Eastell R, et al. Guidelines for the Management of Asymptomatic Primary Hyperparathyroidism. Journal of Clinical Endocrinology and Metabolism. 2014.",
+    "examTakeaway": "High calcium with a high PTH that does not suppress, plus low phosphate, is primary hyperparathyroidism. One hot gland is an adenoma.",
+    "explanation": "High calcium with a high PTH that does not suppress, plus low phosphate, is primary hyperparathyroidism. One hot gland is an adenoma. Bilezikian JP, Brandi ML, Eastell R, et al. Guidelines for the Management of Asymptomatic Primary Hyperparathyroidism. Journal of Clinical Endocrinology and Metabolism. 2014.\n\nOne parathyroid adenoma secreting PTH, raising calcium and lowering phosphate\nThe thyroid, because calcitonin raises calcium \u2014 A different action is the one this situation requires.\nAll four glands from secondary hyperparathyroidism, which raises phosphate, ahead of any dose change \u2014 A different action is the one this situation requires.\nA PTHrP tumor, which raises PTH \u2014 A different action is the one this situation requires.\nVitamin D toxicity, which raises PTH \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-150",
+    "correctAnswer": "Below an eGFR of about 30, the drug can accumulate and rare lactic acidosis becomes a concern",
+    "difficulty": 2,
+    "citation": "American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.",
+    "examTakeaway": "Metformin is contraindicated when eGFR is below 30 mL/min because reduced clearance raises the risk of lactic acidosis. It is not a direct glomerular toxin.",
+    "explanation": "Metformin is contraindicated when eGFR is below 30 mL/min because reduced clearance raises the risk of lactic acidosis. It is not a direct glomerular toxin. American Diabetes Association. Standards of Care in Diabetes. Diabetes Care. 2024.\n\nBelow an eGFR of about 30, the drug can accumulate and rare lactic acidosis becomes a concern\nMetformin is stopped because it causes ketoacidosis at any eGFR, and no late consult, with no repeat draw \u2014 A different action is the one this situation requires.\nThe drug is safest when eGFR is under 30 \u2014 A different action is the one this situation requires.\nMetformin injures glomeruli directly at this level \u2014 A different action is the one this situation requires.\nThe stop rule is an eGFR under 60 with no other factor \u2014 A different action is the one this situation requires."
+  }
+]
