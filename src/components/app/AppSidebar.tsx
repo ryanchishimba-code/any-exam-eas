@@ -119,7 +119,7 @@ const NAV_SECTIONS: NavSection[] = [
             {
               id: "usmle-quick-bites",
               href: USMLE_QUICK_BITES_PATH,
-              label: "Quick Bites",
+              label: "Rapid Review Cards",
               icon: Clapperboard,
               exams: ["usmle" as const],
             },

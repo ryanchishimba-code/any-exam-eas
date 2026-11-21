@@ -1,7 +1,9 @@
 /**
- * Client-safe USMLE Quick Bite types and library helpers.
+ * Client-safe USMLE Rapid Review Card types and library helpers.
  * Do not import node:fs here. The browser library imports this file.
  */
+
+import { USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
 
 export const USMLE_QUICK_BITE_STEPS = ["step-1", "step-2-ck", "step-3"] as const;
 export type UsmleQuickBiteStep = (typeof USMLE_QUICK_BITE_STEPS)[number];
@@ -55,8 +57,8 @@ export function usmleQuickBiteStepFromQuery(step: string | undefined | null): Us
 
 export function usmleQuickBiteHref(step: UsmleQuickBiteStep): string {
   const choice = USMLE_QUICK_BITE_STEP_CHOICES.find((item) => item.id === step);
-  if (!choice || choice.query === "1") return "/usmle/quick-bites";
-  return `/usmle/quick-bites?step=${choice.query}`;
+  if (!choice || choice.query === "1") return USMLE_QUICK_BITES_PATH;
+  return `${USMLE_QUICK_BITES_PATH}?step=${choice.query}`;
 }
 
 export function usmleQuickBiteGroups(bites: UsmleQuickBite[]): { title: string; bites: UsmleQuickBite[] }[] {
