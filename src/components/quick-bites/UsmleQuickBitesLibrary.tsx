@@ -9,7 +9,7 @@ import {
   type UsmleQuickBite,
   type UsmleQuickBiteStep,
   USMLE_QUICK_BITE_STEP_CHOICES,
-} from "@/lib/quick-bites/usmle-bites";
+} from "@/lib/quick-bites/usmle-bite-shared";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 

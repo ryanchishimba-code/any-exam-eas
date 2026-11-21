@@ -1,52 +1,28 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import type { UsmleQuickBite, UsmleQuickBiteStep } from "@/lib/quick-bites/usmle-bite-shared";
 
 /**
  * USMLE Quick Bites. One library, three Steps.
  * Content stays in content/usmle-quickbites and is hidden until a flag is on.
  * The homepage and the /usmle board page do not import this module.
+ * Client components import usmle-bite-shared instead of this file.
  */
 
-export const USMLE_QUICK_BITE_STEPS = ["step-1", "step-2-ck", "step-3"] as const;
-export type UsmleQuickBiteStep = (typeof USMLE_QUICK_BITE_STEPS)[number];
-
-export type UsmleQuickBiteSource = {
-  name: string;
-  year: string;
-  url: string;
-  says: string;
-  more?: { name: string; url: string }[];
-};
-
-export type UsmleQuickBite = {
-  id: string;
-  step: UsmleQuickBiteStep;
-  number: number;
-  system: string;
-  group: string;
-  title: string;
-  read: string;
-  /** Free sample once the library is released. Hidden preview shows every bite. */
-  open: boolean;
-  lead: string;
-  lines: string[];
-  miss: string;
-  diagram: string | null;
-  diagramAlt: string | null;
-  source: UsmleQuickBiteSource;
-};
-
-export type UsmleQuickBiteStepChoice = {
-  id: UsmleQuickBiteStep;
-  label: string;
-  query: string;
-};
-
-export const USMLE_QUICK_BITE_STEP_CHOICES: readonly UsmleQuickBiteStepChoice[] = [
-  { id: "step-1", label: "Step 1", query: "1" },
-  { id: "step-2-ck", label: "Step 2 CK", query: "2ck" },
-  { id: "step-3", label: "Step 3", query: "3" },
-];
+export {
+  USMLE_QUICK_BITE_STEPS,
+  USMLE_QUICK_BITE_STEP_CHOICES,
+  isUsmleQuickBiteStep,
+  usmleQuickBiteGroups,
+  usmleQuickBiteHref,
+  usmleQuickBiteStepFromQuery,
+} from "@/lib/quick-bites/usmle-bite-shared";
+export type {
+  UsmleQuickBite,
+  UsmleQuickBiteSource,
+  UsmleQuickBiteStep,
+  UsmleQuickBiteStepChoice,
+} from "@/lib/quick-bites/usmle-bite-shared";
 
 const STEP_FILE: Record<UsmleQuickBiteStep, string> = {
   "step-1": "step-1/bites.json",
@@ -103,21 +79,6 @@ function contentRoot(): string {
   return path.join(process.cwd(), "content", "usmle-quickbites");
 }
 
-export function isUsmleQuickBiteStep(value: string | null | undefined): value is UsmleQuickBiteStep {
-  return Boolean(value && (USMLE_QUICK_BITE_STEPS as readonly string[]).includes(value));
-}
-
-export function usmleQuickBiteStepFromQuery(step: string | undefined | null): UsmleQuickBiteStep {
-  const match = USMLE_QUICK_BITE_STEP_CHOICES.find((item) => item.query === (step ?? "").trim());
-  return match?.id ?? "step-1";
-}
-
-export function usmleQuickBiteHref(step: UsmleQuickBiteStep): string {
-  const choice = USMLE_QUICK_BITE_STEP_CHOICES.find((item) => item.id === step);
-  if (!choice || choice.query === "1") return "/usmle/quick-bites";
-  return `/usmle/quick-bites?step=${choice.query}`;
-}
-
 export function loadUsmleQuickBites(step: UsmleQuickBiteStep): UsmleQuickBite[] {
   const hit = cache.get(step);
   if (hit) return hit;
@@ -125,16 +86,6 @@ export function loadUsmleQuickBites(step: UsmleQuickBiteStep): UsmleQuickBite[] 
   const parsed = JSON.parse(readFileSync(file, "utf8")) as UsmleQuickBite[];
   cache.set(step, parsed);
   return parsed;
-}
-
-export function usmleQuickBiteGroups(bites: UsmleQuickBite[]): { title: string; bites: UsmleQuickBite[] }[] {
-  const groups: { title: string; bites: UsmleQuickBite[] }[] = [];
-  for (const bite of bites) {
-    const last = groups[groups.length - 1];
-    if (!last || last.title !== bite.group) groups.push({ title: bite.group, bites: [bite] });
-    else last.bites.push(bite);
-  }
-  return groups;
 }
 
 export function quotaTotal(step: UsmleQuickBiteStep): number {
