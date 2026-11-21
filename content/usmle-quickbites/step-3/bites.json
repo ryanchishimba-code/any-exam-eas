@@ -47,7 +47,7 @@
       "name": "StatPearls. Gestational Diabetes.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
-      "says": "Neonatal hypoglycemia is anticipated and checked. Early feeding is the first prevention."
+      "says": "A newborn whose mother had diabetes is fed early and the glucose is checked. The baby's insulin is still high after the cord is cut."
     },
     "number": 2,
     "id": "usmle-qb-s3-002"
@@ -63,9 +63,7 @@
     "lines": [
       "A new gradient is imaging, not a year of observation.",
       "Growth hormone and estrogen are timed with a specialist, not started casually.",
-      "Renal ultrasound is done if it was never done.",
-      "About 10\u201315% have coarctation and up to 30% have a bicuspid aortic valve.",
-      "An arm-leg systolic gradient over 20 mm Hg or delayed femoral pulses means image the aorta."
+      "Renal ultrasound is done if it was never done."
     ],
     "miss": "Refilling a note that says Turner and never taking a leg pressure.",
     "diagram": null,
@@ -74,7 +72,7 @@
       "name": "StatPearls. Turner Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK554621/",
-      "says": "Ongoing care includes blood-pressure comparison and cardiac surveillance for coarctation and bicuspid aortic valve."
+      "says": "At every visit for Turner syndrome, compare the arm and the leg blood pressure and listen for the aortic valve. The karyotype result is not a completed plan."
     },
     "number": 3,
     "id": "usmle-qb-s3-003"
@@ -128,7 +126,7 @@
       "name": "StatPearls. Sickle Cell Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
-      "says": "Incentive spirometry is ordered for vaso-occlusive pain admissions because it reduces acute chest syndrome."
+      "says": "For a sickle-cell pain crisis, write incentive spirometry on admission. It prevents acute chest syndrome while you treat the pain."
     },
     "number": 5,
     "id": "usmle-qb-s3-005"
@@ -155,7 +153,7 @@
       "name": "StatPearls. Sickle Cell Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
-      "says": "Exchange transfusion is used for severe acute chest syndrome and acute stroke. Simple transfusion does not replace it."
+      "says": "Severe acute chest syndrome or an acute stroke in sickle cell disease is an exchange-transfusion call, not another unit of simple transfusion as the whole plan."
     },
     "number": 6,
     "id": "usmle-qb-s3-006"
@@ -169,20 +167,19 @@
     "open": false,
     "lead": "When the smear and the story are thrombotic thrombocytopenic purpura, order plasma exchange now. The ADAMTS13 result confirms later.",
     "lines": [
-      "Do not platelet-transfuse unless there is life-threatening bleeding.",
-      "Hold the platelet-making argument and start the exchange.",
-      "Daily labs follow the lactate dehydrogenase and the platelets.",
-      "Microangiopathic hemolysis plus thrombocytopenia. Start plasma exchange the day you suspect it. Do not wait for ADAMTS13.",
-      "Platelet transfusion only for life-threatening bleeding. ITP has no schistocytes."
+      "High clinical suspicion: draw ADAMTS13 before any plasma exchange or blood product.",
+      "Then start therapeutic plasma exchange and corticosteroids without waiting for the ADAMTS13 result.",
+      "The ISTH treatment guideline strongly recommends adding corticosteroids to plasma exchange for a first episode or a relapse.",
+      "Caplacizumab is a conditional addition in the treatment guideline. It is not a reason to delay plasma exchange."
     ],
-    "miss": "Waiting for the send-out ADAMTS13 before calling the apheresis service.",
+    "miss": "Waiting for the ADAMTS13 result before plasma exchange when the clinical suspicion is already high.",
     "diagram": "ttp-itp",
     "diagramAlt": "TTP versus ITP. TTP: schistocytes, hemolysis, exchange now ITP: isolated low platelets, no fragments Platelets in TTP only for life-threatening bleed",
     "source": {
-      "name": "StatPearls. Thrombotic Thrombocytopenic Purpura.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430721/",
-      "says": "Plasma exchange is started on clinical grounds. Platelet transfusion is reserved for life-threatening bleeding."
+      "name": "ISTH guidelines for the diagnosis and treatment of thrombotic thrombocytopenic purpura.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32914582/",
+      "says": "When suspicion is high, draw ADAMTS13 before plasma exchange, then start plasma exchange and corticosteroids without waiting for the result. The treatment guideline strongly recommends corticosteroids added to plasma exchange for a first episode or a relapse."
     },
     "number": 7,
     "id": "usmle-qb-s3-007"
@@ -191,25 +188,24 @@
     "step": "step-3",
     "system": "blood-lymph-immune",
     "group": "Blood and immune",
-    "title": "Febrile neutropenia: antibiotic within the hour, vancomycin only if indicated",
+    "title": "Febrile neutropenia is treated with broad antibiotics immediately",
     "read": "1 min",
     "open": false,
     "lead": "Write the antipseudomonal antibiotic as a stat order. Add vancomycin only for instability, a line infection, severe mucositis, or known resistant gram-positive colonization.",
     "lines": [
-      "Cultures are drawn if they do not delay the drug.",
-      "A stable patient does not need three extra antibiotics.",
-      "The source, including the perianal exam, is looked at.",
-      "Fever of at least 38.3\u00b0C once, or 38.0\u00b0C sustained, with ANC under 500 or expected to fall below 500.",
-      "Antipseudomonal beta-lactam within 60 minutes. Add vancomycin only for instability, suspected line infection, severe mucositis, or known resistant gram-positive colonization."
+      "Fever plus neutropenia is treated at once with broad empiric antibiotics. Do not wait for a culture to grow.",
+      "The IDSA 2010 update states that immediate empiric therapy has not changed: cover gram-positive and gram-negative pathogens.",
+      "Risk stratification decides the setting. It does not delay the first dose.",
+      "A narrow oral drug chosen before that first broad dose is the miss."
     ],
-    "miss": "Ordering vancomycin, metronidazole, and an antifungal with the first fever in a stable patient.",
+    "miss": "Waiting for the culture result before the first broad antibiotic dose.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Febrile Neutropenia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK541102/",
-      "says": "Antipseudomonal therapy is immediate. Vancomycin is added for specific indications, not for every fever."
+      "name": "IDSA 2010 update. Antimicrobial agents in neutropenic patients with cancer.",
+      "year": "2010",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21258094/",
+      "says": "All patients who present with fever and neutropenia should be treated swiftly and broadly with empiric antibiotics. Immediate treatment is the standing recommendation of this guideline."
     },
     "number": 8,
     "id": "usmle-qb-s3-008"
@@ -227,7 +223,7 @@
       "Do not give an intramuscular injection.",
       "An inhibitor is suspected when the bleed does not stop with the usual dose.",
       "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed.",
-      "A head injury is treated as intracranial bleeding: raise factor VIII to about 100% and image. Do not wait for the CT to give the factor."
+      "Do not wait for the CT to give the factor."
     ],
     "miss": "Sending the patient to CT while the factor is still in the pharmacy.",
     "diagram": null,
@@ -236,7 +232,7 @@
       "name": "StatPearls. Hemophilia A.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
-      "says": "Factor replacement for suspected intracranial bleeding is immediate and is not delayed for imaging."
+      "says": "A hemophilia patient with head trauma gets factor replacement immediately. The CT does not come before the factor."
     },
     "number": 9,
     "id": "usmle-qb-s3-009"
@@ -250,20 +246,19 @@
     "open": false,
     "lead": "When heparin-induced thrombocytopenia is suspected, discontinue every heparin product, including flushes and coated catheters, and order a non-heparin anticoagulant.",
     "lines": [
-      "Write the allergy so the next shift does not restart a flush.",
-      "Do not order warfarin tonight.",
-      "Send the antibody, but do not wait for it to stop the drug.",
-      "Platelets fall by more than 50% on days 5\u201310, or within a day on re-exposure, and new thrombosis is the danger.",
-      "Stop every heparin, including flushes. Start argatroban or another non-heparin anticoagulant. Warfarin alone can cause venous limb gangrene. Do not transfuse platelets."
+      "Estimate probability with the 4Ts score, not a gestalt impression.",
+      "A low-probability 4Ts score is not an indication to stop heparin and start another anticoagulant.",
+      "An intermediate or high score: stop heparin and start a non-heparin anticoagulant. ASH names argatroban, bivalirudin, danaparoid, fondaparinux, and a direct oral anticoagulant.",
+      "Do not start warfarin before the platelet count recovers, usually to at least 150 \u00d7 10^9/L. Early warfarin is linked to venous limb gangrene."
     ],
-    "miss": "Changing the heparin drip to a heparin flush and calling that a stop.",
+    "miss": "Stopping heparin without a non-heparin anticoagulant when the 4Ts score is intermediate or high, or starting warfarin while the platelet count is still low.",
     "diagram": "hit-days",
     "diagramAlt": "HIT, day 5 to 10. Platelets fall AND a new clot Stop all heparin, including flushes Argatroban. No warfarin alone. No platelets",
     "source": {
-      "name": "StatPearls. Heparin-Induced Thrombocytopenia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482330/",
-      "says": "All heparin exposures stop at suspicion. A non-heparin anticoagulant is ordered the same hour."
+      "name": "ASH 2018 guideline for heparin-induced thrombocytopenia.",
+      "year": "2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30482768/",
+      "says": "Use the 4Ts score rather than gestalt. Do not treat empirically when the score is low. For an intermediate or high score, stop heparin and start a non-heparin anticoagulant. Do not start a vitamin K antagonist before the platelet count recovers, usually to at least 150 \u00d7 10^9/L."
     },
     "number": 10,
     "id": "usmle-qb-s3-010"
@@ -290,7 +285,7 @@
       "name": "StatPearls. Disseminated Intravascular Coagulation.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441834/",
-      "says": "Cryoprecipitate replaces fibrinogen in bleeding DIC. Product replacement does not replace treatment of the cause."
+      "says": "In a bleeding patient with DIC and a low fibrinogen, order cryoprecipitate. Ordering only fresh frozen plasma does not reliably replace fibrinogen."
     },
     "number": 11,
     "id": "usmle-qb-s3-011"
@@ -308,7 +303,7 @@
       "The potassium is on a monitor and a repeat lab.",
       "G6PD deficiency is the contraindication you ask about.",
       "Potassium and phosphate and uric acid rise. Calcium falls.",
-      "Allopurinol stops new uric acid formation. Rasburicase destroys uric acid already present. Screen for G6PD deficiency before rasburicase."
+      "Allopurinol stops new uric acid formation. Rasburicase destroys uric acid already present."
     ],
     "miss": "Celebrating a uric acid of 1 drawn in a warm tube after rasburicase.",
     "diagram": "tls-ions",
@@ -317,7 +312,7 @@
       "name": "StatPearls. Tumor Lysis Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK518985/",
-      "says": "Rasburicase continues to degrade uric acid in the specimen unless the sample is handled correctly. The potassium is followed separately."
+      "says": "If you give rasburicase, the uric-acid sample has to be handled so the drug does not keep working in the tube and fake a low result."
     },
     "number": 12,
     "id": "usmle-qb-s3-012"
@@ -334,8 +329,8 @@
       "Aspirin is added when the diagnosis is secure.",
       "Hydroxyurea is for the high-risk patient, written as a planned drug, not a one-time dose.",
       "Tell the patient to report erythromelalgia and clots.",
-      "JAK2 V617F is the usual mutation. EPO is low. A high EPO is secondary erythrocytosis.",
-      "Phlebotomy target is hematocrit under 45%. Do not apply that target to hypoxic lung disease."
+      "A high EPO is secondary erythrocytosis.",
+      "Do not apply that target to hypoxic lung disease."
     ],
     "miss": "Phlebotomizing a patient with COPD and a high EPO down to a hematocrit of 40.",
     "diagram": "pv-hct",
@@ -344,7 +339,7 @@
       "name": "StatPearls. Polycythemia Vera.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557660/",
-      "says": "Phlebotomy targets a hematocrit below 45% in polycythemia vera and is not the treatment of secondary erythrocytosis."
+      "says": "Order phlebotomy for polycythemia vera toward a hematocrit under 45%, and do not apply that target to a hypoxic patient with a high erythropoietin."
     },
     "number": 13,
     "id": "usmle-qb-s3-013"
@@ -361,7 +356,6 @@
       "The blood bank knows this patient can bleed.",
       "Differentiation syndrome is fever and infiltrates after the drug. Do not call it pneumonia and stop the drug without a specialist.",
       "The genetic test is sent. It is not the start time.",
-      "Auer rods are myeloid. APL is t(15;17) and drops fibrinogen.",
       "Start all-trans retinoic acid when the smear fits. Do not wait for the karyotype. Recheck fibrinogen the same day."
     ],
     "miss": "Scheduling the bone-marrow biopsy for Monday and the drug for after the result.",
@@ -371,7 +365,7 @@
       "name": "StatPearls. Acute Myeloid Leukemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK507875/",
-      "says": "All-trans retinoic acid and coagulopathy monitoring start when the diagnosis is suspected, not when genetics return."
+      "says": "For suspected acute promyelocytic leukemia, order all-trans retinoic acid and a fibrinogen now, and recheck the fibrinogen on the same shift."
     },
     "number": 14,
     "id": "usmle-qb-s3-014"
@@ -387,9 +381,7 @@
     "lines": [
       "The hemolysis drug is not delayed for a life-threatening clot, and the vaccine is not forgotten.",
       "Iron is replaced if the urine has been losing it.",
-      "Anticoagulation alone is not the whole plan.",
-      "C3 deficiency causes severe pyogenic infection. C5\u2013C9 deficiency causes Neisseria infection.",
-      "Hereditary angioedema is C1-inhibitor deficiency: low C4, bradykinin edema, and no response to antihistamines."
+      "Anticoagulation alone is not the whole plan."
     ],
     "miss": "Starting eculizumab on Friday and leaving the vaccine for a clinic that does not exist.",
     "diagram": null,
@@ -398,7 +390,7 @@
       "name": "StatPearls. Paroxysmal Nocturnal Hemoglobinuria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562292/",
-      "says": "Complement inhibition requires meningococcal vaccination because terminal-complement defense is blocked."
+      "says": "Before or as a complement inhibitor starts for PNH, order meningococcal vaccination. The drug blocks the defense against Neisseria."
     },
     "number": 15,
     "id": "usmle-qb-s3-015"
@@ -425,7 +417,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "The unit is stopped and returned with a new specimen. It is not restarted."
+      "says": "The order set for a suspected hemolytic reaction is: stop the transfusion, keep the bag and tubing, send a new sample, and do not restart that unit."
     },
     "number": 16,
     "id": "usmle-qb-s3-016"
@@ -452,7 +444,7 @@
       "name": "StatPearls. Multiple Myeloma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534764/",
-      "says": "Volume resuscitation treats the hypercalcemia of myeloma. Antiresorptive therapy is added for bone disease after the patient is moving urine."
+      "says": "Severe hypercalcemia from myeloma is saline first. A bisphosphonate is ordered for the bone disease, not as the only drug in a dehydrated patient."
     },
     "number": 17,
     "id": "usmle-qb-s3-017"
@@ -479,7 +471,7 @@
       "name": "StatPearls. Aplastic Anemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
-      "says": "Transfusions are minimized and family-donor blood is avoided when hematopoietic transplant is a possibility."
+      "says": "In a young patient with aplastic anemia who may be transplanted, transfuse for symptoms and avoid blood from family donors, who can sensitize the recipient."
     },
     "number": 18,
     "id": "usmle-qb-s3-018"
@@ -575,7 +567,7 @@
       "The next test is a lumbar puncture or a vascular study, chosen by timing.",
       "Do not give a triptan to a headache you have not cleared.",
       "Document the time the pain became maximal.",
-      "Maximal at onset means noncontrast CT before any migraine drug. A negative CT in the first 6 hours does not close a subarachnoid hemorrhage."
+      "Maximal at onset means noncontrast CT before any migraine drug."
     ],
     "miss": "Discharging a negative CT at hour two with a sumatriptan prescription.",
     "diagram": null,
@@ -584,7 +576,7 @@
       "name": "StatPearls. Thunderclap Headache.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560629/",
-      "says": "CT is immediate. A negative early CT does not complete the exclusion of subarachnoid hemorrhage."
+      "says": "Order a noncontrast head CT before any migraine drug for a headache that peaked at onset. If it is negative in the first hours, order the next test rather than a discharge."
     },
     "number": 22,
     "id": "usmle-qb-s3-022"
@@ -628,8 +620,8 @@
       "A rising CO2 is late.",
       "IVIG or exchange is ordered the day you make the diagnosis.",
       "Steroids are not on the order set.",
-      "Follow vital capacity and negative inspiratory force. Intubate as vital capacity falls toward 15\u201320 mL/kg. A rising CO2 is late.",
-      "IVIG or plasma exchange is ordered the day you diagnose Guillain-Barr\u00e9. Prednisone is not on the order set. More than about 10 white cells in the CSF means a different disease."
+      "Follow vital capacity and negative inspiratory force.",
+      "IVIG or plasma exchange is ordered the day you diagnose Guillain-Barr\u00e9. Prednisone is not on the order set."
     ],
     "miss": "Checking a chest film instead of a vital capacity.",
     "diagram": "gb-vc",
@@ -638,7 +630,7 @@
       "name": "StatPearls. Guillain-Barre Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532254/",
-      "says": "Serial respiratory mechanics detect diaphragm failure early. Immunoglobulin or exchange is ordered, and steroids are not."
+      "says": "In Guillain-Barr\u00e9 syndrome, order vital capacity and negative inspiratory force on a schedule. Intubate when those numbers fall, not when the patient arrests."
     },
     "number": 24,
     "id": "usmle-qb-s3-024"
@@ -665,7 +657,7 @@
       "name": "StatPearls. Multiple Sclerosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499849/",
-      "says": "Pseudo-relapse from infection is excluded before a flare is treated with corticosteroids."
+      "says": "Before you order a high-dose steroid for a supposed flare, order a search for infection. A urinary infection can revive old symptoms."
     },
     "number": 25,
     "id": "usmle-qb-s3-025"
@@ -692,7 +684,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "Home timing of levodopa is continued in the hospital. Dopamine-blocking antiemetics are avoided."
+      "says": "In the hospital, order carbidopa-levodopa at the patient's home times. A missed dose causes rigidity that looks like a new illness."
     },
     "number": 26,
     "id": "usmle-qb-s3-026"
@@ -709,8 +701,8 @@
       "Radiation oncology or spine surgery is called when the MRI confirms compression.",
       "Plain films are not the test.",
       "A bladder scan documents the retention.",
-      "Dexamethasone immediately, often 10 mg IV, then MRI. Plain films do not clear the cord.",
-      "Bilateral weakness, a sensory level, or new retention is the syndrome. Decompress. Do not wait for full cancer staging."
+      "Bilateral weakness, a sensory level, or new retention is the syndrome. Decompress. Do not wait for full cancer staging.",
+      "Plain films do not clear the cord."
     ],
     "miss": "Scheduling the MRI for next week and a clinic visit.",
     "diagram": "cord-dex",
@@ -719,7 +711,7 @@
       "name": "StatPearls. Spinal Cord Compression.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557604/",
-      "says": "Dexamethasone and same-day MRI are the orders. Decompression is arranged from the result."
+      "says": "Order dexamethasone and an MRI today for back pain with leg weakness, a sensory level, or new urinary retention. The oncology staging can wait."
     },
     "number": 27,
     "id": "usmle-qb-s3-027"
@@ -736,7 +728,6 @@
       "If atrial fibrillation is found, the drug is an anticoagulant, not aspirin.",
       "Carotid imaging is ordered before or immediately after discharge.",
       "Driving and the next symptom are written in the instructions.",
-      "ABCD2 and, more importantly, the cause: start an antithrombotic today, image the carotid, and look for atrial fibrillation.",
       "If atrial fibrillation is found, the drug is an anticoagulant. A resolved deficit does not mean the risk resolved. Follow-up is days, not months."
     ],
     "miss": "Discharging on aspirin with a neurology appointment in three months and no carotid study.",
@@ -746,7 +737,7 @@
       "name": "StatPearls. Transient Ischemic Attack.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459143/",
-      "says": "Antithrombotic therapy and urgent vascular and cardiac evaluation are the discharge plan."
+      "says": "A TIA discharge order includes an antithrombotic, a statin if atherosclerotic disease is the cause, and a follow-up measured in days, not months."
     },
     "number": 28,
     "id": "usmle-qb-s3-028"
@@ -773,7 +764,7 @@
       "name": "StatPearls. Horner Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500000/",
-      "says": "Acute painful Horner syndrome is imaged the same day for dissection. The lung apex is included when smoking is the history."
+      "says": "Order vascular imaging the day you diagnose a painful Horner syndrome. A chest image that includes the apex is added for a smoker."
     },
     "number": 29,
     "id": "usmle-qb-s3-029"
@@ -790,8 +781,7 @@
       "Do not prescribe a triptan and an opioid together as the plan.",
       "A first headache after age 50 is not labeled migraine without a thought.",
       "Pregnancy status is checked before the drug.",
-      "A triptan is contraindicated in coronary disease, uncontrolled hypertension, and within 24 hours of another triptan or an ergot.",
-      "Medication-overuse headache follows simple analgesics on 15 or more days a month, or triptans or opioids on 10 or more days. The treatment is to stop the drug, not to raise the dose."
+      "The treatment is to stop the drug, not to raise the dose."
     ],
     "miss": "Refilling a daily combination analgesic and a triptan with no limit.",
     "diagram": null,
@@ -800,7 +790,7 @@
       "name": "StatPearls. Migraine Headache.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560787/",
-      "says": "Discharge instructions limit acute medication frequency to prevent medication-overuse headache and name the reasons to return."
+      "says": "A migraine discharge names the acute drug, the limit per week, and the red flags that mean come back. Daily painkillers create the next headache."
     },
     "number": 30,
     "id": "usmle-qb-s3-030"
@@ -845,7 +835,7 @@
       "The ear, the sinus, and the heart are examined.",
       "A small abscess in a stable patient can be antibiotics and a short-interval scan, written as a plan.",
       "Image before the lumbar puncture when a focal sign or papilledema is present.",
-      "Contiguous sinus or ear source is often streptococci. Drain collections around 2.5 cm or larger, or any collection with mass effect."
+      "Contiguous sinus or ear source is often streptococci."
     ],
     "miss": "Ordering a lumbar puncture for a ring-enhancing lesion with a midline shift.",
     "diagram": null,
@@ -854,7 +844,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "Imaging, source-directed antibiotics, and surgical consultation are the orders. Lumbar puncture is avoided."
+      "says": "Order antibiotics that cover the source and a surgical consult. Do not order a lumbar puncture as the diagnostic test."
     },
     "number": 32,
     "id": "usmle-qb-s3-032"
@@ -881,7 +871,7 @@
       "name": "StatPearls. Lithium Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499992/",
-      "says": "Lithium is held, volume is restored, interacting drugs are stopped, and dialysis is reserved for severe toxicity."
+      "says": "Hold lithium, start saline if the patient is dry, and time the level so you do not sample during the distribution phase and undercall the toxicity."
     },
     "number": 33,
     "id": "usmle-qb-s3-033"
@@ -908,7 +898,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "All serotonergic agents are stopped immediately. Benzodiazepines and cooling are the supportive orders."
+      "says": "The order is to discontinue every serotonergic drug on tonight's list, including the linezolid or the tramadol that was just added."
     },
     "number": 34,
     "id": "usmle-qb-s3-034"
@@ -934,7 +924,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "The antagonist is stopped, creatine kinase and temperature are monitored, and cooling and fluids are ordered."
+      "says": "Discontinue the antipsychotic and order a creatine kinase, a temperature, and cooling. Do not order another dose for agitation."
     },
     "number": 35,
     "id": "usmle-qb-s3-035"
@@ -948,20 +938,19 @@
     "open": false,
     "lead": "Discharge Bell palsy with a corticosteroid started today and instructions to lubricate the eye that does not close, including at night.",
     "lines": [
-      "Forehead sparing cancels the discharge and starts a stroke evaluation.",
-      "Ear vesicles change the drug plan to include antiviral therapy for zoster.",
-      "Tell the patient when to return if the eye hurts.",
-      "Forehead weakness means the lesion is peripheral. Forehead sparing is a central lesion and a stroke pathway.",
-      "Prednisone within 72 hours. Tape or lubricate the eye that does not close, including overnight."
+      "Oral corticosteroids are strongly recommended within 72 hours of onset of peripheral facial nerve palsy.",
+      "Antivirals may be added. They are not a substitute for the corticosteroid.",
+      "Routine testing is unnecessary for a typical presentation. Atypical features are the reason to test further.",
+      "The 2026 facial-nerve-palsy guideline is the source for that 72-hour corticosteroid recommendation."
     ],
-    "miss": "Discharging without eye protection because the smile is the complaint.",
+    "miss": "Starting an antiviral without a corticosteroid, or starting the corticosteroid after 72 hours as if the window were still open.",
     "diagram": "bell-steroid",
     "diagramAlt": "Bell palsy, first 72 hours. Forehead involved = peripheral nerve Prednisone early. Lubricate the eye Forehead spared = stroke pathway",
     "source": {
-      "name": "StatPearls. Bell Palsy.",
+      "name": "Clinical practice guideline for the evaluation and management of facial nerve palsy.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482290/",
-      "says": "Early corticosteroids and corneal protection are the discharge plan. Forehead sparing is not discharged as Bell palsy."
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42163702/",
+      "says": "Oral corticosteroids are strongly recommended within 72 hours of symptom onset for peripheral facial nerve palsy. Antivirals may be added. Routine testing is unnecessary for a typical presentation."
     },
     "number": 36,
     "id": "usmle-qb-s3-036"
@@ -988,7 +977,7 @@
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Cerebellar hemorrhage is admitted where evacuation can happen. Neurosurgery is involved at diagnosis."
+      "says": "Admit a cerebellar hemorrhage to a setting that can operate, and call neurosurgery when you order the CT, not the next morning."
     },
     "number": 37,
     "id": "usmle-qb-s3-037"
@@ -1015,7 +1004,7 @@
       "name": "StatPearls. Epidural Hematoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK518982/",
-      "says": "Deterioration triggers reversal, blood availability, and evacuation. Observation is only for a stable, accepted patient."
+      "says": "The orders for a deteriorating epidural hematoma are reversal of anticoagulation, a type and screen, and the operating room."
     },
     "number": 38,
     "id": "usmle-qb-s3-038"
@@ -1042,7 +1031,7 @@
       "name": "StatPearls. Subdural Hematoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532970/",
-      "says": "Anticoagulation is reversed and restarted only under a plan. Mass effect or worsening cancels observation."
+      "says": "If a small subdural hematoma is discharged or observed, the anticoagulant is reversed and a written plan says when it may restart and who rechecks the scan."
     },
     "number": 39,
     "id": "usmle-qb-s3-039"
@@ -1059,7 +1048,6 @@
       "Document pain with passive stretch.",
       "A present pulse is written down so nobody waits for it to vanish.",
       "The limb is kept at the level of the heart, not dangling and not forgotten.",
-      "Pain on passive stretch. A delta pressure under about 30 mm Hg (diastolic minus compartment) is an indication to open.",
       "Pulselessness is late. Remove the cast and call for fasciotomy. More opioid is not the treatment."
     ],
     "miss": "Increasing the morphine and leaving the tight cast on until morning rounds.",
@@ -1069,7 +1057,7 @@
       "name": "StatPearls. Acute Compartment Syndrome and Fasciotomy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK556153/",
-      "says": "External compression is removed immediately and fasciotomy is arranged. Analgesia is adjunctive."
+      "says": "The order is to bivalve or remove the cast and to call the surgeon for fasciotomy. Analgesia is given and does not replace the call."
     },
     "number": 40,
     "id": "usmle-qb-s3-040"
@@ -1086,7 +1074,6 @@
       "Delirium precautions are on the order set: no diphenhydramine, glasses on, catheter out.",
       "A fragility fracture gets an osteoporosis treatment plan before discharge.",
       "Consent and the medical issues that truly delay surgery are listed, not a vague clearance.",
-      "Operate within about 24\u201348 hours once the patient is medically ready. Delay past that raises complications.",
       "Prophylax against venous thromboembolism. A fragility fracture starts osteoporosis treatment before discharge. Remove the urinary catheter."
     ],
     "miss": "Waiting five days for every consultant to say the word cleared.",
@@ -1096,7 +1083,7 @@
       "name": "StatPearls. Hip Fracture Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557514/",
-      "says": "Early surgery, analgesia, and clot prophylaxis are the admission orders. Osteoporosis treatment is arranged before discharge."
+      "says": "Write pain control, venous-thromboembolism prophylaxis, and a surgical plan within about 48 hours for a medically ready hip fracture."
     },
     "number": 41,
     "id": "usmle-qb-s3-041"
@@ -1123,7 +1110,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "Antibiotics and tetanus prophylaxis are immediate. Operative irrigation is the wound plan."
+      "says": "An open fracture order is a stat antibiotic, a tetanus update, a sterile dressing, and the operating room for irrigation."
     },
     "number": 42,
     "id": "usmle-qb-s3-042"
@@ -1140,7 +1127,6 @@
       "A prosthetic joint is a different order: do not start a short oral course.",
       "Gonorrhea swabs are added when the history fits.",
       "Weight-bearing status is written so the joint is protected.",
-      "Tap before antibiotics if the patient is stable. White cells in the fluid often over 50,000. Staphylococcus aureus is the native-joint organism to cover.",
       "Then wash the joint. Gonorrhea is the exception in a young sexually active patient. A prosthetic joint is a biofilm operation, not a short oral course."
     ],
     "miss": "Discharging a hot prosthetic knee on oral cephalexin.",
@@ -1150,7 +1136,7 @@
       "name": "StatPearls. Septic Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538176/",
-      "says": "Aspiration precedes antibiotics in stable patients. Washout and culture-directed antibiotics follow."
+      "says": "Order the aspiration before the antibiotic if the patient is stable, then surgical washout, then narrow the antibiotic to the culture."
     },
     "number": 43,
     "id": "usmle-qb-s3-043"
@@ -1217,20 +1203,19 @@
     "open": false,
     "lead": "Order high-dose glucocorticoid tonight if vision is threatened, and schedule the temporal-artery biopsy within days so the histology is not lost.",
     "lines": [
-      "Do not wait for the sedimentation rate.",
-      "Ask about the other eye and the jaw.",
-      "The biopsy is not cancelled because the steroid has started.",
-      "Start prednisone 40\u201360 mg daily the day you suspect it. Use pulse intravenous steroids if vision is already threatened. Do not wait for the ESR.",
-      "Biopsy within about 7 days still shows arteritis after steroids have started. A normal ESR does not exclude the disease. Ask about the other eye."
+      "Newly diagnosed giant-cell arteritis without cranial ischemia starts with high-dose oral glucocorticoids, not routine IV pulse therapy.",
+      "Threatened vision loss is the setting in which the ACR conditionally recommends IV pulse glucocorticoids instead.",
+      "Obtain the temporal-artery biopsy within 2 weeks of starting oral glucocorticoids. Histology can persist, but later than 2 weeks is not the recommendation.",
+      "Prefer a biopsy specimen longer than 1 cm. A unilateral biopsy is the initial recommendation."
     ],
-    "miss": "Scheduling the biopsy in three weeks and the steroid after the result.",
+    "miss": "Delaying glucocorticoids until the biopsy returns, or waiting past 2 weeks to biopsy after steroids have started.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Giant Cell Arteritis (Temporal Arteritis).",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459376/",
-      "says": "Glucocorticoids start immediately when vision is at risk. Biopsy is arranged promptly and is not delayed by treatment."
+      "name": "2021 ACR/Vasculitis Foundation guideline for giant cell arteritis.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34235884/",
+      "says": "Newly diagnosed GCA without cranial ischemia is started on high-dose oral glucocorticoids rather than IV pulse therapy. Threatened vision loss is a setting for IV pulse glucocorticoids. Obtain the temporal-artery biopsy within 2 weeks of starting oral glucocorticoids, and prefer a specimen longer than 1 cm."
     },
     "number": 46,
     "id": "usmle-qb-s3-046"
@@ -1247,8 +1232,7 @@
       "Mark the skin so spread is visible.",
       "Surgery is called by name, not as a routine consult for the morning.",
       "Fluids and a lactate are ordered because these patients are in shock.",
-      "Pain past the visible erythema, toxicity, and a lactate that is rising. Crepitus is late and not required.",
-      "Operating room plus broad antibiotics the same hour. A 24-hour antibiotic trial is the miss."
+      "Pain past the visible erythema, toxicity, and a lactate that is rising. Crepitus is late and not required."
     ],
     "miss": "Admitting to medicine for intravenous cefazolin and a surgery consult in the morning.",
     "diagram": null,
@@ -1257,7 +1241,7 @@
       "name": "StatPearls. Necrotizing Fasciitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430756/",
-      "says": "Immediate operative debridement and broad antibiotics are ordered together."
+      "says": "Write an operating-room booking and broad antibiotics at the same time. Do not write a 24-hour trial."
     },
     "number": 47,
     "id": "usmle-qb-s3-047"
@@ -1274,7 +1258,6 @@
       "A TNF inhibitor is a follow-up decision, not the emergency-department start.",
       "Do not prescribe prolonged bed rest.",
       "Chest pain in this disease can be aortitis and is not ignored.",
-      "Onset under 45, night pain, stiffness over 30 minutes, better with activity. HLA-B27 is supportive only.",
       "An NSAID is first-line. A red painful eye is acute anterior uveitis and is same-day ophthalmology."
     ],
     "miss": "Prescribing two weeks of bed rest and no warning about the eye.",
@@ -1284,7 +1267,7 @@
       "name": "StatPearls. Ankylosing Spondylitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470173/",
-      "says": "NSAIDs and activity are the discharge treatment. Acute uveitis is a same-day return precaution."
+      "says": "Discharge with an NSAID, a plan to stay active, and instructions to seek care the same day for a red painful eye."
     },
     "number": 48,
     "id": "usmle-qb-s3-048"
@@ -1311,7 +1294,7 @@
       "name": "StatPearls. Marfan Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
-      "says": "Aortic imaging and blood-pressure treatment are arranged. Activity and pregnancy counseling are part of the plan."
+      "says": "A new Marfan diagnosis is discharged with a dated aortic-imaging appointment and a blood-pressure plan, not with reassurance about height."
     },
     "number": 49,
     "id": "usmle-qb-s3-049"
@@ -1328,7 +1311,6 @@
       "Infection of denuded skin is watched.",
       "A steroid-sparing drug is a follow-up, not a reason to delay the steroid.",
       "Bullous pemphigoid is not given the same intensity by reflex.",
-      "Flaccid bullae, positive Nikolsky sign, desmoglein 3, net-like immunofluorescence, and almost always mouth erosions.",
       "Systemic corticosteroid plus a steroid-sparing drug. Topical therapy alone does not treat widespread disease."
     ],
     "miss": "Discharging widespread skin loss with a topical cream.",
@@ -1338,7 +1320,7 @@
       "name": "StatPearls. Pemphigus Vulgaris.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
-      "says": "Widespread disease needs systemic steroids, fluids, and wound care. Oral involvement affects hydration."
+      "says": "Order fluids, wound care, and systemic steroids for widespread pemphigus. The mouth is inspected so the patient can actually drink."
     },
     "number": 50,
     "id": "usmle-qb-s3-050"
@@ -1355,8 +1337,8 @@
       "Breathlessness gets imaging before discharge if it is new.",
       "The steroid is not the whole plan if the weakness is severe.",
       "A statin is stopped if it is a possible contributor, and the rash is still explained.",
-      "Gottron papules and a heliotrope rash plus proximal weakness. CK is high. Anti-Jo-1 is the lung antibody.",
-      "Adults get a cancer search. Immunosuppression treats the muscle. A statin myopathy has no rash."
+      "Adults get a cancer search. Immunosuppression treats the muscle. A statin myopathy has no rash.",
+      "Gottron papules and a heliotrope rash plus proximal weakness."
     ],
     "miss": "Prescribing prednisone with no follow-up and no cancer plan.",
     "diagram": null,
@@ -1365,7 +1347,7 @@
       "name": "StatPearls. Dermatomyositis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
-      "says": "Immunosuppression is started and malignancy screening is arranged for adult disease."
+      "says": "An adult with new dermatomyositis leaves with immunosuppression started or arranged and a written cancer-screening plan."
     },
     "number": 51,
     "id": "usmle-qb-s3-051"
@@ -1577,7 +1559,7 @@
       "name": "StatPearls. Abdominal Aortic Aneurysm.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470237/",
-      "says": "Rupture orders are resuscitation without over-resuscitation, blood availability, and immediate repair."
+      "says": "Order a type and screen, large-bore access, and immediate surgical or endovascular consultation for a suspected rupture. Do not order a clinic ultrasound."
     },
     "number": 59,
     "id": "usmle-qb-s3-059"
@@ -1604,7 +1586,7 @@
       "name": "StatPearls. Cardiac Tamponade.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/",
-      "says": "Fluids temporize and drainage treats. Diuretics are contraindicated."
+      "says": "Order a fluid bolus as a bridge and pericardial drainage. Do not order furosemide."
     },
     "number": 60,
     "id": "usmle-qb-s3-060"
@@ -1621,7 +1603,6 @@
       "Do not order amiodarone for pause-dependent polymorphic tachycardia with a long QT.",
       "The offending antibiotic or antiemetic is named on the allergy or avoid list.",
       "A congenital long QT gets a specialist before discharge if the patient presented with syncope.",
-      "Pause-dependent polymorphic VT. Intravenous magnesium 1\u20132 g even if the serum magnesium is normal. Replete potassium.",
       "Stop the QT-prolonging drug. Do not give amiodarone or another QT-prolonging antiarrhythmic for torsades."
     ],
     "miss": "Ordering amiodarone and continuing the azithromycin.",
@@ -1631,7 +1612,7 @@
       "name": "StatPearls. Long QT Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441860/",
-      "says": "Magnesium and potassium repletion are ordered, QT-prolonging drugs are stopped, and unstable patients are defibrillated."
+      "says": "Order intravenous magnesium, a potassium, and discontinuation of the QT-prolonging drug. Defibrillate if the patient is unstable."
     },
     "number": 61,
     "id": "usmle-qb-s3-061"
@@ -1685,7 +1666,7 @@
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
-      "says": "Knee-chest positioning, oxygen, and measures that raise systemic resistance are the orders. Vasodilators are avoided."
+      "says": "Order calming, knee-chest position, oxygen, and a vasoconstrictor if the spell continues. Do not order a vasodilator."
     },
     "number": 63,
     "id": "usmle-qb-s3-063"
@@ -1712,7 +1693,7 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "Lifelong blood-pressure checks include the legs. Residual coarctation and a bicuspid valve remain part of adult care."
+      "says": "After coarctation repair, every visit includes a leg blood pressure and a question about headaches and exercise. Residual or recurrent narrowing is how these patients present as adults."
     },
     "number": 64,
     "id": "usmle-qb-s3-064"
@@ -1782,8 +1763,7 @@
       "The valve findings are in the summary.",
       "A new sore throat is still treated and is not a reason to stop prophylaxis.",
       "Dental care is encouraged. Prophylaxis for dental work is a separate, narrower indication.",
-      "Mitral valve is the most affected. Jones criteria diagnose acute rheumatic fever. The chronic valve lesion is years later.",
-      "Secondary prevention is scheduled penicillin for years, longer if the heart was involved. A 10-day course is treatment of pharyngitis, not prophylaxis."
+      "Mitral valve is the most affected. Jones criteria diagnose acute rheumatic fever. The chronic valve lesion is years later."
     ],
     "miss": "Writing take until gone on a 10-day amoxicillin course and no further plan.",
     "diagram": "rheumatic-pcn",
@@ -1792,7 +1772,7 @@
       "name": "StatPearls. Rheumatic Heart Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "Secondary prophylaxis is scheduled and prolonged. It is not a single treatment course for pharyngitis."
+      "says": "Write the secondary-prevention penicillin as a scheduled drug with a duration, not as a one-time course."
     },
     "number": 67,
     "id": "usmle-qb-s3-067"
@@ -1863,7 +1843,6 @@
       "The ejection fraction is on the summary so the drugs are not cleaned off.",
       "A viral or chemotherapy cause is named if that is the history.",
       "Follow-up imaging is dated.",
-      "Low ejection fraction and an S3. Alcohol, doxorubicin, and viral myocarditis are the named nonischemic causes.",
       "If alcohol is the cause, stopping it is the disease-modifying order. A low EF still gets the four-drug HFrEF regimen."
     ],
     "miss": "A diuretic prescription and no mention of alcohol.",
@@ -1873,7 +1852,7 @@
       "name": "StatPearls. Dilated Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441911/",
-      "says": "Alcohol cessation is an explicit discharge instruction when alcohol is the cause. Reduced ejection fraction stays on guideline-directed therapy."
+      "says": "If alcohol caused the dilated cardiomyopathy, the discharge order says stop drinking, in plain words, and continues the heart-failure drugs if the ejection fraction is low."
     },
     "number": 70,
     "id": "usmle-qb-s3-070"
@@ -1900,7 +1879,7 @@
       "name": "StatPearls. Restrictive Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "Low voltage with a thick ventricle prompts a light-chain evaluation for amyloid. Diuresis does not replace that test."
+      "says": "A thick ventricle with low electrocardiographic voltage gets a light-chain order before you keep increasing the diuretic. Amyloid is the diagnosis you are missing."
     },
     "number": 71,
     "id": "usmle-qb-s3-071"
@@ -2074,19 +2053,19 @@
     "open": false,
     "lead": "Order a bolus of hypertonic saline for a seizure from hyponatremia and recheck the sodium immediately. Do not order a slow correction as the only order.",
     "lines": [
-      "The daily limit is still respected after the seizure stops.",
-      "Fluid restriction is the order for the stable SIADH patient, not for the seizing one.",
-      "The cause, a drug or a cancer, is on the problem list.",
-      "A seizure from hyponatremia: 100 mL of 3% saline over 10 minutes, then recheck. Repeat up to two more boluses if symptoms persist."
+      "Severely symptomatic hyponatraemia: 150 mL of 3% saline over 20 minutes, then recheck the sodium.",
+      "A second 150 mL over the next 20 minutes is the suggested repeat if symptoms persist.",
+      "Limit the rise to 10 mmol/L in the first 24 hours and 8 mmol/L in each 24 hours after that, until the sodium is 130 mmol/L.",
+      "Stop the hypertonic infusion once symptoms improve, the sodium has risen 10 mmol/L in total, or the sodium reaches 130 mmol/L, whichever is first."
     ],
-    "miss": "Ordering fluid restriction and a sodium in the morning for a seizing patient.",
+    "miss": "Giving 100 mL of 3% saline, or aiming for a rise faster than 10 mmol/L in the first 24 hours.",
     "diagram": "na-bolus",
-    "diagramAlt": "Severe hyponatremia. Seizure: 100 mL 3% saline, then recheck Limit the 24-hour rise, often \u22648 mEq Fluid restriction is for the stable patient",
+    "diagramAlt": "Severely symptomatic hyponatremia. 150 mL of 3% saline over 20 minutes Recheck, and a second 150 mL can follow Limit the rise: 10 mmol/L in 24 hours",
     "source": {
-      "name": "StatPearls. Syndrome of Inappropriate Antidiuretic Hormone Secretion.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK507777/",
-      "says": "Severe symptoms are treated with a hypertonic bolus and an immediate recheck. Overcorrection is then avoided."
+      "name": "European clinical practice guideline on diagnosis and treatment of hyponatraemia.",
+      "year": "2014",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24569125/",
+      "says": "For severely symptomatic hyponatraemia, infuse 150 mL of 3% hypertonic saline over 20 minutes, recheck the sodium, and a second 150 mL may be given. Limit the rise to 10 mmol/L in the first 24 hours and 8 mmol/L in every 24 hours after that, until the sodium reaches 130 mmol/L."
     },
     "number": 78,
     "id": "usmle-qb-s3-078"
@@ -2103,8 +2082,8 @@
       "A sodium is checked after each desmopressin dose.",
       "Nephrogenic disease from lithium does not get escalating desmopressin.",
       "The urine output is recorded hourly until it is stable.",
-      "Urine osmolality under 300 with serum osmolality over 300 is the water-loss picture. Desmopressin concentrates the urine only if the cause is central.",
-      "Nephrogenic disease, including lithium, does not respond. Do not fluid-restrict a hypernatremic patient."
+      "Nephrogenic disease, including lithium, does not respond. Do not fluid-restrict a hypernatremic patient.",
+      "Desmopressin concentrates the urine only if the cause is central."
     ],
     "miss": "Restricting a hypernatremic patient to 1 liter a day.",
     "diagram": null,
@@ -2113,7 +2092,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "Water replacement is ordered. Desmopressin is reserved for central disease and is followed with sodium checks."
+      "says": "Order free access to water or a matched intravenous replacement, and desmopressin only if the trial showed a central cause."
     },
     "number": 79,
     "id": "usmle-qb-s3-079"
@@ -2130,8 +2109,7 @@
       "Oxygen and large-bore access are ordered with it.",
       "The side is written in the order so the wrong side is not opened.",
       "A stable simple pneumothorax can have the film.",
-      "Trachea shifts away from the silent side. Neck veins up. Pressure down. Decompress, then place a chest tube.",
-      "A chest film is for a stable simple pneumothorax. It is not the first order when the pressure is 70."
+      "Trachea shifts away from the silent side. Neck veins up. Pressure down. Decompress, then place a chest tube."
     ],
     "miss": "Ordering a two-view chest radiograph stat on a patient with a pressure of 70 and a shifted trachea.",
     "diagram": null,
@@ -2140,7 +2118,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Decompression and a chest tube are the orders. Imaging waits until the patient is stable."
+      "says": "Order needle or finger decompression and a chest tube. Do not order a chest film as the first order in a crashing patient."
     },
     "number": 80,
     "id": "usmle-qb-s3-080"
@@ -2221,7 +2199,7 @@
       "name": "StatPearls. Bronchiectasis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430810/",
-      "says": "Airway clearance is the discharge prescription. Antibiotics treat the current flare."
+      "says": "Discharge bronchiectasis with a written airway-clearance plan and an antibiotic only for this flare. Name the follow-up that looks for the cause."
     },
     "number": 83,
     "id": "usmle-qb-s3-083"
@@ -2248,7 +2226,7 @@
       "name": "StatPearls. Hypersensitivity Pneumonitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499918/",
-      "says": "Antigen removal is written into the discharge instructions. Steroids do not replace it."
+      "says": "The discharge instruction names the bird, the hot tub, or the barn to leave. A steroid prescription without that sentence is incomplete."
     },
     "number": 84,
     "id": "usmle-qb-s3-084"
@@ -2262,19 +2240,19 @@
     "open": false,
     "lead": "If the ECG shows peaked T waves or a wide QRS, order intravenous calcium first, then a shift, then a removal. A number without an ECG still gets a removal plan.",
     "lines": [
-      "Insulin and glucose shift potassium and can drop the glucose. Order a recheck.",
-      "Stop the spironolactone or the ACE inhibitor that caused it if the level is dangerous.",
-      "Dialysis is the order when the kidney cannot remove it and the level is severe.",
-      "Peaked T waves or a wide QRS: intravenous calcium first, then insulin with glucose to shift potassium, then a removal plan."
+      "An ECG comes with a serum potassium of 6.0 mmol/L or higher in hospital.",
+      "ECG changes: 30 mL of 10% calcium gluconate over 10 minutes, or 10 mL of 10% calcium chloride over 5 minutes if the patient is in resuscitation.",
+      "Then shift with 10 units of soluble insulin in 25 g of glucose, and recheck the glucose. Hypoglycemia is the harm of that step.",
+      "Calcium resonium is not the treatment of acute hyperkalemia. It is not the drug for a wide QRS."
     ],
-    "miss": "Ordering only kayexalate for a wide QRS.",
+    "miss": "Ordering only calcium resonium for a wide QRS.",
     "diagram": "hyperk-order",
-    "diagramAlt": "Hyperkalemia with ECG changes. Calcium gluconate first if QRS is wide Insulin + glucose shifts K inside Then remove K: diuretic, binder, or dialysis",
+    "diagramAlt": "Hyperkalemia with ECG changes. 30 mL 10% calcium gluconate over 10 min Then 10 units insulin in 25 g glucose Calcium resonium is not the acute treatment",
     "source": {
-      "name": "StatPearls. Hyperkalemia.",
+      "name": "UKKA clinical practice guideline. Management of hyperkalaemia in adults. July 2026 update.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470284/",
-      "says": "Intravenous calcium stabilizes the membrane when the ECG is changing. Shift and removal follow. The cause is stopped."
+      "url": "https://www.ukkidney.org/wp-content/uploads/drupal-archive/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+      "says": "If the ECG shows hyperkalemia, give 30 mL of 10% calcium gluconate over 10 minutes, or 10 mL of 10% calcium chloride over 5 minutes in resuscitation. Then give 10 units of soluble insulin in 25 g of glucose and monitor the glucose. Calcium resonium is not recommended for acute hyperkalemia."
     },
     "number": 85,
     "id": "usmle-qb-s3-085"
@@ -2291,7 +2269,6 @@
       "Oral is preferred when the ECG is quiet and the patient can swallow.",
       "Recheck after the infusion.",
       "The diuretic dose is changed on the same order.",
-      "Intravenous potassium is diluted and infused, typically no faster than 10 mEq/hour through a peripheral vein. It is never pushed.",
       "If potassium will not stay up, magnesium is low. Replace magnesium or the kidney keeps wasting potassium."
     ],
     "miss": "Writing potassium chloride 40 mEq IV push.",
@@ -2301,7 +2278,7 @@
       "name": "StatPearls. Hypokalemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482465/",
-      "says": "Potassium is infused, never pushed, and magnesium is replaced so the potassium is retained."
+      "says": "Order magnesium with the potassium, and order the intravenous potassium as an infusion with a rate. A push is not an order you write."
     },
     "number": 86,
     "id": "usmle-qb-s3-086"
@@ -2319,7 +2296,7 @@
       "A post-thyroidectomy patient has the calcium ordered on a schedule, not after the first twitch.",
       "Correct a low albumin before you treat a paper-low total calcium in a comfortable patient.",
       "Prolonged QT, Chvostek or Trousseau sign, tetany, or a seizure gets intravenous calcium. Recheck magnesium.",
-      "After thyroidectomy, check calcium on a schedule for 24\u201348 hours. A low albumin lowers total calcium without changing the ionized value."
+      "A low albumin lowers total calcium without changing the ionized value."
     ],
     "miss": "A one-time oral calcium for a seizing post-operative patient.",
     "diagram": "ca-qt",
@@ -2328,7 +2305,7 @@
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "Intravenous calcium is the order for severe symptoms. Magnesium is measured because deficiency prevents correction."
+      "says": "Order calcium gluconate for tetany, a seizure, or a long QT, and order a magnesium level with it."
     },
     "number": 87,
     "id": "usmle-qb-s3-087"
@@ -2345,8 +2322,7 @@
       "A reversible sedative is stopped.",
       "The chronic bicarbonate is respected so you do not overshoot.",
       "A blood gas is timed after the ventilation starts.",
-      "A rising PaCO2 and a falling pH need more alveolar ventilation. Oxygen does not remove CO2.",
-      "Noninvasive ventilation is first if the airway is protected and the patient is not in shock. Do not drive a chronic retainer to a PaCO2 of 40 in one hour."
+      "Noninvasive ventilation is first if the airway is protected and the patient is not in shock."
     ],
     "miss": "Turning the nasal cannula from 2 liters to 8 liters as the treatment of a pH of 7.15.",
     "diagram": "nippv",
@@ -2355,7 +2331,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "Ventilatory support is ordered for acute hypercapnic respiratory failure. Oxygen alone does not remove carbon dioxide."
+      "says": "Order noninvasive ventilation or intubation for an acidemic, hypercapnic patient who is tiring. Do not order only a higher oxygen flow."
     },
     "number": 88,
     "id": "usmle-qb-s3-088"
@@ -2372,7 +2348,6 @@
       "Stop the diuretic if it is still running and the patient is volume-down.",
       "A chloride is on the chemistry, not assumed.",
       "Acetazolamide is a selected order when volume cannot be given.",
-      "Urine chloride under 20 mEq/L is saline-responsive (vomiting, remote diuretic). Over 20 with hypertension is mineralocorticoid excess.",
       "Saline will not fix hyperaldosteronism. Potassium is low in both and is replaced."
     ],
     "miss": "A liter of saline for a hypertensive patient with a urine chloride of 40 and a renin that is suppressed.",
@@ -2382,7 +2357,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "Saline is ordered for chloride-responsive alkalosis. Mineralocorticoid excess is not treated with saline."
+      "says": "Order saline and potassium when the urine chloride is low. Do not order saline for a high urine chloride from aldosterone."
     },
     "number": 89,
     "id": "usmle-qb-s3-089"
@@ -2399,7 +2374,6 @@
       "Desmopressin is added only for proven central diabetes insipidus.",
       "The patient who can drink is allowed to.",
       "A sodium is on the morning labs and sooner if the replacement is intravenous.",
-      "Free-water deficit. Replace it so sodium falls by no more than about 0.5 mEq/L per hour, and recheck.",
       "Concentrated urine means the kidney is holding water and intake was the problem. Dilute urine is diabetes insipidus."
     ],
     "miss": "An open order for D5W at 250 mL an hour with no recheck.",
@@ -2409,7 +2383,7 @@
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
-      "says": "Free water is replaced gradually with scheduled sodium checks to avoid cerebral edema."
+      "says": "Order free-water replacement with a rate and a sodium check, not a single open bag. The drop is gradual."
     },
     "number": 90,
     "id": "usmle-qb-s3-090"
@@ -2436,7 +2410,7 @@
       "name": "StatPearls. Autosomal Dominant Polycystic Kidney Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532934/",
-      "says": "Sudden headache is imaged urgently because of aneurysm risk. Hypertension is treated. Biopsy is not the diagnostic test."
+      "says": "Order urgent brain imaging for a sudden severe headache in autosomal dominant polycystic kidney disease. The blood pressure is treated at the same visit."
     },
     "number": 91,
     "id": "usmle-qb-s3-091"
@@ -2453,8 +2427,7 @@
       "A CT or ultrasound is the image if you need to see it.",
       "Allopurinol is not the acute pain drug.",
       "Strain the urine and the follow-up is written.",
-      "Plain films miss uric acid stones. CT does not. They form when urine pH is low, often under 5.5.",
-      "Alkalinize the urine toward 6.5\u20137. Allopurinol is not the acute pain drug."
+      "Plain films miss uric acid stones."
     ],
     "miss": "Telling the patient the stone is gone because the KUB is negative.",
     "diagram": null,
@@ -2463,7 +2436,7 @@
       "name": "StatPearls. Uric Acid Nephrolithiasis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560726/",
-      "says": "Alkalinization and analgesia are the acute orders. Plain films do not exclude the stone."
+      "says": "Order urine alkalinization and pain control for a uric acid stone. Do not discharge on the basis of a clear abdominal film."
     },
     "number": 92,
     "id": "usmle-qb-s3-092"
@@ -2490,7 +2463,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Binders are prescribed with meals. Follow-up labs include calcium and phosphate."
+      "says": "Write the phosphate binder with meals, in those words. A bedtime-only instruction does not bind phosphate."
     },
     "number": 93,
     "id": "usmle-qb-s3-093"
@@ -2517,7 +2490,7 @@
       "name": "StatPearls. Renal Artery Stenosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
-      "says": "Creatinine is rechecked soon after renin-angiotensin blockade when the whole renal mass may sit behind a stenosis."
+      "says": "If you start an ACE inhibitor in suspected bilateral renal-artery stenosis or a solitary kidney, order a creatinine within days. A young woman with fibromuscular disease is referred for revascularization rather than stented by habit."
     },
     "number": 94,
     "id": "usmle-qb-s3-094"
@@ -2544,7 +2517,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "Intravenous antibiotics and source drainage are the admission orders."
+      "says": "Admit, order intravenous antibiotics, and consult urology or interventional radiology for drainage. Do not prescribe oral antibiotics and discharge."
     },
     "number": 95,
     "id": "usmle-qb-s3-095"
@@ -2615,7 +2588,6 @@
       "A neutrophil count of 250 or more is antibiotics now.",
       "Albumin is ordered if you remove more than 5 liters.",
       "A SAAG of 1.1 or more is portal hypertension and changes the differential.",
-      "Loops block NKCC2 and waste calcium and magnesium. Thiazides block NCC and decrease urine calcium.",
       "Acetazolamide in the proximal tubule causes a metabolic acidosis. Spironolactone and amiloride save potassium in the collecting duct."
     ],
     "miss": "Doubling the spironolactone over the phone for a new tense abdomen.",
@@ -2625,7 +2597,7 @@
       "name": "StatPearls. Ascites.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470482/",
-      "says": "Diagnostic paracentesis precedes a diuretic increase. Spontaneous bacterial peritonitis is treated when neutrophils are at least 250."
+      "says": "Order a diagnostic tap before you increase the diuretic for new or worsened ascites. Send a cell count, albumin, and a bedside-inoculated culture."
     },
     "number": 98,
     "id": "usmle-qb-s3-098"
@@ -2678,7 +2650,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "Jaundice moves the problem beyond the cystic duct. The bile duct has to be evaluated, and infection is treated while that happens."
+      "says": "Cholecystitis with jaundice is not a simple gallbladder. Order an evaluation of the duct before you treat it as an isolated cystic-duct stone."
     },
     "number": 100,
     "id": "usmle-qb-s3-100"
@@ -2695,7 +2667,6 @@
       "Pain control and nothing by mouth until surgery is the immediate order.",
       "Ultrasound is the image if it has not been done.",
       "Jaundice and hypotension move the diagnosis toward the duct and a different procedure.",
-      "Ultrasound: stones, wall thickening over 3\u20134 mm, and pericholecystic fluid. Early cholecystectomy, not a week of oral antibiotics as the plan.",
       "Jaundice means the stone may be in the duct. That is a different drainage than removing the gallbladder alone."
     ],
     "miss": "A 7-day antibiotic prescription and a clinic appointment for biliary colic that is actually cholecystitis.",
@@ -2705,7 +2676,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "Early cholecystectomy is the definitive order. Antibiotics are adjunctive."
+      "says": "Order a surgical consult for early cholecystectomy and antibiotics. Do not discharge a febrile, Murphy-positive patient on oral antibiotics as the definitive plan."
     },
     "number": 101,
     "id": "usmle-qb-s3-101"
@@ -2732,7 +2703,7 @@
       "name": "StatPearls. Small Bowel Obstruction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448079/",
-      "says": "Suction and fluids are the stable-patient orders. Peritonitis, fever, or rising lactate trigger immediate surgery."
+      "says": "Order nasogastric suction and fluids for a stable obstruction. Order an immediate surgical consult if there is fever, peritonitis, or a rising lactate."
     },
     "number": 102,
     "id": "usmle-qb-s3-102"
@@ -2758,7 +2729,7 @@
       "name": "StatPearls. Acute Mesenteric Ischemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431068/",
-      "says": "CT angiography and surgical consultation are immediate. A normal lactate does not delay them."
+      "says": "Order CT angiography and a surgical consult when the pain is out of proportion. Do not wait for the lactate to rise."
     },
     "number": 103,
     "id": "usmle-qb-s3-103"
@@ -2793,25 +2764,24 @@
     "step": "step-3",
     "system": "gastrointestinal",
     "group": "Gastrointestinal",
-    "title": "Severe colitis orders: admit, steroid, stop loperamide",
+    "title": "Severe ulcerative colitis is an inpatient decision",
     "read": "1 min",
     "open": false,
     "lead": "Admit severe ulcerative colitis, order a steroid, and discontinue loperamide and opioids. Order a stool study for C. difficile.",
     "lines": [
-      "A daily abdominal film is the order if the belly is distended.",
-      "Surgery is called early for a toxic megacolon.",
-      "The home mesalamine is not the treatment of this severity.",
-      "Continuous from the rectum, mucosa only, bloody stool. More than 6 bloody stools a day with fever is severe and is admitted.",
-      "Stop antimotility drugs. Test for C. difficile. A colon wider than 6 cm with toxicity is megacolon and a surgical call."
+      "The 2025 ACG update is the current practice guideline for ulcerative colitis in adults.",
+      "Use it instead of an older ACG edition when choosing management.",
+      "Stool-count cutoffs and a colon-diameter cutoff are not stated in this bite, because they were not confirmed in the guideline text reviewed for this pass.",
+      "A systemically ill patient is assessed under that guideline rather than continued on an unchanged outpatient plan."
     ],
-    "miss": "Discharging on loperamide for ten bloody stools a day.",
+    "miss": "Sending a systemically ill patient with ulcerative colitis home to continue the outpatient plan.",
     "diagram": "uc-toxic",
     "diagramAlt": "Severe ulcerative colitis. Admit. IV steroid Stop loperamide and opioids C. difficile test. Megacolon: call surgery",
     "source": {
-      "name": "StatPearls. Ulcerative Colitis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459282/",
-      "says": "Severe disease is admitted for corticosteroids. Antimotility drugs are stopped, and infection is excluded."
+      "name": "ACG clinical guideline update. Ulcerative colitis in adults.",
+      "year": "2025",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40701556/",
+      "says": "This is the American College of Gastroenterology's 2025 practice guideline for the management of ulcerative colitis in adults."
     },
     "number": 105,
     "id": "usmle-qb-s3-105"
@@ -2838,7 +2808,7 @@
       "name": "StatPearls. Achalasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "Aspiration risk leads to bowel rest and a definitive LES procedure. Acid suppression is not the treatment."
+      "says": "If the patient is aspirating, order nothing by mouth and a myotomy or dilation referral. Do not refill the proton-pump inhibitor as the treatment."
     },
     "number": 106,
     "id": "usmle-qb-s3-106"
@@ -2865,7 +2835,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "Enzymes are timed to meals. Alcohol cessation and evaluation of new jaundice are part of the order."
+      "says": "Write the enzyme with each meal and snack. Order alcohol cessation as a prescription-level instruction, not a suggestion in the last line."
     },
     "number": 107,
     "id": "usmle-qb-s3-107"
@@ -2892,7 +2862,7 @@
       "name": "StatPearls. Peptic Ulcer Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534792/",
-      "says": "Eradication therapy is prescribed and cure is confirmed. Acid suppression alone does not treat the infection."
+      "says": "Order a full eradication regimen and a test of cure. Do not order a proton-pump inhibitor alone for a positive test."
     },
     "number": 108,
     "id": "usmle-qb-s3-108"
@@ -2928,25 +2898,24 @@
     "step": "step-3",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Thyroid storm orders name the sequence",
+    "title": "Thyroid storm is a multimodality regimen",
     "read": "1 min",
     "open": false,
     "lead": "Order a beta blocker and a thionamide, and write iodine after the thionamide has been given. Order a glucocorticoid and treat the trigger.",
     "lines": [
-      "Do not order aspirin for the fever.",
-      "The iodine order has a start time, not a simultaneous start.",
-      "Cooling and monitoring are part of the set.",
-      "Order: beta blocker, thionamide, then iodine at least an hour later, plus a glucocorticoid. Iodine first supplies substrate.",
-      "Do not use aspirin. It can raise free hormone. Treat the trigger, often infection or surgery."
+      "Thyroid storm is a clinical diagnosis of severe thyrotoxicosis with systemic decompensation.",
+      "Treat with a beta blocker, an antithyroid drug, inorganic iodide, and a corticosteroid, together, plus supportive care.",
+      "Cool with acetaminophen. The ATA regimen names acetaminophen, not a single drug as the whole treatment.",
+      "A beta blocker alone is not the regimen."
     ],
-    "miss": "A single order for potassium iodide with no thionamide.",
+    "miss": "Treating thyroid storm with a beta blocker alone.",
     "diagram": "thyroid-seq",
     "diagramAlt": "Thyroid storm sequence. Beta blocker and thionamide first Iodine only after the block No aspirin for the fever",
     "source": {
-      "name": "StatPearls. Thyroid Storm.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448095/",
-      "says": "The order sequence is beta blockade and a thionamide, then iodine, plus a glucocorticoid."
+      "name": "2016 ATA guideline for hyperthyroidism and other causes of thyrotoxicosis.",
+      "year": "2016",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
+      "says": "Thyroid storm is treated with a multimodality regimen: beta-adrenergic blockade, an antithyroid drug, inorganic iodide, a corticosteroid, and cooling with acetaminophen, plus supportive care."
     },
     "number": 110,
     "id": "usmle-qb-s3-110"
@@ -2960,20 +2929,19 @@
     "open": false,
     "lead": "Order hydrocortisone and normal saline as stat medications. Do not order a cosyntropin test as the first action.",
     "lines": [
-      "A glucose is on the labs because it may be low.",
-      "The home steroid is written as a stress dose, not the maintenance dose.",
-      "Antibiotics are added if sepsis is the trigger.",
-      "Primary: high ACTH, hyperpigmentation, and hyperkalemia because aldosterone is lost. Secondary spares aldosterone, so potassium is normal.",
-      "Crisis: hydrocortisone 100 mg IV and saline now. Do not wait for a cosyntropin test."
+      "An acutely ill patient with suspected adrenal insufficiency is treated. Do not wait for a corticotropin test to give the first glucocorticoid.",
+      "The Endocrine Society sets a low threshold to treat in acute illness, pregnancy with unexplained nausea and hypotension, and patients with predisposing disease.",
+      "Adult daily replacement, once the crisis has passed, is hydrocortisone 15 to 25 mg in two or three doses plus fludrocortisone about 0.1 mg daily.",
+      "The patient leaves with teaching on stress dosing and a parenteral glucocorticoid for the next emergency."
     ],
-    "miss": "A morning cortisol for tomorrow and a maintenance prednisone dose tonight.",
+    "miss": "Holding the glucocorticoid until a corticotropin stimulation test is completed in an unstable patient.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Adrenal Insufficiency.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441832/",
-      "says": "Stress-dose hydrocortisone and saline are immediate orders. Diagnostic stimulation testing waits."
+      "name": "Endocrine Society 2016 guideline. Primary adrenal insufficiency.",
+      "year": "2016",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26760044/",
+      "says": "In an acutely ill patient, use a low threshold to treat and do not withhold therapy for lack of an immediate corticotropin test. Adult maintenance is hydrocortisone 15 to 25 mg per day in divided doses plus once-daily fludrocortisone, and the patient needs a parenteral glucocorticoid for emergencies."
     },
     "number": 111,
     "id": "usmle-qb-s3-111"
@@ -3000,7 +2968,7 @@
       "name": "StatPearls. Pheochromocytoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK589700/",
-      "says": "Alpha blockade and volume replacement are completed before surgery. Beta blockade is not first."
+      "says": "The preoperative orders show an alpha blocker already in place and volume restored. A beta blocker is not the first preoperative drug."
     },
     "number": 112,
     "id": "usmle-qb-s3-112"
@@ -3134,7 +3102,7 @@
       "name": "StatPearls. Placental Abruption.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482335/",
-      "says": "Resuscitation, coagulation studies, and fetal monitoring are the orders. Digital examination waits until previa is excluded."
+      "says": "Order blood products, a fetal monitor, and large-bore access. Do not order a digital cervical exam."
     },
     "number": 117,
     "id": "usmle-qb-s3-117"
@@ -3161,7 +3129,7 @@
       "name": "StatPearls. Placenta Previa.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK539818/",
-      "says": "No digital examination is written as an order. Complete previa is a cesarean plan, and accreta risk changes the location."
+      "says": "Order pelvic rest, an ultrasound, and a cesarean plan if the placenta covers the cervix. Write no digital exam."
     },
     "number": 118,
     "id": "usmle-qb-s3-118"
@@ -3177,8 +3145,7 @@
     "lines": [
       "The mother is taught the sick-day difference between pregnancy and afterward.",
       "A very high postpartum glucose is treated, not ignored because the pregnancy ended.",
-      "Contraception is discussed because the next pregnancy's glucose starts before the first prenatal visit.",
-      "Screen at 24\u201328 weeks if there is no earlier indication. Maternal glucose crosses. Maternal insulin does not. The fetus becomes hyperinsulinemic."
+      "Contraception is discussed because the next pregnancy's glucose starts before the first prenatal visit."
     ],
     "miss": "Discharging the pair with no neonatal glucose and no maternal follow-up test.",
     "diagram": "gdm-baby",
@@ -3187,7 +3154,7 @@
       "name": "StatPearls. Gestational Diabetes.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
-      "says": "Neonatal glucose is checked and the mother is rescreened for diabetes after delivery."
+      "says": "Order an early feed and a glucose check for the newborn, and a postpartum diabetes test for the mother. Insulin, if used, is not automatically continued at the pregnancy dose."
     },
     "number": 119,
     "id": "usmle-qb-s3-119"
@@ -3214,7 +3181,7 @@
       "name": "StatPearls. Erectile Dysfunction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "Nitroglycerin is withheld after a recent PDE-5 inhibitor. The rest of the ACS evaluation proceeds."
+      "says": "The chest-pain order set includes a question about PDE-5 inhibitors before nitroglycerin is given. If the answer is yes, the nitrate is not given."
     },
     "number": 120,
     "id": "usmle-qb-s3-120"
@@ -3231,7 +3198,6 @@
       "A creatinine is ordered if retention was prolonged.",
       "A nodule is not attributed to hyperplasia.",
       "Finasteride is not the drug that empties the bladder tonight.",
-      "Alpha blockers (tamsulosin) relax smooth muscle in days. 5-alpha-reductase inhibitors shrink a large gland over 3\u20136 months.",
       "Acute retention is a catheter and a recorded residual. Finasteride does not empty the bladder tonight. A nodule is cancer until evaluated."
     ],
     "miss": "A tamsulosin prescription and no catheter for a painful full bladder.",
@@ -3241,7 +3207,7 @@
       "name": "StatPearls. Benign Prostatic Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "Retention is drained. An alpha blocker may be started afterward. A 5-alpha-reductase inhibitor does not relieve acute retention."
+      "says": "Acute urinary retention gets a catheter and a recorded residual. An alpha blocker is started after the bladder is empty, not instead of emptying it."
     },
     "number": 121,
     "id": "usmle-qb-s3-121"
@@ -3258,7 +3224,6 @@
       "The contralateral orchiopexy is part of the consent.",
       "Pain medicine is ordered and does not delay the room.",
       "A urology call is a now call.",
-      "The testis can infarct in about 6 hours. Absent cremasteric reflex and sudden pain go to the operating room.",
       "Ultrasound is for an unclear exam and must not consume the window. The other side is fixed because the anatomy is bilateral."
     ],
     "miss": "An ultrasound order for 8 a.m. and a regular diet.",
@@ -3268,7 +3233,7 @@
       "name": "StatPearls. Testicular Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "Operative exploration is ordered immediately for a convincing exam. Imaging is not allowed to delay it."
+      "says": "Write the surgical consent and the nothing-by-mouth order when the exam is torsion. Ultrasound is ordered only if it will not consume the window and the exam is unclear."
     },
     "number": 122,
     "id": "usmle-qb-s3-122"
@@ -3295,7 +3260,7 @@
       "name": "StatPearls. Ovarian Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "Operative evaluation is ordered on clinical grounds. Doppler flow is not a cancellation criterion."
+      "says": "Order surgical evaluation for suspected ovarian torsion regardless of a Doppler report that shows flow. Order a pregnancy test."
     },
     "number": 123,
     "id": "usmle-qb-s3-123"
@@ -3313,7 +3278,7 @@
       "Perihepatitis is not discharged as simple biliary colic.",
       "Follow-up testing for cure or reinfection is written.",
       "Cervical motion tenderness. Cover Neisseria gonorrhoeae and Chlamydia. Treat the partner.",
-      "Fitz-Hugh-Curtis syndrome is perihepatitis and right-upper-quadrant pain. A tubo-ovarian abscess that does not improve in 48\u201372 hours is drained."
+      "Fitz-Hugh-Curtis syndrome is perihepatitis and right-upper-quadrant pain."
     ],
     "miss": "A prescription with no mention of the partner and no return precautions.",
     "diagram": "pid-rx",
@@ -3322,7 +3287,7 @@
       "name": "StatPearls. Pelvic Inflammatory Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499959/",
-      "says": "Partner treatment and follow-up are part of the order. Abscesses that fail antibiotics are drained."
+      "says": "The discharge names the partner treatment and the return precautions for worsening pain. A pregnancy test is resulted before the drug."
     },
     "number": 124,
     "id": "usmle-qb-s3-124"
@@ -3349,7 +3314,7 @@
       "name": "StatPearls. Endometrial Cancer.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK525981/",
-      "says": "Endometrial sampling is the order. Cervical cytology does not evaluate the endometrium."
+      "says": "Order an endometrial biopsy or a referral that will do one. Do not order a repeat Pap smear as the evaluation."
     },
     "number": 125,
     "id": "usmle-qb-s3-125"
@@ -3363,20 +3328,19 @@
     "open": false,
     "lead": "Order propylthiouracil in the first trimester and a plan to change to methimazole afterward. Do not order radioactive iodine.",
     "lines": [
-      "The lowest controlling dose is written, with a thyroid test interval.",
-      "Both drugs cross the placenta.",
-      "Uncontrolled disease is more dangerous than the drug, so do not stop treatment entirely.",
-      "Propylthiouracil in the first trimester. Methimazole afterward. Both cross the placenta. Use the lowest dose that controls the mother.",
-      "Radioactive iodine is contraindicated in pregnancy. Overtreatment makes the fetus hypothyroid."
+      "If an antithyroid drug is required in the first trimester, the ATA specifies propylthiouracil.",
+      "If an antithyroid drug is started after the first trimester, the ATA specifies methimazole.",
+      "Women on methimazole who become pregnant are switched early in the first trimester when a drug is still required.",
+      "The trimester, not a preference for one drug in every month, chooses the agent."
     ],
-    "miss": "Continuing methimazole from conception through week 10, or ordering a thyroid scan.",
+    "miss": "Continuing methimazole through the first trimester when an antithyroid drug is still required.",
     "diagram": "pth-preg",
     "diagramAlt": "Antithyroid drug by trimester. First trimester: propylthiouracil After that: methimazole No radioactive iodine in pregnancy",
     "source": {
-      "name": "StatPearls. Hyperthyroidism in Pregnancy.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559203/",
-      "says": "Propylthiouracil is used in the first trimester. Radioactive iodine is contraindicated. The dose is the lowest that controls the mother."
+      "name": "2016 ATA guideline for hyperthyroidism and other causes of thyrotoxicosis.",
+      "year": "2016",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
+      "says": "When an antithyroid drug is used in the first trimester, use propylthiouracil. When an antithyroid drug is started after the first trimester, use methimazole."
     },
     "number": 126,
     "id": "usmle-qb-s3-126"
@@ -3403,7 +3367,7 @@
       "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
-      "says": "Thyroid replacement is the order. Surgery is deferred until hyperplasia has had time to regress."
+      "says": "Order thyroid hormone and a repeat image for pituitary enlargement caused by severe hypothyroidism. Do not book surgery first."
     },
     "number": 127,
     "id": "usmle-qb-s3-127"
@@ -3443,20 +3407,19 @@
     "open": false,
     "lead": "Order intramuscular epinephrine in the mid-outer thigh and a period of observation. Do not order diphenhydramine as the only drug.",
     "lines": [
-      "The adult dose is 0.3 to 0.5 mg of the 1 mg/mL concentration.",
-      "A second dose is ordered if the first fails.",
-      "The patient does not drive home ten minutes later.",
-      "Adult dose 0.3\u20130.5 mg of 1 mg/mL (1:1000) intramuscularly in the mid-outer thigh. Repeat every 5\u201315 minutes if needed.",
-      "Observe, because reactions can return. Diphenhydramine and a steroid do not treat airway or shock."
+      "Epinephrine is 0.01 mg/kg, to a maximum of 0.3 mg in children and teenagers and 0.5 mg in adults.",
+      "Give epinephrine at the first sign of suspected anaphylaxis.",
+      "Draw an acute tryptase as early as possible, ideally within 2 hours of symptom onset. A later baseline is the comparison.",
+      "A tryptase under the laboratory cutoff does not exclude anaphylaxis. Many confirmed reactions never cross that line."
     ],
-    "miss": "Diphenhydramine, a steroid, and discharge in ten minutes.",
+    "miss": "Treating anaphylaxis with an antihistamine and quoting a flat 0.3 mg dose for every adult.",
     "diagram": "epi-dose",
     "diagramAlt": "Anaphylaxis dose. Adult: 0.3\u20130.5 mg of 1 mg/mL IM Mid-outer thigh. Repeat in 5\u201315 min Watch. Antihistamine is not the treatment",
     "source": {
-      "name": "StatPearls. Anaphylaxis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482124/",
-      "says": "Intramuscular epinephrine and observation are the orders. Antihistamines do not replace epinephrine."
+      "name": "Anaphylaxis: a 2023 practice parameter update.",
+      "year": "2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/",
+      "says": "Epinephrine is dosed at 0.01 mg/kg, up to 0.3 mg in children and teenagers and 0.5 mg in adults. Draw an acute tryptase as early as possible, ideally within 2 hours. A tryptase below the laboratory cutoff does not exclude anaphylaxis."
     },
     "number": 129,
     "id": "usmle-qb-s3-129"
@@ -3473,8 +3436,8 @@
       "Do not be reassured by a pulse oximeter.",
       "Hyperbaric oxygen is ordered for coma, pregnancy, or cardiac ischemia.",
       "The source, a heater or a fire, is removed.",
-      "Affinity for hemoglobin is over 200 times that of oxygen. PaO2 stays normal. Standard pulse oximetry cannot see it.",
-      "Give 100% oxygen immediately. Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
+      "Standard pulse oximetry cannot see it.",
+      "Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
     ],
     "miss": "Discharge on a normal pulse oximeter after a heater exposure.",
     "diagram": "co-ox",
@@ -3483,7 +3446,7 @@
       "name": "StatPearls. Carbon Monoxide Poisoning.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
-      "says": "High-flow oxygen is started immediately and co-exposed people are identified. Oximetry does not clear the patient."
+      "says": "Order 100% oxygen and a carboxyhemoglobin. Ask who else was in the house and order them evaluated if they share the exposure."
     },
     "number": 130,
     "id": "usmle-qb-s3-130"
@@ -3500,8 +3463,7 @@
       "A staggered ingestion is not plotted on the single-time nomogram.",
       "Charcoal is ordered only if the airway is safe and the ingestion was recent.",
       "The ALT is trended. A normal first ALT is not a stop order.",
-      "NAPQI depletes glutathione. NAC restores it. The Rumack-Matthew nomogram is only for a single ingestion at a known time.",
-      "A normal ALT at 2 hours does not clear the patient. Staggered ingestions are treated, not plotted on that nomogram."
+      "NAPQI depletes glutathione. NAC restores it. The Rumack-Matthew nomogram is only for a single ingestion at a known time."
     ],
     "miss": "Holding the antidote for tomorrow's liver enzymes.",
     "diagram": "nac-time",
@@ -3510,7 +3472,7 @@
       "name": "StatPearls. Acetaminophen Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "N-acetylcysteine is ordered for toxic and unplottable ingestions. The first enzyme does not clear the patient."
+      "says": "Order N-acetylcysteine when the level is toxic or the time of a large ingestion is unknown. Write the time of ingestion on the order so the nomogram is used correctly."
     },
     "number": 131,
     "id": "usmle-qb-s3-131"
@@ -3527,7 +3489,6 @@
       "The airway is opened if the patient is apneic.",
       "A second dose is written as a nursing parameter, not discovered when the patient stops breathing in the lobby.",
       "The discharge names the risk of recurrence.",
-      "Miosis, respiratory rate often under 12, and depressed consciousness. Naloxone's duration is about 30\u201390 minutes, shorter than methadone or many fentanyl exposures.",
       "Open the airway first if the patient is apneic. Observe or infuse. One wake-up is not a discharge."
     ],
     "miss": "One dose and a discharge at 20 minutes after methadone.",
@@ -3537,7 +3498,7 @@
       "name": "StatPearls. Opioid Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470415/",
-      "says": "Observation matches the opioid's duration. Recurrence of apnea is an expected order, not a surprise."
+      "says": "Order naloxone and an observation period long enough for the opioid you suspect. A long-acting opioid gets a longer watch or an infusion."
     },
     "number": 132,
     "id": "usmle-qb-s3-132"
@@ -3564,7 +3525,7 @@
       "name": "StatPearls. Benzodiazepine Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482238/",
-      "says": "Supportive care is ordered. Flumazenil is not ordered in dependent patients."
+      "says": "Order airway support. Do not order flumazenil for a patient who takes a benzodiazepine every day."
     },
     "number": 133,
     "id": "usmle-qb-s3-133"
@@ -3608,7 +3569,6 @@
       "A compartment pressure or a surgical consult is ordered for a tight limb.",
       "The statin is held on the order.",
       "The creatine kinase is trended, not used as a one-time curiosity.",
-      "Dipstick positive for blood and no red cells on microscopy. CK often over 5,000. Potassium can arrest the heart before creatinine rises.",
       "Intravenous fluid at a defined rate and a repeat potassium. A tight compartment is opened. Stop the statin."
     ],
     "miss": "A single bag of saline and no repeat potassium.",
@@ -3618,7 +3578,7 @@
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
-      "says": "A defined fluid rate and repeat potassium are the orders. The urine is examined microscopically."
+      "says": "Order intravenous fluids at a stated rate and a repeat potassium. Order a microscope look at the urine, not only the dipstick."
     },
     "number": 135,
     "id": "usmle-qb-s3-135"
@@ -3635,8 +3595,7 @@
       "The dantrolene dose is repeated as the protocol says. One vial is not the whole treatment.",
       "Potassium and urine output are ordered because muscle is dying.",
       "The team is told this is not light anesthesia.",
-      "Succinylcholine or a volatile anesthetic. End-tidal CO2 rises first, then rigidity and temperature.",
-      "Stop the vaporizer. Hyperventilate with 100% oxygen. Dantrolene 2.5 mg/kg IV, repeated. This is not neuroleptic malignant syndrome."
+      "This is not neuroleptic malignant syndrome."
     ],
     "miss": "Increasing the vaporizer and ordering acetaminophen.",
     "diagram": "dantrolene",
@@ -3645,7 +3604,7 @@
       "name": "StatPearls. Malignant Hyperthermia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430828/",
-      "says": "The triggering anesthetic is stopped and dantrolene is given, with hyperventilation and cooling."
+      "says": "The intraoperative order is to stop the volatile agent, hyperventilate with 100% oxygen, and give dantrolene. Cooling is ordered with it."
     },
     "number": 136,
     "id": "usmle-qb-s3-136"
@@ -3662,7 +3621,6 @@
       "A chest finding and petechiae are documented.",
       "A true venous clot is still considered and is a separate order.",
       "The orthopedic team is called for the fixation, which is the source control.",
-      "24\u201372 hours after a long-bone or pelvic fracture: hypoxia, confusion, and upper-body petechiae. Petechiae are often absent.",
       "Support the lungs and fix the fracture. Heparin is not the specific treatment. A venous thrombus is a separate question."
     ],
     "miss": "A heparin drip as the only order and a delayed fixation.",
@@ -3672,7 +3630,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Supportive oxygen and fracture fixation are the orders. Heparin is not a specific fat-embolism antidote."
+      "says": "Order oxygen and early fracture fixation. Do not order heparin as the specific treatment of fat embolism."
     },
     "number": 137,
     "id": "usmle-qb-s3-137"
@@ -4143,8 +4101,7 @@
       "Either-positive testing does the opposite.",
       "Write which structure you intended so the next clinician does not mix them.",
       "A single very sensitive test is a different order.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms.",
-      "False-positive rate is 1 minus specificity. A published positive predictive value does not transfer to a clinic with a different prevalence."
+      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
     ],
     "miss": "Requiring both a sensitive and a specific test to be positive and thinking you lost no cases.",
     "diagram": "series-parallel",
@@ -4153,7 +4110,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Series testing increases specificity and decreases sensitivity. The patient is told which misses become more likely."
+      "says": "If you order two tests and require both to be positive before you act, tell the patient you will miss more disease. That structure raises specificity."
     },
     "number": 155,
     "id": "usmle-qb-s3-155"
@@ -4180,7 +4137,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Parallel testing raises sensitivity and lowers specificity. The downstream plan for false positives is arranged first."
+      "says": "If either of two tests being positive will trigger a biopsy, order the biopsy capacity before you order the pair. Parallel testing creates more false alarms."
     },
     "number": 156,
     "id": "usmle-qb-s3-156"
@@ -4197,8 +4154,7 @@
       "You cannot have both perfect sensitivity and perfect specificity at one number.",
       "The lab's reference range is the default unless you document a reason.",
       "A cutoff copied from another population is not automatically yours.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms.",
-      "False-positive rate is 1 minus specificity. A published positive predictive value does not transfer to a clinic with a different prevalence."
+      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
     ],
     "miss": "Lowering a cutoff and telling patients the test became more accurate in every way.",
     "diagram": "series-parallel",
@@ -4207,7 +4163,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "A lower threshold increases sensitivity and decreases specificity. The trade is a deliberate order."
+      "says": "If you lower a test's cutoff to miss fewer cases, write why, because you will label more healthy people as sick."
     },
     "number": 157,
     "id": "usmle-qb-s3-157"
@@ -4224,8 +4180,7 @@
       "Sensitivity can transfer. The predictive value cannot, without the local prevalence.",
       "A screening fair and an emergency department do not share a predictive value.",
       "Write the prevalence you assumed.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms.",
-      "False-positive rate is 1 minus specificity. A published positive predictive value does not transfer to a clinic with a different prevalence."
+      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
     ],
     "miss": "Telling a low-risk patient the positive predictive value from a specialty-clinic study.",
     "diagram": "series-parallel",
@@ -4234,7 +4189,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Predictive values depend on prevalence. A published predictive value is not cited as if it were universal."
+      "says": "The positive predictive value you read in a paper does not transfer to your clinic if the disease is rarer here. Recalculate or do not quote it."
     },
     "number": 158,
     "id": "usmle-qb-s3-158"
@@ -4260,7 +4215,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Pre-test probability is recorded before a low-prevalence test. Positive results in that setting are often false."
+      "says": "Before you order a test for a rare disease, write the chance you believe the patient has it. A positive result will often be false if that chance is tiny."
     },
     "number": 159,
     "id": "usmle-qb-s3-159"
@@ -4368,7 +4323,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "The offer of a chaperone and the patient's response are documented for sensitive examinations."
+      "says": "For a breast, pelvic, or genital exam, the note names the chaperone or records that the patient declined one after it was offered."
     },
     "number": 163,
     "id": "usmle-qb-s3-163"
@@ -4394,7 +4349,7 @@
       "name": "StatPearls. Advance Directives.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459133/",
-      "says": "Resuscitation status is specific. Other treatments continue unless they are separately declined."
+      "says": "If the order is do not resuscitate, the antibiotic, the surgery, and the pain medicine stay unless a separate order stops them."
     },
     "number": 164,
     "id": "usmle-qb-s3-164"
@@ -4421,7 +4376,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Symptom-relieving medication is ordered before withdrawal of ventilatory support. The intent is comfort."
+      "says": "Before a ventilator is withdrawn, order the opioid or benzodiazepine that will treat air hunger. The withdrawal order and the comfort order are written together."
     },
     "number": 165,
     "id": "usmle-qb-s3-165"
@@ -4448,7 +4403,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Refusal of transfusion is documented and communicated before surgery. It is not left as a verbal aside."
+      "says": "A capable patient's refusal of blood is a signed order visible to the anesthesiologist and the blood bank before the operation starts."
     },
     "number": 166,
     "id": "usmle-qb-s3-166"
@@ -4475,7 +4430,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Emergency treatment is given to a child despite parental refusal when delay would cause death or serious harm."
+      "says": "If a parent refuses emergency care that would prevent a child's death or serious harm, order the treatment and notify the protective system."
     },
     "number": 167,
     "id": "usmle-qb-s3-167"
@@ -4528,7 +4483,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Sterilization consent is completed before labor. It is not added under the pressure of active labor."
+      "says": "Do not add tubal ligation to a cesarean consent signed during labor unless a considered consent was obtained before labor."
     },
     "number": 169,
     "id": "usmle-qb-s3-169"
@@ -4608,7 +4563,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Bridging treatment is offered. The risks and the capacity assessment are documented even if the patient refuses to sign."
+      "says": "If a capable patient leaves against advice, order the antibiotic or the insulin they need for a safer exit, and document the risks you explained."
     },
     "number": 172,
     "id": "usmle-qb-s3-172"
@@ -4634,7 +4589,7 @@
       "name": "StatPearls. Advance Directives.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459133/",
-      "says": "Portable medical orders have to be available to emergency clinicians. Advance directives stored off-site do not function as those orders."
+      "says": "A completed POLST is copied to the record and the patient is told to keep it where ambulance crews look. An advance directive in a lawyer's office does not travel."
     },
     "number": 173,
     "id": "usmle-qb-s3-173"
@@ -4661,7 +4616,7 @@
       "name": "StatPearls. Elder Abuse.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560883/",
-      "says": "The report is made when suspicion exists, and a safe disposition is arranged. The suspected abuser does not authorize the report."
+      "says": "If you suspect elder abuse, the report is made before discharge, and the suspected abuser is not the person you ask for permission."
     },
     "number": 174,
     "id": "usmle-qb-s3-174"
@@ -4688,7 +4643,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Suspected child abuse is reported promptly. Parental permission is not required."
+      "says": "Suspected child abuse is reported before the child leaves, or the report is made and the child is kept safe until it is. A parent's objection is not a hold."
     },
     "number": 175,
     "id": "usmle-qb-s3-175"
@@ -4715,7 +4670,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Immediate risk is interrupted first. Reporting follows and does not delay removal from patient care."
+      "says": "If a colleague is impaired now, they stop seeing patients immediately. The report follows. It does not come first while they keep working."
     },
     "number": 176,
     "id": "usmle-qb-s3-176"
@@ -4742,7 +4697,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Late corrections are addended, timed, and signed. The original entry is left intact."
+      "says": "After a complication, corrections are an addendum with the time you learned the fact. Do not reopen and rewrite the original note."
     },
     "number": 177,
     "id": "usmle-qb-s3-177"
@@ -4769,7 +4724,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Research activities require their own consent and can be declined without affecting standard care."
+      "says": "A research biopsy or an extra vial is a separate consent. It is not added to the clinical consent the morning of surgery."
     },
     "number": 178,
     "id": "usmle-qb-s3-178"
@@ -4796,7 +4751,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Deceptive placebo prescribing is not an acceptable order. Research placebos are consented."
+      "says": "Do not order a placebo labeled as an active pain medicine. If a symptom needs treatment, order a real treatment or an honest explanation."
     },
     "number": 179,
     "id": "usmle-qb-s3-179"
@@ -4823,7 +4778,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Donation conversations are made by a designated requester and are not a condition of withdrawing support."
+      "says": "When death is near and donation is possible, call the designated requester. Do not tie your recommendation to stop support to a yes on donation."
     },
     "number": 180,
     "id": "usmle-qb-s3-180"

@@ -21,7 +21,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "Neural-crest derivatives include peripheral nervous system cells, melanocytes, craniofacial cartilage, C cells, and the adrenal medulla."
+      "says": "Neural crest builds the peripheral neurons and glia, melanocytes, the adrenal medulla, and the aorticopulmonary septum. It does not build the adrenal cortex."
     },
     "open": true
   },
@@ -47,7 +47,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "Neural-crest failure removes the structures the crest builds, including the outflow septum, and DiGeorge adds the pouch derivatives."
+      "says": "DiGeorge fails the third and fourth pharyngeal pouches and the neural crest that builds the outflow tract."
     },
     "number": 2,
     "id": "usmle-qb-s1-002"
@@ -63,9 +63,7 @@
     "lines": [
       "The kidneys are often horseshoe or otherwise malformed. Check them.",
       "Streak gonads do not produce a normal puberty.",
-      "Cystic hygroma and lymphedema in a newborn girl are the same diagnosis earlier.",
-      "About 10\u201315% have coarctation and up to 30% have a bicuspid aortic valve.",
-      "An arm-leg systolic gradient over 20 mm Hg or delayed femoral pulses means image the aorta."
+      "Cystic hygroma and lymphedema in a newborn girl are the same diagnosis earlier."
     ],
     "miss": "Calling it constitutional short stature because the blood pressure in the arms was never compared with the legs.",
     "diagram": null,
@@ -74,7 +72,7 @@
       "name": "StatPearls. Turner Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK554621/",
-      "says": "Turner syndrome is 45,X or a related sex-chromosome loss and pairs short stature and streak gonads with left-sided heart lesions and renal anomalies."
+      "says": "Short stature, a webbed neck, coarctation, and streak ovaries in a girl is Turner syndrome until the karyotype says otherwise."
     },
     "number": 3,
     "id": "usmle-qb-s1-003"
@@ -91,8 +89,7 @@
     "lines": [
       "Type I: anaphylaxis, asthma, nasal allergy. The mast cell was already coated.",
       "Type II: autoimmune hemolysis, Goodpasture, acute rheumatic fever. Type III: serum sickness, Arthus reaction, lupus nephritis, post-streptococcal glomerulonephritis.",
-      "Type IV: contact dermatitis, the tuberculosis skin test, and many drug rashes that appear days later.",
-      "Type I is IgE and minutes. Type IV is T cells at 48\u201372 hours (PPD, contact dermatitis)."
+      "Type IV: contact dermatitis, the tuberculosis skin test, and many drug rashes that appear days later."
     ],
     "miss": "Calling a rash at day ten an allergy that should have happened in the first hour.",
     "diagram": "hypersensitivity",
@@ -101,7 +98,7 @@
       "name": "StatPearls. Anaphylaxis. Type II, Type III, and Type IV Hypersensitivity Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482124/",
-      "says": "Anaphylaxis is immediate IgE mast-cell activation. The other three types are antibody against a cell, immune-complex disease, and delayed T-cell disease.",
+      "says": "Type I is IgE and minutes. Type II is antibody on a cell. Type III is an immune complex. Type IV is T cells and delayed.",
       "more": [
         {
           "name": "StatPearls. Type II Hypersensitivity Reaction.",
@@ -131,8 +128,7 @@
     "lines": [
       "The common pathway is X, V, II, and I. A defect there prolongs both tests.",
       "Vitamin K factors are II, VII, IX, and X, plus proteins C and S. Warfarin drops them. Heparin potentiates antithrombin.",
-      "A mixing study corrects a missing factor. It does not correct an inhibitor.",
-      "Factor VII half-life is about 4\u20136 hours, so the PT moves first on warfarin."
+      "A mixing study corrects a missing factor. It does not correct an inhibitor."
     ],
     "miss": "Expecting hemophilia to prolong the PT, or expecting warfarin to prolong only the PTT.",
     "diagram": null,
@@ -141,7 +137,7 @@
       "name": "StatPearls. Physiology, Coagulation Pathways.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482253/",
-      "says": "The extrinsic pathway is tested by the PT and the intrinsic pathway by the PTT. Both require the common pathway."
+      "says": "PT tests factor VII and the common pathway. PTT tests factors XII, XI, IX, and VIII and the common pathway."
     },
     "open": false
   },
@@ -157,9 +153,7 @@
     "lines": [
       "C3a and C5a are the anaphylatoxins. C5b through C9 build the membrane attack complex.",
       "C1 inhibitor deficiency is hereditary angioedema. C4 is low, and this swelling is not histamine.",
-      "Terminal-complement deficiency and drugs that block C5 leave Neisseria infections.",
-      "C3 deficiency causes severe pyogenic infection. C5\u2013C9 deficiency causes Neisseria infection.",
-      "Hereditary angioedema is C1-inhibitor deficiency: low C4, bradykinin edema, and no response to antihistamines."
+      "Terminal-complement deficiency and drugs that block C5 leave Neisseria infections."
     ],
     "miss": "Treating hereditary angioedema with an antihistamine, or forgetting Neisseria when the membrane attack complex is missing.",
     "diagram": null,
@@ -168,7 +162,7 @@
       "name": "StatPearls. Physiology, Complement Cascade. Complement Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK551511/",
-      "says": "The three pathways converge at C3. Terminal-component deficiency predisposes to Neisseria. C1 inhibitor deficiency causes hereditary angioedema.",
+      "says": "Classical complement needs antibody. Alternative and lectin pathways do not. All three meet at C3.",
       "more": [
         {
           "name": "StatPearls. Complement Deficiency.",
@@ -199,7 +193,7 @@
       "name": "StatPearls. Sickle Cell Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
-      "says": "Deoxygenated HbS polymerizes, the spleen is lost over time, and acute chest syndrome is a pulmonary vaso-occlusive emergency."
+      "says": "Hemoglobin S polymerizes when it is deoxygenated. That is the vaso-occlusive event, not an immune hemolysis."
     },
     "number": 7,
     "id": "usmle-qb-s1-007"
@@ -216,8 +210,7 @@
       "The osmotic fragility test and eosin-5-maleimide binding support the diagnosis.",
       "Aplastic crisis after parvovirus drops the reticulocyte count. The hemolysis was already there.",
       "Splenectomy is for severe disease, and it comes with a lifelong infection risk.",
-      "MCHC is high because membrane is lost. Osmotic fragility is increased. The spleen removes the spheres.",
-      "Parvovirus B19 stops red-cell production for about a week and causes an aplastic crisis on top of chronic hemolysis."
+      "MCHC is high because membrane is lost. Osmotic fragility is increased. The spleen removes the spheres."
     ],
     "miss": "Calling every spherocyte autoimmune hemolysis and starting steroids.",
     "diagram": "hs-vs-g6pd",
@@ -226,7 +219,7 @@
       "name": "StatPearls. Hereditary Spherocytosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK539797/",
-      "says": "Hereditary spherocytosis is inherited membrane loss, extravascular hemolysis, and a high mean corpuscular hemoglobin concentration."
+      "says": "Hereditary spherocytosis is a red-cell membrane defect. The cells are sphere-shaped, the MCHC is high, and the spleen removes them."
     },
     "number": 8,
     "id": "usmle-qb-s1-008"
@@ -243,8 +236,7 @@
       "Bite cells and Heinz bodies are the smear. The urine is dark.",
       "Sulfa drugs, primaquine, dapsone, infection, and fava beans are the usual triggers.",
       "Repeat the assay weeks later, after the depleted cells have been replaced.",
-      "Heinz bodies are denatured hemoglobin. Bite cells are the smear after the spleen bites them out.",
-      "The enzyme assay can be normal for weeks after the crisis because the old cells are gone. Repeat it around 2\u20133 months."
+      "Heinz bodies are denatured hemoglobin. Bite cells are the smear after the spleen bites them out."
     ],
     "miss": "Ruling out the deficiency because the assay during the crisis was normal.",
     "diagram": null,
@@ -253,7 +245,7 @@
       "name": "StatPearls. Glucose-6-Phosphate Dehydrogenase Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470315/",
-      "says": "The older, more deficient cells hemolyze first, so the remaining cells can show a near-normal enzyme level during the attack."
+      "says": "G6PD deficiency is X-linked. Oxidant stress hemolyzes the oldest red cells, and an enzyme level drawn that day can look normal."
     },
     "number": 9,
     "id": "usmle-qb-s1-009"
@@ -270,7 +262,6 @@
       "Homocysteine is high in both. It does not separate them.",
       "Folate alone can fix the anemia of B12 deficiency and leave the neurologic injury going.",
       "Vegans, pernicious anemia, and terminal ileum disease are the usual B12 stories. Folate deficiency is diet, alcohol, and pregnancy.",
-      "Homocysteine rises in both B12 and folate deficiency. Only B12 raises methylmalonic acid.",
       "Folate can fix the anemia and leave subacute combined degeneration going. Never treat a high MCV with folate alone."
     ],
     "miss": "Treating a high mean corpuscular volume with folate before the B12 status is known.",
@@ -280,7 +271,7 @@
       "name": "StatPearls. Vitamin B12 Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441923/",
-      "says": "Methylmalonic acid rises when cobalamin is missing and does not rise from folate deficiency alone. The cord finding is subacute combined degeneration."
+      "says": "Both B12 and folate deficiency make a megaloblastic anemia. Only B12 raises methylmalonic acid and injures the cord."
     },
     "number": 10,
     "id": "usmle-qb-s1-010"
@@ -297,8 +288,7 @@
       "The bleeding is into joints and muscle, not tiny skin bleeds.",
       "A mixing study corrects, because the factor is missing and there is no inhibitor yet.",
       "Hemophilia B is factor IX. The clinical picture is the same and the assay is not.",
-      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed.",
-      "A head injury is treated as intracranial bleeding: raise factor VIII to about 100% and image. Do not wait for the CT to give the factor."
+      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed."
     ],
     "miss": "Expecting the PT to be prolonged, or calling a hemarthrosis von Willebrand disease without a factor level.",
     "diagram": null,
@@ -307,7 +297,7 @@
       "name": "StatPearls. Hemophilia A.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
-      "says": "Factor VIII is in the intrinsic pathway, so the PTT moves and the PT does not. Bleeding is deep rather than mucosal."
+      "says": "Hemophilia A is factor VIII deficiency, X-linked, and it prolongs the PTT. The PT stays normal."
     },
     "number": 11,
     "id": "usmle-qb-s1-011"
@@ -324,8 +314,7 @@
       "Type 1 responds to desmopressin. Type 2B can get worse with it, because the abnormal multimer binds platelets.",
       "Ristocetin cofactor activity is the functional test.",
       "A normal platelet count does not exclude it.",
-      "vWF carries factor VIII. Mucosal bleeding with a normal platelet count is the picture. PTT prolongs only if VIII is low.",
-      "Desmopressin works in most type 1 disease. It is contraindicated in type 2B because platelet counts can fall."
+      "vWF carries factor VIII. Mucosal bleeding with a normal platelet count is the picture. PTT prolongs only if VIII is low."
     ],
     "miss": "Giving desmopressin to every subtype, including type 2B.",
     "diagram": "vwd-ddavp",
@@ -334,7 +323,7 @@
       "name": "StatPearls. Von Willebrand Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459222/",
-      "says": "Von Willebrand factor carries factor VIII and sticks platelets to injured vessel. Mucosal bleeding is the clue, and desmopressin is not safe in every type."
+      "says": "Von Willebrand disease is the common inherited bleeding disorder. The bleeding is mucosal, and the PTT is prolonged only when factor VIII is low enough."
     },
     "number": 12,
     "id": "usmle-qb-s1-012"
@@ -361,7 +350,7 @@
       "name": "StatPearls. Disseminated Intravascular Coagulation.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441834/",
-      "says": "DIC is widespread thrombin generation with consumption of platelets, factors, and fibrinogen, plus a high fibrin-degradation product."
+      "says": "Disseminated intravascular coagulation consumes platelets and clotting factors. Fibrinogen is low, D-dimer is high, and both the PT and the PTT prolong."
     },
     "number": 13,
     "id": "usmle-qb-s1-013"
@@ -413,7 +402,7 @@
       "name": "StatPearls. Acute Lymphoblastic Leukemia/Lymphoblastic Lymphoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537237/",
-      "says": "ALL is a lymphoblast proliferation, typically of childhood, and is separated from myeloid leukemia by the blast markers and the absence of Auer rods."
+      "says": "Acute lymphoblastic leukemia is an accumulation of lymphoblasts. It is the acute leukemia of children, and the blasts are TdT positive."
     },
     "number": 15,
     "id": "usmle-qb-s1-015"
@@ -439,7 +428,7 @@
       "name": "StatPearls. Multiple Myeloma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534764/",
-      "says": "Myeloma presents with CRAB features from a plasma-cell clone. Lytic lesions and light chains are the findings students mis-order."
+      "says": "Multiple myeloma is a plasma-cell cancer. The clinical set is calcium high, renal failure, anemia, and bone lesions."
     },
     "number": 16,
     "id": "usmle-qb-s1-016"
@@ -456,8 +445,7 @@
       "The risk is highest as treatment starts in a bulky, fast cancer.",
       "Fluids come first. Rasburicase is for a high uric acid or a high-risk patient. Allopurinol does not clear uric acid that is already there.",
       "The arrhythmia is the potassium. Treat that before the uric acid chart.",
-      "Potassium and phosphate and uric acid rise. Calcium falls.",
-      "Allopurinol stops new uric acid formation. Rasburicase destroys uric acid already present. Screen for G6PD deficiency before rasburicase."
+      "Potassium and phosphate and uric acid rise. Calcium falls."
     ],
     "miss": "Giving calcium for the low number without looking at the potassium and the phosphate.",
     "diagram": "tls-ions",
@@ -466,7 +454,7 @@
       "name": "StatPearls. Tumor Lysis Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK518985/",
-      "says": "Cell lysis raises potassium, phosphate, and uric acid and lowers calcium. Hydration and a drug that lowers uric acid are the prevention."
+      "says": "Tumor lysis releases cell contents. Potassium, phosphate, and uric acid rise. Calcium falls because it binds the phosphate."
     },
     "number": 17,
     "id": "usmle-qb-s1-017"
@@ -493,7 +481,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "Acute hemolytic reactions are stopped at the bedside. The unit and a new specimen go back to the blood bank."
+      "says": "Fever, back pain, and dark urine during a transfusion is acute hemolysis until proved otherwise. Stop the unit."
     },
     "number": 18,
     "id": "usmle-qb-s1-018"
@@ -509,9 +497,7 @@
     "lines": [
       "Thrombosis in an unusual vein, including the hepatic vein, is the dangerous part.",
       "The test is flow cytometry for the missing GPI-anchored proteins, not a smear.",
-      "A complement inhibitor such as eculizumab or a newer C5 or proximal inhibitor is the disease-modifying treatment.",
-      "C3 deficiency causes severe pyogenic infection. C5\u2013C9 deficiency causes Neisseria infection.",
-      "Hereditary angioedema is C1-inhibitor deficiency: low C4, bradykinin edema, and no response to antihistamines."
+      "A complement inhibitor such as eculizumab or a newer C5 or proximal inhibitor is the disease-modifying treatment."
     ],
     "miss": "Calling dark morning urine myoglobinuria and ordering a CK only.",
     "diagram": null,
@@ -520,7 +506,7 @@
       "name": "StatPearls. Paroxysmal Nocturnal Hemoglobinuria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562292/",
-      "says": "Loss of complement regulators on the red-cell surface causes intravascular hemolysis and a striking thrombotic risk."
+      "says": "Paroxysmal nocturnal hemoglobinuria is acquired loss of CD55 and CD59. Complement punches the red cells, and the urine is dark in the morning."
     },
     "number": 19,
     "id": "usmle-qb-s1-019"
@@ -547,7 +533,7 @@
       "name": "StatPearls. Aplastic Anemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
-      "says": "Aplastic anemia is bone-marrow failure: pancytopenia, low reticulocytes, and a hypocellular marrow without splenomegaly."
+      "says": "Aplastic anemia is pancytopenia with a low reticulocyte count and a marrow that is empty. The spleen is not big."
     },
     "number": 20,
     "id": "usmle-qb-s1-020"
@@ -564,8 +550,8 @@
       "Aquagenic pruritus, erythromelalgia, and a high hematocrit are the clues.",
       "A high EPO means the body is responding to hypoxia or a tumor. That is not this disease.",
       "Phlebotomy lowers the hematocrit. It does not treat secondary polycythemia from lung disease.",
-      "JAK2 V617F is the usual mutation. EPO is low. A high EPO is secondary erythrocytosis.",
-      "Phlebotomy target is hematocrit under 45%. Do not apply that target to hypoxic lung disease."
+      "A high EPO is secondary erythrocytosis.",
+      "Do not apply that target to hypoxic lung disease."
     ],
     "miss": "Giving oxygen or a workup for hypoxia as the only plan when the EPO is already low.",
     "diagram": "pv-hct",
@@ -574,7 +560,7 @@
       "name": "StatPearls. Polycythemia Vera.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557660/",
-      "says": "Primary polycythemia suppresses erythropoietin. Secondary erythrocytosis raises it."
+      "says": "Polycythemia vera is a JAK2-driven red-cell mass. Erythropoietin is low, because the marrow is not being asked."
     },
     "number": 21,
     "id": "usmle-qb-s1-021"
@@ -601,7 +587,7 @@
       "name": "StatPearls. Acute Myeloid Leukemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK507875/",
-      "says": "Auer rods mark myeloid blasts. Acute promyelocytic leukemia is the subtype with disseminated coagulation and a differentiation agent."
+      "says": "Auer rods are fused granules in myeloid blasts. Acute promyelocytic leukemia, among the myeloid leukemias, consumes clotting factors and is treated with all-trans retinoic acid."
     },
     "number": 22,
     "id": "usmle-qb-s1-022"
@@ -617,9 +603,7 @@
     "lines": [
       "Hodgkin disease often spreads to contiguous nodes and is treated with a regimen built for it.",
       "B symptoms are fever, night sweats, and weight loss. They change the stage conversation, not the cell type.",
-      "A single node name does not pick the regimen.",
-      "Classic Reed-Sternberg cells are CD15+, CD30+, and usually CD20\u2212.",
-      "Contiguous nodal spread and B symptoms (fever, night sweats, more than 10% weight loss in 6 months) are the clinical pattern."
+      "A single node name does not pick the regimen."
     ],
     "miss": "Calling every lymphoma Hodgkin because a node is present.",
     "diagram": null,
@@ -628,7 +612,7 @@
       "name": "StatPearls. Non-Hodgkin Lymphoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559328/",
-      "says": "Non-Hodgkin lymphomas are classified by the lymphocyte and the grade. The Reed-Sternberg cell is the Hodgkin finding, not theirs."
+      "says": "A Reed-Sternberg cell defines classic Hodgkin lymphoma. Non-Hodgkin lymphomas are a different group of lymphocyte cancers and do not use that cell as the diagnosis."
     },
     "number": 23,
     "id": "usmle-qb-s1-023"
@@ -645,8 +629,7 @@
     "lines": [
       "Alpha-1 constricts vessels, dilates the pupil, and contracts the bladder sphincter.",
       "Beta-1 raises heart rate, contractility, and renin. Beta-2 opens bronchi, dilates skeletal muscle vessels, and relaxes the uterus.",
-      "M2 slows the heart. M3 increases secretions, constricts bronchi, contracts the detrusor, and constricts the pupil.",
-      "Alpha-1 is Gq vasoconstriction. Beta-1 is Gs on the heart and renin. Beta-2 is Gs on bronchi."
+      "M2 slows the heart. M3 increases secretions, constricts bronchi, contracts the detrusor, and constricts the pupil."
     ],
     "miss": "Giving a beta blocker for wheeze, or expecting alpha-1 block to slow the heart rate.",
     "diagram": null,
@@ -655,7 +638,7 @@
       "name": "StatPearls. Physiology, Autonomic Nervous System.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538516/",
-      "says": "Adrenergic and muscarinic receptors are separated by G protein and by the organ each one actually moves."
+      "says": "Alpha-1 and M3 are Gq. Alpha-2, M2, and beta receptors that slow the heart are not. Beta-1 and beta-2 are Gs."
     },
     "open": false
   },
@@ -682,7 +665,7 @@
       "name": "StatPearls. Brown-S\u00e9quard Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538135/",
-      "says": "Hemisection produces ipsilateral weakness and proprioceptive loss with contralateral pain and temperature loss."
+      "says": "Brown-S\u00e9quard loses motor and proprioception on the same side, and pain and temperature a level or two below on the other side."
     },
     "open": false
   },
@@ -708,7 +691,7 @@
       "name": "StatPearls. Middle, Anterior, and Posterior Cerebral Artery Stroke.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK556132/",
-      "says": "Each artery's territory predicts the deficit: middle cerebral face and arm, anterior cerebral leg, posterior cerebral vision.",
+      "says": "Middle cerebral artery is the face and the arm. Anterior cerebral artery is the leg. Posterior cerebral artery is the visual cortex.",
       "more": [
         {
           "name": "StatPearls. Anterior Cerebral Artery Stroke.",
@@ -744,7 +727,7 @@
       "name": "StatPearls. Epidural Hematoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK518982/",
-      "says": "Epidural hematoma is classically arterial, lens-shaped, and limited by sutures, with a lucid interval before deterioration."
+      "says": "An epidural hematoma is arterial, usually the middle meningeal artery, lens-shaped, and it does not cross suture lines."
     },
     "number": 27,
     "id": "usmle-qb-s1-027"
@@ -771,7 +754,7 @@
       "name": "StatPearls. Subdural Hematoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532970/",
-      "says": "Subdural blood is venous, crescentic, and able to cross sutures. Atrophy and anticoagulation are the setup."
+      "says": "A subdural hematoma is venous blood from bridging veins. It is crescent-shaped and it can cross suture lines."
     },
     "number": 28,
     "id": "usmle-qb-s1-028"
@@ -797,7 +780,7 @@
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Location separates hypertensive deep hemorrhage from lobar amyloid hemorrhage, and the cerebellum is the surgical site."
+      "says": "A hypertensive bleed prefers the deep structures: putamen, thalamus, pons, cerebellum. A lobar bleed in an older adult is amyloid until proved otherwise."
     },
     "number": 29,
     "id": "usmle-qb-s1-029"
@@ -824,7 +807,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "The motor syndrome is rest tremor, rigidity, and bradykinesia from nigral dopamine loss. Drug-induced parkinsonism is the mimic."
+      "says": "Parkinson disease loses dopamine cells in the substantia nigra. The motor set is rest tremor, rigidity, bradykinesia, and a posture that fails."
     },
     "number": 30,
     "id": "usmle-qb-s1-030"
@@ -851,7 +834,7 @@
       "name": "StatPearls. Multiple Sclerosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499849/",
-      "says": "Dissemination in time and space is the definition. Oligoclonal bands support an immune process in the central nervous system."
+      "says": "Multiple sclerosis is neurologic lesions separated in time and in space. Oligoclonal bands in the spinal fluid support it."
     },
     "number": 31,
     "id": "usmle-qb-s1-031"
@@ -868,8 +851,7 @@
       "The spinal fluid shows a high protein and almost no cells. Cells mean a different disease.",
       "The paralysis can reach the diaphragm. The bedside test is the vital capacity, not a reassurance.",
       "Steroids are not the treatment. Intravenous immunoglobulin or plasma exchange is.",
-      "CSF protein is high and cells are near zero. More than about 10 white cells means a different diagnosis.",
-      "IVIG or plasma exchange. Not prednisone. Intubate as vital capacity falls toward 15\u201320 mL/kg."
+      "CSF protein is high and cells are near zero."
     ],
     "miss": "Starting prednisone because the weakness looks inflammatory.",
     "diagram": "gb-vc",
@@ -878,7 +860,7 @@
       "name": "StatPearls. Guillain-Barre Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532254/",
-      "says": "Albuminocytologic dissociation and areflexic ascending weakness define the syndrome. Immunoglobulin or exchange, not steroids, is the disease-modifying treatment."
+      "says": "Guillain-Barr\u00e9 syndrome is an ascending paralysis with lost reflexes after an infection, often Campylobacter."
     },
     "number": 32,
     "id": "usmle-qb-s1-032"
@@ -895,8 +877,8 @@
       "Ethosuximide is the drug for absence alone.",
       "Hyperventilation in the office can provoke it.",
       "A generalized tonic-clonic drug such as carbamazepine can worsen pure absence.",
-      "Under 10 seconds, 3-Hz spike and wave, no postictal state. Ethosuximide if this is the only seizure type.",
-      "Carbamazepine can worsen absence. Hyperventilation in clinic can reproduce the spell."
+      "Carbamazepine can worsen absence. Hyperventilation in clinic can reproduce the spell.",
+      "Ethosuximide if this is the only seizure type."
     ],
     "miss": "Treating staring spells with carbamazepine because all seizures look the same.",
     "diagram": "ethosux",
@@ -905,7 +887,7 @@
       "name": "StatPearls. Absence Seizure.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499867/",
-      "says": "Absence is a brief generalized seizure with 3-Hz spike-and-wave and no postictal period. Ethosuximide is the specific drug."
+      "says": "A childhood absence seizure is a few seconds of staring, a 3-hertz spike and wave, and an immediate return. There is no postictal confusion."
     },
     "number": 33,
     "id": "usmle-qb-s1-033"
@@ -931,7 +913,7 @@
       "name": "StatPearls. Horner Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500000/",
-      "says": "Interruption of ocular sympathetic fibers produces ptosis and miosis, and the cause may sit in the lung apex, the carotid artery, or the brainstem."
+      "says": "Horner syndrome is ptosis, miosis, and anhidrosis from a lost sympathetic path to the eye and the face."
     },
     "number": 34,
     "id": "usmle-qb-s1-034"
@@ -975,8 +957,7 @@
       "A continuous face pain is not this disease.",
       "A young patient or a sensory loss needs imaging for a compressive or demyelinating lesion.",
       "The drug's own risks, including low sodium and a rash, are part of the prescription.",
-      "Seconds of pain in one division. Carbamazepine is first-line. Hyponatremia and rash are the drug harms.",
-      "Onset before 40 or any sensory loss needs MRI. Continuous pain is not neuralgia."
+      "Seconds of pain in one division. Carbamazepine is first-line. Hyponatremia and rash are the drug harms."
     ],
     "miss": "Treating electric facial pain with a dental extraction and no drug.",
     "diagram": "cbz-tn",
@@ -985,7 +966,7 @@
       "name": "StatPearls. Trigeminal Neuralgia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK554486/",
-      "says": "Paroxysmal lancinating pain in a trigeminal distribution is treated first with carbamazepine, and atypical features need imaging."
+      "says": "Trigeminal neuralgia is seconds of electric pain in one trigeminal branch, set off by touch, and carbamazepine is the first drug."
     },
     "number": 36,
     "id": "usmle-qb-s1-036"
@@ -1012,7 +993,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "Dopamine blockade produces lead-pipe rigidity, fever, and autonomic instability. It is separated from serotonin syndrome by the reflexes."
+      "says": "Neuroleptic malignant syndrome follows a dopamine blocker. The body is rigid, the reflexes are not clonus, and the creatine kinase is high."
     },
     "number": 37,
     "id": "usmle-qb-s1-037"
@@ -1039,7 +1020,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "Clonus and hyperreflexia mark serotonin excess. The time course is hours, and the offending drugs stop."
+      "says": "Serotonin syndrome is clonus, hyperreflexia, and fever after a serotonergic drug, often two of them together."
     },
     "number": 38,
     "id": "usmle-qb-s1-038"
@@ -1066,7 +1047,7 @@
       "name": "StatPearls. Lithium Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499992/",
-      "says": "Lithium has a narrow index, interacts with drugs that change renal handling, and causes nephrogenic diabetes insipidus with long use."
+      "says": "Lithium toxicity is tremor, confusion, and a level that does not have to be far above the range. Chronic use causes nephrogenic diabetes insipidus."
     },
     "number": 39,
     "id": "usmle-qb-s1-039"
@@ -1083,8 +1064,7 @@
       "It is not acute dystonia, which is hours after a dose and answers to an anticholinergic.",
       "It is not akathisia, which is restlessness.",
       "A VMAT2 inhibitor is the treatment conversation. Another first-generation antipsychotic is not.",
-      "Months of a blocker, then orofacial movements that can persist after the drug stops.",
-      "Acute dystonia is hours and responds to benztropine. A VMAT2 inhibitor is the tardive treatment, not a higher haloperidol dose."
+      "Months of a blocker, then orofacial movements that can persist after the drug stops."
     ],
     "miss": "Treating mouth movements with more of the drug that caused them, unless a specialist is treating withdrawal carefully.",
     "diagram": null,
@@ -1093,7 +1073,7 @@
       "name": "StatPearls. Tardive Dyskinesia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448207/",
-      "says": "Late, repetitive movements after chronic dopamine blockade can persist. They are not the acute dystonia of the first dose."
+      "says": "Tardive dyskinesia is repetitive mouth and trunk movements after months of a dopamine blocker, and stopping the drug may not stop the movements."
     },
     "number": 40,
     "id": "usmle-qb-s1-040"
@@ -1120,7 +1100,7 @@
       "name": "StatPearls. Alzheimer Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499922/",
-      "says": "The typical course is insidious episodic-memory loss. A sudden focal deficit is vascular until imaged."
+      "says": "Alzheimer disease is a gradual loss of memory from hippocampal amyloid and tau. A sudden deficit is a stroke until proved otherwise."
     },
     "number": 41,
     "id": "usmle-qb-s1-041"
@@ -1147,7 +1127,7 @@
       "name": "StatPearls. Idiopathic Normal Pressure Hydrocephalus.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK542247/",
-      "says": "The clinical order is gait, then bladder, then cognition, with ventriculomegaly and a pressure that is not elevated."
+      "says": "Normal pressure hydrocephalus is a magnetic gait, urinary incontinence, and dementia, in that order of usefulness, with large ventricles and a pressure that is not high."
     },
     "number": 42,
     "id": "usmle-qb-s1-042"
@@ -1164,8 +1144,7 @@
       "The headache is progressive. Fever can be missing.",
       "Streptococci and mixed mouth organisms are the contiguous story. Staph is the postoperative and trauma story.",
       "Drain plus antibiotics, not antibiotics alone, when the collection is large.",
-      "Image before the lumbar puncture when a focal sign or papilledema is present.",
-      "Contiguous sinus or ear source is often streptococci. Drain collections around 2.5 cm or larger, or any collection with mass effect."
+      "Image before the lumbar puncture when a focal sign or papilledema is present."
     ],
     "miss": "Performing a lumbar puncture for fever and headache before imaging a patient with a focal sign.",
     "diagram": null,
@@ -1174,7 +1153,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "A ring-enhancing lesion from contiguous or hematogenous spread is managed with imaging first. Lumbar puncture risks herniation when a mass is present."
+      "says": "A brain abscess is a ring-enhancing mass, often from a sinus, an ear, or a heart valve. Lumbar puncture is not the next test when a mass is present."
     },
     "number": 43,
     "id": "usmle-qb-s1-043"
@@ -1218,8 +1197,7 @@
     "lines": [
       "Two or more mucosal surfaces plus skin pain and detachment is the picture. This is not urticaria.",
       "Stop the drug. Care is the care of a burn: fluids, wound care, and a unit that treats this.",
-      "The usual drugs are allopurinol, aromatic anticonvulsants, sulfonamides, and some antibiotics. The drug is never given again.",
-      "Detachment under 10% is SJS. Over 30% is TEN. Two mucosal sites plus skin pain. Drug latency is usually 4\u201328 days."
+      "The usual drugs are allopurinol, aromatic anticonvulsants, sulfonamides, and some antibiotics. The drug is never given again."
     ],
     "miss": "Giving the same drug again because the rash was filed as a simple allergy.",
     "diagram": null,
@@ -1228,7 +1206,7 @@
       "name": "StatPearls. Stevens-Johnson Syndrome and Toxic Epidermal Necrolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459323/",
-      "says": "SJS and TEN are the same drug-triggered spectrum, separated by how much skin detaches, and the drug has to stop."
+      "says": "Stevens-Johnson syndrome and toxic epidermal necrolysis are the same drug reaction. The name changes with how much skin detaches."
     },
     "open": false
   },
@@ -1254,7 +1232,7 @@
       "name": "StatPearls. Acute Compartment Syndrome and Fasciotomy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK556153/",
-      "says": "The early findings are pain and pain with passive stretch. Pulselessness means the compartment pressure has already exceeded arterial pressure."
+      "says": "Acute compartment syndrome is pain out of proportion and pain on passive stretch. A missing pulse is late, not required."
     },
     "number": 46,
     "id": "usmle-qb-s1-046"
@@ -1271,7 +1249,6 @@
       "HLA-B27 supports it and does not diagnose it.",
       "The spine can fuse. The plain film of the sacroiliac joints is the late picture. MRI sees it earlier.",
       "Uveitis and aortitis travel with it. Ask about the eye.",
-      "Onset under 45, night pain, stiffness over 30 minutes, better with activity. HLA-B27 is supportive only.",
       "An NSAID is first-line. A red painful eye is acute anterior uveitis and is same-day ophthalmology."
     ],
     "miss": "Ordering six weeks of rest for a young man whose stiffness is worst in the morning.",
@@ -1281,7 +1258,7 @@
       "name": "StatPearls. Ankylosing Spondylitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470173/",
-      "says": "Inflammatory back pain improves with activity. HLA-B27 is associated, and sacroiliitis is the joint finding."
+      "says": "Ankylosing spondylitis is inflammatory back pain in a young adult. It is worse with rest and better with activity, the opposite of mechanical pain."
     },
     "number": 47,
     "id": "usmle-qb-s1-047"
@@ -1298,7 +1275,6 @@
       "The weakness is the shoulders and the hips, not the hands first.",
       "Creatine kinase is high. The diagnosis is the muscle and the skin, not the enzyme alone.",
       "Interstitial lung disease travels with some antibodies. Ask about breathlessness.",
-      "Gottron papules and a heliotrope rash plus proximal weakness. CK is high. Anti-Jo-1 is the lung antibody.",
       "Adults get a cancer search. Immunosuppression treats the muscle. A statin myopathy has no rash."
     ],
     "miss": "Calling the rash eczema and missing the shoulders the patient can no longer lift.",
@@ -1308,7 +1284,7 @@
       "name": "StatPearls. Dermatomyositis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
-      "says": "The rash and proximal weakness define dermatomyositis, and adult disease prompts a search for an associated cancer."
+      "says": "Dermatomyositis is proximal weakness plus Gottron papules or a heliotrope rash. In an adult, look for a cancer."
     },
     "number": 48,
     "id": "usmle-qb-s1-048"
@@ -1322,19 +1298,19 @@
     "open": false,
     "lead": "Giant cell arteritis is a granulomatous vasculitis of carotid branches in a person over 50. The emergency is vision, and the drug is high-dose steroid.",
     "lines": [
-      "New headache, jaw pain with chewing, and a tender scalp artery are the clues.",
-      "The sedimentation rate is usually high and can be normal. Do not wait on it.",
-      "Polymyalgia rheumatica is the companion, not a separate harmless ache.",
-      "Age over 50, jaw claudication, new headache. Start prednisone 40\u201360 mg daily, or pulse steroids if vision is threatened, before the biopsy."
+      "Newly diagnosed giant-cell arteritis without cranial ischemia starts with high-dose oral glucocorticoids, not routine IV pulse therapy.",
+      "Threatened vision loss is the setting in which the ACR conditionally recommends IV pulse glucocorticoids instead.",
+      "Obtain the temporal-artery biopsy within 2 weeks of starting oral glucocorticoids. Histology can persist, but later than 2 weeks is not the recommendation.",
+      "Prefer a biopsy specimen longer than 1 cm. A unilateral biopsy is the initial recommendation."
     ],
-    "miss": "Waiting for a biopsy result before the first steroid dose in a patient whose vision is changing.",
+    "miss": "Delaying glucocorticoids until the biopsy returns, or waiting past 2 weeks to biopsy after steroids have started.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Giant Cell Arteritis (Temporal Arteritis).",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459376/",
-      "says": "Vision loss is the complication that makes steroid treatment immediate. Biopsy should not delay the first dose."
+      "name": "2021 ACR/Vasculitis Foundation guideline for giant cell arteritis.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34235884/",
+      "says": "Newly diagnosed GCA without cranial ischemia is started on high-dose oral glucocorticoids rather than IV pulse therapy. Threatened vision loss is a setting for IV pulse glucocorticoids. Obtain the temporal-artery biopsy within 2 weeks of starting oral glucocorticoids, and prefer a specimen longer than 1 cm."
     },
     "number": 49,
     "id": "usmle-qb-s1-049"
@@ -1351,7 +1327,7 @@
       "The response to a modest steroid dose is part of the picture.",
       "It is not polymyositis. The enzymes and the biopsy are different.",
       "Ask about headache and vision, because giant cell arteritis can sit beside it.",
-      "Shoulder and hip girdle stiffness, age over 50, ESR often over 40, and a normal CK. That normal CK separates it from myositis."
+      "That normal CK separates it from myositis."
     ],
     "miss": "Starting a statin workup or a muscle biopsy for girdle stiffness with a normal creatine kinase.",
     "diagram": null,
@@ -1360,7 +1336,7 @@
       "name": "StatPearls. Polymyalgia Rheumatica.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537274/",
-      "says": "The syndrome is proximal stiffness with elevated inflammatory markers and normal muscle enzymes, linked to giant cell arteritis."
+      "says": "Polymyalgia rheumatica is bilateral shoulder and hip stiffness in an older adult, with a high sedimentation rate and normal muscle enzymes."
     },
     "number": 50,
     "id": "usmle-qb-s1-050"
@@ -1387,7 +1363,7 @@
       "name": "StatPearls. Psoriatic Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547710/",
-      "says": "DIP involvement, nail pitting, and dactylitis separate psoriatic arthritis from rheumatoid arthritis."
+      "says": "Psoriatic arthritis inflames a distal interphalangeal joint, pits the nail, and can swell a whole digit."
     },
     "number": 51,
     "id": "usmle-qb-s1-051"
@@ -1414,7 +1390,7 @@
       "name": "StatPearls. Reactive Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499831/",
-      "says": "The arthritis is sterile and follows Chlamydia or a gastrointestinal infection. It is inflammatory, not an infected joint."
+      "says": "Reactive arthritis is a sterile arthritis days to weeks after a genital or gut infection."
     },
     "number": 52,
     "id": "usmle-qb-s1-052"
@@ -1441,7 +1417,7 @@
       "name": "StatPearls. Marfan Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
-      "says": "Fibrillin mutations produce upward lens dislocation and progressive aortic-root dilation, which is the life-threatening lesion."
+      "says": "Marfan syndrome is fibrillin. The lens dislocates upward, and the aortic root dilates."
     },
     "number": 53,
     "id": "usmle-qb-s1-053"
@@ -1468,7 +1444,7 @@
       "name": "StatPearls. Osteogenesis Imperfecta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK536957/",
-      "says": "Defective type I collagen causes brittle bones, blue sclerae, and hearing loss."
+      "says": "Osteogenesis imperfecta is type I collagen that fails. Blue sclerae, fractures, and hearing loss travel together."
     },
     "number": 54,
     "id": "usmle-qb-s1-054"
@@ -1485,7 +1461,6 @@
       "The mouth is almost always involved.",
       "Immunofluorescence looks like a net around the cells.",
       "Bullous pemphigoid is the opposite: tense bullae, older adults, and a split under the epidermis.",
-      "Flaccid bullae, positive Nikolsky sign, desmoglein 3, net-like immunofluorescence, and almost always mouth erosions.",
       "Systemic corticosteroid plus a steroid-sparing drug. Topical therapy alone does not treat widespread disease."
     ],
     "miss": "Swapping pemphigus and pemphigoid because both blister.",
@@ -1495,7 +1470,7 @@
       "name": "StatPearls. Pemphigus Vulgaris.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
-      "says": "Pemphigus is an intraepidermal split from desmoglein antibodies, with flaccid bullae and mucosal erosions."
+      "says": "Pemphigus vulgaris is flaccid bullae, a positive Nikolsky sign, and antibodies against desmoglein in the epidermis."
     },
     "number": 55,
     "id": "usmle-qb-s1-055"
@@ -1512,8 +1487,7 @@
       "Crepitus and bullae are late. Do not require them.",
       "Group A streptococcus or a mix of gut organisms are the bacteriologic stories.",
       "The treatment is the operating room plus antibiotics. Antibiotics alone lose.",
-      "Pain past the visible erythema, toxicity, and a lactate that is rising. Crepitus is late and not required.",
-      "Operating room plus broad antibiotics the same hour. A 24-hour antibiotic trial is the miss."
+      "Pain past the visible erythema, toxicity, and a lactate that is rising. Crepitus is late and not required."
     ],
     "miss": "Admitting cellulitis for intravenous antibiotics when the pain and the toxicity are already past cellulitis.",
     "diagram": null,
@@ -1522,7 +1496,7 @@
       "name": "StatPearls. Necrotizing Fasciitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430756/",
-      "says": "Pain out of proportion and systemic toxicity mark necrotizing infection. Surgery is the treatment, not antibiotics alone."
+      "says": "Necrotizing fasciitis is pain out of proportion, a systemically sick patient, and tissue death under skin that can still look almost normal."
     },
     "number": 56,
     "id": "usmle-qb-s1-056"
@@ -1549,7 +1523,7 @@
       "name": "StatPearls. Cellulitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK549770/",
-      "says": "Cellulitis has indistinct borders. Erysipelas is sharply raised. A drainable collection is an abscess and is opened."
+      "says": "Cellulitis is a dermal infection with edges that fade. Erysipelas is more superficial, raised, and sharply demarcated."
     },
     "number": 57,
     "id": "usmle-qb-s1-057"
@@ -1576,7 +1550,7 @@
       "name": "StatPearls. Physiology, Cardiovascular Murmurs.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK525958/",
-      "says": "Dynamic auscultation uses preload and afterload. Most murmurs track preload. Hypertrophic cardiomyopathy and mitral valve prolapse do the opposite."
+      "says": "Less preload softens almost every murmur. Hypertrophic cardiomyopathy and mitral valve prolapse get louder or longer."
     },
     "open": false
   },
@@ -1602,7 +1576,7 @@
       "name": "StatPearls. Antiarrhythmic Medications.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482322/",
-      "says": "The Vaughan-Williams classes separate sodium-channel block, beta block, potassium-channel block, and calcium-channel block, and the rate dependence is not the same across classes."
+      "says": "Class I sodium blockers bind harder at fast rates. Pure class III potassium blockers bind harder at slow rates."
     },
     "open": false
   },
@@ -1618,8 +1592,7 @@
     "lines": [
       "The first day is early coagulation necrosis. Neutrophils are not the story yet.",
       "Days 3 to 7 are the rupture window: free wall, septum, or papillary muscle.",
-      "A firm collagen scar takes weeks. Reperfusion can add hemorrhage, but it does not move the rupture window to the first hour.",
-      "First day: early coagulation necrosis, few neutrophils. Days 1\u20133: neutrophils. Days 3\u20137: macrophages and the rupture window."
+      "A firm collagen scar takes weeks. Reperfusion can add hemorrhage, but it does not move the rupture window to the first hour."
     ],
     "miss": "Dating a rupture to the afternoon of the infarct, or dating neutrophils to week three.",
     "diagram": "mi-days",
@@ -1628,7 +1601,7 @@
       "name": "StatPearls. Acute Myocardial Infarction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459269/",
-      "says": "The histologic sequence runs from early coagulation necrosis, through neutrophils, to macrophage clearance and then scar. Mechanical rupture is a risk while the dead wall is being removed."
+      "says": "Neutrophils dominate days 1 to 3. Macrophages clear dead muscle on days 3 to 7, and that is when the wall ruptures."
     },
     "open": false
   },
@@ -1654,7 +1627,7 @@
       "name": "StatPearls. Cardiac Tamponade.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/",
-      "says": "Tamponade equalizes diastolic pressures, exaggerates pulsus paradoxus, and is treated by removing the pericardial fluid."
+      "says": "Cardiac tamponade equalizes diastolic pressures and drops the y descent. The clue at the bedside is pulsus paradoxus and a quiet heart."
     },
     "number": 61,
     "id": "usmle-qb-s1-061"
@@ -1725,7 +1698,6 @@
       "Alcohol, doxorubicin, and a viral myocarditis are the classic causes you can name.",
       "The coronary arteries can be clean. Ischemia is a different dilated heart.",
       "The ejection fraction is low. Preserved-ejection-fraction failure is the other disease.",
-      "Low ejection fraction and an S3. Alcohol, doxorubicin, and viral myocarditis are the named nonischemic causes.",
       "If alcohol is the cause, stopping it is the disease-modifying order. A low EF still gets the four-drug HFrEF regimen."
     ],
     "miss": "Calling every heart failure ischemic without asking about alcohol and the ejection fraction.",
@@ -1735,7 +1707,7 @@
       "name": "StatPearls. Dilated Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441911/",
-      "says": "The ventricle dilates and the ejection fraction falls. Alcohol, anthracyclines, and viral injury are named causes."
+      "says": "Dilated cardiomyopathy is a weak, enlarged ventricle. The failure is systolic, and an S3 is the sound."
     },
     "number": 64,
     "id": "usmle-qb-s1-064"
@@ -1762,7 +1734,7 @@
       "name": "StatPearls. Restrictive Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "Infiltrative disease stiffens the ventricle. Amyloid pairs thick walls with low electrocardiographic voltage."
+      "says": "Restrictive cardiomyopathy is a stiff ventricle with a normal or near-normal ejection fraction. Amyloid is the prototype."
     },
     "number": 65,
     "id": "usmle-qb-s1-065"
@@ -1806,8 +1778,7 @@
       "Jones criteria diagnose acute rheumatic fever, not the chronic valve.",
       "The chronic lesion is years later: stenosis, regurgitation, or both.",
       "Prevent the next attack with penicillin in a patient who has already had rheumatic fever.",
-      "Mitral valve is the most affected. Jones criteria diagnose acute rheumatic fever. The chronic valve lesion is years later.",
-      "Secondary prevention is scheduled penicillin for years, longer if the heart was involved. A 10-day course is treatment of pharyngitis, not prophylaxis."
+      "Mitral valve is the most affected. Jones criteria diagnose acute rheumatic fever. The chronic valve lesion is years later."
     ],
     "miss": "Treating the sore throat after the valve is already stenotic and calling that prevention.",
     "diagram": "rheumatic-pcn",
@@ -1816,7 +1787,7 @@
       "name": "StatPearls. Rheumatic Heart Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "Molecular mimicry after group A streptococcal pharyngitis injures the heart, and the mitral valve is the most affected."
+      "says": "Rheumatic heart disease is immune mimicry after group A streptococcus. The valve it damages most often is the mitral valve."
     },
     "number": 67,
     "id": "usmle-qb-s1-067"
@@ -1843,7 +1814,7 @@
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
-      "says": "The four lesions produce right-to-left shunt that worsens when pulmonary stenosis tightens. Squatting raises afterload and reduces the shunt."
+      "says": "Tetralogy of Fallot is pulmonic stenosis, right ventricular hypertrophy, an overriding aorta, and a ventricular septal defect."
     },
     "number": 68,
     "id": "usmle-qb-s1-068"
@@ -1870,7 +1841,7 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "Arm hypertension, a radio-femoral delay, and rib notching mark coarctation. Turner syndrome and a bicuspid aortic valve travel with it."
+      "says": "Coarctation of the aorta raises the pressure in the arms above the pressure in the legs and delays the femoral pulse."
     },
     "number": 69,
     "id": "usmle-qb-s1-069"
@@ -1941,7 +1912,6 @@
       "Potassium and magnesium being low, and drugs that block the potassium current, make it longer.",
       "The acute drug for torsades is intravenous magnesium, even when the serum magnesium is normal.",
       "A congenital long QT is a family history of sudden death and a QT you measure, not guess.",
-      "Pause-dependent polymorphic VT. Intravenous magnesium 1\u20132 g even if the serum magnesium is normal. Replete potassium.",
       "Stop the QT-prolonging drug. Do not give amiodarone or another QT-prolonging antiarrhythmic for torsades."
     ],
     "miss": "Treating torsades with a drug that prolongs the QT further.",
@@ -1951,7 +1921,7 @@
       "name": "StatPearls. Long QT Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441860/",
-      "says": "QT prolongation predisposes to pause-dependent polymorphic ventricular tachycardia. Magnesium is the acute treatment of torsades."
+      "says": "A prolonged QT sets up torsades de pointes, a polymorphic ventricular tachycardia that follows a pause."
     },
     "number": 72,
     "id": "usmle-qb-s1-072"
@@ -1978,7 +1948,7 @@
       "name": "StatPearls. Mitral Valve Prolapse.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470288/",
-      "says": "The click is mid-systolic and moves later when preload rises. Severe prolapse prompts a search for a connective-tissue disease."
+      "says": "Mitral valve prolapse is a mid-systolic click and a late systolic murmur. More preload makes the click later."
     },
     "number": 73,
     "id": "usmle-qb-s1-073"
@@ -2006,7 +1976,7 @@
       "name": "StatPearls. Anion Gap and Non-Anion Gap Metabolic Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448090/",
-      "says": "The chapter separates gap from non-gap acidosis. The urine anion gap distinguishes gastrointestinal bicarbonate loss from renal tubular acidosis."
+      "says": "When the anion gap is normal, urine sodium plus potassium minus chloride tells you if the kidney is answering with ammonium."
     }
   },
   {
@@ -2030,7 +2000,7 @@
       "name": "StatPearls. IgA Nephropathy (Berger Disease). Minimal Change Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538214/",
-      "says": "IgA nephropathy is the most common primary glomerulonephritis and presents with hematuria around a mucosal infection. Minimal change disease is nephrotic syndrome with foot-process effacement.",
+      "says": "Nephritic urine has red cells and red-cell casts. Nephrotic urine has heavy protein, at least 3.5 g a day.",
       "more": [
         {
           "name": "StatPearls. Minimal Change Disease.",
@@ -2052,8 +2022,7 @@
     "lines": [
       "Carbonic anhydrase inhibitors act in the proximal tubule and cause a metabolic acidosis.",
       "Loops and thiazides both cause a metabolic alkalosis. Loops also waste magnesium and can hurt hearing.",
-      "Spironolactone and eplerenone block aldosterone. Amiloride blocks ENaC. Both save potassium.",
-      "Loops block NKCC2 and waste calcium and magnesium. Thiazides block NCC and decrease urine calcium."
+      "Spironolactone and eplerenone block aldosterone. Amiloride blocks ENaC. Both save potassium."
     ],
     "miss": "Using a loop when the goal is to lower urine calcium, or starting a potassium-sparing drug and never checking the potassium.",
     "diagram": "diuretics",
@@ -2062,7 +2031,7 @@
       "name": "StatPearls. Loop Diuretics. Thiazide Diuretics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK546656/",
-      "says": "Loops inhibit NKCC2 and increase calcium and magnesium excretion. Thiazides inhibit NCC and decrease calcium excretion.",
+      "says": "Loops block NKCC2 in the thick ascending limb and waste calcium. Thiazides block NCC in the distal tubule and save calcium.",
       "more": [
         {
           "name": "StatPearls. Thiazide Diuretics.",
@@ -2093,7 +2062,7 @@
       "name": "StatPearls. Physiology, Oxygen Transport. Physiology, Oxyhemoglobin Dissociation Curve.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538336/",
-      "says": "Oxygen content depends on hemoglobin and saturation, not on PaO2 alone. The dissociation curve shifts with CO2, pH, 2,3-BPG, and temperature.",
+      "says": "A true shunt does not correct on 100% oxygen. Hypoventilation and low inspired oxygen keep a normal A-a gradient.",
       "more": [
         {
           "name": "StatPearls. Physiology, Oxyhemoglobin Dissociation Curve.",
@@ -2141,8 +2110,7 @@
     "lines": [
       "Breath sounds are down and the neck veins are up on the injured side\u2019s opposite story: the good lung is compressed.",
       "The treatment is decompression, then a chest tube. A chest film is for a stable patient.",
-      "A simple pneumothorax has air and no shift and no shock.",
-      "A chest film is for a stable simple pneumothorax. It is not the first order when the pressure is 70."
+      "A simple pneumothorax has air and no shift and no shock."
     ],
     "miss": "Ordering a film on a patient whose pressure is falling and whose trachea has already moved.",
     "diagram": null,
@@ -2151,7 +2119,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "A one-way leak raises pleural pressure, shifts the mediastinum away, and obstructs venous return. Decompression comes before imaging."
+      "says": "Tension pneumothorax is a one-way valve. The trachea shifts away from the silent side, and the shock is obstructive."
     },
     "number": 79,
     "id": "usmle-qb-s1-079"
@@ -2232,7 +2200,7 @@
       "name": "StatPearls. Bronchiectasis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430810/",
-      "says": "Permanently dilated bronchi produce daily copious sputum. CT shows the dilation, and clearance is the long treatment."
+      "says": "Bronchiectasis is irreversible dilation of bronchi. The patient coughs cups of sputum."
     },
     "number": 82,
     "id": "usmle-qb-s1-082"
@@ -2259,7 +2227,7 @@
       "name": "StatPearls. Hypersensitivity Pneumonitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499918/",
-      "says": "Inhaled antigen drives the lung inflammation. Antigen removal is required. The exposure history is the diagnosis."
+      "says": "Hypersensitivity pneumonitis is an immune reaction to an inhaled antigen. The farmer, the bird owner, and the hot-tub user are the histories."
     },
     "number": 83,
     "id": "usmle-qb-s1-083"
@@ -2275,9 +2243,7 @@
     "lines": [
       "Type 2 is a proximal leak. The urine can still acidify once bicarbonate is low, and Fanconi features may be present.",
       "Type 4 is the hyperkalemic one, from low aldosterone effect.",
-      "All three can lower bicarbonate. The potassium and the urine pH separate them.",
-      "Type 1: urine pH stays above 5.5, potassium is low, and calcium stones form.",
-      "Type 2 can acidify the urine once bicarbonate is low. Type 4 is the hyperkalemic, low-aldosterone acidosis."
+      "All three can lower bicarbonate. The potassium and the urine pH separate them."
     ],
     "miss": "Calling every non-gap acidosis diarrhea. Diarrhea also lowers potassium, and the urine anion gap is the separator.",
     "diagram": "rta-k",
@@ -2286,7 +2252,7 @@
       "name": "StatPearls. Renal Tubular Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519044/",
-      "says": "Distal RTA cannot lower urine pH and wastes potassium. Type 4 is the hyperkalemic, aldosterone-related acidosis."
+      "says": "Type 1 renal tubular acidosis cannot acidify the urine. Potassium is low, and calcium stones form."
     },
     "number": 84,
     "id": "usmle-qb-s1-084"
@@ -2303,7 +2269,6 @@
       "Correct the water slowly. A fast drop in sodium swells the brain that has adapted.",
       "Diabetes insipidus makes dilute urine in the face of a high serum osmolality.",
       "Dehydration from poor access to water makes concentrated urine. The urine tells you which.",
-      "Free-water deficit. Replace it so sodium falls by no more than about 0.5 mEq/L per hour, and recheck.",
       "Concentrated urine means the kidney is holding water and intake was the problem. Dilute urine is diabetes insipidus."
     ],
     "miss": "Replacing the entire deficit with free water in a few hours.",
@@ -2313,7 +2278,7 @@
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
-      "says": "Hypernatremia is a relative water deficit. The urine osmolality separates renal water loss from inadequate intake."
+      "says": "Hypernatremia is too little water for the sodium. The patient is thirsty if the thirst mechanism works."
     },
     "number": 85,
     "id": "usmle-qb-s1-085"
@@ -2330,7 +2295,6 @@
       "U waves and weakness are the ECG and the muscle.",
       "A diuretic, vomiting, and diarrhea are the usual losses.",
       "Intravenous potassium through a peripheral vein is dilute and slow. A fast push stops the heart.",
-      "Intravenous potassium is diluted and infused, typically no faster than 10 mEq/hour through a peripheral vein. It is never pushed.",
       "If potassium will not stay up, magnesium is low. Replace magnesium or the kidney keeps wasting potassium."
     ],
     "miss": "Pushing a syringe of potassium, or chasing the potassium without a magnesium level.",
@@ -2340,7 +2304,7 @@
       "name": "StatPearls. Hypokalemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482465/",
-      "says": "Concurrent magnesium deficiency perpetuates urinary potassium loss. Replacement of both is required, and intravenous potassium is never pushed."
+      "says": "Hypokalemia that will not correct often means the magnesium is low. The kidney wastes potassium until magnesium is replaced."
     },
     "number": 86,
     "id": "usmle-qb-s1-086"
@@ -2357,8 +2321,7 @@
       "After the parathyroid glands are removed, the calcium falls within a day or two.",
       "Low magnesium keeps the parathyroid from releasing hormone. Replace it.",
       "Calcium gluconate is the acute drug when the QT is long or the patient is seizing.",
-      "Prolonged QT, Chvostek or Trousseau sign, tetany, or a seizure gets intravenous calcium. Recheck magnesium.",
-      "After thyroidectomy, check calcium on a schedule for 24\u201348 hours. A low albumin lowers total calcium without changing the ionized value."
+      "Prolonged QT, Chvostek or Trousseau sign, tetany, or a seizure gets intravenous calcium. Recheck magnesium."
     ],
     "miss": "Treating a long QT with magnesium only, when the calcium was the ion that fell.",
     "diagram": "ca-qt",
@@ -2367,7 +2330,7 @@
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "Low calcium prolongs the QT interval and produces neuromuscular irritability. Magnesium deficiency can suppress parathyroid hormone release."
+      "says": "Hypocalcemia prolongs the QT and makes Chvostek and Trousseau signs. The muscle is irritable, not weak from potassium."
     },
     "number": 87,
     "id": "usmle-qb-s1-087"
@@ -2384,8 +2347,7 @@
       "A diuretic does the same while the patient is still volume-down.",
       "A high urine chloride means the kidney is generating the alkalosis, as in hyperaldosteronism. Saline will not fix that.",
       "Potassium is low in both. The urine chloride is the split.",
-      "Urine chloride under 20 mEq/L means the alkalosis will respond to saline. That is vomiting or a recent diuretic.",
-      "Urine chloride over 20 mEq/L with hypertension is mineralocorticoid excess. Saline will not fix it. Replace potassium in both."
+      "That is vomiting or a recent diuretic."
     ],
     "miss": "Pouring saline into a hypertensive patient whose urine chloride is already high.",
     "diagram": null,
@@ -2394,7 +2356,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "A low urine chloride marks saline-responsive alkalosis from volume loss. A high urine chloride marks mineralocorticoid excess."
+      "says": "Metabolic alkalosis from vomiting loses acid and volume. The urine chloride is low, and saline corrects it."
     },
     "number": 88,
     "id": "usmle-qb-s1-088"
@@ -2411,8 +2373,7 @@
       "A sedative, a neuromuscular disease, and an obstructed airway are the causes.",
       "Oxygen does not blow off CO2. Ventilation does.",
       "A chronic retainer lives with a high bicarbonate. Dropping the CO2 to 40 in one hour alkalinizes them.",
-      "A rising PaCO2 and a falling pH need more alveolar ventilation. Oxygen does not remove CO2.",
-      "Noninvasive ventilation is first if the airway is protected and the patient is not in shock. Do not drive a chronic retainer to a PaCO2 of 40 in one hour."
+      "Noninvasive ventilation is first if the airway is protected and the patient is not in shock."
     ],
     "miss": "Giving more oxygen as the treatment of a rising CO2 in a patient who is not breathing.",
     "diagram": "nippv",
@@ -2421,7 +2382,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "Hypoventilation raises PaCO2. Renal bicarbonate compensation is slow. The treatment is to ventilate."
+      "says": "Respiratory acidosis is a high PaCO2 from not ventilating. The kidney raises bicarbonate later, not in the first hour."
     },
     "number": 89,
     "id": "usmle-qb-s1-089"
@@ -2465,7 +2426,7 @@
       "Nephrogenic disease does not answer to desmopressin. Lithium is the classic cause.",
       "The patient is polyuric, not oliguric.",
       "Psychogenic water drinking dilutes the serum. The urine is dilute and the serum sodium is low or low-normal, not high.",
-      "Urine osmolality under 300 with serum osmolality over 300 is the water-loss picture. Desmopressin concentrates the urine only if the cause is central."
+      "Desmopressin concentrates the urine only if the cause is central."
     ],
     "miss": "Restricting water in a patient whose sodium is already high and whose urine is water.",
     "diagram": null,
@@ -2474,7 +2435,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "A desmopressin trial separates central diabetes insipidus, which responds, from nephrogenic disease, which does not."
+      "says": "Diabetes insipidus is dilute urine while the serum is concentrated. Desmopressin raises the urine concentration if the problem is central."
     },
     "number": 91,
     "id": "usmle-qb-s1-091"
@@ -2500,7 +2461,7 @@
       "name": "StatPearls. Renal Artery Stenosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
-      "says": "Renovascular hypertension is renin-driven. Fibromuscular dysplasia and atherosclerosis are the two lesions, and bilateral disease makes ACE inhibitors hazardous."
+      "says": "Renal artery stenosis turns on renin. Fibromuscular dysplasia is the young woman. Atherosclerosis is the older smoker."
     },
     "number": 92,
     "id": "usmle-qb-s1-092"
@@ -2527,7 +2488,7 @@
       "name": "StatPearls. Autosomal Dominant Polycystic Kidney Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532934/",
-      "says": "ADPKD produces bilateral renal cysts, early hypertension, and intracranial aneurysms. Imaging and family history make the diagnosis."
+      "says": "Autosomal dominant polycystic kidney disease makes big cystic kidneys, hypertension, and berry aneurysms."
     },
     "number": 93,
     "id": "usmle-qb-s1-093"
@@ -2544,8 +2505,8 @@
       "A low-purine pattern and a high uric acid are the setup, including tumor lysis.",
       "Calcium stones are the common radiopaque ones. Do not assume every stone is calcium.",
       "The CT still sees the uric acid stone. The plain film does not.",
-      "Plain films miss uric acid stones. CT does not. They form when urine pH is low, often under 5.5.",
-      "Alkalinize the urine toward 6.5\u20137. Allopurinol is not the acute pain drug."
+      "Plain films miss uric acid stones.",
+      "Allopurinol is not the acute pain drug."
     ],
     "miss": "Telling a patient the stone is gone because the abdominal film is clear.",
     "diagram": null,
@@ -2554,7 +2515,7 @@
       "name": "StatPearls. Uric Acid Nephrolithiasis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560726/",
-      "says": "Uric acid stones are radiolucent on plain films and form in acidic urine. Alkalinization is the specific medical dissolution."
+      "says": "Uric acid stones do not show on a plain radiograph. They form in acidic urine, and alkalinizing the urine dissolves them."
     },
     "number": 94,
     "id": "usmle-qb-s1-094"
@@ -2580,7 +2541,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Falling kidney function raises phosphate, lowers active vitamin D, and drives secondary hyperparathyroidism."
+      "says": "In chronic kidney disease the phosphate rises, the calcium falls or sits low-normal, and PTH rises to compensate."
     },
     "number": 95,
     "id": "usmle-qb-s1-095"
@@ -2607,7 +2568,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "Emphysematous pyelonephritis is a necrotizing gas-forming infection, typically in diabetes, and needs more than oral antibiotics."
+      "says": "Gas in the kidney of a diabetic patient is emphysematous pyelonephritis. It is a surgical and antibiotic emergency, not a routine pyelonephritis."
     },
     "number": 96,
     "id": "usmle-qb-s1-096"
@@ -2634,7 +2595,7 @@
       "name": "StatPearls. Autosomal Recessive Polycystic Kidney Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537137/",
-      "says": "ARPKD presents early and includes congenital hepatic fibrosis. It is genetically and clinically distinct from adult ADPKD."
+      "says": "Autosomal recessive polycystic kidney disease presents in infancy and pairs the kidney cysts with congenital hepatic fibrosis."
     },
     "number": 97,
     "id": "usmle-qb-s1-097"
@@ -2651,7 +2612,6 @@
       "The light microscope looks normal. That is the point of the name.",
       "Selective albumin loss is the urine.",
       "A child with sudden edema and heavy protein is this until a steroid trial or a biopsy says otherwise.",
-      "Childhood nephrotic syndrome: albumin often under 2.5 g/dL, protein over 3.5 g/day, and foot-process effacement. Light microscopy is normal.",
       "Steroids are the first treatment unless hematuria, low complement, or an atypical age demands a biopsy."
     ],
     "miss": "Biopsying every edematous child before a specialist has considered the steroid-responsive disease.",
@@ -2661,7 +2621,7 @@
       "name": "StatPearls. Minimal Change Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560639/",
-      "says": "Light microscopy is normal, electron microscopy shows foot-process effacement, and steroids are the usual first treatment in children."
+      "says": "Minimal change disease is nephrotic syndrome, usually in a child, with foot-process effacement and a response to steroids."
     },
     "number": 98,
     "id": "usmle-qb-s1-098"
@@ -2678,8 +2638,7 @@
       "Antibodies to the phospholipase A2 receptor mark the primary disease.",
       "Cancers, hepatitis B, and lupus are the secondary causes to name.",
       "A renal vein thrombosis is the clot this protein loss allows.",
-      "Adult nephrotic syndrome. Subepithelial spikes. PLA2R antibody marks primary disease.",
-      "Test for hepatitis B, lupus, and cancer. Albumin under about 2.5 g/dL is a venous-thrombosis risk, including renal-vein thrombosis."
+      "Test for hepatitis B, lupus, and cancer."
     ],
     "miss": "Calling every adult nephrotic syndrome minimal change and expecting a quick steroid cure.",
     "diagram": null,
@@ -2688,7 +2647,7 @@
       "name": "StatPearls. Membranous Nephropathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559169/",
-      "says": "Subepithelial deposits thicken the membrane. PLA2R antibodies mark primary disease, and thrombosis is the complication."
+      "says": "Membranous nephropathy is nephrotic syndrome in an adult. The capillary wall thickens, and silver stain shows spikes."
     },
     "number": 99,
     "id": "usmle-qb-s1-099"
@@ -2704,8 +2663,7 @@
     "lines": [
       "Heart-failure fluid is a transudate. It is not bloody and not a high protein.",
       "A second sample raises the cytology yield. One negative tap does not clear a suspicious effusion.",
-      "Draining the fluid treats the breathlessness. It does not treat the cancer.",
-      "An exudate by Light criteria: pleural protein/serum protein over 0.5, or pleural LDH/serum LDH over 0.6."
+      "Draining the fluid treats the breathlessness. It does not treat the cancer."
     ],
     "miss": "Diuresing a bloody, high-protein effusion as if it were heart failure.",
     "diagram": null,
@@ -2714,7 +2672,7 @@
       "name": "StatPearls. Malignant Pleural Effusion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK574541/",
-      "says": "Malignant effusions are exudates. Cytology makes the diagnosis, and a single negative sample does not exclude it."
+      "says": "A pleural effusion in a patient with cancer or a heavy smoking history is an exudate until the fluid is examined. Cytology is the test that names a malignant effusion."
     },
     "number": 100,
     "id": "usmle-qb-s1-100"
@@ -2731,9 +2689,7 @@
     "lines": [
       "Zone 1, around the portal tract, sees the most oxygen. Direct toxins such as phosphorus hit it.",
       "Zone 3 is centrilobular. Chronic passive congestion also injures it and produces the nutmeg liver.",
-      "The zone names the mechanism. It does not name every hepatitis.",
-      "Zone 3 is centrilobular: least oxygen, most CYP enzymes. Acetaminophen and ischemia necrose zone 3.",
-      "Zone 1 is periportal and oxygen-rich. Direct toxins such as phosphorus hit zone 1. Chronic passive congestion is a nutmeg, zone-3 pattern."
+      "The zone names the mechanism. It does not name every hepatitis."
     ],
     "miss": "Putting acetaminophen necrosis in the periportal zone because that zone sees the blood first.",
     "diagram": null,
@@ -2742,7 +2698,7 @@
       "name": "StatPearls. Acetaminophen Toxicity. Physiology, Liver.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "Acetaminophen injury is centrilobular because that zone holds the CYP enzymes and the least oxygen.",
+      "says": "Zone 3 is the least oxygenated and the richest in CYP enzymes. Acetaminophen and ischemia necrose zone 3.",
       "more": [
         {
           "name": "StatPearls. Physiology, Liver.",
@@ -2765,8 +2721,7 @@
       "Hemolysis, Gilbert, and Crigler-Najjar raise unconjugated bilirubin. The liver has not made it water soluble.",
       "Dubin-Johnson, Rotor, hepatitis, and obstruction raise conjugated bilirubin. Dubin-Johnson has a black liver and a defective canalicular exporter.",
       "Jaundice in the first 24 hours of life is not physiologic.",
-      "Unconjugated bilirubin is insoluble and is not in the urine. Conjugated bilirubin spills into urine.",
-      "Jaundice in the first 24 hours of life is pathologic. Gilbert is a mild unconjugated rise. Dubin-Johnson is conjugated, with a black liver."
+      "Unconjugated bilirubin is insoluble and is not in the urine. Conjugated bilirubin spills into urine."
     ],
     "miss": "Ordering a urine bilirubin and expecting it to be positive in hemolysis.",
     "diagram": "bili-urine",
@@ -2775,7 +2730,7 @@
       "name": "StatPearls. Physiology, Bilirubin.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470290/",
-      "says": "Unconjugated bilirubin is insoluble and stays out of urine. Conjugated bilirubin is soluble and spills into urine when it backs up."
+      "says": "Unconjugated bilirubin is not in the urine. Conjugated bilirubin is."
     },
     "open": false
   },
@@ -2801,7 +2756,7 @@
       "name": "StatPearls. Achalasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "Achalasia is failed LES relaxation plus absent peristalsis. The barium finding is a bird-beak taper."
+      "says": "Achalasia fails to relax the lower esophageal sphincter and fails to peristalse. The barium swallow is a bird\u2019s beak."
     },
     "number": 103,
     "id": "usmle-qb-s1-103"
@@ -2881,7 +2836,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "Repeated injury destroys exocrine and endocrine pancreas. Steatorrhea is treated with enzyme replacement taken with meals."
+      "says": "Chronic pancreatitis hurts, calcifies, and fails: steatorrhea and diabetes from lost exocrine and endocrine tissue."
     },
     "number": 106,
     "id": "usmle-qb-s1-106"
@@ -2908,7 +2863,7 @@
       "name": "StatPearls. Hepatitis B.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK555945/",
-      "says": "Surface antigen marks current infection, surface antibody marks immunity, and core antibody marks exposure the vaccine does not produce."
+      "says": "Hepatitis B is a DNA virus that replicates through an RNA step. The vaccine antigen is the surface antigen."
     },
     "number": 107,
     "id": "usmle-qb-s1-107"
@@ -2925,7 +2880,6 @@
       "Chronic infection is the usual outcome of an untreated acute infection.",
       "Antibody means exposure. Viral RNA means infection now.",
       "Cirrhosis and hepatocellular carcinoma are why the RNA is treated, not watched forever.",
-      "Antibody is exposure. RNA is viremia now. Direct-acting antivirals cure most patients in 8\u201312 weeks.",
       "There is no vaccine. Cirrhosis still needs hepatocellular-carcinoma surveillance after cure."
     ],
     "miss": "Telling a patient with a positive antibody that they are infectious without an RNA, or that there is a vaccine.",
@@ -2935,7 +2889,7 @@
       "name": "StatPearls. Hepatitis C.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430897/",
-      "says": "Antibody is exposure. RNA is viremia. Direct-acting antivirals are curative for most genotypes, and no vaccine exists."
+      "says": "Hepatitis C is an RNA virus. There is no vaccine. Direct-acting antivirals cure most patients."
     },
     "number": 108,
     "id": "usmle-qb-s1-108"
@@ -2952,7 +2906,7 @@
       "Think of it in a patient under 40 with unexplained liver disease.",
       "The ring needs a slit lamp. Its absence does not exclude liver-only disease.",
       "A chelator or zinc is the treatment. A low-copper diet alone is not.",
-      "Age under 40 with unexplained liver disease. Ceruloplasmin is low. A Kayser-Fleischer ring needs a slit lamp and can be absent in liver-only disease."
+      "A Kayser-Fleischer ring needs a slit lamp and can be absent in liver-only disease."
     ],
     "miss": "Diagnosing psychiatric disease for a year in a young adult with a tremor and a high bilirubin.",
     "diagram": null,
@@ -2961,7 +2915,7 @@
       "name": "StatPearls. Wilson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441990/",
-      "says": "Low ceruloplasmin, hepatic copper overload, and Kayser-Fleischer rings mark Wilson disease. It presents young."
+      "says": "Wilson disease cannot excrete copper. Ceruloplasmin is low, the cornea may show a Kayser-Fleischer ring, and the basal ganglia are injured."
     },
     "number": 109,
     "id": "usmle-qb-s1-109"
@@ -2988,7 +2942,7 @@
       "name": "StatPearls. Alpha-1 Antitrypsin Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK442030/",
-      "says": "Unsecreted protein injures the liver, and the missing inhibitor lets elastase destroy the lung bases."
+      "says": "Alpha-1 antitrypsin deficiency causes basilar emphysema and liver disease. The PAS-positive globules sit in the hepatocyte."
     },
     "number": 110,
     "id": "usmle-qb-s1-110"
@@ -3015,7 +2969,7 @@
       "name": "StatPearls. Primary Biliary Cholangitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459209/",
-      "says": "Antimitochondrial antibody and a cholestatic enzyme pattern in a middle-aged woman define primary biliary cholangitis."
+      "says": "Primary biliary cholangitis is a middle-aged woman with itching, a high alkaline phosphatase, and antimitochondrial antibody."
     },
     "number": 111,
     "id": "usmle-qb-s1-111"
@@ -3041,7 +2995,7 @@
       "name": "StatPearls. Primary Sclerosing Cholangitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537181/",
-      "says": "Beading of the bile ducts and inflammatory bowel disease mark primary sclerosing cholangitis. Cholangiocarcinoma is the added cancer."
+      "says": "Primary sclerosing cholangitis beads the intrahepatic and extrahepatic ducts and travels with inflammatory bowel disease."
     },
     "number": 112,
     "id": "usmle-qb-s1-112"
@@ -3058,9 +3012,7 @@
     "lines": [
       "21-hydroxylase is the common block. 17-hydroxyprogesterone is high. The severe form wastes salt.",
       "11-beta-hydroxylase builds deoxycorticosterone, so blood pressure is high and potassium is low, and androgens are still high.",
-      "17-alpha-hydroxylase cannot make cortisol or sex steroids. Deoxycorticosterone is high. Genetic males are under-virilized.",
-      "21: salt wasting, high 17-hydroxyprogesterone, androgens up. 11-beta: hypertension, low potassium, androgens up.",
-      "17-alpha: hypertension, low potassium, androgens and estrogens down, so genetic males are under-virilized."
+      "17-alpha-hydroxylase cannot make cortisol or sex steroids. Deoxycorticosterone is high. Genetic males are under-virilized."
     ],
     "miss": "Calling every virilized infant 21-hydroxylase, including the one with hypertension.",
     "diagram": "steroid-blocks",
@@ -3069,7 +3021,7 @@
       "name": "StatPearls. Congenital Adrenal Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
-      "says": "Enzyme defects are separated by salt wasting versus hypertension and by whether androgens rise or fall. 21-hydroxylase deficiency is the most common."
+      "says": "21-hydroxylase loses cortisol and aldosterone and spills androgens. 11-beta and 17-alpha both cause hypertension and low potassium, and only 17-alpha loses androgens."
     },
     "open": false
   },
@@ -3095,7 +3047,7 @@
       "name": "StatPearls. Physiology, Thyroid Hormone.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500006/",
-      "says": "Hormone synthesis is trapping, organification, coupling, and release. The Wolff-Chaikoff effect and the thionamides act on organification."
+      "says": "Thyroid peroxidase organifies iodide and couples the tyrosines. Excess iodide briefly shuts that step off."
     },
     "open": false
   },
@@ -3121,7 +3073,7 @@
       "name": "StatPearls. Physiology, Menstrual Cycle.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500020/",
-      "says": "The follicular phase is estrogen-dominant. The LH surge causes ovulation. The luteal phase is progesterone-dominant."
+      "says": "A sustained high estradiol triggers the LH surge. Progesterone rises only after ovulation."
     },
     "open": false
   },
@@ -3138,8 +3090,7 @@
       "Primary hyperparathyroidism also lowers the phosphate.",
       "PTHrP from cancer looks the same on the chemistries and the PTH is low.",
       "Familial hypocalciuric hypercalcemia keeps the urine calcium low. Do not send that patient to parathyroidectomy on the blood calcium alone.",
-      "High calcium with a PTH that is high or not suppressed is primary hyperparathyroidism. PTHrP malignancy suppresses PTH.",
-      "Familial hypocalciuric hypercalcemia has low urine calcium (calcium/creatinine clearance ratio under about 0.01). Do not send that patient to parathyroidectomy."
+      "High calcium with a PTH that is high or not suppressed is primary hyperparathyroidism. PTHrP malignancy suppresses PTH."
     ],
     "miss": "Removing a parathyroid gland because the calcium is high and the urine calcium was never measured.",
     "diagram": null,
@@ -3148,7 +3099,7 @@
       "name": "StatPearls. Primary Hyperparathyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441895/",
-      "says": "The diagnosis requires a high or inappropriately normal PTH with hypercalcemia, and urine calcium separates it from familial hypocalciuric hypercalcemia."
+      "says": "High calcium with a high or unsuppressed PTH is primary hyperparathyroidism. High calcium with a low PTH is PTH-independent."
     },
     "open": false
   },
@@ -3174,7 +3125,7 @@
       "name": "StatPearls. Hypercortisolism (Cushing Syndrome).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK551526/",
-      "says": "Screening shows autonomous cortisol. ACTH and high-dose suppression then separate adrenal, pituitary, and ectopic sources."
+      "says": "Low-dose dexamethasone fails in every Cushing syndrome. High-dose dexamethasone suppresses a pituitary source and not an adrenal or ectopic one."
     },
     "open": false
   },
@@ -3182,25 +3133,24 @@
     "step": "step-1",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Thyroid storm is treated in an order",
+    "title": "Thyroid storm is a multimodality regimen",
     "read": "1 min",
     "open": false,
     "lead": "Thyroid storm is decompensated thyrotoxicosis with fever and a changed mental state. A beta blocker, a thionamide, then iodine, then a steroid.",
     "lines": [
-      "Iodine before the thionamide feeds more hormone synthesis. The block comes first.",
-      "The trigger is often an infection, surgery, or a stopped drug. Treat that too.",
-      "Support the pressure and the temperature. This is not ordinary hyperthyroidism.",
-      "Order: beta blocker, thionamide, then iodine at least an hour later, plus a glucocorticoid. Iodine first supplies substrate.",
-      "Do not use aspirin. It can raise free hormone. Treat the trigger, often infection or surgery."
+      "Thyroid storm is a clinical diagnosis of severe thyrotoxicosis with systemic decompensation.",
+      "Treat with a beta blocker, an antithyroid drug, inorganic iodide, and a corticosteroid, together, plus supportive care.",
+      "Cool with acetaminophen. The ATA regimen names acetaminophen, not a single drug as the whole treatment.",
+      "A beta blocker alone is not the regimen."
     ],
-    "miss": "Giving iodine first, or treating the fever with aspirin, which can raise free hormone.",
+    "miss": "Treating thyroid storm with a beta blocker alone.",
     "diagram": "thyroid-seq",
     "diagramAlt": "Thyroid storm sequence. Beta blocker and thionamide first Iodine only after the block No aspirin for the fever",
     "source": {
-      "name": "StatPearls. Thyroid Storm.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448095/",
-      "says": "The sequence is beta blockade, a thionamide, then iodine so new hormone is not fueled, plus a glucocorticoid."
+      "name": "2016 ATA guideline for hyperthyroidism and other causes of thyrotoxicosis.",
+      "year": "2016",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
+      "says": "Thyroid storm is treated with a multimodality regimen: beta-adrenergic blockade, an antithyroid drug, inorganic iodide, a corticosteroid, and cooling with acetaminophen, plus supportive care."
     },
     "number": 118,
     "id": "usmle-qb-s1-118"
@@ -3214,19 +3164,19 @@
     "open": false,
     "lead": "Primary adrenal insufficiency cannot make cortisol or aldosterone. ACTH is high, the skin darkens, and potassium rises.",
     "lines": [
-      "Secondary failure is a pituitary problem. Aldosterone is spared, so the potassium stays normal and the skin does not darken.",
-      "A stress dose of steroid is the treatment of crisis, plus saline.",
-      "Stopping a long steroid course without a taper is the common secondary cause.",
-      "Primary: high ACTH, hyperpigmentation, and hyperkalemia because aldosterone is lost. Secondary spares aldosterone, so potassium is normal."
+      "An acutely ill patient with suspected adrenal insufficiency is treated. Do not wait for a corticotropin test to give the first glucocorticoid.",
+      "The Endocrine Society sets a low threshold to treat in acute illness, pregnancy with unexplained nausea and hypotension, and patients with predisposing disease.",
+      "Adult daily replacement, once the crisis has passed, is hydrocortisone 15 to 25 mg in two or three doses plus fludrocortisone about 0.1 mg daily.",
+      "The patient leaves with teaching on stress dosing and a parenteral glucocorticoid for the next emergency."
     ],
-    "miss": "Giving fluid and antibiotics for shock and never giving a steroid to a patient with hyperkalemia and dark skin.",
+    "miss": "Holding the glucocorticoid until a corticotropin stimulation test is completed in an unstable patient.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Adrenal Insufficiency.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441832/",
-      "says": "Primary failure loses cortisol and aldosterone, raises ACTH, and darkens the skin. Secondary failure spares aldosterone."
+      "name": "Endocrine Society 2016 guideline. Primary adrenal insufficiency.",
+      "year": "2016",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26760044/",
+      "says": "In an acutely ill patient, use a low threshold to treat and do not withhold therapy for lack of an immediate corticotropin test. Adult maintenance is hydrocortisone 15 to 25 mg per day in divided doses plus once-daily fludrocortisone, and the patient needs a parenteral glucocorticoid for emergencies."
     },
     "number": 119,
     "id": "usmle-qb-s1-119"
@@ -3253,7 +3203,7 @@
       "name": "StatPearls. Pheochromocytoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK589700/",
-      "says": "Alpha blockade precedes beta blockade so that unopposed alpha constriction does not raise the pressure."
+      "says": "Pheochromocytoma is episodic headache, palpitations, and hypertension. Block alpha receptors before you block beta."
     },
     "number": 120,
     "id": "usmle-qb-s1-120"
@@ -3270,7 +3220,6 @@
       "The jaw, the hands, the sweat, and the glucose intolerance are the picture.",
       "Colon polyps are more common. Screening is part of the disease.",
       "A glucose suppression test confirms when IGF-1 is hard to interpret. Failure to suppress is the abnormal result.",
-      "IGF-1 is the screen because growth hormone pulses. Failure to suppress growth hormone after a glucose load confirms.",
       "Surgery for a resectable adenoma. Colon polyps are more common, so screening is part of the disease. A single random growth hormone does not exclude it."
     ],
     "miss": "Excluding the disease with one random growth-hormone level.",
@@ -3280,7 +3229,7 @@
       "name": "StatPearls. Acromegaly.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431086/",
-      "says": "IGF-1 integrates growth-hormone secretion. A single growth-hormone level does not exclude acromegaly."
+      "says": "Acromegaly is excess growth hormone in an adult. The screening test is IGF-1, because growth hormone pulses."
     },
     "number": 121,
     "id": "usmle-qb-s1-121"
@@ -3297,8 +3246,7 @@
       "Antipsychotics and metoclopramide raise prolactin.",
       "A dopamine agonist is the treatment of a prolactinoma, not surgery first.",
       "A very high level, or a headache and a visual-field cut, is a macroadenoma until the MRI says otherwise.",
-      "Exclude pregnancy, hypothyroidism, and antipsychotics or metoclopramide before calling it a tumor.",
-      "A level over about 200 ng/mL suggests a prolactinoma. Cabergoline is first-line. A modest elevation with a large mass is stalk effect."
+      "Exclude pregnancy, hypothyroidism, and antipsychotics or metoclopramide before calling it a tumor."
     ],
     "miss": "Sending a patient to pituitary surgery before a pregnancy test and a medication review.",
     "diagram": null,
@@ -3307,7 +3255,7 @@
       "name": "StatPearls. Prolactinoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459347/",
-      "says": "Exclude pregnancy, hypothyroidism, and medication before diagnosing a prolactinoma. Dopamine agonists are first-line treatment."
+      "says": "A high prolactin with amenorrhea and galactorrhea is a prolactinoma only after pregnancy, hypothyroidism, and drugs are excluded."
     },
     "number": 122,
     "id": "usmle-qb-s1-122"
@@ -3333,7 +3281,7 @@
       "name": "StatPearls. Endometriosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK567777/",
-      "says": "Ectopic endometrium causes cyclic pain and infertility. An endometrioma is a chocolate cyst of the ovary."
+      "says": "Endometriosis is endometrial tissue outside the uterus. The pain is cyclic, and a chocolate cyst is an endometrioma."
     },
     "number": 123,
     "id": "usmle-qb-s1-123"
@@ -3376,8 +3324,8 @@
       "Gynecomastia and a higher breast-cancer risk are part of the extra X.",
       "Testosterone is low and the gonadotropins are high.",
       "The intelligence is usually normal. Do not confuse it with a cognitive syndrome.",
-      "47,XXY. Small firm testes, tall stature, azoospermia, and gynecomastia. Testosterone is low and LH and FSH are high.",
-      "Testosterone treats the hypogonadism. It does not restore sperm. Breast cancer risk is higher than in other men."
+      "Testosterone treats the hypogonadism. It does not restore sperm. Breast cancer risk is higher than in other men.",
+      "Small firm testes, tall stature, azoospermia, and gynecomastia. Testosterone is low and LH and FSH are high."
     ],
     "miss": "Diagnosing Marfan syndrome from the height and missing the small testes.",
     "diagram": null,
@@ -3386,7 +3334,7 @@
       "name": "StatPearls. Klinefelter Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482314/",
-      "says": "An extra X chromosome produces small testes, infertility, tall stature, and gynecomastia."
+      "says": "Klinefelter syndrome is 47,XXY. The patient is tall, the testes are small, and sperm production fails."
     },
     "number": 125,
     "id": "usmle-qb-s1-125"
@@ -3413,7 +3361,7 @@
       "name": "StatPearls. Placental Abruption.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482335/",
-      "says": "Painful bleeding and a hypertonic uterus mark abruption. Concealed hemorrhage and disseminated coagulation are the maternal dangers."
+      "says": "Placental abruption is painful vaginal bleeding with a uterus that does not relax. The blood can be hidden and the clotting factors consumed."
     },
     "number": 126,
     "id": "usmle-qb-s1-126"
@@ -3439,7 +3387,7 @@
       "name": "StatPearls. Placenta Previa.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK539818/",
-      "says": "Painless bleeding from a placenta over the cervix is diagnosed by ultrasound. Digital examination can provoke hemorrhage."
+      "says": "In placenta previa the placenta covers the internal cervical os, so the baby cannot pass it and labor is not a safe plan."
     },
     "number": 127,
     "id": "usmle-qb-s1-127"
@@ -3455,8 +3403,7 @@
     "lines": [
       "Screening is in the second half of pregnancy, around 24 to 28 weeks if there is no earlier indication.",
       "After birth the baby's insulin is still high and the glucose falls.",
-      "The mother's diabetes of pregnancy usually leaves. The risk of later type 2 diabetes stays.",
-      "Screen at 24\u201328 weeks if there is no earlier indication. Maternal glucose crosses. Maternal insulin does not. The fetus becomes hyperinsulinemic."
+      "The mother's diabetes of pregnancy usually leaves. The risk of later type 2 diabetes stays."
     ],
     "miss": "Reassuring a large baby without a glucose test, or forgetting the newborn's hypoglycemia.",
     "diagram": "gdm-baby",
@@ -3465,7 +3412,7 @@
       "name": "StatPearls. Gestational Diabetes.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
-      "says": "Fetal hyperinsulinemia from maternal hyperglycemia causes macrosomia and neonatal hypoglycemia."
+      "says": "In gestational diabetes, maternal glucose crosses to the fetus and maternal insulin does not. The fetus makes extra insulin and grows large."
     },
     "number": 128,
     "id": "usmle-qb-s1-128"
@@ -3492,7 +3439,7 @@
       "name": "StatPearls. Erectile Dysfunction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "PDE-5 inhibitors and nitrates together produce hypotension. The combination is contraindicated."
+      "says": "Erection physiology runs on cGMP. A PDE-5 inhibitor preserves it, and a nitrate on top of that drops the pressure."
     },
     "number": 129,
     "id": "usmle-qb-s1-129"
@@ -3509,7 +3456,6 @@
       "A 5-alpha-reductase inhibitor shrinks the gland over months.",
       "An alpha blocker works in days and can drop the pressure.",
       "A hard, nodular gland or a high PSA is cancer until evaluated. This disease is smooth and symmetric.",
-      "Alpha blockers (tamsulosin) relax smooth muscle in days. 5-alpha-reductase inhibitors shrink a large gland over 3\u20136 months.",
       "Acute retention is a catheter and a recorded residual. Finasteride does not empty the bladder tonight. A nodule is cancer until evaluated."
     ],
     "miss": "Treating a nodular prostate as simple hyperplasia and never examining it.",
@@ -3519,7 +3465,7 @@
       "name": "StatPearls. Benign Prostatic Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "DHT-dependent tissue and alpha-adrenergic tone both obstruct. The two drug classes act on different parts of that problem."
+      "says": "Benign prostatic hyperplasia obstructs by bulk and by smooth-muscle tone. DHT drives the bulk. Alpha receptors drive the tone."
     },
     "number": 130,
     "id": "usmle-qb-s1-130"
@@ -3536,7 +3482,6 @@
       "Do not wait for an ultrasound when the exam is already torsion.",
       "A bell-clapper deformity is the anatomic setup.",
       "The other side is fixed too, because the anatomy is bilateral.",
-      "The testis can infarct in about 6 hours. Absent cremasteric reflex and sudden pain go to the operating room.",
       "Ultrasound is for an unclear exam and must not consume the window. The other side is fixed because the anatomy is bilateral."
     ],
     "miss": "Scheduling a Doppler study for the next morning.",
@@ -3546,7 +3491,7 @@
       "name": "StatPearls. Testicular Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "Absent cremasteric reflex and sudden pain are torsion until the testis is detorsed. Imaging must not delay a clear exam."
+      "says": "Testicular torsion twists the cord. The cremasteric reflex is gone, the pain is sudden, and the testis dies in about six hours."
     },
     "number": 131,
     "id": "usmle-qb-s1-131"
@@ -3573,7 +3518,7 @@
       "name": "StatPearls. Ovarian Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "Dual arterial supply means Doppler flow does not exclude torsion. Sudden pain with an adnexal mass goes to the operating room."
+      "says": "Ovarian torsion is sudden adnexal pain. Doppler flow can still be present, because the ovary has two supplies."
     },
     "number": 132,
     "id": "usmle-qb-s1-132"
@@ -3591,7 +3536,7 @@
       "A tubo-ovarian abscess is the complication that may need drainage.",
       "Ectopic pregnancy is on the differential of pelvic pain until the pregnancy test is negative.",
       "Cervical motion tenderness. Cover Neisseria gonorrhoeae and Chlamydia. Treat the partner.",
-      "Fitz-Hugh-Curtis syndrome is perihepatitis and right-upper-quadrant pain. A tubo-ovarian abscess that does not improve in 48\u201372 hours is drained."
+      "Fitz-Hugh-Curtis syndrome is perihepatitis and right-upper-quadrant pain."
     ],
     "miss": "Treating the cervicitis and not the partner, or missing perihepatitis as cholecystitis.",
     "diagram": "pid-rx",
@@ -3600,7 +3545,7 @@
       "name": "StatPearls. Pelvic Inflammatory Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499959/",
-      "says": "Ascending genital infection produces cervical motion tenderness. Fitz-Hugh-Curtis syndrome is the associated perihepatitis."
+      "says": "Pelvic inflammatory disease is ascending infection. Cervical motion tenderness is the exam, and perihepatitis is the right-upper-quadrant pain that goes with it."
     },
     "number": 133,
     "id": "usmle-qb-s1-133"
@@ -3626,7 +3571,7 @@
       "name": "StatPearls. Endometrial Cancer.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK525981/",
-      "says": "Postmenopausal bleeding is evaluated as endometrial cancer. Cervical cytology does not assess the endometrium."
+      "says": "Bleeding after menopause is endometrial cancer until the endometrium is sampled."
     },
     "number": 134,
     "id": "usmle-qb-s1-134"
@@ -3666,20 +3611,19 @@
     "open": false,
     "lead": "Propylthiouracil is preferred in the first trimester. Methimazole is preferred after that. Both cross the placenta, and the dose is the lowest that controls the mother.",
     "lines": [
-      "The fetus can become hypothyroid if the mother is overtreated.",
-      "Thyroid storm and uncontrolled hyperthyroidism are worse than the drug risk.",
-      "Do not use radioactive iodine in pregnancy.",
-      "Propylthiouracil in the first trimester. Methimazole afterward. Both cross the placenta. Use the lowest dose that controls the mother.",
-      "Radioactive iodine is contraindicated in pregnancy. Overtreatment makes the fetus hypothyroid."
+      "If an antithyroid drug is required in the first trimester, the ATA specifies propylthiouracil.",
+      "If an antithyroid drug is started after the first trimester, the ATA specifies methimazole.",
+      "Women on methimazole who become pregnant are switched early in the first trimester when a drug is still required.",
+      "The trimester, not a preference for one drug in every month, chooses the agent."
     ],
-    "miss": "Continuing methimazole through the first trimester, or using radioactive iodine.",
+    "miss": "Continuing methimazole through the first trimester when an antithyroid drug is still required.",
     "diagram": "pth-preg",
     "diagramAlt": "Antithyroid drug by trimester. First trimester: propylthiouracil After that: methimazole No radioactive iodine in pregnancy",
     "source": {
-      "name": "StatPearls. Hyperthyroidism in Pregnancy.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559203/",
-      "says": "Propylthiouracil is used in the first trimester because methimazole has a teratogenic signal. The dose is kept as low as possible."
+      "name": "2016 ATA guideline for hyperthyroidism and other causes of thyrotoxicosis.",
+      "year": "2016",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
+      "says": "When an antithyroid drug is used in the first trimester, use propylthiouracil. When an antithyroid drug is started after the first trimester, use methimazole."
     },
     "number": 136,
     "id": "usmle-qb-s1-136"
@@ -3706,7 +3650,7 @@
       "name": "StatPearls. Genitourinary Syndrome of Menopause.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559297/",
-      "says": "Estrogen deficiency causes vulvovaginal and urinary symptoms. Local estrogen treats the tissue. Infection is proved before antibiotics."
+      "says": "After menopause, low estrogen thins the vulva and the vagina. Dryness, pain with sex, and urinary urgency are that syndrome until an infection is proved."
     },
     "number": 137,
     "id": "usmle-qb-s1-137"
@@ -3750,7 +3694,7 @@
       "Treat the thyroid and reimage. The mass can shrink.",
       "A prolactin that is only modestly high with a huge mass is a stalk effect, not a prolactinoma.",
       "Surgery for a pituitary that is hyperplasia from hypothyroidism is the miss.",
-      "A TSH of 80 with a pituitary mass can be hyperplasia from high TRH. Replace levothyroxine and reimage before any surgical date."
+      "Replace levothyroxine and reimage before any surgical date."
     ],
     "miss": "Sending a patient with a TSH of 80 and a pituitary mass straight to surgery.",
     "diagram": null,
@@ -3759,7 +3703,7 @@
       "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
-      "says": "TRH elevation from primary hypothyroidism stimulates pituitary enlargement and prolactin. Thyroid replacement comes before surgery."
+      "says": "Severe primary hypothyroidism raises TRH. TRH can raise prolactin and enlarge the pituitary. That enlargement is hyperplasia, not an automatic adenoma to remove."
     },
     "number": 139,
     "id": "usmle-qb-s1-139"
@@ -3787,7 +3731,7 @@
       "name": "StatPearls. Hypovolemia and Hypovolemic Shock. Cardiogenic Shock. Distributive Shock.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513297/",
-      "says": "The three profiles are separated by cardiac output, systemic vascular resistance, and filling pressure.",
+      "says": "Hypovolemic and cardiogenic shock both raise systemic vascular resistance and drop cardiac output. Only cardiogenic shock raises the wedge pressure.",
       "more": [
         {
           "name": "StatPearls. Cardiogenic Shock.",
@@ -3824,7 +3768,7 @@
       "name": "StatPearls. Gram-Positive Bacteria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470553/",
-      "says": "Catalase, coagulase, hemolysis, and the few disk tests are the branch points that name the organism."
+      "says": "Catalase splits staph from strep. Coagulase splits Staphylococcus aureus from the other staphylococci."
     },
     "open": false
   },
@@ -3850,7 +3794,7 @@
       "name": "StatPearls. HIV Antiretroviral Therapy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513308/",
-      "says": "Drug classes map onto entry, reverse transcription, integration, and protease cleavage. Initial therapy is built on an integrase inhibitor."
+      "says": "NRTIs and NNRTIs block reverse transcriptase. Integrase inhibitors block insertion. Protease inhibitors block maturation."
     },
     "open": false
   },
@@ -3866,8 +3810,8 @@
       "The pulse oximeter cannot tell carbon monoxide from oxygen.",
       "Cherry-red skin is unreliable. A headache in a family who share a heater is the clue.",
       "Treat with 100% oxygen. Hyperbaric oxygen is for severe poisoning, pregnancy, or neurologic injury.",
-      "Affinity for hemoglobin is over 200 times that of oxygen. PaO2 stays normal. Standard pulse oximetry cannot see it.",
-      "Give 100% oxygen immediately. Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
+      "Standard pulse oximetry cannot see it.",
+      "Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
     ],
     "miss": "Reassuring a normal PaO2 in a patient pulled from a fire.",
     "diagram": "co-ox",
@@ -3876,7 +3820,7 @@
       "name": "StatPearls. Carbon Monoxide Poisoning.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
-      "says": "Carboxyhemoglobin lowers oxygen content and is invisible to standard pulse oximetry and to PaO2. Oxygen is the antidote."
+      "says": "Carbon monoxide binds hemoglobin far more tightly than oxygen. PaO2 stays normal, the oxygen content falls, and the curve shifts left."
     },
     "number": 143,
     "id": "usmle-qb-s1-143"
@@ -3893,8 +3837,7 @@
       "The nomogram applies to a single acute ingestion with a known time. It does not fit a staggered overdose.",
       "The liver enzyme rise is delayed. A normal ALT at two hours does not clear the patient.",
       "Activated charcoal is for a recent ingestion. It does not replace the antidote.",
-      "NAPQI depletes glutathione. NAC restores it. The Rumack-Matthew nomogram is only for a single ingestion at a known time.",
-      "A normal ALT at 2 hours does not clear the patient. Staggered ingestions are treated, not plotted on that nomogram."
+      "NAPQI depletes glutathione. NAC restores it. The Rumack-Matthew nomogram is only for a single ingestion at a known time."
     ],
     "miss": "Discharging a patient because the first liver enzymes were normal.",
     "diagram": "nac-time",
@@ -3903,7 +3846,7 @@
       "name": "StatPearls. Acetaminophen Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "NAPQI depletes glutathione. N-acetylcysteine is the antidote, and early liver enzymes do not exclude a toxic ingestion."
+      "says": "Acetaminophen's toxic metabolite is NAPQI. N-acetylcysteine restores glutathione and is the antidote."
     },
     "number": 144,
     "id": "usmle-qb-s1-144"
@@ -3919,8 +3862,7 @@
     "lines": [
       "The half-life of naloxone is shorter than many opioids. Watch for the return of apnea.",
       "A pupil that is not small does not exclude the diagnosis if the patient is hypoxic or has taken a co-ingestant.",
-      "The airway comes before the antidote if the patient is not breathing.",
-      "Miosis, respiratory rate often under 12, and depressed consciousness. Naloxone's duration is about 30\u201390 minutes, shorter than methadone or many fentanyl exposures."
+      "The airway comes before the antidote if the patient is not breathing."
     ],
     "miss": "Giving one dose of naloxone and leaving the patient unmonitored.",
     "diagram": "naloxone-watch",
@@ -3929,7 +3871,7 @@
       "name": "StatPearls. Opioid Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470415/",
-      "says": "Respiratory depression is the lethal effect. Naloxone is shorter-acting than many opioids, so recurrence is expected."
+      "says": "Opioid toxicity is miosis, respiratory depression, and a depressed mental state. Naloxone reverses the opioid, not the benzodiazepine."
     },
     "number": 145,
     "id": "usmle-qb-s1-145"
@@ -3956,7 +3898,7 @@
       "name": "StatPearls. Benzodiazepine Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482238/",
-      "says": "Isolated benzodiazepine overdose depresses alertness more than respiration. Flumazenil is avoided in dependent patients because of seizures."
+      "says": "Benzodiazepine sedation alone rarely stops breathing the way an opioid does. Flumazenil reverses it and can precipitate a seizure if the patient is dependent."
     },
     "number": 146,
     "id": "usmle-qb-s1-146"
@@ -4000,7 +3942,7 @@
       "A crush, a lying-down overdose, a statin plus a fibrate, and a seizure are the setups.",
       "Fluids protect the kidney. The potassium can kill before the kidney fails.",
       "Compartment syndrome can be the cause and the result. Check the limb.",
-      "Dipstick positive for blood and no red cells on microscopy. CK often over 5,000. Potassium can arrest the heart before creatinine rises."
+      "Dipstick positive for blood and no red cells on microscopy. Potassium can arrest the heart before creatinine rises."
     ],
     "miss": "Diagnosing hematuria from a positive dipstick and never looking at the microscope or the CK.",
     "diagram": "rhabdo-ck",
@@ -4009,7 +3951,7 @@
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
-      "says": "Myoglobin makes the dipstick positive without red cells. Fluids and potassium control are the urgent treatment."
+      "says": "Rhabdomyolysis leaks myoglobin. The urine dip is positive for blood and the microscope shows no red cells. The creatine kinase is in the thousands."
     },
     "number": 148,
     "id": "usmle-qb-s1-148"
@@ -4026,8 +3968,7 @@
       "Stop the triggering anesthetic.",
       "Cool the patient and treat the potassium.",
       "It is not neuroleptic malignant syndrome, which is a dopamine-blocker disease outside the operating room.",
-      "Succinylcholine or a volatile anesthetic. End-tidal CO2 rises first, then rigidity and temperature.",
-      "Stop the vaporizer. Hyperventilate with 100% oxygen. Dantrolene 2.5 mg/kg IV, repeated. This is not neuroleptic malignant syndrome."
+      "This is not neuroleptic malignant syndrome."
     ],
     "miss": "Treating intraoperative rigidity and a rising CO2 as ordinary light anesthesia.",
     "diagram": "dantrolene",
@@ -4036,7 +3977,7 @@
       "name": "StatPearls. Malignant Hyperthermia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430828/",
-      "says": "Volatile anesthetics and succinylcholine trigger a hypermetabolic crisis. Dantrolene is the specific treatment."
+      "says": "Malignant hyperthermia is a genetic ryanodine-receptor crisis set off by succinylcholine or a volatile anesthetic. The CO2 rises, the muscle is rigid, and dantrolene is the drug."
     },
     "number": 149,
     "id": "usmle-qb-s1-149"
@@ -4052,8 +3993,7 @@
     "lines": [
       "The rash is the upper body. It is not present in every patient.",
       "Support the lungs. There is no drug that dissolves the embolus as the first move.",
-      "It is not a thrombus that heparin is aimed at, though the patient may have that risk too.",
-      "24\u201372 hours after a long-bone or pelvic fracture: hypoxia, confusion, and upper-body petechiae. Petechiae are often absent."
+      "It is not a thrombus that heparin is aimed at, though the patient may have that risk too."
     ],
     "miss": "Diagnosing a pulmonary embolus of clot and anticoagulating as the only plan for a petechial, hypoxic fracture patient.",
     "diagram": null,
@@ -4062,7 +4002,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "The syndrome appears 24 to 72 hours after long-bone injury, with hypoxemia, neurologic change, and an upper-body petechial rash."
+      "says": "Fat embolism is hypoxia, a petechial rash, and confusion one to three days after a long-bone or pelvic fracture."
     },
     "number": 150,
     "id": "usmle-qb-s1-150"
@@ -4079,7 +4019,7 @@
       "The fluid is pus: a high white count and a culture.",
       "A prosthetic joint and gonorrhea are the two stories that change the organism list.",
       "Antibiotics without a culture, in a stable patient, burn the diagnosis.",
-      "Tap before antibiotics if the patient is stable. White cells in the fluid often over 50,000. Staphylococcus aureus is the native-joint organism to cover."
+      "Tap before antibiotics if the patient is stable. Staphylococcus aureus is the native-joint organism to cover."
     ],
     "miss": "Starting vancomycin and never aspirating a native knee that could have been tapped.",
     "diagram": null,
@@ -4088,7 +4028,7 @@
       "name": "StatPearls. Septic Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538176/",
-      "says": "Synovial fluid before antibiotics is the diagnostic step in a stable patient. Staphylococcus aureus is the leading native-joint organism."
+      "says": "Septic arthritis is a hot joint that is tapped before antibiotics when the patient is stable. Staph aureus is the organism to name."
     },
     "number": 151,
     "id": "usmle-qb-s1-151"
@@ -4115,7 +4055,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "Open fractures receive immediate antibiotics, tetanus prophylaxis, and operative irrigation. Emergency-department closure of a contaminated wound is not the treatment."
+      "says": "An open fracture is a contaminated bone. Antibiotics and tetanus start immediately, and the wound is washed in the operating room."
     },
     "number": 152,
     "id": "usmle-qb-s1-152"
@@ -4129,20 +4069,19 @@
     "open": false,
     "lead": "Heparin-induced thrombocytopenia is an antibody to platelet factor 4. Platelets fall 5 to 10 days after heparin, and the clots are the danger.",
     "lines": [
-      "Stop every heparin, including flushes.",
-      "Do not start warfarin alone. The protein C drop makes the clot worse.",
-      "A direct thrombin inhibitor is the bridge. Platelets are not the treatment.",
-      "Platelets fall by more than 50% on days 5\u201310, or within a day on re-exposure, and new thrombosis is the danger.",
-      "Stop every heparin, including flushes. Start argatroban or another non-heparin anticoagulant. Warfarin alone can cause venous limb gangrene. Do not transfuse platelets."
+      "Estimate probability with the 4Ts score, not a gestalt impression.",
+      "A low-probability 4Ts score is not an indication to stop heparin and start another anticoagulant.",
+      "An intermediate or high score: stop heparin and start a non-heparin anticoagulant. ASH names argatroban, bivalirudin, danaparoid, fondaparinux, and a direct oral anticoagulant.",
+      "Do not start warfarin before the platelet count recovers, usually to at least 150 \u00d7 10^9/L. Early warfarin is linked to venous limb gangrene."
     ],
-    "miss": "Transfusing platelets and continuing the heparin drip because the filter is clotting.",
+    "miss": "Stopping heparin without a non-heparin anticoagulant when the 4Ts score is intermediate or high, or starting warfarin while the platelet count is still low.",
     "diagram": "hit-days",
     "diagramAlt": "HIT, day 5 to 10. Platelets fall AND a new clot Stop all heparin, including flushes Argatroban. No warfarin alone. No platelets",
     "source": {
-      "name": "StatPearls. Heparin-Induced Thrombocytopenia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482330/",
-      "says": "PF4 antibodies activate platelets, so the count falls and thrombosis rises. All heparin stops, and warfarin is not started alone."
+      "name": "ASH 2018 guideline for heparin-induced thrombocytopenia.",
+      "year": "2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30482768/",
+      "says": "Use the 4Ts score rather than gestalt. Do not treat empirically when the score is low. For an intermediate or high score, stop heparin and start a non-heparin anticoagulant. Do not start a vitamin K antagonist before the platelet count recovers, usually to at least 150 \u00d7 10^9/L."
     },
     "number": 153,
     "id": "usmle-qb-s1-153"
@@ -4186,8 +4125,7 @@
       "Endocarditis is days of fever and positive blood cultures.",
       "Fat embolism is one to three days after the fracture, with hypoxia.",
       "A single antibiotic does not cover both decisions.",
-      "Endocarditis is days of fever and a new murmur, and three culture sets come before antibiotics if the patient is stable.",
-      "Fat embolism is 24\u201372 hours after a long-bone fracture: hypoxia, confusion, and sometimes upper-body petechiae. Heparin is not its treatment."
+      "Endocarditis is days of fever and a new murmur, and three culture sets come before antibiotics if the patient is stable."
     ],
     "miss": "Anticoagulating fat embolism and culturing a fracture patient as if the bone were a valve.",
     "diagram": null,
@@ -4196,7 +4134,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Fat embolism follows long-bone injury by a day or two. Infective endocarditis is a separate bacteremic disease and is not treated as clot."
+      "says": "A fever and a new murmur after a dental procedure or a line is endocarditis. Petechiae after a femur fracture are fat. The timing separates them."
     },
     "number": 155,
     "id": "usmle-qb-s1-155"
@@ -4213,8 +4151,7 @@
       "Blood cultures can be drawn while the scanner is called.",
       "Antibiotics for meningitis are not delayed for the scan if the patient is sick. The puncture waits.",
       "Steroids for suspected pneumococcal meningitis go in with the first antibiotic dose.",
-      "Image before the lumbar puncture when a focal sign or papilledema is present.",
-      "Contiguous sinus or ear source is often streptococci. Drain collections around 2.5 cm or larger, or any collection with mass effect."
+      "Image before the lumbar puncture when a focal sign or papilledema is present."
     ],
     "miss": "Puncturing the back of a patient with a blown pupil.",
     "diagram": null,
@@ -4223,7 +4160,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "A mass lesion is imaged before lumbar puncture. Antibiotics for suspected meningitis are not withheld for the scan."
+      "says": "Fever and a focal brain sign get imaged before a lumbar puncture. A ring can be an abscess, and a needle below it can herniate the brain."
     },
     "number": 156,
     "id": "usmle-qb-s1-156"
@@ -4237,20 +4174,19 @@
     "open": false,
     "lead": "Anaphylaxis is IgE on mast cells. A tryptase drawn in the first few hours supports the diagnosis later. It is not the treatment.",
     "lines": [
-      "Epinephrine is the treatment, given while the blood is drawn, not after the result.",
-      "A normal tryptase does not exclude anaphylaxis.",
-      "The biphasic risk is why the patient stays to be watched.",
-      "Adult dose 0.3\u20130.5 mg of 1 mg/mL (1:1000) intramuscularly in the mid-outer thigh. Repeat every 5\u201315 minutes if needed.",
-      "Observe, because reactions can return. Diphenhydramine and a steroid do not treat airway or shock."
+      "Epinephrine is 0.01 mg/kg, to a maximum of 0.3 mg in children and teenagers and 0.5 mg in adults.",
+      "Give epinephrine at the first sign of suspected anaphylaxis.",
+      "Draw an acute tryptase as early as possible, ideally within 2 hours of symptom onset. A later baseline is the comparison.",
+      "A tryptase under the laboratory cutoff does not exclude anaphylaxis. Many confirmed reactions never cross that line."
     ],
-    "miss": "Waiting for a tryptase result before the epinephrine.",
+    "miss": "Treating anaphylaxis with an antihistamine and quoting a flat 0.3 mg dose for every adult.",
     "diagram": "epi-dose",
     "diagramAlt": "Anaphylaxis dose. Adult: 0.3\u20130.5 mg of 1 mg/mL IM Mid-outer thigh. Repeat in 5\u201315 min Watch. Antihistamine is not the treatment",
     "source": {
-      "name": "StatPearls. Anaphylaxis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482124/",
-      "says": "Serum tryptase can support the diagnosis when drawn during the reaction. Epinephrine is given immediately and is not contingent on the lab."
+      "name": "Anaphylaxis: a 2023 practice parameter update.",
+      "year": "2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/",
+      "says": "Epinephrine is dosed at 0.01 mg/kg, up to 0.3 mg in children and teenagers and 0.5 mg in adults. Draw an acute tryptase as early as possible, ideally within 2 hours. A tryptase below the laboratory cutoff does not exclude anaphylaxis."
     },
     "number": 157,
     "id": "usmle-qb-s1-157"
@@ -4277,7 +4213,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Sensitivity and specificity are properties of the test. Predictive values also depend on how common the disease is."
+      "says": "Sensitivity and specificity stay put when the disease gets rarer. The positive predictive value falls."
     },
     "open": false
   },
@@ -4294,8 +4230,8 @@
       "A positive likelihood ratio is sensitivity divided by 1 minus specificity.",
       "A negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small one is what rules a disease out.",
       "Do the multiplication in odds, not in probabilities.",
-      "Post-test odds = pre-test odds \u00d7 likelihood ratio. A ratio of 1 changes nothing.",
-      "Positive LR is sensitivity / (1 \u2212 specificity). Do the multiplication in odds, not by subtracting from a probability."
+      "Post-test odds = pre-test odds \u00d7 likelihood ratio.",
+      "Do the multiplication in odds, not by subtracting from a probability."
     ],
     "miss": "Subtracting a likelihood ratio from a probability.",
     "diagram": null,
@@ -4304,7 +4240,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Likelihood ratios convert a test result into a change in the odds of disease."
+      "says": "Post-test odds equal pre-test odds times the likelihood ratio. A ratio of 1 changes nothing."
     },
     "open": false
   },
@@ -4320,7 +4256,6 @@
       "Sensitivity is true positives over everyone with the disease.",
       "A sensitive test used in a patient who could not have had the disease still creates false positives.",
       "SnNOut is a memory aid, not a license to skip the prevalence.",
-      "A negative result helps only when the negative likelihood ratio is small. Sensitivity of 80% cannot rule out a dangerous disease.",
       "SnNOut is a memory aid. It still requires a real pre-test probability."
     ],
     "miss": "Quoting a 99% sensitivity as a 99% chance the patient is well.",
@@ -4330,7 +4265,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Sensitivity describes the test in people who have the disease. A negative result rules out only when the negative likelihood ratio is small."
+      "says": "A very sensitive test, when negative, lowers the chance of disease. That only helps if you started with a real pre-test chance."
     },
     "number": 160,
     "id": "usmle-qb-s1-160"
@@ -4347,8 +4282,7 @@
       "Specificity is true negatives over everyone without the disease.",
       "False positives are what a nonspecific test creates.",
       "SpPIn fails when the positive likelihood ratio is only modest.",
-      "A positive result helps when the positive likelihood ratio is large. Specificity is true negatives over people without the disease.",
-      "A positive nonspecific screen in a rare disease is usually a false positive. SpPIn fails when the ratio is only 2."
+      "A positive result helps when the positive likelihood ratio is large. Specificity is true negatives over people without the disease."
     ],
     "miss": "Telling a patient a positive nonspecific screening test is the diagnosis.",
     "diagram": null,
@@ -4357,7 +4291,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Specificity is the true-negative rate. Positive predictive value still depends on how common the disease is."
+      "says": "A very specific test, when positive, raises the chance of disease. A positive result in a rare disease can still be wrong."
     },
     "number": 161,
     "id": "usmle-qb-s1-161"
@@ -4383,7 +4317,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Predictive values change with prevalence. Sensitivity and specificity do not."
+      "says": "As prevalence rises, the negative predictive value falls and the positive predictive value rises. Sensitivity does not move."
     },
     "number": 162,
     "id": "usmle-qb-s1-162"
@@ -4399,9 +4333,7 @@
     "lines": [
       "Do this in odds, then convert back to a probability if you need one.",
       "A huge positive ratio is useful. A ratio of 2 barely moves a common disease.",
-      "The ratio comes from sensitivity and specificity, so it does not depend on prevalence.",
-      "LR of 1 means the result is as common in disease as in health. The odds do not move.",
-      "A ratio of 2 barely moves a common disease. A ratio of 10 changes decisions."
+      "The ratio comes from sensitivity and specificity, so it does not depend on prevalence."
     ],
     "miss": "Subtracting the likelihood ratio from the probability.",
     "diagram": null,
@@ -4410,7 +4342,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Likelihood ratios revise odds and are independent of prevalence. A ratio of 1 does not change the decision."
+      "says": "Multiply pre-test odds by the likelihood ratio. A ratio of 1 leaves the odds where they were."
     },
     "number": 163,
     "id": "usmle-qb-s1-163"
@@ -4437,7 +4369,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "For a continuous test, a lower threshold increases sensitivity and decreases specificity. The cutoff is a trade."
+      "says": "Lower the cutoff of a continuous test and sensitivity rises. Specificity falls, because more healthy people cross the line."
     },
     "number": 164,
     "id": "usmle-qb-s1-164"
@@ -4454,7 +4386,6 @@
       "It is not 1 minus the positive predictive value.",
       "A specific test has a small false-positive rate.",
       "Two tests in series, both required to be positive, raise specificity and lower sensitivity.",
-      "False-positive rate = 1 \u2212 specificity. It is not 1 \u2212 positive predictive value.",
       "Requiring two tests to be positive (series) raises specificity and lowers sensitivity."
     ],
     "miss": "Subtracting the positive predictive value from 1 and calling that the false-positive rate.",
@@ -4464,7 +4395,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "False-positive rate is 1 minus specificity. Requiring two positive tests in series increases specificity."
+      "says": "The false-positive rate is 1 minus specificity. It is the share of well people the test calls sick."
     },
     "number": 165,
     "id": "usmle-qb-s1-165"
@@ -4491,7 +4422,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Parallel testing, where either positive counts, raises sensitivity and lowers specificity."
+      "says": "If either of two tests being positive counts, sensitivity rises and specificity falls. You miss less and you alarm more."
     },
     "number": 166,
     "id": "usmle-qb-s1-166"
@@ -4508,8 +4439,8 @@
       "A test with sensitivity of 80% cannot have a tiny negative likelihood ratio.",
       "The positive ratio uses the false positives in the denominator.",
       "Neither ratio contains the prevalence.",
-      "Negative LR = (1 \u2212 sensitivity) / specificity. A very small value is what lets a negative test rule disease out.",
-      "Neither likelihood ratio contains the prevalence. Sensitivity of 90% and specificity of 90% gives a negative LR of about 0.11."
+      "A very small value is what lets a negative test rule disease out.",
+      "Neither likelihood ratio contains the prevalence."
     ],
     "miss": "Using a moderately sensitive test to exclude a dangerous disease.",
     "diagram": null,
@@ -4518,7 +4449,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Negative likelihood ratio equals (1 minus sensitivity) divided by specificity. A small value is required before a negative result rules disease out."
+      "says": "The negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small one is what lets a negative test rule disease out."
     },
     "number": 167,
     "id": "usmle-qb-s1-167"
@@ -4545,7 +4476,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Pre-test probability is estimated before the result. Likelihood ratios revise it. They do not create it."
+      "says": "The pre-test probability is what you believed before this result. The test revises it. It does not replace it."
     },
     "number": 168,
     "id": "usmle-qb-s1-168"
@@ -4599,7 +4530,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Confidentiality is the default. Exceptions are narrow, legally defined, and limited to the information the exception needs."
+      "says": "Confidentiality yields for a serious imminent threat, and the disclosure is limited to what that threat requires."
     },
     "open": false
   },
@@ -4650,7 +4581,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Veracity is the default. Information is withheld only in narrow exceptions, not because the family prefers silence."
+      "says": "You tell the patient the diagnosis. A family request to hide it does not override a patient who wants to know."
     },
     "number": 172,
     "id": "usmle-qb-s1-172"
@@ -4704,7 +4635,7 @@
       "name": "StatPearls. Elder Abuse.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560883/",
-      "says": "Clinicians report suspected elder abuse. Consent from the suspected abuser is not required."
+      "says": "Suspected elder abuse is reported through the required channel. The caregiver does not get to veto the report."
     },
     "number": 174,
     "id": "usmle-qb-s1-174"
@@ -4731,7 +4662,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Professional boundaries exist because the patient is dependent. Relationships and gifts that alter care are violations."
+      "says": "A gift, a date, or a social-media friendship that changes how you prescribe has crossed a professional boundary."
     },
     "number": 175,
     "id": "usmle-qb-s1-175"
@@ -4757,7 +4688,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Nonmaleficence weighs the harm of the intervention. Tests and treatments that cannot change management fail that test."
+      "says": "Nonmaleficence means you do not add a treatment whose harm outweighs its benefit in this patient."
     },
     "number": 176,
     "id": "usmle-qb-s1-176"
@@ -4784,7 +4715,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Distributive justice allocates scarce resources by a consistent clinical rule rather than personal preference."
+      "says": "Justice means a scarce resource goes by a fair rule, not by who is in the room."
     },
     "number": 177,
     "id": "usmle-qb-s1-177"
@@ -4811,7 +4742,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Abandonment is stopping care without adequate notice or alternative arrangements. Disagreement alone does not justify it."
+      "says": "Discharging a patient from your care requires notice and a way to continue care. A disagreement is not abandonment."
     },
     "number": 178,
     "id": "usmle-qb-s1-178"
@@ -4837,7 +4768,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Assent respects the child's developing autonomy. Legal consent remains with the parent except where statute gives the minor authority."
+      "says": "A minor may assent. Legal consent for most care comes from a parent or guardian, except where the law lets the minor consent alone."
     },
     "number": 179,
     "id": "usmle-qb-s1-179"
@@ -4864,7 +4795,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Financial conflicts are disclosed before the decision, and the patient is offered alternatives not tied to that interest."
+      "says": "If you gain from the device or the drug you are recommending, you say so before the patient decides."
     },
     "number": 180,
     "id": "usmle-qb-s1-180"
