@@ -1,0 +1,19 @@
+{
+  "id": "b17-s2-43",
+  "difficulty": 4,
+  "subjectId": "cardiology",
+  "outlineSystem": "cardiovascular",
+  "blueprintTopic": "wpw-af",
+  "scenario": "A 24-year-old man has a wide irregular tachycardia at 180 and a history of delta waves. Pressure is 120/70 and he is awake. A classmate gives intravenous metoprolol.",
+  "question": "Which drug is safe, and why is metoprolol dangerous?",
+  "options": [
+    "Intravenous metoprolol",
+    "Adenosine as a diagnostic drug in a wide irregular rhythm",
+    "Procainamide or electricity. Not metoprolol",
+    "Digoxin to slow the node",
+    "Observation of a rate of 180"
+  ],
+  "correctAnswer": "Procainamide or electricity. Not metoprolol",
+  "explanation": "Atrial fibrillation with a preexcitation pattern is not treated with an AV-nodal blocker. Procainamide or cardioversion is used. Nodal blockers can speed conduction down the accessory path. Blocking the node sends more impulses down the extra path and can cause ventricular fibrillation. Procainamide or cardioversion is the plan. Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022.\n\nProcainamide or electricity. Not metoprolol\nIntravenous metoprolol — A nodal blocker is the danger.\nAdenosine as a diagnostic drug in a wide irregular rhythm — Adenosine is not used for an irregular wide rhythm.\nDigoxin to slow the node — Digoxin is also unsafe in preexcited fibrillation.\nObservation of a rate of 180 — The rhythm needs a drug that acts on the extra path, or electricity.",
+  "citation": "Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022."
+}

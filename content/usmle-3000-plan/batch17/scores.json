@@ -1,0 +1,26 @@
+{
+  "batch": "usmle-batch17-100-20261120",
+  "meanScore": 8.4,
+  "flags": 0,
+  "step2": {
+    "n": 100,
+    "meanScore": 8.4,
+    "difficulty": {
+      "3": 80,
+      "4": 20
+    },
+    "systems": {
+      "human-development": 3,
+      "blood-lymph-immune": 9,
+      "behavioral-nervous": 13,
+      "msk-skin": 11,
+      "cardiovascular": 10,
+      "gastrointestinal": 8,
+      "reproductive-endocrine": 11,
+      "respiratory-renal": 13,
+      "multisystem": 7,
+      "biostats-epi": 4,
+      "social-sciences": 11
+    }
+  }
+}
