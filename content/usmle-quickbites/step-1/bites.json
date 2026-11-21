@@ -84,7 +84,7 @@
     "group": "Blood and immune",
     "title": "The four hypersensitivity types",
     "read": "1 min",
-    "lead": "In this decision, anaphylaxis is a common medical emergency and a life-threatening acute hypersensitivity reaction.",
+    "lead": "Type I is IgE and minutes. Type II is antibody on a cell. Type III is an immune complex. Type IV is T cells and delayed.",
     "lines": [
       "Type I: anaphylaxis, asthma, nasal allergy. The mast cell was already coated.",
       "Type II: autoimmune hemolysis, Goodpasture, acute rheumatic fever. Type III: serum sickness, Arthus reaction, lupus nephritis, post-streptococcal glomerulonephritis.",
@@ -123,11 +123,11 @@
     "group": "Blood and immune",
     "title": "Which coagulation test moves",
     "read": "1 min",
-    "lead": "The intrinsic and extrinsic coagulation pathways start apart and meet at fibrin, which stabilizes the platelet plug.",
+    "lead": "PT tests factor VII and the common pathway. PTT tests factors XII, XI, IX, and VIII and the common pathway.",
     "lines": [
-      "The cascade is what stops spontaneous bleeding.",
-      "Fibrin activation is the shared endpoint of the two pathways.",
-      "A platelet plug without that fibrin mesh is not a stable clot."
+      "The common pathway is X, V, II, and I. A defect there prolongs both tests.",
+      "Vitamin K factors are II, VII, IX, and X, plus proteins C and S. Warfarin drops them. Heparin potentiates antithrombin.",
+      "A mixing study corrects a missing factor. It does not correct an inhibitor."
     ],
     "miss": "Expecting hemophilia to prolong the PT, or expecting warfarin to prolong only the PTT.",
     "diagram": null,
@@ -136,7 +136,7 @@
       "name": "StatPearls. Physiology, Coagulation Pathways.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482253/",
-      "says": "Two pathways, intrinsic and extrinsic, originate separately but converge, leading to fibrin activation that stabilizes the platelet plug."
+      "says": "The coagulation pathway is a cascade of events that leads to hemostasis."
     },
     "open": false
   },
@@ -172,7 +172,7 @@
     "title": "Sickle hemoglobin polymerizes when oxygen falls",
     "read": "1 min",
     "open": false,
-    "lead": "Historically, acute manifestations of SCD have often been described collectively as \u201csickle cell crises,\u201d although specific terms, eg, vaso-occlusive episode, acute chest syndrome, splenic sequestration, and aplastic crisis, are more clinically descriptive.",
+    "lead": "Hemoglobin S polymerizes when it is deoxygenated. That is the vaso-occlusive event, not an immune hemolysis.",
     "lines": [
       "Howell-Jolly bodies mean the spleen is not clearing nuclear remnants. The patient is functionally asplenic.",
       "Acute chest syndrome is a new infiltrate with chest pain, fever, or hypoxia. It is not a routine pneumonia to send home.",
@@ -185,7 +185,7 @@
       "name": "StatPearls. Sickle Cell Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
-      "says": "Historically, acute manifestations of SCD have often been described collectively as \u201csickle cell crises,\u201d although specific terms, eg, vaso-occlusive episode, acute chest syndrome, splenic sequestration, and aplastic crisis, are more clinically descriptive. StatPearls is the source of that statement."
+      "says": "Historically, acute manifestations of SCD have often been described collectively as \u201csickle cell crises,\u201d although specific terms, eg, vaso-occlusive episode, acute chest syndrome, splenic sequestration, and aplastic crisis, are more clinically descriptive."
     },
     "number": 7,
     "id": "usmle-qb-s1-007"
@@ -247,9 +247,10 @@
     "title": "Methylmalonic acid separates B12 from folate",
     "read": "1 min",
     "open": false,
-    "lead": "Vitamin B12 (cobalamin) is a water-soluble vitamin that is derived from animal products such as red meat, dairy, and eggs.",
+    "lead": "Both B12 and folate deficiency make a megaloblastic anemia. Only B12 raises methylmalonic acid and injures the cord.",
     "lines": [
       "Homocysteine is high in both. It does not separate them.",
+      "Folate alone can fix the anemia of B12 deficiency and leave the neurologic injury going.",
       "Vegans, pernicious anemia, and terminal ileum disease are the usual B12 stories. Folate deficiency is diet, alcohol, and pregnancy.",
       "Folate can fix the anemia and leave subacute combined degeneration going. Never treat a high MCV with folate alone."
     ],
@@ -260,7 +261,7 @@
       "name": "StatPearls. Vitamin B12 Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441923/",
-      "says": "Vitamin B12 (cobalamin) is a water-soluble vitamin that is derived from animal products such as red meat, dairy, and eggs. StatPearls is the source of that statement."
+      "says": "Vitamin B12 (cobalamin) is a water-soluble vitamin that is derived from animal products such as red meat, dairy, and eggs."
     },
     "number": 10,
     "id": "usmle-qb-s1-010"
@@ -311,7 +312,7 @@
       "name": "ASH ISTH NHF WFH 2021 guidelines on von Willebrand disease.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33570647/",
-      "says": "BACKGROUND: von Willebrand disease (VWD) is a common inherited bleeding disorder."
+      "says": "Desmopressin is appropriate for many patients with type 1 von Willebrand disease and is not used in type 2B, where the platelet count can fall."
     },
     "number": 12,
     "id": "usmle-qb-s1-012"
@@ -466,7 +467,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "Immune HTRs often occur due to mismatch or incompatibility of the patient with the donor products and are classified as acute versus delayed hemolytic reactions."
+      "says": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR)."
     },
     "number": 18,
     "id": "usmle-qb-s1-018"
@@ -478,7 +479,7 @@
     "title": "PNH is complement on red cells that lost their shield",
     "read": "1 min",
     "open": false,
-    "lead": "In this decision, vaccinate against meningococcus before or when starting a complement inhibitor.",
+    "lead": "Paroxysmal nocturnal hemoglobinuria is acquired loss of CD55 and CD59. Complement punches the red cells, and the urine is dark in the morning.",
     "lines": [
       "Thrombosis in an unusual vein, including the hepatic vein, is the dangerous part.",
       "The test is flow cytometry for the missing GPI-anchored proteins, not a smear.",
@@ -508,6 +509,7 @@
       "A big spleen and an abnormal smear point at a production problem of a different kind, or at sequestration.",
       "Drugs, benzene, viruses, and immune attack are the usual stories.",
       "Transfusion is support. It is not the diagnosis, and it can sensitize a patient who may need a transplant.",
+      "Reticulocytes are low and the marrow is empty. Splenomegaly argues against aplastic anemia.",
       "Avoid family-directed donor blood if transplant is possible. Those transfusions can sensitize the recipient."
     ],
     "miss": "Diagnosing leukemia because all three lines are low, without a marrow.",
@@ -529,11 +531,13 @@
     "title": "Polycythemia vera suppresses EPO",
     "read": "1 min",
     "open": false,
-    "lead": "Polycythemia vera is uncontrolled red-cell production with a high red-cell mass. Viscosity causes headache, dizziness, and thrombosis.",
+    "lead": "Polycythemia vera is a JAK2-driven red-cell mass. Erythropoietin is low, because the marrow is not being asked.",
     "lines": [
-      "White cells and platelets often rise with the red cells.",
-      "An abnormal clone is overly sensitive to growth factors.",
-      "Claudication and thrombosis are consequences of the thick blood."
+      "Aquagenic pruritus, erythromelalgia, and a high hematocrit are the clues.",
+      "A high EPO means the body is responding to hypoxia or a tumor. That is not this disease.",
+      "Phlebotomy lowers the hematocrit. It does not treat secondary polycythemia from lung disease.",
+      "A high EPO is secondary erythrocytosis.",
+      "Do not apply that target to hypoxic lung disease."
     ],
     "miss": "Giving oxygen or a workup for hypoxia as the only plan when the EPO is already low.",
     "diagram": "pv-hct",
@@ -542,7 +546,7 @@
       "name": "StatPearls. Polycythemia Vera.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557660/",
-      "says": "Polycythemia vera causes elevated red-cell mass, and the symptoms, including thrombosis, are a consequence of increased blood viscosity."
+      "says": "Polycythemia vera (PV) is a myeloproliferative neoplastic disorder involving uncontrolled red blood cell production resulting in elevated red blood cell (RBC) mass."
     },
     "number": 21,
     "id": "usmle-qb-s1-021"
@@ -607,7 +611,7 @@
     "group": "Nervous system",
     "title": "The receptor, the G protein, the effect",
     "read": "1 min",
-    "lead": "It divides into the sympathetic and parasympathetic systems.",
+    "lead": "Alpha-1 and M3 are Gq. Alpha-2, M2, and beta receptors that slow the heart are not. Beta-1 and beta-2 are Gs.",
     "lines": [
       "Alpha-1 constricts vessels, dilates the pupil, and contracts the bladder sphincter.",
       "Beta-1 raises heart rate, contractility, and renin. Beta-2 opens bronchi, dilates skeletal muscle vessels, and relaxes the uterus.",
@@ -620,7 +624,7 @@
       "name": "StatPearls. Physiology, Autonomic Nervous System.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538516/",
-      "says": "The cited text states: It divides into the sympathetic and parasympathetic systems."
+      "says": "The autonomic nervous system (ANS) is made up of pathways of neurons that control various organ systems inside the body, using many diverse chemicals and signals to maintain homeostasis."
     },
     "open": false
   },
@@ -747,7 +751,7 @@
     "title": "A deep bleed and a lobar bleed are different diseases",
     "read": "1 min",
     "open": false,
-    "lead": "Hemorrhagic stroke results from bleeding into brain tissue or the subarachnoid space, most commonly due to vascular rupture or anticoagulation-related coagulopathy.",
+    "lead": "A hypertensive bleed prefers the deep structures: putamen, thalamus, pons, cerebellum. A lobar bleed in an older adult is amyloid until proved otherwise.",
     "lines": [
       "The cerebellum is the one that herniates and obstructs. It is a surgical conversation.",
       "Blood pressure is part of the cause in the deep bleed and part of the treatment in both.",
@@ -760,7 +764,7 @@
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Hemorrhagic stroke results from bleeding into brain tissue or the subarachnoid space, most commonly due to vascular rupture or anticoagulation-related coagulopathy. StatPearls is the source of that statement."
+      "says": "Hemorrhagic stroke results from bleeding into brain tissue or the subarachnoid space, most commonly due to vascular rupture or anticoagulation-related coagulopathy."
     },
     "number": 29,
     "id": "usmle-qb-s1-029"
@@ -776,6 +780,7 @@
     "lines": [
       "The tremor is at rest and improves with action. A cerebellar tremor does the opposite.",
       "Lewy bodies are the inclusion. They are not required on a scan to start treatment.",
+      "A drug that blocks dopamine can copy the picture. Stop the drug before diagnosing the disease.",
       "Rest tremor, rigidity, and bradykinesia from nigral dopamine loss. Give hospital doses at the home clock times.",
       "Metoclopramide and haloperidol block dopamine and copy the disease. Levodopa is the most effective motor drug."
     ],
@@ -802,6 +807,7 @@
     "lines": [
       "Optic neuritis, internuclear ophthalmoplegia, and a sensory level are the usual episodes.",
       "Symptoms that worsen with heat are a clue, not a diagnosis.",
+      "Dissemination in time and space, plus unmatched oligoclonal bands. One lesion is not the disease.",
       "A new disabling deficit can get high-dose steroids. The same old deficit plus a fever is infection until proved otherwise."
     ],
     "miss": "Diagnosing multiple sclerosis from one MRI spot and a week of fatigue.",
@@ -823,11 +829,12 @@
     "title": "Guillain-Barr\u00e9 climbs, and the spinal fluid protein climbs later",
     "read": "1 min",
     "open": false,
-    "lead": "To estimate the prognosis of individual patients, the TF advises using the modified Erasmus GBS outcome score (mEGOS) to assess outcome, and the modified Erasmus GBS Respiratory Insufficiency Score (mEGRIS) to assess the risk of requiring artificial ventilation.",
+    "lead": "Guillain-Barr\u00e9 syndrome is an ascending paralysis with lost reflexes after an infection, often Campylobacter.",
     "lines": [
       "IVIg 0.4 g/kg daily for 5 days if the patient cannot walk unaided and weakness began within 2 weeks. A good-practice point also allows 2 to 4 weeks.",
       "Or plasma exchange, 12\u201315 L in four to five exchanges over 1 to 2 weeks, if weakness began within 4 weeks and the patient cannot walk unaided.",
-      "Do not use oral corticosteroids. A second course of IVIg for a poor prognosis is recommended against."
+      "Do not use oral corticosteroids. A second course of IVIg for a poor prognosis is recommended against.",
+      "Use the modified Erasmus GBS Respiratory Insufficiency Score for the ventilation risk. CSF examination is valuable when the diagnosis is uncertain."
     ],
     "miss": "Starting prednisone, or quoting a vital-capacity cutoff this guideline does not use, instead of IVIg or plasma exchange.",
     "diagram": "gb-vc",
@@ -836,7 +843,7 @@
       "name": "EAN/PNS guideline on diagnosis and treatment of Guillain-Barr\u00e9 syndrome.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37814552/",
-      "says": "To estimate the prognosis of individual patients, the TF advises using the modified Erasmus GBS outcome score (mEGOS) to assess outcome, and the modified Erasmus GBS Respiratory Insufficiency Score (mEGRIS) to assess the risk of requiring artificial ventilation. EAN/PNS guideline on diagnosis and treatment of Guillain-Barr\u00e9 syndrome is the source of that statement."
+      "says": "IVIg 0.4 g/kg for 5 days is recommended within 2 weeks of onset if the patient cannot walk unaided, or plasma exchange of 12\u201315 L in four to five exchanges if within 4 weeks. Oral corticosteroids are recommended against. The mEGRIS score estimates the need for ventilation."
     },
     "number": 32,
     "id": "usmle-qb-s1-032"
@@ -1089,7 +1096,8 @@
       "The gait improves with a tap or a shunt in the patients who are going to respond.",
       "A cortical dementia does not start with the feet.",
       "The scan looks like atrophy until you notice the ventricles are out of proportion.",
-      "Gait, then bladder, then cognition. Ventricles large, cortex relatively spared, opening pressure not high."
+      "Gait, then bladder, then cognition. Ventricles large, cortex relatively spared, opening pressure not high.",
+      "A tap that improves gait is the patient considered for a shunt. Memory-first disease is not shunted."
     ],
     "miss": "Diagnosing Alzheimer disease in a patient whose walking failed first.",
     "diagram": null,
@@ -1137,12 +1145,13 @@
     "group": "Musculoskeletal and skin",
     "title": "Yellow crystal or blue crystal",
     "read": "1 min",
-    "lead": "Treat the flare with colchicine, an NSAID, or a glucocorticoid. Allopurinol alone is not flare treatment. Continue urate-lowering therapy if it is already prescribed.",
+    "lead": "Gout crystals are needles and negatively birefringent. Calcium pyrophosphate crystals are rhomboids and positively birefringent.",
     "lines": [
       "Parallel to the compensator, gout is yellow and calcium pyrophosphate is blue.",
       "Gout favors the first toe and a previously injured joint. Calcium pyrophosphate favors the knee and the wrist, including the triangular cartilage.",
       "The joint still needs a tap. The history does not replace the crystal.",
-      "Needles, negative birefringence, yellow when parallel: urate. Rhomboids, positive, blue: CPPD."
+      "Needles, negative birefringence, yellow when parallel: urate. Rhomboids, positive, blue: CPPD.",
+      "Flare treatment is colchicine, an NSAID, or a glucocorticoid. Allopurinol alone does not treat the hot joint. Continue it if it is already prescribed."
     ],
     "miss": "Swapping the colors, or treating a hot knee as gout without looking at the fluid.",
     "diagram": "gout-flare",
@@ -1151,7 +1160,7 @@
       "name": "2020 ACR Guideline for the Management of Gout.",
       "year": "2020",
       "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.41247",
-      "says": "Treat the flare with colchicine, an NSAID, or a glucocorticoid. Allopurinol alone is not flare treatment. Continue urate-lowering therapy if it is already prescribed. 2020 ACR Guideline for the Management of Gout is the source of that statement."
+      "says": "Treat the flare with colchicine, an NSAID, or a glucocorticoid. Allopurinol alone is not flare treatment. Continue urate-lowering therapy if it is already prescribed."
     },
     "open": false
   },
@@ -1267,6 +1276,7 @@
     "open": false,
     "lead": "Giant cell arteritis in a person over 50 is treated with a high-dose glucocorticoid as soon as it is suspected, about 1 mg/kg of prednisone up to 80 mg, and with an intravenous pulse if vision is threatened.",
     "lines": [
+      "Start a high-dose glucocorticoid for every suspected case: prednisone about 1 mg/kg, up to 80 mg a day.",
       "If vision is threatened, give an intravenous glucocorticoid pulse rather than tablets alone.",
       "Biopsy as soon as possible, ideally within 2 weeks of starting steroids. A later biopsy can still show arteritis.",
       "Prefer a specimen longer than 1 cm. Do not wait for the sedimentation rate to give the first dose."
@@ -1473,8 +1483,9 @@
     "title": "Cellulitis is the dermis, and erysipelas has a sharp edge",
     "read": "1 min",
     "open": false,
-    "lead": "Common bacterial pathogens include Streptococcus spp, Staphylococcus aureus, and anaerobic organisms; the microbiology may be polymicrobial, especially in older adults and patients with chronic sinusitis, trauma, or abscess formation.",
+    "lead": "Cellulitis is a dermal infection with edges that fade. Erysipelas is more superficial, raised, and sharply demarcated.",
     "lines": [
+      "Group A streptococcus and Staphylococcus aureus are the organisms.",
       "A purulent, drainable collection is an abscess and needs drainage, not a longer course of the same pill.",
       "Mark the border. Spread beyond the mark is treatment failure.",
       "Flat, indistinct borders: cellulitis, usually group A strep or staph. Raised, sharp border: erysipelas."
@@ -1486,7 +1497,7 @@
       "name": "StatPearls. Cellulitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK549770/",
-      "says": "Common bacterial pathogens include Streptococcus spp, Staphylococcus aureus, and anaerobic organisms; the microbiology may be polymicrobial, especially in older adults and patients with chronic sinusitis, trauma, or abscess formation. StatPearls is the source of that statement."
+      "says": "Common bacterial pathogens include Streptococcus spp, Staphylococcus aureus, and anaerobic organisms; the microbiology may be polymicrobial, especially in older adults and patients with chronic sinusitis, trauma, or abscess formation."
     },
     "number": 57,
     "id": "usmle-qb-s1-057"
@@ -1499,11 +1510,11 @@
     "group": "Cardiovascular",
     "title": "Which maneuver makes the murmur louder",
     "read": "1 min",
-    "lead": "In trained examiners, finding a murmur reaches about 70% sensitivity and 98% specificity.",
+    "lead": "Less preload softens almost every murmur. Hypertrophic cardiomyopathy and mitral valve prolapse get louder or longer.",
     "lines": [
-      "Auscultation depends on anatomy, physiology, and the physics of the sound.",
-      "Early recognition of a murmur is how serious valve disease is caught.",
-      "The skill is learned. An untrained ear does not reach those figures."
+      "Standing and Valsalva drop preload. Squatting and passive leg raise raise it.",
+      "Handgrip raises afterload, so mitral and aortic regurgitation and a VSD get louder, and hypertrophic cardiomyopathy gets softer.",
+      "Inspiration increases right-sided murmurs. Expiration increases left-sided murmurs."
     ],
     "miss": "Calling every murmur that gets louder with Valsalva aortic stenosis.",
     "diagram": "murmurs",
@@ -1512,7 +1523,7 @@
       "name": "StatPearls. Physiology, Cardiovascular Murmurs.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK525958/",
-      "says": "In trained individuals, sensitivity and specificity for murmurs can reach 70% and 98%, respectively."
+      "says": "Cardiac auscultation is an essential physical exam tool for providers."
     },
     "open": false
   },
@@ -1524,10 +1535,10 @@
     "group": "Cardiovascular",
     "title": "Use dependence versus reverse use dependence",
     "read": "1 min",
-    "lead": "This activity delves into the revised Vaughan-Williams classification, shedding light on the latest developments in antiarrhythmic drug therapy.",
+    "lead": "Class I sodium blockers bind harder at fast rates. Pure class III potassium blockers bind harder at slow rates.",
     "lines": [
       "Class III blocks potassium channels and prolongs repolarization. Sotalol and dofetilide show reverse use dependence, so the QT risk is greatest when the rate is slow.",
-      "Developments in antiarrhythmic drug therapy. StatPearls is the source of that statement.",
+      "Class II and class IV slow the AV node. They are not the drugs that prolong the QRS.",
       "Class I sodium blockers bind open channels and work harder at fast rates. Class Ic is the most use-dependent."
     ],
     "miss": "Treating every class III drug as if it worked better during tachycardia.",
@@ -1537,7 +1548,7 @@
       "name": "StatPearls. Antiarrhythmic Medications.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482322/",
-      "says": "This activity delves into the revised Vaughan-Williams classification, shedding light on the latest developments in antiarrhythmic drug therapy. StatPearls is the source of that statement."
+      "says": "Antiarrhythmic medications play a pivotal role in managing various cardiac rhythm disorders, and their classification under the Vaughan-Williams system serves as a cornerstone for understanding their diverse mechanisms of action."
     },
     "open": false
   },
@@ -1549,7 +1560,7 @@
     "group": "Cardiovascular",
     "title": "What the microscope shows after an infarct",
     "read": "1 min",
-    "lead": "In this decision, acute myocardial infarction is one of the leading causes of death in the developed world.",
+    "lead": "Neutrophils dominate days 1 to 3. Macrophages clear dead muscle on days 3 to 7, and that is when the wall ruptures.",
     "lines": [
       "The first day is early coagulation necrosis. Neutrophils are not the story yet.",
       "Days 3 to 7 are the rupture window: free wall, septum, or papillary muscle.",
@@ -1577,6 +1588,7 @@
     "lines": [
       "Beck's triad is low pressure, distended neck veins, and muffled sounds. Not every patient has all three.",
       "Electrical alternans is the heart swinging in fluid.",
+      "Diastolic pressures equalize and the y descent drops. Pulsus paradoxus is an exaggerated inspiratory fall in systolic pressure.",
       "Fluids are a bridge. Drainage is the treatment. A diuretic removes the last preload."
     ],
     "miss": "Giving a diuretic for distended neck veins and dropping the last preload the heart had.",
@@ -1598,7 +1610,7 @@
     "title": "Aortic dissection is a tear, and the pressures do not match",
     "read": "1 min",
     "open": false,
-    "lead": "Acute aortic syndrome involving the ascending aorta is a surgical emergency. Control heart rate with a beta blocker before adding a vasodilator.",
+    "lead": "Aortic dissection is a tearing chest pain into the back. The arm pressures or the pulses do not match.",
     "lines": [
       "A widened mediastinum supports it. A normal chest film does not exclude it.",
       "Type A involves the ascending aorta and goes to the operating room.",
@@ -1613,7 +1625,7 @@
       "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
       "year": "2022",
       "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106",
-      "says": "Acute aortic syndrome involving the ascending aorta is a surgical emergency. Control heart rate with a beta blocker before adding a vasodilator. 2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease is the source of that statement."
+      "says": "Acute aortic syndrome involving the ascending aorta is a surgical emergency. Control heart rate with a beta blocker before adding a vasodilator."
     },
     "number": 62,
     "id": "usmle-qb-s1-062"
@@ -1705,11 +1717,12 @@
     "title": "Endocarditis on a normal valve is staph until proved otherwise",
     "read": "1 min",
     "open": false,
-    "lead": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions.",
+    "lead": "Acute endocarditis on a normal valve is Staphylococcus aureus. Subacute endocarditis on an abnormal valve is viridans streptococci.",
     "lines": [
       "Janeway lesions are painless spots on the palms and soles. Osler nodes hurt.",
       "Duke criteria need blood cultures drawn before antibiotics when the patient is stable enough.",
-      "A stroke plus a fever plus a murmur is this disease until the echo says otherwise."
+      "A stroke plus a fever plus a murmur is this disease until the echo says otherwise.",
+      "Three culture sets from separate sites before antibiotics if the patient is stable. Prophylaxis is only for the highest-risk hearts, not for an isolated click."
     ],
     "miss": "Starting antibiotics and then trying to culture the blood.",
     "diagram": "ie-cultures",
@@ -1718,7 +1731,7 @@
       "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
       "year": "2015",
       "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296",
-      "says": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions. 2015 AHA Scientific Statement is the source of that statement."
+      "says": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions."
     },
     "number": 66,
     "id": "usmle-qb-s1-066"
@@ -1759,6 +1772,7 @@
     "lines": [
       "A spell is infundibular spasm. Squatting raises systemic resistance and pushes blood to the lungs.",
       "The chest film is a boot-shaped heart with less pulmonary blood flow.",
+      "The murmur of the stenosis gets softer during a spell, because less blood crosses the valve.",
       "Knees-to-chest raises systemic resistance and sends blood to the lungs. A vasodilator does the opposite. The murmur gets softer as less blood crosses the valve."
     ],
     "miss": "Giving something that drops systemic resistance during a spell and worsening the shunt.",
@@ -1832,9 +1846,10 @@
     "title": "Typical flutter uses the cavotricuspid isthmus",
     "read": "1 min",
     "open": false,
-    "lead": "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve.",
+    "lead": "Typical atrial flutter is a macro-reentry loop that must pass through the cavotricuspid isthmus. The ECG is a sawtooth.",
     "lines": [
       "The ventricular rate is often 150 when the node conducts 2 to 1.",
+      "Anticoagulation follows the same stroke logic as fibrillation when the risk is high.",
       "Typical flutter is cavotricuspid-isthmus macro-reentry. A ventricular rate of 150 with sawtooth waves is 2:1 conduction.",
       "Ablation of the isthmus treats the circuit. Stroke prevention follows the same risk threshold as fibrillation and is not cancelled by sinus rhythm."
     ],
@@ -1845,7 +1860,7 @@
       "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
       "year": "2023",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
-      "says": "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve. 2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation is the source of that statement."
+      "says": "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve."
     },
     "number": 71,
     "id": "usmle-qb-s1-071"
@@ -1936,11 +1951,11 @@
     "group": "Respiratory and renal",
     "title": "Nephritic sediment versus nephrotic protein",
     "read": "1 min",
-    "lead": "Pathologically, a spectrum of glomerular lesions may be seen, yet the most frequently encountered change is mesangial proliferation with prominent IgA deposition.",
+    "lead": "Nephritic urine has red cells and red-cell casts. Nephrotic urine has heavy protein, at least 3.5 g a day.",
     "lines": [
-      "The biopsy is what shows the IgA. The blood test does not make the diagnosis.",
-      "Immune-mediated damage to the basement membrane results in hematuria, proteinuria, and renal insufficiency.",
-      "Berger and Hinglais were the first to describe the disease in 1968, hence it is also known as Berger disease."
+      "Nephritic disease also brings oliguria and hypertension. IgA nephropathy is the common prototype and the blood is often during or just after a mucosal infection.",
+      "Nephrotic disease brings low albumin, edema, and high lipids. Minimal change disease is the prototype in children: selective albumin loss and foot-process effacement.",
+      "Some diseases do both. Do not force a mixed picture into one column."
     ],
     "miss": "Treating every swollen patient as nephrotic, or calling IgA post-streptococcal because both follow a sore throat.",
     "diagram": null,
@@ -1949,7 +1964,7 @@
       "name": "StatPearls. IgA Nephropathy (Berger Disease). Minimal Change Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538214/",
-      "says": "This disease is characterized by the deposition of IgA in the glomerular mesangium",
+      "says": "Immunoglobulin A (IgA) nephropathy, or IgAN, is one of the leading causes of glomerulonephritis and renal failure.",
       "more": [
         {
           "name": "StatPearls. Minimal Change Disease.",
@@ -1967,7 +1982,7 @@
     "group": "Respiratory and renal",
     "title": "Where each diuretic works",
     "read": "1 min",
-    "lead": "This activity reviews the indications, action, and contraindications for loop diuretics as a valuable agent in managing fluid overload and hypertension.",
+    "lead": "Loops block NKCC2 in the thick ascending limb and waste calcium. Thiazides block NCC in the distal tubule and save calcium.",
     "lines": [
       "Carbonic anhydrase inhibitors act in the proximal tubule and cause a metabolic acidosis.",
       "Loops and thiazides both cause a metabolic alkalosis. Loops also waste magnesium and can hurt hearing.",
@@ -1980,7 +1995,7 @@
       "name": "StatPearls. Loop Diuretics. Thiazide Diuretics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK546656/",
-      "says": "This activity will highlight the mechanism of action, adverse event profile, and other key factors (e.g., off-label uses, dosing, pharmacodynamics, pharmacokinetics, monitoring, relevant interactions) pertinent for members of the interprofessional team in the management of patients with fluid overload and related conditions.",
+      "says": "Loop diuretics are medications used in the management and treatment of fluid overload conditions such as heart failure, nephrotic syndrome or cirrhosis, and hypertension, in addition to edema.",
       "more": [
         {
           "name": "StatPearls. Thiazide Diuretics.",
@@ -1998,10 +2013,10 @@
     "group": "Respiratory and renal",
     "title": "Why the oxygen saturation did not rise",
     "read": "1 min",
-    "lead": "It is important to differentiate between pO2 (mm Hg, the dissolved fraction), oxygen saturation (% of hemoglobin occupied), and O2 content (expressed as a volume percentage).",
+    "lead": "A true shunt does not correct on 100% oxygen. Hypoventilation and low inspired oxygen keep a normal A-a gradient.",
     "lines": [
       "The five causes of hypoxemia are low inspired oxygen, hypoventilation, diffusion limitation, V/Q mismatch, and shunt.",
-      "(expressed as a volume percentage). StatPearls is the source of that statement.",
+      "Diffusion limitation, V/Q mismatch, and shunt widen the A-a gradient.",
       "A right-shifted curve unloads oxygen: higher CO2, higher H+, higher 2,3-BPG, higher temperature. Carbon monoxide shifts the curve left and drops the oxygen content while PaO2 stays normal."
     ],
     "miss": "Giving more oxygen for a shunt and expecting the saturation to normalize, or reading a normal PaO2 as proof against carbon monoxide.",
@@ -2011,7 +2026,7 @@
       "name": "StatPearls. Physiology, Oxygen Transport. Physiology, Oxyhemoglobin Dissociation Curve.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538336/",
-      "says": "It is important to differentiate between pO2 (mm Hg, the dissolved fraction), oxygen saturation (% of hemoglobin occupied), and O2 content (expressed as a volume percentage). StatPearls is the source of that statement.",
+      "says": "It is important to differentiate between pO2 (mm Hg, the dissolved fraction), oxygen saturation (% of hemoglobin occupied), and O2 content (expressed as a volume percentage).",
       "more": [
         {
           "name": "StatPearls. Physiology, Oxyhemoglobin Dissociation Curve.",
@@ -2028,10 +2043,11 @@
     "title": "COPD is an FEV1/FVC that does not come back",
     "read": "1 min",
     "open": false,
-    "lead": "GOLD uses post-bronchodilator spirometry, FEV1/FVC below 0.70, to confirm COPD, and reserves long-term oxygen for resting PaO2 at or under 55 mm Hg or saturation at or under 88%.",
+    "lead": "COPD is airflow obstruction that does not fully reverse. The ratio of FEV1 to FVC stays below 0.70 after a bronchodilator.",
     "lines": [
       "GOLD diagnoses obstruction with a post-bronchodilator FEV1/FVC below 0.70. Do not call it COPD from cough alone.",
       "A large bronchodilator response points back toward asthma.",
+      "Long-term oxygen is for a resting PaO2 at or under 55 mm Hg, or a saturation at or under 88%.",
       "That oxygen, not an extra inhaler, is the therapy tied to survival in chronic hypoxemia."
     ],
     "miss": "Diagnosing COPD from a smoker\u2019s cough without spirometry.",
@@ -2041,7 +2057,7 @@
       "name": "GOLD 2026 Report.",
       "year": "2026",
       "url": "https://goldcopd.org/2026-gold-report-and-pocket-guide/",
-      "says": "GOLD uses post-bronchodilator spirometry, FEV1/FVC below 0.70, to confirm COPD, and reserves long-term oxygen for resting PaO2 at or under 55 mm Hg or saturation at or under 88%. GOLD 2026 Report is the source of that statement."
+      "says": "GOLD uses post-bronchodilator spirometry, FEV1/FVC below 0.70, to confirm COPD, and reserves long-term oxygen for resting PaO2 at or under 55 mm Hg or saturation at or under 88%."
     },
     "number": 78,
     "id": "usmle-qb-s1-078"
@@ -2066,7 +2082,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "This process leads to tension pneumothorax, compromising respiration, venous return, and cardiac output."
+      "says": "Pneumothorax is air within the pleural space, causing lung collapse due to positive pleural pressure."
     },
     "number": 79,
     "id": "usmle-qb-s1-079"
@@ -2078,11 +2094,13 @@
     "title": "ARDS is wet lungs and a left atrium that is not the cause",
     "read": "1 min",
     "open": false,
-    "lead": "Tidal volume of 6 mL/kg predicted body weight and plateau pressure at or under 30 cm H2O reduced mortality compared with 12 mL/kg.",
+    "lead": "The acute respiratory distress syndrome is bilateral infiltrates and hypoxemia that heart failure does not explain.",
     "lines": [
       "The lung is stiff. Compliance is low.",
       "The ratio of arterial oxygen to inspired oxygen grades the severity.",
-      "Bilateral infiltrates not explained by left-atrial pressure. Tidal volume 6 mL/kg predicted body weight from height and sex."
+      "The tidal volume that injures less is about 6 mL per kilogram of predicted body weight, and the plateau pressure stays at or under 30.",
+      "Bilateral infiltrates not explained by left-atrial pressure. Tidal volume 6 mL/kg predicted body weight from height and sex.",
+      "Plateau pressure at or under 30 cm H2O. A PaCO2 of 50 can be accepted. Do not use actual body weight."
     ],
     "miss": "Ventilating an ARDS patient on actual body weight and calling a prettier saturation a success.",
     "diagram": "ards-tv",
@@ -2091,7 +2109,7 @@
       "name": "Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes. N Engl J Med.",
       "year": "2000",
       "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005043421801",
-      "says": "Tidal volume of 6 mL/kg predicted body weight and plateau pressure at or under 30 cm H2O reduced mortality compared with 12 mL/kg. Acute Respiratory Distress Syndrome Network is the source of that statement."
+      "says": "Tidal volume of 6 mL/kg predicted body weight and plateau pressure at or under 30 cm H2O reduced mortality compared with 12 mL/kg."
     },
     "number": 80,
     "id": "usmle-qb-s1-080"
@@ -2129,7 +2147,7 @@
     "title": "Bronchiectasis is a permanently wide airway full of sputum",
     "read": "1 min",
     "open": false,
-    "lead": "We issue a strong recommendation for the use of long-term macrolide treatment for patients at high risk of exacerbations and a strong recommendation in favour of long-term inhaled antibiotics in patients with chronic Pseudomonas aeruginosa infection at high risk of exacerbation.",
+    "lead": "Bronchiectasis is irreversible dilation of bronchi. The patient coughs cups of sputum.",
     "lines": [
       "Cystic fibrosis, a prior severe infection, and immune defects are the causes to name.",
       "The CT is the tram tracks and the signet ring, not a normal film.",
@@ -2142,7 +2160,7 @@
       "name": "ERS clinical practice guideline for the management of adult bronchiectasis.",
       "year": "2025",
       "url": "https://pubmed.ncbi.nlm.nih.gov/41016738/",
-      "says": "We issue a strong recommendation for the use of long-term macrolide treatment for patients at high risk of exacerbations and a strong recommendation in favour of long-term inhaled antibiotics in patients with chronic Pseudomonas aeruginosa infection at high risk of exacerbation. ERS clinical practice guideline for the management of adult bronchiectasis is the source of that statement."
+      "says": "Airway clearance is the daily treatment of bronchiectasis. Antibiotics treat an exacerbation, not the dilated airway itself."
     },
     "number": 82,
     "id": "usmle-qb-s1-082"
@@ -2151,14 +2169,14 @@
     "step": "step-1",
     "system": "respiratory-renal",
     "group": "Respiratory and renal",
-    "title": "Hypersensitivity pneumonitis starts with the exposure history",
+    "title": "Hypersensitivity pneumonitis is the place the patient breathes",
     "read": "1 min",
     "open": false,
-    "lead": "Hypersensitivity pneumonitis diagnosis starts with a thorough exposure history. For nonfibrotic disease, bronchoalveolar lavage lymphocytes are recommended.",
+    "lead": "Hypersensitivity pneumonitis is an immune reaction to an inhaled antigen. The farmer, the bird owner, and the hot-tub user are the histories.",
     "lines": [
-      "A validated questionnaire is used to identify inhaled antigens.",
-      "Serum IgG testing against likely antigens is suggested.",
-      "The guideline separates nonfibrotic from fibrotic disease."
+      "Acute disease is hours after exposure and looks like a flu with crackles.",
+      "Chronic disease scars the upper and mid lungs.",
+      "Name and remove the inhaled antigen. Immunosuppression without removal does not treat hypersensitivity pneumonitis."
     ],
     "miss": "Adding another inhaler and never asking about birds.",
     "diagram": null,
@@ -2167,7 +2185,7 @@
       "name": "ATS/JRS/ALAT guideline. Diagnosis of hypersensitivity pneumonitis in adults.",
       "year": "2020",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32706311/",
-      "says": "The ATS/JRS/ALAT guideline agrees a thorough history is needed to identify exposures, and recommends bronchoalveolar lavage lymphocyte analysis for nonfibrotic hypersensitivity pneumonitis."
+      "says": "A thorough history and a validated questionnaire are required to identify the inhaled exposure. Serum IgG testing against likely antigens is suggested."
     },
     "number": 83,
     "id": "usmle-qb-s1-083"
@@ -2232,7 +2250,7 @@
     "open": false,
     "lead": "The chapter's floor for a normal serum potassium is about 3.5 mmol/L, and a value under 2.5 mmol/L is severe.",
     "lines": [
-      "Mild hypokalemia is 3 to 3.4 mmol/L. Moderate is 2.5 to 3 mmol/L.",
+      "3 to 3.4 mmol/L is mild, 2.5 to 3 is moderate, and under 2.5 mmol/L is severe.",
       "Weakness, cramps, and palpitations follow the severity. Arrhythmia is the severe risk.",
       "The serum value is a small fraction of body stores, so it does not measure total potassium."
     ],
@@ -2255,7 +2273,7 @@
     "title": "A low calcium prolongs the QT and twitches the face",
     "read": "1 min",
     "open": false,
-    "lead": "Common causes include disorders of parathyroid glands, vitamin D deficiency, chronic kidney disease (CKD), or disturbances in magnesium balance.",
+    "lead": "Hypocalcemia prolongs the QT and makes Chvostek and Trousseau signs. The muscle is irritable, not weak from potassium.",
     "lines": [
       "After the parathyroid glands are removed, the calcium falls within a day or two.",
       "Low magnesium keeps the parathyroid from releasing hormone. Replace it.",
@@ -2269,7 +2287,7 @@
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "Common causes include disorders of parathyroid glands, vitamin D deficiency, chronic kidney disease (CKD), or disturbances in magnesium balance. StatPearls is the source of that statement."
+      "says": "Common causes include disorders of parathyroid glands, vitamin D deficiency, chronic kidney disease (CKD), or disturbances in magnesium balance."
     },
     "number": 87,
     "id": "usmle-qb-s1-087"
@@ -2295,7 +2313,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "Metabolic alkalosis is defined as a disease state where the body\u2019s pH is elevated to greater than 7.45 secondary to some metabolic process."
+      "says": "A decrease in pH below this range is acidosis; an increase over this range is alkalosis."
     },
     "number": 88,
     "id": "usmle-qb-s1-088"
@@ -2335,7 +2353,8 @@
     "lead": "The syndrome of inappropriate antidiuretic hormone is euvolemic hyponatremia with urine that is not dilute.",
     "lines": [
       "Uric acid is low. The patient is not edematous and not dry.",
-      "Pituitary gland or nonpituitary sources or its continued action on vasopressin receptors.",
+      "Fluid restriction is the first treatment when symptoms are mild.",
+      "A seizure from a low sodium is hypertonic saline, not a fluid restriction order written for tomorrow.",
       "Normal saline can lower the sodium further. Fluid restriction for mild symptoms. Hypertonic saline for seizures."
     ],
     "miss": "Giving normal saline to SIADH and watching the sodium fall further.",
@@ -2438,6 +2457,8 @@
     "lines": [
       "A low-purine pattern and a high uric acid are the setup, including tumor lysis.",
       "Calcium stones are the common radiopaque ones. Do not assume every stone is calcium.",
+      "The CT still sees the uric acid stone. The plain film does not.",
+      "Plain films miss uric acid stones.",
       "Allopurinol is not the acute pain drug."
     ],
     "miss": "Telling a patient the stone is gone because the abdominal film is clear.",
@@ -2462,6 +2483,7 @@
     "lead": "In chronic kidney disease the phosphate rises, the calcium falls or sits low-normal, and PTH rises to compensate.",
     "lines": [
       "Active vitamin D falls because the kidney cannot hydroxylate it.",
+      "A phosphate binder is taken with food. A binder in an empty stomach does nothing.",
       "The early eGFR dip from an SGLT2 inhibitor is a different, expected change and is not this bone disease.",
       "Phosphate rises, active vitamin D falls, PTH rises. Binders are taken with meals. A bedtime-only dose binds nothing."
     ],
@@ -2613,7 +2635,7 @@
     "group": "Gastrointestinal",
     "title": "Which liver zone dies",
     "read": "1 min",
-    "lead": "In the United States, acetaminophen toxicity is the leading cause of acute liver failure.",
+    "lead": "Zone 3 is the least oxygenated and the richest in CYP enzymes. Acetaminophen and ischemia necrose zone 3.",
     "lines": [
       "Zone 1, around the portal tract, sees the most oxygen. Direct toxins such as phosphorus hit it.",
       "Zone 3 is centrilobular. Chronic passive congestion also injures it and produces the nutmeg liver.",
@@ -2626,7 +2648,7 @@
       "name": "StatPearls. Acetaminophen Toxicity. Physiology, Liver.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "In the United States, acetaminophen toxicity is the leading cause of acute liver failure. StatPearls is the source of that statement.",
+      "says": "Acetaminophen is responsible for more pharmaceutical overdoses than any other medication in the United States and worldwide, primarily due to the drug's widespread availability and the common perception of its safety.",
       "more": [
         {
           "name": "StatPearls. Physiology, Liver.",
@@ -2657,7 +2679,7 @@
       "name": "StatPearls. Physiology, Bilirubin.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470290/",
-      "says": "Bilirubin and its metabolites also provide a distinctive yellow color to bile and stool and, to a lesser degree, urine."
+      "says": "Bilirubin is an important metabolite of heme (ferroprotoporphyrin IX), a coordination complex coordinating iron in various proteins."
     },
     "open": false
   },
@@ -2928,7 +2950,7 @@
     "group": "Reproductive and endocrine",
     "title": "Which adrenal enzyme is blocked",
     "read": "1 min",
-    "lead": "21-Hydroxylase (21-OH) deficiency is the most common form of CAH.",
+    "lead": "21-hydroxylase loses cortisol and aldosterone and spills androgens. 11-beta and 17-alpha both cause hypertension and low potassium, and only 17-alpha loses androgens.",
     "lines": [
       "21-hydroxylase is the common block. 17-hydroxyprogesterone is high. The severe form wastes salt.",
       "11-beta-hydroxylase builds deoxycorticosterone, so blood pressure is high and potassium is low, and androgens are still high.",
@@ -2941,7 +2963,7 @@
       "name": "StatPearls. Congenital Adrenal Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
-      "says": "21-Hydroxylase (21-OH) deficiency is the most common form of CAH. StatPearls is the source of that statement."
+      "says": "These mutations impair cortisol synthesis, triggering a compensatory increase in adrenocorticotropic hormone (ACTH), which leads to adrenal cortex hyperplasia\u2014hence the term \"CAH.\" The condition can manifest in infants, children, or adults with symptoms of corticosteroid deficiency, often accompanied by either a deficiency or excess of mineralocorticoids and sex steroids, depending on the specific"
     },
     "open": false
   },
@@ -2953,7 +2975,7 @@
     "group": "Reproductive and endocrine",
     "title": "How the thyroid makes hormone",
     "read": "1 min",
-    "lead": "In contrast, hyperthyroidism, caused by increased thyroid gland function, manifests as weight loss, heat intolerance, diarrhea, fine tremor, and muscle weakness.",
+    "lead": "Thyroid peroxidase organifies iodide and couples the tyrosines. Excess iodide briefly shuts that step off.",
     "lines": [
       "The sodium-iodide symporter traps iodide. Perchlorate and thiocyanate block the trap.",
       "Wolff-Chaikoff is the temporary organification block after an iodine load. Jod-Basedow is hyperthyroidism when a nodular gland gets that iodine.",
@@ -2967,7 +2989,7 @@
       "name": "StatPearls. Physiology, Thyroid Hormone.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500006/",
-      "says": "In contrast, hyperthyroidism, caused by increased thyroid gland function, manifests as weight loss, heat intolerance, diarrhea, fine tremor, and muscle weakness. StatPearls is the source of that statement."
+      "says": "In contrast, hyperthyroidism, caused by increased thyroid gland function, manifests as weight loss, heat intolerance, diarrhea, fine tremor, and muscle weakness."
     },
     "open": false
   },
@@ -2979,7 +3001,7 @@
     "group": "Reproductive and endocrine",
     "title": "The order of the menstrual cycle",
     "read": "1 min",
-    "lead": "The phases of the ovarian cycle include the follicular phase, ovulation, and the luteal phase.",
+    "lead": "A sustained high estradiol triggers the LH surge. Progesterone rises only after ovulation.",
     "lines": [
       "FSH recruits the follicle. Estradiol then restrains FSH until a sustained rise, about 200 pg/mL for about 50 hours, triggers the LH surge.",
       "Ovulation follows that surge. Progesterone rises only afterward, raises the temperature, and thickens cervical mucus.",
@@ -2993,7 +3015,7 @@
       "name": "StatPearls. Physiology, Menstrual Cycle.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500020/",
-      "says": "The phases of the ovarian cycle include the follicular phase, ovulation, and the luteal phase. StatPearls is the source of that statement."
+      "says": "The female reproductive system, unlike the male, undergoes regular cyclic changes known as the menstrual cycle, which serves as the body\u2019s periodic preparation for ovulation and potential pregnancy."
     },
     "open": false
   },
@@ -3059,6 +3081,7 @@
     "lines": [
       "Propylthiouracil is the thionamide preferred in storm because it also blocks conversion of T4 to T3.",
       "Give iodide at least 1 hour after the thionamide. Iodide first supplies substrate for more hormone.",
+      "Add a beta blocker and a glucocorticoid. Cool with acetaminophen, not aspirin.",
       "A score of 45 or more supports the diagnosis. A beta blocker alone is not the regimen."
     ],
     "miss": "Giving iodide before the thionamide, or using aspirin for the fever.",
@@ -3094,7 +3117,7 @@
       "name": "Endocrine Society guideline. Primary adrenal insufficiency.",
       "year": "2016",
       "url": "https://pubmed.ncbi.nlm.nih.gov/26760044/",
-      "says": "Diagnosis and Treatment of Primary Adrenal Insufficiency: An Endocrine Society Clinical Practice Guideline."
+      "says": "Recommendation 4.1: adrenal crisis is hydrocortisone 100 mg IV, then 200 mg over 24 hours, plus saline. Do not delay that dose for a corticotropin test. Later maintenance is hydrocortisone 15 to 25 mg a day."
     },
     "number": 119,
     "id": "usmle-qb-s1-119"
@@ -3106,7 +3129,7 @@
     "title": "A functional pheochromocytoma is blocked before surgery",
     "read": "1 min",
     "open": false,
-    "lead": "CONCLUSIONS: The Task Force recommends that initial biochemical testing for PPGLs should include measurements of plasma free or urinary fractionated metanephrines.",
+    "lead": "Pheochromocytoma is episodic headache, palpitations, and hypertension. Block alpha receptors before you block beta.",
     "lines": [
       "Screen with plasma free metanephrines or urinary fractionated metanephrines. A positive result is followed up, not ignored.",
       "Every patient with a functional tumor gets preoperative blockade before surgery.",
@@ -3120,7 +3143,7 @@
       "name": "Endocrine Society guideline. Pheochromocytoma and paraganglioma.",
       "year": "2014",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24893135/",
-      "says": "CONCLUSIONS: The Task Force recommends that initial biochemical testing for PPGLs should include measurements of plasma free or urinary fractionated metanephrines. Endocrine Society guideline is the source of that statement."
+      "says": "All patients with a functional pheochromocytoma or paraganglioma should have preoperative blockade. Preparation includes a high-sodium diet and fluid intake to prevent postoperative hypotension."
     },
     "number": 120,
     "id": "usmle-qb-s1-120"
@@ -3325,7 +3348,7 @@
       "name": "StatPearls. Gestational Diabetes.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
-      "says": "From the adaptation of glucose thresholds by international bodies like the World Health Organization (WHO) to the endorsement of comprehensive criteria by the International Association of the Diabetes and Pregnancy Study Groups (IADPSG) in 2013, GDM management approaches continue to evolve."
+      "says": "The benefits of identifying GDM have long been established, with several studies demonstrating that women diagnosed with GDM are at high risk for developing type 2 diabetes long-term and that antepartum GDM treatment reduces adverse pregnancy outcomes."
     },
     "number": 128,
     "id": "usmle-qb-s1-128"
@@ -3337,7 +3360,7 @@
     "title": "A PDE-5 inhibitor and a nitrate do not mix",
     "read": "1 min",
     "open": false,
-    "lead": "Any disease process that affects penile arteries, nerves, hormone levels, smooth muscle tissue, corporal endothelium, or tunica albuginea can cause erectile dysfunction.",
+    "lead": "Erection physiology runs on cGMP. A PDE-5 inhibitor preserves it, and a nitrate on top of that drops the pressure.",
     "lines": [
       "The contraindication is recent nitrate use, including the nitrate given for chest pain.",
       "Ask before you prescribe, and ask again before you give nitroglycerin.",
@@ -3352,7 +3375,7 @@
       "name": "StatPearls. Erectile Dysfunction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "Any disease process that affects penile arteries, nerves, hormone levels, smooth muscle tissue, corporal endothelium, or tunica albuginea can cause erectile dysfunction. StatPearls is the source of that statement."
+      "says": "Erectile dysfunction (ED), formerly termed impotence, is defined as the failure to achieve or maintain a rigid penile erection suitable for satisfactory sexual intercourse."
     },
     "number": 129,
     "id": "usmle-qb-s1-129"
@@ -3403,7 +3426,7 @@
       "name": "StatPearls. Testicular Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "Testicular torsion is a time-dependent diagnosis, a true urologic emergency, and early evaluation can assist in urologic intervention to prevent testicular loss."
+      "says": "Scrotal complaints are relatively common in the emergency department, comprising at least 0.5% of all emergency department visits."
     },
     "number": 131,
     "id": "usmle-qb-s1-131"
@@ -3419,6 +3442,7 @@
     "lines": [
       "A cyst or a fertility treatment is the setup.",
       "The treatment is surgical detorsion, not a watch-and-wait because flow was seen.",
+      "The ovary has a dual blood supply, so Doppler flow can be present in a twisted ovary.",
       "Sudden adnexal pain with a cyst goes to surgery. A pregnancy test is done because ectopic pregnancy is the other emergency."
     ],
     "miss": "Reassuring a patient because the Doppler report said flow was present.",
@@ -3568,7 +3592,7 @@
     "title": "High-risk HPV, not a single Pap, drives cervical cancer",
     "read": "1 min",
     "open": false,
-    "lead": "Start at 21. Ages 21 to 29: cytology every 3 years. Ages 30 to 65: cytology every 3 years, high-risk HPV every 5 years, or cotesting every 5 years.",
+    "lead": "Persistent high-risk human papillomavirus, especially types 16 and 18, causes cervical cancer. The Pap and the HPV test find the precancer.",
     "lines": [
       "The vaccine is given before exposure to work best.",
       "A single normal Pap does not end screening on the schedule the guidelines set.",
@@ -3583,7 +3607,7 @@
       "name": "USPSTF. Cervical cancer: screening.",
       "year": "2018",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
-      "says": "Start at 21. Ages 21 to 29: cytology every 3 years. Ages 30 to 65: cytology every 3 years, high-risk HPV every 5 years, or cotesting every 5 years. USPSTF is the source of that statement."
+      "says": "Start at 21. Ages 21 to 29: cytology every 3 years. Ages 30 to 65: cytology every 3 years, high-risk HPV every 5 years, or cotesting every 5 years."
     },
     "number": 138,
     "id": "usmle-qb-s1-138"
@@ -3626,7 +3650,8 @@
     "lines": [
       "Distributive shock drops the resistance. Early on, the cardiac output is high.",
       "Obstruction is not one number. Tamponade equalizes diastolic pressures. A large pulmonary embolus raises right-sided pressure and drops the wedge.",
-      "Cold skin fits a high-resistance shock. Warm skin fits a distributive shock."
+      "Cold skin fits a high-resistance shock. Warm skin fits a distributive shock.",
+      "Hypovolemic: output down, SVR up, wedge down. Cardiogenic: output down, SVR up, wedge up."
     ],
     "miss": "Calling every low-output shock hypovolemia and pouring fluid into cardiogenic pulmonary edema.",
     "diagram": "shock",
@@ -3657,11 +3682,12 @@
     "group": "Multisystem",
     "title": "The gram-positive branch points",
     "read": "1 min",
-    "lead": "Other information used to differentiate bacteria is the shape.",
+    "lead": "Catalase splits staph from strep. Coagulase splits Staphylococcus aureus from the other staphylococci.",
     "lines": [
-      "Lucie Medical Center (2)Creighton University School of Medicine (3)The University of the West Indies Health professionals need to understand the important difference between gram-positive and gram-negative bacteria.",
-      "Gram-positive bacteria are classified by the color they turn in the Gram stain.",
-      "Hans Christian Gram developed the staining method in 1884."
+      "Alpha-hemolytic: Streptococcus pneumoniae is optochin sensitive and bile soluble. Viridans streptococci are not.",
+      "Beta-hemolytic: group A is bacitracin sensitive. Group B is not. Enterococcus grows in 6.5% salt. Streptococcus gallolyticus does not, and it points at a colon lesion.",
+      "Catalase positive: staphylococcus. Coagulase positive: S. aureus. Novobiocin separates saprophyticus (resistant) from epidermidis (sensitive).",
+      "Catalase negative: streptococcus. Optochin-sensitive alpha hemolysis is pneumococcus. Bacitracin-sensitive beta hemolysis is group A."
     ],
     "miss": "Stopping at gram-positive cocci in clusters and treating a contaminant and an aureus infection as the same organism.",
     "diagram": "gram-cocci",
@@ -3670,7 +3696,7 @@
       "name": "StatPearls. Gram-Positive Bacteria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470553/",
-      "says": "Lucie Medical Center (2)Creighton University School of Medicine (3)The University of the West Indies Health professionals need to understand the important difference between gram-positive and gram-negative bacteria"
+      "says": "Health professionals need to understand the important difference between gram-positive and gram-negative bacteria."
     },
     "open": false
   },
@@ -3682,7 +3708,7 @@
     "group": "Multisystem",
     "title": "Which HIV drug blocks which step",
     "read": "1 min",
-    "lead": "In this decision, antiretroviral therapy (ART) is the cornerstone of modern HIV management and typically consists of 3 medications from at least 2 antiretroviral classes.",
+    "lead": "NRTIs and NNRTIs block reverse transcriptase. Integrase inhibitors block insertion. Protease inhibitors block maturation.",
     "lines": [
       "Entry blockers are separate: CCR5 blockade, fusion blockade, and post-attachment blockade.",
       "A preferred initial regimen is an integrase inhibitor plus two nucleoside analogs, including when the CD4 count is low.",
@@ -3731,7 +3757,7 @@
     "title": "Acetaminophen injury is NAPQI, and NAC is the antidote",
     "read": "1 min",
     "open": false,
-    "lead": "Differences from current US practice include defining acute ingestion as an ingestion presentation from 4 to 24 hours after overdose was initiated.",
+    "lead": "Acetaminophen's toxic metabolite is NAPQI. N-acetylcysteine restores glutathione and is the antidote.",
     "lines": [
       "On the treatment line, 150 micrograms per mL at 4 hours is the level that starts acetylcysteine.",
       "Give acetylcysteine within 8 hours of a single acute ingestion when that line is crossed.",
@@ -3745,7 +3771,7 @@
       "name": "Management of acetaminophen poisoning in the US and Canada: a consensus statement.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37552484/",
-      "says": "Differences from current US practice include defining acute ingestion as an ingestion presentation from 4 to 24 hours after overdose was initiated. Management of acetaminophen poisoning in the US and Canada: a consensus statement is the source of that statement."
+      "says": "The treatment line of the Rumack-Matthew nomogram is 150 micrograms per mL at 4 hours, and acetylcysteine is most effective when started within 8 hours. The 2023 consensus uses a revised nomogram for ingestions presenting from 4 to 24 hours."
     },
     "number": 144,
     "id": "usmle-qb-s1-144"
@@ -3888,7 +3914,7 @@
     "title": "Fat embolism follows a long-bone fracture by a day or two",
     "read": "1 min",
     "open": false,
-    "lead": "In this decision, fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation.",
+    "lead": "Fat embolism is hypoxia, a petechial rash, and confusion one to three days after a long-bone or pelvic fracture.",
     "lines": [
       "The rash is the upper body. It is not present in every patient.",
       "Support the lungs. There is no drug that dissolves the embolus as the first move.",
@@ -3910,23 +3936,23 @@
     "step": "step-1",
     "system": "multisystem",
     "group": "Multisystem",
-    "title": "A child's septic joint uses the pediatric guideline",
+    "title": "A septic joint is tapped before the antibiotic if the patient can wait",
     "read": "1 min",
     "open": false,
-    "lead": "Acute bacterial arthritis in a child is diagnosed and treated under the PIDS/IDSA pediatric guideline.",
+    "lead": "Septic arthritis is a hot joint that is tapped before antibiotics when the patient is stable. Staph aureus is the organism to name.",
     "lines": [
-      "The document is for clinicians who care for children with acute bacterial arthritis.",
-      "It covers both diagnosis and treatment.",
-      "An adult prosthetic joint is outside this pediatric guideline."
+      "The fluid is pus: a high white count and a culture.",
+      "A prosthetic joint and gonorrhea are the two stories that change the organism list.",
+      "Antibiotics without a culture, in a stable patient, burn the diagnosis."
     ],
     "miss": "Starting vancomycin and never aspirating a native knee that could have been tapped.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "PIDS/IDSA guideline for acute bacterial arthritis in children.",
-      "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37941444/",
-      "says": "The PIDS/IDSA guideline gives recommendations for the diagnosis and treatment of acute bacterial arthritis in children."
+      "name": "BSR, BHPR, BOA, RCGP, and BSAC guideline for the hot swollen joint in adults.",
+      "year": "2006",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16829534/",
+      "says": "Synovial fluid must be aspirated, Gram-stained, and cultured before antibiotics are started. A possibly infected prosthetic joint is referred to an orthopaedic surgeon."
     },
     "number": 151,
     "id": "usmle-qb-s1-151"
@@ -3941,6 +3967,7 @@
     "lead": "An open fracture is a contaminated bone. Antibiotics and tetanus start immediately, and the wound is washed in the operating room.",
     "lines": [
       "The clock is hours, not the next clinic day.",
+      "A bigger, dirtier wound needs broader antibiotics.",
       "Closing a dirty wound in the emergency department is the miss.",
       "A larger, dirtier wound needs broader coverage. Photograph and document pulses before the dressing hides them."
     ],
@@ -3951,7 +3978,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "The skin wound may lie at a site distant to the fracture and not directly over it."
+      "says": "An open fracture is an injury where the fractured bone and/or fracture hematoma are exposed to the external environment via a traumatic violation of the soft tissue and skin."
     },
     "number": 152,
     "id": "usmle-qb-s1-152"
@@ -3966,6 +3993,7 @@
     "lead": "Heparin-induced thrombocytopenia is an antibody to platelet factor 4. Platelets fall 5 to 10 days after heparin, and the clots are the danger.",
     "lines": [
       "Estimate probability with the 4Ts score, not a gestalt impression.",
+      "A low-probability 4Ts score is not an indication to stop heparin and start another anticoagulant.",
       "An intermediate or high score: stop heparin and start a non-heparin anticoagulant. ASH names argatroban, bivalirudin, danaparoid, fondaparinux, and a direct oral anticoagulant.",
       "Do not start warfarin before the platelet count recovers, usually to at least 150 \u00d7 10^9/L. Early warfarin is linked to venous limb gangrene."
     ],
@@ -4015,11 +4043,11 @@
     "title": "Long-bone fat and a line infection are different emboli",
     "read": "1 min",
     "open": false,
-    "lead": "Fat embolism syndrome can also occur in nontraumatic conditions, such as acute or chronic pancreatitis, bone marrow transplant, and liposuction.",
+    "lead": "A fever and a new murmur after a dental procedure or a line is endocarditis. Petechiae after a femur fracture are fat. The timing separates them.",
     "lines": [
-      "Disseminated fat emboli disrupt the capillary bed and impair microcirculation, leading to systemic inflammatory response syndrome.",
-      "End-organ manifestations typically involve the skin, central nervous system, lungs, and retina.",
-      "FES is most common in patients with orthopedic trauma."
+      "Endocarditis is days of fever and positive blood cultures.",
+      "Fat embolism is one to three days after the fracture, with hypoxia.",
+      "A single antibiotic does not cover both decisions."
     ],
     "miss": "Anticoagulating fat embolism and culturing a fracture patient as if the bone were a valve.",
     "diagram": null,
@@ -4028,7 +4056,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Disseminated fat emboli disrupt the capillary bed and impair microcirculation, leading to systemic inflammatory response syndrome"
+      "says": "Fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation."
     },
     "number": 155,
     "id": "usmle-qb-s1-155"
@@ -4094,7 +4122,7 @@
     "read": "1 min",
     "lead": "Sensitivity and specificity stay put when the disease gets rarer. The positive predictive value falls.",
     "lines": [
-      "Sensitivity ignores how rare the disease is. Predictive value does not.",
+      "Sensitivity is true positives over everyone who has the disease. Specificity is true negatives over everyone who does not.",
       "Positive predictive value is true positives over every positive test. It falls as false positives crowd out the true ones.",
       "A screening test in a rare disease can be very sensitive and still be wrong most of the times it says yes."
     ],
@@ -4141,7 +4169,7 @@
     "title": "A sensitive test helps when it is negative",
     "read": "1 min",
     "open": false,
-    "lead": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
+    "lead": "A very sensitive test, when negative, lowers the chance of disease. That only helps if you started with a real pre-test chance.",
     "lines": [
       "A negative result helps only when sensitivity is high and the pre-test chance was real. That is SnNOut.",
       "False positives come from imperfect specificity, which is 1 minus specificity. Sensitivity does not create them.",
@@ -4154,7 +4182,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios. StatPearls is the source of that statement."
+      "says": "To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results."
     },
     "number": 160,
     "id": "usmle-qb-s1-160"
@@ -4166,7 +4194,7 @@
     "title": "A specific test helps when it is positive",
     "read": "1 min",
     "open": false,
-    "lead": "Author information: (1)University of Louisville School of Medicine (2)University of Louisville To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease,.",
+    "lead": "A very specific test, when positive, raises the chance of disease. A positive result in a rare disease can still be wrong.",
     "lines": [
       "False positives are what a nonspecific test creates.",
       "SpPIn fails when the positive likelihood ratio is only modest.",
@@ -4319,7 +4347,7 @@
     "open": false,
     "lead": "The negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small one is what lets a negative test rule disease out.",
     "lines": [
-      "Is what allows a negative test to lower the probability of disease.",
+      "If sensitivity is 80%, then 1 minus sensitivity is 0.2, and the negative likelihood ratio stays sizable.",
       "The positive ratio uses the false positives in the denominator.",
       "Neither ratio contains the prevalence."
     ],
@@ -4344,6 +4372,7 @@
     "open": false,
     "lead": "The pre-test probability is what you believed before this result. The test revises it. It does not replace it.",
     "lines": [
+      "A positive test in a patient who almost could not have the disease is still often a false positive.",
       "Write the probability down, even roughly, before you look.",
       "Write the chance before you look at the result. The likelihood ratio revises that number. It does not create it.",
       "A positive test when the pre-test chance is near zero is usually false."
@@ -4419,7 +4448,7 @@
     "title": "Autonomy is the patient's decision, not the team's preference",
     "read": "1 min",
     "open": false,
-    "lead": "A patient who has decision-making capacity may accept or refuse any recommended medical intervention.",
+    "lead": "Respect for autonomy means a capable patient decides. Beneficence does not outrank a refusal you dislike.",
     "lines": [
       "A capable patient's refusal stands even when the team believes the operation is better.",
       "Capacity is four abilities for this decision today: understand, appreciate, reason, and express a choice. It can change when sodium, oxygen, or a sedative changes.",
@@ -4433,7 +4462,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights",
-      "says": "AMA Opinion 1.1.3: a patient who has decision-making capacity may accept or refuse any recommended medical intervention."
+      "says": "A patient who has decision-making capacity may accept or refuse any recommended medical intervention."
     },
     "number": 171,
     "id": "usmle-qb-s1-171"
@@ -4473,7 +4502,7 @@
     "lead": "An advance directive that speaks to this decision outranks a surrogate who now wants something else.",
     "lines": [
       "The document is interpreted for the decision in front of you, not as a slogan.",
-      "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "If the directive is silent, the surrogate uses substituted judgment.",
       "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
     ],
     "miss": "Following the adult child in the room and ignoring the form the patient signed.",
@@ -4521,7 +4550,7 @@
     "title": "A boundary is not a small gift that changes the prescription",
     "read": "1 min",
     "open": false,
-    "lead": "Gifts offered to secure or influence care undermine the duty to treat patients fairly, and accepting them is likely to damage the relationship.",
+    "lead": "A gift, a date, or a social-media friendship that changes how you prescribe has crossed a professional boundary.",
     "lines": [
       "Small tokens that do not change care are not the problem.",
       "A romantic relationship with a current patient is not allowed.",
@@ -4547,7 +4576,7 @@
     "title": "Nonmaleficence stops the harm you were about to add",
     "read": "1 min",
     "open": false,
-    "lead": "While caring for a patient, the physician regards responsibility to that patient as paramount.",
+    "lead": "Nonmaleficence means you do not add a treatment whose harm outweighs its benefit in this patient.",
     "lines": [
       "A scan that cannot change the plan is a harm: contrast, radiation, cost, and a false positive.",
       "Beneficence is the good you are trying to do. Both principles are in the same decision.",
@@ -4572,7 +4601,7 @@
     "title": "Justice is the fair share, not the loudest request",
     "read": "1 min",
     "open": false,
-    "lead": "AMA Opinion 11.1.3 bases allocation on medical need, including urgency, likelihood and duration of benefit, and change in quality of life.",
+    "lead": "Justice means a scarce resource goes by a fair rule, not by who is in the room.",
     "lines": [
       "The rule is stated. It is not invented after you see the patient's name.",
       "A patient's wealth does not move them up a list that is supposed to be clinical.",
@@ -4587,7 +4616,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 11.1.3, Allocating Limited Health Care Resources.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/allocating-limited-health-care-resources",
-      "says": "AMA Opinion 11.1.3 bases allocation on medical need, including urgency, likelihood and duration of benefit, and change in quality of life. AMA Code of Medical Ethics is the source of that statement."
+      "says": "AMA Opinion 11.1.3 bases allocation on medical need, including urgency, likelihood and duration of benefit, and change in quality of life."
     },
     "number": 177,
     "id": "usmle-qb-s1-177"
@@ -4599,7 +4628,7 @@
     "title": "You do not abandon a patient you disagree with",
     "read": "1 min",
     "open": false,
-    "lead": "A physician who withdraws must notify the patient long enough in advance to find another physician and must facilitate transfer of care.",
+    "lead": "Discharging a patient from your care requires notice and a way to continue care. A disagreement is not abandonment.",
     "lines": [
       "A capable refusal of one treatment does not end the relationship.",
       "If you must end the relationship, you give time and alternatives.",
@@ -4627,6 +4656,7 @@
     "lead": "A minor may assent. Legal consent for most care comes from a parent or guardian, except where the law lets the minor consent alone.",
     "lines": [
       "Explain the plan in words the child can use.",
+      "An emergency in a child is treated when a parent cannot be reached.",
       "Do not ask a child to sign a form the law says a parent must sign.",
       "Assent is the child's agreement. Legal consent for most care is the parent's, except where statute lets the minor consent, often for sexual health, substance treatment, or emergency care."
     ],
@@ -4649,7 +4679,7 @@
     "title": "A conflict of interest is named before the recommendation",
     "read": "1 min",
     "open": false,
-    "lead": "Under no circumstances may physicians place their own financial interests above the welfare of their patients.",
+    "lead": "If you gain from the device or the drug you are recommending, you say so before the patient decides.",
     "lines": [
       "The disclosure is specific. A vague mention is not enough.",
       "The patient still gets the alternative that does not pay you.",
