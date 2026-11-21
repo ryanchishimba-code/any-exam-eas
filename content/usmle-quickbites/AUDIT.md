@@ -2,8 +2,12 @@
 
 The library stays hidden. Flags are unchanged. This pass checked claims against a confirmable source and rewrote or removed anything that source does not state. Design and components were not changed.
 
+Backup before pass 7: `scripts/usmle-quickbites-20261121/backup-pre-pass7-20261121/`.
+Undo pass 7: `scripts/usmle-quickbites-20261121/12-undo-pass7.sh`.
 Backup before pass 6: `scripts/usmle-quickbites-20261121/backup-pre-pass6-20261121/`.
 Undo pass 6: `scripts/usmle-quickbites-20261121/11-undo-pass6.sh`.
+
+Pass 7 required every `says` line to contain the bite's tested claim in words the cited source uses. A self-audit checked that the lead and the `says` line share at least two content stems. 540 of 540 pass. The previous 46 unverified ids were rewritten to a sentence the retrieved source states, or the claim was cut to that sentence. Named fixes: neuroleptic malignant syndrome, membranous nephropathy, ovarian torsion, and research consent now quote the fact the source states; autonomy, consent, advance care planning, refusal, and impaired colleagues cite the matching AMA opinion (9.3.2 for impairment); hypersensitivity pneumonitis cites the diagnostic exposure and lavage recommendations; pediatric septic arthritis is limited to the pediatric guideline; mechanical valves cite the 2020 valvular guideline; pancreatitis cites the 2024 ACG guideline (lactated Ringer's, feeding within 24–48 hours, no prophylactic antibiotics in severe disease). Unverified count after this audit: 0.
 Backup before pass 5: `scripts/usmle-quickbites-20261121/backup-pre-pass5-20261121/`.
 Undo pass 5: `scripts/usmle-quickbites-20261121/10-undo-pass5.sh`.
 

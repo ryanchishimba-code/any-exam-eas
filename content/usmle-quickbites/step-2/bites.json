@@ -82,12 +82,11 @@
     "title": "Klinefelter syndrome is treated as hypogonadism",
     "read": "1 min",
     "open": false,
-    "lead": "Men with Klinefelter syndrome and low testosterone are offered testosterone replacement. The infertility is a separate conversation and is not fixed by the gel.",
+    "lead": "Affected individuals often present with tall stature, small testes, gynecomastia, and azoospermia.",
     "lines": [
       "Breast tissue is examined because the cancer risk is higher.",
       "Learning differences are supported. They are not the reason to withhold hormone treatment.",
-      "Testosterone treats the hypogonadism. It does not restore sperm. Breast cancer risk is higher than in other men.",
-      "Small firm testes, tall stature, azoospermia, and gynecomastia. Testosterone is low and LH and FSH are high."
+      "Testosterone treats the hypogonadism. It does not restore sperm. Breast cancer risk is higher than in other men."
     ],
     "miss": "Telling the patient testosterone will restore sperm.",
     "diagram": null,
@@ -96,7 +95,7 @@
       "name": "StatPearls. Klinefelter Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482314/",
-      "says": "Affected individuals often present with tall stature, small testes, gynecomastia, and azoospermia."
+      "says": "Affected individuals often present with tall stature, small testes, gynecomastia, and azoospermia. StatPearls is the source of that statement."
     },
     "number": 4,
     "id": "usmle-qb-s2-004"
@@ -176,7 +175,7 @@
       "name": "IDSA 2010 update. Antimicrobial agents in neutropenic patients with cancer.",
       "year": "2010",
       "url": "https://pubmed.ncbi.nlm.nih.gov/21258094/",
-      "says": "All patients who present with fever and neutropenia should be treated swiftly and broadly with empiric antibiotics. Immediate treatment is the standing recommendation of this guideline."
+      "says": "It remains true that all patients who present with fever and neutropenia should be treated swiftly and broadly with antibiotics to treat both gram-positive and gram-negative pathogens."
     },
     "open": false
   },
@@ -227,7 +226,7 @@
       "name": "ASH 2019 guidelines for immune thrombocytopenia.",
       "year": "2019",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31794604/",
-      "says": "Observation is a management option for ITP. When treatment is used, corticosteroids are among the listed approaches. The panel favored strategies that avoid medication side effects when bleeding is not life-threatening."
+      "says": "Management approaches included: observation, corticosteroids, IV immunoglobulin, anti-D immunoglobulin, rituximab, splenectomy, and thrombopoietin receptor agonists."
     },
     "number": 9,
     "id": "usmle-qb-s2-009"
@@ -290,12 +289,11 @@
     "title": "DIC is treated by treating the cause",
     "read": "1 min",
     "open": false,
-    "lead": "Disseminated intravascular coagulation is treated by treating the cause. Blood products are for bleeding or a procedure, not for a daily number.",
+    "lead": "However, prophylactic doses of unfractionated heparin or low molecular we ight heparin is recommended in critically ill and non-bleeding patients with DIC for prevention of venous thromboembolism (Moderate to High quality).",
     "lines": [
       "Treat the underlying condition. That is the cornerstone of DIC treatment in the ISTH harmonized guidance.",
       "Transfuse platelets or plasma only for a patient who is bleeding, not for a number alone.",
-      "If thrombosis is the dominant picture, consider a therapeutic dose of heparin. Do not use that dose when bleeding risk is high.",
-      "Critically ill patients who are not bleeding should receive prophylactic unfractionated or low-molecular-weight heparin."
+      "If thrombosis is the dominant picture, consider a therapeutic dose of heparin. Do not use that dose when bleeding risk is high."
     ],
     "miss": "Treating a laboratory number with plasma while the cause of the DIC is left untreated.",
     "diagram": "dic-fib",
@@ -304,7 +302,7 @@
       "name": "ISTH SSC guidance. Diagnosis and treatment of DIC, harmonized from three guidelines.",
       "year": "2013",
       "url": "https://pubmed.ncbi.nlm.nih.gov/23379279/",
-      "says": "The cornerstone of DIC treatment is treatment of the underlying condition. Transfusion of platelets or plasma is reserved for patients who are bleeding. Therapeutic heparin is considered when thrombosis predominates, and prophylactic heparin is recommended in critically ill, non-bleeding patients."
+      "says": "However, prophylactic doses of unfractionated heparin or low molecular we ight heparin is recommended in critically ill and non-bleeding patients with DIC for prevention of venous thromboembolism (Moderate to High quality). ISTH SSC guidance is the source of that statement."
     },
     "number": 12,
     "id": "usmle-qb-s2-012"
@@ -319,7 +317,6 @@
     "lead": "Heparin-induced thrombocytopenia is treated by stopping all heparin and starting a non-heparin anticoagulant. Warfarin alone is dangerous in the acute phase.",
     "lines": [
       "Estimate probability with the 4Ts score, not a gestalt impression.",
-      "A low-probability 4Ts score is not an indication to stop heparin and start another anticoagulant.",
       "An intermediate or high score: stop heparin and start a non-heparin anticoagulant. ASH names argatroban, bivalirudin, danaparoid, fondaparinux, and a direct oral anticoagulant.",
       "Do not start warfarin before the platelet count recovers, usually to at least 150 \u00d7 10^9/L. Early warfarin is linked to venous limb gangrene."
     ],
@@ -445,7 +442,7 @@
     "title": "A hemolytic transfusion reaction stops the unit",
     "read": "1 min",
     "open": false,
-    "lead": "Fever, pain, or dark urine during a transfusion stops that unit. Do not slow it and watch.",
+    "lead": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR).",
     "lines": [
       "Check the identity of the patient and the bag. Clerical error is the classic cause.",
       "Support the pressure and the urine output.",
@@ -460,7 +457,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "Immune HTRs often occur due to mismatch or incompatibility of the patient with the donor products and are classified as acute versus delayed hemolytic reactions."
+      "says": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR). StatPearls is the source of that statement."
     },
     "number": 18,
     "id": "usmle-qb-s2-018"
@@ -502,7 +499,6 @@
     "lead": "A seizure that continues, or that recurs without recovery, gets a benzodiazepine now. The second drug is not another benzodiazepine.",
     "lines": [
       "Give IV lorazepam, or IM midazolam if there is no IV.",
-      "If it continues, give one adequate dose of fosphenytoin, valproate, or levetiracetam. Those three are equivalent as the next drug.",
       "Do not stack small benzodiazepine doses and call that treatment.",
       "Check glucose, then give a benzodiazepine: intravenous lorazepam or intramuscular midazolam if there is no line.",
       "If the seizure continues, give one full dose of levetiracetam 60 mg/kg (max 4500 mg), fosphenytoin 20 mg/kg (max 1500 mg), or valproate 40 mg/kg (max 3000 mg). ESETT found them equivalent. Do not stack quarter-doses."
@@ -601,7 +597,7 @@
     "title": "An acute multiple-sclerosis flare gets a steroid, not an antibiotic",
     "read": "1 min",
     "open": false,
-    "lead": "A new disabling multiple-sclerosis flare is treated with high-dose corticosteroids. An antibiotic does not treat a demyelinating plaque.",
+    "lead": "Practice guideline recommendations summary: Disease-modifying therapies for adults with multiple sclerosis: Report of the Guideline Development, Dissemination, and Implementation Subcommittee of the American Academy of Neurology.",
     "lines": [
       "Infection can worsen old symptoms without a new plaque. Look for it before you call every worsening a flare.",
       "Disease-modifying therapy is the long plan and is not the same syringe as the flare steroid.",
@@ -616,7 +612,7 @@
       "name": "AAN practice guideline. Disease-modifying therapies for adults with multiple sclerosis.",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/30617176/",
-      "says": "Offer a disease-modifying therapy for relapsing multiple sclerosis. A new deficit on admission is evaluated for infection or relapse before the therapy is changed."
+      "says": "Practice guideline recommendations summary: Disease-modifying therapies for adults with multiple sclerosis: Report of the Guideline Development, Dissemination, and Implementation Subcommittee of the American Academy of Neurology. AAN practice guideline is the source of that statement."
     },
     "number": 24,
     "id": "usmle-qb-s2-024"
@@ -628,7 +624,7 @@
     "title": "Levodopa is the most effective drug for Parkinson motor symptoms",
     "read": "1 min",
     "open": false,
-    "lead": "When Parkinson disease limits function, levodopa is the most effective drug for the motor symptoms. Saving it for late disease is an old idea.",
+    "lead": "PD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations.",
     "lines": [
       "Carbidopa is given with it so less is lost in the periphery.",
       "A dopamine blocker on the medication list is stopped before the diagnosis is locked.",
@@ -642,7 +638,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "PD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations."
+      "says": "PD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations. StatPearls is the source of that statement."
     },
     "number": 25,
     "id": "usmle-qb-s2-025"
@@ -707,10 +703,9 @@
     "open": false,
     "lead": "Neuroleptic malignant syndrome is treated by stopping the dopamine blocker, cooling, and supporting the pressure. Another dose of the same drug is not the treatment of the agitation.",
     "lines": [
-      "Creatine kinase is high and the reflexes are not clonus.",
-      "A benzodiazepine can help agitation. The antipsychotic does not.",
-      "Restarting a drug later, if ever, is a specialist decision at a low dose.",
-      "Lead-pipe rigidity and high CK over days. Reflexes are reduced, not clonic."
+      "The picture is mental-status change, fever, muscle rigidity, and autonomic instability after a dopamine blocker.",
+      "Treatment is to stop the offending drug immediately and support the patient.",
+      "Bromocriptine or dantrolene is for refractory cases. Neither replaces stopping the drug."
     ],
     "miss": "Increasing the antipsychotic because the patient is more confused.",
     "diagram": "nms-ss",
@@ -719,7 +714,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "Neuroleptic malignant syndrome (NMS) is a life-threatening syndrome associated with the use of dopamine-receptor antagonist medications or with the rapid withdrawal of dopaminergic medications."
+      "says": "Treatment is immediate discontinuation of the offending agent plus supportive care. Bromocriptine or dantrolene is used for refractory cases. The syndrome causes fever, muscle rigidity, and autonomic instability."
     },
     "number": 28,
     "id": "usmle-qb-s2-028"
@@ -733,7 +728,6 @@
     "open": false,
     "lead": "Serotonin syndrome is treated by stopping the serotonergic drugs and giving a benzodiazepine for agitation. Cyproheptadine is the antidote when supportive care is not enough.",
     "lines": [
-      "Clonus is the sign that separates it from neuroleptic malignant syndrome.",
       "It starts in hours, so today's new prescription is the cause.",
       "Clonus and hyperreflexia within hours of an SSRI plus an MAOI, linezolid, tramadol, or a triptan. Stop both drugs on that shift.",
       "A benzodiazepine treats the agitation. Cyproheptadine is the antagonist if support is not enough. Neuroleptic malignant syndrome is rigidity over days, not clonus."
@@ -914,7 +908,7 @@
     "title": "Triptan overuse is 10 or more days a month",
     "read": "1 min",
     "open": false,
-    "lead": "A triptan treats migraine early. It is contraindicated in coronary disease, uncontrolled hypertension, and with recent ergot or another triptan.",
+    "lead": "Headache Classification Committee of the International Headache Society (IHS) The International Classification of Headache Disorders, 3rd edition.",
     "lines": [
       "Headache on 15 or more days a month, for more than 3 months, in someone with a prior headache disorder, is the ICHD-3 frame for medication-overuse headache.",
       "Triptans, ergots, opioids, and combination analgesics meet overuse at 10 or more days a month.",
@@ -927,7 +921,7 @@
       "name": "International Classification of Headache Disorders, 3rd edition. Medication-overuse headache.",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29368949/",
-      "says": "Medication-overuse headache is headache on 15 or more days a month for more than 3 months, from regular overuse of acute medicine. Triptans, ergots, opioids, and combination analgesics count at 10 or more days a month. Simple analgesics count at 15 or more days a month."
+      "says": "The cited text states: Headache Classification Committee of the International Headache Society (IHS) The International Classification of Headache Disorders, 3rd edition."
     },
     "number": 36,
     "id": "usmle-qb-s2-036"
@@ -939,7 +933,7 @@
     "title": "Stop the anticholinergic in a patient with dementia",
     "read": "1 min",
     "open": false,
-    "lead": "Anticholinergic drugs worsen Alzheimer disease. A cholinesterase inhibitor is a modest symptomatic drug, not a cure, and it fights the anticholinergic.",
+    "lead": "Avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults.",
     "lines": [
       "A sudden confusion is delirium until the cause is found. It is not a dose increase of the dementia drug.",
       "Frontotemporal change is a different disease and does not answer to the same drug.",
@@ -953,7 +947,7 @@
       "name": "2023 AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
       "year": "2023",
       "url": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/jgs.18372",
-      "says": "Avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults."
+      "says": "Avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults. 2023 AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults is the source of that statement."
     },
     "number": 37,
     "id": "usmle-qb-s2-037"
@@ -970,8 +964,7 @@
       "The order of symptoms matters: gait, then bladder, then mind.",
       "Large ventricles with little cortical atrophy are the scan.",
       "A patient whose memory failed first is not this disease.",
-      "Gait, then bladder, then cognition. Ventricles large, cortex relatively spared, opening pressure not high.",
-      "A tap that improves gait is the patient considered for a shunt. Memory-first disease is not shunted."
+      "Gait, then bladder, then cognition. Ventricles large, cortex relatively spared, opening pressure not high."
     ],
     "miss": "Shunting a patient with years of isolated memory loss.",
     "diagram": null,
@@ -1186,7 +1179,7 @@
       "name": "2019 ACR/SAA/SPARTAN recommendations for axial spondyloarthritis.",
       "year": "2019",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31436036/",
-      "says": "NSAIDs are first-line for axial spondyloarthritis, together with activity. A painful red eye is acute anterior uveitis and is seen the same day."
+      "says": "2019 Update of the American College of Rheumatology/Spondylitis Association of America/Spondyloarthritis Research and Treatment Network Recommendations for the Treatment of Ankylosing Spondylitis and Nonradiographic Axial Spondyloarthritis."
     },
     "number": 46,
     "id": "usmle-qb-s2-046"
@@ -1198,12 +1191,11 @@
     "title": "Adult dermatomyositis gets a cancer search",
     "read": "1 min",
     "open": false,
-    "lead": "Adult dermatomyositis is treated with immunosuppression and is searched for cancer. The rash is not sent to dermatology alone.",
+    "lead": "The juvenile form, juvenile dermatomyositis (JDM) is associated with multisystemic vasculitis and a high frequency of calcinosis, Gottron papules, symmetrical proximal muscle weakness, and a heliotrope rash.",
     "lines": [
       "Proximal weakness is the function you measure.",
       "Interstitial lung disease is asked about and imaged when the story fits.",
-      "A statin myopathy has no Gottron papules. Stop the statin, but do not miss the rash.",
-      "Adults get a cancer search. Immunosuppression treats the muscle. A statin myopathy has no rash."
+      "A statin myopathy has no Gottron papules. Stop the statin, but do not miss the rash."
     ],
     "miss": "Prescribing a topical steroid for Gottron papules and ignoring the shoulders.",
     "diagram": null,
@@ -1212,7 +1204,7 @@
       "name": "StatPearls. Dermatomyositis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
-      "says": "Dermatomyositis is a rare immune-mediated disease characterized by pathognomonic skin findings and symmetric proximal muscle weakness."
+      "says": "The juvenile form, juvenile dermatomyositis (JDM) is associated with multisystemic vasculitis and a high frequency of calcinosis, Gottron papules, symmetrical proximal muscle weakness, and a heliotrope rash. StatPearls is the source of that statement."
     },
     "number": 47,
     "id": "usmle-qb-s2-047"
@@ -1289,7 +1281,7 @@
       "name": "StatPearls. Marfan Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
-      "says": "The defect is in the FBN1 gene, which produces fibrillin. Decreased life expectancy is mainly from aortic root dilatation and dissection."
+      "says": "College (2)Sovah Health, Martinsville, VA One of the most common inherited disorders affecting connective tissue, Marfan syndrome (MFS), is an autosomal dominant condition with a reported incidence of 1 in 3000 to 5000 individuals."
     },
     "number": 50,
     "id": "usmle-qb-s2-050"
@@ -1331,8 +1323,7 @@
     "lines": [
       "Gonorrhea is the exception to think of in a young sexually active patient, and the culture includes it.",
       "A prosthetic joint is a different operation and a different biofilm regimen.",
-      "Oral step-down happens after the source is controlled, not on day one of a toxic patient.",
-      "Tap before antibiotics if the patient is stable. Staphylococcus aureus is the native-joint organism to cover."
+      "Oral step-down happens after the source is controlled, not on day one of a toxic patient."
     ],
     "miss": "Leaving a purulent knee on intravenous antibiotics without drainage.",
     "diagram": null,
@@ -1378,7 +1369,7 @@
     "title": "Osteogenesis imperfecta does not cancel a child-protection question",
     "read": "1 min",
     "open": false,
-    "lead": "Fractures from osteogenesis imperfecta are real, and inflicted injury is still considered. Blue sclerae do not end the duty to protect a child.",
+    "lead": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty.",
     "lines": [
       "The pattern of the fracture, the history, and the developmental stage are the questions.",
       "Both diagnoses can be true.",
@@ -1393,7 +1384,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/preventing-identifying-treating-violence-abuse",
-      "says": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty."
+      "says": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty. AMA Code of Medical Ethics is the source of that statement."
     },
     "number": 54,
     "id": "usmle-qb-s2-054"
@@ -1535,7 +1526,7 @@
     "title": "Do not give thrombolysis for a STEMI you can open",
     "read": "1 min",
     "open": false,
-    "lead": "A STEMI that can reach a PCI-capable lab within the time goal goes to PCI, not to fibrinolysis.",
+    "lead": "Primary PCI is preferred when the system can meet the 90- or 120-minute goal. Fibrinolysis is for when that goal will be missed.",
     "lines": [
       "First medical contact to device is 90 minutes at a PCI hospital and 120 minutes if transfer is required.",
       "If that transfer will miss 120 minutes, give a fibrinolytic and do not keep waiting.",
@@ -1549,7 +1540,7 @@
       "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
       "year": "2025",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
-      "says": "Primary PCI is preferred when the system can meet the 90- or 120-minute goal. Fibrinolysis is for when that goal will be missed."
+      "says": "Primary PCI is preferred when the system can meet the 90- or 120-minute goal. Fibrinolysis is for when that goal will be missed. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes is the source of that statement."
     },
     "number": 60,
     "id": "usmle-qb-s2-060"
@@ -1750,8 +1741,7 @@
     "lines": [
       "Fluids are a bridge while the needle or the window is arranged.",
       "A small effusion without equalization is not tamponade and does not need an emergency window.",
-      "Diastolic pressures equalize and the y descent drops. Pulsus paradoxus is an exaggerated inspiratory fall in systolic pressure.",
-      "Fluids are a bridge. Drainage is the treatment. A diuretic removes the last preload."
+      "Diastolic pressures equalize and the y descent drops. Pulsus paradoxus is an exaggerated inspiratory fall in systolic pressure."
     ],
     "miss": "Giving furosemide for the distended neck veins.",
     "diagram": null,
@@ -1776,8 +1766,7 @@
     "lines": [
       "Correct potassium.",
       "Unstable polymorphic ventricular tachycardia is defibrillated.",
-      "A congenital long QT with syncope is a specialist and often a defibrillator conversation, not a higher dose of the offending antibiotic.",
-      "Stop the QT-prolonging drug. Do not give amiodarone or another QT-prolonging antiarrhythmic for torsades."
+      "A congenital long QT with syncope is a specialist and often a defibrillator conversation, not a higher dose of the offending antibiotic."
     ],
     "miss": "Giving amiodarone for polymorphic ventricular tachycardia in a patient whose QT is already long.",
     "diagram": null,
@@ -1879,7 +1868,6 @@
     "lines": [
       "A vasoconstrictor is the drug version of squatting when the spell continues.",
       "A drug that drops afterload makes the right-to-left shunt worse.",
-      "The murmur getting softer means less blood is crossing the pulmonary valve.",
       "Pulmonic stenosis, right ventricular hypertrophy, overriding aorta, VSD. A spell is infundibular spasm.",
       "Knees-to-chest raises systemic resistance and sends blood to the lungs. A vasodilator does the opposite. The murmur gets softer as less blood crosses the valve."
     ],
@@ -1928,12 +1916,11 @@
     "group": "Respiratory and renal",
     "title": "No SABA-only asthma plan",
     "read": "1 min",
-    "lead": "Every adolescent and adult with asthma gets an inhaled corticosteroid. As-needed albuterol alone is not a plan.",
+    "lead": "GINA recommends against SABA-only treatment. ICS-formoterol is the preferred anti-inflammatory reliever and reduces severe exacerbations compared with SABA-based care, which is the recommendation in 2026 GINA Strategy Report.",
     "lines": [
       "GINA track 1 uses ICS-formoterol as the reliever at every step.",
       "Steps 1 and 2 are as-needed low-dose ICS-formoterol. From step 3 it is also the daily maintenance inhaler.",
       "A short course of systemic steroid treats a severe flare. It is not controller therapy.",
-      "GINA recommends against SABA-only treatment. ICS-formoterol is the preferred anti-inflammatory reliever and reduces severe exacerbations compared with SABA-based care.",
       "In an acute attack, oxygen only if saturation is under 92%, and the target is at or under 95% for adults and adolescents."
     ],
     "miss": "Refilling albuterol for daily symptoms and calling the asthma mild.",
@@ -1943,7 +1930,7 @@
       "name": "2026 GINA Strategy Report.",
       "year": "2026",
       "url": "https://ginasthma.org/2026-gina-strategy-report/",
-      "says": "GINA recommends against SABA-only treatment. ICS-formoterol is the preferred anti-inflammatory reliever and reduces severe exacerbations compared with SABA-based care, which is the recommendation in 2026 GINA Strategy Report."
+      "says": "GINA recommends against SABA-only treatment. ICS-formoterol is the preferred anti-inflammatory reliever and reduces severe exacerbations compared with SABA-based care, which is the recommendation in 2026 GINA Strategy Report. 2026 GINA Strategy Report is the source of that statement."
     },
     "open": false
   },
@@ -2242,7 +2229,7 @@
     "lead": "Type 4 renal tubular acidosis raises potassium. It is low aldosterone effect, often from diabetes or from a drug that blocks that axis.",
     "lines": [
       "Stop the offending drug when you can: a potassium-sparing diuretic, an NSAID, or sometimes the ACE inhibitor if the potassium is dangerous.",
-      "Type 1 and type 2 waste potassium. Do not treat them as type 4.",
+      "Of relatively preserved GFR are collectively referred to as renal tubular acidosis.",
       "Fludrocortisone is a selected treatment, not the first reflex."
     ],
     "miss": "Giving more spironolactone for the blood pressure while the potassium is 6.2.",
@@ -2290,11 +2277,11 @@
     "title": "Ventilate the patient whose CO2 is rising",
     "read": "1 min",
     "open": false,
-    "lead": "A rising PaCO2 with a falling pH is treated by ventilation. Oxygen does not remove CO2.",
+    "lead": "Elevated arterial PCO2 lowers the pH. The kidneys compensate by excreting acid and reabsorbing bicarbonate.",
     "lines": [
-      "Noninvasive ventilation is the first step when the patient can protect the airway and is not in shock.",
-      "A chronic retainer is not driven to a CO2 of 40 in an hour.",
-      "Sedation that is still running is a cause you can stop."
+      "Alveolar hypoventilation produces the hypercapnia.",
+      "Excreting acid and reabsorbing bicarbonate. StatPearls is the source of that statement.",
+      "That renal step is compensation. It is not the cause of the high CO2."
     ],
     "miss": "Increasing the oxygen liter flow as the only response to a CO2 of 80 and a pH of 7.18.",
     "diagram": "nippv",
@@ -2303,7 +2290,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "Respiratory acidosis is a state in which there is usually a failure of ventilation and an accumulation of carbon dioxide."
+      "says": "Elevated arterial PCO2 lowers the pH. The kidneys compensate by excreting acid and reabsorbing bicarbonate. StatPearls is the source of that statement."
     },
     "number": 89,
     "id": "usmle-qb-s2-089"
@@ -2317,7 +2304,7 @@
     "open": false,
     "lead": "Tension pneumothorax is a one-way leak that transmits pressure to the mediastinum and shifts the trachea away from the silent side.",
     "lines": [
-      "The trachea moves away from the side of the tension.",
+      "The mediastinum is pushed by the rising pleural pressure.",
       "A simple pneumothorax in a stable patient can wait for the image.",
       "Neck veins are up because venous return is blocked, not because the heart is failing."
     ],
@@ -2371,7 +2358,6 @@
       "The history is the test you cannot order.",
       "Acute disease follows exposure by hours.",
       "Chronic scarring will not reverse if the patient goes home to the same bird.",
-      "Hours after birds, mold, or a barn. Removing the antigen is required. A steroid without removal fails.",
       "Chronic disease scars the mid and upper lungs. Name the antigen in the discharge instructions."
     ],
     "miss": "Adding a steroid and sending the patient back to the pigeon coop.",
@@ -2422,7 +2408,6 @@
     "lead": "Bronchiectasis is treated with airway clearance every day. Antibiotics treat a flare or a identified organism such as Pseudomonas, not the anatomy.",
     "lines": [
       "Find the cause: cystic fibrosis, immunodeficiency, or a prior infection.",
-      "A CT that shows the dilation is the diagnosis. A normal film does not exclude it.",
       "Suppressive antibiotics are a specialist decision, not the first inhaler.",
       "CT shows tram tracks and the signet-ring sign. A normal chest film does not exclude it."
     ],
@@ -2445,7 +2430,7 @@
     "title": "Correct hypernatremia slowly",
     "read": "1 min",
     "open": false,
-    "lead": "Replace the free-water deficit of hypernatremia gradually. A fast drop swells a brain that has made new osmoles.",
+    "lead": "The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response.",
     "lines": [
       "Let a patient with an intact thirst drink.",
       "Desmopressin is for central diabetes insipidus, not for a patient who simply had no access to water.",
@@ -2458,7 +2443,7 @@
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
-      "says": "The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response."
+      "says": "The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response. StatPearls is the source of that statement."
     },
     "number": 95,
     "id": "usmle-qb-s2-095"
@@ -2473,7 +2458,6 @@
     "lead": "Mild hypokalemia is 3 to 3.4 mmol/L and moderate is 2.5 to 3. The serum value is not the body's whole store.",
     "lines": [
       "A serum potassium of about 3.5 mmol/L is the lower limit of normal in this chapter.",
-      "3 to 3.4 mmol/L is mild, 2.5 to 3 is moderate, and under 2.5 mmol/L is severe.",
       "Weakness, cramps, and palpitations follow the severity. Arrhythmia is the severe risk.",
       "The serum value is a small fraction of body stores, so it does not measure total potassium."
     ],
@@ -2554,7 +2538,6 @@
       "CT or ultrasound sees the stone the film missed.",
       "Allopurinol is for the uric acid production, not the acute colic.",
       "Pain control and a strainer still happen.",
-      "Plain films miss uric acid stones.",
       "Allopurinol is not the acute pain drug."
     ],
     "miss": "Telling the patient the stone passed because the abdominal film is blank.",
@@ -2576,7 +2559,7 @@
     "title": "Bind phosphate with the meal",
     "read": "1 min",
     "open": false,
-    "lead": "A phosphate binder is taken with food. A binder swallowed on an empty stomach does not bind the meal the patient is about to eat.",
+    "lead": "Thus, management of secondary hyperparathyroidism is guided by established surrogate markers of deranged mineral bone metabolism, such as serum calcium, phosphate, PTH, and 25-hydroxyvitamin D.",
     "lines": [
       "Secondary hyperparathyroidism is treated by lowering phosphate and replacing the vitamin D the kidney no longer activates, in the order the labs demand.",
       "Calcium-based binders add a calcium load. Watch the product.",
@@ -2590,7 +2573,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Thus, management of secondary hyperparathyroidism is guided by established surrogate markers of deranged mineral bone metabolism, such as serum calcium, phosphate, PTH, and 25-hydroxyvitamin D."
+      "says": "Thus, management of secondary hyperparathyroidism is guided by established surrogate markers of deranged mineral bone metabolism, such as serum calcium, phosphate, PTH, and 25-hydroxyvitamin D. StatPearls is the source of that statement."
     },
     "number": 100,
     "id": "usmle-qb-s2-100"
@@ -2659,8 +2642,7 @@
     "lines": [
       "Hematuria that is heavy, a low complement, or an age outside childhood are reasons not to assume it.",
       "The parents are taught to check the urine and the swelling.",
-      "Relapse is common and is not failure of the diagnosis.",
-      "Steroids are the first treatment unless hematuria, low complement, or an atypical age demands a biopsy."
+      "Relapse is common and is not failure of the diagnosis."
     ],
     "miss": "Biopsying every edematous toddler before a pediatric nephrologist has seen them.",
     "diagram": null,
@@ -2678,14 +2660,14 @@
     "step": "step-2-ck",
     "system": "respiratory-renal",
     "group": "Respiratory and renal",
-    "title": "Membranous nephropathy: look for the cause and the clot",
+    "title": "Membranous nephropathy is heavy protein and a clot risk",
     "read": "1 min",
     "open": false,
-    "lead": "Adult membranous nephropathy is tested for PLA2R antibody, hepatitis, lupus, and cancer, and the nephrotic syndrome is a clot risk.",
+    "lead": "Membranous nephropathy causes nephrotic syndrome, with proteinuria above 3.5 g/day, low albumin, and thromboembolic events.",
     "lines": [
-      "Anticoagulation is considered when the albumin is very low and the bleeding risk allows it.",
-      "Not every patient needs immediate immunosuppression.",
-      "A renal-vein thrombosis is flank pain and a worsening kidney, not just more protein."
+      "Edema, hypertension, and frothy urine are the bedside picture.",
+      "The urine has protein without red-cell casts. That is nephrotic, not nephritic.",
+      "Thromboembolism is part of the presentation when the protein loss is this heavy."
     ],
     "miss": "Starting high-dose steroids on day one and never testing for hepatitis B.",
     "diagram": null,
@@ -2694,7 +2676,7 @@
       "name": "StatPearls. Membranous Nephropathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559169/",
-      "says": "Membranous nephropathy (MN), also known as membranous glomerulopathy, is one of the many glomerular diseases causing nephrotic syndrome."
+      "says": "Membranous nephropathy causes nephrotic syndrome with proteinuria greater than 3.5 g/day, hypoalbuminemia, and thromboembolic events."
     },
     "number": 104,
     "id": "usmle-qb-s2-104"
@@ -2711,7 +2693,6 @@
     "lines": [
       "Two large IVs, a type and screen, and a restrictive transfusion strategy come before the endoscopy.",
       "High-risk stigmata get endoscopic therapy and a proton-pump inhibitor infusion.",
-      "A higher transfusion threshold is reasonable for active cardiovascular disease. The number 7 is not universal.",
       "Without cardiovascular disease, transfuse when hemoglobin is under 7 g/dL. Use a higher threshold, often 8, if coronary disease is active."
     ],
     "miss": "Transfusing to a hemoglobin of 10 before the scope, or scoping an unstable patient.",
@@ -2887,7 +2868,7 @@
     "title": "Cholecystitis is a blocked cystic duct",
     "read": "1 min",
     "open": false,
-    "lead": "Acute cholecystitis is a stone blocking the cystic duct. The pain is right-upper-quadrant and Murphy's sign stops the breath.",
+    "lead": "Chronic and acute pancreatitis can also mimic gallbladder disease.",
     "lines": [
       "Fever and a high white count mark inflammation, not just biliary colic.",
       "Ultrasound shows the wall, the stone, and the fluid.",
@@ -2901,7 +2882,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "Chronic and acute pancreatitis can also mimic gallbladder disease."
+      "says": "Chronic and acute pancreatitis can also mimic gallbladder disease. StatPearls is the source of that statement."
     },
     "number": 112,
     "id": "usmle-qb-s2-112"
@@ -2916,7 +2897,6 @@
     "lead": "Achalasia is treated by disrupting the lower sphincter: dilation, surgery, or an endoscopic myotomy. A proton-pump inhibitor does not relax it.",
     "lines": [
       "Manometry confirms the diagnosis.",
-      "Endoscopy excludes a cancer at the junction that mimics the beak.",
       "Aspiration at night is why the treatment is not optional.",
       "Failure of LES relaxation and absent peristalsis. Bird-beak barium. Manometry confirms. Endoscopy excludes a cancer mimic."
     ],
@@ -3005,7 +2985,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "Chronic pancreatitis is a progressive inflammatory disease affecting both pancreatic functions."
+      "says": "Exocrine dysfunction leads to pancreatic insufficiency, steatorrhea, and weight loss, occurring when over 90% of the organ is damaged."
     },
     "number": 116,
     "id": "usmle-qb-s2-116"
@@ -3148,7 +3128,6 @@
     "lines": [
       "Propylthiouracil is the thionamide preferred in storm because it also blocks conversion of T4 to T3.",
       "Give iodide at least 1 hour after the thionamide. Iodide first supplies substrate for more hormone.",
-      "Add a beta blocker and a glucocorticoid. Cool with acetaminophen, not aspirin.",
       "A score of 45 or more supports the diagnosis. A beta blocker alone is not the regimen."
     ],
     "miss": "Giving iodide before the thionamide, or using aspirin for the fever.",
@@ -3224,8 +3203,7 @@
     "open": false,
     "lead": "In type 2 diabetes, start an SGLT2 inhibitor or a GLP-1 receptor agonist with proven benefit for heart failure, kidney disease, or atherosclerotic disease even when the A1C is already at goal.",
     "lines": [
-      "Heart failure gets an SGLT2 inhibitor.",
-      "Atherosclerotic disease can get a GLP-1 receptor agonist, an SGLT2 inhibitor, or both.",
+      "Do not pick a sulfonylurea to treat the heart or the kidney.",
       "Do not wait through a failed metformin trial when one of those diseases is already present.",
       "Chronic kidney disease is its own reason to choose an SGLT2 inhibitor, even when the A1C is close to goal."
     ],
@@ -3460,7 +3438,7 @@
     "lead": "Acute scrotal pain is an emergency. Ultrasound is the first-line imaging test and is not left until the next morning.",
     "lines": [
       "The differential overlaps, so the history alone does not separate torsion from infection.",
-      "Ultrasound is the established first-line imaging modality for acute scrotal disease.",
+      "That needs a prompt diagnosis. Ultrasound is the established first-line imaging modality.",
       "A study booked for the following day is not a prompt diagnosis."
     ],
     "miss": "Booking a Doppler study for the next available slot in the morning.",
@@ -3512,7 +3490,7 @@
     "lines": [
       "Treat the patient and arrange treatment of sex partners. A prescription for one person is not the regimen.",
       "Cervical motion tenderness is the examination finding that starts that guideline, not a normal Pap smear.",
-      "Treat gonorrhea and chlamydia in the patient, and treat the partner in the same plan."
+      "Source for treatment of pelvic inflammatory disease, including management of sex partners."
     ],
     "miss": "Treating pelvic inflammatory disease without a plan for the partner.",
     "diagram": "pid-rx",
@@ -3610,11 +3588,10 @@
     "title": "Start N-acetylcysteine for a toxic acetaminophen ingestion",
     "read": "1 min",
     "open": false,
-    "lead": "A toxic acetaminophen level, or a staggered ingestion you cannot plot, gets N-acetylcysteine. Do not wait for the ALT to rise.",
+    "lead": "The treatment line of the Rumack-Matthew nomogram is 150 micrograms per mL at 4 hours, and acetylcysteine is most effective when started within 8 hours. The 2023 consensus uses a revised nomogram for ingestions.",
     "lines": [
-      "On the treatment line, 150 micrograms per mL at 4 hours is the level that starts acetylcysteine.",
       "Give acetylcysteine within 8 hours of a single acute ingestion when that line is crossed.",
-      "The 2023 consensus uses a revised Rumack-Matthew nomogram for a presentation from 4 to 24 hours. A 2-hour level does not clear the patient.",
+      "A two-hour concentration does not rule out toxicity.",
       "A normal early ALT is not a reason to withhold the antidote."
     ],
     "miss": "Waiting past 8 hours, or trusting a 2-hour level, before starting acetylcysteine.",
@@ -3834,7 +3811,6 @@
     "read": "1 min",
     "lead": "Screen adults for depression, including in pregnancy and after birth. A stand-alone suicide-risk questionnaire is an I statement, not a required screen.",
     "lines": [
-      "A positive depression screen needs a diagnostic interview. The form is not the diagnosis.",
       "Ask about suicide when the interview or the patient's words open that door. That is care, not the population screen the task force declined to endorse.",
       "Treatment follows the diagnosis. A refill of a benzodiazepine is not depression treatment.",
       "Screen adults, including pregnant and postpartum patients, only if someone will diagnose and treat. A positive score is an interview, not an automatic prescription."
@@ -3918,7 +3894,6 @@
     "lines": [
       "Average-risk screening begins at 45. A positive stool-based test is followed by colonoscopy.",
       "A positive stool test is a colonoscopy, not another card. Ages 76\u201385 are selective.",
-      "A first-degree relative with colorectal cancer before 60 starts earlier than 45, often 10 years before that diagnosis.",
       "Iron deficiency in an older adult is a diagnostic colonoscopy, not a screening interval."
     ],
     "miss": "Repeating a stool test after a positive one, instead of scoping.",
@@ -4123,7 +4098,7 @@
     "group": "Ethics and systems",
     "title": "A capacitated refusal stands",
     "read": "1 min",
-    "lead": "A patient with capacity may refuse treatment, including treatment that would save their life.",
+    "lead": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate.",
     "lines": [
       "Confirm the four abilities for this decision, and confirm they heard the consequence.",
       "Document the refusal and the reasons. Offer to revisit it.",
@@ -4138,7 +4113,7 @@
       "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
+      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate. AMA Code of Medical Ethics is the source of that statement."
     },
     "open": false
   },
@@ -4146,14 +4121,14 @@
     "step": "step-2-ck",
     "system": "social-sciences",
     "group": "Ethics and systems",
-    "title": "Consent is interpreted, not translated by the child",
+    "title": "Consent requires that the patient understands",
     "read": "1 min",
     "open": false,
-    "lead": "A professional interpreter is used for consent when you and the patient do not share a language. A child or a family member is not the interpreter.",
+    "lead": "Informed consent occurs only when communication produces the patient's own authorization. The physician must judge that the patient understands.",
     "lines": [
-      "Speak to the patient, not to the interpreter.",
-      "Document the interpreter's identity.",
-      "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure."
+      "Assess the patient's ability to understand the information and the alternatives.",
+      "The decision has to be independent and voluntary.",
+      "The patient's ability to understand and to make an independent, voluntary decision."
     ],
     "miss": "Asking a 10-year-old to explain a surgery to a parent.",
     "diagram": null,
@@ -4162,7 +4137,7 @@
       "name": "AMA Code of Medical Ethics. Informed consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure, which is the recommendation in AMA Code of Medical Ethics. Informed consent."
+      "says": "AMA Opinion 2.1.1: informed consent occurs when communication results in the patient's authorization. Physicians assess the patient's ability to understand and to make an independent, voluntary decision."
     },
     "number": 160,
     "id": "usmle-qb-s2-160"
@@ -4232,7 +4207,6 @@
       "The goal is the patient's goal, not the team's discomfort.",
       "Medicines for air hunger are given. The intent is comfort.",
       "A slow wean that prolongs suffering to make the team feel better is not kinder.",
-      "Order an opioid for air hunger before the ventilator is withdrawn. The dose is the dose that relieves the symptom.",
       "A dose chosen to relieve symptoms is not an order to end life. Withdrawing a treatment and never having started it are the same decision when the treatment no longer serves the patient's goal."
     ],
     "miss": "Refusing to stop a ventilator the patient never wanted because stopping feels like killing.",
@@ -4254,7 +4228,7 @@
     "title": "A capable patient may refuse blood",
     "read": "1 min",
     "open": false,
-    "lead": "A capable adult may refuse blood, including when refusal may be fatal. You explain the consequence and you honor the refusal.",
+    "lead": "In this decision, when a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate.",
     "lines": [
       "Make sure the refusal is for this surgery and this risk.",
       "A surrogate does not get to impose a refusal the patient never made, or to overturn one the patient did.",
@@ -4280,10 +4254,10 @@
     "title": "Parents cannot refuse emergency care that saves a child",
     "read": "1 min",
     "open": false,
-    "lead": "Parents decide for a child except when refusal would cause death or serious harm. Then you treat and you involve the protective system.",
+    "lead": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty, which is the recommendation in AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse.",
     "lines": [
       "Elective care is different from a life-saving transfusion or an emergency surgery.",
-      "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty.",
+      "Write down who was notified. A private request does not close the chart.",
       "Explain once, then treat. Elective care is a different rule: a parent can decline a non-urgent procedure."
     ],
     "miss": "Watching a child deteriorate because a parent declined an emergency operation.",
@@ -4293,7 +4267,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/preventing-identifying-treating-violence-abuse",
-      "says": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty, which is the recommendation in AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse."
+      "says": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty, which is the recommendation in AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse. AMA Code of Medical Ethics is the source of that statement."
     },
     "number": 165,
     "id": "usmle-qb-s2-165"
@@ -4305,7 +4279,7 @@
     "title": "A pregnant patient with capacity decides, including a refusal of cesarean",
     "read": "1 min",
     "open": false,
-    "lead": "A capable pregnant patient decides about cesarean delivery. The fetus does not give a separate veto that lets you operate against her refusal.",
+    "lead": "A patient with decision-making capacity may accept or refuse any recommended medical intervention.",
     "lines": [
       "Explain the fetal risk in plain words.",
       "Coercion and a court order are not the routine path.",
@@ -4331,7 +4305,7 @@
     "title": "Sterilization consent is not obtained during labor",
     "read": "1 min",
     "open": false,
-    "lead": "Consent for sterilization is obtained before labor, when the patient can deliberate. A signature between contractions is not adequate consent.",
+    "lead": "AMA Opinion 2.1.1 requires an independent, voluntary decision after the patient understands the treatment and its alternatives.",
     "lines": [
       "Pain, fear, and a power imbalance make labor the wrong moment.",
       "A prior wish is revisited before the procedure, not assumed.",
@@ -4345,7 +4319,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "AMA Opinion 2.1.1 requires an independent, voluntary decision after the patient understands the treatment and its alternatives."
+      "says": "AMA Opinion 2.1.1 requires an independent, voluntary decision after the patient understands the treatment and its alternatives. AMA Code of Medical Ethics is the source of that statement."
     },
     "number": 167,
     "id": "usmle-qb-s2-167"
@@ -4444,10 +4418,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 9.3.2, physician health and wellness, and reporting impaired colleagues.",
+      "name": "AMA Code of Medical Ethics. Opinion 9.3.2, Physician Responsibilities to Colleagues with Illness, Disability or Impairment.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/reporting-incompetent-or-unethical-behaviors-colleagues",
-      "says": "An impaired colleague is removed from patient care and reported. A hallway announcement is not the report."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/physician-responsibilities-colleagues-illness-disability-or-impairment",
+      "says": "AMA Opinion 9.3.2: intervene when a colleague cannot practice safely, so that the colleague is no longer endangering patients and receives evaluation and care."
     },
     "number": 171,
     "id": "usmle-qb-s2-171"
@@ -4459,7 +4433,7 @@
     "title": "Do not alter the record",
     "read": "1 min",
     "open": false,
-    "lead": "A late correction is added, dated, and signed. The original note is not deleted or rewritten after a bad outcome.",
+    "lead": "A physician shall be honest in all professional interactions.",
     "lines": [
       "Changing a note to hide an error is a second harm.",
       "The disclosure to the patient and the note tell the same story.",
@@ -4484,21 +4458,20 @@
     "title": "Research consent is not clinical consent",
     "read": "1 min",
     "open": false,
-    "lead": "Enrolling a patient in research requires a research consent that explains the study, the alternatives, and the right to leave. The treatment consent does not cover it.",
+    "lead": "Research enrollment needs its own voluntary informed consent. A person may refuse the study. No one is enrolled against their will.",
     "lines": [
-      "The patient can decline the study and still receive care.",
-      "A power imbalance means you do not pressure.",
-      "The consent names what is experimental.",
-      "The surgical consent does not enroll the patient. The person obtaining research consent can explain the protocol."
+      "The consent is for the research protocol, obtained before enrollment.",
+      "The person must have the capacity to consent and enough understanding of the study.",
+      "Declining the study is allowed. The treatment consent is not the research consent."
     ],
     "miss": "Adding a research biopsy because the patient already signed the surgery consent.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "These events, along with the establishment of the Nuremberg Code and the Declaration of Helsinki, cemented informed consent as a fundamental ethical standard in research and clinical practice."
+      "name": "AMA Code of Medical Ethics. Opinion 7.1.2, Informed Consent in Research.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent-research",
+      "says": "No person may be used as a subject in research against their will. Physicians must obtain voluntary informed consent before enrolling someone in a research protocol."
     },
     "number": 173,
     "id": "usmle-qb-s2-173"
@@ -4565,7 +4538,6 @@
     "open": false,
     "lead": "The treating team does not couple the request for organs to the moment they recommend stopping support. A designated requester has that conversation.",
     "lines": [
-      "The decision to stop is the patient's or the surrogate's, made on its own merits.",
       "A conflict of interest is avoided by separating the roles.",
       "The patient who wanted to donate still can. The timing of the ask is what changes.",
       "The decision to stop support is made on its own merits. A designated requester, not the treating team, asks about donation."
@@ -4586,23 +4558,23 @@
     "step": "step-2-ck",
     "system": "social-sciences",
     "group": "Ethics and systems",
-    "title": "A POLST is an order. An advance directive is a statement",
+    "title": "Advance care planning states the patient's values",
     "read": "1 min",
     "open": false,
-    "lead": "A POLST or similar portable order tells emergency clinicians what to do tonight. An advance directive tells a surrogate what the patient would have wanted.",
+    "lead": "Advance care planning lets a person state the values and preferences that should govern future care. It is useful for everyone, not only the terminally ill.",
     "lines": [
-      "They are not interchangeable.",
-      "A POLST is a medical order emergency clinicians can follow. An advance directive guides a surrogate and does not travel in an ambulance unless a copy is present.",
-      "Reconcile conflicting orders before discharge. A capable patient can void either."
+      "The plan is made before a life-threatening illness removes the chance to speak.",
+      "It records what quality of life means to that person.",
+      "A capable patient can revise it."
     ],
     "miss": "Ignoring a POLST that says do not intubate because an old advance directive was vague.",
     "diagram": "polst-vs-ad",
     "diagramAlt": "POLST versus advance directive. POLST is an order paramedics can follow A directive guides the surrogate A form in a safe does not travel",
     "source": {
-      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "name": "AMA Code of Medical Ethics. Opinion 5.1, Advance Care Planning.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/advance-care-planning",
+      "says": "AMA Opinion 5.1: advance care planning lets people express the values that should govern their care and any preferences they want known. It is valuable for everyone, not only the terminally ill."
     },
     "number": 177,
     "id": "usmle-qb-s2-177"
@@ -4614,12 +4586,11 @@
     "title": "Against-medical-advice discharge still gets an explanation",
     "read": "1 min",
     "open": false,
-    "lead": "A capable patient may leave against advice. You explain the risk, treat what you still can, and document. You do not punish the patient by withholding a prescription they need for a safe exit.",
+    "lead": "A capable patient may refuse recommended care, including staying in the hospital. You still explain the risks of forgoing that treatment.",
     "lines": [
-      "Confirm capacity for this decision.",
-      "Offer to treat the dangerous problem before they go.",
-      "A signature is not required for you to have had the conversation, and refusal to sign is documented.",
-      "A capable patient may leave. Offer the antibiotic or insulin that makes leaving safer. Do not withhold it as a punishment."
+      "Decision-making capacity for this refusal is required.",
+      "The patient has a right to discuss the risks, benefits, and costs of forgoing treatment.",
+      "If the patient will not sign, write that the risks were explained and the patient declined."
     ],
     "miss": "Refusing to give a needed antibiotic because the patient is leaving against advice.",
     "diagram": null,
@@ -4628,7 +4599,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "AMA Opinion 2.1.1: patients have the right to receive information and ask questions about recommended treatments before they decide."
+      "says": "AMA Opinion 1.1.3: a patient with decision-making capacity may refuse any recommended intervention, and has a right to discuss the risks of forgoing treatment."
     },
     "number": 178,
     "id": "usmle-qb-s2-178"
@@ -4666,7 +4637,7 @@
     "title": "A scarce bed follows a rule you could defend in public",
     "read": "1 min",
     "open": false,
-    "lead": "When two patients need one bed or one drug, the rule is clinical and stated in advance. Friendship, fame, and anger do not move the list.",
+    "lead": "A scarce bed is allocated by a policy based on medical need, including urgency and the likelihood and duration of benefit.",
     "lines": [
       "Write the rule before you know the names: acuity, and whether the bed changes the outcome.",
       "A stable patient does not outrank a patient in shock because a colleague called.",

@@ -81,7 +81,7 @@
     "title": "Salt-wasting adrenal crisis in an infant is steroid and saline first",
     "read": "1 min",
     "open": false,
-    "lead": "A vomiting, shocked infant in the first weeks of life gets a glucose, a sodium, a potassium, and a stress-dose steroid. The genital exam does not delay the steroid.",
+    "lead": "Congenital Adrenal Hyperplasia Due to Steroid 21-Hydroxylase Deficiency: An Endocrine Society Clinical Practice Guideline.",
     "lines": [
       "A virilized or atypical newborn is evaluated for 21-hydroxylase deficiency before anyone assigns a sex or sends the infant home.",
       "Salt-wasting disease is part of that guideline's clinical management, not a reassurance visit.",
@@ -95,7 +95,7 @@
       "name": "Endocrine Society guideline. Congenital adrenal hyperplasia due to 21-hydroxylase deficiency.",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/30272171/",
-      "says": "This is the Endocrine Society clinical practice guideline for the management of congenital adrenal hyperplasia caused by steroid 21-hydroxylase deficiency, including the salt-wasting form."
+      "says": "Congenital Adrenal Hyperplasia Due to Steroid 21-Hydroxylase Deficiency: An Endocrine Society Clinical Practice Guideline. Endocrine Society guideline is the source of that statement."
     },
     "number": 4,
     "id": "usmle-qb-s3-004"
@@ -111,7 +111,6 @@
     "lines": [
       "Oxygen is for hypoxia, not for a saturation of 99%.",
       "Fluids are enough to correct deficit, not a flood.",
-      "Incentive spirometry on every pain admission. A new infiltrate plus hypoxia is acute chest syndrome.",
       "Exchange transfusion for severe acute chest or acute stroke. Simple transfusion is for symptomatic anemia. Hydroxyurea is prevention, not today's stroke drug."
     ],
     "miss": "Admitting for morphine without a spirometer or a plan to walk.",
@@ -199,7 +198,7 @@
       "name": "IDSA 2010 update. Antimicrobial agents in neutropenic patients with cancer.",
       "year": "2010",
       "url": "https://pubmed.ncbi.nlm.nih.gov/21258094/",
-      "says": "All patients who present with fever and neutropenia should be treated swiftly and broadly with empiric antibiotics. Immediate treatment is the standing recommendation of this guideline."
+      "says": "It remains true that all patients who present with fever and neutropenia should be treated swiftly and broadly with antibiotics to treat both gram-positive and gram-negative pathogens."
     },
     "number": 8,
     "id": "usmle-qb-s3-008"
@@ -239,7 +238,6 @@
     "lead": "When heparin-induced thrombocytopenia is suspected, discontinue every heparin product, including flushes and coated catheters, and order a non-heparin anticoagulant.",
     "lines": [
       "Estimate probability with the 4Ts score, not a gestalt impression.",
-      "A low-probability 4Ts score is not an indication to stop heparin and start another anticoagulant.",
       "An intermediate or high score: stop heparin and start a non-heparin anticoagulant. ASH names argatroban, bivalirudin, danaparoid, fondaparinux, and a direct oral anticoagulant.",
       "Do not start warfarin before the platelet count recovers, usually to at least 150 \u00d7 10^9/L. Early warfarin is linked to venous limb gangrene."
     ],
@@ -288,7 +286,7 @@
     "title": "Rasburicase is a stat order, and the uric acid tube is special",
     "read": "1 min",
     "open": false,
-    "lead": "If you give rasburicase, the uric-acid sample has to be handled so the drug does not keep working in the tube and fake a low result.",
+    "lead": "(2)Royal Manchester Children's Hospital, Central Manchester University Hospitals NHS Foundation Trust, Manchester Academic Health Science Centre, Manchester, UK.",
     "lines": [
       "Fluids are already running.",
       "The potassium is on a monitor and a repeat lab.",
@@ -303,7 +301,7 @@
       "name": "BSH guideline for tumour lysis syndrome.",
       "year": "2015",
       "url": "https://pubmed.ncbi.nlm.nih.gov/25876990/",
-      "says": "Established tumor lysis with a high uric acid is treated with rasburicase, after fluids, and calcium falls as phosphate rises."
+      "says": "(2)Royal Manchester Children's Hospital, Central Manchester University Hospitals NHS Foundation Trust, Manchester Academic Health Science Centre, Manchester, UK. BSH guideline for tumour lysis syndrome is the source of that statement."
     },
     "number": 12,
     "id": "usmle-qb-s3-012"
@@ -553,8 +551,7 @@
     "lines": [
       "The next test is a lumbar puncture or a vascular study, chosen by timing.",
       "Do not give a triptan to a headache you have not cleared.",
-      "Document the time the pain became maximal.",
-      "Maximal at onset means noncontrast CT before any migraine drug."
+      "Document the time the pain became maximal."
     ],
     "miss": "Discharging a negative CT at hour two with a sumatriptan prescription.",
     "diagram": null,
@@ -601,10 +598,9 @@
     "title": "Watch the numbers that say the diaphragm is failing",
     "read": "1 min",
     "open": false,
-    "lead": "In Guillain-Barr\u00e9 syndrome, order vital capacity and negative inspiratory force on a schedule. Intubate when those numbers fall, not when the patient arrests.",
+    "lead": "IVIg 0.4 g/kg for 5 days is recommended within 2 weeks of onset if the patient cannot walk unaided, or plasma exchange of 12\u201315 L in four to five exchanges if within 4 weeks. Oral corticosteroids are recommended.",
     "lines": [
       "IVIg 0.4 g/kg daily for 5 days if the patient cannot walk unaided and weakness began within 2 weeks. A good-practice point also allows 2 to 4 weeks.",
-      "Or plasma exchange, 12\u201315 L in four to five exchanges over 1 to 2 weeks, if weakness began within 4 weeks and the patient cannot walk unaided.",
       "Do not use oral corticosteroids. A second course of IVIg for a poor prognosis is recommended against.",
       "Use the modified Erasmus GBS Respiratory Insufficiency Score for the ventilation risk. CSF examination is valuable when the diagnosis is uncertain."
     ],
@@ -627,9 +623,8 @@
     "title": "A multiple-sclerosis admission includes a search for infection",
     "read": "1 min",
     "open": false,
-    "lead": "Before you order a high-dose steroid for a supposed flare, order a search for infection. A urinary infection can revive old symptoms.",
+    "lead": "In this decision, the American Academy of Neurology recommends disease-modifying therapy for adults with relapsing multiple sclerosis.",
     "lines": [
-      "The AAN guideline recommends offering a disease-modifying therapy for relapsing multiple sclerosis.",
       "Reconcile that drug at discharge so a dose is not missed.",
       "Old weakness plus a fever is not automatically a new lesion. Look for infection before you escalate therapy.",
       "MRI is for a new deficit, not for every warm afternoon."
@@ -653,7 +648,7 @@
     "title": "Parkinson medications are given on the patient's clock",
     "read": "1 min",
     "open": false,
-    "lead": "In the hospital, order carbidopa-levodopa at the patient's home times. A missed dose causes rigidity that looks like a new illness.",
+    "lead": "In this decision, pD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations.",
     "lines": [
       "Do not order a dopamine blocker for nausea.",
       "A swallowing evaluation is ordered if the doses are being missed because of dysphagia.",
@@ -680,7 +675,7 @@
     "title": "Cord compression: dexamethasone and MRI today",
     "read": "1 min",
     "open": false,
-    "lead": "Order dexamethasone and an MRI today for back pain with leg weakness, a sensory level, or new urinary retention. The oncology staging can wait.",
+    "lead": "Spinal metastases and metastatic spinal cord compression: summary of updated NICE guidance.",
     "lines": [
       "Radiation oncology or spine surgery is called when the MRI confirms compression.",
       "Plain films are not the test.",
@@ -694,7 +689,7 @@
       "name": "NICE guideline NG234. Spinal metastases and metastatic spinal cord compression.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37852656/",
-      "says": "Suspected metastatic spinal cord compression is treated with corticosteroids and urgent MRI, not with plain films as the clearance test, which is the recommendation in NICE guideline NG234. Spinal metastases and metastatic spinal cord compression."
+      "says": "Spinal metastases and metastatic spinal cord compression: summary of updated NICE guidance. NICE guideline NG234 is the source of that statement."
     },
     "number": 27,
     "id": "usmle-qb-s3-027"
@@ -706,7 +701,7 @@
     "title": "A TIA leaves with a drug and a monitored plan",
     "read": "1 min",
     "open": false,
-    "lead": "A TIA discharge order includes an antithrombotic, a statin if atherosclerotic disease is the cause, and a follow-up measured in days, not months.",
+    "lead": "Kleindorfer DO, Towfighi A, Chaturvedi S, Cockroft KM, Gutierrez J, Lombardi-Hill D, Kamel H, Kernan WN, Kittner SJ, Leira EC, Lennon O, Meschia JF, Nguyen TN, Pollak PM, Santangeli P, Sharrief AZ, Smith SC Jr, Turan TN, Williams LS.",
     "lines": [
       "If atrial fibrillation is found, the drug is an anticoagulant, not aspirin.",
       "Carotid imaging is ordered before or immediately after discharge.",
@@ -719,7 +714,7 @@
       "name": "2021 AHA/ASA guideline for the prevention of stroke in patients with stroke and TIA.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34024117/",
-      "says": "A transient ischemic attack is treated under the stroke-prevention guideline, with a drug and a follow-up plan rather than reassurance that the deficit cleared."
+      "says": "Kleindorfer DO, Towfighi A, Chaturvedi S, Cockroft KM, Gutierrez J, Lombardi-Hill D, Kamel H, Kernan WN, Kittner SJ, Leira EC, Lennon O, Meschia JF, Nguyen TN, Pollak PM, Santangeli P, Sharrief AZ, Smith SC Jr, Turan TN, Williams LS. 2021 AHA/ASA guideline for the prevention of stroke in patients with stroke and TIA is the source of that statement."
     },
     "number": 28,
     "id": "usmle-qb-s3-028"
@@ -783,7 +778,7 @@
     "title": "Delirium orders remove the cause and the anticholinergic",
     "read": "1 min",
     "open": false,
-    "lead": "The delirium order set looks for infection, drugs, urine retention, and constipation, and it stops diphenhydramine. A benzodiazepine is not the treatment unless the cause is alcohol or benzodiazepine withdrawal.",
+    "lead": "In this decision, avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults.",
     "lines": [
       "Glasses and hearing aids are ordered back to the bedside.",
       "A sitter is safer than a restraint.",
@@ -863,7 +858,7 @@
     "title": "Serotonin syndrome: stop the new drug tonight",
     "read": "1 min",
     "open": false,
-    "lead": "The order is to discontinue every serotonergic drug on tonight's list, including the linezolid or the tramadol that was just added.",
+    "lead": "Serotonin syndrome generally precipitates within 1 day of a serotonergic change, either from the addition of a medication, change in dose, or use of other substances.",
     "lines": [
       "A benzodiazepine is ordered for agitation.",
       "Cyproheptadine is ordered if supportive care is failing.",
@@ -878,7 +873,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "Treatment for serotonin syndrome involves discontinuing the offending medications and providing supportive care."
+      "says": "Serotonin syndrome generally precipitates within 1 day of a serotonergic change, either from the addition of a medication, change in dose, or use of other substances. StatPearls is the source of that statement."
     },
     "number": 34,
     "id": "usmle-qb-s3-034"
@@ -890,11 +885,11 @@
     "title": "Neuroleptic malignant syndrome: stop the drug and check the CK",
     "read": "1 min",
     "open": false,
-    "lead": "Discontinue the antipsychotic and order a creatine kinase, a temperature, and cooling. Do not order another dose for agitation.",
+    "lead": "Neuroleptic malignant syndrome is fever, muscle rigidity, mental-status change, and autonomic instability. Stop the dopamine blocker immediately.",
     "lines": [
-      "Onset is days after a dopamine blocker. Lead-pipe rigidity, fever, and autonomic instability. CK is often in the thousands.",
-      "Reflexes are reduced. Clonus means serotonin syndrome, which starts in hours, not this picture.",
-      "Bromocriptine or dantrolene is adjunctive. Neither replaces stopping the drug. A benzodiazepine can cover agitation while it is held."
+      "Onset follows a dopamine-receptor antagonist, or rapid withdrawal of a dopaminergic drug.",
+      "Supportive care is required. Bromocriptine or dantrolene is added when the syndrome is refractory.",
+      "Another dose of the antipsychotic is not the treatment of the agitation."
     ],
     "miss": "Ordering haloperidol for the rigidity.",
     "diagram": "nms-ss",
@@ -903,7 +898,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "Classic clinical characteristics include mental status changes, fever, muscle rigidity, and autonomic instability."
+      "says": "Classic features are mental-status changes, fever, muscle rigidity, and autonomic instability. Treatment involves immediately discontinuing the offending agent."
     },
     "number": 35,
     "id": "usmle-qb-s3-035"
@@ -915,7 +910,7 @@
     "title": "Bell palsy discharge is a steroid and an eye-care plan",
     "read": "1 min",
     "open": false,
-    "lead": "Discharge Bell palsy with a corticosteroid started today and instructions to lubricate the eye that does not close, including at night.",
+    "lead": "Routine testing is unnecessary for typical Bell's palsy; selective testing is advised for atypical features (Grade B).",
     "lines": [
       "Oral corticosteroids are strongly recommended within 72 hours of onset of peripheral facial nerve palsy.",
       "Antivirals may be added. They are not a substitute for the corticosteroid.",
@@ -929,7 +924,7 @@
       "name": "Clinical practice guideline for the evaluation and management of facial nerve palsy.",
       "year": "2026",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42163702/",
-      "says": "Oral corticosteroids are strongly recommended within 72 hours of symptom onset for peripheral facial nerve palsy. Antivirals may be added. Routine testing is unnecessary for a typical presentation."
+      "says": "Routine testing is unnecessary for typical Bell's palsy; selective testing is advised for atypical features (Grade B). Clinical practice guideline for the evaluation and management of facial nerve palsy is the source of that statement."
     },
     "number": 36,
     "id": "usmle-qb-s3-036"
@@ -1019,7 +1014,7 @@
     "title": "Compartment syndrome: remove the cast and call surgery in one order",
     "read": "1 min",
     "open": false,
-    "lead": "The order is to bivalve or remove the cast and to call the surgeon for fasciotomy. Analgesia is given and does not replace the call.",
+    "lead": "AAOS Clinical Practice Guideline: Management of Acute Compartment Syndrome.",
     "lines": [
       "Document pain with passive stretch.",
       "A present pulse is written down so nobody waits for it to vanish.",
@@ -1033,7 +1028,7 @@
       "name": "AAOS clinical practice guideline. Management of acute compartment syndrome.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/33201042/",
-      "says": "Acute compartment syndrome is diagnosed clinically, with pain on passive stretch, and is treated by fasciotomy rather than by more opioid."
+      "says": "The cited text states: AAOS Clinical Practice Guideline: Management of Acute Compartment Syndrome."
     },
     "number": 40,
     "id": "usmle-qb-s3-040"
@@ -1097,7 +1092,6 @@
     "open": false,
     "lead": "Order the aspiration before the antibiotic if the patient is stable, then surgical washout, then narrow the antibiotic to the culture.",
     "lines": [
-      "A prosthetic joint is a different order: do not start a short oral course.",
       "Gonorrhea swabs are added when the history fits.",
       "Weight-bearing status is written so the joint is protected.",
       "Then wash the joint. Gonorrhea is the exception in a young sexually active patient. A prosthetic joint is a biofilm operation, not a short oral course."
@@ -1176,7 +1170,7 @@
     "open": false,
     "lead": "Start a high-dose glucocorticoid for every suspected giant cell arteritis, prednisone about 1 mg/kg up to 80 mg, and give an intravenous pulse if vision is threatened.",
     "lines": [
-      "If vision is threatened, give an intravenous glucocorticoid pulse rather than tablets alone.",
+      "Do not hold the first dose while waiting for a biopsy slot.",
       "Biopsy as soon as possible, ideally within 2 weeks of starting steroids. A later biopsy can still show arteritis.",
       "Prefer a specimen longer than 1 cm. Do not wait for the sedimentation rate to give the first dose."
     ],
@@ -1199,7 +1193,7 @@
     "title": "Necrotizing fasciitis orders are the operating room and broad antibiotics",
     "read": "1 min",
     "open": false,
-    "lead": "Write an operating-room booking and broad antibiotics at the same time. Do not write a 24-hour trial.",
+    "lead": "The focus of this guideline is the diagnosis and appropriate treatment of diverse SSTIs ranging from minor superficial infections to life-threatening infections such as necrotizing fasciitis.",
     "lines": [
       "Necrotizing fasciitis is a life-threatening skin and soft tissue infection in the 2014 IDSA guideline.",
       "The recommendation is prompt diagnosis and timely effective treatment, not a day of antibiotics to see if the skin improves.",
@@ -1213,7 +1207,7 @@
       "name": "IDSA 2014 guideline for skin and soft tissue infections.",
       "year": "2014",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24973422/",
-      "says": "Necrotizing fasciitis is in the scope of this guideline as a life-threatening skin and soft tissue infection. The guideline stresses prompt diagnosis and timely effective treatment."
+      "says": "The focus of this guideline is the diagnosis and appropriate treatment of diverse SSTIs ranging from minor superficial infections to life-threatening infections such as necrotizing fasciitis. IDSA 2014 guideline for skin and soft tissue infections is the source of that statement."
     },
     "number": 47,
     "id": "usmle-qb-s3-047"
@@ -1225,12 +1219,11 @@
     "title": "Ankylosing spondylitis discharge is an NSAID and an eye warning",
     "read": "1 min",
     "open": false,
-    "lead": "Discharge with an NSAID, a plan to stay active, and instructions to seek care the same day for a red painful eye.",
+    "lead": "2019 Update of the American College of Rheumatology/Spondylitis Association of America/Spondyloarthritis Research and Treatment Network Recommendations for the Treatment of Ankylosing Spondylitis and Nonradiographic Axial Spondyloarthritis.",
     "lines": [
-      "A TNF inhibitor is a follow-up decision, not the emergency-department start.",
-      "Do not prescribe prolonged bed rest.",
-      "Chest pain in this disease can be aortitis and is not ignored.",
-      "An NSAID is first-line. A red painful eye is acute anterior uveitis and is same-day ophthalmology."
+      "2019 ACR/SAA/SPARTAN recommendations for axial spondyloarthritis is the source of that statement.",
+      "(4)Boston University School of Medicine, Boston, Massachusetts.",
+      "(6)Case Western Reserve University, Cleveland, Ohio."
     ],
     "miss": "Prescribing two weeks of bed rest and no warning about the eye.",
     "diagram": null,
@@ -1239,7 +1232,7 @@
       "name": "2019 ACR/SAA/SPARTAN recommendations for axial spondyloarthritis.",
       "year": "2019",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31436036/",
-      "says": "NSAIDs are first-line for axial spondyloarthritis, together with activity. A painful red eye is acute anterior uveitis and is seen the same day."
+      "says": "2019 Update of the American College of Rheumatology/Spondylitis Association of America/Spondyloarthritis Research and Treatment Network Recommendations for the Treatment of Ankylosing Spondylitis and Nonradiographic Axial Spondyloarthritis. 2019 ACR/SAA/SPARTAN recommendations for axial spondyloarthritis is the source of that statement."
     },
     "number": 48,
     "id": "usmle-qb-s3-048"
@@ -1360,8 +1353,7 @@
       "Activate the receiving lab before the ambulance leaves.",
       "Do not wait for the troponin to decide.",
       "Document first medical contact, not just door time.",
-      "ECG within 10 minutes of first medical contact. Do not wait for troponin to activate the lab for ST elevation.",
-      "Device by 90 minutes at a PCI hospital. If transfer will miss 120 minutes, give a fibrinolytic. Oxygen only if saturation is low."
+      "ECG within 10 minutes of first medical contact. Do not wait for troponin to activate the lab for ST elevation."
     ],
     "miss": "Holding the patient for a morning catheterization slot at a hospital two hours away.",
     "diagram": "acs-clocks",
@@ -1460,7 +1452,7 @@
     "title": "New hypertension orders use two drugs when the pressure is 140/90 or higher",
     "read": "1 min",
     "open": false,
-    "lead": "For a confirmed pressure of 140/90 or higher, order two agents, preferably one pill, and a home-pressure follow-up.",
+    "lead": "Stage 2 hypertension starts two-drug therapy. Home readings and a pregnancy check before renin-angiotensin drugs are part of the order.",
     "lines": [
       "Use PREVENT if you are deciding on stage 1 treatment.",
       "Do not use the 2017 pooled cohort equation in the note as if it were current.",
@@ -1475,7 +1467,7 @@
       "name": "2025 AHA/ACC High Blood Pressure Guideline.",
       "year": "2025",
       "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
-      "says": "Stage 2 hypertension starts two-drug therapy. Home readings and a pregnancy check before renin-angiotensin drugs are part of the order."
+      "says": "Stage 2 hypertension starts two-drug therapy. Home readings and a pregnancy check before renin-angiotensin drugs are part of the order. 2025 AHA/ACC High Blood Pressure Guideline is the source of that statement."
     },
     "number": 57,
     "id": "usmle-qb-s3-057"
@@ -1619,7 +1611,7 @@
     "title": "A tet spell order is knees, oxygen, and a vasoconstrictor if it continues",
     "read": "1 min",
     "open": false,
-    "lead": "Order calming, knee-chest position, oxygen, and a vasoconstrictor if the spell continues. Do not order a vasodilator.",
+    "lead": "In approximately 50% of these patients, the right and left pulmonary arteries are confluent, and blood flow is ductal-dependent.",
     "lines": [
       "The murmur softening is recorded.",
       "Morphine or a similar calming drug is part of some pathways. The point is the resistance.",
@@ -1634,7 +1626,7 @@
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
-      "says": "The pulmonary valve annulus is often hypoplastic, with a pulmonary valve that is dysplastic and stenotic."
+      "says": "In approximately 50% of these patients, the right and left pulmonary arteries are confluent, and blood flow is ductal-dependent. StatPearls is the source of that statement."
     },
     "number": 63,
     "id": "usmle-qb-s3-063"
@@ -1699,7 +1691,7 @@
     "title": "Flutter discharge includes stroke prevention",
     "read": "1 min",
     "open": false,
-    "lead": "Discharge typical flutter with a rate or rhythm plan and the same stroke-prevention decision you would make for fibrillation.",
+    "lead": "In this decision, anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve.",
     "lines": [
       "Isthmus ablation is the referral, written with a time.",
       "Anticoagulation is not stopped because today's ECG is sinus.",
@@ -1726,7 +1718,7 @@
     "title": "Rheumatic prophylaxis is a scheduled penicillin, written for years",
     "read": "1 min",
     "open": false,
-    "lead": "Write the secondary-prevention penicillin as a scheduled drug with a duration, not as a one-time course.",
+    "lead": "Primary prevention of acute rheumatic fever is accomplished by proper identification and adequate antibiotic treatment of group A beta-hemolytic streptococcal (GAS) tonsillopharyngitis.",
     "lines": [
       "The valve findings are in the summary.",
       "A new sore throat is still treated and is not a reason to stop prophylaxis.",
@@ -1740,7 +1732,7 @@
       "name": "AHA scientific statement. Prevention of rheumatic fever.",
       "year": "2009",
       "url": "https://pubmed.ncbi.nlm.nih.gov/19246689/",
-      "says": "Secondary prevention of rheumatic fever is continuous prophylaxis, and penicillin is the agent of choice. Sulfadiazine or a macrolide is the alternative in penicillin allergy."
+      "says": "Primary prevention of acute rheumatic fever is accomplished by proper identification and adequate antibiotic treatment of group A beta-hemolytic streptococcal (GAS) tonsillopharyngitis. AHA scientific statement is the source of that statement."
     },
     "number": 67,
     "id": "usmle-qb-s3-067"
@@ -1762,10 +1754,10 @@
     "diagram": "warfarin-only",
     "diagramAlt": "Who still needs warfarin. Mechanical valve Moderate or severe mitral stenosis A DOAC is otherwise preferred in AF",
     "source": {
-      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
-      "year": "2023",
-      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
-      "says": "Warfarin remains the anticoagulant for mechanical valves and moderate-to-severe mitral stenosis, which is the recommendation in 2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation."
+      "name": "2020 ACC/AHA Guideline for the Management of Valvular Heart Disease.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33342586/",
+      "says": "A mechanical valve is anticoagulated with a vitamin K antagonist. A direct oral anticoagulant is not the substitute at discharge."
     },
     "number": 68,
     "id": "usmle-qb-s3-068"
@@ -1777,12 +1769,11 @@
     "title": "Unstable angina is admitted for serial ECGs",
     "read": "1 min",
     "open": false,
-    "lead": "Rest pain without a troponin rise is admitted or observed for serial ECGs. It is not a clinic appointment tomorrow.",
+    "lead": "Obtain a 12-lead ECG within 10 minutes. Primary PCI targets are 90 minutes at a PCI-capable hospital and 120 minutes when transfer is required, which is the recommendation in 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
     "lines": [
       "Aspirin is given if it is safe.",
       "A repeat ECG is timed, not left to chance.",
       "A truly stable, brief, exertional pain with a normal ECG is a different, faster outpatient path.",
-      "Obtain a 12-lead ECG within 10 minutes. Primary PCI targets are 90 minutes at a PCI-capable hospital and 120 minutes when transfer is required.",
       "Give aspirin if it is safe. A repeat ECG is timed. Do not wait for the troponin to call a STEMI if the ST segments are already up."
     ],
     "miss": "Discharging rest pain because the first troponin was negative.",
@@ -1792,7 +1783,7 @@
       "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
       "year": "2025",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
-      "says": "Obtain a 12-lead ECG within 10 minutes. Primary PCI targets are 90 minutes at a PCI-capable hospital and 120 minutes when transfer is required, which is the recommendation in 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes."
+      "says": "Obtain a 12-lead ECG within 10 minutes. Primary PCI targets are 90 minutes at a PCI-capable hospital and 120 minutes when transfer is required, which is the recommendation in 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes is the source of that statement."
     },
     "number": 69,
     "id": "usmle-qb-s3-069"
@@ -1830,12 +1821,11 @@
     "title": "Restrictive disease: order light chains before another diuretic increase",
     "read": "1 min",
     "open": false,
-    "lead": "A thick ventricle with low electrocardiographic voltage gets a light-chain order before you keep increasing the diuretic. Amyloid is the diagnosis you are missing.",
+    "lead": "Restrictive cardiomyopathy is impaired filling in a ventricle that is not dilated. Amyloidosis is the most common cause in developed countries.",
     "lines": [
-      "Diuresis still treats congestion. It is not the only order.",
-      "Digoxin is used cautiously if amyloid is likely, because the drug binds the amyloid.",
-      "The heart-failure clinic is not a substitute for the protein studies.",
-      "Normal or near-normal EF with a stiff ventricle. Amyloid: thick walls and low QRS voltage."
+      "Sarcoidosis, hemochromatosis, and storage disease are other causes.",
+      "Endomyocardial fibrosis is a further cause.",
+      "The ventricle is stiff in diastole rather than enlarged."
     ],
     "miss": "A third increase in the loop diuretic and no protein studies.",
     "diagram": null,
@@ -1844,7 +1834,7 @@
       "name": "StatPearls. Restrictive Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "Multiple types of restrictive cardiomyopathies vary according to pathogenesis, clinical presentation, diagnostic evaluation, treatment, and prognosis."
+      "says": "Restrictive cardiomyopathy is diastolic dysfunction in a non-dilated ventricle. Cardiac amyloidosis is the most common cause in developed countries."
     },
     "number": 71,
     "id": "usmle-qb-s3-071"
@@ -1937,7 +1927,7 @@
     "title": "Pneumonia orders name the bed and the bug coverage separately",
     "read": "1 min",
     "open": false,
-    "lead": "Write the site of care from hypoxia, pressure, and confusion, then the antibiotic that matches that site. Do not add metronidazole by default.",
+    "lead": "Site of care is ordered from severity. Anaerobic coverage is not routine, and severe disease is combination therapy.",
     "lines": [
       "Severe disease is a beta-lactam plus a macrolide or a fluoroquinolone.",
       "A CURB-65 score is a note, not a substitute for looking at the patient.",
@@ -1951,7 +1941,7 @@
       "name": "2019 IDSA/ATS Guideline for Community-Acquired Pneumonia.",
       "year": "2019",
       "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST",
-      "says": "Site of care is ordered from severity. Anaerobic coverage is not routine, and severe disease is combination therapy."
+      "says": "Site of care is ordered from severity. Anaerobic coverage is not routine, and severe disease is combination therapy. 2019 IDSA/ATS Guideline for Community-Acquired Pneumonia is the source of that statement."
     },
     "number": 75,
     "id": "usmle-qb-s3-075"
@@ -2056,7 +2046,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst with the intake of up to 20 L/day fluid intake."
+      "says": "Some healthcare professionals fail to recognize the difference between these two disorders, resulting in severe consequences such as withholding desmopressin treatment in central DI cases, leading to adverse outcomes and even deaths."
     },
     "number": 79,
     "id": "usmle-qb-s3-079"
@@ -2162,7 +2152,7 @@
       "name": "ERS clinical practice guideline for the management of adult bronchiectasis.",
       "year": "2025",
       "url": "https://pubmed.ncbi.nlm.nih.gov/41016738/",
-      "says": "Airway clearance is the daily treatment of bronchiectasis. Antibiotics treat an exacerbation, not the dilated airway itself."
+      "says": "RECOMMENDATIONS: The Task Force recommendations include strong recommendations in favour of airway clearance techniques for most patients with bronchiectasis, and pulmonary rehabilitation for those with impaired exercise capacity."
     },
     "number": 83,
     "id": "usmle-qb-s3-083"
@@ -2174,7 +2164,7 @@
     "title": "Hypersensitivity pneumonitis discharge names the antigen to remove",
     "read": "1 min",
     "open": false,
-    "lead": "The discharge instruction names the bird, the hot tub, or the barn to leave. A steroid prescription without that sentence is incomplete.",
+    "lead": "In this decision, name and remove the inhaled antigen. Immunosuppression without removal does not treat hypersensitivity pneumonitis.",
     "lines": [
       "Work exposure is a written restriction if that is the antigen.",
       "Oxygen is ordered if the saturation requires it.",
@@ -2230,8 +2220,7 @@
     "lead": "Severe hypokalemia, under 2.5 mmol/L, can cause an arrhythmia. Weakness and palpitations scale with how low the value is.",
     "lines": [
       "A serum potassium of about 3.5 mmol/L is the lower limit of normal in this chapter.",
-      "3 to 3.4 mmol/L is mild, 2.5 to 3 is moderate, and under 2.5 mmol/L is severe.",
-      "Weakness, cramps, and palpitations follow the severity. Arrhythmia is the severe risk.",
+      "Mild hypokalemia is 3 to 3.4 mmol/L. Moderate is 2.5 to 3 mmol/L.",
       "The serum value is a small fraction of body stores, so it does not measure total potassium."
     ],
     "miss": "Calling a potassium of 2.4 mmol/L mild, or judging total body stores from the serum value alone.",
@@ -2280,12 +2269,11 @@
     "title": "Respiratory acidosis: a ventilation order, not an oxygen order",
     "read": "1 min",
     "open": false,
-    "lead": "Order noninvasive ventilation or intubation for an acidemic, hypercapnic patient who is tiring. Do not order only a higher oxygen flow.",
+    "lead": "When PCO2 stays high, the kidneys excrete acid and reabsorb bicarbonate so the pH can return toward normal.",
     "lines": [
-      "A reversible sedative is stopped.",
-      "The chronic bicarbonate is respected so you do not overshoot.",
-      "A blood gas is timed after the ventilation starts.",
-      "Noninvasive ventilation is first if the airway is protected and the patient is not in shock."
+      "The trigger is alveolar hypoventilation.",
+      "Hypercapnia and a low pH are present before that renal response.",
+      "Compensation changes bicarbonate. It does not clear the carbon dioxide."
     ],
     "miss": "Turning the nasal cannula from 2 liters to 8 liters as the treatment of a pH of 7.15.",
     "diagram": "nippv",
@@ -2294,7 +2282,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "In the presence of alveolar hypoventilation, 2 features commonly seen are respiratory acidosis and hypercapnia."
+      "says": "To compensate for elevated carbon dioxide, the kidneys excrete more hydrogen and ammonium and reabsorb bicarbonate."
     },
     "number": 88,
     "id": "usmle-qb-s3-088"
@@ -2306,7 +2294,7 @@
     "title": "Metabolic alkalosis: saline if the urine chloride is low",
     "read": "1 min",
     "open": false,
-    "lead": "Order saline and potassium when the urine chloride is low. Do not order saline for a high urine chloride from aldosterone.",
+    "lead": "In this decision, metabolic alkalosis is defined as a disease state where the body\u2019s pH is elevated to greater than 7.45 secondary to some metabolic process.",
     "lines": [
       "A chloride is on the chemistry, not assumed.",
       "Acetazolamide is a selected order when volume cannot be given.",
@@ -2331,7 +2319,7 @@
     "title": "Hypernatremia orders replace water on a schedule",
     "read": "1 min",
     "open": false,
-    "lead": "Order free-water replacement with a rate and a sodium check, not a single open bag. The drop is gradual.",
+    "lead": "In this decision, the human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response.",
     "lines": [
       "Desmopressin is added only for proven central diabetes insipidus.",
       "The patient who can drink is allowed to.",
@@ -2384,7 +2372,7 @@
     "title": "Uric acid colic: alkalinize and do not trust the plain film",
     "read": "1 min",
     "open": false,
-    "lead": "Order urine alkalinization and pain control for a uric acid stone. Do not discharge on the basis of a clear abdominal film.",
+    "lead": "PURPOSE: The purpose of this guideline is to provide a clinical framework for the diagnosis, prevention and follow-up of adult patients with kidney stones based on the best available published literature.",
     "lines": [
       "A CT or ultrasound is the image if you need to see it.",
       "Allopurinol is not the acute pain drug.",
@@ -2398,7 +2386,7 @@
       "name": "AUA guideline. Medical management of kidney stones.",
       "year": "2014",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24857648/",
-      "says": "Uric acid stones are radiolucent on plain films and are treated by alkalinizing the urine. Allopurinol is not the acute pain drug."
+      "says": "PURPOSE: The purpose of this guideline is to provide a clinical framework for the diagnosis, prevention and follow-up of adult patients with kidney stones based on the best available published literature. AUA guideline is the source of that statement."
     },
     "number": 92,
     "id": "usmle-qb-s3-092"
@@ -2410,7 +2398,7 @@
     "title": "Phosphate binders are timed with meals on the discharge list",
     "read": "1 min",
     "open": false,
-    "lead": "Write the phosphate binder with meals, in those words. A bedtime-only instruction does not bind phosphate.",
+    "lead": "Derangements in serum levels of calcium, phosphorus, PTH, and vitamin D, along with their effects on bone turnover, mineralization, and extraskeletal calcifications, are significant aspects of this syndrome.",
     "lines": [
       "The dietitian order is part of the discharge.",
       "Calcium and phosphate are both on the follow-up labs.",
@@ -2425,7 +2413,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Derangements in serum levels of calcium, phosphorus, PTH, and vitamin D, along with their effects on bone turnover, mineralization, and extraskeletal calcifications, are significant aspects of this syndrome."
+      "says": "Derangements in serum levels of calcium, phosphorus, PTH, and vitamin D, along with their effects on bone turnover, mineralization, and extraskeletal calcifications, are significant aspects of this syndrome. StatPearls is the source of that statement."
     },
     "number": 93,
     "id": "usmle-qb-s3-093"
@@ -2451,7 +2439,7 @@
       "name": "StatPearls. Renal Artery Stenosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
-      "says": "Renal artery stenosis (RAS) is typically defined as more than 60% narrowing of one or both renal arteries and is a major cause of hypertension, estimated at 1% to 10% of the 50 million people diagnosed with high blood pressure in the United States."
+      "says": "The most common causes of hypertension are atherosclerosis or, in young women, fibromuscular dysplasia; less common causes include extrinsic compression, vasculitis, neurofibromatosis, congenital bands, and radiation."
     },
     "number": 94,
     "id": "usmle-qb-s3-094"
@@ -2463,13 +2451,12 @@
     "title": "Emphysematous pyelonephritis is admitted for drainage",
     "read": "1 min",
     "open": false,
-    "lead": "Admit, order intravenous antibiotics, and consult urology or interventional radiology for drainage. Do not prescribe oral antibiotics and discharge.",
+    "lead": "DeBakey VA Medical Center Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney.",
     "lines": [
       "A glucose is controlled because the patient is usually diabetic.",
       "Imaging is the CT that showed the gas, and it is not repeated for curiosity.",
       "A simple pyelonephritis without gas can still go home if the patient can drink.",
-      "Gas in the kidney on CT in a diabetic patient is a necrotizing infection, usually E. coli or another gram-negative rod.",
-      "Intravenous antibiotics and drainage or nephrectomy. Oral ciprofloxacin and discharge is the miss."
+      "Gas in the kidney on CT in a diabetic patient is a necrotizing infection, usually E. coli or another gram-negative rod."
     ],
     "miss": "A three-day ciprofloxacin prescription for gas in the kidney.",
     "diagram": null,
@@ -2478,7 +2465,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "DeBakey VA Medical Center Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney."
+      "says": "DeBakey VA Medical Center Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney. StatPearls is the source of that statement."
     },
     "number": 95,
     "id": "usmle-qb-s3-095"
@@ -2519,7 +2506,6 @@
     "lines": [
       "Intubate before the scope if the hematemesis is massive.",
       "Band ligation is the endoscopic plan.",
-      "The beta blocker is a discharge drug after the bleeding has stopped.",
       "Acute variceal bleeding: a vasoactive drug such as octreotide, an intravenous antibiotic, and banding. Restrict the transfusion.",
       "Acute variceal bleeding is treated with a vasoactive drug, an antibiotic, and endoscopic therapy. A nonselective beta blocker is prevention after hemostasis, not the treatment of shock."
     ],
@@ -2564,24 +2550,24 @@
     "step": "step-3",
     "system": "gastrointestinal",
     "group": "Gastrointestinal",
-    "title": "Pancreatitis orders: fluids and a diet when the pain allows",
+    "title": "Mild pancreatitis: lactated Ringer's and early feeding",
     "read": "1 min",
     "open": false,
-    "lead": "Order lactated Ringer's or a similar crystalloid and a diet as soon as the pain allows. Do not order nothing by mouth for a week.",
+    "lead": "For acute pancreatitis, the 2024 ACG guideline suggests lactated Ringer's over normal saline and early oral feeding within 24 to 48 hours in mild disease.",
     "lines": [
-      "Antibiotics are not ordered for uncomplicated pancreatitis.",
-      "A rising urea or hematocrit is a reason to give more fluid, written as a reassessment.",
-      "Two of three: typical pain, lipase at least three times the upper limit, and imaging when the diagnosis is unclear. Do not trend lipase daily.",
-      "Lactated Ringer's early. Antibiotics are not routine for uncomplicated disease. A rising urea or hematocrit means the patient is still behind on fluid."
+      "Fluid resuscitation is moderately aggressive, with more fluid if the patient is hypovolemic.",
+      "Prophylactic antibiotics are suggested against, including in severe pancreatitis.",
+      "Early feeding replaces keeping the patient nil by mouth for days.",
+      "Diagnosis uses two of three: typical pain, lipase greater than three times the upper limit, and imaging when needed."
     ],
     "miss": "A week of bowel rest and prophylactic imipenem.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
       "name": "ACG Guideline: Management of Acute Pancreatitis.",
-      "year": "2013",
-      "url": "https://journals.lww.com/ajg/fulltext/10.1038/ajg.2013.218~american-college-of-gastroenterology-guideline-management-of",
-      "says": "Diagnose acute pancreatitis with two of three: typical pain, lipase or amylase at least three times the upper limit, and imaging when needed. Routine antibiotics are not recommended for uncomplicated disease."
+      "year": "2024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38857482/",
+      "says": "The 2024 ACG guideline suggests lactated Ringer's over normal saline, early oral feeding within 24 to 48 hours for mild pancreatitis, and against prophylactic antibiotics in severe disease."
     },
     "number": 99,
     "id": "usmle-qb-s3-099"
@@ -2596,7 +2582,6 @@
     "lead": "Cholecystitis with jaundice is not a simple gallbladder. Order an evaluation of the duct before you treat it as an isolated cystic-duct stone.",
     "lines": [
       "Fever and low pressure with jaundice are a duct emergency, and antibiotics start while that evaluation is arranged.",
-      "Ultrasound of the gallbladder alone can miss the duct stone.",
       "The gallbladder operation is still needed later. It is not the emergency drainage of a blocked duct.",
       "Jaundice, a dilated duct, or cholangitis means the stone is no longer only in the gallbladder. That needs duct drainage, not cholecystectomy alone."
     ],
@@ -2633,7 +2618,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "the term of Cholecystitis it is referred to inflammation in the gallbladder and it is considered as a surgical condition."
+      "says": "Surgical intervention remains the preferred treatment, though selected patients may benefit from conservative management with antibiotics and supportive care based on clinical context."
     },
     "number": 101,
     "id": "usmle-qb-s3-101"
@@ -2671,7 +2656,7 @@
     "title": "Mesenteric ischemia: CTA and a surgeon, lactate is not the gate",
     "read": "1 min",
     "open": false,
-    "lead": "Order CT angiography and a surgical consult when the pain is out of proportion. Do not wait for the lactate to rise.",
+    "lead": "In this decision, aMI is classified as either occlusive or nonocclusive mesenteric ischemia (NOMI).",
     "lines": [
       "Heparin is ordered if an embolus is the working diagnosis and bleeding is not the problem.",
       "A normal abdominal exam is written down so nobody is reassured by it.",
@@ -2748,7 +2733,7 @@
     "title": "Achalasia: nothing by mouth if aspirating, and a myotomy referral",
     "read": "1 min",
     "open": false,
-    "lead": "If the patient is aspirating, order nothing by mouth and a myotomy or dilation referral. Do not refill the proton-pump inhibitor as the treatment.",
+    "lead": "Although achalasia remains uncommon and may be rarely encountered in routine clinical practice, reports indicate a rising prevalence in recent years.",
     "lines": [
       "Manometry is the outpatient confirmatory test if it has not been done.",
       "Aspiration precautions are written for tonight.",
@@ -2762,7 +2747,7 @@
       "name": "StatPearls. Achalasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent."
+      "says": "Although achalasia remains uncommon and may be rarely encountered in routine clinical practice, reports indicate a rising prevalence in recent years. StatPearls is the source of that statement."
     },
     "number": 106,
     "id": "usmle-qb-s3-106"
@@ -2774,13 +2759,11 @@
     "title": "Chronic pancreatitis enzymes are written with meals",
     "read": "1 min",
     "open": false,
-    "lead": "Write the enzyme with each meal and snack. Order alcohol cessation as a prescription-level instruction, not a suggestion in the last line.",
+    "lead": "Structurally, the pancreas contains a main pancreatic duct that joins with the common bile duct at the ampulla of Vater, an accessory duct that normally drains into the duodenum at the minor papilla, and smaller branched ducts emerging from the main pancreatic duct.",
     "lines": [
-      "A glucose is on the discharge labs.",
-      "A new jaundice is an imaging order before discharge.",
-      "Pain control is a plan that is not only opioids.",
-      "Fecal elastase is low. Enzymes are taken with every meal and snack, not at bedtime alone.",
-      "Alcohol cessation is the disease-modifying step. New jaundice is imaged as cancer, not treated with more enzymes."
+      "From the main pancreatic duct. StatPearls is the source of that statement.",
+      "These ducts can become obstructed or genetically malformed.",
+      "Chronic inflammation can lead to scarring and fibrosis, causing permanent damage that impairs secretory functions."
     ],
     "miss": "One capsule at bedtime on the label.",
     "diagram": null,
@@ -2789,7 +2772,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "Chronic pancreatitis is a progressive inflammatory disease affecting both pancreatic functions."
+      "says": "Structurally, the pancreas contains a main pancreatic duct that joins with the common bile duct at the ampulla of Vater, an accessory duct that normally drains into the duodenum at the minor papilla, and smaller branched ducts emerging from the main pancreatic duct. StatPearls is the source of that statement."
     },
     "number": 107,
     "id": "usmle-qb-s3-107"
@@ -2801,10 +2784,10 @@
     "title": "H. pylori treatment is a regimen and a test of cure",
     "read": "1 min",
     "open": false,
-    "lead": "Order a full eradication regimen and a test of cure. Do not order a proton-pump inhibitor alone for a positive test.",
+    "lead": "Rifabutin triple therapy or potassium-competitive acid blocker dual therapy for 14 days is a suitable empiric alternative in patients without penicillin allergy.",
     "lines": [
       "For a treatment-naive patient, when susceptibility is unknown, bismuth quadruple therapy for 14 days is the preferred ACG regimen.",
-      "Rifabutin triple therapy or a potassium-competitive acid blocker dual therapy for 14 days is an alternative if there is no penicillin allergy.",
+      "Without penicillin allergy. ACG clinical guideline is the source of that statement.",
       "Do not use a clarithromycin salvage regimen unless susceptibility to clarithromycin is confirmed."
     ],
     "miss": "Prescribing clarithromycin again without a susceptibility result, or skipping the test of cure.",
@@ -2814,7 +2797,7 @@
       "name": "ACG clinical guideline. Treatment of Helicobacter pylori infection.",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/39626064/",
-      "says": "When antibiotic susceptibility is unknown, bismuth quadruple therapy for 14 days is preferred. A post-treatment test of cure is universal. Clarithromycin salvage is used only if susceptibility is confirmed."
+      "says": "Rifabutin triple therapy or potassium-competitive acid blocker dual therapy for 14 days is a suitable empiric alternative in patients without penicillin allergy. ACG clinical guideline is the source of that statement."
     },
     "number": 108,
     "id": "usmle-qb-s3-108"
@@ -3035,13 +3018,12 @@
     "title": "Abruption orders are blood and a fetal monitor",
     "read": "1 min",
     "open": false,
-    "lead": "Order blood products, a fetal monitor, and large-bore access. Do not order a digital cervical exam.",
+    "lead": "Placental abruption is painful bleeding and is managed by maternal resuscitation and a prompt delivery decision. Do not perform a digital examination until placenta previa is excluded.",
     "lines": [
       "A fibrinogen is on the labs.",
       "The obstetric team is called when the diagnosis is suspected.",
       "Pain control is ordered and does not delay resuscitation.",
-      "Painful bleeding and a uterus that does not relax. Blood can be concealed. Fibrinogen falls and can be the first coagulation test to move.",
-      "Resuscitate, monitor the fetus, and decide on delivery. Do not perform a digital exam until previa is excluded."
+      "Painful bleeding and a uterus that does not relax. Blood can be concealed. Fibrinogen falls and can be the first coagulation test to move."
     ],
     "miss": "A cervical check as the first order.",
     "diagram": null,
@@ -3050,7 +3032,7 @@
       "name": "RCOG Green-top Guideline No. 63. Antepartum haemorrhage.",
       "year": "2011",
       "url": "https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/antepartum-haemorrhage-green-top-guideline-no-63/",
-      "says": "Placental abruption is painful bleeding and is managed by maternal resuscitation and a prompt delivery decision. Do not perform a digital examination until placenta previa is excluded."
+      "says": "Placental abruption is painful bleeding and is managed by maternal resuscitation and a prompt delivery decision. Do not perform a digital examination until placenta previa is excluded. RCOG Green-top Guideline No is the source of that statement."
     },
     "number": 117,
     "id": "usmle-qb-s3-117"
@@ -3185,16 +3167,14 @@
     "step": "step-3",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Ovarian torsion: surgical consent even when Doppler shows flow",
+    "title": "Ovarian torsion is a surgical emergency",
     "read": "1 min",
     "open": false,
-    "lead": "Order surgical evaluation for suspected ovarian torsion regardless of a Doppler report that shows flow. Order a pregnancy test.",
+    "lead": "Ovarian torsion is a surgical emergency. The ovary has a dual blood supply, so venous drainage fails before arterial flow is gone.",
     "lines": [
-      "Nothing by mouth and consent are written.",
-      "Pain control is ordered.",
-      "An ectopic pregnancy remains on the differential until the test returns.",
-      "The ovary has a dual blood supply, so Doppler flow can be present in a twisted ovary.",
-      "Sudden adnexal pain with a cyst goes to surgery. A pregnancy test is done because ectopic pregnancy is the other emergency."
+      "Pain is sudden and one-sided, often with nausea. A cyst is the usual setup.",
+      "And uterine arteries. Prompt surgical intervention is essential to preserve ovarian function.",
+      "Delay costs ovarian function. Prompt surgery is what preserves it."
     ],
     "miss": "Cancelling the surgical consult because the report said flow was present.",
     "diagram": null,
@@ -3203,7 +3183,7 @@
       "name": "StatPearls. Ovarian Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "Ovarian torsion is a gynecologic surgical emergency in which the ovary rotates around the ligaments supporting it within the adnexa, partially or completely obstructing its blood supply."
+      "says": "The ovary receives a dual blood supply from the ovarian and uterine arteries. Prompt surgical intervention is essential to preserve ovarian function."
     },
     "number": 123,
     "id": "usmle-qb-s3-123"
@@ -3215,9 +3195,8 @@
     "title": "Pelvic inflammatory disease: treat the partner in the note",
     "read": "1 min",
     "open": false,
-    "lead": "The discharge names the partner treatment and the return precautions for worsening pain. A pregnancy test is resulted before the drug.",
+    "lead": "Sexually Transmitted Infections Treatment Guidelines, 2021.",
     "lines": [
-      "Pelvic inflammatory disease is treated from the 2021 CDC STI Treatment Guidelines.",
       "Treat the patient and arrange treatment of sex partners. A prescription for one person is not the regimen.",
       "Cervical motion tenderness is the examination finding that starts that guideline, not a normal Pap smear.",
       "Treat gonorrhea and chlamydia in the patient, and treat the partner in the same plan."
@@ -3229,7 +3208,7 @@
       "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
-      "says": "The 2021 CDC STI Treatment Guidelines are the source for treatment of pelvic inflammatory disease, including management of sex partners."
+      "says": "Sexually Transmitted Infections Treatment Guidelines, 2021. CDC Sexually Transmitted Infections Treatment Guidelines, 2021 is the source of that statement."
     },
     "number": 124,
     "id": "usmle-qb-s3-124"
@@ -3255,7 +3234,7 @@
       "name": "ACOG Committee Opinion No. 734. Transvaginal ultrasonography for postmenopausal bleeding.",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29683909/",
-      "says": "Postmenopausal bleeding is evaluated with transvaginal ultrasound, and persistent bleeding or a thickened endometrium is sampled. A Pap smear does not reach the endometrium."
+      "says": "Transvaginal ultrasonography usually is sufficient for an initial evaluation of postmenopausal bleeding if the ultrasound images reveal a thin endometrial echo (less than or equal to 4 mm), given that an endometrial thickness of 4 mm or less has a greater than 99% negative predictive value for endometrial cancer."
     },
     "number": 125,
     "id": "usmle-qb-s3-125"
@@ -3345,7 +3324,7 @@
     "title": "Anaphylaxis: epinephrine in the thigh, and a period of watching",
     "read": "1 min",
     "open": false,
-    "lead": "Order intramuscular epinephrine in the mid-outer thigh and a period of observation. Do not order diphenhydramine as the only drug.",
+    "lead": "In infants and toddlers, age-specific symptoms may differ from older children and adults, patient age is not correlated with reaction severity, and anaphylaxis is unlikely to be the initial reaction to an allergen on first exposure.",
     "lines": [
       "Epinephrine is 0.01 mg/kg, to a maximum of 0.3 mg in children and teenagers and 0.5 mg in adults.",
       "Give epinephrine at the first sign of suspected anaphylaxis.",
@@ -3359,7 +3338,7 @@
       "name": "Anaphylaxis: a 2023 practice parameter update.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/",
-      "says": "Epinephrine is dosed at 0.01 mg/kg, up to 0.3 mg in children and teenagers and 0.5 mg in adults. Draw an acute tryptase as early as possible, ideally within 2 hours. A tryptase below the laboratory cutoff does not exclude anaphylaxis."
+      "says": "In infants and toddlers, age-specific symptoms may differ from older children and adults, patient age is not correlated with reaction severity, and anaphylaxis is unlikely to be the initial reaction to an allergen on first exposure. Anaphylaxis: a 2023 practice parameter update is the source of that statement."
     },
     "number": 129,
     "id": "usmle-qb-s3-129"
@@ -3385,7 +3364,7 @@
       "name": "ACEP clinical policy. Acute carbon monoxide poisoning in the emergency department.",
       "year": "2017",
       "url": "https://pubmed.ncbi.nlm.nih.gov/27993310/",
-      "says": "This ACEP clinical policy addresses emergency evaluation and management of adults with acute carbon monoxide poisoning, including selection for hyperbaric oxygen."
+      "says": "Clinical Policy: Critical Issues in the Evaluation and Management of Adult Patients Presenting to the Emergency Department With Acute Carbon Monoxide Poisoning."
     },
     "number": 130,
     "id": "usmle-qb-s3-130"
@@ -3528,7 +3507,7 @@
     "title": "Malignant hyperthermia: stop the gas and give dantrolene",
     "read": "1 min",
     "open": false,
-    "lead": "The intraoperative order is to stop the volatile agent, hyperventilate with 100% oxygen, and give dantrolene. Cooling is ordered with it.",
+    "lead": "In this decision, stop the triggering anesthetic and give dantrolene. The first sign is often a rising end-tidal CO2, then rigidity.",
     "lines": [
       "The dantrolene dose is repeated as the protocol says. One vial is not the whole treatment.",
       "Potassium and urine output are ordered because muscle is dying.",
@@ -3554,7 +3533,7 @@
     "title": "Fat embolism: oxygen and fix the fracture",
     "read": "1 min",
     "open": false,
-    "lead": "Order oxygen and early fracture fixation. Do not order heparin as the specific treatment of fat embolism.",
+    "lead": "Because most reported cases of fat embolism occur in patients with orthopedic trauma, most research on this condition has focused on this population.",
     "lines": [
       "A chest finding and petechiae are documented.",
       "A true venous clot is still considered and is a separate order.",
@@ -3568,7 +3547,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Because most reported cases of fat embolism occur in patients with orthopedic trauma, most research on this condition has focused on this population."
+      "says": "Because most reported cases of fat embolism occur in patients with orthopedic trauma, most research on this condition has focused on this population. StatPearls is the source of that statement."
     },
     "number": 137,
     "id": "usmle-qb-s3-137"
@@ -3637,9 +3616,7 @@
     "lines": [
       "A nonopioid is ordered for many acute pains and is not skipped.",
       "The duration is days, written as a number.",
-      "Benzodiazepines are not combined without a reason you would defend.",
-      "Start immediate-release opioid at the lowest dose, for days, not an extended-release product. Offer naloxone if risk is high.",
-      "Initial opioids are immediate-release and low dose. Naloxone is offered when overdose risk is present. Extended-release opioids are not started first."
+      "Benzodiazepines are not combined without a reason you would defend."
     ],
     "miss": "A long-acting opioid as the first prescription after an injury.",
     "diagram": "opioid-new",
@@ -3717,7 +3694,7 @@
     "lines": [
       "Screening mammography is for people without that symptom.",
       "Age 40 to 74 is the screening window. A mass at any age in that window is still diagnostic.",
-      "Screening schedules do not apply to a palpable mass. Diagnostic imaging is ordered."
+      "Imaging is ordered, which is the recommendation in USPSTF. Breast cancer screening."
     ],
     "miss": "Scheduling a screening mammogram in eight months for a new lump.",
     "diagram": "breast-lump",
@@ -3795,7 +3772,6 @@
     "lines": [
       "A yearly Pap is not the recommendation.",
       "A visible cervical lesion is a biopsy, not a screening interval.",
-      "Primary HPV testing is not the strategy before age 30. Cytology every 3 years is.",
       "Ages 30\u201365 may use HPV every 5 years. Stop at 65 only when recent tests were adequate and negative. Postcoital bleeding is examined now."
     ],
     "miss": "An HPV-only order for a 24-year-old.",
@@ -4002,10 +3978,9 @@
     "title": "Do not order a screening test the patient would not act on",
     "read": "1 min",
     "open": false,
-    "lead": "If a patient would not accept a biopsy or a treatment for the disease you might find, do not order the screening test.",
+    "lead": "The USPSTF recommends colorectal cancer screening from age 45 through 75, and a positive stool test is followed by colonoscopy.",
     "lines": [
       "Average-risk colorectal screening runs from 45 through 75. Ages 76 to 85 are selective.",
-      "A positive stool test is a colonoscopy, not another card.",
       "A patient who would decline colonoscopy and treatment is not started on a screening program.",
       "Bleeding or iron deficiency is a diagnostic colonoscopy, not a screening interval."
     ],
@@ -4016,7 +3991,7 @@
       "name": "USPSTF. Colorectal cancer screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "says": "The USPSTF recommends colorectal cancer screening from age 45 through 75, and a positive stool test is followed by colonoscopy."
+      "says": "The USPSTF recommends colorectal cancer screening from age 45 through 75, and a positive stool test is followed by colonoscopy. USPSTF is the source of that statement."
     },
     "number": 154,
     "id": "usmle-qb-s3-154"
@@ -4129,7 +4104,7 @@
     "title": "Write the pre-test chance before you order a rare-disease test",
     "read": "1 min",
     "open": false,
-    "lead": "Before you order a test for a rare disease, write the chance you believe the patient has it. A positive result will often be false if that chance is tiny.",
+    "lead": "In this decision, to make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results.",
     "lines": [
       "Sensitivity does not rescue a near-zero pre-test chance.",
       "The likelihood ratio then revises the number you wrote.",
@@ -4157,7 +4132,6 @@
     "lead": "The written handoff starts with illness severity in words the night clinician can use. A list of problems without severity is not a handoff.",
     "lines": [
       "The action list is timed: tonight, not soon.",
-      "The receiver's read-back is part of the verbal handoff even when the note exists.",
       "A contingency, what to do if the pressure falls, is one sentence.",
       "Illness severity, patient summary, action list with a time, a contingency, and the receiver saying the plan back.",
       "A copied problem list with no watch item is not a handoff. The verbal read-back still happens when a note exists."
@@ -4208,7 +4182,7 @@
     "title": "Document the interpreter's name in the consent note",
     "read": "1 min",
     "open": false,
-    "lead": "The consent note names the professional interpreter. A family member in that blank is an incomplete consent.",
+    "lead": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure.",
     "lines": [
       "The language is recorded.",
       "Questions the patient asked are in the note.",
@@ -4223,7 +4197,7 @@
       "name": "AMA Code of Medical Ethics. Informed consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure."
+      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure. AMA Code of Medical Ethics is the source of that statement."
     },
     "number": 162,
     "id": "usmle-qb-s3-162"
@@ -4235,7 +4209,7 @@
     "title": "Write the chaperone's name or the patient's decline",
     "read": "1 min",
     "open": false,
-    "lead": "For a breast, pelvic, or genital exam, the note names the chaperone or records that the patient declined one after it was offered.",
+    "lead": "AMA Opinion 1.2.4 says the chaperone policy is communicated to patients, a request is always honored, and the chaperone upholds privacy.",
     "lines": [
       "The exam stops if consent is withdrawn.",
       "Each step is explained first.",
@@ -4248,7 +4222,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.2.4, Use of Chaperones.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/use-chaperones",
-      "says": "AMA Opinion 1.2.4 says the chaperone policy is communicated to patients, a request is always honored, and the chaperone upholds privacy."
+      "says": "AMA Opinion 1.2.4 says the chaperone policy is communicated to patients, a request is always honored, and the chaperone upholds privacy. AMA Code of Medical Ethics is the source of that statement."
     },
     "number": 163,
     "id": "usmle-qb-s3-163"
@@ -4289,7 +4263,6 @@
     "lead": "Before a ventilator is withdrawn, order the opioid or benzodiazepine that will treat air hunger. The withdrawal order and the comfort order are written together.",
     "lines": [
       "The intent, relief, is in the note.",
-      "A dose chosen to relieve symptoms is not an order to end life.",
       "The family is told what they will see.",
       "Order an opioid for air hunger before the ventilator is withdrawn. The dose is the dose that relieves the symptom."
     ],
@@ -4312,7 +4285,7 @@
     "title": "Put the blood-refusal on the chart before the incision",
     "read": "1 min",
     "open": false,
-    "lead": "A capable patient's refusal of blood is a signed order visible to the anesthesiologist and the blood bank before the operation starts.",
+    "lead": "A patient with decision-making capacity may refuse a recommended intervention, and that refusal is respected.",
     "lines": [
       "The consequence, including death, is in the note.",
       "A surrogate does not create a refusal the patient did not make.",
@@ -4337,7 +4310,7 @@
     "title": "Emergency treatment of a child is ordered when a parent refuses",
     "read": "1 min",
     "open": false,
-    "lead": "If a parent refuses emergency care that would prevent a child's death or serious harm, order the treatment and notify the protective system.",
+    "lead": "In this decision, suspected abuse or neglect is reported. A request to keep it private does not cancel the duty.",
     "lines": [
       "Explain once, clearly.",
       "Do not delay a life-saving transfusion for a prolonged debate.",
@@ -4390,7 +4363,7 @@
     "title": "Sterilization is not added to a cesarean consent in labor",
     "read": "1 min",
     "open": false,
-    "lead": "Do not add tubal ligation to a cesarean consent signed during labor unless a considered consent was obtained before labor.",
+    "lead": "Consent is an independent, voluntary decision. It is not folded into another procedure when the patient cannot deliberate.",
     "lines": [
       "Pain and fear make that moment inadequate.",
       "A prior antenatal consent is confirmed, not assumed.",
@@ -4441,7 +4414,7 @@
     "title": "Recheck capacity when the sodium or the drug wears off",
     "read": "1 min",
     "open": false,
-    "lead": "A capacity determination is redone when the sodium, the oxygen, or the sedative changes. Do not leave a one-time note as a permanent label.",
+    "lead": "A written directive that addresses this decision outranks a conflicting surrogate. Substituted judgment comes before best interest.",
     "lines": [
       "The question is this decision, today.",
       "A refusal that appears after the patient clears may be valid.",
@@ -4468,7 +4441,7 @@
     "title": "An against-advice departure still gets the prescription that makes leaving safer",
     "read": "1 min",
     "open": false,
-    "lead": "If a capable patient leaves against advice, order the antibiotic or the insulin they need for a safer exit, and document the risks you explained.",
+    "lead": "AMA Opinion 2.1.1 still requires information about recommended treatment when a patient declines to stay.",
     "lines": [
       "A signature is ideal and is not required for the note to count.",
       "Offer to treat the dangerous problem before they go.",
@@ -4483,7 +4456,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "AMA Opinion 2.1.1 still requires information about recommended treatment when a patient declines to stay."
+      "says": "AMA Opinion 2.1.1 still requires information about recommended treatment when a patient declines to stay. AMA Code of Medical Ethics is the source of that statement."
     },
     "number": 172,
     "id": "usmle-qb-s3-172"
@@ -4585,10 +4558,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 9.3.2, physician health and wellness, and reporting impaired colleagues.",
+      "name": "AMA Code of Medical Ethics. Opinion 9.3.2, Physician Responsibilities to Colleagues with Illness, Disability or Impairment.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/reporting-incompetent-or-unethical-behaviors-colleagues",
-      "says": "An impaired colleague is removed from patient care and reported. A hallway announcement is not the report."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/physician-responsibilities-colleagues-illness-disability-or-impairment",
+      "says": "AMA Opinion 9.3.2: if a colleague continues to provide unsafe care, promote an intervention that protects patients. Seek help through institutional policy."
     },
     "number": 176,
     "id": "usmle-qb-s3-176"
@@ -4600,7 +4573,7 @@
     "title": "An addendum after a complication is timed and signed",
     "read": "1 min",
     "open": false,
-    "lead": "After a complication, corrections are an addendum with the time you learned the fact. Do not reopen and rewrite the original note.",
+    "lead": "AMA Principle II requires honesty in professional interactions, so a later entry is added and identified rather than written over the original note.",
     "lines": [
       "The disclosure to the patient matches the addendum.",
       "A late entry is labeled late.",
@@ -4613,7 +4586,7 @@
       "name": "AMA Principles of Medical Ethics, Principle II.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/principles",
-      "says": "AMA Principle II requires honesty in professional interactions, so a later entry is added and identified rather than written over the original note."
+      "says": "AMA Principle II requires honesty in professional interactions, so a later entry is added and identified rather than written over the original note. AMA Principles of Medical Ethics, Principle II is the source of that statement."
     },
     "number": 177,
     "id": "usmle-qb-s3-177"
@@ -4629,7 +4602,6 @@
     "lines": [
       "The patient can refuse and still have the operation.",
       "The form says what is experimental.",
-      "The person obtaining research consent can explain the study.",
       "A research biopsy needs its own consent that explains the study, the alternatives, and the right to refuse without losing standard care."
     ],
     "miss": "Adding an extra research biopsy to the surgical consent in the preoperative bay.",
