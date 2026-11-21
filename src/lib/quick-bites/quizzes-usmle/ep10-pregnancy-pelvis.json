@@ -1,0 +1,289 @@
+{
+  "episode": "ep10-pregnancy-pelvis",
+  "title": "Pregnancy Emergencies and the Pelvis",
+  "video": "quick-bites-usmle-ep10-pregnancy-pelvis-web.mp4",
+  "questions": [
+    {
+      "id": "ep10-q01",
+      "type": "single_best_answer",
+      "stem": "Painless late bleeding, placenta over the opening. What do you not do?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Image first"
+        },
+        {
+          "id": "B",
+          "text": "A digital exam"
+        },
+        {
+          "id": "C",
+          "text": "Ask about pain"
+        },
+        {
+          "id": "D",
+          "text": "Think about previa"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A digital exam can start a bleed you cannot stop. Image first.",
+      "videoTimestamp": "1:02"
+    },
+    {
+      "id": "ep10-q02",
+      "type": "single_best_answer",
+      "stem": "A painful late-pregnancy bleed, a tight uterus, and clotting tests coming apart suggest:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Painless previa, first thought"
+        },
+        {
+          "id": "B",
+          "text": "Abruption, and watch for consumed clotting factors"
+        },
+        {
+          "id": "C",
+          "text": "A routine digital exam now"
+        },
+        {
+          "id": "D",
+          "text": "A simple menstrual period"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pain plus a tight uterus plus consumed factors: abruption.",
+      "videoTimestamp": "2:19"
+    },
+    {
+      "id": "ep10-q03",
+      "type": "single_best_answer",
+      "stem": "A positive pregnancy test, an empty uterus, and pelvic pain. Next worry?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A normal early pregnancy, so send the patient home"
+        },
+        {
+          "id": "B",
+          "text": "Ectopic pregnancy until proven otherwise"
+        },
+        {
+          "id": "C",
+          "text": "Previa, because all bleeding is previa"
+        },
+        {
+          "id": "D",
+          "text": "Testicular torsion"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A positive test and an empty uterus: think ectopic.",
+      "videoTimestamp": "0:44"
+    },
+    {
+      "id": "ep10-q04",
+      "type": "single_best_answer",
+      "stem": "Testicular torsion should be treated as:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hours, not a clinic slot"
+        },
+        {
+          "id": "B",
+          "text": "A problem that can always wait a week"
+        },
+        {
+          "id": "C",
+          "text": "A simple digital exam of the cervix"
+        },
+        {
+          "id": "D",
+          "text": "A transudative effusion"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not wait for swelling to declare itself.",
+      "videoTimestamp": "1:35"
+    },
+    {
+      "id": "ep10-q05",
+      "type": "single_best_answer",
+      "stem": "Ovarian torsion:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is excluded if any Doppler flow is seen"
+        },
+        {
+          "id": "B",
+          "text": "Can still be present even if flow is seen"
+        },
+        {
+          "id": "C",
+          "text": "Is a 3-hertz absence pattern"
+        },
+        {
+          "id": "D",
+          "text": "Is always painless previa"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The history and the pain decide, not a single reassuring trace.",
+      "videoTimestamp": "3:30"
+    },
+    {
+      "id": "ep10-q06",
+      "type": "single_best_answer",
+      "stem": "Pelvic infection that causes right-upper or shoulder-tip pain may have reached:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The liver capsule"
+        },
+        {
+          "id": "B",
+          "text": "The cavotricuspid isthmus"
+        },
+        {
+          "id": "C",
+          "text": "The distal tubule only"
+        },
+        {
+          "id": "D",
+          "text": "The substantia nigra"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Perihepatitis can follow a pelvic infection.",
+      "videoTimestamp": "1:50"
+    },
+    {
+      "id": "ep10-q07",
+      "type": "single_best_answer",
+      "stem": "Bleeding after menopause should be treated as:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A simple dry-tissue problem with no further look"
+        },
+        {
+          "id": "B",
+          "text": "Endometrial cancer until the lining is evaluated / sampled"
+        },
+        {
+          "id": "C",
+          "text": "Always an ectopic pregnancy"
+        },
+        {
+          "id": "D",
+          "text": "Always testicular torsion"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not stop at a simple explanation. The lining needs a look.",
+      "videoTimestamp": "1:58"
+    },
+    {
+      "id": "ep10-q08",
+      "type": "single_best_answer",
+      "stem": "Previa bleeding is typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Painless, with the placenta over the opening"
+        },
+        {
+          "id": "B",
+          "text": "Painful, with a rock-hard uterus and consumed factors as the first picture"
+        },
+        {
+          "id": "C",
+          "text": "A 3-hertz absence stare"
+        },
+        {
+          "id": "D",
+          "text": "A lens-shaped epidural bleed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Painless late bleeding: think previa and do not do a digital exam.",
+      "videoTimestamp": "1:27"
+    },
+    {
+      "id": "ep10-q09",
+      "type": "single_best_answer",
+      "stem": "Abruption bleeding is typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Painless, with a placenta clearly over the os and no tightness"
+        },
+        {
+          "id": "B",
+          "text": "Painful, and the bleeding may be hidden"
+        },
+        {
+          "id": "C",
+          "text": "A simple transudate"
+        },
+        {
+          "id": "D",
+          "text": "A shunt"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The uterus can be tight, and clotting factors can be consumed.",
+      "videoTimestamp": "0:09"
+    },
+    {
+      "id": "ep10-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Do not do a digital exam if previa is possible."
+        },
+        {
+          "id": "B",
+          "text": "A positive test and an empty uterus: think ectopic."
+        },
+        {
+          "id": "C",
+          "text": "Ovarian torsion is excluded whenever Doppler flow is seen."
+        },
+        {
+          "id": "D",
+          "text": "Postmenopausal bleeding needs endometrial evaluation."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Ovarian torsion can still be twisted even if flow is seen.",
+      "videoTimestamp": "3:30"
+    }
+  ]
+}

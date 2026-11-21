@@ -27,6 +27,13 @@ import {
   panceQuickBitePoster,
 } from "@/lib/quick-bites/pance-catalog";
 import {
+  USMLE_VIDEO_QUICK_BITE_EPISODES,
+  isUsmleVideoQuickBitePlayable,
+  nextPlayableUsmleVideoQuickBite,
+  previousPlayableUsmleVideoQuickBite,
+  usmleVideoQuickBitePoster,
+} from "@/lib/quick-bites/usmle-video-catalog";
+import {
   PHARMACY_QUICK_BITE_EPISODES,
   isPharmacyQuickBitePlayable,
   nextPlayablePharmacyQuickBite,
@@ -131,6 +138,23 @@ const PANCE_SERIES: QuickBiteSeries = {
   previousEpisode: previousPlayablePanceQuickBite,
 };
 
+const USMLE_SERIES: QuickBiteSeries = {
+  id: "video-quick-bites-usmle",
+  headingId: "video-quick-bites-usmle-heading",
+  title: "Quick Bites: USMLE",
+  subtitle: "Short chalkboard explainers for the medical boards.",
+  note: null,
+  lockedMessage: "Paid members can watch every episode.",
+  groups: [{ title: "", episodes: USMLE_VIDEO_QUICK_BITE_EPISODES }],
+  poster: usmleVideoQuickBitePoster,
+  apiBase: "/api/quick-bites-usmle",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are burned into the video.",
+  isPlayable: isUsmleVideoQuickBitePlayable,
+  nextEpisode: nextPlayableUsmleVideoQuickBite,
+  previousEpisode: previousPlayableUsmleVideoQuickBite,
+};
+
 function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
   return (
     <picture>
@@ -222,7 +246,7 @@ export function VideoQuickBitesSection({
   canPlay: boolean;
   upgradeHref: string;
   upgradeLabel: string;
-  series?: "nursing" | "pharmacy" | "fnp" | "pance";
+  series?: "nursing" | "pharmacy" | "fnp" | "pance" | "usmle";
   /** Standalone page uses h1. The old dashboard embed used h2. */
   titleAs?: "h1" | "h2";
 }) {
@@ -231,9 +255,11 @@ export function VideoQuickBitesSection({
       ? PHARMACY_SERIES
       : series === "fnp"
         ? FNP_SERIES
-        : series === "pance"
+        :     series === "pance"
           ? PANCE_SERIES
-          : NURSING_SERIES;
+          : series === "usmle"
+            ? USMLE_SERIES
+            : NURSING_SERIES;
   const TitleTag = titleAs;
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [session, setSession] = useState(0);

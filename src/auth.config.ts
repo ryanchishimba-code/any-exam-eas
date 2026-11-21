@@ -4,6 +4,12 @@ import { isPremiumPage, isStudyGuidePath } from "@/lib/premium-routes";
 import { isInternalPath, staffLoginUrl } from "@/lib/staff-routes";
 import { ADMIN_LOGIN_PATH, adminLoginUrl, isAdminPath } from "@/lib/admin/routes";
 import { hasMinRole, isStaffRole } from "@/lib/permissions";
+import { USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
+import {
+  USMLE_VIDEO_QUICK_BITES_PATH,
+  isUsmleVideoQuickBitesReleased,
+  usmleVideoRouteDecision,
+} from "@/lib/quick-bites/usmle-video-flags";
 import { loggedOutTrialCheckoutHref } from "@/lib/billing/card-free-checkout";
 
 /** Edge-safe config — used by middleware only (no Prisma/bcrypt). */
@@ -24,6 +30,15 @@ export const authConfig = {
     authorized({ auth, request }) {
       const isLoggedIn = !!auth?.user;
       const path = request.nextUrl.pathname;
+      const role = (auth?.user as { role?: string } | undefined)?.role;
+
+      if (path === USMLE_VIDEO_QUICK_BITES_PATH || path.startsWith(`${USMLE_VIDEO_QUICK_BITES_PATH}/`)) {
+        if (usmleVideoRouteDecision(isUsmleVideoQuickBitesReleased(), isStaffRole(role)) === "cards") {
+          const dest = request.nextUrl.clone();
+          dest.pathname = USMLE_QUICK_BITES_PATH;
+          return NextResponse.redirect(dest, 308);
+        }
+      }
 
       // Standalone roadmap removed — Study Hub owns blueprint readiness.
       if (path === "/dashboard/roadmap" || path.startsWith("/dashboard/roadmap/")) {
@@ -42,8 +57,6 @@ export const authConfig = {
       const isInternal = isInternalPath(path);
       const isAdmin = isAdminPath(path);
       const isPremium = isPremiumPage(path);
-      const role = (auth?.user as { role?: string } | undefined)?.role;
-
       if (path === ADMIN_LOGIN_PATH) {
         return true;
       }
