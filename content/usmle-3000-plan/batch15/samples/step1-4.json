@@ -1,0 +1,20 @@
+{
+  "id": "b15-s1-12",
+  "stepLevel": "step1",
+  "outlineSystem": "behavioral-nervous",
+  "subjectId": "anatomy",
+  "difficulty": 4,
+  "blueprintTopic": "syrinx",
+  "scenario": "A 35-year-old man burned his hands on a stove and did not feel it. He still feels cotton on the same skin. The loss is over both shoulders and the hands. A classmate calls it a peripheral neuropathy because the hands are numb.",
+  "question": "Which fibers were cut, and why is touch spared?",
+  "options": [
+    "Dorsal columns, so pain should be the spared sense",
+    "Crossing pain fibers in a central cavity",
+    "A peripheral nerve, which spares touch and removes pain only",
+    "A complete cord cut, so all sensation below a level is gone",
+    "A cortical sensory stroke, so both hands lose touch and pain together"
+  ],
+  "correctAnswer": "Crossing pain fibers in a central cavity",
+  "citation": "Dalley AF, Agur AMR. Moore's Clinically Oriented Anatomy. 9th ed. Wolters Kluwer; 2023.",
+  "examTakeaway": "A central cord cavity hits crossing spinothalamic fibers first, so pain and temperature are lost in a cape over the shoulders while touch remains."
+}
