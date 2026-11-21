@@ -2102,10 +2102,16 @@
     "diagram": "pe-split",
     "diagramAlt": "Pulmonary embolism split. Hypotension or shock: reperfuse Normal pressure: anticoagulate Right-heart strain alone is not a lytic",
     "source": {
-      "name": "2019 ESC Guidelines for Acute Pulmonary Embolism.",
-      "year": "2019",
-      "url": "https://academic.oup.com/eurheartj/article/41/4/543/5556136",
-      "says": "Stable patients are anticoagulated. Systemic thrombolysis is reserved for high-risk, hypotensive embolism."
+      "name": "2026 AHA/ACC/Multisociety Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults (Guideline-at-a-Glance).",
+      "year": "2026",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2025.12.023",
+      "says": "In PE categories A1-C2 (normotensive), systemic thrombolysis should not be used over anticoagulation alone because of bleeding and intracranial hemorrhage risk. DOACs are recommended over VKAs for patients eligible for oral anticoagulation.",
+      "more": [
+        {
+          "name": "2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism",
+          "url": "https://academic.oup.com/eurheartj/article/41/4/543/5556136"
+        }
+      ]
     },
     "number": 76,
     "id": "usmle-qb-s3-076"
@@ -2128,10 +2134,10 @@
     "diagram": "sglt2-rules",
     "diagramAlt": "SGLT2 inhibitor rules. Start at eGFR \u226520 if diabetes + CKD Also if HF, or ACR \u2265200 mg/g Hold if fasting, surgery, or critical illness",
     "source": {
-      "name": "KDIGO 2024 Clinical Practice Guideline for CKD.",
+      "name": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease.",
       "year": "2024",
       "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
-      "says": "The drug is held for prolonged fasting, surgery, and critical illness, and it is not stopped for the early hemodynamic eGFR dip."
+      "says": "It is reasonable to withhold SGLT2i during prolonged fasting, surgery, or critical medical illness, when people may be at greater risk for ketosis. Once started, continue even if eGFR falls below 20 unless not tolerated or KRT starts."
     },
     "number": 77,
     "id": "usmle-qb-s3-077"
@@ -2154,10 +2160,16 @@
     "diagram": "na-bolus",
     "diagramAlt": "Severely symptomatic hyponatremia. US: 100 mL 3% over 10 min, up to x3 EU: 150 mL over 20 min, repeat x2 First hour: rise of 4-6 mmol/L Over 10 mmol/L in 24 h risks ODS",
     "source": {
-      "name": "US expert panel recommendations on hyponatremia. Verbalis et al.",
-      "year": "2013",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24074529/",
-      "says": "For severely symptomatic hyponatremia the US panel uses 100 mL of 3% saline over 10 minutes, up to three times, aiming for a 4 to 6 mmol/L rise in the first hour, and limits correction so the 24-hour rise does not exceed about 10 mmol/L. The European regimen is 150 mL over 20 minutes, repeated up to twice."
+      "name": "European clinical practice guideline on diagnosis and treatment of hyponatraemia (ESE/ESICM/ERA-EDTA).",
+      "year": "2014",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24569125/",
+      "says": "Severe symptoms: prompt IV infusion of 150 mL 3% hypertonic saline over 20 minutes, repeated twice or until a 5 mmol/L rise. Limit the rise to 10 mmol/L in the first 24 hours and 8 mmol/L every 24 hours thereafter.",
+      "more": [
+        {
+          "name": "Verbalis JG et al. Diagnosis, evaluation, and treatment of hyponatremia: expert panel recommendations (US, 2013).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24074529/"
+        }
+      ]
     },
     "number": 78,
     "id": "usmle-qb-s3-078"
@@ -2184,7 +2196,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst with the intake of up to 20 L/day fluid intake."
+      "says": "After water deprivation, desmopressin increases urine osmolality by more than 100% in complete central DI and up to 50% in partial central DI. In adults, nephrogenic (AVP-resistance) disease is mostly from chronic lithium or hypercalcemia."
     },
     "number": 79,
     "id": "usmle-qb-s3-079"
@@ -2209,7 +2221,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Tension pneumothorax develops when pleural pressure is transmitted to the mediastinum."
+      "says": "Tension pneumothorax is intrapleural air under pressure causing lung collapse and mediastinal shift; diagnosis is clinical, with hypotension, unilateral breath sounds, distended neck veins, and tracheal deviation."
     },
     "number": 80,
     "id": "usmle-qb-s3-080"
@@ -2233,10 +2245,16 @@
     "diagram": "ards-tv",
     "diagramAlt": "ARDS tidal volume. 6 mL/kg predicted body weight Use height and sex, not the scale Plateau pressure \u226430 cm H2O",
     "source": {
-      "name": "Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes. N Engl J Med.",
-      "year": "2000",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005043421801",
-      "says": "Tidal volume of 6 mL/kg predicted body weight and plateau pressure at or under 30 cm H2O reduced mortality compared with 12 mL/kg."
+      "name": "ATS/ESICM/SCCM Clinical Practice Guideline: Mechanical Ventilation in Adult Patients with ARDS (Summary for Clinicians).",
+      "year": "2017",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5566274/",
+      "says": "Adults with ARDS should receive mechanical ventilation that limits tidal volumes to 4-8 mL/kg predicted body weight and inspiratory plateau pressure to under 30 cm H2O (strong recommendation).",
+      "more": [
+        {
+          "name": "ARDS Network. Ventilation with lower tidal volumes (NEJM 2000).",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005043421801"
+        }
+      ]
     },
     "number": 81,
     "id": "usmle-qb-s3-081"
@@ -2260,10 +2278,16 @@
     "diagram": "ipf-drug",
     "diagramAlt": "IPF drug. Nintedanib or pirfenidone Not long-term prednisone as the disease drug Oxygen if hypoxemic",
     "source": {
-      "name": "ATS/ERS/JRS/ALAT Clinical Practice Guideline. Idiopathic pulmonary fibrosis. Update.",
+      "name": "ATS/ERS/JRS/ALAT Clinical Practice Guideline: Idiopathic Pulmonary Fibrosis (an update) and Progressive Pulmonary Fibrosis in Adults.",
       "year": "2022",
       "url": "https://www.atsjournals.org/doi/10.1164/rccm.202202-0399ST",
-      "says": "Nintedanib or pirfenidone is suggested for idiopathic pulmonary fibrosis. The guideline recommends against a steroid-containing regimen as disease-modifying therapy."
+      "says": "Antifibrotic treatment is indicated for patients diagnosed with IPF; nintedanib and pirfenidone were recommended for IPF in prior guidelines and slow disease progression.",
+      "more": [
+        {
+          "name": "ATS/ERS/JRS/ALAT IPF treatment guideline (2015)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26177183/"
+        }
+      ]
     },
     "number": 82,
     "id": "usmle-qb-s3-082"
@@ -2290,7 +2314,7 @@
       "name": "ERS clinical practice guideline for the management of adult bronchiectasis.",
       "year": "2025",
       "url": "https://pubmed.ncbi.nlm.nih.gov/41016738/",
-      "says": "Airway clearance is the daily treatment of bronchiectasis. Antibiotics treat an exacerbation, not the dilated airway itself."
+      "says": "Strong recommendations favor airway clearance for most patients, long-term macrolides for those at high exacerbation risk, and long-term inhaled antibiotics with chronic Pseudomonas aeruginosa infection at high exacerbation risk."
     },
     "number": 83,
     "id": "usmle-qb-s3-083"
@@ -2314,10 +2338,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ATS/JRS/ALAT guideline. Diagnosis of hypersensitivity pneumonitis in adults.",
+      "name": "ATS/JRS/ALAT Clinical Practice Guideline. Diagnosis of Hypersensitivity Pneumonitis in Adults.",
       "year": "2020",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32706311/",
-      "says": "Name and remove the inhaled antigen. Immunosuppression without removal does not treat hypersensitivity pneumonitis."
+      "says": "Patients with nonfibrotic hypersensitivity pneumonitis who avoid ongoing exposure to the inciting agent may have a favorable prognosis, with possible stabilization or full recovery."
     },
     "number": 84,
     "id": "usmle-qb-s3-084"
@@ -2340,10 +2364,10 @@
     "diagram": "hyperk-order",
     "diagramAlt": "Hyperkalemia on US boards. Calcium gluconate 1 g IV, may repeat Insulin with dextrose, plus albuterol Then SZC or patiromer, or dialysis",
     "source": {
-      "name": "KDIGO conference summary. Acute hyperkalemia in the emergency department.",
+      "name": "Lindner G et al. Acute hyperkalemia in the emergency department: a summary from a Kidney Disease: Improving Global Outcomes conference.",
       "year": "2020",
       "url": "https://pubmed.ncbi.nlm.nih.gov/32852924/",
-      "says": "Stabilize the membrane with intravenous calcium gluconate, about 1 g, which may be repeated; shift potassium with insulin plus dextrose and with albuterol; then remove it with a potassium binder such as sodium zirconium cyclosilicate or patiromer, or with dialysis. Calcium resonium is not the US acute regimen."
+      "says": "The ECG is a mainstay in managing hyperkalemia. Membrane stabilization by calcium salts and potassium-shifting agents, such as insulin and salbutamol, is the cornerstone in the acute management of hyperkalemia. However, only dialysis, potassium-binding agents, and loop diuretics remove potassium from the body."
     },
     "number": 85,
     "id": "usmle-qb-s3-085"
@@ -2369,7 +2393,7 @@
       "name": "StatPearls. Hypokalemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482465/",
-      "says": "An acceptable lower limit for normal serum potassium is 3.5 mmol/L. A level under 2.5 mmol/L is classified as severe."
+      "says": "An acceptable lower limit of normal serum potassium is 3.5 mmol/L. A level of 2.5 to 3 mmol/L is moderate, and below 2.5 mmol/L is severe hypokalemia."
     },
     "number": 86,
     "id": "usmle-qb-s3-086"
@@ -2393,10 +2417,16 @@
     "diagram": "ca-qt",
     "diagramAlt": "Symptomatic hypocalcemia. Long QT, tetany, or seizure: IV calcium Check magnesium with it Post-thyroidectomy: scheduled calcium checks",
     "source": {
-      "name": "StatPearls. Hypocalcemia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "Because a substantial proportion of circulating calcium is bound to albumin, total serum calcium should be corrected for albumin level before diagnosing hypocalcemia."
+      "name": "Society for Endocrinology Emergency Endocrine Guidance: Emergency management of acute hypocalcaemia in adult patients.",
+      "year": "2016",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8117371/",
+      "says": "Severe hypocalcaemia (under 1.9 mmol/L and/or symptomatic) is a medical emergency: give 10-20 mL 10% calcium gluconate IV over 10 minutes with ECG monitoring, repeated until asymptomatic, then a calcium gluconate infusion.",
+      "more": [
+        {
+          "name": "StatPearls. Hypocalcemia.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/"
+        }
+      ]
     },
     "number": 87,
     "id": "usmle-qb-s3-087"
@@ -2419,10 +2449,16 @@
     "diagram": "nippv",
     "diagramAlt": "When to start NIV. COPD flare with low pH and high CO2 Patient must protect the airway Oxygen alone does not clear CO2",
     "source": {
-      "name": "StatPearls. Respiratory Acidosis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "In the presence of alveolar hypoventilation, 2 features commonly seen are respiratory acidosis and hypercapnia."
+      "name": "GOLD 2027 Report. Global Strategy for Prevention, Diagnosis and Management of COPD.",
+      "year": "2027",
+      "url": "https://goldcopd.org/wp-content/uploads/2026/11/GOLD-Report-2027-FINAL-v1.1-20Nov2026_WMV.pdf",
+      "says": "NIV is the initial mode of ventilation for acute respiratory failure in COPD exacerbations; it improves acute respiratory acidosis, increasing pH and decreasing PaCO2, and reduces mortality and intubation rates.",
+      "more": [
+        {
+          "name": "StatPearls. Respiratory Acidosis.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/"
+        }
+      ]
     },
     "number": 88,
     "id": "usmle-qb-s3-088"
@@ -2447,7 +2483,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "Metabolic alkalosis is defined as a disease state where the body\u2019s pH is elevated to greater than 7.45 secondary to some metabolic process."
+      "says": "Chloride-responsive metabolic alkalosis has urine chloride under 10 mEq/L and is treated by repleting chloride, potassium, and fluid; chloride-resistant alkalosis (urine chloride over 20 mEq/L) is treated by addressing the cause, such as aldosterone excess."
     },
     "number": 89,
     "id": "usmle-qb-s3-089"
@@ -2473,7 +2509,7 @@
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
-      "says": "The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response."
+      "says": "Hypernatremia is corrected by calculating the free water deficit, replaced over 48 to 72 hours with a fall in serum sodium not exceeding 0.5 mEq per hour, with close monitoring of correction rate, urine output, and ongoing losses."
     },
     "number": 90,
     "id": "usmle-qb-s3-090"
