@@ -140,3 +140,45 @@ export function usmleQuickBiteGroups(bites: UsmleQuickBite[]): { title: string; 
 export function quotaTotal(step: UsmleQuickBiteStep): number {
   return Object.values(USMLE_QUICK_BITE_QUOTAS[step]).reduce((sum, count) => sum + count, 0);
 }
+
+/**
+ * Go-live allowlist (content/usmle-quickbites/golive-ids.json).
+ * Hidden by default: a bite whose id is not listed is never shown to students,
+ * even after a release flag is turned on. A missing or unreadable file means
+ * nothing is listed, so nothing is shown.
+ */
+export type UsmleQuickBitesVisibility = "open" | "preview" | "hidden";
+
+let goLiveCache: ReadonlySet<string> | null = null;
+
+export function loadUsmleGoLiveIds(): ReadonlySet<string> {
+  if (goLiveCache) return goLiveCache;
+  let ids: string[] = [];
+  try {
+    const file = path.join(contentRoot(), "golive-ids.json");
+    const parsed = JSON.parse(readFileSync(file, "utf8")) as { ids?: unknown };
+    if (Array.isArray(parsed.ids)) ids = parsed.ids.filter((id): id is string => typeof id === "string");
+  } catch {
+    ids = [];
+  }
+  goLiveCache = new Set(ids);
+  return goLiveCache;
+}
+
+export function isUsmleQuickBiteGoLive(id: string): boolean {
+  return loadUsmleGoLiveIds().has(id);
+}
+
+/**
+ * Bites a viewer may see. "open" (a release flag is on) shows only allowlisted
+ * ids. "preview" (admin, flags off) shows every bite. "hidden" shows none.
+ */
+export function usmleQuickBitesForGate(
+  bites: readonly UsmleQuickBite[],
+  gate: UsmleQuickBitesVisibility,
+): UsmleQuickBite[] {
+  if (gate === "hidden") return [];
+  if (gate === "preview") return [...bites];
+  const allow = loadUsmleGoLiveIds();
+  return bites.filter((bite) => allow.has(bite.id));
+}

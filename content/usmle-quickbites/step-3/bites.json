@@ -3492,27 +3492,31 @@
     "step": "step-3",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Hyperthyroidism in pregnancy: the drug matches the trimester",
+    "title": "Hyperthyroidism in pregnancy: PTU first, then either drug",
     "read": "1 min",
     "open": false,
-    "lead": "Order propylthiouracil in the first trimester and a plan to change to methimazole afterward. Do not order radioactive iodine.",
+    "lead": "Order propylthiouracil in the first trimester. Switch methimazole to propylthiouracil before conception or when pregnancy is confirmed. Do not order radioactive iodine.",
     "lines": [
       "If an antithyroid drug is required in the first trimester, the ATA specifies propylthiouracil.",
-      "Women on methimazole who become pregnant are switched early in the first trimester when a drug is still required.",
-      "The trimester, not a preference for one drug in every month, chooses the agent."
+      "After the first trimester, continue propylthiouracil or change to methimazole. Neither choice is mandatory.",
+      "Write the lowest dose that keeps the mother controlled, because both drugs cross the placenta."
     ],
-    "miss": "Continuing methimazole through the first trimester when an antithyroid drug is still required.",
+    "miss": "Continuing methimazole through the first trimester, or ordering a mandatory switch back to methimazole.",
     "diagram": "pth-preg",
-    "diagramAlt": "Antithyroid drug by trimester. First trimester: propylthiouracil After that: methimazole No radioactive iodine in pregnancy",
+    "diagramAlt": "Antithyroid drug in pregnancy. Before conception or on a positive test: switch methimazole to propylthiouracil. First trimester: propylthiouracil. After that: propylthiouracil or methimazole. No radioactive iodine in pregnancy.",
     "source": {
       "name": "2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum.",
       "year": "2017",
       "url": "https://pubmed.ncbi.nlm.nih.gov/28056690/",
-      "says": "PTU is recommended for the treatment of maternal hyperthyroidism through 16 weeks of pregnancy. Pregnant women receiving MMI who are in need of continuing therapy during pregnancy should be switched to PTU as early as possible.",
+      "says": "If ATD therapy is needed during the first trimester, PTU is preferred over MMI because the risk for severe birth defects is lower. Pregnant women receiving MMI who are in need of continuing therapy during pregnancy should be switched to PTU as early as possible. If ATD therapy is required after 16 weeks gestation, it remains unclear whether PTU should be continued or therapy changed to MMI.",
       "more": [
         {
-          "name": "2016 ATA Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+          "name": "ACOG Practice Bulletin No. 223. Thyroid Disease in Pregnancy (2020, reaffirmed 2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32443080/"
+        },
+        {
+          "name": "American Thyroid Association 2026 Guidelines for Thyroid Disease in Preconception, Pregnancy, and Postpartum (recommendation text not retrievable here).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42219800/"
         }
       ]
     },

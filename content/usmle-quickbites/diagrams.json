@@ -79,7 +79,7 @@
   "variceal-rx": {"title": "Variceal bleed", "rows": ["Octreotide + IV antibiotic", "Band. Do not start a beta blocker in shock", "Beta blocker is secondary prevention later"]},
   "uc-toxic": {"title": "Severe ulcerative colitis", "rows": ["Admit. IV steroid", "Stop loperamide and opioids", "C. difficile test. Megacolon: call surgery"]},
   "thyroid-seq": {"title": "Thyroid storm sequence", "rows": ["PTU first. Iodide at least 1 hour later", "Beta blocker and a glucocorticoid", "BWPS >=45. No aspirin"]},
-  "pth-preg": {"title": "Antithyroid drug by trimester", "rows": ["First trimester: propylthiouracil", "After that: methimazole", "No radioactive iodine in pregnancy"]},
+  "pth-preg": {"title": "Antithyroid drug in pregnancy", "rows": ["Before conception or on a positive test: methimazole to propylthiouracil", "First trimester: propylthiouracil", "After that: propylthiouracil or methimazole", "No radioactive iodine in pregnancy"]},
   "gdm-baby": {"title": "Infant of a diabetic mother", "rows": ["Glucose crosses. Insulin does not", "Baby is hyperinsulinemic and can be hypoglycemic", "Feed early. Check a glucose"]},
   "bph-drug": {"title": "BPH drugs", "rows": ["Alpha blocker: days", "5-alpha-reductase inhibitor: months, large gland", "Retention tonight: catheter, not finasteride"]},
   "pid-rx": {"title": "PID coverage", "rows": ["Cover gonorrhea and chlamydia", "Treat the partner", "Abscess that fails antibiotics: drain"]},

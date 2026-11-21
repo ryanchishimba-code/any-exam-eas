@@ -24,3 +24,9 @@ Undo: `bash scripts/usmle-quickbites-20261121/16-undo-pass11.sh` restores those 
 
 Backup: `backup-pre-pass12-20261121/` (Step 1 and Step 3 bites.json, AUDIT.md, diagrams.json, usmle-bites.test.ts).
 Undo: `bash scripts/usmle-quickbites-20261121/17-undo-pass12.sh` restores those files. It changes no flags and touches no database.
+
+## pass13 (thyroid in pregnancy, quote cleanup, go-live allowlist)
+
+- Backup: `backup-pre-pass13-20261121/` (Step 1 and Step 3 bites, AUDIT.md, diagrams.json; code files saved as `.bak` so they are not compiled or run as tests).
+- Undo: `sh scripts/usmle-quickbites-20261121/18-undo-pass13.sh`. It restores those files and removes `golive-ids.json` and `usmle-golive.test.ts`. It does not change release flags or touch the database. Do not run `06-rollback-DO-NOT-RUN.sql`.
+- Go-live allowlist: 324 ids in `content/usmle-quickbites/golive-ids.json`. Any id not listed stays hidden when a flag is turned on. Flags stay off.

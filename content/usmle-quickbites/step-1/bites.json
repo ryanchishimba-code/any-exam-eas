@@ -318,7 +318,7 @@
       "name": "StatPearls. Von Willebrand Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459222/",
-      "says": "Affected people may complain of excessive bruising, prolonged bleeding from mucosal surfaces, and prolonged bleeding after minor trauma. Von Willebrand factor increases factor VIII half-life by preventing its degradation. aPTT may be prolonged, as there would be increased factor VIII degradation.",
+      "says": "Affected people may complain of excessive bruising, prolonged bleeding from mucosal surfaces, and prolonged bleeding after minor trauma. Von Willebrand factor increases factor VIII half-life by preventing its degradation. Coagulation profile: aPTT may be prolonged, as there would be increased factor VIII degradation in von Willebrand disease.",
       "more": [
         {
           "name": "ASH ISTH NHF WFH 2021 guidelines on the management of von Willebrand disease.",
@@ -622,7 +622,7 @@
       "name": "StatPearls. Hodgkin Lymphoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499969/",
-      "says": "there are scattered large mononuclear Hodgkin and multinucleated cells (Reed-Sternberg) intermixed in a background of a mixture of non-neoplastic inflammatory cells."
+      "says": "They commonly arise in the cervical lymph nodes; the disease is more common in young adults; there are scattered large mononuclear Hodgkin and multinucleated cells (Reed-Sternberg) intermixed in a background of a mixture of non-neoplastic inflammatory cells; finally, T lymphocytes are often observed surrounding the characteristic neoplastic cells."
     },
     "number": 23,
     "id": "usmle-qb-s1-023"
@@ -635,7 +635,7 @@
     "group": "Nervous system",
     "title": "The receptor, the G protein, the effect",
     "read": "1 min",
-    "lead": "Alpha-1 and M3 are Gq. Alpha-2, M2, and beta receptors that slow the heart are not. Beta-1 and beta-2 are Gs.",
+    "lead": "Alpha-1 and M3 are Gq. Alpha-2 and M2 are Gi. Beta-1 and beta-2 are Gs, and beta-1 speeds the heart.",
     "lines": [
       "Alpha-1 constricts vessels, dilates the pupil, and contracts the bladder sphincter.",
       "Beta-1 raises heart rate, contractility, and renin. Beta-2 opens bronchi, dilates skeletal muscle vessels, and relaxes the uterus.",
@@ -707,7 +707,7 @@
       "name": "StatPearls. Middle Cerebral Artery Stroke; Anterior Cerebral Artery Stroke; Posterior Cerebral Artery Stroke.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK556132/",
-      "says": "occlusions are highly symptomatic, with deficits such as hemiparesis, aphasia, neglect, and visual field loss. Most commonly, patients present with motor deficits, typically involving the lower extremity contralateral to the infarct site. Unilateral occipital lobe infarction commonly produces contralateral homonymous hemianopia with macular sparing.",
+      "says": "The MCA, a key branch of the internal carotid artery, supplies extensive cortical and subcortical regions, so occlusions are highly symptomatic, with deficits such as hemiparesis, aphasia, neglect, and visual field loss. Most commonly, patients present with motor deficits, typically involving the lower extremity contralateral to the infarct site. Unilateral occipital lobe infarction commonly produces contralateral homonymous hemianopia with macular sparing.",
       "more": [
         {
           "name": "StatPearls. Anterior Cerebral Artery Stroke.",
@@ -1011,7 +1011,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "The primary trigger for NMS is dopamine receptor blockade, most often due to an antipsychotic agent. Classic clinical characteristics include mental status changes, fever, muscle rigidity, and autonomic instability. supporting lab work is usually consistent with rhabdomyolysis with an elevated CK and acutely declining renal function."
+      "says": "The primary trigger for NMS is dopamine receptor blockade, most often due to an antipsychotic agent. Classic clinical characteristics include mental status changes, fever, muscle rigidity, and autonomic instability. Diagnosis can be made clinically, but supporting lab work is usually consistent with rhabdomyolysis with an elevated CK and acutely declining renal function."
     },
     "number": 37,
     "id": "usmle-qb-s1-037"
@@ -1062,7 +1062,7 @@
       "name": "StatPearls. Lithium Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499992/",
-      "says": "Toxicity is a concern because lithium has a narrow therapeutic index, and renal excretion without hepatic metabolism is its only clinically meaningful elimination pathway. lithium-induced nephrogenic diabetes insipidus."
+      "says": "Toxicity is a concern because lithium has a narrow therapeutic index, and renal excretion without hepatic metabolism is its only clinically meaningful elimination pathway. Examples include dehydration, vomiting, diarrhea, fever, lithium-induced nephrogenic diabetes insipidus, and low-sodium diets."
     },
     "number": 39,
     "id": "usmle-qb-s1-039"
@@ -1142,7 +1142,7 @@
       "name": "StatPearls. Idiopathic Normal Pressure Hydrocephalus.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK542247/",
-      "says": "symptomatic communicating hydrocephalus with typically normal lumbar cerebrospinal fluid opening pressure and a classic clinical triad of gait disturbance, cognitive impairment, and urinary urgency or incontinence. Typical gait descriptors include shuffling, magnetic, and wide-based patterns."
+      "says": "Typically, iNPH primarily affects older adults and characteristically presents with progressive gait impairment, cognitive deficits, and urinary urgency or incontinence, a constellation known as the Hakim\u2013Adams triad, first described by Colombian neurosurgeon Salomon Hakim and R D Adams in 1965. Typical gait descriptors include shuffling, magnetic, and wide-based patterns, accompanied by increased mediolateral variability during quiet standing."
     },
     "number": 42,
     "id": "usmle-qb-s1-042"
@@ -1168,7 +1168,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "Enzmann et al reported that CT findings of patchy enhancements in early cerebritis evolve into more distinct ring-like enhancements in late cerebritis, eventually forming a frank rim-enhancing brain abscess. Abscesses often arise from local infections in areas such as the ear, teeth, sinuses, mastoid air cells, or epidural spaces, but they may also originate from distant sites such as the lungs or heart. a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect.",
+      "says": "Enzmann et al reported that CT findings of patchy enhancements in early cerebritis evolve into more distinct ring-like enhancements in late cerebritis, eventually forming a frank rim-enhancing brain abscess. Abscesses often arise from local infections in areas such as the ear, teeth, sinuses, mastoid air cells, or epidural spaces, but they may also originate from distant sites such as the lungs or heart. Rarely required, a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect, which can lead to cerebral herniation and potential mortality.",
       "more": [
         {
           "name": "ESCMID guideline on diagnosis and treatment of brain abscess (2023).",
@@ -1326,7 +1326,7 @@
       "name": "StatPearls. Dermatomyositis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
-      "says": "Dermatomyositis is a rare immune-mediated disease characterized by pathognomonic skin findings and symmetric proximal muscle weakness. Gottron papules : Erythematous or violaceous papules, with or without scaling or ulceration, overlie the dorsal metacarpophalangeal and interphalangeal joints. Heliotrope rash : This characteristic finding presents as a violaceous or erythematous rash affecting the upper eyelids. some subsets of dermatomyositis are associated with a higher risk for malignant neoplasm.",
+      "says": "Dermatomyositis is a rare immune-mediated disease characterized by pathognomonic skin findings and symmetric proximal muscle weakness. Heliotrope rash : This characteristic finding presents as a violaceous or erythematous rash affecting the upper eyelids, with or without periorbital edema. Importantly, some subsets of dermatomyositis are associated with a higher risk for malignant neoplasm, making early recognition essential to improving outcomes.",
       "more": [
         {
           "name": "IMACS international guideline for cancer screening in idiopathic inflammatory myopathy (2023).",
@@ -1410,7 +1410,7 @@
       "name": "StatPearls. Psoriatic Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547710/",
-      "says": "Distal interphalangeal joints are frequently involved in psoriatic arthritis but not rheumatoid arthritis because these joints have many entheses but very little synovial tissue. including peripheral arthritis, enthesitis, dactylitis, axial disease, nail disease, and uveitis. presence of nail pitting."
+      "says": "Distal interphalangeal joints are frequently involved in psoriatic arthritis but not rheumatoid arthritis because these joints have many entheses but very little synovial tissue. A severe psoriasis phenotype, scalp, intergluteal, and perianal psoriasis, presence of nail pitting, low level of education, and uveitis predict the development of psoriatic arthritis in patients with psoriasis."
     },
     "number": 51,
     "id": "usmle-qb-s1-051"
@@ -1812,7 +1812,7 @@
       "name": "StatPearls. Infective Endocarditis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557641/",
-      "says": "Notably, S aureus demonstrates a predilection for infecting structurally normal native valves, particularly the tricuspid valve. Collectively, these groups account for 80% to 90% of all cases, with Staphylococcus aureus alone responsible for about 30% of cases in developed countries. viridans group streptococci account for approximately 20% of community-acquired cases.",
+      "says": "Collectively, these groups account for 80% to 90% of all cases, with Staphylococcus aureus alone responsible for about 30% of cases in developed countries. Notably, S aureus demonstrates a predilection for infecting structurally normal native valves, particularly the tricuspid valve. Although fairly uncommon in healthcare-associated infections, viridans group streptococci account for approximately 20% of community-acquired cases.",
       "more": [
         {
           "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
@@ -1843,7 +1843,7 @@
       "name": "StatPearls. Rheumatic Heart Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "Identify the aberrant immune response to Streptococcus pyogenes infection in the pathophysiology of rheumatic heart disease. In chronic rheumatic heart disease, the mitral valve alone is the most commonly affected valve in an estimated 50% to 60% of cases."
+      "says": "Rheumatic heart disease is the result of valvular damage caused by an abnormal immune response to Streptococcus pyogenes infection, which is classified as a group A streptococcus that causes acute rheumatic fever. In chronic rheumatic heart disease, the mitral valve alone is the most commonly affected valve in an estimated 50% to 60% of cases."
     },
     "number": 67,
     "id": "usmle-qb-s1-067"
@@ -2063,7 +2063,7 @@
       "name": "StatPearls. IgA Nephropathy (Berger Disease). Minimal Change Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538214/",
-      "says": "The presence of red cells and red cell casts indicates glomerular injury and potential active disease. as is a 24-hour urine collection that reveals a total protein greater than 3 to 3.5 g/24hour in adults.",
+      "says": "The presence of red cells and red cell casts indicates glomerular injury and potential active disease. A spot protein/creatinine ratio greater than 200 mg/mmol in children and protein/creatinine ratio>300-350mg/mmol in adults is consistent with nephrotic syndrome, as is a 24-hour urine collection that reveals a total protein greater than 3 to 3.5 g/24hour in adults.",
       "more": [
         {
           "name": "StatPearls. Minimal Change Disease.",
@@ -2094,7 +2094,7 @@
       "name": "StatPearls. Loop Diuretics. Thiazide Diuretics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK546656/",
-      "says": "Loop diuretics induce its effect by competing with chloride to bind to the Na-K-2Cl (NKCC2) cotransporter at the apical membrane of the thick ascending limb of the loop of Henle. which results in the loss of calcium and magnesium ions. Thiazide diuretics are FDA-approved medications that inhibit the reabsorption of 3% to 5% of sodium in the distal convoluted tubule. Thiazides reduce urine calcium levels and increase blood calcium by increasing calcium reabsorption from the luminal membrane into the interstitium in exchange for sodium.",
+      "says": "Loop diuretics induce its effect by competing with chloride to bind to the Na-K-2Cl (NKCC2) cotransporter at the apical membrane of the thick ascending limb of the loop of Henle and blocking the cotransporter, which inhibits the reabsorption of sodium and chloride. Blocking of the NKCC2 cotransporter makes potassium unable to be reabsorbed back into the lumen, which results in the loss of calcium and magnesium ions. Thiazides reduce urine calcium levels and increase blood calcium by increasing calcium reabsorption from the luminal membrane into the interstitium in exchange for sodium.",
       "more": [
         {
           "name": "StatPearls. Thiazide Diuretics.",
@@ -2170,7 +2170,7 @@
     "open": false,
     "lead": "Tension pneumothorax is a one-way valve. The trachea shifts away from the silent side, and the shock is obstructive.",
     "lines": [
-      "Breath sounds are down and the neck veins are up on the injured side\u2019s opposite story: the good lung is compressed.",
+      "Breath sounds are absent on the injured side, and the neck veins are distended.",
       "The treatment is decompression, then a chest tube. A chest film is for a stable patient.",
       "The shock is obstructive, from compressed venous return, not from blood lost into the chest."
     ],
@@ -2181,7 +2181,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Tension pneumothorax arises when air accumulation becomes sufficient to compress the mediastinum and shift it contralaterally. Tracheal deviation and mediastinal shift toward the contralateral side may be evident. Clinical diagnosis hinges on signs like hypotension, unilateral breath sounds, distended neck veins, and tracheal deviation."
+      "says": "Tension pneumothorax arises when air accumulation becomes sufficient to compress the mediastinum and shift it contralaterally. Tracheal deviation and mediastinal shift toward the contralateral side may be evident. A rapid, focused examination typically reveals severe respiratory distress, hypotension, and an enlarged, hyperresonant hemithorax with absent breath sounds. Clinical diagnosis hinges on signs like hypotension, unilateral breath sounds, distended neck veins, and tracheal deviation."
     },
     "number": 79,
     "id": "usmle-qb-s1-079"
@@ -2808,7 +2808,7 @@
       "name": "StatPearls. Physiology, Bilirubin.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470290/",
-      "says": "Conjugation of bilirubin to the water-soluble form involves the disruption of the hydrogen bonds, an essential process for its elimination by the liver and kidney. Conjugated bilirubin that escapes reuptake into the hepatocyte is excreted in the urine. a concentration of unconjugated bilirubin bound to albumin in the venous circulation."
+      "says": "Conjugation of bilirubin to the water-soluble form involves the disruption of the hydrogen bonds, an essential process for its elimination by the liver and kidney. Conjugated bilirubin that escapes reuptake into the hepatocyte is excreted in the urine. This inefficient process allows for always having the ability to measure a concentration of unconjugated bilirubin bound to albumin in the venous circulation."
     },
     "open": false
   },
@@ -2860,7 +2860,7 @@
       "name": "StatPearls. Celiac Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441900/",
-      "says": "Exposure to gluten damages the small intestinal mucosa, resulting in villous atrophy, malabsorption, gastrointestinal symptoms, and a wide range of extraintestinal manifestations. the 2023 American College of Gastroenterology (ACG) guidelines recommend initial serologic testing with tTG-IgA in patients who are not IgA deficient. If IgA deficiency has not been previously assessed, a total IgA level should be measured concurrently.",
+      "says": "Exposure to gluten damages the small intestinal mucosa, resulting in villous atrophy, malabsorption, gastrointestinal symptoms, and a wide range of extraintestinal manifestations, including anemia, osteoporosis, and fatigue. When the history and physical examination findings suggest celiac disease, the 2023 American College of Gastroenterology (ACG) guidelines recommend initial serologic testing with tTG-IgA in patients who are not IgA deficient. If IgA deficiency has not been previously assessed, a total IgA level should be measured concurrently.",
       "more": [
         {
           "name": "ACG Clinical Guideline: Diagnosis and Management of Celiac Disease (2023).",
@@ -3007,7 +3007,7 @@
       "name": "StatPearls. Wilson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441990/",
-      "says": "Wilson disease is an autosomal recessive condition caused by 1 of several mutations in ATP7B gene which encodes the ATP7B protein transporter on the long arm of chromosome 13 (13q) responsible for excreting excess copper into bile and out of the body. The first serologic test recommended is serum ceruloplasmin, where a level of <20 mg/dL indicates an abnormality. In the brain, copper deposits in the basal ganglia, putamen, and globus pallidus are involved in the coordination of movement and neurocognitive processes. including liver failure, neuropsychiatric symptoms, movement disorders, and Kayser-Fleischer (KF) rings in the cornea."
+      "says": "Wilson disease is an autosomal recessive condition caused by 1 of several mutations in ATP7B gene which encodes the ATP7B protein transporter on the long arm of chromosome 13 (13q) responsible for excreting excess copper into bile and out of the body. The first serologic test recommended is serum ceruloplasmin, where a level of <20 mg/dL indicates an abnormality. Excess copper then leads to the formation of a toxic hydroxyl group, increasing oxidative stress in the cells and damaging tissue, which can result in organ dysfunction and clinical symptoms, including liver failure, neuropsychiatric symptoms, movement disorders, and Kayser-Fleischer (KF) rings in the cornea."
     },
     "number": 109,
     "id": "usmle-qb-s1-109"
@@ -3059,7 +3059,7 @@
       "name": "StatPearls. Primary Biliary Cholangitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459209/",
-      "says": "Patients may initially be asymptomatic or present with fatigue, pruritus, and fat-soluble vitamin deficiencies. primarily elevated alkaline phosphatase (ALP) and \u03b3-glutamyltransferase levels. AMAs are detected in more than 90% of patients."
+      "says": "Patients may initially be asymptomatic or present with fatigue, pruritus, and fat-soluble vitamin deficiencies. Asymptomatic patients may be diagnosed after incidental detection of abnormal liver chemistry results, primarily elevated alkaline phosphatase (ALP) and \u03b3-glutamyltransferase levels. AMAs are detected in more than 90% of patients."
     },
     "number": 111,
     "id": "usmle-qb-s1-111"
@@ -3084,7 +3084,7 @@
       "name": "StatPearls. Primary Sclerosing Cholangitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537181/",
-      "says": "the diagnosis of PSC is primarily based on imaging findings that demonstrate characteristic multifocal strictures of the intrahepatic and extrahepatic bile ducts with intervening normal or dilated segments, which result in the characteristic \u201cbeaded\u201d appearance. A strong association exists with inflammatory bowel disease (IBD), particularly ulcerative colitis, which occurs in 60% to 80% of PSC cases."
+      "says": "The diagnosis of PSC is primarily based on imaging findings that demonstrate characteristic multifocal strictures of the intrahepatic and extrahepatic bile ducts with intervening normal or dilated segments, which result in the characteristic \u201cbeaded\u201d appearance. A strong association exists with inflammatory bowel disease (IBD), particularly ulcerative colitis, which occurs in 60% to 80% of PSC cases."
     },
     "number": 112,
     "id": "usmle-qb-s1-112"
@@ -3110,7 +3110,7 @@
       "name": "StatPearls. Congenital Adrenal Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
-      "says": "21-OH deficiency hinders the conversion of 17-OHP to 11-deoxycortisol, the penultimate step in cortisol synthesis, and the conversion of progesterone to deoxycorticosterone (DOC) in aldosterone synthesis. deficiencies in 11\u03b2-OH ( CYP11B1/6p21.1 ) and 17\u03b1-OH ( CYP17A1/10q24.3 ) result in the accumulation of mineralocorticoid precursors, causing hypertension and cortisol deficiency in affected individuals. In CAH variants with insufficient sex steroid production, such as StAR, PSCC, 17\u03b1-OH, 3\u03b2-HSD-2, and possibly POR, sex steroid supplementation may be required."
+      "says": "As a result, 21-OH deficiency hinders the conversion of 17-OHP to 11-deoxycortisol, the penultimate step in cortisol synthesis, and the conversion of progesterone to deoxycorticosterone (DOC) in aldosterone synthesis. Additionally, deficiencies in 11\u03b2-OH (CYP11B1/6p21.1) and 17\u03b1-OH (CYP17A1/10q24.3) result in the accumulation of mineralocorticoid precursors, causing hypertension and cortisol deficiency in affected individuals. In CAH variants with insufficient sex steroid production, such as StAR, PSCC, 17\u03b1-OH, 3\u03b2-HSD-2, and possibly POR, sex steroid supplementation may be required at appropriate ages to support normal pubertal development."
     },
     "open": false
   },
@@ -3698,27 +3698,31 @@
     "step": "step-1",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "In pregnancy, the antithyroid drug changes by trimester",
+    "title": "In pregnancy, PTU covers the first trimester",
     "read": "1 min",
     "open": false,
-    "lead": "Propylthiouracil is preferred in the first trimester. Methimazole is preferred after that. Both cross the placenta, and the dose is the lowest that controls the mother.",
+    "lead": "Propylthiouracil is the antithyroid drug for the first trimester. A woman on methimazole switches to propylthiouracil before conception or as soon as pregnancy is confirmed. After the first trimester, propylthiouracil or methimazole can be used.",
     "lines": [
-      "If an antithyroid drug is required in the first trimester, the ATA specifies propylthiouracil.",
-      "Women on methimazole who become pregnant are switched early in the first trimester when a drug is still required.",
-      "The trimester, not a preference for one drug in every month, chooses the agent."
+      "Methimazole in early pregnancy carries the larger risk of severe birth defects, so the first trimester belongs to propylthiouracil.",
+      "A woman on methimazole switches before conception or on a positive pregnancy test when a drug is still required.",
+      "After the first trimester there is no mandatory switch. Continuing propylthiouracil or changing to methimazole are both acceptable."
     ],
-    "miss": "Continuing methimazole through the first trimester when an antithyroid drug is still required.",
+    "miss": "Continuing methimazole into the first trimester, or treating a later change back to methimazole as mandatory.",
     "diagram": "pth-preg",
-    "diagramAlt": "Antithyroid drug by trimester. First trimester: propylthiouracil After that: methimazole No radioactive iodine in pregnancy",
+    "diagramAlt": "Antithyroid drug in pregnancy. Before conception or on a positive test: switch methimazole to propylthiouracil. First trimester: propylthiouracil. After that: propylthiouracil or methimazole. No radioactive iodine in pregnancy.",
     "source": {
       "name": "2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum.",
       "year": "2017",
       "url": "https://pubmed.ncbi.nlm.nih.gov/28056690/",
-      "says": "PTU is recommended for the treatment of maternal hyperthyroidism through 16 weeks of pregnancy. Pregnant women receiving MMI who are in need of continuing therapy during pregnancy should be switched to PTU as early as possible. Antithyroid medication during pregnancy should be administered at the lowest effective dose of MMI or PTU",
+      "says": "If ATD therapy is needed during the first trimester, PTU is preferred over MMI because the risk for severe birth defects is lower. Pregnant women receiving MMI who are in need of continuing therapy during pregnancy should be switched to PTU as early as possible. If ATD therapy is required after 16 weeks gestation, it remains unclear whether PTU should be continued or therapy changed to MMI.",
       "more": [
         {
-          "name": "2016 ATA Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+          "name": "ACOG Practice Bulletin No. 223. Thyroid Disease in Pregnancy (2020, reaffirmed 2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32443080/"
+        },
+        {
+          "name": "American Thyroid Association 2026 Guidelines for Thyroid Disease in Preconception, Pregnancy, and Postpartum (recommendation text not retrievable here).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/42219800/"
         }
       ]
     },
@@ -3804,7 +3808,7 @@
       "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
-      "says": "low circulating thyroid hormone levels lead to reduced negative feedback on the hypothalamus, thereby elevating thyrotropin-releasing hormone (TRH). Elevated TRH levels can also lead to lactotroph hyperplasia, which accounts for the increased prolactin in these patients. if there is no regression in the size of the pituitary with the treatment of the underlying hypothyroidism, the clinician should reconsider this diagnosis."
+      "says": "As a result of thyroid destruction, low circulating thyroid hormone levels lead to reduced negative feedback on the hypothalamus, thereby elevating thyrotropin-releasing hormone (TRH). Elevated TRH levels can also lead to lactotroph hyperplasia, which accounts for the increased prolactin in these patients. Another reason for follow-up imaging is that if there is no regression in the size of the pituitary with the treatment of the underlying hypothyroidism, the clinician should reconsider this diagnosis."
     },
     "number": 139,
     "id": "usmle-qb-s1-139"
@@ -3867,7 +3871,7 @@
       "name": "StatPearls. Gram-Positive Bacteria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470553/",
-      "says": "Gram-positive cocci include Staphylococcus (catalase-positive), which forms clusters, and Streptococcus (catalase-negative), which forms chains. The staphylococci are further subdivided into coagulase-positive (S. aureus) and coagulase-negative ( S epidermidis and S saprophyticus ) species."
+      "says": "Gram-positive cocci include Staphylococcus (catalase-positive), which forms clusters, and Streptococcus (catalase-negative), which forms chains. The staphylococci are further subdivided into coagulase-positive (S. aureus) and coagulase-negative (S epidermidis and S saprophyticus) species."
     },
     "open": false
   },
@@ -3916,7 +3920,7 @@
       "name": "StatPearls. Carbon Monoxide Poisoning.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
-      "says": "Carbon monoxide poisoning occurs when the gas binds hemoglobin with an affinity approximately 200 to 250 times greater than oxygen. This process reduces blood oxygen-carrying capacity and induces a leftward shift of the oxyhemoglobin dissociation curve, impairing oxygen release to tissues. normal arterial oxygen partial pressure, reflecting adequate dissolved oxygen but impaired hemoglobin function."
+      "says": "Carbon monoxide poisoning occurs when the gas binds hemoglobin with an affinity approximately 200 to 250 times greater than oxygen, forming a dysfunctional hemoglobin species that reduces oxygen-carrying capacity and impairs tissue oxygen unloading. This process reduces blood oxygen-carrying capacity and induces a leftward shift of the oxyhemoglobin dissociation curve, impairing oxygen release to tissues. Standard pulse oximetry cannot differentiate oxyhemoglobin from COHb, often producing falsely reassuring readings."
     },
     "number": 143,
     "id": "usmle-qb-s1-143"
@@ -3942,7 +3946,7 @@
       "name": "StatPearls. Acetaminophen Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "generating a toxic, highly reactive, electrophilic intermediate N -acetyl-p-benzoquinoneimine (NAPQI). At higher doses and as these pathways saturate, CYP oxidation of acetaminophen forms a toxic, oxidative metabolite and depletes hepatic glutathione stores. Acetylcysteine, most often given IV, is the critical antidote for acetaminophen poisoning, and is most effective if administered within the first 8 hours after an acute overdose.",
+      "says": "At therapeutic doses, approximately 8% of acetaminophen is metabolized by hepatic cytochrome P450 subfamilies\u2014particularly CYP2E1\u2014through the mixed-function oxidase pathway, generating a toxic, highly reactive, electrophilic intermediate N-acetyl-p-benzoquinoneimine (NAPQI). At higher doses and as these pathways saturate, CYP oxidation of acetaminophen forms a toxic, oxidative metabolite and depletes hepatic glutathione stores. Acetylcysteine, most often given IV, is the critical antidote for acetaminophen poisoning, and is most effective if administered within the first 8 hours after an acute overdose.",
       "more": [
         {
           "name": "Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement (2023).",

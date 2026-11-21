@@ -5,6 +5,7 @@ import { usmleQuickBitesGate } from "@/lib/quick-bites/usmle-access";
 import { USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
 import {
   loadUsmleQuickBites,
+  usmleQuickBitesForGate,
   usmleQuickBiteStepFromQuery,
 } from "@/lib/quick-bites/usmle-bites";
 import { requireAppPage } from "@/lib/require-premium-page";
@@ -17,7 +18,7 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-/** Students get a 404 until a release flag is on. Admins can preview. */
+/** Students get a 404 until a release flag is on. Admins can preview. Released bites are limited to the go-live allowlist. */
 export default async function UsmleQuickBitesPage({
   searchParams,
 }: {
@@ -28,7 +29,8 @@ export default async function UsmleQuickBitesPage({
 
   const { step: stepQuery } = await searchParams;
   const step = usmleQuickBiteStepFromQuery(stepQuery);
-  const bites = loadUsmleQuickBites(step);
+  // Released: only go-live allowlisted ids. Admin preview (flags off): every bite.
+  const bites = usmleQuickBitesForGate(loadUsmleQuickBites(step), gate);
 
   let canReadAll = gate === "preview";
   if (gate === "open") {

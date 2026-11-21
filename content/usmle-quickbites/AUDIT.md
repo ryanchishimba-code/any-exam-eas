@@ -159,3 +159,14 @@ Statements the cited source does not state, left as written: s2-069, s2-135; s3-
 Statements the cited source does not state, left as written: s1-001, 005, 009, 012, 017, 019, 022, 024, 026, 036, 038, 044, 050, 056, 059, 060, 061, 063, 066, 067, 073, 082, 088, 101, 107, 108, 114, 116, 117, 118, 120, 123, 136, 142, 147, 148, 149, 151, 152, 154, 155, 157, 159, 160, 161, 163, 164, 165, 166, 172, 173, 174, 175, 176, 179, 180; s3-041, 062, 107, 126, 128.
 
 Step 3 management bites still on StatPearls because no retrievable primary-guideline text states the claim: s3-017, 018, 026, 034, 035, 043, 062, 063, 064, 070, 079, 080, 086, 089, 090, 091, 092, 093, 094, 095, 100, 110, 133, 135, 137.
+
+## Thyroid in pregnancy, Step 1 quote cleanup and go-live allowlist (pass13)
+
+- `usmle-qb-s1-136`, `s3-126` and the `pth-preg` diagram: propylthiouracil in the first trimester; a woman on methimazole switches to propylthiouracil before conception or once pregnancy is confirmed; after the first trimester propylthiouracil or methimazole, with no mandatory switch. Both quote the ATA 2017 full text (first-trimester PTU preference, Recommendation 47b, Recommendation 47d). The 2026 ATA pregnancy guideline (PMID 42219800) and ACOG Practice Bulletin 223 (PMID 32443080) are listed as further reading because their recommendation text could not be retrieved. The thyroid storm bites (`s1-118`, `s2-122`, `s3-110`) do not discuss pregnancy and are unchanged.
+- `usmle-qb-s1-024`: lead now says alpha-2 and M2 are Gi and beta-1 (Gs) speeds the heart.
+- `usmle-qb-s1-079`: garbled line replaced with "Breath sounds are absent on the injured side, and the neck veins are distended."
+- `usmle-qb-s1-067`: the learning objective is replaced with the chapter's pathophysiology sentence.
+- Joined fragments in Step 1 quotes rewritten as whole source sentences (section headings dropped): s1-012, 023, 026, 037, 039, 042, 043, 048, 051, 066, 075, 076, 102, 104, 109, 111, 112, 113, 139, 141, 143, 144.
+- Go-live allowlist: `content/usmle-quickbites/golive-ids.json` lists the 324 ids that passed blind review (120 Step 1, 117 Step 2 CK, 87 Step 3). When a release flag is on, only these ids are shown; the other 216 stay hidden. Admin preview with flags off still shows all 540. Release flags remain off.
+
+Statements the cited source does not state, left as written (pass13 ids): s1-012, 024 (beta-2 Gs), 026, 066, 067 (molecular mimicry), 136 (switch before conception is not verbatim in ATA 2017), 143 (normal PaO2); s3-126 (switch before conception; radioactive iodine in pregnancy).
