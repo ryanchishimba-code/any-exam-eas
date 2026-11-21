@@ -7,14 +7,14 @@
   "acs-clocks": {"title": "ACS time goals", "rows": ["ECG within 10 minutes of contact", "PCI hospital: device by 90 minutes", "Transfer: 120 minutes, or give a lytic"]},
   "cha2ds": {"title": "Who gets anticoagulation", "rows": ["Class 1: ≥2% per year", "Men CHA2DS2-VASc ≥2, women ≥3", "DOAC, except mitral stenosis or metal valve"]},
   "htn-two": {"title": "2025 blood-pressure start", "rows": ["≥140/90: two drugs, one pill if possible", "Goal under 130/80 for most adults", "Stage 1: drug now if PREVENT ≥7.5%"]},
-  "gold-eos": {"title": "GOLD 2026, who gets ICS", "rows": ["1 exacerbation = group E", "Start LABA + LAMA, not LABA/ICS", "Triple therapy if eosinophils ≥300"]},
+  "gold-eos": {"title": "GOLD 2027, who gets ICS", "rows": ["1 exacerbation = group E", "Start LABA + LAMA, not LABA/ICS", "Triple therapy if eosinophils ≥300"]},
   "gina-o2": {"title": "Acute asthma oxygen", "rows": ["No oxygen if saturation ≥92%", "If given, target ≤95% in adults", "Preferred reliever: ICS-formoterol"]},
   "cap-bed": {"title": "Pneumonia: where and which drug", "rows": ["Hypoxia, shock, or confusion: admit", "Severe: beta-lactam + macrolide", "No routine anaerobic drug for aspiration"]},
   "pe-split": {"title": "Pulmonary embolism split", "rows": ["Hypotension or shock: reperfuse", "Normal pressure: anticoagulate", "Right-heart strain alone is not a lytic"]},
   "sglt2-rules": {"title": "SGLT2 inhibitor rules", "rows": ["Start at eGFR ≥20 if diabetes + CKD", "Also if HF, or ACR ≥200 mg/g", "Hold if fasting, surgery, or critical illness"]},
   "na-bolus": {"title": "Severely symptomatic hyponatremia", "rows": ["US: 100 mL 3% over 10 min, up to x3", "EU: 150 mL over 20 min, repeat x2", "First hour: rise of 4-6 mmol/L", "Over 10 mmol/L in 24 h risks ODS"]},
   "hyperk-order": {"title": "Hyperkalemia on US boards", "rows": ["Calcium gluconate 1 g IV, may repeat", "Insulin with dextrose, plus albuterol", "Then SZC or patiromer, or dialysis"]},
-  "dka-k": {"title": "DKA order", "rows": ["Fluid first", "K under 3.3: replace K before insulin", "Keep insulin on; add dextrose as glucose falls"]},
+  "dka-k": {"title": "DKA order", "rows": ["Fluid first", "K under 3.5: replace K before insulin", "Keep insulin on; add dextrose as glucose falls"]},
   "preg-140": {"title": "Blood pressure in pregnancy", "rows": ["Chronic HTN: treat at 140/90", "Severe: 160 or 110, treat within minutes", "Magnesium prevents seizures. It is not the BP drug"]},
   "sepsis-30": {"title": "Sepsis hypoperfusion", "rows": ["Lactate, cultures, broad antibiotic", "At least 30 mL/kg crystalloid if hypoperfused", "Norepinephrine to MAP 65 if still hypotensive"]},
   "bleed-7": {"title": "Ulcer bleed transfusion", "rows": ["No heart disease: transfuse under 7 g/dL", "Scope after resuscitation, within 24 h", "Higher threshold if active coronary disease"]},
@@ -106,6 +106,5 @@
   "gram-split": {"title": "Gram-positive cocci", "rows": ["Catalase splits staph from strep", "Coagulase splits S. aureus", "Then hemolysis and one disk test"]},
   "cycle-order": {"title": "Hormone order", "rows": ["FSH recruits. Estradiol rises", "Sustained estradiol triggers the LH surge", "Progesterone starts only after ovulation"]},
   "hypersens-4": {"title": "Four hypersensitivity types", "rows": ["I: IgE, minutes", "II: antibody on a cell. III: complexes", "IV: T cells, days later"]},
-  "predict-prev": {"title": "Prevalence and the row", "rows": ["Sensitivity and specificity stay put", "Rarer disease: PPV falls", "A sensitive test is not the chance of disease"]},
-  "dka-k-2024": {"title": "DKA order", "rows": ["Fluid first", "K under 3.5: replace K before insulin", "Keep insulin on; add dextrose as glucose falls"]}
+  "predict-prev": {"title": "Prevalence and the row", "rows": ["Sensitivity and specificity stay put", "Rarer disease: PPV falls", "A sensitive test is not the chance of disease"]}
 }

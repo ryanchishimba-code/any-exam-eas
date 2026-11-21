@@ -3235,16 +3235,16 @@
     "lines": [
       "Potassium may look normal while the body is depleted. Insulin will drop the serum potassium.",
       "Fluids first. Insulin after you know the potassium is not critically low.",
-      "The gap closing matters more than the glucose. Add dextrose when the glucose falls and the gap is still open."
+      "Resolution, ketones with pH or bicarbonate, matters more than the glucose. Add dextrose when the glucose falls and the ketoacidosis has not resolved."
     ],
     "miss": "Stopping insulin when the glucose normalizes while the patient is still acidotic.",
     "diagram": "dka-k",
-    "diagramAlt": "DKA order. Fluid first K under 3.3: replace K before insulin Keep insulin on; add dextrose as glucose falls",
+    "diagramAlt": "DKA order. Fluid first K under 3.5: replace K before insulin Keep insulin on; add dextrose as glucose falls",
     "source": {
       "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.",
       "year": "2024",
       "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
-      "says": "Give fluid first. If potassium is under 3.3 mEq/L, replace potassium before insulin. Continue insulin, and add dextrose, until the anion gap closes."
+      "says": "The mainstays of treatment are fluid replacement, insulin therapy, electrolyte repletion, and treatment of precipitating events. With potassium below 3.5 mmol/L, potassium replacement begins and insulin is delayed until potassium is above 3.5 mmol/L. Resolution is ketones <0.6 mmol/L and pH \u22657.3 or bicarbonate \u226518 mmol/L; the anion gap should not be used."
     },
     "number": 124,
     "id": "usmle-qb-s1-124"

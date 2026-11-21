@@ -312,7 +312,7 @@ const diagrams: Record<string, (alt: string) => ReactNode> = {
   "gold-abe": (alt) => (
     <Frame label={alt}>
       <Text x={20} y={26} size={14} weight={700}>
-        GOLD 2026, treatment-naive
+        GOLD 2027, treatment-naive
       </Text>
       <Text x={20} y={56} size={12} weight={500}>
         No exacerbation, few symptoms: a bronchodilator

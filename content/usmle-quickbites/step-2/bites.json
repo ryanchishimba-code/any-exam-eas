@@ -843,8 +843,7 @@
     "lines": [
       "Oral corticosteroids are strongly recommended within 72 hours of onset of peripheral facial nerve palsy.",
       "Antivirals may be added. They are not a substitute for the corticosteroid.",
-      "Routine testing is unnecessary for a typical presentation. Atypical features are the reason to test further.",
-      "The 2026 facial-nerve-palsy guideline is the source for that 72-hour corticosteroid recommendation."
+      "Routine testing is unnecessary for a typical presentation. Atypical features are the reason to test further."
     ],
     "miss": "Starting an antiviral without a corticosteroid, or starting the corticosteroid after 72 hours as if the window were still open.",
     "diagram": "bell-steroid",
@@ -1975,7 +1974,7 @@
     "group": "Respiratory and renal",
     "title": "GOLD group E is one exacerbation",
     "read": "1 min",
-    "lead": "In GOLD 2026, one moderate or severe exacerbation in the past year is group E. Start a LABA plus a LAMA, not a LABA plus an inhaled steroid alone.",
+    "lead": "In GOLD 2027, one moderate or severe exacerbation in the past year is group E. Start a LABA plus a LAMA, not a LABA plus an inhaled steroid alone.",
     "lines": [
       "Group A has no such exacerbation and few symptoms: a bronchodilator.",
       "One moderate or severe exacerbation now places a treatment-naive patient in group E. Initial therapy for group E is LABA/LAMA, with triple therapy considered at eosinophils of at least 300.",
@@ -1983,7 +1982,7 @@
     ],
     "miss": "Using the old rule that one exacerbation was not enough to leave group A, and starting an ICS/LABA.",
     "diagram": "gold-abe",
-    "diagramAlt": "GOLD 2026 groups. No exacerbation and few symptoms: bronchodilator. No exacerbation and more symptoms: LABA plus LAMA. One or more moderate or severe exacerbations: LABA plus LAMA, and consider triple therapy if eosinophils are at least 300.",
+    "diagramAlt": "GOLD 2027 groups. No exacerbation and few symptoms: bronchodilator. No exacerbation and more symptoms: LABA plus LAMA. One or more moderate or severe exacerbations: LABA plus LAMA, and consider triple therapy if eosinophils are at least 300.",
     "source": {
       "name": "GOLD 2027 Report. Global Strategy for Prevention, Diagnosis and Management of COPD.",
       "year": "2027",
@@ -2108,7 +2107,7 @@
     "title": "Group A COPD is a bronchodilator, not an inhaled steroid",
     "read": "1 min",
     "open": false,
-    "lead": "GOLD 2026 group A, no exacerbation and few symptoms, starts a bronchodilator. An inhaled steroid is not the opening drug.",
+    "lead": "GOLD 2027 group A, no exacerbation and few symptoms, starts a bronchodilator. An inhaled steroid is not the opening drug.",
     "lines": [
       "Initial therapy is a bronchodilator for group A and dual long-acting bronchodilation for groups B and E.",
       "Group B (symptoms, no exacerbation) and group E (one moderate or severe exacerbation) start LABA plus LAMA, not LABA/ICS.",
@@ -2117,7 +2116,7 @@
     ],
     "miss": "Starting every smoker on an ICS/LABA inhaler.",
     "diagram": "gold-eos",
-    "diagramAlt": "GOLD 2026, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
+    "diagramAlt": "GOLD 2027, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
     "source": {
       "name": "GOLD 2027 Report. Global Strategy for Prevention, Diagnosis and Management of COPD.",
       "year": "2027",
@@ -2144,7 +2143,7 @@
     ],
     "miss": "Giving a 14-day antibiotic to every patient who is a little more short of breath.",
     "diagram": "gold-eos",
-    "diagramAlt": "GOLD 2026, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
+    "diagramAlt": "GOLD 2027, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
     "source": {
       "name": "GOLD 2027 Report. Global Strategy for Prevention, Diagnosis and Management of COPD.",
       "year": "2027",
@@ -3031,7 +3030,13 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "Acute cholecystitis is most often caused by gallstone obstruction of the cystic duct. For appropriate surgical candidates, early laparoscopic cholecystectomy during the initial hospitalization remains the preferred approach."
+      "says": "Acute cholecystitis is most often caused by gallstone obstruction of the cystic duct. For appropriate surgical candidates, early laparoscopic cholecystectomy during the initial hospitalization remains the preferred approach.",
+      "more": [
+        {
+          "name": "Tokyo Guidelines 2018: flowchart for the management of acute cholecystitis (early laparoscopic cholecystectomy for grade I).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29045062/"
+        }
+      ]
     },
     "number": 112,
     "id": "usmle-qb-s2-112"
@@ -3262,7 +3267,7 @@
       "Anion-gap acidosis and ketones. If potassium is under 3.5 mmol/L, replace it before insulin, because insulin will drop the serum potassium."
     ],
     "miss": "Turning off the insulin drip because the glucose reached 180 while the bicarbonate is still 10.",
-    "diagram": "dka-k-2024",
+    "diagram": "dka-k",
     "diagramAlt": "DKA order. Fluid first K under 3.5: replace K before insulin Keep insulin on; add dextrose as glucose falls",
     "source": {
       "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA, EASD, JBDS, AACE, DTS).",
@@ -3533,12 +3538,11 @@
     "open": false,
     "lead": "Gestational diabetes that is not controlled with diet is treated with insulin. The newborn is watched for hypoglycemia.",
     "lines": [
-      "Gestational diabetes is managed from ACOG Practice Bulletin 190, alongside the current ADA Standards of Care.",
       "After birth, the infant is observed. Maternal glucose has been the fetal fuel.",
       "The mother is retested for diabetes postpartum. Pregnancy treatment is not the end of the diagnosis.",
       "Maternal glucose crosses the placenta and maternal insulin does not. The newborn is hyperinsulinemic, so feed early and check a glucose."
     ],
-    "miss": "Quoting a glucose cutoff that was not taken from Practice Bulletin 190, or skipping the postpartum retest.",
+    "miss": "Skipping the postpartum glucose retest, or not checking the newborn for hypoglycemia.",
     "diagram": "gdm-baby",
     "diagramAlt": "Infant of a diabetic mother. Glucose crosses. Insulin does not Baby is hyperinsulinemic and can be hypoglycemic Feed early. Check a glucose",
     "source": {
@@ -3657,10 +3661,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Ovarian Torsion.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "The ovary receives a dual blood supply from the ovarian and uterine arteries, and preserved Doppler flow does not exclude torsion. Management prioritizes prompt detorsion to preserve ovarian function, with ovarian-conserving strategies whenever feasible."
+      "name": "ACOG Committee Opinion No. 783. Adnexal Torsion in Adolescents.",
+      "year": "2019",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31348225/",
+      "says": "If ovarian torsion is suspected, timely diagnostic laparoscopy is indicated to preserve ovarian function. No clinical or imaging criteria confirm torsion preoperatively, and Doppler flow alone should not guide decisions. Detorsion with preservation of the adnexa is recommended regardless of the appearance of the ovary.",
+      "more": [
+        {
+          "name": "StatPearls. Ovarian Torsion (dual ovarian blood supply).",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/"
+        }
+      ]
     },
     "number": 135,
     "id": "usmle-qb-s2-135"
@@ -3997,11 +4007,15 @@
     "diagram": "screening",
     "diagramAlt": "Screening ages. Breast: every other year from 40 through 74. Colon: start at 45. Lung: yearly low-dose CT from 50 to 80 with at least 20 pack-years. Cervix: start at 21.",
     "source": {
-      "name": "USPSTF. Breast Cancer: Screening.",
-      "year": "2024",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "The USPSTF recommends biennial screening mammography for women aged 40 to 74 years. Colorectal screening is recommended at 45 to 75, lung LDCT yearly at 50 to 80 with 20 pack-years, and cervical screening from 21.",
+      "name": "USPSTF A and B Recommendations.",
+      "year": "2025",
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation-topics/uspstf-a-and-b-recommendations",
+      "says": "Biennial screening mammography for women aged 40 to 74 years (B, 2024). Colorectal cancer screening at 45 to 49 (B) and 50 to 75 (A) (2021). Annual LDCT at 50 to 80 with a 20 pack-year history, current or quit within 15 years (B, 2021). Cervical cytology every 3 years at 21 to 29 (A, 2018).",
       "more": [
+        {
+          "name": "USPSTF. Breast Cancer: Screening (2024).",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening"
+        },
         {
           "name": "USPSTF. Colorectal Cancer: Screening (2021).",
           "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening"
