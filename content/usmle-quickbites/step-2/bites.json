@@ -84,7 +84,6 @@
     "open": false,
     "lead": "Men with Klinefelter syndrome and low testosterone are offered testosterone replacement. The infertility is a separate conversation and is not fixed by the gel.",
     "lines": [
-      "Small firm testes are the exam.",
       "Breast tissue is examined because the cancer risk is higher.",
       "Learning differences are supported. They are not the reason to withhold hormone treatment.",
       "Testosterone treats the hypogonadism. It does not restore sperm. Breast cancer risk is higher than in other men.",
@@ -124,7 +123,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "The neural crest consists of multipotent stem cells located at the lateral aspect of the neural tube, adjacent to the epidermal layer during neurulation, at the interface between neural and nonneural ectoderm (see Image."
+      "says": "DiGeorge features in a newborn are a reason to check calcium, immune function, and the heart. A hypocalcemic seizure can be the first sign."
     },
     "number": 5,
     "id": "usmle-qb-s2-005"
@@ -193,7 +192,6 @@
       "Antibiotics cover community pneumonia while you treat the sickle crisis.",
       "Simple transfusion is for a drop in hemoglobin. Exchange is for the severe respiratory failure.",
       "Pain control that lets the patient take deep breaths is part of the prevention.",
-      "Incentive spirometry on every pain admission. A new infiltrate plus hypoxia is acute chest syndrome.",
       "Exchange transfusion for severe acute chest or acute stroke. Simple transfusion is for symptomatic anemia. Hydroxyurea is prevention, not today's stroke drug."
     ],
     "miss": "Discharging a hypoxic sickle-cell patient with oral opioids and no film.",
@@ -245,8 +243,7 @@
     "lines": [
       "A mixing study that no longer corrects means an inhibitor.",
       "Avoid intramuscular injections and NSAIDs.",
-      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed.",
-      "Do not wait for the CT to give the factor."
+      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed."
     ],
     "miss": "Sending a hemarthrosis home on ibuprofen.",
     "diagram": null,
@@ -402,7 +399,7 @@
     "lines": [
       "The early death is bleeding. Correct the coagulopathy.",
       "Differentiation syndrome is fever and pulmonary infiltrates after the drug starts. It is treated, not ignored.",
-      "Differentiation syndrome is fever and pulmonary infiltrates after all-trans retinoic acid starts. Treat it, and do not wait on the karyotype when the smear and the bleeding fit."
+      "Auer rods and a bilobed nucleus are the smear. The translocation is between chromosomes 15 and 17."
     ],
     "miss": "Waiting three days for cytogenetics while the fibrinogen falls.",
     "diagram": "atra",
@@ -463,7 +460,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR)."
+      "says": "Immune HTRs often occur due to mismatch or incompatibility of the patient with the donor products and are classified as acute versus delayed hemolytic reactions."
     },
     "number": 18,
     "id": "usmle-qb-s2-018"
@@ -558,8 +555,7 @@
     "lines": [
       "The point is to blunt the inflammatory burst as bacteria lyse. After the antibiotic is already in, the window is gone.",
       "Do not delay the antibiotic for a CT if there is no indication for CT. Blood cultures, then drug, then the puncture if imaging has to come first.",
-      "Stop the steroid if the organism is not Streptococcus pneumoniae, unless another indication exists.",
-      "Low-dose dexamethasone fails to suppress in every Cushing syndrome and does not name the organ."
+      "Stop the steroid if the organism is not Streptococcus pneumoniae, unless another indication exists."
     ],
     "miss": "Hanging the antibiotic, then remembering the steroid an hour later.",
     "diagram": null,
@@ -646,7 +642,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "Degeneration of dopaminergic neurons in the substantia nigra produces bradykinesia, resting tremor, and rigidity."
+      "says": "PD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations."
     },
     "number": 25,
     "id": "usmle-qb-s2-025"
@@ -714,8 +710,7 @@
       "Creatine kinase is high and the reflexes are not clonus.",
       "A benzodiazepine can help agitation. The antipsychotic does not.",
       "Restarting a drug later, if ever, is a specialist decision at a low dose.",
-      "Lead-pipe rigidity and high CK over days. Reflexes are reduced, not clonic.",
-      "Stop the dopamine blocker. Do not give another dose for agitation. Cooling and fluids for the muscle breakdown."
+      "Lead-pipe rigidity and high CK over days. Reflexes are reduced, not clonic."
     ],
     "miss": "Increasing the antipsychotic because the patient is more confused.",
     "diagram": "nms-ss",
@@ -738,7 +733,6 @@
     "open": false,
     "lead": "Serotonin syndrome is treated by stopping the serotonergic drugs and giving a benzodiazepine for agitation. Cyproheptadine is the antidote when supportive care is not enough.",
     "lines": [
-      "The combination is often an SSRI plus an MAOI, a triptan, tramadol, or linezolid.",
       "Clonus is the sign that separates it from neuroleptic malignant syndrome.",
       "It starts in hours, so today's new prescription is the cause.",
       "Clonus and hyperreflexia within hours of an SSRI plus an MAOI, linezolid, tramadol, or a triptan. Stop both drugs on that shift.",
@@ -905,10 +899,10 @@
     "diagram": "ich-cerebellum",
     "diagramAlt": "Which bleed goes to surgery. Cerebellum with compression: evacuate Putamen: usually medical Lobar in an older adult: think amyloid",
     "source": {
-      "name": "StatPearls. Hemorrhagic Stroke Overview.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Cerebrovascular accident, otherwise called a stroke, is the second leading cause of death worldwide and one of the major causes of long-term disability."
+      "name": "2022 AHA/ASA guideline for spontaneous intracerebral hemorrhage.",
+      "year": "2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35579034/",
+      "says": "Cerebellar intracerebral hemorrhage with deterioration or brainstem compression is managed as a surgical emergency under the 2022 AHA/ASA guideline."
     },
     "number": 35,
     "id": "usmle-qb-s2-035"
@@ -1029,8 +1023,7 @@
       "The pupil is small. Do not start pilocarpine thinking it is a dilated pupil.",
       "A brainstem stroke can cause it with other signs. Those signs decide the scanner.",
       "An isolated chronic Horner still gets an explanation.",
-      "Ptosis and miosis from lost sympathetics. A third-nerve palsy is a down-and-out eye with a blown pupil.",
-      "Painful acute Horner syndrome is carotid dissection until the vessel is imaged the same day."
+      "Ptosis and miosis from lost sympathetics. A third-nerve palsy is a down-and-out eye with a blown pupil."
     ],
     "miss": "Calling a painful small pupil a migraine and sending the patient home.",
     "diagram": null,
@@ -1236,8 +1229,7 @@
       "Dactylitis and DIP disease are the clues on the exam.",
       "Nail pitting counts. Ask the patient to show the scalp.",
       "Methotrexate is a common conventional drug. It is not the only option when the joints are eroding.",
-      "DIP joints, nail pits, and a whole-digit dactylitis. Rheumatoid arthritis prefers MCP and PIP joints and spares the DIP.",
-      "Treat the joint even if the skin is mild. Pencil-in-cup is a late film, not required for the diagnosis."
+      "DIP joints, nail pits, and a whole-digit dactylitis. Rheumatoid arthritis prefers MCP and PIP joints and spares the DIP."
     ],
     "miss": "Treating only the skin plaques while the digit stays swollen.",
     "diagram": null,
@@ -1263,8 +1255,7 @@
       "A tap that is culture-negative is the point.",
       "Uveitis needs an eye exam.",
       "A single dose of antibiotics does not fix established joint inflammation.",
-      "Sterile inflammatory joint days to weeks after Chlamydia or a gut infection. Culture of the fluid is negative.",
-      "Treat a still-present infection. Use an NSAID for the joint. Uveitis needs an eye exam the same day."
+      "Sterile inflammatory joint days to weeks after Chlamydia or a gut infection. Culture of the fluid is negative."
     ],
     "miss": "Operating a culture-negative knee or giving a month of vancomycin.",
     "diagram": null,
@@ -1310,7 +1301,7 @@
     "title": "Pemphigus is a steroid disease and the mouth is involved",
     "read": "1 min",
     "open": false,
-    "lead": "Pemphigus vulgaris is treated with systemic corticosteroids and a steroid-sparing drug. The mouth erosions are part of the disease, not a separate thrush.",
+    "lead": "Moderate-to-severe pemphigus has an intravenous CD20 inhibitor as a first-line option. The mouth is involved, and the blisters are flaccid.",
     "lines": [
       "Nikolsky-positive flaccid bullae are the exam.",
       "Fluid and wound care matter because the skin barrier is gone.",
@@ -1321,10 +1312,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Pemphigus Vulgaris.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
-      "says": "Pemphigus vulgaris (PV) is an autoimmune disease that results in blisters on cutaneous and mucosal surfaces and is characterized primarily by acantholysis."
+      "name": "International consensus. Diagnosis and management of pemphigus.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29438767/",
+      "says": "This international consensus includes an intravenous CD20 inhibitor as a first-line therapy option for moderate-to-severe pemphigus."
     },
     "number": 51,
     "id": "usmle-qb-s2-051"
@@ -1626,7 +1617,6 @@
     "lead": "Restoring sinus rhythm does not remove the stroke risk that required anticoagulation.",
     "lines": [
       "The indication is the yearly risk, not the rhythm on today's ECG.",
-      "A DOAC is preferred unless there is moderate or severe mitral stenosis or a mechanical valve.",
       "Aspirin is not the substitute.",
       "Class 1 anticoagulation is an estimated risk of at least 2% per year: CHA2DS2-VASc of 2 or more in men and 3 or more in women.",
       "A DOAC is preferred. Exceptions are moderate or severe mitral stenosis and a mechanical valve, which stay on warfarin. Aspirin does not prevent stroke. Sinus rhythm does not cancel the indication."
@@ -1759,7 +1749,6 @@
     "lead": "Tamponade is treated by removing the pericardial fluid. A diuretic reduces the preload the heart still needed.",
     "lines": [
       "Fluids are a bridge while the needle or the window is arranged.",
-      "Pulsus paradoxus and equalization are the clues.",
       "A small effusion without equalization is not tamponade and does not need an emergency window.",
       "Diastolic pressures equalize and the y descent drops. Pulsus paradoxus is an exaggerated inspiratory fall in systolic pressure.",
       "Fluids are a bridge. Drainage is the treatment. A diuretic removes the last preload."
@@ -1812,7 +1801,6 @@
     "lead": "Typical atrial flutter is treated by ablating the cavotricuspid isthmus when the patient is a candidate. Rate and stroke prevention still matter today.",
     "lines": [
       "A ventricular rate of 150 with sawtooth waves is flutter until proved otherwise.",
-      "Anticoagulation follows stroke risk, as in fibrillation.",
       "Adenosine may show the flutter waves. It does not cure the circuit.",
       "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve.",
       "Ablation of the isthmus treats the circuit. Stroke prevention follows the same risk threshold as fibrillation and is not cancelled by sinus rhythm."
@@ -1872,10 +1860,10 @@
     "diagram": "rheumatic-pcn",
     "diagramAlt": "Rheumatic prophylaxis. After rheumatic fever: scheduled penicillin Duration depends on carditis One 10-day course is not prophylaxis",
     "source": {
-      "name": "StatPearls. Rheumatic Heart Disease.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "Rheumatic heart disease is a systemic immune process that is sequelae to a beta-hemolytic streptococcal infection of the pharynx."
+      "name": "AHA scientific statement. Prevention of rheumatic fever.",
+      "year": "2009",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19246689/",
+      "says": "After rheumatic fever, continuous antimicrobial prophylaxis prevents recurrence. Penicillin is the agent of choice. The duration depends on cardiac involvement and ongoing exposure."
     },
     "number": 72,
     "id": "usmle-qb-s2-072"
@@ -2230,8 +2218,7 @@
     "lines": [
       "Nephrogenic disease from lithium is not fixed by more desmopressin.",
       "The patient must be allowed to drink, or you replace the water.",
-      "A low sodium means you gave too much desmopressin or the patient drank past it.",
-      "Desmopressin concentrates the urine only if the cause is central."
+      "A low sodium means you gave too much desmopressin or the patient drank past it."
     ],
     "miss": "Restricting free water in a hypernatremic patient whose urine is already water.",
     "diagram": null,
@@ -2291,7 +2278,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "A decrease in pH below this range is acidosis; an increase over this range is alkalosis."
+      "says": "Metabolic alkalosis is defined as a disease state where the body\u2019s pH is elevated to greater than 7.45 secondary to some metabolic process."
     },
     "number": 88,
     "id": "usmle-qb-s2-088"
@@ -2325,15 +2312,14 @@
     "step": "step-2-ck",
     "system": "respiratory-renal",
     "group": "Respiratory and renal",
-    "title": "Tension pneumothorax is decompressed before the film",
+    "title": "Tension pneumothorax shifts the mediastinum",
     "read": "1 min",
     "open": false,
-    "lead": "A hypotensive patient with a shifted trachea and absent breath sounds is decompressed. The chest film is for the patient who can wait.",
+    "lead": "Tension pneumothorax is a one-way leak that transmits pressure to the mediastinum and shifts the trachea away from the silent side.",
     "lines": [
-      "Needle or finger decompression is followed by a chest tube.",
       "The trachea moves away from the side of the tension.",
       "A simple pneumothorax in a stable patient can wait for the image.",
-      "Trachea shifts away from the silent side. Neck veins up. Pressure down. Decompress, then place a chest tube."
+      "Neck veins are up because venous return is blocked, not because the heart is failing."
     ],
     "miss": "Sending a crashing patient to radiology for a two-view film.",
     "diagram": null,
@@ -2342,7 +2328,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Tension pneumothorax develops when this pressure is transmitted to the mediastinum (see Image."
+      "says": "Tension pneumothorax develops when pleural pressure is transmitted to the mediastinum."
     },
     "number": 90,
     "id": "usmle-qb-s2-090"
@@ -2410,7 +2396,6 @@
     "lead": "Idiopathic pulmonary fibrosis is treated with an antifibrotic drug and supportive care, not with a long prednisone course as the disease-modifying plan.",
     "lines": [
       "Oxygen for hypoxemia and pulmonary rehabilitation are part of care.",
-      "A connective-tissue disease or an exposure has to be excluded first.",
       "Acute worsening is a different event and needs a different evaluation.",
       "Basal, peripheral honeycombing and Velcro crackles. Exclude connective-tissue disease and exposures before calling it idiopathic.",
       "Nintedanib or pirfenidone is the disease-modifying choice. Long-term prednisone is not that treatment."
@@ -2462,7 +2447,6 @@
     "open": false,
     "lead": "Replace the free-water deficit of hypernatremia gradually. A fast drop swells a brain that has made new osmoles.",
     "lines": [
-      "The urine tells you if the kidney is holding water.",
       "Let a patient with an intact thirst drink.",
       "Desmopressin is for central diabetes insipidus, not for a patient who simply had no access to water.",
       "Concentrated urine means the kidney is holding water and intake was the problem. Dilute urine is diabetes insipidus."
@@ -2606,7 +2590,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Author information: (1)National Health Service In 2005, Moe et al coined the term chronic kidney disease\u2013mineral and bone disorder (CKD-MBD) to describe a complex clinical syndrome encompassing disorders of calcium, phosphate, parathyroid hormone (PTH), vitamin D, and fibroblast growth factor-23 (FGF23) metabolism."
+      "says": "Thus, management of secondary hyperparathyroidism is guided by established surrogate markers of deranged mineral bone metabolism, such as serum calcium, phosphate, PTH, and 25-hydroxyvitamin D."
     },
     "number": 100,
     "id": "usmle-qb-s2-100"
@@ -2701,8 +2685,7 @@
     "lines": [
       "Anticoagulation is considered when the albumin is very low and the bleeding risk allows it.",
       "Not every patient needs immediate immunosuppression.",
-      "A renal-vein thrombosis is flank pain and a worsening kidney, not just more protein.",
-      "Test for hepatitis B, lupus, and cancer."
+      "A renal-vein thrombosis is flank pain and a worsening kidney, not just more protein."
     ],
     "miss": "Starting high-dose steroids on day one and never testing for hepatitis B.",
     "diagram": null,
@@ -2760,16 +2743,10 @@
     "diagram": "saag",
     "diagramAlt": "Ascites tap. SAAG \u22651.1: portal hypertension Neutrophils \u2265250: treat SBP now Remove >5 L: albumin 6\u20138 g per liter",
     "source": {
-      "name": "StatPearls. Ascites. AASLD practice guidance on ascites and spontaneous bacterial peritonitis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470482/",
-      "says": "Mortality increases from complications such as spontaneous bacterial peritonitis and hepatorenal syndrome.",
-      "more": [
-        {
-          "name": "AASLD practice guidelines.",
-          "url": "https://www.aasld.org/practice-guidelines"
-        }
-      ]
+      "name": "AASLD practice guidance. Ascites, spontaneous bacterial peritonitis, and hepatorenal syndrome.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33942342/",
+      "says": "A diagnostic paracentesis is the evaluation of new ascites, and spontaneous bacterial peritonitis is part of what that guidance addresses."
     },
     "open": false
   },
@@ -2784,7 +2761,6 @@
     "lines": [
       "A clean-based ulcer that has stopped bleeding does not need a heroic transfusion target.",
       "Alarm features, including bleeding, weight loss, and age, get an endoscopy.",
-      "Stop the NSAID. Treat the infection. A proton-pump inhibitor covers the healing.",
       "Test and treat Helicobacter pylori with a full eradication regimen, then a test of cure. A proton-pump inhibitor alone does not eradicate."
     ],
     "miss": "Locating the ulcer from whether food helps, and never testing for H. pylori.",
@@ -2836,7 +2812,6 @@
     "lead": "Acute pancreatitis is epigastric pain to the back with a lipase at least three times normal. Gallstones and alcohol are the two causes to name first.",
     "lines": [
       "Two of three: typical pain, lipase at least three times the upper limit, and imaging only if the diagnosis is unclear.",
-      "Gallstones and alcohol are the causes to name first.",
       "Early fluid is the treatment. Feed when pain allows. Do not trend the lipase every morning.",
       "Antibiotics are not routine for uncomplicated pancreatitis."
     ],
@@ -2926,7 +2901,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "the term of Cholecystitis it is referred to inflammation in the gallbladder and it is considered as a surgical condition."
+      "says": "Chronic and acute pancreatitis can also mimic gallbladder disease."
     },
     "number": 112,
     "id": "usmle-qb-s2-112"
@@ -3045,7 +3020,6 @@
     "lead": "Suspected variceal bleeding gets a vasoactive drug such as octreotide, an intravenous antibiotic, and urgent endoscopy for banding.",
     "lines": [
       "Resuscitate, but do not flood the patient into a higher portal pressure.",
-      "A nonselective beta blocker is secondary prevention after the bleeding stops, not a drug for the shock bay.",
       "Intubation for a massive hematemesis protects the airway before the scope.",
       "Acute variceal bleeding is treated with a vasoactive drug, an antibiotic, and endoscopic therapy. A nonselective beta blocker is prevention after hemostasis, not the treatment of shock."
     ],
@@ -3125,7 +3099,6 @@
     "lines": [
       "High risk includes prior preeclampsia, a multifetal pregnancy, chronic hypertension, diabetes, kidney disease, and autoimmune disease.",
       "The dose used in the recommendation is 81 mg daily.",
-      "Aspirin does not treat severe-range pressures that are already present.",
       "Aspirin does not treat a pressure of 170. That pressure gets an antihypertensive and, if severe features are present, magnesium."
     ],
     "miss": "Saving the aspirin for the third trimester, or offering it as the treatment of a pressure of 170/110.",
@@ -3148,7 +3121,6 @@
     "open": false,
     "lead": "In diabetic ketoacidosis, continue insulin after the glucose falls and add dextrose. Stop insulin when the gap has closed and the patient is eating, not when the glucose first looks pretty.",
     "lines": [
-      "If potassium is under 3.3, replace it before insulin.",
       "The 2024 hyperglycemic-crisis guidance is fluids, potassium, and insulin, and bicarbonate is not routine.",
       "An SGLT2 inhibitor can cause ketoacidosis with a glucose that is not very high. Ask about the drug.",
       "Anion-gap acidosis and ketones. If potassium is under 3.3 mEq/L, replace it before insulin, because insulin will drop the serum potassium."
@@ -3255,7 +3227,7 @@
       "Heart failure gets an SGLT2 inhibitor.",
       "Atherosclerotic disease can get a GLP-1 receptor agonist, an SGLT2 inhibitor, or both.",
       "Do not wait through a failed metformin trial when one of those diseases is already present.",
-      "These drug choices do not wait for metformin to fail, and they do not wait for the A1C to rise."
+      "Chronic kidney disease is its own reason to choose an SGLT2 inhibitor, even when the A1C is close to goal."
     ],
     "miss": "Withholding the drug because the A1C is 6.8.",
     "diagram": null,
@@ -3386,7 +3358,6 @@
     "lines": [
       "A prior cesarean plus previa raises the chance of placenta accreta. That delivery is planned in a center that can handle it.",
       "The acute bleed is resuscitated like any maternal hemorrhage.",
-      "Ultrasound, not a finger, makes the diagnosis.",
       "The placenta covers the internal os, so labor and a digital exam can cause hemorrhage. Ultrasound makes the diagnosis."
     ],
     "miss": "Inducing labor through a complete previa.",
@@ -3446,10 +3417,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Erectile Dysfunction.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "Erectile dysfunction (ED), formerly termed impotence, is defined as the failure to achieve or maintain a rigid penile erection suitable for satisfactory sexual intercourse."
+      "name": "ACC/AHA expert consensus. Cardiovascular effects of sildenafil and recommendations for its use.",
+      "year": "1999",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10503571/",
+      "says": "Nitrate antianginal agents are an absolute contraindication to sildenafil. Together with nitroglycerin, sildenafil can cause a major drop in blood pressure."
     },
     "number": 132,
     "id": "usmle-qb-s2-132"
@@ -3458,25 +3429,23 @@
     "step": "step-2-ck",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "An alpha blocker works this week. A 5-alpha-reductase inhibitor works in months",
+    "title": "BPH is growth in the transition zone",
     "read": "1 min",
     "open": false,
-    "lead": "For benign prostatic hyperplasia, an alpha blocker relieves symptoms in days. A 5-alpha-reductase inhibitor shrinks the gland over months and is for a large gland.",
+    "lead": "Benign prostatic hyperplasia is proliferation of smooth muscle and epithelial cells in the transition zone. Symptoms become more common with age.",
     "lines": [
-      "A post-void residual and a urine culture belong in the visit when infection or retention is possible.",
-      "A nodule or a rising PSA is cancer until evaluated.",
-      "Red flags of retention, infection, and renal failure are not treated with a tamsulosin sample alone.",
-      "Episodic headache, palpitations, and hypertension. Plasma or urine metanephrines are the test.",
-      "Phenoxybenzamine or another alpha blocker, and volume, before any beta blocker and before surgery. A beta blocker first can raise the pressure."
+      "It is a histologic diagnosis, not a nodule and not a rising PSA.",
+      "The AUA guideline contains the statements on evaluation and on medical management.",
+      "A man with retention, infection, or renal failure is not managed with a sample of one drug."
     ],
     "miss": "Promising a man that finasteride will help him urinate tonight.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Benign Prostatic Hyperplasia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "Benign prostatic hyperplasia (BPH) refers to the nonmalignant growth or hyperplasia of prostate tissue and is a common cause of lower urinary tract symptoms (LUTS) in older men."
+      "name": "AUA guideline. Management of lower urinary tract symptoms from benign prostatic hyperplasia. Part I.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34384237/",
+      "says": "Benign prostatic hyperplasia is proliferation of smooth muscle and epithelial cells within the prostatic transition zone, and the guideline covers its evaluation and medical management."
     },
     "number": 133,
     "id": "usmle-qb-s2-133"
@@ -3485,24 +3454,23 @@
     "step": "step-2-ck",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Torsion of the testis is detorsed, not imaged to death",
+    "title": "Acute scrotal pain is imaged promptly",
     "read": "1 min",
     "open": false,
-    "lead": "A clear testicular torsion goes to the operating room. Ultrasound is for the case that is not clear, and it is not allowed to consume the six-hour window.",
+    "lead": "Acute scrotal pain is an emergency. Ultrasound is the first-line imaging test and is not left until the next morning.",
     "lines": [
-      "The other side is fixed.",
-      "Pain relief after manual detorsion does not cancel the operation.",
-      "Epididymitis has fever, pyuria, and a present cremasteric reflex.",
-      "Ultrasound is for an unclear exam and must not consume the window. The other side is fixed because the anatomy is bilateral."
+      "The differential overlaps, so the history alone does not separate torsion from infection.",
+      "Ultrasound is the established first-line imaging modality for acute scrotal disease.",
+      "A study booked for the following day is not a prompt diagnosis."
     ],
     "miss": "Booking a Doppler study for the next available slot in the morning.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Testicular Torsion.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "Scrotal complaints are relatively common in the emergency department, comprising at least 0.5% of all emergency department visits."
+      "name": "ACR Appropriateness Criteria. Acute onset of scrotal pain.",
+      "year": "2024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39488348/",
+      "says": "Acute scrotum is an emergency that needs a prompt diagnosis. Ultrasound is the established first-line imaging modality."
     },
     "number": 134,
     "id": "usmle-qb-s2-134"
@@ -3542,7 +3510,6 @@
     "open": false,
     "lead": "Pelvic inflammatory disease is treated with a regimen that covers gonorrhea and chlamydia, and the partner is treated.",
     "lines": [
-      "Pelvic inflammatory disease is treated from the 2021 CDC STI Treatment Guidelines.",
       "Treat the patient and arrange treatment of sex partners. A prescription for one person is not the regimen.",
       "Cervical motion tenderness is the examination finding that starts that guideline, not a normal Pap smear.",
       "Treat gonorrhea and chlamydia in the patient, and treat the partner in the same plan."
@@ -3751,7 +3718,6 @@
     "lead": "Rhabdomyolysis is treated with intravenous fluids. The potassium is rechecked because it can stop the heart before the creatinine rises.",
     "lines": [
       "The urine dip lies. Look at the microscope.",
-      "A tight limb is a compartment and is opened.",
       "Statins and fibrates together are a cause you stop.",
       "Intravenous fluid at a defined rate and a repeat potassium. A tight compartment is opened. Stop the statin.",
       "Dipstick positive for blood and no red cells on microscopy. Potassium can arrest the heart before creatinine rises."
@@ -3926,7 +3892,6 @@
     "lead": "Stop annual lung-cancer screening when the patient has not smoked for 15 years, turns 81, or develops a condition that limits the benefit.",
     "lines": [
       "Annual low-dose CT for ages 50\u201380 with at least 20 pack-years, current smoker or quit within 15 years.",
-      "Stop after 15 smoke-free years, at age 81, or when the patient is too ill to benefit from treating a screen-detected cancer.",
       "A shared decision, including false positives, comes before the first scan.",
       "Hemoptysis or a persistent new cough is a diagnostic CT, not a screening order."
     ],
@@ -4058,9 +4023,7 @@
     "lines": [
       "Prior preeclampsia, multifetal pregnancy, chronic hypertension, diabetes, kidney disease, and autoimmune disease are the high-risk list.",
       "The dose used in the recommendation is 81 mg.",
-      "Severe-range pressures are treated with antihypertensives and magnesium, not with aspirin.",
-      "Low-dose aspirin prevents preeclampsia. It does not treat a pressure that is already severe.",
-      "Low-dose aspirin after 12 weeks is for prevention in high-risk patients. It is not the treatment of severe-range blood pressure."
+      "Severe-range pressures are treated with antihypertensives and magnesium, not with aspirin."
     ],
     "miss": "Starting aspirin at 34 weeks as the treatment of severe hypertension.",
     "diagram": null,
@@ -4118,10 +4081,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 8.6, Promoting Patient Safety.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/promoting-patient-safety",
+      "says": "AMA Opinion 8.6: disclose a medical error, explain the potential harm, and do not let concern about liability affect that honesty."
     },
     "open": false
   },
@@ -4190,8 +4153,7 @@
     "lines": [
       "Speak to the patient, not to the interpreter.",
       "Document the interpreter's identity.",
-      "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure.",
-      "Speak to the patient. The clinician who performs the procedure is the one who discloses the risks."
+      "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure."
     ],
     "miss": "Asking a 10-year-old to explain a surgery to a parent.",
     "diagram": null,
@@ -4215,7 +4177,6 @@
     "lead": "If a patient cannot consent and no surrogate can be reached in time, emergency treatment that a reasonable person would want proceeds.",
     "lines": [
       "This is implied consent for the emergency, not a blank check for elective procedures.",
-      "Keep looking for the surrogate while you treat.",
       "Document why you could not wait.",
       "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure.",
       "That note covers the emergency only. An elective addition waits. Keep looking for the surrogate."
@@ -4355,10 +4316,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights",
+      "says": "AMA Opinion 1.1.3: a patient with decision-making capacity may accept or refuse any recommended medical intervention."
     },
     "number": 166,
     "id": "usmle-qb-s2-166"
@@ -4381,10 +4342,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "AMA Opinion 2.1.1 requires an independent, voluntary decision after the patient understands the treatment and its alternatives."
     },
     "number": 167,
     "id": "usmle-qb-s2-167"
@@ -4425,7 +4386,6 @@
     "lead": "A breast, pelvic, or genital exam is done with a chaperone offered and, in many settings, present. The patient's comfort is part of consent.",
     "lines": [
       "Explain each step before you do it.",
-      "Stop if the patient withdraws consent.",
       "A chaperone protects the patient and the clinician.",
       "Stop if consent is withdrawn. An offer that was never made is not a decline."
     ],
@@ -4433,10 +4393,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 1.2.4, Use of Chaperones.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/use-chaperones",
+      "says": "AMA Opinion 1.2.4: always honor a patient's request for a chaperone, and use an authorized member of the health care team."
     },
     "number": 169,
     "id": "usmle-qb-s2-169"
@@ -4450,8 +4410,6 @@
     "open": false,
     "lead": "Opioids given to treat pain or air hunger, even if they might hasten death, are not euthanasia when the intent is relief.",
     "lines": [
-      "The dose is the dose that relieves the symptom.",
-      "A dose chosen to kill is a different act.",
       "Do not withhold morphine from a dying patient because of that confusion.",
       "An opioid dose titrated to pain or air hunger is symptom treatment. The intent is relief, and the dose stops when the symptom stops.",
       "A dose chosen to end life is a different act and is not what this order is. Write the symptom you are treating."
@@ -4460,10 +4418,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 5.6, Sedation to Unconsciousness in End-of-Life Care.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/sedation-unconsciousness-end-life-care",
+      "says": "AMA Opinion 5.6: the duty to relieve pain is central, and sedation to unconsciousness must never be used to intentionally cause a patient's death."
     },
     "number": 170,
     "id": "usmle-qb-s2-170"
@@ -4477,7 +4435,6 @@
     "open": false,
     "lead": "If a colleague's impairment puts patients at risk, you act. Silence is not loyalty.",
     "lines": [
-      "Remove the colleague from the patient if the risk is immediate.",
       "Report through the system your institution requires.",
       "A rumor is not the same as an observed impairment. Act on what you know.",
       "Remove the colleague from patients immediately if the impairment is happening now. The report does not wait until the end of the shift.",
@@ -4504,7 +4461,6 @@
     "open": false,
     "lead": "A late correction is added, dated, and signed. The original note is not deleted or rewritten after a bad outcome.",
     "lines": [
-      "An addendum says when you learned the new fact.",
       "Changing a note to hide an error is a second harm.",
       "The disclosure to the patient and the note tell the same story.",
       "A correction after a complication is an addendum with the time you learned the fact. The original note stays."
@@ -4513,10 +4469,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Principles of Medical Ethics, Principle II.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/principles",
+      "says": "AMA Principle II: a physician shall be honest in all professional interactions."
     },
     "number": 172,
     "id": "usmle-qb-s2-172"
@@ -4636,8 +4592,6 @@
     "lead": "A POLST or similar portable order tells emergency clinicians what to do tonight. An advance directive tells a surrogate what the patient would have wanted.",
     "lines": [
       "They are not interchangeable.",
-      "A capable patient can change either.",
-      "Emergency personnel follow the order they can see.",
       "A POLST is a medical order emergency clinicians can follow. An advance directive guides a surrogate and does not travel in an ambulance unless a copy is present.",
       "Reconcile conflicting orders before discharge. A capable patient can void either."
     ],
@@ -4671,10 +4625,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "AMA Opinion 2.1.1: patients have the right to receive information and ask questions about recommended treatments before they decide."
     },
     "number": 178,
     "id": "usmle-qb-s2-178"
@@ -4697,10 +4651,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 5.5, Medically Ineffective Interventions.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/medically-ineffective-interventions",
+      "says": "AMA Opinion 5.5: there is no single definition of futile care. The word depends on the patient's own values and goals."
     },
     "number": 179,
     "id": "usmle-qb-s2-179"
@@ -4723,10 +4677,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 11.1.3, Allocating Limited Health Care Resources.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/allocating-limited-health-care-resources",
+      "says": "AMA Opinion 11.1.3: a scarce bed is allocated by a policy based on medical need, including urgency and the likelihood and duration of benefit."
     },
     "number": 180,
     "id": "usmle-qb-s2-180"

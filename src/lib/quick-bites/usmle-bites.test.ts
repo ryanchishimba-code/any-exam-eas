@@ -170,12 +170,30 @@ function problems(
     }
   }
   const head = `${bite.title} ${bite.lead}`;
-  if (/compartment/i.test(head) && /mesenteric|soft abdomen|embolus/i.test(bite.lines.join(" "))) {
+  const body = bite.lines.join(" ");
+  const foreign: Array<[RegExp, RegExp]> = [
+    [/compartment/i, /mesenteric|soft abdomen|embolus/i],
+    [/hepatitis b/i, /integrase|thymidine analog/i],
+    [/meningitis/i, /cushing/i],
+    [/prostatic hyperplasia|\bbph\b|benign prostatic/i, /metanephrine|phenoxybenzamine|pheochromocytoma/i],
+    [/ascites/i, /acetazolamide|proximal tubule/i],
+    [/previa/i, /fetal benefit|refuse a cesarean/i],
+    [/cutoff|predictive value|pre-test chance|pretest chance/i, /series testing|parallel testing/i],
+    [/palpable|breast lump|breast mass/i, /\bbrca\b|supplemental ultrasound/i],
+  ];
+  for (const [topic, intruder] of foreign) {
+    if (topic.test(head) && intruder.test(body)) failures.push(`${bite.id} topic mismatch`);
+  }
+  if (bite.diagram === "diuretic-ca" && !/calcium|thiazide|loop/i.test(head)) {
     failures.push(`${bite.id} topic mismatch`);
   }
-  if (/hepatitis b/i.test(head) && /integrase|thymidine analog/i.test(bite.lines.join(" "))) {
+  if (
+    bite.diagram === "series-parallel" &&
+    !/series|parallel|two test|either positive|both positive|either of two/i.test(head)
+  ) {
     failures.push(`${bite.id} topic mismatch`);
   }
+  if (/\(see image/i.test(bite.source.says)) failures.push(`${bite.id} citation fragment`);
   return failures;
 }
 

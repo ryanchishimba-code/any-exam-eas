@@ -10,8 +10,7 @@
     "lines": [
       "This is not an outpatient viral visit.",
       "The AAP 2021 guideline is the source of that age band.",
-      "Do not subtract the rectal temperature because the baby looks calm.",
-      "Infants 8 to 21 days old are hospitalized for a full culture evaluation and parenteral antibiotics."
+      "Do not subtract the rectal temperature because the baby looks calm."
     ],
     "miss": "Sending a 2-week-old with a fever of 38.2 home with a virus explanation.",
     "diagram": "infant-fever",
@@ -112,7 +111,6 @@
     "lines": [
       "Oxygen is for hypoxia, not for a saturation of 99%.",
       "Fluids are enough to correct deficit, not a flood.",
-      "A new infiltrate changes the admission to acute chest syndrome.",
       "Incentive spirometry on every pain admission. A new infiltrate plus hypoxia is acute chest syndrome.",
       "Exchange transfusion for severe acute chest or acute stroke. Simple transfusion is for symptomatic anemia. Hydroxyurea is prevention, not today's stroke drug."
     ],
@@ -140,8 +138,7 @@
       "Simple transfusion is for symptomatic anemia.",
       "Call the blood bank early. The exchange takes time to arrange.",
       "Hydroxyurea is the outpatient prevention, not the drug that treats today's stroke.",
-      "Incentive spirometry on every pain admission. A new infiltrate plus hypoxia is acute chest syndrome.",
-      "Exchange transfusion is used for severe acute chest syndrome and for acute ischemic stroke in sickle cell disease."
+      "Incentive spirometry on every pain admission. A new infiltrate plus hypoxia is acute chest syndrome."
     ],
     "miss": "Ordering one unit of packed cells and a neurology clinic visit for an acute ischemic stroke in sickle cell disease.",
     "diagram": null,
@@ -217,10 +214,8 @@
     "lead": "A hemophilia patient with head trauma gets factor replacement immediately. The CT does not come before the factor.",
     "lines": [
       "Aim for a full correction for a central-nervous-system bleed.",
-      "Do not give an intramuscular injection.",
       "An inhibitor is suspected when the bleed does not stop with the usual dose.",
-      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed.",
-      "Do not wait for the CT to give the factor."
+      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed."
     ],
     "miss": "Sending the patient to CT while the factor is still in the pharmacy.",
     "diagram": null,
@@ -325,8 +320,7 @@
       "Aspirin is added when the diagnosis is secure.",
       "Hydroxyurea is for the high-risk patient, written as a planned drug, not a one-time dose.",
       "Tell the patient to report erythromelalgia and clots.",
-      "A high EPO is secondary erythrocytosis.",
-      "Phlebotomy in polycythemia vera targets a hematocrit below 45%."
+      "A high EPO is secondary erythrocytosis."
     ],
     "miss": "Phlebotomizing a patient with COPD and a high EPO down to a hematocrit of 40.",
     "diagram": "pv-hct",
@@ -456,8 +450,7 @@
       "The marrow is the diagnostic test and is ordered, not inferred.",
       "Infection precautions are written.",
       "Growth factors are not a substitute for a diagnosis.",
-      "Reticulocytes are low and the marrow is empty. Splenomegaly argues against aplastic anemia.",
-      "Avoid family-directed donor blood if transplant is possible. Those transfusions can sensitize the recipient."
+      "Reticulocytes are low and the marrow is empty. Splenomegaly argues against aplastic anemia."
     ],
     "miss": "Transfusing a sibling's directed donation the night before a transplant evaluation.",
     "diagram": null,
@@ -506,7 +499,6 @@
     "lead": "The first stroke orders are a glucose, a noncontrast CT, and a clock. Hypoglycemia copies a stroke and is treated, not lysed.",
     "lines": [
       "The CT excludes hemorrhage. It does not have to show the infarct.",
-      "Do not delay the drug inside 4.5 hours for an MRI.",
       "A swallow screen is ordered before the first meal.",
       "Glucose and noncontrast CT precede thrombolysis. MRI is not required inside the standard window.",
       "Inside 4.5 hours, tenecteplase 0.25 mg/kg (maximum 25 mg) or alteplase 0.9 mg/kg (maximum 90 mg). Blood pressure before the drug is under 185/110. The 0.4 mg/kg tenecteplase dose is not the one used."
@@ -588,7 +580,6 @@
       "Blood cultures are drawn if they do not delay the drug.",
       "The steroid is with the first dose when pneumococcus is likely.",
       "A normal CT does not mean you skip the puncture.",
-      "Antibiotics and dexamethasone are not delayed for imaging. The lumbar puncture follows the scan when a scan is required.",
       "Dexamethasone is given before or with the first dose when adult pneumococcal meningitis is suspected. A normal CT does not cancel the puncture."
     ],
     "miss": "Holding the antibiotic until the patient returns from CT and the puncture is done.",
@@ -677,7 +668,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "Degeneration of dopaminergic neurons in the substantia nigra produces bradykinesia, resting tremor, and rigidity."
+      "says": "PD usually presents in later life with the cardinal clinical motor features of bradykinesia, resting tremor, and rigidity, often in various combinations."
     },
     "number": 26,
     "id": "usmle-qb-s3-026"
@@ -725,10 +716,10 @@
     "diagram": "tia-plan",
     "diagramAlt": "TIA before discharge. Antithrombotic today AF found: anticoagulant, not aspirin Carotid imaging, not a visit in 3 months",
     "source": {
-      "name": "StatPearls. Transient Ischemic Attack.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459143/",
-      "says": "Transient ischemic attack (TIA) constitutes a medical emergency characterized by an acute, transient episode of focal neurologic dysfunction within a vascular territory resulting from ischemia of the brain, spinal cord, or retina, with complete resolution of symptoms and no evidence of acute infarction or tissue injury."
+      "name": "2021 AHA/ASA guideline for the prevention of stroke in patients with stroke and TIA.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34024117/",
+      "says": "A transient ischemic attack is treated under the stroke-prevention guideline, with a drug and a follow-up plan rather than reassurance that the deficit cleared."
     },
     "number": 28,
     "id": "usmle-qb-s3-028"
@@ -848,7 +839,6 @@
     "open": false,
     "lead": "Hold lithium, start saline if the patient is dry, and time the level so you do not sample during the distribution phase and undercall the toxicity.",
     "lines": [
-      "Stop the NSAID or the thiazide that raised it.",
       "Dialysis is ordered for severe neurotoxicity, not for a mild tremor.",
       "The home dose is not restarted at discharge without a new level and a reason.",
       "NSAIDs, thiazides, and ACE inhibitors raise the level. Hold lithium and recheck.",
@@ -888,7 +878,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "Serotonin syndrome (serotonin toxicity) is a serious and potentially life-threatening condition that results from excessive serotonergic activity throughout the central nervous system."
+      "says": "Treatment for serotonin syndrome involves discontinuing the offending medications and providing supportive care."
     },
     "number": 34,
     "id": "usmle-qb-s3-034"
@@ -904,7 +894,6 @@
     "lines": [
       "Onset is days after a dopamine blocker. Lead-pipe rigidity, fever, and autonomic instability. CK is often in the thousands.",
       "Reflexes are reduced. Clonus means serotonin syndrome, which starts in hours, not this picture.",
-      "Stop the blocker. Cool. Give intravenous fluid for the muscle injury. Do not give another antipsychotic dose for the agitation.",
       "Bromocriptine or dantrolene is adjunctive. Neither replaces stopping the drug. A benzodiazepine can cover agitation while it is held."
     ],
     "miss": "Ordering haloperidol for the rigidity.",
@@ -914,7 +903,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "Neuroleptic malignant syndrome (NMS) is a life-threatening syndrome associated with the use of dopamine-receptor antagonist medications or with the rapid withdrawal of dopaminergic medications."
+      "says": "Classic clinical characteristics include mental status changes, fever, muscle rigidity, and autonomic instability."
     },
     "number": 35,
     "id": "usmle-qb-s3-035"
@@ -964,10 +953,10 @@
     "diagram": "ich-cerebellum",
     "diagramAlt": "Which bleed goes to surgery. Cerebellum with compression: evacuate Putamen: usually medical Lobar in an older adult: think amyloid",
     "source": {
-      "name": "StatPearls. Hemorrhagic Stroke Overview.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Cerebrovascular accident, otherwise called a stroke, is the second leading cause of death worldwide and one of the major causes of long-term disability."
+      "name": "2022 AHA/ASA guideline for spontaneous intracerebral hemorrhage.",
+      "year": "2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35579034/",
+      "says": "A cerebellar hemorrhage is not a routine floor admission. Deterioration or brainstem compression is a surgical decision in the 2022 AHA/ASA guideline."
     },
     "number": 37,
     "id": "usmle-qb-s3-037"
@@ -983,7 +972,6 @@
     "lines": [
       "An epidural hematoma larger than 30 mL is evacuated, whatever the Glasgow Coma Scale score.",
       "A patient who was talking and is now worsening does not wait for the next scheduled scan.",
-      "Reverse anticoagulation and send a type and screen on the way to the operating room.",
       "The blood is lens-shaped and does not cross sutures. That shape is the middle meningeal artery."
     ],
     "miss": "Watching an epidural hematoma over 30 mL because the patient is still speaking.",
@@ -1060,7 +1048,6 @@
     "lead": "Write pain control, venous-thromboembolism prophylaxis, and a surgical plan within about 48 hours for a medically ready hip fracture.",
     "lines": [
       "Delirium precautions are on the order set: no diphenhydramine, glasses on, catheter out.",
-      "A fragility fracture gets an osteoporosis treatment plan before discharge.",
       "Consent and the medical issues that truly delay surgery are listed, not a vague clearance.",
       "Prophylax against venous thromboembolism. A fragility fracture starts osteoporosis treatment before discharge. Remove the urinary catheter."
     ],
@@ -1080,16 +1067,14 @@
     "step": "step-3",
     "system": "msk-skin",
     "group": "Musculoskeletal and skin",
-    "title": "Open fracture: antibiotics and tetanus are stat",
+    "title": "An open fracture is bone open to the outside",
     "read": "1 min",
     "open": false,
-    "lead": "An open fracture order is a stat antibiotic, a tetanus update, a sterile dressing, and the operating room for irrigation.",
+    "lead": "An open fracture communicates with the skin. The bone is contaminated. That is a different wound from a closed fracture.",
     "lines": [
-      "The antibiotic spectrum follows how dirty the wound is.",
-      "Do not close the wound in the emergency department.",
-      "A photo and a neurovascular exam are documented before the dressing hides them.",
-      "Antibiotics and tetanus as soon as the bone is seen, ideally within an hour, and operative irrigation. Do not close a dirty wound in the emergency department.",
-      "A larger, dirtier wound needs broader coverage. Photograph and document pulses before the dressing hides them."
+      "The soft-tissue opening is what makes the fracture open, not the size of the bone piece on the film.",
+      "Dirt and skin flora are in the wound from the moment it happens.",
+      "A closed fracture does not have that communication."
     ],
     "miss": "Splinting and arranging antibiotics with the morning surgical add-on list.",
     "diagram": null,
@@ -1098,7 +1083,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "An open fracture is an injury where the fractured bone and/or fracture hematoma are exposed to the external environment via a traumatic violation of the soft tissue and skin."
+      "says": "An open fracture is a fracture in which the bone communicates with the outside through a wound."
     },
     "number": 42,
     "id": "usmle-qb-s3-042"
@@ -1288,10 +1273,10 @@
     "step": "step-3",
     "system": "msk-skin",
     "group": "Musculoskeletal and skin",
-    "title": "Pemphigus admission is fluids, wound care, and a steroid",
+    "title": "Pemphigus admission includes a CD20-inhibitor plan",
     "read": "1 min",
     "open": false,
-    "lead": "Order fluids, wound care, and systemic steroids for widespread pemphigus. The mouth is inspected so the patient can actually drink.",
+    "lead": "Moderate-to-severe pemphigus is admitted for wound care and fluids, and a CD20 inhibitor is a first-line option in the international consensus.",
     "lines": [
       "Infection of denuded skin is watched.",
       "A steroid-sparing drug is a follow-up, not a reason to delay the steroid.",
@@ -1302,10 +1287,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Pemphigus Vulgaris.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
-      "says": "Pemphigus vulgaris (PV) is an autoimmune disease that results in blisters on cutaneous and mucosal surfaces and is characterized primarily by acantholysis."
+      "name": "International consensus. Diagnosis and management of pemphigus.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29438767/",
+      "says": "An intravenous CD20 inhibitor is a first-line option for moderate-to-severe pemphigus in the international consensus recommendations."
     },
     "number": 50,
     "id": "usmle-qb-s3-050"
@@ -1532,7 +1517,6 @@
     "lead": "Order a type and screen, large-bore access, and immediate surgical or endovascular consultation for a suspected rupture. Do not order a clinic ultrasound.",
     "lines": [
       "Permissive hypotension until the aorta is controlled. A large crystalloid bolus before control can worsen bleeding.",
-      "Two large-bore IVs, a type and screen, and the blood bank. Immediate surgical or endovascular consultation.",
       "Back or abdominal pain plus hypotension is rupture. That patient does not go to a clinic ultrasound.",
       "A known diameter in the chart is retrieved. A tender pulsatile mass is not re-examined over and over."
     ],
@@ -1650,7 +1634,7 @@
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
-      "says": "Classic tetralogy of Fallot (TOF) is a congenital heart defect (CHD) that is comprised of 4 anatomical alterations: a large, anteriorly malaligned ventricular septal defect (VSD), an overriding aorta which results in infundibular (ie, sub-pulmonary) right ventricular outflow tract obstruction (RVOTO), and consequent right ventricular hypertrophy secondary to chronic systemic pressures."
+      "says": "The pulmonary valve annulus is often hypoplastic, with a pulmonary valve that is dysplastic and stenotic."
     },
     "number": 63,
     "id": "usmle-qb-s3-063"
@@ -1677,7 +1661,7 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "Coarctation of the aorta is a congenital cardiovascular anomaly characterized by a narrowing of the aortic lumen, typically located just distal to the origin of the left subclavian artery at the site of the ductus arteriosus (see Image."
+      "says": "Coarctation is a narrowing of the aortic lumen. After repair, the leg pressure is what shows a residual or recurrent narrowing."
     },
     "number": 64,
     "id": "usmle-qb-s3-064"
@@ -1753,10 +1737,10 @@
     "diagram": "rheumatic-pcn",
     "diagramAlt": "Rheumatic prophylaxis. After rheumatic fever: scheduled penicillin Duration depends on carditis One 10-day course is not prophylaxis",
     "source": {
-      "name": "StatPearls. Rheumatic Heart Disease.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "Rheumatic heart disease is a systemic immune process that is sequelae to a beta-hemolytic streptococcal infection of the pharynx."
+      "name": "AHA scientific statement. Prevention of rheumatic fever.",
+      "year": "2009",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19246689/",
+      "says": "Secondary prevention of rheumatic fever is continuous prophylaxis, and penicillin is the agent of choice. Sulfadiazine or a macrolide is the alternative in penicillin allergy."
     },
     "number": 67,
     "id": "usmle-qb-s3-067"
@@ -1772,9 +1756,7 @@
     "lines": [
       "The INR target is the valve's target and is written as a number.",
       "Aspirin may be added for some valves. It does not replace warfarin.",
-      "A DOAC on the home list of a mechanical valve is an error you correct.",
-      "Warfarin is the anticoagulant. A DOAC is not substituted at discharge.",
-      "Warfarin remains the anticoagulant for mechanical valves and moderate-to-severe mitral stenosis."
+      "A DOAC on the home list of a mechanical valve is an error you correct."
     ],
     "miss": "Reconciling apixaban onto a mechanical mitral valve because the patient prefers it.",
     "diagram": "warfarin-only",
@@ -1853,8 +1835,7 @@
       "Diuresis still treats congestion. It is not the only order.",
       "Digoxin is used cautiously if amyloid is likely, because the drug binds the amyloid.",
       "The heart-failure clinic is not a substitute for the protein studies.",
-      "Normal or near-normal EF with a stiff ventricle. Amyloid: thick walls and low QRS voltage.",
-      "Order serum and urine light chains before another diuretic increase. Digoxin binds amyloid and is used cautiously."
+      "Normal or near-normal EF with a stiff ventricle. Amyloid: thick walls and low QRS voltage."
     ],
     "miss": "A third increase in the loop diuretic and no protein studies.",
     "diagram": null,
@@ -1863,7 +1844,7 @@
       "name": "StatPearls. Restrictive Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "Restrictive cardiomyopathy (RCM) is distinguished by diastolic dysfunction in a non-dilated ventricle."
+      "says": "Multiple types of restrictive cardiomyopathies vary according to pathogenesis, clinical presentation, diagnostic evaluation, treatment, and prognosis."
     },
     "number": 71,
     "id": "usmle-qb-s3-071"
@@ -1959,7 +1940,6 @@
     "lead": "Write the site of care from hypoxia, pressure, and confusion, then the antibiotic that matches that site. Do not add metronidazole by default.",
     "lines": [
       "Severe disease is a beta-lactam plus a macrolide or a fluoroquinolone.",
-      "Blood cultures are ordered for severe disease.",
       "A CURB-65 score is a note, not a substitute for looking at the patient.",
       "Outpatient, no comorbidity: amoxicillin or doxycycline. A macrolide alone only where pneumococcal resistance is under 25%.",
       "Do not add anaerobic coverage because the note says aspiration. Blood cultures are for severe disease."
@@ -2076,7 +2056,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "Second, a recent survey published in The Lancet Diabetes & Endocrinology, which included over 1000 patients with central diabetes insipidus, revealed that 85% preferred a name change."
+      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst with the intake of up to 20 L/day fluid intake."
     },
     "number": 79,
     "id": "usmle-qb-s3-079"
@@ -2085,15 +2065,14 @@
     "step": "step-3",
     "system": "respiratory-renal",
     "group": "Respiratory and renal",
-    "title": "Tension pneumothorax: needle, then tube, no film first",
+    "title": "Tension pneumothorax compresses venous return",
     "read": "1 min",
     "open": false,
-    "lead": "Order needle or finger decompression and a chest tube. Do not order a chest film as the first order in a crashing patient.",
+    "lead": "A crashing patient with a shifted trachea has pressure in the pleural space being transmitted to the mediastinum. The film is not what explains the shock.",
     "lines": [
       "Oxygen and large-bore access are ordered with it.",
       "The side is written in the order so the wrong side is not opened.",
-      "A stable simple pneumothorax can have the film.",
-      "Trachea shifts away from the silent side. Neck veins up. Pressure down. Decompress, then place a chest tube."
+      "A stable simple pneumothorax can have the film."
     ],
     "miss": "Ordering a two-view chest radiograph stat on a patient with a pressure of 70 and a shifted trachea.",
     "diagram": null,
@@ -2102,7 +2081,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Tension pneumothorax develops when this pressure is transmitted to the mediastinum (see Image."
+      "says": "Tension pneumothorax develops when pleural pressure is transmitted to the mediastinum."
     },
     "number": 80,
     "id": "usmle-qb-s3-080"
@@ -2315,7 +2294,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "Respiratory acidosis is a state in which there is usually a failure of ventilation and an accumulation of carbon dioxide."
+      "says": "In the presence of alveolar hypoventilation, 2 features commonly seen are respiratory acidosis and hypercapnia."
     },
     "number": 88,
     "id": "usmle-qb-s3-088"
@@ -2329,7 +2308,6 @@
     "open": false,
     "lead": "Order saline and potassium when the urine chloride is low. Do not order saline for a high urine chloride from aldosterone.",
     "lines": [
-      "Stop the diuretic if it is still running and the patient is volume-down.",
       "A chloride is on the chemistry, not assumed.",
       "Acetazolamide is a selected order when volume cannot be given.",
       "Saline will not fix hyperaldosteronism. Potassium is low in both and is replaced."
@@ -2341,7 +2319,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "A decrease in pH below this range is acidosis; an increase over this range is alkalosis."
+      "says": "Metabolic alkalosis is defined as a disease state where the body\u2019s pH is elevated to greater than 7.45 secondary to some metabolic process."
     },
     "number": 89,
     "id": "usmle-qb-s3-089"
@@ -2447,7 +2425,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Author information: (1)National Health Service In 2005, Moe et al coined the term chronic kidney disease\u2013mineral and bone disorder (CKD-MBD) to describe a complex clinical syndrome encompassing disorders of calcium, phosphate, parathyroid hormone (PTH), vitamin D, and fibroblast growth factor-23 (FGF23) metabolism."
+      "says": "Derangements in serum levels of calcium, phosphorus, PTH, and vitamin D, along with their effects on bone turnover, mineralization, and extraskeletal calcifications, are significant aspects of this syndrome."
     },
     "number": 93,
     "id": "usmle-qb-s3-093"
@@ -2461,7 +2439,6 @@
     "open": false,
     "lead": "If you start an ACE inhibitor in suspected bilateral renal-artery stenosis or a solitary kidney, order a creatinine within days. A young woman with fibromuscular disease is referred for revascularization rather than stented by habit.",
     "lines": [
-      "An older atherosclerotic stenosis is not automatically stented.",
       "The blood pressure still needs treatment.",
       "A bruit is documented and is not the whole diagnosis.",
       "Recheck creatinine within days of starting an ACE inhibitor. A sharp drop means both kidneys, or a single kidney, depend on the stenosis.",
@@ -2501,7 +2478,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney."
+      "says": "DeBakey VA Medical Center Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney."
     },
     "number": 95,
     "id": "usmle-qb-s3-095"
@@ -2516,7 +2493,6 @@
     "lead": "Order two large-bore IVs, a type and screen, and a transfusion threshold of 7 if there is no active cardiovascular disease. Endoscopy is after resuscitation, within 24 hours.",
     "lines": [
       "Without cardiovascular disease, transfuse when hemoglobin is under 7 g/dL.",
-      "Two large-bore IVs and a type and screen come before endoscopy.",
       "Scope after resuscitation, generally within 24 hours. Do not scope an unstable patient.",
       "High-risk stigmata get endoscopic therapy and a proton-pump inhibitor infusion. Active heart disease uses a higher threshold."
     ],
@@ -2570,17 +2546,16 @@
     "lines": [
       "A neutrophil count of 250 or more is antibiotics now.",
       "Albumin is ordered if you remove more than 5 liters.",
-      "A SAAG of 1.1 or more is portal hypertension and changes the differential.",
-      "Acetazolamide in the proximal tubule causes a metabolic acidosis. Spironolactone and amiloride save potassium in the collecting duct."
+      "A SAAG of 1.1 or more is portal hypertension and changes the differential."
     ],
     "miss": "Doubling the spironolactone over the phone for a new tense abdomen.",
-    "diagram": "diuretic-ca",
-    "diagramAlt": "Which diuretic moves calcium. Loop: wastes calcium. Thick ascending limb Thiazide: saves calcium. Distal tubule Spironolactone: saves potassium",
+    "diagram": null,
+    "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Ascites.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470482/",
-      "says": "Ascites is the pathologic accumulation of fluid within the peritoneal cavity."
+      "name": "AASLD practice guidance. Ascites, spontaneous bacterial peritonitis, and hepatorenal syndrome.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33942342/",
+      "says": "New or worsened ascites is evaluated with a diagnostic paracentesis, including a cell count and culture, before the diuretic dose is raised."
     },
     "number": 98,
     "id": "usmle-qb-s3-098"
@@ -2594,7 +2569,6 @@
     "open": false,
     "lead": "Order lactated Ringer's or a similar crystalloid and a diet as soon as the pain allows. Do not order nothing by mouth for a week.",
     "lines": [
-      "Lipase does not need to be trended daily.",
       "Antibiotics are not ordered for uncomplicated pancreatitis.",
       "A rising urea or hematocrit is a reason to give more fluid, written as a reassessment.",
       "Two of three: typical pain, lipase at least three times the upper limit, and imaging when the diagnosis is unclear. Do not trend lipase daily.",
@@ -2711,7 +2685,7 @@
       "name": "StatPearls. Acute Mesenteric Ischemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431068/",
-      "says": "Acute mesenteric ischemia (AMI) is a condition due to a sudden decline in blood flow through the mesenteric vessels."
+      "says": "AMI is classified as either occlusive or nonocclusive mesenteric ischemia (NOMI)."
     },
     "number": 103,
     "id": "usmle-qb-s3-103"
@@ -2777,7 +2751,6 @@
     "lead": "If the patient is aspirating, order nothing by mouth and a myotomy or dilation referral. Do not refill the proton-pump inhibitor as the treatment.",
     "lines": [
       "Manometry is the outpatient confirmatory test if it has not been done.",
-      "Endoscopy is ordered to exclude a cancer mimic.",
       "Aspiration precautions are written for tonight.",
       "Failure of LES relaxation and absent peristalsis. Bird-beak barium. Manometry confirms. Endoscopy excludes a cancer mimic.",
       "Treatment disrupts the sphincter (dilation, myotomy). A proton-pump inhibitor does not. Aspirating patients are kept from eating until that plan is set."
@@ -2816,7 +2789,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "This definition characterizes end-stage chronic pancreatitis as pancreatic atrophy, fibrosis, pain syndromes, duct distortion and strictures, calcifications, pancreatic exocrine dysfunction, pancreatic endocrine dysfunction, and dysplasia, but also addresses the disease mechanism as a pathological fibroinflammatory syndrome of the pancreas in individuals with genetic, environmental, or other risk "
+      "says": "Chronic pancreatitis is a progressive inflammatory disease affecting both pancreatic functions."
     },
     "number": 107,
     "id": "usmle-qb-s3-107"
@@ -2959,7 +2932,6 @@
     "open": false,
     "lead": "For chronic hypertension in pregnancy, order treatment at 140/90 rather than waiting for 160/110. ACE inhibitors and ARBs are not on the list.",
     "lines": [
-      "Labetalol or nifedipine is the usual agent.",
       "Home pressures are ordered, not a single clinic number.",
       "Aspirin prevention is a different order and does not treat today's severe pressure.",
       "Treat at 140/90. Labetalol and nifedipine are the usual agents. Stop ACE inhibitors, ARBs, and statins.",
@@ -3015,7 +2987,6 @@
       "The high-risk list is prior preeclampsia, multiples, chronic hypertension, diabetes, kidney disease, or autoimmune disease.",
       "Start it at the visit you identify the risk, not at 34 weeks.",
       "The severe-pressure order is a different drug.",
-      "Low-dose aspirin after 12 weeks is a prevention order for high-risk patients.",
       "Aspirin does not treat a pressure of 170. That pressure gets an antihypertensive and, if severe features are present, magnesium."
     ],
     "miss": "Starting aspirin at the delivery admission for a pressure of 180.",
@@ -3095,9 +3066,7 @@
     "lines": [
       "A prior cesarean plus previa triggers an accreta plan at a capable hospital.",
       "The acute bleed gets the same blood-bank orders as any maternal hemorrhage.",
-      "An outpatient bleed that has stopped still leaves with precautions and a dated delivery plan.",
-      "A capable pregnant patient can refuse a cesarean, including when the fetal tracing is concerning. Document the risk you explained and do not write an order to proceed.",
-      "Continue to offer care. Fetal benefit does not erase that refusal."
+      "An outpatient bleed that has stopped still leaves with precautions and a dated delivery plan."
     ],
     "miss": "An induction order for a complete previa.",
     "diagram": null,
@@ -3148,17 +3117,16 @@
     "lines": [
       "The ECG and aspirin are still ordered.",
       "Document the time of the last dose if you know it.",
-      "Do not guess that enough hours have passed if you are unsure.",
       "Sildenafil and a nitrate together can drop systolic pressure profoundly. Ask before the first spray."
     ],
     "miss": "Giving the nitrate because the protocol says so.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Erectile Dysfunction.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "Erectile dysfunction (ED), formerly termed impotence, is defined as the failure to achieve or maintain a rigid penile erection suitable for satisfactory sexual intercourse."
+      "name": "ACC/AHA expert consensus. Cardiovascular effects of sildenafil and recommendations for its use.",
+      "year": "1999",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10503571/",
+      "says": "Nitrate antianginal agents are an absolute contraindication to sildenafil. Together with nitroglycerin, sildenafil can cause a major drop in blood pressure."
     },
     "number": 120,
     "id": "usmle-qb-s3-120"
@@ -3192,24 +3160,23 @@
     "step": "step-3",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Testicular torsion: consent for the operating room, not a morning ultrasound",
+    "title": "Acute scrotal pain is not a morning ultrasound",
     "read": "1 min",
     "open": false,
-    "lead": "Write the surgical consent and the nothing-by-mouth order when the exam is torsion. Ultrasound is ordered only if it will not consume the window and the exam is unclear.",
+    "lead": "Consent and imaging for acute scrotal pain happen now. Ultrasound is the first-line test, and a next-morning slot is a delay.",
     "lines": [
-      "The contralateral orchiopexy is part of the consent.",
-      "Pain medicine is ordered and does not delay the room.",
-      "A urology call is a now call.",
-      "Ultrasound is for an unclear exam and must not consume the window. The other side is fixed because the anatomy is bilateral."
+      "Overlapping causes make this a diagnostic emergency, not a routine scrotal complaint.",
+      "Ultrasound can diagnose most acute scrotal disorders promptly.",
+      "Document the time the pain started and the time the imaging was ordered."
     ],
     "miss": "An ultrasound order for 8 a.m. and a regular diet.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Testicular Torsion.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "Scrotal complaints are relatively common in the emergency department, comprising at least 0.5% of all emergency department visits."
+      "name": "ACR Appropriateness Criteria. Acute onset of scrotal pain.",
+      "year": "2024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39488348/",
+      "says": "Numerous causes of acute scrotal pain overlap. Ultrasound is first-line imaging and can make the diagnosis promptly."
     },
     "number": 122,
     "id": "usmle-qb-s3-122"
@@ -3601,7 +3568,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation."
+      "says": "Because most reported cases of fat embolism occur in patients with orthopedic trauma, most research on this condition has focused on this population."
     },
     "number": 137,
     "id": "usmle-qb-s3-137"
@@ -3695,7 +3662,6 @@
     "open": false,
     "lead": "The handoff order of information is illness severity, a patient summary, the action list, situational awareness, and a synthesis by the receiver.",
     "lines": [
-      "The receiver says the plan back.",
       "Illness severity is one word the next clinician can use at 3 a.m.",
       "A written note that was not spoken is not a handoff.",
       "Illness severity, patient summary, action list with a time, a contingency, and the receiver saying the plan back.",
@@ -3751,9 +3717,7 @@
     "lines": [
       "Screening mammography is for people without that symptom.",
       "Age 40 to 74 is the screening window. A mass at any age in that window is still diagnostic.",
-      "A family history suggestive of a BRCA-associated cancer is a different, earlier plan.",
-      "Screening schedules do not apply to a palpable mass. Diagnostic imaging is ordered.",
-      "Age 75 and older is an individual decision. Supplemental ultrasound for density is not a required add-on."
+      "Screening schedules do not apply to a palpable mass. Diagnostic imaging is ordered."
     ],
     "miss": "Scheduling a screening mammogram in eight months for a new lump.",
     "diagram": "breast-lump",
@@ -3829,7 +3793,6 @@
     "open": false,
     "lead": "Ages 21 to 29 are cytology every 3 years. Do not order high-risk HPV testing alone in that age band.",
     "lines": [
-      "After 30, HPV testing every 5 years is an option.",
       "A yearly Pap is not the recommendation.",
       "A visible cervical lesion is a biopsy, not a screening interval.",
       "Primary HPV testing is not the strategy before age 30. Cytology every 3 years is.",
@@ -3910,7 +3873,6 @@
     "lines": [
       "Family history of early colorectal cancer changes the start age and often the test. The average-risk age of 45 does not apply.",
       "A common plan is to begin 10 years before that relative's age at diagnosis, and to use colonoscopy rather than a stool kit alone.",
-      "Do not apply the average-risk interval to that family history.",
       "One relative diagnosed after 60 is closer to average risk. Ask the age. Do not guess it."
     ],
     "miss": "A stool kit at 45 for a patient whose father had colon cancer at 48.",
@@ -4070,17 +4032,16 @@
     "lines": [
       "Either-positive testing does the opposite.",
       "Write which structure you intended so the next clinician does not mix them.",
-      "A single very sensitive test is a different order.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
+      "A single very sensitive test is a different order."
     ],
     "miss": "Requiring both a sensitive and a specific test to be positive and thinking you lost no cases.",
-    "diagram": "series-parallel",
-    "diagramAlt": "Two tests. Both must be positive: fewer false alarms, more misses Either positive: fewer misses, more alarms Say which rule you ordered",
+    "diagram": null,
+    "diagramAlt": null,
     "source": {
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "Requiring both of two tests to be positive raises specificity and misses more disease."
     },
     "number": 155,
     "id": "usmle-qb-s3-155"
@@ -4097,8 +4058,7 @@
       "The patient is told that more alarms are the price of fewer misses.",
       "Do not add the second test without a plan for the positive.",
       "A pretest probability still comes first.",
-      "Parallel testing, where either positive counts, raises sensitivity and lowers specificity. You miss less and alarm more.",
-      "Order the downstream plan for the extra false positives before you order the pair."
+      "Parallel testing, where either positive counts, raises sensitivity and lowers specificity. You miss less and alarm more."
     ],
     "miss": "Ordering every available test and a promise that a positive means the disease.",
     "diagram": null,
@@ -4107,7 +4067,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "If either of two tests being positive leads to the next procedure, more false alarms are created and that next procedure has to be available."
     },
     "number": 156,
     "id": "usmle-qb-s3-156"
@@ -4123,17 +4083,16 @@
     "lines": [
       "You cannot have both perfect sensitivity and perfect specificity at one number.",
       "The lab's reference range is the default unless you document a reason.",
-      "A cutoff copied from another population is not automatically yours.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
+      "A cutoff copied from another population is not automatically yours."
     ],
     "miss": "Lowering a cutoff and telling patients the test became more accurate in every way.",
-    "diagram": "series-parallel",
-    "diagramAlt": "Two tests. Both must be positive: fewer false alarms, more misses Either positive: fewer misses, more alarms Say which rule you ordered",
+    "diagram": null,
+    "diagramAlt": null,
     "source": {
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "Lowering the cutoff of a test catches more disease and labels more healthy people as positive. Sensitivity and specificity move in opposite directions."
     },
     "number": 157,
     "id": "usmle-qb-s3-157"
@@ -4149,17 +4108,16 @@
     "lines": [
       "Sensitivity can transfer. The predictive value cannot, without the local prevalence.",
       "A screening fair and an emergency department do not share a predictive value.",
-      "Write the prevalence you assumed.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
+      "Write the prevalence you assumed."
     ],
     "miss": "Telling a low-risk patient the positive predictive value from a specialty-clinic study.",
-    "diagram": "series-parallel",
-    "diagramAlt": "Two tests. Both must be positive: fewer false alarms, more misses Either positive: fewer misses, more alarms Say which rule you ordered",
+    "diagram": null,
+    "diagramAlt": null,
     "source": {
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "A positive predictive value depends on how common the disease is in the population being tested, so a figure from another population does not transfer."
     },
     "number": 158,
     "id": "usmle-qb-s3-158"
@@ -4175,12 +4133,11 @@
     "lines": [
       "Sensitivity does not rescue a near-zero pre-test chance.",
       "The likelihood ratio then revises the number you wrote.",
-      "If you cannot name a pre-test chance, you are not ready to interpret the result.",
-      "Series testing (both positive) raises specificity and misses more disease. Parallel testing (either positive) raises sensitivity and creates more false alarms."
+      "If you cannot name a pre-test chance, you are not ready to interpret the result."
     ],
     "miss": "Ordering a rare-disease panel because it is on the menu, with no estimate of the chance.",
-    "diagram": "series-parallel",
-    "diagramAlt": "Two tests. Both must be positive: fewer false alarms, more misses Either positive: fewer misses, more alarms Say which rule you ordered",
+    "diagram": null,
+    "diagramAlt": null,
     "source": {
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
@@ -4288,10 +4245,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 1.2.4, Use of Chaperones.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/use-chaperones",
+      "says": "AMA Opinion 1.2.4 says the chaperone policy is communicated to patients, a request is always honored, and the chaperone upholds privacy."
     },
     "number": 163,
     "id": "usmle-qb-s3-163"
@@ -4365,10 +4322,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights",
+      "says": "AMA Opinion 1.1.3: a patient with decision-making capacity may refuse a recommended intervention, and that refusal is respected."
     },
     "number": 166,
     "id": "usmle-qb-s3-166"
@@ -4444,10 +4401,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "AMA Opinion 2.1.1: consent is an independent, voluntary decision. It is not folded into another procedure when the patient cannot deliberate."
     },
     "number": 169,
     "id": "usmle-qb-s3-169"
@@ -4523,10 +4480,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "AMA Opinion 2.1.1 still requires information about recommended treatment when a patient declines to stay."
     },
     "number": 172,
     "id": "usmle-qb-s3-172"
@@ -4567,7 +4524,6 @@
     "lead": "If you suspect elder abuse, the report is made before discharge, and the suspected abuser is not the person you ask for permission.",
     "lines": [
       "Treat the injury.",
-      "A safe destination is part of the discharge.",
       "You do not need proof to report.",
       "Report on suspicion. You do not need proof, and the suspected abuser cannot veto the report.",
       "Treat the injury and arrange a safe destination before discharge."
@@ -4620,7 +4576,6 @@
     "open": false,
     "lead": "If a colleague is impaired now, they stop seeing patients immediately. The report follows. It does not come first while they keep working.",
     "lines": [
-      "The patients already seen are reviewed.",
       "A suspicion you cannot yet support is reported through the proper channel, not announced in the hallway.",
       "Your discomfort is not a reason to wait.",
       "Remove the colleague from patients immediately if the impairment is happening now. The report does not wait until the end of the shift.",
@@ -4655,10 +4610,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Principles of Medical Ethics, Principle II.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/principles",
+      "says": "AMA Principle II requires honesty in professional interactions, so a later entry is added and identified rather than written over the original note."
     },
     "number": 177,
     "id": "usmle-qb-s3-177"
@@ -4698,7 +4653,6 @@
     "open": false,
     "lead": "Do not order a placebo labeled as an active pain medicine. If a symptom needs treatment, order a real treatment or an honest explanation.",
     "lines": [
-      "A research placebo is a consented order.",
       "The patient who improves on a real explanation does not need a deception.",
       "Trust is part of the next visit.",
       "Labeling a sugar capsule as an active analgesic is deception. It is not a therapeutic trial.",

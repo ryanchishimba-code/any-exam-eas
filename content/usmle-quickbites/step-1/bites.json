@@ -21,7 +21,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "The neural crest consists of multipotent stem cells located at the lateral aspect of the neural tube, adjacent to the epidermal layer during neurulation, at the interface between neural and nonneural ectoderm (see Image."
+      "says": "Neural crest cells at the edge of the neural tube form peripheral neurons and glia, melanocytes, the adrenal medulla, and the aorticopulmonary septum. They do not form the adrenal cortex."
     },
     "open": true
   },
@@ -46,7 +46,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "The neural crest consists of multipotent stem cells located at the lateral aspect of the neural tube, adjacent to the epidermal layer during neurulation, at the interface between neural and nonneural ectoderm (see Image."
+      "says": "The 22q11.2 deletion disrupts the third and fourth pharyngeal pouches and the neural crest that builds the cardiac outflow tract."
     },
     "number": 2,
     "id": "usmle-qb-s1-002"
@@ -150,7 +150,7 @@
     "read": "1 min",
     "lead": "Classical complement needs antibody. Alternative and lectin pathways do not. All three meet at C3.",
     "lines": [
-      "The classical pathway is the one that needs antibody. Alternative and lectin pathways do not.",
+      "The complement proteins are made as inactive zymogens and need a cell surface to stay active.",
       "Every pathway converts C3 to C3a and C3b. C3b is required for the membrane attack complex.",
       "The proteins run from C1 to C9. The membrane attack complex lyses the cell."
     ],
@@ -224,7 +224,6 @@
     "open": false,
     "lead": "G6PD deficiency is X-linked. Oxidant stress hemolyzes the oldest red cells, and an enzyme level drawn that day can look normal.",
     "lines": [
-      "Bite cells and Heinz bodies are the smear. The urine is dark.",
       "Sulfa drugs, primaquine, dapsone, infection, and fava beans are the usual triggers.",
       "Repeat the assay weeks later, after the depleted cells have been replaced.",
       "Heinz bodies are denatured hemoglobin. Bite cells are the smear after the spleen bites them out."
@@ -304,7 +303,6 @@
     "lines": [
       "Type 1 responds to desmopressin. Type 2B can get worse with it, because the abnormal multimer binds platelets.",
       "Ristocetin cofactor activity is the functional test.",
-      "A normal platelet count does not exclude it.",
       "vWF carries factor VIII. Mucosal bleeding with a normal platelet count is the picture. PTT prolongs only if VIII is low."
     ],
     "miss": "Giving desmopressin to every subtype, including type 2B.",
@@ -407,7 +405,6 @@
     "lead": "Multiple myeloma is a plasma-cell cancer. The clinical set is calcium high, renal failure, anemia, and bone lesions.",
     "lines": [
       "Rouleaux are red cells stacked by paraprotein. The white count is not the story.",
-      "Light chains spill into the urine. A dipstick for albumin can miss them.",
       "Lytic bone lesions do not light up on a bone scan the way blastic prostate lesions do.",
       "CRAB is calcium, renal failure, anemia, and lytic bone. Light chains can be missed by a urine dipstick for albumin."
     ],
@@ -459,7 +456,6 @@
     "lead": "Fever, back pain, and dark urine during a transfusion is acute hemolysis until proved otherwise. Stop the unit.",
     "lines": [
       "Clerical error and ABO incompatibility are the classic cause.",
-      "Keep the bag and the tubing. Send them back with a new sample.",
       "Do not restart that unit because the fever might be cytokines. Prove it first.",
       "ABO mismatch causes fever, flank pain, and hemoglobinuria during the transfusion. Stop that unit.",
       "Keep the bag. Send it back with a fresh sample. Clerical error is the usual cause. Do not restart the same unit."
@@ -655,7 +651,7 @@
       "name": "StatPearls. Brown-S\u00e9quard Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538135/",
-      "says": "Brown-S\u00e9quard syndrome is defined as an incomplete pattern of injury following a hemisection of the spinal cord resulting in weakness or paralysis, loss of proprioception and vibration sense on the same side of the damage, and loss of pain and temperature sensations on the opposite side (see Image: Brown-S\u00e9quard Syndrome)."
+      "says": "Brown-S\u00e9quard syndrome is a cord hemisection: proprioception and vibration are lost on the same side as the damage, and pain and temperature are lost on the opposite side."
     },
     "open": false
   },
@@ -681,7 +677,7 @@
       "name": "StatPearls. Middle, Anterior, and Posterior Cerebral Artery Stroke.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK556132/",
-      "says": "Phylogenetically, the middle cerebral artery (MCA) is the youngest, comprised of a branch from the anterior cerebral artery (ACA) and a branch from the lenticulostriate system (see Image.",
+      "says": "The middle cerebral artery supplies the face and arm cortex, the anterior cerebral artery the leg, and the posterior cerebral artery the visual cortex.",
       "more": [
         {
           "name": "StatPearls. Anterior Cerebral Artery Stroke.",
@@ -811,7 +807,6 @@
     "lines": [
       "Optic neuritis, internuclear ophthalmoplegia, and a sensory level are the usual episodes.",
       "Symptoms that worsen with heat are a clue, not a diagnosis.",
-      "A single lesion at one time is not the disease yet.",
       "Dissemination in time and space, plus unmatched oligoclonal bands. One lesion is not the disease.",
       "A new disabling deficit can get high-dose steroids. The same old deficit plus a fever is infection until proved otherwise."
     ],
@@ -1190,7 +1185,7 @@
       "name": "StatPearls. Stevens-Johnson Syndrome and Toxic Epidermal Necrolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459323/",
-      "says": "Stevens-Johnson Syndrome and Toxic Epidermal Necrolysis."
+      "says": "Stevens-Johnson syndrome and toxic epidermal necrolysis are one spectrum of drug-induced epidermolysis. Detachment under 10% of body surface area is Stevens-Johnson, 10 to 30% is overlap, and greater than 30% is toxic epidermal necrolysis."
     },
     "open": false
   },
@@ -1386,7 +1381,7 @@
     "open": false,
     "lead": "Marfan syndrome is an FBN1 defect. The protein is fibrillin, and the threat to life is aortic root dilatation.",
     "lines": [
-      "The defect is FBN1 on chromosome 15, and the protein is fibrillin.",
+      "Inheritance is autosomal dominant, with a reported incidence of about 1 in 3000 to 5000.",
       "Death is usually from aortic root dilatation or dissection.",
       "Lens dislocation and mitral valve prolapse travel with the long skeleton."
     ],
@@ -1542,7 +1537,6 @@
     "read": "1 min",
     "lead": "Class I sodium blockers bind harder at fast rates. Pure class III potassium blockers bind harder at slow rates.",
     "lines": [
-      "Class I blocks sodium channels. Ic drugs are the most use-dependent.",
       "Class III blocks potassium channels and prolongs repolarization. Sotalol and dofetilide show reverse use dependence, so the QT risk is greatest when the rate is slow.",
       "Class II and class IV slow the AV node. They are not the drugs that prolong the QRS.",
       "Class I sodium blockers bind open channels and work harder at fast rates. Class Ic is the most use-dependent."
@@ -1594,7 +1588,6 @@
     "lines": [
       "Beck's triad is low pressure, distended neck veins, and muffled sounds. Not every patient has all three.",
       "Electrical alternans is the heart swinging in fluid.",
-      "Fluids buy time. The treatment is drainage, not a diuretic.",
       "Diastolic pressures equalize and the y descent drops. Pulsus paradoxus is an exaggerated inspiratory fall in systolic pressure.",
       "Fluids are a bridge. Drainage is the treatment. A diuretic removes the last preload."
     ],
@@ -1780,7 +1773,6 @@
       "A spell is infundibular spasm. Squatting raises systemic resistance and pushes blood to the lungs.",
       "The chest film is a boot-shaped heart with less pulmonary blood flow.",
       "The murmur of the stenosis gets softer during a spell, because less blood crosses the valve.",
-      "Pulmonic stenosis, right ventricular hypertrophy, overriding aorta, VSD. A spell is infundibular spasm.",
       "Knees-to-chest raises systemic resistance and sends blood to the lungs. A vasodilator does the opposite. The murmur gets softer as less blood crosses the valve."
     ],
     "miss": "Giving something that drops systemic resistance during a spell and worsening the shunt.",
@@ -1815,7 +1807,7 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "Coarctation of the aorta is a congenital cardiovascular anomaly characterized by a narrowing of the aortic lumen, typically located just distal to the origin of the left subclavian artery at the site of the ductus arteriosus (see Image."
+      "says": "Coarctation narrows the aortic lumen and raises the blood pressure above the narrowing compared with the legs."
     },
     "number": 69,
     "id": "usmle-qb-s1-069"
@@ -1842,7 +1834,7 @@
       "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
       "year": "2022",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
-      "says": "HFrEF therapy is an ARNI, an evidence-based beta blocker, an MRA, and an SGLT2 inhibitor. Continue it if the ejection fraction later improves."
+      "says": "Heart failure with preserved ejection fraction is an ejection fraction of 50% or higher. An SGLT2 inhibitor has a recommendation to reduce hospitalization in this group."
     },
     "number": 70,
     "id": "usmle-qb-s1-070"
@@ -1856,7 +1848,6 @@
     "open": false,
     "lead": "Typical atrial flutter is a macro-reentry loop that must pass through the cavotricuspid isthmus. The ECG is a sawtooth.",
     "lines": [
-      "Ablation of that isthmus breaks the circuit.",
       "The ventricular rate is often 150 when the node conducts 2 to 1.",
       "Anticoagulation follows the same stroke logic as fibrillation when the risk is high.",
       "Typical flutter is cavotricuspid-isthmus macro-reentry. A ventricular rate of 150 with sawtooth waves is 2:1 conduction.",
@@ -1922,7 +1913,7 @@
       "name": "StatPearls. Mitral Valve Prolapse.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470288/",
-      "says": "Mitral valve prolapse (MVP) is a valvular heart disease disorder in which thickened mitral leaflets protrude into the left atrium during systole by at least 2 mm systolic displacement of the mitral leaflet above the annular plane, best assessed in parasternal long-axis views because other views may overcall prolapse (see Image."
+      "says": "Mitral valve prolapse is systolic displacement of a thickened leaflet into the left atrium, also called systolic click-murmur syndrome."
     },
     "number": 73,
     "id": "usmle-qb-s1-073"
@@ -1940,7 +1931,7 @@
     "lines": [
       "A negative urine anion gap means the kidney is excreting acid. The bicarbonate was lost from the gut.",
       "A positive urine anion gap means the kidney is not answering. That is a renal tubular acidosis.",
-      "The urine anion gap uses urine sodium, potassium, and chloride. It is not the serum anion gap."
+      "The serum anion gap uses sodium, chloride, and bicarbonate. The urine calculation does not."
     ],
     "miss": "Calling every normal-gap acidosis diarrhea without checking the urine electrolytes.",
     "diagram": "acid-base",
@@ -2025,7 +2016,7 @@
     "lead": "A true shunt does not correct on 100% oxygen. Hypoventilation and low inspired oxygen keep a normal A-a gradient.",
     "lines": [
       "The five causes of hypoxemia are low inspired oxygen, hypoventilation, diffusion limitation, V/Q mismatch, and shunt.",
-      "Only low inspired oxygen and hypoventilation leave the A-a gradient normal.",
+      "Diffusion limitation, V/Q mismatch, and shunt widen the A-a gradient.",
       "A right-shifted curve unloads oxygen: higher CO2, higher H+, higher 2,3-BPG, higher temperature. Carbon monoxide shifts the curve left and drops the oxygen content while PaO2 stays normal."
     ],
     "miss": "Giving more oxygen for a shunt and expecting the saturation to normalize, or reading a normal PaO2 as proof against carbon monoxide.",
@@ -2082,7 +2073,7 @@
     "lines": [
       "Breath sounds are down and the neck veins are up on the injured side\u2019s opposite story: the good lung is compressed.",
       "The treatment is decompression, then a chest tube. A chest film is for a stable patient.",
-      "A simple pneumothorax has air and no shift and no shock."
+      "The shock is obstructive, from compressed venous return, not from blood lost into the chest."
     ],
     "miss": "Ordering a film on a patient whose pressure is falling and whose trachea has already moved.",
     "diagram": null,
@@ -2134,7 +2125,6 @@
     "lines": [
       "The clubbing and the dry cough in an older adult are the bedside pair.",
       "A steroid is not disease-modifying the way students were taught. Antifibrotic drugs are the current conversation.",
-      "An exposure, a drug, or a connective-tissue disease has to be excluded before the word idiopathic.",
       "Basal, peripheral honeycombing and Velcro crackles. Exclude connective-tissue disease and exposures before calling it idiopathic.",
       "Nintedanib or pirfenidone is the disease-modifying choice. Long-term prednisone is not that treatment."
     ],
@@ -2161,7 +2151,6 @@
     "lines": [
       "Cystic fibrosis, a prior severe infection, and immune defects are the causes to name.",
       "The CT is the tram tracks and the signet ring, not a normal film.",
-      "Airway clearance is the treatment. An antibiotic treats the flare, not the anatomy.",
       "Daily airway clearance is the treatment of the anatomy. Antibiotics treat a flare or a cultured Pseudomonas, not the dilated bronchi."
     ],
     "miss": "Calling recurrent pneumonia ordinary asthma because the patient wheezes.",
@@ -2187,7 +2176,6 @@
     "lines": [
       "Acute disease is hours after exposure and looks like a flu with crackles.",
       "Chronic disease scars the upper and mid lungs.",
-      "Removing the antigen is the treatment. A steroid without removal fails.",
       "Name and remove the inhaled antigen. Immunosuppression without removal does not treat hypersensitivity pneumonitis."
     ],
     "miss": "Adding another inhaler and never asking about birds.",
@@ -2262,7 +2250,6 @@
     "open": false,
     "lead": "The chapter's floor for a normal serum potassium is about 3.5 mmol/L, and a value under 2.5 mmol/L is severe.",
     "lines": [
-      "A serum potassium of about 3.5 mmol/L is the lower limit of normal in this chapter.",
       "3 to 3.4 mmol/L is mild, 2.5 to 3 is moderate, and under 2.5 mmol/L is severe.",
       "Weakness, cramps, and palpitations follow the severity. Arrhythmia is the severe risk.",
       "The serum value is a small fraction of body stores, so it does not measure total potassium."
@@ -2393,8 +2380,7 @@
     "lines": [
       "Nephrogenic disease does not answer to desmopressin. Lithium is the classic cause.",
       "The patient is polyuric, not oliguric.",
-      "Psychogenic water drinking dilutes the serum. The urine is dilute and the serum sodium is low or low-normal, not high.",
-      "Desmopressin concentrates the urine only if the cause is central."
+      "Psychogenic water drinking dilutes the serum. The urine is dilute and the serum sodium is low or low-normal, not high."
     ],
     "miss": "Restricting water in a patient whose sodium is already high and whose urine is water.",
     "diagram": null,
@@ -2602,8 +2588,7 @@
     "lines": [
       "Antibodies to the phospholipase A2 receptor mark the primary disease.",
       "Cancers, hepatitis B, and lupus are the secondary causes to name.",
-      "A renal vein thrombosis is the clot this protein loss allows.",
-      "Test for hepatitis B, lupus, and cancer."
+      "A renal vein thrombosis is the clot this protein loss allows."
     ],
     "miss": "Calling every adult nephrotic syndrome minimal change and expecting a quick steroid cure.",
     "diagram": null,
@@ -2889,7 +2874,6 @@
     "open": false,
     "lead": "Alpha-1 antitrypsin deficiency causes basilar emphysema and liver disease. The PAS-positive globules sit in the hepatocyte.",
     "lines": [
-      "A young smoker with basal emphysema is this until the level is checked.",
       "The liver disease is the protein stuck in the cell, not the missing enzyme in the blood alone.",
       "Smoking accelerates the lung injury. Stopping is part of the treatment.",
       "Basal panacinar emphysema, not the apical centrilobular pattern of ordinary smoking. PAS-positive globules in hepatocytes.",
@@ -3073,8 +3057,7 @@
     "lines": [
       "The first job is to show that cortisol is high and does not suppress. That does not name the organ.",
       "ACTH is low when the adrenal gland itself is the source. ACTH is high or normal when the source is pituitary or ectopic.",
-      "CRH raises ACTH further from a pituitary adenoma and does not raise it from an ectopic source.",
-      "Low-dose dexamethasone fails to suppress in every Cushing syndrome and does not name the organ."
+      "CRH raises ACTH further from a pituitary adenoma and does not raise it from an ectopic source."
     ],
     "miss": "Stopping after a failed low-dose test and calling the source pituitary.",
     "diagram": null,
@@ -3185,7 +3168,7 @@
       "name": "StatPearls. Acromegaly.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431086/",
-      "says": "Acromegaly and gigantism are disorders of growth hormone hypersecretion (see Image."
+      "says": "Acromegaly and gigantism are disorders of growth-hormone hypersecretion. Because growth hormone is released in pulses, IGF-1 is the screening test."
     },
     "number": 121,
     "id": "usmle-qb-s1-121"
@@ -3459,7 +3442,6 @@
     "lines": [
       "A cyst or a fertility treatment is the setup.",
       "The treatment is surgical detorsion, not a watch-and-wait because flow was seen.",
-      "The pregnancy test still happens. An ectopic pregnancy is the other sudden pelvic pain.",
       "The ovary has a dual blood supply, so Doppler flow can be present in a twisted ovary.",
       "Sudden adnexal pain with a cyst goes to surgery. A pregnancy test is done because ectopic pregnancy is the other emergency."
     ],
@@ -3588,7 +3570,6 @@
     "lead": "After menopause, low estrogen thins the vulva and the vagina. Dryness, pain with sex, and urinary urgency are that syndrome until an infection is proved.",
     "lines": [
       "A culture comes before repeated antibiotics.",
-      "Vaginal estrogen treats the tissue when the symptoms are local.",
       "It is not lichen sclerosus, which scars and needs a different exam.",
       "Vaginal estrogen treats local symptoms. Do not prescribe months of antibiotics for a negative culture."
     ],
@@ -3703,7 +3684,6 @@
     "read": "1 min",
     "lead": "Catalase splits staph from strep. Coagulase splits Staphylococcus aureus from the other staphylococci.",
     "lines": [
-      "Staphylococcus saprophyticus resists novobiocin. Staphylococcus epidermidis does not.",
       "Alpha-hemolytic: Streptococcus pneumoniae is optochin sensitive and bile soluble. Viridans streptococci are not.",
       "Beta-hemolytic: group A is bacitracin sensitive. Group B is not. Enterococcus grows in 6.5% salt. Streptococcus gallolyticus does not, and it points at a colon lesion.",
       "Catalase positive: staphylococcus. Coagulase positive: S. aureus. Novobiocin separates saprophyticus (resistant) from epidermidis (sensitive).",
@@ -3756,7 +3736,6 @@
     "lines": [
       "The pulse oximeter cannot tell carbon monoxide from oxygen.",
       "Cherry-red skin is unreliable. A headache in a family who share a heater is the clue.",
-      "Standard pulse oximetry cannot see it.",
       "Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
     ],
     "miss": "Reassuring a normal PaO2 in a patient pulled from a fire.",
@@ -3964,8 +3943,7 @@
     "lines": [
       "The fluid is pus: a high white count and a culture.",
       "A prosthetic joint and gonorrhea are the two stories that change the organism list.",
-      "Antibiotics without a culture, in a stable patient, burn the diagnosis.",
-      "Tap before antibiotics if the patient is stable. Staphylococcus aureus is the native-joint organism to cover."
+      "Antibiotics without a culture, in a stable patient, burn the diagnosis."
     ],
     "miss": "Starting vancomycin and never aspirating a native knee that could have been tapped.",
     "diagram": null,
@@ -4094,8 +4072,7 @@
     "lines": [
       "Blood cultures can be drawn while the scanner is called.",
       "Antibiotics for meningitis are not delayed for the scan if the patient is sick. The puncture waits.",
-      "Steroids for suspected pneumococcal meningitis go in with the first antibiotic dose.",
-      "Image before the lumbar puncture when a focal sign or papilledema is present."
+      "Steroids for suspected pneumococcal meningitis go in with the first antibiotic dose."
     ],
     "miss": "Puncturing the back of a patient with a blown pupil.",
     "diagram": null,
@@ -4156,7 +4133,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "Sensitivity and specificity do not change when prevalence changes. The positive predictive value falls when the disease is rarer."
     },
     "open": false
   },
@@ -4170,7 +4147,7 @@
     "read": "1 min",
     "lead": "Post-test odds equal pre-test odds times the likelihood ratio. A ratio of 1 changes nothing.",
     "lines": [
-      "A positive likelihood ratio is sensitivity divided by 1 minus specificity.",
+      "The positive likelihood ratio is sensitivity divided by the false-positive rate.",
       "A negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small one is what rules a disease out.",
       "Do the multiplication in odds, not in probabilities."
     ],
@@ -4181,7 +4158,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "Post-test odds equal pre-test odds multiplied by the likelihood ratio. A likelihood ratio of 1 leaves the odds unchanged."
     },
     "open": false
   },
@@ -4219,7 +4196,6 @@
     "open": false,
     "lead": "A very specific test, when positive, raises the chance of disease. A positive result in a rare disease can still be wrong.",
     "lines": [
-      "Specificity is true negatives over everyone without the disease.",
       "False positives are what a nonspecific test creates.",
       "SpPIn fails when the positive likelihood ratio is only modest.",
       "Specificity is true negatives over people without the disease. A positive result helps only when that number is high."
@@ -4245,7 +4221,6 @@
     "open": false,
     "lead": "As prevalence rises, the negative predictive value falls and the positive predictive value rises. Sensitivity does not move.",
     "lines": [
-      "A test that was reassuring in a clinic can be less reassuring in an outbreak.",
       "Do the math in the population you are standing in.",
       "Predictive values are not printed on the kit as constants.",
       "As prevalence rises, NPV falls and PPV rises. A test that reassured in a screening fair reassures less in an outbreak."
@@ -4257,7 +4232,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "As prevalence rises, the positive predictive value rises and the negative predictive value falls. Sensitivity is unchanged."
     },
     "number": 162,
     "id": "usmle-qb-s1-162"
@@ -4307,7 +4282,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "Lowering a continuous test's cutoff raises sensitivity and lowers specificity, because more people without the disease cross the line."
     },
     "number": 164,
     "id": "usmle-qb-s1-164"
@@ -4322,17 +4297,17 @@
     "lead": "The false-positive rate is 1 minus specificity. It is the share of well people the test calls sick.",
     "lines": [
       "It is not 1 minus the positive predictive value.",
-      "A specific test has a small false-positive rate.",
-      "Two tests in series, both required to be positive, raise specificity and lower sensitivity."
+      "A specificity of 95% means 5 of 100 well people are called positive.",
+      "A sensitive test can still produce many false positives when specificity is only fair."
     ],
     "miss": "Subtracting the positive predictive value from 1 and calling that the false-positive rate.",
-    "diagram": "series-parallel",
-    "diagramAlt": "Two tests. Both must be positive: fewer false alarms, more misses Either positive: fewer misses, more alarms Say which rule you ordered",
+    "diagram": null,
+    "diagramAlt": null,
     "source": {
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "The false-positive rate is 1 minus specificity. It is the share of people without the disease whom the test calls positive."
     },
     "number": 165,
     "id": "usmle-qb-s1-165"
@@ -4358,7 +4333,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "Counting either of two tests as positive raises sensitivity and lowers specificity. Fewer cases are missed and more false alarms are created."
     },
     "number": 166,
     "id": "usmle-qb-s1-166"
@@ -4372,7 +4347,7 @@
     "open": false,
     "lead": "The negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small one is what lets a negative test rule disease out.",
     "lines": [
-      "A test with sensitivity of 80% cannot have a tiny negative likelihood ratio.",
+      "If sensitivity is 80%, then 1 minus sensitivity is 0.2, and the negative likelihood ratio stays sizable.",
       "The positive ratio uses the false positives in the denominator.",
       "Neither ratio contains the prevalence."
     ],
@@ -4383,7 +4358,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
+      "says": "The negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small value is what allows a negative test to lower the probability of disease."
     },
     "number": 167,
     "id": "usmle-qb-s1-167"
@@ -4399,7 +4374,6 @@
     "lines": [
       "A positive test in a patient who almost could not have the disease is still often a false positive.",
       "Write the probability down, even roughly, before you look.",
-      "The likelihood ratio is how the result moves that number.",
       "Write the chance before you look at the result. The likelihood ratio revises that number. It does not create it.",
       "A positive test when the pre-test chance is near zero is usually false."
     ],
@@ -4460,10 +4434,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 3.2.1, Confidentiality.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/confidentiality",
+      "says": "AMA Opinion 3.2.1 permits disclosure without consent when the law requires it, and when the patient is reasonably likely to seriously harm an identifiable person."
     },
     "open": false
   },
@@ -4502,7 +4476,6 @@
     "open": false,
     "lead": "You tell the patient the diagnosis. A family request to hide it does not override a patient who wants to know.",
     "lines": [
-      "Ask the patient how much they want, and whom to include.",
       "Hiding a result to keep the visit short fails the duty.",
       "A therapeutic privilege to withhold is rare and is not a convenience.",
       "Ask how much the patient wants to know and whom to include before you speak to the family."
@@ -4530,7 +4503,6 @@
     "lines": [
       "The document is interpreted for the decision in front of you, not as a slogan.",
       "If the directive is silent, the surrogate uses substituted judgment.",
-      "A directive can be updated by a patient who still has capacity.",
       "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
     ],
     "miss": "Following the adult child in the room and ignoring the form the patient signed.",
@@ -4555,7 +4527,6 @@
     "lead": "Suspected elder abuse is reported through the required channel. The caregiver does not get to veto the report.",
     "lines": [
       "Bruises in patterns, fear, and a dirty neglected patient are the clues.",
-      "You do not need proof. You need a suspicion.",
       "Treat the injuries. The report is in addition, not instead.",
       "Report on suspicion. You do not need proof, and the suspected abuser cannot veto the report.",
       "Treat the injury and arrange a safe destination before discharge."
@@ -4590,10 +4561,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 1.2.8, Gifts from Patients.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/gifts-patients",
+      "says": "AMA Opinion 1.2.8: gifts offered to secure or influence care undermine the duty to treat patients fairly, and accepting them is likely to damage the relationship."
     },
     "number": 175,
     "id": "usmle-qb-s1-175"
@@ -4615,10 +4586,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Principles of Medical Ethics, Principle VIII.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/principles",
+      "says": "AMA Principle VIII: while caring for a patient, the physician regards responsibility to that patient as paramount."
     },
     "number": 176,
     "id": "usmle-qb-s1-176"
@@ -4642,10 +4613,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 11.1.3, Allocating Limited Health Care Resources.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/allocating-limited-health-care-resources",
+      "says": "AMA Opinion 11.1.3 bases allocation on medical need, including urgency, likelihood and duration of benefit, and change in quality of life."
     },
     "number": 177,
     "id": "usmle-qb-s1-177"
@@ -4667,10 +4638,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 1.1.5, Terminating a Patient-Physician Relationship.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/terminating-patient-physician-relationship",
+      "says": "AMA Opinion 1.1.5: a physician who withdraws must notify the patient long enough in advance to find another physician and must facilitate transfer of care."
     },
     "number": 178,
     "id": "usmle-qb-s1-178"
@@ -4693,10 +4664,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
+      "name": "AMA Code of Medical Ethics. Opinion 2.2.1, Pediatric Decision Making.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/pediatric-decision-making",
+      "says": "AMA Opinion 2.2.1: seek the minor's assent in proportion to maturity, and respect a child's refusal unless immediate treatment is needed to preserve life or avert serious harm."
     },
     "number": 179,
     "id": "usmle-qb-s1-179"
@@ -4712,17 +4683,16 @@
     "lines": [
       "The disclosure is specific. A vague mention is not enough.",
       "The patient still gets the alternative that does not pay you.",
-      "Research consent is a separate conversation from clinical consent.",
       "Research consent is a separate form. A clinical consent does not enroll the patient in a study."
     ],
     "miss": "Implanting a device you own a share of and mentioning it after the operation.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Medical Ethics.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
+      "name": "AMA Code of Medical Ethics. Opinion 11.2.2, Conflicts of Interest in Patient Care.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/conflicts-interest-patient-care",
+      "says": "AMA Opinion 11.2.2: under no circumstances may physicians place their own financial interests above the welfare of their patients."
     },
     "number": 180,
     "id": "usmle-qb-s1-180"

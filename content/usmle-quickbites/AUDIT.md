@@ -2,8 +2,12 @@
 
 The library stays hidden. Flags are unchanged. This pass checked claims against a confirmable source and rewrote or removed anything that source does not state. Design and components were not changed.
 
+Backup before pass 6: `scripts/usmle-quickbites-20261121/backup-pre-pass6-20261121/`.
+Undo pass 6: `scripts/usmle-quickbites-20261121/11-undo-pass6.sh`.
 Backup before pass 5: `scripts/usmle-quickbites-20261121/backup-pre-pass5-20261121/`.
 Undo pass 5: `scripts/usmle-quickbites-20261121/10-undo-pass5.sh`.
+
+Pass 6 removed off-topic lines (a Cushing line on meningitis, pheochromocytoma lines on prostatic hyperplasia, a diuretic line and the calcium diagram on ascites, refusal lines on previa, BRCA and density lines on a palpable breast mass, and series/parallel lines on cutoff and predictive-value bites). The topic check now rejects those mismatches. Ethics bites that shared one generic sentence now cite a numbered AMA opinion or principle and a sentence from that page. HFpEF no longer uses an HFrEF citation sentence. Chapter-title citations and "(see Image" fragments were replaced with a sentence about the bite's claim. Step 2 and Step 3 reference-text bites fell from 118 to 90. Management that could be tied to a retrieved guideline sentence was moved (rheumatic fever, BPH, acute scrotal pain, pemphigus, nitrates with sildenafil). Other treatment sequences that had no retrieved guideline sentence were rewritten as mechanism.
 
 Pass 5 closed the unverified StatPearls "says" lines. NCBI Bookshelf HTML for the cited NBK chapters returned an empty page from this environment, so the text checked is the PubMed abstract of that StatPearls chapter (PMID 31334949 for complement, whose NBK record had no abstract). A says line is verified when it is a sentence from that abstract and shares at least three content words with the bite. 187 StatPearls bites meet that bar. 58 do not: the abstract does not state the bite's specific claim, the says line is still a real abstract sentence, and it was not invented. Those 58 stay unverified. Marfan bites no longer state a beta blocker or an ARB, which the chapter does not name. Hypokalemia bites now use the chapter's own bands (about 3.5 mmol/L normal floor, under 2.5 mmol/L severe). Carbamazepine for trigeminal neuralgia cites the 2008 AAN/EFNS parameter (PMID 18716236). Ankylosing spondylitis cites the 2019 ACR/SAA/SPARTAN recommendations (PMID 31436036).
 
@@ -21,12 +25,12 @@ Counted from the source name after this pass. "Guideline" is a society or govern
 
 | | Step 1 | Step 2 CK | Step 3 |
 | --- | ---: | ---: | ---: |
-| Guideline | 45 | 96 | 105 |
-| Statement or trial | 3 | 6 | 8 |
-| Ethics code | 5 | 15 | 12 |
-| Reference text | 127 | 63 | 55 |
+| Guideline | 44 | 99 | 107 |
+| Statement or trial | 4 | 10 | 13 |
+| Ethics code | 12 | 24 | 17 |
+| Reference text | 120 | 47 | 43 |
 
-These counts are after pass 5. Reference text is StatPearls. 187 of those says lines are verified against the chapter abstract. 58 remain unverified because the abstract does not state the bite's claim.
+These counts are after pass 6. Reference text is StatPearls and is for mechanism. A says line is unverified when the retrieved chapter abstract does not contain it, or when the guideline record had no recommendation sentence to check. Unverified ids: usmle-qb-s1-002, usmle-qb-s1-005, usmle-qb-s1-006, usmle-qb-s1-010, usmle-qb-s1-024, usmle-qb-s1-058, usmle-qb-s1-059, usmle-qb-s1-060, usmle-qb-s1-075, usmle-qb-s1-076, usmle-qb-s1-079, usmle-qb-s1-088, usmle-qb-s1-101, usmle-qb-s1-102, usmle-qb-s1-131, usmle-qb-s1-141, usmle-qb-s1-142, usmle-qb-s1-150, usmle-qb-s1-155, usmle-qb-s1-156, usmle-qb-s1-159, usmle-qb-s1-162, usmle-qb-s1-164, usmle-qb-s1-165, usmle-qb-s1-166, usmle-qb-s2-005, usmle-qb-s2-035, usmle-qb-s2-088, usmle-qb-s2-089, usmle-qb-s2-106, usmle-qb-s2-146, usmle-qb-s3-028, usmle-qb-s3-037, usmle-qb-s3-063, usmle-qb-s3-071, usmle-qb-s3-088, usmle-qb-s3-089, usmle-qb-s3-093, usmle-qb-s3-098, usmle-qb-s3-103, usmle-qb-s3-107, usmle-qb-s3-137, usmle-qb-s3-155, usmle-qb-s3-156, usmle-qb-s3-157, usmle-qb-s3-158.
 
 New or corrected guideline links use a PubMed URL or, for the UK kidney guideline, the society's PDF. Paywalled journal pages were not used as the only link.
 
