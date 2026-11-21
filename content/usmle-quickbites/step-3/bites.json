@@ -84,7 +84,6 @@
     "lead": "A vomiting, shocked infant in the first weeks of life gets a glucose, a sodium, a potassium, and a stress-dose steroid. The genital exam does not delay the steroid.",
     "lines": [
       "A virilized or atypical newborn is evaluated for 21-hydroxylase deficiency before anyone assigns a sex or sends the infant home.",
-      "Salt-wasting disease is part of that guideline's clinical management, not a reassurance visit.",
       "The infant who is ill is treated, not observed until a karyotype result returns.",
       "In weeks 1 to 3 the sodium falls and the potassium rises, often above 6. 17-hydroxyprogesterone is very high. Give hydrocortisone and saline, then fludrocortisone."
     ],
@@ -842,10 +841,10 @@
     "diagram": "beers-list",
     "diagramAlt": "Beers drugs that cause admissions. Benzodiazepines for sleep or anxiety Strong anticholinergics, including diphenhydramine Sliding-scale insulin used alone",
     "source": {
-      "name": "2023 AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
+      "name": "American Geriatrics Society 2023 Updated AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
       "year": "2023",
-      "url": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/jgs.18372",
-      "says": "Avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12478568/",
+      "says": "Drug-disease interaction: in dementia or cognitive impairment, avoid anticholinergics, benzodiazepines, Z-drugs, and chronic antipsychotics because of adverse CNS effects. Cumulative anticholinergic exposure is associated with falls, delirium, and dementia."
     },
     "number": 31,
     "id": "usmle-qb-s3-031"
@@ -869,10 +868,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ESCMID guideline on diagnosis and treatment of brain abscess.",
+      "name": "ESCMID guidelines on the diagnosis and treatment of brain abscess in children and adults.",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37648062/",
-      "says": "A suspected brain abscess is imaged before lumbar puncture, treated with antibiotics, and drained when it is large or causing mass effect."
+      "says": "MRI is recommended for diagnosis. Aspiration or excision of brain abscess is recommended whenever feasible, except for toxoplasmosis. Adjunctive glucocorticoids are recommended for severe symptoms from perifocal oedema or impending herniation."
     },
     "number": 32,
     "id": "usmle-qb-s3-032"
@@ -895,10 +894,10 @@
     "diagram": "li-level",
     "diagramAlt": "Lithium interactions. NSAIDs, thiazides, ACE inhibitors raise it Hold the drug. Severe toxicity: dialysis Chronic use: nephrogenic diabetes insipidus",
     "source": {
-      "name": "EXTRIP recommendations for extracorporeal treatment of lithium poisoning.",
+      "name": "EXTRIP. Extracorporeal Treatment for Lithium Poisoning: Systematic Review and Recommendations.",
       "year": "2015",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25583292/",
-      "says": "Hold lithium, hydrate, and use extracorporeal treatment for severe lithium toxicity. NSAIDs, thiazides, and ACE inhibitors raise the level."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4422246/",
+      "says": "Extracorporeal treatment is recommended in severe lithium poisoning: if kidney function is impaired and the [Li+] is >4.0 mEq/L, or with a decreased level of consciousness, seizures, or life-threatening dysrhythmias irrespective of the [Li+]. It is suggested if the [Li+] is >5.0 mEq/L or significant confusion is present."
     },
     "number": 33,
     "id": "usmle-qb-s3-033"
@@ -925,7 +924,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "Treatment for serotonin syndrome involves discontinuing the offending medications and providing supportive care."
+      "says": "The first step in managing serotonin syndrome is accurately and promptly recognizing the condition. Treatment involves discontinuing the offending medications and providing supportive care. If supportive measures, vital signs management, and chemical sedation do not adequately treat serotonin syndrome, then antidotes can be considered; cyproheptadine has 5-HT1A and 5-HT2A antagonistic properties."
     },
     "number": 34,
     "id": "usmle-qb-s3-034"
@@ -950,7 +949,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "The syndrome causes mental-status change, fever, muscle rigidity, and autonomic instability. Treatment starts by immediately stopping the offending drug."
+      "says": "Treatment involves immediately discontinuing the offending agent, aggressive supportive care to manage and prevent complications, and pharmacologic therapy in severe cases. Supportive therapy includes aggressive cooling and correction of volume deficits and any electrolyte imbalances."
     },
     "number": 35,
     "id": "usmle-qb-s3-035"
@@ -966,17 +965,16 @@
     "lines": [
       "Oral corticosteroids are strongly recommended within 72 hours of onset of peripheral facial nerve palsy.",
       "Antivirals may be added. They are not a substitute for the corticosteroid.",
-      "Routine testing is unnecessary for a typical presentation. Atypical features are the reason to test further.",
-      "The 2026 facial-nerve-palsy guideline is the source for that 72-hour corticosteroid recommendation."
+      "Routine testing is unnecessary for a typical presentation. Atypical features are the reason to test further."
     ],
     "miss": "Starting an antiviral without a corticosteroid, or starting the corticosteroid after 72 hours as if the window were still open.",
     "diagram": "bell-steroid",
     "diagramAlt": "Bell palsy, first 72 hours. Forehead involved = peripheral nerve Prednisone early. Lubricate the eye Forehead spared = stroke pathway",
     "source": {
-      "name": "Clinical practice guideline for the evaluation and management of facial nerve palsy.",
+      "name": "Clinical practice guideline for the evaluation and management of peripheral facial nerve palsy (Korean multidisciplinary guideline).",
       "year": "2026",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42163702/",
-      "says": "Oral corticosteroids are strongly recommended within 72 hours of symptom onset for peripheral facial nerve palsy. Antivirals may be added. Routine testing is unnecessary for a typical presentation."
+      "says": "Oral corticosteroids are strongly recommended within 72 hours of symptom onset (Grade A). Antivirals may be added based on clinical judgment and patient preference (Grade B). Routine testing is unnecessary for typical Bell's palsy; selective testing is advised for atypical features."
     },
     "number": 36,
     "id": "usmle-qb-s3-036"
@@ -1000,10 +998,10 @@
     "diagram": "ich-cerebellum",
     "diagramAlt": "Which bleed goes to surgery. Cerebellum with compression: evacuate Putamen: usually medical Lobar in an older adult: think amyloid",
     "source": {
-      "name": "2022 AHA/ASA guideline for spontaneous intracerebral hemorrhage.",
+      "name": "2022 AHA/ASA Guideline for the Management of Patients With Spontaneous Intracerebral Hemorrhage.",
       "year": "2022",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/35579034/",
-      "says": "A cerebellar hemorrhage is not a routine floor admission. Deterioration or brainstem compression is a surgical decision in the 2022 AHA/ASA guideline."
+      "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000407",
+      "says": "For patients with cerebellar hemorrhage, indications for immediate surgical evacuation with or without an external ventricular drain to reduce mortality include larger volume (>15 mL) in addition to neurological deterioration, brainstem compression, and hydrocephalus."
     },
     "number": 37,
     "id": "usmle-qb-s3-037"
@@ -1025,10 +1023,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Brain Trauma Foundation guidelines for the surgical management of traumatic brain injury.",
+      "name": "Brain Trauma Foundation. Surgical management of acute epidural hematomas.",
       "year": "2006",
       "url": "https://pubmed.ncbi.nlm.nih.gov/16710967/",
-      "says": "An acute epidural hematoma with a volume greater than 30 mL is surgically evacuated, regardless of the Glasgow Coma Scale score."
+      "says": "An epidural hematoma (EDH) greater than 30 cm3 should be surgically evacuated regardless of the patient's Glasgow Coma Scale (GCS) score."
     },
     "number": 38,
     "id": "usmle-qb-s3-038"
@@ -1051,10 +1049,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "NCS/SCCM guideline for reversal of antithrombotics in intracranial hemorrhage.",
+      "name": "Guideline for Reversal of Antithrombotics in Intracranial Hemorrhage. Neurocritical Care Society and Society of Critical Care Medicine.",
       "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27858808/",
-      "says": "Reverse the antithrombotic in anticoagulant-associated intracranial hemorrhage, including subdural hematoma, rather than observing the patient on the drug."
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26714677/",
+      "says": "Rapid reversal of coagulopathy may help limit hematoma expansion and improve outcomes. The committee developed recommendations for reversal of vitamin K antagonists, direct factor Xa antagonists, direct thrombin inhibitors, unfractionated heparin, low-molecular weight heparin, heparinoids, and pentasaccharides."
     },
     "number": 39,
     "id": "usmle-qb-s3-039"
@@ -1077,10 +1075,10 @@
     "diagram": "compartment-5",
     "diagramAlt": "Compartment, do not wait for the pulse. Pain out of proportion Pain on passive stretch Fasciotomy. Pulse loss is late",
     "source": {
-      "name": "AAOS clinical practice guideline. Management of acute compartment syndrome.",
+      "name": "AAOS Clinical Practice Guideline: Management of Acute Compartment Syndrome (case-based summary).",
       "year": "2021",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33201042/",
-      "says": "Acute compartment syndrome is diagnosed clinically, with pain on passive stretch, and is treated by fasciotomy rather than by more opioid."
+      "url": "https://journals.lww.com/jaaos/fulltext/2021/01010/aaos_clinical_practice_guideline__management_of.1.aspx",
+      "says": "Serial clinical examinations can assist in ruling in acute compartment syndrome; compartment pressure monitoring can assist but is not always necessary. A diastolic-to-compartment pressure difference of 30 mm Hg can be used as a threshold for diagnosis and fasciotomy."
     },
     "number": 40,
     "id": "usmle-qb-s3-040"
@@ -1102,10 +1100,16 @@
     "diagram": "hip-48",
     "diagramAlt": "Hip fracture timing. Operate within about 48 hours if ready Prophylax against clot A fragility fracture starts osteoporosis treatment",
     "source": {
-      "name": "AAOS clinical practice guideline. Management of hip fractures in older adults.",
-      "year": "2022",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36200818/",
-      "says": "Older adults with a hip fracture should have prompt surgery, venous thromboembolism prophylaxis, and attention to the fragility fracture before discharge."
+      "name": "NICE CG124. Hip fracture: management.",
+      "year": "2023",
+      "url": "https://www.nice.org.uk/guidance/cg124/chapter/Recommendations",
+      "says": "Perform surgery on the day of, or the day after, admission. Care should also follow NICE guidance on venous thromboembolism, delirium, and osteoporosis fragility-fracture risk assessment.",
+      "more": [
+        {
+          "name": "AAOS Management of Hip Fractures in Older Adults Clinical Practice Guideline (2021).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36200818/"
+        }
+      ]
     },
     "number": 41,
     "id": "usmle-qb-s3-041"
@@ -1130,7 +1134,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "An open fracture is a fracture in which the bone communicates with the outside through a wound."
+      "says": "An open fracture is an injury where the fractured bone and/or fracture hematoma are exposed to the external environment via a traumatic violation of the soft tissue and skin."
     },
     "number": 42,
     "id": "usmle-qb-s3-042"
@@ -1153,10 +1157,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "PIDS/IDSA guideline for acute bacterial arthritis in children.",
-      "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37941444/",
-      "says": "A septic joint is aspirated for culture when the child is stable, then drained and treated with antibiotics. Do not start with a short oral course and no drainage."
+      "name": "StatPearls. Septic Arthritis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538176/",
+      "says": "Staphylococcus aureus is the most common organism in adults. Arthrocentesis should be done without delay; treatment is antimicrobial therapy with antistaphylococcal coverage plus joint drainage by aspiration, arthroscopy, or arthrotomy.",
+      "more": [
+        {
+          "name": "PIDS/IDSA guideline for acute bacterial arthritis in children (2024).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37941444/"
+        }
+      ]
     },
     "number": 43,
     "id": "usmle-qb-s3-043"
@@ -1181,8 +1191,8 @@
     "source": {
       "name": "2020 American College of Rheumatology Guideline for the Management of Gout.",
       "year": "2020",
-      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.41247",
-      "says": "The flare is treated with an anti-inflammatory. Allopurinol monotherapy is not flare treatment, which is the recommendation in 2020 American College of Rheumatology Guideline for the Management of Gout."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10563586/",
+      "says": "For a gout flare, oral colchicine, NSAIDs, or glucocorticoids (oral, intraarticular, or intramuscular) are strongly recommended as first-line therapy, chosen by patient factors. Patients already taking urate-lowering therapy should continue it."
     },
     "number": 44,
     "id": "usmle-qb-s3-044"
@@ -1206,10 +1216,16 @@
     "diagram": "back-flags",
     "diagramAlt": "Image the back now. Cauda equina, cancer, infection, deficit Otherwise no MRI in the first weeks Activity, not bed rest",
     "source": {
-      "name": "ACP Clinical Practice Guideline. Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain.",
-      "year": "2017",
-      "url": "https://www.acpjournals.org/doi/10.7326/M16-2367",
-      "says": "Imaging is not ordered in the first weeks without red flags. Activity is advised."
+      "name": "ACR Appropriateness Criteria. Low Back Pain: 2021 Update.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34794594/",
+      "says": "Uncomplicated acute low back pain with or without radiculopathy does not warrant imaging. Imaging is considered after up to 6 weeks of medical management with little or no improvement, or with red flags such as cauda equina syndrome, malignancy, fracture, or infection.",
+      "more": [
+        {
+          "name": "ACP Clinical Practice Guideline. Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain (2017).",
+          "url": "https://www.acpjournals.org/doi/10.7326/M16-2367"
+        }
+      ]
     },
     "number": 45,
     "id": "usmle-qb-s3-045"
@@ -1231,10 +1247,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2021 ACR/Vasculitis Foundation guideline for giant cell arteritis.",
+      "name": "2021 American College of Rheumatology/Vasculitis Foundation Guideline for the Management of Giant Cell Arteritis and Takayasu Arteritis.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34235884/",
-      "says": "Start high-dose oral glucocorticoid for suspected giant cell arteritis, about 1 mg/kg up to 80 mg of prednisone a day, and use an intravenous pulse if vision is threatened. Biopsy as soon as possible, ideally within 2 weeks; a later biopsy may still be informative."
+      "says": "High dose oral glucocorticoids: prednisone 1 mg/kg up to 80 mg daily. With threatened vision loss, pulse intravenous glucocorticoids are conditionally recommended. A long-segment biopsy (>1 cm) is preferred, obtained within two weeks of starting oral glucocorticoids; a biopsy obtained later could still be informative."
     },
     "number": 46,
     "id": "usmle-qb-s3-046"
@@ -1248,7 +1264,6 @@
     "open": false,
     "lead": "Write an operating-room booking and broad antibiotics at the same time. Do not write a 24-hour trial.",
     "lines": [
-      "Necrotizing fasciitis is a life-threatening skin and soft tissue infection in the 2014 IDSA guideline.",
       "The recommendation is prompt diagnosis and timely effective treatment, not a day of antibiotics to see if the skin improves.",
       "Pain beyond the visible skin, toxicity, and a rising lactate are the clinical clues. Crepitus is not required.",
       "Pain beyond the skin you can see, with toxicity, goes to the operating room the same day. Antibiotics alone are not the plan."
@@ -1257,10 +1272,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "IDSA 2014 guideline for skin and soft tissue infections.",
+      "name": "IDSA Practice Guidelines for the Diagnosis and Management of Skin and Soft Tissue Infections: 2014 Update.",
       "year": "2014",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24973422/",
-      "says": "Necrotizing fasciitis is in the scope of this guideline as a life-threatening skin and soft tissue infection. The guideline stresses prompt diagnosis and timely effective treatment."
+      "url": "https://www.idsociety.org/practice-guideline/skin-and-soft-tissue-infections/",
+      "says": "Prompt surgical consultation is recommended for aggressive infections with systemic toxicity or suspected necrotizing fasciitis or gas gangrene (strong). Empiric antibiotics should be broad, e.g., vancomycin or linezolid plus piperacillin-tazobactam or a carbapenem."
     },
     "number": 47,
     "id": "usmle-qb-s3-047"
@@ -1283,10 +1298,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2019 ACR/SAA/SPARTAN recommendations for axial spondyloarthritis.",
+      "name": "2019 ACR/SAA/SPARTAN Recommendations for the Treatment of Ankylosing Spondylitis and Nonradiographic Axial Spondyloarthritis.",
       "year": "2019",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31436036/",
-      "says": "NSAIDs are first-line for axial spondyloarthritis, together with activity. A painful red eye is acute anterior uveitis and is seen the same day."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6764882/",
+      "says": "NSAIDs are strongly recommended over no NSAIDs, and physical therapy over no physical therapy. In active AS despite NSAIDs, a TNF inhibitor is strongly recommended over no TNF inhibitor."
     },
     "number": 48,
     "id": "usmle-qb-s3-048"
@@ -1308,10 +1323,16 @@
     "diagram": "marfan-root",
     "diagramAlt": "Marfan syndrome. FBN1 makes fibrillin Aortic root dilatation is the danger Lens dislocation is the eye finding",
     "source": {
-      "name": "StatPearls. Marfan Syndrome.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
-      "says": "The defect is in the FBN1 gene, which produces fibrillin. Decreased life expectancy is mainly from aortic root dilatation and dissection."
+      "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
+      "year": "2022",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106",
+      "says": "In patients with Marfan syndrome, a TTE is recommended at the time of initial diagnosis, to determine the diameters of the aortic root and ascending aorta, and 6 months thereafter, to determine the rate of aortic growth.",
+      "more": [
+        {
+          "name": "StatPearls. Marfan Syndrome (FBN1, eye and skeletal features).",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/"
+        }
+      ]
     },
     "number": 49,
     "id": "usmle-qb-s3-049"
@@ -1334,10 +1355,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "International consensus. Diagnosis and management of pemphigus.",
+      "name": "International consensus on pemphigus management (Joly et al.).",
       "year": "2020",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29438767/",
-      "says": "An intravenous CD20 inhibitor is a first-line option for moderate-to-severe pemphigus in the international consensus recommendations."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7313440/",
+      "says": "This international consensus includes intravenous CD20 inhibitors (rituximab, ofatumumab) as a first-line therapy option for moderate-to-severe pemphigus, alongside systemic corticosteroids."
     },
     "number": 50,
     "id": "usmle-qb-s3-050"
@@ -1361,10 +1382,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "IMACS international guideline for cancer screening in idiopathic inflammatory myopathy.",
+      "name": "International Guideline for Idiopathic Inflammatory Myopathy-Associated Cancer Screening (IMACS).",
       "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37945774/",
-      "says": "Adult-onset dermatomyositis needs a cancer-screening plan. The rash and proximal weakness are not a statin effect."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10834225/",
+      "says": "Dermatomyositis carries the highest cancer risk among myositis subtypes. All adults with new-onset myositis should be tested for myositis-specific and myositis-associated autoantibodies to stratify cancer risk, which then sets screening modality and frequency."
     },
     "number": 51,
     "id": "usmle-qb-s3-051"
@@ -1387,10 +1408,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.",
       "year": "2025",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
-      "says": "ECG within 10 minutes and aspirin are the opening orders. Routine oxygen is omitted when saturation is normal."
+      "says": "A 12-lead ECG should be acquired and interpreted within 10 minutes of first medical contact. Aspirin should be initiated with a loading dose (162-325 mg) as soon as possible on presentation. With oxygen saturation 90% or higher, routine supplemental oxygen is not recommended."
     },
     "number": 52,
     "id": "usmle-qb-s3-052"
@@ -1414,10 +1435,10 @@
     "diagram": "acs-clocks",
     "diagramAlt": "ACS time goals. ECG within 10 minutes of contact PCI hospital: device by 90 minutes Transfer: 120 minutes, or give a lytic",
     "source": {
-      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.",
       "year": "2025",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
-      "says": "Transfer PCI is acceptable within 120 minutes. If that cannot be met, fibrinolysis is given."
+      "says": "For STEMI within 12 hours, primary PCI with an FMC-to-device target of 90 minutes or less at a PCI-capable hospital, or 120 minutes or less when transfer is required. Give fibrinolytic therapy if expected delay to primary PCI is more than 2 hours from FMC and there are no contraindications."
     },
     "number": 53,
     "id": "usmle-qb-s3-053"
@@ -1440,10 +1461,16 @@
     "diagram": "hf-pillars",
     "diagramAlt": "Start before discharge. ARNI, evidence-based beta blocker MRA and SGLT2 inhibitor Clinic within 7 days",
     "source": {
-      "name": "2024 ACC Expert Consensus Decision Pathway for Patients Hospitalized With Heart Failure.",
-      "year": "2024",
-      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.06.002",
-      "says": "All four pillars are started before discharge when possible, and follow-up is within about 7 days."
+      "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
+      "year": "2022",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
+      "says": "GDMT for HFrEF now includes 4 medication classes: renin-angiotensin system inhibition with ARNi, ACEi, or ARB; beta blockers; MRAs; and SGLT2i. Beta blockers with proven benefit are bisoprolol, carvedilol, and sustained-release metoprolol succinate.",
+      "more": [
+        {
+          "name": "2024 ACC Expert Consensus Decision Pathway for Patients Hospitalized With Heart Failure.",
+          "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.06.002"
+        }
+      ]
     },
     "number": 54,
     "id": "usmle-qb-s3-054"
@@ -1469,7 +1496,7 @@
       "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
       "year": "2022",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
-      "says": "Improved ejection fraction remains on HFrEF therapy. Discharge instructions say not to stop the drugs."
+      "says": "Patients with HFrEF whose LVEF improves to above 40% have HFimpEF and should continue HFrEF treatment; GDMT should be continued to prevent relapse of HF and LV dysfunction, even if asymptomatic."
     },
     "number": 55,
     "id": "usmle-qb-s3-055"
@@ -1492,10 +1519,10 @@
     "diagram": "cha2ds",
     "diagramAlt": "Who gets anticoagulation. Class 1: \u22652% per year Men CHA2DS2-VASc \u22652, women \u22653 DOAC, except mitral stenosis or metal valve",
     "source": {
-      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
+      "name": "2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation.",
       "year": "2023",
-      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
-      "says": "Stroke prevention is prescribed from risk, with the dose adjusted to kidney function. Sinus rhythm does not cancel it."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11104284/",
+      "says": "For AF with an estimated annual thromboembolic risk of 2% or more per year (eg, CHA2DS2-VASc 2 or more in men, 3 or more in women), anticoagulation is recommended. DOACs are recommended over warfarin except with moderate to severe rheumatic mitral stenosis or a mechanical heart valve; aspirin is not an alternative."
     },
     "number": 56,
     "id": "usmle-qb-s3-056"
@@ -1519,10 +1546,10 @@
     "diagram": "htn-two",
     "diagramAlt": "2025 blood-pressure start. \u2265140/90: two drugs, one pill if possible Goal under 130/80 for most adults Stage 1: drug now if PREVENT \u22657.5%",
     "source": {
-      "name": "2025 AHA/ACC High Blood Pressure Guideline.",
+      "name": "2025 AHA/ACC Guideline for the Prevention, Detection, Evaluation, and Management of High Blood Pressure in Adults.",
       "year": "2025",
-      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001356",
-      "says": "Stage 2 hypertension starts two-drug therapy. Home readings and a pregnancy check before renin-angiotensin drugs are part of the order."
+      "url": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000249",
+      "says": "Stage 2 hypertension (140/90 or higher) starts drug therapy with 2 first-line agents of different classes, preferably as a single-pill combination. The goal is under 130/80 for all adults. Stage 1 starts a drug with CVD, diabetes, CKD, or PREVENT 10-year risk of 7.5% or more; otherwise after a 3- to 6-month lifestyle trial."
     },
     "number": 57,
     "id": "usmle-qb-s3-057"
@@ -1548,8 +1575,8 @@
     "source": {
       "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
       "year": "2022",
-      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106",
-      "says": "Acute aortic syndrome involving the ascending aorta is a surgical emergency. Control heart rate with a beta blocker before adding a vasodilator."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9876736/",
+      "says": "Suspected or confirmed acute type A aortic dissection warrants emergency surgical consultation and immediate surgical intervention. Initial management of acute aortic syndrome includes intravenous beta blockers, adding intravenous vasodilators if BP is not controlled after beta-blocker therapy."
     },
     "number": 58,
     "id": "usmle-qb-s3-058"
@@ -1571,10 +1598,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Society for Vascular Surgery guidelines on abdominal aortic aneurysm.",
-      "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29268916/",
-      "says": "Suspected rupture, pain plus hypotension, goes to emergency repair. It is not a clinic ultrasound."
+      "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
+      "year": "2022",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9876736/",
+      "says": "In ruptured AAA, permissive hypotension can be beneficial to decrease the rate of bleeding; rupture protocols aim at immediate transfer to the operating room for prompt hemorrhage control and repair.",
+      "more": [
+        {
+          "name": "Society for Vascular Surgery practice guidelines on the care of patients with an abdominal aortic aneurysm (2018).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29268916/"
+        }
+      ]
     },
     "number": 59,
     "id": "usmle-qb-s3-059"
@@ -1598,10 +1631,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Cardiac Tamponade.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/",
-      "says": "Cardiac tamponade is a medical or traumatic emergency that happens when enough fluid accumulates in the pericardial sac compressing the heart and leading to a decrease in cardiac output and shock."
+      "name": "2015 ESC Guidelines for the diagnosis and management of pericardial diseases.",
+      "year": "2015",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7539677/",
+      "says": "Treatment of cardiac tamponade is drainage of the pericardial fluid, preferably by needle pericardiocentesis with echocardiographic or fluoroscopic guidance, performed without delay in unstable patients (class I).",
+      "more": [
+        {
+          "name": "StatPearls. Cardiac Tamponade.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/"
+        }
+      ]
     },
     "number": 60,
     "id": "usmle-qb-s3-060"
@@ -1624,10 +1663,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2022 ESC guidelines for ventricular arrhythmias and the prevention of sudden cardiac death.",
-      "year": "2022",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/36017572/",
-      "says": "Pause-dependent polymorphic ventricular tachycardia with a long QT is treated with intravenous magnesium, potassium repletion, and withdrawal of QT-prolonging drugs. The 2025 AHA advanced life support guideline is the US resuscitation document for the same arrest rhythm."
+      "name": "2025 American Heart Association Guidelines for CPR and ECC. Part 9: Adult Advanced Life Support.",
+      "year": "2025",
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-advanced-life-support",
+      "says": "Immediate unsynchronized shock is recommended for adults with sustained polymorphic ventricular tachycardia (COR 1). Magnesium may be considered for treatment of adults with recurrences of polymorphic ventricular tachycardia associated with a long QT interval (torsades de pointes) (COR 2b).",
+      "more": [
+        {
+          "name": "2022 ESC Guidelines for ventricular arrhythmias and the prevention of sudden cardiac death.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36017572/"
+        }
+      ]
     },
     "number": 61,
     "id": "usmle-qb-s3-061"
@@ -1651,10 +1696,16 @@
     "diagram": "ie-cultures",
     "diagramAlt": "Endocarditis cultures. Three sets, separate sticks Before antibiotics if the patient can wait Prophylaxis only for the highest-risk hearts",
     "source": {
-      "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
-      "year": "2015",
-      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296",
-      "says": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions."
+      "name": "StatPearls. Infective Endocarditis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557641/",
+      "says": "Diagnosis uses blood cultures and echocardiography. AHA and ACC guidance limits antibiotic prophylaxis to patients at highest risk of adverse outcomes from endocarditis who undergo dental procedures that manipulate gingival or periapical tissue or perforate the oral mucosa.",
+      "more": [
+        {
+          "name": "2015 AHA Scientific Statement. Infective Endocarditis in Adults.",
+          "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296"
+        }
+      ]
     },
     "number": 62,
     "id": "usmle-qb-s3-062"
@@ -1681,7 +1732,7 @@
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
-      "says": "The pulmonary valve annulus is often hypoplastic, with a pulmonary valve that is dysplastic and stenotic."
+      "says": "Tet spells need knee-chest positioning to increase systemic vascular resistance, oxygen, and sometimes intravenous beta-blockers or intravenous phenylephrine to increase systemic afterload. Morphine can be given as a sedative."
     },
     "number": 63,
     "id": "usmle-qb-s3-063"
@@ -1708,7 +1759,13 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "Coarctation is a narrowing of the aortic lumen. After repair, the leg pressure is what shows a residual or recurrent narrowing."
+      "says": "In older children and adults, aortic coarctation typically manifests as upper extremity hypertension. Despite successful short-term outcomes, continuous monitoring is necessary to manage residual risks such as recoarctation and aneurysm formation.",
+      "more": [
+        {
+          "name": "2018 AHA/ACC Guideline for the Management of Adults With Congenital Heart Disease.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30121239/"
+        }
+      ]
     },
     "number": 64,
     "id": "usmle-qb-s3-064"
@@ -1734,7 +1791,7 @@
       "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
       "year": "2022",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
-      "says": "Decongestion and an SGLT2 inhibitor are the HFpEF plan. The reduced-ejection-fraction regimen is not copied automatically."
+      "says": "New recommendations for HF with preserved EF are made for SGLT2i (COR 2a), MRAs (COR 2b), and ARNi (COR 2b). In HFpEF, SGLT2i can be beneficial in decreasing HF hospitalizations and cardiovascular mortality."
     },
     "number": 65,
     "id": "usmle-qb-s3-065"
@@ -1758,10 +1815,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
+      "name": "2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation.",
       "year": "2023",
-      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
-      "says": "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11104284/",
+      "says": "Anticoagulation is recommended for an estimated annual thromboembolic risk of 2% or more (eg, CHA2DS2-VASc 2 or more in men, 3 or more in women), with DOACs over warfarin except moderate to severe rheumatic mitral stenosis or a mechanical valve. Patients after flutter ablation are not free from thromboembolic risk.",
+      "more": [
+        {
+          "name": "StatPearls. Atrial Flutter.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK540985/"
+        }
+      ]
     },
     "number": 66,
     "id": "usmle-qb-s3-066"
@@ -1784,10 +1847,10 @@
     "diagram": "rheumatic-pcn",
     "diagramAlt": "Rheumatic prophylaxis. After rheumatic fever: scheduled penicillin Duration depends on carditis One 10-day course is not prophylaxis",
     "source": {
-      "name": "AHA scientific statement. Prevention of rheumatic fever.",
+      "name": "AHA Scientific Statement. Prevention of rheumatic fever and diagnosis and treatment of acute streptococcal pharyngitis.",
       "year": "2009",
       "url": "https://pubmed.ncbi.nlm.nih.gov/19246689/",
-      "says": "Secondary prevention of rheumatic fever is continuous prophylaxis, and penicillin is the agent of choice. Sulfadiazine or a macrolide is the alternative in penicillin allergy."
+      "says": "A person who has had rheumatic fever is at very high risk of recurrence after GAS pharyngitis and needs continuous antimicrobial prophylaxis (secondary prevention). Duration depends on number of attacks, time since the last attack, exposure risk, age, and cardiac involvement."
     },
     "number": 67,
     "id": "usmle-qb-s3-067"
@@ -1809,10 +1872,16 @@
     "diagram": "warfarin-only",
     "diagramAlt": "Who still needs warfarin. Mechanical valve Moderate or severe mitral stenosis A DOAC is otherwise preferred in AF",
     "source": {
-      "name": "2020 ACC/AHA Guideline for the Management of Valvular Heart Disease.",
-      "year": "2020",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33342586/",
-      "says": "A mechanical valve is anticoagulated with a vitamin K antagonist. A non-vitamin K oral anticoagulant is not recommended."
+      "name": "2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation.",
+      "year": "2023",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11104284/",
+      "says": "In AF with rheumatic mitral stenosis or mitral stenosis of moderate or greater severity, long-term warfarin is recommended over DOACs. Warfarin remains first-line therapy with a mechanical heart valve. In other valve disease, DOACs are recommended over VKAs.",
+      "more": [
+        {
+          "name": "2020 ACC/AHA Guideline for the Management of Valvular Heart Disease.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33342586/"
+        }
+      ]
     },
     "number": 68,
     "id": "usmle-qb-s3-068"
@@ -1836,10 +1905,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.",
       "year": "2025",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
-      "says": "Obtain a 12-lead ECG within 10 minutes. Primary PCI targets are 90 minutes at a PCI-capable hospital and 120 minutes when transfer is required, which is the recommendation in 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes."
+      "says": "In suspected ACS, a 12-lead ECG should be acquired and interpreted within 10 minutes of first medical contact. Suspected STEMI goes to a PCI-capable hospital with an FMC-to-first-device goal of 90 minutes or less; direct transport may be considered if the anticipated FMC-to-device time is 120 minutes or less.",
+      "more": [
+        {
+          "name": "Medscape guideline summary of the 2025 ACC/AHA ACS guideline",
+          "url": "https://reference.medscape.com/cc2/p10/acute-coronary-syndromes-acc-aha-guideline-2026a1000snr"
+        }
+      ]
     },
     "number": 69,
     "id": "usmle-qb-s3-069"
@@ -1865,7 +1940,7 @@
       "name": "StatPearls. Dilated Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441911/",
-      "says": "Dilated cardiomyopathy (DCM) is a disease of the heart muscle characterized by enlargement and dilation of one or both ventricles, along with impaired contractility, defined as a left ventricular ejection fraction (LVEF) less than 40%."
+      "says": "Secondary causes include infectious myocarditis, ischemic disease, hypertension, anthracyclines, alcohol abuse, HIV, peripartum cardiomyopathy, or infiltrative disease. ACE inhibitors or ARBs are recommended in patients with DCM."
     },
     "number": 70,
     "id": "usmle-qb-s3-070"
@@ -1888,10 +1963,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Restrictive Cardiomyopathy.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "Multiple types of restrictive cardiomyopathies vary according to pathogenesis, clinical presentation, diagnostic evaluation, treatment, and prognosis."
+      "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
+      "year": "2022",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
+      "says": "In patients with a clinical suspicion for cardiac amyloidosis, screening for serum and urine monoclonal light chains with serum and urine immunofixation electrophoresis and serum free light chains are recommended. If there is no evidence of monoclonal light chains, bone scintigraphy is used.",
+      "more": [
+        {
+          "name": "StatPearls. Restrictive Cardiomyopathy.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/"
+        }
+      ]
     },
     "number": 71,
     "id": "usmle-qb-s3-071"
@@ -1915,10 +1996,10 @@
     "diagram": "ie-cultures",
     "diagramAlt": "Endocarditis cultures. Three sets, separate sticks Before antibiotics if the patient can wait Prophylaxis only for the highest-risk hearts",
     "source": {
-      "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
-      "year": "2015",
-      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296",
-      "says": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions."
+      "name": "Prevention of Viridans Group Streptococcal Infective Endocarditis: A Scientific Statement From the American Heart Association.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33853363/",
+      "says": "There are no recommended changes to the 2007 VGS IE prevention guidelines. We continue to recommend VGS IE prophylaxis only for categories of patients at highest risk for adverse outcome while emphasizing the critical role of good oral health and regular access to dental care for all."
     },
     "number": 72,
     "id": "usmle-qb-s3-072"
@@ -1940,12 +2021,12 @@
     ],
     "miss": "Ordering a 14-day antibiotic and high-flow oxygen for every wheeze.",
     "diagram": "gold-eos",
-    "diagramAlt": "GOLD 2026, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
+    "diagramAlt": "GOLD 2027, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
     "source": {
-      "name": "GOLD 2026 Report. Key changes.",
-      "year": "2026",
-      "url": "https://goldcopd.org/wp-content/uploads/2025/11/KEY-CHANGES-GOLD-2026-10Nov2025.pdf",
-      "says": "Steroids treat the exacerbation, antibiotics are selective, and noninvasive ventilation is for acute respiratory acidosis."
+      "name": "GOLD 2027 Report. Global Strategy for Prevention, Diagnosis and Management of COPD.",
+      "year": "2027",
+      "url": "https://goldcopd.org/wp-content/uploads/2026/11/GOLD-Report-2027-FINAL-v1.1-20Nov2026_WMV.pdf",
+      "says": "For exacerbations, 40 mg prednisone-equivalent daily for 5 days is recommended. Antibiotics are given with at least two of increased dyspnea, fever, sputum volume, and sputum purulence when purulence is one of them, or when ventilation is required."
     },
     "number": 73,
     "id": "usmle-qb-s3-073"
@@ -1969,10 +2050,10 @@
     "diagram": "gina-o2",
     "diagramAlt": "Acute asthma oxygen. No oxygen if saturation \u226592% If given, target \u226495% in adults Preferred reliever: ICS-formoterol",
     "source": {
-      "name": "2026 GINA Strategy Report.",
+      "name": "GINA 2026 Summary Guide for Asthma Management and Prevention.",
       "year": "2026",
-      "url": "https://ginasthma.org/2026-gina-strategy-report/",
-      "says": "Oxygen is restricted to saturation below 92% with an upper target of 95%. Severe attacks receive a systemic corticosteroid, and the preventer is in place at discharge, which is the recommendation in 2026 GINA Strategy Report."
+      "url": "https://ginasthma.org/wp-content/uploads/2026/07/GINA-Summary-Guide-2026-WEB-WMS.pdf",
+      "says": "In acute asthma, give oxygen when saturation on room air is under 92% and titrate it to a target saturation of 92-95%. The preferred reliever is ICS-formoterol; SABA-only treatment is not recommended."
     },
     "number": 74,
     "id": "usmle-qb-s3-074"
@@ -1995,10 +2076,10 @@
     "diagram": "cap-bed",
     "diagramAlt": "Pneumonia: where and which drug. Hypoxia, shock, or confusion: admit Severe: beta-lactam + macrolide No routine anaerobic drug for aspiration",
     "source": {
-      "name": "2019 IDSA/ATS Guideline for Community-Acquired Pneumonia.",
+      "name": "2019 ATS/IDSA Guideline for Diagnosis and Treatment of Adults with Community-acquired Pneumonia.",
       "year": "2019",
-      "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST",
-      "says": "Site of care is ordered from severity. Anaerobic coverage is not routine, and severe disease is combination therapy."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/",
+      "says": "Outpatients: amoxicillin or doxycycline; a macrolide only where pneumococcal resistance is under 25%. Use the PSI with clinical judgment for site of care. Anaerobic coverage is not routinely added for suspected aspiration unless lung abscess or empyema is suspected. Severe CAP: a beta-lactam plus a macrolide or a respiratory fluoroquinolone."
     },
     "number": 75,
     "id": "usmle-qb-s3-075"
