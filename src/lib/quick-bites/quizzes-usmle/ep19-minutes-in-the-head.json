@@ -1,0 +1,289 @@
+{
+  "episode": "ep19-minutes-in-the-head",
+  "title": "Minutes in the Head",
+  "video": "quick-bites-usmle-ep19-minutes-in-the-head-web.mp4",
+  "questions": [
+    {
+      "id": "ep19-q01",
+      "type": "single_best_answer",
+      "stem": "A disabling ischemic stroke, two hours from last known well, no blood on the scan. Is there time for a clot-busting medicine?",
+      "options": [
+        {
+          "id": "A",
+          "text": "No; the window is already closed"
+        },
+        {
+          "id": "B",
+          "text": "Yes; four and a half hours is the usual window"
+        },
+        {
+          "id": "C",
+          "text": "Only after an advanced scan delays the medicine"
+        },
+        {
+          "id": "D",
+          "text": "Never, if the stroke score is not high"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not delay for advanced pictures inside that window. A disabling deficit still counts.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q02",
+      "type": "single_best_answer",
+      "stem": "A seizure has continued for several minutes. First medicine?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A phenytoin load only, and skip the first medicine"
+        },
+        {
+          "id": "B",
+          "text": "A benzodiazepine now"
+        },
+        {
+          "id": "C",
+          "text": "A migraine cocktail"
+        },
+        {
+          "id": "D",
+          "text": "Observation until it stops on its own"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The second drug comes after, not instead of, that first dose.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q03",
+      "type": "single_best_answer",
+      "stem": "A headache that is maximal at the first second. First move?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A migraine cocktail, then home"
+        },
+        {
+          "id": "B",
+          "text": "A head scan now"
+        },
+        {
+          "id": "C",
+          "text": "A clinic visit in a month"
+        },
+        {
+          "id": "D",
+          "text": "A nitrate spray"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A thunderclap headache is a bleed until it is not.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q04",
+      "type": "single_best_answer",
+      "stem": "A negative head scan six hours after a thunderclap headache, or a new deficit:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always ends the workup"
+        },
+        {
+          "id": "B",
+          "text": "Is not enough; you still need spinal fluid or a vessel study"
+        },
+        {
+          "id": "C",
+          "text": "Means you give a lytic"
+        },
+        {
+          "id": "D",
+          "text": "Is treated as celiac disease"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Within six hours, with no new deficit, a negative scan can be enough.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q05",
+      "type": "single_best_answer",
+      "stem": "In suspected bacterial meningitis, the steroid is given:",
+      "options": [
+        {
+          "id": "A",
+          "text": "An hour after the antibiotic, as the plan"
+        },
+        {
+          "id": "B",
+          "text": "With, or just before, the first antibiotic"
+        },
+        {
+          "id": "C",
+          "text": "Never"
+        },
+        {
+          "id": "D",
+          "text": "Instead of the antibiotic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not hang the antibiotic and remember the steroid an hour later.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q06",
+      "type": "single_best_answer",
+      "stem": "A warning stroke that resolved is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A cleared patient, safe for a visit in a month"
+        },
+        {
+          "id": "B",
+          "text": "Not a cleared patient; find the cause quickly"
+        },
+        {
+          "id": "C",
+          "text": "Proof that no thinner will ever be needed"
+        },
+        {
+          "id": "D",
+          "text": "A reason to skip a tracing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Atrial fibrillation or a tight neck artery can still be hiding.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q07",
+      "type": "single_best_answer",
+      "stem": "Inside four and a half hours, a disabling deficit:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Should wait for advanced pictures before any clot-busting medicine"
+        },
+        {
+          "id": "B",
+          "text": "Should not be delayed for advanced pictures"
+        },
+        {
+          "id": "C",
+          "text": "Is never treated if the score looks low"
+        },
+        {
+          "id": "D",
+          "text": "Is treated with flumazenil"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Either of the two approved medicines is acceptable. Doses were not the point of the video.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q08",
+      "type": "single_best_answer",
+      "stem": "If a seizure continues after the first benzodiazepine, the next step is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Another stack of tiny benzodiazepine doses only"
+        },
+        {
+          "id": "B",
+          "text": "One full dose of a second medicine"
+        },
+        {
+          "id": "C",
+          "text": "A migraine cocktail"
+        },
+        {
+          "id": "D",
+          "text": "Discharge"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not stack small benzodiazepine doses and call that treatment.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q09",
+      "type": "single_best_answer",
+      "stem": "Low sugar, in a patient who looks like a stroke:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Can copy a stroke and should be checked first"
+        },
+        {
+          "id": "B",
+          "text": "Is treated with a clot-busting medicine immediately"
+        },
+        {
+          "id": "C",
+          "text": "Is ignored"
+        },
+        {
+          "id": "D",
+          "text": "Replaces the head scan later"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Check the sugar and a plain head scan first.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep19-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A clot-busting medicine for an eligible disabling ischemic stroke belongs inside 4.5 hours."
+        },
+        {
+          "id": "B",
+          "text": "Status epilepticus gets a benzodiazepine first."
+        },
+        {
+          "id": "C",
+          "text": "A resolved warning stroke can wait a month for clinic."
+        },
+        {
+          "id": "D",
+          "text": "Give the meningitis steroid with, or before, the first antibiotic."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A resolved warning stroke is not a cleared patient.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

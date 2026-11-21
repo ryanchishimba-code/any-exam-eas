@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
+import { UsmleVideoQuickBites } from "@/components/quick-bites/UsmleVideoQuickBites";
 import { VideoQuickBitesSection } from "@/components/quick-bites/VideoQuickBitesSection";
 import { getCachedSession } from "@/lib/auth/session";
 import {
@@ -20,9 +21,11 @@ import { ROUTES } from "@/lib/routes";
 export async function QuickBitesPage({
   exam,
   previewNote,
+  initialVideoStepQuery = null,
 }: {
   exam: QuickBiteExam;
   previewNote?: string;
+  initialVideoStepQuery?: string | null;
 }) {
   const board = QUICK_BITE_BOARDS[exam];
   const session = await getCachedSession();
@@ -45,13 +48,22 @@ export async function QuickBitesPage({
       {previewNote ? (
         <p className="mb-3 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{previewNote}</p>
       ) : null}
-      <VideoQuickBitesSection
-        series={board.series}
-        titleAs="h1"
-        canPlay={canPlayQuickBites(access)}
-        upgradeHref={upgradeHref}
-        upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
-      />
+      {exam === "usmle" ? (
+        <UsmleVideoQuickBites
+          initialQuery={initialVideoStepQuery}
+          canPlay={canPlayQuickBites(access)}
+          upgradeHref={upgradeHref}
+          upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
+        />
+      ) : (
+        <VideoQuickBitesSection
+          series={board.series}
+          titleAs="h1"
+          canPlay={canPlayQuickBites(access)}
+          upgradeHref={upgradeHref}
+          upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
+        />
+      )}
     </div>
   );
 }

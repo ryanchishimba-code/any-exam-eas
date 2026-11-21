@@ -1,0 +1,289 @@
+{
+  "episode": "ep14-liver-signatures",
+  "title": "Four Liver Signatures",
+  "video": "quick-bites-usmle-ep14-liver-signatures-web.mp4",
+  "questions": [
+    {
+      "id": "ep14-q01",
+      "type": "single_best_answer",
+      "stem": "A young person with liver disease and a tremor. First metal to think about?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Iron only"
+        },
+        {
+          "id": "B",
+          "text": "Copper"
+        },
+        {
+          "id": "C",
+          "text": "Calcium only"
+        },
+        {
+          "id": "D",
+          "text": "Lead only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Wilson disease. Ceruloplasmin is usually low.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q02",
+      "type": "single_best_answer",
+      "stem": "A missing corneal ring in suspected Wilson disease:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always excludes the diagnosis"
+        },
+        {
+          "id": "B",
+          "text": "Does not exclude liver-only disease"
+        },
+        {
+          "id": "C",
+          "text": "Proves primary biliary cholangitis"
+        },
+        {
+          "id": "D",
+          "text": "Means you skip the slit lamp"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Look with a slit lamp; absence does not exclude liver-only disease.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q03",
+      "type": "single_best_answer",
+      "stem": "Basal emphysema in a younger patient plus liver disease. Think:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ordinary apical smoking damage only"
+        },
+        {
+          "id": "B",
+          "text": "Alpha-1 antitrypsin deficiency"
+        },
+        {
+          "id": "C",
+          "text": "A thunderclap bleed"
+        },
+        {
+          "id": "D",
+          "text": "Achalasia"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The protein is stuck in the liver cell. Stopping smoking is urgent.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q04",
+      "type": "single_best_answer",
+      "stem": "Itching, a high alkaline phosphatase, and an antimitochondrial antibody:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary sclerosing cholangitis"
+        },
+        {
+          "id": "B",
+          "text": "Primary biliary cholangitis"
+        },
+        {
+          "id": "C",
+          "text": "Wilson disease"
+        },
+        {
+          "id": "D",
+          "text": "A bird's beak"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Ursodiol is disease-modifying here.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q05",
+      "type": "single_best_answer",
+      "stem": "Beaded bile ducts and inflammatory bowel disease:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary biliary cholangitis"
+        },
+        {
+          "id": "B",
+          "text": "Primary sclerosing cholangitis"
+        },
+        {
+          "id": "C",
+          "text": "Unconjugated hyperbilirubinemia only"
+        },
+        {
+          "id": "D",
+          "text": "Marfan syndrome"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A rising bilirubin is not always a benign stricture.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q06",
+      "type": "single_best_answer",
+      "stem": "Ursodiol is the proven disease-modifying drug for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary biliary cholangitis, not the same proven fixer in sclerosing disease"
+        },
+        {
+          "id": "B",
+          "text": "Both cholestatic diseases equally, as a rule"
+        },
+        {
+          "id": "C",
+          "text": "Wilson disease as the only treatment"
+        },
+        {
+          "id": "D",
+          "text": "Achalasia"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not treat the two cholestatic diseases as the same drug and the same cancer worry.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q07",
+      "type": "single_best_answer",
+      "stem": "A low-copper diet alone in Wilson disease is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sufficient treatment"
+        },
+        {
+          "id": "B",
+          "text": "Not sufficient; a chelator or zinc is the treatment"
+        },
+        {
+          "id": "C",
+          "text": "The first treatment of sclerosing cholangitis"
+        },
+        {
+          "id": "D",
+          "text": "A reason to skip the slit lamp"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Diet alone is not the plan.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q08",
+      "type": "single_best_answer",
+      "stem": "The lung pattern that should make you check an antitrypsin level is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only apical disease in a very old smoker, with no other clue"
+        },
+        {
+          "id": "B",
+          "text": "Basal emphysema in a younger patient"
+        },
+        {
+          "id": "C",
+          "text": "A bird's beak"
+        },
+        {
+          "id": "D",
+          "text": "A sharp-edged facial redness"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Especially with liver disease as well.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q09",
+      "type": "single_best_answer",
+      "stem": "If the antimitochondrial antibody is already positive, months of chasing a common-duct stone is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The preferred first path"
+        },
+        {
+          "id": "B",
+          "text": "The miss; think primary biliary cholangitis"
+        },
+        {
+          "id": "C",
+          "text": "Required before any thought of Wilson disease"
+        },
+        {
+          "id": "D",
+          "text": "How you diagnose achalasia"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not chase a stone for months when the antibody is already positive.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep14-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wilson disease is copper in a young liver, often with a movement problem."
+        },
+        {
+          "id": "B",
+          "text": "Alpha-1 antitrypsin hits the bases of the lungs and the liver."
+        },
+        {
+          "id": "C",
+          "text": "Primary biliary and sclerosing cholangitis are the same drug and the same cancer worry."
+        },
+        {
+          "id": "D",
+          "text": "Sclerosing cholangitis beads the ducts and follows the bowel."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Do not treat the two cholestatic diseases as the same.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Lock, Play } from "lucide-react";
 import { QuickBitesPlayer } from "@/components/quick-bites/QuickBitesPlayer";
@@ -47,6 +47,7 @@ import {
   useQuickBiteResumeSnapshot,
   type QuickBiteProgressClient,
 } from "@/lib/quick-bites/use-quick-bite-progress";
+import { usmleVideoStepLabel } from "@/lib/quick-bites/usmle-video-catalog";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -209,7 +210,12 @@ function EpisodeMeta({
         </span>
         <span className="flex min-w-0 flex-1 flex-col gap-0.5 lg:flex-row lg:items-baseline lg:justify-between lg:gap-3">
           <span className="min-w-0 text-[13px] font-semibold leading-snug tracking-[-0.01em] text-[var(--color-ink)] lg:text-[14px]">
-            {episode.title}
+            {episode.examStep ? (
+              <span className="mb-1 inline-flex rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-semibold tracking-[-0.01em] text-[var(--color-accent)]">
+                {usmleVideoStepLabel(episode.examStep)}
+              </span>
+            ) : null}
+            <span className="block">{episode.title}</span>
           </span>
           <span className="shrink-0 text-[11px] tabular-nums text-[var(--color-ink-muted)] lg:text-[12px]">
             {watched
@@ -236,12 +242,27 @@ export function isQuickBitesPlayerInView(node: HTMLElement): boolean {
   return visibleHeight >= Math.min(rect.height, viewportHeight) * 0.6;
 }
 
+function nextVisible(
+  episodes: QuickBiteEpisode[],
+  slug: string | undefined,
+  canPlayLibrary: boolean,
+  isPlayable: (episode: QuickBiteEpisode, canPlayLibrary: boolean) => boolean,
+  direction: "next" | "previous"
+): QuickBiteEpisode | null {
+  const index = episodes.findIndex((episode) => episode.slug === slug);
+  if (index < 0) return null;
+  const slice = direction === "next" ? episodes.slice(index + 1) : episodes.slice(0, index).reverse();
+  return slice.find((episode) => isPlayable(episode, canPlayLibrary)) ?? null;
+}
+
 export function VideoQuickBitesSection({
   canPlay,
   upgradeHref,
   upgradeLabel,
   series = "nursing",
   titleAs = "h2",
+  stepSlot,
+  limitToSlugs,
 }: {
   canPlay: boolean;
   upgradeHref: string;
@@ -249,6 +270,10 @@ export function VideoQuickBitesSection({
   series?: "nursing" | "pharmacy" | "fnp" | "pance" | "usmle";
   /** Standalone page uses h1. The old dashboard embed used h2. */
   titleAs?: "h1" | "h2";
+  /** USMLE page only. Other boards omit this. */
+  stepSlot?: ReactNode;
+  /** When set, only these slugs stay in the library. An empty list is Coming soon. */
+  limitToSlugs?: readonly string[];
 }) {
   const config =
     series === "pharmacy"
@@ -261,15 +286,33 @@ export function VideoQuickBitesSection({
             ? USMLE_SERIES
             : NURSING_SERIES;
   const TitleTag = titleAs;
+  const limited = limitToSlugs ? new Set(limitToSlugs) : null;
+  const groups = limited
+    ? config.groups
+        .map((group) => ({
+          ...group,
+          episodes: group.episodes.filter((episode) => limited.has(episode.slug)),
+        }))
+        .filter((group) => group.episodes.length > 0)
+    : config.groups;
+  const visibleEpisodes = groups.flatMap((group) => group.episodes);
+  const comingSoon = limited !== null && visibleEpisodes.length === 0;
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const [session, setSession] = useState(0);
   const scrollRequest = useRef(false);
   const active =
-    config.groups
-      .flatMap((group) => group.episodes)
-      .find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ?? null;
-  const nextEpisode = active ? config.nextEpisode(active.slug, canPlay) : null;
-  const previousEpisode = active ? config.previousEpisode(active.slug, canPlay) : null;
+    visibleEpisodes.find((episode) => episode.slug === activeSlug && config.isPlayable(episode, canPlay)) ??
+    null;
+  const nextEpisode = limited
+    ? nextVisible(visibleEpisodes, active?.slug, canPlay, config.isPlayable, "next")
+    : active
+      ? config.nextEpisode(active.slug, canPlay)
+      : null;
+  const previousEpisode = limited
+    ? nextVisible(visibleEpisodes, active?.slug, canPlay, config.isPlayable, "previous")
+    : active
+      ? config.previousEpisode(active.slug, canPlay)
+      : null;
   const { progress, mergeProgress, progressLoaded } = useQuickBiteProgressMap({
     apiBase: config.apiBase,
     enabled: canPlay,
@@ -334,6 +377,7 @@ export function VideoQuickBitesSection({
           {config.title}
         </TitleTag>
         <p className={dbUi.subtitle}>{config.subtitle}</p>
+        {stepSlot}
         {config.note ? (
           <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{config.note}</p>
         ) : null}
@@ -350,6 +394,14 @@ export function VideoQuickBitesSection({
         </div>
       )}
 
+      {comingSoon ? (
+        <div className="rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)] px-6 py-12 text-center">
+          <p className="text-[16px] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">Coming soon</p>
+          <p className="mx-auto mt-2 max-w-sm text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+            Episodes for this step are not in the library yet.
+          </p>
+        </div>
+      ) : (
       <div
         id="quick-bites-layout"
         className="grid grid-cols-1 items-start gap-4 [grid-template-areas:'player'_'library'_'quiz'] [overflow-anchor:none] lg:grid-cols-[minmax(0,1.55fr)_minmax(220px,0.8fr)] lg:gap-x-6 lg:[grid-template-areas:'player_library'_'quiz_library']"
@@ -375,7 +427,7 @@ export function VideoQuickBitesSection({
               style={{ overflowAnchor: "none" }}
             >
               <div className="flex w-max items-start gap-3 lg:block lg:w-auto lg:space-y-6">
-                {config.groups.map((group) => (
+                {groups.map((group) => (
                   <div key={group.title || config.id} className="flex gap-3 lg:block">
                     {group.title ? (
                       <h3 className="sr-only text-[13px] font-semibold tracking-[-0.01em] text-[var(--color-ink)] lg:not-sr-only lg:mb-2.5">
@@ -433,6 +485,7 @@ export function VideoQuickBitesSection({
           }
         />
       </div>
+      )}
     </section>
   );
 }

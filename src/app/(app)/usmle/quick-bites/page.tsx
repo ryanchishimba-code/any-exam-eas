@@ -40,9 +40,12 @@ export default async function UsmleQuickBitesPage({
     permanentRedirect(cardsLocation(await searchParams));
   }
 
+  const params = await searchParams;
+  const stepQuery = typeof params.step === "string" ? params.step : null;
   return (
     <QuickBitesPage
       exam="usmle"
+      initialVideoStepQuery={stepQuery}
       previewNote={
         released ? undefined : "Staff preview. Students cannot see this. Nothing here is live."
       }
