@@ -43,7 +43,11 @@ describe("USMLE Quick Bites library", () => {
     render(
       <UsmleQuickBitesLibrary step="step-1" bites={bites} canReadAll preview />
     );
-    expect(screen.getByRole("heading", { name: "Quick Bites: USMLE" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Rapid Review Cards: USMLE" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Step 2 CK" })).toHaveAttribute(
+      "href",
+      "/usmle/rapid-review?step=2ck"
+    );
     expect(screen.getByText(/Admin preview/)).toBeInTheDocument();
     expect(screen.getByText("The first decision.")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: /Read 2\. Second bite/ }));

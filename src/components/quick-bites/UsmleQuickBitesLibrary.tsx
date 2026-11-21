@@ -41,12 +41,12 @@ export function UsmleQuickBitesLibrary({
       className={cn(dbUi.surface, "scroll-mt-28 space-y-5 p-4 sm:p-6")}
     >
       <div className="space-y-2">
-        <p className={dbUi.eyebrow}>Quick Bites by AnyExamEasy</p>
+        <p className={dbUi.eyebrow}>Rapid Review Cards by AnyExamEasy</p>
         <h1
           id="usmle-quick-bites-heading"
           className="text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
         >
-          Quick Bites: USMLE
+          Rapid Review Cards: USMLE
         </h1>
         <p className={dbUi.subtitle}>
           One decision, one number, or one mechanism. About a minute each.

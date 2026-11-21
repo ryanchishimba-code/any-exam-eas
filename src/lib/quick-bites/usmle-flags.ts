@@ -7,7 +7,10 @@
  * and admins can preview. The homepage and /usmle do not read these flags.
  */
 
-export const USMLE_QUICK_BITES_PATH = "/usmle/quick-bites";
+/** Canonical student URL. The flag env var names are unchanged. */
+export const USMLE_QUICK_BITES_PATH = "/usmle/rapid-review";
+/** Previous URL. The page there redirects to USMLE_QUICK_BITES_PATH. */
+export const USMLE_QUICK_BITES_LEGACY_PATH = "/usmle/quick-bites";
 
 export function isUsmleQuickBitesPublic(): boolean {
   const raw = process.env.NEXT_PUBLIC_USMLE_QUICK_BITES_PUBLIC ?? "";

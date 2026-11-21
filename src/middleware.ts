@@ -64,6 +64,8 @@ export const config = {
     "/pance/study-guide/:path*",
     "/usmle/study-guide",
     "/usmle/study-guide/:path*",
+    "/usmle/rapid-review",
+    "/usmle/rapid-review/:path*",
     "/usmle/quick-bites",
     "/usmle/quick-bites/:path*",
     "/nclex/quick-bites",
