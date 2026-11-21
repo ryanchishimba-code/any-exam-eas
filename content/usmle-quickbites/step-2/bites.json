@@ -3682,10 +3682,10 @@
     "diagram": "pid-rx",
     "diagramAlt": "PID coverage. Cover gonorrhea and chlamydia Treat the partner Abscess that fails antibiotics: drain",
     "source": {
-      "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021.",
+      "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021. Pelvic Inflammatory Disease.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
-      "says": "The 2021 CDC STI Treatment Guidelines are the source for treatment of pelvic inflammatory disease, including management of sex partners."
+      "says": "All PID regimens should be effective against N. gonorrhoeae and C. trachomatis, because negative endocervical screening does not rule out upper tract infection. Partners from the 60 days before symptom onset should be evaluated, tested, and presumptively treated for chlamydia and gonorrhea, regardless of the PID etiology."
     },
     "number": 136,
     "id": "usmle-qb-s2-136"
@@ -3708,10 +3708,16 @@
     "diagram": "sepsis-30",
     "diagramAlt": "Sepsis hypoperfusion. Lactate, cultures, broad antibiotic At least 30 mL/kg crystalloid if hypoperfused Norepinephrine to MAP 65 if still hypotensive",
     "source": {
-      "name": "Surviving Sepsis Campaign 2021 Adult Guidelines.",
-      "year": "2021",
-      "url": "https://journals.lww.com/ccmjournal/fulltext/2021/11000/surviving_sepsis_campaign__international.21.aspx",
-      "says": "The hour-1 bundle is lactate, cultures, antibiotics, crystalloid for hypoperfusion, and vasopressors to a mean arterial pressure of 65 when hypotension persists."
+      "name": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.",
+      "year": "2026",
+      "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026",
+      "says": "For sepsis-induced hypoperfusion or septic shock, at least 30 mL/kg of IV crystalloid in the first 3 hours is suggested. Blood cultures are collected as soon as possible, ideally before antimicrobials; antimicrobials for possible septic shock or probable sepsis are given immediately, ideally within 1 hour; the initial MAP target is 65 mm Hg.",
+      "more": [
+        {
+          "name": "Surviving Sepsis Campaign 2026, Intensive Care Medicine full text.",
+          "url": "https://link.springer.com/article/10.1007/s00134-026-08361-1"
+        }
+      ]
     },
     "open": false
   },
@@ -3734,10 +3740,16 @@
     "diagram": "epi-dose",
     "diagramAlt": "Anaphylaxis dose. Adult: 0.3\u20130.5 mg of 1 mg/mL IM Mid-outer thigh. Repeat in 5\u201315 min Watch. Antihistamine is not the treatment",
     "source": {
-      "name": "Anaphylaxis: a 2023 practice parameter update.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/",
-      "says": "Epinephrine is dosed at 0.01 mg/kg, up to 0.3 mg in children and teenagers and 0.5 mg in adults. Draw an acute tryptase as early as possible, ideally within 2 hours. A tryptase below the laboratory cutoff does not exclude anaphylaxis."
+      "name": "World Allergy Organization Anaphylaxis Guidance 2020.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33204386/",
+      "says": "Intramuscular epinephrine is the first-line drug for anaphylaxis. The healthcare-professional dose is 0.01 mg/kg, to a maximum total dose of 0.5 mg, given intramuscularly in the mid-anterolateral thigh and repeated every 5-15 minutes if symptoms are refractory.",
+      "more": [
+        {
+          "name": "Anaphylaxis: a 2023 practice parameter update (AAAAI/ACAAI Joint Task Force).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/"
+        }
+      ]
     },
     "open": false
   },
@@ -3759,10 +3771,16 @@
     "diagram": "co-ox",
     "diagramAlt": "Carbon monoxide. PaO2 and pulse ox can look normal Content is low. Curve shifts left 100% oxygen now. Whole household",
     "source": {
-      "name": "ACEP clinical policy. Acute carbon monoxide poisoning in the emergency department.",
-      "year": "2017",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27993310/",
-      "says": "This ACEP clinical policy addresses emergency evaluation and management of adults with acute carbon monoxide poisoning, including selection for hyperbaric oxygen."
+      "name": "ACEP Clinical Policy. A Critical Issue in the Management of Adult Patients Presenting to the Emergency Department With Acute Carbon Monoxide Poisoning.",
+      "year": "2025",
+      "url": "https://www.guidelinecentral.com/guideline/12367/",
+      "says": "In symptomatic carbon monoxide poisoning, selected patients may benefit from hyperbaric oxygen treatment based on severity of symptoms and availability (distance and time).",
+      "more": [
+        {
+          "name": "ACEP clinical policy, Ann Emerg Med 2025 full text.",
+          "url": "https://www.annemergmed.com/article/S0196-0644(24)01264-2/fulltext"
+        }
+      ]
     },
     "number": 139,
     "id": "usmle-qb-s2-139"
@@ -3785,10 +3803,10 @@
     "diagram": "nac-time",
     "diagramAlt": "Acetaminophen antidote. NAPQI uses up glutathione NAC if level is toxic or time is unknown Normal ALT at 2 hours does not clear it",
     "source": {
-      "name": "Management of acetaminophen poisoning in the US and Canada: a consensus statement.",
+      "name": "Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37552484/",
-      "says": "The treatment line of the Rumack-Matthew nomogram is 150 micrograms per mL at 4 hours, and acetylcysteine is most effective when started within 8 hours. The 2023 consensus uses a revised nomogram for ingestions presenting from 4 to 24 hours."
+      "says": "The consensus defines acute ingestion as a presentation from 4 to 24 hours after overdose began and uses a revised Rumack-Matthew nomogram, with a high-risk ingestion line in place of the term massive ingestion."
     },
     "number": 140,
     "id": "usmle-qb-s2-140"
@@ -3811,10 +3829,10 @@
     "diagram": "naloxone-watch",
     "diagramAlt": "Naloxone wears off. Opioid half-life is often longer Observe or infuse Methadone and fentanyl outlast one dose",
     "source": {
-      "name": "2025 AHA Guidelines. Part 10, adult and pediatric special circumstances of resuscitation.",
+      "name": "2025 American Heart Association Guidelines for CPR and ECC. Part 10: Adult and Pediatric Special Circumstances of Resuscitation.",
       "year": "2025",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41122889/",
-      "says": "Part 10 covers opioid overdose. Give naloxone and ventilate; repeat it because respiratory depression can return. The AHA poisoning doses are 0.2 to 2 mg IV and the FDA-labeled nasal spray is 4 mg."
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation",
+      "says": "An opioid antagonist such as naloxone should be given to people with respiratory arrest from suspected opioid overdose. In cardiac arrest from presumed opioid overdose, an opioid antagonist may be reasonable if high-quality CPR is not interrupted."
     },
     "number": 141,
     "id": "usmle-qb-s2-141"
@@ -3837,10 +3855,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2023 AHA focused update on cardiac arrest or life-threatening toxicity due to poisoning.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/",
-      "says": "Isolated benzodiazepine poisoning rarely causes life-threatening hypoventilation. Flumazenil is not routine: it can precipitate seizures in a dependent patient, and naloxone has the better safety profile when an opioid may be present."
+      "name": "StatPearls. Benzodiazepine Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482238/",
+      "says": "Flumazenil can precipitate acute withdrawal in those with chronic benzodiazepine dependence; given to a dependent patient it can lower the seizure threshold and cause life-threatening seizures.",
+      "more": [
+        {
+          "name": "2023 AHA Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/"
+        }
+      ]
     },
     "number": 142,
     "id": "usmle-qb-s2-142"
@@ -3864,10 +3888,10 @@
     "diagram": "thiamine-first",
     "diagramAlt": "Alcohol withdrawal orders. Thiamine before glucose Benzodiazepine titrated to symptoms Haloperidol alone does not stop the seizure",
     "source": {
-      "name": "ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
+      "name": "The ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
       "year": "2020",
-      "url": "https://www.asam.org/quality-care/clinical-guidelines/alcohol-withdrawal-management-guideline",
-      "says": "Use a symptom-triggered benzodiazepine for alcohol withdrawal. Give thiamine. An antipsychotic is not the only treatment of withdrawal, which is the recommendation in ASAM Clinical Practice Guideline on Alcohol Withdrawal Management."
+      "url": "https://journals.lww.com/journaladdictionmedicine/fulltext/2020/06001/the_asam_clinical_practice_guideline_on_alcohol.1.aspx",
+      "says": "Symptom-triggered treatment by trained staff is the preferred benzodiazepine dosing method with continuous monitoring, and front loading is recommended for patients at high risk of severe withdrawal. Thiamine should be provided to prevent Wernicke encephalopathy, and antipsychotics are not recommended as monotherapy."
     },
     "number": 143,
     "id": "usmle-qb-s2-143"
@@ -3893,7 +3917,7 @@
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
-      "says": "Clinically, rhabdomyolysis can range from mild elevation in creatinine phosphokinase to medical emergencies like compartment syndrome, intravascular fluid depletion, disseminated intravascular coagulation, pigment-induced acute kidney injury (AKI), and cardiac arrhythmias."
+      "says": "Management aims to maintain adequate fluid resuscitation and prevent AKI, after identifying and removing the cause. Muscle breakdown releases potassium, causing hyperkalemia, and microscopy separates myoglobinuria from hemoglobinuria by the absence of red blood cells."
     },
     "number": 144,
     "id": "usmle-qb-s2-144"
@@ -3916,10 +3940,16 @@
     "diagram": "dantrolene",
     "diagramAlt": "Malignant hyperthermia. Volatile agent or succinylcholine Rising CO2, then heat and rigidity Stop the gas. Dantrolene. 100% oxygen",
     "source": {
-      "name": "European Malignant Hyperthermia Group guideline. Recognition and management of a malignant hyperthermia crisis.",
+      "name": "European Malignant Hyperthermia Group. Recognising and managing a malignant hyperthermia crisis (v2024).",
       "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39482150/",
-      "says": "Stop the triggering anesthetic and give dantrolene. The first sign is often a rising end-tidal CO2, then rigidity."
+      "url": "https://www.emhg.org/recommendations-1/2024/11/4/recognising-and-managing-a-malignant-hyperthermia-crisis-v2024",
+      "says": "Stop all trigger agents, hyperventilate with 100% oxygen at high flow, and call for help. Give dantrolene 2-2.5 mg/kg IV, repeated every 10 minutes. Inappropriately elevated CO2 production is an early sign, and trigger agents are volatile anaesthetics and succinylcholine.",
+      "more": [
+        {
+          "name": "EMHG 2024 guideline, Br J Anaesth 2025;134:221-223.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39482150/"
+        }
+      ]
     },
     "number": 145,
     "id": "usmle-qb-s2-145"
@@ -3944,7 +3974,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation."
+      "says": "Fat embolism typically manifests 24 to 72 hours after the initial insult. Once FES develops, supportive care is the mainstay of treatment, early fixation of long-bone fractures is recommended, and heparin has no proven clinical benefit."
     },
     "number": 146,
     "id": "usmle-qb-s2-146"
