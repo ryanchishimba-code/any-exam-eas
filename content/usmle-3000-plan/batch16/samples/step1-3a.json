@@ -1,0 +1,20 @@
+{
+  "id": "b16-s1-12",
+  "stepLevel": "step1",
+  "difficulty": 3,
+  "subjectId": "pharmacology",
+  "outlineSystem": "cardiovascular",
+  "blueprintTopic": "hydralazine",
+  "scenario": "A 52-year-old man starts hydralazine. His pressure falls and his heart rate rises from 70 to 110. He feels pounding. A classmate raises the hydralazine dose to treat the fast rate.",
+  "question": "Why did the rate rise, and what should be added instead of more dilator?",
+  "options": [
+    "More hydralazine for the fast rate",
+    "Reflex sympathetic drive. Add a beta blocker",
+    "A pure venous dilator, which causes the same reflex as hydralazine",
+    "A fluid bolus, because rate of 110 means hypovolemia from the first pill",
+    "A alpha blocker, which slows this reflex"
+  ],
+  "correctAnswer": "Reflex sympathetic drive. Add a beta blocker",
+  "explanation": "Hydralazine dilates arterioles. Baroreceptor reflex then raises heart rate, so it is paired with a beta blocker. The drop in pressure unloads the baroreceptors, so sympathetic tone speeds the heart. More dilator deepens the reflex. A beta blocker blunts it. Katzung BG, Vanderah TW. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.\n\nReflex sympathetic drive. Add a beta blocker\nMore hydralazine for the fast rate — More dilation speeds the heart further.\nA pure venous dilator, which causes the same reflex as hydralazine — Venous dilators drop preload with less of this arterial reflex.\nA fluid bolus, because rate of 110 means hypovolemia from the first pill — The rate is reflex, not volume loss.\nA alpha blocker, which slows this reflex — Alpha blockade would dilate further. Beta blockade is the pair.",
+  "citation": "Katzung BG, Vanderah TW. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021."
+}

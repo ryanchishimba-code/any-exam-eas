@@ -1,0 +1,20 @@
+{
+  "id": "b16-s2-15",
+  "stepLevel": "step2",
+  "difficulty": 3,
+  "subjectId": "cardiology",
+  "outlineSystem": "cardiovascular",
+  "blueprintTopic": "dissection",
+  "scenario": "A 63-year-old man has sudden tearing pain to the back. Pressure is 200/110 in both arms and the chest film is wide. He is diaphoretic. A classmate starts a pure vasodilator before any rate control.",
+  "question": "Which drug class comes first, and why is a vasodilator alone unsafe?",
+  "options": [
+    "A pure vasodilator before any rate control",
+    "Thrombolysis, because tearing pain is a coronary occlusion",
+    "A large fluid bolus",
+    "Outpatient blood-pressure pills next week",
+    "A beta blocker first, then the pressure drug"
+  ],
+  "correctAnswer": "A beta blocker first, then the pressure drug",
+  "explanation": "Aortic dissection with hypertension is treated by lowering the heart rate with an intravenous beta blocker before a vasodilator. Dropping the pressure first can increase the shear force. Slowing the rate lowers shear. A vasodilator alone can speed the rate and extend the tear. Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022.\n\nA beta blocker first, then the pressure drug\nA pure vasodilator before any rate control — Reflex tachycardia can extend the flap.\nThrombolysis, because tearing pain is a coronary occlusion — Thrombolysis is contraindicated if the aorta is tearing.\nA large fluid bolus — The pressure is already 200.\nOutpatient blood-pressure pills next week — This is an emergency today.",
+  "citation": "Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022."
+}

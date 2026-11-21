@@ -1,0 +1,20 @@
+{
+  "id": "b16-s2-112",
+  "stepLevel": "step2",
+  "difficulty": 4,
+  "subjectId": "pulmonology",
+  "outlineSystem": "respiratory-renal",
+  "blueprintTopic": "tension-ptx",
+  "scenario": "A 28-year-old man is hypotensive and tracheal deviation is away from a silent chest after chest trauma. Neck veins are distended. He is gasping. A classmate waits for a film.",
+  "question": "What is done before the film, and why is waiting unsafe?",
+  "options": [
+    "Wait for a film",
+    "Decompress the chest now",
+    "A diuretic for the distended veins",
+    "Antibiotics as the first act",
+    "Intubation with no decompression"
+  ],
+  "correctAnswer": "Decompress the chest now",
+  "explanation": "Tension pneumothorax is decompressed immediately, before a chest film, when the signs are present. A silent chest, deviation, and shock are tension. The film delays a treatment that takes seconds. Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022.\n\nDecompress the chest now\nWait for a film — Shock will worsen while the film is taken.\nA diuretic for the distended veins — The veins are distended because the chest pressure is high.\nAntibiotics as the first act — Infection is not the emergency.\nIntubation with no decompression — Positive pressure can worsen the tension if the chest is not decompressed.",
+  "citation": "Loscalzo J, Fauci AS, Kasper DL, Hauser SL, Longo DL, Jameson JL, eds. Harrison's Principles of Internal Medicine. 21st ed. McGraw Hill; 2022."
+}
