@@ -3654,10 +3654,10 @@
     "diagram": "nac-time",
     "diagramAlt": "Acetaminophen antidote. NAPQI uses up glutathione NAC if level is toxic or time is unknown Normal ALT at 2 hours does not clear it",
     "source": {
-      "name": "Management of acetaminophen poisoning in the US and Canada: a consensus statement.",
+      "name": "Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37552484/",
-      "says": "The treatment line of the Rumack-Matthew nomogram is 150 micrograms per mL at 4 hours, and acetylcysteine is most effective when started within 8 hours. The 2023 consensus uses a revised nomogram for ingestions presenting from 4 to 24 hours."
+      "says": "The consensus defines acute ingestion as a presentation from 4 to 24 hours after overdose began and uses a revised Rumack-Matthew nomogram, with a high-risk ingestion line in place of the term massive ingestion."
     },
     "number": 131,
     "id": "usmle-qb-s3-131"
@@ -3680,10 +3680,10 @@
     "diagram": "naloxone-watch",
     "diagramAlt": "Naloxone wears off. Opioid half-life is often longer Observe or infuse Methadone and fentanyl outlast one dose",
     "source": {
-      "name": "2025 AHA Guidelines. Part 10, adult and pediatric special circumstances of resuscitation.",
+      "name": "2025 American Heart Association Guidelines for CPR and ECC. Part 10: Adult and Pediatric Special Circumstances of Resuscitation.",
       "year": "2025",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41122889/",
-      "says": "Part 10 covers opioid overdose. Give naloxone and ventilate; repeat it because respiratory depression can return. The AHA poisoning doses are 0.2 to 2 mg IV and the FDA-labeled nasal spray is 4 mg."
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation",
+      "says": "An opioid antagonist such as naloxone should be given to people with respiratory arrest from suspected opioid overdose. In cardiac arrest from presumed opioid overdose, an opioid antagonist may be reasonable if high-quality CPR is not interrupted."
     },
     "number": 132,
     "id": "usmle-qb-s3-132"
@@ -3706,10 +3706,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2023 AHA focused update on cardiac arrest or life-threatening toxicity due to poisoning.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/",
-      "says": "Isolated benzodiazepine poisoning rarely causes life-threatening hypoventilation. Flumazenil is not routine: it can precipitate seizures in a dependent patient, and naloxone has the better safety profile when an opioid may be present."
+      "name": "StatPearls. Benzodiazepine Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482238/",
+      "says": "Flumazenil can precipitate acute withdrawal in those with chronic benzodiazepine dependence; given to a dependent patient it can lower the seizure threshold and cause life-threatening seizures.",
+      "more": [
+        {
+          "name": "2023 AHA Focused Update on the Management of Patients With Cardiac Arrest or Life-Threatening Toxicity Due to Poisoning.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/"
+        }
+      ]
     },
     "number": 133,
     "id": "usmle-qb-s3-133"
@@ -3733,10 +3739,10 @@
     "diagram": "thiamine-first",
     "diagramAlt": "Alcohol withdrawal orders. Thiamine before glucose Benzodiazepine titrated to symptoms Haloperidol alone does not stop the seizure",
     "source": {
-      "name": "ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
+      "name": "The ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
       "year": "2020",
-      "url": "https://www.asam.org/quality-care/clinical-guidelines/alcohol-withdrawal-management-guideline",
-      "says": "Use a symptom-triggered benzodiazepine for alcohol withdrawal. Give thiamine. An antipsychotic is not the only treatment of withdrawal."
+      "url": "https://journals.lww.com/journaladdictionmedicine/fulltext/2020/06001/the_asam_clinical_practice_guideline_on_alcohol.1.aspx",
+      "says": "Symptom-triggered treatment by trained staff is the preferred benzodiazepine dosing method with continuous monitoring, and front loading is recommended for patients at high risk of severe withdrawal. Thiamine should be provided to prevent Wernicke encephalopathy, and antipsychotics are not recommended as monotherapy."
     },
     "number": 134,
     "id": "usmle-qb-s3-134"
@@ -3762,7 +3768,7 @@
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
-      "says": "Clinically, rhabdomyolysis can range from mild elevation in creatinine phosphokinase to medical emergencies like compartment syndrome, intravascular fluid depletion, disseminated intravascular coagulation, pigment-induced acute kidney injury (AKI), and cardiac arrhythmias."
+      "says": "Management aims to maintain adequate fluid resuscitation and prevent AKI, after identifying and removing the cause. Muscle breakdown releases potassium, causing hyperkalemia, and microscopy separates myoglobinuria from hemoglobinuria by the absence of red blood cells."
     },
     "number": 135,
     "id": "usmle-qb-s3-135"
@@ -3785,10 +3791,16 @@
     "diagram": "dantrolene",
     "diagramAlt": "Malignant hyperthermia. Volatile agent or succinylcholine Rising CO2, then heat and rigidity Stop the gas. Dantrolene. 100% oxygen",
     "source": {
-      "name": "European Malignant Hyperthermia Group guideline. Recognition and management of a malignant hyperthermia crisis.",
+      "name": "European Malignant Hyperthermia Group. Recognising and managing a malignant hyperthermia crisis (v2024).",
       "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39482150/",
-      "says": "Stop the triggering anesthetic and give dantrolene. The first sign is often a rising end-tidal CO2, then rigidity."
+      "url": "https://www.emhg.org/recommendations-1/2024/11/4/recognising-and-managing-a-malignant-hyperthermia-crisis-v2024",
+      "says": "Stop all trigger agents, hyperventilate with 100% oxygen at high flow, and call for help. Give dantrolene 2-2.5 mg/kg IV, repeated every 10 minutes. Inappropriately elevated CO2 production is an early sign, and trigger agents are volatile anaesthetics and succinylcholine.",
+      "more": [
+        {
+          "name": "EMHG 2024 guideline, Br J Anaesth 2025;134:221-223.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39482150/"
+        }
+      ]
     },
     "number": 136,
     "id": "usmle-qb-s3-136"
@@ -3814,7 +3826,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Because most reported cases of fat embolism occur in patients with orthopedic trauma, most research on this condition has focused on this population."
+      "says": "Fat embolism typically manifests 24 to 72 hours after the initial insult. Once FES develops, supportive care is the mainstay of treatment, early fixation of long-bone fractures is recommended, and heparin has no proven clinical benefit."
     },
     "number": 137,
     "id": "usmle-qb-s3-137"
@@ -3838,10 +3850,10 @@
     "diagram": "delirium-stop",
     "diagramAlt": "Delirium, first orders. Stop diphenhydramine and benzodiazepines Bladder scan. Look for infection Benzo only for alcohol or benzo withdrawal",
     "source": {
-      "name": "2023 AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
+      "name": "American Geriatrics Society 2023 Updated AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
       "year": "2023",
       "url": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/jgs.18372",
-      "says": "Avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults."
+      "says": "Anticholinergics, antipsychotics, benzodiazepines, and Z-drugs: avoid in older adults with or at high risk of delirium because of the potential of inducing or worsening delirium. First-generation antihistamines such as diphenhydramine are highly anticholinergic, with a risk of confusion."
     },
     "number": 138,
     "id": "usmle-qb-s3-138"
@@ -3864,10 +3876,10 @@
     "diagram": "beers-list",
     "diagramAlt": "Beers drugs that cause admissions. Benzodiazepines for sleep or anxiety Strong anticholinergics, including diphenhydramine Sliding-scale insulin used alone",
     "source": {
-      "name": "2023 AGS Beers Criteria.",
+      "name": "American Geriatrics Society 2023 Updated AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
       "year": "2023",
       "url": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/jgs.18372",
-      "says": "Drugs that are potentially inappropriate and that contributed to harm are not restarted at discharge."
+      "says": "Benzodiazepines: avoid. First-generation antihistamines, including diphenhydramine: highly anticholinergic, avoid. Sliding-scale insulin: higher risk of hypoglycemia without improvement in hyperglycemia management regardless of care setting; avoid regimens with only short- or rapid-acting insulin and no basal insulin."
     },
     "number": 139,
     "id": "usmle-qb-s3-139"
@@ -3884,17 +3896,16 @@
       "A nonopioid is ordered for many acute pains and is not skipped.",
       "The duration is days, written as a number.",
       "Benzodiazepines are not combined without a reason you would defend.",
-      "Start immediate-release opioid at the lowest dose, for days, not an extended-release product. Offer naloxone if risk is high.",
-      "Initial opioids are immediate-release and low dose. Naloxone is offered when overdose risk is present. Extended-release opioids are not started first."
+      "Start immediate-release opioid at the lowest dose, for days, not an extended-release product. Offer naloxone if risk is high."
     ],
     "miss": "A long-acting opioid as the first prescription after an injury.",
     "diagram": "opioid-new",
     "diagramAlt": "Starting an opioid. Immediate release, lowest dose Not an extended-release first opioid Offer naloxone if overdose risk is high",
     "source": {
-      "name": "CDC Clinical Practice Guideline for Prescribing Opioids.",
+      "name": "CDC Clinical Practice Guideline for Prescribing Opioids for Pain, United States, 2022.",
       "year": "2022",
       "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
-      "says": "Initial opioids are immediate-release and low dose. Naloxone is offered when overdose risk is present. Extended-release opioids are not started first, which is the recommendation in CDC Clinical Practice Guideline for Prescribing Opioids."
+      "says": "When starting opioid therapy for acute, subacute, or chronic pain, clinicians should prescribe immediate-release opioids instead of extended-release and long-acting opioids. For opioid-naive patients, prescribe the lowest effective dosage. Clinicians should offer naloxone when prescribing opioids, particularly to patients at increased risk for overdose."
     },
     "number": 140,
     "id": "usmle-qb-s3-140"
@@ -3917,10 +3928,10 @@
     "diagram": "ipass-5",
     "diagramAlt": "I-PASS. Illness severity Summary, action list, contingency Receiver says the plan back",
     "source": {
-      "name": "Starmer et al. I-PASS. New England Journal of Medicine.",
+      "name": "Starmer AJ et al. Changes in medical errors after implementation of a handoff program (I-PASS). N Engl J Med.",
       "year": "2014",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJMsa1405556",
-      "says": "I-PASS structures the handoff: illness severity, patient summary, action list, situation awareness, and synthesis by the receiver."
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25372088/",
+      "says": "The intervention included a mnemonic to standardize oral and written handoffs and handoff and communication training. The medical-error rate decreased by 23% (24.5 vs. 18.8 per 100 admissions), and preventable adverse events decreased by 30% (4.7 vs. 3.3 per 100 admissions)."
     },
     "number": 141,
     "id": "usmle-qb-s3-141"
@@ -3944,10 +3955,10 @@
     "diagram": "colon-positive",
     "diagramAlt": "Positive stool test. Colonoscopy next, not another card Average risk starts at 45 Iron deficiency is diagnostic, not screening",
     "source": {
-      "name": "USPSTF. Colorectal cancer screening.",
+      "name": "USPSTF. Colorectal Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "says": "A positive stool test is an indication for colonoscopy, not for another stool test."
+      "says": "Positive results on stool-based screening tests require follow-up with colonoscopy for the screening benefits to be achieved. The USPSTF expanded the recommended ages for colorectal cancer screening to 45 to 75 years."
     },
     "number": 142,
     "id": "usmle-qb-s3-142"
@@ -3969,10 +3980,10 @@
     "diagram": "breast-lump",
     "diagramAlt": "Lump versus screen. A mass is diagnostic imaging now Screen: every other year, 40 through 74 Age 75+: not an automatic order",
     "source": {
-      "name": "USPSTF. Breast cancer screening.",
+      "name": "USPSTF. Breast Cancer: Screening.",
       "year": "2024",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "Screening schedules do not apply to a palpable mass. Diagnostic imaging is ordered, which is the recommendation in USPSTF. Breast cancer screening."
+      "says": "The USPSTF recommends biennial screening mammography for women aged 40 to 74 years. These recommendations do not apply to persons who have a genetic marker or syndrome associated with a high risk of breast cancer, a history of high-dose radiation therapy to the chest at a young age, or previous breast cancer."
     },
     "number": 143,
     "id": "usmle-qb-s3-143"
@@ -3995,10 +4006,10 @@
     "diagram": "lung-stop",
     "diagramAlt": "Stop the yearly lung CT. Eligible: 50\u201380, \u226520 pack-years Stop 15 years after quitting Stop at age 81, or if too ill to benefit",
     "source": {
-      "name": "USPSTF. Lung cancer screening.",
+      "name": "USPSTF. Lung Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
-      "says": "Shared decision-making is documented before the initial low-dose CT. Symptoms convert the order from screening to diagnosis, which is the recommendation in USPSTF. Lung cancer screening."
+      "says": "The USPSTF recommends annual screening for lung cancer with low-dose CT in adults aged 50 to 80 years who have a 20 pack-year smoking history and currently smoke or have quit within the past 15 years. The decision to undertake screening should involve a discussion of its potential benefits, limitations, and harms."
     },
     "number": 144,
     "id": "usmle-qb-s3-144"
@@ -4022,10 +4033,10 @@
     "diagram": "cervix-age",
     "diagramAlt": "Cervical screening intervals. Start at 21, not at first sex 21\u201329: cytology every 3 years 30\u201365: cytology q3, HPV q5, or both q5",
     "source": {
-      "name": "USPSTF. Cervical cancer screening.",
+      "name": "USPSTF. Cervical Cancer: Screening.",
       "year": "2018",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
-      "says": "Stopping at 65 requires adequate prior negative screening. Symptoms are evaluated regardless of the schedule."
+      "says": "The USPSTF recommends against screening for cervical cancer in women older than 65 years who have had adequate prior screening and are not otherwise at high risk for cervical cancer."
     },
     "number": 145,
     "id": "usmle-qb-s3-145"
@@ -4048,10 +4059,10 @@
     "diagram": "cervix-age",
     "diagramAlt": "Cervical screening intervals. Start at 21, not at first sex 21\u201329: cytology every 3 years 30\u201365: cytology q3, HPV q5, or both q5",
     "source": {
-      "name": "USPSTF. Cervical cancer screening.",
+      "name": "USPSTF. Cervical Cancer: Screening.",
       "year": "2018",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
-      "says": "Primary HPV testing is not the strategy before age 30. Cytology every 3 years is, which is the recommendation in USPSTF. Cervical cancer screening."
+      "says": "Screening every 3 years with cervical cytology alone in women aged 21 to 29 years. For women aged 30 to 65 years, every 3 years with cytology alone, every 5 years with hrHPV testing alone, or every 5 years with cotesting. False-positive rates are higher among women younger than 30 years because of transient HPV infection."
     },
     "number": 146,
     "id": "usmle-qb-s3-146"
@@ -4074,10 +4085,10 @@
     "diagram": "breast-lump",
     "diagramAlt": "Lump versus screen. A mass is diagnostic imaging now Screen: every other year, 40 through 74 Age 75+: not an automatic order",
     "source": {
-      "name": "USPSTF. Breast cancer screening.",
+      "name": "USPSTF. Breast Cancer: Screening.",
       "year": "2024",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "Evidence is insufficient at age 75 and older, so screening is an individual decision rather than an automatic order."
+      "says": "The USPSTF concludes that the current evidence is insufficient to assess the balance of benefits and harms of screening mammography in women 75 years or older."
     },
     "number": 147,
     "id": "usmle-qb-s3-147"
@@ -4100,10 +4111,10 @@
     "diagram": "colon-positive",
     "diagramAlt": "Positive stool test. Colonoscopy next, not another card Average risk starts at 45 Iron deficiency is diagnostic, not screening",
     "source": {
-      "name": "USPSTF. Colorectal cancer screening.",
+      "name": "USPSTF. Colorectal Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "says": "Ages 76 to 85 are a selective offer based on health and prior screening, not an automatic start."
+      "says": "The USPSTF recommends that clinicians selectively offer screening for colorectal cancer in adults aged 76 to 85 years. Evidence indicates that the net benefit of screening all persons in this age group is small."
     },
     "number": 148,
     "id": "usmle-qb-s3-148"
@@ -4125,10 +4136,10 @@
     "diagram": "colon-positive",
     "diagramAlt": "Positive stool test. Colonoscopy next, not another card Average risk starts at 45 Iron deficiency is diagnostic, not screening",
     "source": {
-      "name": "USPSTF. Colorectal cancer screening.",
+      "name": "USPSTF. Colorectal Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "says": "Family history of early colorectal cancer changes the start age and often the test. The average-risk age of 45 does not apply, which is the recommendation in USPSTF. Colorectal cancer screening."
+      "says": "The recommendation applies to adults with no personal diagnosis or family history of known genetic disorders that predispose them to a high lifetime risk of colorectal cancer, such as Lynch syndrome or familial adenomatous polyposis."
     },
     "number": 149,
     "id": "usmle-qb-s3-149"
@@ -4152,10 +4163,10 @@
     "diagram": "breast-lump",
     "diagramAlt": "Lump versus screen. A mass is diagnostic imaging now Screen: every other year, 40 through 74 Age 75+: not an automatic order",
     "source": {
-      "name": "USPSTF. Breast cancer screening.",
+      "name": "USPSTF. Breast Cancer: Screening.",
       "year": "2024",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "Supplemental screening for dense breasts has an insufficient evidence grade and is not an automatic order."
+      "says": "The USPSTF concludes that the current evidence is insufficient to assess the balance of benefits and harms of supplemental screening for breast cancer using breast ultrasonography or MRI in women identified to have dense breasts on an otherwise negative screening mammogram."
     },
     "number": 150,
     "id": "usmle-qb-s3-150"
@@ -4179,10 +4190,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Screening for Depression in Adults.",
+      "name": "USPSTF. Depression and Suicide Risk in Adults: Screening.",
       "year": "2023",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/depression-in-adults-screening",
-      "says": "Screening is recommended only when systems exist to diagnose and treat. An unread form does not meet that standard, which is the recommendation in USPSTF. Screening for Depression in Adults."
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults",
+      "says": "The USPSTF recommends screening for depression in the adult population. To achieve the benefit of depression screening, it is important that persons who screen positive are evaluated further for diagnosis and, if appropriate, are provided or referred for evidence-based care."
     },
     "number": 151,
     "id": "usmle-qb-s3-151"
@@ -4206,10 +4217,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Suicide risk in adults and older adults.",
+      "name": "USPSTF. Depression and Suicide Risk in Adults: Screening.",
       "year": "2023",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/suicide-risk-in-adults-and-older-adults-screening",
-      "says": "The task force found insufficient evidence for stand-alone suicide-risk screening in all adults, which is the recommendation in USPSTF. Suicide risk in adults and older adults."
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults",
+      "says": "The USPSTF concludes that the current evidence is insufficient to assess the balance of benefits and harms of screening for suicide risk in the adult population, including pregnant and postpartum persons, as well as older adults."
     },
     "number": 152,
     "id": "usmle-qb-s3-152"
@@ -4233,10 +4244,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Lung cancer screening.",
+      "name": "USPSTF. Lung Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
-      "says": "Shared decision-making uses absolute benefits and harms. Relative reductions alone are misleading, which is the recommendation in USPSTF. Lung cancer screening."
+      "says": "The decision to undertake screening should involve a discussion of its potential benefits, limitations, and harms. If a person decides to be screened, refer them for lung cancer screening with low-dose CT."
     },
     "number": 153,
     "id": "usmle-qb-s3-153"
@@ -4259,10 +4270,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Colorectal cancer screening.",
+      "name": "USPSTF. Colorectal Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "says": "The USPSTF recommends colorectal cancer screening from age 45 through 75, and a positive stool test is followed by colonoscopy."
+      "says": "The USPSTF expanded the recommended ages for colorectal cancer screening to 45 to 75 years. Positive results on stool-based screening tests require follow-up with colonoscopy for the screening benefits to be achieved."
     },
     "number": 154,
     "id": "usmle-qb-s3-154"
@@ -4287,7 +4298,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Requiring both of two tests to be positive raises specificity and misses more disease."
+      "says": "Sensitivity and specificity are inversely related: as sensitivity increases, specificity tends to decrease, and vice versa. Sensitivity and specificity should always merit consideration together."
     },
     "number": 155,
     "id": "usmle-qb-s3-155"
@@ -4313,7 +4324,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "If either of two tests being positive leads to the next procedure, more false alarms are created and that next procedure has to be available."
+      "says": "Sensitivity and specificity are inversely related: as sensitivity increases, specificity tends to decrease, and vice versa. Sensitivity does not allow providers to understand individuals who tested positive but did not have the disease."
     },
     "number": 156,
     "id": "usmle-qb-s3-156"
@@ -4338,7 +4349,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Lowering the cutoff of a test catches more disease and labels more healthy people as positive. Sensitivity and specificity move in opposite directions."
+      "says": "Sensitivity and specificity are inversely related: as sensitivity increases, specificity tends to decrease, and vice versa. False positives are a consideration when evaluating specificity and PPV."
     },
     "number": 157,
     "id": "usmle-qb-s3-157"
@@ -4363,7 +4374,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "A positive predictive value depends on how common the disease is in the population being tested, so a figure from another population does not transfer."
+      "says": "Disease prevalence in a population affects PPV and NPV. Providers should consider the sample when reviewing research that reports these values and recognize that the values in their population may differ. Likelihood ratios, like sensitivity and specificity, are not affected by disease prevalence."
     },
     "number": 158,
     "id": "usmle-qb-s3-158"
@@ -4388,7 +4399,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results."
+      "says": "To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results. Likelihood ratios allow providers to determine how much a particular test changes the probability."
     },
     "number": 159,
     "id": "usmle-qb-s3-159"
@@ -4412,10 +4423,10 @@
     "diagram": "ipass-5",
     "diagramAlt": "I-PASS. Illness severity Summary, action list, contingency Receiver says the plan back",
     "source": {
-      "name": "Starmer et al. I-PASS. New England Journal of Medicine.",
+      "name": "Starmer AJ et al. Changes in medical errors after implementation of a handoff program (I-PASS). N Engl J Med.",
       "year": "2014",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJMsa1405556",
-      "says": "Illness severity and a timed action list are required. A problem list alone does not transfer the plan."
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25372088/",
+      "says": "The intervention included a mnemonic to standardize oral and written handoffs and handoff and communication training. The medical-error rate decreased by 23% (24.5 vs. 18.8 per 100 admissions), and preventable adverse events decreased by 30% (4.7 vs. 3.3 per 100 admissions)."
     },
     "number": 160,
     "id": "usmle-qb-s3-160"
