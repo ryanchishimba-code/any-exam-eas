@@ -14,3 +14,8 @@ Do not turn the flags on without Ryan's explicit OK.
 
 Backup: `backup-pre-pass10-20261121/` (step-2 bites.json, AUDIT.md, diagrams.json, usmle-bites.test.ts).
 Undo: `bash scripts/usmle-quickbites-20261121/15-undo-pass10.sh` restores those four files. It changes no flags and touches no database.
+
+## pass11 (blind-review fixes and Step 3 re-sourcing)
+
+Backup: `backup-pre-pass11-20261121/` (Step 1, 2 and 3 bites.json, AUDIT.md, diagrams.json, usmle-bites.test.ts, usmle-diagrams.tsx).
+Undo: `bash scripts/usmle-quickbites-20261121/16-undo-pass11.sh` restores those files. It changes no flags and touches no database.

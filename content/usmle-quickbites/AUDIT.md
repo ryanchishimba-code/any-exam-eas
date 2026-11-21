@@ -134,3 +134,13 @@ All 180 Step 2 CK bites cite a named current source with year, link, and a quote
 - `usmle-qb-s2-021`: lead and one line aligned with the cited guideline.
 
 Statements the cited source does not state, left as written: s2-002, 023 (diagram), 044, 059, 062, 065, 070, 077, 085, 118, 124, 127, 128, 129, 130, 137, 138, 139, 140, 141, 143, 149, 151, 156, 165, 166, 167, 168, 170, 172, 175.
+
+## Blind-review fixes and Step 3 re-sourcing (pass11)
+
+- GOLD labels: `usmle-qb-s2-074`, `s2-079`, `s2-080`, `s3-073` and the `gold-eos` diagram now say GOLD 2027.
+- `usmle-qb-s2-147` cites the USPSTF A and B recommendations list. `usmle-qb-s2-135` cites ACOG Committee Opinion 783.
+- Meta lines removed: `s2-131`, `s2-032`, `s3-004`, `s3-008`, `s3-036`, `s3-047`, `s3-119`, `s3-124`, `s3-130`, `s3-140`, `s3-161`.
+- DKA: `usmle-qb-s1-124`, `s3-109` and the shared `dka-k` diagram now follow the 2024 hyperglycemic crises consensus. Insulin waits while potassium is under 3.5 mmol/L, and insulin continues until the ketoacidosis resolves. The temporary `dka-k-2024` key is removed and `s2-121` uses `dka-k`.
+- All 180 Step 3 bites now quote a named source checked against retrieved text. Management bites cite the current primary guideline where its text was retrievable. The 35 Step 3 bites still on StatPearls are basic science or have no retrievable guideline text.
+
+Statements the cited source does not state, left as written: s2-069, s2-135; s3-001, 002, 004, 008, 011, 012, 018, 019, 020, 023, 024, 026, 030, 032, 033, 039, 040, 041, 043, 048, 054, 057, 060, 061, 062, 064, 068, 069, 070, 071, 072, 073, 078, 082, 085, 087, 097, 100, 106, 107, 112, 116, 117, 118, 121, 123, 125, 126, 129, 130, 133, 138, 141, 142, 143, 149, 153, 155, 156, 157, 160, 161, 162, 165, 168, 169, 172, 173, 175, 177, 180.
