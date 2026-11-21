@@ -21,7 +21,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "Neural crest cells serve as precursors to a broad range of tissues, including melanocytes, sensory and autonomic ganglion neurons, and Schwann cells. Ectomesenchymal derivatives include neuroendocrine chromaffin cells of the adrenal medulla, dental mesenchymal stem (progenitor) cells and odontoblasts Cardiac neural crest, a subset of cephalic neural crest extending from the otic level to the 4th somite, contributes to septation of the outflow tract"
+      "says": "Neural crest cells serve as precursors to a broad range of tissues, including melanocytes, sensory and autonomic ganglion neurons, and Schwann cells. Ectomesenchymal derivatives include neuroendocrine chromaffin cells of the adrenal medulla, dental mesenchymal stem (progenitor) cells and odontoblasts. Cardiac neural crest, a subset of cephalic neural crest extending from the otic level to the 4th somite, contributes to septation of the outflow tract."
     },
     "open": true
   },
@@ -46,7 +46,7 @@
       "name": "StatPearls. DiGeorge Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK549798/",
-      "says": "TBX1 haploinsufficiency disrupts this process, leading to conotruncal malformations including tetralogy of Fallot, truncus arteriosus, interrupted aortic arch Thymic hypoplasia or aplasia results from failed development of the thymic anlage from the third pharyngeal pouch. Parathyroid hypoplasia results from abnormal development of the parathyroid glands, which originate from the third and fourth pharyngeal pouches."
+      "says": "TBX1 haploinsufficiency disrupts this process, leading to conotruncal malformations including tetralogy of Fallot, truncus arteriosus, interrupted aortic arch. Thymic hypoplasia or aplasia results from failed development of the thymic anlage from the third pharyngeal pouch. Parathyroid hypoplasia results from abnormal development of the parathyroid glands, which originate from the third and fourth pharyngeal pouches."
     },
     "number": 2,
     "id": "usmle-qb-s1-002"
@@ -103,7 +103,7 @@
       "name": "StatPearls. Type I, Type II, Type III, and Type IV Hypersensitivity Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560561/",
-      "says": "Type I hypersensitivity, also known as immediate hypersensitivity, is an immunoglobulin E (IgE)-mediated immune response Type II hypersensitivity is an antibody-mediated reaction against cells or tissues of the body in which IgG or IgM antibodies bind to antigens on the surface of cells or tissues Type III or immune complex-mediated hypersensitivity : Circulating antigen-antibody complexes deposit in tissues Type IV hypersensitivity is a T-cell\u2013mediated reaction with a delayed onset, typically appearing 48 to 72 hours after exposure to an allergen.",
+      "says": "Type I hypersensitivity, also known as immediate hypersensitivity, is an immunoglobulin E (IgE)-mediated immune response. Type II hypersensitivity is an antibody-mediated reaction against cells or tissues of the body in which IgG or IgM antibodies bind to antigens on the surface of cells or tissues. Type III or immune complex-mediated hypersensitivity : Circulating antigen-antibody complexes deposit in tissues. Type IV hypersensitivity is a T-cell\u2013mediated reaction with a delayed onset, typically appearing 48 to 72 hours after exposure to an allergen.",
       "more": [
         {
           "name": "StatPearls. Type II Hypersensitivity Reaction.",
@@ -191,7 +191,7 @@
       "name": "StatPearls. Sickle Cell Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
-      "says": "Under conditions of reduced oxygen tension, deoxygenated HbS polymerizes, causing erythrocyte deformation, increased rigidity, hemolysis, and vaso-occlusion. HbS polymerization remains the initiating molecular event"
+      "says": "Under conditions of reduced oxygen tension, deoxygenated HbS polymerizes, causing erythrocyte deformation, increased rigidity, hemolysis, and vaso-occlusion. HbS polymerization remains the initiating molecular event."
     },
     "number": 7,
     "id": "usmle-qb-s1-007"
@@ -216,7 +216,7 @@
       "name": "StatPearls. Hereditary Spherocytosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK539797/",
-      "says": "Hereditary spherocytosis (HS) is the most prevalent cause of hemolytic anemia due to an abnormal red cell membrane Membrane loss results in spherocytosis, a drop in mean corpuscular volume (MCV), an increase in mean corpuscular hemoglobin concentration (MCHC), and increased osmotic fragility of RBCs. Spherocytes are destroyed and cleared from circulation during passage through the spleen."
+      "says": "Hereditary spherocytosis (HS) is the most prevalent cause of hemolytic anemia due to an abnormal red cell membrane. Membrane loss results in spherocytosis, a drop in mean corpuscular volume (MCV), an increase in mean corpuscular hemoglobin concentration (MCHC), and increased osmotic fragility of RBCs. Spherocytes are destroyed and cleared from circulation during passage through the spleen."
     },
     "number": 8,
     "id": "usmle-qb-s1-008"
@@ -293,7 +293,7 @@
       "name": "StatPearls. Hemophilia A.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
-      "says": "Hemophilia A, the most common form, is caused by a deficiency or dysfunction of coagulation factor VIII and is inherited in an X-linked recessive pattern An isolated prolongation of activated partial thromboplastin time (aPTT) with normal prothrombin time (PT) and platelet count is the most common laboratory finding."
+      "says": "Hemophilia A, the most common form, is caused by a deficiency or dysfunction of coagulation factor VIII and is inherited in an X-linked recessive pattern. An isolated prolongation of activated partial thromboplastin time (aPTT) with normal prothrombin time (PT) and platelet count is the most common laboratory finding."
     },
     "number": 11,
     "id": "usmle-qb-s1-011"
@@ -318,7 +318,7 @@
       "name": "StatPearls. Von Willebrand Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459222/",
-      "says": "Affected people may complain of excessive bruising, prolonged bleeding from mucosal surfaces, and prolonged bleeding after minor trauma. Von Willebrand factor increases factor VIII half-life by preventing its degradation. aPTT may be prolonged, as there would be increased factor VIII degradation",
+      "says": "Affected people may complain of excessive bruising, prolonged bleeding from mucosal surfaces, and prolonged bleeding after minor trauma. Von Willebrand factor increases factor VIII half-life by preventing its degradation. aPTT may be prolonged, as there would be increased factor VIII degradation.",
       "more": [
         {
           "name": "ASH ISTH NHF WFH 2021 guidelines on the management of von Willebrand disease.",
@@ -350,7 +350,7 @@
       "name": "StatPearls. Disseminated Intravascular Coagulation.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441834/",
-      "says": "As this process begins consuming clotting factors and platelets in a positive feedback loop, hemorrhage can ensue Laboratory findings suggestive of DIC include an increased prothrombin time (PT) and an increased partial thromboplastin time, as well as a decreased fibrinogen level as widespread activation and consumption of the clotting cascade occurs. This score includes platelet count, fibrin markers such as D-dimer, PT, and fibrinogen level"
+      "says": "As this process begins consuming clotting factors and platelets in a positive feedback loop, hemorrhage can ensue. Laboratory findings suggestive of DIC include an increased prothrombin time (PT) and an increased partial thromboplastin time, as well as a decreased fibrinogen level as widespread activation and consumption of the clotting cascade occurs. This score includes platelet count, fibrin markers such as D-dimer, PT, and fibrinogen level."
     },
     "number": 13,
     "id": "usmle-qb-s1-013"
@@ -453,7 +453,7 @@
       "name": "StatPearls. Tumor Lysis Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK518985/",
-      "says": "Tumor lysis syndrome is a clinical condition caused by extensive tumor cell lysis and characterized by metabolic disturbances, such as hyperkalemia, hyperphosphatemia, hypocalcemia, and hyperuricemia, which can lead to end-organ damage. Calcium-phosphorus salt deposits can form in the kidneys and soft tissues The primary prophylactic strategies are IV hydration and hypouricemic agents such as allopurinol and rasburicase.",
+      "says": "Tumor lysis syndrome is a clinical condition caused by extensive tumor cell lysis and characterized by metabolic disturbances, such as hyperkalemia, hyperphosphatemia, hypocalcemia, and hyperuricemia, which can lead to end-organ damage. Calcium-phosphorus salt deposits can form in the kidneys and soft tissues. The primary prophylactic strategies are IV hydration and hypouricemic agents such as allopurinol and rasburicase.",
       "more": [
         {
           "name": "BSH guideline for the management of tumour lysis syndrome (2015).",
@@ -510,7 +510,7 @@
       "name": "StatPearls. Paroxysmal Nocturnal Hemoglobinuria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562292/",
-      "says": "Proteins responsible for the regulation of complement activity, specifically CD55 and CD59, are thereby prevented from attaching to PNH affected cells. It causes complications mainly through intravascular hemolysis, thrombosis, and bone marrow failure. This mutation of the X-linked gene phosphatidylinositol glycan class A (PIGA), produces a deficiency in the glycosylphosphatidylinositol (GPI) protein",
+      "says": "Proteins responsible for the regulation of complement activity, specifically CD55 and CD59, are thereby prevented from attaching to PNH affected cells. It causes complications mainly through intravascular hemolysis, thrombosis, and bone marrow failure. This mutation of the X-linked gene phosphatidylinositol glycan class A (PIGA), produces a deficiency in the glycosylphosphatidylinositol (GPI) protein.",
       "more": [
         {
           "name": "ACIP recommendations for meningococcal vaccination (complement inhibitor users).",
@@ -543,7 +543,7 @@
       "name": "StatPearls. Aplastic Anemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
-      "says": "Aplastic anemia is a rare but serious hematologic disorder characterized by the failure of bone marrow to produce enough blood cells, leading to pancytopenia Hypocellular marrow with fatty replacement Absence of liver, spleen, and lymph node enlarg"
+      "says": "Aplastic anemia is a rare but serious hematologic disorder characterized by the failure of bone marrow to produce enough blood cells, leading to pancytopenia. Hypocellular marrow with fatty replacement. Absence of liver, spleen, and lymph node enlarg."
     },
     "number": 20,
     "id": "usmle-qb-s1-020"
@@ -570,7 +570,7 @@
       "name": "StatPearls. Polycythemia Vera.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557660/",
-      "says": "The Janus kinase-2 (JAK2) gene involved with intracellular signaling is mutated in 90% of cases of polycythemia vera (PV). Serum erythropoietin level below the reference range for normal"
+      "says": "The Janus kinase-2 (JAK2) gene involved with intracellular signaling is mutated in 90% of cases of polycythemia vera (PV). Serum erythropoietin level below the reference range for normal."
     },
     "number": 21,
     "id": "usmle-qb-s1-021"
@@ -622,7 +622,7 @@
       "name": "StatPearls. Hodgkin Lymphoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499969/",
-      "says": "there are scattered large mononuclear Hodgkin and multinucleated cells (Reed-Sternberg) intermixed in a background of a mixture of non-neoplastic inflammatory cells"
+      "says": "there are scattered large mononuclear Hodgkin and multinucleated cells (Reed-Sternberg) intermixed in a background of a mixture of non-neoplastic inflammatory cells."
     },
     "number": 23,
     "id": "usmle-qb-s1-023"
@@ -648,7 +648,7 @@
       "name": "StatPearls. Physiology, Muscarinic Receptor; Alpha-Adrenergic Receptors; Beta 1 Receptors.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK555909/",
-      "says": "M1, M3, M5 are stimulatory receptors and are composed of the Gq protein, whereas M2 and M4 receptors are inhibitory receptors and are composed of the Gi protein. The alpha-1 receptor is of the Gq type, resulting in activation of phospholipase C The alpha-2 receptor acts as an allosteric inhibitor through Gi function The beta-1 adrenergic receptor is a G-protein-coupled receptor communicating through the Gs alpha subunit.",
+      "says": "M1, M3, M5 are stimulatory receptors and are composed of the Gq protein, whereas M2 and M4 receptors are inhibitory receptors and are composed of the Gi protein. The alpha-1 receptor is of the Gq type, resulting in activation of phospholipase C. The alpha-2 receptor acts as an allosteric inhibitor through Gi function. The beta-1 adrenergic receptor is a G-protein-coupled receptor communicating through the Gs alpha subunit.",
       "more": [
         {
           "name": "StatPearls. Beta 1 Receptors.",
@@ -800,7 +800,7 @@
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Common sites of bleeding include the basal ganglia (40%-50%), the thalamus (20%-25%), the cerebral lobes (15%-20%), the cerebellum (10%-15%), and the pons and brainstem (5%-10%) Cerebral amyloid angiopathy (CAA) is a leading cause of primary lobar intracerebral hemorrhage in older adults."
+      "says": "Common sites of bleeding include the basal ganglia (40%-50%), the thalamus (20%-25%), the cerebral lobes (15%-20%), the cerebellum (10%-15%), and the pons and brainstem (5%-10%). Cerebral amyloid angiopathy (CAA) is a leading cause of primary lobar intracerebral hemorrhage in older adults."
     },
     "number": 29,
     "id": "usmle-qb-s1-029"
@@ -1037,7 +1037,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "A classic feature of serotonin syndrome is neuromuscular hyperactivity, which typically presents as hyperreflexia and myoclonus. Physical exam findings may include altered mental status (with agitation), ocular clonus, dilated pupils, akathisia, tremor, deep tendon hyperreflexia, inducible (or spontaneous) muscle clonus"
+      "says": "A classic feature of serotonin syndrome is neuromuscular hyperactivity, which typically presents as hyperreflexia and myoclonus. Physical exam findings may include altered mental status (with agitation), ocular clonus, dilated pupils, akathisia, tremor, deep tendon hyperreflexia, inducible (or spontaneous) muscle clonus."
     },
     "number": 38,
     "id": "usmle-qb-s1-038"
@@ -1062,7 +1062,7 @@
       "name": "StatPearls. Lithium Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499992/",
-      "says": "Toxicity is a concern because lithium has a narrow therapeutic index, and renal excretion without hepatic metabolism is its only clinically meaningful elimination pathway. lithium-induced nephrogenic diabetes insipidus"
+      "says": "Toxicity is a concern because lithium has a narrow therapeutic index, and renal excretion without hepatic metabolism is its only clinically meaningful elimination pathway. lithium-induced nephrogenic diabetes insipidus."
     },
     "number": 39,
     "id": "usmle-qb-s1-039"
@@ -1088,7 +1088,7 @@
       "name": "StatPearls. Tardive Dyskinesia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448207/",
-      "says": "Tardive dyskinesia is a potentially irreversible hyperkinetic movement disorder resulting from prolonged exposure to dopamine receptor\u2013block The condition develops gradually, with symptoms emerging months or years after treatment initiation, and persists or worsens after discontinuation of the causative agent."
+      "says": "Tardive dyskinesia is a potentially irreversible hyperkinetic movement disorder resulting from prolonged exposure to dopamine receptor\u2013block. The condition develops gradually, with symptoms emerging months or years after treatment initiation, and persists or worsens after discontinuation of the causative agent."
     },
     "number": 40,
     "id": "usmle-qb-s1-040"
@@ -1142,7 +1142,7 @@
       "name": "StatPearls. Idiopathic Normal Pressure Hydrocephalus.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK542247/",
-      "says": "symptomatic communicating hydrocephalus with typically normal lumbar cerebrospinal fluid opening pressure and a classic clinical triad of gait disturbance, cognitive impairment, and urinary urgency or incontinence. Typical gait descriptors include shuffling, magnetic, and wide-based patterns"
+      "says": "symptomatic communicating hydrocephalus with typically normal lumbar cerebrospinal fluid opening pressure and a classic clinical triad of gait disturbance, cognitive impairment, and urinary urgency or incontinence. Typical gait descriptors include shuffling, magnetic, and wide-based patterns."
     },
     "number": 42,
     "id": "usmle-qb-s1-042"
@@ -1168,7 +1168,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "Enzmann et al reported that CT findings of patchy enhancements in early cerebritis evolve into more distinct ring-like enhancements in late cerebritis, eventually forming a frank rim-enhancing brain abscess. Abscesses often arise from local infections in areas such as the ear, teeth, sinuses, mastoid air cells, or epidural spaces, but they may also originate from distant sites such as the lungs or heart. a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect",
+      "says": "Enzmann et al reported that CT findings of patchy enhancements in early cerebritis evolve into more distinct ring-like enhancements in late cerebritis, eventually forming a frank rim-enhancing brain abscess. Abscesses often arise from local infections in areas such as the ear, teeth, sinuses, mastoid air cells, or epidural spaces, but they may also originate from distant sites such as the lungs or heart. a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect.",
       "more": [
         {
           "name": "ESCMID guideline on diagnosis and treatment of brain abscess (2023).",
@@ -1326,7 +1326,7 @@
       "name": "StatPearls. Dermatomyositis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
-      "says": "Dermatomyositis is a rare immune-mediated disease characterized by pathognomonic skin findings and symmetric proximal muscle weakness. Gottron papules : Erythematous or violaceous papules, with or without scaling or ulceration, overlie the dorsal metacarpophalangeal and interphalangeal joints Heliotrope rash : This characteristic finding presents as a violaceous or erythematous rash affecting the upper eyelids some subsets of dermatomyositis are associated with a higher risk for malignant neoplasm",
+      "says": "Dermatomyositis is a rare immune-mediated disease characterized by pathognomonic skin findings and symmetric proximal muscle weakness. Gottron papules : Erythematous or violaceous papules, with or without scaling or ulceration, overlie the dorsal metacarpophalangeal and interphalangeal joints. Heliotrope rash : This characteristic finding presents as a violaceous or erythematous rash affecting the upper eyelids. some subsets of dermatomyositis are associated with a higher risk for malignant neoplasm.",
       "more": [
         {
           "name": "IMACS international guideline for cancer screening in idiopathic inflammatory myopathy (2023).",
@@ -1384,7 +1384,7 @@
       "name": "StatPearls. Polymyalgia Rheumatica.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537274/",
-      "says": "Polymyalgia rheumatica (PMR) is a rheumatic disorder characterized by pain and stiffness around the neck, shoulder, and hip area It is an inflammatory condition associated with an elevation of erythrocyte sedimentation rate (ESR) and C-reactive protein (CRP), being the common findings. Although the patient might complain of nonspecific weakness, muscle strength is usually intact on a more thorough examination."
+      "says": "Polymyalgia rheumatica (PMR) is a rheumatic disorder characterized by pain and stiffness around the neck, shoulder, and hip area. It is an inflammatory condition associated with an elevation of erythrocyte sedimentation rate (ESR) and C-reactive protein (CRP), being the common findings. Although the patient might complain of nonspecific weakness, muscle strength is usually intact on a more thorough examination."
     },
     "number": 50,
     "id": "usmle-qb-s1-050"
@@ -1410,7 +1410,7 @@
       "name": "StatPearls. Psoriatic Arthritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547710/",
-      "says": "Distal interphalangeal joints are frequently involved in psoriatic arthritis but not rheumatoid arthritis because these joints have many entheses but very little synovial tissue. including peripheral arthritis, enthesitis, dactylitis, axial disease, nail disease, and uveitis presence of nail pitting"
+      "says": "Distal interphalangeal joints are frequently involved in psoriatic arthritis but not rheumatoid arthritis because these joints have many entheses but very little synovial tissue. including peripheral arthritis, enthesitis, dactylitis, axial disease, nail disease, and uveitis. presence of nail pitting."
     },
     "number": 51,
     "id": "usmle-qb-s1-051"
@@ -2039,7 +2039,7 @@
       "name": "StatPearls. Anion Gap and Non-Anion Gap Metabolic Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448090/",
-      "says": "In nonanion gap metabolic acidosis, gastrointestinal and renal losses of bicarbonate can be distinguished via urine anion gap analysis: Urine anion gap = Urine Na + Urine K \u2013 Urine Cl, if urine pH is <6.5 The urine anion gap can help estimate the urinary ammonium."
+      "says": "In nonanion gap metabolic acidosis, gastrointestinal and renal losses of bicarbonate can be distinguished via urine anion gap analysis: Urine anion gap = Urine Na + Urine K \u2013 Urine Cl, if urine pH is <6.5. The urine anion gap can help estimate the urinary ammonium."
     }
   },
   {
@@ -2094,7 +2094,7 @@
       "name": "StatPearls. Loop Diuretics. Thiazide Diuretics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK546656/",
-      "says": "Loop diuretics induce its effect by competing with chloride to bind to the Na-K-2Cl (NKCC2) cotransporter at the apical membrane of the thick ascending limb of the loop of Henle which results in the loss of calcium and magnesium ions. Thiazide diuretics are FDA-approved medications that inhibit the reabsorption of 3% to 5% of sodium in the distal convoluted tubule Thiazides reduce urine calcium levels and increase blood calcium by increasing calcium reabsorption from the luminal membrane into the interstitium in exchange for sodium.",
+      "says": "Loop diuretics induce its effect by competing with chloride to bind to the Na-K-2Cl (NKCC2) cotransporter at the apical membrane of the thick ascending limb of the loop of Henle. which results in the loss of calcium and magnesium ions. Thiazide diuretics are FDA-approved medications that inhibit the reabsorption of 3% to 5% of sodium in the distal convoluted tubule. Thiazides reduce urine calcium levels and increase blood calcium by increasing calcium reabsorption from the luminal membrane into the interstitium in exchange for sodium.",
       "more": [
         {
           "name": "StatPearls. Thiazide Diuretics.",
@@ -2125,7 +2125,7 @@
       "name": "StatPearls. Physiology, Alveolar to Arterial Oxygen Gradient; Hypoxia and Hypoxemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK545153/",
-      "says": "Thus patients with hypoxemia due to hypoventilation will have an A-a gradient within normal limits. Thus patients with hypoxemia due to pneumonia will have an inappropriately elevated A-a gradient Failure of PaO2 to normalize despite administration of 100% oxygen is the defining physiologic feature distinguishing true shunting from V/Q mismatch.",
+      "says": "Thus patients with hypoxemia due to hypoventilation will have an A-a gradient within normal limits. Thus patients with hypoxemia due to pneumonia will have an inappropriately elevated A-a gradient. Failure of PaO2 to normalize despite administration of 100% oxygen is the defining physiologic feature distinguishing true shunting from V/Q mismatch.",
       "more": [
         {
           "name": "StatPearls. Hypoxia and Hypoxemia.",
@@ -2181,7 +2181,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "Tension pneumothorax arises when air accumulation becomes sufficient to compress the mediastinum and shift it contralaterally Tracheal deviation and mediastinal shift toward the contralateral side may be evident. Clinical diagnosis hinges on signs like hypotension, unilateral breath sounds, distended neck veins, and tracheal deviation."
+      "says": "Tension pneumothorax arises when air accumulation becomes sufficient to compress the mediastinum and shift it contralaterally. Tracheal deviation and mediastinal shift toward the contralateral side may be evident. Clinical diagnosis hinges on signs like hypotension, unilateral breath sounds, distended neck veins, and tracheal deviation."
     },
     "number": 79,
     "id": "usmle-qb-s1-079"
@@ -2240,7 +2240,7 @@
       "name": "StatPearls. Idiopathic Pulmonary Fibrosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448162/",
-      "says": "Classic pulmonary findings include fine bibasilar velcro crackles heard during inspiration. Differentiating usual interstitial pneumonia (UIP), a radiologic and histopathologic pattern, from IPF is essential. Bronchoscopic biopsy yields are typically low as the pathologic changes start subpleurally",
+      "says": "Classic pulmonary findings include fine bibasilar velcro crackles heard during inspiration. Differentiating usual interstitial pneumonia (UIP), a radiologic and histopathologic pattern, from IPF is essential. Bronchoscopic biopsy yields are typically low as the pathologic changes start subpleurally.",
       "more": [
         {
           "name": "ATS/ERS/JRS/ALAT Clinical Practice Guideline. Idiopathic Pulmonary Fibrosis (2022).",
@@ -2271,7 +2271,7 @@
       "name": "StatPearls. Bronchiectasis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430810/",
-      "says": "Bronchial dilation, the cardinal sign of bronchiectasis Cough: 98%, sputum: 78% (sputum is typically mucoid and relatively odorless), dyspnea: 62%",
+      "says": "Bronchial dilation, the cardinal sign of bronchiectasis. Cough: 98%, sputum: 78% (sputum is typically mucoid and relatively odorless), dyspnea: 62%.",
       "more": [
         {
           "name": "ERS clinical practice guideline for the management of adult bronchiectasis.",
@@ -2333,7 +2333,7 @@
       "name": "StatPearls. Renal Tubular Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519044/",
-      "says": "This raises the pH of urine due to an inability to excrete acid and generate acidic urine in the distal tubule, even in states of metabolic acidosis. It is associated with hypokalemia due to the failure of H/K ATPase. These patients can develop hypercalciuria, hypocitraturia, and nephrolithiasis"
+      "says": "This raises the pH of urine due to an inability to excrete acid and generate acidic urine in the distal tubule, even in states of metabolic acidosis. It is associated with hypokalemia due to the failure of H/K ATPase. These patients can develop hypercalciuria, hypocitraturia, and nephrolithiasis."
     },
     "number": 84,
     "id": "usmle-qb-s1-084"
@@ -2410,7 +2410,7 @@
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "QTc prolongation: A cardiac manifestation that may predispose to torsades de pointes Chvostek sign: Another manifestation of increased neuromuscular excitability, elicited by tapping over the facial nerve anterior to the ear Carpopedal spasm (Trousseau sign): Reflects increased neuromuscular excitability"
+      "says": "QTc prolongation: A cardiac manifestation that may predispose to torsades de pointes. Chvostek sign: Another manifestation of increased neuromuscular excitability, elicited by tapping over the facial nerve anterior to the ear. Carpopedal spasm (Trousseau sign): Reflects increased neuromuscular excitability."
     },
     "number": 87,
     "id": "usmle-qb-s1-087"
@@ -2487,7 +2487,7 @@
       "name": "StatPearls. Syndrome of Inappropriate Antidiuretic Hormone Secretion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK507777/",
-      "says": "SIADH is characterized by impaired water excretion leading to hyponatremia with hypervolemia or euvolemia. Urine osmolality greater than 100 mOsm/kg"
+      "says": "SIADH is characterized by impaired water excretion leading to hyponatremia with hypervolemia or euvolemia. Urine osmolality greater than 100 mOsm/kg."
     },
     "number": 90,
     "id": "usmle-qb-s1-090"
@@ -2512,7 +2512,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst After water deprivation, studies have demonstrated that desmopressin can increase urine osmolality by greater than 100% in complete central DI and up to 50% in partial central DI."
+      "says": "The hallmarks of diabetes insipidus (DI) include polyuria (>50 mL/kg), dilute urine (osmolality <300 mOsm/L), and increased thirst. After water deprivation, studies have demonstrated that desmopressin can increase urine osmolality by greater than 100% in complete central DI and up to 50% in partial central DI."
     },
     "number": 91,
     "id": "usmle-qb-s1-091"
@@ -2726,7 +2726,7 @@
       "name": "StatPearls. Membranous Nephropathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559169/",
-      "says": "It is the most common cause of primary nephrotic syndrome in White adults. Silver stain: Spikes (represent staining of basement membrane between the deposits)"
+      "says": "It is the most common cause of primary nephrotic syndrome in White adults. Silver stain: Spikes (represent staining of basement membrane between the deposits)."
     },
     "number": 99,
     "id": "usmle-qb-s1-099"
@@ -2777,7 +2777,7 @@
       "name": "StatPearls. Acetaminophen Toxicity. Physiology, Liver.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "Zone III has the lowest perfusion due to its distance from the portal triad. At higher doses and as these pathways saturate, CYP oxidation of acetaminophen forms a toxic, oxidative metabolite and depletes hepatic glutathione stores. Hepatocellular centrilobular (zone 3) necrosis",
+      "says": "Zone III has the lowest perfusion due to its distance from the portal triad. At higher doses and as these pathways saturate, CYP oxidation of acetaminophen forms a toxic, oxidative metabolite and depletes hepatic glutathione stores. Hepatocellular centrilobular (zone 3) necrosis.",
       "more": [
         {
           "name": "StatPearls. Physiology, Liver.",
@@ -2834,7 +2834,7 @@
       "name": "StatPearls. Achalasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent. Classic findings include smooth tapering of the lower esophagus to a \u201cbird\u2019s beak\u201d appearance, proximal esophageal dilatation, and absent peristalsis during fluoroscopy"
+      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent. Classic findings include smooth tapering of the lower esophagus to a \u201cbird\u2019s beak\u201d appearance, proximal esophageal dilatation, and absent peristalsis during fluoroscopy."
     },
     "number": 103,
     "id": "usmle-qb-s1-103"
@@ -2860,7 +2860,7 @@
       "name": "StatPearls. Celiac Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441900/",
-      "says": "Exposure to gluten damages the small intestinal mucosa, resulting in villous atrophy, malabsorption, gastrointestinal symptoms, and a wide range of extraintestinal manifestations the 2023 American College of Gastroenterology (ACG) guidelines recommend initial serologic testing with tTG-IgA in patients who are not IgA deficient. If IgA deficiency has not been previously assessed, a total IgA level should be measured concurrently.",
+      "says": "Exposure to gluten damages the small intestinal mucosa, resulting in villous atrophy, malabsorption, gastrointestinal symptoms, and a wide range of extraintestinal manifestations. the 2023 American College of Gastroenterology (ACG) guidelines recommend initial serologic testing with tTG-IgA in patients who are not IgA deficient. If IgA deficiency has not been previously assessed, a total IgA level should be measured concurrently.",
       "more": [
         {
           "name": "ACG Clinical Guideline: Diagnosis and Management of Celiac Disease (2023).",
@@ -3007,7 +3007,7 @@
       "name": "StatPearls. Wilson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441990/",
-      "says": "Wilson disease is an autosomal recessive condition caused by 1 of several mutations in ATP7B gene which encodes the ATP7B protein transporter on the long arm of chromosome 13 (13q) responsible for excreting excess copper into bile and out of the body. The first serologic test recommended is serum ceruloplasmin, where a level of <20 mg/dL indicates an abnormality. In the brain, copper deposits in the basal ganglia, putamen, and globus pallidus are involved in the coordination of movement and neurocognitive processes including liver failure, neuropsychiatric symptoms, movement disorders, and Kayser-Fleischer (KF) rings in the cornea."
+      "says": "Wilson disease is an autosomal recessive condition caused by 1 of several mutations in ATP7B gene which encodes the ATP7B protein transporter on the long arm of chromosome 13 (13q) responsible for excreting excess copper into bile and out of the body. The first serologic test recommended is serum ceruloplasmin, where a level of <20 mg/dL indicates an abnormality. In the brain, copper deposits in the basal ganglia, putamen, and globus pallidus are involved in the coordination of movement and neurocognitive processes. including liver failure, neuropsychiatric symptoms, movement disorders, and Kayser-Fleischer (KF) rings in the cornea."
     },
     "number": 109,
     "id": "usmle-qb-s1-109"
@@ -3110,7 +3110,7 @@
       "name": "StatPearls. Congenital Adrenal Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
-      "says": "21-OH deficiency hinders the conversion of 17-OHP to 11-deoxycortisol, the penultimate step in cortisol synthesis, and the conversion of progesterone to deoxycorticosterone (DOC) in aldosterone synthesis. deficiencies in 11\u03b2-OH ( CYP11B1/6p21.1 ) and 17\u03b1-OH ( CYP17A1/10q24.3 ) result in the accumulation of mineralocorticoid precursors, causing hypertension and cortisol deficiency in affected individuals. In CAH variants with insufficient sex steroid production, such as StAR, PSCC, 17\u03b1-OH, 3\u03b2-HSD-2, and possibly POR, sex steroid supplementation may be required"
+      "says": "21-OH deficiency hinders the conversion of 17-OHP to 11-deoxycortisol, the penultimate step in cortisol synthesis, and the conversion of progesterone to deoxycorticosterone (DOC) in aldosterone synthesis. deficiencies in 11\u03b2-OH ( CYP11B1/6p21.1 ) and 17\u03b1-OH ( CYP17A1/10q24.3 ) result in the accumulation of mineralocorticoid precursors, causing hypertension and cortisol deficiency in affected individuals. In CAH variants with insufficient sex steroid production, such as StAR, PSCC, 17\u03b1-OH, 3\u03b2-HSD-2, and possibly POR, sex steroid supplementation may be required."
     },
     "open": false
   },
@@ -3213,7 +3213,7 @@
       "name": "StatPearls. Hypercortisolism (Cushing Syndrome).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK551526/",
-      "says": "Similarly, a serum ACTH level greater than 20 pg/mL is highly suggestive of ACTH-dependent hypercortisolism, which then brings up the clinical decision branch point of distinguishing between pituitary-based hypercortisolism versus ectopic ACTH syndrome (EAS) through additional dynamic tests (eg, high-dose dexamethasone suppression, CRH stimulation)"
+      "says": "Similarly, a serum ACTH level greater than 20 pg/mL is highly suggestive of ACTH-dependent hypercortisolism, which then brings up the clinical decision branch point of distinguishing between pituitary-based hypercortisolism versus ectopic ACTH syndrome (EAS) through additional dynamic tests (eg, high-dose dexamethasone suppression, CRH stimulation)."
     },
     "open": false
   },
@@ -3321,7 +3321,7 @@
       "name": "StatPearls. Acromegaly.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431086/",
-      "says": "The resulting production of insulin-like growth factor 1 (IGF-1) causes the characteristic overgrowth of certain tissues IGF-1 is used as it does not vary with sleep patterns, exercise, or throughout the day like GH does."
+      "says": "The resulting production of insulin-like growth factor 1 (IGF-1) causes the characteristic overgrowth of certain tissues. IGF-1 is used as it does not vary with sleep patterns, exercise, or throughout the day like GH does."
     },
     "number": 121,
     "id": "usmle-qb-s1-121"
@@ -3424,7 +3424,7 @@
       "name": "StatPearls. Klinefelter Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482314/",
-      "says": "The most common karyotype in Klinefelter syndrome is 47,XXY, accounting for >90% Levels of the gonadotropins\u2014follicle-stimulating hormone (FSH) and luteinizing hormone (LH)\u2014are typically elevated in the setting of testicular hyalinization and fibrosis. Gynecomastia is common, and affected individuals are at an increased risk of developing male breast cancer."
+      "says": "The most common karyotype in Klinefelter syndrome is 47,XXY, accounting for >90%. Levels of the gonadotropins\u2014follicle-stimulating hormone (FSH) and luteinizing hormone (LH)\u2014are typically elevated in the setting of testicular hyalinization and fibrosis. Gynecomastia is common, and affected individuals are at an increased risk of developing male breast cancer."
     },
     "number": 125,
     "id": "usmle-qb-s1-125"
@@ -3579,7 +3579,7 @@
       "name": "StatPearls. Testicular Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "The testicle may be swollen, erythematous, and have an absence of the normal cremasteric reflex Testicular viability significantly decreases 6 hours after the onset of symptoms; hence, early diagnosis is key."
+      "says": "The testicle may be swollen, erythematous, and have an absence of the normal cremasteric reflex. Testicular viability significantly decreases 6 hours after the onset of symptoms; hence, early diagnosis is key."
     },
     "number": 131,
     "id": "usmle-qb-s1-131"
@@ -3825,7 +3825,7 @@
       "name": "StatPearls. Hypovolemia and Hypovolemic Shock. Cardiogenic Shock. Distributive Shock.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513297/",
-      "says": "Hypovolemic : Decreased PCWP, decreased CO, increased SVR Distributive : Decreased PCWP, increased CO, decreased SVR Cardiogenic : Increased PCWP, decreased CO, increased SVR",
+      "says": "Hypovolemic : Decreased PCWP, decreased CO, increased SVR. Distributive : Decreased PCWP, increased CO, decreased SVR. Cardiogenic : Increased PCWP, decreased CO, increased SVR.",
       "more": [
         {
           "name": "StatPearls. Cardiogenic Shock.",
@@ -3910,7 +3910,7 @@
       "name": "StatPearls. Carbon Monoxide Poisoning.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
-      "says": "Carbon monoxide poisoning occurs when the gas binds hemoglobin with an affinity approximately 200 to 250 times greater than oxygen This process reduces blood oxygen-carrying capacity and induces a leftward shift of the oxyhemoglobin dissociation curve, impairing oxygen release to tissues. normal arterial oxygen partial pressure, reflecting adequate dissolved oxygen but impaired hemoglobin function."
+      "says": "Carbon monoxide poisoning occurs when the gas binds hemoglobin with an affinity approximately 200 to 250 times greater than oxygen. This process reduces blood oxygen-carrying capacity and induces a leftward shift of the oxyhemoglobin dissociation curve, impairing oxygen release to tissues. normal arterial oxygen partial pressure, reflecting adequate dissolved oxygen but impaired hemoglobin function."
     },
     "number": 143,
     "id": "usmle-qb-s1-143"
@@ -4276,7 +4276,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "Lumbar puncture : Rarely required, a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect, which can lead to cerebral herniation"
+      "says": "Lumbar puncture : Rarely required, a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect, which can lead to cerebral herniation."
     },
     "number": 156,
     "id": "usmle-qb-s1-156"
@@ -4359,7 +4359,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Positive Likelihood Ratio=Sensitivity/(1-Specificity) Negative Likelihood Ratio=(1- Sensitivity)/Specificity"
+      "says": "Positive Likelihood Ratio=Sensitivity/(1-Specificity) Negative Likelihood Ratio=(1- Sensitivity)/Specificity."
     },
     "open": false
   },
@@ -4433,7 +4433,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Disease prevalence in a population affects PPV and NPV. Unlike predictive values, and like sensitivity and specificity, likelihood ratios are not affected by disease prevalence. When a disease is highly prevalent, the test is better at \u2018ruling in' the disease and worse at \u2018ruling it out.\u2019"
+      "says": "Disease prevalence in a population affects PPV and NPV. Unlike predictive values, and like sensitivity and specificity, likelihood ratios are not affected by disease prevalence. When a disease is highly prevalent, the test is better at \u2018ruling in' the disease and worse at \u2018ruling it out.\u2019."
     },
     "number": 162,
     "id": "usmle-qb-s1-162"
@@ -4458,7 +4458,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Positive Likelihood Ratio=Sensitivity/(1-Specificity) Negative Likelihood Ratio=(1- Sensitivity)/Specificity"
+      "says": "Positive Likelihood Ratio=Sensitivity/(1-Specificity) Negative Likelihood Ratio=(1- Sensitivity)/Specificity."
     },
     "number": 163,
     "id": "usmle-qb-s1-163"
@@ -4508,7 +4508,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Specificity=(True Negatives (D))/(True Negatives (D)+False Positives (B)) False positives are a consideration when evaluating specificity and PPV."
+      "says": "Specificity=(True Negatives (D))/(True Negatives (D)+False Positives (B)). False positives are a consideration when evaluating specificity and PPV."
     },
     "number": 165,
     "id": "usmle-qb-s1-165"
@@ -4559,7 +4559,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Negative Likelihood Ratio=(1- Sensitivity)/Specificity A negative likelihood ratio is \u201cthe probability of a patient testing negative who has a disease divided by the probability of a patient testing negative who does not have a disease.\u201d"
+      "says": "Negative Likelihood Ratio=(1- Sensitivity)/Specificity. A negative likelihood ratio is \u201cthe probability of a patient testing negative who has a disease divided by the probability of a patient testing negative who does not have a disease.\u201d"
     },
     "number": 167,
     "id": "usmle-qb-s1-167"
@@ -4638,7 +4638,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 3.2.1, Confidentiality.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/confidentiality",
-      "says": "Restrict disclosure to the minimum necessary information To other third parties situated to mitigate the threat when in the physician\u2019s judgment there is a reasonable probability that: the patient will seriously harm themself; the patient will inflict serious physical harm on an identifiable individual or individuals."
+      "says": "Restrict disclosure to the minimum necessary information. To other third parties situated to mitigate the threat when in the physician\u2019s judgment there is a reasonable probability that: the patient will seriously harm themself; the patient will inflict serious physical harm on an identifiable individual or individuals."
     },
     "open": false
   },
@@ -4713,7 +4713,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.1.2, Decisions for Adult Patients Who Lack Capacity.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "Assist the surrogate to make decisions in keeping with the standard of substituted judgment, basing decisions on: the patient\u2019s preferences (if any) as expressed in an advance directive or as documented in the medical record"
+      "says": "Assist the surrogate to make decisions in keeping with the standard of substituted judgment, basing decisions on: the patient\u2019s preferences (if any) as expressed in an advance directive or as documented in the medical record."
     },
     "number": 173,
     "id": "usmle-qb-s1-173"
@@ -4868,7 +4868,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.2.1, Pediatric Decision Making.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/pediatric-decision-making",
-      "says": "the stronger the ethical obligation to seek minor patients\u2019 assent to treatment. In giving or withholding permission for medical treatment for their children, parents/guardians are expected to safeguard their children\u2019s physical health and well-being"
+      "says": "The more mature a minor patient is, the better able to understand what a decision will mean, and the more clearly the child can communicate preferences, the stronger the ethical obligation to seek minor patients\u2019 assent to treatment. In giving or withholding permission for medical treatment for their children, parents/guardians are expected to safeguard their children\u2019s physical health and well-being."
     },
     "number": 179,
     "id": "usmle-qb-s1-179"
