@@ -21,7 +21,7 @@
       "name": "StatPearls. Neuroanatomy, Neural Crest.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "Neural crest cells at the edge of the neural tube form peripheral neurons and glia, melanocytes, the adrenal medulla, and the aorticopulmonary septum. They do not form the adrenal cortex."
+      "says": "Neural crest cells serve as precursors to a broad range of tissues, including melanocytes, sensory and autonomic ganglion neurons, and Schwann cells. Ectomesenchymal derivatives include neuroendocrine chromaffin cells of the adrenal medulla, dental mesenchymal stem (progenitor) cells and odontoblasts Cardiac neural crest, a subset of cephalic neural crest extending from the otic level to the 4th somite, contributes to septation of the outflow tract"
     },
     "open": true
   },
@@ -43,10 +43,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Neuroanatomy, Neural Crest.",
+      "name": "StatPearls. DiGeorge Syndrome.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK547700/",
-      "says": "The 22q11.2 deletion disrupts the third and fourth pharyngeal pouches and the neural crest that builds the cardiac outflow tract."
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK549798/",
+      "says": "TBX1 haploinsufficiency disrupts this process, leading to conotruncal malformations including tetralogy of Fallot, truncus arteriosus, interrupted aortic arch Thymic hypoplasia or aplasia results from failed development of the thymic anlage from the third pharyngeal pouch. Parathyroid hypoplasia results from abnormal development of the parathyroid glands, which originate from the third and fourth pharyngeal pouches."
     },
     "number": 2,
     "id": "usmle-qb-s1-002"
@@ -68,10 +68,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Clinical practice guidelines for the care of girls and women with Turner syndrome.",
-      "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38748847/",
-      "says": "Girls and women with Turner syndrome need cardiac evaluation for coarctation and a bicuspid aortic valve, including an arm and a leg blood pressure."
+      "name": "StatPearls. Turner Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK554621/",
+      "says": "Disruption of X-chromosome material impairs normal growth and gonadal development, leading to characteristic features such as short stature, delayed puberty, primary amenorrhea, and neonatal lymphedema, as well as physical findings including a webbed neck and low-set ears. Common anomalies include a bicuspid aortic valve, coarctation of the aorta, an elongated transverse aortic arch, and pulmonary venous abnormalities.",
+      "more": [
+        {
+          "name": "Clinical practice guidelines for the care of girls and women with Turner syndrome (2024).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38748847/"
+        }
+      ]
     },
     "number": 3,
     "id": "usmle-qb-s1-003"
@@ -94,10 +100,10 @@
     "diagram": "hypersensitivity",
     "diagramAlt": "Four types. I, IgE, minutes. II, antibody on a cell surface. III, immune complexes. IV, T cells, delayed.",
     "source": {
-      "name": "StatPearls. Anaphylaxis. Type II, Type III, and Type IV Hypersensitivity Reaction.",
+      "name": "StatPearls. Type I, Type II, Type III, and Type IV Hypersensitivity Reaction.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482124/",
-      "says": "Anaphylaxis is a common medical emergency and a life-threatening acute hypersensitivity reaction.",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560561/",
+      "says": "Type I hypersensitivity, also known as immediate hypersensitivity, is an immunoglobulin E (IgE)-mediated immune response Type II hypersensitivity is an antibody-mediated reaction against cells or tissues of the body in which IgG or IgM antibodies bind to antigens on the surface of cells or tissues Type III or immune complex-mediated hypersensitivity : Circulating antigen-antibody complexes deposit in tissues Type IV hypersensitivity is a T-cell\u2013mediated reaction with a delayed onset, typically appearing 48 to 72 hours after exposure to an allergen.",
       "more": [
         {
           "name": "StatPearls. Type II Hypersensitivity Reaction.",
@@ -136,7 +142,7 @@
       "name": "StatPearls. Physiology, Coagulation Pathways.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482253/",
-      "says": "The coagulation pathway is a cascade of events that leads to hemostasis."
+      "says": "The extrinsic pathway is clinically assessed using the prothrombin time (PT). The intrinsic pathway is clinically assessed using the partial thromboplastin time (PTT). Mixing studies are performed to determine whether a PT or PTT is elevated due to a factor deficiency or a factor inhibitor (antibodies to specific factors)."
     },
     "open": false
   },
@@ -161,7 +167,7 @@
       "name": "StatPearls. Biochemistry, Complement.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31334949/",
-      "says": "The classical pathway involves antibodies. The alternative and lectin pathways do not. All three pathways convert C3."
+      "says": "One method of complement cascade initiation, the classical activation pathway, involves antibodies and, thus, the adaptive immune system. The alternative pathway can begin with the spontaneous conversion of C3 to C3b, microbial surface molecules, complex carbohydrates, or other substances. The lectin pathway utilizes complement proteins 2 and 4 to achieve the same result as the alternative pathway."
     },
     "open": false
   },
@@ -185,7 +191,7 @@
       "name": "StatPearls. Sickle Cell Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482164/",
-      "says": "Historically, acute manifestations of SCD have often been described collectively as \u201csickle cell crises,\u201d although specific terms, eg, vaso-occlusive episode, acute chest syndrome, splenic sequestration, and aplastic crisis, are more clinically descriptive."
+      "says": "Under conditions of reduced oxygen tension, deoxygenated HbS polymerizes, causing erythrocyte deformation, increased rigidity, hemolysis, and vaso-occlusion. HbS polymerization remains the initiating molecular event"
     },
     "number": 7,
     "id": "usmle-qb-s1-007"
@@ -210,7 +216,7 @@
       "name": "StatPearls. Hereditary Spherocytosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK539797/",
-      "says": "Hereditary spherocytosis (HS) is the most prevalent cause of hemolytic anemia due to an abnormal red cell membrane and classifies as a type of congenital hemolytic anemia."
+      "says": "Hereditary spherocytosis (HS) is the most prevalent cause of hemolytic anemia due to an abnormal red cell membrane Membrane loss results in spherocytosis, a drop in mean corpuscular volume (MCV), an increase in mean corpuscular hemoglobin concentration (MCHC), and increased osmotic fragility of RBCs. Spherocytes are destroyed and cleared from circulation during passage through the spleen."
     },
     "number": 8,
     "id": "usmle-qb-s1-008"
@@ -235,7 +241,7 @@
       "name": "StatPearls. Glucose-6-Phosphate Dehydrogenase Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470315/",
-      "says": "Glucose-6-phosphate dehydrogenase (G6PD) is a cytosolic \"housekeeping\" enzyme present in all cells that helps prevent damage from reactive oxygen species by generating substrates needed for antioxidative defenses."
+      "says": "Glucose-6-phosphate dehydrogenase (G6PD) deficiency is an X-linked enzymatic disorder affecting cellular defense against oxidative stress. After resolution of an acute episode, clinicians should repeat a quantitative G6PD assay to confirm enzyme deficiency, as testing during hemolysis can yield false-normal results."
     },
     "number": 9,
     "id": "usmle-qb-s1-009"
@@ -261,7 +267,7 @@
       "name": "StatPearls. Vitamin B12 Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441923/",
-      "says": "Vitamin B12 (cobalamin) is a water-soluble vitamin that is derived from animal products such as red meat, dairy, and eggs."
+      "says": "In patients with B12 deficiency, methylmalonic acid (MMA) levels will accumulate, as it cannot be converted to succinyl-CoA. These lab values can also help to distinguish B12 deficiency from folate deficiency, in which homocysteine levels are elevated but MMA levels are normal. The damage to the myelin results in a condition known as subacute combined degeneration of the spinal cord (SCDSC)."
     },
     "number": 10,
     "id": "usmle-qb-s1-010"
@@ -287,7 +293,7 @@
       "name": "StatPearls. Hemophilia A.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
-      "says": "Hemophilia A, the most common form, is caused by a deficiency or dysfunction of coagulation factor VIII and is inherited in an X-linked recessive pattern, predominantly affecting males while females are typically carriers."
+      "says": "Hemophilia A, the most common form, is caused by a deficiency or dysfunction of coagulation factor VIII and is inherited in an X-linked recessive pattern An isolated prolongation of activated partial thromboplastin time (aPTT) with normal prothrombin time (PT) and platelet count is the most common laboratory finding."
     },
     "number": 11,
     "id": "usmle-qb-s1-011"
@@ -309,10 +315,16 @@
     "diagram": "vwd-ddavp",
     "diagramAlt": "Desmopressin in VWD. Type 1: desmopressin often works Type 2B: desmopressin can drop platelets Mucosal bleeding. PTT may be normal",
     "source": {
-      "name": "ASH ISTH NHF WFH 2021 guidelines on von Willebrand disease.",
-      "year": "2021",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33570647/",
-      "says": "Desmopressin is appropriate for many patients with type 1 von Willebrand disease and is not used in type 2B, where the platelet count can fall."
+      "name": "StatPearls. Von Willebrand Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459222/",
+      "says": "Affected people may complain of excessive bruising, prolonged bleeding from mucosal surfaces, and prolonged bleeding after minor trauma. Von Willebrand factor increases factor VIII half-life by preventing its degradation. aPTT may be prolonged, as there would be increased factor VIII degradation",
+      "more": [
+        {
+          "name": "ASH ISTH NHF WFH 2021 guidelines on the management of von Willebrand disease.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33570647/"
+        }
+      ]
     },
     "number": 12,
     "id": "usmle-qb-s1-012"
@@ -338,7 +350,7 @@
       "name": "StatPearls. Disseminated Intravascular Coagulation.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441834/",
-      "says": "Disseminated intravascular coagulation (DIC) can be defined as a widespread hypercoagulable state that can lead to micro- and macrovascular clotting and compromised blood flow, ultimately resulting in multiple organ dysfunction syndrome."
+      "says": "As this process begins consuming clotting factors and platelets in a positive feedback loop, hemorrhage can ensue Laboratory findings suggestive of DIC include an increased prothrombin time (PT) and an increased partial thromboplastin time, as well as a decreased fibrinogen level as widespread activation and consumption of the clotting cascade occurs. This score includes platelet count, fibrin markers such as D-dimer, PT, and fibrinogen level"
     },
     "number": 13,
     "id": "usmle-qb-s1-013"
@@ -365,7 +377,7 @@
       "name": "StatPearls. Immune Thrombocytopenia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562282/",
-      "says": "Immune thrombocytopenia (ITP), formerly idiopathic thrombocytopenic purpura, is a condition arising from immunoglobulin G (IgG) autoantibodies sensitizing circulating platelets, manifesting as a low platelet count, purpura, and hemorrhagic episodes."
+      "says": "Primary ITP manifests with isolated thrombocytopenia. Schistocytosis usually signifies microangiopathic hemolytic anemia."
     },
     "number": 14,
     "id": "usmle-qb-s1-014"
@@ -390,7 +402,7 @@
       "name": "StatPearls. Acute Lymphoblastic Leukemia/Lymphoblastic Lymphoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537237/",
-      "says": "Acute lymphoblastic leukemia (ALL)/lymphoblastic lymphoma (LBL) is a clonal hematopoietic stem cell disorder of B- or T-cell origin."
+      "says": "ALL is primarily a disease of children younger than 6 years with a slight male predominance. Early precursor B-ALL, or pro-B-ALL, expresses CD19, cytoplasmic C079a, cytoplasmic CD22, and nuclear TdT."
     },
     "number": 15,
     "id": "usmle-qb-s1-015"
@@ -415,7 +427,7 @@
       "name": "StatPearls. Multiple Myeloma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534764/",
-      "says": "Multiple myeloma (MM) is a malignant B-cell disorder characterized by the proliferation of abnormal monoclonal plasma cells in the bone marrow and/or extramedullary sites; it is the second most common hematological malignancy and is associated with significant morbidity and mortality due to end-organ damage."
+      "says": "Multiple myeloma is a clonal plasma cell proliferative disorder characterized by the abnormal increase of monoclonal immunoglobulins. CRAB (hypercalcemia, renal dysfunction, anemia, and/or bone pain with lytic lesions)."
     },
     "number": 16,
     "id": "usmle-qb-s1-016"
@@ -438,10 +450,16 @@
     "diagram": "tls-ions",
     "diagramAlt": "Tumor lysis ions. K up, phosphate up, uric acid up Calcium down (binds phosphate) Rasburicase clears uric acid already made",
     "source": {
-      "name": "BSH guideline for tumour lysis syndrome.",
-      "year": "2015",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25876990/",
-      "says": "Established tumor lysis with a high uric acid is treated with rasburicase, after fluids, and calcium falls as phosphate rises, which is the recommendation in BSH guideline for tumour lysis syndrome."
+      "name": "StatPearls. Tumor Lysis Syndrome.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK518985/",
+      "says": "Tumor lysis syndrome is a clinical condition caused by extensive tumor cell lysis and characterized by metabolic disturbances, such as hyperkalemia, hyperphosphatemia, hypocalcemia, and hyperuricemia, which can lead to end-organ damage. Calcium-phosphorus salt deposits can form in the kidneys and soft tissues The primary prophylactic strategies are IV hydration and hypouricemic agents such as allopurinol and rasburicase.",
+      "more": [
+        {
+          "name": "BSH guideline for the management of tumour lysis syndrome (2015).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25876990/"
+        }
+      ]
     },
     "number": 17,
     "id": "usmle-qb-s1-017"
@@ -467,7 +485,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR)."
+      "says": "Classically, an acute HTR is described as a triad of symptoms: fever, flank pain, and red or brown urine (hemoglobinuria). The first step is always to stop the transfusion."
     },
     "number": 18,
     "id": "usmle-qb-s1-018"
@@ -489,10 +507,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACIP recommendations on meningococcal vaccination.",
-      "year": "2020",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33417592/",
-      "says": "Vaccinate against meningococcus before or when starting a complement inhibitor."
+      "name": "StatPearls. Paroxysmal Nocturnal Hemoglobinuria.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK562292/",
+      "says": "Proteins responsible for the regulation of complement activity, specifically CD55 and CD59, are thereby prevented from attaching to PNH affected cells. It causes complications mainly through intravascular hemolysis, thrombosis, and bone marrow failure. This mutation of the X-linked gene phosphatidylinositol glycan class A (PIGA), produces a deficiency in the glycosylphosphatidylinositol (GPI) protein",
+      "more": [
+        {
+          "name": "ACIP recommendations for meningococcal vaccination (complement inhibitor users).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33417592/"
+        }
+      ]
     },
     "number": 19,
     "id": "usmle-qb-s1-019"
@@ -519,7 +543,7 @@
       "name": "StatPearls. Aplastic Anemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
-      "says": "Aplastic anemia is a rare but serious hematologic disorder characterized by the failure of bone marrow to produce enough blood cells, leading to pancytopenia and causing significant morbidity and mortality."
+      "says": "Aplastic anemia is a rare but serious hematologic disorder characterized by the failure of bone marrow to produce enough blood cells, leading to pancytopenia Hypocellular marrow with fatty replacement Absence of liver, spleen, and lymph node enlarg"
     },
     "number": 20,
     "id": "usmle-qb-s1-020"
@@ -546,7 +570,7 @@
       "name": "StatPearls. Polycythemia Vera.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557660/",
-      "says": "Polycythemia vera (PV) is a myeloproliferative neoplastic disorder involving uncontrolled red blood cell production resulting in elevated red blood cell (RBC) mass."
+      "says": "The Janus kinase-2 (JAK2) gene involved with intracellular signaling is mutated in 90% of cases of polycythemia vera (PV). Serum erythropoietin level below the reference range for normal"
     },
     "number": 21,
     "id": "usmle-qb-s1-021"
@@ -570,10 +594,10 @@
     "diagram": "dic-fib",
     "diagramAlt": "DIC labs. Low fibrinogen, high D-dimer PT and PTT both prolong Cryoprecipitate if bleeding and fibrinogen is low",
     "source": {
-      "name": "ELN expert-panel recommendations for acute promyelocytic leukemia.",
+      "name": "ELN expert-panel recommendations for the management of acute promyelocytic leukemia.",
       "year": "2019",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30803991/",
-      "says": "Start all-trans retinoic acid as soon as acute promyelocytic leukemia is suspected, and follow fibrinogen because the early death is bleeding."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6509567/",
+      "says": "ATRA should be initiated immediately once APL is suspected. Transfusions of fibrinogen and/or cryoprecipitate, platelets, and fresh-frozen plasma should be given to maintain the fibrinogen concentration above 100 to 150 mg/dL and the platelet count above 30 to 50 \u00d7 10^9/L."
     },
     "number": 22,
     "id": "usmle-qb-s1-022"
@@ -595,10 +619,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Non-Hodgkin Lymphoma.",
+      "name": "StatPearls. Hodgkin Lymphoma.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK559328/",
-      "says": "Non-Hodgkin lymphoma (NHL) is a neoplasm of the lymphoid tissues originating from B cell precursors, mature B cells, T cell precursors, and mature T cells."
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499969/",
+      "says": "there are scattered large mononuclear Hodgkin and multinucleated cells (Reed-Sternberg) intermixed in a background of a mixture of non-neoplastic inflammatory cells"
     },
     "number": 23,
     "id": "usmle-qb-s1-023"
@@ -621,10 +645,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Physiology, Autonomic Nervous System.",
+      "name": "StatPearls. Physiology, Muscarinic Receptor; Alpha-Adrenergic Receptors; Beta 1 Receptors.",
       "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538516/",
-      "says": "The autonomic nervous system (ANS) is made up of pathways of neurons that control various organ systems inside the body, using many diverse chemicals and signals to maintain homeostasis."
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK555909/",
+      "says": "M1, M3, M5 are stimulatory receptors and are composed of the Gq protein, whereas M2 and M4 receptors are inhibitory receptors and are composed of the Gi protein. The alpha-1 receptor is of the Gq type, resulting in activation of phospholipase C The alpha-2 receptor acts as an allosteric inhibitor through Gi function The beta-1 adrenergic receptor is a G-protein-coupled receptor communicating through the Gs alpha subunit.",
+      "more": [
+        {
+          "name": "StatPearls. Beta 1 Receptors.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK532904/"
+        }
+      ]
     },
     "open": false
   },
@@ -651,7 +681,7 @@
       "name": "StatPearls. Brown-S\u00e9quard Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538135/",
-      "says": "Brown-S\u00e9quard syndrome is a cord hemisection: proprioception and vibration are lost on the same side as the damage, and pain and temperature are lost on the opposite side."
+      "says": "Manifestations of this neurologic syndrome include weakness or paralysis, proprioceptive deficits on the side of the body ipsilateral to the lesion, and loss of pain and temperature sensation on the contralateral side."
     },
     "open": false
   },
@@ -674,10 +704,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Middle, Anterior, and Posterior Cerebral Artery Stroke.",
+      "name": "StatPearls. Middle Cerebral Artery Stroke; Anterior Cerebral Artery Stroke; Posterior Cerebral Artery Stroke.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK556132/",
-      "says": "The middle cerebral artery supplies the face and arm cortex, the anterior cerebral artery the leg, and the posterior cerebral artery the visual cortex.",
+      "says": "occlusions are highly symptomatic, with deficits such as hemiparesis, aphasia, neglect, and visual field loss. Most commonly, patients present with motor deficits, typically involving the lower extremity contralateral to the infarct site. Unilateral occipital lobe infarction commonly produces contralateral homonymous hemianopia with macular sparing.",
       "more": [
         {
           "name": "StatPearls. Anterior Cerebral Artery Stroke.",
@@ -713,7 +743,7 @@
       "name": "StatPearls. Epidural Hematoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK518982/",
-      "says": "An epidural hematoma (EDH) is an extra-axial collection of blood within the potential space between the outer layer of the dura mater and the inner table of the skull."
+      "says": "Most EDHs result from arterial bleeding, typically from a branch of the middle meningeal artery. The hematoma\u2019s expansion is often restricted by cranial sutures, producing a characteristic biconvex shape on noncontrast head computed tomography."
     },
     "number": 27,
     "id": "usmle-qb-s1-027"
@@ -736,10 +766,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "NCS/SCCM guideline for reversal of antithrombotics in intracranial hemorrhage.",
-      "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27858808/",
-      "says": "Antithrombotic drugs are reversed in anticoagulant-associated intracranial hemorrhage, including subdural hematoma."
+      "name": "StatPearls. Subdural Hematoma.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532970/",
+      "says": "Rupture of thin-walled bridging veins under opposing mechanical forces releases blood into the subdural space, resulting in a subdural hematoma. The classic appearance involves a crescent-shaped collection that crosses suture lines while remaining limited by the falx and tentorium.",
+      "more": [
+        {
+          "name": "NCS/SCCM guideline for reversal of antithrombotics in intracranial hemorrhage (2016).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27858808/"
+        }
+      ]
     },
     "number": 28,
     "id": "usmle-qb-s1-028"
@@ -764,7 +800,7 @@
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "Hemorrhagic stroke results from bleeding into brain tissue or the subarachnoid space, most commonly due to vascular rupture or anticoagulation-related coagulopathy."
+      "says": "Common sites of bleeding include the basal ganglia (40%-50%), the thalamus (20%-25%), the cerebral lobes (15%-20%), the cerebellum (10%-15%), and the pons and brainstem (5%-10%) Cerebral amyloid angiopathy (CAA) is a leading cause of primary lobar intracerebral hemorrhage in older adults."
     },
     "number": 29,
     "id": "usmle-qb-s1-029"
@@ -791,7 +827,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "Degeneration of dopaminergic neurons in the substantia nigra produces bradykinesia, resting tremor, and rigidity."
+      "says": "The degeneration of dopaminergic neurons in the substantia nigra, accompanied by the intracellular accumulation of alpha-synuclein (\u03b1-synuclein) (Lewy body), represents the neuropathological hallmark of the disease. Clinical presentation most commonly begins with asymmetric motor features, including bradykinesia, resting tremor, rigidity, and postural instability."
     },
     "number": 30,
     "id": "usmle-qb-s1-030"
@@ -817,7 +853,7 @@
       "name": "StatPearls. Multiple Sclerosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499849/",
-      "says": "Although various diagnostic criteria exist for multiple sclerosis, the general principle for diagnosing the relapsing-remitting course involves establishing episodes separated in \"time and space.\" This entails that episodes must be temporally separated and involve distinct locations within the CNS."
+      "says": "Although various diagnostic criteria exist for multiple sclerosis, the general principle for diagnosing the relapsing-remitting course involves establishing episodes separated in \"time and space.\" The classic abnormal CSF findings in multiple sclerosis typically include elevated protein and myelin basic protein levels, occasional leukocytes (mainly mononuclear cells), and increased levels of total immunoglobulin G (IgG), free kappa light chains, and oligoclonal bands."
     },
     "number": 31,
     "id": "usmle-qb-s1-031"
@@ -843,7 +879,7 @@
       "name": "EAN/PNS guideline on diagnosis and treatment of Guillain-Barr\u00e9 syndrome.",
       "year": "2023",
       "url": "https://pubmed.ncbi.nlm.nih.gov/37814552/",
-      "says": "IVIg 0.4 g/kg for 5 days is recommended within 2 weeks of onset if the patient cannot walk unaided, or plasma exchange of 12\u201315 L in four to five exchanges if within 4 weeks. Oral corticosteroids are recommended against. The mEGRIS score estimates the need for ventilation."
+      "says": "The task force recommends IVIg 0.4 g/kg for 5 days within 2 weeks (GPP also within 2-4 weeks) after onset of weakness if unable to walk unaided, or plasma exchange 12-15 L in four to five exchanges over 1-2 weeks within 4 weeks; it recommends against oral corticosteroids and advises the mEGRIS score for ventilation risk."
     },
     "number": 32,
     "id": "usmle-qb-s1-032"
@@ -870,7 +906,7 @@
       "name": "StatPearls. Absence Seizure.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499867/",
-      "says": "Absence seizures are brief seizures characterized by a behavioral arrest correlating with generalized 3-Hz spike and wave discharges on electroencephalogram (EEG)."
+      "says": "Absence seizures are brief seizures characterized by a behavioral arrest correlating with generalized 3-Hz spike and wave discharges on electroencephalogram (EEG). These seizures are not preceded by an aura and do not have a postictal state."
     },
     "number": 33,
     "id": "usmle-qb-s1-033"
@@ -922,7 +958,7 @@
       "name": "StatPearls. Bell Palsy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482290/",
-      "says": "Bell's palsy is the most common peripheral paralysis of the seventh cranial nerve with an onset that is rapid and unilateral."
+      "says": "Upon physical examination, all branches of the facial nerve are roughly equally impaired on the affected side of the face in patients with Bell palsy. In contrast, a cortical stroke will typically leave forehead movement intact on the affected side due to bilateral upper motor neuron contributions to the facial nucleus."
     },
     "number": 35,
     "id": "usmle-qb-s1-035"
@@ -945,10 +981,10 @@
     "diagram": "cbz-tn",
     "diagramAlt": "Trigeminal neuralgia. Seconds of shock in one branch Carbamazepine first Check sodium. Young or numb: image",
     "source": {
-      "name": "AAN/EFNS practice parameter. Treatment of trigeminal neuralgia.",
+      "name": "AAN/EFNS practice parameter. Diagnostic evaluation and treatment of trigeminal neuralgia.",
       "year": "2008",
       "url": "https://pubmed.ncbi.nlm.nih.gov/18716236/",
-      "says": "Carbamazepine is established as effective for pain in classical trigeminal neuralgia."
+      "says": "Carbamazepine (Level A) or oxcarbazepine (Level B) should be offered for pain control in trigeminal neuralgia, while baclofen and lamotrigine (Level C) may be considered useful."
     },
     "number": 36,
     "id": "usmle-qb-s1-036"
@@ -975,7 +1011,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "Neuroleptic malignant syndrome (NMS) is a life-threatening syndrome associated with the use of dopamine-receptor antagonist medications or with the rapid withdrawal of dopaminergic medications."
+      "says": "The primary trigger for NMS is dopamine receptor blockade, most often due to an antipsychotic agent. Classic clinical characteristics include mental status changes, fever, muscle rigidity, and autonomic instability. supporting lab work is usually consistent with rhabdomyolysis with an elevated CK and acutely declining renal function."
     },
     "number": 37,
     "id": "usmle-qb-s1-037"
@@ -1001,7 +1037,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "Serotonin syndrome (serotonin toxicity) is a serious and potentially life-threatening condition that results from excessive serotonergic activity throughout the central nervous system."
+      "says": "A classic feature of serotonin syndrome is neuromuscular hyperactivity, which typically presents as hyperreflexia and myoclonus. Physical exam findings may include altered mental status (with agitation), ocular clonus, dilated pupils, akathisia, tremor, deep tendon hyperreflexia, inducible (or spontaneous) muscle clonus"
     },
     "number": 38,
     "id": "usmle-qb-s1-038"
@@ -1026,7 +1062,7 @@
       "name": "StatPearls. Lithium Toxicity.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499992/",
-      "says": "Toxicity is a concern because lithium has a narrow therapeutic index, and renal excretion without hepatic metabolism is its only clinically meaningful elimination pathway."
+      "says": "Toxicity is a concern because lithium has a narrow therapeutic index, and renal excretion without hepatic metabolism is its only clinically meaningful elimination pathway. lithium-induced nephrogenic diabetes insipidus"
     },
     "number": 39,
     "id": "usmle-qb-s1-039"
@@ -1052,7 +1088,7 @@
       "name": "StatPearls. Tardive Dyskinesia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448207/",
-      "says": "Tardive dyskinesia is a difficult and potentially chronic adverse effect arising from long-term use of dopamine receptor\u2013blocking medications, most commonly antipsychotic agents."
+      "says": "Tardive dyskinesia is a potentially irreversible hyperkinetic movement disorder resulting from prolonged exposure to dopamine receptor\u2013block The condition develops gradually, with symptoms emerging months or years after treatment initiation, and persists or worsens after discontinuation of the causative agent."
     },
     "number": 40,
     "id": "usmle-qb-s1-040"
@@ -1079,7 +1115,7 @@
       "name": "StatPearls. Alzheimer Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499922/",
-      "says": "Alzheimer disease is a neurodegenerative disease that causes progressive and disabling impairment of cognitive functions including memory, comprehension, language, attention, reasoning, and judgment."
+      "says": "The neurodegenerative process typically begins in the entorhinal cortex within the hippocampus. Neurofibrillary tangles first appear in the hippocampus and subsequently spread throughout the cerebral cortex. Neurofibrillary tangles are fibrillary intracytoplasmic structures that form inside neurons and are composed of a protein called tau."
     },
     "number": 41,
     "id": "usmle-qb-s1-041"
@@ -1106,7 +1142,7 @@
       "name": "StatPearls. Idiopathic Normal Pressure Hydrocephalus.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK542247/",
-      "says": "Idiopathic normal pressure hydrocephalus (iNPH), represented by the ICD-10 code of G91.2, is the most common form of hydrocephalus in adults and is a potentially reversible cause of dementia."
+      "says": "symptomatic communicating hydrocephalus with typically normal lumbar cerebrospinal fluid opening pressure and a classic clinical triad of gait disturbance, cognitive impairment, and urinary urgency or incontinence. Typical gait descriptors include shuffling, magnetic, and wide-based patterns"
     },
     "number": 42,
     "id": "usmle-qb-s1-042"
@@ -1129,10 +1165,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ESCMID guideline on diagnosis and treatment of brain abscess.",
-      "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37648062/",
-      "says": "A suspected brain abscess is imaged before lumbar puncture, treated with antibiotics, and drained when it is large or causing mass effect."
+      "name": "StatPearls. Brain Abscess.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
+      "says": "Enzmann et al reported that CT findings of patchy enhancements in early cerebritis evolve into more distinct ring-like enhancements in late cerebritis, eventually forming a frank rim-enhancing brain abscess. Abscesses often arise from local infections in areas such as the ear, teeth, sinuses, mastoid air cells, or epidural spaces, but they may also originate from distant sites such as the lungs or heart. a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect",
+      "more": [
+        {
+          "name": "ESCMID guideline on diagnosis and treatment of brain abscess (2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37648062/"
+        }
+      ]
     },
     "number": 43,
     "id": "usmle-qb-s1-043"
@@ -1157,10 +1199,20 @@
     "diagram": "gout-flare",
     "diagramAlt": "Gout flare drug. Colchicine, NSAID, or glucocorticoid Not allopurinol as the only drug Continue allopurinol if already taking it",
     "source": {
-      "name": "2020 ACR Guideline for the Management of Gout.",
-      "year": "2020",
-      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.41247",
-      "says": "Treat the flare with colchicine, an NSAID, or a glucocorticoid. Allopurinol alone is not flare treatment. Continue urate-lowering therapy if it is already prescribed."
+      "name": "StatPearls. Gout; Calcium Pyrophosphate Deposition Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK546606/",
+      "says": "Under polarizing microscopy, synovial fluid or tophus aspiration analysis reveals needle-shaped, negatively birefringent crystals. These crystals are rhomboid or parallelepipedal, as opposed to the strongly negatively birefringent, needle-shaped urate crystals of gout.",
+      "more": [
+        {
+          "name": "StatPearls. Calcium Pyrophosphate Deposition Disease.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK540151/"
+        },
+        {
+          "name": "2020 ACR Guideline for the Management of Gout.",
+          "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/art.41247"
+        }
+      ]
     },
     "open": false
   },
@@ -1185,7 +1237,7 @@
       "name": "StatPearls. Stevens-Johnson Syndrome and Toxic Epidermal Necrolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459323/",
-      "says": "Stevens-Johnson syndrome and toxic epidermal necrolysis are one spectrum of drug-induced epidermolysis. Detachment under 10% of body surface area is Stevens-Johnson, 10 to 30% is overlap, and greater than 30% is toxic epidermal necrolysis."
+      "says": "SJS shares the same pathophysiology and is considered part of the same spectrum of drug-induced epidermolysis. SJS affects less than 10% of the total body surface area, SJS and TEN overlap affects 10% to 30% of total body surface area, and TEN affects greater than 30% of total body surface area."
     },
     "open": false
   },
@@ -1207,10 +1259,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AAOS clinical practice guideline. Management of acute compartment syndrome.",
-      "year": "2021",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33201042/",
-      "says": "The AAOS acute compartment syndrome guideline treats the diagnosis as clinical and recommends fasciotomy rather than continued observation of a tight limb."
+      "name": "StatPearls. Acute Compartment Syndrome and Fasciotomy.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK556153/",
+      "says": "Pain out of proportion to the injury, pain with passive stretch, and paresthesia are the earliest clinical features of acute compartment syndrome. Pallor, pulselessness, and paralysis are late signs, and distal pulses are usually present because systolic pressure exceeds compartment pressure.",
+      "more": [
+        {
+          "name": "AAOS clinical practice guideline. Management of acute compartment syndrome (2018).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33201042/"
+        }
+      ]
     },
     "number": 46,
     "id": "usmle-qb-s1-046"
@@ -1233,10 +1291,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2019 ACR/SAA/SPARTAN recommendations for ankylosing spondylitis.",
-      "year": "2019",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/31436036/",
-      "says": "NSAIDs are recommended as first-line treatment for active ankylosing spondylitis."
+      "name": "StatPearls. Ankylosing Spondylitis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470173/",
+      "says": "The presence of inflammatory back pain is characterized by at least 4 of the following 5 features: onset of symptoms before the age of 40, gradual and insidious onset, relief with exercise, lack of improvement with rest, and nocturnal pain with improvement upon arising.",
+      "more": [
+        {
+          "name": "2019 ACR/SAA/SPARTAN recommendations for ankylosing spondylitis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31436036/"
+        }
+      ]
     },
     "number": 47,
     "id": "usmle-qb-s1-047"
@@ -1259,10 +1323,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "IMACS international guideline for cancer screening in idiopathic inflammatory myopathy.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37945774/",
-      "says": "Adult-onset dermatomyositis needs a cancer-screening plan. The rash and proximal weakness are not a statin effect."
+      "name": "StatPearls. Dermatomyositis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+      "says": "Dermatomyositis is a rare immune-mediated disease characterized by pathognomonic skin findings and symmetric proximal muscle weakness. Gottron papules : Erythematous or violaceous papules, with or without scaling or ulceration, overlie the dorsal metacarpophalangeal and interphalangeal joints Heliotrope rash : This characteristic finding presents as a violaceous or erythematous rash affecting the upper eyelids some subsets of dermatomyositis are associated with a higher risk for malignant neoplasm",
+      "more": [
+        {
+          "name": "IMACS international guideline for cancer screening in idiopathic inflammatory myopathy (2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37945774/"
+        }
+      ]
     },
     "number": 48,
     "id": "usmle-qb-s1-048"
@@ -1285,10 +1355,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2021 ACR/Vasculitis Foundation guideline for giant cell arteritis.",
+      "name": "2021 American College of Rheumatology/Vasculitis Foundation Guideline for the Management of Giant Cell Arteritis and Takayasu Arteritis.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34235884/",
-      "says": "Start high-dose oral glucocorticoid for suspected giant cell arteritis, about 1 mg/kg up to 80 mg of prednisone a day, and use an intravenous pulse if vision is threatened. Biopsy as soon as possible, ideally within 2 weeks; a later biopsy may still be informative."
+      "says": "High dose oral glucocorticoids: prednisone 1 mg/kg up to 80 mg daily. With threatened vision loss, pulse intravenous glucocorticoids are conditionally recommended. A long-segment biopsy (>1 cm) is preferred, obtained within two weeks of starting oral glucocorticoids; a biopsy obtained later could still be informative."
     },
     "number": 49,
     "id": "usmle-qb-s1-049"
