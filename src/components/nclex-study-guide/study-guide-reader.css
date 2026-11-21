@@ -321,21 +321,22 @@
   }
 }
 
+/* Fine print at the top of the chapter. Disclosure stays; the teal banner does not. */
 .sg-ai-disclosure {
-  margin: 0;
-  padding: 0.7rem 0.9rem;
-  border-radius: 0.85rem;
-  border: 1px solid rgba(46, 196, 182, 0.45);
-  background: rgba(46, 196, 182, 0.12);
-  color: #e7fffb;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  opacity: 0.68;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
   line-height: 1.45;
 }
 .sg-ai-disclosure strong {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: inherit;
 }
 /* Front matter spends its top padding on the cover spread, not on empty paper,
    so the trial sentence clears the chapter toolbar on a laptop. */
