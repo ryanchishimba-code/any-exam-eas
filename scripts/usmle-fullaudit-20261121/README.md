@@ -42,3 +42,27 @@ Keys stay.
 - 2 Step 1 stroke items already had a time and a negative CT. One keeps alteplase. One keeps lowering blood pressure from 190/110 mm Hg before alteplase. Both move to Step 2.
 
 Sources: [Merck hyperkalemia](https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/electrolyte-disorders/hyperkalemia), [Merck diabetic ketoacidosis](https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/diabetes-mellitus-and-disorders-of-carbohydrate-metabolism/diabetic-ketoacidosis-dka), [Merck organophosphate poisoning](https://www.merckmanuals.com/professional/injuries-poisoning/poisoning/organophosphate-poisoning-and-carbamate-poisoning), and the [2018 AHA/ASA stroke guideline](https://www.ahajournals.org/doi/full/10.1161/STR.0000000000000158).
+
+## Pass 1 screen of all 9,398 items
+
+`pass1-screen.csv` is one row per remaining served item.
+
+| Result | Items |
+| --- | ---: |
+| Staged in batch 1 or 2 | 42 |
+| Staged in batch 3 | 17 |
+| Flagged and read, key left as written | 64 |
+| No heuristic hit | 9,275 |
+
+The screen looked for a key that is not an option, duplicate or nested options, a truncated trailing number, a Step 1 lead-in that only asks for management, thrombolysis for stroke above 185/110 mm Hg or for pulmonary embolism at a systolic pressure of 90 mm Hg or more, heparin for shock, a "which is contraindicated" lead-in, same-side weakness and lesion, a numeric key with no inputs, a calculation lead-in with a non-numeric key, a teratogen named in a pregnancy vignette, generalized anxiety keyed on a two-week history, select-all wording with one answer, and aspirin for a febrile child.
+
+## Batch 3 (pass 1) — 17 items
+
+Step 1 items whose lead-in is only management move to Step 2. The key stays. Step 2 CK is where pharmacotherapy and management are weighted; foundational science on that exam is weighted at 0. Source: [USMLE Step 2 CK content outline](https://www.usmle.org/prepare-your-exam/step-2-ck-materials/step-2-ck-content-outline-specifications).
+
+Two stems change and the key does not:
+
+- Cholecystitis asks for the next diagnostic study, so ultrasound stays and antibiotics are not a second answer. Source: [Merck Manual acute cholecystitis](https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/gallbladder-and-bile-duct-disorders/acute-cholecystitis).
+- One pulmonary embolism keyed to thrombolysis at 90/60 mm Hg is now 78/50 mm Hg for 20 minutes after fluid.
+
+Eight flagged Step 1 management items were not moved. The key is not a single best answer, or the stem does not support it: nonspecific headaches on a combined pill, blood pressure 220/130 mm Hg with a negative CT, a COPD exacerbation that needs both a bronchodilator and steroids, lisinopril increased at creatinine 1.8 mg/dL, prophylactic mastectomy at age 22, a chest radiograph for asthma pain, and a severe COPD exacerbation that may also need ventilatory support. Those rows are `reviewed_no_change` in the screen file.
