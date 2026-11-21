@@ -1,0 +1,288 @@
+{
+  "episode": "ep02-glomeruli-ckd",
+  "title": "Nephritic vs Nephrotic, Stones, and the Failing Kidney",
+  "video": "quick-bites-usmle-ep02-glomeruli-ckd-web.mp4",
+  "questions": [
+    {
+      "id": "ep02-q01",
+      "type": "single_best_answer",
+      "stem": "A swollen child, foamy urine, and a quiet sediment (no red-cell casts) is most consistent with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A purely nephritic sediment"
+        },
+        {
+          "id": "B",
+          "text": "Nephrotic disease, and in a child think minimal change"
+        },
+        {
+          "id": "C",
+          "text": "A uric acid stone"
+        },
+        {
+          "id": "D",
+          "text": "Renal-artery stenosis alone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Heavy protein and swelling without a bloody sediment is nephrotic. In a child, think minimal change.",
+      "videoTimestamp": "1:12"
+    },
+    {
+      "id": "ep02-q02",
+      "type": "single_best_answer",
+      "stem": "An adult with heavy protein and spike deposits on biopsy most likely has:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Minimal change disease"
+        },
+        {
+          "id": "B",
+          "text": "Membranous nephropathy"
+        },
+        {
+          "id": "C",
+          "text": "An isolated nephritic sediment"
+        },
+        {
+          "id": "D",
+          "text": "A uric acid stone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Membranous nephropathy is the classic adult nephrotic pattern with spikes.",
+      "videoTimestamp": "2:35"
+    },
+    {
+      "id": "ep02-q03",
+      "type": "single_best_answer",
+      "stem": "A painful stone that does not show on a plain film is most often:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Calcium oxalate"
+        },
+        {
+          "id": "B",
+          "text": "Calcium phosphate"
+        },
+        {
+          "id": "C",
+          "text": "Uric acid"
+        },
+        {
+          "id": "D",
+          "text": "Struvite"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Uric acid stones are radiolucent on a plain film.",
+      "videoTimestamp": "3:15"
+    },
+    {
+      "id": "ep02-q04",
+      "type": "single_best_answer",
+      "stem": "Nephrotic-range protein is commonly taught as about:",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.3 grams a day"
+        },
+        {
+          "id": "B",
+          "text": "1.0 gram a day"
+        },
+        {
+          "id": "C",
+          "text": "3.5 grams a day or more"
+        },
+        {
+          "id": "D",
+          "text": "30 grams an hour"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "The classic cutoff is about 3.5 grams a day or more.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep02-q05",
+      "type": "single_best_answer",
+      "stem": "Adult polycystic kidney disease is especially associated with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Liver fibrosis as the defining childhood clue"
+        },
+        {
+          "id": "B",
+          "text": "Hypertension and a risk of brain aneurysms"
+        },
+        {
+          "id": "C",
+          "text": "Always a low renin"
+        },
+        {
+          "id": "D",
+          "text": "Radiolucent uric acid stones in every case"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The adult form brings large kidneys, hypertension, and intracranial aneurysm risk. The infantile form brings liver fibrosis.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep02-q06",
+      "type": "single_best_answer",
+      "stem": "Infantile (autosomal-recessive) polycystic kidney disease is especially associated with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only brain aneurysms, never liver disease"
+        },
+        {
+          "id": "B",
+          "text": "Liver fibrosis"
+        },
+        {
+          "id": "C",
+          "text": "A purely nephritic sediment in every case"
+        },
+        {
+          "id": "D",
+          "text": "A spike-deposit membranous pattern"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The infantile form is a different pattern and brings hepatic fibrosis.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep02-q07",
+      "type": "single_best_answer",
+      "stem": "Renal-artery stenosis typically raises blood pressure through:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Low renin"
+        },
+        {
+          "id": "B",
+          "text": "High renin"
+        },
+        {
+          "id": "C",
+          "text": "A suppressed parathyroid hormone"
+        },
+        {
+          "id": "D",
+          "text": "An empty marrow"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The under-perfused kidney pours out renin.",
+      "videoTimestamp": "1:36"
+    },
+    {
+      "id": "ep02-q08",
+      "type": "single_best_answer",
+      "stem": "In chronic kidney mineral disease, which pair typically rises together?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Phosphate and parathyroid hormone"
+        },
+        {
+          "id": "B",
+          "text": "Only free water and no ions"
+        },
+        {
+          "id": "C",
+          "text": "Only a low anion gap"
+        },
+        {
+          "id": "D",
+          "text": "Only uric acid visibility on a plain film"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "When the kidney cannot clear phosphate, phosphate rises and parathyroid hormone follows.",
+      "videoTimestamp": "3:45"
+    },
+    {
+      "id": "ep02-q09",
+      "type": "single_best_answer",
+      "stem": "Red-cell casts and modest protein, with a high blood pressure, point first to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A purely nephrotic pattern"
+        },
+        {
+          "id": "B",
+          "text": "A nephritic pattern"
+        },
+        {
+          "id": "C",
+          "text": "Minimal change in a toddler, first thought"
+        },
+        {
+          "id": "D",
+          "text": "A uric acid stone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Blood and red-cell casts are nephritic, not heavy-protein nephrotic disease.",
+      "videoTimestamp": "1:23"
+    },
+    {
+      "id": "ep02-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Minimal change often presents in children and the light microscope can look almost normal."
+        },
+        {
+          "id": "B",
+          "text": "Membranous nephropathy is a classic adult nephrotic pattern with spikes."
+        },
+        {
+          "id": "C",
+          "text": "Uric acid stones always light up on a plain film."
+        },
+        {
+          "id": "D",
+          "text": "Adult and infantile polycystic disease are the same gene at two ages."
+        }
+      ],
+      "keys": [
+        "A",
+        "B"
+      ],
+      "explanation": "Uric acid stones hide on a plain film. Adult and infantile polycystic diseases are different patterns.",
+      "videoTimestamp": "0:47"
+    }
+  ]
+}

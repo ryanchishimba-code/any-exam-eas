@@ -1,0 +1,289 @@
+{
+  "episode": "ep01-acid-base-tubule",
+  "title": "Acid-Base, Potassium, and the Tubule",
+  "video": "quick-bites-usmle-ep01-acid-base-tubule-web.mp4",
+  "questions": [
+    {
+      "id": "ep01-q01",
+      "type": "single_best_answer",
+      "stem": "A patient has a normal serum anion gap and metabolic acidosis. What do you check next?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Urine electrolytes (urine anion gap)"
+        },
+        {
+          "id": "B",
+          "text": "A random growth-hormone level"
+        },
+        {
+          "id": "C",
+          "text": "Nothing; it is always diarrhea"
+        },
+        {
+          "id": "D",
+          "text": "Only the arterial oxygen"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "When the serum anion gap is normal, urine sodium plus potassium minus chloride helps tell gut bicarbonate loss from a renal tubular acidosis.",
+      "videoTimestamp": "4:20"
+    },
+    {
+      "id": "ep01-q02",
+      "type": "single_best_answer",
+      "stem": "Normal-gap acidosis, urine pH 6.8, and a low potassium. What is most likely?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Diarrhea with a kidney that is still answering"
+        },
+        {
+          "id": "B",
+          "text": "Distal type 1 tubular acidosis"
+        },
+        {
+          "id": "C",
+          "text": "Type 4 tubular acidosis"
+        },
+        {
+          "id": "D",
+          "text": "A high-gap ketoacidosis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Type 1 cannot acidify; the urine stays above 5.5, and potassium is low. Type 4 raises potassium.",
+      "videoTimestamp": "3:26"
+    },
+    {
+      "id": "ep01-q03",
+      "type": "single_best_answer",
+      "stem": "You want to lower urine calcium. Which diuretic?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A loop diuretic"
+        },
+        {
+          "id": "B",
+          "text": "A thiazide"
+        },
+        {
+          "id": "C",
+          "text": "Acetazolamide"
+        },
+        {
+          "id": "D",
+          "text": "Spironolactone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Thiazides save calcium. Loops waste it.",
+      "videoTimestamp": "3:54"
+    },
+    {
+      "id": "ep01-q04",
+      "type": "single_best_answer",
+      "stem": "Where do loop diuretics work?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Proximal tubule only"
+        },
+        {
+          "id": "B",
+          "text": "Thick ascending limb"
+        },
+        {
+          "id": "C",
+          "text": "Cortical collecting duct only"
+        },
+        {
+          "id": "D",
+          "text": "The bladder"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Loops block the cotransporter in the thick ascending limb.",
+      "videoTimestamp": "1:22"
+    },
+    {
+      "id": "ep01-q05",
+      "type": "single_best_answer",
+      "stem": "A serum potassium of 2.4 mmol/L is classified as:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Normal"
+        },
+        {
+          "id": "B",
+          "text": "Mild"
+        },
+        {
+          "id": "C",
+          "text": "Severe"
+        },
+        {
+          "id": "D",
+          "text": "Not a potassium problem"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "A commonly used floor of normal is 3.5 mmol/L; under 2.5 mmol/L is severe.",
+      "videoTimestamp": "2:40"
+    },
+    {
+      "id": "ep01-q06",
+      "type": "single_best_answer",
+      "stem": "Low calcium is most likely to show which electrocardiogram change?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A shortened recovery interval"
+        },
+        {
+          "id": "B",
+          "text": "A prolonged recovery interval"
+        },
+        {
+          "id": "C",
+          "text": "No electrical change ever"
+        },
+        {
+          "id": "D",
+          "text": "Only a peaked T wave"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Hypocalcemia prolongs the QT / recovery interval and can twitch the face.",
+      "videoTimestamp": "2:50"
+    },
+    {
+      "id": "ep01-q07",
+      "type": "single_best_answer",
+      "stem": "Euvolemic low sodium with concentrated urine best fits:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Diabetes insipidus"
+        },
+        {
+          "id": "B",
+          "text": "The syndrome of inappropriate antidiuretic hormone"
+        },
+        {
+          "id": "C",
+          "text": "A simple water deficit with high sodium"
+        },
+        {
+          "id": "D",
+          "text": "Type 4 tubular acidosis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That syndrome is euvolemic hyponatremia with urine that is not dilute.",
+      "videoTimestamp": "2:11"
+    },
+    {
+      "id": "ep01-q08",
+      "type": "single_best_answer",
+      "stem": "High sodium and dilute urine in a thirsty patient best fits:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The syndrome of inappropriate antidiuretic hormone"
+        },
+        {
+          "id": "B",
+          "text": "Diabetes insipidus"
+        },
+        {
+          "id": "C",
+          "text": "Type 1 tubular acidosis"
+        },
+        {
+          "id": "D",
+          "text": "A loop-diuretic calcium-sparing effect"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Diabetes insipidus cannot hold water, so the urine stays dilute while the serum is concentrated.",
+      "videoTimestamp": "2:06"
+    },
+    {
+      "id": "ep01-q09",
+      "type": "single_best_answer",
+      "stem": "Respiratory acidosis is first of all a problem of:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Too little inspired oxygen alone"
+        },
+        {
+          "id": "B",
+          "text": "Ventilation (not blowing off carbon dioxide)"
+        },
+        {
+          "id": "C",
+          "text": "A low bicarbonate from diarrhea"
+        },
+        {
+          "id": "D",
+          "text": "A high anion gap from ketones"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A high carbon dioxide means the patient is not ventilating enough. Extra oxygen does not blow off carbon dioxide.",
+      "videoTimestamp": "3:04"
+    },
+    {
+      "id": "ep01-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements about a normal-gap acidosis are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A negative urine anion gap suggests the kidney is answering, so think gut loss."
+        },
+        {
+          "id": "B",
+          "text": "A positive urine anion gap suggests the kidney is not answering."
+        },
+        {
+          "id": "C",
+          "text": "Every normal-gap acidosis is type 4 tubular acidosis."
+        },
+        {
+          "id": "D",
+          "text": "The serum anion gap uses sodium, chloride, and bicarbonate."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A negative urine gap points to gut loss; a positive gap points to a tubular acidosis. Type 4 is only one of several causes.",
+      "videoTimestamp": "0:33"
+    }
+  ]
+}

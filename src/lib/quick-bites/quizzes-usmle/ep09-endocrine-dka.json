@@ -1,0 +1,289 @@
+{
+  "episode": "ep09-endocrine-dka",
+  "title": "Adrenal, Pituitary, and Ketoacidosis",
+  "video": "quick-bites-usmle-ep09-endocrine-dka-web.mp4",
+  "questions": [
+    {
+      "id": "ep09-q01",
+      "type": "single_best_answer",
+      "stem": "Low cortisol, high corticotropin, and dark skin. Where is the failure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In the adrenal gland itself (primary)"
+        },
+        {
+          "id": "B",
+          "text": "In the pituitary, which would raise corticotropin"
+        },
+        {
+          "id": "C",
+          "text": "Only in the distal tubule"
+        },
+        {
+          "id": "D",
+          "text": "Only in the placenta"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Primary adrenal failure raises corticotropin and can darken the skin. A pituitary cause would not.",
+      "videoTimestamp": "3:41"
+    },
+    {
+      "id": "ep09-q02",
+      "type": "single_best_answer",
+      "stem": "The best first lab when you suspect acromegaly is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A single random growth-hormone level"
+        },
+        {
+          "id": "B",
+          "text": "Insulin-like growth factor one"
+        },
+        {
+          "id": "C",
+          "text": "A prolactin only, and stop there"
+        },
+        {
+          "id": "D",
+          "text": "A thyroid-stimulating hormone, and stop there"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Growth hormone pulses. The growth factor does not.",
+      "videoTimestamp": "0:54"
+    },
+    {
+      "id": "ep09-q03",
+      "type": "single_best_answer",
+      "stem": "Diabetic ketoacidosis, potassium 3.1. First move?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start insulin now, and fix potassium later"
+        },
+        {
+          "id": "B",
+          "text": "Replete potassium before insulin"
+        },
+        {
+          "id": "C",
+          "text": "Stop all fluids"
+        },
+        {
+          "id": "D",
+          "text": "Treat only until the sugar is normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "If potassium is under 3.5, fix it first. Treat until the ketoacidosis is gone, not just until the sugar falls.",
+      "videoTimestamp": "3:13"
+    },
+    {
+      "id": "ep09-q04",
+      "type": "single_best_answer",
+      "stem": "A high prolactin should first prompt you to exclude:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pregnancy and drugs"
+        },
+        {
+          "id": "B",
+          "text": "Only a uric acid stone"
+        },
+        {
+          "id": "C",
+          "text": "Only a lens-shaped bleed"
+        },
+        {
+          "id": "D",
+          "text": "Only a 3-hertz absence pattern"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A high prolactin is high until pregnancy and drugs are excluded.",
+      "videoTimestamp": "1:02"
+    },
+    {
+      "id": "ep09-q05",
+      "type": "single_best_answer",
+      "stem": "A long-standing high thyroid-stimulating hormone can:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Enlarge the pituitary, so a sellar mass is not always a primary tumor"
+        },
+        {
+          "id": "B",
+          "text": "Never affect the sella"
+        },
+        {
+          "id": "C",
+          "text": "Always cause a lens-shaped epidural bleed"
+        },
+        {
+          "id": "D",
+          "text": "Always raise uric acid stones"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Thyrotroph hyperplasia can mimic a tumor.",
+      "videoTimestamp": "1:06"
+    },
+    {
+      "id": "ep09-q06",
+      "type": "single_best_answer",
+      "stem": "The ovulatory-cycle order is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Progesterone first, then a follicle, with no estrogen"
+        },
+        {
+          "id": "B",
+          "text": "Follicle growth, estrogen, a luteinizing surge, then progesterone"
+        },
+        {
+          "id": "C",
+          "text": "Only a random growth-hormone pulse"
+        },
+        {
+          "id": "D",
+          "text": "Only a high anion gap"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Keep that order straight.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep09-q07",
+      "type": "single_best_answer",
+      "stem": "In diabetic ketoacidosis, treatment should continue until:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The sugar falls, even if ketones remain"
+        },
+        {
+          "id": "B",
+          "text": "The ketoacidosis itself is gone, not just the sugar"
+        },
+        {
+          "id": "C",
+          "text": "The first bag of fluid is hung, then stop"
+        },
+        {
+          "id": "D",
+          "text": "The prolactin is normal"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The gap and the ketones tell you when you are done.",
+      "videoTimestamp": "3:35"
+    },
+    {
+      "id": "ep09-q08",
+      "type": "single_best_answer",
+      "stem": "If an adrenal enzyme is blocked, the useful questions are:",
+      "options": [
+        {
+          "id": "A",
+          "text": "What hormone is missing, and what is piling up?"
+        },
+        {
+          "id": "B",
+          "text": "Only whether the stone is radiolucent"
+        },
+        {
+          "id": "C",
+          "text": "Only the FEV1 ratio"
+        },
+        {
+          "id": "D",
+          "text": "Only the middle-meningeal artery"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Follow the pile-up, and the enzyme declares itself.",
+      "videoTimestamp": "0:32"
+    },
+    {
+      "id": "ep09-q09",
+      "type": "single_best_answer",
+      "stem": "A pituitary cause of low cortisol would typically have:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A high corticotropin and bronze skin"
+        },
+        {
+          "id": "B",
+          "text": "A low corticotropin, without that bronze skin"
+        },
+        {
+          "id": "C",
+          "text": "Always a high anion-gap ketoacidosis"
+        },
+        {
+          "id": "D",
+          "text": "Always a lens-shaped bleed"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Both hormones are low, and the skin does not bronze from this.",
+      "videoTimestamp": "0:10"
+    },
+    {
+      "id": "ep09-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary adrenal failure: low cortisol, high corticotropin, skin can darken."
+        },
+        {
+          "id": "B",
+          "text": "Screen acromegaly with a random growth-hormone level only."
+        },
+        {
+          "id": "C",
+          "text": "If potassium is under 3.5 in ketoacidosis, replete it before insulin."
+        },
+        {
+          "id": "D",
+          "text": "Exclude pregnancy and drugs before chasing a high prolactin."
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "Acromegaly is screened with insulin-like growth factor one, because growth hormone pulses.",
+      "videoTimestamp": "3:41"
+    }
+  ]
+}

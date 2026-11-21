@@ -1,0 +1,289 @@
+{
+  "episode": "ep08-heart",
+  "title": "Heart Failure, Murmurs, and a Long QT",
+  "video": "quick-bites-usmle-ep08-heart-web.mp4",
+  "questions": [
+    {
+      "id": "ep08-q01",
+      "type": "single_best_answer",
+      "stem": "A murmur gets louder when the patient stands. Most likely?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ordinary aortic stenosis"
+        },
+        {
+          "id": "B",
+          "text": "A thick-septum obstruction or a mitral click-and-leak"
+        },
+        {
+          "id": "C",
+          "text": "A normal flow murmur that always rises"
+        },
+        {
+          "id": "D",
+          "text": "Coarctation of the aorta"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Those two get louder with less blood in the heart. Most other murmurs get softer.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep08-q02",
+      "type": "single_best_answer",
+      "stem": "Sudden tearing chest pain and unmatched arm pressures suggest:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A simple filling failure"
+        },
+        {
+          "id": "B",
+          "text": "Aortic dissection"
+        },
+        {
+          "id": "C",
+          "text": "Typical flutter at the isthmus"
+        },
+        {
+          "id": "D",
+          "text": "A murmur that softens with standing"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A dissection is a tear, and the pressures may not match.",
+      "videoTimestamp": "2:19"
+    },
+    {
+      "id": "ep08-q03",
+      "type": "single_best_answer",
+      "stem": "A dilated chamber with a low ejection fraction is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A filling-failure / stiff-chamber pattern"
+        },
+        {
+          "id": "B",
+          "text": "A systolic squeeze-failure pattern"
+        },
+        {
+          "id": "C",
+          "text": "Always a coarctation"
+        },
+        {
+          "id": "D",
+          "text": "Always a flutter circuit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The blood cannot get out.",
+      "videoTimestamp": "1:31"
+    },
+    {
+      "id": "ep08-q04",
+      "type": "single_best_answer",
+      "stem": "A stiff chamber whose squeeze still looks preserved is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A filling problem"
+        },
+        {
+          "id": "B",
+          "text": "Always a ventricular septal defect"
+        },
+        {
+          "id": "C",
+          "text": "Always hemophilia A"
+        },
+        {
+          "id": "D",
+          "text": "A 3-hertz absence pattern"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The blood cannot get in.",
+      "videoTimestamp": "1:31"
+    },
+    {
+      "id": "ep08-q05",
+      "type": "single_best_answer",
+      "stem": "A boot-shaped heart and a spell that eases with squatting suggest:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Tetralogy of Fallot"
+        },
+        {
+          "id": "B",
+          "text": "A simple transudative effusion"
+        },
+        {
+          "id": "C",
+          "text": "Minimal change disease"
+        },
+        {
+          "id": "D",
+          "text": "Type 1 tubular acidosis"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Squatting raises body pressure and can send more blood to the lungs.",
+      "videoTimestamp": "1:38"
+    },
+    {
+      "id": "ep08-q06",
+      "type": "single_best_answer",
+      "stem": "A blood pressure the legs do not share suggests:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Coarctation"
+        },
+        {
+          "id": "B",
+          "text": "A simple mitral click only"
+        },
+        {
+          "id": "C",
+          "text": "Folate deficiency"
+        },
+        {
+          "id": "D",
+          "text": "An absence stare"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Check the arms and the legs.",
+      "videoTimestamp": "1:48"
+    },
+    {
+      "id": "ep08-q07",
+      "type": "single_best_answer",
+      "stem": "Typical flutter uses a loop at the:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cavotricuspid isthmus"
+        },
+        {
+          "id": "B",
+          "text": "Distal tubule only"
+        },
+        {
+          "id": "C",
+          "text": "Placenta"
+        },
+        {
+          "id": "D",
+          "text": "Substantia nigra"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The narrow path between the vena cava and the tricuspid valve.",
+      "videoTimestamp": "1:53"
+    },
+    {
+      "id": "ep08-q08",
+      "type": "single_best_answer",
+      "stem": "A long recovery interval can pause and then start:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A twisting torsades rhythm"
+        },
+        {
+          "id": "B",
+          "text": "A 3-hertz absence stare only"
+        },
+        {
+          "id": "C",
+          "text": "A uric acid stone"
+        },
+        {
+          "id": "D",
+          "text": "Minimal change disease"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "A long QT can twist into torsades.",
+      "videoTimestamp": "2:01"
+    },
+    {
+      "id": "ep08-q09",
+      "type": "single_best_answer",
+      "stem": "An empty tank, a failed pump, and vessels opened too wide are the three:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Shock profiles"
+        },
+        {
+          "id": "B",
+          "text": "Complement pathways"
+        },
+        {
+          "id": "C",
+          "text": "Adrenal enzyme blocks"
+        },
+        {
+          "id": "D",
+          "text": "Stone types on a plain film"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The exam and the numbers tell you which.",
+      "videoTimestamp": "2:08"
+    },
+    {
+      "id": "ep08-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Most murmurs soften when you stand."
+        },
+        {
+          "id": "B",
+          "text": "A thick-septum obstruction can get louder when you stand."
+        },
+        {
+          "id": "C",
+          "text": "A dissection is a pump-failure murmur clinic problem, not a tear."
+        },
+        {
+          "id": "D",
+          "text": "Arm and leg pressures can split in coarctation."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A dissection is a tear in the wall, not a simple murmur-clinic problem.",
+      "videoTimestamp": "0:17"
+    }
+  ]
+}

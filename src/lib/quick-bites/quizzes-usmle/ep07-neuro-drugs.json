@@ -1,0 +1,289 @@
+{
+  "episode": "ep07-neuro-drugs",
+  "title": "Slow Nerves and Dangerous Drugs",
+  "video": "quick-bites-usmle-ep07-neuro-drugs-web.mp4",
+  "questions": [
+    {
+      "id": "ep07-q01",
+      "type": "single_best_answer",
+      "stem": "A child stares for seconds, then is back, with no postictal state. Think:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A long postictal convulsion"
+        },
+        {
+          "id": "B",
+          "text": "A 3-hertz absence seizure"
+        },
+        {
+          "id": "C",
+          "text": "Alzheimer disease"
+        },
+        {
+          "id": "D",
+          "text": "Parkinson disease"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Absence comes right back. There is no postictal state.",
+      "videoTimestamp": "0:45"
+    },
+    {
+      "id": "ep07-q02",
+      "type": "single_best_answer",
+      "stem": "Gait first, then bladder, then thinking, with large ventricles. Think:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Typical Alzheimer at the start"
+        },
+        {
+          "id": "B",
+          "text": "Normal-pressure hydrocephalus"
+        },
+        {
+          "id": "C",
+          "text": "A substantia nigra tremor alone"
+        },
+        {
+          "id": "D",
+          "text": "A simple absence stare"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Gait, bladder, then mind is the hydrocephalus order.",
+      "videoTimestamp": "2:52"
+    },
+    {
+      "id": "ep07-q03",
+      "type": "single_best_answer",
+      "stem": "Fever, lead-pipe rigidity, and slow reflexes after an antipsychotic is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Neuroleptic malignant syndrome"
+        },
+        {
+          "id": "B",
+          "text": "A typical absence stare"
+        },
+        {
+          "id": "C",
+          "text": "Alzheimer disease at onset"
+        },
+        {
+          "id": "D",
+          "text": "A 3-hertz spike only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Neuroleptic malignant syndrome is rigid and slow.",
+      "videoTimestamp": "0:09"
+    },
+    {
+      "id": "ep07-q04",
+      "type": "single_best_answer",
+      "stem": "Parkinson disease is a problem of the:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Substantia nigra"
+        },
+        {
+          "id": "B",
+          "text": "Cavotricuspid isthmus"
+        },
+        {
+          "id": "C",
+          "text": "Distal tubule only"
+        },
+        {
+          "id": "D",
+          "text": "Placenta"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Parkinson disease starts in the substantia nigra.",
+      "videoTimestamp": "0:19"
+    },
+    {
+      "id": "ep07-q05",
+      "type": "single_best_answer",
+      "stem": "Multiple sclerosis is classically separated in:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Time and space"
+        },
+        {
+          "id": "B",
+          "text": "Only one second of one day"
+        },
+        {
+          "id": "C",
+          "text": "The collecting duct only"
+        },
+        {
+          "id": "D",
+          "text": "The placenta only"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "More than one episode, more than one place in the central nervous system.",
+      "videoTimestamp": "0:26"
+    },
+    {
+      "id": "ep07-q06",
+      "type": "single_best_answer",
+      "stem": "Guillain-Barr\u00e9 typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Climbs from the legs, and spinal-fluid protein may rise later with a quiet cell count"
+        },
+        {
+          "id": "B",
+          "text": "Starts as a 3-hertz absence stare"
+        },
+        {
+          "id": "C",
+          "text": "Is a substantia nigra rest tremor"
+        },
+        {
+          "id": "D",
+          "text": "Is a lens-shaped epidural bleed"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "It climbs, often after an infection, with later high protein in the spinal fluid.",
+      "videoTimestamp": "0:38"
+    },
+    {
+      "id": "ep07-q07",
+      "type": "single_best_answer",
+      "stem": "Alzheimer disease typically starts with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A sudden deficit"
+        },
+        {
+          "id": "B",
+          "text": "Gradual memory loss"
+        },
+        {
+          "id": "C",
+          "text": "A magnetic gait as the very first and only clue in every case"
+        },
+        {
+          "id": "D",
+          "text": "A 3-hertz absence stare"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "It starts with memory, slowly, not with a sudden deficit.",
+      "videoTimestamp": "0:50"
+    },
+    {
+      "id": "ep07-q08",
+      "type": "single_best_answer",
+      "stem": "Lithium is notable for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A wide, forgiving window and no kidney effect"
+        },
+        {
+          "id": "B",
+          "text": "A narrow window, and it can waste water through the kidney"
+        },
+        {
+          "id": "C",
+          "text": "Always causing a 3-hertz absence pattern"
+        },
+        {
+          "id": "D",
+          "text": "Curing tardive movements overnight"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A little too much is already too much, and it can cause nephrogenic water wasting.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "ep07-q09",
+      "type": "single_best_answer",
+      "stem": "Tardive dyskinesia:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always stops the moment the drug is stopped"
+        },
+        {
+          "id": "B",
+          "text": "Can outlast the drug, with the face and tongue still moving"
+        },
+        {
+          "id": "C",
+          "text": "Is a 3-hertz absence stare"
+        },
+        {
+          "id": "D",
+          "text": "Is a lens-shaped bleed"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stopping the drug does not always stop the motion.",
+      "videoTimestamp": "2:02"
+    },
+    {
+      "id": "ep07-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Absence seizures lack a postictal state."
+        },
+        {
+          "id": "B",
+          "text": "Normal-pressure hydrocephalus often starts with gait."
+        },
+        {
+          "id": "C",
+          "text": "Neuroleptic malignant syndrome is twitchy, with very quick reflexes."
+        },
+        {
+          "id": "D",
+          "text": "Multiple sclerosis is separated in time and space."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Neuroleptic malignant syndrome is rigid and slow, not twitchy and fast.",
+      "videoTimestamp": "0:26"
+    }
+  ]
+}

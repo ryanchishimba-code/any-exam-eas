@@ -75,6 +75,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
+    "/api/quick-bites-usmle/[slug]/quiz": ["./src/lib/quick-bites/quizzes-usmle/**/*"],
     "/api/pance-feed/cards": ["./content/pance-feed/**/*"],
     "/api/pance-feed/cards/[id]": ["./content/pance-feed/**/*"],
     "/api/study-feed/[exam]/cards": [
@@ -236,13 +237,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...retiredStudyRedirects(),
-      // Edge 308 before the app shell. A page-level permanentRedirect streams
-      // as a client replace (HTTP 200) because the layout has already started.
-      {
-        source: "/usmle/quick-bites",
-        destination: "/usmle/rapid-review",
-        statusCode: 308,
-      },
       {
         source: "/npte",
         destination: "/npte-pt",

@@ -17,7 +17,13 @@ import { ROUTES } from "@/lib/routes";
  * posters; playback of every episode except the board's fixed free sample
  * stays on the paid check inside the section.
  */
-export async function QuickBitesPage({ exam }: { exam: QuickBiteExam }) {
+export async function QuickBitesPage({
+  exam,
+  previewNote,
+}: {
+  exam: QuickBiteExam;
+  previewNote?: string;
+}) {
   const board = QUICK_BITE_BOARDS[exam];
   const session = await getCachedSession();
   if (!session?.user?.id) {
@@ -36,6 +42,9 @@ export async function QuickBitesPage({ exam }: { exam: QuickBiteExam }) {
 
   return (
     <div className="dashboard-ui mx-auto w-full min-w-0 max-w-5xl">
+      {previewNote ? (
+        <p className="mb-3 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">{previewNote}</p>
+      ) : null}
       <VideoQuickBitesSection
         series={board.series}
         titleAs="h1"

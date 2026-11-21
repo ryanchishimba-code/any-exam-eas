@@ -1,0 +1,289 @@
+{
+  "episode": "ep03-lungs",
+  "title": "Lungs That Will Not Oxygenate",
+  "video": "quick-bites-usmle-ep03-lungs-web.mp4",
+  "questions": [
+    {
+      "id": "ep03-q01",
+      "type": "single_best_answer",
+      "stem": "Oxygen is on, but the saturation will not rise. This is most consistent with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A simple ventilation problem that always fixes with a higher oxygen flow alone"
+        },
+        {
+          "id": "B",
+          "text": "A shunt, because blood is skipping the air sacs"
+        },
+        {
+          "id": "C",
+          "text": "A fully reversible ratio"
+        },
+        {
+          "id": "D",
+          "text": "A transudative malignant effusion"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "In a shunt, blood skips the air sacs, so added oxygen cannot reach it.",
+      "videoTimestamp": "1:10"
+    },
+    {
+      "id": "ep03-q02",
+      "type": "single_best_answer",
+      "stem": "After a bronchodilator, the ratio stays at 0.62. This supports:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fully reversible asthma only"
+        },
+        {
+          "id": "B",
+          "text": "Chronic obstructive pulmonary disease"
+        },
+        {
+          "id": "C",
+          "text": "A plain film is enough to confirm it"
+        },
+        {
+          "id": "D",
+          "text": "A shunt, because oxygen will not help"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "GOLD 2027 confirms COPD with a post-bronchodilator ratio under 0.7.",
+      "videoTimestamp": "2:49"
+    },
+    {
+      "id": "ep03-q03",
+      "type": "single_best_answer",
+      "stem": "Both lungs are wet, oxygen is low, and left-atrial pressure is not the cause. This is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Simple left-heart failure"
+        },
+        {
+          "id": "B",
+          "text": "Acute respiratory distress syndrome"
+        },
+        {
+          "id": "C",
+          "text": "A transudative malignant effusion"
+        },
+        {
+          "id": "D",
+          "text": "A completely reversible ratio"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Acute respiratory distress: wet lungs and low oxygen, and the left atrium is not the cause.",
+      "videoTimestamp": "1:17"
+    },
+    {
+      "id": "ep03-q04",
+      "type": "single_best_answer",
+      "stem": "Basal velcro-like crackles and slow scarring, with a quiet exposure history, first suggest:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hypersensitivity pneumonitis from a barn or birds"
+        },
+        {
+          "id": "B",
+          "text": "Idiopathic pulmonary fibrosis"
+        },
+        {
+          "id": "C",
+          "text": "A simple transudate"
+        },
+        {
+          "id": "D",
+          "text": "A fully reversible ratio"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Idiopathic fibrosis crackles at the bases and may have a quiet history. Hypersensitivity is the place the patient breathes.",
+      "videoTimestamp": "1:53"
+    },
+    {
+      "id": "ep03-q05",
+      "type": "single_best_answer",
+      "stem": "A lung disease tightly tied to the place the patient breathes is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hypersensitivity pneumonitis"
+        },
+        {
+          "id": "B",
+          "text": "A simple transudative effusion"
+        },
+        {
+          "id": "C",
+          "text": "A boot-shaped heart"
+        },
+        {
+          "id": "D",
+          "text": "Type 1 tubular acidosis"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Ask about the barn, the birds, the hobby.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep03-q06",
+      "type": "single_best_answer",
+      "stem": "A malignant pleural effusion should be treated as:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A simple transudate until proven otherwise"
+        },
+        {
+          "id": "B",
+          "text": "An exudate until the cells say otherwise"
+        },
+        {
+          "id": "C",
+          "text": "Always a shunt"
+        },
+        {
+          "id": "D",
+          "text": "Always fully reversible obstruction"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not call it a simple transudate and stop looking.",
+      "videoTimestamp": "2:08"
+    },
+    {
+      "id": "ep03-q07",
+      "type": "single_best_answer",
+      "stem": "The GOLD 2027 diagnostic cutoff for chronic obstructive pulmonary disease is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A pre-bronchodilator ratio under 1.0 only"
+        },
+        {
+          "id": "B",
+          "text": "A post-bronchodilator ratio under 0.7"
+        },
+        {
+          "id": "C",
+          "text": "A chest film alone"
+        },
+        {
+          "id": "D",
+          "text": "A saturation that always rises with oxygen"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Post-bronchodilator FEV1/FVC < 0.7 is mandatory to confirm the diagnosis in GOLD 2027.",
+      "videoTimestamp": "3:32"
+    },
+    {
+      "id": "ep03-q08",
+      "type": "single_best_answer",
+      "stem": "Helping a patient breathe can fix which problem more readily than a true shunt?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Blood that never sees the air sacs"
+        },
+        {
+          "id": "B",
+          "text": "A ventilation problem (not breathing enough)"
+        },
+        {
+          "id": "C",
+          "text": "A malignant exudate"
+        },
+        {
+          "id": "D",
+          "text": "Basal fibrosis crackles"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A ventilation problem can improve when you help the patient breathe.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep03-q09",
+      "type": "single_best_answer",
+      "stem": "The key distinction of acute respiratory distress versus simple heart-failure fluid is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The left atrium is not the cause"
+        },
+        {
+          "id": "B",
+          "text": "The ratio always reverses fully"
+        },
+        {
+          "id": "C",
+          "text": "The effusion is always a transudate"
+        },
+        {
+          "id": "D",
+          "text": "Oxygen saturation always rises easily"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The left atrium is not the cause.",
+      "videoTimestamp": "3:37"
+    },
+    {
+      "id": "ep03-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A shunt routes blood past the air sacs, so added oxygen may not raise the saturation."
+        },
+        {
+          "id": "B",
+          "text": "COPD is confirmed by a post-bronchodilator ratio that stays under 0.7."
+        },
+        {
+          "id": "C",
+          "text": "A malignant effusion is a simple transudate until proven otherwise."
+        },
+        {
+          "id": "D",
+          "text": "Hypersensitivity pneumonitis is linked to an inhaled exposure."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A malignant effusion is an exudate until cytology says otherwise.",
+      "videoTimestamp": "1:10"
+    }
+  ]
+}

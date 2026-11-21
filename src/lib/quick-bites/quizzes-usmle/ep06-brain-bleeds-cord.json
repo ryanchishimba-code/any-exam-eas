@@ -1,0 +1,289 @@
+{
+  "episode": "ep06-brain-bleeds-cord",
+  "title": "Blood in the Head, a Cut in the Cord",
+  "video": "quick-bites-usmle-ep06-brain-bleeds-cord-web.mp4",
+  "questions": [
+    {
+      "id": "ep06-q01",
+      "type": "single_best_answer",
+      "stem": "A blow to the temple, a lucid interval, then a crash. The blood is shaped like:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A crescent from bridging veins"
+        },
+        {
+          "id": "B",
+          "text": "A lens (epidural arterial blood)"
+        },
+        {
+          "id": "C",
+          "text": "A simple migraine aura"
+        },
+        {
+          "id": "D",
+          "text": "A boot-shaped heart"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Epidural blood makes a lens and often has a lucid interval.",
+      "videoTimestamp": "2:33"
+    },
+    {
+      "id": "ep06-q02",
+      "type": "single_best_answer",
+      "stem": "A crescent of blood after a fall in an older adult is typically from:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The middle meningeal artery"
+        },
+        {
+          "id": "B",
+          "text": "Bridging veins"
+        },
+        {
+          "id": "C",
+          "text": "A cut in half the cord"
+        },
+        {
+          "id": "D",
+          "text": "A first thought of amyloid in a deep nucleus"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A crescent is subdural blood from bridging veins.",
+      "videoTimestamp": "2:11"
+    },
+    {
+      "id": "ep06-q03",
+      "type": "single_best_answer",
+      "stem": "A ring-enhancing brain lesion that may be an abscess. First move?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Immediate lumbar puncture"
+        },
+        {
+          "id": "B",
+          "text": "Do not start with a spinal tap. Image and protect."
+        },
+        {
+          "id": "C",
+          "text": "Wait for a lucid interval"
+        },
+        {
+          "id": "D",
+          "text": "Treat it as a simple migraine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A lumbar puncture can herniate a tight brain.",
+      "videoTimestamp": "2:41"
+    },
+    {
+      "id": "ep06-q04",
+      "type": "single_best_answer",
+      "stem": "A deep bleed in the basal ganglia of an adult with long-standing high pressure is most often related to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chronic hypertension"
+        },
+        {
+          "id": "B",
+          "text": "A middle-meningeal arterial lens"
+        },
+        {
+          "id": "C",
+          "text": "A simple Bell palsy"
+        },
+        {
+          "id": "D",
+          "text": "Absence seizures"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Deep bleeds often follow chronic high pressure. Lobar bleeds in older adults raise concern for amyloid.",
+      "videoTimestamp": "0:48"
+    },
+    {
+      "id": "ep06-q05",
+      "type": "single_best_answer",
+      "stem": "A lobar surface bleed in an older adult raises concern for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amyloid in the vessels"
+        },
+        {
+          "id": "B",
+          "text": "A purely epidural lens from a temple blow"
+        },
+        {
+          "id": "C",
+          "text": "A uric acid stone"
+        },
+        {
+          "id": "D",
+          "text": "Minimal change disease"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Lobar hemorrhage and amyloid angiopathy go together in older adults.",
+      "videoTimestamp": "3:15"
+    },
+    {
+      "id": "ep06-q06",
+      "type": "single_best_answer",
+      "stem": "If half the cord is cut, pain and temperature are typically lost:",
+      "options": [
+        {
+          "id": "A",
+          "text": "On the same side as the cut"
+        },
+        {
+          "id": "B",
+          "text": "On the opposite side, because those fibers already crossed"
+        },
+        {
+          "id": "C",
+          "text": "Only in the face"
+        },
+        {
+          "id": "D",
+          "text": "Never"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Pain and temperature have already crossed. Weakness and position sense stay on the same side.",
+      "videoTimestamp": "1:04"
+    },
+    {
+      "id": "ep06-q07",
+      "type": "single_best_answer",
+      "stem": "A small pupil, a droopy lid, and a dry face on one side describe:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Horner syndrome"
+        },
+        {
+          "id": "B",
+          "text": "A typical central forehead-sparing picture only"
+        },
+        {
+          "id": "C",
+          "text": "A crescent subdural"
+        },
+        {
+          "id": "D",
+          "text": "Absence seizure"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Horner syndrome is a sympathetic cut.",
+      "videoTimestamp": "1:46"
+    },
+    {
+      "id": "ep06-q08",
+      "type": "single_best_answer",
+      "stem": "A facial palsy that includes the forehead is typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A peripheral (Bell) lesion"
+        },
+        {
+          "id": "B",
+          "text": "Always a central lesion that spares the forehead"
+        },
+        {
+          "id": "C",
+          "text": "A shunt"
+        },
+        {
+          "id": "D",
+          "text": "A uric acid stone"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Bell palsy includes the forehead. A typical central lesion spares it.",
+      "videoTimestamp": "1:54"
+    },
+    {
+      "id": "ep06-q09",
+      "type": "single_best_answer",
+      "stem": "Epidural blood is typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Arterial, lens-shaped, and can crash fast"
+        },
+        {
+          "id": "B",
+          "text": "Venous, crescent-shaped, and always slow"
+        },
+        {
+          "id": "C",
+          "text": "A ring-enhancing abscess"
+        },
+        {
+          "id": "D",
+          "text": "A 3-hertz absence pattern"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Epidural: lens, often a lucid interval, arterial.",
+      "videoTimestamp": "1:33"
+    },
+    {
+      "id": "ep06-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Epidural blood is typically a lens."
+        },
+        {
+          "id": "B",
+          "text": "Subdural blood is typically a crescent from bridging veins."
+        },
+        {
+          "id": "C",
+          "text": "A suspected brain abscess should start with a lumbar puncture."
+        },
+        {
+          "id": "D",
+          "text": "Half-cord injury has weakness on the same side and pain on the opposite side."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Do not start with a spinal tap when a ring-enhancing abscess is the concern.",
+      "videoTimestamp": "2:33"
+    }
+  ]
+}
