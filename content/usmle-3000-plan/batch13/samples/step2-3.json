@@ -1,0 +1,24 @@
+{
+  "id": "b13-s2-42",
+  "fieldId": "usmle-step-2",
+  "stepLevel": "step2",
+  "outlineSystem": "behavioral-nervous",
+  "outlineWeight": 12,
+  "blueprintTopic": "ischemic-stroke",
+  "blueprintDomain": "behavioral-nervous",
+  "difficulty": 3,
+  "subjectId": "neurology",
+  "examTakeaway": "Thrombolysis is not given until blood pressure is below 185/110 mm Hg. A pressure of 200/120 has to come down first.",
+  "scenario": "A 66-year-old man was last known well 90 minutes ago. He has aphasia and a right-arm drift. CT shows no hemorrhage. Blood pressure is 200/120 mm Hg. A colleague draws up alteplase and says the clock matters more than the pressure.",
+  "question": "What has to happen to the pressure before alteplase?",
+  "options": [
+    "Give alteplase now. The window overrides any pressure",
+    "Lower it below 185/110 mm Hg first. Do not give the drug at 200/120",
+    "Lower the pressure below 120/70 and then wait until the next day",
+    "Start heparin instead, because the pressure is high",
+    "No treatment of pressure or clot because 90 minutes is too late"
+  ],
+  "correctAnswer": "Lower it below 185/110 mm Hg first. Do not give the drug at 200/120",
+  "explanation": "Thrombolysis is not given until blood pressure is below 185/110 mm Hg. A pressure of 200/120 has to come down first. Ninety minutes is still inside the window, so the pressure is treated and the drug is not given at this number. 2019 AHA/ASA Guidelines for the Early Management of Acute Ischemic Stroke, which remain the AHA/ASA source for the blood-pressure limit before thrombolysis and for antiplatelet timing.\n\nLower it below 185/110 mm Hg first. Do not give the drug at 200/120\nGive alteplase now. The window overrides any pressure \u2014 The pressure limit is a condition of giving the drug, not a detail the clock erases.\nLower the pressure below 120/70 and then wait until the next day \u2014 The target before treatment is below 185/110, not below 120, and the window should not be spent waiting until tomorrow.\nStart heparin instead, because the pressure is high \u2014 Heparin is not the substitute for a patient who may still receive thrombolysis.\nNo treatment of pressure or clot because 90 minutes is too late \u2014 Ninety minutes is early. The barrier is the pressure, not the clock.",
+  "citation": "2019 AHA/ASA Guidelines for the Early Management of Acute Ischemic Stroke, which remain the AHA/ASA source for the blood-pressure limit before thrombolysis and for antiplatelet timing."
+}
