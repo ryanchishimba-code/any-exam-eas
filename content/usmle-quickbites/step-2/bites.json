@@ -3184,10 +3184,10 @@
     "diagram": "preg-140",
     "diagramAlt": "Blood pressure in pregnancy. Chronic HTN: treat at 140/90 Severe: 160 or 110, treat within minutes Magnesium prevents seizures. It is not the BP drug",
     "source": {
-      "name": "ACOG Practice Advisory. Chronic Hypertension and Pregnancy (CHAP).",
+      "name": "ACOG Practice Advisory. Clinical Guidance for the Integration of the Findings of the Chronic Hypertension and Pregnancy (CHAP) Study.",
       "year": "2022",
       "url": "https://www.acog.org/clinical/guidance/practice-advisory/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study",
-      "says": "ACOG recommends 140/90 mm Hg as the threshold to start or titrate treatment for chronic hypertension in pregnancy."
+      "says": "ACOG recommends using 140/90 as the threshold for initiation or titration of medical therapy for chronic hypertension in pregnancy, rather than the previously recommended threshold of 160/110. The CHAP study used a threshold for treatment and did not establish a goal blood pressure."
     },
     "open": false
   },
@@ -3210,10 +3210,16 @@
     "diagram": "preg-140",
     "diagramAlt": "Blood pressure in pregnancy. Chronic HTN: treat at 140/90 Severe: 160 or 110, treat within minutes Magnesium prevents seizures. It is not the BP drug",
     "source": {
-      "name": "ACOG Practice Bulletin. Gestational Hypertension and Preeclampsia.",
+      "name": "ACOG Practice Bulletin No. 222. Gestational Hypertension and Preeclampsia (reaffirmed 2026).",
       "year": "2020",
-      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/articles/2020/06/gestational-hypertension-and-preeclampsia",
-      "says": "Severe-range blood pressure is treated urgently. Magnesium sulfate is seizure prophylaxis in preeclampsia with severe features, which is the recommendation in ACOG Practice Bulletin. Gestational Hypertension and Preeclampsia."
+      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia",
+      "says": "Antihypertensive treatment should be initiated expeditiously for acute-onset severe hypertension (systolic 160 mm Hg or more or diastolic 110 mm Hg or more) confirmed as persistent for 15 minutes or more, as soon as reasonably possible. Magnesium sulfate should be used for the prevention and treatment of seizures in preeclampsia with severe features or eclampsia.",
+      "more": [
+        {
+          "name": "ACOG. Acute Hypertension in Pregnancy and Postpartum Algorithm (IV labetalol, IV hydralazine, or immediate-release oral nifedipine; give with magnesium sulfate).",
+          "url": "https://dam.acog.org/download/assets/hypertension_algorithm.pdf/11fc319664cd11f1907f969563514075"
+        }
+      ]
     },
     "open": false
   },
@@ -3235,10 +3241,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia and Related Morbidity and Mortality.",
+      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia and Related Morbidity and Mortality: Preventive Medication.",
       "year": "2021",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-preeclampsia-and-related-morbidity-and-mortality",
-      "says": "Low-dose aspirin after 12 weeks is recommended for pregnant people at high risk of preeclampsia."
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
+      "says": "The USPSTF recommends low-dose aspirin (81 mg/day) as preventive medication after 12 weeks of gestation in persons at high risk for preeclampsia. High-risk factors are history of preeclampsia, multifetal gestation, kidney disease, autoimmune disease, type 1 or type 2 diabetes, and chronic hypertension."
     },
     "open": false
   },
@@ -3246,23 +3252,23 @@
     "step": "step-2-ck",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Give insulin in DKA until the gap closes",
+    "title": "Give insulin in DKA until the ketoacidosis resolves",
     "read": "1 min",
     "open": false,
-    "lead": "In diabetic ketoacidosis, continue insulin after the glucose falls and add dextrose. Stop insulin when the gap has closed and the patient is eating, not when the glucose first looks pretty.",
+    "lead": "In diabetic ketoacidosis, continue insulin after the glucose falls and add dextrose. Stop the drip only when ketones and pH or bicarbonate show resolution and the patient is eating, not when the glucose first looks pretty.",
     "lines": [
       "The 2024 hyperglycemic-crisis guidance is fluids, potassium, and insulin, and bicarbonate is not routine.",
       "An SGLT2 inhibitor can cause ketoacidosis with a glucose that is not very high. Ask about the drug.",
-      "Anion-gap acidosis and ketones. If potassium is under 3.3 mEq/L, replace it before insulin, because insulin will drop the serum potassium."
+      "Anion-gap acidosis and ketones. If potassium is under 3.5 mmol/L, replace it before insulin, because insulin will drop the serum potassium."
     ],
     "miss": "Turning off the insulin drip because the glucose reached 180 while the bicarbonate is still 10.",
-    "diagram": "dka-k",
-    "diagramAlt": "DKA order. Fluid first K under 3.3: replace K before insulin Keep insulin on; add dextrose as glucose falls",
+    "diagram": "dka-k-2024",
+    "diagramAlt": "DKA order. Fluid first K under 3.5: replace K before insulin Keep insulin on; add dextrose as glucose falls",
     "source": {
-      "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.",
+      "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA, EASD, JBDS, AACE, DTS).",
       "year": "2024",
       "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
-      "says": "Insulin continues until ketoacidosis resolves. Dextrose is added when glucose falls so the insulin can keep running."
+      "says": "Once plasma glucose is below 250 mg/dL, fluids should contain 5-10% dextrose. With potassium below 3.5 mmol/L, start potassium replacement and delay insulin until potassium is above 3.5 mmol/L. Routine bicarbonate is not recommended. Resolution is ketones <0.6 mmol/L and pH \u22657.3 or bicarbonate \u226518 mmol/L; the anion gap should not be used."
     },
     "number": 121,
     "id": "usmle-qb-s2-121"
@@ -3285,10 +3291,16 @@
     "diagram": "thyroid-seq",
     "diagramAlt": "Thyroid storm sequence. PTU first. Iodide at least 1 hour later Beta blocker and a glucocorticoid BWPS >=45. No aspirin",
     "source": {
-      "name": "2016 American Thyroid Association guideline for hyperthyroidism and thyrotoxicosis.",
-      "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
-      "says": "Thyroid storm, including a Burch-Wartofsky score of 45 or higher, is treated with a beta blocker, propylthiouracil, iodide given at least 1 hour after the thionamide, and a glucocorticoid. Aspirin is avoided."
+      "name": "StatPearls. Thyroid Storm.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448095/",
+      "says": "An hour after administering propylthiouracil or methimazole, give SSKI; propylthiouracil is favored because it also blocks peripheral conversion of T4 to T3. Hydrocortisone is started, aspirin is avoided, and a Burch-Wartofsky score of 45 or more is more sensitive for thyroid storm.",
+      "more": [
+        {
+          "name": "2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+        }
+      ]
     },
     "number": 122,
     "id": "usmle-qb-s2-122"
@@ -3311,10 +3323,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Endocrine Society guideline. Primary adrenal insufficiency.",
+      "name": "Endocrine Society Clinical Practice Guideline. Diagnosis and Treatment of Primary Adrenal Insufficiency.",
       "year": "2016",
       "url": "https://pubmed.ncbi.nlm.nih.gov/26760044/",
-      "says": "Recommendation 4.1: adrenal crisis is hydrocortisone 100 mg IV, then 200 mg over 24 hours, plus saline. Do not delay that dose for a corticotropin test. Later maintenance is hydrocortisone 15 to 25 mg a day."
+      "says": "Suspected adrenal crisis is treated with an immediate parenteral injection of 100 mg hydrocortisone, fluid resuscitation, and 200 mg hydrocortisone over 24 hours, before diagnostic results are available. Adult maintenance is hydrocortisone 15-25 mg/day in two to three doses with once-daily fludrocortisone (median 0.1 mg), plus a steroid emergency card."
     },
     "number": 123,
     "id": "usmle-qb-s2-123"
@@ -3337,10 +3349,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Endocrine Society guideline. Pheochromocytoma and paraganglioma.",
+      "name": "Endocrine Society Clinical Practice Guideline. Pheochromocytoma and Paraganglioma.",
       "year": "2014",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24893135/",
-      "says": "All patients with a functional pheochromocytoma or paraganglioma should have preoperative blockade. Preparation includes a high-sodium diet and fluid intake to prevent postoperative hypotension."
+      "says": "Initial biochemical testing should include plasma free or urinary fractionated metanephrines, and all positive results require follow-up. All patients with functional tumors should undergo preoperative blockade, with a high-sodium diet and fluid intake to prevent postoperative hypotension."
     },
     "number": 124,
     "id": "usmle-qb-s2-124"
@@ -3363,10 +3375,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ADA Standards of Care in Diabetes\u20142026. Pharmacologic Approaches to Glycemic Treatment.",
+      "name": "ADA Standards of Care in Diabetes\u20142026. 9. Pharmacologic Approaches to Glycemic Treatment.",
       "year": "2026",
       "url": "https://diabetesjournals.org/care/article/49/Supplement_1/S183/163934/9-Pharmacologic-Approaches-to-Glycemic-Treatment",
-      "says": "Agents with proven cardiovascular or kidney benefit are recommended irrespective of A1C when heart failure, chronic kidney disease, or atherosclerotic disease is present."
+      "says": "In type 2 diabetes with established or high risk of ASCVD, HF, or CKD, an SGLT2 inhibitor and/or GLP-1 RA with demonstrated benefit is recommended independent of A1C, with or without metformin. With HF, an SGLT2 inhibitor is recommended irrespective of A1C; with CKD, an SGLT2 inhibitor or GLP-1 RA with demonstrated benefit should be used."
     },
     "number": 125,
     "id": "usmle-qb-s2-125"
@@ -3393,7 +3405,17 @@
       "name": "StatPearls. Prolactinoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459347/",
-      "says": "Hyperprolactinemia is not specific to prolactinoma, and alternative causes such as pregnancy, medications, hypothyroidism, and pituitary stalk effect due to other pituitary tumors should be considered in the differential diagnosis."
+      "says": "Cabergoline is the preferred agent because it more often normalizes prolactin and shrinks the tumor. Formal visual field testing is indicated when chiasmal compression is suspected, and surgery is reserved for intolerance or resistance to dopamine agonists or selected circumstances.",
+      "more": [
+        {
+          "name": "Pituitary Society international Consensus Statement. Diagnosis and management of prolactin-secreting pituitary adenomas (2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37670148/"
+        },
+        {
+          "name": "Endocrine Society Clinical Practice Guideline. Diagnosis and treatment of hyperprolactinemia (2011).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21296991/"
+        }
+      ]
     },
     "number": 126,
     "id": "usmle-qb-s2-126"
@@ -3416,10 +3438,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Endometriosis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK567777/",
-      "says": "Primary cutaneous endometriosis arises without prior surgery, most frequently affecting the umbilicus, also known as \"Villar's nodule.\" The condition typically manifests as a palpable, discolored skin lesion that may fluctuate in size and symptoms, including pain and bleeding over the affected sites on the skin in response to hormonal changes during the menstrual cycle."
+      "name": "ESHRE guideline: endometriosis.",
+      "year": "2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35350465/",
+      "says": "It is recommended to offer women hormone treatment (combined hormonal contraceptives, progestogens, GnRH agonists or GnRH antagonists) to reduce endometriosis-associated pain; NSAIDs or other analgesics may be offered. When operating on an ovarian endometrioma, cystectomy is preferred over drainage and coagulation."
     },
     "number": 127,
     "id": "usmle-qb-s2-127"
@@ -3443,10 +3465,10 @@
     "diagram": "ectopic-choice",
     "diagramAlt": "Ectopic pregnancy. Shock or rupture: operating room Methotrexate only if stable and follow-up is sure Rh-negative: give anti-D",
     "source": {
-      "name": "ACOG Practice Bulletin. Tubal Ectopic Pregnancy.",
+      "name": "ACOG Practice Bulletin No. 193. Tubal Ectopic Pregnancy (reaffirmed 2025).",
       "year": "2018",
       "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy",
-      "says": "A ruptured or unstable ectopic pregnancy is managed surgically. Methotrexate is reserved for a stable patient who meets criteria and can be followed."
+      "says": "Most tubal ectopic pregnancies detected early can be treated with minimally invasive surgery or with methotrexate. A tubal ectopic pregnancy in an unstable patient is a medical emergency that requires prompt surgical intervention."
     },
     "number": 128,
     "id": "usmle-qb-s2-128"
@@ -3469,10 +3491,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "RCOG Green-top Guideline No. 63. Antepartum haemorrhage.",
+      "name": "RCOG Green-top Guideline No. 63. Antepartum Haemorrhage.",
       "year": "2011",
-      "url": "https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/antepartum-haemorrhage-green-top-guideline-no-63/",
-      "says": "Placental abruption is painful bleeding and is managed by maternal resuscitation and a prompt delivery decision. Do not perform a digital examination until placenta previa is excluded."
+      "url": "https://www.rcog.org.uk/media/pwdi1tef/gtg_63.pdf",
+      "says": "If placenta praevia is possible, digital vaginal examination should not be performed until ultrasound has excluded it. With abruption and fetal death, coagulopathy and hypovolaemic shock are not uncommon; in major haemorrhage, send a coagulation screen and cross-match 4 units of blood."
     },
     "number": 129,
     "id": "usmle-qb-s2-129"
@@ -3494,10 +3516,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "RCOG Green-top Guideline No. 27a. Placenta praevia and placenta accreta spectrum.",
+      "name": "RCOG Green-top Guideline No. 27a. Placenta Praevia and Placenta Accreta Spectrum.",
       "year": "2026",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42374711/",
-      "says": "Diagnose placenta previa with ultrasound and do not perform a digital vaginal examination. Plan cesarean delivery if the placenta still covers the internal os. ACOG Committee Opinion 831 is the US timing document for a medically indicated early delivery."
+      "says": "A placenta is recorded as praevia if it covers the internal os, partially or completely. Placenta praevia carries a high risk of emergency caesarean birth and haemorrhage, so birth is arranged in a unit with blood transfusion and critical care. A previous caesarean with a low-lying placenta or praevia means high risk of placenta accreta spectrum."
     },
     "number": 130,
     "id": "usmle-qb-s2-130"
@@ -3520,10 +3542,16 @@
     "diagram": "gdm-baby",
     "diagramAlt": "Infant of a diabetic mother. Glucose crosses. Insulin does not Baby is hyperinsulinemic and can be hypoglycemic Feed early. Check a glucose",
     "source": {
-      "name": "ACOG Practice Bulletin No. 190. Gestational diabetes mellitus.",
-      "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29370047/",
-      "says": "Practice Bulletin 190 is the ACOG management document for gestational diabetes. The PubMed text does not print the diagnostic glucose cutoffs, so this bite does not restate a threshold."
+      "name": "ADA Standards of Care in Diabetes\u20142026. 15. Management of Diabetes in Pregnancy.",
+      "year": "2026",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41358885/",
+      "says": "Lifestyle behavior change may suffice for many with GDM; insulin is the preferred agent for GDM, and no human insulin has been shown to cross the placenta. Individuals with recent GDM are screened at 4-12 weeks postpartum with a 75-g OGTT.",
+      "more": [
+        {
+          "name": "ACOG Practice Bulletin No. 190. Gestational Diabetes Mellitus.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29370047/"
+        }
+      ]
     },
     "number": 131,
     "id": "usmle-qb-s2-131"
@@ -3547,10 +3575,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACC/AHA expert consensus. Cardiovascular effects of sildenafil and recommendations for its use.",
-      "year": "1999",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10503571/",
-      "says": "Nitrate antianginal agents are an absolute contraindication to sildenafil. Together with nitroglycerin, sildenafil can cause a major drop in blood pressure."
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.",
+      "year": "2025",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
+      "says": "Nitrates should not be administered after recent PDE5 inhibitor use. Avoid nitrates or nitroglycerin within 12 hours of avanafil, 24 hours of sildenafil or vardenafil, or 48 hours of tadalafil."
     },
     "number": 132,
     "id": "usmle-qb-s2-132"
@@ -3572,10 +3600,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AUA guideline. Management of lower urinary tract symptoms from benign prostatic hyperplasia. Part I.",
-      "year": "2021",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/34384237/",
-      "says": "Benign prostatic hyperplasia is proliferation of smooth muscle and epithelial cells within the prostatic transition zone, and the guideline covers its evaluation and medical management."
+      "name": "StatPearls. Benign Prostatic Hyperplasia.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
+      "says": "The development of BPH is characterized by stromal and epithelial cell proliferation in the prostate transition zone, which surrounds the urethra.",
+      "more": [
+        {
+          "name": "AUA guideline. Management of lower urinary tract symptoms attributed to benign prostatic hyperplasia (2021, amended 2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34384237/"
+        }
+      ]
     },
     "number": 133,
     "id": "usmle-qb-s2-133"
@@ -3597,10 +3631,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACR Appropriateness Criteria. Acute onset of scrotal pain.",
+      "name": "ACR Appropriateness Criteria. Acute Onset of Scrotal Pain (Without Trauma, Without Antecedent Mass).",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/39488348/",
-      "says": "Acute scrotum is an emergency that needs a prompt diagnosis. Ultrasound is the established first-line imaging modality."
+      "says": "Acute scrotum is a medical emergency that requires prompt accurate diagnosis. Overlapping presentations make diagnosis a challenge, and ultrasound is the established first-line imaging modality for acute scrotal disease."
     },
     "number": 134,
     "id": "usmle-qb-s2-134"
@@ -3626,7 +3660,7 @@
       "name": "StatPearls. Ovarian Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "Ovarian torsion is a gynecologic surgical emergency in which the ovary rotates around the ligaments supporting it within the adnexa, partially or completely obstructing its blood supply."
+      "says": "The ovary receives a dual blood supply from the ovarian and uterine arteries, and preserved Doppler flow does not exclude torsion. Management prioritizes prompt detorsion to preserve ovarian function, with ovarian-conserving strategies whenever feasible."
     },
     "number": 135,
     "id": "usmle-qb-s2-135"

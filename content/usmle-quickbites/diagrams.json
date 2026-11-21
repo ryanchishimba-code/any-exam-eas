@@ -106,5 +106,6 @@
   "gram-split": {"title": "Gram-positive cocci", "rows": ["Catalase splits staph from strep", "Coagulase splits S. aureus", "Then hemolysis and one disk test"]},
   "cycle-order": {"title": "Hormone order", "rows": ["FSH recruits. Estradiol rises", "Sustained estradiol triggers the LH surge", "Progesterone starts only after ovulation"]},
   "hypersens-4": {"title": "Four hypersensitivity types", "rows": ["I: IgE, minutes", "II: antibody on a cell. III: complexes", "IV: T cells, days later"]},
-  "predict-prev": {"title": "Prevalence and the row", "rows": ["Sensitivity and specificity stay put", "Rarer disease: PPV falls", "A sensitive test is not the chance of disease"]}
+  "predict-prev": {"title": "Prevalence and the row", "rows": ["Sensitivity and specificity stay put", "Rarer disease: PPV falls", "A sensitive test is not the chance of disease"]},
+  "dka-k-2024": {"title": "DKA order", "rows": ["Fluid first", "K under 3.5: replace K before insulin", "Keep insulin on; add dextrose as glucose falls"]}
 }
