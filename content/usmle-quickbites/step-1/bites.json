@@ -3372,7 +3372,7 @@
       "name": "StatPearls. Endometriosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK567777/",
-      "says": "Endometriosis is a chronic gynecologic disease characterized by the presence of histological elements, including endometrial glands and stroma, in anatomical positions and organs outside the uterine cavity."
+      "says": "Ovarian endometrioma, superficial peritoneal endometriosis, and deep infiltrating endometriosis comprise the 3 different endometriosis phenotypes. Laparoscopy may be particularly useful when the diagnosis is uncertain, when patients want definitive confirmation, or if symptoms persist despite empiric therapy. Prevalence is substantially higher, up to 35% to 50%, among patients with chronic pelvic pain or infertility."
     },
     "number": 123,
     "id": "usmle-qb-s1-123"
@@ -3394,10 +3394,10 @@
     "diagram": "dka-k",
     "diagramAlt": "DKA order. Fluid first K under 3.5: replace K before insulin Keep insulin on; add dextrose as glucose falls",
     "source": {
-      "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.",
+      "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report (ADA, EASD, JBDS, AACE, DTS).",
       "year": "2024",
       "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
-      "says": "The mainstays of treatment are fluid replacement, insulin therapy, electrolyte repletion, and treatment of precipitating events. With potassium below 3.5 mmol/L, potassium replacement begins and insulin is delayed until potassium is above 3.5 mmol/L. Resolution is ketones <0.6 mmol/L and pH \u22657.3 or bicarbonate \u226518 mmol/L; the anion gap should not be used."
+      "says": "Once plasma glucose is below 250 mg/dL, fluids should contain 5-10% dextrose. With potassium below 3.5 mmol/L, start potassium replacement and delay insulin until potassium is above 3.5 mmol/L. Routine bicarbonate is not recommended. Resolution is ketones <0.6 mmol/L and pH \u22657.3 or bicarbonate \u226518 mmol/L; the anion gap should not be used."
     },
     "number": 124,
     "id": "usmle-qb-s1-124"
@@ -3424,7 +3424,7 @@
       "name": "StatPearls. Klinefelter Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482314/",
-      "says": "Affected individuals often present with tall stature, small testes, gynecomastia, and azoospermia."
+      "says": "The most common karyotype in Klinefelter syndrome is 47,XXY, accounting for >90% Levels of the gonadotropins\u2014follicle-stimulating hormone (FSH) and luteinizing hormone (LH)\u2014are typically elevated in the setting of testicular hyalinization and fibrosis. Gynecomastia is common, and affected individuals are at an increased risk of developing male breast cancer."
     },
     "number": 125,
     "id": "usmle-qb-s1-125"
@@ -3447,10 +3447,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "RCOG Green-top Guideline No. 63. Antepartum haemorrhage.",
+      "name": "RCOG Green-top Guideline No. 63. Antepartum Haemorrhage.",
       "year": "2011",
-      "url": "https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/antepartum-haemorrhage-green-top-guideline-no-63/",
-      "says": "Placental abruption is painful bleeding and is managed by maternal resuscitation and a prompt delivery decision. Do not perform a digital examination until placenta previa is excluded, which is the recommendation in RCOG Green-top Guideline No. 63. Antepartum haemorrhage."
+      "url": "https://www.rcog.org.uk/media/pwdi1tef/gtg_63.pdf",
+      "says": "If placenta praevia is possible, digital vaginal examination should not be performed until ultrasound has excluded it. With abruption and fetal death, coagulopathy and hypovolaemic shock are not uncommon; in major haemorrhage, send a coagulation screen and cross-match 4 units of blood."
     },
     "number": 126,
     "id": "usmle-qb-s1-126"
@@ -3473,10 +3473,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "RCOG Green-top Guideline No. 27a. Placenta praevia and placenta accreta spectrum.",
+      "name": "RCOG Green-top Guideline No. 27a. Placenta Praevia and Placenta Accreta Spectrum.",
       "year": "2026",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42374711/",
-      "says": "Diagnose placenta previa with ultrasound and do not perform a digital vaginal examination. Plan cesarean delivery if the placenta still covers the internal os. ACOG Committee Opinion 831 is the US timing document for a medically indicated early delivery."
+      "says": "A placenta is recorded as praevia if it covers the internal os, partially or completely. Placenta praevia carries a high risk of emergency caesarean birth and haemorrhage, so birth is arranged in a unit with blood transfusion and critical care. A previous caesarean with a low-lying placenta or praevia means high risk of placenta accreta spectrum."
     },
     "number": 127,
     "id": "usmle-qb-s1-127"
@@ -3501,7 +3501,7 @@
       "name": "StatPearls. Gestational Diabetes.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
-      "says": "The benefits of identifying GDM have long been established, with several studies demonstrating that women diagnosed with GDM are at high risk for developing type 2 diabetes long-term and that antepartum GDM treatment reduces adverse pregnancy outcomes."
+      "says": "Elevated maternal serum glucose levels cross the placenta and produce fetal hyperglycemia, stimulating the fetal pancreas. Insulin does not cross the placental barrier and is recommended by the ADA for first-line treatment of GDM."
     },
     "number": 128,
     "id": "usmle-qb-s1-128"
@@ -3528,7 +3528,7 @@
       "name": "StatPearls. Erectile Dysfunction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "Erectile dysfunction (ED), formerly termed impotence, is defined as the failure to achieve or maintain a rigid penile erection suitable for satisfactory sexual intercourse."
+      "says": "Nitric oxide stimulates the production of cyclic guanosine monophosphate (GMP) when it enters the smooth muscle. PDE-5 inhibitors act by decreasing the degradation of cyclic GMP via phosphodiesterase inhibition, which increases the relaxation of cavernosal smooth muscle and intracavernosal arterial blood flow. They should not be used at all with nitrates due to potentially dangerous, profound hypotension ."
     },
     "number": 129,
     "id": "usmle-qb-s1-129"
@@ -3553,7 +3553,7 @@
       "name": "StatPearls. Benign Prostatic Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "Benign prostatic hyperplasia (BPH) refers to the nonmalignant growth or hyperplasia of prostate tissue and is a common cause of lower urinary tract symptoms (LUTS) in older men."
+      "says": "Testosterone is converted to DHT by 5-alpha-reductase 2 in prostatic stromal cells and accounts for 90% of total intraprostatic androgens. Alpha-blockers are designed to minimize muscle tone in prostate stromal smooth muscle and bladder neck tissue."
     },
     "number": 130,
     "id": "usmle-qb-s1-130"
@@ -3579,7 +3579,7 @@
       "name": "StatPearls. Testicular Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "Scrotal complaints are relatively common in the emergency department, comprising at least 0.5% of all emergency department visits."
+      "says": "The testicle may be swollen, erythematous, and have an absence of the normal cremasteric reflex Testicular viability significantly decreases 6 hours after the onset of symptoms; hence, early diagnosis is key."
     },
     "number": 131,
     "id": "usmle-qb-s1-131"
@@ -3605,7 +3605,7 @@
       "name": "StatPearls. Ovarian Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "Ovarian torsion is a gynecologic surgical emergency in which the ovary rotates around the ligaments supporting it within the adnexa, partially or completely obstructing its blood supply."
+      "says": "Because the ovary receives a dual blood supply from the ovarian and uterine arteries, arterial or venous flow does not exclude torsion. Pelvic ultrasonography with Doppler flow assessment is the first-line imaging modality recommended for patients with suspected ovarian torsion."
     },
     "number": 132,
     "id": "usmle-qb-s1-132"
@@ -3632,7 +3632,13 @@
       "name": "StatPearls. Pelvic Inflammatory Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499959/",
-      "says": "Pelvic inflammatory disease is typically an ascending infection, spreading from the lower genital tract, with the majority of pelvic inflammatory disease cases linked to sexually transmitted infections (STIs)."
+      "says": "Pelvic inflammatory disease is classically characterized by cervical motion, uterine, and adnexal tenderness on bimanual examination. If the inflammation extends to the liver capsule, patients can develop a perihepatitis, known as Fitz-Hugh-Curtis syndrome, which can cause pleuritic pain in the right upper quadrant that radiates to the right shoulder.",
+      "more": [
+        {
+          "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021. Pelvic inflammatory disease.",
+          "url": "https://www.cdc.gov/std/treatment-guidelines/pid.htm"
+        }
+      ]
     },
     "number": 133,
     "id": "usmle-qb-s1-133"
@@ -3654,10 +3660,10 @@
     "diagram": "endo-bx",
     "diagramAlt": "Postmenopausal bleeding. Endometrial biopsy, not a repeat Pap Unopposed estrogen is the setup A thin stripe does not erase persistent bleeding",
     "source": {
-      "name": "ACOG Committee Opinion No. 734. Transvaginal ultrasonography for postmenopausal bleeding.",
+      "name": "ACOG Committee Opinion No. 734. The Role of Transvaginal Ultrasonography in Evaluating the Endometrium of Women With Postmenopausal Bleeding.",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29683909/",
-      "says": "Transvaginal ultrasonography usually is sufficient for an initial evaluation of postmenopausal bleeding if the ultrasound images reveal a thin endometrial echo (less than or equal to 4 mm), given that an endometrial thickness of 4 mm or less has a greater than 99% negative predictive value for endometrial cancer."
+      "says": "Transvaginal ultrasonography is a reasonable alternative to endometrial sampling as a first approach in an initial episode of bleeding; an endometrial thickness of 4 mm or less has a greater than 99% negative predictive value. If blind sampling does not reveal hyperplasia or malignancy, further testing such as hysteroscopy with D&C is warranted for persistent or recurrent bleeding."
     },
     "number": 134,
     "id": "usmle-qb-s1-134"
@@ -3680,10 +3686,10 @@
     "diagram": "ectopic-choice",
     "diagramAlt": "Ectopic pregnancy. Shock or rupture: operating room Methotrexate only if stable and follow-up is sure Rh-negative: give anti-D",
     "source": {
-      "name": "ACOG Practice Bulletin. Tubal Ectopic Pregnancy.",
+      "name": "ACOG Practice Bulletin No. 193. Tubal Ectopic Pregnancy (reaffirmed 2025).",
       "year": "2018",
       "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy",
-      "says": "A ruptured or unstable ectopic pregnancy is managed surgically. Methotrexate is reserved for a stable patient who meets criteria and can be followed."
+      "says": "Most tubal ectopic pregnancies detected early can be treated with minimally invasive surgery or with methotrexate. A tubal ectopic pregnancy in an unstable patient is a medical emergency that requires prompt surgical intervention."
     },
     "number": 135,
     "id": "usmle-qb-s1-135"
@@ -3733,7 +3739,7 @@
       "name": "StatPearls. Genitourinary Syndrome of Menopause.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559297/",
-      "says": "In 2014, experts recommended the term genitourinary syndrome of menopause (GSM) to more accurately describe the broad spectrum of genital, sexual, and urinary changes associated with the hypoestrogenic state that develops after menopause."
+      "says": "Menopause causes a dramatic 95% reduction in estrogen production, resulting in 75% of women experiencing vaginal dryness, 40% reporting pain during intercourse, and 30% to 40% experiencing urinary urgency and frequency. GSM encompasses vulvovaginal atrophy, urogenital atrophy, and atrophic vaginitis, involving the vagina, labia, urethra, and bladder as a consequence of diminished estrogenic stimulation."
     },
     "number": 137,
     "id": "usmle-qb-s1-137"
@@ -3757,10 +3763,16 @@
     "diagram": "cervix-age",
     "diagramAlt": "Cervical screening intervals. Start at 21, not at first sex 21\u201329: cytology every 3 years 30\u201365: cytology q3, HPV q5, or both q5",
     "source": {
-      "name": "USPSTF. Cervical cancer: screening.",
-      "year": "2018",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
-      "says": "Start at 21. Ages 21 to 29: cytology every 3 years. Ages 30 to 65: cytology every 3 years, high-risk HPV every 5 years, or cotesting every 5 years."
+      "name": "StatPearls. Cervical Cancer.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK431093/",
+      "says": "Persistent HPV infection causes more than 99% of all cervical cancers. More than 75% of cervical cancer cases are due to high-risk HPV types 16 and 18.",
+      "more": [
+        {
+          "name": "USPSTF. Cervical Cancer: Screening (2018).",
+          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening"
+        }
+      ]
     },
     "number": 138,
     "id": "usmle-qb-s1-138"
@@ -3786,7 +3798,7 @@
       "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
-      "says": "Pituitary hyperplasia is an under-recognized manifestation that can occur fairly commonly in primary hypothyroidism."
+      "says": "low circulating thyroid hormone levels lead to reduced negative feedback on the hypothalamus, thereby elevating thyrotropin-releasing hormone (TRH). Elevated TRH levels can also lead to lactotroph hyperplasia, which accounts for the increased prolactin in these patients. if there is no regression in the size of the pituitary with the treatment of the underlying hypothyroidism, the clinician should reconsider this diagnosis."
     },
     "number": 139,
     "id": "usmle-qb-s1-139"
@@ -3813,7 +3825,7 @@
       "name": "StatPearls. Hypovolemia and Hypovolemic Shock. Cardiogenic Shock. Distributive Shock.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513297/",
-      "says": "Treatment focuses on rapidly restoring blood volume and stabilizing vital functions through intravenous fluid resuscitation, blood transfusions when needed, medications to support blood pressure and cardiac output, and, in some cases, surgical intervention to control active bleeding.",
+      "says": "Hypovolemic : Decreased PCWP, decreased CO, increased SVR Distributive : Decreased PCWP, increased CO, decreased SVR Cardiogenic : Increased PCWP, decreased CO, increased SVR",
       "more": [
         {
           "name": "StatPearls. Cardiogenic Shock.",
@@ -3849,7 +3861,7 @@
       "name": "StatPearls. Gram-Positive Bacteria.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470553/",
-      "says": "Health professionals need to understand the important difference between gram-positive and gram-negative bacteria."
+      "says": "Gram-positive cocci include Staphylococcus (catalase-positive), which forms clusters, and Streptococcus (catalase-negative), which forms chains. The staphylococci are further subdivided into coagulase-positive (S. aureus) and coagulase-negative ( S epidermidis and S saprophyticus ) species."
     },
     "open": false
   },
@@ -3874,7 +3886,7 @@
       "name": "StatPearls. HIV Antiretroviral Therapy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513308/",
-      "says": "Antiretroviral therapy (ART) is the cornerstone of modern HIV management and typically consists of 3 medications from at least 2 antiretroviral classes."
+      "says": "Integrase inhibitors block integrase activity, preventing the viral genome from integrating into the host cell's DNA. PIs bind the HIV-1 protease and block the proteolytic cleavage of protein precursors required for viral particle production."
     },
     "open": false
   },
@@ -3898,7 +3910,7 @@
       "name": "StatPearls. Carbon Monoxide Poisoning.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
-      "says": "Carbon monoxide poisoning occurs when the gas binds hemoglobin with an affinity approximately 200 to 250 times greater than oxygen, forming a dysfunctional hemoglobin species that reduces oxygen-carrying capacity and impairs tissue oxygen unloading."
+      "says": "Carbon monoxide poisoning occurs when the gas binds hemoglobin with an affinity approximately 200 to 250 times greater than oxygen This process reduces blood oxygen-carrying capacity and induces a leftward shift of the oxyhemoglobin dissociation curve, impairing oxygen release to tissues. normal arterial oxygen partial pressure, reflecting adequate dissolved oxygen but impaired hemoglobin function."
     },
     "number": 143,
     "id": "usmle-qb-s1-143"
@@ -3921,10 +3933,16 @@
     "diagram": "nac-time",
     "diagramAlt": "Acetaminophen antidote. NAPQI uses up glutathione NAC if level is toxic or time is unknown Normal ALT at 2 hours does not clear it",
     "source": {
-      "name": "Management of acetaminophen poisoning in the US and Canada: a consensus statement.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37552484/",
-      "says": "The treatment line of the Rumack-Matthew nomogram is 150 micrograms per mL at 4 hours, and acetylcysteine is most effective when started within 8 hours. The 2023 consensus uses a revised nomogram for ingestions presenting from 4 to 24 hours."
+      "name": "StatPearls. Acetaminophen Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
+      "says": "generating a toxic, highly reactive, electrophilic intermediate N -acetyl-p-benzoquinoneimine (NAPQI). At higher doses and as these pathways saturate, CYP oxidation of acetaminophen forms a toxic, oxidative metabolite and depletes hepatic glutathione stores. Acetylcysteine, most often given IV, is the critical antidote for acetaminophen poisoning, and is most effective if administered within the first 8 hours after an acute overdose.",
+      "more": [
+        {
+          "name": "Management of Acetaminophen Poisoning in the US and Canada: A Consensus Statement (2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37552484/"
+        }
+      ]
     },
     "number": 144,
     "id": "usmle-qb-s1-144"
@@ -3947,10 +3965,10 @@
     "diagram": "naloxone-watch",
     "diagramAlt": "Naloxone wears off. Opioid half-life is often longer Observe or infuse Methadone and fentanyl outlast one dose",
     "source": {
-      "name": "2025 AHA Guidelines. Part 10, adult and pediatric special circumstances of resuscitation.",
+      "name": "2025 American Heart Association Guidelines for CPR and ECC. Part 10: Adult and Pediatric Special Circumstances of Resuscitation.",
       "year": "2025",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/41122889/",
-      "says": "Part 10 covers opioid overdose. Give naloxone and ventilate; repeat it because respiratory depression can return. The AHA poisoning doses are 0.2 to 2 mg IV and the FDA-labeled nasal spray is 4 mg."
+      "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation",
+      "says": "An opioid antagonist such as naloxone should be given to people with respiratory arrest from suspected opioid overdose. In cardiac arrest from presumed opioid overdose, an opioid antagonist may be reasonable if high-quality CPR is not interrupted."
     },
     "number": 145,
     "id": "usmle-qb-s1-145"
@@ -3973,10 +3991,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "2023 AHA focused update on cardiac arrest or life-threatening toxicity due to poisoning.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/",
-      "says": "Isolated benzodiazepine poisoning rarely causes life-threatening hypoventilation. Flumazenil is not routine: it can precipitate seizures in a dependent patient, and naloxone has the better safety profile when an opioid may be present, which is the recommendation in 2023 AHA focused update on cardiac arrest or life-threatening toxicity due to poisoning."
+      "name": "StatPearls. Benzodiazepine Toxicity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482238/",
+      "says": "Flumazenil can precipitate acute withdrawal in those with chronic benzodiazepine dependence; given to a dependent patient it can lower the seizure threshold and cause life-threatening seizures.",
+      "more": [
+        {
+          "name": "2023 AHA focused update on cardiac arrest or life-threatening toxicity due to poisoning.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/"
+        }
+      ]
     },
     "number": 146,
     "id": "usmle-qb-s1-146"
@@ -4000,10 +4024,10 @@
     "diagram": "thiamine-first",
     "diagramAlt": "Alcohol withdrawal orders. Thiamine before glucose Benzodiazepine titrated to symptoms Haloperidol alone does not stop the seizure",
     "source": {
-      "name": "ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
+      "name": "The ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
       "year": "2020",
-      "url": "https://www.asam.org/quality-care/clinical-guidelines/alcohol-withdrawal-management-guideline",
-      "says": "Use a symptom-triggered benzodiazepine for alcohol withdrawal. Give thiamine. An antipsychotic is not the only treatment of withdrawal."
+      "url": "https://journals.lww.com/journaladdictionmedicine/fulltext/2020/06001/the_asam_clinical_practice_guideline_on_alcohol.1.aspx",
+      "says": "Symptom-triggered treatment by trained staff is the preferred benzodiazepine dosing method with continuous monitoring, and front loading is recommended for patients at high risk of severe withdrawal. Thiamine should be provided to prevent Wernicke encephalopathy, and antipsychotics are not recommended as monotherapy."
     },
     "number": 147,
     "id": "usmle-qb-s1-147"
@@ -4029,7 +4053,7 @@
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
-      "says": "Clinically, rhabdomyolysis can range from mild elevation in creatinine phosphokinase to medical emergencies like compartment syndrome, intravascular fluid depletion, disseminated intravascular coagulation, pigment-induced acute kidney injury (AKI), and cardiac arrhythmias."
+      "says": "However, the peroxidase agent used on a urine dipstick to detect blood with also react with myoglobin. Microscopic urinalysis differentiates myoglobinuria from hemoglobinuria, as myoglobinuria is associated with an absence of red blood cells."
     },
     "number": 148,
     "id": "usmle-qb-s1-148"
@@ -4052,10 +4076,16 @@
     "diagram": "dantrolene",
     "diagramAlt": "Malignant hyperthermia. Volatile agent or succinylcholine Rising CO2, then heat and rigidity Stop the gas. Dantrolene. 100% oxygen",
     "source": {
-      "name": "European Malignant Hyperthermia Group guideline. Recognition and management of a malignant hyperthermia crisis.",
+      "name": "European Malignant Hyperthermia Group. Recognising and managing a malignant hyperthermia crisis (v2024).",
       "year": "2024",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/39482150/",
-      "says": "Stop the triggering anesthetic and give dantrolene. The first sign is often a rising end-tidal CO2, then rigidity."
+      "url": "https://www.emhg.org/recommendations-1/2024/11/4/recognising-and-managing-a-malignant-hyperthermia-crisis-v2024",
+      "says": "Stop all trigger agents, hyperventilate with 100% oxygen at high flow, and call for help. Give dantrolene 2-2.5 mg/kg IV, repeated every 10 minutes. Inappropriately elevated CO2 production is an early sign, and trigger agents are volatile anaesthetics and succinylcholine.",
+      "more": [
+        {
+          "name": "EMHG 2024 guideline, Br J Anaesth 2025;134:221-223.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39482150/"
+        }
+      ]
     },
     "number": 149,
     "id": "usmle-qb-s1-149"
@@ -4080,7 +4110,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation."
+      "says": "Fat embolism typically manifests 24 to 72 hours after the initial insult, with an average onset time of 48 hours. Trauma-related FES may result from fractures of long bones, including the femur and tibia, and from pelvic fractures. Dermatologic examination : A petechial rash in a patient with the preceding risk factors should raise concern for FES."
     },
     "number": 150,
     "id": "usmle-qb-s1-150"
@@ -4102,10 +4132,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "BSR, BHPR, BOA, RCGP, and BSAC guideline for the hot swollen joint in adults.",
-      "year": "2006",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/16829534/",
-      "says": "Synovial fluid must be aspirated, Gram-stained, and cultured before antibiotics are started. A possibly infected prosthetic joint is referred to an orthopaedic surgeon."
+      "name": "StatPearls. Septic Arthritis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK538176/",
+      "says": "The evaluation of suspected septic arthritis includes arthrocentesis with synovial fluid analysis, laboratory and imaging studies. Staphylococcus aureus is the most common infecting organism in adults.",
+      "more": [
+        {
+          "name": "BSR/BHPR, BOA, RCGP and BSAC guideline for the hot swollen joint in adults (2006).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/16829534/"
+        }
+      ]
     },
     "number": 151,
     "id": "usmle-qb-s1-151"
@@ -4131,7 +4167,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "An open fracture is an injury where the fractured bone and/or fracture hematoma are exposed to the external environment via a traumatic violation of the soft tissue and skin."
+      "says": "Antibiotics should be administered as soon as possible in the prehospital setting or emergency department. If a patient has not completed the tetanus series or has not had a booster in the last five years, tetanus toxoid should be given."
     },
     "number": 152,
     "id": "usmle-qb-s1-152"
@@ -4154,10 +4190,10 @@
     "diagram": "hit-days",
     "diagramAlt": "HIT, day 5 to 10. Platelets fall >=50% at day 5-10 With or without thrombosis Stop heparin. No warfarin before recovery",
     "source": {
-      "name": "ASH 2018 guideline for heparin-induced thrombocytopenia.",
+      "name": "ASH 2018 guidelines for management of venous thromboembolism: heparin-induced thrombocytopenia.",
       "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/30482768/",
-      "says": "Use the 4Ts score rather than gestalt. Do not treat empirically when the score is low. For an intermediate or high score, stop heparin and start a non-heparin anticoagulant. Do not start a vitamin K antagonist before the platelet count recovers, usually to at least 150 \u00d7 10^9/L."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6258919/",
+      "says": "Strong recommendations include use of the 4Ts score rather than a gestalt approach and avoidance of empiric treatment of HIT with a low-probability 4Ts score. The panel suggests argatroban, bivalirudin, danaparoid, fondaparinux, or a DOAC, and recommends against a VKA before platelet count recovery (usually \u2265150 \u00d7 10^9/L)."
     },
     "number": 153,
     "id": "usmle-qb-s1-153"
@@ -4181,10 +4217,10 @@
     "diagram": "cap-bed",
     "diagramAlt": "Pneumonia: where and which drug. Hypoxia, shock, or confusion: admit Severe: beta-lactam + macrolide No routine anaerobic drug for aspiration",
     "source": {
-      "name": "2019 IDSA/ATS Guideline for Community-Acquired Pneumonia.",
+      "name": "2019 ATS/IDSA Guideline for Diagnosis and Treatment of Adults with Community-acquired Pneumonia.",
       "year": "2019",
-      "url": "https://www.atsjournals.org/doi/10.1164/rccm.201908-1581ST",
-      "says": "Site of care follows severity. Severe pneumonia is a beta-lactam plus a macrolide, or a beta-lactam plus a fluoroquinolone. Routine anaerobic coverage for aspiration is not recommended."
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6812437/",
+      "says": "Combination therapy with a beta-lactam plus a macrolide or a beta-lactam plus a respiratory fluoroquinolone should be the treatment of choice for severe CAP."
     },
     "number": 154,
     "id": "usmle-qb-s1-154"
@@ -4209,7 +4245,13 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "Fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation."
+      "says": "Fat embolism typically manifests 24 to 72 hours after the initial insult, with an average onset time of 48 hours. Trauma-related FES may result from fractures of long bones, including the femur and tibia, and from pelvic fractures.",
+      "more": [
+        {
+          "name": "StatPearls. Infective Endocarditis.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK557641/"
+        }
+      ]
     },
     "number": 155,
     "id": "usmle-qb-s1-155"
@@ -4234,7 +4276,7 @@
       "name": "StatPearls. Brain Abscess.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441841/",
-      "says": "A brain abscess is a localized area of necrosis within the brain parenchyma, typically enclosed by a membrane and most often caused by infections."
+      "says": "Lumbar puncture : Rarely required, a lumbar puncture should only be performed after obtaining a head computed tomography (CT) or magnetic resonance imaging (MRI) to rule out increased intracranial pressure due to significant mass effect, which can lead to cerebral herniation"
     },
     "number": 156,
     "id": "usmle-qb-s1-156"
@@ -4257,10 +4299,16 @@
     "diagram": "epi-dose",
     "diagramAlt": "Anaphylaxis dose. Adult: 0.3\u20130.5 mg of 1 mg/mL IM Mid-outer thigh. Repeat in 5\u201315 min Watch. Antihistamine is not the treatment",
     "source": {
-      "name": "Anaphylaxis: a 2023 practice parameter update.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/",
-      "says": "Epinephrine is dosed at 0.01 mg/kg, up to 0.3 mg in children and teenagers and 0.5 mg in adults. Draw an acute tryptase as early as possible, ideally within 2 hours. A tryptase below the laboratory cutoff does not exclude anaphylaxis."
+      "name": "World Allergy Organization Anaphylaxis Guidance 2020.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33204386/",
+      "says": "During acute anaphylaxis, serum tryptase levels are increased from 15 min to 3 h or even longer, after the onset; levels peak between 1 and 2 h after the onset. Although elevated levels support a diagnosis of anaphylaxis, normal levels do not exclude anaphylaxis having occurred.",
+      "more": [
+        {
+          "name": "Anaphylaxis: a 2023 practice parameter update.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/"
+        }
+      ]
     },
     "number": 157,
     "id": "usmle-qb-s1-157"
@@ -4286,7 +4334,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Sensitivity and specificity do not change when prevalence changes. The positive predictive value falls when the disease is rarer."
+      "says": "Disease prevalence in a population affects PPV and NPV. Unlike predictive values, and like sensitivity and specificity, likelihood ratios are not affected by disease prevalence."
     },
     "open": false
   },
@@ -4311,7 +4359,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Post-test odds equal pre-test odds multiplied by the likelihood ratio. A likelihood ratio of 1 leaves the odds unchanged."
+      "says": "Positive Likelihood Ratio=Sensitivity/(1-Specificity) Negative Likelihood Ratio=(1- Sensitivity)/Specificity"
     },
     "open": false
   },
@@ -4335,7 +4383,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results."
+      "says": "Highly sensitive tests yield positive results in patients with the disease, whereas highly specific tests show that patients without a positive result do not have the disease."
     },
     "number": 160,
     "id": "usmle-qb-s1-160"
@@ -4360,7 +4408,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Author information: (1)University of Louisville School of Medicine (2)University of Louisville To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results."
+      "says": "Highly sensitive tests yield positive results in patients with the disease, whereas highly specific tests show that patients without a positive result do not have the disease. False positives are a consideration when evaluating specificity and PPV."
     },
     "number": 161,
     "id": "usmle-qb-s1-161"
@@ -4385,7 +4433,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "As prevalence rises, the positive predictive value rises and the negative predictive value falls. Sensitivity is unchanged."
+      "says": "Disease prevalence in a population affects PPV and NPV. Unlike predictive values, and like sensitivity and specificity, likelihood ratios are not affected by disease prevalence. When a disease is highly prevalent, the test is better at \u2018ruling in' the disease and worse at \u2018ruling it out.\u2019"
     },
     "number": 162,
     "id": "usmle-qb-s1-162"
@@ -4410,7 +4458,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results."
+      "says": "Positive Likelihood Ratio=Sensitivity/(1-Specificity) Negative Likelihood Ratio=(1- Sensitivity)/Specificity"
     },
     "number": 163,
     "id": "usmle-qb-s1-163"
@@ -4435,7 +4483,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Lowering a continuous test's cutoff raises sensitivity and lowers specificity, because more people without the disease cross the line."
+      "says": "Sensitivity and specificity are inversely related: as sensitivity increases, specificity tends to decrease , and vice versa."
     },
     "number": 164,
     "id": "usmle-qb-s1-164"
@@ -4460,7 +4508,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The false-positive rate is 1 minus specificity. It is the share of people without the disease whom the test calls positive."
+      "says": "Specificity=(True Negatives (D))/(True Negatives (D)+False Positives (B)) False positives are a consideration when evaluating specificity and PPV."
     },
     "number": 165,
     "id": "usmle-qb-s1-165"
@@ -4486,7 +4534,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "Counting either of two tests as positive raises sensitivity and lowers specificity. Fewer cases are missed and more false alarms are created."
+      "says": "Sensitivity and specificity are inversely related: as sensitivity increases, specificity tends to decrease , and vice versa."
     },
     "number": 166,
     "id": "usmle-qb-s1-166"
@@ -4511,7 +4559,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The negative likelihood ratio is 1 minus sensitivity, divided by specificity. A very small value is what allows a negative test to lower the probability of disease."
+      "says": "Negative Likelihood Ratio=(1- Sensitivity)/Specificity A negative likelihood ratio is \u201cthe probability of a patient testing negative who has a disease divided by the probability of a patient testing negative who does not have a disease.\u201d"
     },
     "number": 167,
     "id": "usmle-qb-s1-167"
@@ -4562,10 +4610,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Informed consent.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure, which is the recommendation in AMA Code of Medical Ethics. Informed consent."
+      "says": "Assess the patient\u2019s ability to understand relevant medical information and the implications of treatment alternatives and to make an independent, voluntary decision. Document the informed consent conversation and the patient\u2019s (or surrogate\u2019s) decision in the medical record in some manner."
     },
     "open": false
   },
@@ -4590,7 +4638,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 3.2.1, Confidentiality.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/confidentiality",
-      "says": "AMA Opinion 3.2.1 permits disclosure without consent when the law requires it, and when the patient is reasonably likely to seriously harm an identifiable person."
+      "says": "Restrict disclosure to the minimum necessary information To other third parties situated to mitigate the threat when in the physician\u2019s judgment there is a reasonable probability that: the patient will seriously harm themself; the patient will inflict serious physical harm on an identifiable individual or individuals."
     },
     "open": false
   },
@@ -4637,10 +4685,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 2.1.3, withholding information from patients.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.3, Withholding Information from Patients.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/withholding-information-patients",
-      "says": "Withholding a diagnosis the patient wants is not the default. A family request to hide it does not override the patient."
+      "says": "Except in emergency situations in which a patient is incapable of making an informed decision, withholding information without the patient\u2019s knowledge or consent is ethically unacceptable."
     },
     "number": 172,
     "id": "usmle-qb-s1-172"
@@ -4662,10 +4710,10 @@
     "diagram": "surrogate-order",
     "diagramAlt": "Who decides. Written directive that fits this choice wins Else substituted judgment Else best interest",
     "source": {
-      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.2, Decisions for Adult Patients Who Lack Capacity.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate, which is the recommendation in AMA Code of Medical Ethics. Decisions for adult patients who lack capacity."
+      "says": "Assist the surrogate to make decisions in keeping with the standard of substituted judgment, basing decisions on: the patient\u2019s preferences (if any) as expressed in an advance directive or as documented in the medical record"
     },
     "number": 173,
     "id": "usmle-qb-s1-173"
@@ -4688,7 +4736,7 @@
     "diagram": "child-report",
     "diagramAlt": "Report abuse. Suspicion is enough. Proof is not Parent or caregiver cannot veto it Treat the injury and make the report",
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse.",
+      "name": "AMA Code of Medical Ethics. Opinion 8.10, Preventing, Identifying and Treating Violence and Abuse.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/preventing-identifying-treating-violence-abuse",
       "says": "Report suspected violence and abuse in keeping with applicable requirements."
@@ -4717,7 +4765,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.2.8, Gifts from Patients.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/gifts-patients",
-      "says": "AMA Opinion 1.2.8: gifts offered to secure or influence care undermine the duty to treat patients fairly, and accepting them is likely to damage the relationship."
+      "says": "Some patients may offer gifts or cash to secure or influence care or to secure preferential treatment. Not allow the gift or offer of a gift to influence the patient\u2019s medical care."
     },
     "number": 175,
     "id": "usmle-qb-s1-175"
@@ -4739,10 +4787,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Principles of Medical Ethics, Principle VIII.",
+      "name": "AMA Code of Medical Ethics. Opinion 5.5, Medically Ineffective Interventions.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/principles",
-      "says": "AMA Principle VIII: while caring for a patient, the physician regards responsibility to that patient as paramount."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/medically-ineffective-interventions",
+      "says": "Physicians should only recommend and provide interventions that are medically appropriate\u2014i.e., scientifically grounded\u2014and that reflect the physician\u2019s considered medical judgment about the risks and likely benefits of available options in light of the patient\u2019s goals for care."
     },
     "number": 176,
     "id": "usmle-qb-s1-176"
@@ -4769,7 +4817,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 11.1.3, Allocating Limited Health Care Resources.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/allocating-limited-health-care-resources",
-      "says": "AMA Opinion 11.1.3 bases allocation on medical need, including urgency, likelihood and duration of benefit, and change in quality of life."
+      "says": "Base allocation policies on criteria relating to medical need, including urgency of need, likelihood and anticipated duration of benefit, and change in quality of life."
     },
     "number": 177,
     "id": "usmle-qb-s1-177"
@@ -4794,7 +4842,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.1.5, Terminating a Patient-Physician Relationship.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/terminating-patient-physician-relationship",
-      "says": "AMA Opinion 1.1.5: a physician who withdraws must notify the patient long enough in advance to find another physician and must facilitate transfer of care."
+      "says": "Notify the patient (or authorized decision maker) long enough in advance to permit the patient to secure another physician. Facilitate transfer of care when appropriate."
     },
     "number": 178,
     "id": "usmle-qb-s1-178"
@@ -4820,7 +4868,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.2.1, Pediatric Decision Making.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/pediatric-decision-making",
-      "says": "AMA Opinion 2.2.1: seek the minor's assent in proportion to maturity, and respect a child's refusal unless immediate treatment is needed to preserve life or avert serious harm."
+      "says": "the stronger the ethical obligation to seek minor patients\u2019 assent to treatment. In giving or withholding permission for medical treatment for their children, parents/guardians are expected to safeguard their children\u2019s physical health and well-being"
     },
     "number": 179,
     "id": "usmle-qb-s1-179"
@@ -4845,7 +4893,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 11.2.2, Conflicts of Interest in Patient Care.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/conflicts-interest-patient-care",
-      "says": "AMA Opinion 11.2.2: under no circumstances may physicians place their own financial interests above the welfare of their patients."
+      "says": "Under no circumstances may physicians place their own financial interests above the welfare of their patients."
     },
     "number": 180,
     "id": "usmle-qb-s1-180"
