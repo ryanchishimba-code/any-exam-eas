@@ -1,33 +1,48 @@
-# USMLE Quick Bites audit
+# USMLE Quick Bites upgrade audit
 
-Date: 2026-11-21. Library is hidden. Nothing is live.
+Upgrade of the hidden 540-bite library. Release flags stay off. Nothing in this pass is merged or live.
 
-Counts after audit: Step 1 180, Step 2 CK 180, Step 3 180.
+Word count is the whitespace word count of the lead, the lines, and the miss together. The same function was used before and after. The backup is `scripts/usmle-quickbites-20261121/backup-pre-upgrade-20261121/`.
 
-## What was checked
+## Counts
 
-Every bite has a lead, three or four scan lines, the usual miss, a source name, a four-digit year, an https URL, and a sentence saying what that source supports.
+| | Step 1 before | Step 1 after | Step 2 CK before | Step 2 CK after | Step 3 before | Step 3 after |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Bites | 180 | 180 | 180 | 180 | 180 | 180 |
+| Mean words | 71.4 | 101.5 | 70.2 | 101.9 | 64.9 | 101.7 |
+| Shortest / longest | 52 / 96 | 80 / 120 | 45 / 110 | 80 / 126 | 43 / 104 | 81 / 133 |
+| StatPearls | 180 | 162 | 138 | 118 | 137 | 118 |
+| Guideline or USPSTF / CDC / society | 0 | 13 | 38 | 48 | 39 | 51 |
+| Trial, consensus report, or scientific statement | 0 | 2 | 3 | 6 | 4 | 7 |
+| AMA Code of Ethics | 0 | 3 | 1 | 8 | 0 | 4 |
+| Diagrams | 10 | 70 | 4 | 92 | 0 | 100 |
 
-Leads are unique across all three Steps.
+All 540 bites are between 80 and 133 words, with 3 to 5 lines. Diagrams are on 262 of 540 bites (49%). Each diagram is a table the bite actually uses (a cutoff, a dose, a sequence, or a split). Quotas are unchanged: 180 per Step, one open sample per Step.
 
-No lead is copied verbatim into a USMLE study-guide chapter or into a USMLE question seed in `src/lib/edtech/seeds`.
+The overlap checks still pass. Leads were not rewritten in this pass, so none became a copy of a study-guide sentence, a question seed, or a feed card.
 
-No lead shares half or more of its content words with a USMLE feed card front plus back (PR #476). Two Step 1 leads were rewritten for that reason. Previa no longer repeats feed card `usmle2-135` (painless third-trimester bleeding, no digital exam). The acid-base bite no longer repeats the feed's Winter formula. It now uses the urine anion gap to separate diarrhea from renal tubular acidosis.
+## What changed
 
-Diagrams are used only for comparisons: acid-base, diuretics, hypoxemia, murmurs, steroid blocks, the menstrual cycle, hypersensitivity, shock, gram-positive cocci, a 2-by-2 table, the stroke window, the four heart-failure pillars, GOLD groups, and screening ages.
+Lines that did not teach a testable fact were removed. The ones called out in review are gone: "Do not assign a sex in the hallway," "Document the reason," "The note quotes the patient's words," and "Tell the patient why the familiar pill is gone." The miss line is still the usual exam trap.
 
-## What was dropped instead of forced in
+StatPearls was replaced where a primary guideline, USPSTF recommendation, CDC guideline, or equivalent standing source was confirmed and the "says" line is limited to what that source supports. Step 1 stays mostly StatPearls because those bites are mechanisms, histology, pathways, and calculations. Thirteen Step 1 bites that are decisions (screening, consent, a trial result) now cite the decision's source.
 
-Facts were left out when the only available chapter title did not match the claim. That included citing a surgical or anesthesia chapter for a general disease, citing the diagnostic-accuracy chapter for lead-time bias or number-needed-to-treat, and citing a hemolytic-transfusion chapter for transfusion-associated circulatory overload.
+## StatPearls kept on purpose
 
-Acromegaly treatment was removed from Step 2 to make room for the 2026 ADA rule that heart failure, kidney disease, and atherosclerotic disease pick the glucose-lowering drug even when the A1C is at goal. The Step 1 IGF-1 bite remains.
+**Basic science.** Step 1 mechanisms and the matching Step 2 or Step 3 bites that teach a pathway rather than a society recommendation stay on the StatPearls chapter: receptor coupling, tract anatomy, murmur maneuvers, infarct histology, coagulation tests, menstrual-cycle order, gram-stain branch points, shock profiles, urine anion gap, renal tubular acidosis types, bilirubin solubility, and the biostatistics identities. No society guideline owns those facts.
 
-## Citations that are current and ones that are the standing older guideline
+**Clinical topics with no confirmed primary URL in this pass.** These stayed on the StatPearls chapter rather than a guessed link. A guideline may exist; it was not cited because the page was not confirmed:
 
-2025–2026 sources used for management include the 2025 high blood pressure guideline, the 2025 ACS guideline, the 2026 stroke guideline, GOLD 2026, GINA 2026, ADA Standards of Care 2026, and the 2024 hyperglycemic-crisis consensus.
+- Hematology: HIT (ASH 2018 page not re-fetched), febrile neutropenia (IDSA 2010 page not re-fetched), TTP, ITP, DIC, hemophilia factor replacement, PNH, polycythemia vera targets, APL/ATRA (NCCN is paywalled), tumor lysis.
+- Neurology and psychiatry: thunderclap headache, migraine (AHS page not fetched), multiple-sclerosis flare dosing, Parkinson timing, cord compression, brain abscess, Horner syndrome, Bell palsy, epidural and subdural operative thresholds, neuroleptic malignant syndrome, serotonin syndrome, lithium.
+- Endocrine: thyroid storm and antithyroid drugs in pregnancy (ATA 2016 URL not re-read), adrenal crisis (Endocrine Society page not confirmed), pheochromocytoma preparation, prolactinoma.
+- Gastrointestinal and renal physiology orders: ulcerative colitis (ACG URL not confirmed this pass), achalasia, cholecystitis versus duct stone, H. pylori regimen details, hyponatremia bolus practice (no European-guideline URL rechecked), hyperkalemia sequence (no single current society URL).
+- Injury and infection: anaphylaxis (WAO page returned 403 and was not used), carbon monoxide, acetaminophen nomogram, naloxone duration, alcohol was moved to ASAM, pancreatitis and celiac and reflux were moved to ACG.
+- Obstetrics and gynecology beyond the confirmed ACOG and USPSTF pages: abruption, previa, gestational-diabetes newborn checks, torsion time windows.
+- Ethics and systems that are not the two confirmed AMA opinions (informed consent, and decisions for adults who lack capacity): error disclosure, scarce-resource rules, POLST versus an advance directive, impaired-colleague reporting, placebos, organ-donation requesting.
 
-Older sources that are still the standing document, and are labeled with their year on the bite: IDSA/ATS pneumonia 2019, ESC pulmonary embolism 2019, IDSA bacterial meningitis 2004, ACP low-back-pain guideline 2017, USPSTF cervical screening 2018, AGS Beers Criteria 2023, CDC opioid guideline 2022, and the 2014 I-PASS handoff trial.
+IDSA bacterial meningitis remains the 2004 guideline because it is still the standing IDSA document. Beers is the 2023 criteria; a 2026 edition was not confirmed. The AASLD portal-hypertension page is live and is cited as the 2017 practice guidance, because that is the published document and the page HTML did not show a later edition. AMA Code opinions are cited as 2016, the year those opinions are dated, at the current Code URLs. GOLD is cited to the live 2026 report page (`https://goldcopd.org/2026-gold-report-and-pocket-guide/`), which is where the older report path redirects.
 
-## Result
+## Checks
 
-540 bites passed. Students cannot see them. The homepage and `/usmle` were not changed. The sidebar link is compiled only when `NEXT_PUBLIC_USMLE_QUICK_BITES_PUBLIC` is on, which it is not.
+Unit audit (`src/lib/quick-bites/usmle-bites.test.ts`) and the library component test passed after the edit. Homepage and `/usmle` were not edited. Flags still default off.

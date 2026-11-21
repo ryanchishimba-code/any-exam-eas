@@ -10,7 +10,7 @@ import {
   type UsmleQuickBiteStep,
 } from "./usmle-bites";
 
-const DIAGRAMS = new Set([
+const BUILTIN_DIAGRAMS = new Set([
   "acid-base",
   "diuretics",
   "hypoxemia",
@@ -26,6 +26,12 @@ const DIAGRAMS = new Set([
   "gold-abe",
   "screening",
 ]);
+
+function knownDiagrams(): Set<string> {
+  const file = path.join(process.cwd(), "content", "usmle-quickbites", "diagrams.json");
+  const catalog = JSON.parse(readFileSync(file, "utf8")) as Record<string, unknown>;
+  return new Set([...BUILTIN_DIAGRAMS, ...Object.keys(catalog)]);
+}
 
 function words(value: string): string[] {
   return value
@@ -136,13 +142,13 @@ function problems(
   bank: string
 ): string[] {
   const failures: string[] = [];
-  if (bite.lines.length < 3 || bite.lines.length > 4) failures.push(`${bite.id} line count`);
+  if (bite.lines.length < 3 || bite.lines.length > 5) failures.push(`${bite.id} line count`);
   if (bite.lead.length < 40) failures.push(`${bite.id} lead too short`);
   if (!bite.miss || bite.miss.length < 20) failures.push(`${bite.id} missing the usual miss`);
   if (!/^https:\/\//.test(bite.source.url)) failures.push(`${bite.id} source url`);
   if (!/^\d{4}$/.test(bite.source.year)) failures.push(`${bite.id} source year`);
   if (bite.source.says.length < 40) failures.push(`${bite.id} source says`);
-  if (bite.diagram && !DIAGRAMS.has(bite.diagram)) failures.push(`${bite.id} unknown diagram`);
+  if (bite.diagram && !knownDiagrams().has(bite.diagram)) failures.push(`${bite.id} unknown diagram`);
   if (bite.diagram && !bite.diagramAlt) failures.push(`${bite.id} diagram alt`);
   const lead = bite.lead.toLowerCase();
   if (guides.includes(lead)) failures.push(`${bite.id} copies a study-guide sentence`);

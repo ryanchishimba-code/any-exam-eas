@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import catalog from "../../../content/usmle-quickbites/diagrams.json";
 
 /**
  * Small diagrams for USMLE Quick Bites. A bite names one only when the picture
@@ -48,12 +49,32 @@ function Text({
   );
 }
 
+type CatalogRow = { title: string; rows: string[] };
+
+function catalogPicture(id: string, alt: string): ReactNode | null {
+  const row = (catalog as Record<string, CatalogRow>)[id];
+  if (!row) return null;
+  const ys = [58, 88, 118, 148];
+  return (
+    <Frame label={alt}>
+      <Text x={20} y={28} size={14} weight={700}>
+        {row.title}
+      </Text>
+      {row.rows.slice(0, 4).map((line, index) => (
+        <Text key={line} x={20} y={ys[index] ?? 148} size={12} weight={500}>
+          {line}
+        </Text>
+      ))}
+    </Frame>
+  );
+}
+
 export function UsmleBiteDiagram({ id, alt }: { id: string; alt: string }) {
-  const picture = diagrams[id];
+  const picture = diagrams[id]?.(alt) ?? catalogPicture(id, alt);
   if (!picture) return null;
   return (
     <figure className="overflow-hidden rounded-2xl border border-[var(--db-line,var(--color-border))]/80 bg-[var(--color-surface)]">
-      {picture(alt)}
+      {picture}
       <figcaption className="sr-only">{alt}</figcaption>
     </figure>
   );

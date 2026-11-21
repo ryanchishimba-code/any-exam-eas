@@ -12,11 +12,12 @@
     "lines": [
       "Those ages start the workup. They are not themselves a diagnosis.",
       "Constitutional delay is a diagnosis of exclusion after the exam, the growth curve, and the indicated labs.",
-      "A girl who started breasts and has no period three years later is also late, even if she is not yet 15."
+      "A girl who started breasts and has no period three years later is also late, even if she is not yet 15.",
+      "Girls: no thelarche by 13, no menarche by 15, or no menarche within 3 years of thelarche. Boys: testicular volume under 4 mL at 14."
     ],
     "miss": "Reassuring a 15-year-old with no periods because a cousin was a late bloomer.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "puberty-ages",
+    "diagramAlt": "When to evaluate puberty. Girl: no breast by 13, no menses by 15 Boy: testes under 4 mL at 14 Bone age first. High FSH = gonadal failure",
     "source": {
       "name": "StatPearls. Delayed Puberty.",
       "year": "2026",
@@ -35,11 +36,12 @@
     "lines": [
       "The dangerous enzyme defect loses aldosterone. The sodium falls and the potassium rises in the first weeks, not always on day one.",
       "17-hydroxyprogesterone is the test for 21-hydroxylase deficiency.",
-      "Do not assign a sex in the hallway."
+      "A virilized or atypical newborn can crash at 1\u20133 weeks with sodium under 130 and potassium over 6.",
+      "Order 17-hydroxyprogesterone. Give hydrocortisone and saline if the infant is shocked. Do not assign sex or discharge first."
     ],
     "miss": "Discharging a virilized infant with no electrolyte plan and no steroid plan.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cah-salt",
+    "diagramAlt": "Salt-wasting 21-hydroxylase. Week 1\u20133: Na low, K over 6 17-hydroxyprogesterone very high Hydrocortisone + saline, then fludrocortisone",
     "source": {
       "name": "StatPearls. Congenital Adrenal Hyperplasia.",
       "year": "2026",
@@ -60,7 +62,9 @@
     "lines": [
       "Coarctation and a bicuspid valve are what you listen and image for.",
       "The kidneys are imaged once.",
-      "Estrogen is replaced at the time of puberty, with a specialist, because the streak gonads will not produce it."
+      "Estrogen is replaced at the time of puberty, with a specialist, because the streak gonads will not produce it.",
+      "About 10\u201315% have coarctation and up to 30% have a bicuspid aortic valve.",
+      "An arm-leg systolic gradient over 20 mm Hg or delayed femoral pulses means image the aorta."
     ],
     "miss": "Measuring height once and never taking a blood pressure in the legs.",
     "diagram": null,
@@ -85,7 +89,9 @@
     "lines": [
       "Small firm testes are the exam.",
       "Breast tissue is examined because the cancer risk is higher.",
-      "Learning differences are supported. They are not the reason to withhold hormone treatment."
+      "Learning differences are supported. They are not the reason to withhold hormone treatment.",
+      "47,XXY. Small firm testes, tall stature, azoospermia, and gynecomastia. Testosterone is low and LH and FSH are high.",
+      "Testosterone treats the hypogonadism. It does not restore sperm. Breast cancer risk is higher than in other men."
     ],
     "miss": "Telling the patient testosterone will restore sperm.",
     "diagram": null,
@@ -110,7 +116,9 @@
     "lines": [
       "Irradiated blood is used if a transfusion is needed and the immune defect is not yet clear.",
       "Live vaccines wait until the immune status is known.",
-      "The face and the outflow murmur are the clues to order those tests."
+      "The face and the outflow murmur are the clues to order those tests.",
+      "Third pouch: inferior parathyroids and thymus. Fourth pouch: superior parathyroids.",
+      "Ionized calcium can fall in the first days of life. A neonatal seizure here is hypocalcemia until the lab returns."
     ],
     "miss": "Treating a neonatal seizure with an antiseizure drug and never checking the calcium.",
     "diagram": null,
@@ -136,11 +144,12 @@
     "lines": [
       "The picture is microangiopathic hemolysis, thrombocytopenia, and organ injury, often neurologic or renal.",
       "ADAMTS13 activity is the confirmatory test. Do not wait for it to start plasma exchange when the picture is classic.",
-      "ITP is a different disease: low platelets, no schistocytes, and no hemolysis."
+      "ITP is a different disease: low platelets, no schistocytes, and no hemolysis.",
+      "Microangiopathic hemolysis plus thrombocytopenia. Start plasma exchange the day you suspect it. Do not wait for ADAMTS13."
     ],
     "miss": "Transfusing platelets to a safe number before plasma exchange and seeding more microvascular thrombi.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ttp-itp",
+    "diagramAlt": "TTP versus ITP. TTP: schistocytes, hemolysis, exchange now ITP: isolated low platelets, no fragments Platelets in TTP only for life-threatening bleed",
     "source": {
       "name": "StatPearls. Thrombotic Thrombocytopenic Purpura.",
       "year": "2026",
@@ -161,7 +170,8 @@
     "lines": [
       "Draw cultures first only if doing so does not delay the antibiotic.",
       "Monotherapy with an antipseudomonal beta-lactam is the start for most stable patients.",
-      "Add vancomycin for a specific reason: suspected catheter infection, skin or soft-tissue infection, hemodynamic instability, or known resistant gram-positive colonization. Not for every fever."
+      "Add vancomycin for a specific reason: suspected catheter infection, skin or soft-tissue infection, hemodynamic instability, or known resistant gram-positive colonization. Not for every fever.",
+      "Fever of at least 38.3\u00b0C once, or 38.0\u00b0C sustained, with ANC under 500 or expected to fall below 500."
     ],
     "miss": "Adding vancomycin to every neutropenic fever, or holding antibiotics until the neutrophil count is repeated.",
     "diagram": null,
@@ -185,7 +195,9 @@
     "lines": [
       "Antibiotics cover community pneumonia while you treat the sickle crisis.",
       "Simple transfusion is for a drop in hemoglobin. Exchange is for the severe respiratory failure.",
-      "Pain control that lets the patient take deep breaths is part of the prevention."
+      "Pain control that lets the patient take deep breaths is part of the prevention.",
+      "Incentive spirometry on every pain admission. A new infiltrate plus hypoxia is acute chest syndrome.",
+      "Exchange transfusion for severe acute chest or acute stroke. Simple transfusion is for symptomatic anemia. Hydroxyurea is prevention, not today's stroke drug."
     ],
     "miss": "Discharging a hypoxic sickle-cell patient with oral opioids and no film.",
     "diagram": null,
@@ -210,11 +222,13 @@
     "lines": [
       "Steroids or IVIG are the usual first treatments when treatment is indicated.",
       "Platelets are for serious bleeding, and they do not stick around.",
-      "TTP is excluded by the smear. Schistocytes change the disease."
+      "TTP is excluded by the smear. Schistocytes change the disease.",
+      "No schistocytes and the other cell lines are normal. That is the split from TTP.",
+      "Treat bleeding or a planned procedure. A platelet transfusion does not last and is reserved for serious bleeding."
     ],
     "miss": "Transfusing platelets every day to keep a count above 50 in a patient who is not bleeding.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ttp-itp",
+    "diagramAlt": "TTP versus ITP. TTP: schistocytes, hemolysis, exchange now ITP: isolated low platelets, no fragments Platelets in TTP only for life-threatening bleed",
     "source": {
       "name": "StatPearls. Immune Thrombocytopenia.",
       "year": "2026",
@@ -235,7 +249,9 @@
     "lines": [
       "The dose follows the site. A head bleed is 100% replacement and imaging.",
       "A mixing study that no longer corrects means an inhibitor.",
-      "Avoid intramuscular injections and NSAIDs."
+      "Avoid intramuscular injections and NSAIDs.",
+      "PT is normal. PTT is long and corrects with mixing unless an inhibitor has formed.",
+      "A head injury is treated as intracranial bleeding: raise factor VIII to about 100% and image. Do not wait for the CT to give the factor."
     ],
     "miss": "Sending a hemarthrosis home on ibuprofen.",
     "diagram": null,
@@ -260,11 +276,13 @@
     "lines": [
       "Know the subtype before the drug.",
       "Antifibrinolytics help mucosal bleeding.",
-      "Factor replacement that contains von Willebrand factor is the alternative when desmopressin is unsafe."
+      "Factor replacement that contains von Willebrand factor is the alternative when desmopressin is unsafe.",
+      "vWF carries factor VIII. Mucosal bleeding with a normal platelet count is the picture. PTT prolongs only if VIII is low.",
+      "Desmopressin works in most type 1 disease. It is contraindicated in type 2B because platelet counts can fall."
     ],
     "miss": "Giving desmopressin to every patient with the disease name and watching the platelet count fall.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "vwd-ddavp",
+    "diagramAlt": "Desmopressin in VWD. Type 1: desmopressin often works Type 2B: desmopressin can drop platelets Mucosal bleeding. PTT may be normal",
     "source": {
       "name": "StatPearls. Von Willebrand Disease.",
       "year": "2026",
@@ -285,11 +303,13 @@
     "lines": [
       "Cryoprecipitate replaces fibrinogen.",
       "Platelets are for bleeding.",
-      "Heparin is a selected choice in a clotting-predominant patient, not the first syringe in a patient who is bleeding."
+      "Heparin is a selected choice in a clotting-predominant patient, not the first syringe in a patient who is bleeding.",
+      "Fibrinogen falls, D-dimer rises, PT and PTT prolong, and platelets fall.",
+      "Cryoprecipitate is the product that replaces fibrinogen. Platelets are for bleeding, not for a daily threshold."
     ],
     "miss": "Heparinizing a bleeding obstetric patient whose fibrinogen is 60.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "dic-fib",
+    "diagramAlt": "DIC labs. Low fibrinogen, high D-dimer PT and PTT both prolong Cryoprecipitate if bleeding and fibrinogen is low",
     "source": {
       "name": "StatPearls. Disseminated Intravascular Coagulation.",
       "year": "2026",
@@ -310,11 +330,13 @@
     "lines": [
       "Argatroban or another direct thrombin inhibitor is the usual bridge.",
       "Platelet transfusion is not the treatment of the low count.",
-      "The fall begins 5 to 10 days after exposure, or sooner on re-exposure."
+      "The fall begins 5 to 10 days after exposure, or sooner on re-exposure.",
+      "Platelets fall by more than 50% on days 5\u201310, or within a day on re-exposure, and new thrombosis is the danger.",
+      "Stop every heparin, including flushes. Start argatroban or another non-heparin anticoagulant. Warfarin alone can cause venous limb gangrene. Do not transfuse platelets."
     ],
     "miss": "Transfusing platelets and continuing the heparin because the circuit is clotting.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "hit-days",
+    "diagramAlt": "HIT, day 5 to 10. Platelets fall AND a new clot Stop all heparin, including flushes Argatroban. No warfarin alone. No platelets",
     "source": {
       "name": "StatPearls. Heparin-Induced Thrombocytopenia.",
       "year": "2026",
@@ -335,11 +357,13 @@
     "lines": [
       "Fluids are started in everyone at risk.",
       "Screen for G6PD deficiency before rasburicase when you can. The drug can hemolyze those patients.",
-      "The potassium is the immediate threat on the monitor."
+      "The potassium is the immediate threat on the monitor.",
+      "Potassium and phosphate and uric acid rise. Calcium falls.",
+      "Allopurinol stops new uric acid formation. Rasburicase destroys uric acid already present. Screen for G6PD deficiency before rasburicase."
     ],
     "miss": "Starting only allopurinol when the uric acid is already 14 and the potassium is 6.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "tls-ions",
+    "diagramAlt": "Tumor lysis ions. K up, phosphate up, uric acid up Calcium down (binds phosphate) Rasburicase clears uric acid already made",
     "source": {
       "name": "StatPearls. Tumor Lysis Syndrome.",
       "year": "2026",
@@ -360,11 +384,13 @@
     "lines": [
       "A high erythropoietin is not this disease. Do not phlebotomize hypoxic lung disease down to an unsafe hematocrit.",
       "Hydroxyurea is added for high-risk patients.",
-      "Aquagenic itching is a clue, not a dermatology referral alone."
+      "Aquagenic itching is a clue, not a dermatology referral alone.",
+      "JAK2 V617F is the usual mutation. EPO is low. A high EPO is secondary erythrocytosis.",
+      "Phlebotomy target is hematocrit under 45%. Do not apply that target to hypoxic lung disease."
     ],
     "miss": "Phlebotomizing a patient with a high EPO from lung disease to a hematocrit of 40.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "pv-hct",
+    "diagramAlt": "Polycythemia vera target. JAK2. EPO is low Phlebotomy toward hematocrit <45% Do not phlebotomize hypoxic high-EPO disease",
     "source": {
       "name": "StatPearls. Polycythemia Vera.",
       "year": "2026",
@@ -385,11 +411,13 @@
     "lines": [
       "The early death is bleeding. Correct the coagulopathy.",
       "Differentiation syndrome is fever and pulmonary infiltrates after the drug starts. It is treated, not ignored.",
-      "Arsenic trioxide is part of modern regimens. The point for this bite is not to delay the differentiating agent."
+      "Arsenic trioxide is part of modern regimens. The point for this bite is not to delay the differentiating agent.",
+      "Auer rods are myeloid. APL is t(15;17) and drops fibrinogen.",
+      "Start all-trans retinoic acid when the smear fits. Do not wait for the karyotype. Recheck fibrinogen the same day."
     ],
     "miss": "Waiting three days for cytogenetics while the fibrinogen falls.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "atra",
+    "diagramAlt": "APL, do not wait. Auer rods. t(15;17) ATRA when the smear fits Bleeding is the early death. Follow fibrinogen",
     "source": {
       "name": "StatPearls. Acute Myeloid Leukemia.",
       "year": "2026",
@@ -410,7 +438,9 @@
     "lines": [
       "Unusual-site thrombosis is this disease until the flow cytometry is back.",
       "Iron is lost in the urine. Replace it if the patient is deficient. Do not assume the anemia is iron overload.",
-      "Eculizumab raises the Neisseria risk. Vaccinate."
+      "Eculizumab raises the Neisseria risk. Vaccinate.",
+      "C3 deficiency causes severe pyogenic infection. C5\u2013C9 deficiency causes Neisseria infection.",
+      "Hereditary angioedema is C1-inhibitor deficiency: low C4, bradykinin edema, and no response to antihistamines."
     ],
     "miss": "Anticoagulating a hepatic-vein thrombosis and never ordering the flow cytometry.",
     "diagram": null,
@@ -435,7 +465,9 @@
     "lines": [
       "Check the identity of the patient and the bag. Clerical error is the classic cause.",
       "Support the pressure and the urine output.",
-      "A febrile nonhemolytic reaction is a diagnosis you make after hemolysis is unlikely, not before you stop the blood."
+      "A febrile nonhemolytic reaction is a diagnosis you make after hemolysis is unlikely, not before you stop the blood.",
+      "ABO mismatch causes fever, flank pain, and hemoglobinuria during the transfusion. Stop that unit.",
+      "Keep the bag. Send it back with a fresh sample. Clerical error is the usual cause. Do not restart the same unit."
     ],
     "miss": "Restarting the same unit after acetaminophen.",
     "diagram": null,
@@ -461,7 +493,9 @@
     "lines": [
       "Disabling deficit is the indication. A low NIHSS score does not cancel it.",
       "Do not use advanced imaging to withhold treatment inside 4.5 hours.",
-      "Tenecteplase 0.4 mg/kg is not the dose in this window."
+      "Tenecteplase 0.4 mg/kg is not the dose in this window.",
+      "Check glucose and a noncontrast CT first. Hypoglycemia copies a stroke and is not treated with a thrombolytic.",
+      "Inside 4.5 hours, tenecteplase 0.25 mg/kg (maximum 25 mg) or alteplase 0.9 mg/kg (maximum 90 mg). Blood pressure before the drug is under 185/110. The 0.4 mg/kg tenecteplase dose is not the one used."
     ],
     "miss": "Waiting for an MRI, or quoting only alteplase, in a patient who is already inside the window.",
     "diagram": "stroke-window",
@@ -486,22 +520,18 @@
     "lines": [
       "Give IV lorazepam, or IM midazolam if there is no IV.",
       "If it continues, give one adequate dose of fosphenytoin, valproate, or levetiracetam. Those three are equivalent as the next drug.",
-      "Do not stack small benzodiazepine doses and call that treatment."
+      "Do not stack small benzodiazepine doses and call that treatment.",
+      "Check glucose, then give a benzodiazepine: intravenous lorazepam or intramuscular midazolam if there is no line.",
+      "If the seizure continues, give one full dose of levetiracetam 60 mg/kg (max 4500 mg), fosphenytoin 20 mg/kg (max 1500 mg), or valproate 40 mg/kg (max 3000 mg). ESETT found them equivalent. Do not stack quarter-doses."
     ],
     "miss": "Starting a phenytoin load while the first benzodiazepine dose was never given.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "status-rx",
+    "diagramAlt": "Status epilepticus drugs. Glucose, then a benzodiazepine Then one full second drug Levetiracetam, fosphenytoin, or valproate",
     "source": {
-      "name": "StatPearls. Status Epilepticus. ESETT, New England Journal of Medicine, 2019.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430686/",
-      "says": "First-line treatment is a benzodiazepine. ESETT found levetiracetam, fosphenytoin, and valproate equivalent as the next intravenous drug.",
-      "more": [
-        {
-          "name": "Kapur et al. Randomized Trial of Three Anticonvulsant Medications. N Engl J Med. 2019.",
-          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1905795"
-        }
-      ]
+      "name": "Kapur et al. Randomized Trial of Three Anticonvulsant Medications for Status Epilepticus. N Engl J Med.",
+      "year": "2019",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1905795",
+      "says": "Levetiracetam, fosphenytoin, and valproate were equivalent as the second intravenous drug after a benzodiazepine."
     },
     "open": false
   },
@@ -542,7 +572,8 @@
     "lines": [
       "The point is to blunt the inflammatory burst as bacteria lyse. After the antibiotic is already in, the window is gone.",
       "Do not delay the antibiotic for a CT if there is no indication for CT. Blood cultures, then drug, then the puncture if imaging has to come first.",
-      "Stop the steroid if the organism is not Streptococcus pneumoniae, unless another indication exists."
+      "Stop the steroid if the organism is not Streptococcus pneumoniae, unless another indication exists.",
+      "Low-dose dexamethasone fails to suppress in every Cushing syndrome and does not name the organ."
     ],
     "miss": "Hanging the antibiotic, then remembering the steroid an hour later.",
     "diagram": null,
@@ -566,11 +597,13 @@
     "lines": [
       "Watch the vital capacity and the negative inspiratory force. The diaphragm fails quietly.",
       "A spinal fluid full of cells is not this disease.",
-      "Campylobacter is the infection to ask about, and it does not change the first treatment."
+      "Campylobacter is the infection to ask about, and it does not change the first treatment.",
+      "CSF protein is high and cells are near zero. More than about 10 white cells means a different diagnosis.",
+      "IVIG or plasma exchange. Not prednisone. Intubate as vital capacity falls toward 15\u201320 mL/kg."
     ],
     "miss": "Starting high-dose prednisone for ascending paralysis.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gb-vc",
+    "diagramAlt": "Guillain-Barr\u00e9 breathing. IVIG or exchange. Not prednisone Vital capacity under 20 mL/kg: intubate window CSF: high protein, almost no cells",
     "source": {
       "name": "StatPearls. Guillain-Barre Syndrome.",
       "year": "2026",
@@ -591,11 +624,13 @@
     "lines": [
       "Infection can worsen old symptoms without a new plaque. Look for it before you call every worsening a flare.",
       "Disease-modifying therapy is the long plan and is not the same syringe as the flare steroid.",
-      "Optic neuritis is this conversation, and vision is followed."
+      "Optic neuritis is this conversation, and vision is followed.",
+      "Dissemination in time and space, plus unmatched oligoclonal bands. One lesion is not the disease.",
+      "A new disabling deficit can get high-dose steroids. The same old deficit plus a fever is infection until proved otherwise."
     ],
     "miss": "Giving antibiotics for a sensory level and a clear urine.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ms-steroid",
+    "diagramAlt": "MS flare versus infection. New deficit: high-dose steroid Old deficit plus fever: find the infection Disease-modifying drug is a separate order",
     "source": {
       "name": "StatPearls. Multiple Sclerosis.",
       "year": "2026",
@@ -616,11 +651,12 @@
     "lines": [
       "Carbidopa is given with it so less is lost in the periphery.",
       "A dopamine blocker on the medication list is stopped before the diagnosis is locked.",
-      "Impulse-control problems are the agonist story. Ask about gambling and sex."
+      "Impulse-control problems are the agonist story. Ask about gambling and sex.",
+      "Rest tremor, rigidity, and bradykinesia from nigral dopamine loss. Give hospital doses at the home clock times."
     ],
     "miss": "Withholding levodopa for years from a patient who can no longer walk, out of fear of it wearing off.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "levodopa-time",
+    "diagramAlt": "Parkinson doses in hospital. Give carbidopa-levodopa at home times No metoclopramide or haloperidol Levodopa is the strongest motor drug",
     "source": {
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
@@ -641,11 +677,13 @@
     "lines": [
       "There is no postictal confusion. A confused child had a different seizure.",
       "Hyperventilation can reproduce the spell in the office.",
-      "A child who also has generalized convulsions needs a drug that covers both, which ethosuximide does not."
+      "A child who also has generalized convulsions needs a drug that covers both, which ethosuximide does not.",
+      "Under 10 seconds, 3-Hz spike and wave, no postictal state. Ethosuximide if this is the only seizure type.",
+      "Carbamazepine can worsen absence. Hyperventilation in clinic can reproduce the spell."
     ],
     "miss": "Starting carbamazepine for staring spells.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ethosux",
+    "diagramAlt": "Absence drug. 3 Hz spike-and-wave. No postictal state Ethosuximide if absence is the only seizure Carbamazepine can worsen pure absence",
     "source": {
       "name": "StatPearls. Absence Seizure.",
       "year": "2026",
@@ -664,13 +702,14 @@
     "open": false,
     "lead": "Trigeminal neuralgia is treated with carbamazepine. A dental extraction is not the treatment of electric pain.",
     "lines": [
-      "Check sodium and watch for rash.",
-      "Sensory loss or a young patient gets imaging.",
-      "A continuous burning pain is a different diagnosis."
+      "The shock lasts under 2 minutes, in one trigeminal division, and is triggered by touch, chewing, or a breeze.",
+      "Carbamazepine is first-line. Check sodium. A spreading rash can be Stevens-Johnson syndrome, and the drug stops.",
+      "Onset before 40, or any sensory loss between attacks, needs MRI. Continuous burning pain is not neuralgia.",
+      "Oxcarbazepine is the usual alternative. A dental extraction does not treat the nerve."
     ],
     "miss": "Pulling a tooth for seconds of shock-like pain in the cheek.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cbz-tn",
+    "diagramAlt": "Trigeminal neuralgia. Seconds of shock in one branch Carbamazepine first Check sodium. Young or numb: image",
     "source": {
       "name": "StatPearls. Trigeminal Neuralgia.",
       "year": "2026",
@@ -691,11 +730,13 @@
     "lines": [
       "Creatine kinase is high and the reflexes are not clonus.",
       "A benzodiazepine can help agitation. The antipsychotic does not.",
-      "Restarting a drug later, if ever, is a specialist decision at a low dose."
+      "Restarting a drug later, if ever, is a specialist decision at a low dose.",
+      "Lead-pipe rigidity and high CK over days. Reflexes are reduced, not clonic.",
+      "Stop the dopamine blocker. Do not give another dose for agitation. Cooling and fluids for the muscle breakdown."
     ],
     "miss": "Increasing the antipsychotic because the patient is more confused.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "nms-ss",
+    "diagramAlt": "NMS versus serotonin syndrome. NMS: lead-pipe, high CK, days Serotonin: clonus, hours, two drugs Stop the offending drug in both",
     "source": {
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
@@ -716,11 +757,13 @@
     "lines": [
       "The combination is often an SSRI plus an MAOI, a triptan, tramadol, or linezolid.",
       "Clonus is the sign that separates it from neuroleptic malignant syndrome.",
-      "It starts in hours, so today's new prescription is the cause."
+      "It starts in hours, so today's new prescription is the cause.",
+      "Clonus and hyperreflexia within hours of an SSRI plus an MAOI, linezolid, tramadol, or a triptan. Stop both drugs on that shift.",
+      "A benzodiazepine treats the agitation. Cyproheptadine is the antagonist if support is not enough. Neuroleptic malignant syndrome is rigidity over days, not clonus."
     ],
     "miss": "Adding linezolid to an SSRI and treating the shivering as influenza.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "nms-ss",
+    "diagramAlt": "NMS versus serotonin syndrome. NMS: lead-pipe, high CK, days Serotonin: clonus, hours, two drugs Stop the offending drug in both",
     "source": {
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
@@ -741,11 +784,13 @@
     "lines": [
       "NSAIDs, thiazides, ACE inhibitors, and dehydration raise the level.",
       "Intravenous saline is for volume depletion. It is not a substitute for dialysis in severe toxicity.",
-      "The level can be drawn too early and look lower than the tissue burden."
+      "The level can be drawn too early and look lower than the tissue burden.",
+      "NSAIDs, thiazides, and ACE inhibitors raise the level. Hold lithium and recheck.",
+      "Severe neurotoxicity or a level well above the range is dialysis. Chronic use causes nephrogenic diabetes insipidus."
     ],
     "miss": "Continuing the lithium and adding ibuprofen for the tremor.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "li-level",
+    "diagramAlt": "Lithium interactions. NSAIDs, thiazides, ACE inhibitors raise it Hold the drug. Severe toxicity: dialysis Chronic use: nephrogenic diabetes insipidus",
     "source": {
       "name": "StatPearls. Lithium Toxicity.",
       "year": "2026",
@@ -766,7 +811,9 @@
     "lines": [
       "Acute dystonia is the opposite time course and answers to an anticholinergic.",
       "The movements can persist after the drug stops. Warn the patient.",
-      "Akathisia is restlessness and is a different dose change."
+      "Akathisia is restlessness and is a different dose change.",
+      "Months of a blocker, then orofacial movements that can persist after the drug stops.",
+      "Acute dystonia is hours and responds to benztropine. A VMAT2 inhibitor is the tardive treatment, not a higher haloperidol dose."
     ],
     "miss": "Doubling haloperidol for mouth movements that started after a year of haloperidol.",
     "diagram": null,
@@ -791,11 +838,13 @@
     "lines": [
       "Forehead involvement is what makes it peripheral. Forehead sparing is a stroke.",
       "Vesicles in the ear are zoster and a different antiviral decision.",
-      "Antiviral therapy is added in severe palsy, not as the only drug."
+      "Antiviral therapy is added in severe palsy, not as the only drug.",
+      "Forehead weakness means the lesion is peripheral. Forehead sparing is a central lesion and a stroke pathway.",
+      "Prednisone within 72 hours. Tape or lubricate the eye that does not close, including overnight."
     ],
     "miss": "Sending a forehead-sparing droop home with artificial tears.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "bell-steroid",
+    "diagramAlt": "Bell palsy, first 72 hours. Forehead involved = peripheral nerve Prednisone early. Lubricate the eye Forehead spared = stroke pathway",
     "source": {
       "name": "StatPearls. Bell Palsy.",
       "year": "2026",
@@ -816,7 +865,9 @@
     "lines": [
       "A lens-shaped bleed on CT in a declining patient is not a medical admission.",
       "Reverse anticoagulation if it is present.",
-      "A stable tiny collection can be watched by a neurosurgeon. The declining patient cannot."
+      "A stable tiny collection can be watched by a neurosurgeon. The declining patient cannot.",
+      "Middle meningeal artery, lens shape, does not cross sutures. Lucid interval then collapse.",
+      "A dilating pupil is uncal herniation. That patient goes to the operating room. Do not wait for the next scheduled scan."
     ],
     "miss": "Admitting a dilating pupil to the floor for serial exams overnight.",
     "diagram": null,
@@ -841,7 +892,9 @@
     "lines": [
       "Older patients can have a large collection and a mild first complaint. The scan decides the size.",
       "A small chronic collection without mass effect can be followed.",
-      "Do not restart the anticoagulant the same evening without a plan."
+      "Do not restart the anticoagulant the same evening without a plan.",
+      "Bridging veins, crescent, crosses sutures. Atrophy and anticoagulation are the setup.",
+      "Symptoms can be days after a minor fall. Reverse anticoagulation if the collection is symptomatic or shifting."
     ],
     "miss": "Restarting warfarin the night of the fall because the patient has atrial fibrillation and the CT was not yet done.",
     "diagram": null,
@@ -866,11 +919,13 @@
     "lines": [
       "The signs are headache, vomiting, and ataxia, then a falling level of consciousness.",
       "Blood pressure is lowered into the range the hemorrhagic-stroke guidance uses, without dropping perfusion.",
-      "A deep small bleed in the putamen is a different surgical decision from the cerebellum."
+      "A deep small bleed in the putamen is a different surgical decision from the cerebellum.",
+      "Putamen, thalamus, pons, and cerebellum are the hypertensive sites. Lobar hemorrhage in older adults is amyloid until proved otherwise.",
+      "Cerebellar blood that compresses the brainstem or blocks the fourth ventricle is evacuated. Do not watch it on a medical floor."
     ],
     "miss": "Waiting for the patient to become comatose before calling neurosurgery.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ich-cerebellum",
+    "diagramAlt": "Which bleed goes to surgery. Cerebellum with compression: evacuate Putamen: usually medical Lobar in an older adult: think amyloid",
     "source": {
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
@@ -891,7 +946,9 @@
     "lines": [
       "The headache of thunderclap onset is not migraine until the bleed is excluded.",
       "Medication-overuse headache is a near-daily painkiller, and the treatment is to stop it.",
-      "A new neurologic deficit during the headache is not a routine refill."
+      "A new neurologic deficit during the headache is not a routine refill.",
+      "A triptan is contraindicated in coronary disease, uncontrolled hypertension, and within 24 hours of another triptan or an ergot.",
+      "Medication-overuse headache follows simple analgesics on 15 or more days a month, or triptans or opioids on 10 or more days. The treatment is to stop the drug, not to raise the dose."
     ],
     "miss": "Giving sumatriptan to a patient with ongoing chest pain.",
     "diagram": null,
@@ -916,16 +973,17 @@
     "lines": [
       "A sudden confusion is delirium until the cause is found. It is not a dose increase of the dementia drug.",
       "Frontotemporal change is a different disease and does not answer to the same drug.",
-      "Caregiver support and safety are the treatment that matters as much as the pill."
+      "Caregiver support and safety are the treatment that matters as much as the pill.",
+      "Diphenhydramine and other strong anticholinergics worsen cognition and are on the Beers list. Stop them rather than adding a cholinesterase inhibitor on top."
     ],
     "miss": "Adding diphenhydramine for sleep in a patient who is already losing memory.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "beers-list",
+    "diagramAlt": "Beers drugs that cause admissions. Benzodiazepines for sleep or anxiety Strong anticholinergics, including diphenhydramine Sliding-scale insulin used alone",
     "source": {
-      "name": "StatPearls. Alzheimer Disease.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499922/",
-      "says": "Anticholinergics worsen cognition. Cholinesterase inhibitors are symptomatic and are not combined with an anticholinergic load."
+      "name": "2023 AGS Beers Criteria for Potentially Inappropriate Medication Use in Older Adults.",
+      "year": "2023",
+      "url": "https://agsjournals.onlinelibrary.wiley.com/doi/10.1111/jgs.18372",
+      "says": "Avoid benzodiazepines, strong anticholinergics, and sliding-scale insulin as monotherapy in older adults."
     },
     "number": 37,
     "id": "usmle-qb-s2-037"
@@ -941,7 +999,9 @@
     "lines": [
       "The order of symptoms matters: gait, then bladder, then mind.",
       "Large ventricles with little cortical atrophy are the scan.",
-      "A patient whose memory failed first is not this disease."
+      "A patient whose memory failed first is not this disease.",
+      "Gait, then bladder, then cognition. Ventricles large, cortex relatively spared, opening pressure not high.",
+      "A tap that improves gait is the patient considered for a shunt. Memory-first disease is not shunted."
     ],
     "miss": "Shunting a patient with years of isolated memory loss.",
     "diagram": null,
@@ -966,7 +1026,9 @@
     "lines": [
       "The source, ear, sinus, or heart, is treated too.",
       "Steroids are for significant edema, not for every ring.",
-      "A lumbar puncture is not how you make this diagnosis."
+      "A lumbar puncture is not how you make this diagnosis.",
+      "Image before the lumbar puncture when a focal sign or papilledema is present.",
+      "Contiguous sinus or ear source is often streptococci. Drain collections around 2.5 cm or larger, or any collection with mass effect."
     ],
     "miss": "Six weeks of antibiotics and no drainage for a 4-centimeter lesion with a worsening exam.",
     "diagram": null,
@@ -991,7 +1053,9 @@
     "lines": [
       "The pupil is small. Do not start pilocarpine thinking it is a dilated pupil.",
       "A brainstem stroke can cause it with other signs. Those signs decide the scanner.",
-      "An isolated chronic Horner still gets an explanation."
+      "An isolated chronic Horner still gets an explanation.",
+      "Ptosis and miosis from lost sympathetics. A third-nerve palsy is a down-and-out eye with a blown pupil.",
+      "Painful acute Horner syndrome is carotid dissection until the vessel is imaged the same day."
     ],
     "miss": "Calling a painful small pupil a migraine and sending the patient home.",
     "diagram": null,
@@ -1016,11 +1080,13 @@
     "lines": [
       "Atrial fibrillation found on the tracing changes the drug to anticoagulation.",
       "A high-grade carotid stenosis is a surgical conversation.",
-      "The symptoms resolving does not mean the risk resolved."
+      "The symptoms resolving does not mean the risk resolved.",
+      "ABCD2 and, more importantly, the cause: start an antithrombotic today, image the carotid, and look for atrial fibrillation.",
+      "If atrial fibrillation is found, the drug is an anticoagulant. A resolved deficit does not mean the risk resolved. Follow-up is days, not months."
     ],
     "miss": "Reassuring a patient whose hand weakness resolved and scheduling clinic in a month.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "tia-plan",
+    "diagramAlt": "TIA before discharge. Antithrombotic today AF found: anticoagulant, not aspirin Carotid imaging, not a visit in 3 months",
     "source": {
       "name": "StatPearls. Transient Ischemic Attack.",
       "year": "2026",
@@ -1041,11 +1107,13 @@
     "lines": [
       "Back pain plus a sensory level, bilateral weakness, or new bladder failure is the syndrome.",
       "MRI is the image.",
-      "Cancer is the common cause in an adult. Treat the cord before the staging is complete."
+      "Cancer is the common cause in an adult. Treat the cord before the staging is complete.",
+      "Dexamethasone immediately, often 10 mg IV, then MRI. Plain films do not clear the cord.",
+      "Bilateral weakness, a sensory level, or new retention is the syndrome. Decompress. Do not wait for full cancer staging."
     ],
     "miss": "Ordering outpatient lumbar films for a patient who cannot urinate.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cord-dex",
+    "diagramAlt": "Cord compression. Dexamethasone immediately MRI today, not plain films Decompress. Do not wait for full staging",
     "source": {
       "name": "StatPearls. Spinal Cord Compression.",
       "year": "2026",
@@ -1067,11 +1135,12 @@
     "lines": [
       "Red flags that change the plan: cancer history, unexplained weight loss, fever, injection-drug use, recent spinal infection or bacteremia, trauma, progressive deficit, saddle anesthesia, or new bowel or bladder loss.",
       "Cauda equina is an MRI and a surgical call, not a course of ibuprofen.",
-      "Early imaging without a flag finds incidental disease and does not speed recovery."
+      "Early imaging without a flag finds incidental disease and does not speed recovery.",
+      "No MRI in the first 6 weeks without a red flag. Red flags: cancer, unexplained weight loss, fever, injection drug use, trauma, progressive deficit, saddle anesthesia, or new bowel or bladder loss."
     ],
     "miss": "Ordering an MRI for two days of mechanical pain because the patient asked for one.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "back-flags",
+    "diagramAlt": "Image the back now. Cauda equina, cancer, infection, deficit Otherwise no MRI in the first weeks Activity, not bed rest",
     "source": {
       "name": "ACP Clinical Practice Guideline. Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain.",
       "year": "2017",
@@ -1090,13 +1159,14 @@
     "read": "1 min",
     "lead": "A gout flare is treated with colchicine, an NSAID, or a glucocorticoid. Allopurinol alone is not the treatment of the flare.",
     "lines": [
-      "Pick the anti-inflammatory the kidneys, the stomach, and the other drugs allow.",
-      "If the patient is already on urate-lowering therapy, do not stop it for the flare.",
-      "Opioids do not treat the inflammation."
+      "Treat the flare with colchicine, an NSAID, or a glucocorticoid. Allopurinol alone does not treat the hot joint.",
+      "Colchicine works best within about 36 hours of onset. Lower the dose when the GFR is reduced.",
+      "If urate-lowering therapy is already prescribed, continue it through the flare. Do not start it alone as the pain plan.",
+      "Choose the anti-inflammatory the kidneys and the stomach allow. An opioid does not treat the crystal inflammation."
     ],
     "miss": "Starting allopurinol during a hot joint and sending the patient home on that alone.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gout-flare",
+    "diagramAlt": "Gout flare drug. Colchicine, NSAID, or glucocorticoid Not allopurinol as the only drug Continue allopurinol if already taking it",
     "source": {
       "name": "2020 American College of Rheumatology Guideline for the Management of Gout.",
       "year": "2020",
@@ -1116,11 +1186,13 @@
     "lines": [
       "Pain on passive stretch is enough to call the surgeon. A pulse can still be present.",
       "Remove the cast or the dressing first if that is the cause, and reassess immediately.",
-      "The limb is not observed overnight once the diagnosis is made."
+      "The limb is not observed overnight once the diagnosis is made.",
+      "Pain on passive stretch. A delta pressure under about 30 mm Hg (diastolic minus compartment) is an indication to open.",
+      "Pulselessness is late. Remove the cast and call for fasciotomy. More opioid is not the treatment."
     ],
     "miss": "Increasing the opioid and rechecking the compartment in the morning.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "compartment-5",
+    "diagramAlt": "Compartment, do not wait for the pulse. Pain out of proportion Pain on passive stretch Fasciotomy. Pulse loss is late",
     "source": {
       "name": "StatPearls. Acute Compartment Syndrome and Fasciotomy.",
       "year": "2026",
@@ -1141,7 +1213,9 @@
     "lines": [
       "A TNF inhibitor is the next step when NSAIDs fail and the diagnosis is secure.",
       "Uveitis is treated as uveitis, urgently, not with the same oral NSAID plan alone.",
-      "A young man whose pain is worse in the morning is not given six weeks of bed rest."
+      "A young man whose pain is worse in the morning is not given six weeks of bed rest.",
+      "Onset under 45, night pain, stiffness over 30 minutes, better with activity. HLA-B27 is supportive only.",
+      "An NSAID is first-line. A red painful eye is acute anterior uveitis and is same-day ophthalmology."
     ],
     "miss": "Prescribing bed rest for morning stiffness that improves with walking.",
     "diagram": null,
@@ -1166,7 +1240,9 @@
     "lines": [
       "Proximal weakness is the function you measure.",
       "Interstitial lung disease is asked about and imaged when the story fits.",
-      "A statin myopathy has no Gottron papules. Stop the statin, but do not miss the rash."
+      "A statin myopathy has no Gottron papules. Stop the statin, but do not miss the rash.",
+      "Gottron papules and a heliotrope rash plus proximal weakness. CK is high. Anti-Jo-1 is the lung antibody.",
+      "Adults get a cancer search. Immunosuppression treats the muscle. A statin myopathy has no rash."
     ],
     "miss": "Prescribing a topical steroid for Gottron papules and ignoring the shoulders.",
     "diagram": null,
@@ -1191,7 +1267,9 @@
     "lines": [
       "Dactylitis and DIP disease are the clues on the exam.",
       "Nail pitting counts. Ask the patient to show the scalp.",
-      "Methotrexate is a common conventional drug. It is not the only option when the joints are eroding."
+      "Methotrexate is a common conventional drug. It is not the only option when the joints are eroding.",
+      "DIP joints, nail pits, and a whole-digit dactylitis. Rheumatoid arthritis prefers MCP and PIP joints and spares the DIP.",
+      "Treat the joint even if the skin is mild. Pencil-in-cup is a late film, not required for the diagnosis."
     ],
     "miss": "Treating only the skin plaques while the digit stays swollen.",
     "diagram": null,
@@ -1216,7 +1294,9 @@
     "lines": [
       "A tap that is culture-negative is the point.",
       "Uveitis needs an eye exam.",
-      "A single dose of antibiotics does not fix established joint inflammation."
+      "A single dose of antibiotics does not fix established joint inflammation.",
+      "Sterile inflammatory joint days to weeks after Chlamydia or a gut infection. Culture of the fluid is negative.",
+      "Treat a still-present infection. Use an NSAID for the joint. Uveitis needs an eye exam the same day."
     ],
     "miss": "Operating a culture-negative knee or giving a month of vancomycin.",
     "diagram": null,
@@ -1241,11 +1321,13 @@
     "lines": [
       "Surgery is planned from the diameter and the family history, not from a symptom of rupture.",
       "Pregnancy is a high-risk aortic state and is planned.",
-      "Contact sports are restricted when the aorta is dilated."
+      "Contact sports are restricted when the aorta is dilated.",
+      "Fibrillin. Lens dislocates up. Homocystinuria dislocates the lens down and clots.",
+      "Follow the aortic root. A beta blocker or an ARB slows growth. The diameter, not the long fingers, drives surgery."
     ],
     "miss": "Reassuring a click and never measuring the root.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "marfan-root",
+    "diagramAlt": "Marfan follow-up. Image the aortic root Beta blocker or ARB Upward lens dislocation. Homocystinuria is down",
     "source": {
       "name": "StatPearls. Marfan Syndrome.",
       "year": "2026",
@@ -1266,7 +1348,9 @@
     "lines": [
       "Nikolsky-positive flaccid bullae are the exam.",
       "Fluid and wound care matter because the skin barrier is gone.",
-      "Bullous pemphigoid is tense and is a different, usually less mucosal, disease."
+      "Bullous pemphigoid is tense and is a different, usually less mucosal, disease.",
+      "Flaccid bullae, positive Nikolsky sign, desmoglein 3, net-like immunofluorescence, and almost always mouth erosions.",
+      "Systemic corticosteroid plus a steroid-sparing drug. Topical therapy alone does not treat widespread disease."
     ],
     "miss": "Prescribing nystatin alone for months of oral erosions and skin loss.",
     "diagram": null,
@@ -1291,7 +1375,8 @@
     "lines": [
       "Gonorrhea is the exception to think of in a young sexually active patient, and the culture includes it.",
       "A prosthetic joint is a different operation and a different biofilm regimen.",
-      "Oral step-down happens after the source is controlled, not on day one of a toxic patient."
+      "Oral step-down happens after the source is controlled, not on day one of a toxic patient.",
+      "Tap before antibiotics if the patient is stable. White cells in the fluid often over 50,000. Staphylococcus aureus is the native-joint organism to cover."
     ],
     "miss": "Leaving a purulent knee on intravenous antibiotics without drainage.",
     "diagram": null,
@@ -1316,11 +1401,12 @@
     "lines": [
       "Pain is treated so the patient can move. Delirium is prevented by that, by glasses, and by not adding anticholinergics.",
       "A fragility fracture means treat the osteoporosis. Do not wait for an outpatient DEXA to name the disease.",
-      "Urinary catheters come out."
+      "Urinary catheters come out.",
+      "Operate within about 24\u201348 hours once the patient is medically ready. Delay past that raises complications."
     ],
     "miss": "Waiting a week for the internist to clear a stable patient.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "hip-48",
+    "diagramAlt": "Hip fracture timing. Operate within about 48 hours if ready Prophylax against clot A fragility fracture starts osteoporosis treatment",
     "source": {
       "name": "StatPearls. Hip Fracture Overview.",
       "year": "2026",
@@ -1341,7 +1427,9 @@
     "lines": [
       "The pattern of the fracture, the history, and the developmental stage are the questions.",
       "Both diagnoses can be true.",
-      "Hearing and dental findings support the collagen disease and are documented."
+      "Hearing and dental findings support the collagen disease and are documented.",
+      "Type I collagen. Blue sclerae, fractures with little force, and hearing loss.",
+      "Blue sclerae do not close a child-protection question. Inflicted injury and this disease can both be present."
     ],
     "miss": "Closing a child-protection evaluation because the sclerae are blue.",
     "diagram": null,
@@ -1366,7 +1454,8 @@
     "lines": [
       "Pain past the visible skin and a toxic patient are enough.",
       "Group A streptococcus and mixed organisms are both covered until the culture returns.",
-      "A stable cellulitis with a clear border is the disease you do not take to surgery."
+      "A stable cellulitis with a clear border is the disease you do not take to surgery.",
+      "Pain past the visible erythema, toxicity, and a lactate that is rising. Crepitus is late and not required."
     ],
     "miss": "Ordering a CT and a 24-hour antibiotic trial for a toxic patient with pain out of proportion.",
     "diagram": null,
@@ -1392,11 +1481,12 @@
     "lines": [
       "STEMI goes to a PCI-capable hospital. The system goal is first medical contact to device in 90 minutes.",
       "If the patient arrives at a hospital that cannot do PCI, the transfer goal is 120 minutes. If that will be missed, give fibrinolysis.",
-      "A nondiagnostic first ECG with ongoing pain gets serial ECGs, including posterior leads when the story fits."
+      "A nondiagnostic first ECG with ongoing pain gets serial ECGs, including posterior leads when the story fits.",
+      "ECG within 10 minutes of first medical contact. Do not wait for troponin to activate the lab for ST elevation."
     ],
     "miss": "Waiting for a troponin before activating the lab for ST elevation.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "acs-clocks",
+    "diagramAlt": "ACS time goals. ECG within 10 minutes of contact PCI hospital: device by 90 minutes Transfer: 120 minutes, or give a lytic",
     "source": {
       "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
       "year": "2025",
@@ -1417,7 +1507,8 @@
     "lines": [
       "The evidence-based beta blockers are carvedilol, metoprolol succinate, and bisoprolol.",
       "If the EF later rises above 40%, this is improved EF. Keep the HFrEF drugs.",
-      "A small rise in creatinine after the start is expected. It is not, by itself, a reason to stop the drug that keeps the patient alive."
+      "A small rise in creatinine after the start is expected. It is not, by itself, a reason to stop the drug that keeps the patient alive.",
+      "The four drugs are an ARNI (or ACE inhibitor or ARB if an ARNI cannot be used), carvedilol or metoprolol succinate or bisoprolol, an MRA, and an SGLT2 inhibitor."
     ],
     "miss": "Stopping the ACE inhibitor or the ARNI because the creatinine rose from 1.1 to 1.3, and never restarting it.",
     "diagram": "gdmt",
@@ -1442,11 +1533,12 @@
     "lines": [
       "Use a DOAC rather than warfarin unless there is moderate or severe mitral stenosis or a mechanical valve.",
       "The pattern of the fibrillation, paroxysmal or permanent, does not change the indication.",
-      "Aspirin is not stroke prevention in atrial fibrillation."
+      "Aspirin is not stroke prevention in atrial fibrillation.",
+      "Class 1 anticoagulation is an estimated risk of at least 2% per year: CHA2DS2-VASc of 2 or more in men and 3 or more in women."
     ],
     "miss": "Prescribing aspirin because the CHA2DS2-VASc score felt too low for a DOAC, or withholding a DOAC because the patient is often in sinus rhythm.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cha2ds",
+    "diagramAlt": "Who gets anticoagulation. Class 1: \u22652% per year Men CHA2DS2-VASc \u22652, women \u22653 DOAC, except mitral stenosis or metal valve",
     "source": {
       "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
       "year": "2023",
@@ -1466,11 +1558,12 @@
     "lines": [
       "The treatment goal for most adults is under 130/80, and a higher-risk patient is encouraged toward a systolic pressure under 120.",
       "Risk is estimated with PREVENT, not the old pooled cohort equation.",
-      "Stage 1 with cardiovascular disease, diabetes, chronic kidney disease, or a 10-year risk of at least 7.5% starts a drug. Lower risk gets 3 to 6 months of lifestyle first."
+      "Stage 1 with cardiovascular disease, diabetes, chronic kidney disease, or a 10-year risk of at least 7.5% starts a drug. Lower risk gets 3 to 6 months of lifestyle first.",
+      "At least 140/90 mm Hg starts two agents from different classes, preferably one pill. Goal for most adults is under 130/80."
     ],
     "miss": "Starting one drug at 162/98 and rechecking in six months.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "htn-two",
+    "diagramAlt": "2025 blood-pressure start. \u2265140/90: two drugs, one pill if possible Goal under 130/80 for most adults Stage 1: drug now if PREVENT \u22657.5%",
     "source": {
       "name": "2025 AHA/ACC High Blood Pressure Guideline.",
       "year": "2025",
@@ -1491,11 +1584,12 @@
     "lines": [
       "First medical contact to device is 90 minutes at a PCI hospital and 120 minutes if transfer is required.",
       "If that transfer will miss 120 minutes, give a fibrinolytic and do not keep waiting.",
-      "A posterior lead and a repeat ECG catch the STEMI the first tracing missed."
+      "A posterior lead and a repeat ECG catch the STEMI the first tracing missed.",
+      "ECG within 10 minutes of first medical contact. Do not wait for troponin to activate the lab for ST elevation."
     ],
     "miss": "Giving a fibrinolytic in the parking lot of a PCI hospital.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "acs-clocks",
+    "diagramAlt": "ACS time goals. ECG within 10 minutes of contact PCI hospital: device by 90 minutes Transfer: 120 minutes, or give a lytic",
     "source": {
       "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for Acute Coronary Syndromes.",
       "year": "2025",
@@ -1516,7 +1610,9 @@
     "lines": [
       "Give oxygen when the saturation is low or the patient is in distress from hypoxia.",
       "Aspirin, if there is no allergy or active bleeding, is the drug that is actually indicated.",
-      "A STEMI still does not wait for the troponin."
+      "A STEMI still does not wait for the troponin.",
+      "Do not apply a nonrebreather when saturation is normal. Aspirin 162\u2013325 mg, if there is no allergy or active bleeding, is the drug that is indicated.",
+      "A nondiagnostic ECG with ongoing pain gets a repeat tracing, including posterior leads when the story fits."
     ],
     "miss": "Putting every chest-pain patient on a nonrebreather.",
     "diagram": null,
@@ -1541,11 +1637,12 @@
     "lines": [
       "Stopping the ARNI or the beta blocker because the number looks better is how patients bounce back.",
       "A small creatinine rise after the start is expected.",
-      "The evidence-based beta blockers remain carvedilol, metoprolol succinate, and bisoprolol."
+      "The evidence-based beta blockers remain carvedilol, metoprolol succinate, and bisoprolol.",
+      "The four drugs are an ARNI (or ACE inhibitor or ARB if an ARNI cannot be used), carvedilol or metoprolol succinate or bisoprolol, an MRA, and an SGLT2 inhibitor."
     ],
     "miss": "Declaring the heart failure gone because the ejection fraction is now 45%.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "hf-pillars",
+    "diagramAlt": "Start before discharge. ARNI, evidence-based beta blocker MRA and SGLT2 inhibitor Clinic within 7 days",
     "source": {
       "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
       "year": "2022",
@@ -1566,11 +1663,13 @@
     "lines": [
       "The indication is the yearly risk, not the rhythm on today's ECG.",
       "A DOAC is preferred unless there is moderate or severe mitral stenosis or a mechanical valve.",
-      "Aspirin is not the substitute."
+      "Aspirin is not the substitute.",
+      "Class 1 anticoagulation is an estimated risk of at least 2% per year: CHA2DS2-VASc of 2 or more in men and 3 or more in women.",
+      "A DOAC is preferred. Exceptions are moderate or severe mitral stenosis and a mechanical valve, which stay on warfarin. Aspirin does not prevent stroke. Sinus rhythm does not cancel the indication."
     ],
     "miss": "Stopping the DOAC the week after a successful cardioversion.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cha2ds",
+    "diagramAlt": "Who gets anticoagulation. Class 1: \u22652% per year Men CHA2DS2-VASc \u22652, women \u22653 DOAC, except mitral stenosis or metal valve",
     "source": {
       "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
       "year": "2023",
@@ -1591,11 +1690,13 @@
     "lines": [
       "The rest of nonvalvular atrial fibrillation prefers a DOAC.",
       "A bioprosthetic valve is not the same instruction as a mechanical valve.",
-      "The INR target follows the valve, not a guess of 2 to 3 for every prosthesis."
+      "The INR target follows the valve, not a guess of 2 to 3 for every prosthesis.",
+      "Warfarin is the anticoagulant. A DOAC is not substituted at discharge.",
+      "Write the INR target for that valve. Aspirin may be added for some prostheses and does not replace warfarin."
     ],
     "miss": "Switching a mechanical mitral valve to apixaban because the patient dislikes blood tests.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "warfarin-only",
+    "diagramAlt": "Who still needs warfarin. Mechanical valve Moderate or severe mitral stenosis A DOAC is otherwise preferred in AF",
     "source": {
       "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
       "year": "2023",
@@ -1616,16 +1717,18 @@
     "lines": [
       "Three sets from separate sticks are the usual ask.",
       "An unstable patient gets the drug after whatever cultures you can draw immediately.",
-      "A dental procedure prophylaxis is for a short list of heart lesions, not for every murmur."
+      "A dental procedure prophylaxis is for a short list of heart lesions, not for every murmur.",
+      "Acute on a normal valve is Staphylococcus aureus. Subacute on an abnormal valve is viridans streptococci.",
+      "Three culture sets from separate sites before antibiotics if the patient is stable. Prophylaxis is only for the highest-risk hearts, not for an isolated click."
     ],
     "miss": "Giving one dose of an oral antibiotic and then trying to culture the blood the next day.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ie-cultures",
+    "diagramAlt": "Endocarditis cultures. Three sets, separate sticks Before antibiotics if the patient can wait Prophylaxis only for the highest-risk hearts",
     "source": {
-      "name": "StatPearls. Infective Endocarditis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557641/",
-      "says": "Blood cultures before antibiotics are required for the diagnosis when the patient is stable. Unstable patients are treated immediately after cultures are drawn."
+      "name": "2015 AHA Scientific Statement. Infective endocarditis in adults.",
+      "year": "2015",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000296",
+      "says": "Draw at least three sets of blood cultures from separate sites before antibiotics when the patient is stable. Routine dental prophylaxis is limited to a short list of highest-risk cardiac conditions."
     },
     "number": 65,
     "id": "usmle-qb-s2-065"
@@ -1641,16 +1744,18 @@
     "lines": [
       "A pure vasodilator first can raise the force of contraction. The beta blocker comes before or with it.",
       "Unequal pulses are the bedside clue you already have.",
-      "Thrombolysis is contraindicated."
+      "Thrombolysis is contraindicated.",
+      "Unequal arm pressures or pulses and tearing pain to the back. Give a beta blocker before a pure vasodilator.",
+      "Involvement of the ascending aorta is an operation. A fibrinolytic extends the tear."
     ],
     "miss": "Starting nicardipine alone, or giving a fibrinolytic for the chest pain.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "dissection-hr",
+    "diagramAlt": "Ascending dissection. Beta blocker before a pure vasodilator Type A: operating room No fibrinolytic",
     "source": {
-      "name": "StatPearls. Aortic Dissection.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441963/",
-      "says": "Ascending involvement is surgical. Heart-rate control precedes pure vasodilation so the force on the flap does not rise."
+      "name": "2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.",
+      "year": "2022",
+      "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106",
+      "says": "Acute aortic syndrome involving the ascending aorta is a surgical emergency. Control heart rate with a beta blocker before adding a vasodilator."
     },
     "number": 66,
     "id": "usmle-qb-s2-066"
@@ -1664,9 +1769,10 @@
     "open": false,
     "lead": "Hypotension, back or abdominal pain, and a known or pulsatile aneurysm is rupture. The patient goes to repair, not to a repeat ultrasound.",
     "lines": [
-      "Permissive hypotension is a conversation. Large-volume crystalloid before control can worsen bleeding.",
-      "A stable, incidentally found aneurysm is a size and a risk discussion, not an emergency.",
-      "Smoking cessation is the medical therapy that changes growth."
+      "Rupture is back or abdominal pain plus hypotension. That patient goes to repair, not to a clinic ultrasound.",
+      "Permissive hypotension until the aorta is controlled. A large crystalloid bolus before control can worsen bleeding.",
+      "Do not repeatedly palpate a tender aneurysm.",
+      "A stable incidental aneurysm is a diameter and a risk discussion. Smoking cessation slows growth. It is not tonight's emergency."
     ],
     "miss": "Sending the hypotensive patient for a clinic ultrasound this week.",
     "diagram": null,
@@ -1691,7 +1797,9 @@
     "lines": [
       "Fluids are a bridge while the needle or the window is arranged.",
       "Pulsus paradoxus and equalization are the clues.",
-      "A small effusion without equalization is not tamponade and does not need an emergency window."
+      "A small effusion without equalization is not tamponade and does not need an emergency window.",
+      "Diastolic pressures equalize and the y descent drops. Pulsus paradoxus is an exaggerated inspiratory fall in systolic pressure.",
+      "Fluids are a bridge. Drainage is the treatment. A diuretic removes the last preload."
     ],
     "miss": "Giving furosemide for the distended neck veins.",
     "diagram": null,
@@ -1716,7 +1824,9 @@
     "lines": [
       "Correct potassium.",
       "Unstable polymorphic ventricular tachycardia is defibrillated.",
-      "A congenital long QT with syncope is a specialist and often a defibrillator conversation, not a higher dose of the offending antibiotic."
+      "A congenital long QT with syncope is a specialist and often a defibrillator conversation, not a higher dose of the offending antibiotic.",
+      "Pause-dependent polymorphic VT. Intravenous magnesium 1\u20132 g even if the serum magnesium is normal. Replete potassium.",
+      "Stop the QT-prolonging drug. Do not give amiodarone or another QT-prolonging antiarrhythmic for torsades."
     ],
     "miss": "Giving amiodarone for polymorphic ventricular tachycardia in a patient whose QT is already long.",
     "diagram": null,
@@ -1741,16 +1851,18 @@
     "lines": [
       "A ventricular rate of 150 with sawtooth waves is flutter until proved otherwise.",
       "Anticoagulation follows stroke risk, as in fibrillation.",
-      "Adenosine may show the flutter waves. It does not cure the circuit."
+      "Adenosine may show the flutter waves. It does not cure the circuit.",
+      "Typical flutter is cavotricuspid-isthmus macro-reentry. A ventricular rate of 150 with sawtooth waves is 2:1 conduction.",
+      "Ablation of the isthmus treats the circuit. Stroke prevention follows the same risk threshold as fibrillation and is not cancelled by sinus rhythm."
     ],
     "miss": "Cardioverting and stopping anticoagulation because the ECG is now sinus.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Electrophysiology Study and Ablation of Atrial Flutter.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK594279/",
-      "says": "Isthmus ablation treats typical flutter. Stroke prevention is based on risk and is not cancelled by sinus rhythm."
+      "name": "2023 ACC/AHA/ACCP/HRS Guideline for Atrial Fibrillation.",
+      "year": "2023",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2023.08.017",
+      "says": "Anticoagulate at an estimated yearly stroke risk of at least 2% (CHA2DS2-VASc at least 2 in men or 3 in women). Use a DOAC unless there is moderate-to-severe mitral stenosis or a mechanical valve."
     },
     "number": 70,
     "id": "usmle-qb-s2-070"
@@ -1791,11 +1903,13 @@
     "lines": [
       "The duration depends on whether the heart was involved and on how long ago the attack was.",
       "A new pharyngitis is still treated. Prevention is in addition.",
-      "The mitral valve is what you listen to for the rest of the patient's life."
+      "The mitral valve is what you listen to for the rest of the patient's life.",
+      "Mitral valve is the most affected. Jones criteria diagnose acute rheumatic fever. The chronic valve lesion is years later.",
+      "Secondary prevention is scheduled penicillin for years, longer if the heart was involved. A 10-day course is treatment of pharyngitis, not prophylaxis."
     ],
     "miss": "Giving a single course of amoxicillin and discharging the prevention plan.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "rheumatic-pcn",
+    "diagramAlt": "Rheumatic prophylaxis. After rheumatic fever: scheduled penicillin Duration depends on carditis One 10-day course is not prophylaxis",
     "source": {
       "name": "StatPearls. Rheumatic Heart Disease.",
       "year": "2026",
@@ -1816,11 +1930,13 @@
     "lines": [
       "A vasoconstrictor is the drug version of squatting when the spell continues.",
       "A drug that drops afterload makes the right-to-left shunt worse.",
-      "The murmur getting softer means less blood is crossing the pulmonary valve."
+      "The murmur getting softer means less blood is crossing the pulmonary valve.",
+      "Pulmonic stenosis, right ventricular hypertrophy, overriding aorta, VSD. A spell is infundibular spasm.",
+      "Knees-to-chest raises systemic resistance and sends blood to the lungs. A vasodilator does the opposite. The murmur gets softer as less blood crosses the valve."
     ],
     "miss": "Giving a pure vasodilator during a spell.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "tet-spell",
+    "diagramAlt": "Hypercyanotic spell. Knees to chest. Oxygen. Calm Raise systemic resistance A vasodilator worsens the right-to-left shunt",
     "source": {
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
@@ -1867,11 +1983,13 @@
     "lines": [
       "GINA track 1 uses ICS-formoterol as the reliever at every step.",
       "Steps 1 and 2 are as-needed low-dose ICS-formoterol. From step 3 it is also the daily maintenance inhaler.",
-      "A short course of systemic steroid treats a severe flare. It is not controller therapy."
+      "A short course of systemic steroid treats a severe flare. It is not controller therapy.",
+      "No SABA-only plan. Track 1 uses as-needed low-dose ICS-formoterol at steps 1\u20132, and the same inhaler as maintenance from step 3.",
+      "In an acute attack, oxygen only if saturation is under 92%, and the target is at or under 95% for adults and adolescents."
     ],
     "miss": "Refilling albuterol for daily symptoms and calling the asthma mild.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gina-o2",
+    "diagramAlt": "Acute asthma oxygen. No oxygen if saturation \u226592% If given, target \u226495% in adults Preferred reliever: ICS-formoterol",
     "source": {
       "name": "2026 GINA Strategy Report.",
       "year": "2026",
@@ -1895,8 +2013,8 @@
       "Nonsevere inpatient: beta-lactam plus macrolide, or a respiratory fluoroquinolone. Severe: a beta-lactam plus a macrolide, or a beta-lactam plus a fluoroquinolone."
     ],
     "miss": "Adding metronidazole because the word aspiration appeared, or admitting a low-risk patient for an IV drug that an oral regimen covers.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cap-bed",
+    "diagramAlt": "Pneumonia: where and which drug. Hypoxia, shock, or confusion: admit Severe: beta-lactam + macrolide No routine anaerobic drug for aspiration",
     "source": {
       "name": "2019 IDSA/ATS Guideline for Community-Acquired Pneumonia.",
       "year": "2019",
@@ -1917,11 +2035,12 @@
     "lines": [
       "Start anticoagulation when the probability is high and bleeding risk is not prohibitive, even before the confirmatory scan, if the scan will be delayed.",
       "A DOAC is appropriate for most stable patients. Thrombolysis is not.",
-      "Right-heart strain with a normal blood pressure is intermediate risk. It is not an automatic lytic."
+      "Right-heart strain with a normal blood pressure is intermediate risk. It is not an automatic lytic.",
+      "Systolic pressure under 90 mm Hg or shock is high-risk and gets reperfusion. A normal pressure gets anticoagulation."
     ],
     "miss": "Giving a lytic because the CT said massive clot, while the blood pressure is normal.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "pe-split",
+    "diagramAlt": "Pulmonary embolism split. Hypotension or shock: reperfuse Normal pressure: anticoagulate Right-heart strain alone is not a lytic",
     "source": {
       "name": "2019 ESC Guidelines for Acute Pulmonary Embolism.",
       "year": "2019",
@@ -1964,13 +2083,14 @@
     "open": false,
     "lead": "GOLD 2026 group A, no exacerbation and few symptoms, starts a bronchodilator. An inhaled steroid is not the opening drug.",
     "lines": [
-      "Group B, symptomatic and no exacerbation, starts LABA plus LAMA.",
-      "Group E is one moderate or severe exacerbation and also starts LABA plus LAMA.",
-      "Triple therapy is the eosinophil decision, not the default."
+      "Group A is few symptoms and no exacerbation: one bronchodilator. An inhaled steroid is not the first drug.",
+      "Group B (symptoms, no exacerbation) and group E (one moderate or severe exacerbation) start LABA plus LAMA, not LABA/ICS.",
+      "Consider triple therapy when blood eosinophils are at least 300/\u00b5L. That is not the default starting inhaler.",
+      "A flare is a separate decision: a systemic steroid for about 5 days, and an antibiotic only if sputum turns purulent plus more dyspnea or volume."
     ],
     "miss": "Starting every smoker on an ICS/LABA inhaler.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gold-eos",
+    "diagramAlt": "GOLD 2026, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
     "source": {
       "name": "GOLD 2026 Report. Key changes.",
       "year": "2026",
@@ -1991,11 +2111,13 @@
     "lines": [
       "Noninvasive ventilation is for respiratory acidosis, not for every wheeze.",
       "Oxygen is titrated. A high flow that abolishes the drive is the old harm.",
-      "The maintenance inhalers are restarted or started before discharge."
+      "The maintenance inhalers are restarted or started before discharge.",
+      "Group A: bronchodilator. Group B and group E: LABA plus LAMA. One moderate or severe exacerbation in the past year is group E.",
+      "Do not start LABA/ICS alone. Consider triple therapy when eosinophils are at least 300/\u00b5L. A flare gets a systemic steroid for about 5 days. Antibiotics if purulence plus more dyspnea or sputum volume."
     ],
     "miss": "Giving a 14-day antibiotic to every patient who is a little more short of breath.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gold-eos",
+    "diagramAlt": "GOLD 2026, who gets ICS. 1 exacerbation = group E Start LABA + LAMA, not LABA/ICS Triple therapy if eosinophils \u2265300",
     "source": {
       "name": "GOLD 2026 Report. Key changes.",
       "year": "2026",
@@ -2016,11 +2138,12 @@
     "lines": [
       "The reliever in the preferred track is ICS-formoterol, including during a mild flare.",
       "A systemic steroid is for the severe attack, not for every cough.",
-      "Epinephrine is for anaphylaxis, not for ordinary asthma."
+      "Epinephrine is for anaphylaxis, not for ordinary asthma.",
+      "No SABA-only plan. Track 1 uses as-needed low-dose ICS-formoterol at steps 1\u20132, and the same inhaler as maintenance from step 3."
     ],
     "miss": "Putting a nonrebreather on a talking patient whose saturation is 96%.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gina-o2",
+    "diagramAlt": "Acute asthma oxygen. No oxygen if saturation \u226592% If given, target \u226495% in adults Preferred reliever: ICS-formoterol",
     "source": {
       "name": "2026 GINA Strategy Report.",
       "year": "2026",
@@ -2041,11 +2164,13 @@
     "lines": [
       "Nonsevere inpatient pneumonia can be a beta-lactam plus a macrolide or a respiratory fluoroquinolone alone.",
       "Add MRSA or Pseudomonas coverage only when the risk the guideline names is present.",
-      "Blood cultures are for severe disease, not for every walking outpatient."
+      "Blood cultures are for severe disease, not for every walking outpatient.",
+      "Outpatient, no comorbidity: amoxicillin or doxycycline. A macrolide alone only where pneumococcal resistance is under 25%.",
+      "Severe inpatient disease: beta-lactam plus a macrolide, or beta-lactam plus a respiratory fluoroquinolone. Do not add metronidazole for the word aspiration."
     ],
     "miss": "Using an oral macrolide alone for a patient who is in shock.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cap-bed",
+    "diagramAlt": "Pneumonia: where and which drug. Hypoxia, shock, or confusion: admit Severe: beta-lactam + macrolide No routine anaerobic drug for aspiration",
     "source": {
       "name": "2019 IDSA/ATS Guideline for Community-Acquired Pneumonia.",
       "year": "2019",
@@ -2066,11 +2191,13 @@
     "lines": [
       "Start the anticoagulant if the scan will be delayed and the bleeding risk is acceptable.",
       "Right-heart strain with a normal pressure is not an automatic lytic.",
-      "A DOAC is appropriate for most stable patients."
+      "A DOAC is appropriate for most stable patients.",
+      "Systolic pressure under 90 mm Hg or shock is high-risk and gets reperfusion. A normal pressure gets anticoagulation.",
+      "Right-ventricular strain with a normal pressure is intermediate risk, not an automatic lytic. A DOAC is appropriate for most stable patients."
     ],
     "miss": "Thrombolysing a clot because the CT report said the clot was large.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "pe-split",
+    "diagramAlt": "Pulmonary embolism split. Hypotension or shock: reperfuse Normal pressure: anticoagulate Right-heart strain alone is not a lytic",
     "source": {
       "name": "2019 ESC Guidelines for Acute Pulmonary Embolism.",
       "year": "2019",
@@ -2091,11 +2218,12 @@
     "lines": [
       "Continue it if the eGFR later falls below 20, unless dialysis starts or the patient cannot tolerate it.",
       "The indication includes type 2 diabetes with CKD and eGFR at least 20, and CKD with heart failure or heavy albuminuria.",
-      "Restart it when the patient is eating and stable."
+      "Restart it when the patient is eating and stable.",
+      "Start at eGFR of at least 20 mL/min/1.73 m\u00b2 for type 2 diabetes with CKD, and for CKD with heart failure or ACR of at least 200 mg/g."
     ],
     "miss": "Stopping the drug permanently because eGFR fell 4 points in the first month.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "sglt2-rules",
+    "diagramAlt": "SGLT2 inhibitor rules. Start at eGFR \u226520 if diabetes + CKD Also if HF, or ACR \u2265200 mg/g Hold if fasting, surgery, or critical illness",
     "source": {
       "name": "KDIGO 2024 Clinical Practice Guideline for CKD.",
       "year": "2024",
@@ -2116,11 +2244,12 @@
     "lines": [
       "The correction over the first day is limited, because a fast rise can injure the myelin.",
       "Recheck the sodium after the bolus. Do not write a large bag and walk away.",
-      "SIADH will not be fixed by a liter of normal saline."
+      "SIADH will not be fixed by a liter of normal saline.",
+      "A seizure from hyponatremia: 100 mL of 3% saline over 10 minutes, then recheck. Repeat up to two more boluses if symptoms persist."
     ],
     "miss": "Fluid-restricting a seizing patient, or correcting a chronic sodium of 112 up to 140 in one shift.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "na-bolus",
+    "diagramAlt": "Severe hyponatremia. Seizure: 100 mL 3% saline, then recheck Limit the 24-hour rise, often \u22648 mEq Fluid restriction is for the stable patient",
     "source": {
       "name": "StatPearls. Syndrome of Inappropriate Antidiuretic Hormone Secretion.",
       "year": "2026",
@@ -2141,7 +2270,8 @@
     "lines": [
       "Nephrogenic disease from lithium is not fixed by more desmopressin.",
       "The patient must be allowed to drink, or you replace the water.",
-      "A low sodium means you gave too much desmopressin or the patient drank past it."
+      "A low sodium means you gave too much desmopressin or the patient drank past it.",
+      "Urine osmolality under 300 with serum osmolality over 300 is the water-loss picture. Desmopressin concentrates the urine only if the cause is central."
     ],
     "miss": "Restricting free water in a hypernatremic patient whose urine is already water.",
     "diagram": null,
@@ -2191,7 +2321,9 @@
     "lines": [
       "Vomiting and a remote diuretic are the low-chloride stories.",
       "Active diuretic use can look high-chloride. The history matters.",
-      "Acetazolamide is a selected option when the patient cannot take volume, not the first bag."
+      "Acetazolamide is a selected option when the patient cannot take volume, not the first bag.",
+      "Urine chloride under 20 mEq/L is saline-responsive (vomiting, remote diuretic). Over 20 with hypertension is mineralocorticoid excess.",
+      "Saline will not fix hyperaldosteronism. Potassium is low in both and is replaced."
     ],
     "miss": "Pouring saline into primary hyperaldosteronism.",
     "diagram": null,
@@ -2216,11 +2348,13 @@
     "lines": [
       "Noninvasive ventilation is the first step when the patient can protect the airway and is not in shock.",
       "A chronic retainer is not driven to a CO2 of 40 in an hour.",
-      "Sedation that is still running is a cause you can stop."
+      "Sedation that is still running is a cause you can stop.",
+      "A rising PaCO2 and a falling pH need more alveolar ventilation. Oxygen does not remove CO2.",
+      "Noninvasive ventilation is first if the airway is protected and the patient is not in shock. Do not drive a chronic retainer to a PaCO2 of 40 in one hour."
     ],
     "miss": "Increasing the oxygen liter flow as the only response to a CO2 of 80 and a pH of 7.18.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "nippv",
+    "diagramAlt": "When to start NIV. COPD flare with low pH and high CO2 Patient must protect the airway Oxygen alone does not clear CO2",
     "source": {
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
@@ -2241,7 +2375,9 @@
     "lines": [
       "Needle or finger decompression is followed by a chest tube.",
       "The trachea moves away from the side of the tension.",
-      "A simple pneumothorax in a stable patient can wait for the image."
+      "A simple pneumothorax in a stable patient can wait for the image.",
+      "Trachea shifts away from the silent side. Neck veins up. Pressure down. Decompress, then place a chest tube.",
+      "A chest film is for a stable simple pneumothorax. It is not the first order when the pressure is 70."
     ],
     "miss": "Sending a crashing patient to radiology for a two-view film.",
     "diagram": null,
@@ -2266,16 +2402,18 @@
     "lines": [
       "Predicted weight comes from height and sex, not from the scale.",
       "Chasing a normal CO2 with big breaths injures the lung.",
-      "Fluids are conservative once shock has been resuscitated."
+      "Fluids are conservative once shock has been resuscitated.",
+      "Bilateral infiltrates not explained by left-atrial pressure. Tidal volume 6 mL/kg predicted body weight from height and sex.",
+      "Plateau pressure at or under 30 cm H2O. A PaCO2 of 50 can be accepted. Do not use actual body weight."
     ],
     "miss": "Setting 12 mL per kilogram of actual weight because the saturation looks better.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ards-tv",
+    "diagramAlt": "ARDS tidal volume. 6 mL/kg predicted body weight Use height and sex, not the scale Plateau pressure \u226430 cm H2O",
     "source": {
-      "name": "StatPearls. Acute Respiratory Distress Syndrome.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK436002/",
-      "says": "Low tidal volume on predicted body weight and a plateau-pressure limit are the ventilator settings that reduce further lung injury."
+      "name": "Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes. N Engl J Med.",
+      "year": "2000",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005043421801",
+      "says": "Tidal volume of 6 mL/kg predicted body weight and plateau pressure at or under 30 cm H2O reduced mortality compared with 12 mL/kg."
     },
     "number": 91,
     "id": "usmle-qb-s2-091"
@@ -2291,7 +2429,9 @@
     "lines": [
       "The history is the test you cannot order.",
       "Acute disease follows exposure by hours.",
-      "Chronic scarring will not reverse if the patient goes home to the same bird."
+      "Chronic scarring will not reverse if the patient goes home to the same bird.",
+      "Hours after birds, mold, or a barn. Removing the antigen is required. A steroid without removal fails.",
+      "Chronic disease scars the mid and upper lungs. Name the antigen in the discharge instructions."
     ],
     "miss": "Adding a steroid and sending the patient back to the pigeon coop.",
     "diagram": null,
@@ -2316,16 +2456,18 @@
     "lines": [
       "Oxygen for hypoxemia and pulmonary rehabilitation are part of care.",
       "A connective-tissue disease or an exposure has to be excluded first.",
-      "Acute worsening is a different event and needs a different evaluation."
+      "Acute worsening is a different event and needs a different evaluation.",
+      "Basal, peripheral honeycombing and Velcro crackles. Exclude connective-tissue disease and exposures before calling it idiopathic.",
+      "Nintedanib or pirfenidone is the disease-modifying choice. Long-term prednisone is not that treatment."
     ],
     "miss": "Prescribing months of high-dose prednisone as the only treatment of honeycombing.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ipf-drug",
+    "diagramAlt": "IPF drug. Nintedanib or pirfenidone Not long-term prednisone as the disease drug Oxygen if hypoxemic",
     "source": {
-      "name": "StatPearls. Idiopathic Pulmonary Fibrosis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448162/",
-      "says": "Antifibrotic therapy is the disease-specific treatment. Long-term corticosteroids are not disease-modifying for idiopathic pulmonary fibrosis."
+      "name": "ATS/ERS/JRS/ALAT Clinical Practice Guideline. Idiopathic pulmonary fibrosis. Update.",
+      "year": "2022",
+      "url": "https://www.atsjournals.org/doi/10.1164/rccm.202202-0399ST",
+      "says": "Nintedanib or pirfenidone is suggested for idiopathic pulmonary fibrosis. The guideline recommends against a steroid-containing regimen as disease-modifying therapy."
     },
     "number": 93,
     "id": "usmle-qb-s2-093"
@@ -2341,7 +2483,9 @@
     "lines": [
       "Find the cause: cystic fibrosis, immunodeficiency, or a prior infection.",
       "A CT that shows the dilation is the diagnosis. A normal film does not exclude it.",
-      "Suppressive antibiotics are a specialist decision, not the first inhaler."
+      "Suppressive antibiotics are a specialist decision, not the first inhaler.",
+      "Daily airway clearance is the treatment of the anatomy. Antibiotics treat a flare or a cultured Pseudomonas, not the dilated bronchi.",
+      "CT shows tram tracks and the signet-ring sign. A normal chest film does not exclude it."
     ],
     "miss": "Rotating oral antibiotics forever and never teaching clearance.",
     "diagram": null,
@@ -2366,11 +2510,13 @@
     "lines": [
       "The urine tells you if the kidney is holding water.",
       "Let a patient with an intact thirst drink.",
-      "Desmopressin is for central diabetes insipidus, not for a patient who simply had no access to water."
+      "Desmopressin is for central diabetes insipidus, not for a patient who simply had no access to water.",
+      "Free-water deficit. Replace it so sodium falls by no more than about 0.5 mEq/L per hour, and recheck.",
+      "Concentrated urine means the kidney is holding water and intake was the problem. Dilute urine is diabetes insipidus."
     ],
     "miss": "Dropping the sodium from 162 to 140 overnight with free water.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "fluid-rate",
+    "diagramAlt": "Hypernatremia pace. Free-water deficit, replaced slowly Recheck sodium. Do not drop it overnight Desmopressin only if central DI",
     "source": {
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
@@ -2391,11 +2537,13 @@
     "lines": [
       "Oral replacement is safer when the patient can take it and the ECG is quiet.",
       "ECG changes or severe weakness justify the intravenous route, still controlled.",
-      "A diuretic cause means you also change the diuretic."
+      "A diuretic cause means you also change the diuretic.",
+      "Intravenous potassium is diluted and infused, typically no faster than 10 mEq/hour through a peripheral vein. It is never pushed.",
+      "If potassium will not stay up, magnesium is low. Replace magnesium or the kidney keeps wasting potassium."
     ],
     "miss": "Injecting a syringe of concentrated potassium.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "k-push",
+    "diagramAlt": "Potassium route. Never IV push Infuse dilute. Recheck Replace magnesium or K will not stay up",
     "source": {
       "name": "StatPearls. Hypokalemia.",
       "year": "2026",
@@ -2416,11 +2564,13 @@
     "lines": [
       "Check magnesium. A low magnesium keeps calcium low.",
       "After thyroid surgery, watch the calcium for the first day.",
-      "Correct the albumin before you call a total calcium low."
+      "Correct the albumin before you call a total calcium low.",
+      "Prolonged QT, Chvostek or Trousseau sign, tetany, or a seizure gets intravenous calcium. Recheck magnesium.",
+      "After thyroidectomy, check calcium on a schedule for 24\u201348 hours. A low albumin lowers total calcium without changing the ionized value."
     ],
     "miss": "Giving a bolus of calcium for a mildly low total calcium in a comfortable patient with a low albumin.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ca-qt",
+    "diagramAlt": "Symptomatic hypocalcemia. Long QT, tetany, or seizure: IV calcium Check magnesium with it Post-thyroidectomy: scheduled calcium checks",
     "source": {
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
@@ -2441,7 +2591,9 @@
     "lines": [
       "The kidneys are not biopsied to make this diagnosis.",
       "Tolvaptan is a selected drug that slows growth in the right patient, with a liver-test cost.",
-      "Family screening is a conversation, not a surprise CT of every relative."
+      "Family screening is a conversation, not a surprise CT of every relative.",
+      "Autosomal dominant disease: bilateral cysts, hypertension, and intracranial aneurysms. Do not biopsy to diagnose it.",
+      "A thunderclap headache is imaged the same day. Autosomal recessive disease is the infantile form with congenital hepatic fibrosis."
     ],
     "miss": "Ignoring a thunderclap headache because the patient's usual problem is the kidney.",
     "diagram": null,
@@ -2466,7 +2618,9 @@
     "lines": [
       "CT or ultrasound sees the stone the film missed.",
       "Allopurinol is for the uric acid production, not the acute colic.",
-      "Pain control and a strainer still happen."
+      "Pain control and a strainer still happen.",
+      "Plain films miss uric acid stones. CT does not. They form when urine pH is low, often under 5.5.",
+      "Alkalinize the urine toward 6.5\u20137. Allopurinol is not the acute pain drug."
     ],
     "miss": "Telling the patient the stone passed because the abdominal film is blank.",
     "diagram": null,
@@ -2491,11 +2645,12 @@
     "lines": [
       "Secondary hyperparathyroidism is treated by lowering phosphate and replacing the vitamin D the kidney no longer activates, in the order the labs demand.",
       "Calcium-based binders add a calcium load. Watch the product.",
-      "Dialysis does not excuse the binder."
+      "Dialysis does not excuse the binder.",
+      "Phosphate rises, active vitamin D falls, PTH rises. Binders are taken with meals. A bedtime-only dose binds nothing."
     ],
     "miss": "Prescribing the binder at bedtime, away from meals.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "binder-meal",
+    "diagramAlt": "Phosphate binder timing. Swallow with the meal Bedtime-only dosing binds nothing Watch the calcium-phosphate product",
     "source": {
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
@@ -2516,7 +2671,9 @@
     "lines": [
       "An ACE inhibitor can drop the filtration when the whole renal mass sits behind a stenosis.",
       "Recheck the creatinine after you start it.",
-      "A bruit is a clue, not a diagnosis."
+      "A bruit is a clue, not a diagnosis.",
+      "Fibromuscular dysplasia is the young woman and is the lesion often opened. Atherosclerotic stenosis in an older smoker is not automatically stented.",
+      "An ACE inhibitor can drop GFR when both kidneys, or a single kidney, depend on the stenosis. Recheck creatinine within days."
     ],
     "miss": "Stenting every atherosclerotic renal artery because the pressure is high.",
     "diagram": null,
@@ -2541,7 +2698,9 @@
     "lines": [
       "The patient is usually diabetic.",
       "Imaging shows the gas.",
-      "A simple pyelonephritis has no gas and can be outpatient if the patient can drink and is not septic."
+      "A simple pyelonephritis has no gas and can be outpatient if the patient can drink and is not septic.",
+      "Gas in the kidney on CT in a diabetic patient is a necrotizing infection, usually E. coli or another gram-negative rod.",
+      "Intravenous antibiotics and drainage or nephrectomy. Oral ciprofloxacin and discharge is the miss."
     ],
     "miss": "Discharging a febrile diabetic with gas around the kidney on ciprofloxacin.",
     "diagram": null,
@@ -2566,7 +2725,9 @@
     "lines": [
       "Hematuria that is heavy, a low complement, or an age outside childhood are reasons not to assume it.",
       "The parents are taught to check the urine and the swelling.",
-      "Relapse is common and is not failure of the diagnosis."
+      "Relapse is common and is not failure of the diagnosis.",
+      "Childhood nephrotic syndrome: albumin often under 2.5 g/dL, protein over 3.5 g/day, and foot-process effacement. Light microscopy is normal.",
+      "Steroids are the first treatment unless hematuria, low complement, or an atypical age demands a biopsy."
     ],
     "miss": "Biopsying every edematous toddler before a pediatric nephrologist has seen them.",
     "diagram": null,
@@ -2591,7 +2752,9 @@
     "lines": [
       "Anticoagulation is considered when the albumin is very low and the bleeding risk allows it.",
       "Not every patient needs immediate immunosuppression.",
-      "A renal-vein thrombosis is flank pain and a worsening kidney, not just more protein."
+      "A renal-vein thrombosis is flank pain and a worsening kidney, not just more protein.",
+      "Adult nephrotic syndrome. Subepithelial spikes. PLA2R antibody marks primary disease.",
+      "Test for hepatitis B, lupus, and cancer. Albumin under about 2.5 g/dL is a venous-thrombosis risk, including renal-vein thrombosis."
     ],
     "miss": "Starting high-dose steroids on day one and never testing for hepatitis B.",
     "diagram": null,
@@ -2617,11 +2780,12 @@
     "lines": [
       "Two large IVs, a type and screen, and a restrictive transfusion strategy come before the endoscopy.",
       "High-risk stigmata get endoscopic therapy and a proton-pump inhibitor infusion.",
-      "A higher transfusion threshold is reasonable for active cardiovascular disease. The number 7 is not universal."
+      "A higher transfusion threshold is reasonable for active cardiovascular disease. The number 7 is not universal.",
+      "Without cardiovascular disease, transfuse when hemoglobin is under 7 g/dL. Use a higher threshold, often 8, if coronary disease is active."
     ],
     "miss": "Transfusing to a hemoglobin of 10 before the scope, or scoping an unstable patient.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "bleed-7",
+    "diagramAlt": "Ulcer bleed transfusion. No heart disease: transfuse under 7 g/dL Scope after resuscitation, within 24 h Higher threshold if active coronary disease",
     "source": {
       "name": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding.",
       "year": "2021",
@@ -2642,11 +2806,12 @@
     "lines": [
       "Send the cell count, albumin, protein, and culture inoculated at the bedside.",
       "Do not wait for the culture to start antibiotics when the neutrophil count is already at least 250.",
-      "For a tap that removes more than 5 liters, give albumin, about 6 to 8 g per liter removed."
+      "For a tap that removes more than 5 liters, give albumin, about 6 to 8 g per liter removed.",
+      "Diagnostic tap for new ascites. SAAG of 1.1 g/dL or more is portal hypertension. Neutrophils of 250/\u00b5L or more is spontaneous bacterial peritonitis: antibiotics now."
     ],
     "miss": "Sending the patient home on a higher diuretic dose without tapping new or painful ascites.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "saag",
+    "diagramAlt": "Ascites tap. SAAG \u22651.1: portal hypertension Neutrophils \u2265250: treat SBP now Remove >5 L: albumin 6\u20138 g per liter",
     "source": {
       "name": "StatPearls. Ascites. AASLD practice guidance on ascites and spontaneous bacterial peritonitis.",
       "year": "2026",
@@ -2672,11 +2837,12 @@
     "lines": [
       "A clean-based ulcer that has stopped bleeding does not need a heroic transfusion target.",
       "Alarm features, including bleeding, weight loss, and age, get an endoscopy.",
-      "Stop the NSAID. Treat the infection. A proton-pump inhibitor covers the healing."
+      "Stop the NSAID. Treat the infection. A proton-pump inhibitor covers the healing.",
+      "Test and treat Helicobacter pylori with a full eradication regimen, then a test of cure. A proton-pump inhibitor alone does not eradicate."
     ],
     "miss": "Locating the ulcer from whether food helps, and never testing for H. pylori.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "h-pylori-cure",
+    "diagramAlt": "H. pylori. Full eradication regimen Test of cure after antibiotics PPI alone does not eradicate",
     "source": {
       "name": "StatPearls. Peptic Ulcer Disease.",
       "year": "2026",
@@ -2697,16 +2863,18 @@
     "lines": [
       "A trial of acid suppression is reasonable when the story is heartburn and there is no alarm.",
       "An alarm symptom gets an endoscopy, not a longer antacid trial.",
-      "Weight loss and a head of the bed are part of the treatment, not decorations."
+      "Weight loss and a head of the bed are part of the treatment, not decorations.",
+      "Typical heartburn can start with an 8-week proton-pump inhibitor trial. Alarm features \u2014 dysphagia, bleeding, anemia, or weight loss \u2014 are an endoscopy.",
+      "A bird-beak esophagus that does not relax is achalasia, not a failed acid drug. Manometry, not another month of a PPI, is the next test."
     ],
     "miss": "Refilling a proton-pump inhibitor for progressive dysphagia.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Gastroesophageal Reflux Disease (GERD).",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK554462/",
-      "says": "Transient lower-sphincter relaxation is the mechanism. Alarm symptoms move the patient to endoscopy."
+      "name": "ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease.",
+      "year": "2022",
+      "url": "https://journals.lww.com/ajg/fulltext/10.14309/ajg.0000000000001538~acg-clinical-guideline-for-the-diagnosis-and-management-of",
+      "says": "Typical reflux symptoms may start with a proton-pump inhibitor trial. Alarm features, including dysphagia, bleeding, anemia, or weight loss, warrant endoscopy rather than another empiric course."
     },
     "number": 108,
     "id": "usmle-qb-s2-108"
@@ -2722,16 +2890,17 @@
     "lines": [
       "Amylase is less specific. Lipase is the enzyme.",
       "Fluids are the early treatment. A meal returns when the pain allows. Prolonged fasting is not the plan.",
-      "A rising hematocrit and a rising urea mark a patient who is under-resuscitated."
+      "A rising hematocrit and a rising urea mark a patient who is under-resuscitated.",
+      "Two of three: typical pain, lipase at least three times the upper limit, and imaging when the diagnosis is unclear. Do not trend lipase daily."
     ],
     "miss": "Starving the patient for a week because the lipase was high on day one.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Acute Pancreatitis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482468/",
-      "says": "The diagnosis is characteristic pain plus lipase. Gallstones and alcohol lead the cause list, and early feeding replaces prolonged fasting."
+      "name": "ACG Guideline: Management of Acute Pancreatitis.",
+      "year": "2013",
+      "url": "https://journals.lww.com/ajg/fulltext/10.1038/ajg.2013.218~american-college-of-gastroenterology-guideline-management-of",
+      "says": "Diagnose acute pancreatitis with two of three: typical pain, lipase or amylase at least three times the upper limit, and imaging when needed. Routine antibiotics are not recommended for uncomplicated disease."
     },
     "number": 109,
     "id": "usmle-qb-s2-109"
@@ -2747,7 +2916,9 @@
     "lines": [
       "A closed loop and a fever or a lactate that is rising is ischemia. That patient does not wait.",
       "Nasogastric suction and fluids are the first orders for a stable partial obstruction.",
-      "Complete obstruction with peritonitis is an operation."
+      "Complete obstruction with peritonitis is an operation.",
+      "Adhesions after surgery are the common cause. Nasogastric suction and fluids if the patient is stable and there is no peritonitis.",
+      "Fever, peritonitis, or a rising lactate is ischemia. That patient is not observed overnight."
     ],
     "miss": "Watching a febrile, acidotic obstruction overnight because the last one was adhesions.",
     "diagram": null,
@@ -2772,7 +2943,9 @@
     "lines": [
       "The embolus prefers the superior mesenteric artery.",
       "A soft abdomen does not reassure you. The abdomen becomes hard when the bowel is already dead.",
-      "CT angiography is the test. A plain film is not."
+      "CT angiography is the test. A plain film is not.",
+      "Pain with a soft abdomen, often atrial fibrillation or low flow. Lactate rises after bowel is injured.",
+      "CT angiography and a surgeon now. Heparin if the working diagnosis is embolus and the patient is not bleeding."
     ],
     "miss": "Waiting for the lactate or the rigid abdomen before calling the surgeon.",
     "diagram": null,
@@ -2797,7 +2970,9 @@
     "lines": [
       "Fever and a high white count mark inflammation, not just biliary colic.",
       "Ultrasound shows the wall, the stone, and the fluid.",
-      "Early surgery is the treatment of uncomplicated disease. Antibiotics alone do not remove the stone."
+      "Early surgery is the treatment of uncomplicated disease. Antibiotics alone do not remove the stone.",
+      "Ultrasound: stones, wall thickening over 3\u20134 mm, and pericholecystic fluid. Early cholecystectomy, not a week of oral antibiotics as the plan.",
+      "Jaundice means the stone may be in the duct. That is a different drainage than removing the gallbladder alone."
     ],
     "miss": "Diagnosing cholangitis, which adds jaundice and needs a drained duct, from an isolated gallbladder.",
     "diagram": null,
@@ -2822,7 +2997,9 @@
     "lines": [
       "Manometry confirms the diagnosis.",
       "Endoscopy excludes a cancer at the junction that mimics the beak.",
-      "Aspiration at night is why the treatment is not optional."
+      "Aspiration at night is why the treatment is not optional.",
+      "Failure of LES relaxation and absent peristalsis. Bird-beak barium. Manometry confirms. Endoscopy excludes a cancer mimic.",
+      "Treatment disrupts the sphincter (dilation, myotomy). A proton-pump inhibitor does not. Aspirating patients are kept from eating until that plan is set."
     ],
     "miss": "Refilling a proton-pump inhibitor for regurgitation of undigested food.",
     "diagram": null,
@@ -2847,16 +3024,18 @@
     "lines": [
       "Check total IgA or the test lies.",
       "Dermatitis herpetiformis is the same diet.",
-      "A first-degree relative with symptoms is tested. A gene test alone is not the diagnosis."
+      "A first-degree relative with symptoms is tested. A gene test alone is not the diagnosis.",
+      "Order IgA tissue transglutaminase and a total IgA while the patient is still eating gluten. A gluten-free week before the test can make it falsely negative.",
+      "HLA-DQ2 or DQ8 is necessary and not sufficient. Adults with a positive serology still need the biopsy before the diet is declared the treatment."
     ],
     "miss": "Starting a gluten-free diet the week before the endoscopy.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Celiac Disease.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441900/",
-      "says": "The gluten-free diet is the treatment and is started after serology or biopsy, because the diet heals the test."
+      "name": "ACG Clinical Guideline: Diagnosis and Management of Celiac Disease.",
+      "year": "2023",
+      "url": "https://journals.lww.com/ajg/fulltext/10.14309/ajg.0000000000002100~acg-clinical-guideline-diagnosis-and-management-of",
+      "says": "Test for celiac disease while the patient is still eating gluten, with IgA tissue transglutaminase and a total IgA. Do not start a gluten-free diet before the test."
     },
     "number": 114,
     "id": "usmle-qb-s2-114"
@@ -2872,11 +3051,13 @@
     "lines": [
       "Stool studies exclude infection, including C. difficile, before you blame the disease alone.",
       "A toxic, dilated colon is a surgical conversation.",
-      "Long-standing disease gets cancer surveillance. A flare visit is not that colonoscopy."
+      "Long-standing disease gets cancer surveillance. A flare visit is not that colonoscopy.",
+      "Continuous from the rectum, mucosa only, bloody stool. More than 6 bloody stools a day with fever is severe and is admitted.",
+      "Stop antimotility drugs. Test for C. difficile. A colon wider than 6 cm with toxicity is megacolon and a surgical call."
     ],
     "miss": "Sending a patient with ten bloody stools a day and a fever home on loperamide.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "uc-toxic",
+    "diagramAlt": "Severe ulcerative colitis. Admit. IV steroid Stop loperamide and opioids C. difficile test. Megacolon: call surgery",
     "source": {
       "name": "StatPearls. Ulcerative Colitis.",
       "year": "2026",
@@ -2897,7 +3078,9 @@
     "lines": [
       "Diabetes from lost islets is treated as diabetes.",
       "Alcohol is stopped. That is the disease-modifying act.",
-      "A new jaundice is cancer until imaged, not more enzymes."
+      "A new jaundice is cancer until imaged, not more enzymes.",
+      "Fecal elastase is low. Enzymes are taken with every meal and snack, not at bedtime alone.",
+      "Alcohol cessation is the disease-modifying step. New jaundice is imaged as cancer, not treated with more enzymes."
     ],
     "miss": "Prescribing the enzymes once daily on an empty stomach.",
     "diagram": null,
@@ -2922,16 +3105,18 @@
     "lines": [
       "Resuscitate, but do not flood the patient into a higher portal pressure.",
       "A nonselective beta blocker is secondary prevention after the bleeding stops, not a drug for the shock bay.",
-      "Intubation for a massive hematemesis protects the airway before the scope."
+      "Intubation for a massive hematemesis protects the airway before the scope.",
+      "Acute variceal bleeding: a vasoactive drug such as octreotide, an intravenous antibiotic, and banding. Restrict the transfusion.",
+      "Do not start a nonselective beta blocker while the patient is in shock. That drug is secondary prevention after hemostasis, if the pressure allows it."
     ],
     "miss": "Starting propranolol while the pressure is 80 and the patient is still vomiting blood.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "variceal-rx",
+    "diagramAlt": "Variceal bleed. Octreotide + IV antibiotic Band. Do not start a beta blocker in shock Beta blocker is secondary prevention later",
     "source": {
-      "name": "StatPearls. Esophageal Varices.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448078/",
-      "says": "Vasoactive therapy, antibiotics, and endoscopic banding treat acute variceal bleeding. Beta blockers are for after hemostasis."
+      "name": "AASLD Practice Guidance. Portal Hypertensive Bleeding in Cirrhosis.",
+      "year": "2017",
+      "url": "https://www.aasld.org/practice-guidelines/portal-hypertension-bleeding-cirrhosis",
+      "says": "Acute variceal bleeding is treated with a vasoactive drug, an antibiotic, and endoscopic therapy. A nonselective beta blocker is prevention after hemostasis, not the treatment of shock."
     },
     "number": 117,
     "id": "usmle-qb-s2-117"
@@ -2948,11 +3133,12 @@
     "lines": [
       "This is the CHAP threshold ACOG adopted. It is a threshold to treat, not a proved ideal target below 140/90.",
       "Continue an effective agent that is safe in pregnancy. Labetalol, nifedipine, and hydralazine are the usual choices.",
-      "ACE inhibitors, ARBs, and a statin stay stopped."
+      "ACE inhibitors, ARBs, and a statin stay stopped.",
+      "Treat at 140/90. Labetalol and nifedipine are the usual agents. Stop ACE inhibitors, ARBs, and statins."
     ],
     "miss": "Stopping the patient's amlodipine-class plan and watching until the pressure is severe. The error is the wait, and also keeping an ACE inhibitor.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "preg-140",
+    "diagramAlt": "Blood pressure in pregnancy. Chronic HTN: treat at 140/90 Severe: 160 or 110, treat within minutes Magnesium prevents seizures. It is not the BP drug",
     "source": {
       "name": "ACOG Practice Advisory. Chronic Hypertension and Pregnancy (CHAP).",
       "year": "2022",
@@ -2973,11 +3159,12 @@
     "lines": [
       "Confirm a severe value and treat. Do not wait four hours, and do not wait for the labs.",
       "IV labetalol, IV hydralazine, or immediate-release oral nifedipine are the acute drugs.",
-      "Magnesium sulfate prevents the seizure. It is given with the antihypertensive, not instead of it."
+      "Magnesium sulfate prevents the seizure. It is given with the antihypertensive, not instead of it.",
+      "Sustained systolic pressure of 160 or diastolic of 110 is treated promptly. Do not wait 4 hours or for a lab panel."
     ],
     "miss": "Starting magnesium and leaving a pressure of 180/115 untreated while the labs are pending.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "preg-140",
+    "diagramAlt": "Blood pressure in pregnancy. Chronic HTN: treat at 140/90 Severe: 160 or 110, treat within minutes Magnesium prevents seizures. It is not the BP drug",
     "source": {
       "name": "ACOG Practice Bulletin. Gestational Hypertension and Preeclampsia.",
       "year": "2020",
@@ -2998,7 +3185,8 @@
     "lines": [
       "High risk includes prior preeclampsia, a multifetal pregnancy, chronic hypertension, diabetes, kidney disease, and autoimmune disease.",
       "The dose used in the recommendation is 81 mg daily.",
-      "Aspirin does not treat severe-range pressures that are already present."
+      "Aspirin does not treat severe-range pressures that are already present.",
+      "Aspirin does not treat a pressure of 170. That pressure gets an antihypertensive and, if severe features are present, magnesium."
     ],
     "miss": "Saving the aspirin for the third trimester, or offering it as the treatment of a pressure of 170/110.",
     "diagram": null,
@@ -3022,11 +3210,12 @@
     "lines": [
       "If potassium is under 3.3, replace it before insulin.",
       "The 2024 hyperglycemic-crisis guidance is fluids, potassium, and insulin, and bicarbonate is not routine.",
-      "An SGLT2 inhibitor can cause ketoacidosis with a glucose that is not very high. Ask about the drug."
+      "An SGLT2 inhibitor can cause ketoacidosis with a glucose that is not very high. Ask about the drug.",
+      "Anion-gap acidosis and ketones. If potassium is under 3.3 mEq/L, replace it before insulin, because insulin will drop the serum potassium."
     ],
     "miss": "Turning off the insulin drip because the glucose reached 180 while the bicarbonate is still 10.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "dka-k",
+    "diagramAlt": "DKA order. Fluid first K under 3.3: replace K before insulin Keep insulin on; add dextrose as glucose falls",
     "source": {
       "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.",
       "year": "2024",
@@ -3045,13 +3234,14 @@
     "open": false,
     "lead": "In thyroid storm give a beta blocker and a thionamide before iodine. Iodine first supplies substrate for more hormone.",
     "lines": [
-      "A glucocorticoid is part of the regimen.",
-      "Treat the trigger.",
-      "Do not use aspirin for the fever."
+      "Order: beta blocker, then a thionamide, then iodine at least 60 minutes later, plus a glucocorticoid.",
+      "Iodine given first supplies substrate for more hormone. PTU also blocks conversion of T4 to T3, which methimazole does not.",
+      "Do not use aspirin. It displaces hormone from binding protein and can worsen the storm.",
+      "Treat the trigger, often infection, surgery, or a stopped thionamide. Do not wait for a free-T4 result to start the sequence."
     ],
     "miss": "Giving potassium iodide in the ambulance before any thionamide.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "thyroid-seq",
+    "diagramAlt": "Thyroid storm sequence. Beta blocker and thionamide first Iodine only after the block No aspirin for the fever",
     "source": {
       "name": "StatPearls. Thyroid Storm.",
       "year": "2026",
@@ -3072,7 +3262,8 @@
     "lines": [
       "Primary disease is hyperkalemic and dark. Do not wait for that classic picture if the patient is in shock and on chronic steroids.",
       "A patient who takes prednisone every day and then vomits needs a stress dose.",
-      "Antibiotics for sepsis are added when sepsis is the trigger. They do not replace the steroid."
+      "Antibiotics for sepsis are added when sepsis is the trigger. They do not replace the steroid.",
+      "Primary: high ACTH, hyperpigmentation, and hyperkalemia because aldosterone is lost. Secondary spares aldosterone, so potassium is normal."
     ],
     "miss": "Waiting for a morning cortisol while the pressure is 70.",
     "diagram": null,
@@ -3097,7 +3288,9 @@
     "lines": [
       "The test is metanephrines, drawn correctly.",
       "Surgery is after the block, not before.",
-      "A beta blocker first can raise the pressure."
+      "A beta blocker first can raise the pressure.",
+      "Episodic headache, palpitations, and hypertension. Plasma or urine metanephrines are the test.",
+      "Phenoxybenzamine or another alpha blocker, and volume, before any beta blocker and before surgery. A beta blocker first can raise the pressure."
     ],
     "miss": "Starting metoprolol for the palpitations the day the CT shows an adrenal mass.",
     "diagram": null,
@@ -3122,7 +3315,8 @@
     "lines": [
       "Heart failure gets an SGLT2 inhibitor.",
       "Atherosclerotic disease can get a GLP-1 receptor agonist, an SGLT2 inhibitor, or both.",
-      "Do not wait through a failed metformin trial when one of those diseases is already present."
+      "Do not wait through a failed metformin trial when one of those diseases is already present.",
+      "Heart failure: SGLT2 inhibitor. Atherosclerotic disease: GLP-1 receptor agonist and/or SGLT2 inhibitor. CKD with ACR: SGLT2 inhibitor or GLP-1 receptor agonist."
     ],
     "miss": "Withholding the drug because the A1C is 6.8.",
     "diagram": null,
@@ -3147,7 +3341,9 @@
     "lines": [
       "Cabergoline is the usual drug.",
       "A visual-field cut is an urgent MRI and an urgent treatment, not a routine refill.",
-      "Surgery is for the patient who cannot take the drug or whose vision is failing despite it."
+      "Surgery is for the patient who cannot take the drug or whose vision is failing despite it.",
+      "Exclude pregnancy, hypothyroidism, and antipsychotics or metoclopramide before calling it a tumor.",
+      "A level over about 200 ng/mL suggests a prolactinoma. Cabergoline is first-line. A modest elevation with a large mass is stalk effect."
     ],
     "miss": "Booking transsphenoidal surgery before a pregnancy test.",
     "diagram": null,
@@ -3172,7 +3368,9 @@
     "lines": [
       "Infertility is managed with the fertility plan, which may not be the same as the pain plan.",
       "NSAIDs help pain and do not treat the implants.",
-      "A normal exam does not end the workup of cyclic pain and infertility."
+      "A normal exam does not end the workup of cyclic pain and infertility.",
+      "Cyclic pain and infertility. A chocolate cyst is an endometrioma. A normal exam does not exclude it.",
+      "Hormonal suppression treats pain. A cyst of several centimeters is surgical. The fertility plan may differ from the pain plan."
     ],
     "miss": "Telling a patient with a 7-centimeter chocolate cyst to try ibuprofen for a year.",
     "diagram": null,
@@ -3197,16 +3395,18 @@
     "lines": [
       "The criteria for methotrexate include a low hCG, no fetal heartbeat, and a patient who can return.",
       "Rh status is checked.",
-      "A falling hCG still needs a documented plan."
+      "A falling hCG still needs a documented plan.",
+      "Unstable or ruptured: surgery. Methotrexate only if the patient is stable, the hCG is low, there is no embryonic cardiac activity, and follow-up is certain.",
+      "Give anti-D immunoglobulin if the patient is Rh-negative. An empty uterus with a positive test and pain is not a threatened miscarriage until the tube is cleared."
     ],
     "miss": "Giving methotrexate in the emergency department to a dizzy patient.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "ectopic-choice",
+    "diagramAlt": "Ectopic pregnancy. Shock or rupture: operating room Methotrexate only if stable and follow-up is sure Rh-negative: give anti-D",
     "source": {
-      "name": "StatPearls. Ectopic Pregnancy.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK539860/",
-      "says": "Rupture is surgical. Methotrexate is limited to hemodynamically stable patients who meet selection criteria."
+      "name": "ACOG Practice Bulletin. Tubal Ectopic Pregnancy.",
+      "year": "2018",
+      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy",
+      "says": "A ruptured or unstable ectopic pregnancy is managed surgically. Methotrexate is reserved for a stable patient who meets criteria and can be followed."
     },
     "number": 128,
     "id": "usmle-qb-s2-128"
@@ -3222,7 +3422,9 @@
     "lines": [
       "Blood products are ready because the clotting factors are consumed.",
       "A dead fetus and coagulopathy is an urgent delivery.",
-      "Painful bleeding is not previa."
+      "Painful bleeding is not previa.",
+      "Painful bleeding and a uterus that does not relax. Blood can be concealed. Fibrinogen falls and can be the first coagulation test to move.",
+      "Resuscitate, monitor the fetus, and decide on delivery. Do not perform a digital exam until previa is excluded."
     ],
     "miss": "Checking dilation with a finger as the first act.",
     "diagram": null,
@@ -3247,7 +3449,8 @@
     "lines": [
       "A prior cesarean plus previa raises the chance of placenta accreta. That delivery is planned in a center that can handle it.",
       "The acute bleed is resuscitated like any maternal hemorrhage.",
-      "Ultrasound, not a finger, makes the diagnosis."
+      "Ultrasound, not a finger, makes the diagnosis.",
+      "The placenta covers the internal os, so labor and a digital exam can cause hemorrhage. Ultrasound makes the diagnosis."
     ],
     "miss": "Inducing labor through a complete previa.",
     "diagram": null,
@@ -3272,11 +3475,13 @@
     "lines": [
       "The screen is at 24 to 28 weeks unless earlier risk moves it up.",
       "Oral agents are a selected alternative, not a reason to ignore a very high glucose.",
-      "The mother is tested for diabetes after the pregnancy."
+      "The mother is tested for diabetes after the pregnancy.",
+      "Screen at 24\u201328 weeks if there is no earlier indication. Maternal glucose crosses. Maternal insulin does not. The fetus becomes hyperinsulinemic.",
+      "After birth the baby's glucose can fall. Feed early and check a glucose. Test the mother for diabetes postpartum."
     ],
     "miss": "Reassuring a glucose of 180 after meals because the pregnancy is otherwise normal.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "gdm-baby",
+    "diagramAlt": "Infant of a diabetic mother. Glucose crosses. Insulin does not Baby is hyperinsulinemic and can be hypoglycemic Feed early. Check a glucose",
     "source": {
       "name": "StatPearls. Gestational Diabetes.",
       "year": "2026",
@@ -3297,7 +3502,9 @@
     "lines": [
       "Ask the question out loud before the first spray.",
       "The wait after sildenafil is longer than after some newer drugs. If you do not know the interval, do not give the nitrate.",
-      "Chest pain still gets an ECG and the rest of the ACS plan that is safe."
+      "Chest pain still gets an ECG and the rest of the ACS plan that is safe.",
+      "Sildenafil and a nitrate together can drop systolic pressure profoundly. Ask before the first spray.",
+      "If the time of the last dose is unknown, do not give the nitrate. The ECG and aspirin still happen."
     ],
     "miss": "Giving the spray because the chest pain protocol says so, without asking.",
     "diagram": null,
@@ -3322,7 +3529,9 @@
     "lines": [
       "A post-void residual and a urine culture belong in the visit when infection or retention is possible.",
       "A nodule or a rising PSA is cancer until evaluated.",
-      "Red flags of retention, infection, and renal failure are not treated with a tamsulosin sample alone."
+      "Red flags of retention, infection, and renal failure are not treated with a tamsulosin sample alone.",
+      "Episodic headache, palpitations, and hypertension. Plasma or urine metanephrines are the test.",
+      "Phenoxybenzamine or another alpha blocker, and volume, before any beta blocker and before surgery. A beta blocker first can raise the pressure."
     ],
     "miss": "Promising a man that finasteride will help him urinate tonight.",
     "diagram": null,
@@ -3347,7 +3556,9 @@
     "lines": [
       "The other side is fixed.",
       "Pain relief after manual detorsion does not cancel the operation.",
-      "Epididymitis has fever, pyuria, and a present cremasteric reflex."
+      "Epididymitis has fever, pyuria, and a present cremasteric reflex.",
+      "The testis can infarct in about 6 hours. Absent cremasteric reflex and sudden pain go to the operating room.",
+      "Ultrasound is for an unclear exam and must not consume the window. The other side is fixed because the anatomy is bilateral."
     ],
     "miss": "Booking a Doppler study for the next available slot in the morning.",
     "diagram": null,
@@ -3372,7 +3583,9 @@
     "lines": [
       "Detorsion and preservation of the ovary is the goal.",
       "A pregnancy test is done because ectopic pregnancy is the other emergency.",
-      "Analgesia is given. Observation overnight of a twisting ovary is not."
+      "Analgesia is given. Observation overnight of a twisting ovary is not.",
+      "The ovary has a dual blood supply, so Doppler flow can be present in a twisted ovary.",
+      "Sudden adnexal pain with a cyst goes to surgery. A pregnancy test is done because ectopic pregnancy is the other emergency."
     ],
     "miss": "Discharging the patient because arterial flow was documented.",
     "diagram": null,
@@ -3397,11 +3610,13 @@
     "lines": [
       "A tubo-ovarian abscess that does not improve is drained.",
       "Perihepatitis is the right-upper-quadrant pain. Do not take that patient only to general surgery and forget the pelvis.",
-      "A pregnancy test comes first."
+      "A pregnancy test comes first.",
+      "Cervical motion tenderness. Cover Neisseria gonorrhoeae and Chlamydia. Treat the partner.",
+      "Fitz-Hugh-Curtis syndrome is perihepatitis and right-upper-quadrant pain. A tubo-ovarian abscess that does not improve in 48\u201372 hours is drained."
     ],
     "miss": "Treating the patient with a single dose and not telling the partner.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "pid-rx",
+    "diagramAlt": "PID coverage. Cover gonorrhea and chlamydia Treat the partner Abscess that fails antibiotics: drain",
     "source": {
       "name": "StatPearls. Pelvic Inflammatory Disease.",
       "year": "2026",
@@ -3426,8 +3641,8 @@
       "A virus swab does not replace the antibiotic while bacterial infection is still possible."
     ],
     "miss": "Waiting for the lactate to come back before the antibiotic, or giving a liter and walking away.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "sepsis-30",
+    "diagramAlt": "Sepsis hypoperfusion. Lactate, cultures, broad antibiotic At least 30 mL/kg crystalloid if hypoperfused Norepinephrine to MAP 65 if still hypotensive",
     "source": {
       "name": "Surviving Sepsis Campaign 2021 Adult Guidelines.",
       "year": "2021",
@@ -3448,11 +3663,13 @@
     "lines": [
       "Adult dose: 0.3 to 0.5 mg of 1 mg/mL epinephrine, intramuscularly. Repeat if needed.",
       "The intravenous infusion is for shock that did not respond, not the opening dose.",
-      "Observe after the response. A biphasic reaction is why the patient does not leave in ten minutes."
+      "Observe after the response. A biphasic reaction is why the patient does not leave in ten minutes.",
+      "Adult dose 0.3\u20130.5 mg of 1 mg/mL (1:1000) intramuscularly in the mid-outer thigh. Repeat every 5\u201315 minutes if needed.",
+      "Observe, because reactions can return. Diphenhydramine and a steroid do not treat airway or shock."
     ],
     "miss": "Giving diphenhydramine and a steroid and calling that treatment while the pressure is falling.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "epi-dose",
+    "diagramAlt": "Anaphylaxis dose. Adult: 0.3\u20130.5 mg of 1 mg/mL IM Mid-outer thigh. Repeat in 5\u201315 min Watch. Antihistamine is not the treatment",
     "source": {
       "name": "StatPearls. Anaphylaxis.",
       "year": "2026",
@@ -3472,11 +3689,13 @@
     "lines": [
       "Hyperbaric oxygen is for loss of consciousness, pregnancy, cardiac ischemia, or a very high level.",
       "The whole household is the exposure. Ask who else was home.",
-      "A normal lactate does not clear a fire victim."
+      "A normal lactate does not clear a fire victim.",
+      "Affinity for hemoglobin is over 200 times that of oxygen. PaO2 stays normal. Standard pulse oximetry cannot see it.",
+      "Give 100% oxygen immediately. Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
     ],
     "miss": "Discharging a headache after a heater exposure because the saturation was 99%.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "co-ox",
+    "diagramAlt": "Carbon monoxide. PaO2 and pulse ox can look normal Content is low. Curve shifts left 100% oxygen now. Whole household",
     "source": {
       "name": "StatPearls. Carbon Monoxide Poisoning.",
       "year": "2026",
@@ -3497,11 +3716,13 @@
     "lines": [
       "The Rumack-Matthew nomogram is for one ingestion at a known time.",
       "Charcoal is only if the ingestion was recent and the airway is safe.",
-      "Liver failure is a transplant conversation, and the antidote is still given."
+      "Liver failure is a transplant conversation, and the antidote is still given.",
+      "NAPQI depletes glutathione. NAC restores it. The Rumack-Matthew nomogram is only for a single ingestion at a known time.",
+      "A normal ALT at 2 hours does not clear the patient. Staggered ingestions are treated, not plotted on that nomogram."
     ],
     "miss": "Repeating the ALT in the morning before the antidote, in a patient who took the bottle at noon.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "nac-time",
+    "diagramAlt": "Acetaminophen antidote. NAPQI uses up glutathione NAC if level is toxic or time is unknown Normal ALT at 2 hours does not clear it",
     "source": {
       "name": "StatPearls. Acetaminophen Toxicity.",
       "year": "2026",
@@ -3522,11 +3743,13 @@
     "lines": [
       "The airway is opened first if the patient is not breathing.",
       "A co-ingestant is why some patients do not wake fully.",
-      "Do not discharge a long-acting opioid overdose after a single wake-up."
+      "Do not discharge a long-acting opioid overdose after a single wake-up.",
+      "Miosis, respiratory rate often under 12, and depressed consciousness. Naloxone's duration is about 30\u201390 minutes, shorter than methadone or many fentanyl exposures.",
+      "Open the airway first if the patient is apneic. Observe or infuse. One wake-up is not a discharge."
     ],
     "miss": "Sending a patient home twenty minutes after one dose of naloxone.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "naloxone-watch",
+    "diagramAlt": "Naloxone wears off. Opioid half-life is often longer Observe or infuse Methadone and fentanyl outlast one dose",
     "source": {
       "name": "StatPearls. Opioid Toxicity.",
       "year": "2026",
@@ -3547,9 +3770,10 @@
     "lines": [
       "The dangerous partner is an opioid. Give naloxone for the apnea.",
       "A single naive ingestion in a monitored setting is the rare time flumazenil is discussed.",
-      "Withdrawal from a stopped chronic benzodiazepine is treated by reinstating a taper, not by an antidote."
+      "Withdrawal from a stopped chronic benzodiazepine is treated by reinstating a taper, not by an antidote.",
+      "A benzodiazepine alone rarely stops breathing the way an opioid does. The dangerous mix is a benzodiazepine plus an opioid."
     ],
-    "miss": "Waking a daily alprazolam user with flumazenil in the hallway.",
+    "miss": "Giving flumazenil to a daily benzodiazepine user and precipitating a seizure.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
@@ -3572,16 +3796,18 @@
     "lines": [
       "Thiamine is given before glucose.",
       "Delirium tremens is a monitored bed.",
-      "An antipsychotic alone does not prevent the seizure."
+      "An antipsychotic alone does not prevent the seizure.",
+      "Tremor at about 6\u201324 hours, seizures at 12\u201348 hours, delirium tremens at 48\u201372 hours. Use a symptom-triggered benzodiazepine.",
+      "Thiamine before any glucose. An antipsychotic alone does not prevent the seizure. Do not discharge a patient still scoring in the severe range."
     ],
     "miss": "Giving haloperidol as the only drug for a tremulous, tachycardic patient two days after the last drink.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "thiamine-first",
+    "diagramAlt": "Alcohol withdrawal orders. Thiamine before glucose Benzodiazepine titrated to symptoms Haloperidol alone does not stop the seizure",
     "source": {
-      "name": "StatPearls. Alcohol Withdrawal Syndrome.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441882/",
-      "says": "Benzodiazepines are titrated to withdrawal severity. Thiamine precedes glucose. Antipsychotics do not treat the withdrawal."
+      "name": "ASAM Clinical Practice Guideline on Alcohol Withdrawal Management.",
+      "year": "2020",
+      "url": "https://www.asam.org/quality-care/clinical-guidelines/alcohol-withdrawal-management-guideline",
+      "says": "Use a symptom-triggered benzodiazepine for alcohol withdrawal. Give thiamine. An antipsychotic is not the only treatment of withdrawal."
     },
     "number": 143,
     "id": "usmle-qb-s2-143"
@@ -3597,11 +3823,13 @@
     "lines": [
       "The urine dip lies. Look at the microscope.",
       "A tight limb is a compartment and is opened.",
-      "Statins and fibrates together are a cause you stop."
+      "Statins and fibrates together are a cause you stop.",
+      "Dipstick positive for blood and no red cells on microscopy. CK often over 5,000. Potassium can arrest the heart before creatinine rises.",
+      "Intravenous fluid at a defined rate and a repeat potassium. A tight compartment is opened. Stop the statin."
     ],
     "miss": "Giving a loop diuretic as the first treatment of tea-colored urine.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "rhabdo-ck",
+    "diagramAlt": "Rhabdomyolysis labs. Dipstick blood, no RBCs on microscope CK in the thousands. K can kill first IV fluid. Open a tight compartment",
     "source": {
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
@@ -3622,11 +3850,13 @@
     "lines": [
       "The CO2 rises first. The temperature follows.",
       "Call for help and the dantrolene cart. Do not keep the vaporizer on.",
-      "It is not treated as ordinary intraoperative fever."
+      "It is not treated as ordinary intraoperative fever.",
+      "Succinylcholine or a volatile anesthetic. End-tidal CO2 rises first, then rigidity and temperature.",
+      "Stop the vaporizer. Hyperventilate with 100% oxygen. Dantrolene 2.5 mg/kg IV, repeated. This is not neuroleptic malignant syndrome."
     ],
     "miss": "Turning up the volatile agent because the patient looks light.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "dantrolene",
+    "diagramAlt": "Malignant hyperthermia. Volatile agent or succinylcholine Rising CO2, then heat and rigidity Stop the gas. Dantrolene. 100% oxygen",
     "source": {
       "name": "StatPearls. Malignant Hyperthermia.",
       "year": "2026",
@@ -3647,7 +3877,9 @@
     "lines": [
       "The timing is one to three days after the long-bone injury.",
       "Petechiae on the chest support the diagnosis and are often absent.",
-      "A true venous thrombus can coexist. Do not miss it, and do not call every hypoxic fracture patient a clot."
+      "A true venous thrombus can coexist. Do not miss it, and do not call every hypoxic fracture patient a clot.",
+      "24\u201372 hours after a long-bone or pelvic fracture: hypoxia, confusion, and upper-body petechiae. Petechiae are often absent.",
+      "Support the lungs and fix the fracture. Heparin is not the specific treatment. A venous thrombus is a separate question."
     ],
     "miss": "Starting a heparin drip and cancelling the fixation that would stop the embolization.",
     "diagram": null,
@@ -3712,7 +3944,8 @@
     "lines": [
       "A positive depression screen needs a diagnostic interview. The form is not the diagnosis.",
       "Ask about suicide when the interview or the patient's words open that door. That is care, not the population screen the task force declined to endorse.",
-      "Treatment follows the diagnosis. A refill of a benzodiazepine is not depression treatment."
+      "Treatment follows the diagnosis. A refill of a benzodiazepine is not depression treatment.",
+      "Screen adults, including pregnant and postpartum patients, only if someone will diagnose and treat. A positive score is an interview, not an automatic prescription."
     ],
     "miss": "Checking a suicide-risk box on every chart and never asking the two depression questions.",
     "diagram": null,
@@ -3742,7 +3975,8 @@
     "lines": [
       "Number needed to treat is 1 divided by that absolute difference.",
       "A confidence interval that includes no difference is not a reason to change practice by itself.",
-      "A surrogate marker moving is not the same as a heart attack being prevented."
+      "A surrogate marker moving is not the same as a heart attack being prevented.",
+      "Number needed to treat is 1 divided by the absolute risk reduction. A 50% relative reduction of a 0.2% risk saves 1 in 1,000."
     ],
     "miss": "Telling a patient a drug cuts risk in half without saying half of what.",
     "diagram": null,
@@ -3765,13 +3999,14 @@
     "open": false,
     "lead": "Stop annual lung-cancer screening when the patient has not smoked for 15 years, turns 81, or develops a condition that limits the benefit.",
     "lines": [
-      "The eligible patient is 50 to 80 with at least 20 pack-years.",
-      "A shared decision comes before the first scan, including the false positives.",
-      "A symptom such as coughing blood is not a screening scan. It is a diagnostic scan."
+      "Annual low-dose CT for ages 50\u201380 with at least 20 pack-years, current smoker or quit within 15 years.",
+      "Stop after 15 smoke-free years, at age 81, or when the patient is too ill to benefit from treating a screen-detected cancer.",
+      "A shared decision, including false positives, comes before the first scan.",
+      "Hemoptysis or a persistent new cough is a diagnostic CT, not a screening order."
     ],
     "miss": "Continuing yearly scans in an 84-year-old who quit 20 years ago.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "lung-stop",
+    "diagramAlt": "Stop the yearly lung CT. Eligible: 50\u201380, \u226520 pack-years Stop 15 years after quitting Stop at age 81, or if too ill to benefit",
     "source": {
       "name": "USPSTF. Lung cancer screening.",
       "year": "2021",
@@ -3790,13 +4025,14 @@
     "open": false,
     "lead": "Average-risk colorectal screening starts at 45 and continues through 75. A first-degree relative with an early cancer starts earlier.",
     "lines": [
-      "Stool tests and colonoscopy are both acceptable. A positive stool test still needs a colonoscopy.",
-      "Ages 76 to 85 are an individual decision, not an automatic stop or an automatic start.",
+      "Average-risk screening starts at 45 and continues through 75. Ages 45\u201349 are a B recommendation and 50\u201375 are an A.",
+      "A positive stool test is a colonoscopy, not another card. Ages 76\u201385 are selective.",
+      "A first-degree relative with colorectal cancer before 60 starts earlier than 45, often 10 years before that diagnosis.",
       "Iron deficiency in an older adult is a diagnostic colonoscopy, not a screening interval."
     ],
     "miss": "Repeating a stool test after a positive one, instead of scoping.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "colon-positive",
+    "diagramAlt": "Positive stool test. Colonoscopy next, not another card Average risk starts at 45 Iron deficiency is diagnostic, not screening",
     "source": {
       "name": "USPSTF. Colorectal cancer screening.",
       "year": "2021",
@@ -3817,11 +4053,12 @@
     "lines": [
       "Age 75 and older is an I statement. Decide with the patient.",
       "A palpable mass is a diagnostic workup, not a screening interval.",
-      "A family history of a BRCA-associated cancer is a different, earlier plan."
+      "A family history of a BRCA-associated cancer is a different, earlier plan.",
+      "Breast: biennial mammography ages 40 through 74. Colorectal: start at 45 through 75, and a positive stool test is a colonoscopy."
     ],
     "miss": "Telling a 42-year-old to wait until 50 because that used to be the start.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "screening",
+    "diagramAlt": "Mammography every other year from 40 to 74. Colon screening from 45. Lung screening is annual low-dose CT from 50 to 80 after 20 pack-years.",
     "source": {
       "name": "USPSTF. Breast cancer screening.",
       "year": "2024",
@@ -3842,11 +4079,13 @@
     "lines": [
       "A vaccinated patient is still screened.",
       "Yearly Pap smears are not the recommendation.",
-      "Bleeding after sex is a symptom and is examined now."
+      "Bleeding after sex is a symptom and is examined now.",
+      "Types 16 and 18 cause most cervical cancers. Screening starts at 21, not at coitarche.",
+      "Ages 21\u201329: cytology every 3 years, not HPV testing alone. Ages 30\u201365: cytology every 3 years, HPV every 5, or cotesting every 5. Stop at 65 only if prior tests were adequate."
     ],
     "miss": "Starting Pap smears at the first pelvic exam of a 16-year-old.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "cervix-age",
+    "diagramAlt": "Cervical screening intervals. Start at 21, not at first sex 21\u201329: cytology every 3 years 30\u201365: cytology q3, HPV q5, or both q5",
     "source": {
       "name": "USPSTF. Cervical cancer screening.",
       "year": "2018",
@@ -3867,7 +4106,9 @@
     "lines": [
       "Screening is recommended in adults, including in pregnancy and after birth.",
       "A stand-alone suicide-risk questionnaire for every adult is an I statement.",
-      "Ask about suicide when the interview opens that door. That is care."
+      "Ask about suicide when the interview opens that door. That is care.",
+      "Screen adults, including pregnant and postpartum patients, only if someone will diagnose and treat. A positive score is an interview, not an automatic prescription.",
+      "A stand-alone suicide-risk questionnaire for every adult is an I statement. Ask about suicide when the interview opens that door."
     ],
     "miss": "Prescribing an antidepressant from a score of 12 with no conversation.",
     "diagram": null,
@@ -3892,7 +4133,9 @@
     "lines": [
       "Prior preeclampsia, multifetal pregnancy, chronic hypertension, diabetes, kidney disease, and autoimmune disease are the high-risk list.",
       "The dose used in the recommendation is 81 mg.",
-      "Severe-range pressures are treated with antihypertensives and magnesium, not with aspirin."
+      "Severe-range pressures are treated with antihypertensives and magnesium, not with aspirin.",
+      "81 mg daily after 12 weeks if high risk: prior preeclampsia, multifetal gestation, chronic hypertension, diabetes, kidney disease, or autoimmune disease.",
+      "Aspirin does not treat a pressure of 170. That pressure gets an antihypertensive and, if severe features are present, magnesium."
     ],
     "miss": "Starting aspirin at 34 weeks as the treatment of severe hypertension.",
     "diagram": null,
@@ -3918,22 +4161,18 @@
     "lines": [
       "It is decision-specific. A patient may refuse surgery and still be able to choose an antibiotic.",
       "It can change with fever, sodium, drugs, and time. Recheck it. Do not stamp it on the chart forever.",
-      "Competence is the court's word. Capacity is the clinician's judgment."
+      "Competence is the court's word. Capacity is the clinician's judgment.",
+      "Understand, appreciate, reason, and express a choice, for this decision, today. It can return when sodium, oxygen, or a sedative changes.",
+      "Disagreement with the recommendation is not incapacity. Competence is the court's word."
     ],
     "miss": "Calling a patient incapacitated because they disagreed with the recommended operation.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "four-abilities",
+    "diagramAlt": "Capacity for this decision. Understand the facts Appreciate what they mean for you Reason, and say a stable choice",
     "source": {
-      "name": "StatPearls. Competency and Capacity. Appelbaum, New England Journal of Medicine, 2007.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532862/",
-      "says": "Clinical capacity requires understanding, appreciation, reasoning, and a choice, and it is judged for the decision at hand.",
-      "more": [
-        {
-          "name": "Appelbaum PS. Assessment of Patients' Competence to Consent to Treatment. N Engl J Med. 2007.",
-          "url": "https://www.nejm.org/doi/full/10.1056/NEJMcp074045"
-        }
-      ]
+      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
+      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
     },
     "open": false
   },
@@ -3949,7 +4188,8 @@
     "lines": [
       "Do not alter the record. Add a dated note.",
       "An apology for the event is not a guess about legal fault.",
-      "Hiding the error, or telling only the family and not the patient who can hear it, fails the duty."
+      "Hiding the error, or telling only the family and not the patient who can hear it, fails the duty.",
+      "Tell the patient what happened, what it means for them, and what you will do next. Do it promptly, to the patient who can hear it."
     ],
     "miss": "Writing a vague note and hoping the next team explains it.",
     "diagram": null,
@@ -3974,11 +4214,13 @@
     "lines": [
       "The family's preference, the oldest child's preference, and the team's preference are not the standard.",
       "A written directive and prior statements outrank a surrogate's new opinion.",
-      "If no one knows what the patient would have wanted, choose what serves the patient's interests."
+      "If no one knows what the patient would have wanted, choose what serves the patient's interests.",
+      "A directive that addresses this decision outranks a surrogate who now wants something else.",
+      "If the directive is silent, the surrogate uses substituted judgment: what this patient would have chosen. Best interest is the fallback."
     ],
     "miss": "Doing what the loudest relative demands because they are present.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "surrogate-order",
+    "diagramAlt": "Who decides. Written directive that fits this choice wins Else substituted judgment Else best interest",
     "source": {
       "name": "AMA Code of Medical Ethics. Decisions for Adult Patients Who Lack Capacity.",
       "year": "2016",
@@ -3999,16 +4241,18 @@
     "lines": [
       "Confirm the four abilities for this decision, and confirm they heard the consequence.",
       "Document the refusal and the reasons. Offer to revisit it.",
-      "A relative cannot overrule that refusal."
+      "A relative cannot overrule that refusal.",
+      "Understand, appreciate, reason, and state a choice, for this decision today. A refusal that meets those four is an order.",
+      "Disagreement with the team is not incapacity. Reassess when sodium, oxygen, or a sedative has changed. Competence is the court's word."
     ],
     "miss": "Sedating a refusing patient, or asking the family to sign, because the team is sure the patient is wrong.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "four-abilities",
+    "diagramAlt": "Capacity for this decision. Understand the facts Appreciate what they mean for you Reason, and say a stable choice",
     "source": {
-      "name": "StatPearls. Competency and Capacity.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532862/",
-      "says": "A patient who has capacity for the decision may refuse care. Disagreement with the physician is not incapacity."
+      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
+      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
     },
     "open": false
   },
@@ -4022,17 +4266,18 @@
     "lead": "A professional interpreter is used for consent when you and the patient do not share a language. A child or a family member is not the interpreter.",
     "lines": [
       "Speak to the patient, not to the interpreter.",
-      "A short conversation in the hallway is not informed consent.",
-      "Document the interpreter's identity."
+      "Document the interpreter's identity.",
+      "A professional interpreter is required for consent. A child or a family member is not an acceptable interpreter. Name the interpreter in the note.",
+      "Speak to the patient. The clinician who performs the procedure is the one who discloses the risks."
     ],
     "miss": "Asking a 10-year-old to explain a surgery to a parent.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Qualified interpreters are required for informed consent. Family members, especially children, are not an acceptable substitute."
+      "name": "AMA Code of Medical Ethics. Informed consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure."
     },
     "number": 160,
     "id": "usmle-qb-s2-160"
@@ -4048,16 +4293,18 @@
     "lines": [
       "This is implied consent for the emergency, not a blank check for elective procedures.",
       "Keep looking for the surrogate while you treat.",
-      "Document why you could not wait."
+      "Document why you could not wait.",
+      "Emergency treatment proceeds when delay would cause serious harm and no surrogate can be reached. The note names the emergency, whom you tried, and why you could not wait.",
+      "That note covers the emergency only. An elective addition waits. Keep looking for the surrogate."
     ],
     "miss": "Withholding a life-saving procedure overnight because the family phone went to voicemail.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "Emergency treatment under implied consent is appropriate when delay would cause serious harm and no decision-maker is available."
+      "name": "AMA Code of Medical Ethics. Informed consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure."
     },
     "number": 161,
     "id": "usmle-qb-s2-161"
@@ -4073,11 +4320,13 @@
     "lines": [
       "Ask what the order was meant to cover.",
       "A patient can want surgery and refuse resuscitation.",
-      "Do not withhold pain medicine because a DNR is on the chart."
+      "Do not withhold pain medicine because a DNR is on the chart.",
+      "DNR means no chest compressions and no rescue shocks if the heart stops. Antibiotics, surgery, and opioids are separate orders.",
+      "Write each limit. Comfort medication is ordered even when resuscitation is not."
     ],
     "miss": "Cancelling the antibiotics because the chart says DNR.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "dnr-limits",
+    "diagramAlt": "What DNR does not stop. No chest compressions if the heart stops Antibiotics, surgery, and opioids are separate Write each limit. Do not guess",
     "source": {
       "name": "StatPearls. Advance Directives.",
       "year": "2026",
@@ -4098,7 +4347,9 @@
     "lines": [
       "The goal is the patient's goal, not the team's discomfort.",
       "Medicines for air hunger are given. The intent is comfort.",
-      "A slow wean that prolongs suffering to make the team feel better is not kinder."
+      "A slow wean that prolongs suffering to make the team feel better is not kinder.",
+      "Order an opioid for air hunger before the ventilator is withdrawn. The dose is the dose that relieves the symptom.",
+      "A dose chosen to relieve symptoms is not an order to end life. Withdrawing a treatment and never having started it are the same decision when the treatment no longer serves the patient's goal."
     ],
     "miss": "Refusing to stop a ventilator the patient never wanted because stopping feels like killing.",
     "diagram": null,
@@ -4123,16 +4374,17 @@
     "lines": [
       "Make sure the refusal is for this surgery and this risk.",
       "A surrogate does not get to impose a refusal the patient never made, or to overturn one the patient did.",
-      "Children are treated with blood when it is life-saving even if a parent refuses."
+      "Children are treated with blood when it is life-saving even if a parent refuses.",
+      "Understand, appreciate, reason, and state a choice, for this decision today. A refusal that meets those four is an order."
     ],
     "miss": "Transfusing a clearly refusing capable adult because the hemoglobin is 5.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "four-abilities",
+    "diagramAlt": "Capacity for this decision. Understand the facts Appreciate what they mean for you Reason, and say a stable choice",
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "A capable adult's refusal of transfusion is honored. Parental refusal does not block life-saving transfusion of a child."
+      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
+      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
     },
     "number": 164,
     "id": "usmle-qb-s2-164"
@@ -4146,9 +4398,9 @@
     "open": false,
     "lead": "Parents decide for a child except when refusal would cause death or serious harm. Then you treat and you involve the protective system.",
     "lines": [
-      "Explain, negotiate, and document.",
-      "An emergency is not the moment for a prolonged ethics debate.",
-      "Elective care is different from a life-saving transfusion or an emergency surgery."
+      "Elective care is different from a life-saving transfusion or an emergency surgery.",
+      "A life-saving transfusion or emergency operation for a child proceeds when delay would cause death or serious harm. Notify child protection.",
+      "Explain once, then treat. Elective care is a different rule: a parent can decline a non-urgent procedure."
     ],
     "miss": "Watching a child deteriorate because a parent declined an emergency operation.",
     "diagram": null,
@@ -4173,7 +4425,8 @@
     "lines": [
       "Explain the fetal risk in plain words.",
       "Coercion and a court order are not the routine path.",
-      "Document the conversation and continue to offer care."
+      "A capable pregnant patient can refuse a cesarean, including when the fetal tracing is concerning. Document the risk you explained and do not write an order to proceed.",
+      "Continue to offer care. Fetal benefit does not erase that refusal."
     ],
     "miss": "Taking a refusing patient to the operating room because the tracing is bad.",
     "diagram": null,
@@ -4198,7 +4451,9 @@
     "lines": [
       "Pain, fear, and a power imbalance make labor the wrong moment.",
       "A prior wish is revisited before the procedure, not assumed.",
-      "Document the earlier conversation."
+      "Document the earlier conversation.",
+      "Consent for sterilization is obtained before labor, when deliberation is possible. A signature between contractions is not adequate.",
+      "A prior antenatal consent is confirmed on the day. It is not assumed. The cesarean still needs its own current consent."
     ],
     "miss": "Adding a tubal ligation to a cesarean because the patient nodded during a contraction.",
     "diagram": null,
@@ -4223,16 +4478,17 @@
     "lines": [
       "The patient is told who will be present and what a student will do.",
       "A form signed for a different operation does not cover this one.",
-      "Questions are answered before the sedative is given."
+      "Questions are answered before the sedative is given.",
+      "The clinician who understands the procedure and will participate obtains the consent. A student who cannot explain the risks does not collect that signature alone."
     ],
     "miss": "Sending a student who cannot explain the risks to get the signature.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Informed Consent.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "The clinician responsible for the procedure discloses the risks. Learners do not obtain consent beyond their knowledge."
+      "name": "AMA Code of Medical Ethics. Informed consent.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
+      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure."
     },
     "number": 168,
     "id": "usmle-qb-s2-168"
@@ -4248,7 +4504,9 @@
     "lines": [
       "Explain each step before you do it.",
       "Stop if the patient withdraws consent.",
-      "A chaperone protects the patient and the clinician."
+      "A chaperone protects the patient and the clinician.",
+      "Offer a chaperone for a breast, pelvic, or genital exam and record the name or the decline.",
+      "Stop if consent is withdrawn. An offer that was never made is not a decline."
     ],
     "miss": "Proceeding with a pelvic exam after the patient asked you to stop.",
     "diagram": null,
@@ -4273,7 +4531,9 @@
     "lines": [
       "The dose is the dose that relieves the symptom.",
       "A dose chosen to kill is a different act.",
-      "Do not withhold morphine from a dying patient because of that confusion."
+      "Do not withhold morphine from a dying patient because of that confusion.",
+      "An opioid dose titrated to pain or air hunger is symptom treatment. The intent is relief, and the dose stops when the symptom stops.",
+      "A dose chosen to end life is a different act and is not what this order is. Write the symptom you are treating."
     ],
     "miss": "Leaving a dying patient in pain to avoid a theoretical hastening of death.",
     "diagram": null,
@@ -4298,7 +4558,9 @@
     "lines": [
       "Remove the colleague from the patient if the risk is immediate.",
       "Report through the system your institution requires.",
-      "A rumor is not the same as an observed impairment. Act on what you know."
+      "A rumor is not the same as an observed impairment. Act on what you know.",
+      "Remove the colleague from patients immediately if the impairment is happening now. The report does not wait until the end of the shift.",
+      "Review patients already seen. A hallway announcement is not the reporting channel."
     ],
     "miss": "Letting an intoxicated colleague finish the shift because confronting them is awkward.",
     "diagram": null,
@@ -4323,7 +4585,9 @@
     "lines": [
       "An addendum says when you learned the new fact.",
       "Changing a note to hide an error is a second harm.",
-      "The disclosure to the patient and the note tell the same story."
+      "The disclosure to the patient and the note tell the same story.",
+      "A correction after a complication is an addendum with the time you learned the fact. The original note stays.",
+      "The disclosure to the patient and the addendum tell the same story. Deleting a line is not an honest correction."
     ],
     "miss": "Editing yesterday's note after the complication to make the plan look safer.",
     "diagram": null,
@@ -4348,7 +4612,9 @@
     "lines": [
       "The patient can decline the study and still receive care.",
       "A power imbalance means you do not pressure.",
-      "The consent names what is experimental."
+      "The consent names what is experimental.",
+      "A research biopsy needs its own consent that explains the study, the alternatives, and the right to refuse without losing standard care.",
+      "The surgical consent does not enroll the patient. The person obtaining research consent can explain the protocol."
     ],
     "miss": "Adding a research biopsy because the patient already signed the surgery consent.",
     "diagram": null,
@@ -4373,7 +4639,9 @@
     "lines": [
       "If a placebo is studied, the consent says so.",
       "Symptoms still get a real evaluation.",
-      "Trust, once broken, ruins the next true recommendation."
+      "Trust, once broken, ruins the next true recommendation.",
+      "Labeling a sugar capsule as an active analgesic is deception. It is not a therapeutic trial.",
+      "A research placebo requires a consent that says it is a placebo. Symptoms still get a real evaluation."
     ],
     "miss": "Prescribing a sugar pill for pain and calling it a strong analgesic.",
     "diagram": null,
@@ -4398,11 +4666,13 @@
     "lines": [
       "Treat the injury.",
       "The report is to the agency the law names.",
-      "A parent who asks you not to report is the reason the duty does not sit with the parent."
+      "A parent who asks you not to report is the reason the duty does not sit with the parent.",
+      "Report on suspicion before discharge. A parent's request to keep it private is not a hold. Proof is not the threshold.",
+      "Photograph patterned injuries and treat them. Do not discharge to the suspected person while you think about reporting tomorrow."
     ],
     "miss": "Agreeing to keep a suspicious fracture between you and the family.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "child-report",
+    "diagramAlt": "Report abuse. Suspicion is enough. Proof is not Parent or caregiver cannot veto it Treat the injury and make the report",
     "source": {
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
@@ -4423,7 +4693,8 @@
     "lines": [
       "The decision to stop is the patient's or the surrogate's, made on its own merits.",
       "A conflict of interest is avoided by separating the roles.",
-      "The patient who wanted to donate still can. The timing of the ask is what changes."
+      "The patient who wanted to donate still can. The timing of the ask is what changes.",
+      "The decision to stop support is made on its own merits. A designated requester, not the treating team, asks about donation."
     ],
     "miss": "Saying you will stop the ventilator if the family agrees to donation.",
     "diagram": null,
@@ -4448,16 +4719,18 @@
     "lines": [
       "They are not interchangeable.",
       "A capable patient can change either.",
-      "Emergency personnel follow the order they can see."
+      "Emergency personnel follow the order they can see.",
+      "A POLST is a medical order emergency clinicians can follow. An advance directive guides a surrogate and does not travel in an ambulance unless a copy is present.",
+      "Reconcile conflicting orders before discharge. A capable patient can void either."
     ],
     "miss": "Ignoring a POLST that says do not intubate because an old advance directive was vague.",
-    "diagram": null,
-    "diagramAlt": null,
+    "diagram": "polst-vs-ad",
+    "diagramAlt": "POLST versus advance directive. POLST is an order paramedics can follow A directive guides the surrogate A form in a safe does not travel",
     "source": {
-      "name": "StatPearls. Advance Directives.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459133/",
-      "says": "Portable medical orders direct emergency treatment. Advance directives guide surrogates and are not the same document."
+      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "year": "2016",
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
+      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
     },
     "number": 177,
     "id": "usmle-qb-s2-177"
@@ -4473,7 +4746,8 @@
     "lines": [
       "Confirm capacity for this decision.",
       "Offer to treat the dangerous problem before they go.",
-      "A signature is not required for you to have had the conversation, and refusal to sign is documented."
+      "A signature is not required for you to have had the conversation, and refusal to sign is documented.",
+      "A capable patient may leave. Offer the antibiotic or insulin that makes leaving safer. Do not withhold it as a punishment."
     ],
     "miss": "Refusing to give a needed antibiotic because the patient is leaving against advice.",
     "diagram": null,
@@ -4498,7 +4772,8 @@
     "lines": [
       "The word is used carefully. A treatment that is unlikely is not the same as one that cannot work.",
       "A second opinion is reasonable. A false hope is not.",
-      "The family is not asked to choose among useless options."
+      "The family is not asked to choose among useless options.",
+      "Do not offer an intervention that cannot achieve a physiologic goal, such as compressions that cannot restore a circulation."
     ],
     "miss": "Asking a family whether they want chest compressions that cannot restore a dead circulation, as if it were a real choice.",
     "diagram": null,
@@ -4521,9 +4796,10 @@
     "open": false,
     "lead": "When two patients need one bed or one drug, the rule is clinical and stated in advance. Friendship, fame, and anger do not move the list.",
     "lines": [
-      "Tell both patients the truth you can tell.",
-      "Document the reason.",
-      "The same rule applies on the next shift."
+      "Write the rule before you know the names: acuity, and whether the bed changes the outcome.",
+      "A stable patient does not outrank a patient in shock because a colleague called.",
+      "If acuity is truly equal, use a tie-break stated in advance. Record that clinical reason in the chart.",
+      "The same rule is used on the next shift. Changing it after you see the names is the failure."
     ],
     "miss": "Giving the last ICU bed to a colleague's relative who is less sick.",
     "diagram": null,
