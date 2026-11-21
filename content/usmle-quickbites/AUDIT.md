@@ -2,6 +2,11 @@
 
 The library stays hidden. Flags are unchanged. This pass checked claims against a confirmable source and rewrote or removed anything that source does not state. Design and components were not changed.
 
+Backup before pass 5: `scripts/usmle-quickbites-20261121/backup-pre-pass5-20261121/`.
+Undo pass 5: `scripts/usmle-quickbites-20261121/10-undo-pass5.sh`.
+
+Pass 5 closed the unverified StatPearls "says" lines. NCBI Bookshelf HTML for the cited NBK chapters returned an empty page from this environment, so the text checked is the PubMed abstract of that StatPearls chapter (PMID 31334949 for complement, whose NBK record had no abstract). A says line is verified when it is a sentence from that abstract and shares at least three content words with the bite. 187 StatPearls bites meet that bar. 58 do not: the abstract does not state the bite's specific claim, the says line is still a real abstract sentence, and it was not invented. Those 58 stay unverified. Marfan bites no longer state a beta blocker or an ARB, which the chapter does not name. Hypokalemia bites now use the chapter's own bands (about 3.5 mmol/L normal floor, under 2.5 mmol/L severe). Carbamazepine for trigeminal neuralgia cites the 2008 AAN/EFNS parameter (PMID 18716236). Ankylosing spondylitis cites the 2019 ACR/SAA/SPARTAN recommendations (PMID 31436036).
+
 Backup before pass 4: `scripts/usmle-quickbites-20261121/backup-pre-pass4-20261121/`.
 Undo pass 4: `scripts/usmle-quickbites-20261121/09-undo-pass4.sh`.
 Backup before the third pass: `scripts/usmle-quickbites-20261121/backup-pre-third-pass-20261121/`.
@@ -16,12 +21,12 @@ Counted from the source name after this pass. "Guideline" is a society or govern
 
 | | Step 1 | Step 2 CK | Step 3 |
 | --- | ---: | ---: | ---: |
-| Guideline | 43 | 94 | 105 |
-| Statement or trial | 3 | 7 | 8 |
+| Guideline | 45 | 96 | 105 |
+| Statement or trial | 3 | 6 | 8 |
 | Ethics code | 5 | 15 | 12 |
-| Reference text | 129 | 64 | 55 |
+| Reference text | 127 | 63 | 55 |
 
-These counts are after pass 4. Reference text is StatPearls and is limited to mechanisms. 241 StatPearls "says" lines that had copied a student line were replaced with a chapter-scope sentence. The Bookshelf full text was not re-fetched, so those 241 quotations are unverified.
+These counts are after pass 5. Reference text is StatPearls. 187 of those says lines are verified against the chapter abstract. 58 remain unverified because the abstract does not state the bite's claim.
 
 New or corrected guideline links use a PubMed URL or, for the UK kidney guideline, the society's PDF. Paywalled journal pages were not used as the only link.
 

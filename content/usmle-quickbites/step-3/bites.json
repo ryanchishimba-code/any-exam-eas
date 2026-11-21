@@ -229,7 +229,7 @@
       "name": "StatPearls. Hemophilia A.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470265/",
-      "says": "The StatPearls chapter Hemophilia A is the mechanism reference for this topic, not a treatment guideline."
+      "says": "The natural history of untreated hemophilia A is marked by progressive joint damage and increased morbidity; however, advances in factor replacement therapy and prophylactic treatment have significantly improved life expectancy and quality of life."
     },
     "number": 9,
     "id": "usmle-qb-s3-009"
@@ -413,7 +413,7 @@
       "name": "StatPearls. Hemolytic Transfusion Reaction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448158/",
-      "says": "The StatPearls chapter Hemolytic Transfusion Reaction is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Transfusions, like any other medical intervention, have benefits and risks, and one risk is a hemolytic transfusion reaction (HTR)."
     },
     "number": 16,
     "id": "usmle-qb-s3-016"
@@ -422,25 +422,24 @@
     "step": "step-3",
     "system": "blood-lymph-immune",
     "group": "Blood and immune",
-    "title": "Myeloma hypercalcemia is saline, and the bone is protected",
+    "title": "Myeloma is plasma cells and end-organ damage",
     "read": "1 min",
     "open": false,
-    "lead": "Severe hypercalcemia from myeloma is saline first. A bisphosphonate is ordered for the bone disease, not as the only drug in a dehydrated patient.",
+    "lead": "Multiple myeloma is abnormal plasma cells in the marrow that cause end-organ damage. Most patients who respond later relapse.",
     "lines": [
-      "The light chains need a urine or serum free-light-chain test, not an albumin dipstick.",
-      "Infection is common. A fever is cultured.",
-      "Thalidomide-era steroids are a specialist regimen. Fluids are yours tonight.",
-      "CRAB is calcium, renal failure, anemia, and lytic bone. Light chains can be missed by a urine dipstick for albumin.",
-      "Lytic lesions are cold on a technetium bone scan. Use a skeletal survey or low-dose whole-body CT."
+      "It is a B-cell disorder of monoclonal plasma cells, in the marrow or outside it.",
+      "End-organ damage is part of the disease, not a separate illness.",
+      "Primary refractory disease never reaches even a minimal response on the first treatment.",
+      "Relapse after a remission is the common later course."
     ],
-    "miss": "Giving a bisphosphonate and no fluid to a creatinine of 3.",
+    "miss": "Treating a plasma-cell cancer as cured because the first response looked complete.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
       "name": "StatPearls. Multiple Myeloma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534764/",
-      "says": "The StatPearls chapter Multiple Myeloma is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Multiple myeloma is a malignant plasma-cell disorder that causes end-organ damage, and most patients eventually relapse."
     },
     "number": 17,
     "id": "usmle-qb-s3-017"
@@ -467,7 +466,7 @@
       "name": "StatPearls. Aplastic Anemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK534212/",
-      "says": "The StatPearls chapter Aplastic Anemia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Aplastic anemia is a rare but serious hematologic disorder characterized by the failure of bone marrow to produce enough blood cells, leading to pancytopenia and causing significant morbidity and mortality."
     },
     "number": 18,
     "id": "usmle-qb-s3-018"
@@ -678,7 +677,7 @@
       "name": "StatPearls. Parkinson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470193/",
-      "says": "The StatPearls chapter Parkinson Disease is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Degeneration of dopaminergic neurons in the substantia nigra produces bradykinesia, resting tremor, and rigidity."
     },
     "number": 26,
     "id": "usmle-qb-s3-026"
@@ -729,7 +728,7 @@
       "name": "StatPearls. Transient Ischemic Attack.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459143/",
-      "says": "The StatPearls chapter Transient Ischemic Attack is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Transient ischemic attack (TIA) constitutes a medical emergency characterized by an acute, transient episode of focal neurologic dysfunction within a vascular territory resulting from ischemia of the brain, spinal cord, or retina, with complete resolution of symptoms and no evidence of acute infarction or tissue injury."
     },
     "number": 28,
     "id": "usmle-qb-s3-028"
@@ -889,7 +888,7 @@
       "name": "StatPearls. Serotonin Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482377/",
-      "says": "The StatPearls chapter Serotonin Syndrome is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Serotonin syndrome (serotonin toxicity) is a serious and potentially life-threatening condition that results from excessive serotonergic activity throughout the central nervous system."
     },
     "number": 34,
     "id": "usmle-qb-s3-034"
@@ -915,7 +914,7 @@
       "name": "StatPearls. Neuroleptic Malignant Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482282/",
-      "says": "The StatPearls chapter Neuroleptic Malignant Syndrome is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Neuroleptic malignant syndrome (NMS) is a life-threatening syndrome associated with the use of dopamine-receptor antagonist medications or with the rapid withdrawal of dopaminergic medications."
     },
     "number": 35,
     "id": "usmle-qb-s3-035"
@@ -968,7 +967,7 @@
       "name": "StatPearls. Hemorrhagic Stroke Overview.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559173/",
-      "says": "The StatPearls chapter Hemorrhagic Stroke Overview is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Cerebrovascular accident, otherwise called a stroke, is the second leading cause of death worldwide and one of the major causes of long-term disability."
     },
     "number": 37,
     "id": "usmle-qb-s3-037"
@@ -1099,7 +1098,7 @@
       "name": "StatPearls. Open Fracture Management.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448083/",
-      "says": "The StatPearls chapter Open Fracture Management is the mechanism reference for this topic, not a treatment guideline."
+      "says": "An open fracture is an injury where the fractured bone and/or fracture hematoma are exposed to the external environment via a traumatic violation of the soft tissue and skin."
     },
     "number": 42,
     "id": "usmle-qb-s3-042"
@@ -1267,22 +1266,20 @@
     "title": "Marfan discharge includes an aortic-imaging appointment",
     "read": "1 min",
     "open": false,
-    "lead": "A new Marfan diagnosis is discharged with a dated aortic-imaging appointment and a blood-pressure plan, not with reassurance about height.",
+    "lead": "Marfan syndrome is a clinical picture of aortic root dilatation, lens dislocation, and a long skeleton. The gene is FBN1.",
     "lines": [
-      "Pregnancy counseling is written if it applies.",
-      "Contact-sport restriction is written if the aorta is dilated.",
-      "A beta blocker or an angiotensin-receptor blocker is the medication conversation.",
-      "Fibrillin. Lens dislocates up. Homocystinuria dislocates the lens down and clots.",
-      "Follow the aortic root. A beta blocker or an ARB slows growth. The diameter, not the long fingers, drives surgery."
+      "Severity runs from isolated features to severe disease in a newborn.",
+      "Mitral valve prolapse can be present and is not the aortic-root problem.",
+      "Eye findings include lens dislocation, cataract, and retinal detachment."
     ],
-    "miss": "Telling the patient the click is benign and scheduling nothing.",
+    "miss": "Discharging a new diagnosis with reassurance about height and no plan to image the aorta.",
     "diagram": "marfan-root",
-    "diagramAlt": "Marfan follow-up. Image the aortic root Beta blocker or ARB Upward lens dislocation. Homocystinuria is down",
+    "diagramAlt": "Marfan syndrome. FBN1 makes fibrillin Aortic root dilatation is the danger Lens dislocation is the eye finding",
     "source": {
       "name": "StatPearls. Marfan Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537339/",
-      "says": "The StatPearls chapter Marfan Syndrome is the mechanism reference for this topic, not a treatment guideline."
+      "says": "The defect is in the FBN1 gene, which produces fibrillin. Decreased life expectancy is mainly from aortic root dilatation and dissection."
     },
     "number": 49,
     "id": "usmle-qb-s3-049"
@@ -1308,7 +1305,7 @@
       "name": "StatPearls. Pemphigus Vulgaris.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560860/",
-      "says": "The StatPearls chapter Pemphigus Vulgaris is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Pemphigus vulgaris (PV) is an autoimmune disease that results in blisters on cutaneous and mucosal surfaces and is characterized primarily by acantholysis."
     },
     "number": 50,
     "id": "usmle-qb-s3-050"
@@ -1573,7 +1570,7 @@
       "name": "StatPearls. Cardiac Tamponade.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431090/",
-      "says": "The StatPearls chapter Cardiac Tamponade is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Cardiac tamponade is a medical or traumatic emergency that happens when enough fluid accumulates in the pericardial sac compressing the heart and leading to a decrease in cardiac output and shock."
     },
     "number": 60,
     "id": "usmle-qb-s3-060"
@@ -1653,7 +1650,7 @@
       "name": "StatPearls. Tetralogy of Fallot.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK513288/",
-      "says": "The StatPearls chapter Tetralogy of Fallot is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Classic tetralogy of Fallot (TOF) is a congenital heart defect (CHD) that is comprised of 4 anatomical alterations: a large, anteriorly malaligned ventricular septal defect (VSD), an overriding aorta which results in infundibular (ie, sub-pulmonary) right ventricular outflow tract obstruction (RVOTO), and consequent right ventricular hypertrophy secondary to chronic systemic pressures."
     },
     "number": 63,
     "id": "usmle-qb-s3-063"
@@ -1680,7 +1677,7 @@
       "name": "StatPearls. Coarctation of the Aorta.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430913/",
-      "says": "The StatPearls chapter Coarctation of the Aorta is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Coarctation of the aorta is a congenital cardiovascular anomaly characterized by a narrowing of the aortic lumen, typically located just distal to the origin of the left subclavian artery at the site of the ductus arteriosus (see Image."
     },
     "number": 64,
     "id": "usmle-qb-s3-064"
@@ -1759,7 +1756,7 @@
       "name": "StatPearls. Rheumatic Heart Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK538286/",
-      "says": "The StatPearls chapter Rheumatic Heart Disease is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Rheumatic heart disease is a systemic immune process that is sequelae to a beta-hemolytic streptococcal infection of the pharynx."
     },
     "number": 67,
     "id": "usmle-qb-s3-067"
@@ -1839,7 +1836,7 @@
       "name": "StatPearls. Dilated Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441911/",
-      "says": "The StatPearls chapter Dilated Cardiomyopathy is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Dilated cardiomyopathy (DCM) is a disease of the heart muscle characterized by enlargement and dilation of one or both ventricles, along with impaired contractility, defined as a left ventricular ejection fraction (LVEF) less than 40%."
     },
     "number": 70,
     "id": "usmle-qb-s3-070"
@@ -1866,7 +1863,7 @@
       "name": "StatPearls. Restrictive Cardiomyopathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537234/",
-      "says": "The StatPearls chapter Restrictive Cardiomyopathy is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Restrictive cardiomyopathy (RCM) is distinguished by diastolic dysfunction in a non-dilated ventricle."
     },
     "number": 71,
     "id": "usmle-qb-s3-071"
@@ -2079,7 +2076,7 @@
       "name": "StatPearls. Arginine Vasopressin Disorder (Diabetes Insipidus).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470458/",
-      "says": "The StatPearls chapter Arginine Vasopressin Disorder (Diabetes Insipidus) is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Second, a recent survey published in The Lancet Diabetes & Endocrinology, which included over 1000 patients with central diabetes insipidus, revealed that 85% preferred a name change."
     },
     "number": 79,
     "id": "usmle-qb-s3-079"
@@ -2105,7 +2102,7 @@
       "name": "StatPearls. Tension Pneumothorax.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559090/",
-      "says": "The StatPearls chapter Tension Pneumothorax is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Tension pneumothorax develops when this pressure is transmitted to the mediastinum (see Image."
     },
     "number": 80,
     "id": "usmle-qb-s3-080"
@@ -2248,24 +2245,24 @@
     "step": "step-3",
     "system": "respiratory-renal",
     "group": "Respiratory and renal",
-    "title": "Hypokalemia orders include magnesium and a route that is not a push",
+    "title": "Under 2.5 mmol/L of potassium is the severe band",
     "read": "1 min",
     "open": false,
-    "lead": "Order magnesium with the potassium, and order the intravenous potassium as an infusion with a rate. A push is not an order you write.",
+    "lead": "Severe hypokalemia, under 2.5 mmol/L, can cause an arrhythmia. Weakness and palpitations scale with how low the value is.",
     "lines": [
-      "Oral is preferred when the ECG is quiet and the patient can swallow.",
-      "Recheck after the infusion.",
-      "The diuretic dose is changed on the same order.",
-      "If potassium will not stay up, magnesium is low. Replace magnesium or the kidney keeps wasting potassium."
+      "A serum potassium of about 3.5 mmol/L is the lower limit of normal in this chapter.",
+      "3 to 3.4 mmol/L is mild, 2.5 to 3 is moderate, and under 2.5 mmol/L is severe.",
+      "Weakness, cramps, and palpitations follow the severity. Arrhythmia is the severe risk.",
+      "The serum value is a small fraction of body stores, so it does not measure total potassium."
     ],
-    "miss": "Writing potassium chloride 40 mEq IV push.",
+    "miss": "Calling a potassium of 2.4 mmol/L mild, or judging total body stores from the serum value alone.",
     "diagram": "k-push",
-    "diagramAlt": "Potassium route. Never IV push Infuse dilute. Recheck Replace magnesium or K will not stay up",
+    "diagramAlt": "Hypokalemia severity. Floor about 3.5 mmol/L Mild 3 to 3.4; moderate 2.5 to 3 Severe: under 2.5 mmol/L",
     "source": {
       "name": "StatPearls. Hypokalemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482465/",
-      "says": "The StatPearls chapter Hypokalemia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "An acceptable lower limit for normal serum potassium is 3.5 mmol/L. A level under 2.5 mmol/L is classified as severe."
     },
     "number": 86,
     "id": "usmle-qb-s3-086"
@@ -2292,7 +2289,7 @@
       "name": "StatPearls. Hypocalcemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430912/",
-      "says": "The StatPearls chapter Hypocalcemia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Because a substantial proportion of circulating calcium is bound to albumin, total serum calcium should be corrected for albumin level before diagnosing hypocalcemia."
     },
     "number": 87,
     "id": "usmle-qb-s3-087"
@@ -2318,7 +2315,7 @@
       "name": "StatPearls. Respiratory Acidosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482430/",
-      "says": "The StatPearls chapter Respiratory Acidosis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Respiratory acidosis is a state in which there is usually a failure of ventilation and an accumulation of carbon dioxide."
     },
     "number": 88,
     "id": "usmle-qb-s3-088"
@@ -2344,7 +2341,7 @@
       "name": "StatPearls. Physiology, Metabolic Alkalosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482291/",
-      "says": "The StatPearls chapter Physiology, Metabolic Alkalosis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "A decrease in pH below this range is acidosis; an increase over this range is alkalosis."
     },
     "number": 89,
     "id": "usmle-qb-s3-089"
@@ -2370,7 +2367,7 @@
       "name": "StatPearls. Hypernatremia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441960/",
-      "says": "The StatPearls chapter Hypernatremia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "The human body maintains sodium and water homeostasis by concentrating the urine secondary to the action of antidiuretic hormone (ADH) and increased fluid intake by a powerful thirst response."
     },
     "number": 90,
     "id": "usmle-qb-s3-090"
@@ -2397,7 +2394,7 @@
       "name": "StatPearls. Autosomal Dominant Polycystic Kidney Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532934/",
-      "says": "The StatPearls chapter Autosomal Dominant Polycystic Kidney Disease is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Autosomal dominant polycystic kidney disease (ADPKD) is the most common genetic cause of renal failure worldwide."
     },
     "number": 91,
     "id": "usmle-qb-s3-091"
@@ -2450,7 +2447,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "The StatPearls chapter Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD) is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Author information: (1)National Health Service In 2005, Moe et al coined the term chronic kidney disease\u2013mineral and bone disorder (CKD-MBD) to describe a complex clinical syndrome encompassing disorders of calcium, phosphate, parathyroid hormone (PTH), vitamin D, and fibroblast growth factor-23 (FGF23) metabolism."
     },
     "number": 93,
     "id": "usmle-qb-s3-093"
@@ -2477,7 +2474,7 @@
       "name": "StatPearls. Renal Artery Stenosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
-      "says": "The StatPearls chapter Renal Artery Stenosis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Renal artery stenosis (RAS) is typically defined as more than 60% narrowing of one or both renal arteries and is a major cause of hypertension, estimated at 1% to 10% of the 50 million people diagnosed with high blood pressure in the United States."
     },
     "number": 94,
     "id": "usmle-qb-s3-094"
@@ -2504,7 +2501,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "The StatPearls chapter Emphysematous Pyelonephritis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney."
     },
     "number": 95,
     "id": "usmle-qb-s3-095"
@@ -2583,7 +2580,7 @@
       "name": "StatPearls. Ascites.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470482/",
-      "says": "The StatPearls chapter Ascites is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Ascites is the pathologic accumulation of fluid within the peritoneal cavity."
     },
     "number": 98,
     "id": "usmle-qb-s3-098"
@@ -2636,7 +2633,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "The StatPearls chapter Acute Cholecystitis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Author information: (1)McLaren Greater Lansing, MSUCOM (2)Michigan State University (3)Northwell Health/Donald and Barbara Zucker School of Medicine at Hofstra Acute cholecystitis involves inflammation of the gallbladder, most commonly caused by obstruction of the cystic duct by a gallstone."
     },
     "number": 100,
     "id": "usmle-qb-s3-100"
@@ -2662,7 +2659,7 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "The StatPearls chapter Acute Cholecystitis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "the term of Cholecystitis it is referred to inflammation in the gallbladder and it is considered as a surgical condition."
     },
     "number": 101,
     "id": "usmle-qb-s3-101"
@@ -2688,7 +2685,7 @@
       "name": "StatPearls. Small Bowel Obstruction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448079/",
-      "says": "The StatPearls chapter Small Bowel Obstruction is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Small bowel obstruction (SBO) is a common and potentially life-threatening surgical emergency that accounts for a significant proportion of hospital admissions."
     },
     "number": 102,
     "id": "usmle-qb-s3-102"
@@ -2714,7 +2711,7 @@
       "name": "StatPearls. Acute Mesenteric Ischemia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431068/",
-      "says": "The StatPearls chapter Acute Mesenteric Ischemia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Acute mesenteric ischemia (AMI) is a condition due to a sudden decline in blood flow through the mesenteric vessels."
     },
     "number": 103,
     "id": "usmle-qb-s3-103"
@@ -2792,7 +2789,7 @@
       "name": "StatPearls. Achalasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "The StatPearls chapter Achalasia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent."
     },
     "number": 106,
     "id": "usmle-qb-s3-106"
@@ -2819,7 +2816,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "The StatPearls chapter Chronic Pancreatitis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "This definition characterizes end-stage chronic pancreatitis as pancreatic atrophy, fibrosis, pain syndromes, duct distortion and strictures, calcifications, pancreatic exocrine dysfunction, pancreatic endocrine dysfunction, and dysplasia, but also addresses the disease mechanism as a pathological fibroinflammatory syndrome of the pancreas in individuals with genetic, environmental, or other risk "
     },
     "number": 107,
     "id": "usmle-qb-s3-107"
@@ -3161,7 +3158,7 @@
       "name": "StatPearls. Erectile Dysfunction.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562253/",
-      "says": "The StatPearls chapter Erectile Dysfunction is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Erectile dysfunction (ED), formerly termed impotence, is defined as the failure to achieve or maintain a rigid penile erection suitable for satisfactory sexual intercourse."
     },
     "number": 120,
     "id": "usmle-qb-s3-120"
@@ -3186,7 +3183,7 @@
       "name": "StatPearls. Benign Prostatic Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "The StatPearls chapter Benign Prostatic Hyperplasia is the mechanism reference for this topic, not a treatment guideline."
+      "says": "This leads to urethral compression and bladder outflow obstruction, which can result in clinical manifestations of LUTS, urinary retention, or infections due to incomplete bladder emptying."
     },
     "number": 121,
     "id": "usmle-qb-s3-121"
@@ -3212,7 +3209,7 @@
       "name": "StatPearls. Testicular Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448199/",
-      "says": "The StatPearls chapter Testicular Torsion is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Scrotal complaints are relatively common in the emergency department, comprising at least 0.5% of all emergency department visits."
     },
     "number": 122,
     "id": "usmle-qb-s3-122"
@@ -3239,7 +3236,7 @@
       "name": "StatPearls. Ovarian Torsion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "The StatPearls chapter Ovarian Torsion is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Ovarian torsion is a gynecologic surgical emergency in which the ovary rotates around the ligaments supporting it within the adnexa, partially or completely obstructing its blood supply."
     },
     "number": 123,
     "id": "usmle-qb-s3-123"
@@ -3343,7 +3340,7 @@
       "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
-      "says": "The StatPearls chapter Pituitary Hyperplasia in Primary Hypothyroidism is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Recognition of this entity is important, as the primary modality of treatment is thyroid hormone replacement rather than surgery."
     },
     "number": 127,
     "id": "usmle-qb-s3-127"
@@ -3552,7 +3549,7 @@
       "name": "StatPearls. Rhabdomyolysis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448168/",
-      "says": "The StatPearls chapter Rhabdomyolysis is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Clinically, rhabdomyolysis can range from mild elevation in creatinine phosphokinase to medical emergencies like compartment syndrome, intravascular fluid depletion, disseminated intravascular coagulation, pigment-induced acute kidney injury (AKI), and cardiac arrhythmias."
     },
     "number": 135,
     "id": "usmle-qb-s3-135"
@@ -3604,7 +3601,7 @@
       "name": "StatPearls. Fat Embolism and Fat Embolism Syndrome.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK499885/",
-      "says": "The StatPearls chapter Fat Embolism and Fat Embolism Syndrome is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Fat embolism and fat embolism syndrome (FES) are clinical phenomena characterized by the systemic dissemination of fat emboli through the circulation."
     },
     "number": 137,
     "id": "usmle-qb-s3-137"
@@ -4083,7 +4080,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The StatPearls chapter Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
     },
     "number": 155,
     "id": "usmle-qb-s3-155"
@@ -4110,7 +4107,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The StatPearls chapter Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
     },
     "number": 156,
     "id": "usmle-qb-s3-156"
@@ -4136,7 +4133,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The StatPearls chapter Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
     },
     "number": 157,
     "id": "usmle-qb-s3-157"
@@ -4162,7 +4159,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The StatPearls chapter Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios."
     },
     "number": 158,
     "id": "usmle-qb-s3-158"
@@ -4188,7 +4185,7 @@
       "name": "StatPearls. Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK557491/",
-      "says": "The StatPearls chapter Diagnostic Testing Accuracy: Sensitivity, Specificity, Predictive Values and Likelihood Ratios is the mechanism reference for this topic, not a treatment guideline."
+      "says": "To make clinical decisions and guide patient care, providers must understand the likelihood that a patient has a disease, integrating pretest probability with diagnostic test results."
     },
     "number": 159,
     "id": "usmle-qb-s3-159"
@@ -4294,7 +4291,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "The StatPearls chapter Medical Ethics is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
     },
     "number": 163,
     "id": "usmle-qb-s3-163"
@@ -4371,7 +4368,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "The StatPearls chapter Informed Consent is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
     },
     "number": 166,
     "id": "usmle-qb-s3-166"
@@ -4450,7 +4447,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "The StatPearls chapter Informed Consent is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
     },
     "number": 169,
     "id": "usmle-qb-s3-169"
@@ -4529,7 +4526,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "The StatPearls chapter Informed Consent is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Informed consent is a process in which a healthcare professional educates a patient about the risks, benefits, and alternatives of a given procedure or intervention."
     },
     "number": 172,
     "id": "usmle-qb-s3-172"
@@ -4555,7 +4552,7 @@
       "name": "StatPearls. Advance Directives.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459133/",
-      "says": "The StatPearls chapter Advance Directives is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Several states have implemented specific forms of advance directives, such as Physician Orders for Life-Sustaining Treatment (POLST), Medical Orders for Life-Sustaining Treatment (MOLST), Medical Orders for Scope of Treatment (MOST), Physician Orders for Scope of Treatment (POST), Do-Not-Resuscitate (DNR) Order/Clinician Orders for Life-Sustaining Treatment (COLST), Transportable Physician Orders "
     },
     "number": 173,
     "id": "usmle-qb-s3-173"
@@ -4661,7 +4658,7 @@
       "name": "StatPearls. Medical Ethics.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK535361/",
-      "says": "The StatPearls chapter Medical Ethics is the mechanism reference for this topic, not a treatment guideline."
+      "says": "Determining the ethical nature of an individual's actions within a specific society is primarily contingent on the prevailing standards of morality at the broadest level of that society."
     },
     "number": 177,
     "id": "usmle-qb-s3-177"
@@ -4687,7 +4684,7 @@
       "name": "StatPearls. Informed Consent.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430827/",
-      "says": "The StatPearls chapter Informed Consent is the mechanism reference for this topic, not a treatment guideline."
+      "says": "These events, along with the establishment of the Nuremberg Code and the Declaration of Helsinki, cemented informed consent as a fundamental ethical standard in research and clinical practice."
     },
     "number": 178,
     "id": "usmle-qb-s3-178"
