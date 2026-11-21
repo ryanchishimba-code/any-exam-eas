@@ -3997,21 +3997,21 @@
     "diagram": "screening",
     "diagramAlt": "Screening ages. Breast: every other year from 40 through 74. Colon: start at 45. Lung: yearly low-dose CT from 50 to 80 with at least 20 pack-years. Cervix: start at 21.",
     "source": {
-      "name": "USPSTF recommendations on breast, colorectal, lung, and cervical cancer screening.",
+      "name": "USPSTF. Breast Cancer: Screening.",
       "year": "2024",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "Breast screening is biennial from 40 through 74 (2024). Colorectal screening starts at 45 (2021). Lung screening is annual low-dose CT from 50 to 80 with a 20 pack-year history (2021). Cervical screening intervals are unchanged from 2018.",
+      "says": "The USPSTF recommends biennial screening mammography for women aged 40 to 74 years. Colorectal screening is recommended at 45 to 75, lung LDCT yearly at 50 to 80 with 20 pack-years, and cervical screening from 21.",
       "more": [
         {
-          "name": "USPSTF. Colorectal cancer screening.",
+          "name": "USPSTF. Colorectal Cancer: Screening (2021).",
           "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening"
         },
         {
-          "name": "USPSTF. Lung cancer screening.",
+          "name": "USPSTF. Lung Cancer: Screening (2021).",
           "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening"
         },
         {
-          "name": "USPSTF. Cervical cancer screening.",
+          "name": "USPSTF. Cervical Cancer: Screening (2018).",
           "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening"
         }
       ]
@@ -4037,16 +4037,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Screening for Depression in Adults. Screening for Suicide Risk.",
+      "name": "USPSTF. Depression and Suicide Risk in Adults: Screening.",
       "year": "2023",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/depression-in-adults-screening",
-      "says": "Depression screening in adults is recommended. The task force found insufficient evidence to recommend for or against screening all adults for suicide risk with a stand-alone instrument.",
-      "more": [
-        {
-          "name": "USPSTF. Suicide risk in adults and older adults.",
-          "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/suicide-risk-in-adults-and-older-adults-screening"
-        }
-      ]
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-depression-suicide-risk-adults",
+      "says": "The USPSTF recommends screening for depression in the adult population, including pregnant and postpartum persons and older adults (B). The current evidence is insufficient to assess the balance of benefits and harms of screening for suicide risk in adults (I statement)."
     },
     "open": false
   },
@@ -4068,10 +4062,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Breast cancer screening.",
-      "year": "2024",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "Screening recommendations are based on absolute benefits and harms. Relative reductions without the baseline risk mislead, which is the recommendation in USPSTF. Breast cancer screening."
+      "name": "StatPearls. Relative Risk.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430824/",
+      "says": "The relative risk does not provide any information about the absolute risk of the event occurring, only the higher or lower likelihood of the event in the exposed versus the non-exposed group.",
+      "more": [
+        {
+          "name": "StatPearls. Understanding Biostatistics Interpretation (surrogate endpoints, confidence intervals).",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK431056/"
+        }
+      ]
     },
     "number": 149,
     "id": "usmle-qb-s2-149"
@@ -4093,10 +4093,10 @@
     "diagram": "lung-stop",
     "diagramAlt": "Stop the yearly lung CT. Eligible: 50\u201380, \u226520 pack-years Stop 15 years after quitting Stop at age 81, or if too ill to benefit",
     "source": {
-      "name": "USPSTF. Lung cancer screening.",
+      "name": "USPSTF. Lung Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
-      "says": "Screening should be discontinued once a person has not smoked for 15 years or develops a health problem that substantially limits life expectancy or the ability or willingness to have curative lung surgery."
+      "says": "The USPSTF recommends annual LDCT screening in adults aged 50 to 80 years with a 20 pack-year history who currently smoke or quit within the past 15 years. Screening should be discontinued once a person has not smoked for 15 years or develops a health problem that substantially limits life expectancy or curative surgery."
     },
     "number": 150,
     "id": "usmle-qb-s2-150"
@@ -4119,10 +4119,10 @@
     "diagram": "colon-positive",
     "diagramAlt": "Positive stool test. Colonoscopy next, not another card Average risk starts at 45 Iron deficiency is diagnostic, not screening",
     "source": {
-      "name": "USPSTF. Colorectal cancer screening.",
+      "name": "USPSTF. Colorectal Cancer: Screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
-      "says": "Average-risk screening begins at 45. A positive stool-based test is followed by colonoscopy, which is the recommendation in USPSTF. Colorectal cancer screening."
+      "says": "The USPSTF recommends colorectal cancer screening in adults aged 45 to 49 (B) and 50 to 75 (A), and selective screening at 76 to 85. Positive results on stool-based screening tests require follow-up with colonoscopy."
     },
     "number": 151,
     "id": "usmle-qb-s2-151"
@@ -4145,10 +4145,10 @@
     "diagram": "screening",
     "diagramAlt": "Mammography every other year from 40 to 74. Colon screening from 45. Lung screening is annual low-dose CT from 50 to 80 after 20 pack-years.",
     "source": {
-      "name": "USPSTF. Breast cancer screening.",
+      "name": "USPSTF. Breast Cancer: Screening.",
       "year": "2024",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
-      "says": "Biennial mammography from 40 through 74 is the recommendation. Supplemental imaging for density is not endorsed."
+      "says": "The USPSTF recommends biennial screening mammography for women aged 40 to 74 years. Evidence is insufficient for screening at 75 or older and for supplemental screening in women with dense breasts (I statements)."
     },
     "number": 152,
     "id": "usmle-qb-s2-152"
@@ -4172,10 +4172,10 @@
     "diagram": "cervix-age",
     "diagramAlt": "Cervical screening intervals. Start at 21, not at first sex 21\u201329: cytology every 3 years 30\u201365: cytology q3, HPV q5, or both q5",
     "source": {
-      "name": "USPSTF. Cervical cancer screening.",
+      "name": "USPSTF. Cervical Cancer: Screening.",
       "year": "2018",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/cervical-cancer-screening",
-      "says": "Screening begins at 21. Intervals are every 3 years with cytology alone in younger women, with HPV options after 30."
+      "says": "Screen every 3 years with cytology alone at ages 21 to 29. At 30 to 65, screen every 3 years with cytology, every 5 years with hrHPV testing alone, or every 5 years with cotesting. Do not screen before 21, or after 65 with adequate prior screening and no high risk."
     },
     "number": 153,
     "id": "usmle-qb-s2-153"
@@ -4187,7 +4187,7 @@
     "title": "Bone-density screening starts at 65 for women",
     "read": "1 min",
     "open": false,
-    "lead": "Women 65 and older are screened for osteoporosis with a bone-density test. A younger postmenopausal woman is screened only when her fracture risk matches that of a 65-year-old.",
+    "lead": "Women 65 and older are screened for osteoporosis with a bone-density test. A younger postmenopausal woman is screened when a clinical risk assessment shows increased fracture risk.",
     "lines": [
       "DEXA is the test. A heel ultrasound is not the screening study.",
       "A fragility fracture is already disease. It is treated, not filed as a normal screening interval.",
@@ -4198,10 +4198,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Osteoporosis to prevent fractures: screening.",
-      "year": "2018",
+      "name": "USPSTF. Osteoporosis to Prevent Fractures: Screening.",
+      "year": "2025",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/osteoporosis-screening",
-      "says": "Screen women 65 and older for osteoporosis with bone measurement testing, and screen younger postmenopausal women who are at increased risk."
+      "says": "The USPSTF recommends osteoporosis screening in women 65 years or older and in postmenopausal women younger than 65 at increased fracture risk as estimated by clinical risk assessment. Screening uses DXA bone mineral density, with or without fracture risk assessment."
     },
     "number": 154,
     "id": "usmle-qb-s2-154"
@@ -4223,10 +4223,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia.",
+      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia and Related Morbidity and Mortality: Preventive Medication.",
       "year": "2021",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-preeclampsia-and-related-morbidity-and-mortality",
-      "says": "Low-dose aspirin after 12 weeks is for prevention in high-risk patients. It is not the treatment of severe-range blood pressure, which is the recommendation in USPSTF. Aspirin Use to Prevent Preeclampsia."
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
+      "says": "Low-dose aspirin (81 mg/day) is recommended after 12 weeks of gestation for persons at high risk for preeclampsia: history of preeclampsia, multifetal gestation, kidney disease, autoimmune disease, type 1 or type 2 diabetes, or chronic hypertension."
     },
     "number": 155,
     "id": "usmle-qb-s2-155"
@@ -4250,10 +4250,16 @@
     "diagram": "four-abilities",
     "diagramAlt": "Capacity for this decision. Understand the facts Appreciate what they mean for you Reason, and say a stable choice",
     "source": {
-      "name": "Appelbaum. Assessment of patients' competence to consent to treatment.",
-      "year": "2007",
-      "url": "https://www.nejm.org/doi/full/10.1056/NEJMcp074045",
-      "says": "Capacity to consent requires understanding, appreciation, reasoning, and a choice, and the assessment is specific to the decision."
+      "name": "StatPearls. Competency and Capacity.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532862/",
+      "says": "Capacity is a functional determination that an individual is or is not capable of making a medical decision within a given situation, relative to baseline and pertaining only to the current situation. Competence is a legal determination made by a judge, never by medical providers.",
+      "more": [
+        {
+          "name": "Appelbaum PS. Assessment of patients' competence to consent to treatment. N Engl J Med. 2007.",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMcp074045"
+        }
+      ]
     },
     "open": false
   },
@@ -4278,7 +4284,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 8.6, Promoting Patient Safety.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/promoting-patient-safety",
-      "says": "AMA Opinion 8.6: disclose a medical error, explain the potential harm, and do not let concern about liability affect that honesty."
+      "says": "Physicians involved in a medical error should disclose the occurrence of the error, explain the nature of the harm, and provide the information the patient needs for future decisions, and explain efforts to prevent similar occurrences. Concern regarding legal liability should not affect honesty."
     },
     "open": false
   },
@@ -4302,10 +4308,10 @@
     "diagram": "surrogate-order",
     "diagramAlt": "Who decides. Written directive that fits this choice wins Else substituted judgment Else best interest",
     "source": {
-      "name": "AMA Code of Medical Ethics. Decisions for Adult Patients Who Lack Capacity.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.2, Decisions for Adult Patients Who Lack Capacity.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "Surrogates decide according to the patient's previously expressed preferences, and according to the patient's best interest when preferences are unknown, which is the recommendation in AMA Code of Medical Ethics. Decisions for Adult Patients Who Lack Capacity."
+      "says": "Physicians should assist the surrogate to decide by substituted judgment, based on the patient\u2019s expressed preferences and values, and use the best interest standard when the patient\u2019s preferences and values are not known and cannot reasonably be inferred."
     },
     "open": false
   },
@@ -4329,10 +4335,16 @@
     "diagram": "four-abilities",
     "diagramAlt": "Capacity for this decision. Understand the facts Appreciate what they mean for you Reason, and say a stable choice",
     "source": {
-      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights",
+      "says": "Patients have the right to make decisions about the care the physician recommends and to have those decisions respected. A patient who has decision-making capacity may accept or refuse any recommended medical intervention.",
+      "more": [
+        {
+          "name": "AMA Code of Medical Ethics. Opinion 5.3, Withholding or Withdrawing Life-Sustaining Treatment.",
+          "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/withholding-or-withdrawing-life-sustaining-treatment"
+        }
+      ]
     },
     "open": false
   },
@@ -4353,10 +4365,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "45 CFR 92.201. Meaningful access for people with limited English proficiency.",
+      "name": "45 CFR 92.201. Meaningful access for individuals with limited English proficiency (Section 1557 rule).",
       "year": "2024",
       "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-92/subpart-C/section-92.201",
-      "says": "A qualified interpreter must be offered. A minor child must not interpret, except briefly during an emergency while a qualified interpreter is found."
+      "says": "When interpretation is required, a covered entity must offer a qualified interpreter. It must not rely on an adult who is not a qualified interpreter, or on a minor child, to interpret, except as a temporary measure in an emergency while a qualified interpreter is found."
     },
     "number": 160,
     "id": "usmle-qb-s2-160"
@@ -4379,10 +4391,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Informed consent.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure, which is the recommendation in AMA Code of Medical Ethics. Informed consent."
+      "says": "In emergencies, when a decision must be made urgently, the patient cannot participate, and the surrogate is not available, physicians may initiate treatment without prior informed consent, then inform the patient or surrogate at the earliest opportunity and obtain consent for ongoing treatment."
     },
     "number": 161,
     "id": "usmle-qb-s2-161"
@@ -4406,10 +4418,10 @@
     "diagram": "dnr-limits",
     "diagramAlt": "What DNR does not stop. No chest compressions if the heart stops Antibiotics, surgery, and opioids are separate Write each limit. Do not guess",
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 5.4, orders not to attempt resuscitation.",
+      "name": "AMA Code of Medical Ethics. Opinion 5.4, Orders Not to Attempt Resuscitation (DNAR).",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/orders-not-attempt-resuscitation-dnar",
-      "says": "A do-not-attempt-resuscitation order limits resuscitation. It does not by itself stop other treatments the patient still wants, which is the recommendation in AMA Code of Medical Ethics. Opinion 5.4, orders not to attempt resuscitation."
+      "says": "DNAR orders direct the team to withhold resuscitative measures in accord with the patient\u2019s wishes. They apply only to resuscitative interventions; other medically appropriate interventions, such as antibiotics, dialysis, or symptom management, are provided or withheld according to the patient\u2019s wishes."
     },
     "number": 162,
     "id": "usmle-qb-s2-162"
@@ -4433,10 +4445,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 5.3, withholding or withdrawing life-sustaining treatment.",
+      "name": "AMA Code of Medical Ethics. Opinion 5.3, Withholding or Withdrawing Life-Sustaining Treatment.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/withholding-or-withdrawing-life-sustaining-treatment",
-      "says": "Withholding and withdrawing life-sustaining treatment are ethically the same when the treatment no longer serves the patient's goals. Symptom relief continues."
+      "says": "There is no ethical difference between withholding and withdrawing treatment. When an intervention no longer helps achieve the patient\u2019s goals for care or desired quality of life, it is ethically appropriate to withdraw it."
     },
     "number": 163,
     "id": "usmle-qb-s2-163"
@@ -4459,10 +4471,16 @@
     "diagram": "four-abilities",
     "diagramAlt": "Capacity for this decision. Understand the facts Appreciate what they mean for you Reason, and say a stable choice",
     "source": {
-      "name": "AMA Code of Medical Ethics. Decisions for adult patients who lack capacity.",
+      "name": "AMA Code of Medical Ethics. Opinion 5.3, Withholding or Withdrawing Life-Sustaining Treatment.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/decisions-adult-patients-who-lack-capacity",
-      "says": "When a patient lacks capacity, the surrogate decides by substituted judgment, then by best interest. A written directive that addresses the decision outranks a conflicting surrogate."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/withholding-or-withdrawing-life-sustaining-treatment",
+      "says": "A patient who has decision-making capacity appropriate to the decision has the right to decline any medical intervention or ask that it be stopped, even when that decision is expected to lead to death and regardless of whether the patient is terminally ill.",
+      "more": [
+        {
+          "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
+          "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights"
+        }
+      ]
     },
     "number": 164,
     "id": "usmle-qb-s2-164"
@@ -4484,10 +4502,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.2.1, Pediatric Decision Making.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/preventing-identifying-treating-violence-abuse",
-      "says": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty, which is the recommendation in AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/pediatric-decision-making",
+      "says": "Parents or guardians are expected to safeguard their children\u2019s physical health and well-being when giving or withholding permission for treatment. Except when immediate intervention is essential to preserve life or avert serious, irreversible harm, a child\u2019s refusal should be respected; ongoing disagreement goes to an ethics committee.",
+      "more": [
+        {
+          "name": "AMA Code of Medical Ethics. Opinion 8.10, Preventing, Identifying and Treating Violence and Abuse.",
+          "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/preventing-identifying-treating-violence-abuse"
+        }
+      ]
     },
     "number": 165,
     "id": "usmle-qb-s2-165"
@@ -4513,7 +4537,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights",
-      "says": "AMA Opinion 1.1.3: a patient with decision-making capacity may accept or refuse any recommended medical intervention."
+      "says": "Patients have the right to receive information about the benefits and risks of treatment alternatives, including forgoing treatment, and to make decisions about the care the physician recommends. A patient who has decision-making capacity may accept or refuse any recommended medical intervention."
     },
     "number": 166,
     "id": "usmle-qb-s2-166"
@@ -4539,7 +4563,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "AMA Opinion 2.1.1 requires an independent, voluntary decision after the patient understands the treatment and its alternatives."
+      "says": "In seeking informed consent, physicians should assess the patient\u2019s ability to understand relevant medical information and the implications of alternatives and to make an independent, voluntary decision."
     },
     "number": 167,
     "id": "usmle-qb-s2-167"
@@ -4562,10 +4586,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Informed consent.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.1, Informed Consent.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent",
-      "says": "Informed consent requires disclosure a reasonable patient would want, the patient's understanding, and a voluntary decision. The clinician performing the procedure is responsible for that disclosure, which is the recommendation in AMA Code of Medical Ethics. Informed consent."
+      "says": "Physicians seeking consent should present relevant information accurately, including the diagnosis, the nature and purpose of recommended interventions, and the burdens, risks, and expected benefits of all options, including forgoing treatment."
     },
     "number": 168,
     "id": "usmle-qb-s2-168"
@@ -4590,7 +4614,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.2.4, Use of Chaperones.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/use-chaperones",
-      "says": "AMA Opinion 1.2.4: always honor a patient's request for a chaperone, and use an authorized member of the health care team."
+      "says": "Physicians should adopt a policy that patients are free to request a chaperone, always honor a request for one, explain the components of the examination, and in general use a chaperone even when a trusted companion is present."
     },
     "number": 169,
     "id": "usmle-qb-s2-169"
@@ -4612,10 +4636,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 5.6, Sedation to Unconsciousness in End-of-Life Care.",
+      "name": "AMA Code of Medical Ethics. Opinion 5.8, Euthanasia.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/sedation-unconsciousness-end-life-care",
-      "says": "AMA Opinion 5.6: the duty to relieve pain is central, and sedation to unconsciousness must never be used to intentionally cause a patient's death."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/euthanasia",
+      "says": "Euthanasia is the administration of a lethal agent by another person for the purpose of relieving intolerable and incurable suffering, and physicians must not perform it. Instead, physicians must aggressively respond to the needs of patients at the end of life.",
+      "more": [
+        {
+          "name": "AMA Code of Medical Ethics. Opinion 5.6, Sedation to Unconsciousness in End-of-Life Care.",
+          "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/sedation-unconsciousness-end-life-care"
+        }
+      ]
     },
     "number": 170,
     "id": "usmle-qb-s2-170"
@@ -4638,10 +4668,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 9.3.2, Responsibilities to Colleagues with Impairment.",
+      "name": "AMA Code of Medical Ethics. Opinion 9.3.2, Physician Responsibilities to Colleagues with Illness, Disability or Impairment.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/physician-responsibilities-colleagues-illness-disability-or-impairment",
-      "says": "Intervene when a colleague cannot practice safely, so the colleague is no longer endangering patients, and see that the person gets evaluation and care."
+      "says": "Physicians should intervene with respect and compassion when a colleague is not able to practice safely, ensure the colleague no longer endangers patients, and promote appropriate interventions, seeking assistance in keeping with institutional policies, regulatory requirements, or law."
     },
     "number": 171,
     "id": "usmle-qb-s2-171"
@@ -4666,7 +4696,7 @@
       "name": "AMA Principles of Medical Ethics, Principle II.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/principles",
-      "says": "AMA Principle II: a physician shall be honest in all professional interactions."
+      "says": "A physician shall uphold the standards of professionalism, be honest in all professional interactions, and strive to report physicians deficient in character or competence, or engaging in fraud or deception, to appropriate entities."
     },
     "number": 172,
     "id": "usmle-qb-s2-172"
@@ -4692,7 +4722,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 7.1.2, Informed Consent in Research.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent-research",
-      "says": "No one may be used in research against their will. Voluntary informed consent is required before a person is enrolled in a research protocol."
+      "says": "Physicians must ensure voluntary, informed consent before enrolling a participant in research, disclosing the nature of the research, its risks, and that alternatives are open, including standard or no treatment instead of participating."
     },
     "number": 173,
     "id": "usmle-qb-s2-173"
@@ -4715,10 +4745,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 2.1.4, use of placebo in clinical practice.",
+      "name": "AMA Code of Medical Ethics. Opinion 2.1.4, Use of Placebo in Clinical Practice.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/use-placebo-clinical-practice",
-      "says": "Giving a placebo while telling the patient it is an active drug is a deception. It is not a therapeutic trial."
+      "says": "Using a placebo without the patient\u2019s knowledge may undermine trust and harm the patient. Physicians may use placebos only if they enlist the patient\u2019s cooperation and obtain the patient\u2019s general consent to administer a placebo."
     },
     "number": 174,
     "id": "usmle-qb-s2-174"
@@ -4742,10 +4772,10 @@
     "diagram": "child-report",
     "diagramAlt": "Report abuse. Suspicion is enough. Proof is not Parent or caregiver cannot veto it Treat the injury and make the report",
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 8.10, preventing, identifying, and treating violence and abuse.",
+      "name": "AMA Code of Medical Ethics. Opinion 8.10, Preventing, Identifying and Treating Violence and Abuse.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/preventing-identifying-treating-violence-abuse",
-      "says": "Suspected abuse or neglect is reported. A request to keep it private does not cancel the duty."
+      "says": "Physicians should treat the immediate symptoms and sequelae of violence and abuse and report suspected violence and abuse in keeping with applicable requirements."
     },
     "number": 175,
     "id": "usmle-qb-s2-175"
@@ -4768,10 +4798,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AMA Code of Medical Ethics. Opinion 6.1.1, organ donation and transplantation.",
+      "name": "AMA Code of Medical Ethics. Opinion 6.1.2, Organ Donation After Cardiac Death.",
       "year": "2016",
-      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/organ-donation-transplantation",
-      "says": "The decision to stop support is separate from the request for organ donation, which is made by a designated requester."
+      "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/organ-donation-after-cardiac-death",
+      "says": "Ensure that the decision to withdraw life-sustaining treatment is made prior to and independent of any offer of opportunity to donate organs, unless the patient or surrogate raises donation, and that no member of the transplant team has a role in the decision to withdraw treatment."
     },
     "number": 176,
     "id": "usmle-qb-s2-176"
@@ -4796,7 +4826,7 @@
       "name": "National POLST. What a POLST form is.",
       "year": "2024",
       "url": "https://polst.org/about-polst/",
-      "says": "A POLST form is a portable medical order. For someone who is healthy, an advance directive, not a POLST form, is the planning tool."
+      "says": "A POLST form is a portable medical order for patients with a progressing serious illness or frailty. If you are healthy, you do not need a POLST form, and an advance directive is the preferred planning tool."
     },
     "number": 177,
     "id": "usmle-qb-s2-177"
@@ -4822,7 +4852,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 1.1.3, Patient Rights.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/patient-rights",
-      "says": "A patient with decision-making capacity may refuse recommended care, and has a right to discuss the risks of forgoing treatment."
+      "says": "A patient with decision-making capacity may accept or refuse any recommended intervention, and patients should expect that their physician will not discontinue treating them when further treatment is medically indicated without notice and reasonable help arranging other care."
     },
     "number": 178,
     "id": "usmle-qb-s2-178"
@@ -4848,7 +4878,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 5.5, Medically Ineffective Interventions.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/medically-ineffective-interventions",
-      "says": "Physicians are not required to offer or to provide interventions that, in their best medical judgment, cannot reasonably be expected to yield the intended clinical benefit or achieve agreed-on goals for care."
+      "says": "Physicians are not required to offer or provide interventions that, in their best medical judgment, cannot reasonably be expected to yield the intended clinical benefit or achieve agreed-on goals for care. There is no single universal definition of futility."
     },
     "number": 179,
     "id": "usmle-qb-s2-179"
@@ -4874,7 +4904,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 11.1.3, Allocating Limited Health Care Resources.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/allocating-limited-health-care-resources",
-      "says": "AMA Opinion 11.1.3: a scarce bed is allocated by a policy based on medical need, including urgency and the likelihood and duration of benefit."
+      "says": "Allocation policies should rest on medical need, including urgency, likelihood and duration of benefit, and change in quality of life, not on social worth or other non-medical characteristics, using an objective, flexible, transparent mechanism."
     },
     "number": 180,
     "id": "usmle-qb-s2-180"
