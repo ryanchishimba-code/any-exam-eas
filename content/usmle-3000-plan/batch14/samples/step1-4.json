@@ -1,0 +1,20 @@
+{
+  "id": "b14-s1-15",
+  "stepLevel": "step1",
+  "outlineSystem": "behavioral-nervous",
+  "subjectId": "anatomy",
+  "difficulty": 4,
+  "blueprintTopic": "wallenberg",
+  "scenario": "A 62-year-old man suddenly has vertigo, a hoarse voice, and a small pupil on the left. He can walk only with help. Pain and temperature are lost on the left face and the right body. Strength is intact. A classmate localizes this to the left motor cortex because the face is involved.",
+  "question": "Which brainstem side and artery fit, and why is strength spared?",
+  "options": [
+    "Left motor cortex, because the face finding is cortical",
+    "Right medial medulla, so the tongue and the pyramid are hit",
+    "Left pons from a basilar perforator, with a locked-in pattern",
+    "Right cerebellar hemisphere, so sensation should be normal",
+    "Left lateral medulla, usually the vertebral artery"
+  ],
+  "correctAnswer": "Left lateral medulla, usually the vertebral artery",
+  "citation": "Dalley AF, Agur AMR. Moore's Clinically Oriented Anatomy. 9th ed. Wolters Kluwer; 2023.",
+  "examTakeaway": "A lateral medullary infarct hits the vestibular nuclei, the descending trigeminal tract, and spinothalamic fibers, while the pyramid is spared."
+}
