@@ -1,4 +1,5 @@
 -- Apply pass 1, batch 1. Run the stage script first.
+-- Stems were completed so the original key stays correct.
 -- Refuses to write if a live row has changed since the backup snapshot.
 -- Do not run against production until this draft is accepted.
 -- Command:

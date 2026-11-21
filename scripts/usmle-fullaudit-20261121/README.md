@@ -10,15 +10,20 @@ The universe is every served Step 1, Step 2, and Step 3 item that passes the att
 
 That leaves 9,398 items: Step 1 2,538, Step 2 2,598, Step 3 4,262.
 
-## Batch 1 (pass 1)
+Pass 1 rule: if the stem is missing one fact, add that fact so it supports the intended key. Do not rekey to a weaker answer.
 
-26 items. Sources were opened before the key was changed.
+## Batch 1 (pass 1) — 26 items
 
-- 18 ischemic-stroke items give alteplase even though the stem never states a last-known-well time. The key becomes the listed aspirin option. Source: 2018 AHA/ASA guideline.
-- 4 pulmonary-embolism items with blood pressure 90/60 mm Hg are keyed to heparin or warfarin. The key becomes the listed thrombolysis option. Sources: Merck Manual Professional (pulmonary embolism) and the 2019 ESC guideline.
-- 4 items ask which choice is contraindicated, or sit on the border of high-risk embolism, and no listed option is uniquely correct. They are staged `active = false`.
+The original keys stay. The stems were incomplete.
 
-Three of the stroke items and one embolism item are Step 1 management questions. Those four move to Step 2 with the corrected key. Blueprint tags on the rekeyed items are set to the concept the stem tests.
+- 18 stroke items keep alteplase or thrombolysis. Each stem now says the patient was last known well 90 minutes ago and that noncontrast CT shows no hemorrhage. Two stems that listed 180/110 mm Hg now list 170/95 mm Hg, under the alteplase limit of 185/110. Two atrial-fibrillation stems now say no anticoagulant is in use. Source: [2018 AHA/ASA guideline](https://www.ahajournals.org/doi/full/10.1161/STR.0000000000000158).
+- 4 pulmonary-embolism items keep heparin. Blood pressure 90/60 mm Hg is not high-risk (systolic pressure below 90 mm Hg for 15 minutes, or a drop of 40 mm Hg or more), and the explanations were arguing for anticoagulation. The pressure is now 118/74 mm Hg. Hypoxemia that made oxygen a second correct step is now 96%. Subtherapeutic warfarin stems include an INR of 1.2.
+- 3 items ask which choice is contraindicated and were keyed to thrombolysis for a false reason (a blood pressure of 90/60 mm Hg). They now include an ischemic stroke 1 month ago, an absolute fibrinolysis contraindication in the 2019 ESC guideline, and a normal blood pressure. The key stays thrombolysis.
+- 1 item whose explanation calls for reperfusion now has a systolic pressure of 78 mm Hg that has lasted 20 minutes after fluid, with no bleeding contraindication. The key stays thrombolysis.
+
+Sources for the embolism edits: [2019 ESC guideline](https://ern-lung.eu/wp-content/uploads/2019/10/PH-PE-2019.pdf) and the [Merck Manual](https://www.merckmanuals.com/professional/pulmonary-disorders/pulmonary-embolism/pulmonary-embolism-pe).
+
+Four Step 1 items whose lead-in is only acute management move to Step 2. Blueprint tags on the edited items name the concept the stem tests.
 
 Run later, in order:
 
