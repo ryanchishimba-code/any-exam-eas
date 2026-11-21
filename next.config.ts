@@ -76,6 +76,7 @@ const nextConfig: NextConfig = {
     "/api/quick-bites/[slug]/quiz": ["./src/lib/quick-bites/quizzes/**/*"],
     "/api/quick-bites-pharmacy/[slug]/quiz": ["./src/lib/quick-bites/quizzes-pharmacy/**/*"],
     "/api/quick-bites-usmle/[slug]/quiz": ["./src/lib/quick-bites/quizzes-usmle/**/*"],
+    "/api/quick-bites-medmath/[slug]/quiz": ["./src/lib/quick-bites/quizzes-medmath/**/*"],
     "/api/pance-feed/cards": ["./content/pance-feed/**/*"],
     "/api/pance-feed/cards/[id]": ["./content/pance-feed/**/*"],
     "/api/study-feed/[exam]/cards": [

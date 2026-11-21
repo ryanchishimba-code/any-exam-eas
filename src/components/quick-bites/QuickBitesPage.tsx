@@ -64,6 +64,17 @@ export async function QuickBitesPage({
           upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
         />
       )}
+      {exam === "npte-pt" ? null : (
+        <div className="mt-8">
+          <VideoQuickBitesSection
+            series="medmath"
+            titleAs="h2"
+            canPlay={canPlayQuickBites(access)}
+            upgradeHref={upgradeHref}
+            upgradeLabel={access.role === "free" ? "Subscribe to watch" : "Upgrade to watch"}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,289 @@
+{
+  "episode": "ep03-biostats",
+  "title": "Biostats That Change the Decision",
+  "video": "quick-bites-medmath-ep03-biostats-web.mp4",
+  "questions": [
+    {
+      "id": "ep03-q01",
+      "type": "single_best_answer",
+      "stem": "Sensitivity is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "True positives over everyone who has the disease"
+        },
+        {
+          "id": "B",
+          "text": "True positives over every positive test"
+        },
+        {
+          "id": "C",
+          "text": "True negatives over every negative test"
+        },
+        {
+          "id": "D",
+          "text": "A number that falls when the disease gets rarer"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Sensitivity starts from people who have the disease. Predictive values start from the test result.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep03-q02",
+      "type": "single_best_answer",
+      "stem": "The disease gets rarer. Which number falls?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sensitivity"
+        },
+        {
+          "id": "B",
+          "text": "Specificity"
+        },
+        {
+          "id": "C",
+          "text": "The positive predictive value"
+        },
+        {
+          "id": "D",
+          "text": "All three, equally"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Sensitivity and specificity stay put. The room changes the predictive value.",
+      "videoTimestamp": "1:34"
+    },
+    {
+      "id": "ep03-q03",
+      "type": "single_best_answer",
+      "stem": "A test is 90% sensitive and 90% specific. In a room of 10 people with the disease and 90 without, a positive test means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "9%"
+        },
+        {
+          "id": "B",
+          "text": "50%"
+        },
+        {
+          "id": "C",
+          "text": "90%"
+        },
+        {
+          "id": "D",
+          "text": "99%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Nine true positives and nine false positives. 9 / 18 = 50%. 90% is the sensitivity, not the meaning of a yes in this room.",
+      "videoTimestamp": "0:09"
+    },
+    {
+      "id": "ep03-q04",
+      "type": "single_best_answer",
+      "stem": "In that same room, a negative test is about:",
+      "options": [
+        {
+          "id": "A",
+          "text": "50%"
+        },
+        {
+          "id": "B",
+          "text": "81%"
+        },
+        {
+          "id": "C",
+          "text": "90%"
+        },
+        {
+          "id": "D",
+          "text": "99%"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "81 true negatives and 1 false negative. 81 / 82 is about 99%.",
+      "videoTimestamp": "1:16"
+    },
+    {
+      "id": "ep03-q05",
+      "type": "single_best_answer",
+      "stem": "Control risk 10%, treatment risk 6%. The absolute risk reduction is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "40%"
+        },
+        {
+          "id": "B",
+          "text": "4 percentage points"
+        },
+        {
+          "id": "C",
+          "text": "16%"
+        },
+        {
+          "id": "D",
+          "text": "60%"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "10% minus 6% is 4 percentage points. 40% is the relative reduction.",
+      "videoTimestamp": "1:56"
+    },
+    {
+      "id": "ep03-q06",
+      "type": "single_best_answer",
+      "stem": "That same trial. The relative risk reduction is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "4%"
+        },
+        {
+          "id": "B",
+          "text": "6%"
+        },
+        {
+          "id": "C",
+          "text": "40%"
+        },
+        {
+          "id": "D",
+          "text": "60%"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "4 percentage points divided by the control risk of 10% is 40%.",
+      "videoTimestamp": "2:00"
+    },
+    {
+      "id": "ep03-q07",
+      "type": "single_best_answer",
+      "stem": "Control 10%, treatment 6%. Number needed to treat?",
+      "options": [
+        {
+          "id": "A",
+          "text": "4"
+        },
+        {
+          "id": "B",
+          "text": "6"
+        },
+        {
+          "id": "C",
+          "text": "3"
+        },
+        {
+          "id": "D",
+          "text": "25"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "1 / 0.04 = 25. Three is one over the relative reduction, rounded up, and that is the trap.",
+      "videoTimestamp": "2:06"
+    },
+    {
+      "id": "ep03-q08",
+      "type": "single_best_answer",
+      "stem": "The number needed to treat is built from:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The relative risk reduction"
+        },
+        {
+          "id": "B",
+          "text": "The absolute risk reduction"
+        },
+        {
+          "id": "C",
+          "text": "Sensitivity"
+        },
+        {
+          "id": "D",
+          "text": "The positive predictive value"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "NNT = 1 / ARR. The relative reduction looks larger and is the usual decoy.",
+      "videoTimestamp": "4:06"
+    },
+    {
+      "id": "ep03-q09",
+      "type": "single_best_answer",
+      "stem": "If the number needed to treat comes out as a fraction, you:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Round down, to stay conservative"
+        },
+        {
+          "id": "B",
+          "text": "Round up to the next whole person"
+        },
+        {
+          "id": "C",
+          "text": "Leave it as a decimal"
+        },
+        {
+          "id": "D",
+          "text": "Switch to the relative reduction"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A part of a person cannot be treated, so you round up.",
+      "videoTimestamp": "2:21"
+    },
+    {
+      "id": "ep03-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Sensitivity and specificity do not move with prevalence."
+        },
+        {
+          "id": "B",
+          "text": "Predictive values move with the room you are standing in."
+        },
+        {
+          "id": "C",
+          "text": "A large relative reduction always means a small number needed to treat."
+        },
+        {
+          "id": "D",
+          "text": "A rare disease makes a positive test a weaker yes."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "The number needed to treat follows the absolute, not the relative, reduction.",
+      "videoTimestamp": "4:01"
+    }
+  ]
+}
