@@ -3902,7 +3902,7 @@
       "name": "USPSTF. Lung cancer screening.",
       "year": "2021",
       "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
-      "says": "Screening stops after 15 smoke-free years, after age 80, or when comorbidity removes the benefit."
+      "says": "Screening should be discontinued once a person has not smoked for 15 years or develops a health problem that substantially limits life expectancy or the ability or willingness to have curative lung surgery."
     },
     "number": 150,
     "id": "usmle-qb-s2-150"
@@ -4654,7 +4654,7 @@
       "name": "AMA Code of Medical Ethics. Opinion 5.5, Medically Ineffective Interventions.",
       "year": "2016",
       "url": "https://code-medical-ethics.ama-assn.org/ethics-opinions/medically-ineffective-interventions",
-      "says": "AMA Opinion 5.5: there is no single definition of futile care. The word depends on the patient's own values and goals."
+      "says": "Physicians are not required to offer or to provide interventions that, in their best medical judgment, cannot reasonably be expected to yield the intended clinical benefit or achieve agreed-on goals for care."
     },
     "number": 179,
     "id": "usmle-qb-s2-179"
