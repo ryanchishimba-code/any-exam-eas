@@ -8,9 +8,13 @@ const GENERIC_RATIONALE =
   /USMLE Step\s+\d|Step\s+\d(?:\s+CK)?\s+reasoning|1\.\s*(?:Identify|Recognize cues)/i;
 
 const CUTOFF_LAST =
-  /^(the|a|an|of|to|for|and|or|with|without|because|while|from|into|than|this|that|by|at|in|on|is|are|was|were|be|been|being|which|who|when|if|but|rather|though|over|as)$/i;
+  /^(the|a|an|of|to|for|and|or|with|without|because|while|from|into|than|this|that|by|at|in|on|is|are|was|were|be|been|being|which|who|when|if|but|rather|though|over|as|below|before|close|serious)$/i;
 
-const GARBLED_LINE = /\ba the\b|\bthe the\b|\ban an\b|\blung an operation\b|\bthe nutrient\b|\ban seeded\b/i;
+const GARBLED_LINE =
+  /\ba the\b|\bthe the\b|\ban an\b|\blung an operation\b|\bthe nutrient\b|\ban seeded\b|\bPCI transferred\b|\bcalcium let go\b|\bsugar hormone\b|\btested for C\b|\bbutton the cell\b|\ba completed a\b/i;
+
+const LENGTH_PADDING =
+  /\bin this case\b|\bin this particular situation\b|\bwhen the rest of the chart is considered\b/i;
 
 /** A choice that stops mid-phrase, or a line with a broken article. */
 export function optionLineProblem(option: string): "cutoff" | "garble" | null {
@@ -35,6 +39,22 @@ export function reviewKeySlotBalance(slotCounts: readonly number[]): boolean {
   const max = Math.max(...slotCounts);
   const min = Math.min(...slotCounts);
   return max - min <= 1;
+}
+
+/** A distractor padded so the key is never the longest line. */
+export function optionUsesLengthPadding(option: string): boolean {
+  return LENGTH_PADDING.test(option);
+}
+
+/**
+ * With five choices, the key is the unique longest line about one time in five.
+ * A rate near 0 or near 1 is a length cue.
+ */
+export function reviewLongestKeyRate(keyIsUniqueLongest: readonly boolean[]): boolean {
+  if (keyIsUniqueLongest.length === 0) return true;
+  const hits = keyIsUniqueLongest.filter(Boolean).length;
+  const rate = hits / keyIsUniqueLongest.length;
+  return rate >= 0.15 && rate <= 0.25;
 }
 
 const MANAGEMENT_ASK =
@@ -139,6 +159,10 @@ export function reviewGeneratedItem(
 
   if (options.some((option) => optionLineProblem(option))) {
     failures.push("Choice lines must be complete and must not be garbled.");
+  }
+
+  if (options.some((option) => optionUsesLengthPadding(option))) {
+    failures.push("Choice lines must not use length-padding phrases.");
   }
 
   const expectedStep = STEP_FOR_FIELD[item.fieldId];
