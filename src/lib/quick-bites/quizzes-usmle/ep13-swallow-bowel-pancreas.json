@@ -1,0 +1,289 @@
+{
+  "episode": "ep13-swallow-bowel-pancreas",
+  "title": "Swallow, Bowel, and the Pancreas",
+  "video": "quick-bites-usmle-ep13-swallow-bowel-pancreas-web.mp4",
+  "questions": [
+    {
+      "id": "ep13-q01",
+      "type": "single_best_answer",
+      "stem": "Unconjugated bilirubin is typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Found in the urine"
+        },
+        {
+          "id": "B",
+          "text": "Not found in the urine"
+        },
+        {
+          "id": "C",
+          "text": "A bird's beak"
+        },
+        {
+          "id": "D",
+          "text": "A beaded duct"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "It is not yet water soluble. Conjugated bilirubin is in the urine.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q02",
+      "type": "single_best_answer",
+      "stem": "A bird's-beak swallow study and undigested food at night most suggest:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A sphincter that will not relax and an esophagus that will not peristalse"
+        },
+        {
+          "id": "B",
+          "text": "Ordinary reflux that acid medicine will cure"
+        },
+        {
+          "id": "C",
+          "text": "Celiac disease"
+        },
+        {
+          "id": "D",
+          "text": "A tight compartment"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "That is achalasia. Endoscopy still happens because cancer can mimic it.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q03",
+      "type": "single_best_answer",
+      "stem": "You suspect celiac disease. When do you draw the antibody?",
+      "options": [
+        {
+          "id": "A",
+          "text": "After a week off gluten"
+        },
+        {
+          "id": "B",
+          "text": "While the patient is still eating gluten"
+        },
+        {
+          "id": "C",
+          "text": "After a gene test alone, and stop"
+        },
+        {
+          "id": "D",
+          "text": "Never"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A gluten-free week can make the test falsely negative. Check total immunoglobulin A too.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q04",
+      "type": "single_best_answer",
+      "stem": "Ulcerative colitis typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Starts at the rectum and stays continuous"
+        },
+        {
+          "id": "B",
+          "text": "Always skips and is full thickness as the first picture"
+        },
+        {
+          "id": "C",
+          "text": "Is treated first with an antimotility drug in a toxic, dilated colon"
+        },
+        {
+          "id": "D",
+          "text": "Is a copper overload"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not give an antimotility drug to a toxic, dilated colitis.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q05",
+      "type": "single_best_answer",
+      "stem": "Chronic pancreatitis can cause:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only a bird's beak"
+        },
+        {
+          "id": "B",
+          "text": "Calcification, fat malabsorption, and later diabetes"
+        },
+        {
+          "id": "C",
+          "text": "A mitochondrial antibody as the first clue"
+        },
+        {
+          "id": "D",
+          "text": "A 45,X karyotype"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Enzymes go with food.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q06",
+      "type": "single_best_answer",
+      "stem": "Jaundice in the first day of life is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Always physiologic"
+        },
+        {
+          "id": "B",
+          "text": "Not physiologic"
+        },
+        {
+          "id": "C",
+          "text": "Proof of celiac disease"
+        },
+        {
+          "id": "D",
+          "text": "A reason to skip a workup"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The first 24 hours is not ordinary newborn jaundice.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q07",
+      "type": "single_best_answer",
+      "stem": "Acid-suppressing medicine in achalasia:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Opens the sphincter"
+        },
+        {
+          "id": "B",
+          "text": "Does not fix the failed relaxation and missing peristalsis"
+        },
+        {
+          "id": "C",
+          "text": "Replaces manometry and endoscopy"
+        },
+        {
+          "id": "D",
+          "text": "Is the only treatment"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Treatment opens or cuts the sphincter.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q08",
+      "type": "single_best_answer",
+      "stem": "A gene test in suspected celiac disease:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is a diagnosis by itself"
+        },
+        {
+          "id": "B",
+          "text": "Is not a diagnosis by itself"
+        },
+        {
+          "id": "C",
+          "text": "Replaces a look at the villi in every case after one week off gluten"
+        },
+        {
+          "id": "D",
+          "text": "Is the urine bilirubin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Necessary genotypes are not sufficient.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q09",
+      "type": "single_best_answer",
+      "stem": "Conjugated bilirubin is typically:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Absent from the urine"
+        },
+        {
+          "id": "B",
+          "text": "Present in the urine"
+        },
+        {
+          "id": "C",
+          "text": "A type one collagen problem"
+        },
+        {
+          "id": "D",
+          "text": "A nitrate mix"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "It is water soluble.",
+      "videoTimestamp": "0:00"
+    },
+    {
+      "id": "ep13-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Unconjugated bilirubin is not in the urine."
+        },
+        {
+          "id": "B",
+          "text": "Achalasia is a bird's beak and failed peristalsis."
+        },
+        {
+          "id": "C",
+          "text": "Draw the celiac antibody after a gluten-free week."
+        },
+        {
+          "id": "D",
+          "text": "Ulcerative colitis starts at the rectum and stays continuous."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Test for celiac disease while the patient is still eating gluten.",
+      "videoTimestamp": "0:00"
+    }
+  ]
+}

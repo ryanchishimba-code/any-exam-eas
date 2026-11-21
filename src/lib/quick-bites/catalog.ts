@@ -31,6 +31,8 @@ export type QuickBiteEpisode = {
    * uploaded under a new path so the old file keeps serving until this ships.
    */
   mediaVersion?: string;
+  /** USMLE video library only. Other boards leave this unset. */
+  examStep?: "step-1" | "step-2-ck" | "step-3";
 };
 
 type EpisodeSeed = {

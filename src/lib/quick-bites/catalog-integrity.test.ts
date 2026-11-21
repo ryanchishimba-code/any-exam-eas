@@ -31,6 +31,7 @@ import {
 import {
   USMLE_VIDEO_QUICK_BITE_EPISODES,
   USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION,
+  USMLE_VIDEO_WAVE2_MEDIA_VERSION,
   usmleVideoQuickBiteCaptionsPath,
   usmleVideoQuickBitePoster,
   usmleVideoQuickBiteVideoPath,
@@ -121,7 +122,10 @@ describe("Quick Bites catalog integrity", () => {
     expect(usmleVideoQuickBiteVideoPath(USMLE_VIDEO_QUICK_BITE_EPISODES[0]!.slug)).toBe(
       `quick-bites-usmle/${USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION}/${USMLE_VIDEO_QUICK_BITE_EPISODES[0]!.slug}-web.mp4`
     );
-    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(10);
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(20);
+    expect(usmleVideoQuickBiteVideoPath("quick-bites-usmle-ep20-acs-afib")).toBe(
+      `quick-bites-usmle/${USMLE_VIDEO_WAVE2_MEDIA_VERSION}/quick-bites-usmle-ep20-acs-afib-web.mp4`
+    );
     expect(PHARMACY_QUICK_BITE_EPISODES.at(-1)?.slug).toBe("quick-bites-pharm-bonus-exam-format");
     expect(PHARMACY_QUICK_BITE_EPISODES.filter((episode) => episode.slug.includes("ep07"))).toHaveLength(1);
     expect(pharmacyQuickBiteVideoPath("quick-bites-pharm-ep07-insulin")).toBe(
