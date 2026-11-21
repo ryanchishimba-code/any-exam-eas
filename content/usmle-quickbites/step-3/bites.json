@@ -3089,10 +3089,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Endocrine Society guideline. Primary adrenal insufficiency.",
+      "name": "Endocrine Society Clinical Practice Guideline. Diagnosis and Treatment of Primary Adrenal Insufficiency.",
       "year": "2016",
       "url": "https://pubmed.ncbi.nlm.nih.gov/26760044/",
-      "says": "Recommendation 4.1: adrenal crisis is hydrocortisone 100 mg IV, then 200 mg over 24 hours, plus saline. Do not delay that dose for a corticotropin test. Later maintenance is hydrocortisone 15 to 25 mg a day."
+      "says": "Suspected adrenal crisis is treated with an immediate parenteral injection of 100 mg hydrocortisone, fluid resuscitation, and 200 mg hydrocortisone over 24 hours, before diagnostic results are available. Adult maintenance is hydrocortisone 15-25 mg/day in two to three doses with once-daily fludrocortisone (median 0.1 mg), plus a steroid emergency card."
     },
     "number": 111,
     "id": "usmle-qb-s3-111"
@@ -3115,10 +3115,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Endocrine Society guideline. Pheochromocytoma and paraganglioma.",
+      "name": "Endocrine Society Clinical Practice Guideline. Pheochromocytoma and Paraganglioma.",
       "year": "2014",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24893135/",
-      "says": "All patients with a functional pheochromocytoma or paraganglioma should have preoperative blockade. Preparation includes a high-sodium diet and fluid intake to prevent postoperative hypotension."
+      "says": "Initial biochemical testing should include plasma free or urinary fractionated metanephrines, and all positive results require follow-up. All patients with functional tumors should undergo preoperative blockade, with a high-sodium diet and fluid intake to prevent postoperative hypotension."
     },
     "number": 112,
     "id": "usmle-qb-s3-112"
@@ -3141,10 +3141,10 @@
     "diagram": "preg-140",
     "diagramAlt": "Blood pressure in pregnancy. Chronic HTN: treat at 140/90 Severe: 160 or 110, treat within minutes Magnesium prevents seizures. It is not the BP drug",
     "source": {
-      "name": "ACOG Practice Advisory. Chronic Hypertension and Pregnancy (CHAP).",
+      "name": "ACOG Practice Advisory. Clinical Guidance for the Integration of the Findings of the Chronic Hypertension and Pregnancy (CHAP) Study.",
       "year": "2022",
       "url": "https://www.acog.org/clinical/guidance/practice-advisory/2022/04/clinical-guidance-for-the-integration-of-the-findings-of-the-chronic-hypertension-and-pregnancy-chap-study",
-      "says": "Treatment starts at 140/90. ACE inhibitors and ARBs are stopped. Severe-range pressures are a separate emergency."
+      "says": "ACOG recommends using 140/90 as the threshold for initiation or titration of medical therapy for chronic hypertension in pregnancy, rather than the previously recommended threshold of 160/110. The CHAP study used a threshold for treatment and did not establish a goal blood pressure."
     },
     "number": 113,
     "id": "usmle-qb-s3-113"
@@ -3167,10 +3167,16 @@
     "diagram": "preg-140",
     "diagramAlt": "Blood pressure in pregnancy. Chronic HTN: treat at 140/90 Severe: 160 or 110, treat within minutes Magnesium prevents seizures. It is not the BP drug",
     "source": {
-      "name": "ACOG Practice Bulletin. Gestational Hypertension and Preeclampsia.",
+      "name": "ACOG Practice Bulletin No. 222. Gestational Hypertension and Preeclampsia (reaffirmed 2026).",
       "year": "2020",
-      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/articles/2020/06/gestational-hypertension-and-preeclampsia",
-      "says": "Severe-range pressures are treated promptly. Magnesium is ordered for seizure prophylaxis and does not replace the antihypertensive."
+      "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2020/06/gestational-hypertension-and-preeclampsia",
+      "says": "Antihypertensive treatment should be initiated expeditiously for acute-onset severe hypertension (systolic 160 mm Hg or more or diastolic 110 mm Hg or more) confirmed as persistent for 15 minutes or more, as soon as reasonably possible. Magnesium sulfate should be used for the prevention and treatment of seizures in preeclampsia with severe features or eclampsia.",
+      "more": [
+        {
+          "name": "ACOG. Acute Hypertension in Pregnancy and Postpartum Algorithm (IV labetalol, IV hydralazine, or immediate-release oral nifedipine; give with magnesium sulfate).",
+          "url": "https://dam.acog.org/download/assets/hypertension_algorithm.pdf/11fc319664cd11f1907f969563514075"
+        }
+      ]
     },
     "number": 114,
     "id": "usmle-qb-s3-114"
@@ -3193,10 +3199,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia.",
+      "name": "USPSTF. Aspirin Use to Prevent Preeclampsia and Related Morbidity and Mortality: Preventive Medication.",
       "year": "2021",
-      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/aspirin-use-to-prevent-preeclampsia-and-related-morbidity-and-mortality",
-      "says": "Low-dose aspirin after 12 weeks is a prevention order for high-risk patients, which is the recommendation in USPSTF. Aspirin Use to Prevent Preeclampsia."
+      "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/low-dose-aspirin-use-for-the-prevention-of-morbidity-and-mortality-from-preeclampsia-preventive-medication",
+      "says": "Low-dose aspirin (81 mg/day) is recommended after 12 weeks of gestation for persons at high risk for preeclampsia: history of preeclampsia, multifetal gestation, kidney disease, autoimmune disease, type 1 or type 2 diabetes, or chronic hypertension."
     },
     "number": 115,
     "id": "usmle-qb-s3-115"
@@ -3220,10 +3226,10 @@
     "diagram": "ectopic-choice",
     "diagramAlt": "Ectopic pregnancy. Shock or rupture: operating room Methotrexate only if stable and follow-up is sure Rh-negative: give anti-D",
     "source": {
-      "name": "ACOG Practice Bulletin. Tubal Ectopic Pregnancy.",
+      "name": "ACOG Practice Bulletin No. 193. Tubal Ectopic Pregnancy (reaffirmed 2025).",
       "year": "2018",
       "url": "https://www.acog.org/clinical/guidance/practice-bulletin/2018/03/tubal-ectopic-pregnancy",
-      "says": "A ruptured or unstable ectopic pregnancy is managed surgically. Methotrexate is reserved for a stable patient who meets criteria and can be followed, which is the recommendation in ACOG Practice Bulletin. Tubal Ectopic Pregnancy."
+      "says": "Most tubal ectopic pregnancies detected early can be treated with minimally invasive surgery or with methotrexate. A tubal ectopic pregnancy in an unstable patient is a medical emergency that requires prompt surgical intervention."
     },
     "number": 116,
     "id": "usmle-qb-s3-116"
@@ -3247,10 +3253,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "RCOG Green-top Guideline No. 63. Antepartum haemorrhage.",
+      "name": "RCOG Green-top Guideline No. 63. Antepartum Haemorrhage.",
       "year": "2011",
-      "url": "https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/antepartum-haemorrhage-green-top-guideline-no-63/",
-      "says": "Placental abruption is painful bleeding and is managed by maternal resuscitation and a prompt delivery decision. Do not perform a digital examination until placenta previa is excluded."
+      "url": "https://www.rcog.org.uk/media/pwdi1tef/gtg_63.pdf",
+      "says": "If placenta praevia is possible, digital vaginal examination should not be performed until ultrasound has excluded it. With abruption and fetal death, coagulopathy and hypovolaemic shock are not uncommon; in major haemorrhage, send a coagulation screen and cross-match 4 units of blood."
     },
     "number": 117,
     "id": "usmle-qb-s3-117"
@@ -3272,10 +3278,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "RCOG Green-top Guideline No. 27a. Placenta praevia and placenta accreta spectrum.",
+      "name": "RCOG Green-top Guideline No. 27a. Placenta Praevia and Placenta Accreta Spectrum.",
       "year": "2026",
       "url": "https://pubmed.ncbi.nlm.nih.gov/42374711/",
-      "says": "Diagnose placenta previa with ultrasound and do not perform a digital vaginal examination. Plan cesarean delivery if the placenta still covers the internal os. ACOG Committee Opinion 831 is the US timing document for a medically indicated early delivery."
+      "says": "A placenta is recorded as praevia if it covers the internal os, partially or completely. Placenta praevia carries a high risk of emergency caesarean birth and haemorrhage, so birth is arranged in a unit with blood transfusion and critical care. A previous caesarean with a low-lying placenta or praevia means high risk of placenta accreta spectrum."
     },
     "number": 118,
     "id": "usmle-qb-s3-118"
@@ -3289,19 +3295,24 @@
     "open": false,
     "lead": "Order an early feed and a glucose check for the newborn, and a postpartum diabetes test for the mother. Insulin, if used, is not automatically continued at the pregnancy dose.",
     "lines": [
-      "Gestational diabetes is managed from ACOG Practice Bulletin 190, alongside the current ADA Standards of Care.",
       "After birth, the infant is observed. Maternal glucose has been the fetal fuel.",
       "The mother is retested for diabetes postpartum. Pregnancy treatment is not the end of the diagnosis.",
       "Maternal glucose crosses the placenta and maternal insulin does not. The newborn is hyperinsulinemic, so feed early and check a glucose."
     ],
-    "miss": "Quoting a glucose cutoff that was not taken from Practice Bulletin 190, or skipping the postpartum retest.",
+    "miss": "Skipping the postpartum glucose retest, or not checking the newborn for hypoglycemia.",
     "diagram": "gdm-baby",
     "diagramAlt": "Infant of a diabetic mother. Glucose crosses. Insulin does not Baby is hyperinsulinemic and can be hypoglycemic Feed early. Check a glucose",
     "source": {
-      "name": "ACOG Practice Bulletin No. 190. Gestational diabetes mellitus.",
-      "year": "2018",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29370047/",
-      "says": "Practice Bulletin 190 is the ACOG management document for gestational diabetes. The PubMed text does not print the diagnostic glucose cutoffs, so this bite does not restate a threshold."
+      "name": "ADA Standards of Care in Diabetes\u20142026. 15. Management of Diabetes in Pregnancy.",
+      "year": "2026",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41358885/",
+      "says": "Lifestyle behavior change may suffice for many with GDM; insulin is the preferred agent for GDM, and no human insulin has been shown to cross the placenta. Individuals with recent GDM are screened at 4-12 weeks postpartum with a 75-g OGTT.",
+      "more": [
+        {
+          "name": "ACOG Practice Bulletin No. 190. Gestational Diabetes Mellitus.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29370047/"
+        }
+      ]
     },
     "number": 119,
     "id": "usmle-qb-s3-119"
@@ -3323,10 +3334,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACC/AHA expert consensus. Cardiovascular effects of sildenafil and recommendations for its use.",
-      "year": "1999",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/10503571/",
-      "says": "Nitrate antianginal agents are an absolute contraindication to sildenafil. Together with nitroglycerin, sildenafil can cause a major drop in blood pressure."
+      "name": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.",
+      "year": "2025",
+      "url": "https://www.jacc.org/doi/10.1016/j.jacc.2024.11.009",
+      "says": "Nitrates should not be administered after recent PDE5 inhibitor use. Avoid nitrates or nitroglycerin within 12 hours of avanafil, 24 hours of sildenafil or vardenafil, or 48 hours of tadalafil."
     },
     "number": 120,
     "id": "usmle-qb-s3-120"
@@ -3351,7 +3362,13 @@
       "name": "StatPearls. Benign Prostatic Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "This leads to urethral compression and bladder outflow obstruction, which can result in clinical manifestations of LUTS, urinary retention, or infections due to incomplete bladder emptying."
+      "says": "The development of BPH is characterized by stromal and epithelial cell proliferation in the prostate transition zone, which surrounds the urethra.",
+      "more": [
+        {
+          "name": "AUA guideline. Management of lower urinary tract symptoms attributed to benign prostatic hyperplasia (2021, amended 2023).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34384237/"
+        }
+      ]
     },
     "number": 121,
     "id": "usmle-qb-s3-121"
@@ -3373,10 +3390,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACR Appropriateness Criteria. Acute onset of scrotal pain.",
+      "name": "ACR Appropriateness Criteria. Acute Onset of Scrotal Pain (Without Trauma, Without Antecedent Mass).",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/39488348/",
-      "says": "Numerous causes of acute scrotal pain overlap. Ultrasound is first-line imaging and can make the diagnosis promptly."
+      "says": "Acute scrotum is a medical emergency that requires prompt accurate diagnosis. Overlapping presentations make diagnosis a challenge, and ultrasound is the established first-line imaging modality for acute scrotal disease."
     },
     "number": 122,
     "id": "usmle-qb-s3-122"
@@ -3400,10 +3417,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Ovarian Torsion.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/",
-      "says": "The ovary has a dual blood supply, from the ovarian and uterine arteries. Prompt surgery is required to preserve it."
+      "name": "ACOG Committee Opinion No. 783. Adnexal Torsion in Adolescents.",
+      "year": "2019",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31348225/",
+      "says": "If ovarian torsion is suspected, timely diagnostic laparoscopy is indicated to preserve ovarian function. No clinical or imaging criteria confirm torsion preoperatively, and Doppler flow alone should not guide decisions. Detorsion with preservation of the adnexa is recommended regardless of the appearance of the ovary.",
+      "more": [
+        {
+          "name": "StatPearls. Ovarian Torsion (dual ovarian blood supply).",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK560675/"
+        }
+      ]
     },
     "number": 123,
     "id": "usmle-qb-s3-123"
@@ -3426,10 +3449,10 @@
     "diagram": "pid-rx",
     "diagramAlt": "PID coverage. Cover gonorrhea and chlamydia Treat the partner Abscess that fails antibiotics: drain",
     "source": {
-      "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021.",
+      "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021. Pelvic Inflammatory Disease.",
       "year": "2021",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
-      "says": "The 2021 CDC STI Treatment Guidelines are the source for treatment of pelvic inflammatory disease, including management of sex partners."
+      "says": "All PID regimens should be effective against N. gonorrhoeae and C. trachomatis, because negative endocervical screening does not rule out upper tract infection. Partners from the 60 days before symptom onset should be evaluated, tested, and presumptively treated for chlamydia and gonorrhea, regardless of the PID etiology."
     },
     "number": 124,
     "id": "usmle-qb-s3-124"
@@ -3452,10 +3475,10 @@
     "diagram": "endo-bx",
     "diagramAlt": "Postmenopausal bleeding. Endometrial biopsy, not a repeat Pap Unopposed estrogen is the setup A thin stripe does not erase persistent bleeding",
     "source": {
-      "name": "ACOG Committee Opinion No. 734. Transvaginal ultrasonography for postmenopausal bleeding.",
+      "name": "ACOG Committee Opinion No. 734. The Role of Transvaginal Ultrasonography in Evaluating the Endometrium of Women With Postmenopausal Bleeding.",
       "year": "2018",
       "url": "https://pubmed.ncbi.nlm.nih.gov/29683909/",
-      "says": "Postmenopausal bleeding is evaluated with transvaginal ultrasound, and persistent bleeding or a thickened endometrium is sampled. A Pap smear does not reach the endometrium."
+      "says": "Transvaginal ultrasonography is a reasonable alternative to endometrial sampling as a first approach in an initial episode of bleeding; an endometrial thickness of 4 mm or less has a greater than 99% negative predictive value. If blind sampling does not reveal hyperplasia or malignancy, further testing such as hysteroscopy with D&C is warranted for persistent or recurrent bleeding."
     },
     "number": 125,
     "id": "usmle-qb-s3-125"
@@ -3477,10 +3500,16 @@
     "diagram": "pth-preg",
     "diagramAlt": "Antithyroid drug by trimester. First trimester: propylthiouracil After that: methimazole No radioactive iodine in pregnancy",
     "source": {
-      "name": "2016 ATA guideline for hyperthyroidism and other causes of thyrotoxicosis.",
-      "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
-      "says": "When an antithyroid drug is used in the first trimester, use propylthiouracil. When an antithyroid drug is started after the first trimester, use methimazole."
+      "name": "2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum.",
+      "year": "2017",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28056690/",
+      "says": "The revised guidelines for the management of thyroid disease in pregnancy include recommendations regarding the interpretation of thyroid function tests in pregnancy, thyrotoxicosis in pregnancy, fetal and neonatal considerations, and thyroid disease and lactation.",
+      "more": [
+        {
+          "name": "2016 ATA Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+        }
+      ]
     },
     "number": 126,
     "id": "usmle-qb-s3-126"
@@ -3507,7 +3536,7 @@
       "name": "StatPearls. Pituitary Hyperplasia in Primary Hypothyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK562316/",
-      "says": "Recognition of this entity is important, as the primary modality of treatment is thyroid hormone replacement rather than surgery."
+      "says": "Pituitary hyperplasia can cause features of hypothyroidism, hyperprolactinemia, and even visual field defects if the gland compresses the optic chiasm. Recognition of this entity is important, as the primary modality of treatment is thyroid hormone replacement rather than surgery."
     },
     "number": 127,
     "id": "usmle-qb-s3-127"
@@ -3530,10 +3559,16 @@
     "diagram": "sepsis-30",
     "diagramAlt": "Sepsis hypoperfusion. Lactate, cultures, broad antibiotic At least 30 mL/kg crystalloid if hypoperfused Norepinephrine to MAP 65 if still hypotensive",
     "source": {
-      "name": "Surviving Sepsis Campaign 2021 Adult Guidelines.",
-      "year": "2021",
-      "url": "https://journals.lww.com/ccmjournal/fulltext/2021/11000/surviving_sepsis_campaign__international.21.aspx",
-      "says": "The hour-1 actions are lactate, cultures, antibiotics, crystalloid for hypoperfusion, and vasopressors if hypotension persists."
+      "name": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.",
+      "year": "2026",
+      "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026",
+      "says": "For sepsis-induced hypoperfusion or septic shock, at least 30 mL/kg of IV crystalloid in the first 3 hours is suggested. Blood cultures are collected as soon as possible, ideally before antimicrobials; antimicrobials for possible septic shock or probable sepsis are given immediately, ideally within 1 hour; the initial MAP target is 65 mm Hg.",
+      "more": [
+        {
+          "name": "Surviving Sepsis Campaign 2026, Intensive Care Medicine full text.",
+          "url": "https://link.springer.com/article/10.1007/s00134-026-08361-1"
+        }
+      ]
     },
     "number": 128,
     "id": "usmle-qb-s3-128"
@@ -3556,10 +3591,16 @@
     "diagram": "epi-dose",
     "diagramAlt": "Anaphylaxis dose. Adult: 0.3\u20130.5 mg of 1 mg/mL IM Mid-outer thigh. Repeat in 5\u201315 min Watch. Antihistamine is not the treatment",
     "source": {
-      "name": "Anaphylaxis: a 2023 practice parameter update.",
-      "year": "2023",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/",
-      "says": "Epinephrine is dosed at 0.01 mg/kg, up to 0.3 mg in children and teenagers and 0.5 mg in adults. Draw an acute tryptase as early as possible, ideally within 2 hours. A tryptase below the laboratory cutoff does not exclude anaphylaxis."
+      "name": "World Allergy Organization Anaphylaxis Guidance 2020.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33204386/",
+      "says": "Intramuscular epinephrine is the first-line drug for anaphylaxis. The healthcare-professional dose is 0.01 mg/kg, to a maximum total dose of 0.5 mg, given intramuscularly in the mid-anterolateral thigh and repeated every 5-15 minutes if symptoms are refractory.",
+      "more": [
+        {
+          "name": "Anaphylaxis: a 2023 practice parameter update.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38108678/"
+        }
+      ]
     },
     "number": 129,
     "id": "usmle-qb-s3-129"
@@ -3573,7 +3614,6 @@
     "open": false,
     "lead": "Order 100% oxygen and a carboxyhemoglobin. Ask who else was in the house and order them evaluated if they share the exposure.",
     "lines": [
-      "Suspected carbon monoxide poisoning is an emergency-department decision under the ACEP clinical policy.",
       "Do not clear the patient with a standard pulse oximeter reading. The policy is about measured carboxyhemoglobin and the hyperbaric decision.",
       "Anyone who shared the exposure is assessed. A normal-appearing cohabitant is not proof the air was safe.",
       "Hyperbaric selection follows the policy. A numeric affinity ratio is not the indication."
@@ -3582,10 +3622,16 @@
     "diagram": "co-ox",
     "diagramAlt": "Carbon monoxide. PaO2 and pulse ox can look normal Content is low. Curve shifts left 100% oxygen now. Whole household",
     "source": {
-      "name": "ACEP clinical policy. Acute carbon monoxide poisoning in the emergency department.",
-      "year": "2017",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27993310/",
-      "says": "This ACEP clinical policy addresses emergency evaluation and management of adults with acute carbon monoxide poisoning, including selection for hyperbaric oxygen."
+      "name": "ACEP Clinical Policy. A Critical Issue in the Management of Adult Patients Presenting to the Emergency Department With Acute Carbon Monoxide Poisoning.",
+      "year": "2025",
+      "url": "https://www.guidelinecentral.com/guideline/12367/",
+      "says": "In symptomatic carbon monoxide poisoning, selected patients may benefit from hyperbaric oxygen treatment based on severity of symptoms and availability (distance and time).",
+      "more": [
+        {
+          "name": "ACEP clinical policy, Ann Emerg Med 2025 full text.",
+          "url": "https://www.annemergmed.com/article/S0196-0644(24)01264-2/fulltext"
+        }
+      ]
     },
     "number": 130,
     "id": "usmle-qb-s3-130"
