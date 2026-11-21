@@ -2,8 +2,10 @@
 
 The library stays hidden. Flags are unchanged. This pass checked claims against a confirmable source and rewrote or removed anything that source does not state. Design and components were not changed.
 
-Backup before this finish pass: `scripts/usmle-quickbites-20261121/backup-pre-finish-20261121/`.
-Undo this finish pass: `scripts/usmle-quickbites-20261121/07-undo-finish-sourcing.sh`.
+Backup before the third pass: `scripts/usmle-quickbites-20261121/backup-pre-third-pass-20261121/`.
+Undo the third pass: `scripts/usmle-quickbites-20261121/08-undo-third-pass.sh`.
+Backup before the finish pass: `scripts/usmle-quickbites-20261121/backup-pre-finish-20261121/`.
+Undo the finish pass: `scripts/usmle-quickbites-20261121/07-undo-finish-sourcing.sh`.
 Earlier sourcing backup: `scripts/usmle-quickbites-20261121/backup-pre-sourcing-20261121/`.
 
 ## Citations by type
@@ -12,12 +14,12 @@ Counted from the source name after this pass. "Guideline" is a society or govern
 
 | | Step 1 | Step 2 CK | Step 3 |
 | --- | ---: | ---: | ---: |
-| Guideline | 21 | 65 | 70 |
-| Statement or trial | 4 | 10 | 12 |
-| Ethics code | 3 | 8 | 4 |
-| Reference text | 152 | 97 | 94 |
+| Guideline | 42 | 91 | 104 |
+| Statement or trial | 3 | 9 | 9 |
+| Ethics code | 5 | 16 | 12 |
+| Reference text | 130 | 64 | 55 |
 
-These counts are after the finish pass. Before that pass, reference-text counts were 156, 108, and 106.
+These counts are after the third pass. A statement or trial includes expert panels, consensus statements, and focused updates. Ethics opinions are the AMA Code. Reference text is StatPearls.
 
 New or corrected guideline links use a PubMed URL or, for the UK kidney guideline, the society's PDF. Paywalled journal pages were not used as the only link.
 
@@ -68,13 +70,33 @@ Management bites that were still on a reference text were moved when a PubMed re
 - Necrotizing fasciitis (`usmle-qb-s1-056`, `usmle-qb-s2-055`, `usmle-qb-s3-047`): IDSA 2014 skin and soft tissue guideline, PMID 24973422. Prompt treatment. A drug list was not added.
 - Pelvic inflammatory disease (`usmle-qb-s2-136`, `usmle-qb-s3-124`): CDC STI Treatment Guidelines 2021, PMID 34292926.
 
+## Third pass
+
+US sources were preferred. Where the US document does not state the management step, the guideline that does is cited and the US document is named beside it.
+
+- Hyponatremia (`usmle-qb-s2-085`, `usmle-qb-s3-078`): US regimen is 100 mL of 3% saline over 10 minutes, up to three times (Verbalis 2013, PMID 24074529). European regimen is 150 mL over 20 minutes, repeated up to twice. First-hour target is a 4 to 6 mmol/L rise. The miss is a 24-hour rise over 10 mmol/L.
+- HIT diagram: platelets fall at least 50% on days 5 to 10, with or without thrombosis.
+- Sensitivity (`usmle-qb-s1-160`): false positives come from imperfect specificity and are amplified by low prevalence.
+- Subdural hematoma (`usmle-qb-s3-039`): reverse anticoagulation for any anticoagulant-associated subdural hematoma. NCS/SCCM 2016, PMID 27858808.
+- Giant-cell arteritis: prednisone about 1 mg/kg up to 80 mg for every suspected case, intravenous pulse if vision is threatened. Biopsy as soon as possible, ideally within 2 weeks, and a later biopsy may still be informative.
+- Adrenal crisis: hydrocortisone 100 mg IV, then 200 mg over 24 hours. Endocrine Society 2016 recommendation 4.1.
+- Thyroid storm: propylthiouracil, iodide at least 1 hour later, no aspirin, Burch-Wartofsky score of 45 or more. The lead, the lines, and the diagram match.
+- DIC bleeding (`usmle-qb-s3-011`): cryoprecipitate when fibrinogen is under 1.5 g/L and the patient is bleeding. BSH major-haemorrhage guideline, PMID 26147359.
+- Hyperkalemia (`usmle-qb-s3-085`): calcium gluconate 1 g IV, insulin with dextrose, albuterol, sodium zirconium cyclosilicate or patiromer, or dialysis. Calcium resonium was removed. Source is the KDIGO emergency-department summary, PMID 32852924.
+- Naloxone: 2025 AHA Part 10, PMID 41122889, with intravenous 0.2 to 2 mg from the AHA poisoning guidance and 4 mg for the FDA-labeled nasal spray. Flumazenil cites the 2023 AHA poisoning update, PMID 37721023.
+- COPD spirometry and long-term oxygen follow GOLD 2026. Pancreatitis cites ACG 2024, PMID 38857482.
+- Acetaminophen: 150 micrograms/mL at 4 hours, acetylcysteine within 8 hours. Epidural hematoma over 30 mL is evacuated (Brain Trauma Foundation surgical guideline, PMID 16710967).
+- DiGeorge is named as the 22q11.2 deletion. The duplicate depression bite `usmle-qb-s2-154` is now osteoporosis screening at age 65 (USPSTF).
+- StatPearls "says" lines that copied the lead were replaced with a different sentence from the chapter's teaching.
+- Repeated lines were replaced or dropped. Management bites named in the review were moved to the PubMed record given for that topic. Ethics bites that matched an AMA opinion now cite that opinion.
+
 ## Management bites still on a reference text
 
-A guideline was not attached when the recommendation sentence could not be confirmed. Reasons:
+Kept on StatPearls on purpose, because no single current society guideline states the order:
 
-- **Placenta previa and placental abruption** (`usmle-qb-s1-126`, `usmle-qb-s1-127`, `usmle-qb-s2-129`, `usmle-qb-s2-130`, `usmle-qb-s3-117`, `usmle-qb-s3-118`). No ACOG or SMFM page was retrieved that states the no-digital-exam rule or the abruption resuscitation steps. They stay on StatPearls.
-- **Torsades magnesium dose** (`usmle-qb-s1-072`, `usmle-qb-s2-069`, `usmle-qb-s3-061`). The 2017 AHA/ACC/HRS ventricular-arrhythmia guideline (PMID 29084731) was identified. The magnesium recommendation was not in the text checked, so the dose was not moved onto it.
-- **Flumazenil** (`usmle-qb-s2-142`, `usmle-qb-s3-133`). The 2023 AHA poisoning update discusses flumazenil, but the dependent-patient seizure warning was not in the passage checked.
-- **No single current society guideline was locked** for: polycythemia vera phlebotomy target, APL/ATRA, tumor lysis and rasburicase, PNH vaccination, sickle-cell acute chest and exchange transfusion, compartment-pressure threshold, hip-fracture timing, septic arthritis cell count, thunderclap pathway, Parkinson clock times, multiple-sclerosis admission, cord compression, Horner imaging, brain-abscess size, lithium, serotonin syndrome, neuroleptic malignant syndrome, dantrolene dose, malignant hyperthermia, postmenopausal-bleeding biopsy, bronchiectasis clearance, hypersensitivity pneumonitis antigen removal, hypokalemia infusion rate, and the ethics and systems bites that are not a disease guideline (DNR limits, ventilator withdrawal, placebo, organ donation, impaired colleague, child and elder reporting).
+- Parkinson medication timing (`usmle-qb-s3-026` and the Step 1 mechanism bite).
+- Serotonin syndrome (`usmle-qb-s1-038`, `usmle-qb-s2-029`, `usmle-qb-s3-034`).
+- Neuroleptic malignant syndrome (`usmle-qb-s1-037`, `usmle-qb-s2-028`, `usmle-qb-s3-035`).
+- The intravenous potassium rate (`usmle-qb-s1-086`, `usmle-qb-s2-096`, `usmle-qb-s3-086`).
 
-Mechanism bites with no society guideline remain on the named StatPearls chapter.
+Also still on a reference text, because a recommendation sentence was not locked to a guideline in this pass: Klinefelter testosterone replacement, hemolytic transfusion reaction, tardive dyskinesia, psoriatic arthritis treatment, reactive arthritis, adult polycystic kidney disease, tamponade drainage, tet spell, dilated-cardiomyopathy alcohol cessation, restrictive cardiomyopathy and light chains, diabetes insipidus water replacement, respiratory acidosis ventilation, hypernatremia replacement rate, phosphate-binder timing, and a few ethics bites whose titles did not match an AMA opinion (futility, against-advice discharge). Mechanism bites with no society guideline remain on the named chapter.
