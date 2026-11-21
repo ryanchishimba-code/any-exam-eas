@@ -31,3 +31,14 @@ Run later, in order:
 2. `psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f scripts/usmle-fullaudit-20261121/batch-01-pass1-apply.sql`
 
 Undo with `scripts/usmle-fullaudit-20261121/batch-01-pass1-undo.sql`. Apply aborts if a live row no longer matches the backup snapshot.
+
+## Batch 2 (pass 1) — 16 items
+
+Keys stay.
+
+- 11 hyperkalemia items keep calcium gluconate. Stems that never showed an ECG now include peaked T waves and a widened QRS, the Merck indication for intravenous calcium. Step 1 copies move to Step 2.
+- 2 organophosphate items keep pralidoxime. The stem now says atropine has already dried the secretions, which is when the Merck Manual gives pralidoxime for muscle weakness.
+- 1 diabetic ketoacidosis item keeps fluids then intravenous insulin. The pH, which had been cut off at "7.", is now 7.18, and the potassium is 4.8 mEq/L, so bicarbonate is not routine and insulin is not held.
+- 2 Step 1 stroke items already had a time and a negative CT. One keeps alteplase. One keeps lowering blood pressure from 190/110 mm Hg before alteplase. Both move to Step 2.
+
+Sources: [Merck hyperkalemia](https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/electrolyte-disorders/hyperkalemia), [Merck diabetic ketoacidosis](https://www.merckmanuals.com/professional/endocrine-and-metabolic-disorders/diabetes-mellitus-and-disorders-of-carbohydrate-metabolism/diabetic-ketoacidosis-dka), [Merck organophosphate poisoning](https://www.merckmanuals.com/professional/injuries-poisoning/poisoning/organophosphate-poisoning-and-carbamate-poisoning), and the [2018 AHA/ASA stroke guideline](https://www.ahajournals.org/doi/full/10.1161/STR.0000000000000158).
