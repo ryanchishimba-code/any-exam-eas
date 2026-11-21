@@ -1,0 +1,289 @@
+{
+  "episode": "ep02-clinical-formulas",
+  "title": "Clinical Formulas",
+  "video": "quick-bites-medmath-ep02-clinical-formulas-web.mp4",
+  "questions": [
+    {
+      "id": "ep02-q01",
+      "type": "single_best_answer",
+      "stem": "80-year-old man, 72 kg, creatinine 2.0 mg/dL. Cockcroft-Gault clearance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "20 mL/min"
+        },
+        {
+          "id": "B",
+          "text": "25.5 mL/min"
+        },
+        {
+          "id": "C",
+          "text": "30 mL/min"
+        },
+        {
+          "id": "D",
+          "text": "60 mL/min"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "(140 \u2212 80) \u00d7 72 / (72 \u00d7 2.0) = 30 mL/min. 25.5 is the same math with the female factor. 60 forgets to divide by the creatinine.",
+      "videoTimestamp": "0:12"
+    },
+    {
+      "id": "ep02-q02",
+      "type": "single_best_answer",
+      "stem": "Same numbers, but the patient is a woman. Clearance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "30 mL/min"
+        },
+        {
+          "id": "B",
+          "text": "25.5 mL/min"
+        },
+        {
+          "id": "C",
+          "text": "22 mL/min"
+        },
+        {
+          "id": "D",
+          "text": "15 mL/min"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Multiply the male estimate by 0.85: 30 \u00d7 0.85 = 25.5 mL/min.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep02-q03",
+      "type": "single_best_answer",
+      "stem": "A 25 kg child needs four-two-one maintenance. Milliliters per hour?",
+      "options": [
+        {
+          "id": "A",
+          "text": "25 mL/hr"
+        },
+        {
+          "id": "B",
+          "text": "50 mL/hr"
+        },
+        {
+          "id": "C",
+          "text": "65 mL/hr"
+        },
+        {
+          "id": "D",
+          "text": "100 mL/hr"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "40 + 20 + 5 = 65 mL/hr. 100 mL/hr is 4 mL/kg for the whole weight, which is too much.",
+      "videoTimestamp": "2:11"
+    },
+    {
+      "id": "ep02-q04",
+      "type": "single_best_answer",
+      "stem": "60 kg, 40% burned. Classic Parkland volume for the first 8 hours from the time of the burn?",
+      "options": [
+        {
+          "id": "A",
+          "text": "600 mL"
+        },
+        {
+          "id": "B",
+          "text": "2,400 mL"
+        },
+        {
+          "id": "C",
+          "text": "4,800 mL"
+        },
+        {
+          "id": "D",
+          "text": "9,600 mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "4 \u00d7 60 \u00d7 40 = 9,600 mL in 24 hours. Half of that, 4,800 mL, runs in the first 8 hours. 600 mL is the hourly rate if you start immediately.",
+      "videoTimestamp": "1:43"
+    },
+    {
+      "id": "ep02-q05",
+      "type": "single_best_answer",
+      "stem": "The 8-hour Parkland clock starts:",
+      "options": [
+        {
+          "id": "A",
+          "text": "When the first bag is hung"
+        },
+        {
+          "id": "B",
+          "text": "At the time of the burn"
+        },
+        {
+          "id": "C",
+          "text": "When the patient arrives"
+        },
+        {
+          "id": "D",
+          "text": "At midnight"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The first half of the 24-hour volume is timed from the burn, not from arrival.",
+      "videoTimestamp": "1:43"
+    },
+    {
+      "id": "ep02-q06",
+      "type": "single_best_answer",
+      "stem": "Sodium 140, chloride 104, bicarbonate 12. The anion gap is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "12"
+        },
+        {
+          "id": "B",
+          "text": "24"
+        },
+        {
+          "id": "C",
+          "text": "256"
+        },
+        {
+          "id": "D",
+          "text": "16"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "140 \u2212 (104 + 12) = 24, a high gap. Adding the three numbers is the usual trap.",
+      "videoTimestamp": "2:24"
+    },
+    {
+      "id": "ep02-q07",
+      "type": "single_best_answer",
+      "stem": "Calcium 7.4 mg/dL, albumin 2.0 g/dL. Corrected calcium?",
+      "options": [
+        {
+          "id": "A",
+          "text": "5.8 mg/dL"
+        },
+        {
+          "id": "B",
+          "text": "7.4 mg/dL"
+        },
+        {
+          "id": "C",
+          "text": "8.2 mg/dL"
+        },
+        {
+          "id": "D",
+          "text": "9.0 mg/dL"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "7.4 + 0.8 \u00d7 (4.0 \u2212 2.0) = 9.0 mg/dL. Do not treat the uncorrected 7.4 as the final number.",
+      "videoTimestamp": "0:09"
+    },
+    {
+      "id": "ep02-q08",
+      "type": "single_best_answer",
+      "stem": "Current adult burn-shock guidance most often starts resuscitation at:",
+      "options": [
+        {
+          "id": "A",
+          "text": "4 mL/kg per percent burned, with no further adjustment"
+        },
+        {
+          "id": "B",
+          "text": "2 mL/kg per percent burned, then titrate to urine output"
+        },
+        {
+          "id": "C",
+          "text": "The four-two-one maintenance rate alone"
+        },
+        {
+          "id": "D",
+          "text": "No crystalloid in the first 8 hours"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The classic exam math still uses 4 mL. The American Burn Association guideline starts adults at 2 mL/kg per percent and titrates to urine output.",
+      "videoTimestamp": "1:55"
+    },
+    {
+      "id": "ep02-q09",
+      "type": "single_best_answer",
+      "stem": "The four-two-one rule estimates:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Burn resuscitation for the first 24 hours"
+        },
+        {
+          "id": "B",
+          "text": "Creatinine clearance"
+        },
+        {
+          "id": "C",
+          "text": "Maintenance water, not a resuscitation volume"
+        },
+        {
+          "id": "D",
+          "text": "The anion gap"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "It is a maintenance estimate. It does not tell you which fluid to hang, and it is not Parkland math.",
+      "videoTimestamp": "4:50"
+    },
+    {
+      "id": "ep02-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which statements are correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "For a woman, Cockcroft-Gault is multiplied by 0.85."
+        },
+        {
+          "id": "B",
+          "text": "Parkland's 8-hour clock starts at the door."
+        },
+        {
+          "id": "C",
+          "text": "Correct total calcium when albumin is low."
+        },
+        {
+          "id": "D",
+          "text": "In the very sick, ionized calcium is more reliable than a corrected total."
+        }
+      ],
+      "keys": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "The 8-hour clock starts at the time of the burn, not at the door.",
+      "videoTimestamp": "3:17"
+    }
+  ]
+}

@@ -34,6 +34,13 @@ import {
   usmleVideoQuickBitePoster,
 } from "@/lib/quick-bites/usmle-video-catalog";
 import {
+  MEDMATH_EPISODES,
+  isMedmathPlayable,
+  medmathPoster,
+  nextPlayableMedmath,
+  previousPlayableMedmath,
+} from "@/lib/quick-bites/medmath-catalog";
+import {
   PHARMACY_QUICK_BITE_EPISODES,
   isPharmacyQuickBitePlayable,
   nextPlayablePharmacyQuickBite,
@@ -156,6 +163,23 @@ const USMLE_SERIES: QuickBiteSeries = {
   previousEpisode: previousPlayableUsmleVideoQuickBite,
 };
 
+const MEDMATH_SERIES: QuickBiteSeries = {
+  id: "video-quick-bites-medmath",
+  headingId: "video-quick-bites-medmath-heading",
+  title: "Medical Math",
+  subtitle: "Dosing, drips, formulas, and the numbers that change a decision.",
+  note: null,
+  lockedMessage: "Paid members can watch every episode.",
+  groups: [{ title: "", episodes: MEDMATH_EPISODES }],
+  poster: medmathPoster,
+  apiBase: "/api/quick-bites-medmath",
+  includeCaptionsTrack: false,
+  captionsNote: "Captions are burned into the video.",
+  isPlayable: isMedmathPlayable,
+  nextEpisode: nextPlayableMedmath,
+  previousEpisode: previousPlayableMedmath,
+};
+
 function Poster({ poster }: { poster: { webp: string; jpg: string } }) {
   return (
     <picture>
@@ -267,7 +291,7 @@ export function VideoQuickBitesSection({
   canPlay: boolean;
   upgradeHref: string;
   upgradeLabel: string;
-  series?: "nursing" | "pharmacy" | "fnp" | "pance" | "usmle";
+  series?: "nursing" | "pharmacy" | "fnp" | "pance" | "usmle" | "medmath";
   /** Standalone page uses h1. The old dashboard embed used h2. */
   titleAs?: "h1" | "h2";
   /** USMLE page only. Other boards omit this. */
@@ -284,7 +308,9 @@ export function VideoQuickBitesSection({
           ? PANCE_SERIES
           : series === "usmle"
             ? USMLE_SERIES
-            : NURSING_SERIES;
+            : series === "medmath"
+              ? MEDMATH_SERIES
+              : NURSING_SERIES;
   const TitleTag = titleAs;
   const limited = limitToSlugs ? new Set(limitToSlugs) : null;
   const groups = limited

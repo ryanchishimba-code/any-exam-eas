@@ -1,0 +1,289 @@
+{
+  "episode": "ep01-dosing-drips",
+  "title": "Dosing and Drips",
+  "video": "quick-bites-medmath-ep01-dosing-drips-web.mp4",
+  "questions": [
+    {
+      "id": "ep01-q01",
+      "type": "single_best_answer",
+      "stem": "A child weighs 55 pounds. How many kilograms?",
+      "options": [
+        {
+          "id": "A",
+          "text": "12.1 kg"
+        },
+        {
+          "id": "B",
+          "text": "25 kg"
+        },
+        {
+          "id": "C",
+          "text": "55 kg"
+        },
+        {
+          "id": "D",
+          "text": "121 kg"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Divide pounds by 2.2. 55 / 2.2 = 25 kg.",
+      "videoTimestamp": "1:07"
+    },
+    {
+      "id": "ep01-q02",
+      "type": "single_best_answer",
+      "stem": "The order is 375 mg. The supply is 250 mg in 5 mL. How many milliliters?",
+      "options": [
+        {
+          "id": "A",
+          "text": "1.5 mL"
+        },
+        {
+          "id": "B",
+          "text": "3 mL"
+        },
+        {
+          "id": "C",
+          "text": "7.5 mL"
+        },
+        {
+          "id": "D",
+          "text": "15 mL"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Desired over have, times the volume: (375 / 250) \u00d7 5 = 7.5 mL.",
+      "videoTimestamp": "3:23"
+    },
+    {
+      "id": "ep01-q03",
+      "type": "single_best_answer",
+      "stem": "Which is the safe way to write a half-milligram dose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.5 mg"
+        },
+        {
+          "id": "B",
+          "text": ".5 mg"
+        },
+        {
+          "id": "C",
+          "text": "5.0 mg"
+        },
+        {
+          "id": "D",
+          "text": ".50 mg"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Use a leading zero. Never use a trailing zero. A missed decimal is a tenfold error.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep01-q04",
+      "type": "single_best_answer",
+      "stem": "480 mL is ordered over 4 hours on a pump. What rate do you program?",
+      "options": [
+        {
+          "id": "A",
+          "text": "30 mL/hr"
+        },
+        {
+          "id": "B",
+          "text": "48 mL/hr"
+        },
+        {
+          "id": "C",
+          "text": "1920 mL/hr"
+        },
+        {
+          "id": "D",
+          "text": "120 mL/hr"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Pump rate is total milliliters divided by hours: 480 / 4 = 120 mL/hr.",
+      "videoTimestamp": "0:09"
+    },
+    {
+      "id": "ep01-q05",
+      "type": "single_best_answer",
+      "stem": "900 mL over 6 hours, tubing 10 drops/mL. Drops per minute?",
+      "options": [
+        {
+          "id": "A",
+          "text": "15"
+        },
+        {
+          "id": "B",
+          "text": "25"
+        },
+        {
+          "id": "C",
+          "text": "150"
+        },
+        {
+          "id": "D",
+          "text": "90"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "900 / 6 = 150 mL/hr. Then 150 \u00d7 10 / 60 = 25 drops/min. 150 is the pump rate.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep01-q06",
+      "type": "single_best_answer",
+      "stem": "With 60-drop microdrip tubing, drops per minute equals:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The total volume in milliliters"
+        },
+        {
+          "id": "B",
+          "text": "The drop factor times 60"
+        },
+        {
+          "id": "C",
+          "text": "The pump rate in milliliters per hour"
+        },
+        {
+          "id": "D",
+          "text": "Always 60"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "Milliliters times 60, divided by 60 minutes, leaves the same number as milliliters per hour.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep01-q07",
+      "type": "single_best_answer",
+      "stem": "Two percent strength is how many milligrams per milliliter?",
+      "options": [
+        {
+          "id": "A",
+          "text": "20 mg/mL"
+        },
+        {
+          "id": "B",
+          "text": "2 mg/mL"
+        },
+        {
+          "id": "C",
+          "text": "0.2 mg/mL"
+        },
+        {
+          "id": "D",
+          "text": "200 mg/mL"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "One percent is 10 mg/mL, so two percent is 20 mg/mL.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep01-q08",
+      "type": "single_best_answer",
+      "stem": "A bag is 200 mg in 100 mL. The order is 4 mcg/kg/min for a 75 kg patient. Milliliters per hour?",
+      "options": [
+        {
+          "id": "A",
+          "text": "0.9 mL/hr"
+        },
+        {
+          "id": "B",
+          "text": "1.5 mL/hr"
+        },
+        {
+          "id": "C",
+          "text": "90 mL/hr"
+        },
+        {
+          "id": "D",
+          "text": "9 mL/hr"
+        }
+      ],
+      "keys": [
+        "D"
+      ],
+      "explanation": "Concentration is 2,000 mcg/mL. 4 \u00d7 75 \u00d7 60 = 18,000 mcg/hr. 18,000 / 2,000 = 9 mL/hr.",
+      "videoTimestamp": "1:44"
+    },
+    {
+      "id": "ep01-q09",
+      "type": "single_best_answer",
+      "stem": "A child weighs 55 lb. The order is 8 mg/kg. The supply is 125 mg in 5 mL. How many milliliters?",
+      "options": [
+        {
+          "id": "A",
+          "text": "2.2 mL"
+        },
+        {
+          "id": "B",
+          "text": "8 mL"
+        },
+        {
+          "id": "C",
+          "text": "11 mL"
+        },
+        {
+          "id": "D",
+          "text": "17.6 mL"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "25 kg \u00d7 8 = 200 mg. 200 / 125 \u00d7 5 = 8 mL. 17.6 mL is the trap if you used pounds as kilograms.",
+      "videoTimestamp": "3:23"
+    },
+    {
+      "id": "ep01-q10",
+      "type": "select_all_that_apply",
+      "stem": "Which habits prevent a tenfold slip?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Line up units so the ones you do not want cancel."
+        },
+        {
+          "id": "B",
+          "text": "Write 0.5 mg, never .5 mg."
+        },
+        {
+          "id": "C",
+          "text": "Write 5.0 mg so the decimal is obvious."
+        },
+        {
+          "id": "D",
+          "text": "For a microgram infusion, remember times 60 and milligrams to micrograms."
+        }
+      ],
+      "keys": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A trailing zero is unsafe. 5.0 mg can be misread as 50 mg.",
+      "videoTimestamp": "4:09"
+    }
+  ]
+}

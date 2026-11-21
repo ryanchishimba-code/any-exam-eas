@@ -76,5 +76,7 @@ export const config = {
     "/aanp-fnp/quick-bites/:path*",
     "/pance/quick-bites",
     "/pance/quick-bites/:path*",
+    "/npte-pt/quick-bites",
+    "/npte-pt/quick-bites/:path*",
   ],
 };
