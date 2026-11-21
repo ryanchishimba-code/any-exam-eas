@@ -1,0 +1,402 @@
+[
+  {
+    "batchItemId": "b18-s1-001",
+    "correctAnswer": "Exocrine enzyme output has failed, so dietary fat is not digested",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Low fecal elastase with pancreatic calcifications means the gland no longer secretes lipase. Fat leaves the gut undigested. Bile-salt failure is a different lesion.",
+    "explanation": "Low fecal elastase with pancreatic calcifications means the gland no longer secretes lipase. Fat leaves the gut undigested. Bile-salt failure is a different lesion. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nExocrine enzyme output has failed, so dietary fat is not digested\nBile-salt synthesis has stopped, so micelles cannot form in the intestine \u2014 A different action is the one this situation requires.\nTerminal-ileum uptake of cobalamin has failed \u2014 A different action is the one this situation requires.\nGastric acid is absent, so iron stays ferric \u2014 A different action is the one this situation requires.\nA colonic infection is the only cause of the fat loss \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-002",
+    "correctAnswer": "The gradient is high, so portal pressure, not the peritoneum, is driving the fluid",
+    "difficulty": 2,
+    "citation": "Biggins SW, Angeli P, Garcia-Tsao G, et al. Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome. Hepatology. 2021.",
+    "examTakeaway": "Serum-ascites albumin gradient of 1.5 g/dL is at or above 1.1 g/dL and points to portal hypertension. A neutrophil count of 40 does not meet the 250 cutoff for spontaneous bacterial peritonitis.",
+    "explanation": "Serum-ascites albumin gradient of 1.5 g/dL is at or above 1.1 g/dL and points to portal hypertension. A neutrophil count of 40 does not meet the 250 cutoff for spontaneous bacterial peritonitis. Biggins SW, Angeli P, Garcia-Tsao G, et al. Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome. Hepatology. 2021.\n\nThe gradient is high, so portal pressure, not the peritoneum, is driving the fluid\nThe gradient is low, so peritoneal carcinomatosis is proved \u2014 A different action is the one this situation requires.\nSpontaneous bacterial peritonitis is present because the neutrophil count is 40 so treatment would start \u2014 A different action is the one this situation requires.\nThe low serum albumin alone creates a high gradient \u2014 A different action is the one this situation requires.\nHeart failure is excluded because the spleen is enlarged \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-003",
+    "correctAnswer": "AST is more than twice ALT, the pattern of long alcohol injury",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "An AST:ALT ratio above 2, with macrocytosis and heavy daily alcohol use, is the classic alcohol pattern. Ischemic and viral injury more often push ALT higher.",
+    "explanation": "An AST:ALT ratio above 2, with macrocytosis and heavy daily alcohol use, is the classic alcohol pattern. Ischemic and viral injury more often push ALT higher. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nAST is more than twice ALT, the pattern of long alcohol injury\nALT above 1000 U/L would be required before alcohol is considered \u2014 A different action is the one this situation requires.\nALT higher than AST is required for any toxic liver injury \u2014 A different action is the one this situation requires.\nA ratio under 1 excludes alcohol when the cells are large \u2014 A different action is the one this situation requires.\nThe pattern is diagnostic of bile-duct obstruction \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-004",
+    "correctAnswer": "Fecal-oral spread of hepatitis A, marked by IgM during the acute illness",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "IgM against hepatitis A during an acute icteric illness means recent fecal-oral infection. A negative surface antigen excludes acute hepatitis B and therefore hepatitis D.",
+    "explanation": "IgM against hepatitis A during an acute icteric illness means recent fecal-oral infection. A negative surface antigen excludes acute hepatitis B and therefore hepatitis D. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nFecal-oral spread of hepatitis A, marked by IgM during the acute illness\nBlood-borne hepatitis C, because the ALT is above 1000 \u2014 A different action is the one this situation requires.\nSexual hepatitis B, because any jaundice with a high ALT is surface-antigen negative \u2014 A different action is the one this situation requires.\nMosquito-borne yellow fever, because he camped outdoors \u2014 A different action is the one this situation requires.\nHepatitis D, because surface antigen is negative \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-005",
+    "correctAnswer": "Chronic infection, because surface antigen has stayed positive past 6 months",
+    "difficulty": 3,
+    "citation": "Terrault NA, Lok ASF, McMahon BJ, et al. Update on prevention, diagnosis, and treatment of chronic hepatitis B. Hepatology. 2018.",
+    "examTakeaway": "Surface antigen that remains positive for more than 6 months defines chronic hepatitis B. IgM core antibody marks acute infection and is absent here. Vaccine immunity is surface antibody, not surface antigen.",
+    "explanation": "Surface antigen that remains positive for more than 6 months defines chronic hepatitis B. IgM core antibody marks acute infection and is absent here. Vaccine immunity is surface antibody, not surface antigen. Terrault NA, Lok ASF, McMahon BJ, et al. Update on prevention, diagnosis, and treatment of chronic hepatitis B. Hepatology. 2018.\n\nChronic infection, because surface antigen has stayed positive past 6 months\nAcute infection, because any surface antigen means the illness is under 6 weeks \u2014 A different action is the one this situation requires.\nResolved infection, because IgM core antibody is negative \u2014 A different action is the one this situation requires.\nVaccine immunity, because surface antigen is the vaccine marker \u2014 A different action is the one this situation requires.\nHepatitis D alone, because the acute core marker is negative \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-006",
+    "correctAnswer": "The core window, after surface antigen clears and before surface antibody appears",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Isolated IgG core antibody, with neither surface antigen nor surface antibody, is the window or a remote infection with lost surface antibody. Vaccinees have surface antibody and no core antibody.",
+    "explanation": "Isolated IgG core antibody, with neither surface antigen nor surface antibody, is the window or a remote infection with lost surface antibody. Vaccinees have surface antibody and no core antibody. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nThe core window, after surface antigen clears and before surface antibody appears\nSuccessful vaccination, because core antibody is the vaccine marker \u2014 A different action is the one this situation requires.\nChronic infection, because the long-lived core marker means the outer protein is present on that reading \u2014 A different action is the one this situation requires.\nAcute infection, because core antibody of any class means IgM \u2014 A different action is the one this situation requires.\nNo exposure, because surface antigen is negative \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-007",
+    "correctAnswer": "Vaccine immunity, because surface antibody is present without core antibody",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Hepatitis B vaccine contains surface antigen only, so immunity is surface antibody without core antibody. Resolved natural infection leaves both core antibody and surface antibody.",
+    "explanation": "Hepatitis B vaccine contains surface antigen only, so immunity is surface antibody without core antibody. Resolved natural infection leaves both core antibody and surface antibody. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nVaccine immunity, because surface antibody is present without core antibody\nNatural infection that has resolved \u2014 A different action is the one this situation requires.\nChronic carriage, because surface antibody means the virus is integrated \u2014 A different action is the one this situation requires.\nAcute infection, because surface antibody appears only in the first week \u2014 A different action is the one this situation requires.\nVaccine failure, because core antibody must also be positive after the series \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-008",
+    "correctAnswer": "Hepatitis D, which needs hepatitis B surface antigen as its coat",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Hepatitis D is a defective RNA virus that borrows hepatitis B surface antigen. It cannot spread in a person who is surface-antigen negative.",
+    "explanation": "Hepatitis D is a defective RNA virus that borrows hepatitis B surface antigen. It cannot spread in a person who is surface-antigen negative. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nHepatitis D, which needs hepatitis B surface antigen as its coat\nHepatitis A, which needs surface antigen to enter hepatocytes \u2014 A different action is the one this situation requires.\nHepatitis C, which is a DNA virus that uses the B surface coat protein \u2014 A different action is the one this situation requires.\nHepatitis E, which replicates only inside B virions \u2014 A different action is the one this situation requires.\nA DNA bacteriophage unrelated to surface antigen \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-009",
+    "correctAnswer": "No hepatitis C vaccine exists. Infection is blood-borne, and RNA means ongoing viremia",
+    "difficulty": 2,
+    "citation": "American Association for the Study of Liver Diseases and Infectious Diseases Society of America. HCV Guidance: Recommendations for Testing, Managing, and Treating Hepatitis C. 2023.",
+    "examTakeaway": "Hepatitis C is an RNA virus spread by blood. Detectable RNA means current infection. Unlike hepatitis A and B, there is no licensed vaccine.",
+    "explanation": "Hepatitis C is an RNA virus spread by blood. Detectable RNA means current infection. Unlike hepatitis A and B, there is no licensed vaccine. American Association for the Study of Liver Diseases and Infectious Diseases Society of America. HCV Guidance: Recommendations for Testing, Managing, and Treating Hepatitis C. 2023.\n\nNo hepatitis C vaccine exists. Infection is blood-borne, and RNA means ongoing viremia\nA routine hepatitis C vaccine prevents reinfection after RNA clears \u2014 A different action is the one this situation requires.\nThe virus is spread by the fecal-oral route, like hepatitis A virus \u2014 A different action is the one this situation requires.\nRNA in serum means the antibody is a false positive and he is immune and no further testing is required \u2014 A different action is the one this situation requires.\nHepatitis C is a DNA virus cleared by the B vaccine \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-010",
+    "correctAnswer": "Hepatitis E causes fulminant disease more often in pregnant women and spreads fecal-orally",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Hepatitis E is fecal-oral and is the hepatitis virus most associated with fulminant failure in pregnancy. Negative hepatitis A IgM excludes A.",
+    "explanation": "Hepatitis E is fecal-oral and is the hepatitis virus most associated with fulminant failure in pregnancy. Negative hepatitis A IgM excludes A. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nHepatitis E causes fulminant disease more often in pregnant women and spreads fecal-orally\nHepatitis E is blood-borne and spares pregnant patients \u2014 A different action is the one this situation requires.\nThe illness is hepatitis A, because only A is severe in pregnancy \u2014 A different action is the one this situation requires.\nThe virus is prevented by the hepatitis B vaccine \u2014 A different action is the one this situation requires.\nConfusion means hepatic encephalopathy is unrelated to the virus \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-011",
+    "correctAnswer": "Gluten-driven injury to the proximal small bowel, with villous atrophy",
+    "difficulty": 2,
+    "citation": "Rubio-Tapia A, Hill ID, Kelly CP, Calderwood AH, Murray JA. ACG clinical guidelines: diagnosis and management of celiac disease. American Journal of Gastroenterology. 2013.",
+    "examTakeaway": "Tissue-transglutaminase IgA plus flattened duodenal villi is gluten-sensitive enteropathy. Iron is absorbed in the duodenum, so that segment fails first.",
+    "explanation": "Tissue-transglutaminase IgA plus flattened duodenal villi is gluten-sensitive enteropathy. Iron is absorbed in the duodenum, so that segment fails first. Rubio-Tapia A, Hill ID, Kelly CP, Calderwood AH, Murray JA. ACG clinical guidelines: diagnosis and management of celiac disease. American Journal of Gastroenterology. 2013.\n\nGluten-driven injury to the proximal small bowel, with villous atrophy\nBacterial invasion of macrophages throughout the body \u2014 A different action is the one this situation requires.\nTransmural granulomas that skip segments of ileum \u2014 A different action is the one this situation requires.\nLoss of islet cells with preserved villi \u2014 A different action is the one this situation requires.\nBile-duct destruction with a high alkaline phosphatase \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-012",
+    "correctAnswer": "Tropheryma, an actinomycete that fills macrophages and is PAS positive",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "PAS-positive macrophages in the small bowel of a patient with diarrhea and arthritis are the histologic signature of Tropheryma whipplei.",
+    "explanation": "PAS-positive macrophages in the small bowel of a patient with diarrhea and arthritis are the histologic signature of Tropheryma whipplei. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nTropheryma, an actinomycete that fills macrophages and is PAS positive\nMycobacterium tuberculosis, which is PAS negative and caseating \u2014 A different action is the one this situation requires.\nGiardia, which attaches to villi and does not fill macrophages \u2014 A different action is the one this situation requires.\nClostridioides, which toxins the colon rather than the small bowel \u2014 A different action is the one this situation requires.\nHelicobacter, which lives on gastric mucosa \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-013",
+    "correctAnswer": "Mucosal disease beginning in the rectum and extending continuously",
+    "difficulty": 2,
+    "citation": "Rubin DT, Ananthakrishnan AN, Siegel CA, Sauer BG, Long MD. ACG Clinical Guideline: Ulcerative Colitis in Adults. American Journal of Gastroenterology. 2019.",
+    "examTakeaway": "Continuous mucosal inflammation starting at the rectum, with crypt abscesses, is the pattern of ulcerative colitis. Transmural skip disease is the other inflammatory bowel pattern.",
+    "explanation": "Continuous mucosal inflammation starting at the rectum, with crypt abscesses, is the pattern of ulcerative colitis. Transmural skip disease is the other inflammatory bowel pattern. Rubin DT, Ananthakrishnan AN, Siegel CA, Sauer BG, Long MD. ACG Clinical Guideline: Ulcerative Colitis in Adults. American Journal of Gastroenterology. 2019.\n\nMucosal disease beginning in the rectum and extending continuously\nTransmural skip lesions with fistulas to the bladder \u2014 A different action is the one this situation requires.\nCeliac injury confined to the duodenum \u2014 A different action is the one this situation requires.\nIschemic injury at the splenic flexure only, with a normal rectum \u2014 A different action is the one this situation requires.\nPseudomembranes from toxin throughout a normal mucosa \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-014",
+    "correctAnswer": "Transmural granulomatous injury with skip areas and a fistula",
+    "difficulty": 2,
+    "citation": "Lichtenstein GR, Loftus EV, Isaacs KL, Regueiro MD, Gerson LB, Sands BE. ACG Clinical Guideline: Management of Crohn's Disease in Adults. American Journal of Gastroenterology. 2018.",
+    "examTakeaway": "Skip lesions, transmural inflammation, noncaseating granulomas, and fistulas are the Crohn pattern. Ulcerative colitis stays in the mucosa and is continuous from the rectum.",
+    "explanation": "Skip lesions, transmural inflammation, noncaseating granulomas, and fistulas are the Crohn pattern. Ulcerative colitis stays in the mucosa and is continuous from the rectum. Lichtenstein GR, Loftus EV, Isaacs KL, Regueiro MD, Gerson LB, Sands BE. ACG Clinical Guideline: Management of Crohn's Disease in Adults. American Journal of Gastroenterology. 2018.\n\nTransmural granulomatous injury with skip areas and a fistula\nMucosal-only disease that begins in the rectum and does not fistulize \u2014 A different action is the one this situation requires.\nVillous atrophy limited to the duodenum \u2014 A different action is the one this situation requires.\nFull-thickness necrosis from an occluded mesenteric artery \u2014 A different action is the one this situation requires.\nCaseating granulomas of secondary tuberculosis only \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-015",
+    "correctAnswer": "Reduced glucuronidation that shows up under fasting, with no hemolysis",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Isolated unconjugated bilirubin that rises with fasting and with normal hemoglobin and liver enzymes is the mild glucuronidation defect of Gilbert physiology. Complete absence of the enzyme is a different, severe disease.",
+    "explanation": "Isolated unconjugated bilirubin that rises with fasting and with normal hemoglobin and liver enzymes is the mild glucuronidation defect of Gilbert physiology. Complete absence of the enzyme is a different, severe disease. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nReduced glucuronidation that shows up under fasting, with no hemolysis\nComplete absence of conjugation, as in a newborn who needs phototherapy for life \u2014 A different action is the one this situation requires.\nBlocked canalicular export of conjugated bilirubin, with a black liver \u2014 A different action is the one this situation requires.\nHemolysis, because unconjugated bilirubin cannot rise unless red cells break \u2014 A different action is the one this situation requires.\nExtrahepatic bile-duct obstruction, because the stool would be pale \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-016",
+    "correctAnswer": "Near-total loss of bilirubin conjugation from birth, so unconjugated pigment accumulates",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Severe unconjugated hyperbilirubinemia from the first days of life, without hemolysis as the whole story and without conjugated elevation, is absent or nearly absent UDP-glucuronosyltransferase.",
+    "explanation": "Severe unconjugated hyperbilirubinemia from the first days of life, without hemolysis as the whole story and without conjugated elevation, is absent or nearly absent UDP-glucuronosyltransferase. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nNear-total loss of bilirubin conjugation from birth, so unconjugated pigment accumulates\nCanalicular export failure, which raises conjugated bilirubin \u2014 A different action is the one this situation requires.\nBile-duct atresia, which raises conjugated bilirubin and pales the stool from the first weeks of life \u2014 A different action is the one this situation requires.\nPhysiologic jaundice, which resolves in the first week \u2014 A different action is the one this situation requires.\nGilbert physiology, which stays under about 4 mg/dL \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-017",
+    "correctAnswer": "Conjugated bilirubin cannot leave the hepatocyte, and the liver stores a dark pigment",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Isolated conjugated hyperbilirubinemia with a black liver is failure of canalicular export of conjugated bilirubin. Alkaline phosphatase stays normal, unlike large-duct obstruction.",
+    "explanation": "Isolated conjugated hyperbilirubinemia with a black liver is failure of canalicular export of conjugated bilirubin. Alkaline phosphatase stays normal, unlike large-duct obstruction. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nConjugated bilirubin cannot leave the hepatocyte, and the liver stores a dark pigment\nUnconjugated bilirubin cannot be formed, so the liver is pale \u2014 A different action is the one this situation requires.\nExtrahepatic duct obstruction, which raises ALP and pales the stool \u2014 A different action is the one this situation requires.\nHemolysis, which raises unconjugated bilirubin and does not blacken the liver, and no repeat draw \u2014 A different action is the one this situation requires.\nVaccine immunity to hepatitis B \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-018",
+    "correctAnswer": "Copper, because ceruloplasmin is low and a corneal ring is present",
+    "difficulty": 3,
+    "citation": "European Association for the Study of the Liver. EASL Clinical Practice Guidelines: Wilson's disease. Journal of Hepatology. 2012.",
+    "examTakeaway": "A Kayser-Fleischer ring, low ceruloplasmin, and high hepatic copper define copper accumulation from failed biliary copper excretion.",
+    "explanation": "A Kayser-Fleischer ring, low ceruloplasmin, and high hepatic copper define copper accumulation from failed biliary copper excretion. European Association for the Study of the Liver. EASL Clinical Practice Guidelines: Wilson's disease. Journal of Hepatology. 2012.\n\nCopper, because ceruloplasmin is low and a corneal ring is present\nIron, because ferritin and transferrin saturation define this ring \u2014 A different action is the one this situation requires.\nLead, because basophilic stippling is the corneal finding \u2014 A different action is the one this situation requires.\nZinc, because taste changes darken the cornea \u2014 A different action is the one this situation requires.\nManganese, because it deposits in the globus pallidus only \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-019",
+    "correctAnswer": "Iron overload, marked by transferrin saturation above 45 percent and a high ferritin",
+    "difficulty": 2,
+    "citation": "Bacon BR, Adams PC, Kowdley KV, Powell LW, Tavill AS. Diagnosis and management of hemochromatosis: 2011 practice guideline by the American Association for the Study of Liver Diseases. Hepatology. 2011.",
+    "examTakeaway": "Transferrin saturation above about 45 percent with a very high ferritin and hepatocellular iron is hereditary iron overload. The skin, pancreas, and joints are the classic extrahepatic sites.",
+    "explanation": "Transferrin saturation above about 45 percent with a very high ferritin and hepatocellular iron is hereditary iron overload. The skin, pancreas, and joints are the classic extrahepatic sites. Bacon BR, Adams PC, Kowdley KV, Powell LW, Tavill AS. Diagnosis and management of hemochromatosis: 2011 practice guideline by the American Association for the Study of Liver Diseases. Hepatology. 2011.\n\nIron overload, marked by transferrin saturation above 45 percent and a high ferritin\nCopper overload, because ceruloplasmin would be low \u2014 A different action is the one this situation requires.\nCholesterol overload, because the skin bronzes in familial hypercholesterolemia, without a night review \u2014 A different action is the one this situation requires.\nGlycogen storage, because diabetes means hepatic glycogen is trapped \u2014 A different action is the one this situation requires.\nAmyloid, because the liver is the only organ that stores iron \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-020",
+    "correctAnswer": "A misfolded protease inhibitor is trapped in the endoplasmic reticulum of hepatocytes",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "The Z variant of alpha-1 antitrypsin misfolds, polymerizes, and is retained in the hepatocyte, seen as diastase-resistant PAS globules. Lung disease follows loss of the inhibitor in serum.",
+    "explanation": "The Z variant of alpha-1 antitrypsin misfolds, polymerizes, and is retained in the hepatocyte, seen as diastase-resistant PAS globules. Lung disease follows loss of the inhibitor in serum. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA misfolded protease inhibitor is trapped in the endoplasmic reticulum of hepatocytes\nCopper is polymerized inside lysosomes \u2014 A different action is the one this situation requires.\nIron stains with Prussian blue, which is the PAS globule \u2014 A different action is the one this situation requires.\nFat fills the hepatocyte and is PAS positive \u2014 A different action is the one this situation requires.\nGlycogen nuclei of diabetes are diastase resistant \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-021",
+    "correctAnswer": "Destruction of intrahepatic bile ducts, marked by antimitochondrial antibody",
+    "difficulty": 2,
+    "citation": "Lindor KD, Bowlus CL, Boyer J, Levy C, Mayo M. Primary Biliary Cholangitis: 2018 Practice Guidance from the American Association for the Study of Liver Diseases. Hepatology. 2019.",
+    "examTakeaway": "A middle-aged woman with cholestatic enzymes, itching, and antimitochondrial antibody has immune destruction of interlobular bile ducts. The extrahepatic ducts are not dilated, so this is not a stone.",
+    "explanation": "A middle-aged woman with cholestatic enzymes, itching, and antimitochondrial antibody has immune destruction of interlobular bile ducts. The extrahepatic ducts are not dilated, so this is not a stone. Lindor KD, Bowlus CL, Boyer J, Levy C, Mayo M. Primary Biliary Cholangitis: 2018 Practice Guidance from the American Association for the Study of Liver Diseases. Hepatology. 2019.\n\nDestruction of intrahepatic bile ducts, marked by antimitochondrial antibody\nExtrahepatic stone disease, because ALP rises only when a stone is seen \u2014 A different action is the one this situation requires.\nAutoimmune hepatitis, because that disease is antimitochondrial and ALP-predominant \u2014 A different action is the one this situation requires.\nAlcohol injury, because the AST:ALT ratio must exceed 2 here \u2014 A different action is the one this situation requires.\nPortal vein thrombosis, which raises ALP and the mitochondrial antibody \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-022",
+    "correctAnswer": "Fibrosing inflammation of bile ducts inside and outside the liver, with a beaded cholangiogram",
+    "difficulty": 3,
+    "citation": "Lindor KD, Kowdley KV, Harrison ME. ACG Clinical Guideline: Primary Sclerosing Cholangitis. American Journal of Gastroenterology. 2015.",
+    "examTakeaway": "Beading of intrahepatic and extrahepatic ducts in a patient with colonic mucosal inflammation is the fibrosing cholangitis associated with that colitis. Antimitochondrial antibody is negative, unlike the small-duct disease.",
+    "explanation": "Beading of intrahepatic and extrahepatic ducts in a patient with colonic mucosal inflammation is the fibrosing cholangitis associated with that colitis. Antimitochondrial antibody is negative, unlike the small-duct disease. Lindor KD, Kowdley KV, Harrison ME. ACG Clinical Guideline: Primary Sclerosing Cholangitis. American Journal of Gastroenterology. 2015.\n\nFibrosing inflammation of bile ducts inside and outside the liver, with a beaded cholangiogram\nAntimitochondrial duct destruction with a normal cholangiogram \u2014 A different action is the one this situation requires.\nGallbladder sludge only, because beading is a stone on ultrasound rather than disease of the ducts themselves \u2014 A different action is the one this situation requires.\nViral hepatitis, because ALT would dominate and ducts bead \u2014 A different action is the one this situation requires.\nPancreatic enzyme failure, because elastase tracks the ALP \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-023",
+    "correctAnswer": "Distal to the cystic duct, often a head-of-pancreas mass, so the gallbladder can distend",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "A palpable nontender gallbladder with painless jaundice means the obstruction is distal to the cystic duct insertion, so the gallbladder fills. Chronic stones fibrose the gallbladder and it does not distend.",
+    "explanation": "A palpable nontender gallbladder with painless jaundice means the obstruction is distal to the cystic duct insertion, so the gallbladder fills. Chronic stones fibrose the gallbladder and it does not distend. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nDistal to the cystic duct, often a head-of-pancreas mass, so the gallbladder can distend\nA stone in the cystic duct, which dilates the gallbladder and jaundices the patient, holding the extra lab \u2014 A different action is the one this situation requires.\nIntrahepatic duct loss with a collapsed gallbladder \u2014 A different action is the one this situation requires.\nEsophageal varices, because painless jaundice is a bleeding varix \u2014 A different action is the one this situation requires.\nA duodenal ulcer that raises ALP only \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-024",
+    "correctAnswer": "A mucosal tear from retching at the gastroesophageal junction",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Repeated retching that tears mucosa at the gastroesophageal junction causes hematemesis without the signs of portal hypertension. A full-thickness rupture is a different, mediastinal emergency.",
+    "explanation": "Repeated retching that tears mucosa at the gastroesophageal junction causes hematemesis without the signs of portal hypertension. A full-thickness rupture is a different, mediastinal emergency. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA mucosal tear from retching at the gastroesophageal junction\nEsophageal varices from portal hypertension \u2014 A different action is the one this situation requires.\nA full-thickness esophageal rupture into the mediastinum \u2014 A different action is the one this situation requires.\nAn duodenal ulcer on the posterior wall eroding the gastroduodenal artery \u2014 A different action is the one this situation requires.\nGastric varices from splenic vein thrombosis only \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-025",
+    "correctAnswer": "Left gastric venous collaterals in the distal esophagus, driven by portal pressure",
+    "difficulty": 2,
+    "citation": "Garcia-Tsao G, Abraldes JG, Berzigotti A, Bosch J. Portal hypertensive bleeding in cirrhosis: Risk stratification, diagnosis, and management: 2016 practice guidance by the American Association for the Study of Liver Diseases. Hepatology. 2017.",
+    "examTakeaway": "Portal hypertension opens portosystemic collaterals. The clinically important ones in hematemesis are esophageal submucosal veins fed by the left gastric vein.",
+    "explanation": "Portal hypertension opens portosystemic collaterals. The clinically important ones in hematemesis are esophageal submucosal veins fed by the left gastric vein. Garcia-Tsao G, Abraldes JG, Berzigotti A, Bosch J. Portal hypertensive bleeding in cirrhosis: Risk stratification, diagnosis, and management: 2016 practice guidance by the American Association for the Study of Liver Diseases. Hepatology. 2017.\n\nLeft gastric venous collaterals in the distal esophagus, driven by portal pressure\nA Mallory-Weiss tear, because ascites is required for that tear \u2014 A different action is the one this situation requires.\nThe gastroduodenal artery from a posterior duodenal ulcer, because spiders mark ulcer disease \u2014 A different action is the one this situation requires.\nHemorrhoidal veins, because portal pressure bleeds only from the rectum \u2014 A different action is the one this situation requires.\nA colonic diverticulum, because painless blood is colonic \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-026",
+    "correctAnswer": "An islet beta-cell tumor, because both insulin and C-peptide are high",
+    "difficulty": 3,
+    "citation": "Cryer PE, Axelrod L, Grossman AB, et al. Evaluation and management of adult hypoglycemic disorders: an Endocrine Society clinical practice guideline. Journal of Clinical Endocrinology and Metabolism. 2009.",
+    "examTakeaway": "Endogenous hyperinsulinism shows high insulin and high C-peptide at the time of hypoglycemia. Injected insulin raises insulin but suppresses C-peptide. A negative sulfonylurea screen removes the other C-peptide-high mimic.",
+    "explanation": "Endogenous hyperinsulinism shows high insulin and high C-peptide at the time of hypoglycemia. Injected insulin raises insulin but suppresses C-peptide. A negative sulfonylurea screen removes the other C-peptide-high mimic. Cryer PE, Axelrod L, Grossman AB, et al. Evaluation and management of adult hypoglycemic disorders: an Endocrine Society clinical practice guideline. Journal of Clinical Endocrinology and Metabolism. 2009.\n\nAn islet beta-cell tumor, because both insulin and C-peptide are high\nFactitious insulin use, because that raises insulin and C-peptide together \u2014 A different action is the one this situation requires.\nA glucagon tumor, because glucagon lowers glucose and raises C-peptide \u2014 A different action is the one this situation requires.\nAn adrenal pheochromocytoma, because catecholamines cause hypoglycemia \u2014 A different action is the one this situation requires.\nA gastrin tumor, because gastrin drives insulin release \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-027",
+    "correctAnswer": "Injected insulin, which raises insulin while the beta cell shuts off C-peptide",
+    "difficulty": 3,
+    "citation": "Cryer PE, Axelrod L, Grossman AB, et al. Evaluation and management of adult hypoglycemic disorders: an Endocrine Society clinical practice guideline. Journal of Clinical Endocrinology and Metabolism. 2009.",
+    "examTakeaway": "Exogenous insulin bypasses the beta cell, so measured insulin is high and C-peptide is low. An insulin-secreting tumor raises both.",
+    "explanation": "Exogenous insulin bypasses the beta cell, so measured insulin is high and C-peptide is low. An insulin-secreting tumor raises both. Cryer PE, Axelrod L, Grossman AB, et al. Evaluation and management of adult hypoglycemic disorders: an Endocrine Society clinical practice guideline. Journal of Clinical Endocrinology and Metabolism. 2009.\n\nInjected insulin, which raises insulin while the beta cell shuts off C-peptide\nAn islet tumor, because tumors suppress C-peptide \u2014 A different action is the one this situation requires.\nA sulfonylurea, because those drugs suppress C-peptide \u2014 A different action is the one this situation requires.\nGlucagon excess, because glucagon lowers insulin \u2014 A different action is the one this situation requires.\nLiver failure, because the liver clears C-peptide and leaves insulin high in the plasma sample \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-028",
+    "correctAnswer": "Vasoactive intestinal peptide, which drives watery diarrhea and potassium loss and shuts off acid",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "A pancreatic peptide tumor releasing vasoactive intestinal peptide produces large-volume secretory diarrhea, hypokalemia, and low gastric acid.",
+    "explanation": "A pancreatic peptide tumor releasing vasoactive intestinal peptide produces large-volume secretory diarrhea, hypokalemia, and low gastric acid. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nVasoactive intestinal peptide, which drives watery diarrhea and potassium loss and shuts off acid\nGastrin, which causes multiple duodenal ulcers and high acid \u2014 A different action is the one this situation requires.\nInsulin, which causes fasting hypoglycemia \u2014 A different action is the one this situation requires.\nGlucagon, which causes a rash and hyperglycemia \u2014 A different action is the one this situation requires.\nSomatostatin, which causes gallstones and steatorrhea without this volume of watery stool, with no second test \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-029",
+    "correctAnswer": "Serotonin from a small-bowel tumor, which the liver fails to clear once metastases exist, injuring right-sided valves",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Small-bowel neuroendocrine tumors release serotonin into the portal vein. After hepatic metastases, serotonin reaches the systemic vein and thickens right-sided valves. 5-Hydroxyindoleacetic acid is the urinary metabolite.",
+    "explanation": "Small-bowel neuroendocrine tumors release serotonin into the portal vein. After hepatic metastases, serotonin reaches the systemic vein and thickens right-sided valves. 5-Hydroxyindoleacetic acid is the urinary metabolite. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nSerotonin from a small-bowel tumor, which the liver fails to clear once metastases exist, injuring right-sided valves\nGastrin, which scars the aortic valve \u2014 A different action is the one this situation requires.\nBradykinin from a lung carcinoid, which hits the left-sided valves first when no lung mass is present \u2014 A different action is the one this situation requires.\nHistamine from a gastric mass, which causes a diastolic rumble \u2014 A different action is the one this situation requires.\nVasoactive intestinal peptide, which raises 5-hydroxyindoleacetic acid \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-030",
+    "correctAnswer": "Columnar metaplasia of the distal esophagus from chronic acid exposure",
+    "difficulty": 2,
+    "citation": "Shaheen NJ, Falk GW, Iyer PG, Gerson LB. ACG Clinical Guideline: Diagnosis and Management of Barrett's Esophagus. American Journal of Gastroenterology. 2016.",
+    "examTakeaway": "Replacement of squamous esophageal mucosa by intestinal columnar epithelium with goblet cells is metaplasia from chronic gastroesophageal reflux.",
+    "explanation": "Replacement of squamous esophageal mucosa by intestinal columnar epithelium with goblet cells is metaplasia from chronic gastroesophageal reflux. Shaheen NJ, Falk GW, Iyer PG, Gerson LB. ACG Clinical Guideline: Diagnosis and Management of Barrett's Esophagus. American Journal of Gastroenterology. 2016.\n\nColumnar metaplasia of the distal esophagus from chronic acid exposure\nSquamous dysplasia from human papillomavirus \u2014 A different action is the one this situation requires.\nGastric adenocarcinoma invading upward with no goblet cells required, instead of a bedside study \u2014 A different action is the one this situation requires.\nEsophageal varices, which are epithelial metaplasia \u2014 A different action is the one this situation requires.\nA Candida membrane, which is columnar metaplasia \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-031",
+    "correctAnswer": "Loss of inhibitory neurons, so the lower sphincter stays tight and peristalsis is absent",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Failure of the lower esophageal sphincter to relax, plus absent peristalsis and a bird-beak esophagus, is loss of inhibitory innervation in the myenteric plexus.",
+    "explanation": "Failure of the lower esophageal sphincter to relax, plus absent peristalsis and a bird-beak esophagus, is loss of inhibitory innervation in the myenteric plexus. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nLoss of inhibitory neurons, so the lower sphincter stays tight and peristalsis is absent\nA mechanical ring that blocks solids only and leaves peristalsis normal \u2014 A different action is the one this situation requires.\nDiffuse esophageal spasm, which has high-amplitude coordinated waves \u2014 A different action is the one this situation requires.\nScleroderma, which lowers sphincter pressure and weakens the body \u2014 A different action is the one this situation requires.\nA Zenker outpouching, which is a motility tracing of the sphincter \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-032",
+    "correctAnswer": "A false diverticulum through Killian triangle above the cricopharyngeus",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "A pharyngoesophageal outpouching of mucosa above the cricopharyngeus is a false diverticulum through the Killian triangle.",
+    "explanation": "A pharyngoesophageal outpouching of mucosa above the cricopharyngeus is a false diverticulum through the Killian triangle. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA false diverticulum through Killian triangle above the cricopharyngeus\nA true diverticulum of the mid esophagus from traction, with no bedside study \u2014 A different action is the one this situation requires.\nA paraesophageal hernia of the fundus \u2014 A different action is the one this situation requires.\nAn epiphrenic diverticulum just above the diaphragm \u2014 A different action is the one this situation requires.\nA tracheoesophageal fistula from the trachea \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-033",
+    "correctAnswer": "A vitelline-duct remnant that can contain gastric mucosa and bleed",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "The vitelline duct can leave an ileal outpouching on the antimesenteric border. Ectopic gastric mucosa ulcerates and bleeds, and it takes up the technetium scan used for gastric mucosa.",
+    "explanation": "The vitelline duct can leave an ileal outpouching on the antimesenteric border. Ectopic gastric mucosa ulcerates and bleeds, and it takes up the technetium scan used for gastric mucosa. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA vitelline-duct remnant that can contain gastric mucosa and bleed\nA urachal cyst at the dome of the bladder \u2014 A different action is the one this situation requires.\nAn omphalocele with the liver outside the abdomen \u2014 A different action is the one this situation requires.\nA Meckel remnant on the mesenteric border only \u2014 A different action is the one this situation requires.\nAn appendix, which concentrates the gastric-mucosa tracer \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-034",
+    "correctAnswer": "Ileum telescoping into colon, often over a lead point, with ischemia of the inner bowel",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Currant-jelly stool, colic, and a target sign are bowel telescoping. The inner segment's vessels are compressed. In an infant a lead point such as a lymphoid mass or a vitelline remnant is sought.",
+    "explanation": "Currant-jelly stool, colic, and a target sign are bowel telescoping. The inner segment's vessels are compressed. In an infant a lead point such as a lymphoid mass or a vitelline remnant is sought. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nIleum telescoping into colon, often over a lead point, with ischemia of the inner bowel\nMidgut volvulus around an unfixed superior mesenteric artery \u2014 A different action is the one this situation requires.\nPyloric muscle hypertrophy with a nonbilious vomit \u2014 A different action is the one this situation requires.\nIntussusception of the sigmoid only, in an older adult pattern as the infant disease, and no night review \u2014 A different action is the one this situation requires.\nHirschsprung dilation of the aganglionic segment \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-035",
+    "correctAnswer": "The midgut did not complete its rotation, so the bowel can twist on a narrow mesenteric pedicle",
+    "difficulty": 3,
+    "citation": "Sadler TW. Langman's Medical Embryology. 14th ed. Wolters Kluwer; 2019.",
+    "examTakeaway": "Bilious vomiting in the first week with an absent ligament of Treitz means the midgut failed to rotate and fix. The narrow pedicle allows volvulus and ischemia.",
+    "explanation": "Bilious vomiting in the first week with an absent ligament of Treitz means the midgut failed to rotate and fix. The narrow pedicle allows volvulus and ischemia. Sadler TW. Langman's Medical Embryology. 14th ed. Wolters Kluwer; 2019.\n\nThe midgut did not complete its rotation, so the bowel can twist on a narrow mesenteric pedicle\nDuodenal atresia, which shows a double bubble and no twist of the jejunum \u2014 A different action is the one this situation requires.\nPyloric stenosis, which causes nonbilious vomiting at 3 to 6 weeks \u2014 A different action is the one this situation requires.\nHirschsprung disease, which fails to pass meconium but does not malrotate \u2014 A different action is the one this situation requires.\nAnnular pancreas, which encases the duodenum without moving the ligament of Treitz and leaves rotation intact \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-036",
+    "correctAnswer": "Failure of the duodenum to recanalize, so nothing passes the second part",
+    "difficulty": 2,
+    "citation": "Sadler TW. Langman's Medical Embryology. 14th ed. Wolters Kluwer; 2019.",
+    "examTakeaway": "A double bubble and no distal gas in a newborn, especially with trisomy 21, is duodenal atresia from failed recanalization. Bilious vomiting means the block is distal to the ampulla.",
+    "explanation": "A double bubble and no distal gas in a newborn, especially with trisomy 21, is duodenal atresia from failed recanalization. Bilious vomiting means the block is distal to the ampulla. Sadler TW. Langman's Medical Embryology. 14th ed. Wolters Kluwer; 2019.\n\nFailure of the duodenum to recanalize, so nothing passes the second part\nMidgut volvulus, which leaves distal gas and an abnormal ligament of Treitz \u2014 A different action is the one this situation requires.\nHypertrophic pyloric stenosis, which is nonbilious and appears later \u2014 A different action is the one this situation requires.\nMeconium ileus, which plugs the ileum and is linked to a chloride channel \u2014 A different action is the one this situation requires.\nA tracheoesophageal fistula, which shows a gasless abdomen only in the isolated form \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-037",
+    "correctAnswer": "Hypochloremic metabolic alkalosis from loss of gastric acid in the vomit",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Projectile nonbilious vomiting and an olive at a few weeks of life is gastric-outlet muscle hypertrophy. Loss of hydrochloric acid leaves hypochloremic metabolic alkalosis.",
+    "explanation": "Projectile nonbilious vomiting and an olive at a few weeks of life is gastric-outlet muscle hypertrophy. Loss of hydrochloric acid leaves hypochloremic metabolic alkalosis. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nHypochloremic metabolic alkalosis from loss of gastric acid in the vomit\nNormal-anion-gap acidosis from loss of bicarbonate in green vomit from the gut \u2014 A different action is the one this situation requires.\nRespiratory alkalosis from hyperventilation of a hungry infant \u2014 A different action is the one this situation requires.\nHyperchloremic acidosis from vomiting gastric acid \u2014 A different action is the one this situation requires.\nMetabolic acidosis because pyloric obstruction retains acid \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-038",
+    "correctAnswer": "Transmural ischemic and infectious injury of the premature bowel, seen as pneumatosis",
+    "difficulty": 3,
+    "citation": "Neu J, Walker WA. Necrotizing enterocolitis. New England Journal of Medicine. 2011.",
+    "examTakeaway": "Pneumatosis in a premature neonate after feeds is bowel-wall gas from necrotizing injury. It clusters in very preterm infants.",
+    "explanation": "Pneumatosis in a premature neonate after feeds is bowel-wall gas from necrotizing injury. It clusters in very preterm infants. Neu J, Walker WA. Necrotizing enterocolitis. New England Journal of Medicine. 2011.\n\nTransmural ischemic and infectious injury of the premature bowel, seen as pneumatosis\nPhysiologic jaundice, which produces pneumatosis \u2014 A different action is the one this situation requires.\nDuodenal atresia, which presents with a double bubble at birth \u2014 A different action is the one this situation requires.\nMidgut volvulus, which is a rotation defect rather than wall gas in a premie \u2014 A different action is the one this situation requires.\nHirschsprung enterocolitis, which requires a proven aganglionic segment first, and no second test \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-039",
+    "correctAnswer": "Immature conjugation in a term newborn, peaking after the first day and fading in a week",
+    "difficulty": 2,
+    "citation": "American Academy of Pediatrics Subcommittee on Hyperbilirubinemia. Management of hyperbilirubinemia in the newborn infant 35 or more weeks of gestation. Pediatrics. 2004.",
+    "examTakeaway": "Visible jaundice after the first 24 hours in a well term newborn, with mild unconjugated bilirubin and a normal hemoglobin, is immature hepatic conjugation. It resolves in the first week.",
+    "explanation": "Visible jaundice after the first 24 hours in a well term newborn, with mild unconjugated bilirubin and a normal hemoglobin, is immature hepatic conjugation. It resolves in the first week. American Academy of Pediatrics Subcommittee on Hyperbilirubinemia. Management of hyperbilirubinemia in the newborn infant 35 or more weeks of gestation. Pediatrics. 2004.\n\nImmature conjugation in a term newborn, peaking after the first day and fading in a week\nBiliary atresia, which raises conjugated bilirubin and does not fade in a week, before any late consult \u2014 A different action is the one this situation requires.\nHemolysis from ABO incompatibility, which drops the hemoglobin \u2014 A different action is the one this situation requires.\nCrigler-Najjar type I, which keeps unconjugated bilirubin extremely high \u2014 A different action is the one this situation requires.\nBreast-milk failure, which is colorless rather than yellow \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-040",
+    "correctAnswer": "Obliteration of the extrahepatic bile ducts, so conjugated bilirubin cannot reach the gut",
+    "difficulty": 3,
+    "citation": "Fawaz R, Baumann U, Ekong U, et al. Guideline for the Evaluation of Cholestatic Jaundice in Infants: Joint recommendations of the North American Society for Pediatric Gastroenterology, Hepatology, and Nutrition and the European Society for Pediatric Gastroenterology, Hepatology, and Nutrition. Journal of Pediatric Gastroenterology and Nutrition. 2017.",
+    "examTakeaway": "Prolonged conjugated jaundice, pale stools, and a gallbladder that does not fill suggest fibrotic obliteration of the extrahepatic ducts. The clock matters because delay destroys the liver.",
+    "explanation": "Prolonged conjugated jaundice, pale stools, and a gallbladder that does not fill suggest fibrotic obliteration of the extrahepatic ducts. The clock matters because delay destroys the liver. Fawaz R, Baumann U, Ekong U, et al. Guideline for the Evaluation of Cholestatic Jaundice in Infants: Joint recommendations of the North American Society for Pediatric Gastroenterology, Hepatology, and Nutrition and the European Society for Pediatric Gastroenterology, Hepatology, and Nutrition. Journal of Pediatric Gastroenterology and Nutrition. 2017.\n\nObliteration of the extrahepatic bile ducts, so conjugated bilirubin cannot reach the gut\nPhysiologic unconjugated jaundice of the first week \u2014 A different action is the one this situation requires.\nGilbert physiology, which is unconjugated and appears with fasting in older children after a fast \u2014 A different action is the one this situation requires.\nAlpha-1 antitrypsin only, which is the sole cause of pale stools \u2014 A different action is the one this situation requires.\nCholedochal cyst, which is the same finding as a missing gallbladder \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-041",
+    "correctAnswer": "A chloride channel in the apical membrane, so secretions are thick and the ileum plugs",
+    "difficulty": 2,
+    "citation": "Farrell PM, White TB, Ren CL, et al. Diagnosis of Cystic Fibrosis: Consensus Guidelines from the Cystic Fibrosis Foundation. Journal of Pediatrics. 2017.",
+    "examTakeaway": "Sweat chloride at or above 60 mmol/L with meconium ileum obstruction is failed cystic fibrosis transmembrane conductance regulator, a chloride channel. Thick secretions plug the ileum.",
+    "explanation": "Sweat chloride at or above 60 mmol/L with meconium ileum obstruction is failed cystic fibrosis transmembrane conductance regulator, a chloride channel. Thick secretions plug the ileum. Farrell PM, White TB, Ren CL, et al. Diagnosis of Cystic Fibrosis: Consensus Guidelines from the Cystic Fibrosis Foundation. Journal of Pediatrics. 2017.\n\nA chloride channel in the apical membrane, so secretions are thick and the ileum plugs\nA sodium channel in the collecting duct, so meconium is liquid \u2014 A different action is the one this situation requires.\nThe bilirubin conjugating enzyme, so stool is pale from birth \u2014 A different action is the one this situation requires.\nGanglion cells of the rectum, which is a different cause of no meconium, instead of a further image \u2014 A different action is the one this situation requires.\nThe pyloric muscle, which blocks nonbilious milk later \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-042",
+    "correctAnswer": "Microsomal transfer protein cannot load fat onto apoB, so chylomicrons are not made",
+    "difficulty": 3,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Absent chylomicrons after a fat load, very low cholesterol, acanthocytes, and steatorrhea with intact villi mean apoB-containing lipoproteins cannot be assembled.",
+    "explanation": "Absent chylomicrons after a fat load, very low cholesterol, acanthocytes, and steatorrhea with intact villi mean apoB-containing lipoproteins cannot be assembled. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nMicrosomal transfer protein cannot load fat onto apoB, so chylomicrons are not made\nLactase is absent, which produces acanthocytes and no chylomicrons \u2014 A different action is the one this situation requires.\nBile acids are missing, which spikes cholesterol after a meal \u2014 A different action is the one this situation requires.\nPancreatic lipase is missing, which removes apoB from the blood film, with no further image \u2014 A different action is the one this situation requires.\nTerminal-ileum bile-salt uptake, which raises chylomicrons \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-043",
+    "correctAnswer": "The terminal ileum, which is the only site for bile salts and cobalamin",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "Bile salts and the intrinsic-factor-cobalamin complex are absorbed in the terminal ileum. Loss of that segment causes bile-salt diarrhea and a Schilling test that intrinsic factor does not fix.",
+    "explanation": "Bile salts and the intrinsic-factor-cobalamin complex are absorbed in the terminal ileum. Loss of that segment causes bile-salt diarrhea and a Schilling test that intrinsic factor does not fix. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nThe terminal ileum, which is the only site for bile salts and cobalamin\nThe duodenum, which is the only site for bile salts \u2014 A different action is the one this situation requires.\nThe stomach, because intrinsic factor loss is proved when intrinsic factor fails to correct the Schilling test \u2014 A different action is the one this situation requires.\nThe colon, which absorbs cobalamin \u2014 A different action is the one this situation requires.\nThe jejunum, which is required for bile-salt reabsorption \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-044",
+    "correctAnswer": "Intrinsic factor from parietal cells, so cobalamin is not absorbed",
+    "difficulty": 2,
+    "citation": "Costanzo LS. Physiology. 6th ed. Elsevier; 2018.",
+    "examTakeaway": "After the stomach is removed, parietal-cell intrinsic factor is gone. Cobalamin deficiency is macrocytic and raises methylmalonic acid. Folate deficiency does not.",
+    "explanation": "After the stomach is removed, parietal-cell intrinsic factor is gone. Cobalamin deficiency is macrocytic and raises methylmalonic acid. Folate deficiency does not. Costanzo LS. Physiology. 6th ed. Elsevier; 2018.\n\nIntrinsic factor from parietal cells, so cobalamin is not absorbed\nIron, because iron deficiency raises the mean cell volume \u2014 A different action is the one this situation requires.\nFolate, because a high methylmalonic acid is the folate marker, before any further image \u2014 A different action is the one this situation requires.\nBile salts, because the stomach reabsorbs bile salts \u2014 A different action is the one this situation requires.\nPancreatic lipase, because lipase carries cobalamin \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-045",
+    "correctAnswer": "A failing liver no longer clears estrogen, and testicular testosterone falls",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Chronic liver failure impairs estrogen metabolism and is accompanied by low testosterone. The result is spider angiomas, palmar erythema, and gynecomastia.",
+    "explanation": "Chronic liver failure impairs estrogen metabolism and is accompanied by low testosterone. The result is spider angiomas, palmar erythema, and gynecomastia. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA failing liver no longer clears estrogen, and testicular testosterone falls\nA pituitary adenoma secreting prolactin, which is the cause of spiders \u2014 A different action is the one this situation requires.\nAromatase loss, so androgens cannot become estrogens and the breast change would not occur \u2014 A different action is the one this situation requires.\nExtrahepatic bile-duct block, which is the usual cause of gynecomastia \u2014 A different action is the one this situation requires.\nHepatitis A, which chronically raises estradiol \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-046",
+    "correctAnswer": "Lipase above three times the upper limit, from pancreatic acinar injury, here with a biliary block",
+    "difficulty": 2,
+    "citation": "Tenner S, Baillie J, DeWitt J, Vege SS. American College of Gastroenterology guideline: management of acute pancreatitis. American Journal of Gastroenterology. 2013.",
+    "examTakeaway": "Serum lipase at or above three times the upper limit supports acute pancreatic inflammation. Gallstones in the duct are a leading trigger when alcohol is absent.",
+    "explanation": "Serum lipase at or above three times the upper limit supports acute pancreatic inflammation. Gallstones in the duct are a leading trigger when alcohol is absent. Tenner S, Baillie J, DeWitt J, Vege SS. American College of Gastroenterology guideline: management of acute pancreatitis. American Journal of Gastroenterology. 2013.\n\nLipase above three times the upper limit, from pancreatic acinar injury, here with a biliary block\nAmylase from the salivary gland, because lipase is not a salivary enzyme and not from pancreatic acinar cells \u2014 A different action is the one this situation requires.\nTroponin, because pain to the back is myocardial \u2014 A different action is the one this situation requires.\nAlkaline phosphatase alone, which diagnoses necrosis of acini \u2014 A different action is the one this situation requires.\nElastase in stool, which rises in acute necrotic pain \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-047",
+    "correctAnswer": "Functional renal failure from splanchnic vasodilation, with avid sodium retention and normal kidneys",
+    "difficulty": 2,
+    "citation": "Biggins SW, Angeli P, Garcia-Tsao G, et al. Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome. Hepatology. 2021.",
+    "examTakeaway": "A rising creatinine in cirrhosis, urine sodium under 10 mEq/L, no shock, and normal imaging is the functional renal failure of advanced portal hypertension.",
+    "explanation": "A rising creatinine in cirrhosis, urine sodium under 10 mEq/L, no shock, and normal imaging is the functional renal failure of advanced portal hypertension. Biggins SW, Angeli P, Garcia-Tsao G, et al. Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome. Hepatology. 2021.\n\nFunctional renal failure from splanchnic vasodilation, with avid sodium retention and normal kidneys\nAcute tubular necrosis, which shows a high urine sodium and muddy casts, without a late consult, and no extra lab \u2014 A different action is the one this situation requires.\nGlomerulonephritis, which needs red-cell casts \u2014 A different action is the one this situation requires.\nObstruction, which dilates the collecting system \u2014 A different action is the one this situation requires.\nInterstitial nephritis from a drug still being given \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-048",
+    "correctAnswer": "A colonic outpouching where a penetrating artery meets the mucosa and can erode",
+    "difficulty": 2,
+    "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.",
+    "examTakeaway": "Colonic diverticula form where vasa recta penetrate the wall. The artery is separated from the lumen by mucosa and can bleed briskly and painlessly.",
+    "explanation": "Colonic diverticula form where vasa recta penetrate the wall. The artery is separated from the lumen by mucosa and can bleed briskly and painlessly. Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2020.\n\nA colonic outpouching where a penetrating artery meets the mucosa and can erode\nEsophageal varices, because painless blood is portal \u2014 A different action is the one this situation requires.\nA duodenal ulcer of the posterior bulb \u2014 A different action is the one this situation requires.\nInternal hemorrhoids, which cause massive maroon blood \u2014 A different action is the one this situation requires.\nAngiodysplasia is excluded by a visible outpouching \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-049",
+    "correctAnswer": "A toxin that glycosylates Rho and lifts yellow plaques off colonic mucosa",
+    "difficulty": 2,
+    "citation": "Johnson S, Lavergne V, Skinner AM, et al. Clinical Practice Guideline by the Infectious Diseases Society of America and Society for Healthcare Epidemiology of America: 2021 Focused Update Guidelines on Management of Clostridioides difficile Infection in Adults. Clinical Infectious Diseases. 2021.",
+    "examTakeaway": "Antibiotic exposure plus colonic pseudomembranes is toxin-mediated injury that disrupts the actin cytoskeleton. The classic organism is Clostridioides difficile.",
+    "explanation": "Antibiotic exposure plus colonic pseudomembranes is toxin-mediated injury that disrupts the actin cytoskeleton. The classic organism is Clostridioides difficile. Johnson S, Lavergne V, Skinner AM, et al. Clinical Practice Guideline by the Infectious Diseases Society of America and Society for Healthcare Epidemiology of America: 2021 Focused Update Guidelines on Management of Clostridioides difficile Infection in Adults. Clinical Infectious Diseases. 2021.\n\nA toxin that glycosylates Rho and lifts yellow plaques off colonic mucosa\nAn invasive dysentery that is bloody from the start and has no plaques in the colon \u2014 A different action is the one this situation requires.\nA virus that flattens duodenal villi \u2014 A different action is the one this situation requires.\nA parasite that attaches to duodenal mucosa and does not make plaques \u2014 A different action is the one this situation requires.\nA preformed food toxin that lasts 6 hours and spares the colon \u2014 A different action is the one this situation requires."
+  },
+  {
+    "batchItemId": "b18-s1-050",
+    "correctAnswer": "NAPQI, formed when glutathione is overwhelmed, so the antidote restores glutathione",
+    "difficulty": 2,
+    "citation": "Heard KJ. Acetylcysteine for acetaminophen poisoning. New England Journal of Medicine. 2008.",
+    "examTakeaway": "Acetaminophen is safe until cytochrome metabolism produces NAPQI. Glutathione detoxifies it. When glutathione is depleted, NAPQI binds hepatocytes. N-acetylcysteine replenishes glutathione. The treatment line, not the first ALT, decides the start.",
+    "explanation": "Acetaminophen is safe until cytochrome metabolism produces NAPQI. Glutathione detoxifies it. When glutathione is depleted, NAPQI binds hepatocytes. N-acetylcysteine replenishes glutathione. The treatment line, not the first ALT, decides the start. Heard KJ. Acetylcysteine for acetaminophen poisoning. New England Journal of Medicine. 2008.\n\nNAPQI, formed when glutathione is overwhelmed, so the antidote restores glutathione\nA salicylate anion, which is the acetaminophen metabolite \u2014 A different action is the one this situation requires.\nAcetaldehyde, which is the alcohol metabolite treated with fomepizole \u2014 A different action is the one this situation requires.\nOxalate, which is the ethylene glycol metabolite \u2014 A different action is the one this situation requires.\nA preformed toxin that does not use cytochrome enzymes \u2014 A different action is the one this situation requires."
+  }
+]

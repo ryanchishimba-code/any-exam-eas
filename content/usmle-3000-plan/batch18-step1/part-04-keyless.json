@@ -1,0 +1,752 @@
+[
+  {
+    "batchItemId": "b18-s1-151",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 46-year-old woman has hypertension, central fat, and easy bruising. A high-dose dexamethasone test suppresses cortisol. MRI shows a pituitary microadenoma. ACTH is high. She is the patient.",
+    "question": "Where is the ACTH coming from, and why is that the call?",
+    "options": [
+      "A pituitary adenoma, because high-dose dexamethasone can still suppress and ACTH is high",
+      "An adrenal adenoma, which raises ACTH",
+      "Ectopic ACTH, which usually suppresses with high-dose dexamethasone, and no further image",
+      "Exogenous prednisone, which raises ACTH",
+      "Primary adrenal failure, which is a pituitary adenoma"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-152",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 38-year-old woman has a painful thyroid, fever, and a high free T4 with a low TSH. Radioactive iodine uptake is under 1 percent. Weeks later she becomes hypothyroid. She is the patient.",
+    "question": "Why is uptake so low while T4 is high, and why is that the call?",
+    "options": [
+      "Graves disease, which has uptake under 1 percent",
+      "Inflammation is dumping stored hormone, so the gland is not making new hormone",
+      "A toxic adenoma, which has uptake under 1 percent and a painful gland",
+      "Factitious hormone, which makes the gland painful and then hypothyroid after the pills",
+      "Iodine deficiency, which dumps stored hormone"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-153",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "pcos-endocrine",
+    "scenario": "A 29-year-old woman has galactorrhea and no menses for 6 months. Prolactin is 180 ng/mL. TSH is normal. MRI shows a 8 mm pituitary mass. She is not pregnant. She is the patient.",
+    "question": "Why did menses stop, and why is that the call?",
+    "options": [
+      "The mass is secreting LH, which stops menses",
+      "High prolactin raises the releasing hormone and that stops cycles by lowering the gonadotropins",
+      "Prolactin suppresses the releasing hormone, so LH and FSH pulses fall and ovulation stops",
+      "TSH is the hormone at 180 ng/mL",
+      "Pregnancy is required before prolactin reaches 180"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-154",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 45-year-old man has acanthosis nigricans on the neck. Fasting insulin is high and fasting glucose is 115 mg/dL. He is heavy around the waist.",
+    "question": "What does the skin change mark, and why is that the call?",
+    "options": [
+      "Autoimmune beta-cell loss, which causes acanthosis and falling insulin output",
+      "Glucagon excess, which darkens the neck",
+      "Addison disease, which is acanthosis nigricans",
+      "Chronic high insulin acting on skin, a marker of insulin resistance",
+      "A glucagonoma rash, which is acanthosis"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-155",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 15-year-old girl has no pubic hair and no menses. Blood pressure is high. Potassium is low. Pregnenolone products that need 17-hydroxylation are absent. She is the patient.",
+    "question": "Which enzyme failed, and why is that the call?",
+    "options": [
+      "21-hydroxylase, which blocks sex steroids and causes hypertension",
+      "11-beta hydroxylase, which prevents all sex-steroid formation and causes no puberty in a hypertensive adolescent",
+      "Aromatase, which causes hypertension and absent puberty in this pattern",
+      "5-alpha reductase, which is a salt-retaining enzyme",
+      "17-alpha hydroxylase, so cortisol and sex steroids fall and mineralocorticoid precursors cause hypertension"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-156",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A newborn boy has a large tongue, a umbilical hernia, and prolonged jaundice. The newborn screen TSH is very high. He is the patient.",
+    "question": "Which hormone was missing in fetal life, and why is that the call?",
+    "options": [
+      "Thyroid hormone, so development slowed and TSH is high on the screen",
+      "Growth hormone, which raises the newborn TSH",
+      "Insulin, which enlarges the tongue and raises TSH",
+      "Cortisol, which is the newborn-screen TSH lesion",
+      "Parathyroid hormone, which causes prolonged jaundice and a high TSH value"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-157",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 58-year-old man starts empagliflozin. Glucose falls. He is told the drug blocks reabsorption of glucose in the proximal tubule. eGFR is 70.",
+    "question": "Which transporter is blocked, and why is that the call?",
+    "options": [
+      "GLUT4 in muscle, which is the SGLT2 inhibitor target on skeletal muscle",
+      "SGLT2 in the proximal tubule, so glucose spills into the urine",
+      "The insulin receptor, which the drug blocks",
+      "SGLT1 in the gut only, with no renal effect",
+      "A potassium channel in the beta cell"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-158",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 30-year-old woman has fatigue. Hemoglobin is 8 g/dL, mean cell volume is 72 fL, and ferritin is 6 ng/mL. She has heavy menses. She is the patient.",
+    "question": "Which deficiency is this, and why is that the call?",
+    "options": [
+      "B12 deficiency, which lowers ferritin and shrinks the cells, without a repeat draw",
+      "Folate deficiency, which is microcytic",
+      "Iron deficiency, because ferritin is low and the red cells are small",
+      "Thalassemia trait, which drops ferritin to 6",
+      "Anemia of inflammation, which lowers ferritin"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-159",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 68-year-old man has hemoglobin 9 g/dL and a mean cell volume of 112 fL. Methylmalonic acid is high. Folate is normal. He has numbness in his feet.",
+    "question": "Which vitamin is missing, and why is that the call?",
+    "options": [
+      "Folate, because methylmalonic acid is the folate marker",
+      "Iron, because the cells are large",
+      "Pyridoxine, which raises methylmalonic acid",
+      "Cobalamin, because methylmalonic acid rises and the cord findings fit",
+      "Vitamin K, which enlarges red cells"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-160",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 22-year-old man of Mediterranean ancestry has mild anemia. Mean cell volume is 68 fL. Ferritin is normal. Hemoglobin electrophoresis shows elevated HbA2. He has no other acute complaint.",
+    "question": "Which globin problem is this, and why is that the call?",
+    "options": [
+      "Iron deficiency, because ferritin is normal and HbA2 is high, with no repeat draw, with no night review",
+      "Alpha-thalassemia trait, which raises HbA2",
+      "B12 deficiency, which is microcytic with high HbA2",
+      "Sickle cell disease, which is a high HbA2",
+      "Beta-thalassemia trait, marked by a high HbA2 and small cells with normal iron stores"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-161",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 20-year-old man has deep muscle bleeds. PTT is prolonged and corrects when his plasma is mixed with normal plasma. Factor VIII activity is 2 percent. PT is normal.",
+    "question": "Which factor is missing, and why is that the call?",
+    "options": [
+      "Factor VIII, an intrinsic-pathway cofactor, so PTT is long and PT is normal",
+      "Factor VII, which prolongs the PTT and spares the PT",
+      "von Willebrand factor only, which drops factor VIII to 2 percent as the sole lesion in deep muscle bleeds",
+      "Factor XIII, which prolongs the PTT",
+      "Platelet glycoprotein IIb, which prolongs the PTT"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-162",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 25-year-old woman has a prolonged PTT that does not correct on mixing. She has had a clot, not bleeding. A lupus anticoagulant assay is positive. She is the patient.",
+    "question": "Which inhibitor pattern is this, and why is that the call?",
+    "options": [
+      "Factor VIII deficiency, which fails to correct on mixing and causes clots",
+      "An antibody that prolongs the clotting test in the tube but promotes thrombosis in the body",
+      "Factor VII deficiency, which prolongs the PTT and causes clots",
+      "Thrombocytopenia, which prolongs the PTT this way",
+      "Vitamin K deficiency, which is a mixing-study failure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-163",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 19-year-old African American man develops dark urine and jaundice after primaquine. Heinz bodies are seen. The enzyme that keeps glutathione reduced in red cells is deficient. He has no other acute complaint.",
+    "question": "Which enzyme failed, and why is that the call?",
+    "options": [
+      "Pyruvate kinase, which causes Heinz bodies after primaquine",
+      "Hexokinase, which is the primaquine enzyme",
+      "Glucose-6-phosphate dehydrogenase, so oxidative stress hemolyzes older red cells",
+      "Glutathione synthetase is the X-linked primaquine lesion as the usual answer, with no repeat draw",
+      "Spectrin, which forms Heinz bodies"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-164",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "leukemia-classification",
+    "scenario": "A 4-year-old boy has bone pain and fever. Blasts fill the marrow. The blasts mark as early B cells and contain PAS-positive clumps. He is the patient.",
+    "question": "Which lineage is the blast, and why is that the call?",
+    "options": [
+      "Myeloblasts, which are the usual childhood blast with PAS clumps",
+      "T lymphoblasts, which are the majority of childhood acute leukemia",
+      "Megakaryoblasts, which mark as early B cells",
+      "Early B lymphocytes, the common childhood acute leukemia",
+      "Plasma cells, which fill the marrow at age 4"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-165",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "leukemia-classification",
+    "scenario": "A 62-year-old man has fatigue and gum bleeding. White count is 40,000 with blasts. The blasts are positive for myeloperoxidase and Auer rods are seen. He has no other acute complaint.",
+    "question": "Which lineage is the blast, and why is that the call?",
+    "options": [
+      "Lymphoblasts, which contain Auer rods",
+      "Megakaryoblasts, which are myeloperoxidase positive as the definition",
+      "Hairy cells, which have Auer rods",
+      "Plasma cells, which are myeloperoxidase positive",
+      "Myeloid blasts, because Auer rods and myeloperoxidase mark that line"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-166",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 70-year-old man on warfarin has an INR of 5 and no bleeding. He ate little for three days. Vitamin K dependent factors are low.",
+    "question": "Which factors fell, and why is that the call?",
+    "options": [
+      "Factors II, VII, IX, and X, plus proteins C and S, which need vitamin K",
+      "Factor VIII and fibrinogen, which are the vitamin K factors II, VII, IX, and X",
+      "Factor XII only, which sets the INR",
+      "Platelets, which the INR measures",
+      "von Willebrand factor, which warfarin lowers first"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-167",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 50-year-old man has dark urine in the morning. Flow cytometry of blood shows missing CD55 and CD59 on red cells. Ham's conceptual picture is complement lysis. He has no other acute complaint.",
+    "question": "Which anchor is missing, and why is that the call?",
+    "options": [
+      "Spectrin, which is CD55",
+      "The GPI anchor, so complement regulators fall off the red cell",
+      "Glycophorin, which is the PNH marker, and no night review, before any late consult",
+      "Band 3, which is CD59",
+      "Hemoglobin S, which removes CD55"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-168",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hypersensitivity",
+    "scenario": "A 20-year-old man gets hives and wheezing minutes after penicillin. Blood pressure falls. Tryptase is high. He is the patient.",
+    "question": "Which immune mechanism is this, and why is that the call?",
+    "options": [
+      "Immune-complex disease, which is immediate wheeze and tryptase release",
+      "T-cell delayed rash as the minute-scale reaction",
+      "IgE on mast cells, releasing histamine within minutes",
+      "IgG against red cells, which raises tryptase",
+      "Complement from a T-cell toxin as the anaphylaxis path"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-169",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hypersensitivity",
+    "scenario": "A 40-year-old woman develops joint pain, fever, and a low complement three weeks after a drug. Urine shows a little protein. Immune complexes are deposited. She is the patient.",
+    "question": "Which immune mechanism is this, and why is that the call?",
+    "options": [
+      "IgE anaphylaxis, which lowers complement over three weeks",
+      "Delayed T-cell rash without complement use",
+      "Antibody against basement membrane as the drug-complex lesion",
+      "Immune complexes fixing complement, days to weeks after the exposure",
+      "A mast-cell leukemia, which is serum sickness"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-170",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 18-year-old woman has heavy menses. Bleeding time is long. PTT is mildly prolonged. Ristocetin aggregation fails. Factor VIII is mildly low. She is the patient.",
+    "question": "Which adhesive protein is low, and why is that the call?",
+    "options": [
+      "Factor VIII alone, which fails ristocetin and causes heavy menses as hemophilia A in a woman as the usual disease",
+      "Glycoprotein IIb-IIIa, which is the ristocetin receptor",
+      "Factor VII, which prolongs bleeding time",
+      "Fibrinogen, which is the ristocetin cofactor",
+      "von Willebrand factor, which carries factor VIII and bridges platelets"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-171",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 8-year-old boy has painful hands and a hemoglobin of 8 g/dL. A blood film shows sickle cells. Hemoglobin electrophoresis is mostly HbS with no HbA. He is the patient.",
+    "question": "Which globin change is this, and why is that the call?",
+    "options": [
+      "A point mutation making HbS, which polymerizes when deoxygenated",
+      "HbC, which is the painful-hand polymer",
+      "Beta-thalassemia major, which sickles on the film",
+      "Iron deficiency, which removes HbA and sickles cells",
+      "G6PD deficiency, which produces sickle cells"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-172",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "leukemia-classification",
+    "scenario": "A 55-year-old man has massive splenomegaly and few blasts. The marrow is dry. Cells are positive for tartrate-resistant acid phosphatase. He has infections.",
+    "question": "Which chronic lymphoid cell is this, and why is that the call?",
+    "options": [
+      "A myeloblast, which is TRAP positive",
+      "A hairy B cell, marked by tartrate-resistant acid phosphatase and a large spleen",
+      "A lymphoblast of childhood, which presents with a huge spleen at 55 and a dry marrow tap",
+      "A plasma cell, which is the TRAP-positive spleen lesion",
+      "A T cell of Sezary syndrome, which is TRAP positive in the marrow"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-173",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 3-day-old boy, the patient, has bleeding from a heel stick. He was born at home and got no vitamin K. PT and PTT are both prolonged.",
+    "question": "Why are both times long, and why is that the call?",
+    "options": [
+      "Hemophilia A, which prolongs the PT and the PTT",
+      "Factor XIII deficiency, which prolongs both times with the platelet count still normal",
+      "Vitamin K stores are low, so factors II, VII, IX, and X are not carboxylated",
+      "Platelet failure, which the PT measures",
+      "von Willebrand disease, which prolongs the PT"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-174",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hypersensitivity",
+    "scenario": "A 35-year-old man has a rash and fever a day after starting allopurinol. Eosinophils are high. Creatinine is rising. The reaction is not immediate. He has no other acute complaint.",
+    "question": "Which immune timing is this, and why is that the call?",
+    "options": [
+      "IgE anaphylaxis, which peaks at one day with eosinophils and renal failure as the usual picture",
+      "Immune-complex disease limited to the joint",
+      "Antibody to red cells only",
+      "A T-cell drug reaction days later, with eosinophils and organ injury",
+      "Mast-cell leukemia from the first dose"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-175",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 45-year-old woman has hemoglobin 9 g/dL. Reticulocytes are 8 percent. Bilirubin is unconjugated and high. Haptoglobin is low. The direct antiglobulin test is positive for IgG. She is the patient.",
+    "question": "Which hemolysis is this, and why is that the call?",
+    "options": [
+      "G6PD deficiency, which is a positive IgG antiglobulin test",
+      "Sickle cell disease, which is a positive direct antiglobulin test, with no bedside study, before any extra lab",
+      "Microangiopathic hemolysis, which coats cells with IgG",
+      "A cold agglutinin, which is mislabeled as the warm antibody test",
+      "Warm IgG on the red cell, cleared by the spleen, with a positive direct antiglobulin test"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-176",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 28-year-old woman has a platelet count of 18,000 after a viral illness. She has petechiae and no fever. Hemoglobin and white count are normal. The smear shows large platelets and no schistocytes. She is the patient.",
+    "question": "Which platelet problem is this, and why is that the call?",
+    "options": [
+      "Immune destruction of platelets, with the rest of the counts spared",
+      "Thrombotic thrombocytopenic purpura, which spares hemoglobin and has no schistocytes",
+      "Aplastic anemia, which drops only platelets",
+      "Disseminated intravascular coagulation, which leaves hemoglobin normal and has no schistocytes as the rule",
+      "Heparin-induced thrombosis, which follows a virus with no heparin exposure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-177",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "leukemia-classification",
+    "scenario": "A 60-year-old man has white count 120,000 with a left shift and basophils. The Philadelphia chromosome is present. Leukocyte alkaline phosphatase is low. Blasts are under 2 percent. He has no other acute complaint.",
+    "question": "Which fusion is this, and why is that the call?",
+    "options": [
+      "PML-RARA, which is the high-basophil chronic phase",
+      "BCR-ABL from t(9;22), driving a chronic myeloid proliferation",
+      "A lymphoblastic fusion, which lowers leukocyte alkaline phosphatase in this chronic picture",
+      "JAK2, which is the Philadelphia chromosome",
+      "BCR-ABL, which raises leukocyte alkaline phosphatase"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-178",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 70-year-old man has back pain and rouleaux. Hemoglobin is 9 g/dL. A monoclonal IgG spike is present. Marrow shows 40 percent plasma cells. Calcium is 11.2 mg/dL. He has no other acute complaint.",
+    "question": "Which marrow cell expanded, and why is that the call?",
+    "options": [
+      "Lymphoblasts, which cause rouleaux and a monoclonal IgG, skipping the repeat draw",
+      "Myeloblasts with Auer rods as the spike",
+      "Clonal plasma cells making a monoclonal immunoglobulin, with bone destruction",
+      "Hairy cells, which are 40 percent plasma cells",
+      "T cells, which secrete monoclonal IgG"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-179",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hypersensitivity",
+    "scenario": "A 12-year-old boy is given antitoxin. Ten days later he has fever, rash, and joint pain. Complement is low. He is the patient.",
+    "question": "Which complex disease is this, and why is that the call?",
+    "options": [
+      "Anaphylaxis on day 10 as the first exposure pattern",
+      "A T-cell contact rash within minutes",
+      "Serum IgE disease that lowers complement on day 10 as the definition",
+      "Immune complexes of the foreign protein, consuming complement about 10 days later",
+      "Hemolytic disease of the newborn, which is this timing in a 12-year-old, and no late consult"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-180",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 55-year-old man has fibrinogen of 80 mg/dL, platelets of 40,000, and a high D-dimer. PT and PTT are prolonged. He is in shock from sepsis.",
+    "question": "Which consumption state is this, and why is that the call?",
+    "options": [
+      "Immune thrombocytopenia, which drops fibrinogen and raises D-dimer",
+      "Hemophilia, which raises D-dimer and drops platelets",
+      "Vitamin K deficiency, which drops platelets to 40,000",
+      "Thrombotic thrombocytopenic purpura, which prolongs PT and PTT as the rule with fever and red-cell fragments",
+      "Widespread thrombin generation using up platelets and factors, with fibrin-split products"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-181",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 32-year-old woman has hemoglobin 10 g/dL. Ferritin is 400 ng/mL. Serum iron is low and TIBC is low. She has long rheumatoid arthritis. She is the patient.",
+    "question": "Which anemia of illness is this, and why is that the call?",
+    "options": [
+      "Iron trapped in stores by inflammation, so ferritin is high and serum iron is low",
+      "Iron deficiency, because ferritin is 400",
+      "Thalassemia, because TIBC is low",
+      "B12 deficiency, because serum iron is low",
+      "Sideroblastic anemia, which lowers ferritin and fills the marrow erythroblasts with iron"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-182",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "leukemia-classification",
+    "scenario": "A 26-year-old man has bleeding and blasts. The blasts have Auer rods. A translocation t(15;17) is found. He starts a drug that forces the blasts to mature.",
+    "question": "Which fusion is treated by that drug, and why is that the call?",
+    "options": [
+      "BCR-ABL, which is t(15;17) and responds to retinoic acid",
+      "PML-RARA, which all-trans retinoic acid can differentiate",
+      "MYC-IgH, which is the retinoic-acid target",
+      "RUNX1-RUNX1T1, which is t(15;17)",
+      "FLT3 only, with no translocation, treated by retinoic acid"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-183",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "coagulation-cascade",
+    "scenario": "A 40-year-old man with hemophilia A has a bleed that no longer responds to factor VIII. The PTT does not correct when normal plasma is added. An inhibitor titer is high. He has no other acute complaint.",
+    "question": "What appeared in his plasma, and why is that the call?",
+    "options": [
+      "A new factor VII deficiency, which blocks factor VIII replacement",
+      "Vitamin K deficiency, which is an inhibitor titer",
+      "An antibody against factor VIII, so replacement factor is neutralized",
+      "A lupus anticoagulant, which is the hemophilia bleed that stops responding",
+      "Platelet antibodies, which prolong the PTT mixing study in hemophilia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-184",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "hypersensitivity",
+    "scenario": "A 9-year-old boy has itchy welts after touching grass. The reaction is in the skin he touched and starts within minutes. He is the patient.",
+    "question": "Which local mechanism is this, and why is that the call?",
+    "options": [
+      "Immune-complex vasculitis starting within minutes in one patch of skin",
+      "A T-cell reaction peaking at two days as this minute welt",
+      "Antibody against collagen in the grass",
+      "Local mast-cell IgE release where the allergen touched",
+      "Serum sickness limited to the contact site within minutes"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-185",
+    "stepLevel": "step1",
+    "blueprintDomain": "blood-lymph-immune",
+    "blueprintTopic": "anemia-workup",
+    "scenario": "A 16-year-old boy has jaundice and a family history of splenectomy. The smear shows sphere-shaped red cells. Osmotic fragility is increased. Mean cell hemoglobin concentration is high. He is the patient.",
+    "question": "Which membrane defect is this, and why is that the call?",
+    "options": [
+      "G6PD deficiency, which increases osmotic fragility as the main test",
+      "Sickle cell disease, which spheres the cells and raises MCHC as the film",
+      "Iron deficiency, which causes hereditary spherocytosis",
+      "Autoimmune hemolysis is required before osmotic fragility rises in a family",
+      "Spectrin or ankyrin loss, so red cells lose membrane and become spheres"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-186",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "gout-crystals",
+    "scenario": "A 55-year-old man wakes with a hot first toe. Joint fluid shows needle-shaped crystals that are yellow when parallel to the compensator. Serum uric acid is 9.2 mg/dL. He has no other acute complaint.",
+    "question": "Which crystal is this, and why is that the call?",
+    "options": [
+      "Monosodium urate, negatively birefringent needles",
+      "Calcium pyrophosphate, which is needle shaped and yellow when parallel",
+      "Cholesterol crystals, which are the toe crystal",
+      "Hydroxyapatite, which is strongly birefringent needles",
+      "Oxalate, which is the podagra crystal"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-187",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "gout-crystals",
+    "scenario": "A 70-year-old man has a swollen knee. Fluid shows rhomboid crystals that are blue when parallel to the compensator. The knee cartilage is calcified on the film. He has no other acute complaint.",
+    "question": "Which crystal is this, and why is that the call?",
+    "options": [
+      "Urate needles, which are blue when parallel",
+      "Calcium pyrophosphate, positively birefringent rhomboids, with cartilage calcification",
+      "Hydroxyapatite, which is rhomboid and positively birefringent, before any bedside study",
+      "Cholesterol, which calcifies cartilage",
+      "Oxalate, which is the chondrocalcinosis crystal"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-188",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "rheumatoid-arthritis",
+    "scenario": "A 42-year-old woman has months of stiff hands in the morning lasting over an hour. The wrists are swollen and symmetric. Rheumatoid factor and anti-CCP are positive. She is the patient.",
+    "question": "Which joint lining disease is this, and why is that the call?",
+    "options": [
+      "Wear-and-tear cartilage loss, which is anti-CCP positive",
+      "Gout, which is a symmetric wrist disease with anti-CCP",
+      "Synovial inflammation that is symmetric and marked by anti-CCP antibody",
+      "Septic arthritis of both wrists as a chronic month-long picture, and no dose change",
+      "Psoriatic arthritis is required before anti-CCP is positive"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-189",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "lupus-pathology",
+    "scenario": "A 25-year-old woman has a malar rash, joint pain, and a positive ANA. Anti-double-stranded DNA is high. Complement is low. Urine protein is 2 g per day. She is the patient.",
+    "question": "Which antibody marks the renal risk, and why is that the call?",
+    "options": [
+      "Anti-centromere, which is the lupus nephritis marker",
+      "Anti-Jo-1, which lowers complement in this rash",
+      "Anti-Sm is absent whenever anti-dsDNA is high, so the disease is excluded",
+      "Anti-double-stranded DNA, which tracks immune-complex lupus nephritis",
+      "Rheumatoid factor, which is the malar-rash nephritis test"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-190",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "osteoporosis-bone",
+    "scenario": "A 72-year-old woman has a vertebral compression fracture after lifting a bag. DEXA T-score at the hip is -2.7. Calcium and PTH are normal. She is the patient.",
+    "question": "Which bone balance is this, and why is that the call?",
+    "options": [
+      "Osteomalacia, because the T-score is -2.7 and PTH is normal",
+      "Paget disease, which is a T-score of -2.7 with normal ALP implied",
+      "Osteopetrosis, which causes compression fractures and a low T-score",
+      "Hyperparathyroidism, which has a normal PTH in this fracture",
+      "Resorption exceeds formation, so mineralized bone mass is low and a fracture occurred"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-191",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "myopathies",
+    "scenario": "A 50-year-old woman has weak shoulders and hips. CK is 4000 U/L. She has a heliotrope rash. Anti-Jo-1 antibody is positive. She is the patient.",
+    "question": "Which muscle inflammation is this, and why is that the call?",
+    "options": [
+      "Immune attack on proximal muscle, with a rash and an antisynthetase antibody",
+      "Myasthenia gravis, which raises CK to 4000 and causes a heliotrope rash, and no late consult",
+      "Polymyalgia, which raises CK and is anti-Jo-1 positive",
+      "Statin necrosis without inflammation as the rash disease",
+      "Muscular dystrophy presenting at 50 with a heliotrope rash"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-192",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "collagen-disorders",
+    "scenario": "A 20-year-old man is tall with long fingers. The lens has dislocated upward. Aortic root diameter is enlarged. A fibrillin gene is mutant. He has no other acute complaint.",
+    "question": "Which matrix protein failed, and why is that the call?",
+    "options": [
+      "Collagen type I, which dislocates the lens upward and dilates the aortic root as the Marfan lesion",
+      "Fibrillin, so elastic tissue in the aorta and the lens zonule is weak",
+      "Collagen type IV, which is the aortic-root protein",
+      "Elastase excess with a normal fibrillin gene",
+      "Fibrillin, which causes downward lens dislocation"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-193",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "gout-crystals",
+    "scenario": "A 60-year-old man with recurrent hot joints and uric acid 9 mg/dL starts allopurinol. The drug blocks the enzyme that makes uric acid from xanthine. He has no other acute complaint.",
+    "question": "Which enzyme is blocked, and why is that the call?",
+    "options": [
+      "HGPRT, which is the allopurinol target",
+      "PRPP synthetase, which allopurinol inhibits directly",
+      "Xanthine oxidase, so xanthine is not converted to uric acid",
+      "Urease, which makes uric acid",
+      "Adenosine deaminase, which is the urate-lowering target of allopurinol"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-194",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "rheumatoid-arthritis",
+    "scenario": "A 48-year-old woman with long symmetric arthritis has a Baker cyst that ruptures. The calf is swollen and resembles a clot. Ultrasound shows fluid tracking down from the knee, and the deep veins are open. She is the patient.",
+    "question": "Where did the fluid come from, and why is that the call?",
+    "options": [
+      "A deep-vein thrombus, because the veins are open",
+      "A ruptured plantaris tendon, which tracks synovial fluid on ultrasound",
+      "Cellulitis, which is anechoic fluid from the knee",
+      "A ruptured popliteal cyst from the inflamed knee, not a venous thrombus",
+      "A calf hematoma from factor deficiency"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-195",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "osteoporosis-bone",
+    "scenario": "A 75-year-old woman has a hip T-score of -1.8 and no fracture. She is not at the osteoporosis cutoff. Calcium and vitamin D are repleted. She is the patient.",
+    "question": "Which density category is -1.8, and why is that the call?",
+    "options": [
+      "Osteoporosis, because any negative T-score is osteoporosis",
+      "Normal bone, because -1.8 is above -1.0",
+      "Osteomalacia, because the T-score defines it",
+      "Paget disease, because the T-score is -1.8",
+      "Osteopenia, because the T-score is between -1.0 and -2.5"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-196",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "lupus-pathology",
+    "scenario": "A 30-year-old woman with lupus has a rising creatinine. Biopsy shows wire-loop capillaries and full-house immunofluorescence. She is the patient.",
+    "question": "Which deposit pattern is the wire loop, and why is that the call?",
+    "options": [
+      "Subendothelial immune deposits thickening the capillary wall",
+      "Subepithelial deposits only, which are the wire loop",
+      "Mesangial deposits only, which are wire loops",
+      "Linear basement-membrane staining, which is the lupus wire loop",
+      "Pauci-immune crescents with full-house staining"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-197",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "myopathies",
+    "scenario": "A 25-year-old woman has drooping eyelids that worsen through the day. Acetylcholine-receptor antibody is positive. Chest CT shows a thymic mass. She is the patient.",
+    "question": "Which receptor is blocked, and why is that the call?",
+    "options": [
+      "The muscarinic receptor in the heart, which causes fatigable eyelids",
+      "The nicotinic receptor at the neuromuscular junction, so transmission fatigues",
+      "Presynaptic calcium channels, which are the acetylcholine-receptor antibody",
+      "The sodium channel of muscle, which is myasthenia",
+      "Acetylcholinesterase, which is the antibody target"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-198",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "collagen-disorders",
+    "scenario": "A 40-year-old woman has tight skin on the fingers, painful pallor of the digits in the cold, and a high blood pressure. Anti-Scl-70 antibody is positive. She is the patient.",
+    "question": "Which fibrosis disease is this, and why is that the call?",
+    "options": [
+      "Rheumatoid arthritis, which is anti-Scl-70",
+      "Dermatomyositis, which tightens the fingers and is anti-Scl-70 antibody of systemic sclerosis",
+      "Excess collagen in skin and internal organs, with an anti-topoisomerase antibody",
+      "SLE, which is the anti-topoisomerase disease",
+      "Eosinophilic fasciitis, which is anti-Scl-70"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-199",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "gout-crystals",
+    "scenario": "A 58-year-old man has an acute hot knee. Urate crystals are confirmed. A drug that inhibits microtubules is started for the acute attack. He has normal kidneys.",
+    "question": "Which cell does the drug stop, and why is that the call?",
+    "options": [
+      "Xanthine oxidase in the liver as the acute-attack target of this drug during an acute joint",
+      "The uric acid crystal, which the drug dissolves in one hour",
+      "Lymphocytes, which dominate the first hour of a crystal attack",
+      "Neutrophil migration, because microtubules are required to reach the joint",
+      "Osteoclasts, which are the colchicine target in an acute knee"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-200",
+    "stepLevel": "step1",
+    "blueprintDomain": "msk-skin",
+    "blueprintTopic": "osteoporosis-bone",
+    "scenario": "A 68-year-old woman with a T-score of -3.0 starts a drug that binds hydroxyapatite and inhibits osteoclasts. She is told to stay upright after the pill and to replete calcium. She is the patient.",
+    "question": "Which cell is inhibited, and why is that the call?",
+    "options": [
+      "Osteoblasts, which the bisphosphonate kills as its benefit",
+      "Chondrocytes, which resorb bone",
+      "Parathyroid chief cells, which are the pill's target",
+      "Osteocytes only, with no effect on osteoclasts",
+      "Osteoclasts, so resorption slows and bone density can rise"
+    ]
+  }
+]

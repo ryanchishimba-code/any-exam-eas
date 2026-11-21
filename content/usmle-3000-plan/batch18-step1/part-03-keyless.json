@@ -1,0 +1,752 @@
+[
+  {
+    "batchItemId": "b18-s1-101",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "acid-base-physiology",
+    "scenario": "A 55-year-old man with chronic lung disease has pH 7.36, PaCO2 58 mm Hg, and bicarbonate 32 mEq/L. He is his usual color and is not in distress today.",
+    "question": "Which compensation is this, and why is that the call?",
+    "options": [
+      "Chronic respiratory acidosis with renal retention of bicarbonate, so pH is nearly normal",
+      "Acute respiratory acidosis, because bicarbonate is already 32",
+      "Metabolic alkalosis as the primary event, because bicarbonate is 32 from loss of gastric acid",
+      "Respiratory alkalosis, because PaCO2 is 58",
+      "A laboratory mismatch, because pH cannot be 7.36 with PaCO2 of 58"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-102",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 70-year-old man has creatinine 3.2 mg/dL after three days of vomiting. Urine sodium is 8 mEq/L. Urine osmolality is 600 mOsm/kg. The bladder is empty on scan. He has no red-cell casts.",
+    "question": "Which renal response is this, and why is that the call?",
+    "options": [
+      "Acute tubular necrosis, which shows urine sodium under 10",
+      "The tubules are intact and avidly retain sodium because perfusion is low",
+      "Glomerulonephritis, which shows a bland urine and low urine sodium",
+      "Obstruction, which concentrates the urine to 600 after the bladder is empty",
+      "Interstitial nephritis, which is a sodium of 8 mEq/L"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-103",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 64-year-old man has creatinine 4.0 mg/dL after hypotension during surgery. Urine sodium is 48 mEq/L. Muddy brown casts are seen. Urine osmolality is 300 mOsm/kg. He has no other acute complaint.",
+    "question": "Which tubular injury is this, and why is that the call?",
+    "options": [
+      "Prerenal azotemia, because urine sodium is 48",
+      "Glomerular inflammation, because muddy casts are red-cell casts",
+      "Tubular cells have sloughed, so the kidney cannot concentrate or hold sodium",
+      "Postrenal obstruction, because casts of this type fill the ureter, skipping the extra lab",
+      "Atheroemboli, which are the muddy brown cast"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-104",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 8-year-old boy has dark urine two weeks after a sore throat. ASO titer is high. Complement C3 is low. Red-cell casts are present. Blood pressure is 140/90 mm Hg. He is the patient.",
+    "question": "Which glomerular pattern follows the infection, and why is that the call?",
+    "options": [
+      "Minimal change disease, which drops C3 and causes red-cell casts",
+      "Anti-GBM disease, which follows pharyngitis with a low C3",
+      "IgA nephropathy, which is two weeks later and lowers C3",
+      "Immune complexes after a streptococcal infection, with low C3 and an active urine sediment",
+      "Membranous nephropathy, which is the poststreptococcal lesion in children"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-105",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 6-year-old boy has swelling of the eyelids. Urine protein is 5 g per day. Albumin is 1.8 g/dL. Light microscopy of the glomeruli is normal. Electron microscopy shows diffuse foot-process effacement. He is the patient.",
+    "question": "Which podocyte injury is this, and why is that the call?",
+    "options": [
+      "Membranous spikes on silver stain, which are normal on light microscopy",
+      "Poststreptococcal humps, which cause nephrotic-range protein with normal light microscopy as the usual child lesion",
+      "Linear basement-membrane antibody, which is a nephrotic picture",
+      "Amyloid, which is normal on electron microscopy",
+      "Effacement of foot processes with normal light microscopy, the common childhood nephrotic lesion"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-106",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 25-year-old man has hemoptysis and hematuria. Creatinine is 3.1 mg/dL. Antibody to glomerular basement membrane is positive. Biopsy shows linear IgG along the basement membrane. He has no other acute complaint.",
+    "question": "Which antibody disease is this, and why is that the call?",
+    "options": [
+      "Antibody against basement-membrane collagen, binding lung and glomerulus in a linear pattern",
+      "Immune-complex lupus, which is linear IgG",
+      "ANCA vasculitis, which is linear IgG on the biopsy",
+      "Anti-PLA2R membranous disease, which causes hemoptysis, holding the late consult, instead of a bedside study",
+      "Poststreptococcal disease, which is linear IgG"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-107",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 60-year-old man has creatinine 2.8 mg/dL. The bladder is distended and both renal pelves are dilated. He has a slow stream and a large prostate on examination.",
+    "question": "Where is the block, and why is that the call?",
+    "options": [
+      "A single ureteral stone, which dilates both pelves and the bladder on one side",
+      "Below the bladder, so both upper tracts dilate behind a full bladder",
+      "Renal artery stenosis, which dilates the pelvis",
+      "Acute tubular necrosis, which dilates the collecting system",
+      "Glomerulonephritis, which fills the bladder"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-108",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "acid-base-physiology",
+    "scenario": "A 19-year-old woman has pH 7.25, bicarbonate 12 mEq/L, and an anion gap of 22 mEq/L. Glucose is 420 mg/dL. Serum ketones are positive. She has been thirsty for a week.",
+    "question": "Which acid is accumulating, and why is that the call?",
+    "options": [
+      "Lactic acid only, because glucose of 420 defines lactate, instead of a dose change, skipping the dose change",
+      "A normal-gap diarrhea loss, because the gap is 22",
+      "Ketoacids from insulin deficiency, widening the anion gap and lowering bicarbonate",
+      "Respiratory acidosis, because bicarbonate is 12",
+      "Toxic alcohol is required before ketones appear"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-109",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 40-year-old man has foamy urine. Protein is 6 g per day. Albumin is 2.0 g/dL. Complement is normal. A biopsy shows thickened membranes and subepithelial deposits. Antibody to the phospholipase A2 receptor is positive. He has no other acute complaint.",
+    "question": "Which deposit site is this, and why is that the call?",
+    "options": [
+      "Subendothelial deposits of lupus, which are anti-PLA2R",
+      "Foot-process effacement only, which thickens the membrane on light microscopy alone",
+      "Linear basement-membrane staining, which is the receptor antibody",
+      "Subepithelial immune deposits along the capillary wall, the membranous pattern",
+      "Mesangial immunoglobulin A, which is the nephrotic receptor-antibody lesion"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-110",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "pe-pathophysiology",
+    "scenario": "A 29-year-old woman on an estrogen pill has a swollen left leg. She develops sudden pleuritic pain. PaO2 is 68 mm Hg and PaCO2 is 30 mm Hg. pH is 7.48.",
+    "question": "Which gas pattern fits a pulmonary embolus, and why is that the call?",
+    "options": [
+      "CO2 retention as the first gas change of an acute embolus",
+      "Metabolic acidosis as the usual acute embolus gas",
+      "Hypoxemia with a high carbon dioxide because ventilation stops",
+      "A normal A-a gradient, because dead space does not affect oxygen, instead of a bedside study",
+      "Hypoxemia with a low PaCO2 from hyperventilation, and a high alveolar-arterial oxygen gap"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-111",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "asthma-copd-pathology",
+    "scenario": "A 19-year-old man with wheeze has an arterial blood gas during a severe attack. pH is 7.28 and PaCO2 is 50 mm Hg. He is tiring. Oxygen saturation is 90 percent.",
+    "question": "Why is the carbon dioxide dangerous here, and why is that the call?",
+    "options": [
+      "He is no longer hyperventilating, so CO2 retention means the airway attack is failing",
+      "A PaCO2 of 50 is the expected healthy response to wheeze",
+      "Oxygen of 90 percent means the attack is mild regardless of CO2 and supportive care is enough",
+      "pH of 7.28 is respiratory alkalosis",
+      "CO2 of 50 means the attack has ended"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-112",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 72-year-old man on lisinopril starts ibuprofen for knee pain. Creatinine rises from 1.1 to 2.0 mg/dL in a week. He is volume contracted from poor intake. Potassium is 5.5 mEq/L.",
+    "question": "Why did filtration fall, and why is that the call?",
+    "options": [
+      "The NSAID dilates the afferent arteriole and raises filtration",
+      "Afferent constriction from the NSAID plus loss of efferent tone from the ACE inhibitor, in a dry patient",
+      "The ACE inhibitor raises angiotensin II and protects filtration here when the patient is volume contracted",
+      "Ibuprofen causes glomerular basement-membrane antibody",
+      "The combination causes obstruction of both ureters"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-113",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "acid-base-physiology",
+    "scenario": "A 42-year-old woman has had watery diarrhea for five days. pH is 7.28, bicarbonate is 14 mEq/L, and the anion gap is 10 mEq/L. Chloride is 114 mEq/L. She is the patient.",
+    "question": "Which bicarbonate loss is this, and why is that the call?",
+    "options": [
+      "Ketoacidosis, because diarrhea raises the anion gap, skipping the rescue drug",
+      "Lactic acidosis, because the gap is 10",
+      "Gut loss of bicarbonate, replaced by chloride, so the gap stays normal",
+      "Respiratory alkalosis, because bicarbonate is 14",
+      "Renal tubular acidosis is excluded by diarrhea"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-114",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 21-year-old man has blood in the urine on the same day as a viral sore throat. Protein is under 1 g per day. Complement is normal. Mesangial IgA is dominant on biopsy. He has no other acute complaint.",
+    "question": "Which timing distinguishes this lesion, and why is that the call?",
+    "options": [
+      "Poststreptococcal disease, which is the same day as pharyngitis and shows IgA",
+      "Anti-GBM disease, which is mesangial IgA",
+      "Membranous disease, which presents with gross hematuria the day of a virus",
+      "Synpharyngitic hematuria with mesangial IgA, not the delayed poststreptococcal pattern",
+      "Minimal change, which is mesangial IgA"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-115",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "pe-pathophysiology",
+    "scenario": "A 45-year-old man has an acute pulmonary embolus. Mean pulmonary artery pressure is 40 mm Hg. The right ventricle is dilated. The left ventricle is underfilled. He has no other acute complaint.",
+    "question": "Why does left-sided output fall, and why is that the call?",
+    "options": [
+      "The embolus blocks the mitral valve",
+      "Left-ventricular contractility is the primary failure of the left ventricle during shock",
+      "Systemic vasodilation is the cause of the low output",
+      "The lungs overfill the left atrium",
+      "The pressure-loaded right ventricle bows the septum and underfills the left ventricle"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-116",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "ards-pathology",
+    "scenario": "A 38-year-old man aspirates gastric contents during a seizure. Within hours he is hypoxemic and the film shows bilateral patchy opacities. Wedge pressure is 10 mm Hg.",
+    "question": "What did the acid do to the lung, and why is that the call?",
+    "options": [
+      "Chemical injury of alveolar epithelium and capillaries, producing noncardiogenic edema",
+      "Immediate bacterial lobar consolidation as the first-hour picture, and no bedside study",
+      "Cardiogenic edema from the seizure",
+      "A pneumothorax from acid",
+      "Diffuse alveolar hemorrhage as the only aspiration result"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-117",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 58-year-old man is crushed under rubble for 6 hours. The urine is dark. Creatine kinase is 48,000 U/L. Potassium is 6.4 mEq/L. Creatinine is rising. He has no other acute complaint.",
+    "question": "Which pigment is injuring the tubules, and why is that the call?",
+    "options": [
+      "Hemoglobin from hemolysis, which is the crush pigment after the prolonged crush of muscle",
+      "Myoglobin from muscle necrosis, which precipitates in tubules and releases potassium",
+      "Bilirubin casts from liver injury during a crush",
+      "Bence Jones protein, which raises creatine kinase",
+      "Myoglobin, which lowers potassium"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-118",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "acid-base-physiology",
+    "scenario": "A 24-year-old man is brought from a party. pH is 7.18, anion gap is 28 mEq/L, osmolar gap is 30 mOsm/kg, and calcium oxalate crystals are in the urine. He is drowsy.",
+    "question": "Which ingestion fits, and why is that the call?",
+    "options": [
+      "Isopropanol, which causes a high anion gap and oxalate crystals",
+      "Ethanol alone, which produces oxalate",
+      "Ethylene glycol, metabolized to acids and oxalate",
+      "Methanol, which produces oxalate crystals as its hallmark",
+      "Diabetic ketoacidosis, which raises the osmolar gap to 30 and makes oxalate"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-119",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 15-year-old girl has sudden swelling. Urine protein is 7 g per day. She was given a nonsteroidal drug last week. Light microscopy is normal and foot processes are effaced. She is the patient.",
+    "question": "Which drug injury matches this biopsy, and why is that the call?",
+    "options": [
+      "A nonsteroidal drug causes linear IgG as the usual nephrotic lesion",
+      "Antibiotics cause this biopsy, whereas a nonsteroidal drug does not",
+      "The biopsy is membranous spikes from one week of a nonsteroidal drug",
+      "A nonsteroidal drug can cause foot-process effacement and nephrotic syndrome",
+      "Normal light microscopy excludes drug-related podocyte injury"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-120",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "asthma-copd-pathology",
+    "scenario": "A 70-year-old man with chronic airflow obstruction is given high-flow oxygen. An hour later he is drowsy. PaCO2 has risen from 50 to 70 mm Hg. pH is 7.25.",
+    "question": "Why did carbon dioxide rise, and why is that the call?",
+    "options": [
+      "Oxygen directly generates CO2 in the blood",
+      "The rise means the oxygen cured the obstruction",
+      "A PaCO2 rise on oxygen is expected and harmless at pH 7.25",
+      "Oxygen lowers CO2 by raising the respiratory rate in chronic retainers who already retain carbon dioxide",
+      "Uncontrolled oxygen removed his hypoxic drive and worsened ventilation-perfusion matching"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-121",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 66-year-old man has potassium 6.8 mEq/L and peaked T waves. Calcium gluconate is given first. The tracing improves within minutes. The potassium value does not yet change. He has no other acute complaint.",
+    "question": "What did the calcium do, and why is that the call?",
+    "options": [
+      "It stabilized the cardiac membrane and did not shift potassium into cells",
+      "It lowered the serum potassium by driving it into cells within one minute",
+      "It is the definitive removal of potassium from the body",
+      "It is given after insulin because membrane stabilization is slow",
+      "It is contraindicated when T waves are peaked"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-122",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 52-year-old man has nephrotic syndrome. The tongue is enlarged. Serum protein electrophoresis shows a monoclonal light chain. Congo red stain of the kidney is apple-green under polarized light. He has no other acute complaint.",
+    "question": "Which protein deposited, and why is that the call?",
+    "options": [
+      "Immune-complex membranous deposits, which are Congo-red positive",
+      "Amyloid from a light chain, with apple-green birefringence on Congo red",
+      "Anti-GBM antibody, which is apple-green",
+      "Diabetic mesangial sclerosis, which is Congo-red positive",
+      "Myeloma cast nephropathy, which is apple-green birefringence"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-123",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "pe-pathophysiology",
+    "scenario": "A 40-year-old woman has an acute embolus. Alveolar dead space increases. End-tidal CO2 falls while arterial PaCO2 is higher than the end-tidal value. She has no other acute complaint.",
+    "question": "Why did end-tidal CO2 fall, and why is that the call?",
+    "options": [
+      "The embolus increases CO2 delivery to the alveoli",
+      "Dead space lowers arterial CO2 below the end-tidal value",
+      "Ventilated lung that is not perfused adds air with little CO2 to the exhaled gas",
+      "Shunt, not dead space, is the embolus gas lesion",
+      "End-tidal CO2 rises in dead space"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-124",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "acid-base-physiology",
+    "scenario": "A 35-year-old woman has been vomiting for two days. pH is 7.50, bicarbonate is 34 mEq/L, and chloride is 88 mEq/L. She is volume depleted. She is the patient.",
+    "question": "Which acid-base change is this, and why is that the call?",
+    "options": [
+      "Diarrhea, which raises bicarbonate",
+      "Respiratory alkalosis, because chloride is 88",
+      "Normal-gap acidosis from vomiting",
+      "Loss of gastric acid, leaving a hypochloremic metabolic alkalosis",
+      "Renal tubular acidosis, which raises bicarbonate, before any dose change"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-125",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "aki-mechanisms",
+    "scenario": "A 48-year-old man is given cisplatin for a tumor. A week later magnesium is 1.0 mg/dL and potassium is 3.0 mEq/L. Creatinine has risen. He has polyuria.",
+    "question": "Which tubular segment was injured, and why is that the call?",
+    "options": [
+      "Glomerular injury only, which wastes magnesium as the first sign",
+      "Collecting-duct aldosterone block, which is the cisplatin lesion",
+      "Ureteral obstruction from the drug crystals of cisplatin as the usual toxicity",
+      "A loop diuretic effect that persists a week after one cisplatin dose as the labeled action",
+      "Proximal and distal tubular injury from cisplatin, wasting magnesium and potassium"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-126",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "ards-pathology",
+    "scenario": "A 33-year-old man nearly drowned in fresh water. He is hypoxemic with bilateral opacities and a normal heart size. Wedge pressure is 11 mm Hg.",
+    "question": "What filled the alveoli, and why is that the call?",
+    "options": [
+      "Injury and fluid leak after aspiration, with noncardiogenic edema",
+      "Left-ventricular failure, because the heart size is normal and the wedge is 11",
+      "Fresh-water hemolysis as the cause of the opacities alone",
+      "Pneumothorax from the immersion",
+      "Oil from the water, as in lipoid pneumonia"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-127",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "glomerular-diseases",
+    "scenario": "A 60-year-old man has had diabetes for 20 years. Urine albumin is 800 mg per day. The eyes show proliferative retinal disease. The kidneys are large. He has no red-cell casts.",
+    "question": "Which glomerular change fits the long diabetes, and why is that the call?",
+    "options": [
+      "Minimal-change disease, which follows 20 years of diabetes as the usual lesion",
+      "Mesangial expansion and basement-membrane thickening from long hyperglycemia",
+      "Anti-GBM disease, which enlarges the kidneys and follows retinopathy",
+      "Amyloid is required before diabetic kidneys leak albumin",
+      "Poststreptococcal disease, which is the 20-year diabetic lesion"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-128",
+    "stepLevel": "step1",
+    "blueprintDomain": "respiratory-renal",
+    "blueprintTopic": "asthma-copd-pathology",
+    "scenario": "A 25-year-old man uses albuterol many times a day and still wheezes at night. An inhaled corticosteroid is added. He is taught that the steroid is the controller.",
+    "question": "What does the inhaled corticosteroid change, and why is that the call?",
+    "options": [
+      "It replaces albuterol as the rescue bronchodilator for acute spells",
+      "It is an antibiotic for nocturnal wheeze",
+      "It reduces airway inflammation, which is the controller, while albuterol is the reliever",
+      "It is used only after oral steroids have failed for a year",
+      "It raises airway eosinophils as its benefit"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-129",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 14-year-old boy has thirst, weight loss, and glucose of 430 mg/dL. pH is 7.22 and ketones are positive. Insulin and C-peptide are both low. He is the patient.",
+    "question": "Which insulin state is this, and why is that the call?",
+    "options": [
+      "Insulin resistance with a high C-peptide",
+      "A glucagonoma, which lowers C-peptide and causes ketones",
+      "Factitious insulin, which lowers glucose to 430",
+      "Autoimmune loss of beta cells, so insulin and C-peptide are both low and ketones form",
+      "A sulfonylurea overdose, which suppresses insulin"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-130",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 56-year-old man has glucose 210 mg/dL and an A1c of 8.2 percent. He is heavy. Fasting insulin is high. Ketones are negative. He has no weight loss.",
+    "question": "Which insulin state is this, and why is that the call?",
+    "options": [
+      "Absolute insulin deficiency, because the glucose is 210",
+      "Beta-cell aplasia, because insulin is high",
+      "Glucagon deficiency, because A1c is 8.2",
+      "Exogenous insulin use, because C-peptide would be the high signal here",
+      "Resistance to insulin, so the beta cell makes extra insulin and ketones do not appear"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-131",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 34-year-old woman has weight loss, a tremor, and a heart rate of 120. TSH is 0.01 mU/L and free T4 is high. She has a diffuse goiter and eye protrusion. She is the patient.",
+    "question": "Which gland loop is broken, and why is that the call?",
+    "options": [
+      "The thyroid is driven by antibodies, so T4 is high and TSH is suppressed",
+      "A pituitary tumor secreting TSH, which suppresses TSH",
+      "Iodine deficiency, which raises T4 and suppresses TSH",
+      "Thyroid hormone resistance, which lowers T4",
+      "Factitious T3, which enlarges the gland and protrudes the eyes of the person taking it"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-132",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 48-year-old woman feels cold and is slowed. TSH is 42 mU/L and free T4 is low. The gland is firm and rubbery. Antithyroid peroxidase antibody is high. She is the patient.",
+    "question": "Which primary gland failure is this, and why is that the call?",
+    "options": [
+      "A pituitary failure, which raises TSH when T4 is low",
+      "The thyroid itself has failed, so T4 is low and TSH rises",
+      "Iodine excess, which lowers TSH and T4 together in this pattern",
+      "Graves disease, which raises TSH",
+      "A TSH-secreting adenoma, which lowers T4"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-133",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 40-year-old man has fatigue, low blood pressure, and potassium of 5.8 mEq/L. Sodium is 128 mEq/L. Morning cortisol is low and ACTH is high. He tans easily without much sun.",
+    "question": "Which gland failed, and why is that the call?",
+    "options": [
+      "The pituitary, which raises ACTH when cortisol is low and tans the skin as the usual central lesion",
+      "The thyroid, which causes this electrolyte pair",
+      "The adrenal cortex, so cortisol and aldosterone fall and ACTH rises",
+      "The parathyroid, which raises ACTH",
+      "A cortisol-secreting tumor, which raises ACTH"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-134",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 36-year-old woman has weight gain on the trunk, a dorsal fat pad, and purple stretch marks. A 1 mg overnight dexamethasone test does not suppress cortisol. ACTH is low. A CT shows an adrenal mass. She is the patient.",
+    "question": "Where is the cortisol coming from, and why is that the call?",
+    "options": [
+      "A pituitary adenoma, which suppresses ACTH",
+      "Ectopic ACTH, which lowers ACTH",
+      "Adrenal insufficiency, which fails the dexamethasone test this way",
+      "An adrenal tumor, because cortisol is high and ACTH is suppressed",
+      "Factitious ACTH use, which enlarges one adrenal"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-135",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "pcos-endocrine",
+    "scenario": "A 24-year-old woman has irregular menses and new coarse hair on the chin. LH is high relative to FSH. The ovaries are enlarged with many small follicles. She is the patient.",
+    "question": "Which hormone imbalance is this, and why is that the call?",
+    "options": [
+      "Ovarian failure, which raises LH and grows many follicles",
+      "A prolactinoma, which is the many-follicle ovary",
+      "Adrenal insufficiency, which causes chin hair and many follicles",
+      "Turner syndrome, which enlarges the ovaries",
+      "High LH drive of theca cells, so androgens rise and cycles are anovulatory"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-136",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 30-year-old woman is 10 weeks pregnant. She has a tremor and TSH is suppressed. Free T4 is high. Thyroid-stimulating immunoglobulin is positive. She is the patient.",
+    "question": "Why is this dangerous in pregnancy, and why is that the call?",
+    "options": [
+      "Stimulating antibody crosses the placenta and can drive the fetal thyroid",
+      "TSH crosses the placenta and suppresses the fetus",
+      "The antibody stays in the mother because IgG does not cross, instead of a night review",
+      "Pregnancy cures stimulating antibody disease",
+      "Free T4 does not affect the fetus"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-137",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 17-year-old girl has not menstruated. Blood pressure is 150/96 mm Hg. Potassium is 3.1 mEq/L. 17-hydroxyprogesterone is not the high product. She is virilized. An enzyme just before cortisol and aldosterone is suspected. She is the patient.",
+    "question": "Which distal enzyme failed, and why is that the call?",
+    "options": [
+      "21-hydroxylase, which causes hypertension and low potassium, without a bedside study, skipping the rescue drug",
+      "11-beta hydroxylase, so deoxycorticosterone builds up and causes hypertension with virilization",
+      "17-alpha hydroxylase, which virilizes",
+      "Aromatase, which causes hypertension",
+      "5-alpha reductase, which raises blood pressure"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-138",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 19-year-old man in ketoacidosis has potassium of 5.6 mEq/L before treatment. Total body potassium is actually low. Insulin is about to start. He is the patient.",
+    "question": "Why is the serum potassium high while stores are low, and why is that the call?",
+    "options": [
+      "The kidneys have stopped all potassium excretion for days as the only reason, skipping the further image",
+      "He ate a potassium load equal to the deficit",
+      "Insulin deficiency and acidosis shift potassium out of cells, hiding a body deficit",
+      "Aldosterone is absent, which is required for ketoacidosis",
+      "The high value means replacement is contraindicated once insulin starts"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-139",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 28-year-old woman with a high free T4 is started on methimazole. She is not pregnant. The drug blocks a step in hormone synthesis. She is the patient.",
+    "question": "Which step is blocked, and why is that the call?",
+    "options": [
+      "Release of stored hormone within one hour, which is the methimazole action",
+      "Peripheral conversion of T4 to T3 as the only methimazole effect",
+      "TSH secretion from the pituitary",
+      "Organification of iodide by thyroid peroxidase",
+      "Iodide uptake by the sodium-iodide symporter as the methimazole target"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-140",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 50-year-old man on long-term prednisone stops it abruptly before surgery. The next morning he is hypotensive. Glucose is 58 mg/dL. The adrenal cortex has been suppressed.",
+    "question": "Why is he hypotensive, and why is that the call?",
+    "options": [
+      "Prednisone causes permanent adrenal destruction like autoimmune adrenalitis",
+      "The hypotension is from mineralocorticoid excess",
+      "Stopping prednisone raises cortisol the next day",
+      "Aldosterone is the hormone prednisone replaces",
+      "Chronic glucocorticoid use suppressed ACTH, so his own cortisol cannot rise under stress"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-141",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "pcos-endocrine",
+    "scenario": "A 27-year-old woman wants a child. She has polycystic ovaries and does not ovulate. BMI is 34. She is advised that weight loss can restore ovulation before drugs. She is the patient.",
+    "question": "Why can weight loss restore cycles, and why is that the call?",
+    "options": [
+      "Less insulin resistance lowers ovarian androgen drive and allows FSH to mature a follicle",
+      "Weight loss raises LH further, which is the benefit for restoring regular ovulatory cycles",
+      "Weight loss removes the need for a uterus",
+      "Ovulation in this state is independent of insulin",
+      "Weight loss blocks FSH and that starts ovulation"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-142",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 60-year-old woman has a thyroid nodule. Calcitonin is very high. She has episodes of flushing. A mass is in the thyroid medulla. She is the patient.",
+    "question": "Which cell secreted the marker, and why is that the call?",
+    "options": [
+      "Follicular cells, which secrete calcitonin",
+      "Parafollicular C cells, which make calcitonin and can form a medullary carcinoma",
+      "Parathyroid chief cells, which sit in the thyroid medulla and secrete calcitonin there",
+      "Beta cells, which make calcitonin",
+      "C cells, which make thyroglobulin as the tumor marker"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-143",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 62-year-old man has fasting glucose 118 mg/dL and a 2-hour glucose of 165 mg/dL after a 75 g load. A1c is 6.0 percent. He has no symptoms.",
+    "question": "Which glucose category is this, and why is that the call?",
+    "options": [
+      "Diabetes, because 118 fasting meets the 126 cutoff",
+      "Normal glucose, because A1c is 6.0",
+      "Prediabetes, because fasting glucose is 100 to 125 or the 2-hour value is 140 to 199",
+      "Diabetes, because a 2-hour value above 140 is diabetes",
+      "Hypoglycemia, because the 2-hour value fell from a higher peak, skipping the late consult"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-144",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 44-year-old man has resistant hypertension. The morning after lying down, aldosterone is high and renin is low. A salt-suppression test does not lower aldosterone. Potassium is 3.3 mEq/L. He has no other acute complaint.",
+    "question": "Which confirmation was used, and why is that the call?",
+    "options": [
+      "A high renin confirms primary aldosteronism",
+      "Salt loading should raise aldosterone in this disease",
+      "Low aldosterone with low renin is the confirmatory pattern after a salt load is given",
+      "Failure of salt loading to suppress aldosterone confirms primary aldosterone excess",
+      "The test diagnoses renovascular hypertension"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-145",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 42-year-old man has a low TSH and a high free T4. A radioactive iodine uptake over the gland is near zero. He has been taking his spouse's thyroid pills. The gland is small.",
+    "question": "Why is uptake low, and why is that the call?",
+    "options": [
+      "Graves disease, which has a near-zero uptake",
+      "Thyroiditis is excluded by a low uptake",
+      "Iodine deficiency, which suppresses TSH and raises T4",
+      "A TSH-secreting tumor, which lowers uptake and raises T4 with a low TSH, skipping the late consult",
+      "Exogenous hormone suppresses TSH, so the gland is quiet and does not take up iodine"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-146",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 50-year-old man has glucose 280 mg/dL, no ketones, and serum osmolality of 330 mOsm/kg. He is very dry. Bicarbonate is 22 mEq/L. He takes no insulin.",
+    "question": "Which hyperglycemic state is this, and why is that the call?",
+    "options": [
+      "Enough insulin remains to block ketones, but not enough to control glucose, so osmolality rises",
+      "Diabetic ketoacidosis, because osmolality is 330 and bicarbonate is 22 with ketones in the serum",
+      "Hypoglycemia, because glucose is 280",
+      "Hyperosmolar coma requires ketones",
+      "A pure water deficit with a glucose of 90"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-147",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "adrenal-disorders",
+    "scenario": "A 8-year-old boy has early pubic hair and a growth spurt. 17-hydroxyprogesterone is very high. He had a salt-losing crisis as an infant. He is the patient.",
+    "question": "Which enzyme failed, and why is that the call?",
+    "options": [
+      "11-beta hydroxylase, which causes a salt-losing crisis",
+      "21-hydroxylase, so cortisol and aldosterone fall and androgen precursors rise",
+      "17-alpha hydroxylase, which virilizes and loses salt",
+      "Aromatase excess, which raises 17-hydroxyprogesterone",
+      "5-alpha reductase deficiency, which is the salt-losing enzyme, with no night review"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-148",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "preeclampsia-mechanism",
+    "scenario": "A 32-year-old woman is 34 weeks pregnant. Blood pressure is 168/110 mm Hg. She has a headache and spots in her vision. Platelets are 80,000. Creatinine is 1.4 mg/dL. She is the patient.",
+    "question": "Which pregnancy vascular injury is this, and why is that the call?",
+    "options": [
+      "Chronic hypertension, which starts with seizures at 34 weeks as a new disease",
+      "Normal third-trimester pressure, because 168/110 can be physiologic",
+      "Endothelial dysfunction with high pressure and organ injury after 20 weeks",
+      "Primary aldosteronism of pregnancy, which drops platelets",
+      "Pulmonary embolism, which raises blood pressure and drops platelets this way"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-149",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "thyroid-disorders",
+    "scenario": "A 55-year-old man has bone pain and a calcium of 11.8 mg/dL. PTH is high. Phosphate is low. A sestamibi scan lights up one parathyroid gland. He has no other acute complaint.",
+    "question": "Which gland is overworking, and why is that the call?",
+    "options": [
+      "The thyroid, because calcitonin raises calcium",
+      "All four glands from secondary hyperparathyroidism, which raises phosphate in the circulation",
+      "A PTHrP tumor, which raises PTH",
+      "One parathyroid adenoma secreting PTH, raising calcium and lowering phosphate",
+      "Vitamin D toxicity, which raises PTH"
+    ]
+  },
+  {
+    "batchItemId": "b18-s1-150",
+    "stepLevel": "step1",
+    "blueprintDomain": "reproductive-endocrine",
+    "blueprintTopic": "diabetes-pathophysiology",
+    "scenario": "A 60-year-old man on metformin has an eGFR of 28 mL/min. The drug is stopped because of the filtration rate. He has no acidosis today.",
+    "question": "Why is metformin stopped at this filtration rate, and why is that the call?",
+    "options": [
+      "Metformin is stopped because it causes ketoacidosis at any eGFR, and no late consult, with no repeat draw",
+      "The drug is safest when eGFR is under 30",
+      "Metformin injures glomeruli directly at this level",
+      "The stop rule is an eGFR under 60 with no other factor",
+      "Below an eGFR of about 30, the drug can accumulate and rare lactic acidosis becomes a concern"
+    ]
+  }
+]
