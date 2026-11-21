@@ -34,6 +34,7 @@ import {
 } from "@/lib/nclex-study-guide/guide-registry";
 import { isUsmleStudyGuidePublic } from "@/lib/nclex-study-guide/usmle-guide-flags";
 import { QUICK_BITE_BOARDS, QUICK_BITE_EXAMS } from "@/lib/quick-bites/boards";
+import { isUsmleQuickBitesPublic, USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { STUDY_FEEDS } from "@/lib/study-feed/catalog";
 import { isUsmleStudyFeedPublic, USMLE_FEED_PATH } from "@/lib/study-feed/usmle-feed";
@@ -113,6 +114,17 @@ const NAV_SECTIONS: NavSection[] = [
           exams: [board.exam],
         };
       }),
+      ...(isUsmleQuickBitesPublic()
+        ? [
+            {
+              id: "usmle-quick-bites",
+              href: USMLE_QUICK_BITES_PATH,
+              label: "Quick Bites",
+              icon: Clapperboard,
+              exams: ["usmle" as const],
+            },
+          ]
+        : []),
       {
         id: "pance-feed",
         href: STUDY_FEEDS.pance.href,

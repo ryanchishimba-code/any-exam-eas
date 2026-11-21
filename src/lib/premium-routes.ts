@@ -1,6 +1,7 @@
 import { isGuestPreviewPage } from "@/lib/guest-preview";
 import { studyGuideRouteBases } from "@/lib/nclex-study-guide/guide-registry";
 import { quickBiteRouteBases } from "@/lib/quick-bites/boards";
+import { USMLE_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-flags";
 
 /** Edge-safe premium route list (no Prisma). */
 export const PREMIUM_PAGE_PREFIXES = [
@@ -22,6 +23,7 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/studygub",
   ...studyGuideRouteBases(),
   ...quickBiteRouteBases(),
+  USMLE_QUICK_BITES_PATH,
 ] as const;
 
 /** Reference books render their own trial upsell. Middleware must not send them to login. */
