@@ -2,8 +2,9 @@
 
 The library stays hidden. Flags are unchanged. This pass checked claims against a confirmable source and rewrote or removed anything that source does not state. Design and components were not changed.
 
-Backup of the pre-sourcing files: `scripts/usmle-quickbites-20261121/backup-pre-sourcing-20261121/`.
-Undo: `scripts/usmle-quickbites-20261121/05-undo-sourcing.sh`.
+Backup before this finish pass: `scripts/usmle-quickbites-20261121/backup-pre-finish-20261121/`.
+Undo this finish pass: `scripts/usmle-quickbites-20261121/07-undo-finish-sourcing.sh`.
+Earlier sourcing backup: `scripts/usmle-quickbites-20261121/backup-pre-sourcing-20261121/`.
 
 ## Citations by type
 
@@ -11,12 +12,12 @@ Counted from the source name after this pass. "Guideline" is a society or govern
 
 | | Step 1 | Step 2 CK | Step 3 |
 | --- | ---: | ---: | ---: |
-| Guideline | 18 | 57 | 62 |
-| Statement or trial | 3 | 7 | 8 |
+| Guideline | 21 | 65 | 70 |
+| Statement or trial | 4 | 10 | 12 |
 | Ethics code | 3 | 8 | 4 |
-| Reference text | 156 | 108 | 106 |
+| Reference text | 152 | 97 | 94 |
 
-Before this pass the reference-text counts were 162, 118, and 118. Guideline counts were 13, 48, and 51.
+These counts are after the finish pass. Before that pass, reference-text counts were 156, 108, and 106.
 
 New or corrected guideline links use a PubMed URL or, for the UK kidney guideline, the society's PDF. Paywalled journal pages were not used as the only link.
 
@@ -40,21 +41,40 @@ These management claims were rewritten because the previous number or sequence w
 
 Across the mechanism bites, numeric lines that were not rechecked against the named chapter were removed rather than left standing. Examples include Turner coarctation percentages, a 20 mm Hg arm-leg gradient, G6PD recheck timing, compartment-pressure delta, uric-acid urine pH targets, and several drug-hour windows. The qualitative claim was kept.
 
+## UK Kidney Association hyperkalemia source
+
+Confirmed. The document exists.
+
+Exact title: UKKA Clinical Practice Guideline – Management of Hyperkalaemia in Adults. Updated July 2026.
+
+URL: https://www.ukkidney.org/wp-content/uploads/drupal-archive/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf
+
+The society's current guideline page, https://guidelines.ukkidney.org/hyperkalaemia/, is marked updated July 2026. The calcium and insulin doses in `usmle-qb-s3-085` are the hospital recommendations in that PDF. The 2020 edition was not used.
+
+## Finish pass
+
+Management bites that were still on a reference text were moved when a PubMed record stated the claim.
+
+- DIC treatment (`usmle-qb-s2-012`, `usmle-qb-s3-011`): ISTH 2013 harmonized guidance, PMID 23379279. Treat the cause. Transfuse platelets or plasma for bleeding, not for a number. The cryoprecipitate-as-fibrinogen-order line was removed. It is not in that guidance.
+- Guillain-Barré (`usmle-qb-s1-032`, `usmle-qb-s2-023`, `usmle-qb-s3-024`): EAN/PNS 2023, PMID 37814552. IVIg 0.4 g/kg for 5 days, or plasma exchange 12–15 L. Oral corticosteroids are recommended against. Ventilation risk uses mEGRIS, not a vital-capacity cutoff.
+- Migraine overuse (`usmle-qb-s2-036`, `usmle-qb-s3-030`): ICHD-3, PMID 29368949. Triptans, ergots, opioids, and combination analgesics at 10 or more days a month; simple analgesics at 15 or more. The AHS 2021 consensus (PMID 34160823) is the treatment-integration statement. It was not used for the day counts, and the coronary-disease contraindication was not in the text checked, so that claim was removed.
+- Pheochromocytoma (`usmle-qb-s1-120`, `usmle-qb-s2-124`, `usmle-qb-s3-112`): Endocrine Society 2014, PMID 24893135. Preoperative blockade, plus a high-sodium diet and fluids. The alpha-before-beta sentence was not in the abstract, so it was removed.
+- Infant salt-wasting crisis (`usmle-qb-s2-002`, `usmle-qb-s3-004`): Endocrine Society CAH guideline 2018, PMID 30272171. Sodium and potassium cutoffs were removed because they were not in the text checked.
+- Carbon monoxide (`usmle-qb-s2-139`, `usmle-qb-s3-130`): ACEP 2017 clinical policy, PMID 27993310. The affinity number stays off these management bites.
+- Acetaminophen (`usmle-qb-s2-140`, `usmle-qb-s3-131`): 2023 US/Canada consensus, PMID 37552484, which uses a revised Rumack-Matthew nomogram. Acute ingestion for that nomogram is a presentation from 4 to 24 hours.
+- Naloxone (`usmle-qb-s1-145`, `usmle-qb-s2-141`, `usmle-qb-s3-132`): 2023 AHA poisoning update, PMID 37721023. Adults: 0.2–2 mg IV/IO/IM or 2–4 mg intranasal, every 2–3 minutes. A 30–90 minute duration was removed.
+- Gestational diabetes (`usmle-qb-s2-131`, `usmle-qb-s3-119`): ACOG Practice Bulletin 190, PMID 29370047. Diagnostic cutoffs are not restated. The PubMed text of the bulletin does not print them.
+- H. pylori (`usmle-qb-s3-108`): ACG 2024, PMID 39626064. Bismuth quadruple therapy for 14 days when susceptibility is unknown, and a universal test of cure.
+- Necrotizing fasciitis (`usmle-qb-s1-056`, `usmle-qb-s2-055`, `usmle-qb-s3-047`): IDSA 2014 skin and soft tissue guideline, PMID 24973422. Prompt treatment. A drug list was not added.
+- Pelvic inflammatory disease (`usmle-qb-s2-136`, `usmle-qb-s3-124`): CDC STI Treatment Guidelines 2021, PMID 34292926.
+
 ## Management bites still on a reference text
 
-These are decisions, drugs, or next steps whose primary guideline page was not confirmed in this pass, so they were not given a guessed citation. A guideline may exist.
+A guideline was not attached when the recommendation sentence could not be confirmed. Reasons:
 
-- DIC treatment, including cryoprecipitate for fibrinogen (`usmle-qb-s2-012`, `usmle-qb-s3-011`). An ISTH document was not locked to a recommendation sentence.
-- Polycythemia vera phlebotomy target, APL/ATRA, tumor lysis/rasburicase, PNH complement-inhibitor vaccination, sickle-cell acute chest and exchange transfusion.
-- Migraine triptan limits and medication-overuse days (`usmle-qb-s2-036`, `usmle-qb-s3-030`). The AHS 2021 consensus (PMID 34160823) was identified and not quoted, because the overuse-day and coronary-contraindication lines were not re-read in it.
-- Parkinson timing, multiple sclerosis flare, cord-compression dexamethasone dose, TIA antithrombotic plan, thunderclap pathway, brain abscess size cutoff.
-- Neuroleptic malignant syndrome, serotonin syndrome, lithium level, torsades magnesium dose (`usmle-qb-s2-069`, `usmle-qb-s3-061`).
-- Pheochromocytoma alpha-before-beta preparation. The Endocrine Society guideline (PMID 24893135) was identified. The alpha-before-beta sentence was not re-read, so the bites were not switched.
-- Infant salt-wasting crisis (`usmle-qb-s3-004`) was not forced onto the adult primary-adrenal-insufficiency guideline.
-- Guillain-Barré treatment (IVIG or plasma exchange, not steroid) remains StatPearls.
-- Carbon monoxide, acetaminophen/NAC timing, naloxone duration, flumazenil, dantrolene dose, malignant hyperthermia.
-- PID partner treatment, previa, abruption, gestational diabetes thresholds, torsion time window, postmenopausal bleeding biopsy, H. pylori test-of-cure, cholecystitis wall thickness.
-- Compartment pressure, hip-fracture timing, septic-joint cell count, necrotizing infection.
-- Several ethics and systems bites (error disclosure, DNR limits, reporting abuse, placebo, organ-donation requesting) stay on a reference text or the AMA Code where that opinion was already confirmed. They are not a disease guideline.
+- **Placenta previa and placental abruption** (`usmle-qb-s1-126`, `usmle-qb-s1-127`, `usmle-qb-s2-129`, `usmle-qb-s2-130`, `usmle-qb-s3-117`, `usmle-qb-s3-118`). No ACOG or SMFM page was retrieved that states the no-digital-exam rule or the abruption resuscitation steps. They stay on StatPearls.
+- **Torsades magnesium dose** (`usmle-qb-s1-072`, `usmle-qb-s2-069`, `usmle-qb-s3-061`). The 2017 AHA/ACC/HRS ventricular-arrhythmia guideline (PMID 29084731) was identified. The magnesium recommendation was not in the text checked, so the dose was not moved onto it.
+- **Flumazenil** (`usmle-qb-s2-142`, `usmle-qb-s3-133`). The 2023 AHA poisoning update discusses flumazenil, but the dependent-patient seizure warning was not in the passage checked.
+- **No single current society guideline was locked** for: polycythemia vera phlebotomy target, APL/ATRA, tumor lysis and rasburicase, PNH vaccination, sickle-cell acute chest and exchange transfusion, compartment-pressure threshold, hip-fracture timing, septic arthritis cell count, thunderclap pathway, Parkinson clock times, multiple-sclerosis admission, cord compression, Horner imaging, brain-abscess size, lithium, serotonin syndrome, neuroleptic malignant syndrome, dantrolene dose, malignant hyperthermia, postmenopausal-bleeding biopsy, bronchiectasis clearance, hypersensitivity pneumonitis antigen removal, hypokalemia infusion rate, and the ethics and systems bites that are not a disease guideline (DNR limits, ventilator withdrawal, placebo, organ donation, impaired colleague, child and elder reporting).
 
-Mechanism bites with no society guideline remain on the named StatPearls chapter. Where the "says" line was updated, it restates the lead so the citation matches the claim and does not add a number the line no longer contains.
+Mechanism bites with no society guideline remain on the named StatPearls chapter.

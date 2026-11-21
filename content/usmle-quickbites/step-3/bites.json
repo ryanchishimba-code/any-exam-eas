@@ -86,20 +86,19 @@
     "open": false,
     "lead": "A vomiting, shocked infant in the first weeks of life gets a glucose, a sodium, a potassium, and a stress-dose steroid. The genital exam does not delay the steroid.",
     "lines": [
-      "Hyponatremia and hyperkalemia are the lab pair.",
-      "17-hydroxyprogesterone is sent. The result is not required to treat.",
-      "Do not give only antibiotics.",
-      "A virilized or atypical newborn can crash at 1\u20133 weeks with sodium under 130 and potassium over 6.",
-      "Order 17-hydroxyprogesterone. Give hydrocortisone and saline if the infant is shocked. Do not assign sex or discharge first."
+      "A virilized or atypical newborn is evaluated for 21-hydroxylase deficiency before anyone assigns a sex or sends the infant home.",
+      "Salt-wasting disease is part of that guideline's clinical management, not a reassurance visit.",
+      "Specific sodium and potassium cutoffs are not restated here. They were not in the guideline text checked for this citation.",
+      "The infant who is ill is treated, not observed until a karyotype result returns."
     ],
-    "miss": "Fluid-resuscitating a shocked neonate and waiting a day for the newborn screen.",
+    "miss": "Discharging a virilized newborn with no plan for salt-wasting 21-hydroxylase deficiency.",
     "diagram": "cah-salt",
     "diagramAlt": "Salt-wasting 21-hydroxylase. Week 1\u20133: Na low, K over 6 17-hydroxyprogesterone very high Hydrocortisone + saline, then fludrocortisone",
     "source": {
-      "name": "StatPearls. Congenital Adrenal Hyperplasia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
-      "says": "Salt-wasting crisis is treated with stress-dose glucocorticoid and saline immediately. The diagnostic steroid precursor is sent, not awaited."
+      "name": "Endocrine Society guideline. Congenital adrenal hyperplasia due to 21-hydroxylase deficiency.",
+      "year": "2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30272171/",
+      "says": "This is the Endocrine Society clinical practice guideline for the management of congenital adrenal hyperplasia caused by steroid 21-hydroxylase deficiency, including the salt-wasting form."
     },
     "number": 4,
     "id": "usmle-qb-s3-004"
@@ -272,20 +271,19 @@
     "open": false,
     "lead": "In a bleeding patient with DIC and a low fibrinogen, order cryoprecipitate. Ordering only fresh frozen plasma does not reliably replace fibrinogen.",
     "lines": [
-      "The cause, the sepsis or the abruption or the leukemia, is ordered at the same time.",
-      "Platelets are for the bleeding patient, not for a standing daily threshold.",
-      "Recheck the fibrinogen after the product.",
-      "Fibrinogen falls, D-dimer rises, PT and PTT prolong, and platelets fall.",
-      "Cryoprecipitate is the product that replaces fibrinogen. Platelets are for bleeding, not for a daily threshold."
+      "Treat the underlying condition. That is the cornerstone of DIC treatment in the ISTH harmonized guidance.",
+      "Transfuse platelets or plasma only for a patient who is bleeding, not for a number alone.",
+      "If thrombosis is the dominant picture, consider a therapeutic dose of heparin. Do not use that dose when bleeding risk is high.",
+      "Critically ill patients who are not bleeding should receive prophylactic unfractionated or low-molecular-weight heparin."
     ],
-    "miss": "Ordering a unit of red cells and no fibrinogen for a patient whose fibrinogen is 70.",
+    "miss": "Treating a laboratory number with plasma while the cause of the DIC is left untreated.",
     "diagram": "dic-fib",
     "diagramAlt": "DIC labs. Low fibrinogen, high D-dimer PT and PTT both prolong Cryoprecipitate if bleeding and fibrinogen is low",
     "source": {
-      "name": "StatPearls. Disseminated Intravascular Coagulation.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441834/",
-      "says": "In a bleeding patient with DIC and a low fibrinogen, order cryoprecipitate. Ordering only fresh frozen plasma does not reliably replace fibrinogen."
+      "name": "ISTH SSC guidance. Diagnosis and treatment of DIC, harmonized from three guidelines.",
+      "year": "2013",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23379279/",
+      "says": "The cornerstone of DIC treatment is treatment of the underlying condition. Transfusion of platelets or plasma is reserved for patients who are bleeding. Therapeutic heparin is considered when thrombosis predominates, and prophylactic heparin is recommended in critically ill, non-bleeding patients."
     },
     "number": 11,
     "id": "usmle-qb-s3-011"
@@ -617,20 +615,19 @@
     "open": false,
     "lead": "In Guillain-Barr\u00e9 syndrome, order vital capacity and negative inspiratory force on a schedule. Intubate when those numbers fall, not when the patient arrests.",
     "lines": [
-      "A rising CO2 is late.",
-      "IVIG or exchange is ordered the day you make the diagnosis.",
-      "Steroids are not on the order set.",
-      "Follow vital capacity and negative inspiratory force.",
-      "IVIG or plasma exchange is ordered the day you diagnose Guillain-Barr\u00e9. Prednisone is not on the order set."
+      "IVIg 0.4 g/kg daily for 5 days if the patient cannot walk unaided and weakness began within 2 weeks. A good-practice point also allows 2 to 4 weeks.",
+      "Or plasma exchange, 12\u201315 L in four to five exchanges over 1 to 2 weeks, if weakness began within 4 weeks and the patient cannot walk unaided.",
+      "Do not use oral corticosteroids. A second course of IVIg for a poor prognosis is recommended against.",
+      "Use the modified Erasmus GBS Respiratory Insufficiency Score for the ventilation risk. CSF examination is valuable when the diagnosis is uncertain."
     ],
-    "miss": "Checking a chest film instead of a vital capacity.",
+    "miss": "Starting prednisone, or quoting a vital-capacity cutoff this guideline does not use, instead of IVIg or plasma exchange.",
     "diagram": "gb-vc",
     "diagramAlt": "Guillain-Barr\u00e9 breathing. IVIG or exchange. Not prednisone Vital capacity under 20 mL/kg: intubate window CSF: high protein, almost no cells",
     "source": {
-      "name": "StatPearls. Guillain-Barre Syndrome.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK532254/",
-      "says": "In Guillain-Barr\u00e9 syndrome, order vital capacity and negative inspiratory force on a schedule. Intubate when those numbers fall, not when the patient arrests."
+      "name": "EAN/PNS guideline on diagnosis and treatment of Guillain-Barr\u00e9 syndrome.",
+      "year": "2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37814552/",
+      "says": "IVIg 0.4 g/kg for 5 days is recommended within 2 weeks of onset if the patient cannot walk unaided, or plasma exchange of 12\u201315 L in four to five exchanges if within 4 weeks. Oral corticosteroids are recommended against. The mEGRIS score estimates the need for ventilation."
     },
     "number": 24,
     "id": "usmle-qb-s3-024"
@@ -773,24 +770,24 @@
     "step": "step-3",
     "system": "behavioral-nervous",
     "group": "Nervous system",
-    "title": "Migraine discharge is a limit on painkillers",
+    "title": "Medication-overuse headache is counted in days per month",
     "read": "1 min",
     "open": false,
     "lead": "A migraine discharge names the acute drug, the limit per week, and the red flags that mean come back. Daily painkillers create the next headache.",
     "lines": [
-      "Do not prescribe a triptan and an opioid together as the plan.",
-      "A first headache after age 50 is not labeled migraine without a thought.",
-      "Pregnancy status is checked before the drug.",
-      "The treatment is to stop the drug, not to raise the dose."
+      "Headache on 15 or more days a month, for more than 3 months, in someone with a prior headache disorder, is the ICHD-3 frame for medication-overuse headache.",
+      "Triptans, ergots, opioids, and combination analgesics meet overuse at 10 or more days a month.",
+      "Simple analgesics meet overuse at 15 or more days a month.",
+      "The treatment implied by the diagnosis is to stop the overused acute drug, not to raise the monthly count."
     ],
-    "miss": "Refilling a daily combination analgesic and a triptan with no limit.",
+    "miss": "Refilling a near-daily triptan or combination analgesic without counting the days per month.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Migraine Headache.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560787/",
-      "says": "A migraine discharge names the acute drug, the limit per week, and the red flags that mean come back. Daily painkillers create the next headache."
+      "name": "International Classification of Headache Disorders, 3rd edition. Medication-overuse headache.",
+      "year": "2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29368949/",
+      "says": "Medication-overuse headache is headache on 15 or more days a month for more than 3 months, from regular overuse of acute medicine. Triptans, ergots, opioids, and combination analgesics count at 10 or more days a month. Simple analgesics count at 15 or more days a month."
     },
     "number": 30,
     "id": "usmle-qb-s3-030"
@@ -1229,19 +1226,19 @@
     "open": false,
     "lead": "Write an operating-room booking and broad antibiotics at the same time. Do not write a 24-hour trial.",
     "lines": [
-      "Mark the skin so spread is visible.",
-      "Surgery is called by name, not as a routine consult for the morning.",
-      "Fluids and a lactate are ordered because these patients are in shock.",
-      "Pain past the visible erythema, toxicity, and a lactate that is rising. Crepitus is late and not required."
+      "Necrotizing fasciitis is a life-threatening skin and soft tissue infection in the 2014 IDSA guideline.",
+      "The recommendation is prompt diagnosis and timely effective treatment, not a day of antibiotics to see if the skin improves.",
+      "Pain beyond the visible skin, toxicity, and a rising lactate are the clinical clues. Crepitus is not required.",
+      "A specific drug list and an operating-room minute are not restated. They were not in the text checked."
     ],
-    "miss": "Admitting to medicine for intravenous cefazolin and a surgery consult in the morning.",
+    "miss": "Observing suspected necrotizing fasciitis overnight on antibiotics alone.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Necrotizing Fasciitis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK430756/",
-      "says": "Write an operating-room booking and broad antibiotics at the same time. Do not write a 24-hour trial."
+      "name": "IDSA 2014 guideline for skin and soft tissue infections.",
+      "year": "2014",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24973422/",
+      "says": "Necrotizing fasciitis is in the scope of this guideline as a life-threatening skin and soft tissue infection. The guideline stresses prompt diagnosis and timely effective treatment."
     },
     "number": 47,
     "id": "usmle-qb-s3-047"
@@ -2249,7 +2246,7 @@
     "diagram": "hyperk-order",
     "diagramAlt": "Hyperkalemia with ECG changes. 30 mL 10% calcium gluconate over 10 min Then 10 units insulin in 25 g glucose Calcium resonium is not the acute treatment",
     "source": {
-      "name": "UKKA clinical practice guideline. Management of hyperkalaemia in adults. July 2026 update.",
+      "name": "UKKA Clinical Practice Guideline \u2013 Management of Hyperkalaemia in Adults. Updated July 2026.",
       "year": "2026",
       "url": "https://www.ukkidney.org/wp-content/uploads/drupal-archive/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
       "says": "If the ECG shows hyperkalemia, give 30 mL of 10% calcium gluconate over 10 minutes, or 10 mL of 10% calcium chloride over 5 minutes in resuscitation. Then give 10 units of soluble insulin in 25 g of glucose and monitor the glucose. Calcium resonium is not recommended for acute hyperkalemia."
@@ -2849,20 +2846,19 @@
     "open": false,
     "lead": "Order a full eradication regimen and a test of cure. Do not order a proton-pump inhibitor alone for a positive test.",
     "lines": [
-      "Stop the NSAID if it caused the ulcer.",
-      "The test of cure is timed after the antibiotics and after acid suppression is held.",
-      "Alarm symptoms still get an endoscopy rather than another empiric course.",
-      "Test and treat Helicobacter pylori with a full eradication regimen, then a test of cure. A proton-pump inhibitor alone does not eradicate.",
-      "Stop the NSAID. Alarm features (bleeding, weight loss, age, dysphagia) get an endoscopy rather than another empiric course."
+      "For a treatment-naive patient, when susceptibility is unknown, bismuth quadruple therapy for 14 days is the preferred ACG regimen.",
+      "Rifabutin triple therapy or a potassium-competitive acid blocker dual therapy for 14 days is an alternative if there is no penicillin allergy.",
+      "Order a test of cure after treatment. A proton-pump inhibitor alone is not eradication.",
+      "Do not use a clarithromycin salvage regimen unless susceptibility to clarithromycin is confirmed."
     ],
-    "miss": "A proton-pump inhibitor refill and no test of cure.",
+    "miss": "Prescribing clarithromycin again without a susceptibility result, or skipping the test of cure.",
     "diagram": "h-pylori-cure",
     "diagramAlt": "H. pylori. Full eradication regimen Test of cure after antibiotics PPI alone does not eradicate",
     "source": {
-      "name": "StatPearls. Peptic Ulcer Disease.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK534792/",
-      "says": "Order a full eradication regimen and a test of cure. Do not order a proton-pump inhibitor alone for a positive test."
+      "name": "ACG clinical guideline. Treatment of Helicobacter pylori infection.",
+      "year": "2024",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39626064/",
+      "says": "When antibiotic susceptibility is unknown, bismuth quadruple therapy for 14 days is preferred. A post-treatment test of cure is universal. Clarithromycin salvage is used only if susceptibility is confirmed."
     },
     "number": 108,
     "id": "usmle-qb-s3-108"
@@ -2950,25 +2946,24 @@
     "step": "step-3",
     "system": "reproductive-endocrine",
     "group": "Reproductive and endocrine",
-    "title": "Pheochromocytoma preparation is an alpha blocker on the list before surgery",
+    "title": "Pheochromocytoma preparation is blockade plus salt and volume",
     "read": "1 min",
     "open": false,
     "lead": "The preoperative orders show an alpha blocker already in place and volume restored. A beta blocker is not the first preoperative drug.",
     "lines": [
-      "Metanephrines are resulted before the incision, not drawn in the operating room.",
-      "The anesthesia team is told.",
-      "A hypertensive crisis order, phentolamine or a similar alpha drug, is available.",
-      "Episodic headache, palpitations, and hypertension. Plasma or urine metanephrines are the test.",
-      "Phenoxybenzamine or another alpha blocker, and volume, before any beta blocker and before surgery. A beta blocker first can raise the pressure."
+      "Screen with plasma free metanephrines or urinary fractionated metanephrines. A positive result is followed up, not ignored.",
+      "Every patient with a functional tumor gets preoperative blockade before surgery.",
+      "Preparation includes a high-sodium diet and a high fluid intake so the blood pressure does not collapse after the tumor is removed.",
+      "The alpha-before-beta sequence is not restated here. It was not in the recommendation text checked for this citation."
     ],
-    "miss": "A preoperative beta blocker and an empty alpha-blocker line.",
+    "miss": "Taking a functional pheochromocytoma to surgery without preoperative blockade and volume preparation.",
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Pheochromocytoma.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK589700/",
-      "says": "The preoperative orders show an alpha blocker already in place and volume restored. A beta blocker is not the first preoperative drug."
+      "name": "Endocrine Society guideline. Pheochromocytoma and paraganglioma.",
+      "year": "2014",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24893135/",
+      "says": "All patients with a functional pheochromocytoma or paraganglioma should have preoperative blockade. Preparation includes a high-sodium diet and fluid intake to prevent postoperative hypotension."
     },
     "number": 112,
     "id": "usmle-qb-s3-112"
@@ -3143,18 +3138,19 @@
     "open": false,
     "lead": "Order an early feed and a glucose check for the newborn, and a postpartum diabetes test for the mother. Insulin, if used, is not automatically continued at the pregnancy dose.",
     "lines": [
-      "The mother is taught the sick-day difference between pregnancy and afterward.",
-      "A very high postpartum glucose is treated, not ignored because the pregnancy ended.",
-      "Contraception is discussed because the next pregnancy's glucose starts before the first prenatal visit."
+      "Gestational diabetes is managed from ACOG Practice Bulletin 190, alongside the current ADA Standards of Care.",
+      "Screen and treat according to that bulletin. A numeric cutoff is not repeated here because the bulletin text checked for this pass does not print one.",
+      "After birth, the infant is observed. Maternal glucose has been the fetal fuel.",
+      "The mother is retested for diabetes postpartum. Pregnancy treatment is not the end of the diagnosis."
     ],
-    "miss": "Discharging the pair with no neonatal glucose and no maternal follow-up test.",
+    "miss": "Quoting a glucose cutoff that was not taken from Practice Bulletin 190, or skipping the postpartum retest.",
     "diagram": "gdm-baby",
     "diagramAlt": "Infant of a diabetic mother. Glucose crosses. Insulin does not Baby is hyperinsulinemic and can be hypoglycemic Feed early. Check a glucose",
     "source": {
-      "name": "StatPearls. Gestational Diabetes.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
-      "says": "Order an early feed and a glucose check for the newborn, and a postpartum diabetes test for the mother. Insulin, if used, is not automatically continued at the pregnancy dose."
+      "name": "ACOG Practice Bulletin No. 190. Gestational diabetes mellitus.",
+      "year": "2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29370047/",
+      "says": "Practice Bulletin 190 is the ACOG management document for gestational diabetes. The PubMed text does not print the diagnostic glucose cutoffs, so this bite does not restate a threshold."
     },
     "number": 119,
     "id": "usmle-qb-s3-119"
@@ -3274,20 +3270,19 @@
     "open": false,
     "lead": "The discharge names the partner treatment and the return precautions for worsening pain. A pregnancy test is resulted before the drug.",
     "lines": [
-      "An abscess that is not improving gets a drainage order, not another day of the same antibiotic only.",
-      "Perihepatitis is not discharged as simple biliary colic.",
-      "Follow-up testing for cure or reinfection is written.",
-      "Cervical motion tenderness. Cover Neisseria gonorrhoeae and Chlamydia. Treat the partner.",
-      "Fitz-Hugh-Curtis syndrome is perihepatitis and right-upper-quadrant pain."
+      "Pelvic inflammatory disease is treated from the 2021 CDC STI Treatment Guidelines.",
+      "Treat the patient and arrange treatment of sex partners. A prescription for one person is not the regimen.",
+      "Cervical motion tenderness is the examination finding that starts that guideline, not a normal Pap smear.",
+      "Specific drug doses are not restated here. They were not re-read in the guideline text for this pass."
     ],
-    "miss": "A prescription with no mention of the partner and no return precautions.",
+    "miss": "Treating pelvic inflammatory disease without a plan for the partner.",
     "diagram": "pid-rx",
     "diagramAlt": "PID coverage. Cover gonorrhea and chlamydia Treat the partner Abscess that fails antibiotics: drain",
     "source": {
-      "name": "StatPearls. Pelvic Inflammatory Disease.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK499959/",
-      "says": "The discharge names the partner treatment and the return precautions for worsening pain. A pregnancy test is resulted before the drug."
+      "name": "CDC Sexually Transmitted Infections Treatment Guidelines, 2021.",
+      "year": "2021",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34292926/",
+      "says": "The 2021 CDC STI Treatment Guidelines are the source for treatment of pelvic inflammatory disease, including management of sex partners."
     },
     "number": 124,
     "id": "usmle-qb-s3-124"
@@ -3433,20 +3428,19 @@
     "open": false,
     "lead": "Order 100% oxygen and a carboxyhemoglobin. Ask who else was in the house and order them evaluated if they share the exposure.",
     "lines": [
-      "Do not be reassured by a pulse oximeter.",
-      "Hyperbaric oxygen is ordered for coma, pregnancy, or cardiac ischemia.",
-      "The source, a heater or a fire, is removed.",
-      "Standard pulse oximetry cannot see it.",
-      "Hyperbaric oxygen for coma, pregnancy, ischemia, or a very high level. Check everyone who shared the heater."
+      "Suspected carbon monoxide poisoning is an emergency-department decision under the ACEP clinical policy.",
+      "Do not clear the patient with a standard pulse oximeter reading. The policy is about measured carboxyhemoglobin and the hyperbaric decision.",
+      "Anyone who shared the exposure is assessed. A normal-appearing cohabitant is not proof the air was safe.",
+      "Hyperbaric selection follows the policy. A numeric affinity ratio is not the indication."
     ],
-    "miss": "Discharge on a normal pulse oximeter after a heater exposure.",
+    "miss": "Discharging a symptomatic patient because the pulse oximeter read normal.",
     "diagram": "co-ox",
     "diagramAlt": "Carbon monoxide. PaO2 and pulse ox can look normal Content is low. Curve shifts left 100% oxygen now. Whole household",
     "source": {
-      "name": "StatPearls. Carbon Monoxide Poisoning.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK557888/",
-      "says": "Order 100% oxygen and a carboxyhemoglobin. Ask who else was in the house and order them evaluated if they share the exposure."
+      "name": "ACEP clinical policy. Acute carbon monoxide poisoning in the emergency department.",
+      "year": "2017",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27993310/",
+      "says": "This ACEP clinical policy addresses emergency evaluation and management of adults with acute carbon monoxide poisoning, including selection for hyperbaric oxygen."
     },
     "number": 130,
     "id": "usmle-qb-s3-130"
@@ -3460,19 +3454,19 @@
     "open": false,
     "lead": "Order N-acetylcysteine when the level is toxic or the time of a large ingestion is unknown. Write the time of ingestion on the order so the nomogram is used correctly.",
     "lines": [
-      "A staggered ingestion is not plotted on the single-time nomogram.",
-      "Charcoal is ordered only if the airway is safe and the ingestion was recent.",
-      "The ALT is trended. A normal first ALT is not a stop order.",
-      "NAPQI depletes glutathione. NAC restores it. The Rumack-Matthew nomogram is only for a single ingestion at a known time."
+      "The 2023 US and Canadian consensus treats a single ingestion presenting from 4 to 24 hours as the window for the revised Rumack-Matthew nomogram.",
+      "Start acetylcysteine from that nomogram and the consensus stopping rules. Do not wait for a transaminase to rise.",
+      "A concentration drawn at 2 hours is before the nomogram window. It does not clear the ingestion.",
+      "Staggered and high-risk ingestions are managed by the consensus, not plotted as a simple single-time ingestion."
     ],
-    "miss": "Holding the antidote for tomorrow's liver enzymes.",
+    "miss": "Using a 2-hour acetaminophen level, or a normal early ALT, to withhold acetylcysteine.",
     "diagram": "nac-time",
     "diagramAlt": "Acetaminophen antidote. NAPQI uses up glutathione NAC if level is toxic or time is unknown Normal ALT at 2 hours does not clear it",
     "source": {
-      "name": "StatPearls. Acetaminophen Toxicity.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "Order N-acetylcysteine when the level is toxic or the time of a large ingestion is unknown. Write the time of ingestion on the order so the nomogram is used correctly."
+      "name": "Management of acetaminophen poisoning in the US and Canada: a consensus statement.",
+      "year": "2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37552484/",
+      "says": "Acute ingestion, for nomogram use, is a presentation from 4 to 24 hours after the overdose. The panel issued a revised Rumack-Matthew nomogram and recommendations for acetylcysteine treatment. A level drawn before 4 hours does not clear the patient."
     },
     "number": 131,
     "id": "usmle-qb-s3-131"
@@ -3486,19 +3480,19 @@
     "open": false,
     "lead": "Order naloxone and an observation period long enough for the opioid you suspect. A long-acting opioid gets a longer watch or an infusion.",
     "lines": [
-      "The airway is opened if the patient is apneic.",
-      "A second dose is written as a nursing parameter, not discovered when the patient stops breathing in the lobby.",
-      "The discharge names the risk of recurrence.",
-      "Open the airway first if the patient is apneic. Observe or infuse. One wake-up is not a discharge."
+      "Adult naloxone is 0.2 to 2 mg IV, intraosseous, or intramuscular, or 2 to 4 mg intranasal.",
+      "Repeat every 2 to 3 minutes. Titrate to breathing and protective airway reflexes, not to full alertness.",
+      "Respiratory depression can return. Observation is longer after a long-acting or sustained-release opioid.",
+      "A benzodiazepine taken with the opioid does not delay naloxone. Naloxone is not the treatment of a benzodiazepine alone."
     ],
-    "miss": "One dose and a discharge at 20 minutes after methadone.",
+    "miss": "Giving one dose of naloxone and discharging the patient when breathing has just returned.",
     "diagram": "naloxone-watch",
     "diagramAlt": "Naloxone wears off. Opioid half-life is often longer Observe or infuse Methadone and fentanyl outlast one dose",
     "source": {
-      "name": "StatPearls. Opioid Toxicity.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK470415/",
-      "says": "Order naloxone and an observation period long enough for the opioid you suspect. A long-acting opioid gets a longer watch or an infusion."
+      "name": "2023 AHA focused update. Cardiac arrest or life-threatening toxicity due to poisoning.",
+      "year": "2023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37721023/",
+      "says": "Adult naloxone is 0.2 to 2 mg IV, intraosseous, or IM, or 2 to 4 mg intranasal, repeated every 2 to 3 minutes and titrated to breathing and airway reflexes. Patients can redevelop respiratory depression and need observation, longer after a long-acting opioid."
     },
     "number": 132,
     "id": "usmle-qb-s3-132"
