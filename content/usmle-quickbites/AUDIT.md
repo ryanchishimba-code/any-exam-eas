@@ -144,3 +144,18 @@ Statements the cited source does not state, left as written: s2-002, 023 (diagra
 - All 180 Step 3 bites now quote a named source checked against retrieved text. Management bites cite the current primary guideline where its text was retrievable. The 35 Step 3 bites still on StatPearls are basic science or have no retrievable guideline text.
 
 Statements the cited source does not state, left as written: s2-069, s2-135; s3-001, 002, 004, 008, 011, 012, 018, 019, 020, 023, 024, 026, 030, 032, 033, 039, 040, 041, 043, 048, 054, 057, 060, 061, 062, 064, 068, 069, 070, 071, 072, 073, 078, 082, 085, 087, 097, 100, 106, 107, 112, 116, 117, 118, 121, 123, 125, 126, 129, 130, 133, 138, 141, 142, 143, 149, 153, 155, 156, 157, 160, 161, 162, 165, 168, 169, 172, 173, 175, 177, 180.
+
+## Step 1 full-text re-sourcing and Step 3 blind-review fixes (pass12)
+
+- 176 of 180 Step 1 bites now quote sentences checked against retrieved full text. Basic-science bites quote StatPearls (146 bites). Management bites quote the current guideline where its text was retrievable, with the earlier guideline kept as further reading when a bite moved to StatPearls for a mechanism claim.
+- `usmle-qb-s1-078` cites the GOLD 2027 report. No Step 1 source is named GOLD 2026.
+- Step 1 ethics bites quote the AMA Code opinion text (2.1.1, 3.2.1, 1.1.3, 2.1.3, 2.1.2, 8.10, 1.2.8, 5.5, 11.1.3, 1.1.5, 2.2.1, 11.2.2).
+- `s3-126` and `s1-136`: the abstract text is replaced with ATA 2017 Recommendation 47 (a) and (b) from the full guideline. The guideline recommends propylthiouracil through 16 weeks and makes no recommendation on a later switch to methimazole. The switch in both bites is left as written and listed below.
+- `s3-041`: the 48-hour timing now cites the AAOS 2021 hip fracture guideline (surgery within 24-48 hours; VTE prophylaxis). NICE CG124 is kept as further reading.
+- `s3-054`: the 7-day follow-up and in-hospital start now quote the 2022 AHA/ACC/HFSA guideline recommendations.
+- `s3-128`: 30 mL/kg, MAP 65 and the 1-hour antibiotic are quoted from SSC 2026. The lactate threshold of 4 mmol/L comes from the SSC 2018 hour-1 bundle, added as further reading.
+- `s3-107` now cites the HaPanEU chronic pancreatitis guideline (enzymes with meals and snacks). `s3-121` now cites NICE CG97 (catheterise acute retention; alpha blocker before catheter removal).
+
+Statements the cited source does not state, left as written: s1-001, 005, 009, 012, 017, 019, 022, 024, 026, 036, 038, 044, 050, 056, 059, 060, 061, 063, 066, 067, 073, 082, 088, 101, 107, 108, 114, 116, 117, 118, 120, 123, 136, 142, 147, 148, 149, 151, 152, 154, 155, 157, 159, 160, 161, 163, 164, 165, 166, 172, 173, 174, 175, 176, 179, 180; s3-041, 062, 107, 126, 128.
+
+Step 3 management bites still on StatPearls because no retrievable primary-guideline text states the claim: s3-017, 018, 026, 034, 035, 043, 062, 063, 064, 070, 079, 080, 086, 089, 090, 091, 092, 093, 094, 095, 100, 110, 133, 135, 137.

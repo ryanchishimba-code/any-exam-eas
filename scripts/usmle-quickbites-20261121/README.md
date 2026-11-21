@@ -19,3 +19,8 @@ Undo: `bash scripts/usmle-quickbites-20261121/15-undo-pass10.sh` restores those 
 
 Backup: `backup-pre-pass11-20261121/` (Step 1, 2 and 3 bites.json, AUDIT.md, diagrams.json, usmle-bites.test.ts, usmle-diagrams.tsx).
 Undo: `bash scripts/usmle-quickbites-20261121/16-undo-pass11.sh` restores those files. It changes no flags and touches no database.
+
+## pass12 (Step 1 full-text re-sourcing and Step 3 blind-review fixes)
+
+Backup: `backup-pre-pass12-20261121/` (Step 1 and Step 3 bites.json, AUDIT.md, diagrams.json, usmle-bites.test.ts).
+Undo: `bash scripts/usmle-quickbites-20261121/17-undo-pass12.sh` restores those files. It changes no flags and touches no database.
