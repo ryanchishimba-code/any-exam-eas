@@ -65,4 +65,17 @@ Two stems change and the key does not:
 - Cholecystitis asks for the next diagnostic study, so ultrasound stays and antibiotics are not a second answer. Source: [Merck Manual acute cholecystitis](https://www.merckmanuals.com/professional/hepatic-and-biliary-disorders/gallbladder-and-bile-duct-disorders/acute-cholecystitis).
 - One pulmonary embolism keyed to thrombolysis at 90/60 mm Hg is now 78/50 mm Hg for 20 minutes after fluid.
 
-Eight flagged Step 1 management items were not moved. The key is not a single best answer, or the stem does not support it: nonspecific headaches on a combined pill, blood pressure 220/130 mm Hg with a negative CT, a COPD exacerbation that needs both a bronchodilator and steroids, lisinopril increased at creatinine 1.8 mg/dL, prophylactic mastectomy at age 22, a chest radiograph for asthma pain, and a severe COPD exacerbation that may also need ventilatory support. Those rows are `reviewed_no_change` in the screen file.
+## Batch 4 — hide 8 items
+
+These Step 1 management items have no single best answer. `batch-04-pass1-hide-apply.sql` sets `active` to false and leaves the question and the key unchanged.
+
+- `cmr4m1ire00731y1ent2m6uca` — headaches on a combined pill
+- `cmr8cloa7018n1yw27h3csrq5` — 220/130 mm Hg, sudden headache, negative CT
+- `cmr8d6el2000b1yaz5588xd8k` — peak flow 60% needs a bronchodilator and a corticosteroid
+- `cmrpv8h9k000p1yncy3i8tiva` — COPD exacerbation needs both treatments
+- `cmrpvdq3400281ync2s2aj4mx` — lisinopril increase at creatinine 1.8 mg/dL
+- `cmrrv649500nz1y8wcwq47bpn` — mastectomy at age 22
+- `cmrrv64cr00o01y8wt24yefh7` — chest radiograph for asthma pain
+- `cmrth11i1002v1yax4juzw01h` — severe COPD exacerbation that may also need ventilatory support
+
+Undo with `batch-04-pass1-hide-undo.sql`.
