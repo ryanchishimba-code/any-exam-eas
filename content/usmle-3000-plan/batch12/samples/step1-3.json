@@ -1,0 +1,24 @@
+{
+  "id": "b12-s1-61",
+  "fieldId": "usmle-step-1",
+  "stepLevel": "step1",
+  "outlineSystem": "cardiovascular",
+  "outlineWeight": 9,
+  "blueprintTopic": "hypertension-mechanisms",
+  "blueprintDomain": "cardiovascular",
+  "difficulty": 3,
+  "subjectId": "pharmacology",
+  "examTakeaway": "After successful endovascular reperfusion for a large-vessel occlusion, lowering systolic pressure below 140 mm Hg in the first 24 to 72 hours can worsen outcome.",
+  "scenario": "A 72-year-old patient had a large-vessel occlusion opened by thrombectomy two hours ago. Systolic pressure is 158 mm Hg and the neurologic examination is stable. A classmate starts a drip to push the systolic pressure under 130 mm Hg within the hour.",
+  "question": "Why is that pressure target the wrong one right now?",
+  "options": [
+    "Lowering systolic pressure below 140 mm Hg in the first 24 to 72 hours after successful reperfusion can worsen outcome",
+    "Systolic pressure must be under 120 within the first hour after every thrombectomy",
+    "The harm appears only if pressure is lowered after 7 days",
+    "Blood pressure is ignored for a week after thrombectomy, even above 220",
+    "The target below 140 applies only to patients who did not reperfuse"
+  ],
+  "correctAnswer": "Lowering systolic pressure below 140 mm Hg in the first 24 to 72 hours after successful reperfusion can worsen outcome",
+  "explanation": "After successful endovascular reperfusion for a large-vessel occlusion, lowering systolic pressure below 140 mm Hg in the first 24 to 72 hours can worsen outcome. 2025 AHA/ACC/Multispecialty Guideline for the Prevention, Detection, Evaluation, and Management of High Blood Pressure in Adults. Lowering systolic pressure below 140 mm Hg in the first 24 to 72 hours after successful reperfusion can worsen outcome. The 2025 high blood pressure guideline gives this a class 3 harm rating. A systolic pressure of 158 is not an invitation to drive it under 140 in this window. Systolic pressure must be under 120 within the first hour after every thrombectomy. That is the direction the class 3 rating warns against. The harm appears only if pressure is lowered after 7 days. The window in the recommendation is the first 24 to 72 hours. Blood pressure is ignored for a week after thrombectomy, even above 220. The harm rating is about lowering below 140. It is not a license to ignore extreme pressure. The target below 140 applies only to patients who did not reperfuse. The class 3 statement is specifically after successful reperfusion.",
+  "citation": "2025 AHA/ACC/Multispecialty Guideline for the Prevention, Detection, Evaluation, and Management of High Blood Pressure in Adults."
+}
