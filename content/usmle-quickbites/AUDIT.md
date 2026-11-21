@@ -2,6 +2,8 @@
 
 The library stays hidden. Flags are unchanged. This pass checked claims against a confirmable source and rewrote or removed anything that source does not state. Design and components were not changed.
 
+Backup before pass 4: `scripts/usmle-quickbites-20261121/backup-pre-pass4-20261121/`.
+Undo pass 4: `scripts/usmle-quickbites-20261121/09-undo-pass4.sh`.
 Backup before the third pass: `scripts/usmle-quickbites-20261121/backup-pre-third-pass-20261121/`.
 Undo the third pass: `scripts/usmle-quickbites-20261121/08-undo-third-pass.sh`.
 Backup before the finish pass: `scripts/usmle-quickbites-20261121/backup-pre-finish-20261121/`.
@@ -14,12 +16,12 @@ Counted from the source name after this pass. "Guideline" is a society or govern
 
 | | Step 1 | Step 2 CK | Step 3 |
 | --- | ---: | ---: | ---: |
-| Guideline | 42 | 91 | 104 |
-| Statement or trial | 3 | 9 | 9 |
-| Ethics code | 5 | 16 | 12 |
-| Reference text | 130 | 64 | 55 |
+| Guideline | 43 | 94 | 105 |
+| Statement or trial | 3 | 7 | 8 |
+| Ethics code | 5 | 15 | 12 |
+| Reference text | 129 | 64 | 55 |
 
-These counts are after the third pass. A statement or trial includes expert panels, consensus statements, and focused updates. Ethics opinions are the AMA Code. Reference text is StatPearls.
+These counts are after pass 4. Reference text is StatPearls and is limited to mechanisms. 241 StatPearls "says" lines that had copied a student line were replaced with a chapter-scope sentence. The Bookshelf full text was not re-fetched, so those 241 quotations are unverified.
 
 New or corrected guideline links use a PubMed URL or, for the UK kidney guideline, the society's PDF. Paywalled journal pages were not used as the only link.
 

@@ -155,6 +155,27 @@ function problems(
   if (bank.includes(lead)) failures.push(`${bite.id} copies a bank seed`);
   const crowded = claims.filter((claim) => jaccard(bite.lead, claim) >= 0.5);
   if (crowded.length > 0) failures.push(`${bite.id} overlaps a feed card`);
+  const note = /this pass|not restated|text checked|not confirmed|point for this bite|older acg edition/i;
+  const visible = [bite.lead, ...bite.lines, bite.miss, bite.source.says].join(" ");
+  if (note.test(visible)) failures.push(`${bite.id} internal note`);
+  const saysKey = bite.source.says.trim().toLowerCase();
+  if ([bite.lead, ...bite.lines].some((part) => part.trim().toLowerCase() === saysKey)) {
+    failures.push(`${bite.id} says copies a line`);
+  }
+  for (let i = 0; i < bite.lines.length; i += 1) {
+    for (let j = i + 1; j < bite.lines.length; j += 1) {
+      if (jaccard(bite.lines[i], bite.lines[j]) >= 0.5) {
+        failures.push(`${bite.id} duplicate line`);
+      }
+    }
+  }
+  const head = `${bite.title} ${bite.lead}`;
+  if (/compartment/i.test(head) && /mesenteric|soft abdomen|embolus/i.test(bite.lines.join(" "))) {
+    failures.push(`${bite.id} topic mismatch`);
+  }
+  if (/hepatitis b/i.test(head) && /integrase|thymidine analog/i.test(bite.lines.join(" "))) {
+    failures.push(`${bite.id} topic mismatch`);
+  }
   return failures;
 }
 
