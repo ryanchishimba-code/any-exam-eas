@@ -3711,10 +3711,16 @@
     "diagram": "pth-preg",
     "diagramAlt": "Antithyroid drug by trimester. First trimester: propylthiouracil After that: methimazole No radioactive iodine in pregnancy",
     "source": {
-      "name": "2016 ATA guideline for hyperthyroidism and other causes of thyrotoxicosis.",
-      "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
-      "says": "When an antithyroid drug is used in the first trimester, use propylthiouracil. When an antithyroid drug is started after the first trimester, use methimazole."
+      "name": "2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum.",
+      "year": "2017",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28056690/",
+      "says": "PTU is recommended for the treatment of maternal hyperthyroidism through 16 weeks of pregnancy. Pregnant women receiving MMI who are in need of continuing therapy during pregnancy should be switched to PTU as early as possible. Antithyroid medication during pregnancy should be administered at the lowest effective dose of MMI or PTU",
+      "more": [
+        {
+          "name": "2016 ATA Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+        }
+      ]
     },
     "number": 136,
     "id": "usmle-qb-s1-136"

@@ -1100,14 +1100,14 @@
     "diagram": "hip-48",
     "diagramAlt": "Hip fracture timing. Operate within about 48 hours if ready Prophylax against clot A fragility fracture starts osteoporosis treatment",
     "source": {
-      "name": "NICE CG124. Hip fracture: management.",
-      "year": "2023",
-      "url": "https://www.nice.org.uk/guidance/cg124/chapter/Recommendations",
-      "says": "Perform surgery on the day of, or the day after, admission. Care should also follow NICE guidance on venous thromboembolism, delirium, and osteoporosis fragility-fracture risk assessment.",
+      "name": "AAOS. Management of Hip Fractures in Older Adults Evidence-Based Clinical Practice Guideline.",
+      "year": "2021",
+      "url": "https://www.aaos.org/hipfxcpg",
+      "says": "Hip fracture surgery within 24-48 hours of admission may be associated with better outcomes. Venous thromboembolism (VTE) prophylaxis should be used in hip fracture patients.",
       "more": [
         {
-          "name": "AAOS Management of Hip Fractures in Older Adults Clinical Practice Guideline (2021).",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/36200818/"
+          "name": "NICE CG124. Hip fracture: management (surgery on the day of, or the day after, admission).",
+          "url": "https://www.nice.org.uk/guidance/cg124/chapter/Recommendations"
         }
       ]
     },
@@ -1464,7 +1464,7 @@
       "name": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure.",
       "year": "2022",
       "url": "https://www.jacc.org/doi/10.1016/j.jacc.2021.12.012",
-      "says": "GDMT for HFrEF now includes 4 medication classes: renin-angiotensin system inhibition with ARNi, ACEi, or ARB; beta blockers; MRAs; and SGLT2i. Beta blockers with proven benefit are bisoprolol, carvedilol, and sustained-release metoprolol succinate.",
+      "says": "In patients with HFrEF, GDMT should be initiated during hospitalization after clinical stability is achieved. In patients being discharged after hospitalization for worsening HF, an early follow-up, generally within 7 days of hospital discharge, is reasonable to optimize care and reduce rehospitalization.",
       "more": [
         {
           "name": "2024 ACC Expert Consensus Decision Pathway for Patients Hospitalized With Heart Failure.",
@@ -2980,10 +2980,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Chronic Pancreatitis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "Pancreatic enzyme supplementation is typically taken with meals."
+      "name": "United European Gastroenterology evidence-based guidelines for the diagnosis and therapy of chronic pancreatitis (HaPanEU).",
+      "year": "2017",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5349368/",
+      "says": "Oral pancreatic enzymes should be distributed along with meals and snacks. Alcohol abstinence seems to slow the progression of the illness and may result in better pain control.",
+      "more": [
+        {
+          "name": "StatPearls. Chronic Pancreatitis.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/"
+        }
+      ]
     },
     "number": 107,
     "id": "usmle-qb-s3-107"
@@ -3359,14 +3365,14 @@
     "diagram": "bph-drug",
     "diagramAlt": "BPH drugs. Alpha blocker: days 5-alpha-reductase inhibitor: months, large gland Retention tonight: catheter, not finasteride",
     "source": {
-      "name": "StatPearls. Benign Prostatic Hyperplasia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/",
-      "says": "The development of BPH is characterized by stromal and epithelial cell proliferation in the prostate transition zone, which surrounds the urethra.",
+      "name": "NICE CG97. Lower urinary tract symptoms in men: management.",
+      "year": "2015",
+      "url": "https://www.nice.org.uk/guidance/cg97/chapter/Recommendations",
+      "says": "Immediately catheterise men with acute retention. Offer an alpha blocker to men for managing acute urinary retention before removal of the catheter.",
       "more": [
         {
-          "name": "AUA guideline. Management of lower urinary tract symptoms attributed to benign prostatic hyperplasia (2021, amended 2023).",
-          "url": "https://pubmed.ncbi.nlm.nih.gov/34384237/"
+          "name": "StatPearls. Benign Prostatic Hyperplasia.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK558920/"
         }
       ]
     },
@@ -3502,7 +3508,7 @@
       "name": "2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum.",
       "year": "2017",
       "url": "https://pubmed.ncbi.nlm.nih.gov/28056690/",
-      "says": "The revised guidelines for the management of thyroid disease in pregnancy include recommendations regarding the interpretation of thyroid function tests in pregnancy, thyrotoxicosis in pregnancy, fetal and neonatal considerations, and thyroid disease and lactation.",
+      "says": "PTU is recommended for the treatment of maternal hyperthyroidism through 16 weeks of pregnancy. Pregnant women receiving MMI who are in need of continuing therapy during pregnancy should be switched to PTU as early as possible.",
       "more": [
         {
           "name": "2016 ATA Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
@@ -3561,11 +3567,15 @@
       "name": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.",
       "year": "2026",
       "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026",
-      "says": "For sepsis-induced hypoperfusion or septic shock, at least 30 mL/kg of IV crystalloid in the first 3 hours is suggested. Blood cultures are collected as soon as possible, ideally before antimicrobials; antimicrobials for possible septic shock or probable sepsis are given immediately, ideally within 1 hour; the initial MAP target is 65 mm Hg.",
+      "says": "For adults with sepsis-induced hypoperfusion or septic shock, we \u201csuggest\u201d administering at least 30 mL/kg of IV crystalloid in the first 3 hr. For adults with septic shock, we \u201crecommend\u201d an initial MAP target of 65 mm Hg over higher MAP targets. For adults with possible, probable, or definite septic shock, we \u201crecommend\u201d administering antimicrobial therapy immediately, ideally within 1 hr of recognition.",
       "more": [
         {
           "name": "Surviving Sepsis Campaign 2026, Intensive Care Medicine full text.",
           "url": "https://link.springer.com/article/10.1007/s00134-026-08361-1"
+        },
+        {
+          "name": "Surviving Sepsis Campaign Bundle: 2018 update (30 ml/kg crystalloid for hypotension or lactate \u2265 4 mmol/L).",
+          "url": "https://doi.org/10.1007/s00134-018-5085-0"
         }
       ]
     },
