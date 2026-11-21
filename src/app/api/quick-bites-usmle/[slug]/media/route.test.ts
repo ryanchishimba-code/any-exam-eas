@@ -79,7 +79,7 @@ describe("GET /api/quick-bites-usmle/[slug]/media", () => {
 
   it("hides the video from students while the flag is off", async () => {
     loggedOut();
-    expect((await mediaRequest(SLUG)).status).toBe(404);
+    expect((await mediaRequest(SLUG)).status).toBe(401);
 
     asAccess("subscriber", "active", true);
     const paid = await mediaRequest(SLUG);
