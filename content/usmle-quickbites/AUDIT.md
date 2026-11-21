@@ -124,3 +124,13 @@ Kept on StatPearls on purpose, because no single current society guideline state
 - The intravenous potassium rate (`usmle-qb-s1-086`, `usmle-qb-s2-096`, `usmle-qb-s3-086`).
 
 Also still on a reference text, because a recommendation sentence was not locked to a guideline in this pass: Klinefelter testosterone replacement, hemolytic transfusion reaction, tardive dyskinesia, psoriatic arthritis treatment, reactive arthritis, adult polycystic kidney disease, tamponade drainage, tet spell, dilated-cardiomyopathy alcohol cessation, restrictive cardiomyopathy and light chains, diabetes insipidus water replacement, respiratory acidosis ventilation, hypernatremia replacement rate, phosphate-binder timing, and a few ethics bites whose titles did not match an AMA opinion (futility, against-advice discharge). Mechanism bites with no society guideline remain on the named chapter.
+
+## Step 2 CK guideline re-sourcing (pass10)
+
+All 180 Step 2 CK bites cite a named current source with year, link, and a quoted sentence. Management bites cite the current primary guideline; StatPearls remains only for basic science or where no guideline states the step, with the guideline listed under further reading.
+
+- DKA (`usmle-qb-s2-121`): 2024 hyperglycemic crises consensus. Potassium is replaced before insulin when under 3.5 mmol/L; resolution is ketones under 0.6 mmol/L with pH 7.3 or more or bicarbonate 18 mmol/L or more. New diagram key `dka-k-2024`; the Step 1 and Step 3 `dka-k` diagram is unchanged.
+- Osteoporosis screening (`usmle-qb-s2-154`): USPSTF 2025 wording for postmenopausal women under 65 at increased risk.
+- `usmle-qb-s2-021`: lead and one line aligned with the cited guideline.
+
+Statements the cited source does not state, left as written: s2-002, 023 (diagram), 044, 059, 062, 065, 070, 077, 085, 118, 124, 127, 128, 129, 130, 137, 138, 139, 140, 141, 143, 149, 151, 156, 165, 166, 167, 168, 170, 172, 175.

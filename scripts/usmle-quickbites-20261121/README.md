@@ -9,3 +9,8 @@ this library before it was added. `03-undo.sql` records that none were written.
 
 Do not run `scripts/06-rollback-DO-NOT-RUN.sql`.
 Do not turn the flags on without Ryan's explicit OK.
+
+## pass10 (Step 2 CK guideline re-sourcing)
+
+Backup: `backup-pre-pass10-20261121/` (step-2 bites.json, AUDIT.md, diagrams.json, usmle-bites.test.ts).
+Undo: `bash scripts/usmle-quickbites-20261121/15-undo-pass10.sh` restores those four files. It changes no flags and touches no database.
