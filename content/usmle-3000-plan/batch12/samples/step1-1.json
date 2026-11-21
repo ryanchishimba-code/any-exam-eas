@@ -1,0 +1,24 @@
+{
+  "id": "b12-s1-04",
+  "fieldId": "usmle-step-1",
+  "stepLevel": "step1",
+  "outlineSystem": "cardiovascular",
+  "outlineWeight": 9,
+  "blueprintTopic": "acs-pathophysiology",
+  "blueprintDomain": "cardiovascular",
+  "difficulty": 4,
+  "subjectId": "pathology",
+  "examTakeaway": "Suspected aortic dissection is an absolute contraindication to fibrinolysis even when the electrocardiogram shows ST elevation.",
+  "scenario": "A 58-year-old patient has sudden chest pain tearing through to the back. Blood pressure is 168/90 mm Hg in the right arm and 112/70 mm Hg in the left. The electrocardiogram shows 1 mm of ST-segment elevation in II, III, and aVF. He has no prior stroke. The catheterization laboratory is 3 hours away. A classmate gives a fibrinolytic because of the ST elevation and the delay.",
+  "question": "Why is the fibrinolytic the wrong drug?",
+  "options": [
+    "ST elevation plus a 3-hour delay is enough to give the fibrinolytic",
+    "Unequal arm pressures are a reason to double the fibrinolytic dose",
+    "Back pain without a fever is musculoskeletal and can be ignored",
+    "The unequal arm pressures and back pain mean dissection is suspected, which absolutely contraindicates fibrinolysis",
+    "A fibrinolytic is safe because he has never had a stroke"
+  ],
+  "correctAnswer": "The unequal arm pressures and back pain mean dissection is suspected, which absolutely contraindicates fibrinolysis",
+  "explanation": "Suspected aortic dissection is an absolute contraindication to fibrinolysis even when the electrocardiogram shows ST elevation. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. The unequal arm pressures and back pain mean dissection is suspected, which absolutely contraindicates fibrinolysis. The 2025 guideline lists suspected aortic dissection as an absolute contraindication. ST elevation and a long transfer do not override it. He needs imaging and pressure control, not a lytic. ST elevation plus a 3-hour delay is enough to give the fibrinolytic. Those facts would matter only after dissection has been excluded. Unequal arm pressures are a reason to double the fibrinolytic dose. The pressure difference is a reason to withhold the drug, not to increase it. Back pain without a fever is musculoskeletal and can be ignored. Sudden tearing pain to the back with unequal pressures is not ignored. A fibrinolytic is safe because he has never had a stroke. Absence of stroke removes one contraindication. It does not remove suspected dissection.",
+  "citation": "2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes."
+}

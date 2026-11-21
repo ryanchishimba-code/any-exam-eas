@@ -1,0 +1,48 @@
+{
+  "batch": "usmle-batch16-300-20261120",
+  "meanScore": 8.4,
+  "flags": 0,
+  "step1": {
+    "n": 100,
+    "meanScore": 8.4,
+    "difficulty": {
+      "3": 80,
+      "4": 20
+    },
+    "pharmacology": 20,
+    "systems": {
+      "human-development": 6,
+      "cardiovascular": 8,
+      "gastrointestinal": 8,
+      "blood-lymph-immune": 10,
+      "behavioral-nervous": 12,
+      "msk-skin": 10,
+      "respiratory-renal": 10,
+      "reproductive-endocrine": 12,
+      "multisystem": 8,
+      "biostats-epi": 8,
+      "social-sciences": 8
+    }
+  },
+  "step2": {
+    "n": 200,
+    "meanScore": 8.4,
+    "difficulty": {
+      "3": 160,
+      "4": 40
+    },
+    "systems": {
+      "human-development": 8,
+      "gastrointestinal": 6,
+      "cardiovascular": 10,
+      "blood-lymph-immune": 16,
+      "behavioral-nervous": 30,
+      "msk-skin": 18,
+      "reproductive-endocrine": 21,
+      "respiratory-renal": 34,
+      "multisystem": 15,
+      "biostats-epi": 10,
+      "social-sciences": 32
+    }
+  }
+}

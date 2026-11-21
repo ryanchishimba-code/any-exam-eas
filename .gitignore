@@ -66,3 +66,6 @@ next-env.d.ts
 /prisma/*.db-shm
 /prisma/*.db-wal
 .env*
+
+__pycache__/
+*.pyc

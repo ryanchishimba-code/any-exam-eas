@@ -1,0 +1,20 @@
+{
+  "id": "b16-s1-03",
+  "stepLevel": "step1",
+  "difficulty": 4,
+  "subjectId": "embryology",
+  "outlineSystem": "human-development",
+  "blueprintTopic": "malrotation",
+  "scenario": "A 1-month-old girl has green vomiting and a tender abdomen. She is ill. A classmate starts a formula change because infant vomiting is usually feeding intolerance.",
+  "question": "Why is green vomit an emergency here, and what study looks for the twist?",
+  "options": [
+    "Change the formula and recheck next week",
+    "A thickened pylorus, so the vomit should be green",
+    "The midgut may be twisted. Image it now",
+    "A brain lesion, so the abdomen should be soft and the vomit non-green",
+    "Antibiotics alone, with no imaging"
+  ],
+  "correctAnswer": "The midgut may be twisted. Image it now",
+  "explanation": "Midgut malrotation leaves a narrow pedicle. Bilious vomiting in an infant is volvulus until a upper contrast study says otherwise. Bile-stained vomit means the block is distal to the ampulla. A twist can infarct the whole midgut. Formula intolerance is not green and not tender. Sadler TW. Langman's Medical Embryology. 15th ed. Wolters Kluwer; 2023.\n\nThe midgut may be twisted. Image it now\nChange the formula and recheck next week — A week can lose the bowel.\nA thickened pylorus, so the vomit should be green — Pyloric vomit is not green.\nA brain lesion, so the abdomen should be soft and the vomit non-green — A tender abdomen with green vomit is intestinal.\nAntibiotics alone, with no imaging — Imaging is what shows the twist. Antibiotics do not unkink bowel.",
+  "citation": "Sadler TW. Langman's Medical Embryology. 15th ed. Wolters Kluwer; 2023."
+}

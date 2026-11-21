@@ -1,0 +1,20 @@
+{
+  "id": "b15-s2-39",
+  "stepLevel": "step2",
+  "outlineSystem": "multisystem",
+  "subjectId": "emergency-medicine",
+  "difficulty": 4,
+  "blueprintTopic": "salicylate",
+  "scenario": "A 22-year-old man took many aspirin tablets. pH is 7.48, PCO2 is 22, the anion gap is 20, and he has ringing ears. He is warm. A classmate gives a benzodiazepine and no alkali.",
+  "question": "What acid-base pattern is this, and how is the drug trapped?",
+  "options": [
+    "A benzodiazepine as the antidote",
+    "Acidify the urine to trap the drug",
+    "A single respiratory alkalosis, so the gap is ignored",
+    "Mixed picture. Trap the drug in alkaline urine",
+    "Naloxone, because ringing ears mean an opioid"
+  ],
+  "correctAnswer": "Mixed picture. Trap the drug in alkaline urine",
+  "citation": "Katzung BG, Vanderah TW. Basic and Clinical Pharmacology. 15th ed. McGraw Hill; 2021.",
+  "examTakeaway": "Salicylate overdose causes a respiratory alkalosis and an anion-gap acidosis, tinnitus, and fever. Alkalinization of urine traps the drug."
+}

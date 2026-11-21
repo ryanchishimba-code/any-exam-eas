@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "b12-s1-01",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "An ejection fraction of 41 to 49 percent is mildly reduced, not reduced and not preserved."
+  },
+  {
+    "id": "b12-s1-02",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When the ejection fraction is above 40 percent, dyspnea alone does not establish heart failure. Raised filling pressure has to be shown."
+  },
+  {
+    "id": "b12-s1-03",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Ischemic stroke within 3 months is an absolute contraindication to fibrinolysis, separate from a remote brain bleed."
+  },
+  {
+    "id": "b12-s1-04",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Suspected aortic dissection is an absolute contraindication to fibrinolysis even when the electrocardiogram shows ST elevation."
+  },
+  {
+    "id": "b12-s1-05",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "With fibrinolysis, a patient 75 or older receives clopidogrel 75 mg daily without a loading dose."
+  },
+  {
+    "id": "b12-s1-06",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Persistent pain and persistent ST elevation about 90 minutes after a fibrinolytic mean failed reperfusion and immediate rescue angiography."
+  },
+  {
+    "id": "b12-s1-07",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After an apparently successful fibrinolytic, angiography is still performed within 2 to 24 hours, not deferred for several days."
+  },
+  {
+    "id": "b12-s1-08",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Blood pressure of 120 to 129 mm Hg systolic with diastolic pressure under 80 mm Hg is elevated, not stage 1 hypertension."
+  },
+  {
+    "id": "b12-s1-09",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Stage 1 hypertension is present when systolic pressure is 130 to 139 even if diastolic pressure is under 80."
+  },
+  {
+    "id": "b12-s1-10",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A mineralocorticoid-receptor antagonist is stopped before the first aldosterone-renin ratio. Most other blood-pressure drugs can stay."
+  },
+  {
+    "id": "b12-s1-11",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An SGLT2 inhibitor that was started at an eligible filtration rate is continued if the filtration rate later falls below 20, until dialysis, unless it is not tolerated."
+  },
+  {
+    "id": "b12-s1-12",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A 2-year kidney-failure risk above 40 percent is used to time preparation for kidney-replacement therapy, which is a later threshold than the 5-year referral range."
+  },
+  {
+    "id": "b12-s1-13",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A urine albumin-to-creatinine ratio above 300 mg/g is severely increased albuminuria, not the moderate 30 to 300 band."
+  },
+  {
+    "id": "b12-s1-14",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Metformin that is already being taken is stopped when eGFR falls below 30. That is a contraindication, not a dose reduction."
+  },
+  {
+    "id": "b12-s1-15",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "If eGFR falls below 45 but stays at or above 30 in a patient already on metformin, the drug is reassessed. It is not automatically stopped, and it would not be newly started at this level."
+  },
+  {
+    "id": "b12-s1-16",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Below an eGFR of 45, an SGLT2 inhibitor lowers glucose less, but the kidney benefit remains a reason to use it."
+  },
+  {
+    "id": "b12-s1-17",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Liver enzymes more than twice the upper limit of normal are a severe feature. Before 34 weeks, a stable mother is not sent home."
+  },
+  {
+    "id": "b12-s1-18",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A headache that does not respond to medication is a severe feature even when the platelet count and creatinine are normal."
+  },
+  {
+    "id": "b12-s1-19",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "More than one moderate-risk factor is an indication for aspirin 81 mg daily, started between 12 and 28 weeks."
+  },
+  {
+    "id": "b12-s1-20",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Aspirin for a high-risk patient is still started after 16 weeks if she is still under 28 weeks. Sixteen weeks is the preferred time, not the last chance."
+  },
+  {
+    "id": "b12-s1-21",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Routine HLA-B*5801 testing before allopurinol is not recommended for patients outside the higher-prevalence ancestry groups."
+  },
+  {
+    "id": "b12-s1-22",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A first flare plus a serum urate above 9 mg/dL is a reason urate-lowering therapy may be considered, unlike a first flare with a lower urate and normal kidneys."
+  },
+  {
+    "id": "b12-s1-23",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Gonococcal conjunctivitis is treated with ceftriaxone 1 g intramuscularly once, not the 500 mg mucosal dose."
+  },
+  {
+    "id": "b12-s1-24",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Epididymitis most likely from gonorrhea or chlamydia is ceftriaxone 500 mg once plus doxycycline for 10 days, not the 7-day chlamydia course."
+  },
+  {
+    "id": "b12-s1-25",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Bleeding that returns after endoscopic hemostasis is re-examined with the endoscope. Immediate surgery is not the first response."
+  },
+  {
+    "id": "b12-s1-26",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When endoscopic therapy fails to stop ulcer bleeding, the suggested next procedure is transcatheter embolization rather than an immediate open operation."
+  },
+  {
+    "id": "b12-s1-27",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The 2024 mammography recommendation covers ages 40 through 74. Age 76 is outside that routine biennial recommendation."
+  },
+  {
+    "id": "b12-s1-28",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Low-dose CT screening does not start before age 50, even when the pack-year history is already heavy."
+  },
+  {
+    "id": "b12-s1-29",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Aneurysm screening for men who have smoked starts at 65, not at 64."
+  },
+  {
+    "id": "b12-s1-30",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Average-risk colorectal screening does not start at 44. The 2021 start is 45."
+  },
+  {
+    "id": "b12-s1-31",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "From ages 30 to 65, high-risk HPV testing alone every 5 years is an acceptable cervical screen. Yearly cytology is not the strategy."
+  },
+  {
+    "id": "b12-s1-32",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Asthma is confirmed by variable symptoms plus variable expiratory airflow. One normal spirometry does not exclude it."
+  },
+  {
+    "id": "b12-s1-33",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An elevated exhaled nitric oxide is interpreted after inhaled corticosteroid adherence is checked. It is not the first diagnostic test ahead of spirometry."
+  },
+  {
+    "id": "b12-s1-34",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After a COPD exacerbation, a low eosinophil count does not support adding an inhaled corticosteroid. Dual long-acting bronchodilators are the maintenance start."
+  },
+  {
+    "id": "b12-s1-35",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Pulmonary edema is a severe feature. Expectant care is not continued while the mother is still in pulmonary edema."
+  },
+  {
+    "id": "b12-s1-36",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "If a partner with gonorrhea will not be examined, and local law allows it, the oral alternative is cefixime 800 mg, not 400 mg."
+  },
+  {
+    "id": "b12-s1-37",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Pregnant patients with gonorrhea and a still-unknown chlamydia result receive ceftriaxone plus azithromycin, not doxycycline."
+  },
+  {
+    "id": "b12-s1-38",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "If fidaxomicin cannot be obtained, oral vancomycin is the acceptable alternative for an initial C. difficile episode. Metronidazole is not that alternative."
+  },
+  {
+    "id": "b12-s1-39",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Ice is an adjunct for a flare. It does not replace colchicine, an NSAID, or a glucocorticoid."
+  },
+  {
+    "id": "b12-s1-40",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Diltiazem and verapamil harm a weak ventricle because they are negative inotropes. That is why they are class 3 in HFrEF."
+  },
+  {
+    "id": "b12-s1-41",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The lipid drug indicated for every acute coronary syndrome inhibits HMG-CoA reductase. A fibrate does not."
+  },
+  {
+    "id": "b12-s1-42",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Allopurinol, the preferred first urate-lowering drug, inhibits xanthine oxidase. A low starting dose is how hypersensitivity risk is reduced."
+  },
+  {
+    "id": "b12-s1-43",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Low-dose colchicine is preferred because efficacy is similar and adverse effects are fewer. The cellular target is the microtubule."
+  },
+  {
+    "id": "b12-s1-44",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "The early fall in filtration after an SGLT2 inhibitor is a reversible hemodynamic change, not tubular necrosis."
+  },
+  {
+    "id": "b12-s1-45",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Suspected cardiac amyloid is tested for a monoclonal light chain first. Bone scintigraphy comes after that test is negative."
+  },
+  {
+    "id": "b12-s1-46",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Tafamidis is recommended for selected patients with wild-type or variant transthyretin amyloid cardiomyopathy to reduce cardiovascular morbidity and mortality."
+  },
+  {
+    "id": "b12-s1-47",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Anticoagulation is reasonable in cardiac amyloid with atrial fibrillation, even when the usual score would look low."
+  },
+  {
+    "id": "b12-s1-48",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Significant closed-head trauma within 3 months is an absolute contraindication to fibrinolysis."
+  },
+  {
+    "id": "b12-s1-49",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Active bleeding is an absolute contraindication to fibrinolysis."
+  },
+  {
+    "id": "b12-s1-50",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Increased sputum volume without a change to purulence does not by itself earn an antibiotic for a COPD exacerbation."
+  },
+  {
+    "id": "b12-s1-51",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A GLP-1 receptor agonist that does not depend on kidney clearance can be used on dialysis for cardiovascular risk. Dialysis is not an absolute ban."
+  },
+  {
+    "id": "b12-s1-52",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A potassium of 5.2 mEq/L soon after an ACE inhibitor is a reason to review diet and other drugs before abandoning the class. It is not a reason to add an ARB."
+  },
+  {
+    "id": "b12-s1-53",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Lung-cancer screening is not started when the person cannot undergo curative lung surgery or has a short life expectancy."
+  },
+  {
+    "id": "b12-s1-54",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Tenecteplase is a fibrin-specific fibrinolytic given as one weight-based intravenous bolus, not a 90-minute infusion."
+  },
+  {
+    "id": "b12-s1-55",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In mildly reduced ejection fraction, an SGLT2 inhibitor has a class 2a recommendation. Beta blockers, ARNIs, ACE inhibitors, ARBs, and mineralocorticoid antagonists are weaker, class 2b."
+  },
+  {
+    "id": "b12-s1-56",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The benefit-harm balance is why the 2024 mammography interval is every two years rather than every year."
+  },
+  {
+    "id": "b12-s1-57",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Starting colorectal screening at 45 rather than 50 adds life-years. That is why 45 is the start, not a rounding error."
+  },
+  {
+    "id": "b12-s1-58",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In a hypotensive patient the first hemoglobin overestimates the value that will be seen after fluid, because dilution has not happened yet."
+  },
+  {
+    "id": "b12-s1-59",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Magnesium prevents seizures. It is not the drug that lowers severe-range blood pressure."
+  },
+  {
+    "id": "b12-s1-60",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Fidaxomicin is suggested over a standard vancomycin course because recurrence is less frequent, not because vancomycin is ineffective for the first episode."
+  },
+  {
+    "id": "b12-s1-61",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After successful endovascular reperfusion for a large-vessel occlusion, lowering systolic pressure below 140 mm Hg in the first 24 to 72 hours can worsen outcome."
+  },
+  {
+    "id": "b12-s1-62",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In spontaneous intracerebral hemorrhage with systolic pressure 150 to 220 mm Hg, lowering toward 130 to under 140 mm Hg can be beneficial. Stopping if pressure falls below 130 matters."
+  },
+  {
+    "id": "b12-s1-63",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Systolic pressure under 120 and diastolic pressure under 80 is normal. 118/76 is not elevated and not stage 1."
+  },
+  {
+    "id": "b12-s1-64",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Stage 2 hypertension is a systolic pressure of at least 140 or a diastolic pressure of at least 90. Both numbers do not have to qualify."
+  },
+  {
+    "id": "b12-s1-65",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A potassium-based salt substitute can be useful when kidney function is normal and no potassium-retaining drug is in use."
+  },
+  {
+    "id": "b12-s1-66",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "The four disease-modifying classes in symptomatic HFrEF are an ARNI, an evidence-based beta blocker, a mineralocorticoid antagonist, and an SGLT2 inhibitor."
+  },
+  {
+    "id": "b12-s1-67",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A short-acting beta agonist relieves constriction and does not treat the airway inflammation that drives severe asthma exacerbations."
+  },
+  {
+    "id": "b12-s1-68",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Allopurinol is started low because a lower starting dose reduces the risk of hypersensitivity. The dose is then titrated."
+  },
+  {
+    "id": "b12-s1-69",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A proton pump inhibitor after ulcer hemostasis is used to keep gastric pH high enough for the clot to stay stable."
+  },
+  {
+    "id": "b12-s1-70",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "From ages 30 to 65, cotesting with cytology and high-risk HPV every 5 years is one acceptable strategy. It is not a yearly test."
+  },
+  {
+    "id": "b12-s1-71",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "HFrEF means the current or prior ejection fraction is 40 percent or lower. A value of 33 percent is not 'borderline preserved.'"
+  },
+  {
+    "id": "b12-s1-72",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A malignant intracranial neoplasm is an absolute contraindication to fibrinolysis."
+  },
+  {
+    "id": "b12-s1-73",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "ST elevation in posterior leads means this is not 'ST depression alone.' Fibrinolysis is not withheld for that reason when PCI will be late."
+  },
+  {
+    "id": "b12-s1-74",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Albuminuria category and filtration category are read together. A normal creatinine does not assign a filtration category."
+  },
+  {
+    "id": "b12-s1-75",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An SGLT2 inhibitor for type 2 diabetes with CKD can be started at an eGFR of at least 20 and continued down to dialysis. The start line and the stop line are not the same."
+  },
+  {
+    "id": "b12-s1-76",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Chronic hypertension is a high-risk factor for aspirin 81 mg daily, started between 12 and 28 weeks."
+  },
+  {
+    "id": "b12-s1-77",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "New visual change is a severe feature even when platelets, creatinine, and liver enzymes are normal."
+  },
+  {
+    "id": "b12-s1-78",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Severe-range blood pressure is a systolic value of at least 160 or a diastolic value of at least 110, confirmed as persistent."
+  },
+  {
+    "id": "b12-s1-79",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In CKD stage 3 or higher, probenecid is not the preferred urate-lowering drug. Allopurinol or febuxostat is preferred over probenecid."
+  },
+  {
+    "id": "b12-s1-80",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After a leg amputation, low muscle mass can make creatinine look falsely reassuring. If the number changes a drug dose, add cystatin C."
+  },
+  {
+    "id": "b12-s1-81",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A positive monoclonal light-chain test means a bone scan must not be read as isolated transthyretin amyloid."
+  },
+  {
+    "id": "b12-s1-82",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An ARNI is preferred to an ACE inhibitor in symptomatic HFrEF because neprilysin inhibition adds natriuretic-peptide effect on top of angiotensin-receptor blockade."
+  },
+  {
+    "id": "b12-s1-83",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Epinephrine injection alone fails because the vasoconstriction is temporary and does not create a durable seal."
+  },
+  {
+    "id": "b12-s1-84",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "When the ejection fraction was 40 percent or lower and is now above 40 percent, the name is improved, not recovered."
+  },
+  {
+    "id": "b12-s1-85",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Ischemic stroke more than 3 months ago is not an absolute contraindication to fibrinolysis. A stroke two months ago is."
+  },
+  {
+    "id": "b12-s1-86",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Platelets below 100,000 per microliter are a severe feature even when blood pressure is only modestly elevated."
+  },
+  {
+    "id": "b12-s1-87",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After a COPD exacerbation, long-acting bronchodilators are started before discharge even if the eosinophil count is not back yet. An inhaled corticosteroid is not assumed."
+  },
+  {
+    "id": "b12-s1-88",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Routine oxygen for a COPD exacerbation is controlled. A non-rebreather mask at 15 liters is not the default."
+  },
+  {
+    "id": "b12-s1-89",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Aneurysm screening, when indicated, is one ultrasound. A normal study is not repeated every year."
+  },
+  {
+    "id": "b12-s1-90",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Cervical screening starts at 21. Age 22 is not too young, and the test at that age is cytology, not primary HPV testing."
+  },
+  {
+    "id": "b12-s1-91",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Quitting 14 years ago is still inside the 15-year window, so low-dose CT remains indicated when age and pack-years also qualify."
+  },
+  {
+    "id": "b12-s1-92",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Ages 76 to 85 are a selective colorectal-screening decision. A healthy 78-year-old who has never been screened is not an automatic no."
+  },
+  {
+    "id": "b12-s1-93",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Age 74 is still inside the biennial mammography recommendation. The routine recommendation stops after 74, not at 70."
+  },
+  {
+    "id": "b12-s1-94",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Starting an SGLT2 inhibitor does not by itself require more frequent CKD laboratory monitoring."
+  },
+  {
+    "id": "b12-s1-95",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A patient who needs step-4 asthma treatment starts at medium-dose ICS-LABA on track 2, not at a high dose, when ICS-formoterol is not being used."
+  },
+  {
+    "id": "b12-s1-96",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "At or after 37 weeks, gestational hypertension without proteinuria and without a severe feature is still delivered rather than observed until 39 weeks."
+  },
+  {
+    "id": "b12-s1-97",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Pregnant patients are screened for asymptomatic bacteriuria with a urine culture. Symptoms are not required."
+  },
+  {
+    "id": "b12-s1-98",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The name for an ejection fraction that rose from 40 percent or lower to above 40 percent is improved, and the old study is part of the definition."
+  },
+  {
+    "id": "b12-s1-99",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After an ACE inhibitor dose is increased, potassium and creatinine are rechecked. They are not left until the next annual panel."
+  },
+  {
+    "id": "b12-s1-100",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A very-low Glasgow-Blatchford score is what allows discharge. A single coffee-ground streak does not, if the urea, pulse, or hemoglobin pushes the score up."
+  },
+  {
+    "id": "b12-s2-01",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When pain began under 12 hours ago and a catheter cannot open the artery within 120 minutes, give a fibrin-specific fibrinolytic and transfer immediately, unless a contraindication is present."
+  },
+  {
+    "id": "b12-s2-02",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "At a PCI-capable hospital, ST-elevation infarction within 12 hours is treated with primary PCI when the device can be activated within 90 minutes."
+  },
+  {
+    "id": "b12-s2-03",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A prior intracranial hemorrhage is an absolute contraindication to fibrinolysis, so the patient is transferred for PCI even when the trip will exceed 120 minutes."
+  },
+  {
+    "id": "b12-s2-04",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Fibrinolysis is not given for ST-segment depression alone when a true posterior infarction has been looked for and is not present."
+  },
+  {
+    "id": "b12-s2-05",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "For ST-elevation infarction treated with primary PCI, prasugrel or ticagrelor is preferred. Clopidogrel is used when those drugs cannot be used."
+  },
+  {
+    "id": "b12-s2-06",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Prasugrel is avoided after a stroke or a transient ischemic attack. Ticagrelor can still be used for primary PCI."
+  },
+  {
+    "id": "b12-s2-07",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When fibrinolysis is the reperfusion strategy, clopidogrel is the P2Y12 inhibitor given with it. Under age 75 that includes a loading dose."
+  },
+  {
+    "id": "b12-s2-08",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Every patient with an acute coronary syndrome receives high-intensity statin therapy without waiting for a baseline LDL cholesterol."
+  },
+  {
+    "id": "b12-s2-09",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Nitroglycerin is avoided when right-ventricular infarction is suspected, even if systolic pressure is still above 90 mm Hg."
+  },
+  {
+    "id": "b12-s2-10",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Radial artery access is preferred over femoral access for PCI in an acute coronary syndrome because it reduces bleeding, vascular complications, and death."
+  },
+  {
+    "id": "b12-s2-11",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Do not open a totally occluded infarct artery in a stable patient more than 24 hours after onset when there is no ongoing ischemia, severe heart failure, or life-threatening arrhythmia."
+  },
+  {
+    "id": "b12-s2-12",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In an acute coronary syndrome with anemia and no active bleeding, red-cell transfusion to keep hemoglobin near 10 g/dL may be reasonable. That is not the 7 g/dL threshold used for a gastrointestinal bleed."
+  },
+  {
+    "id": "b12-s2-13",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Adults with clinical cardiovascular disease start blood-pressure medication when the average is at least 130/80 mm Hg, and the goal is below 130/80 mm Hg."
+  },
+  {
+    "id": "b12-s2-14",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When 10-year risk is under 7.5 percent and there is no cardiovascular disease, diabetes, or chronic kidney disease, a pressure in the 130s gets 3 to 6 months of lifestyle treatment before medication."
+  },
+  {
+    "id": "b12-s2-15",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Medication is recommended for every adult with hypertension when the average systolic pressure is at least 140 mm Hg, including adults whose 10-year risk is under 7.5 percent."
+  },
+  {
+    "id": "b12-s2-16",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Resistant hypertension is screened for primary aldosteronism whether or not the potassium is low."
+  },
+  {
+    "id": "b12-s2-17",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In symptomatic HFrEF, an angiotensin receptor-neprilysin inhibitor is the preferred first renin-angiotensin drug when it can be used."
+  },
+  {
+    "id": "b12-s2-18",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Patients with symptomatic HFrEF who already tolerate an ACE inhibitor should be switched to an angiotensin receptor-neprilysin inhibitor, with a gap so the two drugs do not overlap."
+  },
+  {
+    "id": "b12-s2-19",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Only bisoprolol, carvedilol, and metoprolol succinate reduced mortality in HFrEF. The benefit is not a beta-blocker class effect."
+  },
+  {
+    "id": "b12-s2-20",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An SGLT2 inhibitor is recommended for symptomatic chronic HFrEF whether or not the patient has diabetes."
+  },
+  {
+    "id": "b12-s2-21",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When the ejection fraction was 40 percent or lower and a later measurement is above 40 percent, guideline-directed therapy continues even if symptoms have gone."
+  },
+  {
+    "id": "b12-s2-22",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Nondihydropyridine calcium-channel blockers are not recommended in HFrEF because their negative inotropy is harmful."
+  },
+  {
+    "id": "b12-s2-23",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A moderate or severe COPD exacerbation is treated with systemic corticosteroids for up to 5 days, not a 14-day course."
+  },
+  {
+    "id": "b12-s2-24",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Antibiotics for a COPD exacerbation are for purulent sputum, a prior pattern of lung infection, or a need for ventilatory support. Increased dyspnea alone does not earn them."
+  },
+  {
+    "id": "b12-s2-25",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After a COPD exacerbation, an elevated eosinophil count is a reason to add an inhaled corticosteroid to dual bronchodilators. A long-acting beta agonist plus an inhaled corticosteroid, without a muscarinic antagonist, is not the preferred start when there is no asthma."
+  },
+  {
+    "id": "b12-s2-26",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "GINA prefers as-needed low-dose ICS-formoterol for infrequent asthma symptoms. A short-acting beta agonist alone leaves airway inflammation untreated."
+  },
+  {
+    "id": "b12-s2-27",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When asthma symptoms occur most days, GINA Track 1 uses daily low-dose ICS-formoterol as both maintenance and reliever."
+  },
+  {
+    "id": "b12-s2-28",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Metformin is not started when eGFR is below 45, even if it is still above 30. At an eGFR of at least 20, an SGLT2 inhibitor is still recommended for type 2 diabetes with CKD."
+  },
+  {
+    "id": "b12-s2-29",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When eGFR is below 30, a GLP-1 receptor agonist is preferred for glucose lowering. Metformin is contraindicated at that level."
+  },
+  {
+    "id": "b12-s2-30",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A DPP-4 inhibitor is stopped when a GLP-1 receptor agonist is started. The combination does not lower glucose further."
+  },
+  {
+    "id": "b12-s2-31",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "People at risk for CKD are tested with urine albumin and a filtration estimate together. A creatinine alone does not stage the kidney."
+  },
+  {
+    "id": "b12-s2-32",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The current filtration estimate does not use race as a variable."
+  },
+  {
+    "id": "b12-s2-33",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When high muscle mass makes a creatinine-based estimate unreliable and the number changes a drug dose, add cystatin C."
+  },
+  {
+    "id": "b12-s2-34",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An SGLT2 inhibitor is recommended at an eGFR of at least 20 when the urine ACR is at least 200 mg/g, even without diabetes."
+  },
+  {
+    "id": "b12-s2-35",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An early, small, reversible fall in eGFR after an SGLT2 inhibitor is started is not a reason to stop the drug."
+  },
+  {
+    "id": "b12-s2-36",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Hold an SGLT2 inhibitor on the day of major surgery and during prolonged fasting, because ketosis is more likely then."
+  },
+  {
+    "id": "b12-s2-37",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "An ACE inhibitor and an ARB are not combined. One renin-angiotensin drug is titrated to the highest tolerated dose."
+  },
+  {
+    "id": "b12-s2-38",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A 5-year kidney-failure risk of about 3 to 5 percent supports nephrology referral, together with the filtration rate and the urine albumin."
+  },
+  {
+    "id": "b12-s2-39",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "At or after 37 weeks, new hypertension with proteinuria and no severe feature is delivered rather than observed until 39 weeks."
+  },
+  {
+    "id": "b12-s2-40",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "At or after 34 weeks, severe-range pressure or platelets below 100,000 are delivered after the mother is stabilized. Steroids do not delay that delivery, and magnesium is used to prevent seizures."
+  },
+  {
+    "id": "b12-s2-41",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Before 34 weeks, severe-range pressure that has been controlled, with a stable mother and a reassuring fetus, is watched in a capable hospital. Immediate delivery is not automatic."
+  },
+  {
+    "id": "b12-s2-42",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Persistent systolic pressure of at least 160 mm Hg or diastolic pressure of at least 110 mm Hg is lowered promptly with intravenous labetalol or hydralazine. Magnesium does not replace that pressure drug."
+  },
+  {
+    "id": "b12-s2-43",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "After a prior pregnancy with this hypertensive disease, aspirin 81 mg daily starts between 12 and 28 weeks, ideally before 16 weeks, and continues until delivery."
+  },
+  {
+    "id": "b12-s2-44",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After birth, a patient still receiving magnesium may use a nonsteroidal anti-inflammatory drug. An opioid is not preferred for ordinary postpartum pain."
+  },
+  {
+    "id": "b12-s2-45",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "For an upper gastrointestinal bleed without preexisting cardiovascular disease, transfuse red cells when the hemoglobin is below 7 g/dL."
+  },
+  {
+    "id": "b12-s2-46",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When upper gastrointestinal bleeding occurs in preexisting cardiovascular disease that is not an acute coronary syndrome, a hemoglobin threshold near 8 g/dL is reasonable."
+  },
+  {
+    "id": "b12-s2-47",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A hypotensive patient with an upper gastrointestinal bleed may need red cells even when the first hemoglobin is still above 7 g/dL, because the value falls further as fluid is given."
+  },
+  {
+    "id": "b12-s2-48",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Endoscopy for an upper gastrointestinal bleed is done within 24 hours after resuscitation. An unstable patient is not scoped before the pressure is restored."
+  },
+  {
+    "id": "b12-s2-49",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Epinephrine injection alone is not adequate hemostasis for a bleeding ulcer. A second method has to be added."
+  },
+  {
+    "id": "b12-s2-50",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A Glasgow-Blatchford score of 0 or 1 identifies a very-low-risk upper bleed that may be discharged with outpatient follow-up."
+  },
+  {
+    "id": "b12-s2-51",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "After endoscopic hemostasis of an ulcer, give a high-dose proton pump inhibitor for 3 days, then twice-daily oral therapy for 2 weeks."
+  },
+  {
+    "id": "b12-s2-52",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The 2024 USPSTF recommendation is biennial mammography from ages 40 through 74, not a delay until 50 and not an annual interval."
+  },
+  {
+    "id": "b12-s2-53",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Annual low-dose CT is recommended from ages 50 through 80 with at least 20 pack-years if the person still smokes or quit within 15 years."
+  },
+  {
+    "id": "b12-s2-54",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Lung-cancer screening stops once a person has not smoked for 15 years, even if the pack-year total was heavy."
+  },
+  {
+    "id": "b12-s2-55",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Average-risk colorectal screening starts at age 45. Waiting until 50 uses a retired cutoff."
+  },
+  {
+    "id": "b12-s2-56",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Men aged 65 to 75 who have ever smoked are offered one abdominal ultrasound for aneurysm screening."
+  },
+  {
+    "id": "b12-s2-57",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "The USPSTF recommends against routine aneurysm ultrasound in women who have never smoked."
+  },
+  {
+    "id": "b12-s2-58",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "From ages 21 through 29, cervical screening is cytology every 3 years. Primary HPV testing is not the strategy in that decade."
+  },
+  {
+    "id": "b12-s2-59",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Uncomplicated gonorrhea below 150 kg is treated with ceftriaxone 500 mg intramuscularly once. A negative chlamydia test means doxycycline is not added."
+  },
+  {
+    "id": "b12-s2-60",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "At a weight of at least 150 kg, uncomplicated gonorrhea is treated with ceftriaxone 1 g intramuscularly once."
+  },
+  {
+    "id": "b12-s2-61",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "If chlamydia has not been excluded, uncomplicated gonorrhea treatment adds doxycycline 100 mg twice daily for 7 days rather than azithromycin."
+  },
+  {
+    "id": "b12-s2-62",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Chlamydia in pregnancy is treated with azithromycin 1 g once. Doxycycline is not used."
+  },
+  {
+    "id": "b12-s2-63",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Disseminated gonococcal infection is treated with ceftriaxone 1 g every 24 hours, not the 500 mg uncomplicated dose."
+  },
+  {
+    "id": "b12-s2-64",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "For an initial nonfulminant C. difficile episode, fidaxomicin is suggested over a standard vancomycin course when it is available."
+  },
+  {
+    "id": "b12-s2-65",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "For a first C. difficile recurrence, fidaxomicin is suggested rather than a standard 10-day vancomycin course. Metronidazole is not the drug."
+  },
+  {
+    "id": "b12-s2-66",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Allopurinol is the preferred first urate-lowering drug, including in CKD stage 3 or worse. Probenecid and pegloticase are not the first choice."
+  },
+  {
+    "id": "b12-s2-67",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A flare is treated first with low-dose colchicine, an NSAID, or a glucocorticoid. An IL-1 inhibitor is not first-line, and hourly high-dose colchicine is not the regimen."
+  },
+  {
+    "id": "b12-s2-68",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When urate-lowering therapy is indicated, it may start during a flare, and anti-inflammatory prophylaxis continues for at least 3 months."
+  },
+  {
+    "id": "b12-s2-69",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Before allopurinol, test HLA-B*5801 in a patient of Korean ancestry. The test is not a general requirement for every ancestry."
+  },
+  {
+    "id": "b12-s2-70",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A first flare with urate under 9 mg/dL, no CKD stage 3, and no stones is not by itself a reason to start urate-lowering therapy."
+  },
+  {
+    "id": "b12-s2-71",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "The blood-pressure goal for an otherwise healthy older adult is still below 130/80 mm Hg. A goal of 150/90 is outdated."
+  },
+  {
+    "id": "b12-s2-72",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Diabetes plus an albumin-to-creatinine ratio of at least 30 mg/g is treated with an ACE inhibitor or an ARB, not with both and not only after the ratio exceeds 300."
+  },
+  {
+    "id": "b12-s2-73",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A potassium-based salt substitute is avoided in chronic kidney disease, where the potassium can rise."
+  },
+  {
+    "id": "b12-s2-74",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "An ejection fraction of 40 percent or lower is reduced. An ejection fraction of 38 percent is not preserved, and disease-modifying therapy is not delayed until the number falls below 30."
+  },
+  {
+    "id": "b12-s2-75",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In HFpEF, an SGLT2 inhibitor can be beneficial. Routine nitrates are class 3, no benefit."
+  },
+  {
+    "id": "b12-s2-76",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Theophylline is not recommended for a COPD exacerbation because side effects outweigh any small bronchodilator effect."
+  },
+  {
+    "id": "b12-s2-77",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Noninvasive ventilation is indicated for acute hypercapnic respiratory failure in COPD when the patient is still protecting the airway."
+  },
+  {
+    "id": "b12-s2-78",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Heavy short-acting beta-agonist use is a risk marker even when reported symptoms sound rare. GINA prefers an ICS-formoterol reliever over another albuterol refill."
+  },
+  {
+    "id": "b12-s2-79",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A high-dose inhaled corticosteroid should not run for years. GINA limits a high dose to about 3 to 6 months."
+  },
+  {
+    "id": "b12-s2-80",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When type 2 diabetes and a high fibrosis risk from fatty liver occur together, a GLP-1 receptor agonist is preferred for glucose lowering."
+  },
+  {
+    "id": "b12-s2-81",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Cardiogenic shock is revascularized immediately even when pain began more than 24 hours earlier."
+  },
+  {
+    "id": "b12-s2-82",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "One month after PCI, switching from ticagrelor to clopidogrel may be considered when bleeding risk is high. Both antiplatelet drugs are not stopped."
+  },
+  {
+    "id": "b12-s2-83",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Adults aged 50 or older with CKD who are not on dialysis are treated with a statin even when LDL cholesterol is under 100 mg/dL."
+  },
+  {
+    "id": "b12-s2-84",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A urine albumin-to-creatinine ratio of 30 to 300 mg/g is already moderately increased. It is not a normal result."
+  },
+  {
+    "id": "b12-s2-85",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Platelets below 100,000 are a severe feature. At 36 weeks that means delivery after stabilization and magnesium, not observation until 37 weeks."
+  },
+  {
+    "id": "b12-s2-86",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Creatinine above 1.1 mg/dL is a severe feature. Before 34 weeks, a currently stable mother and a reassuring fetus stay in the hospital. They are not sent home."
+  },
+  {
+    "id": "b12-s2-87",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Uncomplicated pharyngeal gonorrhea under 150 kg is treated with ceftriaxone 500 mg intramuscularly once. Oral azithromycin does not replace the injection."
+  },
+  {
+    "id": "b12-s2-88",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Melena, a urea of 40 mg/dL, a hemoglobin of 9.5 g/dL, and a pulse of 108 are not a very-low-risk score. Hemoglobin above 7 g/dL is not a discharge rule."
+  },
+  {
+    "id": "b12-s2-89",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Low-dose CT screening for lung cancer is not started at age 81. The upper age is 80."
+  },
+  {
+    "id": "b12-s2-90",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "From ages 76 through 85, colorectal screening is offered selectively. A frail 82-year-old with a negative colonoscopy at 70 is not booked automatically."
+  },
+  {
+    "id": "b12-s2-91",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "For women aged 40 to 74, the USPSTF mammography interval is every two years, not every year."
+  },
+  {
+    "id": "b12-s2-92",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Office blood pressure of at least 160/100 mm Hg is treated promptly. A week of home readings is not a reason to withhold all treatment."
+  },
+  {
+    "id": "b12-s2-93",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "In symptomatic HFrEF, one of the three evidence-based beta blockers starts once the patient is euvolemic and off inotropes. It is not delayed until symptoms are present at rest."
+  },
+  {
+    "id": "b12-s2-94",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In type 2 diabetes with heart failure, an SGLT2 inhibitor is added even when the A1c is already near goal."
+  },
+  {
+    "id": "b12-s2-95",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When a COPD exacerbation has purulent sputum, the antibiotic course is 5 days, not 14."
+  },
+  {
+    "id": "b12-s2-96",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Metformin is held at the time of iodinated contrast when eGFR is 30 to 60. It is restarted after kidney function is rechecked, not stopped forever for one scan."
+  },
+  {
+    "id": "b12-s2-97",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A normal first troponin does not delay primary PCI for an anterior ST-elevation pattern when the device can be activated within 90 minutes."
+  },
+  {
+    "id": "b12-s2-98",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Heart failure is an SGLT2-inhibitor indication even when albuminuria is absent and there is no diabetes."
+  },
+  {
+    "id": "b12-s2-99",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Allopurinol is titrated until the serum urate is below 6 mg/dL. A tolerated dose of 100 mg is not the ceiling when the urate remains 7.8."
+  },
+  {
+    "id": "b12-s2-100",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A mild COPD exacerbation is treated by increasing the short-acting bronchodilator. Systemic corticosteroids are for moderate or severe flares, not for a mild increase in dyspnea alone."
+  }
+]

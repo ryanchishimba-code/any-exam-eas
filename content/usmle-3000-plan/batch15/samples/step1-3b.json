@@ -1,0 +1,20 @@
+{
+  "id": "b15-s1-51",
+  "stepLevel": "step1",
+  "outlineSystem": "multisystem",
+  "subjectId": "immunology",
+  "difficulty": 3,
+  "blueprintTopic": "scid-ada",
+  "scenario": "A 4-month-old boy has thrush, diarrhea, and no thymus shadow. Lymphocyte counts of both lineages are near zero. He has no tonsils. A classmate calls it an isolated antibody deficit because infections are the clue.",
+  "question": "Which enzyme failed, and why are both lymphocyte arms gone?",
+  "options": [
+    "The salvage enzyme, so both arms die",
+    "An isolated antibody gap, with a normal thymus",
+    "A neutrophil oxidase defect, so lymphocytes are the cells that vanish",
+    "A complement protein gap, so viral thrush is the classic infection",
+    "HIV, the usual cause of an absent thymus at 4 months"
+  ],
+  "correctAnswer": "The salvage enzyme, so both arms die",
+  "citation": "Abbas AK, Lichtman AH, Pillai S. Cellular and Molecular Immunology. 10th ed. Elsevier; 2021.",
+  "examTakeaway": "Adenosine deaminase deficiency lets toxic nucleotides kill lymphocytes, so both B and T arms fail."
+}

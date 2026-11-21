@@ -1,0 +1,19 @@
+{
+  "id": "b17-s2-37",
+  "difficulty": 3,
+  "subjectId": "cardiology",
+  "outlineSystem": "cardiovascular",
+  "blueprintTopic": "stemi-pci",
+  "scenario": "A 58-year-old man has crushing pain and ST elevation. A laboratory that can open the artery is 30 minutes away. He is stable enough to transfer. A classmate gives a thrombolytic and keeps him at a hospital with no laboratory.",
+  "question": "Where should the artery be opened, and when is a thrombolytic the alternative?",
+  "options": [
+    "A thrombolytic and no transfer",
+    "Transfer for a catheter",
+    "Pain medicine only",
+    "A stress test in the morning",
+    "Discharge on aspirin after one dose"
+  ],
+  "correctAnswer": "Transfer for a catheter",
+  "explanation": "ST-elevation infarction is treated with primary percutaneous intervention when it can be done within about 120 minutes of first medical contact. Thrombolysis is for when that window cannot be met. Thirty minutes is well inside the window for primary intervention. A lytic is used when transfer would miss that window. Rao SV, et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Circulation. 2025.\n\nTransfer for a catheter\nA thrombolytic and no transfer — The catheter laboratory is close.\nPain medicine only — The artery is occluded.\nA stress test in the morning — ST elevation is not a stress-test situation.\nDischarge on aspirin after one dose — The occlusion needs reperfusion.",
+  "citation": "Rao SV, et al. 2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes. Circulation. 2025."
+}

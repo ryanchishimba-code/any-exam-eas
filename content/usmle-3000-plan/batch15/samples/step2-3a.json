@@ -1,0 +1,20 @@
+{
+  "id": "b15-s2-34",
+  "stepLevel": "step2",
+  "outlineSystem": "multisystem",
+  "subjectId": "endocrinology",
+  "difficulty": 3,
+  "blueprintTopic": "dka",
+  "scenario": "A 19-year-old man has glucose of 480 mg/dL, pH 7.15, and large urine ketones. Potassium is 4.8 mEq/L. He is dry. A classmate starts insulin before any fluid and does not plan potassium.",
+  "question": "What comes before insulin, and why is potassium replaced at 4.8?",
+  "options": [
+    "Insulin before any fluid",
+    "No potassium because 4.8 is normal",
+    "Bicarbonate as the first drug for pH 7.15",
+    "Volume first. The ion will fall",
+    "Oral diabetes tablets as the emergency treatment"
+  ],
+  "correctAnswer": "Volume first. The ion will fall",
+  "citation": "American Diabetes Association Professional Practice Committee. Standards of Care in Diabetes\u20142026. Diabetes Care. 2026.",
+  "examTakeaway": "Diabetic ketoacidosis is treated with fluids first, then insulin, and potassium is replaced even when the serum number looks normal."
+}

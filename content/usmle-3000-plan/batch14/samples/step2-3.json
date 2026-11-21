@@ -1,0 +1,20 @@
+{
+  "id": "b14-s2-35",
+  "stepLevel": "step2",
+  "outlineSystem": "cardiovascular",
+  "subjectId": "cardiology",
+  "difficulty": 3,
+  "blueprintTopic": "af-anticoag",
+  "scenario": "A 72-year-old woman has atrial fibrillation on the tracing, a CHA2DS2-VASc score of 4, and no valve replacement. She is rate-controlled and feels fine. A classmate starts aspirin because she has no symptoms.",
+  "question": "What stroke prevention fits the score, and why is feeling fine not protective?",
+  "options": [
+    "Aspirin, because she feels fine",
+    "No drug, because rate control also prevents stroke",
+    "Dual antiplatelet therapy as the equal of an anticoagulant",
+    "Cardioversion today without anticoagulation, because the duration is unknown",
+    "Anticoagulation. Aspirin is not enough at this score"
+  ],
+  "correctAnswer": "Anticoagulation. Aspirin is not enough at this score",
+  "citation": "Joglar JA, et al. 2023 ACC/AHA/ACCP/HRS Guideline for the Diagnosis and Management of Atrial Fibrillation. Circulation. 2024.",
+  "examTakeaway": "Nonvalvular atrial fibrillation with an elevated CHA2DS2-VASc score gets anticoagulation. Aspirin is not the substitute."
+}

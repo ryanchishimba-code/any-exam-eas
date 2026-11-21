@@ -1,0 +1,24 @@
+{
+  "id": "b13-s1-39",
+  "fieldId": "usmle-step-1",
+  "stepLevel": "step1",
+  "outlineSystem": "gastrointestinal",
+  "outlineWeight": 8,
+  "blueprintTopic": "aspirin-acid-base",
+  "blueprintDomain": "gastrointestinal",
+  "difficulty": 3,
+  "subjectId": "pharmacology",
+  "examTakeaway": "Salicylate poisoning causes a respiratory alkalosis and an anion-gap metabolic acidosis together.",
+  "scenario": "A 20-year-old man took a bottle of aspirin tablets. pH is 7.48, PCO2 is 22 mm Hg, and the anion gap is 22. He is here for the mechanism, not for a medication list.",
+  "question": "Which two acid-base processes are running?",
+  "options": [
+    "Metabolic alkalosis alone",
+    "Normal-gap acidosis from diarrhea",
+    "Respiratory acidosis from hypoventilation",
+    "Respiratory alkalosis plus anion-gap metabolic acidosis",
+    "No acid-base change, because aspirin is neutral"
+  ],
+  "correctAnswer": "Respiratory alkalosis plus anion-gap metabolic acidosis",
+  "explanation": "Salicylate poisoning causes a respiratory alkalosis and an anion-gap metabolic acidosis together. A low PCO2 with a high pH shows the respiratory piece, and the gap shows the metabolic piece. FDA prescribing information for aspirin, 2024.\n\nRespiratory alkalosis plus anion-gap metabolic acidosis\nMetabolic alkalosis alone \u2014 The anion gap would not be 22 in a pure metabolic alkalosis.\nNormal-gap acidosis from diarrhea \u2014 The gap is high, and he did not describe diarrhea.\nRespiratory acidosis from hypoventilation \u2014 PCO2 is low, so he is hyperventilating.\nNo acid-base change, because aspirin is neutral \u2014 The numbers are not neutral.",
+  "citation": "FDA prescribing information for aspirin, 2024."
+}

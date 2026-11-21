@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "b13-s1-01",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Loop diuretics inhibit the Na-K-2Cl cotransporter and increase calcium loss in urine."
+  },
+  {
+    "id": "b13-s1-02",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Thiazides inhibit the distal sodium-chloride cotransporter and decrease urine calcium."
+  },
+  {
+    "id": "b13-s1-03",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Acetazolamide inhibits proximal carbonic anhydrase and causes a normal-anion-gap metabolic acidosis."
+  },
+  {
+    "id": "b13-s1-04",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Trimethoprim can raise the serum creatinine by blocking secretion, while the glomerular filtration rate stays the same."
+  },
+  {
+    "id": "b13-s1-05",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An ACE inhibitor dilates the efferent arteriole, so filtration can fall even though kidney perfusion is not worse."
+  },
+  {
+    "id": "b13-s1-06",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Muddy-brown granular casts mean tubular injury. Hyaline casts alone fit a low-flow prerenal state."
+  },
+  {
+    "id": "b13-s1-07",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "White-cell casts and eosinophiluria after a new drug point to interstitial nephritis, not acute tubular necrosis."
+  },
+  {
+    "id": "b13-s1-08",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A urine dipstick positive for blood with no red cells on microscopy is myoglobin until proved otherwise."
+  },
+  {
+    "id": "b13-s1-09",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Vitamin B12 deficiency can damage the dorsal columns. Folate deficiency causes the same anemia without that cord lesion."
+  },
+  {
+    "id": "b13-s1-10",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Low ferritin means iron deficiency. A high ferritin with low serum iron fits anemia of inflammation."
+  },
+  {
+    "id": "b13-s1-11",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Primaquine and dapsone can hemolyze red cells that lack glucose-6-phosphate dehydrogenase. The bite cells appear after the oxidative drug."
+  },
+  {
+    "id": "b13-s1-12",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Hereditary spherocytosis is a membrane-cytoskeleton defect. Splenectomy stops the hemolysis because the spleen is what removes the spheres."
+  },
+  {
+    "id": "b13-s1-13",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Hydroxyurea raises fetal hemoglobin, which slows polymerization of sickle hemoglobin."
+  },
+  {
+    "id": "b13-s1-14",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Immune thrombocytopenia is caused by antibodies against platelet glycoproteins, so platelets are destroyed and production can be impaired."
+  },
+  {
+    "id": "b13-s1-15",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Thrombotic thrombocytopenic purpura is a deficiency of ADAMTS13, so huge von Willebrand multimers make platelet thrombi. Platelet transfusion is not the treatment of the count."
+  },
+  {
+    "id": "b13-s1-16",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Hemophilia A is factor VIII deficiency. Bleeding into a joint with a prolonged PTT and a normal PT fits that factor, not platelets."
+  },
+  {
+    "id": "b13-s1-17",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Imatinib inhibits the BCR-ABL tyrosine kinase made by the Philadelphia chromosome."
+  },
+  {
+    "id": "b13-s1-18",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Auer rods are crystalline cytoplasmic inclusions in myeloid blasts and mark acute myeloid leukemia, not acute lymphoblastic leukemia."
+  },
+  {
+    "id": "b13-s1-19",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Rasburicase breaks down existing uric acid. Allopurinol only decreases formation of new uric acid."
+  },
+  {
+    "id": "b13-s1-20",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Wilson disease is low ceruloplasmin with copper deposition in liver and basal ganglia. Psychiatric change plus liver disease in a young adult is the clue."
+  },
+  {
+    "id": "b13-s1-21",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Hereditary hemochromatosis stores iron. Phlebotomy removes it. Deferoxamine is not the first treatment."
+  },
+  {
+    "id": "b13-s1-22",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Alpha-1 antitrypsin deficiency can injure both lung and liver, because the protein is not secreted and the lungs lose a shield against elastase."
+  },
+  {
+    "id": "b13-s1-23",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Pain out of proportion to the exam plus a high lactate is intestinal ischemia until proved otherwise. The next study is vascular imaging, not a laxative."
+  },
+  {
+    "id": "b13-s1-24",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A serum-ascites albumin gradient of 1.1 g/dL or more means portal hypertension. A low gradient means the fluid is not from portal pressure."
+  },
+  {
+    "id": "b13-s1-25",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Lactulose treats hepatic encephalopathy by acidifying the colon and trapping ammonia, and by speeding stool loss of nitrogen."
+  },
+  {
+    "id": "b13-s1-26",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Thiamine is given before glucose in a malnourished patient, because glucose without thiamine can precipitate Wernicke encephalopathy."
+  },
+  {
+    "id": "b13-s1-27",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Ethosuximide blocks thalamic T-type calcium channels and treats absence seizures. Carbamazepine can worsen absence seizures."
+  },
+  {
+    "id": "b13-s1-28",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Carbidopa inhibits peripheral dopa decarboxylase so levodopa can reach the brain, and it does not cross into the brain itself in a meaningful way."
+  },
+  {
+    "id": "b13-s1-29",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Nimodipine after subarachnoid hemorrhage is used to reduce poor outcome from vasospasm. It is not given to clip the aneurysm."
+  },
+  {
+    "id": "b13-s1-30",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "An epidural hematoma is arterial, often from the middle meningeal artery, and classically follows a lucid interval. The CT shape is a lens."
+  },
+  {
+    "id": "b13-s1-31",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A subdural hematoma comes from bridging veins and spreads in a crescent that can cross suture lines."
+  },
+  {
+    "id": "b13-s1-32",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Lithium causes nephrogenic diabetes insipidus by resisting antidiuretic hormone in the collecting duct."
+  },
+  {
+    "id": "b13-s1-33",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Monoamine oxidase inhibitors plus tyramine can cause a hypertensive crisis because dietary amines are not broken down."
+  },
+  {
+    "id": "b13-s1-34",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "SSRIs can cause the syndrome of inappropriate antidiuretic hormone, especially in older adults, with low sodium and concentrated urine."
+  },
+  {
+    "id": "b13-s1-35",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Bupropion lowers the seizure threshold and is avoided in bulimia and in seizure disorders."
+  },
+  {
+    "id": "b13-s1-36",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Valproate is teratogenic, including neural-tube defects, and is avoided when pregnancy is possible."
+  },
+  {
+    "id": "b13-s1-37",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Lamotrigine is titrated slowly because a fast start raises the risk of Stevens-Johnson syndrome."
+  },
+  {
+    "id": "b13-s1-38",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Phenytoin has zero-order kinetics near the therapeutic range, so a small dose increase can cause a large level jump."
+  },
+  {
+    "id": "b13-s1-39",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Salicylate poisoning causes a respiratory alkalosis and an anion-gap metabolic acidosis together."
+  },
+  {
+    "id": "b13-s1-40",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Aspirin in a child with a viral illness is linked to Reye syndrome, with liver failure and encephalopathy."
+  },
+  {
+    "id": "b13-s1-41",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Acetylcysteine restores glutathione so the toxic acetaminophen metabolite can be detoxified."
+  },
+  {
+    "id": "b13-s1-42",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Bisphosphonates inhibit osteoclasts, so bone resorption falls."
+  },
+  {
+    "id": "b13-s1-43",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Denosumab is an antibody against RANKL, so osteoclasts are not activated."
+  },
+  {
+    "id": "b13-s1-44",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Allopurinol blocks formation of new uric acid. It does not dissolve the uric acid already circulating the way rasburicase does."
+  },
+  {
+    "id": "b13-s1-45",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Warfarin blocks vitamin K epoxide reductase, so factors II, VII, IX, and X and proteins C and S fall."
+  },
+  {
+    "id": "b13-s1-46",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Warfarin skin necrosis happens when protein C falls before the procoagulant factors, so a transient hypercoagulable state appears."
+  },
+  {
+    "id": "b13-s1-47",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Heparin binds antithrombin and speeds inactivation of thrombin and factor Xa."
+  },
+  {
+    "id": "b13-s1-48",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Aspirin irreversibly acetylates cyclooxygenase, so a platelet cannot make thromboxane for the rest of its life."
+  },
+  {
+    "id": "b13-s1-49",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Spironolactone blocks the aldosterone receptor and the androgen receptor, so potassium rises and breast tissue can enlarge."
+  },
+  {
+    "id": "b13-s1-50",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Trimethoprim blocks the epithelial sodium channel, like a potassium-sparing diuretic, so potassium can rise."
+  },
+  {
+    "id": "b13-s1-51",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Nitrofurantoin can hemolyze G6PD-deficient red cells because it is an oxidative drug."
+  },
+  {
+    "id": "b13-s1-52",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A beta-lactam can cause allergic interstitial nephritis, with fever, rash, and white cells in the urine, days after the drug starts."
+  },
+  {
+    "id": "b13-s1-53",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Loop diuretics cause metabolic alkalosis by delivering sodium downstream and increasing aldosterone-driven hydrogen and potassium loss."
+  },
+  {
+    "id": "b13-s1-54",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Thiazides raise serum uric acid and can precipitate gout."
+  },
+  {
+    "id": "b13-s1-55",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Proton pump inhibitors bind active pumps, so the dose works best before a meal, when pumps are turned on."
+  },
+  {
+    "id": "b13-s1-56",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The urea breath test detects urease, which Helicobacter uses to split urea into ammonia and carbon dioxide."
+  },
+  {
+    "id": "b13-s1-57",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "HLA-DQ2 or DQ8 is necessary for celiac disease but not sufficient. Most people with the allele do not have the disease."
+  },
+  {
+    "id": "b13-s1-58",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Benzodiazepines facilitate GABA-A chloride channels. The class does not open glutamate channels."
+  },
+  {
+    "id": "b13-s1-59",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Succinylcholine can cause fatal hyperkalemia when extrajunctional acetylcholine receptors are upregulated, as after a major burn."
+  },
+  {
+    "id": "b13-s1-60",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Malignant hyperthermia is a ryanodine-receptor crisis from an anesthetic trigger. Dantrolene closes that calcium release. It is not neuroleptic malignant syndrome."
+  },
+  {
+    "id": "b13-s1-61",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Allopurinol blocks xanthine oxidase, which also clears the active metabolite of azathioprine, so the azathioprine effect is dangerously increased."
+  },
+  {
+    "id": "b13-s1-62",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Codeine is a prodrug activated by CYP2D6. Poor metabolizers get little analgesia. Ultra-rapid metabolizers can be toxic."
+  },
+  {
+    "id": "b13-s1-63",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Simvastatin is cleared by CYP3A4. A strong inhibitor such as clarithromycin can cause statin toxicity and muscle injury."
+  },
+  {
+    "id": "b13-s1-64",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Carbamazepine induces CYP3A4 and can lower hormonal contraceptive levels, so the contraceptive can fail."
+  },
+  {
+    "id": "b13-s1-65",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Digoxin toxicity is worsened by low potassium, because potassium and digoxin compete at the sodium-potassium pump."
+  },
+  {
+    "id": "b13-s1-66",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Naloxone is a competitive mu-opioid antagonist. It reverses opioid respiratory depression and can precipitate withdrawal."
+  },
+  {
+    "id": "b13-s1-67",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Flumazenil antagonizes benzodiazepines but can precipitate seizures in a person who depends on that drug."
+  },
+  {
+    "id": "b13-s1-68",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Octreotide constricts splanchnic vessels and lowers portal inflow, which is why it is used in variceal bleeding."
+  },
+  {
+    "id": "b13-s1-69",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Pleural fluid is an exudate if protein or LDH ratios are high. A transudate is low protein from pressure, as in heart failure."
+  },
+  {
+    "id": "b13-s1-70",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Statins can injure muscle. A high creatine kinase with pain after a new statin is toxicity, not ordinary soreness to ignore."
+  },
+  {
+    "id": "b13-s1-71",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Calcium and iron bind levothyroxine in the gut, so the hormone dose should be separated from those supplements."
+  },
+  {
+    "id": "b13-s1-72",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Primary adrenal failure loses cortisol and aldosterone, so a mineralocorticoid is needed. Secondary adrenal failure keeps aldosterone."
+  },
+  {
+    "id": "b13-s1-73",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Methimazole blocks thyroid peroxidase, so iodide is not organified into thyroid hormone."
+  },
+  {
+    "id": "b13-s1-74",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Insulin drives potassium into cells by stimulating the sodium-potassium ATPase. It does not remove potassium from the body."
+  },
+  {
+    "id": "b13-s1-75",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Intravenous calcium stabilizes the cardiac membrane in hyperkalemia. It does not lower the serum potassium."
+  },
+  {
+    "id": "b13-s1-76",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Triptans are 5-HT1B/1D agonists. The class constricts cranial vessels and are avoided in coronary disease."
+  },
+  {
+    "id": "b13-s1-77",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Tardive dyskinesia from long antipsychotic exposure is treated with a VMAT2 inhibitor, not with a higher antipsychotic dose."
+  },
+  {
+    "id": "b13-s1-78",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A serum-ascites albumin gradient under 1.1 g/dL is not portal hypertension. Peritoneal disease such as carcinomatosis fits a low gradient."
+  },
+  {
+    "id": "b13-s1-79",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Fluoroquinolones can rupture tendons. A new fluoroquinolone plus tendon pain is a reason to stop the drug."
+  },
+  {
+    "id": "b13-s1-80",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Fluoroquinolones bind calcium, iron, and other cations, so absorption falls if the doses are taken at the same time."
+  },
+  {
+    "id": "b13-s1-81",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Linezolid has monoamine-oxidase activity and can cause serotonin syndrome if combined with an SSRI."
+  },
+  {
+    "id": "b13-s1-82",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Daptomycin is inactivated by pulmonary surfactant, so it is not used for pneumonia."
+  },
+  {
+    "id": "b13-s1-83",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Acyclovir can crystallize in tubules if the patient is volume depleted. Hydration lowers that risk."
+  },
+  {
+    "id": "b13-s1-84",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Rifampin induces many CYP enzymes and turns body fluids orange."
+  },
+  {
+    "id": "b13-s1-85",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Isoniazid increases urinary loss of vitamin B6 and can cause neuropathy. Pyridoxine prevents that."
+  },
+  {
+    "id": "b13-s1-86",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Ethambutol can cause optic neuropathy, with loss of color vision."
+  },
+  {
+    "id": "b13-s1-87",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "SGLT2 inhibitors can cause ketoacidosis with a glucose that is not very high, because glucose is lost in the urine."
+  },
+  {
+    "id": "b13-s1-88",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Clozapine can cause agranulocytosis, which is why the neutrophil count is monitored."
+  },
+  {
+    "id": "b13-s1-89",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Methotrexate inhibits dihydrofolate reductase, so tetrahydrofolate falls and DNA synthesis slows."
+  },
+  {
+    "id": "b13-s1-90",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Histamine-2 blockers reduce acid but do not require pre-meal dosing the way proton pump inhibitors do, and are less effective for erosive disease."
+  },
+  {
+    "id": "b13-s1-91",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Aminoglycosides cause kidney injury and hearing loss, and the class can worsen neuromuscular blockade."
+  },
+  {
+    "id": "b13-s1-92",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A rash after amoxicillin in acute mononucleosis is usually a drug-virus interaction, not a lifelong penicillin allergy."
+  },
+  {
+    "id": "b13-s1-93",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Metronidazole can cause a disulfiram-like reaction with alcohol, with flushing and vomiting."
+  },
+  {
+    "id": "b13-s1-94",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Sildenafil inhibits phosphodiesterase-5, so cyclic GMP stays up and vessels dilate. A nitrate plus this drug can drop the blood pressure severely."
+  },
+  {
+    "id": "b13-s1-95",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Finasteride inhibits 5-alpha reductase, so testosterone is not converted to dihydrotestosterone."
+  },
+  {
+    "id": "b13-s1-96",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Tamoxifen blocks estrogen receptors in the breast and stimulates uterine tissue, so endometrial proliferation is a risk."
+  },
+  {
+    "id": "b13-s1-97",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Aminoglycosides can prolong neuromuscular blockade, especially with a blocker or myasthenia."
+  },
+  {
+    "id": "b13-s1-98",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Bile-acid resins bind other drugs in the gut, so those drugs should not be taken at the same time."
+  },
+  {
+    "id": "b13-s1-99",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Myasthenia gravis antibodies attack the postsynaptic acetylcholine receptor, so strength fades with use."
+  },
+  {
+    "id": "b13-s1-100",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "An LDH ratio of pleural fluid to serum above 0.6 supports an exudate even when the story is otherwise unclear."
+  },
+  {
+    "id": "b13-s2-01",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "After an ulcer is controlled, aspirin taken for coronary disease is restarted, not stopped for the long term."
+  },
+  {
+    "id": "b13-s2-02",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A clean-based ulcer does not need endoscopic therapy. High-risk stigmata do."
+  },
+  {
+    "id": "b13-s2-03",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Eradication is confirmed with a breath or stool-antigen test at least 4 weeks after antibiotics, not with serology, and not while a proton pump inhibitor is still on board."
+  },
+  {
+    "id": "b13-s2-04",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In the United States, first-line therapy is optimized bismuth quadruple therapy for 14 days, not a 7-day clarithromycin triple as the default."
+  },
+  {
+    "id": "b13-s2-05",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Tissue transglutaminase IgA is drawn while gluten is still being eaten. Starting a gluten-free diet first can make the test falsely negative."
+  },
+  {
+    "id": "b13-s2-06",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Dysphagia is an alarm symptom. It gets endoscopy, not another empiric acid-drug course."
+  },
+  {
+    "id": "b13-s2-07",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Mild acute pancreatitis without infection does not get prophylactic antibiotics."
+  },
+  {
+    "id": "b13-s2-08",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Mild acute pancreatitis is fed early. A several-day fast is not required once pain and nausea allow eating."
+  },
+  {
+    "id": "b13-s2-09",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Uncomplicated diverticulitis in an immunocompetent patient who can drink does not automatically need antibiotics."
+  },
+  {
+    "id": "b13-s2-10",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Adults aged 18 to 79 are screened once for hepatitis C, including people with no reported risk."
+  },
+  {
+    "id": "b13-s2-11",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Ascitic fluid with at least 250 neutrophils per microliter is treated as spontaneous bacterial peritonitis without waiting for the culture."
+  },
+  {
+    "id": "b13-s2-12",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Removal of more than 5 liters of ascites is followed by albumin. A small tap does not require that infusion."
+  },
+  {
+    "id": "b13-s2-13",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Cirrhosis with gastrointestinal bleeding gets short-term antibiotic prophylaxis, not antibiotics only after a fever starts."
+  },
+  {
+    "id": "b13-s2-14",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A negative tissue-transglutaminase IgA does not clear celiac disease until total IgA is known, because IgA deficiency hides the test."
+  },
+  {
+    "id": "b13-s2-15",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Typical reflux without alarm symptoms gets an 8-week proton pump inhibitor trial, not immediate endoscopy."
+  },
+  {
+    "id": "b13-s2-16",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A colitis flare with new diarrhea is tested for C. difficile before immunosuppression is escalated."
+  },
+  {
+    "id": "b13-s2-17",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A proton pump inhibitor for reflux is taken before a meal, not at bedtime, because the pumps are active with food."
+  },
+  {
+    "id": "b13-s2-18",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A neutrophil count under 250 in ascites, with no other infection sign, is not spontaneous bacterial peritonitis and does not get the peritonitis antibiotic course."
+  },
+  {
+    "id": "b13-s2-19",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Knee osteoarthritis is treated first with a topical NSAID, not an opioid and not glucosamine as a required drug."
+  },
+  {
+    "id": "b13-s2-20",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "DMARD-naive rheumatoid arthritis with moderate or high activity starts with methotrexate, not a biologic as the first drug."
+  },
+  {
+    "id": "b13-s2-21",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Two biologic drugs are not combined in rheumatoid arthritis."
+  },
+  {
+    "id": "b13-s2-22",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Acute low back pain without a red flag does not get imaging, and it does not start with an opioid."
+  },
+  {
+    "id": "b13-s2-23",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Nonpurulent cellulitis is treated for streptococci. Empiric MRSA drugs are for purulent infection, not for plain cellulitis."
+  },
+  {
+    "id": "b13-s2-24",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A drainable abscess is incised. Antibiotics are added when systemic signs are present, and drainage is not skipped."
+  },
+  {
+    "id": "b13-s2-25",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Women aged 65 and older are screened for osteoporosis with bone-density testing. Age 66 is inside that recommendation."
+  },
+  {
+    "id": "b13-s2-26",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A postmenopausal woman under 65 without increased fracture risk is not offered routine bone-density screening."
+  },
+  {
+    "id": "b13-s2-27",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A hip fracture from a fall is enough to start osteoporosis treatment. Densitometry is not a reason to delay the drug."
+  },
+  {
+    "id": "b13-s2-28",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Axial spondyloarthritis starts with an NSAID trial. A TNF inhibitor is not the first prescription when an NSAID has not been tried."
+  },
+  {
+    "id": "b13-s2-29",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Newly diagnosed immune thrombocytopenia with platelets under 30,000 is treated with a corticosteroid. A count of 18,000 is already under that line."
+  },
+  {
+    "id": "b13-s2-30",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Immune thrombocytopenia with platelets of 50,000 and no bleeding is observed. Steroids are not mandatory at that count."
+  },
+  {
+    "id": "b13-s2-31",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Suspected heparin-induced thrombocytopenia means all heparin stops and a non-heparin anticoagulant starts. Warfarin is not started alone while the platelet count is low."
+  },
+  {
+    "id": "b13-s2-32",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Stable neutropenic fever starts with one antipseudomonal beta-lactam. Vancomycin is not automatic."
+  },
+  {
+    "id": "b13-s2-33",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Vancomycin is added to neutropenic fever when the patient is unstable or a catheter infection is suspected, not because the temperature exists."
+  },
+  {
+    "id": "b13-s2-34",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Platelet transfusion in immune thrombocytopenia is for serious bleeding, not for a low number alone."
+  },
+  {
+    "id": "b13-s2-35",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Severe albuminuria without diabetes is still a reason to start an ACE inhibitor or an ARB. Moderate albuminuria without diabetes is not the same automatic start."
+  },
+  {
+    "id": "b13-s2-36",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A rise in creatinine of up to 30 percent after an ACE inhibitor can be accepted. A rise well above 30 percent is reassessed and the drug is reduced or stopped."
+  },
+  {
+    "id": "b13-s2-37",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A creatinine rise of about 20 percent after an ACE inhibitor is the expected hemodynamic change and is not a reason to stop the drug."
+  },
+  {
+    "id": "b13-s2-38",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Initial treatment of minimal change disease in adults is high-dose glucocorticoid, not cyclosporine as the first drug."
+  },
+  {
+    "id": "b13-s2-39",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Asymptomatic bacteriuria in a nonpregnant adult is not treated. Pregnancy is the setting where screening and treatment apply."
+  },
+  {
+    "id": "b13-s2-40",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Uncomplicated cystitis is treated with nitrofurantoin, trimethoprim-sulfamethoxazole, or fosfomycin. A fluoroquinolone is not the first drug."
+  },
+  {
+    "id": "b13-s2-41",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Pyelonephritis is not treated with nitrofurantoin. That drug does not reach reliable kidney levels."
+  },
+  {
+    "id": "b13-s2-42",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Thrombolysis is not given until blood pressure is below 185/110 mm Hg. A pressure of 200/120 has to come down first."
+  },
+  {
+    "id": "b13-s2-43",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Aspirin is given after ischemic stroke, but not within 24 hours of thrombolysis."
+  },
+  {
+    "id": "b13-s2-44",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Convulsive status epilepticus is treated first with a benzodiazepine, not with phenytoin as the opening drug."
+  },
+  {
+    "id": "b13-s2-45",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Benzodiazepines are not used for posttraumatic stress disorder. Trauma-focused psychotherapy is the preferred treatment."
+  },
+  {
+    "id": "b13-s2-46",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Major depression is treated with psychotherapy or an antidepressant such as an SSRI. A benzodiazepine is not the antidepressant."
+  },
+  {
+    "id": "b13-s2-47",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Bipolar depression is not treated with antidepressant monotherapy. A mood stabilizer or an approved bipolar regimen is used."
+  },
+  {
+    "id": "b13-s2-48",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Schizophrenia is started on one antipsychotic. Two antipsychotics are not begun together."
+  },
+  {
+    "id": "b13-s2-49",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Naltrexone helps alcohol use disorder only when the patient is not taking an opioid. An opioid use history that is current makes naltrexone the wrong drug."
+  },
+  {
+    "id": "b13-s2-50",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Alcohol withdrawal is treated with a benzodiazepine. An antipsychotic is not the withdrawal drug."
+  },
+  {
+    "id": "b13-s2-51",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Buprenorphine for opioid use disorder can start without a completed inpatient detox. Detox alone is not the treatment."
+  },
+  {
+    "id": "b13-s2-52",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A healthy adult with outpatient pneumonia is treated with amoxicillin or doxycycline, not a fluoroquinolone as the first drug."
+  },
+  {
+    "id": "b13-s2-53",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Outpatient pneumonia plus chronic heart or lung disease uses combination therapy or a respiratory fluoroquinolone, not amoxicillin alone."
+  },
+  {
+    "id": "b13-s2-54",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Uncomplicated acute bronchitis in a healthy adult does not get an antibiotic."
+  },
+  {
+    "id": "b13-s2-55",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A long-acting beta agonist is never used as the only asthma drug. It has to be paired with an inhaled corticosteroid."
+  },
+  {
+    "id": "b13-s2-56",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Nonvalvular atrial fibrillation with a high stroke score is anticoagulated with a DOAC. Aspirin alone is not the stroke drug."
+  },
+  {
+    "id": "b13-s2-57",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A mechanical mitral valve is anticoagulated with warfarin. A DOAC is not a substitute."
+  },
+  {
+    "id": "b13-s2-58",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Moderate or severe mitral stenosis with atrial fibrillation is anticoagulated with warfarin, not a DOAC."
+  },
+  {
+    "id": "b13-s2-59",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A nitrate and a phosphodiesterase-5 inhibitor together can cause severe hypotension. The combination is contraindicated."
+  },
+  {
+    "id": "b13-s2-60",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Symptomatic severe aortic stenosis is referred for valve replacement. Medical therapy does not replace the valve."
+  },
+  {
+    "id": "b13-s2-61",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Hypothyroidism in pregnancy is treated by increasing levothyroxine. Methimazole is not a treatment for a high TSH."
+  },
+  {
+    "id": "b13-s2-62",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "In the first trimester, propylthiouracil is preferred over methimazole for hyperthyroidism because methimazole is more teratogenic then."
+  },
+  {
+    "id": "b13-s2-63",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "If potassium is below 3.3 mEq/L in diabetic ketoacidosis, potassium is replaced before insulin. Insulin would drive the potassium lower."
+  },
+  {
+    "id": "b13-s2-64",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Migraine with aura makes combined hormonal contraception an unacceptable risk. A progestin-only method does not carry that same estrogen risk."
+  },
+  {
+    "id": "b13-s2-65",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Long-term metformin is associated with vitamin B12 deficiency. Numbness or anemia is a reason to check B12, not to ignore it because glucose is controlled."
+  },
+  {
+    "id": "b13-s2-66",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Strongly anticholinergic drugs such as oxybutynin are avoided in older adults because of confusion, constipation, and falls."
+  },
+  {
+    "id": "b13-s2-67",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When immune thrombocytopenia needs a rapid platelet rise for surgery or serious bleeding, IVIG or a similar rescue is used. Steroids alone are too slow for that emergency."
+  },
+  {
+    "id": "b13-s2-68",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Platelet transfusion is not given for the low count of heparin-induced thrombocytopenia unless there is serious bleeding."
+  },
+  {
+    "id": "b13-s2-69",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Iron deficiency anemia in a postmenopausal woman is evaluated with bidirectional endoscopy, not iron tablets alone."
+  },
+  {
+    "id": "b13-s2-70",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Cancer-associated venous thrombosis is treated with a DOAC or low-molecular-weight heparin, not warfarin as the automatic first drug."
+  },
+  {
+    "id": "b13-s2-71",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Moderate or severe obstructive sleep apnea is treated with positive airway pressure, not with a sedative as the sleep drug."
+  },
+  {
+    "id": "b13-s2-72",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Suspected adrenal crisis is treated immediately with intravenous hydrocortisone and saline. A lab result is not required before the first dose."
+  },
+  {
+    "id": "b13-s2-73",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Asymptomatic bacteriuria in pregnancy is treated. The same culture in a nonpregnant adult is not."
+  },
+  {
+    "id": "b13-s2-74",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "When phosphate is high and calcium is already high, a non-calcium binder such as sevelamer is used. More calcium binder would worsen the calcium."
+  },
+  {
+    "id": "b13-s2-75",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "An acute multiple-sclerosis relapse that limits function is treated with high-dose corticosteroid. A disease-modifying injection is not the acute relapse drug."
+  },
+  {
+    "id": "b13-s2-76",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Guillain-Barre syndrome is treated with intravenous immunoglobulin or plasma exchange. Corticosteroids do not help."
+  },
+  {
+    "id": "b13-s2-77",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "A copper intrauterine device is the most effective emergency contraception and can be placed within 5 days. It is not reserved for people who have already given birth."
+  },
+  {
+    "id": "b13-s2-78",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Clozapine requires absolute-neutrophil monitoring. It is not started or continued without that lab plan, and it is not the first antipsychotic."
+  },
+  {
+    "id": "b13-s2-79",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Antiretroviral therapy starts as soon as HIV is diagnosed. A CD4 count is not a reason to delay the first doses."
+  },
+  {
+    "id": "b13-s2-80",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Pneumocystis prophylaxis starts when the CD4 count is below 200. Trimethoprim-sulfamethoxazole is the usual drug."
+  },
+  {
+    "id": "b13-s2-81",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 4,
+    "note": "Pain out of proportion, rapid spread, and systemic toxicity are necrotizing infection until proved otherwise. Antibiotics do not replace immediate surgery."
+  },
+  {
+    "id": "b13-s2-82",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Tinea capitis is treated with an oral antifungal. Topical cream does not reach the hair shaft."
+  },
+  {
+    "id": "b13-s2-83",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Confirmed group A streptococcal pharyngitis is treated with penicillin or amoxicillin. A fluoroquinolone is not the drug."
+  },
+  {
+    "id": "b13-s2-84",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Chronic low back pain is treated first with exercise and other non-drug care. An opioid is not the first prescription."
+  },
+  {
+    "id": "b13-s2-85",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "NSAIDs are avoided in advanced chronic kidney disease because the class reduces filtration. Pain is treated with a different class."
+  },
+  {
+    "id": "b13-s2-86",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "The first hour of a new neutropenic fever is an antibacterial emergency, not an automatic antifungal start."
+  },
+  {
+    "id": "b13-s2-87",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Acute venous thrombosis in pregnancy is treated with low-molecular-weight heparin. Warfarin and DOACs are not the pregnancy drugs."
+  },
+  {
+    "id": "b13-s2-88",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Cluster headache attacks are treated with 100 percent oxygen or a triptan. An opioid is not the acute treatment."
+  },
+  {
+    "id": "b13-s2-89",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Serotonin syndrome is treated by stopping the serotonergic drugs. Adding another serotonergic drug makes it worse."
+  },
+  {
+    "id": "b13-s2-90",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Methotrexate is stopped before a planned pregnancy. It is teratogenic and is not continued in order to keep joints quiet."
+  },
+  {
+    "id": "b13-s2-91",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Neuroleptic malignant syndrome is treated by stopping the antipsychotic. Rigidity and a very high temperature after a dose increase are not a reason to give more."
+  },
+  {
+    "id": "b13-s2-92",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "A toxic acetaminophen level or a history of a large ingestion is treated with acetylcysteine. Waiting for liver-enzyme failure misses the window."
+  },
+  {
+    "id": "b13-s2-93",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Benzodiazepines are avoided for insomnia in older adults because of falls and confusion."
+  },
+  {
+    "id": "b13-s2-94",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Community-acquired pneumonia that is improving is treated for about 5 days, not a reflexive 14-day course."
+  },
+  {
+    "id": "b13-s2-95",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "If serology suggests celiac disease, the duodenal biopsy is done while gluten is still being eaten."
+  },
+  {
+    "id": "b13-s2-96",
+    "letter": "A",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Unintentional weight loss with reflux is an alarm symptom and is investigated, not treated with a longer empiric acid-drug course."
+  },
+  {
+    "id": "b13-s2-97",
+    "letter": "B",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "Chronic metabolic acidosis in CKD, with bicarbonate well below normal, is treated with oral alkali. It is not ignored until bicarbonate is under 8."
+  },
+  {
+    "id": "b13-s2-98",
+    "letter": "C",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "Delirium in an older adult is a reason to find the cause, not to start a benzodiazepine as the calming drug."
+  },
+  {
+    "id": "b13-s2-99",
+    "letter": "D",
+    "verdict": "sound",
+    "score": 8,
+    "difficulty": 2,
+    "note": "The edge of cellulitis is marked and rechecked. Spreading redness on antibiotics is a reason to reassess, not to wait out a fixed 10-day prescription."
+  },
+  {
+    "id": "b13-s2-100",
+    "letter": "E",
+    "verdict": "sound",
+    "score": 9,
+    "difficulty": 3,
+    "note": "ACE inhibitors are stopped before pregnancy because the class is teratogenic. A beta blocker or another allowed drug replaces the blood-pressure treatment."
+  }
+]

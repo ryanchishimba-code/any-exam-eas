@@ -1,0 +1,20 @@
+{
+  "id": "b15-s1-07",
+  "stepLevel": "step1",
+  "outlineSystem": "blood-lymph-immune",
+  "subjectId": "pathology",
+  "difficulty": 3,
+  "blueprintTopic": "myeloma",
+  "scenario": "A 68-year-old woman has back pain, a calcium of 11.8 mg/dL, a creatinine of 2.2 mg/dL, and a hemoglobin of 9 g/dL. Her smear shows stacked red cells. She has no fever. A classmate calls it ordinary osteoporosis because the back hurts.",
+  "question": "Which clone fits the four findings, and why do the red cells stack?",
+  "options": [
+    "Osteoporosis, which raises calcium and stacks red cells",
+    "A plasma-cell clone. Protein coats the red cells",
+    "A chronic infection, so fever should lead and calcium falls",
+    "Iron deficiency, so the cells should be small and pale",
+    "A parathyroid adenoma, so the smear should be normal"
+  ],
+  "correctAnswer": "A plasma-cell clone. Protein coats the red cells",
+  "citation": "Kumar V, Abbas AK, Aster JC. Robbins and Cotran Pathologic Basis of Disease. 10th ed. Elsevier; 2021.",
+  "examTakeaway": "Multiple myeloma is a plasma-cell clone that punches bone, makes light chains, and stacks red cells into rouleaux."
+}

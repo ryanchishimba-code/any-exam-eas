@@ -1,0 +1,24 @@
+{
+  "id": "b12-s1-44",
+  "fieldId": "usmle-step-1",
+  "stepLevel": "step1",
+  "outlineSystem": "respiratory-renal",
+  "outlineWeight": 13,
+  "blueprintTopic": "aki-mechanisms",
+  "blueprintDomain": "respiratory-renal",
+  "difficulty": 3,
+  "subjectId": "physiology",
+  "examTakeaway": "The early fall in filtration after an SGLT2 inhibitor is a reversible hemodynamic change, not tubular necrosis.",
+  "scenario": "A 68-year-old patient started an SGLT2 inhibitor 10 days ago. Creatinine rose from 1.3 to 1.5 mg/dL. Urine output is normal, there are no muddy-brown casts, and he is drinking. Blood pressure is 124/72 mm Hg. A classmate calls the rise acute tubular necrosis and stops the drug.",
+  "question": "What is the rise?",
+  "options": [
+    "Acute tubular necrosis, because any creatinine rise is tubular cell death",
+    "Allergic interstitial nephritis, which always appears in the first 10 days of this drug",
+    "Obstruction, because an SGLT2 inhibitor precipitates in the ureter",
+    "A reversible hemodynamic fall in filtration, not tubular necrosis",
+    "A laboratory error that should be ignored without a repeat creatinine"
+  ],
+  "correctAnswer": "A reversible hemodynamic fall in filtration, not tubular necrosis",
+  "explanation": "The early fall in filtration after an SGLT2 inhibitor is a reversible hemodynamic change, not tubular necrosis. KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. A reversible hemodynamic fall in filtration, not tubular necrosis. KDIGO 2024 says the early decrease is generally reversible and is not a reason to stop the drug. Normal urine output and absent muddy-brown casts fit a hemodynamic change. Tubular necrosis is a different injury. Acute tubular necrosis, because any creatinine rise is tubular cell death. A small early rise without casts or oliguria is the pattern the practice point calls reversible. Allergic interstitial nephritis, which always appears in the first 10 days of this drug. Nothing in the urine or the timing establishes interstitial nephritis. Obstruction, because an SGLT2 inhibitor precipitates in the ureter. Ureteral precipitation is not the mechanism of the early filtration dip. A laboratory error that should be ignored without a repeat creatinine. The rise should be recognized as the expected hemodynamic effect, not dismissed as an error and not treated as necrosis.",
+  "citation": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease."
+}
