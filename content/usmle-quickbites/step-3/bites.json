@@ -2536,7 +2536,13 @@
       "name": "StatPearls. Autosomal Dominant Polycystic Kidney Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK532934/",
-      "says": "Autosomal dominant polycystic kidney disease (ADPKD) is the most common genetic cause of renal failure worldwide."
+      "says": "Tolvaptan slows ADPKD progression by blocking vasopressin signaling at the V2 receptor. Blood pressure is treated, with a HALT-PKD target under 120-125/80 mm Hg, and lower targets in preserved GFR.",
+      "more": [
+        {
+          "name": "KDIGO 2025 Clinical Practice Guideline for ADPKD",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39848759/"
+        }
+      ]
     },
     "number": 91,
     "id": "usmle-qb-s3-091"
@@ -2559,10 +2565,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AUA guideline. Medical management of kidney stones.",
-      "year": "2014",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24857648/",
-      "says": "Uric acid stones are radiolucent on plain films and are treated by alkalinizing the urine. Allopurinol is not the acute pain drug."
+      "name": "StatPearls. Uric Acid Nephrolithiasis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560726/",
+      "says": "Uric acid stones are radiolucent. Almost two-thirds can be dissolved by increasing urinary pH and volume and lowering hyperuricosuria; potassium citrate is usually the preferred alkalinizing agent.",
+      "more": [
+        {
+          "name": "AUA guideline: Medical Management of Kidney Stones",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24857648/"
+        }
+      ]
     },
     "number": 92,
     "id": "usmle-qb-s3-092"
@@ -2589,7 +2601,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "Derangements in serum levels of calcium, phosphorus, PTH, and vitamin D, along with their effects on bone turnover, mineralization, and extraskeletal calcifications, are significant aspects of this syndrome."
+      "says": "For persistently high serum phosphate despite dietary restriction, phosphate binders taken with meals are recommended; patients should understand the binder types and the importance of taking them with meals."
     },
     "number": 93,
     "id": "usmle-qb-s3-093"
@@ -2615,7 +2627,7 @@
       "name": "StatPearls. Renal Artery Stenosis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK430718/",
-      "says": "Renal artery stenosis (RAS) is typically defined as more than 60% narrowing of one or both renal arteries and is a major cause of hypertension, estimated at 1% to 10% of the 50 million people diagnosed with high blood pressure in the United States."
+      "says": "Fibromuscular dysplasia responds more favorably to angioplasty than atherosclerotic renal artery stenosis, and these patients do not require stenting."
     },
     "number": 94,
     "id": "usmle-qb-s3-094"
@@ -2642,7 +2654,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "DeBakey VA Medical Center Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney."
+      "says": "Diabetes mellitus is found in over 90% of patients with emphysematous pyelonephritis, with mortality of 40% to 90%; care combines antimicrobial therapy with percutaneous drainage or surgical intervention."
     },
     "number": 95,
     "id": "usmle-qb-s3-095"
@@ -2667,7 +2679,7 @@
       "name": "ACG Clinical Guideline: Upper Gastrointestinal and Ulcer Bleeding.",
       "year": "2021",
       "url": "https://journals.lww.com/ajg/fulltext/2021/05000/acg_clinical_guideline__upper_gastrointestinal_and.14.aspx",
-      "says": "ACG recommends a transfusion threshold of 7 g/dL when cardiovascular disease is absent, and endoscopy after resuscitation, generally within 24 hours."
+      "says": "For patients hospitalized with UGIB, red cell transfusion at a threshold of 7 g/dL is suggested, and endoscopy is suggested within 24 hours. Endoscopic therapy is recommended for active spurting, oozing, or nonbleeding visible vessels, followed by high-dose PPI for 3 days."
     },
     "number": 96,
     "id": "usmle-qb-s3-096"
@@ -2691,10 +2703,10 @@
     "diagram": "variceal-rx",
     "diagramAlt": "Variceal bleed. Octreotide + IV antibiotic Band. Do not start a beta blocker in shock Beta blocker is secondary prevention later",
     "source": {
-      "name": "AASLD Practice Guidance. Portal Hypertensive Bleeding in Cirrhosis.",
-      "year": "2017",
-      "url": "https://www.aasld.org/practice-guidelines/portal-hypertension-bleeding-cirrhosis",
-      "says": "Acute variceal bleeding is treated with a vasoactive drug, an antibiotic, and endoscopic therapy. A nonselective beta blocker is prevention after hemostasis, not the treatment of shock, which is the recommendation in AASLD Practice Guidance. Portal Hypertensive Bleeding in Cirrhosis."
+      "name": "AASLD Practice Guidance on risk stratification and management of portal hypertension and varices in cirrhosis.",
+      "year": "2024",
+      "url": "https://journals.lww.com/hep/fulltext/10.1097/hep.0000000000000647~aasld-practice-guidance-on-risk-stratification-and",
+      "says": "Suspected variceal bleeding is managed with resuscitation, a conservative transfusion strategy, and prompt vasoactive therapy and antimicrobial prophylaxis, with endoscopic evaluation within 12 hours. Without TIPS, a nonselective beta blocker starts when vasoactive therapy stops."
     },
     "number": 97,
     "id": "usmle-qb-s3-097"
@@ -2716,10 +2728,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AASLD practice guidance. Ascites, spontaneous bacterial peritonitis, and hepatorenal syndrome.",
+      "name": "AASLD Practice Guidance: Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome.",
       "year": "2021",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33942342/",
-      "says": "New or worsened ascites is evaluated with a diagnostic paracentesis, including a cell count and culture, before the diuretic dose is raised."
+      "url": "https://journals.lww.com/hep/fulltext/2021/08000/diagnosis,_evaluation,_and_management_of_ascites,.38.aspx",
+      "says": "A diagnostic paracentesis should be performed in all patients with new-onset ascites. A SAAG of 1.1 g/dL or more is highly suggestive of portal hypertension. IV antibiotics are started empirically, before culture results, when ascitic PMN count exceeds 250/mm3. Albumin 6-8 g per liter removed is given for paracentesis over 5 L."
     },
     "number": 98,
     "id": "usmle-qb-s3-098"
@@ -2742,10 +2754,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACG Guideline: Management of Acute Pancreatitis.",
+      "name": "American College of Gastroenterology Guidelines: Management of Acute Pancreatitis.",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/38857482/",
-      "says": "The 2024 guideline suggests lactated Ringer solution over normal saline, oral feeding within 24 to 48 hours in mild disease rather than prolonged fasting, and recommends against prophylactic antibiotics in severe disease."
+      "says": "Acute pancreatitis is diagnosed by 2 of 3: typical pain, amylase or lipase over 3 times the upper limit, and characteristic imaging. Gallstones (40%-70%) and alcohol (25%-35%) are the most common causes. Early oral feeding is suggested in mild disease; prophylactic antibiotics are not suggested even in severe disease."
     },
     "number": 99,
     "id": "usmle-qb-s3-099"
@@ -2771,7 +2783,13 @@
       "name": "StatPearls. Acute Cholecystitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "Author information: (1)McLaren Greater Lansing, MSUCOM (2)Michigan State University (3)Northwell Health/Donald and Barbara Zucker School of Medicine at Hofstra Acute cholecystitis involves inflammation of the gallbladder, most commonly caused by obstruction of the cystic duct by a gallstone."
+      "says": "Acute cholecystitis is most often caused by gallstone obstruction of the cystic duct. For appropriate surgical candidates, early laparoscopic cholecystectomy during the initial hospitalization remains the preferred approach.",
+      "more": [
+        {
+          "name": "Tokyo Guidelines 2018: flowchart for the management of acute cholecystitis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29045062/"
+        }
+      ]
     },
     "number": 100,
     "id": "usmle-qb-s3-100"
@@ -2794,10 +2812,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Acute Cholecystitis.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/",
-      "says": "the term of Cholecystitis it is referred to inflammation in the gallbladder and it is considered as a surgical condition."
+      "name": "Tokyo Guidelines 2018: flowchart for the management of acute cholecystitis.",
+      "year": "2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29045062/",
+      "says": "For Grade I, TG18 recommends early Lap-C if the patients meet the criteria of CCI \u22645 and ASA-PS \u22642. For Grade II, early Lap-C by experienced surgeons if those criteria are met; if not, Lap-C after medical treatment and/or gallbladder drainage.",
+      "more": [
+        {
+          "name": "StatPearls. Acute Cholecystitis.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK459171/"
+        }
+      ]
     },
     "number": 101,
     "id": "usmle-qb-s3-101"
@@ -2820,10 +2844,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Small Bowel Obstruction.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448079/",
-      "says": "Small bowel obstruction (SBO) is a common and potentially life-threatening surgical emergency that accounts for a significant proportion of hospital admissions."
+      "name": "Bologna guidelines for diagnosis and management of adhesive small bowel obstruction (ASBO): 2017 update of the evidence-based guidelines from the WSES.",
+      "year": "2018",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6006983/",
+      "says": "Non-operative management should always be tried in adhesive small bowel obstruction unless there are signs of peritonitis, strangulation, or bowel ischemia; it includes fluid resuscitation, electrolyte correction, nutritional support, and prevention of aspiration.",
+      "more": [
+        {
+          "name": "StatPearls. Small Bowel Obstruction.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK448079/"
+        }
+      ]
     },
     "number": 102,
     "id": "usmle-qb-s3-102"
@@ -2846,10 +2876,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Acute Mesenteric Ischemia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK431068/",
-      "says": "AMI is classified as either occlusive or nonocclusive mesenteric ischemia (NOMI)."
+      "name": "Acute mesenteric ischemia: updated guidelines of the World Society of Emergency Surgery.",
+      "year": "2022",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9580452/",
+      "says": "Severe abdominal pain out of proportion to physical findings should be assumed to be acute mesenteric ischemia until disproven. CTA should be performed without delay, even with acute kidney injury. Lactate alone does not reliably separate early from irreversible ischemia."
     },
     "number": 103,
     "id": "usmle-qb-s3-103"
@@ -2872,10 +2902,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACG Clinical Guideline: Diagnosis and Management of Celiac Disease.",
+      "name": "ACG Clinical Guidelines Update: Diagnosis and Management of Celiac Disease.",
       "year": "2023",
       "url": "https://journals.lww.com/ajg/fulltext/10.14309/ajg.0000000000002100~acg-clinical-guideline-diagnosis-and-management-of",
-      "says": "Test for celiac disease while the patient is still eating gluten, with IgA tissue transglutaminase and a total IgA. Do not start a gluten-free diet before the test."
+      "says": "EGD with multiple duodenal biopsies is recommended to confirm the diagnosis in children and adults. Case finding is recommended; in IgA deficiency, testing uses IgG-based antibodies. Treatment is a gluten-free diet aimed at intestinal healing."
     },
     "number": 104,
     "id": "usmle-qb-s3-104"
@@ -2897,10 +2927,10 @@
     "diagram": "uc-toxic",
     "diagramAlt": "Severe ulcerative colitis. Admit. IV steroid Stop loperamide and opioids C. difficile test. Megacolon: call surgery",
     "source": {
-      "name": "ACG clinical guideline update. Ulcerative colitis in adults.",
+      "name": "ACG Clinical Guideline Update: Ulcerative Colitis in Adults.",
       "year": "2025",
       "url": "https://pubmed.ncbi.nlm.nih.gov/40701556/",
-      "says": "This is the American College of Gastroenterology's 2025 practice guideline for the management of ulcerative colitis in adults."
+      "says": "In acute severe UC, give methylprednisolone 60 mg/day or hydrocortisone 100 mg 3-4 times daily, test initially for C. difficile, and avoid NSAIDs, narcotics, and anticholinergic drugs. Failure of IV steroids by 3 days calls for infliximab or cyclosporine rescue."
     },
     "number": 105,
     "id": "usmle-qb-s3-105"
@@ -2923,10 +2953,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Achalasia.",
-      "year": "2026",
-      "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent."
+      "name": "ACG Clinical Guidelines: Diagnosis and Management of Achalasia.",
+      "year": "2020",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32773454/",
+      "says": "Esophageal pressure topography (high-resolution manometry) is recommended for diagnosis. Disruptive LES therapy is the treatment: laparoscopic Heller myotomy over botulinum toxin in surgical candidates, pneumatic dilation over botulinum toxin, and POEM or myotomy for type III."
     },
     "number": 106,
     "id": "usmle-qb-s3-106"
@@ -2953,7 +2983,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "Chronic pancreatitis is a progressive inflammatory disease affecting both pancreatic functions."
+      "says": "Pancreatic enzyme supplementation is typically taken with meals."
     },
     "number": 107,
     "id": "usmle-qb-s3-107"
@@ -2975,10 +3005,10 @@
     "diagram": "h-pylori-cure",
     "diagramAlt": "H. pylori. Full eradication regimen Test of cure after antibiotics PPI alone does not eradicate",
     "source": {
-      "name": "ACG clinical guideline. Treatment of Helicobacter pylori infection.",
+      "name": "ACG Clinical Guideline: Treatment of Helicobacter pylori Infection.",
       "year": "2024",
       "url": "https://pubmed.ncbi.nlm.nih.gov/39626064/",
-      "says": "When antibiotic susceptibility is unknown, bismuth quadruple therapy for 14 days is preferred. A post-treatment test of cure is universal. Clarithromycin salvage is used only if susceptibility is confirmed."
+      "says": "For treatment-naive patients, bismuth quadruple therapy for 14 days is the preferred regimen when antibiotic susceptibility is unknown. Rifabutin triple therapy or potassium-competitive acid blocker dual therapy for 14 days is a suitable alternative without penicillin allergy. Clarithromycin or levofloxacin salvage only if susceptibility is confirmed; post-treatment test-of-cure is universal."
     },
     "number": 108,
     "id": "usmle-qb-s3-108"
@@ -2990,22 +3020,22 @@
     "title": "DKA orders: potassium, then insulin, then dextrose",
     "read": "1 min",
     "open": false,
-    "lead": "Order a potassium before the insulin. If it is under 3.3, replace it first. Add dextrose when the glucose falls and keep the insulin running until the gap closes.",
+    "lead": "Order a potassium before the insulin. If it is under 3.5, replace it first. Add dextrose when the glucose falls and keep the insulin running until the ketoacidosis resolves.",
     "lines": [
       "Fluids are the first line of the order set.",
       "Bicarbonate is not a routine order.",
       "The home SGLT2 inhibitor is held and a sick-day plan is written.",
-      "Anion-gap acidosis and ketones. If potassium is under 3.3 mEq/L, replace it before insulin, because insulin will drop the serum potassium.",
+      "Anion-gap acidosis and ketones. If potassium is under 3.5 mmol/L, replace it before insulin, because insulin will drop the serum potassium.",
       "Potassium is known before insulin. Insulin continues, with dextrose, until ketoacidosis resolves."
     ],
     "miss": "Stopping the insulin drip at a glucose of 180 with a bicarbonate of 8.",
     "diagram": "dka-k",
-    "diagramAlt": "DKA order. Fluid first K under 3.3: replace K before insulin Keep insulin on; add dextrose as glucose falls",
+    "diagramAlt": "DKA order. Fluid first K under 3.5: replace K before insulin Keep insulin on; add dextrose as glucose falls",
     "source": {
       "name": "Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.",
       "year": "2024",
       "url": "https://diabetesjournals.org/care/article/47/8/1257/156808/Hyperglycemic-Crises-in-Adults-With-Diabetes-A",
-      "says": "Potassium is known before insulin. Insulin continues, with dextrose, until ketoacidosis resolves, which is the recommendation in Hyperglycemic Crises in Adults With Diabetes: A Consensus Report."
+      "says": "With potassium below 3.5 mmol/L, potassium replacement should begin at 10 mmol/h and insulin is delayed until potassium is above 3.5 mmol/L. Once glucose is below 250 mg/dL, fluids contain 5-10% dextrose. Routine bicarbonate is not recommended. Resolution is ketones <0.6 mmol/L and pH \u22657.3 or bicarbonate \u226518 mmol/L."
     },
     "number": 109,
     "id": "usmle-qb-s3-109"
@@ -3027,10 +3057,16 @@
     "diagram": "thyroid-seq",
     "diagramAlt": "Thyroid storm sequence. PTU first. Iodide at least 1 hour later Beta blocker and a glucocorticoid BWPS >=45. No aspirin",
     "source": {
-      "name": "2016 American Thyroid Association guideline for hyperthyroidism and thyrotoxicosis.",
-      "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
-      "says": "Thyroid storm, including a Burch-Wartofsky score of 45 or higher, is treated with a beta blocker, propylthiouracil, iodide given at least 1 hour after the thionamide, and a glucocorticoid. Aspirin is avoided."
+      "name": "StatPearls. Thyroid Storm.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448095/",
+      "says": "An hour after administering propylthiouracil or methimazole, give SSKI; propylthiouracil is favored because it also blocks peripheral conversion of T4 to T3. Hydrocortisone is started, aspirin is avoided, and a Burch-Wartofsky score of 45 or more is more sensitive for thyroid storm.",
+      "more": [
+        {
+          "name": "2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+        }
+      ]
     },
     "number": 110,
     "id": "usmle-qb-s3-110"
