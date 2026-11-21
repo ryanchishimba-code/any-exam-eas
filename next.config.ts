@@ -236,6 +236,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       ...retiredStudyRedirects(),
+      // Edge 308 before the app shell. A page-level permanentRedirect streams
+      // as a client replace (HTTP 200) because the layout has already started.
+      {
+        source: "/usmle/quick-bites",
+        destination: "/usmle/rapid-review",
+        statusCode: 308,
+      },
       {
         source: "/npte",
         destination: "/npte-pt",
