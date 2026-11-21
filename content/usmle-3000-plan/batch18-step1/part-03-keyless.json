@@ -9,7 +9,7 @@
     "options": [
       "Chronic respiratory acidosis with renal retention of bicarbonate, so pH is nearly normal",
       "Acute respiratory acidosis, because bicarbonate is already 32",
-      "Metabolic alkalosis as the primary event, because bicarbonate is 32, skipping the extra culture",
+      "Metabolic alkalosis as the primary event, because bicarbonate is 32 from loss of gastric acid",
       "Respiratory alkalosis, because PaCO2 is 58",
       "A laboratory mismatch, because pH cannot be 7.36 with PaCO2 of 58"
     ]
@@ -97,7 +97,7 @@
     "scenario": "A 60-year-old man has creatinine 2.8 mg/dL. The bladder is distended and both renal pelves are dilated. He has a slow stream and a large prostate on examination.",
     "question": "Where is the block, and why is that the call?",
     "options": [
-      "A single ureteral stone, which dilates both pelves and the bladder, without n extra lab",
+      "A single ureteral stone, which dilates both pelves and the bladder on one side",
       "Below the bladder, so both upper tracts dilate behind a full bladder",
       "Renal artery stenosis, which dilates the pelvis",
       "Acute tubular necrosis, which dilates the collecting system",
@@ -128,7 +128,7 @@
     "question": "Which deposit site is this, and why is that the call?",
     "options": [
       "Subendothelial deposits of lupus, which are anti-PLA2R",
-      "Foot-process effacement only, which thickens the membrane on light microscopy, instead of a morning panel",
+      "Foot-process effacement only, which thickens the membrane on light microscopy alone",
       "Linear basement-membrane staining, which is the receptor antibody",
       "Subepithelial immune deposits along the capillary wall, the membranous pattern",
       "Mesangial immunoglobulin A, which is the nephrotic receptor-antibody lesion"
@@ -159,7 +159,7 @@
     "options": [
       "He is no longer hyperventilating, so CO2 retention means the airway attack is failing",
       "A PaCO2 of 50 is the expected healthy response to wheeze",
-      "Oxygen of 90 percent means the attack is mild regardless of CO2, without n extra lab, instead of a morning panel",
+      "Oxygen of 90 percent means the attack is mild regardless of CO2 and supportive care is enough",
       "pH of 7.28 is respiratory alkalosis",
       "CO2 of 50 means the attack has ended"
     ]
@@ -174,7 +174,7 @@
     "options": [
       "The NSAID dilates the afferent arteriole and raises filtration",
       "Afferent constriction from the NSAID plus loss of efferent tone from the ACE inhibitor, in a dry patient",
-      "The ACE inhibitor raises angiotensin II and protects filtration here, instead of a bedside study, with no added drug",
+      "The ACE inhibitor raises angiotensin II and protects filtration here when the patient is volume contracted",
       "Ibuprofen causes glomerular basement-membrane antibody",
       "The combination causes obstruction of both ureters"
     ]
@@ -218,7 +218,7 @@
     "question": "Why does left-sided output fall, and why is that the call?",
     "options": [
       "The embolus blocks the mitral valve",
-      "Left-ventricular contractility is the primary failure, instead of n extra lab, holding the further image",
+      "Left-ventricular contractility is the primary failure of the left ventricle during shock",
       "Systemic vasodilation is the cause of the low output",
       "The lungs overfill the left atrium",
       "The pressure-loaded right ventricle bows the septum and underfills the left ventricle"
@@ -247,7 +247,7 @@
     "scenario": "A 58-year-old man is crushed under rubble for 6 hours. The urine is dark. Creatine kinase is 48,000 U/L. Potassium is 6.4 mEq/L. Creatinine is rising. He has no other acute complaint.",
     "question": "Which pigment is injuring the tubules, and why is that the call?",
     "options": [
-      "Hemoglobin from hemolysis, which is the crush pigment, holding the further image, ahead of any bedside study",
+      "Hemoglobin from hemolysis, which is the crush pigment after the prolonged crush of muscle",
       "Myoglobin from muscle necrosis, which precipitates in tubules and releases potassium",
       "Bilirubin casts from liver injury during a crush",
       "Bence Jones protein, which raises creatine kinase",
@@ -295,7 +295,7 @@
       "Oxygen directly generates CO2 in the blood",
       "The rise means the oxygen cured the obstruction",
       "A PaCO2 rise on oxygen is expected and harmless at pH 7.25",
-      "Oxygen lowers CO2 by raising the respiratory rate in chronic retainers, instead of n extra culture",
+      "Oxygen lowers CO2 by raising the respiratory rate in chronic retainers who already retain carbon dioxide",
       "Uncontrolled oxygen removed his hypoxic drive and worsened ventilation-perfusion matching"
     ]
   },
@@ -461,7 +461,7 @@
       "A pituitary tumor secreting TSH, which suppresses TSH",
       "Iodine deficiency, which raises T4 and suppresses TSH",
       "Thyroid hormone resistance, which lowers T4",
-      "Factitious T3, which enlarges the gland and protrudes the eyes, ahead of any second test"
+      "Factitious T3, which enlarges the gland and protrudes the eyes of the person taking it"
     ]
   },
   {
@@ -608,7 +608,7 @@
     "question": "Why can weight loss restore cycles, and why is that the call?",
     "options": [
       "Less insulin resistance lowers ovarian androgen drive and allows FSH to mature a follicle",
-      "Weight loss raises LH further, which is the benefit, before any extra lab, without n extra culture",
+      "Weight loss raises LH further, which is the benefit for restoring regular ovulatory cycles",
       "Weight loss removes the need for a uterus",
       "Ovulation in this state is independent of insulin",
       "Weight loss blocks FSH and that starts ovulation"
@@ -624,7 +624,7 @@
     "options": [
       "Follicular cells, which secrete calcitonin",
       "Parafollicular C cells, which make calcitonin and can form a medullary carcinoma",
-      "Parathyroid chief cells, which sit in the thyroid medulla, without n extra culture",
+      "Parathyroid chief cells, which sit in the thyroid medulla and secrete calcitonin there",
       "Beta cells, which make calcitonin",
       "C cells, which make thyroglobulin as the tumor marker"
     ]
@@ -654,7 +654,7 @@
     "options": [
       "A high renin confirms primary aldosteronism",
       "Salt loading should raise aldosterone in this disease",
-      "Low aldosterone with low renin is the confirmatory pattern, instead of a morning panel for this reading",
+      "Low aldosterone with low renin is the confirmatory pattern after a salt load is given",
       "Failure of salt loading to suppress aldosterone confirms primary aldosterone excess",
       "The test diagnoses renovascular hypertension"
     ]
@@ -683,7 +683,7 @@
     "question": "Which hyperglycemic state is this, and why is that the call?",
     "options": [
       "Enough insulin remains to block ketones, but not enough to control glucose, so osmolality rises",
-      "Diabetic ketoacidosis, because osmolality is 330 and bicarbonate is 22, holding the second test, ahead of any extra lab",
+      "Diabetic ketoacidosis, because osmolality is 330 and bicarbonate is 22 with ketones in the serum",
       "Hypoglycemia, because glucose is 280",
       "Hyperosmolar coma requires ketones",
       "A pure water deficit with a glucose of 90"
@@ -728,7 +728,7 @@
     "question": "Which gland is overworking, and why is that the call?",
     "options": [
       "The thyroid, because calcitonin raises calcium",
-      "All four glands from secondary hyperparathyroidism, which raises phosphate, ahead of any dose change",
+      "All four glands from secondary hyperparathyroidism, which raises phosphate in the circulation",
       "A PTHrP tumor, which raises PTH",
       "One parathyroid adenoma secreting PTH, raising calcium and lowering phosphate",
       "Vitamin D toxicity, which raises PTH"

@@ -97,7 +97,7 @@
     "scenario": "A 58-year-old man has sudden chest pain and dies within an hour. The pathologist finds a ruptured fibrous cap over a lipid core in the proximal coronary artery, with an occlusive platelet thrombus. He has no other acute complaint.",
     "question": "Which plaque event caused the occlusion, and why is that the call?",
     "options": [
-      "Slow growth of a stable calcified cap that does not rupture and still occludes in one hour, before any extra culture",
+      "Slow growth of a stable calcified cap that does not rupture and still occludes in one hour of ischemic symptoms",
       "Rupture of a thin cap over a lipid core, exposing tissue factor and building a platelet thrombus",
       "Spasm of a normal artery with no plaque",
       "Embolus from a leg vein into a coronary artery",
@@ -219,7 +219,7 @@
     "options": [
       "Beta blockade plus a calcium-channel block",
       "Aldosterone blockade alone, which is the neprilysin action",
-      "Digoxin sensitization of the sodium pump as the neprilysin effect, ahead of any dose change",
+      "Digoxin sensitization of the sodium pump as the neprilysin effect on the cardiac membrane",
       "A pure arterial dilator with no effect on peptides",
       "More natriuretic peptide from neprilysin blockade, plus angiotensin-receptor blockade"
     ]
@@ -310,7 +310,7 @@
       "A cardiac sodium-channel loss that produces the coved precordial pattern and sudden death with exertion or fever",
       "A potassium-channel gain that prolongs QT and has no coved ST segment",
       "Preexcitation through an accessory pathway, which is the coved ST pattern",
-      "A calcium-channel block from verapamil, which is inherited as this tracing, holding the dose change, ahead of any night review",
+      "A calcium-channel block from verapamil, which is inherited as this tracing and is passed down as a familial tracing",
       "Commotio cordis, which leaves a lasting coved ST elevation"
     ]
   },
@@ -322,7 +322,7 @@
     "scenario": "A 32-year-old woman has blood pressure 176/104 mm Hg. Potassium is 2.9 mEq/L and she is not on a diuretic. Plasma aldosterone is high and renin is suppressed. A CT shows a 1 cm adrenal nodule.",
     "question": "Which hormone excess is this, and why is that the call?",
     "options": [
-      "Cortisol excess, which suppresses aldosterone and raises renin, and no added drug",
+      "Cortisol excess, which suppresses aldosterone and raises renin from an adrenal cortical tumor",
       "Aldosterone from an adrenal adenoma, which wastes potassium and suppresses renin",
       "Renin from a juxtaglomerular tumor, which raises renin",
       "Pheochromocytoma, which lowers potassium as the primary lesion",
@@ -608,7 +608,7 @@
     "question": "Which artery lesion is this, and why is that the call?",
     "options": [
       "Fibromuscular dysplasia of a renal artery, driving renin release from the affected kidney",
-      "Atherosclerotic stenosis, which is the usual lesion at age 29 in a woman, before any extra culture",
+      "Atherosclerotic stenosis, which is the usual lesion at age 29 in a woman of the renal artery itself",
       "Aortic coarctation, which is a renal-artery bruit",
       "Pheochromocytoma, which shows fibromuscular ridges",
       "Page kidney from a subcapsular hematoma as the angiogram"
@@ -652,7 +652,7 @@
     "scenario": "A 60-year-old man has a transient loss of vision in the left eye lasting two minutes. A bruit is heard over the left carotid. Ultrasound shows a 90 percent narrowing at the bifurcation. He has no other acute complaint.",
     "question": "Which territory was starved, and why is that the call?",
     "options": [
-      "The right carotid, because visual loss is contralateral to the bruit, skipping the extra culture",
+      "The right carotid, because visual loss is contralateral to the bruit on that side",
       "The vertebrobasilar system, which supplies one retina",
       "A venous clot in the cavernous sinus",
       "The retinal artery on the same side, from an ipsilateral carotid plaque",
@@ -670,7 +670,7 @@
       "Cardiogenic edema, because the wedge pressure is 12 mm Hg",
       "Lobar pneumonia of one lobe as the bilateral pattern",
       "Pneumothorax, which drops the wedge pressure to 12",
-      "Pulmonary hemorrhage, which is the definition when the wedge is normal, without n added drug",
+      "Pulmonary hemorrhage, which is the definition when the wedge is normal on the plain film",
       "Noncardiogenic edema from leaky alveolar capillaries, with a normal wedge pressure"
     ]
   },
@@ -731,7 +731,7 @@
       "A coronary artery, which shows right-heart strain as the first sign",
       "A pulmonary vein, which is the usual embolus site",
       "A pulmonary artery branch, so dead space rises and the right ventricle faces a sudden pressure load",
-      "The superior vena cava, which appears as a pulmonary-artery filling defect, ahead of any extra culture"
+      "The superior vena cava, which appears as a pulmonary-artery filling defect on the contrast-enhanced study"
     ]
   },
   {

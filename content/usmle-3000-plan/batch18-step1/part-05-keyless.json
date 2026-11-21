@@ -8,7 +8,7 @@
     "question": "Which cartilage wear is this, and why is that the call?",
     "options": [
       "Mechanical cartilage loss with osteophytes, not a primary synovial inflammatory disease",
-      "Rheumatoid arthritis, because the thumb base is involved and stiffness is 10 minutes, ahead of any repeat draw",
+      "Rheumatoid arthritis, because the thumb base is involved and stiffness is 10 minutes of joint use",
       "Gout, because osteophytes are urate",
       "Septic arthritis of many joints over years with normal inflammatory markers",
       "Psoriatic arthritis, which is osteophytes without skin disease as the definition"
@@ -247,7 +247,7 @@
     "scenario": "A 60-year-old man has the worst headache of his life. CT shows blood in the basal cisterns. He then cannot abduct the left eye.",
     "question": "Which nerve is compressed, and why is that the call?",
     "options": [
-      "The left oculomotor nerve, which abducts the eye, skipping the extra culture, holding the second test",
+      "The left oculomotor nerve, which abducts the eye and also lifts the upper eyelid",
       "The left abducens nerve, which runs a long course and fails when pressure rises",
       "The left trochlear nerve, which abducts the eye",
       "The optic nerve, which limits abduction",
@@ -369,7 +369,7 @@
     "options": [
       "Dominant parietal injury, which causes left neglect",
       "Occipital injury alone, which causes hemispatial neglect",
-      "A frontal language injury, which causes neglect of a clock, ahead of any dose change for this reading",
+      "A frontal language injury, which causes neglect of a clock on a drawing test",
       "A pure motor capsule lesion, which causes neglect",
       "Nondominant parietal injury, so he neglects the left side of space"
     ]
@@ -386,7 +386,7 @@
       "Heat destroys axons permanently in this setting",
       "The phenomenon is a new plaque each time she warms",
       "Cooling causes the conduction block",
-      "Heat raises intraocular pressure as the dimming mechanism, instead of n extra culture on this film"
+      "Heat raises intraocular pressure as the dimming mechanism of a demyelinated optic nerve"
     ]
   },
   {
@@ -503,7 +503,7 @@
     "question": "What is said to the brother, and why is that the call?",
     "options": [
       "The result, because a sibling is family",
-      "The result, if the brother promises not to repeat it, with no extra culture, with no repeat draw for this reading",
+      "The result, if the brother promises not to repeat it to anyone outside the record",
       "The employer must be told the same day",
       "Nothing about the result, because the patient has not authorized disclosure",
       "The result goes in a waiting-room board"
@@ -520,7 +520,7 @@
       "The children's, because the children outnumber her",
       "The oncologist's, because prognosis removes her choice",
       "The hospital lawyer must order the drug",
-      "She may refuse only if two physicians agree the drug would cure her, ahead of any repeat draw",
+      "She may refuse only if two physicians agree the drug would cure her despite the metastatic illness",
       "Hers, because a capacitated patient may refuse treatment even if the family disagrees"
     ]
   },
@@ -536,7 +536,7 @@
       "Surgery waits until he wakes, even if he exsanguinates",
       "A nurse signs as the surrogate",
       "Treatment is given only if a court order arrives first",
-      "Implied consent covers elective procedures the next week, skipping the second test, holding the extra culture"
+      "Implied consent covers elective procedures the next week even when the patient is stable and not dying"
     ]
   },
   {
@@ -547,7 +547,7 @@
     "scenario": "A 16-year-old boy tells the physician he is going to shoot a named classmate tomorrow and has a gun at home. He is calm and specific.",
     "question": "What duty follows, and why is that the call?",
     "options": [
-      "Keep the secret, because all adolescent statements are confidential, and no bedside study, ahead of any late consult",
+      "Keep the secret, because all adolescent statements are confidential including a stated plan to harm someone",
       "Warn the intended target and notify authorities, because a specific credible threat is not confidential",
       "Tell only the parents and not the school or police",
       "Hospitalize him only if he agrees",
@@ -581,7 +581,7 @@
       "Yes, if the form is in English and she signed",
       "Yes, because surgery is routine",
       "No, because she cannot show understanding in a language she speaks",
-      "No, unless a family member consents instead of informing her, and no added drug for this reading"
+      "No, unless a family member consents instead of informing her about the risks"
     ]
   },
   {
@@ -622,7 +622,7 @@
     "scenario": "A 50-year-old man agrees to a hernia repair. During surgery the surgeon sees an unexpected ovarian-type mass in a remnant and removes it without prior discussion. He is stable and the mass was not an emergency.",
     "question": "Was the extra procedure justified, and why is that the call?",
     "options": [
-      "Yes, because consent for any surgery covers any organ, with no second test, holding the extra culture",
+      "Yes, because consent for any surgery covers any organ whichever organ the surgeon prefers",
       "No, because a nonemergent extra procedure needs consent for that procedure",
       "Yes, if the mass looks interesting",
       "Yes, because he is asleep and cannot object",
@@ -641,7 +641,7 @@
       "A report only if the child asks for one",
       "A report to child-protective authorities, because suspected abuse is a mandated report",
       "A report to the caregiver's employer instead",
-      "No report, because the physician is not certain beyond all doubt, before any extra culture"
+      "No report, because the physician is not certain beyond all doubt of abuse in this child"
     ]
   },
   {
@@ -667,7 +667,7 @@
     "scenario": "A newborn boy has a flat face, a single palmar crease, and atrioventricular canal defect. Cognition is expected to be affected. Chromosome 21 material is extra. He is the patient.",
     "question": "Which chromosome finding is this, and why is that the call?",
     "options": [
-      "Trisomy 18, which is the AV canal and single crease as its classic pair, ahead of any late consult, instead of a second test",
+      "Trisomy 18, which is the AV canal and single crease as its classic pair with rocker-bottom feet and clenched hands",
       "Trisomy 13, which is the AV canal lesion",
       "45,X, which is an extra 21",
       "Klinefelter syndrome, which is trisomy 21",
@@ -743,7 +743,7 @@
     "question": "Which abdominal-wall defect was that, and why is that the call?",
     "options": [
       "Omphalocele, which has no sac and sits beside a normal cord",
-      "Umbilical hernia, which presents with bowel outside at birth without a sac, with no extra culture",
+      "Umbilical hernia, which presents with bowel outside at birth without a sac of peritoneum",
       "Cloacal exstrophy, which is the usual isolated right-sided defect",
       "A patent urachus, which herniates the intestines",
       "Gastroschisis, a full-thickness defect beside the cord, without a peritoneal sac"

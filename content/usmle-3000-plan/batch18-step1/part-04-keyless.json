@@ -25,7 +25,7 @@
       "Graves disease, which has uptake under 1 percent",
       "Inflammation is dumping stored hormone, so the gland is not making new hormone",
       "A toxic adenoma, which has uptake under 1 percent and a painful gland",
-      "Factitious hormone, which makes the gland painful and then hypothyroid, ahead of any morning panel",
+      "Factitious hormone, which makes the gland painful and then hypothyroid after the pills",
       "Iodine deficiency, which dumps stored hormone"
     ]
   },
@@ -38,7 +38,7 @@
     "question": "Why did menses stop, and why is that the call?",
     "options": [
       "The mass is secreting LH, which stops menses",
-      "High prolactin raises the releasing hormone and that stops cycles, with no extra culture, holding the rescue drug",
+      "High prolactin raises the releasing hormone and that stops cycles by lowering the gonadotropins",
       "Prolactin suppresses the releasing hormone, so LH and FSH pulses fall and ovulation stops",
       "TSH is the hormone at 180 ng/mL",
       "Pregnancy is required before prolactin reaches 180"
@@ -52,7 +52,7 @@
     "scenario": "A 45-year-old man has acanthosis nigricans on the neck. Fasting insulin is high and fasting glucose is 115 mg/dL. He is heavy around the waist.",
     "question": "What does the skin change mark, and why is that the call?",
     "options": [
-      "Autoimmune beta-cell loss, which causes acanthosis, ahead of any bedside study",
+      "Autoimmune beta-cell loss, which causes acanthosis and falling insulin output",
       "Glucagon excess, which darkens the neck",
       "Addison disease, which is acanthosis nigricans",
       "Chronic high insulin acting on skin, a marker of insulin resistance",
@@ -68,7 +68,7 @@
     "question": "Which enzyme failed, and why is that the call?",
     "options": [
       "21-hydroxylase, which blocks sex steroids and causes hypertension",
-      "11-beta hydroxylase, which prevents all sex-steroid formation and causes no puberty, without n extra lab, ahead of any rescue drug",
+      "11-beta hydroxylase, which prevents all sex-steroid formation and causes no puberty in a hypertensive adolescent",
       "Aromatase, which causes hypertension and absent puberty in this pattern",
       "5-alpha reductase, which is a salt-retaining enzyme",
       "17-alpha hydroxylase, so cortisol and sex steroids fall and mineralocorticoid precursors cause hypertension"
@@ -86,7 +86,7 @@
       "Growth hormone, which raises the newborn TSH",
       "Insulin, which enlarges the tongue and raises TSH",
       "Cortisol, which is the newborn-screen TSH lesion",
-      "Parathyroid hormone, which causes prolonged jaundice and a high TSH, without n extra lab"
+      "Parathyroid hormone, which causes prolonged jaundice and a high TSH value"
     ]
   },
   {
@@ -97,7 +97,7 @@
     "scenario": "A 58-year-old man starts empagliflozin. Glucose falls. He is told the drug blocks reabsorption of glucose in the proximal tubule. eGFR is 70.",
     "question": "Which transporter is blocked, and why is that the call?",
     "options": [
-      "GLUT4 in muscle, which is the SGLT2 inhibitor target, and no morning panel",
+      "GLUT4 in muscle, which is the SGLT2 inhibitor target on skeletal muscle",
       "SGLT2 in the proximal tubule, so glucose spills into the urine",
       "The insulin receptor, which the drug blocks",
       "SGLT1 in the gut only, with no renal effect",
@@ -233,7 +233,7 @@
     "question": "Which factors fell, and why is that the call?",
     "options": [
       "Factors II, VII, IX, and X, plus proteins C and S, which need vitamin K",
-      "Factor VIII and fibrinogen, which are the vitamin K factors, ahead of any extra lab",
+      "Factor VIII and fibrinogen, which are the vitamin K factors II, VII, IX, and X",
       "Factor XII only, which sets the INR",
       "Platelets, which the INR measures",
       "von Willebrand factor, which warfarin lowers first"
@@ -324,7 +324,7 @@
     "options": [
       "A myeloblast, which is TRAP positive",
       "A hairy B cell, marked by tartrate-resistant acid phosphatase and a large spleen",
-      "A lymphoblast of childhood, which presents with a huge spleen at 55, ahead of any late consult",
+      "A lymphoblast of childhood, which presents with a huge spleen at 55 and a dry marrow tap",
       "A plasma cell, which is the TRAP-positive spleen lesion",
       "A T cell of Sezary syndrome, which is TRAP positive in the marrow"
     ]
@@ -338,7 +338,7 @@
     "question": "Why are both times long, and why is that the call?",
     "options": [
       "Hemophilia A, which prolongs the PT and the PTT",
-      "Factor XIII deficiency, which prolongs both times, instead of n added drug, instead of n extra culture for this reading",
+      "Factor XIII deficiency, which prolongs both times with the platelet count still normal",
       "Vitamin K stores are low, so factors II, VII, IX, and X are not carboxylated",
       "Platelet failure, which the PT measures",
       "von Willebrand disease, which prolongs the PT"
@@ -445,7 +445,7 @@
       "Immune thrombocytopenia, which drops fibrinogen and raises D-dimer",
       "Hemophilia, which raises D-dimer and drops platelets",
       "Vitamin K deficiency, which drops platelets to 40,000",
-      "Thrombotic thrombocytopenic purpura, which prolongs PT and PTT as the rule, ahead of any dose change",
+      "Thrombotic thrombocytopenic purpura, which prolongs PT and PTT as the rule with fever and red-cell fragments",
       "Widespread thrombin generation using up platelets and factors, with fibrin-split products"
     ]
   },
@@ -461,7 +461,7 @@
       "Iron deficiency, because ferritin is 400",
       "Thalassemia, because TIBC is low",
       "B12 deficiency, because serum iron is low",
-      "Sideroblastic anemia, which lowers ferritin, ahead of any extra culture, and no morning panel"
+      "Sideroblastic anemia, which lowers ferritin and fills the marrow erythroblasts with iron"
     ]
   },
   {
@@ -713,7 +713,7 @@
     "question": "Which fibrosis disease is this, and why is that the call?",
     "options": [
       "Rheumatoid arthritis, which is anti-Scl-70",
-      "Dermatomyositis, which tightens the fingers and is anti-Scl-70, before any morning panel",
+      "Dermatomyositis, which tightens the fingers and is anti-Scl-70 antibody of systemic sclerosis",
       "Excess collagen in skin and internal organs, with an anti-topoisomerase antibody",
       "SLE, which is the anti-topoisomerase disease",
       "Eosinophilic fasciitis, which is anti-Scl-70"
@@ -727,7 +727,7 @@
     "scenario": "A 58-year-old man has an acute hot knee. Urate crystals are confirmed. A drug that inhibits microtubules is started for the acute attack. He has normal kidneys.",
     "question": "Which cell does the drug stop, and why is that the call?",
     "options": [
-      "Xanthine oxidase in the liver as the acute-attack target of this drug, ahead of any second test",
+      "Xanthine oxidase in the liver as the acute-attack target of this drug during an acute joint",
       "The uric acid crystal, which the drug dissolves in one hour",
       "Lymphocytes, which dominate the first hour of a crystal attack",
       "Neutrophil migration, because microtubules are required to reach the joint",

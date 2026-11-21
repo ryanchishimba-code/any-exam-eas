@@ -8,7 +8,7 @@
     "question": "Which digestive failure explains the stools, and why is that the call?",
     "options": [
       "Exocrine enzyme output has failed, so dietary fat is not digested",
-      "Bile-salt synthesis has stopped, so micelles cannot form, instead of n added drug",
+      "Bile-salt synthesis has stopped, so micelles cannot form in the intestine",
       "Terminal-ileum uptake of cobalamin has failed",
       "Gastric acid is absent, so iron stays ferric",
       "A colonic infection is the only cause of the fat loss"
@@ -24,7 +24,7 @@
     "options": [
       "The gradient is low, so peritoneal carcinomatosis is proved",
       "The gradient is high, so portal pressure, not the peritoneum, is driving the fluid",
-      "Spontaneous bacterial peritonitis is present because the neutrophil count is 40, holding the morning panel",
+      "Spontaneous bacterial peritonitis is present because the neutrophil count is 40 so treatment would start",
       "The low serum albumin alone creates a high gradient",
       "Heart failure is excluded because the spleen is enlarged"
     ]
@@ -113,7 +113,7 @@
     "question": "Which virus is the second agent, and why is that the call?",
     "options": [
       "Hepatitis A, which needs surface antigen to enter hepatocytes",
-      "Hepatitis C, which is a DNA virus that uses the B surface coat, and no added drug",
+      "Hepatitis C, which is a DNA virus that uses the B surface coat protein",
       "Hepatitis D, which needs hepatitis B surface antigen as its coat",
       "Hepatitis E, which replicates only inside B virions",
       "A DNA bacteriophage unrelated to surface antigen"
@@ -129,7 +129,7 @@
     "options": [
       "A routine hepatitis C vaccine prevents reinfection after RNA clears",
       "The virus is spread by the fecal-oral route, like hepatitis A virus",
-      "RNA in serum means the antibody is a false positive and he is immune, and no extra culture",
+      "RNA in serum means the antibody is a false positive and he is immune and no further testing is required",
       "No hepatitis C vaccine exists. Infection is blood-borne, and RNA means ongoing viremia",
       "Hepatitis C is a DNA virus cleared by the B vaccine"
     ]
@@ -234,7 +234,7 @@
     "options": [
       "Near-total loss of bilirubin conjugation from birth, so unconjugated pigment accumulates",
       "Canalicular export failure, which raises conjugated bilirubin",
-      "Bile-duct atresia, which raises conjugated bilirubin and pales the stool, and no added drug",
+      "Bile-duct atresia, which raises conjugated bilirubin and pales the stool from the first weeks of life",
       "Physiologic jaundice, which resolves in the first week",
       "Gilbert physiology, which stays under about 4 mg/dL"
     ]
@@ -324,7 +324,7 @@
     "options": [
       "Antimitochondrial duct destruction with a normal cholangiogram",
       "Fibrosing inflammation of bile ducts inside and outside the liver, with a beaded cholangiogram",
-      "Gallbladder sludge only, because beading is a stone on ultrasound, before any late consult, ahead of any added drug",
+      "Gallbladder sludge only, because beading is a stone on ultrasound rather than disease of the ducts themselves",
       "Viral hepatitis, because ALT would dominate and ducts bead",
       "Pancreatic enzyme failure, because elastase tracks the ALP"
     ]
@@ -401,7 +401,7 @@
       "Injected insulin, which raises insulin while the beta cell shuts off C-peptide",
       "A sulfonylurea, because those drugs suppress C-peptide",
       "Glucagon excess, because glucagon lowers insulin",
-      "Liver failure, because the liver clears C-peptide and leaves insulin high, instead of n extra culture"
+      "Liver failure, because the liver clears C-peptide and leaves insulin high in the plasma sample"
     ]
   },
   {
@@ -520,7 +520,7 @@
       "Duodenal atresia, which shows a double bubble and no twist of the jejunum",
       "Pyloric stenosis, which causes nonbilious vomiting at 3 to 6 weeks",
       "Hirschsprung disease, which fails to pass meconium but does not malrotate",
-      "Annular pancreas, which encases the duodenum without moving the ligament of Treitz, instead of a morning panel",
+      "Annular pancreas, which encases the duodenum without moving the ligament of Treitz and leaves rotation intact",
       "The midgut did not complete its rotation, so the bowel can twist on a narrow mesenteric pedicle"
     ]
   },
@@ -547,7 +547,7 @@
     "scenario": "A 4-week-old boy, the patient, vomits milk forcefully and he is hungry afterward. The vomit is not green. A firm olive is felt in the epigastrium. Electrolytes show chloride 82 mEq/L, potassium 3.0 mEq/L, and a high bicarbonate.",
     "question": "Which acid-base pattern is this, and why is that the call?",
     "options": [
-      "Normal-anion-gap acidosis from loss of bicarbonate in green vomit, holding the added drug",
+      "Normal-anion-gap acidosis from loss of bicarbonate in green vomit from the gut",
       "Hypochloremic metabolic alkalosis from loss of gastric acid in the vomit",
       "Respiratory alkalosis from hyperventilation of a hungry infant",
       "Hyperchloremic acidosis from vomiting gastric acid",
@@ -593,7 +593,7 @@
     "question": "Which duct problem is this, and why is that the call?",
     "options": [
       "Physiologic unconjugated jaundice of the first week",
-      "Gilbert physiology, which is unconjugated and appears with fasting in older children, ahead of any repeat draw",
+      "Gilbert physiology, which is unconjugated and appears with fasting in older children after a fast",
       "Alpha-1 antitrypsin only, which is the sole cause of pale stools",
       "Choledochal cyst, which is the same finding as a missing gallbladder",
       "Obliteration of the extrahepatic bile ducts, so conjugated bilirubin cannot reach the gut"
@@ -683,7 +683,7 @@
     "question": "Which enzyme leak marks the injury, and why is that the call?",
     "options": [
       "Lipase above three times the upper limit, from pancreatic acinar injury, here with a biliary block",
-      "Amylase from the salivary gland, because lipase is not a salivary enzyme, with no added drug, instead of n extra culture",
+      "Amylase from the salivary gland, because lipase is not a salivary enzyme and not from pancreatic acinar cells",
       "Troponin, because pain to the back is myocardial",
       "Alkaline phosphatase alone, which diagnoses necrosis of acini",
       "Elastase in stool, which rises in acute necrotic pain"
@@ -727,7 +727,7 @@
     "scenario": "A 29-year-old man has greasy stools after a course of antibiotics. The stool is positive for a toxin. He has no blood in the stool. The colon shows yellow-white plaques.",
     "question": "Which toxin injury is this, and why is that the call?",
     "options": [
-      "An invasive dysentery that is bloody from the start and has no plaques, with no added drug",
+      "An invasive dysentery that is bloody from the start and has no plaques in the colon",
       "A virus that flattens duodenal villi",
       "A parasite that attaches to duodenal mucosa and does not make plaques",
       "A toxin that glycosylates Rho and lifts yellow plaques off colonic mucosa",
