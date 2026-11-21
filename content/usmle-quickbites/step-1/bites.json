@@ -2588,10 +2588,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AUA guideline. Medical management of kidney stones.",
-      "year": "2014",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/24857648/",
-      "says": "Uric acid stones are radiolucent on plain films and are treated by alkalinizing the urine. Allopurinol is not the acute pain drug."
+      "name": "StatPearls. Uric Acid Nephrolithiasis.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK560726/",
+      "says": "Uric acid stones are radiolucent, while calcium-based stones are radioopaque. The most significant risk factor for uric acid stones is acidic urine, often associated with low urinary ammonia levels. Overall, urinary alkalinization is considered the single most effective therapy.",
+      "more": [
+        {
+          "name": "AUA guideline. Medical management of kidney stones (2014).",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24857648/"
+        }
+      ]
     },
     "number": 94,
     "id": "usmle-qb-s1-094"
@@ -2617,7 +2623,7 @@
       "name": "StatPearls. Chronic Kidney Disease-Mineral Bone Disorder (CKD-MBD).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560742/",
-      "says": "In 2005, Moe et al coined the term chronic kidney disease\u2013mineral and bone disorder (CKD-MBD) to describe a complex clinical syndrome encompassing disorders of calcium, phosphate, parathyroid hormone (PTH), vitamin D, and fibroblast growth factor-23 (FGF23) metabolism."
+      "says": "In CKD, reduced kidney function leads to impaired phosphate excretion and decreased synthesis of active vitamin D (calcitriol or 1,25 dihydroxy vitamin D), resulting in hyperphosphatemia and hypocalcemia. Management strategies for CKD-MBD primarily focus on preventing adverse effects associated with secondary hyperparathyroidism."
     },
     "number": 95,
     "id": "usmle-qb-s1-095"
@@ -2644,7 +2650,7 @@
       "name": "StatPearls. Emphysematous Pyelonephritis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK599505/",
-      "says": "Emphysematous pyelonephritis (EPN) is a severe necrotizing infection that affects the upper urinary tract, involving the renal parenchyma and, in some instances, the perirenal tissues of the kidney."
+      "says": "This condition frequently leads to gas formation in the renal parenchyma, collecting system, or perinephric tissue. Individuals with diabetes mellitus are primarily affected by EPN, posing a substantial risk, with reported mortality rates ranging from 40% to 90%. Treatment options for EPN have evolved, with aggressive surgical intervention and more conservative therapeutic approaches, primarily involving percutaneous drainage and antimicrobials."
     },
     "number": 96,
     "id": "usmle-qb-s1-096"
@@ -2695,7 +2701,7 @@
       "name": "StatPearls. Minimal Change Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK560639/",
-      "says": "Minimal change disease (MCD) is one of the most common causes of idiopathic nephrotic syndrome in children."
+      "says": "Minimal change disease (MCD) is one of the most common causes of idiopathic nephrotic syndrome in children. Light microscopy of renal biopsy specimens from patients with MCD shows minimal to no change; however, electron microscopy reveals the effacement of podocyte foot processes. Minimal change disease is distinctive for proteinuria that results in edema and intravascular volume depletion, with a good response to steroids."
     },
     "number": 98,
     "id": "usmle-qb-s1-098"
@@ -2720,7 +2726,7 @@
       "name": "StatPearls. Membranous Nephropathy.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK559169/",
-      "says": "Membranous nephropathy (MN), also known as membranous glomerulopathy, is one of the many glomerular diseases causing nephrotic syndrome."
+      "says": "It is the most common cause of primary nephrotic syndrome in White adults. Silver stain: Spikes (represent staining of basement membrane between the deposits)"
     },
     "number": 99,
     "id": "usmle-qb-s1-099"
@@ -2745,7 +2751,7 @@
       "name": "StatPearls. Malignant Pleural Effusion.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK574541/",
-      "says": "Malignant pleural effusion (MPE) is the accumulation of pleural exudate and the presence of malignant cells within the pleural fluid."
+      "says": "Between 42% and 77% of effusions in cancer patients have been documented to be exudative. Techniques such as pleural fluid cytology, cell block preparation, and pleural biopsy, including image-guided and thoracoscopic biopsies, enhance diagnostic accuracy."
     },
     "number": 100,
     "id": "usmle-qb-s1-100"
@@ -2771,7 +2777,7 @@
       "name": "StatPearls. Acetaminophen Toxicity. Physiology, Liver.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441917/",
-      "says": "Acetaminophen is responsible for more pharmaceutical overdoses than any other medication in the United States and worldwide, primarily due to the drug's widespread availability and the common perception of its safety.",
+      "says": "Zone III has the lowest perfusion due to its distance from the portal triad. At higher doses and as these pathways saturate, CYP oxidation of acetaminophen forms a toxic, oxidative metabolite and depletes hepatic glutathione stores. Hepatocellular centrilobular (zone 3) necrosis",
       "more": [
         {
           "name": "StatPearls. Physiology, Liver.",
@@ -2802,7 +2808,7 @@
       "name": "StatPearls. Physiology, Bilirubin.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK470290/",
-      "says": "Bilirubin is an important metabolite of heme (ferroprotoporphyrin IX), a coordination complex coordinating iron in various proteins."
+      "says": "Conjugation of bilirubin to the water-soluble form involves the disruption of the hydrogen bonds, an essential process for its elimination by the liver and kidney. Conjugated bilirubin that escapes reuptake into the hepatocyte is excreted in the urine. a concentration of unconjugated bilirubin bound to albumin in the venous circulation."
     },
     "open": false
   },
@@ -2828,7 +2834,7 @@
       "name": "StatPearls. Achalasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK519515/",
-      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent."
+      "says": "Achalasia represents a disorder of esophageal smooth muscle motility in which the lower esophageal sphincter fails to relax, and peristalsis in the esophageal body is absent. Classic findings include smooth tapering of the lower esophagus to a \u201cbird\u2019s beak\u201d appearance, proximal esophageal dilatation, and absent peristalsis during fluoroscopy"
     },
     "number": 103,
     "id": "usmle-qb-s1-103"
@@ -2851,10 +2857,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "ACG Clinical Guideline: Diagnosis and Management of Celiac Disease.",
-      "year": "2023",
-      "url": "https://journals.lww.com/ajg/fulltext/10.14309/ajg.0000000000002100~acg-clinical-guideline-diagnosis-and-management-of",
-      "says": "Test for celiac disease while the patient is still eating gluten, with IgA tissue transglutaminase and a total IgA. Do not start a gluten-free diet before the test."
+      "name": "StatPearls. Celiac Disease.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK441900/",
+      "says": "Exposure to gluten damages the small intestinal mucosa, resulting in villous atrophy, malabsorption, gastrointestinal symptoms, and a wide range of extraintestinal manifestations the 2023 American College of Gastroenterology (ACG) guidelines recommend initial serologic testing with tTG-IgA in patients who are not IgA deficient. If IgA deficiency has not been previously assessed, a total IgA level should be measured concurrently.",
+      "more": [
+        {
+          "name": "ACG Clinical Guideline: Diagnosis and Management of Celiac Disease (2023).",
+          "url": "https://journals.lww.com/ajg/fulltext/10.14309/ajg.0000000000002100~acg-clinical-guideline-diagnosis-and-management-of"
+        }
+      ]
     },
     "number": 104,
     "id": "usmle-qb-s1-104"
@@ -2879,7 +2891,7 @@
       "name": "StatPearls. Ulcerative Colitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459282/",
-      "says": "Typically, the disease starts in the rectum and extends proximally in a continuous manner."
+      "says": "Typically, the disease starts in the rectum and extends proximally in a continuous manner. The main symptom of ulcerative colitis is bloody diarrhea, with or without mucus."
     },
     "number": 105,
     "id": "usmle-qb-s1-105"
@@ -2906,7 +2918,7 @@
       "name": "StatPearls. Chronic Pancreatitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK482325/",
-      "says": "This definition characterizes end-stage chronic pancreatitis as pancreatic atrophy, fibrosis, pain syndromes, duct distortion and strictures, calcifications, pancreatic exocrine dysfunction, pancreatic endocrine dysfunction, and dysplasia, but also addresses the disease mechanism as a pathological fibroinflammatory syndrome of the pancreas in individuals with genetic, environmental, or other risk factors who develop persistent pathologic responses to parenchymal injury or stress."
+      "says": "Exocrine dysfunction leads to pancreatic insufficiency, steatorrhea, and weight loss, occurring when over 90% of the organ is damaged. Over time, normal pancreatic parenchyma is replaced by fibrotic tissue, causing chronic abdominal pain, malabsorption due to exocrine insufficiency, and diabetes mellitus."
     },
     "number": 106,
     "id": "usmle-qb-s1-106"
@@ -2929,10 +2941,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "StatPearls. Hepatitis B.",
+      "name": "StatPearls. Hepatitis B; Hepatitis B Vaccine.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK555945/",
-      "says": "It is a potentially life-threatening liver infection caused by the hepatitis B virus (HBV)."
+      "says": "Antibodies produced by vaccination target the outer protein coat or surface antigen. The current preferred method is a regimen of 3 doses of the recombinant vaccine over 6 months.",
+      "more": [
+        {
+          "name": "StatPearls. Hepatitis B Vaccine.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK554400/"
+        }
+      ]
     },
     "number": 107,
     "id": "usmle-qb-s1-107"
@@ -2955,10 +2973,16 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "AASLD/IDSA HCV guidance. Recommendations for testing, managing, and treating hepatitis C.",
+      "name": "AASLD/IDSA HCV guidance. HCV testing and linkage to care.",
       "year": "2026",
-      "url": "https://www.hcvguidelines.org/",
-      "says": "Direct-acting antivirals cure most hepatitis C infections. Antibody means exposure, RNA means current viremia, and there is no vaccine."
+      "url": "https://www.hcvguidelines.org/evaluate/testing-and-linkage",
+      "says": "HCV antibody testing with reflex HCV RNA polymerase chain reaction (PCR) testing is recommended for initial HCV testing. A positive HCV antibody test indicates current (active) HCV infection (acute or chronic); past infection that has resolved; or a rare false positive.",
+      "more": [
+        {
+          "name": "StatPearls. Hepatitis C.",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK430897/"
+        }
+      ]
     },
     "number": 108,
     "id": "usmle-qb-s1-108"
@@ -2983,7 +3007,7 @@
       "name": "StatPearls. Wilson Disease.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441990/",
-      "says": "Wilson disease, also known as hepatolenticular degeneration, is a rare autosomal recessive disorder caused by mutations in the ATP7B gene, leading to abnormal copper accumulation in the liver, brain, cornea, and other organs."
+      "says": "Wilson disease is an autosomal recessive condition caused by 1 of several mutations in ATP7B gene which encodes the ATP7B protein transporter on the long arm of chromosome 13 (13q) responsible for excreting excess copper into bile and out of the body. The first serologic test recommended is serum ceruloplasmin, where a level of <20 mg/dL indicates an abnormality. In the brain, copper deposits in the basal ganglia, putamen, and globus pallidus are involved in the coordination of movement and neurocognitive processes including liver failure, neuropsychiatric symptoms, movement disorders, and Kayser-Fleischer (KF) rings in the cornea."
     },
     "number": 109,
     "id": "usmle-qb-s1-109"
@@ -3009,7 +3033,7 @@
       "name": "StatPearls. Alpha-1 Antitrypsin Deficiency.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK442030/",
-      "says": "Alpha-1 antitrypsin (AAT) deficiency is a genetically inherited disorder often unrecognized in clinical practice."
+      "says": "2 distinct characteristics of AAT-related emphysema are the early onset of symptoms at a young age and a basilar-predominant pattern of emphysema. These inclusions can be detected as positive on periodic acid\u2013Schiff staining with diastase digestion."
     },
     "number": 110,
     "id": "usmle-qb-s1-110"
@@ -3035,7 +3059,7 @@
       "name": "StatPearls. Primary Biliary Cholangitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459209/",
-      "says": "Primary biliary cholangitis (PBC), previously known as primary biliary cirrhosis, is a chronic autoimmune cholestatic liver disease characterized by progressive destruction of small intrahepatic bile ducts, leading to cholestasis and periportal inflammation."
+      "says": "Patients may initially be asymptomatic or present with fatigue, pruritus, and fat-soluble vitamin deficiencies. primarily elevated alkaline phosphatase (ALP) and \u03b3-glutamyltransferase levels. AMAs are detected in more than 90% of patients."
     },
     "number": 111,
     "id": "usmle-qb-s1-111"
@@ -3060,7 +3084,7 @@
       "name": "StatPearls. Primary Sclerosing Cholangitis.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK537181/",
-      "says": "Primary sclerosing cholangitis (PSC) is a chronic, progressive cholestatic liver disease of unknown etiology characterized by inflammation and fibrosis of the intrahepatic and extrahepatic bile ducts, leading to multifocal strictures and eventual biliary cirrhosis."
+      "says": "the diagnosis of PSC is primarily based on imaging findings that demonstrate characteristic multifocal strictures of the intrahepatic and extrahepatic bile ducts with intervening normal or dilated segments, which result in the characteristic \u201cbeaded\u201d appearance. A strong association exists with inflammatory bowel disease (IBD), particularly ulcerative colitis, which occurs in 60% to 80% of PSC cases."
     },
     "number": 112,
     "id": "usmle-qb-s1-112"
@@ -3086,7 +3110,7 @@
       "name": "StatPearls. Congenital Adrenal Hyperplasia.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK448098/",
-      "says": "These mutations impair cortisol synthesis, triggering a compensatory increase in adrenocorticotropic hormone (ACTH), which leads to adrenal cortex hyperplasia\u2014hence the term \"CAH.\" The condition can manifest in infants, children, or adults with symptoms of corticosteroid deficiency, often accompanied by either a deficiency or excess of mineralocorticoids and sex steroids, depending on the specific"
+      "says": "21-OH deficiency hinders the conversion of 17-OHP to 11-deoxycortisol, the penultimate step in cortisol synthesis, and the conversion of progesterone to deoxycorticosterone (DOC) in aldosterone synthesis. deficiencies in 11\u03b2-OH ( CYP11B1/6p21.1 ) and 17\u03b1-OH ( CYP17A1/10q24.3 ) result in the accumulation of mineralocorticoid precursors, causing hypertension and cortisol deficiency in affected individuals. In CAH variants with insufficient sex steroid production, such as StAR, PSCC, 17\u03b1-OH, 3\u03b2-HSD-2, and possibly POR, sex steroid supplementation may be required"
     },
     "open": false
   },
@@ -3112,7 +3136,7 @@
       "name": "StatPearls. Physiology, Thyroid Hormone.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500006/",
-      "says": "In contrast, hyperthyroidism, caused by increased thyroid gland function, manifests as weight loss, heat intolerance, diarrhea, fine tremor, and muscle weakness."
+      "says": "TPO has three functions: oxidation, organification, and coupling reaction."
     },
     "open": false
   },
@@ -3138,7 +3162,7 @@
       "name": "StatPearls. Physiology, Menstrual Cycle.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK500020/",
-      "says": "The female reproductive system, unlike the male, undergoes regular cyclic changes known as the menstrual cycle, which serves as the body\u2019s periodic preparation for ovulation and potential pregnancy."
+      "says": "When a critical level of 17-\u03b2 estradiol is reached, it provides positive feedback to the anterior pituitary, leading to a surge in FSH and LH production. When ovulation does not occur, no corpus luteum develops, and progesterone is not secreted in significant quantities."
     },
     "open": false
   },
@@ -3164,7 +3188,7 @@
       "name": "StatPearls. Primary Hyperparathyroidism.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK441895/",
-      "says": "Primary hyperparathyroidism (PHPT) is an endocrine disorder defined by autonomous overproduction of parathyroid hormone (PTH), resulting in hypercalcemia and disrupted calcium homeostasis."
+      "says": "Primary hyperparathyroidism (PHPT) is an endocrine disorder defined by autonomous overproduction of parathyroid hormone (PTH), resulting in hypercalcemia and disrupted calcium homeostasis. PTH levels are described as \u201cinappropriately normal\u201d because they do not suppress in response to hypercalcemia."
     },
     "open": false
   },
@@ -3189,7 +3213,7 @@
       "name": "StatPearls. Hypercortisolism (Cushing Syndrome).",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK551526/",
-      "says": "Cushing, MD, whose original description of patients with endogenous hypercortisolism due to pituitary adenoma remains a seminal classic."
+      "says": "Similarly, a serum ACTH level greater than 20 pg/mL is highly suggestive of ACTH-dependent hypercortisolism, which then brings up the clinical decision branch point of distinguishing between pituitary-based hypercortisolism versus ectopic ACTH syndrome (EAS) through additional dynamic tests (eg, high-dose dexamethasone suppression, CRH stimulation)"
     },
     "open": false
   },
@@ -3211,10 +3235,16 @@
     "diagram": "thyroid-seq",
     "diagramAlt": "Thyroid storm sequence. PTU first. Iodide at least 1 hour later Beta blocker and a glucocorticoid BWPS >=45. No aspirin",
     "source": {
-      "name": "2016 American Thyroid Association guideline for hyperthyroidism and thyrotoxicosis.",
-      "year": "2016",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
-      "says": "Thyroid storm, including a Burch-Wartofsky score of 45 or higher, is treated with a beta blocker, propylthiouracil, iodide given at least 1 hour after the thionamide, and a glucocorticoid. Aspirin is avoided."
+      "name": "StatPearls. Thyroid Storm.",
+      "year": "2026",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK448095/",
+      "says": "An hour after administering propylthiouracil or methimazole, give SSKI; propylthiouracil is favored because it also blocks peripheral conversion of T4 to T3. Hydrocortisone is started, aspirin is avoided, and a Burch-Wartofsky score of 45 or more is more sensitive for thyroid storm.",
+      "more": [
+        {
+          "name": "2016 American Thyroid Association guideline for hyperthyroidism and thyrotoxicosis.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/"
+        }
+      ]
     },
     "number": 118,
     "id": "usmle-qb-s1-118"
@@ -3237,10 +3267,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Endocrine Society guideline. Primary adrenal insufficiency.",
+      "name": "Endocrine Society Clinical Practice Guideline. Diagnosis and Treatment of Primary Adrenal Insufficiency.",
       "year": "2016",
       "url": "https://pubmed.ncbi.nlm.nih.gov/26760044/",
-      "says": "Recommendation 4.1: adrenal crisis is hydrocortisone 100 mg IV, then 200 mg over 24 hours, plus saline. Do not delay that dose for a corticotropin test. Later maintenance is hydrocortisone 15 to 25 mg a day."
+      "says": "The signs of PAI are mainly based on the deficiency of gluco- and mineralocorticoids and the resultant weight loss, orthostatic hypotension due to dehydration, hyponatremia, hyperkalemia, changes in blood count (anemia, eosinophilia, lymphocytosis), and hypoglycemia. Enhanced secretion of ACTH and other pro-opiomelanocortin peptides often leads to the characteristic hyperpigmentation of the skin and mucous membranes."
     },
     "number": 119,
     "id": "usmle-qb-s1-119"
@@ -3263,10 +3293,10 @@
     "diagram": null,
     "diagramAlt": null,
     "source": {
-      "name": "Endocrine Society guideline. Pheochromocytoma and paraganglioma.",
+      "name": "Endocrine Society Clinical Practice Guideline. Pheochromocytoma and Paraganglioma.",
       "year": "2014",
       "url": "https://pubmed.ncbi.nlm.nih.gov/24893135/",
-      "says": "All patients with a functional pheochromocytoma or paraganglioma should have preoperative blockade. Preparation includes a high-sodium diet and fluid intake to prevent postoperative hypotension."
+      "says": "Initial biochemical testing should include plasma free or urinary fractionated metanephrines, and all positive results require follow-up. All patients with functional tumors should undergo preoperative blockade, with a high-sodium diet and fluid intake to prevent postoperative hypotension."
     },
     "number": 120,
     "id": "usmle-qb-s1-120"
@@ -3291,7 +3321,7 @@
       "name": "StatPearls. Acromegaly.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK431086/",
-      "says": "Acromegaly and gigantism are disorders of growth-hormone hypersecretion. Because growth hormone is released in pulses, IGF-1 is the screening test."
+      "says": "The resulting production of insulin-like growth factor 1 (IGF-1) causes the characteristic overgrowth of certain tissues IGF-1 is used as it does not vary with sleep patterns, exercise, or throughout the day like GH does."
     },
     "number": 121,
     "id": "usmle-qb-s1-121"
@@ -3317,7 +3347,7 @@
       "name": "StatPearls. Prolactinoma.",
       "year": "2026",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK459347/",
-      "says": "Hyperprolactinemia is not specific to prolactinoma, and alternative causes such as pregnancy, medications, hypothyroidism, and pituitary stalk effect due to other pituitary tumors should be considered in the differential diagnosis."
+      "says": "Evaluation begins with measurement of serum prolactin levels and exclusion of secondary causes, including pregnancy, hypothyroidism, and medication-induced hyperprolactinemia."
     },
     "number": 122,
     "id": "usmle-qb-s1-122"
