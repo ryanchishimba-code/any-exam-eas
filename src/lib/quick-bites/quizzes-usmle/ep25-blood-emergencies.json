@@ -1,0 +1,287 @@
+{
+  "episode": "ep25-blood-emergencies",
+  "title": "Blood Emergencies That Cannot Wait",
+  "video": "quick-bites-usmle-ep25-blood-emergencies-web.mp4",
+  "questions": [
+    {
+      "id": "ep25-blood-emergencies-q01",
+      "type": "single_best_answer",
+      "stem": "Suspected thrombotic thrombocytopenic purpura. Plasma exchange:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Waits for the enzyme result"
+        },
+        {
+          "id": "B",
+          "text": "Starts now, without waiting for the enzyme result"
+        },
+        {
+          "id": "C",
+          "text": "Is replaced by a platelet transfusion for the number"
+        },
+        {
+          "id": "D",
+          "text": "Starts only after a week of steroids"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not wait for the enzyme that cuts von Willebrand factor. Start exchange now.",
+      "videoTimestamp": "0:29"
+    },
+    {
+      "id": "ep25-blood-emergencies-q02",
+      "type": "single_best_answer",
+      "stem": "In thrombotic thrombocytopenic purpura, platelets are given:",
+      "options": [
+        {
+          "id": "A",
+          "text": "To correct any count under 150"
+        },
+        {
+          "id": "B",
+          "text": "For life-threatening bleeding, not for the number"
+        },
+        {
+          "id": "C",
+          "text": "Instead of plasma exchange"
+        },
+        {
+          "id": "D",
+          "text": "Before every lab draw"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Platelets are for life-threatening bleeding, not for the number.",
+      "videoTimestamp": "0:31"
+    },
+    {
+      "id": "ep25-blood-emergencies-q03",
+      "type": "single_best_answer",
+      "stem": "Fever and neutrophils under 500. The next step is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Wait for the culture, then treat"
+        },
+        {
+          "id": "B",
+          "text": "An antipseudomonal antibiotic promptly"
+        },
+        {
+          "id": "C",
+          "text": "A platelet transfusion first"
+        },
+        {
+          "id": "D",
+          "text": "Stop all antibiotics until the source is imaged"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not wait for the culture. Treat promptly.",
+      "videoTimestamp": "0:41"
+    },
+    {
+      "id": "ep25-blood-emergencies-q04",
+      "type": "single_best_answer",
+      "stem": "A patient with sickle cell disease has a new infiltrate plus fever and hypoxia. This is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pain crisis only"
+        },
+        {
+          "id": "B",
+          "text": "Acute chest syndrome"
+        },
+        {
+          "id": "C",
+          "text": "Heparin-induced thrombocytopenia"
+        },
+        {
+          "id": "D",
+          "text": "A hemolytic transfusion reaction only"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A new infiltrate plus chest pain, fever, or hypoxia is acute chest syndrome.",
+      "videoTimestamp": "0:53"
+    },
+    {
+      "id": "ep25-blood-emergencies-q05",
+      "type": "single_best_answer",
+      "stem": "Incentive spirometry in sickle cell disease is used to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Treat heparin-induced thrombocytopenia"
+        },
+        {
+          "id": "B",
+          "text": "Help prevent acute chest syndrome"
+        },
+        {
+          "id": "C",
+          "text": "Replace antibiotics in neutropenia"
+        },
+        {
+          "id": "D",
+          "text": "Replace exchange transfusion in every case"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Incentive spirometry helps prevent acute chest. Severe disease can still need exchange.",
+      "videoTimestamp": "0:53"
+    },
+    {
+      "id": "ep25-blood-emergencies-q06",
+      "type": "single_best_answer",
+      "stem": "Heparin-induced thrombocytopenia is suspected five days after heparin. First steps:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Start warfarin alone and continue heparin"
+        },
+        {
+          "id": "B",
+          "text": "Stop all heparin and start a non-heparin anticoagulant"
+        },
+        {
+          "id": "C",
+          "text": "Give platelets for the number"
+        },
+        {
+          "id": "D",
+          "text": "Watch and continue heparin if the wound looks fine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Stop all heparin. Start a non-heparin anticoagulant. Do not start warfarin alone in the acute phase.",
+      "videoTimestamp": "2:56"
+    },
+    {
+      "id": "ep25-blood-emergencies-q07",
+      "type": "single_best_answer",
+      "stem": "A smear suggests acute promyelocytic leukemia, and the patient is bleeding. All-trans retinoic acid:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Waits for the karyotype"
+        },
+        {
+          "id": "B",
+          "text": "Starts as soon as the diagnosis is suspected"
+        },
+        {
+          "id": "C",
+          "text": "Is only for transfusion reactions"
+        },
+        {
+          "id": "D",
+          "text": "Replaces stopping a bad unit"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Start it when the smear already fits. Do not wait for the karyotype.",
+      "videoTimestamp": "1:53"
+    },
+    {
+      "id": "ep25-blood-emergencies-q08",
+      "type": "single_best_answer",
+      "stem": "Fever, pain, and dark urine during a red-cell transfusion. The unit should be:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Slowed and watched"
+        },
+        {
+          "id": "B",
+          "text": "Stopped. Keep the bag and send it"
+        },
+        {
+          "id": "C",
+          "text": "Warmed and continued"
+        },
+        {
+          "id": "D",
+          "text": "Followed by a second unit immediately"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A suspected hemolytic reaction stops that unit. Do not slow it and watch.",
+      "videoTimestamp": "1:42"
+    },
+    {
+      "id": "ep25-blood-emergencies-q09",
+      "type": "single_best_answer",
+      "stem": "Warfarin alone, in acute heparin-induced thrombocytopenia:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is the preferred first anticoagulant"
+        },
+        {
+          "id": "B",
+          "text": "Should not be started as the only treatment in the acute phase"
+        },
+        {
+          "id": "C",
+          "text": "Replaces stopping heparin"
+        },
+        {
+          "id": "D",
+          "text": "Treats thrombotic thrombocytopenic purpura"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not start warfarin alone in the acute phase.",
+      "videoTimestamp": "1:37"
+    },
+    {
+      "id": "ep25-blood-emergencies-q10",
+      "type": "single_best_answer",
+      "stem": "Severe acute chest in sickle cell disease is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pain medicine only"
+        },
+        {
+          "id": "B",
+          "text": "More than pain medicine, and can need exchange transfusion"
+        },
+        {
+          "id": "C",
+          "text": "Treated by starting heparin and warfarin together"
+        },
+        {
+          "id": "D",
+          "text": "Ignored if incentive spirometry was used once"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Severe disease is more than pain medicine.",
+      "videoTimestamp": "1:01"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep22-gram-positive-hepatitis",
+  "title": "The Gram-Positive Tree, and Two Hepatitis Stories",
+  "video": "quick-bites-usmle-ep22-gram-positive-hepatitis-web.mp4",
+  "questions": [
+    {
+      "id": "ep22-gram-positive-hepatitis-q01",
+      "type": "single_best_answer",
+      "stem": "A catalase-positive, coagulase-positive gram-positive coccus is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Streptococcus pyogenes"
+        },
+        {
+          "id": "B",
+          "text": "Staphylococcus aureus"
+        },
+        {
+          "id": "C",
+          "text": "Enterococcus"
+        },
+        {
+          "id": "D",
+          "text": "Streptococcus pneumoniae"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Catalase splits staph from strep. Coagulase then splits Staphylococcus aureus from the other staphylococci.",
+      "videoTimestamp": "1:32"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q02",
+      "type": "single_best_answer",
+      "stem": "Alpha-hemolytic, optochin-sensitive:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Viridans group streptococcus"
+        },
+        {
+          "id": "B",
+          "text": "Pneumococcus"
+        },
+        {
+          "id": "C",
+          "text": "Group A streptococcus"
+        },
+        {
+          "id": "D",
+          "text": "Enterococcus"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Optochin-sensitive alpha hemolysis is pneumococcus.",
+      "videoTimestamp": "0:31"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q03",
+      "type": "single_best_answer",
+      "stem": "Beta-hemolytic and bacitracin-sensitive:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Group B streptococcus"
+        },
+        {
+          "id": "B",
+          "text": "Group A streptococcus"
+        },
+        {
+          "id": "C",
+          "text": "Staphylococcus epidermidis"
+        },
+        {
+          "id": "D",
+          "text": "Enterococcus"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Bacitracin-sensitive beta hemolysis is group A.",
+      "videoTimestamp": "0:35"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q04",
+      "type": "single_best_answer",
+      "stem": "A gram-positive coccus that grows in salt is most consistent with:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pneumococcus"
+        },
+        {
+          "id": "B",
+          "text": "Enterococcus"
+        },
+        {
+          "id": "C",
+          "text": "Group A streptococcus"
+        },
+        {
+          "id": "D",
+          "text": "Viridans streptococcus"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Enterococcus grows in salt.",
+      "videoTimestamp": "0:37"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q05",
+      "type": "single_best_answer",
+      "stem": "Streptococcus gallolyticus bacteremia should prompt a look at the:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Gallbladder only"
+        },
+        {
+          "id": "B",
+          "text": "Colon"
+        },
+        {
+          "id": "C",
+          "text": "Heart valves only, and then stop"
+        },
+        {
+          "id": "D",
+          "text": "Skin flora"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "S. gallolyticus points at a colon lesion.",
+      "videoTimestamp": "0:40"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q06",
+      "type": "single_best_answer",
+      "stem": "Hepatitis B surface antigen means:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vaccine success only"
+        },
+        {
+          "id": "B",
+          "text": "Current infection"
+        },
+        {
+          "id": "C",
+          "text": "Resolved infection only"
+        },
+        {
+          "id": "D",
+          "text": "A test that the vaccine creates as a trick"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Surface antigen means current infection.",
+      "videoTimestamp": "1:01"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q07",
+      "type": "single_best_answer",
+      "stem": "After a hepatitis B vaccine, which antibody is expected, and which is not?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Core antibody is expected; surface antibody is not"
+        },
+        {
+          "id": "B",
+          "text": "Surface antibody is expected; core antibody is not created by the vaccine"
+        },
+        {
+          "id": "C",
+          "text": "Neither antibody appears"
+        },
+        {
+          "id": "D",
+          "text": "Only IgM core antibody appears"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The vaccine does not create core antibody. Isolated surface antibody is the usual vaccine pattern. Resolved infection typically also has core antibody.",
+      "videoTimestamp": "1:05"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q08",
+      "type": "single_best_answer",
+      "stem": "Hepatitis C antibody is positive. The next test that shows current infection is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A second antibody"
+        },
+        {
+          "id": "B",
+          "text": "Viral ribonucleic acid"
+        },
+        {
+          "id": "C",
+          "text": "Surface antigen"
+        },
+        {
+          "id": "D",
+          "text": "A vaccine titer"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Antibody means exposure. Viral ribonucleic acid means the infection is current.",
+      "videoTimestamp": "3:13"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q09",
+      "type": "single_best_answer",
+      "stem": "Is there a hepatitis C vaccine that should be offered instead of treatment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Yes, and it replaces antivirals"
+        },
+        {
+          "id": "B",
+          "text": "No. There is not a vaccine; current infection is treated to cure"
+        },
+        {
+          "id": "C",
+          "text": "Yes, after cirrhosis only"
+        },
+        {
+          "id": "D",
+          "text": "Only if surface antigen is also positive"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Hepatitis C has no vaccine. Direct-acting antivirals are used to cure.",
+      "videoTimestamp": "1:11"
+    },
+    {
+      "id": "ep22-gram-positive-hepatitis-q10",
+      "type": "single_best_answer",
+      "stem": "After hepatitis C is cured in a patient who already has cirrhosis, hepatocellular-carcinoma surveillance:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Can stop the day the virus becomes undetectable"
+        },
+        {
+          "id": "B",
+          "text": "Still needs to continue"
+        },
+        {
+          "id": "C",
+          "text": "Is replaced by the hepatitis B vaccine"
+        },
+        {
+          "id": "D",
+          "text": "Is only for hepatitis B"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Cirrhosis still needs cancer surveillance after cure.",
+      "videoTimestamp": "1:49"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "episode": "ep21-glucose-calcium-cortisol",
+  "title": "Glucose Crosses, Insulin Does Not",
+  "video": "quick-bites-usmle-ep21-glucose-calcium-cortisol-web.mp4",
+  "questions": [
+    {
+      "id": "ep21-glucose-calcium-cortisol-q01",
+      "type": "single_best_answer",
+      "stem": "A newborn whose mother had poorly controlled diabetes is jittery a few hours after birth. The first concern is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hyperglycemia from leftover maternal insulin"
+        },
+        {
+          "id": "B",
+          "text": "Hypoglycemia, because the baby made extra insulin and maternal glucose has now stopped"
+        },
+        {
+          "id": "C",
+          "text": "Hypocalcemia from a high parathyroid hormone"
+        },
+        {
+          "id": "D",
+          "text": "Cushing syndrome from placental cortisol"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Maternal glucose crossed the placenta; insulin did not. The baby made extra insulin and is at risk of low sugar after birth.",
+      "videoTimestamp": "1:24"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q02",
+      "type": "single_best_answer",
+      "stem": "Which statement about pregnancy and insulin is correct?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Maternal insulin freely crosses the placenta and drives fetal growth"
+        },
+        {
+          "id": "B",
+          "text": "Only fetal glucose, not maternal glucose, reaches the baby"
+        },
+        {
+          "id": "C",
+          "text": "Maternal glucose crosses; maternal insulin does not"
+        },
+        {
+          "id": "D",
+          "text": "Neither glucose nor insulin crosses"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "The placenta lets glucose through and keeps maternal insulin out.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q03",
+      "type": "single_best_answer",
+      "stem": "High blood calcium with a high, or unsuppressed, parathyroid hormone is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary hyperparathyroidism"
+        },
+        {
+          "id": "B",
+          "text": "A cancer peptide until proven otherwise"
+        },
+        {
+          "id": "C",
+          "text": "Familial hypocalciuric hypercalcemia, always"
+        },
+        {
+          "id": "D",
+          "text": "Thyroid peroxidase blockade"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The hormone should fall if the calcium is high for another reason. If it does not, the gland is driving the calcium.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q04",
+      "type": "single_best_answer",
+      "stem": "High blood calcium with a suppressed parathyroid hormone points first to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Primary hyperparathyroidism"
+        },
+        {
+          "id": "B",
+          "text": "A parathyroid-independent cause, such as a cancer peptide"
+        },
+        {
+          "id": "C",
+          "text": "A failed low-dose suppression test"
+        },
+        {
+          "id": "D",
+          "text": "Familial hypocalciuric hypercalcemia"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "When the hormone is appropriately low, look outside the gland.",
+      "videoTimestamp": "1:38"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q05",
+      "type": "single_best_answer",
+      "stem": "High blood calcium, but the urine calcium is low. Next thought:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Operate on the number today"
+        },
+        {
+          "id": "B",
+          "text": "Familial hypocalciuric hypercalcemia is possible; do not operate on the blood number alone"
+        },
+        {
+          "id": "C",
+          "text": "Start a high-dose suppression test"
+        },
+        {
+          "id": "D",
+          "text": "The baby will be hypoglycemic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A low urine calcium can be familial. Surgery is not decided from the blood calcium alone.",
+      "videoTimestamp": "1:04"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q06",
+      "type": "single_best_answer",
+      "stem": "A low-dose suppression test fails. What has been shown?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The source is definitely the pituitary"
+        },
+        {
+          "id": "B",
+          "text": "Cortisol is not under normal control; the organ has not been named"
+        },
+        {
+          "id": "C",
+          "text": "The source is definitely the adrenal"
+        },
+        {
+          "id": "D",
+          "text": "The source is definitely ectopic"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Every Cushing syndrome can fail the low-dose test. That finding does not name the organ.",
+      "videoTimestamp": "1:54"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q07",
+      "type": "single_best_answer",
+      "stem": "A high-dose suppression test can suppress cortisol when the source is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Adrenal"
+        },
+        {
+          "id": "B",
+          "text": "Ectopic"
+        },
+        {
+          "id": "C",
+          "text": "Pituitary"
+        },
+        {
+          "id": "D",
+          "text": "Any of the three, equally"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "A high-dose test can still suppress a pituitary source. Adrenal and ectopic sources usually do not suppress.",
+      "videoTimestamp": "1:54"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q08",
+      "type": "single_best_answer",
+      "stem": "A low driving hormone (adrenocorticotropic hormone) with high cortisol points to:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A pituitary source"
+        },
+        {
+          "id": "B",
+          "text": "An ectopic source"
+        },
+        {
+          "id": "C",
+          "text": "An adrenal source"
+        },
+        {
+          "id": "D",
+          "text": "Primary hyperparathyroidism"
+        }
+      ],
+      "keys": [
+        "C"
+      ],
+      "explanation": "If the driving hormone is already low, the gland itself is making the cortisol.",
+      "videoTimestamp": "2:01"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q09",
+      "type": "single_best_answer",
+      "stem": "Thyroid peroxidase does which job?",
+      "options": [
+        {
+          "id": "A",
+          "text": "It only converts T4 to T3 in the tissues"
+        },
+        {
+          "id": "B",
+          "text": "It organifies iodide and couples tyrosines"
+        },
+        {
+          "id": "C",
+          "text": "It lowers blood calcium"
+        },
+        {
+          "id": "D",
+          "text": "It crosses the placenta in place of insulin"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The enzyme organifies iodide and couples tyrosines in the gland.",
+      "videoTimestamp": "2:05"
+    },
+    {
+      "id": "ep21-glucose-calcium-cortisol-q10",
+      "type": "single_best_answer",
+      "stem": "Which thionamide also blocks peripheral conversion of T4 to T3?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Methimazole only"
+        },
+        {
+          "id": "B",
+          "text": "Propylthiouracil"
+        },
+        {
+          "id": "C",
+          "text": "Iodine first, always"
+        },
+        {
+          "id": "D",
+          "text": "A beta blocker"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Common thionamides block the enzyme; propylthiouracil also blocks peripheral conversion.",
+      "videoTimestamp": "2:14"
+    }
+  ]
+}

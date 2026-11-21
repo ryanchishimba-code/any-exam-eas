@@ -1,0 +1,287 @@
+{
+  "episode": "ep30-safety-ethics-practice",
+  "title": "A Report, a Colleague, and a Note You Write Now",
+  "video": "quick-bites-usmle-ep30-safety-ethics-practice-web.mp4",
+  "questions": [
+    {
+      "id": "ep30-safety-ethics-practice-q01",
+      "type": "single_best_answer",
+      "stem": "You suspect elder abuse. The report is made:",
+      "options": [
+        {
+          "id": "A",
+          "text": "After discharge, if convenient"
+        },
+        {
+          "id": "B",
+          "text": "Before discharge"
+        },
+        {
+          "id": "C",
+          "text": "Only if the suspected abuser agrees"
+        },
+        {
+          "id": "D",
+          "text": "Only if a judge is present"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The report is made before discharge.",
+      "videoTimestamp": "0:19"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q02",
+      "type": "single_best_answer",
+      "stem": "The person you ask for permission before reporting suspected elder abuse should be:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The suspected abuser"
+        },
+        {
+          "id": "B",
+          "text": "Not the suspected abuser"
+        },
+        {
+          "id": "C",
+          "text": "Only the hospital lawyer, and then you stop"
+        },
+        {
+          "id": "D",
+          "text": "No one; you also skip the report"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The suspected abuser is not the person you ask for permission.",
+      "videoTimestamp": "0:23"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q03",
+      "type": "single_best_answer",
+      "stem": "A colleague is impaired in the hospital today. First:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Leave them on the schedule and mention it next month"
+        },
+        {
+          "id": "B",
+          "text": "Remove them from patients now; the report follows"
+        },
+        {
+          "id": "C",
+          "text": "Announce it in the hallway"
+        },
+        {
+          "id": "D",
+          "text": "Ask the colleague to write their own report tomorrow"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "They are removed from patients immediately. The report is not a hallway announcement.",
+      "videoTimestamp": "0:04"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q04",
+      "type": "single_best_answer",
+      "stem": "The reporting channel for an impaired colleague is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A hallway announcement"
+        },
+        {
+          "id": "B",
+          "text": "The official channel, not a hallway announcement"
+        },
+        {
+          "id": "C",
+          "text": "A note in a public elevator"
+        },
+        {
+          "id": "D",
+          "text": "Social media"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A hallway announcement is not the reporting channel.",
+      "videoTimestamp": "0:49"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q05",
+      "type": "single_best_answer",
+      "stem": "You treat an emergency without consent. The contemporaneous note should include:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only the billing code"
+        },
+        {
+          "id": "B",
+          "text": "What the emergency was, whom you tried to reach, and why delay was unsafe"
+        },
+        {
+          "id": "C",
+          "text": "A plan for an elective cosmetic add-on"
+        },
+        {
+          "id": "D",
+          "text": "A request that the family sign later, and nothing else"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Implied emergency consent is a note with those three elements.",
+      "videoTimestamp": "1:17"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q06",
+      "type": "single_best_answer",
+      "stem": "An implied-consent emergency note authorizes:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The emergency treatment you documented"
+        },
+        {
+          "id": "B",
+          "text": "Any elective addition you thought of later"
+        },
+        {
+          "id": "C",
+          "text": "A research protocol without a separate consent"
+        },
+        {
+          "id": "D",
+          "text": "A placebo labeled as an active medicine"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The note does not cover an elective addition.",
+      "videoTimestamp": "1:17"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q07",
+      "type": "single_best_answer",
+      "stem": "A research procedure in a patient who is already admitted for ordinary care requires:",
+      "options": [
+        {
+          "id": "A",
+          "text": "No extra consent, because they signed a general admission form"
+        },
+        {
+          "id": "B",
+          "text": "A separate research consent; they can refuse the study and still receive ordinary care"
+        },
+        {
+          "id": "C",
+          "text": "Only a verbal mention after the procedure"
+        },
+        {
+          "id": "D",
+          "text": "A placebo without disclosure"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Research procedures require a separate consent.",
+      "videoTimestamp": "1:36"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q08",
+      "type": "single_best_answer",
+      "stem": "A patient refuses a research study. Ordinary indicated care:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stops automatically"
+        },
+        {
+          "id": "B",
+          "text": "Can still be given"
+        },
+        {
+          "id": "C",
+          "text": "Is replaced with a placebo"
+        },
+        {
+          "id": "D",
+          "text": "Requires a new emergency implied-consent note"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The patient can refuse the study and still receive ordinary care.",
+      "videoTimestamp": "1:36"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q09",
+      "type": "single_best_answer",
+      "stem": "Ordering a placebo labeled as an active medicine, in ordinary care, is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acceptable if you think it will help"
+        },
+        {
+          "id": "B",
+          "text": "Not acceptable"
+        },
+        {
+          "id": "C",
+          "text": "Required before every discharge"
+        },
+        {
+          "id": "D",
+          "text": "The same as implied consent"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not order a placebo labeled as an active medicine.",
+      "videoTimestamp": "1:41"
+    },
+    {
+      "id": "ep30-safety-ethics-practice-q10",
+      "type": "single_best_answer",
+      "stem": "A research placebo may be used when:",
+      "options": [
+        {
+          "id": "A",
+          "text": "You hide it in the ordinary medication list"
+        },
+        {
+          "id": "B",
+          "text": "The consent says it is a placebo"
+        },
+        {
+          "id": "C",
+          "text": "The admission form already covers it"
+        },
+        {
+          "id": "D",
+          "text": "The colleague who is impaired signs for the patient"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A research placebo requires a consent that says it is a placebo.",
+      "videoTimestamp": "1:56"
+    }
+  ]
+}

@@ -15,6 +15,7 @@ import { USMLE_VIDEO_QUICK_BITES_PATH } from "@/lib/quick-bites/usmle-video-flag
 
 export const USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION = "v1-20261121";
 export const USMLE_VIDEO_WAVE2_MEDIA_VERSION = "v2-20261121";
+export const USMLE_VIDEO_WAVE3_MEDIA_VERSION = "v3-20261121";
 
 type EpisodeSeed = {
   slug: string;
@@ -176,6 +177,86 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:48",
     mediaVersion: USMLE_VIDEO_WAVE2_MEDIA_VERSION,
     examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep21-glucose-calcium-cortisol",
+    number: 21,
+    title: "Glucose Crosses, Insulin Does Not",
+    duration: "3:20",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-1",
+  },
+  {
+    slug: "quick-bites-usmle-ep22-gram-positive-hepatitis",
+    number: 22,
+    title: "The Gram-Positive Tree, and Two Hepatitis Stories",
+    duration: "3:35",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-1",
+  },
+  {
+    slug: "quick-bites-usmle-ep23-do-not-wait-until-morning",
+    number: 23,
+    title: "Do Not Wait Until Morning",
+    duration: "3:39",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep24-belly-emergencies",
+    number: 24,
+    title: "A Quiet Belly That Is an Emergency",
+    duration: "4:01",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep25-blood-emergencies",
+    number: 25,
+    title: "Blood Emergencies That Cannot Wait",
+    duration: "3:17",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep26-airway-pneumonia-embolus",
+    number: 26,
+    title: "The Inhaler, the Pneumonia, and a Clot in the Lung",
+    duration: "3:25",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep27-preeclampsia-adrenal-gdm",
+    number: 27,
+    title: "Pressure in Pregnancy, a Crisis, and Sugar",
+    duration: "3:14",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-2-ck",
+  },
+  {
+    slug: "quick-bites-usmle-ep28-screens-when-to-stop",
+    number: 28,
+    title: "Screens You Order — and When You Stop",
+    duration: "3:09",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep29-discharge-orders",
+    number: 29,
+    title: "What You Write Before They Leave",
+    duration: "3:07",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-3",
+  },
+  {
+    slug: "quick-bites-usmle-ep30-safety-ethics-practice",
+    number: 30,
+    title: "A Report, a Colleague, and a Note You Write Now",
+    duration: "3:07",
+    mediaVersion: USMLE_VIDEO_WAVE3_MEDIA_VERSION,
+    examStep: "step-3",
   },
 ];
 

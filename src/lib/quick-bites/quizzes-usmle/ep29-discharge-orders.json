@@ -1,0 +1,287 @@
+{
+  "episode": "ep29-discharge-orders",
+  "title": "What You Write Before They Leave",
+  "video": "quick-bites-usmle-ep29-discharge-orders-web.mp4",
+  "questions": [
+    {
+      "id": "ep29-discharge-orders-q01",
+      "type": "single_best_answer",
+      "stem": "An older adult was admitted after a fall on a benzodiazepine. On the discharge list, that medicine should be:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Renewed at the same dose automatically"
+        },
+        {
+          "id": "B",
+          "text": "Taken off if it contributed to the admission"
+        },
+        {
+          "id": "C",
+          "text": "Converted to a stronger anticholinergic"
+        },
+        {
+          "id": "D",
+          "text": "Replaced with sliding-scale insulin alone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "If a benzodiazepine helped cause the admission, take it off the discharge list.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep29-discharge-orders-q02",
+      "type": "single_best_answer",
+      "stem": "Sliding-scale insulin alone, as the discharge diabetes plan for an older adult, is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Preferred"
+        },
+        {
+          "id": "B",
+          "text": "A high-risk plan to remove, not a plan to copy forward"
+        },
+        {
+          "id": "C",
+          "text": "Required after every admission"
+        },
+        {
+          "id": "D",
+          "text": "The same as a chaperone"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Sliding-scale insulin alone is a high-risk plan to take off the list.",
+      "videoTimestamp": "0:21"
+    },
+    {
+      "id": "ep29-discharge-orders-q03",
+      "type": "single_best_answer",
+      "stem": "If an opioid is started at discharge, the prescription should be:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Extended-release in an opioid-na\u00efve patient"
+        },
+        {
+          "id": "B",
+          "text": "Immediate release, at the lowest effective dose"
+        },
+        {
+          "id": "C",
+          "text": "A week's worth of a patch, always"
+        },
+        {
+          "id": "D",
+          "text": "Unclear, with no duration"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Immediate release, lowest effective dose. Do not start extended-release in someone who has not been on an opioid.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep29-discharge-orders-q04",
+      "type": "single_best_answer",
+      "stem": "When overdose risk is present and an opioid is started, also order:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A second extended-release opioid"
+        },
+        {
+          "id": "B",
+          "text": "Naloxone"
+        },
+        {
+          "id": "C",
+          "text": "A benzodiazepine for sleep"
+        },
+        {
+          "id": "D",
+          "text": "No follow-up"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Order naloxone if the risk is there.",
+      "videoTimestamp": "0:43"
+    },
+    {
+      "id": "ep29-discharge-orders-q05",
+      "type": "single_best_answer",
+      "stem": "A depression screen at discharge without a follow-up slot this week is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A complete order"
+        },
+        {
+          "id": "B",
+          "text": "An incomplete order"
+        },
+        {
+          "id": "C",
+          "text": "Required to include a benzodiazepine"
+        },
+        {
+          "id": "D",
+          "text": "A reason to start an extended-release opioid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "If you screen, the order includes a follow-up slot and a way to diagnose and treat.",
+      "videoTimestamp": "2:45"
+    },
+    {
+      "id": "ep29-discharge-orders-q06",
+      "type": "single_best_answer",
+      "stem": "A positive test for stomach bacteria (Helicobacter). The discharge plan is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Acid medicine alone"
+        },
+        {
+          "id": "B",
+          "text": "A full eradication regimen and a test of cure"
+        },
+        {
+          "id": "C",
+          "text": "Watchful waiting with no medicine"
+        },
+        {
+          "id": "D",
+          "text": "A benzodiazepine"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A full regimen and a test of cure, not acid medicine alone.",
+      "videoTimestamp": "1:38"
+    },
+    {
+      "id": "ep29-discharge-orders-q07",
+      "type": "single_best_answer",
+      "stem": "For a breast, pelvic, or genital exam, the note should:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Omit the chaperone to protect privacy"
+        },
+        {
+          "id": "B",
+          "text": "Name the chaperone, or record that the patient declined one after it was offered"
+        },
+        {
+          "id": "C",
+          "text": "List a family member as the chaperone without asking"
+        },
+        {
+          "id": "D",
+          "text": "Skip documentation if the exam was brief"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The note names the chaperone or the declined offer.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "ep29-discharge-orders-q08",
+      "type": "single_best_answer",
+      "stem": "A strong anticholinergic that caused confusion in an older adult should, at discharge, be:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Renewed to prevent withdrawal of confusion"
+        },
+        {
+          "id": "B",
+          "text": "Taken off the list"
+        },
+        {
+          "id": "C",
+          "text": "Doubled"
+        },
+        {
+          "id": "D",
+          "text": "Replaced with two benzodiazepines"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Take the culprit off the discharge list.",
+      "videoTimestamp": "0:27"
+    },
+    {
+      "id": "ep29-discharge-orders-q09",
+      "type": "single_best_answer",
+      "stem": "An opioid-na\u00efve patient is leaving the hospital. An extended-release opioid:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Is the safest first prescription"
+        },
+        {
+          "id": "B",
+          "text": "Should not be the starting opioid"
+        },
+        {
+          "id": "C",
+          "text": "Replaces naloxone"
+        },
+        {
+          "id": "D",
+          "text": "Is required for a depression screen"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not start an extended-release opioid in a person who has not been on one.",
+      "videoTimestamp": "0:51"
+    },
+    {
+      "id": "ep29-discharge-orders-q10",
+      "type": "single_best_answer",
+      "stem": "Acid medicine alone after a positive Helicobacter test:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Counts as eradication"
+        },
+        {
+          "id": "B",
+          "text": "Is not treatment"
+        },
+        {
+          "id": "C",
+          "text": "Replaces the test of cure and the regimen"
+        },
+        {
+          "id": "D",
+          "text": "Is the chaperone equivalent"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Acid medicine alone is not treatment.",
+      "videoTimestamp": "1:43"
+    }
+  ]
+}
