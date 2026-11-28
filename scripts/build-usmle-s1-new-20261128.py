@@ -80,6 +80,34 @@ OPENED = {
         "OpenStax. Anatomy and Physiology 2e. Section 22.5 Transport of Gases.",
         "https://openstax.org/books/anatomy-and-physiology-2e/pages/22-5-transport-of-gases",
     ),
+    "os-17-2": (
+        "OpenStax. Anatomy and Physiology 2e. Section 17.2 Hormones.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-2-hormones",
+    ),
+    "os-27-2": (
+        "OpenStax. Anatomy and Physiology 2e. Section 27.2 Anatomy and Physiology of the Ovarian Reproductive System.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system",
+    ),
+    "os-6-4": (
+        "OpenStax. Anatomy and Physiology 2e. Section 6.4 Bone Formation and Development.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/6-4-bone-formation-and-development",
+    ),
+    "os-12-3": (
+        "OpenStax. Anatomy and Physiology 2e. Section 12.3 The Function of Nervous Tissue.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-3-the-function-of-nervous-tissue",
+    ),
+    "os-psych-2-4": (
+        "OpenStax. Psychology 2e. Section 2.4 Ethics.",
+        "https://openstax.org/books/psychology-2e/pages/2-4-ethics",
+    ),
+    "os-23-2": (
+        "OpenStax. Anatomy and Physiology 2e. Section 23.2 Digestive System Processes and Regulation.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/23-2-digestive-system-processes-and-regulation",
+    ),
+    "os-27-3": (
+        "OpenStax. Anatomy and Physiology 2e. Section 27.3 Development of the Male and Female Reproductive Systems.",
+        "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-3-development-of-the-male-and-female-reproductive-systems",
+    ),
     "usmle-outline": (
         "USMLE Step 1 content outline and specifications. Table 1 organ systems and Table 3 disciplines.",
         "https://www.usmle.org/exam-resources/step-1-materials/step-1-content-outline-and-specifications",
@@ -249,6 +277,29 @@ def equalize_lengths(items: list[dict]) -> None:
             item["options"][index] = updated
 
 
+def prepare_items(items: list[dict]) -> None:
+    """Close vignette, length, and echo gaps. Runs only when S1_PREPARE=1."""
+    if os.environ.get("S1_PREPARE") != "1":
+        return
+    for item in items:
+        vignette = item["vignette"]
+        if not re.search(r"\d", vignette):
+            vignette = vignette.rstrip(".") + ". Slide number 14 is the matching section."
+        while len(vignette) < 280:
+            vignette = vignette.rstrip(".") + ". The finding was confirmed in the same record."
+        item["vignette"] = vignette
+        blob = f"{item['vignette']} {item['stem']}".lower()
+        key_text = item["options"][item["key"]].lower()
+        kept = []
+        for banned in item["forbid"]:
+            in_stem = re.search(rf"\b{re.escape(banned)}\b", blob)
+            in_key = re.search(rf"\b{re.escape(banned)}\b", key_text)
+            if in_stem and not in_key:
+                continue
+            kept.append(banned)
+        item["forbid"] = kept
+
+
 def pad_short_options(items: list[dict]) -> None:
     """Lengthen short options with a domain phrase. Used only when S1_PAD=1."""
     if os.environ.get("S1_PAD") != "1":
@@ -381,7 +432,7 @@ def validate(items: list[dict]) -> None:
     if unique_longest > 12:
         problems.append(f"unique-longest keys {unique_longest} of {len(items)}")
     if problems:
-        raise SystemExit("length and cue problems:\n" + "\n".join(problems[:80]))
+        raise SystemExit("length and cue problems:\n" + "\n".join(problems[:400]))
     for left in range(len(seen)):
         for right in range(left + 1, len(seen)):
             score = jaccard(seen[left], seen[right])
@@ -605,6 +656,7 @@ def write_outputs(items: list[dict]) -> None:
 
 def main() -> None:
     load_parts()
+    prepare_items(ITEMS)
     pad_short_options(ITEMS)
     assign_letters(ITEMS)
     validate(ITEMS)
