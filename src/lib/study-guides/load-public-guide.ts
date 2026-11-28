@@ -28,10 +28,9 @@ export type LoadedPublicGuide = {
   jsonLd: Record<string, unknown>;
 };
 
-function chapterFiles(dir: string, prefixes?: string[]): string[] {
+function chapterFiles(dir: string): string[] {
   return readdirSync(dir)
     .filter((name) => /^\d{2}-.+\.md$/.test(name))
-    .filter((name) => !prefixes || prefixes.some((prefix) => name.startsWith(prefix)))
     .sort();
 }
 
@@ -192,7 +191,7 @@ function loadDirectories(guide: PublicStudyGuide): { markdown: string; faqMarkdo
   const faqParts: string[] = [];
   for (const dir of guideContentDirs(guide.id)) {
     const prefix = visualsPrefixFor(guide, dir);
-    const files = chapterFiles(dir, guide.filePrefixes);
+    const files = chapterFiles(dir);
     for (const name of files) {
       const markdown = readFileSync(path.join(dir, name), "utf8").replace(
         /\]\(visuals\//g,
