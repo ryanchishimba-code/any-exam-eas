@@ -1,3 +1,6 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { HERO_TRIAL_CTA_LABEL, SEE_QUESTIONS_CTA_LABEL } from "@/lib/marketing/home-cta";
 
@@ -27,17 +30,19 @@ export function MarketingHeroActions({
   signedIn = false,
   trialLabel = HERO_TRIAL_CTA_LABEL,
 }: MarketingHeroActionsProps) {
+  const { data, status } = useSession();
+  const authed = status === "loading" ? signedIn : status === "authenticated" && Boolean(data?.user);
   return (
     <div className={className}>
       <div className="bl-actions__primary">
         <LandingCta
-          href={signedIn ? "/dashboard" : trialHref}
-          ctaName={signedIn ? "continue_studying" : ctaName}
+          href={authed ? "/dashboard" : trialHref}
+          ctaName={authed ? "continue_studying" : ctaName}
           location={ctaLocation}
         >
-          {signedIn ? "Continue studying" : trialLabel}
+          {authed ? "Continue studying" : trialLabel}
         </LandingCta>
-        {!signedIn && trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
+        {!authed && trialMicrocopy ? <p className="bl-hero-micro">{trialMicrocopy}</p> : null}
       </div>
       {showSeeQuestions ? (
         <a className="bl-button bl-button-secondary" href={seeQuestionsHref}>

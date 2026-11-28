@@ -51,6 +51,22 @@ describe("public pages for every board stay cacheable", () => {
     expect(dated).not.toContain('dynamic = "force-dynamic"');
   });
 
+  it("does not read the session from the shared public shell", () => {
+    const layout = source("src/app/layout.tsx");
+    const footer = source("src/components/Footer.tsx");
+    expect(layout).not.toContain("auth()");
+    expect(layout).not.toContain("getCachedSession");
+    expect(footer).not.toContain("getCachedSession");
+    expect(footer).not.toContain("cookies(");
+    for (const file of [
+      "src/components/marketing/board-landing/NclexBoardLanding.tsx",
+      "src/components/marketing/board-landing/NaplexBoardLanding.tsx",
+      "src/components/marketing/board-landing/HubBoardLanding.tsx",
+    ]) {
+      expect(source(file), file).not.toContain("getCachedSession");
+    }
+  });
+
   it("keeps signed-in surfaces dynamic", () => {
     for (const file of [
       "src/app/(app)/question-bank/page.tsx",

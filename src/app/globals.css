@@ -4,6 +4,21 @@
 @source not "../../tests";
 @source not "../../prisma";
 @source not "../../docs";
+/* Signed-in and staff UI load these utilities from signed-in-utilities.css. */
+@source not "./(app)";
+@source not "./admin";
+@source not "./internal";
+@source not "./engine";
+@source not "./exam";
+@source not "./study";
+@source not "../components/dashboard";
+@source not "../components/app";
+@source not "../components/admin";
+@source not "../components/internal";
+@source not "../components/engine";
+@source not "../components/exam";
+@source not "../components/ngn";
+@source not "../components/questions";
 @import "../styles/a11y.css";
 @import "../styles/board-accent.css";
 @import "../styles/board-picker-menu.css";

@@ -108,7 +108,7 @@ const listPublishedBlogPostsCached = unstable_cache(
     return rows.map(toCard);
   },
   ["blog-list"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function listPublishedBlogPosts(opts?: {
@@ -156,7 +156,7 @@ const getPublishedBlogPostBySlugCached = unstable_cache(
     };
   },
   ["blog-by-slug"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function getPublishedBlogPostBySlug(
@@ -198,7 +198,7 @@ const listRelatedBlogPostsCached = unstable_cache(
     return [...sameCategory, ...other].slice(0, limit).map(toCard);
   },
   ["blog-related"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function listRelatedBlogPosts(
@@ -219,7 +219,7 @@ const listPublishedBlogSlugsCached = unstable_cache(
     return [...new Set(rows.map((r) => publicBlogSlug(r.slug)))];
   },
   ["blog-slugs"],
-  { revalidate: 60, tags: [BLOG_CACHE_TAG] }
+  { revalidate: 3600, tags: [BLOG_CACHE_TAG] }
 );
 
 export async function listPublishedBlogSlugs(): Promise<string[]> {

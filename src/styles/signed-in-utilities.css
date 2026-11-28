@@ -1,0 +1,20 @@
+/*
+ * Tailwind utilities that appear only in signed-in and staff UI.
+ * Marketing routes do not import this file, so the homepage does not parse it.
+ * `source(none)` turns off the automatic project scan; the @source lines are the scan.
+ */
+@import "tailwindcss" source(none);
+@source "../app/(app)";
+@source "../app/admin";
+@source "../app/internal";
+@source "../app/engine";
+@source "../app/exam";
+@source "../app/study";
+@source "../components/dashboard";
+@source "../components/app";
+@source "../components/admin";
+@source "../components/internal";
+@source "../components/engine";
+@source "../components/exam";
+@source "../components/ngn";
+@source "../components/questions";

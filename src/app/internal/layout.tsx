@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import "@/styles/signed-in-utilities.css";
 import { InternalStaffGate } from "@/components/internal/InternalStaffGate";
 import { NOINDEX_ROBOTS } from "@/lib/seo/public-tool-metadata";
 
