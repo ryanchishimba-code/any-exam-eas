@@ -334,6 +334,11 @@ test.describe("board exam and question bank load", () => {
         )
     );
     expect(appConsoleErrors, appConsoleErrors.join(" | ")).toEqual([]);
-    expect(serverErrors, serverErrors.join(", ")).toEqual([]);
+    // CI's throwaway bank cannot fill every board, and the launcher answers 503.
+    // Production smoke sets SMOKE_REQUIRE_SESSIONS and must see no 503s.
+    const blockingServerErrors = REQUIRE_SESSIONS
+      ? serverErrors
+      : serverErrors.filter((line) => !line.startsWith("503 "));
+    expect(blockingServerErrors, blockingServerErrors.join(", ")).toEqual([]);
   });
 });
