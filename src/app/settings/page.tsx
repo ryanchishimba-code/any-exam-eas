@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import "@/styles/signed-in-utilities.css";
 import { headers } from "next/headers";
 import { getCachedSession } from "@/lib/auth/session";
 import { AppShell } from "@/components/app/AppShell";
