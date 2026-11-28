@@ -125,9 +125,7 @@ describe("Quick Bites catalog integrity", () => {
       `quick-bites-usmle/${USMLE_VIDEO_QUICK_BITES_MEDIA_VERSION}/${USMLE_VIDEO_QUICK_BITE_EPISODES[0]!.slug}-web.mp4`
     );
     expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(53);
-    expect(USMLE_VIDEO_QUICK_BITE_EPISODES.filter((episode) => episode.held).map((episode) => episode.number)).toEqual(
-      Array.from({ length: 23 }, (_, index) => index + 31)
-    );
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES.filter((episode) => episode.held)).toEqual([]);
     expect(usmleVideoQuickBiteVideoPath("quick-bites-usmle-ep30-safety-ethics-practice")).toBe(
       `quick-bites-usmle/${USMLE_VIDEO_WAVE3_MEDIA_VERSION}/quick-bites-usmle-ep30-safety-ethics-practice-web.mp4`
     );

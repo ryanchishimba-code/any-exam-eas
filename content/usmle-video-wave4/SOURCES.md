@@ -1,6 +1,6 @@
 # Wave 4 sources
 
-Hidden staff-preview episodes. Students do not see them while `held` is true.
+Episodes 31–53 are in the student library. Episode 54 was not made.
 Spoken words match the on-screen lines. Numbers below are the ones spoken.
 
 ## Step 2 CK

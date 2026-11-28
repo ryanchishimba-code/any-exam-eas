@@ -44,6 +44,7 @@ describe("USMLE video step switch", () => {
     expect(screen.getByText("Do Not Wait Until Morning")).toBeInTheDocument();
     expect(screen.getByText("Screens You Order — and When You Stop")).toBeInTheDocument();
     expect(screen.queryByText("Coming soon")).not.toBeInTheDocument();
+    expect(screen.getByText("The Abstract, and the Advertisement")).toBeInTheDocument();
     expect(screen.queryByText("A Fever Too Young to Send Home")).not.toBeInTheDocument();
     expect(screen.queryByText("Minutes in the Head")).not.toBeInTheDocument();
   });
@@ -64,12 +65,11 @@ describe("USMLE video step switch", () => {
     expect(screen.getByText("Minutes in the Head")).toBeInTheDocument();
   });
 
-  it("shows a held episode only for staff preview", async () => {
+  it("shows wave 4 on the student list", async () => {
     const user = userEvent.setup();
     render(
       <UsmleVideoQuickBites
         initialQuery="2ck"
-        includeHeld
         canPlay
         upgradeHref="/checkout"
         upgradeLabel="Upgrade to watch"

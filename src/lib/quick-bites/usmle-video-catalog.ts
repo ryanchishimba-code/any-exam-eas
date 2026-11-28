@@ -268,7 +268,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:56",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep32-next-psych-medicine",
@@ -277,7 +276,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:24",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep33-four-pillars-weak-pump",
@@ -286,7 +284,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:35",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep34-bleed-after-baby",
@@ -295,7 +292,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:30",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep35-potassium-and-dialysis",
@@ -304,7 +300,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:21",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep36-calories-change-plan",
@@ -313,7 +308,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:25",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep37-soft-tissue-and-hip",
@@ -322,7 +316,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:18",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep38-first-hour-of-sepsis",
@@ -331,7 +324,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:18",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep39-sugar-and-thyroid-storm",
@@ -340,7 +332,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:22",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep40-birth-control-and-bleeding",
@@ -349,7 +340,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:17",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-2-ck",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep41-abstract-and-advertisement",
@@ -358,7 +348,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:05",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep42-pressure-and-aspirin",
@@ -367,7 +356,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:09",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep43-first-orders-clock",
@@ -376,7 +364,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:12",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep44-vitamin-and-feed",
@@ -385,7 +372,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:19",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep45-after-the-stroke",
@@ -394,7 +380,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:41",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep46-nodule-and-oxygen",
@@ -403,7 +388,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:36",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep47-first-prenatal-visit",
@@ -412,7 +396,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:44",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep48-breast-lump",
@@ -421,7 +404,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:57",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep49-disclose-the-error",
@@ -430,7 +412,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:39",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep50-floor-to-icu",
@@ -439,7 +420,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:10",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep51-hepatitis-and-polyp",
@@ -448,7 +428,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:50",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep52-blood-thinner",
@@ -457,7 +436,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:57",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
   {
     slug: "quick-bites-usmle-ep53-mood-and-use",
@@ -466,7 +444,6 @@ const EPISODES: EpisodeSeed[] = [
     duration: "3:35",
     mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
     examStep: "step-3",
-    held: true,
   },
 ];
 
