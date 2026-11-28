@@ -26,7 +26,7 @@ describe("PublicFoldOffer", () => {
   });
 
   it("stays off pages that already open with the hero or the pricing fold", () => {
-    for (const path of ["/", "/nclex", "/pricing", "/naplex", "/how-to-pass"]) {
+    for (const path of ["/", "/nclex", "/pricing", "/naplex", "/how-to-pass", "/nclex-study-guide"]) {
       pathname.current = path;
       const { container, unmount } = render(<PublicFoldOffer />);
       expect(container).toBeEmptyDOMElement();

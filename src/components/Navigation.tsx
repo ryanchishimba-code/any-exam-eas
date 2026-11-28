@@ -202,7 +202,7 @@ export function Navigation() {
           priority={pathname !== "/" && pathname !== "/about"}
         />
 
-        <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-4" role="list">
+        <ul className="aee-nav-links hidden lg:flex lg:items-center" role="list">
           <li>
             <ExamsDropdown />
           </li>

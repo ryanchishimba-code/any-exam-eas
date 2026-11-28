@@ -2264,8 +2264,8 @@ body {
 @media (min-width: 1024px) {
   .aee-nav-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 1rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem;
   }
 }
 
@@ -2296,7 +2296,8 @@ body {
 .aee-nav-links {
   justify-self: center;
   align-items: center;
-  gap: 1.5rem;
+  min-width: 0;
+  gap: 0.75rem 1rem;
 }
 
 .aee-nav-actions {

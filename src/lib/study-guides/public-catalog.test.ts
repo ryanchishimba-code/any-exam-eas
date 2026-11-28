@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX } from "@/lib/seo/meta-budget";
 import { loadPublicStudyGuide } from "@/lib/study-guides/load-public-guide";
+import { guideSectionToc, presentGuideHtml } from "@/lib/study-guides/present-html";
 import {
   PUBLIC_STUDY_GUIDE_LIST,
   USMLE_PUBLIC_STEPS,
@@ -64,6 +65,25 @@ describe("public study guides", () => {
       destination: "/usmle-study-guide/step-2-ck",
       statusCode: 301,
     });
+  });
+
+  it("keeps bookkeeping headings out of the table of contents", () => {
+    const html = presentGuideHtml(
+      [
+        "<h1>Old title</h1>",
+        '<h2 id="disclaimer">Study-aid disclaimer (read this)</h2><p>Aid.</p>',
+        '<h2 id="use">How to use this book</h2><p>Read.</p>',
+        '<h2 id="toc">Table of contents</h2><p>List.</p>',
+        '<h2 id="pair">Pairing with the bank</h2><p>Pair.</p>',
+        '<h2 id="ch">Chapter 4 — Cardiac</h2><p>Perfusion.</p>',
+        "<blockquote><p>TRAP — Memorizing drugs without the patient.</p></blockquote>",
+      ].join(""),
+      "NCLEX study guide"
+    );
+    const names = guideSectionToc(html).map((item) => item.text);
+    expect(names).toEqual(["Cardiac"]);
+    expect(html).toContain("psg-callout--pitfall");
+    expect(html).not.toContain("<h1");
   });
 
   it("renders the NPTE outline with one H1 and FAQ schema, without a pass promise", () => {

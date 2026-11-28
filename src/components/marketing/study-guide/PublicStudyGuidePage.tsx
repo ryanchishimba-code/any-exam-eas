@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { preload } from "react-dom";
 import { PublicStudyGuideView } from "@/components/marketing/study-guide/PublicStudyGuideView";
 import { loadPublicStudyGuide, loadUsmleStepGuide } from "@/lib/study-guides/load-public-guide";
-import {
-  marketingPhotoHeroSrc,
-  MARKETING_PHOTO_HERO_MOBILE_MEDIA,
-} from "@/lib/marketing/marketing-photo-heroes";
+import { marketingPhotoHeroSrc } from "@/lib/marketing/marketing-photo-heroes";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
 import {
   publicStudyGuide,
@@ -44,20 +42,32 @@ export function publicGuideMetadata(id: PublicStudyGuideId): Metadata {
   };
 }
 
-export function PublicStudyGuidePage({ id }: { id: PublicStudyGuideId }) {
-  preload(marketingPhotoHeroSrc(id, "mobile", "avif"), {
+async function questionCountFor(id: PublicStudyGuideId): Promise<string | null> {
+  try {
+    const { display } = await loadPublicQuestionCounts({ dynamic: false });
+    const match = display.exams.find((exam) => exam.slug === id);
+    return match?.roundedDown || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function PublicStudyGuidePage({ id }: { id: PublicStudyGuideId }) {
+  preload(marketingPhotoHeroSrc(id, "desktop", "avif"), {
     as: "image",
     type: "image/avif",
-    media: MARKETING_PHOTO_HERO_MOBILE_MEDIA,
     fetchPriority: "high",
   });
   const guide = publicStudyGuide(id);
   const page = loadPublicStudyGuide(id);
+  const questionCount = await questionCountFor(id);
   const stepLinks =
     id === "usmle"
       ? USMLE_PUBLIC_STEPS.map((step) => ({ href: step.path, label: step.label }))
       : undefined;
-  return <PublicStudyGuideView guide={guide} page={page} stepLinks={stepLinks} />;
+  return (
+    <PublicStudyGuideView guide={guide} page={page} stepLinks={stepLinks} questionCount={questionCount} />
+  );
 }
 
 export function usmleStepMetadata(stepId: string): Metadata {
@@ -75,10 +85,9 @@ export function usmleStepMetadata(stepId: string): Metadata {
 }
 
 export function UsmleStepGuidePage({ stepId }: { stepId: string }) {
-  preload(marketingPhotoHeroSrc("usmle", "mobile", "avif"), {
+  preload(marketingPhotoHeroSrc("usmle", "desktop", "avif"), {
     as: "image",
     type: "image/avif",
-    media: MARKETING_PHOTO_HERO_MOBILE_MEDIA,
     fetchPriority: "high",
   });
   const page = loadUsmleStepGuide(stepId);

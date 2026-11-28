@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PublicStudyGuideView } from "@/components/marketing/study-guide/PublicStudyGuideView";
 import { loadPanceStudyGuidePage, PANCE_STUDY_GUIDE_DESCRIPTION, PANCE_STUDY_GUIDE_PATH, PANCE_STUDY_GUIDE_TITLE } from "@/lib/pance-study-guide/public-guide";
 import { landingOgImage } from "@/lib/seo/landing-og-image";
+import { loadPublicQuestionCounts } from "@/lib/marketing/public-question-count";
 import { publicStudyGuide } from "@/lib/study-guides/public-catalog";
 
 export const dynamic = "force-static";
@@ -27,12 +28,20 @@ export const metadata: Metadata = {
 };
 
 /** Public PANCE study guide. The full manuscript, with no login and no database read. */
-export default function PanceStudyGuidePage() {
+export default async function PanceStudyGuidePage() {
   const loaded = loadPanceStudyGuidePage();
+  let questionCount: string | null = null;
+  try {
+    const { display } = await loadPublicQuestionCounts({ dynamic: false });
+    questionCount = display.exams.find((exam) => exam.slug === "pance")?.roundedDown || null;
+  } catch {
+    questionCount = null;
+  }
   return (
     <PublicStudyGuideView
       guide={publicStudyGuide("pance")}
       page={{ ...loaded, toc: toc(loaded.html) }}
+      questionCount={questionCount}
     />
   );
 }
