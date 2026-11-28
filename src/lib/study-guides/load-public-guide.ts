@@ -132,7 +132,10 @@ function renderMarkdown(markdown: string, visualsPrefix: string, visualsDir: str
   });
 }
 
-/** Literal paths so the file tracer keeps each function off the rest of the repo. */
+/**
+ * Literal paths. The file tracer does not follow this switch into `readdirSync`,
+ * so `STUDY_GUIDE_SERVER_FILES` copies each directory into the page function.
+ */
 function guideContentDirs(id: PublicStudyGuideId): string[] {
   switch (id) {
     case "nclex":
