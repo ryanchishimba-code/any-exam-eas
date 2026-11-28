@@ -36,9 +36,9 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
   nclex: {
     id: "nclex",
     path: "/nclex-study-guide",
-    title: "Free NCLEX Study Guide for the 2026 Test Plan",
+    title: "NCLEX Study Guide 2026: Free Topics, No Login",
     description:
-      "Free NCLEX study guide for nursing boards: test-plan systems, clinical judgment, and cited rationales. No login required. Independent of NCSBN.",
+      "NCLEX study guide for the 2026 test plan: 85 to 150 items, five hours, and clinical judgment. Free to read, with no login. Independent of NCSBN.",
     boardLabel: "nursing boards",
     boardHref: "/nclex",
     resourcePath: "/resources/nclex-study-guide-roadmap",
@@ -52,9 +52,9 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
   naplex: {
     id: "naplex",
     path: "/naplex-study-guide",
-    title: "Free NAPLEX Study Guide from the NABP Outline",
+    title: "NAPLEX Study Guide 2026: Free Outline, No Login",
     description:
-      "Free NAPLEX study guide for pharmacy boards: calculations, therapeutics, and the NABP content outline. No login required. Independent of NABP.",
+      "NAPLEX study guide 2026 from the NABP outline: 225 questions, six hours, and five domains. Free to read, with no login. Independent of NABP.",
     boardLabel: "pharmacy boards",
     boardHref: "/naplex",
     resourcePath: "/resources/naplex-study-guide-blueprint",
@@ -84,9 +84,9 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
   "aanp-fnp": {
     id: "aanp-fnp",
     path: "/aanp-fnp-study-guide",
-    title: "Free AANP FNP Study Guide for Primary Care",
+    title: "AANP FNP Study Guide: Free Primary Care Plan",
     description:
-      "Free AANP FNP study guide for nurse practitioner boards: assessment, diagnosis, and primary care across the lifespan. No account is required.",
+      "AANP FNP study guide for nurse practitioner boards: Assess, Diagnose, Plan, and Evaluate across the lifespan. Free to read. No login is required.",
     boardLabel: "nurse practitioner boards",
     boardHref: "/aanp-fnp",
     resourcePath: "/resources/aanp-fnp-study-guide-blueprint",
@@ -100,9 +100,9 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
   usmle: {
     id: "usmle",
     path: "/usmle-study-guide",
-    title: "Free USMLE Study Guide for Step 1, 2 CK, and 3",
+    title: "USMLE Study Guide: Step 1, Step 2 CK, and Step 3",
     description:
-      "Free USMLE study guide for physician boards: how Step 1, Step 2 CK, and Step 3 are organized, with links into each full book. No login required.",
+      "USMLE study guide for Step 1, Step 2 Clinical Knowledge, and Step 3. Free to read, no login, with a full book for each step. No passing score is quoted.",
     boardLabel: "physician boards",
     boardHref: "/usmle",
     resourcePath: "/resources/usmle-step-2-study-guide-roadmap",
@@ -121,9 +121,9 @@ export const PUBLIC_STUDY_GUIDES: Record<PublicStudyGuideId, PublicStudyGuide> =
   "npte-pt": {
     id: "npte-pt",
     path: "/npte-pt-study-guide",
-    title: "Free NPTE-PT Study Guide from the FSBPT Outline",
+    title: "NPTE Study Guide: Free FSBPT Outline, No Login",
     description:
-      "Free NPTE study guide for physical therapy boards: 225 items, 180 scored, and the FSBPT body-system outline. No account. Not a pass promise.",
+      "NPTE study guide for physical therapy boards: 225 items, 180 scored, and the FSBPT body-system outline. Free to read. No login. No result is promised.",
     boardLabel: "physical therapy boards",
     boardHref: "/npte-pt",
     resourcePath: "/resources/npte-pt-study-guide-fsbpt-blueprint",
@@ -146,27 +146,27 @@ export const USMLE_PUBLIC_STEPS = [
   {
     id: "step-1",
     path: "/usmle-study-guide/step-1",
-    title: "Free USMLE Step 1 Study Guide",
+    title: "USMLE Step 1 Study Guide: Free, No Login Needed",
     description:
-      "Free USMLE Step 1 study guide: mechanisms, pathology, and pharmacology organized the way the exam is written. No account. Not a pass promise.",
+      "USMLE Step 1 study guide for mechanisms, pathology, and pharmacology by organ system. Free to read, no login. No minimum passing score is quoted here.",
     contentDir: "content/usmle-study-guide/step-1",
     label: "Step 1",
   },
   {
     id: "step-2-ck",
     path: "/usmle-study-guide/step-2-ck",
-    title: "Free USMLE Step 2 CK Study Guide",
+    title: "USMLE Step 2 CK Study Guide: Free, No Login",
     description:
-      "Free USMLE Step 2 CK study guide: diagnosis and next-step management across the clerkship systems. No login required. Clinical Knowledge, not CS.",
+      "USMLE Step 2 CK study guide for diagnosis and next-step management across clerkship systems. Free to read. Clinical Knowledge, not the retired skills exam.",
     contentDir: "content/usmle-study-guide/step-2-ck",
     label: "Step 2 CK",
   },
   {
     id: "step-3",
     path: "/usmle-study-guide/step-3",
-    title: "Free USMLE Step 3 Study Guide",
+    title: "USMLE Step 3 Study Guide: Free Cases, No Login",
     description:
-      "Free USMLE Step 3 study guide: ambulatory care, emergency decisions, and the CCS-style cases in this book. No login required to read it here.",
+      "USMLE Step 3 study guide for ambulatory decisions, emergency care, and the case-simulation patterns in this book. Free to read, with no login required.",
     contentDir: "content/usmle-study-guide/step-3",
     label: "Step 3",
   },

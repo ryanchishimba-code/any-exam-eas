@@ -6,6 +6,7 @@ import {
   USMLE_PUBLIC_STEPS,
   legacyStudyGuideRedirects,
 } from "@/lib/study-guides/public-catalog";
+import { GUIDE_SEO, STEP_SEO, guideJsonLd } from "@/lib/study-guides/seo-copy";
 
 describe("public study guides", () => {
   it("keeps titles and descriptions inside the metadata budget", () => {
@@ -19,6 +20,31 @@ describe("public study guides", () => {
       expect(step.description.length, step.id).toBeGreaterThanOrEqual(SEO_DESC_MIN);
       expect(step.description.length, step.id).toBeLessThanOrEqual(SEO_DESC_MAX);
     }
+  });
+
+  it("puts the target query in the title, H1, first paragraph, and URL", () => {
+    for (const guide of PUBLIC_STUDY_GUIDE_LIST) {
+      const seo = GUIDE_SEO[guide.id]!;
+      expect(guide.title.toLowerCase(), guide.id).toContain(seo.query.toLowerCase());
+      expect(seo.headline, guide.id).toContain(seo.query);
+      expect(seo.lede, guide.id).toContain(seo.query);
+      expect(guide.path, guide.id).toContain(seo.query.toLowerCase().split(" ")[0]!.toLowerCase());
+      expect(seo.answers.length, guide.id).toBeGreaterThanOrEqual(3);
+      for (const answer of seo.answers) {
+        expect(answer.question.endsWith("?"), answer.question).toBe(true);
+        expect(answer.answer.toLowerCase()).not.toMatch(/you will pass|guarantee/);
+      }
+      const graph = guideJsonLd({
+        path: guide.path,
+        headline: seo.headline,
+        description: guide.description,
+        answers: seo.answers,
+      })["@graph"] as Array<Record<string, unknown>>;
+      expect(graph.map((node) => node["@type"])).toEqual(["BreadcrumbList", "Article", "FAQPage"]);
+      expect(graph[1]?.dateModified).toBeTruthy();
+    }
+    expect(STEP_SEO["step-1"]?.lede).toContain("USMLE Step 1 study guide");
+    expect(STEP_SEO["step-2-ck"]?.lede).toContain("USMLE Step 2 CK study guide");
   });
 
   it("redirects the old reader URLs, including NPTE, onto the public pages", () => {

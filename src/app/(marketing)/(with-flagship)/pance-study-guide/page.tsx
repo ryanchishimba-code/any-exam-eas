@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PublicStudyGuideView } from "@/components/marketing/study-guide/PublicStudyGuideView";
 import { loadPanceStudyGuidePage, PANCE_STUDY_GUIDE_DESCRIPTION, PANCE_STUDY_GUIDE_PATH, PANCE_STUDY_GUIDE_TITLE } from "@/lib/pance-study-guide/public-guide";
+import { landingOgImage } from "@/lib/seo/landing-og-image";
 import { publicStudyGuide } from "@/lib/study-guides/public-catalog";
 
 export const dynamic = "force-static";
@@ -10,16 +11,18 @@ export const metadata: Metadata = {
   description: PANCE_STUDY_GUIDE_DESCRIPTION,
   alternates: { canonical: PANCE_STUDY_GUIDE_PATH },
   robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: PANCE_STUDY_GUIDE_TITLE,
+    description: PANCE_STUDY_GUIDE_DESCRIPTION,
+    images: [landingOgImage("pance").url],
+  },
   openGraph: {
     title: PANCE_STUDY_GUIDE_TITLE,
     description: PANCE_STUDY_GUIDE_DESCRIPTION,
     url: PANCE_STUDY_GUIDE_PATH,
     type: "article",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: PANCE_STUDY_GUIDE_TITLE,
-    description: PANCE_STUDY_GUIDE_DESCRIPTION,
+    images: [{ ...landingOgImage("pance"), alt: PANCE_STUDY_GUIDE_TITLE }],
   },
 };
 
