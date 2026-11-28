@@ -1,0 +1,38 @@
+{
+  "items": 400,
+  "domains": {
+    "reproductive-endocrine": 128,
+    "behavioral-nervous": 61,
+    "msk-skin": 56,
+    "social-sciences": 51,
+    "blood-lymph-immune": 38,
+    "gastrointestinal": 29,
+    "cardiovascular": 23,
+    "biostats-epi": 14
+  },
+  "difficulty": {
+    "2": 90,
+    "3": 158,
+    "4": 89,
+    "5": 32,
+    "1": 31
+  },
+  "letters": {
+    "A": 80,
+    "B": 80,
+    "C": 80,
+    "D": 80,
+    "E": 80
+  },
+  "nutrition": 22,
+  "tasks": {
+    "diagnosis": 36,
+    "interpretation": 99,
+    "health-maintenance": 93,
+    "clinical-intervention": 44,
+    "communication": 13,
+    "pharmacotherapy": 105,
+    "professionalism": 7,
+    "communication-sbp": 3
+  }
+}
