@@ -85,8 +85,37 @@ function scrubInventedSocialProof(html: string): string {
   return next;
 }
 
+/**
+ * UTF-8 punctuation that was saved after a Windows-1252 misread.
+ * Longer sequences first so a short prefix does not eat an em dash.
+ */
+const MOJIBAKE_SEQUENCES: Array<[string, string]> = [
+  ["\u00e2\u20ac\u201d", "\u2014"],
+  ["\u00e2\u20ac\u201c", "\u2013"],
+  ["\u00e2\u20ac\u0153", "\u201c"],
+  ["\u00e2\u20ac\u2122", "\u2019"],
+  ["\u00e2\u20ac\u009d", "\u201d"],
+  ["\u00e2\u20ac\u0098", "\u2018"],
+  ["\u00e2\u20ac\u00a6", "\u2026"],
+  ["\u00c2\u00b7", "\u00b7"],
+];
+
+export function repairMojibake(text: string): string {
+  return MOJIBAKE_SEQUENCES.reduce((next, [from, to]) => next.replaceAll(from, to), text);
+}
+
+/** Public pages do not name other prep companies. */
+const COMPETITOR_LINE =
+  /How many UWorld Q[’']s\/day\??[”"]?\s*on r\/step1/gi;
+
+export function scrubCompetitorNames(text: string): string {
+  return text.replace(COMPETITOR_LINE, "How many questions a day?” in medical student threads");
+}
+
 function scrubPublicMarketingCopy(text: string): string {
-  return scrubInventedSocialProof(scrubStaleOfferCopy(scrubGuaranteeCopy(text)));
+  return scrubCompetitorNames(
+    repairMojibake(scrubInventedSocialProof(scrubStaleOfferCopy(scrubGuaranteeCopy(text))))
+  );
 }
 
 /** Fallback when a title would otherwise stay empty after scrubbing. */
