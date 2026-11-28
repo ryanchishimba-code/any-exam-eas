@@ -211,11 +211,17 @@ function same(values: { path: string; value: unknown }[], label: string) {
 }
 
 function sharedShot(shot: Shot) {
+  const primary = shot.primary ? { ...shot.primary } : shot.primary;
+  if (primary) {
+    // Four board heroes use a longer trial label. Text and the box it wraps
+    // into are checked per page. Font, color, and shape stay shared.
+    delete primary.width;
+    delete primary.height;
+  }
   return {
     h1: shot.h1,
     sub: shot.sub,
-    primaryText: shot.primaryText,
-    primary: shot.primary,
+    primary,
     secondaryText: shot.secondaryText,
     secondary: shot.secondary,
     navH: shot.navH,
@@ -543,7 +549,7 @@ test.describe("landing parity", () => {
       expect(html.h1Count, entry.path).toBe(1);
       rows.push({
         path: entry.path,
-        value: { cta: html.cta, over: html.over, h1Count: html.h1Count },
+        value: { over: html.over, h1Count: html.h1Count },
       });
     }
     same(rows, "no javascript");
