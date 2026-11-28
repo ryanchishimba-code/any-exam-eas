@@ -5,7 +5,13 @@ import { puzzleForDate, PUZZLE_SHIFT, toPublicPuzzle, allPuzzles } from "@/lib/d
 import { EDUCATIONAL_LINE, legalLinesFor } from "@/lib/daily-vitals/boards";
 import { gradeGuess } from "@/lib/daily-vitals/grade";
 import { isAllowedWord } from "@/lib/daily-vitals/lexicon";
-import { DAILY_VITALS_DESCRIPTION, DAILY_VITALS_TITLE } from "@/lib/daily-vitals/metadata";
+import {
+  DAILY_VITALS_DESCRIPTION,
+  DAILY_VITALS_OG_ALT,
+  DAILY_VITALS_OG_PATH,
+  DAILY_VITALS_TITLE,
+  hubMetadata,
+} from "@/lib/daily-vitals/metadata";
 import { scoreGuess } from "@/lib/daily-vitals/score";
 import { dailyVitalsShareText } from "@/lib/daily-vitals/share-text";
 import { DAILY_VITALS_SHARE_LABEL, DAILY_VITALS_SHARE_URL, todayIsoCentral } from "@/lib/daily-vitals/schedule";
@@ -13,7 +19,8 @@ import { nextStreak, STREAK_RULE, visibleStreak } from "@/lib/daily-vitals/strea
 import { validatePuzzle } from "@/lib/daily-vitals/validate";
 import { monitorReading } from "@/lib/daily-vitals/vitals";
 import { todayIsoCentral as qotdToday } from "@/lib/demo/qotd-public";
-import { SEO_DESC_MAX, SEO_DESC_MIN, SEO_TITLE_MAX, SEO_TITLE_MIN } from "@/lib/seo/meta-budget";
+import { getSiteUrl } from "@/lib/seo";
+import { SEO_DESC_MAX, SEO_TITLE_MAX, SEO_TITLE_MIN } from "@/lib/seo/meta-budget";
 
 const NOW = new Date("2026-11-28T18:00:00.000Z");
 const BANNED = ["wor", "dle"].join("");
@@ -162,11 +169,29 @@ describe("daily vitals bank", () => {
   });
 
   it("keeps the title, description, and other board marks inside the rules", () => {
+    expect(DAILY_VITALS_TITLE).toBe("Daily Vitals — One nursing case. One word. Every day.");
+    expect(DAILY_VITALS_DESCRIPTION).toBe(
+      "A free daily nursing case from AnyExamEasy. Six tries, then a short why. For study only, not medical advice.",
+    );
     expect(DAILY_VITALS_TITLE.length).toBeGreaterThanOrEqual(SEO_TITLE_MIN);
     expect(DAILY_VITALS_TITLE.length).toBeLessThanOrEqual(SEO_TITLE_MAX);
-    expect(DAILY_VITALS_DESCRIPTION.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
     expect(DAILY_VITALS_DESCRIPTION.length).toBeLessThanOrEqual(SEO_DESC_MAX);
     expect(DAILY_VITALS_DESCRIPTION.toLowerCase()).not.toContain("you will pass");
+    const meta = hubMetadata();
+    const images = meta.openGraph?.images;
+    const image = Array.isArray(images) ? images[0] : images;
+    expect(image).toMatchObject({
+      url: `${getSiteUrl()}${DAILY_VITALS_OG_PATH}`,
+      width: 1200,
+      height: 630,
+      alt: DAILY_VITALS_OG_ALT,
+      type: "image/png",
+    });
+    expect(meta.twitter?.card).toBe("summary_large_image");
+    expect(meta.twitter?.images).toEqual([{ url: `${getSiteUrl()}${DAILY_VITALS_OG_PATH}`, alt: DAILY_VITALS_OG_ALT }]);
+    const png = readFileSync("public/images/og/daily-vitals.png");
+    expect(png.readUInt32BE(16)).toBe(1200);
+    expect(png.readUInt32BE(20)).toBe(630);
     expect(legalLinesFor("naplex")[1]).toContain("NABP");
     expect(legalLinesFor("pance")[1]).toContain("NCCPA");
     expect(legalLinesFor("aanp-fnp")[1]).toContain("AANP");
