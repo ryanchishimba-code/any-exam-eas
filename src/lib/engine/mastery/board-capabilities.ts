@@ -95,6 +95,14 @@ export function getBoardMasteryCapabilities(
         todaySessions: false,
         cellStrategy: "blueprint_fallback",
       };
+    case "mpje":
+      return {
+        examSlug,
+        conceptAndSrs: true,
+        cellWrites: false,
+        todaySessions: false,
+        cellStrategy: "blueprint_fallback",
+      };
     default: {
       const _exhaustive: never = examSlug;
       void _exhaustive;

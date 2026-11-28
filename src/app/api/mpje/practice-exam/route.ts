@@ -77,7 +77,7 @@ export async function GET(req: Request) {
       title: state
         ? `${state.name} MPJE Practice Exam`
         : "Federal MPJE Practice Exam",
-      questionCount: MPJE_PRACTICE_EXAM_QUESTION_COUNT,
+      questionCount: questions.length,
       timeLimitSeconds: MPJE_PRACTICE_EXAM_TIME_SECONDS,
       passingPercent: MPJE_PRACTICE_EXAM_PASSING_PERCENT,
       questions: toPublicExamQuestions(questions),

@@ -36,6 +36,7 @@ export const PRESET_EXAM_QUESTION_COUNT: Record<ExamSlug, number> = {
   pance: 100,
   "aanp-fnp": 135,
   "npte-pt": 80,
+  mpje: 120,
 };
 
 export const PRESET_EXAM_SLUGS: ExamSlug[] = [

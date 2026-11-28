@@ -20,6 +20,7 @@ export const examSlugSchema = z.enum([
   "pance",
   "aanp-fnp",
   "npte-pt",
+  "mpje",
 ]);
 
 export const signUpSchema = z.object({

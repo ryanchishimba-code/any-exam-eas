@@ -105,7 +105,7 @@ describe("question of the day calendar", () => {
 describe("question of the day items", () => {
   it("does not make the correct option the longest choice on most items", () => {
     const items = allItems();
-    expect(items).toHaveLength(42);
+    expect(items).toHaveLength(49);
     const longestIds = items
       .filter((item) => {
         const lengths = item.options.map((option) => option.length);

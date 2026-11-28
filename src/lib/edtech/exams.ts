@@ -73,6 +73,17 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     simulatedDurationMin: 300,
     simulatedQuestionCount: 250,
   },
+  mpje: {
+    slug: "mpje",
+    name: "MPJE",
+    shortName: "MPJE",
+    fieldId: "mpje",
+    description:
+      "Federal and state pharmacy law — controlled substances, dispensing, licensure, and board rules.",
+    accentClass: "from-amber-500/15 to-orange-600/10 border-amber-200/70",
+    simulatedDurationMin: 150,
+    simulatedQuestionCount: 120,
+  },
 };
 
 export const EXAM_SLUGS = Object.keys(EXAM_CATALOG) as ExamSlug[];

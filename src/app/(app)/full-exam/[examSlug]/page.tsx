@@ -14,6 +14,7 @@ import { resolveMockExamAccess, type MockExamAccess } from "@/lib/study/mock-exa
 import { getUserExamHistory } from "@/lib/learning/exam-progress";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { fullExamHref, ROUTES } from "@/lib/routes";
+import { mpjePracticeExamHref } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/types/edtech";
 
 export const maxDuration = 60;
@@ -98,6 +99,9 @@ export default async function FullExamLauncherPage({
   if (!isExamSlug(rawSlug)) redirect(ROUTES.dashboard);
 
   const examSlug = rawSlug as ExamSlug;
+  if (examSlug === "mpje") {
+    redirect(mpjePracticeExamHref());
+  }
 
   const session = await getCachedSession();
   if (!session?.user?.id) {

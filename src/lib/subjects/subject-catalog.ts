@@ -9,6 +9,7 @@ import { AANP_FNP_SUBJECTS } from "./aanp-fnp/subjects";
 import { USMLE_STEP_1_SUBJECTS, USMLE_STEP_2_SUBJECTS } from "./medicine/subject-splits";
 import { NURSING_SUBJECTS } from "./nursing/subjects";
 import { NPTE_PT_SUBJECTS } from "./npte-pt/subjects";
+import { MPJE_SUBJECTS } from "./mpje/subjects";
 import { PANCE_SUBJECTS } from "./pance/subjects";
 import { PHARMACY_SUBJECTS } from "./pharmacy/subjects";
 import type { SubjectArea } from "./types";
@@ -113,6 +114,16 @@ export const PRACTICE_FIELD_META: PracticeFieldMeta[] = [
     topicPlaceholder: "Select a content area (e.g. Musculoskeletal, Neuromuscular)",
     oerDomains: MEDICINE_OER_DOMAINS,
   },
+  {
+    id: "mpje",
+    label: "MPJE",
+    category: "professional",
+    boardExam: "MPJE",
+    examFocus:
+      "pharmacy law, federal and state regulations, controlled substances, dispensing rules, ethics, HIPAA, compounding",
+    topicPlaceholder: "Select MPJE area (e.g. Controlled Substances, State Practice Act)",
+    oerDomains: ["fda.gov", "deadiversion.usdoj.gov", "hhs.gov", "nabp.pharmacy"],
+  },
 ];
 
 const SUBJECTS_BY_FIELD: Record<string, SubjectArea[]> = {
@@ -125,6 +136,7 @@ const SUBJECTS_BY_FIELD: Record<string, SubjectArea[]> = {
   pance: PANCE_SUBJECTS,
   "aanp-fnp": AANP_FNP_SUBJECTS,
   "npte-pt": NPTE_PT_SUBJECTS,
+  mpje: MPJE_SUBJECTS,
 };
 
 /** Topic list for one board. Unknown ids use the Step 2 list, matching the registry. */
