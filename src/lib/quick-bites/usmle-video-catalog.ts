@@ -351,6 +351,24 @@ const EPISODES: EpisodeSeed[] = [
     examStep: "step-2-ck",
     held: true,
   },
+  {
+    slug: "quick-bites-usmle-ep41-abstract-and-advertisement",
+    number: 41,
+    title: "The Abstract, and the Advertisement",
+    duration: "3:05",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep42-pressure-and-aspirin",
+    number: 42,
+    title: "Pressure You Treat for Years, and an Aspirin You Often Hold",
+    duration: "3:09",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-3",
+    held: true,
+  },
 ];
 
 export const USMLE_VIDEO_QUICK_BITE_EPISODES: QuickBiteEpisode[] = EPISODES.map((episode) => ({

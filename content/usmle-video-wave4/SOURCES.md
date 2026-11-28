@@ -49,3 +49,12 @@ Spoken: A1C under 7% for many nonpregnant adults; under 6.5% may fit low-risk he
 ### 40. Birth Control by Risk, and Bleeding That Is New
 CDC U.S. Medical Eligibility Criteria, 2024. ACOG Clinical Practice Update, 2026, revising Committee Opinion 734.
 Spoken: category 4 is unacceptable. Migraine with aura is category 4; migraine without aura is category 2. Age 35 or older and 15 or more cigarettes a day is category 4; fewer than 15 is category 3. First 21 days after birth is category 4. Days 21–42 without breastfeeding and with other clot risks is category 3 and can rise to category 4; without those risks it is category 2. After 42 days, not breastfeeding, category 1. Most postmenopausal bleeding needs ultrasound and a tissue sample. The 4 mm exception requires a single episode, a fully seen lining, no strong risk factor, and a prompt return visit. About 90% of endometrial cancers present with this bleeding.
+
+### 41. The Abstract, and the Advertisement
+CONSORT 2025 explanation and elaboration (BMJ). Item 1b is a structured summary of design, methods, results, and conclusions. The abstract must match the full paper. Do not lead with only a significant secondary outcome or subgroup. Omitting important harms misleads the benefit-harm balance. The primary outcome is the prespecified outcome of greatest importance and the one used for the sample size. CONSORT is not a quality score.
+Flag: 21 CFR 202.1 was not opened. No advertising-regulation sentence is spoken. The “selling page” board only repeats the same harm-hiding mistake.
+
+### 42. Pressure You Treat for Years, and an Aspirin You Often Hold
+2025 AHA/ACC high blood pressure guideline, top take-home messages. USPSTF aspirin recommendation, 26 April 2022.
+Spoken: goal under 130/80; stage 1 is 130–139 or 80–89; stage 2 is 140 or higher or 90 or higher; medicine plus lifestyle at 140/90 or higher; also at 130/80 or higher with clinical cardiovascular disease, prior stroke, diabetes, chronic kidney disease, or PREVENT risk of 7.5% or higher; if risk is under 7.5%, lifestyle for 3–6 months; stage 2 prefers two first-line drugs in one pill. Aspirin ages 40–59 with 10% or greater 10-year risk: individual decision, grade C; 81 mg a day is reasonable if started. Age 60 or older: do not start aspirin for primary prevention, grade D. Applies to people without known cardiovascular disease who are not at increased bleeding risk.
+Flag: the 2026 dyslipidemia guideline was not opened, so no lipid threshold is spoken. Pregnancy blood-pressure treatment is not taught.
