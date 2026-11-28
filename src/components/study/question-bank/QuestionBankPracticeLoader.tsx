@@ -2,6 +2,7 @@ import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy"
 import {
   loadSubjectCountsForUser,
   loadTopicPracticeInventoryForUser,
+  type SubjectCountsPayload,
 } from "@/lib/study/load-subject-counts";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -18,6 +19,7 @@ export async function QuestionBankPracticeLoader({
   usmleStepLabel,
   blueprintTopics = [],
   onTopic = false,
+  countsPromise,
 }: {
   userId: string;
   examSlug: ExamSlug;
@@ -27,12 +29,16 @@ export async function QuestionBankPracticeLoader({
   blueprintTopics?: string[];
   /** Weak-area links count stems that match the topic, not the raw tag column. */
   onTopic?: boolean;
+  /** Started with the route so the topic list overlaps the access check. */
+  countsPromise?: Promise<SubjectCountsPayload | null>;
 }) {
   // Counts are the topic list. Weak marks, coverage chips, and the open
   // review total arrive from /api/learning/coverage after this HTML closes.
-  // Critical path retries inside loadSubjectCountsForUser / Neon HTTP.
+  // Critical path retries inside the counts load / Neon HTTP.
   // After they are exhausted, let the error bubble to question-bank/error.tsx.
-  const countsPayload = await loadSubjectCountsForUser(userId, fieldParam);
+  const countsPayload = countsPromise
+    ? await countsPromise
+    : await loadSubjectCountsForUser(userId, fieldParam);
   const initialTopicPracticeInventory =
     blueprintTopics.length > 0
       ? await loadTopicPracticeInventoryForUser(userId, fieldParam, blueprintTopics, { onTopic })

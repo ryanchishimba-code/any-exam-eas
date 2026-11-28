@@ -18,6 +18,7 @@ import {
 import type { FormatCounts } from "@/lib/inventory/question-format";
 import type { SessionAttemptDraft } from "@/lib/learning/session-attempt-plan";
 import { prisma } from "@/lib/prisma";
+import { gzipSync, gunzipSync } from "node:zlib";
 import { unstable_cache } from "next/cache";
 import {
   ACTIVE_INVENTORY_CACHE_TAG,
@@ -171,6 +172,23 @@ async function loadPublishedClinicalBankFromDb(fieldId: string): Promise<LoadedC
 const STAMP_UNAVAILABLE = "STAMP_UNAVAILABLE";
 
 /**
+ * Next.js refuses to store an unstable_cache value over 2MB. The nursing
+ * chart catalog serializes to about 2.2MB, so every dashboard, question bank,
+ * and today-mix request was rebuilding it. Gzip of that text fits.
+ * Base64 stays under the limit with room for the JSON wrapper.
+ */
+const CLINICAL_BANK_CACHE_LIMIT = 1_800_000;
+
+export function packClinicalBank(bank: LoadedClinicalBank): string {
+  return gzipSync(Buffer.from(JSON.stringify(bank))).toString("base64");
+}
+
+export function unpackClinicalBank(packed: string): LoadedClinicalBank {
+  const json = gunzipSync(Buffer.from(packed, "base64")).toString("utf8");
+  return JSON.parse(json) as LoadedClinicalBank;
+}
+
+/**
  * Same published stamp as the scored inventory cache, so a purge of
  * `question-bank-counts` drops this catalog too.
  */
@@ -199,14 +217,32 @@ async function publishedClinicalStampKey(): Promise<string | null> {
 async function loadSharedClinicalBank(fieldId: string): Promise<LoadedClinicalBank> {
   const stampKey = await publishedClinicalStampKey();
   if (!stampKey) return loadPublishedClinicalBankFromDb(fieldId);
-  return unstable_cache(
-    () => loadPublishedClinicalBankFromDb(fieldId),
-    ["published-clinical-bank-v1", fieldId, stampKey],
-    {
-      revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
-      tags: [ACTIVE_INVENTORY_CACHE_TAG],
-    }
-  )();
+  try {
+    const packed = await unstable_cache(
+      async () => {
+        const bank = await loadPublishedClinicalBankFromDb(fieldId);
+        const packedBank = packClinicalBank(bank);
+        if (packedBank.length > CLINICAL_BANK_CACHE_LIMIT) {
+          throw new Error(
+            `clinical bank cache entry is ${packedBank.length} chars`
+          );
+        }
+        return packedBank;
+      },
+      ["published-clinical-bank-v2", fieldId, stampKey],
+      {
+        revalidate: ACTIVE_INVENTORY_CACHE_TTL_SECONDS,
+        tags: [ACTIVE_INVENTORY_CACHE_TAG],
+      }
+    )();
+    return unpackClinicalBank(packed);
+  } catch (error) {
+    console.warn(
+      "[clinical-bank] compressed cache unavailable:",
+      error instanceof Error ? error.message : error
+    );
+    return loadPublishedClinicalBankFromDb(fieldId);
+  }
 }
 
 /**
