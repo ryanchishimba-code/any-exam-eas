@@ -315,6 +315,42 @@ const EPISODES: EpisodeSeed[] = [
     examStep: "step-2-ck",
     held: true,
   },
+  {
+    slug: "quick-bites-usmle-ep37-soft-tissue-and-hip",
+    number: 37,
+    title: "A Dying Soft Tissue, and a Hip That Broke",
+    duration: "3:18",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep38-first-hour-of-sepsis",
+    number: 38,
+    title: "The First Hour of Sepsis",
+    duration: "3:18",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep39-sugar-and-thyroid-storm",
+    number: 39,
+    title: "Sugar You Manage for Years, and a Thyroid That Storms",
+    duration: "3:22",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
+  {
+    slug: "quick-bites-usmle-ep40-birth-control-and-bleeding",
+    number: 40,
+    title: "Birth Control by Risk, and Bleeding That Is New",
+    duration: "3:17",
+    mediaVersion: USMLE_VIDEO_WAVE4_MEDIA_VERSION,
+    examStep: "step-2-ck",
+    held: true,
+  },
 ];
 
 export const USMLE_VIDEO_QUICK_BITE_EPISODES: QuickBiteEpisode[] = EPISODES.map((episode) => ({

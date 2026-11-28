@@ -1,0 +1,287 @@
+{
+  "episode": "ep39-sugar-and-thyroid-storm",
+  "title": "Sugar You Manage for Years, and a Thyroid That Storms",
+  "video": "quick-bites-usmle-ep39-sugar-and-thyroid-storm-web.mp4",
+  "questions": [
+    {
+      "id": "ep39-q01",
+      "type": "single_best_answer",
+      "stem": "An A1C under 7% in the 2026 standards fits:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Every frail adult"
+        },
+        {
+          "id": "B",
+          "text": "Many nonpregnant adults without severe hypoglycemia"
+        },
+        {
+          "id": "C",
+          "text": "Only pregnant adults"
+        },
+        {
+          "id": "D",
+          "text": "Only people on a continuous monitor"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "It is not a law for frailty or when lows do more harm.",
+      "videoTimestamp": "0:18"
+    },
+    {
+      "id": "ep39-q02",
+      "type": "single_best_answer",
+      "stem": "A lower goal such as under 6.5% may fit someone who is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Frail with frequent lows"
+        },
+        {
+          "id": "B",
+          "text": "Well, with low treatment risk"
+        },
+        {
+          "id": "C",
+          "text": "In thyroid storm"
+        },
+        {
+          "id": "D",
+          "text": "Unable to eat"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Loosen the goal when treatment harm is greater than benefit.",
+      "videoTimestamp": "0:27"
+    },
+    {
+      "id": "ep39-q03",
+      "type": "single_best_answer",
+      "stem": "For many adults, the before-meal glucose range is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "40 to 70 mg/dL"
+        },
+        {
+          "id": "B",
+          "text": "80 to 130 mg/dL"
+        },
+        {
+          "id": "C",
+          "text": "180 to 250 mg/dL"
+        },
+        {
+          "id": "D",
+          "text": "Under 54 mg/dL"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The peak after a meal for many adults stays under 180 mg/dL.",
+      "videoTimestamp": "0:35"
+    },
+    {
+      "id": "ep39-q04",
+      "type": "single_best_answer",
+      "stem": "Time in range above 70% is a goal for:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Many nonpregnant adults using a continuous monitor"
+        },
+        {
+          "id": "B",
+          "text": "Only hospitalized patients"
+        },
+        {
+          "id": "C",
+          "text": "People in storm"
+        },
+        {
+          "id": "D",
+          "text": "No one"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Time under 70 mg/dL should stay under 4%, or under 1% in older adults. Time under 54 should stay under 1%.",
+      "videoTimestamp": "0:42"
+    },
+    {
+      "id": "ep39-q05",
+      "type": "single_best_answer",
+      "stem": "In type 2 diabetes with heart failure, reduced or preserved, an SGLT2 inhibitor is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Delayed until the A1C is under 7"
+        },
+        {
+          "id": "B",
+          "text": "Recommended, including to prevent heart-failure hospitalizations, regardless of A1C"
+        },
+        {
+          "id": "C",
+          "text": "Forbidden"
+        },
+        {
+          "id": "D",
+          "text": "Only for ketoacidosis"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "That recommendation is grade A. It is not a prize for already reaching the A1C goal.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep39-q06",
+      "type": "single_best_answer",
+      "stem": "Thyroid storm in the 2016 ATA guideline is diagnosed by:",
+      "options": [
+        {
+          "id": "A",
+          "text": "A single lab cutoff"
+        },
+        {
+          "id": "B",
+          "text": "Severe thyrotoxicosis plus systemic decompensation"
+        },
+        {
+          "id": "C",
+          "text": "A normal heart rate"
+        },
+        {
+          "id": "D",
+          "text": "A clinic appointment"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "A Burch-Wartofsky score of 45 or more supports storm. 25 to 44 is clinical judgment. Under 25 makes storm unlikely.",
+      "videoTimestamp": "1:15"
+    },
+    {
+      "id": "ep39-q07",
+      "type": "single_best_answer",
+      "stem": "Modern series put storm mortality at:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Under 1%"
+        },
+        {
+          "id": "B",
+          "text": "8 to 25%"
+        },
+        {
+          "id": "C",
+          "text": "50 to 70%"
+        },
+        {
+          "id": "D",
+          "text": "Zero if a beta blocker is given"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Do not send this person home to trend a lab.",
+      "videoTimestamp": "1:33"
+    },
+    {
+      "id": "ep39-q08",
+      "type": "single_best_answer",
+      "stem": "In storm, propylthiouracil is preferred over methimazole because it:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only blocks new synthesis"
+        },
+        {
+          "id": "B",
+          "text": "Also slows conversion of T4 to T3"
+        },
+        {
+          "id": "C",
+          "text": "Replaces iodine"
+        },
+        {
+          "id": "D",
+          "text": "Replaces the steroid"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "The table load is 500 to 1000 mg, then 250 mg every 4 hours.",
+      "videoTimestamp": "1:49"
+    },
+    {
+      "id": "ep39-q09",
+      "type": "single_best_answer",
+      "stem": "Iodide in storm is started:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before any antithyroid drug"
+        },
+        {
+          "id": "B",
+          "text": "One hour after the antithyroid drug"
+        },
+        {
+          "id": "C",
+          "text": "Only after discharge"
+        },
+        {
+          "id": "D",
+          "text": "Never"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Five drops every 6 hours. Giving iodine first can feed the gland.",
+      "videoTimestamp": "2:07"
+    },
+    {
+      "id": "ep39-q10",
+      "type": "single_best_answer",
+      "stem": "Hydrocortisone in the storm table is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "10 mg by mouth daily"
+        },
+        {
+          "id": "B",
+          "text": "A 300 mg intravenous load, then 100 mg every 8 hours"
+        },
+        {
+          "id": "C",
+          "text": "A substitute for the beta blocker"
+        },
+        {
+          "id": "D",
+          "text": "Not recommended"
+        }
+      ],
+      "keys": [
+        "B"
+      ],
+      "explanation": "Propranolol in the same table is 60 to 80 mg every 4 hours, with caution if the heart is failing.",
+      "videoTimestamp": "2:21"
+    }
+  ]
+}

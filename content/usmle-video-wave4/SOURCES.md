@@ -32,3 +32,20 @@ Spoken: adult hyperkalemia above 5.0; severe hyperkalemia in hospitalized adults
 AGA 2022 pharmacological obesity guideline. ASPEN refeeding consensus, Nutrition in Clinical Practice, 2020.
 Spoken: BMI 30 or higher, or 27 or higher with a weight-related condition, after lifestyle has not been enough, add a medicine (strong); semaglutide 2.4 mg weekly and liraglutide 3 mg daily are suggestions; suggest against orlistat; thiamine 100 mg before feeding or dextrose fluid; 100 mg daily for 5–7 days when starvation, alcohol, or deficiency signs are present; first day 100–150 g dextrose or 10–20 kcal/kg; advance about one third of the goal every 1–2 days; delay if phosphorus, potassium, or magnesium are severely low; drops within 5 days of 10–20% mild, 20–30% moderate, above 30% or organ dysfunction severe.
 Flag: no surgery threshold is spoken. AGA 2022 is a drug guideline.
+
+### 37. A Dying Soft Tissue, and a Hip That Broke
+IDSA 2014 skin and soft tissue infections guideline. AAOS 2021 Management of Hip Fractures in Older Adults.
+Spoken: prompt surgical consultation is a strong recommendation; empiric vancomycin or linezolid plus piperacillin-tazobactam, a carbapenem, or ceftriaxone plus metronidazole; penicillin plus clindamycin only for documented group A streptococcus; return to the operating room in 24–36 hours, then daily; hip surgery within 24–48 hours of admission may be associated with better outcomes (moderate strength, low-quality evidence).
+Flag: the EAST 12-hour debridement interval is not taught as an IDSA number.
+
+### 38. The First Hour of Sepsis
+Surviving Sepsis Campaign adult guidelines, 2026.
+Spoken: emergencies, start immediately; antimicrobials ideally within 1 hour for shock or for probable or definite sepsis (strong, very low certainty); possible sepsis without shock, within 3 hours if concern persists (suggestion); at least 30 mL/kg crystalloid in 3 hours for hypoperfusion or shock; actual weight, or adjusted or ideal weight if BMI is above 30; mean pressure under 65 or systolic under 90 as examples; lactate of 4 was the old trigger and a value above 2 and under 4 can still deserve fluid; crystalloid then vasopressor if pressure stays low; do not chase a normal lactate.
+
+### 39. Sugar You Manage for Years, and a Thyroid That Storms
+ADA Standards of Care in Diabetes—2026, sections 6 and 9.8. ATA 2016 hyperthyroidism guideline, recommendations 34–35 and Table 7.
+Spoken: A1C under 7% for many nonpregnant adults; under 6.5% may fit low-risk health; pre-meal 80–130 and peak under 180; time in range above 70%; time under 70 under 4% (under 1% in older adults) and time under 54 under 1%; SGLT2 inhibitor in type 2 diabetes with heart failure regardless of A1C. Storm: Burch-Wartofsky 45 or more, 25–44 is judgment, under 25 is unlikely; mortality 8–25%; PTU load 500–1000 mg then 250 mg every 4 hours; methimazole 60–80 mg/day; iodide 5 drops every 6 hours starting 1 hour after the antithyroid drug; propranolol 60–80 mg every 4 hours; hydrocortisone 300 mg IV then 100 mg every 8 hours.
+
+### 40. Birth Control by Risk, and Bleeding That Is New
+CDC U.S. Medical Eligibility Criteria, 2024. ACOG Clinical Practice Update, 2026, revising Committee Opinion 734.
+Spoken: category 4 is unacceptable. Migraine with aura is category 4; migraine without aura is category 2. Age 35 or older and 15 or more cigarettes a day is category 4; fewer than 15 is category 3. First 21 days after birth is category 4. Days 21–42 without breastfeeding and with other clot risks is category 3 and can rise to category 4; without those risks it is category 2. After 42 days, not breastfeeding, category 1. Most postmenopausal bleeding needs ultrasound and a tissue sample. The 4 mm exception requires a single episode, a fully seen lining, no strong risk factor, and a prompt return visit. About 90% of endometrial cancers present with this bleeding.
