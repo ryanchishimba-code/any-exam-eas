@@ -1,5 +1,6 @@
 import { absoluteUrl } from "@/lib/seo";
 import { organizationRef } from "@/lib/seo/brand-entity";
+import { CANONICAL_ORIGIN } from "@/lib/seo/crawl-policy";
 
 export type BreadcrumbCrumb = { name: string; path: string };
 
@@ -69,4 +70,44 @@ export function publicLearningResourceJsonLd(input: {
   learningResourceType: string;
 }): Record<string, unknown> {
   return { "@context": "https://schema.org", ...publicLearningResourceNode(input) };
+}
+
+const WEBSITE_ID = `${CANONICAL_ORIGIN}/#website`;
+
+/**
+ * WebPage + BreadcrumbList for a public page. The WebPage publisher and the
+ * site's isPartOf node point at the production organization and WebSite ids.
+ * No dates, ratings, or Question/Quiz nodes.
+ */
+export function publicWebPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  crumbs: readonly BreadcrumbCrumb[];
+}): Record<string, unknown> {
+  const path = input.path.startsWith("/") ? input.path : `/${input.path}`;
+  const url = absoluteUrl(path);
+  const webpageId = `${url}#webpage`;
+  const breadcrumbId = `${url}#breadcrumb`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": webpageId,
+        url,
+        name: input.name,
+        description: input.description,
+        inLanguage: "en-US",
+        isAccessibleForFree: true,
+        isPartOf: { "@id": WEBSITE_ID },
+        publisher: organizationRef(),
+        breadcrumb: { "@id": breadcrumbId },
+      },
+      {
+        "@id": breadcrumbId,
+        ...breadcrumbListNode([{ name: "Home", path: "/" }, ...input.crumbs]),
+      },
+    ],
+  };
 }

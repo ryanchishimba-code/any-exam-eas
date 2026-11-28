@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { describe, expect, it } from "vitest";
 import { BLOG_INDEX_DESCRIPTION, BLOG_INDEX_TITLE } from "@/lib/blog/index-meta";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
-import { QOTD_HUB_TITLE, qotdDatedTitle, qotdExamTitle, qotdMetaDescription } from "@/lib/demo/qotd-titles";
+import { QOTD_EXAM_DESCRIPTIONS, QOTD_HUB_TITLE, qotdDatedTitle, qotdExamMetaDescription, qotdExamTitle, qotdMetaDescription } from "@/lib/demo/qotd-titles";
 import { QOTD_BY_EXAM } from "@/lib/demo/qotd";
 import { DRUGS_PAGE_DESCRIPTION, DRUGS_PAGE_TITLE } from "@/lib/drugs300/public-index";
 import { boardHeroMarketingCopy } from "@/lib/marketing/board-landing/board-hero-marketing";
@@ -177,5 +177,28 @@ describe("rewritten public titles and descriptions", () => {
       expect(title.length, title).toBeLessThanOrEqual(SEO_TITLE_MAX);
       expect(title.match(/AnyExamEasy/g)).toEqual(["AnyExamEasy"]);
     }
+  });
+
+  it("uses evergreen 140–160 character descriptions on /daily/{board} pages", () => {
+    expect(new Set(Object.keys(QOTD_EXAM_DESCRIPTIONS)).size).toBe(EXAM_SLUGS.length);
+    const descriptions = new Set<string>();
+    for (const slug of EXAM_SLUGS) {
+      const description = qotdExamMetaDescription(slug);
+      const name = EXAM_CATALOG[slug].shortName;
+      expect(description, slug).toBe(QOTD_EXAM_DESCRIPTIONS[slug]);
+      expect(validateMetaDescription(description), slug).toBeNull();
+      expect(description.length, `${slug}: ${description}`).toBeGreaterThanOrEqual(SEO_DESC_MIN);
+      expect(description.length, `${slug}: ${description}`).toBeLessThanOrEqual(SEO_DESC_MAX);
+      expect(description).toContain(name);
+      expect(description.toLowerCase()).toContain("question of the day");
+      expect(description).toContain("5-day free trial");
+      expect(description).not.toMatch(/uworld|archer|kaplan|rxprep|amboss/i);
+      expect(description).not.toMatch(/\bpass\b/i);
+      for (const item of QOTD_BY_EXAM[slug]) {
+        expect(description.includes(item.stem), `${slug} leaked stem`).toBe(false);
+      }
+      descriptions.add(description);
+    }
+    expect(descriptions.size).toBe(EXAM_SLUGS.length);
   });
 });

@@ -1,9 +1,33 @@
 import { TRIAL_DAYS } from "@/lib/billing-config";
-import { SEO_DESC_MAX, SEO_DESC_MIN } from "@/lib/seo/meta-budget";
+import { SEO_DESC_MAX, SEO_DESC_MIN, assertMetaDescription } from "@/lib/seo/meta-budget";
 import { SITE_NAME } from "@/lib/site";
+import type { ExamSlug } from "@/types/edtech";
 
 /** Rendered hub title. Absolute so the root template does not add the brand twice. */
 export const QOTD_HUB_TITLE = `Question of the Day — Free Board Exam Practice | ${SITE_NAME}`;
+
+/**
+ * Evergreen /daily/{board} descriptions. Fixed copy, 140–160 characters,
+ * independent of the day's stem so the meta cannot cut off mid-question.
+ */
+export const QOTD_EXAM_DESCRIPTIONS = {
+  nclex:
+    "Free NCLEX question of the day. Answer a board-style item with a rationale for every choice, no account required, then start a 5-day free trial.",
+  usmle:
+    "Free USMLE question of the day for Steps 1, 2 CK, and 3. Answer a vignette with a rationale for every choice, no account required, then a 5-day free trial.",
+  naplex:
+    "Free NAPLEX question of the day. Practice calculations or a drug-therapy item with a rationale for every choice, no account required, then a 5-day free trial.",
+  pance:
+    "Free PANCE question of the day. Answer an NCCPA blueprint vignette with a rationale for every choice, no account required, then start a 5-day free trial.",
+  "aanp-fnp":
+    "Free AANP FNP question of the day. Answer a primary-care item across the lifespan with a rationale for every choice, then start a 5-day free trial.",
+  "npte-pt":
+    "Free NPTE-PT question of the day. Answer a physical therapy scenario with a rationale for every choice, no account required, then start a 5-day free trial.",
+} as const satisfies Record<ExamSlug, string>;
+
+export function qotdExamMetaDescription(exam: ExamSlug): string {
+  return assertMetaDescription(QOTD_EXAM_DESCRIPTIONS[exam], `/daily/${exam}`);
+}
 
 export function qotdExamTitle(boardName: string): string {
   return `${boardName} Question of the Day | ${SITE_NAME}`;
