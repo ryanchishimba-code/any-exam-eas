@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 import type { AdminBlogPost } from "@/lib/admin/blog-admin";
 import { BLOG_CATEGORIES } from "@/lib/admin/blog-validators";
+import { MAX_BLOG_POSTS } from "@/lib/blog/limits";
 import { ROUTES } from "@/lib/routes";
 
 function formatDate(iso: string | null) {
@@ -38,7 +39,7 @@ export function BlogPostsManager() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState(false);
   const [activeCount, setActiveCount] = useState(0);
-  const [maxPosts, setMaxPosts] = useState(4);
+  const [maxPosts, setMaxPosts] = useState(MAX_BLOG_POSTS);
   const [canCreate, setCanCreate] = useState(true);
 
   const load = useCallback(async () => {
@@ -62,8 +63,8 @@ export function BlogPostsManager() {
       if (!res.ok) throw new Error(data.error ?? "Failed to load posts.");
       setItems(data.items ?? []);
       setActiveCount(data.activeCount ?? data.items?.length ?? 0);
-      setMaxPosts(data.maxPosts ?? 4);
-      setCanCreate(data.canCreate ?? (data.activeCount ?? 0) < (data.maxPosts ?? 4));
+      setMaxPosts(data.maxPosts ?? MAX_BLOG_POSTS);
+      setCanCreate(data.canCreate ?? (data.activeCount ?? 0) < (data.maxPosts ?? MAX_BLOG_POSTS));
       setSelected(new Set());
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load posts.");
