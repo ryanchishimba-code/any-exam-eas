@@ -81,7 +81,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     questionNoun: "USMLE questions",
     metaBoardLabel: HUB_META_LABEL.usmle,
     metaDescription:
-      "USMLE practice questions for Step 1, Step 2 CK, and Step 3. Step-style vignettes with explanations for every choice and timed practice exams in one qbank.",
+      "USMLE practice questions for Step 1, Step 2 CK and Step 3: step-style vignettes, explanations for every choice and timed practice exams in one qbank.",
     keywords: [
       "USMLE practice questions",
       "USMLE Step 2 CK practice",
@@ -96,7 +96,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     questionNoun: "PANCE questions",
     metaBoardLabel: HUB_META_LABEL.pance,
     metaDescription:
-      "PANCE practice questions that show where the reasoning slips. Physician assistant vignettes, flashcards, a study guide, and timed practice exams.",
+      "PANCE practice questions and question bank: clinical vignettes, flashcards, a study guide and timed exams built on the NCCPA blueprint. Try free.",
     keywords: [
       "PANCE practice questions",
       "PANCE qbank",
@@ -111,7 +111,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     questionNoun: "AANP FNP questions",
     metaBoardLabel: HUB_META_LABEL["aanp-fnp"],
     metaDescription:
-      "AANP FNP practice questions across the lifespan. Family nurse practitioner vignettes, flashcards, a study guide, and timed practice exams for test day.",
+      "AANP FNP practice questions across the lifespan: family nurse practitioner vignettes, flashcards, a study guide and timed exams. Start with free questions.",
     keywords: [
       "AANP FNP practice questions",
       "FNP certification prep",
@@ -126,7 +126,7 @@ const HUB_COPY: Record<HubExamKey, HubCopy> = {
     questionNoun: "NPTE-PT questions",
     metaBoardLabel: HUB_META_LABEL["npte-pt"],
     metaDescription:
-      "NPTE-PT practice questions that explain the clinical why. Physical therapy scenarios, explanations for each choice, timed practice exams, and 3D anatomy review.",
+      "NPTE-PT practice questions with an explanation for each choice: physical therapy scenarios, timed practice exams and 3D anatomy review. Try free questions.",
     keywords: [
       "NPTE practice questions",
       "NPTE-PT qbank",

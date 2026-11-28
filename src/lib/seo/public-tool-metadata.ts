@@ -67,9 +67,14 @@ function indexedPage(title: string, description: string, path: string): Metadata
   };
 }
 
-export const DRUGS_PAGE_TITLE = "Top 500+ Drug Flashcards | AnyExamEasy";
-export const DRUGS_PAGE_DESCRIPTION =
-  "Preview the Top 500+ drug flashcards for NCLEX, USMLE, and NAPLEX. Spaced repetition lives on one shared deck guests can open before a trial.";
+export const DRUGS_PAGE_TITLE = enforceMetaTitle(
+  "Top 500+ Drugs Flashcards for NAPLEX & NCLEX | AnyExamEasy",
+  "/study/drugs300"
+);
+export const DRUGS_PAGE_DESCRIPTION = enforceMetaDescription(
+  "Top 500+ drug flashcards with brand, class, indications, key side effects and a mnemonic on every card. Free preview; spaced repetition with a free trial.",
+  "/study/drugs300"
+);
 
 export const ANATOMY_PAGE_TITLE = "3D Anatomy Explorer for Board Prep | AnyExamEasy";
 export const ANATOMY_PAGE_DESCRIPTION =

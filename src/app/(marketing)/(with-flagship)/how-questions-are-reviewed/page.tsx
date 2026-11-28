@@ -5,6 +5,8 @@ import { FinalMarketingCta } from "@/components/marketing/elevation/MarketingSec
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { buildClinicalReviewerJsonLd } from "@/lib/marketing/company";
+import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
+import { publicBreadcrumbJsonLd } from "@/lib/seo/public-schema";
 import { ROUTES } from "@/lib/routes";
 import {
   OFFICIAL_TEST_PLANS,
@@ -23,15 +25,21 @@ import { QUESTION_COUNT_CHANGE_NOTE } from "@/lib/legal";
  */
 export const revalidate = 300;
 
-const TITLE = "How our questions are built and reviewed";
-const DESCRIPTION =
-  "How AnyExamEasy aligns questions with official test plans, hides flawed questions, shows sources, and handles student reports.";
+const TITLE = enforceMetaTitle(
+  "How our questions are built and reviewed — AnyExamEasy",
+  "/how-questions-are-reviewed"
+);
+const DESCRIPTION = enforceMetaDescription(
+  "How AnyExamEasy aligns questions to official test plans, hides flawed items, cites sources, and handles student reports across six board exams.",
+  "/how-questions-are-reviewed"
+);
 
 export const metadata: Metadata = {
-  title: { absolute: `${TITLE} — AnyExamEasy` },
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   alternates: { canonical: ROUTES.howQuestionsAreReviewed },
   openGraph: { title: TITLE, description: DESCRIPTION, type: "article" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 function countLabel(value: number | null): string | null {
@@ -55,6 +63,11 @@ export default async function HowQuestionsAreReviewedPage() {
     <>
     <article className="bg-[var(--color-bg)] px-6 pb-20 pt-[var(--page-top)]">
       <JsonLdScript data={buildClinicalReviewerJsonLd()} />
+      <JsonLdScript
+        data={publicBreadcrumbJsonLd([
+          { name: "How questions are reviewed", path: "/how-questions-are-reviewed" },
+        ])}
+      />
       <div className="mx-auto max-w-3xl">
         <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
           Editorial standards

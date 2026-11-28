@@ -2,8 +2,10 @@ import Link from "next/link";
 import { Mail, MessageSquare } from "lucide-react";
 import type { Metadata } from "next";
 import { FeedbackForm } from "@/components/feedback/FeedbackForm";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { SITE_NAME } from "@/lib/site";
+import { publicBreadcrumbJsonLd } from "@/lib/seo/public-schema";
 import { ROUTES } from "@/lib/routes";
 
 const CONTACT_TITLE = `Contact Us — ${SITE_NAME}`;
@@ -33,6 +35,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
+      <JsonLdScript data={publicBreadcrumbJsonLd([{ name: "Contact", path: "/contact" }])} />
       <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,color-mix(in_srgb,var(--color-accent)_12%,transparent),transparent)]"

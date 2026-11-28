@@ -150,11 +150,11 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 }
 
 export function buildPricingMetadata(totalLabel?: string): Metadata {
-  const count = totalLabel?.trim();
-  const title = "Pricing — 6 Board Exams, One Pro Plan";
-  const description = count
-    ? `One Pro plan: ${count} active questions for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmap & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day trial now.`
-    : `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes the Roadmap and Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day free trial. Cancel anytime.`;
+  // The visible pricing page still prints the live question total. This
+  // description stays on the plan, the price, and the trial.
+  void totalLabel;
+  const title = "Pricing: One Plan for 6 Board Exams | AnyExamEasy";
+  const description = `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP and NPTE-PT at ${formatMonthlyPrice("pro")}/mo. Questions, Roadmap and Deep Dives. Start a ${formatTrialLabel()}.`;
   const base = baseOpenGraph(title, description, "/pricing", { absoluteTitle: true });
   const card = landingOgImage("home");
   return {

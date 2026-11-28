@@ -1,3 +1,4 @@
+import { BLOG_INDEX_DESCRIPTION, BLOG_INDEX_TITLE } from "@/lib/blog/index-meta";
 import { absoluteUrl } from "@/lib/seo";
 import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
 
@@ -106,7 +107,8 @@ export function blogIndexJsonLd(
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Board exam prep blog",
+    name: BLOG_INDEX_TITLE,
+    description: BLOG_INDEX_DESCRIPTION,
     url: absoluteUrl("/blog"),
     isPartOf: { "@type": "WebSite", name: SCHEMA_BRAND_NAME, url: absoluteUrl("/") },
     mainEntity: {

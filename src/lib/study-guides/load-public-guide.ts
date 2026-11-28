@@ -8,6 +8,7 @@ import {
 import { readImageSize } from "@/lib/nclex-study-guide/image-dimensions";
 import { markdownToSimpleHtml } from "@/lib/nclex-study-guide/markdown";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
+import { publicLearningResourceNode } from "@/lib/seo/public-schema";
 import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
 import {
   PUBLIC_STUDY_GUIDES,
@@ -106,6 +107,12 @@ function buildJsonLd(guide: { path: string; description: string; boardLabel: str
       author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
       publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
     },
+    publicLearningResourceNode({
+      name: h1,
+      description: guide.description,
+      path: guide.path,
+      learningResourceType: "Study guide",
+    }),
   ];
   if (faqs.length > 0) {
     graph.push({

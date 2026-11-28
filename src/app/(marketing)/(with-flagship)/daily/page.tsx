@@ -11,7 +11,10 @@ import {
   todayIsoCentral,
 } from "@/lib/demo/qotd";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { QOTD_HUB_TITLE } from "@/lib/demo/qotd-titles";
 import { getSiteUrl } from "@/lib/seo";
+import { publicBreadcrumbJsonLd, publicLearningResourceJsonLd } from "@/lib/seo/public-schema";
 import { DailyInboxCapture } from "@/components/marketing/DailyInboxCapture";
 import { DailyTrialLink, DailyTrialSticky } from "@/components/marketing/DailyTrialCta";
 import type { ExamSlug } from "@/types/edtech";
@@ -23,17 +26,23 @@ import type { ExamSlug } from "@/types/edtech";
  */
 export const revalidate = 60;
 
+const DAILY_HUB_DESCRIPTION =
+  "A free daily practice question for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Answer without signup, then start a free trial for your exam.";
+
 export const metadata: Metadata = {
-  title: "Question of the Day — Free Board Exam Practice",
-  description:
-    "A free daily practice question for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Answer without signup, then start a free trial for your exam.",
+  title: { absolute: QOTD_HUB_TITLE },
+  description: DAILY_HUB_DESCRIPTION,
   alternates: { canonical: `${getSiteUrl()}/daily` },
   openGraph: {
-    title: "Question of the Day | AnyExamEasy",
-    description:
-      "Free daily board-style practice across six exams. Pick your board and try today’s item.",
+    title: QOTD_HUB_TITLE,
+    description: DAILY_HUB_DESCRIPTION,
     url: `${getSiteUrl()}/daily`,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: QOTD_HUB_TITLE,
+    description: DAILY_HUB_DESCRIPTION,
   },
 };
 
@@ -46,6 +55,15 @@ export default function DailyHubPage() {
 
   return (
     <div className="aee-qotd-hub">
+      <JsonLdScript data={publicBreadcrumbJsonLd([{ name: "Question of the Day", path: "/daily" }])} />
+      <JsonLdScript
+        data={publicLearningResourceJsonLd({
+          name: QOTD_HUB_TITLE,
+          description: DAILY_HUB_DESCRIPTION,
+          path: "/daily",
+          learningResourceType: "Practice problem",
+        })}
+      />
       <div className="aee-qotd-hub__inner">
         <p className="aee-qotd-hub__eyebrow">AnyExamEasy</p>
         <h1 className="aee-qotd-hub__title">Question of the Day</h1>

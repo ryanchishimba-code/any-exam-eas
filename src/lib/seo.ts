@@ -102,7 +102,7 @@ export function buildHomeMetadata(
 ): Metadata {
   const title = enforceMetaTitle("NCLEX, NAPLEX, PANCE & USMLE Practice Questions", "home");
   const description = enforceMetaDescription(
-    "NCLEX, NAPLEX, PANCE, AANP FNP, USMLE, and NPTE-PT practice questions with full rationales, timed practice exams, and a study plan built for test day.",
+    "Practice questions with a rationale for every option: NCLEX, USMLE, NAPLEX, PANCE, AANP FNP and NPTE-PT. Try free questions, then a 5-day free trial.",
     "home"
   );
   void totalQuestionsLabel;

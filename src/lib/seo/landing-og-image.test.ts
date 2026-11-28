@@ -41,12 +41,12 @@ describe("landing share images", () => {
 
     const titles = [
       "NCLEX, NAPLEX, PANCE & USMLE Practice Questions",
-      "NCLEX-RN questions that match the current test plan.",
-      "NAPLEX questions for the calculations and the drugs.",
-      "USMLE vignettes for Step 1, Step 2 CK, and Step 3.",
-      "PANCE vignettes that show where the reasoning slips.",
-      "AANP FNP vignettes across the lifespan, explained.",
-      "NPTE-PT questions that explain the clinical why.",
+      "NCLEX-RN Practice Questions with Rationales | AnyExamEasy",
+      "NAPLEX Practice Questions & Calculations | AnyExamEasy",
+      "USMLE Step 1, 2 CK & 3 Practice Questions | AnyExamEasy",
+      "PANCE Practice Questions & Question Bank | AnyExamEasy",
+      "AANP FNP Practice Questions & Exam Prep | AnyExamEasy",
+      "NPTE-PT Practice Questions with Explanations | AnyExamEasy",
     ];
     const urls = pages.map(([, meta]) => imageUrl(meta));
     expect(new Set(urls).size).toBe(pages.length);

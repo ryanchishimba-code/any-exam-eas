@@ -42,7 +42,7 @@ describe("NAPLEX landing model", () => {
     expect(title.length).toBeLessThanOrEqual(SEO_TITLE_MAX);
     expect(description.length).toBeGreaterThanOrEqual(SEO_DESC_MIN);
     expect(description.length).toBeLessThanOrEqual(SEO_DESC_MAX);
-    expect(title).toMatch(/NAPLEX questions/i);
+    expect(title).toMatch(/NAPLEX Practice Questions/);
     expect(description).not.toMatch(/\$|one plan/i);
   });
 
