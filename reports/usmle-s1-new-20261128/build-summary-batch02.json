@@ -1,0 +1,30 @@
+{
+  "items": 100,
+  "domains": {
+    "cardiovascular": 56,
+    "respiratory-renal": 44
+  },
+  "subjects": {
+    "physiology": 79,
+    "anatomy": 18,
+    "pathology": 3
+  },
+  "difficulty": {
+    "2": 52,
+    "3": 42,
+    "4": 6
+  },
+  "letters": {
+    "A": 20,
+    "B": 20,
+    "C": 20,
+    "D": 20,
+    "E": 20
+  },
+  "nutrition": 0,
+  "tasks": {
+    "mechanism": 80,
+    "anatomy": 17,
+    "histology": 3
+  }
+}

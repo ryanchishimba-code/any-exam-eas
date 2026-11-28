@@ -1,0 +1,36 @@
+{
+  "items": 100,
+  "domains": {
+    "reproductive-endocrine": 35,
+    "msk-skin": 18,
+    "behavioral-nervous": 16,
+    "social-sciences": 10,
+    "gastrointestinal": 21
+  },
+  "subjects": {
+    "physiology": 69,
+    "anatomy": 7,
+    "histology": 6,
+    "pathology": 2,
+    "ethics": 10,
+    "embryology": 6
+  },
+  "difficulty": {
+    "2": 70,
+    "3": 28,
+    "4": 2
+  },
+  "letters": {
+    "A": 20,
+    "B": 20,
+    "C": 20,
+    "D": 20,
+    "E": 20
+  },
+  "nutrition": 4,
+  "tasks": {
+    "mechanism": 87,
+    "anatomy": 7,
+    "histology": 6
+  }
+}

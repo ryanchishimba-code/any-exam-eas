@@ -1,0 +1,35 @@
+{
+  "items": 100,
+  "domains": {
+    "gastrointestinal": 85,
+    "blood-lymph-immune": 15
+  },
+  "subjects": {
+    "physiology": 37,
+    "anatomy": 21,
+    "biochemistry": 1,
+    "microbiology": 11,
+    "nutrition": 9,
+    "pathology": 2,
+    "histology": 4,
+    "immunology": 15
+  },
+  "difficulty": {
+    "2": 46,
+    "3": 43,
+    "4": 11
+  },
+  "letters": {
+    "A": 20,
+    "B": 20,
+    "C": 20,
+    "D": 20,
+    "E": 20
+  },
+  "nutrition": 17,
+  "tasks": {
+    "mechanism": 74,
+    "histology": 9,
+    "anatomy": 17
+  }
+}
