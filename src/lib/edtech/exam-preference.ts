@@ -22,7 +22,7 @@ async function readUserExamPreferenceFromDb(userId: string): Promise<UserExamPre
   if (!row) return null;
 
   let examSlug = row.examSlug;
-  if (examSlug === "mpje" || !isExamSlug(examSlug)) {
+  if (!isExamSlug(examSlug)) {
     examSlug = "pance";
     await setUserExamPreference(userId, "pance");
   }

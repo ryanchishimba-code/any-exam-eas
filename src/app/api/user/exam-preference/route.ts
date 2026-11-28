@@ -6,7 +6,8 @@ import {
   getUserExamPreferenceFresh,
   setUserExamPreference,
 } from "@/lib/edtech/exam-preference";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { getUserEdtechMetadata, setUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import type { ExamSlug } from "@/types/edtech";
 import { optionalSessionGuard, requireSessionGuard } from "@/lib/session-guard";
 
@@ -50,9 +51,12 @@ export async function POST(req: Request) {
   }
 
   const record =
-    typeof body === "object" && body !== null ? (body as { examSlug?: unknown; onlyIfUnset?: unknown }) : {};
+    typeof body === "object" && body !== null
+      ? (body as { examSlug?: unknown; onlyIfUnset?: unknown; usmleFieldId?: unknown })
+      : {};
   const examSlug = record.examSlug;
   const onlyIfUnset = record.onlyIfUnset === true;
+  const usmleFieldId = typeof record.usmleFieldId === "string" ? record.usmleFieldId : null;
 
   if (typeof examSlug !== "string" || !isExamSlug(examSlug)) {
     return NextResponse.json({ ok: false, error: "Invalid exam selection" }, { status: 400 });
@@ -66,6 +70,9 @@ export async function POST(req: Request) {
       }
     }
     await setUserExamPreference(guard.userId, examSlug as ExamSlug);
+    if (examSlug === "usmle" && usmleFieldId && isUsmleFieldId(usmleFieldId)) {
+      await setUserEdtechMetadata(guard.userId, { usmleFieldId });
+    }
     revalidatePath("/dashboard", "layout");
     revalidatePath("/question-bank", "layout");
     revalidatePath("/dashboard");

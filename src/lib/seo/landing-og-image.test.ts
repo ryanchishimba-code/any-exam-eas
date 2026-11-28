@@ -41,12 +41,12 @@ describe("landing share images", () => {
 
     const titles = [
       "NCLEX, NAPLEX, PANCE & USMLE Practice Questions",
-      "NCLEX-RN questions that match the current test plan.",
-      "NAPLEX questions for the calculations and the drugs.",
-      "USMLE vignettes for Step 1, Step 2 CK, and Step 3.",
-      "PANCE vignettes that show where the reasoning slips.",
-      "AANP FNP vignettes across the lifespan, explained.",
-      "NPTE-PT questions that explain the clinical why.",
+      "NCLEX-RN Practice Questions with Rationales | AnyExamEasy",
+      "NAPLEX Practice Questions & Calculations | AnyExamEasy",
+      "USMLE Question Bank for Steps 1, 2 CK, 3 | AnyExamEasy",
+      "PANCE Question Bank & 2026 Blueprint | AnyExamEasy",
+      "AANP FNP Practice Questions & Exam Prep | AnyExamEasy",
+      "NPTE-PT Practice Questions with Explanations | AnyExamEasy",
     ];
     const urls = pages.map(([, meta]) => imageUrl(meta));
     expect(new Set(urls).size).toBe(pages.length);
@@ -91,12 +91,13 @@ describe("landing share images", () => {
     );
     const aboutLd = JSON.stringify(buildAboutJsonLd());
     expect(aboutLd).toContain('"@type":"AboutPage"');
-    expect(aboutLd).toContain('"@type":"Organization"');
+    expect(aboutLd).toContain('"@id":"https://www.anyexameasy.com/#organization"');
+    expect(JSON.stringify(buildHomeJsonLd())).toContain('"@type":"EducationalOrganization"');
     expect(aboutLd).toContain('"@type":"Person"');
     expect(aboutLd).toContain("Ryan Chishimba, PharmD, RPh");
     expect(aboutLd).toContain('"jobTitle":"Founder and Pharmacy Manager"');
     expect(aboutLd).toContain("#founder");
-    expect(aboutLd).toContain('"founder":{"@id":');
+    expect(aboutLd).toContain('"@id":"https://www.anyexameasy.com/about#founder"');
     expect(aboutLd).toContain("Ileen Chishimba, RN");
     expect(aboutLd).not.toContain("hoursAvailable");
     expect(aboutLd).not.toContain("worksFor");

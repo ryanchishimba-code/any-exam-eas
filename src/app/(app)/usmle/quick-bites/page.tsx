@@ -11,7 +11,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Quick Bites: USMLE — AnyExamEasy",
+  title: { absolute: "Quick Bites: USMLE — AnyExamEasy" },
   robots: { index: false, follow: false },
 };
 

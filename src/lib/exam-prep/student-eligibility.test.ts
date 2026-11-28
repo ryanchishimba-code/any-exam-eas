@@ -278,6 +278,8 @@ describe("student eligibility", () => {
       if (KEY_WRONG_PENDING_RN_REVIEW.some((wrong) => wrong.id === item.id)) continue;
       expect(STUDENT_ELIGIBLE_SQL).not.toContain(`'${item.id}'`);
     }
+    expect(STUDENT_ELIGIBLE_SQL).toContain("HAVING COUNT(*) = 6");
+    expect(STUDENT_ELIGIBLE_SQL).not.toContain("AS case_group");
     expect(STUDENT_ELIGIBLE_SQL).toContain("studentEligibility,status");
     expect(STUDENT_ELIGIBLE_SQL.indexOf("'restored'")).toBeLessThan(STUDENT_ELIGIBLE_SQL.indexOf("OR NOT"));
   });

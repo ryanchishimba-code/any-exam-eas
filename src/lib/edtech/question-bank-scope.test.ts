@@ -91,7 +91,7 @@ describe("question-bank-scope", () => {
     expect(examSlugForFieldId("pance")).toBe("pance");
     expect(examSlugForFieldId("aanp-fnp")).toBe("aanp-fnp");
     expect(examSlugForFieldId("npte-pt")).toBe("npte-pt");
-    expect(examSlugForFieldId("mpje")).toBe("pance");
+    expect(examSlugForFieldId("mpje")).toBe("mpje");
   });
 
   it("detects field/exam mismatches", () => {
@@ -103,6 +103,9 @@ describe("question-bank-scope", () => {
     expect(fieldMatchesExamSlug("usmle-step-1", "usmle")).toBe(true);
     expect(fieldMatchesExamSlug("usmle-step-3", "usmle")).toBe(true);
     expect(fieldMatchesExamSlug("nursing", "usmle")).toBe(false);
+    expect(fieldMatchesExamSlug("mpje", "mpje")).toBe(true);
+    expect(fieldMatchesExamSlug("mpje", "pance")).toBe(false);
+    expect(fieldMatchesExamSlug("pance", "mpje")).toBe(false);
   });
 
   it("normalizes field query values to canonical exam field ids", () => {

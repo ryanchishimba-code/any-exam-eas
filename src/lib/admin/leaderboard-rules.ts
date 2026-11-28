@@ -122,15 +122,15 @@ export function leaderboardPlanSql(subscriptionAlias = "s", nowParam = "$1"): st
 }
 
 /**
- * Selected board. Legacy MPJE preferences are PANCE, matching the study-hub
- * read path. Unknown slugs stay unassigned instead of being guessed.
+ * Selected board. Unknown slugs stay unassigned instead of being guessed.
  */
 export function leaderboardBoardSql(preferenceAlias = "p"): string {
   const slug = `${preferenceAlias}."examSlug"`;
   return `CASE
     WHEN ${preferenceAlias}."userId" IS NOT NULL AND ${slug} = 'nclex' THEN 'nclex'
     WHEN ${preferenceAlias}."userId" IS NOT NULL AND ${slug} = 'naplex' THEN 'naplex'
-    WHEN ${preferenceAlias}."userId" IS NOT NULL AND (${slug} = 'pance' OR ${slug} = 'mpje') THEN 'pance'
+    WHEN ${preferenceAlias}."userId" IS NOT NULL AND ${slug} = 'pance' THEN 'pance'
+    WHEN ${preferenceAlias}."userId" IS NOT NULL AND ${slug} = 'mpje' THEN 'mpje'
     WHEN ${preferenceAlias}."userId" IS NOT NULL AND ${slug} = 'aanp-fnp' THEN 'aanp-fnp'
     WHEN ${preferenceAlias}."userId" IS NOT NULL AND ${slug} = 'npte-pt' THEN 'npte-pt'
     WHEN ${preferenceAlias}."userId" IS NOT NULL AND (${slug} = 'usmle' OR ${slug} LIKE 'usmle-%') THEN 'usmle'

@@ -2,12 +2,23 @@ import Link from "next/link";
 import { Mail, MessageSquare } from "lucide-react";
 import type { Metadata } from "next";
 import { FeedbackForm } from "@/components/feedback/FeedbackForm";
-import { LEGAL_ENTITY } from "@/lib/legal";
-import { SITE_NAME } from "@/lib/site";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
+import { organizationRef } from "@/lib/seo/brand-entity";
+import { CANONICAL_ORIGIN } from "@/lib/seo/crawl-policy";
+import { enforceMetaDescription, enforceMetaTitle } from "@/lib/seo/meta-budget";
+import { publicBreadcrumbJsonLd } from "@/lib/seo/public-schema";
 import { ROUTES } from "@/lib/routes";
+import { SITE_NAME } from "@/lib/site";
 
-const CONTACT_TITLE = `Contact Us — ${SITE_NAME}`;
-const CONTACT_DESCRIPTION = `Contact ${SITE_NAME} for billing help, content questions, bug reports or product feedback. Email support or send a message — we reply to every note.`;
+const CONTACT_TITLE = enforceMetaTitle(
+  "Contact Support for Billing and Study Help | AnyExamEasy",
+  "/contact"
+);
+const CONTACT_DESCRIPTION = enforceMetaDescription(
+  `Email ${LEGAL_ENTITY.supportEmail} for billing, content questions, bug reports, or study feedback. A 5-day free trial does not need a payment method.`,
+  "/contact"
+);
 
 export const metadata: Metadata = {
   title: { absolute: CONTACT_TITLE },
@@ -33,6 +44,18 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
+      <JsonLdScript data={publicBreadcrumbJsonLd([{ name: "Contact", path: "/contact" }])} />
+      <JsonLdScript
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          name: CONTACT_TITLE,
+          description: CONTACT_DESCRIPTION,
+          url: `${CANONICAL_ORIGIN}/contact`,
+          mainEntity: organizationRef(),
+          contactPoint: organizationContactPoint(),
+        }}
+      />
       <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,color-mix(in_srgb,var(--color-accent)_12%,transparent),transparent)]"
@@ -65,6 +88,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-10">
+            <h2 className="sr-only">Send a message</h2>
             <FeedbackForm />
           </div>
 

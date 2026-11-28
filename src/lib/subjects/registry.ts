@@ -8,6 +8,7 @@ import { pharmacyModule } from "./pharmacy";
 import { aanpFnpModule } from "./aanp-fnp";
 import { nptePtModule } from "./npte-pt";
 import { panceModule } from "./pance";
+import { mpjeModule } from "./mpje";
 import { usmleStep1Module } from "./usmle-step-1";
 import { usmleStep2Module } from "./usmle-step-2";
 import { usmleStep3Module } from "./usmle-step-3";
@@ -25,7 +26,8 @@ const MODULES: Record<string, SubjectModule> = {
   pharmacy: pharmacyModule,
   pance: panceModule,
   "aanp-fnp": aanpFnpModule,
-  "npte-pt": nptePtModule
+  "npte-pt": nptePtModule,
+  mpje: mpjeModule,
 };
 
 /** Capability registry — controls generation behavior per discipline. */
@@ -47,6 +49,7 @@ export function getRegisteredSubjectIds(): string[] {
     "pance",
     "aanp-fnp",
     "npte-pt",
+    "mpje",
   ];
 }
 

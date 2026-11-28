@@ -27,7 +27,7 @@ export type ExamAnswerRecord = {
 
 export async function createExamSession(
   userId: string,
-  examType: ExamSlug,
+  examType: ExamSlug | "mpje",
   opts?: {
     questionCount?: number;
     timeLimitSec?: number | null;
@@ -85,7 +85,7 @@ export async function createExamSession(
       id,
       userId,
       examType,
-      fieldId: opts?.fieldId ?? examSlugToFieldId(examType),
+      fieldId: opts?.fieldId ?? (examType === "mpje" ? "mpje" : examSlugToFieldId(examType)),
       title: opts?.title ?? `${examType.toUpperCase()} practice`,
       status: "in_progress",
       answers: [],

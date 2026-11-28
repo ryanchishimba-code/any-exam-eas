@@ -11,10 +11,13 @@ import { EXAM_SLUGS } from "@/lib/edtech/exams";
 import { qotdPath } from "@/lib/demo/qotd-public";
 import { PANCE_STUDY_GUIDE_PATH, PANCE_STUDY_GUIDE_UPDATED } from "@/lib/pance-study-guide/public-guide";
 import { contentUpdatedOn } from "@/lib/study-guides/content-updated";
+import { studyGuideChapterPaths } from "@/lib/study-guides/load-public-guide";
 import { PUBLIC_STUDY_GUIDE_LIST, USMLE_PUBLIC_STEPS } from "@/lib/study-guides/public-catalog";
 import { CANONICAL_ORIGIN, isNonIndexablePath, normalizePath } from "@/lib/seo/crawl-policy";
 import { isGatedStudyGuidePath } from "@/lib/seo/gated-study-guide-paths";
 import { getExamMarketingSitemapPaths } from "@/lib/seo/marketing-metadata";
+import { publicBlogSlug } from "@/lib/blog/public-slugs";
+import { BLOG_UPGRADES, BLOG_UPGRADE_VERSION } from "@/lib/blog/upgrades/posts";
 import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 
 export const SITEMAP_IDS = ["pages", "study-guides", "drugs", "blog"] as const;
@@ -82,6 +85,7 @@ export function buildSitemapGroups(input: {
     ...PAGE_PATHS.map((path) => entry(path)),
     ...getExamMarketingSitemapPaths().map((path) => entry(path)),
     entry("/daily", today),
+    entry("/daily-vitals", today),
     entry(crosswordHubPath(), today),
     ...EXAM_SLUGS.flatMap((exam) => [
       entry(qotdPath(exam), today),
@@ -107,6 +111,9 @@ export function buildSitemapGroups(input: {
     ...USMLE_PUBLIC_STEPS.map((step) =>
       entry(step.path, contentUpdatedOn([step.contentDir], now).iso)
     ),
+    ...studyGuideChapterPaths().map((chapter) =>
+      entry(chapter.path, contentUpdatedOn([chapter.contentDir], now).iso)
+    ),
     ...RESOURCE_ARTICLES.map((article) =>
       entry(`/resources/${article.slug}`, article.updatedAt)
     ),
@@ -115,14 +122,22 @@ export function buildSitemapGroups(input: {
   const drugs: SitemapUrl[] = [entry("/study/drugs300")];
 
   const posts = input.posts ?? [];
-  const blogPosts = posts
-    .map((post) => {
-      const slug = post.slug.trim();
-      if (!slug || slug.includes("/") || slug.includes("?")) return null;
-      const lastmod = contentDate(post.updatedAt) ?? contentDate(post.publishedAt);
-      return entry(`/blog/${slug}`, lastmod);
-    })
-    .filter((item): item is SitemapUrl => item !== null);
+  const upgradeDate = contentDate(BLOG_UPGRADE_VERSION);
+  const bySlug = new Map<string, SitemapUrl>();
+  for (const upgrade of BLOG_UPGRADES) {
+    const slug = publicBlogSlug(upgrade.slug);
+    bySlug.set(slug, entry(`/blog/${slug}`, upgradeDate));
+  }
+  for (const post of posts) {
+    const raw = post.slug.trim();
+    const slug = publicBlogSlug(raw);
+    if (!slug || slug.includes("/") || slug.includes("?")) continue;
+    const alias = slug !== raw;
+    if (alias && bySlug.has(slug)) continue;
+    const lastmod = contentDate(post.updatedAt) ?? contentDate(post.publishedAt) ?? upgradeDate;
+    bySlug.set(slug, entry(`/blog/${slug}`, lastmod));
+  }
+  const blogPosts = [...bySlug.values()];
   const blogLastmod = blogPosts
     .map((item) => item.lastmod)
     .filter((value): value is string => Boolean(value))

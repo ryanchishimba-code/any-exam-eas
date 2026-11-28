@@ -24,8 +24,7 @@ export type BoardWriteDecision =
 const AUTH_KEEP_PREFIXES = ["/login", "/signup", "/register", "/auth", "/checkout"] as const;
 
 /**
- * Accept a board slug, an exam slug, or a practice field id (`nursing`, `pharmacy`).
- * MPJE was removed from the product; its field id still aliases to PANCE.
+ * Accept a board slug, an exam slug, or a practice field id (`nursing`, `pharmacy`, `mpje`).
  */
 export function parseBoardSlug(raw: string | null | undefined): ExamSlug | null {
   if (!raw) return null;

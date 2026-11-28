@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { LEGAL_ENTITY, organizationContactPoint } from "@/lib/legal";
 import { LEGAL_SUPPORT_PHONE } from "@/lib/legal-phone";
 import { buildHomeJsonLd } from "@/lib/seo";
+import { ORGANIZATION_ID } from "@/lib/seo/brand-entity";
 import { buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
 
 describe("support contact", () => {
@@ -27,16 +28,23 @@ describe("support contact", () => {
     expect(point).not.toHaveProperty("telephone");
     expect(point).not.toHaveProperty("hoursAvailable");
 
-    for (const graph of [buildHomeJsonLd(), buildAboutJsonLd()]) {
-      const json = JSON.stringify(graph);
-      expect(json).not.toContain("883-6375");
-      expect(json).not.toContain("2148836375");
-      expect(json).not.toContain('"telephone"');
-      expect(json).toContain('"email":"support@anyexameasy.com"');
-      expect(json).toContain('"contactType":"customer support"');
-      expect(json).toContain('"areaServed":"US"');
-      expect(json).toContain('"availableLanguage":"English"');
-      expect(json).not.toContain("hoursAvailable");
-    }
+    const home = JSON.stringify(buildHomeJsonLd());
+    expect(home).not.toContain("883-6375");
+    expect(home).not.toContain("2148836375");
+    expect(home).not.toContain('"telephone"');
+    expect(home).toContain('"@type":"EducationalOrganization"');
+    expect(home).toContain('"email":"support@anyexameasy.com"');
+    expect(home).toContain('"contactType":"customer support"');
+    expect(home).toContain('"areaServed":"US"');
+    expect(home).toContain('"availableLanguage":"English"');
+    expect(home).not.toContain("hoursAvailable");
+
+    const about = JSON.stringify(buildAboutJsonLd());
+    expect(about).not.toContain("883-6375");
+    expect(about).not.toContain("2148836375");
+    expect(about).not.toContain('"telephone"');
+    expect(about).not.toContain("hoursAvailable");
+    expect(about).not.toContain('"@type":"Organization"');
+    expect(about).toContain(`"@id":"${ORGANIZATION_ID}"`);
   });
 });

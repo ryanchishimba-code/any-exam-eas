@@ -6,7 +6,7 @@ import { LEGAL_ENTITY } from "@/lib/legal";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Unsubscribe — AnyExamEasy",
+  title: { absolute: "Unsubscribe — AnyExamEasy" },
   robots: { index: false, follow: false },
 };
 

@@ -38,6 +38,7 @@ export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
     "npte-stroke-gait",
     "npte-copd-breathing",
   ],
+  mpje: [],
 };
 
 export function getPinnedMemoryCardIds(examSlug: ExamSlug): string[] {

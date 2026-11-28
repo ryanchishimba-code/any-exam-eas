@@ -29,7 +29,8 @@ describe("question start stays off the generator and geometry graphs", () => {
     const serve = source("src/lib/assessment/serve-db.ts");
     expect(serve).not.toContain("@/lib/subjects/registry");
     expect(serve).toContain("@/lib/subjects/subject-catalog");
-    expect(serve).toContain("published-clinical-bank-v1");
+    expect(serve).toContain("published-clinical-bank-v2");
+    expect(serve).toContain("packClinicalBank");
     expect(serve).toContain("ACTIVE_INVENTORY_CACHE_TAG");
   });
 

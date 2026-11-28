@@ -10,7 +10,7 @@ const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
  */
 export default defineConfig({
   testDir: "./tests/e2e",
-  testMatch: /student-smoke\.spec\.ts/,
+  testMatch: /(?:student-smoke|board-load)\.spec\.ts/,
   fullyParallel: false,
   workers: 1,
   retries: process.env.CI ? 1 : 0,

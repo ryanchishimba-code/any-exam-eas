@@ -101,20 +101,45 @@ AND (
 )
 `;
 
+/**
+ * Group id used by the incomplete-case check.
+ * A `{` prefix is required before the jsonb cast so plain option text is not parsed.
+ */
+const CASE_GROUP_ID = `
+COALESCE(
+  CASE
+    WHEN left(btrim(options), 1) = '{' THEN options::jsonb->>'caseGroupId'
+    ELSE ''
+  END,
+  ''
+)
+`;
+
+/**
+ * Incomplete case studies (not exactly 6 active rows in the group).
+ *
+ * The group sizes are computed once. A correlated COUNT(*) per row re-reads
+ * every case item for every candidate (about 0.6s and 250k buffer hits on the
+ * nursing bank). The grouped lookup matches that count and finishes in one pass.
+ */
 const CASE_DEFECT = `
 "itemType" IN ('case_study', 'unfolding_case', 'case_based')
 AND (
   btrim(COALESCE((${OPTIONS_JSON})->>'caseGroupId', '')) = ''
   OR (
-    SELECT COUNT(*)
-    FROM "QuestionBankItem" AS case_group
-    WHERE case_group.active = true
-      AND case_group."fieldId" = "QuestionBankItem"."fieldId"
-      AND case_group."itemType" = "QuestionBankItem"."itemType"
-      AND left(btrim(case_group.options), 1) = '{'
-      AND COALESCE(case_group.options::jsonb->>'caseGroupId', '')
-        = COALESCE("QuestionBankItem".options::jsonb->>'caseGroupId', '')
-  ) <> 6
+    "fieldId",
+    "itemType",
+    ${CASE_GROUP_ID}
+  ) NOT IN (
+    SELECT g."fieldId", g."itemType", COALESCE(g.options::jsonb->>'caseGroupId', '')
+    FROM "QuestionBankItem" AS g
+    WHERE g.active = true
+      AND g."itemType" IN ('case_study', 'unfolding_case', 'case_based')
+      AND left(btrim(g.options), 1) = '{'
+      AND COALESCE(g.options::jsonb->>'caseGroupId', '') <> ''
+    GROUP BY 1, 2, 3
+    HAVING COUNT(*) = 6
+  )
 )
 `;
 

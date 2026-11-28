@@ -105,7 +105,7 @@ describe("question of the day calendar", () => {
 describe("question of the day items", () => {
   it("does not make the correct option the longest choice on most items", () => {
     const items = allItems();
-    expect(items).toHaveLength(42);
+    expect(items).toHaveLength(49);
     const longestIds = items
       .filter((item) => {
         const lengths = item.options.map((option) => option.length);
@@ -174,6 +174,10 @@ describe("question of the day items", () => {
     expect(dated).not.toContain("todayIsoUtc");
     expect(today).toContain("toPublicQotd(");
     expect(today).toContain("todayIsoCentral(");
+    expect(today).toContain("qotdExamMetaDescription(");
+    expect(today).toContain("publicWebPageJsonLd(");
+    expect(today).not.toContain("qotdMetaDescription(");
+    expect(today).not.toContain("item.stem");
     expect(hub).toContain("todayIsoCentral(");
     expect(hub).not.toContain("item.correct");
     expect(hub).not.toContain(".rationale");

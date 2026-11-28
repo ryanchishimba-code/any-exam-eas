@@ -810,7 +810,7 @@ async function loadStudentDashboardData(
     LIMIT 20
   `);
 
-  const [profile, trend, masteries, recentExamRows, finishedExamSessions, attemptGroups, subjectAttemptGroups, spacedReview, formatPractice, savedFormatSets] =
+  const [profile, trend, masteries, recentExamRows, finishedExamSessions, subjectAttemptGroups, spacedReview, formatPractice, savedFormatSets] =
     await Promise.all([
     // Slim profile — avoid loading every ConceptMastery row (weak topics load below).
     prisma.learningProfile.findUnique({
@@ -839,11 +839,8 @@ async function loadStudentDashboardData(
     }),
     recentExamsPromise,
     finishedExamSessionsPromise,
-    prisma.questionAttempt.groupBy({
-      by: ["correct"],
-      where: { userId, ...attemptScope },
-      _count: { _all: true },
-    }),
+    // Subject groups already split by correct. A second groupBy of the same
+    // rows only occupied another pooled connection.
     prisma.questionAttempt.groupBy({
       by: ["fieldId", "subjectId", "correct"],
       where: { userId, ...attemptScope },
@@ -858,7 +855,7 @@ async function loadStudentDashboardData(
       : loadSavedFormatSets(userId, fieldIds),
   ]);
 
-  const { totalAttempts, correctCount } = sumAttemptCounts(attemptGroups);
+  const { totalAttempts, correctCount } = sumAttemptCounts(subjectAttemptGroups);
 
   // Recent sessions live in ProgressRecord (no fieldId) → match through the
   // generated exam's field so a scoped view only shows the selected exam.

@@ -1,22 +1,14 @@
 import { NextResponse } from "next/server";
 import { userHasFeature } from "@/lib/access-control";
 import { loadAnalyticsSnapshot } from "@/lib/learning/analytics-snapshot";
+import { isExamSlug as isCatalogExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const EXAM_SLUGS = new Set<ExamSlug>([
-  "nclex",
-  "usmle",
-  "naplex",
-  "pance",
-  "aanp-fnp",
-  "npte-pt",
-]);
-
 function isExamSlug(value: string | null): value is ExamSlug {
-  return value != null && EXAM_SLUGS.has(value as ExamSlug);
+  return value != null && isCatalogExamSlug(value);
 }
 
 /** Analytics body. The page shell closes before this runs. */

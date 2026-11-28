@@ -224,7 +224,7 @@ export function nclexMetaTitle(): string {
 
 export function nclexMetaDescription(): string {
   return enforceMetaDescription(
-    "NCLEX-RN practice questions that match the current test plan, with Next Gen NCLEX case studies, explanations for every choice, and practice progress.",
+    "NCLEX-RN practice questions with a rationale for every choice, Next Gen NCLEX case studies and a plan built on the NCSBN test plan. Try free questions.",
     "/nclex"
   );
 }
@@ -509,7 +509,7 @@ function nclexStats(units: BoardQuestionUnits | null): { value: string; label: s
 }
 
 export function boardVideoNode(bite: BoardQuickBite | null, pagePath: string): Record<string, unknown> | null {
-  if (!bite) return null;
+  if (!bite?.uploadDate) return null;
   const node: Record<string, unknown> = {
     "@type": "VideoObject",
     name: bite.title,

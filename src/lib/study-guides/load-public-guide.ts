@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import {
   NPTE_PT_BODY_SYSTEMS,
@@ -8,15 +8,26 @@ import {
 import { readImageSize } from "@/lib/nclex-study-guide/image-dimensions";
 import { markdownToSimpleHtml } from "@/lib/nclex-study-guide/markdown";
 import { absoluteUrl, getSiteUrl } from "@/lib/seo";
-import { SCHEMA_BRAND_NAME } from "@/lib/seo/course-jsonld";
+import { publicLearningResourceNode } from "@/lib/seo/public-schema";
+import { organizationRef } from "@/lib/seo/brand-entity";
 import {
   PUBLIC_STUDY_GUIDES,
   USMLE_PUBLIC_STEPS,
-  type PublicStudyGuide,
   type PublicStudyGuideId,
 } from "@/lib/study-guides/public-catalog";
+import { presentGuideHtml } from "@/lib/study-guides/present-html";
+import { GUIDE_SEO, STEP_SEO } from "@/lib/study-guides/seo-copy";
 
 export type PublicGuideFaq = { question: string; answer: string };
+
+/**
+ * Manuscript bytes on one URL's source. NCLEX (537 KB) and NAPLEX (212 KB)
+ * were 1.33 MB and 1.04 MB of HTML. PANCE (152 KB) was 685 KB, under the line.
+ */
+export const PUBLIC_GUIDE_SPLIT_BYTES = 200_000;
+
+/** Visible guide HTML on one URL. Split pages stay under the size that passed 1 MB. */
+export const PUBLIC_GUIDE_BODY_BUDGET = 250_000;
 
 export type PublicGuideTocItem = { id: string; text: string };
 
@@ -27,6 +38,38 @@ export type LoadedPublicGuide = {
   toc: PublicGuideTocItem[];
   jsonLd: Record<string, unknown>;
 };
+
+export type PublicGuideChapter = {
+  slug: string;
+  title: string;
+  html: string;
+  excerpt: string;
+  words: number;
+};
+
+export type PublicGuideOutline = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  words: number;
+};
+
+export type UsmleHubCard = {
+  id: string;
+  href: string;
+  label: string;
+  summary: string;
+  chapters: { href: string; title: string }[];
+};
+
+export type PublishedGuide =
+  | { mode: "single"; page: LoadedPublicGuide }
+  | { mode: "chapters"; chapters: PublicGuideOutline[]; minutes: number }
+  | { mode: "hub"; cards: UsmleHubCard[]; minutes: number };
+
+export type PublishedStep =
+  | { mode: "single"; page: LoadedPublicGuide }
+  | { mode: "chapters"; chapters: PublicGuideOutline[]; minutes: number };
 
 function chapterFiles(dir: string, prefixes?: string[]): string[] {
   return readdirSync(dir)
@@ -103,9 +146,15 @@ function buildJsonLd(guide: { path: string; description: string; boardLabel: str
       headline: h1,
       description: guide.description,
       mainEntityOfPage: pageUrl,
-      author: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
-      publisher: { "@type": "Organization", name: SCHEMA_BRAND_NAME },
+      author: organizationRef(),
+      publisher: organizationRef(),
     },
+    publicLearningResourceNode({
+      name: h1,
+      description: guide.description,
+      path: guide.path,
+      learningResourceType: "Study guide",
+    }),
   ];
   if (faqs.length > 0) {
     graph.push({
@@ -120,16 +169,62 @@ function buildJsonLd(guide: { path: string; description: string; boardLabel: str
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
+function imageFileFor(src: string, visualsDir: string | null): string | null {
+  const fileName = src.split("/").pop();
+  if (!fileName) return null;
+  const step = /\/usmle-study-guide\/(step-[^/]+)\/visuals\//.exec(src)?.[1];
+  if (step) return path.join(process.cwd(), "public/usmle-study-guide", step, "visuals", fileName);
+  if (!visualsDir) return null;
+  return path.join(visualsDir, fileName);
+}
+
 function renderMarkdown(markdown: string, visualsPrefix: string, visualsDir: string | null): string {
   const rewritten = markdown.replace(/\]\(visuals\//g, `](${visualsPrefix}`);
   return markdownToSimpleHtml(rewritten, {
     imageSize: (src) => {
-      if (!visualsDir) return undefined;
-      const fileName = src.split("/").pop();
-      if (!fileName) return undefined;
-      return readImageSize(path.join(visualsDir, fileName));
+      const file = imageFileFor(src, visualsDir);
+      return file ? readImageSize(file) : undefined;
     },
   });
+}
+
+function chapterTitle(markdown: string, fileName: string): string {
+  const heading = /^#\s+(.+)$/m.exec(markdown)?.[1]?.trim() ?? fileName.replace(/\.md$/, "");
+  return heading
+    .replace(/^Chapter\s+\d+\s*[—–:-]\s*/i, "")
+    .replace(/\s*\(Part\s+[IVX0-9]+\)\s*/gi, " ")
+    .replace(/\s*\(plain english\)\s*/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function excerptFromMarkdown(markdown: string): string {
+  const paragraphs: string[] = [];
+  let buffer: string[] = [];
+  const flush = () => {
+    const text = buffer.join(" ").replace(/\s+/g, " ").trim();
+    buffer = [];
+    if (!text || text.startsWith("#") || text.startsWith(">") || text.startsWith("!") || text.startsWith("|")) {
+      return;
+    }
+    if (text.startsWith("<!--") || text === "---") return;
+    paragraphs.push(text.replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"));
+  };
+  for (const line of markdown.replace(/\r\n/g, "\n").split("\n")) {
+    if (!line.trim()) {
+      flush();
+      continue;
+    }
+    if (/^(#|>|```)/.test(line.trim())) {
+      flush();
+      continue;
+    }
+    buffer.push(line.trim());
+  }
+  flush();
+  const text = paragraphs.find((paragraph) => paragraph.length > 40) ?? paragraphs[0] ?? "";
+  if (text.length <= 180) return text;
+  return `${text.slice(0, 177).replace(/\s+\S*$/, "")}…`;
 }
 
 /** Literal paths so the file tracer keeps each function off the rest of the repo. */
@@ -171,18 +266,95 @@ function guideVisualsDir(id: PublicStudyGuideId): string | null {
   }
 }
 
-function loadDirectories(guide: PublicStudyGuide): { markdown: string; faqMarkdown: string } {
-  const parts: string[] = [];
-  const faqParts: string[] = [];
-  for (const dir of guideContentDirs(guide.id)) {
-    const files = chapterFiles(dir, guide.filePrefixes);
-    for (const name of files) {
+const boardOutlineCache = new Map<PublicStudyGuideId, PublicGuideOutline[]>();
+const stepOutlineCache = new Map<string, PublicGuideOutline[]>();
+
+function outlineFromMarkdown(name: string, markdown: string): PublicGuideOutline {
+  return {
+    slug: name.replace(/\.md$/, ""),
+    title: chapterTitle(markdown, name),
+    excerpt: excerptFromMarkdown(markdown),
+    words: markdown.split(/\s+/).filter(Boolean).length,
+  };
+}
+
+function outlineFromDir(dir: string): PublicGuideOutline[] {
+  return chapterFiles(dir).map((name) => outlineFromMarkdown(name, readFileSync(path.join(dir, name), "utf8")));
+}
+
+function directoryBytes(dir: string): number {
+  return chapterFiles(dir).reduce((total, name) => total + statSync(path.join(dir, name)).size, 0);
+}
+
+function boardOutline(id: PublicStudyGuideId): PublicGuideOutline[] {
+  const cached = boardOutlineCache.get(id);
+  if (cached) return cached;
+  const outline = guideContentDirs(id).flatMap((dir) => outlineFromDir(dir));
+  boardOutlineCache.set(id, outline);
+  return outline;
+}
+
+function boardShouldSplit(id: PublicStudyGuideId): boolean {
+  return guideContentDirs(id).reduce((total, dir) => total + directoryBytes(dir), 0) > PUBLIC_GUIDE_SPLIT_BYTES;
+}
+
+function stepContentDir(stepId: string): string | null {
+  if (stepId === "step-1") return path.join(process.cwd(), "content/usmle-study-guide/step-1");
+  if (stepId === "step-2-ck") return path.join(process.cwd(), "content/usmle-study-guide/step-2-ck");
+  if (stepId === "step-3") return path.join(process.cwd(), "content/usmle-study-guide/step-3");
+  return null;
+}
+
+function stepOutline(stepId: string): PublicGuideOutline[] | null {
+  const cached = stepOutlineCache.get(stepId);
+  if (cached) return cached;
+  const dir = stepContentDir(stepId);
+  if (!dir) return null;
+  const outline = outlineFromDir(dir);
+  stepOutlineCache.set(stepId, outline);
+  return outline;
+}
+
+function stepShouldSplit(stepId: string): boolean {
+  const dir = stepContentDir(stepId);
+  if (!dir) return false;
+  return directoryBytes(dir) > PUBLIC_GUIDE_SPLIT_BYTES;
+}
+
+function renderNamedChapter(
+  dir: string,
+  slug: string,
+  visualsPrefix: string,
+  visualsDir: string | null
+): PublicGuideChapter | null {
+  const name = `${slug}.md`;
+  const file = path.join(dir, name);
+  if (!chapterFiles(dir).includes(name)) return null;
+  const markdown = readFileSync(file, "utf8");
+  const outline = outlineFromMarkdown(name, markdown);
+  return {
+    ...outline,
+    html: renderMarkdown(markdown, visualsPrefix, visualsDir),
+  };
+}
+
+function minutesFor(chapters: PublicGuideOutline[]): number {
+  const words = chapters.reduce((total, chapter) => total + chapter.words, 0);
+  return Math.max(1, Math.round(words / 200));
+}
+
+function renderedChapters(id: PublicStudyGuideId): PublicGuideChapter[] {
+  const guide = PUBLIC_STUDY_GUIDES[id];
+  const visualsDir = guideVisualsDir(id);
+  return guideContentDirs(id).flatMap((dir) =>
+    chapterFiles(dir).map((name) => {
       const markdown = readFileSync(path.join(dir, name), "utf8");
-      parts.push(markdown);
-      if (name.includes("faq")) faqParts.push(markdown);
-    }
-  }
-  return { markdown: parts.join("\n\n"), faqMarkdown: faqParts.join("\n\n") || parts.join("\n\n") };
+      return {
+        ...outlineFromMarkdown(name, markdown),
+        html: renderMarkdown(markdown, guide.visualsPublicPrefix, visualsDir),
+      };
+    })
+  );
 }
 
 function npteMarkdown(): string {
@@ -237,12 +409,25 @@ No. This page is public. A 5-day free trial, with no card required, opens the qu
 
 export function loadPublicStudyGuide(id: PublicStudyGuideId): LoadedPublicGuide {
   const guide = PUBLIC_STUDY_GUIDES[id];
+  if (id === "usmle") {
+    const html = singleH1(
+      renderMarkdown(
+        "# USMLE study guide\n\nStep 1, Step 2 Clinical Knowledge, and Step 3 each open as their own free book. No login is required.",
+        guide.visualsPublicPrefix,
+        null
+      )
+    );
+    const h1 = decodeVisible(/<h1[^>]*>(.*?)<\/h1>/.exec(html)?.[1] ?? guide.title);
+    return { html, h1, faqs: [], toc: [], jsonLd: buildJsonLd(guide, h1, []) };
+  }
   const visualsDir = guideVisualsDir(id);
-  const source = guide.contentDirs.length
-    ? loadDirectories(guide)
-    : { markdown: npteMarkdown(), faqMarkdown: npteMarkdown() };
-  const faqs = parseFaqs(source.faqMarkdown).slice(0, 12);
-  const html = singleH1(renderMarkdown(source.markdown, guide.visualsPublicPrefix, visualsDir));
+  const rendered = guide.contentDirs.length ? renderedChapters(id) : [];
+  const faqs = guide.contentDirs.length
+    ? []
+    : parseFaqs(npteMarkdown()).slice(0, 12);
+  const html = guide.contentDirs.length
+    ? singleH1(rendered.map((chapter) => chapter.html).join("\n"))
+    : singleH1(renderMarkdown(npteMarkdown(), guide.visualsPublicPrefix, visualsDir));
   const h1 = decodeVisible(/<h1[^>]*>(.*?)<\/h1>/.exec(html)?.[1] ?? guide.title);
   return {
     html,
@@ -253,35 +438,192 @@ export function loadPublicStudyGuide(id: PublicStudyGuideId): LoadedPublicGuide 
   };
 }
 
+export function publishGuide(id: PublicStudyGuideId): PublishedGuide {
+  if (id === "usmle") {
+    const hub = loadUsmleHub();
+    return { mode: "hub", cards: hub.cards, minutes: hub.minutes };
+  }
+  const guide = PUBLIC_STUDY_GUIDES[id];
+  if (!guide.contentDirs.length || !boardShouldSplit(id)) {
+    return { mode: "single", page: loadPublicStudyGuide(id) };
+  }
+  const chapters = boardOutline(id);
+  return { mode: "chapters", chapters, minutes: minutesFor(chapters) };
+}
+
+export function loadUsmleHub(): { cards: UsmleHubCard[]; minutes: number } {
+  let words = 0;
+  const cards = USMLE_PUBLIC_STEPS.map((step) => {
+    const chapters = stepOutline(step.id) ?? [];
+    words += chapters.reduce((total, chapter) => total + chapter.words, 0);
+    const split = stepShouldSplit(step.id);
+    return {
+      id: step.id,
+      href: step.path,
+      label: step.label,
+      summary: STEP_SEO[step.id]?.answers[0]?.answer ?? step.description,
+      chapters: split
+        ? chapters.map((chapter) => ({ href: `${step.path}/${chapter.slug}`, title: chapter.title }))
+        : [],
+    };
+  });
+  return { cards, minutes: Math.max(1, Math.round(words / 200)) };
+}
+
+export function publishUsmleStep(stepId: string): PublishedStep | null {
+  const chapters = stepOutline(stepId);
+  if (!chapters) return null;
+  if (stepShouldSplit(stepId)) {
+    return { mode: "chapters", chapters, minutes: minutesFor(chapters) };
+  }
+  const page = loadUsmleStepGuide(stepId);
+  if (!page) return null;
+  return { mode: "single", page };
+}
+
+export function boardChapterAt(id: PublicStudyGuideId, slug: string) {
+  const published = publishGuide(id);
+  if (published.mode !== "chapters") return null;
+  const index = published.chapters.findIndex((chapter) => chapter.slug === slug);
+  const guide = PUBLIC_STUDY_GUIDES[id];
+  const dir = guideContentDirs(id)[0];
+  if (index < 0 || !dir) return null;
+  const chapter = renderNamedChapter(dir, slug, guide.visualsPublicPrefix, guideVisualsDir(id));
+  if (!chapter) return null;
+  return {
+    chapter,
+    prev: published.chapters[index - 1] ?? null,
+    next: published.chapters[index + 1] ?? null,
+  };
+}
+
+export function usmleChapterAt(stepId: string, slug: string) {
+  const published = publishUsmleStep(stepId);
+  const dir = stepContentDir(stepId);
+  if (!published || published.mode !== "chapters" || !dir) return null;
+  const index = published.chapters.findIndex((chapter) => chapter.slug === slug);
+  if (index < 0) return null;
+  const chapter = renderNamedChapter(
+    dir,
+    slug,
+    `/usmle-study-guide/${stepId}/visuals/`,
+    path.join(process.cwd(), "public/usmle-study-guide", stepId, "visuals")
+  );
+  if (!chapter) return null;
+  return {
+    chapter,
+    prev: published.chapters[index - 1] ?? null,
+    next: published.chapters[index + 1] ?? null,
+  };
+}
+
+export type GuideSizeRow = { path: string; bodyBytes: number; kind: "single" | "index" | "chapter" | "hub" };
+
+/** Body HTML each public URL actually emits. Chapter indexes count titles and excerpts, not the books. */
+export function guideSizeReport(): GuideSizeRow[] {
+  const rows: GuideSizeRow[] = [];
+  for (const id of Object.keys(PUBLIC_STUDY_GUIDES) as PublicStudyGuideId[]) {
+    const guide = PUBLIC_STUDY_GUIDES[id];
+    const published = publishGuide(id);
+    const query = GUIDE_SEO[id]?.query ?? guide.title;
+    if (published.mode === "hub") {
+      const bytes = published.cards.reduce(
+        (total, card) =>
+          total + card.summary.length + card.chapters.reduce((sum, chapter) => sum + chapter.title.length, 0),
+        0
+      );
+      rows.push({ path: guide.path, bodyBytes: bytes, kind: "hub" });
+      continue;
+    }
+    if (published.mode === "single") {
+      rows.push({
+        path: guide.path,
+        bodyBytes: presentGuideHtml(published.page.html, query).length,
+        kind: "single",
+      });
+      continue;
+    }
+    rows.push({
+      path: guide.path,
+      bodyBytes: published.chapters.reduce((total, chapter) => total + chapter.title.length + chapter.excerpt.length, 0),
+      kind: "index",
+    });
+    for (const chapter of published.chapters) {
+      const located = boardChapterAt(id, chapter.slug);
+      rows.push({
+        path: `${guide.path}/${chapter.slug}`,
+        bodyBytes: located ? presentGuideHtml(located.chapter.html, query).length : 0,
+        kind: "chapter",
+      });
+    }
+  }
+  for (const step of USMLE_PUBLIC_STEPS) {
+    const published = publishUsmleStep(step.id);
+    if (!published) continue;
+    const query = STEP_SEO[step.id]?.query ?? step.title;
+    if (published.mode === "single") {
+      rows.push({ path: step.path, bodyBytes: presentGuideHtml(published.page.html, query).length, kind: "single" });
+      continue;
+    }
+    rows.push({
+      path: step.path,
+      bodyBytes: published.chapters.reduce((total, chapter) => total + chapter.title.length + chapter.excerpt.length, 0),
+      kind: "index",
+    });
+    for (const chapter of published.chapters) {
+      const located = usmleChapterAt(step.id, chapter.slug);
+      rows.push({
+        path: `${step.path}/${chapter.slug}`,
+        bodyBytes: located ? presentGuideHtml(located.chapter.html, query).length : 0,
+        kind: "chapter",
+      });
+    }
+  }
+  return rows;
+}
+
 export function loadUsmleStepGuide(stepId: string): LoadedPublicGuide | null {
   const step = USMLE_PUBLIC_STEPS.find((item) => item.id === stepId);
-  if (!step) return null;
-  const parent = PUBLIC_STUDY_GUIDES.usmle;
-  const dir =
-    stepId === "step-1"
-      ? path.join(process.cwd(), "content/usmle-study-guide/step-1")
-      : stepId === "step-2-ck"
-        ? path.join(process.cwd(), "content/usmle-study-guide/step-2-ck")
-        : stepId === "step-3"
-          ? path.join(process.cwd(), "content/usmle-study-guide/step-3")
-          : null;
-  if (!dir) return null;
-  const files = chapterFiles(dir);
-  const parts = files.map((name) => readFileSync(path.join(dir, name), "utf8"));
-  const faqMarkdown = parts.find((_, index) => files[index]?.includes("faq")) ?? parts.join("\n\n");
-  const visualsDir = path.join(process.cwd(), "public/usmle-study-guide/visuals");
-  const html = singleH1(renderMarkdown(parts.join("\n\n"), parent.visualsPublicPrefix, visualsDir));
+  const dir = stepContentDir(stepId);
+  if (!step || !dir) return null;
+  const visualsPrefix = `/usmle-study-guide/${stepId}/visuals/`;
+  const visualsDir = path.join(process.cwd(), "public/usmle-study-guide", stepId, "visuals");
+  const html = singleH1(
+    chapterFiles(dir)
+      .map((name) => renderMarkdown(readFileSync(path.join(dir, name), "utf8"), visualsPrefix, visualsDir))
+      .join("\n")
+  );
   const h1 = decodeVisible(/<h1[^>]*>(.*?)<\/h1>/.exec(html)?.[1] ?? step.title);
-  const faqs = parseFaqs(faqMarkdown).slice(0, 12);
   return {
     html,
     h1,
-    faqs,
+    faqs: [],
     toc: tocFromHtml(html).slice(0, 24),
     jsonLd: buildJsonLd(
       { path: step.path, description: step.description, boardLabel: "physician boards" },
       h1,
-      faqs
+      []
     ),
   };
+}
+
+/** Chapter URLs for guides whose single page would pass 1 MB. Paths stay in the sitemap. */
+export function studyGuideChapterPaths(): { path: string; contentDir: string }[] {
+  const paths: { path: string; contentDir: string }[] = [];
+  for (const id of ["nclex", "naplex", "pance", "aanp-fnp"] as const) {
+    if (!boardShouldSplit(id)) continue;
+    const guide = PUBLIC_STUDY_GUIDES[id];
+    const contentDir = guide.contentDirs[0];
+    if (!contentDir) continue;
+    for (const chapter of boardOutline(id)) {
+      paths.push({ path: `${guide.path}/${chapter.slug}`, contentDir });
+    }
+  }
+  for (const step of USMLE_PUBLIC_STEPS) {
+    if (!stepShouldSplit(step.id)) continue;
+    for (const chapter of stepOutline(step.id) ?? []) {
+      paths.push({ path: `${step.path}/${chapter.slug}`, contentDir: step.contentDir });
+    }
+  }
+  return paths;
 }

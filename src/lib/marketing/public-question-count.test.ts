@@ -109,10 +109,12 @@ describe("homepage counts use the served gate", () => {
   });
 });
 
-describe("pricing metadata uses the live count", () => {
-  it("puts the passed label in the description and does not keep 28,400+", () => {
+describe("pricing metadata states the plan, not a question total", () => {
+  it("uses the live price and trial and does not keep a bank-size slogan", () => {
     const description = String(buildPricingMetadata("34,500+").description);
-    expect(description).toContain("34,500+");
+    expect(description).toContain("$27.99/mo");
+    expect(description).toContain("5-day free trial");
+    expect(description).not.toContain("34,500+");
     expect(description).not.toContain("28,400");
     const source = readFileSync("src/app/(marketing)/pricing/page.tsx", "utf8");
     expect(source).toContain("loadPublicQuestionCounts");

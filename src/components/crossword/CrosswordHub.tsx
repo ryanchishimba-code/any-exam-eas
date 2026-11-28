@@ -30,6 +30,9 @@ export function CrosswordHub() {
         {formatCrosswordDateLong(today)}. One new puzzle for each board, shared by everyone until midnight,
         America/Chicago. {CROSSWORD_PRACTICE_NOTE}
       </p>
+      <p className="xw-note">
+        Prefer a one-word case? Play <Link href="/daily-vitals">Daily Vitals</Link>.
+      </p>
       <div className="xw-hub-grid">
         {CROSSWORD_BOARDS.map((board) => {
           const profile = boardProfile(board);

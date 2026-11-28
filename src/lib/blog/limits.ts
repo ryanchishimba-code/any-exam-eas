@@ -1,5 +1,5 @@
 /** Soft product cap — keep the public blog focused and easy to scan. */
-export const MAX_BLOG_POSTS = 4;
+export const MAX_BLOG_POSTS = 20;
 
 export class BlogPostLimitError extends Error {
   readonly code = "BLOG_POST_LIMIT" as const;

@@ -183,6 +183,18 @@ const EXAM_CONTEXT: Record<
     ],
     practiceTopicSlug: "professional-responsibilities",
   },
+  mpje: {
+    overview: "Read prescription directions against federal and state dispensing rules.",
+    summary:
+      "MPJE items use sig codes to test whether a prescription is complete and safe to dispense. A missing route, frequency, or indication is a reason to clarify, not to guess.",
+    mustKnowFacts: [
+      "An incomplete sig is not a valid order until the prescriber clarifies it",
+      "Do not use error-prone abbreviations such as QD, QOD, or U",
+    ],
+    pearls: ["Plain-language directions belong on the label the patient takes home."],
+    pitfalls: ["Treating a C-II 'refill' written in the sig as a legal refill."],
+    practiceTopicSlug: "dispensing-procedures",
+  },
 };
 
 /** Shared high-yield sig-code topic input — merged into each exam's topic seeds. */

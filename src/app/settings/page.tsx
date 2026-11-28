@@ -12,7 +12,7 @@ import { getUserAccess } from "@/lib/access-control";
 import { isAccountDisabled } from "@/lib/account-security";
 
 export const metadata = {
-  title: "Settings — AnyExamEasy",
+  title: { absolute: "Settings — AnyExamEasy" },
   description: "Manage your exam preference and subscription.",
   robots: { index: false, follow: false },
 };

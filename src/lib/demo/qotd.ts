@@ -39,6 +39,7 @@ function accent(exam: ExamSlug): string {
     pance: EXAM_ACCENTS.pance,
     "aanp-fnp": EXAM_ACCENTS.aanpFnp,
     "npte-pt": EXAM_ACCENTS.nptePt,
+    mpje: "#b45309",
   };
   return map[exam];
 }
@@ -622,6 +623,99 @@ export const QOTD_BY_EXAM: Record<ExamSlug, QotdItem[]> = {
       ],
       3,
       "Neglect rehab uses structured cues and environmental setup to promote attention toward the neglected side."
+    ),
+  ],
+  mpje: [
+    item(
+      "mpje",
+      "01",
+      "A prescription for oxycodone tablets has one refill written on it. What may the pharmacy do?",
+      [
+        "Fill it once and honor the refill in 30 days",
+        "Fill it once; Schedule II prescriptions are not refilled",
+        "Transfer the refill to another pharmacy",
+        "Convert the refill into a 90-day supply",
+      ],
+      1,
+      "Schedule II controlled substances are not refilled. A new prescription is required."
+    ),
+    item(
+      "mpje",
+      "02",
+      "A patient asks the technician to skip the iPLEDGE steps for isotretinoin because she is in a hurry. What is required?",
+      [
+        "Dispense now and complete the program tomorrow",
+        "Complete the REMS steps before the medication is dispensed",
+        "Substitute a different retinoid that has no program",
+        "Let the technician waive counseling and the program",
+      ],
+      1,
+      "Isotretinoin REMS steps are completed before dispensing. A technician cannot waive them."
+    ),
+    item(
+      "mpje",
+      "03",
+      "State law requires a longer record retention than the federal rule. Which period does the pharmacy follow?",
+      [
+        "The shorter federal period only",
+        "The longer state period",
+        "Whichever the chain's policy names",
+        "Neither, if the prescription was electronic",
+      ],
+      1,
+      "When state and federal requirements differ, the pharmacy follows the stricter rule."
+    ),
+    item(
+      "mpje",
+      "04",
+      "Who may provide the offer to counsel on a new prescription?",
+      [
+        "Any cashier at pickup",
+        "The pharmacist, or someone the state authorizes under pharmacist supervision",
+        "The delivery driver only",
+        "The patient, by signing a blank form at drop-off",
+      ],
+      1,
+      "Counseling is a pharmacist responsibility. A blank waiver at drop-off is not the offer to counsel."
+    ),
+    item(
+      "mpje",
+      "05",
+      "A compounded nonsterile preparation is already in the patient's bag. The BUD was never assigned. What is the correct step?",
+      [
+        "Write a BUD on the label now and release the bag",
+        "Do not dispense it until a BUD is assigned from the formulation record",
+        "Use the manufacturer's expiration of an ingredient",
+        "Label it with the prescription's expiration date",
+      ],
+      1,
+      "A beyond-use date is assigned before dispensing. It is not added after the preparation is released."
+    ),
+    item(
+      "mpje",
+      "06",
+      "The PDMP shows multiple overlapping opioid prescriptions from different prescribers. What is the pharmacist's duty?",
+      [
+        "Fill it because each prescription is signed",
+        "Evaluate the red flag before dispensing, and document the decision",
+        "Transfer every prescription to another pharmacy",
+        "Ask the technician to override the alert",
+      ],
+      1,
+      "Corresponding responsibility means a red-flag pattern is evaluated before the fill, not ignored."
+    ),
+    item(
+      "mpje",
+      "07",
+      "A neighbor asks what medication the last patient picked up. What may the staff say?",
+      [
+        "The drug name, because the neighbor is a regular customer",
+        "Nothing about that patient's medication",
+        "The drug name if the neighbor promises not to repeat it",
+        "The cash price only",
+      ],
+      1,
+      "HIPAA does not allow disclosing another patient's medication to a neighbor."
     ),
   ],
 };

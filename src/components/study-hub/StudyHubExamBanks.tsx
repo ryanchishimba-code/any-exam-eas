@@ -31,7 +31,11 @@ export function StudyHubExamBanks() {
           return (
             <Link
               key={exam.slug}
-              href={examHref(exam.slug)}
+              href={
+                exam.slug === "mpje"
+                  ? "/question-bank?field=mpje&mode=bank"
+                  : examHref(exam.slug)
+              }
               className={cn(
                 "group relative flex flex-col overflow-hidden rounded-2xl border bg-gradient-to-br p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md",
                 exam.accentClass

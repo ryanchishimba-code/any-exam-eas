@@ -34,19 +34,14 @@ export type SubjectCountsPayload = {
   standaloneNgn: number;
 };
 
-/** Server-side serve-ready counts for the question bank topic picker. */
-export async function loadSubjectCountsForUser(
-  userId: string,
-  fieldParam: string
+/**
+ * Serve-ready counts for a field the page already resolved.
+ * Skips a second preference read. Callers that have not checked the board
+ * use loadSubjectCountsForUser.
+ */
+export async function loadSubjectCountsForField(
+  fieldId: string
 ): Promise<SubjectCountsPayload | null> {
-  const access = await withDbRetry(
-    () => resolveQuestionBankReadAccess(userId, fieldParam),
-    "qb-field-access"
-  );
-  if (!access.ok) return null;
-
-  const fieldId = access.fieldId;
-
   try {
     const fromInventory = await getScoredFieldInventory(fieldId);
     if (fromInventory) {
@@ -105,6 +100,19 @@ export async function loadSubjectCountsForUser(
     caseItems: 0,
     standaloneNgn: 0,
   };
+}
+
+/** Server-side serve-ready counts for the question bank topic picker. */
+export async function loadSubjectCountsForUser(
+  userId: string,
+  fieldParam: string
+): Promise<SubjectCountsPayload | null> {
+  const access = await withDbRetry(
+    () => resolveQuestionBankReadAccess(userId, fieldParam),
+    "qb-field-access"
+  );
+  if (!access.ok) return null;
+  return loadSubjectCountsForField(access.fieldId);
 }
 
 export type TopicPracticeInventory = {

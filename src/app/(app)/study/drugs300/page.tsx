@@ -2,11 +2,12 @@ import dynamic from "next/dynamic";
 import { getCachedSession } from "@/lib/auth/session";
 import { GuestTrialBanner } from "@/components/marketing/GuestTrialBanner";
 import { DrugReviewStudioSkeleton } from "@/components/study/DrugReviewStudioSkeleton";
+import { DrugCatalogIndex } from "@/components/study/DrugCatalogIndex";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { safetyPathLabel } from "@/lib/drugs300/safety-path";
 import { studyUi } from "@/lib/study/study-ui";
-import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { buildLearningResourceJsonLd } from "@/lib/seo/learning-resource-jsonld";
 import {
   DRUGS_PAGE_DESCRIPTION,
@@ -58,6 +59,7 @@ export default async function Drugs300Page({
       </header>
       {guestPreview ? <GuestTrialBanner className="mt-4" /> : null}
       <DrugReviewStudio guestPreview={guestPreview} />
+      <DrugCatalogIndex />
     </div>
   );
 }

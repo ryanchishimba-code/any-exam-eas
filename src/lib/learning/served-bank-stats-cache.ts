@@ -96,23 +96,33 @@ export async function loadPracticeBankStats(fieldId: string): Promise<ServedBank
   });
 }
 
+const practiceBankInflight = new Map<string, Promise<ServedBankStats | null>>();
+
 export async function getCachedPracticeBankStats(fieldId: string): Promise<ServedBankStats | null> {
   const id = fieldId.trim();
   if (!id || !getExamBlueprint(id)) return null;
-  try {
-    return await unstable_cache(
-      () => loadPracticeBankStats(id),
-      [PRACTICE_BANK_STATS_CACHE_KEY, id],
-      {
-        revalidate: PRACTICE_BANK_STATS_REVALIDATE_SECONDS,
-        tags: [ACTIVE_INVENTORY_CACHE_TAG],
-      }
-    )();
-  } catch (error) {
-    console.warn(
-      "[practice-bank] served snapshot unavailable:",
-      error instanceof Error ? error.message : error
-    );
-    return null;
-  }
+  const existing = practiceBankInflight.get(id);
+  if (existing) return existing;
+  const pending = (async () => {
+    try {
+      return await unstable_cache(
+        () => loadPracticeBankStats(id),
+        [PRACTICE_BANK_STATS_CACHE_KEY, id],
+        {
+          revalidate: PRACTICE_BANK_STATS_REVALIDATE_SECONDS,
+          tags: [ACTIVE_INVENTORY_CACHE_TAG],
+        }
+      )();
+    } catch (error) {
+      console.warn(
+        "[practice-bank] served snapshot unavailable:",
+        error instanceof Error ? error.message : error
+      );
+      return null;
+    }
+  })().finally(() => {
+    practiceBankInflight.delete(id);
+  });
+  practiceBankInflight.set(id, pending);
+  return pending;
 }
