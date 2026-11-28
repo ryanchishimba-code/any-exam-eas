@@ -1,0 +1,287 @@
+{
+  "episode": "ep50-floor-to-icu",
+  "title": "When the Floor Patient Needs the ICU",
+  "video": "quick-bites-usmle-ep50-floor-to-icu-web.mp4",
+  "questions": [
+    {
+      "id": "ep50-floor-to-icu-q01",
+      "type": "single_best_answer",
+      "stem": "When the person on the ward gets worse, you:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stop advancing simulated time"
+        },
+        {
+          "id": "B",
+          "text": "Keep rolling to the next lab"
+        },
+        {
+          "id": "C",
+          "text": "End the case immediately"
+        },
+        {
+          "id": "D",
+          "text": "Leave them in place while time runs"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Read the update before you coast forward.",
+      "videoTimestamp": "0:06"
+    },
+    {
+      "id": "ep50-floor-to-icu-q02",
+      "type": "single_best_answer",
+      "stem": "Moving them is done by:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Change Location, then confirm"
+        },
+        {
+          "id": "B",
+          "text": "A progress note"
+        },
+        {
+          "id": "C",
+          "text": "The lab tab"
+        },
+        {
+          "id": "D",
+          "text": "After the case-end screen"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "You cannot change location after the case-end screen.",
+      "videoTimestamp": "0:14"
+    },
+    {
+      "id": "ep50-floor-to-icu-q03",
+      "type": "single_best_answer",
+      "stem": "After they arrive, new orders go:",
+      "options": [
+        {
+          "id": "A",
+          "text": "On the order sheet"
+        },
+        {
+          "id": "B",
+          "text": "Only in the note"
+        },
+        {
+          "id": "C",
+          "text": "Nowhere"
+        },
+        {
+          "id": "D",
+          "text": "On the imaging tab"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Then advance time only as far as you mean to.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep50-floor-to-icu-q04",
+      "type": "single_best_answer",
+      "stem": "This episode does not reteach:",
+      "options": [
+        {
+          "id": "A",
+          "text": "The sepsis fluid or antibiotic doses"
+        },
+        {
+          "id": "B",
+          "text": "Stopping the clock"
+        },
+        {
+          "id": "C",
+          "text": "Changing location"
+        },
+        {
+          "id": "D",
+          "text": "Writing orders after the move"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The infection doses are a different episode.",
+      "videoTimestamp": "0:30"
+    },
+    {
+      "id": "ep50-floor-to-icu-q05",
+      "type": "single_best_answer",
+      "stem": "Stopping time can:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Cancel a later appointment you had scheduled"
+        },
+        {
+          "id": "B",
+          "text": "Erase the chart"
+        },
+        {
+          "id": "C",
+          "text": "Prevent any new order"
+        },
+        {
+          "id": "D",
+          "text": "End the exam"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Then you schedule the move.",
+      "videoTimestamp": "0:49"
+    },
+    {
+      "id": "ep50-floor-to-icu-q06",
+      "type": "single_best_answer",
+      "stem": "You still manage:",
+      "options": [
+        {
+          "id": "A",
+          "text": "One person at a time"
+        },
+        {
+          "id": "B",
+          "text": "A whole ward at once"
+        },
+        {
+          "id": "C",
+          "text": "Only the clock"
+        },
+        {
+          "id": "D",
+          "text": "No orders"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Same simulation rule.",
+      "videoTimestamp": "0:39"
+    },
+    {
+      "id": "ep50-floor-to-icu-q07",
+      "type": "single_best_answer",
+      "stem": "Labs already ordered when they crash should:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Not keep you from moving them"
+        },
+        {
+          "id": "B",
+          "text": "Be the only action"
+        },
+        {
+          "id": "C",
+          "text": "Replace the location change"
+        },
+        {
+          "id": "D",
+          "text": "Be ignored forever"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Do not coast to the next result.",
+      "videoTimestamp": "0:59"
+    },
+    {
+      "id": "ep50-floor-to-icu-q08",
+      "type": "single_best_answer",
+      "stem": "Confirm the move:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Before you treat the new place as current"
+        },
+        {
+          "id": "B",
+          "text": "After the case ends"
+        },
+        {
+          "id": "C",
+          "text": "Never"
+        },
+        {
+          "id": "D",
+          "text": "Only in the note"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "The screen then says they have arrived.",
+      "videoTimestamp": "0:14"
+    },
+    {
+      "id": "ep50-floor-to-icu-q09",
+      "type": "single_best_answer",
+      "stem": "Advance the clock after the move:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only on purpose, to the result you need"
+        },
+        {
+          "id": "B",
+          "text": "As far as it will go"
+        },
+        {
+          "id": "C",
+          "text": "Not at all, ever"
+        },
+        {
+          "id": "D",
+          "text": "Before you write orders and then never again"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Orders still need the clock to happen.",
+      "videoTimestamp": "0:22"
+    },
+    {
+      "id": "ep50-floor-to-icu-q10",
+      "type": "single_best_answer",
+      "stem": "The example of a worsening infection is:",
+      "options": [
+        {
+          "id": "A",
+          "text": "Only the frame for the move, not a second treatment bundle"
+        },
+        {
+          "id": "B",
+          "text": "A full reteach of the first hour"
+        },
+        {
+          "id": "C",
+          "text": "A reason to stay on the ward"
+        },
+        {
+          "id": "D",
+          "text": "A lipid target"
+        }
+      ],
+      "keys": [
+        "A"
+      ],
+      "explanation": "Location and clock are the lesson.",
+      "videoTimestamp": "0:30"
+    }
+  ]
+}

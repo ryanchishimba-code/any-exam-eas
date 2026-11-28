@@ -9,7 +9,7 @@ import {
 
 describe("USMLE video steps", () => {
   it("tags every episode, including Step 3", () => {
-    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(42);
+    expect(USMLE_VIDEO_QUICK_BITE_EPISODES).toHaveLength(53);
     expect(USMLE_VIDEO_QUICK_BITE_EPISODES.filter((episode) => episode.held !== true)).toHaveLength(30);
     expect(USMLE_VIDEO_QUICK_BITE_EPISODES.every((episode) => episode.examStep)).toBe(true);
     expect(usmleVideoEpisodesForStep("step-1")).toHaveLength(18);

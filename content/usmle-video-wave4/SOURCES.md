@@ -58,3 +58,56 @@ Flag: 21 CFR 202.1 was not opened. No advertising-regulation sentence is spoken.
 2025 AHA/ACC high blood pressure guideline, top take-home messages. USPSTF aspirin recommendation, 26 April 2022.
 Spoken: goal under 130/80; stage 1 is 130–139 or 80–89; stage 2 is 140 or higher or 90 or higher; medicine plus lifestyle at 140/90 or higher; also at 130/80 or higher with clinical cardiovascular disease, prior stroke, diabetes, chronic kidney disease, or PREVENT risk of 7.5% or higher; if risk is under 7.5%, lifestyle for 3–6 months; stage 2 prefers two first-line drugs in one pill. Aspirin ages 40–59 with 10% or greater 10-year risk: individual decision, grade C; 81 mg a day is reasonable if started. Age 60 or older: do not start aspirin for primary prevention, grade D. Applies to people without known cardiovascular disease who are not at increased bleeding risk.
 Flag: the 2026 dyslipidemia guideline was not opened, so no lipid threshold is spoken. Pregnancy blood-pressure treatment is not taught.
+
+### 43. First Orders, Then Advance the Clock
+Official computer-based case simulation description and the Primum demonstration transcript.
+Spoken: one person at a time; orders only on the order sheet; the clerk uses the first three characters; interval history and examination advance the clock; results and treatment effects require you to advance simulated time; orders already present at Day 1 at 00:00 stay active unless canceled; change location before the case-end screen; stop the clock when an alert says the person is worse.
+Flag: no disease dose is spoken. The exam name is not spoken.
+
+### 44. The Vitamin You Give First, and a Feed You Start
+SCCM/ASPEN 2016 adult critically ill nutrition guideline, B1, B3, C1, C3, and G2. ASPEN 2020 refeeding consensus.
+Spoken: thiamine 100 mg before feeding or dextrose; enteral nutrition within 24 to 48 hours if the adult cannot eat (very low quality evidence); do not require bowel sounds; low risk (NRS 2002 of 3 or less, or NUTRIC of 5 or less) may skip specialized nutrition the first ICU week; high risk moves toward goal over 24 to 48 hours and should reach more than 80 percent of goal energy and protein within 48 to 72 hours; exclusive parenteral nutrition as soon as possible when the gut cannot be used and risk is high.
+
+### 45. After the Stroke, the Pill That Prevents the Next
+2021 AHA/ASA secondary stroke prevention guideline.
+Spoken: antiplatelet or anticoagulant for nearly all without a contraindication; do not combine them as a routine; dual antiplatelet therapy is not long term and is short term only for early minor stroke, high-risk transient symptoms, or severe symptomatic intracranial stenosis; atrial fibrillation usually gets anticoagulation; monitor the rhythm if no cause is found; stable outpatient blood pressure under 130/80; a higher pressure target may be appropriate for severe intracranial narrowing; atorvastatin 80 mg daily for atherosclerotic stroke without another statin reason; LDL under 70 mg/dL beat a target of 90 to 110. Those lipid trials do not apply to cardioembolic stroke with no atherosclerosis.
+Flag: this is not the acute thrombolysis clock.
+
+### 46. A Nodule in the Lung, and Oxygen You Send Home
+Fleischner Society 2017. ATS home oxygen guideline, 2020.
+Spoken: solid nodule under 6 mm at low risk needs no routine follow-up; high risk under 6 mm with suspicious shape or upper lobe may be scanned at 12 months, not sooner; 6 to 8 mm high risk at 6 to 12 months and again at 18 to 24 months; multiple nodules with one at least 6 mm at about 3 to 6 months; severe resting hypoxemia is saturation 88 percent or less or PaO2 55 mm Hg or less, or saturation 89 percent or PaO2 56 to 59 plus edema, hematocrit 55 percent or more, or a tall P wave; long-term oxygen at least 15 hours a day; moderate saturation 89 to 93 percent is a suggestion against long-term oxygen in COPD; severe exertional hypoxemia is a suggestion for ambulatory oxygen.
+
+### 47. The First Prenatal Visit, and a Shot You Must Not Miss
+ACOG Practice Bulletin 181. USPSTF Rh D screening.
+Spoken: ABO, Rh D, and antibody screen at the first visit; repeat the screen at 24 to 28 weeks unless the father is known Rh D negative; 300 micrograms at 28 weeks; that dose covers up to 30 mL of fetal whole blood or 15 mL of fetal red cells; another 300 micrograms within 72 hours if the baby is Rh D positive; do not add a routine second antenatal dose 12 weeks later; true sensitization is not routine prevention.
+
+### 48. A Breast Lump You Work Up Now
+ACR Appropriateness Criteria, Palpable Breast Masses, 2022 update.
+Spoken: age 40 or older, diagnostic mammography or tomosynthesis first; under 30, ultrasound first and cancer incidence under 1 percent; suspicious ultrasound goes on to mammography and image-guided biopsy; benign or negative ultrasound under 30 usually needs no further imaging; ages 30 to 39, ultrasound, mammography, or tomosynthesis are usually appropriate; both tests negative or benign with an exam that is not highly suspicious has a negative predictive value above 97 percent. A normal image does not erase a lump that feels wrong.
+Flag: screening start and stop ages are not spoken.
+
+### 49. An Error You Disclose, and a System You Fix
+AMA Code of Medical Ethics Opinion 8.6. Joint Commission Sentinel Event Policy.
+Spoken: disclose what happened, the potential harm, and what the person needs for future decisions; acknowledge it; explain prevention; transfer if trust is gone; encourage a colleague to disclose; a sentinel event reaches the person and causes death, severe harm, or permanent harm and is not mainly the natural illness; systematic analysis and a corrective plan; reporting to the Joint Commission is encouraged, not required; if reported, analysis and plan within 45 business days.
+
+### 50. When the Floor Patient Needs the ICU
+Same official case-simulation instructions as episode 43.
+Spoken: stop advancing time when the person worsens; change location and confirm before the case-end screen; then write orders on the sheet.
+Flag: sepsis fluid and antibiotic numbers are not repeated.
+
+### 51. The Next Hepatitis Decision, and a Polyp's Interval
+AASLD/IDSA chronic hepatitis B guideline, 4 November 2025. US Multi-Society Task Force 2020 post-polypectomy table.
+Spoken: immune-active treatment thresholds; ALT upper limits 35 for men and 25 for women; preferred entecavir, tenofovir disoproxil, or tenofovir alafenamide; avoid tenofovir disoproxil when bone or kidney disease matters; avoid entecavir in pregnancy; immune-tolerant shared decision under 40; inactive disease is not treated; polyp intervals 7 to 10 years, 3 to 5 years, 3 years, 1 year, and 6 months as in the table. Intervals assume a complete exam and an adequate prep, and they do not apply to inflammatory bowel disease, a hereditary syndrome, or personal colorectal cancer.
+
+### 52. A Blood Thinner You Adjust, and When You Stop
+CHEST 2021 VTE guideline. CHEST 2022 perioperative guideline.
+Spoken: 3-month treatment phase; direct oral anticoagulant over warfarin for that phase; stop after a major transient cause; suggest stopping after a minor transient cause; offer extended therapy for unprovoked or persistent risk and revisit yearly; reduced extended doses apixaban 2.5 mg twice daily or rivaroxaban 10 mg daily; hold most direct oral anticoagulants 1 to 2 days and dabigatran 1 to 4 days; suggest against heparin bridging; resume more than 24 hours later.
+Flag: most perioperative evidence is in atrial fibrillation, not in people treated for a clot.
+
+### 53. A Mood You Follow, and a Use Disorder You Treat
+VA/DoD major depression guideline 2022, already used for the 4-to-6-week maximized trial. ASAM National Practice Guideline 2020, buprenorphine recommendations.
+Spoken: do not call a maximized antidepressant a failure before 4 to 6 weeks; start buprenorphine at 2 to 4 mg only after objective withdrawal; increase by 2 to 8 mg; 16 mg a day or more may work better; evidence above 24 mg a day is limited; declining counseling does not delay the medicine.
+Flag: no follow-up calendar day was invented. Alcohol-withdrawal scores are not repeated.
+
+### Skipped
+Vaccines you catch up. The 2026 CDC childhood schedule is not a stable primary text that could be opened cleanly: a congressional summary says a January 2026 CDC schedule was stayed, and the American Academy of Pediatrics 2026 statement says it no longer endorses the CDC schedule. The catch-up page that opened is labeled 2025. No vaccine number was spoken.

@@ -13,6 +13,17 @@ const FILES = [
   "quick-bites-usmle-ep40-birth-control-and-bleeding",
   "quick-bites-usmle-ep41-abstract-and-advertisement",
   "quick-bites-usmle-ep42-pressure-and-aspirin",
+  "quick-bites-usmle-ep43-first-orders-clock",
+  "quick-bites-usmle-ep44-vitamin-and-feed",
+  "quick-bites-usmle-ep45-after-the-stroke",
+  "quick-bites-usmle-ep46-nodule-and-oxygen",
+  "quick-bites-usmle-ep47-first-prenatal-visit",
+  "quick-bites-usmle-ep48-breast-lump",
+  "quick-bites-usmle-ep49-disclose-the-error",
+  "quick-bites-usmle-ep50-floor-to-icu",
+  "quick-bites-usmle-ep51-hepatitis-and-polyp",
+  "quick-bites-usmle-ep52-blood-thinner",
+  "quick-bites-usmle-ep53-mood-and-use",
 ] as const;
 
 export function contentTypeForUsmleW4Path(pathname: string): string | null {
