@@ -10,22 +10,29 @@ const EXPLORE_LINKS = [
   { href: "/free-practice-questions", label: "Free practice questions" },
   { href: "/daily", label: "Question of the Day" },
   { href: "/crossword", label: "Daily crossword" },
-  { href: ROUTES.blog, label: "Blog" },
-  { href: ROUTES.freeGuides, label: "Free Guides" },
   { href: ROUTES.toolkit, label: "Toolkit" },
-  { href: ROUTES.compare, label: "Compare" },
+  { href: ROUTES.drugs300, label: "Top 500 drugs" },
+  { href: ROUTES.anatomy, label: "Anatomy" },
   { href: "/nclex-study-guide", label: "NCLEX study guide" },
   { href: "/naplex-study-guide", label: "NAPLEX study guide" },
   { href: "/pance-study-guide", label: "PANCE study guide" },
   { href: "/aanp-fnp-study-guide", label: "AANP FNP study guide" },
   { href: "/usmle-study-guide", label: "USMLE study guide" },
   { href: "/npte-pt-study-guide", label: "NPTE study guide" },
+  { href: ROUTES.freeGuides, label: "Free Guides" },
+  { href: ROUTES.compare, label: "Compare" },
+  { href: "/employers", label: "For programs" },
+  { href: ROUTES.blog, label: "Blog" },
   { href: ROUTES.pricing, label: "Pricing" },
   { href: ROUTES.faq, label: "FAQ" },
   { href: ROUTES.about, label: "About" },
   { href: ROUTES.howQuestionsAreReviewed, label: "How questions are reviewed" },
   { href: ROUTES.contact, label: "Contact" },
 ] as const;
+
+const EXAM_LINKS = MARKETING_BOARD_LINKS.map((link) =>
+  link.href === "/usmle" ? { href: link.href, label: "USMLE Steps 1–3" } : link
+);
 
 const LEGAL_LINKS = [
   { href: "/legal/terms", label: "Terms of Service" },
@@ -103,7 +110,7 @@ export async function Footer() {
               </a>
             </p>
           </div>
-          <FooterColumn title="Exams" label="Exam links" links={MARKETING_BOARD_LINKS} />
+          <FooterColumn title="Exams" label="Exam links" links={EXAM_LINKS} />
           <FooterColumn title="Explore" label="Explore links" links={EXPLORE_LINKS} />
           <FooterColumn title="Account" label="Account links" links={accountLinks} />
           <FooterColumn title="Legal" label="Legal links" links={LEGAL_LINKS} />

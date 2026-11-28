@@ -1,0 +1,44 @@
+# AnyExamEasy
+
+> AnyExamEasy is board-exam study support for NCLEX, USMLE Step 1, USMLE Step 2 CK, USMLE Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. One subscription covers those exams. The public site has board hubs, a toolkit, free practice, a question of the day, a daily crossword, a Top 500 drug deck, and an anatomy explorer.
+
+Canonical host: https://www.anyexameasy.com
+
+## Board hubs
+
+- [NCLEX](https://www.anyexameasy.com/nclex): NCLEX-RN practice questions and the nursing hub.
+- [USMLE](https://www.anyexameasy.com/usmle): Step 1, Step 2 CK, and Step 3 on one hub. There is no separate public URL per step.
+- [NAPLEX](https://www.anyexameasy.com/naplex): Pharmacy board hub.
+- [PANCE](https://www.anyexameasy.com/pance): Physician assistant board hub.
+- [AANP FNP](https://www.anyexameasy.com/aanp-fnp): Family nurse practitioner hub. /fnp redirects here.
+- [NPTE-PT](https://www.anyexameasy.com/npte-pt): Physical therapy hub. /npte redirects here.
+
+## Study tools that are public
+
+- [Free practice questions](https://www.anyexameasy.com/free-practice-questions): Sample questions with answers in the page HTML.
+- [Question of the Day](https://www.anyexameasy.com/daily): One public question per board.
+- [Daily crossword](https://www.anyexameasy.com/crossword): A crossword for each board, including recent dates.
+- [Toolkit](https://www.anyexameasy.com/toolkit): Official outlines and links into study articles.
+- [Free guides](https://www.anyexameasy.com/free-guides): Drug cards, anatomy, and the six board hubs.
+- [PANCE study guide](https://www.anyexameasy.com/pance-study-guide): Public PANCE blueprint guide.
+- [Top 500 drugs](https://www.anyexameasy.com/study/drugs300): Shared drug flashcards. Individual drugs are states of this page, not separate URLs.
+- [Anatomy explorer](https://www.anyexameasy.com/anatomy): 3D anatomy. The catalog is at /anatomy/catalog.
+- [Pricing](https://www.anyexameasy.com/pricing): Trial and Pro.
+- [Compare](https://www.anyexameasy.com/compare): What one subscription includes.
+- [Blog](https://www.anyexameasy.com/blog): Study articles.
+- [For programs](https://www.anyexameasy.com/employers): Programs and employers.
+- [FAQ](https://www.anyexameasy.com/faq): Questions answered on the page.
+- [How questions are reviewed](https://www.anyexameasy.com/how-questions-are-reviewed): Review process.
+
+## What not to treat as public content
+
+- Full study-guide readers (/nclex/study-guide, /naplex/study-guide, /aanp-fnp/study-guide, /pance/study-guide, /usmle/study-guide) are not indexed.
+- Dashboard, question bank, checkout, settings, admin, and /api are not public.
+- /mpje and /exams/mpje redirect to /naplex. /mpje/practice-exam redirects to /pance.
+- /usmle/step-1, /usmle/step-2, /usmle/step-2-ck, and /usmle/step-3 redirect to /usmle.
+- /resources redirects to /toolkit. Articles stay at /resources/{slug}.
+
+## Crawl files
+
+- [Sitemap index](https://www.anyexameasy.com/sitemap.xml): pages, study guides, drugs, and blog.
+- [Robots](https://www.anyexameasy.com/robots.txt): public pages allowed. App, auth, API, and checkout disallowed.

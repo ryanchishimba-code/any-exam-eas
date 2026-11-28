@@ -179,6 +179,6 @@ describe("question of the day items", () => {
     expect(hub).not.toContain(".rationale");
     expect(og).not.toContain("item.correct");
     expect(og).not.toContain("item.rationale");
-    expect(readFileSync("src/app/sitemap.ts", "utf8")).toContain("todayIsoCentral(");
+    expect(readFileSync("src/lib/seo/sitemap-catalog.ts", "utf8")).toContain("todayIsoCentral(");
   });
 });

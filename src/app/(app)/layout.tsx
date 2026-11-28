@@ -1,5 +1,7 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { getCachedSession } from "@/lib/auth/session";
+import { NOINDEX_ROBOTS } from "@/lib/seo/public-tool-metadata";
 import { AppPreferencesProvider } from "@/lib/client/app-preferences-context";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { AppShell } from "@/components/app/AppShell";
@@ -9,6 +11,10 @@ import { TrialStatusBarSlot } from "@/components/trial/TrialStatusBarSlot";
 import { TrialWelcomeRoot } from "@/components/auth/TrialWelcomeRoot";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
 import type { ExamSlug } from "@/types/edtech";
+
+export const metadata: Metadata = {
+  robots: NOINDEX_ROBOTS,
+};
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const session = await getCachedSession();

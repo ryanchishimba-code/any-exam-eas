@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { InternalStaffGate } from "@/components/internal/InternalStaffGate";
+import { NOINDEX_ROBOTS } from "@/lib/seo/public-tool-metadata";
+
+export const metadata: Metadata = {
+  robots: NOINDEX_ROBOTS,
+};
 import { InternalPortalShell } from "@/components/internal/InternalPortalShell";
 
 export default function InternalLayout({ children }: { children: ReactNode }) {

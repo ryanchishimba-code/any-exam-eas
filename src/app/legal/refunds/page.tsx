@@ -2,11 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SupportPhoneLink } from "@/components/contact/SupportPhoneLink";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import { shareMeta } from "@/lib/seo/public-tool-metadata";
+
+const REFUNDS_TITLE = "Refunds and cancellation — AnyExamEasy";
+const REFUNDS_DESCRIPTION =
+  "How to cancel an AnyExamEasy subscription in Settings, what happens to access, and when payments are refundable.";
+
 export const metadata: Metadata = {
-  title: { absolute: "Refunds and cancellation — AnyExamEasy" },
-  description:
-    "How to cancel an AnyExamEasy subscription in Settings, what happens to access, and when payments are refundable.",
+  title: { absolute: REFUNDS_TITLE },
+  description: REFUNDS_DESCRIPTION,
   alternates: { canonical: "/legal/refunds" },
+  ...shareMeta(REFUNDS_TITLE, REFUNDS_DESCRIPTION, "/legal/refunds"),
 };
 
 export default function RefundsPage() {

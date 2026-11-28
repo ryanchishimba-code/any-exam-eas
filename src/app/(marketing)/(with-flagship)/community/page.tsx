@@ -3,11 +3,9 @@ import { CommunityFeed } from "@/components/social/CommunityFeed";
 import { CommunitySubmitForm } from "@/components/social/CommunitySubmitForm";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 
-export const metadata = {
-  title: "Community wall — AnyExamEasy",
-  description:
-    "Study tips, wins, and questions from the AnyExamEasy community of NCLEX, USMLE, NAPLEX, PANCE, and FNP candidates.",
-};
+import { communityPageMetadata } from "@/lib/seo/public-tool-metadata";
+
+export const metadata = communityPageMetadata();
 
 export default function CommunityPage() {
   return (

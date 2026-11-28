@@ -3,6 +3,7 @@ import {
   GOOGLE_TAG_CONNECT_HOSTS,
   GOOGLE_TAG_SCRIPT_HOSTS,
 } from "./src/lib/analytics/google-tag-policy";
+import { contentCanonicalRedirectRules } from "./src/lib/seo/canonical-redirects";
 import { retiredStudyRedirects } from "./src/lib/navigation/retired-study-redirects";
 import { legacyStudyGuideRedirects } from "./src/lib/study-guides/legacy-redirects";
 
@@ -76,6 +77,8 @@ const nextConfig: NextConfig = {
   ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
   ...(devDeploymentId ? { deploymentId: devDeploymentId } : {}),
   poweredByHeader: false,
+  // Default trailing-slash redirects are 308. Send a 301 to the no-slash canonical URL.
+  skipTrailingSlashRedirect: true,
   // Quiz JSON is read from disk at request time so a reviewed file can be swapped in.
   outputFileTracingExcludes: Object.fromEntries(
     [
@@ -314,116 +317,7 @@ const nextConfig: NextConfig = {
     return [
       ...retiredStudyRedirects(),
       ...legacyStudyGuideRedirects(),
-      {
-        source: "/blog/why",
-        destination: "/blog/affordable-nclex-prep",
-        statusCode: 301,
-      },
-      {
-        source: "/blog/okay",
-        destination: "/blog/naplex-study-plan",
-        statusCode: 301,
-      },
-      {
-        source: "/npte",
-        destination: "/npte-pt",
-        statusCode: 301,
-      },
-      {
-        source: "/blog/strategies",
-        destination: "/blog/nclex-study-plan-rn-pn",
-        statusCode: 301,
-      },
-      {
-        source: "/resources/uworld-alternative-multi-exam-prep-2026",
-        destination: "/resources/multi-exam-board-prep-2026",
-        statusCode: 301,
-      },
-      {
-        source: "/resources/nclex-vs-uworld-comparison-2026",
-        destination: "/resources/nclex-single-exam-qbank-comparison-2026",
-        statusCode: 301,
-      },
-      {
-        source: "/resources/nclex-vs-archer-comparison-2026",
-        destination: "/resources/nclex-cat-workflow-prep-comparison-2026",
-        statusCode: 301,
-      },
-      {
-        source: "/resources/naplex-vs-rxprep-comparison-2026",
-        destination: "/resources/naplex-single-exam-qbank-comparison-2026",
-        statusCode: 301,
-      },
-      {
-        source: "/resources",
-        destination: "/toolkit",
-        permanent: true,
-      },
-      {
-        source: "/feedback",
-        destination: "/contact",
-        statusCode: 301,
-      },
-      {
-        source: "/methodology",
-        destination: "/how-questions-are-reviewed",
-        permanent: true,
-      },
-      {
-        source: "/terms",
-        destination: "/legal/terms",
-        permanent: true,
-      },
-      {
-        source: "/privacy",
-        destination: "/legal/privacy",
-        permanent: true,
-      },
-      {
-        source: "/refund",
-        destination: "/legal/refunds",
-        permanent: true,
-      },
-      {
-        source: "/refunds",
-        destination: "/legal/refunds",
-        permanent: true,
-      },
-      {
-        source: "/cancel",
-        destination: "/legal/refunds",
-        permanent: true,
-      },
-      {
-        source: "/cancellation",
-        destination: "/legal/refunds",
-        permanent: true,
-      },
-      {
-        source: "/cookies",
-        destination: "/legal/privacy",
-        permanent: true,
-      },
-      {
-        source: "/fnp",
-        destination: "/aanp-fnp",
-        permanent: true,
-      },
-      {
-        source: "/free-questions",
-        destination: "/#try-questions",
-        permanent: true,
-      },
-      {
-        source: "/sample",
-        destination: "/#try-questions",
-        permanent: true,
-      },
-      {
-        source: "/auth/signup",
-        destination: "/signup",
-        permanent: true,
-      },
+      ...contentCanonicalRedirectRules(),
       {
         source: "/employee/login",
         destination: "/auth/login?callbackUrl=%2Finternal",
@@ -450,21 +344,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/mpje",
-        destination: "/naplex",
-        permanent: true,
-      },
-      {
-        source: "/exams/mpje",
-        destination: "/naplex",
-        permanent: true,
-      },
-      {
-        source: "/studygub",
-        destination: "/dashboard",
-        permanent: true,
-      },
-      {
         source: "/study-hub",
         destination: "/dashboard",
         permanent: false,
@@ -475,14 +354,9 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/dashboard/roadmap",
-        destination: "/dashboard",
-        permanent: true,
-      },
-      {
-        source: "/exams/:exam",
-        destination: "/:exam",
-        permanent: true,
+        source: "/:path+/",
+        destination: "/:path+",
+        statusCode: 301,
       },
     ];
   },

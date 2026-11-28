@@ -20,6 +20,7 @@ import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
   title: "Checkout — AnyExamEasy",
+  robots: { index: false, follow: false },
 };
 
 function firstSearchValue(

@@ -210,14 +210,6 @@ export function buildHomeJsonLd(totalQuestionsLabel?: string) {
         name: SCHEMA_BRAND_NAME,
         publisher: { "@id": `${url}/#organization` },
         inLanguage: "en-US",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: {
-            "@type": "EntryPoint",
-            urlTemplate: `${url}/toolkit?q={search_term_string}`,
-          },
-          "query-input": "required name=search_term_string",
-        },
       },
       {
         "@type": "SoftwareApplication",

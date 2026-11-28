@@ -49,7 +49,7 @@ describe("retired study surface redirects", () => {
 
 describe("retired pages stay out of the public sitemap", () => {
   it("does not list library or high-yield topics", () => {
-    const sitemap = fs.readFileSync(path.join(process.cwd(), "src/app/sitemap.ts"), "utf8");
+    const sitemap = fs.readFileSync(path.join(process.cwd(), "src/lib/seo/sitemap-catalog.ts"), "utf8");
     expect(sitemap).not.toContain('"/library"');
     expect(sitemap).not.toContain('"/dashboard/topics"');
     expect(sitemap).not.toContain("/study-hub/topics");

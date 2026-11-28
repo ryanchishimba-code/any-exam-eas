@@ -19,12 +19,18 @@ import {
 } from "@/lib/landing/content";
 import { formatMonthlyPrice, formatTrialLabel, MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
+import { shareMeta } from "@/lib/seo/public-tool-metadata";
+
+const EMPLOYERS_TITLE = "For Employers & Programs | AnyExamEasy";
+const EMPLOYERS_DESCRIPTION =
+  "Equip your nursing, medical, PA, NP, and pharmacy candidates with premium board prep for six licensing exams under one affordable plan. Readiness analytics, one bill, fast onboarding.";
 
 export const metadata: Metadata = {
-  title: "For Employers & Programs | AnyExamEasy",
-  description:
-    "Equip your nursing, medical, PA, NP, and pharmacy candidates with premium board prep for six licensing exams under one affordable plan. Readiness analytics, one bill, fast onboarding.",
+  title: { absolute: EMPLOYERS_TITLE },
+  description: EMPLOYERS_DESCRIPTION,
   alternates: { canonical: "/employers" },
+  robots: { index: true, follow: true },
+  ...shareMeta(EMPLOYERS_TITLE, EMPLOYERS_DESCRIPTION, "/employers"),
 };
 
 const VALUE_PROPS = [

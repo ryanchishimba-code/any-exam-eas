@@ -100,7 +100,7 @@ describe("public PANCE study guide", () => {
     expect(page.html).toContain("KDIGO 2024 defines acute kidney injury");
   });
 
-  it("is a static marketing route listed in the sitemap", () => {
+  it("is a static marketing route listed in the sitemap", async () => {
     const pageSource = readFileSync(
       "src/app/(marketing)/(with-flagship)/pance-study-guide/page.tsx",
       "utf8"
@@ -109,7 +109,8 @@ describe("public PANCE study guide", () => {
     expect(pageSource).not.toContain('"use client"');
     expect(pageSource).toContain("canonical: PANCE_STUDY_GUIDE_PATH");
     expect(PANCE_STUDY_GUIDE_PATH).toBe("/pance-study-guide");
-    const sitemap = readFileSync("src/app/sitemap.ts", "utf8");
-    expect(sitemap).toContain(`path: "${PANCE_STUDY_GUIDE_PATH}"`);
+    const { buildSitemapGroups } = await import("@/lib/seo/sitemap-catalog");
+    const urls = buildSitemapGroups({ posts: [] })["study-guides"].map((url) => url.loc);
+    expect(urls.some((url) => url.endsWith(PANCE_STUDY_GUIDE_PATH))).toBe(true);
   });
 });
